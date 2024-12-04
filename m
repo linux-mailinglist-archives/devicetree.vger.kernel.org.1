@@ -1,198 +1,200 @@
-Return-Path: <devicetree+bounces-126977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9738C9E3D37
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:50:16 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 789E19E3D52
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:52:41 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 523BA281241
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:50:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57271160902
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A7D20B7EC;
-	Wed,  4 Dec 2024 14:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D880D20ADCF;
+	Wed,  4 Dec 2024 14:52:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fb/f6iea"
 X-Original-To: devicetree@vger.kernel.org
-Received: from leonov.paulk.fr (leonov.paulk.fr [185.233.101.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C77820ADD8;
-	Wed,  4 Dec 2024 14:49:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.233.101.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE79E20A5E7;
+	Wed,  4 Dec 2024 14:52:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733323799; cv=none; b=q9q20E6+XZVnI+1cjBDkSkCH/SYrJxumerr8FrRW/CfngUwdIDrqFRIH24Nb7zNTMniO9lWJ2OXbLE6ql5Ai+YmC/7SRJ+S1JR1qTQiQNozY1gaWXuP6HeQtSDz/jRkyBD2riqRU9hvPsjl6cnmN4C7PmWjGTvTiXyjEkYFmJUc=
+	t=1733323958; cv=none; b=T0BnPaKvKTOs13uQ9laVlMPQa7OPk9EIjS8IRHiMw5S2X8Rw97JHhcLO8ir1HzXx5/CFvkddFyn0utdKgmUbs3hewyHSclBXJ+NUwvpk8KGehLYfClCGB5RRyDwyii94180m8wynWTVFs18SbF0n3IVl348gMLenVzpmQdbme4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733323799; c=relaxed/simple;
-	bh=bXoOo221xUwCnbX7R8WuAO+TIq3l4xTdXpLcxUomPwI=;
+	s=arc-20240116; t=1733323958; c=relaxed/simple;
+	bh=q1EI/ZvprzWeZhl8skF4PiVduPC/wxv9wUqtG/H4t0A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S5DmgaIQZel91ptBh+FrsVD8F1dQ7Y1cvfxauB1dG2Dz6uGFTizkx8Q2zOeott3pj1uze6hiepTqh8WLgkqJ6LXHWdu/wNA6jscKaW13+QBsi1j09XAHY/MOrDEIdPbE2JTEdyk3fUaB5RGJ0vGlgfm7X0LgWHPH1qMBRp4mgqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io; spf=pass smtp.mailfrom=sys-base.io; arc=none smtp.client-ip=185.233.101.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sys-base.io
-Received: from laika.paulk.fr (12.234.24.109.rev.sfr.net [109.24.234.12])
-	by leonov.paulk.fr (Postfix) with ESMTPS id 7C0941F0004F;
-	Wed,  4 Dec 2024 14:49:49 +0000 (UTC)
-Received: by laika.paulk.fr (Postfix, from userid 65534)
-	id F208EA6751D; Wed,  4 Dec 2024 14:49:47 +0000 (UTC)
-X-Spam-Level: 
-Received: from collins (unknown [192.168.1.1])
-	by laika.paulk.fr (Postfix) with ESMTPSA id 41819A67516;
-	Wed,  4 Dec 2024 14:49:46 +0000 (UTC)
-Date: Wed, 4 Dec 2024 15:49:43 +0100
-From: Paul Kocialkowski <paulk@sys-base.io>
-To: Mehdi Djait <mehdi.djait@linux.intel.com>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 2/2] iio: light: Add support for the TI OPT4048 color
- sensor
-Message-ID: <Z1BsBxsIKmQkHKmD@collins>
-References: <20241130174212.3298371-1-paulk@sys-base.io>
- <20241130174212.3298371-2-paulk@sys-base.io>
- <20241201115529.1375c6c3@jic23-huawei>
- <Z0yjTkXt0JhqdD15@collins>
- <20241202110659.00000171@huawei.com>
- <2yc2igv2lxh3u4kmkz73httg3sp24ziagcoaa7unfupagji7zk@ezaue3umwe44>
+	 Content-Type:Content-Disposition:In-Reply-To; b=C8NUKUneP6Gn5R9aXc1CqtvWTnGCYM0L3ffq7+M1Ti3I0bgRbr1YvLgECtm6UVLyXxVwPzi5YSvdKbjiFCvx/6R7WTgsQGhh9t4tMBtAbX6YNU/d2M+zBJoEwAUvsqQTMu+DSCCbSqiTCPzY83b/nNvVoIDt0Fd4DUZxwxKsD1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fb/f6iea; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 233CDC4CECD;
+	Wed,  4 Dec 2024 14:52:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733323958;
+	bh=q1EI/ZvprzWeZhl8skF4PiVduPC/wxv9wUqtG/H4t0A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fb/f6ieaBtCN8GEiop0yP175EUVy7Pn3gw34bWjj9fQuqnYC49cUEfsV8iGyiAghi
+	 KVWPFvAEp/hKopU+K5jgI9gffGx8mifzIK5eQJIa4NQKvDx8YUDkJgFzIquR94ylYr
+	 DJjGW/wFTDCzU/ivgUpcRShAsap5DCtpdybeflUAOt/Ruwa4IVPLbsKU8Bf3WyX3wh
+	 8Xp5NuczD6FpmRyZx8a//ssvoTRHiBIJtaVaDYTyTLGGYO5aCvvBHRLW1EkpxxvAaV
+	 ejzhGvSC1zxljUXjXYxwskNLGQu2YPu8wJxfZRdAtpEM8IcKIn//sRWCFcEABviwqP
+	 UzKkrqejgQQyw==
+Date: Wed, 4 Dec 2024 08:52:36 -0600
+From: Rob Herring <robh@kernel.org>
+To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com,
+	conor.dooley@microchip.com, conor+dt@kernel.org,
+	jassisinghbrar@gmail.com, krzk+dt@kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/4] dt-bindings: mailbox: add binding for Microchip
+ IPC mailbox controller
+Message-ID: <20241204145236.GA202257-robh@kernel.org>
+References: <20241202141107.193809-1-valentina.fernandezalanis@microchip.com>
+ <20241202141107.193809-4-valentina.fernandezalanis@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/tsIYVWsj1EIUdB7"
-Content-Disposition: inline
-In-Reply-To: <2yc2igv2lxh3u4kmkz73httg3sp24ziagcoaa7unfupagji7zk@ezaue3umwe44>
-
-
---/tsIYVWsj1EIUdB7
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241202141107.193809-4-valentina.fernandezalanis@microchip.com>
 
-Hi Mehdi,
+On Mon, Dec 02, 2024 at 02:11:06PM +0000, Valentina Fernandez wrote:
+> Add a dt-binding for the Microchip Inter-Processor Communication (IPC)
+> mailbox controller.
+> 
+> Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+> ---
+>  .../bindings/mailbox/microchip,sbi-ipc.yaml   | 117 ++++++++++++++++++
+>  1 file changed, 117 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml b/Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
+> new file mode 100644
+> index 000000000000..e104573d45c1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
+> @@ -0,0 +1,117 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/microchip,sbi-ipc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip Inter-processor communication (IPC) mailbox controller
+> +
+> +maintainers:
+> +  - Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+> +
+> +description:
+> +  The Microchip Inter-processor Communication (IPC) facilitates
+> +  message passing between processors using an interrupt signaling
+> +  mechanism.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - description:
+> +          Intended for use by software running in supervisor privileged
+> +          mode (s-mode). This SBI interface is compatible with the Mi-V
+> +          Inter-hart Communication (IHC) IP.
+> +        const: microchip,sbi-ipc
+> +
+> +      - description:
+> +          Intended for use by the SBI implementation in machine mode
+> +          (m-mode), this compatible string is for the MIV_IHC Soft-IP.
+> +        const: microchip,miv-ihc-rtl-v2
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 5
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 5
+> +    items:
+> +      enum:
+> +        - hart-0
+> +        - hart-1
+> +        - hart-2
+> +        - hart-3
+> +        - hart-4
+> +        - hart-5
 
-Glad to see you active here :)
+I don't know why Krzysztof said to list them, when all you needed to do 
+was drop the '+':
 
-Le Mon 02 Dec 24, 15:55, Mehdi Djait a =C3=A9crit :
-> Hello Paul :)
->=20
-> On Mon, Dec 02, 2024 at 11:06:59AM +0000, Jonathan Cameron wrote:
-> > On Sun, 1 Dec 2024 18:56:30 +0100
-> > Paul Kocialkowski <paulk@sys-base.io> wrote:
-> >=20
-> > > Hi Jonathan,
-> > >=20
-> > > Le Sun 01 Dec 24, 11:55, Jonathan Cameron a =C3=A9crit :
-> > > > On Sat, 30 Nov 2024 18:42:12 +0100
-> > > > Paul Kocialkowski <paulk@sys-base.io> wrote:
-> > > >  =20
-> > > > > The Texas Instruments OPT4048 is a XYZ tristimulus color sensor,
-> > > > > with an additional wide (visible + IR) channel.
-> > > > >=20
-> > > > > This driver implements support for all channels, with configurable
-> > > > > integration time and auto-gain. Both direct reading and
-> > > > > triggered-buffer modes are supported.
-> > > > >=20
-> > > > > Note that the Y channel is also reported as a separate illuminance
-> > > > > channel, for which a scale is provided (following the datasheet) =
-to
-> > > > > convert it to lux units. Falling and rising thresholds are suppor=
-ted
-> > > > > for this channel.
-> > > > >=20
-> > > > > The device's interrupt can be used to sample all channels at the =
-end
-> > > > > of conversion and is optional.
-> > > > >=20
-> > > > > Signed-off-by: Paul Kocialkowski <paulk@sys-base.io> =20
-> > > > Hi Paul,
-> > > >=20
-> > > > Various comments inline. Most significant is that this seems to be
-> > > > suitable for a simple dataready trigger that will make your various
-> > > > interrupt and non interrupt flows more similar. =20
-> > >=20
-> > > And thanks for the fast review and insightful comments!
-> > >=20
-> > > I considered implementing a trigger in the driver, but the issue I fo=
-und
-> > > is that the trigger is expected to be called from hard irq context,
-> > > while the new values are read in the bottom half.=20
-> >=20
-> > The trigger can be called from either the hard irq context or from
-> > a thread.  See iio_trigger_poll_nested()
-> > There is a quirk that you then don't end up calling the registered
-> > hard irq handler for the trigger so sometimes a bit of fiddly code
-> > is needed to ensure timestamps etc are grabbed.  Not sure that matters
-> > here.
-> >=20
->=20
-> If the timestamps do matter: here is a (maybe relevant?) discussion for
-> an issue I faced with timestamps for a driver that supports both FIFO
-> and triggered buffer mode
->=20
-> Please note that iio_trigger_poll_nested() was called
-> iio_trigger_poll_chained() back in that discussion.
->=20
-> https://lore.kernel.org/linux-iio/Y+6QoBLh1k82cJVN@carbian/
+pattern: "^hart-[0-5]$"
 
-Thanks for the hint! I'll definitely look it up for details.
+> +
+> +  "#mbox-cells":
+> +    description: >
+> +      For "microchip,sbi-ipc", the cell represents the global "logical"
+> +      channel IDs. The meaning of channel IDs are platform firmware dependent.
+> +
+> +      For "microchip,miv-ihc-rtl-v2", the cell represents the physical
+> +      channel and does not vary based on the platform firmware.
+> +    const: 1
+> +
+> +  microchip,ihc-chan-disabled-mask:
+> +    description: >
+> +      Represents the enable/disable state of the bi-directional IHC
+> +      channels within the MIV-IHC IP configuration.
+> +
+> +      A bit set to '1' indicates that the corresponding channel is disabled,
+> +      and any read or write operations to that channel will return zero.
+> +
+> +      A bit set to '0' indicates that the corresponding channel is enabled
+> +      and will be accessible through its dedicated address range registers.
+> +
+> +      The actual enable/disable state of each channel is determined by the
+> +      IP block’s configuration.
+> +    $ref: /schemas/types.yaml#/definitions/uint16
+> +    maximum: 0x7fff
+> +    default: 0
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - interrupt-names
+> +  - "#mbox-cells"
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: microchip,sbi-ipc
+> +    then:
+> +      properties:
+> +        reg: false
 
-Cheers,
+How do you address the question about this? Add an explanation in the 
+schema. No one is going to remember an answer in a review thread. IOW, 
+assume that we don't remember the answer and will just ask the same 
+questions again.
 
-Paul
+You can do something like:
 
-> > > I understand the triggered
-> > > buffer callbacks are executed as a thread as well, so there would be =
-race
-> > > between the two which could result in previous values being returned.
-> >=20
-> > With the above nested call it is all run in the same thread
-> > See handle_nested_irq() in particular the function docs.
-> > https://elixir.bootlin.com/linux/v6.12.1/source/kernel/irq/chip.c#L459
-> >=20
-> > > So I concluded that it was more beneficial to preserve the synchronou=
-s reading
-> > > mechanism over implementing the trigger.
-> >=20
-> > Definite preference for a trigger approach, but I may well still be mis=
-sing
-> > a detail.
->=20
-> --
-> Kind Regards
-> Mehdi Djait
+reg:
+  not:
+    description: ...
 
---=20
-Paul Kocialkowski,
+or
 
-Independent contractor - sys-base - https://www.sys-base.io/
-Free software developer - https://www.paulk.fr/
+reg:
+  not: {}
+  description: ...
 
-Expert in multimedia, graphics and embedded hardware support with Linux.
 
---/tsIYVWsj1EIUdB7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEAbcMXZQMtj1fphLChP3B6o/ulQwFAmdQbAcACgkQhP3B6o/u
-lQwKixAAmXxZLS4V0z+oSrzrze+9q4oHHWWJtMguYnuHikHkgPc05uq/2Hf0x+OQ
-V/np9Pbz1AlObo9q9Upk2WcU9ngpof6FxSwutt6EqWqHn4sXXiGoFUec3nSFmHA4
-QvcQSeSf3BeowlM2uWDJ7/og5s7QeUqeCgNnuQ4x1cw7KMJnLqPVm80Tv4qwsUPC
-qSNK+HQvXIM2HQeNOAZAuS/3oOe9C2BWv7vuE0NCUUnHxXRtsQ3mKVQSHx+/prgo
-fkQWACxhsUcl0erxt7xuapRO4eVcGb4xHobiLYju8pK508gUEtJK/GGOPz69XaMu
-77FChx02zsrtPscVrD/ooiRCSK+9dqWlP5Cs7CyCi8ezJByWHE2cIeLvm2tW0ygu
-6xKe10+KEKgapshlpjAo+uKg/1BwkiutqR3IqNml0XUpphig26SHPXEYpQIAsEr7
-IcYyGiDk/NsSMvS5bdDRsv9MB1sAmtrGPNhJ3nJQO44sr7ZuXfdJl7ZQVYtqydqo
-ZeBHv6t5IzSHHFNv0VHVHcwqkYvCZTzNxQ3c+O9jhDBiHd01Th4wYgbrGUYX7XhL
-kY6BNzrPOO45c2xH9bSbaBpntGlM8TthEOOyY2aFq34jugUpsjHTpTpEWNjbeRsP
-Ar0zGG2yK2sRaLTOZdnGc0STnLjRE6WXoka29uKXb6QupVdEdvQ=
-=OO2/
------END PGP SIGNATURE-----
-
---/tsIYVWsj1EIUdB7--
+Rob
 
