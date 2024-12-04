@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-126846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E11B9E3599
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 09:38:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE0029E35F6
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 09:52:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12AB2281A75
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 08:38:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3726CB2A390
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 08:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 624D9194A65;
-	Wed,  4 Dec 2024 08:38:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 266BE196446;
+	Wed,  4 Dec 2024 08:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nQ0wZyK6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WxPkaIPw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3275918C03B;
-	Wed,  4 Dec 2024 08:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC0318C03B;
+	Wed,  4 Dec 2024 08:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733301507; cv=none; b=mpPCw+JAU2yQLkqtRX8dJTWJz03uWzJhwV4L0vqjzI4GX49+PiaXjk7Wqgl/0H/hyWVRNxmFod41b5SXp8kqmfszUg9cvRTL/Is6WFqkgps0mW5kqkI67/9/I+HYW6RynWi+0sT2eIEs344UaNXgCz63Vg6uckd82lQog1A5AO0=
+	t=1733301656; cv=none; b=ojQ2p0Lu8hRskbQEufKcGPEHjC6KED+ykrTP1RzdEZLSBoUkYX9CmlplQY1D2OmOPHRovoOPR+9msLYD/dpissuYOYoZM2JrdsaG4JZouJ4Ef5V2mv/ovmEwcHcd/RUb6FX9Yn06MAFdQwJgugdy7BeP2OaPqnmymLthxZFm/aw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733301507; c=relaxed/simple;
-	bh=qyu4sdJIZE8YG6rqCb7uR8DZa3zsLilFXXQte5W71Y8=;
+	s=arc-20240116; t=1733301656; c=relaxed/simple;
+	bh=fkfoj+pgudhA38FUwobh2PpIVHPT/yT4qHHxT/fMCn4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b2vyXEb56F9/kNKg6FSFHKjd+VXjQl7F2NcHKqracShCAoFn4xORDIVPP7nbwMC+eHTJGLtijSka9coHllXZvkT+XfeckJPSGH4stVQQdutKRyPFQqnm9GeKtHUpVzDHpOyJMQF22Hu+0hdiaYsnnjE5kINGeYJPtfsYu+r9Vb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nQ0wZyK6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB276C4CED6;
-	Wed,  4 Dec 2024 08:38:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jx8fRflhw3DcHxGJKHfXh5bAMZ97UBeaiK7DEAapnN8XmoZjZ/HfM5mDYrV06C3h64MRN5FGd/z4ZcIMJKsiQgjccoHHk4Pj82tTXXalax9ZgqYPfTyqrOAUrfZnfuN7OBZPA3Ca9tF6JCIWmodZ9ue7VAnaasbjJJT8I7Q8X+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WxPkaIPw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87F90C4CED1;
+	Wed,  4 Dec 2024 08:40:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733301506;
-	bh=qyu4sdJIZE8YG6rqCb7uR8DZa3zsLilFXXQte5W71Y8=;
+	s=k20201202; t=1733301655;
+	bh=fkfoj+pgudhA38FUwobh2PpIVHPT/yT4qHHxT/fMCn4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nQ0wZyK6Er4GCW/x4pOB1Ffy0HNXP+XICFbzET0oRoBpt4FU8X/+OUUtlnnaHtrzg
-	 /Mdwdd0AavZXy4ptwgpYPh7nPyfGVzgH7xMTizhdmolotE1PKaqYLHFsI6am5kx9pl
-	 mSPUzx775CXor3wN9oKhvHFPBdSMAjLMfIfNdU6Kjlhxb9EGEq4Efgu+wz6Qw3yGMk
-	 Gbz/8PhTpNU9O5kabC7BQ1pDZL4bUenwgIgfjjsnJcI67wLkbJ8cy/s4VsUpYyVns3
-	 mH9flRBYJHGgNQ7cXNAVojfGNN8iQvtxgGntp/NlG2SQlXbcL/TB1IjT24rQX+/tMC
-	 9Pr7ZVC2oDGyg==
-Date: Wed, 4 Dec 2024 09:38:22 +0100
+	b=WxPkaIPw2wQ9SXnEsHBeUpencemRB/jkmhd+lpvcgVcCEe9ZXfhmDOclwJf4yltMF
+	 yQv7XefvKEyGWfVhft4IBsxsRzMw2CMCArXfEN3fuKpmkbBGfZwN31AugbVG8eMHGL
+	 mG+XoOtFfwgXxoNRujsi8k0uuPoGA40GekrPcm6TQJuh7puaTIOqYxo89rXwW/losJ
+	 VlfwYjRgu5hT7WJ1rRyxMmALVHkQUOr4+oRwbZkKj/6gP70DTxcQG8ijgEyRz4TPc1
+	 GZrsvJKT/ufxVMvNrS//ksP5rxQzZJg1FVHLDYZREvD233Aie5/d+73WrKwg0WCdII
+	 1qGerqiUblLDQ==
+Date: Wed, 4 Dec 2024 09:40:52 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Andrew Davis <afd@ti.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: syscon: Add ti,am654-icssg-ctrl
- compatible
-Message-ID: <ii7dbehl2ecvgc6e4kqy5nk2e22hnbk43tldqfxjk7xxapnp5x@7ojnf36ej3fm>
-References: <20241203173113.90009-1-afd@ti.com>
+To: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: soc: samsung: exynos-pmu: Add
+ exynos990-pmu compatible
+Message-ID: <yqdtp6gllg4x5a4sysmgvgyd4y6z6h6ly556bzbuafkkaba3e5@pgnuhlbx7e2j>
+References: <20241203211344.515431-1-igor.belwon@mentallysanemainliners.org>
+ <20241203211344.515431-2-igor.belwon@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,36 +61,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241203173113.90009-1-afd@ti.com>
+In-Reply-To: <20241203211344.515431-2-igor.belwon@mentallysanemainliners.org>
 
-On Tue, Dec 03, 2024 at 11:31:10AM -0600, Andrew Davis wrote:
-> Add TI ICSSG control registers compatible. This is a region found in the
-> TI AM65 CTRL_MMR0 register space[0]. Each instance is used to control a
-> an ICSSG's RGMII delay and GPO mode.
-> 
-> [0] https://www.ti.com/lit/pdf/spruid7
-> 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> index b414de4fa779b..34943d9fc0ab5 100644
-> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> @@ -115,6 +115,7 @@ select:
->            - ti,am625-dss-oldi-io-ctrl
->            - ti,am62p-cpsw-mac-efuse
->            - ti,am654-dss-oldi-io-ctrl
-> +          - ti,am654-icssg-ctrl
+On Tue, Dec 03, 2024 at 10:13:43PM +0100, Igor Belwon wrote:
+> Add a dt-binding compatible for the exynos990-pmu.
 
-Considering your patch #2 adding something with similar name, this is
-quite confusing.
-
-Anyway, where is any user of this? If there is no user, then why? If
-there is, then commit msg should explain that you document existing
-device.
+s/exynos990-pmu/Exynos990 PMU (and here goes explanation of PMU). You
+just copied subject and basically copied patch contents which is
+obvious. Instead say something useful about hardware, e.g.
+is it different or is it compatible with anything?
 
 Best regards,
 Krzysztof
