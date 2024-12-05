@@ -1,114 +1,117 @@
-Return-Path: <devicetree+bounces-127614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4A139E5CD2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:17:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E4B19E5CD8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:17:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DB651884A74
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:17:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFC4D16D233
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:17:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3636D229B15;
-	Thu,  5 Dec 2024 17:15:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80D20225779;
+	Thu,  5 Dec 2024 17:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KwiSCTz5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UGxelnSm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31B82227B80
-	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 17:15:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 546507E105;
+	Thu,  5 Dec 2024 17:16:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733418952; cv=none; b=HzLDriSBEzyN5DXWPWaktL03qp8ZySR1FIhRhCsZ06lni3U6pgSPv4ww+5vl+Xlq9lHpiAGlO765B12qVFAk0duCV8VrBDr9CPVBdHY7pE4843K4F8jEF6Efcl/lpEdVImmKjKBsHk2AmMN3nc/yglPlz/CcTtKOSb3cWX1VO0g=
+	t=1733418980; cv=none; b=spzfjSPJj2wXNZdIbWTqHqt4Hx+oxQmRMqmvuz/W/tVeOzFGDUcibkv9TnYpD5rR3pWAbAk3V5Smji5ZYz+VLBEzW0tFDOu5mCyCV458BsyWGxH+JMStfLLBuVW/CrlIQRgFisr32JGBffGIQZSAU2zUSEyoKQ0mdfZVf19c90A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733418952; c=relaxed/simple;
-	bh=rVxdCXnF53bGePiz+b207A98CTZ+XHwr6WSiDwdMXYI=;
+	s=arc-20240116; t=1733418980; c=relaxed/simple;
+	bh=ll/pqBlh7VQdZrfl40Y3GRd2AxpRWeO2O5BqSRhjrXw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eZqdCVs2fTy8I7beUeQw6Ot2ijyPrA+gBwQFESz7JTd7K2336eLcIodFLCd9hmuD5dTdeT9yIXD28/0wV5PIyNCJWZ7BOBf908yUO5M4fDNI2SwxQD0nzJUkJ947Z6n7FG7JO5FGN+0n+Bg0FzWHiCzBTDXSCCyekjqjxEPr9VM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KwiSCTz5; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-53e1f673ca8so1335295e87.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 09:15:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733418948; x=1734023748; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oNxP0LFln0zgtOWEPbGccnsmPf7gfq1YwGA1WaBfZX8=;
-        b=KwiSCTz5+jhTr+qli+iLMFBa3N49VrXaD6ykqTTnpCT9ZdyEqMO/N4X/sY93zPUbN/
-         p6X16lTOsHKhsyaNhMJzky4I1CvJXca7YF02+vVMdp1OnuH9LbUp7ZQfBPauwKM+aiuh
-         YfuAgb+k+JRErL3tLad3Erhlu33sV7RHxhMR2o5XPe/gFd3yCVrWsa+ZQXc9pkoVIdGO
-         oyGCPYVXAqilVFV4gggXigzldt36KQEGNw0XeWXPVMvHB4bRrkbFFWfEL8z6NZbL+UPQ
-         D7eryEcAchTYkvUG9sKx3KMpEujwpTojI0GlO9Vz55Uiin8dOYxucMRmlzQQd/c3ixuw
-         KpNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733418948; x=1734023748;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oNxP0LFln0zgtOWEPbGccnsmPf7gfq1YwGA1WaBfZX8=;
-        b=LNjkb7YP6v8f5ZtE6x9aBzLmX2Vrt6ulRvpt9+XJYqemHLFCzcneA/Q3xVR6GuiK/1
-         k3Jei42nDz6qbN8k1PpUANSqbIe3liOoGHdvR3kQjRyfR3xYUko0P6i8I2iDrhFNSwoe
-         gWOTacDge7ajK9LeXOIu+IMPxwA92tSJr6UTTuX157awkMXCvC1dDrImPAY/66uidz61
-         ouvut4atWRlIc/wgVQNyNfGZY2Ld4fLBEgdPBbxTIBRMESxjfbnL18VucTgrUH9LPdUW
-         qbzS1KfcjapRGissnQ0R0dOczJwaIOVWhrAp7V3CnaAc8jHfkWcHYVWQ6wNjUCPsBz+E
-         KJUg==
-X-Forwarded-Encrypted: i=1; AJvYcCURdyA+X9Jt0ArLngDmRbuUMV07zZBtYVxfboTpT0tmn2SmHtZBMJFzuePsJ2gsIDToRcwyu01cKnJm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzucV/1K0f24gogKBOZ1e+N8ilXIguysGAaRp5Kp5+N6WZcr0mc
-	aATOU8S+vjxctZfXiGhvTB1UoBdyNx9BtyWJBP4kM2X/NL6CmMjjpPd/mrScnJ4=
-X-Gm-Gg: ASbGnctjUy5KoHziieTL463ah4nm0L+mVCAoYLwEpa0uKt2FosqcrS0NDsHK0RIFgRG
-	zwUbrU8YCyEZvXwxBWjZ6kGL6isaeHsjxkkxTyFF9XNaqR7bCuGSJ+mEidMfTfxiR77pnwN0HE6
-	LDyEJJecMRocR1pDwuDVfOyk30Vj6gyJYXpQxXM5uDUvN6fmJyW+Hwcnn6xQH9eQ2S4U+/m7EFq
-	9YbSsJTru++AZpu6h1f4oMJg7ABHPcmu/5s7FaR6pjP5ji8T2upqImTCLCNvfZ7gzjpGst6z3Ol
-	RoSQLLGjNxyS6BN/zqIprfADw/KI2w==
-X-Google-Smtp-Source: AGHT+IEyfN0BrcIPh71fjjX8E4/Bx32mFLWHQVrIs1Vx7rUsYWJpnXHHPExUIEGLfLu7e/b8DQpJFA==
-X-Received: by 2002:a05:6512:3087:b0:53d:ed89:d78d with SMTP id 2adb3069b0e04-53e1b8785eamr3514553e87.5.1733418948210;
-        Thu, 05 Dec 2024 09:15:48 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e22947384sm293663e87.45.2024.12.05.09.15.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Dec 2024 09:15:46 -0800 (PST)
-Date: Thu, 5 Dec 2024 19:15:44 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Melody Olvera <quic_molvera@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Jishnu Prakash <quic_jprakash@quicinc.com>
-Subject: Re: [PATCH v3 2/7] arm64: dts: qcom: Add PMD8028 PMIC
-Message-ID: <jnqgccc6penjqmkhursdlbc46xctikvovfa26vlsvttxwqo5zv@uwh7fhixrmrz>
-References: <20241204-sm8750_master_dt-v3-0-4d5a8269950b@quicinc.com>
- <20241204-sm8750_master_dt-v3-2-4d5a8269950b@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mhn2Oozg6kmdWU3apIee0BV0mm3GoHolw6YqTLz3/pYyHGDz/CBcWzeZR0jrzKdG/nPv9XlxPg1o2K6Nd34lfpraKbuyPuYlftbQMhrj8p/1S6xKQOsZ/NIzDaPHz1M/Qj2/p7Lj8GkiTR36szePTIrNPPospvrGWqvcbDXORx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UGxelnSm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5A18C4CED1;
+	Thu,  5 Dec 2024 17:16:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733418979;
+	bh=ll/pqBlh7VQdZrfl40Y3GRd2AxpRWeO2O5BqSRhjrXw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UGxelnSmP2fi+QBtv0TaH/Q9nACsWEbMiXTzcVD8FSQHtVUZmxSLiisduv91ug+sS
+	 Ax5e/T0z+6bvflbNCWXVu47JOFQRYk7k6HmJYDoCCwditaCWxk4O2fJ3AWlSo4fzua
+	 Uf7/+C9qjPN37R2kGgv6k78I5ZLIOtoJ6vVrYqkLT78lSYMkOJpmBAT4mTRI+QFIwM
+	 tv555atqTSfiYtDUEe4wuTnR8GZCmULXsaUg6uMaBo2IbSWPqD+opXDzaQwGbFNsqb
+	 vH+pPl3AQa3oSI8fHxfOqVisVWNpp9sHWglYH14WkcCIzTkdajm+dEi57YY+zUQbvB
+	 f7QmOrNvl4H6A==
+Date: Thu, 5 Dec 2024 17:16:14 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v1 2/5] dt-bindings: vendor-prefixes: Add prefix for Priva
+Message-ID: <20241205-hamstring-mantis-b8b3a25210ef@spud>
+References: <20241205125640.1253996-1-o.rempel@pengutronix.de>
+ <20241205125640.1253996-3-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="RfxN6UD6pYJLj5Ip"
+Content-Disposition: inline
+In-Reply-To: <20241205125640.1253996-3-o.rempel@pengutronix.de>
+
+
+--RfxN6UD6pYJLj5Ip
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241204-sm8750_master_dt-v3-2-4d5a8269950b@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 04, 2024 at 03:18:02PM -0800, Melody Olvera wrote:
-> Add descriptions of PMD8028 PMIC used on SM8750 platforms.
-> 
-> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+On Thu, Dec 05, 2024 at 01:56:37PM +0100, Oleksij Rempel wrote:
+> Introduce the 'pri' vendor prefix for Priva, a company specializing in
+> sustainable solutions for building automation, energy, and climate
+> control.  More information about Priva can be found at
+> https://www.priva.com
+>=20
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
->  arch/arm64/boot/dts/qcom/pmd8028.dtsi | 62 +++++++++++++++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
-> 
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Doc=
+umentation/devicetree/bindings/vendor-prefixes.yaml
+> index da01616802c7..9a9ac3adc5ef 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1198,6 +1198,8 @@ patternProperties:
+>      description: Primux Trading, S.L.
+>    "^probox2,.*":
+>      description: PROBOX2 (by W2COMP Co., Ltd.)
+> +  "^pri,.*":
+> +    description: Priva
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
+Why not "priva"? Saving two chars doesn't seem worth less info.
 
--- 
-With best wishes
-Dmitry
+--RfxN6UD6pYJLj5Ip
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1Hf3gAKCRB4tDGHoIJi
+0vCCAPsHVLh5ARoGVS/2vGmP95xh8i6OPSPvwg87l4tT5DQKGAD+OrSsG3fRMkAH
+BhsrJpztvvaJq8afTPZtjQh4PQEPlQc=
+=4PKr
+-----END PGP SIGNATURE-----
+
+--RfxN6UD6pYJLj5Ip--
 
