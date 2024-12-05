@@ -1,100 +1,124 @@
-Return-Path: <devicetree+bounces-127440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 090B29E572E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 14:32:17 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFD9A9E5757
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 14:36:46 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B689B285396
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:32:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9ABD51624A8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:33:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06AA1218EB6;
-	Thu,  5 Dec 2024 13:31:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FC5E433D5;
+	Thu,  5 Dec 2024 13:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DXL2acNq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UsrwpU1j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF745218EAF;
-	Thu,  5 Dec 2024 13:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46C6B23918D;
+	Thu,  5 Dec 2024 13:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733405509; cv=none; b=VSKe50kuR6IpP4DfAf2EZdopjOGdYQvjLKyeyCh4RkGzQEw67esTqV+cMbTBmbm0yfuA7LXsSPiXSmLS07vc6WxaPeGFA9OpsHzEY4QtYOpRot3tuCvQk6dfizUVurJLgJ3YeVtuE+XiwNm8+EnSfnfbRCGDRu2zwf5YL4eaUH4=
+	t=1733405635; cv=none; b=d5n+xkod4AH3hsdLGATZIJb32ZCoSHs9S59pIit3bMnBFJXdzA/hc2mQXhKiA6A87hHp5hPKPrsbXdg50U9aPz6lB+IiYiBpyVzjKLkMscaY9vwz7X3yyaT/nkObESfgT1kTjHVlckXjqmuzSmpolB/13NWNb0NwS1S3kQn+jSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733405509; c=relaxed/simple;
-	bh=WlgjCAS3F3ARAKZEAKQFnrIjg4AKSbxmMgw9Hy07CCY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mWFWiDMRUcunGNUoaPfn7JYbGuYANsWCSAOXRzMItB/fPcRDT+2/uK5+h+TYIM7P/InpvOiGLQNgeZRUp5KMy4qS1+E0eYe2y2pBR7XO77N4FnXYFseHR5NN2dpe9JLNbvJFU0t+TYF/cNTukjTSZEQNqSQ5bEQQsM4bkL8vLOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DXL2acNq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98E8BC4CEDC;
-	Thu,  5 Dec 2024 13:31:46 +0000 (UTC)
+	s=arc-20240116; t=1733405635; c=relaxed/simple;
+	bh=HY9tTGeW5NW/9Fp7iwxPs9KMW7cXmJeJAVDmaY4R1VE=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=V+nYyfs3uuh3Gb0qM67aIrWMxJVjl9FMTgNCcYu7soHa53qPjiR92lfV5SxFVJ6r8xHK1brRTkVj4VNVvlRQDHPtYOpytWISJYxPLieeUiCHXs7cdvY/J08s2HFQ5GQT0g5O16hZT+BleBd1e3R4KAXI6VpUYp7P1FxPP8D3TCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UsrwpU1j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0318C4CEE0;
+	Thu,  5 Dec 2024 13:33:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733405509;
-	bh=WlgjCAS3F3ARAKZEAKQFnrIjg4AKSbxmMgw9Hy07CCY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DXL2acNq5+laWr1VhdgaBXuIKQ4YiJeo2ypPoNMc0niOp9v2TxSps34kFoGhXz+b1
-	 nBjusCQ9hRRqM4+I64mLmuYVes585Rvbd2dSkQLst79TSGZPNKZT+dmRaCKO2Z5spG
-	 G6WyHWCP8egps+ZwztSS80aa7EMXjgm0AEKgEGQ0xReZXAeKvxRXew6hHVLm9LNaKC
-	 HqbVoCvzMFH4F83NAgdyajKdCsrzbEw8kSefIIYuPBWLYTubbdOKHMjS1tKnN4XObj
-	 eFtSqYYi44Bnp/oOADtGFmPF1Pqyrwhbo1bDD0W6haoUKwwb7c6klLOFj6C9UwlDNt
-	 4JJ7IXTar3fUg==
-Date: Thu, 5 Dec 2024 13:31:43 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: codecs: wcd9335: Add define for number of DAIs
-Message-ID: <08e07421-8a9b-4535-9cd5-9383ca9024b3@sirena.org.uk>
-References: <20241205084021.35610-1-krzysztof.kozlowski@linaro.org>
- <c3d2477b-f12a-47dd-bf95-927e6c0d8fd5@sirena.org.uk>
- <CABTCjFA9DyRzca93qoS5_+sfc2RLfNVNqN14WVfKODjHykwGJQ@mail.gmail.com>
+	s=k20201202; t=1733405634;
+	bh=HY9tTGeW5NW/9Fp7iwxPs9KMW7cXmJeJAVDmaY4R1VE=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=UsrwpU1jhn2CrdcLXusDmzHQxeTYjTOseV6uFBr3sr6C/rFvFwziJqAOQpqxzQuGL
+	 RzdajG9/dhis/gxXfRCPrPRImkDFnnxHPZzBxFsPEQ1SmERTmmQtC5TjwhfWWAZJnT
+	 Sg6G/Gt8DDY5LH7aJclBgfC3kJBiM5LnL5zJpU6h/EupV2fUtc5gyTAJvnsiGx4UQI
+	 xZjeedfI1zEC71nDNpXzq2bhhmthTMIW3SrRsLT7GeW3V148yRO3Rvgh1p13OHdTzb
+	 4ssr0tkkLvPN/Zt4AEnXfqt8J18drl7cmPwUbQXf06AC13luQhAH/jkTVAXDwco17y
+	 sgipnyP69ENTQ==
+Date: Thu, 05 Dec 2024 07:33:52 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="I3DviFfx2zdhxkGX"
-Content-Disposition: inline
-In-Reply-To: <CABTCjFA9DyRzca93qoS5_+sfc2RLfNVNqN14WVfKODjHykwGJQ@mail.gmail.com>
-X-Cookie: System checkpoint complete.
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: simona@ffwll.ch, devicetree@vger.kernel.org, p.zabel@pengutronix.de, 
+ junzhi.zhao@mediatek.com, mripard@kernel.org, matthias.bgg@gmail.com, 
+ linux-kernel@vger.kernel.org, tzimmermann@suse.de, krzk+dt@kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+ airlied@gmail.com, chunkuang.hu@kernel.org, conor+dt@kernel.org, 
+ kernel@collabora.com, jitao.shi@mediatek.com, 
+ maarten.lankhorst@linux.intel.com, ck.hu@mediatek.com, 
+ linux-mediatek@lists.infradead.org, jie.qiu@mediatek.com
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20241205114518.53527-8-angelogioacchino.delregno@collabora.com>
+References: <20241205114518.53527-1-angelogioacchino.delregno@collabora.com>
+ <20241205114518.53527-8-angelogioacchino.delregno@collabora.com>
+Message-Id: <173340563286.3304541.16351309995499835638.robh@kernel.org>
+Subject: Re: [PATCH v2 07/15] dt-bindings: display: mediatek: Add binding
+ for MT8195 HDMI-TX v2
 
 
---I3DviFfx2zdhxkGX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Thu, 05 Dec 2024 12:45:09 +0100, AngeloGioacchino Del Regno wrote:
+> Add a binding for the HDMI TX v2 Encoder found in MediaTek MT8195
+> and MT8188 SoCs.
+> 
+> This fully supports the HDMI Specification 2.0b, hence it provides
+> support for 3D-HDMI, Polarity inversion, up to 16 bits Deep Color,
+> color spaces including RGB444, YCBCR420/422/444 (ITU601/ITU709) and
+> xvYCC, with output resolutions up to 3840x2160p@60Hz.
+> 
+> Moreover, it also supports HDCP 1.4 and 2.3, Variable Refresh Rate
+> (VRR) and Consumer Electronics Control (CEC).
+> 
+> This IP also includes support for HDMI Audio, including IEC60958
+> and IEC61937 SPDIF, 8-channel PCM, DSD, and other lossless audio
+> according to HDMI 2.0.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../mediatek/mediatek,mt8195-hdmi.yaml        | 154 ++++++++++++++++++
+>  1 file changed, 154 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml
+> 
 
-On Thu, Dec 05, 2024 at 04:29:45PM +0300, Dzmitry Sankouski wrote:
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> This is the 1st patch in series, and NUM_CODEC_DAIS redefine from bindings
-> is deleted in the 2nd one.
+yamllint warnings/errors:
 
-I know, that still means this change is broken.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml:
+Error in referenced schema matching $id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.example.dtb: hdmi-tx@1c300000: i2c: False schema does not allow {'compatible': ['mediatek,mt8195-hdmi-ddc'], 'clocks': [[4294967295]]}
+	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.example.dtb: hdmi-tx@1c300000: i2c: Unevaluated properties are not allowed ('clocks', 'compatible' were unexpected)
+	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi.yaml#
+Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.example.dtb: /example-0/soc/hdmi-tx@1c300000/i2c: failed to match any schema with compatible: ['mediatek,mt8195-hdmi-ddc']
 
---I3DviFfx2zdhxkGX
-Content-Type: application/pgp-signature; name="signature.asc"
+doc reference errors (make refcheckdocs):
 
------BEGIN PGP SIGNATURE-----
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241205114518.53527-8-angelogioacchino.delregno@collabora.com
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmdRqz4ACgkQJNaLcl1U
-h9Dcygf5ATT2STPmD4jp75AW1WldR0rtXa+QNBp3VmNI3O3U2tIDbpr4rVuICxiV
-WdRUEb08sXFyWuHV4k294ySDbdl7umtfI0eHx4NCug915XsAzbzv0MzMFXITeV83
-RC0NuOa05QdzhtVHfoRvvqBd89xJX6aoDQ+z1PKAkTy8a3iVwlQ4bMlnKJQ+HLk3
-zlFYVAgXgBGRzXH78vJwUzx0D+KVjTFSt7atuxgRVekJCXEy5AnpRHgP3bwFMlSO
-6eaUaJEiNpJydyukMrVLkOMr32R4+72Jax4mPZPVk/9ClJ0yo3d7jcpnztbO0KU+
-Sg2CvQnNqtqYCrFaeKfx3v00NwPpvQ==
-=dh68
------END PGP SIGNATURE-----
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
---I3DviFfx2zdhxkGX--
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
