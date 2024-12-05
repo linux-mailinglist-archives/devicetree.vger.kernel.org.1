@@ -1,102 +1,163 @@
-Return-Path: <devicetree+bounces-127660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F40769E5E09
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:09:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCEA09E5E10
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:11:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 687E918859C6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:09:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A14EE16B4EA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:11:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2BD2227B99;
-	Thu,  5 Dec 2024 18:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DDC226EFD;
+	Thu,  5 Dec 2024 18:11:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b="UbaugdLO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC8AE1922FB;
-	Thu,  5 Dec 2024 18:09:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EF0F226EF2
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 18:11:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733422193; cv=none; b=nEL/Yn7nKTXsHfIMYBtTtL6H+mwnY9lk/KM5uZCjxYkP1i+KVDYh/v1xORy78ADfhkR+rwCgVmJOZeQ8riWKwqGWS5V2a5snOatPOzdpAxbkmXFeW8gSZNUhXNawScPsYZBK09L3CVfJib6OV6FSZo0T53qRe7vrwhyRU+4F7To=
+	t=1733422315; cv=none; b=Mksqcm0NQLQJQ2pT5O5qv6uJkgrqMltMdRv6T2JbGfJP1xkEoRQAXaHduGbApPeRV2sBQL7NRhJavH9iIzwYc3JMuWnLspceOqWY+gCwr/tsv5YtHLYrj12xqQODYN8EVIGTg/B7Jz4QqK4fQJmPEK9wR/S9ZqickwIpue9pTnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733422193; c=relaxed/simple;
-	bh=ig6F86DsjcQ8AFljnBVWFurQn6MsqBZPnhSRWD7eb14=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BWeW9WLlzkXusvbyc9IBjvppU2Zj9Vn/VkTaNi2ubvLMp6LRgR5pNF4RhVIBZoK0LJlz/MugsXHpA9lZXP60Wxc4tT2WbwUFDNO19dYZ76syL+Qhk/7cTjLYoL8Ldlcb6R5JgMcZdn6GuLCHU2iy32wRozHTNCIT12WwrKFlnmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: JHJ6ujxyQ/e1frc5CPrlzA==
-X-CSE-MsgGUID: c/OeFTFbQ3exJm4jQHmA5A==
-X-IronPort-AV: E=Sophos;i="6.12,211,1728918000"; 
-   d="scan'208";a="231007749"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 06 Dec 2024 03:09:43 +0900
-Received: from localhost.localdomain (unknown [10.226.92.141])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id E43AD4049DBA;
-	Fri,  6 Dec 2024 03:09:40 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1733422315; c=relaxed/simple;
+	bh=1ZxSWeTtz1xYfbYIhQuSzJz0Yo0FouTjzbyq21H8PSg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P0aFR6hN3jA/zqgp1rrQsbsyI+LpoXGYiAVrIEdaL2vpYlC9npvXY+r5Z3D2IOxYJ9FN1g5a5yweDPC2WhPqRPUxPb4vNTBNSo/8ZLI2w3gUhMYHGS00P+avFk9dZoANYhdTuneOEzUxyYpU/JPaiiajjL0zLDSR8ah8vPi8i5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com; spf=none smtp.mailfrom=pdp7.com; dkim=pass (2048-bit key) header.d=pdp7-com.20230601.gappssmtp.com header.i=@pdp7-com.20230601.gappssmtp.com header.b=UbaugdLO; arc=none smtp.client-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pdp7.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=pdp7.com
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2ee989553c1so1084422a91.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 10:11:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pdp7-com.20230601.gappssmtp.com; s=20230601; t=1733422313; x=1734027113; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2MUjUIXHE2bJtGuB7BkRXXqw/hOym15VxRARXET8bls=;
+        b=UbaugdLO0GYyPYUpIpeUbCugGBhx78w4t0eFOH+35kSTeUT3G/fSmhCjsotEO8pTLe
+         KYx8fCY8vE6ApGefxzuBGmw+xA7N/slUQbL5ZzX77qAFHneruHGoPRfD9NQYRv8Htrxx
+         K1sY9RnPRfycJ+lZXwndSPbfw6sEVp/mQ2f7lWj3K/LIAaYKcx+SOGx/jveNs3jwPMod
+         sNmdyfH1ZrfvBq6uphs3GiToIhfvQua1aKrK7IyPx2Lqo262kp+Pavyji9OqMkV2Omhn
+         n8g60wwZtHLRapyqy5g/kZ4tKBUufh7BjfXEw91C+QXrXFkqSSYwuirwCwDAq2IRQiYi
+         +rmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733422313; x=1734027113;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2MUjUIXHE2bJtGuB7BkRXXqw/hOym15VxRARXET8bls=;
+        b=J/82FyxZBnBEzqGA/D+I0OTPzk/EhUKNHupPpTZleTrQTH7MPcKa/sQUS1aM1k8K+o
+         pjDsLjdBChRBeXSVfp+lq+4nP72zdhNUvtKO4Szwe4HIObx84q3IHH7bYCG2BZX8xueX
+         Pk8pFfBUcWuEAyQSZXwXKYMG2L03AYiQDTwNGbb5A6BLCV/w4YgVSVp6M1r9wf9h6y1G
+         Em/OvZPOtFBwqrX771yRUXclV8J+j/i2WkuDtppZaC23ewUla1RmHqf3JJRcGQ5G8QD0
+         ACNcdTgj9LmjR1R08smWIod3Rz3hul/9/8yJThhwJnsEyzjzimgthAyHnshikU/h4zhM
+         GljA==
+X-Forwarded-Encrypted: i=1; AJvYcCUAAjRxDUAFeWMBJoLq2w824ddZbmxUA+7DQnbOyo7rmae136QSt1Ncdyd1MoXUrJhP0yh+8K3O0mx4@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywl7NexwODlg6TCLWk2n7QdiEWAMS8ONUf91dHRxfBdTXUuSrl2
+	P/XZMPUwfAQB0F/VRIhY1oJWJuhwygOOdGu0AU1Oet6TOqbI77JJL6u58Y67eVE=
+X-Gm-Gg: ASbGncs44D0w5iOBr0mHAihEC5KVEkl42WRJGw1WbW3TktNdPVkaaik8btN8c6/Lrjk
+	n7SJuDZ8+bGwVrlzNMijV+Fk6551EkOctO1/OwR5wHI8vuGrgL+Sjh7zmEm61v6bknus7AnTnt7
+	y4hXakDlnhQTyNZCwOAM6vrDEySvUjtg7VfdNQlKCwbuWZTpaQhYbjzgLTpjtsnfk5/9Vg+xeZr
+	1xqeAuSv6A+wIxcvJsQS87Nsv0fRus=
+X-Google-Smtp-Source: AGHT+IH9Qxre7SaXJmwLVox5H0UwU/C+KDg/si4WFNP6RN/USaZJmdrSMdvHNGZqEVGV0+rIUHI/aw==
+X-Received: by 2002:a17:90b:5448:b0:2ef:2d9f:8e58 with SMTP id 98e67ed59e1d1-2ef6ab29c49mr113446a91.34.1733422313419;
+        Thu, 05 Dec 2024 10:11:53 -0800 (PST)
+Received: from x1 ([192.210.17.121])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ef26ffb6f5sm3584572a91.6.2024.12.05.10.11.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Dec 2024 10:11:53 -0800 (PST)
+Date: Thu, 5 Dec 2024 10:11:50 -0800
+From: Drew Fustini <drew@pdp7.com>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: bigunclemax@gmail.com, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 4/4] arm64: dts: renesas: r9a09g047: Add scif pincontrol
-Date: Thu,  5 Dec 2024 18:09:20 +0000
-Message-ID: <20241205180924.154715-5-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241205180924.154715-1-biju.das.jz@bp.renesas.com>
-References: <20241205180924.154715-1-biju.das.jz@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] riscv: dts: thead: Fix TH1520 emmc and shdci clock
+ rate
+Message-ID: <Z1Hs5smgFV4C6c90@x1>
+References: <20241204111424.263055-1-bigunclemax@gmail.com>
+ <CAJM55Z-YAMtRN=K5KxCH1+++Xw4uMM_c49z8tGzi3snU+-KrYA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJM55Z-YAMtRN=K5KxCH1+++Xw4uMM_c49z8tGzi3snU+-KrYA@mail.gmail.com>
 
-Add device node for scif pincontrol.
+On Wed, Dec 04, 2024 at 03:19:28PM +0000, Emil Renner Berthing wrote:
+> bigunclemax@ wrote:
+> > From: Maksim Kiselev <bigunclemax@gmail.com>
+> >
+> > In accordance with LicheePi 4A BSP the clock that comes to emmc/sdhci
+> > is 198Mhz.
+> >
+> > But changing from fixed-clock to CLK_EMMC_SDIO leads to increasing input
+> > clock from 198Mhz to 792Mhz. Because the CLK_EMMC_SDIO is actually 792Mhz.
+> >
+> > Therefore calculation of output SDCLK is incorrect now.
+> > The mmc driver sets the divisor to 4 times larger than it should be
+> > and emmc/sd works 4 times slower.
+> >
+> > This can be confirmed with fio test:
+> > Sequential read of emmc with fixed 198Mz clock:
+> > READ: bw=289MiB/s (303MB/s)
+> >
+> > Sequential read with CLK_EMMC_SDIO clock:
+> > READ: bw=82.6MiB/s (86.6MB/s)
+> >
+> > Let's fix this issue by providing fixed-factor-clock that divides
+> > CLK_EMMC_SDIO by 4 for emmc/sd nodes.
+> 
+> Thanks for finding this bug!
+> 
+> However, this feels like a work-around for a bug in the clock driver, and even
+> if there is a fixed factor divider somewhere this should probably be modelled
+> by the clock driver. Did you look into the documentation[1] and try to figure
+> out where eMMC clock comes from and where the /4 is missing?
+> 
+> There is also a vendor tree somewhere with a much more complete clock driver.
+> Drew do you remember where it is? Maybe it's worth looking at how that driver
+> models the eMMC clocks.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Sorry for the delay, I'm travelling until tomorrow.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index d4d61bd03969..e33e1e80c6d5 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -7,6 +7,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
- #include "r9a09g047e57.dtsi"
- #include "rzg3e-smarc-som.dtsi"
- #include "renesas-smarc2.dtsi"
-@@ -16,3 +17,15 @@ / {
- 	compatible = "renesas,smarc2-evk", "renesas,rzg3e-smarcm",
- 		     "renesas,r9a09g047e57", "renesas,r9a09g047";
- };
-+
-+&pinctrl {
-+	scif_pins: scif {
-+		pins = "SCIF_TXD", "SCIF_RXD";
-+		renesas,output-impedance = <1>;
-+	};
-+};
-+
-+&scif0 {
-+	pinctrl-0 = <&scif_pins>;
-+	pinctrl-names = "default";
-+};
--- 
-2.43.0
+Maksim, thanks for finding this issue and sending a patch.
 
+That is a good point about checking the thead vendor kernel. I normally
+look at revy's thead-kernel repo [1] which is 5.10. revy also has a 6.6
+lts branch in th1520-linux-kernel [2].
+
+https://github.com/revyos/thead-kernel/tree/lpi4a/drivers/clk/thead
+
+
+Looking at line 454 in drivers/clk/thead/clk-light-fm.c [3]:
+
+  clks[EMMC_SDIO_REF_CLK] =
+  thead_light_clk_fixed_factor("emmc_sdio_ref_clk",
+                               "video_pll_foutpostdiv", 1, 4)
+                               /* Note: base clk is div 4 to 198M*/
+
+Which derives from line 373:
+
+  clks[VIDEO_PLL_FOUTPOSTDIV] =
+  thead_clk_fixed("video_pll_foutpostdiv", 792000000);
+
+Thanks,
+Drew
+
+[1] https://github.com/revyos/thead-kernel
+[2] https://github.com/revyos/th1520-linux-kernel
+[3] https://github.com/revyos/thead-kernel/blob/lpi4a/drivers/clk/thead/clk-light-fm.c
 
