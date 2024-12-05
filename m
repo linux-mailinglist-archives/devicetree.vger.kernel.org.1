@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-127631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9997D9E5D41
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:35:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 122629E5D74
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:41:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41E451880295
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:35:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89057188461B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06236225781;
-	Thu,  5 Dec 2024 17:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98B422577F;
+	Thu,  5 Dec 2024 17:40:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="maNOdNK1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SPInPO+9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A4DE221465
-	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 17:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1478221C16C
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 17:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733420119; cv=none; b=gGlrmTxsYTGVuq7mPzkLD5jA/E3bZ/TZVckThUOQmSvx5asoAOUN6UMdzM/rEXU8JFkc+NNG2zlQIwg+jtHjns0KYFLKjIuCaXfi3ZztCL5z8dNo9ms28SW/j7Hn3hIwYrul9CL9Ai/dIQJqKZ268685jW1NQhA3+wfgyD57GuY=
+	t=1733420458; cv=none; b=sxk4ryOwuV/iRfPJraEj7O3ckQS7ia50bErwlwXuDvb31kvxAmSNP5WoW1kMpmaWVxd1gk4bniMJBglsjfMDKa0KdNaLoVS3ahgAHAZixRk9sQV1YUbzD2Cie6ODLEYlNUVOt2/+2N01RyBSwYheBq+GrNcRHE6tqkDAw3QEGVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733420119; c=relaxed/simple;
-	bh=c2l5AZImwi0kJvk1E3IDHHPuiWUV/EiTKKgH2uIeSZg=;
+	s=arc-20240116; t=1733420458; c=relaxed/simple;
+	bh=bAfjx5nF2xF+ojge/PPGxvjb1WgHSMTmY8xHB/lbdjM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=egCzcGxmIJfHh2m4rt8VnGDipsNKBgfbSIQy6kMXHyMFYMU4MWqwawG2R6HHHIGyZ58BAiDH+jlpJuDSiJp2NY4SpuJcgzaGXhYkoikL6idbPzgFxmejtn0i5xgtEgtzQCG9h7/6tyjUjVRJ5SrysspHCfEBUCgktLge1ub5w9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=maNOdNK1; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=g5Utew/G/R4zq4F3xM1JqB9+XI+6T4YvFraqz9gyXeOdYCUXJEM3LPUO+R/eYmxNVTTrBk5E8JoTIVjDoMGV89AtTKFUkuem+fX/LU2OWz1WkE8LIXc9wkbEacnY8EAnHPeeQ7g4GLYZi8gFwv1Ly6vI1MnZPGIwZYG/Vjz2AOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SPInPO+9; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5HVmPh021353
-	for <devicetree@vger.kernel.org>; Thu, 5 Dec 2024 17:35:17 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5Haqnj022239
+	for <devicetree@vger.kernel.org>; Thu, 5 Dec 2024 17:40:56 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/hf1V9zdRIw6pH/APZ/I9hBl32oTaCEJ+E39AFJsx4c=; b=maNOdNK1ISfzg10e
-	GMU17NkJFPRdYxgfGziOdLOpmrZT/m+WfBTONiOw7cB3lrE8EW1d5KyoIHDOGnw6
-	jDE9ukkoFn+asRS+aumNTke9iAGFx3kY9Ei2RRPVBrJriYq8plbW45Ps871pgV5g
-	5V233092Zv9jQgOlkOYB7kHl8J439L5MzcVSt+z7ZK6dEytLBU2/0uMCgaqzpLnA
-	HZj5WqVheXENMhVmPAaHjGhq7Y3pjjFIOS3Fuu5XqoDpdoZioFUMUGqwUjrRtCH3
-	k55/Prl5p81iMBsc4A/9QcJOK6a+Tui7QXPEZGiXIg2yfx3WsMSLGuwNVwS73SHM
-	ULivmQ==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43be170hmb-1
+	pxRS51Suc6OUIFzAQyfiTLH8+Lzze/3+tENj2XDyYYs=; b=SPInPO+9r2DrX+KN
+	sxxq1KwPxsePy58Kqp4BAhxOK377nS+q3KPPLWiFsUaRO5JqfVArMBtfeaXKa/AR
+	WNo8BoRYtwu4O8kPjefkKAHAqJ2PYqY2nTNBlXQQOqZhVR4taXxYTNuFDM9/ymTe
+	MCXf3lvBqcE4lLUXFYUNhd0324A+dpoNIRwtDx+GSWN0MftnRlN+LTI+7mf8aPXV
+	FXaEocFYeJL/gsYVHGTx2wF5vcogr0ZV7u7EmqOdVFz2k1pEGbwQ+XVxdOC3kcob
+	lUbX/UiFXCfcgaa6zyLf6hnRjSQv1TG5l2G48jGTGKsCC5bA2mRimYVd5lzTMI80
+	DfX2hw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439v800jk2-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 17:35:17 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7b6846a9b6cso2614585a.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 09:35:17 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 17:40:55 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-466cbd99b11so2736941cf.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 09:40:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733420116; x=1734024916;
+        d=1e100.net; s=20230601; t=1733420455; x=1734025255;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/hf1V9zdRIw6pH/APZ/I9hBl32oTaCEJ+E39AFJsx4c=;
-        b=C0RQiDwZftXMlYGPXwE8knF1ygStf8Zt8lAGFSbcW95ljKzjcXHi+leNdDMXsHSmgy
-         mKTRnzRmYxPqWMNlVckrmXEqRpcVe7Wx3DQnwpbun9+chD5gt8+d73FStzHPAjvvQ9jz
-         BkqA+HUJ+iCsYUHvjw7JOpd7d+fYZsV1JRPvvjwu9J7v++X18zDEfdC7y90qOA1kobzA
-         XQ+upAFcVZiZh/OVbOVXL6gLitR4FIe1XMncBOzA4x4jaSqJ8HqUoY/Tc+KEe0a3l4WH
-         58070G82N0SOMNucylIk510+Xa/hfMD9uaZRsEgftRJfRXKsS5ycmF6ogiKT7FpyUQjd
-         /EkA==
-X-Forwarded-Encrypted: i=1; AJvYcCW1r128iYfMef8HteHdJ23ZqZtUXfvkFZQ7noL7KaeDlHGU47XcqxO4tCig/XL7ZyZ0UYjqzfrXGghs@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGmlltWyjw6Vuckku+IO112Tt1Ob+MjDxGNaeEh30A9POgbOPd
-	pLA71TvJ0ybGbIZUDdFwdPqN7KCvIeJC888BzsukJT/Ubb9hUf2bldaUPmjQZyH6my+2xttBVLu
-	YkHZMQvPqNFuX5bnTPSfOCUYEXGVw/6f3wWMDLJAQwP9dyoo2fXBATlkfLukR
-X-Gm-Gg: ASbGncupct8E/vRbBPBzFGZSl4Oiw97+DJl/boHy14Dswq41TDF6dyBLJJ1+1N4QOEp
-	6kxrDQHK4a5lFGDTobzGsKvRo9UXi4ptXP3ifoQl89wcANpdiyh0abw2VGpUCVCzcDgw39pXM3J
-	nekZshCiKg6bxU0Uj6Evy5E/lizNXBbdNQgC1Hml+T5gSNScZTch70Wick90PCcqJbeg9yW6Jhu
-	QRhlw+xsY7D6pz4wNja3iPaQ3sCDnzDPbtJrrmoGvlNKYralkg7EiC92xYNgjHqx83i9pmow6xv
-	E9KyCZWPxDOyCMTS+C84JyCoEWbT3Sg=
-X-Received: by 2002:a05:620a:472b:b0:7b1:b216:f5a with SMTP id af79cd13be357-7b6bcaca6acmr3099385a.3.1733420116619;
-        Thu, 05 Dec 2024 09:35:16 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEpJItac86niVhaF/4cNgJUrecH7V+GglPqLR994cq+wXutGXaPED7cVUuFPk/R/mKQ7V9KVQ==
-X-Received: by 2002:a05:620a:472b:b0:7b1:b216:f5a with SMTP id af79cd13be357-7b6bcaca6acmr3097285a.3.1733420116273;
-        Thu, 05 Dec 2024 09:35:16 -0800 (PST)
+        bh=pxRS51Suc6OUIFzAQyfiTLH8+Lzze/3+tENj2XDyYYs=;
+        b=opwZY0uIkIhPH2gMw1DTsUKw1HqROu2nUIGTRCQskjOO4xoW5DZEF2FVziIVbQ5QKv
+         /PMZioqqkpB91xNJkup0VCWjzH+BGskVMdSWlm5jfe0LczHzzjUVM+XnHD77pLKY+6fO
+         L6LoRbJ4GajYiyyxmzyLt03yAOiDx0viMgvmLUkzZyHPajohcpnrb+oejBTRRusSdFOv
+         gDgdvBPJspsx83sdChdjVcJVo4yTrURDmgXQlrsKcGckt2QjGi0MlresjaCQ1wVj46kN
+         6KUdvgfMl07ECVgcu5gbWN6VokpDTrxm8PvV/fDG3aVi5YjxJ/rSB4bXN53zFKTm99FX
+         lJ6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVozCbNHN16HHctcdEiDHRqh3l4ptc5zDc0skiVEHt9HSIITyWsFwCJZ7bgnro6n5P+FG55Vu1CYc4S@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXOa4BDzPWCpn0zcrLyMVlfmKS/oCyB3GRXupv/L5jMOztLCWP
+	9R6ShG/VCjHSXPSFZIN2s16CsYpYhc3cSztJ/8ylERr13AV8AIfFFhAkmqztpK2nT9uNuf4Jlwq
+	lOxxPxF1Jo9/wZVWXVbxKxFfTjb34eC62crRfVPyegUslq+EHO4rsYMHKPRqV
+X-Gm-Gg: ASbGnct/0vRPg8xI1f4FFbmX+QfZOfQWSFz0jo/rfls9PukUi3BiJQsRhkUUfVzLnfB
+	RcqEg8A28/xaziT7A9mYR+bdw9F8fqr7v5tTLsSJP5Gx1Q10+n/Rf6H/BMaJDH4njry3ngRn54z
+	qSih/jV3F93l570Z++r3zFrM/lsQXKWzjsMKmXz/Uji8RAgMKiqAJDVeTHUUre+5zfqm1AJ/qNn
+	DeSf2LImUDbuJrO22GnRVjiWrEvPxyO87TMlISC1Y/ZGUF7t5qNXTKZA3qnkOxAOpiIeBxxjD9P
+	DMGoD4dzSnYc89GynRQYNiHeUHBXpfg=
+X-Received: by 2002:a05:622a:15d5:b0:461:4150:b302 with SMTP id d75a77b69052e-46734cb4124mr278591cf.5.1733420454776;
+        Thu, 05 Dec 2024 09:40:54 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGbUWXj36RCgpIRMVaMXE06jjwOgeBib3xKOjPLVWZuPgNWjgkf/YnS35LVeI9TXrP7QdkxkA==
+X-Received: by 2002:a05:622a:15d5:b0:461:4150:b302 with SMTP id d75a77b69052e-46734cb4124mr278381cf.5.1733420454392;
+        Thu, 05 Dec 2024 09:40:54 -0800 (PST)
 Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa625e58dffsm119321166b.13.2024.12.05.09.35.13
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6260891e4sm120870066b.144.2024.12.05.09.40.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Dec 2024 09:35:15 -0800 (PST)
-Message-ID: <b4173f94-1cec-49b6-a882-d07b10ebbddc@oss.qualcomm.com>
-Date: Thu, 5 Dec 2024 18:35:13 +0100
+        Thu, 05 Dec 2024 09:40:53 -0800 (PST)
+Message-ID: <a5fb36b2-c118-468e-9163-b84fff065542@oss.qualcomm.com>
+Date: Thu, 5 Dec 2024 18:40:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,43 +89,161 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8750-qrd: Enable CDSP and mention
- MPSS
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20241122-b4-sm8750-cdsp-v1-0-9a69a889d1b7@linaro.org>
- <20241122-b4-sm8750-cdsp-v1-4-9a69a889d1b7@linaro.org>
+Subject: Re: [PATCH v2 6/8] arm64: dts: qcom: qcs8300: enable pcie0 for
+ qcs8300 soc
+To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>, vkoul@kernel.org,
+        kishon@kernel.org, robh+dt@kernel.org,
+        manivannan.sadhasivam@linaro.org, bhelgaas@google.com, kw@linux.com,
+        lpieralisi@kernel.org, quic_qianyu@quicinc.com, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, andersson@kernel.org,
+        konradybcio@kernel.org
+Cc: quic_tsoni@quicinc.com, quic_shashim@quicinc.com,
+        quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
+        quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20241128081056.1361739-1-quic_ziyuzhan@quicinc.com>
+ <20241128081056.1361739-7-quic_ziyuzhan@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241122-b4-sm8750-cdsp-v1-4-9a69a889d1b7@linaro.org>
+In-Reply-To: <20241128081056.1361739-7-quic_ziyuzhan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: aI3dLKpe-c2wXsYCVjaGohm2SBLZrUwP
-X-Proofpoint-ORIG-GUID: aI3dLKpe-c2wXsYCVjaGohm2SBLZrUwP
+X-Proofpoint-ORIG-GUID: r7IyXlcDkU2-X-YP3iDWaVcF1C1e-grl
+X-Proofpoint-GUID: r7IyXlcDkU2-X-YP3iDWaVcF1C1e-grl
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 spamscore=0 bulkscore=0 priorityscore=1501 mlxscore=0
- impostorscore=0 suspectscore=0 adultscore=0 malwarescore=0 clxscore=1015
- mlxlogscore=585 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412050128
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ impostorscore=0 adultscore=0 priorityscore=1501 clxscore=1015
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=999 malwarescore=0
+ bulkscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412050129
 
-On 22.11.2024 4:26 PM, Krzysztof Kozlowski wrote:
-> Enable the CDSP and MPSS (modem) on QRD8750 board.
+On 28.11.2024 9:10 AM, Ziyue Zhang wrote:
+> Add configurations in devicetree for PCIe0, including registers, clocks,
+> interrupts and phy setting sequence.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
 > ---
+>  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 175 ++++++++++++++++++++++++++
+>  1 file changed, 175 insertions(+)
 > 
-> Not tested on QRD hardware.
+> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> index 2c35f96c3f28..952a84b065c3 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> @@ -637,6 +637,181 @@ mmss_noc: interconnect@17a0000 {
+>  			qcom,bcm-voters = <&apps_bcm_voter>;
+>  		};
+>  
+> +		pcie0: pci@1c00000 {
+> +			device_type = "pci";
+> +			compatible = "qcom,pcie-qcs8300", "qcom,pcie-sa8775p";
+> +			reg = <0x0 0x01c00000 0x0 0x3000>,
+> +			      <0x0 0x40000000 0x0 0xf20>,
+> +			      <0x0 0x40000f20 0x0 0xa8>,
+> +			      <0x0 0x40001000 0x0 0x4000>,
+> +			      <0x0 0x40100000 0x0 0x100000>,
+> +			      <0x0 0x01c03000 0x0 0x1000>;
+> +			reg-names = "parf",
+> +				    "dbi",
+> +				    "elbi",
+> +				    "atu",
+> +				    "config",
+> +				    "mhi";
+> +
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
+> +				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
+> +			bus-range = <0x00 0xff>;
+> +
+> +			dma-coherent;
+> +
+> +			linux,pci-domain = <0>;
+> +			num-lanes = <2>;
+> +
+> +			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>,
+> +					 <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
 
-Not great given the status = "fail" on MTP..
+Weird indent
+> +
+Stray newline
+> +			interrupt-names = "msi0",
+> +					  "msi1",
+> +					  "msi2",
+> +					  "msi3",
+> +					  "msi4",
+> +					  "msi5",
+> +					  "msi6",
+> +					  "msi7",
+> +					  "global";
+> +
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 0x7>;
+> +			interrupt-map = <0 0 0 1 &intc GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 2 &intc GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 3 &intc GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 4 &intc GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+> +				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
+> +				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
+> +				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>;
+> +
+Ditto
+> +			clock-names = "aux",
+> +				      "cfg",
+> +				      "bus_master",
+> +				      "bus_slave",
+> +				      "slave_q2a";
+> +
+> +			assigned-clocks = <&gcc GCC_PCIE_0_AUX_CLK>;
+> +			assigned-clock-rates = <19200000>;
+> +
+> +			interconnects = <&pcie_anoc MASTER_PCIE_0 QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> +					 &config_noc SLAVE_PCIE_0 QCOM_ICC_TAG_ALWAYS>;
+
+QCOM_ICC_TAG_ACTIVE_ONLY for the cpu-pcie path, both endpoints
+
+> +			interconnect-names = "pcie-mem", "cpu-pcie";
+
+[...]
+
+> +		pcie0_phy: phy@1c04000 {
+> +			compatible = "qcom,qcs8300-qmp-gen4x2-pcie-phy";
+> +			reg = <0x0 0x1c04000 0x0 0x2000>;
+Please pad the address part to 8 hex digits with leading zeroes
+
+> +
+> +			clocks = <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+> +				 <&gcc GCC_PCIE_CLKREF_EN>,
+> +				 <&gcc GCC_PCIE_0_PHY_RCHNG_CLK>,
+> +				 <&gcc GCC_PCIE_0_PIPE_CLK>,
+> +				 <&gcc GCC_PCIE_0_PIPEDIV2_CLK>,
+> +				 <&gcc GCC_PCIE_0_PHY_AUX_CLK>;
+> +
+Ditto
+
+> +			clock-names = "cfg_ahb",
+> +				      "ref",
+> +				      "rchng",
+> +				      "pipe",
+> +				      "pipediv2",
+> +
+
+The same for pcie1
 
 Konrad
 
