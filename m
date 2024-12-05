@@ -1,135 +1,151 @@
-Return-Path: <devicetree+bounces-127574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C97829E5BF3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:46:06 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E0CA1882ACC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 16:45:23 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9949022B8D8;
-	Thu,  5 Dec 2024 16:43:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QM9nY57s"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F38979E5C08
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:49:16 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 453DE22B8A1;
-	Thu,  5 Dec 2024 16:43:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8CB028F34F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 16:49:15 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDC8C226EE1;
+	Thu,  5 Dec 2024 16:45:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j0M1OxOo"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367F721D5BE
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 16:45:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733417014; cv=none; b=t6yr+6VAEMQQNneutDRVaaSReRap1XxJt1+ENnliVNIRjsP5UVG9Vhmh1wW/MpSn5PfoC/yd7LdJmODr3ssqnOtVe+Ll7vkCqv6Papjn5tvE2zqqFOcUf2CHGOKA53GuElyhqQ+P5GN4t/6brwC1wkApJXuuF7Np5Bdrfio0890=
+	t=1733417120; cv=none; b=EHjcuBwTdayZDrqy7yrVklQNowuw33qsnMgc3y8f+OcoJRPwuHi6893wfKfAMH8s2J8D6EXzzswJBSExZ3TNmfTeqa3K7ZQGl06jAiPoiAW8ZUHPx0wqzU27ndGYA3bopqKB9uX6vSiUEgxVMRQZa7s4ndyvtinF+hPSuiZLDQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733417014; c=relaxed/simple;
-	bh=Xx7A78Az9LY483yNlpcxh1fnnI6+OBafjR3+xqpR+KQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FJxTbicJyvkt46LF0pSIbwadrw7ITPCkOhxDKV95IWuNygLVFcB9LSh2DQMHHKFE/SF+BMiBAR20sgljA/yuGEjRwqnySEmDJEjZpzI7creSZZ+nhFjbi4gJIzPUQ9EtjwZouisdYSeeLsqD+PYLBaul3ELLTINOi6nmGzWwV9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QM9nY57s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6E963C4AF48;
-	Thu,  5 Dec 2024 16:43:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733417013;
-	bh=Xx7A78Az9LY483yNlpcxh1fnnI6+OBafjR3+xqpR+KQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=QM9nY57spjMtkErm9STVuknbjej5xOtwsM6kKdJzICAddxEHoQv7KCTSfafSlohpd
-	 XT9CCCws4128i/lxPltoesA2VJf4+nvPsoZPP7nUxf18caKoVvcnEU0TmqqF1sdWXm
-	 O/LMprrwTXBZOFJJND4ViMuMxiZMMA5F6wCYmxR64GGOpMURRRhnsYFcWekPWiPsVU
-	 fzX29jkRiAYd60lPSQW1GE+kji4j+7S0+n59TEPHVqL7EnPS1l1/EqimGTkWDDV5/k
-	 Z5eYAFgPEsCddOTtLnHO/L/E7sFR24QZ16+Q9iIs1ERD890RRn9V+Db1GuNcts4mM8
-	 8DcszR1Nq9WpA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4439FE7716E;
-	Thu,  5 Dec 2024 16:43:33 +0000 (UTC)
-From: Jan Petrous via B4 Relay <devnull+jan.petrous.oss.nxp.com@kernel.org>
-Date: Thu, 05 Dec 2024 17:43:12 +0100
-Subject: [PATCH net-next v8 15/15] MAINTAINERS: Add Jan Petrous as the NXP
- S32G/R DWMAC driver maintainer
+	s=arc-20240116; t=1733417120; c=relaxed/simple;
+	bh=pZ172ATfsfJ2BQ37XPU3FqEzURxmxw/78IvOUTlorVQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=taETAMGdIXyFBhucax5qgILAyuOL5gdPEXohp9rlzxZKZDmQsFbLpm5BphD1iu7HXLj0T08SI0IF8iBUwoQFzj98VQ0XqpT/ntIADS5ElSx/+XY2xgusal8gefwgyrlsP+AngF1MkztyB2rI5Tn1uhVbGhljMlTGdOLLuHKFn+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j0M1OxOo; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5GSF9Q030963
+	for <devicetree@vger.kernel.org>; Thu, 5 Dec 2024 16:45:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/C/FWedH2R8A8Hc+9FjqXWKobRD7gLjrdaMMk5hTAQg=; b=j0M1OxOonQqe955M
+	gmabG0U73860SAAdv3XU7eEwgSgPhIwHGS7HQZTA5SQw6TQT5/rTFvgUZpV7j9tK
+	nVZN60vdwWL8iwTp9oVKdI0drxX+j7IcuoszPJrlaapQ+kWvnVPD2v885HpgwrnJ
+	78zKYuOAg/2GUDnAnJC7KW1FCPJucqYM5EemYAWNRDdlUkS5m/y6uXBp5H6aE0fT
+	JI3xI0weJ6RtFpI7UQi9I4fa1OwcQQGQ3MaeKaO71qPGpkc0nbh13aOI/suwIniv
+	jR6ZULQweDZdh5uaoRdeerVwvwysnZ1x0nazzLHN8oq41CYP6dU5/7CG69jZH2jV
+	N7Us1Q==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439w91095f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 16:45:12 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6d883e95efcso3225396d6.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 08:45:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733417112; x=1734021912;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/C/FWedH2R8A8Hc+9FjqXWKobRD7gLjrdaMMk5hTAQg=;
+        b=H4K9fNApiJdFu+wRePHW9Lk2nPMa59N/kSn5rJ+Lg5qSnjlAopI5WxHZa2rrzC7wYv
+         BjnlpX8qP/7d7lWZ6Iyvf++l6esBDrtneBoaCfluQiouQmjK7LpsclAMXK1ZhmwqUv4c
+         PB+nE+EktWA9WwCULPCVgVFpjA8f/nN9447HxnBp0zrBZaHOTdUTiaTelHLFm5Cqe5f2
+         KjxNkkbDMKlEw9FN1/zT5leuS3yk9+8ivnGQZKztYGeDZH4pz4x8zbgvEp1lVUB6YD1X
+         6B7J8LzFX9+EnTKpHaC7WQKJUO8hkCTOQlGIiErWBnnIqEYLIMYRgda+d0SdOTBcz+FO
+         37Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCUm0KmuNOesYuPwcmLoNAu2mGaD8oR5d5oyQcv/lKzpbNzl0cGhXwHElc6W20ZC0a8kMgQ9ZhbFmvf0@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo4QAIewiVKF55V3Yku1hK2CO4s+b6Q7P3X/jqDuG7DojueW2a
+	+7ppi4zf4ub2Km6mLaGgu1Eev4kxrUW14/E6irQi3DD8h1fp8lxa5/01t/8YFc5HYQA7+qP2pde
+	O4aAFJ3wfXcaDE1gA2vH61zp+vbTJlpupnKzOs4mWLgUZO/7YHYAIFKpgK+5U
+X-Gm-Gg: ASbGncvCdBBl4DE08+W60Xln5j8lrvOhmo7XdB3ywuQRX2L79MIDuNH3OQwSbOqCoQ9
+	Wdh3+i4mSRrGuVz3aVd7C4X1mc2dy6eowx42rqOCLr9nH3sWJXzlBuv9Z94VCoJXhrHox8eLMKP
+	pMNVcOD1bPqfLK0KJQcF1M/40HEvswj2051pjOAAM9wdIeJIyLii6ytcWRraWl7iOFkkLbgdj+G
+	bAOzmdnEubX1THEKIl2wk19VBEgo3eKvwHb/NEQ5m3MohS2ArI4jRI+OB1TKP7j19oZrghopyCe
+	bUJYQrcoUcd1RpOZO2tSqMWg6tACWdE=
+X-Received: by 2002:ad4:5fca:0:b0:6d8:a5a1:b14b with SMTP id 6a1803df08f44-6d8b72eec6bmr65772276d6.3.1733417111864;
+        Thu, 05 Dec 2024 08:45:11 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHm0uGog8HsgJ3rIQBC9bvmmITCftd+KZF3JVpTwKemdKnbxp9/YQCrIOez+txCW3LKU/3shA==
+X-Received: by 2002:ad4:5fca:0:b0:6d8:a5a1:b14b with SMTP id 6a1803df08f44-6d8b72eec6bmr65771926d6.3.1733417111373;
+        Thu, 05 Dec 2024 08:45:11 -0800 (PST)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa62601b5d2sm115958266b.93.2024.12.05.08.45.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Dec 2024 08:45:10 -0800 (PST)
+Message-ID: <c703e70a-c705-4010-8f12-bb55d67f2255@oss.qualcomm.com>
+Date: Thu, 5 Dec 2024 17:45:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 12/14] arm64: dts: qcom: sdm845-starqltechn: add
+ initial sound support
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+        cros-qcom-dts-watchers@chromium.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org
+References: <20241205-starqltechn_integration_upstream-v7-0-84f9a3547803@gmail.com>
+ <20241205-starqltechn_integration_upstream-v7-12-84f9a3547803@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241205-starqltechn_integration_upstream-v7-12-84f9a3547803@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241205-upstream_s32cc_gmac-v8-15-ec1d180df815@oss.nxp.com>
-References: <20241205-upstream_s32cc_gmac-v8-0-ec1d180df815@oss.nxp.com>
-In-Reply-To: <20241205-upstream_s32cc_gmac-v8-0-ec1d180df815@oss.nxp.com>
-To: Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Jose Abreu <joabreu@synopsys.com>, "David S. Miller" <davem@davemloft.net>, 
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>, 
- Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>, 
- Minda Chen <minda.chen@starfivetech.com>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Iyappan Subramanian <iyappan@os.amperecomputing.com>, 
- Keyur Chudgar <keyur@os.amperecomputing.com>, 
- Quan Nguyen <quan@os.amperecomputing.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>
-Cc: linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org, imx@lists.linux.dev, 
- devicetree@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>, 
- 0x1207@gmail.com, fancer.lancer@gmail.com, 
- "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733417009; l=915;
- i=jan.petrous@oss.nxp.com; s=20240922; h=from:subject:message-id;
- bh=4615b800g/SFqCBNWwu3wPncyuWc4LNL3Kg9996VRhc=;
- b=iHjYCpZqYkAdGGNf2htSefhxuLA/jKkUAXsRqww6ZbewlC5g8kGDDaN0TU2iO62ILZ6IAuiXq
- Plw2w4PtKPNDG1jKxr+Xdc6LD6uLrMSCe4nP6yfBi7ir9R0QLkDMmMb
-X-Developer-Key: i=jan.petrous@oss.nxp.com; a=ed25519;
- pk=Ke3wwK7rb2Me9UQRf6vR8AsfJZfhTyoDaxkUCqmSWYY=
-X-Endpoint-Received: by B4 Relay for jan.petrous@oss.nxp.com/20240922 with
- auth_id=217
-X-Original-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-Reply-To: jan.petrous@oss.nxp.com
+X-Proofpoint-ORIG-GUID: EgYMUw4HE8ywrB5g9uJh9kS0Hhm2FrWM
+X-Proofpoint-GUID: EgYMUw4HE8ywrB5g9uJh9kS0Hhm2FrWM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=937 bulkscore=0
+ impostorscore=0 phishscore=0 suspectscore=0 adultscore=0 mlxscore=0
+ spamscore=0 clxscore=1015 priorityscore=1501 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412050121
 
-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+On 4.12.2024 10:34 PM, Dzmitry Sankouski wrote:
+> Add support for sound (headphones and mics only)
+> Also redefine slpi reserved memory, because adsp_mem overlaps with
+> slpi_mem inherited from sdm845.dtsi.
+> 
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> 
+> ---
 
-Add myself as NXP S32G/R DWMAC Ethernet driver maintainer.
-
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1e930c7a58b1..baf41d73d14e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2836,6 +2836,13 @@ S:	Maintained
- F:	arch/arm64/boot/dts/freescale/s32g*.dts*
- F:	drivers/pinctrl/nxp/
- 
-+ARM/NXP S32G/S32R DWMAC ETHERNET DRIVER
-+M:	Jan Petrous <jan.petrous@oss.nxp.com>
-+L:	NXP S32 Linux Team <s32@nxp.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-+F:	drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-+
- ARM/Orion SoC/Technologic Systems TS-78xx platform support
- M:	Alexander Clouter <alex@digriz.org.uk>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-
--- 
-2.47.0
+[...]
 
 
+> +	audio-routing =	"RX_BIAS", "MCLK",
+> +			"AMIC2", "MIC BIAS2",	/* Headset Mic */
+> +			"AMIC3", "MIC BIAS2",	/* FMLeft Tx */
+> +			"AMIC4", "MIC BIAS2",	/* FMRight Tx */
+
+FM - FM radio, or "Front Mic" / earpiece?
+
+> +			"DMIC0", "MCLK",	/* Bottom Mic */
+> +			"DMIC0", "MIC BIAS1",
+> +			"DMIC2", "MCLK",	/* Top Mic */
+
+Looking at some pictures, I'm guessing these two are the little holes
+in the top/bottom edges of the device?
+
+Konrad
 
