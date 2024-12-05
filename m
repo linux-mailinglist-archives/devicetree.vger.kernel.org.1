@@ -1,230 +1,142 @@
-Return-Path: <devicetree+bounces-127666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 406FE9E5E3B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:30:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 826139E5E45
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:31:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3BEA2878BF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:30:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D3F0284BBA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:31:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE6C227BBE;
-	Thu,  5 Dec 2024 18:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5184229B3A;
+	Thu,  5 Dec 2024 18:31:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kc7MgTBW"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iPlLR2m8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com [209.85.221.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B311921C17A;
-	Thu,  5 Dec 2024 18:29:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84783225797
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 18:31:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733423401; cv=none; b=GPGRdspkTACe8/LOM4rFUp9Rwk6KX2XWKYrd8klmq3KuXNFcrJQEETXwmtBpPeETDCKLOylI6xZA7U0aPzDzmh0VnZE8uJCcZUb5y5DoJebZhR8Ga+qE1gAm/84txVtUQrhtnBDYoHJs4xqa91xHyAEPuk06AKB+k1kc+16D0Tc=
+	t=1733423468; cv=none; b=TgOqGbbTxrrxm5P0/tBNeVaJyQzf95c4LfvNuL70dShoAd2i0WHZLM75h4V5KL8Z9tf5cyZS7vdxpzfcVWghbkL0bbP0rEtnVDPJvM9+eh1asPoRjrNWZ34h6q2ISjBfRojka37pL48ojZ1nQj4RpPan0HkmiDWIPRYdaNk2Y00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733423401; c=relaxed/simple;
-	bh=XSZw2Wgdd/4DSswFvkNB9pdesf88N2+IuEgP4J2bvGA=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZvKNodFh2WwVn6Cmn5pKCw4xDYac+kVj0kaJOldMmkNLLLEUyBGqhp7BuqwUOqG+pD3NvF0PYlvnZ564H5KHkx/oqgTW2JEh/X78dPbS6j0Hefph13QzxhPnzv1EmHLXOG6+Z9Vbny2FCHKONHB0KIN6LNlktNIr5sMTjOcD7Hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kc7MgTBW; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43494a20379so12435615e9.0;
-        Thu, 05 Dec 2024 10:29:59 -0800 (PST)
+	s=arc-20240116; t=1733423468; c=relaxed/simple;
+	bh=QuzwAYKP6y0WYybZ98GYlbXU/18zgti4WhdRXKNgN4A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nFXF8y7OZNkkI3WuW/19UJXnZWvdq5nnvlyHZzwh6YU1xGN+92bixe5zWiDG3vJCDZiXaTciSBXyMIR1biu7qCvjAU3k3HKCG9QJZgE26WDiH23/2Zb8vFL4KNAzDUbJmW6NpY9y+CrJO1CXa0Md75RxpvIiwKwgwrqK8mDc3jo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iPlLR2m8; arc=none smtp.client-ip=209.85.221.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f65.google.com with SMTP id ffacd0b85a97d-385eed29d7fso907922f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 10:31:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733423398; x=1734028198; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=vqa/FJfDuFpf2/icBmOOPejR/n8LB10qbeeDVsmf77U=;
-        b=kc7MgTBWT+js0nZqbPRXmKJYoJXkjUNURNTEasn3mQoFK2WnntJ10VQkSUeL29zh/p
-         LmrOpcAi+eb8MapFK4jjCzs+aJiKrOkj8WrUGuAJd7sz4GEddJpoeka+2GhGw87nZ1Ab
-         i/0IFbMGRGHXQ9inJu8T/gZ4TMoDSD1TkjyRvEQDnPJJuNv2COBc2hvOmvk8ZEeZVqzK
-         uzLpaaE8gQkAABPleoY3qkFBuZLUlapGuHkxWLQlLXQX2GLfdXhKkhnAv9MA2Vh+RW+u
-         uqAteDMfzQEBBGRx1enMgGwvvE2h7AljTxx3BCNosky3kYAPJvLOusFp1EmhNiGfvYd+
-         J11Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733423465; x=1734028265; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nI/eTNT0MeMirB96tdoKMUKUCbzlY21F1vUoI8tn+9w=;
+        b=iPlLR2m8ssrYbf8yuizjEiK8dHm0HUwaDTusPRz3L5N7fPeYsWrTcXPoumjmnKPFza
+         +gL7WnAQhzPrqMWILPxwa+URoxcxSRyJSK0ZOrsdA7JNxYt4Ca1+nnbAJKgYRs4cxp4r
+         9yAeaZ33v3PcB8DlH/eQoorXu0asSNN92WDeDHYJkZhlht5M39gafVwj/g3XsqCQmOtt
+         u0FQPUsHsIUW2ECY7auN1TSw2Mox0Me2ag4fe8DVvnuJ+0Ea3ZtQRK4mt2MQWdIH6m72
+         QFqsOYf948o5lCnF2IPgR4dQQlDwTAm1DHr/GEW3/fgUHTR44AuAiR1Lu3Yj6iOSMLDO
+         3isg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733423398; x=1734028198;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1733423465; x=1734028265;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vqa/FJfDuFpf2/icBmOOPejR/n8LB10qbeeDVsmf77U=;
-        b=R8ntzN53Kxw/zt4nh0n0NWBHc3ZzGHHGHcNdnA+HIDIuzTsF0SjvdrrdixTL+Paj47
-         AbqZd7YbY4MaNtSYGjpUg7Dw2P4H5IoX3RtaIQ9HhQBCOfODTBS4fv+/wRkV7hUnh/zL
-         u00bH7sxEOjhmcFJJ9o3S7TTsZ9kckrEMTAa01bzW5p4AvGEmoGQEemMV8/Ee0Ay++2G
-         gH55C914pgzrKv3JbbVNZv8Aoudyfb+iBCeODjZw/d2HWRcQl2NV759S45vJmc4JUVG7
-         D9RibpQm4SUpY3byqr8LS3LjKuLVnRqnWQEFEFPTqix1ID76EXkWwV0fpyoHgtw4tKmp
-         uo3w==
-X-Forwarded-Encrypted: i=1; AJvYcCUCLo0FxkJa6+pX74zP5le0VHqQNf8/cJ3NEZMLOnZ4Tihr61AWaqiuINbPc8VQi5ztT/7fq8X/ngCw@vger.kernel.org, AJvYcCUWAiHAYV0hyKoyGpxKaSI+tSa/3bvTssFHuG3hO1Ff65DtsX5yIeg9toANKP/yLulPuiKgpioB@vger.kernel.org, AJvYcCWEKcfJLlLgGPzescI/d2Z9AsCSAfBJZqyxaDXd+iuB6idM85z4lbP0PTEMY84ikkHw2kQp14lmqVqXIhXo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/yi1zUshQzLwFb9TPg/d6omUW0tOfSqfgliigBYdDI0EQMPqb
-	JolVzX9elrZsX5IN4CZrfE6/vcJImt2tHwA9TXHolm/oJF5lkL4k
-X-Gm-Gg: ASbGncuQrhjz/U4EJiCCr4hR6VAhXRZMF90IHevyN5TiL1IXUrdRTwejVOEK8FNsWJ/
-	9hjNQtL/rfvkATw78lo3dpObXe+hD6uEgjoRNiH9Dxd/0KSRVxyga+HrogEjUZrsZdVSWGDg1Jj
-	SzsVE/7S3k8HdxSYK0Glbi+g7nsPm69AhyJghvnotNUDROv/WhRzqfE5K7J21Mk6taARRtCdvyR
-	praX5VCfXxiYWoEiu+mq/WBJkcfZltGicVBJ5lXIeKLtAJhK+L1wEiO32UTTvnfsjCMdFe/dxWm
-	rFX9JQ==
-X-Google-Smtp-Source: AGHT+IFTb665DniOhjVw8PuT2tMsXOiRKDE+9zzhmTvFCq7OvOYhsxODyzok3XIotSpVVjcnB4qQFw==
-X-Received: by 2002:a5d:5886:0:b0:382:319f:3abd with SMTP id ffacd0b85a97d-3862b3cea9fmr76744f8f.36.1733423397793;
-        Thu, 05 Dec 2024 10:29:57 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3861f4a874dsm2596621f8f.24.2024.12.05.10.29.56
+        bh=nI/eTNT0MeMirB96tdoKMUKUCbzlY21F1vUoI8tn+9w=;
+        b=RIQWyO/5M8rvoJKJqrd6vgyuA7XYJb6fod6QQ67Sx6uZz1kWnjhgJbJnNwv1pCTina
+         LHg0j2jYQb0FTcsmOTCDLUjvhTWnmbhmB9hheoXO/DI8Jmh3q7tnvg7RRrTCAqnp4m/h
+         8qWwULW7hVVGewSrSnYXliUFU3S/1u8No894IBPOLnA+366NliSVYre+nMHmPJAN4XH5
+         iPDtbXkH/HCWpD85oLU1ZQex36LjBtvGqbgiPNTkv03SaUXomD+ndHVE3/QN7Y+jgI9H
+         yumRytjE51fjoFGgfbne69h0b8pHL/3HEdJug7UJgyyOYhodYdw5v0Mw9XmY1bhzkFSZ
+         Qlqw==
+X-Forwarded-Encrypted: i=1; AJvYcCUbXjQKvK0ErN/eKda0PEmFlx3yozPZkicI6baetGu90s6w61AHYDBEVXVpr+8EM0rO5tZohsr3JVsk@vger.kernel.org
+X-Gm-Message-State: AOJu0YwviZ9Y0sObYAbBc8AhEilO/af0oHl+lUeRMhin5oEq9gUwigr5
+	JjVs9wNx+jFEYVmptnifobvmGt7qpDYOaTwIg26IkxxjN7rpV9OWHZMlmkLm3yk=
+X-Gm-Gg: ASbGncspJxJoEpWKwQpzlVsgPLUjaadIA5LTPZ6zQAh3IY1+00bRGRaydg5WUDrInKf
+	ph08lk82spbKQdbvmZ2wpQg9ZltxjZ6NVWYctZuy+LIW8TskN8+cn6yDofB8uI9cxImTE1RK49p
+	4bvuPn2R8/iZO1afNDZSZ5gvq8zcelgz1Vzfxr8jO1BzZp8wimq2F7IhR0MvXlvi9N47vYenW9n
+	HyU+2KH8CfMVrrwUOTEvN0zZZE/AuEO6weyQ1KEBwzs+AMArY5B7CRN9ptiC2+r8MUaEGBUpAap
+	ydON
+X-Google-Smtp-Source: AGHT+IGqQWdQdSDbu6y+4Nqk1tOE7EZS/rmgFfu8XR0kvbW+Ek3dvWuMR5u6gUY7Znay64mPAiGNXQ==
+X-Received: by 2002:a5d:64ab:0:b0:385:e10a:4d97 with SMTP id ffacd0b85a97d-3862a914a05mr271364f8f.21.1733423464813;
+        Thu, 05 Dec 2024 10:31:04 -0800 (PST)
+Received: from localhost (p5dc6838f.dip0.t-ipconnect.de. [93.198.131.143])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38621fbbd70sm2576996f8f.90.2024.12.05.10.31.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Dec 2024 10:29:57 -0800 (PST)
-Message-ID: <6751f125.5d0a0220.255b79.7be0@mx.google.com>
-X-Google-Original-Message-ID: <Z1HxIYnkilHmBbgK@Ansuel-XPS.>
-Date: Thu, 5 Dec 2024 19:29:53 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH v9 3/4] net: dsa: Add Airoha AN8855 5-Port
- Gigabit DSA Switch driver
-References: <20241205145142.29278-1-ansuelsmth@gmail.com>
- <20241205145142.29278-4-ansuelsmth@gmail.com>
- <20241205162759.pm3iz42bhdsvukfm@skbuf>
- <20241205145142.29278-1-ansuelsmth@gmail.com>
- <20241205145142.29278-4-ansuelsmth@gmail.com>
- <20241205162759.pm3iz42bhdsvukfm@skbuf>
- <6751e023.5d0a0220.394b90.7bc9@mx.google.com>
- <6751e023.5d0a0220.394b90.7bc9@mx.google.com>
- <20241205180539.6t5iz2m3wjjwyxp3@skbuf>
+        Thu, 05 Dec 2024 10:31:04 -0800 (PST)
+Date: Thu, 5 Dec 2024 19:31:02 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, linux-iio@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alisa-Dariana Roman <alisa.roman@analog.com>, Renato Lui Geh <renatogeh@gmail.com>, 
+	Ceclan Dumitru <dumitru.ceclan@analog.com>, devicetree@vger.kernel.org, Nuno Sa <nuno.sa@analog.com>, 
+	David Lechner <dlechner@baylibre.com>, Alexandru Ardelean <aardelean@baylibre.com>, 
+	Andy Shevchenko <andy.shevchenko@gmail.com>, Trevor Gamblin <tgamblin@baylibre.com>
+Subject: Re: [PATCH v5 00/10] iio: adc: ad7124: Various fixes
+Message-ID: <izv2vupxttrq6jqemmnkwqtwb5ar5mzaimwity7mqnk32alwgl@elwhe3piv4n3>
+References: <20241203110019.1520071-12-u.kleine-koenig@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="t5nu6lfvefddqxt2"
 Content-Disposition: inline
-In-Reply-To: <20241205180539.6t5iz2m3wjjwyxp3@skbuf>
+In-Reply-To: <20241203110019.1520071-12-u.kleine-koenig@baylibre.com>
 
-On Thu, Dec 05, 2024 at 08:05:39PM +0200, Vladimir Oltean wrote:
-> On Thu, Dec 05, 2024 at 06:17:18PM +0100, Christian Marangi wrote:
-> > I checked the examples and one problems that comes to me is how to model
-> > this if only MDIO is used as a comunication method. Ocelot have PCIE or
-> > SPI but this switch only comunicate with MDIO on his address.
-> 
-> I don't see why this matters. There will be a top-level device driver,
-> which in this case will be an mdio_driver and will use mdiobus_{read,write}
-> to physically access registers. This driver will create regmaps and add
-> them to devres using devm_regmap_init(). From devres, DSA and other child
-> drivers can use dev_get_regmap(dev->parent) and perform their I/O through
-> regmap.
-> 
-> This driver is already written for regmap, so part of the work can
-> already be reused.
-> 
-> > So where should I place the SoC or MFD node? In the switch root node?
-> 
-> The SoC should be placed on the host MDIO bus. And the Ethernet switch
-> component should be a child of the SoC. Ideally, so should be all other
-> switch peripherals: on the same level as the Ethernet switch.
->
 
-Ohhhh ok, wasn't clear to me the MFD driver had to be placed in the mdio
-node.
+--t5nu6lfvefddqxt2
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 00/10] iio: adc: ad7124: Various fixes
+MIME-Version: 1.0
 
-To make it clear this would be an implementation.
+Hello,
 
-mdio_bus: mdio-bus {
-	#address-cells = <1>;
-	#size-cells = <0>;
+On Tue, Dec 03, 2024 at 12:00:20PM +0100, Uwe Kleine-K=F6nig wrote:
+> changes since v4, https://lore.kernel.org/linux-iio/20241127145929.679408=
+-12-u.kleine-koenig@baylibre.com
+>=20
+>  - Drop | after description in the binding docs (Rob in v2)
+>  - Dynamically allocate spi buffer (Jonathan)
+>  - Fix capitalisation of a comment (Jonathan)
+>  - drop comments about already emitted error messages (Jonathan)
+>=20
+> As before this is based on v6.12 + 64612ec9b909 ("iio: adc:
+> ad7124: Disable all channels at probe time").
 
-	...
+In case you intended to apply this despite Andy's concern: Please don't,
+I found a bug in one of the patches. Will send a fixed series tomorrow.
 
-	mfd@1 {
-		compatible = "airoha,an8855-mfd";
-		reg = <1>;
+Best regards
+Uwe
 
-		nvmem_node {
-			...
-		};
+--t5nu6lfvefddqxt2
+Content-Type: application/pgp-signature; name="signature.asc"
 
-		switch_node {
-			...
-		};
-	};
-};
+-----BEGIN PGP SIGNATURE-----
 
-Consider tho that recently I faced some problem with such structure with
-DT mainatiners asking to keep everything in the MFD node. But lets see
-how it goes.
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdR8WQACgkQj4D7WH0S
+/k6GoggAg85Z6D9vWjKd90Y7O1hgRuFkvNEFe+7bMIFaLWf7OjUYQEK1Ya5AJ7CK
+yH1w10J68l21qEYJNnR3kRi58Ucau9L/j6eXBnJntZkjN97W0Eo8nNajXgGimGKF
+yTHLsPGapcyd0Sz6n4NYENRAaNXmuT7DS4eQKjoXW0pcnoortD7sAlfnNYutvwUJ
+shU0f6Sa/nM7Pu1+p6YS9bdztq/SJZHVP5/0sfaqzIvBPlEdW/TNE6LqOebyLaWn
+yLIm3scUmUygVsjxNRnUco4wBa2LJF5j/5jHeDTfeYJvt0TVUiBjfLGw9bkM5rlM
+3lh0IdcKcoc0mxHYn7AK6RRWsA4RYg==
+=pEaV
+-----END PGP SIGNATURE-----
 
-Well aware of the MFD API, (had to have some fun recently) so the only
-confusing part was the node placement.
-
-> > Also the big problem is how to model accessing the register with MDIO
-> > with an MFD implementation.
-> > 
-> > Anyway just to make sure the Switch SoC doesn't expose an actualy MDIO
-> > bus, that is just to solve the problem with the Switch Address shared
-> > with one of the port. (Switch Address can be accessed by every switch
-> > port with a specific page set)
-> 
-> Sorry, I don't understand this, can you explain more? "Switch Address
-> can be accessed by every switch port with a specific page set"
-> 
-> In the code, I see that the priv->bus and priv->phy_base are used to
-> perform MDIO accesses for anything related to the switch. That's perfect,
-> it means that all switch registers are concentrated on a single MDIO
-> address, behind a single mdio_device. If that weren't the case, things
-> would get messy, because the Linux device model associates an MDIO device
-> with a single address on its bus.
-> 
-> And then we have an8855_phy_read() and an8855_phy_write(), which in my
-> understanding are the ops of a fake MDIO controller, one which has no
-> registers or MDIO address space of its own, but is just a passthrough
-> towards the host MDIO bus's address space. I have no idea why you don't
-> just put a phy-handle from the switch user ports to PHYs located on the
-> host MDIO bus directly, and why you go through this middle entity, but I
-> expect you will clarify. Creating an MDIO bus from DSA for internal PHYs
-> is completely optional if no special handling is required.
-
-The difficulties I found (and maybe is very easy to solve and I'm
-missing something here) is that switch and internal PHY port have the
-same address and conflicts.
-
-Switch will be at address 1 (or 2 3 4 5... every port can access switch
-register with page 0x4)
-
-DSA port 0 will be at address 1, that is already occupied by the switch.
-
-Defining the DSA port node on the host MDIO bus works correctly for
-every port but for port 0 (the one at address 1), the kernel complains
-and is not init. (as it does conflict with the switch that is at the
-same address) (can't remember the exact warning)
-
-> 
-> To explain again: In the MFD proposal, there is only one driver who has
-> access to the mdio_device from the host bus: the MFD driver. Depending
-> on how it implements the regmaps it presents to the children, it can
-> control page switching, etc etc. The child devices only operate with
-> regmaps, and have no idea of the underlying hardware access method.
-> 
-> > But yes the problem is there... Function is not implemented but the
-> > switch have i2c interface, minimal CPU, GPIO and Timer in it.
-> > 
-> > Happy to make the required changes, just very confused on how the final
-> > DT node structure.
-> > 
-> > -- 
-> > 	Ansuel
-> 
-
--- 
-	Ansuel
+--t5nu6lfvefddqxt2--
 
