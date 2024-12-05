@@ -1,166 +1,121 @@
-Return-Path: <devicetree+bounces-127421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07E339E55B8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:42:15 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0A3A9E55BD
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:43:06 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC962288525
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:42:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B829160FD2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:43:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7642218858;
-	Thu,  5 Dec 2024 12:42:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1DF8218AA1;
+	Thu,  5 Dec 2024 12:43:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="e0zKmW/e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lOA0mi7h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1AF41FA179;
-	Thu,  5 Dec 2024 12:42:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 935531EB2F;
+	Thu,  5 Dec 2024 12:43:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733402530; cv=none; b=QyjOICK8fGyugtRjjnIMhsH9L2xWvvf0qdAWGZt/10IEtsErVE02Otx1k6VqRfeSn60bzWZLP6dyJU+q8O+scfe01wKLWZaO//BNUI78+ePI1r9z/ICwKpvjBvP82Dw0OgRmoKFOHJdM3jqin6OxdG/5E/8/dPDuhNz6ua1f/MY=
+	t=1733402582; cv=none; b=pMUZaYHxk02KVSig9VR7ss41rL8VJ62fXXPTSh84MaDuFgaS5mG1XtWooi7s6cnEUjWJFrVtEPKq4eWScCKxDsz9UrouM047BDTYUzt2ZWROIdhEOR5mfwSg7p8dxL+T6v+/oicwZL7tsXt/ODuORIImzw5wx7SGr5qouNjQ+pA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733402530; c=relaxed/simple;
-	bh=LM2gUsX/c1KVTYV3HmF0p9792S12iewI4CRKDypr+as=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J48/6+Hul8xGBu5wxLYYR8eoZ2JsyZEN02fKVpV8U4FHKIrYbaRQQf0IHwSBFCf8P49DxNeplah2+0nqWULZM+N5fFEdXyvUD1vf5X2kRvehGrGnj4fGu7XFXytVvGBRfctG5EFuYFJ0K63UV51M8MlJIeTX2OCDSMk8gS6ie1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=e0zKmW/e; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1733402527;
-	bh=LM2gUsX/c1KVTYV3HmF0p9792S12iewI4CRKDypr+as=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=e0zKmW/eBTcWod3x01BANWCi2/KHwDjSdRb9jaCq0pv8j2puM8OFQ8CY4ZbUboONF
-	 xcIfdySa4bT4UbJviXFc7XTv/0D1LRrt2gnhO6qfPWT1DcTgNEna/uXvC76kvZ/sqn
-	 LzTRf89s8zrcVzPUJQvSdZVtMLNiU92WI/yfuF7BBbZDXoCPqtdk7otxuk08laXnT9
-	 m9buhbyjhHqkAnsaF+N5PG6MVkiTqwUTX0d13GnshiMbjcnYB0PZaJEa+1dPKswzlk
-	 1Nq+ReaDNS6SW0qlGisTH0CvdFO0k6y91n4BNNcTjwv+6vMPkY7RZZnGoWEe3k9iz6
-	 ovUvEzRTUb+7g==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8852C17E367E;
-	Thu,  5 Dec 2024 13:42:06 +0100 (CET)
-Message-ID: <ce2f6f07-0276-4a8b-ae3f-4188c707c6e7@collabora.com>
-Date: Thu, 5 Dec 2024 13:42:06 +0100
+	s=arc-20240116; t=1733402582; c=relaxed/simple;
+	bh=c3AR7VNa7Axc5m38pbb3JDhLhtCHLJu8X5574bwf74g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dNNjwZvB6UiIYAfo3xOxABY+0fHvII0nJrR7sgy4mB27fje1UMjD12K1/wSl7vumxx8vtxtsA38GT/wBCgNWJXMjc5VWmaIEKQVErw26Pd5IdAVE7nftvj+Nx913TBUQgNr7aF+SRMucegYO5rYF0cSovIVvJMbkhmACZtbOfuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lOA0mi7h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32814C4CED1;
+	Thu,  5 Dec 2024 12:42:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733402582;
+	bh=c3AR7VNa7Axc5m38pbb3JDhLhtCHLJu8X5574bwf74g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lOA0mi7hywXG0d1/uUAbtg3DcTJlVSax9QJsdZgt0ieX6jlMsrD3Kkp7t7JyfgnWa
+	 gX36OYbKePx/iZOVpgctI6S+Tgcn+hEVOFPo+Jxq5qO48sHCerU4K3347ptbycxrE5
+	 E12W+zUXlvveSzct/HkIePaI9Po744epVRKlRAWCIu2bVCl+UuttGWHgXVFl7YY9Wr
+	 tzyWjs96JtblLskq9yKUhn4+C6uCrutDN83OhIaAGZIyi27+/gU73M0Z1BSvvYezl0
+	 znAbvVwImgmYgk4puLJgsz6CJ6m7TxLXTR5V8A023xdK7cK4JbNYEH6Z8k1nrFDrr9
+	 a9OpeN9bjGh/g==
+Date: Thu, 5 Dec 2024 13:42:55 +0100
+From: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+To: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+Cc: Klaus Kudielka <klaus.kudielka@gmail.com>, 
+	Gregory CLEMENT <gregory.clement@bootlin.com>, Lee Jones <lee@kernel.org>, regressions@lists.linux.dev, 
+	Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
+	soc@kernel.org, arm@kernel.org, Andy Shevchenko <andy@kernel.org>, 
+	Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH leds v5 12/12] ARM: dts: turris-omnia: Add global LED
+ brightness change interrupt
+Message-ID: <ofd5ru77wypfysflpblafbbdgrcmzztqwoewfjfuusrnbma4aw@y3oc3etutisi>
+References: <20241104141924.18816-1-kabel@kernel.org>
+ <20241104141924.18816-13-kabel@kernel.org>
+ <87bjyv9ecb.fsf@BLaptop.bootlin.com>
+ <778f08f1774fcad5fcc39114dbb721793ebf95d6.camel@gmail.com>
+ <2iocrd4a7l4avfhqmobbexo7k4u2poidkvvj7lpqh7vp7mprkm@pfgytqnmt2si>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] arm64: dts: mediatek: mt8390-genio-700-evk: Add sound
- output support
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Trevor Wu <trevor.wu@mediatek.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org,
- Aary Patil <aary.patil@mediatek.com>,
- Suhrid Subramaniam <suhrid.subramaniam@mediatek.com>,
- parkeryang <Parker.Yang@mediatek.com>
-References: <20241205-genio700-audio-output-v1-0-0e955c78c29e@collabora.com>
- <20241205-genio700-audio-output-v1-5-0e955c78c29e@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20241205-genio700-audio-output-v1-5-0e955c78c29e@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <2iocrd4a7l4avfhqmobbexo7k4u2poidkvvj7lpqh7vp7mprkm@pfgytqnmt2si>
 
-Il 05/12/24 13:13, NÃ­colas F. R. A. Prado ha scritto:
-> Describe all the components to get sound output working on the two audio
-> jacks, Earphone and Speaker, present on the Genio 700 EVK board with the
-> audio DSP enabled.
+On Thu, Dec 05, 2024 at 01:38:10PM +0100, Marek Behún wrote:
+> On Wed, Dec 04, 2024 at 07:48:51AM +0100, Klaus Kudielka wrote:
+> > On Mon, 2024-11-04 at 17:02 +0100, Gregory CLEMENT wrote:
+> > > Marek Behún <kabel@kernel.org> writes:
+> > > 
+> > > > When global LED brightness is changed by pressing the front button on
+> > > > Turris Omnia, the MCU can produce an interrupt to the CPU. Add the
+> > > > description of this interrupt to the LED controller node.
+> > > > 
+> > > > Signed-off-by: Marek Behún <kabel@kernel.org>
+> > > 
+> > > As the binding had been acked, and this change won't produce any
+> > > regression I can already get it.
+> > > 
+> > > Applied on mvebu/dt
+> > > 
+> > > Thanks,
+> > > 
+> > > Gregory
+> > > 
+> > 
+> > This patch made it into v6.13-rc1, and completely breaks the LEDS on my Turris Omnia CZNIC11.
+> > The entries in /sys/class/leds disappeared, and instead the kernel says:
+> > 
+> > [   11.746116] i2c 1-002b: deferred probe pending: (reason unknown)
+> > 
+> > If I just revert the patch on top of v6.13-rc1, all is good again. Kernel config attached, for reference.
+> > 
+> > Best regards, Klaus
+> > 
+> > #regzbot introduced: 68bc6a71f56875a7dbde4f44aa4404c214651e1c
 > 
-> Co-developed-by: Aary Patil <aary.patil@mediatek.com>
-> Signed-off-by: Aary Patil <aary.patil@mediatek.com>
-> Co-developed-by: Suhrid Subramaniam <suhrid.subramaniam@mediatek.com>
-> Signed-off-by: Suhrid Subramaniam <suhrid.subramaniam@mediatek.com>
-> Co-developed-by: parkeryang <Parker.Yang@mediatek.com>
-> Signed-off-by: parkeryang <Parker.Yang@mediatek.com>
-> Signed-off-by: NÃ­colas F. R. A. Prado <nfraprado@collabora.com>
-> ---
->   .../boot/dts/mediatek/mt8390-genio-700-evk.dts     | 50 ++++++++++++++++++++++
->   1 file changed, 50 insertions(+)
+> This is because the patch went into 6.13 but the rest of the patches
+> did not, Lee wants to take them for 6.14 :-(
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
-> index bb68665f0b2da80397b833db0241a06648a322a0..2fded39078773e81d8e0313d6b118b3064be308d 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
-> @@ -92,6 +92,24 @@ vpu_mem: memory@57000000 {
->   			compatible = "shared-dma-pool";
->   			reg = <0 0x57000000 0 0x1400000>; /* 20 MB */
->   		};
-> +
-> +		adsp_mem: memory@60000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0x60000000 0 0xf00000>;
-> +			no-map;
-> +		};
-> +
-> +		afe_dma_mem: memory@60f00000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0x60f00000 0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		adsp_dma_mem: memory@61000000 {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0x61000000 0 0x100000>;
-> +			no-map;
-> +		};
->   	};
->   
->   	common_fixed_5v: regulator-0 {
-> @@ -209,6 +227,16 @@ usb_p2_vbus: regulator-9 {
->   	};
->   };
->   
-> +&adsp {
-> +	memory-region = <&adsp_dma_mem>, <&adsp_mem>;
-> +	status = "okay";
-> +};
-> +
-> +&afe {
-> +	memory-region = <&afe_dma_mem>;
-> +	status = "okay";
-> +};
-> +
->   &gpu {
->   	mali-supply = <&mt6359_vproc2_buck_reg>;
->   	status = "okay";
-> @@ -912,6 +940,28 @@ &scp {
->   	status = "okay";
->   };
->   
-> +&sound {
-> +	compatible = "mediatek,mt8390-mt6359-evk", "mediatek,mt8188-mt6359-evb";
-> +	model = "mt8390-evk";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&audio_default_pins>;
-> +	audio-routing =
-> +		"Headphone", "Headphone L",
-> +		"Headphone", "Headphone R";
-> +	mediatek,adsp = <&adsp>;
-> +	mediatek,dai-link = "DL_SRC_BE", "UL_SRC_BE", "AFE_SOF_DL2",
-> +		"AFE_SOF_DL3", "AFE_SOF_UL4", "AFE_SOF_UL5";
+> Apply this series and it will work.
+> 
+> https://lore.kernel.org/linux-leds/20241111100355.6978-1-kabel@kernel.org/T/
 
-Are you really, really, really, extremely sure that you need mediatek,dai-link?
+Alternatively you can overcome this issue if you enable the
+turris-omnia-mcu driver in 6.13:
 
-I say you don't... :-)
+  CONFIG_CZNIC_PLATFORMS=y
+  CONFIG_TURRIS_OMNIA_MCU=y/m
+(and also the subsequent options).
 
-Cheers,
-Angelo
-
+Marek
 
