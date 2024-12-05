@@ -1,114 +1,153 @@
-Return-Path: <devicetree+bounces-127200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCDA29E4DC3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 07:50:44 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6CBB9E4DDF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 08:00:52 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FEE9188154F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 06:50:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67C392822BF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 07:00:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEFC419E990;
-	Thu,  5 Dec 2024 06:50:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AD919340F;
+	Thu,  5 Dec 2024 07:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="2ZdYOfbI"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="c+dQx9O+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BE9219342D;
-	Thu,  5 Dec 2024 06:50:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6BB32F56;
+	Thu,  5 Dec 2024 07:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733381428; cv=none; b=tpoJTRVE1HhhUle2RtM4BVxfirXyD3VBk8jnsa3Th75EuQE447N7MfHcU7PrGEhqIWFuMDVpzDn4v4O59VFrfvZfSLPO6hYdxENEhL9oh9sTGs3d4ztYVBnZ09SY/Z56jJ+PgMuY7afIrk9Ywj7gsIZaqjICtbY4G5GH8YTw7nk=
+	t=1733382047; cv=none; b=gYYSAmyLcrGTlXEM+BNgcxpuqQx63BxEiCA+oehtIwCK6xW8MJmUAMlG63mH3tKt+RPfAd5eMVpZ7vOrfkfjshdLyEfw3QHL0A5mzxvjORUKcvW4X/hOZwOhaC+FyQfp6DSRwFyErEiB+8hsHxUKIFyJdx9vr2tu/b3FKmchhGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733381428; c=relaxed/simple;
-	bh=Iubyq5JqGvti2YlpRaXKl08KsIDXsA26DuLrgdawilg=;
+	s=arc-20240116; t=1733382047; c=relaxed/simple;
+	bh=aMm7FPbcneILDvmgciZe4j8OA9WEOczTdT+do9Vm7ws=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EbIqyJgB+A0uGVtDHMdKHIuR5CX5Fu6q4Q6JReAcvd+sqioU7eaoUOOxDGjL+d7m/Umi5vzhpaux2dEE23agLVmfKf4Hd2HLZ53QvC26uUgrtgRZrOY/Ga+P2m0OJHRBVDUkRBv/g/VWq2dL2y5ol474nsdn1sYnWenW/Xwn/58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=2ZdYOfbI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3754FC4CED6;
-	Thu,  5 Dec 2024 06:50:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AJhf+4vwDvS76PuT0afBLbFp9+1q+HTgRCnGzLzbSlVfZXtHJiunEg9zB+ZomJ+OJhO8dp3ekY/DA3ahYyHf0TFm60vXHK/jWGaXvPvPNY/hv2z1cqI/z9jHpnqBEl62AGUVNyV0kfkDqOuw69GH+JpXxNwoHNof6bN2ImgX2j8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=c+dQx9O+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A904C4CED1;
+	Thu,  5 Dec 2024 07:00:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1733381427;
-	bh=Iubyq5JqGvti2YlpRaXKl08KsIDXsA26DuLrgdawilg=;
+	s=korg; t=1733382047;
+	bh=aMm7FPbcneILDvmgciZe4j8OA9WEOczTdT+do9Vm7ws=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=2ZdYOfbIhdDKBQk9TjllzwXIBvFJgoJtROg8BMzElHezZ88u0b8q4zu+2GnMKvjFz
-	 kSdeUgbR9bskivnLAGx1LeG1lZZCDsaQW2vsleUCfhMdvV71QElhmv289xjm9GG7R7
-	 o/nX161nVerBvtePEZTkaTkAnxZMPhl2J9hRmTDM=
-Date: Thu, 5 Dec 2024 07:50:24 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: Cezary Rojewski <cezary.rojewski@intel.com>,
-	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-	Takashi Iwai <tiwai@suse.de>, srinivas.kandagatla@linaro.org,
-	mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
-	dmitry.torokhov@gmail.com, corbet@lwn.net, broonie@kernel.org,
-	lgirdwood@gmail.com, krzk+dt@kernel.org, Thinh.Nguyen@synopsys.com,
-	tiwai@suse.com, robh@kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v30 00/30] Introduce QC USB SND audio offloading support
-Message-ID: <2024120523-rifling-skipping-234c@gregkh>
-References: <edfeb642-297e-42bb-ad09-cbf74f995514@quicinc.com>
- <2024111655-approve-throwback-e7df@gregkh>
- <2f512d8d-e5f3-4bdd-8172-37114a382a69@quicinc.com>
- <875xoi3wqw.wl-tiwai@suse.de>
- <d0da6552-238a-41be-b596-58da6840efbb@quicinc.com>
- <CF49CA0A-4562-40BC-AA98-E550E39B366A@linux.dev>
- <65273bba-5ec1-44ea-865b-fb815afccc91@intel.com>
- <2024120320-recant-tameness-6c81@gregkh>
- <58a561d6-dc10-484e-8214-5e03c4aef66d@intel.com>
- <f9eb5aa5-0741-4198-aeee-beec3ca270f3@quicinc.com>
+	b=c+dQx9O+jWE8UFSlk+gUaUL/n8AncQMRlmV50VYzb250gr9j5ycr61Ni3OjSXrX0x
+	 mpJY3NLqasK5axM+6gvTqThZaYcaE6zvU/aSYasHmEPaOl18VARPuN4YD708f6YCsn
+	 /u3I0+O0lu7+C4PoTn3EbAj/0RcvqK85NXdim/mk=
+Date: Thu, 5 Dec 2024 08:00:44 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Herve Codina <herve.codina@bootlin.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 1/6] driver core: Introduce
+ device_{add,remove}_of_node()
+Message-ID: <2024120537-varying-chain-7d1e@gregkh>
+References: <20241202131522.142268-2-herve.codina@bootlin.com>
+ <20241204213825.GA3016970@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f9eb5aa5-0741-4198-aeee-beec3ca270f3@quicinc.com>
+In-Reply-To: <20241204213825.GA3016970@bhelgaas>
 
-On Wed, Dec 04, 2024 at 05:15:02PM -0800, Wesley Cheng wrote:
+On Wed, Dec 04, 2024 at 03:38:25PM -0600, Bjorn Helgaas wrote:
+> [cc->to Greg, Rafael]
 > 
-> On 12/4/2024 1:14 PM, Cezary Rojewski wrote:
-> > On 2024-12-03 5:57 PM, Greg KH wrote:
-> >> On Tue, Dec 03, 2024 at 05:17:48PM +0100, Cezary Rojewski wrote:
-> >>> On 2024-12-01 4:14 AM, Pierre-Louis Bossart wrote:
-> >>>> Sorry to chime in late, I only look at email occasionally.
-> >
-> > ...
-> >
-> >>>>> I believe Amadeusz was still against having the two card design, and wants the routing to automatically happen when playback happens on the sound card created by the USB SND layer.  However, even with that kind of implementation, the major pieces brought in by this series should still be relevant, ie soc-usb and the vendor offload driver.  The only thing that would really change is adding a path from the USB SND PCM ops to interact with the ASoC entities.  Complexity-wise, this would obviously have a good amount of changes to the USB SND/ASoC core drivers.  Some things I can think of that we'd need to introduce:
-> >>>>
-> >>>> The notion of two cards was agreed inside Intel as far back as 2018, when Rakesh first looked at USB offload.
-> >>>
-> >>>
-> >>> Well, I believe a lot has changed since then, not sure if USB Audio Offload
-> >>> (UAOL) was even stable on the Windows solution back then. Obviously we want
-> >>> to incorporate what we have learned during all that time into our solution
-> >>> before it lands on upstream.
-> >>
-> >> Great, can you help review this series please?
-> >
-> > Hi Greg,
-> >
-> > This series is large and I'd suggest to split it up, what I touched on in my recent reply [1]. Please correct me if I'm wrong, but you mostly care about drivers/usb/* part. If so, the existing set could be split into USB-changes series, ALSA/ASoC-framework series and a third, holding bulk of QCOM-specific patches. Me and my team care mostly about the sound/* part and we don't hold much expertise in USB. I believe Mathias covers this part well though.
-> >
+> On Mon, Dec 02, 2024 at 02:15:13PM +0100, Herve Codina wrote:
+> > An of_node can be set to a device using device_set_node().
+> > This function cannot prevent any of_node and/or fwnode overwrites.
+> > 
+> > When adding an of_node on an already present device, the following
+> > operations need to be done:
+> > - Attach the of_node if no of_node were already attached
+> > - Attach the of_node as a fwnode if no fwnode were already attached
+> > 
+> > This is the purpose of device_add_of_node().
+> > device_remove_of_node() reverts the operations done by
+> > device_add_of_node().
+> > 
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  drivers/base/core.c    | 52 ++++++++++++++++++++++++++++++++++++++++++
+> >  include/linux/device.h |  2 ++
 > 
-> I'm fine to split this into 3 different series if that helps with the reviews.  I was always under the impression that when we upstream things, we need to have an end to end use case within the same series, so that folks get the full picture.  I've gotten feedback where people were confused they couldn't find/follow the code flow, albeit those series were much much smaller.  If Greg is ok with it, I can split it up and have a link reference to the other series.
+> I suppose this series would go via the PCI tree since the bulk of the
+> changes are there.  If so, I would look for an ack from the driver
+> core folks (Greg, Rafael).
+> 
+> >  2 files changed, 54 insertions(+)
+> > 
+> > diff --git a/drivers/base/core.c b/drivers/base/core.c
+> > index 8b056306f04e..3953c5ab7316 100644
+> > --- a/drivers/base/core.c
+> > +++ b/drivers/base/core.c
+> > @@ -5216,6 +5216,58 @@ void set_secondary_fwnode(struct device *dev, struct fwnode_handle *fwnode)
+> >  }
+> >  EXPORT_SYMBOL_GPL(set_secondary_fwnode);
+> >  
+> > +/**
+> > + * device_remove_of_node - Remove an of_node from a device
+> > + * @dev: device whose device-tree node is being removed
+> > + */
+> > +void device_remove_of_node(struct device *dev)
+> > +{
+> > +	dev = get_device(dev);
+> > +	if (!dev)
+> > +		return;
+> > +
+> > +	if (!dev->of_node)
+> > +		goto end;
+> > +
+> > +	if (dev->fwnode == of_fwnode_handle(dev->of_node))
+> > +		dev->fwnode = NULL;
+> > +
+> > +	of_node_put(dev->of_node);
+> > +	dev->of_node = NULL;
+> > +
+> > +end:
+> > +	put_device(dev);
+> > +}
+> > +EXPORT_SYMBOL_GPL(device_remove_of_node);
+> > +
+> > +/**
+> > + * device_add_of_node - Add an of_node to an existing device
+> > + * @dev: device whose device-tree node is being added
+> > + * @of_node: of_node to add
+> > + */
+> > +void device_add_of_node(struct device *dev, struct device_node *of_node)
+> > +{
+> > +	if (!of_node)
+> > +		return;
+> > +
+> > +	dev = get_device(dev);
+> > +	if (!dev)
+> > +		return;
+> > +
+> > +	if (WARN(dev->of_node, "%s: Cannot replace node %pOF with %pOF\n",
+> > +		 dev_name(dev), dev->of_node, of_node))
+> > +		goto end;
 
-Yes, a full patch series is best as adding infrastructure in a
-stand-alone series that no one uses isn't going to work well.
-
-> I was able to reorganize the list a bit to what you recommended.  So the current layout is xHCI changes first, followed by the USB ALSA and ASoC changes, and lastly the QCOM/vendor specific modifications.
-
-That sounds reasonable, hopefully it lets others review it easier.
+Please do not reboot machines that have panic-on-warn for something that
+you can properly handle and recover from (like this.)  Just print out a
+message and continue on, or better yet, return an error if this didn't
+work properly.
 
 thanks,
 
