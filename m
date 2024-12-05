@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-127290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ACDE9E5111
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 10:18:57 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A5389E5136
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 10:23:48 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF30D282EEA
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 09:18:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 257B316062E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 09:23:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 948151D5CC1;
-	Thu,  5 Dec 2024 09:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B27551D5149;
+	Thu,  5 Dec 2024 09:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NOYsJf7s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dfDFSIX1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABD01D5AD1;
-	Thu,  5 Dec 2024 09:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DFB91D0DEC;
+	Thu,  5 Dec 2024 09:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733390327; cv=none; b=mCmfX7VnL6nd7n4ZozIVNiB7AiOOCy5RayGT6nM5hmqHy+d64osmFXgTpXCIS8enfnc9GhFIJE4nL1KNr97d3HzhoaXsM6pgg8rvWjDFocX3YOUytTGfqRybWRmXeJ78AmvFcC4jTT44YGLxU3OMzfMdznfzepgYZS6PPA8Mmzc=
+	t=1733390623; cv=none; b=C5tjg6ULfjJ9OxwHKgM+BRaxvQjbMUMpusOE1Udjua7UdflJzhP46KwpNGjMZBG3KBO8gmoXPTT04ylP3LCpcpsjQm0TiF3ei0foO7yN8aymy5U98P3BF5vBQ8U2jbCqqyTXUDL6lxVk6D8kfJnv7M8hPTW+ynlfduSjdN3LiNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733390327; c=relaxed/simple;
-	bh=+s1lMDPZAoy49Qw505h2P4rtnHu1KlnTJKbTfD230s0=;
+	s=arc-20240116; t=1733390623; c=relaxed/simple;
+	bh=1v+FSRruErk4XRJW66g3EC+VfUxZxTPUrNCqkYSZJJQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qbCgZ7sFpW2kUD3jhpNZXtvzbHBUVyDiRPSQTQmyKxYgyFMDscLwJ2U7Ir8onhkqce/a1po43sHNKp/FGTjs5MkhpLm8B7qA2Pl3EHiAjO6iSRIX7doHmmCT//+RpJVfr0nYTjAq1Koys2vTAOkMZmRIqrFKPDG1ZT/2MW7YvLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NOYsJf7s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EC22C4CEE2;
-	Thu,  5 Dec 2024 09:18:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=b/OyTf806QK9j2gmAQ0iqwWqfYmVsmHr0d6C3KKJ67JA3AVM8EYCyWXG4+LgRqDzwYIrsIuV3YMHrbtxOLm9+wFAZhBKIyQna4egSagikafE+l1cfG1IX1QzhrMpR75jo4SlGIyGDoNkNIf2NbxxMTrdN3bQC7ccCb1Utm1Ecl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dfDFSIX1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CE5BC4CED1;
+	Thu,  5 Dec 2024 09:23:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733390327;
-	bh=+s1lMDPZAoy49Qw505h2P4rtnHu1KlnTJKbTfD230s0=;
+	s=k20201202; t=1733390623;
+	bh=1v+FSRruErk4XRJW66g3EC+VfUxZxTPUrNCqkYSZJJQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NOYsJf7sbJzZViMw2eQkRhK4wi3nJSfb8Hv5IzUFa/TsVdbniHqjbYelJxDyhJde0
-	 WJ75Y2QJuMXtzOtWJjN97+An86zydcKz8eaDElF4qGc5A2zZB/QTvf9ddtzI9SmwNK
-	 +ucNrnjwoWyVp6GQWjJz6LPx8ExIO+JOE8p0nk2SvI93qhe36PP21EiTGK43FXj/kz
-	 wNR9xBZpnCqztN71gKQacBI9FEIp4+XPnWviOb+2bWiLBNyod9Vuo8oNCLuqC2gkeN
-	 MfvrkZ/B1c/C0JdaTHL44HVWw4fx++yHO1eI60PKhc91zHBw8TzMyWTovGgdtDofD2
-	 zltrdMLCgZsBQ==
-Date: Thu, 5 Dec 2024 10:18:43 +0100
+	b=dfDFSIX1oIHVqeM5yTg+AZwLeHHxW/jlPQKW2U6nhRuHJX40dlMX+VunZg3nxhGp8
+	 VDFAS+N12D3ZAodM6b6s+Kvpzopxk4lPQxvP16+xoQwhdFGIQDgL4wxSeOExKWQsgs
+	 wi4j0iniwaaQt74xJhtg3WEeEZ2lac2bJrxGoZM0EsVMBsVEOxMMkuyYBrj8e3P/1a
+	 K1AYXVvI6m4Aj6vxg+AEEZLmonLR2NwKQARnh+BBv9PJjp7HZnludAX4lMi58Ed3fj
+	 74vvhfcHIL9E1qSgMkB07Vv4y8sGzR0dARmvVw9uwkgxaaNkTeCKY70IzrqTAqbqDc
+	 OjE/Aps+JuW1A==
+Date: Thu, 5 Dec 2024 10:23:39 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: niravkumar.l.rabara@intel.com
-Cc: devicetree@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: mtd: cadence: convert
- cadence-nand-controller.txt to yaml
-Message-ID: <hvgf5nmnlsngrkdrwp4jrxdsn4tk5n3dh5twbxbacn2g7cyttz@sdhzeiz3646x>
-References: <20241205053350.434370-1-niravkumar.l.rabara@intel.com>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH net-next v4 1/7] dt-bindings: net: ftgmac100: support for
+ AST2700
+Message-ID: <e6hwuf5mtr5vwm7d2jn4raewinkwpswyceimahur3xnpi2zyqs@t4cqgdqilerq>
+References: <20241205072048.1397570-1-jacky_chou@aspeedtech.com>
+ <20241205072048.1397570-2-jacky_chou@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,38 +62,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241205053350.434370-1-niravkumar.l.rabara@intel.com>
+In-Reply-To: <20241205072048.1397570-2-jacky_chou@aspeedtech.com>
 
-On Thu, Dec 05, 2024 at 01:33:50PM +0800, niravkumar.l.rabara@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+On Thu, Dec 05, 2024 at 03:20:42PM +0800, Jacky Chou wrote:
+> The AST2700 is the 7th generation SoC from Aspeed.
+> Add compatible support and resets property for AST2700 in
+> yaml.
 > 
-> Convert cadence-nand-controller.txt to yaml format.
-> Update cadence-nand-controller.txt to cdns,hp-nfc.yaml in MAINTAINER file.
-> 
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+
+Your changelog in cover letter does not mention received ack. When did
+it happen?
+
 > ---
+>  .../bindings/net/faraday,ftgmac100.yaml         | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
 > 
-> Changes in v4:
-> - Fixed the identation for examples as per review comment in v3.
-> 
+> diff --git a/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+> index 9bcbacb6640d..3bba8eee83d6 100644
+> --- a/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+> +++ b/Documentation/devicetree/bindings/net/faraday,ftgmac100.yaml
+> @@ -21,6 +21,7 @@ properties:
+>                - aspeed,ast2400-mac
+>                - aspeed,ast2500-mac
+>                - aspeed,ast2600-mac
+> +              - aspeed,ast2700-mac
+>            - const: faraday,ftgmac100
+>  
+>    reg:
+> @@ -33,7 +34,7 @@ properties:
+>      minItems: 1
+>      items:
+>        - description: MAC IP clock
+> -      - description: RMII RCLK gate for AST2500/2600
+> +      - description: RMII RCLK gate for AST2500/2600/2700
+>  
+>    clock-names:
+>      minItems: 1
+> @@ -73,6 +74,20 @@ required:
+>  
+>  unevaluatedProperties: false
+>  
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: aspeed,ast2700-mac
 
-<form letter>
-This is a friendly reminder during the review process.
+1. That's a signigicant change. *Drop ack.*
 
-It looks like you received a tag and forgot to add it.
+2. Test your bindings.
+3. Put if: block under allOf: and move entire allOf just above your
+unevaluatedProperties... if this stays.
+4. But you cannot define properties in if:then. They must be defined in
+top level. You can disallow them for variants in if:then: with :false"
 
-If you do not know the process, here is a short explanation: Please add
-Acked-by/Reviewed-by/Tested-by tags when posting new versions, under
-or above your Signed-off-by tag. Tag is "received", when provided
-in a message replied to you on the mailing list. Tools like b4 can help
-here. However, there's no need to repost patches *only* to add the tags.
-The upstream maintainer will do that for tags received on the version
-they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+Even exmaple schema has exactly this case:
+https://elixir.bootlin.com/linux/v5.19/source/Documentation/devicetree/bindings/example-schema.yaml#L212
 
 Best regards,
 Krzysztof
