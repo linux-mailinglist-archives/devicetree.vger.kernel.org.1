@@ -1,79 +1,56 @@
-Return-Path: <devicetree+bounces-127301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 331699E5192
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 10:42:32 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80D8A9E519C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 10:46:07 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3E8316667E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 09:42:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CDB3281CCA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 09:46:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04F61D5ADA;
-	Thu,  5 Dec 2024 09:42:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F094A1D5171;
+	Thu,  5 Dec 2024 09:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jWB6B8aD"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="DYEl09ls"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 193611D47A2;
-	Thu,  5 Dec 2024 09:42:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E88BD26D;
+	Thu,  5 Dec 2024 09:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733391747; cv=none; b=J6+i8iRK0Ntb03Rpbuk8yFL4z+A8znm6OvtQSb0cfLaKQchhjMDBTIMIlK+T2QD5zTIK4pfARykRyaNigOKp9YEgVEkfIY0h6Oyijg04wPwXiEufcY1lFsOCJqH86eUsZetw3+7pocBo0HBICB9kDJEqR19nZ+FHDp5VFoMWKzQ=
+	t=1733391961; cv=none; b=tQZiRo+yrxfbn/DU2YQDrKh5frBCXBA5JezA761MWQ2giC+XeVlYmv0IiCe3oMoJN3cHDybymbzIKfQwrrT/LGGeNuETYN2bxF3W855/pYKTjYuk0yhdXNEV3TtN/UhVeL8H1O7rP85y1XZS5fALSbuNlwUIpRQ8AT+OznpxcnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733391747; c=relaxed/simple;
-	bh=uMfTwaW+z1uixy5zgQAaP5OlpK7VhcX7/nfcxPE3qYE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=fn0/hhW50bKf6c5S+OCoSzinnuDpbiso63wABC9FuvZje4rABhQKuoMR+2LoZU5iiLcBaY45Elc2GAqJLu9kMP+kw/Sh5gvwHTFeVbkJTB3gjwS82zrdHCa9g1/dT3BomQJSsuBmOd/Bkt9W9tiHtgSS43gaYlG0vms2XSwnZQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jWB6B8aD; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53df19bf6a9so784112e87.1;
-        Thu, 05 Dec 2024 01:42:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733391744; x=1733996544; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=6QUY0v5q5a5aeJy9BcvmDe3ZKrjse/FVqfzz1Ow9ERM=;
-        b=jWB6B8aDWurrYFb/foKON8WdsSLpPUioPMmCSNCobwILVt12Idi209uMN4TVRWKttX
-         kooDgzly42hJ6A53jA/HQ068rEJ1jHuD+E4xjAXuy6p097N0/kP6Zv3/JbgdFVaXxwKu
-         pK8VQCqy2ICOcXyAnCrb+y1Oze5x78D7v2jFyjpt9Z01e3KmifFE7bRzCv65CyLxW58f
-         YCffwY4XuNx4em8zJHC5hxbxNnG/z8Y7HXcJAymg3EDQCazsFZp/Nx/CRoj398QPG9Fu
-         inln3ikAy0SDUcrUUMI4Nr+RUXpXXRSUyzV/Kb2pq+DeToetZlH3/0BVjN+wwisvNucz
-         oQFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733391744; x=1733996544;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6QUY0v5q5a5aeJy9BcvmDe3ZKrjse/FVqfzz1Ow9ERM=;
-        b=jPKXYzgvxkpDP88Z0XSxxAY1TeFzxbwfyfCUB2dlRikJeOxJ0rgiu/s+IX8EF+IvGr
-         u5oU33tKttIz7bcitBxylHZRkxL9CE+rUB8o1e+TANVLh6mZoF7Zz5Pcd7dqHlsECHoN
-         m1EFQYDJoy+eVkXILUkvI1sgb3gVDVRvq+k9Oh1qK8gUWcJW8Tp8RMCu911ebLa3u/wm
-         T1YF/qu+hCZarRF9tDBduYq8yjKlI3gD4Kqk3ybBdG67fPRoeA5Ms8sOJu+eNVcn0ISc
-         lEfbVE7Fu3nCvDUV7F5nQ+GRnXYQkHmmnfK2zrBOeoriNyhKdZtQxEL3dTyBWF10Gh/6
-         SzZw==
-X-Forwarded-Encrypted: i=1; AJvYcCV3IKv2nHpGOhkSDkgt+zuAMtruUn4Y3TuDi1H5aGKZSntSi5isfvXshx7iCc6OtIB9bLX4s5ZiRbDEmyP7@vger.kernel.org, AJvYcCViIDRAxJ1UpnvoTOKAZUSkGHS1kusavzm0uOD0ThsKWFNEaVLWbKe+fnYy9p4CvSUva9FlBR5oBb4o@vger.kernel.org, AJvYcCWHNbQjirX3kg7QBm9IBH4fsYQ9NBMSWYmIRL7fdxq89WP+P5alCgeXl9nL1kPVpOOOFciB2GvNxw7U@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtLAZk9UqpC/v7PfB5XMiBhVlfSk3FEamGOT3NtYMk+OCwztlQ
-	KrUOsqeBwVaq5zvbop/0rd4sP4QbwS1oq5UJmSTMKlGHNj9AQAp+
-X-Gm-Gg: ASbGncuNW7Hxt5/yKTm2YjMnqwuHnVS2SK3INmWIwIXL2+AHSYHLQfmxOcVIki7rP1+
-	Oaw1JaJrG0vV8Z3Sb9TlRZQYM7LVBMYdlE6SkBbCzHaN4OrZKbs/VtXu9eoeUd2xV0NGrapp6Zx
-	YKRxvWTaPhAHRI9oUvfcxiKFjVOlVVaE6Xemu+NPMUaK4sswOcD5RHySs+noUoYeF5JYunMmGxn
-	E8dvWT4fD05fxZ4RbwNMuyP4clblvPFCbIgJbPbuP4hvxlZgAAJ9O/nPpSph2B2IZ275T45W5VG
-	2AHePVSNsmEnsQPOckts6GqAIQwbC04=
-X-Google-Smtp-Source: AGHT+IEfSRZ7J9WsY8VKTHBNKbsM71xhiPnLOEwNnwRYWWpfDNYDHMn8qsh4P9CGnvF0ibeS8Nxx0g==
-X-Received: by 2002:a05:6512:118e:b0:53d:e544:3fda with SMTP id 2adb3069b0e04-53e12a31939mr5282564e87.55.1733391743946;
-        Thu, 05 Dec 2024 01:42:23 -0800 (PST)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e2294792csm181423e87.1.2024.12.05.01.42.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Dec 2024 01:42:23 -0800 (PST)
-Message-ID: <7194cce7-5082-4df5-8599-186c2e39c599@gmail.com>
-Date: Thu, 5 Dec 2024 11:42:21 +0200
+	s=arc-20240116; t=1733391961; c=relaxed/simple;
+	bh=4G59/k8oBiuUp6HK9JyF7Oc5vg2beI5qv3bj3frtS9M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BGWXPy2VlEyvCPPk4bSe7b3QP319er0lzW5ooQnQs8wwvToN78yLBvP830iR2fL8sQJg85yc2hKSE/wAq3C0NHK76l7Ev92888ldmU8gyuqX97p38VYHweEE+Y9HFCwZn41RdF6/xBLeDCdcn6aaT7JiBAhPe1dm/QGbeXIne1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=DYEl09ls; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=U+QytUt8PTvOxkZ/ABlAQSs8VdfmBTQBBIgoS0hwZ7E=; b=DYEl09ls8FgLNuxmVJjf1XI5Qj
+	2EuSWMBu5Y9MPRcZWHbecaH97HQQo4NhkfidSiFIL+ptbzpYpLLTQufPhdo/7ITzD+SRvkfr9g5LP
+	SyFiJFy+r9YHZuOcO3y5bptmvnsrvExwuJmO2YWsQPGOKf1a3f9mOq0QBytJoBbfgO+DhoyMGlp00
+	8P3EZo+c+kfAixpSUk0v3tMDpTVOThx9fu3bzPu27/ShF0qy8diGyfCKNN55U0U+Ae2fYeP3nhkyu
+	W0euaUPR3bJFi+1ztAg8LgPl6uTCk8Yfu7GRu1TEBZjyWe8v7+B4O+7ss+WYVrk1k95OKww6b70zb
+	KG5EWFSQ==;
+Received: from [89.212.21.243] (port=35824 helo=[192.168.69.52])
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96.2)
+	(envelope-from <andrej.picej@norik.com>)
+	id 1tJ8Qh-0015nQ-0b;
+	Thu, 05 Dec 2024 10:45:50 +0100
+Message-ID: <be973fe9-ac7a-4904-923e-93f87c9ff615@norik.com>
+Date: Thu, 5 Dec 2024 10:45:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,96 +58,128 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iio: light: Add APDS9160 ALS & Proximity sensor
- driver
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>,
- Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
-Cc: Mikael Gonella-Bolduc via B4 Relay
- <devnull+mgonellabolduc.dimonoff.com@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling
- <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>
-References: <20241119-apds9160-driver-v1-0-fa00675b4ea4@dimonoff.com>
- <20241119-apds9160-driver-v1-2-fa00675b4ea4@dimonoff.com>
- <20241124211545.194a9f87@jic23-huawei> <Z0eY+1X1ZSkNui9U@uva.nl>
- <20241201132054.0c063a11@jic23-huawei>
- <9d810e5c-c7a5-41e5-8073-b703717faf3d@gmail.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-In-Reply-To: <9d810e5c-c7a5-41e5-8073-b703717faf3d@gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: drm/bridge: ti-sn65dsi83: Add
+ properties for ti,lvds-vod-swing
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, marex@denx.de, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ upstream@lists.phytec.de
+References: <20241203110054.2506123-1-andrej.picej@norik.com>
+ <20241203110054.2506123-2-andrej.picej@norik.com>
+ <vgg3bygtmj6sotatddkqfapset5bofsqvkzuj7ejuvomn6hs3n@mscq2jbhtaux>
+Content-Language: en-US
+From: Andrej Picej <andrej.picej@norik.com>
+Autocrypt: addr=andrej.picej@norik.com; keydata=
+ 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
+ xtT/8OxBOVSHvA==
+In-Reply-To: <vgg3bygtmj6sotatddkqfapset5bofsqvkzuj7ejuvomn6hs3n@mscq2jbhtaux>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On 02/12/2024 10:22, Matti Vaittinen wrote:
-> Hi Jonathan & Mikael,
-> 
-> On 01/12/2024 15:20, Jonathan Cameron wrote:
+Hi Krzysztof,
+
+On 4. 12. 24 08:54, Krzysztof Kozlowski wrote:
+> On Tue, Dec 03, 2024 at 12:00:52PM +0100, Andrej Picej wrote:
+>> Add properties which can be used to specify LVDS differential output
+>> voltage. Since this also depends on near-end signal termination also
+>> include property which sets this. LVDS differential output voltage is
+>> specified with an array (min, max), which should match the one from
+>> connected device.
 >>
->>>>> +};
->>>>> +MODULE_DEVICE_TABLE(of, apds9160_of_match);
->>>>> +
->>>>> +static struct i2c_driver apds9160_driver = {
->>>>> +    .driver      = {
->>>>> +        .name    = APDS9160_DRIVER_NAME,
->>>>> +        .owner = THIS_MODULE,
->>>>> +        .of_match_table = apds9160_of_match,
->>>>> +    },
->>>>> +    .probe    = apds9160_probe,
->>>>> +    .remove      = apds9160_remove,
->>>>> +    .id_table = apds9160_id,
->>>>> +};
->>> First, regarding the integration time/gain/scale parameters. I took a 
->>> look at the datasheet again as there is a table
->>> provided to get lux/count (scale?) for the ALS sensor depending on 
->>> gain and integration time.
->>>
->>> It looks like the correlation in the table is almost linear but it's 
->>> not as there is a loss of precision.
->>> For example, at 1x gain with integration time 100ms the lux/count is 
->>> 0.819 but at 3x the table is stating 0.269 instead of exepected 0.273.
->>>
->>> Is it still possible to use the gts helpers in that case?
->>
->> Ah. Probably not if it goes non linear.  Matti? (+CC)
+>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>> ---
+>> Changes in v3:
+>> - no change
 > 
-> Disclaimer - I didn't go through the patch and I just respond from the 
-> top of my head :) So, please take my words with a pinch of salt.
 > 
-> AFAIR, it is not required that the impact of integration time is 
-> _linear_ through the range. The "multiplication factor" can be set for 
-> each integration time separately. So, it is perfectly Ok to say:
+> One version of patchset per 24h.
+
+understood.
+
 > 
-> time 1 => multiply by 1
-> time 2 => multiply by 2
-> time 10 => multiply by 9 <= not linear, as linear would be 10.
-> time 15 => multiply by 15
+>> Changes in v2:
+>> - move LVDS port schema to a $defs and reference it from there
+>> - properties are now defined in microvolts/ohms
+>> - use 1 property for data-lane and 1 for clock-lane LVDS voltage swing
+>> - add 1 property which sets LVDS near-end termination
+>> - since major change was done change the authorship to myself
+>> ---
+>>   .../bindings/display/bridge/ti,sn65dsi83.yaml | 36 +++++++++++++++++--
+>>   1 file changed, 33 insertions(+), 3 deletions(-)
 > 
 > ...
 > 
-> The notable limitation of _current_ implementation is that the 
-> "multiplication factor" needs to be integer. So, this may result loss of 
-> accuracy.
+>>   allOf:
+>>     - if:
+>>         properties:
+>> @@ -120,7 +150,7 @@ allOf:
+>>             properties:
+>>               port@1: false
+>>   
+>> -additionalProperties: false
+>> +additionalProperties: true
+> 
+> This cannot be true. Not explained in commit msg and this is not shared
+> schema.
 
-// Snip.
+You are right. Will remove it in next iteration.
 
-I ended up re-reading this mail as a result of running some of my 
-public-inbox scripts...
+Best regards,
+Andrej
 
-...and I noticed that the non linear correlation was not about 
-integration time, but about gain. Eg, if I now read you right, the 
-integration time is kept constant 100mS, and gain is changed from 1x => 
-3x, which actually did not bring 3x gain to the lux/count values.
-
-If this is the case, then the GTS helpers aren't likely to help you 
-much. Sorry.
-
-
-Yours,
-	-- Matti
+> 
+>>   
+>>   examples:
+>>     - |
+>> -- 
+>> 2.34.1
+>>
 
