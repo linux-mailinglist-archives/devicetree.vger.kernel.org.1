@@ -1,147 +1,141 @@
-Return-Path: <devicetree+bounces-127644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA7B99E5DB5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:54:23 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 637CA9E5DB9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:54:40 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE9E818851F1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:54:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23E1A2847A7
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:54:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EE5D229B19;
-	Thu,  5 Dec 2024 17:53:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7DFD229B3E;
+	Thu,  5 Dec 2024 17:54:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EXY5r2CL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t4m4lqei"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA32227BAA
-	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 17:53:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAB30226EEF;
+	Thu,  5 Dec 2024 17:54:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733421236; cv=none; b=ZjA8e9Pw7Va/ISC1mPwJbYzoh9TIWlanoeuOJGEKxzhYT5+jwGmvsIG/MOPlT84NsSQo3RV+EXlGKIMA50W1JsGjljoALSUgfDDTbejmSorZj0cbvhgbU9FNsxpbqhtQlFQDjqyR0WZY2qIT+C/nNZwiUL+zPtO2DSO04XsOLwI=
+	t=1733421241; cv=none; b=YZHtW/XEUsfUZYjCKk+HcOEna/lrUOASOCWmYpWj7EOzI80dR7NNaI4pk1zrH09qxaiLGU02xon2Nl+963zwUJU0sEJOlU+HpJPvr0oWFDJQwcpW+DJHQvBeBEyDpqnpS6rZW/sqYh31CsVb0KqLjzIDrR5QV1i/HLYLDtsO0H8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733421236; c=relaxed/simple;
-	bh=8/1zyw3Y2D1EAPmlvkuWT0eqZ0o1r4sI1K0ufpWK6b8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KA2TnS/OCY9gIBpRkl3+SECYQ/TzmAEDpv1IfZRCD2qlv1+P9Sre2fnwuL0nxyPLSWLTqHNMpulw/P/8PFVVk8r4XX0H71DQZCbBZRhRaZ3L92D3nlXq1wOnRFC8RRuadmLnn04IgcsMqeeCkRy8xw8Q7bWMtQwusbcnPdIAdt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EXY5r2CL; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-434acf1f9abso12235235e9.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 09:53:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733421233; x=1734026033; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MUjYGZM8Wn9lXxLMeS6SbGdYzdUSKeJjfxwmycYz8PI=;
-        b=EXY5r2CLXQ2400Juovm2sIS5YM2q+v5bT+JxqdUJx0ZQW4gJ3W1BG5IwC4ieLluKH0
-         nbeyRW98UW3Zv2MV0E/iyulywftheXUqHhgqyqCeJT4Sq/RJ2EBQmOpjD1RroJ5PTqFZ
-         nWbzqE05t4t9idBO+Y8jNB2o3W0+iuFJZoCKkOLCcI63zwtmdvndgZ1G5j3Q3m3Y3BEO
-         aldsQfCfZ0bQizpdAxwRJxtKUm421adJ2GAVjMrMF7wLwUdpX0uP2a7d4Edp3peSFhqF
-         6EqN5KEm5Qe1WbmfZwoJ/2gROl8uohueS9F1HSlvWa7AfGF8PKAcvrxBIBFOVgxXyesN
-         i6Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733421233; x=1734026033;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MUjYGZM8Wn9lXxLMeS6SbGdYzdUSKeJjfxwmycYz8PI=;
-        b=DLQMFzO93wRtyeYvWf71/WddrdvXQhCd3WVeH4RV+uA7VGCP2CbGUL8N786IeYR6ml
-         rRSOH2w/E/1i+/G/vDyTar9bfe5LizoiZKbTI/ROVJ7lUIxcwwCTRGuMMvq7r83IzGpW
-         wg+URwvtZ2EABIfjtPLJGi8a//E+/NZjnlZQZhkmP26v1n6Lex7FxfM459lim9yQXzWu
-         5lRFIFa3IwuKXK3x8FEaLMKPHlsihrPPDgWCiy8gBbzq8CgNUyq5nICSVMRRY0mtXHlk
-         DeIhn31Ps/jSQZoSx/N3DhG7FFPcIT5rqeO4/aRv7d+wxaZz3eL16M5XOKXO0jCEi6fH
-         bsDg==
-X-Forwarded-Encrypted: i=1; AJvYcCUVng23XY7/E14+Ih9/K3fncbeoGZhKj6zR0r+6UvSCZRGyWehj8LdpUYWFDE+bicFTTRq4bknzNeQo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyfn4SrvfKqLZy914T9+FVDfKrDZYhzO+1WSikMvMsy5LZXQ3Au
-	b4dWYVQdnddawxHQ9hcz8KBScTww5PWu9SHnM9KbONYKf0AsNEiPonRjDBv/6+w=
-X-Gm-Gg: ASbGncufUPHsrgv49hNe0QJzRq8aHNoCRIlPI8yQY48qEp0Az++9a6yQVkG0YVV6iSa
-	yRmmVnIWOtYYL+TTaHi7PHrV6pb7TQJ7dNwqbwSxGGx5rVT66mJHaRu4D5JEtZV52QuQD3HqJe/
-	yUCzBZXEs7oNYnyG4qbu0SKmRRRFmtBHIC9neRjtxxN2NNSfLWkqGgjppoZOaq23mhyioO4aFfO
-	+MkSJLtVP4z2JZZYht/WjLD2Z3JSXbmdr3RBa1yOnMC0auDb+aCl2R9muXD7nVScOTVU5MSzRya
-	d/Fp3hNG7/zLjs5f2XQKX1sphd8mefgn
-X-Google-Smtp-Source: AGHT+IGVQz+uq4dtBtqtBu1Y8X22ebMDa5YP2r6YCdjfCnpf2qvqcplq7ge2zv2BqYCM+IMoonQK5w==
-X-Received: by 2002:a05:6000:188f:b0:385:fa3d:1988 with SMTP id ffacd0b85a97d-3862b33d273mr12625f8f.8.1733421233156;
-        Thu, 05 Dec 2024 09:53:53 -0800 (PST)
-Received: from ta2.c.googlers.com.com (32.134.38.34.bc.googleusercontent.com. [34.38.134.32])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434d5280fc4sm67882835e9.24.2024.12.05.09.53.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Dec 2024 09:53:50 -0800 (PST)
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	alim.akhtar@samsung.com
-Cc: linux-kernel@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	andre.draszik@linaro.org,
-	kernel-team@android.com,
-	willmcvicker@google.com,
-	peter.griffin@linaro.org,
-	javierm@redhat.com,
-	tzimmermann@suse.de,
-	daniel.lezcano@linaro.org,
-	vincent.guittot@linaro.org,
-	ulf.hansson@linaro.org,
-	arnd@arndb.de,
-	Tudor Ambarus <tudor.ambarus@linaro.org>
-Subject: [PATCH v3 3/3] MAINTAINERS: add entry for the samsung exynos ACPM mailbox protocol
-Date: Thu,  5 Dec 2024 17:53:45 +0000
-Message-ID: <20241205175345.201595-4-tudor.ambarus@linaro.org>
-X-Mailer: git-send-email 2.47.0.338.g60cca15819-goog
-In-Reply-To: <20241205175345.201595-1-tudor.ambarus@linaro.org>
-References: <20241205175345.201595-1-tudor.ambarus@linaro.org>
+	s=arc-20240116; t=1733421241; c=relaxed/simple;
+	bh=YPSxGZSaXFm4i6tytW5Jpx+fpeUcxowZd2a2TmtvO4c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rDz7MjTlCabHHi8fPpZUM3H38q8NlwjtqpgHXLbXvXxaKN5zE72A58MqByrPBlMGpQXksNh6uxkDTvkgAsjfl1mH9tv3R45hMm8jjquAh5w8ngWZeiZeOavLzrGD1i3lL1wC15dolskXSyFehlNPdAtgXmScybh7COhJN/LiCjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t4m4lqei; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24310C4CED1;
+	Thu,  5 Dec 2024 17:53:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733421241;
+	bh=YPSxGZSaXFm4i6tytW5Jpx+fpeUcxowZd2a2TmtvO4c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=t4m4lqeiZchL3C7WOSSk87re53fXBIrGsGOdC0b3hkJszEe71FYGAzEzesdfcpNrB
+	 hs63b4BqqSJRHfaengn+zmQuZzOyXADBLk5aIKo0OwK6FIziqFFXh80rEMHUrN+vzF
+	 pasPsTZ8WRwlCah+kExA3vlGtFWziz1BspFOaWc+ZCcO0R67B5SJNs+GGTUL/ugQd/
+	 YGpTPiQISeXVy2W9+XLY/0km0PLV3tJyYFEv09hAn84h50ib2AMMhMDr4SCT7gn4LH
+	 NtzWGXeSFDs/fT03b1afyDTMBIcF3mkqBo57waDMyBAhTPiazJOVWphsrTZytY+CUW
+	 2xDjfBtOOC9eQ==
+Date: Thu, 5 Dec 2024 17:53:57 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, eraretuya@gmail.com
+Subject: Re: [PATCH v5 06/10] dt-bindings: iio: accel: add interrupt-names
+Message-ID: <20241205-fraying-overfull-4fe3eb6c5376@spud>
+References: <20241205171343.308963-1-l.rubusch@gmail.com>
+ <20241205171343.308963-7-l.rubusch@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="7FVAxa4gn8urbTFj"
+Content-Disposition: inline
+In-Reply-To: <20241205171343.308963-7-l.rubusch@gmail.com>
 
-Add entry for the samsung exynos ACPM mailbox protocol.
 
-Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+--7FVAxa4gn8urbTFj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1e930c7a58b1..5cff01641f23 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3023,6 +3023,7 @@ F:	drivers/*/*s3c24*
- F:	drivers/*/*s3c64xx*
- F:	drivers/*/*s5pv210*
- F:	drivers/clocksource/samsung_pwm_timer.c
-+F:	drivers/firmware/samsung/
- F:	drivers/memory/samsung/
- F:	drivers/pwm/pwm-samsung.c
- F:	drivers/soc/samsung/
-@@ -20712,6 +20713,15 @@ F:	arch/arm64/boot/dts/exynos/exynos850*
- F:	drivers/clk/samsung/clk-exynos850.c
- F:	include/dt-bindings/clock/exynos850.h
- 
-+SAMSUNG EXYNOS ACPM MAILBOX PROTOCOL
-+M:	Tudor Ambarus <tudor.ambarus@linaro.org>
-+L:	linux-kernel@vger.kernel.org
-+L:	linux-samsung-soc@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/firmware/samsung,exynos-acpm-ipc.yaml
-+F:	drivers/firmware/samsung/exynos-acpm*
-+F:	include/linux/soc/samsung/exynos-acpm-protocol.h
-+
- SAMSUNG EXYNOS PSEUDO RANDOM NUMBER GENERATOR (RNG) DRIVER
- M:	Krzysztof Kozlowski <krzk@kernel.org>
- L:	linux-crypto@vger.kernel.org
--- 
-2.47.0.338.g60cca15819-goog
+On Thu, Dec 05, 2024 at 05:13:39PM +0000, Lothar Rubusch wrote:
+> Add interrupt-names INT1 and INT2 for the two interrupt lines of the
+> sensor. Only one line will be connected for incoming events. The driver
+> needs to be configured accordingly. If no interrupt line is set up, the
+> sensor will still measure, but no events are possible.
+>=20
+> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+> ---
+>  .../devicetree/bindings/iio/accel/adi,adxl345.yaml         | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml=
+ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> index 280ed479ef5..67e2c029a6c 100644
+> --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> @@ -37,6 +37,11 @@ properties:
+>    interrupts:
+>      maxItems: 1
+> =20
+> +  interrupt-names:
+> +    description: Use either INT1 or INT2 for events, or ignore events.
+> +    items:
+> +      - enum: [INT1, INT2]
 
+The description for this ", or ignore events" does not make sense. Just
+drop it, it's clear what happens if you don't provide interrupts.
+
+However, interrupts is a required property but interrupt-names is not.
+Seems rather pointless not making interrupt-names a required property
+(in the binding!) since if you only add interrupts and not
+interrupt-names you can't even use the interrupt as you do not know
+whether or not it is INT1 or INT2?
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -61,6 +66,7 @@ examples:
+>              reg =3D <0x2a>;
+>              interrupt-parent =3D <&gpio0>;
+>              interrupts =3D <0 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names =3D "INT1";
+>          };
+>      };
+>    - |
+> @@ -79,5 +85,6 @@ examples:
+>              spi-cpha;
+>              interrupt-parent =3D <&gpio0>;
+>              interrupts =3D <0 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names =3D "INT2";
+>          };
+>      };
+> --=20
+> 2.39.2
+>=20
+
+--7FVAxa4gn8urbTFj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1HotAAKCRB4tDGHoIJi
+0lAXAP4/wz5aqiHLtqp74DS+pYek3HB9cjtPHE7AGGkjFTRpkQD9FBXfnA/7Ij5v
+2agh6kxZiI8orLosGMcY0VLAiyKjigM=
+=9acU
+-----END PGP SIGNATURE-----
+
+--7FVAxa4gn8urbTFj--
 
