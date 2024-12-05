@@ -1,135 +1,147 @@
-Return-Path: <devicetree+bounces-127444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA8789E5775
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 14:42:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 452F09E57C4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 14:48:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5CA1F1618D5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:41:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9966616469A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:48:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED223219A9C;
-	Thu,  5 Dec 2024 13:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3858219A64;
+	Thu,  5 Dec 2024 13:46:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="qi6bvvXz"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="hNJBtkMu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D13E219A8B;
-	Thu,  5 Dec 2024 13:41:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8360F218AD1;
+	Thu,  5 Dec 2024 13:46:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733406072; cv=none; b=uKy175iR2pbGZ3XsJBTd1LHjKeCbRPircZ881bbWCQw4XI/xXkRW3LSGk27jFeyBYtuFYj6Z6TtLJ2+0bpAqtamouTKpUWJ/8nXItq76jCrAhOkzOtDut76Vgk8Z4mJ+KcK8Amr3LjjsQQCN38X7HtQy8ckuUwAdbnNoQBFTb2M=
+	t=1733406374; cv=none; b=uNWS3oFDQ9sXdR2w7izjjcxZMkMzjEBlaGWUg+KKPIJeVl9uVZ4RYUJDLFuWVNgB9vbPbCWGakgk7Inxx1sxtVMfd1RITkWLC4wT+Eiih2iBVqcdxs84qbEJNtY0blssw1OxeXF9EKbCm8nFn7j191dbf2WzU9e22qv/mDFRylE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733406072; c=relaxed/simple;
-	bh=lm3/Vt0T0e3NU9333urRIc3wD44JwrgOKLQbpytoQtw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NMqpxsnj8hM7PK39f6P1mdyCi5Bbf+RsI0FJtgg+jave33GQwkz3qkTY2ay0AeBQjZDUXJZkomjoN0jiiwAJ+EqPaMayPgbq2NX0IbDj3kpe9N0GYT+XT/m4/4+IdhDnX0+NMIx6MU8J65KB9waT4vPulab9nbgg6tWa03YeAMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=qi6bvvXz; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=c69lJJtR5uKa0bcrzzK8HSRXpslsNVNZIzv0dvaeX20=; b=qi6bvvXzKhZohfWQRagoF4aRi5
-	qn/hfdXazeJDRgYENbJyLxeTIpAew1Ne3J6KdREr4vBRIcKURvbdAyO08YOzMdxS0KKtq7Uem7s2U
-	Gq9YASowPVslDgolMRSSt6sRYzXg2T0I47xC+lRDnA7aY9zR54H+lg3xF/XeuVfi9siItP2zQgGCs
-	Z7s0nc5+R+hz2WtQ24AZ+6tP7mldsYKxymNAmU3z8FmgHND12l+PjyYRcLH5FaK2aR9gMtrG02HdK
-	FXFta0Mw51MKBuOJeSx8qCPMYUIg51L0dHWMJlVEHcJWCIW+ZyrwyZ0KqRkbvqzNQ+y1FoSuWWd4t
-	wf7g1XJA==;
-Received: from [89.212.21.243] (port=51914 helo=and-HP-Z4..)
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <andrej.picej@norik.com>)
-	id 1tJC6P-001iy5-1v;
-	Thu, 05 Dec 2024 14:41:09 +0100
-From: Andrej Picej <andrej.picej@norik.com>
-To: andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org,
-	rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se,
-	jernej.skrabec@gmail.com,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	marex@denx.de
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	upstream@lists.phytec.de
-Subject: [PATCH v4 3/3] arm64: dts: imx8mm-phyboard-polis-peb-av-10: Set lvds-vod-swing
-Date: Thu,  5 Dec 2024 14:40:21 +0100
-Message-Id: <20241205134021.2592013-4-andrej.picej@norik.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241205134021.2592013-1-andrej.picej@norik.com>
-References: <20241205134021.2592013-1-andrej.picej@norik.com>
+	s=arc-20240116; t=1733406374; c=relaxed/simple;
+	bh=zXUtQdF3kJoehY2VsMC5IChMRcaxhXxdQd/mnE6ECdk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QKkrRGWvmICBZRqqvetVnyGvCAnpTp0Sgv9lg2IimNNeK8HBna5iL8eyZsNowF+8yrohn7+ShEcYguXkrB6t+99IL6DKajmAPMvtii4BLdBGwI6ZmyAfu2jYkAkt9UkM5mlJ5bopMazYbQa7G91r1q9GOs+wdQSdDtzpqiHQ/WI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=hNJBtkMu; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5AWiAB022747;
+	Thu, 5 Dec 2024 14:45:36 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	9gu2Vz8xpuhrUOAG06JEy41cILvsNVFpEmqGgn17RPI=; b=hNJBtkMubMRskCIV
+	tJ9kgNC+p/g/+EdpcNlmMkE3AV1339M2Z7QAJSn7FahTLfLY5QApK9kvQNA4lAPk
+	RMuF0+Aiha0DVV8SzRvtTJIZu30TEUsO2JvNDo/qV3EbLAYHXpvarjk2KkG3g25k
+	FE7608a6Eu/k911tngGm6ODPB28VOE8U2PfIqzK7tC9epIps0jaaLArm83vhGnNn
+	R/LoSo2VFVZmq+SNylQXd9jL1Zbsuzk5nwzz+fio9f/wy6vmJXpJIjy0jAmUAGVa
+	fukvaD9QzHR6q/vZQRDUxDkmLjTelasVnJQVyhAgRPiBioPbXhHq/91zwSmukUSG
+	s7GVyQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 437tx2g7mq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Dec 2024 14:45:36 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 94F6240047;
+	Thu,  5 Dec 2024 14:44:15 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9A014264FCA;
+	Thu,  5 Dec 2024 14:41:27 +0100 (CET)
+Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 5 Dec
+ 2024 14:41:26 +0100
+Message-ID: <569904ad-2b70-4a58-98fe-4f24e1089e17@foss.st.com>
+Date: Thu, 5 Dec 2024 14:41:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: PCI: Add STM32MP25 PCIe root complex
+ bindings
+To: Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC: <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <bhelgaas@google.com>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
+        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20241203222515.GA2967814@bhelgaas>
+Content-Language: en-US
+From: Christian Bruel <christian.bruel@foss.st.com>
+In-Reply-To: <20241203222515.GA2967814@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Set custom differential output voltage for LVDS, to fulfill requirements
-of the connected display. LVDS differential voltage for data-lanes and
-clock output has to be between 200 mV and 600 mV.
-Driver sets 200 Ohm near-end termination by default.
 
-Signed-off-by: Andrej Picej <andrej.picej@norik.com>
----
-Changes in v4:
-- no change
-Changes in v3:
-- no change
-Changes in v2:
-- use new properties from previous patches
----
- .../boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso     | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso
-index a9de42cf14be..8bf9cc553bea 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso
-@@ -186,6 +186,8 @@ port@2 {
- 			reg = <2>;
- 			bridge_out: endpoint {
- 				remote-endpoint = <&panel_in>;
-+				ti,lvds-vod-swing-clock-microvolt = <200000 600000>;
-+				ti,lvds-vod-swing-data-microvolt = <200000 600000>;
- 			};
- 		};
- 	};
--- 
-2.34.1
+On 12/3/24 23:25, Bjorn Helgaas wrote:
+> On Tue, Nov 26, 2024 at 04:51:15PM +0100, Christian Bruel wrote:
+>> Document the bindings for STM32MP25 PCIe Controller configured in
+>> root complex mode.
+>>
+>> Supports 4 legacy interrupts and MSI interrupts from the ARM
+>> GICv2m controller.
+> 
+> s/legacy/INTx/
+> 
+>> STM32 PCIe may be in a power domain which is the case for the STM32MP25
+>> based boards.
+>>
+>> Supports wake# from wake-gpios
+> 
+> s/wake#/WAKE#/
+> 
+>> +  wake-gpios:
+>> +    description: GPIO controlled connection to WAKE# input signal
+> 
+> I'm not a hardware guy, but this sounds like a GPIO that *reads*
+> WAKE#, not controls it.
 
+Rephrasing as
+"GPIO used as WAKE# input signal" (output for the endpoint bindings)
+
+> 
+>> +    pcie@48400000 {
+>> +        compatible = "st,stm32mp25-pcie-rc";
+>> +        device_type = "pci";
+>> +        num-lanes = <1>;
+> 
+> num-lanes applies to a Root Port, not to a Root Complex.  I know most
+> bindings conflate Root Ports with the Root Complex, maybe because many
+> of these controllers only support a single Root Port?
+> 
+> But are we ever going to separate these out?  I assume someday
+> controllers will support multiple Root Ports and/or additional devices
+> on the root bus, like RCiEPs, RCECs, etc., and we'll need per-RP phys,
+> max-link-speed, num-lanes, reset-gpios, etc.
+> 
+> Seems like it would be to our benefit to split out the Root Ports when
+> we can, even if the current hardware only supports one, so we can
+> start untangling the code and data structures.
+
+OK. and we support only 1 lane anyway, so drop it.
+
+thanks,
+
+> 
+> Bjorn
 
