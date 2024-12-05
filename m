@@ -1,57 +1,63 @@
-Return-Path: <devicetree+bounces-127645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 637CA9E5DB9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:54:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68AFF9E5DC6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:58:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23E1A2847A7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:54:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27BC3286CA1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:58:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7DFD229B3E;
-	Thu,  5 Dec 2024 17:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4C9D222584;
+	Thu,  5 Dec 2024 17:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t4m4lqei"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Orlrb+El"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAB30226EEF;
-	Thu,  5 Dec 2024 17:54:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58D5218E98;
+	Thu,  5 Dec 2024 17:58:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733421241; cv=none; b=YZHtW/XEUsfUZYjCKk+HcOEna/lrUOASOCWmYpWj7EOzI80dR7NNaI4pk1zrH09qxaiLGU02xon2Nl+963zwUJU0sEJOlU+HpJPvr0oWFDJQwcpW+DJHQvBeBEyDpqnpS6rZW/sqYh31CsVb0KqLjzIDrR5QV1i/HLYLDtsO0H8=
+	t=1733421510; cv=none; b=kepVfB979kOc1izUpI+1McnZaTsPa/U/9MacohL5DaxtCAyO+/apGWVYrDceURaKNsXUQ4j1B2q4xMqqtzGcs4gvCggkHQPM8ovuAHsmmfA/gVB/PSvJiWZgKZJ6gdctTR71ERWigb3tJ9uvHabiDJND5KtEmB/rsqJiN455oJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733421241; c=relaxed/simple;
-	bh=YPSxGZSaXFm4i6tytW5Jpx+fpeUcxowZd2a2TmtvO4c=;
+	s=arc-20240116; t=1733421510; c=relaxed/simple;
+	bh=73xQjGFD4kv0bIyMOBquAjnNM1xCWQ7ChvbHtBBk+Ag=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rDz7MjTlCabHHi8fPpZUM3H38q8NlwjtqpgHXLbXvXxaKN5zE72A58MqByrPBlMGpQXksNh6uxkDTvkgAsjfl1mH9tv3R45hMm8jjquAh5w8ngWZeiZeOavLzrGD1i3lL1wC15dolskXSyFehlNPdAtgXmScybh7COhJN/LiCjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t4m4lqei; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24310C4CED1;
-	Thu,  5 Dec 2024 17:53:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=f2XLcw7qK6pjDnjIhXvILxsAG2v/c7gKRZ1rAd3B/Kg5yOUPTFhXh9LZFJx59JnRm9vOFUOjSC7XxYeCx+u9HNxqSs+/0SUb1+O9rB4WHA4hLeg/LhOP5Iik5RBAkYguUOFxDEE9KNrCB6ES3KkNkwrn+mlsOC5+hN74smbA9eo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Orlrb+El; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BF0AC4CED1;
+	Thu,  5 Dec 2024 17:58:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733421241;
-	bh=YPSxGZSaXFm4i6tytW5Jpx+fpeUcxowZd2a2TmtvO4c=;
+	s=k20201202; t=1733421510;
+	bh=73xQjGFD4kv0bIyMOBquAjnNM1xCWQ7ChvbHtBBk+Ag=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t4m4lqeiZchL3C7WOSSk87re53fXBIrGsGOdC0b3hkJszEe71FYGAzEzesdfcpNrB
-	 hs63b4BqqSJRHfaengn+zmQuZzOyXADBLk5aIKo0OwK6FIziqFFXh80rEMHUrN+vzF
-	 pasPsTZ8WRwlCah+kExA3vlGtFWziz1BspFOaWc+ZCcO0R67B5SJNs+GGTUL/ugQd/
-	 YGpTPiQISeXVy2W9+XLY/0km0PLV3tJyYFEv09hAn84h50ib2AMMhMDr4SCT7gn4LH
-	 NtzWGXeSFDs/fT03b1afyDTMBIcF3mkqBo57waDMyBAhTPiazJOVWphsrTZytY+CUW
-	 2xDjfBtOOC9eQ==
-Date: Thu, 5 Dec 2024 17:53:57 +0000
+	b=Orlrb+ElrHdizDwlaDZTRLYCgXbBCQ7lTewAAGkzKjsd2qydeM+XKlwzkgmHmNakO
+	 /Tg1HkdP0dmYfuhOwdRfv/iqU0R5Che9ad6MPbCSkOjUQ4o3huwLs9e42to2S/Plbi
+	 fLUrVrT2+wROyeUOu7V/5B8hFgFlrDNnU4JsuV5RqE1x2iXZpSpQBG2PO/JfXWp2/4
+	 r3tCBU9HrWPHnBgmDharqVj374h+kKmfJx981ZFl4g0jypdF+Z6wwkrSeE/7RwwZWP
+	 48hqgipspHnjAN5w8ooFd1fs+ag48MQvzPj72b8DvOKVT5EKZoqapsgIc4dlwVmnnb
+	 OQ1s9bINGxWYA==
+Date: Thu, 5 Dec 2024 17:58:25 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Lothar Rubusch <l.rubusch@gmail.com>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, eraretuya@gmail.com
-Subject: Re: [PATCH v5 06/10] dt-bindings: iio: accel: add interrupt-names
-Message-ID: <20241205-fraying-overfull-4fe3eb6c5376@spud>
-References: <20241205171343.308963-1-l.rubusch@gmail.com>
- <20241205171343.308963-7-l.rubusch@gmail.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Robin Gong <yibin.gong@nxp.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev, joy.zou@nxp.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/5] regulator: dt-bindings: pca9450: Add pca9452 support
+Message-ID: <20241205-cornfield-stoplight-664ad32353de@spud>
+References: <20241205-pca9450-v1-0-aab448b74e78@nxp.com>
+ <20241205-pca9450-v1-3-aab448b74e78@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,83 +65,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7FVAxa4gn8urbTFj"
+	protocol="application/pgp-signature"; boundary="MyZ5EmMb99Zgg/w4"
 Content-Disposition: inline
-In-Reply-To: <20241205171343.308963-7-l.rubusch@gmail.com>
+In-Reply-To: <20241205-pca9450-v1-3-aab448b74e78@nxp.com>
 
 
---7FVAxa4gn8urbTFj
+--MyZ5EmMb99Zgg/w4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 05, 2024 at 05:13:39PM +0000, Lothar Rubusch wrote:
-> Add interrupt-names INT1 and INT2 for the two interrupt lines of the
-> sensor. Only one line will be connected for incoming events. The driver
-> needs to be configured accordingly. If no interrupt line is set up, the
-> sensor will still measure, but no events are possible.
+On Thu, Dec 05, 2024 at 11:51:11AM -0500, Frank Li wrote:
+> From: Joy Zou <joy.zou@nxp.com>
 >=20
-> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
-> ---
->  .../devicetree/bindings/iio/accel/adi,adxl345.yaml         | 7 +++++++
->  1 file changed, 7 insertions(+)
+> Add compatible string 'nxp,pca9452'. pca9452 add 'ldo3' compared with
+> pca9451a.
 >=20
-> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml=
- b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> index 280ed479ef5..67e2c029a6c 100644
-> --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> @@ -37,6 +37,11 @@ properties:
->    interrupts:
->      maxItems: 1
-> =20
-> +  interrupt-names:
-> +    description: Use either INT1 or INT2 for events, or ignore events.
-> +    items:
-> +      - enum: [INT1, INT2]
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-The description for this ", or ignore events" does not make sense. Just
-drop it, it's clear what happens if you don't provide interrupts.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-However, interrupts is a required property but interrupt-names is not.
-Seems rather pointless not making interrupt-names a required property
-(in the binding!) since if you only add interrupts and not
-interrupt-names you can't even use the interrupt as you do not know
-whether or not it is INT1 or INT2?
-
-> +
->  required:
->    - compatible
->    - reg
-> @@ -61,6 +66,7 @@ examples:
->              reg =3D <0x2a>;
->              interrupt-parent =3D <&gpio0>;
->              interrupts =3D <0 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names =3D "INT1";
->          };
->      };
->    - |
-> @@ -79,5 +85,6 @@ examples:
->              spi-cpha;
->              interrupt-parent =3D <&gpio0>;
->              interrupts =3D <0 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names =3D "INT2";
->          };
->      };
-> --=20
-> 2.39.2
->=20
-
---7FVAxa4gn8urbTFj
+--MyZ5EmMb99Zgg/w4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1HotAAKCRB4tDGHoIJi
-0lAXAP4/wz5aqiHLtqp74DS+pYek3HB9cjtPHE7AGGkjFTRpkQD9FBXfnA/7Ij5v
-2agh6kxZiI8orLosGMcY0VLAiyKjigM=
-=9acU
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1HpwAAKCRB4tDGHoIJi
+0vSkAP0e4ibG2OMWjU9zkkepAuDnmh7gZrt/mo0r917YnFvyvQEA1mACkRWBygEy
+s2e5cq6G63ISm+PTrFg9VWDwjfPXngs=
+=9/jl
 -----END PGP SIGNATURE-----
 
---7FVAxa4gn8urbTFj--
+--MyZ5EmMb99Zgg/w4--
 
