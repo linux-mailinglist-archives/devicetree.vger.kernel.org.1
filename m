@@ -1,166 +1,272 @@
-Return-Path: <devicetree+bounces-127365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D05649E5409
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:33:49 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5B519E5427
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:41:09 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B9D218815E7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 11:33:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70CD9283C23
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 11:41:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88E841E3796;
-	Thu,  5 Dec 2024 11:33:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02A58207DE2;
+	Thu,  5 Dec 2024 11:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RH/JZBks"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CVH1EBpy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988B11DB94F
-	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 11:33:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 577CB207DE1
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 11:40:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733398417; cv=none; b=kAKkowqOn0FlYtM7cBJeJNFwFFFDi7M4Yu33iHAIOpbPbht4EC7qSFOURNjQFHCeC0VYDDPmah7fngOMdeMw8aTaL+v72XUFIuSS6dB+214BayggBMCOhGGi8xldpcTIM/XAQtfgzMUY/lCHfDushX780q5GtTAZpjRv5Kji3wM=
+	t=1733398851; cv=none; b=Vc4QdyUwa+DDpRMg7glTwqz29UQLykHhQoLAN8ImhvefykViPfssdjIGMN/Ktc8m7WsaDYvfNPrmgq9aBFu/VxNx5KtIrXpI/5JA7u60s/L7xKGSN+NFaiAsLQtHlS38DS7tnMBH6GsVnZ4k7rqNfOU2SPybgRYFsILEne42g0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733398417; c=relaxed/simple;
-	bh=Yd7TCI71eLkYLDOUMO7Fs/wQoziaEJbbESfjNDCLz3k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YBML/T3D1Xfuz+Ev99frmT39/7l7mBK+qNP1IN4AIYaty0CBiZx4STku45iyrINaBz3VB9HWEIA0rTPo10BvXHqT6HJ4N/U3BM6LkhsSjd5XjRdo+gDAtzmkBGvwZMZNB2bKHqhhiVkBJrO1AZ6VHvipyHFMiK2/43x5DyFnhJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RH/JZBks; arc=none smtp.client-ip=209.85.221.42
+	s=arc-20240116; t=1733398851; c=relaxed/simple;
+	bh=MgNShRnQp/aT/PaWLKJTQ9YBqwcVrKGxN8gk7Ft9IOw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fIsiTQnjAACyXhP34yRY+6d+LBlOuW+Dwp7NCZbCK8AOlAXhRe1W5VEqj/RkT5R/D1XREozQRgdZn/CK73YPK+eDRvdOQiKiPJ75APFLAb1j8EFKdgsS2o97FDB6PsOZisoRUaFg2dW6JYJ8gmIdxlCjwvMiTUd41PpMqMVtgHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CVH1EBpy; arc=none smtp.client-ip=209.85.219.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-385d851e7c3so21550f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 03:33:35 -0800 (PST)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e397269c68fso1123447276.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 03:40:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733398414; x=1734003214; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=KqOu+03vzBSw9jXH8v9ztjiXuZ2T9DwiS1wUbaR4CAE=;
-        b=RH/JZBks/hyYi049lyKyPQx5/NAR8JVf+iIQ3sQgYfVRGAKatL2TftszeVgV+kmyCL
-         JVylIwMeeaUW0OkCmN/CRcwjHsVwp/cYcstGwLjB0q8xUBTsPlwhl6HpIS9Sq1K6bDdW
-         oyQ+DUl4MLgvpGC0h9HVp+L3Oo7pFhOzlHAHDlBKAOmZKgJ1oBfg/mdqjc5DSICP1UJj
-         8BB5wciz+4AYwm/GFik84gFTRpkr9xYj8Chz51KQRqA4oaxayWXdmFPAsGH8fEq+20t9
-         PHLi4hxmSHbhUZ3iRKgMObohFusMBRoOEriTbuaOyCBxlD8/gDm7sHb6nJHuIYS77kQ+
-         0OkQ==
+        d=linaro.org; s=google; t=1733398848; x=1734003648; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kVlR8SfhnG5cey0ump1Xp1q6+3VfWCJyhprNP3dwbtc=;
+        b=CVH1EBpypHoebKjRU1NfKKjNaVmOWbZrI8u4mH59Yie+JzImTf6j3ju5VOxZFRiq47
+         JEPN7niTFkYN833oi5NQDT5rR877kK3OUNAl0Q4d9mOISPixS5t9aSNhumwZEoPlCgA2
+         NXpfHLhOOsN22IGQpt4R+AiShFzyOh3vTkX8gTQBRCrAeDBk48NvjKPD//YwbNAY7uZF
+         WeWKKap6hKBuLTlCbzfKu18PaBgFYG0Ih9NhV6oik4vSpF327Uoh/jjjR+w7+fEI9d2g
+         DIVLNkbmOYREUKWm2H1HGvjst4qMO+7907QqPGhgc5TlBAF7yr4vLmHBbIfDnWrq76U8
+         Vb7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733398414; x=1734003214;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KqOu+03vzBSw9jXH8v9ztjiXuZ2T9DwiS1wUbaR4CAE=;
-        b=O3UfG98tB7S2da/3GTkM1vkSjFKz6OxI0j7MFOEWg/JMkSig0tggzog8RFlT43CXa+
-         k1W7fEj31Srjf6wZesWrGjO/8ZjOknMrrBm1DfO1Jo9lZ5j0G4BuSQ333FIrAFAvgkkp
-         P6DIfapLKr2uWIlVUDKEzbvKtBb0dB4Ix1B70iCqoEHoixOlcH7HXw+Qu3AR11biy+uB
-         rBoAN8IXx1kmpLDEoVjWJrx5r0j7InVRLBWbRJbKylMn+HARQ0VMwwFdSCvDqXWp+YR7
-         Dw8V0eaxrcYNhDhtKdNvnqU0R7jkcp3dYBK0eKyVGqM/JyKjsEi3Rr/taVDEw4h+g47y
-         gueQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUvJuPM2OT6hdB+rLTRY7dSwtMHYpz5dTz/hxzGxg4Dl5hCuuU92rabrkPzRtmDWxwStVSRDxXGCbFs@vger.kernel.org
-X-Gm-Message-State: AOJu0YzE7pTyub+zsO60QaODSowgJjolVCXXXhFtyhoC/p1dRzIpoNN/
-	oMhdkT4E1EWbYdf1FSfwNNVW/YcBT/wXB4MhOBIvMXRf500NihF5yhoifeqZJpE=
-X-Gm-Gg: ASbGncuqSnCAmV3kDy4hUo8Rhk7efluNryG/CBokpeP/iMDOV0TgsHG1C3bPGsgCdgH
-	Udj4AdL9yKQ3XWG5KArf8HhPYuQK2vfD9Er44mXSzbRhnalJHF6vYSA0vm+2eg8FhNBK//0F5aC
-	j0cDNQBAlnIJusAoQMKn+2qstwsdKxk6cKUd+0Xh+jWxfMdIpU+/SbbphSiirTmCFP5hOCd9HOh
-	s76kc6Ru8cKe+JGf+Qh2UPgvp0bV9Pde1jboiO+0rGkfeUhaBX+4BFAix/QMaqcsPnT8A==
-X-Google-Smtp-Source: AGHT+IGaEN5uL07/dBRHUunJUvl5k8sLTxj4oOhw+TYlOs9kGvFk3gyHiA9N+014gZqZ+fX8C23gUA==
-X-Received: by 2002:a5d:64e6:0:b0:385:f7b2:aad8 with SMTP id ffacd0b85a97d-385fd3c777bmr3478269f8f.1.1733398413747;
-        Thu, 05 Dec 2024 03:33:33 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.165])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3862229a70bsm1684423f8f.107.2024.12.05.03.33.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Dec 2024 03:33:33 -0800 (PST)
-Message-ID: <9ad14913-e7f5-47f0-84a8-044238cc2d39@linaro.org>
-Date: Thu, 5 Dec 2024 12:33:31 +0100
+        d=1e100.net; s=20230601; t=1733398848; x=1734003648;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kVlR8SfhnG5cey0ump1Xp1q6+3VfWCJyhprNP3dwbtc=;
+        b=B/34oiWKGSxfJRsiD4mCPwWkZUBuEODn2SDcRfj1pZ0U38b1HiktdQk1fCpp5JStWg
+         CXSxvhHxHfa5XkaAzFKZ+px5y4qJsXe0rRSszZTPKTIWVCRyDurIKqmaGgK1iPZcOCwd
+         2X81tKzQTIrPxQzvKeUSRCAG08m1xLF1PvCxen7F5BD49AZIrGyzhVLgtZ6xMXaoQ67E
+         B6WbPljwgDktC6JBzKS7XFkJ8Wo7nkii2F3OSmlizSzG/ld7wPyjaSXMDp3dOWfb+vlw
+         k9D7qcGaGQ61Pcxv5a1WD+CBMLO2Gm2bS136TxGqBjYcVPAJgxwTeZ8KZBk7vp4vu412
+         QBlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUNAGWXTZ+tblo/Dz+QfiCbpqtPePPtLNdYeulmv0SNyxskILKaIILNe7ypyR/S7hQAK967wvtVNWQy@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaqPwm0MWDXntccnplfvgLFeGI4pcNyZrgQlr6tr3NQEraIHIe
+	Asbm22JgMMAxYMqhKcHdRlaSQvD2KwxTS0xMaVx8aheDMK9G7SIiBYuVtaexZPUu4q729bh1HOy
+	xFzP+IItVTcVcA3cirSZpLwpO6iuImzzfKrFJeQ==
+X-Gm-Gg: ASbGnctNmhtr2TAVkjVnr7TbKTiRreAYP5OO1nC8h7zTA/WZb6Q4bOGO5866Ti+dgsn
+	eW8ta8B0/tc14v2xNQdBFzIrPDwTBcHdzlvXmc2UP+hDIIA==
+X-Google-Smtp-Source: AGHT+IE7HGuIvq1u8h8I8rkPJdzS+9WwLlvVg6WJaLoZvVrKFT+XlrLuu0kqLNSwgkmrfDwW/eoD4F5p5LcplIqXWkE=
+X-Received: by 2002:a05:6902:cc5:b0:e39:b0de:fed8 with SMTP id
+ 3f1490d57ef6-e39d3a293cdmr10638085276.17.1733398848266; Thu, 05 Dec 2024
+ 03:40:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ASoC: codecs: wcd9335: Add define for number of DAIs
-To: Mark Brown <broonie@kernel.org>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>
-References: <20241205084021.35610-1-krzysztof.kozlowski@linaro.org>
- <3dd6b0e0-942a-4768-a4b6-50bcc0302090@sirena.org.uk>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <3dd6b0e0-942a-4768-a4b6-50bcc0302090@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
+ <20241129-add-displayport-support-for-qcs615-platform-v1-5-09a4338d93ef@quicinc.com>
+ <CAA8EJpoY8hySQd00yODGeHjSpVZpEBLjF3aBiKGJPUhpr-2mgw@mail.gmail.com>
+ <d2a3cd6f-1077-4edb-9f0c-0c940a639050@quicinc.com> <zvapsvfftai4fp6vwrn33edqsyuuprq2pxz6spij6j7t4y6xmn@zzgp7gbsivbk>
+ <93ddb63c-42da-43c8-9a77-c517ca5d6432@quicinc.com>
+In-Reply-To: <93ddb63c-42da-43c8-9a77-c517ca5d6432@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 5 Dec 2024 13:40:37 +0200
+Message-ID: <CAA8EJprAFYD6ykN10-r=JwHM4A4XeDDcZVcVWYp_5A5FP-=RyA@mail.gmail.com>
+Subject: Re: [PATCH 5/8] drm/msm/dp: Add support for lane mapping configuration
+To: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, quic_lliu6@quicinc.com, quic_fangez@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 05/12/2024 12:27, Mark Brown wrote:
-> On Thu, Dec 05, 2024 at 09:40:20AM +0100, Krzysztof Kozlowski wrote:
-> 
->>  sound/soc/codecs/wcd9335.c | 2 ++
->>  1 file changed, 2 insertions(+)
-> 
->> +#define NUM_CODEC_DAIS          (AIF4_PB + 1)
-> 
-> Several other Qualcomm CODECs appear to use this define?
+On Thu, 5 Dec 2024 at 13:28, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
+>
+>
+>
+> On 12/2/2024 6:46 PM, Dmitry Baryshkov wrote:
+> > On Mon, Dec 02, 2024 at 04:40:05PM +0800, Xiangxu Yin wrote:
+> >>
+> >>
+> >> On 11/29/2024 9:50 PM, Dmitry Baryshkov wrote:
+> >>> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com>=
+ wrote:
+> >>>>
+> >>>> Add the ability to configure lane mapping for the DP controller. Thi=
+s is
+> >>>> required when the platform's lane mapping does not follow the defaul=
+t
+> >>>> order (0, 1, 2, 3). The mapping rules are now configurable via the
+> >>>> `data-lane` property in the devicetree. This property defines the
+> >>>> logical-to-physical lane mapping sequence, ensuring correct lane
+> >>>> assignment for non-default configurations.
+> >>>>
+> >>>> Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+> >>>> ---
+> >>>>  drivers/gpu/drm/msm/dp/dp_catalog.c | 11 +++++------
+> >>>>  drivers/gpu/drm/msm/dp/dp_catalog.h |  2 +-
+> >>>>  drivers/gpu/drm/msm/dp/dp_ctrl.c    |  2 +-
+> >>>>  drivers/gpu/drm/msm/dp/dp_panel.c   | 13 ++++++++++---
+> >>>>  drivers/gpu/drm/msm/dp/dp_panel.h   |  3 +++
+> >>>>  5 files changed, 20 insertions(+), 11 deletions(-)
+> >>>>
+> >
+> >>>> @@ -461,6 +460,7 @@ static int msm_dp_panel_parse_dt(struct msm_dp_p=
+anel *msm_dp_panel)
+> >>>>         struct msm_dp_panel_private *panel;
+> >>>>         struct device_node *of_node;
+> >>>>         int cnt;
+> >>>> +       u32 lane_map[DP_MAX_NUM_DP_LANES] =3D {0, 1, 2, 3};
+> >>>>
+> >>>>         panel =3D container_of(msm_dp_panel, struct msm_dp_panel_pri=
+vate, msm_dp_panel);
+> >>>>         of_node =3D panel->dev->of_node;
+> >>>> @@ -474,10 +474,17 @@ static int msm_dp_panel_parse_dt(struct msm_dp=
+_panel *msm_dp_panel)
+> >>>>                 cnt =3D drm_of_get_data_lanes_count(of_node, 1, DP_M=
+AX_NUM_DP_LANES);
+> >>>>         }
+> >>>>
+> >>>> -       if (cnt > 0)
+> >>>> +       if (cnt > 0) {
+> >>>> +               struct device_node *endpoint;
+> >>>> +
+> >>>>                 msm_dp_panel->max_dp_lanes =3D cnt;
+> >>>> -       else
+> >>>> +               endpoint =3D of_graph_get_endpoint_by_regs(of_node, =
+1, -1);
+> >>>> +               of_property_read_u32_array(endpoint, "data-lanes", l=
+ane_map, cnt);
+> >>>> +       } else {
+> >>>>                 msm_dp_panel->max_dp_lanes =3D DP_MAX_NUM_DP_LANES; =
+/* 4 lanes */
+> >>>> +       }
+> >>>
+> >>> Why? This sounds more like dp_catalog or (after the refactoring at
+> >>> [1]) dp_ctrl. But not the dp_panel.
+> >>>
+> >>> [1] https://patchwork.freedesktop.org/project/freedreno/series/?order=
+ing=3D-last_updated
+> >>>
+> >> We are used the same prop 'data-lanes =3D <3 2 0 1>' in mdss_dp_out to=
+ keep similar behaviour with dsi_host_parse_lane_data.
+> >> From the modules used, catalog seems more appropriate, but since the m=
+ax_dp_lanes is parsed at dp_panel, it has been placed here.
+> >> Should lane_map parsing in msm_dp_catalog_get, and keep max_dp_lanes p=
+arsing at the dp_panel?
+> >
+> > msm_dp_catalog_get() is going to be removed. Since the functions that
+> > are going to use it are in dp_ctrl module, I thought that dp_ctrl.c is
+> > the best place. A better option might be to move max_dp_lanes and
+> > max_dp_link_rate to dp_link.c as those are link params. Then
+> > lane_mapping also logically becomes a part of dp_link module.
+> >
+> > But now I have a more important question (triggered by Krishna's email
+> > about SAR2130P's USB): if the lanes are swapped, does USB 3 work on tha=
+t
+> > platform? Or is it being demoted to USB 2 with nobody noticing that?
+> >
+> > If lanes 0/1 and 2/3 are swapped, shouldn't it be handled in the QMP
+> > PHY, where we handle lanes and orientation switching?
+> >
+> I have checked the DP hardware programming guide and also discussed it wi=
+th Krishna.
+>
+> According to the HPG section '3.4.2 PN and Lane Swap: PHY supports PN swa=
+p for mainlink and AUX, but it doesn't support lane swap feature.'
+>
+> The lane swap mainly refers to the logical to physical mapping between th=
+e DP controller and the DP PHY. The PHY handles polarity inversion, and the=
+ lane map does not affect USB behavior.
+>
+> On the QCS615 platform, we have also tested when DP works with lane swap,=
+ other USB 3.0 ports can works normally at super speed.
 
-Each wcd93xx driver has it in the driver, not in the binding. All have
-different values. wcd9335 was the first case when this was added to the
-binding and I think it was a mistake (including my mistake of not
-noticing it during review).
+"Other USB 3.0 ports"? What does that mean? Please correct me if I'm
+wrong, you should have a USB+DP combo port that is being managed with
+combo PHY. Does USB 3 work on that port?
 
-I am not sure if I got your comment or question correctly. I hope above
-answers, but in it does not, please provide some context so I will
-understand the question.
+In other words, where the order of lanes is actually inverted? Between
+DP and combo PHY? Within combo PHY? Between the PHY and the pinout?
+Granted that SM6150 was supported in msm-4.14 could you possibly point
+out a corresponding commit or a set of commits from that kernel?
 
-Best regards,
-Krzysztof
+>
+> Additionally, if it were placed on the PHY side, the PHY would need acces=
+s to dp_link=E2=80=99s domain which can access REG_DP_LOGICAL2PHYSICAL_LANE=
+_MAPPING.
+
+I was thinking about inverting the SW_PORTSEL_VAL bit.
+
+> Therefore, we believe that the  max_dp_link_rate,max_dp_lanes and lane_ma=
+p move to dp_link side is better.
+>
+> >>>> +
+> >>>> +       memcpy(msm_dp_panel->lane_map, lane_map, msm_dp_panel->max_d=
+p_lanes * sizeof(u32));
+> >>>>
+> >>>>         msm_dp_panel->max_dp_link_rate =3D msm_dp_panel_link_frequen=
+cies(of_node);
+> >>>>         if (!msm_dp_panel->max_dp_link_rate)
+> >>>> diff --git a/drivers/gpu/drm/msm/dp/dp_panel.h b/drivers/gpu/drm/msm=
+/dp/dp_panel.h
+> >>>> index 0e944db3adf2f187f313664fe80cf540ec7a19f2..7603b92c32902bd3d448=
+5539bd6308537ff75a2c 100644
+> >>>> --- a/drivers/gpu/drm/msm/dp/dp_panel.h
+> >>>> +++ b/drivers/gpu/drm/msm/dp/dp_panel.h
+> >>>> @@ -11,6 +11,8 @@
+> >>>>  #include "dp_aux.h"
+> >>>>  #include "dp_link.h"
+> >>>>
+> >>>> +#define DP_MAX_NUM_DP_LANES    4
+> >>>> +
+> >>>>  struct edid;
+> >>>>
+> >>>>  struct msm_dp_display_mode {
+> >>>> @@ -46,6 +48,7 @@ struct msm_dp_panel {
+> >>>>         bool video_test;
+> >>>>         bool vsc_sdp_supported;
+> >>>>
+> >>>> +       u32 lane_map[DP_MAX_NUM_DP_LANES];
+> >>>>         u32 max_dp_lanes;
+> >>>>         u32 max_dp_link_rate;
+> >>>>
+> >>>>
+> >>>> --
+> >>>> 2.25.1
+> >>>>
+> >>>
+> >>>
+> >>
+> >>
+> >> --
+> >> linux-phy mailing list
+> >> linux-phy@lists.infradead.org
+> >> https://lists.infradead.org/mailman/listinfo/linux-phy
+> >
+>
+
+
+--=20
+With best wishes
+Dmitry
 
