@@ -1,133 +1,111 @@
-Return-Path: <devicetree+bounces-127411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66A149E5583
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:30:14 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3544F9E5592
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:33:45 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23432281FC2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:30:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCA0218821B8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:33:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBFC6218843;
-	Thu,  5 Dec 2024 12:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F92B20CCC8;
+	Thu,  5 Dec 2024 12:33:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="2rGECUB6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="olSZGDcB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F4D218837;
-	Thu,  5 Dec 2024 12:30:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B2021D9A7E;
+	Thu,  5 Dec 2024 12:33:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733401806; cv=none; b=hoBNR3O6Yyab8OHPzAiZPEHD1RbnsjFjlDeGV2YXJK75S/fCiTi21aHH83CGY1ec8stKpTlehRdHeSvU6CKKRTNW84JTmES0gA4Dw+TfKLpPspHhEP5SZhHYD60BjRJC/NDa0zEAo7xhv8roFRVC77lIQCuQ2faAuQtpl0jYdoc=
+	t=1733402020; cv=none; b=WGPHQEbps0MeQVyTBGejtuQWKR6qrxlL/Wp9kEprm0CSU03s7VuOJcJjZqA/toTF/WPc4ijqs9FI3QPbFxDlvUTI/iHK0U0XXgFiiqTNX3QEyXtbp79oqRsWYIU8BLFyJE2VCU5GGH2uo/P/WlVpzYEKo/kQgsA0yqkFJ9W4CNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733401806; c=relaxed/simple;
-	bh=VGU4w5y/tztTb1UbHL5+s7wqk304mJOk28FqC3cXd/M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FHFwDLfu6IbZ16sRk85eJqeKNRsXkWbNzsKLKb2oyezl7HEM2XU7nViB/z6v/XDp5ooh843Wljio+tjk6O2xml5HiBsiH9ViwDBsIsjZEPs9vcoHUao0UqZAhRJ1OioCXrrE+2jz7CkpplhMTyXJZoe2rBd1BiZPfbbzyD+wARY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=2rGECUB6; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=FDTpwgkDlbRc1zIFut/KEqYGHdEqAg2rBPP//jqqsak=; b=2rGECUB6il0LywPas6Kn3dUIhN
-	NPlpm80YqXB+YXBd7D8OOzYK54IFSl4WsdFh3hpmP4jMzqHn3Beh/ld2frmibcVbI29x2GNe4Fw5L
-	ggHGa0ciIkz3oBa954gOM/XEUFaXGUyAxlDcgsKd2xmYHn9wvEucak/oqGjI27IBDTjKP/XQFM4Js
-	WtruVkYZq5VmVn/jHFOxX2Vk1lANiYz0QovoCeVk5IeZRWyhkKo2OAyRbG59oD+bj90ho63zwE+qh
-	OPQgWTPkrmmrhZJeGecAbvh9TBgCtA0FUx/PFILTdrOzxY9DWDafE+XyXFK5MDoxXrJcCW8dsiaB7
-	tfV/BC6Q==;
-Received: from i5e86190f.versanet.de ([94.134.25.15] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tJAzU-00048V-2e; Thu, 05 Dec 2024 13:29:56 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Val Packett <val@packett.cool>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH] clk: rockchip: add clock ID for CIF0/1 on RK3066
-Date: Thu, 05 Dec 2024 13:29:55 +0100
-Message-ID: <1944322.g5d078U9FE@diego>
-In-Reply-To: <5kesytgbhfununu5li4ychaw4newkctx4wuhlshks2ertfkd2t@jauqcntehv2z>
-References:
- <20241205055122.11613-1-val@packett.cool>
- <5kesytgbhfununu5li4ychaw4newkctx4wuhlshks2ertfkd2t@jauqcntehv2z>
+	s=arc-20240116; t=1733402020; c=relaxed/simple;
+	bh=DPWF0QzJrvS7JQpnkmlzj4hwnHS8dY44UCJdxS0wVkQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O6kPVE4IMHX9mdcCyduOANyz4QPfXVVVjra8LxtvU3JrraTA64iO4qwnubfbLxs2BS5mjz2L3A5wtDAKok6uNLpKJluX2VV7a61iIUp93+DoihsZBjLdcN95H5WOTop0DoxmIExNcKooL3rb454B5Ppq2jgCgb5hscgN3Es+kaI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=olSZGDcB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08E4EC4CED1;
+	Thu,  5 Dec 2024 12:33:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733402019;
+	bh=DPWF0QzJrvS7JQpnkmlzj4hwnHS8dY44UCJdxS0wVkQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=olSZGDcBNNrdtuuBMIVzRRQyIfM7IG88RLi+5isbjipCJC9UgMejzOst6a96SGdBd
+	 DsoliPFcMwV50SudXtcFjyqlAOrcPNBszzKt01dcnHES9NnEMi91U+OKaeq0ZECGUh
+	 7LYdddhWdRzA9BybIAUhS1kZQmkAlujDGaHQjlYca/YlSMRu8+Tz4AF4ZqoOmk57Y5
+	 PvCEr6pUpebyghKSPvCEv4P6ffChRpH/vy+jpQM2mo/zCdSmsSb/HFhyZ7rFMdQ2wh
+	 QMQNXXBIPwAOxiB5HdBTL86Pfm8Jr3BsvVYr4yvwGUjGWjsVn9hSncWwwCrUC7hWU+
+	 PdbGXSmaFlgJA==
+Date: Thu, 5 Dec 2024 12:33:34 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Dzmitry Sankouski <dsankouski@gmail.com>
+Subject: Re: [PATCH 1/2] ASoC: codecs: wcd9335: Add define for number of DAIs
+Message-ID: <c3d2477b-f12a-47dd-bf95-927e6c0d8fd5@sirena.org.uk>
+References: <20241205084021.35610-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-
-Hi Krzysztof,
-
-Am Donnerstag, 5. Dezember 2024, 11:25:28 CET schrieb Krzysztof Kozlowski:
-> On Thu, Dec 05, 2024 at 02:50:46AM -0300, Val Packett wrote:
-> > RK3066 does have two "CIF" video capture interface blocks, add their
-> > corresponding clock IDs so that they could be used.
-> > 
-> > Signed-off-by: Val Packett <val@packett.cool>
-> > ---
-> >  drivers/clk/rockchip/clk-rk3188.c             | 4 ++--
-> >  include/dt-bindings/clock/rk3188-cru-common.h | 2 ++
-> >  2 files changed, 4 insertions(+), 2 deletions(-)
-> 
-> Please run scripts/checkpatch.pl and fix reported warnings. Then please
-> run 'scripts/checkpatch.pl --strict' and (probably) fix more warnings.
-> Some warnings can be ignored, especially from --strict run, but the code
-> here looks like it needs a fix. Feel free to get in touch if the warning
-> is not clear.
-
-I guess you're taking a shot of the indentation?
-
-Though that is an intentional deviation, for the long lists of
-clock-declarations, that is more a spreadsheet than actual code.
-
-To give this some context, an excerpt from the rk3188 clock driver:
-
-        COMPOSITE(0, "aclk_lcdc1_pre", mux_pll_src_cpll_gpll_p, 0,
-                        RK2928_CLKSEL_CON(31), 15, 1, MFLAGS, 8, 5, DFLAGS,
-                        RK2928_CLKGATE_CON(1), 4, GFLAGS),
-        GATE(ACLK_PERI, "aclk_peri", "aclk_peri_pre", 0,
-                        RK2928_CLKGATE_CON(2), 1, GFLAGS),
-        COMPOSITE_NOMUX(HCLK_PERI, "hclk_peri", "aclk_peri_pre", 0,
-                        RK2928_CLKSEL_CON(10), 8, 2, DFLAGS | CLK_DIVIDER_POWER_OF_TWO,
-                        RK2928_CLKGATE_CON(2), 2, GFLAGS),
-        MUX(0, "cif_src", mux_pll_src_cpll_gpll_p, 0,
-                        RK2928_CLKSEL_CON(29), 0, 1, MFLAGS),
-
-Rockchip clocks most of the time consist of a mux+divider in one register
-and a gate-bit in another. Most clocks are of the COMPOSITE-type above.
-Surprisingly this is true since before 2013 - and even today :-) .
-
-So the notation is
-      TYPE(id, name, parent-name(s), main-clk-flags,
-	MUXDIV-reg, muxoffset, muxwidth, muxflags, divoffset, divwidth, divflags,
-	GATE-reg, gatebit, gateflags)
-
-Having all these elements keep their relative position makes it way easier
-on the eyes, compared to if they followed that opening parenthesis of each
-individual line or maybe reflowing of the elements.
-
-The only real change the clock definitions will see are fixes to wrong
-register numbers or wrong bits (or missing clock-ids), so being able to
-see check those easily is just nice to have.
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gWl0fQ2wqvAOxyCX"
+Content-Disposition: inline
+In-Reply-To: <20241205084021.35610-1-krzysztof.kozlowski@linaro.org>
+X-Cookie: You can't push on a string.
 
 
-Heiko
+--gWl0fQ2wqvAOxyCX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Dec 05, 2024 at 09:40:20AM +0100, Krzysztof Kozlowski wrote:
+> Number of DAIs in the codec is not really a binding, because it could
+> grow, e.g. when we implement missing features.  Add the define to the
+> driver, which will replace the one in the binding header.
 
+This breaks an allmodconfig build:
+
+/build/stage/linux/sound/soc/codecs/wcd9335.c:162: error: "NUM_CODEC_DAIS" =
+redef
+ined [-Werror]
+  162 | #define NUM_CODEC_DAIS          (AIF4_PB + 1)
+      |=20
+In file included from /build/stage/linux/sound/soc/codecs/wcd9335.c:28:
+/build/stage/linux/include/dt-bindings/sound/qcom,wcd9335.h:13: note: this =
+is th
+e location of the previous definition
+   13 | #define NUM_CODEC_DAIS          7
+      |=20
+
+--gWl0fQ2wqvAOxyCX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmdRnZ0ACgkQJNaLcl1U
+h9DfXwf+NRemZpBZfSFc/oGs/hewnY39uNjSyfHgecrP0VUv5ov02TPnnEF06vPj
+lX1lzz+3bYKOoCLOAllUwiSCLYUd75OaZqHbbURkitAcoxeoxX8HEJzZ04aJcZAk
+cbiMag390on78R/GRWQng+lTzPxSmw7vgmInHdG0J7u1Watm1B6cw05gvzMYs4qg
+Eer95W9TC2+f1damedi9nURt6HcqkWfQssYv5R4Q4VhcATq8fgWaJG8w42DWBuUf
+Z25LmCwucpVvYsTnirx3GYae2+8HJUS61yyYbJPTT4uT9oNcHU7ZQj4i1krt/p67
+V6vuGUnlSznppy/FoR9/ElVpHz7yjg==
+=XNkr
+-----END PGP SIGNATURE-----
+
+--gWl0fQ2wqvAOxyCX--
 
