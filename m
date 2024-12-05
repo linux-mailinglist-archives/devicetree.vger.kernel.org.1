@@ -1,122 +1,216 @@
-Return-Path: <devicetree+bounces-127509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BECA9E59BF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 16:32:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 453229E59E7
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 16:40:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6D17188557C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 15:32:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD47416D4AB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 15:38:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F23EE21C9FB;
-	Thu,  5 Dec 2024 15:32:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2DE222596;
+	Thu,  5 Dec 2024 15:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cornersoftsolutions.com header.i=@cornersoftsolutions.com header.b="Xu36Xfcp"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="AecqWpFG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2852E20D4E4
-	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 15:32:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8C8122258E
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 15:37:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733412752; cv=none; b=bd4Rn5S+AWwXL+Eshof8RAjY4AIa9I/OW42CqdyszeX5MI3VsRM6wamtgUPQk85ehD3yFiny/4wbIHwFC7BiE5U8422htC4fpWxkO1oIwLnvCST0D6PzeTyVbBlx2W6VSUHN6gHG3EsYfh7xQvfpK15rSNvzYkBvWOJpUPuyqFU=
+	t=1733413044; cv=none; b=TWrMLZ2aInPffMLIZiTFmpuf+fEL//xBDMonjqOf+cuaX/yW15OMsKG3s6NyUnsSa0idgzENH/KNWPD+An1PJ+0xSweMAYhsKq696Eogt/poDsZstP6a5L4lX9vVTsXRhahTVRiF2gCGQnYqZj8GIhn+9m98y4Tz6N/QKl9ZJsc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733412752; c=relaxed/simple;
-	bh=RbLc9FFR8wF5vdi7GcDZl88v758ckVMZlXxdmckY0ts=;
-	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=Jn6bcmqIfskKUwgba4p5K3IxtDYBeRN51fm+XDEBkot8MHmGv/VHWjiE+9RMKXnnO2jeTM4hb5hjjUFFERnlHjgFjUFDpW63l0ddzYkUIDu7rjAfVhkdCYmVg/DBgQyH0oRXfrgtu9dXeWUcIogDuIM1g+/uYf2wQ+ldzxlcn4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cornersoftsolutions.com; spf=pass smtp.mailfrom=cornersoftsolutions.com; dkim=pass (2048-bit key) header.d=cornersoftsolutions.com header.i=@cornersoftsolutions.com header.b=Xu36Xfcp; arc=none smtp.client-ip=209.85.160.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cornersoftsolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cornersoftsolutions.com
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-29e65257182so647287fac.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 07:32:29 -0800 (PST)
+	s=arc-20240116; t=1733413044; c=relaxed/simple;
+	bh=gEmoxYmjGVmPKVZnUdOndVWFvRpv2PDnwsBJ/5OLNnE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Wzbx6JmyOI5HeOfl2akClFPyQ3mefPZAFHVlySBPcbjjpNbYrzPqgs8bGmVftFWtQBO81UCdtD6dfXNQs01RMfLk7aneJ4E/Xu0BUqnOwiplgjQ+L34CXQn5phB5+BYIEqvc1Nvhw1fvWt8px0xwnSsKaJBcRmP9lm/tmgZL6SE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=AecqWpFG; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e39779a268bso1234285276.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 07:37:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cornersoftsolutions.com; s=google; t=1733412749; x=1734017549; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=mSVWv3kzGyP7Ixr3DcJKWQ/Cs0NKKVxGUdtaJxvtNOU=;
-        b=Xu36XfcpVRRV/h73WFcs2W1seMy/Plmi46O0rOsIZdXEqEX8eiejQMtMZWBMoVD+5M
-         4HsR+/rN3KDMauytsqMFzo+aAipi1guI/Qyqm/2zaBICtkqAX45FF7690UqzUQDlbqQE
-         Svy+iH7nUS8ezrBLnU/2+h/Z1BHd3Z8Ejp5MStzvcODrFd0MRKsl7zlEcLPPIU3K0/AI
-         IjM8goce/YBwxGnXmOm/HPT9T2bzLXp/CvbtadwWDS5Hf9KsSpEfFvtFEU9ZtpaSPHNz
-         0DTotzdCmMV+THSpvouedwhve+0b64cnzYEcOiln51hT/7cLxsO+Q1e9/Hki7NHYnoHH
-         qxTw==
+        d=raspberrypi.com; s=google; t=1733413041; x=1734017841; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Cvnuwz6nzd9J+v7i/2glRxiW3BDpNySZESBXX3gw+HE=;
+        b=AecqWpFG+64xrCGKDe2M2BaYsqvb7TI8q6eF24So2iRQrbFTJaTYIw2dr3VQ42aYkq
+         3+KvaxKZ5C+1LFAF+ZUaV7/EZIZRutrZn52XiZFVdeHbAkz+fbHaCZ0eDjiBquujMkCQ
+         WQ/mOi7iQ/xG7qGuI2oFAN/EXryAQhumD0RsWFjuZDYyY277+FNYFIB6NrXX1r6inVdl
+         tA9geJ3loe+540T185g/kdpj2yhGUdZDxoj9IooGOM9cHtvDwCMMRwvZZdCuWtDcskxB
+         qIMDyi7eK6xYsQvh1uAojgBXkSDp45febBp50EaQw5XL2LBVwpaDDqs9psoaEmpf/Ehq
+         wJCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733412749; x=1734017549;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mSVWv3kzGyP7Ixr3DcJKWQ/Cs0NKKVxGUdtaJxvtNOU=;
-        b=CRvcah9v/4EikwqWLMSGMMmOJ2MtCvSF1wWaMnzpQuRWxCl8WUROTBsD76YSQqcONu
-         qqsM/rcaimkmd3kTrhjLS8VmiEQDigJT/9C5fagE7h+TI6goeBCvcMIj1CC0w7Ah4IMj
-         l5xySuTof+2Z+cYsVK7Nl7lUhgkOWwRnlAHyziyArSLoSPlZccvMBzoszjgdj9k/NWQe
-         cWb+6P/a/Kl7zpsQz/sbmZHL7kfKi2DjeGfxajQ05CPbSNQ9/8UapH7LcBmEpwv+06bT
-         UXDad1xwl0EhELHjNcdHr4MBazWFrFv9WWImVZCadK8l7D0cw9qMrgHl02hW45p4Qdx8
-         f+gg==
-X-Forwarded-Encrypted: i=1; AJvYcCX0OZWUiRaZieaDup/w5MKf26yq1FTLcIiOkRdBn6JNTok3KpHaA4Crl++B4VOpwQS3Nu0qH+EUAazS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGbTef0x/+qtuCqSSIPZrH05VRQ3vVQmUhpiCY4vOvCSGZFHPt
-	WMjXqpDNblO64ZB/oPMBKpVrHnZXSUvEwMfPy7jlfVhQUmhFlANE4YzVQkWzcsSmb2Tf+6/Ix8g
-	zUX/X8w7VwYRUf5QHiYH25anB3sTPPkDccn4705IbOIr9Fx2YMn4YHQ==
-X-Gm-Gg: ASbGncuxG2y/Dc/h7NQr5kwCXR9wJIzB2O2pBDsKoDyt2tsn92v88ZoaC2gRD3TvLuQ
-	zatIR3rAa6wGY+bfYVYQiF7eHSxcSaDh1
-X-Google-Smtp-Source: AGHT+IEXh3wkarBLzAyKqYC0kT/Y8r28C1neLlKp6rQpRD5NvnZVxaGgz+SOmihpuXwnZlzhFMNga5hrHKjeRZiwzUg=
-X-Received: by 2002:a05:6871:606:b0:296:ee2e:a23c with SMTP id
- 586e51a60fabf-29e88560c9bmr11677702fac.5.1733412749132; Thu, 05 Dec 2024
- 07:32:29 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733413041; x=1734017841;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Cvnuwz6nzd9J+v7i/2glRxiW3BDpNySZESBXX3gw+HE=;
+        b=CrKzcTIyhwlRuFRnik6qN0SFkRD172btqLLDz9TLgp8bQQuEheNzxVy5QZ+l3MBwLq
+         hUbJBCc2dCqaLOgdQYYlBP0j+o2IgTHgwieVZNTVK63Dk2SQ3X/9RMl1kwSY/Il2LskF
+         NUslKUbetp3in0rsf9rgEyOXxG91oYLo0QUAodeHHaynaetNAfotmTcka/BqJxIQiyRb
+         jRSlVpxxCl3k40ji0EbP9NDaqLPRJHPlRoSBqjGje558Xd0E67Rt91NqO8kdwdI7YvJV
+         1VFloVZqupeD1S/c5XMBDJ9KrDS5qVPDjK0RNPlxom+QBDQ8OjO85pis7syo3MlXf3kk
+         4R6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCX7SBElLcngEjkdl2BzkABlP/7oM3cR3ecsf6AoGvJHpZ6cUke0L1mhNE04G7wR554i4wN/4Myh3QbF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzk8N0oqLSlArs1m4eO2uj0twrjl91cVNhbYjICDymmdEFeUrd0
+	k8R+/fT5wlAWFaeIzaT+qDMJXii0T6Sy3YHZi4+aH8GsZBubk0crpghWnm7A3Sz1nieaxlOPeYX
+	UN7zDJr0FQpICpOUj4/CZvZEA7HttNDkCZ4QA4Q==
+X-Gm-Gg: ASbGncsTqOtXuduZvU5C+eF7sjwotayvlk0OTJ8hKLRgUlOeIK8RbEemv7GcAz13O9+
+	2W5CusKQdlnKUuUX107Pai8WCD0DXm6o=
+X-Google-Smtp-Source: AGHT+IFpaAlwyFG/o3y6U8AoYyYaH4HrVsIRutKcp/sQ/k2hjoYuqd/E0RRbh99HY/5KNXQ6u6Of3iU8Fjlwm/TBpEE=
+X-Received: by 2002:a05:6902:2387:b0:e38:8e02:1f15 with SMTP id
+ 3f1490d57ef6-e39f22ab27bmr3592909276.17.1733413041665; Thu, 05 Dec 2024
+ 07:37:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Ken Sloat <ksloat@cornersoftsolutions.com>
-Date: Thu, 5 Dec 2024 10:32:17 -0500
-Message-ID: <CADRqkYAaCYvo3ybGdKO1F_y9jFEcwTBxZzRN-Av-adq_4fVu6g@mail.gmail.com>
-Subject: [PATCH v1] dt-bindings: dma: st-stm32-dmamux: Add description for
- dma-cell values
-To: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	dmaengine@vger.kernel.org, alexandre.torgue@foss.st.com, 
-	mcoquelin.stm32@gmail.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org, vkoul@kernel.org, amelie.delaunay@foss.st.com
-Cc: Ken Sloat <ksloat@cornersoftsolutions.com>
+References: <20241120-media-imx290-imx462-v2-0-7e562cf191d8@raspberrypi.com>
+ <20241120-media-imx290-imx462-v2-1-7e562cf191d8@raspberrypi.com> <4950196.GXAFRqVoOG@steina-w>
+In-Reply-To: <4950196.GXAFRqVoOG@steina-w>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Thu, 5 Dec 2024 15:37:01 +0000
+Message-ID: <CAPY8ntCeYOtBhEKCcygsT-aAHJ8rxo5qP0NdjE9DMJmHCxZzsA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] media: i2c: imx290: Limit analogue gain according
+ to module
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-media@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The dma-cell values for the stm32-dmamux are used to craft the DMA spec
-for the actual controller. These values are currently undocumented
-leaving the user to reverse engineer the driver in order to determine
-their meaning. Add a basic description, while avoiding duplicating
-information by pointing the user to the associated DMA docs that
-describe the fields in depth.
+Hi Alexander
 
-Signed-off-by: Ken Sloat <ksloat@cornersoftsolutions.com>
----
-.../bindings/dma/stm32/st,stm32-dmamux.yaml | 11 +++++++++++
-1 file changed, 11 insertions(+)
+On Thu, 5 Dec 2024 at 15:22, Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> Hi Dave,
+>
+> Am Mittwoch, 20. November 2024, 20:17:03 CET schrieb Dave Stevenson:
+> > The imx327 only supports up to 29.4dB of analogue gain, vs
+> > the imx290 going up to 30dB. Both are in 0.3dB steps.
+>
+> While I agree for 30dB on imx290, my (maybe outdated) Rev0.2 datasheet sa=
+ys
+> up to 27dB in 0.3dB steps.
 
-diff --git a/Documentation/devicetree/bindings/dma/stm32/st,stm32-dmamux.yaml
-b/Documentation/devicetree/bindings/dma/stm32/st,stm32-dmamux.yaml
-index f26c914a3a9a..aa2e52027ee6 100644
---- a/Documentation/devicetree/bindings/dma/stm32/st,stm32-dmamux.yaml
-+++ b/Documentation/devicetree/bindings/dma/stm32/st,stm32-dmamux.yaml
-@@ -15,6 +15,17 @@ allOf:
-properties:
-"#dma-cells":
-const: 3
-+ description: |
-+ Should be set to <3> with each cell representing the following:
-+ 1. The mux input number/line for the request
-+ 2. Bitfield representing DMA channel configuration that is passed
-+ to the real DMA controller
-+ 3. Bitfield representing device dependent DMA features passed to
-+ the real DMA controller
-+
-+ For bitfield definitions of cells 2 and 3, see the associated
-+ bindings doc for the actual DMA controller the mux is connected
-+ to.
-compatible:
-const: st,stm32h7-dmamux
--- 
-2.34.1
+For IMX327, I have revision E17Z06B93 2019/03/25.
+
+The revision control section for Rev0.3 lists
+Page 1: "Correction: Max analog gain 27dB - 29.4dB"
+Page 74: "Correction: Max Gain 69dB -> 71.4dB"
+
+The graph in "Gain Adjustment Function" (page 74) also shows values
+above 27dB as being purely analogue gain. Certainly 0x62 is red for
+analogue, which would be a gain of 29.4dB. The next dot is 0x64 (30dB)
+and blue, so we have to trust the text for 0x63 being 29.4dB analogue
+and 0.3dB digital gain.
+
+So I'm happy that the limit is 29.4dB.
+
+  Dave
+
+> Despite that this change looks good.
+>
+> Best regards,
+> Alexander
+>
+> > As we now have model specific config, fix this mismatch,
+> > and delete the comment referencing it.
+> >
+> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> >  drivers/media/i2c/imx290.c | 12 ++++++------
+> >  1 file changed, 6 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
+> > index ee698c99001d..da654deb444a 100644
+> > --- a/drivers/media/i2c/imx290.c
+> > +++ b/drivers/media/i2c/imx290.c
+> > @@ -176,6 +176,7 @@ struct imx290_model_info {
+> >       enum imx290_colour_variant colour_variant;
+> >       const struct cci_reg_sequence *init_regs;
+> >       size_t init_regs_num;
+> > +     unsigned int max_analog_gain;
+> >       const char *name;
+> >  };
+> >
+> > @@ -876,14 +877,10 @@ static int imx290_ctrl_init(struct imx290 *imx290=
+)
+> >        * up to 72.0dB (240) add further digital gain. Limit the range t=
+o
+> >        * analog gain only, support for digital gain can be added separa=
+tely
+> >        * if needed.
+> > -      *
+> > -      * The IMX327 and IMX462 are largely compatible with the IMX290, =
+but
+> > -      * have an analog gain range of 0.0dB to 29.4dB and 42dB of digit=
+al
+> > -      * gain. When support for those sensors gets added to the driver,=
+ the
+> > -      * gain control should be adjusted accordingly.
+> >        */
+> >       v4l2_ctrl_new_std(&imx290->ctrls, &imx290_ctrl_ops,
+> > -                       V4L2_CID_ANALOGUE_GAIN, 0, 100, 1, 0);
+> > +                       V4L2_CID_ANALOGUE_GAIN, 0,
+> > +                       imx290->model->max_analog_gain, 1, 0);
+> >
+> >       /*
+> >        * Correct range will be determined through imx290_ctrl_update se=
+tting
+> > @@ -1441,18 +1438,21 @@ static const struct imx290_model_info imx290_mo=
+dels[] =3D {
+> >               .colour_variant =3D IMX290_VARIANT_COLOUR,
+> >               .init_regs =3D imx290_global_init_settings_290,
+> >               .init_regs_num =3D ARRAY_SIZE(imx290_global_init_settings=
+_290),
+> > +             .max_analog_gain =3D 100,
+> >               .name =3D "imx290",
+> >       },
+> >       [IMX290_MODEL_IMX290LLR] =3D {
+> >               .colour_variant =3D IMX290_VARIANT_MONO,
+> >               .init_regs =3D imx290_global_init_settings_290,
+> >               .init_regs_num =3D ARRAY_SIZE(imx290_global_init_settings=
+_290),
+> > +             .max_analog_gain =3D 100,
+> >               .name =3D "imx290",
+> >       },
+> >       [IMX290_MODEL_IMX327LQR] =3D {
+> >               .colour_variant =3D IMX290_VARIANT_COLOUR,
+> >               .init_regs =3D imx290_global_init_settings_327,
+> >               .init_regs_num =3D ARRAY_SIZE(imx290_global_init_settings=
+_327),
+> > +             .max_analog_gain =3D 98,
+> >               .name =3D "imx327",
+> >       },
+> >  };
+> >
+> >
+>
+>
+> --
+> TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Ge=
+rmany
+> Amtsgericht M=C3=BCnchen, HRB 105018
+> Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan S=
+chneider
+> http://www.tq-group.com/
+>
+>
 
