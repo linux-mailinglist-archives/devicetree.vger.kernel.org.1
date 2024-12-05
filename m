@@ -1,86 +1,63 @@
-Return-Path: <devicetree+bounces-127718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D309E60CE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 23:49:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D0EA9E6106
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 00:05:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92977283DBE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 22:49:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09C9628495C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 23:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202981B87C8;
-	Thu,  5 Dec 2024 22:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E34F1191F9B;
+	Thu,  5 Dec 2024 23:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="huQB4W93"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="strs9CvE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65DD217E019;
-	Thu,  5 Dec 2024 22:49:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD1D22391A4;
+	Thu,  5 Dec 2024 23:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733438956; cv=none; b=bxOrA+i2Ypqdxt/x0c+x00KRI3mLLRDITTqll2Sw3uFpujfTOEHqwCZXgytLDSly6Jw3FTBeU7RC3Jc71I6xkO6jxsC/kjHGMlSTKdunlDE07QGImRqa3eu36LchrfN9iq0iAgVGDw4TaHvgKlVlEGK8DSGzz5L6eQiuvaVS4wA=
+	t=1733439922; cv=none; b=Rhm8h2OdpUU2HCA/yb7fL83q99YIM7QEEaDieQCE9jjIpMQ7AkBeK2iMOUwQv+u9Z38MFQcBlyatYe8ugQrph1fvBt5UVjBoYcBW9WJ2mcREJWX5tPdBJErFg3rBJhMPC62QkZPUVZsBGes05v5Uh2ZzvNXhSZ1A3HU45bcv09A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733438956; c=relaxed/simple;
-	bh=eQJA8gt/+Gn9iJvh/y6xFlkCm3roALrW99s5s7lFyB4=;
+	s=arc-20240116; t=1733439922; c=relaxed/simple;
+	bh=YxxvZyCyPZW1PHoEXXxQ+L2aEKSBLXubdvbpt/NIXQA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cv5Kx1KEhJAAqOW/e46VnErWjjIgFENI2GX8ElDUGJNwl3GtmlS2uRseB6G+dwypKk1T9CsFguxbtwG2vUYhJznclbOOzu3UXB+No1sx23eyzqqli4qzeyODyjwz74zkSZelmYMYHTClDuBtlJk12fzksyaO4QvI3AZyP53Btt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=huQB4W93; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733438954; x=1764974954;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eQJA8gt/+Gn9iJvh/y6xFlkCm3roALrW99s5s7lFyB4=;
-  b=huQB4W93jK93TayzOhVvaZbPuIaIklFtK2us2WYmrEoycdMoL2MwrbZl
-   VlqgU8y3tdAsIC26AqYGu9jU5Egfxs5eFx6wsNgpHQP0BCcy/1iwsmt17
-   HA93jsKM1uGx/PYY8YyTKUrbEYcUOMIcF3reO9vhXT4GtaRJfB+sLVqWF
-   OTAjKHIKnoK4aUUh0dZBCus4JxPhWqB2h+0Iaip5dERV3C6egYP7FuIqI
-   oaEcBxLuTuEHH6u/vbvnJj5frCzT58sb6RmBibGdJAmur7C7KoCnDgP18
-   bWz+kP5boerUs487HTj5KxbZaDeb2WP79E3NwLjCKZnn3hvhiU2ZksGhl
-   A==;
-X-CSE-ConnectionGUID: DMbKg8D/QrmbFtaBOqKpoQ==
-X-CSE-MsgGUID: wMqY2XMCRTC65tYfL4f46w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11277"; a="59182016"
-X-IronPort-AV: E=Sophos;i="6.12,211,1728975600"; 
-   d="scan'208";a="59182016"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2024 14:49:13 -0800
-X-CSE-ConnectionGUID: JX65fdsCRgKOoxGGtSwVMA==
-X-CSE-MsgGUID: m5jj8HO8Trak+cnRf2CGEg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,211,1728975600"; 
-   d="scan'208";a="93909721"
-Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 05 Dec 2024 14:49:07 -0800
-Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tJKef-0000Sd-28;
-	Thu, 05 Dec 2024 22:49:05 +0000
-Date: Fri, 6 Dec 2024 06:48:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	chunkuang.hu@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	p.zabel@pengutronix.de, airlied@gmail.com, simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, ck.hu@mediatek.com,
-	jitao.shi@mediatek.com, jie.qiu@mediatek.com,
-	junzhi.zhao@mediatek.com, dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com
-Subject: Re: [PATCH v2 15/15] drm/mediatek: Introduce HDMI/DDC v2 for
- MT8195/MT8188
-Message-ID: <202412060636.00bzNpm9-lkp@intel.com>
-References: <20241205114518.53527-16-angelogioacchino.delregno@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=luoZxDy62X5aDr9hytHBqFPI1xub11Rsf7ScUx10iy8RmoUJTwO5JeOTlnywTM4FuD09DIOdpG8yBIU97J+J5D5k/vdoJEUvVg2kM6MjrYG43sudxwgp8UZfGToKXbYrjNAl0Yu1fxUdHzq7APCVPUBlZCLIn4tVcYWos+fjSW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=strs9CvE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0AEFC4CED1;
+	Thu,  5 Dec 2024 23:05:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733439922;
+	bh=YxxvZyCyPZW1PHoEXXxQ+L2aEKSBLXubdvbpt/NIXQA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=strs9CvEKK3oKlvnFiZS9Mc2t/wyf5BqP6YdrO5TjkOSSnboV6Jmwu5ooi2hCLrAm
+	 tSBWlivVanYFiYHBfyzvQ6ikTgFY+JRwpuz5EAzZxtYJxx6hRTtM7jeRPtQ8GWBfpJ
+	 t7Vb/zUaDOxnBtubY+yUWHgUxn1BQer5MEu3WvoVJk+xMVbUWuCqJkGgE9sLyTDMx6
+	 sll1SshDtEu1uiapPKqnhkmKmkZVwBXZ4/f4jqqb+dNp/0/FkjmeNPEVILHN+/zMyh
+	 eHQdotfYJvg+yXC/IbHC9/2DR9ZGFHRF//UOI7g6RbO0uK+BECH1PiVJqfBMA/QXFl
+	 Sy9DlXZYFxe7g==
+Date: Thu, 5 Dec 2024 17:05:17 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Abel Vesa <abel.vesa@linaro.org>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rajendra Nayak <quic_rjendra@quicinc.com>, Sibi Sankar <quic_sibis@quicinc.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Trilok Soni <quic_tsoni@quicinc.com>, 
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/6] usb: typec: Add support for Parade PS8830 Type-C
+ Retimer
+Message-ID: <v7konhz4x7fzfseyeyiazcw35zqmpjb6tjv5ukdlttzs74ykgb@lpftcociq257>
+References: <20241112-x1e80100-ps8830-v5-0-4ad83af4d162@linaro.org>
+ <20241112-x1e80100-ps8830-v5-2-4ad83af4d162@linaro.org>
+ <Z1CCVjEZMQ6hJ-wK@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,77 +66,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241205114518.53527-16-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <Z1CCVjEZMQ6hJ-wK@hovoldconsulting.com>
 
-Hi AngeloGioacchino,
+On Wed, Dec 04, 2024 at 05:24:54PM +0100, Johan Hovold wrote:
+> On Tue, Nov 12, 2024 at 07:01:11PM +0200, Abel Vesa wrote:
+> > The Parade PS8830 is a USB4, DisplayPort and Thunderbolt 4 retimer,
+> > controlled over I2C. It usually sits between a USB/DisplayPort PHY
+> > and the Type-C connector, and provides orientation and altmode handling.
+> > 
+> > The boards that use this retimer are the ones featuring the Qualcomm
+> > Snapdragon X Elite SoCs.
+> 
+> > +static int ps883x_sw_set(struct typec_switch_dev *sw,
+> > +			 enum typec_orientation orientation)
+> > +{
+> > +	struct ps883x_retimer *retimer = typec_switch_get_drvdata(sw);
+> > +	int ret = 0;
+> > +
+> > +	ret = typec_switch_set(retimer->typec_switch, orientation);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	mutex_lock(&retimer->lock);
+> > +
+> > +	if (retimer->orientation != orientation) {
+> > +		retimer->orientation = orientation;
+> > +
+> > +		ret = ps883x_set(retimer);
+> > +	}
+> > +
+> > +	mutex_unlock(&retimer->lock);
+> > +
+> > +	return ret;
+> > +}
+> 
+> This seems to indicate a bigger problem, but I see this function called
+> during early resume while the i2c controller is suspended:
+> 
+> [   54.213900] ------------[ cut here ]------------
+> [   54.213942] i2c i2c-2: Transfer while suspended
+> [   54.214125] WARNING: CPU: 0 PID: 126 at drivers/i2c/i2c-core.h:56 __i2c_transfer+0x874/0x968 [i2c_core]
+> ...
+> [   54.214833] CPU: 0 UID: 0 PID: 126 Comm: kworker/0:2 Not tainted 6.13.0-rc1 #11
+> [   54.214844] Hardware name: Qualcomm CRD, BIOS 6.0.231221.BOOT.MXF.2.4-00348.1-HAMOA-1 12/21/2023
+> [   54.214852] Workqueue: events pmic_glink_altmode_worker [pmic_glink_altmode]
+> ...
+> [   54.215090] Call trace:
+> [   54.215097]  __i2c_transfer+0x874/0x968 [i2c_core] (P)
+> [   54.215112]  __i2c_transfer+0x874/0x968 [i2c_core] (L)
+> [   54.215126]  i2c_transfer+0x94/0xf0 [i2c_core]
+> [   54.215140]  i2c_transfer_buffer_flags+0x5c/0x90 [i2c_core]
+> [   54.215153]  regmap_i2c_write+0x20/0x58 [regmap_i2c]
+> [   54.215166]  _regmap_raw_write_impl+0x740/0x894
+> [   54.215184]  _regmap_bus_raw_write+0x60/0x7c
+> [   54.215192]  _regmap_write+0x60/0x1b4
+> [   54.215200]  regmap_write+0x4c/0x78
+> [   54.215207]  ps883x_set+0xb0/0x10c [ps883x]
+> [   54.215219]  ps883x_sw_set+0x74/0x98 [ps883x]
+> [   54.215227]  typec_switch_set+0x58/0x90 [typec]
+> [   54.215248]  pmic_glink_altmode_worker+0x3c/0x23c [pmic_glink_altmode]
+> [   54.215257]  process_one_work+0x20c/0x610
+> [   54.215274]  worker_thread+0x23c/0x378
+> [   54.215283]  kthread+0x124/0x128
+> [   54.215291]  ret_from_fork+0x10/0x20
+> [   54.215303] irq event stamp: 28140
+> [   54.215309] hardirqs last  enabled at (28139): [<ffffd15e3bc2a434>] __up_console_sem+0x6c/0x80
+> [   54.215325] hardirqs last disabled at (28140): [<ffffd15e3c596aa4>] el1_dbg+0x24/0x8c
+> [   54.215341] softirqs last  enabled at (28120): [<ffffd15e3bb9b82c>] handle_softirqs+0x4c4/0x4dc
+> [   54.215355] softirqs last disabled at (27961): [<ffffd15e3bb501ec>] __do_softirq+0x14/0x20
+> [   54.215363] ---[ end trace 0000000000000000 ]---
+> [   54.216889] Enabling non-boot CPUs ...
+> 
+> This can be reproduced on the CRD (or T14s) by disconnecting, for
+> example, a mass storage device while the laptop is suspended.
+> 
 
-kernel test robot noticed the following build errors:
+I wonder if this is because drivers/rpmsg/qcom_glink_smem.c line 309
+registers the GLINK interrupt as IRQF_NO_SUSPEND as a remnant from being
+used for rpm communication...
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on pza/reset/next linus/master drm-misc/drm-misc-next v6.13-rc1 next-20241205]
-[cannot apply to pza/imx-drm/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+This is no longer needed (glink/rpm code path is now different), but
+iirc the cleanup got stuck in the question of dealing with wakeup
+capabilities (and priorities).
 
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-display-mediatek-dpi-Add-MT8195-and-MT8188-compat/20241205-194853
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20241205114518.53527-16-angelogioacchino.delregno%40collabora.com
-patch subject: [PATCH v2 15/15] drm/mediatek: Introduce HDMI/DDC v2 for MT8195/MT8188
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20241206/202412060636.00bzNpm9-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 592c0fe55f6d9a811028b5f3507be91458ab2713)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241206/202412060636.00bzNpm9-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412060636.00bzNpm9-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c:15:
-   In file included from include/linux/i2c.h:13:
-   In file included from include/linux/acpi.h:39:
-   In file included from include/acpi/acpi_io.h:7:
-   In file included from arch/arm64/include/asm/acpi.h:14:
-   In file included from include/linux/memblock.h:12:
-   In file included from include/linux/mm.h:2223:
-   include/linux/vmstat.h:504:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     504 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     505 |                            item];
-         |                            ~~~~
-   include/linux/vmstat.h:511:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     511 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     512 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
-   include/linux/vmstat.h:524:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     524 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     525 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c:389:47: error: expected ';' after top level declarator
-     389 | MODULE_DEVICE_TABLE(of, mtk_hdmi_ddc_v2_match)
-         |                                               ^
-         |                                               ;
-   4 warnings and 1 error generated.
-
-
-vim +389 drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c
-
-   384	
-   385	static const struct of_device_id mtk_hdmi_ddc_v2_match[] = {
-   386		{ .compatible = "mediatek,mt8195-hdmi-ddc" },
-   387		{ /* sentinel */ }
-   388	};
- > 389	MODULE_DEVICE_TABLE(of, mtk_hdmi_ddc_v2_match)
-   390	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+Bjorn
 
