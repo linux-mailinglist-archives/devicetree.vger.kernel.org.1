@@ -1,143 +1,124 @@
-Return-Path: <devicetree+bounces-127586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2086C9E5C52
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:56:26 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 626639E5C5A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:58:46 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36AF5166D10
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 16:56:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BC49285C88
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 16:58:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3587A221476;
-	Thu,  5 Dec 2024 16:56:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9FAC221477;
+	Thu,  5 Dec 2024 16:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hoAn5TRY"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="OZSDhWSI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4E320C468;
-	Thu,  5 Dec 2024 16:56:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F18AD165EFC;
+	Thu,  5 Dec 2024 16:58:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733417772; cv=none; b=fJqBZ1fk90rVft1wX8fRiLZSZ2MN/C0YAknFDZZBfoFhSoS8AkrCn7V4rT1+pTVHMb9eVPQBjhQ5d3HuEesF5dzLKXYFoCwmObl8h6NBKmYN1J8rhNgX9FGkR866qzSurL6s+uIlaqktxmw9xXHPscyxmDX8fj17IEq+LfJm+cw=
+	t=1733417917; cv=none; b=Qzo5DDuTF97Tz2L2JnijY8aFr2VKG3i4A8M7AgroO6WVmhX8LUiASNMo33Az1UjXRKkNQ73lDssgajpEFLh6z3kW27juXnYYkra1UoG7FtAW0zvKGsZDpdClKVdngigPFGWaLis1Y6D20Y2gFowQJna9vvnlrJ+AjEt0DwGnW0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733417772; c=relaxed/simple;
-	bh=4M7hbK3J9OLNDiF6fL3lOhiEDF68to06VOBBRxYM5po=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WsFgK1BMxuMlXkKl4qmroG/UAir3tB2zWOqNNjDGNMO/N3y5HgsFwThEgamEHo9oQ7MWwmBEZumENQT/HOvUZMmBguU8nLAe48qFdppeC/nF3wOLk+I1dW0lrV2ya3xzFc+HETf58K18ANCT0UMnqoMpkvN/iQQXr7IxUL2s7xw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hoAn5TRY; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6ef506dc6daso395317b3.1;
-        Thu, 05 Dec 2024 08:56:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733417769; x=1734022569; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AHCDoWKd85bJct1KY5n3eYXYTwTu+eTxR+vTy5I6ktc=;
-        b=hoAn5TRYV+8/wzKebrHGlGqmkokqBX9SHL3nR42V62MmgTHvU1hf9FI5gTzrYtKVkx
-         NTXfTlo8dVa8Cy3zF9ESuV1hAqEyqKKOFqeIMPtrVCdfqbzPjEudUhPke+gggPeBwihi
-         C8yc9KzKFdHHYkrVfq8BhiHbnR1yYwilzps6896szr47gNSZi9HljuPJOwGAPQdt5/Cf
-         pWNOqAe5l2U2KxLp07QO/ODRpSkPSPugdUB+G3OFv0NcllA+AnYTh8hL4hFubX1duwfq
-         wRFettqS3V0rn8AoX9nnn8BbjZQKzHkJsV3WC45y+eKcBk0yPdruCuW/VDBd1TLAynGf
-         XTBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733417769; x=1734022569;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AHCDoWKd85bJct1KY5n3eYXYTwTu+eTxR+vTy5I6ktc=;
-        b=Ir8859iSvL9RkDfmNllxRRB1knhMFQt1r8R7MiMjVUkf5l1BhrjvErB2D9ctHH84JS
-         zhOCXw3bzdIm7BI+Z4K7fzoApCRQCtVG2kCZh68cyoRwOMKEvRe2NtMm47IZJj2YtLqo
-         xwLx61hdXkZMxVuP0H0db2MJG+OY+o6Q/bqsZ3X6+ikBtpRCf50xJ0d/kh/EnR68MWxw
-         H0uXU6nN+ys6rasa7eu9DZQhsBnM+XZVQZfHpC+8oPEFyhAo7vc+/BdrYcWMkrQD9oaS
-         T6uAoBCWzwN7PJbRryQGxpgRYyGrMyZ5a5ftZHULb4DxIQ/JIR/gS0ZoSVdfRWodU259
-         ecEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU6mI+huHMu+kV7BJw3/PqNvLtQhyFgyVLNKHJQUYQsHojxh5yIbbEM2MtRJiiuWA0O9LHKVsCJ7iFm@vger.kernel.org, AJvYcCVvcZmsM9VYlAt1PXtD4UYusM20nKmrcafw2+HP1UO5h41ixa8c9pGhHuj4dsce7zAXL58VthGxzaASpFSK@vger.kernel.org, AJvYcCX6S+3ry8hVbXLqGyyz/W2jT6DiYKD9SUsUbHcf5IDctnT3TmgSB6k1g9/ih/hZSONpI2a/uKAup58k@vger.kernel.org
-X-Gm-Message-State: AOJu0Yys/bkXk/7UapMOHcLMO/YE1oOsD4yKnjzzgox4C0LsXuTaXrvy
-	GginmW0xlLQRBTbi6X8VTbdTxto6BQ8KzL+uAVNqUQP+d7j3woxp2aqC1usoQxiEDWpwyxasWWf
-	pPB9mhy3WxQq27Vu+6ZxEWRyE4Zo=
-X-Gm-Gg: ASbGncvNSN501lfFOfbrkIlvgFkbKaZXgJM5pk7WuQt5amIJzgUwbUcybzPdF/bO7BS
-	qTP3WAsHuCqM8FiEQxsFM9moV31Q2USw=
-X-Google-Smtp-Source: AGHT+IEjg4f8Olmv1YAKtcuOtNBkdcwgg1Ho8yntikUXZ7xFoGmYOIJbU3B+YWDuXhIxvPC56TAvojN57EVpesWovrs=
-X-Received: by 2002:a05:690c:6e0a:b0:6ef:6b56:fb3f with SMTP id
- 00721157ae682-6efad2fc2e3mr53961257b3.7.1733417769399; Thu, 05 Dec 2024
- 08:56:09 -0800 (PST)
+	s=arc-20240116; t=1733417917; c=relaxed/simple;
+	bh=r+M1B2fNSe91EZkTdXggMhb7GCJ7g56x/PAojdaLcj8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bbOLuXZgVpsVxdn3aFg2hfhWRqtuSBQ44QIdF4mC/h9RcwKYAHQOasoBW3DAmEZ2S+KIUiLccNX7LOJ/MgL7CxB3qqLrThocOUIBDe5KHcyaKf1SgyYjfHMbm3BNT9KrmphzhyuxD/5FIvAoPDAc0Wda5BC6LN792PP2cDB/wUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=OZSDhWSI; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=DeVYKYC++7v89xWZg/BcHEQbyOA06uBwOslFWdgxmWk=; b=OZSDhWSIwfVVoNU6oJeFFY4S3C
+	Gkx3Gf35uXSOQKkOCtwwxjjqNS7bAD1esQHNqxmmrD7B25BMjjPHMjT+pLCeKKHyLTtrqxLHCjIxV
+	psKOPBrUr1K5fn5rQTIu1Dho1jBsNH4Z4jifB7a4PalNMywQhJNcM9CtEijT8s9vfUGqET7fL5lI0
+	IAwU4C+ikgjy0YYDAVdlvgVPqOykILXsFDUIlvlHZpbbOfmmHOD0xli3299wsOmHBFn5bltsiu6He
+	WUQspi6XYQKPlIJ4hvFX1XIyo4Ldcpg0Zz3pIKclCFJtuRfjwVxSMsKzG0RQ6wRJNd4s4wbTYuh+z
+	RfxnpLHQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46892)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tJFB1-0005Do-1t;
+	Thu, 05 Dec 2024 16:58:08 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tJFAw-0006hx-2L;
+	Thu, 05 Dec 2024 16:58:02 +0000
+Date: Thu, 5 Dec 2024 16:58:02 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: jan.petrous@oss.nxp.com
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
+	Keyur Chudgar <keyur@os.amperecomputing.com>,
+	Quan Nguyen <quan@os.amperecomputing.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	NXP S32 Linux Team <s32@nxp.com>, 0x1207@gmail.com,
+	fancer.lancer@gmail.com
+Subject: Re: [PATCH net-next v8 07/15] net: dwmac-intel-plat: Use helper
+ rgmii_clock
+Message-ID: <Z1Hbml22IgrTyzeN@shell.armlinux.org.uk>
+References: <20241205-upstream_s32cc_gmac-v8-0-ec1d180df815@oss.nxp.com>
+ <20241205-upstream_s32cc_gmac-v8-7-ec1d180df815@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241204182451.144381-1-l.rubusch@gmail.com> <20241204182451.144381-7-l.rubusch@gmail.com>
- <r23e4axzdjn423yl44lv2sjprywtjymvgramrrfoc2lv6ebeui@hzbm4ilbyvhw>
-In-Reply-To: <r23e4axzdjn423yl44lv2sjprywtjymvgramrrfoc2lv6ebeui@hzbm4ilbyvhw>
-From: Lothar Rubusch <l.rubusch@gmail.com>
-Date: Thu, 5 Dec 2024 17:55:33 +0100
-Message-ID: <CAFXKEHYEyTHX+iDR+sCY9n4aPgWkZ9qMENbSq-ohMWWNUq1REQ@mail.gmail.com>
-Subject: Re: [PATCH v4 06/10] dt-bindings: iio: accel: add interrupt-names
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, eraretuya@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241205-upstream_s32cc_gmac-v8-7-ec1d180df815@oss.nxp.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Thu, Dec 5, 2024 at 9:55=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On Wed, Dec 04, 2024 at 06:24:47PM +0000, Lothar Rubusch wrote:
-> > Add interrupt-names INT1 and INT2 for the two interrupt lines of the
-> > sensor. Only one line will be connected for incoming events. The driver
-> > needs to be configured accordingly. If no interrupt line is set up, the
-> > sensor will still measure, but no events are possible.
-> >
-> > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
-> > ---
-> >  .../devicetree/bindings/iio/accel/adi,adxl345.yaml    | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.ya=
-ml b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> > index 280ed479ef5..a4c2cefe1a4 100644
-> > --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> > @@ -37,6 +37,15 @@ properties:
-> >    interrupts:
-> >      maxItems: 1
-> >
-> > +  interrupt-names:
-> > +    description: Use either INT1 or INT2 for events, or ignore events.
-> > +    minItems: 1
-> > +    maxItems: 2
->
-> No improvements, no responses and according to commit msg you have only
+On Thu, Dec 05, 2024 at 05:43:04PM +0100, Jan Petrous via B4 Relay wrote:
+> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+> 
+> Utilize a new helper function rgmii_clock().
+> 
+> When in, remove dead code in kmb_eth_fix_mac_speed().
+> 
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
 
-That's not true. Indention was now fixed.
+Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-> one item, so instead above and below just:
->
-> description: .........
-> items:
->  - enum: [ int1, int2]
+Thanks!
 
-Yes. Unfortunately you're right. I was not aware of the [] writing. Much be=
-tter!
-
-Sorry, for wasting your time with that. I learned to not just
-copy&paste w/o running the lengthy dt_binding_check. Fixed version is
-coming up.
-
-Best,
-L
-
->
-> Best regards,
-> Krzysztof
->
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
