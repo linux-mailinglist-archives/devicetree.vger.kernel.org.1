@@ -1,359 +1,219 @@
-Return-Path: <devicetree+bounces-127492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF7B49E590F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 16:00:11 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EB0F1883C44
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 15:00:10 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC3D21C9EF;
-	Thu,  5 Dec 2024 14:59:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="EZASi6Po"
-X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2063.outbound.protection.outlook.com [40.107.223.63])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E95649E5917
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 16:01:25 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2795821D594;
-	Thu,  5 Dec 2024 14:59:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.63
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733410781; cv=fail; b=vELaFSmbQTCkqROSP0CPZC977wWXol1z+LjLQCSImejhxOcZDPKh6xqTqc4EEFUJs3IlEYjGrYyyR6MWffAd3OL+ne8u8fjL0uj0/WEABjnY50Gpg2AV4JaxxqD1XyLcNGtj+qjXOAK27VJX5fZBdqQ5CT+9uyhvnoWNxm2XKWU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733410781; c=relaxed/simple;
-	bh=t2O0J+ehR56uejV8Dv1PgD98ZExfvTkfzfaRBJIICbg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FcLVzP12ZwtwAF7TD/6MViXm48GUM9Fbli1LPMHwpg3oWpCeV64cbV+LU7oGYohg/1VK5xF0PipUKXKsnsaEFPrCAQkXeWa6p3sUOBESXgZ0VxnlrnOCt0IAXwCjPsx9EzhLJRIRd1lKOWpDU0Za0TzxV1tcIVfYo9L98WcU180=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=EZASi6Po; arc=fail smtp.client-ip=40.107.223.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=E3bYUdB/Uv8IX10++Zr6CdADsMfeQWXfXXXie5bH/u3axw7vRrMwNz5eL14Jtv+c62o7H2iIW1t9Zq+dkb+nTCSuGFJfAfmCSXsm4OuLqijuJBD5VYRs22h8lZVBiyIbx01F8wpuFx0DrPTA2fjxfWyrZnsxq1Jo7PVIQ/A0lM7Pge42dj0U0G2/ZbMjnQtBw/x3X/QVVILVtSleLGDiClHAEesgghDiGSJMWbsrzQkgKPUZxVs2q44A4WH12HgZweolRL8h5AVct7wS/H8xKJ4I/lEijfS3oQwGXCbCcrgikOSW4E2zI16aToHXH3j5iA9BkDmEWZX5TK5uU+93dg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FIIu534TX3lhOryF2fscbWwyfydqGSYwW+sCHVbJG8M=;
- b=HPrTm2OEMYGC2c7PyIYpnnbB7UbV01aWl5BVFcMZUYZn+oPGk15YS/QiIsCNy8g9H8XlTM3PXKUqZ+9Ck1NLGUFhAdX9AuUt4qpMaLceZVr6WKbsSCvZTHKXvKXXqYhPkza/jI1ZHypBiJDUt1Ht7cDxX6dQg1SFMKhqfXRVYs2zqnBu/4OSQ8Nj/L08i5Cx3zgQjNg6nTHFO1wZ5cDi13SIcgIjpE4RN6wxiMhgJYf4Rkckyl4JxGIxw9gsqf742YyefZpahhHVnVWAgq1f7YcFLKJRh0mSLhlIasly5CLSlq07Li9XefrrDeUuok+2r6wuMnGO14xQgziZJU4Omw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FIIu534TX3lhOryF2fscbWwyfydqGSYwW+sCHVbJG8M=;
- b=EZASi6PoQd9k+vJrNehffslbwpaAgCVbmA2rMsUQkWYX4ZrBSFX4o0VN0n/KmHc4if8XmgQCTfWXPLd5Ce3V4uGlyMu4HeruZqF6lfhY/GXEbFckGoyVLxGetZ6KSVnV/cvn7/ZN3csfYduagM5R896MMDLsRT8y03Qhnr8RIZsZV8a3eI8x75uHMT/MNYuvXBby1KcGYoFVKUbmbFyx7bA1O6cc93LeWlyJXGXhRgKXU8Jvna3nNYp3s9+w7nxTj+t58oQ/FpiuCMl2ItGf4+HAGbzU6CQQp1PJg4ORtzqR8LNLPKNQmd4hBY5FXD6HEO7ntaNAcynPRdkhnhJRAw==
-Received: from MW4PR02CA0020.namprd02.prod.outlook.com (2603:10b6:303:16d::26)
- by SJ1PR12MB6339.namprd12.prod.outlook.com (2603:10b6:a03:454::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.18; Thu, 5 Dec
- 2024 14:59:30 +0000
-Received: from SJ1PEPF000023D6.namprd21.prod.outlook.com
- (2603:10b6:303:16d:cafe::58) by MW4PR02CA0020.outlook.office365.com
- (2603:10b6:303:16d::26) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8230.11 via Frontend Transport; Thu,
- 5 Dec 2024 14:59:30 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- SJ1PEPF000023D6.mail.protection.outlook.com (10.167.244.71) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8251.1 via Frontend Transport; Thu, 5 Dec 2024 14:59:30 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 5 Dec 2024
- 06:59:16 -0800
-Received: from drhqmail203.nvidia.com (10.126.190.182) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Thu, 5 Dec 2024 06:59:16 -0800
-Received: from 13db4e1-lcedt.nvidia.com (10.127.8.11) by mail.nvidia.com
- (10.126.190.182) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Thu, 5 Dec 2024 06:59:12 -0800
-From: Mohan Kumar D <mkumard@nvidia.com>
-To: <vkoul@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <thierry.reding@gmail.com>, <jonathanh@nvidia.com>, <spujar@nvidia.com>,
-	<dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>, Mohan Kumar D
-	<mkumard@nvidia.com>
-Subject: [PATCH 2/2] dmaengine: tegra210-adma: Support channel page
-Date: Thu, 5 Dec 2024 20:28:59 +0530
-Message-ID: <20241205145859.2331691-3-mkumard@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241205145859.2331691-1-mkumard@nvidia.com>
-References: <20241205145859.2331691-1-mkumard@nvidia.com>
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A37AB284D35
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 15:01:24 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF75219A6E;
+	Thu,  5 Dec 2024 15:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xh3H8NYz"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26D145464A
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 15:01:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733410882; cv=none; b=mhfpspTnSBVikevkr4MC5x1GLWVRjqCDvwJNoi8motftAqP+GRhzzZn08hGQNzTWlOOdiqHPeClqj1gxo7SmtxW+tMB43NW7jRm4hDaDk26R6pIyr4kSOSXJpSBKu2EopA068PvQfbT+mD9D4BBvRbxoDm/G1Y7RlIl+Pg7kG24=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733410882; c=relaxed/simple;
+	bh=b1pKFZiTa/F6E8Dkp//xdfPfKGEfW16l02UZUYI5EXY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=M+4iD942riTbMO6yvM++dxzS5KLLtNeWWPgDHwNuaZyD6S8dtxfarygdKDd0MARXKYAjRE36dvTNxJ4GWOYBFSS/1PblWJNgibP4wLYfyKos3Ee/AQmguPNhTVcsDgW3BZrtT3XSH3FXRsWvA/tFeukUjHcdxc9H1kkiofEnxLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xh3H8NYz; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4349e1467fbso7161615e9.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 07:01:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733410878; x=1734015678; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tbWDMh1oOyUt0FdrCtOOr0ppw77dNgGcXJzOMWhRrgU=;
+        b=xh3H8NYzEToI7POXewtoB0zW3VVojp8sReKE2j/Et0U1brPUhroOx6Ye1f86iQmsxw
+         JJykD6GySoVud9lHwFvBiV8IPD/WX4yBt8DT4vtOYxWD+SAIJPCHEig5cmeL62BDtt/J
+         OWGp09fnnQ4I8Q3irZWt1sgUpDufCb3jnLx8qOhaxjSR/bM7W77TO6SffNQ2P/H0PElR
+         lVy74Oi2hmPxiHZ9K//9dVksSiOxD6QUATHM+opfFoeWQkl8WMztMR2UNPzgmV1TksDP
+         LbFAfMcwLMhX6RcnySEiUJwkCRTUdnVnw7f7Q7RIfSRDpjdlJTAwgFxTLvVSoK1Uysnc
+         WDLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733410878; x=1734015678;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tbWDMh1oOyUt0FdrCtOOr0ppw77dNgGcXJzOMWhRrgU=;
+        b=V+WiNPFe/0CPr3QnHhgS+u5Aoykm2GqsccI371rFDWn/N6dalQ0XQcwKDKS/LUC6Vl
+         K0YAZECiUPd/OuZcBko/y8wVolnx8MgA4dkKQHbdFNGLiy+qq64cZrY+BveHDm36wkS6
+         JbUcsgaDpVJsz53OJimY2URFTy9MEHhaxuc3+AGjgxzu7eDKnX1Q7JI7G8Vs4LuQgUNJ
+         uHNRT+NZTT2/U0ftBw4FaLUhuPR4cysAQd7oRycoSRN9/Gnm6ASN77vMnZGlmJ5RQZmr
+         PwOEFkt+HwGqQgLyrpeYMax5jSX3NqIk6zH5myR1slHItuku6mzQGDcrrt74YnV7n6kE
+         CmaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWyw8Fwulox7QL9p9aKXOE2Ur71PLWz13RnLe/TKflAV4+pehplKelcDOOXbtw/Exa6sviMhljmp1fr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1gmN7MJRwrwCPFxRM3NY9MhuHQhtAyzugY1ZEm5lkAl4kkL4J
+	wQ1NDXRdAe3SCPqmwUwogTJk+nzVn9fErFul485piXqXch0WZdLaQ3k9PIhjN4U=
+X-Gm-Gg: ASbGncv0i1DohgsyRjncgNTokF7BYynYzbQT6QMP5rZ29Us0o27d3Lq6K+pWI0PrEsN
+	FQBz709iHBVpjVb6MetpkI6bR1KZmwdUcqUa9ucr1bHQ+NItCVWhfNOKhByNuvPPsD5wFKVRcyJ
+	YwNI+6TLz8wSppAKiUrYqoqPW194bxB+M73ED+GwjWLQrQB+4nI4bHSYK6hVcW2zQR+Lb81lz7e
+	nwnzpTZT0ZV6/9WVZEs8ecyth7TcrC4HZOMpAKdJUnvemtgCLDrBmcxkvfE/CCLQAWDfJw=
+X-Google-Smtp-Source: AGHT+IGhmRzBKdM9swwZgZIhKLM8LIVgc35epsroCYtGmEdGqZoyNJjXT65jo1zPO+hOdn8NoRrpXQ==
+X-Received: by 2002:a05:600c:a03:b0:434:a923:9310 with SMTP id 5b1f17b1804b1-434d09cf141mr95386425e9.15.1733410876246;
+        Thu, 05 Dec 2024 07:01:16 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434d52c0bc7sm62830795e9.35.2024.12.05.07.01.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Dec 2024 07:01:15 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v4 0/7] drm/msm: adreno: add support for DDR bandwidth
+ scaling via GMU
+Date: Thu, 05 Dec 2024 16:01:04 +0100
+Message-Id: <20241205-topic-sm8x50-gpu-bw-vote-v4-0-9650d15dd435@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF000023D6:EE_|SJ1PR12MB6339:EE_
-X-MS-Office365-Filtering-Correlation-Id: a4c1d034-2b61-42c0-a315-08dd153d6bd4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?l9SsjxSl8XnU1VGNIERURWd5ZBCzq7cjmffrTqgfwVt0Xpalf3rfvwtlfcyg?=
- =?us-ascii?Q?uFpXpAjYAZzf28wE/ymLBXBnU/qsV9h/e0j6LGT6l+KyRUut3Bw5dKfDgA9j?=
- =?us-ascii?Q?hT97ZxW9MAbgIsQot2L06iz43LIfEv2vK87onMLh6k7amEZTX+sO2fNCrBsY?=
- =?us-ascii?Q?dQbad9MQO09+WnJmFvA1wZj5fPl7o+/HY7BfGJWFahG4kHxQI5nQO3JCENAl?=
- =?us-ascii?Q?x+35Tvn0TPtjqDJFY0FVwINq1nWvCg9IAJ9FK6SWxL7vQCePcoBZmnX8Y0tB?=
- =?us-ascii?Q?w3e9n+JrTecjz9g2D3Nj9pNk3UQtYtUpsdeCcrU98l5fbMwqzBQ56ne8jmSM?=
- =?us-ascii?Q?dJIu+Ritvoan3NCMUJLMYtRvsiDyCG4F8kOJfQ+mDkoZXa1KeD/Kq0k9S0VR?=
- =?us-ascii?Q?VPjncfd/7Vic2THOfNs4mN2SoThTUcX84Jb8YcCutR/ufWouCJaKFNYTkyo4?=
- =?us-ascii?Q?Dt6QgRR21Y+d2KGywd/X1a9uZQQ0MOC6ZO/jawu7lDg0sAVcorNUtFzBv1x3?=
- =?us-ascii?Q?BDTPgRupLOCkxWwzd6gcTOVkKlJHuwXcdzPE0WK1oeFNsGnF0bX24vRLBiUO?=
- =?us-ascii?Q?CzGpZO6m1VnUIRJxtq0nm6h3ElPrAcxS6w9kkC6U04LrbprqI8gKijyrybxN?=
- =?us-ascii?Q?73EnCgsX7OMOgUOfMHLd7NZxrc4SpA56Z2PDK2KO8WZDUMOQiYFs8qzYsgSy?=
- =?us-ascii?Q?1ND+Y0VYZUm5TpdS+EPepFiuWQ4uf5O2FyVw0unnqMyiei9C7bNGse4QzDQm?=
- =?us-ascii?Q?yRRQyhBUrIlzLMx87Z0OncGGnXYdP/ujin8sJR2nISCEjT/o895XlB3F9z6N?=
- =?us-ascii?Q?jVkr/3sFv4DxxVyVf9/vuAaTnpQq4HEe2OZaYhAeDrkRO7NDjeuY5yXXPThX?=
- =?us-ascii?Q?qE0B5yEWm4Cwxs9pGHaCznfJnztfSFo55ODkgIMuo2e4bTlVUozbpK69nHe+?=
- =?us-ascii?Q?kUFkQGR/QrL1GXzR6CfD8xCEMr1pRWR0Ozb+a0lfAZ5sHcHRDJnhiIQng5US?=
- =?us-ascii?Q?mjyOaa1SpuXluB0E4+vgZJXILxJyKPfJ07VZdrg3bWZ/5mdbtyQRUX0Wxib4?=
- =?us-ascii?Q?ZMevJPePWzHATR7bb38yCV7NnELOoNtXT0eo2j1e9hx731/y/kI+lOMvH2LP?=
- =?us-ascii?Q?JkDoDHijzV/h145nHJay6BapR/udNrvm9XAQJnj4t99/0DIH0Gx0CWkiXESs?=
- =?us-ascii?Q?RtaRiybRIsYYK794YMIqfa2z8HeXgm3Ann3bkvMilUWMcUEY+cooqBnZTZxg?=
- =?us-ascii?Q?vBDmCpIOHf+8+GVHZFitwNYi2YpzlPHBuNBtfmmIi9cXeXuQP6gBmU/Fp/iA?=
- =?us-ascii?Q?RRC+QRtwK7WmZPuX08E767Wlvk7AOhwL4fB4dksCSZUBfH0WibbTX+k48Mhi?=
- =?us-ascii?Q?mJdT2RLd+ARKQEJSnXfxBex4NRBbXzFwFwsMA65IDi/Zp3Cvaspw03R3rMj+?=
- =?us-ascii?Q?MMO3DTBynqURsp/WA8Hd19xNTpo7TxpB?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2024 14:59:30.1826
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4c1d034-2b61-42c0-a315-08dd153d6bd4
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ1PEPF000023D6.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6339
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADDAUWcC/43NTQ6CMBCG4auYrh3TP2xx5T2MCwoDNlFKWqwYw
+ t0trDAmxOX7JfPMSAJ6i4GcdiPxGG2wrk0h9ztS3oq2QbBVasIpl4wxAb3rbAnhoYeMQtM9wbw
+ guh6hzpByXqMqpCLpvPNY22GhL9fUNxt659/Lp8jm9Q80MqAgjK5EroQqcnO+27bw7uB8Q2Y18
+ rWUb0g8SbJCo5VBLnP9I4mVxPWGJJKkWXWkJaO1UeJLmqbpA3vk/pxVAQAA
+X-Change-ID: 20241113-topic-sm8x50-gpu-bw-vote-f5e022fe7a47
+To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4651;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=b1pKFZiTa/F6E8Dkp//xdfPfKGEfW16l02UZUYI5EXY=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnUcA3CO6vTLpJYs2HfLccENhknf2A1LzscxmXacWJ
+ DSE4GaSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ1HANwAKCRB33NvayMhJ0Ym2D/
+ sGsBTqzQIxIkxjoTaZNHUXJu8Mr86SPSQQl31/btttbW3+YSds2lwaOFSMcEvEMhFwe6+OCmdouI7u
+ Cw/VnAoXXrzhqfqSen6+xRVUwzNtA+r/pceTVli8XTxGwNht7XookQgx1HQevlrejPJQhTqxQKikP1
+ b6i9472TF2UfqftjOgwE/bwW/zZlah0rLW1ChvmthJ08w6pdJWTur4u1cYizpV51hg90VUo3eFjKsi
+ GxxCsPuRSI8NTbdb6022gm5IqsHnzB+qXp+k4rv9dDlnb1qulazMbJzYasD53rNxVHafJLhp5y7W+4
+ kznWNdI5yELL90ljk4QoiruUN3U7Mkv6x2+cKNjy2d/0VqHVqT0Ha0UBYQg9IY4KUAIVU64KSDpj5F
+ DuFnQjSMvSGiI9cSUhtkoyEJ7Gaj5s9HW2LiQEo+16+BtagaWk+ZG646og2KyNl+wk8+idNzCt4GUv
+ f5/GFoz5l2nU1iaKlKhxO5tVWt1Nkh95N0b6DlRkk4iJ2+evRkGVOxPaVUgsG0y7w3mcvvfOwuAwDI
+ RH211J2I61kVJLecu/TeitNBoYC/XLJiN1sJQGpHJA6RnhKkXRebwb+k6njXACwrLtO/kPYGwDYDFp
+ 6ewKoA5KMxGH2+288XbMcWQ7Weu/TOIhpGIMdeAnyw1RCyKkPPuKbIXp7AKA==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Multiple ADMA Channel page hardware support has been
-added from TEGRA186 and onwards.
+The Adreno GPU Management Unit (GMU) can also vote for DDR Bandwidth
+along the Frequency and Power Domain level, but by default we leave the
+OPP core scale the interconnect ddr path.
 
-- Add support in the tegra adma driver to handle selective
-  channel page usage
-- Make global register programming optional
+While scaling the interconnect path was sufficient, newer GPUs
+like the A750 requires specific vote parameters and bandwidth to
+achieve full functionnality.
 
-Signed-off-by: Mohan Kumar D <mkumard@nvidia.com>
+In order to get the vote values to be used by the GPU Management
+Unit (GMU), we need to parse all the possible OPP Bandwidths and
+create a vote value to be send to the appropriate Bus Control
+Modules (BCMs) declared in the GPU info struct.
+The added dev_pm_opp_get_bw() is used in this case.
+
+The vote array will then be used to dynamically generate the GMU
+bw_table sent during the GMU power-up.
+
+Those entries will then be used by passing the appropriate
+bandwidth level when voting for a GPU frequency.
+
+This will make sure all resources are equally voted for a
+same OPP, whatever decision is done by the GMU, it will
+ensure all resources votes are synchronized.
+
+Depends on [1] to avoid crashing when getting OPP bandwidths.
+
+[1] https://lore.kernel.org/all/20241203-topic-opp-fix-assert-index-check-v3-0-1d4f6f763138@linaro.org/
+
+Ran full vulkan-cts-1.3.7.3-0-gd71a36db16d98313c431829432a136dbda692a08 with mesa 25.0.0+git3ecf2a0518 on:
+- QRD8550
+- QRD8650
+- HDK8650
+
+Any feedback is welcome.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/dma/tegra210-adma.c | 86 ++++++++++++++++++++++++++++++++-----
- 1 file changed, 76 insertions(+), 10 deletions(-)
+Changes in v4:
+- Collected review tags
+- Dropped bcm_div() and switched to clamp() instead
+- Dropped pre-calculation of AB votes
+- Instead calculate a 25% floor vote in a6xx_gmu_set_freq() as recommended
+- Use QCOM_ICC_TAG_ALWAYS in DT
+- Made a740_generate_bw_table() generic, using defines to fill the table
+- Link to v3: https://lore.kernel.org/r/20241128-topic-sm8x50-gpu-bw-vote-v3-0-81d60c10fb73@linaro.org
 
-diff --git a/drivers/dma/tegra210-adma.c b/drivers/dma/tegra210-adma.c
-index 2953008d42ef..6896da8ac7ef 100644
---- a/drivers/dma/tegra210-adma.c
-+++ b/drivers/dma/tegra210-adma.c
-@@ -43,6 +43,10 @@
- #define ADMA_CH_CONFIG_MAX_BUFS				8
- #define TEGRA186_ADMA_CH_CONFIG_OUTSTANDING_REQS(reqs)	(reqs << 4)
- 
-+#define TEGRA186_ADMA_GLOBAL_PAGE_CHGRP			0x30
-+#define TEGRA186_ADMA_GLOBAL_PAGE_RX_REQ		0x70
-+#define TEGRA186_ADMA_GLOBAL_PAGE_TX_REQ		0x84
-+
- #define ADMA_CH_FIFO_CTRL				0x2c
- #define ADMA_CH_TX_FIFO_SIZE_SHIFT			8
- #define ADMA_CH_RX_FIFO_SIZE_SHIFT			0
-@@ -96,6 +100,7 @@ struct tegra_adma_chip_data {
- 	unsigned int ch_fifo_size_mask;
- 	unsigned int sreq_index_offset;
- 	bool has_outstanding_reqs;
-+	void (*set_global_pg_config)(struct tegra_adma *tdma);
- };
- 
- /*
-@@ -151,6 +156,7 @@ struct tegra_adma {
- 	struct dma_device		dma_dev;
- 	struct device			*dev;
- 	void __iomem			*base_addr;
-+	void __iomem			*ch_base_addr;
- 	struct clk			*ahub_clk;
- 	unsigned int			nr_channels;
- 	unsigned long			*dma_chan_mask;
-@@ -159,6 +165,7 @@ struct tegra_adma {
- 
- 	/* Used to store global command register state when suspending */
- 	unsigned int			global_cmd;
-+	unsigned int			ch_page_no;
- 
- 	const struct tegra_adma_chip_data *cdata;
- 
-@@ -176,6 +183,11 @@ static inline u32 tdma_read(struct tegra_adma *tdma, u32 reg)
- 	return readl(tdma->base_addr + tdma->cdata->global_reg_offset + reg);
- }
- 
-+static inline void tdma_ch_global_write(struct tegra_adma *tdma, u32 reg, u32 val)
-+{
-+	writel(val, tdma->ch_base_addr + tdma->cdata->global_reg_offset + reg);
-+}
-+
- static inline void tdma_ch_write(struct tegra_adma_chan *tdc, u32 reg, u32 val)
- {
- 	writel(val, tdc->chan_addr + reg);
-@@ -217,13 +229,30 @@ static int tegra_adma_slave_config(struct dma_chan *dc,
- 	return 0;
- }
- 
-+static void tegra186_adma_global_page_config(struct tegra_adma *tdma)
-+{
-+	/*
-+	 * Clear the default page1 channel group configs and program
-+	 * the global registers based on the actual page usage
-+	 */
-+	tdma_write(tdma, TEGRA186_ADMA_GLOBAL_PAGE_CHGRP, 0);
-+	tdma_write(tdma, TEGRA186_ADMA_GLOBAL_PAGE_RX_REQ, 0);
-+	tdma_write(tdma, TEGRA186_ADMA_GLOBAL_PAGE_TX_REQ, 0);
-+	tdma_write(tdma, TEGRA186_ADMA_GLOBAL_PAGE_CHGRP + (tdma->ch_page_no * 0x4), 0xff);
-+	tdma_write(tdma, TEGRA186_ADMA_GLOBAL_PAGE_RX_REQ + (tdma->ch_page_no * 0x4), 0x1ffffff);
-+	tdma_write(tdma, TEGRA186_ADMA_GLOBAL_PAGE_TX_REQ + (tdma->ch_page_no * 0x4), 0xffffff);
-+}
-+
- static int tegra_adma_init(struct tegra_adma *tdma)
- {
- 	u32 status;
- 	int ret;
- 
--	/* Clear any interrupts */
--	tdma_write(tdma, tdma->cdata->ch_base_offset + tdma->cdata->global_int_clear, 0x1);
-+	/* Clear any channels group global interrupts */
-+	tdma_ch_global_write(tdma, tdma->cdata->global_int_clear, 0x1);
-+
-+	if (!tdma->base_addr)
-+		return 0;
- 
- 	/* Assert soft reset */
- 	tdma_write(tdma, ADMA_GLOBAL_SOFT_RESET, 0x1);
-@@ -237,6 +266,9 @@ static int tegra_adma_init(struct tegra_adma *tdma)
- 	if (ret)
- 		return ret;
- 
-+	if (tdma->cdata->set_global_pg_config)
-+		tdma->cdata->set_global_pg_config(tdma);
-+
- 	/* Enable global ADMA registers */
- 	tdma_write(tdma, ADMA_GLOBAL_CMD, 1);
- 
-@@ -736,7 +768,9 @@ static int __maybe_unused tegra_adma_runtime_suspend(struct device *dev)
- 	struct tegra_adma_chan *tdc;
- 	int i;
- 
--	tdma->global_cmd = tdma_read(tdma, ADMA_GLOBAL_CMD);
-+	if (tdma->base_addr)
-+		tdma->global_cmd = tdma_read(tdma, ADMA_GLOBAL_CMD);
-+
- 	if (!tdma->global_cmd)
- 		goto clk_disable;
- 
-@@ -777,7 +811,11 @@ static int __maybe_unused tegra_adma_runtime_resume(struct device *dev)
- 		dev_err(dev, "ahub clk_enable failed: %d\n", ret);
- 		return ret;
- 	}
--	tdma_write(tdma, ADMA_GLOBAL_CMD, tdma->global_cmd);
-+	if (tdma->base_addr) {
-+		tdma_write(tdma, ADMA_GLOBAL_CMD, tdma->global_cmd);
-+		if (tdma->cdata->set_global_pg_config)
-+			tdma->cdata->set_global_pg_config(tdma);
-+	}
- 
- 	if (!tdma->global_cmd)
- 		return 0;
-@@ -817,6 +855,7 @@ static const struct tegra_adma_chip_data tegra210_chip_data = {
- 	.ch_fifo_size_mask	= 0xf,
- 	.sreq_index_offset	= 2,
- 	.has_outstanding_reqs	= false,
-+	.set_global_pg_config	= NULL,
- };
- 
- static const struct tegra_adma_chip_data tegra186_chip_data = {
-@@ -833,6 +872,7 @@ static const struct tegra_adma_chip_data tegra186_chip_data = {
- 	.ch_fifo_size_mask	= 0x1f,
- 	.sreq_index_offset	= 4,
- 	.has_outstanding_reqs	= true,
-+	.set_global_pg_config	= tegra186_adma_global_page_config,
- };
- 
- static const struct of_device_id tegra_adma_of_match[] = {
-@@ -846,7 +886,8 @@ static int tegra_adma_probe(struct platform_device *pdev)
- {
- 	const struct tegra_adma_chip_data *cdata;
- 	struct tegra_adma *tdma;
--	int ret, i;
-+	struct resource *res_page, *res_base;
-+	int ret, i, page_no;
- 
- 	cdata = of_device_get_match_data(&pdev->dev);
- 	if (!cdata) {
-@@ -865,9 +906,35 @@ static int tegra_adma_probe(struct platform_device *pdev)
- 	tdma->nr_channels = cdata->nr_channels;
- 	platform_set_drvdata(pdev, tdma);
- 
--	tdma->base_addr = devm_platform_ioremap_resource(pdev, 0);
--	if (IS_ERR(tdma->base_addr))
--		return PTR_ERR(tdma->base_addr);
-+	res_page = platform_get_resource_byname(pdev, IORESOURCE_MEM, "page");
-+	if (res_page) {
-+		tdma->ch_base_addr = devm_ioremap_resource(&pdev->dev, res_page);
-+		if (IS_ERR(tdma->ch_base_addr))
-+			return PTR_ERR(tdma->ch_base_addr);
-+
-+		res_base = platform_get_resource_byname(pdev, IORESOURCE_MEM, "global");
-+		if (res_base) {
-+			page_no = (res_page->start - res_base->start) / cdata->ch_base_offset;
-+			if (page_no <= 0)
-+				return -EINVAL;
-+			tdma->ch_page_no = page_no - 1;
-+			tdma->base_addr = devm_ioremap_resource(&pdev->dev, res_base);
-+			if (IS_ERR(tdma->base_addr))
-+				return PTR_ERR(tdma->base_addr);
-+		}
-+	} else {
-+		/* If no 'page' property found, then reg DT binding would be legacy */
-+		res_base = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+		if (res_base) {
-+			tdma->base_addr = devm_ioremap_resource(&pdev->dev, res_base);
-+			if (IS_ERR(tdma->base_addr))
-+				return PTR_ERR(tdma->base_addr);
-+		} else {
-+			return -ENODEV;
-+		}
-+
-+		tdma->ch_base_addr = tdma->base_addr + cdata->ch_base_offset;
-+	}
- 
- 	tdma->ahub_clk = devm_clk_get(&pdev->dev, "d_audio");
- 	if (IS_ERR(tdma->ahub_clk)) {
-@@ -900,8 +967,7 @@ static int tegra_adma_probe(struct platform_device *pdev)
- 		if (!test_bit(i, tdma->dma_chan_mask))
- 			continue;
- 
--		tdc->chan_addr = tdma->base_addr + cdata->ch_base_offset
--				 + (cdata->ch_reg_size * i);
-+		tdc->chan_addr = tdma->ch_base_addr + (cdata->ch_reg_size * i);
- 
- 		tdc->irq = of_irq_get(pdev->dev.of_node, i);
- 		if (tdc->irq <= 0) {
+Changes in v3:
+- I didn't take Dmitry's review tags since I significantly changed the patches
+- Dropped applied OPP change
+- Dropped QUIRK/FEATURE addition/rename in favor of checking the a6xx_info->bcms pointer
+- Switch a6xx_info->bcms to a pointer, so it can be easy to share the table
+- Generate AB votes in advance, the voting was wrong in v2 we need to quantitiwe each bandwidth value
+- Do not vote via GMU is there's only the OFF vote because DT doesn't have the right properties
+- Added defines for the a6xx_gmu freqs tables to not have magic 16 and 4 values
+- Renamed gpu_bw_votes to gpu_ib_votes to match the downstream naming
+- Changed the parameters of a6xx_hfi_set_freq() to u32 to match the data type we pass
+- Drop "request for maximum bus bandwidth usage" and merge it in previous changes
+- Link to v2: https://lore.kernel.org/r/20241119-topic-sm8x50-gpu-bw-vote-v2-0-4deb87be2498@linaro.org
+
+Changes in v2:
+- opp: rename to dev_pm_opp_get_bw, fix commit message and kerneldoc
+- remove quirks that are features and move them to a dedicated .features bitfield
+- get icc bcm kerneldoc, and simplify/cleanup a6xx_gmu_rpmh_bw_votes_init()
+  - no more copies of data
+  - take calculations from icc-rpmh/bcm-voter
+  - move into a single cleaner function
+- fix a6xx_gmu_set_freq() but not calling dev_pm_opp_set_opp() if !bw_index
+- also vote for maximum bus bandwidth usage (AB)
+- overall fix typos in commit messages
+- Link to v1: https://lore.kernel.org/r/20241113-topic-sm8x50-gpu-bw-vote-v1-0-3b8d39737a9b@linaro.org
+
+---
+Neil Armstrong (7):
+      drm/msm: adreno: add defines for gpu & gmu frequency table sizes
+      drm/msm: adreno: add plumbing to generate bandwidth vote table for GMU
+      drm/msm: adreno: dynamically generate GMU bw table
+      drm/msm: adreno: find bandwidth index of OPP and set it along freq index
+      drm/msm: adreno: enable GMU bandwidth for A740 and A750
+      arm64: qcom: dts: sm8550: add interconnect and opp-peak-kBps for GPU
+      arm64: qcom: dts: sm8650: add interconnect and opp-peak-kBps for GPU
+
+ arch/arm64/boot/dts/qcom/sm8550.dtsi      |  13 +++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi      |  15 +++
+ drivers/gpu/drm/msm/adreno/a6xx_catalog.c |  22 ++++
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c     | 183 +++++++++++++++++++++++++++++-
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.h     |  26 ++++-
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.h     |   1 +
+ drivers/gpu/drm/msm/adreno/a6xx_hfi.c     |  47 +++++++-
+ drivers/gpu/drm/msm/adreno/a6xx_hfi.h     |   5 +
+ 8 files changed, 301 insertions(+), 11 deletions(-)
+---
+base-commit: df210b30304e9113866a213363894a6d768411ec
+change-id: 20241113-topic-sm8x50-gpu-bw-vote-f5e022fe7a47
+
+Best regards,
 -- 
-2.25.1
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
