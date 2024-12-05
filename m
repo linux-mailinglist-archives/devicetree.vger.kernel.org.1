@@ -1,163 +1,285 @@
-Return-Path: <devicetree+bounces-127461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127464-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A9179E5818
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 15:03:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 544409E582D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 15:15:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 75FF41612F5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 14:03:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21A7E168077
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 14:15:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08735218AC2;
-	Thu,  5 Dec 2024 14:03:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75411DF745;
+	Thu,  5 Dec 2024 14:15:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NRUx6/rv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cChdmXGd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9F021A28D;
-	Thu,  5 Dec 2024 14:03:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92D6217579;
+	Thu,  5 Dec 2024 14:15:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733407392; cv=none; b=Pbqb32qsYTlj8720wvCEHdriOx34HW77zjDnO26tb27VPalrM0MxnoDPHGik2XwhoWGYAIFJ6yS1ZWYspBQwTOrlFl6UAAZAc1BkU/FqAMsC4UDAN9ReeEmG6K+tqTPLVpo441EQoNh20LuNgV1Ccre+Jj132uDuLAOjT2CVDqk=
+	t=1733408147; cv=none; b=KtFK2WeDh1p8jS82G4sc+xBRFBqYx12Kjlt+GcWd8K7PzxriOM8pRkKoVDeyMxvfYKbByqSWToeJqCUdgXFyHZNvoCQwrddtnH6bWwdjLwOnc3JqjeAfgGoCyf0O9LfgoV8cJT6fZfr1BIU0RoVXGtgQwUy2qxVkWiz3sld3yi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733407392; c=relaxed/simple;
-	bh=OIckFGTFyrvwTHgdkzBEMtNkFA4+ORG0DJIsmkpwtX8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LUgHjyTDn75nxm45Rab9Hu3gGwgPeJFo48S/B+w3Kenu1QEd5wdcM9TNNvEyrOL0f5ybaSTx2j5Q8QWTz4NEMRw+r4mFRG3mTVpjFULmmOh8XjfWQfYwH2c4vTlp/Ci5XIptno96q8BBFcRXUUp+zosRI+KDWoEL+VGHO0n28Co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NRUx6/rv; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733407388; x=1764943388;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OIckFGTFyrvwTHgdkzBEMtNkFA4+ORG0DJIsmkpwtX8=;
-  b=NRUx6/rvJo/BwsQQRh6bEEzVyzIMbDWtXxJWE7ywSiQK/tMGyeKJaiVe
-   +1WCAHGYSM4MoK61YgK24nrtOwFH7BZpM/JRRrSxr9HDah/NeR91t3v9E
-   aB6VioOKsSUjJW5YZrFfK9XnCZxAoU7M8UR9HA33qfyb8WpnahCyr6FxI
-   8r3ZV42qM01RTFIvk6t5/OzAKh3qqbxSt5MhXx1GqdyRGy4iT5xXxX07O
-   cvnTQj6UvTVR7N2Id8lJdmp2oM7HSkP7i8mW1NHEuHOhKLYSuhOpRhF9B
-   XLHSzgvwryjRHp0Y1CdJLbZZlP/Q+ptCLneS3cyNkjKrQlBCM3zAerOtE
-   A==;
-X-CSE-ConnectionGUID: 9DaH2bvCSGK7XN0Ol1+8wQ==
-X-CSE-MsgGUID: ga9y99FUTBeGWK/0EnbRuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="33051201"
-X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; 
-   d="scan'208";a="33051201"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2024 06:03:07 -0800
-X-CSE-ConnectionGUID: iXwf/TSFRg68PmixVnZL7w==
-X-CSE-MsgGUID: Jkpzol86RpuhwoMeiFmzgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; 
-   d="scan'208";a="125011957"
-Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 05 Dec 2024 06:03:02 -0800
-Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tJCRY-00003m-1m;
-	Thu, 05 Dec 2024 14:03:00 +0000
-Date: Thu, 5 Dec 2024 22:02:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: Cheng Jiang <quic_chejiang@quicinc.com>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
-	Rocky Liao <quic_rjliao@quicinc.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-bluetooth@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, quic_chejiang@quicinc.com,
-	quic_jiaymao@quicinc.com, quic_shuaz@quicinc.com,
-	quic_zijuhu@quicinc.com, quic_mohamull@quicinc.com
-Subject: Re: [PATCH v3 2/3] Bluetooth: qca: Expand firmware-name to load
- specific nvm and rampatch
-Message-ID: <202412052157.4fOQCv3u-lkp@intel.com>
-References: <20241205102213.1281865-3-quic_chejiang@quicinc.com>
+	s=arc-20240116; t=1733408147; c=relaxed/simple;
+	bh=Dy0AOKEaGvg0o4zSFV8ZoWLPf9s5L2YbkQ6bOHtUYfs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MA9EbUCFewDVzK8u9CGKrsaQru/qvhtbB9yUa4e0wk7WNF0Y1bYaBSu+jHpuVoCnV1tHMQts3Oswv//d/C6u7ltIaiD3ujn8Ih+z1KuPl2nrfYzSCm9BRQYLOku298Yr2jveamjqNhB1wvT8H4Xo8V7mwoRG0RcwFvLrd4p3wYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cChdmXGd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4294BC4CED1;
+	Thu,  5 Dec 2024 14:15:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733408147;
+	bh=Dy0AOKEaGvg0o4zSFV8ZoWLPf9s5L2YbkQ6bOHtUYfs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=cChdmXGd/E4euD4cGLuKgifiYGyiJ98HpjRMbH/6EYL2sgYUhB93C/2UDMWpQdDbO
+	 0Xy2SM+AtKHCCYwVIkpZOv7ojF1Y5ltMz4Yn7zmgrbVA15w5OY2JpwVst2TnuUEDB2
+	 xPXv+IhELnlHmSSAjxfl+H3o/4UieCb4K4266EkSRng++LSbnGzWoGuTbvvb/LTmVs
+	 fTurUYoRfdXPw1j8oTGdZAvWvndslqOZXdETctNk7ILA7fUKkbIVB/eg2UgKGgIrzp
+	 EgB4NvJlGBM4NPxNXWmiXAQrGSjB7C0nwEy1f42qM5mS/Ci8A8GHaLK+sdcnuNsSxn
+	 lFm1LZORdn/Og==
+From: Danilo Krummrich <dakr@kernel.org>
+To: gregkh@linuxfoundation.org,
+	rafael@kernel.org,
+	bhelgaas@google.com,
+	ojeda@kernel.org,
+	alex.gaynor@gmail.com,
+	boqun.feng@gmail.com,
+	gary@garyguo.net,
+	bjorn3_gh@protonmail.com,
+	benno.lossin@proton.me,
+	tmgross@umich.edu,
+	a.hindborg@samsung.com,
+	aliceryhl@google.com,
+	airlied@gmail.com,
+	fujita.tomonori@gmail.com,
+	lina@asahilina.net,
+	pstanner@redhat.com,
+	ajanulgu@redhat.com,
+	lyude@redhat.com,
+	robh@kernel.org,
+	daniel.almeida@collabora.com,
+	saravanak@google.com,
+	dirk.behme@de.bosch.com,
+	j@jannau.net,
+	fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com
+Cc: rust-for-linux@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH v4 00/13] Device / Driver PCI / Platform Rust abstractions
+Date: Thu,  5 Dec 2024 15:14:31 +0100
+Message-ID: <20241205141533.111830-1-dakr@kernel.org>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241205102213.1281865-3-quic_chejiang@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Cheng,
+This patch series implements the necessary Rust abstractions to implement
+device drivers in Rust.
 
-kernel test robot noticed the following build warnings:
+This includes some basic generalizations for driver registration, handling of ID
+tables, MMIO operations and device resource handling.
 
-[auto build test WARNING on c245a7a79602ccbee780c004c1e4abcda66aec32]
+Those generalizations are used to implement device driver support for two
+busses, the PCI and platform bus (with OF IDs) in order to provide some evidence
+that the generalizations work as intended.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Cheng-Jiang/dt-bindings-net-bluetooth-qca-Expand-firmware-name-property/20241205-182449
-base:   c245a7a79602ccbee780c004c1e4abcda66aec32
-patch link:    https://lore.kernel.org/r/20241205102213.1281865-3-quic_chejiang%40quicinc.com
-patch subject: [PATCH v3 2/3] Bluetooth: qca: Expand firmware-name to load specific nvm and rampatch
-config: arm-randconfig-002-20241205 (https://download.01.org/0day-ci/archive/20241205/202412052157.4fOQCv3u-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241205/202412052157.4fOQCv3u-lkp@intel.com/reproduce)
+The patch series also includes two patches adding two driver samples, one PCI
+driver and one platform driver.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412052157.4fOQCv3u-lkp@intel.com/
+The PCI bits are motivated by the Nova driver project [1], but are used by at
+least one more OOT driver (rnvme [2]).
 
-All warnings (new ones prefixed by >>):
+The platform bits, besides adding some more evidence to the base abstractions,
+are required by a few more OOT drivers aiming at going upstream, i.e. rvkms [3],
+cpufreq-dt [4], asahi [5] and the i2c work from Fabien [6].
 
-   drivers/bluetooth/btqca.c: In function 'qca_get_nvm_name_by_board':
->> drivers/bluetooth/btqca.c:775:21: warning: variable 'variant' set but not used [-Wunused-but-set-variable]
-     775 |         const char *variant;
-         |                     ^~~~~~~
-   drivers/bluetooth/btqca.c: In function 'qca_get_alt_nvm_path.constprop':
->> drivers/bluetooth/btqca.c:288:45: warning: '.bin' directive output may be truncated writing 4 bytes into a region of size between 1 and 64 [-Wformat-truncation=]
-     288 |         snprintf(fwname, sizeof(fwname), "%s.bin", fwname);
-         |                                             ^~~~
-   drivers/bluetooth/btqca.c:288:9: note: 'snprintf' output between 5 and 68 bytes into a destination of size 64
-     288 |         snprintf(fwname, sizeof(fwname), "%s.bin", fwname);
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/bluetooth/btqca.c:288:9: warning: 'snprintf' argument 4 overlaps destination object 'fwname' [-Wrestrict]
-   drivers/bluetooth/btqca.c:277:14: note: destination object referenced by 'restrict'-qualified argument 1 was declared here
-     277 |         char fwname[64];
-         |              ^~~~~~
+The patches of this series can also be [7], [8] and [9].
+
+Changes in v4:
+==============
+- Revocable
+  - convert `Revocable::data` to `Opaque`
+  - introduce `revoke_nosync`, which does not wait for an RCU grace period
+  - fix minor typo
+
+- Device ID
+  - fix ID table export name to always be unique
+  - remove `#![allow(stable_features)]`
+  - move `#![allow(const_refs_to_cell)]` to the "stable in 1.83" list
+
+- I/O
+  - split `Io<SIZE>` in `IoRaw<SIZE>` and `Io<SIZE>`
+  - add rust helper for ioremap() and iounmap() (needed by doctests)
+
+- Devres
+  - optimze `drop` by using `revoke_nosync` (we're guaranteed there are no more
+    concurrent users, hence no need to wait for a full grace period)
+
+- OF
+  - rename "Open Firmware" -> "Device Tree / Open Firmware" (Rob)
+  - remove unused C header reference
+  - add TODO comment to loop in `DeviceId::new`
+  - remove `DeviceId::compatible`; was only used in sample code
+  - add missing `#[repr(transparent)]`
+  - use #[cfg(CONFIG_OF)] for the relevant functions
+
+- PCI
+  - let Rust helper for pci_resource_len() return resource_size_t
+
+- PCI Sample
+  - remove unnecessary `from_le`
+
+- Platform
+  - fix example compatible string
+  - add example for `platform::Driver`
+  - rename `ID_TABLE` to `OF_ID_TABLE`
+  - don't allow public use of `of_match_table`; convert to `of_id_info` to
+    retrieve the `of::DeviceId` to gather the corresponding `IdInfo`
+  - remove wrong example reference in the documentation of `platform::Driver`
+  - remove `as_dev`, as we already implement `AsRef` for `platform::Device`
+
+- Platform Sample
+  - fix compatible string; add corresponding entry to drivers/of/unittest-data/tests-platform.dtsi
+  - remove usage of `of_match_table`
+
+- MISC
+  - fix a few spelling mistakes
+  - rebase onto rust-next (v6.13-rc1)
+
+Changes in v3:
+==============
+- add commits for `Opaque::try_ffi_init` and `InPlaceModule`
+- rename `DriverOps` to `RegistrationOps`
+- rework device ID abstractions to get rid of almost all macro magic (thanks to
+  Gary Guo for working this out!)
+  - this is possible due to recently stabilized language features
+- add modpost alias generation for device ID tables
+  - unfortunately, this is the part that still requires some macro magic in the
+    device ID abstractions
+- PCI
+  - represent the driver private data with the driver specific `Driver` instance
+    and bind it's lifetime to the time of the driver being bound to a device
+    - this allows us to handle class / subsystem registrations in a cleaner way
+  - get rid of `Driver::remove`
+    - Rust drivers should bind cleanup code to the `Drop` implementation of the
+      corresponding structure instead and put it into their driver structure for
+      automatic cleanup
+  - add a sample PCI driver
+- add abstractions for `struct of_device_id`
+- add abstractions for the platform bus, including a sample driver
+- update the MAINTAINERS file accordingly
+  - currently this turns out a bit messy, but it should become better once the
+    build system supports a treewide distribution of the kernel crate
+  - I didn't add myself as maintainer, but (if requested) I'm willing to do so
+    and help with maintenance
+
+Changes in v2:
+==============
+- statically initialize driver structures (Greg)
+- move base device ID abstractions to a separate source file (Greg)
+- remove `DeviceRemoval` trait in favor of using a `Devres` callback to
+  unregister drivers
+- remove `device::Data`, we don't need this abstraction anymore now that we
+  `Devres` to revoke resources and registrations
+- pass the module name to `Module::init` and `InPlaceModule::init` in a separate
+  patch
+- rework of `Io` including compile time boundary checks (Miguel, Wedson)
+- adjust PCI abstractions accordingly and implement a `module_pci_driver!` macro
+- rework `pci::Bar` to support a const SIZE
+- increase the total amount of Documentation, rephrase some safety comments and
+  commit messages for less ambiguity
+- fix compilation issues with some documentation examples
+
+[1] https://gitlab.freedesktop.org/drm/nova/-/tree/nova-next
+[2] https://github.com/metaspace/linux/tree/rnvme
+[3] https://lore.kernel.org/all/20240930233257.1189730-1-lyude@redhat.com/
+[4] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/linux.git/log/?h=rust/cpufreq-dt
+[5] https://github.com/AsahiLinux/linux
+[6] https://github.com/Fabo/linux/tree/fparent/rust-i2c
+[7] https://github.com/Rust-for-Linux/linux/tree/staging/rust-device
+[8] https://github.com/Rust-for-Linux/linux/tree/staging/rust-pci
+[9] https://github.com/Rust-for-Linux/linux/tree/staging/dev
 
 
-vim +/variant +775 drivers/bluetooth/btqca.c
+Danilo Krummrich (11):
+  rust: pass module name to `Module::init`
+  rust: implement generic driver registration
+  rust: implement `IdArray`, `IdTable` and `RawDeviceId`
+  rust: add `io::{Io, IoRaw}` base types
+  rust: add devres abstraction
+  rust: pci: add basic PCI device / driver abstractions
+  rust: pci: implement I/O mappable `pci::Bar`
+  samples: rust: add Rust PCI sample driver
+  rust: of: add `of::DeviceId` abstraction
+  rust: platform: add basic platform device / driver abstractions
+  samples: rust: add Rust platform sample driver
 
-   770	
-   771	static void qca_get_nvm_name_by_board(char *fwname, size_t max_size,
-   772			const char *firmware_name, struct qca_btsoc_version ver,
-   773			enum qca_btsoc_type soc_type, u16 bid)
-   774	{
- > 775		const char *variant;
-   776	
-   777		/* Set the variant to empty by default */
-   778		variant = "";
-   779		/* hsp gf chip */
-   780		if (soc_type == QCA_WCN6855) {
-   781			if ((le32_to_cpu(ver.soc_id) & QCA_HSP_GF_SOC_MASK) == QCA_HSP_GF_SOC_ID)
-   782				variant = "g";
-   783		}
-   784	
-   785		if (bid == 0x0)
-   786			snprintf(fwname, max_size, "qca/%s.bin", firmware_name);
-   787		else if (bid & 0xff00)
-   788			snprintf(fwname, max_size, "qca/%s.b%x", firmware_name, bid);
-   789		else
-   790			snprintf(fwname, max_size, "qca/%s.b%02x", firmware_name, bid);
-   791	}
-   792	
+Wedson Almeida Filho (2):
+  rust: add rcu abstraction
+  rust: add `Revocable` type
 
+ MAINTAINERS                                  |   8 +
+ drivers/block/rnull.rs                       |   2 +-
+ drivers/of/unittest-data/tests-platform.dtsi |   5 +
+ rust/bindings/bindings_helper.h              |   3 +
+ rust/helpers/device.c                        |  10 +
+ rust/helpers/helpers.c                       |   5 +
+ rust/helpers/io.c                            | 101 +++++
+ rust/helpers/pci.c                           |  18 +
+ rust/helpers/platform.c                      |  13 +
+ rust/helpers/rcu.c                           |  13 +
+ rust/kernel/device_id.rs                     | 166 +++++++
+ rust/kernel/devres.rs                        | 179 ++++++++
+ rust/kernel/driver.rs                        | 120 ++++++
+ rust/kernel/io.rs                            | 260 +++++++++++
+ rust/kernel/lib.rs                           |  28 +-
+ rust/kernel/net/phy.rs                       |   2 +-
+ rust/kernel/of.rs                            |  57 +++
+ rust/kernel/pci.rs                           | 429 +++++++++++++++++++
+ rust/kernel/platform.rs                      | 222 ++++++++++
+ rust/kernel/revocable.rs                     | 235 ++++++++++
+ rust/kernel/sync.rs                          |   1 +
+ rust/kernel/sync/lock/global.rs              |   6 +-
+ rust/kernel/sync/rcu.rs                      |  47 ++
+ rust/macros/lib.rs                           |   6 +-
+ rust/macros/module.rs                        |   7 +-
+ samples/rust/Kconfig                         |  21 +
+ samples/rust/Makefile                        |   2 +
+ samples/rust/rust_driver_pci.rs              | 109 +++++
+ samples/rust/rust_driver_platform.rs         |  49 +++
+ samples/rust/rust_minimal.rs                 |   2 +-
+ samples/rust/rust_print_main.rs              |   2 +-
+ 31 files changed, 2114 insertions(+), 14 deletions(-)
+ create mode 100644 rust/helpers/device.c
+ create mode 100644 rust/helpers/io.c
+ create mode 100644 rust/helpers/pci.c
+ create mode 100644 rust/helpers/platform.c
+ create mode 100644 rust/helpers/rcu.c
+ create mode 100644 rust/kernel/device_id.rs
+ create mode 100644 rust/kernel/devres.rs
+ create mode 100644 rust/kernel/driver.rs
+ create mode 100644 rust/kernel/io.rs
+ create mode 100644 rust/kernel/of.rs
+ create mode 100644 rust/kernel/pci.rs
+ create mode 100644 rust/kernel/platform.rs
+ create mode 100644 rust/kernel/revocable.rs
+ create mode 100644 rust/kernel/sync/rcu.rs
+ create mode 100644 samples/rust/rust_driver_pci.rs
+ create mode 100644 samples/rust/rust_driver_platform.rs
+
+
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.0
+
 
