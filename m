@@ -1,266 +1,281 @@
-Return-Path: <devicetree+bounces-127192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E64379E4D43
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 06:37:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AB9F9E4D4B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 06:41:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8E94166D02
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 05:36:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 660F316338D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 05:41:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5CA518E379;
-	Thu,  5 Dec 2024 05:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EC5C193408;
+	Thu,  5 Dec 2024 05:41:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RuKs8SLf"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="A8NZXBKd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4936F12E5D;
-	Thu,  5 Dec 2024 05:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AAB812E5D;
+	Thu,  5 Dec 2024 05:41:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733377017; cv=none; b=pVuEML8mlAWaPKzsFv7EsDF0UE9aM+5bDUmT5V864DXldJmrSm4f19QTyQYciLsvWNY7LRk+2s7cA+YO/ZbxvwTTCAfzU56qlnQ2rZ2YLoyX7T9LzlldNJaSJoHD9JTP6EqLIyHiCaNNBPvPmwyE5GisMnP9h7Mtc3sbgH9b6NA=
+	t=1733377280; cv=none; b=GjK55dlaETMHpr2mgl6Z8n/sZyiUG89uKm1prHxMnBiOpP237lGSo/iAkKAI0ZI6YfYeHpH5LhBxX2DBEYUn7KHiB7IHR4jR4sT29jp5+SOEDBxaJqJWQiynNz1/nCd+rbdsUu9KrLvdudQlFHc2iyvKcHzjgtHK9eTElUXNuGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733377017; c=relaxed/simple;
-	bh=AebNC+EHdWF/RLz/D71pM+UbPstW1kn/igJQNkozLGI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=L5xYtYDA60h4rFvHoIJov2xNz9quxIbRogBIuon6EWilkZEi6IKwOZdWmJkDemd03oKrWM9/pbBu7txZqxqdDi2YFLiQbTZp+uET9SZe6vAMR1W1FOub+HrFhZhUx4C/1KCilCLBM5uD4wXK5vEVB4y/XxbavMeDeAIzUI9JcMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RuKs8SLf; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733377016; x=1764913016;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=AebNC+EHdWF/RLz/D71pM+UbPstW1kn/igJQNkozLGI=;
-  b=RuKs8SLfDqhIiBYuNeJIip9zf0RwVdtHppVOVoAiZCDe5z6QITPa+8wC
-   JiO3RP4A/2BqO5tP1QZzoGLteunltOCA1c6MROYnotApsjGBP2Gp0rpgH
-   qdVwgb9L0janF/ejvypXqrwXlPSoJGy0N6dJLlZ/1AWaLz7Rf3RAqBp3w
-   yzK+I7G4SNCsJxR+EEyF3HHhTVrH6W4mFjjmopmDOgsF5sF8tQN7UhpBn
-   lWETWIoScEELkhIZ19KA333Rm8xE93c1ooAP3d1t54O/DLkMzEwOE2Qlf
-   YfKbOMClYnw1bf4mxnHLxE2Eu44f6hhWcVQx56mDjHD/kwJmaWPonVajZ
-   A==;
-X-CSE-ConnectionGUID: kxpBr/FqQs6s6xhVZKYDQg==
-X-CSE-MsgGUID: kpamJpseR+GFFUMtRE+mdw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="37452252"
-X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; 
-   d="scan'208";a="37452252"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Dec 2024 21:36:55 -0800
-X-CSE-ConnectionGUID: SgM3YbkMTnatxbqqgdRTWQ==
-X-CSE-MsgGUID: 1h+Zo78pQwmwa4nqLDdOsg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; 
-   d="scan'208";a="93832177"
-Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
-  by orviesa010.jf.intel.com with ESMTP; 04 Dec 2024 21:36:52 -0800
-From: niravkumar.l.rabara@intel.com
-To: devicetree@vger.kernel.org
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
-	linux-mtd@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4] dt-bindings: mtd: cadence: convert cadence-nand-controller.txt to yaml
-Date: Thu,  5 Dec 2024 13:33:50 +0800
-Message-Id: <20241205053350.434370-1-niravkumar.l.rabara@intel.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1733377280; c=relaxed/simple;
+	bh=qDAoDRz8/a6ebOykhzr8jAX+oxO/ZNOdAADQGp3ckKc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZOTkQKRfF9A0wg5O503VdQvHdaI1Bn2Z/Mys2gPJt5Vj465FfIB1wrLSGu1cCDp2bkYR1TDtqvqcc4+IaRSBub5Hg731dtT0yZS3a2VcODMvyBAN5fCHrNEc501Loy2OsX9ePHAWTGfhBqqG5wkBhLwqLhbS9+k8IRMBiX4lCCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=A8NZXBKd; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-157-155-49.elisa-laajakaista.fi [91.157.155.49])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1280D2B3;
+	Thu,  5 Dec 2024 06:40:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1733377246;
+	bh=qDAoDRz8/a6ebOykhzr8jAX+oxO/ZNOdAADQGp3ckKc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=A8NZXBKdtfYUMtt8hEik8q6uDozVKMhikEHWh6fnrIjI3NaxTEz/8UtY0K2Xx4a2Q
+	 sfggpsElgvnLOSIMtbwoyGEVhxCLKclgDNT/i5QOhXCsNElxpUThJpEXpie/Xv8KBb
+	 9oABovlXP0x0kVXeFLxaxjS59/g3dBPMcZA3iyXg=
+Message-ID: <1c557030-a267-4311-a942-f6245a5cc81a@ideasonboard.com>
+Date: Thu, 5 Dec 2024 07:41:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/9] drm/rcar-du: Add support for r8a779h0
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
+ Jagan Teki <jagan@amarulasolutions.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Biju Das <biju.das.jz@bp.renesas.com>, dri-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+References: <20241203-rcar-gh-dsi-v1-0-738ae1a95d2a@ideasonboard.com>
+ <20241203-rcar-gh-dsi-v1-6-738ae1a95d2a@ideasonboard.com>
+ <20241203085654.GJ10736@pendragon.ideasonboard.com>
+ <e155c9b1-a43f-4be3-9825-2639ac3bb61d@ideasonboard.com>
+ <20241203104806.GN10736@pendragon.ideasonboard.com>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ xsFNBE6ms0cBEACyizowecZqXfMZtnBniOieTuFdErHAUyxVgtmr0f5ZfIi9Z4l+uUN4Zdw2
+ wCEZjx3o0Z34diXBaMRJ3rAk9yB90UJAnLtb8A97Oq64DskLF81GCYB2P1i0qrG7UjpASgCA
+ Ru0lVvxsWyIwSfoYoLrazbT1wkWRs8YBkkXQFfL7Mn3ZMoGPcpfwYH9O7bV1NslbmyJzRCMO
+ eYV258gjCcwYlrkyIratlHCek4GrwV8Z9NQcjD5iLzrONjfafrWPwj6yn2RlL0mQEwt1lOvn
+ LnI7QRtB3zxA3yB+FLsT1hx0va6xCHpX3QO2gBsyHCyVafFMrg3c/7IIWkDLngJxFgz6DLiA
+ G4ld1QK/jsYqfP2GIMH1mFdjY+iagG4DqOsjip479HCWAptpNxSOCL6z3qxCU8MCz8iNOtZk
+ DYXQWVscM5qgYSn+fmMM2qN+eoWlnCGVURZZLDjg387S2E1jT/dNTOsM/IqQj+ZROUZuRcF7
+ 0RTtuU5q1HnbRNwy+23xeoSGuwmLQ2UsUk7Q5CnrjYfiPo3wHze8avK95JBoSd+WIRmV3uoO
+ rXCoYOIRlDhg9XJTrbnQ3Ot5zOa0Y9c4IpyAlut6mDtxtKXr4+8OzjSVFww7tIwadTK3wDQv
+ Bus4jxHjS6dz1g2ypT65qnHen6mUUH63lhzewqO9peAHJ0SLrQARAQABzTBUb21pIFZhbGtl
+ aW5lbiA8dG9taS52YWxrZWluZW5AaWRlYXNvbmJvYXJkLmNvbT7CwY4EEwEIADgWIQTEOAw+
+ ll79gQef86f6PaqMvJYe9QUCX/HruAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRD6
+ PaqMvJYe9WmFD/99NGoD5lBJhlFDHMZvO+Op8vCwnIRZdTsyrtGl72rVh9xRfcSgYPZUvBuT
+ VDxE53mY9HaZyu1eGMccYRBaTLJSfCXl/g317CrMNdY0k40b9YeIX10feiRYEWoDIPQ3tMmA
+ 0nHDygzcnuPiPT68JYZ6tUOvAt7r6OX/litM+m2/E9mtp8xCoWOo/kYO4mOAIoMNvLB8vufi
+ uBB4e/AvAjtny4ScuNV5c5q8MkfNIiOyag9QCiQ/JfoAqzXRjVb4VZG72AKaElwipiKCWEcU
+ R4+Bu5Qbaxj7Cd36M/bI54OrbWWETJkVVSV1i0tghCd6HHyquTdFl7wYcz6cL1hn/6byVnD+
+ sR3BLvSBHYp8WSwv0TCuf6tLiNgHAO1hWiQ1pOoXyMEsxZlgPXT+wb4dbNVunckwqFjGxRbl
+ Rz7apFT/ZRwbazEzEzNyrBOfB55xdipG/2+SmFn0oMFqFOBEszXLQVslh64lI0CMJm2OYYe3
+ PxHqYaztyeXsx13Bfnq9+bUynAQ4uW1P5DJ3OIRZWKmbQd/Me3Fq6TU57LsvwRgE0Le9PFQs
+ dcP2071rMTpqTUteEgODJS4VDf4lXJfY91u32BJkiqM7/62Cqatcz5UWWHq5xeF03MIUTqdE
+ qHWk3RJEoWHWQRzQfcx6Fn2fDAUKhAddvoopfcjAHfpAWJ+ENc7BTQROprNHARAAx0aat8GU
+ hsusCLc4MIxOQwidecCTRc9Dz/7U2goUwhw2O5j9TPqLtp57VITmHILnvZf6q3QAho2QMQyE
+ DDvHubrdtEoqaaSKxKkFie1uhWNNvXPhwkKLYieyL9m2JdU+b88HaDnpzdyTTR4uH7wk0bBa
+ KbTSgIFDDe5lXInypewPO30TmYNkFSexnnM3n1PBCqiJXsJahE4ZQ+WnV5FbPUj8T2zXS2xk
+ 0LZ0+DwKmZ0ZDovvdEWRWrz3UzJ8DLHb7blPpGhmqj3ANXQXC7mb9qJ6J/VSl61GbxIO2Dwb
+ xPNkHk8fwnxlUBCOyBti/uD2uSTgKHNdabhVm2dgFNVuS1y3bBHbI/qjC3J7rWE0WiaHWEqy
+ UVPk8rsph4rqITsj2RiY70vEW0SKePrChvET7D8P1UPqmveBNNtSS7In+DdZ5kUqLV7rJnM9
+ /4cwy+uZUt8cuCZlcA5u8IsBCNJudxEqBG10GHg1B6h1RZIz9Q9XfiBdaqa5+CjyFs8ua01c
+ 9HmyfkuhXG2OLjfQuK+Ygd56mV3lq0aFdwbaX16DG22c6flkkBSjyWXYepFtHz9KsBS0DaZb
+ 4IkLmZwEXpZcIOQjQ71fqlpiXkXSIaQ6YMEs8WjBbpP81h7QxWIfWtp+VnwNGc6nq5IQDESH
+ mvQcsFS7d3eGVI6eyjCFdcAO8eMAEQEAAcLBXwQYAQIACQUCTqazRwIbDAAKCRD6PaqMvJYe
+ 9fA7EACS6exUedsBKmt4pT7nqXBcRsqm6YzT6DeCM8PWMTeaVGHiR4TnNFiT3otD5UpYQI7S
+ suYxoTdHrrrBzdlKe5rUWpzoZkVK6p0s9OIvGzLT0lrb0HC9iNDWT3JgpYDnk4Z2mFi6tTbq
+ xKMtpVFRA6FjviGDRsfkfoURZI51nf2RSAk/A8BEDDZ7lgJHskYoklSpwyrXhkp9FHGMaYII
+ m9EKuUTX9JPDG2FTthCBrdsgWYPdJQvM+zscq09vFMQ9Fykbx5N8z/oFEUy3ACyPqW2oyfvU
+ CH5WDpWBG0s5BALp1gBJPytIAd/pY/5ZdNoi0Cx3+Z7jaBFEyYJdWy1hGddpkgnMjyOfLI7B
+ CFrdecTZbR5upjNSDvQ7RG85SnpYJTIin+SAUazAeA2nS6gTZzumgtdw8XmVXZwdBfF+ICof
+ 92UkbYcYNbzWO/GHgsNT1WnM4sa9lwCSWH8Fw1o/3bX1VVPEsnESOfxkNdu+gAF5S6+I6n3a
+ ueeIlwJl5CpT5l8RpoZXEOVtXYn8zzOJ7oGZYINRV9Pf8qKGLf3Dft7zKBP832I3PQjeok7F
+ yjt+9S+KgSFSHP3Pa4E7lsSdWhSlHYNdG/czhoUkSCN09C0rEK93wxACx3vtxPLjXu6RptBw
+ 3dRq7n+mQChEB1am0BueV1JZaBboIL0AGlSJkm23kw==
+In-Reply-To: <20241203104806.GN10736@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+Hi Laurent,
 
-Convert cadence-nand-controller.txt to yaml format.
-Update cadence-nand-controller.txt to cdns,hp-nfc.yaml in MAINTAINER file.
+On 03/12/2024 12:48, Laurent Pinchart wrote:
+> On Tue, Dec 03, 2024 at 11:22:15AM +0200, Tomi Valkeinen wrote:
+>> On 03/12/2024 10:56, Laurent Pinchart wrote:
+>>> On Tue, Dec 03, 2024 at 10:01:40AM +0200, Tomi Valkeinen wrote:
+>>>> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>>>>
+>>>> Add support for r8a779h0. It is very similar to r8a779g0, but has only
+>>>> one output.
+>>>>
+>>>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>>>> ---
+>>>>    drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c   | 19 +++++++++++++++++++
+>>>>    drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.h   |  1 +
+>>>>    drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c | 16 ++++++++++------
+>>>>    3 files changed, 30 insertions(+), 6 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
+>>>> index fb719d9aff10..afbc74e18cce 100644
+>>>> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
+>>>> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
+>>>> @@ -545,6 +545,24 @@ static const struct rcar_du_device_info rcar_du_r8a779g0_info = {
+>>>>    	.dsi_clk_mask =  BIT(1) | BIT(0),
+>>>>    };
+>>>>    
+>>>> +static const struct rcar_du_device_info rcar_du_r8a779h0_info = {
+>>>> +	.gen = 4,
+>>>> +	.features = RCAR_DU_FEATURE_CRTC_IRQ
+>>>> +		  | RCAR_DU_FEATURE_VSP1_SOURCE
+>>>> +		  | RCAR_DU_FEATURE_NO_BLENDING
+>>>> +		  | RCAR_DU_FEATURE_NO_DPTSR,
+>>>> +	.channels_mask = BIT(0),
+>>>> +	.routes = {
+>>>> +		/* R8A779H0 has one MIPI DSI output. */
+>>>> +		[RCAR_DU_OUTPUT_DSI0] = {
+>>>> +			.possible_crtcs = BIT(0),
+>>>> +			.port = 0,
+>>>> +		},
+>>>> +	},
+>>>> +	.num_rpf = 5,
+>>>> +	.dsi_clk_mask = BIT(0),
+>>>> +};
+>>>> +
+>>>>    static const struct of_device_id rcar_du_of_table[] = {
+>>>>    	{ .compatible = "renesas,du-r8a7742", .data = &rcar_du_r8a7790_info },
+>>>>    	{ .compatible = "renesas,du-r8a7743", .data = &rzg1_du_r8a7743_info },
+>>>> @@ -571,6 +589,7 @@ static const struct of_device_id rcar_du_of_table[] = {
+>>>>    	{ .compatible = "renesas,du-r8a77995", .data = &rcar_du_r8a7799x_info },
+>>>>    	{ .compatible = "renesas,du-r8a779a0", .data = &rcar_du_r8a779a0_info },
+>>>>    	{ .compatible = "renesas,du-r8a779g0", .data = &rcar_du_r8a779g0_info },
+>>>> +	{ .compatible = "renesas,du-r8a779h0", .data = &rcar_du_r8a779h0_info },
+>>>>    	{ }
+>>>>    };
+>>>>    
+>>>> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.h b/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.h
+>>>> index 5cfa2bb7ad93..d7004f76f735 100644
+>>>> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.h
+>>>> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.h
+>>>> @@ -32,6 +32,7 @@ struct rcar_du_device;
+>>>>    #define RCAR_DU_FEATURE_INTERLACED	BIT(3)	/* HW supports interlaced */
+>>>>    #define RCAR_DU_FEATURE_TVM_SYNC	BIT(4)	/* Has TV switch/sync modes */
+>>>>    #define RCAR_DU_FEATURE_NO_BLENDING	BIT(5)	/* PnMR.SPIM does not have ALP nor EOR bits */
+>>>> +#define RCAR_DU_FEATURE_NO_DPTSR	BIT(6)  /* V4M does not have DPTSR */
+>>>
+>>> Do we need a quirk ? At first glance it seems the DPTSR register is only
+>>> used for DU instances that have two channels, so a check on the number
+>>> of channels should be enough ?
+>>
+>> What do you mean with "DPTSR register is only used for DU instances that
+>> have two channels"? The upstream code sets it for all SoCs, doesn't it,
+>> without any checks?
+> 
+> DPTSR is one of those registers that controls features shared between
+> channels, in this specific case plane assignment to DU channels. The
+> default register value (i.e. all 0's) splits resources between the
+> channels. For DU groups with a single channel, there's no need for
+> resource assignment. Logically speaking, the all 0's register value as
+> documented in instances that have two channels would assign all the
+> resources that exist in the single-channel group to the single channel.
+> When computing the DPTSR value, the driver will (or at least should)
+> therefore always come up with 0x00000000. Writing that to the register
+> should be a no-op.
+> 
+> It's not clear if the register is present or not when the group has a
+> single channel. Some datasheets document the register is not being
+> applicable. Writing to it has never caused issues, so we may be dealing
+> with the hardware just ignoring writes to a non-implemented register, or
+> the register may be there, with only 0x00000000 being a meaningful
+> value. This being said, some people are concerned about writes to
+> registers that are not documented as present, as they could possibly
+> cause issues. Safety certification of the driver could be impacted.
+> We've updated the DU driver over the past few years to avoid those
+> writes for this reason.
+> 
+> TL;DR: yes, the DU driver writes to DPTSR for DU groups with a single
+> channel, but that seem it could be wrong, and we could fix it for all
+> single-channel groups in one go without introducing this feature bit. I
+> can test a patch on a M3 board that has a single channel in the second
+> group.
 
-Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
----
+Do you have docs for r8a77970? Is the register there?
 
-Changes in v4:
-- Fixed the identation for examples as per review comment in v3.
+Do you want me to change the series to use the number of channels here, 
+or shall we go with the current version and change it later if we're 
+confident that the change works?
 
-Changes in v3:
-- Changed file name to cdns,hp-nfc.yaml to match with compatible.
-- Update description, fixed alignment, and used defines for interrupt
-  flag as per review comments in v2.
+  Tomi
 
-Changes in v2:
-- Update name cadence-nand-controller.txt to cadence,nand.yaml in MAINTAINER
-  file to resolve the warning.
-
- .../bindings/mtd/cadence-nand-controller.txt  | 53 -------------
- .../devicetree/bindings/mtd/cdns,hp-nfc.yaml  | 75 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 76 insertions(+), 54 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
- create mode 100644 Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml
-
-diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
-deleted file mode 100644
-index d2eada5044b2..000000000000
---- a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
-+++ /dev/null
-@@ -1,53 +0,0 @@
--* Cadence NAND controller
--
--Required properties:
--  - compatible : "cdns,hp-nfc"
--  - reg : Contains two entries, each of which is a tuple consisting of a
--	  physical address and length. The first entry is the address and
--	  length of the controller register set. The second entry is the
--	  address and length of the Slave DMA data port.
--  - reg-names: should contain "reg" and "sdma"
--  - #address-cells: should be 1. The cell encodes the chip select connection.
--  - #size-cells : should be 0.
--  - interrupts : The interrupt number.
--  - clocks: phandle of the controller core clock (nf_clk).
--
--Optional properties:
--  - dmas: shall reference DMA channel associated to the NAND controller
--  - cdns,board-delay-ps : Estimated Board delay. The value includes the total
--    round trip delay for the signals and is used for deciding on values
--    associated with data read capture. The example formula for SDR mode is
--    the following:
--    board delay = RE#PAD delay + PCB trace to device + PCB trace from device
--    + DQ PAD delay
--
--Child nodes represent the available NAND chips.
--
--Required properties of NAND chips:
--  - reg: shall contain the native Chip Select ids from 0 to max supported by
--    the cadence nand flash controller
--
--See Documentation/devicetree/bindings/mtd/nand-controller.yaml for more details on
--generic bindings.
--
--Example:
--
--nand_controller: nand-controller@60000000 {
--	  compatible = "cdns,hp-nfc";
--	  #address-cells = <1>;
--	  #size-cells = <0>;
--	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
--	  reg-names = "reg", "sdma";
--	  clocks = <&nf_clk>;
--	  cdns,board-delay-ps = <4830>;
--	  interrupts = <2 0>;
--	  nand@0 {
--	      reg = <0>;
--	      label = "nand-1";
--	  };
--	  nand@1 {
--	      reg = <1>;
--	      label = "nand-2";
--	  };
--
--};
-diff --git a/Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml b/Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml
-new file mode 100644
-index 000000000000..0bed37a994c3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/cdns,hp-nfc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cadence NAND controller
-+
-+maintainers:
-+  - Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-+
-+allOf:
-+  - $ref: nand-controller.yaml
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: cdns,hp-nfc
-+
-+  reg:
-+    items:
-+      - description: Controller register set
-+      - description: Slave DMA data port register set
-+
-+  reg-names:
-+    items:
-+      - const: reg
-+      - const: sdma
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  dmas:
-+    maxItems: 1
-+
-+  cdns,board-delay-ps:
-+    description: |
-+      Estimated Board delay. The value includes the total round trip
-+      delay for the signals and is used for deciding on values associated
-+      with data read capture. The example formula for SDR mode is the
-+      following.
-+      board delay = RE#PAD delay + PCB trace to device + PCB trace from device
-+      + DQ PAD delay
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    nand-controller@10b80000 {
-+        compatible = "cdns,hp-nfc";
-+        reg = <0x10b80000 0x10000>,
-+              <0x10840000 0x10000>;
-+        reg-names = "reg", "sdma";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&nf_clk>;
-+        cdns,board-delay-ps = <4830>;
-+
-+        nand@0 {
-+            reg = <0>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1e930c7a58b1..9fab4b4a75a1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5009,7 +5009,7 @@ F:	drivers/media/platform/cadence/cdns-csi2*
- CADENCE NAND DRIVER
- L:	linux-mtd@lists.infradead.org
- S:	Orphan
--F:	Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
-+F:	Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml
- F:	drivers/mtd/nand/raw/cadence-nand-controller.c
- 
- CADENCE USB3 DRD IP DRIVER
--- 
-2.25.1
+>> Most of the SoCs seem to have two channels, but r8a77970 has one.
+>> However, I don't have docs for that one. It could be that it does not
+>> have DPTSR register, and indeed we could use the num_crtcs > 1 check there.
+>>
+>>>>    #define RCAR_DU_QUIRK_ALIGN_128B	BIT(0)	/* Align pitches to 128 bytes */
+>>>>    
+>>>> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c
+>>>> index 2ccd2581f544..132d930670eb 100644
+>>>> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c
+>>>> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c
+>>>> @@ -107,10 +107,12 @@ static void rcar_du_group_setup_didsr(struct rcar_du_group *rgrp)
+>>>>    		 */
+>>>>    		rcrtc = rcdu->crtcs;
+>>>>    		num_crtcs = rcdu->num_crtcs;
+>>>> -	} else if (rcdu->info->gen >= 3 && rgrp->num_crtcs > 1) {
+>>>> +	} else if ((rcdu->info->gen == 3 && rgrp->num_crtcs > 1) ||
+>>>> +		   rcdu->info->gen == 4) {
+>>>>    		/*
+>>>>    		 * On Gen3 dot clocks are setup through per-group registers,
+>>>>    		 * only available when the group has two channels.
+>>>> +		 * On Gen4 the registers are there for single channel too.
+>>>>    		 */
+>>>>    		rcrtc = &rcdu->crtcs[rgrp->index * 2];
+>>>>    		num_crtcs = rgrp->num_crtcs;
+>>>> @@ -185,11 +187,13 @@ static void rcar_du_group_setup(struct rcar_du_group *rgrp)
+>>>>    		dorcr |= DORCR_PG1T | DORCR_DK1S | DORCR_PG1D_DS1;
+>>>>    	rcar_du_group_write(rgrp, DORCR, dorcr);
+>>>>    
+>>>> -	/* Apply planes to CRTCs association. */
+>>>> -	mutex_lock(&rgrp->lock);
+>>>> -	rcar_du_group_write(rgrp, DPTSR, (rgrp->dptsr_planes << 16) |
+>>>> -			    rgrp->dptsr_planes);
+>>>> -	mutex_unlock(&rgrp->lock);
+>>>> +	if (!rcar_du_has(rcdu, RCAR_DU_FEATURE_NO_DPTSR)) {
+>>>> +		/* Apply planes to CRTCs association. */
+>>>> +		mutex_lock(&rgrp->lock);
+>>>> +		rcar_du_group_write(rgrp, DPTSR, (rgrp->dptsr_planes << 16) |
+>>>> +				    rgrp->dptsr_planes);
+>>>> +		mutex_unlock(&rgrp->lock);
+>>>> +	}
+>>>>    }
+>>>>    
+>>>>    /*
+> 
 
 
