@@ -1,133 +1,100 @@
-Return-Path: <devicetree+bounces-127256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 634739E5038
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 09:48:40 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64F4E9E505E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 09:55:48 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E603283480
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 08:48:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04A0518823F6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 08:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 097D11D0E26;
-	Thu,  5 Dec 2024 08:48:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 155ED1D3564;
+	Thu,  5 Dec 2024 08:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0ZtQ6DJE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fxgv+uSp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B991C1C2323;
-	Thu,  5 Dec 2024 08:48:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF73D41C69;
+	Thu,  5 Dec 2024 08:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733388513; cv=none; b=k3eeQw4EMqM87IqdaU+pCzI4QiUOTnxyxfGz3gocNF93TPinFZUvcYB7m8u0ckKvS+x5h/37HpGVetk9ffwuj6yI6O3qH49HfaaRgL55iBAJIHx/QlUkO9kz6ahPrcaIcI+unJDPDmGyXUzGJaEPi1yqV5ZzSoY7heL/RuO+qaM=
+	t=1733388944; cv=none; b=ejhBZI5oUYgtSUutCZtgudsjTUF0+OMdD+MmDDW4Yqop941qzJP12JJOuDxHSIMjfYXoRqbxiFlDFSjD+iprR4R/lYnU570rNtaJYzt4yTlnt7YktX1euxm0AA9nyVoj/D8SKa6k6o6cpgTQO6nrPFNIHzJMd7liye1r+DGUdjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733388513; c=relaxed/simple;
-	bh=AUn8/aAHyVbsysI5oIbofwlY0V0h1c3DllvJCGQWvbI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=U0j6dBFFHMlqGez56qmnW6yUVQvVDirZCVMChxuBxq+NjGNEmv3/J9Wb0AUVE5M0Cxt0+1c4dbXoJWOFs9AdGcMc9pN3rc0COCpJs2U9+jfD5E8AUsunTxcRm+quEov4McqW4fSWeYwe1OXJMC7YPhAICalLiX15c+nCZ24krt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0ZtQ6DJE; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=vkoVyy6uCpLzlhwSnm1vHxEsbOQ+nXvkDsqoKqIAe5Q=; b=0ZtQ6DJEFHGEmBh1Tww482lN82
-	Vej40ed98V17Tt6bWDap4Tpmedv9HxkoQiHuimmhMGDGmNn/+fK0cqEL2k1vz9Jv819Jrs6Z7Lva0
-	7G4cw2t76SRONtp8KTTDxO9Aoce8kvvAcUq4SzOHNEr3rx4ZvP3pFPsQTixTivhmNnE47qVWSD0NM
-	twujlr47srFp0AI9EPCQl48iZF4+bnCqslssmnvlvbEfI+NYRtMyokpPV4Z6cTdRWsGOBIYAt8vf/
-	P9mYZjdcHuJbsLLd9iezUv+i2D7tCE4yHAqhOEqDxzaJtaPk3iqKnmgwa2Rp0fPO9FiymiVHbgMMA
-	TU2AdtIg==;
-Received: from i5e86190f.versanet.de ([94.134.25.15] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tJ7Wz-0001jK-VE; Thu, 05 Dec 2024 09:48:17 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Val Packett <val@packett.cool>
-Cc: Val Packett <val@packett.cool>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] clk: rockchip: add clock ID for CIF0/1 on RK3066
-Date: Thu, 05 Dec 2024 09:48:17 +0100
-Message-ID: <5336726.6fTUFtlzNn@diego>
-In-Reply-To: <20241205055122.11613-1-val@packett.cool>
-References: <20241205055122.11613-1-val@packett.cool>
+	s=arc-20240116; t=1733388944; c=relaxed/simple;
+	bh=fTIKkkwYVjilLYvRGXSnMs4omBzU25Ovg8SOWw6OiPQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hwMNF3OG78O5cr3cTOlw9pT8nw14RpQ+QP65EDaYISZUl94jyvX9ZWTgUGLwEsFqyDd1iejwAB3kwrPTfi64NxzozlMVhxWMvrRQEtvtVOVrCCzJM6Rw2ylIYSFAnSnFvTS2L42EEEcJ/Uk3OY/ocUd1RPdoLWmdXeJxhuP7K0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fxgv+uSp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE40DC4CED1;
+	Thu,  5 Dec 2024 08:55:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733388943;
+	bh=fTIKkkwYVjilLYvRGXSnMs4omBzU25Ovg8SOWw6OiPQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fxgv+uSpzDZefsoA62AoXgIgKinrGVn5+vhhHgfHF4Ibq3o0h0/8dO12B/ccLU/Ck
+	 1cUHGTKVMKL9Rm3h5JZ0D9JaK4fmTC0CQGHHsxLsGKu+Q1IYMIehySWs/Xf+WWMfGH
+	 e0e5XaOhg+NwS639wJu+ZP6qE/ObkdRcJs3l5u71gi55jBdZAGZqTdU067PXosxf1E
+	 hUooJeTNv6XfsUHhZ026Xbrd0Iz3gFLHCUOasMJ/P8V0yJN4+E5urVPoJ+TBFvyAZx
+	 RS2FaFF0LmUKA/VjWjihwPNKYg2mK4u2dmFRtFdRBxdR+5UniCLPYegqdoBlOfZHtG
+	 SUtFI0g05Pm0Q==
+Date: Thu, 5 Dec 2024 09:55:40 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	eraretuya@gmail.com
+Subject: Re: [PATCH v4 06/10] dt-bindings: iio: accel: add interrupt-names
+Message-ID: <r23e4axzdjn423yl44lv2sjprywtjymvgramrrfoc2lv6ebeui@hzbm4ilbyvhw>
+References: <20241204182451.144381-1-l.rubusch@gmail.com>
+ <20241204182451.144381-7-l.rubusch@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241204182451.144381-7-l.rubusch@gmail.com>
 
-Hi Val,
-
-Am Donnerstag, 5. Dezember 2024, 06:50:46 CET schrieb Val Packett:
-> RK3066 does have two "CIF" video capture interface blocks, add their
-> corresponding clock IDs so that they could be used.
+On Wed, Dec 04, 2024 at 06:24:47PM +0000, Lothar Rubusch wrote:
+> Add interrupt-names INT1 and INT2 for the two interrupt lines of the
+> sensor. Only one line will be connected for incoming events. The driver
+> needs to be configured accordingly. If no interrupt line is set up, the
+> sensor will still measure, but no events are possible.
 > 
-> Signed-off-by: Val Packett <val@packett.cool>
-
-please split this into two patches
-- addition of the clock-ids to the dt-binding header
-- setting the clock-ids in the clock driver
-
-Thanks
-Heiko
-
+> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
 > ---
->  drivers/clk/rockchip/clk-rk3188.c             | 4 ++--
->  include/dt-bindings/clock/rk3188-cru-common.h | 2 ++
->  2 files changed, 4 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/iio/accel/adi,adxl345.yaml    | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
-> diff --git a/drivers/clk/rockchip/clk-rk3188.c b/drivers/clk/rockchip/clk-rk3188.c
-> index 684233e72105..81e94b338d0f 100644
-> --- a/drivers/clk/rockchip/clk-rk3188.c
-> +++ b/drivers/clk/rockchip/clk-rk3188.c
-> @@ -344,7 +344,7 @@ static struct rockchip_clk_branch common_clk_branches[] __initdata = {
+> diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> index 280ed479ef5..a4c2cefe1a4 100644
+> --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
+> @@ -37,6 +37,15 @@ properties:
+>    interrupts:
+>      maxItems: 1
 >  
->  	GATE(0, "pclkin_cif0", "ext_cif0", 0,
->  			RK2928_CLKGATE_CON(3), 3, GFLAGS),
-> -	INVERTER(0, "pclk_cif0", "pclkin_cif0",
-> +	INVERTER(PCLK_CIF0, "pclk_cif0", "pclkin_cif0",
->  			RK2928_CLKSEL_CON(30), 8, IFLAGS),
->  
->  	FACTOR(0, "xin12m", "xin24m", 0, 1, 2),
-> @@ -602,7 +602,7 @@ static struct rockchip_clk_branch rk3066a_clk_branches[] __initdata = {
->  
->  	GATE(0, "pclkin_cif1", "ext_cif1", 0,
->  			RK2928_CLKGATE_CON(3), 4, GFLAGS),
-> -	INVERTER(0, "pclk_cif1", "pclkin_cif1",
-> +	INVERTER(PCLK_CIF1, "pclk_cif1", "pclkin_cif1",
->  			RK2928_CLKSEL_CON(30), 12, IFLAGS),
->  
->  	COMPOSITE(0, "aclk_gpu_src", mux_pll_src_cpll_gpll_p, 0,
-> diff --git a/include/dt-bindings/clock/rk3188-cru-common.h b/include/dt-bindings/clock/rk3188-cru-common.h
-> index 01e14ab252a7..dd988cc9d582 100644
-> --- a/include/dt-bindings/clock/rk3188-cru-common.h
-> +++ b/include/dt-bindings/clock/rk3188-cru-common.h
-> @@ -103,6 +103,8 @@
->  #define PCLK_PERI		351
->  #define PCLK_DDRUPCTL		352
->  #define PCLK_PUBL		353
-> +#define PCLK_CIF0		354
-> +#define PCLK_CIF1		355
->  
->  /* hclk gates */
->  #define HCLK_SDMMC		448
-> 
+> +  interrupt-names:
+> +    description: Use either INT1 or INT2 for events, or ignore events.
+> +    minItems: 1
+> +    maxItems: 2
+
+No improvements, no responses and according to commit msg you have only
+one item, so instead above and below just:
+
+description: .........
+items:
+ - enum: [ int1, int2]
 
 
-
+Best regards,
+Krzysztof
 
 
