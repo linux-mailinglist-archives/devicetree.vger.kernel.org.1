@@ -1,147 +1,158 @@
-Return-Path: <devicetree+bounces-127459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 452F09E57C4
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 14:48:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BCD59E577C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 14:44:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9966616469A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:48:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E09CA16234B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:44:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3858219A64;
-	Thu,  5 Dec 2024 13:46:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00AAB218ABE;
+	Thu,  5 Dec 2024 13:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="hNJBtkMu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pSeNvS1F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8360F218AD1;
-	Thu,  5 Dec 2024 13:46:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4CC820D51C;
+	Thu,  5 Dec 2024 13:44:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733406374; cv=none; b=uNWS3oFDQ9sXdR2w7izjjcxZMkMzjEBlaGWUg+KKPIJeVl9uVZ4RYUJDLFuWVNgB9vbPbCWGakgk7Inxx1sxtVMfd1RITkWLC4wT+Eiih2iBVqcdxs84qbEJNtY0blssw1OxeXF9EKbCm8nFn7j191dbf2WzU9e22qv/mDFRylE=
+	t=1733406273; cv=none; b=VLb6t9Ji8OMUAjhv3EvSE1YeqJvgCqW2cY6CCeGRMe+EDB5xHjfB+61cnUCx02kdsfIaEpIv+MjPBxjVk0m4rZ6fGBHzmaFibSKMlQ8StejnXjQB9YlqBfD/tA3+GAZfJMlnWDfpI1uPyzVeq3KmUsW/uMKQCYBJJLcNgHT+l9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733406374; c=relaxed/simple;
-	bh=zXUtQdF3kJoehY2VsMC5IChMRcaxhXxdQd/mnE6ECdk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QKkrRGWvmICBZRqqvetVnyGvCAnpTp0Sgv9lg2IimNNeK8HBna5iL8eyZsNowF+8yrohn7+ShEcYguXkrB6t+99IL6DKajmAPMvtii4BLdBGwI6ZmyAfu2jYkAkt9UkM5mlJ5bopMazYbQa7G91r1q9GOs+wdQSdDtzpqiHQ/WI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=hNJBtkMu; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5AWiAB022747;
-	Thu, 5 Dec 2024 14:45:36 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	9gu2Vz8xpuhrUOAG06JEy41cILvsNVFpEmqGgn17RPI=; b=hNJBtkMubMRskCIV
-	tJ9kgNC+p/g/+EdpcNlmMkE3AV1339M2Z7QAJSn7FahTLfLY5QApK9kvQNA4lAPk
-	RMuF0+Aiha0DVV8SzRvtTJIZu30TEUsO2JvNDo/qV3EbLAYHXpvarjk2KkG3g25k
-	FE7608a6Eu/k911tngGm6ODPB28VOE8U2PfIqzK7tC9epIps0jaaLArm83vhGnNn
-	R/LoSo2VFVZmq+SNylQXd9jL1Zbsuzk5nwzz+fio9f/wy6vmJXpJIjy0jAmUAGVa
-	fukvaD9QzHR6q/vZQRDUxDkmLjTelasVnJQVyhAgRPiBioPbXhHq/91zwSmukUSG
-	s7GVyQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 437tx2g7mq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Dec 2024 14:45:36 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 94F6240047;
-	Thu,  5 Dec 2024 14:44:15 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 9A014264FCA;
-	Thu,  5 Dec 2024 14:41:27 +0100 (CET)
-Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 5 Dec
- 2024 14:41:26 +0100
-Message-ID: <569904ad-2b70-4a58-98fe-4f24e1089e17@foss.st.com>
-Date: Thu, 5 Dec 2024 14:41:26 +0100
+	s=arc-20240116; t=1733406273; c=relaxed/simple;
+	bh=7qd9ukMCfLX+3kIyTtuM6RCc1gUTy6aBIeGgFPUmZM0=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AL/wdvFtUawH28VwBVeFv3UIutRhmp3EPcq+QQybf7e7o64ZSieItiBXbTnvoOnSddKYUJ35yzxpE6xljkk08UP0QBAOCs4YYi3YdZZUg87q49y0rlvbVyBH4Ht855lf0zYLoZDIgJnmXsIF0OoELgOulhj4zIHZ+fIUrQCcNO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pSeNvS1F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 549C1C4CED1;
+	Thu,  5 Dec 2024 13:44:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733406273;
+	bh=7qd9ukMCfLX+3kIyTtuM6RCc1gUTy6aBIeGgFPUmZM0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=pSeNvS1FGTNF5y+od7mzfK7pk/9WxWuXPQzi5NTurX7TbotP1nEyp4F5v7XRqrxPR
+	 mbvo8QpaSWo6Hv2U2yVX62Y3jZ08zySNZCnsm6MZJjpzYxcQSpVJ1Waax48jqmKk7G
+	 KYEyoRgvQL6th3hJXwVQfUALAF6GvNHF0m1ifjOos0D4/0cIgPhJdEIPhK878NiF70
+	 IrmC4lmAogYFGHxJoVQEIIkj3XZjXN5zZRowgyyTij6G/GNKJhgg7zVTznDNuGSnYR
+	 46xfspmrtQtnhxJalP4uu5iAR8qjVpnsJFI2uj9f9joXux+jFlO1HXdUk+IiX0e+vf
+	 mS/YiKUQV1I6w==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1tJC9f-000pdd-5a;
+	Thu, 05 Dec 2024 13:44:31 +0000
+Date: Thu, 05 Dec 2024 13:44:30 +0000
+Message-ID: <86frn2tfb5.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: Johan Hovold <johan@kernel.org>,
+	<sudeep.holla@arm.com>,
+	<cristian.marussi@arm.com>,
+	<andersson@kernel.org>,
+	<konrad.dybcio@linaro.org>,
+	<robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>,
+	<dmitry.baryshkov@linaro.org>,
+	<linux-kernel@vger.kernel.org>,
+	<linux-arm-msm@vger.kernel.org>,
+	<devicetree@vger.kernel.org>,
+	<quic_rgottimu@quicinc.com>,
+	<quic_kshivnan@quicinc.com>,
+	<conor+dt@kernel.org>,
+	<quic_nkela@quicinc.com>,
+	<quic_psodagud@quicinc.com>,
+	<abel.vesa@linaro.org>
+Subject: Re: [PATCH V7 0/2] qcom: x1e80100: Enable CPUFreq
+In-Reply-To: <0fd14fb1-736d-cf7f-128f-658bda0de583@quicinc.com>
+References: <20241030130840.2890904-1-quic_sibis@quicinc.com>
+	<ZyTQ9QD1tEkhQ9eu@hovoldconsulting.com>
+	<86plnf11yf.wl-maz@kernel.org>
+	<ZyTjiiGc2ApoID9Y@hovoldconsulting.com>
+	<86o72z10b6.wl-maz@kernel.org>
+	<ZypOY-NCDN9fdMAR@hovoldconsulting.com>
+	<86ed3p1rdq.wl-maz@kernel.org>
+	<0fd14fb1-736d-cf7f-128f-658bda0de583@quicinc.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: PCI: Add STM32MP25 PCIe root complex
- bindings
-To: Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh+dt@kernel.org>
-CC: <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <bhelgaas@google.com>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
-        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20241203222515.GA2967814@bhelgaas>
-Content-Language: en-US
-From: Christian Bruel <christian.bruel@foss.st.com>
-In-Reply-To: <20241203222515.GA2967814@bhelgaas>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: quic_sibis@quicinc.com, johan@kernel.org, sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, dmitry.baryshkov@linaro.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, conor+dt@kernel.org, quic_nkela@quicinc.com, quic_psodagud@quicinc.com, abel.vesa@linaro.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
+On Thu, 05 Dec 2024 11:23:05 +0000,
+Sibi Sankar <quic_sibis@quicinc.com> wrote:
+> 
+> 
+> 
+> On 11/5/24 23:42, Marc Zyngier wrote:
+> > On Tue, 05 Nov 2024 16:57:07 +0000,
+> > Johan Hovold <johan@kernel.org> wrote:
+> >> 
+> >> On Fri, Nov 01, 2024 at 02:43:57PM +0000, Marc Zyngier wrote:
+> >>> On Fri, 01 Nov 2024 14:19:54 +0000,
+> >>> Johan Hovold <johan@kernel.org> wrote:
+> >> 
+> >>>> The side-effects and these remaining warnings are addressed by this
+> >>>> series:
+> >>>> 
+> >>>> 	https://lore.kernel.org/all/20241030125512.2884761-1-quic_sibis@quicinc.com/
+> >>>> 
+> >>>> but I think we should try to make the warnings a bit more informative
+> >>>> (and less scary) by printing something along the lines of:
+> >>>> 
+> >>>> 	arm-scmi arm-scmi.0.auto: [Firmware Bug]: Ignoring duplicate OPP 3417600 for NCC
+> >>>> 
+> >>>> instead.
+> >>> 
+> >>> Indeed. Seeing [Firmware Bug] has a comforting feeling of
+> >>> familiarity... :)
+> >>> 
+> >>> I wonder whether the same sort of reset happen on more "commercial"
+> >>> systems (such as some of the laptops). You expect that people look at
+> >>> the cpufreq stuff closely, and don't see things exploding like we are.
+> >> 
+> >> I finally got around to getting my Lenovo ThinkPad T14s to boot (it
+> >> refuses to start the kernel when using GRUB, and it's not due to the
+> >> known 64 GB memory issue as it only has 32 GB)
+> > 
+> > <cry>
+> > I know the feeling. My devkit can't use GRUB either, so I added a
+> > hook to the GRUB config to generate EFI scripts that directly execute
+> > the kernel with initrd, dtb, and command line.
+> > 
+> > This is probably the worse firmware I've seen in a very long while.
+> 
+> The PERF_LEVEL_GET implementation in the SCP firmware side
+> is the reason for the crash :|, currently there is a bug
+> in the kernel that picks up index that we set with LEVEL_SET
+> with fast channel and that masks the crash. I was told the
+> crash happens when idle states are enabled and a regular
+> LEVEL_GET message is triggered from the kernel. This was
+> fixed a while back but it will take a while to flow back
+> to all the devices. It should already be out CRD's.
 
+But this fix will never reach some platforms, such as the devkit, and
+we cannot mandate that people update to the latest anyway. How do we
+distinguish between good and bad firmware versions?
 
-On 12/3/24 23:25, Bjorn Helgaas wrote:
-> On Tue, Nov 26, 2024 at 04:51:15PM +0100, Christian Bruel wrote:
->> Document the bindings for STM32MP25 PCIe Controller configured in
->> root complex mode.
->>
->> Supports 4 legacy interrupts and MSI interrupts from the ARM
->> GICv2m controller.
-> 
-> s/legacy/INTx/
-> 
->> STM32 PCIe may be in a power domain which is the case for the STM32MP25
->> based boards.
->>
->> Supports wake# from wake-gpios
-> 
-> s/wake#/WAKE#/
-> 
->> +  wake-gpios:
->> +    description: GPIO controlled connection to WAKE# input signal
-> 
-> I'm not a hardware guy, but this sounds like a GPIO that *reads*
-> WAKE#, not controls it.
+Thanks,
 
-Rephrasing as
-"GPIO used as WAKE# input signal" (output for the endpoint bindings)
+	M.
 
-> 
->> +    pcie@48400000 {
->> +        compatible = "st,stm32mp25-pcie-rc";
->> +        device_type = "pci";
->> +        num-lanes = <1>;
-> 
-> num-lanes applies to a Root Port, not to a Root Complex.  I know most
-> bindings conflate Root Ports with the Root Complex, maybe because many
-> of these controllers only support a single Root Port?
-> 
-> But are we ever going to separate these out?  I assume someday
-> controllers will support multiple Root Ports and/or additional devices
-> on the root bus, like RCiEPs, RCECs, etc., and we'll need per-RP phys,
-> max-link-speed, num-lanes, reset-gpios, etc.
-> 
-> Seems like it would be to our benefit to split out the Root Ports when
-> we can, even if the current hardware only supports one, so we can
-> start untangling the code and data structures.
-
-OK. and we support only 1 lane anyway, so drop it.
-
-thanks,
-
-> 
-> Bjorn
+-- 
+Without deviation from the norm, progress is not possible.
 
