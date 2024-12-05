@@ -1,118 +1,319 @@
-Return-Path: <devicetree+bounces-127595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 187219E5C85
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:06:41 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 335DE9E5C8F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:09:21 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCFCE285A4B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:06:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8E8A1881496
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94B3222565;
-	Thu,  5 Dec 2024 17:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D98222596;
+	Thu,  5 Dec 2024 17:09:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TgRMLaLh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tw7LGNHZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DEE3218AD3;
-	Thu,  5 Dec 2024 17:06:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 924A4218AD3;
+	Thu,  5 Dec 2024 17:09:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733418396; cv=none; b=o0HvxZjCXlxLdqvQciulbhVJTya5AcXcF6p1bxIStpqzFNGiuFIpi0s6l9rft5+UmXUBv1demYKKlAEpuICw1s93TJ3fCNMF9H2jC7D5YEcfnNjqndX05YYhds4ZSHeK/tR6hN9ju6iFYdP89L31E1FUM8hDp1kt0GzvUMsARmM=
+	t=1733418556; cv=none; b=itSd/eo5HkteKY39UmSj4qK7/STUoCY4wefKbMeS5wubFf/UGwino7JtfrYohc1xjqHN6/lDKzii2TFqu/CdxdsJnvcTNev45JaWdGLa+Uve2ZGH6xILMppFgaS19HT8eKwlmJ8uVCIBTbkrHJtlEHoqyxqCN0iOpxpbejG+vRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733418396; c=relaxed/simple;
-	bh=iPT5M0klK62MYU+wd2cp4IU14x9+Ef4oWIX3kmTIAto=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UxbHos+YzT0pgtVd+R5pbfnYp0lAY72WKWc5rvJjdJcos6n5e0yE8mM6yMmXUGQI0lgXIymMxBBc42l1/u3+g4DSuZ+KZS12ZoZaFqaU7keLonbu6klDDpMqooHUUs2TaUtwLaKugFdBgDiCmQMBBB78re5Ee7mBN59Ap3BpTRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TgRMLaLh; arc=none smtp.client-ip=209.85.208.53
+	s=arc-20240116; t=1733418556; c=relaxed/simple;
+	bh=I4DEoRstOFcKsUpfYkwh7Milk7wreQOuPu9qeHfesrE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AokQKGgkbvKS0CHRVUBHGW3jxUqfOBO1pNFudbnTPZCAg7xaQcdiDNP9zF0Q1NDpfNjcY0QubSrJOxvatHYOswu84QdlZLK8khIOgpH+7HnAbL/S/OF4R5UYdOHd+y/SsAg4VuLuj0xnb0oN+QaBn8NJy9BM/yXxacI4e0ZhHIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tw7LGNHZ; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5d0d81eff58so177761a12.0;
-        Thu, 05 Dec 2024 09:06:34 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a9a977d6cc7so158667366b.3;
+        Thu, 05 Dec 2024 09:09:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733418393; x=1734023193; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vjMs6gUjd0BG/RW8WnCIcN/BRNzXbUwn3T+OLY++VM8=;
-        b=TgRMLaLhOIh379PtsnLvA/oD4ZFISLefQn20q2Pqc+iDGd4kXGeC+f891ZXLzKNT1o
-         V7/uo0iqs3qw0RrMwrsZsruwIv2zWNCcmCCJSFlVurP/0d/q0H/Djuo/zUMJK4icNY9t
-         Jd5yI1nxbE8Ry9Wtc+S/1ENeYekis5KO2Zyy2lnrwjCNdcD/vV9Lkyxqgpaki/ZQTgX7
-         seJ2l2HrTMikyfqryOSfFUdFNoYRt/IjQMkp0ciVAJAezTJhTD6RNswNqJ7+/XV9Dx0u
-         xRkDyL1EW9LRBvLrbDjBtj8VegAab0NCKTrUO9Ku4jKqVRkKwrcHR68OzJkGvEtDnQTC
-         Nxyw==
+        d=gmail.com; s=20230601; t=1733418553; x=1734023353; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vLTMW2Dj42F10wol8zzpR4Mkc6DH3Pu7ITJmFdh0VZI=;
+        b=Tw7LGNHZHJgXEwGZRzaSma+/oMe1KFu6OhEzUKmJ4Fp0hxZ0uxI8RrPqePbu4p6pOQ
+         4xpR05CMdiGFArGeY/cQHoVB82kgQmt3ypLdaGz1DIhXppcS6tWMWHV+tHbaC1J+7oL0
+         QqbaTgtocbZ6lSvuSKD4wRX2arsHga7pWa3mOnL7TBOcCK8vx1mswHmY+zoAaXB9CcSe
+         tPI3UHAo5uexNchQ80pqDhAVL85OPKKhQqIT/MjLTyXorCnywcBQtc4EuoT96sF7Blhp
+         MpyXy1in2uRRJm3jPifdxKoHQ8IS/x3OcteJPENtcIJg4MJHYWBgV6UwyD7O4Mf8HbQO
+         F8ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733418393; x=1734023193;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vjMs6gUjd0BG/RW8WnCIcN/BRNzXbUwn3T+OLY++VM8=;
-        b=RSmYF7nIxQ47FVEUWwUvdts5vrQiSJ+sbTL6O+csAb6RlNQoKJJi8Ss/fcd3CYnmZY
-         qxirRc3j6b+WDzuyDR7CpPqf9aeVq3pKgMFycYUG3RN2sbCpwj+S9UoKNjXReh5dPQP7
-         FwIQqR/5YH6OEfd+MIeDBy0MI6H3CcUzRiJZou27ZMQUFjSOd8ZF/55XXISLVc1/aCAL
-         iQKZlsb3Dyj4q1KdMxHOLygKyHwouHuwd/9YQDJ1nd/FqcwhhEvEfvjffHOI5I2r5QP8
-         R9ZEAi+MjbPZ0cIV+0EUt/ILsRnZirfoVgmfq0xDEUzNdPjwBIYMr66+zij0XHThRJ9N
-         44bQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVH1PBCOliaWow7S2vHC89V9tF/YU/KvZ4rIl07WDwLYE3NHxRhjRVjsC2OkgA87Yjqyw9bJIFTClsZ@vger.kernel.org, AJvYcCVgHccQot2CsFfTPIuSt14kctKeLZA15NyxBkQD09pIvZbvbpgi9d4lVYJjlWj2njc7UrHc7CXU@vger.kernel.org, AJvYcCVzc6jTNSOuVUVAwn3KCk9vFsV8blLfWdrYg3v0nhLB5xCeoynrDa0yAKXB0lt7wLbWIhf11Q8qYh2xQyVi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5mNJNxKzKlgwCl7V4c9WVPE0JL9A5HuwLv8bf46hUuG10qexB
-	yUvyDsJWKuPvGXfnAN5Jo+TNZKXqRCkyZNXbKn57QgOf3du1BsL7
-X-Gm-Gg: ASbGncv3DiwDL9zegCJWTfbMfZWA7h4A7Hxr1JN11vXc3ZA2J8w2IVlBA9Vrp1O/zXy
-	NMN529iW1BsHIHpSmzQtz6gpvTPDDq2bsqxbXAVic+OWKCQ1xsS4cdO2aELmQnj2ODSj/iB6CRC
-	MyU4EMl+m5n8g79WV4/Sy2oWvXg48T/oqjoi94SnbEiXPV2FFxOpwnD763GSKAiTBjXl4sKjurf
-	x3XtFBVpqNbTTJWgPzk+Qbc0NZGfR2GYDyjE0A=
-X-Google-Smtp-Source: AGHT+IGVP0gMvyh1uwNQ7wahF1r0luVrywYn93gUAbNzVHLatXVRhr85Yq515hba/uh806NJI4WL+A==
-X-Received: by 2002:a17:907:2d8b:b0:a99:f388:6f49 with SMTP id a640c23a62f3a-aa5f7ece4c5mr459441866b.9.1733418393054;
-        Thu, 05 Dec 2024 09:06:33 -0800 (PST)
-Received: from skbuf ([188.25.135.117])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa625e972absm116213166b.70.2024.12.05.09.06.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Dec 2024 09:06:32 -0800 (PST)
-Date: Thu, 5 Dec 2024 19:06:29 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH v9 3/4] net: dsa: Add Airoha AN8855 5-Port
- Gigabit DSA Switch driver
-Message-ID: <20241205170629.ww7qcvgbqdf5ipcj@skbuf>
-References: <20241205145142.29278-1-ansuelsmth@gmail.com>
- <20241205145142.29278-4-ansuelsmth@gmail.com>
+        d=1e100.net; s=20230601; t=1733418553; x=1734023353;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vLTMW2Dj42F10wol8zzpR4Mkc6DH3Pu7ITJmFdh0VZI=;
+        b=X1VSUQoT8gXIGZnc9XukfuTFkYuOk9dhrAy0gMZTh8gINYq5w/KfI5TI0vsmKzcI+A
+         1MIQpSuKj5hbFPLh40ZcC6K1B5I6DJBMspGjRkli4WNBwf1GBhhXBmvcd5Aj/5qZiH3I
+         pq8n7fCZjoMVAjpGv5I+crEQuS302X2a3/C2Mr0W1ssie4iWn+U6v9tOVlBMBAOncJDy
+         dIbnGGgjnpsd9ybdZmEj2AYaLcZlI1Q11gIYArnn9IpYj8t+4mVPWPXMUwmNlndq6B8k
+         6zCOVYf+hXX1BXhP+7y4UXGo9roM06KME75Rdg7IJ9vIXEpw7+eUqmfCie5oOtaDLRsd
+         uLMw==
+X-Forwarded-Encrypted: i=1; AJvYcCU53rlW0loGXEfx/XYEYyrN8PMc6lgte4b5n8Obdw6dYtfW4qqrhcpGNz57IulSwV5cfZHrV8DsqjwSGhLR@vger.kernel.org, AJvYcCUdk76B7n9HloQLH+vMh2SzE2yUZNQFw1gcpPuZRQb3D/EzHJCUBWpZFfdM072V5gJmzIIkklzRKXw4@vger.kernel.org, AJvYcCX4bkW/Z6eKAmxuOhdnXGvL0GiZgh/Cn354zjsQTXJhl4MGtawVt4QI9NnbnSbVENuQrMPBMv4o1NDy@vger.kernel.org
+X-Gm-Message-State: AOJu0YysR8VXARiXa+RvbQXoLHocfA92BZJElgupnu0OM7aLV8/lkQng
+	0d3ez21V3jrJFu6M39eLO0wH9XU95a8kpqwZUQnE5qXAXR1Qw26v
+X-Gm-Gg: ASbGncvHIb42v6C12P4Cgj8EbJIJr0y76n0P3SvyUrwEVY5HkgDUj4m7QF6yh6k+Efy
+	XOvEabkS59YuZx535GfWajW9Rjz3o/iKel4gWwVqtfyX8kWaIPHYmChX9V5kaq8EFQnkCCW81TS
+	Bu0PHRnGI1GBbAmxi8/jCjB0oswfcYelaXPxuVSMmUQArWTstr1NLwBdpn8zkfMAFFV9XU1Dmhf
+	9k5v8jeXrPaEJKTUKowwpO1VLGAB6E0bOaZ/TzPKD6S5XVg8m4j01pCpn+uaflhqBDRnv/33k70
+	aWvJCzNbAdX6SVPC02WwSY8+yYcLZlMr3B8PainH+l7aQvgaYxu+DqHV58gJ4g0WzTGfzbgrG0o
+	JveaXsw==
+X-Google-Smtp-Source: AGHT+IHp4L56zZx8xVirTEtsBRdCV6sYlMC7xhSpCQg4VJ/JPZqPaD/WMENWNwroqnO/GnB/9bnPDw==
+X-Received: by 2002:aa7:d455:0:b0:5d0:fb56:3f with SMTP id 4fb4d7f45d1cf-5d10cb5649emr16914349a12.12.1733418551999;
+        Thu, 05 Dec 2024 09:09:11 -0800 (PST)
+Received: from ?IPV6:2003:df:bf0d:b400:f2bf:b7b6:c9e8:82e1? (p200300dfbf0db400f2bfb7b6c9e882e1.dip0.t-ipconnect.de. [2003:df:bf0d:b400:f2bf:b7b6:c9e8:82e1])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa62601b620sm118305566b.125.2024.12.05.09.09.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Dec 2024 09:09:11 -0800 (PST)
+Message-ID: <e2c202c1-6bbe-4b6c-ae97-185fe2aed0e5@gmail.com>
+Date: Thu, 5 Dec 2024 18:09:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241205145142.29278-4-ansuelsmth@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 13/13] samples: rust: add Rust platform sample driver
+To: Danilo Krummrich <dakr@kernel.org>, gregkh@linuxfoundation.org,
+ rafael@kernel.org, bhelgaas@google.com, ojeda@kernel.org,
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
+ a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
+ fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+ ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+ daniel.almeida@collabora.com, saravanak@google.com, dirk.behme@de.bosch.com,
+ j@jannau.net, fabien.parent@linaro.org, chrisi.schrefl@gmail.com
+Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241205141533.111830-1-dakr@kernel.org>
+ <20241205141533.111830-14-dakr@kernel.org>
+Content-Language: en-US
+From: Dirk Behme <dirk.behme@gmail.com>
+In-Reply-To: <20241205141533.111830-14-dakr@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 05, 2024 at 03:51:33PM +0100, Christian Marangi wrote:
-> +	.port_fdb_add = an8855_port_fdb_add,
-> +	.port_fdb_del = an8855_port_fdb_del,
-> +	.port_fdb_dump = an8855_port_fdb_dump,
-> +	.port_mdb_add = an8855_port_mdb_add,
-> +	.port_mdb_del = an8855_port_mdb_del,
+Hi Danilo,
 
-Please handle the "struct dsa_db" argument of these functions, so that
-you can turn on ds->fdb_isolation. It is likely that instead of a single
-AN8855_FID_BRIDGED, there needs to be a unique FID allocated for each
-VLAN-unaware bridge in order for their FDBs to be isolated from each
-other, and so that the same MAC address could live under both bridges.
+On 05.12.24 15:14, Danilo Krummrich wrote:
+> Add a sample Rust platform driver illustrating the usage of the platform
+> bus abstractions.
+> 
+> This driver probes through either a match of device / driver name or a
+> match within the OF ID table.
+> 
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+
+Not a review comment, but a question/proposal:
+
+What do you think to convert the platform sample into an example/test?
+And drop it in samples/rust then? Like [1] below?
+
+We would have (a) a complete example in the documentation and (b) some
+(KUnit) test coverage and (c) have one patch less in the series and
+(d) one file less to maintain long term.
+
+I think to remember that it was mentioned somewhere that a
+documentation example / KUnit test is preferred over samples/rust (?).
+
+Just an idea :)
+
+Best regards
+
+Dirk
+
+[1]
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ae576c842c51..365fc48b7041 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -7035,7 +7035,6 @@ F:	rust/kernel/device_id.rs
+ F:	rust/kernel/devres.rs
+ F:	rust/kernel/driver.rs
+ F:	rust/kernel/platform.rs
+-F:	samples/rust/rust_driver_platform.rs
+
+ DRIVERS FOR OMAP ADAPTIVE VOLTAGE SCALING (AVS)
+ M:	Nishanth Menon <nm@ti.com>
+diff --git a/rust/kernel/platform.rs b/rust/kernel/platform.rs
+index 868cfddb75a2..77aeb6fc2120 100644
+--- a/rust/kernel/platform.rs
++++ b/rust/kernel/platform.rs
+@@ -142,30 +142,55 @@ macro_rules! module_platform_driver {
+ /// # Example
+ ///
+ ///```
+-/// # use kernel::{bindings, c_str, of, platform};
++/// # mod mydriver {
++/// #
++/// # // Get this into the scope of the module to make the
+assert_eq!() buildable
++/// # static __DOCTEST_ANCHOR: i32 = core::line!() as i32 - 4;
++/// #
++/// # use kernel::{c_str, of, platform, prelude::*};
++/// #
++/// struct MyDriver {
++///     pdev: platform::Device,
++/// }
+ ///
+-/// struct MyDriver;
++/// struct Info(u32);
+ ///
+ /// kernel::of_device_table!(
+ ///     OF_TABLE,
+ ///     MODULE_OF_TABLE,
+ ///     <MyDriver as platform::Driver>::IdInfo,
+-///     [
+-///         (of::DeviceId::new(c_str!("test,device")), ())
+-///     ]
++///     [(of::DeviceId::new(c_str!("test,rust-device")), Info(42))]
+ /// );
+ ///
+ /// impl platform::Driver for MyDriver {
+-///     type IdInfo = ();
++///     type IdInfo = Info;
+ ///     const OF_ID_TABLE: platform::IdTable<Self::IdInfo> = &OF_TABLE;
+ ///
+-///     fn probe(
+-///         _pdev: &mut platform::Device,
+-///         _id_info: Option<&Self::IdInfo>,
+-///     ) -> Result<Pin<KBox<Self>>> {
+-///         Err(ENODEV)
++///     fn probe(pdev: &mut platform::Device, info:
+Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>> {
++///         dev_dbg!(pdev.as_ref(), "Probe Rust Platform driver
+sample.\n");
++///
++///         assert_eq!(info.unwrap().0, 42);
++///
++///         let drvdata = KBox::new(Self { pdev: pdev.clone() },
+GFP_KERNEL)?;
++///
++///         Ok(drvdata.into())
++///     }
++/// }
++///
++/// impl Drop for MyDriver {
++///     fn drop(&mut self) {
++///         dev_dbg!(self.pdev.as_ref(), "Remove Rust Platform driver
+sample.\n");
+ ///     }
+ /// }
++///
++/// kernel::module_platform_driver! {
++///     type: MyDriver,
++///     name: "rust_driver_platform",
++///     author: "Danilo Krummrich",
++///     description: "Rust Platform driver",
++///     license: "GPL v2",
++/// }
++/// # }
+ ///```
+ pub trait Driver {
+     /// The type holding information about each device id supported
+by the driver.
+diff --git a/samples/rust/Kconfig b/samples/rust/Kconfig
+index 70126b750426..6d468193cdd8 100644
+--- a/samples/rust/Kconfig
++++ b/samples/rust/Kconfig
+@@ -41,16 +41,6 @@ config SAMPLE_RUST_DRIVER_PCI
+
+ 	  If unsure, say N.
+
+-config SAMPLE_RUST_DRIVER_PLATFORM
+-	tristate "Platform Driver"
+-	help
+-	  This option builds the Rust Platform driver sample.
+-
+-	  To compile this as a module, choose M here:
+-	  the module will be called rust_driver_platform.
+-
+-	  If unsure, say N.
+-
+ config SAMPLE_RUST_HOSTPROGS
+ 	bool "Host programs"
+ 	help
+diff --git a/samples/rust/Makefile b/samples/rust/Makefile
+index 761d13fff018..2f5b6bdb2fa5 100644
+--- a/samples/rust/Makefile
++++ b/samples/rust/Makefile
+@@ -4,7 +4,6 @@ ccflags-y += -I$(src)				# needed for trace events
+ obj-$(CONFIG_SAMPLE_RUST_MINIMAL)		+= rust_minimal.o
+ obj-$(CONFIG_SAMPLE_RUST_PRINT)			+= rust_print.o
+ obj-$(CONFIG_SAMPLE_RUST_DRIVER_PCI)		+= rust_driver_pci.o
+-obj-$(CONFIG_SAMPLE_RUST_DRIVER_PLATFORM)	+= rust_driver_platform.o
+
+ rust_print-y := rust_print_main.o rust_print_events.o
+
+diff --git a/samples/rust/rust_driver_platform.rs
+b/samples/rust/rust_driver_platform.rs
+deleted file mode 100644
+index 2f0dbbe69e10..000000000000
+--- a/samples/rust/rust_driver_platform.rs
++++ /dev/null
+@@ -1,49 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0
+-
+-//! Rust Platform driver sample.
+-
+-use kernel::{c_str, of, platform, prelude::*};
+-
+-struct SampleDriver {
+-    pdev: platform::Device,
+-}
+-
+-struct Info(u32);
+-
+-kernel::of_device_table!(
+-    OF_TABLE,
+-    MODULE_OF_TABLE,
+-    <SampleDriver as platform::Driver>::IdInfo,
+-    [(of::DeviceId::new(c_str!("test,rust-device")), Info(42))]
+-);
+-
+-impl platform::Driver for SampleDriver {
+-    type IdInfo = Info;
+-    const OF_ID_TABLE: platform::IdTable<Self::IdInfo> = &OF_TABLE;
+-
+-    fn probe(pdev: &mut platform::Device, info:
+Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>> {
+-        dev_dbg!(pdev.as_ref(), "Probe Rust Platform driver sample.\n");
+-
+-        if let Some(info) = info {
+-            dev_info!(pdev.as_ref(), "Probed with info: '{}'.\n",
+info.0);
+-        }
+-
+-        let drvdata = KBox::new(Self { pdev: pdev.clone() },
+GFP_KERNEL)?;
+-
+-        Ok(drvdata.into())
+-    }
+-}
+-
+-impl Drop for SampleDriver {
+-    fn drop(&mut self) {
+-        dev_dbg!(self.pdev.as_ref(), "Remove Rust Platform driver
+sample.\n");
+-    }
+-}
+-
+-kernel::module_platform_driver! {
+-    type: SampleDriver,
+-    name: "rust_driver_platform",
+-    author: "Danilo Krummrich",
+-    description: "Rust Platform driver",
+-    license: "GPL v2",
+-}
+
 
