@@ -1,247 +1,132 @@
-Return-Path: <devicetree+bounces-127280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8B99E50C6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 10:10:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8C5C9E50E9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 10:13:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 175EC28A22E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 09:10:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74A8628C6B7
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 09:13:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 434D71DD87D;
-	Thu,  5 Dec 2024 09:06:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B6411D54E2;
+	Thu,  5 Dec 2024 09:11:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QH3tFh7l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC211202C5A
-	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 09:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31ECB1D54FE;
+	Thu,  5 Dec 2024 09:11:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733389596; cv=none; b=gd5pzU5buKFJ6nw9gjqQ4MBehGT72i4J7wSXST62R8fXcCEPuTuOkBfJ1L8tni/DEKPpAaiCzG8o6qmCieZ4KeIA1w4aIo931IRtCtQCFmuPZ4Sf0fTFkcng9ZqAYBJkK1mVXG3y7rkCLoTiIYxySColyUF8hr/PKNNGobM8dqQ=
+	t=1733389882; cv=none; b=ReN9CfLNWHwpQwY83xbH5JBr0pJIU2la6gQJF2UKeHvJQnCWJkcmM4fD0RLxl9iBbu9ktl4O68zMY7o3S/DHSHNnSyUQ0o0EdVtSNMy7GKLy4byxOzQyJUAq9Crvft1tzWWWVsMkoj7dlntmgC9tj4/CgdlpHrkuVc6sFNYB8Nk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733389596; c=relaxed/simple;
-	bh=0WFk74EjB5BReqyGSQPdVJxhNKrDOunizJQoJsX5EiU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UbNL2JmmBm6l3eDrxZQVrhwECaE2zpIYK0ghsMobztFp8UdJ34UcLeA9nYO9SCMWyqMDYhhiKwiNID0JcP31Adck7cVeyam2xZhMZUxNJDToaOsbTkoXzz//ctgX5TRddeZ2sIk7zjj3Ah31LUj/zhZlxP8m9JjRZZpsUP6HhMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.trumtrar.info)
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.trumtrar@pengutronix.de>)
-	id 1tJ7oW-0004Ks-QO; Thu, 05 Dec 2024 10:06:24 +0100
-From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Date: Thu, 05 Dec 2024 10:06:06 +0100
-Subject: [PATCH v3 6/6] arm64: dts: agilex5: initial support for Arrow
- AXE5-Eagle
+	s=arc-20240116; t=1733389882; c=relaxed/simple;
+	bh=gbRvMBWecchVXZQINpiNcELmH4AXFji5mB9ZcmAb+ck=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=gIH3ipX1fjda/MgM1Me+whLmk6Toc9Ugp8z+jLr8dZmDi0eXdDNB5cFzkaHygK38ilHHk1L7L6KhgMf/ek6MeNRGIr8Y2kVnjxgPX7wFYPBTjBIXcJwD3ymDX2JMQ4d9+Du76jqagMkNGzNSXuF6MmpBa9zv0AIqwgIrV0XfIgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QH3tFh7l; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2ffa8df8850so6275501fa.3;
+        Thu, 05 Dec 2024 01:11:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733389879; x=1733994679; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=g70770pHl/BwAdcq7mSKVqhSUdxEsRQhDHwPhr+/2R0=;
+        b=QH3tFh7ldvanhIEUWz/nccMcwYxYZMG7K7cC7rncbcO2mblyaqipTz4TKFwqz9Xczl
+         2KsoCgIV0BIiWC3AjfbM9/2bK1GKQpcYCQo6IR4ah9T103LKnhvpOEkM8mdsMH1ib8Ee
+         FRFa22qecYF+sSQKik3+ZbFwHqkitqq2EwkDJFrT7sGYWoTHGMwQ6G29CZQtmHvEnrzE
+         h79ydj49UL51yjZuXESNIaOLYZIMlaAFGevPQ+Jw3Rh56XovYOZsR/MZ8nn1QWc6NsDP
+         CKsvnH3/DvsELyYXQLNduZ7ZW9sYwAo3g/JcdKYMu0vNam0MkNzFcoGye8Le/730Fubg
+         L0vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733389879; x=1733994679;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g70770pHl/BwAdcq7mSKVqhSUdxEsRQhDHwPhr+/2R0=;
+        b=vV9SaLdau/DTKsMMjpRRLRBuWvoF3rwDJh0g2AClhx/i3ohleQ4b038MYkez6oSObY
+         YxVM6j/87OEI2CkLH4abr3UnVabkW6eIaEY41/hHFavh9mP5tMLFKbtjdc9yf9W0TAM1
+         kXal45/Tm74yfSJfaqod49p4JrUJdH9i4LGESdCRtKKh60StXBOP85syEAzc1OgkeSgy
+         4qGSpUTBag2cpy55XC4cfmmfTs/30vt/uZYY1kRlvoDW/XKnp3Ypa58Df31YKHYzu3H4
+         YKCxo7PWrj3wtr4uLa7PiFT+8UNZUs2fuF8i0g2266+PIoxZjFhj36tzlPDvV2h+2B2+
+         yarQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWbv/amBAVbhPtjYnHJ/4MR/UfoysmdizpGc3SBtan2CBEAEqD4H41jeEfi5h+NZRccBHoC6se+R8SU@vger.kernel.org, AJvYcCXjJ7DbZ4jTGxDXWHLO33SYLat3nHhXqt2vh2mCpKPH7YyCBgOWGG4zebKrwFSY19FHMXcvsuSlEXv4GcfR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxjk3KvMf+Ix6L/m0nlsD9AMx5H6GTmyzFH6cNufijY2r49SIN1
+	BT5zNmJ/vWbXrcijIoiNN2fHK8SBTctK/xEDVhoU+QoWiK5U0QVy
+X-Gm-Gg: ASbGnctjkZRY0FO1zwjRPOimr4Fil29JNXtEVpvTlM4WK7bhjSJY3bCTPp4rk5VeZBJ
+	BnZZ7wcKcr+4Lr/km7rsXHtdDN7rbQmsvmHixbgXvxWxaaUl/bWSc4zE1zld334BQQxR33LX0+L
+	0LhlIm1h9L1Jwrk9AZ+ikSbgekCAkjRkPHAwvuv2cd2eSHX6xbr/wxcuoyaa4J7vTdRX4feS6wk
+	cncahtI3VnzOPhCN8iflIm5azUxoz4t2C/a/v7ZOVixU7rJJmDmOg==
+X-Google-Smtp-Source: AGHT+IFZ6+YRR3jm0gV75fejVmMXL5MRbl//2N9aoRFrmHGjZdJU9MYPNc36DsVVHcoZY+7LCJrMXw==
+X-Received: by 2002:a2e:8e84:0:b0:300:18fc:8e55 with SMTP id 38308e7fff4ca-30018fc906cmr21853361fa.2.1733389879024;
+        Thu, 05 Dec 2024 01:11:19 -0800 (PST)
+Received: from [192.168.0.107] ([91.90.219.38])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30020da1182sm1586511fa.35.2024.12.05.01.11.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Dec 2024 01:11:18 -0800 (PST)
+Message-ID: <6c8e60a1-820b-4818-ad68-9b042533f4f9@gmail.com>
+Date: Thu, 5 Dec 2024 14:06:27 +0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+From: Dmitry Yashin <dmt.yashin@gmail.com>
+Subject: Re: [PATCH v3 0/3] drm/rockchip: Add driver for the new DSI2
+ controller
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: andy.yan@rock-chips.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com,
+ neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ quentin.schulz@cherry.de, Dmitry Yashin <dmt.yashin@gmail.com>
+References: <20241203165450.1501219-1-heiko@sntech.de>
+Content-Language: en-US
+In-Reply-To: <20241203165450.1501219-1-heiko@sntech.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241205-v6-12-topic-socfpga-agilex5-v3-6-2a8cdf73f50a@pengutronix.de>
-References: <20241205-v6-12-topic-socfpga-agilex5-v3-0-2a8cdf73f50a@pengutronix.de>
-In-Reply-To: <20241205-v6-12-topic-socfpga-agilex5-v3-0-2a8cdf73f50a@pengutronix.de>
-To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Richard Cochran <richardcochran@gmail.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- netdev@vger.kernel.org, linux-clk@vger.kernel.org, kernel@pengutronix.de, 
- Steffen Trumtrar <s.trumtrar@pengutronix.de>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-The Arrow AXE5-Eagle is an Intel Agilex5 SoCFPGA based board with:
+Hello Heiko,
 
-   - 1x PCIe Gen4.0 edge connector
-   - 4-port USB HUB
-   - 2x 1Gb Ethernet
-   - microSD
-   - HDMI output
-   - 2x 10Gb SFP+ cages
+On 03.12.24 21:54, Heiko Stuebner wrote:
+> This series adds a bridge and glue driver for the DSI2 controller found
+> in the rk3588 soc from Rockchip, that is based on a Synopsis IP block.
+>
+> As the manual states:
+> The Display Serial Interface 2 (DSI-2) is part of a group of communication
+> protocols defined by the MIPI Alliance. The MIPI DSI-2 Host Controller is
+> a digital core that implements all protocol functions defined in the
+> MIPI DSI-2 Specification.
+>
+>
+> While the driver structure is very similar to the previous DSI controller,
+> the programming model of the core is quite different, with a completely
+> new register set.
+>
+> Another notable difference is that the phy interface is variable now too
+> in its width and some other settings.
 
-As most devices aren't supported mainline yet, this is only the initial
-support for the board.
+Thanks for the series. I was able to get output on my Radxa's Rock 5B
+(dsi1) + Radxa's 10FHD Display setup. Works smoothly with multiple DE's,
+rotation and display on/off.
 
-Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/intel/Makefile                 |   1 +
- .../boot/dts/intel/socfpga_agilex5_axe5_eagle.dts  | 140 +++++++++++++++++++++
- 2 files changed, 141 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
-index d39cfb723f5b6674a821dfdafb21b12668bb1e0e..3e87d548c532b1a9e38f4489c037c5c4db3a50b8 100644
---- a/arch/arm64/boot/dts/intel/Makefile
-+++ b/arch/arm64/boot/dts/intel/Makefile
-@@ -3,5 +3,6 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_n6000.dtb \
- 				socfpga_agilex_socdk.dtb \
- 				socfpga_agilex_socdk_nand.dtb \
- 				socfpga_agilex5_socdk.dtb \
-+				socfpga_agilex5_axe5_eagle.dtb \
- 				socfpga_n5x_socdk.dtb
- dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..c0f6870e7b40a53ca0d685b4109ff24e1409bb0e
---- /dev/null
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_axe5_eagle.dts
-@@ -0,0 +1,140 @@
-+// SPDX-License-Identifier:     GPL-2.0
-+/*
-+ * Copyright (C) 2024, Arrow Electronics, Inc.
-+ */
-+#include "socfpga_agilex5.dtsi"
-+
-+/ {
-+	model = "SoCFPGA Agilex5 Arrow AXE5-Eagle";
-+	compatible = "arrow,socfpga-agilex5-axe5-eagle", "intel,socfpga-agilex5";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			label = "hps_led0";
-+			gpios = <&porta 6 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-1 {
-+			label = "hps_led1";
-+			gpios = <&porta 7 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		key-0 {
-+			label = "hps_sw0";
-+			gpios = <&porta 10 0>;
-+			linux,input-type = <5>;	/* EV_SW */
-+			linux,code = <0x0>;
-+		};
-+
-+		key-1 {
-+			label = "hps_sw1";
-+			gpios = <&porta 1 0>;
-+			linux,input-type = <5>;	/* EV_SW */
-+			linux,code = <0x0>;
-+		};
-+
-+		key-2 {
-+			label = "hps_pb0";
-+			gpios = <&porta 8 1>;
-+			linux,code = <187>;		/* KEY_F17 */
-+		};
-+
-+		key-3 {
-+			label = "hps_pb1";
-+			gpios = <&porta 9 1>;
-+			linux,code = <188>;		/* KEY_F18 */
-+		};
-+	};
-+
-+	vdd: regulator-vdd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-supply";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
-+	vdd_3_3: regulator-vdd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-supply";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&gmac2 {
-+	status = "okay";
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&emac2_phy0>;
-+
-+	mdio0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+		emac2_phy0: ethernet-phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
-+&gpio0 {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9544";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x70>;
-+		status = "okay";
-+	};
-+};
-+
-+&osc1 {
-+	clock-frequency = <25000000>;
-+};
-+
-+&qspi {
-+	status = "okay";
-+
-+	flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "micron,mt25qu02g", "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <100000000>;
-+
-+		m25p,fast-read;
-+		cdns,read-delay = <2>;
-+		cdns,tshsl-ns = <50>;
-+		cdns,tsd2d-ns = <50>;
-+		cdns,tchsh-ns = <4>;
-+		cdns,tslch-ns = <4>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
+Tested-by: Dmitry Yashin <dmt.yashin@gmail.com>
 
 -- 
-2.46.0
+Thanks,
+Dmitry
 
 
