@@ -1,73 +1,75 @@
-Return-Path: <devicetree+bounces-127649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C50E79E5DD0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:02:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 805459E5DD4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:02:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85929287139
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:02:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A7E0286646
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C4C122579D;
-	Thu,  5 Dec 2024 18:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B365227BB8;
+	Thu,  5 Dec 2024 18:02:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aiJJMm9G"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xSVCz83q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 883EE224B0F
-	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 18:02:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F1A621CA1F
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 18:02:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733421727; cv=none; b=GzsWwkaLf371aqHrl78vJoyy0ZfJPGmA5rVxMWbPQvBW/u1OvrB+2pAGNnTi9rwyXsNa5t/fY5yPGs1OVUDI7LX7KbLszOC2KZ68GXZJiHTNkVxJ/tbGaZXI5y6gXllCb6hUJpoLZcBLJNuVtmZ7twCyWbPVHePv0tjTm0FfBCk=
+	t=1733421729; cv=none; b=oBy13Qis09ciSSJXx1glhSyONQ+gatwZbMavBMVSZXq2tKEehug7pcwBAXc7IParDw8arm+ClQJhTqdzUtP90FAORYQde4Qz4sdV6uzLkBbNIknop1rtVM0MRreb4bO2j/SZT8Zig0MD80RMtCzVM6nv6N8JWJ9o4lHaw1kPVy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733421727; c=relaxed/simple;
-	bh=PvO3ukRF0tA8B0YAj53vIl+BCuzzRx3eAS51sP0o+H0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XfWczz8lj4G8781W/46oQrWTAG+tvAZUeBMPVljV1yLfr+Dck/JZiMf2zVjquvx5qVTFsH7heouCxT96j8xhAhOFUZgAIfQb0NBJ65XXLhYJAvp56LuZ0wgJv3samjBrU4HLhxNo5T3rTSFAKVvaKKxGHcyAg6RZWCCtFNPmuzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aiJJMm9G; arc=none smtp.client-ip=209.85.221.51
+	s=arc-20240116; t=1733421729; c=relaxed/simple;
+	bh=rl6qwSwPmwstxso3urexxTtZz5A3LKOG2dzER+Weveo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=mZ+h3T0oV40ovMhWqllT3noHjnzaG3PZBYUofyTH6hBO3XrqmVrkigdVrESWAEckH/IPbsBI0J/4tip1ZveWJtrLazXp09fLPPqZSCL9cuYKRIhQU//VTa+uiY7Ssz482x+ySfWuXVqOJHPiPaPlK6d8J/aHsB2JRlq8IwycCus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xSVCz83q; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-385e5db74d3so701657f8f.0
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-385df53e559so975540f8f.3
         for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 10:02:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1733421724; x=1734026524; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=MEBaxrhXtuUNeerBIkR47JpXV/0Yl7e6aP4Ai3bVM5c=;
-        b=aiJJMm9GPN1PzhnnVENAY2qH55ZAPk8TjnIT5fn8O5BUsDgj20YzvYzKB7VzcJbZSq
-         CYnHfAUtH7IjXTLqoxH8jp6geLdn7PnMpNYegnSMeP2LTHPcCpLg9ZaSsn9vWoZiVS8h
-         X/D23H38PRec+cpNQmkvxpozbvv7OT6GxU06d27tVvUqIzumNGR6H4E1hTjA43k6XJQZ
-         JApA3Y1nrfjFcXR1TdNWHSm3thQCMRkwXwBH941ZfxXnKHhBVZuK06ZihHLPvejlUl7D
-         cx9lV6EQPwifT+Tdhb2mcmCPuZgS2IBOvBTv/p+w7Z3oA13IUfq6Hjtp6pj78YSm5aGm
-         byow==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fXkOgCi8HIHQGsuWXYvnWFeub+37cwugFPfSGaOkH4k=;
+        b=xSVCz83qbeUd4lp+v3/89GpSYD9h9Ts+WttA81OYjlIIpJng5pHxl1L1RuEbWaXgQ2
+         QO38uq1xPJSJriN3PKaUmKeYP7Wxpj5A2L9Tnb/OPK8PSYueBzmtoZq8Go6SnuwhbqzI
+         sCu8L0+3YJmu2xiI/SpodLKM77MXMYuKlpuv+7Yj6Ix1NA+X+hQuxm5KEKDSQp4Zc1QW
+         x4j8KcuRc4yrPaevx/TPjTo6RFoSi01uNzdG5Jb4LJsvCwvVeEHZlSwZmO/utcAkhENx
+         y6Jd1nUxiA0JPKRu/deMHjsrNsiuwQxyJHu1iP3IGR+o271QH1TCcZktfV+D1ilKv73A
+         eDuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1733421724; x=1734026524;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MEBaxrhXtuUNeerBIkR47JpXV/0Yl7e6aP4Ai3bVM5c=;
-        b=RFpooFOy8LDFBmZIhN6OlO6YnuqoTUpb9ViqhiSwzY4R8xcQ3/sNJ5KEWn5CcWFUk/
-         ysvwjlI+87RauOJLCkgPK7HoErpsSMIC3vsvexBxv8PP3G3yLxi9lCaELFBhfl+LVrki
-         a1UyeWNzLEG3S6m1JDqIDyEzc8N0FXNcUF8uyHtihL75ngNm2JKDz5n1zDO1dCpFVOeV
-         VQnFEqO5uO8MqpfZDsK/yboV5juK2R4Xm/tdNNzLzBpNuWRX9Y3Lpw01Gh/dggKVcco0
-         iFw0R76B3uoRdWVAZ6vQELneke71Mjz7I/jigJDLGuC+J3d0w//1mG+Hp5wYnvHyZR6x
-         RQbA==
-X-Forwarded-Encrypted: i=1; AJvYcCVzfr9rkA7CqfjEmJEakBDZNh6DIHliWpTGOQdfydjKyoDxC/55iCL1ULbSqOj2lky0eG0ta9mK+RoJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCztb9mVCr/IFundISVNik3Be78ex7bZy6wlS/m5uM2eLUxiRT
-	wRJbxu95PBmDy4X4PBBn/qSg9lpSU2OFjSYmJ1GbUfTWpO2tMzgJE8D5FXcaKAs=
-X-Gm-Gg: ASbGnctkxQmA7nMzUSi/T5MXiRzoSEfSpkOFPHrI6cTY3hgCgkOo4HQVmPp2lfRBXuZ
-	r0vOMCnkulknzDqWK7iT9p6ixfszkuVB8XrPW0SyKzGuZmiR54Fr7+Zht9XA4sF22LBCee5Whe1
-	d0ju81LkwktignRGJuM5VV8ETdnaNK8o5Rl+/ImRTLFEj70qVuU6/ZQSISxpHRw2Ejh3Wf6z5cD
-	dO2RkVAxBocuR/eAxejMiCSsDP3qV+HLl8XauyKoAFZFyjzp9kQWZGUDiwiivWGfSkdktJdJYD5
-	/XSMHivaqNyweV+cDJFLZkj3PObBOmqe
-X-Google-Smtp-Source: AGHT+IEaRSOep3o6BlOGmjw5C8xn/tsj4Vy2kgRYv+HBcuFUUH34fZUaz5fJUMup+GJE2Tx+FT0gbw==
-X-Received: by 2002:a5d:588b:0:b0:382:6f2:df7a with SMTP id ffacd0b85a97d-3862b37afa8mr16766f8f.34.1733421723607;
-        Thu, 05 Dec 2024 10:02:03 -0800 (PST)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=fXkOgCi8HIHQGsuWXYvnWFeub+37cwugFPfSGaOkH4k=;
+        b=crxBBcq8LJifC7TGmGssBxZoynZ+AMXHarKixPqimtnwvnv3VnWzk46oNzBut8PU1e
+         cUea4pBFKmgOW9DFwT0PUHVFh4TQL7TIWVJR0uSKjorR9sMC3mxMGp+Cxh65ucz76SDW
+         dPxa1d0LuxfyPYMJJcIcT0OAAVsP121h9pgYT6a9mA/v4FsTJuj1a/ctXKjcVusOgxV/
+         66TBrYHnUEjKqrRm/wD3ppz1OCy2i4hzimPP8kFITK5CoY5eRE5fOAHR8us8NnPA+E0h
+         ek0CMsnD08GVmul/mt0+6+cLf8nv5M3boiEneAHldETE5/kmoeySudZ0DejUOY4JeW2H
+         HBAg==
+X-Forwarded-Encrypted: i=1; AJvYcCW67cmNBpeJzxsbqLJIeuoqRTWTckFzJHZ4Ygruulm5nJldCrqdu2bYQuLNCaN6fJKHrc+iFqx0F3yt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxff4+WyppXaAUkPyf9j2hXiJHYGFE4N3ocjOdBtGzR7Mhgv+HF
+	RAIjRoT2CFYMaAO1N3U4VBk6RSCZ3TB0pJOjKHFCiede24BaoCzoQ21cosJBRCI=
+X-Gm-Gg: ASbGncvwzzl1BtwuzmGfsmQJpCJjaYmyppZxS94rkH81KHMWS0dq3VK5tcR9CUz9tgW
+	ez5r9m+YwJC0M413fAqOLHhmFm3ITUzjkblB+8DNqK5WTrrNgdglzu9AigCUB/TDre7XxBsIacf
+	nlcTx3dF/72E2vA60asSWCPwXaZULQ+aiBamr2Ccth2E4ft9jk+TXMVFO7HAjd83NT4WgTbGNYg
+	CpvPsoZch13z9HyUrPaNb2GqiB/y95fiWgeLuBJ4YdYLOXCsPUZfs5Fl+ngEdAV8ns1PjaEk1Rv
+	zOcoYs8658gvlTrgDKI8AHOj74yGPMGg
+X-Google-Smtp-Source: AGHT+IEPtZMmft62bUPhgYrLR+oDZpiHUMZkgxHhYwyxhO4GONqKTULpT/JUlhKvm0dRtGKR4n2z+A==
+X-Received: by 2002:a5d:59a6:0:b0:385:eeb9:a5bb with SMTP id ffacd0b85a97d-3862b34e5f0mr30744f8f.17.1733421724237;
+        Thu, 05 Dec 2024 10:02:04 -0800 (PST)
 Received: from ta2.c.googlers.com.com (32.134.38.34.bc.googleusercontent.com. [34.38.134.32])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-386219098d3sm2618228f8f.70.2024.12.05.10.02.02
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-386219098d3sm2618228f8f.70.2024.12.05.10.02.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 05 Dec 2024 10:02:03 -0800 (PST)
 From: Tudor Ambarus <tudor.ambarus@linaro.org>
@@ -90,10 +92,12 @@ Cc: linux-kernel@vger.kernel.org,
 	ulf.hansson@linaro.org,
 	arnd@arndb.de,
 	Tudor Ambarus <tudor.ambarus@linaro.org>
-Subject: [PATCH 0/4] arm64: exynos: gs101: add ACPM related nodes 
-Date: Thu,  5 Dec 2024 18:01:56 +0000
-Message-ID: <20241205180200.203146-1-tudor.ambarus@linaro.org>
+Subject: [PATCH 1/4] arm64: dts: exynos: gs101: add SRAM node
+Date: Thu,  5 Dec 2024 18:01:57 +0000
+Message-ID: <20241205180200.203146-2-tudor.ambarus@linaro.org>
 X-Mailer: git-send-email 2.47.0.338.g60cca15819-goog
+In-Reply-To: <20241205180200.203146-1-tudor.ambarus@linaro.org>
+References: <20241205180200.203146-1-tudor.ambarus@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,19 +106,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Define SRAM, mailbox and ACPM protocol in device tree.
-Enable the mailbox and ACPM protocol in defconfig.
+SRAM is used by the ACPM protocol to retrieve the ACPM channels
+information, which includes the TX/RX rings among other channel
+configuration data. Add the SRAM node.
 
-Tudor Ambarus (4):
-  arm64: dts: exynos: gs101: add SRAM node
-  arm64: dts: exynos: gs101: add AP to APM mailbox node
-  arm64: dts: exynos: gs101: add ACPM protocol node
-  arm64: defconfig: enable ACPM protocol and exynos mailbox
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
- arch/arm64/boot/dts/exynos/google/gs101.dtsi | 40 ++++++++++++++++++++
- arch/arm64/configs/defconfig                 |  2 +
- 2 files changed, 42 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+index 302c5beb224a..1441e9a252c2 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
++++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+@@ -269,6 +269,14 @@ bldr_log_hist_reserved: bldr-log-hist-reserved@fd900000 {
+ 		};
+ 	};
+ 
++	apm_sram: sram@2039000 {
++		compatible = "mmio-sram";
++		reg = <0x0 0x2039000 0x40000>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x0 0x0 0x2039000 0x40000>;
++	};
++
+ 	soc: soc@0 {
+ 		compatible = "simple-bus";
+ 		#address-cells = <1>;
 -- 
 2.47.0.338.g60cca15819-goog
 
