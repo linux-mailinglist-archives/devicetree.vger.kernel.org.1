@@ -1,146 +1,161 @@
-Return-Path: <devicetree+bounces-127502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A6A9E5960
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 16:09:06 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDF509E5989
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 16:15:59 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 222DE2850FC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 15:09:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EBE118832C8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 15:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4795B21CA0F;
-	Thu,  5 Dec 2024 15:08:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52B7221A421;
+	Thu,  5 Dec 2024 15:15:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="Uxa2Bdeq";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="DJRRMfH0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I3dC++Sd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BD8221C17A;
-	Thu,  5 Dec 2024 15:08:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D37EBE49;
+	Thu,  5 Dec 2024 15:15:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733411336; cv=none; b=dRZ0vXn4xqoBMTVC0S4NQKO4ehJN4x/FmePnh9hGtckFzVoU9VjZq/A8oFL63/g8nrkxoCWQUCC9hYy5F9U7NUORFWIW63hHbY/RcRRTXbJufrHEuunFkOfAyQh1H9ZAlJgQz6/KCchYA5OCCChfO0fdL2a81VzybeJAC3mZ8p4=
+	t=1733411735; cv=none; b=Ldu1MHpdQec3va0IOyDRtanIHTdMCTOgTD1LDb7Kafw6gJRV7t9ca1rNquWKm/WnyewwnThsbKU/q+mbV9X9cSIMQ4alTjy2mFadOgqglY8O4dc0zsQHJJVb7NK6rDdCLFrXn22mUXQDFhmj+2MVsyktTyHFL0KGGLbzhakhWXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733411336; c=relaxed/simple;
-	bh=wUItljh0wOLzIOQydlmjVTP6wmRh+MNoE9QFAebbE4E=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=YmIQMqU0+FU+FyhEk87i+eXE4c6U6Gmw5cOdK+K9Ceqc/23KqkHocdKBHJ7NzUe2TE+Ik3fGhIJq16uyfrySmdb2WTS6nkBiWM2ceEcIN4/jGfPwb3X+1e/vlmWB7g2idLjNiHrj+OmncV2/9yQwt+aysBX5NYxFpHn3tEPC9OM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=Uxa2Bdeq; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=DJRRMfH0 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1733411333; x=1764947333;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=smbLgrckE25I2ak+4aah04Lb2EF2OUKb5fz0/VhJ75I=;
-  b=Uxa2Bdeq4pxrFy+g5DTP/PwQ7wFKt9R3K3BUWxBEywGr4hwGvJgnspOT
-   hVlpfqc/e5MFsTKyIV44hWr6STW3INURLyls/MO2CYi5i0fvEEHWZdSkT
-   NDEKMTGfgXSkaOSpo4HrFjBkNiBK/rWnI9C/gvFD4AK3ogj+rP+Zoa/P9
-   V/5pUOlinMAyAJ20K75zPMPsMzHL9SyeHBCs5d4HzoVgdEez98bfNXOm8
-   Zl5umSbP1B6857oa2+NI+6bvHhzD+vIZtgJvg+EGzifc2FXFwwRRgu5cV
-   bEbpkoIQhI1sl2ocKQ4XvxQsTNNGl9uvex1A4iZ8Wkgl+054ijbjnrp9e
-   w==;
-X-CSE-ConnectionGUID: Lq1MR0QGQ86NvTiQJl2PRw==
-X-CSE-MsgGUID: DbLBHJfeT9am2vHox1kHow==
-X-IronPort-AV: E=Sophos;i="6.12,210,1728943200"; 
-   d="scan'208";a="40434854"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 05 Dec 2024 16:07:43 +0100
-X-CheckPoint: {6751C1BF-25-D31EDE1A-D52D6119}
-X-MAIL-CPID: 24AF9B8854DF14342AD0D1FA9D6FBB27_5
-X-Control-Analysis: str=0001.0A682F18.6751C1BF.00B9,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CBF08163400;
-	Thu,  5 Dec 2024 16:07:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1733411259;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=smbLgrckE25I2ak+4aah04Lb2EF2OUKb5fz0/VhJ75I=;
-	b=DJRRMfH0BmXxQ69J9qzYp6PivF8XSEGNBASYXXiYuJd/rZqoSRiRQc1vQVCVSCckroofek
-	2Y8KOGe+A5QoRIg027e2s+hwKjzUnPPUAS2W2OVOGhzDUoITPb6b+E+YMhWDPRSnQp/JzL
-	wEnsUQGdXNPEYScdC/+ckaEQneDO/ksHM18vHH+pEDGhxonL/64pnerxGivO5R39U7G5jp
-	xma5cK8UsJFf9aV79vD5hqmp95CZYM/c/gi8vRrq/XUZncy/ABR5sFa6ASBiRxb4bzCChz
-	OhtDoF/iHQqHvRqdUwXXWNO44K3DI/irQWT7Hrf7JE9d4vKVRyQTJSUkV0J7OQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Peng Fan <peng.fan@nxp.com>
-Cc: Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: [PATCH v2 2/2] arm64: dt: imx93-tqma9352-mba93xxla: enable Open Drain for MDIO
-Date: Thu,  5 Dec 2024 16:07:29 +0100
-Message-Id: <20241205150730.3132807-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241205150730.3132807-1-alexander.stein@ew.tq-group.com>
-References: <20241205150730.3132807-1-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1733411735; c=relaxed/simple;
+	bh=4jA9YpjHgfQvrKB6Vqn7QorM5f0B56a1tvvFaqzk9jA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OX7qo/MIoHVOkpLDOrStqb3OaXUlfhSoi0rEIOcL9uyKlMgrumDvSIy7K+UB6jMd9KJbRmMdLrucaW7hzQ0A0Z2qkU4iGOPK+omvBs0V5MDFhFfja2RxLo94M4GOjiBvO+RYMtaYYAYJhWLpelspFlN6hSwuTsRRP56wNwsSd3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I3dC++Sd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 542B3C4CED1;
+	Thu,  5 Dec 2024 15:15:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733411734;
+	bh=4jA9YpjHgfQvrKB6Vqn7QorM5f0B56a1tvvFaqzk9jA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=I3dC++Sd7ENPX7l4pixbN3rbjREGfnVXgLaKyeCFI7lUk7gEzV5I7n5MXb+nxBKl7
+	 O85l+JGlwR2c4k+5So/Ub5UjJ24cp7+Vf8S8PjuwNkIqZq4xht4bpDaHBI9YbDd5SP
+	 RG1IkBmPRsGkYZhXlmcT/HOweGxFRHu4FSmAwCy3y0jwaFFWoXofElNs5E17c3tx6T
+	 7TTqR07a13fqUZSSehQ/4B+XTU6R1LK31hS1aLz3j7MFhTHr04EDPWilTOCiYiaAYN
+	 IFgHn8e1BaXUJQMU3tSSoxhRya41Luzvdzh1HDOcI1OraNtKpVkIeXqS9GBshULQ9z
+	 NeEE8LZzyv41A==
+Message-ID: <aa7eef93-6948-453c-8eb8-d7f4f7572808@kernel.org>
+Date: Thu, 5 Dec 2024 16:15:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: dma: Support channel page to
+ nvidia,tegra210-adma
+To: Mohan Kumar D <mkumard@nvidia.com>, vkoul@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: thierry.reding@gmail.com, jonathanh@nvidia.com, spujar@nvidia.com,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241205145859.2331691-1-mkumard@nvidia.com>
+ <20241205145859.2331691-2-mkumard@nvidia.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241205145859.2331691-2-mkumard@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+On 05/12/2024 15:58, Mohan Kumar D wrote:
+> Multiple ADMA Channel page hardware support has been added from
+> TEGRA186 and onwards. Update the DT binding to use any of the
+> ADMA channel page address space region.
+> 
+> Signed-off-by: Mohan Kumar D <mkumard@nvidia.com>
+> ---
+>  .../bindings/dma/nvidia,tegra210-adma.yaml    | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml b/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
+> index 877147e95ecc..8c76c98560c5 100644
+> --- a/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/nvidia,tegra210-adma.yaml
+> @@ -29,7 +29,24 @@ properties:
+>            - const: nvidia,tegra186-adma
+>  
+>    reg:
+> -    maxItems: 1
+> +    description: |
 
-The board has a pull-up resistor for MDIO pin per PHY design guide.
-When MDIO is idle, it needs to be high and open drain is better
-to be used here for power saving.
+Do not need '|' unless you need to preserve formatting.
 
-Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v2:
-* Update commit message
+> +     The 'page' region describes the address space of the page
+> +     used for accessing the DMA channel registers. The 'global'
+> +     region describes the address space of the global DMA registers.
+> +     In the absence of the 'reg-names' property, there must be a
+> +     single entry that covers the address space of the global DMA
+> +     registers and the DMA channel registers.
 
- .../arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Rather oneOf listing the items with description.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
-index 0b4b3bb866d06..2e953a05c590e 100644
---- a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
-@@ -597,8 +597,8 @@ pinctrl_eqos: eqosgrp {
- 		fsl,pins = <
- 			/* PD | FSEL_2 | DSE X4 */
- 			MX93_PAD_ENET1_MDC__ENET_QOS_MDC			0x51e
--			/* SION | HYS | FSEL_2 | DSE X4 */
--			MX93_PAD_ENET1_MDIO__ENET_QOS_MDIO			0x4000111e
-+			/* SION | HYS | ODE | FSEL_2 | DSE X4 */
-+			MX93_PAD_ENET1_MDIO__ENET_QOS_MDIO			0x4000191e
- 			/* HYS | FSEL_0 | DSE no drive */
- 			MX93_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0			0x1000
- 			MX93_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1			0x1000
-@@ -629,8 +629,8 @@ pinctrl_fec: fecgrp {
- 		fsl,pins = <
- 			/* PD | FSEL_2 | DSE X4 */
- 			MX93_PAD_ENET2_MDC__ENET1_MDC			0x51e
--			/* SION | HYS | FSEL_2 | DSE X4 */
--			MX93_PAD_ENET2_MDIO__ENET1_MDIO			0x4000111e
-+			/* SION | HYS | ODE | FSEL_2 | DSE X4 */
-+			MX93_PAD_ENET2_MDIO__ENET1_MDIO			0x4000191e
- 			/* HYS | FSEL_0 | DSE no drive */
- 			MX93_PAD_ENET2_RD0__ENET1_RGMII_RD0		0x1000
- 			MX93_PAD_ENET2_RD1__ENET1_RGMII_RD1		0x1000
--- 
-2.34.1
+> +     minItems: 1
+> +     maxItems: 2
+> +
+> +  reg-names:
+> +    oneOf:
+> +      - enum:
+> +          - page
+> +          - global
 
+This is not correct. You said it covers both.
+
+
+You also need allOf:if:then: block restricting it per each variant/device.
+
+
+
+Best regards,
+Krzysztof
 
