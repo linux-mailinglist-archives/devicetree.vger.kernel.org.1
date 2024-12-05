@@ -1,177 +1,211 @@
-Return-Path: <devicetree+bounces-127232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C62159E4EC8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 08:39:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D689E4EDE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 08:48:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9773D161874
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 07:39:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7FE7116527E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 07:48:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 922E11B393B;
-	Thu,  5 Dec 2024 07:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4651C1F20;
+	Thu,  5 Dec 2024 07:48:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uMm/sAIA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3248719FA7C;
-	Thu,  5 Dec 2024 07:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51F481BF7E8;
+	Thu,  5 Dec 2024 07:48:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733384382; cv=none; b=KMATo7HKZ2MhlQ1YFd7WkeFjyDCOB5d89GfQ8O/myTSxY88EtLloqLNpOmx8iAfYR6HnLrYtARUBM04yO+Z8Ku2Zdh7VOblwTVYzAjSxHTl1o7cna/9zPfDgWjCcx3kwNpyVS+2rFLiOhFxtU0lFFFzV01QhvE3INdei8xjKqm8=
+	t=1733384921; cv=none; b=DntzKEdoPu0fPZAqTBVaraloCanJeQOcbH2ftMBItQAks4Ig6udWWtAOltjEZtrYJ2M07rrphas1GXSJnWRxRMM2e6/X+3jfPLnOwVjuYP+W/R6sJH79MYvrT7NOZGHWhoC9sOQ/cBjDNf4MZoCy7PkfsUfsIwAuWXzixypVXh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733384382; c=relaxed/simple;
-	bh=UUx7Qubxx4GnAWHZgQwjgtRTgGXGDcZjSsTPqDDDgeI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Qyc1ZOlo11uL9AOgZqZD2vUZPHl7spIeGjo4YLu/A1pDhgk8l9flxkmXGs/6QYpy+/nM/XGB1r3UAnYwAZeVrNHnUZWu2B4HpXSGj2go49QvOxp80+N1m1caPPa8mvvLjz0uz98AkFZK4RLpQ65foQE5wtGmTrnARWXxmuGIKos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53df119675dso801459e87.0;
-        Wed, 04 Dec 2024 23:39:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733384377; x=1733989177;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=haUzoOdl3j5ZhKh6v9Mp+uyoSF/yENN0p8H5q1O4kPw=;
-        b=WVMeOGzoc+GwHUpR/aI23/qye1uJvLbBsLXcsoDhYiOejhnW49thOsPVM2tN6VzsSp
-         RpjEHb3NGg/VutXvvq3KWj20ocf9jubPSmp1TdegaL2fIv5dma316AD5KzzGFmChOQ6U
-         yqKmKfTksZfjF1KMDzMhLf62/T+IhcTNOXQhGwiDidYNjxYroScTpwX08hr7dkdzXIwZ
-         Jn4FndaDE+FKNoi/6PsYjXEpsNGbqoQNzXAywKrPwsLCPz+BrLfLU44Ja0YSKhJhnqrr
-         o2X84miEhgvqb5aCbfwkAYmmaDw8kfVtlZmGqoP50BS7rRj+iOYMtKTmrGhsebfr2a+1
-         0RHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVy6xW6IuTuWH104dzCfuG1hy5dHSqtY9KO++ajD1hyEmUHiH9ABjSb7GLoehT0CzaeQOmMVtCWsVtyyBq1@vger.kernel.org, AJvYcCWYvOKCMJvsB2baMelaXF3tk/+TfOip0DI0EJ3oujksHiIa2SL8C9tkbDY0cUjU7K5y1IbeuhMS9q0J@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaCLuQiJTS8yxFqdPWa05ZKKmAp0XdJhyoLq/ofaxW2L7EYTjq
-	qJnj9iYEfb0iINsTxuyDfyJ6lymmsQyBadiQFcWtpvbb+Y2vPgIRXdCBNFG6
-X-Gm-Gg: ASbGncuGtdzZatJrNrHOyCY9/AvZz1eY3hzolb/jbviWB6ZYLbkwbo+Bn5M8SWdhaKY
-	N8c8bSDc7gwq2YbFAGe+qy7Z5a/gB3RRiKNBjo/4vGLyBv7GbaozzBWYI7e85HHrLBxOcT8iR+y
-	OKQdT6TVnATgyDSv/iMpIuIgZ04cX+VPMQaNqVGBasJen0rIcIjQvevVRrZHS9KYwXry+BKb1Jw
-	YD+n12SUi/Jcx2L2E9U3FcpUojixG63O0co5vCO99RKE0xAqS9QybGfghF1RWGTc//9oy7Jagr7
-	+P4D1hE=
-X-Google-Smtp-Source: AGHT+IGIoISwZgxWoOrR8XB8iF/PuOIVafA7KMkeFjid9Qh7CO7uubcy/4Hen0CeoEo0ce+etMZ+xg==
-X-Received: by 2002:a05:6512:1107:b0:53e:1959:3238 with SMTP id 2adb3069b0e04-53e1959331amr4884562e87.27.1733384377242;
-        Wed, 04 Dec 2024 23:39:37 -0800 (PST)
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e229ba728sm146175e87.165.2024.12.04.23.39.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Dec 2024 23:39:36 -0800 (PST)
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ffd796ba0aso4902341fa.3;
-        Wed, 04 Dec 2024 23:39:36 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVB8RGT3LrafkBP0yZnu6psGebHxS6tQ/qNLQJTNMH9IfIgLlfoFw19EkDzrtuqhtcMZHkSAu4TtaCz@vger.kernel.org, AJvYcCXuvfuHr23XsOmWaAnrs8AUGyBB76HRAlIMeNi1sLbQSxZHSdvX4TfmkFZWvldrrUJIAEHiB2y68wKlpa3y@vger.kernel.org
-X-Received: by 2002:a2e:a907:0:b0:300:8ff:d93f with SMTP id
- 38308e7fff4ca-30009c50cb0mr55293541fa.22.1733384376650; Wed, 04 Dec 2024
- 23:39:36 -0800 (PST)
+	s=arc-20240116; t=1733384921; c=relaxed/simple;
+	bh=bSj37bmt7ADxZheK3OHEPhQVUUID4mtcZsHj93X0KKk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RYmEXEWWYygPIZgBZ2DU5qjDO8WeG17JkJAm7mDhYhgS4yYVZEBe080VxlmhCi5QOx2eUWp9F6zjZXKL8+IV9HIzOnqUvPjCCAALTVsxg45jXK6/W8IKawXUcNFR7c6M9Pvkqxsdiq8vW54Lc6uYRyPR3XPaBxkiXh3wPcwKoXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uMm/sAIA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E75BC4CEDE;
+	Thu,  5 Dec 2024 07:48:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733384920;
+	bh=bSj37bmt7ADxZheK3OHEPhQVUUID4mtcZsHj93X0KKk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uMm/sAIA2nn1qVkJJcLGnmqW5ViC4WlDFo/xtfN5/wDNCbI3LNES25lEC4V8VUq2b
+	 PzP+vecfeEsFKt0zg44BPbgmeUhB/44vgdgtKANZ2KaiJPucONJwXEANgIbQwljg+b
+	 eET5f9KosB128PDpIvrVv3Qdu3pS7Zmh6Z4AwLvAxUOXZZGIQDfNfRtQ+RqXUJqRX/
+	 EZaY8goZhAD8QDF/dY5H0sWtIj3B9fOoAUOn3GhGah7DyIdBI71uHO9ZNGmSM8RcKH
+	 9NhKZ5dDtuqXyojYHINlbkQkKlO2H5RZPkyd/hC7z5Q9LkmsZgz5y1OTNLXJe6uPdP
+	 dn+0EbxirIM9A==
+Date: Thu, 5 Dec 2024 08:48:37 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Pavel Machek <pavel@ucw.cz>, Hans de Goede <hdegoede@redhat.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, 
+	Purism Kernel Team <kernel@puri.sm>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH v10 3/8] dt-bindings: mfd: add maxim,max77705
+Message-ID: <hjrxt3qkzzpda2uqazdse3h263ixb4onezyij4xcgezpaaihqk@ijln25sdyzfr>
+References: <20241204-starqltechn_integration_upstream-v10-0-7de85e48e562@gmail.com>
+ <20241204-starqltechn_integration_upstream-v10-3-7de85e48e562@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241203203824.23306-1-simons.philippe@gmail.com>
- <CAGb2v67Uv3SVQSqox85qt_05aVvX0oCynNRoaN9BA1Nha3eo8w@mail.gmail.com> <CADomA482XLFNySkjujoPmPCnCrKn+RcppW=SqRqcA2WLMe-mNw@mail.gmail.com>
-In-Reply-To: <CADomA482XLFNySkjujoPmPCnCrKn+RcppW=SqRqcA2WLMe-mNw@mail.gmail.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Thu, 5 Dec 2024 15:39:24 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64YFcEhTYVzTJWTvw7CZ3XF08e7+1jiTg25HN6C1Ny+Jg@mail.gmail.com>
-Message-ID: <CAGb2v64YFcEhTYVzTJWTvw7CZ3XF08e7+1jiTg25HN6C1Ny+Jg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: allwinner: h616: rg35xx add missing regulator-ramp-delay
-To: Philippe Simons <simons.philippe@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:ARM/Allwinner sunXi SoC support" <linux-arm-kernel@lists.infradead.org>, 
-	"open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>, open list <linux-kernel@vger.kernel.org>, 
-	Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241204-starqltechn_integration_upstream-v10-3-7de85e48e562@gmail.com>
 
-On Thu, Dec 5, 2024 at 3:26=E2=80=AFPM Philippe Simons
-<simons.philippe@gmail.com> wrote:
+On Wed, Dec 04, 2024 at 11:09:53PM +0300, Dzmitry Sankouski wrote:
+> Add maxim,max77705 binding.
+> 
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> ---
+> Changes in v10:
+> - leds: replace label with color and function properties
+> - leds: add support for leds-class-multicolor
+> - move fuelgauge node to patternProperties "^fuel-gauge@[0-9a-f]+$"
+>   to comply with max17042 binding
 
-Please reply inline.
+You silently added significant change - new address to fuel-gauge.
 
-> Ok I can do that, but the driver (axp20x-regulator.c) is using macros
->  to generate these regulator_desc structs.
->
-> So I have two options, create a new macro with the ramp_delay, or
-> modify the existing macro, using 0 for the regulators I don't know about.
+> 
+> Changes in v9:
+> - replace max77705 fuel gauge with max17042
+> - remove monitored battery because not supported by max17042
+> 
+> Changes in v8:
+> - fix leds compatible
+> 
+> Changes in v6:
+> - unevaluatedProperties must be false
+> - drop excessive sentence from description,
+>   just describe the device
+> - change leds compatible to maxim,max77705-rgb
 
-You can add a new macro with the extra ramp_delay argument, and modify
-the existing macro to expand to that with ramp_delay =3D 0.
+Your changelog should mention you added review here.
 
-ChenYu
+> 
+> Changes in v5:
+> - formatting changes
+> - add unevaluatedProperties: false for nodes referencing
+>   common schemas
+> - remove additionalProperties on nodes with
+>   unevaluatedProperties: false
+> - add min and max to led index
+> Changes in v4:
+> - change dts example intendation from tabs
+>  to spaces
+> - remove interrupt-names property
+> - remove obvious reg description
+> - split long(>80) lines
+> ---
+>  Documentation/devicetree/bindings/mfd/maxim,max77705.yaml | 192 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>  MAINTAINERS                                               |   1 +
+>  2 files changed, 193 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml
+> new file mode 100644
+> index 000000000000..1bc026a01337
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml
+> @@ -0,0 +1,192 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/maxim,max77705.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim MAX77705 Companion Power Management IC and USB Type-C interface IC
+> +
+> +maintainers:
+> +  - Dzmitry Sankouski <dsankouski@gmail.com>
+> +
+> +description: |
+> +  The Maxim MAX77705 is a Companion Power Management and Type-C
+> +  interface IC which includes charger, fuelgauge, LED, haptic motor driver and
+> +  Type-C management IC.
+> +
+> +properties:
+> +  compatible:
+> +    const: maxim,max77705
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
 
-> Philippe
->
-> On Thu, Dec 5, 2024 at 5:16=E2=80=AFAM Chen-Yu Tsai <wens@csie.org> wrote=
-:
-> >
-> > On Wed, Dec 4, 2024 at 4:38=E2=80=AFAM Philippe Simons
-> > <simons.philippe@gmail.com> wrote:
-> > >
-> > > AXP datasheet says that ramp delay is 15.625 us/step,
-> > > which is 10mV in our case.
-> >
-> > (CC-ing Mark for knowledge on regulators)
-> >
-> > If this is the property of the PMIC, it probably belongs in the driver,
-> > in "regulator_desc.ramp_delay".
-> >
-> > The "regulator-ramp-delay" in the DT can be used to override this
-> > if the board has excessive ramp delay due to other design reasons.
-> >
-> >
-> > ChenYu
-> >
-> > > add missing regulator-ramp-delay to dcdc regulators accordingly
-> > >
-> > > Signed-off-by: Philippe Simons <simons.philippe@gmail.com>
-> > > ---
-> > >  .../boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts    | 3 +=
-++
-> > >  1 file changed, 3 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35x=
-x-2024.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024=
-.dts
-> > > index 80ccab7b5..b6e76a804 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.=
-dts
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.=
-dts
-> > > @@ -238,6 +238,7 @@ reg_dcdc1: dcdc1 {
-> > >                                 regulator-always-on;
-> > >                                 regulator-min-microvolt =3D <900000>;
-> > >                                 regulator-max-microvolt =3D <1160000>=
-;
-> > > +                               regulator-ramp-delay =3D <640>;
-> > >                                 regulator-name =3D "vdd-cpu";
-> > >                         };
-> > >
-> > > @@ -245,6 +246,7 @@ reg_dcdc2: dcdc2 {
-> > >                                 regulator-always-on;
-> > >                                 regulator-min-microvolt =3D <940000>;
-> > >                                 regulator-max-microvolt =3D <940000>;
-> > > +                               regulator-ramp-delay =3D <640>;
-> > >                                 regulator-name =3D "vdd-gpu-sys";
-> > >                         };
-> > >
-> > > @@ -252,6 +254,7 @@ reg_dcdc3: dcdc3 {
-> > >                                 regulator-always-on;
-> > >                                 regulator-min-microvolt =3D <1100000>=
-;
-> > >                                 regulator-max-microvolt =3D <1100000>=
-;
-> > > +                               regulator-ramp-delay =3D <640>;
-> > >                                 regulator-name =3D "vdd-dram";
-> > >                         };
-> > >
-> > > --
-> > > 2.47.1
-> > >
+Nope, none of children are supposed to have addresses. All nodes are
+unit-less.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+
+...
+
+> +    properties:
+> +      compatible:
+> +        const: maxim,max77705-rgb
+> +
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +      multi-led:
+> +        type: object
+> +        $ref: /schemas/leds/leds-class-multicolor.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          "#address-cells":
+> +            const: 1
+> +
+> +          "#size-cells":
+> +            const: 0
+> +
+> +        patternProperties:
+> +          "^led@[0-3]$":
+> +            type: object
+> +            $ref: /schemas/leds/common.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              reg:
+> +                maxItems: 1
+> +
+> +            required:
+> +              - reg
+> +
+> +    required:
+> +      - compatible
+> +
+> +patternProperties:
+> +  "^fuel-gauge@[0-9a-f]+$":
+
+
+How unit address appeared here? It was absolutely never reviewed. This
+is significant change, so drop the review tag.
+
+It's also a no, drop unit address.
+
+Best regards,
+Krzysztof
+
 
