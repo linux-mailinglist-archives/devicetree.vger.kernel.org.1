@@ -1,134 +1,171 @@
-Return-Path: <devicetree+bounces-127341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B66D9E5389
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:18:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A20F29E53CE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:25:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BB4D169A4C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 11:18:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F92D16A6C4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 11:24:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86F9E1DFE2B;
-	Thu,  5 Dec 2024 11:18:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iN2Guluy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E50206F20;
+	Thu,  5 Dec 2024 11:22:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 566B31B0F1F;
-	Thu,  5 Dec 2024 11:18:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6285C206F2D
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 11:22:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733397494; cv=none; b=Ps8g2zHhRW14cz3PyjcXTmO+tqajm3/KwiPxHWRi/3TatJNGO2fZ5dUtqDLzc64I9kI8pzhBSZzssDk6ctxiRS7XVaC9kRavAiwpB4mNQiwO97l2CZzHe74LMKu8rupFTYTOtM2L7vndnquaAHJ9O7EKidtTvQgfcK3bzOAr3DI=
+	t=1733397740; cv=none; b=i9WY55KfqVhqXofTe3zQTkNRxunrxrSHy1KB8TTswYjti80RzkTI15ymobAeJFRPmgE0woqsE7/MS8bIukFYEbRSZowEk80uTarXyL52lndh7GgGAV2OVqKrYrZFemEulkDUBbHajNIX4DGEjcWzGDMmJv/+2UF4s7zyeTEt7Xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733397494; c=relaxed/simple;
-	bh=03418Nmjp7L7uNRQ/VmAj+UPzNS51bahbk7mIDpWr7Q=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=d3AWyIHTyBV0V52sn30464gV3Xeho34CxYbHytWJB8m+cimMf1GaNShcB376c7KUHP9F9W5JxiAUjlMXu5G4jNzKgt26o1qFzm4nU+EqNaOfazhKplqXTu05e2PNnbAIY18c+Dmc08F8Jn+4uKgNrEttwZQVj3Ra+iuwbcj7alc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iN2Guluy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABEAFC4CED1;
-	Thu,  5 Dec 2024 11:18:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733397493;
-	bh=03418Nmjp7L7uNRQ/VmAj+UPzNS51bahbk7mIDpWr7Q=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=iN2GuluyByYZ/wLneFG9wJ5ByKuXB2FiMRkddeQp8mBIrvgrr9clb4Gh35KlxCuaZ
-	 FRBvZ95aXOkgVxS66s9CxGKYsNfkdExNH9J5l3/Hdg0mipMXKjp44wEV8Jiu9R0GVW
-	 iY6M5mejSUHPSjWzuX3e3evBzETE0tG1NfRYoFNr6M9JyLq2EHCUDzulqcXPs373UR
-	 Vc00/Xyl5bXBbRg0UFRJM8ooi3o4odpc8IhLzSzeOKhhtOVzfFjpQISzF73fUZ5zLw
-	 SYezLCysfB7ZfDH2NeHiKWcbS84LJo/YBrEjBoRea7gpcPhkYF1agyIjXNzZYepPQS
-	 aC6Pl4VmNV/IA==
-Date: Thu, 05 Dec 2024 05:18:12 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1733397740; c=relaxed/simple;
+	bh=z7QzahvsUpDUq/hh1dmI3rNNlgN7khulvlUbO6WYo3A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GeWRjNRtBk9ZDzveih7OC/vzlWre4HqgzQQ3teRRZzaa8+2KVgYcLRWAVokcwfXt6wyBjNTKUbsJcZ21KjOEQMYKw7fPwM9jkvJoYndQGaFS2pHrAnuT3JO/qqEaWokcy/UCwB6iJZ53cv63s3qPK9bkTBJazwbunzvfMQRLRts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tJ9vK-0008Qw-3k; Thu, 05 Dec 2024 12:21:34 +0100
+Message-ID: <5e9a80d6-6c89-478e-99c9-584647661f5e@pengutronix.de>
+Date: Thu, 5 Dec 2024 12:21:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: quic_shuaz@quicinc.com, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Conor Dooley <conor+dt@kernel.org>, linux-bluetooth@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, quic_jiaymao@quicinc.com, 
- Marcel Holtmann <marcel@holtmann.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, quic_zijuhu@quicinc.com, 
- Rocky Liao <quic_rjliao@quicinc.com>, devicetree@vger.kernel.org, 
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
- Bjorn Andersson <andersson@kernel.org>, quic_mohamull@quicinc.com, 
- linux-kernel@vger.kernel.org
-To: Cheng Jiang <quic_chejiang@quicinc.com>
-In-Reply-To: <20241205102213.1281865-2-quic_chejiang@quicinc.com>
-References: <20241205102213.1281865-1-quic_chejiang@quicinc.com>
- <20241205102213.1281865-2-quic_chejiang@quicinc.com>
-Message-Id: <173339749198.2690453.6235486221062242906.robh@kernel.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: bluetooth: qca: Expand
- firmware-name property
+User-Agent: Mozilla Thunderbird
+Subject: Co-existence of GPT and fixed partitions (Was: Re: [PATCH v6 5/6]
+ block: add support for partition table defined in OF)
+To: Christian Marangi <ansuelsmth@gmail.com>, Jens Axboe <axboe@kernel.dk>,
+ Jonathan Corbet <corbet@lwn.net>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Daniel Golle <daniel@makrotopia.org>,
+ INAGAKI Hiroshi <musashino.open@gmail.com>,
+ Christian Brauner <brauner@kernel.org>, Al Viro <viro@zeniv.linux.org.uk>,
+ Ming Lei <ming.lei@redhat.com>, Li Lingfeng <lilingfeng3@huawei.com>,
+ Christian Heusel <christian@heusel.eu>, Avri Altman <avri.altman@wdc.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Adrian Hunter <adrian.hunter@intel.com>,
+ Riyan Dhiman <riyandhiman14@gmail.com>,
+ Mikko Rapeli <mikko.rapeli@linaro.org>,
+ Jorge Ramirez-Ortiz <jorge@foundries.io>, Li Zhijian
+ <lizhijian@fujitsu.com>,
+ Dominique Martinet <dominique.martinet@atmark-techno.com>,
+ Jens Wiklander <jens.wiklander@linaro.org>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ linux-block@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, upstream@airoha.com,
+ Christoph Hellwig <hch@infradead.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Christoph Hellwig <hch@lst.de>
+References: <20241002221306.4403-1-ansuelsmth@gmail.com>
+ <20241002221306.4403-6-ansuelsmth@gmail.com>
+Content-Language: en-US
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20241002221306.4403-6-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi,
 
-On Thu, 05 Dec 2024 18:22:11 +0800, Cheng Jiang wrote:
-> Expand the firmware-name property to specify the names of NVM and
-> rampatch firmware to load. This update will support loading specific
-> firmware (nvm and rampatch) for certain chips, like the QCA6698
-> Bluetooth chip, which shares the same IP core as the WCN6855 but has
-> different RF components and RAM sizes, requiring new firmware files.
+sorry for not writing sooner. I only noticed this now.
+
+On 03.10.24 00:11, Christian Marangi wrote:
+> Add support for partition table defined in Device Tree. Similar to how
+> it's done with MTD, add support for defining a fixed partition table in
+> device tree.
 > 
-> We might use different connectivity boards on the same platform. For
-> example, QCA6698-based boards can support either a two-antenna or
-> three-antenna solution, both of which work on the sa8775p-ride platform.
-> Due to differences in connectivity boards and variations in RF
-> performance from different foundries, different NVM configurations are
-> used based on the board ID.
+> A common scenario for this is fixed block (eMMC) embedded devices that
+> have no MBR or GPT partition table to save storage space. Bootloader
+> access the block device with absolute address of data.
+
+How common are these? I never worked with a system that didn't use MBR
+or GPT for the user partition.
+
+> This is to complete the functionality with an equivalent implementation
+> with providing partition table with bootargs, for case where the booargs
+> can't be modified and tweaking the Device Tree is the only solution to
+> have an usabe partition table.
 > 
-> So In firmware-name, if the NVM file has an extension, the NVM file will
-> be used. Otherwise, the system will first try the .bNN (board ID) file,
-> and if that fails, it will fall back to the .bin file.
-> 
-> Possible configurations:
-> firmware-name = "QCA6698/hpnv21.bin", "QCA6698/hpbtfw21.tlv";
-> firmware-name = "QCA6698/hpnv21", "QCA6698/hpbtfw21.tlv";
-> firmware-name = "QCA6698/hpnv21.bin";
-> 
-> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
-> ---
->  .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml   | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+> The implementation follow the fixed-partitions parser used on MTD
+> devices where a "partitions" node is expected to be declared with
+> "fixed-partitions" compatible in the OF node of the disk device
+> (mmc-card for eMMC for example) and each child node declare a label
+> and a reg with offset and size. If label is not declared, the node name
+> is used as fallback. Eventually is also possible to declare the read-only
+> property to flag the partition as read-only.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+barebox has for many years supported defining fixed partitions on SD/MMC
+nodes and it's used heavily to define e.g. the location of the barebox
+environment. Many who do so, do this either before the first partition
+of the MBR/GPT or overlay the fixed partition to be identical to
+an existing MBR/GPT partition.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml:106:5: [error] duplication of key "description" in mapping (key-duplicates)
+barebox also by default copies all fixed partitions it is aware of
+into the kernel DT, so if the kernel now stops parsing GPT/MBR when
+a fixed partition node is defined, this would break compatibility of
+existing barebox-booting systems with new kernels.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml: ignoring, error parsing file
-./Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml:106:5: found duplicate key "description" with value "specify the name of rampatch firmware to load" (original value: "specify the name of nvm firmware to load")
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.example.dts'
-Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml:106:5: found duplicate key "description" with value "specify the name of rampatch firmware to load" (original value: "specify the name of nvm firmware to load")
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
+> +config OF_PARTITION
+> +	bool "Device Tree partition support" if PARTITION_ADVANCED
+> +	depends on OF
+> +	help
+> +	  Say Y here if you want to enable support for partition table
+> +	  defined in Device Tree. (mainly for eMMC)
+> +	  The format for the device tree node is just like MTD fixed-partition
+> +	  schema.
 
-doc reference errors (make refcheckdocs):
+Thanks for making this configurable and disabled by default, so users
+won't experience breakage if they just do a make olddefconfig.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241205102213.1281865-2-quic_chejiang@quicinc.com
+> diff --git a/block/partitions/core.c b/block/partitions/core.c
+> index abad6c83db8f..dc21734b00ec 100644
+> --- a/block/partitions/core.c
+> +++ b/block/partitions/core.c
+> @@ -43,6 +43,9 @@ static int (*const check_part[])(struct parsed_partitions *) = {
+>  #ifdef CONFIG_CMDLINE_PARTITION
+>  	cmdline_partition,
+>  #endif
+> +#ifdef CONFIG_OF_PARTITION
+> +	of_partition,		/* cmdline have priority to OF */
+> +#endif
+>  #ifdef CONFIG_EFI_PARTITION
+>  	efi_partition,		/* this must come before msdos */
+>  #endif
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+If I understand correctly, it's possible to have both partitions-boot1 and
+a GPT on the user area with your patch, right?
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+So this only leaves the matter of dealing with both fixed-partitions and
+GPT for the same device node.
 
-pip3 install dtschema --upgrade
+What are the thoughts on this? An easy way out would be to make of_partition
+come later than efi_partition/mbr_partition, but I think it would be
+nice if the kernel could consume partition info out of both of_partition
+and efi_partition as long they don't collide.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Thanks,
+Ahmad
 
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
