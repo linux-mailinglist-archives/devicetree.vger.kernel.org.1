@@ -1,130 +1,138 @@
-Return-Path: <devicetree+bounces-127590-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A24569E5C62
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:59:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F6C69E5C74
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:02:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C39BD16CE7F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 16:59:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0275D18835C3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:02:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 610A122257F;
-	Thu,  5 Dec 2024 16:58:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 806AD21D5BF;
+	Thu,  5 Dec 2024 17:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nA+oCSMh"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="ksEiv5H6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B6A21D589
-	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 16:58:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D129B21D586;
+	Thu,  5 Dec 2024 17:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733417938; cv=none; b=BoGul3VLG2IwROqSXcigKr7FSs5SIEq1kGba2jnzkPMmtuGcpvV8Ym8tFPk9vdtubRb/f2OPXWLrPZzaAkddGMgdR3onsnMtAJetdWBXSdd7rRknGG399aHqkqvJR7qQeIzPnyiCNFzYpnwBozR4m5DwoQWxZSV536zypCGkReQ=
+	t=1733418117; cv=none; b=k76E7cOObn5v0S3XZpL03IE5mwjYzqhBkgFwyKuRH0xlxfxcTEBDyIvYRU1DxiyObf8k86pYGmEHzpo6l38RBPN7r5iBShYzo3sxpUWtHozvLx8zCjX/KMnV85wArjtqN+lY5Hm91RL8gi5fX1LBH6CXqYZePCJ/+k1xw+vtHvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733417938; c=relaxed/simple;
-	bh=29LB2PMCJTqg6yaaSPjNIptSdWN5G/aO+7nwXHFP66E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BiDMfNZuqmfW2g1b4TM3JKDFh8udl+W3nMJe+TuOlbEa6Qk6dePIufbRaylXtDTecXsh32FlB6TPdlvd2CDYLRlaspkg7aIGFN/1BkGabUPFg+8LiMfbbNVIgObFEwBCfA6IMcfkRCQDPo4UmJRAagTwW2I4c7c+Q29TBrQ1FAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nA+oCSMh; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5Boqlm027688
-	for <devicetree@vger.kernel.org>; Thu, 5 Dec 2024 16:58:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	29LB2PMCJTqg6yaaSPjNIptSdWN5G/aO+7nwXHFP66E=; b=nA+oCSMh4jchwVni
-	RSHAfSeWqiZFtvavwFwCEDRSpwg+QzKYPVmowHEl9wIGzr1Tm1xoVIr+rbGlwOqv
-	zDs3/cxXNd4DBCZYY9XlJ1qdDLhevKbLjzCJQbghWntsu1gZTxU8abzsvynthvCF
-	niHKoqDIBkkoQb7Js67T423mJWBsW0hvybopO2i3W8FYs9nn3IPnae/ZG+1vnXbS
-	s1KmUqwI1d6wHdnL0bwpPZgpBXfj+TaNclXbJPrikKJdhXBn553DqT1lN41BZ7aw
-	esVExIR5Tnxh1jJLU27E1WSvDRH+Ce3SMwGr6xuPcIE05y28Bo3qnoatxIML9OFN
-	Wl/X8Q==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43bbnmguer-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 16:58:55 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6d883e95efcso3266056d6.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 08:58:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733417935; x=1734022735;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=29LB2PMCJTqg6yaaSPjNIptSdWN5G/aO+7nwXHFP66E=;
-        b=DVdkmSS7RvOEVXrB7neTLEnk5q37ZaIT7ZziLoa4fHEafFRQpQDqSc3PK9ipMGVMK6
-         UxtPgwtJ+SyVTywagZKlEqXIPCyDhVjeXC3zuKJSaZ2rrbkg5YoNm+5EQXbnsJGv/wHa
-         SfTmTDfHJ+976VzegpfZps7jBPYptyAZ/FQOhmNQnyz0HoYY4cL/Pt1TWASJzE+8wmjF
-         0PET96CxPGt3dz0Jrx5VHfWm1yyosa/pK/e/qgbPfNjP8Am3bZu3gdeJM025yLUaFbPQ
-         eFg5++DkHJjYld49BK9fX8FQvcptoeP1TOTaLCprmQ5lfhAgTyFLydvC0d0Ds0sNLn/E
-         BNSg==
-X-Forwarded-Encrypted: i=1; AJvYcCUFn66C2Ek87dnV+6fh2NWkMSLRTeMpPjH6jamUY34MGYfjsVw1BcZHb97uHbzkLt/3EXeLHzx41Foo@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzMqgYbTECS4AuO3vaD+cOOa5lzg9ahn29jMu0jXGcRsbDivIO
-	bDxRMlRMp36jDACtUhy4pfbyhzkWACQrZu5zWy61A+l+d/Ol9nrFWH6xSacXerGbzbFzs0ETOuE
-	ELzlLOBsnM31onZu32t0bTT2f3GK+9v67+2msC5kYHWJb2EoZ7hi6IjquD0K+
-X-Gm-Gg: ASbGncv8mmXaBJhI5//FOEWZZ+GvorP7xHaGqD/CHxpbvJ3SQI87MIeqZGQ1Q4RmXe1
-	n5Qy6wuuKzmUavhuPkkPn6tDhXGSzE/JshJT9zzwUtXZsuPMjsK03VTQ2aHxENcpxOexruHAM8v
-	Zbeo4Pk9GavlLXWRu5tyyos02uGjKY7d7jCIzRQLJfQJA1YoEnaH7QzvFakjhl8KDmQmMiz+H/e
-	yfpKP8vaJoSix8jiSz7qIcgMBqXf56X9OIDeSjWkjkZSx1hBO9aAz/p5vrWQcVGhR0ncyPlIwK4
-	BVWaQWSlywazQG+ad43zDkPn/C1slDs=
-X-Received: by 2002:a05:6214:224d:b0:6d8:7d84:a4fe with SMTP id 6a1803df08f44-6d8b740269bmr66744266d6.11.1733417935149;
-        Thu, 05 Dec 2024 08:58:55 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHONcwWmMF297h6ReXiuQIfs1VJfMAMwnr4Li/G53W2Qo/RcNGYjv5W4a29cWUw0S2dbXt6Pw==
-X-Received: by 2002:a05:6214:224d:b0:6d8:7d84:a4fe with SMTP id 6a1803df08f44-6d8b740269bmr66743966d6.11.1733417934782;
-        Thu, 05 Dec 2024 08:58:54 -0800 (PST)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6260e0389sm115040066b.174.2024.12.05.08.58.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Dec 2024 08:58:54 -0800 (PST)
-Message-ID: <724bf111-ae58-4986-aacc-3db3230a7a36@oss.qualcomm.com>
-Date: Thu, 5 Dec 2024 17:58:50 +0100
+	s=arc-20240116; t=1733418117; c=relaxed/simple;
+	bh=VLPu0veF1Y6ejdAlI9VoNPhLNceajAZiJdEd+I/XxdI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AWZ1JNTPb9sXcE2xuhecQ22+DDbmFIg9FwpNWmEw67lq6zNlftaEfwFKiy6cNEgMNZzjKOzrAhxN7KGzhXIeXHCmjAmbzSt8ORFApdDsg2Js9nZ1pqjc9QduGc1mIMAPYbk6R0w1oEtQ1tG9cXh7IS/q229s0ADohYuAJq4bDFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=ksEiv5H6; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=p5Iv8mfxtmO9Druz+kkxkhm6XzbPAF2CVdJuZPljSLQ=; b=ksEiv5H68mvOWbi92UT+mbNnPd
+	DiReXQWSRrcoZ58Trb1WbGFudxkZGWdZlKJdS4Lb70jm5B3faZfpTS6yZWSwiqqVnC+J4ItKPPjmh
+	mpmlhnHOOibAknUuMkSkfyXBbuOn+4RyBFOvBs6H08qE0Ygf2QONsbiYWrbg/+zkCLFMZe8YfcE1i
+	JYIsVzWT6XaZME6vhKqlKcXAtEWJYemMxlIRhyOVkDhCSuHlXIl7Jy8un6ry5tBFcXOft2vomZvqe
+	lCdNY2Oknzr9gLUV57jBrO/vxpPNrgCoQI/AXvpscQ+QQ+mhT9/4rDhUfLcXVsRJtQfjxXh8sMGQ5
+	NBcB1HWQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:42758)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tJFEG-0005Er-1R;
+	Thu, 05 Dec 2024 17:01:28 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tJFEC-0006i8-04;
+	Thu, 05 Dec 2024 17:01:24 +0000
+Date: Thu, 5 Dec 2024 17:01:23 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Jan Petrous <jan.petrous@oss.nxp.com>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
+	Keyur Chudgar <keyur@os.amperecomputing.com>,
+	Quan Nguyen <quan@os.amperecomputing.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	NXP S32 Linux Team <s32@nxp.com>, 0x1207@gmail.com,
+	fancer.lancer@gmail.com, Jacob Keller <jacob.e.keller@intel.com>
+Subject: Re: [PATCH net-next v8 01/15] net: stmmac: Fix CSR divider comment
+Message-ID: <Z1HcYyNG4FfnN84s@shell.armlinux.org.uk>
+References: <20241205-upstream_s32cc_gmac-v8-0-ec1d180df815@oss.nxp.com>
+ <20241205-upstream_s32cc_gmac-v8-1-ec1d180df815@oss.nxp.com>
+ <Z1HaB6hT0QX4Jlyx@shell.armlinux.org.uk>
+ <Z1Ha+me4+hbOj9JO@lsv051416.swis.nl-cdc01.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/6] arm64: dts: qcom: ipq5332: Enable PCIe phys and
- controllers
-To: Varadarajan Narayanan <quic_varada@quicinc.com>, lpieralisi@kernel.org,
-        kw@linux.com, manivannan.sadhasivam@linaro.org, robh@kernel.org,
-        bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-        vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org,
-        konradybcio@kernel.org, p.zabel@pengutronix.de,
-        quic_nsekar@quicinc.com, dmitry.baryshkov@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Cc: Praveenkumar I <quic_ipkumar@quicinc.com>
-References: <20241204113329.3195627-1-quic_varada@quicinc.com>
- <20241204113329.3195627-7-quic_varada@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241204113329.3195627-7-quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: tG3dLWzCSh8hrJmtdu_qOMaQTq5A6qTO
-X-Proofpoint-GUID: tG3dLWzCSh8hrJmtdu_qOMaQTq5A6qTO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=677 priorityscore=1501 spamscore=0 impostorscore=0 bulkscore=0
- suspectscore=0 adultscore=0 clxscore=1015 phishscore=0 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412050124
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z1Ha+me4+hbOj9JO@lsv051416.swis.nl-cdc01.nxp.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 4.12.2024 12:33 PM, Varadarajan Narayanan wrote:
+On Thu, Dec 05, 2024 at 05:55:22PM +0100, Jan Petrous wrote:
+> On Thu, Dec 05, 2024 at 04:51:19PM +0000, Russell King (Oracle) wrote:
+> > On Thu, Dec 05, 2024 at 05:42:58PM +0100, Jan Petrous via B4 Relay wrote:
+> > > From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+> > > 
+> > > The comment in declaration of STMMAC_CSR_250_300M
+> > > incorrectly describes the constant as '/* MDC = clk_scr_i/122 */'
+> > > but the DWC Ether QOS Handbook version 5.20a says it is
+> > > CSR clock/124.
+> > > 
+> > > Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> > > Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
+> > 
+> > I gave my reviewed-by for this patch in the previous posting, but you
+> > haven't included it.
+> > 
+> > Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> 
+> Hi Russell,
+> sorry for that, I missed it. Should I resend the v8 series?
 
-Subject:
+Patchwork will add it if this series is merged, so there's no immediate
+need to resend. However, please update your series with it in case there
+is another reason to send another version.
 
-arm64: dts: qcom: ipq5332-rdp441: xyz abc
+Thanks.
 
-Konrad
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
