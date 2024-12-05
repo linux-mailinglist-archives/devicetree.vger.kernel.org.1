@@ -1,181 +1,122 @@
-Return-Path: <devicetree+bounces-127385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5139B9E5499
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:51:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFC5B9E548E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:50:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C9432169E9E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 11:51:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90CC116213F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 11:50:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75542139A1;
-	Thu,  5 Dec 2024 11:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0A121322D;
+	Thu,  5 Dec 2024 11:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Joc3kW/F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c5El78I6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EEA1213249;
-	Thu,  5 Dec 2024 11:51:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4455212B3D;
+	Thu,  5 Dec 2024 11:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733399502; cv=none; b=c9K9eSZSB937x+1qBULyBVg6HiV2pZTCVMaf6X3ZYVU1zzhjlfN9bhKgFd+CtmKZJvSxQs09edCaxLBaeyy2xpntJwNtjOSABLU5KpfS2i+m9RkVrX6rp1RtCwv9oaUcUaUI+xMvn/EwmoYVUs5T5Wk/SV5sU8tu5PGZbj4wy3A=
+	t=1733399439; cv=none; b=F8rSaJgcwwL3PnpRVM3qH3hiyE8qbynZlJAtJ5jgLHIJWM8QSTg1NTQtePSEjLI2FGe1p3zLJhRmbXzRJZXQD3z1kDjWjHRVGW8pcFu+tuO7xfkMrB/x6iMseiUHlzk/BluiS/2d07fu8wR5Taivb2PLHa9lZSZ8CpIFylr+bXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733399502; c=relaxed/simple;
-	bh=oWf1oYpaircxbb7ijNv7L4QRWi8/CRKE5AD2tihxiho=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=orOf+9r0+UO0M5nVrzM9K0zmloUVeqxJeX7HVbzKOwGkzarQFWZ2ijEkdglO8JJAkxMbnfNlqWkZrhOIrRLGsrp22IbOL2PUg5/N25f09iPjTVvRbwuKMtStLVHbjooqeBn6PZN62w38SUGvcIbV294gj8G+WfR5fYv5JuAqMH0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Joc3kW/F; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5ANMBj026590;
-	Thu, 5 Dec 2024 12:50:57 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	DwOpMaW2es02J1yfBmzoVz6Jv19EkUC2xX3SDPzEuqM=; b=Joc3kW/FpGpozv/F
-	49MXK1F3AUIaGDlU0HmQlEy2tYgzNNZdBeXQwaWuNtio/g6MPlb4ftsBGiwKbi8E
-	6FL8hx/WN1hSMIBcxw3kOfykVoKfFxh/z9PAHBqKD+qqyA4uYJLW9md83bGqqOlm
-	+cqsp8LW61JlT6RSyF/jNRr0cQoh+9TiCv0NYStWxoUYOF5KQOT27dJk8xXfSMHu
-	gZnujWyBv9FKpQc8K9QeS4IwlJN7Ctxvb1torK6Y7SesS3Uqox0dODmK4ngz7xuH
-	MSsNpC4o4X6lUb4XAD+oxtUGuMDRWhsrjG3aBrUfFK9VUM/51UsdKak7Mw7OyV14
-	jtDQsg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 438ehp4gjy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Dec 2024 12:50:57 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 907B640044;
-	Thu,  5 Dec 2024 12:49:26 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 454DE29BB01;
-	Thu,  5 Dec 2024 12:46:38 +0100 (CET)
-Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 5 Dec
- 2024 12:46:37 +0100
-Message-ID: <9340979e-8f0e-465b-a524-4ff315a9941d@foss.st.com>
-Date: Thu, 5 Dec 2024 12:46:29 +0100
+	s=arc-20240116; t=1733399439; c=relaxed/simple;
+	bh=09ZErvOPilkcxrhg8MYOcE6zCdxNbMB3/4gU+4cpInQ=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mWKu5il4I8/W+VAUnKmAR6YyEK14TcK2PFXgQENo/l2PFz1fH56G62vO+E2D7b2hiGgjCVDCsWctTBQHs7HJu7wEf5YkGf5uCz/viK5XE0n2BLK2iCt2RJ+NPSa+Az0TS2ErSWkkFBMbGAkeD+Qeo6RHbr7MMqtuBjnLeLa3zhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c5El78I6; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-434aa222d96so9079415e9.0;
+        Thu, 05 Dec 2024 03:50:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733399436; x=1734004236; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S6NnyZQFQJZ/bR6qZgAFz+vbUbEYoSpUoCinAEz1xys=;
+        b=c5El78I6IJJ/MM7Ha9TMj767FUz2Y84TFrhnT/Asav7LuoZaxBYWtwWdYujBfMhU46
+         NdGWgRZNaJHkehjoDXuUddfqUr6N3TwZdk+LUbkzKCoghLMVSPTHXMonrY/JLKoB0dZa
+         ccilczZzl49tG2zdpCGl3fcP1SWr+lmi1f4SyqvQkZvETt/gAu9KDaU4QQZ/hvZRZwgd
+         MNs5OfEJwJPwfWJKLkkQcNyRr3V1G3uEeESEHnAyOgDIJEUN5o+vevr8mfoDXVaPC8gS
+         yZFConY3zMr8e5ztqBGYg+FJgvcTwodZbIAAh5KdRSNN/CVBq97+LPNXI8iqlX77c2gt
+         RUDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733399436; x=1734004236;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S6NnyZQFQJZ/bR6qZgAFz+vbUbEYoSpUoCinAEz1xys=;
+        b=lQu3a7QEJ7SSoR7X0Cx7aPYnB7oxeEhVTbjWG544zP+MRwnzhOa8/TrCvgZAASe3gT
+         ePpB7Zx4RJYEANWw17DtKeS91fDYS+7Fqx8lmR68tsRjjnE4/O0ZjTX4ilanQ6A4lzO/
+         bcz24I1Tr1wEfF/ypwvEz15TqPdqC1Zc87F31dMOLEFdx6XP1merCkWIHF2PZ0NUcmrT
+         UcCNeCRP8cmygdJRvmL2Rwn4fF3uYoAfmtZkeIj/mACxy63HcdVaHpvG2pNdaH+rKunM
+         eyQzDbz/BKtTj4dZA2zYQg1c1lJareDXQx6dlrtReO76AW17IlqtuZzY7Np1jf41xAU8
+         jlSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU7YBwqg+Qjd3aRe459nIyCiJIyzbYBvthCCd4jiiycFko+ZwzR+YppR+KzPkAlvOHBssurkmtBtLaq@vger.kernel.org, AJvYcCVOkIOEOVf3YLRInFBcCaPtsM3pSvFYVn4bFoBIeHL2a7eaC+rPXjGWq8IhWhj2tgVvnXTlVeyK+1aW5ps=@vger.kernel.org, AJvYcCXrU7W9vUOc/2HGaD0/DNYoI8iVrB94KsKWMrW2Vbfc7PZwzby1y1QkfCMaUCpuU/V3vvbNofU2oQj8aCcY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRC9fj2F0fGNpsXSspceJDUhYu4bCP9bzgoQALM4eWejvvLN/f
+	vzQRJzwJJJZrzm6ly7bWwgLh3BEOeuFp1UHElhj8krHU/I/0ct4p
+X-Gm-Gg: ASbGncvmIh3sLgClB02bfoNuyAXT+2QX2BjhBFdl9L6ywoICSOysqBfsr3K8Caqzz4b
+	udSdKHyVkPPxfHjPljS43GF8e6rZh81iEZy9REJcFQvItFb7Sekc2tuEI340wiom2uIDB4DFizJ
+	uwrI9T0zrHUzs6dfW6j/xlWJn2yQ2WxKvP5UfvTTeXzlefBNy5e4HEVR1V1eVqmAwo3VZUcVZnf
+	VJeR9Exy+WlvxZVTZZ7Dd04wLBywi3oLuLM62uieFV2DwFlFep1MLzi2RZfDGyK03r5T/3B/kSJ
+	AyDsSnnZjf/sMw9PhS9s+ZJyDMjE/G2cH43gtoappQ==
+X-Google-Smtp-Source: AGHT+IFvdNmuBNbs/9Q5tFDh5WPSX0JQsB3Qmer1TrPs+pisGft0fuZ5HMY7sZM83dxJDY7ZxXqYMg==
+X-Received: by 2002:a05:600c:45c6:b0:434:a5c2:53c1 with SMTP id 5b1f17b1804b1-434d0a0da50mr81873705e9.23.1733399436065;
+        Thu, 05 Dec 2024 03:50:36 -0800 (PST)
+Received: from localhost (p200300e41f281900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1900:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434d52cbf57sm57046095e9.39.2024.12.05.03.50.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Dec 2024 03:50:35 -0800 (PST)
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Mark Hasemeyer <markhas@chromium.org>,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Michal Pecio <michal.pecio@gmail.com>
+Subject: Re: [PATCH] ARM: tegra: nyan: Maintain power to USB ports on boot
+Date: Thu,  5 Dec 2024 12:50:33 +0100
+Message-ID: <173339940395.3942914.13239093539349741162.b4-ty@nvidia.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241204214443.3d9c2224@foxbook>
+References: <20241204214443.3d9c2224@foxbook>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Christian Bruel <christian.bruel@foss.st.com>
-Subject: Re: [PATCH v2 2/5] PCI: stm32: Add PCIe host support for STM32MP25
-To: Lucas Stach <l.stach@pengutronix.de>, Bjorn Helgaas <helgaas@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC: <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
-        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20241129205822.GA2772018@bhelgaas>
- <9ca967aea19d6c28327f3a9bb77e23f6245603e9.camel@pengutronix.de>
-Content-Language: en-US
-In-Reply-To: <9ca967aea19d6c28327f3a9bb77e23f6245603e9.camel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hello Bjorn and Lucas,
+From: Thierry Reding <treding@nvidia.com>
 
-On 11/29/24 22:18, Lucas Stach wrote:
-> Am Freitag, dem 29.11.2024 um 14:58 -0600 schrieb Bjorn Helgaas:
->> [+to Rob, DMA mask question]
->>
->> On Tue, Nov 26, 2024 at 04:51:16PM +0100, Christian Bruel wrote:
->>> Add driver for the STM32MP25 SoC PCIe Gen2 controller based on the
->>> DesignWare PCIe core.
->>
->> Can you include the numeric rate, not just "gen2", so we don't have to
->> search for it?
->>
->>> +static int stm32_pcie_resume_noirq(struct device *dev)
->>> +{
->>> +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
->>> +	struct dw_pcie *pci = stm32_pcie->pci;
->>> +	struct dw_pcie_rp *pp = &pci->pp;
->>> +	int ret;
->>> +
->>> +	/* init_state must be called first to force clk_req# gpio when no
->>> +	 * device is plugged.
->>> +	 */
->>
->> Use drivers/pci/ conventional comment style:
->>
->>    /*
->>     * text ...
->>     */
->>
->>> +static bool is_stm32_pcie_driver(struct device *dev)
->>> +{
->>> +	/* PCI bridge */
->>> +	dev = get_device(dev);
->>> +
->>> +	/* Platform driver */
->>> +	dev = get_device(dev->parent);
->>> +
->>> +	return (dev->driver == &stm32_pcie_driver.driver);
->>> +}
->>> +
->>> +/*
->>> + * DMA masters can only access the first 4GB of memory space,
->>> + * so we setup the bus DMA limit accordingly.
->>> + */
->>> +static int stm32_dma_limit(struct pci_dev *pdev, void *data)
->>> +{
->>> +	dev_dbg(&pdev->dev, "disabling DMA DAC for device");
->>> +
->>> +	pdev->dev.bus_dma_limit = DMA_BIT_MASK(32);
->>
->> I don't think this is the right way to do this.  Surely there's a way
->> to describe the DMA capability of the bridge once instead of iterating
->> over all the downstream devices?  This quirk can't work for hot-added
->> devices anyway.
->>
 
-agree,
-
-> This should simply be a dma-ranges property in the PCIe host controller
-> DT node, which should describe the DMA address range limits for
-> transactions passing through the host.
-
-far better indeed, dma-ranges works like a charm
-
-thanks,
-
+On Wed, 04 Dec 2024 21:44:43 +0100, Michal Pecio wrote:
+> USB ports are turned on by the firmware as it looks for disks to boot,
+> ensure that they aren't power cycled before the xHCI driver comes up.
 > 
-> Regards,
-> Lucas
+> This enables USB devices to be ready for use faster and reduces wear
+> and risk of data loss on storage devices. A particularly annoying case
+> was booting from a mechanical disk, which takes time to spin up again.
 > 
->>> +	return 0;
->>> +}
->>> +
->>> +static void quirk_stm32_dma_mask(struct pci_dev *pci)
->>> +{
->>> +	struct pci_dev *root_port;
->>> +
->>> +	root_port = pcie_find_root_port(pci);
->>> +
->>> +	if (root_port && is_stm32_pcie_driver(root_port->dev.parent))
->>> +		pci_walk_bus(pci->bus, stm32_dma_limit, NULL);
->>> +}
->>> +DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_SYNOPSYS, 0x0550, quirk_stm32_dma_mask);
->>
-> 
+> [...]
+
+Applied, thanks!
+
+[1/1] ARM: tegra: nyan: Maintain power to USB ports on boot
+      commit: cec785a7f25d9ebe3a151ddc4f3a4ede7fc0dab0
+
+Best regards,
+-- 
+Thierry Reding <treding@nvidia.com>
 
