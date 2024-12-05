@@ -1,57 +1,64 @@
-Return-Path: <devicetree+bounces-127320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 225C09E5228
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 11:25:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D97D9E5235
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 11:27:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D71BF2814CD
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 10:25:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01210280CD6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 10:27:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 369E01D9595;
-	Thu,  5 Dec 2024 10:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0646B1D8E07;
+	Thu,  5 Dec 2024 10:26:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s7f/dkLh"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="M2I1dusu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 082E31D90A7;
-	Thu,  5 Dec 2024 10:25:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8809942A8F;
+	Thu,  5 Dec 2024 10:26:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733394332; cv=none; b=WgJd+gcbkONrXzMP74I8BUrtCE3vjXZSr6rCxeQFV/fH/N3mdDbcjcgUMMmnlwowIcEws9SVVOVxEWlilFY6YU3MouR5LHalloXOn6qHp/7wyY0Ug0u923M+wFovVtjrTDEeUGDx6zZFn3Fr28sxuFqOuTkcboA9u7k0hCXlyOw=
+	t=1733394403; cv=none; b=LObt0m2zd3kWk+Rg0ar4YnjKgC0Rp12iSS94D0RqlvOkJEGUUZlvbYDp2XtNV6q7ecmoyHdhXRl3k0ImJGEIO0x7QIQrjmKjMvhlIk1PyhQF4qNqqnuwNjjnzMLLFITXkvLrx1H7MzGkBQGb+Hz9tDlMEvXLdF3jYui7bTVLFrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733394332; c=relaxed/simple;
-	bh=xc/AP1q5J7sVe4uDrqIu8OSigI0sdX0g5xbtoyVjNxE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t1EXYYLpaLruVrtvC7C9k64hDZJNjMRRj2l+4m+WvWsB2ZXmwasu6TwIat+MgglR84YFplKY9Xr6nZzOSC3ZlPse4jQsXb06FzokGO9MusKAz4QQC0+EDYb/oeSwuAYeCutAWYQHCBKPNcSsAKt7XHQKDxF5mcY3/kts3uXO3aE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s7f/dkLh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AEFEC4CED1;
-	Thu,  5 Dec 2024 10:25:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733394331;
-	bh=xc/AP1q5J7sVe4uDrqIu8OSigI0sdX0g5xbtoyVjNxE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s7f/dkLhhctWIeUhGLpjKXnajl+5VZbXesXWXsw3g9wn7qcKhle+r+8J9OmlTgPtP
-	 4VziQdVRNp9frk6Gd3HgDsmJQ5yMp/ov/RMej/aIvR8Xt/wCVL5IdZXYLSX5/aFlsn
-	 /87Q4MMfeo+q2fKouI/C2HTFxtkh1QrDsCFiZGE62cFHULm8HWpHzrMp+QWJChO7aH
-	 WZVR5Rrder2DLmoTSi4Jcf4VMHrf06/SnzgMo3rTGpXSjSary79Wmj4hYZHfNLURpg
-	 fKL2XVZMAOyCLw/Sk4yEDZ/gs5zbJfQiO16d1fmuulK8tUR/X2L5qUaf+0tT0M0TgV
-	 9aUR7/WdcYNQw==
-Date: Thu, 5 Dec 2024 11:25:28 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Val Packett <val@packett.cool>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] clk: rockchip: add clock ID for CIF0/1 on RK3066
-Message-ID: <5kesytgbhfununu5li4ychaw4newkctx4wuhlshks2ertfkd2t@jauqcntehv2z>
-References: <20241205055122.11613-1-val@packett.cool>
+	s=arc-20240116; t=1733394403; c=relaxed/simple;
+	bh=PxMPtw+FA47VX7lM8lzOYD5D4a/f9KaEItY3WZ2SxiE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=GQs2Tc6dLZmzx5tL8zIMeE+kWlG29rqoHTvmERENdcqBTw5GaMrXqa6ri+kegJ0MO2hNTYVu3T0TqfPk6BwUE/SDjozg0Qou4DO3yW0VjBqSYrKMAOiXj0LKqxAHSkc7nRICIGIAcmJ3HvNC70UqaUQdgzjftnJCTBroGfwtDhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=M2I1dusu; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id ED33E1C000C;
+	Thu,  5 Dec 2024 10:26:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1733394393;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Aqjkju8oywA4XQ9GAWJQ38Rocfc/Zbwx/1Z53fTbedU=;
+	b=M2I1dusuYQ98J+fp7HT1Dh/OuY0f5pd2K8Ztma2vrV6iDGsO2cetLW41VHrwoxxDhd6lMS
+	XOmdPXWB61W1PG5FG+y15sC00q+yWJOxgyWRq2VT+0sgJY2Use9001fuXYQQfPk1wZHDlI
+	9cE8FQRUHiTJalsqwzj/q/1qyD0FD7KdVvv/GYTZKeTN+WoZfdvWUV9KQefWrQAI5XGIGJ
+	it4Ns0/F4tsDVEQz/nKMPNeyJqhfaonCsk1+nUg0wHD8RhWr4EjtUd2+iMCyj3YrBPx6sf
+	ZNvseaTcmf1oydvh+k6VBqpieK6FdxCE3Gm2Yrj9ND1y66M/Jaa17FgJyCJ5AQ==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Hui-Ping Chen <hpchen0nvt@gmail.com>
+Cc: richard@nod.at,  vigneshr@ti.com,  robh@kernel.org,  krzk+dt@kernel.org,
+  conor+dt@kernel.org,  nikita.shubin@maquefel.me,  arnd@arndb.de,
+  vkoul@kernel.org,  esben@geanix.com,
+  linux-arm-kernel@lists.infradead.org,  linux-mtd@lists.infradead.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 0/2] Add support for nuvoton ma35 nand controller
+In-Reply-To: <20241204025129.150525-1-hpchen0nvt@gmail.com> (Hui-Ping Chen's
+	message of "Wed, 4 Dec 2024 02:51:27 +0000")
+References: <20241204025129.150525-1-hpchen0nvt@gmail.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Thu, 05 Dec 2024 11:26:30 +0100
+Message-ID: <878qsuwhm1.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,26 +66,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241205055122.11613-1-val@packett.cool>
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Thu, Dec 05, 2024 at 02:50:46AM -0300, Val Packett wrote:
-> RK3066 does have two "CIF" video capture interface blocks, add their
-> corresponding clock IDs so that they could be used.
-> 
-> Signed-off-by: Val Packett <val@packett.cool>
-> ---
->  drivers/clk/rockchip/clk-rk3188.c             | 4 ++--
->  include/dt-bindings/clock/rk3188-cru-common.h | 2 ++
->  2 files changed, 4 insertions(+), 2 deletions(-)
+Hi,
 
-Please run scripts/checkpatch.pl and fix reported warnings. Then please
-run 'scripts/checkpatch.pl --strict' and (probably) fix more warnings.
-Some warnings can be ignored, especially from --strict run, but the code
-here looks like it needs a fix. Feel free to get in touch if the warning
-is not clear.
+On 04/12/2024 at 02:51:27 GMT, Hui-Ping Chen <hpchen0nvt@gmail.com> wrote:
 
-Best regards,
-Krzysztof
+> This patch series adds the mtd nand driver for the nuvoton ma35 ARMv8 SoC.
+> It includes DT binding documentation and the ma35 mtd nand driver.
+>
+> v10:
+>   - Update ma35d1 mtd nand driver
+>     - Add unsupported write page handling.
 
+I was about to apply it but...
+
+    [31m=E2=97=8F[0m checkpatch.pl: 117: WARNING: please write a help parag=
+raph that fully describes the config symbol
+    [31m=E2=97=8F[0m checkpatch.pl: 141: WARNING: added, moved or deleted f=
+ile(s), does MAINTAINERS need updating?
+    [31m=E2=97=8F[0m checkpatch.pl: 348: CHECK: spaces preferred around tha=
+t '+' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 352: CHECK: spaces preferred around tha=
+t '+' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 352: CHECK: spaces preferred around tha=
+t '+' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 429: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 465: CHECK: spaces preferred around tha=
+t '*' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 465: CHECK: spaces preferred around tha=
+t '+' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 466: CHECK: spaces preferred around tha=
+t '*' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 466: CHECK: spaces preferred around tha=
+t '+' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 467: CHECK: spaces preferred around tha=
+t '*' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 467: CHECK: spaces preferred around tha=
+t '+' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 468: CHECK: spaces preferred around tha=
+t '*' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 468: CHECK: spaces preferred around tha=
+t '+' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 479: CHECK: spaces preferred around tha=
+t '*' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 479: CHECK: spaces preferred around tha=
+t '+' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 481: CHECK: spaces preferred around tha=
+t '*' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 481: CHECK: spaces preferred around tha=
+t '+' (ctx:VxV)
+    [31m=E2=97=8F[0m checkpatch.pl: 514: CHECK: Unbalanced braces around el=
+se statement
+    [31m=E2=97=8F[0m checkpatch.pl: 611: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 650: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 665: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 675: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 689: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 699: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 715: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 756: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 805: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 935: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 950: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 953: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 975: CHECK: Alignment should match open=
+ parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 1001: CHECK: Alignment should match ope=
+n parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 1018: CHECK: Alignment should match ope=
+n parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 1131: CHECK: Alignment should match ope=
+n parenthesis
+    [31m=E2=97=8F[0m checkpatch.pl: 1159: WARNING: DT compatible string "nu=
+voton,ma35d1-nand" appears un-documented -- check ./Documentation/devicetre=
+e/bindings/
+
+Please fix these warnings and checks.
+
+You might want to use --strict by default.
+
+Thanks,
+Miqu=C3=A8l
 
