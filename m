@@ -1,208 +1,173 @@
-Return-Path: <devicetree+bounces-127402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A5259E5551
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:25:01 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 341E19E5556
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:25:36 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 452B116B8E9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:24:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE8CF2870E5
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:25:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2375021859F;
-	Thu,  5 Dec 2024 12:24:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D107217F5F;
+	Thu,  5 Dec 2024 12:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UNQZ7pCj"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="EP1p28uE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1EA2217F41
-	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 12:24:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09359217F59
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 12:25:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733401490; cv=none; b=GPfo84hXo7z+X59ajktzP9ljk9zCDnf3S0yZxLl8CEWw/55hKPx7TGjRseyeO7qHiZroUTivmdC/FzjcaciZBU1dZpuu782h5Hl2MXF6xuAhCa4n06DbS0gYyAPm5pYEvkWB4m93qQdI1EhDejspcQsTMsokAND04/S3BT2/cY8=
+	t=1733401523; cv=none; b=mioiejbJXMsJEwXTFzVkK1wqKL6C8LBnKT7bXbD3+oY617cE7Gi+HyR2/0j981TNeQjpROkC/KK2ngCiLDb6+0tGMYHUMYDSEwrFtkuisNOs2E3Ta3hSWdqQMJ5ZkI0fHJ1IMPH39trkJ0kUnjn7E9nKaiU5mg0ztqTfHZRKY0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733401490; c=relaxed/simple;
-	bh=qkqNRYAejTKgGZLM9SrdmLNOwjcL6JMSXw1ILpXD17c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a8AQdxr8u/5ubCWLzbFGNRdI82E7uT97wymsX8T5PNPJWWgqjcMAQKoHTMVejTpndMcJnzu/u5SgkzTz5cTWYK3dHyp0kbRrRCnefNqACTrSUd0kVyAvvZzpIl6g2Pth+0/uDijM8pdLJPq4qenNeYBCUgV+vEsnKKukzfTs9og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UNQZ7pCj; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ffa49f623cso8778421fa.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 04:24:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733401485; x=1734006285; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dYReieGTQt3l1nUrvWhpt/c0KveQuNyocwyNLg51+v0=;
-        b=UNQZ7pCjnkpKQYKK5Y00dZp5mbwKEWs/hZLT3H3zrBQg2G8IA42EHS5zurwmagVe7o
-         EIuHdX9Zqti9Eo0Sj0C+h9+7VjdzKeTk9pvnvaEWDrzHsFUJyeESdZscB/DZOy/fURel
-         1s8tXuBLS41zltU0JEg0Ql8aG/KqL5xUJqBQSW0+AoYJvH3GtSyB1GEURRkgiG4JVFLf
-         Xdx/r7EmgRDKkJFh19ZB3yXGXWg7qqPiJs268qs7vKh4xNIH1t1sQsEm6yg33ppVcKD/
-         kXAPaoMWwZd8vXGNbnET/WAMwonz92GJQE+EPOfUtaDVHk7ev96A5aqRWGWGmHi48dI/
-         8KOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733401485; x=1734006285;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dYReieGTQt3l1nUrvWhpt/c0KveQuNyocwyNLg51+v0=;
-        b=KIN2VfpnNcdpcjIUKtC18y0Xk+xsCWMathKUO15AAfi75KjccPamzZR/Td7Lx4fEd0
-         3fR0ZH/Sv4NAVoDjcvtoA+um1x62AslLe8eNsJC/WYl7x9F+90zQn+GwJlxyqg+dtv3Y
-         D8XMceAgriV8qKNx+489MJgUKaU2sII9KjOFskLKvLidibsRjNsgsxWnNcvXqTy3C2OI
-         ttcruVCTJlpJxdfLECPkDgnOIMBh9bCX4cVQZ8H6ZNg7J95HyfLM8JPB1U0idu03BQqy
-         pwRytpBpQFA+xxdwTYv8RIwWKC6zNxpn/nRlurkG9fLD2kRul8o2slZgHPdXqnL0W11E
-         fXQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUtl0YRMyduobzuUV/hZDJEct8uW/ek6DSyUtqwYKjz9bdpVrHTsHFUg9x4c+3WyJstgj5gb33VQpHr@vger.kernel.org
-X-Gm-Message-State: AOJu0YznOEGz5lkBV/w07azDovv2ai0RR2kM1zpqc7Z8xHJixlOvehFs
-	i/METo2gDGE2Y5RzFrSMNYT3AtcjPhjDd0wl4tvSeksfTK+c0G41l0Mlctff6YA=
-X-Gm-Gg: ASbGncvxARGV5m1q7VzfGwOEiDpDKv1otgrSN5N3T6y/QIsVEhZ/4+ks9xqJ9DXv2A8
-	xiO8baj6QzH8BjaA2DwUkIANGvxXPClXDsdYSKd1tmEdfhOaxWj81rShVUY2eMUiNwE4rpbK8oe
-	Inrr1xL0iB1FmZIX56Y+VQdm647/Aip74rBQA2k/WOYgkLB0TAE8cfQSy91VH2/9G6AwMObKRVk
-	lWtm5TEWmt6mqL6wtUkRW4yN7G44ugqThbDsJOFBgRxNUmGzkbLQ+qXoL97iAs40Ffu1w9C9VII
-	+POMiFGPUhLk3S8WD4MmaGjuEJ5kgQ==
-X-Google-Smtp-Source: AGHT+IGPbrvsb6W4cgWiuwY1v2qElO/w0kM9l6PDiFSrYRDQlNxLDTp9Gz1GUpkNHkGt+SKJ1/VEiA==
-X-Received: by 2002:a05:651c:b1f:b0:2ff:ef38:6d66 with SMTP id 38308e7fff4ca-30009c0cac3mr58636301fa.2.1733401484881;
-        Thu, 05 Dec 2024 04:24:44 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30020e209c5sm2040271fa.93.2024.12.05.04.24.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Dec 2024 04:24:43 -0800 (PST)
-Date: Thu, 5 Dec 2024 14:24:41 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sricharan R <quic_srichara@quicinc.com>
-Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 1/2] dt-bindings: mailbox: qcom: Document
- qcom,tmelite-qmp
-Message-ID: <h5franuhsumreqz2l6l2lq3lyfzqtzjvz5py6q3smuds46j7rr@kcexrs5qn4be>
-References: <20241205080633.2623142-1-quic_srichara@quicinc.com>
- <20241205080633.2623142-2-quic_srichara@quicinc.com>
+	s=arc-20240116; t=1733401523; c=relaxed/simple;
+	bh=WPXMlTZi12QvOahzFxlfj0ZntAWpM5vwwLRm2I9tu2E=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=EA8eIz912O5FPvDVNLtAqKvcgeoYrsK7OY2TitTAXpxS7VSt03rbZybVhEwMCYZ/E/i6bBTG7B+YHHCk8DexJs4iZqJNj8eYQhXiPijSelqzNPdvRZeIm3O/TjHtKh5wbrKIMRAfO6EaXaJkoLmklJs04PeZO8ahl875idSMN8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=EP1p28uE; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20241205122518epoutp01c6efcc73a079e824be20a048d1f397fe~OR39TiyQo1372613726epoutp01L
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 12:25:18 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20241205122518epoutp01c6efcc73a079e824be20a048d1f397fe~OR39TiyQo1372613726epoutp01L
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1733401518;
+	bh=WPXMlTZi12QvOahzFxlfj0ZntAWpM5vwwLRm2I9tu2E=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=EP1p28uEugGXbU++hClVaTxLLjdfTy+uFt6cLPfo/bz++b4/PSpA1XU9Qv8s66/ct
+	 mddRSPgXWAT6FyWmgdqeNenKJUrZEStG8ZrijVzoU4K2jqj+VHrRueG+YUO7r6v5vI
+	 fVF3yi84qD6uFhbumvkv10tKA2WrM6bRkiCOZZH4=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+	20241205122517epcas2p4ec38c7b502dbeae3929411f3f27e07a1~OR38LuJSv0892808928epcas2p48;
+	Thu,  5 Dec 2024 12:25:17 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.101]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4Y3trY1ZYSz4x9Pv; Thu,  5 Dec
+	2024 12:25:17 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+	6F.73.22094.DAB91576; Thu,  5 Dec 2024 21:25:17 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+	20241205122516epcas2p40e6821cea8284c7be97e97c39786903d~OR37eqBAC1431414314epcas2p4Z;
+	Thu,  5 Dec 2024 12:25:16 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20241205122516epsmtrp1cf56288ce90ef0b1e0d82733f72324e1~OR37dUsld1598715987epsmtrp1F;
+	Thu,  5 Dec 2024 12:25:16 +0000 (GMT)
+X-AuditID: b6c32a48-e7eec7000000564e-5a-67519badc2b1
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	5E.31.33707.CAB91576; Thu,  5 Dec 2024 21:25:16 +0900 (KST)
+Received: from KORCO119526 (unknown [10.229.8.143]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20241205122516epsmtip17e3ef31be9c4e9da5215bc7a78d99ca9~OR37PGvFj3180031800epsmtip1n;
+	Thu,  5 Dec 2024 12:25:16 +0000 (GMT)
+From: =?UTF-8?B?6rmA7YOc7JmE?= <trunixs.kim@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
+Cc: "'Guenter Roeck'" <linux@roeck-us.net>, "'Rob Herring'"
+	<robh@kernel.org>, "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>, "'Conor
+ Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+	<linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>
+In-Reply-To: <171072ed-c35f-430e-a8c0-5cf718efed0c@kernel.org>
+Subject: RE: [PATCH v3 3/3] arm64: dts: exynosautov920: add watchdog DT node
+Date: Thu, 5 Dec 2024 21:25:16 +0900
+Message-ID: <000101db4710$bdac8310$39058930$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241205080633.2623142-2-quic_srichara@quicinc.com>
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQMd16p+X2UldERt9X3UXGHKyeOT/gFfR1PzAhOyk7QBWm0aqwINNyvVAoah3z0BqLdGjwJ1Uc7oAYTj+0gB7mXbwQHAQo3Er7zbaRA=
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBJsWRmVeSWpSXmKPExsWy7bCmqe7a2YHpBrN7OSwezNvGZrFm7zkm
+	i/lHzrFavJx1j83i/PkN7BabHl9jtbi8aw6bxYzz+5gsbqzbx27xZOEZJov/e3awO3B7bFrV
+	yeaxeUm9x87vDewefVtWMXp83iQXwBqVbZORmpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGto
+	aWGupJCXmJtqq+TiE6DrlpkDdJmSQlliTilQKCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8C8
+	QK84Mbe4NC9dLy+1xMrQwMDIFKgwITvjcNMx9oJ+9oqF3a+ZGxivs3YxcnJICJhI9DTeYOli
+	5OIQEtjBKNG2aQ+U84lRorOrlRXOeTnrCjtMy5PGf0wQiZ2MEs/XzWWGcF4wSuzeexmon4OD
+	TcBCYlZfJkiDiICuxOYby8GamQVamSX2XhUDsTkF7CRubbvFBGILC/hIzN97jhnEZhFQkfg5
+	8RNYnFfAUuLz/F4WCFtQ4uTMJywQc+Qltr+dwwxxkILEz6fLWCF2lUnsmbyNCaJGRGJ2ZxvY
+	bRICazkkWjYsZYJocJH43PoW6hthiVfHt0DZUhIv+9ug7HyJlStPQNXXSNxr28UCYdtLLDrz
+	kx3kR2YBTYn1u/RBTAkBZYkjt6BO45PoOPyXHSLMK9HRJgRhqkpMXxYAMUNaYuKMtWwTGJVm
+	IflrFpK/ZiG5fxbCqgWMLKsYxVILinPTU4uNCkzgUZ2cn7uJEZxktTx2MM5++0HvECMTB+Mh
+	RgkOZiUR3sqwwHQh3pTEyqrUovz4otKc1OJDjKbAkJ7ILCWanA9M83kl8YYmlgYmZmaG5kam
+	BuZK4rz3WuemCAmkJ5akZqemFqQWwfQxcXBKNTDNErx57Fdjwtcjd3vcGeU8lE93yv9857Tj
+	Z+6PvT+il+rMnR/gcJ0p4JzNtXkmn+SfNnwUzBacIeCiqfqBfUvSpD6nk/kNHzbn1PW72oeV
+	snVdZEx45rzdefvc0rzNp9PrPsunrnm2UF1GtvP6t1a/C1L9LV8cFknkrSnZuuCWlafPtD33
+	s2/r7MzVayv0ibBUM5XKf6m/8E5d3uI98z4/ktHZd6I3edna2oy912Y4NbNktVo7a0mtr/PY
+	0nlANFDOYeXryV+OPBe5cfbh3CNzzzQsNmXXP7PY55HcG/WPdYy8GSblJWVPw2bO8FvHWOIa
+	F8vx4TfLjSlzu2+HXZQIXjbL9m+tsrFB2s/iWRVKLMUZiYZazEXFiQDqOH4HOwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprMIsWRmVeSWpSXmKPExsWy7bCSnO6a2YHpBk1bNC0ezNvGZrFm7zkm
+	i/lHzrFavJx1j83i/PkN7BabHl9jtbi8aw6bxYzz+5gsbqzbx27xZOEZJov/e3awO3B7bFrV
+	yeaxeUm9x87vDewefVtWMXp83iQXwBrFZZOSmpNZllqkb5fAlXG46Rh7QT97xcLu18wNjNdZ
+	uxg5OSQETCSeNP5j6mLk4hAS2M4o8XTFFXaIhLTEkd8v2CBsYYn7LUdYIYqeMUp8mXEaqIOD
+	g03AQmJWXyZIjYiArsTmG8vZQWqYBXqZJfbf3skM0XCcRWLjyUVMIFWcAnYSt7bdArOFBXwk
+	5u89xwxiswioSPyc+AkszitgKfF5fi8LhC0ocXLmEzCbWUBbovdhKyOELS+x/e0cZojrFCR+
+	Pl3GCnFFmcSeyduYIGpEJGZ3tjFPYBSehWTULCSjZiEZNQtJywJGllWMoqkFxbnpuckFhnrF
+	ibnFpXnpesn5uZsYwfGmFbSDcdn6v3qHGJk4GA8xSnAwK4nwVoYFpgvxpiRWVqUW5ccXleak
+	Fh9ilOZgURLnVc7pTBESSE8sSc1OTS1ILYLJMnFwSjUwhaTtZzB7dd9tU+nzeMZbrbPn+7hz
+	K3M1HPRx/RMg8mqOs3RQ2ZV8mXl79C8ebP1Wzvpt1bNlpceXcZmdiWuWVX+ksm6Oefglp/V/
+	PP+8efXjw7Iqp4hNHA/2xTRGcnBPWnXx6twQWYaJP/yNf85JDW7WDb17ZePa440PPBvV1tzf
+	W7P9LcfKGHW2jMTEc0IXYpUlC84tmXRGplzGnPP1x2XmH1feOr6pv6vj/hGWB+sDpommVVp1
+	Nj9U6S4T6Am8VrDURVF8a6z6vdWqT56xcVioLkxuPOF6VzhJSM6ozbzMcdXRS26X8qZ9VuPr
+	m/HbZqOm5+e5xznfngi7Z2flEjfz3cHLf2/oR+j9csuOVmIpzkg01GIuKk4EAMJ1jYQmAwAA
+X-CMS-MailID: 20241205122516epcas2p40e6821cea8284c7be97e97c39786903d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20241021063938epcas2p1c01c89badb532f08a46087a4907df7dc
+References: <20241021063903.793166-1-trunixs.kim@samsung.com>
+	<CGME20241021063938epcas2p1c01c89badb532f08a46087a4907df7dc@epcas2p1.samsung.com>
+	<20241021063903.793166-4-trunixs.kim@samsung.com>
+	<961e1aca-cd90-4db1-87d7-afd2e542421e@kernel.org>
+	<20241107103331.GA4818@www.linux-watchdog.org>
+	<589c40e1-6a1c-4ef7-b0d8-b761b132578a@kernel.org>
+	<20241107113325.GA5284@www.linux-watchdog.org>
+	<c487babb-84a5-4e47-a58f-75fec55cbabb@kernel.org>
+	<000201db46ac$8d7cfee0$a876fca0$@samsung.com>
+	<88950a3a-c3de-4ff5-9ff8-9b85e1b0ad14@kernel.org>
+	<171072ed-c35f-430e-a8c0-5cf718efed0c@kernel.org>
 
-On Thu, Dec 05, 2024 at 01:36:32PM +0530, Sricharan R wrote:
-> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> 
-> This binding describes the component responsible for communication
-> between the TME-L server based subsystems (Q6) and the TME-L client
+on 05/12/2024 12:25 UTC+09:00, Taewan Kim wrote:
+>>>>> But that's a never ending discussion, so we won't go into that :-).
+>>>>
+>>>> DTS is hardware description independent from Linux, therefore always
+>>>> goes separate way than Linux drivers.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>
+>>> I found that the first two patches have been added to the linux-next
+>>> git, but the last patch has not yet been reviewed.
+>>>
+>>> I would appreciate it if you could take a look at this patch.
+>>
+>> Since this patch was applied, I dropped from my queue. I don't have it
+>> in my inbox anymore. Please rebase, resolve any comments and resend.
+>
+>I found it in my inbox and tried to apply but it fails:
+>error: patch failed: arch/arm64/boot/dts/exynos/exynosautov920.dtsi:172
+>
+>
+>please rebase and resend.
 
-This should start by explaining what is TME-L.
+Thanks to your hard work, I will resend it after rebase.
 
-> (APPSS/BTSS/AUDIOSS), used for security services like secure image
-> authentication, enable/disable efuses, crypto services. Each client
-> in the   SoC has its own block of message RAM and IRQ for communication
-> with the TME-L SS. The protocol used to communicate in the message RAM
-> is known as Qualcomm Messaging Protocol (QMP).
-> 
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> ---
->  .../bindings/mailbox/qcom,tmelite-qmp.yaml    | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,tmelite-qmp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,tmelite-qmp.yaml b/Documentation/devicetree/bindings/mailbox/qcom,tmelite-qmp.yaml
-> new file mode 100644
-> index 000000000000..1f2b3e02b894
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/qcom,tmelite-qmp.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/qcom,tmelite-qmp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm TMELITE IPCC channel
+Best regards,
+Taewan Kim
 
-So, TME-L or TMELITE or TME-LITE?
-
-> +
-> +maintainers:
-> +  - Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> +
-> +description:
-> +  This binding describes the component responsible for communication
-
-It's already a description of the binding, no need to repeat the obvious.
-
-> +  between the TME-L server based subsystems (Q6) and the TME-L client
-> +  (APPSS/BTSS/AUDIOSS), used for security services like secure image
-> +  authentication, enable/disable efuses, crypto services. Each client
-> +  in the   SoC has its own block of message RAM and IRQ for communication
-> +  with the TME-L SS. The protocol used to communicate in the message RAM
-> +  is known as Qualcomm Messaging Protocol (QMP).
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,ipq5424-tmelite-qmp
-> +      - const: qcom,tmelite-qmp
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description:
-> +      The base address and size of the message RAM for this client's
-> +      communication with the TMELITE core
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      Should specify the TMELITE message IRQ for this client
-
-Just should? This is a very relaxed constraint. Just "the message IRQ
-for the client" sounds better.
-
-> +
-> +  mboxes:
-> +    maxItems: 1
-> +    description:
-> +      Reference to the mailbox representing the outgoing doorbell in APCS for
-> +      this client, as described in mailbox/mailbox.txt
-> +
-> +  "#mbox-cells":
-> +    const: 2
-> +    description:
-> +      The first cell is the client-id, and the second cell is the signal-id.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - mboxes
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    tmel_qmp: qmp@32090000 {
-> +           compatible = "qcom,ipq5424-tmelite-qmp", "qcom,tmelite-qmp";
-> +           reg = <0x32090000 0x2000>;
-> +           interrupts = <GIC_SPI 126 IRQ_TYPE_EDGE_RISING>;
-> +           mboxes = <&apcs_glb 20>;
-> +           #mbox-cells = <2>;
-> +    };
-> +
-> +...
-> -- 
-> 2.34.1
-> 
-
--- 
-With best wishes
-Dmitry
 
