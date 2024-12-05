@@ -1,128 +1,164 @@
-Return-Path: <devicetree+bounces-127707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E7719E5FA5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 21:46:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A09C9E5E9B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 20:09:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3681616C106
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 20:46:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 332DF1882ACF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C2F11B4123;
-	Thu,  5 Dec 2024 20:46:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BBCD218E98;
+	Thu,  5 Dec 2024 19:09:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="S5upHDpT"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="J5d21sTy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1283.netease.com (mail-m1283.netease.com [103.209.128.3])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5542919FA7C;
-	Thu,  5 Dec 2024 20:46:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.209.128.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC55E2EB1F;
+	Thu,  5 Dec 2024 19:09:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733431599; cv=none; b=Gcdo07fURr7eRGg0yhscERo/Ci+ukdCsirTvUpLi02HaIKyNYIf9ccuV4igHxmIQ59D8fBgGNOKtb2P/HSOM41Qrcs1HzKNgk4BF+NjtNNo4XfPi+GapHWE/twqWGSC7Ag6zTPVKuWyuc33/StsDf/hgbv/0+/pAzvGifKIUjLM=
+	t=1733425744; cv=none; b=JXb2adB0B+NWjZlm2jnRI+zhkoPB8mOETS9W/U6M4ClywfSsaGKKZviGnQUiMqBpOCBbaYfasx/3vBC5PFXmlpI0wmVjPnhuDU4W+1yZ5Uby0X9cAHKRrpymGWtASQs5YbQcmZYBE8fSkImCFJV9YUna3yHxc7X85qziv+ua8DY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733431599; c=relaxed/simple;
-	bh=4ErLQ722a7JIAf30dOrV195n7CS1oo2AvUfuRBCfIn0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kNEhkCfG+2JDUh2I+ZfEPV3mROnaUpy7ZslSGMODvfedRIYRcWgWWyXaUBDQf7MRf7YZvBKZ/VNgD7ohsWuk2JOk6fl6q1HQzEu5BibvN/9VW6VOYSHtHtW0UkRQg6hpKcrpYaf9Se4OKRtXAX4qtL3Uzer6E8VnoysgsuryGSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=S5upHDpT; arc=none smtp.client-ip=103.209.128.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 4cf7c977;
-	Thu, 5 Dec 2024 18:36:32 +0800 (GMT+08:00)
-From: Kever Yang <kever.yang@rock-chips.com>
-To: heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Andy Yan <andyshrk@163.com>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1733425744; c=relaxed/simple;
+	bh=gpyryQqORDmiyuSyg34TV+1Hz4lJ6aOHkXIhXH1UvaY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O6D8ul+olTt/hrvwY8CJQ/idEP94MRV7RDuS5noGvn9TQ5IAST7FoKgEWaeO05vhRzLSz4larNpSFYu8tqanQas20UATYkHPAyYb6IRZ5lQZHckCxfDaucOxSzQNkdCnXqkN+DEXwL3KA4jMb1eap2ekSUxqMniKZxSwsfo6E9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=J5d21sTy; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8E4D22B3;
+	Thu,  5 Dec 2024 20:08:28 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1733425708;
+	bh=gpyryQqORDmiyuSyg34TV+1Hz4lJ6aOHkXIhXH1UvaY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=J5d21sTyqWYtne2btLeGlY1CvIrEv7DHDVcS364svFlwB9+7EiQNSI6iIBrZ21WyG
+	 Ob1ml8pP59fUOML9CA0STJECUiKv9HFqhTg7C5UTdUk/BCLRWW9S+u9Ls4sGWMpu5d
+	 LK4KFPdds/1YnQAkArRQpPPJt0nEjvDPkblkbkiE=
+Date: Thu, 5 Dec 2024 21:08:45 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
 	Rob Herring <robh@kernel.org>,
-	Tim Lunn <tim@feathertop.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 4/6] dt-bindings: arm: rockchip: Sort for rk3568 evb
-Date: Thu,  5 Dec 2024 18:36:21 +0800
-Message-Id: <20241205103623.878181-5-kever.yang@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241205103623.878181-1-kever.yang@rock-chips.com>
-References: <20241205103623.878181-1-kever.yang@rock-chips.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Subject: Re: [PATCH v2 07/10] drm/rcar-du: Add support for r8a779h0
+Message-ID: <20241205190845.GE21014@pendragon.ideasonboard.com>
+References: <20241205-rcar-gh-dsi-v2-0-42471851df86@ideasonboard.com>
+ <20241205-rcar-gh-dsi-v2-7-42471851df86@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkIeGlZNQ0IYGklLQ0tNTx1WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a9396648e1403afkunm4cf7c977
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MyI6GSo4TzIePw1LHywBCykR
-	Ak5PCwhVSlVKTEhISEJPQkJIQ05OVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKTU1NNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=S5upHDpTU/ytg2ZlCKDCMoQAetXPJF6TcZAkkGFif//dAvtIVarzK+2j5cZq6PpLKQqi/FjIdoNsG4wWrGLegMzmzmsAb3oldnH3ZE+IsnkWfcfcLW7ljNI4jTTFwy/McjhqR5FJB6Jiv/2yLjfkw4xR9z1dTUsngrZHrUwdn4Q=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=PfQq9WN+stZDbpqU1A9I4SjMJ3Y//2WoaZdCqaDns9Q=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241205-rcar-gh-dsi-v2-7-42471851df86@ideasonboard.com>
 
-The info for rk3568 should before rk3588.
+Hi Tomi,
 
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
----
+Thank you for the patch.
 
- .../devicetree/bindings/arm/rockchip.yaml     | 20 +++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+On Thu, Dec 05, 2024 at 03:45:02PM +0200, Tomi Valkeinen wrote:
+> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> 
+> Add support for r8a779h0. It is very similar to r8a779g0, but has only
+> one output.
+> 
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 753199a12923..45ee4bf7c80c 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -1006,6 +1006,16 @@ properties:
-           - const: rockchip,rk3399-sapphire-excavator
-           - const: rockchip,rk3399
- 
-+      - description: Rockchip RK3566 BOX Evaluation Demo board
-+        items:
-+          - const: rockchip,rk3566-box-demo
-+          - const: rockchip,rk3566
-+
-+      - description: Rockchip RK3568 Evaluation board
-+        items:
-+          - const: rockchip,rk3568-evb1-v10
-+          - const: rockchip,rk3568
-+
-       - description: Rockchip RK3588 Evaluation board
-         items:
-           - const: rockchip,rk3588-evb1-v10
-@@ -1099,16 +1109,6 @@ properties:
-           - const: zkmagic,a95x-z2
-           - const: rockchip,rk3318
- 
--      - description: Rockchip RK3566 BOX Evaluation Demo board
--        items:
--          - const: rockchip,rk3566-box-demo
--          - const: rockchip,rk3566
--
--      - description: Rockchip RK3568 Evaluation board
--        items:
--          - const: rockchip,rk3568-evb1-v10
--          - const: rockchip,rk3568
--
-       - description: Sinovoip RK3308 Banana Pi P2 Pro
-         items:
-           - const: sinovoip,rk3308-bpi-p2pro
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+
+> ---
+>  drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c   | 18 ++++++++++++++++++
+>  drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c |  4 +++-
+>  2 files changed, 21 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
+> index fb719d9aff10..7858e10839f2 100644
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
+> @@ -545,6 +545,23 @@ static const struct rcar_du_device_info rcar_du_r8a779g0_info = {
+>  	.dsi_clk_mask =  BIT(1) | BIT(0),
+>  };
+>  
+> +static const struct rcar_du_device_info rcar_du_r8a779h0_info = {
+> +	.gen = 4,
+> +	.features = RCAR_DU_FEATURE_CRTC_IRQ
+> +		  | RCAR_DU_FEATURE_VSP1_SOURCE
+> +		  | RCAR_DU_FEATURE_NO_BLENDING,
+> +	.channels_mask = BIT(0),
+> +	.routes = {
+> +		/* R8A779H0 has one MIPI DSI output. */
+> +		[RCAR_DU_OUTPUT_DSI0] = {
+> +			.possible_crtcs = BIT(0),
+> +			.port = 0,
+> +		},
+> +	},
+> +	.num_rpf = 5,
+> +	.dsi_clk_mask = BIT(0),
+> +};
+> +
+>  static const struct of_device_id rcar_du_of_table[] = {
+>  	{ .compatible = "renesas,du-r8a7742", .data = &rcar_du_r8a7790_info },
+>  	{ .compatible = "renesas,du-r8a7743", .data = &rzg1_du_r8a7743_info },
+> @@ -571,6 +588,7 @@ static const struct of_device_id rcar_du_of_table[] = {
+>  	{ .compatible = "renesas,du-r8a77995", .data = &rcar_du_r8a7799x_info },
+>  	{ .compatible = "renesas,du-r8a779a0", .data = &rcar_du_r8a779a0_info },
+>  	{ .compatible = "renesas,du-r8a779g0", .data = &rcar_du_r8a779g0_info },
+> +	{ .compatible = "renesas,du-r8a779h0", .data = &rcar_du_r8a779h0_info },
+>  	{ }
+>  };
+>  
+> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c
+> index 0fbf6abbde6e..b9ae6cc43702 100644
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c
+> @@ -107,10 +107,12 @@ static void rcar_du_group_setup_didsr(struct rcar_du_group *rgrp)
+>  		 */
+>  		rcrtc = rcdu->crtcs;
+>  		num_crtcs = rcdu->num_crtcs;
+> -	} else if (rcdu->info->gen >= 3 && rgrp->num_crtcs > 1) {
+> +	} else if ((rcdu->info->gen == 3 && rgrp->num_crtcs > 1) ||
+> +		   rcdu->info->gen == 4) {
+>  		/*
+>  		 * On Gen3 dot clocks are setup through per-group registers,
+>  		 * only available when the group has two channels.
+> +		 * On Gen4 the registers are there for single channel too.
+>  		 */
+>  		rcrtc = &rcdu->crtcs[rgrp->index * 2];
+>  		num_crtcs = rgrp->num_crtcs;
+> 
+
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
 
