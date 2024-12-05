@@ -1,98 +1,118 @@
-Return-Path: <devicetree+bounces-127594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 861839E5C80
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:05:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 187219E5C85
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:06:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 406822846F3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:05:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCFCE285A4B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 17:06:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B86DD224B03;
-	Thu,  5 Dec 2024 17:05:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94B3222565;
+	Thu,  5 Dec 2024 17:06:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qLI0xY6M"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TgRMLaLh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85AC2224AFA;
-	Thu,  5 Dec 2024 17:05:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DEE3218AD3;
+	Thu,  5 Dec 2024 17:06:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733418351; cv=none; b=sIcRN7RVgysaS3UfzOYAX0jBZSLU9WOX1IaOfGnwZ3n73Fhs2VFeqbKvhfdcoDGl1j2mm3WCVAY+jkcZymybn6UySGSBCtqJDNKPGes71/pJ2Ci43VRX8AZmXO9IUXmtezgoDDgjGwElSxWS4+7vU4RjHSwAgBIxp8L8P1OBnpI=
+	t=1733418396; cv=none; b=o0HvxZjCXlxLdqvQciulbhVJTya5AcXcF6p1bxIStpqzFNGiuFIpi0s6l9rft5+UmXUBv1demYKKlAEpuICw1s93TJ3fCNMF9H2jC7D5YEcfnNjqndX05YYhds4ZSHeK/tR6hN9ju6iFYdP89L31E1FUM8hDp1kt0GzvUMsARmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733418351; c=relaxed/simple;
-	bh=+Ta7ODN+agEhvbgrJJw1jUucd5srUw+hGfUFlOpCmtg=;
+	s=arc-20240116; t=1733418396; c=relaxed/simple;
+	bh=iPT5M0klK62MYU+wd2cp4IU14x9+Ef4oWIX3kmTIAto=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nMFCJaX159P9pRhgJLm/ImLwQctO1RNGqO43xUD5UtSbsx9MMSoUhbh0T62HZ4uBtLale2DMGc2GpgyYrEJxNZ12UcqI6MStqAb4FdqTMFDVP6zOrxePi6N9YvecYAmVaiWK/OVIC/45zA7vHo5K/4CVt8APqSWk4s6h7EEjN8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qLI0xY6M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34C9CC4CEDD;
-	Thu,  5 Dec 2024 17:05:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733418349;
-	bh=+Ta7ODN+agEhvbgrJJw1jUucd5srUw+hGfUFlOpCmtg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qLI0xY6MoeZmOqx0tLF+nZ+CMCqUKpfdOl1FE3f8gea824GeEGKOargQIxVwtPPEX
-	 BI+LKunB0+T1H9eWtm5D5hSxreYgbQ3GaAv30RHXasel1suib64g8aur/7Zbi4sQzy
-	 HPz1pTzRkBdbErPymLmklLFSvrxuvFwgfOVUIUHPOqDLgg6Tahr9lLFdi6H5HSaOyA
-	 w59aHBRR0q5gu1/cqfdrLFXUwvSTT2Ij+wo/sscGoHZoKN+C4rWL5gGlVX9ZWzMxFH
-	 +tmcLK/8yx9LhCmgOZomadLuRQ2SM5jgQK6HLCsftubAuYDIWs3PoJ29owO+JrLTZ1
-	 MK3aee9b3Q6IQ==
-Date: Thu, 5 Dec 2024 17:05:43 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Kever Yang <kever.yang@rock-chips.com>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Conor Dooley <conor+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=UxbHos+YzT0pgtVd+R5pbfnYp0lAY72WKWc5rvJjdJcos6n5e0yE8mM6yMmXUGQI0lgXIymMxBBc42l1/u3+g4DSuZ+KZS12ZoZaFqaU7keLonbu6klDDpMqooHUUs2TaUtwLaKugFdBgDiCmQMBBB78re5Ee7mBN59Ap3BpTRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TgRMLaLh; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5d0d81eff58so177761a12.0;
+        Thu, 05 Dec 2024 09:06:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733418393; x=1734023193; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vjMs6gUjd0BG/RW8WnCIcN/BRNzXbUwn3T+OLY++VM8=;
+        b=TgRMLaLhOIh379PtsnLvA/oD4ZFISLefQn20q2Pqc+iDGd4kXGeC+f891ZXLzKNT1o
+         V7/uo0iqs3qw0RrMwrsZsruwIv2zWNCcmCCJSFlVurP/0d/q0H/Djuo/zUMJK4icNY9t
+         Jd5yI1nxbE8Ry9Wtc+S/1ENeYekis5KO2Zyy2lnrwjCNdcD/vV9Lkyxqgpaki/ZQTgX7
+         seJ2l2HrTMikyfqryOSfFUdFNoYRt/IjQMkp0ciVAJAezTJhTD6RNswNqJ7+/XV9Dx0u
+         xRkDyL1EW9LRBvLrbDjBtj8VegAab0NCKTrUO9Ku4jKqVRkKwrcHR68OzJkGvEtDnQTC
+         Nxyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733418393; x=1734023193;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vjMs6gUjd0BG/RW8WnCIcN/BRNzXbUwn3T+OLY++VM8=;
+        b=RSmYF7nIxQ47FVEUWwUvdts5vrQiSJ+sbTL6O+csAb6RlNQoKJJi8Ss/fcd3CYnmZY
+         qxirRc3j6b+WDzuyDR7CpPqf9aeVq3pKgMFycYUG3RN2sbCpwj+S9UoKNjXReh5dPQP7
+         FwIQqR/5YH6OEfd+MIeDBy0MI6H3CcUzRiJZou27ZMQUFjSOd8ZF/55XXISLVc1/aCAL
+         iQKZlsb3Dyj4q1KdMxHOLygKyHwouHuwd/9YQDJ1nd/FqcwhhEvEfvjffHOI5I2r5QP8
+         R9ZEAi+MjbPZ0cIV+0EUt/ILsRnZirfoVgmfq0xDEUzNdPjwBIYMr66+zij0XHThRJ9N
+         44bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVH1PBCOliaWow7S2vHC89V9tF/YU/KvZ4rIl07WDwLYE3NHxRhjRVjsC2OkgA87Yjqyw9bJIFTClsZ@vger.kernel.org, AJvYcCVgHccQot2CsFfTPIuSt14kctKeLZA15NyxBkQD09pIvZbvbpgi9d4lVYJjlWj2njc7UrHc7CXU@vger.kernel.org, AJvYcCVzc6jTNSOuVUVAwn3KCk9vFsV8blLfWdrYg3v0nhLB5xCeoynrDa0yAKXB0lt7wLbWIhf11Q8qYh2xQyVi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5mNJNxKzKlgwCl7V4c9WVPE0JL9A5HuwLv8bf46hUuG10qexB
+	yUvyDsJWKuPvGXfnAN5Jo+TNZKXqRCkyZNXbKn57QgOf3du1BsL7
+X-Gm-Gg: ASbGncv3DiwDL9zegCJWTfbMfZWA7h4A7Hxr1JN11vXc3ZA2J8w2IVlBA9Vrp1O/zXy
+	NMN529iW1BsHIHpSmzQtz6gpvTPDDq2bsqxbXAVic+OWKCQ1xsS4cdO2aELmQnj2ODSj/iB6CRC
+	MyU4EMl+m5n8g79WV4/Sy2oWvXg48T/oqjoi94SnbEiXPV2FFxOpwnD763GSKAiTBjXl4sKjurf
+	x3XtFBVpqNbTTJWgPzk+Qbc0NZGfR2GYDyjE0A=
+X-Google-Smtp-Source: AGHT+IGVP0gMvyh1uwNQ7wahF1r0luVrywYn93gUAbNzVHLatXVRhr85Yq515hba/uh806NJI4WL+A==
+X-Received: by 2002:a17:907:2d8b:b0:a99:f388:6f49 with SMTP id a640c23a62f3a-aa5f7ece4c5mr459441866b.9.1733418393054;
+        Thu, 05 Dec 2024 09:06:33 -0800 (PST)
+Received: from skbuf ([188.25.135.117])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa625e972absm116213166b.70.2024.12.05.09.06.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Dec 2024 09:06:32 -0800 (PST)
+Date: Thu, 5 Dec 2024 19:06:29 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>, Shawn Lin <shawn.lin@rock-chips.com>,
-	Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: PCI: dwc: rockchip: Add rk3576 support
-Message-ID: <20241205-backfire-support-68a48f6dcb80@spud>
-References: <20241205103623.878181-1-kever.yang@rock-chips.com>
- <20241205103623.878181-2-kever.yang@rock-chips.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v9 3/4] net: dsa: Add Airoha AN8855 5-Port
+ Gigabit DSA Switch driver
+Message-ID: <20241205170629.ww7qcvgbqdf5ipcj@skbuf>
+References: <20241205145142.29278-1-ansuelsmth@gmail.com>
+ <20241205145142.29278-4-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="oHiiIfBKH0NLyHDs"
-Content-Disposition: inline
-In-Reply-To: <20241205103623.878181-2-kever.yang@rock-chips.com>
-
-
---oHiiIfBKH0NLyHDs
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241205145142.29278-4-ansuelsmth@gmail.com>
 
-On Thu, Dec 05, 2024 at 06:36:18PM +0800, Kever Yang wrote:
-> rk3576 is using the same controller as rk3568.
->=20
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+On Thu, Dec 05, 2024 at 03:51:33PM +0100, Christian Marangi wrote:
+> +	.port_fdb_add = an8855_port_fdb_add,
+> +	.port_fdb_del = an8855_port_fdb_del,
+> +	.port_fdb_dump = an8855_port_fdb_dump,
+> +	.port_mdb_add = an8855_port_mdb_add,
+> +	.port_mdb_del = an8855_port_mdb_del,
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---oHiiIfBKH0NLyHDs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1HdZwAKCRB4tDGHoIJi
-0mbNAP0bakK9HI1zyUDdT4MjngUTtGcHn4JEUnGw4bxCEQ/MjwEArPBI/XuL37Ya
-RoA1adWL3DNLYDM6srHpI0CInum9IgQ=
-=BTAd
------END PGP SIGNATURE-----
-
---oHiiIfBKH0NLyHDs--
+Please handle the "struct dsa_db" argument of these functions, so that
+you can turn on ds->fdb_isolation. It is likely that instead of a single
+AN8855_FID_BRIDGED, there needs to be a unique FID allocated for each
+VLAN-unaware bridge in order for their FDBs to be isolated from each
+other, and so that the same MAC address could live under both bridges.
 
