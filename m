@@ -1,147 +1,176 @@
-Return-Path: <devicetree+bounces-127657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E50A99E5DFE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:07:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A66D9E5DFA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:05:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F22018856A8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:07:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BEF918852AA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54A5522578C;
-	Thu,  5 Dec 2024 18:07:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE710226ED9;
+	Thu,  5 Dec 2024 18:05:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="G5nZotVw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PZq4M45N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62DE91922FB;
-	Thu,  5 Dec 2024 18:07:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AB661922FB;
+	Thu,  5 Dec 2024 18:05:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733422024; cv=none; b=dvdf+2ftzcbhNFk88nmmqAymdAAO/WpA48vHrvqqDfCaW4UHTovCIh8WycXXvDeORAnv6e6lbfVYPd72attd7PDAs0blvYGKuTsgdS5i5Cfl28QRcfB7WYx/nfrhtZTN/RCSUs+WBqMGUWWVJO6ZP+yaiyTIJBOgFObqhcArRGI=
+	t=1733421951; cv=none; b=W9DG9erPxE1ism0/Q9/RYZzpT9J6/cbXqlpe9QqpMPMPxTAYocpIkAU76eeXlWnCqJYj9TVweJgHvzkVyzKqcmHHPgXSme8MlOmMJw37s9Ok4AmC4S3gxsZSvTVP0wOesC3FdHpIyKZwdthH37HV0X+PjqD75bMBlA3Xu3A5TxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733422024; c=relaxed/simple;
-	bh=NIJKefEChAZWjCm+T+gtGvYLqfucYwGsgdb2WaVMkn4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RzkQPQfnGrakir+YtCnn4KrBd1OCHycEmVied3QFHOO51RMJ4UfBzd26N+mns0VHqb9IELXBpDRPur+3KaSGYUN4uBmpsFeAVOapDf4sOjO2bqMqRoKUMjdBPa91uPSi8MBOeZvU0lIsD+/TydPi1cCDJs7HB+2ZtjeWwMEFSUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=G5nZotVw; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5G4HBk019839;
-	Thu, 5 Dec 2024 19:06:41 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	0JnhlkT+86La11TTNlcsIBnITx15puWkRfuAEfVFs/I=; b=G5nZotVwCco3qDt6
-	3Cfl9zzcdOOU/Uml9SI6+Fw7T1PoD+tUBhguTxQqOSCFrZl4j6YaIKRFFUSUsiU6
-	Z6iGESJ+JSmq9RTT1t3VA0DFwQJ/Tm6hJnSkA69uFFtZMyJqrtuK7FELR3ZTBTrK
-	S3s21nK0xDo+JIR2VMGa8d3iOmV8DY445J5iDbsysAGTRpdMXryOLz5RnGT76Ar8
-	6seG7FYjzqNSVuXp9r0ifTCCPcdi+nC9M07N/9QOT0Rzif4ecraID5m2AoIhGBS1
-	14KhdkgN7fTr44dxms2+AewXh3kKtod4nNUch5Ho3mf5FBvTX1vRFu9/CPIl0cGW
-	ZAkXGQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 437rq9gssg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 05 Dec 2024 19:06:40 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 69D6840049;
-	Thu,  5 Dec 2024 19:05:36 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 52D9D267F27;
-	Thu,  5 Dec 2024 19:04:41 +0100 (CET)
-Received: from [10.252.15.31] (10.252.15.31) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 5 Dec
- 2024 19:04:40 +0100
-Message-ID: <bdfeceb6-962a-4f20-b76c-4fe5e5ff80c3@foss.st.com>
-Date: Thu, 5 Dec 2024 19:04:39 +0100
+	s=arc-20240116; t=1733421951; c=relaxed/simple;
+	bh=SjIPREhBR4IU+XluzYW9qjN6GMwoDxsaQo5rh1Ifc+A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s3SpDl2FI0QpRh7JbnFlN+O6mHo2Pa1nJ/iFce/1QiQ7svoWk4YFeoRfWoAbVgxrpJCsVMyGTb3ESM5m3QiDKmQd8WUSUcQ342j+q9z4h45E+TMPcIb7whpHuml5pQEOEUqmCzPAPgn6Fg/XrjpckyhxNkpPqAw19bzzYViV9xQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PZq4M45N; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5d0ac3be718so170016a12.1;
+        Thu, 05 Dec 2024 10:05:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733421948; x=1734026748; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=y9GVm87bSpq/hl/hsc8tzDLtFmHzFt/UjSs+LY2xa7s=;
+        b=PZq4M45NhoWtoYU5MTepP/tN3d0SWN2Bsr5pmTmjlqnwk0vGIgAw9Gme+JKN/0gWVE
+         9cHcBONWYY1AbnY5UH+1w+dZw69Nh0Rymy95t/AMMcOYSI1suuEO5sgCHkPwswKU9VDE
+         Amk3YxhzSGGfUAn85SzM3vCfOy0TBcKft4AkheTdeOWNRWlb54IZCyB0Wld1lr1YNDa/
+         fRun/eOhJlf7dKYmpSmxQhfdhUQIyJgaUj2abNPTEEBEkq5Gsadt8iQIyiksKmmgtWNn
+         M8n40SS9hFKj3SREKfa6R3YfYwQGCE8BxwitOiQxv9Xjctx60p2UAiXCFdazgJigR0U3
+         XwUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733421948; x=1734026748;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y9GVm87bSpq/hl/hsc8tzDLtFmHzFt/UjSs+LY2xa7s=;
+        b=iXc7gMr4OOu2g5Pnt7rgu5ZP+watTl+ysuEYUBrT3hPREEguG7+i7bWL2R3Oz3BCNw
+         1v04KV5KL5ZQxQifn5KLa4x/9FBE8QcPgd8GFbBR/x1KXTpiMiyjgqC2pzzCqT2/gXX4
+         5WuaaNtlT9ajerQo4SzCLkxhzNW5qcsb4dZyU8M+enmfRFjZi1eED7smhxCBWM2+fF1u
+         i2BS2ifhVEZfhhRrgfgZlrayiQTXIYc9XFTFflxoLNm7But1Q14l98E8X1qufNvUO0fP
+         IrED/yp52eQ8uKdNcXmx76Mx8PQmVgly4LA1SW/Fru2+BuvJ6O4B6pseGGlJhd+vqYCj
+         mYiA==
+X-Forwarded-Encrypted: i=1; AJvYcCUvl61RrIVAvySkLIeq4aoGWVtVK/8zrG1Nbq1kEddOEKBv5Yn41+BJm1OQ93oznoJQQz1nV+aS@vger.kernel.org, AJvYcCVFzU81dpY6L9kKNGrNCeGfQGUFWZrAK5h9LzFGLGolA6uB1z6ntT/xAnNyniD7DgapxaG6b4yqZUGY@vger.kernel.org, AJvYcCXHV2iqhfQHbiyge0WIoI7gdapck6X3/ur/EyFFj7feCZRnO/GNbGsdPttA8kuDnGhV9G8idk62hIxdE5Gn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTvgEN5fR1nNUJFBKRf3WIkUGDsfD/CKLrpR2PTbW9F+goesiV
+	3SyI71+6SinNsE/KytsTgGCgkaeuVvatMx9IW66VQ+TcGoeJ0Z0w
+X-Gm-Gg: ASbGnctY4v0K9H0Nuz3M3D7bTssKlTiMRb/bFm1RldD40CW3oseJuGi6GLYYp6mlx4h
+	mATr8WOBNxw9XWOfHzFHOi7zuWzYt2CaAeyNiw4rWof2Kw5kcdZYxi6nyxb3wOXrmrq/1ymotC9
+	/A6coJxV31SVRnLipz8DH/eY80/zx1gnsIwaZGNoZDGuJnqTdkoN+uLH53xemWb4bn6xV/HVLKo
+	BKDuxmFeQ2aO1rGGxZUq72hx0z1DA5vJ/QGcqc=
+X-Google-Smtp-Source: AGHT+IG7B9QIHNCPW0oiA+I6ajVzIYVZWOIIvvoz5mac5vhllldMUr+wRDfdj7IWVlyWYwVezRdCUA==
+X-Received: by 2002:a05:6402:1d55:b0:5d0:e522:9731 with SMTP id 4fb4d7f45d1cf-5d3be47d80bmr31759a12.0.1733421948119;
+        Thu, 05 Dec 2024 10:05:48 -0800 (PST)
+Received: from skbuf ([188.25.135.117])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d150f544e1sm1073330a12.89.2024.12.05.10.05.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Dec 2024 10:05:47 -0800 (PST)
+Date: Thu, 5 Dec 2024 20:05:39 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v9 3/4] net: dsa: Add Airoha AN8855 5-Port
+ Gigabit DSA Switch driver
+Message-ID: <20241205180539.6t5iz2m3wjjwyxp3@skbuf>
+References: <20241205145142.29278-1-ansuelsmth@gmail.com>
+ <20241205145142.29278-4-ansuelsmth@gmail.com>
+ <20241205162759.pm3iz42bhdsvukfm@skbuf>
+ <20241205145142.29278-1-ansuelsmth@gmail.com>
+ <20241205145142.29278-4-ansuelsmth@gmail.com>
+ <20241205162759.pm3iz42bhdsvukfm@skbuf>
+ <6751e023.5d0a0220.394b90.7bc9@mx.google.com>
+ <6751e023.5d0a0220.394b90.7bc9@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] dt-bindings: dma: st-stm32-dmamux: Add description for
- dma-cell values
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Ken Sloat
-	<ksloat@cornersoftsolutions.com>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <dmaengine@vger.kernel.org>, <alexandre.torgue@foss.st.com>,
-        <mcoquelin.stm32@gmail.com>, <conor+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <vkoul@kernel.org>
-References: <CADRqkYAaCYvo3ybGdKO1F_y9jFEcwTBxZzRN-Av-adq_4fVu6g@mail.gmail.com>
- <d53538ea-f846-4a6a-bc14-22ec7ee57e53@kernel.org>
- <CADRqkYDnDNL_H2CzxjsPOdM++iYp-9Ak3PVFBw2qcjR_M=GeBA@mail.gmail.com>
- <28d1bb46-ab18-42da-9ca2-ff498c888d66@kernel.org>
-Content-Language: en-US
-From: Amelie Delaunay <amelie.delaunay@foss.st.com>
-In-Reply-To: <28d1bb46-ab18-42da-9ca2-ff498c888d66@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6751e023.5d0a0220.394b90.7bc9@mx.google.com>
+ <6751e023.5d0a0220.394b90.7bc9@mx.google.com>
 
+On Thu, Dec 05, 2024 at 06:17:18PM +0100, Christian Marangi wrote:
+> I checked the examples and one problems that comes to me is how to model
+> this if only MDIO is used as a comunication method. Ocelot have PCIE or
+> SPI but this switch only comunicate with MDIO on his address.
 
-On 12/5/24 17:09, Krzysztof Kozlowski wrote:
-> On 05/12/2024 17:07, Ken Sloat wrote:
->>>> + 1. The mux input number/line for the request
->>>> + 2. Bitfield representing DMA channel configuration that is passed
->>>> + to the real DMA controller
->>>> + 3. Bitfield representing device dependent DMA features passed to
->>>> + the real DMA controller
->>>> +
->>>> + For bitfield definitions of cells 2 and 3, see the associated
->>>> + bindings doc for the actual DMA controller the mux is connected
->>>
->>> This does not sound right. This is the binding for DMA controller, so
->>> you are saying "please look at itself". I suggest to drop this as well.
->>>
->>
->> While logically it is the DMA controller, this doc is specifically for
->> the mux - the DMA controller has its own driver and binding docs in
->> Documentation/devicetree/bindings/dma/stm32/st,stm32-dma.yaml
->>
->> I can reference st,stm32-dma.yaml directly, but I was unsure if this
->> mux IP was used with another DMA controller from ST on a different
->> SoC.
->>
->> What do you suggest here?
+I don't see why this matters. There will be a top-level device driver,
+which in this case will be an mdio_driver and will use mdiobus_{read,write}
+to physically access registers. This driver will create regmaps and add
+them to devres using devm_regmap_init(). From devres, DSA and other child
+drivers can use dev_get_regmap(dev->parent) and perform their I/O through
+regmap.
+
+This driver is already written for regmap, so part of the work can
+already be reused.
+
+> So where should I place the SoC or MFD node? In the switch root node?
+
+The SoC should be placed on the host MDIO bus. And the Ethernet switch
+component should be a child of the SoC. Ideally, so should be all other
+switch peripherals: on the same level as the Ethernet switch.
+
+> Also the big problem is how to model accessing the register with MDIO
+> with an MFD implementation.
 > 
-> Thanks for explanation, I think it is fine.
+> Anyway just to make sure the Switch SoC doesn't expose an actualy MDIO
+> bus, that is just to solve the problem with the Switch Address shared
+> with one of the port. (Switch Address can be accessed by every switch
+> port with a specific page set)
+
+Sorry, I don't understand this, can you explain more? "Switch Address
+can be accessed by every switch port with a specific page set"
+
+In the code, I see that the priv->bus and priv->phy_base are used to
+perform MDIO accesses for anything related to the switch. That's perfect,
+it means that all switch registers are concentrated on a single MDIO
+address, behind a single mdio_device. If that weren't the case, things
+would get messy, because the Linux device model associates an MDIO device
+with a single address on its bus.
+
+And then we have an8855_phy_read() and an8855_phy_write(), which in my
+understanding are the ops of a fake MDIO controller, one which has no
+registers or MDIO address space of its own, but is just a passthrough
+towards the host MDIO bus's address space. I have no idea why you don't
+just put a phy-handle from the switch user ports to PHYs located on the
+host MDIO bus directly, and why you go through this middle entity, but I
+expect you will clarify. Creating an MDIO bus from DSA for internal PHYs
+is completely optional if no special handling is required.
+
+To explain again: In the MFD proposal, there is only one driver who has
+access to the mdio_device from the host bus: the MFD driver. Depending
+on how it implements the regmaps it presents to the children, it can
+control page switching, etc etc. The child devices only operate with
+regmaps, and have no idea of the underlying hardware access method.
+
+> But yes the problem is there... Function is not implemented but the
+> switch have i2c interface, minimal CPU, GPIO and Timer in it.
 > 
-> Best regards,
-> Krzysztof
+> Happy to make the required changes, just very confused on how the final
+> DT node structure.
+> 
+> -- 
+> 	Ansuel
 
-This description was lost when STM32 DMAMUX binding txt file was 
-converted to yaml:
-0b7c446fa9f7 ("dt-bindings: dma: Convert stm32 DMAMUX bindings to 
-json-schema")
-
--- #dma-cells:	Should be set to <3>.
--		First parameter is request line number.
--		Second is DMA channel configuration
--		Third is Fifo threshold
--		For more details about the three cells, please see
--		stm32-dma.txt documentation binding file
-
-
-stm32-dmamux exclusively muxes stm32-dma channels. It is not used with 
-other ST DMA controllers (STM32 MDMA, STM32 DMA3).
-
-So it is fine to refer to st,stm32-dma.yaml.
-
-Regards,
-Amelie
 
