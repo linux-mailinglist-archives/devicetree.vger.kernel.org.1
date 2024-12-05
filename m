@@ -1,115 +1,180 @@
-Return-Path: <devicetree+bounces-127158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EABA19E4A47
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 01:03:45 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA2B9E4B15
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 01:28:20 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A47C0283131
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 00:03:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D77218811E5
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 00:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24EB4168B1;
-	Thu,  5 Dec 2024 00:03:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE8C391;
+	Thu,  5 Dec 2024 00:28:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="Hg8o7GWS"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="toGHzvE6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F8EA4C70;
-	Thu,  5 Dec 2024 00:03:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35BB02107
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 00:28:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733357007; cv=none; b=c1dVoAe7V87PeymOtK6IPYx24E3NG2XVBR6yknXbny3R/nGBDSF1RNqs2BnZJmS66KxrcP0n4RIBBfLj5HmfMiT6pKm1KiKZ4bbtDiXgTxnQwMyKHGlIi4DCFytDzaD8kmoM0eDpVnMvhYBL5g/SfrfA1EIYQ1jgNaDKaQwiBrM=
+	t=1733358494; cv=none; b=jX2ft//I92+SsPxITLkCPOyglaiuheB7oFaw42/M8eULsHIO62Moal6no0IlaoX4hPpUbfUUTxAmdKJ8+DbCOQrLcwxkroZcUMJWcSGcPsG4QpefsJtOpyuGU/+15gStnxbGOXFjM1ZkDpJ+KgLQfS5G56XkKx4S8xplPZsDWEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733357007; c=relaxed/simple;
-	bh=o8uExKqB5qYo54a2nVBhqm5tJs6jO0jYNm2MbZM9eVQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dghscYnYsv6e0K9RteLbEEWfRHjpET3WGTbqBbyQy+BtbAPF7iJkpghosUZn9wWHYEio2oCKVC3N23QsMhs7hSl4qHLRgDkBMUYta1HazNQr2zHX40heYifmFC+Ty//y7DDNrZFJGdsgDOQSt3oIchSO4RmHfQcyeR0sPi/2qJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=Hg8o7GWS; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id F00E3A0EF3;
-	Thu,  5 Dec 2024 01:03:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=ZZCQu8PNGzbUydOutitt
-	bytVy0ecwKj8suiZ8x5X5G4=; b=Hg8o7GWSUJguKoIGhZzqH0h2rQ+BFrmb7szp
-	2qdUmyk0Lju44v+ZBLP5M52a5BnKklhi3S5uEMhpmc8xUn82nXv4vIuZv9GI5oQ6
-	XKMnLlISbfmr3m4XFDP5HDP9gw6FQfZfwLcCCAP+1rMtkSfSSI1OZUoNmXF6NiXI
-	YiFFL7mhd0HeYCmkGa0+/BXdvuW6zwjTTqp+plE/f7Tk+tKRxLw4fBEpo8kV3ydP
-	oo65XQSclw5gAExUbwWTtFPSBmL7Zle8EKz6vj7iLM4GzTe8yfKWUyxFnSEQQjp1
-	MycRpklAlleP3jCvH6rmKRgn7ICDHVXQn1FoLCzRo4KdJJ2h4TuYIntasdu7HRee
-	a5oaZH8Oc1jg7GSaQJeIajT7lUrjKHRgfeSYk28jOo9kYi0ym1qd89RlBLqaVZWk
-	YV/Xc5LglZJlr21gzoSheOpqqD1MrJ+bzDMFhvR9jAqAQTwwggeOaVSvViYFV4Vp
-	SV0/LGBeFPTlaKPbaShmrB9vyfvGpIZDp9J7GjMIGNaRLGU/Er12Oxg/E42xMmMQ
-	DBhily29JlITUOJuJN78yGYk/dJtKmias7C1dvYY55jbi+qWm915qrfqsZhTuT3G
-	h/BwRTHBMEOHvy7SmMd+mhbaLO3iyuRiBs/vxVTYg0p1dPA7muNPDkjRFn9btpI1
-	+tycfYg=
-From: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>
-To: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>
-CC: Mesih Kilinc <mesihkilinc@gmail.com>,
-	=?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
-	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
-Subject: [PATCH 3/3] ARM: dts: suniv: f1c100s: Activate Audio Codec for Lichee Pi Nano
-Date: Thu, 5 Dec 2024 01:01:38 +0100
-Message-ID: <20241205000137.187450-4-csokas.bence@prolan.hu>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241205000137.187450-1-csokas.bence@prolan.hu>
-References: <20241205000137.187450-1-csokas.bence@prolan.hu>
+	s=arc-20240116; t=1733358494; c=relaxed/simple;
+	bh=a6stA5ASexUe+YGUItYApNHYpHd6ANHwTZsx7ZD2hH8=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=UKSeRa3OHuJOcX1icfgchIlwtEHKu3TP8bZK9keBg4O+Gm3KzVUeQwHjLOuL5FpUGAHRNzDgWuzOIomwBbaPNu07yLlcweNfs2FjnmnOij7EgGaJ6EZBiuEfvTFXB6zwxYe+s3hnNIo0LId1ucyPMWRLMobbis8qtTRSHZd/Nxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=toGHzvE6; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20241205002809epoutp0213e50317b32519e8b03ea5d3914a0504~OIFzoezlw0139401394epoutp02P
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 00:28:09 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20241205002809epoutp0213e50317b32519e8b03ea5d3914a0504~OIFzoezlw0139401394epoutp02P
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1733358490;
+	bh=UHsb9uG3lsO2MSDA0jNylxCXRl9bK7Qx7zpPxaTAmzQ=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=toGHzvE63Ncn8C6Fa3NIJ64vB797mQAlK6A7Lg/QaG7+ipLuX6xvrz0ujqLhr/tpL
+	 QCThopQvQADSPfPA6c1i4AMxthgzstP2OK6BrfyjImeetN+qam6+8z8+JPFNCm3yPI
+	 cdt+2+UdyOxfmzikR51j0B919e5VJPu2ieTWS18U=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20241205002809epcas2p12e68369b9434556e75935c0ccea2e71c~OIFzE1vHr0419504195epcas2p11;
+	Thu,  5 Dec 2024 00:28:09 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.99]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4Y3Zx46vstz4x9Pt; Thu,  5 Dec
+	2024 00:28:08 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+	A9.75.22105.693F0576; Thu,  5 Dec 2024 09:28:06 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
+	20241205002806epcas2p458dbe079cd2287366c636d168a998edb~OIFwGtYVX2084520845epcas2p46;
+	Thu,  5 Dec 2024 00:28:06 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20241205002806epsmtrp28e8e468e1bc5806b7e947f31e2063f04~OIFwE2dkZ1071310713epsmtrp2I;
+	Thu,  5 Dec 2024 00:28:06 +0000 (GMT)
+X-AuditID: b6c32a47-fd1c970000005659-11-6750f3969cb5
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	EE.A0.18729.693F0576; Thu,  5 Dec 2024 09:28:06 +0900 (KST)
+Received: from KORCO119526 (unknown [10.229.8.143]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20241205002805epsmtip1b76984dc726d58d245434a8f166ae988~OIFv4NdDI1474514745epsmtip1u;
+	Thu,  5 Dec 2024 00:28:05 +0000 (GMT)
+From: =?utf-8?B?6rmA7YOc7JmE?= <trunixs.kim@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
+Cc: "'Guenter Roeck'" <linux@roeck-us.net>, "'Rob Herring'"
+	<robh@kernel.org>, "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>, "'Conor
+ Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+	<linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>
+In-Reply-To: <c487babb-84a5-4e47-a58f-75fec55cbabb@kernel.org>
+Subject: RE: [PATCH v3 3/3] arm64: dts: exynosautov920: add watchdog DT node
+Date: Thu, 5 Dec 2024 09:28:05 +0900
+Message-ID: <000201db46ac$8d7cfee0$a876fca0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1733357003;VERSION=7982;MC=1494516499;ID=169669;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
-X-ESET-Antispam: OK
-X-EsetResult: clean, is OK
-X-EsetId: 37303A29ACD94855627561
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQMd16p+X2UldERt9X3UXGHKyeOT/gFfR1PzAhOyk7QBWm0aqwINNyvVAoah3z0BqLdGjwJ1Uc7or+WuLIA=
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBJsWRmVeSWpSXmKPExsWy7bCmqe60zwHpBi9OqFg8mLeNzWLN3nNM
+	FvOPnGO1eDnrHpvF+fMb2C02Pb7GanF51xw2ixnn9zFZ3Fi3j93iycIzTBb/9+xgd+D22LSq
+	k81j85J6j53fG9g9+rasYvT4vEkugDUq2yYjNTEltUghNS85PyUzL91WyTs43jne1MzAUNfQ
+	0sJcSSEvMTfVVsnFJ0DXLTMH6DIlhbLEnFKgUEBicbGSvp1NUX5pSapCRn5xia1SakFKToF5
+	gV5xYm5xaV66Xl5qiZWhgYGRKVBhQnbGm/6dTAXv2SvOXtvA1MD4l7WLkZNDQsBEYnPTMcYu
+	Ri4OIYEdjBK3Dr5hgnA+MUos3nsJyvnGKHF98QZ2mJbXLW+YIRJ7GSUWPN3LCuG8YJR4fGk7
+	M0gVm4CFxJJrH5hAbBEBXYnNN5aDdTMLtDJL7L0qBmJzCthJHJx1AywuLOAjMX/vObBeFgEV
+	iUkbe8HivAKWEueXP2WFsAUlTs58wgIxR15i+9s5zBAXKUj8fLoMqIYDaFeSRMMTEYgSEYnZ
+	nW1gh0oIbOGQ2H10ElS9i8Sco5OgvhGWeHV8C5QtJfH53V42CDtfYuXKE0wQdo3EvbZdLBC2
+	vcSiMz/ZQXYxC2hKrN+lD2JKCChLHLkFdRmfRMfhv+wQYV6JjjYhCFNVYvqyAIgZ0hITZ6xl
+	m8CoNAvJW7OQvDULyf2zEFYtYGRZxSiWWlCcm55abFRgDI/q5PzcTYzgJKvlvoNxxtsPeocY
+	mTgYDzFKcDArifAGaQekC/GmJFZWpRblxxeV5qQWH2I0BQb0RGYp0eR8YJrPK4k3NLE0MDEz
+	MzQ3MjUwVxLnvdc6N0VIID2xJDU7NbUgtQimj4mDU6qBSXddTnl2+vIdbtvylrSYvk60Mcme
+	J87NunY3Q/B97ZRv0/qSDTozYqWfpi058MO8nv/pjPRTjy1+mIeUPXLOWrhWaqeFR/O3B3Yf
+	Ts6b9ebc/laR2MXrDwsKyyXLH2WZub4k+kFslWbBT7OXUbqlfvUPFzjE8v249WT3DJeGc1c1
+	kwPP7WqWfRrKFflo7/3rDTMtJvkuOjFrWp7n8Qvcr+bvD2cufK6+wcBJ7tTmHJfn0RXBvIEb
+	T1f737IzUj33f/nf2KhbgpoyThGW2duvSjA0+/mbHXB4rzZp1veFyRk/zrhUFhkfnq5weGZq
+	IIOGdZL/C8+bVucnFKy5q8Q6ozbBYOPeesUIk3rNW4kGSizFGYmGWsxFxYkAEEYtKTsEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprOIsWRmVeSWpSXmKPExsWy7bCSnO60zwHpBn9+s1o8mLeNzWLN3nNM
+	FvOPnGO1eDnrHpvF+fMb2C02Pb7GanF51xw2ixnn9zFZ3Fi3j93iycIzTBb/9+xgd+D22LSq
+	k81j85J6j53fG9g9+rasYvT4vEkugDWKyyYlNSezLLVI3y6BK+NN/06mgvfsFWevbWBqYPzL
+	2sXIySEhYCLxuuUNcxcjF4eQwG5GieO7HkMlpCWO/H7BBmELS9xvOcIKUfSMUaJvwSewIjYB
+	C4kl1z4wgdgiAroSm28sZwcpYhboZZbYf3sn1NitzBJfVhwH6+AUsJM4OOsGO4gtLOAjMX/v
+	OWYQm0VARWLSxl6wOK+ApcT55U9ZIWxBiZMzn7CA2MwC2hJPbz6FsuUltr+dwwxxnoLEz6fL
+	gOo5gK5Ikmh4IgJRIiIxu7ONeQKj8Cwkk2YhmTQLyaRZSFoWMLKsYpRMLSjOTc8tNiwwzEst
+	1ytOzC0uzUvXS87P3cQIjjstzR2M21d90DvEyMTBeIhRgoNZSYQ3SDsgXYg3JbGyKrUoP76o
+	NCe1+BCjNAeLkjiv+IveFCGB9MSS1OzU1ILUIpgsEwenVANT4nkR/sJrZs1rTnny2YasaFFx
+	1Ptp1npfomDyAuVHOzLuFnkYzTobkei4UZ1vZcP9xy0HQqwUZY80Mr3hmJlsWekpwf3qyLOO
+	u2LvtS9y8Up7vc965PpVZYXgHAZG+wzh1zMOVZg+e55+sGaiUdCU4595z3ZKbcnSL0rmmcNz
+	+f7VR+vUVeIui75PXMEqvr+W4eP8RZ6suzuUP+tWcTzUY3wckDjr+e4nwtffl7Ieuvnbl5nt
+	+ISpU4QP1cwNdazsDTI2+bSmO8SQ6aBHelS7BlPW3rJWswPfHjXtcQjYUrCKJ6Hg3fLHl+6e
+	LG1dW+PxOn1F/XfOa5I8+XOW3CprWpjasKXI0b7l6bOHMtZKLMUZiYZazEXFiQDV5FOYKgMA
+	AA==
+X-CMS-MailID: 20241205002806epcas2p458dbe079cd2287366c636d168a998edb
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20241021063938epcas2p1c01c89badb532f08a46087a4907df7dc
+References: <20241021063903.793166-1-trunixs.kim@samsung.com>
+	<CGME20241021063938epcas2p1c01c89badb532f08a46087a4907df7dc@epcas2p1.samsung.com>
+	<20241021063903.793166-4-trunixs.kim@samsung.com>
+	<961e1aca-cd90-4db1-87d7-afd2e542421e@kernel.org>
+	<20241107103331.GA4818@www.linux-watchdog.org>
+	<589c40e1-6a1c-4ef7-b0d8-b761b132578a@kernel.org>
+	<20241107113325.GA5284@www.linux-watchdog.org>
+	<c487babb-84a5-4e47-a58f-75fec55cbabb@kernel.org>
 
-From: Mesih Kilinc <mesihkilinc@gmail.com>
+Hi Krzysztof,
 
-Allwinner suniv F1C100s now has basic audio codec support. Activate it
-for Lichee Pi Nano board.
+> On 07/11/2024 12:33, Wim Van Sebroeck wrote:
+> >>> Seems like you are having a hard day.
+> >>> The 3 patches are dropped. I presume that you will take them all
+> through your tree then?
+> >>
+> >> I meant only this one patch, not entire patchset. The bindings and
+> >> watchdog driver are for you. I commented only about this patch here -
+> DTS.
+> >>
+> >>
+> >> Best regards,
+> >> Krzysztof
+> >>
+> >
+> > I added the first two patches again. Even when it sounds more logical to
+> me to keep the 3 together.
+> 
+> Thank you.
+> 
+> > But that's a never ending discussion, so we won't go into that :-).
+> 
+> DTS is hardware description independent from Linux, therefore always goes
+> separate way than Linux drivers.
+> 
+> Best regards,
+> Krzysztof
 
-Signed-off-by: Mesih Kilinc <mesihkilinc@gmail.com>
-[ csokas.bence: Moved and fixed conflict ]
-Signed-off-by: Csókás, Bence <csokas.bence@prolan.hu>
----
- .../boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts    | 8 ++++++++
- 1 file changed, 8 insertions(+)
+I found that the first two patches have been added to the linux-next git, 
+but the last patch has not yet been reviewed.
 
-diff --git a/arch/arm/boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts b/arch/arm/boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts
-index 43896723a994..472ded0aafcf 100644
---- a/arch/arm/boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts
-+++ b/arch/arm/boot/dts/allwinner/suniv-f1c100s-licheepi-nano.dts
-@@ -62,6 +62,14 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&codec {
-+	allwinner,audio-routing =
-+		"Headphone", "HP",
-+		"Headphone", "HPCOM",
-+		"MIC", "Mic";
-+	status = "okay";
-+};
-+
- &usb_otg {
- 	dr_mode = "otg";
- 	status = "okay";
--- 
-2.34.1
+I would appreciate it if you could take a look at this patch.
 
+Best regards,
+Taewan Kim.
 
 
