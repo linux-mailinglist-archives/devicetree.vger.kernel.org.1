@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-127175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F05529E4C4D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 03:34:17 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A759E4C4F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 03:34:30 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79251286293
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 02:34:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C330D188184A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 02:34:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F11991917D7;
-	Thu,  5 Dec 2024 02:33:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 507001922FB;
+	Thu,  5 Dec 2024 02:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IT6g/kwR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TnnrcNqs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74EF017C7B1
-	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 02:33:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D2618FC75
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 02:33:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733366033; cv=none; b=m64kTxJFe2+s1pecRsxA+/eRhPcIuEmCBcq3g4ojJ4+HStsMcL1QkG84udgDLynh3BwUdVVDrrB8MhE6myw6wXPK8ll5UUef0GEbAiR6GODaLiAy5h66HB+GjzxV/IHrURBNdR0rcmWL4JVyfAcWsCUfr0937ClhhmKqPBHj754=
+	t=1733366035; cv=none; b=eqCDOxzdjl6fhpa+2nLPUe/iim/XgKJ0oU8MKR4mBdRr9xWEiWdHLYqpK+7Wle78IwVWuQSMDUYgpl1N2KAYHeMzyMfy+VKE82eW6PygxHfy9HNeP0ri4OD6bwasYHu0rRmzQxd3S6D3kQMGeeZeNPIV25q7x0eQRFde8MjfLAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733366033; c=relaxed/simple;
-	bh=Isf6HQyXFroCVtEkXPHNWq7TOYXp0bv2O62+fk4lkgI=;
+	s=arc-20240116; t=1733366035; c=relaxed/simple;
+	bh=YRQBf0W9frh8FEHOrg3W9F5a40CVpeTKHJworaSbgRI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Wo9TgQcjgGKAU5iEW+ZSj90Iua+YEIE8HUZ0g7WmY2YIWGt2f93LbwPtOcJrBadz1nNCIhoerjCOWtlofcusE7FAxHtmJ/TtnFDS/CLl/XlZ60qEkLgzX3HOha0nmlStyNqv7JBIRhtMRiSikDFwv+LJ+H9cWO0uHHwtkt6zVj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IT6g/kwR; arc=none smtp.client-ip=209.85.128.53
+	 MIME-Version; b=eqZig5YvIMG+QopY+9K+ctA/kpaG+uBMYS6imI0F5VtlPK75Xvp8/Xv6QJjcbWq0roDi+X+V4bo40Dc+jyqKonIQHCJtxUYNQ9REYw7b/LotQ1z9OcJhgiHRduSBknKU13Ed/+Bjp68AA87yE1gMdXLpGoZMxXLYXA+GoC7ocK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TnnrcNqs; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-434acf1f9abso4001155e9.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 18:33:51 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4349e1467fbso2647455e9.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 18:33:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733366030; x=1733970830; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1733366032; x=1733970832; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=K0WueZqrue3ZzQaNIzfW+kCCT49wLDNKQcnxj9X3ods=;
-        b=IT6g/kwRqP8YJTaqgoS/xqV+pFTufJ4suwULhsgu5kmLHpXvx4/pCncg9A1h0Aatgr
-         TdBXCIAsNZf1CwWvAz1OXICZAr490IMPwcAYoVQCNrAiB7GGIedRT8AQ+3k0YxpyNADY
-         HUbM0S23CtHstNqZtaQ0h10kVFYaxzabhX14ZF2KpDz+r3mZy+nLU937T0jnKbE2xieo
-         F6N1tVNJMAoulZTyyxJmaHBIRmxMvt++RBRB9vHpb+1lXJOyc8UNAxDfefssa3buAXvr
-         9G7BXK1NV+2EgaPZ2UM33wILfMynJXMrqcoFlA1WYjrtY9KwJSVfjgbFS/esF+VFXQTw
-         jjww==
+        bh=pbQg49fwfqiAPqum0vO3xu6S8El0T9nuKTumPVo3HTs=;
+        b=TnnrcNqsn93sKAISSgUaYd0yus1Q+fHfc2Mh40HZJOsOGHITxzmlaAJ0i2eg8ek2Hs
+         CCGcAy5ZHIHbZKxYpc+66mcBuNzh5so3b6a+pPyl5w4L/LciqjXBbdC44NvO0FUToNWm
+         4DJYDI5A39PfSIAsjWe27tnK6xNiOrnmCSGZJufq1TRab5It0k8h2eytrAsH8oz+OOJJ
+         wgxzHqUOZgZSQrprjAsOYojxw9encbZJfq3dFFYHosqwmMBL2TnE6WMOSpicKyssauQx
+         Kr1tYeEA5uGrPDIBzj0Yn+ypDUv/V41DQBOkAWus7CZQBXHoV3pd9UuwU74NwUGYoxb7
+         z9HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733366030; x=1733970830;
+        d=1e100.net; s=20230601; t=1733366032; x=1733970832;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=K0WueZqrue3ZzQaNIzfW+kCCT49wLDNKQcnxj9X3ods=;
-        b=rV8PCBmbVjF3Hh94QC7aXKR8rtUp1sO0nPAzXTOSoGJUueU5Vdb2B4WnY74fJWhYh8
-         yVGctBEQfL6QCzhyKRLoYpmmQTbJ7X79B0SN/YTSW5ReDvwugoUjAoXMQOey1oUC9hsJ
-         MM/yFcbGm82gsky0hbTemjw9JvoVRquQ0wsU88Haw25H8rLx6p0GmxnT+PAnv9TpqCtW
-         9nib53Tk+pQJ6XOU7ppc6QyJ1kVCSetXr3m7aTHGSAwOj6LedQhwME9XPK77sAHQb4QA
-         XZIASZYdCO3frFt3XepIiyXq9GKiKaFWxRJtYMx5YOvFH6lv/KLzDIFXqeKtaur9mUHZ
-         TRpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUgCf8wzQz9im5D6mIzO+fl9tLBX72FgfoejmN4ShSJn9H2vK9VSVByTS/Hemr5jsdKhH3MQ9Aohzeb@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVFFMwdRkKDaZXRq5T527u7tZV7Ejo+GK04XtxL66JQZ8ZWUOu
-	hpmrDh5DoA4fi9y6ntidxm4rDBZ++g9JViwrR5wrpnR091eODuKhqKUoHWwHz3E=
-X-Gm-Gg: ASbGnctk7Sg8A5RQw3SATVwx9yCcvNKjIlFd8NaqYmdnsdhHzqgnKWu2mDHPLkvWR9U
-	SnpVOMGTFjVZ/jnatMxHgUAC7AgjkGSO6u4sTBDK//Ixu0v4kzoMfP+3LSnqI6jGRB2laExeuR5
-	yRzJUAgqHhFR6owXgK3/BiTpIpXPEVOACLS4SEgeyuztc1hJM+icf6BUxJ/nhAcV7Rv4ErZd/s+
-	mxLP+NHMF07yXHUPWf4gOmt2HcizKMeAZRMXCS77OTFvLDKH15qZTfH97mqUdkOkCZI
-X-Google-Smtp-Source: AGHT+IFy7VrnCoXus3t9ExkXEj7SDNYfG18p3P3BcNevba3EvsBVM2z1mEoPokrxMXPtnVvCqvzv1w==
-X-Received: by 2002:a05:600c:34c4:b0:434:a8ef:442f with SMTP id 5b1f17b1804b1-434d0a23e6emr68510235e9.32.1733366029773;
-        Wed, 04 Dec 2024 18:33:49 -0800 (PST)
+        bh=pbQg49fwfqiAPqum0vO3xu6S8El0T9nuKTumPVo3HTs=;
+        b=s+5ahscfZZPyQUWafWIqBwKhuLxEeRgB4a9bUjHlXCcy1vfsIoWwK9/e6wtCgzvJy5
+         HLbe6nEKcx02Nc9be/7dVT5kVy45uR63pljqGWwVXFa6iAkbE+6OS1E3zaBt+Ikat6s/
+         /0/aOwZM4CIGmtva0iU3LXx1Mo3K92f9A1DazQiSy29oAMojalRRLu5n2SwLnFT4k4nx
+         PM/IL82BHVp7ihEPfzMK/C/xercXhhmmGkp9bfMQP8JJ43vFsyKiXvwYpxpU8zOftMgU
+         kkoisE/BpAJbGUJy9DvkkDqsr4MKDdP9FrPP6sxKmig7yVq2B1Af47hCWP3A6RZBN8AV
+         83Hg==
+X-Forwarded-Encrypted: i=1; AJvYcCVH780m0BE4evfvLWRn1lXaB+4A8wcF4DGZkF9nGc6lDFNkvUh2CHy7KfC0QYpN/w1ahsU9FUQ8MGLF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyuk8c+wuts6DRI52SXPz+FOqx4ogXCMpz//GyB7PzBAalUWVa/
+	4kVTwHQb6bRet7uzSHmGHquvLEYmIgEj2XY3avlo6ey9MbQVH5/adGkbSjfW5Rk=
+X-Gm-Gg: ASbGncvVHLQ0rPSZdWYxgum1XxHHi7Ylgs0cypbRpbwMo8FMfSl9l2uDdxWzc+T3N+O
+	nwqKKFekHEP2NmHdFHlKM3n4rt8wm9B9JcLFv/2T6lRxSEc6PNq/P57Mv5V9sHUJ50T91P9SphK
+	2rfQ7tljzRBYovYrUpb8FfnVz09odG6bQB9axWTtAGzZWSVTpXsdsq3gC0nkSD7kSMn3EwjM4Se
+	apUyG5kZMW+TYjGr3q+AotU0SNt7CJyjdPczn/rFEK/0NKm8cwh1LwkzdZAAsJoszC0
+X-Google-Smtp-Source: AGHT+IEr04HIyGIAbnMgCxehAiEsQghxVfR78l+LYpgdbWvEFCUYjvf5mRhaEkf1BZj3PO52s5tGig==
+X-Received: by 2002:a05:600c:46ca:b0:432:d82d:6a6c with SMTP id 5b1f17b1804b1-434d0a1db91mr81932695e9.30.1733366031850;
+        Wed, 04 Dec 2024 18:33:51 -0800 (PST)
 Received: from localhost.localdomain ([2.222.231.247])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434d5273440sm44444325e9.18.2024.12.04.18.33.48
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434d5273440sm44444325e9.18.2024.12.04.18.33.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Dec 2024 18:33:49 -0800 (PST)
+        Wed, 04 Dec 2024 18:33:50 -0800 (PST)
 From: Alexey Klimov <alexey.klimov@linaro.org>
 To: broonie@kernel.org,
 	konradybcio@kernel.org,
@@ -87,9 +87,9 @@ Cc: tiwai@suse.com,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/3] ASoC: qcom: sdm845: add handling of secondary MI2S clock
-Date: Thu,  5 Dec 2024 02:33:43 +0000
-Message-ID: <20241205023344.2232529-3-alexey.klimov@linaro.org>
+Subject: [PATCH v1 3/3] arm64: dts: qcom: sdm845-db845c: add i2s playback support via LS1 connector
+Date: Thu,  5 Dec 2024 02:33:44 +0000
+Message-ID: <20241205023344.2232529-4-alexey.klimov@linaro.org>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241205023344.2232529-1-alexey.klimov@linaro.org>
 References: <20241205023344.2232529-1-alexey.klimov@linaro.org>
@@ -101,53 +101,103 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add handling of clock related to secondary MI2S_RX in startup, shutdown
-and hw params routines. The handing of MI2S_TX and SEC_MI2S clock is
-already there so this requires only placing SECONDARY_MI2S_RX in the
-correct switch-case choices.
+DB845c board (RB3 board) has i2s signals exported via the first low-speed
+connector and this is also required by 96boards specification. Enable
+playback support via this connector. Since this is specific only to DB845c
+board the pins configuration is also in this board-specific file only.
+
+This playback output is fixed to 16bit, i2s format and 48 kHz and works
+with simple DACs.
+
+It was verified with the following commands:
+amixer -c0 cset iface=MIXER,name='SEC_MI2S_RX Audio Mixer MultiMedia3' 1
+SDL_AUDIODRIVER="alsa" AUDIODEV="hw:0,2" ffplay -autoexit test.mp3
 
 Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 ---
- sound/soc/qcom/sdm845.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 43 +++++++++++++++++++++-
+ 1 file changed, 41 insertions(+), 2 deletions(-)
 
-diff --git a/sound/soc/qcom/sdm845.c b/sound/soc/qcom/sdm845.c
-index a479d7e5b7fb..fcc7df75346f 100644
---- a/sound/soc/qcom/sdm845.c
-+++ b/sound/soc/qcom/sdm845.c
-@@ -215,6 +215,7 @@ static int sdm845_snd_hw_params(struct snd_pcm_substream *substream,
- 		ret = sdm845_slim_snd_hw_params(substream, params);
- 		break;
- 	case QUATERNARY_MI2S_RX:
-+	case SECONDARY_MI2S_RX:
- 		break;
- 	default:
- 		pr_err("%s: invalid dai id 0x%x\n", __func__, cpu_dai->id);
-@@ -356,6 +357,7 @@ static int sdm845_snd_startup(struct snd_pcm_substream *substream)
- 		snd_soc_dai_set_fmt(codec_dai, codec_dai_fmt);
- 		break;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 1cc0f571e1f7..6ca719281788 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -707,12 +707,21 @@ led@5 {
+ 	};
+ };
  
-+	case SECONDARY_MI2S_RX:
- 	case SECONDARY_MI2S_TX:
- 		codec_dai_fmt |= SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_I2S;
- 		if (++(data->sec_mi2s_clk_count) == 1) {
-@@ -371,8 +373,6 @@ static int sdm845_snd_startup(struct snd_pcm_substream *substream)
- 			Q6AFE_LPASS_CLK_ID_QUAD_MI2S_IBIT,
- 			MI2S_BCLK_RATE, SNDRV_PCM_STREAM_PLAYBACK);
- 		snd_soc_dai_set_fmt(cpu_dai, fmt);
--
--
- 		break;
+-/* QUAT I2S Uses 4 I2S SD Lines for audio on LT9611 HDMI Bridge */
+ &q6afedai {
++	/* QUAT I2S Uses 4 I2S SD Lines for audio on LT9611 HDMI Bridge */
+ 	dai@22 {
+ 		reg = <QUATERNARY_MI2S_RX>;
+ 		qcom,sd-lines = <0 1 2 3>;
+ 	};
++
++	/*
++	 * Secondary I2S uses 1 I2S SD Line for audio playback on
++	 * LT9611 HDMI Bridge
++	 */
++	dai@18 {
++		reg = <SECONDARY_MI2S_RX>;
++		qcom,sd-lines = <0>;
++	};
+ };
  
- 	case QUATERNARY_TDM_RX_0:
-@@ -441,6 +441,7 @@ static void  sdm845_snd_shutdown(struct snd_pcm_substream *substream)
- 		}
- 		break;
+ &q6asmdai {
+@@ -762,7 +771,8 @@ &sound {
+ 			 &quat_mi2s_sd0_active
+ 			 &quat_mi2s_sd1_active
+ 			 &quat_mi2s_sd2_active
+-			 &quat_mi2s_sd3_active>;
++			 &quat_mi2s_sd3_active
++			 &sec_mi2s_active>;
+ 	pinctrl-names = "default";
+ 	model = "DB845c";
+ 	audio-routing =
+@@ -852,6 +862,17 @@ codec {
+ 			sound-dai = <&wcd9340 1>;
+ 		};
+ 	};
++
++	i2s-sec-dai-link {
++		link-name = "I2S LS1 Playback";
++		cpu {
++			sound-dai = <&q6afedai SECONDARY_MI2S_RX>;
++		};
++
++		platform {
++			sound-dai = <&q6routing>;
++		};
++	};
+ };
  
-+	case SECONDARY_MI2S_RX:
- 	case SECONDARY_MI2S_TX:
- 		if (--(data->sec_mi2s_clk_count) == 0) {
- 			snd_soc_dai_set_sysclk(cpu_dai,
+ &spi0 {
+@@ -994,6 +1015,24 @@ reset-n-pins {
+ 		};
+ 	};
+ 
++	sec_mi2s_active: sec-mi2s-active {
++		clk-pins {
++			/* sclk and ws */
++			pins = "gpio80", "gpio81";
++			function = "sec_mi2s";
++			drive-strength = <8>;
++			bias-disable;
++			output-high;
++		};
++
++		data-pins {
++			pins = "gpio82", "gpio83";
++			function = "sec_mi2s";
++			drive-strength = <8>;
++			bias-disable;
++		};
++	};
++
+ 	sdc2_default_state: sdc2-default-state {
+ 		clk-pins {
+ 			pins = "sdc2_clk";
 -- 
 2.45.2
 
