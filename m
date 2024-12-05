@@ -1,173 +1,152 @@
-Return-Path: <devicetree+bounces-127409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAD579E5568
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:27:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66F1A9E5584
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:30:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 504F116BDE6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:27:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6021A1883BB9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7590321885E;
-	Thu,  5 Dec 2024 12:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E23121859F;
+	Thu,  5 Dec 2024 12:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Eamc60rF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gn7PHUcc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83195217F5D;
-	Thu,  5 Dec 2024 12:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AE96218AA1
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 12:29:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733401625; cv=none; b=cYV4Zw5DD2vncHGso2Y0Swj5vR1nKk/qSGPZeQgOMeyEG7ib7q6tUqMR1aZzzhazWTARbPNodrH9ewszohvB/4J4uTsX1fkXuyaif8nHocYjzoOtCMAhU8OglvkpYzFfzDJfp6qD458Wm1GLel1TkOBeMDwS0l2Dn+GkjBI5F/w=
+	t=1733401751; cv=none; b=tNMxyP3EmDLKGQaryQSJKNUqyn0j8oS0IjErJTULsAlvJoxaF2R/NCwFPuy7dBWJXlEn3vvhjDZey58Z7NgMSHMy6hmDksRA4MkFPaMoPpPUzTs/SpCkkXa/rsyvS0JBV/9Q4sJzZZU5fNDgoDPIVQMo6se8mQLyRBAuCv8/Mm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733401625; c=relaxed/simple;
-	bh=nrfocU40C1E7t1lw39FQ7R9127iSar+XPZLXnMOKwaw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X/xFGyD8LK5rwFnUtrvSs7d+uzQdS6w9KzQ94WcRvfBOYJdoGC9TaxKx6lmHR82Eotzz2tXcVNUiB7gMmIPwxfQfMJkr5v9zr3FfwmdmfjRSCOISBBTslW1uz/UbpHdGZX6z2M/raXRXUbVEe3++zGKUAm1TYOwc5eQk+UitfXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Eamc60rF; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1733401621;
-	bh=nrfocU40C1E7t1lw39FQ7R9127iSar+XPZLXnMOKwaw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Eamc60rFbmbDye+pCeVNeRdxskiQYCdcVUz7cFt9Gumvi659rxVMlH8OOewIuQXag
-	 HzO8IKY7g2qGJ7OhYB3Iew5Bg77qu6jp52MEh562r2kvFdiy3/CpoHW8XKL/qqv9Hb
-	 daOhbOIqkrHlbGGP4Em25pgi9o0OjrCA/0XvnU0v2YNa2pz59rbi+ehilOGXaXT2TD
-	 1eWOu1WMmRUwQCVpMOGQS1UVjLvlN9dRRHDrK85xzX7rGjES4yQGnAlBDYbtfl9m4L
-	 CdWGcQwsHC+d5JpLvdGFomyrQeZ4A4nkAVfVMs/5xa3X/8GD9ry/+WOHxXqcOU5f7n
-	 2hJqC1GBjS14Q==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6B8C617E366D;
-	Thu,  5 Dec 2024 13:27:01 +0100 (CET)
-Message-ID: <7bf536a5-30c1-43d8-9ea3-3aaea65c6b0a@collabora.com>
-Date: Thu, 5 Dec 2024 13:27:01 +0100
+	s=arc-20240116; t=1733401751; c=relaxed/simple;
+	bh=dg0/rI1JIhIKxLXXre0pWDYon+oztxDZmcKvYWMKM6o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aPDQPAf/h1DJeh1kniUSJChM7hAI1G2EfsIoOfGTFLt36XnGsH+cMZthx2/jtCgogATOxeGLqEphoZXwtJ9CcSarKsTPuPkGLRFYHcb+vNgGximZKkUFvffyRtgusNGP0cTj7eiDjoNZZj7EKRSMOFrAoPQFBauRkLL/ToFVfrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Gn7PHUcc; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53de771c5ebso868531e87.2
+        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 04:29:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733401747; x=1734006547; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=DzZzeW6LtUsNwMv+kA0kTMV9+3xVaKazBCL45YLJgXw=;
+        b=Gn7PHUcc7dbRuJe2uzQz58oImANDzzQ6p54DCAnIwSIx/0MGSS7GwVXBjIxrxFMSHo
+         Rj2Q0aZvvLNa1R36xlJj2RW8C5zDSu7pNoCYsavXRu3mXVjNFE4IP4Kky6h677MD6TA1
+         +YONa3wMsuYe9FpSYBbNkmlqjwsG30xGdvelKC+Ct9WkeulOWcf9NAgY6doL2nuFt/BP
+         U9Psawi/SU253/1hrqsd6ga3Bzq5OhjVgje6cK1oo8s4qbfcQX6MqcVnXjkZu725ZyZw
+         w9mquS2z4yoXepiIogHZn5u4iByec0L1lcRFPLY7LKfmqA0UeNOmFx/ugE/Pxpcx8sWm
+         eJ0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733401747; x=1734006547;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DzZzeW6LtUsNwMv+kA0kTMV9+3xVaKazBCL45YLJgXw=;
+        b=d85rL9t/AfKaxPk1WVP4Znrl/PKiht5t4Uj3L3lI/9xkjjo5tp1yvIsBTvbuQUZgUm
+         2CAopKKDpsdtDT7ymQr2/Y18yF5thxH0mwEvbGwXuvJcUy39TpZy4mtQeiMMsRi02qU/
+         r44MeLQ5a7l4qcYX3gBdr0gVkJ/9mLFn+5qvPjrFmxs3pu/STlgLaenXmWF/TQAgWsxY
+         JIp5I/p+und2L1prdSSvUJnVKmAna64IxWm3pOg/b0aDZI/iZ6gXEONwjZer38+HuSrn
+         hlNaNO0QWtewXvo5AlURbyR82P1Osu9Ch52fNaTh74EG1iMems+bZPbQ4qUB6qXSB5O/
+         oDcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWC+icH/wXwW93OPRLgzDA9F2fWvZD+O6bnSgGoifWXuot1YFZGC/71ynJjn1FZVLTY/xDiLBDtdbJ9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwOGY40eMc2/Dr0IZaLwZenkdx9EPob87eECymHU5gLAw7PL66
+	BFe+hDoGfSOosGJb8JQEVUnVDx9GkOLkeDRDAirRtCbSrVvvRls5VP3Oei1R1VA=
+X-Gm-Gg: ASbGncvqD9f5iKpW2785GFyIUgdyDTeAhYvpEFn72pEb/KqN4bARxsYc+ifw1WQGVGY
+	tmyXV1DRtFE9/foaUZcpUHtUZ41m5ubmWesyTDAcxCb5EEqlDrRYIdxp2egd0pAdBjPPEGhXmYj
+	MHOMVatXKqc8Mo4091k0cPgIfVfXIeh+NdjOIFyCi+fJtDyU5m71hgrwdILr3Vdy/oBhPv13tSg
+	W9Ai72TRk6QaOPvIEbI20Cw0Po0ENp3Wi+U32Lq/PrVWxlu1GF3gFYy+lWZYegb8ccacFvEh1kB
+	++BTvbxm1H/o+u4zj6mineiqjO+xKQ==
+X-Google-Smtp-Source: AGHT+IGWyrIJVNkXZfMk2D77Z12NxWguDqxu6KGooscExaYt6vk4bYi8IUDxyjnT5IkrNFyNFyZrTg==
+X-Received: by 2002:a05:6512:3f1f:b0:53d:eefc:2b48 with SMTP id 2adb3069b0e04-53e12a01888mr5509943e87.33.1733401747192;
+        Thu, 05 Dec 2024 04:29:07 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e229c1d6dsm233341e87.183.2024.12.05.04.29.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Dec 2024 04:29:05 -0800 (PST)
+Date: Thu, 5 Dec 2024 14:29:03 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, jie.qiu@mediatek.com, 
+	junzhi.zhao@mediatek.com, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 12/15] drm/mediatek: mtk_hdmi: Split driver and add
+ common probe function
+Message-ID: <olxtqto5mbgofxg4iqjvsmpxxzz6zoj7pbwmoeklhfjiavqfvv@dyveek7hgtki>
+References: <20241205114518.53527-1-angelogioacchino.delregno@collabora.com>
+ <20241205114518.53527-13-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] MT8516/MT8167 dtsi fixes
-To: Val Packett <val@packett.cool>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Fabien Parent <fparent@baylibre.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20241204190524.21862-1-val@packett.cool>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20241204190524.21862-1-val@packett.cool>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241205114518.53527-13-angelogioacchino.delregno@collabora.com>
 
-Il 04/12/24 20:05, Val Packett ha scritto:
-> Hi everyone,
+On Thu, Dec 05, 2024 at 12:45:14PM +0100, AngeloGioacchino Del Regno wrote:
+> In preparation for adding a new driver for the HDMI TX v2 IP,
+> split out the functions that will be common between the already
+> present mtk_hdmi (v1) driver and the new one.
 > 
-> I've been working on mainline bringup on an MT8167 tablet I found at a
-> junkyard sale (lenovo,tb7304f) for postmarketOS :3
+> Since the probe flow for both drivers is 90% similar, add a common
+> probe function that will be called from each driver's .probe()
+> callback, avoiding lots of code duplication.
 > 
-> This first series consists of basic device tree fixes for the MT8516
-> dtsi that the MT8167 one inherits from.
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  drivers/gpu/drm/mediatek/Kconfig           |  11 +-
+>  drivers/gpu/drm/mediatek/Makefile          |   1 +
+>  drivers/gpu/drm/mediatek/mtk_hdmi.c        | 724 +++------------------
+>  drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 425 ++++++++++++
+>  drivers/gpu/drm/mediatek/mtk_hdmi_common.h | 203 ++++++
+>  5 files changed, 729 insertions(+), 635 deletions(-)
+>  create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>  create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi_common.h
 > 
+> @@ -1026,19 +812,12 @@ static int mtk_hdmi_setup_vendor_specific_infoframe(struct mtk_hdmi *hdmi,
+>  	return 0;
+>  }
+>  
+> -static int mtk_hdmi_output_init(struct mtk_hdmi *hdmi)
+> +static void mtk_hdmi_send_infoframe(struct mtk_hdmi *hdmi, u8 *buffer_spd, size_t bufsz_spd,
+> +				    u8 *buffer_avi, size_t bufsz_avi,
+> +				    struct drm_display_mode *mode)
+>  {
+> -	struct hdmi_audio_param *aud_param = &hdmi->aud_param;
+> -
+> -	hdmi->csp = HDMI_COLORSPACE_RGB;
+> -	aud_param->aud_codec = HDMI_AUDIO_CODING_TYPE_PCM;
+> -	aud_param->aud_sample_size = HDMI_AUDIO_SAMPLE_SIZE_16;
+> -	aud_param->aud_input_type = HDMI_AUD_INPUT_I2S;
+> -	aud_param->aud_i2s_fmt = HDMI_I2S_MODE_I2S_24BIT;
+> -	aud_param->aud_mclk = HDMI_AUD_MCLK_128FS;
+> -	aud_param->aud_input_chan_type = HDMI_AUD_CHAN_TYPE_2_0;
+> -
+> -	return 0;
+> +	mtk_hdmi_setup_avi_infoframe(hdmi, buffer_avi, bufsz_avi, mode);
+> +	mtk_hdmi_setup_spd_infoframe(hdmi, buffer_spd, bufsz_spd, "mediatek", "On-chip HDMI");
 
-...Yes, but I don't see any patch that is introducing your TB7304F device here.
+Please use the HDMI Connector framework instead of handling everything
+on your own.
 
-I strongly suggest you to also send one that achieves basic boot with UART console
-as a first step for upstreaming your board, and then go for incremental changes
-everytime you get a new feature working.
+>  }
+>  
+>  static void mtk_hdmi_audio_enable(struct mtk_hdmi *hdmi)
 
-> The changes that follow add support for the MT6392 PMIC, and that's
-> mostly been implemented by Fabien Parent back in 2020 and not merged:
-> 
-> <https://patchwork.kernel.org/project/linux-arm-kernel/patch/20201027181157.862927-3-fparent@baylibre.com/>
-> <https://patchwork.kernel.org/project/linux-arm-kernel/patch/20201024200304.1427864-2-fparent@baylibre.com/>
-> 
-> but I have a couple changes on top of those patches (like adding the
-> missing mt6392_set_buck_vosel_reg). I'm wondering what the best way to
-> get this in would be, should I squash my changes and submit the "final"
-> patches with a Co-developed-by tag?
-> 
-
-Generally, if the patches are only simple additions, you could send the original
-patches without any author variation (and fixing that MT6392_IRQ_numbers enum
-in the original ones because lower case please!) and then your patches on top
-with your additions.
-
-Otherwise, if you're "changing a lot of stuff" it makes sense to grab authorship
-and add the Co-Developed-by... but I don't think you're changing much, honestly.
-
-Of course, you'll have to drop the TXT additions, as now they are YAML (where the
-YAML additions go to a separated dt-bindings patch!).
-
-In the end, it's your choice - that's more or less a gist of how to do it.
-
-> (Similar situation with DRM nodes, not merged due to "concerns about
-> the driver architecture" in 2021, now missing GCE/CMDQ mailbox props:
-> <https://lore.kernel.org/df4c57f9-115b-c4da-e656-e4bdec62c2d7@gmail.com/>)
-> 
-
-The upstream driver just gained support for configuring the display paths
-entirely in the devicetree as those are obviously device specific.
-
-You can make use of that for upstreaming your tablet after adding the display
-nodes (and bindings, if required) as if you go for the default configuration
-that's probably not going to work because it's for the pumpkin boards which
-will most probably have a different display pipeline compared to your board.
-
-> By the way, is anyone familiar with PSCI cpuidle/hot-unplug issues on
-> Mediatek Android devices from around this time? Specifically on this
-> tablet, I can't make the cores come back from suspend. I have
-> investigated local-timer-stop and arm,no-tick-in-suspend, Fabien pointed
-> me to the mediatek timer and its required clocks, but nothing helped.
-> Trying the psci_checker, I realized that it's not just suspend: they
-> do not come back from hot-unplug either. Initial CPU_ON on boot is fine,
-> but then after a CPU_OFF they do not actually come back when CPU_ON
-> supposedly turns them on. Now I can't help but notice that the only DTS
-> in mainline for a device that came with Android, mt6795-sony-xperia-m5,
-> does not have any cpuidle nodes in its SoC's dtsi either..
-> 
-
-I did have some issues with an older bootloader on the Xperia M5 smartphone
-and would even lock up at boot, because on the old firmwares the power
-domains for the CPUs are not managed automatically by FW.
-
-Before discovering that there was new FW (and this stuff is signed so you
-cannot cross-flash...) I did engineer a solution, but never upstreamed it
-because I did effectively lack time to clean it up and make it proper.
-
-This solution is not upstreamable, as it makes the mtk-pm-domains driver
-to be usable only as built-in and not as module anymore... so that would
-probably need a separated driver or something like that.
-
-Here's the (rather dirty, but working) code: 
-https://gitlab.collabora.com/google/chromeos-kernel/-/commit/ae8f7048aadac03037391a64d9d79ca5af7b7a77
-
-Cheers!
-Angelo
-
-> Val Packett (5):
->    arm64: dts: mediatek: mt8516: fix GICv2 range
->    arm64: dts: mediatek: mt8516: fix wdt irq type
->    arm64: dts: mediatek: mt8516: add i2c clock-div property
->    arm64: dts: mediatek: mt8516: reserve 192 KiB for TF-A
->    arm64: dts: mediatek: mt8516: add keypad node
-> 
->   arch/arm64/boot/dts/mediatek/mt8516.dtsi      | 21 +++++++++++++++----
->   .../boot/dts/mediatek/pumpkin-common.dtsi     |  2 --
->   2 files changed, 17 insertions(+), 6 deletions(-)
-> 
-
-
-
+-- 
+With best wishes
+Dmitry
 
