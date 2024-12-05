@@ -1,175 +1,153 @@
-Return-Path: <devicetree+bounces-127674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC0DC9E5E76
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:50:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B22C79E5E8B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 20:02:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67958162350
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:50:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5210D1884C14
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D5022B8C2;
-	Thu,  5 Dec 2024 18:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11F8F217F29;
+	Thu,  5 Dec 2024 19:01:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JmZ3jAlZ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="AKRFRzeb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 537ED218EBC;
-	Thu,  5 Dec 2024 18:50:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB09E2EB1F
+	for <devicetree@vger.kernel.org>; Thu,  5 Dec 2024 19:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733424645; cv=none; b=T/EdoKUx1r+J/bUbkiNMRKu9YxEPlLC1Scx/FDNiKQFFgn3/JobZ3XXBxELW0B7HdoOii4SPE2qlvR0h6C5CKKGCwTBTno4udKKh0bnLCaphtZPQ9vaKcT/St3/nn2azTsssEf2gQnIncZ+on9LiV5G+hol6Ej+hakgZTONGjO8=
+	t=1733425318; cv=none; b=lZ50cDI1g/cyJHLK3ky3DsPr3qC04qxQe8Hj8WSDhXlijl6RweKpYq/QfBppUpx6yCD3CDpmQeY1XKlnbEdCgs2Q4d1aBLlBSfopufk4iG4zLNGGtmTrsJld1A6pmb+jP3SAor73nMlabsJIwT+95WsMr6bJVe6rCSc7ADyFuDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733424645; c=relaxed/simple;
-	bh=JWDj8QlLbidNrhEz6lafRDRkIXsUvesuWlCtZKS2h0I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VFc3PPBtp4pfaSD5tMx8S6SVr//3iMS4kAHA7up89hjNIFRSg9Ap8kmxUGg/sO2fDpKcpLZZi4YBMXbmgK818BA8n8FnUAaUrP8yEZ9M8nPuQik6RCupiw0db3VpXoCx9+gNkUCdQ1EF6OCkHUz90oj7daCUkjN0nnNv1xZ5BvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JmZ3jAlZ; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5d0cdff12b4so172765a12.1;
-        Thu, 05 Dec 2024 10:50:42 -0800 (PST)
+	s=arc-20240116; t=1733425318; c=relaxed/simple;
+	bh=8ik38w9GU2WtkRtkZaXq6QpH4+Y0ahI6eayxAGSMAWg=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=FJrfKBmIiznO0t9FEATmNHBxiKluJu8k2nUoKkD9VzfNgvb7Y8XfnQj3BQVm+cLUNDQR2vbqtoh12wYlnxQn8RswT+t0hDGiBuQYPZGOfCzeMnC6UVOPYO49FZuMaG6iAvz3lLCe2kKfA/ewoEVGv811WqSPGeLXGpplxvhgLkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=AKRFRzeb; arc=none smtp.client-ip=209.85.167.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3ea52520327so791137b6e.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Dec 2024 11:01:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733424641; x=1734029441; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xuL0vSwcp+HMpPwWDWVKgActioYscbfUsEOUicYp0kE=;
-        b=JmZ3jAlZaxndoWTHGQxz2EAZxg8diDf1gzwWwn16WF6Jhy54RbQVswoYlG4+AcyYGS
-         6Xu8TfQRYDbyQXXkFlYf2BMPlBakjtXo6E+3kpWQT96njYu8EADuj3CRlUG52P7uH3NL
-         WP508hc3+P4ViGlJmTUK4ekBos7zQzBCoLspx0sTLB8mY6/6N8qYc7VBsBpmFgcEejD9
-         0VgNnr8rIAOhV1jAHrej180jQZeTLbsq2Hij6Vlewfp3sYig2PCHb63XegPJmemmiKfQ
-         B9VUdF0k77dqFRN9RBMQOkdaqVHvTHwDuworb7vfHyLTtTfjZOJtuk3jmwyDVrINHK+V
-         8GhA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733425315; x=1734030115; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=IaFOO/mfjUBixXAYtvSMoA7J8PbrmSflkGjEoxaTBzw=;
+        b=AKRFRzebX8wl24LMA9NWbIz+LXBGvL4732lXcCo1vADffGbQikUR/1Gy7pBWnlHzMx
+         xusjQ1rAvMLVqgSeaRsx5HXRNlsAB4ty7EgKeqOIWwFnb9FsFIQB+dvrdvo9sYJfyWCf
+         ynWO066KlOKGcceoUnubch0Kut/rnrV3UBWyHlGQBh5mTsQBU9/5FGdd528nj9ax/vB4
+         h7CUliDmd7GXfsD5bpYdtaQgJBH9hY/KvGabfSORU+WIIJa702H3+e+N0AdccrdpR3l8
+         8/zMa3qhr1yhpOWvBzHvzkMsplQcnQigy3A7MMWtc4l934YkosBuDN4y/St6rxW31Hma
+         /g0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733424641; x=1734029441;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xuL0vSwcp+HMpPwWDWVKgActioYscbfUsEOUicYp0kE=;
-        b=KhmiOjz6jVblghoN88NMqx6a+H1fpO4enaA7em7JZ/UCq29WLAb4rOJO5bll6Kyakd
-         cxXvPpuZlRBXppEbvB4U/33SJ7UssD6l/sFY39M4rjwxsq7NggNcwBN7mo8+2r68Ggjs
-         mXSgObFmik+vUJgBDbMBDQ6lrhEam43oR7cgAiQGjT1LOg3xCLl90xEBGZVMMPcsKgUW
-         FcJtI3wGHXQ3RfKM5g79IfigNUnvr8/T8ffuiJMbRnCC4OEldVhpn8gHqHp7fJhukFNy
-         4qq07WREb9QHQ+cHADbDzhTSb8T0mOCkJNk73HAMclLToUVscrVW0Mg+lgQMLKN5patr
-         i4sw==
-X-Forwarded-Encrypted: i=1; AJvYcCVNzIvzNbBUDYnYAbG5iNxMSOUrqSP3K7ifApqAFCQNfal1UcvNJeLKBRbudapFK5xPajH1PR0pzhtG@vger.kernel.org, AJvYcCWndcC+8gbO1W90Hl63oq4i6xM7TImNhQ+93CBIvrk9r50a/qFdsoidOzEkeMjohppjg1iuT34z@vger.kernel.org, AJvYcCXV9mWgv/IEjc8tomkr5jvXdqgPVvGM3r0JvsGbTIBrGc1TUtf23DHSxUCNnlQ08v0TcrzGFgfIEE/RGk34@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEWUQt7QPKBA5p8HApnrhkyYA7/cA+h1n4ZrHe43bqAHq6AAlm
-	qxHjaB0lkegub92VF+1V/jDbpYQqB4FDyVg0WCCGGovrCraQOpkmgFIEUw==
-X-Gm-Gg: ASbGnctktWZxuU4rQV/x71iwhko1BGP4FbBrfHDxJwmLxExAjczxySyAcShkKZZE5+3
-	5rjtN4Jy3sDdMihyufiC7O2eLynb9knLcUiVO/si9UtRv/PEIZ9StJfWKepMpwrkaShTsRWLg7f
-	YgJHIVFMl6BJwiikHKvKCI3O+LWNxr8zTUsx4Ud43ZDmvOQkvI9ev430ECzZpqlfTLc28TMW3qV
-	MaRSUY2pdFcyP8Mheor9TceYU35X5TaCiYwIck=
-X-Google-Smtp-Source: AGHT+IHXBo4XbdE1KRXT45i7tcr0tQbymXLsF4fYU2CO5TAKnlDgiYLqOd3ZY8+xqizacESzgmiQQg==
-X-Received: by 2002:a17:906:db03:b0:aa5:3b5c:f638 with SMTP id a640c23a62f3a-aa5f7ccc944mr453434466b.1.1733424640392;
-        Thu, 05 Dec 2024 10:50:40 -0800 (PST)
-Received: from skbuf ([188.25.135.117])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa625e972c1sm126626266b.76.2024.12.05.10.50.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Dec 2024 10:50:39 -0800 (PST)
-Date: Thu, 5 Dec 2024 20:50:37 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH v9 3/4] net: dsa: Add Airoha AN8855 5-Port
- Gigabit DSA Switch driver
-Message-ID: <20241205185037.g6cqejgad5jamj7r@skbuf>
-References: <20241205145142.29278-1-ansuelsmth@gmail.com>
- <20241205145142.29278-4-ansuelsmth@gmail.com>
- <20241205162759.pm3iz42bhdsvukfm@skbuf>
- <20241205145142.29278-1-ansuelsmth@gmail.com>
- <20241205145142.29278-4-ansuelsmth@gmail.com>
- <20241205162759.pm3iz42bhdsvukfm@skbuf>
- <6751e023.5d0a0220.394b90.7bc9@mx.google.com>
- <6751e023.5d0a0220.394b90.7bc9@mx.google.com>
- <20241205180539.6t5iz2m3wjjwyxp3@skbuf>
- <6751f125.5d0a0220.255b79.7be0@mx.google.com>
+        d=1e100.net; s=20230601; t=1733425315; x=1734030115;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IaFOO/mfjUBixXAYtvSMoA7J8PbrmSflkGjEoxaTBzw=;
+        b=OAGcwMwqadTpL9Yzjnx9sCkc0fa3RW09Kxzq7nJjPVxzARx88IT6asjShyHavWbzmJ
+         1zUFjC5SPfaDiJBot2GN5IO+6m8uAsHIYghoa56SYykXbLuj8x2N9CUfVj+9iDvQ/f53
+         pb613MofzRVGYJ9QriMgatm/rVJF+7aielknFpPuKljIuvkOsBzfMvvGPVGV2HMBppUi
+         PARJsHRggaKXW0xYq4sjz5rN6/rf4F0vKsVkpeAX6avHyRB13d7PgRcFFi0UkWOO58pX
+         RsIyTSqrlldu3Xrc7a8NYXbQjTIjPxu8JQnGHNBNLjZxZKiREDnBEurCvc2uZoPDwl/g
+         mCPw==
+X-Forwarded-Encrypted: i=1; AJvYcCWnUd+ME0XvXxJFY2B34ffIPAt7s3SygiFdk6jdm7A5n5pFivAWnrN/uqN+Uxy4JPpXgXdeaiUfUHGc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvfELI46Wj+8Dog0PJ2F2sHqvpJTkozEpE7OWKdBRUPqjqhJsI
+	FoXl35T06z+lBdkLdDDD1d1HKOy8C91POwBztOlzjyc/J5KugrqvhnYTChJlIwQ=
+X-Gm-Gg: ASbGnctASec4rqqlpL/D2sw2WXRqC/rJq99KowwitzknnZxiaN2IudCn/7Q3xnw31Y6
+	aw4YaV7dMtq5HfyUKWrE2H787w9Viyt5G33KxnxGQchC4CmskTwTHcC02nYGybyaKs1vPOEKI8Y
+	6LO4C/hzsfVS+YJE9WX00q2+7iveexZW2WFz3KlpTPAV1gdATkSxAtBr2TUsR1Gn/htuo9Ols+z
+	AYnDwdfoEKH4WWLREAJ3grGV1GBlZeOkPsVGCnPQH5RZ9O7aFVg1krYKBH1YqspBEYbExrhNw8n
+	CVva1nwGLSo=
+X-Google-Smtp-Source: AGHT+IFUDmVuFaNfj2c7OVLcgWFCxMQtCVuhMU/p4FrORrns3HwZaKiwq8nLNxh6O55/Euxmzx2I2w==
+X-Received: by 2002:a05:6808:1898:b0:3e6:2772:2a4b with SMTP id 5614622812f47-3eb19c168a3mr59071b6e.9.1733425314900;
+        Thu, 05 Dec 2024 11:01:54 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3eb07869655sm408646b6e.50.2024.12.05.11.01.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Dec 2024 11:01:53 -0800 (PST)
+Message-ID: <a4cd4d74-93bc-4c63-a9ee-aa25957b96d9@baylibre.com>
+Date: Thu, 5 Dec 2024 13:01:51 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6751f125.5d0a0220.255b79.7be0@mx.google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: adc: add Nuvoton NCT720x ADC driver
+From: David Lechner <dlechner@baylibre.com>
+To: Eason Yang <j2anfernee@gmail.com>, avifishman70@gmail.com,
+ tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
+ yuenn@google.com, benjaminfair@google.com, jic23@kernel.org,
+ lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ nuno.sa@analog.com, javier.carrasco.cruz@gmail.com,
+ andriy.shevchenko@linux.intel.com, marcelo.schmitt@analog.com,
+ olivier.moysan@foss.st.com, mitrutzceclan@gmail.com, tgamblin@baylibre.com,
+ matteomartelli3@gmail.com, alisadariana@gmail.com, gstols@baylibre.com,
+ thomas.bonnefille@bootlin.com, ramona.nechita@analog.com,
+ mike.looijmans@topic.nl, chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
+ yhyang2@nuvoton.com
+Cc: openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241203091540.3695650-1-j2anfernee@gmail.com>
+ <20241203091540.3695650-3-j2anfernee@gmail.com>
+ <8f5ca298-54ba-4274-a35d-83be868fcfc8@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <8f5ca298-54ba-4274-a35d-83be868fcfc8@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 05, 2024 at 07:29:53PM +0100, Christian Marangi wrote:
-> Ohhhh ok, wasn't clear to me the MFD driver had to be placed in the mdio
-> node.
-> 
-> To make it clear this would be an implementation.
-> 
-> mdio_bus: mdio-bus {
-> 	#address-cells = <1>;
-> 	#size-cells = <0>;
-> 
-> 	...
-> 
-> 	mfd@1 {
-> 		compatible = "airoha,an8855-mfd";
-> 		reg = <1>;
-> 
-> 		nvmem_node {
-> 			...
-> 		};
-> 
-> 		switch_node {
-> 			...
-> 		};
-> 	};
-> };
+On 12/5/24 12:22 PM, David Lechner wrote:
+> On 12/3/24 3:15 AM, Eason Yang wrote:
 
-I mean, I did mention Documentation/devicetree/bindings/mfd/mscc,ocelot.yaml
-in my initial reply, which has an example with exactly this layout...
 
-> The difficulties I found (and maybe is very easy to solve and I'm
-> missing something here) is that switch and internal PHY port have the
-> same address and conflicts.
+>> +static int nct720x_read_raw(struct iio_dev *indio_dev,
+>> +			    struct iio_chan_spec const *chan,
+>> +			    int *val, int *val2, long mask)
+>> +{
+>> +	int index = nct720x_chan_to_index[chan->address];
+>> +	u16 volt;
+>> +	unsigned int value;
+>> +	int err;
+>> +	struct nct720x_chip_info *chip = iio_priv(indio_dev);
+>> +
+>> +	if (chan->type != IIO_VOLTAGE)
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	guard(mutex)(&chip->access_lock);
+>> +	switch (mask) {
+>> +	case IIO_CHAN_INFO_RAW:
+>> +		err = regmap_read(chip->regmap16, REG_VIN[index], &value);
+>> +		if (err < 0)
+>> +			return err;
+>> +		volt = (u16)value;
+>> +		*val = volt >> 3;
 > 
-> Switch will be at address 1 (or 2 3 4 5... every port can access switch
-> register with page 0x4)
+> It seems strange that this is 13 bits when the chips are 8 and 12 bit.
 > 
-> DSA port 0 will be at address 1, that is already occupied by the switch.
+>> +		return IIO_VAL_INT;
+>> +	case IIO_CHAN_INFO_SCALE:
+>> +		/* From the datasheet, we have to multiply by 0.0004995 */
 > 
-> Defining the DSA port node on the host MDIO bus works correctly for
-> every port but for port 0 (the one at address 1), the kernel complains
-> and is not init. (as it does conflict with the switch that is at the
-> same address) (can't remember the exact warning)
+> The scale is the same for both 8 bit and 12 bit chips?
+> 
+>> +		*val = 0;
+>> +		*val2 = 499500;
+>> +		return IIO_VAL_INT_PLUS_NANO;
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
 
-Can any of these MDIO addresses (switch or ports) be changed through registers?
-
-I guess the non-hack solution would be to permit MDIO buses to have
-#size-cells = 1, and MDIO devices to acquire a range of the address
-space, rather than just one address. Though take this with a grain of
-salt, I have a lot more to learn.
-
-If neither of those are options, in principle the hack with just
-selecting, randomly, one of the N internal PHY addresses as the central
-MDIO address should work equally fine regardless of whether we are
-talking about the DSA switch's MDIO address here, or the MFD device's
-MDIO address.
-
-With MFD you still have the option of creating a fake MDIO controller
-child device, which has mdio-parent-bus = <&host_bus>, and redirecting
-all user port phy-handles to children of this bus. Since all regmap I/O
-of this fake MDIO bus goes to the MFD driver, you can implement there
-your hacks with page switching etc etc, and it should be equally safe.
+Sorry, I got confused. The difference between the two chips is the
+number of channels, not the number of bits. Please ignore these two
+comments.
 
