@@ -1,115 +1,107 @@
-Return-Path: <devicetree+bounces-127391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B8AF9E54D9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:02:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1E039E5507
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 13:08:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A5DB188386B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:02:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A291A1883254
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 12:08:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A8B9217728;
-	Thu,  5 Dec 2024 12:01:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C70A521773E;
+	Thu,  5 Dec 2024 12:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XoG1bTkJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BsXC9FTj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C9C3217704;
-	Thu,  5 Dec 2024 12:01:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93849217728;
+	Thu,  5 Dec 2024 12:08:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733400113; cv=none; b=q4ljS14Ve+YWjh1sSLyYynV1HxmceXd5LLEz+47RY9sfCo0WwMFRYq6LknhcK/FapFm6fruV3x2d2Kyp9CS6C9rTcZkATQRibTD3psuBhOz6bPT64G+bF4cLmHiacMxjwzhhApSxT3bqkgFfWhAlurSd71/zKAKAyHHu7hRLiIY=
+	t=1733400515; cv=none; b=jQ5JRhJHXFtWyiOXgrDRmOHbPIJF1UK/RJtymSDVpD4u+7lg34bGT0VW0pxpyaL6lyrTuGX7rUBD8hZVJXOlM+g9bg3YGKc73DCq08+Lt/O6ktlF3QBTSCer8NcPMw6cgFtK/hzoYNdPZXXrdg0EbGSZdqxMayfh3ELlDwLsRpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733400113; c=relaxed/simple;
-	bh=MD7MJgd0ceelkM7HmQYQUT1RE4VA3NQ/iyCzrpZcTwY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d/0TXhbZU0U83ZgO6j3bibVRlYWU3prZZaeGZW/jFywMfXRTP04KD1+9ryi+95v7lhjraCTFa53Rss20hgfZXHaGHF4OEvlVnZPlqVSQVovu29oi6iijA4GamFuS4kYBxfAn8JYoBOzUslG/Cgnz7XL0oIaW9XavKABY377fI8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XoG1bTkJ; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4B5C1kSR1943306
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 5 Dec 2024 06:01:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1733400106;
-	bh=i83+XyCVE1KwnX0mSRiSVl27kUFWH+OoIaPZSuRFm2k=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=XoG1bTkJ1yyBSGqWEFgrHrXy4odDQ/jWXsM0kZN7Uo1BLgYLT6XF+0NSpvh2ThM/C
-	 23mhuGG3HDjtpSzqHBR67dA0hqGd4ga2I+8HrSyRvhvWBfjz+OaUBL8HaWTjg3cX+k
-	 2uhoXkm3KpWoSsGnTRjLyErYKbthj6Bf63qBnr3U=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B5C1kHQ107982
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 5 Dec 2024 06:01:46 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
- Dec 2024 06:01:46 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 5 Dec 2024 06:01:45 -0600
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.81])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B5C1Zp9018608;
-	Thu, 5 Dec 2024 06:01:42 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-am62x-sk-common: Support SoC wakeup using USB1 wakeup
-Date: Thu, 5 Dec 2024 17:31:29 +0530
-Message-ID: <20241205120134.754664-3-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241205120134.754664-1-s-vadapalli@ti.com>
-References: <20241205120134.754664-1-s-vadapalli@ti.com>
+	s=arc-20240116; t=1733400515; c=relaxed/simple;
+	bh=CRcM8HcUGZ1oPIwRbpZsqpGz4Z4HyKs8jyTS9DrQqFc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=buN/Q0gIoUgGl+B6aTA7DaznU0d5aOaJzN+GSfYv8JgELTYkhFOq1Gs9+eLgL0Vbm5XpmsL5uv5+VZ6lK0XK1yH3zv7w4rsiKpvAB939xiWG4Vch/VUBPo1AhNl72OooMA/rY9uc3VKyKR/nEygngu76Yrk1MgMa5KUlFmLxqlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BsXC9FTj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36D92C4CED1;
+	Thu,  5 Dec 2024 12:08:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733400515;
+	bh=CRcM8HcUGZ1oPIwRbpZsqpGz4Z4HyKs8jyTS9DrQqFc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BsXC9FTj59mVd/cXdbDHjJnxbAmrrgzaqOE6WEZBe8QpPBR/PubWyVUqZwy9fsnYg
+	 MV0NVxDqzc9+M5B6lqvWUoSiC+TIlM01bsmLZRDjthLt4f82KkBs6S1GOAx2EKnzDa
+	 7UUmrr62LzZ5mmk0c2Nl/x9S3I5wqq+nxcN/3Eb+1rR6U5xy+6Z9+UbFYgNEZ93Jij
+	 H6rbhS6y6G3adjwBPm0Mg4quPykVSIuPEFy4Rpb8MmvS+bjElEHdeJvL6WRW/z7SCp
+	 llMP/0nJAEuMutjoKF12nyQQ+u4Qalm2iNUPPDYAXAArAi6rimgS0N2CPOKdh1rL5w
+	 RXHGdQVSb268g==
+Date: Thu, 5 Dec 2024 12:08:29 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Alexey Klimov <alexey.klimov@linaro.org>
+Cc: konradybcio@kernel.org, andersson@kernel.org,
+	srinivas.kandagatla@linaro.org, tiwai@suse.com, lgirdwood@gmail.com,
+	perex@perex.cz, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dmitry.baryshkov@linaro.org,
+	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 0/3] db845c/rb3: add i2s playback support
+Message-ID: <ec802f7f-9570-468f-9c30-d5d460c5af28@sirena.org.uk>
+References: <20241205023344.2232529-1-alexey.klimov@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wRRjdkdnfaBXCQ2x"
+Content-Disposition: inline
+In-Reply-To: <20241205023344.2232529-1-alexey.klimov@linaro.org>
+X-Cookie: System checkpoint complete.
 
-After the SoC has entered the Deep Sleep mode, USB1 can be used to wakeup
-the SoC based on USB events triggered by USB devices. This requires that
-the pin corresponding to the Type-A connector remains pulled up even after
-the SoC has entered the Deep Sleep mode. Hence, enable Deep Sleep pullup /
-pulldown selection for the USB1_DRVVBUS pin and set its Deep Sleep state to
-PULL_UP.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
-v1:
-https://lore.kernel.org/r/20241112115650.988943-3-s-vadapalli@ti.com
-Changes since v1:
-- Rebased on next-20241204.
+--wRRjdkdnfaBXCQ2x
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
- arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Thu, Dec 05, 2024 at 02:33:41AM +0000, Alexey Klimov wrote:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-index 6957b3e44c82..8b6316454639 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-@@ -256,7 +256,7 @@ AM62X_IOPAD(0x12c, PIN_OUTPUT, 0) /* (AD19/V15) RGMII1_TX_CTL */
- 
- 	main_usb1_pins_default: main-usb1-default-pins {
- 		pinctrl-single,pins = <
--			AM62X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18/E16) USB1_DRVVBUS */
-+			AM62X_IOPAD(0x0258, PIN_OUTPUT | PIN_DS_PULLUD_ENABLE | PIN_DS_PULL_UP, 0) /* (F18/E16) USB1_DRVVBUS */
- 		>;
- 	};
- 
--- 
-2.43.0
+> There are i2s signals provided in low-speed connector on such boards
+> as required by 96boards spec. Looks like it is possible to actually
+> playback something via these pins after adding missing parts here
+> and there.
 
+> I tested simple widely available cheap DACs like UDA1334 and PCM5102A
+> and they works just fine without need for mclk. I guess any DAC that
+> can handle 48 kHz and 16bit will do.
+
+> In theory db845 can work without mezzanine board and this provides
+> one more use-case to playback sound and not all mezzanines have cosy
+> audio connectors.
+
+I would expect that when something is connected to the DAI there would
+also be a DT update describing that CODEC and it's parameters.
+
+--wRRjdkdnfaBXCQ2x
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmdRl7wACgkQJNaLcl1U
+h9CXAgf/ZeQ2eD4OUMKGqs+7rlqAtvKdqGHABciEay3g4e8IhU/YTiE2HEW91wUa
+NXQuVGCfqc2JkbbSrfprv6tBqjI5yqVYxd+aXA8/GzgLYhcRCJL11BvUCFnRjmZJ
+ZpFwBWb3oOx5mXORS8ddovFEo8uZjkha3ZIX0GxLsncEARFu6nhpI0st+kPpHF3A
+L4kTEFV7ww/89ajAhJRQ8qsOljN8uDyky43D0MmPeovQw0G9e8IVJthde/SXuFdo
+o3puGIvl5q3LITaWhSH3NJkPbxHQYmXwsrhxrri4I8AYT5lXRazOVwn2ThXMcyN4
+GIXoSHubXI+dMJoNV/qe7y8Kq2amcQ==
+=j4hk
+-----END PGP SIGNATURE-----
+
+--wRRjdkdnfaBXCQ2x--
 
