@@ -1,152 +1,133 @@
-Return-Path: <devicetree+bounces-127663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9216C9E5E18
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:15:07 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D53A69E5E2E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 19:22:05 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49F9A287B34
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:15:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD6731884B71
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 18:22:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3E0B227BBA;
-	Thu,  5 Dec 2024 18:15:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9EB22D4C5;
+	Thu,  5 Dec 2024 18:21:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mo0B6B0p"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TFTT9GLY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE7A227BAB;
-	Thu,  5 Dec 2024 18:15:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7895F22B8DE;
+	Thu,  5 Dec 2024 18:21:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733422503; cv=none; b=bq8vl78637oqpxqT2x/l6UqKf5QCeYO16y+ldp+PksqDIRdwSE7QkK6x68iaaBN8j5/YNnvWQrkuqxofcy4RW5mAs9RYoIPMB1PlSTkGoUrkmz9tWkDwOObbcb7ulNfBwKPE6v3YBFs+oxpyqXfzyGxqe9FwW+aP6bwA2PYGwRk=
+	t=1733422901; cv=none; b=aM15IOGN9Abi3Ia22gFbNVDithMNIoIz0oJ5mWNAZawhxF5vFCrH8AVGDEAcAf7NdBW2gFX2Lca3hkei3WiWNmDyL0ygohyXpY/u3DXq8W6lrz51oWbOEa6DIe61JGeJ1LRR+tS9DHCL6Kiyeo28l7JFNqtmQbsNUzorslUo+rM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733422503; c=relaxed/simple;
-	bh=xxzkZHV8bU8zs+Js+tnRGqLeNA9OX9QiQEWbAm9heVA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VyQQQWxdPzQLH0sm4FAZhyi+pCk7Ztv8BnljrRuwqSA4mPZQeogm1gmf5zdzPg3fU4+xUESyrEALBUxiUD/6ixXNvZaNZGegthSUUJaB+LuDl6xMktTvLW8A78Z6FbrcT3vzYpmvwEL0ZZHhht4Ngfn/t01dX6UC5oND1shhE/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mo0B6B0p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A206AC4CEDC;
-	Thu,  5 Dec 2024 18:15:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733422503;
-	bh=xxzkZHV8bU8zs+Js+tnRGqLeNA9OX9QiQEWbAm9heVA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Mo0B6B0p5goBaxZc60eCkjV/pG80zcP21okgeAi69WhLmLwsFwi1ZdS6bZjWPCRos
-	 w85hukDb78kVY9f9J74R1a+EgKnBSwLWpeowwIZUjpu1ljyRuRYsUck3jK5CTkU28d
-	 RdPFsUT3b+a20lEPkfejy+PUj1jfwnI6hhVkukOygjM3GSz7dd2RDoUS3TcDuC3oip
-	 WgQXiwBKWonpHIK+UJyXTomxDm4tAvN1PkbQpBPBIWSRakxCXjtx4LWWjeh7rLE/hP
-	 Q7C99+SP3shP19HizyEZkBniAAfeRzhfz3x83zm08FJl6NdxFHa5DuHNVjjIW7e+X8
-	 liKe/5wSFyUaQ==
-Date: Thu, 5 Dec 2024 18:14:59 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adf4371: add rdiv2 and doubler
-Message-ID: <20241205-tummy-snorkel-2765ce63dc3f@spud>
-References: <20241129153356.63547-1-antoniu.miclaus@analog.com>
- <20241129153356.63547-2-antoniu.miclaus@analog.com>
- <20241130163948.269289dc@jic23-huawei>
- <CY4PR03MB3399CB671D685BA8164E0F3B9B352@CY4PR03MB3399.namprd03.prod.outlook.com>
+	s=arc-20240116; t=1733422901; c=relaxed/simple;
+	bh=XwR2cNJ9uBLrIjtNgqSrHPSpCb0eM4TauolHDDDSVFE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=C8eQ1Z+Cq1TFQoH+JUmk2NEL4LDOAqG3JNMw9CCsYUlBNsUiXY6CpqYH883URZLpvjX9MfNKq4N2ap6LRfFukLFqR2g7rQZOFdeS+L1X5fRH8wi/0dLPtQuRpz8GNvshgC0c2dfu+IEz24WmLicKRHZ2iPdryDYUsmUdCLNemgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TFTT9GLY; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5HaVIu004765;
+	Thu, 5 Dec 2024 18:21:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	acODbYzobAE0Dphz+eIe7GNwKUbyyVbd5QQ9b93IuCo=; b=TFTT9GLYoYB8Q8zu
+	SwsYwzmufsh74OYvxdkJb3YTTlm0ZcP0E5iy9gsMvlgXu34BtwI7ZF7gUSsdfjhW
+	hpv+4cSfZH1DizSRxr4QX78TWBvAwQnZgw4bhtAhN1rjypqVWqbdkFmiHkffauks
+	ef9TMz62pdeFMBQj0CPPGgOg6Gcd6B6Nr2DVgVVMiRMvis2OPbqjDh9rzxzGwVw7
+	3r6rwXP/4CRdI3WihSjvodZF/2pSZJ5pIDABx+54mGgHEAxdJxDEcpXq+cl9WK/7
+	ro5azyjEKoiiu6yVN9EnWwsPB9+hl1MYxUv4F0+yDgVxA+UbIKLWb1JHFkabalbD
+	rBr6ng==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43a3faye8a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 05 Dec 2024 18:21:32 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B5ILV2P015058
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 5 Dec 2024 18:21:31 GMT
+Received: from [10.71.111.113] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 5 Dec 2024
+ 10:21:31 -0800
+Message-ID: <79e55e6e-e560-4f43-8d6e-bbaf7fcf157a@quicinc.com>
+Date: Thu, 5 Dec 2024 10:21:31 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="zhbonRGPyfEtWeAZ"
-Content-Disposition: inline
-In-Reply-To: <CY4PR03MB3399CB671D685BA8164E0F3B9B352@CY4PR03MB3399.namprd03.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 6/7] arm64: dts: qcom: Add board dts files for SM8750
+ MTP and QRD
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20241204-sm8750_master_dt-v3-0-4d5a8269950b@quicinc.com>
+ <20241204-sm8750_master_dt-v3-6-4d5a8269950b@quicinc.com>
+ <b9225284-7830-4aa4-aed2-7f58fb7320e8@oss.qualcomm.com>
+Content-Language: en-US
+From: Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <b9225284-7830-4aa4-aed2-7f58fb7320e8@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Ra41wQQj1CLGgFRpQ-gtTLDBKbtBTp6f
+X-Proofpoint-GUID: Ra41wQQj1CLGgFRpQ-gtTLDBKbtBTp6f
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
+ spamscore=0 mlxscore=0 suspectscore=0 adultscore=0 mlxlogscore=732
+ lowpriorityscore=0 clxscore=1015 priorityscore=1501 phishscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412050135
 
 
---zhbonRGPyfEtWeAZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 02, 2024 at 09:47:21AM +0000, Miclaus, Antoniu wrote:
+On 12/5/2024 8:45 AM, Konrad Dybcio wrote:
+> On 5.12.2024 12:18 AM, Melody Olvera wrote:
+>> Add MTP and QRD dts files for SM8750 describing board clocks, regulators,
+>> gpio keys, etc.
+>>
+>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>> ---
+> [...]
+>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>
+>> +&tlmm {
+>> +	/* reserved for secure world */
+>> +	gpio-reserved-ranges = <36 4>, <74 1>;
+>> +};
+> Any chance you could describe what those specifically are?
+>
 
-> > -----Original Message-----
-> > From: Jonathan Cameron <jic23@kernel.org>
-> > Sent: Saturday, November 30, 2024 6:40 PM
-> > To: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>
-> > Cc: robh@kernel.org; conor+dt@kernel.org; linux-iio@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
-> > pwm@vger.kernel.org
-> > Subject: Re: [PATCH v3 1/2] dt-bindings: iio: adf4371: add rdiv2 and do=
-ubler
-> >=20
-> > [External]
-> >=20
-> > On Fri, 29 Nov 2024 17:33:52 +0200
-> > Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-> >=20
-> > > Add support for reference doubler enable and reference divide by 2
-> > > clock.
-> > >
-> > > Both of these blocks are optional on the frequency path within the
-> > > chip and can be adjusted depending on the custom needs of the
-> > > applications.
-> > Thanks for the additional info!
-> > >
-> > > The doubler is useful for increasing the PFD comparison frequency
-> > > which will result in a noise performance of the system.
-> >=20
-> > So I'll play devil's advocate. Improved noise performance sounds
-> > good. If it doesn't take me out of range of allowed frequencies, why
-> > would I not turn it on?  What is it about the surrounding circuitry
-> > etc that would make this a bad idea for some uses of this chip
-> > but not others?
+I'm not too certain, and even if I was, I'm not certain I'd be at 
+liberty to say.
 
-Did I miss a response to this?
-
-> > > The reference divide by 2 divides the reference signal by 2,
-> > > resulting in a 50% duty cycle PFD frequency.
-> >=20
-> > why would I want one of those? My 'guess' is this makes sense
-> > if the reference frequency is too high after the application of
-> > the scaling done by the 5 bit counter.  In effect it means the
-> > division circuitry does divide by 1-31, 2-64 in steps of 2.
-> >=20
-> > That could all be wrapped up in the existing control of the
-> > frequency, and so far I'm still not seeing a strong reason why
-> > it belongs in DT.
-> >=20
-> > The 50% cycle thing is a bit of a red herring as assuming it
-> > is triggered on say the rising edge of the high frequency signal
-> > to toggle the divided signal, that will always be a 50% duty cycle.
-> >=20
-> As mentioned in the cover letter this was mostly a request from
-> customers that are using adf4371 on a large scale and they need
-> these features to be controllable somehow by the user.
->=20
-> Since these attributes were already validated as devicetree properties
-> for adf4350 on mainline, I found this as the best approach to satisfy
-> both ends.
-
-Probably shouldn't have allowed it then, but things were different a
-decade ago.
-
---zhbonRGPyfEtWeAZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1HtowAKCRB4tDGHoIJi
-0shwAP4iirJ0ArRmeKHavHbxz14PFZAFnod9h9613bjP1F8svQD/cWqXXRG/KZnF
-DML/oiTyMIdibfcqyg9ac+JD/etqfgQ=
-=rYRh
------END PGP SIGNATURE-----
-
---zhbonRGPyfEtWeAZ--
+Thanks,
+Melody
 
