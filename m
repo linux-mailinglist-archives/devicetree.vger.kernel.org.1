@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-127953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 885B59E6CD8
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 12:14:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 967139E6CE0
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 12:14:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 041021883DD9
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 11:14:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 357A1167744
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 11:14:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBA1F1FCF73;
-	Fri,  6 Dec 2024 11:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CDD91FCF4A;
+	Fri,  6 Dec 2024 11:14:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="nhgkgWl2"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Tpf7fTGG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07F8C1FC7D8
-	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 11:13:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE24A1FCFC5
+	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 11:13:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733483638; cv=none; b=YogW801NhTMuwfaZGX4V5KuWKiumt7zOa1QOyAZQrCo666HKA1LieItFo+fV3iDG3gCfE1XtTxfTHmvJToJ7TpdPLO7GNOAeht84RnlyNVSVi2aAz+xYcnD0rbTWmEonPz/0jeHP3DQ2WSGKL5pLy5z/UsSlZmqwdCiyhjw6pS8=
+	t=1733483641; cv=none; b=nv5SxvcLEafaDIxWFjVvyk4WlMgXWQDjDqguPC+rz3+JGCS7Xc5m5upgm+V0/g6hn2YcAY34B6Sa3zxtSbqJEAvk5h6RZZD6743+DVnXdJiPKhCGNwY9yfAZXR1+E8nH3k+WXxD9QK9FZUe06McBQiNjJqzOeu563A8O9+aAmqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733483638; c=relaxed/simple;
-	bh=wtbhFgAIjwtZ+tw8WU+bfOrzW74Jy0OL371+f4t8O5Y=;
+	s=arc-20240116; t=1733483641; c=relaxed/simple;
+	bh=SIi46sAJ3akHceZIRoH2XmfFqxFkyS3eT+KqHD6fe7k=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=DdbVQNAjDYnvCrA6nenZ+f4JjD2AFjIy8GKVbhoeXC1R7UAsIQ2lhmpFkO8iZmu6Sw0sryYJj6LAMBKqlpNbP2G60aTdDY25lfBH8jFxBSfXr9VbRYVr609FJuDy+WEHKX1ivnB5MePBFNInLyND4HEVuARfZnOYTqIlBKEEjxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=nhgkgWl2; arc=none smtp.client-ip=209.85.128.41
+	 MIME-Version; b=gkm7B6hwXv5zXttNoMJ9/5sjOl7RuLfx74KvY5voVzfwewxk8WiL7yQJxDExqmHukM4xrmHlm6kfAc31fwxGWZEg1cApyDIa+ubyF+Y2aZFXMnvLTEzJh4xZdzgbAGCQtSbnVTaBHocS0RuS6jPzmpemAjjtOqG0Gb96N5o7OWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Tpf7fTGG; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-434a736518eso21661045e9.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 03:13:56 -0800 (PST)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-aa543c4db92so385751566b.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 03:13:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1733483635; x=1734088435; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1733483637; x=1734088437; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=h4ybOWdThQduxVTLLkmT3I5G8o7KcPOKxk8AzY6bhhc=;
-        b=nhgkgWl2txX1NYdiqSvofStwXS/hGamQ9x6DhLLxxpoh2kuNXnqJLGBxrp29/4O6nU
-         gvpW/3MzW4XpgKirPdSDbbgmIa64lDqZzYTilYpoaorKkmRqlm1z1aMg+WEonNTZ/YiW
-         xyarKDj66tKX6HFKphTPMDMvUdUvb8EhE5ayAnu0NpzeH0w0OD4cfbB/19zT2U+0wHw5
-         5/GVKk4eu+LtAH9MWaFzHw3MFX6Ws7QPfeLIUXZ0xwSXW7koYvDAFHXm59PrB9mLF2Jl
-         zrDCwyiQ+pv7wMiLW4TULwd/AkMuI2NnD1gV2wieeX1dZOL30rF/KfD41QerOKDIJDzD
-         8uBw==
+        bh=r3NK3+VvNXvn4/X99VXMNRx8LERvbPVlsDcIxAPbW7c=;
+        b=Tpf7fTGGqWRvvVKmxhqZPhxTHemi3z83lVgludb3y7timQBHx47S1IFFBreNwj8a+/
+         hw3hJ4Fk8wtWmIhzg23F6roQOzgpFQKBPldF2BJ4LGVWMpYkwWY3sOy/pe5yfmrZq9Q1
+         cpJtjp/fyCa9TZsRgm1oLmLdL1ve/mDRycnBifJDdc25pdsPwyWfJFCKewHMI0BDVdxj
+         wjiMZIW5E3u0p/J1pcRYD84XwRr8H4awCv1nl0mTkr6pa1PVJ0EG+U0aIl8r3X66V9fc
+         +B1+oPJBfY9viAL65b7No+0gswkJj2RYF4kKzoClpb5oYtGn1wjPtvpwaJN1ASkoJSYA
+         2Ngw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733483635; x=1734088435;
+        d=1e100.net; s=20230601; t=1733483637; x=1734088437;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=h4ybOWdThQduxVTLLkmT3I5G8o7KcPOKxk8AzY6bhhc=;
-        b=I5Wy7BSkZ6cYOHWc2aT+TXH524tILkbrf7Vfd98LRyvm0iT33GKuVEiPa1LVMnjgEb
-         SHLjgvX6feqCcJUxD/kp9KBGm1rxFRwkDBjE/q9KE/wjY/iuaU6J0Kk6Qi6Shw/9Ossy
-         F4HyejyWKG2C90tn6JnMtqSoef2AiJ+VVEr72+8RRsC305xJoYfSYSTMinWxTyMvG6/X
-         Bz73nnJbClqHFtyX0XvWKqOTcr9hL+sx/qH+dRw86lbWkv28M2qBqXCcT0bEamXgpAYz
-         JzTJrtf7eUBfYP5il16FrS91zugGck6wf6Un4f45/kc+NmozhjpBj0dtrCX9nqj1UcCk
-         ZguA==
-X-Forwarded-Encrypted: i=1; AJvYcCX4x/5VEJiEDSk60x+Zy16Jkvk2qbry03bek5dxboZ44AqQjBG5ai23wnvdXSAK3G6lPOPBYLh6ksEC@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuSkTMSCn+aGRqi2QV5zyfC0/pQu5CLWki2aFZRr1ctBhCkesJ
-	Uo4jntMXV4Kh58Y7ezEHTi1HbSG5ZgOz2r9GmpWwpsEbM9XhDIHhyqj2XCM7xO8=
-X-Gm-Gg: ASbGncsHBYNZBaN5xxNjDKheMMEoiu+ezHc3PgGyP0eL9PBq2G3Mv0bg2Ft15Q2xKHy
-	Ac5y2F43wbSeF4m0y8de7pMGB1YCAjUtbfgBrxMLZuq93K4t9ESWSw+QNyELzGLOUlmHXb+M9br
-	L3Pw7I7glgDhkJAvpysPZNXqdEVUe38RfR0pUS022gpmzY5zs3v/RFJqI9uQUJ9Md1Gu6McJMBi
-	opnamV7Cvem8B7BTDOLyEw0yinl6c5SVT5g9lFBv8DOaG7D4JlRQbfelXD+MNxeX4uvliNYPAJ8
-	JUpR
-X-Google-Smtp-Source: AGHT+IHD5gzyn6ySUv1/2CzhUdrsHWqA+utF/YjxqIPk/7oKZhHl7nuoqefyXJDNZSNZZHnZZAiGvg==
-X-Received: by 2002:a5d:5f8c:0:b0:385:fd24:3317 with SMTP id ffacd0b85a97d-3862b33cfbemr2189732f8f.1.1733483635216;
-        Fri, 06 Dec 2024 03:13:55 -0800 (PST)
+        bh=r3NK3+VvNXvn4/X99VXMNRx8LERvbPVlsDcIxAPbW7c=;
+        b=YYIxpI7zuN6ODnLRMPmDzeTeSdPVJBwLXLNvkleV8OGcfxHNma1HreSpdEa5e4FTVx
+         QWLBQmJLfASBm3qfvMMV9MRWmTdqq7LXdQw5vR7DQw5xHbV6QjCWEWaxJSYKUI4Jlkgg
+         66KQmTdevX1m3kwoT1iUsGADaJ70ezdjKAV0O/lYlk/xe+v4jqtZOMsD3mMCdLa1xy32
+         +Z+UhNMyCVfOgakx55na01ZSeiH+ugEtoLzoTVqYAfdQ6dVx/dmBlVi25DQ6f/SdGRoZ
+         rIJu4qqKTTLaKTOYTAdzb1nhX7fFxR3tVdyy/YxioUX2rVkl6YxAVg2/QSB08vh7lpB8
+         G8Gw==
+X-Forwarded-Encrypted: i=1; AJvYcCVDmfESDWWn/Pd8X5ONUj2hmPIAbyh1IhfEMHPJNGc9qhVzYYYteFfiwUmUzH7PcSsmwHvVLgMDHKB1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwY0U4QccQ/77NCqxg6XFpYTgwymzZupnRjrxKgT+NcGD/cU/UQ
+	KiEfWA6CaJ/mtHeY5V+2pP/dPE+IvsTEWSAVsPurjK3u9rpa0Lo2dfBShE+P4LI=
+X-Gm-Gg: ASbGncvOA3NVMpDgKMnVyr9+wmkux/UZktdfmRRoDHKdX39nAmZmCnqCwaSxNqdfx8E
+	J5DCrK/ssf/aSrsHgkadI+DowjDnwFGuqOb+KwiDp7zFX7RgxLKH/Pr4NnYb1oenFWgzNVhfIUc
+	fq/XRZosz/DibH0PC5GJR+jeJZ8Uhhj5OotE/Jw/XZDd6HtffADs161KyOUwJJ9j9RLuRzVH4Xi
+	rIkCrdrRVC8kLLx2OMuC5RSJJYwRq/XDg7tO73qQovISkDKDuQUwcx6uIWZ/bC9qPxktK/BGyKh
+	UgqS
+X-Google-Smtp-Source: AGHT+IG5ns28LlIO5EKzt3jy9KG0NXWjALwAdfE48ssUd8bpZB71xSWH7xVctc2Y/hSvsPovXL1IRQ==
+X-Received: by 2002:a17:906:3292:b0:aa6:4494:e354 with SMTP id a640c23a62f3a-aa64494e742mr62432466b.42.1733483637032;
+        Fri, 06 Dec 2024 03:13:57 -0800 (PST)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.161])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa625eee2a6sm226877866b.90.2024.12.06.03.13.53
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa625eee2a6sm226877866b.90.2024.12.06.03.13.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Dec 2024 03:13:54 -0800 (PST)
+        Fri, 06 Dec 2024 03:13:56 -0800 (PST)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: prabhakar.mahadev-lad.rj@bp.renesas.com,
@@ -92,9 +92,9 @@ Cc: claudiu.beznea@tuxon.dev,
 	linux-kernel@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v2 01/15] clk: renesas: r9a08g045: Add clocks, resets and power domain support for the ADC IP
-Date: Fri,  6 Dec 2024 13:13:23 +0200
-Message-Id: <20241206111337.726244-2-claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v2 02/15] iio: adc: rzg2l_adc: Convert dev_err() to dev_err_probe()
+Date: Fri,  6 Dec 2024 13:13:24 +0200
+Message-Id: <20241206111337.726244-3-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20241206111337.726244-1-claudiu.beznea.uj@bp.renesas.com>
 References: <20241206111337.726244-1-claudiu.beznea.uj@bp.renesas.com>
@@ -108,57 +108,123 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Add clocks, resets and power domains for ADC IP available on the Renesas
-RZ/G3S SoC.
+Convert all occurrences of dev_err() in the probe path to dev_err_probe().
+This improves readability and simplifies the code.
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
 
 Changes in v2:
-- rebased on top of the latest r9a08g045-cpg version
+- none, this patch is new
 
- drivers/clk/renesas/r9a08g045-cpg.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/iio/adc/rzg2l_adc.c | 64 +++++++++++++------------------------
+ 1 file changed, 22 insertions(+), 42 deletions(-)
 
-diff --git a/drivers/clk/renesas/r9a08g045-cpg.c b/drivers/clk/renesas/r9a08g045-cpg.c
-index 559afc417c6c..0e7e3bf05b52 100644
---- a/drivers/clk/renesas/r9a08g045-cpg.c
-+++ b/drivers/clk/renesas/r9a08g045-cpg.c
-@@ -187,6 +187,7 @@ static const struct cpg_core_clk r9a08g045_core_clks[] __initconst = {
- 	DEF_FIXED("OSC", R9A08G045_OSCCLK, CLK_EXTAL, 1, 1),
- 	DEF_FIXED("OSC2", R9A08G045_OSCCLK2, CLK_EXTAL, 1, 3),
- 	DEF_FIXED("HP", R9A08G045_CLK_HP, CLK_PLL6, 1, 2),
-+	DEF_FIXED("TSU", R9A08G045_CLK_TSU, CLK_PLL2_DIV2, 1, 8),
- };
+diff --git a/drivers/iio/adc/rzg2l_adc.c b/drivers/iio/adc/rzg2l_adc.c
+index cd3a7e46ea53..8a804f81c04b 100644
+--- a/drivers/iio/adc/rzg2l_adc.c
++++ b/drivers/iio/adc/rzg2l_adc.c
+@@ -313,15 +313,11 @@ static int rzg2l_adc_parse_properties(struct platform_device *pdev, struct rzg2l
+ 		return -ENOMEM;
  
- static const struct rzg2l_mod_clk r9a08g045_mod_clks[] = {
-@@ -238,6 +239,8 @@ static const struct rzg2l_mod_clk r9a08g045_mod_clks[] = {
- 	DEF_MOD("scif4_clk_pck",	R9A08G045_SCIF4_CLK_PCK, R9A08G045_CLK_P0, 0x584, 4),
- 	DEF_MOD("scif5_clk_pck",	R9A08G045_SCIF5_CLK_PCK, R9A08G045_CLK_P0, 0x584, 5),
- 	DEF_MOD("gpio_hclk",		R9A08G045_GPIO_HCLK, R9A08G045_OSCCLK, 0x598, 0),
-+	DEF_MOD("adc_adclk",		R9A08G045_ADC_ADCLK, R9A08G045_CLK_TSU, 0x5a8, 0),
-+	DEF_MOD("adc_pclk",		R9A08G045_ADC_PCLK, R9A08G045_CLK_TSU, 0x5a8, 1),
- 	DEF_MOD("vbat_bclk",		R9A08G045_VBAT_BCLK, R9A08G045_OSCCLK, 0x614, 0),
- };
+ 	num_channels = device_get_child_node_count(&pdev->dev);
+-	if (!num_channels) {
+-		dev_err(&pdev->dev, "no channel children\n");
+-		return -ENODEV;
+-	}
++	if (!num_channels)
++		return dev_err_probe(&pdev->dev, -ENODEV, "no channel children\n");
  
-@@ -274,6 +277,8 @@ static const struct rzg2l_reset r9a08g045_resets[] = {
- 	DEF_RST(R9A08G045_GPIO_RSTN, 0x898, 0),
- 	DEF_RST(R9A08G045_GPIO_PORT_RESETN, 0x898, 1),
- 	DEF_RST(R9A08G045_GPIO_SPARE_RESETN, 0x898, 2),
-+	DEF_RST(R9A08G045_ADC_PRESETN, 0x8a8, 0),
-+	DEF_RST(R9A08G045_ADC_ADRST_N, 0x8a8, 1),
- 	DEF_RST(R9A08G045_VBAT_BRESETN, 0x914, 0),
- };
+-	if (num_channels > RZG2L_ADC_MAX_CHANNELS) {
+-		dev_err(&pdev->dev, "num of channel children out of range\n");
+-		return -EINVAL;
+-	}
++	if (num_channels > RZG2L_ADC_MAX_CHANNELS)
++		return dev_err_probe(&pdev->dev, -EINVAL, "num of channel children out of range\n");
  
-@@ -346,6 +351,8 @@ static const struct rzg2l_cpg_pm_domain_init_data r9a08g045_pm_domains[] = {
- 				DEF_REG_CONF(CPG_BUS_MCPU2_MSTOP, BIT(5)), 0),
- 	DEF_PD("scif5",		R9A08G045_PD_SCIF5,
- 				DEF_REG_CONF(CPG_BUS_MCPU3_MSTOP, BIT(4)), 0),
-+	DEF_PD("adc",		R9A08G045_PD_ADC,
-+				DEF_REG_CONF(CPG_BUS_MCPU2_MSTOP, BIT(14)), 0),
- 	DEF_PD("vbat",		R9A08G045_PD_VBAT,
- 				DEF_REG_CONF(CPG_BUS_MCPU3_MSTOP, BIT(8)),
- 				GENPD_FLAG_ALWAYS_ON),
+ 	chan_array = devm_kcalloc(&pdev->dev, num_channels, sizeof(*chan_array),
+ 				  GFP_KERNEL);
+@@ -445,62 +441,46 @@ static int rzg2l_adc_probe(struct platform_device *pdev)
+ 		return PTR_ERR(adc->base);
+ 
+ 	adc->pclk = devm_clk_get(dev, "pclk");
+-	if (IS_ERR(adc->pclk)) {
+-		dev_err(dev, "Failed to get pclk");
+-		return PTR_ERR(adc->pclk);
+-	}
++	if (IS_ERR(adc->pclk))
++		return dev_err_probe(dev, PTR_ERR(adc->pclk), "Failed to get pclk");
+ 
+ 	adc->adclk = devm_clk_get(dev, "adclk");
+-	if (IS_ERR(adc->adclk)) {
+-		dev_err(dev, "Failed to get adclk");
+-		return PTR_ERR(adc->adclk);
+-	}
++	if (IS_ERR(adc->adclk))
++		return dev_err_probe(dev, PTR_ERR(adc->adclk), "Failed to get adclk");
+ 
+ 	adc->adrstn = devm_reset_control_get_exclusive(dev, "adrst-n");
+-	if (IS_ERR(adc->adrstn)) {
+-		dev_err(dev, "failed to get adrstn\n");
+-		return PTR_ERR(adc->adrstn);
+-	}
++	if (IS_ERR(adc->adrstn))
++		return dev_err_probe(dev, PTR_ERR(adc->adrstn), "failed to get adrstn\n");
+ 
+ 	adc->presetn = devm_reset_control_get_exclusive(dev, "presetn");
+-	if (IS_ERR(adc->presetn)) {
+-		dev_err(dev, "failed to get presetn\n");
+-		return PTR_ERR(adc->presetn);
+-	}
++	if (IS_ERR(adc->presetn))
++		return dev_err_probe(dev, PTR_ERR(adc->presetn), "failed to get presetn\n");
+ 
+ 	ret = reset_control_deassert(adc->adrstn);
+-	if (ret) {
+-		dev_err(&pdev->dev, "failed to deassert adrstn pin, %d\n", ret);
+-		return ret;
+-	}
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret, "failed to deassert adrstn pin, %d\n", ret);
+ 
+ 	ret = devm_add_action_or_reset(&pdev->dev,
+ 				       rzg2l_adc_reset_assert, adc->adrstn);
+ 	if (ret) {
+-		dev_err(&pdev->dev, "failed to register adrstn assert devm action, %d\n",
+-			ret);
+-		return ret;
++		return dev_err_probe(&pdev->dev, ret,
++				     "failed to register adrstn assert devm action, %d\n", ret);
+ 	}
+ 
+ 	ret = reset_control_deassert(adc->presetn);
+-	if (ret) {
+-		dev_err(&pdev->dev, "failed to deassert presetn pin, %d\n", ret);
+-		return ret;
+-	}
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret, "failed to deassert presetn pin, %d\n", ret);
+ 
+ 	ret = devm_add_action_or_reset(&pdev->dev,
+ 				       rzg2l_adc_reset_assert, adc->presetn);
+ 	if (ret) {
+-		dev_err(&pdev->dev, "failed to register presetn assert devm action, %d\n",
+-			ret);
+-		return ret;
++		return dev_err_probe(&pdev->dev, ret,
++				     "failed to register presetn assert devm action, %d\n", ret);
+ 	}
+ 
+ 	ret = rzg2l_adc_hw_init(adc);
+-	if (ret) {
+-		dev_err(&pdev->dev, "failed to initialize ADC HW, %d\n", ret);
+-		return ret;
+-	}
++	if (ret)
++		return dev_err_probe(&pdev->dev, ret, "failed to initialize ADC HW, %d\n", ret);
+ 
+ 	irq = platform_get_irq(pdev, 0);
+ 	if (irq < 0)
 -- 
 2.39.2
 
