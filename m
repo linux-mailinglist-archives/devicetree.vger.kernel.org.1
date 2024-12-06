@@ -1,151 +1,196 @@
-Return-Path: <devicetree+bounces-128161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07D669E7A1F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 21:43:47 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 697579E7A80
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 22:16:33 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD3DD281FF1
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 20:43:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C94816BBF2
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 21:16:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D3371FFC62;
-	Fri,  6 Dec 2024 20:43:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C54F213E9D;
+	Fri,  6 Dec 2024 21:16:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NC1lA9kX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cLozwkjv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571ED1C54AF;
-	Fri,  6 Dec 2024 20:43:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9754B213E73;
+	Fri,  6 Dec 2024 21:16:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733517822; cv=none; b=BiIcj6rRFwHu3c9eug+ECSMl7XTt2j02fH3bqxuCCid/BKNNAFAKymOV7pLRdmzDB6c47jMxwsMkuPQFJa/A08X08RF8Vsd5kZmD3vUkeX+99ryA81BfddH3LsqQpAaR1k+6MlwL96pG1rZR65MXduJ/csO5hBljp3Gj8mkXZMI=
+	t=1733519789; cv=none; b=qodJOUi3aQShORIXv9LJsc/z8gHdQiankfOqt0EOLwLQlO960ywiOBR0hMFTEyhD6F8uMS02dPfKeJ6w2YRdDpgBY1e5S15a0PVjX4+XyFSwCoL3SfguvWR1eP3HLdERB7bsPCr3JAoxj80IVC6qXaBG3iLg/9ADxAansgORuSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733517822; c=relaxed/simple;
-	bh=HkUtFt5yNEyOKOT57xnkxN4TB3SkK29GTeg3yPR2eEA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qipZy33vViKbPlasb2TpKxizm/Prjyu9CDMOqmSlhbPXOPaw3bkXjV9rmW1WD8nM9DhMOZqXJDu+y1zg5kLCtnfIek6lxrJMHSCfnIlfBfLcnc/2u5Oa7KVSA0wx7Pme3anA032TBro8WI/1D9cJmF4Qmf9Yor7Pn0ljOFSOcD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NC1lA9kX; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B6BZ57X003204;
-	Fri, 6 Dec 2024 20:43:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HkUtFt5yNEyOKOT57xnkxN4TB3SkK29GTeg3yPR2eEA=; b=NC1lA9kXljJwRNZ/
-	jyGx38NCt6kSZMSxw27ZZQfIFXopTSQNDIoHiJnfYnod7Mm+fb87sgx76mNM19za
-	LWD8J1KHKzhJ05C31MdD0xuQ2SYc47yExWP0wfjsiNa4cuTKeMV0tlYRyHt4hDm1
-	FBMz71HGYCu7v8CgEAnlv52Uc9XA3rWVch5dkeQjLxE7XTSYF+qCfdLDPgvZY/Gn
-	wZYZ6zjftxmSzfIqHZdNw5DZmFQYv6qawfnlO6tG81rOvzCZxd3Arss7rUh4qfmf
-	EfHd9juph0xL0aVcnIC3XvqnWpwONZeFXfOkq3y4v6FdKPCz2ThZ65BpsbXeOMUe
-	aq1Wkg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43brgp2qny-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Dec 2024 20:43:22 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B6KhLiq013837
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 6 Dec 2024 20:43:21 GMT
-Received: from [10.71.112.120] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 6 Dec 2024
- 12:43:21 -0800
-Message-ID: <3e246be8-22a9-4473-8c78-39788ae95650@quicinc.com>
-Date: Fri, 6 Dec 2024 12:43:20 -0800
+	s=arc-20240116; t=1733519789; c=relaxed/simple;
+	bh=zOmh9qAGwU6c3133KkRN8o4kWKNoEwXt1SHwu/dxEBc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NWvQvSX/cJWodJXnGNt6Nly6BRlvOZrukg8rlnhjP7uKPIybUaP+ax7aruZ57NJ+gtgmv7KjeWE0FjnbGDP93do2jQLsnsEq4iMWerO23AQqlU1Mwxy9K6pGTUF9Niecn8EBLxKSqUhbfDO8xsPL5YiPRq4m3C9Ap2OnzX+rxCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cLozwkjv; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-434ab114753so17105805e9.0;
+        Fri, 06 Dec 2024 13:16:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733519786; x=1734124586; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nRW+iOVyps5/7zvlNQKW1GtyxDHbc6Ru5QmYKpc6JyI=;
+        b=cLozwkjvvDJ0fO7v9FQP3904H3OH2IC8QJys1MabluRDMnD0LkJTdJqVvoKRvaeyY3
+         69I1P98b3MXEqmwqULcxVaUaRwzTXeLGAZhkk4XxZqJrPphXIQITXF5e+KDt1LG/WBaw
+         crV/tX1jGlMkLw5j3n6We4Ympcq0Qm5wuivSOnJJSeYZueMD9CSwUlz/68iAqlt3MKWF
+         Kf4EaXOncgleq/XhU4diArk5XWNamrqR48KH3w3GdaaZIFd/jHgrbMVv0KvTSqn0pyTb
+         8ER9PHN2lmrXJaeJwgt9dLcSftC7qxCgLQdrbO0pX4DMGo3OCmqlXD9J6hSbqyzZStQi
+         C6Ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733519786; x=1734124586;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nRW+iOVyps5/7zvlNQKW1GtyxDHbc6Ru5QmYKpc6JyI=;
+        b=UIp8sp+g7ldfc89B4pwMK5s5eXicKEYU4zqKzpcoRnI5kl40sMPceMNvtR8K+BHpcN
+         rSbIucdMqn7FKkM5938jQEwHGWqsFplsTABWK0aRo3+Ff4eeN3eOc6kDuP5j3IJRYEpN
+         +aEXSrFUVKLyF0BXo/ddjZc2mkjWxKtbQQqJae9xOQOaHV9JPGMeP3PZyZFOKTnzHfgn
+         pjxxV0OgPnnQFMjiRUaKDtbk20T0wanAYE2xD1KlgCJJUWV234csGhRUS2dvKCqCvIhO
+         oTzsMqaN98vW/o7YazGdzjcsCtvHdu6nkYsH48QJKW+T3sNJREjMbL2JjQMJGIElZtm5
+         PGzg==
+X-Forwarded-Encrypted: i=1; AJvYcCVSOjYOUdFTOw5NwtVgjBa3RJNQasuMCG2nqfKUzZAXG2kI9svMC7URLusnyFBdDL6G0hwTIHjxL58I@vger.kernel.org, AJvYcCWo/gWOPSniUPSlsQZW68q+pgAxpxX94OdzcMb6r/DDHFV05JknkhpE3yWemXsj2tEapC5ldJRDL7k=@vger.kernel.org, AJvYcCXZZsrqjzwvW2e2u84CwjOi8zMfQC26f6F/Ogt6/gzoRPqw0eDaJ3soIdAfus1/R/qLohcHwW0A3BLJDbKl@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWu75om19ma4IQVpqs2zrYhFvQJ++VtKG3FzzE3ex6C4eHNW4z
+	a41RQz3KJO9IhPJuQaTnqq7Gd5JJH+bhIcJ5X0rUJS3l25znVhXx
+X-Gm-Gg: ASbGncvkpyRM7I96YX+acBYIMCBimRpb5NqHkCcT09XBKphzzu8cIvobGI2ztVECFw1
+	jZKKyw1xCw/+6b+kNNpertBP60aAr+wz5YVwqYifVnhWGtZeH67AaMNwBdEBMlwsMyj+V6Ld7N2
+	8wStEW97y0FwHY/lXwvf9SefDudSeUqNmGcBSYbQIG6YnmwwxjDlnglC3iaVmO21a4T+XwB0FdG
+	U7vxednMR69AtxRONgB18mXN4HftOeaYofhB1dOH5UGwtPbuVFrKQRPZBTrCdoWe7BhOcvrXHBU
+	zOUPzZ+XZwN0D0oCotc=
+X-Google-Smtp-Source: AGHT+IEIKgSj99gQZ0yfIujLV4jW/0ASuy6eVEaAycAy7rwgJQxjyx7hj/onKqQL6rPYk6CO5v+K8g==
+X-Received: by 2002:a5d:5f8c:0:b0:385:e1eb:a7af with SMTP id ffacd0b85a97d-3862b3e7bd7mr2996674f8f.48.1733519785502;
+        Fri, 06 Dec 2024 13:16:25 -0800 (PST)
+Received: from localhost.localdomain (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-434d526b375sm105978835e9.9.2024.12.06.13.16.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Dec 2024 13:16:24 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Cc: Ulf Hansson <ulf.hansson@linaro.org>
+Subject: [PATCH v7 1/2] dt-bindings: cpufreq: Document support for Airoha EN7581 CPUFreq
+Date: Fri,  6 Dec 2024 22:11:24 +0100
+Message-ID: <20241206211145.2823-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v30 28/30] ALSA: usb-audio: Add USB offload route kcontrol
-To: Cezary Rojewski <cezary.rojewski@intel.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-input@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <srinivas.kandagatla@linaro.org>,
-        <mathias.nyman@intel.com>, <perex@perex.cz>, <conor+dt@kernel.org>,
-        <dmitry.torokhov@gmail.com>, <corbet@lwn.net>, <broonie@kernel.org>,
-        <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
-        <pierre-louis.bossart@linux.intel.com>, <Thinh.Nguyen@synopsys.com>,
-        <tiwai@suse.com>, <robh@kernel.org>, <gregkh@linuxfoundation.org>
-References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
- <20241106193413.1730413-29-quic_wcheng@quicinc.com>
- <1a361446-7a18-4f49-9eeb-d60d1adaa088@intel.com>
- <28023a83-04a5-4c62-85a9-ca41be0ba9e1@quicinc.com>
- <1644aa6b-a4e0-4dbd-a361-276cb95eb534@intel.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <1644aa6b-a4e0-4dbd-a361-276cb95eb534@intel.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4H_AQnMFekfz5gW6YWnFHVmnH-Jb32Ho
-X-Proofpoint-ORIG-GUID: 4H_AQnMFekfz5gW6YWnFHVmnH-Jb32Ho
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
- adultscore=0 lowpriorityscore=0 mlxscore=0 spamscore=0 suspectscore=0
- priorityscore=1501 phishscore=0 impostorscore=0 mlxlogscore=870
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412060156
 
+On newer Airoha SoC, CPU Frequency is scaled indirectly with SMC commands
+to ATF.
 
-On 12/6/2024 1:09 AM, Cezary Rojewski wrote:
-> On 2024-12-04 12:15 AM, Wesley Cheng wrote:
->>
->> On 12/3/2024 8:13 AM, Cezary Rojewski wrote:
->>> On 2024-11-06 8:34 PM, Wesley Cheng wrote:
->>>> In order to allow userspace/applications know about USB offloading status,
->>>> expose a sound kcontrol that fetches information about which sound card
->>>> and PCM index the USB device is mapped to for supporting offloading.  In
->>>> the USB audio offloading framework, the ASoC BE DAI link is the entity
->>>> responsible for registering to the SOC USB layer.
->
-> ...
->
->>> R) += mixer_usb_offload.o
->>>> diff --git a/sound/usb/mixer_usb_offload.c b/sound/usb/mixer_usb_offload.c
->>>> new file mode 100644
->>>> index 000000000000..e0689a3b9b86
->>>> --- /dev/null
->>>> +++ b/sound/usb/mixer_usb_offload.c
->>>> @@ -0,0 +1,102 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +/*
->>>> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->>>> + */
->>>> +
->>>> +#include <linux/usb.h>
->>>> +
->>>> +#include <sound/core.h>
->>>> +#include <sound/control.h>
->>>> +#include <sound/soc-usb.h>
->>>
->>> ALSA-components should not be dependent on ASoC ones. It should be done the other way around: ALSA <- ASoC.
->>>
->>
->> At least for this kcontrol, we need to know the status of the ASoC state, so that we can communicate the proper path to userspace.  If the ASoC path is not probed or ready, then this module isn't blocked.  It will just communicate that there isn't a valid offload path.
->
-> I'm not asking _why_ you need soc-usb.h header, your reasoning is probably perfectly fine. The code hierarchy is not though. If a sound module is dependent on soc-xxx.h i.e. ASoC symbols, it shall be part of sound/soc/ space.
+A virtual clock is exposed. This virtual clock is a get-only clock and
+is used to expose the current global CPU clock. The frequency info comes
+by the output of the SMC command that reports the clock in MHz.
 
+The SMC sets the CPU clock by providing an index, this is modelled as
+performance states in a power domain.
 
-That would basically require a significant change in the current design.  Was that requirement documented somewhere, where ALSA components should not be dependent on ASoC?  What was the reasoning for making it one direction, but not the other?
+CPUs can't be individually scaled as the CPU frequency is shared across
+all CPUs and is global.
 
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+---
+Changes v7:
+- Add more info to the description for usage of clock and
+  performance-domain
+- Drop redundant nodes from example
+Changes v6:
+- No changes
+Changes v5:
+- Add Reviewed-by tag
+- Fix OPP node name error
+- Rename cpufreq node name to power-domain
+- Rename CPU node power domain name to perf
+- Add model and compatible to example
+Changes v4:
+- Add this patch
 
-Thanks
+ .../cpufreq/airoha,en7581-cpufreq.yaml        | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
 
-Wesley Cheng
+diff --git a/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml b/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+new file mode 100644
+index 000000000000..7d4510b3219c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/cpufreq/airoha,en7581-cpufreq.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Airoha EN7581 CPUFreq
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++
++description: |
++  On newer Airoha SoC, CPU Frequency is scaled indirectly with SMC commands
++  to ATF.
++
++  A virtual clock is exposed. This virtual clock is a get-only clock and
++  is used to expose the current global CPU clock. The frequency info comes
++  by the output of the SMC command that reports the clock in MHz.
++
++  The SMC sets the CPU clock by providing an index, this is modelled as
++  performance states in a power domain.
++
++  CPUs can't be individually scaled as the CPU frequency is shared across
++  all CPUs and is global.
++
++properties:
++  compatible:
++    const: airoha,en7581-cpufreq
++
++  '#clock-cells':
++    const: 0
++
++  '#power-domain-cells':
++    const: 0
++
++  operating-points-v2: true
++
++required:
++  - compatible
++  - '#clock-cells'
++  - '#power-domain-cells'
++  - operating-points-v2
++
++additionalProperties: false
++
++examples:
++  - |
++    performance-domain {
++        compatible = "airoha,en7581-cpufreq";
++
++        operating-points-v2 = <&cpu_smcc_opp_table>;
++
++        #power-domain-cells = <0>;
++        #clock-cells = <0>;
++    };
+-- 
+2.45.2
 
 
