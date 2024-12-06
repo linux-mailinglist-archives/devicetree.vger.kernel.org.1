@@ -1,199 +1,236 @@
-Return-Path: <devicetree+bounces-127842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D78599E675D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 07:42:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 182F79E676C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 07:48:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0461169A50
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 06:42:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5660161ABE
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 06:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DA471D63CE;
-	Fri,  6 Dec 2024 06:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF6671BC9F6;
+	Fri,  6 Dec 2024 06:48:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LG+eE0ue"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="B5Zxev06";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="FEjy8jmC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A053F58222;
-	Fri,  6 Dec 2024 06:42:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3EF828684;
+	Fri,  6 Dec 2024 06:48:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733467337; cv=none; b=jz/1HUhzBEhiNr+p6aEyACvVMQw0pECjYnnWXqpB83iJYYSsD5ig9c4IkmvkeTzyBWgvmqxJgiE/Er7nbCHKkidx5GHTpG5keQYfNQZE1LyYwig3Uk0tOpJ5jNs/08bKjWCfIRE2EA1HKgpmzUPkdjbmdQuucIh9DQAPgLJKgK0=
+	t=1733467686; cv=none; b=j68wEPNpk0KHOwYfUVfc+4qxdwtIewRnkSyG9JoyXG1R86oKf6eSXrPCiTPUlWWs6jgInu9/b4QmLNoMQaHSx+MNqCh2HV9Pcw36YAytyCGdwS+kHGnZuu8vLWgigAKxQpQoCo9Wra4rcg7dJkpMQsMn0OT5pWEWV4m8+Qy3z7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733467337; c=relaxed/simple;
-	bh=LfFLuF4ji/kVInVTaqlpwXqrFKokO1KMpLsxrSto4Eo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=kBuPlcbAOYvqYo5+j6qKi7YhD8bRrDFDPd0A2+qlZN+Ep8hBzxqv+bGTIsrdUXHlVssSaM6GXNxgwAFmatqq+3wo1AaJLD30aCmvlBN28t7OrQ34fe9Z4mcH7a3fWiN88oZJQiWA/NLxKPq1p8Hq9fnG6Jj4rjv5nOD+X8JjEs8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LG+eE0ue; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5JhlNn018707;
-	Fri, 6 Dec 2024 06:42:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=fmIOF/1fhz42BBjw/bkKoA
-	fgSj8dTtOj8CdHzCK6Dik=; b=LG+eE0ueM+ZCzejqB8Uj5gSe3pgvOJ+dEd/03S
-	YznVwcUcSM5Fmu65WYaeYa6LXKqnDST6pFySnITaPdsoUm9Pz7WwT/vX+yUG2h6L
-	f/CIL8LwYY8c+oAClXTcktJvUdlnOIjd0pJpncHIJYCLAoxsYjMhbiJmd39m5BGn
-	7lK/RiiBXnj0eSIHXyJuzLnO7i+Sp7p1Bip6JGhPtnBJNiTiDh0EznGHLy934+Wm
-	GQCNdptE6IAmfmBOaBWJIIWpANOHLPSn5vANQkG2MwgjKq9ZK6DywoNWFu4Goufr
-	nWeOCHiNo7Dp4voEZCu6MCLkgbuxVWgQJzc1YDMrwTjp7kGA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43bjk8sbrn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Dec 2024 06:42:11 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B66gAG2028469
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 6 Dec 2024 06:42:10 GMT
-Received: from jingyw-gv.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 5 Dec 2024 22:42:07 -0800
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-Date: Fri, 6 Dec 2024 14:41:13 +0800
-Subject: [PATCH] arm64: dts: qcom: qcs8300: Add capacity and DPC properties
+	s=arc-20240116; t=1733467686; c=relaxed/simple;
+	bh=wtvA+GP896fwLuxsmRFWegydoQF/WX2HXSAacRUIlnI=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=SHjlw0Hr4Zh/PLZg0mUir7YMt4FRfoc7qqXzqrzmQpuFlCDTqN7bsdY5bfXvMirafqVM1tfpjhu3o3zqTjQJN4MVETJCUtq3GkQNSuN2c4x/mPRXbK64rUOWByI3LFOLlOwvtSxTzXRO2Q3OS6TBvRDBY9DoPRLAKN7ggvcdylk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=B5Zxev06; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=FEjy8jmC; arc=none smtp.client-ip=202.12.124.147
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfout.stl.internal (Postfix) with ESMTP id 67060114016E;
+	Fri,  6 Dec 2024 01:48:02 -0500 (EST)
+Received: from phl-imap-11 ([10.202.2.101])
+  by phl-compute-10.internal (MEProxy); Fri, 06 Dec 2024 01:48:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1733467682;
+	 x=1733554082; bh=MXTnzO1XZ2VddqzjxnlaUzrpeuKoS+bHl85A8NmfDSY=; b=
+	B5Zxev0615rfInbbM8O/2wHlNzygAM3f4XoIYu8QItHfWEwDVhZOO9cCCMoR8VXh
+	w/uD+ZkO+fZQjtbCIdzVwtvg1JvS7Hs9F2+oQvB0BLLbwqjKbciGjIgIShCV/sYH
+	G7G67H3dwHCrr9DQfCPPnXuWS4fvoAkkyFe3G0LjoJPO7BgUDc2Jv0AHY7G8+vsP
+	g0a5AtBEArec58w4p3yhv+cF+ruAURKfB7LaSPZu/ZgMs2C/ApFZB1WmOXhg1woD
+	lXGw7WVUqiVIRnTzU7DjA6QCvdMLXmvJsP+4FA40snC3QP7GM9JIdsvWvORkAdVs
+	tnmLyeWdkCPfrgzpMWbKvQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1733467682; x=
+	1733554082; bh=MXTnzO1XZ2VddqzjxnlaUzrpeuKoS+bHl85A8NmfDSY=; b=F
+	Ejy8jmCDiD6FwMT5K7rHQJ8R8P3166Jsms31AxIquKxq/20/XPbwpTrMeHfFFVzh
+	/ia/xHJVgWghbnXHMDT1kul1CCEhlPcv6CP7t2aEryjDja0UO1qO25R3keh+Y8xV
+	MmEC88UDJ7WG4TlVHU1vlXM28j1BdBJlDU8s4gY4CLpObRplTJKvuLKzDjLOLveM
+	0QKvsFiyIoGvyZm5TrVGiB+zWFST4u5dPfq+GydncyeX/KYgxJEq2TK6mjpzp0CS
+	hYMyUD4d7hJM7zWgcXSQzZ9aRLu0bVqhtC3mqd4klfjY9JOnMJXr6H5pa9tWtJ2U
+	Q7qw4/Ev0sWNe6HLnjfZg==
+X-ME-Sender: <xms:IZ5SZzCGJx7AAEz16aZ4CNjS5ecbseDHkIOirhww-rmVmznXIHokVA>
+    <xme:IZ5SZ5hemfXp8tdYm-Hjs-1Huj9ZGRcrCBUtSUlaWahdaO3hDh0ogh4wYM3zfcdHC
+    ge9-O6w8l6SzR8dFjY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrieekgdelkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdpuffr
+    tefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnth
+    hsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredttden
+    ucfhrhhomhepfdetrhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdrug
+    gvqeenucggtffrrghtthgvrhhnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffg
+    vedugeduveelvdekhfdvieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
+    grihhlfhhrohhmpegrrhhnugesrghrnhgusgdruggvpdhnsggprhgtphhtthhopedukedp
+    mhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepkhgvrhhnvghlqdhtvggrmhesrghnug
+    hrohhiugdrtghomhdprhgtphhtthhopeifihhllhhmtghvihgtkhgvrhesghhoohhglhgv
+    rdgtohhmpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtph
+    htthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshhes
+    khgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughrvgdrughrrghsiihikheslhhinh
+    grrhhordhorhhgpdhrtghpthhtohepuggrnhhivghlrdhlvgiitggrnhhosehlihhnrghr
+    ohdrohhrghdprhgtphhtthhopehpvghtvghrrdhgrhhifhhfihhnsehlihhnrghrohdroh
+    hrghdprhgtphhtthhopehtuhguohhrrdgrmhgsrghruhhssehlihhnrghrohdrohhrgh
+X-ME-Proxy: <xmx:IZ5SZ-kuyljmTwbW46smaKAIlhw1f8J9dTGwct-_fRW_2bgzKRp1dQ>
+    <xmx:IZ5SZ1y76gU_3p-q-FQLa0Vs3szN9McrP7Wo8TzzdpCONgY5frXYRA>
+    <xmx:IZ5SZ4QyWia5MJfYpAe-gKQWR1fl0muHRIl-hYCZH8-dfcB9t45u5g>
+    <xmx:IZ5SZ4a2YOhUyvflEDFMZTrMWF8ghVxwda_xcralOHPCll624rEy1A>
+    <xmx:Ip5SZ6FrmFlB7gs9EvcXlJmWImgkyaz8WymObdXCZUjoGaFwgXVeddxu>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 2DBFB2220072; Fri,  6 Dec 2024 01:48:01 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Date: Fri, 06 Dec 2024 07:47:40 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Tudor Ambarus" <tudor.ambarus@linaro.org>,
+ "Rob Herring" <robh@kernel.org>, krzk+dt@kernel.org,
+ "Conor Dooley" <conor+dt@kernel.org>, "Alim Akhtar" <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ kernel-team@android.com, "William McVicker" <willmcvicker@google.com>,
+ "Peter Griffin" <peter.griffin@linaro.org>,
+ "Javier Martinez Canillas" <javierm@redhat.com>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>,
+ "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+ "Vincent Guittot" <vincent.guittot@linaro.org>,
+ "Ulf Hansson" <ulf.hansson@linaro.org>
+Message-Id: <427caa87-b9ba-4797-88bd-a18a96eefdcf@app.fastmail.com>
+In-Reply-To: <20241205175345.201595-3-tudor.ambarus@linaro.org>
+References: <20241205175345.201595-1-tudor.ambarus@linaro.org>
+ <20241205175345.201595-3-tudor.ambarus@linaro.org>
+Subject: Re: [PATCH v3 2/3] firmware: add exynos ACPM protocol driver
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
-Message-ID: <20241206-qcs8300_dpc-v1-1-af2e8e6d3da9@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAImcUmcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxNDIwMz3cLkYgtjA4P4lIJkXSNjgzRzczPzNDMDYyWgjoKi1LTMCrBp0bG
- 1tQCLi3HAXQAAAA==
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <quic_anshar@quicinc.com>, <quic_tengfan@quicinc.com>,
-        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jingyi Wang <quic_jingyw@quicinc.com>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733467327; l=2838;
- i=quic_jingyw@quicinc.com; s=20240910; h=from:subject:message-id;
- bh=LfFLuF4ji/kVInVTaqlpwXqrFKokO1KMpLsxrSto4Eo=;
- b=apMza4Au9MGEqMRZI6HrEXSj3FhfYKBJNLc1qJwjvWaTBMYIeASwvJD3MmC0RlDyxAhce8DHp
- nhZnJ1JTUUJDp/EYYmNquDXFahVY0AKoUgb7A+kaMiHCZG2iclzXB4/
-X-Developer-Key: i=quic_jingyw@quicinc.com; a=ed25519;
- pk=ZRP1KgWMhlXXWlSYLoO7TSfwKgt6ke8hw5xWcSY+wLQ=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Jt0EoEmU-QYBVz5V-UXykJxfhn9MmDZD
-X-Proofpoint-GUID: Jt0EoEmU-QYBVz5V-UXykJxfhn9MmDZD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- impostorscore=0 bulkscore=0 phishscore=0 suspectscore=0 spamscore=0
- lowpriorityscore=0 adultscore=0 mlxscore=0 mlxlogscore=809
- priorityscore=1501 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2412060046
 
-The "capacity-dmips-mhz" and "dynamic-power-coefficient" are used to
-build Energy Model which in turn is used by EAS to take placement
-decisions. So add it to QCS8300 SoC.
+On Thu, Dec 5, 2024, at 18:53, Tudor Ambarus wrote:
 
-Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+> +#define exynos_acpm_set_bulk(data, i)					\
+> +	(((data) & ACPM_BULK_MASK) << (ACPM_BULK_SHIFT * (i)))
+> +#define exynos_acpm_read_bulk(data, i)					\
+> +	(((data) >> (ACPM_BULK_SHIFT * (i))) & ACPM_BULK_MASK)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index 73abf2ef9c9f..2996b09e4c54 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -44,6 +44,8 @@ cpu0: cpu@0 {
- 			next-level-cache = <&l2_0>;
- 			power-domains = <&cpu_pd0>;
- 			power-domain-names = "psci";
-+			capacity-dmips-mhz = <1946>;
-+			dynamic-power-coefficient = <472>;
- 
- 			l2_0: l2-cache {
- 				compatible = "cache";
-@@ -61,6 +63,8 @@ cpu1: cpu@100 {
- 			next-level-cache = <&l2_1>;
- 			power-domains = <&cpu_pd1>;
- 			power-domain-names = "psci";
-+			capacity-dmips-mhz = <1946>;
-+			dynamic-power-coefficient = <472>;
- 
- 			l2_1: l2-cache {
- 				compatible = "cache";
-@@ -78,6 +82,8 @@ cpu2: cpu@200 {
- 			next-level-cache = <&l2_2>;
- 			power-domains = <&cpu_pd2>;
- 			power-domain-names = "psci";
-+			capacity-dmips-mhz = <1946>;
-+			dynamic-power-coefficient = <507>;
- 
- 			l2_2: l2-cache {
- 				compatible = "cache";
-@@ -95,6 +101,8 @@ cpu3: cpu@300 {
- 			next-level-cache = <&l2_3>;
- 			power-domains = <&cpu_pd3>;
- 			power-domain-names = "psci";
-+			capacity-dmips-mhz = <1946>;
-+			dynamic-power-coefficient = <507>;
- 
- 			l2_3: l2-cache {
- 				compatible = "cache";
-@@ -112,6 +120,8 @@ cpu4: cpu@10000 {
- 			next-level-cache = <&l2_4>;
- 			power-domains = <&cpu_pd4>;
- 			power-domain-names = "psci";
-+			capacity-dmips-mhz = <1024>;
-+			dynamic-power-coefficient = <100>;
- 
- 			l2_4: l2-cache {
- 				compatible = "cache";
-@@ -129,6 +139,8 @@ cpu5: cpu@10100 {
- 			next-level-cache = <&l2_5>;
- 			power-domains = <&cpu_pd5>;
- 			power-domain-names = "psci";
-+			capacity-dmips-mhz = <1024>;
-+			dynamic-power-coefficient = <100>;
- 
- 			l2_5: l2-cache {
- 				compatible = "cache";
-@@ -146,6 +158,8 @@ cpu6: cpu@10200 {
- 			next-level-cache = <&l2_6>;
- 			power-domains = <&cpu_pd6>;
- 			power-domain-names = "psci";
-+			capacity-dmips-mhz = <1024>;
-+			dynamic-power-coefficient = <100>;
- 
- 			l2_6: l2-cache {
- 				compatible = "cache";
-@@ -163,6 +177,8 @@ cpu7: cpu@10300 {
- 			next-level-cache = <&l2_7>;
- 			power-domains = <&cpu_pd7>;
- 			power-domain-names = "psci";
-+			capacity-dmips-mhz = <1024>;
-+			dynamic-power-coefficient = <100>;
- 
- 			l2_7: l2-cache {
- 				compatible = "cache";
+Could these be inline functions for readability?
 
----
-base-commit: bcf2acd8f64b0a5783deeeb5fd70c6163ec5acd7
-change-id: 20241206-qcs8300_dpc-230f7767f603
+> +	cmd[3] = (u32)(sched_clock() / 1000000); /*record ktime ms*/
 
-Best regards,
--- 
-Jingyi Wang <quic_jingyw@quicinc.com>
+The comment does not match the implementation, sched_clock()
+is probably not what you want here because of its limitiations.
 
+Maybe ktime_to_ms(ktime_get())?
+
+> +/**
+> + * acpm_get_rx() - get response from RX queue.
+> + * @achan:	ACPM channel info.
+> + * @xfer:	reference to the transfer to get response for.
+> + *
+> + * Return: 0 on success, -errno otherwise.
+> + */
+> +static int acpm_get_rx(struct acpm_chan *achan, struct acpm_xfer *xfer)
+> +{
+> +	struct acpm_msg *tx = &xfer->tx;
+> +	struct acpm_msg *rx = &xfer->rx;
+> +	struct acpm_rx_data *rx_data;
+> +	const void __iomem *base, *addr;
+> +	u32 rx_front, rx_seqnum, tx_seqnum, seqnum;
+> +	u32 i, val, mlen;
+> +	bool rx_set = false;
+> +
+> +	rx_front = readl_relaxed(achan->rx.front);
+> +	i = readl_relaxed(achan->rx.rear);
+
+If you have to use readl_relaxed(), please annotate why,
+otherwise just use the normal readl().  Is this access to
+the SRAM?
+
+> +	spin_lock_irqsave(&achan->tx_lock, flags);
+> +
+> +	tx_front = readl_relaxed(achan->tx.front);
+> +	idx = (tx_front + 1) % achan->qlen;
+> +
+> +	ret = acpm_wait_for_queue_slots(achan, idx);
+> +	if (ret) {
+> +		spin_unlock_irqrestore(&achan->tx_lock, flags);
+> +		return ret;
+> +	}
+
+It looks like you are calling a busy loop function inside
+of a hardirq handler here, with a 500ms timeout. This is
+not ok.
+
+If you may need to wait for a long timeout, I would suggest
+changing the interface so that this function is not allowed
+to be called from irq-disabled context, change the spinlock
+to a mutex and polling read to a sleeping version.
+
+> +	/* Advance TX front. */
+> +	writel_relaxed(idx, achan->tx.front);
+> +
+> +	/* Flush SRAM posted writes. */
+> +	readl_relaxed(achan->tx.front);
+> +
+> +	spin_unlock_irqrestore(&achan->tx_lock, flags);
+
+I don't think this sequence guarantees the serialization
+you want. By making the access _relaxed() you explicitly
+say you don't want serialization, so the store does
+not have to complete before the unlock.
+
+> +static const struct of_device_id acpm_match[] = {
+> +	{ .compatible = "google,gs101-acpm-ipc" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, acpm_match);
+> +
+> +static struct platform_driver acpm_driver = {
+> +	.probe	= acpm_probe,
+> +	.driver	= {
+> +		.name = "exynos-acpm-protocol",
+> +		.of_match_table	= of_match_ptr(acpm_match),
+
+Remove the stray of_match_ptr() here.
+
+> diff --git a/drivers/firmware/samsung/exynos-acpm.h 
+> b/drivers/firmware/samsung/exynos-acpm.h
+> new file mode 100644
+> index 000000000000..a03adcd260f5
+> --- /dev/null
+> +++ b/drivers/firmware/samsung/exynos-acpm.h
+> @@ -0,0 +1,15 @@
+> +#ifndef __EXYNOS_ACPM_H__
+> +#define __EXYNOS_ACPM_H__
+> +
+> +struct acpm_handle;
+> +struct acpm_xfer;
+> +
+> +int acpm_do_xfer(const struct acpm_handle *handle, struct acpm_xfer 
+> *xfer);
+> +
+> +#endif /* __EXYNOS_ACPM_H__ */
+> diff --git a/include/linux/soc/samsung/exynos-acpm-protocol.h 
+> b/include/linux/soc/samsung/exynos-acpm-protocol.h
+> new file mode 100644
+> index 000000000000..762783af7617
+> --- /dev/null
+> +++ b/include/linux/soc/samsung/exynos-acpm-protocol.h
+
+Why is this in include/linux/soc, and not in the firmware
+header?
+
+      Arnd
 
