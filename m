@@ -1,160 +1,173 @@
-Return-Path: <devicetree+bounces-128005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95ED99E701D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 15:35:48 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37CDF1885362
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 14:35:48 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1451494A6;
-	Fri,  6 Dec 2024 14:35:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zGqZu5nm"
-X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAB7A9E70A9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 15:45:59 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0182D32C8B;
-	Fri,  6 Dec 2024 14:35:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99821282524
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 14:45:58 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DD78149DF0;
+	Fri,  6 Dec 2024 14:45:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KkJZIm+0"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2749A193;
+	Fri,  6 Dec 2024 14:45:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733495744; cv=none; b=q1S0yUIXbcLroEy6m3xeAN1PT+7+5vHpgk/2f748Yxz80x9YBT7qbSBaMZP+XBatdHpn4ZWlZ3mIv/8/T0xfHWjRygm2QZVJcKO3+MWyxdpQH1FhJqW7lxmR+50gWfSZpUQk4sy+OLWrsPmFvtCCRTfsrhyNHk9n6kbt7yFozR8=
+	t=1733496355; cv=none; b=GW9VWemC26a+CS+gRlP/wQeD+FVIcdvGp/4I/UP7vZAXQJ9lnewGWhoz+FGCBVSRWNZ3lEkphqU2n7nerj5U3uQV/2asa0RgDuuYoWaHwNKcTJ+PhrBhujTxSzZG2jfZG2LRMtzmeMiLE8iRLyiNlgPpQ1+lqQasUdUJ1qDaYp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733495744; c=relaxed/simple;
-	bh=6Dy05jYAWMbM3pAF8//t/ezs7i4v5A1RjeR1C4gKx8E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jkxJI2udYBTF7UoUZXFfHfVXWReKYl9IvlJ11BuyS1db+glFZYe/PnsyUi07mn/ZPjVg4amHFj6qyXqGyP3S0KG/XFfuDfkV1er3UhRXqhFoB29qJNxX4Y09YkekNmbkCxGgOHHHeSrqEFYm7tF1yVee0I5Sjd7hc16vpH9WpVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zGqZu5nm; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=lXAYhpdfsf+gOIdq60uXPUI1h1U4aSY+52/5Tzkwy3o=; b=zGqZu5nmmiMR40kS1ag20bkZPn
-	34/WeQB+p3pPf5pLsBw3pnqEJbt/Oo/WuvhzsETmFIx3NcWETcipC+hKsTXGu93XASq00fG7IiRhY
-	ugoku54YtHBQCHd2dIrEF8RZto8uUUd2BPnAXualbTHQyzVf/HDdnXKEVNswMpIhJlD2+8YJWA/ZR
-	w2AR0CD0BSddg0M0kJN9aiTdyRi/PwU/fPifztlnuqZVfCvzMjPIi26kxT2H2TsWf1LAD9tDN28/1
-	0Kl1t9kLx7MQzvLaV4zLiQkE/kJ9RIFCW6VuRaphGb3r2RZvay3zfzCXbuZXcCfwy8zIPWpCN5DDT
-	U5xMwHLA==;
-Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tJZQW-00011Y-Hy; Fri, 06 Dec 2024 15:35:28 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
- cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
- andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
- kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, Damon Ding <damon.ding@rock-chips.com>
-Subject: Re: [PATCH v1 00/10] Add eDP support for RK3588
-Date: Fri, 06 Dec 2024 15:35:27 +0100
-Message-ID: <5939852.zQ0Gbyo6oJ@diego>
-In-Reply-To: <20241127075157.856029-1-damon.ding@rock-chips.com>
-References: <20241127075157.856029-1-damon.ding@rock-chips.com>
+	s=arc-20240116; t=1733496355; c=relaxed/simple;
+	bh=RCAerEsBSOduxZ6ChbLto3fB45xJtvmu2G8R9418J60=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=H5b4mmyyo0OOnQtVTahfYCgg6eWi2b63/NOeNC5kOESDWdsozscef3J8MKlZ3mT7KmG4P1g5QqLNq2lW/iXaFnyFk84ngYpFT5ptNyKAgQQgVlpSstK0oQLXeG0XXBOnTuD1LV8p1wilOBcrgzshl3fwInyv0GDipH/IALdBFV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KkJZIm+0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B68a6uD018434;
+	Fri, 6 Dec 2024 14:45:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	F6xvmmj4pj78R2BWZJh97FZN7e9Q86pkpxcb1LWqoWA=; b=KkJZIm+0Q9+bKdrF
+	I04Pfw2jwRE5iFhohFyfFgcQBh8BM1BLdPWj/Hipxw3Fao8Qwtsgz+c406CtG/gn
+	DibvlRDr07GCxbd+gHZlyZ7P1Zuq79VWbwRYA30tuOuUdBUOs8D9+DLnKMK7CmOE
+	w4gYrV4Pac53HgdaqWjMWnQzB7b4LOhgdcfhOhR8+y/Unk2IqasNBZ2Nb+r9d8Cc
+	shbOXRZ8b7p827pn0jCin9mygGKZhDf0bKPGQwYGwwLOG995kroWWcOfLO7BZquV
+	eGDgZPa2H0E0Q2FNVVnsKkJBbTxgDmvvziQ8J3S1oIf1dwOjkt+vqsiUUJkshet9
+	6EJt1Q==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43bjk8tmq4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Dec 2024 14:45:46 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B6Ejjfi011238
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Dec 2024 14:45:45 GMT
+Received: from [10.216.17.32] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 6 Dec 2024
+ 06:45:38 -0800
+Message-ID: <53d44689-798e-4b5f-a0f1-8a39bea2f19b@quicinc.com>
+Date: Fri, 6 Dec 2024 20:15:35 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: qcs6490-rb3gen: add and enable
+ BT node
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konradybcio@kernel.org>,
+        Marcel Holtmann
+	<marcel@holtmann.org>,
+        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, <quic_mohamull@quicinc.com>,
+        <quic_hbandi@quicinc.com>, <quic_anubhavg@quicinc.com>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-bluetooth@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+References: <20241204131706.20791-1-quic_janathot@quicinc.com>
+ <20241204131706.20791-3-quic_janathot@quicinc.com>
+ <pzkijkdswskaq6232uldapz3b6v6zplif7uah24iwq3ymlezft@skbcy2vod3c5>
+Content-Language: en-US
+From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+In-Reply-To: <pzkijkdswskaq6232uldapz3b6v6zplif7uah24iwq3ymlezft@skbcy2vod3c5>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: x4Hfa3zjxpu6CePiOiqZlv4-e8w3wYJE
+X-Proofpoint-GUID: x4Hfa3zjxpu6CePiOiqZlv4-e8w3wYJE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ impostorscore=0 bulkscore=0 phishscore=0 suspectscore=0 spamscore=0
+ lowpriorityscore=0 adultscore=0 mlxscore=0 mlxlogscore=999
+ priorityscore=1501 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2412060110
 
-Hi Daemon,
 
-Am Mittwoch, 27. November 2024, 08:51:47 CET schrieb Damon Ding:
-> These patchs have been tested with a 1536x2048p60 eDP panel on
-> RK3588S EVB1 board, and HDMI 1080P/4K display also has been verified
-> on RK3588 EVB1 board.
+
+On 12/5/2024 4:29 AM, Dmitry Baryshkov wrote:
+> On Wed, Dec 04, 2024 at 06:47:04PM +0530, Janaki Ramaiah Thota wrote:
+>> Add a node for the PMU module of the WCN6750 present on the
+>> qcs6490-rb3gen board and assign its power outputs to the Bluetooth
+>> module.
+>>
+>> Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 165 ++++++++++++++++++-
+>>   1 file changed, 164 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> index 27695bd54220..07650648214e 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
+>> @@ -1,6 +1,6 @@
+>>   // SPDX-License-Identifier: BSD-3-Clause
+>>   /*
+>> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>>    */
+>>   
+>>   /dts-v1/;
+>> @@ -33,6 +33,7 @@
+>>   
+>>   	aliases {
+>>   		serial0 = &uart5;
+>> +		serial1 = &uart7;
+>>   	};
+>>   
+>>   	chosen {
+>> @@ -217,6 +218,63 @@
+>>   		regulator-min-microvolt = <3700000>;
+>>   		regulator-max-microvolt = <3700000>;
+>>   	};
+>> +
+>> +	wcn6750-pmu {
+>> +		compatible = "qcom,wcn6750-pmu";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&bt_en>;
+>> +		vddaon-supply = <&vreg_s7b_0p972>;
+>> +		vddasd-supply = <&vreg_l11c_2p8>;
+>> +		vddpmu-supply = <&vreg_s7b_0p972>;
+>> +		vddrfa0p8-supply = <&vreg_s7b_0p972>;
+>> +		vddrfa1p2-supply = <&vreg_s8b_1p272>;
+>> +		vddrfa1p7-supply = <&vreg_s1b_1p872>;
+>> +		vddrfa2p2-supply = <&vreg_s1c_2p19>;
+>> +
+>> +		bt-enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
 > 
-> Patch 1~3 are the RK3588 eDP support of Rockchip analogix_dp driver.
-> Patch 4   is the eDP mode support of samsung hdptx phy driver.
-> Patch 5~6 are the Rk3588 eDP support of Aanalogix DP driver. Add phy
->           interfaces is to configure the HDMI/eDP TX Combo PHY.
-> Patch 7~8 are the renaming of hdptxphy node. It is not only used by
->           HDMI display but also for the eDP display.
-> Patch 9   is the addition of RK3588 eDP0 node.
-> Patch 10  is to enable the eDP0 display on RK3588S EVB1 board.
-
-Could you maybe also bring over functionality for real bridge-handling?
-That way we'd have support for things like the dp-connector bridge.
-
-In the 6.1 vendor-tree I've found commits
-94e598190128 ("drm/rockchip: analogix_dp: Add support for external bridge")
-437e0a901b14 ("drm/bridge: analogix_dp: Support split mode for bridge chain")
-
-needing a bit of cleanup of course, but that would get rid of the driver
-not handling the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag too.
-
-With a bit of streamlining, we could maybe even get rid of the panel-part
-completely, similar to how the dw-dsi controllers do it [0]
-
-
-Thanks
-Heiko
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c#n335
-devm_drm_of_get_bridge() combines drm_of_find_panel_or_bridge()
-with devm_drm_panel_bridge_add(), so indepent of it being either a
-panel or other bridge, the driver below only needs to handle bridges.
-
-> Damon Ding (10):
->   drm/rockchip: analogix_dp: Use formalized struct definition for grf
->     field
->   dt-bindings: display: rockchip: analogix-dp: Add support for RK3588
->   drm/rockchip: analogix_dp: Add support for RK3588
->   phy: phy-rockchip-samsung-hdptx: Add support for eDP mode
->   drm/bridge: analogix_dp: add support for RK3588
->   drm/bridge: analogix_dp: Add support for phy configuration.
->   dt-bindings: display: rockchip: Fix label name of hdptxphy for RK3588
->     HDMI TX Controller
->   arm64: dts: rockchip: Fix label name of hdptxphy for RK3588
->   arm64: dts: rockchip: Add eDP0 node for RK3588
->   arch64: dts: rockchip: Enable eDP0 display on RK3588S EVB1 board
-> 
->  .../rockchip/rockchip,analogix-dp.yaml        |   1 +
->  .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml  |   2 +-
->  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  33 +-
->  .../dts/rockchip/rk3588-coolpi-cm5-evb.dts    |   2 +-
->  .../rockchip/rk3588-coolpi-cm5-genbook.dts    |   2 +-
->  .../boot/dts/rockchip/rk3588-evb1-v10.dts     |   2 +-
->  .../rk3588-friendlyelec-cm3588-nas.dts        |   2 +-
->  .../arm64/boot/dts/rockchip/rk3588-jaguar.dts |   2 +-
->  .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   |   2 +-
->  .../dts/rockchip/rk3588-orangepi-5-plus.dts   |   2 +-
->  .../boot/dts/rockchip/rk3588-rock-5b.dts      |   2 +-
->  .../boot/dts/rockchip/rk3588-tiger-haikou.dts |   2 +-
->  .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   |   2 +-
->  .../boot/dts/rockchip/rk3588s-evb1-v10.dts    |  84 ++
->  .../dts/rockchip/rk3588s-indiedroid-nova.dts  |   2 +-
->  .../boot/dts/rockchip/rk3588s-nanopi-r6.dtsi  |   2 +-
->  .../boot/dts/rockchip/rk3588s-odroid-m2.dts   |   2 +-
->  .../boot/dts/rockchip/rk3588s-orangepi-5.dtsi |   2 +-
->  .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   2 +-
->  .../boot/dts/rockchip/rk3588s-rock-5c.dts     |   2 +-
->  .../drm/bridge/analogix/analogix_dp_core.c    |   8 +-
->  .../drm/bridge/analogix/analogix_dp_core.h    |   2 +
->  .../gpu/drm/bridge/analogix/analogix_dp_reg.c |  90 ++
->  .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 112 ++-
->  .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 936 +++++++++++++++++-
->  include/drm/bridge/analogix_dp.h              |   3 +-
->  26 files changed, 1206 insertions(+), 97 deletions(-)
-> 
+> Doesn't WCN6750 also have SW_CTRL and wifi-enable pins?
 > 
 
+For Bluetooth, these pins are not needed. We have verified Bluetooth 
+functionality, and it is working fine.
 
-
+Thanks,
+Janakiram
 
 
