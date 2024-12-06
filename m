@@ -1,236 +1,168 @@
-Return-Path: <devicetree+bounces-127843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 182F79E676C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 07:48:10 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5660161ABE
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 06:48:06 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF6671BC9F6;
-	Fri,  6 Dec 2024 06:48:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="B5Zxev06";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="FEjy8jmC"
-X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17B6D9E6776
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 07:52:29 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3EF828684;
-	Fri,  6 Dec 2024 06:48:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFC1E28594C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 06:52:27 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6782B194C90;
+	Fri,  6 Dec 2024 06:52:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UjdoRpnX"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9482428684;
+	Fri,  6 Dec 2024 06:52:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733467686; cv=none; b=j68wEPNpk0KHOwYfUVfc+4qxdwtIewRnkSyG9JoyXG1R86oKf6eSXrPCiTPUlWWs6jgInu9/b4QmLNoMQaHSx+MNqCh2HV9Pcw36YAytyCGdwS+kHGnZuu8vLWgigAKxQpQoCo9Wra4rcg7dJkpMQsMn0OT5pWEWV4m8+Qy3z7o=
+	t=1733467939; cv=none; b=es6iTiM5/DLm0+Lckl1UkqIlJghVo6ujCIuRn9YqNpzOVUyygsE126U6PmXSYgiUGWey7Rl7cW4AbeNopNXP6WEAWg4pqNRiLaxReyOQCCulsmUwMzLl5WsnuA4ZQxz8yWrlGS9xFnRF0LpTi7S3P3nW9k6W3vH4mgl9eZoSpUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733467686; c=relaxed/simple;
-	bh=wtvA+GP896fwLuxsmRFWegydoQF/WX2HXSAacRUIlnI=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=SHjlw0Hr4Zh/PLZg0mUir7YMt4FRfoc7qqXzqrzmQpuFlCDTqN7bsdY5bfXvMirafqVM1tfpjhu3o3zqTjQJN4MVETJCUtq3GkQNSuN2c4x/mPRXbK64rUOWByI3LFOLlOwvtSxTzXRO2Q3OS6TBvRDBY9DoPRLAKN7ggvcdylk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=B5Zxev06; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=FEjy8jmC; arc=none smtp.client-ip=202.12.124.147
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
-	by mailfout.stl.internal (Postfix) with ESMTP id 67060114016E;
-	Fri,  6 Dec 2024 01:48:02 -0500 (EST)
-Received: from phl-imap-11 ([10.202.2.101])
-  by phl-compute-10.internal (MEProxy); Fri, 06 Dec 2024 01:48:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1733467682;
-	 x=1733554082; bh=MXTnzO1XZ2VddqzjxnlaUzrpeuKoS+bHl85A8NmfDSY=; b=
-	B5Zxev0615rfInbbM8O/2wHlNzygAM3f4XoIYu8QItHfWEwDVhZOO9cCCMoR8VXh
-	w/uD+ZkO+fZQjtbCIdzVwtvg1JvS7Hs9F2+oQvB0BLLbwqjKbciGjIgIShCV/sYH
-	G7G67H3dwHCrr9DQfCPPnXuWS4fvoAkkyFe3G0LjoJPO7BgUDc2Jv0AHY7G8+vsP
-	g0a5AtBEArec58w4p3yhv+cF+ruAURKfB7LaSPZu/ZgMs2C/ApFZB1WmOXhg1woD
-	lXGw7WVUqiVIRnTzU7DjA6QCvdMLXmvJsP+4FA40snC3QP7GM9JIdsvWvORkAdVs
-	tnmLyeWdkCPfrgzpMWbKvQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1733467682; x=
-	1733554082; bh=MXTnzO1XZ2VddqzjxnlaUzrpeuKoS+bHl85A8NmfDSY=; b=F
-	Ejy8jmCDiD6FwMT5K7rHQJ8R8P3166Jsms31AxIquKxq/20/XPbwpTrMeHfFFVzh
-	/ia/xHJVgWghbnXHMDT1kul1CCEhlPcv6CP7t2aEryjDja0UO1qO25R3keh+Y8xV
-	MmEC88UDJ7WG4TlVHU1vlXM28j1BdBJlDU8s4gY4CLpObRplTJKvuLKzDjLOLveM
-	0QKvsFiyIoGvyZm5TrVGiB+zWFST4u5dPfq+GydncyeX/KYgxJEq2TK6mjpzp0CS
-	hYMyUD4d7hJM7zWgcXSQzZ9aRLu0bVqhtC3mqd4klfjY9JOnMJXr6H5pa9tWtJ2U
-	Q7qw4/Ev0sWNe6HLnjfZg==
-X-ME-Sender: <xms:IZ5SZzCGJx7AAEz16aZ4CNjS5ecbseDHkIOirhww-rmVmznXIHokVA>
-    <xme:IZ5SZ5hemfXp8tdYm-Hjs-1Huj9ZGRcrCBUtSUlaWahdaO3hDh0ogh4wYM3zfcdHC
-    ge9-O6w8l6SzR8dFjY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrieekgdelkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdpuffr
-    tefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnth
-    hsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredttden
-    ucfhrhhomhepfdetrhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdrug
-    gvqeenucggtffrrghtthgvrhhnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffg
-    vedugeduveelvdekhfdvieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
-    grihhlfhhrohhmpegrrhhnugesrghrnhgusgdruggvpdhnsggprhgtphhtthhopedukedp
-    mhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepkhgvrhhnvghlqdhtvggrmhesrghnug
-    hrohhiugdrtghomhdprhgtphhtthhopeifihhllhhmtghvihgtkhgvrhesghhoohhglhgv
-    rdgtohhmpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtph
-    htthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshhes
-    khgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughrvgdrughrrghsiihikheslhhinh
-    grrhhordhorhhgpdhrtghpthhtohepuggrnhhivghlrdhlvgiitggrnhhosehlihhnrghr
-    ohdrohhrghdprhgtphhtthhopehpvghtvghrrdhgrhhifhhfihhnsehlihhnrghrohdroh
-    hrghdprhgtphhtthhopehtuhguohhrrdgrmhgsrghruhhssehlihhnrghrohdrohhrgh
-X-ME-Proxy: <xmx:IZ5SZ-kuyljmTwbW46smaKAIlhw1f8J9dTGwct-_fRW_2bgzKRp1dQ>
-    <xmx:IZ5SZ1y76gU_3p-q-FQLa0Vs3szN9McrP7Wo8TzzdpCONgY5frXYRA>
-    <xmx:IZ5SZ4QyWia5MJfYpAe-gKQWR1fl0muHRIl-hYCZH8-dfcB9t45u5g>
-    <xmx:IZ5SZ4a2YOhUyvflEDFMZTrMWF8ghVxwda_xcralOHPCll624rEy1A>
-    <xmx:Ip5SZ6FrmFlB7gs9EvcXlJmWImgkyaz8WymObdXCZUjoGaFwgXVeddxu>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 2DBFB2220072; Fri,  6 Dec 2024 01:48:01 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1733467939; c=relaxed/simple;
+	bh=pPDg0x/mGLw0KjhNSZjr45w5t3pXSD5Pfdd69atmvNM=;
+	h=From:To:Subject:Date:Message-Id; b=OeEVpUvyDTbu6GIhgXB/DaodFMLv88PXntqwNsJBw9ZDf7EvSlfg1u5bCb7YCEne0J4SyEyO+F+sMs82+OOnm9WX00mbPExnLL2QzVF+GcTE5WiGCQpOw3cEeHkmDoASGFNlhE/x+utQFYeUNAzaR3to5m6kf6FgV/yRr2i3hfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UjdoRpnX; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5HaL87006904;
+	Fri, 6 Dec 2024 06:52:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:message-id:subject:to; s=qcppdkim1; bh=D2RWn+8XZ4y909E
+	FN5ViiUolCq7qp1God4SlYK/xQ1I=; b=UjdoRpnXOPEp3eQi9W78lWGeho0m1Df
+	NCgoYbAmYQ+lgN6OgOMHxVotI+3IRPFRycgDpC8vpDLESGH2DhEjVh7wUwugtQ5G
+	MhYPFGhYm/wFAIJ1Id9ia92M4YSrlUcKAXQo1zQtYCQ8/uYXZuUobFzMcEOjCNgl
+	RIesmh+L4qfWe3rOhUG0Ed3sYLoGYAP6qA8hOJq3n8R9cjDdNlVJTlxfGZHEh425
+	KwW/Lh4DEvhM/2mMLZ/33701Z46Kh2rtezjzuUyurVjWXFZ9kBu1zteA00y5qmEH
+	ytDasZrW/2tcS4Hbtejo2LA57od2LlYT6Awgk1d88tcXnEmka2iOG5A==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43ben8a43t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Dec 2024 06:52:02 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4B66pxFL004136;
+	Fri, 6 Dec 2024 06:51:59 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 437usm8byh-1;
+	Fri, 06 Dec 2024 06:51:59 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4B66pxNA004130;
+	Fri, 6 Dec 2024 06:51:59 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-chandna-hyd.qualcomm.com [10.147.242.90])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 4B66px12004129;
+	Fri, 06 Dec 2024 06:51:59 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2303763)
+	id 6363E500F44; Fri,  6 Dec 2024 12:21:58 +0530 (+0530)
+From: Sahil Chandna <quic_chandna@quicinc.com>
+To: kernel@quicinc.com, andersson@kernel.org, konradybcio@kernel.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_nkumarsi@quicinc.com, quic_akdwived@quicinc.com,
+        quic_kkotecha@quicinc.com, quic_chandna@quicinc.com
+Subject: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2-industrial-mezzanine: Add industrial mezzanine
+Date: Fri,  6 Dec 2024 12:21:56 +0530
+Message-Id: <20241206065156.2573-1-quic_chandna@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: cgkWU0IZdBITAI6amq1kEExpT_1Usf2r
+X-Proofpoint-GUID: cgkWU0IZdBITAI6amq1kEExpT_1Usf2r
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ priorityscore=1501 impostorscore=0 mlxlogscore=999 clxscore=1011
+ malwarescore=0 suspectscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412060047
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Date: Fri, 06 Dec 2024 07:47:40 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Tudor Ambarus" <tudor.ambarus@linaro.org>,
- "Rob Herring" <robh@kernel.org>, krzk+dt@kernel.org,
- "Conor Dooley" <conor+dt@kernel.org>, "Alim Akhtar" <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- kernel-team@android.com, "William McVicker" <willmcvicker@google.com>,
- "Peter Griffin" <peter.griffin@linaro.org>,
- "Javier Martinez Canillas" <javierm@redhat.com>,
- "Thomas Zimmermann" <tzimmermann@suse.de>,
- "Daniel Lezcano" <daniel.lezcano@linaro.org>,
- "Vincent Guittot" <vincent.guittot@linaro.org>,
- "Ulf Hansson" <ulf.hansson@linaro.org>
-Message-Id: <427caa87-b9ba-4797-88bd-a18a96eefdcf@app.fastmail.com>
-In-Reply-To: <20241205175345.201595-3-tudor.ambarus@linaro.org>
-References: <20241205175345.201595-1-tudor.ambarus@linaro.org>
- <20241205175345.201595-3-tudor.ambarus@linaro.org>
-Subject: Re: [PATCH v3 2/3] firmware: add exynos ACPM protocol driver
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 5, 2024, at 18:53, Tudor Ambarus wrote:
+The industrial mezzanine kit enhances the capabilities of QCS6490
+rb3gen2 core kit. Add support for industrial mezzanine board.
 
-> +#define exynos_acpm_set_bulk(data, i)					\
-> +	(((data) & ACPM_BULK_MASK) << (ACPM_BULK_SHIFT * (i)))
-> +#define exynos_acpm_read_bulk(data, i)					\
-> +	(((data) >> (ACPM_BULK_SHIFT * (i))) & ACPM_BULK_MASK)
+Signed-off-by: Sahil Chandna <quic_chandna@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/Makefile             |  3 ++
+ .../qcs6490-rb3gen2-industrial-mezzanine.dtso | 44 +++++++++++++++++++
+ 2 files changed, 47 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
 
-Could these be inline functions for readability?
-
-> +	cmd[3] = (u32)(sched_clock() / 1000000); /*record ktime ms*/
-
-The comment does not match the implementation, sched_clock()
-is probably not what you want here because of its limitiations.
-
-Maybe ktime_to_ms(ktime_get())?
-
-> +/**
-> + * acpm_get_rx() - get response from RX queue.
-> + * @achan:	ACPM channel info.
-> + * @xfer:	reference to the transfer to get response for.
-> + *
-> + * Return: 0 on success, -errno otherwise.
-> + */
-> +static int acpm_get_rx(struct acpm_chan *achan, struct acpm_xfer *xfer)
-> +{
-> +	struct acpm_msg *tx = &xfer->tx;
-> +	struct acpm_msg *rx = &xfer->rx;
-> +	struct acpm_rx_data *rx_data;
-> +	const void __iomem *base, *addr;
-> +	u32 rx_front, rx_seqnum, tx_seqnum, seqnum;
-> +	u32 i, val, mlen;
-> +	bool rx_set = false;
-> +
-> +	rx_front = readl_relaxed(achan->rx.front);
-> +	i = readl_relaxed(achan->rx.rear);
-
-If you have to use readl_relaxed(), please annotate why,
-otherwise just use the normal readl().  Is this access to
-the SRAM?
-
-> +	spin_lock_irqsave(&achan->tx_lock, flags);
-> +
-> +	tx_front = readl_relaxed(achan->tx.front);
-> +	idx = (tx_front + 1) % achan->qlen;
-> +
-> +	ret = acpm_wait_for_queue_slots(achan, idx);
-> +	if (ret) {
-> +		spin_unlock_irqrestore(&achan->tx_lock, flags);
-> +		return ret;
-> +	}
-
-It looks like you are calling a busy loop function inside
-of a hardirq handler here, with a 500ms timeout. This is
-not ok.
-
-If you may need to wait for a long timeout, I would suggest
-changing the interface so that this function is not allowed
-to be called from irq-disabled context, change the spinlock
-to a mutex and polling read to a sleeping version.
-
-> +	/* Advance TX front. */
-> +	writel_relaxed(idx, achan->tx.front);
-> +
-> +	/* Flush SRAM posted writes. */
-> +	readl_relaxed(achan->tx.front);
-> +
-> +	spin_unlock_irqrestore(&achan->tx_lock, flags);
-
-I don't think this sequence guarantees the serialization
-you want. By making the access _relaxed() you explicitly
-say you don't want serialization, so the store does
-not have to complete before the unlock.
-
-> +static const struct of_device_id acpm_match[] = {
-> +	{ .compatible = "google,gs101-acpm-ipc" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, acpm_match);
-> +
-> +static struct platform_driver acpm_driver = {
-> +	.probe	= acpm_probe,
-> +	.driver	= {
-> +		.name = "exynos-acpm-protocol",
-> +		.of_match_table	= of_match_ptr(acpm_match),
-
-Remove the stray of_match_ptr() here.
-
-> diff --git a/drivers/firmware/samsung/exynos-acpm.h 
-> b/drivers/firmware/samsung/exynos-acpm.h
-> new file mode 100644
-> index 000000000000..a03adcd260f5
-> --- /dev/null
-> +++ b/drivers/firmware/samsung/exynos-acpm.h
-> @@ -0,0 +1,15 @@
-> +#ifndef __EXYNOS_ACPM_H__
-> +#define __EXYNOS_ACPM_H__
-> +
-> +struct acpm_handle;
-> +struct acpm_xfer;
-> +
-> +int acpm_do_xfer(const struct acpm_handle *handle, struct acpm_xfer 
-> *xfer);
-> +
-> +#endif /* __EXYNOS_ACPM_H__ */
-> diff --git a/include/linux/soc/samsung/exynos-acpm-protocol.h 
-> b/include/linux/soc/samsung/exynos-acpm-protocol.h
-> new file mode 100644
-> index 000000000000..762783af7617
-> --- /dev/null
-> +++ b/include/linux/soc/samsung/exynos-acpm-protocol.h
-
-Why is this in include/linux/soc, and not in the firmware
-header?
-
-      Arnd
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 6ca8db4b8afe..6fe5a5ccd950 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -111,6 +111,9 @@ dtb-$(CONFIG_ARCH_QCOM)     += qcm6490-shift-otter.dtb
+ dtb-$(CONFIG_ARCH_QCOM)        += qcs404-evb-1000.dtb
+ dtb-$(CONFIG_ARCH_QCOM)        += qcs404-evb-4000.dtb
+ dtb-$(CONFIG_ARCH_QCOM)        += qcs6490-rb3gen2.dtb
++
++qcs6490-rb3gen2-industrial-mezzanine-dtbs := qcs6490-rb3gen2.dtb qcs6490-rb3gen2-industrial-mezzanine.dtbo
++
+ dtb-$(CONFIG_ARCH_QCOM)        += qcs8550-aim300-aiot.dtb
+ dtb-$(CONFIG_ARCH_QCOM)        += qcs9100-ride.dtb
+ dtb-$(CONFIG_ARCH_QCOM)        += qcs9100-ride-r3.dtb
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+new file mode 100644
+index 000000000000..74f2f782d166
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+@@ -0,0 +1,44 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
++ */
++/*
++
++/dts-v1/;
++/plugin/;
++
++#include "pm7250b.dtsi"
++#include "sc7280.dtsi"
++
++&pm7250b_gpios {
++        gpio5_tpm_dig_out {
++                gpio5_dig_out_default: gpio5_dig_out_default {
++                        pins = "gpio5";
++                        function = "normal";
++                        power-source = <1>;
++                        output-high;
++                        input-disable;
++                        bias-pull-up;
++                        qcom,drive-strength = <3>;
++                };
++        };
++};
++
++&qupv3_id_1 {
++        status = "okay";
++};
++
++&spi11 {
++        status = "okay";
++
++        st33htpm0: st33htpm@0 {
++                compatible = "st,st33htpm-spi";
++                reg = <0>;
++                spi-max-frequency = <20000000>;
++                #address-cells = <1>;
++                #size-cells = <0>;
++                pinctrl-names = "default";
++                pinctrl-0 = <&gpio5_dig_out_default>;
++                status="okay";
++        };
++};
+--
+2.17.1
 
