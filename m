@@ -1,60 +1,56 @@
-Return-Path: <devicetree+bounces-128085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B01E69E769A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 18:02:58 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59E6E9E76A2
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 18:05:10 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AD272817C5
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:02:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43608164FC4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:05:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6384114B084;
-	Fri,  6 Dec 2024 17:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 687461991DD;
+	Fri,  6 Dec 2024 17:05:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s95Pvg4h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="njoO97az"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33E0A20628B;
-	Fri,  6 Dec 2024 17:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FA431527AC;
+	Fri,  6 Dec 2024 17:05:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733504574; cv=none; b=EmRLG5VhvgeUBQlANG4XPV1MMqDKBkRGbY8jn+Lhr5R9DenVZjo+09HMIihwErmPbJ/WBfxHhU3T9tUzmcqQW3XyABBBTR22NQ7piwk3KrubAG940ghnfy5CUwHfNFapQB6Kj6bZcaq3IPzzpgg7r1Yk0+pDYQr3u7ikzGINmCc=
+	t=1733504707; cv=none; b=R5XLljbzCm9Z8N7ZAxrtk2eobHXC4a06kguE39LaSC7brLSjH5TBFLxgYSlt2wt9UHtCdZNXqtkjuiIwq7jejl0lKA1SovaOwZ/ukvq9THcu761egjJ89v/zk4Dr+tmjnnG8ijDy/YIVo/L+sIDXIoq+ZAMbNrb+EOxEnFEqcJw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733504574; c=relaxed/simple;
-	bh=49stkS5Jr0gbDKUcViWSMu1jZ0Ttci8yCgTnQYqEciE=;
+	s=arc-20240116; t=1733504707; c=relaxed/simple;
+	bh=pbxJUWJTY5TChbpv/rOEyLYJArC43EGSJ74ar6wX124=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FvvkXfVK1Bp451Ib4hBab9tqtKMNLddrMr9qkvzSOLMdBtJMZ4+gtkzmpXbmHKPBWwfSq/1/JfcLTOWTeWxGO0G4EYkKJC5pOTkCkYZL5JJDf5QjqRNw7Kqgm0JkEo1YkgxK2OHjIsKyVykIobb8kGDjTjw29VQU0zad+IQccZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s95Pvg4h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 583CFC4CED1;
-	Fri,  6 Dec 2024 17:02:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sF4oGOWmrEsLVKNJfOWIG1wTqYzykuBf9WYAe4ppgwWbDT+BGaUd6hI9omPGqg72i+jk1nUQ7gMY6B9eS4/K3d+vPM6dQxFBMSxZxsTJArwW848PGGSmPjUoL0I3eKPAOASfvmZtY18S2YqNrXB5f6gUpiXScdDlvk/Kzb9mAyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=njoO97az; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6F83C4CED1;
+	Fri,  6 Dec 2024 17:05:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733504573;
-	bh=49stkS5Jr0gbDKUcViWSMu1jZ0Ttci8yCgTnQYqEciE=;
+	s=k20201202; t=1733504706;
+	bh=pbxJUWJTY5TChbpv/rOEyLYJArC43EGSJ74ar6wX124=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s95Pvg4hT1qOEsnoGUyCjcqlT8rFHJIecyBajPwtIJlikGvE804slOA25zRrwqQb0
-	 tXt/X2XMt7XZ0YyBh96/pm95OBro70p9Cfee6m6LJivURqrimVPxtAvBgxdQXado9Z
-	 6zZ42DBbu02ElICCwhfXUmmdipv/2TVTB2I79Nyr8Gzf7OKs+0INQywoi4jItZMw//
-	 K/jov+IKTkQ7iPRQOOh7foyMJnRfOfR6H7J7kK9wP3zTjJm5RfY7LxrqCTK9/4Z50k
-	 4G8I+vfuhjHp2Q3eHO8SGlv2eX0gNVubg9BY/hFCCzjVXpwiDPQDdFuR+p36VGdRR/
-	 NSvZVwSc+0zCA==
-Date: Fri, 6 Dec 2024 17:02:49 +0000
+	b=njoO97azQzfrxhKDbMbM1MoCM22qO+jl6/gMYabgA/pyEt60n18vcTV2Lu5XfrzRp
+	 //AW8MPK2fNgSgHgy7so4yrlY5fXd8AxTMmfEI9Sew0LNgiEGECRLnCQyMNR5hoALa
+	 kUmzp4WORoBEhpaFnvn31AUrjwukejUsvm8Yv4lxlzCvLyWZWp8u3FNFFhlDddjfhD
+	 xwG3d6dv7xZaTrWlAgmE6CXWVTPjt+pvBgUDgV2hf6Wg1eyTiZ8M+yMYrpr6gDkPvN
+	 720gvfZCjYbTrLC4nkfgdukvNLXbQ83qJhPHFGnG1SIW7Ue8JFtnvF1msnYPWP9AXq
+	 s4Rb9GUhGid4w==
+Date: Fri, 6 Dec 2024 17:05:03 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Dharma.B@microchip.com
-Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
-	Aubin.Constans@microchip.com, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mmc: atmel,hsmci: Convert to json schema
-Message-ID: <20241206-untoasted-ripening-83ecf98bc42f@spud>
-References: <20241205-hsmci-v1-1-5a25e622dfed@microchip.com>
- <20241205-trickster-rebate-d5e64bc29992@spud>
- <4e3a4154-9e05-40b4-961f-6d7e95ec0890@microchip.com>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath12k@lists.infradead.org, linux-wireless@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/8] dt-bindings: net: wireless: Describe ath12k PCI
+ module with WSI
+Message-ID: <20241206-sugar-surely-9efffa93aa5c@spud>
+References: <20241205203044.589499-1-kvalo@kernel.org>
+ <20241205203044.589499-2-kvalo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,91 +58,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ScKT+5iAjDgPbCZa"
+	protocol="application/pgp-signature"; boundary="rdo5ZU0gHnMChw1D"
 Content-Disposition: inline
-In-Reply-To: <4e3a4154-9e05-40b4-961f-6d7e95ec0890@microchip.com>
+In-Reply-To: <20241205203044.589499-2-kvalo@kernel.org>
 
 
---ScKT+5iAjDgPbCZa
+--rdo5ZU0gHnMChw1D
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 06, 2024 at 05:16:39AM +0000, Dharma.B@microchip.com wrote:
-> Hi Conor,
->=20
-> On 05/12/24 11:15 pm, Conor Dooley wrote:
-> > On Thu, Dec 05, 2024 at 03:27:02PM +0530, Dharma Balasubiramani wrote:
-> >=20
-> >> +patternProperties:
-> >> +  "^slot@[0-9]+$":
-> >> +    type: object
-> >> +    description: A slot node representing an MMC, SD, or SDIO slot.
-> >> +
-> >> +    allOf:
-> >> +      - $ref: mmc-controller.yaml
-> >> +
-> >> +    properties:
-> >> +      reg:
-> >> +        description: Slot ID.
-> >> +        minimum: 0
-> >> +
-> >> +      bus-width:
-> >> +        description: Number of data lines connected to the controller.
-> >> +        enum: [1, 4, 8]
-> >> +
-> >> +      cd-gpios:
-> >> +        description: GPIO used for card detection.
-> >> +
-> >> +      cd-inverted:
-> >> +        type: boolean
-> > This type conflicts with mmc-controller.yaml, it's a flag there.
->=20
-> Yes, I overlooked it. I'll simply remove the type here.
->=20
-> >=20
-> >> +        description: Inverts the value of the card detection GPIO.
-> >> +
-> >> +      wp-gpios:
-> >> +        description: GPIO used for write protection.
-> >> +
-> >> +    required:
-> >> +      - reg
-> >> +      - bus-width
-> >> +
-> >> +    unevaluatedProperties: false
-> > Do you mean additionalProperties: false here? You listed properties
-> > contained in mmc-controller.yaml which makes it seem like you're
-> > restricting to this subset rather than allowing all properties - but you
-> > need additionalProperties: false to do that.
->=20
-> No, I'm not restricting the properties to this subset. There are=20
-> additional properties, such as "non-removable," "broken-cd," and=20
-> "disable-wp," that are used in our DTS files but are not defined in the=
-=20
-> old text bindings. For this reason, I used `unevaluatedProperties:=20
-> false` instead of `additionalProperties: false`.
+On Thu, Dec 05, 2024 at 10:30:37PM +0200, Kalle Valo wrote:
+> +  qcom,wsi-controller:
+> +    type: boolean
+> +    description:
+> +      The WSI controller device in the WSI group aids (is capable) to
+> +      synchronize the Timing Synchronization Function (TSF) clock across
+> +      all devices in the WSI group.
 
-> Let me know if an=20
-> `allOf` reference to `mmc-controller` alone would be sufficient in this=
-=20
-> context.
+This should be type: flag btw.
 
-Yes, there's no point duplicating properties from there, unless you're
-restricting to a subset. I think all you need to keep (other than the
-reference) is the required properties list because there seems to be
-none in mmc-controller.yaml.
-
---ScKT+5iAjDgPbCZa
+--rdo5ZU0gHnMChw1D
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1MuOQAKCRB4tDGHoIJi
-0puPAQDGnZ7QeA/JWBnu9hKRBgcjCLFYUU/RfTgFGpqBBbr0rwEAlDSML8gQFQC2
-16Y1lIsu3uODoMdJwSPiOmNE7oFsdAY=
-=XVJL
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1MuvwAKCRB4tDGHoIJi
+0tfyAQCB/Ej4u6h44VI4yxBcx++if1Ey/ODl4wlzozM57MTJWAD+MoBttC+tWASw
+y3QxDHh59f6noENg6hoj5hUX6dVQLQ8=
+=r5SO
 -----END PGP SIGNATURE-----
 
---ScKT+5iAjDgPbCZa--
+--rdo5ZU0gHnMChw1D--
 
