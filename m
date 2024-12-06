@@ -1,105 +1,93 @@
-Return-Path: <devicetree+bounces-127936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C05BA9E6C23
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 11:28:10 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9669E6C2E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 11:29:43 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38750288DA7
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 10:28:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5C0018861F1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 10:28:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC371FCCF3;
-	Fri,  6 Dec 2024 10:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0DFF20010C;
+	Fri,  6 Dec 2024 10:23:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E181FCD0C;
-	Fri,  6 Dec 2024 10:21:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C22651FF7D3;
+	Fri,  6 Dec 2024 10:23:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733480512; cv=none; b=Ri/QSHeXyUJ0xT5ldGMMAIbhUJmHipmScic/p7twPXgdOfNhCS2n3Q5gT36UCUb36xOQPr6DA6b1lG4PzubgxrNuf3hMSzTSm+XuSidT9yVefMF3DLwN08ijvwLwXQNQQw+vgxsZ3rNwekPXaLnKq5djMviqr8KVJCjDE/EBA7M=
+	t=1733480628; cv=none; b=CRXXYsFTEcKCRLh+revDO9SBtVU1gmCk2Dwo1wiViwcKaU1Ir38yc0WRJ3Lyy1+zSFgXF2HBRhO7vqOGzPMiFm94I31962/bzJRMvzDvEol5epEUEiWHnyTtl2OeZe/4PtpUqCr/r/Ry44MEB/htiq8H2ZcgC6fYcAVk7kAii2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733480512; c=relaxed/simple;
-	bh=/tvoac1uzl+98G3NksI81iFC7WAEOniAKip37C5bSfw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bV7Z3/IJs64IS+VTjJEvm1OzQMWY90VqGUJnaA14aZOGT5XXNBjo7MJzVLzlfF7ukX/rONFsocxpPybByyMYLqtS9Mgl7pw28NXJlHB0HX9oYZhn/sPgG263n2HkKqMTrJHf2vp5hsHEpiZeHcNMLaYU8zyRt8wK8XaSixa2GzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3EF5912FC;
-	Fri,  6 Dec 2024 02:22:18 -0800 (PST)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9FF733F71E;
-	Fri,  6 Dec 2024 02:21:48 -0800 (PST)
-Date: Fri, 6 Dec 2024 10:21:46 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH 1/3] dt-bindings: arm,psci: Allow S2RAM power_state
- parameter description
-Message-ID: <Z1LQOmEfFy640PjG@bogus>
-References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
- <20241028-topic-cpu_suspend_s2ram-v1-1-9fdd9a04b75c@oss.qualcomm.com>
+	s=arc-20240116; t=1733480628; c=relaxed/simple;
+	bh=u7pU998kFu/anjEgJWFiWqXFbryDTzsDZcgSYSEZpDo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HofdV6Oj16nm+IH3PksqsgmyE1z+/jNf2BH4yAxVuQnxflpShnPhZvxDCl7Tprd36Uej7MpOT03A8B2kBq6/cmTbKHE0T4TNg8K/wnA9EfvsmfhyUab6SN722wowPE7caZI4xSBY+9Sn8Pd1QA8UkpJD9frctwsFJFsxFsMwXKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: PTyBnPrXSRCuoMd337L2Dg==
+X-CSE-MsgGUID: hIqmOJyYRlOeuX1Hp55NGg==
+X-IronPort-AV: E=Sophos;i="6.12,213,1728918000"; 
+   d="scan'208";a="227116241"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 06 Dec 2024 19:23:44 +0900
+Received: from localhost.localdomain (unknown [10.226.92.67])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0A8724011F78;
+	Fri,  6 Dec 2024 19:23:29 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v2 0/4] Add RZ/G3E pinctrl support
+Date: Fri,  6 Dec 2024 10:23:05 +0000
+Message-ID: <20241206102327.8737-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241028-topic-cpu_suspend_s2ram-v1-1-9fdd9a04b75c@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Oct 28, 2024 at 03:22:57PM +0100, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> Certain firmware implementations (such as the ones found on Qualcomm
-> SoCs between roughly 2015 and 2023) expose an S3-like S2RAM state
-> through the CPU_SUSPEND call, as opposed to exposing PSCIv1.0's
-> optional PSCI_SYSTEM_SUSPEND.
->
+Add pin controller support for the Renesas RZ/G3E(R9A09G047) SoC. The
+RZ/G3E PFC is similar to the RZ/V2H SoC but has more pins(P00-PS3).
+The port number is alpha-numeric compared to the number on
+the other SoCs.
 
-If so, can you elaborate why s2idle doesn't work as an alternative to what
-you are hacking up here.
+This patch series depend upon [1]
+[1]
+https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=914097
 
-> This really doesn't work well with the model where we associate all
-> calls to CPU_SUSPEND with cpuidle. Allow specifying a single special
-> CPU_SUSPEND suspend parameter value that is to be treated just like
-> SYSTEM_SUSPEND from the OS's point of view.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->  Documentation/devicetree/bindings/arm/psci.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
-> index cbb012e217ab80c1ca88e611e7acc06c6d56fad0..a6901878697c8e1ec1cbfed62298ae3bc58f2501 100644
-> --- a/Documentation/devicetree/bindings/arm/psci.yaml
-> +++ b/Documentation/devicetree/bindings/arm/psci.yaml
-> @@ -98,6 +98,12 @@ properties:
->        [1] Kernel documentation - ARM idle states bindings
->          Documentation/devicetree/bindings/cpu/idle-states.yaml
->  
-> +  arm,psci-s2ram-param:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      power_state parameter denoting the S2RAM/S3-like system suspend state
+v1->v2:
+ * Updated typo of the patch header RZ/G2L->RZ/G3E
+ * Fixed the binding warnings reported by bot.
 
-Yet another NACK as this corresponds to PSCI SYSTEM_SUSPEND and as per
-specification it takes no such parameter. This is just misleading.
+Biju Das (4):
+  dt-bindings: pinctrl: renesas: Document RZ/G3E SoC
+  pinctrl: renesas: rzg2l: Add support for RZ/G3E SoC
+  arm64: dts: renesas: r9a09g047: Add pincontrol node
+  arm64: dts: renesas: r9a09g047: Add scif pincontrol
+
+ .../pinctrl/renesas,rzg2l-pinctrl.yaml        |   7 +-
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |  13 ++
+ .../boot/dts/renesas/r9a09g047e57-smarc.dts   |  13 ++
+ drivers/pinctrl/renesas/Kconfig               |   1 +
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 158 ++++++++++++++++++
+ include/dt-bindings/pinctrl/rzg2l-pinctrl.h   |  25 +++
+ 6 files changed, 215 insertions(+), 2 deletions(-)
 
 -- 
-Regards,
-Sudeep
+2.43.0
+
 
