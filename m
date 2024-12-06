@@ -1,211 +1,309 @@
-Return-Path: <devicetree+bounces-128175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27EEE9E7B07
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 22:30:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA2489E7B18
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 22:37:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8547166429
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 21:28:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AD281886492
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 21:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97F2F22C6E7;
-	Fri,  6 Dec 2024 21:28:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBA3D1D6DBC;
+	Fri,  6 Dec 2024 21:37:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="H79WklEs"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="oNhsjEBC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2052.outbound.protection.outlook.com [40.107.21.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B04922C6D3;
-	Fri,  6 Dec 2024 21:28:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733520534; cv=fail; b=coBk2D/b6yMncsr/lyHdIdTo945J1mgjGfoKdnqouf1loxwhdnfk2SgunLIxcnDlnWBNwC/ekGxK0f7GEga4mXy2olN12NUzlj4HVB70J/UfJ7RZCr6vxPruRIZ3kLBS0oWBpGTuRnj9cU5oD4V7J4RD4E7D5w+zJ1YQuYC9SiE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733520534; c=relaxed/simple;
-	bh=fydG+Da3Oa6ddOEtfMXHqtGeLXtf0dGHEKfVC5HxN/E=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=QVF8KJgQubTTyVfrKmmk5CPLNQCwl5AQXFvXtWj6Q3byEnoBU+yCcs77vGV/A+oltd0JYK38J5gifD8vB9E6HVySei1N6H+5qKi0p7EnYaeK5v46w8vZseSskX4SWvQ6BT8KQBMgXIsXhhE/jaBvWL67VnFpzBmfaS6VQPZbW2k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=H79WklEs; arc=fail smtp.client-ip=40.107.21.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=R55dCIZTDS13KIyeqBDEboDk3cxE+ZqSSlG32VlkYNrgYdOQWahrxYuIde4XUOyC6xjX/jNM9Hpkeic7SKcBOEm3fkuvw6cyD0Yoo6riBGZYeaAsIgYL/Vl9mGmP+Zy6XpPfTSLY/Qo7e2+KxG64Jd2cFAjX9Tb53Zixz45Tdf2SqYKovPrPtlVNR+Qz+luJv+SjHDnB0APmH9Vx++i+NvCiO/h/VPqUOmvSAl0S6dy+IcExD23tbFy9Mi1Eu0Y0gD8Zdn/Qb5aIdZXVntTNL38q5N0SO51ecaVG0hHlgcsy4SUBQTyRwOJVqzrYNINyvb6lcgvngt4cLkaKvyRHLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fydG+Da3Oa6ddOEtfMXHqtGeLXtf0dGHEKfVC5HxN/E=;
- b=b1Q1E19KBGy3Vujh04XxnqJm3wwOkSWYAdTJA7/nqa0XvOfRKHKPQCfZwcg875fjPpaPQm1XSy0VckyxKkCTdXHin9STe3Ixz9KfE5zD8PoNFKgllWJioVMY+IJ9VkclzlSxaEIccR6wMx29NXc6OTxv0T0vGlyi2PcNLa3hZcu3g/KNpPdBYmTq2iVVIRjNPZhXf5C3akRGvP4ywtcegzgyeGtwdo+iMl8JozeQjA9av0KQ7O8xc5i2BmGQQTEAMk3SEvwpqbX86WysTM7N/GXLLq+SmtRO2wVP4DpnbU4QIMsbQMIqqlzVfpVUIpdNOgsZKPBB0r/oLHphkgcw1Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fydG+Da3Oa6ddOEtfMXHqtGeLXtf0dGHEKfVC5HxN/E=;
- b=H79WklEs1/9cDTwof1I0wL6v04jN0FJwl2lw3TB/Wx798cktAZfFsppsu1eFXcUQiS3FJIsu7w6ZIEc+eesAbG2bjWy7O+YAK03LH3xylg9Gw2M9EuZQ6dDM1EEVdxgNsrky7Lr1IAG0V0GHe90FtEBkr9Oxpkj9tOf7nwnqru8az7KXab0mg9QCOyB8bTvlJMkLs7V7qPB7SE8jhRFx/a06xfZz0tIOIX3C4OzUvClN3cXI1SGu8rSUXFjPSKPX1JvpKx639MwU0mw7qNdo/+D5uvT5P8ugQbCnl3TEqxHbtTHQxczWtaijdQrTaqhTzLnMWS5t6nzEdz+qUfsRAA==
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
- by AS4PR10MB5394.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:4bc::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.9; Fri, 6 Dec
- 2024 21:28:49 +0000
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::baa6:3ada:fbe6:98f4]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::baa6:3ada:fbe6:98f4%6]) with mapi id 15.20.8251.008; Fri, 6 Dec 2024
- 21:28:49 +0000
-From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
-To: "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "dmurphy@ti.com"
-	<dmurphy@ti.com>
-CC: "jingoohan1@gmail.com" <jingoohan1@gmail.com>, "afd@ti.com" <afd@ti.com>,
-	"lee@kernel.org" <lee@kernel.org>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "pavel@ucw.cz" <pavel@ucw.cz>,
-	"danielt@kernel.org" <danielt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>
-Subject: Re: [PATCH v2 0/2] leds: TI LP8864/LP8866 support
-Thread-Topic: [PATCH v2 0/2] leds: TI LP8864/LP8866 support
-Thread-Index: AQHbSCVrrUWv5n8pBE6ssEBfeyTSkrLZu2EA
-Date: Fri, 6 Dec 2024 21:28:49 +0000
-Message-ID: <b92f308ee20b8046b73aae2ef029f8dc238f3827.camel@siemens.com>
-References: <20241206212421.1132578-1-alexander.sverdlin@siemens.com>
-In-Reply-To: <20241206212421.1132578-1-alexander.sverdlin@siemens.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|AS4PR10MB5394:EE_
-x-ms-office365-filtering-correlation-id: 8297b835-5af3-474e-fa42-08dd163cf96e
-x-ms-exchange-atpmessageproperties: SA
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?Z3FxNlJsRUJwVXdhNDlnN21aOUpwT0hhYloxVHc5ekxMTWZlNDlESm0wYjYr?=
- =?utf-8?B?NXZOQjlsQlRSMEMrWDdYUW1vTGpLN3dacFBUQkJxajEvblVzSEp3cWFRa1Qy?=
- =?utf-8?B?bUdDemVyQkJyL2R4MTJsemNvN3YyWHUwOTJzeTBYWHJreEZLT3Zmc3hNUzZ2?=
- =?utf-8?B?MXphdGlXOEJhVlZqNTAvSXhkc0NsRVZhR0VOOHlpcjBGbHRGekVqdDhsOVhT?=
- =?utf-8?B?dEU3M0c5RG83aWU4QTV6Tm85OWFJVDlsRko0bjEzT3Q5TE5jTkdDc1N5aFZL?=
- =?utf-8?B?TWl3dUd2YmcxZS9IdG9uemN3K0JuT1AwUzZ1UW9LTForS0UvUXdnQWNqanN4?=
- =?utf-8?B?dXIvbW1OMEkyU3RBdTl0RVRBMnhGTzhMYm4ycHU3MXF3cS9iT1dGbDdTNDNP?=
- =?utf-8?B?UVNSelFUWGM3ajdaTmVmWCtSckdSWkNBU09uM2F4M3Y4NjBwY0tmUEt3WUJo?=
- =?utf-8?B?QWFtYndkQjE2eUZnRTFLRW54NFFEWW0vUWpBRjV6VFFlbk90N2gzMFczSEt2?=
- =?utf-8?B?bU1nQUN5aXh5aEJlN21tVWJoZWk1QUh5UWZBNWpyNGVZUm5URm9DdFlBY0Jk?=
- =?utf-8?B?Sy85dmlUVjk2TENYcUhSWTBVTnVLZWdmRDIvbXB3dko0WnJmNE45RC83Tjhu?=
- =?utf-8?B?U0dFbnV4ZEhzcmtRZ3ByTmNaSXNtVm9RbjY5bTZkYVQ1SXprcWdaTjFEK3Fs?=
- =?utf-8?B?cHRhcHZmM1duekUvVkYrZmhUQlI1M0xIQ3pnMDY0SjM2RkpZZ24wYjBzT0lu?=
- =?utf-8?B?NUM2VVRXNmFkUnp0RlFFOWJITEQ3cmRmOHFQUmpHejFvdU9oZnJCVTZmb3ZY?=
- =?utf-8?B?ZlZOUTJRZmx0WVczd0NFMFl5RFF4dFh2QkVsc296KzJUREREOVNUNWxpV0gv?=
- =?utf-8?B?ZlFxMUNyL0FneHZ3d3hpSy8vaGQ4OVZ3dVJXbHFUcGt3andaekNlNUdZMytU?=
- =?utf-8?B?YU1vZmNSUVZiMlhZanRnRHl2K1FQMXkraE5QMUc4cXllT2JmNkM5SjZlWmFr?=
- =?utf-8?B?VG1obEdzZm0wdVpqcGIzU1FRSllsODBsUTlUMjlZRzEwRVc3dFhYWklESENa?=
- =?utf-8?B?STFMZnNNWHJqMTBXU2UzbFkwMkhtZFgyTU5wZmJPbWxUVFU5c1JuZWNHek9y?=
- =?utf-8?B?d25ReWw4OW9TbzFWcXk2cmxyVUd0ZkYxNGFsdVFXSnpxYmVKRVRBOEwyd09M?=
- =?utf-8?B?MzRZY1hHLzIrSnVIayt4R2ZSV2lJSW1IUDRtMlNrT3ppNmt4VmhYZFNqQ3pr?=
- =?utf-8?B?TG9uc3JvZlZ5OVpudnlvbWhMaGtDalpGb0E1c3JGcFBOeTBoUUp1Nk8zSUVO?=
- =?utf-8?B?aW1hWDNJaHU2azJ6Zy9WQkkxKzVhaDFkRGQ4K1Vkc3drV0xvNG1IbW9FVFM0?=
- =?utf-8?B?eTJnU1Y4ZFQ2aGx4eUtOaGtPRUhPYUQ3WVBlWEZjMXllWCs2L01TN0NrV1FW?=
- =?utf-8?B?UTR0MU5HcS94ek56emJVZzRncmV6bGpRODlneFJxSGpkZHFDK2ZJQ1lVQ3J0?=
- =?utf-8?B?V2RlR29UMXVqRHVydXpXMllKbFk5OHVNRnR6OENKaUhlaUNPdEsxWDBpRVli?=
- =?utf-8?B?SDJJK3gvaXdZTzVDTWFTdUVoT2t3ZDgvcXg4ZjRhSGdCMGo2Um1MOEk5M3pY?=
- =?utf-8?B?enhqMHVNZFJlT0NPSGxNSFpJR0Y5ektuZVpRcXlTUjFaQ2llT1dSTUZQOUtw?=
- =?utf-8?B?TTdwMERhTWhKeWc4VWR4U3J0TGJ5OGhQa2k1enJ6MzBMV0hHU3ErdVRkUllh?=
- =?utf-8?B?QkphVkRGZVhQOHpVR3F3eTRGSDVqeEFTZDE3cGlzM3YxRGlPdDltb3RqWE1X?=
- =?utf-8?Q?T8ppl+q10wZ1ZB03FEqg9C4roeNQwfWAA7gNo=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?SmZscTBpcERuNTZQUlFyTmlRdlk3YjNMTXMvaVREWDMwcDNZQVlaNDJ0UzZE?=
- =?utf-8?B?RkpSYTJ6akROMTB1azQrTXR0TkRuUHA5dCtSNmY2M2xKcFpwSnBwRVgzTlQr?=
- =?utf-8?B?MXRUNmZPcDJGN2pjcEJIRDI2M2JjN3JDUEtXNERqd1RzSFkvbGtsWFB2U2xs?=
- =?utf-8?B?TVFaTUFTN0tsNlhaZjFkNEdJRlBmL1FnMVdvTTh5eHJyWG42cXp1YVIveXZ4?=
- =?utf-8?B?UDArRjlrRlAxbDJTR3g1ekMyRkl2b3JSMTRVc2xGT1NwVzVpYzFYLzZtd0VC?=
- =?utf-8?B?YWlGZG16ZCttb3N1U04xUnEwNnFDeUczaU9sNm5udGhvbUU4eWxPbEZab2Rh?=
- =?utf-8?B?SEtxaDJDTm1FWXFBQngwMDN2M3UxVnVuU1d0L3NMWmY4YThEOHBSZXpvdXJH?=
- =?utf-8?B?TmdsZU9TUnhWY0s5dU5xeGJXRUNUV1U3RmFGS3RacUZORGx6NHlyZ2drbk8w?=
- =?utf-8?B?aHh3Kyt2OTEzdW1kc3NrWGt3b0tMcEY0QkREUkJIbkVFN3JCbExaTnhXdEJK?=
- =?utf-8?B?UzVvY3F2bERaRWVaZTVpc01yN3cyU2FvcFFaSGIyQWVhbEhOOGxlNFYzVmJK?=
- =?utf-8?B?aVBQNGNxSDlhMnQxcCtESWIvOWloK0Yvd1JZeUJ4RGlETll2cHhhWWp6TWVO?=
- =?utf-8?B?RSt2VWlHa0xvd0wxRHZDYlRLY0N1bnh5WG9IRUR1ZUlBVDk5ZzhPSW9JOEVB?=
- =?utf-8?B?TXhRMml4WUR1QWI4V2tBaXRrL2pEYmNZYWtRZFcvam5XOHh3YlF3Q09pN2pS?=
- =?utf-8?B?c1VzZmFzQjJnaElVMStDczhCekVNMm8rWkdRUk0raFdJVGdlcldncVk0dTdB?=
- =?utf-8?B?OUtaN2ZHV3Q3U1hmQlBPSGVvQkZCdG1vRFdzT2lJMHEzS3FuUURQMkJScHZH?=
- =?utf-8?B?bktUWHFrNm5Cd0hDa2RaR3VzRmhvMGUxUHhWT3E2bk1OWEhUTndIQVNXQVRK?=
- =?utf-8?B?NVhuRXRmaDVncnRrYnQwY1cvSUJQYmR1eVM4K1BzempzTFRNMEplR2wwOXhw?=
- =?utf-8?B?NFpBQmE3QkhuUUJmNUNqRm5POXVIZTVoaFBZQ3VtZlFoK000bldvTkFHdDJr?=
- =?utf-8?B?YUFvNjJCelFTa21SdFhIZjdsdElGUld3bWJJdzMxYVg5WUZwSTdjclZWaXpx?=
- =?utf-8?B?d1BWWkdHQ2xIaFIwUSsyUWlFM2o0UmpQdStINnIydC9CbnJlSURpT0V5U1pT?=
- =?utf-8?B?Ulp1OVBCVWZrVzd0L0tRZ0VJRGhCc09zbllaN2dMT0ZiSk1DbUFOTi9nZ0hR?=
- =?utf-8?B?ci9oSERUWWswTnJ1U1hRZjBZSytzSkNHNW5vTGVYWmp1U1JtbGJXZnE5cUZS?=
- =?utf-8?B?ZUV6bkhWTWV5TWdZRDVOTUYwMnpGU0FKZlZYNXBoWHc2UDh5aG96QlcwZ0dC?=
- =?utf-8?B?LzcwSno0cHkzbTRKWXV2czhkSmJNZW1DZ05nTzhOc3VibjZNdjJGbWRFTkdI?=
- =?utf-8?B?RHR0WjdsNGUwVVJkUmRhNEQ2NGN2ZzZJSGNQRzdicUUzRTJUTVhhUytUbHlk?=
- =?utf-8?B?c1lKL2xJNzA2NTlVd3d4LzZzSlMwT2xvbVcvNDVPcFVzemZzNk9ZRkJqcmxk?=
- =?utf-8?B?RzRzQ2toTzBqTzM1QkRLMmIxV0xPclg4d1h3WUJwcG1vQnEvK3I1QkpaQkIy?=
- =?utf-8?B?bnh5Z2xGR1ZpV0FBTFFwdDJ3MzAybFp1b3RHdW1MUThhUzZYN1V6Um90Ymhj?=
- =?utf-8?B?cENZWmFwZ1N0T1YxL2FhQ3djWGo1dENYY285MS96TmdGcjZvSEZQZnZraCs0?=
- =?utf-8?B?a3hiMTlVYVNPeVN3SEp6V3VQV2oyRjV4Y3lSMVFhbFRWa2JyY2ZlV2lUQ1ph?=
- =?utf-8?B?ZnY0SjB6NENLdTZnZm5UN2ltOTh2TlFLTFVWZ0p0REVielJHWk5tQ2hBV2Fo?=
- =?utf-8?B?N1dKSml2MUxYYW8rL243NkdXUDdNU01jbEtOK0lTNC9STFJ1SUN0Z0xMQlg4?=
- =?utf-8?B?ZEJpWXNRbkFqSGFSWVFNMm5iTzJjdzlpSHZmMXpDM0lCd2xYdDBGV3FjaTVN?=
- =?utf-8?B?dE04NDVJT1BwMmg5azF2OVpjUzJMaWIxaWRnRHN6blBLaUJEYWNpaTRBbjB1?=
- =?utf-8?B?alZZekhDR1dRT2lCWUJpYWtXUFJuelphc3VUZ2svVUc3eDd3Uy94MFYyL2RN?=
- =?utf-8?B?c3NCQjRKK2RNZnA1V3grUlZpUzFyOENWMWdPZUFJdk5MZ21rTWdqYkV4Qk4w?=
- =?utf-8?Q?ee1a2Fd4CA1A2TLksuui/Uk=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6F642420EDDFCF4EBD4D42BE35959154@EURPRD10.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D455B22C6C8
+	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 21:36:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733521021; cv=none; b=VFw3BelNdswz/8gOlAesa7XzvsqfCV1DHw3Pqf7FGz5ZZ72rUcXRJDiZL273+1ka66b4JUDn+wZ0YChlsiVmQ9kIbqAJo+OwsepOEI96TDL2+Sq3ibLrkyyWALYzdnZE75Hm0HDcF42cfuxKglws19Z7lMSvo+Izom8APN1Q9F0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733521021; c=relaxed/simple;
+	bh=WjmiODHE0RfZuzGjACtofn6r+sN4IQHw5qp4zf/KT/U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RHZF60J9xsoNoEvBPcDF6ePS0oh9dMzn1pd1z5JXGkaSA7lH6uXFNMH/qr9H4hdavjlmhBwDns0dJdKqqu00LyyBlLnKC1AdK2Sil1aFP8u19STkGKBkGMUnevcaYRtj4EjQ3LbppRmcZYkg2ZTdljl5CAa0pPOyu9Rw4aEnl2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=oNhsjEBC; arc=none smtp.client-ip=209.85.160.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-29e91e58584so1469993fac.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 13:36:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733521018; x=1734125818; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JDGos5IYn4cUKKTCBfIOCbIdPjpC20Gkllm+9b75PHY=;
+        b=oNhsjEBCUw01NBVcpx4NTJr6yNuzstzzEKWNC+6hthsj/+VsLudssPVBx4mlfrQq07
+         hHZaFNKgs0R73JqbRyRsHGclOQOinSJrjylFhAVWabhqsLoa3wNto/5zsXKxUPFMaZCB
+         cnBa4SpjuIclGPznb3C1YUkrWMYLeClhVUgTEbAcF1jiMqvNmIrHtHUrLKJaFszC4Kfe
+         6P6RyiILqfzz+vEwtPhMSawWAyC1/yvFMzFj+qMYvnAiq7qWNH6camnLDRKkpIPn9LUP
+         ulQwvpIfF12OdLo9erRYrheS5Wdh7K3JSP+Q/dauMJZea9D/W/4/lKQFvAsSEuvBhH5d
+         nZ1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733521018; x=1734125818;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JDGos5IYn4cUKKTCBfIOCbIdPjpC20Gkllm+9b75PHY=;
+        b=H1KkgO1O2s3VXgHUJxzgepTAWN33381pu4uW+NHBfcW8ZedUS3ALWY4sBhEsc+23DS
+         Vo32szUtpX+2ZVy8WWcdcl1X0yqkZqMEc0MdDFPgJ8GVJ/GndozOOWGPSycuf+etb6Gq
+         15Bb9jBq3aMDP4lHfjEOFSywXjFGnDhiNtBskfGgXrqinv7B4X81Ey/CO9ZxOJysHHvt
+         jR2YPojTkj/dOYua/1a/8fBNCIPGgQeAhENdOLIucGDSIvxRxJIE+JZtym/zREQ37oEw
+         lTBszcQPdhInC4I6H6XOR5RFtj1N0om0VzlavivYX7eh11YyZBhVZZqnCmBAHgQmwsU6
+         a5Rw==
+X-Forwarded-Encrypted: i=1; AJvYcCViWdxkKkHw7ZR6IsRQy1duvhQx81c55u8bZCVadWojDtTJ2X4MR4QBxMvaGaxSMkXZr6K6W9n/2yLq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxf2WN7WovMNhOwMDMvSK0mgkKtbYz7DodyETmtJjyEXWVzdp+m
+	B6yblBNfYedcG1Wx6AzWlQyJpdUlgwRGKx8vGlVgEt7kVzbpIDBuONg/JTRAolc=
+X-Gm-Gg: ASbGnctVq+JpsRMCASfafXVM2WEoS3j9fXfjeepH3N1+LyKHL7xFNg1Ao8TG/d9yF8s
+	PkMXR6WZlEKLVNoDnjxEADB1jpVp38ZcxlV79nOi0ncCHTGd6Jr7yW8OxgdIq7AjzZAKScSYfLi
+	BLYyX+FaTOOZFszIP11RA8oF4/Hxyw5HqABYNHqgkhxAkcAmsyvXcnRAG9xbcxO1YO2+rH4sr3W
+	HGp3OEBiIV4zjsem4Djo5hG7dSqCLoClSAuA8cLnUUpKWLzAaTW4hR5zx2i/SVrm3rVu5HlV/dl
+	uwi22io7dLQ=
+X-Google-Smtp-Source: AGHT+IE68IJYDSQELPihcT43hUzjwmg2DjnIGVlMJYhA3PW3X3/SHQRZ5oUY7kB/CAv5/AIiDBBmUA==
+X-Received: by 2002:a05:6870:44d0:b0:29d:c764:f873 with SMTP id 586e51a60fabf-29f735320d5mr3072443fac.31.1733521017990;
+        Fri, 06 Dec 2024 13:36:57 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-29f5694a265sm1063557fac.34.2024.12.06.13.36.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Dec 2024 13:36:56 -0800 (PST)
+Message-ID: <08ccc3fd-a53c-4d0e-8659-92204d2c27a8@baylibre.com>
+Date: Fri, 6 Dec 2024 15:36:54 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8297b835-5af3-474e-fa42-08dd163cf96e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Dec 2024 21:28:49.5016
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: KORQtjWIXJ8TrKMoAjAYZtWx8KVVCZVUzNwEHZq54106kPUkmdpxH18wBMwGa70Eop1oexbOCEFoNazeune/Mlsj/XHd3BX9GbwroVEOwrQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR10MB5394
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 10/16] iio: buffer-dmaengine: add
+ devm_iio_dmaengine_buffer_setup_ext2()
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
+ Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20241115-dlech-mainline-spi-engine-offload-2-v5-0-bea815bd5ea5@baylibre.com>
+ <20241115-dlech-mainline-spi-engine-offload-2-v5-10-bea815bd5ea5@baylibre.com>
+ <20241124171609.50c6c3a8@jic23-huawei>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20241124171609.50c6c3a8@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-T24gRnJpLCAyMDI0LTEyLTA2IGF0IDIyOjI0ICswMTAwLCBBLiBTdmVyZGxpbiB3cm90ZToNCj4g
-RnJvbTogQWxleGFuZGVyIFN2ZXJkbGluIDxhbGV4YW5kZXIuc3ZlcmRsaW5Ac2llbWVucy5jb20+
-DQo+IA0KPiBUaGUgc2VyaWVzIGFkZHMgc3VwcG9ydCBmb3IgYSBmYW1pbHkgb2YgVGV4YXMgSW5z
-dHJ1bWVudHMnIGF1dG9tb3RpdmUNCj4gaGlnaC1lZmZpY2llbmN5IExFRCBkcml2ZXJzIHdpdGgg
-Ym9vc3QgY29udHJvbGxlci4gVGhlIGZvdXIgb3Igc2l4DQo+IGhpZ2gtcHJlY2lzaW9uIGN1cnJl
-bnQgc2lua3Mgc3VwcG9ydCBwaGFzZSBzaGlmdGluZyB0aGF0IGlzIGF1dG9tYXRpY2FsbHkNCj4g
-YWRqdXN0ZWQgYmFzZWQgb24gdGhlIG51bWJlciBvZiBjaGFubmVscyBpbiB1c2UuIExFRCBicmln
-aHRuZXNzIGNhbiBiZQ0KPiBjb250cm9sbGVkIGdsb2JhbGx5IHRocm91Z2ggdGhlIEkyQyBpbnRl
-cmZhY2Ugb3IgUFdNIGlucHV0Lg0KPiANCj4gQWRkIG5ldyBEVCBiaW5kaW5ncyBmb3IgdGksbHA4
-ODY0IHRvIHN1cHBvcnQgYWxsIGZvdXIgc29mdHdhcmUtY29tcGF0aWJsZQ0KPiBkZXZpY2VzOg0K
-PiAtIExQODg2NA0KPiAtIExQODg2NFMNCj4gLSBMUDg4NjYNCj4gLSBMUDg4NjZTDQo+IA0KPiBB
-ZGQgbGVkcyBjbGFzcyBkcml2ZXIgZm9yIHRoZXNlIGRldmljZXMuDQoNClNvcnJ5LCBmb3Jnb3Qg
-dGhlIGNoYW5nZXMgc2luY2UgdjE6IHRpLDg4NjAgaGFzIGJlZW4gZGVjb3VwbGVkIGZyb20gdGhp
-cw0Kc2VyaWVzIGFuZCBjb252ZXJ0ZWQgdG8gWUFNTCBzZXBhcmF0ZWx5Lg0KDQo+IEFsZXhhbmRl
-ciBTdmVyZGxpbiAoMik6DQo+IMKgIGR0LWJpbmRpbmdzOiBiYWNrbGlnaHQ6IGFkZCBUSSBMUDg4
-NjQvTFA4ODY2IExFRC1iYWNrbGlnaHQgZHJpdmVycw0KPiDCoCBsZWRzOiBscDg4NjQ6IE5ldyBk
-cml2ZXINCj4gDQo+IMKgLi4uL2JpbmRpbmdzL2xlZHMvYmFja2xpZ2h0L3RpLGxwODg2NC55YW1s
-wqDCoMKgIHzCoCA4MCArKysrKw0KPiDCoE1BSU5UQUlORVJTwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqAgNyAr
-DQo+IMKgZHJpdmVycy9sZWRzL0tjb25maWfCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMTIgKw0KPiDCoGRyaXZlcnMvbGVkcy9NYWtlZmlsZcKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqDCoCAxICsN
-Cj4gwqBkcml2ZXJzL2xlZHMvbGVkcy1scDg4NjQuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHwgMzIwICsrKysrKysrKysrKysrKysrKw0KPiDCoDUgZmlsZXMgY2hhbmdl
-ZCwgNDIwIGluc2VydGlvbnMoKykNCj4gwqBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL2xlZHMvYmFja2xpZ2h0L3RpLGxwODg2NC55YW1sDQo+IMKg
-Y3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvbGVkcy9sZWRzLWxwODg2NC5jDQoNCi0tIA0KQWxl
-eGFuZGVyIFN2ZXJkbGluDQpTaWVtZW5zIEFHDQp3d3cuc2llbWVucy5jb20NCg==
+On 11/24/24 11:16 AM, Jonathan Cameron wrote:
+> On Fri, 15 Nov 2024 14:18:49 -0600
+> David Lechner <dlechner@baylibre.com> wrote:
+> 
+>> Add a new devm_iio_dmaengine_buffer_setup_ext2() function to handle
+>> cases where the DMA channel is managed by the caller rather than being
+>> requested and released by the iio_dmaengine module.
+>>
+>> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> Fresh read and I'm wondering if the lifetimes in here can be managed
+> more simply either by pushing the DMA channel get down, or dragging
+> the release up.   Basically I'd like to see them at the same level
+> of nesting in the code.  If it ends up being necessary to duplicate
+> more code that is fine if it makes this easier to reason about.
+> 
+
+One option could be instead of introducing a 2nd function, change
+the existing iio_dmaengine_buffer_setup_ext() to use the signature
+of the proposed devm_iio_dmaengine_buffer_setup_ext2(). There are
+only two users of these functions. So we could move the dma chan
+request/release out to the drivers for those.
+
+Otherwise, we can't completly get rid of the owns_chan bit.
+
+> Jonathan
+> 
+>> ---
+>>
+>> v5 changes: none
+>>
+>> v4 changes:
+>> * This replaces "iio: buffer-dmaengine: generalize requesting DMA channel"
+>> ---
+>>  drivers/iio/buffer/industrialio-buffer-dmaengine.c | 107 +++++++++++++++------
+>>  include/linux/iio/buffer-dmaengine.h               |   5 +
+>>  2 files changed, 81 insertions(+), 31 deletions(-)
+>>
+>> diff --git a/drivers/iio/buffer/industrialio-buffer-dmaengine.c b/drivers/iio/buffer/industrialio-buffer-dmaengine.c
+>> index 054af21dfa65..602cb2e147a6 100644
+>> --- a/drivers/iio/buffer/industrialio-buffer-dmaengine.c
+>> +++ b/drivers/iio/buffer/industrialio-buffer-dmaengine.c
+>> @@ -33,6 +33,7 @@ struct dmaengine_buffer {
+>>  	struct iio_dma_buffer_queue queue;
+>>  
+>>  	struct dma_chan *chan;
+>> +	bool owns_chan;
+>>  	struct list_head active;
+>>  
+>>  	size_t align;
+>> @@ -216,28 +217,23 @@ static const struct iio_dev_attr *iio_dmaengine_buffer_attrs[] = {
+>>   * Once done using the buffer iio_dmaengine_buffer_free() should be used to
+>>   * release it.
+>>   */
+>> -static struct iio_buffer *iio_dmaengine_buffer_alloc(struct device *dev,
+>> -	const char *channel)
+>> +static struct iio_buffer *iio_dmaengine_buffer_alloc(struct dma_chan *chan,
+>> +						     bool owns_chan)
+>>  {
+>>  	struct dmaengine_buffer *dmaengine_buffer;
+>>  	unsigned int width, src_width, dest_width;
+>>  	struct dma_slave_caps caps;
+>> -	struct dma_chan *chan;
+>>  	int ret;
+>>  
+>>  	dmaengine_buffer = kzalloc(sizeof(*dmaengine_buffer), GFP_KERNEL);
+>> -	if (!dmaengine_buffer)
+>> -		return ERR_PTR(-ENOMEM);
+>> -
+>> -	chan = dma_request_chan(dev, channel);
+>> -	if (IS_ERR(chan)) {
+>> -		ret = PTR_ERR(chan);
+>> -		goto err_free;
+>> +	if (!dmaengine_buffer) {
+>> +		ret = -ENOMEM;
+>> +		goto err_release;
+>>  	}
+>>  
+>>  	ret = dma_get_slave_caps(chan, &caps);
+>>  	if (ret < 0)
+>> -		goto err_release;
+>> +		goto err_free;
+>>  
+>>  	/* Needs to be aligned to the maximum of the minimums */
+>>  	if (caps.src_addr_widths)
+>> @@ -252,6 +248,7 @@ static struct iio_buffer *iio_dmaengine_buffer_alloc(struct device *dev,
+>>  
+>>  	INIT_LIST_HEAD(&dmaengine_buffer->active);
+>>  	dmaengine_buffer->chan = chan;
+>> +	dmaengine_buffer->owns_chan = owns_chan;
+>>  	dmaengine_buffer->align = width;
+>>  	dmaengine_buffer->max_size = dma_get_max_seg_size(chan->device->dev);
+>>  
+>> @@ -263,10 +260,12 @@ static struct iio_buffer *iio_dmaengine_buffer_alloc(struct device *dev,
+>>  
+>>  	return &dmaengine_buffer->queue.buffer;
+>>  
+>> -err_release:
+>> -	dma_release_channel(chan);
+>>  err_free:
+>>  	kfree(dmaengine_buffer);
+>> +err_release:
+> This ends up oddly miss balanced.  If you get an error here, why
+> not just do the release at the caller instead?
+
+Yes, we can do that.
+
+> 
+>> +	if (owns_chan)
+>> +		dma_release_channel(chan);
+>> +
+>>  	return ERR_PTR(ret);
+>>  }
+>>  
+>> @@ -282,12 +281,38 @@ void iio_dmaengine_buffer_free(struct iio_buffer *buffer)
+>>  		iio_buffer_to_dmaengine_buffer(buffer);
+>>  
+>>  	iio_dma_buffer_exit(&dmaengine_buffer->queue);
+>> -	dma_release_channel(dmaengine_buffer->chan);
+>> -
+>>  	iio_buffer_put(buffer);
+>> +
+>> +	if (dmaengine_buffer->owns_chan)
+>> +		dma_release_channel(dmaengine_buffer->chan);
+>>  }
+>>  EXPORT_SYMBOL_NS_GPL(iio_dmaengine_buffer_free, IIO_DMAENGINE_BUFFER);
+>>  
+>> +static struct iio_buffer
+>> +*__iio_dmaengine_buffer_setup_ext(struct iio_dev *indio_dev,
+>> +				  struct dma_chan *chan, bool owns_chan,
+>> +				  enum iio_buffer_direction dir)
+>> +{
+>> +	struct iio_buffer *buffer;
+>> +	int ret;
+>> +
+>> +	buffer = iio_dmaengine_buffer_alloc(chan, owns_chan);
+>> +	if (IS_ERR(buffer))
+>> +		return ERR_CAST(buffer);
+>> +
+>> +	indio_dev->modes |= INDIO_BUFFER_HARDWARE;
+>> +
+>> +	buffer->direction = dir;
+>> +
+>> +	ret = iio_device_attach_buffer(indio_dev, buffer);
+>> +	if (ret) {
+>> +		iio_dmaengine_buffer_free(buffer);
+> Note that if you did push the free out to the caller for owns_chan
+> as suggested above this would need to never free the buffer as
+> that would be done if necessary at the caller for this...
+
+We can't push iio_dmaengine_buffer_free() out here since it is balancing
+the call to iio_dmaengine_buffer_alloc() which is called just above in
+this function.
+
+But we do have a problem then with the caller not knowing if the channel
+was released or not on error. So perhaps we get rid of this helper
+function and duplicate some code as you suggested.
+
+> 
+>> +		return ERR_PTR(ret);
+>> +	}
+>> +
+>> +	return buffer;
+>> +}
+>> +
+>>  /**
+>>   * iio_dmaengine_buffer_setup_ext() - Setup a DMA buffer for an IIO device
+>>   * @dev: DMA channel consumer device
+>> @@ -308,24 +333,13 @@ struct iio_buffer *iio_dmaengine_buffer_setup_ext(struct device *dev,
+>>  						  const char *channel,
+>>  						  enum iio_buffer_direction dir)
+>>  {
+>> -	struct iio_buffer *buffer;
+>> -	int ret;
+>> -
+>> -	buffer = iio_dmaengine_buffer_alloc(dev, channel);
+>> -	if (IS_ERR(buffer))
+>> -		return ERR_CAST(buffer);
+>> -
+>> -	indio_dev->modes |= INDIO_BUFFER_HARDWARE;
+>> -
+>> -	buffer->direction = dir;
+>> +	struct dma_chan *chan;
+>>  
+>> -	ret = iio_device_attach_buffer(indio_dev, buffer);
+>> -	if (ret) {
+>> -		iio_dmaengine_buffer_free(buffer);
+>> -		return ERR_PTR(ret);
+>> -	}
+>> +	chan = dma_request_chan(dev, channel);
+>> +	if (IS_ERR(chan))
+>> +		return ERR_CAST(chan);
+>>  
+>> -	return buffer;
+>> +	return __iio_dmaengine_buffer_setup_ext(indio_dev, chan, true, dir);
+> As above, why not just free the channel here if this fails? Thus matching
+> the dma_request_chan just above.
+
+This one is manageable.
+
+> 
+> 
+>>  }
+>>  EXPORT_SYMBOL_NS_GPL(iio_dmaengine_buffer_setup_ext, IIO_DMAENGINE_BUFFER);
+>>  
 
