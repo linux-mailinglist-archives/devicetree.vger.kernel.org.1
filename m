@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-128069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6885C9E75F8
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:31:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 620D59E75FB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:31:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 44BD316BFCF
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:31:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA7C51887848
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:31:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386A21F37DA;
-	Fri,  6 Dec 2024 16:31:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23B0A1F4E33;
+	Fri,  6 Dec 2024 16:31:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LZ5VoBHc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="US3SiTNt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 683B71F37B0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 186DE1F37B1
 	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 16:31:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733502666; cv=none; b=REnbVbwNCIlG0H3dnjiVBPkB+T+4Yok5zm7UyJlyUqxu2Flj67y0aV1f4b9SgoCUxmM31YOTzG29JwsQXUui9OG8t3TAuJ5P45nNOgDzo6ovjq7A62s1jtCZZPtYd6jWYAQafCvMclThKHrc4yLB3+TuxigR2YKzq9rzk8+Ob5w=
+	t=1733502666; cv=none; b=t8t1SrsCqjIGgue+Po9J88bstWt0EYbH7eXbYnwuUCr/wrn9t/k64EVu0aEtto2uP02Sz7EYw/78qdCFkqeHLhBOQ9cmtTepvmLvcvoMnXJKI48SvGS4ODRf+Y/DHGrSYpIzeEBEiC1S8S7Kspwlc+UQVMiT5HOv6i14VqvffTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1733502666; c=relaxed/simple;
-	bh=Jp2ObEzqJQpaKbhTocAaM82TdjXKoBGT2+8/pE/oY9Q=;
+	bh=fD1l+jNkgnfWuXI1bHIvbywED4CP+GtggJNFPuFqDcw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dXcOwPkDAtN66QyOkjvRWUaDhgMmoxDuI1+g3r7lpW/fElYzsV8gTqQyAK6Yno9e7kNDGSftIIUWQS9TFWI9PExZ0ICd1TbDYN9ZFQDwX1Tjt1uhqbPS9C+8/t6FMvPUM7peplzxP3vvo4CTz7qFBQzroe9TzM4zP4lrCSA34hA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LZ5VoBHc; arc=none smtp.client-ip=209.85.218.51
+	 In-Reply-To:To:Cc; b=ZvHoECTtnNlL9Db5XHlMq5WVxkQZfAUSO7afs9+cpMO6hQHgaIi6TRCijgzb2PA4ZiUmT1qQXRNqZ57ATWVqJK3HSzJMa1LTLRjl4UhHlEYaWoy38gn4cZmsrn7fWxmSE+Pspm2DdzGBz3FGacKGT0dl0mYoNfrvWuGGq/pbdoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=US3SiTNt; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a9f1d76dab1so68311066b.0
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-53de8ecb39bso3063573e87.2
         for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 08:31:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1733502663; x=1734107463; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PKgkddTbsb36SqzZl1dMALspeUepmvmFxGiaTIa2E3A=;
-        b=LZ5VoBHcwLIPmXLWoqvoD5UnDX1YqYkRUe6j4i5j9Vo2vHFJ51MTseoZJAhbq/o6SF
-         vYX2xeL7JAb1/dr5Atg73Paze+6cFyGPFCydRr6M8lwcxYu7qK0+Xc02G6WmPYbJI+Jm
-         2COGbCLvSKXBOMKiPYhWQIRre3xyj/D8FLI86Skth7Y6qCWcMMQlZuv364xFayTf3rfm
-         TOvSq7cSdAEeZjyFvLMdtJZXpqpJJIukrfBlGlQ7/PnOb/n42st6bAEf7t1IAAO7qOhA
-         M+iMJ99/GkOG1bO0dT1vaNBEFAE0JP+dZWMLOwWWjvRNIQWU3Cw98EZPI3NycjwJU6IO
-         1TLQ==
+        bh=H11rnIjZ/6A+y0BhElAhFFU5gZO2NZydl8Xc9FZjLpY=;
+        b=US3SiTNtbX3OZZXbKxTpAR6pVq2vY3Y3f/v2VOzNiuH21jEJ8ZvzyfJfjZr5WpWpr2
+         wvzur5rqAqHoF/DXrbjVnI+xIAxWgahYRLsc3XiOkqlZcapSlq5jxsm0uJN/9RIT4w3I
+         mCq6FqtJ49BbNjMt6gZA3rSRgc+dky0WwS62FX1hIVifGSUd0pXUnmvtEWDH+cY4Sbjl
+         Exxih7Sx9k1FBKEwU8W/5/ikVZ3tcSlTeXA7mhJhurnffbF5Er9ssiNzVEhAzDOY02KQ
+         9PMpuRpH7r3veh0YKZpYN+ZQtfkbIETaDYe9LSapc54yyjtV6wRx84DktfT/nzfzV4++
+         z6HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1733502663; x=1734107463;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PKgkddTbsb36SqzZl1dMALspeUepmvmFxGiaTIa2E3A=;
-        b=nCdHX20XaxF8OqHvp/nMX+Hq4/a7VauRLv+xcRqDhmX0m3BaLy7gFTM7gckx8Udq2x
-         8QG+Pby7MjbCmGYdDvZlYh+nXGSOqUkkRVeaz80JSKI8AWyGEdTjnnLcnDWdWF2E0DaP
-         CV2rQPsxj9VAUvzG2zNGqlQlFDVDPc6BiWChmWKp4u9RwxCnmQ+TMGmVaBi/H9gO7v8L
-         O2MAr19RDiJkrXQPsZF4XVGUBrW125bCaAiIDUksjXL0qb20NTPKCMSAWSe1oszwuJCa
-         DDRBM9gKmQg3aSDV7q8/FAgCQrmoX7cODWyjSSxWofr4ROWqCED8R6sFjuYw6BnlaN0r
-         ObDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWfIB5zIlUrY25dp+575iaNicHLdEw21iPOZMx2a0jazlbHAlLDJhwPi0n4vaeoR/mjOrc01Mq3hq7X@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkRr0Gl33t+V3MiMqkJh6h35snKyKMZbu76o8QzHHCTbFuSRSd
-	MlEOTeDWX6kyso0vRXQ0ND4oxixnKgrhMv5sCZrRymf005o+ssXtFO/LMDtpbxE=
-X-Gm-Gg: ASbGncsiJp4rEdrfLVBtzq06WupM5o0feDWJuAN4B3iFV+r0hHVyfgxm0uXz1m/1rEC
-	HipFLOGo0qmrgRjdSZ5yhz34cUx2tj3lsly3/q2AJTZ04v/18GG57lchcHvQBOh1t/r0Ji+KyYA
-	fkeq69TG5UZmTY9gD8u4K1SoDDVRIjktoxx/WAgcV6Rm5XbwP+i8ieZujIktEPohau5H/N1LQkU
-	gRA5+AEnwoYf/PVu0ktngx/Fdu+Zo61CtChDloip6gx6ySfoghFuugebxuqQnJcq9gjy+JwwNIv
-	fYm+oR6Tv40BVw8xoHhV6QSp7j3Mg05Bww==
-X-Google-Smtp-Source: AGHT+IGRlX7BIbgKcq4E8LlKztNa00vBgQAERS4YEdJ5MYW+4Wqp/mGqY/4IqsX/I0DaInCg04SuNg==
-X-Received: by 2002:a17:907:7841:b0:aa6:32c0:5d05 with SMTP id a640c23a62f3a-aa639febf00mr320394766b.13.1733502662697;
-        Fri, 06 Dec 2024 08:31:02 -0800 (PST)
+        bh=H11rnIjZ/6A+y0BhElAhFFU5gZO2NZydl8Xc9FZjLpY=;
+        b=AHfft0EksZj+rDaxOrUicQtC0GRtGNZcGHM0vcsJqBEpAy3PuMLBaYDZg02pi2jZPx
+         j7EJz+rPcJhv6C+QGRun8hgTH1KkEbrIdvEH0DMSXGBwCpuFAQMIKAVvCbyRmPkdYdK3
+         N02PDspl5JodSrysTJTRBVr9nVgBvDD30b+OK8oLBPELNwTEeD+KNQKO1kVe2n4B6EEq
+         simTUHaarMgChwD2+uTzi50c52yhXpVYf0t6gA1zNHTJUo+wEF6do9zt6V++/2JnEc9a
+         44mRN6kM1o2VmcgOSJB+KKntsZ1GFRcklQMM4UAR0WgHycUVma3FInRuG9VlJeCORzAz
+         11fQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUoYVpxtbQhwOxZ7wf0CV/1e8qSi4eUntvvEbDhHkXZW9t7DAO0gx1hgcD//O0ka73tAGPxuqQW2BiE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQWVbm5YQmeE7e2kC12ZIqKh4Px8EynWI9EPhVKUDgsyEn9cPc
+	yAY3WMz79tHIUUn3Wg+H0RonrpCvWHYqcoll1gwGZ7RL52lIlyDl4fjQZZS7k1Y=
+X-Gm-Gg: ASbGnctTAcBUTQdPBqINazHqMu6rf6eHUS0KjHSvBh6EitTFxK0kZkfN6VMrnRt8NLP
+	P0VKl5s869YHcfqsHQ05QoPkTVL5GZG4dG7v73oktIDl8eXKyW3KmWublVU6rg4xvz+anyvmKrm
+	dd9h8GueKhdQx7D07zNIZaO2VvFj+BY0cjmWrHrTm+787JcSWej1E/vIAx52XyHX4ciYeudI1Bz
+	rkr6DTTTgzE3u9i/uIDltcwrYpljehf+FNWblGkQgsG5zbNC4fagR6zJiE/P6m5BVXyKGA9EK+1
+	qYBCwxNyf9IvEje0E1xtbHbt7aLa1KKTcA==
+X-Google-Smtp-Source: AGHT+IExkzoUN1HflnT9opUQAW9MqmmpGeThLHiF2BwdjV6cAu9grD1ih7bZFlXxIc4t4D7GinRxbw==
+X-Received: by 2002:a05:6512:ad1:b0:539:da76:c77e with SMTP id 2adb3069b0e04-53e2c2ac7fcmr2130253e87.5.1733502663241;
+        Fri, 06 Dec 2024 08:31:03 -0800 (PST)
 Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6260e8af8sm257710266b.191.2024.12.06.08.31.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 06 Dec 2024 08:31:02 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Fri, 06 Dec 2024 16:31:02 +0000
-Subject: [PATCH v4 2/7] dt-bindings: phy: samsung,usb3-drd-phy: gs101:
- require Type-C properties
+Date: Fri, 06 Dec 2024 16:31:03 +0000
+Subject: [PATCH v4 3/7] phy: exynos5-usbdrd: convert to dev_err_probe
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20241206-gs101-phy-lanes-orientation-phy-v4-2-f5961268b149@linaro.org>
+Message-Id: <20241206-gs101-phy-lanes-orientation-phy-v4-3-f5961268b149@linaro.org>
 References: <20241206-gs101-phy-lanes-orientation-phy-v4-0-f5961268b149@linaro.org>
 In-Reply-To: <20241206-gs101-phy-lanes-orientation-phy-v4-0-f5961268b149@linaro.org>
 To: Vinod Koul <vkoul@kernel.org>, 
@@ -101,78 +100,69 @@ Cc: Peter Griffin <peter.griffin@linaro.org>,
  kernel-team@android.com, linux-phy@lists.infradead.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.13.0
 
-orientation-switch is the standard declaration to inform the Type-C mux
-layer that a remote-endpoint is capable of processing orientation
-change messages.
+dev_err_probe() exists to simplify code.
 
-The USB PHY on gs101 needs to be configured based on the orientation of
-the connector. For that the DTS needs a link between the phy's port and
-a TCPCi, and we'll need to inform the phy driver that it should handle
-the orientation (register a handler).
-
-Update the schema to enforce that by requiring the orientation-switch
-and port properties on gs101 (only). We disallow orientation-switch on
-all other supported platforms, since other versions of this phy (or its
-system integration) don't currently support or even need it.
-
-Even though this new required gs101 property is an ABI break, the
-intention for the driver is to behave as before if it's missing
-(meaning for gs101 it will work in SS mode in one orientation only).
-Other platforms are not affected.
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 
 ---
-v3:
-* update as per Rob's suggestion (I hope :-)
-
 v2:
-* squash original patches #2 and #3
-* actually disallow orientation-switch on !gs101 (not just optional) (Conor)
-* update commit message to clarify that the intention for the driver is
-  to work with old and new DTS (Conor)
 * collect tags
-
-foo
 ---
- Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/phy/samsung/phy-exynos5-usbdrd.c | 21 +++++++++------------
+ 1 file changed, 9 insertions(+), 12 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
-index 1f8b35917b11..27295acbba76 100644
---- a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
-@@ -114,6 +114,8 @@ allOf:
-           contains:
-             const: google,gs101-usb31drd-phy
-     then:
-+      $ref: /schemas/usb/usb-switch.yaml#
-+
-       properties:
-         clocks:
-           items:
-@@ -139,6 +141,8 @@ allOf:
+diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+index c421b495eb0f..ceae4b47cece 100644
+--- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
++++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
+@@ -1725,10 +1725,9 @@ static int exynos5_usbdrd_phy_probe(struct platform_device *pdev)
  
-       required:
-         - reg-names
-+        - orientation-switch
-+        - port
-         - pll-supply
-         - dvdd-usb20-supply
-         - vddh-usb20-supply
-@@ -198,7 +202,7 @@ allOf:
-         reg-names:
-           maxItems: 1
+ 	reg_pmu = syscon_regmap_lookup_by_phandle(dev->of_node,
+ 						   "samsung,pmu-syscon");
+-	if (IS_ERR(reg_pmu)) {
+-		dev_err(dev, "Failed to lookup PMU regmap\n");
+-		return PTR_ERR(reg_pmu);
+-	}
++	if (IS_ERR(reg_pmu))
++		return dev_err_probe(dev, PTR_ERR(reg_pmu),
++				     "Failed to lookup PMU regmap\n");
  
--additionalProperties: false
-+unevaluatedProperties: false
+ 	/*
+ 	 * Exynos5420 SoC has multiple channels for USB 3.0 PHY, with
+@@ -1759,10 +1758,9 @@ static int exynos5_usbdrd_phy_probe(struct platform_device *pdev)
+ 	for (i = 0; i < EXYNOS5_DRDPHYS_NUM; i++) {
+ 		struct phy *phy = devm_phy_create(dev, NULL, drv_data->phy_ops);
  
- examples:
-   - |
+-		if (IS_ERR(phy)) {
+-			dev_err(dev, "Failed to create usbdrd_phy phy\n");
+-			return PTR_ERR(phy);
+-		}
++		if (IS_ERR(phy))
++			return dev_err_probe(dev, PTR_ERR(phy),
++					     "Failed to create usbdrd_phy phy\n");
+ 
+ 		phy_drd->phys[i].phy = phy;
+ 		phy_drd->phys[i].index = i;
+@@ -1786,10 +1784,9 @@ static int exynos5_usbdrd_phy_probe(struct platform_device *pdev)
+ 
+ 	phy_provider = devm_of_phy_provider_register(dev,
+ 						     exynos5_usbdrd_phy_xlate);
+-	if (IS_ERR(phy_provider)) {
+-		dev_err(phy_drd->dev, "Failed to register phy provider\n");
+-		return PTR_ERR(phy_provider);
+-	}
++	if (IS_ERR(phy_provider))
++		return dev_err_probe(phy_drd->dev, PTR_ERR(phy_provider),
++				     "Failed to register phy provider\n");
+ 
+ 	return 0;
+ }
 
 -- 
 2.47.0.338.g60cca15819-goog
