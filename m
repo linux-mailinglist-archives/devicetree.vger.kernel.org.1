@@ -1,180 +1,475 @@
-Return-Path: <devicetree+bounces-127767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D2B49E6473
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 03:52:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F41619E6488
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 04:05:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7CCE18846C8
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 02:52:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D038165E3E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 03:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51DD317DE2D;
-	Fri,  6 Dec 2024 02:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B36917BB3F;
+	Fri,  6 Dec 2024 03:05:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="pM+GsbY5"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="k3yogkh4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0D62145B07
-	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 02:51:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9B4034CDE;
+	Fri,  6 Dec 2024 03:05:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733453522; cv=none; b=C3d1rBdtejhQQUHPjB1YE7LGJEjmhN7UvnJDa5DZH1TiBLYkNhNzt5IITgyD7zG3NqgrQ03lOLlulJhp4yZ6u5ITwFGvLsdFthi20NluDPmRc4WneE1XUlMQRQGjg23bAAi9GfbZ12MdjGvc6Z6bZwCb08CtZBvLHfchFJZVIYs=
+	t=1733454331; cv=none; b=MC3+BymfTsAHb4Ez3imOSg8H2bFw4x+UUTjrYJw7KpyEEKAbaAortuG8/x6mPr3DP/qVQ73+hWH6jI2ZJF4JaM1ixIU9mehX2jNPucIeit5UP8Uk9VVipVpdZ6UtCddEoh7fy/wXPY0yP0G8xNJtVN4MmkHrp9uWmJFO6eq6M7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733453522; c=relaxed/simple;
-	bh=feCUvC3SSXWPARoG6xLkk3g5qe2XfwFu91s3EPhtxOU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=G4Xen0ORK/ZI6Jz/w4nv4IOv/f2BrmFV7kUMWNxuO6Co3TtgJ/dJkv09ewbPH67GWoR7KELd5uh+zMFB3WTTv9dTL1UTcpUd37expUCwHuLkeDZ5arpYS5/4PTMFkHxlqTY0kpFg0U1k3EM0s++tSFkVZKvwLxqBwwjPuL/cJ4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=pM+GsbY5; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20241206025157epoutp0190b7675d93a85cc9cdeb28cf4b1cfb7b~OdspT_opd0173201732epoutp01Z
-	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 02:51:57 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20241206025157epoutp0190b7675d93a85cc9cdeb28cf4b1cfb7b~OdspT_opd0173201732epoutp01Z
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1733453517;
-	bh=cqimClylACdPib2XjzAzujqrVa+bLgNFlUoMYpGNb7A=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pM+GsbY5Jqv9e3MtoD/eWJpKDxQUsgAJDev+rEgcMpvEe+c5IkMZMzBJ5KBaFxbjB
-	 3YE4d4pB8fHjgawfcNasCpys/R6AKF2+Sv8+L8GcAj7setjOQdzZcanJdevJnyA0vt
-	 7Wn1IqtfHERnyTBgGb1LFfNlzOGZ0rwUdj0oD1Gg=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-	20241206025157epcas2p1de9a1f3d058856d20254a587ef836e9d~OdsopW9jl2022620226epcas2p1I;
-	Fri,  6 Dec 2024 02:51:57 +0000 (GMT)
-Received: from epsmges2p4.samsung.com (unknown [182.195.36.102]) by
-	epsnrtp4.localdomain (Postfix) with ESMTP id 4Y4G4X4YSPz4x9Q1; Fri,  6 Dec
-	2024 02:51:56 +0000 (GMT)
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-	epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-	9E.61.22094.CC662576; Fri,  6 Dec 2024 11:51:56 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20241206025156epcas2p4c55f230accc4354e6f4bf324ab9a5833~OdsnjsnD93176431764epcas2p4B;
-	Fri,  6 Dec 2024 02:51:56 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20241206025156epsmtrp2ce7ead182b09be7aabed38fe61e14aeb~Odsni1Mk23190931909epsmtrp2c;
-	Fri,  6 Dec 2024 02:51:56 +0000 (GMT)
-X-AuditID: b6c32a48-e72eb7000000564e-aa-675266ccb376
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	3B.74.18949.BC662576; Fri,  6 Dec 2024 11:51:55 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.55]) by
-	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20241206025155epsmtip1bcd0f7988c86df47d542edc9def24326~OdsnYg9TL3234132341epsmtip1C;
-	Fri,  6 Dec 2024 02:51:55 +0000 (GMT)
-From: Taewan Kim <trunixs.kim@samsung.com>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
-	<linux@roeck-us.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim Akhtar
-	<alim.akhtar@samsung.com>
-Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, Byoungtae Cho <bt.cho@samsung.com>,
-	Taewan Kim <trunixs.kim@samsung.com>
-Subject: [PATCH v4 1/1] arm64: dts: exynosautov920: add watchdog DT node
-Date: Fri,  6 Dec 2024 11:51:38 +0900
-Message-ID: <20241206025139.2148833-2-trunixs.kim@samsung.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241206025139.2148833-1-trunixs.kim@samsung.com>
+	s=arc-20240116; t=1733454331; c=relaxed/simple;
+	bh=ZsJ/AkFVM1vSiRsReteToVnPFEEH/Jn05rWtnPj/bRQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GfDunRI9+mlNg1/vTyW97CmTNKLmu5nkka0tdgRrRXGYUQwY0YFwFTQgCVN41ItdYRAKWNNm1tzYi6IizajQ6CzwRsWKciy0oKJJCYK4rgs7w9mpPatFRq8pI4uM4fWQ4jkNvH9tRx+0prvzfP8DqiK308sEl9b4hxr0XX1nuPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=k3yogkh4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5HaqNG022239;
+	Fri, 6 Dec 2024 03:05:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	wb6HvNkPo0RS94wY7W+nxoGXztB92f45MvHNf1PKXsc=; b=k3yogkh4tc1x4oyv
+	YXIsWfJllWMMDo7F13GofauY379XrEZwjFbtK9Nbb5WP5Cv8mZynFutK/uanxqAf
+	r1zdwwk1kAHxW24uDfuZcX3JgyieL72QGfbpw/HzLsWDhWCxT4mPRDEqfAP7F6fK
+	kjvrOQAfNZTHjwfx+OI5EYYa0CSUt605uN88osMzTdwB4vy7IgvjnYJnv+ByucDl
+	4pVnVadMlB+dAc8QKQPGvpuxC/BPkJeeqyzVr9sygIx9kiManhhOnvwSjgstJbX9
+	nGAcBEf1bK4LCxjDfAmVBFCjGNAEnrEL5jQSpB+h65Fy2tEpcpmlmwYcXTKI5vc9
+	pIMkcg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439v801q8p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Dec 2024 03:05:23 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B635M6e027157
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Dec 2024 03:05:22 GMT
+Received: from [10.239.28.113] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 5 Dec 2024
+ 19:05:15 -0800
+Message-ID: <541a5682-5b99-4793-84ee-a7c9168cb9a0@quicinc.com>
+Date: Fri, 6 Dec 2024 11:05:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrNJsWRmVeSWpSXmKPExsWy7bCmue6ZtKB0g9fHlS0ezNvGZnH/Ux+T
-	xZq955gs5h85x2rxctY9NotNj6+xWlzeNYfNYsb5fUwWN9btY7d4svAMk8X/PTvYLSYtPs9k
-	8fjlP2YHXo9NqzrZPFauWcPqsXlJvcfO7w3sHn1bVjF6fN4kF8AWlW2TkZqYklqkkJqXnJ+S
-	mZduq+QdHO8cb2pmYKhraGlhrqSQl5ibaqvk4hOg65aZA3SokkJZYk4pUCggsbhYSd/Opii/
-	tCRVISO/uMRWKbUgJafAvECvODG3uDQvXS8vtcTK0MDAyBSoMCE7Y/6r5WwFp7krGr9MZWxg
-	vMjZxcjBISFgItHaY97FyMUhJLCDUeLZ7jtsEM4nRomdZ5YzQzjfGCW+nzoJ5HCCdSybuZ4J
-	pFtIYC+jxMoqiJqPjBLzp/5iAqlhE9CS2Hb4FRNIQkTgNaNEU+87sEnMAl8ZJba3trKCVAkL
-	eEh8n72MDcRmEVCVmHRlNpjNK2AnMf3udCaIbfISk9a0gm3mFLCXmLhmMQtEjaDEyZlPwGxm
-	oJrmrbPBFkgIzOSQ2HF+M1Szi0Tb39usELawxKvjW9ghbCmJz+/2skHY+RIrV56Aqq+RuNe2
-	iwXCtpdYdOYnO8ibzAKaEut36UPCS1niyC2otXwSHYf/skOEeSU62oQgTFWJ6csCIGZIS0yc
-	sRZqj4dEy/ONYPuFBCYxSrR8lJzAqDALyS+zkPwyC2HtAkbmVYxiqQXFuempxUYFJvDoTc7P
-	3cQITrVaHjsYZ7/9oHeIkYmD8RCjBAezkghvZVhguhBvSmJlVWpRfnxRaU5q8SFGU2BIT2SW
-	Ek3OByb7vJJ4QxNLAxMzM0NzI1MDcyVx3nutc1OEBNITS1KzU1MLUotg+pg4OKUamPqVbN3u
-	njjdOGta4gnV/KPX/C4d+x2Y8+Bn17w9lwJnvX/8WTPz8cmezm9urU9W8l/e7ZFzZO1Krqid
-	AWd4/i3bNj/UZ0mgdsjRv2Wztlrciprj35R+4Mm0n+umJM8qcku4MkPgWp2/ZE5f8Z++m7c5
-	wuZ2zz3qfMLSpq18t13augT1iANfNx62+e06iyfyb4Sj7K/NLgtYlLeYnlWZtiZEY4qK8nox
-	rZepzXfCOs5M2Xf31t0/3vlau2vbb//SlzH42+sp/+xbKn9Q4srVZ7YkSDNObf59T85L4k3p
-	8gspSe8nTo+I0Ar7k3P8G89Cj8Dvc7wfFZ4ytTH8t6h8c9sst2j/edePnvQN2XXpqvdmJZbi
-	jERDLeai4kQA/L4iET4EAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrBLMWRmVeSWpSXmKPExsWy7bCSnO7ptKB0gxP7bSwezNvGZnH/Ux+T
-	xZq955gs5h85x2rxctY9NotNj6+xWlzeNYfNYsb5fUwWN9btY7d4svAMk8X/PTvYLSYtPs9k
-	8fjlP2YHXo9NqzrZPFauWcPqsXlJvcfO7w3sHn1bVjF6fN4kF8AWxWWTkpqTWZZapG+XwJUx
-	/9VytoLT3BWNX6YyNjBe5Oxi5OSQEDCRWDZzPVMXIxeHkMBuRolV7cdYIBLSEkd+v2CDsIUl
-	7rccYQWxhQTeM0r82isMYrMJaElsO/wKrFkEJH72yy9GkASzwG9GiQ0LjEFsYQEPie+zl4EN
-	YhFQlZh0ZTaYzStgJzH97nQmiAXyEpPWtDKD2JwC9hIT1ywGOoIDaJmdxLmVFRDlghInZz5h
-	gRgvL9G8dTbzBEaBWUhSs5CkFjAyrWKUTC0ozk3PLTYsMMpLLdcrTswtLs1L10vOz93ECI4M
-	La0djHtWfdA7xMjEwXiIUYKDWUmEtzIsMF2INyWxsiq1KD++qDQntfgQozQHi5I477fXvSlC
-	AumJJanZqakFqUUwWSYOTqkGpqPX4r/V7az2zWvLTNqzPembh4Vnesv6Lbs4xAznhtd8neO6
-	2sH006c3yQweggzus/2vX1/7/NkyrvigMxHbOAo50+YfmS0xi+1uyNUVrCu7LFmcrIvv3la0
-	7TuREZSxOaY6dlPCiu60FSuj3gX/vqkRsF+7JWbrrPKIxPkvZhVIiR38v2xeisLckBqzS99U
-	0tXyHHcUGPHc6ItlP3nordsahaMNezwav/y328Dy786RmtD+F9e7n97Yv93rTcCpba4Ldy5m
-	4ngwqyfQ91EZ72lG18R/Kjov1mTrJey6YuCxsTWW9Ud4ev1Vs7m6ixhsBUJLO/LOhJyemLnw
-	Orfnd+VUzr2/mZT/tvG7vl4vo8RSnJFoqMVcVJwIAElLh5j7AgAA
-X-CMS-MailID: 20241206025156epcas2p4c55f230accc4354e6f4bf324ab9a5833
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20241206025156epcas2p4c55f230accc4354e6f4bf324ab9a5833
-References: <20241206025139.2148833-1-trunixs.kim@samsung.com>
-	<CGME20241206025156epcas2p4c55f230accc4354e6f4bf324ab9a5833@epcas2p4.samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] Bluetooth: qca: Expand firmware-name to load
+ specific nvm and rampatch
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz
+	<luiz.dentz@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Balakrishna
+ Godavarthi" <quic_bgodavar@quicinc.com>,
+        Rocky Liao
+	<quic_rjliao@quicinc.com>,
+        <linux-bluetooth@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_jiaymao@quicinc.com>, <quic_shuaz@quicinc.com>,
+        <quic_zijuhu@quicinc.com>, <quic_mohamull@quicinc.com>
+References: <20241205102213.1281865-1-quic_chejiang@quicinc.com>
+ <20241205102213.1281865-3-quic_chejiang@quicinc.com>
+ <w7r4itwyrh3jva3rx3kmsm4kqtawqkgkneqrlin4hpjkqb3deo@2qmjd3ijzqn3>
+Content-Language: en-US
+From: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>
+In-Reply-To: <w7r4itwyrh3jva3rx3kmsm4kqtawqkgkneqrlin4hpjkqb3deo@2qmjd3ijzqn3>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: RTBB0hjoKQ16T1u-igp7ybYrjV907hJZ
+X-Proofpoint-GUID: RTBB0hjoKQ16T1u-igp7ybYrjV907hJZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ impostorscore=0 adultscore=0 priorityscore=1501 clxscore=1015
+ lowpriorityscore=0 suspectscore=0 mlxlogscore=999 malwarescore=0
+ bulkscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412060021
 
-From: Byoungtae Cho <bt.cho@samsung.com>
+Hi Dmitry,
 
-Adds two watchdog devices for ExynosAutoV920 SoC.
+On 12/5/2024 8:00 PM, Dmitry Baryshkov wrote:
+> On Thu, Dec 05, 2024 at 06:22:12PM +0800, Cheng Jiang wrote:
+>> The firmware-name property has been expanded to specify the names of NVM
+>> and rampatch firmware for certain chips, such as the QCA6698 Bluetooth
+>> chip. Although it shares the same IP core as the WCN6855, the QCA6698
+>> has different RF components and RAM sizes, necessitating new firmware
+>> files. This change allows for the configuration of NVM and rampatch in
+>> DT.
+>>
+>> Different connectivity boards may be attached to the same platform. For
+>> example, QCA6698-based boards can support either a two-antenna or
+>> three-antenna solution, both of which work on the sa8775p-ride platform.
+>> Due to differences in connectivity boards and variations in RF
+>> performance from different foundries, different NVM configurations are
+>> used based on the board ID.
+> 
+> Two separate commits, one for NVM, another one for RAM patch.
+> 
+Ack.
+>>
+>> Therefore, in the firmware-name property, if the NVM file has an
+>> extension, the NVM file will be used. Otherwise, the system will first
+>> try the .bNN (board ID) file, and if that fails, it will fall back to
+>> the .bin file.
+>>
+>> Possible configurations:
+>> firmware-name = "QCA6698/hpnv21.bin", "QCA6698/hpbtfw21.tlv";
+>> firmware-name = "QCA6698/hpnv21", "QCA6698/hpbtfw21.tlv";
+>> firmware-name = "QCA6698/hpnv21.bin";
+>>
+>> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
+>> ---
+>>  drivers/bluetooth/btqca.c   | 154 ++++++++++++++++++++++++++----------
+>>  drivers/bluetooth/btqca.h   |   5 +-
+>>  drivers/bluetooth/hci_qca.c |  21 ++++-
+>>  3 files changed, 134 insertions(+), 46 deletions(-)
+>>
+>> diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
+>> index dfbbac922..e8b89b8cc 100644
+>> --- a/drivers/bluetooth/btqca.c
+>> +++ b/drivers/bluetooth/btqca.c
+>> @@ -272,6 +272,31 @@ int qca_send_pre_shutdown_cmd(struct hci_dev *hdev)
+>>  }
+>>  EXPORT_SYMBOL_GPL(qca_send_pre_shutdown_cmd);
+>>  
+>> +static int qca_get_alt_nvm_path(char *path, size_t max_size)
+> 
+> int is usually for errors, the code suggests bool return type.
+> 
+Ack.
+>> +{
+>> +	char fwname[64];
+>> +	const char *suffix;
+>> +
+>> +	suffix = strrchr(path, '.');
+>> +
+>> +	if (!suffix)
+>> +		return 0;
+>> +
+>> +	strscpy(fwname, path, strlen(path));
+> 
+> 64 bytes ought to be enough for anybody, correct?
+> 
+Yes, in current driver, the max f/w path length is 64.
 
-Signed-off-by: Byoungtae Cho <bt.cho@samsung.com>
-Signed-off-by: Taewan Kim <trunixs.kim@samsung.com>
----
- .../arm64/boot/dts/exynos/exynosautov920.dtsi | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-index c759134c909e..7b9591255e91 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-@@ -183,6 +183,26 @@ cmu_misc: clock-controller@10020000 {
- 				      "noc";
- 		};
- 
-+		watchdog_cl0: watchdog@10060000 {
-+			compatible = "samsung,exynosautov920-wdt";
-+			reg = <0x10060000 0x100>;
-+			interrupts = <GIC_SPI 953 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&xtcxo>, <&xtcxo>;
-+			clock-names = "watchdog", "watchdog_src";
-+			samsung,syscon-phandle = <&pmu_system_controller>;
-+			samsung,cluster-index = <0>;
-+		};
-+
-+		watchdog_cl1: watchdog@10070000 {
-+			compatible = "samsung,exynosautov920-wdt";
-+			reg = <0x10070000 0x100>;
-+			interrupts = <GIC_SPI 952 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&xtcxo>, <&xtcxo>;
-+			clock-names = "watchdog", "watchdog_src";
-+			samsung,syscon-phandle = <&pmu_system_controller>;
-+			samsung,cluster-index = <1>;
-+		};
-+
- 		gic: interrupt-controller@10400000 {
- 			compatible = "arm,gic-v3";
- 			#interrupt-cells = <3>;
--- 
-2.47.1
+>> +	fwname[suffix - path] = 0;
+> 
+> with path = "qcom/sc7180/Oh.My.Device/name" this is broken.
+> 
+Let me test this and fix in next patch.
+>> +
+>> +	snprintf(fwname, sizeof(fwname), "%s.bin", fwname);
+>> +
+>> +	/* If nvm file is already the default one, return false to
+>> +	 * skip the retry.
+>> +	 */
+>> +	if (strcmp(fwname, path) == 0)
+>> +		return 0;
+>> +
+>> +	snprintf(path, max_size, "%s", fwname);
+>> +	return 1;
+>> +}
+>> +
+>>  static int qca_tlv_check_data(struct hci_dev *hdev,
+>>  			       struct qca_fw_config *config,
+>>  			       u8 *fw_data, size_t fw_size,
+>> @@ -564,6 +589,19 @@ static int qca_download_firmware(struct hci_dev *hdev,
+>>  					   config->fwname, ret);
+>>  				return ret;
+>>  			}
+>> +		}
+>> +		/* For nvm, if desired nvm file is not present and it's not the
+>> +		 * default nvm file(ends with .bin), try to load the default nvm.
+>> +		 */
+>> +		else if (config->type == TLV_TYPE_NVM &&
+>> +			 qca_get_alt_nvm_path(config->fwname, sizeof(config->fwname))) {
+> 
+> Please, don't rewrite the config. The file may be not present now, but
+> it will reappear later (e.g. when rootfs gets mounted).
+> 
+This tries to load a default NVM file if the board-specific NVM is not found.
+It is called when request_firmware fails. It's safe to rewrite the config->fwname
+here since we have already tried to load the board-specific NVM. The config
+is a local variable in qca_uart_setup and will return after downloading the NVM. 
+>> +			bt_dev_info(hdev, "QCA Downloading %s", config->fwname);
+>> +			ret = request_firmware(&fw, config->fwname, &hdev->dev);
+>> +			if (ret) {
+>> +				bt_dev_err(hdev, "QCA Failed to request file: %s (%d)",
+>> +					   config->fwname, ret);
+>> +				return ret;
+>> +			}
+>>  		} else {
+>>  			bt_dev_err(hdev, "QCA Failed to request file: %s (%d)",
+>>  				   config->fwname, ret);
+>> @@ -730,15 +768,38 @@ static inline void qca_get_nvm_name_generic(struct qca_fw_config *cfg,
+>>  			 "qca/%snv%02x.b%02x", stem, rom_ver, bid);
+>>  }
+>>  
+>> +static void qca_get_nvm_name_by_board(char *fwname, size_t max_size,
+>> +		const char *firmware_name, struct qca_btsoc_version ver,
+>> +		enum qca_btsoc_type soc_type, u16 bid)
+>> +{
+>> +	const char *variant;
+>> +
+>> +	/* Set the variant to empty by default */
+>> +	variant = "";
+>> +	/* hsp gf chip */
+>> +	if (soc_type == QCA_WCN6855) {
+>> +		if ((le32_to_cpu(ver.soc_id) & QCA_HSP_GF_SOC_MASK) == QCA_HSP_GF_SOC_ID)
+>> +			variant = "g";
+> 
+> Didn't you get the 'set but unused' here?
+> 
+Yes, miss this part. Thank you!
+>> +	}
+>> +
+>> +	if (bid == 0x0)
+> 
+> 0x0 or 0xff?
+board is set to 0 by default, 0x0 means read board id fails, then we should use
+the default one. 
+> 
+>> +		snprintf(fwname, max_size, "qca/%s.bin", firmware_name);
+>> +	else if (bid & 0xff00)
+>> +		snprintf(fwname, max_size, "qca/%s.b%x", firmware_name, bid);
+> 
+> Doesn't ".b%02x" work in this case too?
+> 
+No, board id are two bytes, it coudl be 0x0206, then we need .b206. Or it is
+0x000a, then we need .b0a. 
+>> +	else
+>> +		snprintf(fwname, max_size, "qca/%s.b%02x", firmware_name, bid);
+>> +}
+>> +
+>>  int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+>>  		   enum qca_btsoc_type soc_type, struct qca_btsoc_version ver,
+>> -		   const char *firmware_name)
+>> +		   const char *firmware_name, const char *rampatch_name)
+>>  {
+>>  	struct qca_fw_config config = {};
+>>  	int err;
+>>  	u8 rom_ver = 0;
+>>  	u32 soc_ver;
+>>  	u16 boardid = 0;
+>> +	const char *suffix;
+>>  
+>>  	bt_dev_dbg(hdev, "QCA setup on UART");
+>>  
+>> @@ -761,44 +822,48 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+>>  
+>>  	/* Download rampatch file */
+>>  	config.type = TLV_TYPE_PATCH;
+>> -	switch (soc_type) {
+>> -	case QCA_WCN3990:
+>> -	case QCA_WCN3991:
+>> -	case QCA_WCN3998:
+>> -		snprintf(config.fwname, sizeof(config.fwname),
+>> -			 "qca/crbtfw%02x.tlv", rom_ver);
+>> -		break;
+>> -	case QCA_WCN3988:
+>> -		snprintf(config.fwname, sizeof(config.fwname),
+>> -			 "qca/apbtfw%02x.tlv", rom_ver);
+>> -		break;
+>> -	case QCA_QCA2066:
+>> -		snprintf(config.fwname, sizeof(config.fwname),
+>> -			 "qca/hpbtfw%02x.tlv", rom_ver);
+>> -		break;
+>> -	case QCA_QCA6390:
+>> -		snprintf(config.fwname, sizeof(config.fwname),
+>> -			 "qca/htbtfw%02x.tlv", rom_ver);
+>> -		break;
+>> -	case QCA_WCN6750:
+>> -		/* Choose mbn file by default.If mbn file is not found
+>> -		 * then choose tlv file
+>> -		 */
+>> -		config.type = ELF_TYPE_PATCH;
+>> -		snprintf(config.fwname, sizeof(config.fwname),
+>> -			 "qca/msbtfw%02x.mbn", rom_ver);
+>> -		break;
+>> -	case QCA_WCN6855:
+>> -		snprintf(config.fwname, sizeof(config.fwname),
+>> -			 "qca/hpbtfw%02x.tlv", rom_ver);
+>> -		break;
+>> -	case QCA_WCN7850:
+>> -		snprintf(config.fwname, sizeof(config.fwname),
+>> -			 "qca/hmtbtfw%02x.tlv", rom_ver);
+>> -		break;
+>> -	default:
+>> -		snprintf(config.fwname, sizeof(config.fwname),
+>> -			 "qca/rampatch_%08x.bin", soc_ver);
+>> +	if (rampatch_name) {
+>> +		snprintf(config.fwname, sizeof(config.fwname), "qca/%s", rampatch_name);
+>> +	} else {
+>> +		switch (soc_type) {
+>> +		case QCA_WCN3990:
+>> +		case QCA_WCN3991:
+>> +		case QCA_WCN3998:
+>> +			snprintf(config.fwname, sizeof(config.fwname),
+>> +				 "qca/crbtfw%02x.tlv", rom_ver);
+>> +			break;
+>> +		case QCA_WCN3988:
+>> +			snprintf(config.fwname, sizeof(config.fwname),
+>> +				 "qca/apbtfw%02x.tlv", rom_ver);
+>> +			break;
+>> +		case QCA_QCA2066:
+>> +			snprintf(config.fwname, sizeof(config.fwname),
+>> +				 "qca/hpbtfw%02x.tlv", rom_ver);
+>> +			break;
+>> +		case QCA_QCA6390:
+>> +			snprintf(config.fwname, sizeof(config.fwname),
+>> +				 "qca/htbtfw%02x.tlv", rom_ver);
+>> +			break;
+>> +		case QCA_WCN6750:
+>> +			/* Choose mbn file by default.If mbn file is not found
+>> +			 * then choose tlv file
+>> +			 */
+>> +			config.type = ELF_TYPE_PATCH;
+>> +			snprintf(config.fwname, sizeof(config.fwname),
+>> +				 "qca/msbtfw%02x.mbn", rom_ver);
+>> +			break;
+>> +		case QCA_WCN6855:
+>> +			snprintf(config.fwname, sizeof(config.fwname),
+>> +				 "qca/hpbtfw%02x.tlv", rom_ver);
+>> +			break;
+>> +		case QCA_WCN7850:
+>> +			snprintf(config.fwname, sizeof(config.fwname),
+>> +				 "qca/hmtbtfw%02x.tlv", rom_ver);
+>> +			break;
+>> +		default:
+>> +			snprintf(config.fwname, sizeof(config.fwname),
+>> +				 "qca/rampatch_%08x.bin", soc_ver);
+>> +		}
+>>  	}
+>>  
+>>  	err = qca_download_firmware(hdev, &config, soc_type, rom_ver);
+>> @@ -816,8 +881,15 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+>>  	/* Download NVM configuration */
+>>  	config.type = TLV_TYPE_NVM;
+>>  	if (firmware_name) {
+>> -		snprintf(config.fwname, sizeof(config.fwname),
+>> -			 "qca/%s", firmware_name);
+>> +		/* The firmware name has suffix, use it directly */
+>> +		suffix = strrchr(firmware_name, '.');
+>> +		if (suffix && *(suffix + 1) != '\0' && *(suffix + 1) != '.') {
+>> +			snprintf(config.fwname, sizeof(config.fwname), "qca/%s", firmware_name);
+>> +		} else {
+>> +			qca_read_fw_board_id(hdev, &boardid);
+>> +			qca_get_nvm_name_by_board(config.fwname, sizeof(config.fwname),
+>> +				 firmware_name, ver, soc_type, boardid);
+>> +		}
+>>  	} else {
+>>  		switch (soc_type) {
+>>  		case QCA_WCN3990:
+>> diff --git a/drivers/bluetooth/btqca.h b/drivers/bluetooth/btqca.h
+>> index bb5207d7a..9d28c8800 100644
+>> --- a/drivers/bluetooth/btqca.h
+>> +++ b/drivers/bluetooth/btqca.h
+>> @@ -161,7 +161,7 @@ enum qca_btsoc_type {
+>>  int qca_set_bdaddr_rome(struct hci_dev *hdev, const bdaddr_t *bdaddr);
+>>  int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+>>  		   enum qca_btsoc_type soc_type, struct qca_btsoc_version ver,
+>> -		   const char *firmware_name);
+>> +		   const char *firmware_name, const char *rampatch_name);
+>>  int qca_read_soc_version(struct hci_dev *hdev, struct qca_btsoc_version *ver,
+>>  			 enum qca_btsoc_type);
+>>  int qca_set_bdaddr(struct hci_dev *hdev, const bdaddr_t *bdaddr);
+>> @@ -176,7 +176,8 @@ static inline int qca_set_bdaddr_rome(struct hci_dev *hdev, const bdaddr_t *bdad
+>>  static inline int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
+>>  				 enum qca_btsoc_type soc_type,
+>>  				 struct qca_btsoc_version ver,
+>> -				 const char *firmware_name)
+>> +				 const char *firmware_name,
+>> +				 const char *rampatch_name)
+>>  {
+>>  	return -EOPNOTSUPP;
+>>  }
+>> diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
+>> index 37129e6cb..c566d0bf2 100644
+>> --- a/drivers/bluetooth/hci_qca.c
+>> +++ b/drivers/bluetooth/hci_qca.c
+>> @@ -229,6 +229,7 @@ struct qca_serdev {
+>>  	u32 oper_speed;
+>>  	bool bdaddr_property_broken;
+>>  	const char *firmware_name;
+>> +	const char *rampatch_name;
+>>  };
+>>  
+>>  static int qca_regulator_enable(struct qca_serdev *qcadev);
+>> @@ -264,6 +265,17 @@ static const char *qca_get_firmware_name(struct hci_uart *hu)
+>>  	}
+>>  }
+>>  
+>> +static const char *qca_get_rampatch_name(struct hci_uart *hu)
+>> +{
+>> +	if (hu->serdev) {
+>> +		struct qca_serdev *qsd = serdev_device_get_drvdata(hu->serdev);
+>> +
+>> +		return qsd->rampatch_name;
+>> +	} else {
+>> +		return NULL;
+>> +	}
+>> +}
+>> +
+>>  static void __serial_clock_on(struct tty_struct *tty)
+>>  {
+>>  	/* TODO: Some chipset requires to enable UART clock on client
+>> @@ -1855,6 +1867,7 @@ static int qca_setup(struct hci_uart *hu)
+>>  	unsigned int retries = 0;
+>>  	enum qca_btsoc_type soc_type = qca_soc_type(hu);
+>>  	const char *firmware_name = qca_get_firmware_name(hu);
+>> +	const char *rampatch_name = qca_get_rampatch_name(hu);
+>>  	int ret;
+>>  	struct qca_btsoc_version ver;
+>>  	struct qca_serdev *qcadev;
+>> @@ -1963,7 +1976,7 @@ static int qca_setup(struct hci_uart *hu)
+>>  
+>>  	/* Setup patch / NVM configurations */
+>>  	ret = qca_uart_setup(hdev, qca_baudrate, soc_type, ver,
+>> -			firmware_name);
+>> +			firmware_name, rampatch_name);
+>>  	if (!ret) {
+>>  		clear_bit(QCA_IBS_DISABLED, &qca->flags);
+>>  		qca_debugfs_init(hdev);
+>> @@ -2309,8 +2322,10 @@ static int qca_serdev_probe(struct serdev_device *serdev)
+>>  	qcadev->serdev_hu.serdev = serdev;
+>>  	data = device_get_match_data(&serdev->dev);
+>>  	serdev_device_set_drvdata(serdev, qcadev);
+>> -	device_property_read_string(&serdev->dev, "firmware-name",
+>> -					 &qcadev->firmware_name);
+>> +	of_property_read_string_index(serdev->dev.of_node, "firmware-name",
+>> +					 0, &qcadev->firmware_name);
+>> +	of_property_read_string_index(serdev->dev.of_node, "firmware-name",
+>> +					 1, &qcadev->rampatch_name);
+>>  	device_property_read_u32(&serdev->dev, "max-speed",
+>>  				 &qcadev->oper_speed);
+>>  	if (!qcadev->oper_speed)
+>> -- 
+>> 2.25.1
+>>
+> 
 
 
