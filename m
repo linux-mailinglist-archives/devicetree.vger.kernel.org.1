@@ -1,105 +1,116 @@
-Return-Path: <devicetree+bounces-127940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84F2E9E6C34
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 11:29:49 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DCA09E6C28
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 11:28:53 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B8EC18887B0
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 10:28:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 019A02895BF
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 10:28:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4496E1FCFD4;
-	Fri,  6 Dec 2024 10:24:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27BD21FF7D3;
+	Fri,  6 Dec 2024 10:24:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A1BA1CCB40;
-	Fri,  6 Dec 2024 10:23:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2024F1FC0E1;
+	Fri,  6 Dec 2024 10:24:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733480641; cv=none; b=lcLy7GWsLhvsGRWr6ssRbpeSfuXQSLxDMfEy/G5fg1rTDMA4UZCnrOJwKh5zXiKjwhrEBCKsX/C2dcW/3oPCl+GN8G5q2LmMiYUyOJrOMQQsvzBd3uoUxw8fiuvb+7Tq5k7ZWcYKevpH3cO22vosrx3CXcDG2D6Xtx32VJJbMto=
+	t=1733480673; cv=none; b=e/RMwDTQ44+IDwJxGIXzRCdTFUuyYcI7QmiAc3HD+PL3OaQbkbDCL5RFFy4U4kc0nSBDOTc9ty0LpHR6eKqAbkoUj12W+C/59Kvm/t1q4j54m+hheSJuQAy3sfYUdFdpkjz6Cb89h6Pcr9OvYtlcc0S0yoZS8R5lzMTCI35RIHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733480641; c=relaxed/simple;
-	bh=xqrsPBXy51NaaddoSgIrFswboCgqHFciFtNtH1O+gpU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pOexpynmzHdLvlFM4+y8P87wvOF/ZjbZsaRaqQNtxMY/ziwI9FYii+hLYVVqK0Z+D7vOe840WJR0FPxCsoF+mNscM2oz/K0FBKeuLnTMEFTfhTN+C+yfHpTJrDXJifhK0M0KNcLKIUvzIfQJNMlS5mLGwdV2NMQychkggf7gs0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: ISoi+MTRQWyNEhqk7ewE7Q==
-X-CSE-MsgGUID: +DDuXu8+RxqMa5RYjqarOA==
-X-IronPort-AV: E=Sophos;i="6.12,213,1728918000"; 
-   d="scan'208";a="227116254"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 06 Dec 2024 19:23:59 +0900
-Received: from localhost.localdomain (unknown [10.226.92.67])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 3FD704003FB9;
-	Fri,  6 Dec 2024 19:23:43 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1733480673; c=relaxed/simple;
+	bh=kcUa+zTRzcdPhK9IlN/bpQh3o7vKfSJFKnw4RPuVXwQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MOkgCG+1iiQrAHFYfsHPZSXq0m+aTYjI6xVNPAC+ys5JzmsuRD7sHfYAPH+fRdIfE8sqAGMb8HhGCZpfvDwht6ZqN9/IURi+3l+P2uBAUhCwDFBoBO+GxLL3CrNXiaRseJcDRIcZZqW4q9636lVweRbqaCo7mUCDoiCjZ/68hB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4F10D12FC;
+	Fri,  6 Dec 2024 02:24:52 -0800 (PST)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6B87B3F71E;
+	Fri,  6 Dec 2024 02:24:22 -0800 (PST)
+Date: Fri, 6 Dec 2024 10:24:19 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v2 4/4] arm64: dts: renesas: r9a09g047: Add scif pincontrol
-Date: Fri,  6 Dec 2024 10:23:09 +0000
-Message-ID: <20241206102327.8737-5-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241206102327.8737-1-biju.das.jz@bp.renesas.com>
-References: <20241206102327.8737-1-biju.das.jz@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 3/3] firmware/psci: Allow specifying an S2RAM state
+ through CPU_SUSPEND
+Message-ID: <Z1LQ0-3AVkVHgPaY@bogus>
+References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
+ <20241028-topic-cpu_suspend_s2ram-v1-3-9fdd9a04b75c@oss.qualcomm.com>
+ <ZzSiM6Pn6A9e1QUD@lpieralisi>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZzSiM6Pn6A9e1QUD@lpieralisi>
 
-Add device node for scif pincontrol.
+On Wed, Nov 13, 2024 at 01:57:23PM +0100, Lorenzo Pieralisi wrote:
+> On Mon, Oct 28, 2024 at 03:22:59PM +0100, Konrad Dybcio wrote:
+> > From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> > 
+> > Certain firmware implementations (such as the ones found on Qualcomm
+> > SoCs between roughly 2015 and 2023) expose an S3-like S2RAM state
+> > through the CPU_SUSPEND call.
+> > 
+> > This works exactly like SYSTEM_SUSPEND. The PSCI spec describes that
+> > call as optional (and only introduced in PSCIv1.0), so not all
+> > platforms expose it.
+> > 
+> > Marking a DT-described "domain-idle-state" as such isn't currently
+> > well accounted for in the PSCI idle topology infrastructure: the
+> > cpuidle and genpd framework are deeply intertwined, and trying to
+> > separate them would cause more havoc than good.
+> 
+> I don't understand what you mean here please elaborate.
+> 
+> The part of the story I understand is that you have a system (well,
+> firmware for an extended set of systems) that does not implement
+> SYSTEM_SUSPEND but can reach a S2R like system state through the
+> CPU_SUSPEND call. Firmware works in OS-initiated mode, idle-states
+> should allow you to define idle states that allow the system to
+> enter the S2R state through CPUidle.
+> 
+> Please explain to me what's missing.
+> 
+> > Instead, allow the specifying of a single CPU_SUSPEND sleep param
+> > under the /psci node that shall be treated exactly like SYSTEM_SUSPEND
+> > from Linux's POV. As a bonus, this way we also don't have to fight
+> > with the genpd idle governor to avoid taking the S3-like state into
+> > consideration.
+> 
+> That's not acceptable. I want to understand what's preventing this
+> system to enter that state through suspend2idle and the mainline code.
+> 
+> > Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> > ---
+> >  drivers/firmware/psci/psci.c | 36 +++++++++++++++++++++++++++++++-----
+> >  1 file changed, 31 insertions(+), 5 deletions(-)
+> 
+> NACK
+> 
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * No change.
----
- arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
++1, will wait for the response here before adding any more questions that
+may lead to more confusion or discussion churn.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index d4d61bd03969..e33e1e80c6d5 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -7,6 +7,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
- #include "r9a09g047e57.dtsi"
- #include "rzg3e-smarc-som.dtsi"
- #include "renesas-smarc2.dtsi"
-@@ -16,3 +17,15 @@ / {
- 	compatible = "renesas,smarc2-evk", "renesas,rzg3e-smarcm",
- 		     "renesas,r9a09g047e57", "renesas,r9a09g047";
- };
-+
-+&pinctrl {
-+	scif_pins: scif {
-+		pins = "SCIF_TXD", "SCIF_RXD";
-+		renesas,output-impedance = <1>;
-+	};
-+};
-+
-+&scif0 {
-+	pinctrl-0 = <&scif_pins>;
-+	pinctrl-names = "default";
-+};
 -- 
-2.43.0
-
+Regards,
+Sudeep
 
