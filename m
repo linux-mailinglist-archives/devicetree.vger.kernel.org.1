@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-128001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F17109E6FC0
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 15:01:39 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F40269E6FE4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 15:13:42 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABD98284648
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 14:01:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE729169958
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 14:13:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45E69207E14;
-	Fri,  6 Dec 2024 14:01:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1CF207E0D;
+	Fri,  6 Dec 2024 14:13:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="mDIhXhw4"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="lMJt2KLF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C4532040BD
-	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 14:01:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39AA02E859
+	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 14:13:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733493696; cv=none; b=HmKB/S1jCmGUn3Ep2+gHHLkaRRMOj7q8DFWntca/YRSuU6yKqMVmUoVkPD4fngPIxaS3ldPEelpQol21DBP8L+ahCWenDxGsgooXWLQEImKZfs20kfUMPqpn3GSjfWlZqjQ6yNs3a9ux1B71a7oK4eTdPtEUvvffLWGr6ALEAiQ=
+	t=1733494409; cv=none; b=fXOFdiH37koclrzY4b4EjRPI4auvYozhNSTkQqBFUIMu6912PHGZ5AfNI86jV/8tGHw86nGhFiZsXqBjsiQ9xaGU3yDmYQ9d1+brvb+lSzEJ9hrf2ZQOTw2YDYwOzrwondb80WELk2iNeDPsD593v6tYqY5T/t2r2bj3Q1RVQ3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733493696; c=relaxed/simple;
-	bh=ztPyo3yGt6f1hEMGIcmrfUZRowJBSTmCSEvYULhwgIY=;
+	s=arc-20240116; t=1733494409; c=relaxed/simple;
+	bh=1DF44BAXCAedUfJU1fvmYW3s55YCLMM/4Pv6fBs7ZVc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RaI1HPt7R/UkqKb5xjFRcOqEPAJnyIy1zlx2ddZNb0hBX6JEOE9ITA1Eze8BpvR9I+s5aJ57amc2jqRHAUG8jKHD0O1zPKyRgrWIxJV3yZTQTgw4ax7UjZeIfurQURzz5+WGU/Eu2gEwR8br4H8roX0BabAbnSvy8QXFp1dxkQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=mDIhXhw4; arc=none smtp.client-ip=209.85.221.44
+	 To:Cc:Content-Type; b=H2S6158oBrjfx1GfOt5seZhzfhmkPqOClg1VJuV+/tTFeIQpC2sTjNprDhcjvQ0Lx7bluAcrdn+CAulu/A0nBohEUTVSySoqWcTQZeeQq4SU91szv0k5eepLbqZznfqzcfvM3ir7ngTmci1VzMZvq4I8f75TM9NauAXtPgBB9ic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=lMJt2KLF; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3862d16b4f5so382125f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 06:01:34 -0800 (PST)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-434a044dce2so23890875e9.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 06:13:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1733493693; x=1734098493; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1733494406; x=1734099206; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HIROnSpI7QIsIhdgjfBPj1aXSKLxengS8TtSGx06igQ=;
-        b=mDIhXhw43Q9O+B8djqlmEMzF9SVSh8Pvrlt1yiqCLy+hbqNvThz6cOotnXdnXR9Rmd
-         GULhRHCQot/gDpsJiQw8JXPnXozdaEhwM9cYf2xK4NnvHYJu/u0WL1LB3/I2UdEs55tR
-         6aekZ8ZbxT5nrOCxYxTx1uhQY2PJ7sRlHr1RK/vo/gpxPHSZ5ruMZQa7y+Xc/dbMQpJt
-         RgNnjAKw4iHdsBRniVwK58Ar7WvpbjxbzqJkYUQFJ99q4ysilIayuyHx64s1oXTNDMFS
-         /B2C/z2j13m/WUkhRTw7WagPYknOSQ3JMNtowLnTs8sGkvmoYX1n0JNvSRJDurw++u0m
-         mUpg==
+        bh=invAFTZMnZvuIAIS0gW4T2jxGGD8MCPvZg9vdT55zVE=;
+        b=lMJt2KLFKDPuiqp29DKcPD7+qYIgWANazhBMqqjxwlbxdhtZYqSamYmL6L7ovrZnGk
+         6Em23nR4qSRhzUPA7U1BtTZ/eJu7etisq/arcQwdNC/wHeIgCoK6ojHdoBizJs5EU2ym
+         OKIdioKBT0nTOSdlPvtZN98CQXPkUwm4laTdmIuO+epSbFX3a96+c/9DM/4V8VhX4uJI
+         FYFIhwsib9wdEEGcAlkRksrcrpv0BrP4UxFBTl9cbUjcxtlUshpKtYzTjO6K6jCnPdHi
+         P4vSVXOmeD5KrAOhuom7z+C2IMsP8ImTxOZsJYi58p8RuKYhnYOlWsXuDYf0fI3lOnzB
+         BMXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733493693; x=1734098493;
+        d=1e100.net; s=20230601; t=1733494406; x=1734099206;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HIROnSpI7QIsIhdgjfBPj1aXSKLxengS8TtSGx06igQ=;
-        b=lXLPuFhoAktcXsDeVkzepKqgPgav7Dsp9bilhslke2BmOF1FPHJzDmw3RyTwXmqj1l
-         kIbI7X3RfM/Axz7X0ec1MQOhffQSwR5Nmf2JFNXdc8gSTq4h6bhvFVN60eDNLZqGuMOO
-         gr8En8kHMcDuqEazZg/Uwzl/1Pfttyiy//shK9yM+cgagplCA/gnJSvzMljasH1QXird
-         LV9lkTsSf+Bk0d7tYGTV/8/xL4tiCu4U9ojhFjSwvyCpdmJs0/wbVGoap6+3+ud9WXbq
-         +FKNz3f1OSWO/UpAHavtoxkDcyf1OD4WDrF8kVI4uwSR8v2NNWWT6+GSJtkWEzxogZim
-         IbWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXU9gQvAHQZkeI9UjVH90SHTpIUMkACLnSzhIM4ICTFuaqVXtyMfTpc7dAPyFbsM/HGC3hRb7vrHecM@vger.kernel.org
-X-Gm-Message-State: AOJu0YyB3F4gohBrqBcH7oz3oR73r7Oy0MdQ8U4I6Ks8Ifvk9wAAGHc8
-	nDGGXpdQEAZHG9xOJFmyF3ADL9GHjxtEDNRPte8jzLB/ZsShe0FkydGYcD8eHPIrXbRGRPI9iII
-	K0iXCN8Uf+OiUkdi466bFmMELOGutnNqQ1XPQ
-X-Gm-Gg: ASbGncvo2k9z8lbSREofdILzGEzDi35ICHe/tUM7f3AViWVhTuw8o8zswve1QTBnqX9
-	nCiHldqBhtjvh8o1+ks99+pydPV0jUplT
-X-Google-Smtp-Source: AGHT+IHLpOzFOhY4mfA0Js1CKJtdFnnaFfAgbZ1a1gRtRIpN5wpQ0aUSs985OPEDReg41RO5SuCiAM0IAzD3hXlS/+o=
-X-Received: by 2002:a05:6000:402c:b0:382:45db:6a1e with SMTP id
- ffacd0b85a97d-3862a8b30c2mr2623645f8f.14.1733493692399; Fri, 06 Dec 2024
- 06:01:32 -0800 (PST)
+        bh=invAFTZMnZvuIAIS0gW4T2jxGGD8MCPvZg9vdT55zVE=;
+        b=OQfILfhcPtZ2K+aJuXpjNsd6caDTuvR70DwRbSqimZrgEFdYQog0fm2JwyTRwQiCjt
+         TcHgsYXPSGSnU5cKieK3nle+/H4WqLWoxy8w778Pb96b1sY6Hw91Mbwvj+hjfIvdqbVY
+         LoeP1lcfJM9w/bW1GzYRHfcObvrSlPqucu1D3EX6z++NRZTUViy2vG3qMO3Y+8Oew5QT
+         LH1brToY9P4S/uKrBHsO5jwQTGhxE7UuLZMHt49fqnvzg6PjWAHp4T+9EAY6qSSeqSZH
+         Pokn+2w+fLxewlka8zqx/ByLFu65i1fbtkFlFALvuLkgJavSQc7lEECbXpAZhGh5ddOw
+         HCwg==
+X-Forwarded-Encrypted: i=1; AJvYcCUt4tIZq0UtzMuXwAarRee5+4di3Ml6XIPdiBEwYlAojBTyLBlHbT/qRQgoUoclkZV9fAAmsaa8fmwb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/4ZTFXapQVEpKbJGwLbnb2lTWciRZemBt7QWczJE4Ji/iXzJc
+	SBdk4YegYj1KPhNDt9FT8MPd7IP8g/iOBNlR5DALBp5zb31SNu4vX3iI7vN1vbj2Ztjrpd29Lzm
+	xs9sFK8Pgurl/YBBMigRLmLJ6ua7qKINJXJTu
+X-Gm-Gg: ASbGnctL3bNfpdZoRLez9tYbkfpvZzugZ3xOcY5mwZiExAidszrpHcIYPrEkHQaVdHy
+	Q1riMS7d3CbIk/kw3LyymUd1/uhMTlOT4
+X-Google-Smtp-Source: AGHT+IF75B2Q9PZzE+uP3SRRKyAqlTWeSijFYxXXRaaA7vpUlEcJ9S0YdWujapsIeVT3nm8E9Iep1XrnCeRltZPDi+0=
+X-Received: by 2002:a05:600c:3b08:b0:434:9fac:b157 with SMTP id
+ 5b1f17b1804b1-434ddeb5eddmr33010655e9.13.1733494406426; Fri, 06 Dec 2024
+ 06:13:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241205141533.111830-1-dakr@kernel.org> <20241205141533.111830-9-dakr@kernel.org>
-In-Reply-To: <20241205141533.111830-9-dakr@kernel.org>
+References: <20241205141533.111830-1-dakr@kernel.org> <20241205141533.111830-7-dakr@kernel.org>
+In-Reply-To: <20241205141533.111830-7-dakr@kernel.org>
 From: Alice Ryhl <aliceryhl@google.com>
-Date: Fri, 6 Dec 2024 15:01:18 +0100
-Message-ID: <CAH5fLgh6qgQ=SBn17biSRbqO8pNtSEq=5fDY3iuGzbuf2Aqjeg@mail.gmail.com>
-Subject: Re: [PATCH v4 08/13] rust: pci: add basic PCI device / driver abstractions
+Date: Fri, 6 Dec 2024 15:13:14 +0100
+Message-ID: <CAH5fLgg4wxyar_2uPfUJ=Bcc5=SVWOoYWvoC3ieVd9ayakiopQ@mail.gmail.com>
+Subject: Re: [PATCH v4 06/13] rust: add `io::{Io, IoRaw}` base types
 To: Danilo Krummrich <dakr@kernel.org>
 Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
 	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
@@ -96,87 +96,55 @@ Content-Transfer-Encoding: quoted-printable
 On Thu, Dec 5, 2024 at 3:16=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> w=
 rote:
 >
-> Implement the basic PCI abstractions required to write a basic PCI
-> driver. This includes the following data structures:
+> I/O memory is typically either mapped through direct calls to ioremap()
+> or subsystem / bus specific ones such as pci_iomap().
 >
-> The `pci::Driver` trait represents the interface to the driver and
-> provides `pci::Driver::probe` for the driver to implement.
+> Even though subsystem / bus specific functions to map I/O memory are
+> based on ioremap() / iounmap() it is not desirable to re-implement them
+> in Rust.
 >
-> The `pci::Device` abstraction represents a `struct pci_dev` and provides
-> abstractions for common functions, such as `pci::Device::set_master`.
+> Instead, implement a base type for I/O mapped memory, which generically
+> provides the corresponding accessors, such as `Io::readb` or
+> `Io:try_readb`.
 >
-> In order to provide the PCI specific parts to a generic
-> `driver::Registration` the `driver::RegistrationOps` trait is implemented
-> by `pci::Adapter`.
+> `Io` supports an optional const generic, such that a driver can indicate
+> the minimal expected and required size of the mapping at compile time.
+> Correspondingly, calls to the 'non-try' accessors, support compile time
+> checks of the I/O memory offset to read / write, while the 'try'
+> accessors, provide boundary checks on runtime.
 >
-> `pci::DeviceId` implements PCI device IDs based on the generic
-> `device_id::RawDevceId` abstraction.
+> `IoRaw` is meant to be embedded into a structure (e.g. pci::Bar or
+> io::IoMem) which creates the actual I/O memory mapping and initializes
+> `IoRaw` accordingly.
 >
-> Co-developed-by: FUJITA Tomonori <fujita.tomonori@gmail.com>
-> Signed-off-by: FUJITA Tomonori <fujita.tomonori@gmail.com>
+> To ensure that I/O mapped memory can't out-live the device it may be
+> bound to, subsystems must embed the corresponding I/O memory type (e.g.
+> pci::Bar) into a `Devres` container, such that it gets revoked once the
+> device is unbound.
+>
 > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 
-> +/// The PCI device representation.
-> +///
-> +/// A PCI device is based on an always reference counted `device:Device`=
- instance. Cloning a PCI
-> +/// device, hence, also increments the base device' reference count.
-> +#[derive(Clone)]
-> +pub struct Device(ARef<device::Device>);
+One nit below. With that addressed:
 
-It seems more natural for this to be a wrapper around
-`Opaque<bindings::pci_dev>`. Then you can have both &Device and
-ARef<Device> depending on whether you want to hold a refcount or not.
+Reviewed-by: Alice Ryhl <aliceryhl@google.com>
 
-Alice
-
-> +impl Device {
-> +    /// Create a PCI Device instance from an existing `device::Device`.
+> +impl<const SIZE: usize> Io<SIZE> {
+> +    /// Converts an `IoRaw` into an `Io` instance, providing the accesso=
+rs to the MMIO mapping.
 > +    ///
 > +    /// # Safety
 > +    ///
-> +    /// `dev` must be an `ARef<device::Device>` whose underlying `bindin=
-gs::device` is a member of
-> +    /// a `bindings::pci_dev`.
-> +    pub unsafe fn from_dev(dev: ARef<device::Device>) -> Self {
-> +        Self(dev)
-> +    }
-> +
-> +    fn as_raw(&self) -> *mut bindings::pci_dev {
-> +        // SAFETY: By the type invariant `self.0.as_raw` is a pointer to=
- the `struct device`
-> +        // embedded in `struct pci_dev`.
-> +        unsafe { container_of!(self.0.as_raw(), bindings::pci_dev, dev) =
-as _ }
-> +    }
-> +
-> +    /// Enable memory resources for this device.
-> +    pub fn enable_device_mem(&self) -> Result {
-> +        // SAFETY: `self.as_raw` is guaranteed to be a pointer to a vali=
-d `struct pci_dev`.
-> +        let ret =3D unsafe { bindings::pci_enable_device_mem(self.as_raw=
-()) };
-> +        if ret !=3D 0 {
-> +            Err(Error::from_errno(ret))
-> +        } else {
-> +            Ok(())
-> +        }
-> +    }
-> +
-> +    /// Enable bus-mastering for this device.
-> +    pub fn set_master(&self) {
-> +        // SAFETY: `self.as_raw` is guaranteed to be a pointer to a vali=
-d `struct pci_dev`.
-> +        unsafe { bindings::pci_set_master(self.as_raw()) };
-> +    }
-> +}
-> +
-> +impl AsRef<device::Device> for Device {
-> +    fn as_ref(&self) -> &device::Device {
-> +        &self.0
-> +    }
-> +}
-> --
-> 2.47.0
->
+> +    /// Callers must ensure that `addr` is the start of a valid I/O mapp=
+ed memory region of size
+> +    /// `maxsize`.
+> +    pub unsafe fn from_raw<'a>(raw: &IoRaw<SIZE>) -> &'a Self {
+
+I would use this signature:
+
+pub unsafe fn from_raw(raw: &IoRaw<SIZE>) -> &Self;
+
+Otherwise, you're saying that the returned reference is allowed to
+outlive the IoRaw instance, which wouldn't be okay.
+
+Alice
 
