@@ -1,114 +1,171 @@
-Return-Path: <devicetree+bounces-127946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1551D9E6C91
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 11:52:00 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFCEB9E6C98
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 11:52:42 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7A4A281D03
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 10:51:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20FDF163A41
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 10:52:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307291FCD06;
-	Fri,  6 Dec 2024 10:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D181FA24D;
+	Fri,  6 Dec 2024 10:52:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="HFBUGwNy";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="LO/xgI7D"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="E9UPiiBT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2067.outbound.protection.outlook.com [40.107.101.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 691A01FC7E7;
-	Fri,  6 Dec 2024 10:51:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733482303; cv=none; b=jam5T8xkUm6jLVQqybVYCJg0Albg4Z+MK6mfg9XUZjEMnpHqB1dSlf5LegeiXY+ZHCijtAXi38rSV0SIqcKCcURXaPncf7ZkLEY4mI463rKZlNKtKKlAKdCopgxCFjcwwFUuFFWRjmhlSWEZ9BcpGEiRu4wxJ+h1qldeVKEn2rs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733482303; c=relaxed/simple;
-	bh=t52h31sl/lbZN/+m/UKayQavdZKo5RQQdgsiOgkKpWI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ArUwCLskWPW4LnOajk0P5Qka3aEJ1dudV0eJrxElu7LwvnxK9HCnQb6VyRuKGr2kPtyK5TItgwSXE3b9X+L0yN15nzcLlBg7ywIIEGhZGqVR9IX9QTYPPDGLPbWFlP+/o48A8Hi+vM+MvK/6uAnysqsFnPNKDlzMjdXfdG4pzRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=HFBUGwNy; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=LO/xgI7D reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1733482299; x=1765018299;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=F1K6BotclyzmRObSFZIO2A0hKib3MOWsiz+TlXGAmxc=;
-  b=HFBUGwNy0VxacCvAJViRLdfvV6vRGWgauK41uSzab5leji2bsdxBOk5J
-   qKK2vn3V73yyouhNa3t6ZPb9NsiUr4QOqyYZZ4GU8SAxNkEuRme4Cbbhn
-   tF96PZ+su/MbauICHzTeEG50unC/n2a9XMD/fXmaQixEA4292yV35/Woj
-   1hIhXtanpE4gVJjph9H3eN5N3zZHzsWmHam6zdjn0wbJO/gj2VORCUjFr
-   h3+n+MMx7i8aKsCLsKqf83jutDi4vSpVaFSP0mGhBmsCfu5G0okC+qCtm
-   nPqpKOS3JNFv3N2xDt27u17XZBjd5tXlQeLURUURjbzzcHApAKOMHg4R6
-   g==;
-X-CSE-ConnectionGUID: Nr4ED2PbSn2oGJ8BLG7i9A==
-X-CSE-MsgGUID: tUYxYd5BQ4WlWKKikxkI2w==
-X-IronPort-AV: E=Sophos;i="6.12,213,1728943200"; 
-   d="scan'208";a="40452975"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 06 Dec 2024 11:51:37 +0100
-X-CheckPoint: {6752D739-7-90CD5875-E0265C0B}
-X-MAIL-CPID: 972FC9E7E870117C395C4F65784787D5_3
-X-Control-Analysis: str=0001.0A682F1F.6752D739.005D,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 71066164926;
-	Fri,  6 Dec 2024 11:51:31 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1733482292;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=F1K6BotclyzmRObSFZIO2A0hKib3MOWsiz+TlXGAmxc=;
-	b=LO/xgI7DGn6iDyh5XslOY4AvGoNhHbAMnoOaa7knn6D4ugQoHDBwQHgT/9qPt9r4BEzYV9
-	uYM63IazZYWFilFq7/prjw0AXnf7nuWWjdC14Dua5oGfHE2WNB9UC7GcnhqgSf9XXVkj6u
-	6bleNTrQ7erBJ6ntD7wvBvse7c4TMqflMhqNfr1MbQRHPnek7p9MQ3XJaSJzD6sY1/fpMW
-	r3UinKv+dMXCbpIhSO2s78edpRf+eWPWK0Q6sEuoSdEX2zu0eBcoL7U1tM28FE7FZdHAVO
-	zRA+oty+H76aFZTULGw1xRziNCkFWpJd+7E21LaLRSQTDQQqhsxkV1utLdUNUw==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, gregkh@linuxfoundation.org, jun.li@nxp.com, Xu Yang <xu.yang_2@nxp.com>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: phy: imx8mq-usb: correct reference to usb-switch.yaml
-Date: Fri, 06 Dec 2024 11:51:31 +0100
-Message-ID: <3326164.aeNJFYEL58@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20241119105017.917833-1-xu.yang_2@nxp.com>
-References: <20241119105017.917833-1-xu.yang_2@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B701762171;
+	Fri,  6 Dec 2024 10:52:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.101.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733482355; cv=fail; b=Ct2XN9yJksv7kRHDw4F+xmW/DuQtnj6UMG1EFGheGL9TycnVkLtq6aIbnR9WBiTFem3KBrXAwLXlYKPAFsfHjzM92l1D9j47I9AeeAUd85aTOpvFPGdOoKDL7uWBMkgUYMAbIogEubqwfjWRciHNZhFZgx6MqAnZmYQQvWH/0qY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733482355; c=relaxed/simple;
+	bh=gqf5WRpOch7G2NNtN1umSVwEVpI+e/coqPtlrsTLv3g=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QF05YiroI/JR9HmKx+fm73N0LsuxNDmDm/Z4dwK5BgIX1xMN7zahI1ZRz0xZ7VP7+VFTbHQW/ptK0oMZb9Y4wIn52nFeklGVHhAcjU8ymd+e+dI025cdaIhUh6Mp0SgLImZJrGYMM1xTID3ZgeRwuy7E5GQC2zLt46HWvwyMoJ4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=E9UPiiBT; arc=fail smtp.client-ip=40.107.101.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=BsKsCqzZvtEbAh9OGhbgjdNpkk/zqfH3unPydgPMLGghJMkbJjOaR6qCDxAINMy57cD2gbMPi08XoJwqDKzseEnbnjOhs3JqWlHOLPG9cqy0gQjLMkc94oHrVg/NQXw0/GsppgbaGN0ZnowL3lifQWc9lyUiSolA2Ys+Pmhf7m3DVvG1aoat9ge0jjUHGgsCccmHnIHehzXAWfoGM8nn7yNITABhB5OOlfj+FO/zr25pHf9RoZRfjjLePuUbhMHVUnusG4Vz4RUjOEzZxh5jIkaxmjKu3bqzk6tiUbhq+8jA0RGT3votgAaT3zwJMkbwYvPkEoQkjtxgcfmHnUabPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dcIsrmyVBp4abxJJOZ8AMnGlKQFA0tKdsFF/e30f/XY=;
+ b=ujX3yLjejkyFYFIstsH4cgvzpcM2UsU1wDfo/GdYiIFoh7uIJ5IQXie09Ce6cxgZ4MY/BE1fdGfdGIl3LdqChcXXQR+pp0wtaCvCVLVtBxvGKT2EBZ+ZM1QRtKkEsqVZAsIBtYhUrJhlSdEQgOTLNPeCJ7907b1/+v1aQIvMX0C0x+ZyeCbrqrkELAljhwKhpo0jObJwJKZK7WLQaD3btmRgC/Hh3QfAOzPOGp2FFqxAUO7o8nJqzLxv0SnoEFyAMwZdoz3f678SdbiXORU+vB+G5HqzLEJZpunAF/Lb+olZUrrgk+PJ5MrNmDFa/NY++Tnc09OAUZsazbNcFxPvQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dcIsrmyVBp4abxJJOZ8AMnGlKQFA0tKdsFF/e30f/XY=;
+ b=E9UPiiBT7mm4LtoCUiyIr9xdNpQdsNPY02k4Nw4jCBnkVcd+EbARMtoiz6/5cGInMx3lf5d8bKEBQRpUdVX6vR/O4Djug0FUyeBqIjoWZDw6mzLtnDyci87kQwaKlO33ao7Z4ELSzwg5StHIjFM/6h2sHQYC9fPoJd52nVweZoFOQcrFub6sEY/q96Li1HCAAXf+qld5SuZkRgRcpJY53KQScP6NDSvJjH4nj8ETfwo/cjmt1hSLC5NNiUEruUuFdGjK0Mpx5JYH3El2pFtzf+SP3EBNGoPfJtDAjbW2dgPnsKfgd72nJG7kR4UftVxxSd8yRe2UZ8zUCX3hkaxnUg==
+Received: from BYAPR07CA0075.namprd07.prod.outlook.com (2603:10b6:a03:12b::16)
+ by DM4PR12MB6447.namprd12.prod.outlook.com (2603:10b6:8:bf::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.16; Fri, 6 Dec
+ 2024 10:52:27 +0000
+Received: from SJ1PEPF00002325.namprd03.prod.outlook.com
+ (2603:10b6:a03:12b:cafe::c4) by BYAPR07CA0075.outlook.office365.com
+ (2603:10b6:a03:12b::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8230.10 via Frontend Transport; Fri,
+ 6 Dec 2024 10:52:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ SJ1PEPF00002325.mail.protection.outlook.com (10.167.242.88) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8230.7 via Frontend Transport; Fri, 6 Dec 2024 10:52:26 +0000
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Fri, 6 Dec 2024
+ 02:52:12 -0800
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail203.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Fri, 6 Dec 2024
+ 02:52:11 -0800
+Received: from BUILDSERVER-IO-L4T.nvidia.com (10.127.8.13) by mail.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Fri, 6 Dec 2024 02:52:09 -0800
+From: Akhil R <akhilrajeev@nvidia.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <thierry.reding@gmail.com>,
+	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+CC: Akhil R <akhilrajeev@nvidia.com>
+Subject: [PATCH] arm64: tegra: Fix DMA ID for SPI2
+Date: Fri, 6 Dec 2024 16:22:00 +0530
+Message-ID: <20241206105201.53596-1-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002325:EE_|DM4PR12MB6447:EE_
+X-MS-Office365-Filtering-Correlation-Id: e634a412-a41a-406c-472b-08dd15e412d0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?aAOG93+yR0Ha5q73Cy41wAsOlrU1FRCkwBoWYYKbVF/EAOIGZDjneq/J4KSP?=
+ =?us-ascii?Q?ai86jQy40h/Y+G9E+xOWuZVdIYncmDmN8kq1nJ3W6KcYUXVULBZcxPuHHI3P?=
+ =?us-ascii?Q?882DySzfxMTm3B9fb4wMu5eIUfn2fibLVwJyOVrLxzAF/KXt3CyPLc0Vvq4y?=
+ =?us-ascii?Q?BtK+pXOEsrU+I0WMl0KTExpkpg1MlA1xzO1PN+ZgD/PSEwBMhOPBLmSZQ0Dw?=
+ =?us-ascii?Q?THV55BM/Wt2kYXIZhQULPbaojlIQBHuEif2/UpBZPNvJl2hlkiBYDRjFvX6t?=
+ =?us-ascii?Q?ThREYuTVleNOxDqe8CghJdBnA+C9LD1DFEFoRywD1WvVYLM5eRKYd2H8ED7I?=
+ =?us-ascii?Q?XPDwgKhPBd6jBRGu7N1uuW46E+MZvZizE3hktZ7D7H7pw8JX0+f6AyMa2LnP?=
+ =?us-ascii?Q?qSixBMOc97yqh4nni8wdoX//hSKmGPtMLl9n6HfbveGZ/84C+pP/gcvqTlSw?=
+ =?us-ascii?Q?LAMLrdUE+XeMqvk8ChZFkLnKRqj+/9F/qtf7R594LwQ4xMeQW0VrQB0QfPzV?=
+ =?us-ascii?Q?Xi9QSVZNYE1W1chDuwm3I7tmyBNgHLhIkdf6uegygbzbq0/MPTF84qdizoP1?=
+ =?us-ascii?Q?fBBq1SHBnHtZCTsBIkAM4vzkUUmdk1Bckqh5lBB7zbYXkrm3/mLBtwphx6q+?=
+ =?us-ascii?Q?dhEDYdvhIc8jtY7FvLc1e84vZV6hkfKNIeVW4TJlbJTxYUGPltd49Or/M8ZY?=
+ =?us-ascii?Q?tTC/eW/U63f5XNp9lRwEPew40AWo+3Lc9QZae6TMjDrXgF20AuruQsSbvz/g?=
+ =?us-ascii?Q?ptl77tVqVsdjmpEiCAfIDQkYzSrjUxlWasWxU8eHtKf6cLPcQ8O5VMkeZzMu?=
+ =?us-ascii?Q?sZk/SWjKRnS2ZURTOGzdgd46NouE2nXL0CfLGUkZ+T5G88SY4+i7rH2I7wDq?=
+ =?us-ascii?Q?KGVgBTxkwPqHHkJUMXmyON20sbO5p2s7mBAPd/SXTYTrkBfg/ivYUNVRXPpv?=
+ =?us-ascii?Q?bnQqaZ7M2VQOSDEXyvk2TBlREaj8FlbcnNyBW4uull+Zjl1HPBYgh2dh0Dgr?=
+ =?us-ascii?Q?oVRhHT+P//53aOOyZrcsERcSSFnkneLL/Q0mOKcu/D3LkBQ7aqi0yIzGTFAM?=
+ =?us-ascii?Q?6A5ZhDjx7mnEjg4yAsIebWF6uVEvn7Z15UiacRgnIgXYEdPY+ubvBevsWxx2?=
+ =?us-ascii?Q?fKl1XMb1YH3KmzzSt5l4a9E0RBynt27lp2r9Cz7p9hJwp6eQexjgCVevAAb+?=
+ =?us-ascii?Q?RRH7YCCqP/Nq2x13fEyCDLV4W4DNfpQxTVFsxiwCOpTeJv0fJIskG1YPv/qV?=
+ =?us-ascii?Q?l9F5t0UGClllcU6ya9OhQifcPI75uuLwIrUDHk5ZyVK6Fg8VwN11VsMqvK6/?=
+ =?us-ascii?Q?dTtn4+5S4wnnv0Vew/2YJXwiyOyN5yNW/FXDuGyu6voQhqQYNop938jPmt6s?=
+ =?us-ascii?Q?Jg3IZIjHMrgAL8yjvUt5/dz074dQiG2/pEQJy+5CJrIHYXR6ZsBVw5OMcQTG?=
+ =?us-ascii?Q?pGzMTFU/vkV6aSjGYABa10wLNd2qJSSR?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Dec 2024 10:52:26.8532
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e634a412-a41a-406c-472b-08dd15e412d0
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF00002325.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6447
 
-Am Dienstag, 19. November 2024, 11:50:17 CET schrieb Xu Yang:
-> The i.MX95 usb-phy can work with or without orientation-switch. With
-> current setting, if usb-phy works without orientation-switch, the
-> dt-schema check will show below error:
->=20
-> phy@4c1f0040: 'oneOf' conditional failed, one must be fixed:
->         'port' is a required property
->         'ports' is a required property
->         from schema $id: http://devicetree.org/schemas/phy/fsl,imx8mq-usb=
-=2Dphy.yaml#
->=20
-> This will correct the behavior of referring to usb-switch.yaml.
->=20
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+DMA ID for SPI2 is '16'. Update the incorrect value in the devicetree.
 
-Acked-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Fixes: bb9667d8187b ("arm64: tegra: Add SPI device tree nodes for Tegra234")
+Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+index 984c85eab41a..570331baa09e 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+@@ -3900,7 +3900,7 @@ spi@c260000 {
+ 			assigned-clock-parents = <&bpmp TEGRA234_CLK_PLLP_OUT0>;
+ 			resets = <&bpmp TEGRA234_RESET_SPI2>;
+ 			reset-names = "spi";
+-			dmas = <&gpcdma 19>, <&gpcdma 19>;
++			dmas = <&gpcdma 16>, <&gpcdma 16>;
+ 			dma-names = "rx", "tx";
+ 			dma-coherent;
+ 			status = "disabled";
+-- 
+2.43.2
 
 
