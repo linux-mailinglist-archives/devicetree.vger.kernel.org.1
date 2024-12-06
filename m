@@ -1,176 +1,189 @@
-Return-Path: <devicetree+bounces-127771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91E7E9E6490
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 04:07:08 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 799D49E649D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 04:13:30 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46349280ED2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 03:07:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EB001883CA3
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 03:13:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00C8C17C220;
-	Fri,  6 Dec 2024 03:07:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E58C17CA1D;
+	Fri,  6 Dec 2024 03:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FpzjHSV+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RHG+t9ch"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C2634CDE;
-	Fri,  6 Dec 2024 03:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC49A1CA94;
+	Fri,  6 Dec 2024 03:13:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733454423; cv=none; b=os8YENWO3sd3sFk2pXn816lZnUnrbWGH0lIHVtsHF6GCYxey27NvNoetaXl56W/J04OTakpjxfCZB7V4McCGgFzhiPouOuxupk43+qtArofbKV5VQwuXceRX1eFjKKED0zAzc4qItL41lWh1wMu/uVr2395fZoDDSs6JrF6qUc8=
+	t=1733454806; cv=none; b=YpB2Tz/BqzdBraaHyEzWoMhd0GFLrXlTniKU6qmAE19XOlhvSWir4PEGBQNu/Mo2snhe9mhpccL9lA/Orq6d848BNatWyjDKzhu1cc/Qgs0juB0E7yE9p0Da31JF0hJ8/Ed39Ly8ixkp//8ssLFvm/16mZCebDIlUfLQRntsjXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733454423; c=relaxed/simple;
-	bh=y4ETJU0hj3FgnNKLiXNJAH9L2d+pIEzCQGYX7P/TFIY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ONXBFL8yDgQxA5RROA3pFOuHU13fLoqYSV+hK8a97IifS+Fc6V8PycX4RN0+J/WyEqWP1VYdjFkrcBmAoMtW24jXyi2Wa4OZZ2dBzgeDbp9BKEkF8j10s+9ifnqToTddjfyDEt9111EId5DRCWdA3HdLDSSebwzS1s97hH0kJ/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FpzjHSV+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5HaRU2007168;
-	Fri, 6 Dec 2024 03:06:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	SCnnyNmXFdCjUq3YP8qX1zzwPVrm/4VHVweOka8kGIo=; b=FpzjHSV+0oZRihnK
-	jvcHCdu8ygqKYLfLG35UTmjt1X4PKDE5cbRpwwF+OFRX1RSnQpAtUGdIgHOA3cY2
-	B0XWCPwTF4X8efT7NJNY1lq1Hicyx4QqT3UOAkxBuYUbxVRR9oV5fq/wBaZhYhFe
-	AottI9BqXWd5eVyidRR2/TDH/u4Al3J9+ouTcHAyHc7feZH6dXSolUqKgMc6BdAx
-	NGhsR5KSLLkGKr12LoYT7lfJNrjSZRobQv+DnBPdDXFfrfPkHoURBYVrt5+FsDW5
-	IUJ0xLLtHqn9EsLm7tjTWSPENYm4ttm+2Zgl7VYWGjZlJnDxGMVwmwKuEG4UH+29
-	G09X4A==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43ben89jqk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Dec 2024 03:06:55 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B636snZ028511
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 6 Dec 2024 03:06:54 GMT
-Received: from [10.239.28.113] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 5 Dec 2024
- 19:06:49 -0800
-Message-ID: <b4449c99-0fc7-4a12-9861-39c8db3698e7@quicinc.com>
-Date: Fri, 6 Dec 2024 11:06:46 +0800
+	s=arc-20240116; t=1733454806; c=relaxed/simple;
+	bh=Joighory19Iblj7Uie5NE/QYRYwk2lMN0L+ZXWc3PY4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qRAgFdmUgn62Mclv7jxMptwGvcxG/CzDVVtWi96ry9WSGmJUyJ2LGXaRxs4TXQxVMnE8jvWBu2ZoU9kyInmBnqIuArSp5yG5CFp/JdBWuiYZsGqQTR8D8TuedHo/Ork9coYLXlvjGw+DrOe8ILTHj5OmPrFFxtI4yPVO3fXD+ts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RHG+t9ch; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-724e1742d0dso1511900b3a.0;
+        Thu, 05 Dec 2024 19:13:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733454804; x=1734059604; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xt0SCTkvn+YR9UJenhf6zDr8e0FUj6bUNlIsy8Vy6XY=;
+        b=RHG+t9chJ6llDd5oFv82iFKQpkEHJhT7JwkP06A84GEjmOB8mgP4E0JMnjytsijv8o
+         DUJLzxif0SGpY6R1Q4fgiCIrVQ3njgu6izRsqvqKgDvBK7AAOiTf5u8J8F9VmCo2w4vh
+         TRT4k4CC/l3AOPKRLv2ja9EJ3NC4ftEL5Vncezzu1M8HthJBxJmU1VkM/LUqoY3pAmZH
+         LC/GgK7YgmmNwp9CTSZALTqYuEwuYRVSe4urjNgUz/fkwac000rIwR0LlwER+ghXfEML
+         txZ46Y7O9FLgS+TOtfTVPh79Epbize4Si8fINiqbhr7p6zz1VldHRXXYWWIcDwt+gzjt
+         BWdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733454804; x=1734059604;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Xt0SCTkvn+YR9UJenhf6zDr8e0FUj6bUNlIsy8Vy6XY=;
+        b=G8bIjVRZsrMy/1VKhnM/07n8kxkFOcr/+EBlJKAYhGeGGuBwLJ+HLz+K/ZsHSvEZL2
+         GyE6P25+Ot9GSHZtC5EJbi5X7YID1YsqX4Da6lGzK5Q87skBRRg4s/xL3KXVs2WGjmL9
+         bG3RzcuoxvT/iWd9KGj13SGdSNV4aGJcHVYqHzE7KLGbe3HnnDKz41rxsdyIOXm1rj0E
+         j4UM3IvowjLhAN0537Y0rSosDEDNPynfJV1IzWFNB+pVQZD8oZ0T6pkF3h28ffFWY3Xd
+         SYejBbLxqpHwKE4x940bM1vLPIkyuQ1skDL5mZrZFrF6QFzA0dwr91UgeJk1kISGQwQM
+         QLUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWZr69ATtdhCx4mFj1FLuqzlOel3/TN0dThJWLaGjOk2fsBALumN9lkm7vvigseibgQ986o1xP8i3OZ@vger.kernel.org, AJvYcCWjGluVmRgqhj7eHdTeyHkksFh9jUofJPzmIrIVQM1+t06AZMn6BPYU7f0fNpli7lwWZO5m4MfQXvNf9VPK@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVq4f145CHAB9nLu0cSYypgDx6uZc8PPJQGY0p4x3pHojYsRBP
+	6VDTi08Tj+TOqUhdPZP99yTx8XKyosp6aVXsltBDJIMXhLjVTaTI
+X-Gm-Gg: ASbGncvdyrmdz16H3d/W4V54HjV97a3NubH3icvm2C01KUSATsl4uyLsUsMYvegDqUr
+	VVVmgU1kDAqjdZdDudmmKvtSH5D2EPeHu3QhqeqM3k0s7hetoOaZOP11YPHdLfajxiByEgHEWI4
+	YHPaZqRRSxcPfD4V3yl4Mn57jtIK1X8SwpV55Oe6JPNfK8YjPsJMuwNovya4lBgGGct9rTUb8em
+	/rChr5Ds9wePR29a2NwaOTcwCBTHt6Bn1H0E1v1LGHcR3f8Iy9Rs5hyDUnwo6EUdif03H2ojeyT
+	JJG/nMh0dAI/WY2KDuUsxGEpt9MqGtTtuOk=
+X-Google-Smtp-Source: AGHT+IF7SIhnyAIa2s6klAC+ixAZnJb7XNMJ0xYjIoh2x56kOXx7Y1GiufB+JlFrmxcvjwEpoM/fmg==
+X-Received: by 2002:a05:6a00:14d2:b0:71e:a3:935b with SMTP id d2e1a72fcca58-725b820eac5mr2862137b3a.25.1733454804100;
+        Thu, 05 Dec 2024 19:13:24 -0800 (PST)
+Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-725a29e9003sm1966791b3a.44.2024.12.05.19.13.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Dec 2024 19:13:23 -0800 (PST)
+From: Hui-Ping Chen <hpchen0nvt@gmail.com>
+To: miquel.raynal@bootlin.com,
+	richard@nod.at,
+	vigneshr@ti.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	nikita.shubin@maquefel.me,
+	arnd@arndb.de,
+	vkoul@kernel.org,
+	esben@geanix.com
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Hui-Ping Chen <hpchen0nvt@gmail.com>
+Subject: [PATCH v11 0/2] Add support for nuvoton ma35 nand controller
+Date: Fri,  6 Dec 2024 03:13:16 +0000
+Message-Id: <20241206031318.156152-1-hpchen0nvt@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: bluetooth: qca: Expand
- firmware-name property
-To: "Rob Herring (Arm)" <robh@kernel.org>
-CC: <quic_shuaz@quicinc.com>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-bluetooth@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_jiaymao@quicinc.com>,
-        Marcel Holtmann
-	<marcel@holtmann.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, <quic_zijuhu@quicinc.com>,
-        Rocky Liao
-	<quic_rjliao@quicinc.com>, <devicetree@vger.kernel.org>,
-        "Balakrishna
- Godavarthi" <quic_bgodavar@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>, <quic_mohamull@quicinc.com>,
-        <linux-kernel@vger.kernel.org>
-References: <20241205102213.1281865-1-quic_chejiang@quicinc.com>
- <20241205102213.1281865-2-quic_chejiang@quicinc.com>
- <173339749198.2690453.6235486221062242906.robh@kernel.org>
-Content-Language: en-US
-From: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>
-In-Reply-To: <173339749198.2690453.6235486221062242906.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 9edsrctiaV3Y-t5k5ByzkEVCNbHM3jOI
-X-Proofpoint-GUID: 9edsrctiaV3Y-t5k5ByzkEVCNbHM3jOI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- priorityscore=1501 impostorscore=0 mlxlogscore=999 clxscore=1015
- malwarescore=0 suspectscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412060022
+Content-Transfer-Encoding: 8bit
 
-Hi Rob,
+This patch series adds the mtd nand driver for the nuvoton ma35 ARMv8 SoC.
+It includes DT binding documentation and the ma35 mtd nand driver.
 
-On 12/5/2024 7:18 PM, Rob Herring (Arm) wrote:
-> 
-> On Thu, 05 Dec 2024 18:22:11 +0800, Cheng Jiang wrote:
->> Expand the firmware-name property to specify the names of NVM and
->> rampatch firmware to load. This update will support loading specific
->> firmware (nvm and rampatch) for certain chips, like the QCA6698
->> Bluetooth chip, which shares the same IP core as the WCN6855 but has
->> different RF components and RAM sizes, requiring new firmware files.
->>
->> We might use different connectivity boards on the same platform. For
->> example, QCA6698-based boards can support either a two-antenna or
->> three-antenna solution, both of which work on the sa8775p-ride platform.
->> Due to differences in connectivity boards and variations in RF
->> performance from different foundries, different NVM configurations are
->> used based on the board ID.
->>
->> So In firmware-name, if the NVM file has an extension, the NVM file will
->> be used. Otherwise, the system will first try the .bNN (board ID) file,
->> and if that fails, it will fall back to the .bin file.
->>
->> Possible configurations:
->> firmware-name = "QCA6698/hpnv21.bin", "QCA6698/hpbtfw21.tlv";
->> firmware-name = "QCA6698/hpnv21", "QCA6698/hpbtfw21.tlv";
->> firmware-name = "QCA6698/hpnv21.bin";
->>
->> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
->> ---
->>  .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml   | 2 ++
->>  1 file changed, 2 insertions(+)
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml:106:5: [error] duplication of key "description" in mapping (key-duplicates)
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml: ignoring, error parsing file
-> ./Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml:106:5: found duplicate key "description" with value "specify the name of rampatch firmware to load" (original value: "specify the name of nvm firmware to load")
-> make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.example.dts'
-> Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml:106:5: found duplicate key "description" with value "specify the name of rampatch firmware to load" (original value: "specify the name of nvm firmware to load")
-> make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.example.dts] Error 1
-> make[2]: *** Waiting for unfinished jobs....
-> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
-> make: *** [Makefile:251: __sub-make] Error 2
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241205102213.1281865-2-quic_chejiang@quicinc.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
-Thank you for the info. I will run the dt_binding_check before next patch. 
+v11:
+  - Update ma35d1 mtd nand driver
+    - Fix warnings and checks use --strict.
+
+v10:
+  - Update ma35d1 mtd nand driver
+    - Add unsupported write page handling.
+
+v9:
+  - Update ma35d1 mtd nand driver
+    - Remove NAND_NO_SUBPAGE_WRITE flag.
+    - Remove of_get_property().
+    - Add ecc.write_subpage and ecc.read_subpage.
+
+v8:
+  - Update ma35d1 mtd nand driver
+    - Rename to nuvoton-ma35d1-nand-controller.c.
+    - Use switch case instead of if else.
+    - Move some parameters to be set during initialization.
+    - Fix the ecc.read_page return value issue.
+    - Add enable/disable ECC engine before and after reading/writing the page.
+    - Return IRQ_NONE if (isr & INT_DMA) == 0.
+    - Move the HW ECC related settings to ON_HOST.
+    - Move hw_init() to probe.
+
+v7:
+  - Update nuvoton,ma35d1-nand.yaml
+    - Remove required 'nand-ecc-step-size' and 'nand-ecc-strength'.
+    - Add 'reg' for chip select.
+  - Update ma35d1 mtd nand driver
+    - Update space and comments style.
+    - Add chip select setting from DT.
+    - Add switch case which supports various ECC configurations.
+    - Set reset before NAND controller enable.
+
+v6:
+  - Update ma35d1 mtd nand driver
+    - Remove extra blank lines and add comments.
+
+v5:
+  - Update ma35d1 mtd nand driver
+    - Remove unnecessary definitions and comments.
+    - Modified DMA API call sequence.
+    - Move the ECC check out of the interrupt handler.
+      Check it after reading a page.
+
+v4:
+  - Update nuvoton,ma35d1-nand.yaml
+    - rename 'nuvoton,ma35d1-nand' to 'nuvoton,ma35d1-nand-controller'.
+  - Update ma35d1 mtd nand driver
+    - Rewrite the NAND driver using the exec_op API.
+
+v3:
+  - Update ma35d1 mtd nand driver
+    - Release IRQ handler.
+    - Remove unused functions.
+    - Remove '.owner'.
+
+v2:
+  - Update nuvoton,ma35d1-nand.yaml
+    - Adjust the order and remove any unnecessary items.
+    - Add 'nand-ecc-step-size' and 'nand-ecc-strength' to the required list.
+  - Update ma35d1 mtd nand driver
+    - Fix coding style.
+    - Use 'devm_clk_get' instead of 'of_clk_get'.
+    - Use 'dev_err_probe' instead of 'dev_err'.
+    - Remove 'pr_info' and 'of_match_ptr'.
+    - Remove 'module_init' and 'module_exit'.
+
+
+Hui-Ping Chen (2):
+  dt-bindings: mtd: nuvoton,ma35d1-nand: add new bindings
+  mtd: rawnand: nuvoton: add new driver for the Nuvoton MA35 SoC
+
+ .../bindings/mtd/nuvoton,ma35d1-nand.yaml     |   95 ++
+ drivers/mtd/nand/raw/Kconfig                  |    8 +
+ drivers/mtd/nand/raw/Makefile                 |    1 +
+ .../nand/raw/nuvoton-ma35d1-nand-controller.c | 1029 +++++++++++++++++
+ 4 files changed, 1133 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/nuvoton,ma35d1-nand.yaml
+ create mode 100644 drivers/mtd/nand/raw/nuvoton-ma35d1-nand-controller.c
+
+-- 
+2.25.1
 
 
