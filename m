@@ -1,127 +1,105 @@
-Return-Path: <devicetree+bounces-128162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 679109E7A71
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 22:13:31 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09D4C9E7AFB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 22:29:35 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28033285F10
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 21:13:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6C3A1889107
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 21:26:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F6E213E67;
-	Fri,  6 Dec 2024 21:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89A022C6E8;
+	Fri,  6 Dec 2024 21:25:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="k+mwafAM"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b="b4d8QRXz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from mta-65-227.siemens.flowmailer.net (mta-65-227.siemens.flowmailer.net [185.136.65.227])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 393AA213E63;
-	Fri,  6 Dec 2024 21:13:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8419A22C6EA
+	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 21:25:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.227
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733519606; cv=none; b=En0Fh3SJzOoPvpCAOF+Mor2q3tSdQLsTPsSiNdIFXUEbs/Engm+g5aTp+lUIitgKEYyip1kdO3rbYBu6khhJp0UJByz+0OxBRaq1hczliySxyOCG7i1qWc11j4Ap3tFdlhssnHHRzzHuMO7R8S+NQQLRqnbH+DguTWQ7CL5tCAc=
+	t=1733520353; cv=none; b=R7IDebr7kK4oCOZ34qSg3+WlZ80gItz9MDgNuWqq3URexIPea3/U9oy0JjIYa3Fnv/779s3wiLord3vA/Fj7CHryxAP1yDbvydr6kuEJl78T2Y4iiztHXLhDh8Z4UTqFAFTxFyfHJxJe/3kk+6E+WE0obpSVkNOgEHWmcB62w48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733519606; c=relaxed/simple;
-	bh=RZbPzw7WbfpgyKvzGUkCTiOA90u3s1h1g6SxzMS8IbQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TazOkaU+4+TuWfbNFGmo9+N4+OBN2cnQ/UqpO1dnmnYo9drgOI/ffJ6SFl1Fei26OhuuOBhDJPDY9ET/ln7WgORI6msZ23v5wjLitVBe7tDSNGpgNk2eaCAe6kTJl2RwfIwQuPiDdHERvsREPiszTwJOUm9Md62mNf4MemWxpUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=k+mwafAM; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733519605; x=1765055605;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RZbPzw7WbfpgyKvzGUkCTiOA90u3s1h1g6SxzMS8IbQ=;
-  b=k+mwafAM98IEUskbiUeKC2S/VD4CjXzrP5QkxRtSo3Jj/8ziquJv/2U7
-   LCuHsWgixbAKPXDzs58QfdYLGN0RlqeVMyClHpTOQD7mOe4lOtbGxb50F
-   rhlOaI5ZYG4wGLDIUEwukiBt1MYo25OGF/PF1wGGfdgWjz0B9xzxhGOam
-   G5M4Ti3wfBv7VLtZxHWiU/NY8BS43H3XsQI8pyBS/oOhnSe8qsHrmRWjO
-   BGLJ4HVIhPSNOKd3Mkg+FW/PGVPMOy+8dM+a7/Pk36zFLbHlmg67DLTCt
-   ssvkvgY6vfeJadyTJxK+7EmyogOtrYm0+yXFIVQB1uNdXln2oiq7ehlJy
-   Q==;
-X-CSE-ConnectionGUID: vrtNi2XZSraqc+H26wr/rw==
-X-CSE-MsgGUID: ghPGicNqTgaWCFlG/ZlEsA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11278"; a="34017903"
-X-IronPort-AV: E=Sophos;i="6.12,214,1728975600"; 
-   d="scan'208";a="34017903"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2024 13:13:24 -0800
-X-CSE-ConnectionGUID: g/T+e8lQTUC77Zz/w+oudA==
-X-CSE-MsgGUID: TC2avendRH2fEKIjXG26jw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,214,1728975600"; 
-   d="scan'208";a="99572100"
-Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 06 Dec 2024 13:13:21 -0800
-Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tJfdV-0002GD-3D;
-	Fri, 06 Dec 2024 21:13:17 +0000
-Date: Sat, 7 Dec 2024 05:12:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mikael Gonella-Bolduc via B4 Relay <devnull+mgonellabolduc.dimonoff.com@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	s=arc-20240116; t=1733520353; c=relaxed/simple;
+	bh=zwgyuqSZbpo5lsEIGKVTRRepIOJc/btWhkBXb9A+7gM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=klX3jAE08yYoBuZSlIbe1W/Z/9jIHdPrr13RzYUo0CJJRjL81HJnlWZ28VA+dNvZVh7T6zqkxF6Eho/331i5auYrmNGVsKU9uXuMM2X0srnwMbI/CGmUcATpJz3eSYc4CT67qk17CUecR4IoYJ7jK3a70OB42JIOn+RHMhxGHYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b=b4d8QRXz; arc=none smtp.client-ip=185.136.65.227
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-65-227.siemens.flowmailer.net with ESMTPSA id 202412062125469d762bc25d65e286a9
+        for <devicetree@vger.kernel.org>;
+        Fri, 06 Dec 2024 22:25:46 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
+ d=siemens.com; i=alexander.sverdlin@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=VGAi1Tip6Q2fjBl44Ct3hhDKQbzd+Zjis1nKE/QhpU0=;
+ b=b4d8QRXzn9FuuCE3zqlVu44EwUimgwVe7VItQ6C6tI5T3mZKjoWdli/NcHkTyCdoQ2qnRu
+ JDaNmcDjKbF3K0meM/DfHWlEJwjrs54K/J47u+AuyXZv5+x5nEgk5eWKpHM/MUttvRX362O1
+ koa4HaEHDawYWq/COtBePJ4dMamoD9FN62g8VA78inIG3kwP3ZzakKZQHmnV6aZcOfPp6QSR
+ sFX1Evod4YMLmziuE/GZy/v/FxuPVYzF3QoVLSYIcj3vrUtU8BWgWQNs1a+1L+iUAAdPzkxn
+ i7CBBFSXC606rlxFi83c2wMWwtfnUNJs7pTIg8UYTx2D1dtz5RKNwrnQ==;
+From: "A. Sverdlin" <alexander.sverdlin@siemens.com>
+To: Dan Murphy <dmurphy@ti.com>,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+	dri-devel@lists.freedesktop.org,
+	Lee Jones <lee@kernel.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: light: Add APDS9160 ALS & Proximity sensor
- driver
-Message-ID: <202412070552.HvBGzx9l-lkp@intel.com>
-References: <20241206-apds9160-driver-v2-2-be2cb72ef8f4@dimonoff.com>
+	Andrew Davis <afd@ti.com>
+Subject: [PATCH v2 0/2] leds: TI LP8864/LP8866 support
+Date: Fri,  6 Dec 2024 22:24:17 +0100
+Message-ID: <20241206212421.1132578-1-alexander.sverdlin@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241206-apds9160-driver-v2-2-be2cb72ef8f4@dimonoff.com>
+Content-Transfer-Encoding: 8bit
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-456497:519-21489:flowmailer
 
-Hi Mikael,
+From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
 
-kernel test robot noticed the following build warnings:
+The series adds support for a family of Texas Instruments' automotive
+high-efficiency LED drivers with boost controller. The four or six
+high-precision current sinks support phase shifting that is automatically
+adjusted based on the number of channels in use. LED brightness can be
+controlled globally through the I2C interface or PWM input.
 
-[auto build test WARNING on 5de07b8a24cf44cdb78adeab790704bf577c2c1d]
+Add new DT bindings for ti,lp8864 to support all four software-compatible
+devices:
+- LP8864
+- LP8864S
+- LP8866
+- LP8866S
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mikael-Gonella-Bolduc-via-B4-Relay/dt-bindings-iio-light-Add-APDS9160-binding/20241207-001144
-base:   5de07b8a24cf44cdb78adeab790704bf577c2c1d
-patch link:    https://lore.kernel.org/r/20241206-apds9160-driver-v2-2-be2cb72ef8f4%40dimonoff.com
-patch subject: [PATCH v2 2/2] iio: light: Add APDS9160 ALS & Proximity sensor driver
-reproduce: (https://download.01.org/0day-ci/archive/20241207/202412070552.HvBGzx9l-lkp@intel.com/reproduce)
+Add leds class driver for these devices.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412070552.HvBGzx9l-lkp@intel.com/
+Alexander Sverdlin (2):
+  dt-bindings: backlight: add TI LP8864/LP8866 LED-backlight drivers
+  leds: lp8864: New driver
 
-All warnings (new ones prefixed by >>):
-
-   Warning: Documentation/devicetree/bindings/nvmem/zii,rave-sp-eeprom.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/zii,rave-sp.yaml
-   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
-   Warning: Documentation/hwmon/g762.rst references a file that doesn't exist: Documentation/devicetree/bindings/hwmon/g762.txt
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/reserved-memory/qcom
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/iio/light/avago,apds9160.yaml
-   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
-   Using alabaster theme
+ .../bindings/leds/backlight/ti,lp8864.yaml    |  80 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/leds/Kconfig                          |  12 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-lp8864.c                    | 320 ++++++++++++++++++
+ 5 files changed, 420 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
+ create mode 100644 drivers/leds/leds-lp8864.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.1
+
 
