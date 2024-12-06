@@ -1,133 +1,168 @@
-Return-Path: <devicetree+bounces-128138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C1279E7947
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 20:50:26 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90B949E797D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 21:02:13 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C83518881C6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 19:50:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4588F28747C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 20:02:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98C81D90B1;
-	Fri,  6 Dec 2024 19:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760992135CB;
+	Fri,  6 Dec 2024 20:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ER/3AA0k"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="tmFKyt9/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F21DE1C5490
-	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 19:50:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 913C61D6DBC;
+	Fri,  6 Dec 2024 20:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733514621; cv=none; b=c3XrFozdFFRCqZyTs2TG/8h5ixB3Lqghzac9N3Xv4TU2age4Mb644WrwkAJ5TM9ka4+m41QrVuc8PMauo61POU5avvjFITxudk2zVup13O2WTcsnDj47bJV+hJcCiu4IPYIegGU/Phv3UKJNhNN5/OlfxgH+XcdufgPbeTJmBfg=
+	t=1733515284; cv=none; b=CpNeeGa1lQswWj8E3XUHIJ2a/Ci1ZD/lX/nxD0xQ8biDJopZajqSNOVVxWNOSFPesbf1lXo730epaLUDZKt0AETqKD5RlyAq1ILLTMD01oPeDxLaWYNzfdHMAkVbW7e53AQOckAs0q4J9m/HpEItGmHdxIaI7fD1RebZeX0iigQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733514621; c=relaxed/simple;
-	bh=7Wb7LqwxuNOLv536ZY2v738t45HETn7WLnFlPxrRhVs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TfYa2GAxREsQ1ncxKDvW4+0Paj+Vhhsrl2FMR9jxz1kMcGwCopO6mdWfQM4PjEaOHzZmjmpBVTgelgtIqNMmlOo9lcap7uo4wKa+hehVXx1NHEAriG/PmBumFvyCUuyhC2ubr5oGzcOtzaVDEOXJmVAK+FjapyhYfjpjP48e7Zo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ER/3AA0k; arc=none smtp.client-ip=209.85.222.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-85bad9e0214so892574241.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 11:50:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733514619; x=1734119419; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kgYtVUqUlEZ8VSuTq+I8ySRpCil6RgGzEne2MvLY5yE=;
-        b=ER/3AA0kmA182GVHA9YrD8xXq/+Q3CHqtf7tospYx8hqK+9HTxLuMZZE4jPR+hhszf
-         9St8yIJ9zHszsi5oSaylwaQsoCz/VOj+Z/adJVJxeJSY3Ee/JYm/mCBS+/IiTUJWdILG
-         GwcnWedN2saeglmDwX20ep3kL3rlnM5zSxuq4+g4B38umnQc3gW6KzAWiRlV+AHoQlgC
-         iTNSzb8riiqvZwfCnCKxRV/b6ZFq07/ollk4YWGhcg7F+z7xbzsMtOjmz5yDO8FwwIpU
-         YjgJEspXPP+41fxXuXQZwGu9Vo/OSxuXqyk188ZAW/55A2RLkjsr9S99/lWe/iE3w3aL
-         2fSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733514619; x=1734119419;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kgYtVUqUlEZ8VSuTq+I8ySRpCil6RgGzEne2MvLY5yE=;
-        b=NZKWfhoEuLOuvU1aZdZtZG/91oP5sz7TlRxlpY03FDnZl5vRv4hozE5/6HLW60vxSA
-         QNNu/MXshqK28z0dhN7rQ7D/Bm68IuMNrWPv/HPWpOfsZ7zlAmJKTgsTrpti05VG7oyh
-         ykFVMxDioRTd21p2KXzxSKJ6Ov5Mo2YhQZnuPvaxLqoPKSXlUh7JDPYU6UgVCO/Aqbni
-         as0RuCgoTA4NFDM5XxU4XDWMEAdP065yPsLnSSDfqeljFrVYCOpTexWM5yVgwDQwxoE9
-         8OxhwiTUa74dXsc1xGPLYIYjDdvpRqUY0c24HCzn/iCOwGwsYQxYLluvhJrNoi+Bxevt
-         Asag==
-X-Forwarded-Encrypted: i=1; AJvYcCWm0MygwSpyz3dPlFc2NmXm+9UmDH/3gW65KJTtIjQ84KKcBidcrmPIwx1ttMSPjAk7KED0CE5oZZHO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5sd07LOOpfyq/muqFxAMKRqCwcvpXpttY88Eb4r2H1zQILDAx
-	yHruSoa0zUH2urafS4Ik1Li+/9UJE/ZhXSiijxC+5jo6TTRAoCBAnJLoJBjdIH4=
-X-Gm-Gg: ASbGncspG2OMqPanw7mBQoubvurX+5zW0JS9TObLZCbnhrnmG+HYfL8/iJzzreM17Yn
-	Z53ijftniewi37yUli2tRnvfJaRb8lVaLL43c1GAQA6F+mS8cD2nYa8guZOsmo4x806uyJK5cZb
-	GbfLk711pwZngmaPl6RX9vkifvTnUXHU7EmnwMXcCOSB6rKGecHHBEB37ZJsZQ+r4Nd/LudEUx+
-	sDphdwW5o2fR7Di7rfwa3N0YVdAovKzGmnmqV6PIwYkmNYo9toloqLBxzSWfwI/hstMYsSEmYCt
-	pDmGyjfM
-X-Google-Smtp-Source: AGHT+IEeWUUJbrxyEjeWWA+oNy8sSHBMGYhIlHk+x4xxBQvnZSCGxkbHgUu85h0IP51FdasOJcUIAQ==
-X-Received: by 2002:a05:6102:5486:b0:4af:4ccf:e99 with SMTP id ada2fe7eead31-4afcaacd044mr5735787137.22.1733514618823;
-        Fri, 06 Dec 2024 11:50:18 -0800 (PST)
-Received: from [192.168.1.124] (49.93.157.89.rev.sfr.net. [89.157.93.49])
-        by smtp.googlemail.com with ESMTPSA id a1e0cc1a2514c-85c2bd4f2fasm552887241.32.2024.12.06.11.50.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Dec 2024 11:50:18 -0800 (PST)
-Message-ID: <2eedbbe1-6b4c-427b-a369-5b08dc27deaf@linaro.org>
-Date: Fri, 6 Dec 2024 20:50:15 +0100
+	s=arc-20240116; t=1733515284; c=relaxed/simple;
+	bh=Nbyfn+1oYpcw+P1XPkh6jD6oqLO72wK92m4lABnV+GU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qWK2WG0qJYeng5WdBFwr18xkra3iqeg+6lLMjlN9TApv/+OS5hXnJ3hYL8Ml3Z65FDj13ewbAab0YVJjDbBeJcT5WZ97Qp/7IApcYH4z1fkfY6JI7NEbVazkYBrZG6aWKTkKZX2eHPbTdkjYoE6hZiwoad6g9dHgUUcc3XkXa3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=tmFKyt9/; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1733515282; x=1765051282;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Nbyfn+1oYpcw+P1XPkh6jD6oqLO72wK92m4lABnV+GU=;
+  b=tmFKyt9/JRnsgbcF2LoA3rZYz4FS+YtOFfmYBRTgd8HvZAzgscHnIlBG
+   K13ICcN4ORBmvCH/DhfbHlpkoTqKndlZg1UzgGT0KPckB2UpJL3hk/Xnr
+   uq6lZqlQELIVujR3AjPSC6GsPe9ji+82o3i5P29FJfU4oiU0PlNZP1Q0a
+   dLDxpjbZH7GnwOyyRbo0OxbIlCVP/IDDqrUm+foh5vHVbFFNPqiV11M/r
+   bc8/nhsNh7pOl+5AsEa8XzRnxOHna5xKoM3rFz4w7JNbhL1Wn/U3yYpiN
+   E4WKQ7BMCDPp16KBRCy3/xfoBlU94BSv8MI0fnlJo6M5yrrWYhGhxYXAb
+   g==;
+X-CSE-ConnectionGUID: wHv5dacKTzaP3KMzdbJ8Aw==
+X-CSE-MsgGUID: 1NUJjekURzSRYGbtL23iQg==
+X-IronPort-AV: E=Sophos;i="6.12,214,1728975600"; 
+   d="scan'208";a="202686982"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 06 Dec 2024 13:01:21 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 6 Dec 2024 13:01:09 -0700
+Received: from ryan-Precision-3630-Tower.microchip.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Fri, 6 Dec 2024 13:01:09 -0700
+From: <Ryan.Wanner@microchip.com>
+To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+	<claudiu.beznea@tuxon.dev>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+	<arnd@arndb.de>
+CC: <dharma.b@microchip.com>, <mihai.sain@microchip.com>,
+	<romain.sioen@microchip.com>, <varshini.rajendran@microchip.com>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+	<linux-serial@vger.kernel.org>, Ryan Wanner <Ryan.Wanner@microchip.com>
+Subject: [PATCH v3 00/13] Add support for SAMA7D65
+Date: Fri, 6 Dec 2024 12:59:45 -0700
+Message-ID: <cover.1733505542.git.Ryan.Wanner@microchip.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] firmware: add exynos ACPM protocol driver
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com,
- peter.griffin@linaro.org, javierm@redhat.com, tzimmermann@suse.de,
- vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de
-References: <20241205175345.201595-1-tudor.ambarus@linaro.org>
- <20241205175345.201595-3-tudor.ambarus@linaro.org>
- <ce757b8e-4e6c-4ba9-9483-b57e6e230fdf@linaro.org>
- <vxqi23hxw7bmtfs5wk3u7szganpv5aa74b26xrvpmbehkltodw@dpum7zrxdz44>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <vxqi23hxw7bmtfs5wk3u7szganpv5aa74b26xrvpmbehkltodw@dpum7zrxdz44>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 12/6/24 14:28, Krzysztof Kozlowski wrote:
-> On Fri, Dec 06, 2024 at 12:39:56AM +0100, Daniel Lezcano wrote:
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>> +
->>> +config EXYNOS_ACPM_PROTOCOL
->>> +	tristate "Exynos Alive Clock and Power Manager (ACPM) Message Protocol"
->>
->> Given the importance of this driver where a lot of PM services rely on, does
->> it really make sense to allow it as a module ?
->>
->> Some PM services may be needed very early in the boot process
->>
-> 
-> If it works as module e.g. on Android, it is beneficial. I think the
-> platform was booting fine without it, at least to some shell, so I can
-> imagine this can be loaded a bit later.
+From: Ryan Wanner <Ryan.Wanner@microchip.com>
 
-Usually the firmware sets the frequency to the maximum in order to boot 
-the kernel as fast as possible. That may lead to thermal issues at boot 
-time where the thermal framework won't be able to kick in as some 
-components will depends on ACPM while the system stays at its highest 
-performance state.
+This series adds support for the SAMA7D65 SoC.
 
+V2 of this series [1].
+
+For the pinctrl and pit64 timers those will have DTB warnings due to
+those bindings not being in the .yaml format.
+
+Changes v1->v2:
+- V1 set was sent incorrectly as multiple seprate patches v2 took all
+  those patches and put them in 1 thread.
+
+Changes v2->v3:
+- Correct the patch order to follow correct practice.
+- Correct flexcom dt-binding commit messge to reflect the changes in the
+  coding style.
+- Add missing SoB tags to patches.
+- Moved export clocks to DT patch to be included with the clock binding
+  patch.
+- Separate Kconfig changes and defconfig changes into different patches
+  and removed unused Kconfig params.
+- Correct confusing SoB and Co-developed chain.
+- Removed unsued nodes in DTSI file and sorted includes
+  alphanumerically.
+- Fix incorrect dts formatting.
+- Separate dts and pinmux changes into two patches.
+- Combine PLL and MCK changes into core clock driver patch.
+- Correct formatting in main clock driver.
+- MMC dt-binding changes are applied for next so have been removed from
+  the set [2].
+
+1) https://lore.kernel.org/linux-arm-kernel/cover.1732030972.git.Ryan.Wanner@microchip.com/T/#m9691b4d58b62f36f6cbac1d06883c985766c2c0d
+2) https://lore.kernel.org/linux-arm-kernel/cover.1732030972.git.Ryan.Wanner@microchip.com/T/#mccf6521c07e74e1c7dc61b09ae0ebdbbdde73a28
+
+Dharma Balasubiramani (6):
+  dt-bindings: mfd: atmel,sama5d2-flexcom: add
+    microchip,sama7d65-flexcom
+  dt-bindings: atmel-sysreg: add sama7d65 RAM and PIT
+  dt-bindings: serial: atmel,at91-usart: add microchip,sama7d65-usart
+  dt-bindings: pinctrl: at91-pio4: add microchip,sama7d65-pinctrl
+  dt-bindings: clocks: atmel,at91sam9x5-sckc: add sama7d65
+  dt-bindings: clock: Add SAMA7D65 PMC compatible string
+
+Romain Sioen (2):
+  dt-bindings: ARM: at91: Document Microchip SAMA7D65 Curiosity
+  ARM: dts: microchip: add support for sama7d65_curiosity board
+
+Ryan Wanner (5):
+  clk: at91: sama7d65: add sama7d65 pmc driver
+  ARM: dts: microchip: add sama7d65 SoC DT
+  ARM: dts: at91: Add sama7d65 pinmux
+  ARM: configs: at91: sama7: add new SoC config
+  ARM: at91: add new SoC sama7d65
+
+ .../devicetree/bindings/arm/atmel-at91.yaml   |    7 +
+ .../devicetree/bindings/arm/atmel-sysregs.txt |   14 +-
+ .../bindings/clock/atmel,at91rm9200-pmc.yaml  |    2 +
+ .../bindings/clock/atmel,at91sam9x5-sckc.yaml |    1 +
+ .../bindings/mfd/atmel,sama5d2-flexcom.yaml   |    9 +-
+ .../pinctrl/atmel,at91-pio4-pinctrl.txt       |    1 +
+ .../bindings/serial/atmel,at91-usart.yaml     |    1 +
+ arch/arm/boot/dts/microchip/Makefile          |    3 +
+ .../dts/microchip/at91-sama7d65_curiosity.dts |   89 ++
+ .../arm/boot/dts/microchip/sama7d65-pinfunc.h |  947 ++++++++++++
+ arch/arm/boot/dts/microchip/sama7d65.dtsi     |  145 ++
+ arch/arm/configs/multi_v7_defconfig           |    1 +
+ arch/arm/configs/sama7_defconfig              |    1 +
+ arch/arm/mach-at91/Kconfig                    |    9 +
+ drivers/clk/at91/Makefile                     |    1 +
+ drivers/clk/at91/clk-master.c                 |    2 +-
+ drivers/clk/at91/clk-sam9x60-pll.c            |    2 +-
+ drivers/clk/at91/pmc.c                        |    1 +
+ drivers/clk/at91/sama7d65.c                   | 1373 +++++++++++++++++
+ include/dt-bindings/clock/at91.h              |    4 +
+ 20 files changed, 2600 insertions(+), 13 deletions(-)
+ create mode 100644 arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
+ create mode 100644 arch/arm/boot/dts/microchip/sama7d65-pinfunc.h
+ create mode 100644 arch/arm/boot/dts/microchip/sama7d65.dtsi
+ create mode 100644 drivers/clk/at91/sama7d65.c
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.43.0
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
