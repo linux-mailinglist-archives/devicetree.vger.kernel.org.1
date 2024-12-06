@@ -1,159 +1,492 @@
-Return-Path: <devicetree+bounces-127996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4682C9E6F6F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 14:44:01 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6A239E6F82
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 14:51:26 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AD2E1882BF1
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 13:43:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0F4E2855AE
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 13:51:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 048BB1FCD11;
-	Fri,  6 Dec 2024 13:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A6D207A07;
+	Fri,  6 Dec 2024 13:51:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SIlt/H+R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2573779D2;
-	Fri,  6 Dec 2024 13:43:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC691201016;
+	Fri,  6 Dec 2024 13:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733492625; cv=none; b=BqEHzWiQawIflm8F2S+BvkN+OJrpXIV93tRxebkg8PeGs5NruI9kc59CL7QPHSvvjrtdxTHdCUgVGcxqwuN5aK/WccRVNOcLRAaL5KIyC/zzXghnXMGCoqRmWRkti/616/cy+wYlQWW/8zH7n7riRfzpMGi+n0Zhvr5x4W7k2YU=
+	t=1733493082; cv=none; b=lWsp1FhdXyJ3Y6Z+h5K6I1z7AJdXV5rCrt5MjETTiGysimUtePcHIwDMyzCU8T2/lXU3/t0Fqb4cyak5jD+uGzZ1O1gLZxRj1WucWz4BN8KovVU1NBHZmauN9k53xxoVnIOrrr+JquSPVu35GY5TvHYrF0suVU3QbN1Bmoc8Pfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733492625; c=relaxed/simple;
-	bh=4VIWnKLXzlNjSDmAn7audAaynV7vNZUM2t5pSNM66X0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GMfVeJaae0LbD/uWS1fDeAiYtQh2zyPKGVhhNR6ixMpjKWTIa9oFrnON0eZMpmF7ZOQwdmndkALUKpniKxePQRggCsAxquC6rZJdEsl6TZswbgNV4Kkyp2Xxj/jrjD7OvkqYFIsEpaHajbLDncjL8/LZ7CBMQ42H91UX9irR34I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1733493082; c=relaxed/simple;
+	bh=8YS6+le+Ik1k2lhyF0x6d9YO1fXK4PmGmFdsI3oVi5s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Mn5pqlHgxpqcHBYmWKRRSTeoH+G1vfmPi8ptmQ3Qsj/lXwm2G4ae6iVNPTY5Sd0zlwle0G8ejvpF4hmOdG3RNm5tZao6f98CbvHep7rbL0cy8Kpk4CbarfDjqpLIVJbHRirjodolFxtzhmtp09ElrTzzy6eNpWLT2Bg35mr7FSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SIlt/H+R; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-515e1d6d0aaso629851e0c.3;
-        Fri, 06 Dec 2024 05:43:43 -0800 (PST)
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7f46d5d1ad5so1760594a12.3;
+        Fri, 06 Dec 2024 05:51:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733493079; x=1734097879; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=stFRl69Yy4ryPFAdd+IunUx2a5npo1o5aGWsoNJUZ7Q=;
+        b=SIlt/H+RNodYP8ic1OuJxH3k8LCGWSBuwOm/GQhU3F5peVyPaFO9NIRDW8tXPHNvG+
+         98yM1zV0NSsuskIKVBu22iD3OLCeHo6INEcG1unKhlivTyRM03y1fNFnWSWg08/DL+TU
+         YyZSXQim8YxCSrxbVtCBYdkzuEQsstIiMarLupb3TET7BEPA5GOblfxNK0EQtniehrlY
+         fwL8gpxOO6waOI0yAPgqHZa32Yq2izmvldk+hdriC8UhM49G9slM+8YyvJ0Ppw0D/k6C
+         UdXwc0bEg9+O5MlNyXwUVUKm878MnfC4RvKdurziUzSoXD7zqRLQY9q/rHJDEb/bKcVy
+         kSAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733492623; x=1734097423;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J/8NncUiLlBJXWiu+rkQNo8aljW5FrHLP4iwjw0aFZc=;
-        b=VEO4FDqaMJ+1Yjb/jA5ezfA1byzOx1zl1vK5nIS7b+f3nk7CWK5AgcPDV5589DaOSH
-         +g99NIHE1hE1Us2gBPODCkL7VcN59yHoqS2Sn23ZltTVBuPfhcpbMg1WgMRFZbe6qnZi
-         QeeZip+yuEuRBwd92UWh5c4axt+wBShn/jb9/wOIyjxNwc/ZIhMQ6Ohm6/q5F/rsD5TJ
-         x0rz49j++2+hmC9sEsBoQ5u21NhwUJGGEz48+rBr+WUMPqvIN/IrBqF0X6dRe76cZWV0
-         zAc+6SxkfurD4myUdznrzdhtzbz/h1SCHh0SEo7SKUFI2MSJgsCnJxQBhmPcsE5ath2V
-         7HCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUDnZFsI69EH8iF02batB9GXcBfa78PFS7pOxReXTJQ8hMcIH1QjZGBCvJ7BbIBwLndBX73/gP0hCBh2fz7@vger.kernel.org, AJvYcCVqXZ0b21FFsugLzu/o6aStqIyV5AA/hkHoiqoHC5xIUGDfnSslZESwI8R5QWyUxas8i79S8pS1C9k5PJLSAxoJZZQ=@vger.kernel.org, AJvYcCW9QUGwAYWlItfJRPNFp7P9fs6NhqVinlQ26z5MCf6YouwcK0iB3IkPZDJxGzh28l0OFSIJt8V4uc9p@vger.kernel.org, AJvYcCWqRTxJlml2yubtroSW0bc5I9mZbDPyI2vN0Rgw6FQpqVx8aWTgYnkgSrw2cZF91SmFPMvs5tAemjZN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwLqxntXNbkLw2rSbUF5eM3n/nGXIWLHr6O4EDwHZQHPc/5Y+a
-	sh4Bg1KZlsNVw/6JQOFOdUjsfVApXYslQ4BPgGqeTgl0TpbVsOTXJSWf+Ax2
-X-Gm-Gg: ASbGncvdg5lxUHsUL5vlDIdC3gHYaQBVZUrrIst70BYLXTDzMvGk6Wsn9xgqLKjpiwU
-	CjO9wLyiBZlnFajiSjFRKKiOq4Qh/LpqwJwSa473iTso6/CoaG+TqaZbRwHeVDAz0L1DJ7ABT67
-	aZZEMNTT6Ust78D5YKSuicUSnhydqZFvyjVCthnyscDM252y/pF+Kd7Bnan1dCcozJQfyCo/kZa
-	usNa5nDFk/WIr7aWuLPIqOp/zXQ94lwl1aF6VGrzxs6YOfsog0q19EuapawBGzmQsApbVbHZhI1
-	16I5TMSfXKhZ
-X-Google-Smtp-Source: AGHT+IHs8PfwrYhKXodXNW2JGh7xh9XljmjSlRM+Ly+Ld9qCseQRYpkGWWy6c7SOwSNCAZ99T87gVQ==
-X-Received: by 2002:a05:6122:3716:b0:515:3c4a:3c0f with SMTP id 71dfb90a1353d-515fc9d6fbamr3594918e0c.3.1733492622719;
-        Fri, 06 Dec 2024 05:43:42 -0800 (PST)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-515eaf32e2fsm331147e0c.40.2024.12.06.05.43.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Dec 2024 05:43:41 -0800 (PST)
-Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-85bc5d0509bso442971241.1;
-        Fri, 06 Dec 2024 05:43:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU+miavtn7fPjI/bg+6kJqqFeDzO5jX5BzYI2YX+z3fm0GJAH7XtWitI48c7dRqiafmeOEpQS223pk1@vger.kernel.org, AJvYcCUxITwGap5YnNsBwfvONWcWxgW4UCD4xbxpZU80so9ub4Im806jhs78LURuM8plwnFq2Griu1/FV+QX@vger.kernel.org, AJvYcCXGQ0h/2aPK3XuAZImGrFOhFJq7pcABcTa3bwrgMAb3ueEHA29KbQfOgchTITjzuk4vuY45/MAy/WVqVOMP@vger.kernel.org, AJvYcCXT/cjbGQTwj8ML13SAl9W3acxf/jtQac7P7MHp9HboUxbTGP0o/cVIgOS7SkYC5v+0eeklGUao30SfKdQLoWxrVDU=@vger.kernel.org
-X-Received: by 2002:a05:6102:4689:b0:4af:cbf7:99d4 with SMTP id
- ada2fe7eead31-4afcbf79c13mr1996237137.10.1733492621216; Fri, 06 Dec 2024
- 05:43:41 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733493079; x=1734097879;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=stFRl69Yy4ryPFAdd+IunUx2a5npo1o5aGWsoNJUZ7Q=;
+        b=HO6oeUkoyR9Spm4SyI3PXfw5CzsfFb8n0ZzAb3m3hhV2B5I8TydhMNIFLXiEDwKp9b
+         0lmif65+R5V1ALqWXXU2cxUgB/NHhQRqjcUQ/o3yomG1MxkhLCsi4Udbher+jugLYmYn
+         LsBR8DY8nsejLmTIB7zwchNytmIcxXzLcbsMiKdDH/w+ql3pRwv63NAHTouaivv4xacX
+         2L8wS5djdZmZOCc3Cj9mGi3yiJ7SX/xhQbkX/lgivGQjTIEwDQF0qsQByvyDLqVOaWdk
+         yPwi25mqAtL+0/AiyXyljuzlB2W2qmBzNQHQrOUvWc1jRftnuK++ZcZyzMFFUGXI2p3/
+         xmgA==
+X-Forwarded-Encrypted: i=1; AJvYcCVhrSptxZVePLLg1sgXe+AsdSpSdYAHaNCF4TTh30u6636dUD4tmNGdFz8Sx3kad4stJFJRNa2VEiJG@vger.kernel.org, AJvYcCW7n+s2OKzgoV0idrSsKH3lJfVsP/WuvnrVEXR1SwjTa3AHxQ5Cv4i1XVL2tYKHw9dV8kRvvvjFFnLOzcQk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1zNfYi26p5gxXMan+dDmM6YwQZlg8IwE187GMbb03iUP0yh83
+	o0kToub8dFLrRh21sT7UjqPEqf4b0GMVh14xUQ+O3w17edR+kDvT
+X-Gm-Gg: ASbGncvaPEs1iLlviMGyBaJ+UVL8MdbrI44Uct2O82b+i3fo5L4RfRFrMGBs7i8lc3X
+	OI4uw2gu6t8cq3tTiGTkm4RhBmqytFTsCxlLU1jpu0Wr7aq+tIkMQ/cNJC3pu2DOZePJCihXXgn
+	F/WuD2Ur/rgAhJOuCcIjpPPYdpmf/L3ML1gyIezrU8gpBMf9cO1k2AN5XKsrUwp5EukCd3gLRkC
+	ClpJq4FgxyFNLRk47kC7Q2soBcIOGCFHuU/clIKfVuvkl73Bf1Ii+3V5jjwwSrVOw==
+X-Google-Smtp-Source: AGHT+IFp84/LvRLoYXG34ubT33fATowTlF56K2m/y6+FW07NezqF+NAbf7h9jEawMLoJmfmx+qHSuA==
+X-Received: by 2002:a05:6a20:a104:b0:1e0:dc7b:4ef6 with SMTP id adf61e73a8af0-1e1870c8387mr5097610637.21.1733493078928;
+        Fri, 06 Dec 2024 05:51:18 -0800 (PST)
+Received: from localhost.localdomain ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id 41be03b00d2f7-7fd3274ca0esm101286a12.20.2024.12.06.05.51.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Dec 2024 05:51:18 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+To: Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH] arm64: dts: apple: Split s8000/s8003 SoC DTS files
+Date: Fri,  6 Dec 2024 21:49:18 +0800
+Message-ID: <20241206135051.56049-1-towinchenmi@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241206-rcar-gh-dsi-v3-0-d74c2166fa15@ideasonboard.com> <20241206-rcar-gh-dsi-v3-5-d74c2166fa15@ideasonboard.com>
-In-Reply-To: <20241206-rcar-gh-dsi-v3-5-d74c2166fa15@ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 6 Dec 2024 14:43:29 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU+PPeCNb5y75A1YTf1EvvCQEgD1t-=6C_YyK0gDK3R8A@mail.gmail.com>
-Message-ID: <CAMuHMdU+PPeCNb5y75A1YTf1EvvCQEgD1t-=6C_YyK0gDK3R8A@mail.gmail.com>
-Subject: Re: [PATCH v3 05/10] clk: renesas: r8a779h0: Add display clocks
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	LUU HOAI <hoai.luu.ub@renesas.com>, Jagan Teki <jagan@amarulasolutions.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-clk@vger.kernel.org, 
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Tomi,
+Despite what the code comments said, the DTS files were not split properly.
+Since these two SoCs are now known to have minor differences like in
+latencies for cpufreq state transistions, split the DTS files now.
 
-On Fri, Dec 6, 2024 at 10:33=E2=80=AFAM Tomi Valkeinen
-<tomi.valkeinen@ideasonboard.com> wrote:
-> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
->
-> Add display related clocks for DU, DSI, FCPVD, and VSPD.
->
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+---
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-clk for v6.14.
+Hi,
 
-> --- a/drivers/clk/renesas/r8a779h0-cpg-mssr.c
-> +++ b/drivers/clk/renesas/r8a779h0-cpg-mssr.c
-> @@ -179,6 +179,9 @@ static const struct mssr_mod_clk r8a779h0_mod_clks[] =
-__initconst =3D {
->         DEF_MOD("canfd0",       328,    R8A779H0_CLK_SASYNCPERD2),
->         DEF_MOD("csi40",        331,    R8A779H0_CLK_CSI),
->         DEF_MOD("csi41",        400,    R8A779H0_CLK_CSI),
-> +       DEF_MOD("dis0",         411,    R8A779H0_CLK_S0D3),
-> +       DEF_MOD("dsitxlink0",   415,    R8A779H0_CLK_DSIREF),
-> +       DEF_MOD("fcpvd0",       508,    R8A779H0_CLK_S0D3),
->         DEF_MOD("hscif0",       514,    R8A779H0_CLK_SASYNCPERD1),
->         DEF_MOD("hscif1",       515,    R8A779H0_CLK_SASYNCPERD1),
->         DEF_MOD("hscif2",       516,    R8A779H0_CLK_SASYNCPERD1),
-> @@ -227,6 +230,7 @@ static const struct mssr_mod_clk r8a779h0_mod_clks[] =
-__initconst =3D {
->         DEF_MOD("vin15",        811,    R8A779H0_CLK_S0D4_VIO),
->         DEF_MOD("vin16",        812,    R8A779H0_CLK_S0D4_VIO),
->         DEF_MOD("vin17",        813,    R8A779H0_CLK_S0D4_VIO),
-> +       DEF_MOD("vspd0",        830,    R8A779H0_CLK_S0D1_VIO),
->         DEF_MOD("wdt1:wdt0",    907,    R8A779H0_CLK_R),
->         DEF_MOD("cmt0",         910,    R8A779H0_CLK_R),
->         DEF_MOD("cmt1",         911,    R8A779H0_CLK_R),
+I am preparing multiple series for cpufreq and backlight, both of which
+modifies the Apple A9 DTS files. I am sending this first to make it
+easier to handle conflicts.
 
-As mentioned by Laurent during his review on v1, all clock parents
-should probably be some form of R8A779H0_CLK_S0Dx_VIO.
-So I'm inclined to replace all of them by R8A779H0_CLK_VIOBUSD2 while
-applying, which would match R-Car V4H.
+This patch depends on PMGR nodes for Apple A7-A11 SoCs[1] since it
+also renames the pmgr bindings files.
 
-Are you OK with that?
+[1]: https://lore.kernel.org/asahi/20241203050640.109378-1-towinchenmi@gmail.com/T
 
-Gr{oetje,eeting}s,
+Nick Chan
 
-                        Geert
+ .../{s8000-pmgr.dtsi => s800-0-3-pmgr.dtsi}   |   0
+ arch/arm64/boot/dts/apple/s800-0-3.dtsi       | 162 ++++++++++++++++++
+ arch/arm64/boot/dts/apple/s8000.dtsi          | 155 +----------------
+ arch/arm64/boot/dts/apple/s8003.dtsi          |  10 +-
+ 4 files changed, 168 insertions(+), 159 deletions(-)
+ rename arch/arm64/boot/dts/apple/{s8000-pmgr.dtsi => s800-0-3-pmgr.dtsi} (100%)
+ create mode 100644 arch/arm64/boot/dts/apple/s800-0-3.dtsi
 
+diff --git a/arch/arm64/boot/dts/apple/s8000-pmgr.dtsi b/arch/arm64/boot/dts/apple/s800-0-3-pmgr.dtsi
+similarity index 100%
+rename from arch/arm64/boot/dts/apple/s8000-pmgr.dtsi
+rename to arch/arm64/boot/dts/apple/s800-0-3-pmgr.dtsi
+diff --git a/arch/arm64/boot/dts/apple/s800-0-3.dtsi b/arch/arm64/boot/dts/apple/s800-0-3.dtsi
+new file mode 100644
+index 000000000000..1e0b8f631ac0
+--- /dev/null
++++ b/arch/arm64/boot/dts/apple/s800-0-3.dtsi
+@@ -0,0 +1,162 @@
++// SPDX-License-Identifier: GPL-2.0+ OR MIT
++/*
++ * Apple S8000/S8003 "A9" SoC
++ *
++ * This file contains parts common to both variants of A9
++ *
++ * Copyright (c) 2022, Konrad Dybcio <konradybcio@kernel.org>
++ */
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/apple-aic.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/pinctrl/apple.h>
++
++/ {
++	interrupt-parent = <&aic>;
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	clkref: clock-ref {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <24000000>;
++		clock-output-names = "clkref";
++	};
++
++	cpus {
++		#address-cells = <2>;
++		#size-cells = <0>;
++
++		cpu0: cpu@0 {
++			compatible = "apple,twister";
++			reg = <0x0 0x0>;
++			cpu-release-addr = <0 0>; /* To be filled in by loader */
++			enable-method = "spin-table";
++			device_type = "cpu";
++		};
++
++		cpu1: cpu@1 {
++			compatible = "apple,twister";
++			reg = <0x0 0x1>;
++			cpu-release-addr = <0 0>; /* To be filled in by loader */
++			enable-method = "spin-table";
++			device_type = "cpu";
++		};
++	};
++
++	soc {
++		compatible = "simple-bus";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		nonposted-mmio;
++		ranges;
++
++		serial0: serial@20a0c0000 {
++			compatible = "apple,s5l-uart";
++			reg = <0x2 0x0a0c0000 0x0 0x4000>;
++			reg-io-width = <4>;
++			interrupt-parent = <&aic>;
++			interrupts = <AIC_IRQ 192 IRQ_TYPE_LEVEL_HIGH>;
++			/* Use the bootloader-enabled clocks for now. */
++			clocks = <&clkref>, <&clkref>;
++			clock-names = "uart", "clk_uart_baud0";
++			power-domains = <&ps_uart0>;
++			status = "disabled";
++		};
++
++		pmgr: power-management@20e000000 {
++			compatible = "apple,s8000-pmgr", "apple,pmgr", "syscon", "simple-mfd";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			reg = <0x2 0xe000000 0 0x8c000>;
++		};
++
++		aic: interrupt-controller@20e100000 {
++			compatible = "apple,s8000-aic", "apple,aic";
++			reg = <0x2 0x0e100000 0x0 0x100000>;
++			#interrupt-cells = <3>;
++			interrupt-controller;
++			power-domains = <&ps_aic>;
++		};
++
++		pinctrl_ap: pinctrl@20f100000 {
++			compatible = "apple,s8000-pinctrl", "apple,pinctrl";
++			reg = <0x2 0x0f100000 0x0 0x100000>;
++			power-domains = <&ps_gpio>;
++
++			gpio-controller;
++			#gpio-cells = <2>;
++			gpio-ranges = <&pinctrl_ap 0 0 208>;
++			apple,npins = <208>;
++
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			interrupt-parent = <&aic>;
++			interrupts = <AIC_IRQ 42 IRQ_TYPE_LEVEL_HIGH>,
++				     <AIC_IRQ 43 IRQ_TYPE_LEVEL_HIGH>,
++				     <AIC_IRQ 44 IRQ_TYPE_LEVEL_HIGH>,
++				     <AIC_IRQ 45 IRQ_TYPE_LEVEL_HIGH>,
++				     <AIC_IRQ 46 IRQ_TYPE_LEVEL_HIGH>,
++				     <AIC_IRQ 47 IRQ_TYPE_LEVEL_HIGH>,
++				     <AIC_IRQ 48 IRQ_TYPE_LEVEL_HIGH>;
++		};
++
++		pinctrl_aop: pinctrl@2100f0000 {
++			compatible = "apple,s8000-pinctrl", "apple,pinctrl";
++			reg = <0x2 0x100f0000 0x0 0x100000>;
++			power-domains = <&ps_aop_gpio>;
++
++			gpio-controller;
++			#gpio-cells = <2>;
++			gpio-ranges = <&pinctrl_aop 0 0 42>;
++			apple,npins = <42>;
++
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			interrupt-parent = <&aic>;
++			interrupts = <AIC_IRQ 113 IRQ_TYPE_LEVEL_HIGH>,
++				     <AIC_IRQ 114 IRQ_TYPE_LEVEL_HIGH>,
++				     <AIC_IRQ 115 IRQ_TYPE_LEVEL_HIGH>,
++				     <AIC_IRQ 116 IRQ_TYPE_LEVEL_HIGH>,
++				     <AIC_IRQ 117 IRQ_TYPE_LEVEL_HIGH>,
++				     <AIC_IRQ 118 IRQ_TYPE_LEVEL_HIGH>,
++				     <AIC_IRQ 119 IRQ_TYPE_LEVEL_HIGH>;
++		};
++
++		pmgr_mini: power-management@210200000 {
++			compatible = "apple,s8000-pmgr", "apple,pmgr", "syscon", "simple-mfd";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			reg = <0x2 0x10200000 0 0x84000>;
++		};
++
++		wdt: watchdog@2102b0000 {
++			compatible = "apple,s8000-wdt", "apple,wdt";
++			reg = <0x2 0x102b0000 0x0 0x4000>;
++			clocks = <&clkref>;
++			interrupt-parent = <&aic>;
++			interrupts = <AIC_IRQ 4 IRQ_TYPE_LEVEL_HIGH>;
++		};
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupt-parent = <&aic>;
++		interrupt-names = "phys", "virt";
++		/* Note that A9 doesn't actually have a hypervisor (EL2 is not implemented). */
++		interrupts = <AIC_FIQ AIC_TMR_GUEST_PHYS IRQ_TYPE_LEVEL_HIGH>,
++			     <AIC_FIQ AIC_TMR_GUEST_VIRT IRQ_TYPE_LEVEL_HIGH>;
++	};
++};
++
++#include "s800-0-3-pmgr.dtsi"
++
++/*
++ * The A9 was made by two separate fabs on two different process
++ * nodes: Samsung made the S8000 (APL0898) on 14nm and TSMC made
++ * the S8003 (APL1022) on 16nm. There are some minor differences
++ * such as timing in cpufreq state transistions.
++ */
+diff --git a/arch/arm64/boot/dts/apple/s8000.dtsi b/arch/arm64/boot/dts/apple/s8000.dtsi
+index 84d6b4939ac4..c7e39abda7e1 100644
+--- a/arch/arm64/boot/dts/apple/s8000.dtsi
++++ b/arch/arm64/boot/dts/apple/s8000.dtsi
+@@ -7,160 +7,11 @@
+  * Copyright (c) 2022, Konrad Dybcio <konradybcio@kernel.org>
+  */
+ 
+-#include <dt-bindings/gpio/gpio.h>
+-#include <dt-bindings/interrupt-controller/apple-aic.h>
+-#include <dt-bindings/interrupt-controller/irq.h>
+-#include <dt-bindings/pinctrl/apple.h>
+-
+-/ {
+-	interrupt-parent = <&aic>;
+-	#address-cells = <2>;
+-	#size-cells = <2>;
+-
+-	clkref: clock-ref {
+-		compatible = "fixed-clock";
+-		#clock-cells = <0>;
+-		clock-frequency = <24000000>;
+-		clock-output-names = "clkref";
+-	};
+-
+-	cpus {
+-		#address-cells = <2>;
+-		#size-cells = <0>;
+-
+-		cpu0: cpu@0 {
+-			compatible = "apple,twister";
+-			reg = <0x0 0x0>;
+-			cpu-release-addr = <0 0>; /* To be filled in by loader */
+-			enable-method = "spin-table";
+-			device_type = "cpu";
+-		};
+-
+-		cpu1: cpu@1 {
+-			compatible = "apple,twister";
+-			reg = <0x0 0x1>;
+-			cpu-release-addr = <0 0>; /* To be filled in by loader */
+-			enable-method = "spin-table";
+-			device_type = "cpu";
+-		};
+-	};
+-
+-	soc {
+-		compatible = "simple-bus";
+-		#address-cells = <2>;
+-		#size-cells = <2>;
+-		nonposted-mmio;
+-		ranges;
+-
+-		serial0: serial@20a0c0000 {
+-			compatible = "apple,s5l-uart";
+-			reg = <0x2 0x0a0c0000 0x0 0x4000>;
+-			reg-io-width = <4>;
+-			interrupt-parent = <&aic>;
+-			interrupts = <AIC_IRQ 192 IRQ_TYPE_LEVEL_HIGH>;
+-			/* Use the bootloader-enabled clocks for now. */
+-			clocks = <&clkref>, <&clkref>;
+-			clock-names = "uart", "clk_uart_baud0";
+-			power-domains = <&ps_uart0>;
+-			status = "disabled";
+-		};
+-
+-		pmgr: power-management@20e000000 {
+-			compatible = "apple,s8000-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+-
+-			reg = <0x2 0xe000000 0 0x8c000>;
+-		};
+-
+-		aic: interrupt-controller@20e100000 {
+-			compatible = "apple,s8000-aic", "apple,aic";
+-			reg = <0x2 0x0e100000 0x0 0x100000>;
+-			#interrupt-cells = <3>;
+-			interrupt-controller;
+-			power-domains = <&ps_aic>;
+-		};
+-
+-		pinctrl_ap: pinctrl@20f100000 {
+-			compatible = "apple,s8000-pinctrl", "apple,pinctrl";
+-			reg = <0x2 0x0f100000 0x0 0x100000>;
+-			power-domains = <&ps_gpio>;
+-
+-			gpio-controller;
+-			#gpio-cells = <2>;
+-			gpio-ranges = <&pinctrl_ap 0 0 208>;
+-			apple,npins = <208>;
+-
+-			interrupt-controller;
+-			#interrupt-cells = <2>;
+-			interrupt-parent = <&aic>;
+-			interrupts = <AIC_IRQ 42 IRQ_TYPE_LEVEL_HIGH>,
+-				     <AIC_IRQ 43 IRQ_TYPE_LEVEL_HIGH>,
+-				     <AIC_IRQ 44 IRQ_TYPE_LEVEL_HIGH>,
+-				     <AIC_IRQ 45 IRQ_TYPE_LEVEL_HIGH>,
+-				     <AIC_IRQ 46 IRQ_TYPE_LEVEL_HIGH>,
+-				     <AIC_IRQ 47 IRQ_TYPE_LEVEL_HIGH>,
+-				     <AIC_IRQ 48 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-
+-		pinctrl_aop: pinctrl@2100f0000 {
+-			compatible = "apple,s8000-pinctrl", "apple,pinctrl";
+-			reg = <0x2 0x100f0000 0x0 0x100000>;
+-			power-domains = <&ps_aop_gpio>;
+-
+-			gpio-controller;
+-			#gpio-cells = <2>;
+-			gpio-ranges = <&pinctrl_aop 0 0 42>;
+-			apple,npins = <42>;
+-
+-			interrupt-controller;
+-			#interrupt-cells = <2>;
+-			interrupt-parent = <&aic>;
+-			interrupts = <AIC_IRQ 113 IRQ_TYPE_LEVEL_HIGH>,
+-				     <AIC_IRQ 114 IRQ_TYPE_LEVEL_HIGH>,
+-				     <AIC_IRQ 115 IRQ_TYPE_LEVEL_HIGH>,
+-				     <AIC_IRQ 116 IRQ_TYPE_LEVEL_HIGH>,
+-				     <AIC_IRQ 117 IRQ_TYPE_LEVEL_HIGH>,
+-				     <AIC_IRQ 118 IRQ_TYPE_LEVEL_HIGH>,
+-				     <AIC_IRQ 119 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-
+-		pmgr_mini: power-management@210200000 {
+-			compatible = "apple,s8000-pmgr", "apple,pmgr", "syscon", "simple-mfd";
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+-
+-			reg = <0x2 0x10200000 0 0x84000>;
+-		};
+-
+-		wdt: watchdog@2102b0000 {
+-			compatible = "apple,s8000-wdt", "apple,wdt";
+-			reg = <0x2 0x102b0000 0x0 0x4000>;
+-			clocks = <&clkref>;
+-			interrupt-parent = <&aic>;
+-			interrupts = <AIC_IRQ 4 IRQ_TYPE_LEVEL_HIGH>;
+-		};
+-	};
+-
+-	timer {
+-		compatible = "arm,armv8-timer";
+-		interrupt-parent = <&aic>;
+-		interrupt-names = "phys", "virt";
+-		/* Note that A9 doesn't actually have a hypervisor (EL2 is not implemented). */
+-		interrupts = <AIC_FIQ AIC_TMR_GUEST_PHYS IRQ_TYPE_LEVEL_HIGH>,
+-			     <AIC_FIQ AIC_TMR_GUEST_VIRT IRQ_TYPE_LEVEL_HIGH>;
+-	};
+-};
+-
+-#include "s8000-pmgr.dtsi"
++#include "s800-0-3.dtsi"
+ 
+ /*
+  * The A9 was made by two separate fabs on two different process
+  * nodes: Samsung made the S8000 (APL0898) on 14nm and TSMC made
+- * the S8003 (APL1022) on 16nm. While they are seemingly the same,
+- * they do have distinct part numbers and devices using them have
+- * distinct model names. There are currently no known differences
+- * between these as far as Linux is concerned, but let's keep things
+- * structured properly to make it easier to alter the behaviour of
+- * one of the chips if need be.
++ * the S8003 (APL1022) on 16nm. There are some minor differences
++ * such as timing in cpufreq state transistions.
+  */
+diff --git a/arch/arm64/boot/dts/apple/s8003.dtsi b/arch/arm64/boot/dts/apple/s8003.dtsi
+index 7e4ad4f7e499..807e3452f8a7 100644
+--- a/arch/arm64/boot/dts/apple/s8003.dtsi
++++ b/arch/arm64/boot/dts/apple/s8003.dtsi
+@@ -7,15 +7,11 @@
+  * Copyright (c) 2022, Konrad Dybcio <konradybcio@kernel.org>
+  */
+ 
+-#include "s8000.dtsi"
++#include "s800-0-3.dtsi"
+ 
+ /*
+  * The A9 was made by two separate fabs on two different process
+  * nodes: Samsung made the S8000 (APL0898) on 14nm and TSMC made
+- * the S8003 (APL1022) on 16nm. While they are seemingly the same,
+- * they do have distinct part numbers and devices using them have
+- * distinct model names. There are currently no known differences
+- * between these as far as Linux is concerned, but let's keep things
+- * structured properly to make it easier to alter the behaviour of
+- * one of the chips if need be.
++ * the S8003 (APL1022) on 16nm. There are some minor differences
++ * such as timing in cpufreq state transistions.
+  */
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+base-commit: d47006c7111b57dd2377d072681935aebb9dde25
+-- 
+2.47.1
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
