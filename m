@@ -1,140 +1,233 @@
-Return-Path: <devicetree+bounces-127967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3119E6D1B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 12:17:19 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D54789E6D8F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 12:46:35 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 746601884760
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 11:46:35 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A85CB1FF618;
+	Fri,  6 Dec 2024 11:46:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="m2eMtTxj"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76CD328219C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 11:17:18 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15D76206F10;
-	Fri,  6 Dec 2024 11:14:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="IGUkLjZj"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E18206F1A
-	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 11:14:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA3EC1FCCE3
+	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 11:46:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733483665; cv=none; b=YPa5URga/KAxpTUazjFi+mMggA2YtrsPpTWhHgLf4zAOd0G5IHtBpdJp6NRfY3wPFt796GPQu81s+3fF5ZtXJbDRNXLo3502hdjVrzEc5wM3sSeb0avHnEQAYmkl9UZOnMUqsXZSeVMnYnUQan3Abze8pbo/CWm5JGrl3axDzZw=
+	t=1733485591; cv=none; b=XIeCekaqoX6NikfxEDwhEWyP8VynEb19qUjcpWjmHr/W9P9xUwa5nXSBSW/dmSB0EY397xiQDjeDlaZ5Yh7+UfnAJcNOlcIC+k0lUsISpI8PK3ryvB/ZAEZBMvy0Lh1P/eqx84W3mFTTK1XaVV/tkkJpFgpA7Za5aJPipQ0U2Jo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733483665; c=relaxed/simple;
-	bh=a4/gsQVtR7MVHM1KJuAuPMWGtk0F3Gae6xSRbB+vIWo=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=IFpBnMGsrLlPP7yl9Do6zCVjOBGkV6fr84xuiYniHPijtCKd6bVid99/YmH+v917L4zD2bIuzcEwqI9AcbPD3CrPBHVgXzgDMt+45Ibud12YzEhDA2M2NvRZVvrFMB6IJOpdisY4wjpnHbrPuwnAA7DZmg/cEZDuDqdYYS6LqS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=IGUkLjZj; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aa62f0cb198so197914966b.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 03:14:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1733483661; x=1734088461; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=r9Dnr8lBPRV9hwY5+L6VmdONZwzLphVT7+zA8FZuSvc=;
-        b=IGUkLjZjdXavSltmBn7WJKCt7ZmfqpeDzq+c8eJyOQNUX4pmJzPPgbOzPqDCz+QuVr
-         0Ee0ApCmiF9L5o970PXWXaFksLDbsPONJoXANY1yjBKK15S8LoRwv4yaI96oTxeBqJo2
-         Yr+gjDZ2FhW1Kh/GXVTV7lOFJ5gypIS301DAgBcVqqqsEkmOy52N31+BTOmEd/w4lLyV
-         bSuerh/gR7UOtBdU5HxbeKm1lP8vXbSByk1US73myzpL1FAp+lFZ5EzLpOngyAbGRIu/
-         VC2PirSXVrkC6aPm57d0vKHq/bjE+wVAIULPleREHmFcG5WpkgNHfVv27jaeWKhyDKH2
-         hA+w==
+	s=arc-20240116; t=1733485591; c=relaxed/simple;
+	bh=jTMtrDLnjk5W3t/iPqQBtaBROJ7vQIK3Plh8o9UC2sc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WpEHBUvo+fm80CD6bqotV1fPv2bKixZ4XNKMcOBZMufoaFB3LDrizcN5gDwAqRgI2/lnQxLF3o/6yh2wATp9JtoIRTjpIJWMHIqXRVG34XFMf3Nng6Eaw2XjYhWpHMO3+EzL4sQ08foCb+c5PzNsd3WBOhathZei8NdL7DaeR7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=m2eMtTxj; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B6AIJcu029224
+	for <devicetree@vger.kernel.org>; Fri, 6 Dec 2024 11:46:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5hUY1e/YxiySi/wLCkZ/A7ok8yUIQYxm2Ew51lyeXS4=; b=m2eMtTxjm3bJXk29
+	l5wPFxi/4jimYBJzvV9mpPXTAA3Z1gI6uNZYM2ZB7W+REvLS+NTmbRFCr6wv/K73
+	O75U48bocJPWLGWM9Mn1uew6H8Uc7jzEbMKj5mVgiO+BRLZydmmfHydYkTiZCQsG
+	RuCu/YUxFciy4wllLrDTSuvmcIastvTRJtYxWaEhOK6VNvWPWZCpLGDoqQhdn5Qv
+	qpzhXVlYdOf8e4YRS4yx456wmd6GidtE8A/sCC3mU0Fo/7pS4L3GYctTH9F6MP4t
+	Knu5OonPBr8MrpeuYUIo0OV4dx9qxCfAw5mgDtP+KvqJhQL8D4fTeBITQqTJn6F+
+	qDvh4A==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43byd80768-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 11:46:28 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7b65d1aba51so17416085a.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 03:46:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733483661; x=1734088461;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=r9Dnr8lBPRV9hwY5+L6VmdONZwzLphVT7+zA8FZuSvc=;
-        b=lCXjeqttl4pffh49wHmnuRpU5xSGHzyYHkRFc6uW7EgA+xMasHK78okglTIgtt1flZ
-         hHQhdWopN9+v3IxQ/d5JKcjySO6qQEggWKHEl0+LepTeLI8XgCk/xJKeXrchZIgs1Otv
-         0i78zQSYFsbS08kerQkj5aYfNXQ5oDOzCjzlcs6UH/lECpQl45s3sisQjht9NAD1t+lW
-         yg5BA2OA6U0CA0KgrGs+wbG1UlRzy+56HqSeY4loYIeficK1uyHWw7UtgSmkRLcPw1Ct
-         4XFLmhAt7ZIno0Okfmis84XN4RD/iZuDe6eyisjE104jtOqQqXgXtLuBokIsrG9aYHYE
-         +WWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVQne6Ev7kFn09JaRJcCr81Wi/hPgD5CAcFTJi43zkI+2aCJXoI4G0N0xY6b1smvv55YNxayyATP8hh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKhZFez7/Sv4BCQvMtwSURL2CXQlOczuEZXKCD7LH6s6JGV4O2
-	ZjMzL7PFZYbyyuLDCvbrmd/rCbPsyIfaMGY45roQGVQ7mBMifsT9DMAdf57Z0m8=
-X-Gm-Gg: ASbGnctpeoCsq+7gv3O9QBFIljfSIbTaZrLXyRyJVdjidwZr2jK/kobjkiDbns6t/4U
-	wTOgZzk7AbJaa8CwLtVgbqJilzbu4XPc6KEUwVy9BoM/YxBP3nLdKAIEOi8ataL9mGrkJKAE/2z
-	L2bUTapFv9wmEgvYbN9uSmTrqjCb43nf+E7AyG5n8gHRYlqMeovLdgqlWjNx2NHhIPY0oCON19R
-	LCGPOWLM34Y0x+UuhQYWPOGq5UZaSm9+i60fPwnDWggiQWnidNkgaD9FRbWlFdFrP4GuTlnAntf
-	914M
-X-Google-Smtp-Source: AGHT+IG7gJqc4CGdANniAawsf3QrNvInv7nJ0Q0Fqm3FfT2wXTQhceZu1E4SlHPGcY841V3MyHiZiw==
-X-Received: by 2002:a17:906:4d2:b0:aa6:2e07:5cf2 with SMTP id a640c23a62f3a-aa63a2086e0mr165912666b.38.1733483661317;
-        Fri, 06 Dec 2024 03:14:21 -0800 (PST)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.161])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa625eee2a6sm226877866b.90.2024.12.06.03.14.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Dec 2024 03:14:20 -0800 (PST)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
-To: prabhakar.mahadev-lad.rj@bp.renesas.com,
-	jic23@kernel.org,
-	lars@metafoo.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	p.zabel@pengutronix.de
-Cc: claudiu.beznea@tuxon.dev,
-	linux-iio@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v2 15/15] arm64: dts: renesas: rzg3s-smarc-som: Enable ADC
-Date: Fri,  6 Dec 2024 13:13:37 +0200
-Message-Id: <20241206111337.726244-16-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20241206111337.726244-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20241206111337.726244-1-claudiu.beznea.uj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1733485588; x=1734090388;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5hUY1e/YxiySi/wLCkZ/A7ok8yUIQYxm2Ew51lyeXS4=;
+        b=DKanqMC+XYLDpiMek6tDEPZWlVBtUMrR5/UOJgTI8aWDeAqChj6dzz7AZiS1NHOwvt
+         yJPsNCkx95ZTXDwniPwJH3I3JRoESXFQ/hdFtmTpjiHJbVWUZHY1o3H+L/DP9b2JUMNe
+         oDNfbq76SP/5aBCrj37iADY4INMPKng1QVDvDBhLzF5S6vl7fmieLLG6tHX2BolWdU11
+         TRyh8BedaYPbpWeGPykgd8NPPofNWWCvLDBtnxiORC+ezUz7lxVmIGztFz9qM9bVpiG+
+         xFkvoNmOeuMLO9N5w9PFBNluTuyKEmTnJrB5MnPPYvKrHiTsG2kPKWCE0GOGkiZbX5Eb
+         0m5w==
+X-Forwarded-Encrypted: i=1; AJvYcCWPVpiIiq+KU7x5Lbc5TilssRtksnOo5S+P7iS9A3ewCuo6NXKLNuEsLpBEaXW3MgJ0gYUDt5lQoZmi@vger.kernel.org
+X-Gm-Message-State: AOJu0YxP/xsbHrEURL2rsTo4GInz76UQ2FZuyeUEN0nFb/L5g6kD545c
+	panxriFndLchbJb6caEm+QSOF6oH2komP7N9vTu4A2Jl7Bc6VGI1F2pb0A/P1eWqAK+eLQAAhYH
+	hYV7Kz7ovWFBRwiHYACufguq1k/YbjHY/MqKxNXd7KHfb8JFta5EuFOv8HVs/
+X-Gm-Gg: ASbGncvtLDCHUny8EK8NDaV+3TPQZTOfjYopOWaQA2/MzTyWdE0nxUkBDkuGJEJxXTe
+	E0pTqRDL76dmdIGlkveuUmHVqL+SkR/ELGFyMqVYE1STtqQ3xqhiXGL9f7bYdt+KPMGwG1JxpmY
+	Nr/K39NVY+MfZvmOM1PV/UkZEO0t19/0HLdp8q4jKDkKVGK9/SgRgWl0xGkvHKSJz9qy/zblEPT
+	fC9XuAXf4qLbS+w9v2NcTLIldB4IBvDapph8p8PVq3lacV53qrLrnisUPjwbCTFtPboEgB2ul8Q
+	6Lx2TmLt6Njktt5UkyQik8VmhZSP2xM=
+X-Received: by 2002:a05:620a:469f:b0:7b6:6634:5a3a with SMTP id af79cd13be357-7b6bcace083mr134724885a.6.1733485587826;
+        Fri, 06 Dec 2024 03:46:27 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE2ztyWlSb4kx6b26cpg9MuRvCCN2v3JqU/i03b5FNDZ8dzZTlaEdkLBo8DgxUk1CP0/Qt3mw==
+X-Received: by 2002:a05:620a:469f:b0:7b6:6634:5a3a with SMTP id af79cd13be357-7b6bcace083mr134722785a.6.1733485587363;
+        Fri, 06 Dec 2024 03:46:27 -0800 (PST)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa625e96aebsm229571566b.65.2024.12.06.03.46.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Dec 2024 03:46:26 -0800 (PST)
+Message-ID: <153a9d51-6fc8-47d8-934b-4c53365077bc@oss.qualcomm.com>
+Date: Fri, 6 Dec 2024 12:46:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 17/22] wifi: ath12k: add AHB driver support for IPQ5332
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        ath12k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Balamurugan S <quic_bselvara@quicinc.com>,
+        P Praneesh <quic_ppranees@quicinc.com>
+References: <20241015182637.955753-1-quic_rajkbhag@quicinc.com>
+ <20241015182637.955753-18-quic_rajkbhag@quicinc.com>
+ <243cd21d-6a35-4ff0-9b38-ec519a804670@oss.qualcomm.com>
+ <9093b41c-986d-4304-8414-61e4ee2d9950@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <9093b41c-986d-4304-8414-61e4ee2d9950@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: xpuaBK4j2ZRN8TD4dJ0jZyezWb9bjZXx
+X-Proofpoint-ORIG-GUID: xpuaBK4j2ZRN8TD4dJ0jZyezWb9bjZXx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 lowpriorityscore=0 impostorscore=0 clxscore=1015
+ malwarescore=0 bulkscore=0 mlxlogscore=999 mlxscore=0 suspectscore=0
+ adultscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412060087
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 6.12.2024 10:56 AM, Raj Kumar Bhagat wrote:
+> On 10/19/2024 1:59 AM, Konrad Dybcio wrote:
+>> On 15.10.2024 8:26 PM, Raj Kumar Bhagat wrote:
+>>> From: Balamurugan S <quic_bselvara@quicinc.com>
+>>>
+>>> Add Initial Ath12k AHB driver support for IPQ5332. IPQ5332 is AHB
+>>> based IEEE802.11be 2 GHz 2x2 WiFi device.
+>>>
+>>> Tested-on: IPQ5332 hw1.0 AHB WLAN.WBE.1.3.1-00130-QCAHKSWPL_SILICONZ-1
+>>> Tested-on: QCN9274 hw2.0 PCI WLAN.WBE.1.1.1-00210-QCAHKSWPL_SILICONZ-1
+>>>
+>>> Signed-off-by: Balamurugan S <quic_bselvara@quicinc.com>
+>>> Co-developed-by: P Praneesh <quic_ppranees@quicinc.com>
+>>> Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
+>>> Co-developed-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+>>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+>>> ---
+>>
+>> [...]
+>>
+>>> +enum ext_irq_num {
+>>> +	host2wbm_desc_feed = 16,
+>>> +	host2reo_re_injection,
+>>
+>> Why?
+>>
+> 
+> This enum is used as a IRQ number for Ath12k AHB. Based on this enum
+> we can get the IRQ name from irq_name[]. This helps to request the original
+> IRQ number from the DT.
+> It is starting from 16 becasue, in irq_name[], the name for ext IRQ starts
+> from 16 index.
 
-Enable ADC.
+[...]
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
+> 
+>>> +				irq_grp->irqs[num_irq++] =
+>>> +					reo2host_destination_ring1 - j;
+>>> +			}
+>>> +
+>>> +			if (ab->hw_params->ring_mask->rx_err[i] & BIT(j))
+>>> +				irq_grp->irqs[num_irq++] = reo2host_exception;
+>>> +
+>>> +			if (ab->hw_params->ring_mask->rx_wbm_rel[i] & BIT(j))
+>>> +				irq_grp->irqs[num_irq++] = wbm2host_rx_release;
+>>> +
+>>> +			if (ab->hw_params->ring_mask->reo_status[i] & BIT(j))
+>>> +				irq_grp->irqs[num_irq++] = reo2host_status;
+>>> +
+>>> +			if (ab->hw_params->ring_mask->rx_mon_dest[i] & BIT(j))
+>>> +				irq_grp->irqs[num_irq++] =
+>>> +					rxdma2host_monitor_destination_mac1;
+>>> +		}
+>>> +
+>>> +		irq_grp->num_irq = num_irq;
+>>> +
+>>> +		for (j = 0; j < irq_grp->num_irq; j++) {
+>>> +			irq_idx = irq_grp->irqs[j];
+>>> +
+>>> +			irq = platform_get_irq_byname(ab->pdev,
+>>> +						      irq_name[irq_idx]);
+>>> +			ab->irq_num[irq_idx] = irq;
+>>> +			irq_set_status_flags(irq, IRQ_NOAUTOEN | IRQ_DISABLE_UNLAZY);
+>>> +			ret = request_irq(irq, ath12k_ahb_ext_interrupt_handler,
+>>> +					  IRQF_TRIGGER_RISING,
+>>> +					  irq_name[irq_idx], irq_grp);
+>>> +			if (ret) {
+>>> +				ath12k_err(ab, "failed request_irq for %d\n",
+>>> +					   irq);
+>>> +			}
+>>> +		}
+>>
+>> Instead of doing all this magic, can we request the IRQs manually, as we
+>> have interrupt-names in dt?
+>>
+> 
+> I'm not sure if I fully understood this comment.
+> If we manually request IRQs using their names from the DT, we won't be able to
+> group the IRQs. Grouping the IRQs is one of our main objectives here. Additionally,
+> we are not using all the IRQ names defined in the DT, so the logic in this function
+> is crucial for grouping and requesting the IRQs according to the ring-mask.
 
-Changes in v2:
-- none
+Surely you can name these "foo_bar_ring%d" in DT and use the OF APIs
 
- arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+[...]
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-index 2ed01d391554..57ebdfc858eb 100644
---- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-@@ -94,6 +94,10 @@ vcc_sdhi2: regulator2 {
- 	};
- };
- 
-+&adc {
-+	status = "okay";
-+};
-+
- #if SW_CONFIG3 == SW_ON
- &eth0 {
- 	pinctrl-0 = <&eth0_pins>;
--- 
-2.39.2
+>>
+>>> +	/* Set fixed_mem_region to true for platforms that support fixed memory
+>>> +	 * reservation from DT. If memory is reserved from DT for FW, ath12k driver
+>>> +	 * need not to allocate memory.
+>>> +	 */
+>>> +	if (!of_property_read_u32(ab->dev->of_node, "memory-region", &addr)) {
+>>> +		set_bit(ATH12K_FLAG_FIXED_MEM_REGION, &ab->dev_flags);
+>>> +		mem_node = of_find_node_by_name(NULL, "mlo_global_mem_0");
+>>
+>> This is not mentioned or documented anywhere.
+>>
+> 
+> In next version, will document the below info:
+> 
+> "If the platform supports fixed memory, then it should define/reserve
+> MLO global memory in DT to support Multi Link Operation.
+> If MLO global memory is not reserved in fixed memory mode, then
+> MLO cannot be supported."
 
+You should also explain what Multi Link Operation means
+
+Konrad
 
