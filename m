@@ -1,68 +1,97 @@
-Return-Path: <devicetree+bounces-128095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7859D9E771B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 18:27:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD3F99E7726
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 18:28:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 747811885E0C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:27:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DEB11881AE8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:28:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7193C1FFC53;
-	Fri,  6 Dec 2024 17:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2426F22068C;
+	Fri,  6 Dec 2024 17:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jazwbNVL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mj1oHgD8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 453901F4E21;
-	Fri,  6 Dec 2024 17:24:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6BB9220682;
+	Fri,  6 Dec 2024 17:28:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733505854; cv=none; b=MLRegSwCAU7rb0JCel5dP3Z8yuugDGsl1A+cJ6iwm3TVLVaLdvPq35uK0WIPklDA69iOxTBGyEinRXQ+EA7ZCjzhGdoL/z4y0wPG+bz3ghrVHP7Qm7WG1Y5W5RdFBJAK0tD180CNqu216/tPC7oVM/bzGkAtclha5R6Tn6N/FbE=
+	t=1733506087; cv=none; b=PooR24++k9cvd1viqdERlXyJ8TI3+LRUucK0KUX+we4nhyouF6sdLAkUhkOyyHrovJE2nFEGwKFfZkrAuVP4nGgnzUPAdissxQmwCRP0psmTmPldZdZEbeXzLkPl0Sj42xW9StN84hbPu9NXJYtckYRK+YDj2L/XXOkP0cPM0QQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733505854; c=relaxed/simple;
-	bh=9BDcKEAhfhMZi3RjBnhUfLl8xU6wPyN7nhmV8t6I0vQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lhsdhKXOTTdTfXHWNBikZsbItg8x/8WScyqau6nOZPJ7B9t6grGn9tDoBuZGbv+thHv28bh8/pAO+LAn62+or4gCmCfeyUj9Af7PxbdsX80wdLlddVNt9zUYeDok40IHFcmPXO5jW+uObz+QYtUQ7TDFrQi7osnWjrs/bf/4kuU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jazwbNVL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3777C4CEDE;
-	Fri,  6 Dec 2024 17:24:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733505853;
-	bh=9BDcKEAhfhMZi3RjBnhUfLl8xU6wPyN7nhmV8t6I0vQ=;
-	h=From:To:Cc:Subject:Date:From;
-	b=jazwbNVL8wgxmXqa7v94y4RXzWRAHjPxZOrK4pkCbQDWHZmmzKKGSGijD74i/G1Cq
-	 0u+EDx4LXvUxlHr4r+Ms28LCb9GZ8Vz/oP4TKcW0drHs/IGWcxCdpGU3MS2iCdH4Ri
-	 RAocRq+xv5FKF8Byrh6OObWnzYwDA2ruSWFZhAxiONU21zd1P9mPkjKS5SBVG2pXaC
-	 lOavV2MAd8caiG4Ky2u/F0zxmiVG8ByDUohtLA4pdlED78yT+pMnoRClEjV/zCC7XS
-	 qvXWxq33JyYQ4lKDvH4mvP94eOMUOUAW9Q/5V0Ebb93bRMnW6BH8D8cuL2+SgmNTTf
-	 mfDkkZW+o2dnQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan+linaro@kernel.org>)
-	id 1tJc3q-000000005Oc-2blJ;
-	Fri, 06 Dec 2024 18:24:15 +0100
-From: Johan Hovold <johan+linaro@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1733506087; c=relaxed/simple;
+	bh=HlaaRQW87AgnjRT+Y5IQ8DR+U13+RaTnBT1HpwvABQc=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=kqQ/JJvDrVwgsRmlQY46jahsz6jlzdrRri6sitel0QRbUtHKDDtIW5Dx3RouOsIRm3jGWUQt5vf3t2g/GWvXn/rNaJhZvJpo/IqUP1pyXAaruhNgTyOZHSF31W/n0XLOAJ8AmnUeCTtN0ODoTjrpMLBZE/5wBN+rBd7PryotVfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mj1oHgD8; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-725c86bbae7so427630b3a.3;
+        Fri, 06 Dec 2024 09:28:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733506085; x=1734110885; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4y2ki+6zul3gbLgcnSK/uoLUEGgMXT8pqStVpvvXP2k=;
+        b=mj1oHgD8pevLLYyET3hDYin3W3aTJ65MKzi19S/6orgaWjamY4/w/4GkNytlRc6CUp
+         nB6FnySjx4yDH9+ebnwLy0CwcU5cZnvVa8f2HAVfQB85FoAG9xJs4wLRZPowrbILx/XF
+         NHmDrd60mGbxLlGPaRBam3yGmn+NkbSZk00yUaiZV6rKhBjWcp3GlfzvjVqak3+urHRu
+         cMIYgU4DzL+WkZAyde0KSP5eVy04DfqYoN35+MLOJDzdtdQxzdyptTTJbAp6wQ2NpRl5
+         W7ij+WL3Bb4gMS21sPNMWcCgadE+4s1bAJwlMYwx7EyabOF40toj/26loKWtQl/LFRaZ
+         b8HA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733506085; x=1734110885;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4y2ki+6zul3gbLgcnSK/uoLUEGgMXT8pqStVpvvXP2k=;
+        b=bHU4xnnGJ19CAI7XMWUyscesNLy74rfeMXR0fWIk5yUcanNso/OiWJSTqBwgwhiy3S
+         F+jKz3eYCxjSrDFnYN11C/toMwb/8rLcvwomvD5SOVCBGUqs6PnK4E2Sy6Cm4pLcTjnw
+         +3zLiCV7p99NJjtiRQdP+RQRbvi0iIOM0nrtay8qedVVNV4AiD0AD3P7knGcDvQ1MiRt
+         wDMwI+BY4Gl9sn1A0BjvGDh31krl8D7mynNKCGo/hoLZCjxVmasfJwlJa9Hhv59MGkYc
+         h9UnWDouJRLn2DPGA91sj9LbA1EOOEBpWci+VGeWDEjyTusS+VN2gsHatj/GaeCLKQGU
+         6VwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5rf6T82hmPEjNT/sCtWwt6ycLcBGUL7rDgN47tVxsJoWGc2uOaYv1JaTX9VU05Rmxe5qk9TdlhvPMkQ==@vger.kernel.org, AJvYcCUgPKsh8eJVVuOfOkPZHWRVscsiu58MvWopcG/YeP3g7INKym6Fh9Z+1m7KDdwa87kP/1wMTBSeY1Qz@vger.kernel.org, AJvYcCWHL/DFEdgQ9smtjZcPuM92/Vf+VlC0W+UDlNb5Ok7feX8ssKlFALxvHtCeb7TyX0oKf8bIPTczoHWBKdQ=@vger.kernel.org, AJvYcCXikRpVXoEW9oEMNx3CrqiT7EsJ7ThJ7V7RjKcNQkHFQfNejFMTEUCkF2s4Qxpr5wqaEddd199uuYtLoITN@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsUMyx7EMTuQdhVGkwqh3P7WR5CSno/reUgfVjEyLW2qgVOkVQ
+	hE09/w1VazYrQcVkyYyHP16BP5utatFqn+X0VcMks9FYvxf6GIPp
+X-Gm-Gg: ASbGncvqnFLohZJNsnmK1qy6oIT+wDsVeaW0O1ERS6EHCmM9PFsY6odhAldRUxLe/rE
+	hZXXslq6nOhFP2M+IZJdrS+Gfm8q/ABWAk2nehrvUftTMNNlk+3ebQB8wd6gGEUiePf0k0X/p9a
+	qTWtgXhjeNLWFJfPR1FP3khX4aZCTsoC8J7FCGfukiQcRgO+mHABi/ga3v5pK1R1HsS4sMxn8p1
+	TNAYvQ8IS/nBKtOaoU5/oNDKQhrFv05UmZmhaeic2yFQZsH28QfC+qIR6yogDFOo14Z
+X-Google-Smtp-Source: AGHT+IHXdwewDIPQOXtv1iEJ1h+wD3M9qyi9bwIoqyxS6+rfSqoJNur+gfxUq0L2I9fps7PZzh+XJQ==
+X-Received: by 2002:a05:6a00:806:b0:725:90f9:daf9 with SMTP id d2e1a72fcca58-725b812aaabmr5813954b3a.15.1733506084740;
+        Fri, 06 Dec 2024 09:28:04 -0800 (PST)
+Received: from localhost.localdomain ([49.130.54.203])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-725a2cc6950sm3204512b3a.173.2024.12.06.09.28.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Dec 2024 09:28:04 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+To: Lee Jones <lee@kernel.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Jonathan Marek <jonathan@marek.ca>,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
+	Helge Deller <deller@gmx.de>,
+	Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Nick Chan <towinchenmi@gmail.com>,
+	dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	regressions@lists.linux.dev,
-	Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH] Revert "arm64: dts: qcom: x1e78100-t14s: enable otg on usb-c ports"
-Date: Fri,  6 Dec 2024 18:24:02 +0100
-Message-ID: <20241206172402.20724-1-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.45.2
+	linux-fbdev@vger.kernel.org,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/3] Apple DWI backlight driver
+Date: Sat,  7 Dec 2024 01:24:32 +0800
+Message-ID: <20241206172735.4310-1-towinchenmi@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,82 +100,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This reverts commit 1a48dd7b9ac809d1bd0fd2fef509abba83433846.
+Apple SoCs come with a 2-wire interface named DWI. On some iPhones, iPads
+and iPod touches 1-2 backlight controllers are attached via this interface.
+Though, to software using this interface, there is effectively only one
+controller to worry about since the registers changes the brightness
+setting on all controllers at the same time. This series adds a backlight
+driver for backlight controllers connected this way.
 
-A recent change enabling OTG mode on the Lenovo ThinkPad T14s USB-C
-ports can break SuperSpeed device hotplugging. The host controller is
-enumerated, but the device is not:
-
-	xhci-hcd xhci-hcd.5.auto: xHCI Host Controller
-	xhci-hcd xhci-hcd.5.auto: new USB bus registered, assigned bus number 3
-	xhci-hcd xhci-hcd.5.auto: hcc params 0x0110ffc5 hci version 0x110 quirks 0x000080a000000810
-	xhci-hcd xhci-hcd.5.auto: irq 247, io mem 0x0a800000
-	xhci-hcd xhci-hcd.5.auto: xHCI Host Controller
-	xhci-hcd xhci-hcd.5.auto: new USB bus registered, assigned bus number 4
-	xhci-hcd xhci-hcd.5.auto: Host supports USB 3.1 Enhanced SuperSpeed
-	hub 3-0:1.0: USB hub found
-	hub 3-0:1.0: 1 port detected
-	hub 4-0:1.0: USB hub found
-	hub 4-0:1.0: 1 port detected
-
-Once this happens on either of the two ports, no amount of disconnecting
-and reconnecting makes the SuperSpeed device be enumerated, while
-FullSpeed device enumeration still works.
-
-With retimer (and orientation detection) support not even merged yet,
-let's revert at least until we have stable host mode in mainline.
-
-Fixes: 1a48dd7b9ac8 ("arm64: dts: qcom: x1e78100-t14s: enable otg on usb-c ports")
-Cc: Jonathan Marek <jonathan@marek.ca>
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+Nick Chan
 ---
+Nick Chan (3):
+  dt-bindings: leds: backlight: apple,dwi-bl: Add bindings for Apple DWI
+    backlight
+  backlight: dwi_bl: Add Apple DWI backlight driver
+  MAINTAINERS: Add entries for Apple DWI backlight controller
 
-I have not been able to reproduce this on the (third port of) the CRD,
-but I hit this constantly with the T14s so let's start with reverting
-there.
-
-Note that Stephan has already identified another problem with the
-offending commit here:
-
-	https://lore.kernel.org/all/ZxZO6Prrm2ITUZMQ@linaro.org/
-
-Johan
+ .../bindings/leds/backlight/apple,dwi-bl.yaml |  55 ++++++++
+ MAINTAINERS                                   |   2 +
+ drivers/video/backlight/Kconfig               |  12 ++
+ drivers/video/backlight/Makefile              |   1 +
+ drivers/video/backlight/dwi_bl.c              | 123 ++++++++++++++++++
+ 5 files changed, 193 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/apple,dwi-bl.yaml
+ create mode 100644 drivers/video/backlight/dwi_bl.c
 
 
-#regzbot introduced: 1a48dd7b9ac8
-
-
-
- .../arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-index 5a4a72a030d4..b4b6260c670c 100644
---- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-@@ -1515,6 +1515,10 @@ &usb_1_ss0 {
- 	status = "okay";
- };
- 
-+&usb_1_ss0_dwc3 {
-+	dr_mode = "host";
-+};
-+
- &usb_1_ss0_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_ss0_hs_in>;
- };
-@@ -1543,6 +1547,10 @@ &usb_1_ss1 {
- 	status = "okay";
- };
- 
-+&usb_1_ss1_dwc3 {
-+	dr_mode = "host";
-+};
-+
- &usb_1_ss1_dwc3_hs {
- 	remote-endpoint = <&pmic_glink_ss1_hs_in>;
- };
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
 -- 
-2.45.2
+2.47.1
 
 
