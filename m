@@ -1,67 +1,60 @@
-Return-Path: <devicetree+bounces-128084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29E849E7687
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:57:15 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B01E69E769A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 18:02:58 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8280D166BB3
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:57:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AD272817C5
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A41881F63F5;
-	Fri,  6 Dec 2024 16:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6384114B084;
+	Fri,  6 Dec 2024 17:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BKFuZvVH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s95Pvg4h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B5F20626A;
-	Fri,  6 Dec 2024 16:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33E0A20628B;
+	Fri,  6 Dec 2024 17:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733504228; cv=none; b=VzB+G6M6Bl6+hJpSB0lOQLAqmYKCDjDXwCDwKWgCZKJRR1UYYqTwjdFDRaucEly8mJ9sthzWVJoHxm97NMEH2iENbIQImTL7xqsKHItIOVrMPUT/99ontUHkorGRdb6S/NfPM7HlXVkacZ/EP7Iazo3YPNmGvlYmq1RyTZlBEiw=
+	t=1733504574; cv=none; b=EmRLG5VhvgeUBQlANG4XPV1MMqDKBkRGbY8jn+Lhr5R9DenVZjo+09HMIihwErmPbJ/WBfxHhU3T9tUzmcqQW3XyABBBTR22NQ7piwk3KrubAG940ghnfy5CUwHfNFapQB6Kj6bZcaq3IPzzpgg7r1Yk0+pDYQr3u7ikzGINmCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733504228; c=relaxed/simple;
-	bh=IlbyNXzPNPA3XWALgOApHSlRf9t/sdvMEQkGLZZhe2A=;
+	s=arc-20240116; t=1733504574; c=relaxed/simple;
+	bh=49stkS5Jr0gbDKUcViWSMu1jZ0Ttci8yCgTnQYqEciE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CitnWBkA92pwdC5v6Arui2jxAEjF8tWyjKfbxHVntunQ7QU1SH1bD4jbeyr4ZoJRt9tnac72V8jxNXd4J7G9sCsC3OPP6l28mvkdUsLutnKnxvYoZXzUQ+8eihV8iPh1GUiDm0c8DeoRN1CsQwafLYNIvhIQoo3k7k3XwqHsO1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BKFuZvVH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D63A8C4CED1;
-	Fri,  6 Dec 2024 16:57:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FvvkXfVK1Bp451Ib4hBab9tqtKMNLddrMr9qkvzSOLMdBtJMZ4+gtkzmpXbmHKPBWwfSq/1/JfcLTOWTeWxGO0G4EYkKJC5pOTkCkYZL5JJDf5QjqRNw7Kqgm0JkEo1YkgxK2OHjIsKyVykIobb8kGDjTjw29VQU0zad+IQccZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s95Pvg4h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 583CFC4CED1;
+	Fri,  6 Dec 2024 17:02:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733504228;
-	bh=IlbyNXzPNPA3XWALgOApHSlRf9t/sdvMEQkGLZZhe2A=;
+	s=k20201202; t=1733504573;
+	bh=49stkS5Jr0gbDKUcViWSMu1jZ0Ttci8yCgTnQYqEciE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BKFuZvVHuFHoCSNTrhMzKMGPYetsabsJvzKRQduJkh2nmwUv2hWQ4m3yXQLJ1/fnZ
-	 L1o7TBpt6IpSo0pXNvUwIyjEcNlG5VaKfVgVX/sS8BoYVTsioyQygrbznr86Gw8aX+
-	 rADfDYdzNjthGrzunUaadGx2yVOLtHeXbLbGA+JrTz6vhIYemmRmuGWcaOtrPyawxu
-	 kgnnG9ceBfSJKzjHgJg5wRhOaO/Era+tKF8MZ7xLPr1vtpjXiUJq+IcWTCRjA6B1zF
-	 WyGZlhzMo2s7+CXpIbGsRYq+CHT5ciGpfYoH1xzP/PL346ARbkbrCHaxnHKYYYQiMP
-	 2KyT+RG/0Pfwg==
-Date: Fri, 6 Dec 2024 16:57:01 +0000
+	b=s95Pvg4hT1qOEsnoGUyCjcqlT8rFHJIecyBajPwtIJlikGvE804slOA25zRrwqQb0
+	 tXt/X2XMt7XZ0YyBh96/pm95OBro70p9Cfee6m6LJivURqrimVPxtAvBgxdQXado9Z
+	 6zZ42DBbu02ElICCwhfXUmmdipv/2TVTB2I79Nyr8Gzf7OKs+0INQywoi4jItZMw//
+	 K/jov+IKTkQ7iPRQOOh7foyMJnRfOfR6H7J7kK9wP3zTjJm5RfY7LxrqCTK9/4Z50k
+	 4G8I+vfuhjHp2Q3eHO8SGlv2eX0gNVubg9BY/hFCCzjVXpwiDPQDdFuR+p36VGdRR/
+	 NSvZVwSc+0zCA==
+Date: Fri, 6 Dec 2024 17:02:49 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v1 1/5] dt-bindings: net: Add TI DP83TD510 10BaseT1L PHY
-Message-ID: <20241206-wrought-jailbreak-52cc4a21a713@spud>
-References: <20241205125640.1253996-1-o.rempel@pengutronix.de>
- <20241205125640.1253996-2-o.rempel@pengutronix.de>
- <20241205-immortal-sneak-8c5a348a8563@spud>
- <Z1KxZmRekrYGSdd4@pengutronix.de>
+To: Dharma.B@microchip.com
+Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	Aubin.Constans@microchip.com, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmc: atmel,hsmci: Convert to json schema
+Message-ID: <20241206-untoasted-ripening-83ecf98bc42f@spud>
+References: <20241205-hsmci-v1-1-5a25e622dfed@microchip.com>
+ <20241205-trickster-rebate-d5e64bc29992@spud>
+ <4e3a4154-9e05-40b4-961f-6d7e95ec0890@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,81 +62,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="1+XZodfQGimtFoRM"
+	protocol="application/pgp-signature"; boundary="ScKT+5iAjDgPbCZa"
 Content-Disposition: inline
-In-Reply-To: <Z1KxZmRekrYGSdd4@pengutronix.de>
+In-Reply-To: <4e3a4154-9e05-40b4-961f-6d7e95ec0890@microchip.com>
 
 
---1+XZodfQGimtFoRM
+--ScKT+5iAjDgPbCZa
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 06, 2024 at 09:10:14AM +0100, Oleksij Rempel wrote:
-> On Thu, Dec 05, 2024 at 05:18:59PM +0000, Conor Dooley wrote:
-> > On Thu, Dec 05, 2024 at 01:56:36PM +0100, Oleksij Rempel wrote:
-> > > Introduce devicetree binding for the Texas Instruments DP83TD510
-> > > Ultra Low Power 802.3cg 10Base-T1L Single Pair Ethernet PHY.
-> > >=20
-> > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > > ---
-> > >  .../devicetree/bindings/net/ti,dp83td510.yaml | 35 +++++++++++++++++=
-++
-> > >  1 file changed, 35 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/net/ti,dp83td51=
-0.yaml
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/net/ti,dp83td510.yaml =
-b/Documentation/devicetree/bindings/net/ti,dp83td510.yaml
-> > > new file mode 100644
-> > > index 000000000000..cf13e86a4017
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/net/ti,dp83td510.yaml
-> > > @@ -0,0 +1,35 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/net/ti,dp83td510.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: TI DP83TD510 10BaseT1L PHY
-> > > +
-> > > +maintainers:
-> > > +  - Oleksij Rempel <o.rempel@pengutronix.de>
-> > > +
-> > > +description:
-> > > +  DP83TD510E Ultra Low Power 802.3cg 10Base-T1L 10M Single Pair Ethe=
-rnet PHY
-> > > +
-> > > +allOf:
-> > > +  - $ref: ethernet-phy.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - ethernet-phy-id2000.0181
-> >=20
-> > There's nothing specific here, can someone remind me why the generic
-> > binding is not enough?
+On Fri, Dec 06, 2024 at 05:16:39AM +0000, Dharma.B@microchip.com wrote:
+> Hi Conor,
 >=20
-> The missing binding was blamed by checkpatch. Haw should I proceed with t=
-his
-> patch?
+> On 05/12/24 11:15 pm, Conor Dooley wrote:
+> > On Thu, Dec 05, 2024 at 03:27:02PM +0530, Dharma Balasubiramani wrote:
+> >=20
+> >> +patternProperties:
+> >> +  "^slot@[0-9]+$":
+> >> +    type: object
+> >> +    description: A slot node representing an MMC, SD, or SDIO slot.
+> >> +
+> >> +    allOf:
+> >> +      - $ref: mmc-controller.yaml
+> >> +
+> >> +    properties:
+> >> +      reg:
+> >> +        description: Slot ID.
+> >> +        minimum: 0
+> >> +
+> >> +      bus-width:
+> >> +        description: Number of data lines connected to the controller.
+> >> +        enum: [1, 4, 8]
+> >> +
+> >> +      cd-gpios:
+> >> +        description: GPIO used for card detection.
+> >> +
+> >> +      cd-inverted:
+> >> +        type: boolean
+> > This type conflicts with mmc-controller.yaml, it's a flag there.
+>=20
+> Yes, I overlooked it. I'll simply remove the type here.
+>=20
+> >=20
+> >> +        description: Inverts the value of the card detection GPIO.
+> >> +
+> >> +      wp-gpios:
+> >> +        description: GPIO used for write protection.
+> >> +
+> >> +    required:
+> >> +      - reg
+> >> +      - bus-width
+> >> +
+> >> +    unevaluatedProperties: false
+> > Do you mean additionalProperties: false here? You listed properties
+> > contained in mmc-controller.yaml which makes it seem like you're
+> > restricting to this subset rather than allowing all properties - but you
+> > need additionalProperties: false to do that.
+>=20
+> No, I'm not restricting the properties to this subset. There are=20
+> additional properties, such as "non-removable," "broken-cd," and=20
+> "disable-wp," that are used in our DTS files but are not defined in the=
+=20
+> old text bindings. For this reason, I used `unevaluatedProperties:=20
+> false` instead of `additionalProperties: false`.
 
-Does dtbs_check complain when you use it in a dts? What you have here
-matches against the pattern ^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$
-so I think it won't. checkpatch might be too dumb to evaluate the regex?
+> Let me know if an=20
+> `allOf` reference to `mmc-controller` alone would be sufficient in this=
+=20
+> context.
 
---1+XZodfQGimtFoRM
+Yes, there's no point duplicating properties from there, unless you're
+restricting to a subset. I think all you need to keep (other than the
+reference) is the required properties list because there seems to be
+none in mmc-controller.yaml.
+
+--ScKT+5iAjDgPbCZa
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1Ms3QAKCRB4tDGHoIJi
-0lUpAP9+qqmvW19GgRq0c+lbiZOY7fIICF4B/h1qoUeHagDQTQD/fDngZjYfswC5
-hPbbjp55rWg5MrwOXxr3+f02ruaodws=
-=XnGn
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1MuOQAKCRB4tDGHoIJi
+0puPAQDGnZ7QeA/JWBnu9hKRBgcjCLFYUU/RfTgFGpqBBbr0rwEAlDSML8gQFQC2
+16Y1lIsu3uODoMdJwSPiOmNE7oFsdAY=
+=XVJL
 -----END PGP SIGNATURE-----
 
---1+XZodfQGimtFoRM--
+--ScKT+5iAjDgPbCZa--
 
