@@ -1,184 +1,172 @@
-Return-Path: <devicetree+bounces-127999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D86C9E6FA7
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 14:56:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B67A9E6FB8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 14:59:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C8DA1881F52
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 13:56:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2059F1887D40
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 13:57:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF071207DF8;
-	Fri,  6 Dec 2024 13:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C27209F53;
+	Fri,  6 Dec 2024 13:57:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z0++dduS"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="AvYoSDKS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C19FC1FF7B4;
-	Fri,  6 Dec 2024 13:56:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88887207DFE
+	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 13:57:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733493375; cv=none; b=P2EBLn+pc4fMCuALsrgn8SbNdE5ApOrcrMrifMF7PxgWINWJ8gDyTecxGEE/3DJ34WG8h5LT8fUIS45UPKAvTlIiPzHOLac3eYgwO0TZqnCM4+xkz2cDRUdZWr5MrIYk5YJ3Z+Kbbo16p0hbkHf6UoRFKkF+XZVFH1KOhy4BtKY=
+	t=1733493454; cv=none; b=XcRgK0WrLq4Q8jLmLsWbAWskfSqNHSKrGfXf8pZONwHToT1p+NVvwO0sQhVoxdGl3DeC334fxVxdZZi7Hjt0ZZZktLAH3EQ05eiBzS4T2OPooOPqXbjTblk/zBk7Y9HoAfyF82Id3vKmN5JgIFAxTt/uW1uEQ2r6FHulglcPles=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733493375; c=relaxed/simple;
-	bh=563SsPu6/+OsYwdbvzEtes3bIYtTyUec5qqj5KSLCAo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AvF0vYeGzv02Ksbrz2qGeJ7fSyYZbi9s0x9doPprSwSrCJFExApXDgTxMzwxsW06hJHN2H2URyETYi7fZniAls6DW0DKoVYai409pH36XqZRySESItKGuijMr5D8wcH9j36hseDVwnMNd2gxUt8UhnT3XvepED9TqQPp10cLKjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z0++dduS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 261C0C4CEDC;
-	Fri,  6 Dec 2024 13:56:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733493375;
-	bh=563SsPu6/+OsYwdbvzEtes3bIYtTyUec5qqj5KSLCAo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z0++dduS4VP6El2s8mBfIALW+2dmy6vZ33ooYuEgdXM317b/U4EqhGelyHGrrZNzL
-	 miIzeR+cSJnDn2jCkwlWbbPQzMvGFWSHJhDdY+7Q/Yd+Cq1A2hSDtsk9xQb/HEkLVt
-	 0ZmBu6Yv/uqEFGGpNw+RidIfX39MLYvNpox74jqIsyHDwG8s0kme4AlF6hXb3g1p4Q
-	 PD8UA0A0sOhtVkJtPiVQde7vkG47XDvRIjeALCafiEVQT9rNkK5XaiRD+igQQhlf1T
-	 9Ixw6DsaTKfU0t/e/lZGzQ9lrlMDkUdvGSpTCflX+LMZTIiL/wAyKsXyfrrwV7lYxj
-	 OjWK6lrW78A6Q==
-Date: Fri, 6 Dec 2024 13:56:08 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	pierre-henry.moussay@microchip.com,
-	valentina.fernandezalanis@microchip.com,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to
- common code
-Message-ID: <20241206-threaten-showing-1214491f3899@spud>
-References: <20241002-private-unequal-33cfa6101338@spud>
- <20241002-hula-unwashed-1c4ddbadbec2@spud>
- <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org>
- <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com>
- <20241003-tacking-ladylike-dfe2b633e647@spud>
- <20241106-freefall-slider-db379b05821e@spud>
- <430bde3b35382e640843e32a9f351326.sboyd@kernel.org>
- <20241128-monstrous-embargo-a665d921410d@wendy>
- <e53adbf9fdf6e3f142083b0d40d074ca.sboyd@kernel.org>
+	s=arc-20240116; t=1733493454; c=relaxed/simple;
+	bh=fiLpHl8kskZJf92XZBCQSNQh0EM/rPino4TCddjjNa8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EDhu+KtK6Swg/vwKx4r6tCVFtyXjci/E8wYlHIBpghb60O/3OFR6A3ZhJL3OBBRagrrLSlU39j7oONplJZ/CGcgCPFqzmfwiiZqfrtC9yx7DHDT1m2E9/7U4rpFg9/qq14vYGKWVTMZKArvNU3pJ3+mgKXDUMazKJxbat3pUT+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=AvYoSDKS; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-385de9f789cso1501420f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 05:57:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1733493451; x=1734098251; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NDyT0nGxXbja5Q8/labpY0AGckKUvtd7GbprKAY57M8=;
+        b=AvYoSDKSCLxYr2qJ9WJYdJyxNdwdVzH2QpufLN34unghI9e48l4BdxZcLRoBFcWYcB
+         cbLgeg4nMqqCFrq4Uin8fFmFtKSiiQWLAndZGnMw8jf8jcvA4c9uB8zezR61m85Xwjt9
+         eAhkuUdh8u98jKE1CteId+lUsz8MCwORlo93OGUdd/Vi6Wq+U1bTDuWn2PE943AOmAzk
+         BfMAXxWdiNiCYYBQo/DN94/UNZ0PdU9MeTd9KU7lx0llZkLJGpy7NaEs51bCdAVTkLf0
+         jgBzRuZh8pEnBcWXeiayq+g08pYDKfRnUd/zAxkuyvZUfXd08R4R0WifhsEPLApu0HkR
+         76Yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733493451; x=1734098251;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NDyT0nGxXbja5Q8/labpY0AGckKUvtd7GbprKAY57M8=;
+        b=i7DaKRXaJ3+EUBW4sx3JXYnH2NILVo+yXpfOMo2o1VELKWkD1E/YkpU7HrVaD28yXp
+         /df7UeBnydtc4bufdZ6Es0MUS76joEv8oWiqZrtBYznEuRuAjrePLv5z1QKMPGwF7GMa
+         NBSMr37TOLH/93qWP3L1KaRoI43s1VLz41esMwvIRCFZ6qJouMKvFw5Cq59iOmsxLDWL
+         bOpQfy/rEyr8o2t3opyqHabUWTFZ3sZ0IVMx06hJqb6JTjVKWTkM9siC7uAHhRFK+H0+
+         zXxvd72rcJOuw6DX3QMAi3jdy4q86H6mXIS56oWddnEMoK+ZYyADUdXDICtFEyU3nEcW
+         r9EQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWgtXoC9YRbVaBvo9ZwjROa5ow+SPE9mrBfVAkM5NRCSNOIhqAFySiM6QMUcImbv9/ga36R612Pr3Jk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFEe2Z8Fv+zNlgoLFTacYyWQPtK679XzOdjfIk3i6uTEr8ZKhQ
+	c+7PWEKr9bjB+EWq90cqnkDb+Upl2sHSDtnrG10PTiP+J8VjE8nk9Ap5lKk39G0g4sp1Ez1UrKN
+	mw2B0TVDqDTXWGJhwW0RPHFwdGH8/Dmd+jhPH
+X-Gm-Gg: ASbGncuqrsZuGaflE4e6xypekWAnlZGARKDlhtKEWo0qd9HNdcyM0mQS3q14ptliURw
+	qI5AiakQBkXVJYrZeSEDTkHXFbxTU1Haj
+X-Google-Smtp-Source: AGHT+IFVl6C+eSFuu9yGxEcfzxTahR7P+lh22t4H7dnq5rZTDhoIXpqQ/0j5yDdZDKZ/gkNWcTIdlAv15QqNAyld/Ak=
+X-Received: by 2002:a05:6000:2cd:b0:386:2ebe:7ac9 with SMTP id
+ ffacd0b85a97d-3862ebe7ddemr1414917f8f.33.1733493450776; Fri, 06 Dec 2024
+ 05:57:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="D3KsjEcBH/hYSuAR"
-Content-Disposition: inline
-In-Reply-To: <e53adbf9fdf6e3f142083b0d40d074ca.sboyd@kernel.org>
-
-
---D3KsjEcBH/hYSuAR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20241205141533.111830-1-dakr@kernel.org> <20241205141533.111830-3-dakr@kernel.org>
+In-Reply-To: <20241205141533.111830-3-dakr@kernel.org>
+From: Alice Ryhl <aliceryhl@google.com>
+Date: Fri, 6 Dec 2024 14:57:19 +0100
+Message-ID: <CAH5fLghRVFAb06YYfUbuyuR1pOK0cHzGk6A25c5hX3CyvMm+sw@mail.gmail.com>
+Subject: Re: [PATCH v4 02/13] rust: implement generic driver registration
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
+	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com, 
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com, 
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
+	daniel.almeida@collabora.com, saravanak@google.com, dirk.behme@de.bosch.com, 
+	j@jannau.net, fabien.parent@linaro.org, chrisi.schrefl@gmail.com, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	Wedson Almeida Filho <wedsonaf@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 03, 2024 at 02:50:31PM -0800, Stephen Boyd wrote:
-> Quoting Conor Dooley (2024-11-28 02:36:16)
-> > On Thu, Nov 14, 2024 at 05:29:54PM -0800, Stephen Boyd wrote:
-> > > Quoting Conor Dooley (2024-11-06 04:56:25)
-> > > > My use case doesn't
-> > > > actually need the registration code changes either as, currently, o=
-nly reg
-> > > > gets set at runtime, but leaving that out is a level of incomplete =
-I'd not
-> > > > let myself away with.
-> > > > Obviously shoving the extra members into the clk structs has the do=
-wnside
-> > > > of taking up a pointer and a offset worth of memory for each clock =
-of
-> > > > that type registered, but it is substantially easier to support dev=
-ices
-> > > > with multiple regmaps that way. Probably moot though since the appr=
-oach you
-> > > > suggested in the thread linked above that implements a clk_hw_get_r=
-egmap()
-> > > > has to store a pointer to the regmap's identifier which would take =
-up an
-> > > > identical amount of memory.
-> > >=20
-> > > We don't need to store the regmap identifier in the struct clk. We can
-> > > store it in the 'struct clk_init_data' with some new field, and only =
-do
-> > > that when/if we actually need to. We would need to pass the init data=
- to
-> > > the clk_ops::init() callback though. We currently knock that out duri=
-ng
-> > > registration so that clk_hw->init is NULL. Probably we can just set t=
-hat
-> > > to NULL after the init routine runs in __clk_core_init().
-> > >=20
-> > > Long story short, don't add something to 'struct clk_core', 'struct
-> > > clk', or 'struct clk_hw' for these details. We can have a 'struct
-> > > clk_regmap_hw' that everyone else can build upon:
-> > >=20
-> > >   struct clk_regmap_hw {
-> > >         struct regmap *regmap;
-> > >         struct clk_hw hw;
-> > >   };
-> >=20
-> > What's the point of this? I don't understand why you want to do this ov=
-er
-> > what clk_divider et al already do, where clk_hw and the iomem pointer
-> > are in the struct itself.
->=20
-> Can you give an example? I don't understand what you're suggesting. I
-> prefer a struct clk_regmap_hw like above so that the existing struct
-> clk_hw in the kernel aren't increased by a pointer. SoC drivers can use
-> the same struct as a replacement for their struct clk_hw member today.
+On Thu, Dec 5, 2024 at 3:16=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> w=
+rote:
+>
+> Implement the generic `Registration` type and the `DriverOps` trait.
+>
+> The `Registration` structure is the common type that represents a driver
+> registration and is typically bound to the lifetime of a module. However,
+> it doesn't implement actual calls to the kernel's driver core to register
+> drivers itself.
+>
+> Instead the `DriverOps` trait is provided to subsystems, which have to
+> implement `DriverOps::register` and `DrvierOps::unregister`. Subsystems
 
-Best example I guess is to link what I did? This one is the core
-changes:
-https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
-=3Dsyscon-rework-2&id=3D35904222355e971c24b3eb9b9fad3dd0c38d1393
-clk-gate has my original hack that I did while trying to figure out
-what you wanted, clk-divider-regmap is a 99% copy of clk-divider with
-the types, function names and readl()/writel() implementations modified.
-Before your last set of comments I was doing something identical to the
-clk-gate change for clk-divider also.
-Here's the changes required to my driver to make it work with the
-updated:
-https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
-=3Dsyscon-rework-2&id=3Dea40211fe20f8bc6ef0320b93e1baa5b3f244601
-It's pretty much a drop in replacement, other than the additional
-complexity in probe.
+typo
 
-Hopefully that either gets my point across or lets you spot why I don't
-understand the benefit of a wrapper around clk_hw.
+> have to provide an implementation for both of those methods where the
+> subsystem specific variants to register / unregister a driver have to
+> implemented.
+>
+> For instance, the PCI subsystem would call __pci_register_driver() from
+> `DriverOps::register` and pci_unregister_driver() from
+> `DrvierOps::unregister`.
+>
+> Co-developed-by: Wedson Almeida Filho <wedsonaf@gmail.com>
+> Signed-off-by: Wedson Almeida Filho <wedsonaf@gmail.com>
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 
-Cheers,
-Conor.
+[...]
 
---D3KsjEcBH/hYSuAR
-Content-Type: application/pgp-signature; name="signature.asc"
+> +/// The [`RegistrationOps`] trait serves as generic interface for subsys=
+tems (e.g., PCI, Platform,
+> +/// Amba, etc.) to provide the corresponding subsystem specific implemen=
+tation to register /
+> +/// unregister a driver of the particular type (`RegType`).
+> +///
+> +/// For instance, the PCI subsystem would set `RegType` to `bindings::pc=
+i_driver` and call
+> +/// `bindings::__pci_register_driver` from `RegistrationOps::register` a=
+nd
+> +/// `bindings::pci_unregister_driver` from `RegistrationOps::unregister`=
+.
+> +pub trait RegistrationOps {
+> +    /// The type that holds information about the registration. This is =
+typically a struct defined
+> +    /// by the C portion of the kernel.
+> +    type RegType: Default;
 
------BEGIN PGP SIGNATURE-----
+This Default implementation doesn't seem useful. You initialize it and
+then `register` calls a C function to initialize it. Having `register`
+return an `impl PinInit` seems like it would work better here.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1MCeAAKCRB4tDGHoIJi
-0sqzAP9waSsOIi7fzVRAF2IfUyhCzbN2HRg7fuiXsVL8Q28vwQD7BAtQFxtD1L8h
-wFWZMACgozCdkOQyTUTRyE/s54HVoAg=
-=wQYC
------END PGP SIGNATURE-----
+> +    /// Registers a driver.
+> +    ///
+> +    /// On success, `reg` must remain pinned and valid until the matchin=
+g call to
+> +    /// [`RegistrationOps::unregister`].
+> +    fn register(
+> +        reg: &mut Self::RegType,
 
---D3KsjEcBH/hYSuAR--
+If the intent is that RegType is going to be the raw bindings:: type,
+then this isn't going to work because you're creating &mut references
+to the raw type without a Opaque wrapper in between.
+
+> +        name: &'static CStr,
+> +        module: &'static ThisModule,
+> +    ) -> Result;
+> +
+> +    /// Unregisters a driver previously registered with [`RegistrationOp=
+s::register`].
+> +    fn unregister(reg: &mut Self::RegType);
+
+I believe this handles pinning incorrectly. You can't hand out &mut
+references to pinned values.
+
+Alice
 
