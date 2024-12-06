@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-127876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67D649E693A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 09:47:11 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ED129E6943
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 09:49:08 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 008D618829E7
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 08:47:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10401282D0B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 08:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB03A199381;
-	Fri,  6 Dec 2024 08:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06DFA1DFE31;
+	Fri,  6 Dec 2024 08:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TWLROggN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EcN78dvS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A4EA79DC;
-	Fri,  6 Dec 2024 08:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C51111DF73C;
+	Fri,  6 Dec 2024 08:48:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733474827; cv=none; b=AinjtstGBIk7e1G+HBusLIsz6NUiye1Kj96qxQQDgP9Zx65q+B58K9ycg5WJLSk3zMekiw5yCy2BRUEsM19LtWRN9rD2sfmcRNzU52f0r8C6YDkBqYkAzB9mAKZTBzvgPOijRx1kIujUgr3OzywgrAjTNeh5rQdPpew/H3jawsc=
+	t=1733474939; cv=none; b=e43JZFkQi/e/1DMoWlaf1tHTJIVFoNCh47oEI42UatLdCU85Q6x9JUnGzSsedDvjf5u+EuH3WaJUT+ujfqRJgKsraSg0Xubc97mBgXqdpcBjCXhHoThQlK7dPcujmUYQN5THQ3tK4+tK1423h6QGSC+vR3xPFaOyOgTuX7fxuK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733474827; c=relaxed/simple;
-	bh=ntQntrMcoMQcohT5GNsDUsdLbzTe+wRIqoumWMWyBNE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=SX5PyTfM54zGcyzoy3lDggcbNB6aGPJxx2/bxUQhQn942J8d9iSNsApLUpaIABOgukK82C/O9ES4zw8Wvi85Y0PeZXOYNEZDiG7PY3wG54N/Sy/816F8vTnGMOB9xhQPDk89rt+WuBjrZ9tunSiCIFWRFqgFuvOjTLgsRdbO/BM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TWLROggN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F25BC4CEDE;
-	Fri,  6 Dec 2024 08:47:00 +0000 (UTC)
+	s=arc-20240116; t=1733474939; c=relaxed/simple;
+	bh=aoEdMQVRDm62MFwU7+GmBXr5pYnwEby46sw7PqYogLk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Fhwt+YAk6peAkal6pFrumRrsIyRJ4sHUy7nWYKxiZYs07zrKYOroF5g3EgAsIj8RmrObDVhZpLCOZXfhrrgA+vE5cZ0o6moubNzAItmA2G0d1uMR+BMCSlRz9KNtU3VS2fVMekZyr4NXsrlE2zMdQrBxFVy6EHe4F1H+er/wC6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EcN78dvS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F3B2C4CED1;
+	Fri,  6 Dec 2024 08:48:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733474827;
-	bh=ntQntrMcoMQcohT5GNsDUsdLbzTe+wRIqoumWMWyBNE=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=TWLROggNzzzREkuGBwC45z2owo66TOlDDdpCQZWnrj9actygXuXHX+v3uutFkPmzg
-	 IZyABXcUihu+OblkBodhX4LOmtUs1W2+nYod4clOVeVDsnrqChyrj7Vjt0XAbaXvFh
-	 hbMz/rM+FDOUE7xbRnwfLPa1hYfj90lMwaufRXPaMYpyGQTSLIT0YrSZgj9NddT0BU
-	 tQBvqDQkt94XGhHZUakhHLklOtNZUXpi/bx6U3NgGyArH5BnNwFpp14AArJcoF79Hc
-	 Eo0leQWktto9O4SW0YLrqY5/cBNJQoGEkGhNg6X0hXB/RpO2ckVtgP60w1Cjn848Px
-	 BwaYbb8v8Mrtg==
-Message-ID: <800e3635-f496-4c2f-8037-d565404a3691@kernel.org>
-Date: Fri, 6 Dec 2024 09:46:58 +0100
+	s=k20201202; t=1733474939;
+	bh=aoEdMQVRDm62MFwU7+GmBXr5pYnwEby46sw7PqYogLk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EcN78dvShJ/8mD3gXzP2sahPpgGZGuuRJIZHjcBDPHQu3c6BGAjVwJqFdNuOdEL6D
+	 iUfcc4cLeRLLH+mNxi6kOv2NQWYN/SMvprkQ/vN+gHXQL/LQYJwWTG5TivN6brisGj
+	 1oRsasYcTsJnI0ydTKjcPeLuUWyNMzeh5gXNFcl0qF3oIU4DwpAFtizoZ8MtJk4M+6
+	 7bu04siKCwmE8jdlrEE8obHiYZqc/i7IhQkj9ylcW0HtOQmqkSAkhiVqmGrCK7VSOi
+	 yifQrAhk18qnU7OM/mZtkRiTB+UtBuHWizixdkrH0giW8NljXp1r0zAfqXKkAcohkT
+	 Ga2i0etFXewcw==
+Message-ID: <510e826d-a434-437d-8d2e-3f2618c28b7f@kernel.org>
+Date: Fri, 6 Dec 2024 09:48:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/6] phy: qcom: Introduce PCIe UNIPHY 28LP driver
+Subject: Re: [PATCH v4 1/1] arm64: dts: exynosautov920: add watchdog DT node
+To: Taewan Kim <trunixs.kim@samsung.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, Byoungtae Cho <bt.cho@samsung.com>
+References: <20241206025139.2148833-1-trunixs.kim@samsung.com>
+ <CGME20241206025156epcas2p4c55f230accc4354e6f4bf324ab9a5833@epcas2p4.samsung.com>
+ <20241206025139.2148833-2-trunixs.kim@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
- robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
- conor+dt@kernel.org, vkoul@kernel.org, kishon@kernel.org,
- andersson@kernel.org, konradybcio@kernel.org, p.zabel@pengutronix.de,
- quic_nsekar@quicinc.com, dmitry.baryshkov@linaro.org,
- linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org
-References: <20241204113329.3195627-1-quic_varada@quicinc.com>
- <20241204113329.3195627-3-quic_varada@quicinc.com>
- <gawyxbgql7pru43e6rz4luhefaayrwiw3fplzj3k5cahzkppzr@uhuemcq5djw7>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -108,46 +107,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <gawyxbgql7pru43e6rz4luhefaayrwiw3fplzj3k5cahzkppzr@uhuemcq5djw7>
+In-Reply-To: <20241206025139.2148833-2-trunixs.kim@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2024 10:39, Krzysztof Kozlowski wrote:
-> On Wed, Dec 04, 2024 at 05:03:25PM +0530, Varadarajan Narayanan wrote:
->> +	return 0;
->> +}
->> +
->> +static struct platform_driver qcom_uniphy_pcie_driver = {
->> +	.probe		= qcom_uniphy_pcie_probe,
->> +	.driver		= {
->> +		.name	= "qcom-uniphy-pcie",
->> +		.owner	= THIS_MODULE,
+On 06/12/2024 03:51, Taewan Kim wrote:
+> From: Byoungtae Cho <bt.cho@samsung.com>
 > 
-> Srsly, upstreaming 10 year old code? No one figured out to fix 10 year
-> old code before sending it upstream or entirely drop it and use new code
-> as template?
+> Adds two watchdog devices for ExynosAutoV920 SoC.
 > 
-> NAK
+> Signed-off-by: Byoungtae Cho <bt.cho@samsung.com>
+> Signed-off-by: Taewan Kim <trunixs.kim@samsung.com>
+> ---
+>  .../arm64/boot/dts/exynos/exynosautov920.dtsi | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> index c759134c909e..7b9591255e91 100644
+> --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> @@ -183,6 +183,26 @@ cmu_misc: clock-controller@10020000 {
+>  				      "noc";
+>  		};
+>  
+> +		watchdog_cl0: watchdog@10060000 {
 
-I should express clearer what is the problem. You sent code which looks
-like 10-or-more years old driver. This means that you have there all the
-issues we fixed over last 10 years. It is really meaningless for the
-reviewers to point out all the things we already fixed. It is much
-better if you start from new driver from scratch, thus not replicating
-10-year old bugs or deprecated styles.
+You need to do careful rebase, not just accept whatever tools shown you.
 
-I suggest dropping this driver entirely and starting from scratch from
-the newest accepted driver.
-
-Whatever you choose, be 100% sure that standard tools are happy, see
-below instruction:
-
-Please run standard kernel tools for static analysis, like coccinelle,
-smatch and sparse, and fix reported warnings. Also please check for
-warnings when building with W=1. Most of these commands (checks or W=1
-build) can build specific targets, like some directory, to narrow the
-scope to only your code. The code here looks like it needs a fix. Feel
-free to get in touch if the warning is not clear.
+This is now placed in incorrect order - not keeping sorting by unit address.
 
 Best regards,
 Krzysztof
