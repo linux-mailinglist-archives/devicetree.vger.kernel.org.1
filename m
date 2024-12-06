@@ -1,112 +1,150 @@
-Return-Path: <devicetree+bounces-127993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 352129E6F12
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 14:15:34 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE6B9E6F3D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 14:24:23 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1808281307
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 13:15:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD5EF1881C57
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 13:24:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 428BF206F3B;
-	Fri,  6 Dec 2024 13:15:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A0D207655;
+	Fri,  6 Dec 2024 13:24:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R6QeHy05"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="PAfOyoi0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mxout1.routing.net (mxout1.routing.net [134.0.28.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1466B1FF7D4;
-	Fri,  6 Dec 2024 13:15:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B970F206F3C;
+	Fri,  6 Dec 2024 13:24:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733490931; cv=none; b=cEDihQTYfuG1wwe8RHEO8vX9Tss2HpoeFsz34gq1T7N7pMXOFLv4k3QB7ENlue0HvbMl9TmqjGQyYXqvofFjnYTGAwsMyQwtLaBXpPy/AbBe9kS2dCpYLVZ/LbTmGTsV0tAEgoc0dsE+0Wn4epTmWQaCvBqQ0hPhdwS6Av+p0Ck=
+	t=1733491458; cv=none; b=nr03o6qGTUB/4wspEdfwLVzzDluP/KVygaNI/W645LfmHb/yrHhW+1yauYdYm6lfyqxRTxcNi2kUtjCqgw+/2C9zbUCalwSjJeyLW5122TDcdIS7WzNIHMpuKasGf78cDoeJhW547yM7r0Q3Z/W623CmBRCK6TPJC54H3Zlgfjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733490931; c=relaxed/simple;
-	bh=RBQPiZLaF/HhYgZcAn4z7acnCKkfab9JJzcgHdj2gco=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lbHi7KE7U5g68mqSkcVeZdkqvrSITK6mN8jQaz+Rjoj6AItjtgv5H2ZeIjcUZm1YzIXJ/v2K4pRBnXdIm9q3Oyi57RCx0Z6CdgAjmYtIS7SvZ3VFfdsjxop1/wXyw65QrXom6b9CblXdhcXBcWzwgOYqtYXEE1oAgDgNmnJTXqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R6QeHy05; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7C9DC4CED2;
-	Fri,  6 Dec 2024 13:15:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733490930;
-	bh=RBQPiZLaF/HhYgZcAn4z7acnCKkfab9JJzcgHdj2gco=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R6QeHy05RXBSsTKwcBOYlJr2HkerKo9KqPFDRbXA6hFsWiGonVcZluo4sks33Ow1L
-	 cFU7qPOwcNsmP7qio8uAeGLVOEfGvAfemTa6vPS7gK2Y093SZZ3OxmjlW3npcci3Jj
-	 2ennJ8B3UOZYsw6TwDSbGqNwtpwLl1DwHYmU8KWjHNpHK9NVIKsgKDWiZ38Uvp8dEO
-	 YBG9l7V+Rca9oWH2ZnSoDrdoMsoo6VwM9UHDb6HBnIVvT4+/V2P5cjYyWgs65vGAGe
-	 9CqPaR419CkRVg3c0twz2p+hTf1sjwO7ozndhp4o/zvJctY7/fDwvIS3+8ZE/v8UzY
-	 P4A+JwrZ8KuAw==
-Date: Fri, 6 Dec 2024 14:15:24 +0100
-From: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-To: Klaus Kudielka <klaus.kudielka@gmail.com>
-Cc: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>, 
-	Gregory CLEMENT <gregory.clement@bootlin.com>, Lee Jones <lee@kernel.org>, regressions@lists.linux.dev, 
-	Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
-	soc@kernel.org, arm@kernel.org, Andy Shevchenko <andy@kernel.org>, 
-	Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH leds v5 12/12] ARM: dts: turris-omnia: Add global LED
- brightness change interrupt
-Message-ID: <7rkcryouxg2s5misf7nx3vsf72rhaq2twhlksj62bzmaagdwfv@p3xy6rhzgntz>
-References: <20241104141924.18816-1-kabel@kernel.org>
- <20241104141924.18816-13-kabel@kernel.org>
- <87bjyv9ecb.fsf@BLaptop.bootlin.com>
- <778f08f1774fcad5fcc39114dbb721793ebf95d6.camel@gmail.com>
- <2iocrd4a7l4avfhqmobbexo7k4u2poidkvvj7lpqh7vp7mprkm@pfgytqnmt2si>
- <ofd5ru77wypfysflpblafbbdgrcmzztqwoewfjfuusrnbma4aw@y3oc3etutisi>
- <CAPy0QmsF1qr3A-89BDQHu-QVXpMhMGWt8e74FfDkqVT6Ha7q-g@mail.gmail.com>
+	s=arc-20240116; t=1733491458; c=relaxed/simple;
+	bh=Tkvv8nbrTos3ISh3g/s4VfKOXQX2n66Cr94kyLv8jtY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=a0tsKh3rDO7Ek0HC4sZtlmspmeHOzXcQkXJajRSmk4807Hz4Nnp94bND2hN5qXCRAyhjBwgHqrNoKUcGJ6s+/j6Qpd0/zMjv3d34/KmbjutK1Yi3gwrNvBFvqJWcCJfdBraoE0ieFmR0NmsINBqZTOao5kgP/r4acM+iKv6HCJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=PAfOyoi0; arc=none smtp.client-ip=134.0.28.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
+	by mxout1.routing.net (Postfix) with ESMTP id 7F727403F7;
+	Fri,  6 Dec 2024 13:24:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1733491447;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=2CpAbRbq9u9WtuDg3cZhOuMl7YhAj8Mt6ZON6tTJ5Ls=;
+	b=PAfOyoi0HQt9BPx4rQNXYUrByAoZD+VvnaGCs69Ep0un7VbrsSm2YYrzbk85lVkRHfEadF
+	V4ezwHEJapO4MpjdqldDhgG2dHgjczBxNnZUNyRCF9av1DXEeNzBvHozSvsIu6X7ttZII9
+	U8CkCOK7Kx6Zca0fJ74ejQ/GLFuwj2k=
+Received: from frank-u24.. (fttx-pool-194.15.84.200.bambit.de [194.15.84.200])
+	by mxbox1.masterlogin.de (Postfix) with ESMTPSA id 918A640044;
+	Fri,  6 Dec 2024 13:24:06 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v4] arm64: dts: mt7986: add overlay for SATA power socket on BPI-R3
+Date: Fri,  6 Dec 2024 14:23:59 +0100
+Message-ID: <20241206132401.70259-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPy0QmsF1qr3A-89BDQHu-QVXpMhMGWt8e74FfDkqVT6Ha7q-g@mail.gmail.com>
+X-Mail-ID: 7d988917-a59f-423f-be98-36300de87045
 
-On Fri, Dec 06, 2024 at 10:04:49AM +0100, Klaus Kudielka wrote:
-> On Thu, Dec 5, 2024 at 1:43 PM Marek Behún <kabel@kernel.org> wrote:
-> > On Thu, Dec 05, 2024 at 01:38:10PM +0100, Marek Behún wrote:
-> > >
-> > > This is because the patch went into 6.13 but the rest of the patches
-> > > did not, Lee wants to take them for 6.14 :-(
-> > >
-> > > Apply this series and it will work.
-> > >
-> > > https://lore.kernel.org/linux-leds/20241111100355.6978-1-kabel@kernel.org/T/
-> >
-> > Alternatively you can overcome this issue if you enable the
-> > turris-omnia-mcu driver in 6.13:
-> >
-> >   CONFIG_CZNIC_PLATFORMS=y
-> >   CONFIG_TURRIS_OMNIA_MCU=y/m
-> > (and also the subsequent options).
-> >
-> > Marek
-> 
-> Thanks, I will try that when I'm back at the hardware (in a week or so).
-> 
-> Do I correctly understand the situation:
-> For the Turris Omnia LEDs there is now a temporary dependency on
-> CONFIG_TURRIS_OMNIA_MCU, which will vanish in 6.14?
-> 
-> Best regards, Klaus
+From: Frank Wunderlich <frank-w@public-files.de>
 
-No, the leds-turris-omnia driver will have hard dependency on turris-omnia-mcu
-driver instead. You won't be able to select leds-turris-omnia without enabling
-turris-omnia-mcu.
+Bananapi R3 has a Power socket entended for using external SATA drives.
+This Socket is off by default but can be switched with gpio 8.
 
-This is because leds-turris-omnia depends on the IRQ line provided by the
-turris-omnia-mcu driver.
+Add an overlay to activate it.
 
-Marek
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+---
+v4:
+- rebased on 6.13-rc1 without the full-dtb patch
+v3:
+- make sata overlay better readable
+v2:
+- rebase on the patch "add dtbs with applied overlays for bpi-r3"
+- add sata-overlay to the full dtbs
+---
+ arch/arm64/boot/dts/mediatek/Makefile         |  1 +
+ .../mt7986a-bananapi-bpi-r3-sata.dtso         | 35 +++++++++++++++++++
+ 2 files changed, 36 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sata.dtso
+
+diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+index 8fd7b2bb7a15..d844c4ce9863 100644
+--- a/arch/arm64/boot/dts/mediatek/Makefile
++++ b/arch/arm64/boot/dts/mediatek/Makefile
+@@ -17,6 +17,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-mini.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nand.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nor.dtbo
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sata.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986b-rfb.dtb
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sata.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sata.dtso
+new file mode 100644
+index 000000000000..17659545470e
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sata.dtso
+@@ -0,0 +1,35 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright (C) 2021 MediaTek Inc.
++ * Author: Frank Wunderlich <frank-w@public-files.de>
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++
++&{/} {
++	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
++
++	reg_sata12v: regulator-sata12v {
++		compatible = "regulator-fixed";
++		regulator-name = "sata12v";
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		gpio = <&pio 8 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-always-on;
++	};
++
++	reg_sata5v: regulator-sata5v {
++		compatible = "regulator-fixed";
++		regulator-name = "sata5v";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++		vin-supply = <&reg_sata12v>;
++	};
++
++};
++
+-- 
+2.43.0
+
 
