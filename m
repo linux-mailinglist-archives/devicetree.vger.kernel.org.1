@@ -1,61 +1,67 @@
-Return-Path: <devicetree+bounces-128082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5B7C9E7670
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:52:59 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 252C89E767C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:54:09 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 855CC1886F60
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:52:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C370928201D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:54:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 871611F3D2D;
-	Fri,  6 Dec 2024 16:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 396281F4E20;
+	Fri,  6 Dec 2024 16:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZOy4snWv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VyJ8LGjg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59FD3206262;
-	Fri,  6 Dec 2024 16:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA9C206271;
+	Fri,  6 Dec 2024 16:54:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733503973; cv=none; b=RKxmMsJDg/EFXhWmTipFJydJhMdIgJ9BPk9oYGg9UYZsY5R24BIOP0I3nbaaCdKUuTc67HBdrz3mMiOjeodBvJycWqIj+4XLp9MAtSlKbhVqFC7KRiH5X6Zm08DybA+oHeaN5KhJSNV+8ceHH0/ozRJnEq0O2YQuumhP84/TRfI=
+	t=1733504045; cv=none; b=b3aHeIc15qGniI94SX37PzVbK+ks0MUlkqyhIVcPYMlw86/yOF5qLRxJkLuuhBDkbpvmc2L6WfwiPNx7CtcyBc08VSkukZC8eEXT25qJOs7U6pFa/nF2hOCUq1LNgKrewjlHWTvnmszYDlHZ0eVYtuBKaowKFXgnAPpJqEXg9Xw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733503973; c=relaxed/simple;
-	bh=sq7dQBficLSadbyGg1ToMr9fEj08H3sh3k8KpNn23aA=;
+	s=arc-20240116; t=1733504045; c=relaxed/simple;
+	bh=YDomNLDNajdoJ1pBaUnkgQgWUUdvwDEczy/rTy2dTbU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lPBI6vD53XT+laYRN/bDq5n/xmXDtXnbY0hYYSm8ovokdnCq4szgQYT2Jj5fWGz4+wXPMBkNb46HFTTrhn+zz61pyDjxHUc/qcVATGCIm5CQpOQfgDX2DyS2FcOKyNLTkQiv7n2kWtqX/IeuiB9mlGl5FM/iaOWZ8GCrZobJUiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZOy4snWv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A385C4CED1;
-	Fri,  6 Dec 2024 16:52:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=vGfYKsC6gncvvSZ+I7JXY/7P4oVVEgnZ4P67IPV22CykNzlM8DTtLTLdMeXOkkYfzRYLPRNPpPt0b40eGk6SGEmfBivTQThxKS2tDMbbzlYxGrf4VPwgrPIk4TMsXpyAeNGXd6wNfkvZ4tHLmWdSfuXWb0d8RrgSXgXzC7X0zbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VyJ8LGjg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EEB6C4CED1;
+	Fri,  6 Dec 2024 16:54:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733503972;
-	bh=sq7dQBficLSadbyGg1ToMr9fEj08H3sh3k8KpNn23aA=;
+	s=k20201202; t=1733504044;
+	bh=YDomNLDNajdoJ1pBaUnkgQgWUUdvwDEczy/rTy2dTbU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZOy4snWvS4vUEJ5vkEuZVku7kZ18NLUWIIhvcDv8E/k00XTb4+5L42fr3LXAhC+ju
-	 52WeOo0Lg4Mvm0wQDES96OVxOMUZGxc1Y2/rV02BqV4DuavlUjEQyweFb4wR8CeybG
-	 Hm12bA51/qiM4EZ9uTSm8ZNFGetL7XuQ2voxRc7KTydsRw2ebsqhSCwTQnzsyslte+
-	 xwsbZVZ3R6aNkHqaebBzk/2zFJTyYafi/+xMzgqrp2TV1ShporV1m8ZBl7XBE6RGXD
-	 RKQrhF9yEPWgPRxzgqQ9D2Ldt/iFrVji1wAo/NBcPqT3lsEWarY/Vvha3VpGbJ1qGV
-	 w2HY+WrhmQEjw==
-Date: Fri, 6 Dec 2024 16:52:48 +0000
+	b=VyJ8LGjgKsTP180BTd2aZsogaMbr5GsUU5SD/4TEZb0FoWaezrs6XOcxMKOA5ig/5
+	 Hpcx+1bUEu3JiDO12HHydxvzvQtj8gSVNKtCPhsH/UY2gnyjLswYuoXLCyHGrj0qwk
+	 n7iIi1BAOOPZta+iWiKCJzYH2KARp1qZqUOgKPhPEU2fKuxGCdEjsX9oG7GIIuLok+
+	 RDlXQphub6Cj6UvMvjzhQ+bvMw2daLcMOEmxN+gLXs8bGcK/34UHzgyuihOrkvU6YD
+	 FKQEDPDqKKBCNuL8al67YQ1tltwI1ro/vVjGxxqzoMpIxZqkOajSKXRa1yPO7aoJn0
+	 GWt0pDvpx0dCw==
+Date: Fri, 6 Dec 2024 16:53:59 +0000
 From: Conor Dooley <conor@kernel.org>
-To: amitsd@google.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Badhri Jagan Sridharan <badhri@google.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Kyle Tso <kyletso@google.com>, RD Babiera <rdbabiera@google.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: connector: Add pd-revision property
-Message-ID: <20241206-perch-elliptic-4e8a8170426e@spud>
-References: <20241205-get_rev_upstream-v1-0-90158ee7d75f@google.com>
- <20241205-get_rev_upstream-v1-1-90158ee7d75f@google.com>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Woojung Huh <woojung.huh@microchip.com>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, kernel@pengutronix.de,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	linux-kernel@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
+	Eric Dumazet <edumazet@google.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	"David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH v1 2/5] dt-bindings: vendor-prefixes: Add prefix for Priva
+Message-ID: <20241206-juncture-copier-97c30459c041@spud>
+References: <20241205125640.1253996-1-o.rempel@pengutronix.de>
+ <20241205125640.1253996-3-o.rempel@pengutronix.de>
+ <20241205-hamstring-mantis-b8b3a25210ef@spud>
+ <Z1KV9bCW0iafJ2hF@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,83 +69,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="pNSV/oThW7kFwOxz"
+	protocol="application/pgp-signature"; boundary="d/WfSM3/k/7/bMv1"
 Content-Disposition: inline
-In-Reply-To: <20241205-get_rev_upstream-v1-1-90158ee7d75f@google.com>
+In-Reply-To: <Z1KV9bCW0iafJ2hF@pengutronix.de>
 
 
---pNSV/oThW7kFwOxz
+--d/WfSM3/k/7/bMv1
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 05, 2024 at 11:46:08PM -0800, Amit Sunil Dhamne via B4 Relay wr=
-ote:
-> From: Amit Sunil Dhamne <amitsd@google.com>
+On Fri, Dec 06, 2024 at 07:13:09AM +0100, Oleksij Rempel wrote:
+> On Thu, Dec 05, 2024 at 05:16:14PM +0000, Conor Dooley wrote:
+> > On Thu, Dec 05, 2024 at 01:56:37PM +0100, Oleksij Rempel wrote:
+> > > Introduce the 'pri' vendor prefix for Priva, a company specializing in
+> > > sustainable solutions for building automation, energy, and climate
+> > > control.  More information about Priva can be found at
+> > > https://www.priva.com
+> > >=20
+> > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > > ---
+> > >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b=
+/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > index da01616802c7..9a9ac3adc5ef 100644
+> > > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > @@ -1198,6 +1198,8 @@ patternProperties:
+> > >      description: Primux Trading, S.L.
+> > >    "^probox2,.*":
+> > >      description: PROBOX2 (by W2COMP Co., Ltd.)
+> > > +  "^pri,.*":
+> > > +    description: Priva
+> >=20
+> > Why not "priva"? Saving two chars doesn't seem worth less info.
 >=20
-> Add pd-revision property definition, to specify the maximum Power
-> Delivery Revision and Version supported by the connector.
->=20
-> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-> ---
->  Documentation/devicetree/bindings/connector/usb-connector.yaml | 6 ++++++
->  Documentation/devicetree/bindings/usb/maxim,max33359.yaml      | 1 +
->  2 files changed, 7 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.ya=
-ml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> index 67700440e23b5b7ca0db2c395c8a455bcf650864..341d2872e8d43450d219b7b72=
-d48790051dc4e2b 100644
-> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> @@ -293,6 +293,12 @@ properties:
->        PD negotiation till BC1.2 detection completes.
->      default: 0
-> =20
-> +  pd-revision:
-> +    description: Specifies the maximum USB PD revision and version suppo=
-rted by
-> +      the connector. This property is specified in the following order;
-> +      <revision_major, revision_minor, version_major, version_minor>.
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +
->  dependencies:
->    sink-vdos-v1: [ sink-vdos ]
->    sink-vdos: [ sink-vdos-v1 ]
-> diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/=
-Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-> index 20b62228371bdedf2fe92767ffe443bec87babc5..350d39fbf2dcd4d99db07cb8f=
-099467e6fc653ee 100644
-> --- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-> +++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-> @@ -70,6 +70,7 @@ examples:
->                                         PDO_FIXED_DUAL_ROLE)
->                                         PDO_FIXED(9000, 2000, 0)>;
->                  sink-bc12-completion-time-ms =3D <500>;
-> +                pd-revision =3D /bits/ 8 <0x03 0x01 0x01 0x08>;
+> This is typical prefix which is used by this vendor, if it is possible
+> i would prefer not to change it. But, last decision is on your side :)
 
-Why do you need this? Doesn't the compatible already give you this
-information?
+I dunno, think if I was being unreasonable like that people would tell
+me where to go.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
->              };
->          };
->      };
->=20
-> --=20
-> 2.47.0.338.g60cca15819-goog
->=20
->=20
-
---pNSV/oThW7kFwOxz
+--d/WfSM3/k/7/bMv1
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1Mr4AAKCRB4tDGHoIJi
-0n8rAQDOcuOF4z1yyHB5vS3KHL2iVJpdDPRUgaVgB/49RTnkmgD8CEZVAB9v0JqY
-jgZOP7ZJdQNGphOiKh47LLIMMteXBAk=
-=kNCV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1MsJwAKCRB4tDGHoIJi
+0q7+AP0WgVVYCgxQgsALCbzKmK4HISYQEtJkGhxbcC8rwUd3TAEAwBQ/eBKPr4RW
+KuUnP3OeYJ7cqKeQXBHhBYkRbSC5gg4=
+=wzoa
 -----END PGP SIGNATURE-----
 
---pNSV/oThW7kFwOxz--
+--d/WfSM3/k/7/bMv1--
 
