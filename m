@@ -1,162 +1,91 @@
-Return-Path: <devicetree+bounces-127983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F7879E6EAB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 13:57:08 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6262A9E6EA9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 13:56:35 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC3A91635CC
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 12:55:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 189D9283B8A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 12:56:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27D4201001;
-	Fri,  6 Dec 2024 12:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8B33202F7E;
+	Fri,  6 Dec 2024 12:56:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W2CHW3jJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XWszWwZ+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9115C1F6681;
-	Fri,  6 Dec 2024 12:55:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 736FD1FECD4;
+	Fri,  6 Dec 2024 12:56:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733489717; cv=none; b=qpBtw/CLPClp0kfZmWBVcFZDBIQOzOLAxsGWZHEQwMVAgLDi8vRPHZI86j1VgJbVYZKGk4r1h3pSq36axou5ZJERfSE3gMMzHVicavcxiQOvcxGQ1B+KRO7gDE52tZALyVeY1MDqGZwzK1O7SSsM0C0IKNStcgtGkF2eY9dVxvw=
+	t=1733489790; cv=none; b=B2JNzaXfh4VzJbrqfV66j2YutyRf85CXpQtWqxKHPBuA0KhpJhLfm7PiSqm3qe8pa1UR5i/R9G+b+/V8lS0j0Fl7ol6Opma9EQfaXhjLTaTxJhemG4Rc5fNZTK1gZf1aQwLBH7N+Xn9nPC96mnVjRtFPDTqdLVQbu4VR6AiicEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733489717; c=relaxed/simple;
-	bh=ut+n6OkeEePipWNKkILbIw1fd3nezu+R13ATMigoLes=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BJYgtcdXOpv82c190+qk0d060Da8ZKkJCz1BXIaKxt/XgIp7O+mg7J7WGTeFL7xLht27UAGb0+6sqkyH+AJ7bN+rkdgMYJ/VbKWJAaGTc64k9IraCdK/5iCytBmOYH8Jd5qAnhi7Y7kVNJ4TZfcs4DO4Q0S3mxcS2G18RjvqKn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W2CHW3jJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 915C6C4CED1;
-	Fri,  6 Dec 2024 12:55:13 +0000 (UTC)
+	s=arc-20240116; t=1733489790; c=relaxed/simple;
+	bh=CcvGwj3nX/cJL1PK353IPE4b9ZUoSfd2vgCJQVxEO60=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KevfqbDwEL8e836dsuhHawqLpygVh6UVx6Cwd9masDsnxPoOVIGz17rhq/k9gdfwVJv67vKKy4KFEPN7yX/HcCNlITOn1t1ggVElx6NzHnQPHTUqTzCr8tD5QHV+LAp4zeuu1RbSKakhwQ8/Vop09vR7MgTVzGJr8h48Ce7IuTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XWszWwZ+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35D9AC4CED1;
+	Fri,  6 Dec 2024 12:56:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733489717;
-	bh=ut+n6OkeEePipWNKkILbIw1fd3nezu+R13ATMigoLes=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=W2CHW3jJc24Sw0orGRez001VEhUVd30dX9BD9pO5031wGocVLxDblhdG4rJV3pewp
-	 wkV9jDnJ54AZKZJBqIn9J/zXCiPcnSxtIkad6velCia5lDH9ayz7UR7FaoPdJ6gubQ
-	 cpoOdGaf1t+Eyd+ppx4ySRBJBZNip5LbSBGRrpMoA5IHkduDdx0gah/weQPrBrK4Ph
-	 qNGe861N9yb5uEMeFsAL7QiJSRXtfydImiy1JXa5dKZmD2Ac6nByXmoUItRvWrFdQA
-	 00CfBV2bb/oYsu+ZjffbI91NLFN9jtMQXSB8eM14QwcaDcL1gLVwf6WWSKIFyVPjl6
-	 s26MAdx7mXzUQ==
-Message-ID: <cda109c9-a1e2-42cb-b830-6764c6eef519@kernel.org>
-Date: Fri, 6 Dec 2024 13:55:11 +0100
+	s=k20201202; t=1733489790;
+	bh=CcvGwj3nX/cJL1PK353IPE4b9ZUoSfd2vgCJQVxEO60=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XWszWwZ+HkTEZCTr5MgjLWvfnHiAllNkXcFZAWTxxeoGEO8/pNdIiAUXZ4Surj0Ns
+	 5eQopZu6arlr0rUCaCYGfuWVaPwMQ+NNMLo/DtH9opaUI66OMWxn7imQEKM/zYdeV7
+	 gduhLq/UgTZU+VbmiV/Z0d3cXWfKk8RVdfuoisXRDyYFWiFjo9sdu35EsjLl+hf0fL
+	 gdwwKtEXApQfv+f2nvV70UtDXoL72NGXyTW8oxAb50lK/tQLuSktRv197wqNSi5LDX
+	 +b3dINQlpqtV7+kuh/s+7mRogj1tdMucOx1IKydrkM734Uf4C1Ucej9JGu9Zr/GaSb
+	 +aQ0TWgPnJo+Q==
+Date: Fri, 6 Dec 2024 13:56:26 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Peng Fan <peng.fan@nxp.com>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH v5 01/20] dt-bindings: clock: imx8mm: add VIDEO_PLL clocks
+Message-ID: <cnacul23vrat2vmoxmi626awgmodp5zvb7rf5pu2g6cwysmlzh@oqcopgp7tzlm>
+References: <20241205111939.1796244-1-dario.binacchi@amarulasolutions.com>
+ <20241205111939.1796244-2-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/22] wifi: ath12k: add Ath12k AHB driver support for
- IPQ5332
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-Cc: ath12k@lists.infradead.org, linux-wireless@vger.kernel.org,
- Kalle Valo <kvalo@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20241015182637.955753-1-quic_rajkbhag@quicinc.com>
- <ou5kgedz5aga4dtda6k23uhybcjy7mfwie74p6q3qyn5bdajz7@ftejp7lqrise>
- <0b2f8734-f502-42d7-bdc5-b0d382d2aa70@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <0b2f8734-f502-42d7-bdc5-b0d382d2aa70@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241205111939.1796244-2-dario.binacchi@amarulasolutions.com>
 
-On 06/12/2024 12:07, Raj Kumar Bhagat wrote:
-> On 10/16/2024 12:27 PM, Krzysztof Kozlowski wrote:
->> On Tue, Oct 15, 2024 at 11:56:15PM +0530, Raj Kumar Bhagat wrote:
->>> Currently, Ath12k driver only supports WiFi devices that are based on
->>> PCI bus. New Ath12k device IPQ5332 is based on AHB bus. Hence, add
->>> Ath12k AHB support for IPQ5332.
->>>
->>> IPQ5332 is IEEE802.11be 2 GHz 2x2 Wifi device. To bring-up IPQ5332
->>> device:
->>> - Add hardware parameters for IPQ5332.
->>> - CE and CMEM register address space in IPQ5332 is separate from WCSS
->>>   register space. Hence, add logic to remap CE and CMEM register
->>>   address.
->>> - Add support for fixed QMI firmware memory for IPQ5332.
->>> - Support userPD handling for WCSS secure PIL driver to enable ath12k
->>>   AHB support.
->>>
->>> Depends-On: [PATCH V7 0/5] remove unnecessary q6 clocks
->>> Depends-On: [PATCH V2 0/4] Add new driver for WCSS secure PIL loading
->>> Link: https://lore.kernel.org/all/20240820055618.267554-1-quic_gokulsri@quicinc.com/
->>> Link: https://lore.kernel.org/all/20240829134021.1452711-1-quic_gokulsri@quicinc.com/
->>
->> These are series targetting other subsystems. I do not understand why
->> you created such dependency. It does not look needed and for sure is not
->> good: nothing here can be tested, nothing can be applied.
+On Thu, Dec 05, 2024 at 12:17:36PM +0100, Dario Binacchi wrote:
+> Unlike audio_pll1 and audio_pll2, there is no video_pll2. Further, the
+> name used in the RM is video_pll. So, let's add the IMX8MM_VIDEO_PLL[_*]
+> definitions to be consistent with the RM and avoid misunderstandings.
 > 
-> To validate this series, the dependencies mentioned above were necessary, which
-> is why they were included.
+> The IMX8MM_VIDEO_PLL1* constants have not been removed to ensure
+> backward compatibility of the patch.
+> 
+> No functional changes intended.
+> 
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> 
+> ---
+> 
+> Changes in v5:
+> - New
 
-What does it mean "validate"? You are supposed to describe how upstream
-can consume this.
-
-> 
-> Currently, the "[PATCH V7 0/5] remove unnecessary q6 clocks" has been merged,
-> so this dependency will not be required in the next version.
-> 
-> The "[PATCH V2 0/4] Add new driver for WCSS secure PIL loading" series is still
-> under review and is required for validation.
-> 
-> However, this series can still be applied and compiled without these dependencies.
-> Please let us know if we should remove the dependency in the next version.
-
-So write proper cover letter not bringing up fake dependencies.
-Otherwise answer is: this cannot be tested, thus it will not be reviewed.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
+
 
