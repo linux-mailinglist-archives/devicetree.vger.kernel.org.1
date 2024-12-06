@@ -1,132 +1,317 @@
-Return-Path: <devicetree+bounces-128168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C83F19E7AE0
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 22:26:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA8669E7AE8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 22:27:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8302728777F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 21:26:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93F722816B2
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 21:27:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EC3422C6FE;
-	Fri,  6 Dec 2024 21:26:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R0Xsj1vj"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61BF3215043;
+	Fri,  6 Dec 2024 21:26:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B63722C6F6
-	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 21:25:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3E56212FB6;
+	Fri,  6 Dec 2024 21:26:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733520361; cv=none; b=D7jo+fp3Llvt7eb9TrFLCRfE0GrLjMjd1vOg7afVPsxq3kYvlah1wyCgjOJWEmmNAoI6R/gF/1WLINJiKwaRpdEDQKcyWtmzUvBm5MTi0dUR547NKvEW0MfOwOO+TIg5SEfHjs8bGvLiVUoKPP9cGAbaWv9nO7YixOpqKgTpmi4=
+	t=1733520401; cv=none; b=NrWf94WFNL10+UJlfnz9smq4MW6vRjl1NWyK/Xo0v2IFsgstCOuVtKy/Mi73FlLVst6io8CGxJRle5EsvN9wnyjQlksuSlvVEvwFQxLbGFRIEzvD8WMaD3nlJ/8p62bt78C2NuLAsyebS9HXKfy5KtAVqz8DyfmNAaBu8ZiP8bs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733520361; c=relaxed/simple;
-	bh=XozRvPqqiHeG9PpK+KAt8BvlC4+3PPnRXff6x442qkA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fYj6Wuqi8CosAaUBA9J0JOsokAew3OHvvZzwh9AUQo7xGWcA5gUMqX1h2GHPY3aS0tJOAwxH9yqJnQZ6bFMHl4KzaWAWfkU+j7lMn5T1daIA1uJt8QYDJJITgzjpbJ4guZBB1R1CVZrUTJAk7vLUr0njmuLY8U/ZY4EIGqHK3nA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=R0Xsj1vj; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-434e669342eso1713685e9.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 13:25:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733520358; x=1734125158; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fY5PGKfinw0bTTrofkyjWmSLNTzsh9f6hZ66ZvW8/Rw=;
-        b=R0Xsj1vjQDh/J7ZFE9ReRAD6mPkf/aMC5AhbaxH1E1V7cKw+9guxvFdTcUhuqFUsvY
-         vJZ3J14zYxJtnyizJQ8ce0rXJM3CBE5UlIMFFtKfKgc4jCIhufYWO/UiifsvyG0OQUBb
-         21VkqvkrPKzttYEqZyUdwShnPyxHuPh6SPZz32k3pA0A+A0n5ZYZ1ETbwgz8NxqiGcHF
-         8QAeTlILznQyBTAkN/5ToizB4q4eIDE+t9q0bxcsBo/Z43ypeF1mqc8zI5xTcskZ8h4L
-         Cn/7G+Ee6z6F4mDkzcVtQPpq03wxaTOKh81Wrhnh0LnCHHny7GrsJmPrCz/pZvOKk4Qu
-         NpoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733520358; x=1734125158;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fY5PGKfinw0bTTrofkyjWmSLNTzsh9f6hZ66ZvW8/Rw=;
-        b=e5+gcQDfFHidOu/OAstW/VH7NP5ghoMfOziT34StgMdVGIhmr0bRHpSvcoCjn/UnCy
-         3aZk9kmYxWogmLh9+dtco6rXGOky2vMq8IN9VfZljM9iInPTrJekSuwb22TctlkIM6Hg
-         JoW0kpMsoFcOg37mEEv+2Hsw1nYYdL2oNAajJkq8vxNJsVmNe6xvubbn0SgEdeFURTiy
-         wv1JJmefIxEIcwyVCluof3u+j6jxmzYahRBFNFVKUGq9RuhiZvPLvTDi8xK4b8VSOnwr
-         ROodQ4PketB9dBRWXoDoHnDnkNVgLHPI4jhtih84GWNyJ4zV/bx0pUnbThUk4p/XwkLf
-         bWcA==
-X-Forwarded-Encrypted: i=1; AJvYcCX7wS9Id1PmUzofYIJdmwbQOyzKZhUai1RBBVRlynA12hr7p9mUlLe0mAAUJzs/tNpXLHcEuXD/xbGK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxfuk4a8YLytqCKq9dpJRxQ1Xfhbc5nHcSyV5pp2upOTm7SDBTM
-	1FniporEuODux9JGwOSAhZHYSo4JllsZBQsHf/rnr+hFnob6u7K5V9+SWCgPm+8=
-X-Gm-Gg: ASbGncsGbJRJvnPVbzmQ+1hb5ZexmzlYjCwLH3TnfwMcm4v2fZf0jwjMoMdfy4gouhB
-	DQ5mHEqK2UbqgDmypas/yIfxCuyfmhsqzPGkDldT8lDR+8XXV1AFYCADGx5lywIHwNbNN+OAqXs
-	ZDJ6Ue+ArqsR7UwMDNxPEd/iBR+oCTsLE9oDmhjaVZGRhgFdYLCc9G85wfX2fnrav0zcWNd8efk
-	ry8bkKF7wIySNmfRjascVH/C+AsKx5HvBy4XTNkrduFXoIvcwyZPtoKNhoFCg4=
-X-Google-Smtp-Source: AGHT+IFCuNytTJqW2Q/06hLBEwztlzuz4/nMye2kjnSGSBSbzlnpZShoPe5MRNOfbMcnO8GBE+1lBA==
-X-Received: by 2002:a05:6000:1ac8:b0:385:fc32:1ec3 with SMTP id ffacd0b85a97d-3862b36b015mr3629269f8f.20.1733520358248;
-        Fri, 06 Dec 2024 13:25:58 -0800 (PST)
-Received: from [192.168.0.40] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3861fc51451sm5521521f8f.47.2024.12.06.13.25.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Dec 2024 13:25:57 -0800 (PST)
-Message-ID: <e9812ebc-c96b-44ba-8fad-e64eab19ccb6@linaro.org>
-Date: Fri, 6 Dec 2024 21:25:56 +0000
+	s=arc-20240116; t=1733520401; c=relaxed/simple;
+	bh=aUrqdGkehyY2PkgcW7kCKdC1TTB3CDw9JSd9X2PLcSI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=sZziqlWIA2TBFCOZ/ae6XbK4A8i1BeNFBEDClvU3w+h8J6WHjWFCql3ytbohjYZeA2m+fk226cZfLJOwU6HIHsE/K+rm3QoMeTHbHEcsYYz3WiCHI98Bo0rw1pXwSZNYAo7D3BkjAq9fDKxQe8PzWmJqrLLb2FRYU/ehP+FcdgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: MEh8Vt9SRG6fi9LW2EOXZQ==
+X-CSE-MsgGUID: wEvWILlRTUKokvRWvdPB9A==
+X-IronPort-AV: E=Sophos;i="6.12,214,1728918000"; 
+   d="scan'208";a="231123928"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 07 Dec 2024 06:26:33 +0900
+Received: from ubuntu.adwin.renesas.com (unknown [10.226.92.246])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id EC8634090D3F;
+	Sat,  7 Dec 2024 06:26:17 +0900 (JST)
+From: John Madieu <john.madieu.xa@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Cc: john.madieu@gmail.com,
+	linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	John Madieu <john.madieu.xa@bp.renesas.com>
+Subject: [PATCH 3/5] soc: renesas: rz-sysc: Add support for RZ/G3E family
+Date: Fri,  6 Dec 2024 22:25:57 +0100
+Message-ID: <20241206212559.192705-4-john.madieu.xa@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241206212559.192705-1-john.madieu.xa@bp.renesas.com>
+References: <20241206212559.192705-1-john.madieu.xa@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] media: dt-bindings: qcom-venus: Deprecate
- video-decoder and video-encoder where applicable
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: quic_renjiang@quicinc.com, quic_vnagar@quicinc.com,
- konradybcio@kernel.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20241128-media-staging-24-11-25-rb3-hw-compat-string-v4-0-fd062b399374@linaro.org>
- <20241128-media-staging-24-11-25-rb3-hw-compat-string-v4-3-fd062b399374@linaro.org>
- <a2285d28-0f57-d165-a22e-2aa57b3cff65@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <a2285d28-0f57-d165-a22e-2aa57b3cff65@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 06/12/2024 10:03, Dikshita Agarwal wrote:
-> On 11/28/2024 9:51 PM, Bryan O'Donoghue wrote:
->> For the list of yaml files here the video-decoder and video-encoder nodes
->> provide nothing more than configuration input for the driver. These entries
->> do not in fact impart hardware specific data and should be deprecated.
->>
->> Reviewed-by: Krzysztof Kozlowski<krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Bryan O'Donoghue<bryan.odonoghue@linaro.org>
->> ---
->>   .../devicetree/bindings/media/qcom,msm8916-venus.yaml        | 12 ++----------
->>   .../devicetree/bindings/media/qcom,sc7180-venus.yaml         | 12 ++----------
->>   .../devicetree/bindings/media/qcom,sc7280-venus.yaml         | 12 ++----------
->>   .../devicetree/bindings/media/qcom,sdm845-venus-v2.yaml      | 12 ++----------
->>   .../devicetree/bindings/media/qcom,sm8250-venus.yaml         | 12 ++----------
->>   5 files changed, 10 insertions(+), 50 deletions(-)
->>
-> A general query, this change is not done for 8996-venus, sdm660-venus and
-> sdm845-venus, was that intentional? may be because these are not active
-> SOCs in upstream?
+Add SoC detection support for RZ/G3E SoC. Also add support for detecting the
+number of cores and ETHOS-U55 NPU and also detect PLL mismatch for SW settings
+other than 1.7GHz.
 
-No per the cover letter, those SoCs have power-domains and clocks inside 
-of them, so the dtsi entries actually does relate to a hardware 
-description in that case.
-
+Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 ---
-bod
+ drivers/soc/renesas/Kconfig          |  6 +++
+ drivers/soc/renesas/Makefile         |  1 +
+ drivers/soc/renesas/r9a09g047-sysc.c | 70 ++++++++++++++++++++++++++++
+ drivers/soc/renesas/rz-sysc.c        | 44 +++++++++++------
+ drivers/soc/renesas/rz-sysc.h        |  7 +++
+ 5 files changed, 114 insertions(+), 14 deletions(-)
+ create mode 100644 drivers/soc/renesas/r9a09g047-sysc.c
 
+diff --git a/drivers/soc/renesas/Kconfig b/drivers/soc/renesas/Kconfig
+index a792a3e915fe..9e46b0ee6e80 100644
+--- a/drivers/soc/renesas/Kconfig
++++ b/drivers/soc/renesas/Kconfig
+@@ -348,6 +348,7 @@ config ARCH_R9A09G011
+ 
+ config ARCH_R9A09G047
+ 	bool "ARM64 Platform support for RZ/G3E"
++	select SYSC_R9A09G047
+ 	help
+ 	  This enables support for the Renesas RZ/G3E SoC variants.
+ 
+@@ -386,9 +387,14 @@ config RST_RCAR
+ 
+ config SYSC_RZ
+ 	bool "System controller for RZ SoCs" if COMPILE_TEST
++	depends on MFD_SYSCON
+ 
+ config SYSC_R9A08G045
+ 	bool "Renesas RZ/G3S System controller support" if COMPILE_TEST
+ 	select SYSC_RZ
+ 
++config SYSC_R9A09G047
++	bool "Renesas RZ/G3E System controller support" if COMPILE_TEST
++	select SYSC_RZ
++
+ endif # SOC_RENESAS
+diff --git a/drivers/soc/renesas/Makefile b/drivers/soc/renesas/Makefile
+index 8cd139b3dd0a..3256706112d9 100644
+--- a/drivers/soc/renesas/Makefile
++++ b/drivers/soc/renesas/Makefile
+@@ -7,6 +7,7 @@ ifdef CONFIG_SMP
+ obj-$(CONFIG_ARCH_R9A06G032)	+= r9a06g032-smp.o
+ endif
+ obj-$(CONFIG_SYSC_R9A08G045)	+= r9a08g045-sysc.o
++obj-$(CONFIG_SYSC_R9A09G047)	+= r9a09g047-sysc.o
+ 
+ # Family
+ obj-$(CONFIG_PWC_RZV2M)		+= pwc-rzv2m.o
+diff --git a/drivers/soc/renesas/r9a09g047-sysc.c b/drivers/soc/renesas/r9a09g047-sysc.c
+new file mode 100644
+index 000000000000..32bdab9f1774
+--- /dev/null
++++ b/drivers/soc/renesas/r9a09g047-sysc.c
+@@ -0,0 +1,70 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * RZ/G3E System controller driver
++ *
++ * Copyright (C) 2024 Renesas Electronics Corp.
++ */
++
++#include <linux/bits.h>
++#include <linux/device.h>
++#include <linux/init.h>
++#include <linux/io.h>
++
++#include "rz-sysc.h"
++
++/* Register definitions */
++#define SYS_LSI_DEVID	0x304
++#define SYS_LSI_MODE	0x300
++#define SYS_LSI_PRR	0x308
++#define SYS_LSI_DEVID_REV	GENMASK(31, 28)
++#define SYS_LSI_DEVID_SPECIFIC	GENMASK(27, 0)
++#define SYS_LSI_PRR_CA55_DIS	BIT(8)
++#define SYS_LSI_PRR_NPU_DIS	BIT(1)
++/*
++ * BOOTPLLCA[1:0]
++ *	[0,0] => 1.1GHZ
++ *	[0,1] => 1.5GHZ
++ *	[1,0] => 1.6GHZ
++ *	[1,1] => 1.7GHZ
++ */
++#define SYS_LSI_MODE_STAT_BOOTPLLCA55	GENMASK(12, 11)
++#define SYS_LSI_MODE_CA55_1_7GHz	0x3
++
++static void rzg3e_extended_device_identification(struct device *dev,
++				void __iomem *sysc_base,
++				struct soc_device_attribute *soc_dev_attr)
++{
++	u32 prr_val, mode_val;
++	bool is_quad_core, npu_enabled;
++
++	prr_val = readl(sysc_base + SYS_LSI_PRR);
++	mode_val = readl(sysc_base + SYS_LSI_MODE);
++
++	/* Check CPU and NPU configuration */
++	is_quad_core = !(prr_val & SYS_LSI_PRR_CA55_DIS);
++	npu_enabled = !(prr_val & SYS_LSI_PRR_NPU_DIS);
++
++	dev_info(dev, "Detected Renesas %s Core %s %s Rev %s  %s\n",
++		 is_quad_core ? "Quad" : "Dual",
++		 soc_dev_attr->family,
++		 soc_dev_attr->soc_id,
++		 soc_dev_attr->revision,
++		 npu_enabled ? "with Ethos-U55" : "");
++
++	/* Check CA55 PLL configuration */
++	if (FIELD_GET(SYS_LSI_MODE_STAT_BOOTPLLCA55, mode_val) != SYS_LSI_MODE_CA55_1_7GHz)
++		dev_warn(dev, "CA55 PLL is not set to 1.7GHz\n");
++}
++
++static const struct rz_sysc_soc_id_init_data rzg3e_sysc_soc_id_init_data __initconst = {
++	.family = "RZ/G3E",
++	.id = 0x8679447,
++	.offset = SYS_LSI_DEVID,
++	.revision_mask = SYS_LSI_DEVID_REV,
++	.specific_id_mask = SYS_LSI_DEVID_SPECIFIC,
++	.extended_device_identification = rzg3e_extended_device_identification,
++};
++
++const struct rz_sysc_init_data rzg3e_sysc_init_data = {
++	.soc_id_init_data = &rzg3e_sysc_soc_id_init_data,
++};
+diff --git a/drivers/soc/renesas/rz-sysc.c b/drivers/soc/renesas/rz-sysc.c
+index d34d295831b8..515eca249b6e 100644
+--- a/drivers/soc/renesas/rz-sysc.c
++++ b/drivers/soc/renesas/rz-sysc.c
+@@ -231,7 +231,7 @@ static int rz_sysc_soc_init(struct rz_sysc *sysc, const struct of_device_id *mat
+ 
+ 	soc_id_start = strchr(match->compatible, ',') + 1;
+ 	soc_id_end = strchr(match->compatible, '-');
+-	size = soc_id_end - soc_id_start;
++	size = soc_id_end - soc_id_start + 1;
+ 	if (size > 32)
+ 		size = 32;
+ 	strscpy(soc_id, soc_id_start, size);
+@@ -257,8 +257,16 @@ static int rz_sysc_soc_init(struct rz_sysc *sysc, const struct of_device_id *mat
+ 		return -ENODEV;
+ 	}
+ 
+-	dev_info(sysc->dev, "Detected Renesas %s %s Rev %s\n", soc_dev_attr->family,
+-		 soc_dev_attr->soc_id, soc_dev_attr->revision);
++	/* Try to call SoC-specific device identification */
++	if (soc_data->extended_device_identification) {
++		soc_data->extended_device_identification(sysc->dev, sysc->base,
++							 soc_dev_attr);
++	} else {
++		dev_info(sysc->dev, "Detected Renesas %s %s Rev %s\n",
++			 soc_dev_attr->family,
++			 soc_dev_attr->soc_id,
++			 soc_dev_attr->revision);
++	}
+ 
+ 	soc_dev = soc_device_register(soc_dev_attr);
+ 	if (IS_ERR(soc_dev))
+@@ -283,6 +291,9 @@ static struct regmap_config rz_sysc_regmap = {
+ static const struct of_device_id rz_sysc_match[] = {
+ #ifdef CONFIG_SYSC_R9A08G045
+ 	{ .compatible = "renesas,r9a08g045-sysc", .data = &rzg3s_sysc_init_data },
++#endif
++#ifdef CONFIG_SYSC_R9A09G047
++	{ .compatible = "renesas,r9a09g047-sys", .data = &rzg3e_sysc_init_data },
+ #endif
+ 	{ }
+ };
+@@ -315,20 +326,25 @@ static int rz_sysc_probe(struct platform_device *pdev)
+ 		return ret;
+ 
+ 	data = match->data;
+-	if (!data->max_register_offset)
+-		return -EINVAL;
++	if (data->signals_init_data) {
++		if (!data->max_register_offset)
++			return -EINVAL;
+ 
+-	ret = rz_sysc_signals_init(sysc, data->signals_init_data, data->num_signals);
+-	if (ret)
+-		return ret;
++		ret = rz_sysc_signals_init(sysc, data->signals_init_data, data->num_signals);
++		if (ret)
++			return ret;
++
++		rz_sysc_regmap.max_register = data->max_register_offset;
++		dev_set_drvdata(dev, sysc);
+ 
+-	dev_set_drvdata(dev, sysc);
+-	rz_sysc_regmap.max_register = data->max_register_offset;
+-	regmap = devm_regmap_init(dev, NULL, sysc, &rz_sysc_regmap);
+-	if (IS_ERR(regmap))
+-		return PTR_ERR(regmap);
++		regmap = devm_regmap_init(dev, NULL, sysc, &rz_sysc_regmap);
++		if (IS_ERR(regmap))
++			return PTR_ERR(regmap);
+ 
+-	return of_syscon_register_regmap(dev->of_node, regmap);
++		return of_syscon_register_regmap(dev->of_node, regmap);
++	}
++
++	return 0;
+ }
+ 
+ static struct platform_driver rz_sysc_driver = {
+diff --git a/drivers/soc/renesas/rz-sysc.h b/drivers/soc/renesas/rz-sysc.h
+index babca9c743c7..2b5ad41cef9e 100644
+--- a/drivers/soc/renesas/rz-sysc.h
++++ b/drivers/soc/renesas/rz-sysc.h
+@@ -8,7 +8,9 @@
+ #ifndef __SOC_RENESAS_RZ_SYSC_H__
+ #define __SOC_RENESAS_RZ_SYSC_H__
+ 
++#include <linux/device.h>
+ #include <linux/refcount.h>
++#include <linux/sys_soc.h>
+ #include <linux/types.h>
+ 
+ /**
+@@ -42,6 +44,7 @@ struct rz_sysc_signal {
+  * @offset: SYSC SoC ID register offset
+  * @revision_mask: SYSC SoC ID revision mask
+  * @specific_id_mask: SYSC SoC ID specific ID mask
++ * @extended_device_identification: SoC-specific extended device identification
+  */
+ struct rz_sysc_soc_id_init_data {
+ 	const char * const family;
+@@ -49,6 +52,9 @@ struct rz_sysc_soc_id_init_data {
+ 	u32 offset;
+ 	u32 revision_mask;
+ 	u32 specific_id_mask;
++	void (*extended_device_identification)(struct device *dev,
++		void __iomem *sysc_base,
++		struct soc_device_attribute *soc_dev_attr);
+ };
+ 
+ /**
+@@ -65,6 +71,7 @@ struct rz_sysc_init_data {
+ 	u32 max_register_offset;
+ };
+ 
++extern const struct rz_sysc_init_data rzg3e_sysc_init_data;
+ extern const struct rz_sysc_init_data rzg3s_sysc_init_data;
+ 
+ #endif /* __SOC_RENESAS_RZ_SYSC_H__ */
+-- 
+2.25.1
 
 
