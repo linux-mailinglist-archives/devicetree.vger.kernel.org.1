@@ -1,243 +1,345 @@
-Return-Path: <devicetree+bounces-127971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E26A59E6DA7
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 12:59:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBF849E6DB9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 13:05:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95DDB165037
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 11:59:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 734AA1881C9B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 12:05:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B927820011B;
-	Fri,  6 Dec 2024 11:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10268200129;
+	Fri,  6 Dec 2024 12:05:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wYRS3Hn+"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="gq245yHa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2089.outbound.protection.outlook.com [40.107.20.89])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A847B1FF7D3
-	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 11:59:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733486348; cv=none; b=MJoGfi6GOj0Nm307fBJ+eOF6v/k8pFtsvRRxps34mL+aByvaXfdvHif9Wfxl+H1ENlMAbVmQDeBbQ0WrZlPIqFsGeMC8/5Zz8RojDYhN7wi9L8hEdydxwNDZJNVslJRVHkzTyyE1VfK9hRQsMT7Tojdc18OEkdScy/l4xIAr5Cg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733486348; c=relaxed/simple;
-	bh=eNm8ETrye6gjjlqkEx1ruKw8lDAuRNX8prmHn4lv3f4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KfjVHM0may6qRM7RncYIyqA79Mcv+4LHZ6EYJZ84O5e8ihqGNfy5uAONSSFI7fhihsBiXRXAmcSTw3GiFXnjR6+LlzkrqtL4iTCcr1sWngyFdj3iK5m2IIE6vJVizGh3GNB3prOQAogDuoEz0LzhSlS0tN9G6ZVWy5EIHMvRjKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wYRS3Hn+; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-aa5f1909d6fso383271866b.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 03:59:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733486345; x=1734091145; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fkgL71aCC+c5eU3/5Ahdd+PfY2GgDv7LSswVdp5m+AA=;
-        b=wYRS3Hn+UmwR8DVD3nmE8wz6/AcD+Y+vS+QmjB52ehqNwmFnnpGQwmJnJRpUtLYDVc
-         KvADpGuLgiT8lfF2mvAwRhRnXft9S4yUyORew+ywBzD6WpmqACnVp6WAt65HmBVjETHM
-         Pas1xTi5AFlKfZ3A/UHfm5snrTj7bAyiPa+4nAQ+e6UjCTMvIaTHSqBbHViVMiu9tKJR
-         MH58J/LdIOKXJp+SQwXM/MmTi9haBp7LcTJI9g5T/NLojcRGBn/L39nazHvp15aZ6C/k
-         iU12OIaJ6BDlKWoA6C3p+aoLl+sUuGBj+vIkWwzwV++WPO7Y5pBc7w4sEkyjbUlINyH3
-         fWzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733486345; x=1734091145;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fkgL71aCC+c5eU3/5Ahdd+PfY2GgDv7LSswVdp5m+AA=;
-        b=WK/K9sGYkFWCzyqFYFK2G0x3sgv+KydnkG3D2jnpDh/6t2zbtRV8lFDXLFAOekRyn/
-         YAZCcuV+PNedUEfmw+cfOuUut9QvSLk903feLAGd7InikCtr9g3BlSWuq6yH38sV6/zr
-         8BYl79N8aoJ8gizq2KH5Db7ZpOg48+KyW+eUsm7Bw1P3N/+LI5j7wGduE42kRKJAySb3
-         vIDlKvSAEbjmb78iEekVHtutgTrv3bJcckSKhRtWe3URHGRAF32KIMEYaqCs3qktMQDI
-         iU5MKRtuTkSFUaxqWd9Ax62NHdKdUhkcribDOPrT1fFfUdbr2Hw81s1Lsx8hHnBShWVZ
-         Id1g==
-X-Forwarded-Encrypted: i=1; AJvYcCVRLGeDveTXxXUoRQ9kMo2Ljkj/NcpW7CsTS7qlcM400dUKk04UMGbu5sDAxZjrnczb8RaBhhPF8Aum@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7S8AstgX3E9Pq+SjlXRFjHwNdr6vg/Mj2qCy7caAqpvShfMsW
-	Dg6f3NZ3T7zsFwL5BxSBUnKwQZRcy/2f5L/bbrpHyAgGKUrwTTB6YLx/l8CdeOI=
-X-Gm-Gg: ASbGncvbwhcB8TH/AQsgCe0V7hHC9AdD6Sd6arWjRzvklgHgVdkzovX0RrL0Rr0e+QA
-	tdxw2VaJN6C11T3Yy0umjYqY0TAZmsOLcB3iu9/jFi9J3u+88R4dkFda8f6mAw7tMEiq839OA96
-	tC88rOIYfFvFZhNpPSMsWScEQuoWEB/IBmVDb9TGKrxWflZj075hfx9qGYUyDNlnIPcCQRUe66U
-	rGbZStV39NfX4ZOn8A8+4RvhzXSwpJes1T9OsEMFERkG779ZMa05R3AwQ==
-X-Google-Smtp-Source: AGHT+IEHIi9QWxcwQ/B/5PO4EWqQexTbFpihDQmGHpBVwImN5z7OBHtx4LNIPsp//1PemqEWOn6Y3w==
-X-Received: by 2002:a17:907:9385:b0:a9a:3705:9ad9 with SMTP id a640c23a62f3a-aa63a2550c2mr202722966b.50.1733486344908;
-        Fri, 06 Dec 2024 03:59:04 -0800 (PST)
-Received: from [192.168.0.14] ([79.115.63.27])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6260eb8b5sm229008366b.193.2024.12.06.03.59.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Dec 2024 03:59:04 -0800 (PST)
-Message-ID: <aa09bbe3-8f5f-42cb-a7a9-deaaef77affb@linaro.org>
-Date: Fri, 6 Dec 2024 11:59:02 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 649431DACB4;
+	Fri,  6 Dec 2024 12:05:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.89
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733486752; cv=fail; b=dFHwHYq8edZHG7cVFwWgxVa6NRHMEcVTulBKz7jZdwgk/qq8AoKeCGE1a/QotfFTBRaXfiUWL8ntkKc46g+mp4+URUo20wHFMD/pugwLgSI0jECbelgJtj7AqN2KdwZ+Zph+1r7VDVJXI0QsbsPyPwoICpYR/PtcxrYbO39HUbQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733486752; c=relaxed/simple;
+	bh=BK6oHkWYNZW7Hczs7GU1g+maVfJ2exGrbCHFhTSS7CU=;
+	h=Message-ID:Date:From:Subject:To:Cc:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=PIWYNh12L4H/s1xG44CYz/lLYcCbuYSiSMnrOWlCS09WXKtmzE25IyMW8womNnPlcxmF1o/0DJ0wrilU+5eTOaBajXog+FYfXbkVvdrrLunjVpnZiV47Yj6wRP29hQiPMFCF6y0jPtt3EokAwz/qwGjPI4vpQuwzYSXxH6um1Qk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=gq245yHa; arc=fail smtp.client-ip=40.107.20.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=twKYL/eazyGgLVlI2VLv4vpoEv7DGli49YJ+3D++mSwjRcqZ6SlgWzk447F/hb2hpPrq6GOBLY00I+nAmAJUZ0MLu+fJ2hqQ+VFFJAD/RyJcSjWbxFgGnZOb+dE2VvkmqT++LGZ/D9lv0dYWEyi9rLfHfyxxOvN4cEBPIMQ2XWN+U4ouD8ondCJuPk4vV919fuqQjvjmcZcPL5KSYYuwI1aAClq5GC5ZtJSXQzDZvCBCmaib8kH8Y/N9CIkrjDkJxo4RUB5mRDW4Jwwzq3y1pLVLg8h/M7bNRqP6PjcPomxRo5w1z+ENwIk6wGdn+cpFbxf31ylTdRiHiol3x8VgaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1aM73qPBkgat4pf2SiIS+1PMIz/kgM70Ny1A3v+G0Ls=;
+ b=CbgSaTkr5hOJppRTC6e5UTGxdzo5buM26gRdDj2HapNkvYC/rpLVk4S+c6Wu9MlCMIyLS4ReltgYoXn4Y/C33TZ+J9/n96naHbvqmf6Y9UWF3UxFhwQJXMwOr5q5MAgI5+A2ikKz8e/3zAgAGsePmpcsNg+QZ+w0yVIUkjiDfYT68G8N4C6Eq59XPUeJQ2GHLYkWumVx0KzHboKsj1/Qq8XaBimmjBifWq/DefVfjNBOxjwWIVYQNzcjRwvSGOIunhyYSlF/C6VKVMvug/bbODKW7rHWkGmkeWa5MCkgmZyOnCdgq56usCw+iMIjkZ/UuOfNKqFcHFk1IQ478OS2TA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1aM73qPBkgat4pf2SiIS+1PMIz/kgM70Ny1A3v+G0Ls=;
+ b=gq245yHaGPDBGnRWkoBMrIIlSA0OCosY7D/wUGmIsdarx2Fq58NlHkLE6/LowDfzO+lQLF9xFXQkv9DON2tNskhX+/Rzf8dc0rJ1dnyAdoz44boKy5CpQecUDjV/WSTvZhQwWXbX7avlEzKFGSwo43QwDmRfK6xBJvWWhRtXxlgZwby/ZSmW6m+I8vLoP2LDdLL81dzYZwKUF5HrVRGysYVEPX5a3u35WJCY83wnwX3pXy0OTDMjL5turgbiuWM5jj2nx2q+Ykak+ALZ/CqlvSPyO0N8CHumzlsmvqRGrcItj7mp1fh+XEk7xp9y77aAGGPxT12blKpjKRgGULELZQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com (2603:10a6:10:352::15)
+ by DU2PR04MB9147.eurprd04.prod.outlook.com (2603:10a6:10:2f6::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.11; Fri, 6 Dec
+ 2024 12:05:44 +0000
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::708f:69ee:15df:6ebd]) by DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::708f:69ee:15df:6ebd%6]) with mapi id 15.20.8207.017; Fri, 6 Dec 2024
+ 12:05:44 +0000
+Message-ID: <6f4a0be8-4def-4066-9b44-d43059b7a90d@oss.nxp.com>
+Date: Fri, 6 Dec 2024 14:05:07 +0200
+User-Agent: Mozilla Thunderbird
+From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Subject: Re: [PATCH v6 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
+To: Arnd Bergmann <arnd@arndb.de>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ NXP S32 Linux Team <s32@nxp.com>, imx@lists.linux.dev,
+ Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
+ Enric Balletbo <eballetb@redhat.com>, Bogdan Hamciuc
+ <bogdan.hamciuc@nxp.com>, Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+References: <20241206070955.1503412-1-ciprianmarian.costea@oss.nxp.com>
+ <20241206070955.1503412-3-ciprianmarian.costea@oss.nxp.com>
+ <2005af5d-bdb7-4675-8f0e-82cb817801af@app.fastmail.com>
+Content-Language: en-US
+In-Reply-To: <2005af5d-bdb7-4675-8f0e-82cb817801af@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS4PR09CA0030.eurprd09.prod.outlook.com
+ (2603:10a6:20b:5d4::20) To DU0PR04MB9251.eurprd04.prod.outlook.com
+ (2603:10a6:10:352::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] firmware: add exynos ACPM protocol driver
-To: Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
- krzk+dt@kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- kernel-team@android.com, William McVicker <willmcvicker@google.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Vincent Guittot <vincent.guittot@linaro.org>,
- Ulf Hansson <ulf.hansson@linaro.org>
-References: <20241205175345.201595-1-tudor.ambarus@linaro.org>
- <20241205175345.201595-3-tudor.ambarus@linaro.org>
- <427caa87-b9ba-4797-88bd-a18a96eefdcf@app.fastmail.com>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <427caa87-b9ba-4797-88bd-a18a96eefdcf@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9251:EE_|DU2PR04MB9147:EE_
+X-MS-Office365-Filtering-Correlation-Id: 642adc40-ea76-4f64-6c94-08dd15ee4fdb
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|7416014|366016|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?VzRMUXZicXEwc0tpVDJDYXdrYWQ2Y3g5cEFqdlJqN1BsRnJScUF3cWNPM09x?=
+ =?utf-8?B?UW5IMG4xaXNMMjZJWjhVYkdpUVdTZlBRSGF1Yy8rczNoTVFyamZlMDVRd3ZN?=
+ =?utf-8?B?VVJXUm1ncDArdUdWRkxpenFGVzRPNG1XdkhkWjlIaHhtY01PZEFKZUZJSHpK?=
+ =?utf-8?B?VDFMWU5BM0o4M1cxQVVQdEpFYW5xRVJwN3N5MFFYV09QdGtWQ3d1U1FKbjRS?=
+ =?utf-8?B?b2NnMjNWVmpCUzBCTjdaZDRKRlptQjJOT2dKY1pFVmRDWGhudHpBekRrZS9S?=
+ =?utf-8?B?eG1zckpzWGdnd210MUxGcFgveDk4c3hXeFY2R2xCUGFBbHA4VEo2amZhUVdU?=
+ =?utf-8?B?eVpTVXc0bjFvSE1LdDZQME50aCs5VXVVdERjTDNJOUVTb3UvYSt0WWI5dU5V?=
+ =?utf-8?B?S25kQVlnS0pxOWtmQm9QcGhKZnRPVFQyMzg1eDJmam5WbVptbnhMSlUvWEtl?=
+ =?utf-8?B?MHlXZHgyRmYzVVJvK0dLOVFIaWNUdjlXTFlEMDcvZGtmL1lxa0RsaCtsNmx4?=
+ =?utf-8?B?RUJmeHBsb3hld1lvRFducncvYnBHS0liQjg5eWg1bWN2MEZTUlZNYTJmanR4?=
+ =?utf-8?B?bG9uQitYenRFMnl1Y01ETVc3bzBZQ3piQ0hrOHdBVnF1Y1NsK3hleURscmx3?=
+ =?utf-8?B?Y2t6TE0wcmxlU2IyK0YzaUxUMlBGdlk0ZTY1bFNiR21TWDVJSCsvUXRQRU9p?=
+ =?utf-8?B?QjNBTE5xL3VLSTJJRDUxcXVFRVBQaUZoZFhqYklVKzBJMjA4S0Z0LysxUGtr?=
+ =?utf-8?B?U0xVWk5VSWJXTXRmVS9EV2w0d20rMWRKVU16aWkwM2JLZWltUVh1ODQ5NWp4?=
+ =?utf-8?B?aVBkWFlwU1drZmMraE9Ic1ZKTVViWGhCTXhNTXhwUmtHM0RPclpWVzNJWVFL?=
+ =?utf-8?B?VUlBTjEwOFNPUEJBUkM2bGcxbURqVXZCeDl2ZHlmUmIvM2ZKY1hjQ1FEWVdi?=
+ =?utf-8?B?MThKRkFoZ3RFSytwYm43OENONWNFREViVEN1N29YbSt4RTRaT1orUnd6MHM3?=
+ =?utf-8?B?Y2JhYlFYcEk4a1JHemRKVXZuS2w3NzJmaXd5SWh4bU05UmNDVGpQQU80dWlj?=
+ =?utf-8?B?YTBUNVlqbko2WHBQY3FXeFAyQVBuVnpQaFhZa2s0MzBqWWlTeFVKaWFSVUFh?=
+ =?utf-8?B?R3kvWDVKVVlEeC9BdTNNUVNENHdpUFZJZGVYRHo0OUJ2YnlmUUROYWFlNFFo?=
+ =?utf-8?B?aGo3djI4SHVQY3dGVUY5bWxSKytHT1FNM3dVNW9qSmxGRUF0VDBlTkptZmZq?=
+ =?utf-8?B?VHU0WjNTOVN4Q1M1T2l3RGltbTY5UjQvVkhQSS8rYkV6K3JDeklFOGRqd29O?=
+ =?utf-8?B?YkRJQ1lMV0hjSDVBT0lPUnNtcHFzb3FTZ1lNMUlBcnNCNkJoOFg1TlJhaXU5?=
+ =?utf-8?B?ZlR5VFAwd2hoc0tEZlh6YzQxUktpWW5zMzNBM2g3TnNxYm9ncURTcWdtTnlt?=
+ =?utf-8?B?dFhTOXRxS2orQWI5M0dLSHJ4R2U5b041b0JZTkFxWTM4SGp1WHJ4THNMQ2tC?=
+ =?utf-8?B?MEJBL3VHSUZjSTJ5M2p1UUxpUW96VHJnNXdQdmlXYWhYWHRDMVRLazlFMnBy?=
+ =?utf-8?B?Qlg2clE3cGpMZnAwVTJqTFFvamFydEJtRmF3dVNwSzhQeEhjQTJHVmc3RGlY?=
+ =?utf-8?B?UStqQUtxbWdTMUxqenZYbDRPOTRLS2w3cnp2VzE2MUtBa24wVmQrZ2NVdkRl?=
+ =?utf-8?B?TVk3OWdmVHVwSVFvQmRIQWw4cHpwbHZzNUdCSUtpREY5KzNTWENnNEErdWZT?=
+ =?utf-8?B?N2lNd3Jkei92RGd6SExzTi9QbTFMY1k0ZGF1R3U1UXBWaGQzcVovcjVSN2xq?=
+ =?utf-8?B?aFdWUjdzZWlRM2hvK0NFUT09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9251.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?bklrcGVjV05wbkpmd3NSSGFibFRGeGxtNVhZMGh0ZHVudmRHRDMxalZLRENv?=
+ =?utf-8?B?VkVGTnpJS01YNC9EZndxVGVFajJ6bFdWbURRVXgwTUlMaFoxQm1WUjJRb1Vy?=
+ =?utf-8?B?d3YzSGIrbHFxcUExTmVscU8yaERIMi9hNlBDckd5cGNQOG80T0NwZHUrVzdj?=
+ =?utf-8?B?azByMkN2dUlpa1UzWmpkTzVZNVNSeHg4WVNYTXZ6Y1cydWE3d0E4cnBoN0xk?=
+ =?utf-8?B?SXpzN3RJbHhEdzlkWjVyOEZjdkNxU2lONW9sVlhKTU9JYnlYTkRVcmJraS9z?=
+ =?utf-8?B?cktJSFlsQTFGdlRQMi82UktsSDRhWVhpOHJFYjlvQXpPVnhqSGxweDJYaUtC?=
+ =?utf-8?B?OFdLSkRkd2k0Mk5TeUFxRXZWazVvY1djWFlvNFZVdFdQdlhzMmNEVjd0QUtq?=
+ =?utf-8?B?dzNhYjZmSFE4dlhpUUVFRjFDSldZZ3Q0NVhYeEVCQ1lxNS82bnBvNlk2S0My?=
+ =?utf-8?B?TEowaklSZ1JsV2Z2ODRwc0ZaVmRBV1hHSFMxV0taT3JKbkd4NXcyQUY0NzND?=
+ =?utf-8?B?OE5YY2NBYVJ6UWpPam82NUJ2ckR4SVZaODJyYnJSZVF6N3h5Y21rMWlMbklY?=
+ =?utf-8?B?VVJZdXdkZ1Q2b05GYW04cEdGNGI2bDNGeEpUQU94OXBERXNVWjhaRVdRMnJh?=
+ =?utf-8?B?dlp5YUUxZnBwRlV2Q0JSWU1iNXFackNhMkhocTNHTDQzY2FaZFJad21vNDRl?=
+ =?utf-8?B?TUc0K2sxaFRJTG5SSk04eHhyU3ExRkZ0eWZaV1poRkpTejJ3Mjc2Z21LVjVP?=
+ =?utf-8?B?M2IzUmFRNUlTa29lWFovMm45Mmt1Z1JTeDB1Yjl6YWNRT3F4UUdlS0M5L0da?=
+ =?utf-8?B?SEV0SnNHeXhZRk1QTnMvTk4xbVJvZDNvZ21XRTJ4OWljUnpsWW51NitFRWll?=
+ =?utf-8?B?eXE0VnNlY01kZUI4WjM0MHEydzdWL3NMMzZpVFJ3ZzdhVDR2by9BTHR3Mkhs?=
+ =?utf-8?B?dk1iZzFSM2pMeGRKTG1rekt6Z2graFU3bzNVa3loYk0wQUpiSzlNV1VnUXI2?=
+ =?utf-8?B?L0tVYzc1K0ZYZTJvSjZtdnJrOGZTVlRLbTNXU1FrdUh3MWVYOHlNdUFiSjZV?=
+ =?utf-8?B?cVVrV1lUbUo4ZUtyMUluaG1WeTFYaTdabmNJdUZ4bVNSS2w4dzN6eGErOU1B?=
+ =?utf-8?B?TVMzeDdGMjVBcGlRZndoOTM0Rnc5eUlMUTY2alFNM016a3pPYVdORDhXVFhv?=
+ =?utf-8?B?SU5jbVZLK2VhVElhRkJSWFI3bitFb0NCeWUvSG5vYjBBdGhHc3RCN2x0UXQx?=
+ =?utf-8?B?NVU1amRqY2RkZTdiSWQ3T3FEVjFKTlQ0OEZQMzZ3NmNVRzA0S1lhVmpDR3Rn?=
+ =?utf-8?B?RDdrbU1XZTNkelU5K0NOaTVZcU9zS3pjazJnYnY5QWdtU3N5YTRNTEM5b3Jl?=
+ =?utf-8?B?V1Jxc3dhSGVKa1kwdUQyaHdzOStXWmZ2VGlHV3VOMFh1WisvMnR2bkp6M1RB?=
+ =?utf-8?B?bmFrbWFNTUpkU3RRak5kbng3V3JPYlBNU2VoNHRGLzRhUU90VTZqK0tkMDlR?=
+ =?utf-8?B?N3dqSTRBN2RyQ0NxQTJTek51enpDanErSjBkRjdIbk5KQVFaT1FvdjkyQ1F6?=
+ =?utf-8?B?TmNQSzN0NThGOTA3RE5hUUpiMnlUWW1yTlVjMytVOGQzZFBQTzRGRWNjSlZ3?=
+ =?utf-8?B?c05VcENYNUFxdVA5VnV4Z2NiVUJ0T2JPbXBJL2JZVGkreVpvZzhjNmsyS3Nk?=
+ =?utf-8?B?Q2FwbzlINmVkUDJFeWhSQk1yRU80UEwrOEhJWG16d1I1anp4bVZoS0lxWE5k?=
+ =?utf-8?B?VHFSckVhL0FFVEg0VnNUci81YWxaMlViRGtxaGNGZWxRd1VMT0RrRU9vMEdj?=
+ =?utf-8?B?ODFEV0xkUVBOd1hjaXFaenNnQ3V5dW5RZTdmWkhRRlR4YngwU25ZckIwUytZ?=
+ =?utf-8?B?T1p1M3NOaFphZ2RqMTFIOGFCY0Nsdk03M3RLdHVnMUFkOXZFYkE3bDRzYi9R?=
+ =?utf-8?B?eG5XYzMwazRaOTh1cmc5UEFDcVI3V3UxR3FobXA4SVlWeFdDR2NMaXhCN2JS?=
+ =?utf-8?B?YWVIQVVOMkpudEFXV3pEa3JjUXgycENnaGx3OGJDUVdVbEwzekNVcDNmdnQw?=
+ =?utf-8?B?clBvZ3ZnMmZuQ1pLT0pTVmhaQ1BiRVZlUWwwS0NGSXhQd1NYYXVWVmhKeWRQ?=
+ =?utf-8?B?NDJMUkFQVkxwK3dKK2JVdUI5ay9lWmJnNlFiTS96Zm1qS2VZRWt2Z1hTMVcv?=
+ =?utf-8?Q?vzwZUYh9U9+supB9x0RiawM=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 642adc40-ea76-4f64-6c94-08dd15ee4fdb
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9251.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Dec 2024 12:05:44.5100
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yb5Z3RKoE/3t1/zsuqbl19vNhXx1S67K2vmjJmJlglaigqhBDRt93njz23rhJHwddzuCzh+0o8KBDzq2gVYepJgUhK8khADtvtHJ36gI/hY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9147
 
-Thanks for the review, Arnd!
+On 12/6/2024 10:04 AM, Arnd Bergmann wrote:
+> [You don't often get email from arnd@arndb.de. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> 
+> On Fri, Dec 6, 2024, at 08:09, Ciprian Costea wrote:
+>> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>>
+>> Add a RTC driver for NXP S32G2/S32G3 SoCs.
+>>
+>> RTC tracks clock time during system suspend. It can be a wakeup source
+>> for the S32G2/S32G3 SoC based boards.
+>>
+>> The RTC module from S32G2/S32G3 is not battery-powered and it is not kept
+>> alive during system reset.
+>>
+>> Co-developed-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+>> Signed-off-by: Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+>> Co-developed-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+>> Signed-off-by: Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+>> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 
-On 12/6/24 6:47 AM, Arnd Bergmann wrote:
-> On Thu, Dec 5, 2024, at 18:53, Tudor Ambarus wrote:
-> 
->> +#define exynos_acpm_set_bulk(data, i)					\
->> +	(((data) & ACPM_BULK_MASK) << (ACPM_BULK_SHIFT * (i)))
->> +#define exynos_acpm_read_bulk(data, i)					\
->> +	(((data) >> (ACPM_BULK_SHIFT * (i))) & ACPM_BULK_MASK)
-> 
-> Could these be inline functions for readability?
+Hello Arnd,
 
-sure, will do.
+Thanks you for your review on this patchset.
 
 > 
->> +	cmd[3] = (u32)(sched_clock() / 1000000); /*record ktime ms*/
+> I read through the driver and this looks all good to me, but there
+> are two fairly minor things I noticed:
 > 
-> The comment does not match the implementation, sched_clock()
-> is probably not what you want here because of its limitiations.
+>> +     u64 rtc_hz;
 > 
-> Maybe ktime_to_ms(ktime_get())?
+> I see the clock rate is a 64-bit value, which is clearly what
+> comes from the clk interface in the kernel
 > 
-
-Indeed, will use, thanks.
-
->> +/**
->> + * acpm_get_rx() - get response from RX queue.
->> + * @achan:	ACPM channel info.
->> + * @xfer:	reference to the transfer to get response for.
->> + *
->> + * Return: 0 on success, -errno otherwise.
->> + */
->> +static int acpm_get_rx(struct acpm_chan *achan, struct acpm_xfer *xfer)
+>> +static u64 cycles_to_sec(u64 hz, u64 cycles)
 >> +{
->> +	struct acpm_msg *tx = &xfer->tx;
->> +	struct acpm_msg *rx = &xfer->rx;
->> +	struct acpm_rx_data *rx_data;
->> +	const void __iomem *base, *addr;
->> +	u32 rx_front, rx_seqnum, tx_seqnum, seqnum;
->> +	u32 i, val, mlen;
->> +	bool rx_set = false;
+>> +     return div_u64(cycles, hz);
+>> +}
+> 
+> and you divide by the clk rate to convert the register value
+> to seconds (as expected)
+> 
+>> +     u32 delta_cnt;
 >> +
->> +	rx_front = readl_relaxed(achan->rx.front);
->> +	i = readl_relaxed(achan->rx.rear);
+>> +     if (!seconds || seconds > cycles_to_sec(priv->rtc_hz, RTCCNT_MAX_VAL))
+>> +             return -EINVAL;
 > 
-> If you have to use readl_relaxed(), please annotate why,
-> otherwise just use the normal readl().  Is this access to
-> the SRAM?
-
-all IO accesses in this driver are to SRAM, yes.
-
-There are no DMA accesses involved in the driver and the _relaxed()
-accessors are fully ordered for accesses to the same endpoint, so I
-thought _relaxed are fine.
-
+> However, the range of the register value is only 32 bits,
+> which means there is no need to ever divide it by a 64-bit
+> number, and with the 32kHz clock in the binding example,
+> you only have about 37 hours worth of range here.
 > 
->> +	spin_lock_irqsave(&achan->tx_lock, flags);
+
+I am not sure what is the suggestion here. To cast 'cycles' variable to 
+32-bit ?
+If yes, indeed 'div_u64' converts 'cycles' (the divisor) to 32-bit so I 
+agree it should be u32 instead of u64.
+If not, I would prefer to keep using a 64-by-32 division and avoid 
+casting 'hz' to 32-bit.
+
+> It would appear that this makes the rtc unsuitable for
+> storing absolute time across reboots, and only serve during
+> runtime, which is a limitation you should probably document.
+> 
+
+Actually there is the option to use DIV512 and/or DIV32 hardware 
+divisors for the RTC clock. The driver uses a DIV512 divisor by default 
+in order to achieve higher RTC count ranges (by achieving a smaller RTC 
+freq). Therefore, the 37 hours become 37 * 512 => ~ 2 years.
+
+However, the rtc limitation of not being persistent during reboot 
+remains, due to hardware RTC module registers present of NXP S32G2/S32G3 
+SoCs being reset during system reboot. On the other hand, during system 
+suspend, the RTC module will keep counting if a clock source is available.
+
+Currently, this limittion is documented as follows:
+"RTC tracks clock time during system suspend. It can be a wakeup source 
+for the S32G2/S32G3 SoC based boards.
+
+The RTC module from S32G2/S32G3 is not battery-powered and it is not 
+kept alive during system reset."
+
+>> +static s64 s32g_rtc_get_time_or_alrm(struct rtc_priv *priv,
+>> +                                  u32 offset)
+>> +{
+>> +     u32 counter;
 >> +
->> +	tx_front = readl_relaxed(achan->tx.front);
->> +	idx = (tx_front + 1) % achan->qlen;
+>> +     counter = ioread32(priv->rtc_base + offset);
 >> +
->> +	ret = acpm_wait_for_queue_slots(achan, idx);
->> +	if (ret) {
->> +		spin_unlock_irqrestore(&achan->tx_lock, flags);
->> +		return ret;
->> +	}
+>> +     if (counter < priv->base.cycles)
+>> +             return -EINVAL;
 > 
-> It looks like you are calling a busy loop function inside
-> of a hardirq handler here, with a 500ms timeout. This is
-> not ok.
-
-That's true, the code assumes that the method can be called from hard
-irq context.
-
-Can't tell whether that timeout is accurate, it comes from downstream
-and the resources that I have do not specify anything about what would
-be an acceptable timeout.
-
-I see arm_scmi typically uses 30 ms for transport layers.
-
+> If 'counter' wraps every 37 hours, this will inevitably fail,
+> right? E.g. if priv->base.cycles was already at a large
+> 32-bit number, even reading it shortly later will produce
+> a small value after the wraparound.
 > 
-> If you may need to wait for a long timeout, I would suggest
-> changing the interface so that this function is not allowed
-> to be called from irq-disabled context, change the spinlock
-> to a mutex and polling read to a sleeping version.
-
-I think the question I need to answer here is whether the acpm interface
-can be called from atomic context or not. On a first look, all
-downstream drivers call it from process context. Curios there's no clock
-enable though in downstream, which would require atomic context. I'll
-get back to you on this.
-
-If there's at least a client that calls the interface in hard/soft irq
-context (clocks?) then I don't think I'll be able to implement your
-suggestion. Each channel has its own TX/RX rings in SRAM. If there are
-requests from both hard irq and process context for the same channel,
-then I need to protect the accesses to the rings via spin_lock_irqsave.
-This is what the code assumes, because downstream allows calls from
-atomic context even if I can't pinpoint one right now.
-
-I guess I can switch everything to sleeping version, and worry about
-atomic context when such a client gets proposed?
-
+> Using something like time_before() should address this,
+> but I think you may need a custom version that works on
+> 32-bit numbers.
 > 
->> +	/* Advance TX front. */
->> +	writel_relaxed(idx, achan->tx.front);
+
+This is correct. Would the following change be acceptable ?
+
+-       if (counter < priv->base.cycles)
+-               return -EINVAL;
+-
+-       counter -= priv->base.cycles;
++       if (counter < priv->base.cycles) {
++               /* A rollover on RTCCTN has occurred */
++               counter += RTCCNT_MAX_VAL - priv->base.cycles;
++               priv->base.cycles = 0;
++       } else {
++               counter -= priv->base.cycles;
++       }
+
+
+>> +static int s32g_rtc_resume(struct device *dev)
+>> +{
+>> +     struct rtc_priv *priv = dev_get_drvdata(dev);
+>> +     int ret;
 >> +
->> +	/* Flush SRAM posted writes. */
->> +	readl_relaxed(achan->tx.front);
+>> +     if (!device_may_wakeup(dev))
+>> +             return 0;
 >> +
->> +	spin_unlock_irqrestore(&achan->tx_lock, flags);
+>> +     /* Disable wake-up interrupts */
+>> +     s32g_enable_api_irq(dev, 0);
+>> +
+>> +     ret = rtc_clk_src_setup(priv);
+>> +     if (ret)
+>> +             return ret;
+>> +
+>> +     /*
+>> +      * Now RTCCNT has just been reset, and is out of sync with priv->base;
+>> +      * reapply the saved time settings.
+>> +      */
+>> +     return s32g_rtc_set_time(dev, &priv->base.tm);
+>> +}
 > 
-> I don't think this sequence guarantees the serialization
-> you want. By making the access _relaxed() you explicitly
-> say you don't want serialization, so the store does
-> not have to complete before the unlock.
+> This also fails if the system has been suspended for more than
+> 37 hours, right?
+
+Actually, the system would not go into suspend (returning with error) if 
+the alarm setting passes the 32-bit / clk_freq range.
+The check is added in 'sec_to_rtcval' which is called from the suspend 
+routine.
+
 > 
-
-I could benefit of the non relaxed versions indeed.
-
-
->> +		.of_match_table	= of_match_ptr(acpm_match),
+> One more minor comment: you are using ioread32()/iowrite32()
+> to access the MMIO registers, which is a bit unusual. I would
+> suggest changing those to the more common readl()/writel()
+> that do the exact same thing on arm64.
 > 
-> Remove the stray of_match_ptr() here.
+>          Arnd
 
-okay
+Makes sense. I will change to readl/writel in V7.
 
->> --- /dev/null
->> +++ b/include/linux/soc/samsung/exynos-acpm-protocol.h
-> 
-> Why is this in include/linux/soc, and not in the firmware
-> header?
+Best Regards,
+Ciprian
 
-right, will move.
-
-Thanks!
-ta
 
