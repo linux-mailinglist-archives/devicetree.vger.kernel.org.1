@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-128077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B7B39E762E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:36:46 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 239B39E763F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:38:11 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F04DD286E8B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:36:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AF2718824C6
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2826D20458B;
-	Fri,  6 Dec 2024 16:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 822B4206280;
+	Fri,  6 Dec 2024 16:36:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QuGYt4ol"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SCQESq+c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED30320457B;
-	Fri,  6 Dec 2024 16:35:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5200F206273;
+	Fri,  6 Dec 2024 16:36:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733502939; cv=none; b=e9jC7i3uwXdwywJuyBAJDJ/IiNST2EpbgZZRiJufHQQ9GDfBm5Vc5vTLzr0GiRK8ZZjvsS7TV0RO6cBZQGyJmG8aJj7F5215dqsQ5edhyBfGREelZvN5zpzqb7ESwfHOhJylG7XmW4Jd0ji3Hgu8p7TRGYmk0Mk/Zd4SRhHojuU=
+	t=1733502992; cv=none; b=kKkQ5SWAxRzs+M8l+3MBzlwEN2sAqceRqfc5WUNsV2wlmna0/iogCWg+3wwYRL0Nk/ssCRyDrIbuiNWaxeWwLe/w3cTjuCJvwzCOWJx+gEMPVV96vgj+8MxPYqHJD+3OBdJtdnpTkykNuQnHTSips91Ohr3bGmHoTjOlptjIaqg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733502939; c=relaxed/simple;
-	bh=BpWfeIfcxxaNUbn2U8tKvdEkHK2FsMtBU4eTLwJnl7I=;
+	s=arc-20240116; t=1733502992; c=relaxed/simple;
+	bh=f0JCSl3eEIe4O+kUioGo6uYxaUYIgbxlOJ/6YCCX/yg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z6aPY6rMwFp2zyFk3hcem5gLFMQ1Mrf6QsfHt5iyCjcXm63yxrQOCzh3kRhvpweUzp7HZ6SvCVo/uwAIC205xTzY8CH2Tqz4eo5nzjyPd+pfojA/yCUwXnWD3YQlAFUZlr9RELpmzNHSGVYrzUpXJ49d6mZNoPx3ma7jFhIcvPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QuGYt4ol; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00C80C4CEDC;
-	Fri,  6 Dec 2024 16:35:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HZ8txi4SNXCs3cRjIq5ih0V/ewqzU9QH9t0jn+AZWE5LF3SqPFz03kxvyOuItZG0pHM8usasHWqShplffWIwJcvn5y8S/W9RPJk+EBRa8nSWQWJiSm5+NriHocwUeAwTprGNelWBxIR3GGNOVP+AraAvKDfocEdmwYVW8FbHYmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SCQESq+c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6BF7C4CEDC;
+	Fri,  6 Dec 2024 16:36:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733502938;
-	bh=BpWfeIfcxxaNUbn2U8tKvdEkHK2FsMtBU4eTLwJnl7I=;
+	s=k20201202; t=1733502991;
+	bh=f0JCSl3eEIe4O+kUioGo6uYxaUYIgbxlOJ/6YCCX/yg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QuGYt4olh5TgvxpQcRl9PsFUBVax8yi9s7islv/y9OlAhdA+vMfaT6D+ES2NY8iqU
-	 AgGeGQsq7HZdd+l3d7QxeCUn8u8uyr2+2subSrnL+Zl7WM3RHjjEl+14YNPzkT7yeZ
-	 9J+e/vl7MoYGWnFG3dUkcR6kQPZ2xH0gJ62LJHfdzEsy8wGTwszUHXNeRh0+PgP77g
-	 hJK9GFhd32id039IqfSeHBOohpEM1+bHCIoZ8HYnwLRRIoSUOCqjx2ZpFA/iePQVnO
-	 Y3WCoPFi///8rDq9toJijZtrRNsKL1AG5mBT8FGpaKqebQII1RyBhOrZB4CohOG8Fy
-	 t60/s+ezsWQ5w==
-Date: Fri, 6 Dec 2024 16:35:33 +0000
+	b=SCQESq+cthNqSRmp0E58nsxzIXebRU7wIeDl1EixTIgCgWyg/rIcoUXUnHBOShMRC
+	 q8J/Hw1fW+ULA+4+DImPEc3LrBSjQL9uKPsMA5faEMsDy5sperzhhFsIYHLydEW9PR
+	 /z9M21LyAJ2sIrUKnC3LWCoEqJj0b/X9lFEO1J8k+14NXClspMXZERORO7xwfz2Qrq
+	 C9jxspLz8G0Ym1NhEx368qIAWWM8tqS6w4F8mtl16jGyrQLWksB2NLUfU7KI4CO8Jx
+	 xelN9dCiHArIkPzkHm/nBfGZdMMCNkkYo50zGaMsGefrzGuoxPPtGDvdIbsxZDyjEX
+	 B2o35vQCmlJOA==
+Date: Fri, 6 Dec 2024 16:36:27 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Ken Sloat <ksloat@cornersoftsolutions.com>
-Cc: =?iso-8859-1?Q?Am=E9lie?= Delaunay <amelie.delaunay@foss.st.com>,
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	dmaengine@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: dma: st-stm32-dmamux: Add description
- for dma-cell values
-Message-ID: <20241206-placard-hesitate-626fd285dfe6@spud>
-References: <20241206115018.1155149-1-ksloat@cornersoftsolutions.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, Biju Das <biju.das.au@gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: pinctrl: renesas: Document RZ/G3E SoC
+Message-ID: <20241206-steadying-rethink-fcc9b1b445ef@spud>
+References: <20241206102327.8737-1-biju.das.jz@bp.renesas.com>
+ <20241206102327.8737-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,38 +63,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="rLkrVVLioLF61Rl/"
+	protocol="application/pgp-signature"; boundary="mJsvLRKjXssFipFR"
 Content-Disposition: inline
-In-Reply-To: <20241206115018.1155149-1-ksloat@cornersoftsolutions.com>
+In-Reply-To: <20241206102327.8737-2-biju.das.jz@bp.renesas.com>
 
 
---rLkrVVLioLF61Rl/
+--mJsvLRKjXssFipFR
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 06, 2024 at 06:50:18AM -0500, Ken Sloat wrote:
-> The dma-cell values for the stm32-dmamux are used to craft the DMA spec
-> for the actual controller. These values are currently undocumented
-> leaving the user to reverse engineer the driver in order to determine
-> their meaning. Add a basic description, while avoiding duplicating
-> information by pointing the user to the associated DMA docs that
-> describe the fields in depth.
+On Fri, Dec 06, 2024 at 10:23:06AM +0000, Biju Das wrote:
+> Add documentation for the pin controller found on the Renesas RZ/G3E
+> (R9A09G047) SoC. The RZ/G3E PFC is similar to the RZ/V2H SoC but has more
+> pins(P00-PS3). The port number is alpha-numeric compared to the number on
+> the other SoCs. So add macros for alpha-numeric to number conversion.
 >=20
-> Signed-off-by: Ken Sloat <ksloat@cornersoftsolutions.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---rLkrVVLioLF61Rl/
+--mJsvLRKjXssFipFR
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1Mn1QAKCRB4tDGHoIJi
-0ufIAP9eSd/XJsTC82uOXaiS9+VsdB9msrVYPoh9A6R9d6eBIQD+Jz2f3eV4SOv7
-heJ+59ODd2/vb4Rz4ypHMaY7cXXBFgg=
-=7nq5
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1MoCwAKCRB4tDGHoIJi
+0hj2AP4unMrXvo1Qrrho3o0LJXh2TDUrYOIIXhRGR6CeroHEugD/RNaZUThgh5/o
+K/WCOf5p6rvRH5aNtaOmzXOHPK2ahQQ=
+=1F44
 -----END PGP SIGNATURE-----
 
---rLkrVVLioLF61Rl/--
+--mJsvLRKjXssFipFR--
 
