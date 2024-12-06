@@ -1,216 +1,128 @@
-Return-Path: <devicetree+bounces-128074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02B159E7606
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:32:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52CE19E7617
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:34:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B25E5284DFC
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:32:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E62A28AD68
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:34:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E26E203D67;
-	Fri,  6 Dec 2024 16:31:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A396E21B18A;
+	Fri,  6 Dec 2024 16:32:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S0LG+Xnj"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="APkY/E2T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FCF01F37CC
-	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 16:31:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CFBB1FFC76;
+	Fri,  6 Dec 2024 16:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733502670; cv=none; b=gSSt4aGFFsoGrsWgDiaKo4c4CwvxU83oI0D5ONNlqOXWbJiMpcymEO2lLWskRLENhUYnMe5IWmivSV5iLpHGtxl5zyY6W5UqaRBn8FPizJ8prg13nXaeoDztBpEMk1w4TSj0VzVJGH1wWhTr/7Go/WXccnUrSJ4CwbdR/GNrGi0=
+	t=1733502720; cv=none; b=BrVN3wr2gvJhO3r1R3R78lQy60RujVNnYiodc4hjbRlXuz5gZskp+K1r1OLRA2aI2T1dFq5YXQzlF+VLQvarozIbmlUOQ0SDEdR/4otGG0ivIj9tk3mR20H81xWJsMeDNJzOCiO24BMDGfBbRZ91I8JqHnhI2tc3UjK35dBU37Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733502670; c=relaxed/simple;
-	bh=J6z5q62M8vmTkZ3jTBoKrO19txxGlcIk+1Ry1NXvBGw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ta5/Sg8nkwAem90zgTpm1MMwuVjMbOFlqpWYB8S6tx9bZkb0VbKVW0pDvMKTozYrL6THm5WczdpIovmQKOlsM2x5/T6tCIimOmCx/EVUXjXliJPXxaKXQayXRhCoJSyREOU04qSbB79HeSNLXMH6hrQFf/JShp0qmkysSft3nXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S0LG+Xnj; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5d34030ebb2so2512235a12.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 08:31:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733502665; x=1734107465; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uFUL3kCwx3cUbzg7B5UVd/jZ4AQMlp0js1yIPxGumCU=;
-        b=S0LG+XnjbJXITJXGXbMiIo3Q58qXxxiAswNrXoFZ0Gl0m+/fe/WX4yizhX0qIiZt/b
-         G6vb4hNUnj6V5OHDolg6/JJGfzgnr7SCdvuSV8sOuc5Kb5peQ77dqlV5WhNRgkF/0OJp
-         X2R34n6Rk0iLrW+ckbQOnipWAQpyoqWaVSSdH4BSwYV8862Jw93812+QVmCmr6Fb2gPI
-         33/Q087NJE/lfsQCxiKuE2FKgxqWDpjiGIDWahD2DLNZ2pGFp+R6UC0KKuA6VHCfojQF
-         WRXuv1aikEV50i2PFGoLxvZcClN0eTi41DQ04Ixwt3tn/qX6xxQ5OmS9B3WJi6iAfgzH
-         5KPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733502665; x=1734107465;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uFUL3kCwx3cUbzg7B5UVd/jZ4AQMlp0js1yIPxGumCU=;
-        b=FkMQ+0WTQ8IQZ0euRNwkGSMnzrDlKXOkmPSddjT2uiM+/bqMny8n/qrykP2qv3Lu/s
-         T0NjWVGCmMPSisrrSaAvq72VsOVaC2bTSQUUepyqei5TzEYmamoNqG6FXD99n/1SCXY+
-         id3RonGZZA+Ia0B2DHhin0amjh95PGzP6D8P25NCWJl4l9JIzHYmbRDmbDa1waisylN4
-         dg1oEPjBBpBZZol0BJEydvmK7G23cxtrBasWMA+DWH6a+evaEIzyEU15uTCxK7Hgw0cu
-         jd/s0sT9T1OFXZnREGdv65zMtLYJ+n58B7End2sJ2B9gOJ713ZluA2ksQngnqQb3vVi4
-         rRpA==
-X-Forwarded-Encrypted: i=1; AJvYcCX6jEk6DpzCeUS++AtkAJJ9F+KIguIV2vaSnisjjMWzicRMWaevG0W6JtFXKzKFuHGyTyb4GdIGXjJp@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFgc4QQo39YweV3Ih5D4XSUippbXziaO0eFZhySI50VdajRnki
-	flxT4fyRptcpZKTgjlYRyyW9mS67qtvg8wg8c9m04fm1k2xC5UsbuwMBsE+MXEo=
-X-Gm-Gg: ASbGncu71bHNcRuLblm8YD0Q5wCKQP5LlFV8Dvje+joKo3S+JrkVCmFlUCCYE4RqLls
-	lJ3Q4oM1n4nf1bL5tppHNQ/JsM6QfASp/1mzz4lNeJLr2r6e32+1LjJGFS+9uUwhFrtVVmM+NQi
-	HkgyIfuEJ3Ti4jLmNlq+7u+Ob2eTXlFCo+E5yG6rcEj/kH8c9XE317xPDF0YPJi6bHS3NH0gq0Y
-	sTuiE3G4HNJpcrJij9ulhyObZcpRvu5n+yEDUV+zDkVS2Ozv9RLlI/te689Fv3PMFoRsirs3h2x
-	7xEoPM/IEOD/nnG4FgxljA+k1ffxkkzacQ==
-X-Google-Smtp-Source: AGHT+IFdGgwrC3n71nQi/9MjgKXvQ3xt8s29XoT1ICJHQ14fSF1EZzWFJtu/VD99oVNhBiVQ1DgX2Q==
-X-Received: by 2002:a17:906:310d:b0:aa6:2ff8:d62d with SMTP id a640c23a62f3a-aa63a2419ccmr313287766b.45.1733502665369;
-        Fri, 06 Dec 2024 08:31:05 -0800 (PST)
-Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6260e8af8sm257710266b.191.2024.12.06.08.31.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Dec 2024 08:31:05 -0800 (PST)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Fri, 06 Dec 2024 16:31:07 +0000
-Subject: [PATCH v4 7/7] phy: exynos5-usbdrd: allow DWC3 runtime suspend
- with UDC bound (E850+)
+	s=arc-20240116; t=1733502720; c=relaxed/simple;
+	bh=tGxxB+XljXcuE0hRcX2Nqt/vxo0R6CzixL3bi2d2wEE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ISANPAp/fE2VINM9im2PHOlgBHGyhCy8XrfgOmVKHmALM0mlwyym+zWwNiI5UwDoG1rvvAIGkk5X9WG50KuZeY0rbbaH4T4FCV0U4pzn5FHImyQrZwJUI8RZ7qySrjqqDtc7gB+RUbS+VP1+NgONlzjQd6ngbYCjCLHZ4mB4/GI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=APkY/E2T; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=o1vL76URTK41WeEd0opGeSEdVV53xsw2rWEY8OQ/ulA=; b=APkY/E2TP7kW+DlfgfAUkVH/tJ
+	pDde5UjrykoRcsopffzWphPbr7BGeBcyrTEolWm1OPh+UB58yGKlpPpgdEcjZ41b1aE01UK8tc9Ee
+	jgVNP3Zyi+wkChgoKb4a2kXrj3S/JKuvVwxsw3xOc6elrAflggMJQYRbIasxkIY+bQFLWyNigXJ4H
+	j4bmxWn9DCnm3heXF60lcdi3QG6WsyMne2ie/Uw92po4PeVO9nhFQLRDWerbYGsvxOZ/s4hWnoi95
+	AGPCJtMiiD8bUAGou6kVvtlwaxVFdQnP9Tq21vC9HHgrfCRluPlpGMMhUMhbTijGOPFwwl/BMupTj
+	1bwuSKcw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:37298)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tJbF6-0006Uj-1E;
+	Fri, 06 Dec 2024 16:31:48 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tJbF4-0007g4-3D;
+	Fri, 06 Dec 2024 16:31:47 +0000
+Date: Fri, 6 Dec 2024 16:31:46 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Lei Wei <quic_leiwei@quicinc.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com,
+	quic_pavir@quicinc.com, quic_linchen@quicinc.com,
+	quic_luoj@quicinc.com, srinivas.kandagatla@linaro.org,
+	bartosz.golaszewski@linaro.org, vsmuthu@qti.qualcomm.com,
+	john@phrozen.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH net-next v2 4/5] net: pcs: qcom-ipq9574: Add USXGMII
+ interface mode support
+Message-ID: <Z1Mm8nBR_sYyzBUh@shell.armlinux.org.uk>
+References: <20241204-ipq_pcs_rc1-v2-0-26155f5364a1@quicinc.com>
+ <20241204-ipq_pcs_rc1-v2-4-26155f5364a1@quicinc.com>
+ <Z1B3W94-8qjn17Sj@shell.armlinux.org.uk>
+ <dc40d847-9a98-4f46-94cb-208257334aed@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241206-gs101-phy-lanes-orientation-phy-v4-7-f5961268b149@linaro.org>
-References: <20241206-gs101-phy-lanes-orientation-phy-v4-0-f5961268b149@linaro.org>
-In-Reply-To: <20241206-gs101-phy-lanes-orientation-phy-v4-0-f5961268b149@linaro.org>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Sam Protsenko <semen.protsenko@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>, 
- kernel-team@android.com, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dc40d847-9a98-4f46-94cb-208257334aed@quicinc.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-To make USB runtime suspend work when a UDC has been bound, the phy
-needs to inform the USBDRD controller (DWC3) that Vbus and bvalid are
-gone, so that it can in turn raise the respective gadget interrupt with
-event == DWC3_DEVICE_EVENT_DISCONNECT, which will cause the USB stack
-to clean up, allowing DWC3 to enter runtime suspend.
+On Sat, Dec 07, 2024 at 12:20:57AM +0800, Lei Wei wrote:
+> On 12/4/2024 11:38 PM, Russell King (Oracle) wrote:
+> > On Wed, Dec 04, 2024 at 10:43:56PM +0800, Lei Wei wrote:
+> > > +static int ipq_pcs_link_up_config_usxgmii(struct ipq_pcs *qpcs, int speed)
+> > > +{
+> > ...
+> > > +	/* USXGMII only support full duplex mode */
+> > > +	val |= XPCS_DUPLEX_FULL;
+> > 
+> > Again... this restriction needs to be implemented in .pcs_validate() by
+> > knocking out the half-duplex link modes when using USXGMII mode.
+> > 
+> > .pcs_validate() needs to be implemented whenever the PCS has
+> > restrictions beyond what is standard for the PHY interface mode.
+> > 
+> 
+> Currently, it seems there is no phylink_validate() call in
+> phylink_resolve(), to validate the resolved duplex/speed which is notified
+> by phydev when the PHY is linked up. So I am thinking to add this duplex
+> check in this link_up op, and return an appropriate error in case of
+> half-duplex. (Kindly correct me if I am wrong).
 
-On e850 and gs101 this isn't working, as the respective signals are not
-directly connected, and instead this driver uses override bits in the
-PHY IP to set those signals. It currently forcefully sets them to 'on',
-so the above mentioned interrupt will not be raised, preventing runtime
-suspend.
+Doing validation at that point is way too late.
 
-To detect that state, update this driver to act on the TCPC's
-orientation signal - when orientation == NONE, Vbus is gone and we can
-clear the respective bits. Similarly, for other orientation values we
-re-enable them.
+We don't want the PHY e.g. even advertising a half-duplex link mode if
+the system as a whole can not support half-duplex modes. If the system
+can't support half-duplex, then trying to trap it out at resolve time
+would be way too late - the media has already negotiated a half-duplex
+link, and that's that.
 
-This makes runtime suspend work on platforms with a TCPC (like Pixel6),
-while keeping compatibility with platforms without (e850-96).
-
-With runtime suspend working, USB-C cable orientation detection now
-also fully works on such platforms, and the link comes up as Superspeed
-as expected irrespective of the cable orientation and whether UDC /
-gadget are configured and active.
-
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
-
----
-v3:
-* update exynos5_usbdrd_orien_sw_set() to not test against previous
-  orientation
----
- drivers/phy/samsung/phy-exynos5-usbdrd.c | 50 +++++++++++++++++++++++++++-----
- 1 file changed, 42 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-index 8fc15847cfd8..bac1dc927b26 100644
---- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
-+++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-@@ -1137,13 +1137,15 @@ static void exynos850_usbdrd_utmi_init(struct exynos5_usbdrd_phy *phy_drd)
- 	reg |= LINKCTRL_BUS_FILTER_BYPASS(0xf);
- 	writel(reg, regs_base + EXYNOS850_DRD_LINKCTRL);
- 
--	reg = readl(regs_base + EXYNOS850_DRD_UTMI);
--	reg |= UTMI_FORCE_BVALID | UTMI_FORCE_VBUSVALID;
--	writel(reg, regs_base + EXYNOS850_DRD_UTMI);
--
--	reg = readl(regs_base + EXYNOS850_DRD_HSP);
--	reg |= HSP_VBUSVLDEXT | HSP_VBUSVLDEXTSEL;
--	writel(reg, regs_base + EXYNOS850_DRD_HSP);
-+	if (!phy_drd->sw) {
-+		reg = readl(regs_base + EXYNOS850_DRD_UTMI);
-+		reg |= UTMI_FORCE_BVALID | UTMI_FORCE_VBUSVALID;
-+		writel(reg, regs_base + EXYNOS850_DRD_UTMI);
-+
-+		reg = readl(regs_base + EXYNOS850_DRD_HSP);
-+		reg |= HSP_VBUSVLDEXT | HSP_VBUSVLDEXTSEL;
-+		writel(reg, regs_base + EXYNOS850_DRD_HSP);
-+	}
- 
- 	reg = readl(regs_base + EXYNOS850_DRD_SSPPLLCTL);
- 	reg &= ~SSPPLLCTL_FSEL;
-@@ -1404,9 +1406,41 @@ static int exynos5_usbdrd_orien_sw_set(struct typec_switch_dev *sw,
- 				       enum typec_orientation orientation)
- {
- 	struct exynos5_usbdrd_phy *phy_drd = typec_switch_get_drvdata(sw);
-+	int ret;
-+
-+	ret = clk_bulk_prepare_enable(phy_drd->drv_data->n_clks, phy_drd->clks);
-+	if (ret) {
-+		dev_err(phy_drd->dev, "Failed to enable PHY clocks(s)\n");
-+		return ret;
-+	}
-+
-+	scoped_guard(mutex, &phy_drd->phy_mutex) {
-+		void __iomem * const regs_base = phy_drd->reg_phy;
-+		unsigned int reg;
-+
-+		if (orientation == TYPEC_ORIENTATION_NONE) {
-+			reg = readl(regs_base + EXYNOS850_DRD_UTMI);
-+			reg &= ~(UTMI_FORCE_VBUSVALID | UTMI_FORCE_BVALID);
-+			writel(reg, regs_base +  EXYNOS850_DRD_UTMI);
-+
-+			reg = readl(regs_base + EXYNOS850_DRD_HSP);
-+			reg |= HSP_VBUSVLDEXTSEL;
-+			reg &= ~HSP_VBUSVLDEXT;
-+			writel(reg, regs_base + EXYNOS850_DRD_HSP);
-+		} else {
-+			reg = readl(regs_base + EXYNOS850_DRD_UTMI);
-+			reg |= UTMI_FORCE_VBUSVALID | UTMI_FORCE_BVALID;
-+			writel(reg, regs_base +  EXYNOS850_DRD_UTMI);
-+
-+			reg = readl(regs_base + EXYNOS850_DRD_HSP);
-+			reg |= HSP_VBUSVLDEXTSEL | HSP_VBUSVLDEXT;
-+			writel(reg, regs_base + EXYNOS850_DRD_HSP);
-+		}
- 
--	scoped_guard(mutex, &phy_drd->phy_mutex)
- 		phy_drd->orientation = orientation;
-+	}
-+
-+	clk_bulk_disable(phy_drd->drv_data->n_clks, phy_drd->clks);
- 
- 	return 0;
- }
+Instead, phylink takes the approach of restricting the media
+advertisement according to the properties of the system, thereby
+preventing invalid configurations _way_ before we get to autoneg
+completion and calling phylink_resolve().
 
 -- 
-2.47.0.338.g60cca15819-goog
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
