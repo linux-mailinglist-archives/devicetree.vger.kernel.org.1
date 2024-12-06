@@ -1,137 +1,153 @@
-Return-Path: <devicetree+bounces-127916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D945A9E6A9E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 10:42:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80D4C9E6AFA
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 10:47:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D8931881F19
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 09:42:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6639416A48C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 09:47:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD7D01EF0B3;
-	Fri,  6 Dec 2024 09:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FD6F1DF732;
+	Fri,  6 Dec 2024 09:47:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hCZMsQ0I"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="G7v3a7Mz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A281B4129
-	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 09:42:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D11F1B86F6;
+	Fri,  6 Dec 2024 09:47:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733478148; cv=none; b=ucEp01wiHnStP1sPCRVysIzXsYgAEAKfaCwXYcaKKQuaAwciaBjedRlmqWWxsKxQiwfCqO9hN9bZTCoptt+qnCkxAiSfk7W3cpdn7Eq5JkzZg5gTucjAyJ9xaJEtsCoeDDI+ZdZURm5v0nCnGg2gYuev0ux8yF0h8LNG6byCobw=
+	t=1733478433; cv=none; b=VZmopP9Gquw2T6aika9QAuyy/kqSoTOLjaWiOIUhzZEzEe53MlRPfvo1XFAGdxgIMSYQb5qfk0M6WUMJ43j4swqmWDONV3dJ99QV0A0OWCdApZM891EBNkBtL8fi8fJPyiRaxAawdsRayoDq+X+Yf8gHU7ho7JRDBixSe2dFUTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733478148; c=relaxed/simple;
-	bh=fnD8ZUeN3LHdllxutyGeLabN8SdYiuHEWMknGyQWBhA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Uv/5ClBj/iCPc7Ox6wg2Bz7ZJGltC+zYxqXwMADVoCRD0fDyEzAQsxekRy/hXpj6UDgh4kLk0+xHSL/P4VeX8zLwLZno/mLCVSDcp8t7F2PMnOWc2TGo5c9q1LdluCjr9YuWQG1fX5tzLI47BAbhcphT2IW31NofOb42RyAy7vY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hCZMsQ0I; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53de92be287so1856482e87.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 01:42:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733478145; x=1734082945; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=uUIRQbMczpjfL2wu8QV4pEN4I4ysbDGkQQGhfj0T2t4=;
-        b=hCZMsQ0IqP2C55RV8sunKoXwVdRE4CMOB4aOleXM5o9OaCTxZXxLFQp8m7eaM4FVHm
-         7zqPUpOzOVuFjcqeXzYyDZXeNXBNce+xMVkE/3WK+HYfwhFkZBAoffcjHXyX5YZMXC65
-         VtmPnlQLrr+07s4YcNIFTrCK9u4k227jsQADiu1MIY/kxm34B5aaoWflRA0rVZIJZTue
-         CwzTQQ5Jk/spUWNiihdyZLi6U4wplDbn4jbx8obJxMZeTI29ZyKH98svzqso7N3/4I2K
-         /GUbwZNfS/RHqwbEUq3f/iYawSe05FzPjrani0R287sT2+oUZvIbeK4v7O+zonAqDUOb
-         abrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733478145; x=1734082945;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uUIRQbMczpjfL2wu8QV4pEN4I4ysbDGkQQGhfj0T2t4=;
-        b=dUV1VTawwg0ENR7rRSvlGU3ST2WwpMXhB0L6bnQSVmU2QoJfq3eL1kIyVtpTZ75NBZ
-         V9aLSX0ufVmUrUIMmX1IBr3rYASko01743fE6ju9tE7L8sbVhCQnTUPRtdd7mhP8SDpn
-         j0tsIO2e8AsJ25Kh8CbIPy+IvZOuJEoIT5mvh2ebSUV9/ZkS2FKvrjGbZlUCSL2N5VG+
-         SCNgquimiMEVMWSmzzy7XZ+ReHn6mHgO3gHEMXbErXXZ5NjabU3AMbYH0CvfiSo2j8JT
-         FQHGlevganX+CXEzBNlxIzCs09Ag5oCezSHZjXaUW5zWHBly2BG/L8Tybfna65gVATKW
-         uDLw==
-X-Forwarded-Encrypted: i=1; AJvYcCXqPqy5Jx3eGBG5fMUjZj/vvkB9yZuhcTuziQRSadjA/jXcIea0q0rkAB7AI0RIaa2JmFqA/SpfrY3O@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5I321R910cqAChIPsQZDyP5AsHCLqv7ek12hxfNb2Dl7sodjR
-	KiNxjo20KsA3ottpkSZnTx3atxnXO8UNzvAuxZd5Q/WRJBunegLAV1/dLHgum8k=
-X-Gm-Gg: ASbGncvW18JyPveyyXAqSVgF1vz9uK/nNmdB/lx4I0gtBFjc8/zgAG08aAQskOs9c9t
-	wDVDEEeFm5pr4nqSO7zBna34+P6prsjccygI1hWANCJp8xpUVOYuUtiU5nWFPbqIxfJGxl713PD
-	yWzSzhjhMT9LguKgE8/KaEyLO6gMP2sNjAD7TzflIKSksXo6j8+0aJImGpz/uavjlGmA+bqVjZH
-	MXH57UFP82+vDeVkAzJOowPE9rhB+VirOXbaxtF1vE976AxTRLMQFXauF8W5maFNvSmIAN+FY8r
-	16d6ZYofcP5ZXTxvD3Rgs91Pg+WdJQ==
-X-Google-Smtp-Source: AGHT+IH4esxK0uLXH9slo3btbx6QQTuIap6lMO09rzPOg/wiHUYCi6471yfGuoXePGv2SFTfDWGePw==
-X-Received: by 2002:a05:6512:3092:b0:53d:ecfc:306d with SMTP id 2adb3069b0e04-53e2c2b575cmr685333e87.19.1733478144895;
-        Fri, 06 Dec 2024 01:42:24 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e22975264sm450841e87.92.2024.12.06.01.42.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Dec 2024 01:42:23 -0800 (PST)
-Date: Fri, 6 Dec 2024 11:42:21 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Stephen Boyd <swboyd@chromium.org>, 
-	Chandan Uddaraju <chandanu@codeaurora.org>, Guenter Roeck <groeck@chromium.org>, 
-	Kuogee Hsieh <quic_khsieh@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vara Reddy <quic_varar@quicinc.com>, Rob Clark <robdclark@chromium.org>, 
-	Tanmay Shah <tanmay@codeaurora.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH 16/45] drm/msm/dp: add support for programming p1
- register block
-Message-ID: <ewwpuc3f7vqjeazgeebecc3ygrha4ujq5r7bg5cow56zzb564l@kef4v3bwo3bi>
-References: <20241205-dp_mst-v1-0-f8618d42a99a@quicinc.com>
- <20241205-dp_mst-v1-16-f8618d42a99a@quicinc.com>
+	s=arc-20240116; t=1733478433; c=relaxed/simple;
+	bh=NyqUxD4+oNCtW8qXiH/xVm64iV6vut41ehuQt6eTnzQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tPtW/Qmq9iCcVvv1OcGhYeBNjeLGFKJ6NXjkuFEnIEP++2MgNS+D3S2GmAYDKvfe89j8PBcJP/LNqoM4OCPSRqlNT5ruKAlgQ/q/Pj6srE/StLs8vObR4erY/V//fZ6jCASQBjuj1UFw9tteOUyh7tyGtaMZj1XHuZDq7BKKEJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=G7v3a7Mz; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1733478431; x=1765014431;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=NyqUxD4+oNCtW8qXiH/xVm64iV6vut41ehuQt6eTnzQ=;
+  b=G7v3a7MzIcuS1ejWpLwvqgcdcJKqLetwKkC0LI2ceREbaFx1KV5z/oWI
+   TBpqP+k+BOKlG9+27Nbr+Hizg9ZpkwvaiiJBH/EWjDGJGyOJq5x75uBsw
+   2JM9oKUWhDOzx6Ly3jKyJtIU1B5r2JRHLow01JDhNJxZwwKNG/0bM5Il+
+   FZ2TAkW0Fb0AKPKdzd3fS2eKjS6/syRWIEWSqDuOjC59L+IDDSh15/8st
+   EYjK5mL7/KsHgJJITrEw58NkXU0rNWNvqGBrZEJDTldLKZ/WSyFGg/z1c
+   TkVdsh2xkIev+dF0iGd2r0hXMSihrCgeQOEK8tmUqi7sjRodTLJ4m1vja
+   w==;
+X-CSE-ConnectionGUID: pTa19jmpRCeKQo/pb8i0zg==
+X-CSE-MsgGUID: twfRaRnqSvecierGvL/pdQ==
+X-IronPort-AV: E=Sophos;i="6.12,213,1728975600"; 
+   d="scan'208";a="202666736"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 06 Dec 2024 02:47:09 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 6 Dec 2024 02:47:04 -0700
+Received: from [10.159.245.205] (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Fri, 6 Dec 2024 02:46:57 -0700
+Message-ID: <43ec4b5e-9ccb-412f-a2c7-cac5f8bc2bbd@microchip.com>
+Date: Fri, 6 Dec 2024 10:47:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241205-dp_mst-v1-16-f8618d42a99a@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v8 10/15] net: macb: Use helper rgmii_clock
+Content-Language: en-US, fr-FR
+To: <jan.petrous@oss.nxp.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu
+	<joabreu@synopsys.com>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>, Richard Cochran
+	<richardcochran@gmail.com>, Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit
+	<hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
+ Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Emil
+ Renner Berthing <kernel@esmil.dk>, Minda Chen <minda.chen@starfivetech.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Iyappan Subramanian
+	<iyappan@os.amperecomputing.com>, Keyur Chudgar
+	<keyur@os.amperecomputing.com>, Quan Nguyen <quan@os.amperecomputing.com>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Giuseppe Cavallaro
+	<peppe.cavallaro@st.com>, Andrew Lunn <andrew+netdev@lunn.ch>
+CC: <linux-stm32@st-md-mailman.stormreply.com>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<netdev@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+	<imx@lists.linux.dev>, <devicetree@vger.kernel.org>, NXP S32 Linux Team
+	<s32@nxp.com>, <0x1207@gmail.com>, <fancer.lancer@gmail.com>, "Russell King
+ (Oracle)" <rmk+kernel@armlinux.org.uk>
+References: <20241205-upstream_s32cc_gmac-v8-0-ec1d180df815@oss.nxp.com>
+ <20241205-upstream_s32cc_gmac-v8-10-ec1d180df815@oss.nxp.com>
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20241205-upstream_s32cc_gmac-v8-10-ec1d180df815@oss.nxp.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 05, 2024 at 08:31:47PM -0800, Abhinav Kumar wrote:
-> p1 register block is needed for the second mst stream.
-> Add support in the catalog to be able to program this block.
+On 05/12/2024 at 17:43, Jan Petrous via B4 Relay wrote:
+> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
 > 
-> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Utilize a new helper function rgmii_clock().
+> 
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+
+If needed:
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+Thanks, best regards,
+   Nicolas
+
 > ---
->  drivers/gpu/drm/msm/dp/dp_catalog.c | 29 +++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
+>   drivers/net/ethernet/cadence/macb_main.c | 14 ++------------
+>   1 file changed, 2 insertions(+), 12 deletions(-)
 > 
-> @@ -1137,6 +1160,12 @@ static int msm_dp_catalog_get_io(struct msm_dp_catalog_private *catalog)
->  			DRM_ERROR("unable to remap p0 region: %pe\n", dss->p0.base);
->  			return PTR_ERR(dss->p0.base);
->  		}
-> +
-> +		dss->p1.base = msm_dp_ioremap(pdev, 4, &dss->p1.len);
-> +		if (IS_ERR(dss->p1.base)) {
-> +			DRM_ERROR("unable to remap p1 region: %pe\n", dss->p1.base);
-> +			return PTR_ERR(dss->p1.base);
-> +		}
-
-Forgot to mention, please also map p1 in the legacy bingdings branch in
-this function.
-
->  	}
->  
->  	return 0;
+> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+> index daa416fb1724..640f500f989d 100644
+> --- a/drivers/net/ethernet/cadence/macb_main.c
+> +++ b/drivers/net/ethernet/cadence/macb_main.c
+> @@ -530,19 +530,9 @@ static void macb_set_tx_clk(struct macb *bp, int speed)
+>          if (bp->phy_interface == PHY_INTERFACE_MODE_MII)
+>                  return;
 > 
-> -- 
-> 2.34.1
+> -       switch (speed) {
+> -       case SPEED_10:
+> -               rate = 2500000;
+> -               break;
+> -       case SPEED_100:
+> -               rate = 25000000;
+> -               break;
+> -       case SPEED_1000:
+> -               rate = 125000000;
+> -               break;
+> -       default:
+> +       rate = rgmii_clock(speed);
+> +       if (rate < 0)
+>                  return;
+> -       }
+> 
+>          rate_rounded = clk_round_rate(bp->tx_clk, rate);
+>          if (rate_rounded < 0)
+> 
+> --
+> 2.47.0
+> 
 > 
 
--- 
-With best wishes
-Dmitry
 
