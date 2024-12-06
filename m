@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-127901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08B2F9E6A12
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 10:29:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D55F9E6A16
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 10:29:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC05C28294A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 09:29:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00275282F8C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 09:29:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94B101EBFEF;
-	Fri,  6 Dec 2024 09:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FB491EBFEF;
+	Fri,  6 Dec 2024 09:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nyfYK0Pj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ixuE945n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6D9D1E1A17
-	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 09:29:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C5DF1DFE16;
+	Fri,  6 Dec 2024 09:29:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733477351; cv=none; b=MlhFOIv+M/9OQwoA3ZS0dmdepLJZrGoILA7bbR4dM5WiFy5POAFfxHJ2PXRMGPKF4DkbP6NCwPJ3ILJ9K6BtkQMPJYNE/U57F0y8duLwcXoRa8Ify7fwHsoNGpMOExpoF/vKp1SYU+xFtLxOFnwxrj+ecruiF8PMR+KLmmkedj4=
+	t=1733477375; cv=none; b=KpqhMxLY8PZD6KbV8ToI0kemaIJ+Y/Wh1CbUXqhFcRkGnVhBxfbwwD8mF45bCzZCqWSpLj49qXIn6QS9GPaGROaBEg+cLXvRid/MTK4sFNzNuGIk4KMkD4/6Abae0IpLBy50WOzlBZ6weShplfE0V2wOINpSTeo2kMZOqI252EE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733477351; c=relaxed/simple;
-	bh=pG7+8d2KyemUJBUfik6aWcgdRGrdDBi4aAkNnM/iBCA=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=mIMB61/C4AYIz2M/oFS2WSZy7ywPDuCzB+yoFK7ooQxqZTuNqGMc0UOIOdg4B2w5NmBv9wyhj0ujERViE0ERfx+WQru3L8o81V4qMNadsmGwnjDBX4+QAoQ9YvOEEh0sjD6F1tQGQVnhdXMlZVp1HcsK24V9Boj+zM5iGbwaDKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nyfYK0Pj; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5d0b85c5574so252746a12.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 01:29:09 -0800 (PST)
+	s=arc-20240116; t=1733477375; c=relaxed/simple;
+	bh=z3UgihyWzrbkvKFliqv8LzUML9WKdI0gtnwfc2ODd0A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=L7XtZ2aSVR4KhZMbRCjY8Ey2jgULn6k1zH5EyqTGJcl4BhWRObRP0l/caQeSbOKbEU3FY2Ux/EroiJX5/M29rdLqVreYWvUWCBmca8x26bVkb44tUVmG2mCpyqRMBstzoNzG/lb0vD3s18tZwKV6QEiWz3cvHP8mYs+81tgJHbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ixuE945n; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-434a45f05feso20377215e9.3;
+        Fri, 06 Dec 2024 01:29:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733477348; x=1734082148; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=YXB1xY53AAYD+QaLV6bttO1AdnSqOVrlzo75qNOOncc=;
-        b=nyfYK0Pj2Nq5Vekm6poLKoRgZ+c56xPgFy8Qo8hy5X0EVG1jkogBruy08ulegZE1Bd
-         2GHnFVHQOJ0s5ZPhua+4nM+IcYGNXyux/jV51FgAYmpFFIK8UoSOkEfGl31IBrdHn7u6
-         opC29Lzvbd42T8/hQQWR/wUsyAdig/YMGS7PXi8z6d04n4tx7/osNGzRPE+TnGTtJUXj
-         thSjWpj/rMJ2X0Tz1qeOQKuLd6wYiQGJMKl3HBzZRfh72b/DghxT9dnm7gLEZv4TRlP0
-         K2tHimF9w/n8MjV3jRpDngywVHrwX7ZrGgabHvvx6AFCqGjlGpTRcgG9NsVA+KiNSgKd
-         hyMQ==
+        d=gmail.com; s=20230601; t=1733477372; x=1734082172; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=stbx1NEM35bVdNwXBH7Qjy70Xo3jWZihLJ77LxtbkVE=;
+        b=ixuE945nQKK7jste/NZKiGAnv5EKR7xh9cLSs319X5wZznk5/QOop+ABZOwfjWKhTC
+         vHLlfjNuG729FmG6JDG45k6Z1YIRrwV0XPpCd6B9aNqbsGVDmPEjGEkjPNfHVuH+KsFb
+         mH1t/4cPZFMwy2wULfpAFSF7Cb9nvh7XTMMmqbymna/BwshDkmC2xf5aa4dGLrB+c2te
+         OPTCASVZM7bSYpbtEP5VkySOZ3DUL3gc68/tEXv1XXa8b4yWNhyWBYCyd0hfsp3/9/KQ
+         ogg1VV+DIewtd95TSiOmE7i1dNfqcHbZRRWMMDI7Xq1AOtAKnGVNZc1bXhwDH6sGiUXl
+         biFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733477348; x=1734082148;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YXB1xY53AAYD+QaLV6bttO1AdnSqOVrlzo75qNOOncc=;
-        b=SYO9IZBw54fX4z/R7ueo8X9pB+YiTLmq2Qn9yIaYPWHJ4GRRXvGQQ++YwjCqzUIkLQ
-         TmrJIvhKgh9N/1gKgWoiGirk3AFmzRkB+LRG3pZHRG5BPcDvlAG2q294DR8zyFSG7v67
-         r3xYubNswbVj5k8dzjRLaLCCGU2FZpzvNKi7XniiDcFLo7iTJD5vkCeuZybx+rsgyqfV
-         MDZbm4YHuG3l3jt/q968piHrykSB7oTA0VGNmql9ZBgUTCDfleSExe027NvH8606iu34
-         lT1W95flXcv3ST75Oxc5OD/wyjejZPK7fA+TFGflEuAwzJxFaYIIuZjXFMVS0ZFXcsbQ
-         2nTg==
-X-Forwarded-Encrypted: i=1; AJvYcCUTEhBmTfcxi3PjamBS8WinIQxzSyxtKnFVq7BKM6qJd6B0Z7bqVYLt2ag/17vIb7NWvWuDfEjwrW8G@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9ZoxNztJ6A0jcz67Hk4UTH1Bg06ZHKo82xxr95BdOegQeSHwV
-	DQ40+uVe9k7JKxUDxtAWybj0kDG457ZMN4zA9yIaAs9FCLbaNyafEz5M2M+DxxY=
-X-Gm-Gg: ASbGnctRIFhrMmH/WzXvO264y2ri7pATTt62xI8gjYQR/LPXceU3hNhV+KWtGTcYfC9
-	PlRfBUExGQfWLqVQYrWb2a4FzQXxf79acjam0KJjGL6TtqOBjO32KHG90rokwVzIBoRWIEoNCDq
-	U0ocx23EAurZsTtAvRj/DN0KdLcA+Re/+VCy0SrF92WHUmEuWvIK74whMRg6xlb2MUVjYXnnoTx
-	YXyj761aAM7yQJSVK3D0MXHJWCwnwfh7O9uoZrrhjJ1OH0amZKbrNyAKWDoXt6cLC/ruA==
-X-Google-Smtp-Source: AGHT+IG1urfhvm1ROZtWv4TEfJrH9SPVbRW1sqGCXOlJ7Rkyu5nOeo7D07XKUSDqgyjJcrM2jyGqqw==
-X-Received: by 2002:a05:6402:1d55:b0:5cf:f1fd:c688 with SMTP id 4fb4d7f45d1cf-5d3be663b8dmr797883a12.1.1733477348033;
-        Fri, 06 Dec 2024 01:29:08 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.165])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d149a25f09sm1974532a12.1.2024.12.06.01.29.06
+        d=1e100.net; s=20230601; t=1733477372; x=1734082172;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=stbx1NEM35bVdNwXBH7Qjy70Xo3jWZihLJ77LxtbkVE=;
+        b=Jq4aA/rkZFgS/W2P1/ky/wPw9iORkw9CGX9UGjzNRfz5pMKYvK6SGqF0TYKJb9HbZ9
+         /PCKbXQDFBIMiXkRHphH5dPwP6OdtD0twLWA9WFEhBJQ/MLt9vwks29egtcC289pDw1Q
+         RMipei6YKQT0/pWNQvl11kv8CU3qqIzU9JrWEchRuTIC/0z0ftvFdMqTd775tZ8h6vez
+         eoHCNUvuP1moOOZanfexD5hW+rGWrWQw5yPByT70WFk0JdDbRQRP18P1ZkV1wUUUNz6G
+         xP5ucf2hfYxW0Z3UX9lVPNpUfQ8//Fe7BVbcG3JtbQG2csYkYcK89qeDHun4CBhWVG96
+         qsHw==
+X-Forwarded-Encrypted: i=1; AJvYcCV4hMwMl65uNDI46OtG6VFpspG7exiaJ08SND+Rq8qcpfCXeq8As0epbDUYs7uH6WnD8dtCwpZmI7HUGLJu+uo=@vger.kernel.org, AJvYcCVqg5MgEwusNPZVwUGLjvtHCWG3u4+UiA0kRjmrrthTjt0OUbr+nkMcncJFRynMoofJM8naX7t2kv9J@vger.kernel.org, AJvYcCWRAd5ecHr4nEwSXowEl/1IDugn+2LPFn7Jaz/hcq95+cXTJdf3nF2OVQRytxsfMt6/1Pjdh0TVnQnx0PJt@vger.kernel.org, AJvYcCWqSwOqYpBQdkMFpDDRkXzs0vX6n0JTbSnnvtSuPrcAQzieWQj9EVmvw9JN06L4//JUiBPLvZeLaMyy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy64JGeqW0rx9gEot/muOMLvf6e6PduBf7TAdN7Eny2bXZKNW+T
+	Xnu6gsB9HFcosHrUCNQr5rwGyW+gtdJ2lgMtnECkH3vZyzCtwGe9
+X-Gm-Gg: ASbGnctY+u2rT+FWoBbupdzQjldD1KAje5r+Q07UXMNT/gLp7yusYLDU2vuQ4IKWI1r
+	EE3ipikvtExDMPwTBks1nQm0IiOa8Bkl8/Xgo/Ae33rEaXHT9o8grMbn6u5GRxnbkIIy3lIpEtL
+	gh3hJW9JzeD4SdCXWu0UHgIyz6uesAoBfj7aub34Jz+AsBnkwMRMhcD2CqHj2VzAWHOkaw1Ug0n
+	jLZsRCKpRFvdFHT0/yDD3AV4AeV61odQbLLR77aOfbgekPyOK8JmUHX0z7fk11hRTm0Fydau8t2
+	9ZTcHTgm81xAj5Dc5QC/XfPa0qdTPL5yA2PINmI/UuQJarQBjB9xM5O56pCGSE/UIrqQtGLSY7o
+	hJwJu5w==
+X-Google-Smtp-Source: AGHT+IGFIYyUD9HEqIG73xUb72UXx8tEHaiNhA0ipV2EB4tCdQu8+kXVLo5dUDpxcqbC3LEkvZb7ew==
+X-Received: by 2002:a05:600c:458a:b0:431:54f3:11ab with SMTP id 5b1f17b1804b1-434ddee1384mr17702945e9.33.1733477371270;
+        Fri, 06 Dec 2024 01:29:31 -0800 (PST)
+Received: from ?IPV6:2003:df:bf0d:b400:44f9:3850:f4a9:a264? (p200300dfbf0db40044f93850f4a9a264.dip0.t-ipconnect.de. [2003:df:bf0d:b400:44f9:3850:f4a9:a264])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434da0d691csm51269205e9.11.2024.12.06.01.29.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Dec 2024 01:29:07 -0800 (PST)
-Message-ID: <1ccb9308-303e-440a-a4ff-8e345be73af5@linaro.org>
-Date: Fri, 6 Dec 2024 10:29:06 +0100
+        Fri, 06 Dec 2024 01:29:30 -0800 (PST)
+Message-ID: <417cebcb-6311-43c3-a74f-edef10be0fb7@gmail.com>
+Date: Fri, 6 Dec 2024 10:29:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,95 +82,257 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] arm64: dts: qcom: sm8750: Add Modem / MPSS
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241122-b4-sm8750-cdsp-v1-0-9a69a889d1b7@linaro.org>
- <20241122-b4-sm8750-cdsp-v1-2-9a69a889d1b7@linaro.org>
- <4e6ec861-ef4f-4384-aab9-107c710987af@oss.qualcomm.com>
- <bbf73ff7-1f7a-40a8-a313-f8b70e661f78@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <bbf73ff7-1f7a-40a8-a313-f8b70e661f78@linaro.org>
+Subject: Re: [PATCH v4 13/13] samples: rust: add Rust platform sample driver
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+ ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+ gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+ tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+ airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+ pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+ daniel.almeida@collabora.com, saravanak@google.com, dirk.behme@de.bosch.com,
+ j@jannau.net, fabien.parent@linaro.org, chrisi.schrefl@gmail.com,
+ rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241205141533.111830-1-dakr@kernel.org>
+ <20241205141533.111830-14-dakr@kernel.org>
+ <e2c202c1-6bbe-4b6c-ae97-185fe2aed0e5@gmail.com> <Z1K22NjYjwhFnsit@pollux>
+Content-Language: de-AT-frami
+From: Dirk Behme <dirk.behme@gmail.com>
+In-Reply-To: <Z1K22NjYjwhFnsit@pollux>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/12/2024 10:22, Krzysztof Kozlowski wrote:
-> On 05/12/2024 18:34, Konrad Dybcio wrote:
->> On 22.11.2024 4:26 PM, Krzysztof Kozlowski wrote:
->>> Add nodes for the MPSS and its SMP2P.  These are compatible with earlier
->>> SM8650 with difference in lack of fifth memory region for Qlink Logging.
+On 06.12.24 09:33, Danilo Krummrich wrote:
+> On Thu, Dec 05, 2024 at 06:09:10PM +0100, Dirk Behme wrote:
+>> Hi Danilo,
+>>
+>> On 05.12.24 15:14, Danilo Krummrich wrote:
+>>> Add a sample Rust platform driver illustrating the usage of the platform
+>>> bus abstractions.
 >>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
+>>> This driver probes through either a match of device / driver name or a
+>>> match within the OF ID table.
+>>>
+>>> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 >>
->> [...]
+>> Not a review comment, but a question/proposal:
 >>
->>> +
->>> +		remoteproc_mpss: remoteproc@4080000 {
->>> +			compatible = "qcom,sm8750-mpss-pas";
->>> +			reg = <0x0 0x04080000 0x0 0x4040>;
->>
->> This also seems to be 0x100000-long
+>> What do you think to convert the platform sample into an example/test?
+>> And drop it in samples/rust then? Like [1] below?
 > 
-> Oh, we all love to copy code, starting from sm8150, I think. Depends
-> which block we actually assign here - this should be 0x10000 (downstream
-> DTS) or 0x100000.
+> Generally, I think doctests are indeed preferrable. In this particular case
+> though, I think it's better to have a sample module, since this way it can serve
+> as go-to example of how to write a platform driver in Rust.
 > 
-> Older PIL remoteproc loaders (qcom_q6v5_adsp.c) seem to access only the
-> smaller 0x10000 region.
+> Especially for (kernel) folks who do not have a Rust (for Linux) background it's
+> way more accessible.
 
-SM8150 had it correct - 4040. All others are copy-paste. I'll do some
-tests and send patches.
 
-Best regards,
-Krzysztof
+Yes, ack. Rob said the same :)
+
+Thanks
+
+Dirk
+
+
+>> We would have (a) a complete example in the documentation and (b) some
+>> (KUnit) test coverage and (c) have one patch less in the series and
+>> (d) one file less to maintain long term.
+>>
+>> I think to remember that it was mentioned somewhere that a
+>> documentation example / KUnit test is preferred over samples/rust (?).
+>>
+>> Just an idea :)
+>>
+>> Best regards
+>>
+>> Dirk
+>>
+>> [1]
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index ae576c842c51..365fc48b7041 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -7035,7 +7035,6 @@ F:	rust/kernel/device_id.rs
+>>  F:	rust/kernel/devres.rs
+>>  F:	rust/kernel/driver.rs
+>>  F:	rust/kernel/platform.rs
+>> -F:	samples/rust/rust_driver_platform.rs
+>>
+>>  DRIVERS FOR OMAP ADAPTIVE VOLTAGE SCALING (AVS)
+>>  M:	Nishanth Menon <nm@ti.com>
+>> diff --git a/rust/kernel/platform.rs b/rust/kernel/platform.rs
+>> index 868cfddb75a2..77aeb6fc2120 100644
+>> --- a/rust/kernel/platform.rs
+>> +++ b/rust/kernel/platform.rs
+>> @@ -142,30 +142,55 @@ macro_rules! module_platform_driver {
+>>  /// # Example
+>>  ///
+>>  ///```
+>> -/// # use kernel::{bindings, c_str, of, platform};
+>> +/// # mod mydriver {
+>> +/// #
+>> +/// # // Get this into the scope of the module to make the
+>> assert_eq!() buildable
+>> +/// # static __DOCTEST_ANCHOR: i32 = core::line!() as i32 - 4;
+>> +/// #
+>> +/// # use kernel::{c_str, of, platform, prelude::*};
+>> +/// #
+>> +/// struct MyDriver {
+>> +///     pdev: platform::Device,
+>> +/// }
+>>  ///
+>> -/// struct MyDriver;
+>> +/// struct Info(u32);
+>>  ///
+>>  /// kernel::of_device_table!(
+>>  ///     OF_TABLE,
+>>  ///     MODULE_OF_TABLE,
+>>  ///     <MyDriver as platform::Driver>::IdInfo,
+>> -///     [
+>> -///         (of::DeviceId::new(c_str!("test,device")), ())
+>> -///     ]
+>> +///     [(of::DeviceId::new(c_str!("test,rust-device")), Info(42))]
+>>  /// );
+>>  ///
+>>  /// impl platform::Driver for MyDriver {
+>> -///     type IdInfo = ();
+>> +///     type IdInfo = Info;
+>>  ///     const OF_ID_TABLE: platform::IdTable<Self::IdInfo> = &OF_TABLE;
+>>  ///
+>> -///     fn probe(
+>> -///         _pdev: &mut platform::Device,
+>> -///         _id_info: Option<&Self::IdInfo>,
+>> -///     ) -> Result<Pin<KBox<Self>>> {
+>> -///         Err(ENODEV)
+>> +///     fn probe(pdev: &mut platform::Device, info:
+>> Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>> {
+>> +///         dev_dbg!(pdev.as_ref(), "Probe Rust Platform driver
+>> sample.\n");
+>> +///
+>> +///         assert_eq!(info.unwrap().0, 42);
+>> +///
+>> +///         let drvdata = KBox::new(Self { pdev: pdev.clone() },
+>> GFP_KERNEL)?;
+>> +///
+>> +///         Ok(drvdata.into())
+>> +///     }
+>> +/// }
+>> +///
+>> +/// impl Drop for MyDriver {
+>> +///     fn drop(&mut self) {
+>> +///         dev_dbg!(self.pdev.as_ref(), "Remove Rust Platform driver
+>> sample.\n");
+>>  ///     }
+>>  /// }
+>> +///
+>> +/// kernel::module_platform_driver! {
+>> +///     type: MyDriver,
+>> +///     name: "rust_driver_platform",
+>> +///     author: "Danilo Krummrich",
+>> +///     description: "Rust Platform driver",
+>> +///     license: "GPL v2",
+>> +/// }
+>> +/// # }
+>>  ///```
+>>  pub trait Driver {
+>>      /// The type holding information about each device id supported
+>> by the driver.
+>> diff --git a/samples/rust/Kconfig b/samples/rust/Kconfig
+>> index 70126b750426..6d468193cdd8 100644
+>> --- a/samples/rust/Kconfig
+>> +++ b/samples/rust/Kconfig
+>> @@ -41,16 +41,6 @@ config SAMPLE_RUST_DRIVER_PCI
+>>
+>>  	  If unsure, say N.
+>>
+>> -config SAMPLE_RUST_DRIVER_PLATFORM
+>> -	tristate "Platform Driver"
+>> -	help
+>> -	  This option builds the Rust Platform driver sample.
+>> -
+>> -	  To compile this as a module, choose M here:
+>> -	  the module will be called rust_driver_platform.
+>> -
+>> -	  If unsure, say N.
+>> -
+>>  config SAMPLE_RUST_HOSTPROGS
+>>  	bool "Host programs"
+>>  	help
+>> diff --git a/samples/rust/Makefile b/samples/rust/Makefile
+>> index 761d13fff018..2f5b6bdb2fa5 100644
+>> --- a/samples/rust/Makefile
+>> +++ b/samples/rust/Makefile
+>> @@ -4,7 +4,6 @@ ccflags-y += -I$(src)				# needed for trace events
+>>  obj-$(CONFIG_SAMPLE_RUST_MINIMAL)		+= rust_minimal.o
+>>  obj-$(CONFIG_SAMPLE_RUST_PRINT)			+= rust_print.o
+>>  obj-$(CONFIG_SAMPLE_RUST_DRIVER_PCI)		+= rust_driver_pci.o
+>> -obj-$(CONFIG_SAMPLE_RUST_DRIVER_PLATFORM)	+= rust_driver_platform.o
+>>
+>>  rust_print-y := rust_print_main.o rust_print_events.o
+>>
+>> diff --git a/samples/rust/rust_driver_platform.rs
+>> b/samples/rust/rust_driver_platform.rs
+>> deleted file mode 100644
+>> index 2f0dbbe69e10..000000000000
+>> --- a/samples/rust/rust_driver_platform.rs
+>> +++ /dev/null
+>> @@ -1,49 +0,0 @@
+>> -// SPDX-License-Identifier: GPL-2.0
+>> -
+>> -//! Rust Platform driver sample.
+>> -
+>> -use kernel::{c_str, of, platform, prelude::*};
+>> -
+>> -struct SampleDriver {
+>> -    pdev: platform::Device,
+>> -}
+>> -
+>> -struct Info(u32);
+>> -
+>> -kernel::of_device_table!(
+>> -    OF_TABLE,
+>> -    MODULE_OF_TABLE,
+>> -    <SampleDriver as platform::Driver>::IdInfo,
+>> -    [(of::DeviceId::new(c_str!("test,rust-device")), Info(42))]
+>> -);
+>> -
+>> -impl platform::Driver for SampleDriver {
+>> -    type IdInfo = Info;
+>> -    const OF_ID_TABLE: platform::IdTable<Self::IdInfo> = &OF_TABLE;
+>> -
+>> -    fn probe(pdev: &mut platform::Device, info:
+>> Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>> {
+>> -        dev_dbg!(pdev.as_ref(), "Probe Rust Platform driver sample.\n");
+>> -
+>> -        if let Some(info) = info {
+>> -            dev_info!(pdev.as_ref(), "Probed with info: '{}'.\n",
+>> info.0);
+>> -        }
+>> -
+>> -        let drvdata = KBox::new(Self { pdev: pdev.clone() },
+>> GFP_KERNEL)?;
+>> -
+>> -        Ok(drvdata.into())
+>> -    }
+>> -}
+>> -
+>> -impl Drop for SampleDriver {
+>> -    fn drop(&mut self) {
+>> -        dev_dbg!(self.pdev.as_ref(), "Remove Rust Platform driver
+>> sample.\n");
+>> -    }
+>> -}
+>> -
+>> -kernel::module_platform_driver! {
+>> -    type: SampleDriver,
+>> -    name: "rust_driver_platform",
+>> -    author: "Danilo Krummrich",
+>> -    description: "Rust Platform driver",
+>> -    license: "GPL v2",
+>> -}
+>>
+
 
