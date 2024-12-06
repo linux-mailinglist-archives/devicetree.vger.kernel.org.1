@@ -1,79 +1,63 @@
-Return-Path: <devicetree+bounces-128061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE11F9E75A7
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:18:13 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED0A69E75CE
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:22:48 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 316E4188AAE1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:21:21 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7006C20E329;
+	Fri,  6 Dec 2024 16:21:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ALqLwO+t"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A714289E64
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:18:12 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEA3F216397;
-	Fri,  6 Dec 2024 16:14:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dfJY1aCk"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD11F216393;
-	Fri,  6 Dec 2024 16:14:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F74720DD79;
+	Fri,  6 Dec 2024 16:21:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733501662; cv=none; b=Dc9nxxlKG7hGeRWF4wEplGXEfGksOTYqzKmwnxMWSjI64jJ+sCMb/Z7hJr5mxw9jR8i9xa8q5zJaK3acp5CZQeMwwUiFv8gyLMVAQNaxK6mNcm1tjXyCar0Jst6Vf53Qz9RfnPgQbvcVoGbt6MAU6Fv1xjQPB64Z9ZUTqV+QiPY=
+	t=1733502070; cv=none; b=noGc8OfVTalrOz3rO3xZgg+2Gvrxmk3SFA84ZXP0w2PHy38t6Wy+KuyYyrxgLlXpHMZaTz3rNql0Fpzjb4goMY6aeLE6EOTfzMheds2GX/7ZAtliEJFj5Z1fnKmMGIyFuMnAIYk71RNhbmG2m/XW8LmzosxldpSlxqXM8g/rNwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733501662; c=relaxed/simple;
-	bh=F1tJu0tNNZn8Kae/PiQYaJbS8f8Vv2Mwc4GURN/CsQg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DgxYAlBQy8uMDo3yewgG10UTcBqomHYHYu1xpDnxZIzhcK0ULEpRw7WAu7THYt+V7nW1qPgjfg8AWLPj+fhoEWUhD+SttEVNkL4b5sfJ0+zN3fz3eWDnaXvy++/yjHR3oRHZcJ4bPgHo+vpPYOVZs5x9Ov43dJWwEzVyDtcKhBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dfJY1aCk; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-aa549d9dffdso322706866b.2;
-        Fri, 06 Dec 2024 08:14:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733501659; x=1734106459; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fXaGALZRpVF00Ah97wy9KL1a0sGXBk3kjKaNXmrcIjI=;
-        b=dfJY1aCkYWfWhBQHCrw6V1PVFFszNW3Ig2B2Iobfieby0adgRlAqTbNUk/xQURkYSJ
-         OTvFpvH5Hu6mOucoLM+32r9Z4sXdZeiAo7hDrioED70V0p8WD30kl4pviYPxCBZ6Tkgn
-         cY6gYVc4Uo53m/niBe2hGSp1Mk5TAQ4R+2cuMEShmG6phtAzPdlAAAm4TeFumHLMhSpu
-         knVNOERYkajB4DFw7RB62rydgY/+N6R1Aju8t2PzItGiA/eBysJwH0FgMVlSefdepOpF
-         gAeEkb99H3uKVBEgzS4LQdM8o+eL3Avq1JzlJjZWDswPA3GTwI23abD24A8WWFUCFMOk
-         6qWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733501659; x=1734106459;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fXaGALZRpVF00Ah97wy9KL1a0sGXBk3kjKaNXmrcIjI=;
-        b=cFO/krQPoFllQJctjhAKj2FQy1J5XJum/xW1QFIgrI5hYQh0pLJPZyf9xMr8R/SJHs
-         j/XJ7HIC4xVXrdKJcnZTmQbEjDDFe2EMkKSE805WcEnyr6wrLwirRZH/jhobTPj3kWud
-         4EMYWQ8P8GNKXjmsPvDW0lc86vkIqi16+yKugzUKmGcOB44Ee1PVr6IU84P13CrIbYaH
-         5fKV/OfXJcGA4huvNRReAx1CF1pwKpzYI+aQAEt+Td8wWChSc2jgctnYEhmN1cGVtn2S
-         czBlbF2t1vGpeascQ/qgcOJqQObWPOdoj3RFfAjWX9hHbRaMTGY4yo+UC/vMGUtvowyG
-         UQEA==
-X-Forwarded-Encrypted: i=1; AJvYcCUs2osG4VJ9T3e85DFnxaF4+EmAdpMcXx9pknLS0M+/A2zyyO7CmFJPtpJ6/w3Vu9lPryJtp5uOyPyZ+E6J2Kp/02k=@vger.kernel.org, AJvYcCVPSoI9DYCM54sH9TKfuv7uZl8X9wDh3HxAi4OtQbBFtt0K9WWo0g21ySdqL40ikn87HKHnj5y69/Ng@vger.kernel.org, AJvYcCX6cytgKqqlFWSyXrQK+Q08tAeGiXmUJU9q5S0gPu88SIcW3C0yO/sBCssm2BMwu9IHVWCSlgt5vPl2dd05@vger.kernel.org
-X-Gm-Message-State: AOJu0YxChkgO3K6cMEW9UAVI6Q7MjQPcaR7pTjv2LFTSVWJRtvUFeepa
-	68jI9kQ/+VXcjWX5P+uEF7RDGAR2u2nQmnhwXi0HdeYgUEWwUH1V
-X-Gm-Gg: ASbGncsFDoPRQYqvM9a0pb2hSotNEJrLn460+KZQ+fxkF5Aiq7cZosjUYS5fE+mxUAs
-	pZC9XMErwLvl+hseE6ecrG/Os40ElKC7N/T5RN/rlYj/s4r6H8JxyluEIptrvUi6onN36fK7NpT
-	I9Ol9S+cBn8MetzAUPIohSKy2m6xr3FwKxH8w9nAqPtfxnLGy+MDvGhlSfHR832ZMqqnrocXvzG
-	XXjxsesHK41V4z5X8HPm8negGZAMLsvw5hM4YHoTGom52BfKd6eLJaJAGkYTLy1UMZq9qeMBR+L
-	Wx0sciKdMMWVh3qB+5wtWRk851+i
-X-Google-Smtp-Source: AGHT+IEBIRjHmYo28RiHnCZp8Gi2PiofN48HDLnGskCNXYlPsQ0Oej4qKEh8fJUXynlKVp/0AGxXGw==
-X-Received: by 2002:a17:907:9508:b0:aa5:f39a:bc99 with SMTP id a640c23a62f3a-aa63a127f80mr256126966b.36.1733501658659;
-        Fri, 06 Dec 2024 08:14:18 -0800 (PST)
-Received: from [192.168.1.107] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa62608d2fbsm258270666b.149.2024.12.06.08.14.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Dec 2024 08:14:18 -0800 (PST)
-Message-ID: <51a87200-e562-409c-af21-2216288beb67@gmail.com>
-Date: Fri, 6 Dec 2024 18:14:16 +0200
+	s=arc-20240116; t=1733502070; c=relaxed/simple;
+	bh=JA9swdKidEphhW5MGht/Hzh1q4Pi43LbfowCrjRYTcQ=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=XVX/za7XvU9/lWD+UQ5cZyQt5mFp6+JZ4tGxG49JFmeYiz2t4B7IdR3PvH9iUb7cJBzPcoaeV4vNYVcBc2bpzG5loNzFYr8+eXN/RPdzGbUezjMI3193/yVL/5WKqo0QurmarSORVKsT481Suz2YyXDiS7D9XAReY75uOVG38l8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ALqLwO+t; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B69c0mp026486;
+	Fri, 6 Dec 2024 16:20:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9rgdpypyMiuZFb/Kzr4lfbY2QURoDj3O7jTtUsLfNq4=; b=ALqLwO+tFzQ8S3N0
+	P5ZuZe7SffahvrYKAIW5KudVet22F7lPk9rJn2ukE50lYTAUeLxKurMBnVfUt7wJ
+	2hCPYqteUnt+kr0HY9JJ2M5WazDSJKJ3L4Xl2OZySmOtLJUme00vzbW64uEiUyAX
+	e47/Re/oZmSHGw6TTAZgYzSC/rsGF5lWJfHeed73TslAkDbpXfvB2EhC5DbvhY3Y
+	Q8AFfhWZAz5oRgYnmopcN54maND7T/RSFrVvIVoLJOl1CDXnKL8XW52MwicW1bx6
+	/sL9BoO8Oo+ZGJfBnpMDEplFqPdzLqD/HhlRptwZYd7R7ojIc77Wv7gsXknExfcq
+	hYfnZQ==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43bxtc92y9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Dec 2024 16:20:48 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B6GKlVI003601
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Dec 2024 16:20:47 GMT
+Received: from [10.253.9.12] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 6 Dec 2024
+ 08:20:42 -0800
+Message-ID: <f54ad0e2-10d7-40ff-872f-d7c92ae8519b@quicinc.com>
+Date: Sat, 7 Dec 2024 00:20:25 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,166 +65,174 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/4] arm64: dts: exynos: Add initial support for
- Samsung Galaxy S20 Series boards (hubble)
+From: Lei Wei <quic_leiwei@quicinc.com>
+Subject: Re: [PATCH net-next v2 3/5] net: pcs: qcom-ipq9574: Add PCS
+ instantiation and phylink operations
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+CC: "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Andrew Lunn
+	<andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
+        <quic_pavir@quicinc.com>, <quic_linchen@quicinc.com>,
+        <quic_luoj@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <bartosz.golaszewski@linaro.org>, <vsmuthu@qti.qualcomm.com>,
+        <john@phrozen.org>, <linux-arm-msm@vger.kernel.org>
+References: <20241204-ipq_pcs_rc1-v2-0-26155f5364a1@quicinc.com>
+ <20241204-ipq_pcs_rc1-v2-3-26155f5364a1@quicinc.com>
+ <Z1B1HuvxsjuMxtt0@shell.armlinux.org.uk>
 Content-Language: en-US
-To: Umer Uddin <umer.uddin@mentallysanemainliners.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
- <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- igor.belwon@mentallysanemainliners.org
-References: <20241206154149.4271-1-umer.uddin@mentallysanemainliners.org>
- <20241206154149.4271-3-umer.uddin@mentallysanemainliners.org>
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <20241206154149.4271-3-umer.uddin@mentallysanemainliners.org>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <Z1B1HuvxsjuMxtt0@shell.armlinux.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: RtqHHX_6FB2oPxCVouKABH1lM6wz7rPc
+X-Proofpoint-ORIG-GUID: RtqHHX_6FB2oPxCVouKABH1lM6wz7rPc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 adultscore=0 lowpriorityscore=0 clxscore=1011 malwarescore=0
+ suspectscore=0 impostorscore=0 phishscore=0 mlxscore=0 bulkscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412060123
 
-On 12/6/24 17:41, Umer Uddin wrote:
-> Add initial support for the Samsung Galaxy S20 Series (hubble) phones.
-> They were launched in 2020, and are based on the Exynos 990 SoC.
-> The devices have multiple RAM configurations,
 
-A very small nit that I've noticed repeatedly in the other 990
-commits as well:
 
-In the future, try to wrap commit message according to Linux coding
-style / submission process - neither too early nor over the limit, so
-that commit messages can look as good as they can:
+On 12/4/2024 11:28 PM, Russell King (Oracle) wrote:
+> On Wed, Dec 04, 2024 at 10:43:55PM +0800, Lei Wei wrote:
+>> +static int ipq_pcs_enable(struct phylink_pcs *pcs)
+>> +{
+>> +	struct ipq_pcs_mii *qpcs_mii = phylink_pcs_to_qpcs_mii(pcs);
+>> +	struct ipq_pcs *qpcs = qpcs_mii->qpcs;
+>> +	int index = qpcs_mii->index;
+>> +	int ret;
+>> +
+>> +	ret = clk_prepare_enable(qpcs_mii->rx_clk);
+>> +	if (ret) {
+>> +		dev_err(qpcs->dev, "Failed to enable MII %d RX clock\n", index);
+>> +		return ret;
+>> +	}
+>> +
+>> +	ret = clk_prepare_enable(qpcs_mii->tx_clk);
+>> +	if (ret) {
+>> +		dev_err(qpcs->dev, "Failed to enable MII %d TX clock\n", index);
+>> +		clk_disable_unprepare(qpcs_mii->rx_clk);
+>> +		return ret;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void ipq_pcs_disable(struct phylink_pcs *pcs)
+>> +{
+>> +	struct ipq_pcs_mii *qpcs_mii = phylink_pcs_to_qpcs_mii(pcs);
+>> +
+>> +	if (__clk_is_enabled(qpcs_mii->rx_clk))
+>> +		clk_disable_unprepare(qpcs_mii->rx_clk);
+>> +
+>> +	if (__clk_is_enabled(qpcs_mii->tx_clk))
+>> +		clk_disable_unprepare(qpcs_mii->tx_clk);
+> 
+> Why do you need the __clk_is_enabled() calls here? Phylink should be
+> calling pcs_enable() once when the PCS when starting to use the PCS,
+> and then pcs_disable() when it stops using it - it won't call
+> pcs_disable() without a preceeding call to pcs_enable().
+> 
+> Are you seeing something different?
+> 
 
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+Yes, understand that phylink won't call pcs_disable() without a 
+preceeding call to pcs_enable(). However, the "clk_prepare_enable" may 
+fail in the pcs_enable() method, so I added the __clk_is_enabled() check 
+in pcs_disable() method. This is because the phylink_major_config() 
+function today does not interpret the return value of phylink_pcs_enable().
 
-For example, in this particular case, you could move "starting from
-8GB" to the previous line, like so:
+>> +static void ipq_pcs_get_state(struct phylink_pcs *pcs,
+>> +			      struct phylink_link_state *state)
+>> +{
+>> +	struct ipq_pcs_mii *qpcs_mii = phylink_pcs_to_qpcs_mii(pcs);
+>> +	struct ipq_pcs *qpcs = qpcs_mii->qpcs;
+>> +	int index = qpcs_mii->index;
+>> +
+>> +	switch (state->interface) {
+>> +	case PHY_INTERFACE_MODE_SGMII:
+>> +	case PHY_INTERFACE_MODE_QSGMII:
+>> +		ipq_pcs_get_state_sgmii(qpcs, index, state);
+>> +		break;
+>> +	default:
+>> +		break;
+> ...
+>> +static int ipq_pcs_config(struct phylink_pcs *pcs,
+>> +			  unsigned int neg_mode,
+>> +			  phy_interface_t interface,
+>> +			  const unsigned long *advertising,
+>> +			  bool permit)
+>> +{
+>> +	struct ipq_pcs_mii *qpcs_mii = phylink_pcs_to_qpcs_mii(pcs);
+>> +	struct ipq_pcs *qpcs = qpcs_mii->qpcs;
+>> +	int index = qpcs_mii->index;
+>> +
+>> +	switch (interface) {
+>> +	case PHY_INTERFACE_MODE_SGMII:
+>> +	case PHY_INTERFACE_MODE_QSGMII:
+>> +		return ipq_pcs_config_sgmii(qpcs, index, neg_mode, interface);
+>> +	default:
+>> +		dev_err(qpcs->dev,
+>> +			"Unsupported interface %s\n", phy_modes(interface));
+>> +		return -EOPNOTSUPP;
+>> +	};
+>> +}
+>> +
+>> +static void ipq_pcs_link_up(struct phylink_pcs *pcs,
+>> +			    unsigned int neg_mode,
+>> +			    phy_interface_t interface,
+>> +			    int speed, int duplex)
+>> +{
+>> +	struct ipq_pcs_mii *qpcs_mii = phylink_pcs_to_qpcs_mii(pcs);
+>> +	struct ipq_pcs *qpcs = qpcs_mii->qpcs;
+>> +	int index = qpcs_mii->index;
+>> +	int ret;
+>> +
+>> +	switch (interface) {
+>> +	case PHY_INTERFACE_MODE_SGMII:
+>> +	case PHY_INTERFACE_MODE_QSGMII:
+>> +		ret = ipq_pcs_link_up_config_sgmii(qpcs, index,
+>> +						   neg_mode, speed);
+>> +		break;
+>> +	default:
+>> +		dev_err(qpcs->dev,
+>> +			"Unsupported interface %s\n", phy_modes(interface));
+>> +		return;
+>> +	}
+> 
+> So you only support SGMII and QSGMII. Rather than checking this in every
+> method implementation, instead provide a .pcs_validate method that
+> returns an error for unsupported interfaces please.
+> 
 
-...
-They were launched in 2020, and are based on the Exynos 990 SoC.
-The devices have multiple RAM configurations, starting from 8GB
-going all the way up to 16GB For the S20 Ultra devices.
+Yes, I can add the pcs_validate() method to validate the link 
+configurations. This will catch invalid interface mode during the PCS 
+initialization time, earlier than the pcs_config and pcs_link_up contexts.
 
-Otherwise, it looks good to me.
+But after of the PCS init, if at a later point the PHY interface mode 
+changes, it seems phylink today is not calling the pcs_validate() op to 
+validate the changed new interface mode at the time of 
+"phylink_resolve". (Hope my understanding is correct).
+So, In the pcs ops methods, I will keep the switch case to check and 
+handle the unsupported interface modes.
 
-Best regards, Ivo.
-
-> starting from 8GB going all the way up to 16GB for the S20 Ultra devices.
->
-> This device tree adds support for the following:
->
-> - SimpleFB
-> - 8GB RAM (Any more will be mapped in device trees)
-> - Buttons
->
-> Signed-off-by: Umer Uddin <umer.uddin@mentallysanemainliners.org>
-> ---
->  .../boot/dts/exynos/exynos990-x1s-common.dtsi | 98 +++++++++++++++++++
->  1 file changed, 98 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/exynos/exynos990-x1s-common.dtsi
->
-> diff --git a/arch/arm64/boot/dts/exynos/exynos990-x1s-common.dtsi b/arch/arm64/boot/dts/exynos/exynos990-x1s-common.dtsi
-> new file mode 100644
-> index 000000000..55fa8e9e0
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/exynos/exynos990-x1s-common.dtsi
-> @@ -0,0 +1,98 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
-> +/*
-> + * Samsung Galaxy S20 Series device tree source
-> + *
-> + * Copyright (c) 2024, Umer Uddin <umer.uddin@mentallysanemainliners.org>
-> + */
-> +
-> +/dts-v1/;
-> +#include "exynos990.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		framebuffer0: framebuffer@f1000000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0xf1000000 0 (1440 * 3200 * 4)>;
-> +			width = <1440>;
-> +			height = <3200>;
-> +			stride = <(1440 * 4)>;
-> +			format = "a8r8g8b8";
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		cont_splash_mem: framebuffer@f1000000 {
-> +			reg = <0 0xf1000000 0 0x1194000>;
-> +			no-map;
-> +		};
-> +
-> +		abox_reserved: audio@f7fb0000 {
-> +			reg = <0 0xf7fb0000 0 0x2a50000>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-0 = <&key_power &key_voldown &key_volup>;
-> +		pinctrl-names = "default";
-> +
-> +		power-key {
-> +			label = "Power";
-> +			linux,code = <KEY_POWER>;
-> +			gpios = <&gpa2 4 GPIO_ACTIVE_LOW>;
-> +			wakeup-source;
-> +		};
-> +
-> +		voldown-key {
-> +			label = "Volume Down";
-> +			linux,code = <KEY_VOLUMEDOWN>;
-> +			gpios = <&gpa0 4 GPIO_ACTIVE_LOW>;
-> +		};
-> +
-> +		volup-key {
-> +			label = "Volume Up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&gpa0 3 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +};
-> +
-> +&oscclk {
-> +	clock-frequency = <26000000>;
-> +};
-> +
-> +&pinctrl_alive {
-> +	key_power: key-power-pins {
-> +		samsung,pins = "gpa2-4";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> +		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-> +	};
-> +
-> +	key_voldown: key-voldown-pins {
-> +		samsung,pins = "gpa0-4";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> +		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-> +	};
-> +
-> +	key_volup: key-volup-pins {
-> +		samsung,pins = "gpa0-3";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> +		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
-> +	};
-> +};
+> Thanks.
+> 
 
 
