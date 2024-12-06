@@ -1,207 +1,132 @@
-Return-Path: <devicetree+bounces-128116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90BBE9E77A3
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 18:44:33 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A43C9E77A8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 18:45:10 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1694280C24
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:44:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4411416C466
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:45:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC0092206B4;
-	Fri,  6 Dec 2024 17:44:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A62D61FD7AF;
+	Fri,  6 Dec 2024 17:45:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="sI/F+gQO"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="f6J3Ene0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2076.outbound.protection.outlook.com [40.107.21.76])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2BE2206AA;
-	Fri,  6 Dec 2024 17:44:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.76
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733507060; cv=fail; b=n3QT+I8DZQ7ynb6tMoEWoqBoGoyDyWlaQ6Pq7tF0tvie3dj3yste9unT0imq+zfiRr58q3sOGvGcOLD+ERZe5f15i8iZbx+iT9TWhF9h48UTai3GSxg6PvxW2YkFF4WMIK+b+NDlwhlF8WcLsaJw+XJozt82dgdYp7A5EKZ6dT8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733507060; c=relaxed/simple;
-	bh=zbVUNF9gLwzsSanJbSJ/LeYvrzfVRzGogL+Fc9mo1UY=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=fBWAb/YLFeQ/hMnlNJB4dLqYetu7Zw0JS25BFc91oIe2oDuKGL2VmOODr1VoH8azycGcaYDVhKam5EE+3sIRfssxaYMvuP9rFpKqYcwsTDRNB+dkNjqA8qjnY+0LvPmL815McD96tL5NZv9TFY+NlfvKsXk/4nrLxKTl+Nm7ZPY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=sI/F+gQO; arc=fail smtp.client-ip=40.107.21.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OKanBxTRN4X6J+WMTlZQ0A+EKoJ0ozYLotDziq+OzEHS0tbZAAXJM3MWZ/X5F+FbomIOUJfS1Fx3tTq0f9rikBzXhYyr/zQoHBO+gcIFBg4XFn2tTGLUPl0exbD5X7e7PFC84fSMHT1pfWscxXg8JGhpoCoUSmGH4xrDm6HFQehePXWQWdTd5s6ydR9RK+Ot65ASEbCbbMKpx4VGwtcQJtCBPCY4cD+gWYz6fooCYapp8CAbyvNN1zemSXqeiGuqa7dWhB4uq90wnnrN49y8c50WFNNkO/mABQbxHkcfPBsrlvqGxvg1DzWb4wg3pZPs6bZOgU5a74fnhTKouWxXPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zbVUNF9gLwzsSanJbSJ/LeYvrzfVRzGogL+Fc9mo1UY=;
- b=U3RGAEUNGdVcgwJqOCGo7Tcf3sJZ2Z5WjVT/+Y6dk/89q6O0Mb8YqFEint1j8y97+CDtzVNFtglzP6Peb9BjB36Ka6xEpJjXLusvTqzwZMXmzlTKEt4qDCUJ+CXkYfumt6yhHTK6pQEvab2wed1ffw9gkIkra8iSeT+6FPmjLicMaFKlJwGXCxQ1RNs3weDQ1Ap68CJ6WRiBJTI5QEK1O6txatkXBICS6setwLpRvce6NgNfdFXpW823MukU8DB6vFs6yJ7mPfabkZkJO9XFW3Kx9/t6v0Rt9wmWasdm9hDzkpFLvSL54yFVWy6TBlJGXaO1tJ2rz6A45qE9i6236A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zbVUNF9gLwzsSanJbSJ/LeYvrzfVRzGogL+Fc9mo1UY=;
- b=sI/F+gQOUk4ysI4pIvW1av/gyr6UgA99QZVHfkijkPcXzIzbVl6wl/Y3tHqk41LQT5WW7vs3RVY38pCERdQAaqPk1Z8uP+je95O9Ve8eQANJEMFUWJKaJELCYPFD8zVyqduIGcTWYi6IuEl2v0/GW3ojbathC0LVCf9nfg3whuNncTMnOs7SWRLv0P/+yQ2MmAsdMrYj3em8D80QVx+8Vdv8OmDv0fXvFONx5y+Lo5X00BItUzIdzIl66NaMZkytGdvjL1INJ4nLMic8jzCEviL/woTx02xn9xS8ctInFhJI0J3BK+Ht0ReEOEDjTkPHgGiXEDqeardiVEyQYzwyKw==
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
- by VI0PR10MB8696.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:800:213::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.8; Fri, 6 Dec
- 2024 17:44:15 +0000
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::baa6:3ada:fbe6:98f4]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::baa6:3ada:fbe6:98f4%6]) with mapi id 15.20.8251.008; Fri, 6 Dec 2024
- 17:44:15 +0000
-From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
-To: "conor@kernel.org" <conor@kernel.org>
-CC: "jingoohan1@gmail.com" <jingoohan1@gmail.com>, "dmurphy@ti.com"
-	<dmurphy@ti.com>, "lee@kernel.org" <lee@kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "robh@kernel.org"
-	<robh@kernel.org>, "pavel@ucw.cz" <pavel@ucw.cz>, "danielt@kernel.org"
-	<danielt@kernel.org>, "linux-leds@vger.kernel.org"
-	<linux-leds@vger.kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "afd@ti.com" <afd@ti.com>
-Subject: Re: [PATCH 1/2] dt-bindings: backlight: Convert LP8860 into YAML
- format adding LP886x
-Thread-Topic: [PATCH 1/2] dt-bindings: backlight: Convert LP8860 into YAML
- format adding LP886x
-Thread-Index: AQHbSAGBEMaUwfNdP0eL2sDtSNwXIbLZdIYAgAAIYYA=
-Date: Fri, 6 Dec 2024 17:44:15 +0000
-Message-ID: <bea002a5838181ad5d8e1588643110ecb7c9674d.camel@siemens.com>
-References: <20241206170717.1090206-1-alexander.sverdlin@siemens.com>
-	 <20241206170717.1090206-2-alexander.sverdlin@siemens.com>
-	 <20241206-brim-talcum-f5e8c504c572@spud>
-In-Reply-To: <20241206-brim-talcum-f5e8c504c572@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|VI0PR10MB8696:EE_
-x-ms-office365-filtering-correlation-id: 54228108-569b-44a7-e3cf-08dd161d9a0c
-x-ms-exchange-atpmessageproperties: SA
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?RXFqTDk3TWVVNDdCV1hobDlNMVhsWlE1R1l1ZzZLNExTcFBuRzFobFZuTEV0?=
- =?utf-8?B?YXNuWnYxTXhhMW56bGVKdDBjOXlxZTBKVzBwMWRBdEl4MGVMWTRLWis4Wmlx?=
- =?utf-8?B?QUp1NHRmMVFUS2NldmkwdXQ4VlN2TldJWVNnbGhYNW9sVG9FaTZMckUyYmF0?=
- =?utf-8?B?ejAxM2NhTmxUSzdFVWNxQm5GYU41OFhHVFowSDJlWWp3b2Y1bWhTVUowOHhm?=
- =?utf-8?B?SERnbGNHMjY5NkM0Y0F6YXNHdjRiSGZGQ3ViNW9aMjdYcjJRa3ZUaGlDQitS?=
- =?utf-8?B?ZHl5L0xvOFVyekhNQkhlR2FDSjhaSlJUZ3FXRWhUSEJJallBZWVCVXltT1lr?=
- =?utf-8?B?Y1VSQmdkUWNIU29sMjR6Z2tTcGFxbWhKWGpVeXljWEpTaDhyenRsa25aVTBS?=
- =?utf-8?B?UGIxS29jakVkZHludG1yaDd1TzVBeExxOUlhOUVudGs0cFVjcERZck1jdlJX?=
- =?utf-8?B?cUZORTZlaHdEc2Nvcit2cXY2dllhdDVGOGR6Nkw2c1Q0VE5iSHdwWGYzbWpN?=
- =?utf-8?B?akhjVlFyUFhXQW1iUlFWY1pHVWo1QnVLOG9mR2Z0Vys0VXhrUlk5K3JrL2Mv?=
- =?utf-8?B?ay9wODRXazlnNnFhM1JMd0hZbGQ2NW8yTllGazRkOC80OExPWmEyYkxkZnlK?=
- =?utf-8?B?SmcwSVFrV1gvbWxueCtEc2tIcWpNMXlyRlRiT2RCWTB3VCswM2ZTdElFcTZ0?=
- =?utf-8?B?MG9jZExBTDV3SnhGd3RIbEhVU0ZrbmlVejYvSmFnQkFvUmtYNmRNdTkxQ1Iy?=
- =?utf-8?B?ZU1Mc1RlNk5GODdHVlhxci9CcnBpaWYyN1dRcnpUUDFWd1VWL2dRYXNXSjBK?=
- =?utf-8?B?dmhvR2NxeHU2TDVjRHlEdW44d09MSHZ6elJOZ1VzcUQvMVUwREFHS2M5OFkw?=
- =?utf-8?B?U1NucHpMcmZ2cXB0ZHFMcXJPTFZYVEpUMGpPdmNJN2hlaUxCeUZnYk1TWTVP?=
- =?utf-8?B?R2o4MnRrOWJhT2tXQkVnKzZ4bEpQQTdEYVgycWhqajlnc0ZuZExkMU5YQVlK?=
- =?utf-8?B?aiszMURVbnZkR0NBR0ZjRTU2SWVwZkt4RU9udWFxaHFBQUsrSk5aMEE3VEp3?=
- =?utf-8?B?ZkNTTWc2VUlnOFRmblhpV3JYcmN3Z094RHFrU3J4M2t3RThQcXdUVXhjK2hR?=
- =?utf-8?B?TWNqaFN0a2NGOXk0UFU5Mys5SHBOMWRUVjhZK1NlREh2cVp3eVlWeDNIZ1pG?=
- =?utf-8?B?QVNrSkFWVDhBclJvdkpLaUF1a243TWQrMHg3ckxNU0QxRS91TEVTQ2E4VXBm?=
- =?utf-8?B?TUJWbUpWUE1ZM2JpMTlkTy95eDlxdVl2OWpqNWpKTUhZSHlHM2FJUjRWdnor?=
- =?utf-8?B?M2Y5ZkY2SGg3R3dtSUZHQ1Q4NzFod0xZTitNK0Ixam1yakpPdU01Q2J0V2xU?=
- =?utf-8?B?dU9qRmtBWWxBT2FsNy9yY3BGWUVPU3k0S1JmT0p2ZnBOVFlCMHBYQmNaT25v?=
- =?utf-8?B?cUVpTE1kcmg4cC90aWM2dW92RFNyNk9GYXQvWU0za3VXR1l2T3FPbyt3SEd3?=
- =?utf-8?B?UzIwc0xKNHdZUEpLU1BDSkUyM0haOVhKOVJnUmIvcjBJUU9Pa095blRYT1RP?=
- =?utf-8?B?bzBIbDFqb0N0dkNtd3VMenB0SXhtWlRBaEVlQVRFTE5pUkZhMlZoTkZtNlpt?=
- =?utf-8?B?Rm9uaUFyS29FaEFRYytyT2QrUklEbGRGOVR5SmdMVCt6LzYzUEFBWGNXdWlP?=
- =?utf-8?B?UG9VSEg5b3ExTlZONDRUK0dYcmhyd2dsMGtmZnFvYVVDMXdmc21EdmxnV0tu?=
- =?utf-8?B?RUcrQzhwTkVqbnRaQVB6TU9zeVdqSlo2bXBKUEp0d0tobWt2VGhHZWFIUnEw?=
- =?utf-8?Q?l+wQAynPGUOK8PiFiyXiDp9fEkihh5TvTnIyg=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?Y2UrT1ZNWGU5Vms0dDgxTE8zZ2hGejhydTIyNEE4Vm03aHJ0YjhjZTdFWGhD?=
- =?utf-8?B?S3R4MVByZ1hrK3RneU9qOCsyUGxqc1BobGFzb0w3bDBKRXdnak1vRDdDcTZR?=
- =?utf-8?B?cW15cy9QK1lnVjhyc29ickxHRi9NQjZGWjN5Zjk4dlQ2WEd3eUhTS3BoeGNF?=
- =?utf-8?B?TWR6cFV5bUlobVJianYzRUU1S1RIMlhBaEpsaHMzU3RPUy9iY0s1aTRZTXZ2?=
- =?utf-8?B?Y2YxTERaaEg3bGVnUEhjRVphcFdnNnF1ZlBSeHVlN2w3eTBJbmpJU1NvMXU2?=
- =?utf-8?B?UVFqNjEvR2cxZ2g0dnJ2empyM2trekNvVFVJOGlwRmZzMFRvTHovUlg4WmdH?=
- =?utf-8?B?ZTV2Y1lTRGNGUjZkQUV5ZDBleC9nS2lqR2J2YmdLL1ZLWXQ1dzh6Zmo1aVFy?=
- =?utf-8?B?TlBwVnVpcmZOSktCc0xOY2Y3Tm0rSkUyQzg3NHZJSkprMmxKbDhpbHlqZW5Z?=
- =?utf-8?B?b3RXelVTQ0FtWXVvVld0TExVaXo5dGlMczlVTFhta3hxNEZST0gyemhvUHRX?=
- =?utf-8?B?dDR4VVdUalMwQ0tJOHYvcytnaXptV1IxRlJuR3NkRXNsTGhnak1aOG1vUXg2?=
- =?utf-8?B?UVpwMytTNzNRNUJhVkZKcFRVK3lrYUVOL3VVeDhSajFNdE4wWVRDQjNVZFAy?=
- =?utf-8?B?SStWS3Bncjd2S1dvVDJiNDJhTnRnSVBBUVRxN3BpZ2ltWFZGZDk1c2tjanZv?=
- =?utf-8?B?T2VlcHlIanNHRndJT0RDUHRLREZQcDhjRVBaUFArdUxYUVZ5bUk1enZQczha?=
- =?utf-8?B?QzlEQTJDNFVZOU0wWFdOT3Q4bXhNSGRIOStwSGdxSm00QUx3Vkw5RXVOcXFR?=
- =?utf-8?B?OWJHRlhaeis1bGVPa3RyN05ieWV1STNnazhtZkorYXdYNjR1Z0tlc3pVZTgx?=
- =?utf-8?B?b2Z1RE1zaEJHOUt4a1krL2wvaW5WdXNabVRKMTA2MXhMRXpFS0NCT3pEU1hO?=
- =?utf-8?B?MzBVU1Boc0JyVDc4MWd4Z0w3TnNsWDR0cDliV0JvYVFKQTluR1JoMWxUOGU1?=
- =?utf-8?B?eWQzTTE5NWc2L2tkL1F3RUFFNExmRWhlUWlFdjNCNllwRGVSbnoyOUo3WVRV?=
- =?utf-8?B?Uy8xcXA4MFhGSk54aTh4S2RTbUpyMlZEM2VleUVRdHIvM0xZaVMraTZaYVN4?=
- =?utf-8?B?N1JleWQwRmxNTjUyZWVYSnBVQVpMZ1BBc1kvaUgxTVF0Sk9OYnc4ZFhHaENF?=
- =?utf-8?B?TEVlRmZ0QVIraStsc2NDajlYSzhFWUF0ZmFneGQyZXA0NUJMWkpyaFNrRjQ2?=
- =?utf-8?B?Z3JneHJibVp4T0NKa0hCd3hmYUd3clJGMlVhM0Rvb2kzY0QyZVROUWcwU3d4?=
- =?utf-8?B?V1NvVkZQcmRjZjhMZE9yeTloN3drbEhaeHN5MWV3SkdtY0grekVzWU1tRHc1?=
- =?utf-8?B?ZWxDZUZjVkRKZ1IyMm1Ca1NNdWJTSjdyQjlZcDlhU2RXT0kxSFlPZndQREwx?=
- =?utf-8?B?U2xiSFh6ZEdiUnRjNFN0c05HNEJPRXlFa1d1TUFvNzZISEs2ZVVCTGJpejVR?=
- =?utf-8?B?RUEyODVZcDNSMGUyM0hobUhsOVVtVjRtL1M3dERsSmRMbnU5eDJLM0hVS1dj?=
- =?utf-8?B?Ymp5dnNPYzFSd096VjYrU0hzSS9LSWpUYXFSclFJb1pQUFZnZUZQcFlyM1hY?=
- =?utf-8?B?Ukw5eWR4Ymx0VjJyTDNadEdHVDZVVEorY2FlYmtFY1FPMDZvKzB3NVhtaWtk?=
- =?utf-8?B?Z3A0UDNmM2I0U3ZJTCt3YnZjaG5lc0lWNVlkam9xY0xmZFIxdEZLWmx3RnNO?=
- =?utf-8?B?ZEg0WUtQSkY5bFZhVUFQbDA4U2JkYVZGd1Rxb1ZsZ0ozTWQ5S3creS9BTi9J?=
- =?utf-8?B?c1hGQlowMDF4U2IvUDBVbWkzNDZ4dTAxb3hYVkVIT2FRNFRmQ1Azd3JKZFQr?=
- =?utf-8?B?UStKZGZSazdsd3NPTTRPZnlYWGFPU0xoSkNtdE15N3pRaGpINTNGQUlrUFBq?=
- =?utf-8?B?Ung0WDJSRzBkRXp1Q2NnVnhOSFl2WE90OTE4Ty82UENydHdEdWxpbXYxajUv?=
- =?utf-8?B?cUVrMURtWnFnZjl5MGpCcmRJbjNZUmluR0NWV3BybmVtN29LNGFKUWIwVUFy?=
- =?utf-8?B?VGdQdDhRbjYrL2pWWHpCZlZwSk93d3VXd210aDRVRnRIUG1LaFUreVdqN0My?=
- =?utf-8?B?anhRWjBmTUNTS3pLK1J1U1gwL1lqTldXcXdPYXJVeWl5WTFBbEc0WkdDVGZ3?=
- =?utf-8?Q?4kKMmtMWom4E3iIJwXQHv+Y=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <43477A2B37CD354D925285D516B0C4C7@EURPRD10.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 493501F3D35;
+	Fri,  6 Dec 2024 17:45:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733507106; cv=none; b=blC9Cf1KbK6s2WrMXMSa1OQYg17oo5AwsWUE5rfvKHe0wTlRF8PMU03l2JnsN8K+3etpb8cVgz09uzZQCV48XQCyhIKW0p9+Zi6MDJCMqTA77mA1G3FfSBXQtPoYAgeyJjKTFH3D9t1pMErogfQLC1lQZHIDIwCGDSToSl9E5Ec=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733507106; c=relaxed/simple;
+	bh=vlNGMkQtRJVFoqeWyR5VVwsR/4xTRvRmeXtD9OqxIFc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YnIVOiY2w06crmO2FnqfLcSQGrZhS6s1dNxvun2j4YyLTWd4Rd6XQcw9kefC+FA9f36hMQ5q+tqKLPBqndX5oABWuXO4zV9JPreOwtbFtvc8O8d8XY1QWdYBlZ1ykUKMUAckIQXPedfgMlT3BXFFMvmcV394m9mJDS+0LMExiGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=f6J3Ene0; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733507105; x=1765043105;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vlNGMkQtRJVFoqeWyR5VVwsR/4xTRvRmeXtD9OqxIFc=;
+  b=f6J3Ene0XOhgd1UbxGHztvWS0haF8C2/tUA65Q2g797QHx1CEa+0K8yG
+   3aDUO2UPhaL77FdmdWg3tTuLIkgIRlO48kB0gcjhrqwB9sSJqxteWUcfZ
+   q5oRFBojO4MijPV7vU6gkraCzUUu+BwkfPzp0kTvlKGTBAo8ebynOzLmm
+   eEIm5WM+bjWrsm5XDnSRjVKGTt4z3OQ0E1KJa24bmgLBqkfqLpcZfKXf8
+   /V1xuXp5PQk5LPc+KXCMMpqTbS07QYgYarcl2s6TXDfMkxMZj67FmDQ7i
+   zQBiwhvv0GKfWFZnVD5qPoFBCEU58zW65hCHO5zZrTdnrKLfzXStmT7s8
+   A==;
+X-CSE-ConnectionGUID: OCGKikhiQEGF5L4qMngljQ==
+X-CSE-MsgGUID: sx2NcFAPRXOEpdUMVcM1bg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11278"; a="33999112"
+X-IronPort-AV: E=Sophos;i="6.12,213,1728975600"; 
+   d="scan'208";a="33999112"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2024 09:45:04 -0800
+X-CSE-ConnectionGUID: +7LaT3YuQJqTnzuTU58faA==
+X-CSE-MsgGUID: YHtzXtNUQxC1JwVHbSM5Sw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,213,1728975600"; 
+   d="scan'208";a="95272272"
+Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 06 Dec 2024 09:44:59 -0800
+Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tJcNt-00028N-0z;
+	Fri, 06 Dec 2024 17:44:57 +0000
+Date: Sat, 7 Dec 2024 01:44:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Frank Li <Frank.Li@nxp.com>, Hou Zhiqiang <Zhiqiang.Hou@nxp.com>,
+	Bjorn Helgaas <helgaas@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?unknown-8bit?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
+	Frank <Li@nxp.com>,
+	"open list:PCI DRIVER FOR NXP LAYERSCAPE GEN4 CONTROLLER" <linux-pci@vger.kernel.org>,
+	"moderated list:PCI DRIVER FOR NXP LAYERSCAPE GEN4 CONTROLLER" <linux-arm-kernel@lists.infradead.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: PCI: mobiveil: convert
+ mobiveil-pcie.txt to yaml format
+Message-ID: <202412070127.BkBJhnZ4-lkp@intel.com>
+References: <20241205201423.3430862-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 54228108-569b-44a7-e3cf-08dd161d9a0c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Dec 2024 17:44:15.0622
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: UrxE0vi8zX6Q6UA20E5sQVcTTk28cvgVQrtgiktYvM5QycQtgI/B77miHP2+9o5QmEwjHp/fy14oQIqtXJDjNB5iGBQ6VE1LfRJF9UIfEuw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR10MB8696
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241205201423.3430862-1-Frank.Li@nxp.com>
 
-SGVsbG8gQ29ub3IsDQoNCk9uIEZyaSwgMjAyNC0xMi0wNiBhdCAxNzoxNCArMDAwMCwgQ29ub3Ig
-RG9vbGV5IHdyb3RlOg0KPiA+IEFkZCBUZXhhcyBJbnN0cnVtZW50cycgTFA4ODY0L0xQODg2NiBi
-aW5kaW5ncyBpbnRvIExQODg2MCBjb252ZXJ0aW5nIHRoZW0NCj4gPiBpbnRvIFlBTUwgZm9ybWF0
-IHNpbXVsdGFuZW91c2x5LiBXaGlsZSBoZXJlLCBkcm9wIHRoZSBpbmRleCBvZiB0aGUgImxlZCIN
-Cj4gPiBzdWJub2RlLCB0aGlzIG9uZSBpcyBuZWl0aGVyIHVzZWQgbm9yIG1hbmRhdGVkIGJ5IHRo
-ZSBkcml2ZXJzLiBBbGwgdGhlDQo+ID4gKi1jZWxscyBwcm9wZXJ0aWVzIGFyZSB0aGVyZWZvcmUg
-bm90IHJlcXVpcmVkLg0KPiANCj4gQXJlIHlvdSBzdXJlIHRoaXMgaXMgYSBjb3JyZWN0IHRoaW5n
-IHRvIGRvPyBUaGUgbHA4ODYwLXExIHByb2R1Y3QgbGluaw0KPiBjaXRlcyBpdCBhcyBiZWluZyBh
-IDQtY2hhbm5lbCBkZXZpY2UuIEV2ZW4gaWYgdGhlIGtlcm5lbCBvbmx5IGV2ZXINCj4gc3VwcG9y
-dHMgaXQgYXMgYSBzaW5nbGUtY2hhbm5lbCBkZXZpY2UsIHRoZSBiaW5kaW5nIHNob3VsZCByZWZs
-ZWN0IHdoYXQNCj4gaXQgaXMgY2FwYWJsZSBvZiBkb2luZy4NCg0KbXkgdW5kZXJzdGFuZGluZyBp
-czoNCi0gVGhlIHdob2xlIGZhbWlseSBpcyBtdWx0aS1jaGFubmVsICg0IG9yIDYpLCBidXQgdGhp
-cyBpcyByYXRoZXIgdXNlZCBpbnRlcm5hbGx5DQppbiB0aGUgY2hpcCBmb3IgcG93ZXIgYmFsYW5j
-aW5nOyBzZXBhcmF0ZSBkaWFnbm9zdGljcyBpcyBwcm92aWRlZC4gRnJvbSB0aGUgdXNlcg0KcGVy
-c3BlY3RpdmUgb25lIGhhcyBvbmx5IG9uZSBicmlnaHRuZXNzIHBlciBjaGlwLg0KLSBUaGUgbHA4
-ODYwIGRyaXZlciBkaWRuJ3QgYXR0ZW1wdCB0byBkbyBhbnl0aGluZyB3aXRoIHRoZSBpbmRleC4N
-Cg0KSSdtIGdsYWQgQW5kcmV3IERhdmlzIGhhZCBhIHRpbWUgZm9yIGEgcHJlLXB1YmxpYyByZXZp
-ZXcgb2YgdGhlIG5ldyBiaW5kaW5nDQphbmQgYWN0dWFsbHkgc3VnZ2VzdGVkIHRoaXMgc2ltcGxp
-ZmljYXRpb24uDQoNCi0tIA0KQWxleGFuZGVyIFN2ZXJkbGluDQpTaWVtZW5zIEFHDQp3d3cuc2ll
-bWVucy5jb20NCg==
+Hi Frank,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on pci/next]
+[also build test WARNING on pci/for-linus linus/master v6.13-rc1 next-20241206]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Frank-Li/dt-bindings-PCI-mobiveil-convert-mobiveil-pcie-txt-to-yaml-format/20241206-041830
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
+patch link:    https://lore.kernel.org/r/20241205201423.3430862-1-Frank.Li%40nxp.com
+patch subject: [PATCH 1/1] dt-bindings: PCI: mobiveil: convert mobiveil-pcie.txt to yaml format
+reproduce: (https://download.01.org/0day-ci/archive/20241207/202412070127.BkBJhnZ4-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412070127.BkBJhnZ4-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   Warning: Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml references a file that doesn't exist: Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
+   Warning: Documentation/hwmon/g762.rst references a file that doesn't exist: Documentation/devicetree/bindings/hwmon/g762.txt
+   Warning: Documentation/hwmon/isl28022.rst references a file that doesn't exist: Documentation/devicetree/bindings/hwmon/isl,isl28022.yaml
+   Warning: Documentation/translations/ja_JP/SubmittingPatches references a file that doesn't exist: linux-2.6.12-vanilla/Documentation/dontdiff
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/pci/mobiveil-pcie.txt
+>> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/pci/layerscape-pcie-gen4.txt
+   Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/misc/fsl,qoriq-mc.txt
+   Warning: lib/Kconfig.debug references a file that doesn't exist: Documentation/dev-tools/fault-injection/fault-injection.rst
+   Using alabaster theme
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
