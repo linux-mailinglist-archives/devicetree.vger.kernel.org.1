@@ -1,128 +1,176 @@
-Return-Path: <devicetree+bounces-128075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52CE19E7617
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:34:29 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F3C89E762F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 17:36:49 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E62A28AD68
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:34:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05BE716DA70
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 16:35:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A396E21B18A;
-	Fri,  6 Dec 2024 16:32:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD39E206275;
+	Fri,  6 Dec 2024 16:33:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="APkY/E2T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EGGe2du/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CFBB1FFC76;
-	Fri,  6 Dec 2024 16:31:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98587819;
+	Fri,  6 Dec 2024 16:33:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733502720; cv=none; b=BrVN3wr2gvJhO3r1R3R78lQy60RujVNnYiodc4hjbRlXuz5gZskp+K1r1OLRA2aI2T1dFq5YXQzlF+VLQvarozIbmlUOQ0SDEdR/4otGG0ivIj9tk3mR20H81xWJsMeDNJzOCiO24BMDGfBbRZ91I8JqHnhI2tc3UjK35dBU37Q=
+	t=1733502822; cv=none; b=YECPcu0IfLcRQcb+9cowtnxq1pr/v3OQeuIlN+/nT/qDIMr1OnBXWD6B+mOoqFzghwpJW0QL1kOlsjX1QTo8B8iRXnQsSVctQuGsfdQbx+1X5WSgtLm3MPZ5tn9YQGBp4o+niyUhkzPtkcJ1SFFUzI+pJ3ZAbdaBlBPC+UZ9uDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733502720; c=relaxed/simple;
-	bh=tGxxB+XljXcuE0hRcX2Nqt/vxo0R6CzixL3bi2d2wEE=;
+	s=arc-20240116; t=1733502822; c=relaxed/simple;
+	bh=9y1+vsY+ID1gTNCrI46KXa9fHSZpo0s8rUUbGfZ3V9s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ISANPAp/fE2VINM9im2PHOlgBHGyhCy8XrfgOmVKHmALM0mlwyym+zWwNiI5UwDoG1rvvAIGkk5X9WG50KuZeY0rbbaH4T4FCV0U4pzn5FHImyQrZwJUI8RZ7qySrjqqDtc7gB+RUbS+VP1+NgONlzjQd6ngbYCjCLHZ4mB4/GI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=APkY/E2T; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=o1vL76URTK41WeEd0opGeSEdVV53xsw2rWEY8OQ/ulA=; b=APkY/E2TP7kW+DlfgfAUkVH/tJ
-	pDde5UjrykoRcsopffzWphPbr7BGeBcyrTEolWm1OPh+UB58yGKlpPpgdEcjZ41b1aE01UK8tc9Ee
-	jgVNP3Zyi+wkChgoKb4a2kXrj3S/JKuvVwxsw3xOc6elrAflggMJQYRbIasxkIY+bQFLWyNigXJ4H
-	j4bmxWn9DCnm3heXF60lcdi3QG6WsyMne2ie/Uw92po4PeVO9nhFQLRDWerbYGsvxOZ/s4hWnoi95
-	AGPCJtMiiD8bUAGou6kVvtlwaxVFdQnP9Tq21vC9HHgrfCRluPlpGMMhUMhbTijGOPFwwl/BMupTj
-	1bwuSKcw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:37298)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tJbF6-0006Uj-1E;
-	Fri, 06 Dec 2024 16:31:48 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tJbF4-0007g4-3D;
-	Fri, 06 Dec 2024 16:31:47 +0000
-Date: Fri, 6 Dec 2024 16:31:46 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Lei Wei <quic_leiwei@quicinc.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q8ygnk87fsRDrtLqVvOQLjOGl2/IN1+mlhvLvWVzkt/3GDLggOmBcBKxM+2o2W0WphSBTC5tLMP4xPMEa6Eax1ajY5Rg0+IzjSvRfe35IzmJFtC+a6DuMQIPCLZqd8B0Kk/4bPsxzSsWjpAsWdmFTk5FWuyv6UqOtGY+CGKIL9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EGGe2du/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B32EC4CED1;
+	Fri,  6 Dec 2024 16:33:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733502822;
+	bh=9y1+vsY+ID1gTNCrI46KXa9fHSZpo0s8rUUbGfZ3V9s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EGGe2du/lq3PObK5V04bP8LdRUTAc8aE6624SpbgdWjWtohOP2AQ6Kd92Yltu8NO6
+	 YNUzmsDZQubE9UmQRnNfsT2l6GaWUpIapB9ktRF5gKmoUu0Jsvy9iEJp+9/XUkIwQY
+	 vEcnw4xo0T0fTNS6hzw9BDJP5i90y9nG+0TepevKtkhYkicaHm5IPrLKz5oEPmMt0x
+	 b/0NhnE6j2BSTJNt4YDNLw/WsSKTXkWtRYIwTDpFTMhtr520gUdTjeOCWtqzdyAKqe
+	 OexBPSqPKDM6HHGJtVs8/A42GlKw1L+n0JfKNDVuzXoZUnb+4P9y7zerLf+ifFcEz2
+	 ulhdTSTX4tjGQ==
+Date: Fri, 6 Dec 2024 16:33:36 +0000
+From: Conor Dooley <conor@kernel.org>
+To: mgonellabolduc@dimonoff.com
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	quic_kkumarcs@quicinc.com, quic_suruchia@quicinc.com,
-	quic_pavir@quicinc.com, quic_linchen@quicinc.com,
-	quic_luoj@quicinc.com, srinivas.kandagatla@linaro.org,
-	bartosz.golaszewski@linaro.org, vsmuthu@qti.qualcomm.com,
-	john@phrozen.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH net-next v2 4/5] net: pcs: qcom-ipq9574: Add USXGMII
- interface mode support
-Message-ID: <Z1Mm8nBR_sYyzBUh@shell.armlinux.org.uk>
-References: <20241204-ipq_pcs_rc1-v2-0-26155f5364a1@quicinc.com>
- <20241204-ipq_pcs_rc1-v2-4-26155f5364a1@quicinc.com>
- <Z1B3W94-8qjn17Sj@shell.armlinux.org.uk>
- <dc40d847-9a98-4f46-94cb-208257334aed@quicinc.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: light: Add APDS9160 binding
+Message-ID: <20241206-comment-tissue-7964de6bdcd3@spud>
+References: <20241206-apds9160-driver-v2-0-be2cb72ef8f4@dimonoff.com>
+ <20241206-apds9160-driver-v2-1-be2cb72ef8f4@dimonoff.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ouAae0tIUe+UFjOn"
+Content-Disposition: inline
+In-Reply-To: <20241206-apds9160-driver-v2-1-be2cb72ef8f4@dimonoff.com>
+
+
+--ouAae0tIUe+UFjOn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <dc40d847-9a98-4f46-94cb-208257334aed@quicinc.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Dec 07, 2024 at 12:20:57AM +0800, Lei Wei wrote:
-> On 12/4/2024 11:38 PM, Russell King (Oracle) wrote:
-> > On Wed, Dec 04, 2024 at 10:43:56PM +0800, Lei Wei wrote:
-> > > +static int ipq_pcs_link_up_config_usxgmii(struct ipq_pcs *qpcs, int speed)
-> > > +{
-> > ...
-> > > +	/* USXGMII only support full duplex mode */
-> > > +	val |= XPCS_DUPLEX_FULL;
-> > 
-> > Again... this restriction needs to be implemented in .pcs_validate() by
-> > knocking out the half-duplex link modes when using USXGMII mode.
-> > 
-> > .pcs_validate() needs to be implemented whenever the PCS has
-> > restrictions beyond what is standard for the PHY interface mode.
-> > 
-> 
-> Currently, it seems there is no phylink_validate() call in
-> phylink_resolve(), to validate the resolved duplex/speed which is notified
-> by phydev when the PHY is linked up. So I am thinking to add this duplex
-> check in this link_up op, and return an appropriate error in case of
-> half-duplex. (Kindly correct me if I am wrong).
+On Fri, Dec 06, 2024 at 11:09:56AM -0500, Mikael Gonella-Bolduc via B4 Rela=
+y wrote:
+> From: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+>=20
+> Add device tree bindings for APDS9160 driver
 
-Doing validation at that point is way too late.
+Bindings are for hardware, not for drivers.
 
-We don't want the PHY e.g. even advertising a half-duplex link mode if
-the system as a whole can not support half-duplex modes. If the system
-can't support half-duplex, then trying to trap it out at resolve time
-would be way too late - the media has already negotiated a half-duplex
-link, and that's that.
+>=20
+> Signed-off-by: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+> ---
+>  .../bindings/iio/light/brcm,apds9160.yaml          | 51 ++++++++++++++++=
+++++++
+>  1 file changed, 51 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/light/brcm,apds9160.ya=
+ml b/Documentation/devicetree/bindings/iio/light/brcm,apds9160.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..525fba52f156df3b78e24d7d0=
+d445fe9d882eaa7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/light/brcm,apds9160.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/light/brcm,apds9160.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom Combined Proximity & Ambient light sensor
+> +
+> +maintainers:
+> +  - Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>
 
-Instead, phylink takes the approach of restricting the media
-advertisement according to the properties of the system, thereby
-preventing invalid configurations _way_ before we get to autoneg
-completion and calling phylink_resolve().
+How come this differs from your author email?
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> +
+> +description: |
+> +  Datasheet: https://docs.broadcom.com/docs/APDS-9160-003-DS
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - brcm,apds9160
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        light-sensor@53 {
+> +            compatible =3D "brcm,apds9160";
+> +            reg =3D <0x53>;
+> +            vdd-supply =3D <&vdd_reg>;
+> +            interrupts =3D <29 IRQ_TYPE_EDGE_FALLING>;
+> +            interrupt-parent =3D <&pinctrl>;
+> +        };
+> +    };
+> +...
+>=20
+> --=20
+> 2.34.1
+>=20
+>=20
+
+--ouAae0tIUe+UFjOn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1MnSQAKCRB4tDGHoIJi
+0t9gAQCHg84i1MxD/nka3fR1QIegxvYKRVcjpUYK86gy50AqVwEA6HranbygYVQ2
+zidID8FwePAJ5NmyU06wlzilgcw/dg8=
+=nDyF
+-----END PGP SIGNATURE-----
+
+--ouAae0tIUe+UFjOn--
 
