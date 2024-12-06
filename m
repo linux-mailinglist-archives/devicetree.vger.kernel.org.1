@@ -1,169 +1,126 @@
-Return-Path: <devicetree+bounces-127872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A83939E6910
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 09:36:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9C099E6921
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 09:39:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44CA018823DB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 08:36:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70E901883A86
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 08:39:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8594F1DED49;
-	Fri,  6 Dec 2024 08:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E27DA1DED49;
+	Fri,  6 Dec 2024 08:39:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="giCKlH7/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LEHB3Yfh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A3191C3054;
-	Fri,  6 Dec 2024 08:36:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0132C18A6C6
+	for <devicetree@vger.kernel.org>; Fri,  6 Dec 2024 08:39:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733474170; cv=none; b=gx/0Ph76i6uadj7YNoQa+yzysqeT7M5GZ+ohou/ZL6rJgz2uwdb9JkUHLi+Dm6P5hQM2LUxBTlGk41crVyRz1ARnt/Pmt3/0ITAum6oChu2hzdI+Uxx+HAeyiNNJ+iNhk2vCTkKYvJ8JDWbDuzyofX5fc202xdptWKZprB88qsQ=
+	t=1733474343; cv=none; b=Z1BU7trsFkX3xLoP/qZzSYPOWPSNPSBMtkvGavz5PA39RNxjp1fF9jktJzo+txIxpEDuWGBcwneUS9SjZqTk9owaCxumrkzms2h6nSV5Gu6REgDPtFyk3aUI2IgX2OIwUCvHCjYl/W4FEqKDW8m+Hezkur7rN2NhMLWkXxYcAds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733474170; c=relaxed/simple;
-	bh=biysX5rwD8h38rWK+RqAV3h7Q6xppH9Fd8isyf4rwIA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W5FtEKhaR0GltPXWGt/vM5IAKVb06TPN53ugsqCOPEyaZLnfYwx6zrpcec/Oo/Lzi4/I4W2R+l/kWAKzW7DnIVyyXCoM80H0Dp9436zxL3iQ59hSww4jKIftBvWXgUQVHTZdlXcAqcDMFZcvH8kUjrfOyv0q+86OlSpsZ+7vk8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=giCKlH7/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35E51C4CED1;
-	Fri,  6 Dec 2024 08:36:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733474169;
-	bh=biysX5rwD8h38rWK+RqAV3h7Q6xppH9Fd8isyf4rwIA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=giCKlH7/IEm17aNGwxcd45BYEo43yvCcdkE2ZCCD9+Cr75eqsQIdB0MP+RyTdZfCC
-	 IXd9A33cmS/pXhQrVBiAZ0ETgPSzCiN/elKWzRwTjRns+lXFa4wYBzI/HnDlkKrF13
-	 3KqCfWjRHvK2azH2Xzw8HrHk4JyusN9H/tYQ016+gX2dVpFPmhRANAiPjJOTj6bPKf
-	 KwypQKNIv+4Nq95w3ObbrUJMwZmgMuqglGTnqz9HS5ZEtJuWKut4sWwreBZP2vA/QF
-	 ZVoELvq93YS9+TTltJW/EyPmH/bvN48hru7jYqhOT8YAIGf0qWjhbUAd3l1phUBMYP
-	 aQGJeD5/nN2Sg==
-Message-ID: <fdb4af16-468a-4c23-b8f4-ab60d4b535d2@kernel.org>
-Date: Fri, 6 Dec 2024 09:36:03 +0100
+	s=arc-20240116; t=1733474343; c=relaxed/simple;
+	bh=CbzbQCOtdOjN0raEAF8iseTHj/jr2mmJa+ApPFP6pOs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ExKhGEEb9Rsre6f57DTvEgAmQ/gzCw3WuwZZyWKx6do1rWB1uxPg3QVtkwPKldOrB2KofEykUxJ1p2/xyNrWyPjxNL8KD2/IskRMWvBfIM7yZ0rB/GZ/uABvW2AmvtzysbK5UQ4BI8KhCKuwWJzwfr4sNC3cDLhtNX1JXXUKL4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LEHB3Yfh; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2ff976ab0edso18400921fa.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 00:39:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733474340; x=1734079140; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2pvfFf/6NDNSMoinPIggBLinWMjnUSRNWqgC3AbSwgA=;
+        b=LEHB3YfhPIlY+waYLjnjFx85bCTwjDemhDoOD3uRq30N/C3gGCZRp53u+pe7cUdxky
+         vSFiY50KGt8U/h9r+YeiGQxzdmeZVwBqHNfDmovTBtbVXI9dlcyR6WocRjKWxXoO2zUX
+         kcEsrohrKmMDyptVBGLlAoITrjI7zSN7dwBYaJJ8sFd1ProlNhGyujay/PsWRIWgo+Ln
+         RLIBG/0IyvZ8soP7Gyq2fQiTHpt3T5eGYpHZ4g/1IESXXeRaGeHr9kaWbylelPHsEcQq
+         9l1qMjh7M/XPUdYkkXKgLTyfhjVMdo0LVypNB5fecCuktCV+UUsjOtBApl9Ocm2AeYsB
+         fM7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733474340; x=1734079140;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2pvfFf/6NDNSMoinPIggBLinWMjnUSRNWqgC3AbSwgA=;
+        b=Eyd4XcaQjw7Aw8YjxWlMVPP4buYIC+wbgqsojnkxSOC5Ab1ToLU1XB2H/JYTB8ilEQ
+         MlklY39jSknsuI0sLxFphIy9SCV7DwMg6y1hS7e/GQhJfCRrrOC/hBt7rqkGNfBBn2pQ
+         J/0i8hsAIShCVs8ljrYHfZS5DzMh7TuCaHe7BgSJp/YMwXYywQ5wEmzYB0pNko+adiOM
+         pJdZc0gsZOBy5giCWd15iGr+1cXpCUYjy6u1GTYUUcaVgF7RIARZNOrI1L5y99eyVrHk
+         tUgS68vcOasjxc+bpbDkDh5uW8kiYtaYcQHC848xoFRnG+bf5axJMRRrdFvZ9DIZFwgl
+         yilA==
+X-Forwarded-Encrypted: i=1; AJvYcCU0PEQVQt7UKQRP3dNLWiuhQih7RQzqglBHSRcHRW7TTHyuK8PAZay4YxfmN3AxzgmPQdLiOPMS525u@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYtj8jXwpyga1ampUYPhiXPiS2DAfycStQUxH4HUm2nJq/Kx9Z
+	odl6XVZARXjkpiYKkmjKKG7DiNa2gqYm0XfO1nU95+c2+QK6J6w0ml2JQmM6tDBMXtlp5rriKH1
+	T
+X-Gm-Gg: ASbGncvVcvpyVQFJyEcttDI19H39eck9ezCq8R4/Su1okg0TP6f3cKtuBs/DNlxy/ss
+	UFmV0sOi3wMwf4p+HKBhZhPR1FY1oMO3Q6kXLvuK0jK6PC6wu59mSl8FkpwcbGMvz5Al8VEUncF
+	xrenncNzEXJLlj5CstK7bPmjrbH9cefrgXvR9dH/Q6TdS80+P3fTlqUqNNkjBW2BozXvNcPcS9/
+	zxqVeh4iMr7F+ul9EK7nEaw+NitXj2E3clwJkYBt7mWahhwo1XqbHXA3HCUm+UvGrA4Rrf3loSb
+	s/7axu0/frry/lxuMsoTEKtNZHD4cA==
+X-Google-Smtp-Source: AGHT+IF6jOtbfo5h6K0/IZgJWEqqGaGGkKnUPirENty8sxWRk/6JZs4RfsdDJScIMrUIWenQ2Ic/pg==
+X-Received: by 2002:a05:651c:886:b0:300:2dc8:41c0 with SMTP id 38308e7fff4ca-3002fcf312cmr8313101fa.41.1733474340135;
+        Fri, 06 Dec 2024 00:39:00 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30020d858b4sm4111111fa.4.2024.12.06.00.38.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Dec 2024 00:38:58 -0800 (PST)
+Date: Fri, 6 Dec 2024 10:38:56 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Stephen Boyd <swboyd@chromium.org>, 
+	Chandan Uddaraju <chandanu@codeaurora.org>, Guenter Roeck <groeck@chromium.org>, 
+	Kuogee Hsieh <quic_khsieh@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vara Reddy <quic_varar@quicinc.com>, Rob Clark <robdclark@chromium.org>, 
+	Tanmay Shah <tanmay@codeaurora.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH 02/45] drm/msm/dp: disable the opp table request even for
+ dp_ctrl_off_link()
+Message-ID: <pouqn275ajaerpicruqepijjs4zuteid3ocqyczdja6o2zhpwl@dt3ckyixmzrf>
+References: <20241205-dp_mst-v1-0-f8618d42a99a@quicinc.com>
+ <20241205-dp_mst-v1-2-f8618d42a99a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/1] arm64: dts: exynos990: Add clock management unit
- nodes
-To: Igor Belwon <igor.belwon@mentallysanemainliners.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241205194020.785846-1-igor.belwon@mentallysanemainliners.org>
- <20241205194020.785846-2-igor.belwon@mentallysanemainliners.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241205194020.785846-2-igor.belwon@mentallysanemainliners.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241205-dp_mst-v1-2-f8618d42a99a@quicinc.com>
 
-On 05/12/2024 20:40, Igor Belwon wrote:
-> Add CMU nodes for:
-> - cmu_top: provides clocks for other blocks
-> - cmu_hsi0: provides clocks for usb31
+On Thu, Dec 05, 2024 at 08:31:33PM -0800, Abhinav Kumar wrote:
+> dp_ctrl_off_link() was created to handle a case where we received
+> a cable connect and then get a cable disconnect without the corresponding
+> dp_display_enable(). For such cases the pixel clock will be off but the
+> link clock will still be on. dp_ctrl_off_link() handles this case by
+> turning off the link clock only.
 > 
-> Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+> However, the vote removal to the opp table for this case was missed.
+> Remove the opp table vote in dp_ctrl_off_link().
+> 
+> Fixes: 375a126090b9 ("drm/msm/dp: tear down main link at unplug handle immediately")
+> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
 > ---
->  arch/arm64/boot/dts/exynos/exynos990.dtsi | 27 +++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
+>  drivers/gpu/drm/msm/dp/dp_ctrl.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/exynos/exynos990.dtsi b/arch/arm64/boot/dts/exynos/exynos990.dtsi
-> index c1986f00e443..49bb1e156843 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos990.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos990.dtsi
-> @@ -5,6 +5,7 @@
->   * Copyright (c) 2024, Igor Belwon <igor.belwon@mentallysanemainliners.org>
->   */
->  
-> +#include <dt-bindings/clock/samsung,exynos990.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  
->  / {
-> @@ -199,6 +200,23 @@ pinctrl_peric1: pinctrl@10730000 {
->  			interrupts = <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>;
->  		};
->  
-> +		cmu_hsi0: clock-controller@10a00000 {
-> +			compatible = "samsung,exynos990-cmu-hsi0";
-> +			reg = <0x10a00000 0x8000>;
-> +			#clock-cells = <1>;
-> +
-> +			clocks = <&oscclk>,
-> +				 <&cmu_top CLK_DOUT_CMU_HSI0_BUS>,
-> +				 <&cmu_top CLK_DOUT_CMU_HSI0_USB31DRD>,
-> +				 <&cmu_top CLK_DOUT_CMU_HSI0_USBDP_DEBUG>,
-> +				 <&cmu_top CLK_DOUT_CMU_HSI0_DPGTC>;
-> +			clock-names = "oscclk", "dout_cmu_hsi0_bus",
 
-One per line.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-> +						"dout_cmu_hsi0_usb31drd",
-
-Misaligned.
-
-> +						"dout_cmu_hsi0_usbdp_debug",
-> +						"dout_cmu_hsi0_dpgtc";
-> +
-
-Drop stray blank line.
-
-> +		};
-> +
-
-
-
-
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
