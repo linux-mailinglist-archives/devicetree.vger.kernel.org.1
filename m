@@ -1,254 +1,273 @@
-Return-Path: <devicetree+bounces-127780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 458B19E6510
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 04:32:44 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A45C09E65E4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 05:34:14 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0F291881608
+	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 04:34:07 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95F401D515D;
+	Fri,  6 Dec 2024 04:33:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O4cG5wUE"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E899328A8BE
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 03:32:42 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7D1B1714C0;
-	Fri,  6 Dec 2024 03:32:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KBaazz6X"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A13339AB;
-	Fri,  6 Dec 2024 03:32:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5711195FF0;
+	Fri,  6 Dec 2024 04:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733455959; cv=none; b=JUiwIBV2Qe6YOvyqxvRe4Dmp9tYwkHn7qK7giIN9EYNV5gsyotnVf41KmT/N0iGIal6QWG0P/SWwLi0SK6qdqkwNloVhffM9ZMtm7oKZwv6qD92HMu+LJB/tjod3cdZsi5VdaqixJLK5o8e02WykffhelEqBQXFqoiZPxJiJz3E=
+	t=1733459590; cv=none; b=qTxakV32kkHdrhFbm6E20AAu0lCrwvkVZjmrRHrIDi0pXMgOXAZv0s4F5X4yCDyLsIKshIppJ2A7nut9MOzPZ9iNjA+a78ZphmdnF0bD7Hw5pguwlE+rwNz/GRc6Gn2hY/ywLCaNKEnu+BRINSekgT/Nv0UrznyceZhxAqilkbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733455959; c=relaxed/simple;
-	bh=mwMqE6yNUT+08zKxIXZH/OF0Mdj3OzY1yHnQ5kAYcWI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QDKN2+/iC4e+qZ2TSn6bPKpabGNWbc7BwrClgeLEHfEVP3bezFKzVKV9xg0O583MWnJM4P4eArsL2WEJAj+dpSQWWIZAakiXkGPIwgGeO3W+SXJSdrWsZgIXmZtL8tqtXvcYRPgYkh763ygwOGrcazoseH4im25MZ69HPH/1Mfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KBaazz6X; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2ef28f07dbaso1192207a91.2;
-        Thu, 05 Dec 2024 19:32:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733455957; x=1734060757; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=InGT874kUKhcsccv7ICljIdW+V3gP1KGLAFnR4ziHQA=;
-        b=KBaazz6XldyJC3mlcKz9xvv7lZDxuxwCeW2j5DznfpxQxeb9mZBW84TbNVu3Xt3gLF
-         952El/btioa+9RH44OLCZCHBHmsNMdMgAr6epxJrkHLlqIKM/qO3sSanW7T0CDsEhnPW
-         DuMND7ydPnREaUZYRXBUhU41brmUqViv9pJyPqzWAKejHMkNOa37f5eWVVib3hRWqP1r
-         iWWEk506OyT0aIX0keYFo+89nOkrP+YWK/xlG+iQMwayARf7UHToe3AAuncLk9FcRw98
-         uGxSmwUiBqS/a/dHILMFKWd1I/GvmSFIPYVwXsk99OLzvVJTaqJU13yDu1/H1qBw9viZ
-         l1Nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733455957; x=1734060757;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=InGT874kUKhcsccv7ICljIdW+V3gP1KGLAFnR4ziHQA=;
-        b=QjGhGfvHA1oDPTpXE1wVR4LNioNEZIwQ1shVLnyTVG9bZLw7zgIDym8iWDrnXEl+rD
-         l4JEanDIB6dNqIlbeOu/nHv5vvNMvHJLZFxkneTLsbhBPwACklItLi8Ygdd//TdaSD2u
-         686cdZ4XmOo6F/n158CnmfbYhWPsZcn/yh4v0iLrj/6p8nCwjYZ+AbYA5v8XZuzLrHhs
-         Vx1TOGVUuCKLWRmc6IBuSOjgFltJ4v4Qs6P8zcm13QSBYIxF52tPHQoa1Fvhyz/HEBq5
-         TY9HgV1mlGQIMOVHAkcUED5YBtlnT8xp/n/FeX5FnO/puGpBaq6fGTbAytmqTZhd6Ecr
-         nIHg==
-X-Forwarded-Encrypted: i=1; AJvYcCVnKKhZoPQSfhplW09trDhPGZ7qaXpgVGBbYsXWd89nigvkut07evROrnv0lwgHZcdRAwC/0dNl7fqZ@vger.kernel.org, AJvYcCVonO9o1usONj2oFHNLa6qaSsv9SF2U1aDYi0hkmdCouj08C0mKBXFUgCBe7QhBP7N6OjfP2XRMYw/fOm8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlSVRE6Le31quBer7VbwrPTxALHJMdNIVo5kgJmqKKP6lwZsoI
-	htxA7wwhZdmr0Uuqr5GpxwZ2YnrLLpCAThadCksbrAg05eRaJs3g
-X-Gm-Gg: ASbGncsNqDzMVaqKLfnoCgltGyf+Pd90mdLNTxTzDzRv5VhWUTeVZztokXrGvE5RPrv
-	TMwoBcHFwLsOl1HbDfj5Vjj+ockFBQ+225mMAc5J/xtmKbUeRslPZzsM3FfPZp1XN2mQC6R/mGU
-	NL4aeKljYTsb9S/1yc57hQz4wZSnY9BamS6YMFn6yk4s+Gol1GBgSxNjcp3XHPzeOBRaxcacxTX
-	B6XYKqH3D8x4eiCzvPYxNt2Y8AhwrEgm/AK3nvJ10mfiMo5tQXwhFN6qgTPU1lOrSiD2Yh6CCFq
-	ZSeEj9azmNol4cA/Km4CgZ2d
-X-Google-Smtp-Source: AGHT+IFzqeeiyWkh+7hlsWMiFQHoZNyYQ7mM3MvVKI/Bj7bYHGVlKAvdSQ8+aeb4VO2V4WUi5eqliQ==
-X-Received: by 2002:a17:90b:3a50:b0:2ee:9cd2:a589 with SMTP id 98e67ed59e1d1-2ef6a6be86dmr2550021a91.20.1733455957398;
-        Thu, 05 Dec 2024 19:32:37 -0800 (PST)
-Received: from [172.19.1.43] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ef2700aa25sm4049963a91.16.2024.12.05.19.32.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Dec 2024 19:32:36 -0800 (PST)
-Message-ID: <1c0f9efb-61a0-42b9-abe5-87cabe2d783e@gmail.com>
-Date: Fri, 6 Dec 2024 11:32:34 +0800
+	s=arc-20240116; t=1733459590; c=relaxed/simple;
+	bh=EU2JtcZpBp+VFZjJhYqk9PEb6U34sJyO5sCF3jKMsCE=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=QHyBe/u5Tl8WJzc9RgElY4qeBGVP4bxX4FPTp8Hk9Ct8p4hm2cmEuJ4LvuogS3NfVaDmSV5tT0lLTvIbtx6dBY9sa2eOb9p/HC2QsNRxneA7hWQrpW/1sFFcoTn3dXgDlk2MUD0iYWi203d7z5ibSWAtwY5SnbEnjREFofoptsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=O4cG5wUE; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B5HaF4X003703;
+	Fri, 6 Dec 2024 04:32:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=6T5H/9atI2YkDyttOMAADP
+	l9KFjLb1dn0gViohSs2uE=; b=O4cG5wUEuTNNNuSGnFMY0mJJlHlwl3oI4sRzfF
+	EHFFWDqF5PqnHqs1yjEYF3UJHvPNJdXG47yq/uPgsYnUmUQ69NeST4TuuxbbrQIF
+	PP+chmnjadYJre0MGKzJBEke0hRzo/lMsSuwTTlpvGrOsFryJqpf24T6HbFrwl5c
+	PSXlxCzJCYNRDiIdSKL1qc6w5vdeTLj55LbhJOhSqelQgpKUljec5CYvPN8+ZHhT
+	TeMC32Kgit3eLdAVtyQJhyOW7oeqQXgvyviLwOHS65SeWKqCbuLCBAxdB8FEEk3u
+	eaOLzvXIlu5ir+ge+GiGYQ4u9YyQyQizx6Do2iZ0+eyaU2KA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43ba0kjkjx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 06 Dec 2024 04:32:25 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B64WOOw017137
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 6 Dec 2024 04:32:24 GMT
+Received: from abhinavk-linux1.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 5 Dec 2024 20:32:23 -0800
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Subject: [PATCH 00/45] drm/msm/dp: Add MST support for MSM chipsets
+Date: Thu, 5 Dec 2024 20:31:31 -0800
+Message-ID: <20241205-dp_mst-v1-0-f8618d42a99a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- sudeep.holla@arm.com, arnd@arndb.de, peng.fan@nxp.com, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, dmitry.torokhov@gmail.com
-References: <20241119025954.4161-1-mjchen0829@gmail.com>
- <20241119025954.4161-2-mjchen0829@gmail.com>
- <ql6m6qrdokwfu4iizn6wmvovawuc7kgg6jfzxebkmac5muz66e@myrjvq5jm7gg>
-Content-Language: en-US
-From: Ming-Jen Chen <mjchen0829@gmail.com>
-In-Reply-To: <ql6m6qrdokwfu4iizn6wmvovawuc7kgg6jfzxebkmac5muz66e@myrjvq5jm7gg>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACN+UmcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDIwNT3ZSC+NziEt0UM6O0RAszI1Pz1BQloOKCotS0zAqwQdGxtbUAZIA
+ D8VgAAAA=
+X-Change-ID: 20241205-dp_mst-d62fa86257ed
+To: Rob Clark <robdclark@gmail.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "Chandan
+ Uddaraju" <chandanu@codeaurora.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: Vara Reddy <quic_varar@quicinc.com>, Rob Clark <robdclark@chromium.org>,
+        Tanmay Shah <tanmay@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Jessica Zhang
+	<quic_jesszhan@quicinc.com>,
+        Laurent Pinchart
+	<laurent.pinchart@ideasonboard.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Yongxing Mou <quic_yongmou@quicinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733459543; l=7610;
+ i=quic_abhinavk@quicinc.com; s=20240509; h=from:subject:message-id;
+ bh=EU2JtcZpBp+VFZjJhYqk9PEb6U34sJyO5sCF3jKMsCE=;
+ b=DTK2GXtju7LXou7I+UiHk6ph7/L8VhooCQA9gH3YB2ir3j3mhCXy/E7/QEyF0acEZMtQC+Y3a
+ nAkvSRUlWSYAiLBPQkeoEOX5gJ0reEJVK6cyPcSla61qRcItLLE3kLN
+X-Developer-Key: i=quic_abhinavk@quicinc.com; a=ed25519;
+ pk=SD3D8dOKDDh6BoX3jEYjsHrTFwuIK8+o0cLPgQok9ys=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 2dfXIJpBgntRwP2pEh58DM8tmZglvK6O
+X-Proofpoint-GUID: 2dfXIJpBgntRwP2pEh58DM8tmZglvK6O
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 suspectscore=0
+ mlxscore=0 bulkscore=0 mlxlogscore=999 spamscore=0 malwarescore=0
+ impostorscore=0 lowpriorityscore=0 clxscore=1011 priorityscore=1501
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412060030
 
+Add support for Multi-stream transport for MSM chipsets that allow
+a single instance of DP controller to send multiple streams. 
 
-Hi, Krzysztof:
+This series has been validated on sa8775p ride platform using multiple
+MST dongles and also daisy chain method on both DP0 and DP1 upto 1080P.
 
-Thank you for your feedback on the v4 submission. I understand that some
-of your previous comments were not fully addressed. I want to make sure
-I completely understand your feedback and resolve the issues correctly.
+With 4x4K monitors, due to lack of layer mixers that combination will not
+work but this can be supported as well after some rework on the DPU side.
 
-Could you kindly let me know if the following approach is acceptable?
+In addition, SST was re-validated with all these changes to ensure there
+were no regressions.
 
+This patch series was made on top of:
 
-On 2024/11/20 下午 04:41, Krzysztof Kozlowski wrote:
-> On Tue, Nov 19, 2024 at 02:59:53AM +0000, Ming-Jen Chen wrote:
->> Add YAML bindings for MA35D1 SoC keypad.
->>
->> Signed-off-by: Ming-Jen Chen <mjchen0829@gmail.com>
->> ---
->>  .../bindings/input/nuvoton,ma35d1-keypad.yaml | 69 +++++++++++++++++++
->>  1 file changed, 69 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
->> new file mode 100644
->> index 000000000000..9ccd81a2574d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
-> 
-> Filename matching compatible. You got this comment already.
-> 
-> 
->> @@ -0,0 +1,69 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/input/nuvoton,ma35d1-keypad.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Nuvoton MA35D1 Keypad
->> +
->> +maintainers:
->> +  - Ming-jen Chen <mjchen0829@gmail.com>
->> +
->> +allOf:
->> +  - $ref: /schemas/input/matrix-keymap.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: nuvoton,ma35d1-kpi
->> +
->> +  debounce-delay-ms:
->> +    description: Debounce delay time in milliseconds.
->> +    maxItems: 1
->> +
->> +  scan-interval-ms:
->> +    description: Scan interval time in milliseconds.
->> +    maxItems: 1
->> +
->> +  reg:
->> +    maxItems: 1
-> 
-> Keep the same order of properties as in required: block.
+[1] : https://patchwork.freedesktop.org/patch/622243/ (to avoid a log spam)
+[2] : https://patchwork.freedesktop.org/series/142010/ (to fix up HPD)
+[3] : https://patchwork.freedesktop.org/patch/612740/ (to avoid blank screens)
+[4] : https://patchwork.freedesktop.org/series/140216/ (MDSS DT for sa8775p)
+[5] : https://patchwork.kernel.org/project/linux-arm-msm/list/?series=912200
+      (Display Port DT changes for sa8775p)
 
-I will modify to:
+Bindings for the pixel clock for additional stream is available at :
 
-properties:
-  compatible:
-    const: nuvoton,ma35d1-kpi
+[6] : https://patchwork.freedesktop.org/series/142016/
 
-  reg:
-    maxItems: 1
+Overall, the patch series has been organized in the following way:
 
-  interrupts:
-    maxItems: 1
+1) First set are a couple of fixes made while debugging MST but applicable
+to SST as well so go ahead of everything else
+2) Prepare the DP driver to get ready to handle multiple streams. This is the bulk
+of the work as current DP driver design had to be adjusted to make this happen.
+3) Finally, new files to handle MST related operations
 
-  clocks:
-    maxItems: 1
+Validation was done on the latest linux-next on top of above changes and
+both FB console and weston compositors were validated with these changes.
 
-  linux,keymap:
-    description: Keymap for the keypad.
+To: Rob Clark <robdclark@gmail.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Sean Paul <sean@poorly.run>
+To: Marijn Suijten <marijn.suijten@somainline.org>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Stephen Boyd <swboyd@chromium.org>
+To: Chandan Uddaraju <chandanu@codeaurora.org>
+To: Guenter Roeck <groeck@chromium.org>
+To: Kuogee Hsieh <quic_khsieh@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: Vara Reddy <quic_varar@quicinc.com>
+Cc: Rob Clark <robdclark@chromium.org>
+Cc: Tanmay Shah <tanmay@codeaurora.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: freedreno@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: Jessica Zhang <quic_jesszhan@quicinc.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-  keypad,num-rows:
-    description: Number of rows in the keypad.
+Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+---
+Abhinav Kumar (43):
+      drm/msm/dp: dont call dp_catalog_ctrl_mainlink_ctrl in dp_ctrl_configure_source_params()
+      drm/msm/dp: disable the opp table request even for dp_ctrl_off_link()
+      drm/msm/dp: fix the intf_type of MST interfaces
+      drm/msm/dp: split msm_dp_panel_read_sink_caps() into two parts
+      drm/msm/dp: add a helper to read mst caps for dp_panel
+      drm/msm/dp: remove dp_display's dp_mode and use dp_panel's instead
+      drm/msm/dp: break up dp_display_enable into two parts
+      drm/msm/dp: re-arrange dp_display_disable() into functional parts
+      drm/msm/dp: allow dp_ctrl stream APIs to use any panel passed to it
+      drm/msm/dp: move the pixel clock control to its own API
+      drm/msm/dp: split dp_ctrl_off() into stream and link parts
+      drm/msm/dp: make bridge helpers use dp_display to allow re-use
+      drm/msm/dp: separate dp_display_prepare() into its own API
+      drm/msm/dp: introduce stream_id for each DP panel
+      drm/msm/dp: convert dp_display_set_mode() to use dp_panel argument
+      drm/msm/dp: add support for programming p1 register block
+      drm/msm/dp: use stream_id to change offsets in dp_catalog
+      drm/msm/dp: add support to send ACT packets for MST
+      drm/msm/dp: add support to program mst support in mainlink
+      drm/msm/dp: no need to update tu calculation for mst
+      drm/msm/dp: add support for mst channel slot allocation
+      drm/msm/dp: add support to send vcpf packets in dp controller
+      drm/msm/dp: always program MST_FIFO_CONSTANT_FILL for MST
+      drm/msm/dp: abstract out the dp_display stream helpers to accept a panel
+      drm/msm/dp: move link related operations to dp_display_unprepare()
+      drm/msm/dp: replace power_on with active_stream_cnt for dp_display
+      drm/msm/dp: make the SST bridge disconnected when mst is active
+      drm/msm/dp: add an API to initialize MST on sink side
+      drm/msm/dp: skip reading the EDID for MST cases
+      drm/msm/dp: add dp_display_get_panel() to initialize DP panel
+      drm/msm/dp: add dp_mst_drm to manage DP MST bridge operations
+      drm/msm/dp: add connector abstraction for DP MST
+      drm/msm/dp: add irq hpd callback for dp mst
+      drm/msm/dp: add support to re-use and clear the panel edid
+      drm/msm/dp: add a mst session mutex to protect bridge ops
+      drm/msm: add support for non-blocking commits
+      drm/msm: initialize DRM MST encoders for DP controllers
+      drm/msm/dp: initialize dp_mst module for each DP MST controller
+      drm/msm: add a stream to intf map for DP controller
+      drm/msm/dpu: use msm_dp_get_mst_intf_id() to get the intf id
+      drm/msm/dp: mark ST_DISCONNECTED only if all streams are disabled
+      drm/msm/dp: populate the max_streams for sa8775 mst controller
+      arm64: dts: qcom: add mst support for pixel 1 stream clk for DP1
 
-  keypad,num-columns:
-    description: Number of columns in the keypad.
+Yongxing Mou (2):
+      drm/msm/dp: propagate hpd state changes to dp mst module
+      arm64: dts: qcom: add mst support for pixel stream clk for DP0
 
-  debounce-delay-ms:
-    description: Debounce delay time in milliseconds.
-    maxItems: 1
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi              |   23 +-
+ drivers/gpu/drm/msm/Makefile                       |    3 +-
+ .../drm/msm/disp/dpu1/catalog/dpu_8_4_sa8775p.h    |    8 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c        |   25 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h        |    2 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   29 +-
+ drivers/gpu/drm/msm/dp/dp_audio.c                  |    2 +-
+ drivers/gpu/drm/msm/dp/dp_aux.h                    |    1 +
+ drivers/gpu/drm/msm/dp/dp_catalog.c                |  292 ++++-
+ drivers/gpu/drm/msm/dp/dp_catalog.h                |   27 +
+ drivers/gpu/drm/msm/dp/dp_ctrl.c                   |  454 ++++++--
+ drivers/gpu/drm/msm/dp/dp_ctrl.h                   |   21 +-
+ drivers/gpu/drm/msm/dp/dp_display.c                |  559 +++++++---
+ drivers/gpu/drm/msm/dp/dp_display.h                |   33 +-
+ drivers/gpu/drm/msm/dp/dp_drm.c                    |   53 +-
+ drivers/gpu/drm/msm/dp/dp_drm.h                    |   12 -
+ drivers/gpu/drm/msm/dp/dp_mst_drm.c                | 1118 ++++++++++++++++++++
+ drivers/gpu/drm/msm/dp/dp_mst_drm.h                |  110 ++
+ drivers/gpu/drm/msm/dp/dp_panel.c                  |   41 +-
+ drivers/gpu/drm/msm/dp/dp_panel.h                  |   15 +-
+ drivers/gpu/drm/msm/dp/dp_reg.h                    |   25 +-
+ drivers/gpu/drm/msm/msm_atomic.c                   |    2 +
+ drivers/gpu/drm/msm/msm_drv.h                      |   29 +
+ drivers/gpu/drm/msm/msm_kms.c                      |    1 +
+ 24 files changed, 2589 insertions(+), 296 deletions(-)
+---
+base-commit: b166256c1e6ce356fa1404d4c8531830e6f100a8
+change-id: 20241205-dp_mst-d62fa86257ed
 
-  scan-interval-ms:
-    description: Scan interval time in milliseconds.
-    maxItems: 1
-
-required:
-  - compatible
-  - reg
-  - interrupts
-  - clocks
-  - linux,keymap
-  - keypad,num-rows
-  - keypad,num-columns
-  - debounce-delay-ms
-  - scan-interval-ms
-
-> 
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clocks
->> +  - linux,keymap
->> +  - keypad,num-rows
->> +  - keypad,num-columns
->> +  - debounce-delay-ms
->> +  - scan-interval-ms
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/input/input.h>
->> +    keypad@404A0000 {
-> 
-> Lowercase hex
-
-I will modify to:
-keypad@404a0000 {
-
-> 
->> +      compatible = "nuvoton,ma35d1-kpi";
->> +      reg = <0x404A0000 0x10000>;
-> 
-> Lowercase hex
-
-I will modify to:
-reg = <0x404a0000 0x10000>;
-
-
-Your guidance will be greatly appreciated, and I will incorporate the
-necessary changes in the next submission to fully address your concerns.
-
-Thank you for your time and patience.
-
-> 
-> Best regards,
-> Krzysztof
-> 
+Best regards,
+-- 
+Abhinav Kumar <quic_abhinavk@quicinc.com>
 
 
