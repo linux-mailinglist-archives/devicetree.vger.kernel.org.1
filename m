@@ -1,165 +1,104 @@
-Return-Path: <devicetree+bounces-128218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817259E8163
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 18:45:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 316E09E8176
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 19:11:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD2EF280D39
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 17:45:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B823E28175A
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 18:11:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F20D146A73;
-	Sat,  7 Dec 2024 17:45:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA4381494CF;
+	Sat,  7 Dec 2024 18:11:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gJifVKBQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N6vPX8Jm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E206D1AAC4;
-	Sat,  7 Dec 2024 17:45:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F9C1F602;
+	Sat,  7 Dec 2024 18:11:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733593540; cv=none; b=geCQtZ1z+ZoaIBOk3IozjA5eHteNx6QX8kH13rftv6948fkF4gEParyu4QpzWL8Q+OoonbP2M6/czRdy/0tCRp+J0ICRqVxiKzLq4+lShpf1/pYRRifYg6Sn7oYDR85X6M0vCSJ3wD30eboZ51fEZbI94ajgVue01r5+pqZvXM0=
+	t=1733595071; cv=none; b=heyGbxYUGM7KiY4aXghV6pyhlN+WWrPwb8isYpXiOtsSJdJnQ/sCwrQqYmKUunrfhTN1bB2wLi+6tXBas5DXxf8+gGFyNwNKX18S4+t/5KPynb4OHf0YRWTkSCe0xNudF9SPtRD47Q1ynRbpvNU7P1+aWELWpRIZu+jJ2kEq76Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733593540; c=relaxed/simple;
-	bh=6ACLIbj0m2p/gYfZg8qQpPjIeXEXhY3p5smFYzkPywY=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P2VjHyE9PwdkqeJjpk7cRHuxct/NLPUAM3qyvVEJmdNz4v1+vE1lpQq29MCwnTSUBBIpTa5JAcX/5iY5oHBtTW8aRxu5cQMc/qn7Nh7J1nnIUfVep3XvpMlJh9rdJxhcGCpRyPDZGrcSToL9RoO3MR6zqcsMGX07fBXgjv0KnEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gJifVKBQ; arc=none smtp.client-ip=209.85.160.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-29f7c3bcf45so1027011fac.1;
-        Sat, 07 Dec 2024 09:45:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733593538; x=1734198338; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=b7u+31u3YeBNl7LbEDjuCwStYnmV/fCXULkXKvpnwA8=;
-        b=gJifVKBQ3F4f+lPbSVToNZkWAdhflI/0t/9G8PqQ/qkvojOHfAxsFVf1hT+6TdKdEY
-         JNFShCXJjD9Xkow9pLbJm/qB0cvoN1xXgy1QQ6ot2F6jRCWKivHCZPxnvtaQ/knnZyBI
-         sHUFjuksNI8dpFsPK+4hkh8p6ljK+UD311dmIj8DGsub3RFA+xqTd1BNPxuTY02qZXno
-         4yXz+oo4K8VMapjHg5Y9GvYSF4ROlD/JgLsHCAffshLFo5kN3vbzcmL/GEk/dufUm7v5
-         AqGcDo68oLoUDi35AGv2CGQmq7Q3bU08aaikAHr80/MhZhPMnW+VPLgH3jQTRnctQv5d
-         +VGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733593538; x=1734198338;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b7u+31u3YeBNl7LbEDjuCwStYnmV/fCXULkXKvpnwA8=;
-        b=cYCH85R2by/CxNJaHb9ZRSAgZ/36IjJilm2JoFJFS1tSe6+1uQHEeq17ZMEsJfdjzb
-         nBh8AYuYIAPDLZ+Rg2K5Bjd554rQ4/e9gARZK9q9l07Sj4gydFDV/cOezKytFwQ1b+1V
-         jx28bJrwfqeOhHPWxmVIU64N7PaiCeBWQ0KqmnBEAesQED8ubK1rNjmNV3fhglXp8t/c
-         zjnjUGiSPW0D6+wwSAmMChRjYijkzj8llMtIU+pKYoNMc06aOMCCE5CfJj8UPWdDjLDP
-         DNceMejYaTnIyfLMytqpgkCOWaNcD1h0V7QU3HsbOu+Kjb7yhnpl84mopPKtdLW0FI6I
-         RxTw==
-X-Forwarded-Encrypted: i=1; AJvYcCWCp/mmr4FC+hppync0CMnIpZFC4tlpKXQXkWA7tBLtIrnmKFNzJuI47AYdNk4m6bV/8sUseHX8bpJrl4cT@vger.kernel.org, AJvYcCXm8pdpvBi7GUhtzo7c9ieZ/lvzmLaE8TLFM9eU3M7a1RL6BZA1CGrX5N1geKbJAYbHVpK2fnYiBQW9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/BIH0AF4/tT65Ef5iCs5fKG7f6HoqNL8G4XAr9T3vfkPFwWR5
-	G9+p8NDbsYooMLBpPEb1NOg9EPsmlX4cUoYauR9Ek2mr8XhJ2gBF
-X-Gm-Gg: ASbGncsoloQnxS7EZyFkxMtdFTJs+Vmb3Z0kW9vhSxQrgIHQPGyrpHiXAT6/Ox0NxLl
-	H9ekrPwOwbYEMgk+PSky0VG6aaKFToDdZyA6Q6Jxy9XAfXY5dI19J8IPw44oM0tjJD8ZWCP2FMX
-	5wbYHwJmCtP+PRNgd+vzJqek1dDu5Zt97lEveQGFm8Sxg1JqE4J4+O9e5HQcoTeB0PxeSLcCH38
-	cjq2MAc4R2NZcJ5MqeMUHlUxGTa6BG2ZmFD
-X-Google-Smtp-Source: AGHT+IEEIIxwno7M9jy0PuuqAGrIdi1MzgT6bGTTwtmEeVXH12xtChFy+ymdFQtAfHwdBrm9C4sFsg==
-X-Received: by 2002:a05:6871:a6aa:b0:297:2719:deb6 with SMTP id 586e51a60fabf-29f7319b029mr3489071fac.1.1733593537886;
-        Sat, 07 Dec 2024 09:45:37 -0800 (PST)
-Received: from neuromancer. ([2600:1700:fb0:1bcf::54])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-29f5694a265sm1545266fac.34.2024.12.07.09.45.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Dec 2024 09:45:37 -0800 (PST)
-Message-ID: <675489c1.050a0220.8d73f.6e90@mx.google.com>
-X-Google-Original-Message-ID: <Z1SJwLWeGHCRC14n@neuromancer.>
-Date: Sat, 7 Dec 2024 11:45:36 -0600
-From: Chris Morgan <macroalpha82@gmail.com>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Martin Botka <martin.botka@somainline.org>,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v2 3/5] mfd: axp20x: Allow multiple regulators
-References: <20241007001408.27249-1-andre.przywara@arm.com>
- <20241007001408.27249-4-andre.przywara@arm.com>
+	s=arc-20240116; t=1733595071; c=relaxed/simple;
+	bh=9rLpIq57aYY5q6fCycVQHDVk+l6BdakZCZsYRLwOYHc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GGjmJ3q6xKDJi2bHlU826WoI+Wr5qrajyqWioFPidi1+R1kO2ZL+vSQybyIw4PDOQSciKEJoF+znb1d2SzII3WCGTd0mDMT1SZSwKIpwZDbjuZen3BXHhP84WjQGA1WCiCimPnm9h/T/5sNWumLi2im6Q4nJ//2aNuQj3RKdDmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N6vPX8Jm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C84FCC4CECD;
+	Sat,  7 Dec 2024 18:11:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733595071;
+	bh=9rLpIq57aYY5q6fCycVQHDVk+l6BdakZCZsYRLwOYHc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=N6vPX8Jm4KXlZjRL4hCWFUYjwpvP0zlUWj6WaYTeuKIDpvRJI3bEH21ggS4NlF3Og
+	 /42yvI/SOb3dgXGF/5CxZdB4ez/MJwW8lRogEAmVuL+17lWm78iHjohZW9aRTlnu5e
+	 04C3lMHI86DgZlGUd987uyoonddcvUUn89KdZ1RD63+YSEr7nT44yV7fT9Z3Kxg1gH
+	 XDkjcgVG+WR82Gd2Gu1+XYPcNF4NaTjlmbXMmR1z82jD0Li9dap9Fm42/JVk4As/ST
+	 6SI0QcYKSfGjIRaWKpE2Dre8HBCMg0dOuQqcK2+9TBD37FlW0cf2Bg0C6hvZDpJqfF
+	 xghl5BgbCrsIA==
+Date: Sat, 7 Dec 2024 18:10:58 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: prabhakar.mahadev-lad.rj@bp.renesas.com, lars@metafoo.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org, p.zabel@pengutronix.de, linux-iio@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, Claudiu Beznea
+ <claudiu.beznea.uj@bp.renesas.com>
+Subject: Re: [PATCH v2 02/15] iio: adc: rzg2l_adc: Convert dev_err() to
+ dev_err_probe()
+Message-ID: <20241207181058.3df9c7a0@jic23-huawei>
+In-Reply-To: <20241206111337.726244-3-claudiu.beznea.uj@bp.renesas.com>
+References: <20241206111337.726244-1-claudiu.beznea.uj@bp.renesas.com>
+	<20241206111337.726244-3-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241007001408.27249-4-andre.przywara@arm.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 07, 2024 at 01:14:06AM +0100, Andre Przywara wrote:
-> At the moment trying to register a second AXP chip makes the probe fail,
-> as some sysfs registration fails due to a duplicate name:
+On Fri,  6 Dec 2024 13:13:24 +0200
+Claudiu <claudiu.beznea@tuxon.dev> wrote:
+
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > 
-> ...
-> [    3.688215] axp20x-i2c 0-0035: AXP20X driver loaded
-> [    3.695610] axp20x-i2c 0-0036: AXP20x variant AXP323 found
-> [    3.706151] sysfs: cannot create duplicate filename '/bus/platform/devices/axp20x-regulator'
-> [    3.714718] CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.12.0-rc1-00026-g50bf2e2c079d-dirty #192
-> [    3.724020] Hardware name: Avaota A1 (DT)
-> [    3.728029] Call trace:
-> [    3.730477]  dump_backtrace+0x94/0xec
-> [    3.734146]  show_stack+0x18/0x24
-> [    3.737462]  dump_stack_lvl+0x80/0xf4
-> [    3.741128]  dump_stack+0x18/0x24
-> [    3.744444]  sysfs_warn_dup+0x64/0x80
-> [    3.748109]  sysfs_do_create_link_sd+0xf0/0xf8
-> [    3.752553]  sysfs_create_link+0x20/0x40
-> [    3.756476]  bus_add_device+0x64/0x104
-> [    3.760229]  device_add+0x310/0x760
-> [    3.763717]  platform_device_add+0x10c/0x238
-> [    3.767990]  mfd_add_device+0x4ec/0x5c8
-> [    3.771829]  mfd_add_devices+0x88/0x11c
-> [    3.775666]  axp20x_device_probe+0x70/0x184
-> [    3.779851]  axp20x_i2c_probe+0x9c/0xd8
-> ...
+> Convert all occurrences of dev_err() in the probe path to dev_err_probe().
+> This improves readability and simplifies the code.
 > 
-> This is because we use PLATFORM_DEVID_NONE for the mfd_add_devices()
-> call, which would number the child devices in the same 0-based way, even
-> for the second (or any other) instance.
-> 
-> Use PLATFORM_DEVID_AUTO instead, which automatically assigns
-> non-conflicting device numbers.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
-> ---
->  drivers/mfd/axp20x.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/mfd/axp20x.c b/drivers/mfd/axp20x.c
-> index 5ceea359289f4..bc08ae4332604 100644
-> --- a/drivers/mfd/axp20x.c
-> +++ b/drivers/mfd/axp20x.c
-> @@ -1419,7 +1419,7 @@ int axp20x_device_probe(struct axp20x_dev *axp20x)
->  		}
->  	}
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+
+Hi Claudiu,
+
+> +	if (IS_ERR(adc->presetn))
+> +		return dev_err_probe(dev, PTR_ERR(adc->presetn), "failed to get presetn\n");
 >  
-> -	ret = mfd_add_devices(axp20x->dev, -1, axp20x->cells,
-> +	ret = mfd_add_devices(axp20x->dev, PLATFORM_DEVID_AUTO, axp20x->cells,
->  			      axp20x->nr_cells, NULL, 0, NULL);
->  
->  	if (ret) {
-> -- 
-> 2.46.2
-> 
+>  	ret = reset_control_deassert(adc->adrstn);
+> -	if (ret) {
+> -		dev_err(&pdev->dev, "failed to deassert adrstn pin, %d\n", ret);
+> -		return ret;
+> -	}
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret, "failed to deassert adrstn pin, %d\n", ret);
 
-Using git bisect, I found that this patch breaks the CONFIG_AXP20X_ADC
-option which is used by some of the battery and charger drivers for the
-axp20x PMIC series. My current assumption is that the
-devm_iio_channel_get() call made by these drivers worked correctly
-previously when the PLATFORM_DEVID_NONE, but now it's not working
-anymore. I'm still testing possible solutions for that problem.
+Take a closer look at the implementation of dev_err_probe().
+It already prints the return code (where appropriate) and in a pretty text form
+which is easier to read.  So we should not print it again.
 
-Thank you,
-Chris
+I'd also prefer wrapping some of the longer lines in here a little earlier.  For IIO
+I still prefer to stay under 80 chars or only a little over it where it doesn't
+hurt readability.
+
+Jonathan
+
+
 
