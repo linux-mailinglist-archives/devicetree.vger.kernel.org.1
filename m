@@ -1,182 +1,139 @@
-Return-Path: <devicetree+bounces-128234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC399E8260
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 22:49:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70D6E9E8266
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 23:03:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 143A218834E1
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 21:49:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21C3E18847E7
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 22:03:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F04D15853C;
-	Sat,  7 Dec 2024 21:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A71D1547E3;
+	Sat,  7 Dec 2024 22:03:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NqOZ4pI9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xyVACrfl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96DA015535A
-	for <devicetree@vger.kernel.org>; Sat,  7 Dec 2024 21:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A3722C6FA
+	for <devicetree@vger.kernel.org>; Sat,  7 Dec 2024 22:03:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733608148; cv=none; b=lnshzrdQC8uok/TblA39fjVvY8D5QL0U9xLVVfdA9zw78mbmYkhUn+HePhtFZyVNxUHIim16pL0BJRzuY30Zmt3J+x2lDKBGSWot81vcSunQkNWh7Ug2pBI2EFy8wJyELM4KVUAI2GTj2/Bo1chJZOIOW5p+Qt0fRew09o+mKaQ=
+	t=1733609009; cv=none; b=aD5T+e4o7oFNVaffsI5MADWxwVH9QvcmoAtbKeKzOf7syRkPmod3L9UEe+js/aHF2kaQYWkid4nqLPTwaopRzSVfEBBtdflcH38yv76ypu6b83mUSTY8DBYBb8owVv0V3jKqw+qxQgS3Zd5Q54h12nHkWSiexa8Q2wH3JY6JeMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733608148; c=relaxed/simple;
-	bh=XP3j1/4hGEAC2iNDIke1mBk6kVbZ+dv9A+GBgBQwQy8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AEU8gFx8I2tYWQlwD9RDEEsTPkGub1zCrq3JS/MKNoUU4y+WGVLpj7LCDaSq3v8voPFGWy3OQHdbkKFCY+/evPzfw2CTdWYrwWQ+P7b6G2XVqM0x4qm1OMbVEJFWCen3P3cmyglDPr1PnK9WDrdYgyzYP3CjaknH4A9X3PvIAHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NqOZ4pI9; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1733609009; c=relaxed/simple;
+	bh=8GXM0+BHtSGWHXqNnKhtHtPN9SdqgsAE77m643km+40=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZSlY+r+qHhqFd88Xkdzj28EsVWheLREUV9CaC4Xvw7cusSWs0mxmcIK/q41Gvoq6vJDbGcFVnqoaWJNxNcO/4hak0RLgFJRQ+5Iq3RrmbzjXWFp+nASPzw4q7cukYNCUhlfHNK8QGb2pCpgRREJA71liLfqw+sEY21Zs8YBvPn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xyVACrfl; arc=none smtp.client-ip=209.85.167.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-434ab938e37so20544695e9.0
-        for <devicetree@vger.kernel.org>; Sat, 07 Dec 2024 13:49:05 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3ea369fdb0cso2001292b6e.3
+        for <devicetree@vger.kernel.org>; Sat, 07 Dec 2024 14:03:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733608144; x=1734212944; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wsfew4ZFMeZbleew2kyM9F4xOEfh/La2iijlA6czpC8=;
-        b=NqOZ4pI9x4rc1LzrNpdBY6RqedPromI2VThlvM1eib74h6fnIRwz4sBXHdBrDLHFrA
-         wbTL1dZpMuITP2GJz8sN5MI+BKYCh6sSwemLLVmXxZYgqaQFVJsu1ah9Hk1mZof4t5Ao
-         Y3pjoDKf5DMsCF/NurqQgecK3UExxRAXwOTELg8gwD/nBZ4/WTW5WmAWimD8pjQkF0+g
-         UGfhjq+mwd01gIZpdWGCgjWpkOoGsaPFS/x4lltgNZrjv1R/3zxj8o/KCTZ2LmuyG79H
-         BE/3cHMpawJL7UjVTON4b7B2/zbXDfe5PgcBa1yJX47fSdRCV8Ok3guOBrMFAjq7bmd6
-         W7hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733608144; x=1734212944;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1733609006; x=1734213806; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Wsfew4ZFMeZbleew2kyM9F4xOEfh/La2iijlA6czpC8=;
-        b=XACLaJ35M0I9oiCqq6y7VRVwxXwxMobqrDRclGU5rPL7xPLRcDFyv5ELrjN2BzPB7h
-         DzBcqjdHrIaQSarDu4SkAecXXhuM20Z5aUrYjdUPiOMf4kRb5U+wlRBI98HFom+0NDZX
-         kv+gjQ+RFNzP6Gds/tOnzKr3m9j0yDaRo54i3+pZybUoPwqq2UMFRlUgHfWdMxXHcCI2
-         LYCfhLhyGO/8F00NoEnBNBYpJSImOKi9h4zouYgwKUCM2JGFzFMqlaKav+Ds79AVj91d
-         yrtncKL2S0ziqSqulEu157uuJ9cVAItW7bF0VKD+YuixSw4wD2rUgVxpTWzS/BJ8XhFe
-         z1nw==
-X-Forwarded-Encrypted: i=1; AJvYcCVCEztkDDZNQPGpu1OvTkuxeItLjruBT9WsePi38zwMJK0NfMvF22k4IUhOLFT3XTgqEDfcAIzDz2dA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzD3G9/k2hyYKnMZ0BZxbFcjXER+M4V2V45TP6c22Buz4VHbLcW
-	kBOKehknL5wp8g+GRGlFp7WVPuJB0XRDAVBTYwue3kDx2EsrVPRYNxv2wwJ2kvc=
-X-Gm-Gg: ASbGncuwZC7w54Vg8Ks5o/cxURisYFC5dYLiMCSXhYy6RD6+D2wL2rJXIGk7hX2/NfD
-	AEoC1b03Eh6RB1R5UQ97j3boVyP6ydLRHyhpoiCQCsh0RQbEfvDaQY4hQyAwXSRfKJlVWueP+Uh
-	6/blVtf/LWxC2Zvq8iqSrQQE64kUgckfsZPRGjczooldW9WVLWTPo2N6cGu/TXuqs2Pl300Ulgt
-	zCr9tZQqOxrOxaMX7gNY9CRHmhQLMYRugrhdKzMtdvsiiVF
-X-Google-Smtp-Source: AGHT+IH+ko/7VIODrYwfCnjU0zGn4D+6rRMhVzbvM2RWWXIDLkbwi9KP0/YKC1XI4EiPxhf0nmocBw==
-X-Received: by 2002:a05:6000:709:b0:385:dd10:215d with SMTP id ffacd0b85a97d-3862b3d3554mr5627621f8f.44.1733608143816;
-        Sat, 07 Dec 2024 13:49:03 -0800 (PST)
-Received: from linaro.org ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3862de365f0sm5026157f8f.3.2024.12.07.13.49.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Dec 2024 13:49:02 -0800 (PST)
-Date: Sat, 7 Dec 2024 23:49:00 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Jonathan Marek <jonathan@marek.ca>,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, regressions@lists.linux.dev
-Subject: Re: [PATCH] Revert "arm64: dts: qcom: x1e78100-t14s: enable otg on
- usb-c ports"
-Message-ID: <Z1TCzEj05Anzwcc6@linaro.org>
-References: <20241206172402.20724-1-johan+linaro@kernel.org>
+        bh=8GXM0+BHtSGWHXqNnKhtHtPN9SdqgsAE77m643km+40=;
+        b=xyVACrflMo14f/QW3IV78NaUuIpm+irun7RHv0PrP2r0wQL/N9zfnYzmGlbP+zWhRL
+         H7+WRfXekkeRWgKpyR8PNUteCWK02XEcwoNx/fsu52uZc8DuvUMAM++2k129ZY3/D916
+         wFjhxCbEfbxWaoI+VE0WXqsbToYOhj6FzvagmxLhNexOf3PvRFYX13PxvifZUWm7fGgZ
+         TuxkHIXccdVUyHsUgd9cnT4nd6cEyXWqSA4ufa3dgiIHutsl/vz+dbdQDOmTyq4xFKQA
+         s9Qn+MoTaR2WHsFK+iqjxyQKTHL8WMD9J4WF2g4K5lB/Hh3ZMfqa1A3gkQdZl5ueMmun
+         0uVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733609006; x=1734213806;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8GXM0+BHtSGWHXqNnKhtHtPN9SdqgsAE77m643km+40=;
+        b=WrANPgrOB62XNBRX7iPCJD3e5j2q+YiwaNdmgB9mjQhETsY5RRXouBxebFNAD6LqZ2
+         oc2hKA1ukzMW21GgAu7NRBBYvV1A8pZWrPiE0XPCfr+5N9RBGlvnLses94AKogXwdXf3
+         cBNEMhsLoDQy2B2fPqzn+9ihCYgxQy6pcSpKYdC+klOgwJPZ5JtMyy6QMvsP+VALTNpf
+         UW+E7+boCaAHg1awUocLrz7piu7iDJAJtFZMspkE03y5FxQmf3dTUVB2cyjTA8r5sZyg
+         k94JHmJywP0Tbim69SUUUr1F17xHzk29X4e2wqVccu2Ln3rU/Ph+VMjg1vooZZ5uZNbM
+         rHOw==
+X-Forwarded-Encrypted: i=1; AJvYcCUocU9gLrh0y5stVKj3qHRrg3i7A0D9e25dd/TpMAT7Kwp1TaLpg4WP5MM93Dhqqm0Ld1jNxOz+lbQ4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRd+mj75kZ0iFfcu6RU+Otfj771U81+MITPwU/x0YvSxQbHdMx
+	Jgu0PGsrT7hY6t9xCe72R2FEet0GCOzaCTSaoC12WoqfebLn8U+MnFDr6RjpFtEycDtQpxARcup
+	FVfvDeaOd5FYiUWrnee9wC9xVALh2O59LC4YhRA==
+X-Gm-Gg: ASbGncvhuuN1INlovHB6tX3klRUjIsxP+JM0JsonQdANIIXmsilrXBX0Tg3BRa1LDUL
+	xMLq4LtHC26EfzZignxnQ+eefXLvUMS0=
+X-Google-Smtp-Source: AGHT+IFySGjzoy5FCW6UW8sdkAac1K6u7Brr2FiRkrW+1TN5iMSt/PqT8OWXDemRttmZeKYZRyGTsy/kAkU/2DL3BXc=
+X-Received: by 2002:a05:6871:c709:b0:29e:392d:afc8 with SMTP id
+ 586e51a60fabf-29f7329ae2dmr7184218fac.15.1733609006594; Sat, 07 Dec 2024
+ 14:03:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241206172402.20724-1-johan+linaro@kernel.org>
+References: <20241206-gs101-phy-lanes-orientation-phy-v4-0-f5961268b149@linaro.org>
+ <20241206-gs101-phy-lanes-orientation-phy-v4-7-f5961268b149@linaro.org>
+In-Reply-To: <20241206-gs101-phy-lanes-orientation-phy-v4-7-f5961268b149@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Sat, 7 Dec 2024 22:03:15 +0000
+Message-ID: <CADrjBPrz1qUxbEVFR8OT785xLPwWmu3_ZThSne+EtpS8_NHEEg@mail.gmail.com>
+Subject: Re: [PATCH v4 7/7] phy: exynos5-usbdrd: allow DWC3 runtime suspend
+ with UDC bound (E850+)
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Sam Protsenko <semen.protsenko@linaro.org>, Will McVicker <willmcvicker@google.com>, 
+	Roy Luo <royluo@google.com>, kernel-team@android.com, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 24-12-06 18:24:02, Johan Hovold wrote:
-> This reverts commit 1a48dd7b9ac809d1bd0fd2fef509abba83433846.
-> 
-> A recent change enabling OTG mode on the Lenovo ThinkPad T14s USB-C
-> ports can break SuperSpeed device hotplugging. The host controller is
-> enumerated, but the device is not:
-> 
-> 	xhci-hcd xhci-hcd.5.auto: xHCI Host Controller
-> 	xhci-hcd xhci-hcd.5.auto: new USB bus registered, assigned bus number 3
-> 	xhci-hcd xhci-hcd.5.auto: hcc params 0x0110ffc5 hci version 0x110 quirks 0x000080a000000810
-> 	xhci-hcd xhci-hcd.5.auto: irq 247, io mem 0x0a800000
-> 	xhci-hcd xhci-hcd.5.auto: xHCI Host Controller
-> 	xhci-hcd xhci-hcd.5.auto: new USB bus registered, assigned bus number 4
-> 	xhci-hcd xhci-hcd.5.auto: Host supports USB 3.1 Enhanced SuperSpeed
-> 	hub 3-0:1.0: USB hub found
-> 	hub 3-0:1.0: 1 port detected
-> 	hub 4-0:1.0: USB hub found
-> 	hub 4-0:1.0: 1 port detected
-> 
-> Once this happens on either of the two ports, no amount of disconnecting
-> and reconnecting makes the SuperSpeed device be enumerated, while
-> FullSpeed device enumeration still works.
-> 
-> With retimer (and orientation detection) support not even merged yet,
-> let's revert at least until we have stable host mode in mainline.
-> 
-> Fixes: 1a48dd7b9ac8 ("arm64: dts: qcom: x1e78100-t14s: enable otg on usb-c ports")
-> Cc: Jonathan Marek <jonathan@marek.ca>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+Hi Andr=C3=A9,
 
-Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+On Fri, 6 Dec 2024 at 16:31, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
+wrote:
+>
+> To make USB runtime suspend work when a UDC has been bound, the phy
+> needs to inform the USBDRD controller (DWC3) that Vbus and bvalid are
+> gone, so that it can in turn raise the respective gadget interrupt with
+> event =3D=3D DWC3_DEVICE_EVENT_DISCONNECT, which will cause the USB stack
+> to clean up, allowing DWC3 to enter runtime suspend.
+>
+> On e850 and gs101 this isn't working, as the respective signals are not
+> directly connected, and instead this driver uses override bits in the
+> PHY IP to set those signals. It currently forcefully sets them to 'on',
+> so the above mentioned interrupt will not be raised, preventing runtime
+> suspend.
+>
+> To detect that state, update this driver to act on the TCPC's
+> orientation signal - when orientation =3D=3D NONE, Vbus is gone and we ca=
+n
+> clear the respective bits. Similarly, for other orientation values we
+> re-enable them.
+>
+> This makes runtime suspend work on platforms with a TCPC (like Pixel6),
+> while keeping compatibility with platforms without (e850-96).
+>
+> With runtime suspend working, USB-C cable orientation detection now
+> also fully works on such platforms, and the link comes up as Superspeed
+> as expected irrespective of the cable orientation and whether UDC /
+> gadget are configured and active.
+>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 
-> ---
-> 
-> I have not been able to reproduce this on the (third port of) the CRD,
-> but I hit this constantly with the T14s so let's start with reverting
-> there.
-> 
-> Note that Stephan has already identified another problem with the
-> offending commit here:
-> 
-> 	https://lore.kernel.org/all/ZxZO6Prrm2ITUZMQ@linaro.org/
-> 
-> Johan
-> 
-> 
-> #regzbot introduced: 1a48dd7b9ac8
-> 
-> 
-> 
->  .../arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-> index 5a4a72a030d4..b4b6260c670c 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-> @@ -1515,6 +1515,10 @@ &usb_1_ss0 {
->  	status = "okay";
->  };
->  
-> +&usb_1_ss0_dwc3 {
-> +	dr_mode = "host";
-> +};
-> +
->  &usb_1_ss0_dwc3_hs {
->  	remote-endpoint = <&pmic_glink_ss0_hs_in>;
->  };
-> @@ -1543,6 +1547,10 @@ &usb_1_ss1 {
->  	status = "okay";
->  };
->  
-> +&usb_1_ss1_dwc3 {
-> +	dr_mode = "host";
-> +};
-> +
->  &usb_1_ss1_dwc3_hs {
->  	remote-endpoint = <&pmic_glink_ss1_hs_in>;
->  };
-> -- 
-> 2.45.2
-> 
+As mentioned on the last patch, in my testing cable orientation
+detection is working, but Pixel is detected as a superspeed device in
+one orientation, and high speed device in the other orientation. So
+you should either change the wording of the last paragraph in the
+commit message (assuming you get the same results as me) or make it
+detect as superspeed in both orientations.
+
+Thanks,
+
+Peter.
 
