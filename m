@@ -1,127 +1,143 @@
-Return-Path: <devicetree+bounces-128187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A57009E7DAA
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 02:14:19 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED47D9E7E11
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 04:12:30 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87DAD16D02C
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 01:14:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECBAF2867D1
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 03:12:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8B9CE571;
-	Sat,  7 Dec 2024 01:14:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37F222615;
+	Sat,  7 Dec 2024 03:12:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dz8iq5f9"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="VEtfrcrm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-184.mta1.migadu.com (out-184.mta1.migadu.com [95.215.58.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DFA3C2FD
-	for <devicetree@vger.kernel.org>; Sat,  7 Dec 2024 01:14:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E7BE17591
+	for <devicetree@vger.kernel.org>; Sat,  7 Dec 2024 03:12:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733534054; cv=none; b=b/itxBCU0ijnwJ86v8xXshifMTS8pw4MimppkW7CyB86TYXTOPRtNj4S454EmXg5rU8u0lteYE7g2RgcslHqsgDuBQWdao8Cj/v1iHhYLRH/Kl7a2uF6b6uo/+t/0Hh6Yo/Y8QwbxE/Vp5HlEkeVqy7RkVWWUTne8IYGC+x1V4Y=
+	t=1733541144; cv=none; b=Nl7biEymFZN6WjVkyDxqjOrxGyInKtbR0fa25R952Lc58FD4mjE6ohANkjLY2k0GZUdBz+z0VXltq8T27K6jcLfec0Pty5h/iX88yLmvh69bOMfyNgLvCrY58KWVxwHvY3Z6R1RQSNRcpD/UxNyd/+ALgdUmOBRv2GAipMw4FS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733534054; c=relaxed/simple;
-	bh=1UDNfOgAXHiNS1laqsuNcIe0CfMA9SfD/bj3xh3ULE4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UWYrTdd5eDdvjJ1Rd2REeFJpiVuK8d1obX7X1y/kGgQpNRLZkkf/vsbXSyawp2CAqSp4mgW7EWj5AG3KKnUoVPa3AGOE53QVRV6b+WVA2hG2UHW2SQcns57nWIdc7S6FG9Kxu5QLDU0uQbqr7WNH36UwWEzT4itMjpDGaK+QgZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Dz8iq5f9; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3862d16b4f5so684748f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 17:14:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733534051; x=1734138851; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=kc4i0kJQLOWcBEfKkh0Mird9pq2rATpCYMpyHBDNC9Q=;
-        b=Dz8iq5f9DSBrGG+VSu3ISHBYgs7VrSh10cEknSughBmoHAmqiComy73O9E+KtcNV66
-         eSLlY/QcZYW8PqmEpNVZNhhl6tHLg6g0MVtK47aFlsWGzoPoXH3x91GpySNxbaIh/tQK
-         IkY4ODuUmmOMkT5Hl6O31YsxsV6YJDuFk8Pvlg/QDL4NUqXLwQYunbkksLiuja6CVjVm
-         pq3b0dGgIGf5C8OKuXEZfkbxUkcLBjW09dbTd3PVEWlIsCLqRTxz8R3XPGK4M4HwAyIN
-         jO/DFNH20FpkAGwHRv8NCS8NqaoTRrjJIPIgxUyIkBv3gtD9X1GuPKVbIaoePw+RWO3w
-         yyPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733534051; x=1734138851;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kc4i0kJQLOWcBEfKkh0Mird9pq2rATpCYMpyHBDNC9Q=;
-        b=ogLROooZGEtT9cbj7+02WlAfDH6oPqTskJfItb3lvGZDNYrMLjdeO7Xv7xUgsH9r6n
-         KwJpUNFgtUxV7UiDYrORt+HtczfjmRbR72mK5JYMXA0zZVJmBeKqzA1ct92XZfCvFmqM
-         mY08nsc7rIpg0oG+0NUFV163Y+TFwLcq9klG25CqE57vG90SSWntV0mKTXhsW/okPfZC
-         MtEGM+xqp0HcotyKJGGK6OVmWxIUl/2Ufvp4ut/Gzo8c2jpJtTI/S9oGgu3Yx6LdZEBs
-         9rEUQeiKDE7UbDPRxyCpxJwt4X0GYAhmDqeQXKGaaBUOTmZgZ/0X2JqSy7FfyHIU/ubp
-         OCpg==
-X-Forwarded-Encrypted: i=1; AJvYcCWfdjQL+ubTl7Q3AlbIraUU3oWZqJMb0VPYVGb4CAF2Fmo1jqN1hWx33kzX2qT6UbeR1IAanmOluCBb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5KS+K5AUHOQkLJ6w46mq88Wo9UD79STF7LI5Y+E06H4zi1+Zb
-	hMiczEXrkZC+Lkq+pb2U7mrCRk5Sz8LwChLfS1hT5W8zYra8lnT21phfCiQfIxyu/avAPCD3Tty
-	yHhhZOMGIT0cOsMNvZ22mbyEMd1nq1OMnuMPDWw==
-X-Gm-Gg: ASbGnctrx18Ppw71pBvGfN03ZBnIC8VSBdTYC3qaBK08qyTCtPwWQGCCHrV2y1+TzPF
-	Ol9HMxfNEHcGrpU3PtbjqkIfp5IqdF1cM3VAUtBokMfPunmpb1LJBL9RtkD2FhUA=
-X-Google-Smtp-Source: AGHT+IEXUUe0fWZt4pPEQxVTHw6twtVV/mHWiQX4ajOGKuM43alY918V0NbCArXqqS7AFHkv/75t0ILgA7HTIDbSd1o=
-X-Received: by 2002:a05:6000:42c7:b0:386:2e8c:e26d with SMTP id
- ffacd0b85a97d-3862e8ce40emr1978498f8f.0.1733534051301; Fri, 06 Dec 2024
- 17:14:11 -0800 (PST)
+	s=arc-20240116; t=1733541144; c=relaxed/simple;
+	bh=uN0SWZSMajrpYqKCPc9g5H38lWctE31CpFAFj1KL7IE=;
+	h=Date:From:Subject:To:Cc:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=sJ2OXEBQ32yKmn5J36lz5lXeOR5yMaauhAkBAFQHAKGxYpJ+4Mu9tFNZLnnLhpFDEBBNARiZ0fswpZ7KWPqeUzgPmkMdvR97g9rowxsM3/Ew8xzggYmkPpMBXKm8WUgAbrRqh4nVYFENqJ2iEwya4aoQWOihjClwakOSfTHkhtw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=VEtfrcrm; arc=none smtp.client-ip=95.215.58.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
+Date: Sat, 07 Dec 2024 00:11:55 -0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
+	s=key1; t=1733541138;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CJ53yZUv5qWn3FKAR6sSyKcUASeqiB2DCBVhCzW2Yw4=;
+	b=VEtfrcrmScEb9ksaohHhM8XVmH+Le2ZPpCe9L7OD7V3L3oy/wrpOxfUAKBhKBGGyykeR+G
+	+aJh+kLm0NAc2sj7XMwYqEm+wfUhLGJf+tzJrWRLwwqfsB8pvPUaWBB18X6rdugCAtz/io
+	6Yflt6LSmSoTiarAs2tdOxbq7UQCx89nBCAZlLsMBdTl92T95hd967srl5XJfruyCDVRK2
+	vlaEurX+6t/qIjO6lAVl2Ypzv9/lbai4c+2ILF+YtQuieYMrgRpAX3HR/SGkzLq4z9f+dV
+	OURLJ4EuNZt8GJSOwK23HUdWI8X5Do3Ck8OJmx+QXOoyT+iovZ9L4555WStvgg==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Val Packett <val@packett.cool>
+Subject: Re: [PATCH 0/5] MT8516/MT8167 dtsi fixes
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, Fabien Parent <fparent@baylibre.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Message-Id: <VVS3OS.MZCWW6ICFFUB3@packett.cool>
+In-Reply-To: <7bf536a5-30c1-43d8-9ea3-3aaea65c6b0a@collabora.com>
+References: <20241204190524.21862-1-val@packett.cool>
+	<7bf536a5-30c1-43d8-9ea3-3aaea65c6b0a@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241205141533.111830-1-dakr@kernel.org> <20241205141533.111830-4-dakr@kernel.org>
-In-Reply-To: <20241205141533.111830-4-dakr@kernel.org>
-From: Fabien Parent <fabien.parent@linaro.org>
-Date: Fri, 6 Dec 2024 17:14:00 -0800
-Message-ID: <CAPFo5VJ9=VAghiUGbzPjDDdG8tg6xNQaRtBduHk8R70jktPQNg@mail.gmail.com>
-Subject: Re: [PATCH v4 03/13] rust: implement `IdArray`, `IdTable` and `RawDeviceId`
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com, 
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net, 
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
-	daniel.almeida@collabora.com, saravanak@google.com, dirk.behme@de.bosch.com, 
-	j@jannau.net, chrisi.schrefl@gmail.com, rust-for-linux@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, Wedson Almeida Filho <wedsonaf@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Danilo,
-
-> +/// Create device table alias for modpost.
-> +#[macro_export]
-> +macro_rules! module_device_table {
-> +    ($table_type: literal, $module_table_name:ident, $table_name:ident) => {
-> +        #[rustfmt::skip]
-> +        #[export_name =
-> +            concat!("__mod_", $table_type,
-> +                    "__", module_path!(),
-> +                    "_", line!(),
-> +                    "_", stringify!($table_name),
-> +                    "_device_table")
-
-This doesn't work on top of v6.13-rc1. The alias symbol name has been
-renamed by commit 054a9cd395a7 (modpost: rename alias
-symbol for MODULE_DEVICE_TABLE())
-
-I applied the following change to make it work again:
--            concat!("__mod_", $table_type,
-+            concat!("__mod_device_table__", $table_type,
-                     "__", module_path!(),
-                     "_", line!(),
--                    "_", stringify!($table_name),
--                    "_device_table")
-+                    "_", stringify!($table_name))
+Content-Type: text/plain; charset=us-ascii; format=flowed
+X-Migadu-Flow: FLOW_OUT
 
 
-> +        ]
-> +        static $module_table_name: [core::mem::MaybeUninit<u8>; $table_name.raw_ids().size()] =
-> +            unsafe { core::mem::transmute_copy($table_name.raw_ids()) };
-> +    };
-> +}
+On Thu, Dec 5 2024 at 01:27:01 PM +01:00:00, AngeloGioacchino Del Regno 
+<angelogioacchino.delregno@collabora.com> wrote:
+>> I strongly suggest you to also send one that achieves basic boot 
+>> with UART console
+> as a first step for upstreaming your board, and then go for 
+> incremental changes
+> everytime you get a new feature working.
+
+Wanted to get the PMIC in first but sure, could try splitting out the 
+initial version without the PMIC.
+
+Oh! One dts/dtsi question: pretty much all MTK devices so far have all 
+pinctrl configurations defined per-device. But on this SoC, pin 
+assignments have their "canonical" function in the pin name e.g.: 
+MT8167_PIN_58_SDA0__FUNC_SDA0_0 and on this device they are used as-is. 
+Would it be fine to place these default pinctrl configs for SD/MMC, I2C 
+etc. in the SoC dtsi?
+
+>> Generally, if the patches are only simple additions, you could send 
+>> the original
+> patches without any author variation (and fixing that 
+> MT6392_IRQ_numbers enum
+> in the original ones because lower case please!) and then your 
+> patches on top
+> with your additions.
+
+Right, I was mostly unsure if the email workflow supported just sending 
+someone else's patches, but I guess that was silly - of course 
+git-send-email should do the right thing!
+
+> The upstream driver just gained support for configuring the display 
+> paths
+> entirely in the devicetree as those are obviously device specific.
+> 
+> You can make use of that for upstreaming your tablet after adding the 
+> display
+> nodes (and bindings, if required) as if you go for the default 
+> configuration
+> that's probably not going to work because it's for the pumpkin boards 
+> which
+> will most probably have a different display pipeline compared to your 
+> board.
+
+The pipeline seems to be the same.. The pumpkin board was brought up 
+with DSI as well, the main pipeline I can find in the Android source is 
+the same (+ PWM).
+
+I am still struggling to get it to work though: DSI command mode 
+configuration gets acknowledged fine, but in burst mode, the vblank 
+never arrives. Tried fiddling with various things (CMDQ or not, mutex 
+as vblank source since there was an Android commit doing that, etc.), 
+nothing helped.
+
+>> By the way, is anyone familiar with PSCI cpuidle/hot-unplug issues on
+>> Mediatek Android devices from around this time? [..]
+> 
+> I did have some issues with an older bootloader on the Xperia M5 
+> smartphone
+> and would even lock up at boot, because on the old firmwares the power
+> domains for the CPUs are not managed automatically by FW.
+
+Interesting, thanks for the pointer!
+
+In the Android kernel sources I could find though, there are no CPU 
+domains in the mtk-scpsys-mt8167 driver, and the only references I 
+could even find to the related register bits are from code that *reads* 
+the status of the CPU power domains to make decisions about sleep 
+states (only_one_cpu_online in mtk_idle). Trying to add those to the 
+driver anyway, did not succeed so far.
+
+~val
+
+
+
 
