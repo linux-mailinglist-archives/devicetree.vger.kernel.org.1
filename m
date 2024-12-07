@@ -1,298 +1,214 @@
-Return-Path: <devicetree+bounces-128207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E68D9E8040
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 15:27:23 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F0FA9E806C
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 16:30:04 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 243C82820A0
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 14:27:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 032761662F8
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 15:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47A511482E8;
-	Sat,  7 Dec 2024 14:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4D8145FFF;
+	Sat,  7 Dec 2024 15:29:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iQbGnn/x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MA0PR01CU009.outbound.protection.outlook.com (mail-southindiaazon11020075.outbound.protection.outlook.com [52.101.227.75])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C531DFE1;
-	Sat,  7 Dec 2024 14:27:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.227.75
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733581640; cv=fail; b=s9pGYd3hMndC5DI0zfGx13UxAmVvBb28quOxrYaihmwUbF1k3WUMSnby3vvscUULay80rsf6rV/cPVJyPb5scHvVVyjWnd8NV9oR/3mGcYRx9kMLeHD/TPiLFXxjFEFlAjld5sSNkHZVDbwhIBUeLXuaGBe+vzP8et8MrCgaXFY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733581640; c=relaxed/simple;
-	bh=z7cSk8IIRqtv5R59zFb7jSbULj58OfdgEEnWZb90ed0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=rk12SzaxOh7RU1RB7JlE0l9qoaDxjaddhKuFQZO7D88+F+p5PkBJohmv6TdT/NuowWWHL1cw29eLRy4NoaY5RFop0sA+rxNY9Bhh/x3XuPgw94nIXn/ZI/knUF4urE+o4U3QpOI4mcOb9u8VGlGxiXlUwduVurSTVdfDwO7IHFg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=52.101.227.75
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AJI0UjIl/2e3derhXMRV2o+YjtPA+WxWQ45qLJxf8tjsrx6KaVviy4vV57lOLFD+H9uyQsWQ/MvqbM2lUxtBpjBeRMxwd3lVOK9n29qJ/VyM4DO/PzRRA2vcZAPwrtZt79Ko/mbnYlYVxkI9r5RZY0lUbxEM7B4WOoV+kQz+18wN1iB3jPZ1WFBUHDBmltX5FlutrI5ZeUJG6ZpJkCux8WNWg59cojxCVwnFIz/QICd0kmpQb6Em/EtfxCZtHU+21JcZBSx27njT0K3OhP3IiOTrYnAbVaSEpTZRJen6Q3Qo53fIJl8W/AOXiDXwZIw55hGOvhJIhwSNQ0jIFLjdmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XIjwFCI4ZuBOXEucrAaH0znW3LrpFDb3oaZUiRiQEjQ=;
- b=DIj9e+HuB5GXP6rSZcxk3QhKpGxz/ESmjxJO5lX6WpgyjKnZBHS68/Y+rddP/FVEOph39NmBfWjTKQ+7WKm+dS4OdZRPwZNeHt7x5kRXC1nxzpdrXu5Ah8gQ9jY/oW2K5O9P+c/ChOyUwoGJiWDewWjhkFET9dz0LSg1yofu1F+x+Bc5W+gbzcGfgpN06sZaFNMKkC47Am9HMyXR736wbojmBVy/oN9Fc41Jh1K6CnE7DmI/1UadXwBpCKdN9Wb6R7q98pU/iqISlQxgB5lhi4KkaCsmMthy1d5Wy0g7qFDdoSkPyKI6HCtHTNvKDE2DBSIl+dYzwlm2Z74OcvjNNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
- header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
-Received: from PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM (2603:1096:c04:1::15d)
- by PN3P287MB1032.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:17c::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.12; Sat, 7 Dec
- 2024 14:27:13 +0000
-Received: from PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM
- ([fe80::740f:ab98:2be1:538]) by PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM
- ([fe80::740f:ab98:2be1:538%4]) with mapi id 15.20.8230.010; Sat, 7 Dec 2024
- 14:27:12 +0000
-From: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-CC: "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
-	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 2/2] power: supply: Add STC3117 fuel gauge unit driver
-Thread-Topic: [PATCH v7 2/2] power: supply: Add STC3117 fuel gauge unit driver
-Thread-Index: AQHbRJ6/jwy1FDqx5067UiykHyVizbLZKtGAgAGzE0c=
-Date: Sat, 7 Dec 2024 14:27:12 +0000
-Message-ID:
- <PN2PPFF679F9759E522908216724F696B21F2322@PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM>
-References: <20241202094328.14395-1-bhavin.sharma@siliconsignals.io>
- <20241202094328.14395-3-bhavin.sharma@siliconsignals.io>
- <6ccn5xnsfwxeepsft7tfozbhsvs3w3m2qpmcj74xua74qzkny3@s5rg3ytmcgzn>
-In-Reply-To: <6ccn5xnsfwxeepsft7tfozbhsvs3w3m2qpmcj74xua74qzkny3@s5rg3ytmcgzn>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siliconsignals.io;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PN2PPFF679F9759:EE_|PN3P287MB1032:EE_
-x-ms-office365-filtering-correlation-id: aa4376e9-9ff3-4863-92c0-08dd16cb3ddb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|10070799003|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?bJxoMcPHQuIRQ/8MrMt1xcIWfU1rsm9t5A3/ykvcQahZGRUDCoA9TF1+Ja?=
- =?iso-8859-1?Q?vqtC44imPzgEZXDuwyqv8/KtNRjVhtMKeYvNtWciYo7L+VJKleeGQCSeAP?=
- =?iso-8859-1?Q?XyRgR4oVakjFkKPD3/Rvh2ds/5htq7thoKzw/qnnkeed8oAnviuT7IXD6m?=
- =?iso-8859-1?Q?RuRlCooXYNADiDuUMfiBYK5o9EWBEzjUeLzndhytNwfTFhyrTF2LjwqrJI?=
- =?iso-8859-1?Q?ZGC+ZCDVlei+Z/ybHpXPXxoJzEv8zAeKzfwj1V5J/Q32sYhLYRYBESxIJl?=
- =?iso-8859-1?Q?QwMYRhPJpi+JINSclt4w0wcRxla1j5i9Q/QH5EmRZFRit2VWhIqqyKokKr?=
- =?iso-8859-1?Q?1xUpPoiELQdqNKiT4gJGeXCPB8nYaUBtWjhVdXFPEOuP3i8zxL57sw06Iv?=
- =?iso-8859-1?Q?r07jcHF8DZ9VmzLUA2cX/G0HRASYjw2DS8+6J6mCI4x13ML1xplSYMaGqs?=
- =?iso-8859-1?Q?owfuVDUb40D2gW218aZcZQCZhq9RV/GmKfoqdKPeG/xG8QrqbAWBYoUKGb?=
- =?iso-8859-1?Q?I8bTzAu1A6ATn58BNX0Bdu99pFf5LBc7IpP0e1O9W2kwQDbLRwnNhdGMyX?=
- =?iso-8859-1?Q?b3cPhSkNQtEAp7jxcyosx3BCD8fw15em12wq3Ay8dkpuK7G97hje4vkKY4?=
- =?iso-8859-1?Q?PXjVILaw9shafOicVYu0xyupIQpWe3xXOc1F5+dGQlJ4WeqtqDOuZrE7NN?=
- =?iso-8859-1?Q?tHhHabeBmBijbQqMnbRZTp4hJmfRMuYHtysESc/jZnMpb5v654JpMgG64g?=
- =?iso-8859-1?Q?r6Iz68UbU6/r5S3FneEnFoPhmsrYb+7l+BjZFkG+L5ky7i+lQcjIh5yo35?=
- =?iso-8859-1?Q?LTpM1bZY5R+PUYxIMYXZJaDYGKST9dasm7RQgsTDQ25itz/S64+ZLj+O19?=
- =?iso-8859-1?Q?MFHlwLwRdueVq0JqeLD3UocLgumHyyeBOczh8I7TENjQUjINuita1MMWXj?=
- =?iso-8859-1?Q?L58pxGOXmDlAkml76OsIpfmMqUVM6qUGQ+hNRYRKwXqZRytkDNvmIfUzZY?=
- =?iso-8859-1?Q?FpvtyQialcYFPs7fGUqhYw4EXqBZ6Laems2n2HGq6yCUCIO3IxXqggBQhl?=
- =?iso-8859-1?Q?+7KMUY3cBM8wgGCBiDQF4UfCNPDPBN46rpJMpkAYHHdDio31Rg1jRalnpI?=
- =?iso-8859-1?Q?zx3A81exvUWkqU/hSDJ/AeKWd5z+I8wmXhlKAlyenJhKc6GjTL6/NvFthK?=
- =?iso-8859-1?Q?nSpnq97TsAL6zrvRWwW61qvmaCdym5BQ3HoZWbo0agy1SkyYoGLAjgQUFi?=
- =?iso-8859-1?Q?/d0LiIano0tKMWl7/4dYDi+1pZd79hL3fFHJTcjo8j0cCQ6ZLmr9UbR4oy?=
- =?iso-8859-1?Q?5M93OJ7zSAHbCuA6VkPS4XeDANLCfFmdxfiLUHuPgCdbTKM4LAYhUx7ap2?=
- =?iso-8859-1?Q?TOkNxFDlgt09RFj1+MeG9Ki51gLsZCm+mX/2J+szXslnN8ODck8JErQGPE?=
- =?iso-8859-1?Q?RTnMumCZ8Au8SewWyGPOfdV3r+t32tY0cM9LSQ=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?8VHRp2BRDVQSd22k5EdV6LnSLGAoNjtCOtyHMmunaSwmPTj9PHwKtsnCCN?=
- =?iso-8859-1?Q?ogYr7i+qR689Pxew1dhi0MqFfVhvpd5miSKcdU5mfZC1iGUGHjfdpk5Oqi?=
- =?iso-8859-1?Q?MygQ+frunPlLd70nokaipqw12rqcbYvU4LyLSjuf92m70argiirTmclMNU?=
- =?iso-8859-1?Q?BYUhUmtCyHuGFwJ8u41riYlOz7zqcdYJE2JhLvsdVxFjvBIs8KFDTnoMwq?=
- =?iso-8859-1?Q?dtmCwbpZ9as+Fzr4oIA92YRpwabJr+omvzC5gEf7FGMJXTBVoNLLyr+0ce?=
- =?iso-8859-1?Q?QbdX2BCrvkEWz9b+4/hbqAGJvKgX8xbt9hO17FESHL3BeAA5Yh5a0rnAzl?=
- =?iso-8859-1?Q?4BgNsHu/DoXT55OvFeNV/V3EqfHAYB3bafOyN+aTYrYQ/8TXWfYfjLqGSG?=
- =?iso-8859-1?Q?lRlIJvavq71zZoEBEP2AdzQICHGR3RAG/wbgnZBAlFeNIyDS5+qlmZ+loF?=
- =?iso-8859-1?Q?0wRl1W7+jFtfnDrYKQCkZV+BiPIdxkKQh6/MsRUIBAYN9LtbxB0HKzAJ3b?=
- =?iso-8859-1?Q?7kfk4DuD3Id57a5njv4DGvZj7wzrMV1bIrw6k79x4o0q4ZYzE0ZKRTHss2?=
- =?iso-8859-1?Q?nbJrTBpS7kjWIm2ZQFOoFNUAOjcwTXppK8T09WfeFomhJg8kfShOA+WMiB?=
- =?iso-8859-1?Q?9g6YDj8av94I/x4fP1u5UKYpqNrG/KZ3J5jlwBWoC1ppwvPVtRYOyeEaRv?=
- =?iso-8859-1?Q?EhEdOK3fEQiavVCJIC68hwOgUjL/R04LMwXon+HiKvyJi5os8QxFJVRoRS?=
- =?iso-8859-1?Q?rkvJXXcsbUoIfBU1HmiIexyorBPFaCMpCAuHuPG9zzQmUC0fY96QFqbhxG?=
- =?iso-8859-1?Q?ubWZt3wBgROsx3aL0XKoHGXX94i5OTAAAQKT83q/Mpr/1PRmGDGn5rFoxt?=
- =?iso-8859-1?Q?WQCNGR0aN0QOU1yz9BuEm6yCu82Lg++QfqcbejQLdLX8flShzgGNTovgus?=
- =?iso-8859-1?Q?Tllu8AeNjbe5qFJlVjAyQU8ECd58Hg3lOyYnVT/5Ru8vUHrVzzTjgSaOuH?=
- =?iso-8859-1?Q?kHS78Ymi51KuH4tWKVYxteD96PjRZZuFO5WjLkC3sKbbhIj80VXW5h4nZI?=
- =?iso-8859-1?Q?uT5EkOj22m73hRV8bpmO9LdCQNrB5AtQtmjP5Fko8Ox/e5S7KatK5apT3Q?=
- =?iso-8859-1?Q?bXhO5/QuCZ/cc/GgZ74kuxZ6rZRWRenqXnTooiE0EITBcPYDOnCqaA/ZIi?=
- =?iso-8859-1?Q?qrPela0etLxk3O1nblU3T17Z7UKikNPJQ46Baud/Pur8Gy2V8K64TtJPBC?=
- =?iso-8859-1?Q?Q0bfBdnf1q/IlBghEZcwGZLX9E4WpbmjUXiVaq4c9MISfMRftVdCDp79M7?=
- =?iso-8859-1?Q?r7fv3Ik1gRDuiI94j03J8I4mdhiiwkxx/9VMnpLSKi+J4rTS4Jmfz6BeZ7?=
- =?iso-8859-1?Q?oD55Kot/f0pCxfcTrs4iqNwvTZXdM3W6dzB1VFhygJ1o0skzSNSxbSypkB?=
- =?iso-8859-1?Q?ZqzWOCFBiqRd6XPdxA0Yo3NLnP87wDSrMWVyp4KB8ZbhBDTMbee2l9F1C+?=
- =?iso-8859-1?Q?DKQEdTni6BwRSGUvTg0al3X8sa0M+OR9Gkn+NBf0xpY/qZNysmvq1iOiDv?=
- =?iso-8859-1?Q?xXo98Pk0UIeHse+Gihxi52CvWYr3NAQ+YiXYPDQdp2p6yxpCvh45514tYx?=
- =?iso-8859-1?Q?ttZ34HD9rB5Jt//KIoodFdBJrlf7Di87yGnagEEjrSybPcvl4sBK9zcR6g?=
- =?iso-8859-1?Q?uw7YrL03ADOdd66AXhvF8vyRPBm4C2DnfHIAz4aIB9Nlt8wh3YUFKcXfqp?=
- =?iso-8859-1?Q?AsZA=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C18322C6C5
+	for <devicetree@vger.kernel.org>; Sat,  7 Dec 2024 15:29:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733585399; cv=none; b=lVANscLU+3IGH5cpQ53m0L3x8bgxsP41m8dTjJ8SeMa4sRLB5y2vHLxgjEuNeNJHmOxTx2ZK40IfUAbVIz2rqu/GLNlcOYSWZIClnYDG76bGhilZdG2wjt7BaGIQH+ciLY7F+HeoiEP+slzLlmKW3sdOI8YeYZ7gwPv6EzNpDfM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733585399; c=relaxed/simple;
+	bh=++qwKaLQJK0eYuZPezy9s9pCAqz4NQG7EHyBEh/bhPU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f1z9VpbF+eNApwWZA3GDllaML3wQ/h2lvVeRWZNg2zo2NPhE7a8xql3KoFgcXS5JdRqA6SafIotYqjcS/2IDd6PQ1hLiO5DUpYmMbw2QkW79EJABst4tpZkTiEa/VFSgoaIA1KZ/0JFttd85pEQw+D1+7rnz91Qfqctt2OcbA2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iQbGnn/x; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-aa64721042cso140565766b.2
+        for <devicetree@vger.kernel.org>; Sat, 07 Dec 2024 07:29:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733585394; x=1734190194; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=N94u8ceJE9IihGissqr+ltow5uqSpjZz+SPLJ2SzdDc=;
+        b=iQbGnn/xXpVDe2T9BJg0wVaFJ3xBRuKIfmhVzO8CvuAbIXO2rROhTWuraBGu1fB1Vc
+         v4C0RAKOCMcTN7/p0Sj2ch7t/+4bjDSc2Q9udO5oHO+M5/yy/j5J1i1xJXSdlP/CZ0UW
+         xnW8+p0R1eW6mHnWmmcb4+9eh5xmkF5lICDcsrcamwmyxRkFUqJPfJAw7zHR+nYHhFLb
+         8C1IRY2TDqcHl6GhWUTgaIYqqFe+2Fv4FldanBcQermjFVQRGtny6gQvitIaCUsggt7O
+         jCLkp2gDzLt4tJTVmoxn5GcpWiAvlGPFudjsi7edtmDB81sK9faegoXhWrmLPzKFus60
+         MjGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733585394; x=1734190194;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=N94u8ceJE9IihGissqr+ltow5uqSpjZz+SPLJ2SzdDc=;
+        b=VsXx6REjZJXzrru+VMidf4HIOHXBOMrK5qum9W6duX9gBmuvw4WKFFj1dBc2B9MWvo
+         92/l2DWTs5PWD75usRC0ZNPjLE9VXO7yeG372VVXKbs/jwjZDCVi+idhfUwFg9tXWPvY
+         yapG/QbLA2qGnyl0gwXNEAqS2sPhUV+cdciU4ZNUEInM+8VHtOFqLXkoaS1YzQE1b4U5
+         NFJOu4s2aArhO3YUt3/WHlPujGXmw+QdwYJulPj6VzKwSn6hiJJPROSP/aw7zs0OUloA
+         wmjcL0lxlcbf8aXMTOsDmfhRga4LBwQpcBhUac4PHKrE5DDx00jjSCVRkt26bTTn7QJd
+         xkUg==
+X-Forwarded-Encrypted: i=1; AJvYcCU5PIkNlT9SFfb8Oq+XVh4NOmbkpk48Q1bN9sPe2cLUpDmzYOMo15iKiXlzYtv91uz82VlcIb0H/h5W@vger.kernel.org
+X-Gm-Message-State: AOJu0YwjfT/dCX2u2Y+0aLoHmKCYtUpD7pGYI4ncKpHaHcII3kZyEdOH
+	EK4dovOOq8wKQ8wOUGHUDWrE9vHPKksiOJRfCD30cLZ1/NpA7zNGdj74w+/URk0=
+X-Gm-Gg: ASbGncsAGSOUySaZf7GnejsucwnXo3c2RCm0+5g3bv0RERnP0PseRPWPcobqVC2waMS
+	2Kk4OnV7jJKt2rg7yca4fmRP9K+CAQHe1Aw04ej75RuEhC0WIvXybeQQ8wjN5kLjpoaE/f77UoV
+	uRNoLXTfeFbVzDFhmEljL1DOTDI/8Shz3rc42yTq2Mi0FqMD7YfKdrtr6wU+ejc6H2rzDbwJPwp
+	fda5RH+kt5ES0n1EqAoRGjm3y1FyN3xMoSJRGA+M11W8SU0JkfPnw==
+X-Google-Smtp-Source: AGHT+IF4LY5WB0e2F6DNpEuhnVjdXbVwXG9srfjzrNNUuYa2L9aD5xp0wQlYa8StPx5b3r+PKQuxAA==
+X-Received: by 2002:a17:906:2189:b0:a9a:1f8:6c9b with SMTP id a640c23a62f3a-aa63a33c764mr406864066b.37.1733585394222;
+        Sat, 07 Dec 2024 07:29:54 -0800 (PST)
+Received: from localhost ([2a02:8071:b783:6940:a8d:e1d8:6f77:cd7e])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa625e5c660sm399012466b.19.2024.12.07.07.29.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Dec 2024 07:29:53 -0800 (PST)
+Date: Sat, 7 Dec 2024 16:29:51 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+	dlechner@baylibre.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v7 8/8] iio: adc: ad4851: add ad485x driver
+Message-ID: <cpfpysi6zcr7n6qy642dmhsi2a4hom2p7l4rboj4jgakuzpa5p@5xaqd3oxxlrs>
+References: <20241129153546.63584-1-antoniu.miclaus@analog.com>
+ <20241129153546.63584-9-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: siliconsignals.io
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: aa4376e9-9ff3-4863-92c0-08dd16cb3ddb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Dec 2024 14:27:12.8244
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dqmkYX40UKKzNKChc2IGNlg390zei+kt1iyR5V8WxgeqXoVjNk7engoXmcADcXDP0jxk2fFv/SD/HSe3vJdWwNhqOw9pjGTcEQa/fLaWIvg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB1032
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ssuityvtqapol74n"
+Content-Disposition: inline
+In-Reply-To: <20241129153546.63584-9-antoniu.miclaus@analog.com>
 
-Hi Sebastian,=0A=
-=0A=
-Thanks for your feedbacks=0A=
-=0A=
-> > Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.=
-io>=0A=
-> > Signed-off-by: Bhavin Sharma <bhavin.sharma@siliconsignals.io>=0A=
-> > ---=0A=
-> =0A=
-> Please add the output from running the following script on a system=0A=
-> without your fuel gauge to the cover letter in the next submission.=0A=
-> It helps to check that the values are properly converted:=0A=
-> =0A=
-> ./tools/testing/selftests/power_supply/test_power_supply_properties.sh=0A=
-=0A=
-Sure, i will attach output of the test =0A=
-> > +#define STC3117_ADDR_CC_ADJ_H                        0X1C=0A=
-> > +#define STC3117_ADDR_VM_ADJ_L                        0X1D=0A=
-> > +#define STC3117_ADDR_VM_ADJ_H                        0X1E=0A=
->=0A=
-> Please keep the x in 0X lower case. It suddenly changes after 0x0A=0A=
-=0A=
-okay =0A=
-> > +     data->soc =3D (value * 10 + 256) / 512;=0A=
-> > +=0A=
-> > +     /* cureent in mA*/=0A=
->=0A=
-> typo (cureent -> currrent)=0A=
-=0A=
-okay=0A=
-> > +=0A=
-> > +     /* temp */=0A=
->=0A=
-> Looks like temp is in =B0C?=0A=
-okay =0A=
-> > +=0A=
-> > +     /* ocv */=0A=
->=0A=
-> I guess ocv is also in mV?=0A=
-=0A=
-okay=0A=
-> > +     default:=0A=
-> > +             data->battery_state =3D BATT_IDLE;=0A=
-> > +     }=0A=
-> > +=0A=
-> > +     return 0;=0A=
-> > +}=0A=
->=0A=
-> You are never using data->battery_state, so the whole function can=0A=
-> be removed and battery_state can be removed from the data struct.=0A=
-=0A=
-yes will remove in next version=0A=
-=0A=
-> > +{=0A=
-> > +     int ID, mode, ret;=0A=
->=0A=
-> why is ID in upper case like a constant?=0A=
-=0A=
-okay will change into lower case=0A=
-> > +     if (ram_data.reg.state !=3D STC3117_RUNNING) {=0A=
-> > +             data->batt_current =3D 0;=0A=
-> > +             data->temp =3D 250;=0A=
->=0A=
-> why 250?=0A=
-=0A=
-temperature range for this sensor is specified in the datasheet=0A=
-as -40=B0C to 125=B0C.=0A=
-The value 250 lies outside this range, which means that the temperature=0A=
-data is unavailable or invalid. This approach is consistent with the vendor=
-'s=0A=
-Arduino driver, where 250 is also used in similar conditions to indicate th=
-at=0A=
-the sensor is not in running mode.=0A=
-=0A=
-> > +     struct stc3117_data *data =3D container_of(to_delayed_work(work),=
-=0A=
-> > +                                     struct stc3117_data, update_work)=
-;=0A=
-> > +     stc3117_task(data);=0A=
->=0A=
-> Please run checkpatch before patch submission.=0A=
-=0A=
-I did this i am not getting any warnings here =0A=
-> > +     case POWER_SUPPLY_PROP_VOLTAGE_NOW:=0A=
-> > +             val->intval =3D data->voltage;=0A=
-> =0A=
-> This has to be in uV.=0A=
-okay=0A=
-> > +             break;=0A=
-> > +     case POWER_SUPPLY_PROP_CURRENT_NOW:=0A=
-> > +             val->intval =3D data->batt_current;=0A=
-> > +             break;=0A=
->=0A=
-> This has to be in uA.=0A=
-okay =0A=
-> > +     case POWER_SUPPLY_PROP_CAPACITY:=0A=
-> > +             val->intval =3D data->soc;=0A=
-> > +             break;=0A=
-> > +     case POWER_SUPPLY_PROP_TEMP:=0A=
-> > +             val->intval =3D data->temp;=0A=
-> > +             break;=0A=
->=0A=
-> This has to be in 1/10 of =B0C.=0A=
-=0A=
-okay =0A=
-> > +     POWER_SUPPLY_PROP_TEMP,=0A=
-> > +     POWER_SUPPLY_PROP_PRESENT,=0A=
-> > +};=0A=
-> =0A=
-> During the read process you are also getting OCV and average=0A=
-> current. Why are you not exporting them via the following=0A=
-> properties (in uV and uA) when you are getting them anyways?=0A=
->=0A=
-> POWER_SUPPLY_PROP_VOLTAGE_OCV=0A=
-> POWER_SUPPLY_PROP_CURRENT_AVG=0A=
-=0A=
-okay will add this property=0A=
-> > +             return PTR_ERR(data->regmap);=0A=
-> > +=0A=
-> > +     psy_cfg.drv_data =3D data;=0A=
->=0A=
-> psy_cfg.fwnode =3D dev_fwnode(dev);=0A=
- =0A=
-okay =0A=
-> > +                             "failed to initialize of stc3117\n");=0A=
-> > +=0A=
-> > +     INIT_DELAYED_WORK(&data->update_work, fuel_gauge_update_work);=0A=
->=0A=
-> This is not being stopped on module removal. You need=0A=
-> devm_delayed_work_autocancel() instead of INIT_DELAYED_WORK.=0A=
-=0A=
-sure =0A=
-=0A=
-Best regards,=0A=
-Bhavin=
+
+--ssuityvtqapol74n
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v7 8/8] iio: adc: ad4851: add ad485x driver
+MIME-Version: 1.0
+
+Hello Antoniu,
+
+On Fri, Nov 29, 2024 at 05:35:46PM +0200, Antoniu Miclaus wrote:
+> +static int ad4851_set_sampling_freq(struct ad4851_state *st, unsigned int freq)
+> +{
+> +	struct pwm_state cnv_state = {
+> +		.duty_cycle = AD4851_T_CNVH_NS,
+> +		.enabled = true,
+> +	};
+> +	int ret;
+> +
+> +	freq = clamp(freq, 1, st->info->max_sample_rate_hz);
+> +
+> +	cnv_state.period = DIV_ROUND_UP_ULL(NSEC_PER_SEC, freq);
+> +
+> +	ret = pwm_apply_might_sleep(st->cnv, &cnv_state);
+> +	if (ret)
+> +		return ret;
+
+If you want to be sure that pwm_apply_might_sleep() doesn't round down
+.period (and .duty_cycle?) too much, you might consider using
+pwm_round_waveform_might_sleep(). But note that this function only works
+for two hwpwm drivers currently.
+
+> +
+> +	st->sampling_freq = freq;
+> +
+> +	return 0;
+> +}
+> +
+> +static const int ad4851_oversampling_ratios[] = {
+> +	1, 2, 4, 8, 16,	32, 64, 128,
+> +	256, 512, 1024, 2048, 4096, 8192, 16384, 32768,
+> +	65536,
+> +};
+> +
+> +static int ad4851_osr_to_regval(int ratio)
+
+This function is called with an unsigned parameter only.
+
+> +{
+> +	int i;
+> +
+> +	for (i = 1; i < ARRAY_SIZE(ad4851_oversampling_ratios); i++)
+> +		if (ratio == ad4851_oversampling_ratios[i])
+> +			return i - 1;
+
+Given that ad4851_oversampling_ratios[i] == 1 << i you could simplify
+that. Something like:
+
+	if (is_power_of_2(ratio) && ratio <= 65536 && ratio > 0)
+		return ilog2(ratio);
+
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int ad4851_set_oversampling_ratio(struct ad4851_state *st,
+> +					 const struct iio_chan_spec *chan,
+> +					 unsigned int osr)
+> +{
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	if (osr == 1) {
+> +		ret = regmap_clear_bits(st->regmap, AD4851_REG_OVERSAMPLE,
+> +					AD4851_OS_EN_MSK);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = iio_backend_oversampling_disable(st->back);
+> +		if (ret)
+> +			return ret;
+> +	} else {
+> +		val = ad4851_osr_to_regval(osr);
+> +		if (val < 0)
+> +			return -EINVAL;
+> +
+> +		ret = regmap_set_bits(st->regmap, AD4851_REG_OVERSAMPLE,
+> +				      AD4851_OS_EN_MSK);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = regmap_update_bits(st->regmap, AD4851_REG_OVERSAMPLE,
+> +					 AD4851_OS_RATIO_MSK, val);
+
+You set this register twice in a row. Can this be done in a single
+register access?
+
+> +		if (ret)
+> +			return ret;
+
+Best regards
+Uwe
+
+--ssuityvtqapol74n
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdUaewACgkQj4D7WH0S
+/k55Vwf/dcyzLERHADJy0eA4I3kK1jSCddOaUpX9iL4wUcXFMi2IGBfN/aJ6hVJW
+RahHHZ0hx4S6Y+RMdyIb40mDgDxEOIzxihi7D+5KI6CV3cDd4oZkUkQ3rNFXQ3Gk
+hOuaDEasQKueh0lbjTT5eQ4t1xzfSlNjpTrbR3t+PRtXRF1Wgkg2E+IorJ8q7duR
++tsndFiWef/2ycvM/e/RZefB9kCX+3IEiaZIzgiXIbqtZp5hcN3WQJ9iJY95s0Gq
+BN7yTVmNrknMfJopgF3JhHuwtCoEfLqS6ehITy3bd1SKWL00sg2Nvnh7IBKc/04d
+9M+ZIy+6be+xTyAXZi0ESyB20GywDg==
+=W1c1
+-----END PGP SIGNATURE-----
+
+--ssuityvtqapol74n--
 
