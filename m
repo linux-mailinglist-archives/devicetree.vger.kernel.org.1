@@ -1,143 +1,145 @@
-Return-Path: <devicetree+bounces-128188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED47D9E7E11
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 04:12:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38BEE9E7ED8
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 09:01:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECBAF2867D1
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 03:12:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED92728508A
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 08:01:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37F222615;
-	Sat,  7 Dec 2024 03:12:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="VEtfrcrm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6BCA12C7FD;
+	Sat,  7 Dec 2024 08:00:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-184.mta1.migadu.com (out-184.mta1.migadu.com [95.215.58.184])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E7BE17591
-	for <devicetree@vger.kernel.org>; Sat,  7 Dec 2024 03:12:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A13428F5
+	for <devicetree@vger.kernel.org>; Sat,  7 Dec 2024 08:00:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733541144; cv=none; b=Nl7biEymFZN6WjVkyDxqjOrxGyInKtbR0fa25R952Lc58FD4mjE6ohANkjLY2k0GZUdBz+z0VXltq8T27K6jcLfec0Pty5h/iX88yLmvh69bOMfyNgLvCrY58KWVxwHvY3Z6R1RQSNRcpD/UxNyd/+ALgdUmOBRv2GAipMw4FS0=
+	t=1733558458; cv=none; b=gscCvuYjVCKQXHAjEQq1R0zmPH9as8ici/2STUWsdoClmz4YrrND4fA9tTsTesV4Y2n/D8uSjU8FCTtUrkrM2gVaes1mzZoFu66y1E9hib+PU35gEypvoYoSF2/yEOM6UyHey1ygNVolXvmvNo6fXUGkqcl6hvypKvdXq8tbUeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733541144; c=relaxed/simple;
-	bh=uN0SWZSMajrpYqKCPc9g5H38lWctE31CpFAFj1KL7IE=;
-	h=Date:From:Subject:To:Cc:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sJ2OXEBQ32yKmn5J36lz5lXeOR5yMaauhAkBAFQHAKGxYpJ+4Mu9tFNZLnnLhpFDEBBNARiZ0fswpZ7KWPqeUzgPmkMdvR97g9rowxsM3/Ew8xzggYmkPpMBXKm8WUgAbrRqh4nVYFENqJ2iEwya4aoQWOihjClwakOSfTHkhtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=VEtfrcrm; arc=none smtp.client-ip=95.215.58.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-Date: Sat, 07 Dec 2024 00:11:55 -0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1733541138;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CJ53yZUv5qWn3FKAR6sSyKcUASeqiB2DCBVhCzW2Yw4=;
-	b=VEtfrcrmScEb9ksaohHhM8XVmH+Le2ZPpCe9L7OD7V3L3oy/wrpOxfUAKBhKBGGyykeR+G
-	+aJh+kLm0NAc2sj7XMwYqEm+wfUhLGJf+tzJrWRLwwqfsB8pvPUaWBB18X6rdugCAtz/io
-	6Yflt6LSmSoTiarAs2tdOxbq7UQCx89nBCAZlLsMBdTl92T95hd967srl5XJfruyCDVRK2
-	vlaEurX+6t/qIjO6lAVl2Ypzv9/lbai4c+2ILF+YtQuieYMrgRpAX3HR/SGkzLq4z9f+dV
-	OURLJ4EuNZt8GJSOwK23HUdWI8X5Do3Ck8OJmx+QXOoyT+iovZ9L4555WStvgg==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Val Packett <val@packett.cool>
-Subject: Re: [PATCH 0/5] MT8516/MT8167 dtsi fixes
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1733558458; c=relaxed/simple;
+	bh=bulXPnQNHNpWHhSyrqhdpYMUDxHnpSJESZklGOTCKbI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qlj+S4+mFgTwrfXu7B50L016Yhvvtlut2Uzu42kqqGI9n5UsNGcBukK8P/JGGFNEBy+IPvjqs/lRQNwfxS+1x3nVpnDjkMvo7zgbpXEm8Bueihl7r+xeCZMUESYU8OhdiQwihodybiIPdgfZ83+8gofKoJ9tfYVn7ccimDNbSNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tJpju-00061t-9k; Sat, 07 Dec 2024 09:00:34 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tJpjr-0028W7-1K;
+	Sat, 07 Dec 2024 09:00:32 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1tJpjs-002fei-0E;
+	Sat, 07 Dec 2024 09:00:32 +0100
+Date: Sat, 7 Dec 2024 09:00:32 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Conor Dooley <conor@kernel.org>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, Fabien Parent <fparent@baylibre.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Message-Id: <VVS3OS.MZCWW6ICFFUB3@packett.cool>
-In-Reply-To: <7bf536a5-30c1-43d8-9ea3-3aaea65c6b0a@collabora.com>
-References: <20241204190524.21862-1-val@packett.cool>
-	<7bf536a5-30c1-43d8-9ea3-3aaea65c6b0a@collabora.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v1 1/5] dt-bindings: net: Add TI DP83TD510 10BaseT1L PHY
+Message-ID: <Z1QAoAmXlBoixIS4@pengutronix.de>
+References: <20241205125640.1253996-1-o.rempel@pengutronix.de>
+ <20241205125640.1253996-2-o.rempel@pengutronix.de>
+ <20241205-immortal-sneak-8c5a348a8563@spud>
+ <Z1KxZmRekrYGSdd4@pengutronix.de>
+ <20241206-wrought-jailbreak-52cc4a21a713@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241206-wrought-jailbreak-52cc4a21a713@spud>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-
-On Thu, Dec 5 2024 at 01:27:01 PM +01:00:00, AngeloGioacchino Del Regno 
-<angelogioacchino.delregno@collabora.com> wrote:
->> I strongly suggest you to also send one that achieves basic boot 
->> with UART console
-> as a first step for upstreaming your board, and then go for 
-> incremental changes
-> everytime you get a new feature working.
-
-Wanted to get the PMIC in first but sure, could try splitting out the 
-initial version without the PMIC.
-
-Oh! One dts/dtsi question: pretty much all MTK devices so far have all 
-pinctrl configurations defined per-device. But on this SoC, pin 
-assignments have their "canonical" function in the pin name e.g.: 
-MT8167_PIN_58_SDA0__FUNC_SDA0_0 and on this device they are used as-is. 
-Would it be fine to place these default pinctrl configs for SD/MMC, I2C 
-etc. in the SoC dtsi?
-
->> Generally, if the patches are only simple additions, you could send 
->> the original
-> patches without any author variation (and fixing that 
-> MT6392_IRQ_numbers enum
-> in the original ones because lower case please!) and then your 
-> patches on top
-> with your additions.
-
-Right, I was mostly unsure if the email workflow supported just sending 
-someone else's patches, but I guess that was silly - of course 
-git-send-email should do the right thing!
-
-> The upstream driver just gained support for configuring the display 
-> paths
-> entirely in the devicetree as those are obviously device specific.
+On Fri, Dec 06, 2024 at 04:57:01PM +0000, Conor Dooley wrote:
+> On Fri, Dec 06, 2024 at 09:10:14AM +0100, Oleksij Rempel wrote:
+> > On Thu, Dec 05, 2024 at 05:18:59PM +0000, Conor Dooley wrote:
+> > > On Thu, Dec 05, 2024 at 01:56:36PM +0100, Oleksij Rempel wrote:
+> > > > Introduce devicetree binding for the Texas Instruments DP83TD510
+> > > > Ultra Low Power 802.3cg 10Base-T1L Single Pair Ethernet PHY.
+> > > > 
+> > > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > > > ---
+> > > >  .../devicetree/bindings/net/ti,dp83td510.yaml | 35 +++++++++++++++++++
+> > > >  1 file changed, 35 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/net/ti,dp83td510.yaml
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/net/ti,dp83td510.yaml b/Documentation/devicetree/bindings/net/ti,dp83td510.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..cf13e86a4017
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/net/ti,dp83td510.yaml
+> > > > @@ -0,0 +1,35 @@
+> > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/net/ti,dp83td510.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: TI DP83TD510 10BaseT1L PHY
+> > > > +
+> > > > +maintainers:
+> > > > +  - Oleksij Rempel <o.rempel@pengutronix.de>
+> > > > +
+> > > > +description:
+> > > > +  DP83TD510E Ultra Low Power 802.3cg 10Base-T1L 10M Single Pair Ethernet PHY
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: ethernet-phy.yaml#
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - ethernet-phy-id2000.0181
+> > > 
+> > > There's nothing specific here, can someone remind me why the generic
+> > > binding is not enough?
+> > 
+> > The missing binding was blamed by checkpatch. Haw should I proceed with this
+> > patch?
 > 
-> You can make use of that for upstreaming your tablet after adding the 
-> display
-> nodes (and bindings, if required) as if you go for the default 
-> configuration
-> that's probably not going to work because it's for the pumpkin boards 
-> which
-> will most probably have a different display pipeline compared to your 
-> board.
+> Does dtbs_check complain when you use it in a dts? What you have here
+> matches against the pattern ^ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$
+> so I think it won't. checkpatch might be too dumb to evaluate the regex?
 
-The pipeline seems to be the same.. The pumpkin board was brought up 
-with DSI as well, the main pipeline I can find in the Android source is 
-the same (+ PWM).
+dtbs_check didn't complained about it, only checkpatch.
 
-I am still struggling to get it to work though: DSI command mode 
-configuration gets acknowledged fine, but in burst mode, the vblank 
-never arrives. Tried fiddling with various things (CMDQ or not, mutex 
-as vblank source since there was an Android commit doing that, etc.), 
-nothing helped.
-
->> By the way, is anyone familiar with PSCI cpuidle/hot-unplug issues on
->> Mediatek Android devices from around this time? [..]
-> 
-> I did have some issues with an older bootloader on the Xperia M5 
-> smartphone
-> and would even lock up at boot, because on the old firmwares the power
-> domains for the CPUs are not managed automatically by FW.
-
-Interesting, thanks for the pointer!
-
-In the Android kernel sources I could find though, there are no CPU 
-domains in the mtk-scpsys-mt8167 driver, and the only references I 
-could even find to the related register bits are from code that *reads* 
-the status of the CPU power domains to make decisions about sleep 
-states (only_one_cpu_online in mtk_idle). Trying to add those to the 
-driver anyway, did not succeed so far.
-
-~val
-
-
-
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
