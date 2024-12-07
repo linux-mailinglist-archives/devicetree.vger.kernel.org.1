@@ -1,171 +1,126 @@
-Return-Path: <devicetree+bounces-128231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D9B49E824D
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 22:33:29 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD75B9E8252
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 22:44:23 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EA58281CF7
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 21:33:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C61EE165471
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 21:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BCC192D66;
-	Sat,  7 Dec 2024 21:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE5614F9CC;
+	Sat,  7 Dec 2024 21:44:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="o+NFop28"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UABWHTBV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com [209.85.160.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A70158874;
-	Sat,  7 Dec 2024 21:33:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E4FED27E
+	for <devicetree@vger.kernel.org>; Sat,  7 Dec 2024 21:44:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733607184; cv=none; b=I8oDqcj43TaKMbS4Ofnykkb2TO6d/3EyN/eK3p8eeu/kOa+022m/0+NW3r+LNT0Ss0MDF82Kv0u+ev0Hi2Rx3/GR632ifWj2lbosFiPF5pM8vG1ZdDBKdRGeajIUK3T+7xpbA46cQ+00xHi1bundcYv23l9jzvF6rlOeIm9Siqs=
+	t=1733607859; cv=none; b=okBWJ2BfYGe9OQzLRdQvLflpR+LcSh8CpsmQez/y+gjT3WNjzlPXqPH0kRRzj/KZ+9N+dFMd/ci+Kdn6vAdEITREmyZnLIqyQI29d0MTS1LMbIsnBc0o1DSV2rfIBZNCC4kF9g+8Yf/mUqBbgpSoMrtrc7/Hh4xyekg3DdRWRXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733607184; c=relaxed/simple;
-	bh=SCcXEr+KFbRx8TCn5PCWtq/V3Qw/KVqvlgOoYmZD3W0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZYJ7/O4KF55PL+xWt4FMQWpFJ1N/HHb9cFaAOw/gw64xFwUPyiW6+v+vXO9BOuQKaDxTc3Y7mHyJqqIsXXR5ZA6uNqMOFydbf8KqF9HC+f5Gmy3phnPALXqo2+Tkfz6QXbiUEhTXL5eeJ7aA9u4vqRvz0WyEUyZatEyBTBstLpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=o+NFop28; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1733607174;
-	bh=SCcXEr+KFbRx8TCn5PCWtq/V3Qw/KVqvlgOoYmZD3W0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=o+NFop28mM500kuvIyn5uKh7Rj4QxJjpNp7hffTFtXdprwLi0l6rdUmTL3xbvbyp2
-	 Xf5+kYrylwa/BUuH9Ctihrm3sRlElxK4/TDj4kYVJgWe3OkxXyM+WTAVtxMXRW5krc
-	 jepubeIiCpliycVLelRSWix216s9lQIx8WCoyiOHkUKrCRS7QBH76zckpS6YbUKXEU
-	 /tS+ySluGVWV78/KznNMy7QlhO8YU/MQjg4EpIBfvcYZhoNMnhxh/IXv8vn5Yx5Okk
-	 V/6rOYNTJuN2VvtGH2z40mZ/ZrpKZsNuIKv6kJfTOsULB9jlHf/yFp4U6btnAINWG7
-	 1qgiAcUA9IMjg==
-Received: from localhost (unknown [188.27.48.199])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id B809B17E3806;
-	Sat,  7 Dec 2024 22:32:54 +0100 (CET)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Sat, 07 Dec 2024 23:32:27 +0200
-Subject: [PATCH 4/4] arm64: dts: rockchip: Enable HDMI1 on rock-5b
+	s=arc-20240116; t=1733607859; c=relaxed/simple;
+	bh=QMhgNfIpxqQDNYdGeuQohUR1HujC9RmLTbgdOuARmEk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FM3lmyottbbPMFnmlizwxjEqODO7SWj7qpYXsxa/F6NzM2TeWtNUSAvVH45S9RHqjIsuCF46n72iXlRLuGAt+lHZflgk1COpYZDJSWJ6Q+MRQyPGrkLfZnYxBXyNj9hKhdLjcrJsWVv+2l0D9pgKm81sK1h9vFX37NsdE0JbZ2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UABWHTBV; arc=none smtp.client-ip=209.85.160.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f44.google.com with SMTP id 586e51a60fabf-2967af48248so1780497fac.2
+        for <devicetree@vger.kernel.org>; Sat, 07 Dec 2024 13:44:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733607857; x=1734212657; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QMhgNfIpxqQDNYdGeuQohUR1HujC9RmLTbgdOuARmEk=;
+        b=UABWHTBVNBZK5Pmzk1mQKyNjlLCL9QGoQ0b29TX8DpU6+iHV/fcCKStfzVldK1XNns
+         7QRfstrMsdFB/qtLgcFrj2bmkL5KF3LNncuWcvk+xEXORYKYCwqkcYEQWD3IMSlWSW3Y
+         EsRhMdAUmkAO4ZSVO9M7kHx+a+fVfZMuGy+w734hxlo9a4cwLFmqW7Qd8rt4X2QzxVOB
+         cG/aGrTqu92jfqlDCllpeNn+IkoWy/24E+O0YO7NI9vWsokN6ZQkHzB6wgCxB14uQgo7
+         aRp3we5oY16Lh0k1/76app+pppJ1uYWRftFUMuHcynYmBZ6gxu3R9PHWA0Okdzxmc1Rd
+         MTxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733607857; x=1734212657;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QMhgNfIpxqQDNYdGeuQohUR1HujC9RmLTbgdOuARmEk=;
+        b=JbIB3YyJYuwtp9O5fTt/O+Z75XVm9PMdlAZg0Csc91xk580Q2r8c+WmqL+8RjbefeU
+         1+Q1D9CPxtaEIdwiBoWUERf2iM0iWnmgkRTTj4hYVjZfPQxb4cHTvr0cxRyz2v2ObK//
+         Cbo91EJCVhxp/DKmv5dr68FS0QinGciJ/uvNUo1z+Twls6ACOA/BWIl9381UctZFeRfF
+         MQ0wGRW0wh0DwrNjOZ7LhjgK6y/1VquDANcsr+AP2U244nYFS9NWF3AmyHhk7Re5I8aU
+         nnfuodnVJG5D1oW+pUQAekJCLflVGui9icqqSTkeiCL9fd02IXXMtD9Eskr21knB893s
+         4sLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV/AMWacYbfA+yiyZeMEQprIfOxqk/9S8fvFtog/re9yXVPntvuc0YfwAfO28zBr5nxqTtGXe6ixK2W@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaUdqqoJooQL49xi37J+bvxPf78bzRyQqxapv/Di5Nrx5VXJbz
+	AGl+wUB8qu4H0yuMwE5d4fXWIrWIE817onfPiinLa4mx3t1LS5FDdNuMkp3Cr5rqVQksheMNaVg
+	PwUxPQBEBE72WRfP0aqN+ieKHrdQ/KsXC
+X-Gm-Gg: ASbGnctKkxLcIuQTNp9FtOaAb55laDT4MvEMs+oGtFav3s8IRoXt+R3KnPhC1pni6lm
+	7neiCMmm0AHYULDd3DpuEfUINAB9qUh/pfsjqGsEiB2QTvOLCqS/nXjrBW+pfMQ==
+X-Google-Smtp-Source: AGHT+IG8ZycjJP/pPsbMbfgV+YwZuxy2dOx7QSYHn9/CySk4CHpxsuBci2qFQrdfOORTWwrBTmMFl/OjRx4jAcP/4rg=
+X-Received: by 2002:a05:6870:280d:b0:29e:5ffa:b769 with SMTP id
+ 586e51a60fabf-29f73860fe0mr4694069fac.29.1733607857405; Sat, 07 Dec 2024
+ 13:44:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241207-rk3588-hdmi1-v1-4-ca3a99b46a40@collabora.com>
-References: <20241207-rk3588-hdmi1-v1-0-ca3a99b46a40@collabora.com>
-In-Reply-To: <20241207-rk3588-hdmi1-v1-0-ca3a99b46a40@collabora.com>
-To: Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
+References: <20241111045408.1922-1-honyuenkwun@gmail.com> <20241111045408.1922-7-honyuenkwun@gmail.com>
+ <CAGJh8eDdj5zwENGWHHdZt8ejdVZ=d4GTNzW57rohyL2rvEA_hg@mail.gmail.com> <CALWfF7+7KSZ2UJUXgS_Pr3=xzMEyjKgZ4BPL47zkmfnM03HUqg@mail.gmail.com>
+In-Reply-To: <CALWfF7+7KSZ2UJUXgS_Pr3=xzMEyjKgZ4BPL47zkmfnM03HUqg@mail.gmail.com>
+From: Marco Schirrmeister <mschirrmeister@gmail.com>
+Date: Sat, 7 Dec 2024 22:44:06 +0100
+Message-ID: <CAGJh8eDJMXnjsZgdgsCj+jFp=0iK9kmrH88fFSXxYLevV8aV5A@mail.gmail.com>
+Subject: Re: [PATCH 3/3 v3] arm64: dts: rockchip: Add Orange Pi 5 Max board
+To: Jimmy Hon <honyuenkwun@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Ondrej Jirman <megi@xff.cz>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add the necessary DT changes to enable the second HDMI output port on
-Radxa ROCK 5B.
+Hello Jimmy,
 
-While at it, switch the position of &vop_mmu and @vop to maintain the
-alphabetical order.
+sorry for my late reply.
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 42 +++++++++++++++++++++++--
- 1 file changed, 40 insertions(+), 2 deletions(-)
+On Fri, Nov 15, 2024 at 5:56=E2=80=AFPM Jimmy Hon <honyuenkwun@gmail.com> w=
+rote:
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index c44d001da16978bbbb8a93d652893a786e9ea79b..bf9e4dc601555050d8857e03b2f1fb5fe2cadaac 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -49,6 +49,17 @@ hdmi0_con_in: endpoint {
- 		};
- 	};
- 
-+	hdmi1-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi1_con_in: endpoint {
-+				remote-endpoint = <&hdmi1_out_con>;
-+			};
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
-@@ -220,10 +231,30 @@ hdmi0_out_con: endpoint {
- 	};
- };
- 
-+&hdmi1 {
-+	status = "okay";
-+};
-+
-+&hdmi1_in {
-+	hdmi1_in_vp1: endpoint {
-+		remote-endpoint = <&vp1_out_hdmi1>;
-+	};
-+};
-+
-+&hdmi1_out {
-+	hdmi1_out_con: endpoint {
-+		remote-endpoint = <&hdmi1_con_in>;
-+	};
-+};
-+
- &hdptxphy_hdmi0 {
- 	status = "okay";
- };
- 
-+&hdptxphy1 {
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0m2_xfer>;
-@@ -891,11 +922,11 @@ &usb_host2_xhci {
- 	status = "okay";
- };
- 
--&vop_mmu {
-+&vop {
- 	status = "okay";
- };
- 
--&vop {
-+&vop_mmu {
- 	status = "okay";
- };
- 
-@@ -905,3 +936,10 @@ vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
- 		remote-endpoint = <&hdmi0_in_vp0>;
- 	};
- };
-+
-+&vp1 {
-+	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
-+		remote-endpoint = <&hdmi1_in_vp1>;
-+	};
-+};
+> If your primary focus is to only test eMMC support for the Orange Pi 5
+> Max, then apply the patches on top linux-rockchip for-next.
+> https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/=
+log/?h=3Dfor-next
+> That generated DTB should be able to run against an older kernel since
+> the Orange Pi 5 Plus already works.
 
--- 
-2.47.0
+applying v2 patches was working fine with this kernel. But I still had
+the same problem when booting, where it is stuck during hardware
+initialization.
+Need to check more on this and retry with the latest version.
 
+> Also, regarding v3, I rebased on top of linux-rockchip for-next to
+> include the updates for HDMI and GPU on the Orange Pi 5 Plus.
+>
+> For my development testing, I used Collabora's rk3588-test development
+> branch, so all the needed patches were already in one place (since
+> they test on a Radxa Rock 5B with the RK3588).
+> https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/co=
+mmits/rk3588-test/?ref_type=3Dheads
+>
+> So for v3, I had to first cherry-pick the Orange Pi 5 Plus changes
+> from linux-rockchip for-next.
+
+I was not successful with applying the patches yet with the Collabora
+branch you mentioned. I guess I did not cherry pick the right ones,
+yet.
+I will do some more testing to see if I can figure it out. Otherwise I
+will wait until the first version is merged and test then.
 
