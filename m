@@ -1,63 +1,79 @@
-Return-Path: <devicetree+bounces-128185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C119E7C8E
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 00:35:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 518099E7D95
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 01:43:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2E2816A84F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Dec 2024 23:35:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1CCB1888486
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 00:43:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 551D9212F87;
-	Fri,  6 Dec 2024 23:35:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C297520E6;
+	Sat,  7 Dec 2024 00:43:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dQhUjTPS"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="dPsriZyU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2006C1EBFFC;
-	Fri,  6 Dec 2024 23:35:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A50946F
+	for <devicetree@vger.kernel.org>; Sat,  7 Dec 2024 00:43:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733528153; cv=none; b=Bc5VpaIF1+PG3XVkw77UW7QGCxA2sMmjsYCzAxoXufyQs1pJ7l+E16WUD49zWnaW2kNqzhnR6GIdP4hr/HR3RDVLcpcz3CW99Yu2sFjZvKCJlqzpPO56fWnrK85t9xoaDJ9RIJQBCBrgLU7yQF0TbVm7u3z2m2p2nZWPzofNGWM=
+	t=1733532229; cv=none; b=SufTvffHLyXlizVjhMthpmNUtibPmpS3P9VM3568dMurOvAzci3z+ZKjjZQ/QeyGw69Djk93M8wBSc/UwVKKAR0r53u2iGUipHNNaMIoz7H4+0nc0J3ducqd60RoB1SXlYni2DND1fg3oaqxTBU/bO5319XqGX0XwLX2Zhl4NBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733528153; c=relaxed/simple;
-	bh=MXIwrQewAajDh1gfesHB1c2CKu8WD9CnQN3aFCayvec=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=AuQyzrGmN7ILsc/KLFH8AhozKtj1wls/tx366B51iOzK7PgPrx+ZEv+Ahz+6Z1lwvRhWaRfvjtUS+suaNuyqk/ysnjg9edHb1zJfAge8fnBF4FgRX7ie+oDTmXC8H3/ZuExBiyfs0eUz4jDARrE/3q25xtM0NPgVFPvHQes476E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dQhUjTPS; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B6LL67m016383;
-	Fri, 6 Dec 2024 23:35:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	MXIwrQewAajDh1gfesHB1c2CKu8WD9CnQN3aFCayvec=; b=dQhUjTPS9V+2stxc
-	mVLD8Jp5EnNTj/zTKUCu53bYpzWqePP8noc68BiHhuoRt0S71NhtCVubHR2UbDPr
-	dk9dKmmrH7Axh+a7YEe9HDgEl+GFFQS2Jj0cffkha2km113gm84zSuqTfu1W30hq
-	5qXhNlbP3gRYykDfJHpWGfBmX2wRLB4sVZt2bO2VSm+1jcDyqJSPvqhfTYHVOMsW
-	sJC6xj8q3iMCxnujrvYLJPVNUJMOvmMpB+2JgYzumiYBLzNcto234wgSMAXQ1l91
-	Mjku0wFdMJ6JIImHRWDMoSMdilo8r8cvfvzFZ7OfqiJC4i/0M1fjkKel+eDvpCkY
-	Xleq8g==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43bxnya034-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Dec 2024 23:35:27 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B6NZQ6x018811
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 6 Dec 2024 23:35:26 GMT
-Received: from [10.71.112.120] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 6 Dec 2024
- 15:35:25 -0800
-Message-ID: <33afcc55-1597-4aff-a20c-7a0df4b23236@quicinc.com>
-Date: Fri, 6 Dec 2024 15:35:23 -0800
+	s=arc-20240116; t=1733532229; c=relaxed/simple;
+	bh=I5aPFrrZTUBk/62S5inzq4+BzJ5o1AWv5cTs6wryKXU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=c6uk240pS3uLM7+JqIBaVjyGlmZXM3FSs0zRcbKLBm40eGzke0dlSDzMNp4qBQndWPcydjaZrHYGtIuOkeLTtskKzbuKG2jT6sVOVCYHEtyhDCg02ssOQs9Efxin0wy5csPzAZPXmu5+2+W5UgANDVFmSAQdKfdtYs/hUNAl8t4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=dPsriZyU; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-723f37dd76cso2474519b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Dec 2024 16:43:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1733532227; x=1734137027; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8NIYiYj0/6/7s0kJXH6ifIMfCVcOVZk9pSt5UkH2yQA=;
+        b=dPsriZyU3053Kbc3An/5+nYthjlhC9bb46xjuKvprSy0/a1kvhYX9dE3OcbVlVLkNm
+         2MVYYLnIkssNDOoAg+jDLbHtuLaQ6WV1Edxy/iFOXI+tpSuCBeijXlhXMnuDyqlEUo6f
+         vNNtx4+KghY2KYGupV/BXdRitmu+O2DcuBxkVh7v2xAfy3umkK2O4KbrRJ6NVvi1Z26C
+         6YbgPC4/TzoXAd8Gx7InLLXZZTDkKTmzAf0/rQSkyjxsuYKS79I7fRigpmPelOdX4W2F
+         F2wj8vtgWQ8wjsfmUkP8JZG43LVKH7+tmRjkxALzqD1XNAVr2BXWZ6Wvsa//pNb8CLpr
+         dqaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733532227; x=1734137027;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8NIYiYj0/6/7s0kJXH6ifIMfCVcOVZk9pSt5UkH2yQA=;
+        b=K46tXO4JFthLqkCxdgKAjdZctgRT6xksPCXjeDmoDGvRDBPflGJQOF97nURHCzLAQe
+         8jOw+HN9/jVry0Vtn8JmWtNjqchJ4lLvPEYKv5VnlcZKeOVUriKgOT4A/Kub2hOSqozG
+         SHuChlkc8AYHTBzAoQ75F/xQMdDFHG92EP6C77fGo4suMHAwPasFtC6n/bCEnQnjle5j
+         pasg4ktKTGd8DcGMEHXFLZeoaPqyxo0wiMk+ImdYsxTbNdi9PNOyrhyYj5HigG41iPAM
+         CB6OtoIxuZKjKvJsuRwrDIMnDGKMh37ujG14OZfOLbIRvieBtXsEcWNPnkoUIL8K0miO
+         zjrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU4635fRMtJc3WWB6cB6udTpI81xSt7WcAPgj7bZMUT5oM2TJ4jFlGRCYZE9WbPUeumSo4ZC6DDmcxu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwiY0SXAcqwcJsNEBVWztdhnGYaqFqjl/NlTLDKupe16MxzCXYp
+	bEnnToVq1LFjyluTa4xyuiUWOHn2C0iwUCuhThkqX+i1LPw838gseROyVFs4sg==
+X-Gm-Gg: ASbGncvYRm5oE0YdGWOGYmYJZp9OV58Qmgdedw2ZM7bLzbIxHUuSgKP/PUqFRpOZzbY
+	RlWQ3uY5SYlYOe/gCyoYbvFZuLPIlqIVXhAOIIf/w+943C8OCpRjFE0IkLfhVGKaEhWb5cYH1lX
+	Zc3ee7ckhKjnZy4izdA6X/VpTDBqGs9HEnoiEX2DVLqin66roYKoNPkvwUbAhHkWRb9X+Ga/Vlf
+	uuYPYaulZ1cDTuw+x85p/vFRdpxEi83jP9WoD0P6RNAPKUKAZxDLVRZse+o66Bces5MvzFWcNBq
+	rIuIoqetgkJZFZPB6efrXDQNMgsIwWZtkp7WZWZ4zgEjbe2M
+X-Google-Smtp-Source: AGHT+IEOKHnRBxgiTbuZLsDRAnvMI2qF3hSlWxPihqAZqfK7X7tsgLE1K38TVOOeBz0TthqVRuvZGg==
+X-Received: by 2002:a17:902:e550:b0:215:7ce8:1363 with SMTP id d9443c01a7336-21614d54c4emr73123065ad.19.1733532227003;
+        Fri, 06 Dec 2024 16:43:47 -0800 (PST)
+Received: from ?IPV6:2a00:79e0:2e14:7:fe59:ca2e:5783:910c? ([2a00:79e0:2e14:7:fe59:ca2e:5783:910c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-215f8f29c2dsm34332065ad.249.2024.12.06.16.43.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Dec 2024 16:43:46 -0800 (PST)
+Message-ID: <e8b2501a-0808-4e14-960b-7355fa52e8ea@google.com>
+Date: Fri, 6 Dec 2024 16:43:44 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,88 +81,113 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v30 28/30] ALSA: usb-audio: Add USB offload route kcontrol
-To: Cezary Rojewski <cezary.rojewski@intel.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-input@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <srinivas.kandagatla@linaro.org>,
-        <mathias.nyman@intel.com>, <perex@perex.cz>, <conor+dt@kernel.org>,
-        <dmitry.torokhov@gmail.com>, <corbet@lwn.net>, <broonie@kernel.org>,
-        <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
-        Pierre-Louis Bossart
-	<pierre-louis.bossart@linux.dev>,
-        <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
-        <gregkh@linuxfoundation.org>
-References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
- <20241106193413.1730413-29-quic_wcheng@quicinc.com>
- <1a361446-7a18-4f49-9eeb-d60d1adaa088@intel.com>
- <28023a83-04a5-4c62-85a9-ca41be0ba9e1@quicinc.com>
- <1644aa6b-a4e0-4dbd-a361-276cb95eb534@intel.com>
+From: Amit Sunil Dhamne <amitsd@google.com>
+Subject: Re: [PATCH 1/3] dt-bindings: connector: Add pd-revision property
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Kyle Tso <kyletso@google.com>, RD Babiera <rdbabiera@google.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org
+References: <20241205-get_rev_upstream-v1-0-90158ee7d75f@google.com>
+ <20241205-get_rev_upstream-v1-1-90158ee7d75f@google.com>
+ <20241206-perch-elliptic-4e8a8170426e@spud>
 Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <1644aa6b-a4e0-4dbd-a361-276cb95eb534@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20241206-perch-elliptic-4e8a8170426e@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: GLu9OkWF2xnRrV0lI092seNdox1_pfiG
-X-Proofpoint-ORIG-GUID: GLu9OkWF2xnRrV0lI092seNdox1_pfiG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- phishscore=0 spamscore=0 bulkscore=0 suspectscore=0 adultscore=0
- lowpriorityscore=0 clxscore=1015 mlxlogscore=999 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412060179
 
+Hi Conor,
 
-On 12/6/2024 1:09 AM, Cezary Rojewski wrote:
-> On 2024-12-04 12:15 AM, Wesley Cheng wrote:
+On 12/6/24 8:52 AM, Conor Dooley wrote:
+> On Thu, Dec 05, 2024 at 11:46:08PM -0800, Amit Sunil Dhamne via B4 Relay wrote:
+>> From: Amit Sunil Dhamne<amitsd@google.com>
 >>
->> On 12/3/2024 8:13 AM, Cezary Rojewski wrote:
->>> On 2024-11-06 8:34 PM, Wesley Cheng wrote:
->>>> In order to allow userspace/applications know about USB offloading status,
->>>> expose a sound kcontrol that fetches information about which sound card
->>>> and PCM index the USB device is mapped to for supporting offloading.  In
->>>> the USB audio offloading framework, the ASoC BE DAI link is the entity
->>>> responsible for registering to the SOC USB layer.
->
-> ...
->
->>> R) += mixer_usb_offload.o
->>>> diff --git a/sound/usb/mixer_usb_offload.c b/sound/usb/mixer_usb_offload.c
->>>> new file mode 100644
->>>> index 000000000000..e0689a3b9b86
->>>> --- /dev/null
->>>> +++ b/sound/usb/mixer_usb_offload.c
->>>> @@ -0,0 +1,102 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +/*
->>>> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->>>> + */
->>>> +
->>>> +#include <linux/usb.h>
->>>> +
->>>> +#include <sound/core.h>
->>>> +#include <sound/control.h>
->>>> +#include <sound/soc-usb.h>
->>>
->>> ALSA-components should not be dependent on ASoC ones. It should be done the other way around: ALSA <- ASoC.
->>>
+>> Add pd-revision property definition, to specify the maximum Power
+>> Delivery Revision and Version supported by the connector.
 >>
->> At least for this kcontrol, we need to know the status of the ASoC state, so that we can communicate the proper path to userspace.  If the ASoC path is not probed or ready, then this module isn't blocked.  It will just communicate that there isn't a valid offload path.
->
-> I'm not asking _why_ you need soc-usb.h header, your reasoning is probably perfectly fine. The code hierarchy is not though. If a sound module is dependent on soc-xxx.h i.e. ASoC symbols, it shall be part of sound/soc/ space.
+>> Signed-off-by: Amit Sunil Dhamne<amitsd@google.com>
+>> ---
+>>   Documentation/devicetree/bindings/connector/usb-connector.yaml | 6 ++++++
+>>   Documentation/devicetree/bindings/usb/maxim,max33359.yaml      | 1 +
+>>   2 files changed, 7 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> index 67700440e23b5b7ca0db2c395c8a455bcf650864..341d2872e8d43450d219b7b72d48790051dc4e2b 100644
+>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>> @@ -293,6 +293,12 @@ properties:
+>>         PD negotiation till BC1.2 detection completes.
+>>       default: 0
+>>   
+>> +  pd-revision:
+>> +    description: Specifies the maximum USB PD revision and version supported by
+>> +      the connector. This property is specified in the following order;
+>> +      <revision_major, revision_minor, version_major, version_minor>.
+>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>> +
+>>   dependencies:
+>>     sink-vdos-v1: [ sink-vdos ]
+>>     sink-vdos: [ sink-vdos-v1 ]
+>> diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+>> index 20b62228371bdedf2fe92767ffe443bec87babc5..350d39fbf2dcd4d99db07cb8f099467e6fc653ee 100644
+>> --- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+>> @@ -70,6 +70,7 @@ examples:
+>>                                          PDO_FIXED_DUAL_ROLE)
+>>                                          PDO_FIXED(9000, 2000, 0)>;
+>>                   sink-bc12-completion-time-ms = <500>;
+>> +                pd-revision = /bits/ 8 <0x03 0x01 0x01 0x08>;
+> Why do you need this?
 
+This DT property helps Type-C Port Manager (TCPM, consumer of the 
+connector class properties) fetch the exact Power Delivery (PD) revision 
+& version information of the Type-C port controller (TCPC)'s connector. 
+In turn, we require it to be able to support "Revision_Information" 
+Atomic Message Sequence (AMS) in TCPM to be USB PD spec compliant for 
+all revision & versions after PD3.1 v1.x.
 
-I'm still reviewing the HDAudio flow a bit, so please correct me if I'm wrong.  During module initialization, it looks like there will be some overall platform card that will call snd_hdac_ext_bus_init() to create the HDA bus.  I referred to the Intel AVS core.  How do you ensure that the ALSA entities are loaded before this call goes out?  I think once the bus is created dynamic creation/removal of HDA devices is fine, and the hdev_attach/detach is executed. 
+> Doesn't the compatible already give you this
+> information?
 
-Thanks
+Compatible property does not give information regarding the PD revision 
+& version but only gives info on the type of connector (usb a, b or c). 
+Also, connector class is used by several TCPCs like maxim,max33359, 
+ptn5110, etc. and each of them may be compliant to  different 
+combinations of revision & version. This feature would help users set 
+these values based on the revision/versions their TCPC supports.
 
-Wesley Cheng
+Currently  TCPM driver hardcodes the Revision value to 3.0 and doesn't 
+provide any info on version (undesirable).
 
+It should be noted that:
+
+1. There are multiple versions & revisions of the USB PD spec and they 
+keep evolving frequently. A certain connector hardware may only be spec 
+compliant for up to a certain version + version. Thus, this is the only 
+way for TCPM to know what ver + rev the connector hardware supports. 
+This will enable the TCPC system to present the exact rev & ver values 
+when requested for revision info by the port partner.
+
+2. I also considered incrementing the revision & version information 
+values in the TCPM code. However, that won't be backward compatible for 
+connectors whose hardware doesn't support features in the latest spec. 
+In this case we would be presenting incorrect revision & version values 
+(higher than what is actually supported by the hardware).
+
+Regards,
+
+Amit
+
+>>               };
+>>           };
+>>       };
+>>
+>> -- 
+>> 2.47.0.338.g60cca15819-goog
+>>
+>>
 
