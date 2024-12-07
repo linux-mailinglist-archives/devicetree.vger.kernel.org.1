@@ -1,279 +1,225 @@
-Return-Path: <devicetree+bounces-128199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601B79E7FC7
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 13:11:34 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93FC79E7FD9
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 13:24:57 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F868165254
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 12:11:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46814281F6F
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 12:24:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D2DC14658D;
-	Sat,  7 Dec 2024 12:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AC48146D78;
+	Sat,  7 Dec 2024 12:24:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L2WuIifk"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nJZBlDqZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9B08289A;
-	Sat,  7 Dec 2024 12:11:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3E571465BE
+	for <devicetree@vger.kernel.org>; Sat,  7 Dec 2024 12:24:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733573491; cv=none; b=d5oyZ6vPaCoMJKR9JRBL8L3FM14zJNP9PuztLA5wyQdamFYsFN5gZwceKUtUmN9h5crPiE+lVXuRL5h026yGnkNzFaUfqgTu8Btr7/9+7JgpSCehNhyMzqPcwnmw8hVaCBTQ8HiMb1nYafff3MnkxYAjxxjobYen1NxYtWRNhk8=
+	t=1733574293; cv=none; b=gRZ0Pr3/o20qqy2mFgyqGnWMPyaRVMP+4zyBbuIBTzXetJzaLtYGDBnoD38tr+RcdyFfG6aQe0WhaWjEItW8YJoSNUpImsQ1ebTmnmGRG70ISPaxd65aHo+dthN2iLz9BwzuntjCe1d7V+T2j+wgTC2Kq2VkEUeuLlD9HZaQIVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733573491; c=relaxed/simple;
-	bh=WQFRlQ40wu3po75SrB4B914xc9S1o7XdNAc3D2h4fe8=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a2V7Jbbw4VoRAlPYQCkgptEykrry6Q8JO/aVMdB6deFnk+oOVjV30cfbRbKym56rsDEsV2kx24EWP/mahDHsrDE7TzI9WcQ3EAPk8bktTzZblLeKc6WrnHerOzPaKXya2Sp/6a7toRRZGSvzdbH4L/Ohx8/nZy+jk3Ls+kCjMTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L2WuIifk; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-434a9f2da82so18963655e9.2;
-        Sat, 07 Dec 2024 04:11:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733573488; x=1734178288; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=MORvaT+pWKtn1cwQqnuWOdhU3VjTsfcB27db/IuY4zk=;
-        b=L2WuIifkWs6FoPybmCqB4ITgjmcc10x7Bkntp6AWsDQd/TjcOIEeOBfxWLEls/GBP0
-         CLIk9VKav4HgCNGkpHbiFxZFq5AhxMhomXPayfPg5UKha81UP14E52gi+ifhWZ1T/ll2
-         g6ySm8Pz2ZQGs6f00y/VoErs5zh/DTFwNCDDcg/lgqBPQY/bBarsvM/qBcoEoJYpO5ev
-         gcovN6kvozYkgG9PzSdLs7HkDT7uW6LcuoDgywUe+v2Jkm9j0COBHHnXxp6tbGfrpNNE
-         d/H8oIeqjy7UcmRYI8yZ4vvphMGEQRlt4K9SToGQTinqad1aVS/QglTF6YoPTUebauUH
-         7ApA==
+	s=arc-20240116; t=1733574293; c=relaxed/simple;
+	bh=Imkwjvr8OjZv9fFVDAgn9vb0dZxjoY+OVBVdlvMWILM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YAKfNPrRQpMy9i78BMvuoYxHoP3yiSaqpgS9obFkzh5YI5wDRqW/FA1TEN4qoB3/nUNHtADZ8O+nqsMnzgLshl7uhDm44H0mbG/Z+fVZ39Mz/sQeGWdseWGR2oHeNadjfMXYM5Lk8VW+AB6onor4fmta9IGYzCLWDWh68OvBXVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nJZBlDqZ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B74lmvd002426
+	for <devicetree@vger.kernel.org>; Sat, 7 Dec 2024 12:24:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pQ1BefPPZjsefk+Q7pM32V79KkOTPD7KhjkHUZEtT/k=; b=nJZBlDqZ+b9Yua5E
+	mXTXJlvIv05Mqj5rN1UIOjD4GjbItQeFae8dq6PhSauWIDEcP3Axb7wFROEpYbNG
+	x6wylpHx9NzKmL2DhQIXod/nA3HJ/D9sS1ZDNeAfmQs9C+0tc8DLN26DSJf1lfFw
+	2J/kdJppCP4G2hl9y7to0N1gxxg3VvQXAPzsi/apeHsa42MQVNqfGh9bG/ZG0sWB
+	SUa4XD5o2nZvdK/JFHpmrnOQSjfK1tyax6e8rT/fj9Iksxk8XkQGGTJhO2dRO0f6
+	50q1XvTss7q8qFL6LalhOJ3k3cMOKvwiTgzKinzRgvhMm+yxC8wle2gDFjRatLeL
+	nTlpuQ==
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43cfn8rgvg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 07 Dec 2024 12:24:50 +0000 (GMT)
+Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6d8824c96cdso8670756d6.2
+        for <devicetree@vger.kernel.org>; Sat, 07 Dec 2024 04:24:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733573488; x=1734178288;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MORvaT+pWKtn1cwQqnuWOdhU3VjTsfcB27db/IuY4zk=;
-        b=D9rjN06/32qVx/2eV8nbB4pV13ClCzRNesGcz4VCBftxzkMkWHBogNuJE+j/2b/LTd
-         9qGJT29wlzqUT2exUxJwpEpH5SHbrwjvxCjC85GqIAh3XQ6cHpnW5d7W6QMdHHD/g2Wk
-         wWlO75FiEc4jxPephftuMrrFfYoMyvr1Abt40XczLkDaOZwJE54YSG1X92FCpN9Uwj85
-         GZxc1roIxb3CuWX167s80jFtz57zdPm8CVR2KvbHoEAByb4/SQZPa/vtIriEowQMBVsg
-         6EY4VhVM2sXKM9R4qfhiIUa2v9UoyWt45WOmrmPzCXAB1flXI3LCWX8ih9zMB65GPNdJ
-         hdNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUf2WROfzLoXmq7wWfopd7s7JQ3eTjucdaWKjBCiStGhhMJbUTQ0iSp6Kesi3ufGQXJd8HbzIkJBrHH@vger.kernel.org, AJvYcCUo+YsruOWcSVyQZd9gGSnqUR4woC2JHJB//5IDlit5qhYedlRh9joPXJtnet8lspVKcfvk5TML@vger.kernel.org, AJvYcCVjsk2dMLetr5Ab6sbMoCuiLNzt4Ejs1pvu0Q3UkzlUJ28a/tn8dSZ5Y6ETSQXNPcfI0uVzA97Woe97jRbL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBwJ0UEENfnaoYOwRofiXsVa+FLoR+E+e3WQ0dn9tH6sRlMJLB
-	jVNzFBbKPyBB/V2eMM2zbWhgnYvVTpgJsovA+XpthEtr7dc8Ixsi
-X-Gm-Gg: ASbGncvlM7/zcxMi7t+RtL7gROxVSxTdsqeWsWgf4YnKOFhQrA1rCG0Wtz2lCAjUI8S
-	Ge2R33hopqO9NgFN3ryEuUSu9vQzDlZStBNaUzMXAIK0hBO4vGzTPl0xFG6eOqzTYL0sID1Sjlo
-	67mmY8C9Q7AWBmsDPweEb5eZYf+VfSr4IFZeosieafpecFY0we2fMw/54KS7O6SslR23kEy7wSS
-	GJ1Hohu6rFZA1wI65CGzBPy7QlRIBLB4qkWHkqPpjBZKW3nTIEJKXbwaSSv9bWj7RMiDa3890ba
-	dCW6bA==
-X-Google-Smtp-Source: AGHT+IG33Fm+ZyGkThOkfC16QMazqsaLxNexJ9hkTK4zh70vD9SlLmtgBzspwk1FpP3/KlDXYVA1fg==
-X-Received: by 2002:a5d:64a2:0:b0:385:df2c:91aa with SMTP id ffacd0b85a97d-3862b33504dmr4201986f8f.7.1733573487595;
-        Sat, 07 Dec 2024 04:11:27 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3861fc514fcsm7212695f8f.48.2024.12.07.04.11.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Dec 2024 04:11:27 -0800 (PST)
-Message-ID: <67543b6f.df0a0220.3bd32.6d5d@mx.google.com>
-X-Google-Original-Message-ID: <Z1Q7ay_pKE16yj-L@Ansuel-XPS.>
-Date: Sat, 7 Dec 2024 13:11:23 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH v9 3/4] net: dsa: Add Airoha AN8855 5-Port
- Gigabit DSA Switch driver
-References: <20241205145142.29278-1-ansuelsmth@gmail.com>
- <20241205145142.29278-4-ansuelsmth@gmail.com>
- <20241205162759.pm3iz42bhdsvukfm@skbuf>
- <6751e023.5d0a0220.394b90.7bc9@mx.google.com>
- <6751e023.5d0a0220.394b90.7bc9@mx.google.com>
- <20241205180539.6t5iz2m3wjjwyxp3@skbuf>
- <6751f125.5d0a0220.255b79.7be0@mx.google.com>
- <20241205185037.g6cqejgad5jamj7r@skbuf>
- <675200c3.7b0a0220.236ac3.9edf@mx.google.com>
- <20241205235709.pa5shi7mh26cnjhn@skbuf>
+        d=1e100.net; s=20230601; t=1733574289; x=1734179089;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pQ1BefPPZjsefk+Q7pM32V79KkOTPD7KhjkHUZEtT/k=;
+        b=d7rKtW1pMToVBBR5TmuNRjouFVPV55vyvRjECVVY85o2jyOe5le99HmeIhlbNRZ8Ss
+         qup0DGVtYhSX4KXUSEd/O8gSm0xAgAV6+OQ4nra6EcIK+xMdlNcqGLsPlzSKK5mlR4HG
+         t2GptIrm8zOo+QoU0SXbeS9gw/t0/hvGdeAq9QQskXzq4ix8l1zhbPXAzsjj6W8QvcKK
+         CokiHAIFgC/WAS4f8S+wkH9Le6wEZPdimuOIcvpn4bFvn+agD2dIEEoNQpzpXwKYf1lv
+         6+CifVwD2dXIGMNicP1pkxyzAh7iy3O3WPs8QbWJwztmR/2Jj80F5F48S1faMBc7CYl+
+         n8zA==
+X-Forwarded-Encrypted: i=1; AJvYcCXbvvtiMD7qADBd6CmpkEmjDi4g6ewrgSy7QbzkteuCC8dPTrp0he2FkFAK9OHyFosrm28gtUcNeLGs@vger.kernel.org
+X-Gm-Message-State: AOJu0YwURX2/hWYHXpanKDgEZ+yBMq6GFmNBK+13/57k4dzp5mI5b2Vz
+	ZiE8Y5Xavx65iweIW73K5xf7LfR7wbZdPKa5pHousHKv/Au4NUVjEsRK6RCaMudzzxq5NTBaRcO
+	j277xC90O0Ep5HSPftcKx/vfw2rExYzKuBXuf2Ug1iA2xxbybd9rTnamkCPk2
+X-Gm-Gg: ASbGncuDmuI2obTYhFfoqZFCvhJK+Osk3HjTVChM4anNITZSPS7NeaT1Su3YMYjE/fS
+	M5nMoimEYSOBgTeXddk9hTpb20xcgnt/iUVyLInNaa6vDf/WBTBFsvmgvw33b9VuZPW1DZiYhRH
+	R7epwuMg8O2lhbmtdeonhaV8PYpQFZgnu2JGx1EPww7SlQ1AUeIGIS7PZ9i78ITmjJeOmbanDXH
+	ANXPJgcpcofkmfUjLl1CdZhFQ9oEJxJxqF+3GEmd1ucnF/y8jFhxLvuHPbeOiGHrwLVgt7qzL1T
+	J0AJRaJwKUqV01/k8MLpoxGUzW75TZ8=
+X-Received: by 2002:a05:620a:2681:b0:7b1:4579:80fd with SMTP id af79cd13be357-7b6bcaf410dmr314489685a.7.1733574289379;
+        Sat, 07 Dec 2024 04:24:49 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFq8U8Ty2ix6xok3zzJyL1MAVWdr2aIcau1ywhGnswjMwOh+jLaNEvEH5AowyHkAWxYwSII3Q==
+X-Received: by 2002:a05:620a:2681:b0:7b1:4579:80fd with SMTP id af79cd13be357-7b6bcaf410dmr314486985a.7.1733574288928;
+        Sat, 07 Dec 2024 04:24:48 -0800 (PST)
+Received: from [192.168.212.163] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa625e92a79sm380101066b.43.2024.12.07.04.24.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 07 Dec 2024 04:24:48 -0800 (PST)
+Message-ID: <3c34afac-478d-47a6-97df-cc45415f6411@oss.qualcomm.com>
+Date: Sat, 7 Dec 2024 13:24:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241205235709.pa5shi7mh26cnjhn@skbuf>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: x1e80100: Add CAMSS block
+ definition
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-0-54075d75f654@linaro.org>
+ <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-6-54075d75f654@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-6-54075d75f654@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: kYEr-4WBAUWxQTHQBQ62xdFdVlelXsjJ
+X-Proofpoint-ORIG-GUID: kYEr-4WBAUWxQTHQBQ62xdFdVlelXsjJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
+ spamscore=0 impostorscore=0 suspectscore=0 mlxlogscore=999
+ priorityscore=1501 lowpriorityscore=0 mlxscore=0 bulkscore=0 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412070103
 
-On Fri, Dec 06, 2024 at 01:57:09AM +0200, Vladimir Oltean wrote:
-> On Thu, Dec 05, 2024 at 08:36:30PM +0100, Christian Marangi wrote:
-> > > I guess the non-hack solution would be to permit MDIO buses to have
-> > > #size-cells = 1, and MDIO devices to acquire a range of the address
-> > > space, rather than just one address. Though take this with a grain of
-> > > salt, I have a lot more to learn.
-> > 
-> > I remember this was an idea when PHY Package API were proposed and was
-> > rejected as we wanted PHY to be single reg.
+On 19.11.2024 2:10 PM, Bryan O'Donoghue wrote:
+> Add dtsi to describe the xe180100 CAMSS block
 > 
-> Would that effort have helped with MDIO devices, in the way it was proposed?
-> Why did it die out?
+> 4 x CSIPHY
+> 2 x CSID
+> 2 x CSID Lite
+> 2 x IFE
+> 2 x IFE Lite
 > 
-> > > If neither of those are options, in principle the hack with just
-> > > selecting, randomly, one of the N internal PHY addresses as the central
-> > > MDIO address should work equally fine regardless of whether we are
-> > > talking about the DSA switch's MDIO address here, or the MFD device's
-> > > MDIO address.
-> > > 
-> > > With MFD you still have the option of creating a fake MDIO controller
-> > > child device, which has mdio-parent-bus = <&host_bus>, and redirecting
-> > > all user port phy-handles to children of this bus. Since all regmap I/O
-> > > of this fake MDIO bus goes to the MFD driver, you can implement there
-> > > your hacks with page switching etc etc, and it should be equally
-> > > safe.
-> > 
-> > I wonder if a node like this would be more consistent and descriptive?
-> > 
-> > mdio_bus: mdio-bus {
-> >     #address-cells = <1>;
-> >     #size-cells = <0>;
-> > 
-> >     ...
-> > 
-> >     mfd@1 {
-> >             compatible = "airoha,an8855-mfd";
-> >             reg = <1>;
-> > 
-> >             nvmem_node {
-> >                     ...
-> >             };
-> > 
-> >             switch_node {
-> >                 ports {
-> >                         port@0 {
-> >                                 phy-handle = <&phy>;
-> >                         };
-> > 
-> >                         port@1 {
-> >                                 phy-handle = <&phy_2>;
-> >                         }
-> >                 };
-> >             };
-> > 
-> >             phy: phy_node {
-> > 
-> >             };
-> >     };
-> > 
-> >     phy_2: phy@2 {
-> >         reg = <2>;
-> >     }
-> > 
-> >     phy@3 {
-> >         reg = <3>;
-> >     }
-> > 
-> >     ..
-> > };
-> > 
-> > No idea how to register that single phy in mfd... I guess a fake mdio is
-> > needed anyway... What do you think of this node example? Or not worth it
-> > and better have the fake MDIO with all the switch PHY in it?
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 180 +++++++++++++++++++++++++++++++++
+>  1 file changed, 180 insertions(+)
 > 
-> Could you work with something like this? dtc seems to swallow it without
-> any warnings...
-> 
-> mdio_bus: mdio {
->         #address-cells = <1>;
->         #size-cells = <0>;
-> 
->         soc@1 {
->                 compatible = "airoha,an8855";
->                 reg = <1>, <2>, <3>, <4>;
->                 reg-names = "phy0", "phy1", "phy2", "phy3";
-> 
->                 nvmem {
->                         compatible = "airoha,an8855-nvmem";
->                 };
-> 
->                 ethernet-switch {
->                         compatible = "airoha,an8855-switch";
-> 
->                         ethernet-ports {
->                                 #address-cells = <1>;
->                                 #size-cells = <0>;
-> 
->                                 ethernet-port@0 {
->                                         reg = <0>;
->                                         phy-handle = <&phy0>;
->                                         phy-mode = "internal";
->                                 };
-> 
->                                 ethernet-port@1 {
->                                         reg = <1>;
->                                         phy-handle = <&phy1>;
->                                         phy-mode = "internal";
->                                 };
-> 
->                                 ethernet-port@2 {
->                                         reg = <2>;
->                                         phy-handle = <&phy2>;
->                                         phy-mode = "internal";
->                                 };
-> 
->                                 ethernet-port@3 {
->                                         reg = <3>;
->                                         phy-handle = <&phy3>;
->                                         phy-mode = "internal";
->                                 };
->                         };
->                 };
-> 
->                 mdio {
->                         compatible = "airoha,an8855-mdio";
->                         mdio-parent-bus = <&host_mdio>;
->                         #address-cells = <1>;
->                         #size-cells = <0>;
-> 
->                         phy0: ethernet-phy@1 {
->                                 reg = <1>;
->                         };
-> 
->                         phy1: ethernet-phy@2 {
->                                 reg = <2>;
->                         };
-> 
->                         phy2: ethernet-phy@3 {
->                                 reg = <3>;
->                         };
-> 
->                         phy3: ethernet-phy@4 {
->                                 reg = <4>;
->                         };
->                 };
->         };
-> };
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index c19754fdc7e0fa4f674ce19f813db77fe2615cf3..f23352493cb270c0fdc3c42add032286601db1e9 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -4730,6 +4730,186 @@ cci1_i2c1: i2c-bus@1 {
+>  			};
+>  		};
+>  
+> +		camss: camss@ac62000 {
+> +			compatible = "qcom,x1e80100-camss";
+> +
+> +			reg = <0 0x0acb7000 0 0x2000>,
+> +			      <0 0x0acb9000 0 0x2000>,
+> +			      <0 0x0acbb000 0 0x2000>,
+> +			      <0 0x0acb6000 0 0x1000>,
+> +			      <0 0x0ace4000 0 0x1000>,
+> +			      <0 0x0ace6000 0 0x1000>,
+> +			      <0 0x0ace8000 0 0x1000>,
+> +			      <0 0x0acec000 0 0x4000>,
+> +			      <0 0x0acc7000 0 0x2000>,
+> +			      <0 0x0accb000 0 0x2000>,
+> +			      <0 0x0ac62000 0 0x2a00>,
+> +			      <0 0x0ac71000 0 0x2a00>;
+> +
+> +			reg-names = "csid0",
 
-I finished testing and this works, I'm not using mdio-parent-bus tho as
-the mdio-mux driver seems overkill for the task and problematic for PAGE
-handling. (mdio-mux doesn't provide a way to give the current addr that
-is being accessed)
+Please remove the blank lines between x and x-names
 
-My big concern is dt_binding_check and how Rob might take this
-implementation. We recently had another case with a MFD node and Rob
-found some problems in having subnode with compatible but maybe for this
-particular complex case it will be O.K.
+> +				    "csid1",
+> +				    "csid2",
+> +				    "csid_wrapper",
 
-Still have to check if it's ok to have multiple reg in the mfd root node
-(for mdio schema)
+This doesn't seem to match what the commit msg promises
 
--- 
-	Ansuel
+[...]
+
+> +
+> +			iommus = <&apps_smmu 0x800 0x60>,
+> +				 <&apps_smmu 0x820 0x60>,
+> +				 <&apps_smmu 0x840 0x60>,
+> +				 <&apps_smmu 0x860 0x60>,
+> +				 <&apps_smmu 0x1800 0x60>,
+> +				 <&apps_smmu 0x1820 0x60>,
+> +				 <&apps_smmu 0x1840 0x60>,
+> +				 <&apps_smmu 0x1860 0x60>,
+> +				 <&apps_smmu 0x18a0 0x00>,
+> +				 <&apps_smmu 0x18e0 0x00>,
+> +				 <&apps_smmu 0x1900 0x00>,
+> +				 <&apps_smmu 0x1980 0x20>,
+> +				 <&apps_smmu 0x19a0 0x20>;
+
+>>> for pair in a:
+...     print(hex(pair[0] & ~pair[1]))
+... 
+0x800
+0x800
+0x800
+0x800
+0x1800
+0x1800
+0x1800
+0x1800
+0x18a0
+0x18e0
+0x1900
+0x1980
+0x1980
+
+Please remove the duplicates
+
+> +
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_CAMERA_CFG 0>,
+
+QCOM_ICC_TAG_ACTIVE_ONLY
+
+> +					<&mmss_noc MASTER_CAMNOC_HF 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&mmss_noc MASTER_CAMNOC_SF 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&mmss_noc MASTER_CAMNOC_ICP 0 &mc_virt SLAVE_EBI1 0>;
+
+QCOM_ICC_TAG_ALWAYS
+
+Konrad
 
