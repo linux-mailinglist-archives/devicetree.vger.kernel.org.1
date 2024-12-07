@@ -1,214 +1,105 @@
-Return-Path: <devicetree+bounces-128208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F0FA9E806C
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 16:30:04 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E90E9E8079
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 16:36:26 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 032761662F8
-	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 15:30:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 190072818F5
+	for <lists+devicetree@lfdr.de>; Sat,  7 Dec 2024 15:36:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4D8145FFF;
-	Sat,  7 Dec 2024 15:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100FF14883C;
+	Sat,  7 Dec 2024 15:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iQbGnn/x"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lW57hqRv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C18322C6C5
-	for <devicetree@vger.kernel.org>; Sat,  7 Dec 2024 15:29:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6436B22C6C5;
+	Sat,  7 Dec 2024 15:36:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733585399; cv=none; b=lVANscLU+3IGH5cpQ53m0L3x8bgxsP41m8dTjJ8SeMa4sRLB5y2vHLxgjEuNeNJHmOxTx2ZK40IfUAbVIz2rqu/GLNlcOYSWZIClnYDG76bGhilZdG2wjt7BaGIQH+ciLY7F+HeoiEP+slzLlmKW3sdOI8YeYZ7gwPv6EzNpDfM=
+	t=1733585782; cv=none; b=k4+5+p4AZZ5IPLdkvg7pbklUB4zChRcZyaxvGRZaeQ2aCNmsRbRBBfD2ycR77F1fihkgMrn0QhOtXHKE3Ku4Tgs0s2wpEHS1VwjBnMK+JgkGJOfh1QB59bMHNEI81FgMtST5PT8T+mRzyJ936Yn/ueL/6MUMV5MzvbmaHW0dASo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733585399; c=relaxed/simple;
-	bh=++qwKaLQJK0eYuZPezy9s9pCAqz4NQG7EHyBEh/bhPU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f1z9VpbF+eNApwWZA3GDllaML3wQ/h2lvVeRWZNg2zo2NPhE7a8xql3KoFgcXS5JdRqA6SafIotYqjcS/2IDd6PQ1hLiO5DUpYmMbw2QkW79EJABst4tpZkTiEa/VFSgoaIA1KZ/0JFttd85pEQw+D1+7rnz91Qfqctt2OcbA2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iQbGnn/x; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-aa64721042cso140565766b.2
-        for <devicetree@vger.kernel.org>; Sat, 07 Dec 2024 07:29:55 -0800 (PST)
+	s=arc-20240116; t=1733585782; c=relaxed/simple;
+	bh=zHshuIbQ0xcfAgQEwx29QMAXvcTcz+8gOhp7tdrMGD4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YBWYyr9Tm5YvPifc19EZOgtcb8J7BmgRiwR0PxbIqXuUgGQ4RmNvueN2DEsf0pxbkoYv6yRBhq2s7T28vSlFwjwphW0Xlu+pOjzK4ej3wgHiNcB50GWYnHTyK0z8a9nG2OubuuD90SWWOZ16XyQajIeKBsj/E2g3uoLIErJqb1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lW57hqRv; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5d3e9f60bf4so365617a12.3;
+        Sat, 07 Dec 2024 07:36:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733585394; x=1734190194; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=N94u8ceJE9IihGissqr+ltow5uqSpjZz+SPLJ2SzdDc=;
-        b=iQbGnn/xXpVDe2T9BJg0wVaFJ3xBRuKIfmhVzO8CvuAbIXO2rROhTWuraBGu1fB1Vc
-         v4C0RAKOCMcTN7/p0Sj2ch7t/+4bjDSc2Q9udO5oHO+M5/yy/j5J1i1xJXSdlP/CZ0UW
-         xnW8+p0R1eW6mHnWmmcb4+9eh5xmkF5lICDcsrcamwmyxRkFUqJPfJAw7zHR+nYHhFLb
-         8C1IRY2TDqcHl6GhWUTgaIYqqFe+2Fv4FldanBcQermjFVQRGtny6gQvitIaCUsggt7O
-         jCLkp2gDzLt4tJTVmoxn5GcpWiAvlGPFudjsi7edtmDB81sK9faegoXhWrmLPzKFus60
-         MjGA==
+        d=gmail.com; s=20230601; t=1733585779; x=1734190579; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=zHshuIbQ0xcfAgQEwx29QMAXvcTcz+8gOhp7tdrMGD4=;
+        b=lW57hqRvhheT7DjrZE08a4kPYTRm84Ojk7YC4AzV8L/ujXDAHnxBLh39KP1ih9XfAX
+         JuRtTLfsFPGOBa+PyGUYBsm7sLg40DCoEMNaMy9kKunNo0ufM3o+bdVGSASnvxyFblhh
+         5Uy3T830QeKc+Gxqcy86CluOePgoBpVC7MM8HCyojfmQpHZCBo+U0/i5S44BV/SwVK+k
+         rMNnVpONyKZjt82uq1PbImHWoGqUBmcm0XadLR3g3636EsxtJAMOczz6iHY3otuZ389j
+         sZhCkZLxUrZ8Oa/93RlVrOE7mAU6RsGuVQ0QWtRaOV3AGlQHZ2dmyT1ON1dMTkOVzple
+         b5jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733585394; x=1734190194;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=N94u8ceJE9IihGissqr+ltow5uqSpjZz+SPLJ2SzdDc=;
-        b=VsXx6REjZJXzrru+VMidf4HIOHXBOMrK5qum9W6duX9gBmuvw4WKFFj1dBc2B9MWvo
-         92/l2DWTs5PWD75usRC0ZNPjLE9VXO7yeG372VVXKbs/jwjZDCVi+idhfUwFg9tXWPvY
-         yapG/QbLA2qGnyl0gwXNEAqS2sPhUV+cdciU4ZNUEInM+8VHtOFqLXkoaS1YzQE1b4U5
-         NFJOu4s2aArhO3YUt3/WHlPujGXmw+QdwYJulPj6VzKwSn6hiJJPROSP/aw7zs0OUloA
-         wmjcL0lxlcbf8aXMTOsDmfhRga4LBwQpcBhUac4PHKrE5DDx00jjSCVRkt26bTTn7QJd
-         xkUg==
-X-Forwarded-Encrypted: i=1; AJvYcCU5PIkNlT9SFfb8Oq+XVh4NOmbkpk48Q1bN9sPe2cLUpDmzYOMo15iKiXlzYtv91uz82VlcIb0H/h5W@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjfT/dCX2u2Y+0aLoHmKCYtUpD7pGYI4ncKpHaHcII3kZyEdOH
-	EK4dovOOq8wKQ8wOUGHUDWrE9vHPKksiOJRfCD30cLZ1/NpA7zNGdj74w+/URk0=
-X-Gm-Gg: ASbGncsAGSOUySaZf7GnejsucwnXo3c2RCm0+5g3bv0RERnP0PseRPWPcobqVC2waMS
-	2Kk4OnV7jJKt2rg7yca4fmRP9K+CAQHe1Aw04ej75RuEhC0WIvXybeQQ8wjN5kLjpoaE/f77UoV
-	uRNoLXTfeFbVzDFhmEljL1DOTDI/8Shz3rc42yTq2Mi0FqMD7YfKdrtr6wU+ejc6H2rzDbwJPwp
-	fda5RH+kt5ES0n1EqAoRGjm3y1FyN3xMoSJRGA+M11W8SU0JkfPnw==
-X-Google-Smtp-Source: AGHT+IF4LY5WB0e2F6DNpEuhnVjdXbVwXG9srfjzrNNUuYa2L9aD5xp0wQlYa8StPx5b3r+PKQuxAA==
-X-Received: by 2002:a17:906:2189:b0:a9a:1f8:6c9b with SMTP id a640c23a62f3a-aa63a33c764mr406864066b.37.1733585394222;
-        Sat, 07 Dec 2024 07:29:54 -0800 (PST)
-Received: from localhost ([2a02:8071:b783:6940:a8d:e1d8:6f77:cd7e])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa625e5c660sm399012466b.19.2024.12.07.07.29.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Dec 2024 07:29:53 -0800 (PST)
-Date: Sat, 7 Dec 2024 16:29:51 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
-	dlechner@baylibre.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v7 8/8] iio: adc: ad4851: add ad485x driver
-Message-ID: <cpfpysi6zcr7n6qy642dmhsi2a4hom2p7l4rboj4jgakuzpa5p@5xaqd3oxxlrs>
-References: <20241129153546.63584-1-antoniu.miclaus@analog.com>
- <20241129153546.63584-9-antoniu.miclaus@analog.com>
+        d=1e100.net; s=20230601; t=1733585779; x=1734190579;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zHshuIbQ0xcfAgQEwx29QMAXvcTcz+8gOhp7tdrMGD4=;
+        b=J1aq+8AJVRKSEwPewykSGaiIUpaRVqa6tYrRgY6VrYsMTnBsyxfuk/jkXu2u0WQICA
+         zpZRTxb7gwTpGgF0W2GMaT3qF4mInpRwFQT+XOXk9WueXjcdOCkfl/LYKoJ1SM9phdYQ
+         HYExKIemsx8xePkw/I6qynOnI51YH5Cde1I40BQCeplws8IfFV3s6FXBvQt2bGvyQRGa
+         27AXza1laWQI50EA0R9Q9renSIVwiio9L9lKnolyCEdLW/SaCxqTWY0L2QxtXDGLTfpj
+         r5ixx+GMwjbG9hrYzhUONYD6BUqI6pnshvlxKX4LRYK47DFFH8t7wM2778SgbqI5/cot
+         JRNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXLtSOzUFukzQFEr2ToU73+XE75aHG+MSBy1VWwdLHHa09UGoetIDQ7ciWYGLq+6BKd4nfFDgCzYKqadYk5@vger.kernel.org, AJvYcCXyPW5oav8Uk7EySb7caOoOzBMkuWferdkdUVoutlckHZdVOnDuOTgSg15M9WDc4OtB42NPdfwn/EUY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7gKj8OtqoTRXETlhh5ezrgVxYIw/BsLX7Rbqpq1TYH5oGAsLy
+	m4AVK6er0fUEopWBZ93Qj1sx4twG3fWJ03Ybht2LENQmbMdFa/uGUfW9Pghna5465JpTQY5QcWl
+	RJpDQzbvZyp4NjWB0L9jZ9cKPYbA=
+X-Gm-Gg: ASbGncu+OyzpaMkPrUL/87GNJZrnGwnJnaBAKZwk8I3IMfYkWvalYa2kcyvjy4WHnts
+	B9nfk5GpYF7zel52p7bjk3F3MLs7l/w3o64faLQ==
+X-Google-Smtp-Source: AGHT+IHoE7hywdceZP0ecmajv5RJm+ghgmXaAnuTlzMBTgY9GRfcN1HHtpkho9YdPt49H//MD+lGW3RvLAllEHGkS/Q=
+X-Received: by 2002:a17:906:4ca:b0:aa6:2d86:bd2c with SMTP id
+ a640c23a62f3a-aa63a0ed36cmr473776266b.21.1733585778375; Sat, 07 Dec 2024
+ 07:36:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ssuityvtqapol74n"
-Content-Disposition: inline
-In-Reply-To: <20241129153546.63584-9-antoniu.miclaus@analog.com>
+References: <20241204111424.263055-1-bigunclemax@gmail.com>
+ <CAJM55Z-YAMtRN=K5KxCH1+++Xw4uMM_c49z8tGzi3snU+-KrYA@mail.gmail.com> <Z1Hs5smgFV4C6c90@x1>
+In-Reply-To: <Z1Hs5smgFV4C6c90@x1>
+From: Maxim Kiselev <bigunclemax@gmail.com>
+Date: Sat, 7 Dec 2024 18:36:06 +0300
+Message-ID: <CALHCpMg_CEUKGVXnkJbwcDEUNzq_N1Cac=Umjra=KL6vEpLcsg@mail.gmail.com>
+Subject: Re: [PATCH v1] riscv: dts: thead: Fix TH1520 emmc and shdci clock rate
+To: Drew Fustini <drew@pdp7.com>
+Cc: Emil Renner Berthing <emil.renner.berthing@canonical.com>, Guo Ren <guoren@kernel.org>, 
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Emil, Drew
 
---ssuityvtqapol74n
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v7 8/8] iio: adc: ad4851: add ad485x driver
-MIME-Version: 1.0
+> Did you look into the documentation
 
-Hello Antoniu,
+Yes, I looked into th1520 user manual but found only
+mention of emmc sdio ref clk which is 792Mhz.
 
-On Fri, Nov 29, 2024 at 05:35:46PM +0200, Antoniu Miclaus wrote:
-> +static int ad4851_set_sampling_freq(struct ad4851_state *st, unsigned int freq)
-> +{
-> +	struct pwm_state cnv_state = {
-> +		.duty_cycle = AD4851_T_CNVH_NS,
-> +		.enabled = true,
-> +	};
-> +	int ret;
-> +
-> +	freq = clamp(freq, 1, st->info->max_sample_rate_hz);
-> +
-> +	cnv_state.period = DIV_ROUND_UP_ULL(NSEC_PER_SEC, freq);
-> +
-> +	ret = pwm_apply_might_sleep(st->cnv, &cnv_state);
-> +	if (ret)
-> +		return ret;
+> That is a good point about checking the thead vendor kernel.
 
-If you want to be sure that pwm_apply_might_sleep() doesn't round down
-.period (and .duty_cycle?) too much, you might consider using
-pwm_round_waveform_might_sleep(). But note that this function only works
-for two hwpwm drivers currently.
+Drew, thanks for the suggestion to look at Revy's BSP.
+I'll make a patch for the clk controller in v2.
 
-> +
-> +	st->sampling_freq = freq;
-> +
-> +	return 0;
-> +}
-> +
-> +static const int ad4851_oversampling_ratios[] = {
-> +	1, 2, 4, 8, 16,	32, 64, 128,
-> +	256, 512, 1024, 2048, 4096, 8192, 16384, 32768,
-> +	65536,
-> +};
-> +
-> +static int ad4851_osr_to_regval(int ratio)
-
-This function is called with an unsigned parameter only.
-
-> +{
-> +	int i;
-> +
-> +	for (i = 1; i < ARRAY_SIZE(ad4851_oversampling_ratios); i++)
-> +		if (ratio == ad4851_oversampling_ratios[i])
-> +			return i - 1;
-
-Given that ad4851_oversampling_ratios[i] == 1 << i you could simplify
-that. Something like:
-
-	if (is_power_of_2(ratio) && ratio <= 65536 && ratio > 0)
-		return ilog2(ratio);
-
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static int ad4851_set_oversampling_ratio(struct ad4851_state *st,
-> +					 const struct iio_chan_spec *chan,
-> +					 unsigned int osr)
-> +{
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	guard(mutex)(&st->lock);
-> +
-> +	if (osr == 1) {
-> +		ret = regmap_clear_bits(st->regmap, AD4851_REG_OVERSAMPLE,
-> +					AD4851_OS_EN_MSK);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = iio_backend_oversampling_disable(st->back);
-> +		if (ret)
-> +			return ret;
-> +	} else {
-> +		val = ad4851_osr_to_regval(osr);
-> +		if (val < 0)
-> +			return -EINVAL;
-> +
-> +		ret = regmap_set_bits(st->regmap, AD4851_REG_OVERSAMPLE,
-> +				      AD4851_OS_EN_MSK);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regmap_update_bits(st->regmap, AD4851_REG_OVERSAMPLE,
-> +					 AD4851_OS_RATIO_MSK, val);
-
-You set this register twice in a row. Can this be done in a single
-register access?
-
-> +		if (ret)
-> +			return ret;
-
-Best regards
-Uwe
-
---ssuityvtqapol74n
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdUaewACgkQj4D7WH0S
-/k55Vwf/dcyzLERHADJy0eA4I3kK1jSCddOaUpX9iL4wUcXFMi2IGBfN/aJ6hVJW
-RahHHZ0hx4S6Y+RMdyIb40mDgDxEOIzxihi7D+5KI6CV3cDd4oZkUkQ3rNFXQ3Gk
-hOuaDEasQKueh0lbjTT5eQ4t1xzfSlNjpTrbR3t+PRtXRF1Wgkg2E+IorJ8q7duR
-+tsndFiWef/2ycvM/e/RZefB9kCX+3IEiaZIzgiXIbqtZp5hcN3WQJ9iJY95s0Gq
-BN7yTVmNrknMfJopgF3JhHuwtCoEfLqS6ehITy3bd1SKWL00sg2Nvnh7IBKc/04d
-9M+ZIy+6be+xTyAXZi0ESyB20GywDg==
-=W1c1
------END PGP SIGNATURE-----
-
---ssuityvtqapol74n--
+Best wishes,
+Maksim
 
