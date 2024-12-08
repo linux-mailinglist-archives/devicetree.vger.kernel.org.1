@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-128265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22CB99E8404
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 07:34:37 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 963B49E840C
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 07:45:06 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0BD4188260B
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 06:34:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 576F5281B27
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 06:45:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1009B136E3F;
-	Sun,  8 Dec 2024 06:31:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7837383CD2;
+	Sun,  8 Dec 2024 06:45:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w67a2wI/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G4iVzTte"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6A13130A73
-	for <devicetree@vger.kernel.org>; Sun,  8 Dec 2024 06:31:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF8E6026A
+	for <devicetree@vger.kernel.org>; Sun,  8 Dec 2024 06:44:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733639500; cv=none; b=ZiTMlTCyccCozyvUqqtuy5FSLAl2DiAl81I8cfNgldFMrmrl5XvHH82fqOcVQ9Yy5XMkKuT/3hpfU1f3h6+MK8H/63RQSeg+DwgZ2CggKhe+7EnN2aZqbRhpJvM784QZgZZ3B+YASwLxRtxT6CKpfVg7xxK6FLZcuhLjmH09Za4=
+	t=1733640300; cv=none; b=hIgVNm/0Ed8ePhbttenppYfLLX4yx0tSha1zGtkLNPxKqdLScI2iUpSyGlaKxijIfO75aw3KWabmnE91WQ9SsqyKXc7TBRD+GR00PotQBP1bFL84sgULKZt0hLk9ZNB40j/ad+VfL/9FYWbfiWlQxFrT6Imw97O1M9PQZTA2ZhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733639500; c=relaxed/simple;
-	bh=EMqHWbML9Vixdihnehlwf6UhvKO7C47xVA1jXkSy+dg=;
+	s=arc-20240116; t=1733640300; c=relaxed/simple;
+	bh=U+22P7F7LLVUcbjZzgyNY9L179vVm+rtFwy13NDaJ/Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LaI2iHZo26jjn5AE5quruA6fMYHuz3oxKStG/21om1/VxJ+7TeCUKiy0k5tPiH+Q5W63djNN2NYy/gV2Ww3xTckva5UqXFx1SJJ4n/x+ZOiOxoD8mhVopdRypoNmCev0T08//nvqz6IMr0B+7ZXRtneD56xzIvBqq6Bpk5Fv2LQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w67a2wI/; arc=none smtp.client-ip=209.85.167.54
+	 Content-Type:Content-Disposition:In-Reply-To; b=cqY/XfKpUWH32ODoG3PdgCoFCKjyTyLs62P7NYvzg6AuYhFZvEbtx1vwwJHfBcDMXiR9hLD/aw0Qz1QuWbxbiYgXGhVVtZcHZcYtcLlT15KkHXwWG13bR9F0DFhAxe/YdOdXjjehFgtmlpg/9PYLsxztswUK3dl1AjcQt3k2qog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G4iVzTte; arc=none smtp.client-ip=209.85.208.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5401b7f7141so221013e87.1
-        for <devicetree@vger.kernel.org>; Sat, 07 Dec 2024 22:31:37 -0800 (PST)
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3003943288bso16290301fa.0
+        for <devicetree@vger.kernel.org>; Sat, 07 Dec 2024 22:44:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733639496; x=1734244296; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1733640295; x=1734245095; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=aZ8VS1dgJrZl5iBo3P2WYLWkQ0RmM/v740EhGg00bcs=;
-        b=w67a2wI/qTUo6O2fwC0Y9JfNmh/L5PLJya5CCv0YDbHID5Ko+5mImaZKTb2CocQyTD
-         gDSxgGn8roZ1AUKYF0140ofV/vMRMBspt5oVHp/6WJqercsu6FPgRDOJhXDQrzy8Tu3u
-         jbVrfUwfS1/CPF2+J52PmsgCa0xGuEFnwckubdV05/EQoo+NxmHbNbIy/YNCcWj1k5YQ
-         48Qvprg8FpXkSwRGH0Z3UrSJj1jtFxeuHW0Es5CZVpO0C2Jti9sqB6EUFIIHAyv7DPBJ
-         Lwzk7wQI3WZ7eSvKvC3wWQooHwH1taCGSjmMmUO9nKQ/KeiOZ0OJOT9R5DBW8M+emmQo
-         Lbnw==
+        bh=hdGNHQAJUzYyjbohAt/0A6Ng2wZg9B9r6ItAJe2eaBk=;
+        b=G4iVzTteOX+U5283WUdE5MNawcAL3noWz/a32faH83XxWeTOH7JEMpW8GY67keTgTM
+         /V8bKMRjZbJ0h//6oASQjnpY0oTd4cM7f5hXyVaXtvNWEAP6hZOqy7wl9d+2mPChF8C6
+         99kGTuLWe4PwpghYy5Z/Br2JL2I6BRf9nBkMHPlPVsiGw3iEDxIwmuliwoF7v28pVciV
+         Frl0Io+p7edohpcwReL7K78b6n7JTATi7b235WoNtLslRaSRDMoU7eohvoTW5v3uo6bF
+         T+bQoq6PeyNw3Rdok7dbQX07TAWU0W3Wgt9GL6nCeYqCe8f/tMjCbEailmtLo6v2LhoB
+         f/tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733639496; x=1734244296;
+        d=1e100.net; s=20230601; t=1733640295; x=1734245095;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=aZ8VS1dgJrZl5iBo3P2WYLWkQ0RmM/v740EhGg00bcs=;
-        b=r8iyxB8isXKeFH5V4urdfCc8yqX+YtCAYxskZwXyd2a308FL6dIppVEYnDUnH7MWut
-         dXmBlQ4p1h7dsx3PJCeTIkD6BpaRWFF3t/vN+nIYucnsL77CoJTwcMVtnQlShQxAUyLA
-         7nLE8V8JocVo37AY8I1V/Cz0n841WHQX+IOInaKgzd3EWx+UcLOxxnJzBWAMMxgRFVHh
-         cBqfpeeaodkDZEfOqXIcsWGD68hnl9I0V7KqePIfepRGgld2+5lIUlsXNKBJ+TIIhOwJ
-         UFQyoSHEr3V7lSsQz2P+RgY0NIWap0YRQCG6tQARrbuNknrnw9LQxVAP9hGOQPtVoblP
-         KFmA==
-X-Forwarded-Encrypted: i=1; AJvYcCV3h8JQ4N2qtW97A/u7akLKWhQ+UZcig8/0HxBbd0pMCVmxU53qEsQTFpms4/z7jClJEP0dqXqJR2dq@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZqrQmYSuWvYQSZCSnQrfvFddSddGIIVmFvW2WGH6PL47bg+P7
-	rtxbHDWVL64OFe5dmFMY5eo19fhkEQaHUmGPb51xLpBUW9WQ2QxfnJcqofJPdec=
-X-Gm-Gg: ASbGncts7p4BuL5nTIJAtQcHvL3YFs4uLZflFvAjXiM8+6PTDytWvhdWmVd/piohFxj
-	1Zd6kBgxg4zbhCj4LoJm59wy4kvR0G9m/vRtM/acw6rGAKpQpgy+nPe1y74UvqxrmLKTECnhPFS
-	fX32METIfNZe6A1AulCnmstl2VYFojAxka4PSuIxZMeKTLEYkqdTgCqGEPH50fJ+t/Cr36dX2mo
-	VEmKclmQFuwbUyPpVq2ZNU4VRbllZwlaKFmMnNiRMwjbbgCQnSqXUk9oK7mvc4Hf0yxynhJUPta
-	X6XaLih7P6fWgI0lPaf4uT+I4LeV4Q==
-X-Google-Smtp-Source: AGHT+IH6hoZScy0MbedHNXt8kj+dVMVo4BB42zGWyZlNI1Ar7AQiGDckU1+y1l3Sqi29CH+nNiPp8w==
-X-Received: by 2002:a05:6512:61b:b0:53e:3a73:d05a with SMTP id 2adb3069b0e04-53e3a73d106mr1079651e87.55.1733639495903;
-        Sat, 07 Dec 2024 22:31:35 -0800 (PST)
+        bh=hdGNHQAJUzYyjbohAt/0A6Ng2wZg9B9r6ItAJe2eaBk=;
+        b=mfvO0oFOu5cFMN0Sn5DhG21rZhgvPyKXO7bK9nN/CGaupG4jiQI/ux89AIZhFxjNhw
+         2zPTHsg3CQXj21uO7rAqJqQHzT3I0ri9gifUi8otZJRhxFOkNubdpcIKAZ2bE7UQlVNW
+         IGtL65/WOphzYvut9+d1UO2RvnD5uTEPNLrvqOLdFzrASCHRljmcpZ+Qdh9ASsKzGmdZ
+         xxNPd+iHi/8X/WFlaXVaPPGaAmX23HFPERIVNHsetPxu+jDN3QGJwz3DrU+cUMAU1oz7
+         kqSp/OfbYQb4qoQi1qACPC4LwjAiT+10ofR+OCsLzid3o+i9sFcC/F05P6SXdFUoowoZ
+         ek/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUU08KKc6C8pvXNJ+vnnbCr7B23T+9Bs66N3uerM9eZekdsJ1S+ySEUP/VqiruRRGfz+gJrrMy03T/O@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo5EfyV44DkXWF5ggienqxqM2EFXsrz+cRgj2Td5rWyANso07g
+	HC4DOe77JacISHvidERUIdmPqvaCN2o1ghVWTsEkQcZGJAdf7S6imsH83cSVLRY=
+X-Gm-Gg: ASbGncvnwQtcVLZ+3acy3s7aZTJqM8D0tBGmDcZgd+JkPy+waudGJ80POgMGAtvrH/f
+	Dgd1HvQcNggjIl20I5oXWm2u1w4ICwVrbFQGO1wonJQzNq5N6OBazvuUQ2qRIwjbeQwkHC3PiAn
+	wJtpKu4frmlPMTUvHoQ4m8Sq25NMWQn45eiZKkI/eUhBfQa8Y0fWJ+dBYo2ApD0x4m/VTPtQzHn
+	eZWjQWZE7kN92BzI1C0IDfBxcwDvHguu9j8LfZ4I6a12/JFUwtOFFz9tXOuVWOhfHZzhbk+7kbo
+	JVi8pDaasvTljB6Fz3DQvSZDHNWkPw==
+X-Google-Smtp-Source: AGHT+IFRKf628IlWh4nLJD6CbktAnRSTG9qf3ocyzqfN6z84pO4+nuRak4uKnZ3RxXg2D8mepLotNg==
+X-Received: by 2002:a2e:a98b:0:b0:302:1861:6df4 with SMTP id 38308e7fff4ca-3021861726emr6312831fa.35.1733640295057;
+        Sat, 07 Dec 2024 22:44:55 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5401c0382c5sm112619e87.32.2024.12.07.22.31.33
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30020d85076sm9314561fa.23.2024.12.07.22.44.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Dec 2024 22:31:34 -0800 (PST)
-Date: Sun, 8 Dec 2024 08:31:32 +0200
+        Sat, 07 Dec 2024 22:44:53 -0800 (PST)
+Date: Sun, 8 Dec 2024 08:44:52 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Abhinav Kumar <quic_abhinavk@quicinc.com>
 Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
@@ -85,11 +85,10 @@ Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
 	Tanmay Shah <tanmay@codeaurora.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
 	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
 	Jessica Zhang <quic_jesszhan@quicinc.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH 39/45] drm/msm/dp: initialize dp_mst module for each DP
- MST controller
-Message-ID: <qu3b5cfxvxnnxwn4rwuqyxdpadrpvkhycyprs5n4aycecmdb4f@pvt2n3aajpxv>
+Subject: Re: [PATCH 33/45] drm/msm/dp: add irq hpd callback for dp mst
+Message-ID: <dp45ml6ozghkvz2rgzj2v5xupy2zncz5gksnj5umfaldvfmgu3@lqh672yqlgl3>
 References: <20241205-dp_mst-v1-0-f8618d42a99a@quicinc.com>
- <20241205-dp_mst-v1-39-f8618d42a99a@quicinc.com>
+ <20241205-dp_mst-v1-33-f8618d42a99a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,102 +97,159 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241205-dp_mst-v1-39-f8618d42a99a@quicinc.com>
+In-Reply-To: <20241205-dp_mst-v1-33-f8618d42a99a@quicinc.com>
 
-On Thu, Dec 05, 2024 at 08:32:10PM -0800, Abhinav Kumar wrote:
-> For each MST capable DP controller, initialize a dp_mst module to
-> manage its DP MST operations. The DP MST module for each controller
-> is the central entity to manage its topology related operations as
-> well as interfacing with the rest of the DP driver.
+On Thu, Dec 05, 2024 at 08:32:04PM -0800, Abhinav Kumar wrote:
+> Add irq hpd callback for the dp mst module which shall be
+> invoked from the dp_display's irq hpd handler to perform
+> mst specific operations in case of irq hpd. In MST case, route
+
+Nit: MST, IRQ, HPD
+
+> the IRQ HPD messages to MST module.
 > 
 > Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
 > ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c |  6 ++++++
->  drivers/gpu/drm/msm/dp/dp_display.c     | 12 ++++++++++++
->  drivers/gpu/drm/msm/msm_drv.h           |  7 +++++++
->  3 files changed, 25 insertions(+)
+>  drivers/gpu/drm/msm/dp/dp_display.c | 17 +++++++++++++----
+>  drivers/gpu/drm/msm/dp/dp_mst_drm.c | 36 +++++++++++++++++++++++++++++++++++-
+>  drivers/gpu/drm/msm/dp/dp_mst_drm.h |  2 ++
+>  3 files changed, 50 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> index 359de04abf4bbead3daa5e8b357a3c34216e3e65..734d8972bbd65153778d5d70a55ac09dfc693ac9 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> @@ -664,6 +664,12 @@ static int _dpu_kms_initialize_displayport(struct drm_device *dev,
->  		stream_cnt = msm_dp_get_mst_max_stream(priv->dp[i]);
->  
->  		if (stream_cnt > 1) {
-> +			rc = msm_dp_mst_register(priv->dp[i]);
-> +			if (rc) {
-> +				DPU_ERROR("dp_mst_init failed for DP, rc = %d\n", rc);
-> +				return rc;
-> +			}
-> +
-
-This seems to be put backwards. I'd prefer if DPU driver allocated all
-MST encoders and then called into the DP driver, letting it handle all
-MST-related internals.
-
->  			for (stream_id = 0; stream_id < stream_cnt; stream_id++) {
->  				info.stream_id = stream_id;
->  				encoder = dpu_encoder_init(dev, DRM_MODE_ENCODER_DPMST, &info);
 > diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-> index eafec9ab4f83cb44e861687e7550748b4d9b7ece..7f2eace17c126e3758c68bb0dee67662463a6e05 100644
+> index 60316633cc6bcfdfad8ab356d803642d353add61..97f8228042773f51f23a9d39fc009de0798059d7 100644
 > --- a/drivers/gpu/drm/msm/dp/dp_display.c
 > +++ b/drivers/gpu/drm/msm/dp/dp_display.c
-> @@ -69,6 +69,8 @@ enum {
->  
->  #define WAIT_FOR_RESUME_TIMEOUT_JIFFIES (HZ / 2)
->  
-> +#define MAX_DPCD_TRANSACTION_BYTES 16
-> +
->  struct msm_dp_event {
->  	u32 event_id;
->  	u32 data;
-> @@ -1689,6 +1691,16 @@ int msm_dp_modeset_init(struct msm_dp *msm_dp_display, struct drm_device *dev,
->  	return 0;
->  }
->  
-> +int msm_dp_mst_register(struct msm_dp *dp)
-> +{
-> +	struct msm_dp_display_private *dp_display;
-> +
-> +	dp_display = container_of(dp, struct msm_dp_display_private, msm_dp_display);
-> +
-> +	return msm_dp_mst_init(dp, dp_display->max_stream,
-> +			   MAX_DPCD_TRANSACTION_BYTES, dp_display->aux);
-
-This doesn't seem to change between plaforms. Please push it to
-msm_dp_mst_init() instead.
-
-> +}
-> +
->  void msm_dp_display_atomic_prepare(struct msm_dp *dp)
+> @@ -583,7 +583,9 @@ static int msm_dp_display_usbpd_attention_cb(struct device *dev)
 >  {
 >  	int rc = 0;
-> diff --git a/drivers/gpu/drm/msm/msm_drv.h b/drivers/gpu/drm/msm/msm_drv.h
-> index 12b50a797772f574122481cd8a1c7c88aacb8250..7ed0e25d6c2bc9e4e3d78895742226d22d103e4c 100644
-> --- a/drivers/gpu/drm/msm/msm_drv.h
-> +++ b/drivers/gpu/drm/msm/msm_drv.h
-> @@ -376,6 +376,8 @@ int msm_dp_get_mst_max_stream(const struct msm_dp *dp_display);
->  
->  int msm_dp_mst_bridge_init(struct msm_dp *dp_display, struct drm_encoder *encoder);
->  
-> +int msm_dp_mst_register(struct msm_dp *dp_display);
+>  	u32 sink_request;
 > +
->  #else
->  static inline int __init msm_dp_register(void)
->  {
-> @@ -397,6 +399,11 @@ static inline int msm_dp_get_mst_max_stream(struct msm_dp *dp_display)
->  	return -EINVAL;
+
+Drop.
+
+>  	struct msm_dp_display_private *dp = dev_get_dp_display_private(dev);
+> +	struct msm_dp *msm_dp_display = &dp->msm_dp_display;
+>  
+>  	/* check for any test request issued by sink */
+>  	rc = msm_dp_link_process_request(dp->link);
+> @@ -591,12 +593,18 @@ static int msm_dp_display_usbpd_attention_cb(struct device *dev)
+>  		sink_request = dp->link->sink_request;
+>  		drm_dbg_dp(dp->drm_dev, "hpd_state=%d sink_request=%d\n",
+>  					dp->hpd_state, sink_request);
+> -		if (sink_request & DS_PORT_STATUS_CHANGED)
+> -			rc = msm_dp_display_handle_port_status_changed(dp);
+> -		else
+> +		if (sink_request & DS_PORT_STATUS_CHANGED) {
+> +			if (!msm_dp_display->mst_active)
+> +				rc = msm_dp_display_handle_port_status_changed(dp);
+
+Why?
+
+> +		} else {
+>  			rc = msm_dp_display_handle_irq_hpd(dp);
+> +		}
+>  	}
+>  
+> +	/* let MST specific IRQ events be handled by its callback */
+> +	if (msm_dp_display->mst_active)
+> +		msm_dp_mst_display_hpd_irq(&dp->msm_dp_display);
+> +
+>  	return rc;
 >  }
 >  
-> +static inline int msm_dp_mst_register(struct msm_dp *dp_display)
+> @@ -736,7 +744,8 @@ static int msm_dp_irq_hpd_handle(struct msm_dp_display_private *dp, u32 data)
+>  	drm_dbg_dp(dp->drm_dev, "Before, type=%d hpd_state=%d\n",
+>  			dp->msm_dp_display.connector_type, state);
+>  
+> -	if (state == ST_MAINLINK_READY || state == ST_DISCONNECT_PENDING) {
+> +	if ((state == ST_MAINLINK_READY || state == ST_DISCONNECT_PENDING) &&
+> +	    !dp->msm_dp_display.mst_active) {
+
+Why?
+
+>  		/* wait until ST_CONNECTED */
+>  		msm_dp_add_event(dp, EV_IRQ_HPD_INT, 0, 1); /* delay = 1 */
+>  		mutex_unlock(&dp->event_mutex);
+> diff --git a/drivers/gpu/drm/msm/dp/dp_mst_drm.c b/drivers/gpu/drm/msm/dp/dp_mst_drm.c
+> index 2934fe6a93ff8b927b035c01b6007f3f4ec91a3f..2d92084586b466d4953429e8a6fbf766d081cb9f 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_mst_drm.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_mst_drm.c
+> @@ -559,6 +559,40 @@ static struct msm_dp_mst_bridge_state *msm_dp_mst_br_priv_state(struct drm_atomi
+>  										&bridge->obj));
+>  }
+>  
+> +/* DP MST HPD IRQ callback */
+> +void msm_dp_mst_display_hpd_irq(struct msm_dp *dp_display)
 > +{
-> +	return -EINVAL;
+> +	int rc;
+> +	struct msm_dp_mst *mst = dp_display->msm_dp_mst;
+> +	u8 ack[8] = {};
+
+4 should be enough
+
+> +	u8 esi[14];
+> +	unsigned int esi_res = DP_SINK_COUNT_ESI + 1;
+
+inline
+
+> +	bool handled;
+> +
+> +	rc = drm_dp_dpcd_read(mst->dp_aux, DP_SINK_COUNT_ESI,
+> +			      esi, 14);
+
+Why do we need 14 bytes? Other drivers read smaller chunks.
+drm_dp_mst_hpd_irq_handle_event() explicitly documents just 4 bytes
+there. Please consider extracting generic helper funciton that just
+handles ESI read, drm_dp_mst_hpd_irq_handle_event() and writing of ACK.
+
+> +	if (rc != 14) {
+> +		DRM_ERROR("dpcd sink status read failed, rlen=%d\n", rc);
+> +		return;
+> +	}
+> +
+> +	drm_dbg_dp(dp_display->drm_dev, "mst irq: esi1[0x%x] esi2[0x%x] esi3[%x]\n",
+> +		   esi[1], esi[2], esi[3]);
+> +
+> +	rc = drm_dp_mst_hpd_irq_handle_event(&mst->mst_mgr, esi, ack, &handled);
+> +
+> +	/* ack the request */
+> +	if (handled) {
+> +		rc = drm_dp_dpcd_writeb(mst->dp_aux, esi_res, ack[1]);
+> +
+> +		if (rc != 1)
+> +			DRM_ERROR("dpcd esi_res failed. rc=%d\n", rc);
+> +
+> +		drm_dp_mst_hpd_irq_send_new_request(&mst->mst_mgr);
+> +	}
+> +	drm_dbg_dp(dp_display->drm_dev, "mst display hpd_irq handled:%d rc:%d\n", handled, rc);
 > +}
 > +
->  int msm_dp_mst_bridge_init(struct msm_dp *dp_display, struct drm_encoder *encoder)
->  {
->  	return -EINVAL;
+>  /* DP MST Connector OPs */
+>  static int
+>  msm_dp_mst_connector_detect(struct drm_connector *connector,
+> @@ -570,7 +604,7 @@ msm_dp_mst_connector_detect(struct drm_connector *connector,
+>  	struct msm_dp_mst *mst = dp_display->msm_dp_mst;
+>  	enum drm_connector_status status = connector_status_disconnected;
+>  
+> -	if (dp_display->link_ready)
+> +	if (dp_display->link_ready && dp_display->mst_active)
+
+Why is it a part of this patch?
+
+>  		status = drm_dp_mst_detect_port(connector,
+>  						ctx, &mst->mst_mgr, mst_conn->mst_port);
+>  
+> diff --git a/drivers/gpu/drm/msm/dp/dp_mst_drm.h b/drivers/gpu/drm/msm/dp/dp_mst_drm.h
+> index 9a8535b97193d911592b44fdfcf43ca2f252cea0..5fe5dc7596086467e9a3b3d7d04a665853fbb3d7 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_mst_drm.h
+> +++ b/drivers/gpu/drm/msm/dp/dp_mst_drm.h
+> @@ -103,4 +103,6 @@ int msm_dp_mst_drm_bridge_init(struct msm_dp *dp, struct drm_encoder *encoder);
+>  int msm_dp_mst_init(struct msm_dp *dp_display, u32 max_streams,
+>  		    u32 max_dpcd_transaction_bytes, struct drm_dp_aux *drm_aux);
+>  
+> +void msm_dp_mst_display_hpd_irq(struct msm_dp *dp_display);
+> +
+>  #endif /* _DP_MST_DRM_H_ */
 > 
 > -- 
 > 2.34.1
