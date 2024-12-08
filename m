@@ -1,155 +1,138 @@
-Return-Path: <devicetree+bounces-128312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CAAD9E85E0
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 16:24:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33CD89E85EE
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 16:26:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24C90163F88
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 15:24:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E0D91638FC
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 15:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08684156885;
-	Sun,  8 Dec 2024 15:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AB251537B9;
+	Sun,  8 Dec 2024 15:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BXZzSVKO"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="Dn8KWRVs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+Received: from smtp.smtpout.orange.fr (smtp-24.smtpout.orange.fr [80.12.242.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 551DC1552FA;
-	Sun,  8 Dec 2024 15:23:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C07D414F9FF;
+	Sun,  8 Dec 2024 15:26:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733671426; cv=none; b=LEhBqctzptaKDGPJ5wyKCAtmCmb8ctVEtgALimcV3LSUJE0wrYXQ7Y6unjVQ6ZBzVw9/A+0cSTs0HFwHxLo+0HYME2r9IcnkjIpDN2JPPiSmE+S9owbraspAf72KjmkHjlp1ugjukOzBCjDj6jZOr4bXbAFlZhWphySm7dfoG0k=
+	t=1733671615; cv=none; b=s7LR1+aC6bjVHnyrTak09zxFBZt+94zBuYEctuh3kPDT3Jkz8AiAz6+pW3kKMCRiWpKZKKLNBIjP917B/MYabsiTjraPfsuAu1VOkH2Y3bKM9b5O9bPohzEtql4kPl1Ekokna5Na0mkubYEtG7A2r73H8X477Oz33wcC6zRDlwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733671426; c=relaxed/simple;
-	bh=l7xRXUyEbDsdN6IdmsbR3YkjSUxnY4sXvYptP3ftvXw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=K8M93QROPdJdK3XXw57g0X0I9CLTXKbKB9dO0W6vAqXrkmmNkmmSX5rNek6x6Bf/OKudABblO1mflcSAFuyCz6HSk8KDQ+kEvBcWEKCHs6KhWhbamHpAKPwr+ZgRTa2BmekqJcZKNgl/LD6m4/ev1JDVMClNrMrIKsZTCLkXIew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BXZzSVKO; arc=none smtp.client-ip=209.85.166.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-841d8dec20aso109271839f.3;
-        Sun, 08 Dec 2024 07:23:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733671424; x=1734276224; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MeViGyIUjK73sGY5mddjcRzCRf6wXH+e3Spekfc6Nfs=;
-        b=BXZzSVKO/2SOoymnN0SKkNoCOdcm3AFXf1k/r8ryop9kWWbMNhRb1uRYdrnoo2Axpd
-         3MwvOefKWyINi50TPbhMiNPEmTd+CmxNgUInY7PRds6r9pa8kMVX7sZyjYljufO68fnU
-         l2K7FXeNxDbd3S2xsWdMLEstbHw+hDNYNoENBGi1sE8GUGDZh7XtusIO7wikA6SfrSrf
-         8VByXIhd3WyQUDCK9aaQOLUzSA2q5RwZ3H0+5wAR289DtoDXyha6a2NClsWYPV77e3uU
-         xrcL1cihPQ9TgcDvCeZV/vI2zaDPLcio4WCbXnIFoGuauP+9FrEShvjiZnRKu2Hpil4s
-         95BQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733671424; x=1734276224;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MeViGyIUjK73sGY5mddjcRzCRf6wXH+e3Spekfc6Nfs=;
-        b=aiMFRol3h5lZai5kuyG+WdbHRug3yiXWbpUNuEcoeagMbBDhcV6pxpHgirusiIWdmT
-         Ee4bW73Rpc3Wkm8OdPu9RmzNSIMd4L3scMBVr28HbHTqPSmyGa8I1j+Xv3mPcEupINZS
-         91fExhdrtz1XaHnWPPi0938M92Vmy2FpuUGbkGaEf3BVO/P2uqIw9hSB7E7O37/mHKkt
-         4ZziV15j9Ktu64JhAzkio1iVFopfqNihsMncnsS7naeDMuMnVCruAg1yfeNuroNfF9QG
-         S/pL7e2H6D3q2Eba3rhJgWX6hU4uPvaU/1iXLbd4OAjC4qQ9thYH/tuBU7rK6Fkr4F4I
-         FdVw==
-X-Forwarded-Encrypted: i=1; AJvYcCUcC5g7ZjZP/a1WMydSr3pF/ZCS4TR47U0Qo6U1dLJayuVJmNRvxnX1JHo14sGRCund/u2jUkmJqVkcVvfm@vger.kernel.org, AJvYcCW54y6MiP4jGVqI21IRY+eYda3WxPryNBU64tsW8ZyPC9AWkuOMV+GfZcZP4ZrpzIYPf3XXA9K6Memz+ZE=@vger.kernel.org, AJvYcCWpRJDZFwQFLyYN0Q60IY2KJQD/eOZd8E+CRJnAvCISZsBx0e4p84nQ6hTfXdpT3uEVh1KtGfS3R0HZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxspJTe6S3eW2mMqgqQrZ42KZT8dhpVBu2wjn7II0KZ0P5gpdMt
-	Se2ra+I4FtB42D/8SLhfs6BS+pYBRTc75VP4ew2ZyhptE/OVdl/d
-X-Gm-Gg: ASbGncs4ZnqeiYj68v6VT+3pTIg5RoEj4P8Y0ypEjTWixSu0lxKFhni0zpCYdw0q0d6
-	9+sTqK+3PQgCiCgx5TAOliar/Gdamfen3HcicEJ+0UarVh/KMpoSza5+ARScwDKQNN2+zWWrYrH
-	0p+/qErnuX4r41mTdOmNZUEajMJZowygGTuOsLtAqnMjMCaIOT7GItW2F3RqRP0vwV1taqmwfcI
-	5UH7Z0+WR8yj99JV1c27RK4roHZtUdDypatABOM
-X-Google-Smtp-Source: AGHT+IGdj7s0fZzu0zpwyTVptfjyqi79gKbWrdVfA4prZH9hVU3A0jrN0xfjCiteQ73LifT7k/lQbA==
-X-Received: by 2002:a05:6e02:1e0c:b0:3a7:a69c:9692 with SMTP id e9e14a558f8ab-3a811e2a4eemr82547555ab.21.1733671424511;
-        Sun, 08 Dec 2024 07:23:44 -0800 (PST)
-Received: from [192.168.1.109] ([2a02:6ea0:c603:3558::35])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3a814fa40d6sm16846805ab.57.2024.12.08.07.23.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Dec 2024 07:23:44 -0800 (PST)
-From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-X-Google-Original-From: Joel Selvaraj <foss@joelselvaraj.com>
-Date: Sun, 08 Dec 2024 09:23:30 -0600
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sdm845-xiaomi-beryllium-ebbg:
- introduce touchscreen support
+	s=arc-20240116; t=1733671615; c=relaxed/simple;
+	bh=AZoi0XZVF4cYMk5HBsVPYwuVPV/Ylxm5DdyCSLCNVVs=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
+	 In-Reply-To:Content-Type; b=KxpE25ZRzDbR5OpvGN0teypBaNg4aDeJrV8RoBJaYPvbm4Ev4DwcYbu9QsDx6hslxtvgnk1Ph+Z/Z50o8biTN8/kQJnWgOoslDSa6Ey3s6KbB4mWB0yq/YcTOsyJYzR7d9peWrTSONBwjAuFR2hsitAGWnIsouuBe7fOgNbMvvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=Dn8KWRVs; arc=none smtp.client-ip=80.12.242.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id KJBGtwSuVqhuoKJBGtLLZl; Sun, 08 Dec 2024 16:26:50 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1733671610;
+	bh=VVlq2KdrmbfOW86CMGQBu5vttyCc5rsOJolnA5rzBIk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=Dn8KWRVsKQrdEj1cVfH9KGP3vdTtQX3bBcFfNlISnT2UtzDMpJ1PNPUBZRXixCQn+
+	 uJ6bIcL1s3iHJMSrpeOceQnsSc/jUwI0lGEG19YMIF5uumgfP0l2uLDh9trY/JYrfR
+	 FOim+Qk//jZBt/0TI2guKmq17F97VVeQNsq8Hmhc+YIaofT+qHTgaeIVV7j9p6aHfp
+	 4ITSpVrTgHUi7reH71c04BqTswwzfULvqb2n2FNTeRym+haSa/1jlGSE74DMPDBElA
+	 slfNd/JhiX2U34JgvwS8pBjx0zmVY3GDgoYpqRZ0Y9jmLgjPETZtysu6r61d9iBm4Y
+	 Fms4mMJ1oqjjw==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Sun, 08 Dec 2024 16:26:50 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <d205aae9-68d5-41f1-8739-779b2d9a6664@wanadoo.fr>
+Date: Sun, 8 Dec 2024 16:26:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241208-pocof1-touchscreen-support-v2-4-5a6e7739ef45@joelselvaraj.com>
-References: <20241208-pocof1-touchscreen-support-v2-0-5a6e7739ef45@joelselvaraj.com>
-In-Reply-To: <20241208-pocof1-touchscreen-support-v2-0-5a6e7739ef45@joelselvaraj.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
- Joel Selvaraj <foss@joelselvaraj.com>, 
- Joel Selvaraj <joelselvaraj.oss@gmail.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733671419; l=1288;
- i=foss@joelselvaraj.com; s=20241007; h=from:subject:message-id;
- bh=6J8U1Z0ISgWZeNHHwG5GD8wzmGFCDFOJTCpfO/uYYlc=;
- b=21suvVmg5Fivexqi0n1maBWSR3R0hLmLEwv3phoyYyBuE8bNkypXBMw1mz728Oazi1dTh+KkB
- MGmc8gB0RCtDc96ZzrjJF3a4cVlIfn6eI+lm8AVg5eZDJLZsf6WlS8L
-X-Developer-Key: i=foss@joelselvaraj.com; a=ed25519;
- pk=pqYvzJftxCPloaoUbVsfQE7Gwv8bynZPy8mjYohwMCc=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next PATCH v10 8/9] net: dsa: Add Airoha AN8855 5-Port
+ Gigabit DSA Switch driver
+References: <20241208002105.18074-1-ansuelsmth@gmail.com>
+ <20241208002105.18074-9-ansuelsmth@gmail.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Vladimir Oltean <olteanv@gmail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Matthias Brugger <matthias.bgg@gmail.com>,
+ "AngeloGioacchino Del Regno," <angelogioacchino.delregno@collabora.com>,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, upstream@airoha.com
+In-Reply-To: <20241208002105.18074-9-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+Le 08/12/2024 à 01:20, Christian Marangi a écrit :
+> Add Airoha AN8855 5-Port Gigabit DSA switch. Switch can support
+> 10M, 100M, 1Gb, 2.5G and 5G Ethernet Speed but 5G is currently error out
+> as it's not currently supported as requires additional configuration for
+> the PCS.
+> 
+> The switch is also a nvmem-provider as it does have EFUSE to calibrate
+> the internal PHYs.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
 
-Enable the Focaltech FT8719 touchscreen controller used in the Poco F1
-(EBBG) panel variant.
+...
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
----
- .../boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts | 23 ++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+> +static int an8855_read_switch_id(struct an8855_priv *priv)
+> +{
+> +	u32 id;
+> +	int ret;
+> +
+> +	ret = regmap_read(priv->regmap, AN8855_CREV, &id);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (id != AN8855_ID) {
+> +		dev_err(priv->dev,
+> +			"Switch id detected %x but expected %x",
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
-index 76931ebad065e..2d6f0e382a6cb 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
-@@ -13,3 +13,26 @@ &display_panel {
- 	compatible = "ebbg,ft8719";
- 	status = "okay";
- };
-+
-+&i2c14 {
-+	status = "okay";
-+
-+	touchscreen@38 {
-+		compatible = "focaltech,ft8719";
-+		reg = <0x38>;
-+
-+		interrupts-extended = <&tlmm 31 IRQ_TYPE_EDGE_RISING>;
-+		reset-gpios = <&tlmm 32 GPIO_ACTIVE_LOW>;
-+		panel = <&display_panel>;
-+
-+		iovcc-supply = <&vreg_l14a_1p8>;
-+		vcc-supply = <&lab>;
-+
-+		pinctrl-0 = <&ts_int_default &ts_reset_default>;
-+		pinctrl-1 = <&ts_int_sleep &ts_reset_sleep>;
-+		pinctrl-names = "default", "sleep";
-+
-+		touchscreen-size-x = <1080>;
-+		touchscreen-size-y = <2246>;
-+	};
-+};
+missing \n
 
--- 
-2.47.1
+> +			id, AN8855_ID);
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
 
+...
+
+> +static void an8855_switch_remove(struct platform_device *pdev)
+> +{
+> +	struct an8855_priv *priv = dev_get_drvdata(&pdev->dev);
+> +
+> +	if (!priv)
+> +		return;
+
+I don't think this can happen. So it could be removed?
+
+> +
+> +	dsa_unregister_switch(priv->ds);
+> +}
+
+...
+
+CJ
 
