@@ -1,143 +1,88 @@
-Return-Path: <devicetree+bounces-128301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 512129E8583
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 14:50:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE969E8593
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 15:16:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C8A718847A7
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 13:50:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3658916401C
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 14:16:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D06191420DD;
-	Sun,  8 Dec 2024 13:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9651C1487C5;
+	Sun,  8 Dec 2024 14:16:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QJMLWZNU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="buszkfdZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F09A4A3C;
-	Sun,  8 Dec 2024 13:50:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5216413D504;
+	Sun,  8 Dec 2024 14:16:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733665821; cv=none; b=ZpV3wOduRqyUluHrTRwm3m5WRIDH+jC9/lHvvMUMLsWjWAeNgdHgSIoK1YXlDPJzciCFonGDszSS7L70NZjl77HPQ0N7JENDPTjNvdj+P5dAcWxN9gT6vI5BCFV+w9ZCwwVclNR+Q+tjWhloCXBeN5dyU7Jv/KRiEttn7MGe34M=
+	t=1733667366; cv=none; b=ZJWpda7gh3/d8IauRVpUodqLbHkQ3TknBYN+czvZtyUobthABmCeUscMS174LSuR6qhr8FwjkizQbV1y+aCnb2tnsSHn58A9jI6o9sC4+kqarGONYwJjoQkV1LzS2SgtrM0yv/1tKSEAVyZN7+CfcelJOKMAf2m9/pZhxqZzl5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733665821; c=relaxed/simple;
-	bh=LxmDDqYbaja4yoa1NRmDWttnyg7U8BpMJIm0fa6JNkA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Nlbo3vlYppQjgAKWPlHD91E0XFoSmBHWijGdfE0qpXu9xwUAQliMdC3o6p6jDuD1t8EJ+iYfGaurfesZvdg8Y2309xyN45fAFu15Qyyr8cjdQOKJAbxusRJ++fFxlvB+g8HiwFZ5VWuedasx+gOE+FzQYCi73PkIUA8TrRXIo9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QJMLWZNU; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B8BcCQj025532;
-	Sun, 8 Dec 2024 13:50:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	kSY3DabKpvKQm1e3Iv1xKNvSWSQ2t4BSi/1v6tcaeG4=; b=QJMLWZNUDdKw6K2a
-	6zhlWdHX7MeZ4nHCluBQWzMG/AQUr/gJaeeiGjibg52gq1qZHscaRlJ8YmxC2wNt
-	rINLgY02GEqFSUoryHfYuRPnIxsTIYOK0vQcnUNB3m3fkGxPO6Y3bwT+SgBlrhMp
-	mD+UGDj8Oh3GVJfmhu2XHvIIgEDrNeo5yT+hCwNw6lB4vehRJKb6wXbXei1K87sf
-	Ztoh+MbYNO7Hrn3iQaE2iUNZbCWbN17OmWnyM6ytK6S9fQZ18RU4clSxjgdu5SJH
-	PcWYA+dfRymvvu/7fJLTNbInI5d2qsOyORjTRMjrvXBSJb0iktI3W9c7zDDuFD7h
-	O1pfEw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43cfhka59n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 08 Dec 2024 13:50:00 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B8Dnx2F012911
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 8 Dec 2024 13:49:59 GMT
-Received: from [10.216.28.219] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 8 Dec 2024
- 05:49:55 -0800
-Message-ID: <ef4d978d-f530-4988-8da9-9b32a5f16c21@quicinc.com>
-Date: Sun, 8 Dec 2024 19:15:32 +0530
+	s=arc-20240116; t=1733667366; c=relaxed/simple;
+	bh=+0ng45+7kJ1yT7sur2+oF61LOQgPGMdnCNycAOs/GUE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=po152BZFhHWtsehySAOwRDylAVtXD/uaWtzQe/3jShO0RBOwcBRQyHOH7ZEWz+OkJOHFGh/LepnkZZaiNEGTbAXMb30wI8tOsvTT1gx4h1N3Rg711Y5eg+2dbLvPDiaKaeuKY/Y/CTPjKtqWmhSX1AGH8y2Pr05u5pRwfKBQkXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=buszkfdZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE203C4CED2;
+	Sun,  8 Dec 2024 14:16:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733667365;
+	bh=+0ng45+7kJ1yT7sur2+oF61LOQgPGMdnCNycAOs/GUE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=buszkfdZC5LkMipnYOJQAOO6i4zNsvhOI9/GKlntUUnVIjfBIutfpDGEEJhoJfVKT
+	 4APx9OzqOcOAqBnDC3FoCe9ZsbACKkVuKKgGtB0MToBKEpYFaAacfUA4fFJmlPWH5P
+	 t+odPx/QPJfERMsYWajb1bcwBluM4rnzFj41hY6fgcoNG/cAJwoDYZg9yrbFc4FRpy
+	 E1wZWDcgHQ/5tv3YoHdJOYSmVC7I/HHD7aGPI9A6oafUe/w0KSALOPUUNPAOouy9Vb
+	 9wesrHCnux4rs0e+X5938ufy+wqeOsqZI/B4I+uq0P0ILrEFKhw4tsRmb9/uLb0fe+
+	 hPMrZzn+qbraw==
+Date: Sun, 8 Dec 2024 15:16:02 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ryan.Wanner@microchip.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, 
+	mturquette@baylibre.com, sboyd@kernel.org, arnd@arndb.de, dharma.b@microchip.com, 
+	mihai.sain@microchip.com, romain.sioen@microchip.com, varshini.rajendran@microchip.com, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v3 02/13] dt-bindings: mfd: atmel,sama5d2-flexcom: add
+ microchip,sama7d65-flexcom
+Message-ID: <copmhri4e43sjk6uiahgmhkqk6kuhuvm3kmusptytww6l5qs2a@xejs5hq4a7gl>
+References: <cover.1733505542.git.Ryan.Wanner@microchip.com>
+ <550a6dc244a9955782c5b9d7863df4e15bba8a26.1733505542.git.Ryan.Wanner@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/22] wifi: ath12k: add Ath12k AHB driver support for
- IPQ5332
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <ath12k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        Kalle Valo
-	<kvalo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jeff Johnson
-	<jjohnson@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20241015182637.955753-1-quic_rajkbhag@quicinc.com>
- <ou5kgedz5aga4dtda6k23uhybcjy7mfwie74p6q3qyn5bdajz7@ftejp7lqrise>
- <0b2f8734-f502-42d7-bdc5-b0d382d2aa70@quicinc.com>
- <cda109c9-a1e2-42cb-b830-6764c6eef519@kernel.org>
-Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <cda109c9-a1e2-42cb-b830-6764c6eef519@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 83HwiWuzEg6npDPjLJZef7u1Beekarbe
-X-Proofpoint-GUID: 83HwiWuzEg6npDPjLJZef7u1Beekarbe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 mlxlogscore=999 mlxscore=0 adultscore=0 lowpriorityscore=0
- phishscore=0 clxscore=1015 priorityscore=1501 spamscore=0 bulkscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412080115
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <550a6dc244a9955782c5b9d7863df4e15bba8a26.1733505542.git.Ryan.Wanner@microchip.com>
 
-On 12/6/2024 6:25 PM, Krzysztof Kozlowski wrote:
-> On 06/12/2024 12:07, Raj Kumar Bhagat wrote:
->> On 10/16/2024 12:27 PM, Krzysztof Kozlowski wrote:
->>> On Tue, Oct 15, 2024 at 11:56:15PM +0530, Raj Kumar Bhagat wrote:
->>>> Currently, Ath12k driver only supports WiFi devices that are based on
->>>> PCI bus. New Ath12k device IPQ5332 is based on AHB bus. Hence, add
->>>> Ath12k AHB support for IPQ5332.
->>>>
->>>> IPQ5332 is IEEE802.11be 2 GHz 2x2 Wifi device. To bring-up IPQ5332
->>>> device:
->>>> - Add hardware parameters for IPQ5332.
->>>> - CE and CMEM register address space in IPQ5332 is separate from WCSS
->>>>   register space. Hence, add logic to remap CE and CMEM register
->>>>   address.
->>>> - Add support for fixed QMI firmware memory for IPQ5332.
->>>> - Support userPD handling for WCSS secure PIL driver to enable ath12k
->>>>   AHB support.
->>>>
->>>> Depends-On: [PATCH V7 0/5] remove unnecessary q6 clocks
->>>> Depends-On: [PATCH V2 0/4] Add new driver for WCSS secure PIL loading
->>>> Link: https://lore.kernel.org/all/20240820055618.267554-1-quic_gokulsri@quicinc.com/
->>>> Link: https://lore.kernel.org/all/20240829134021.1452711-1-quic_gokulsri@quicinc.com/
->>>
->>> These are series targetting other subsystems. I do not understand why
->>> you created such dependency. It does not look needed and for sure is not
->>> good: nothing here can be tested, nothing can be applied.
->>
->> To validate this series, the dependencies mentioned above were necessary, which
->> is why they were included.
+On Fri, Dec 06, 2024 at 12:59:47PM -0700, Ryan.Wanner@microchip.com wrote:
+> From: Dharma Balasubiramani <dharma.b@microchip.com>
 > 
-> What does it mean "validate"? You are supposed to describe how upstream
-> can consume this.
+> Add flexcom binding documentation for sama7d65.
+> 
+> Consolidated entries into one enum to match proper coding style.
+> 
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> ---
+>  .../devicetree/bindings/mfd/atmel,sama5d2-flexcom.yaml   | 9 ++++-----
+>  1 file changed, 4 insertions(+), 5 deletions(-)
 > 
 
-"validate" here means building an image, bring-up DUT in AP, STA or Mesh mode,
-associate Station and run bi-directional data traffic.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
