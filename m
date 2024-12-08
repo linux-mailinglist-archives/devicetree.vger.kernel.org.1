@@ -1,67 +1,63 @@
-Return-Path: <devicetree+bounces-128360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F5D59E874B
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 19:32:14 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6050C9E8758
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 19:43:52 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61EB3164550
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 18:32:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 026AB28117C
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 18:43:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27849189B83;
-	Sun,  8 Dec 2024 18:32:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50150189B85;
+	Sun,  8 Dec 2024 18:43:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LzmflGFx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YBFFYbCW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00EE145324;
-	Sun,  8 Dec 2024 18:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D131145324;
+	Sun,  8 Dec 2024 18:43:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733682730; cv=none; b=mWUoZfOZk98754ID3EYFFWyHhkol0OQn1XZ+VD+sDSe8f6xF0+NL0u3NaWwSQc17NrpA9AVCc6Zfy1RPLnD09N6hKC8ntNFPPPimIQaUXm/Zc9owuDAdtpyoR1xMPi0hWczu+IL/DK+VjVGm8j+BMjbnLnXjHioyL3Rdlvpa4Ww=
+	t=1733683428; cv=none; b=GDiSWwVZBlib7gbDd/t+L2GysMA8GR0l18peW1uj+l99fEC/T8bdX1dbI76cjcHEumOjHoNmAZNKx6jGiUKFEtdvP0oSP4OksVawX3APfSNG2zgFkSM1pzzodTuHl2DjXuKXRP2tXibl/ZPfVX62RXBn0z51OBlYyL6CaitI2uA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733682730; c=relaxed/simple;
-	bh=vkpIgwYBpysi2q22hKet+gev725W0T2HlhlIHocDAeQ=;
+	s=arc-20240116; t=1733683428; c=relaxed/simple;
+	bh=gd+3HtTuHkjOJVJYI1WZORpFcMA1c8JA1eQmUcHuVr8=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I/AiJLyRHVg3KWcwmnMqWSZgdwgvgiMRflqF6DFakvZU8XcKd1sz3THJI/vz2mqPzA9OIpQIPv/PCP7ZIO+bwt7B/Oc8zIEehLgpMEV5ZSkz9xB0roCDJHzfzrYcFmyEoFalZkXBbNvkuBN5D76OP7YEvfIe9+PAX8ap9CR89js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LzmflGFx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93FDBC4CED2;
-	Sun,  8 Dec 2024 18:32:05 +0000 (UTC)
+	 MIME-Version:Content-Type; b=VpJ4XBaWfUX/R8ahDzPiIHXPWUh5ILhiq+1+qCs36JXtoVRrltt55Qtuhc1EokAysNJjPwZhp6FqvQReLWxf1jl23s7A8e3xxKjK6poZtAa4BGZJTFJL4L2yKmurjrCkfNEM9stbygn+uqZPFx/ECbhM4EFsNqyEI/gWJJ1y3Rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YBFFYbCW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B448C4CED2;
+	Sun,  8 Dec 2024 18:43:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733682729;
-	bh=vkpIgwYBpysi2q22hKet+gev725W0T2HlhlIHocDAeQ=;
+	s=k20201202; t=1733683427;
+	bh=gd+3HtTuHkjOJVJYI1WZORpFcMA1c8JA1eQmUcHuVr8=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=LzmflGFxnrGBxZhk+lPv32AyRW+kaZov7v/N8zIql4RE+p0VJldBYKHdPhd6vcbMB
-	 CikdS5Y4mSVyr+lw+LwaDAs26PturPuJ//iBJpU8/I0GVifmuc50SE/CHHMsIejCVu
-	 WunOR2EI7N3hgVkXo/r7E3sYvXbsnEx8mpyl6rkr9sxaZ8Rva1OgA3z23Q77uXHzOH
-	 Zc73qAOGjZ+4KoWo7xXRk/+IIaqczM+DxNv6YMl05u741XseEmIQ2RAUgOcrVVNNZN
-	 9J39MlcieT+zAdi5NoU1sTKs+tdU2MfsvQpb8zGleQMmvyFu3ugQuyUv/SWcLdRXnh
-	 +hNUF24prbaqw==
-Date: Sun, 8 Dec 2024 18:32:01 +0000
+	b=YBFFYbCWFPY+qL1pV6P3NNoyUvVfP2XZmSO2J0vkL923EA25ezT4w9hcFzK6Pw/cR
+	 Vuxof3JAB6EBNpbztWA/+chtooOI4PqJB8IXFOGpicr3ufcGDw2kEsvgp4xJ7RCiK2
+	 gP8jAX7WP0GnTUvb7ke0te5PrZwZkli1Wg6BH75YiC7enJ8Wkz1KeUNj/XoAEpFZGJ
+	 HCbqyaSmWn68n6iOUaiOLyecMs8yBd/cQ/xTbZSemoSgIdM3OjS06bn407f3usKwPo
+	 TSVS015qviN4ZDa2ue5DguoD+acUr6uJlq+RaWcVjO6raWgjQI1tyGp/GySzfF3s7w
+	 6ktDhi4j1L6cQ==
+Date: Sun, 8 Dec 2024 18:43:37 +0000
 From: Jonathan Cameron <jic23@kernel.org>
 To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Uwe
- =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, David
- Jander <david@protonic.nl>, Martin Sperl <kernel@martin.sperl.org>,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v5 10/16] iio: buffer-dmaengine: add
- devm_iio_dmaengine_buffer_setup_ext2()
-Message-ID: <20241208183201.1b83cd0c@jic23-huawei>
-In-Reply-To: <21d2e190-4cb9-4090-9dfd-2bb250ba186e@baylibre.com>
-References: <20241115-dlech-mainline-spi-engine-offload-2-v5-0-bea815bd5ea5@baylibre.com>
-	<20241115-dlech-mainline-spi-engine-offload-2-v5-10-bea815bd5ea5@baylibre.com>
-	<20241124171609.50c6c3a8@jic23-huawei>
-	<08ccc3fd-a53c-4d0e-8659-92204d2c27a8@baylibre.com>
-	<21d2e190-4cb9-4090-9dfd-2bb250ba186e@baylibre.com>
+Cc: Alisa-Dariana Roman <alisadariana@gmail.com>, Alisa-Dariana Roman
+ <alisa.roman@analog.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v1 3/3] iio: adc: ad7192: Add sync gpio
+Message-ID: <20241208184337.79c701db@jic23-huawei>
+In-Reply-To: <6435f696-40fe-4ff9-ae76-1f121fe7604f@baylibre.com>
+References: <20241128125811.11913-1-alisa.roman@analog.com>
+	<20241128125811.11913-4-alisa.roman@analog.com>
+	<20241130183839.1fd5884f@jic23-huawei>
+	<6435f696-40fe-4ff9-ae76-1f121fe7604f@baylibre.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -72,40 +68,85 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Fri, 6 Dec 2024 16:04:40 -0600
+On Mon, 2 Dec 2024 16:21:43 -0600
 David Lechner <dlechner@baylibre.com> wrote:
 
-> On 12/6/24 3:36 PM, David Lechner wrote:
-> > On 11/24/24 11:16 AM, Jonathan Cameron wrote:  
-> >> On Fri, 15 Nov 2024 14:18:49 -0600
-> >> David Lechner <dlechner@baylibre.com> wrote:
-> >>  
-> >>> Add a new devm_iio_dmaengine_buffer_setup_ext2() function to handle
-> >>> cases where the DMA channel is managed by the caller rather than being
-> >>> requested and released by the iio_dmaengine module.
-> >>>
-> >>> Signed-off-by: David Lechner <dlechner@baylibre.com>  
-> >> Fresh read and I'm wondering if the lifetimes in here can be managed
-> >> more simply either by pushing the DMA channel get down, or dragging
-> >> the release up.   Basically I'd like to see them at the same level
-> >> of nesting in the code.  If it ends up being necessary to duplicate
-> >> more code that is fine if it makes this easier to reason about.
-> >>  
+> On 11/30/24 12:38 PM, Jonathan Cameron wrote:
+> > On Thu, 28 Nov 2024 14:55:03 +0200
+> > Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
+> >   
+> >> Add support for the SYNC pin of AD719x devices. This pin is controlled
+> >> through a GPIO. The pin allows synchronization of digital filters and
+> >> analog modulators when using multiple devices.
+> >>
+> >> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>  
+> > Hi.
 > > 
-> > One option could be instead of introducing a 2nd function, change  
+> > Like all userspace ABI, this needs documentation.
+> > 
+> > It's an unusual feature, so some usecases would help.
+> > 
+> > It is also cross multiple devices which makes this odd as only one device
+> > can presumably acquire the gpio?
+> > 
+> > An alternative would be to look at how to do this with a 'wrapper' sort of device
+> > so that we have one instance to which this applies.
+> > 
+> > I'm not sure that helps that much though as we'd still need some for of
+> > 'I'm setup for all channels, now you can go' ABI.
+> > 
+> > Jonathan
+> >   
 > 
-> Oops. The new function is devm_ so would still need a 2nd function
-> but changing iio_dmaengine_buffer_setup_ext() to have basically
-> the same signature would still avoid the asymmetry.
-That sounds sensible. (though I've mostly forgotten the background ;)
+> Giving userspace direct control over the /SYNC pin without coordinating
+> with the rest of the driver does seem like it could be asking for trouble.
+> 
+> It seems like the only time you would want to actually toggle the /SYNC
+> pin is when starting a buffered read.
+> 
+> 1. Deassert /SYNC so that no conversions can be triggered.
+> 2. Enable buffered reads for all chips connected to the same GPIO.
+> 3. Assert /SYNC to start all conversions at the same time.
+> 
+> So it could make sense to integrate this into the buffer pre/post enable
+> callbacks somehow instead of adding a new sysfs attribute.
+> 
+> For the "wrapper" device, maybe we could do something with configfs to
+> enable dynamically connecting multiple device instances? We might not
+> need to actually create a separate device in sysfs, but just do something
+> so that enabling a buffered read on the first chip will enable buffered
+> reads on all of the chips in the group.
+> 
+> It seems like we have some other chips that are currently being worked on
+> that also have the possibility of some sort of multi-chip synchronization
+> like this so it would be nice to come up with a general solution.
+
+Most of the multichip cases we've had before have been chained, rather
+than separate data interfaces, hence I don't recall us needing something
+like this before.
 
 > 
-> > the existing iio_dmaengine_buffer_setup_ext() to use the signature
-> > of the proposed devm_iio_dmaengine_buffer_setup_ext2(). There are
-> > only two users of these functions. So we could move the dma chan
-> > request/release out to the drivers for those.
-> > 
-> > Otherwise, we can't completely get rid of the owns_chan bit.
-> >   
+> Another use case for a general synchronized buffered read/write between
+> multiple chips would be the AD3552R DAC. Recently, while adding support
+> for an IIO backend for this chip, we saw that the AXI DAC backend has a
+> synchronization feature like this where you set an "arm" bit on all AXI
+> DAC instances. Then when you enable streaming to the first chip, it also
+> triggers all of the other AXI DAC blocks to start streaming at the same
+> time. We ended up not implementing that feature since the IIO subsystem
+> doesn't really support this yet, but could be a good one to look at as a
+> similar feature with a different implementation to help us find a general
+> solution.
+> 
+This feels like a case where we need a prototype to poke holes in.
+It's not totally dissimilar from the hardware trigger stuff that
+exists in a few devices. Some of the stm parts for instance where the
+triggering is entirely within the chip.  Maybe we could make something
+like that work.  So the driver instance that has the sync pin registers
+a trigger that the other devices use.   It's a bit ugly though and we'd
+still need a dt-binding to let us know 'which' devices are connected
+to that sync pin.
+
+Jonathan
+
 
 
