@@ -1,143 +1,122 @@
-Return-Path: <devicetree+bounces-128293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 009669E851D
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 13:59:11 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C14F9E8552
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 14:06:22 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EF862815CC
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 12:59:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 857EA18805C0
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 13:06:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B82851482F3;
-	Sun,  8 Dec 2024 12:59:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA81014658D;
+	Sun,  8 Dec 2024 13:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SnoM76V2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yjk6W/uY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E4945BEC
-	for <devicetree@vger.kernel.org>; Sun,  8 Dec 2024 12:59:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DA6280BFF;
+	Sun,  8 Dec 2024 13:06:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733662747; cv=none; b=a1XnmzN2JO6XpsyW+/LReWM11ZECP2YzGe7tItQUZTRlcrDma0sDAra6qKMXFiR2SF4AL5wMjbMj5MJ7qkXx4L8ij3QExSQMoW+V26UCjNocZXvsn8aPpnRBv24YjvRmAgB66OMl6/nb8fYiTlbQHRMsvco+a+YxXhBhG1fblTo=
+	t=1733663178; cv=none; b=Le7YjfjEMmbYj9k5ru+3Kjn2W4OxAeOwYrHL34Mfo2eqj8NU7+1Wm27k0Nq/bkQJHSg5pgWWaCYA3hONe9w81VXhyjNNQJNx8nePkeDjlsvZYGEDrJ95xjGrp1lSImSY/vW110cgQLb1EhkvOubopnSRoAn/mNTr+T4lWWjQ1jU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733662747; c=relaxed/simple;
-	bh=qfboI2JEzglBgUiX6GwJaX8ACsXX93fcly9pP3dAhjM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ppILa6wJxHdDHdIkUKGfLSNa/PdZhlWIKL22LBb/zgMfPmR6/DrW10viiRFqUA+xvP9NpkajWHKMM/pLLqDiYUF1Avx4O/4QiGGuKZcun7oQM57eD8iuhEakOo2rltioC8gX5Xo+zBTkByhCDV1ksiU9XfLEnv6xx2WY8AqZv4k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SnoM76V2; arc=none smtp.client-ip=209.85.216.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2ee51f8c47dso2581153a91.1
-        for <devicetree@vger.kernel.org>; Sun, 08 Dec 2024 04:59:06 -0800 (PST)
+	s=arc-20240116; t=1733663178; c=relaxed/simple;
+	bh=/ETGJbe51uKA0BVMYVW1Rt+Cfj22/5/aNGMHljJVFaM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WaE5zbTAiJ/lNldc1qi+GUZu6Ymi/gUL8KbYXeCc3oqQ1Sst1TlRMQgHC3Kz5jH2G8kW/4gLhpHxQmFOl8l66RdhDAJEAW8NSLCqqkFEBAfJ5QtGHAQmmiBIDk4SIkCubOBHW1EGuwXZkCeXiQnkYVi4p3SWvhTe+LchnE9jRck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yjk6W/uY; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aa642e45241so381387866b.1;
+        Sun, 08 Dec 2024 05:06:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733662745; x=1734267545; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PkDi47df4w40KWTcb5cXC5QjvFJDjRmn08x5U23uXOc=;
-        b=SnoM76V297rGqFd1H//F+GV9PlMDBcPdA+4+h3CgiOgdhR7TlFYEH3oBv/DsAkAWOr
-         wD08WGlJ+9cT7wjXQqNZD8xyNZrljWagavHtjQEqL2a5bpwmEqJ10WuBqfIQ2RBHaYDI
-         dgw3/lHCDWXNZv5n8rboU8ULYjTpd5kqLiwUlZIMxsghRd54ADd9bxTg/0o2KyhzVTvQ
-         BfMdwRMsK9zqGp1mFrGQfXbNch29asL8Xlx/FXUvOsdqe6OLH7vQgpI9A+QdtLxpZtu3
-         fHX4A5vRrNtxmTsSCSTahFHKgi0an27npXfe6qdOJ7cvELxrR+3TKQv2WTVu+YQ/TM19
-         Qqrw==
+        d=gmail.com; s=20230601; t=1733663175; x=1734267975; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3Qwpm+1nZ/cuBK2l3ECYyJsE/xY49jJZUDT4CSwyaVc=;
+        b=Yjk6W/uYpXCbMb3WOJ9hEgX/N/pDrw1J9623I5KZ61r7ZqL0yl91FfiYCqHtZUiCY3
+         QJROT8M0E9DLSz1cMgzXm7R20L/tPZjyWjj1PadgKBicxKKQF9TylQRK9iN8Z6EtoHLQ
+         oeZEIlhreF9O7G+J48oF4kiR6O+cAn16HaXhWOoRUFrp50RbGRU93ZstIinAbk5x84rN
+         CJZMZZdG4pGKQ85bWtv+E8jS6QPOgtnHhNe3BPGK/+0yWJZUm1Ql3D4QNzJ04fRXLDWa
+         mEEGwbV/lMqn1NfntN2gl3sGMeBKZNyqTMKqXmoNKf0eA66WnrvkdQ3Ny+g8FDMK3MMR
+         +FDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733662745; x=1734267545;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PkDi47df4w40KWTcb5cXC5QjvFJDjRmn08x5U23uXOc=;
-        b=ucU0ravzR3zb3gsOjxEBcatuUKIdkhk2pzeElLcpXmIKDSp8AuDItGGFC+P30fk77s
-         yP4yDobBq0t2HTn6vJfiWA53DNgAzKgCIYc6svxtWR+Si9VUYH3SHKEHVKNJLlLIDa8A
-         FcA3SWh2T3C7Edbh/ug2MCgKiZSNfCmszuEWT406QiEj0Z22zKbNEiHIGIrueeSeI38A
-         CGi0Q2O2o8YpgvVoz0HOy01OlRdPCdimuSf8bIWIRhXsnZEw+ugWoICNah42bYx0bhvh
-         A4vFwZUtmowNA6jJOlku/RIFXVG2hnonWxpFNbnGLb+MV95VmPlg42vXT8CrbFsghZFq
-         2j3g==
-X-Forwarded-Encrypted: i=1; AJvYcCVf3B2dNhgC1hLN6Dq+cK4UjFoXtrwRtAeVkWRejsLhjmsBjlYH2kFAYJZCSf3FTVmiYe2xalDbKEok@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuDKLGnEY4b7vWHJNNKQqng+BDEd8n7bQjKOXBAzUSxJA9Ifj6
-	qFnIqQwxU60gAGVl2daRcMcPFFgatlV1bHMTIJv5kx0NAyqH3camMLN5+2V3oQ==
-X-Gm-Gg: ASbGncsqn04fd8vQJ/n1bgb6LdSkZmrUqdkDcEPG1y0GidP3GjlgY1qrmoN4Y9Q0ACX
-	tT/OagxOhX1ntpf+SKxtijYpUu3r2mX4g0tG7E4hledxlLpNjFJ7S/zQsvl8coFK2NauSNOb4FQ
-	ydzooRN0q/ZCYRY8RGOXCXiilCya2F0O7LqFoqsS57xRbAqX+egNnjnzn1dSPeh2WL4NFfKE+zh
-	ZVGShvi/liCWtGbUttJvkIVhC/QcOVXh3g7nMofTqJzxR0RNJIj1KO+jO8=
-X-Google-Smtp-Source: AGHT+IHnhUVK9JHD0Nbg157D2tYLCZPvpbGaZMt6ugQdpbPZ+L62KfObJPkXd8gqt06CrhFVbhdPKA==
-X-Received: by 2002:a17:90b:2548:b0:2ef:19d0:2261 with SMTP id 98e67ed59e1d1-2ef69f0b061mr15208744a91.16.1733662745572;
-        Sun, 08 Dec 2024 04:59:05 -0800 (PST)
-Received: from thinkpad ([36.255.19.23])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ef4600d14fsm6228921a91.45.2024.12.08.04.59.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Dec 2024 04:59:04 -0800 (PST)
-Date: Sun, 8 Dec 2024 18:28:58 +0530
-From: "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>
-To: "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>,
-	"bhelgaas@google.com" <bhelgaas@google.com>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-	"Simek, Michal" <michal.simek@amd.com>,
-	"Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>
-Subject: Re: [PATCH 2/2] PCI: amd-mdb: Add AMD MDB Root Port driver
-Message-ID: <20241208125858.u2f3tk63bxmww3l6@thinkpad>
-References: <20241127115804.2046576-3-thippeswamy.havalige@amd.com>
- <20241129202202.GA2771092@bhelgaas>
- <SN7PR12MB72011B385AD20A70DB8B56338B352@SN7PR12MB7201.namprd12.prod.outlook.com>
+        d=1e100.net; s=20230601; t=1733663175; x=1734267975;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3Qwpm+1nZ/cuBK2l3ECYyJsE/xY49jJZUDT4CSwyaVc=;
+        b=TVsGvh+CweFhcQWWRZzg15FmRT6qodFUelhORsFqe5/6jA5R+W6yJG/hnWznAncAAy
+         TbapIQSFq4sV9xVTTHNLfs2OSanSSu+nd/SQHOxVx+NFrlUA6va1R+9cpwM7m/f6r0a4
+         7KUcSVmn/NUz4bbL3lkZBeUabWoVwrAIPdYc7PovFpRgFsdJJX+rQgGyYNdA2/ij9Qqf
+         lIKFTgcnXkPSen13ncdv8WR11qJzdtHwRHja45wUULN0I0wUxc4JX5B6ylNKbEHh11dB
+         o+4oBchEn95FAJ6u0nvrUPgVo4JaAHX6qbA4GH8LGDeSggJ7ty37tweMB62Qal1MnAt9
+         jWTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVc5MOp40AAGmYeo1fkuDzYMhuZLMhoNYzZY/eUVBZkIo+dgU6LWa9LD06x8AQGE8qY895lJCdPcOeW@vger.kernel.org, AJvYcCX02dBA98o3gTt9J9fsfvQmUSJMRspc74mwk2N/cmu/m3rCDsTebGW29J/MDcICkQ3HaiydwJX/sex6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzYN/eS03CvXx3ZxTjQ/wlXltr5SKo1gnOG2o+zRmox8wRiv9P
+	AOk3gGMQU6p2KdaymbG8fDD9Tg2k/Z3nm1mFxjTJIOclZMcLrX+kHLCJs0U+BMmxyBVKmD+UHDS
+	u+CBccX7Yx8kUyMEyfuqRkYw3Wf0=
+X-Gm-Gg: ASbGncurlEokfQkrOx7bC5bOAhxA+NUgECyTuw4HoZ3cDyl/dBGSJaT+ynm0dXJoY0c
+	9PtGKFc6A654cElYzRW9VZWJETNq9qRY=
+X-Google-Smtp-Source: AGHT+IENjIyu66J7c5rQnh3UQQCNVvqitV6wwL75q2E6Nmt4Rugd/P7OR/whMqBm5HW/xgfsbK90D87PXHKHDb/W+MU=
+X-Received: by 2002:a17:906:cc1:b0:aa6:6e10:61f1 with SMTP id
+ a640c23a62f3a-aa66e1062demr309799866b.1.1733663175160; Sun, 08 Dec 2024
+ 05:06:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <SN7PR12MB72011B385AD20A70DB8B56338B352@SN7PR12MB7201.namprd12.prod.outlook.com>
+References: <cover.1733504533.git.u.kleine-koenig@baylibre.com>
+ <9e6def47e2e773e0e15b7a2c29d22629b53d91b1.1733504533.git.u.kleine-koenig@baylibre.com>
+ <20241208124205.5b297fa4@jic23-huawei>
+In-Reply-To: <20241208124205.5b297fa4@jic23-huawei>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sun, 8 Dec 2024 15:05:38 +0200
+Message-ID: <CAHp75Vei1g6iL0qWV2Y7+L4M+kJyLfUDoWd0HiXRbAWqQSR0qQ@mail.gmail.com>
+Subject: Re: [PATCH v6 06/10] iio: adc: ad_sigma_delta: Fix a race condition
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Alexandru Ardelean <aardelean@baylibre.com>, Alisa-Dariana Roman <alisa.roman@analog.com>, 
+	Ceclan Dumitru <dumitru.ceclan@analog.com>, Conor Dooley <conor+dt@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, 
+	Renato Lui Geh <renatogeh@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Trevor Gamblin <tgamblin@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 02, 2024 at 08:21:36AM +0000, Havalige, Thippeswamy wrote:
+On Sun, Dec 8, 2024 at 2:42=E2=80=AFPM Jonathan Cameron <jic23@kernel.org> =
+wrote:
+> On Fri,  6 Dec 2024 18:28:38 +0100
+> Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> wrote:
 
-[...]
+...
 
-> > > +	d = irq_domain_get_irq_data(pcie->mdb_domain, irq);
-> > > +	if (intr_cause[d->hwirq].str)
-> > > +		dev_warn(dev, "%s\n", intr_cause[d->hwirq].str);
-> > > +	else
-> > > +		dev_warn(dev, "Unknown IRQ %ld\n", d->hwirq);
-> > > +
-> > > +	return IRQ_HANDLED;
-> > 
-> > I see that some of these messages are "Correctable/Non-Fatal/Fatal error
-> > message"; I assume this Root Port doesn't have an AER Capability, and this
-> > interrupt is the "System Error" controlled by the Root Control Error Enable bits in the
-> > PCIe Capability?  (See PCIe r6.0, sec 6.2.6)
-> > 
-> > Is there any way to hook this into the AER handling so we can do something about
-> > it, since the devices *below* the Root Port may support AER and may have useful
-> > information logged?
-> > 
-> > Since this is DWC-based, I suppose these are general questions that apply to all
-> > the similar drivers.
-> 
-> 
-> Thanks for review, We have this in our plan to hook platform specific error interrupts 
-> to AER in future will add this support.
-> 
+> From sparse.
+>
+> drivers/iio/adc/ad_sigma_delta.c:205:13: warning: context imbalance in 'a=
+d_sd_disable_irq' - wrong count at exit
+> drivers/iio/adc/ad_sigma_delta.c:218:13: warning: context imbalance in 'a=
+d_sd_enable_irq' - wrong count at exit
+>
+> I saw your discussion with Linus on this...
+>
+> https://lore.kernel.org/all/CAHk-=3DwiVDZejo_1BhOaR33qb=3Dpny7sWnYtP4JUbR=
+TXkXCkW6jA@mail.gmail.com/
+>
+> So I guess we just treat that as a false positive and move on.
 
-So on your platform, AER (also PME) interrupts are reported over SPI interrupt
-only and not through MSI/MSI-X? Most of the DWC controllers have this weird
-behavior of reporting AER/PME only through SPI, but that should be legacy
-controllers. Newer ones does support MSI.
+I'm wondering if sparse annotation __acquire and __release may help here...
 
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+--=20
+With Best Regards,
+Andy Shevchenko
 
