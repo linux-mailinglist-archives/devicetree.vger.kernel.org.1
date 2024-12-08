@@ -1,138 +1,122 @@
-Return-Path: <devicetree+bounces-128353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B559E8716
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 18:33:50 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 599DC9E871F
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 18:47:07 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FC18281307
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 17:33:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39CC31884A7D
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 17:47:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7984B1598F4;
-	Sun,  8 Dec 2024 17:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2441178388;
+	Sun,  8 Dec 2024 17:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CBLjx57j"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JeFfeIW7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB6B22EE4;
-	Sun,  8 Dec 2024 17:33:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1822915624B
+	for <devicetree@vger.kernel.org>; Sun,  8 Dec 2024 17:47:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733679226; cv=none; b=fzWqpLnn1CLDAbAIMLwqW8i4rBYnrfEkEHmq+qm4HjBC+eibyCJAFZ6UcO85kSke2i4kOv9FhVgscy4+VPgVBspo5VmqC3HSJSSf578/96YTcc5nD018gjE+/xyLvZGVhuUmT/eJBRblCh8Hn+4dSByW8mMq8LKqKMkR3Jy5nw8=
+	t=1733680022; cv=none; b=bk1I9QYhxIt2SnId/uvswz8cXYy27OS9cPf69mdh/YJg5cfx9MY9wOZ2vOoFRE6szMFYMndWIr1dycEGbmLD24gPY4QAVioZSQ7Tk+gNE7Iez6fiPgz7eK4GN0lUyOHK41KwMy6UHw56QkC1PxKLMCFbvgPCn63vRD4p8Ezlst0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733679226; c=relaxed/simple;
-	bh=tLuUoayLLlT2eNWkFArfaB8W5balZwTzE5ssrWn4He0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Qlb1Hl58FqGVj6AISTv7ESProHqff3K25Cj847zUnJT20oD+WybZOtb2arzzVJvFUaUuqzAtv6R8sIM9r617n4JleRbV06vZz96ABixMu0zf2mVEWfw4omLPqllmsqwmqQ1cpO8l7LCclnej5+rbd0riJ5rWkA3BrcusZD8iZ0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CBLjx57j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9767C4CED2;
-	Sun,  8 Dec 2024 17:33:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733679225;
-	bh=tLuUoayLLlT2eNWkFArfaB8W5balZwTzE5ssrWn4He0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=CBLjx57jd9zdjZLLtC2DhVDHa36uS0qYAsRAS/Xb7HClfbuYzbJ7FgEYzliA4n/Rq
-	 UJ/IqIzS1bg9V7Ih67bnrOXpSqloUtYXg/w9DGUbiRTy8xOmzAhvB6AC6s54AOvy8+
-	 +HPVulRqCLRQ6R5kd7tEuOTvyakCy8IFpt2ScXb+QWM7l8IWcx0Jav+d0vJj8D9qbl
-	 jgPxb8wC/FbhhJc74pX/1l4St0zs6FPlYi9ewuIb8zE9V62HuBvkGXKZAGEdl1WA1J
-	 ye17Zq+gdbf9Uh9GNeIpXzx6EBDY18+WieP38/9/SpvIvv3vtZ6UwFmhlaygdqnJpC
-	 f9arBdF+T8G6A==
-Date: Sun, 8 Dec 2024 17:33:36 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Vasileios Amoiridis <vassilisamir@gmail.com>, lars@metafoo.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- u.kleine-koenig@pengutronix.de, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] iio: chemical: bme680: add power management
-Message-ID: <20241208173336.6a09c9b2@jic23-huawei>
-In-Reply-To: <Z078vIxRoQf_zLsy@smile.fi.intel.com>
-References: <20241202192341.33187-1-vassilisamir@gmail.com>
-	<20241202192341.33187-4-vassilisamir@gmail.com>
-	<Z04N6GUSL2H0zt6_@smile.fi.intel.com>
-	<Z04aJg7eoBR9CYKe@vamoirid-laptop>
-	<Z078vIxRoQf_zLsy@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1733680022; c=relaxed/simple;
+	bh=DKRo/Nv0Y8HbOJvLk3acS15e0zEitScFgX15VqdGeyE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M5+CX23fXieTk8wgQg99N/EqMR+90jbFEj82G9r4dtjV3UQPPlt8M7vrszBiCo6D1kOTuqCrzx7DcKDk69LCgVc3+F3b1CsmmvUvqZYE2wVGd7GHhtiWL1xAaZ00CBdir3XzpQUOGtL9uOeN6mjQGXFCrNiP3DFA5cyPEbMQifw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JeFfeIW7; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-540201cfedbso67584e87.3
+        for <devicetree@vger.kernel.org>; Sun, 08 Dec 2024 09:47:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733680019; x=1734284819; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KXLchoBaMxB9S9j2NPKIN0e4atGZZxZFtq8qcdJcxUU=;
+        b=JeFfeIW7Nz46QeXQlwHi6c/Z00OpFPpw4t2As1GsLAM8O6z1WQJ1xYp/Oqj9ZHpjbA
+         ur9o23E3PFTT7TzunfwTse+2iSR8RPy0uMDwAJfitGHauqI5pxatOQY1lCCfh73QSUiu
+         AUN+wJHkD2Iy+cizPS6bzwJFcUuQreNPjQwqKoGjgnxEGz5t4OSrINFiFshEWOoNBmIF
+         puI1P/XtEFgZrsivo3Uf0VcXQOzVuPC5/ilCoBVwHv/ie1VP7yaLLm/F96wYaQ+CEY1S
+         6UIPQyVY7wq4FiSymcHnNEorQlz88Cp6PxS7GsuK2GqR/XdBjFNXlfZEEyiUce5FeXr6
+         DU8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733680019; x=1734284819;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KXLchoBaMxB9S9j2NPKIN0e4atGZZxZFtq8qcdJcxUU=;
+        b=X2dCULDXKcUlvQGnWaTr43Va2EvMoaN6diN3CSA8XNdFaBnhQc3lb6HAOIMZY9roC1
+         edl7fKwB4G9da1ZptLfU3t3zSuTeC2RdMFWhgDZVtSfydyr2KmHJqH94Z6e39KertC8b
+         YYOfCHveGBWC64MRXCAz9Fm4zBa//oLptEdlI8NJoqmr8FXx6oAsPN1lYcnKb2/GQSjy
+         X9G6Mdrq/YSIVlIz823QHzrU+BKARGln9Jz7WACxemWb6sSHAaHSKT7eztxbYx6GB74n
+         TYjyz2gNugxFIsTrRUP71MxpywXLn9wl6EcqJVla7o1iw+NAjEtQSdIonGG463pW5BzR
+         N+6g==
+X-Forwarded-Encrypted: i=1; AJvYcCWMcmyOwRhQhzLZtg6fnT440F9Pcks1aaohGrmumNAyTipdLHvpa9V3zYZXu+ypBvi3RKAW9Gmbwc+1@vger.kernel.org
+X-Gm-Message-State: AOJu0YynZpj1VuXmGsqwHrU/sjQp1i/ncNL3g/KE3+vnagRd3eOTvBYX
+	HnLiI1LylJySHUpgO+scoOYgt+1+Px8GDXMellvqMewIDvksc5Lh9qD2FYQcnbo=
+X-Gm-Gg: ASbGncs943wpWoWQzWyisvgF6gnde4uRPCmNhpNkXnfMvSxl1QJ52pETTwGugzBzKKs
+	Ili0otKRMYsPVQjUcwB6ZPNDNQEsTVvgd5zP6TlJhKfAnchP5AEKh9B5iVRjcNYGXt9Bcv8Pdfl
+	bZA4kZgPdO9qnEsV4fgLPzgaPZVrqHG3gLG5t+YPM3Veq4odsLw11ZsiNihuy7Ocwtpeh9pkh1Z
+	yW14uu1BOfXjANP2zaSiI16nCdhbJ7NPc41dbiqwbmTwgHNYJe9vsjrEtg8p6Xkrw0juMU4S1sK
+	zlakxprRhKeE22VR46JlKnc1bW9Zcg==
+X-Google-Smtp-Source: AGHT+IHKwzZsrTkeCVLClrojGrlSuHRyQuLTzbAD6SRgqOJefWQsJjXNC7HllTA/XNvZyQZu69EI6g==
+X-Received: by 2002:a05:6512:3e09:b0:53e:39ed:85e6 with SMTP id 2adb3069b0e04-53e39ed86b0mr2161676e87.32.1733680019099;
+        Sun, 08 Dec 2024 09:46:59 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53f93369b98sm433326e87.280.2024.12.08.09.46.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Dec 2024 09:46:57 -0800 (PST)
+Date: Sun, 8 Dec 2024 19:46:55 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Wasim Nazir <quic_wasimn@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kernel@quicinc.com
+Subject: Re: [PATCH v3 0/5] arm64: qcom: Add support for QCS9075 boards
+Message-ID: <cpxuqo5luqqk6wtk2d3wqsbchq4awrmna4xoye3klatrzu4j54@axbgklv6kdqs>
+References: <20241119174954.1219002-1-quic_wasimn@quicinc.com>
+ <7f52e0d2-0934-49ca-9c7d-4ba88460096a@kernel.org>
+ <Z1LVYelWl3sPPHcD@hu-wasimn-hyd.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z1LVYelWl3sPPHcD@hu-wasimn-hyd.qualcomm.com>
 
-On Tue, 3 Dec 2024 14:42:36 +0200
-Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-
-> On Mon, Dec 02, 2024 at 09:35:50PM +0100, Vasileios Amoiridis wrote:
-> > On Mon, Dec 02, 2024 at 09:43:36PM +0200, Andy Shevchenko wrote:  
-> > > On Mon, Dec 02, 2024 at 08:23:41PM +0100, Vasileios Amoiridis wrote:  
-> > > > Add runtime power management to the device.  
-> 
-> ...
-> 
-> > > > +	ret = pm_runtime_resume_and_get(dev);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	ret = __bme680_read_raw(indio_dev, chan, val, val2, mask);
-> > > > +	pm_runtime_mark_last_busy(dev);
-> > > > +	pm_runtime_put_autosuspend(dev);  
+On Fri, Dec 06, 2024 at 04:13:45PM +0530, Wasim Nazir wrote:
+> On Wed, Nov 20, 2024 at 05:41:39PM +0100, Krzysztof Kozlowski wrote:
+> > On 19/11/2024 18:49, Wasim Nazir wrote:
+> > > This series:
 > > > 
-> > > Side note: as long as idle method is not defined (NULL) the above dance is
-> > > already taken into account in the regular put.  
-> 
-> > Thanks again for the review! Indeed by looking at the code a bit, it
-> > looks like the suspend callback is being called if the idle one is not
-> > found. But I have seen this dance that you mention much more often in
-> > the IIO that's why I used it. We can see what Jonathan has to say as
-> > well, I think what you propose, simplifies things.  
-> 
-> Yeah, this is cargo cult by many people (including me :-) who missed that
-> detail. If any, this can be addressed in a different series.
-> 
-> ...
-> 
-> > > > +static int bme680_buffer_preenable(struct iio_dev *indio_dev)
-> > > > +{
-> > > > +	struct bme680_data *data = iio_priv(indio_dev);
-> > > > +	struct device *dev = regmap_get_device(data->regmap);
-> > > > +	int ret;  
-> > >   
-> > > > +	ret = pm_runtime_resume_and_get(dev);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	return 0;  
+> > > Add support for Qualcomm's rb8, ride/ride-r3 boards using QCS9075 SoC.
 > > > 
-> > > Either this is broken (if the above can return positive codes), or can be
-> > > replaced with direct return:
-> > > 
-> > > 	return pm_...
-> > > 
-> > > (but I believe it's the former and you wanted something like if (ret < 0)
-> > >  there).
-> > >   
-> > > > +}  
+> > > QCS9075 is compatible IoT-industrial grade variant of SA8775p SoC
+> > How does it relate to qcs9100? Why this is not compatible with the
+> > other? It looks like you duplicate here a lot without trying to make
+> > these built on top of each other.
 > > 
-> > Well, pm_runtime_resume_and_get() looks like it returns 0 on success and
-> > negative value on error so I think the if (ret) is correct, no? But I
-> > agree with you that it can be simplified as you proposed.  
 > 
-> Please, go ahead with the simplification!
+> QCS9075 is non-safe while QCS9100 is safe.
+> Reference: https://docs.qualcomm.com/bundle/publicresource/87-83840-1_REV_A_Qualcomm_IQ9_Series_Product_Brief.pdf
 > 
-I tweaked it and applied the series to the togreg branch of iio.git and
-pushed out as testing for all the normal reasons.
+> Separate board files are needed as thermal mitigation changes are
+> required for non-safe variant only.
 
-There was some mess because of the EXPORT_SYMBOL() macro changes this raced
-against.  Please sanity check I didn't mess it up.
+To reduce possible questions, please include those in the initial
+submission.
 
-Jonathan
-
-
+-- 
+With best wishes
+Dmitry
 
