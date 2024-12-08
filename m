@@ -1,122 +1,240 @@
-Return-Path: <devicetree+bounces-128354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 599DC9E871F
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 18:47:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B093D9E8722
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 18:47:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39CC31884A7D
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 17:47:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D718163B4E
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 17:47:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2441178388;
-	Sun,  8 Dec 2024 17:47:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C09F178388;
+	Sun,  8 Dec 2024 17:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JeFfeIW7"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="CXmPmJFZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from smtp.smtpout.orange.fr (smtp-24.smtpout.orange.fr [80.12.242.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1822915624B
-	for <devicetree@vger.kernel.org>; Sun,  8 Dec 2024 17:47:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61EF415624B;
+	Sun,  8 Dec 2024 17:47:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733680022; cv=none; b=bk1I9QYhxIt2SnId/uvswz8cXYy27OS9cPf69mdh/YJg5cfx9MY9wOZ2vOoFRE6szMFYMndWIr1dycEGbmLD24gPY4QAVioZSQ7Tk+gNE7Iez6fiPgz7eK4GN0lUyOHK41KwMy6UHw56QkC1PxKLMCFbvgPCn63vRD4p8Ezlst0=
+	t=1733680053; cv=none; b=egnDwEP9Nc/xhJtWSlJeZgRrZRKnEYJwmeh851JWbLi0IPmNB1SpQpWtqKDO3KnKhFK2stFDd1tzre+okZBuFlnByPAGPCHRrSkN1SUkrcNC6XPBulGGDFpqZUm7rrQVGiXX3WJgM0SLXkuw/oMuFUItLdsCNUj4c6Sqiib+0NI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733680022; c=relaxed/simple;
-	bh=DKRo/Nv0Y8HbOJvLk3acS15e0zEitScFgX15VqdGeyE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M5+CX23fXieTk8wgQg99N/EqMR+90jbFEj82G9r4dtjV3UQPPlt8M7vrszBiCo6D1kOTuqCrzx7DcKDk69LCgVc3+F3b1CsmmvUvqZYE2wVGd7GHhtiWL1xAaZ00CBdir3XzpQUOGtL9uOeN6mjQGXFCrNiP3DFA5cyPEbMQifw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JeFfeIW7; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-540201cfedbso67584e87.3
-        for <devicetree@vger.kernel.org>; Sun, 08 Dec 2024 09:47:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733680019; x=1734284819; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KXLchoBaMxB9S9j2NPKIN0e4atGZZxZFtq8qcdJcxUU=;
-        b=JeFfeIW7Nz46QeXQlwHi6c/Z00OpFPpw4t2As1GsLAM8O6z1WQJ1xYp/Oqj9ZHpjbA
-         ur9o23E3PFTT7TzunfwTse+2iSR8RPy0uMDwAJfitGHauqI5pxatOQY1lCCfh73QSUiu
-         AUN+wJHkD2Iy+cizPS6bzwJFcUuQreNPjQwqKoGjgnxEGz5t4OSrINFiFshEWOoNBmIF
-         puI1P/XtEFgZrsivo3Uf0VcXQOzVuPC5/ilCoBVwHv/ie1VP7yaLLm/F96wYaQ+CEY1S
-         6UIPQyVY7wq4FiSymcHnNEorQlz88Cp6PxS7GsuK2GqR/XdBjFNXlfZEEyiUce5FeXr6
-         DU8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733680019; x=1734284819;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KXLchoBaMxB9S9j2NPKIN0e4atGZZxZFtq8qcdJcxUU=;
-        b=X2dCULDXKcUlvQGnWaTr43Va2EvMoaN6diN3CSA8XNdFaBnhQc3lb6HAOIMZY9roC1
-         edl7fKwB4G9da1ZptLfU3t3zSuTeC2RdMFWhgDZVtSfydyr2KmHJqH94Z6e39KertC8b
-         YYOfCHveGBWC64MRXCAz9Fm4zBa//oLptEdlI8NJoqmr8FXx6oAsPN1lYcnKb2/GQSjy
-         X9G6Mdrq/YSIVlIz823QHzrU+BKARGln9Jz7WACxemWb6sSHAaHSKT7eztxbYx6GB74n
-         TYjyz2gNugxFIsTrRUP71MxpywXLn9wl6EcqJVla7o1iw+NAjEtQSdIonGG463pW5BzR
-         N+6g==
-X-Forwarded-Encrypted: i=1; AJvYcCWMcmyOwRhQhzLZtg6fnT440F9Pcks1aaohGrmumNAyTipdLHvpa9V3zYZXu+ypBvi3RKAW9Gmbwc+1@vger.kernel.org
-X-Gm-Message-State: AOJu0YynZpj1VuXmGsqwHrU/sjQp1i/ncNL3g/KE3+vnagRd3eOTvBYX
-	HnLiI1LylJySHUpgO+scoOYgt+1+Px8GDXMellvqMewIDvksc5Lh9qD2FYQcnbo=
-X-Gm-Gg: ASbGncs943wpWoWQzWyisvgF6gnde4uRPCmNhpNkXnfMvSxl1QJ52pETTwGugzBzKKs
-	Ili0otKRMYsPVQjUcwB6ZPNDNQEsTVvgd5zP6TlJhKfAnchP5AEKh9B5iVRjcNYGXt9Bcv8Pdfl
-	bZA4kZgPdO9qnEsV4fgLPzgaPZVrqHG3gLG5t+YPM3Veq4odsLw11ZsiNihuy7Ocwtpeh9pkh1Z
-	yW14uu1BOfXjANP2zaSiI16nCdhbJ7NPc41dbiqwbmTwgHNYJe9vsjrEtg8p6Xkrw0juMU4S1sK
-	zlakxprRhKeE22VR46JlKnc1bW9Zcg==
-X-Google-Smtp-Source: AGHT+IHKwzZsrTkeCVLClrojGrlSuHRyQuLTzbAD6SRgqOJefWQsJjXNC7HllTA/XNvZyQZu69EI6g==
-X-Received: by 2002:a05:6512:3e09:b0:53e:39ed:85e6 with SMTP id 2adb3069b0e04-53e39ed86b0mr2161676e87.32.1733680019099;
-        Sun, 08 Dec 2024 09:46:59 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53f93369b98sm433326e87.280.2024.12.08.09.46.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Dec 2024 09:46:57 -0800 (PST)
-Date: Sun, 8 Dec 2024 19:46:55 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel@quicinc.com
-Subject: Re: [PATCH v3 0/5] arm64: qcom: Add support for QCS9075 boards
-Message-ID: <cpxuqo5luqqk6wtk2d3wqsbchq4awrmna4xoye3klatrzu4j54@axbgklv6kdqs>
-References: <20241119174954.1219002-1-quic_wasimn@quicinc.com>
- <7f52e0d2-0934-49ca-9c7d-4ba88460096a@kernel.org>
- <Z1LVYelWl3sPPHcD@hu-wasimn-hyd.qualcomm.com>
+	s=arc-20240116; t=1733680053; c=relaxed/simple;
+	bh=6a1IXSz697v3EaIGky9oEvnnimAUv0VbduUKs38Ly+U=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
+	 In-Reply-To:Content-Type; b=Alq7hB9lI0YnrDR/vYaJcj0RaDELr6Z5Fbr5oLH9LsQ9g1lITEEXS80V1OHuZ8TElWMKPVo9cBJ2r3JPOzQc9HnhwA48VdOjvdmjlPUeoBOEz17Xa5pXoWwpjmE5bzSdJ/+MT2yb+lSOC9Vw7FvEDkEccv2mLsX1/2oUCo27NhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=CXmPmJFZ; arc=none smtp.client-ip=80.12.242.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id KLNJtQRwaKnkaKLNJtVg1U; Sun, 08 Dec 2024 18:47:26 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1733680046;
+	bh=ebd+Tp1v6fRh+FBN9RhAloqELrQTXUQiB8ZFG5D3eOE=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=CXmPmJFZ+FytpmTgOBNgPLzgSVXjOj3xjc3FbZ5tlOD4rw5CBapYfqgEStegp1/F1
+	 qiyOCIjK9wWKq8sHSQbBhB8cnZsf3m2KWgGYevrHkRlRjRE73aPn1zM2VzRGUe7BAn
+	 ZYZNxGsCXiWCQveLxxT2wljtqCfdWwhgLtpCPs61EYH8J2Dsd9DOIMnd4/wKOJmXbF
+	 ynT4Df22slbFxH3XOKxPInqqmRomQeUof9UQQFrTyh4luowyBN10Xub2/Vymhr1m0E
+	 Qotob23zGdNh5K4mGn5N1yL04Q0VWYhHe1/qQ0/KhFu+UC6PDFRUU0LyBtoGVlL28/
+	 YuwVzR5XKYNgg==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Sun, 08 Dec 2024 18:47:26 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <b5b43427-d0d7-43d5-bf8a-02a966ac25d3@wanadoo.fr>
+Date: Sun, 8 Dec 2024 18:47:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z1LVYelWl3sPPHcD@hu-wasimn-hyd.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: adc: add Nuvoton NCT720x ADC driver
+References: <20241203091540.3695650-1-j2anfernee@gmail.com>
+ <20241203091540.3695650-3-j2anfernee@gmail.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: Eason Yang <j2anfernee@gmail.com>
+Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+ venture@google.com, yuenn@google.com, benjaminfair@google.com,
+ jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
+ javier.carrasco.cruz@gmail.com, andriy.shevchenko@linux.intel.com,
+ marcelo.schmitt@analog.com, olivier.moysan@foss.st.com,
+ mitrutzceclan@gmail.com, tgamblin@baylibre.com, matteomartelli3@gmail.com,
+ alisadariana@gmail.com, gstols@baylibre.com, thomas.bonnefille@bootlin.com,
+ ramona.nechita@analog.com, mike.looijmans@topic.nl,
+ chanh@os.amperecomputing.com, KWLIU@nuvoton.com, yhyang2@nuvoton.com,
+ openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Eason Yang <j2anfernee@gmail.com>
+In-Reply-To: <20241203091540.3695650-3-j2anfernee@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Dec 06, 2024 at 04:13:45PM +0530, Wasim Nazir wrote:
-> On Wed, Nov 20, 2024 at 05:41:39PM +0100, Krzysztof Kozlowski wrote:
-> > On 19/11/2024 18:49, Wasim Nazir wrote:
-> > > This series:
-> > > 
-> > > Add support for Qualcomm's rb8, ride/ride-r3 boards using QCS9075 SoC.
-> > > 
-> > > QCS9075 is compatible IoT-industrial grade variant of SA8775p SoC
-> > How does it relate to qcs9100? Why this is not compatible with the
-> > other? It looks like you duplicate here a lot without trying to make
-> > these built on top of each other.
-> > 
+Le 03/12/2024 à 10:15, Eason Yang a écrit :
+> Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
 > 
-> QCS9075 is non-safe while QCS9100 is safe.
-> Reference: https://docs.qualcomm.com/bundle/publicresource/87-83840-1_REV_A_Qualcomm_IQ9_Series_Product_Brief.pdf
+> NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up to
+> 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins for
+> independent alarm signals, and the all threshold values could be set for
+> system protection without any timing delay. It also supports reset input
+> RSTIN# to recover system from a fault condition.
 > 
-> Separate board files are needed as thermal mitigation changes are
-> required for non-safe variant only.
+> Currently, only single-edge mode conversion and threshold events support.
+> 
+> Signed-off-by: Eason Yang <j2anfernee-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
+> ---
 
-To reduce possible questions, please include those in the initial
-submission.
+...
 
--- 
-With best wishes
-Dmitry
+> +static const u8 REG_VIN_HIGH_LIMIT_LSB[VIN_MAX] = {
+> +	0x40, 0x42, 0x44, 0x46, 0x48, 0x4A, 0x4C, 0x4E,
+> +	0x50, 0x52, 0x54, 0x56,
+> +};
+> +static const u8 REG_VIN_LOW_LIMIT_LSB[VIN_MAX] = {
+> +	0x41, 0x43, 0x45, 0x47, 0x49, 0x4B, 0x4D, 0x4F,
+> +	0x51, 0x53, 0x55, 0x57,
+> +};
+> +static u8 nct720x_chan_to_index[] = {
+
+const as well here?
+
+> +	0 /* Not used */, 0, 1, 2, 3, 4, 5, 6,
+> +	7, 8, 9, 10, 11,
+> +};
+
+...
+
+> +static int nct720x_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int *val, int *val2, long mask)
+> +{
+> +	int index = nct720x_chan_to_index[chan->address];
+> +	u16 volt;
+> +	unsigned int value;
+> +	int err;
+> +	struct nct720x_chip_info *chip = iio_priv(indio_dev);
+> +
+> +	if (chan->type != IIO_VOLTAGE)
+> +		return -EOPNOTSUPP;
+> +
+> +	guard(mutex)(&chip->access_lock);
+
+The IIO_CHAN_INFO_SCALE case does not seem to need the lock. Would it 
+make sense to move it only in the IIO_CHAN_INFO_RAW case?
+
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		err = regmap_read(chip->regmap16, REG_VIN[index], &value);
+> +		if (err < 0)
+> +			return err;
+> +		volt = (u16)value;
+> +		*val = volt >> 3;
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		/* From the datasheet, we have to multiply by 0.0004995 */
+> +		*val = 0;
+> +		*val2 = 499500;
+> +		return IIO_VAL_INT_PLUS_NANO;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+...
+
+> +static int nct720x_write_event_config(struct iio_dev *indio_dev,
+> +				      const struct iio_chan_spec *chan,
+> +				      enum iio_event_type type,
+> +				      enum iio_event_direction dir,
+> +				      bool state)
+> +{
+> +	int err = 0;
+
+Harmless but useless initialisation.
+
+> +	struct nct720x_chip_info *chip = iio_priv(indio_dev);
+> +	int index = nct720x_chan_to_index[chan->address];
+> +	unsigned int mask;
+> +
+> +	if (chan->type != IIO_VOLTAGE)
+> +		return -EOPNOTSUPP;
+
+...
+
+> +static int nct720x_init_chip(struct nct720x_chip_info *chip)
+> +{
+> +	u8 data[2];
+> +	unsigned int value;
+> +	int err;
+> +
+> +	err = regmap_write(chip->regmap, REG_CONFIGURATION, BIT_CONFIGURATION_RESET);
+> +	if (err) {
+> +		dev_err(&chip->client->dev, "Failed to write REG_CONFIGURATION\n");
+> +		return err;
+> +	}
+> +
+> +	/*
+> +	 * After about 25 msecs, the device should be ready and then
+> +	 * the Power Up bit will be set to 1. If not, wait for it.
+> +	 */
+> +	mdelay(25);
+> +	err  = regmap_read(chip->regmap, REG_BUSY_STATUS, &value);
+
+double space after err.
+
+> +	if (err < 0)
+> +		return err;
+> +	if (!(value & BIT_PWR_UP))
+> +		return err;
+> +
+> +	/* Enable Channel */
+> +	err = regmap_write(chip->regmap, REG_CHANNEL_ENABLE_1, REG_CHANNEL_ENABLE_1_MASK);
+> +	if (err) {
+> +		dev_err(&chip->client->dev, "Failed to write REG_CHANNEL_ENABLE_1\n");
+> +		return err;
+> +	}
+> +
+> +	if (chip->vin_max == 12) {
+> +		err = regmap_write(chip->regmap, REG_CHANNEL_ENABLE_2, REG_CHANNEL_ENABLE_2_MASK);
+> +		if (err) {
+> +			dev_err(&chip->client->dev, "Failed to write REG_CHANNEL_ENABLE_2\n");
+> +			return err;
+> +		}
+> +	}
+> +
+> +	guard(mutex)(&chip->access_lock);
+> +	err  = regmap_read(chip->regmap, REG_CHANNEL_ENABLE_1, &value);
+
+double space after err.
+
+> +	if (err < 0)
+> +		return err;
+> +	data[0] = (u8)value;
+> +
+> +	err  = regmap_read(chip->regmap, REG_CHANNEL_ENABLE_2, &value);
+
+double space after err.
+
+> +	if (err < 0)
+> +		return err;
+> +	data[1] = (u8)value;
+> +
+> +	value = get_unaligned_le16(data);
+> +	chip->vin_mask = value;
+> +
+> +	/* Start monitoring if needed */
+
+...
+
+CJ
 
