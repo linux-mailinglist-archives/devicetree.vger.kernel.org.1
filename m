@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-128344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CCE19E86D7
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 18:02:59 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4AE69E86DD
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 18:03:24 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9D752814EA
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 17:02:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04D0F1884D70
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 17:03:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB855161321;
-	Sun,  8 Dec 2024 17:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C85C18A935;
+	Sun,  8 Dec 2024 17:03:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VmCNVXhV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZjVgxFJe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A13EB14F102;
-	Sun,  8 Dec 2024 17:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F92C158DC6;
+	Sun,  8 Dec 2024 17:03:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733677371; cv=none; b=amas4ZqmpGAooxO2/htODg8BRWqz1Qx9rq+TsDUpomQytMevd47iBGEO5QDK/hI+lm66GCEPiL9T2nJWsV6qf7w5wj/EHCuzmr/WIuR6Ot3zgZkuRXbqUiZQfadOYLrynd3w28XKToiMe9sGmuPbO7Yv6x74S+3WaWNj3ydwx+A=
+	t=1733677384; cv=none; b=AnSUMeHV7ejqIOcKR9Qu1dzikhMMUwrRuYYDXIVbX5cKXdnpbJ0HeuTtH6+uHfg9lCRDsDLZF9avw2R+lAAMpzC54q/ft+eQDh/KdLtMVByH29eyi8+HtxYAvcH41D1D+LykjF06//X/TX207Ty13uIyrNlDUTTMY2e8RaHl4fI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733677371; c=relaxed/simple;
-	bh=HCHmFGhqgwiw+/GQHlPW56J6axCw7STGcQpRvYj2W3w=;
+	s=arc-20240116; t=1733677384; c=relaxed/simple;
+	bh=yfk7T0TUDNqEF1duZz7ptN/DD8iP4vzBIsj5E+zO3aE=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=NhdjD4Nbh51+cUOOvRxgiHdd8I1lTBEIKFxglCk91c+S62QWJUbdNExVN/AZoUpGaUoG+Te6RJSX7uc3N1IMM9s6zBerxTcfvhV4nwvPZdt9CDJ7zw6LPBcS7eH65XeZ0CoO7nThNc0C0KCKw7HHpjjynF+lTYZiv/gN+xgg1X8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VmCNVXhV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50046C4CEDD;
-	Sun,  8 Dec 2024 17:02:43 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Qqar5ni67RZEdmTBv2z0EpsD9RDYRNOr1QXrefOgahzoeDFsYtTsSMPmFvbJdP+J/oYcx/Z3bmw2NmR6T20LkTs78wHrEM/ihBEPqLz4xPJxRbcdTIVp9AhmCk6F9pmtbWTmnuYcLTOe84y3EstJJ3yNtY63598+n3XAz9cWQ7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZjVgxFJe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5DBFC4CED2;
+	Sun,  8 Dec 2024 17:02:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733677371;
-	bh=HCHmFGhqgwiw+/GQHlPW56J6axCw7STGcQpRvYj2W3w=;
+	s=k20201202; t=1733677384;
+	bh=yfk7T0TUDNqEF1duZz7ptN/DD8iP4vzBIsj5E+zO3aE=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=VmCNVXhVyAuGESKLdZYpRnoiBVbx8uUR7z2HN0Taja3QoXPvanJ+R9dgLHpQfT9t9
-	 f11/8V0csqwELM5/x6LacT21ffpxnjsd7/mQiJqIog8Od37BQGQhurOfTAds5TKUUl
-	 SErXJUCFRZ5Y8q4QCL6OtNFxnY8urDxVYILGicA5x1dDItWnI9EBP9qZoWGe3Deyw3
-	 AiaGab+8AsXM2vj9RCN7seMvGnXRv5UrFXJyIOBO7ylEQhU7VyGmd9oO8SSLfXAxBK
-	 e08yPoxK2+xujhmjiQFTkgLW8OSS2nhwWg3R9HEbNAyljkctlR/I7cQvz54JNbdpv5
-	 JT1Dc9PThP6dQ==
+	b=ZjVgxFJeKvtcy/DxrsYAciOdNWe+9W3V6CDIYNrd5U9J9KBTxv8YY+KWnSuaM3B2q
+	 soRoWaxXE1N/UVErcxg0UzPM++PHSpf5nIIB9mErIX5PcWV10/jr8kp+I/KmRZHOB8
+	 iU8yMXZXX4Ar4LM2a+x4xbt0bxARRxHVovS2NTwq4P9LT1yTuGeX/QDnG5Z1FfLdtj
+	 sKgq1sTnTxjMjz/PAIoAEAkGKCvOYhobMwUkyvzIdiy9bw+EHP1a32IfV1/ASeOKg2
+	 XoLVqQy/r6gdGHZq4UfOQ/aaGNU+JChaQxD1oJi5s8n7BD+iPF28Eh6tFTo4bdbX6J
+	 kAQnBY98yrJQQ==
 From: Vinod Koul <vkoul@kernel.org>
-To: kishon@kernel.org, robh+dt@kernel.org, manivannan.sadhasivam@linaro.org, 
- bhelgaas@google.com, kw@linux.com, lpieralisi@kernel.org, 
- quic_qianyu@quicinc.com, conor+dt@kernel.org, neil.armstrong@linaro.org, 
- andersson@kernel.org, konradybcio@kernel.org, 
- Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Cc: quic_tsoni@quicinc.com, quic_shashim@quicinc.com, 
- quic_kaushalk@quicinc.com, quic_tdas@quicinc.com, quic_tingweiz@quicinc.com, 
- quic_aiquny@quicinc.com, kernel@quicinc.com, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, 
- Krishna chaitanya chundru <quic_krichai@quicinc.com>
-In-Reply-To: <20241122023314.1616353-1-quic_ziyuzhan@quicinc.com>
-References: <20241122023314.1616353-1-quic_ziyuzhan@quicinc.com>
-Subject: Re: (subset) [PATCH v2 0/6] pci: qcom: Add QCS615 PCIe support
-Message-Id: <173367736385.1042266.3592021837823660516.b4-ty@kernel.org>
-Date: Sun, 08 Dec 2024 22:32:43 +0530
+To: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+ kernel@pengutronix.de, festevam@gmail.com, gregkh@linuxfoundation.org, 
+ jun.li@nxp.com, alexander.stein@ew.tq-group.com, 
+ Xu Yang <xu.yang_2@nxp.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ linux-usb@vger.kernel.org
+In-Reply-To: <20241119105017.917833-1-xu.yang_2@nxp.com>
+References: <20241119105017.917833-1-xu.yang_2@nxp.com>
+Subject: Re: [PATCH v2] dt-bindings: phy: imx8mq-usb: correct reference to
+ usb-switch.yaml
+Message-Id: <173367737834.1042266.7257733372756734157.b4-ty@kernel.org>
+Date: Sun, 08 Dec 2024 22:32:58 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,24 +67,22 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Fri, 22 Nov 2024 10:33:08 +0800, Ziyue Zhang wrote:
-> This series adds document, phy, configs support for PCIe in QCS615.
-> The series depend on the following devicetree and smmu.
+On Tue, 19 Nov 2024 18:50:17 +0800, Xu Yang wrote:
+> The i.MX95 usb-phy can work with or without orientation-switch. With
+> current setting, if usb-phy works without orientation-switch, the
+> dt-schema check will show below error:
 > 
-> Base DT:
-> https://lore.kernel.org/all/20241104-add_initial_support_for_qcs615-v5-0-9dde8d7b80b0@quicinc.com/
-> 
-> APPS SMMU:
-> https://lore.kernel.org/all/20241105032107.9552-1-quic_qqzhou@quicinc.com/
+> phy@4c1f0040: 'oneOf' conditional failed, one must be fixed:
+>         'port' is a required property
+>         'ports' is a required property
+>         from schema $id: http://devicetree.org/schemas/phy/fsl,imx8mq-usb-phy.yaml#
 > 
 > [...]
 
 Applied, thanks!
 
-[1/6] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the QCS615 QMP PCIe PHY Gen3 x1
-      commit: 1e889f2bd8373229ce48be5860b8383e75393e13
-[2/6] phy: qcom: qmp: Add phy register and clk setting for QCS615 PCIe
-      commit: 21364b0fe378646fa301f29f714140a1f465561b
+[1/1] dt-bindings: phy: imx8mq-usb: correct reference to usb-switch.yaml
+      commit: 2318ca5994599bb4d287e9e00ae87e0855cba712
 
 Best regards,
 -- 
