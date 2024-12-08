@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-128261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92A5E9E83C6
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 07:13:51 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2953F9E83CE
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 07:20:33 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F6A9281776
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 06:13:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E51A118848F0
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 06:20:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16CDB53368;
-	Sun,  8 Dec 2024 06:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3232B4AEE2;
+	Sun,  8 Dec 2024 06:20:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wZXK8MLf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b7tZYAjR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A0DC22318
-	for <devicetree@vger.kernel.org>; Sun,  8 Dec 2024 06:13:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA43C250F8
+	for <devicetree@vger.kernel.org>; Sun,  8 Dec 2024 06:20:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733638428; cv=none; b=pfelWkURM3kUNv28PPt6Wgcdk8hvZXXcVwQ60KYG/aiHK3jYWBFx8Y+ivILGAvEhLyUsZAq+tjuKXFZxAnmqS9UW51tlqn8rLtwKCZ//nMajuz+TdbfaJbMXTjd+AEKe6z2GY/WSOjcQzbQsWYIWpvZ88fDJupI79rQM2gGtyCM=
+	t=1733638827; cv=none; b=j5wmf5KDl9w8R8UWbF4H9wF5hsrii4Qqz54oDFAmUgVEVqzu560yqQnYauHQf8OzbF0OTMI8qiN54PJk702dudNOeZOj+oFi5GhY+rw9KEXB7VOTDL2VxHjM5vKTvQim8zyHSouXl7WHI+K+ofbJ6+RXcoNpQOmOEtMloryzkdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733638428; c=relaxed/simple;
-	bh=tozftWeZSfDKzAmKHXrhZ8gcNN961mcwd2gBhKXkcY8=;
+	s=arc-20240116; t=1733638827; c=relaxed/simple;
+	bh=3fiK5xpOs/3MMK3l9oFjiRimQNH4kk/slTL8dPbJeEY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jqgv6HcHml7zxgHNnvcWOxdSnCDsqeyLewu1YJKH2LK3qYS8UgFSE5gsjjSLW35okrsGZqo92PFh00WFLX2zIHjN85mvrHGvaukTsRwI2tcd3CLfrTmn83ab3LTLIk2islacTEbigF5gmDmmh69HqhKXeQ0xPf8uITeTQQeaq1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wZXK8MLf; arc=none smtp.client-ip=209.85.208.182
+	 Content-Type:Content-Disposition:In-Reply-To; b=foCTrWywddYpV8WRufbj0n1F9Z6e/sU4DGCxl9AHFXFzEVjCfJMvOxgQSZFzAVI5jyCEgdz/3lz0dZv5Y2S+uU+nyKDZJOBicHA9lztj4TkaJQzG9sZttbwAPo2REuBYtsLPYeQdIe+BVS6vUY6agn2iu4sEPB/yoyM83S08xdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b7tZYAjR; arc=none smtp.client-ip=209.85.208.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ffc7a2c5d5so33367741fa.1
-        for <devicetree@vger.kernel.org>; Sat, 07 Dec 2024 22:13:45 -0800 (PST)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-3004028c714so10062571fa.2
+        for <devicetree@vger.kernel.org>; Sat, 07 Dec 2024 22:20:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733638424; x=1734243224; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1733638823; x=1734243623; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xh5h1+X8dlciqQ+QDklkZr3hyINk8+1Vx/kElDUH7P0=;
-        b=wZXK8MLf02cUmmPKckPYlvR1WmoDC6P39/Nfa12jgwYJvr/M5bl3G7GvBNKBYixHOX
-         tDLMlLV5q8tLhFQrfmI9O2wA8SquYE8kOnITYaEwXMye2oouKfVeces6VgOQujLq6zrt
-         6qVM/J89MMJJj7iIwie4WaQzBOGpL6NIiaYC4UeOZTuvXd2376w9BD8goeMM3r4UHGgJ
-         Jni1oM7Grmdh+WHiSVcuOyWA9a2sNWbHDde/rSdT2Xvy8r6OJWJO9NGl6tYHZlR/rXwx
-         Vc8XAMpn27h+XOdOQmQo/8EOko8eBXJFk7ado9BV8eHyU6XjAqmJaQnZwUbA3nltOvcs
-         /vkg==
+        bh=y3wSwCt3nKeuuPfdzyH1suAvu05oEqo8AcKRL8aHLAI=;
+        b=b7tZYAjRE0kjzr1sK1unZ7YnKukvXG3X3So4wYHEAWKIbYd2PgPFBr5sls7K7r+lEK
+         2Rp/Yd0lF//6xF/Z2N8FYzy5Tdwi6bfnkoavTtwbRex+tDm4w6iu1x8Hzk9zNZI0YHKQ
+         SBEu4k7a/gakxygwdaIq/yC1O/0DsnMfFUakuk/bnmqWvGyPC3d8FGEg8FKPkq+aoBan
+         koOX5ZvlOgtqA5isE3ohNDUWDvHIXw28lzq7ZQnL3+GusKarvcDmNL5ZyZOGGcucbUVB
+         kdoKPx/7tC2Z1WcpdJeTfILWVoZ8jPHKWgJdqqJAwpn+S71f3fbjf+WOkVJKLZyhar6r
+         vY7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733638424; x=1734243224;
+        d=1e100.net; s=20230601; t=1733638823; x=1734243623;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Xh5h1+X8dlciqQ+QDklkZr3hyINk8+1Vx/kElDUH7P0=;
-        b=AI3M9/+RcNUY/QHYAmlKcMXeuDOMk+ioBXSw97clrQz803s/BxoJmKNqomV7gi0vvf
-         GaKgrjPoxXqM8Iiu4yeC4XlZmBFQ6BNmcCKMEQg+kUshHuMCXsO0lJgeeMIhqAYQTos2
-         7KJ/SoI/OO5yQ0OinptSQdTn9wE/Q3RuvULCYbVyNvndmPat+0KMBuolMBeWJaU5kARK
-         oYORoQiIHx2LgEF3VsbCunih6lSpgyCz5F2wU4DuLOYezPERakS1HU0y1NqX8AUPxChC
-         sk66S01PhEvDEzCi11zsv9uCdeZv8h0ut+2C9rDs4avpTtGkOE2ANFKqim6dv0F+Ms6Z
-         nOoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU9uIIt0OoR+br5mOBLj1DWF4yGSfAYLToeJXe0C1+IdE+W8fjEwaMhNFdqtOpzphm0EK4zx2uvdnXK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8lnpeq7IkQH+Nzt8qZueIOiSpwkbq9YIvvL9dyHXALABDRBzF
-	QgLZsCEZdmZq7m7bG6pS+ddC/3h3eILtI6t5OZRABmvg2vtAatLsJeWePsD5IFU=
-X-Gm-Gg: ASbGncsmcIAN/UkX+S02EWLR05fnF+y6LkBf/YxteQ0rVX856rAeD4kMHqUvHPmhSvD
-	YJqspudyLlXk+Dh+EateVXw755hfYtUia4IOUm9uLdmc1qm7JDKaulrqala8oheGFEWUi+358vK
-	lMW8FzG3gJT9Lrv/Lo7wL0tuMWctIXK+hKmyX9SVEdG/G+056kwVTHiDaNBI/Z6ROJOH+atzhpU
-	U2/Jf6Af/7bj8M0aWUmC/e0FfGYotEgl/VoIfNExYNMpZpWZX3PJCv3LXrEvsbQsdDo8ALppubE
-	2X92Rl26RwilTXaayEqQVm6Tw+Kd+A==
-X-Google-Smtp-Source: AGHT+IGpphTHLfHX1jqQa+hOi9BEk6kgr/nyMZAnf083qv7il41stIiCcu8QmsN5TG7we4h6J6WvRQ==
-X-Received: by 2002:a05:6512:128b:b0:53e:3a94:c2bc with SMTP id 2adb3069b0e04-53e3a94c305mr1521632e87.18.1733638423464;
-        Sat, 07 Dec 2024 22:13:43 -0800 (PST)
+        bh=y3wSwCt3nKeuuPfdzyH1suAvu05oEqo8AcKRL8aHLAI=;
+        b=qno1wZUpRYVIdyrv3+1D/dowH1ereVxiyH+5UmTAZ7mthSrLVf1EnVRERKRq4fT3KD
+         G0unejN0Nl7aAuObqsoqyiT1y/JAhDc0aGh/wouryGUEKtzi3D7PZO8O1LEqKYTyx0r7
+         MhQTImEiS1rE3+gpuQf4ABdVUnvInbb8TGCEcVuNT78zpvZUoEMvdFkYJOedYtpBAlQJ
+         Mw/BeW5jpTS++YbL/qU7OXZiGwPEQik7tGWuvA0U1F/lln9S8sGPDKu76q4Ld+XMFSWb
+         i83Cf5MjVFVgEiwUshIWT+zlV+pH4zx1zcVARcFrNVJQCMz6xCkl5W6RuvwzCYatqvGG
+         deyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWOG02a9bD73ftSRmV4rc3hZdN6CoRplHirOHANTE2O9lRPl9jSEi3b1z8o3rCUxHBB1YWpeo2ZNiko@vger.kernel.org
+X-Gm-Message-State: AOJu0YwP+I/FBGrQh4adz623d+xWG820Wf7UcLNxs1HTAPUl5szCp5mN
+	FeZKRYLypDO4Tsg9Oy0CipEo4t030ZJ5p9lNpOT+w+zkzMVjr8+lBBWYzrSdAi0=
+X-Gm-Gg: ASbGncvDRTMeB0RnsUKR9848E0XDI/vYDw6rdzge8IT4Jv2AlGipx5SE0jI3336Cjcr
+	fzLh5koS/1o/dh5YKQ3N6ySEc/N31HRVQxp+uT0i/v4X0GRm1C2QxRw1jlEr/gojRngbR83u9Zd
+	zk3bzFc4zpY7QLOG1aSGzNV16bLa1i37vOXq371A8pM6on52/TCa7HjfGtgWRXTco/e9RNE7HT6
+	9xjO0TWFd8Jq8evyH84x/nX1NGiDbctetf0xojVs7fmazJ5PpS9oTvVJkqOlm3BORrHDKE5KP7E
+	XiPopHneUqtvHkb9k2LkUd3A0K25NQ==
+X-Google-Smtp-Source: AGHT+IFtDegnYyy2d+nTJaRADWEp+LFhxCsAwHtfkRa6kEJEsstkB9Dl/Phdlpt1fq4uhf+/TTKexA==
+X-Received: by 2002:a05:6512:402a:b0:53e:39c2:f02b with SMTP id 2adb3069b0e04-53e39c2f164mr1605041e87.42.1733638823022;
+        Sat, 07 Dec 2024 22:20:23 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5401cc76909sm54571e87.58.2024.12.07.22.13.40
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e3836ab8bsm573224e87.251.2024.12.07.22.20.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Dec 2024 22:13:42 -0800 (PST)
-Date: Sun, 8 Dec 2024 08:13:39 +0200
+        Sat, 07 Dec 2024 22:20:21 -0800 (PST)
+Date: Sun, 8 Dec 2024 08:20:19 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Abhinav Kumar <quic_abhinavk@quicinc.com>
 Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
@@ -85,11 +85,11 @@ Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
 	Tanmay Shah <tanmay@codeaurora.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
 	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
 	Jessica Zhang <quic_jesszhan@quicinc.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH 21/45] drm/msm/dp: add support for mst channel slot
- allocation
-Message-ID: <nw4xqmzafwz2jaq4ognliqcmdpn7psbtbkphz65yqhrxetyy4j@3lhiilbxhui3>
+Subject: Re: [PATCH 22/45] drm/msm/dp: add support to send vcpf packets in dp
+ controller
+Message-ID: <myumofurrdyjpfs7k6m2q4wmfcot3pdnymtoj4wd3zwlgmkhtq@mjtlpsb5by2j>
 References: <20241205-dp_mst-v1-0-f8618d42a99a@quicinc.com>
- <20241205-dp_mst-v1-21-f8618d42a99a@quicinc.com>
+ <20241205-dp_mst-v1-22-f8618d42a99a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,541 +98,220 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241205-dp_mst-v1-21-f8618d42a99a@quicinc.com>
+In-Reply-To: <20241205-dp_mst-v1-22-f8618d42a99a@quicinc.com>
 
-On Thu, Dec 05, 2024 at 08:31:52PM -0800, Abhinav Kumar wrote:
-> For DP MST streams, the 64 MTP slots are time-shared between
-> the streams. Add the support to calculate the rate governor,
-> slots and reservation of the slots to the DP controller. Each
-> DP MST stream shall reserve its streams by calling the
-> dp_display_set_stream_info() from its bridge calls.
+On Thu, Dec 05, 2024 at 08:31:53PM -0800, Abhinav Kumar wrote:
+> VC payload fill sequence is inserted by the DP controller in the
+> absence of stream symbols that is before stream is disabled. Add
+> support to send the VCPF sequence for msm dp controller.
 > 
 > Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
 > ---
->  drivers/gpu/drm/msm/dp/dp_catalog.c |  77 +++++++++++++++++++
->  drivers/gpu/drm/msm/dp/dp_catalog.h |   7 ++
->  drivers/gpu/drm/msm/dp/dp_ctrl.c    | 148 ++++++++++++++++++++++++++++++++++--
->  drivers/gpu/drm/msm/dp/dp_ctrl.h    |   7 +-
->  drivers/gpu/drm/msm/dp/dp_display.c |  33 ++++++--
->  drivers/gpu/drm/msm/dp/dp_display.h |   5 +-
->  drivers/gpu/drm/msm/dp/dp_panel.h   |   7 ++
->  drivers/gpu/drm/msm/dp/dp_reg.h     |   6 ++
->  8 files changed, 276 insertions(+), 14 deletions(-)
+>  drivers/gpu/drm/msm/dp/dp_catalog.c | 25 +++++++++++++++++++++++
+>  drivers/gpu/drm/msm/dp/dp_catalog.h |  4 ++++
+>  drivers/gpu/drm/msm/dp/dp_ctrl.c    | 40 +++++++++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/msm/dp/dp_ctrl.h    |  1 +
+>  drivers/gpu/drm/msm/dp/dp_display.c |  5 ++++-
+>  drivers/gpu/drm/msm/dp/dp_reg.h     |  3 ++-
+>  6 files changed, 76 insertions(+), 2 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c b/drivers/gpu/drm/msm/dp/dp_catalog.c
-> index bdc66e5cab640c351708ba1a1bc3bca21784df6e..f9d21444d7891bcd043d282b31ae75711add4817 100644
+> index f9d21444d7891bcd043d282b31ae75711add4817..4826a698979ce7c37112812299879411c5743fa9 100644
 > --- a/drivers/gpu/drm/msm/dp/dp_catalog.c
 > +++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
-> @@ -1116,6 +1116,83 @@ bool msm_dp_catalog_read_act_complete_sts(struct msm_dp_catalog *msm_dp_catalog)
->  	return msm_dp_read_link(catalog, REG_DP_MST_ACT);
+> @@ -50,6 +50,11 @@
+>  	(PSR_UPDATE_INT | PSR_CAPTURE_INT | PSR_EXIT_INT | \
+>  	PSR_UPDATE_ERROR_INT | PSR_WAKE_ERROR_INT)
+>  
+> +#define DP_INTERRUPT_STATUS5 \
+> +	(DP_INTR_DP0_VCPF_SENT | DP_INTR_DP1_VCPF_SENT)
+> +#define DP_INTERRUPT_STATUS5_MASK \
+> +	(DP_INTERRUPT_STATUS5 << DP_INTERRUPT_STATUS_MASK_SHIFT)
+> +
+>  #define DP_INTERRUPT_MASK4 \
+>  	(PSR_UPDATE_MASK | PSR_CAPTURE_MASK | PSR_EXIT_MASK | \
+>  	PSR_UPDATE_ERROR_MASK | PSR_WAKE_ERROR_MASK)
+> @@ -694,9 +699,12 @@ void msm_dp_catalog_ctrl_enable_irq(struct msm_dp_catalog *msm_dp_catalog,
+>  				DP_INTERRUPT_STATUS1_MASK);
+>  		msm_dp_write_ahb(catalog, REG_DP_INTR_STATUS2,
+>  				DP_INTERRUPT_STATUS2_MASK);
+> +		msm_dp_write_ahb(catalog, REG_DP_INTR_STATUS5,
+> +				 DP_INTERRUPT_STATUS5_MASK);
+>  	} else {
+>  		msm_dp_write_ahb(catalog, REG_DP_INTR_STATUS, 0x00);
+>  		msm_dp_write_ahb(catalog, REG_DP_INTR_STATUS2, 0x00);
+> +		msm_dp_write_ahb(catalog, REG_DP_INTR_STATUS5, 0x00);
+>  	}
 >  }
 >  
-> +void msm_dp_catalog_mst_channel_alloc(struct msm_dp_catalog *msm_dp_catalog,
-> +				      u32 ch, u32 ch_start_slot, u32 tot_slot_cnt)
+> @@ -850,6 +858,23 @@ int msm_dp_catalog_ctrl_get_interrupt(struct msm_dp_catalog *msm_dp_catalog)
+>  	return intr;
+>  }
+>  
+> +int msm_dp_catalog_ctrl_get_interrupt_5(struct msm_dp_catalog *msm_dp_catalog)
 > +{
-> +	struct msm_dp_catalog_private *catalog;
-> +	u32 i, slot_reg_1, slot_reg_2, slot;
-> +	u32 reg_off = 0;
-> +	int const num_slots_per_reg = 32;
+> +	struct msm_dp_catalog_private *catalog = container_of(msm_dp_catalog,
+> +							      struct msm_dp_catalog_private,
+> +							      msm_dp_catalog);
+> +	u32 intr, intr_ack;
 > +
-> +	if (!msm_dp_catalog || ch >= DP_STREAM_MAX) {
-> +		DRM_ERROR("invalid input. ch %d\n", ch);
-> +		return;
-> +	}
+> +	intr = msm_dp_read_ahb(catalog, REG_DP_INTR_STATUS5);
+> +	intr &= ~DP_INTERRUPT_STATUS5_MASK;
+> +	intr_ack = (intr & DP_INTERRUPT_STATUS5)
+> +			<< DP_INTERRUPT_STATUS_ACK_SHIFT;
+> +	msm_dp_write_ahb(catalog, REG_DP_INTR_STATUS5,
+> +			 intr_ack | DP_INTERRUPT_STATUS5_MASK);
 > +
-> +	if (ch_start_slot > DP_MAX_TIME_SLOTS ||
-> +	    (ch_start_slot + tot_slot_cnt > DP_MAX_TIME_SLOTS)) {
-> +		DRM_ERROR("invalid slots start %d, tot %d\n",
-> +			  ch_start_slot, tot_slot_cnt);
-> +		return;
-> +	}
-
-This should be handled by the generic MST code.
-
-> +
-> +	catalog = container_of(msm_dp_catalog, struct msm_dp_catalog_private, msm_dp_catalog);
-> +
-> +	drm_dbg_dp(catalog->drm_dev, "ch %d, start_slot %d, tot_slot %d\n",
-> +		   ch, ch_start_slot, tot_slot_cnt);
-> +
-> +	if (ch == DP_STREAM_1)
-> +		reg_off = REG_DP_DP1_TIMESLOT_1_32 - REG_DP_DP0_TIMESLOT_1_32;
-> +
-> +	slot_reg_1 = 0;
-> +	slot_reg_2 = 0;
-> +
-> +	if (ch_start_slot && tot_slot_cnt) {
-> +		ch_start_slot--;
-> +		for (i = 0; i < tot_slot_cnt; i++) {
-> +			if (ch_start_slot < num_slots_per_reg) {
-> +				slot_reg_1 |= BIT(ch_start_slot);
-> +			} else {
-> +				slot = ch_start_slot - num_slots_per_reg;
-> +				slot_reg_2 |= BIT(slot);
-> +			}
-> +			ch_start_slot++;
-> +		}
-> +	}
-> +
-> +	drm_dbg_dp(catalog->drm_dev, "ch:%d slot_reg_1:%d, slot_reg_2:%d\n", ch,
-> +		   slot_reg_1, slot_reg_2);
-> +
-> +	msm_dp_write_link(catalog, REG_DP_DP0_TIMESLOT_1_32 + reg_off, slot_reg_1);
-> +	msm_dp_write_link(catalog, REG_DP_DP0_TIMESLOT_33_63 + reg_off, slot_reg_2);
-
-The more I look at the msm_dp_write_link(catalog, REG_DP_foo +
-reg_offset), more I think that the I'd prefer to have explicit
-(stream_id == STREAM_1 ?  REG_DP_DP1_TIMESLOT_1_32 :
-REG_DP_DP0_TIMESLOT_1_32). There is a difference between selecting the
-offset between two register spaces and overusing offset-like model to
-select between two registers.
-
+> +	return intr;
 > +}
 > +
-> +void msm_dp_catalog_ctrl_update_rg(struct msm_dp_catalog *msm_dp_catalog, u32 stream,
-> +				   u32 x_int, u32 y_frac_enum)
-> +{
-> +	struct msm_dp_catalog_private *catalog;
-> +
-> +	u32 rg, reg_off = 0;
-> +
-> +	if (!msm_dp_catalog || stream >= DP_STREAM_MAX) {
-> +		DRM_ERROR("invalid input. stream %d\n", stream);
-> +		return;
-> +	}
-> +
-> +	catalog = container_of(msm_dp_catalog, struct msm_dp_catalog_private, msm_dp_catalog);
-> +
-> +	rg = y_frac_enum;
-> +	rg |= (x_int << 16);
-> +
-> +	drm_dbg_dp(catalog->drm_dev, "stream: %d x_int:%d y_frac_enum:%d rg:%d\n",
-> +		   stream, x_int, y_frac_enum, rg);
-> +
-> +	if (stream == DP_STREAM_1)
-> +		reg_off = REG_DP_DP1_RG - REG_DP_DP0_RG;
-> +
-> +	msm_dp_write_link(catalog, REG_DP_DP0_RG + reg_off, rg);
-> +}
-> +
->  void msm_dp_catalog_panel_tpg_enable(struct msm_dp_catalog *msm_dp_catalog,
->  				struct drm_display_mode *drm_mode)
+>  void msm_dp_catalog_ctrl_phy_reset(struct msm_dp_catalog *msm_dp_catalog)
 >  {
+>  	struct msm_dp_catalog_private *catalog = container_of(msm_dp_catalog,
 > diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.h b/drivers/gpu/drm/msm/dp/dp_catalog.h
-> index 07284f484e2861aeae12b115cd05a94afed1c9cb..560016e2f929d4b92d6ea764d81a099c09c0e668 100644
+> index 560016e2f929d4b92d6ea764d81a099c09c0e668..323858c587f85996d296156c7b8b201cdb7b7eb4 100644
 > --- a/drivers/gpu/drm/msm/dp/dp_catalog.h
 > +++ b/drivers/gpu/drm/msm/dp/dp_catalog.h
-> @@ -31,6 +31,8 @@
+> @@ -28,6 +28,9 @@
+>  #define DP_INTR_FRAME_END		BIT(6)
+>  #define DP_INTR_CRC_UPDATED		BIT(9)
+>  
+> +#define DP_INTR_DP0_VCPF_SENT		BIT(0)
+> +#define DP_INTR_DP1_VCPF_SENT		BIT(3)
+> +
 >  #define DP_HW_VERSION_1_0	0x10000000
 >  #define DP_HW_VERSION_1_2	0x10020000
 >  
-> +#define DP_MAX_TIME_SLOTS 64
+> @@ -103,6 +106,7 @@ u32 msm_dp_catalog_link_is_connected(struct msm_dp_catalog *msm_dp_catalog);
+>  u32 msm_dp_catalog_hpd_get_intr_status(struct msm_dp_catalog *msm_dp_catalog);
+>  void msm_dp_catalog_ctrl_phy_reset(struct msm_dp_catalog *msm_dp_catalog);
+>  int msm_dp_catalog_ctrl_get_interrupt(struct msm_dp_catalog *msm_dp_catalog);
+> +int msm_dp_catalog_ctrl_get_interrupt_5(struct msm_dp_catalog *msm_dp_catalog);
+>  u32 msm_dp_catalog_ctrl_read_psr_interrupt_status(struct msm_dp_catalog *msm_dp_catalog);
 
-Doesn't it depend on the encoding format?
+I'd prefer some uniformity here. read_psr_interrupt_status() returns
+REG_DP_INTR_STATUS4, get_interrupt() returns REG_DP_INTR_STATUS2 value,
+Now you are adding get_interrupt_5(). Could you please make that similar
+and logical?
 
-> +
->  enum msm_dp_catalog_audio_sdp_type {
->  	DP_AUDIO_SDP_STREAM,
->  	DP_AUDIO_SDP_TIMESTAMP,
-> @@ -140,4 +142,9 @@ void msm_dp_catalog_trigger_act(struct msm_dp_catalog *dp_catalog);
->  bool msm_dp_catalog_read_act_complete_sts(struct msm_dp_catalog *dp_catalog);
->  void msm_dp_catalog_mst_config(struct msm_dp_catalog *dp_catalog, bool enable);
->  
-> +void msm_dp_catalog_mst_channel_alloc(struct msm_dp_catalog *ctrl,
-> +				      u32 ch, u32 ch_start_slot, u32 tot_slot_cnt);
-> +void msm_dp_catalog_ctrl_update_rg(struct msm_dp_catalog *ctrl, u32 stream,
-> +				   u32 x_int, u32 y_frac_enum);
-> +
->  #endif /* _DP_CATALOG_H_ */
+>  void msm_dp_catalog_ctrl_update_transfer_unit(struct msm_dp_catalog *msm_dp_catalog,
+>  				u32 msm_dp_tu, u32 valid_boundary,
 > diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.c b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-> index 1c313cf33f398dffc2ad349d7d1bc995fb4b45b3..14562def1e70b769434243d1ce72661a7b4d4c6b 100644
+> index 14562def1e70b769434243d1ce72661a7b4d4c6b..2288c379283c721a01c81302f8d307d0b3c76527 100644
 > --- a/drivers/gpu/drm/msm/dp/dp_ctrl.c
 > +++ b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-> @@ -69,6 +69,11 @@ struct msm_dp_vc_tu_mapping_table {
->  	u8 tu_size_minus1;
->  };
+> @@ -27,6 +27,11 @@
 >  
-> +struct msm_dp_mst_ch_slot_info {
-> +	u32 start_slot;
-> +	u32 tot_slots;
-> +};
+>  #define DP_CTRL_INTR_READY_FOR_VIDEO     BIT(0)
+>  #define DP_CTRL_INTR_IDLE_PATTERN_SENT  BIT(3)
+> +#define DP_CTRL_INTR_DP0_VCPF_SENT       BIT(0)
+> +#define DP_CTRL_INTR_DP1_VCPF_SENT       BIT(3)
 > +
->  struct msm_dp_ctrl_private {
->  	struct msm_dp_ctrl msm_dp_ctrl;
->  	struct drm_device *drm_dev;
-> @@ -100,6 +105,8 @@ struct msm_dp_ctrl_private {
+> +#define MST_DP0_PUSH_VCPF		BIT(12)
+> +#define MST_DP1_PUSH_VCPF		BIT(14)
 >  
->  	bool mst_active;
->  	bool stream_clks_on[DP_STREAM_MAX];
-> +
-> +	struct msm_dp_mst_ch_slot_info mst_ch_info[DP_STREAM_MAX];
->  };
->  
->  static int msm_dp_aux_link_configure(struct drm_dp_aux *aux,
-> @@ -2021,7 +2028,103 @@ int msm_dp_ctrl_prepare_stream_on(struct msm_dp_ctrl *msm_dp_ctrl, bool force_li
->  	return ret;
+>  #define MR_LINK_TRAINING1  0x8
+>  #define MR_LINK_SYMBOL_ERM 0x80
+> @@ -144,6 +149,34 @@ void msm_dp_ctrl_push_idle(struct msm_dp_ctrl *msm_dp_ctrl)
+>  	drm_dbg_dp(ctrl->drm_dev, "mainlink off\n");
 >  }
 >  
-> -int msm_dp_ctrl_on_stream(struct msm_dp_ctrl *msm_dp_ctrl, struct msm_dp_panel *msm_dp_panel)
-> +static void msm_dp_ctrl_mst_calculate_rg(struct msm_dp_ctrl_private *ctrl,
-> +					 struct msm_dp_panel *panel,
-> +					 u32 *p_x_int, u32 *p_y_frac_enum)
+> +void msm_dp_ctrl_push_vcpf(struct msm_dp_ctrl *msm_dp_ctrl, struct msm_dp_panel *msm_dp_panel)
 > +{
-> +	u64 min_slot_cnt, max_slot_cnt;
-> +	u64 raw_target_sc, target_sc_fixp;
-> +	u64 ts_denom, ts_enum, ts_int;
-> +	u64 pclk = panel->msm_dp_mode.drm_mode.clock;
-> +	u64 lclk = 0;
-> +	u64 lanes = ctrl->link->link_params.num_lanes;
-> +	u64 bpp = panel->msm_dp_mode.bpp;
-> +	u64 pbn = panel->mst_caps.pbn;
-> +	u64 numerator, denominator, temp, temp1, temp2;
-> +	u32 x_int = 0, y_frac_enum = 0;
-> +	u64 target_strm_sym, ts_int_fixp, ts_frac_fixp, y_frac_enum_fixp;
-> +
-> +	lclk = ctrl->link->link_params.rate;
-> +
-> +	/* min_slot_cnt */
-> +	numerator = pclk * bpp * 64 * 1000;
-> +	denominator = lclk * lanes * 8 * 1000;
-> +	min_slot_cnt = drm_fixp_from_fraction(numerator, denominator);
-> +
-> +	/* max_slot_cnt */
-> +	numerator = pbn * 54 * 1000;
-> +	denominator = lclk * lanes;
-> +	max_slot_cnt = drm_fixp_from_fraction(numerator, denominator);
-> +
-> +	/* raw_target_sc */
-> +	numerator = max_slot_cnt + min_slot_cnt;
-> +	denominator = drm_fixp_from_fraction(2, 1);
-> +	raw_target_sc = drm_fixp_div(numerator, denominator);
-> +
-> +	/* target_sc */
-> +	temp = drm_fixp_from_fraction(256 * lanes, 1);
-> +	numerator = drm_fixp_mul(raw_target_sc, temp);
-> +	denominator = drm_fixp_from_fraction(256 * lanes, 1);
-> +	target_sc_fixp = drm_fixp_div(numerator, denominator);
-> +
-> +	ts_enum = 256 * lanes;
-> +	ts_denom = drm_fixp_from_fraction(256 * lanes, 1);
-> +	ts_int = drm_fixp2int(target_sc_fixp);
-> +
-> +	temp = drm_fixp2int_ceil(raw_target_sc);
-> +	if (temp != ts_int) {
-> +		temp = drm_fixp_from_fraction(ts_int, 1);
-> +		temp1 = raw_target_sc - temp;
-> +		temp2 = drm_fixp_mul(temp1, ts_denom);
-> +		ts_enum = drm_fixp2int(temp2);
-> +	}
-> +
-> +	/* target_strm_sym */
-> +	ts_int_fixp = drm_fixp_from_fraction(ts_int, 1);
-> +	ts_frac_fixp = drm_fixp_from_fraction(ts_enum, drm_fixp2int(ts_denom));
-> +	temp = ts_int_fixp + ts_frac_fixp;
-> +	temp1 = drm_fixp_from_fraction(lanes, 1);
-> +	target_strm_sym = drm_fixp_mul(temp, temp1);
-> +
-> +	/* x_int */
-> +	x_int = drm_fixp2int(target_strm_sym);
-> +
-> +	/* y_enum_frac */
-> +	temp = drm_fixp_from_fraction(x_int, 1);
-> +	temp1 = target_strm_sym - temp;
-> +	temp2 = drm_fixp_from_fraction(256, 1);
-> +	y_frac_enum_fixp = drm_fixp_mul(temp1, temp2);
-> +
-> +	temp1 = drm_fixp2int(y_frac_enum_fixp);
-> +	temp2 = drm_fixp2int_ceil(y_frac_enum_fixp);
-> +
-> +	y_frac_enum = (u32)((temp1 == temp2) ? temp1 : temp1 + 1);
-> +
-> +	*p_x_int = x_int;
-> +	*p_y_frac_enum = y_frac_enum;
-> +
-> +	drm_dbg_dp(ctrl->drm_dev, "mst lane_cnt:%llu, rate:%llu x_int:%d, y_frac:%d\n",
-> +		   lanes, lclk, x_int, y_frac_enum);
-> +}
-> +
-> +static void msm_dp_ctrl_mst_stream_setup(struct msm_dp_ctrl_private *ctrl,
-> +					 struct msm_dp_panel *panel,
-> +					 u32 max_streams)
-> +{
-> +	u32 x_int, y_frac_enum;
-> +
-> +	drm_dbg_dp(ctrl->drm_dev, "mst stream channel allocation\n");
-> +
-> +	msm_dp_ctrl_mst_stream_channel_slot_setup(&ctrl->msm_dp_ctrl, max_streams);
-> +
-> +	msm_dp_ctrl_mst_calculate_rg(ctrl, panel, &x_int, &y_frac_enum);
-
-Use S16.16 (or U16.16) instead and pass required value as is
-
-> +
-> +	msm_dp_catalog_ctrl_update_rg(ctrl->catalog, panel->stream_id,
-> +				      x_int, y_frac_enum);
-> +}
-> +
-> +int msm_dp_ctrl_on_stream(struct msm_dp_ctrl *msm_dp_ctrl,
-> +			  struct msm_dp_panel *msm_dp_panel, u32 max_streams)
->  {
->  	int ret = 0;
->  	bool mainlink_ready = false;
-> @@ -2063,6 +2166,9 @@ int msm_dp_ctrl_on_stream(struct msm_dp_ctrl *msm_dp_ctrl, struct msm_dp_panel *
->  	if (!ctrl->mst_active)
->  		msm_dp_ctrl_setup_tr_unit(ctrl);
->  
-> +	if (ctrl->mst_active)
-> +		msm_dp_ctrl_mst_stream_setup(ctrl, msm_dp_panel, max_streams);
-> +
->  	msm_dp_catalog_ctrl_state_ctrl(ctrl->catalog, DP_STATE_CTRL_SEND_VIDEO);
->  
->  	if (ctrl->mst_active)
-> @@ -2143,13 +2249,45 @@ void msm_dp_ctrl_off_link(struct msm_dp_ctrl *msm_dp_ctrl)
->  	dev_pm_opp_set_rate(ctrl->dev, 0);
->  	msm_dp_ctrl_link_clk_disable(&ctrl->msm_dp_ctrl);
->  
-> -	DRM_DEBUG_DP("Before, phy=%p init_count=%d power_on=%d\n",
-> -		phy, phy->init_count, phy->power_count);
-> +	drm_dbg_dp(ctrl->drm_dev, "Before, phy=%p init_count=%d power_on=%d\n",
-> +		   phy, phy->init_count, phy->power_count);
->  
->  	phy_power_off(phy);
->  
-> -	DRM_DEBUG_DP("After, phy=%p init_count=%d power_on=%d\n",
-> -		phy, phy->init_count, phy->power_count);
-> +	drm_dbg_dp(ctrl->drm_dev, "After, phy=%p init_count=%d power_on=%d\n",
-> +		   phy, phy->init_count, phy->power_count);
-> +}
-> +
-> +void msm_dp_ctrl_set_mst_channel_info(struct msm_dp_ctrl *msm_dp_ctrl,
-> +				      enum msm_dp_stream_id strm,
-> +				      u32 start_slot, u32 tot_slots)
-> +{
+> +	u32 state = 0x0;
 > +	struct msm_dp_ctrl_private *ctrl;
 > +
-> +	if (!msm_dp_ctrl || strm >= DP_STREAM_MAX) {
+> +	ctrl = container_of(msm_dp_ctrl, struct msm_dp_ctrl_private, msm_dp_ctrl);
+> +
+> +	if (msm_dp_panel->stream_id >= DP_STREAM_MAX) {
 > +		DRM_ERROR("invalid input\n");
 > +		return;
 > +	}
 > +
-> +	ctrl = container_of(msm_dp_ctrl, struct msm_dp_ctrl_private, msm_dp_ctrl);
+> +	if (msm_dp_panel->stream_id == DP_STREAM_0)
+> +		state |= MST_DP0_PUSH_VCPF;
+> +	else
+> +		state |= MST_DP1_PUSH_VCPF;
 > +
-> +	ctrl->mst_ch_info[strm].start_slot = start_slot;
-> +	ctrl->mst_ch_info[strm].tot_slots = tot_slots;
+> +	reinit_completion(&ctrl->idle_comp);
+> +
+> +	msm_dp_catalog_ctrl_state_ctrl(ctrl->catalog, state);
+> +
+> +	if (!wait_for_completion_timeout(&ctrl->idle_comp,
+> +					 IDLE_PATTERN_COMPLETION_TIMEOUT_JIFFIES))
+> +		pr_warn("PUSH_VCPF pattern timedout\n");
+> +
+> +	drm_dbg_dp(ctrl->drm_dev, "mainlink off\n");
+
+??
+
+The comment seems misplaced or wrong to me. The msm_dp_ctrl_push_vcpf()
+doesn't turn link off.
+
 > +}
 > +
-> +// TO-DO : Check if we can do a dealloc instead of this one during teardown
-> +void msm_dp_ctrl_mst_stream_channel_slot_setup(struct msm_dp_ctrl *msm_dp_ctrl, u32 max_streams)
-> +{
-> +	struct msm_dp_ctrl_private *ctrl;
-> +	int i;
-> +
-> +	ctrl = container_of(msm_dp_ctrl, struct msm_dp_ctrl_private, msm_dp_ctrl);
-> +
-> +	for (i = DP_STREAM_0; i < max_streams; i++) {
-> +		msm_dp_catalog_mst_channel_alloc(ctrl->catalog,
-> +						 i, ctrl->mst_ch_info[i].start_slot,
-> +						 ctrl->mst_ch_info[i].tot_slots);
+>  static void msm_dp_ctrl_config_ctrl(struct msm_dp_ctrl_private *ctrl,
+>  				    struct msm_dp_panel *msm_dp_panel)
+>  {
+> @@ -2332,6 +2365,13 @@ irqreturn_t msm_dp_ctrl_isr(struct msm_dp_ctrl *msm_dp_ctrl)
+>  		ret = IRQ_HANDLED;
+>  	}
+>  
+> +	isr = msm_dp_catalog_ctrl_get_interrupt_5(ctrl->catalog);
+> +	if (isr & (DP_INTR_DP0_VCPF_SENT | DP_INTR_DP1_VCPF_SENT)) {
+> +		drm_dbg_dp(ctrl->drm_dev, "vcpf sent\n");
+> +		complete(&ctrl->idle_comp);
+> +		ret = IRQ_HANDLED;
 > +	}
+> +
+>  	return ret;
 >  }
 >  
->  irqreturn_t msm_dp_ctrl_isr(struct msm_dp_ctrl *msm_dp_ctrl)
 > diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.h b/drivers/gpu/drm/msm/dp/dp_ctrl.h
-> index 81c05b1b2baac63e1f1888f3f517e62a98e230a7..b126651da24b3abdaf540268758b37dca9fe1291 100644
+> index b126651da24b3abdaf540268758b37dca9fe1291..9ad7022d6217572395d69294c3cc4d4dbaddf0ac 100644
 > --- a/drivers/gpu/drm/msm/dp/dp_ctrl.h
 > +++ b/drivers/gpu/drm/msm/dp/dp_ctrl.h
-> @@ -18,7 +18,8 @@ struct msm_dp_ctrl {
->  struct phy;
->  
->  int msm_dp_ctrl_on_link(struct msm_dp_ctrl *msm_dp_ctrl, bool mst_active);
-> -int msm_dp_ctrl_on_stream(struct msm_dp_ctrl *msm_dp_ctrl, struct msm_dp_panel *msm_dp_panel);
-> +int msm_dp_ctrl_on_stream(struct msm_dp_ctrl *msm_dp_ctrl,
-> +			  struct msm_dp_panel *msm_dp_panel, u32 max_streams);
->  int msm_dp_ctrl_prepare_stream_on(struct msm_dp_ctrl *dp_ctrl, bool force_link_train);
->  void msm_dp_ctrl_off_link_stream(struct msm_dp_ctrl *msm_dp_ctrl);
->  void msm_dp_ctrl_off_link(struct msm_dp_ctrl *msm_dp_ctrl);
-> @@ -47,5 +48,9 @@ void msm_dp_ctrl_clear_vsc_sdp_pkt(struct msm_dp_ctrl *msm_dp_ctrl,
->  void msm_dp_ctrl_psm_config(struct msm_dp_ctrl *msm_dp_ctrl);
->  void msm_dp_ctrl_reinit_phy(struct msm_dp_ctrl *msm_dp_ctrl);
->  int msm_dp_ctrl_mst_send_act(struct msm_dp_ctrl *ctrl);
-> +void msm_dp_ctrl_mst_stream_channel_slot_setup(struct msm_dp_ctrl *msm_dp_ctrl, u32 max_streams);
-> +void msm_dp_ctrl_set_mst_channel_info(struct msm_dp_ctrl *msm_dp_ctrl,
-> +				      enum msm_dp_stream_id strm,
-> +				      u32 start_slot, u32 tot_slots);
+> @@ -52,5 +52,6 @@ void msm_dp_ctrl_mst_stream_channel_slot_setup(struct msm_dp_ctrl *msm_dp_ctrl,
+>  void msm_dp_ctrl_set_mst_channel_info(struct msm_dp_ctrl *msm_dp_ctrl,
+>  				      enum msm_dp_stream_id strm,
+>  				      u32 start_slot, u32 tot_slots);
+> +void msm_dp_ctrl_push_vcpf(struct msm_dp_ctrl *dp_ctrl, struct msm_dp_panel *msm_dp_panel);
 >  
 >  #endif /* _DP_CTRL_H_ */
 > diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-> index e19860ef3493fb100afbf04b09d14a136fd6b887..2a4a79317153817cb24537ea95fad07c9bc20715 100644
+> index 2a4a79317153817cb24537ea95fad07c9bc20715..1dfc82211c50bb4ed239f9730b91c33c4897c78f 100644
 > --- a/drivers/gpu/drm/msm/dp/dp_display.c
 > +++ b/drivers/gpu/drm/msm/dp/dp_display.c
-> @@ -33,6 +33,8 @@ MODULE_PARM_DESC(psr_enabled, "enable PSR for eDP and DP displays");
->  
->  #define HPD_STRING_SIZE 30
->  
-> +#define DEFAULT_STREAM_COUNT 1
-> +
->  enum {
->  	ISR_DISCONNECTED,
->  	ISR_CONNECT_PENDING,
-> @@ -95,6 +97,8 @@ struct msm_dp_display_private {
->  	/* wait for audio signaling */
->  	struct completion audio_comp;
->  
-> +	unsigned int max_stream;
-> +
->  	/* event related only access by event thread */
->  	struct mutex event_mutex;
->  	wait_queue_head_t event_q;
-> @@ -875,7 +879,7 @@ static int msm_dp_display_enable(struct msm_dp_display_private *dp)
->  		return 0;
->  	}
->  
-> -	rc = msm_dp_ctrl_on_stream(dp->ctrl, dp->panel);
-> +	rc = msm_dp_ctrl_on_stream(dp->ctrl, dp->panel, dp->max_stream);
->  	if (!rc)
->  		msm_dp_display->power_on = true;
->  
-> @@ -963,11 +967,14 @@ int msm_dp_display_set_plugged_cb(struct msm_dp *msm_dp_display,
->  	return 0;
->  }
->  
-> -int msm_dp_display_set_stream_id(struct msm_dp *dp,
-> -				 struct msm_dp_panel *panel, u32 strm_id)
-> +int msm_dp_display_set_stream_info(struct msm_dp *dp,
-> +				   struct msm_dp_panel *panel, u32 strm_id, u32 start_slot,
-> +				   u32 num_slots, u32 pbn, int vcpi)
-
-Where is this used with anything else than 0 start / num / pbn/ vcpi?
-
->  {
->  	int rc = 0;
->  	struct msm_dp_display_private *msm_dp_display;
-> +	const int max_slots = 64;
-> +
+> @@ -1646,7 +1646,10 @@ void msm_dp_display_atomic_disable(struct msm_dp *dp)
 >  
 >  	msm_dp_display = container_of(dp, struct msm_dp_display_private, msm_dp_display);
 >  
-> @@ -981,8 +988,18 @@ int msm_dp_display_set_stream_id(struct msm_dp *dp,
->  		return -EINVAL;
->  	}
->  
-> -	if (panel)
-> +	if (start_slot + num_slots > max_slots) {
-> +		DRM_ERROR("invalid channel info received. start:%d, slots:%d\n",
-> +			  start_slot, num_slots);
-> +		return -EINVAL;
-> +	}
-> +
-> +	msm_dp_ctrl_set_mst_channel_info(msm_dp_display->ctrl, strm_id, start_slot, num_slots);
-> +
-> +	if (panel) {
->  		panel->stream_id = strm_id;
-> +		panel->mst_caps.pbn = pbn;
-> +	}
->  
->  	return rc;
->  }
-> @@ -1370,6 +1387,7 @@ static int msm_dp_display_probe(struct platform_device *pdev)
->  	dp->msm_dp_display.is_edp =
->  		(dp->msm_dp_display.connector_type == DRM_MODE_CONNECTOR_eDP);
->  
-> +	dp->max_stream = DEFAULT_STREAM_COUNT;
->  	rc = msm_dp_init_sub_modules(dp);
->  	if (rc) {
->  		DRM_ERROR("init sub module failed\n");
-> @@ -1602,7 +1620,7 @@ void msm_dp_display_atomic_enable(struct msm_dp *dp)
->  
->  	mutex_lock(&msm_dp_display->event_mutex);
->  
-> -	msm_dp_display_set_stream_id(dp, msm_dp_display->panel, 0);
-> +	msm_dp_display_set_stream_info(dp, msm_dp_display->panel, 0, 0, 0, 0, 0);
->  
->  	if (dp->prepared) {
->  		rc = msm_dp_display_enable(msm_dp_display);
-> @@ -1630,8 +1648,11 @@ void msm_dp_display_atomic_disable(struct msm_dp *dp)
->  
->  	msm_dp_ctrl_push_idle(msm_dp_display->ctrl);
->  
-> -	if (dp->mst_active)
-> +	if (msm_dp_display->max_stream > DEFAULT_STREAM_COUNT) {
+> -	msm_dp_ctrl_push_idle(msm_dp_display->ctrl);
+> +	if (msm_dp_display->max_stream > DEFAULT_STREAM_COUNT)
 
-Why? I liked the previous condition more. There is no connection between
-_default_ and supporting only SST.
+Same comment regarding default vs SST
 
-> +		msm_dp_ctrl_mst_stream_channel_slot_setup(msm_dp_display->ctrl,
-> +							  msm_dp_display->max_stream);
->  		msm_dp_ctrl_mst_send_act(msm_dp_display->ctrl);
-> +	}
->  }
+> +		msm_dp_ctrl_push_vcpf(msm_dp_display->ctrl, msm_dp_display->panel);
+> +	else
+> +		msm_dp_ctrl_push_idle(msm_dp_display->ctrl);
 >  
->  static void msm_dp_display_unprepare(struct msm_dp_display_private *dp)
-> diff --git a/drivers/gpu/drm/msm/dp/dp_display.h b/drivers/gpu/drm/msm/dp/dp_display.h
-> index 38ca25491b1ccfd95e027a9c8f659abb3cd576d3..258c240de580b634c05cf5895a8e52160449eba1 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_display.h
-> +++ b/drivers/gpu/drm/msm/dp/dp_display.h
-> @@ -53,7 +53,8 @@ void msm_dp_display_mode_set(struct msm_dp *dp,
->  enum drm_mode_status msm_dp_display_mode_valid(struct msm_dp *dp,
->  					       const struct drm_display_info *info,
->  					       const struct drm_display_mode *mode);
-> -int msm_dp_display_set_stream_id(struct msm_dp *dp,
-> -				 struct msm_dp_panel *panel, u32 strm_id);
-> +int msm_dp_display_set_stream_info(struct msm_dp *dp,
-> +				   struct msm_dp_panel *panel, u32 strm_id,
-> +				   u32 start_slot, u32 num_slots, u32 pbn, int vcpi);
->  
->  #endif /* _DP_DISPLAY_H_ */
-> diff --git a/drivers/gpu/drm/msm/dp/dp_panel.h b/drivers/gpu/drm/msm/dp/dp_panel.h
-> index 9af2272da697e7aa49377c02abdb97e72f07c0bd..b4f6efaff7ed227d6e3fc846986aba375cdbbadb 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_panel.h
-> +++ b/drivers/gpu/drm/msm/dp/dp_panel.h
-> @@ -33,6 +33,11 @@ struct msm_dp_panel_psr {
->  	u8 capabilities;
->  };
->  
-> +struct mst_caps {
-> +	u32 pbn_no_overhead;
-
-Doesn't seem to be used
-
-> +	u32 pbn;
-
-Why is it a part of capabilities structure?
-
-> +};
-> +
->  struct msm_dp_panel {
->  	/* dpcd raw data */
->  	u8 dpcd[DP_RECEIVER_CAP_SIZE];
-> @@ -52,6 +57,8 @@ struct msm_dp_panel {
->  	u32 max_dp_link_rate;
->  
->  	u32 max_bw_code;
-> +
-> +	struct mst_caps mst_caps;
->  };
->  
->  int msm_dp_panel_init_panel_info(struct msm_dp_panel *msm_dp_panel);
+>  	if (msm_dp_display->max_stream > DEFAULT_STREAM_COUNT) {
+>  		msm_dp_ctrl_mst_stream_channel_slot_setup(msm_dp_display->ctrl,
 > diff --git a/drivers/gpu/drm/msm/dp/dp_reg.h b/drivers/gpu/drm/msm/dp/dp_reg.h
-> index 46400973eb499066e9e805b16df759b1db34cf22..8bc2a431462fc1fb45b1fe8e43a0a0ec7f75e5b1 100644
+> index 8bc2a431462fc1fb45b1fe8e43a0a0ec7f75e5b1..c7532217b369c6235b2fe5fe9c86642d5c2712cb 100644
 > --- a/drivers/gpu/drm/msm/dp/dp_reg.h
 > +++ b/drivers/gpu/drm/msm/dp/dp_reg.h
-> @@ -332,6 +332,12 @@
->  
->  /* DP MST related registers */
->  #define REG_DP_MST_ACT                          (0x00000500)
-> +#define REG_DP_DP0_RG				(0x000004F8)
-> +#define REG_DP_DP1_RG				(0x000004FC)
-> +#define REG_DP_DP0_TIMESLOT_1_32		(0x00000404)
-> +#define REG_DP_DP0_TIMESLOT_33_63		(0x00000408)
-> +#define REG_DP_DP1_TIMESLOT_1_32		(0x0000040C)
-> +#define REG_DP_DP1_TIMESLOT_33_63		(0x00000410)
-
-- sort by register
-- lowercase hex numbers
-
->  
->  /* DP HDCP 1.3 registers */
->  #define DP_HDCP_CTRL                                   (0x0A0)
+> @@ -24,8 +24,9 @@
+>  #define REG_DP_INTR_STATUS			(0x00000020)
+>  #define REG_DP_INTR_STATUS2			(0x00000024)
+>  #define REG_DP_INTR_STATUS3			(0x00000028)
+> -
+>  #define REG_DP_INTR_STATUS4			(0x0000002C)
+> +#define REG_DP_INTR_STATUS5			(0x00000034)
+> +
+>  #define PSR_UPDATE_INT				(0x00000001)
+>  #define PSR_CAPTURE_INT				(0x00000004)
+>  #define PSR_EXIT_INT				(0x00000010)
 > 
 > -- 
 > 2.34.1
