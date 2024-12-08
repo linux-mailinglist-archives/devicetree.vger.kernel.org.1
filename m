@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-128273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 231A29E845C
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 09:58:46 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF3ED9E8498
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 12:08:10 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA9E616555F
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 08:58:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88C362817FC
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 11:08:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD75F1386DA;
-	Sun,  8 Dec 2024 08:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A14A1420DD;
+	Sun,  8 Dec 2024 11:08:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eNyNjEmG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rx1Ol5DO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72961B7F4
-	for <devicetree@vger.kernel.org>; Sun,  8 Dec 2024 08:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDDC5130499
+	for <devicetree@vger.kernel.org>; Sun,  8 Dec 2024 11:08:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733648322; cv=none; b=eIrmEhKJeTek460RTj2b0amrYpGv0AW5QV27FfYVyyKeh0S9y55QOD8ZWlHXImjW6beO7FySTA2zOcoB7PAiVPFNg+WkwTKveOddFpnthhjkwikTYoGd93P57fwqsA2Z6E9P9UnrRKaji67Ewas/PyY90JwAIEc8IJUKcMxHrd8=
+	t=1733656086; cv=none; b=UdzSEec3OGXgWETdkFC1Zvc2936Xi4GKcwapzxtnIeuHoIiUnVetHeYrv4yD29wVGnkOspDQoJfCrp1bwb/tWge8h2NjpzFESVcZWTJa0FQGHwKe2vmPMua5A1ynV7ZDCQr4izz9Sa43cnK3ZU1nRYDx0wBSOSDhbnnf+bfchzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733648322; c=relaxed/simple;
-	bh=RQbkyjKr4TiDipSsUEXn2zR8QYwoe4/tilEBRq4ksH0=;
+	s=arc-20240116; t=1733656086; c=relaxed/simple;
+	bh=i2I5xFr43h6c0sjShesFHRb7pIhIwWji843MsGj7wy4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sueaXrWnzM21mQq9PR/ZEDeNJsKobn+mq8M+FVPD1TrkNoA1cNaqmq14Z8Kd/aCaQyWvB4stA8cjmgrY96+d5LXkCPyEDfXlEp2zKmMA7FPGA6XloMvOpFNs0UYYafzdYNyw5i6/aCw/O2cIBfOXLimV3SoCLIhtScX/C+Lltt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eNyNjEmG; arc=none smtp.client-ip=209.85.167.44
+	 Content-Type:Content-Disposition:In-Reply-To; b=apkRKMCNsOuV+XO4Qs8GBE2nQXdKnn9OuUh7qfXarrNTl86kFN6TLtvFMk208kWIaBuiYZ9Y0J3q+fzECMFxFdFN+DBkeJfSmzttqX5p+rOcCw7R28ClCYzm0f0hFprDuLukkfRCUajPq+nKnkRgtI2PGAtPU2e+nZHzcksccF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rx1Ol5DO; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53e3778bffdso2027479e87.0
-        for <devicetree@vger.kernel.org>; Sun, 08 Dec 2024 00:58:40 -0800 (PST)
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53df19bf6a9so4010856e87.1
+        for <devicetree@vger.kernel.org>; Sun, 08 Dec 2024 03:08:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733648319; x=1734253119; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1733656083; x=1734260883; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=D7Uh+SJQekyCtS3Bb8quKYzQ2jhfqR7g6RmC561JgnU=;
-        b=eNyNjEmGSVAhTKyUeV1I3mCtANCswL7L0hTrC30eEM8em0XHcMBiEuJxBZFvQyapIV
-         cGXAv7m7vyWFkLpa29QULkvILTzl6j3BNlv2Y2v6vUbLlFAWoKtZOI3nCs92dXbbqY8W
-         X/9OKDhOmJeC+Qh4Ykqx9MSfceUSKPpba4eUyNduMGq17NICkdPmWmWNAhnUCKU95esI
-         Qi3DINqb9eglJ8+wUlUrRhcN6FznaFKgqW6YiLLzR/rQmE52rRG6tucsuh6eZGV7kTBZ
-         DgH+vO2NfonyD+MykHh64z/H9eD/5wLSYkd9xhG+qYsjaRrPqFXm50L34pgQUsp8tSzi
-         Iypw==
+        bh=VB2+beIqVz9NLf8laV1xplvCTzTAKoRYTCewp8eMyUg=;
+        b=rx1Ol5DO8Vc9OEDr5V6nr0mRLVcWR7+/czbCP0fAYifjE9rjlbLptmgBqdNEITPuPw
+         91hv1S4bsKL6+sla/JRiHQbyl1lRSpxstD7hYZmq2F5OFKz6utPAd/HjoDP5CuTmo+RV
+         nA/p3NH/vrz6QyQCVR6XhPhteaf9MF1UpKnqbhtiJWtX1dKQ0Lk0DtuKjvoB71q5DP8a
+         Fn8nl0iv9bZA3lhqylYjrt2APDImDKrzGKGhn3cS4NKc5la53Mw9aMCjckj23agIn8T0
+         ePFoBkVGEvuJPAGVDWzD8o4fsiBODcAgL+70B5HqPGv2ioxvqncbNKDwiUbBH+aXFu+M
+         5aJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733648319; x=1734253119;
+        d=1e100.net; s=20230601; t=1733656083; x=1734260883;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=D7Uh+SJQekyCtS3Bb8quKYzQ2jhfqR7g6RmC561JgnU=;
-        b=NUk8OBWaieKGeGTU2Ejp4dPrdUggPLZTYOaMeoFGY7jOYsCwShcOk7sAJi+PME8zRL
-         d/J+i4tHt18fjuv/SUkmUFsfD6U2bhsrKtZCWJW8T7zIF0Ah8wXeSQdx/HdK3BbNlnND
-         afGBjOkIeQhZ481xL6dNHGLds3+D6JUxXHMVFWR2CBxfOXuzEij3qEqVGhfItCVfTx4+
-         tje0/Fz43NlFW9zNjzHMTeishalsIrSu4wEO+NenEdv6lBpob6ejfDX2/Cu7Pg/5MfQi
-         B5R+7HOLKOq/731KZcHJqYAYPodsr/zBWESnsIeBv+tpiQoOHUyoj+DMWn0sv5pLqSHO
-         WY1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWFHgP5oVJwQvLbzMZAK8lbBiA6Ni5Fb1SNtGDUUPGMp6HC3ikGzyTGX0pggo7kcaK181wmYtyY93yZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyZ+Z7i2EZDcNF723o7rtJHBZ3qlN46KNNZVRBxhhdFxHJdEvU
-	CjAhxNxj9/mipX9wf/4adieONoHopgvrZd9CplrO7rhveCPa6GhF33DnViiL5sA=
-X-Gm-Gg: ASbGncvXsqa3J0/ajYFOY9OfrkuWOxBwr5qoB2ShpPfBV5esAYiD/gJMN+39Ps2fZ5K
-	LsqU9VWhjaCkWWDoR6ydlxdP9IK5MRIPGnEI+as4QOhB1YcWcbgClhONJooxsyyoTaCt2wYmvpu
-	QB5KI40PmJQ7sRp44bZI+KOp2UxBxUXGcxBO7x510T9e1szy80Lcyg8QCkvrXQxvIeBVUYs/WFP
-	JiiopPE/Fgbg8Hd+m/oyAPP0SLLZjKoNRXaJ12uTVWaOI6RSxL2XWdWuVBw/C8vrMgpFCTlO7SH
-	79gnQ2hNr1MVy+A7ZrxNiDtBNVTfag==
-X-Google-Smtp-Source: AGHT+IH2ch7ihmd9jopH5ZUgfSxWgUmNfamdhAezIqSfVOYXD+euFjFOJiJWhx2N3HmtHnu0C5AiMQ==
-X-Received: by 2002:a05:6512:2208:b0:540:1e17:10d2 with SMTP id 2adb3069b0e04-5401e1713acmr110960e87.49.1733648319062;
-        Sun, 08 Dec 2024 00:58:39 -0800 (PST)
+        bh=VB2+beIqVz9NLf8laV1xplvCTzTAKoRYTCewp8eMyUg=;
+        b=TFcOgRA5B/Zm1So9J7z9JYhyeiZedwxDwQrOOTWsrSAeRKN0ynn2edMVx3MOwjANzF
+         9gvCIgR2XmNRahnP9IHsK1mixnTTVeSrQgDLGz5RMX/pZ1QEgc/terkr1yS59BXUYsbZ
+         7ZXxFFcfpia8p7K4jVPk9GsMHG+PKorRECzVgiDcuQfXE0kIvBMxqugucedVx948xdPM
+         /ENrlJUoLeoVKvTKtpmiou39FLfKJ8MT1UsR4WuSnaS9EIDFyOxHCMvAaXRKWwBseMty
+         3PvFqmb7KmRuzsHIUjNdE36SK8liwVTQL1ITKg95sdw18Rw4CIlrSCdqtiTSt3+HStPP
+         7aoA==
+X-Forwarded-Encrypted: i=1; AJvYcCXxJg3w6oZNV/Fkw5eL1QyVbqH/9Au7u1DeKDkmat2SKnhSB4vSu2J9yKji0KfxogA6BbpkzJD5CHC6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFeeWv7WY7bzjCInptcK+XhJCjpExdzDd8/kXho+7CIs7w/1fE
+	H68o/mrJYaFTFJXFzDUm0KovHo6GCvvei+iqVQ4sWczvXXLKtlxaC4fTl9gX7Y4=
+X-Gm-Gg: ASbGncu/11SKDmKAeW1qjkuZRYWTbnqHpfIxhCFErd/xu+anE2qDMdm7k7PfS3fIorM
+	/aK1E296VFY80lkhUEFiA5DyYFkg7ONVuTAee3cZ7aaAbBEjyTWV3aXE6gzl4/TiPdDUm2kIbN3
+	X8argXOT74yQj1Yg28Ls1/e4+y9KEpSOtKhFpT2kgvLt1SyGDHEkmwzVJbJqok50S1jXs9fax/f
+	j9dafJNLKaDhZ1xwD2/yVkTmTVu5uYIwrzZROyTBlMXd+Rk+T3YYxuZui3StXPrs0cDRGsZh7bq
+	YfbKEggUf5YXU33dlNC2asGB8LL+JA==
+X-Google-Smtp-Source: AGHT+IEPwz/DlmKiUGnz4YB99+xhYKrQeR262SJLPjLUw84SmBKtXiKNCszuVXMjeWuRzdQf1Pt2pg==
+X-Received: by 2002:a05:6512:398f:b0:53d:e4d2:bb3 with SMTP id 2adb3069b0e04-53e2c2efb94mr3986572e87.50.1733656082939;
+        Sun, 08 Dec 2024 03:08:02 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53f22eaec0esm364933e87.72.2024.12.08.00.58.36
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e377f3ba3sm648212e87.187.2024.12.08.03.07.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Dec 2024 00:58:37 -0800 (PST)
-Date: Sun, 8 Dec 2024 10:58:35 +0200
+        Sun, 08 Dec 2024 03:08:00 -0800 (PST)
+Date: Sun, 8 Dec 2024 13:07:57 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Abhinav Kumar <quic_abhinavk@quicinc.com>
 Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
@@ -84,13 +84,12 @@ Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
 	Vara Reddy <quic_varar@quicinc.com>, Rob Clark <robdclark@chromium.org>, 
 	Tanmay Shah <tanmay@codeaurora.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
 	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Yongxing Mou <quic_yongmou@quicinc.com>
-Subject: Re: [PATCH 36/45] drm/msm/dp: propagate hpd state changes to dp mst
- module
-Message-ID: <z55f2r7ooavjoj7gbjr4cg6xbf3p7bjayl5oe2uk26esgpdvfz@jx4kxbmyz7zq>
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH 12/45] drm/msm/dp: make bridge helpers use dp_display to
+ allow re-use
+Message-ID: <zdod6f2a6c33wbjxcw2kqg5mb3lkedmfxq47lgjxzxuul3lcsb@elka24uhxyw4>
 References: <20241205-dp_mst-v1-0-f8618d42a99a@quicinc.com>
- <20241205-dp_mst-v1-36-f8618d42a99a@quicinc.com>
+ <20241205-dp_mst-v1-12-f8618d42a99a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,128 +98,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241205-dp_mst-v1-36-f8618d42a99a@quicinc.com>
+In-Reply-To: <20241205-dp_mst-v1-12-f8618d42a99a@quicinc.com>
 
-On Thu, Dec 05, 2024 at 08:32:07PM -0800, Abhinav Kumar wrote:
-> From: Yongxing Mou <quic_yongmou@quicinc.com>
+On Thu, Dec 05, 2024 at 08:31:43PM -0800, Abhinav Kumar wrote:
+> dp_bridge helpers take drm_bridge as an input and extract the
+> dp_display object to be used in the dp_display module. Rather than
+> doing it in a roundabout way, directly pass the dp_display object
+> to these helpers so that the MST bridge can also re-use the same
+> helpers.
 > 
-> Propagate the hpd state changes to dp mst module so that it
-
-please fix upcase.
-
-> can be synchronized with the cable connect/disconnect.
-
-It doesn't propagate HPD state. Instead it updates MST state when the
-device is plugged / unplugged.
-
-> 
-> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
 > Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
 > ---
->  drivers/gpu/drm/msm/dp/dp_display.c | 20 ++++++++++++++++++++
->  drivers/gpu/drm/msm/dp/dp_mst_drm.c | 18 ++++++++++++++++++
->  drivers/gpu/drm/msm/dp/dp_mst_drm.h |  1 +
->  3 files changed, 39 insertions(+)
+>  drivers/gpu/drm/msm/dp/dp_display.c | 34 ++++++++-----------------
+>  drivers/gpu/drm/msm/dp/dp_display.h |  9 +++++++
+>  drivers/gpu/drm/msm/dp/dp_drm.c     | 49 ++++++++++++++++++++++++++++++++++++-
+>  drivers/gpu/drm/msm/dp/dp_drm.h     | 12 ---------
+>  4 files changed, 67 insertions(+), 37 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-> index 97f8228042773f51f23a9d39fc009de0798059d7..80df79a7c2077d49184cdeb7b801bf0699ff4ece 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_display.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
-> @@ -26,6 +26,7 @@
->  #include "dp_drm.h"
->  #include "dp_audio.h"
->  #include "dp_debug.h"
-> +#include "dp_mst_drm.h"
->  
->  static bool psr_enabled = false;
->  module_param(psr_enabled, bool, 0);
-> @@ -409,6 +410,17 @@ static void msm_dp_display_mst_init(struct msm_dp_display_private *dp)
->  	msm_dp->mst_active = true;
->  }
->  
-> +static void msm_dp_display_set_mst_mgr_state(struct msm_dp_display_private *dp,
-> +					     bool state)
-> +{
-> +	if (!dp->msm_dp_display.mst_active)
-> +		return;
-> +
-> +	msm_dp_mst_display_set_mgr_state(&dp->msm_dp_display, state);
-> +
-> +	drm_dbg_dp(dp->drm_dev, "mst_mgr_state: %d\n", state);
-> +}
-> +
->  static int msm_dp_display_process_hpd_high(struct msm_dp_display_private *dp)
->  {
->  	struct drm_connector *connector = dp->msm_dp_display.connector;
-> @@ -455,6 +467,8 @@ static int msm_dp_display_process_hpd_high(struct msm_dp_display_private *dp)
->  		goto end;
->  	}
->  
-> +	msm_dp_display_set_mst_mgr_state(dp, true);
-> +
->  	msm_dp_add_event(dp, EV_USER_NOTIFICATION, true, 0);
->  
->  end:
-> @@ -521,6 +535,12 @@ static int msm_dp_display_usbpd_configure_cb(struct device *dev)
->  static int msm_dp_display_notify_disconnect(struct device *dev)
->  {
->  	struct msm_dp_display_private *dp = dev_get_dp_display_private(dev);
-> +	struct msm_dp *dp_display = &dp->msm_dp_display;
-> +
-> +	if (dp_display->mst_active) {
-> +		msm_dp_mst_display_set_mgr_state(&dp->msm_dp_display, false);
-> +		dp_display->mst_active = false;
-> +	}
->  
->  	msm_dp_add_event(dp, EV_USER_NOTIFICATION, false, 0);
->  
-> diff --git a/drivers/gpu/drm/msm/dp/dp_mst_drm.c b/drivers/gpu/drm/msm/dp/dp_mst_drm.c
-> index 313eb63b9a35cbbb36db2d7d8f0a85e4441f2998..1149af71d01f99ba5326870fa69e30ae081d6101 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_mst_drm.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_mst_drm.c
-> @@ -1043,6 +1043,24 @@ msm_dp_mst_add_connector(struct drm_dp_mst_topology_mgr *mgr,
->  	return &mst_connector->connector;
->  }
->  
-> +int msm_dp_mst_display_set_mgr_state(struct msm_dp *dp_display, bool state)
-> +{
-> +	int rc;
-> +	struct msm_dp_mst *mst = dp_display->msm_dp_mst;
-> +
-> +	if (state)
-> +		mst->mst_session_hpd_state = state;
 
-Where is mst_session_hpd_state cleared?
-
-> +
-> +	rc = drm_dp_mst_topology_mgr_set_mst(&mst->mst_mgr, state);
-> +	if (rc < 0) {
-> +		DRM_ERROR("failed to set topology mgr state to %d. rc %d\n",
-> +			  state, rc);
-> +	}
-> +
-> +	drm_dbg_dp(dp_display->drm_dev, "dp_mst_display_set_mgr_state state:%d\n", state);
-> +	return rc;
-> +}
-> +
->  static const struct drm_dp_mst_topology_cbs msm_dp_mst_drm_cbs = {
->  	.add_connector = msm_dp_mst_add_connector,
->  };
-> diff --git a/drivers/gpu/drm/msm/dp/dp_mst_drm.h b/drivers/gpu/drm/msm/dp/dp_mst_drm.h
-> index b1adb8a61115d4809107553809206bb2ed3c6c3d..b89913ef7b343d449e0003f56b96df049fa36e89 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_mst_drm.h
-> +++ b/drivers/gpu/drm/msm/dp/dp_mst_drm.h
-> @@ -105,5 +105,6 @@ int msm_dp_mst_init(struct msm_dp *dp_display, u32 max_streams,
->  		    u32 max_dpcd_transaction_bytes, struct drm_dp_aux *drm_aux);
->  
->  void msm_dp_mst_display_hpd_irq(struct msm_dp *dp_display);
-> +int msm_dp_mst_display_set_mgr_state(struct msm_dp *dp_display, bool state);
->  
->  #endif /* _DP_MST_DRM_H_ */
-> 
-> -- 
-> 2.34.1
-> 
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
 With best wishes
