@@ -1,120 +1,101 @@
-Return-Path: <devicetree+bounces-128356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 350809E8727
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 18:50:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF12F9E8730
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 19:06:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A327418850BD
-	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 17:50:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A31421884E31
+	for <lists+devicetree@lfdr.de>; Sun,  8 Dec 2024 18:06:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 398E11865E5;
-	Sun,  8 Dec 2024 17:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AB417ADF7;
+	Sun,  8 Dec 2024 18:06:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YwE5ETXL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IP08T/PM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E4A15624B
-	for <devicetree@vger.kernel.org>; Sun,  8 Dec 2024 17:50:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACFE64690;
+	Sun,  8 Dec 2024 18:06:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733680218; cv=none; b=htkFNwlPv80tSJ8Tot4uM1MAb2pr7UTUOsQlIip8+Ub7sxYsYmQYlIeCEfh5lmVOFucDPukxTs/Lb1Vkxe4UKahaZdMmyf+3xsQPdR7QJYYTQieyXbljurMPDApFZI97QharCpcnNvi+3QxmDIObty2gOgR95+MiHih4Jg2V5XU=
+	t=1733681210; cv=none; b=j/FKzfWGSV85qghQSY1y/CCM/agh4SRETmS1Y/Fr9dtro0ROkyIssMySy1lLu24NRQg2UOtOS3bXcmO3Zh/1r6VFnApQG/ULNjcMoFhLP5HiccAq0gC/GQbOV8lG9bd+rHrmWJVZ51PvBioeV/gyLUMca+PCk21T+jZZMKmJ9LU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733680218; c=relaxed/simple;
-	bh=NMYKVwOZ9ghfzC4m+4A/KuTL24A3wsDJ9KyStazQPDI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HPwGSW0ShnSW2j/KxDWyUSyldzHXUzk//bNJJd5XQVWmdjNSG0AFSV+sW9vkqPR6bkcQJABBMHQGQdFL+cQcuSRcH80LltY/JUvDwv3+jP91BncK4N3oceWTdOiThqHFyx6im7FyZmZqhvt2oSlAUOj/ZjBJ2P89vApkWhL/Lno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YwE5ETXL; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-53f22fd6887so921051e87.2
-        for <devicetree@vger.kernel.org>; Sun, 08 Dec 2024 09:50:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733680215; x=1734285015; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5u+YWQpYadE0OMjiReHLCH4W+mWwJz1CAGoagd9qERs=;
-        b=YwE5ETXL45dR3NiDyBkaiLAjde/o6JdC74ASIRrZBPm1RgSPgIyfbdLhnybLP5P0ze
-         6GhaIVanz6olFKz0KjT9lJb/zH1IFNy/zgtF8Q82XvlltCB/IYqfwwwbyBMg/5QQZ+Rr
-         V/X2nyLkybPWPD4wJdCaL2k6axem1qYEzMU9wBb3/a9NpDgfkPPUrVjp+Zsoe+CPIoQG
-         8RL3EgJPbualIL+ZocEqCpOfTsOSV8YLGnKtybFQTrLCrTPhg4h073nKPFk3NyIq9lTn
-         fcTdK4ZZRX1UC+PlO5xTb1rvLd8X+K6cye4mO8zu6qjJzOy7aPtPUB/h96p40g7tRp6+
-         f71A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733680215; x=1734285015;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5u+YWQpYadE0OMjiReHLCH4W+mWwJz1CAGoagd9qERs=;
-        b=WwBnC12a19K/7St7wsCWfQenfQ4Nx4MABV592SEmLIQeM/jNl9EHhiSx58jY66nYKj
-         9CRfya3/9EPzK3+jQIv+4R9kycRS+1ZufZwtWgx1kg4Ato7Z3vcDRRBczv3JhdVPjYqh
-         mFdAm+DkJZt1GjgFbIA7kDakJ5CnzLhjLVB9zUJwM5uARGFrDBEBf2fYIzcC4k9ULeRj
-         Ipf1tLBRj/uzprPXTCQy+mXBKdfzEGXUolxABmPmZKJxtR7HUd3Z7uZwCn2o4DTbQOzf
-         A4uPEiLZEQTa7tLA7eeND7JT5tnbVv337B1LOhWiNZNoKDWhnsG9qsM2wwAIUCNjavAb
-         PEiw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7kSYpRSKS17nP5QbehFgCWssllK244njmcB+5wTHda0GRtm/JwkrVmFiUvqOeKEhlh6khUyytS+nx@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTpmOC0CxIathPylOpPwnJ5fkNh4uJ+9q3TvddMl9O+T6cwr24
-	4fRvXC+W4HTuVFeYfeAg0KuzQUUzvjSxgdkWE6v9Q0AMqVIQidsBMm8j0s5XNSI=
-X-Gm-Gg: ASbGncvb6RhLLEOm8k7SnCcgQ/Vbn57dIIuEONMrwjFLaZYb4zI7DMFu8mGSPODbX6P
-	HJKRh6D2/LAPtHEGAhtWmfI6ZPEeowGxidV9/EKEVPRhZA/qQad15EUymZeINmHHbnH1jLSDfMG
-	k6Uk0ImAV++yFxnV88YXdTyguX0dOpK5p9AI6HUIzskP8p+QqOEyvzOocN2d+IghozWb7i8plEt
-	4FeV2LNn/xyrI1OV9bqTlw8ddgC1x0fys3V7emdwJhV32QJadd/i9Ggkz/02Rh0XdtYQzpH/3Lw
-	HwgIVjHszNQRUducsgOi3DBqMw0SbA==
-X-Google-Smtp-Source: AGHT+IEVJLXOPnyFmKaPz9KPMKbv70YRlg73dziKIo45JVQh26G1HQVfDj7ebpdmC8hy5ZJT275q6A==
-X-Received: by 2002:a05:6512:33d0:b0:53d:cfdb:c65c with SMTP id 2adb3069b0e04-53e2c504c25mr3188513e87.52.1733680214661;
-        Sun, 08 Dec 2024 09:50:14 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e3968850dsm659447e87.31.2024.12.08.09.50.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Dec 2024 09:50:13 -0800 (PST)
-Date: Sun, 8 Dec 2024 19:50:10 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Stephen Boyd <swboyd@chromium.org>, 
-	Chandan Uddaraju <chandanu@codeaurora.org>, Guenter Roeck <groeck@chromium.org>, 
-	Kuogee Hsieh <quic_khsieh@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vara Reddy <quic_varar@quicinc.com>, Rob Clark <robdclark@chromium.org>, 
-	Tanmay Shah <tanmay@codeaurora.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH 01/45] drm/msm/dp: dont call
- dp_catalog_ctrl_mainlink_ctrl in dp_ctrl_configure_source_params()
-Message-ID: <vemardbn3siohtg74hgjsnugkm4adqw6ekc4xhvjq3fty2rfov@5yhhsvjsnp6z>
-References: <20241205-dp_mst-v1-0-f8618d42a99a@quicinc.com>
- <20241205-dp_mst-v1-1-f8618d42a99a@quicinc.com>
+	s=arc-20240116; t=1733681210; c=relaxed/simple;
+	bh=3gyWN0nYw0ZJ8J+Q0jBubhEOhcx0fnY2sf1SZDVpBoQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bQi1viYDmACLUW32U2tseadxo9b3OLbFGdJRLHnU2dQMzop4Y4RJRd/MPT6e8humBzZiIUhKQjsTlkj5qtTnBn6LsWfMRf+nC63SHtMQXmN5bTJmGpcR1EEkQfz9sBmrdNJI7pgcISoM0OjrUdfTIk0MRDjm2/++mO8KhuuAJhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IP08T/PM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16311C4CED2;
+	Sun,  8 Dec 2024 18:06:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733681210;
+	bh=3gyWN0nYw0ZJ8J+Q0jBubhEOhcx0fnY2sf1SZDVpBoQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=IP08T/PMxV4h4GyktWQEA5v7zBbEXJZK2R4AYSHPpKaevfqv4ZEVStcH8gqYsANur
+	 +vB7Fm9ZfEvWsY6mstfDUsVvpPpFcamh3MiD+0YOU8vOMZ6n0lyzG0yyuIEYfim9AT
+	 ivScYH1zq4f6+fUGauyPSamJp3US84dcVegCHo5bjR0X+B74l1kyUQfdAVkPlRBufl
+	 Bky/CBr16ywQTvyotihVnNP3V27PPuPWiJqAJuN2jqatLJVI6P/BfS1TOS09mpp/6w
+	 jsejoPpIRWcVzrFdDIZ2ziczzkBjwtO2avXUNLo0ZsYQ/xkHO4yAdPstkaOkfj6w0d
+	 zIIAJJjQnk3jg==
+Date: Sun, 8 Dec 2024 18:06:40 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andriy.shevchenko@linux.intel.com, ajarizzo@gmail.com,
+ ak@it-klinger.de, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] iio: pressure: bmp280: Use sizeof() for
+ denominator
+Message-ID: <20241208180640.52f4c41d@jic23-huawei>
+In-Reply-To: <20241202181907.21471-3-vassilisamir@gmail.com>
+References: <20241202181907.21471-1-vassilisamir@gmail.com>
+	<20241202181907.21471-3-vassilisamir@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241205-dp_mst-v1-1-f8618d42a99a@quicinc.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 05, 2024 at 08:31:32PM -0800, Abhinav Kumar wrote:
-> Once the link has already been setup there is no need to call
-> dp_catalog_ctrl_mainlink_ctrl() as this does a reset on the mainlink
-> thereby tearing down the link briefly.
+On Mon,  2 Dec 2024 19:19:06 +0100
+Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
+
+> Instead of using magic number 2 as a denominator, make it intuitive by
+> using sizeof().
 > 
-> Fixes: c943b4948b58 ("drm/msm/dp: add displayPort driver support")
-> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+Applied this patch.
+
+Thanks,
+
+Jonathan
+
 > ---
->  drivers/gpu/drm/msm/dp/dp_ctrl.c | 1 -
->  1 file changed, 1 deletion(-)
+>  drivers/iio/pressure/bmp280.h | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
+> diff --git a/drivers/iio/pressure/bmp280.h b/drivers/iio/pressure/bmp280.h
+> index 2df1175b6b85..a3631bc0e188 100644
+> --- a/drivers/iio/pressure/bmp280.h
+> +++ b/drivers/iio/pressure/bmp280.h
+> @@ -470,8 +470,8 @@ struct bmp280_data {
+>  		/* Sensor data buffer */
+>  		u8 buf[BME280_BURST_READ_BYTES];
+>  		/* Calibration data buffers */
+> -		__le16 bmp280_cal_buf[BMP280_CONTIGUOUS_CALIB_REGS / 2];
+> -		__be16 bmp180_cal_buf[BMP180_REG_CALIB_COUNT / 2];
+> +		__le16 bmp280_cal_buf[BMP280_CONTIGUOUS_CALIB_REGS / sizeof(__le16)];
+> +		__be16 bmp180_cal_buf[BMP180_REG_CALIB_COUNT / sizeof(__be16)];
+>  		u8 bme280_humid_cal_buf[BME280_CONTIGUOUS_CALIB_REGS];
+>  		u8 bmp380_cal_buf[BMP380_CALIB_REG_COUNT];
+>  		/* Miscellaneous, endianness-aware data buffers */
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
--- 
-With best wishes
-Dmitry
 
