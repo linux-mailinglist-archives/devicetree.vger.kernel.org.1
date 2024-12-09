@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-128532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E1209E8F44
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:52:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D74F9E8F3F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:52:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C49B18869FF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:52:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B5B1164A50
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:51:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00231218586;
-	Mon,  9 Dec 2024 09:51:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254AF217718;
+	Mon,  9 Dec 2024 09:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="kXQPbSzn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iHgxnPPt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DA4217724
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 09:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED6AF217707;
+	Mon,  9 Dec 2024 09:50:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733737859; cv=none; b=d5DPMGd9ovyJNDmQmRXuWuH4/aQeYEChCtFpkN0qa3iZDSpEMKiCcHZI/+SG/vZx60y01QJBpJBy1goWHxF20dOqBkrQNopojkP5XfhH/qyEJokBjsClq64SKSnvgiqtBA8yPF7se3nM1Og27t/6kZ4o+CjvJaGEVbHXyTHcsog=
+	t=1733737856; cv=none; b=W8LxHxdHzoo5afCuV+QmszC1TBd0Eot8y+bVSeT8Rulwaku/J0xTfQ7mzmHQOuYcRAiHNeM4QiqBXDV9q+wVA7JsVw+A31E+lLQq0DI5M3NpDW2J8r4mSoe0GspdkGZUgNT7tpXRopj2PxuPWx45rezPZJjAH/ZrCkBTSOVU/C8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733737859; c=relaxed/simple;
-	bh=3NPSA3+8fscJ2FyuYaclk2rGZQ3JVTTNETwfOklgM3M=;
+	s=arc-20240116; t=1733737856; c=relaxed/simple;
+	bh=zlE6YzHqonNnZTzFpaPhYq8EhMnagDX5FxmFg80dswc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HtX8SbXBMz6budPfH6+SvEbqLlpBsytFaHX/rkp+bB0wpa1y5wK9plXkoB6+V4OzWsgdrovfNIWcC9rEecjchByH/9hcneAXW7d2gCF5dQYTiCRaOYwd+7g+Wn+55r0S34z8mF4kc1Rx81HuPgvc2GYRkIfe33eIKd0o75NH8to=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=kXQPbSzn; arc=none smtp.client-ip=220.197.32.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=ChAIwGV7ZFkveVH5BCfEgrQPKa+agmYwut0/xNKhFek=;
-	b=kXQPbSzn+GbtajNR9BYQgkCkT46oSgqEAk3vHk2xh08y8sMDwLyTPHvGVH86JT
-	90W2P/YNcISXT49tA0P8H+N7ydzUSjU1PgY33KB8wfr8u29gSsqSif+/UCaq5IZs
-	88dVcX/NQ014JwgTSZPM5oBizvpZiAg4d06b2H8j84V0s=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgB3NtRBvVZnJDOOBA--.47668S3;
-	Mon, 09 Dec 2024 17:49:55 +0800 (CST)
-Date: Mon, 9 Dec 2024 17:49:52 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, kernel@dh-electronics.com,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH] MAINTAINERS: Update entry for DH electronics DHSOM SoMs
- and boards
-Message-ID: <Z1a9QGfVsSzc81ZL@dragon>
-References: <20241111113524.10727-1-marex@denx.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pt0afJ7YLZuuF6NwW0U3aUR2HOaIwxk7r8ZFU3Qp/hnZdlSB/cuV+dHWBMcaB5YD166FYClkmIPXxuKcRB8Z8Fiq4RtzEbvPL4KzyGiSGusQSsi8JFITglX4949ODoZLXYAaXfv60qie/M++cI1VQuDh+ek/DhqEHYI2xDfvIC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iHgxnPPt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 065D0C4CEE0;
+	Mon,  9 Dec 2024 09:50:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733737855;
+	bh=zlE6YzHqonNnZTzFpaPhYq8EhMnagDX5FxmFg80dswc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iHgxnPPtMCg+g/wB3jTZ2IQptQs7eux5/16ywS+TCnDJNg06oPKJ2WOIq8DCypeLB
+	 TAYTmtMHn6VIbxA3/Pv0BFgA9Kuxjy59Yj3sP9W5ARjklVZnyIEF5fYHBdsO15X+z4
+	 AjGc4L0XwTCWB4kYDGsLPhUP9ZrjA8xxt3XJNNRJCuxIorH1wi0w4k2ay1IwPhwDFt
+	 gz/V8EbGoRGYKr6bav96DPbhXfm+eunbHeBkDONHY4P/Gop8HpnTGCrdeGhIBvzBjZ
+	 50IMSxgEf1WngQScqBYXkw6Ep5z1er4CIAPO76NIDJd5ReQcvV67YmsK8eiit4SkBF
+	 +5MLF16AKRYkw==
+Date: Mon, 9 Dec 2024 10:50:53 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Trevor Wu <trevor.wu@mediatek.com>, kernel@collabora.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org
+Subject: Re: [PATCH 3/5] ASoC: dt-bindings: mediatek,mt8188-mt6359: Add DSP
+ properties
+Message-ID: <264jrfp646x4clus6yanbldqkfz6eao3wdveyokxkcbpqufopo@gpr4qacexemp>
+References: <20241205-genio700-audio-output-v1-0-0e955c78c29e@collabora.com>
+ <20241205-genio700-audio-output-v1-3-0e955c78c29e@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241111113524.10727-1-marex@denx.de>
-X-CM-TRANSID:Ms8vCgB3NtRBvVZnJDOOBA--.47668S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUaznQUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRWwZWdWsiw1LwAAs8
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241205-genio700-audio-output-v1-3-0e955c78c29e@collabora.com>
 
-On Mon, Nov 11, 2024 at 12:34:21PM +0100, Marek Vasut wrote:
-> Update the MAINTAINERS entry to cover all DH electronics DHSOM
-> SoMs and boards. The DHSOM is the name which covers all modules,
-> DHCOM is the SODIMM seated SoM, DHCOR is the solder on module.
-> Use glob pattern to match on every DT file which contains either
-> of those three module substrings in lowercase.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+On Thu, Dec 05, 2024 at 09:13:56AM -0300, N=C3=ADcolas F. R. A. Prado wrote:
+> Add the mediatek,adsp and mediatek,dai-link properties to allow
+> describing the DSP configuration in the sound card node, as is already
+> the case for other MediaTek SoCs.
+>=20
+> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> ---
+>  .../devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml      | 10 ++++=
+++++++
+>  1 file changed, 10 insertions(+)
+>=20
 
-Applied, thanks!
+This looks like conflicting (or applied) work.
+
+Best regards,
+Krzysztof
 
 
