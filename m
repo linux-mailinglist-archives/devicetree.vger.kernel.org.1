@@ -1,86 +1,104 @@
-Return-Path: <devicetree+bounces-128497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F2C89E8DAF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:41:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BC559E8DC1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:47:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58F812813C5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:41:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F07152813CF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:47:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3BB2156EB;
-	Mon,  9 Dec 2024 08:41:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 943F01EB3D;
+	Mon,  9 Dec 2024 08:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="px0ajlkX"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b="ZvIvdBTk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mta-64-228.siemens.flowmailer.net (mta-64-228.siemens.flowmailer.net [185.136.64.228])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5CF136357;
-	Mon,  9 Dec 2024 08:41:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB2316A92E
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 08:47:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.228
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733733694; cv=none; b=XzA/104E31m/YxJ860w782PPZwYox4OADZrKs5RwWYJFnO2uxuriCvILmgh1tORU9s+ZMBkpd/gdDbctmnJ9RQlChirGaP6OhhRpGZHgCVHpxyIQl8iqRB5lgnRY5Erd25UbPf02+/aQLlIDQN8uxI1LzlzXZF3MFFWLgIhirKw=
+	t=1733734065; cv=none; b=q/MIjxnYCib8tZl4LYAW3dHUYnZwr6Hr//+BIBEFvCw/mmltY3F2WCCLwQOIsD0+F6tkTdfEYP4Zo7uqrcTUOJuejiwcgCofWrm416WJW9oc6QHQk31AoDyOXbnDwy+rPgRt31DxmJtjRi4PpDbm74D65j3elsGiEo557ZFW5Do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733733694; c=relaxed/simple;
-	bh=jDoyGXxmK/hzl0isoHA9luNOBfdMCevCyeKzjRCxhn4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HtV46H7PLZuCKMDkcoi4hvnqnahm6jcOIXKZDk4EbU4iIwhSESvCZGs0sWUGZEj6/YeYvhaOLNEKykzjZ05RUP+L6P5UaPuY6AVU834CP1x7F7UTiWJkdHEJ32NK5vx3+uF+braiqq0pnlOPV6QkpcUAkVJMCGnDMRF3KquoH14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=px0ajlkX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3DFEC4CED1;
-	Mon,  9 Dec 2024 08:41:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733733694;
-	bh=jDoyGXxmK/hzl0isoHA9luNOBfdMCevCyeKzjRCxhn4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=px0ajlkX+RWhpzoWf0XnSPdacFYK1kom66O+AlVv50CPAukyXsdeAqALgbzLrBRum
-	 jyxWRlUzrMVZITF9SAaMmjVEBmzTmKSQ/oPBktsZxWussWgbDklQV+HIf6Hu2iVapI
-	 UqbYqi9TWxIr1uT2KyivgjbVYt/Ast+qQiD4k1JQNkwhz9MABCQgYO9Xn0wWbmeNYH
-	 spaEmGulCJV6excleuOM13iRkDQiwBMPrBIMizfsavKVucIdnVIVF4l41y0JaxKQKN
-	 BT1T5T4fzzrrVBVZePvYut1MfCc5f27tgKJk5X8Rm2QxsCsR4/jS7IYFb3tL43l9br
-	 Z6Fy3ikuygFTw==
-Date: Mon, 9 Dec 2024 09:41:30 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Igor Belwon <igor.belwon@mentallysanemainliners.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] dt-bindings: clock: Add Exynos990 SoC CMU bindings
-Message-ID: <4thu4plnvcamln52tjiuba74nwxthj5aqmgwo4eliqipuruh5n@rz6boaywnbsw>
-References: <20241207-exynos990-cmu-v3-0-20c0f6ea02f0@mentallysanemainliners.org>
- <20241207-exynos990-cmu-v3-1-20c0f6ea02f0@mentallysanemainliners.org>
+	s=arc-20240116; t=1733734065; c=relaxed/simple;
+	bh=yFeXdguKgezhZbeXdHwIiUAIjL7X5X2LJxGISo88gHw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=O4lyJjMHszqZi2Can7AXdVNgw35wW87EirUf6tiXYxvjjtngVeiz4Fmq11TOHDnz7nn3d92BaKMQy0rs0xGJNyG3gSasMoweXOKCU71y9f8UEDUwSjDNbVgg26fn+ZlEbnP2r/Rs+ufNIvbK+F1tJb6i4XDxCa2R/uJBF44MuqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b=ZvIvdBTk; arc=none smtp.client-ip=185.136.64.228
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-64-228.siemens.flowmailer.net with ESMTPSA id 202412090847346d0ea37b928c78aa96
+        for <devicetree@vger.kernel.org>;
+        Mon, 09 Dec 2024 09:47:34 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
+ d=siemens.com; i=alexander.sverdlin@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=RcFkfLf5JHyNV6VrGv7B7FQVpfdFZ2qiET5cMOD+/WQ=;
+ b=ZvIvdBTk3CLXAAm+2TSeOBpveKVrq4b9o6RH7efhV600PbOVFrau9iSrTe4ETTx2XI/4Nj
+ rShmzzeBpyPI2WEGb2o7Ayxhv6DoBM7WdMrVauZZ+m+M3nQ0mSYm2n1kwAj/vHQLr7K73n8j
+ mSdR5Eg1akQ67+0X7LrnP3ERD/mwjHYo+tuflUQN23pEy0LxzilGG3URpkUd/aACRzEdj2U4
+ jkaKNOzoOTlIy1AHsXsXrIJ8pNyiqOU4KSSjv4PXwjgfKucyReHt6iSUDQMzj+ty5teFofjE
+ 4vAVLhCYh91MJjfnH8PJ0qzffFB2t1YFaYbZ0JwfIALt0w2Cetna+9BA==;
+From: "A. Sverdlin" <alexander.sverdlin@siemens.com>
+To: linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+	dri-devel@lists.freedesktop.org,
+	Lee Jones <lee@kernel.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Davis <afd@ti.com>
+Subject: [PATCH v3 0/2] leds: TI LP8864/LP8866 support
+Date: Mon,  9 Dec 2024 09:45:52 +0100
+Message-ID: <20241209084602.1199936-1-alexander.sverdlin@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241207-exynos990-cmu-v3-1-20c0f6ea02f0@mentallysanemainliners.org>
+Content-Transfer-Encoding: 8bit
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-456497:519-21489:flowmailer
 
-On Sat, Dec 07, 2024 at 10:25:38AM +0100, Igor Belwon wrote:
-> +        clocks = <&oscclk>,
-> +                 <&cmu_top CLK_DOUT_CMU_HSI0_BUS>,
-> +                 <&cmu_top CLK_DOUT_CMU_HSI0_USB31DRD>,
-> +                 <&cmu_top CLK_DOUT_CMU_HSI0_USBDP_DEBUG>,
-> +                 <&cmu_top CLK_DOUT_CMU_HSI0_DPGTC>;
-> +        clock-names = "oscclk", "bus",
+From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
 
-One per line
+The series adds support for a family of Texas Instruments' automotive
+high-efficiency LED drivers with boost controller. The four or six
+high-precision current sinks support phase shifting that is automatically
+adjusted based on the number of channels in use. LED brightness can be
+controlled globally through the I2C interface or PWM input.
 
-> +                                "usb31drd",
+Add new DT bindings for ti,lp8864 to support all four software-compatible
+devices:
+- LP8864
+- LP8864S
+- LP8866
+- LP8866S
 
-Fix alignment.
+Add leds class driver for these devices.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Alexander Sverdlin (2):
+  dt-bindings: backlight: add TI LP8864/LP8866 LED-backlight drivers
+  leds: lp8864: New driver
 
-Best regards,
-Krzysztof
+ .../bindings/leds/backlight/ti,lp8864.yaml    |  80 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/leds/Kconfig                          |  12 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-lp8864.c                    | 308 ++++++++++++++++++
+ 5 files changed, 408 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
+ create mode 100644 drivers/leds/leds-lp8864.c
+
+-- 
+2.47.1
 
 
