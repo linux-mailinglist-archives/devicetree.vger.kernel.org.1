@@ -1,151 +1,167 @@
-Return-Path: <devicetree+bounces-128873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 824F49E9ADC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:48:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 882039E9AE2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:49:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78F291886CD5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:48:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B03361888278
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:49:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E67407080D;
-	Mon,  9 Dec 2024 15:48:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="wQl5oELe"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93F684D29;
+	Mon,  9 Dec 2024 15:49:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0110F25777
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 15:48:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07C2C25777;
+	Mon,  9 Dec 2024 15:49:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733759316; cv=none; b=HSt89dVsHSxZyJPVl67F22m1AdOeUAHooPQD0DKsLt3tsGfzKWLcrYa6uvCl3VlZUGqy70AAUAsoUCEl0nf69LJgX3SZGkfKdLtCHqZEmxnulS1IdZzH0cEm1i4kaZW9DagsB/CVOwlt+oObV1+LzH7robrhw17twvHNXPaOJS0=
+	t=1733759370; cv=none; b=dAKaYWfAMolhxDLsqkswf3OPwuIwD+Efsx9IWrwI/syav9SKoPcBYqxqwRTH2anvGaFmY3EMrZLaEWgsyOSTl8pah/C3u4YNBkPyQSHeDumMKeSrXZuB8QRCXlPEZ1IGznME6+tgUlycMj+Qsedwbsc/aeM7RIwKhhm+bOYGII0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733759316; c=relaxed/simple;
-	bh=tkRV4A98VPqKt0nkRP4bO/sl+l5nuvjhdLHvhXHhjNg=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=XT/aHAITX/igjnIv/Qdj+L10TFvgfUihcKUV/X+XUF+rT5q19PTr2rhkzjOxTaOFqqnNfFEBMw4NDNyzfsMa+mnk2TDVXTElU9EpItYJ8poTt0HzVBmzZDEU24QyOOsbcIJ/t5bcgWnYkX2Q/Hxayj2lcQ4nwHo0CGS8ES+hiUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=wQl5oELe; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1733759370; c=relaxed/simple;
+	bh=LjMNUFQMHLJCY4P1HKwbqDBINnhwCB3WKXmNB65YJmk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=i5FV2Kxp9FaUEsxq6/ZXdbN8cfW4rSeaZQyg7LIxxMCM34Sn9oiUyMoU0CnroEThfnOeocZNtcBxI4/G3HFHU2Ao6704NFRXUZB6fr/Cqttuq8hZ0iiC+lNsFiyePS/uIdqxGps+rntuZTJd1S546y7m9Ij6W9AeyaCThZpDEBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-85b8c94a6b4so887703241.0;
+        Mon, 09 Dec 2024 07:49:28 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733759365; x=1734364165;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4aTRQnkUNKVUbImYBxHqUKoieNHc96HYQ9+Ue9BP2LI=;
+        b=DWaNx+iJdA4nmI6FrUxutX4n8Dv7o83QnU4xrlkTOSUa/9XPxBy2CVbZQl5orZtFGD
+         s/ffNwsZ2/KiDXaAQ6bMFKQAmaRKExFQiDe6Rf8C79mkjkTu4QuqCd4ILWnJIBkZO43O
+         otdY2myI5Vil4QFklemLvq3YThOBpsOtClXMSd5XmpENi1XAh8jUxN7TSgqqx210dTG2
+         T647ohDhZ/fiQFY5d9FQYT9EsJ2tiGNW5XRQh96q8nJP9JVubKJ6PcU+hZp1ZFYBOUPM
+         re+SjImisQiPYz+0ITphA6bDAtTcavd7TogDkKBBOYRAIblM8rqBs4RtfdQbHgMjTAoh
+         Vsnw==
+X-Forwarded-Encrypted: i=1; AJvYcCUyDcgT8TzEFCDqE4IkYKoGjXT8ZQMvki+7bGuxdiUrQjrf8DWnjlhSDwLuuWED/dRlbDEJ166UnCQEAg==@vger.kernel.org, AJvYcCV5oyQVree2xG/SSHl/he5aoP7wpF3XYtjQxbpVHj/p5p3ATEbJlDxiEvzxnz1S4AduEh/vtbrPl0s2tJXzGlvIOY8=@vger.kernel.org, AJvYcCWceaDcnrAZOIOj7B6Mpmtt+EuM18wXXy2rbrTgq1IWXUiy9O3tBVFC51mUoqa8ZngCr8K4UI9QBkljuTJw@vger.kernel.org, AJvYcCWpZXk4QvlWU2UBfrfX4atmU7sV6xEfA+k3Bdg5r+Ap4BXkjLG2y9NuGPKCJE7uVcIrDwB6SAyqmshx@vger.kernel.org, AJvYcCWsDXu9HT3Deue0Syx+Dk84UoedUy+bulLaiyDdGdO/ECPb5/f5eKgDWRE2m+LBA92v3xuJr3DvPTIU@vger.kernel.org, AJvYcCXKLnDUWxExLJ06OwFhkRlLS83BbX+xUcGUWZcllupIcwc/7kXpXqEOVtf98+PsCQ4gPwkb77q4EYSTZJg=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkOcQKb2MqPWEVhF5FyFXknugdEHp6Q5t8giXhL40RWWGu8r4q
+	0MYhGIQHKk/x9F5haYpgTG4tVpVvsjlbBWOFsjkKzov+qgTynpZTYmjkRBcQGes=
+X-Gm-Gg: ASbGncvabtXm6Q7hJVortvhJHKmbhTGejfNpriKEOzjNE6ZeNPoewHOXpHP0i79gDCa
+	VNRrNZMET9AEPOKDEu7FEyiPoICMjunW7b05P23WSkqczO1Wv7rKcj8s5X5YqRTDsJoWlUO6Oqc
+	GHrixQVb/Udx5XS9yREWEiRyTK1tfVhV1yVIBJnr+96NSbOVpjLKS0T4MOjterWVSF6oS9aJFmi
+	M2UnwpWl61N+EyVO07NWOPDz+igjIVvqJ0hMQj9hVkO7HrvLWiwNfZosvlAVRjIWtdRgPooj3hd
+	igmqXfgedE5e
+X-Google-Smtp-Source: AGHT+IEt70oVAjOZug8nZYNXKcFzpzT7aPP023b4YfeR/u48ImT0UyP5usSDkyZ31PflPQQXg3YJdw==
+X-Received: by 2002:a05:6102:d8a:b0:4af:f6e5:2b46 with SMTP id ada2fe7eead31-4b11608bc29mr1725441137.9.1733759365231;
+        Mon, 09 Dec 2024 07:49:25 -0800 (PST)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4afd719eb3fsm816816137.27.2024.12.09.07.49.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Dec 2024 07:49:24 -0800 (PST)
+Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-85b8c94a6b4so887691241.0;
+        Mon, 09 Dec 2024 07:49:24 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU6GajfDJgQBihPSuhIlTlVusxhFDtKW70/RpcvET2WWXonx9whexZtXQIKbC22S2FDc5TuaxYOaJhw5STL@vger.kernel.org, AJvYcCUJAzWXgqCfONgUqiuRl1KKpg/GQrlbvwcDbBBvjCuyacVkgovjC71oDwoA412gTcFWVStk/b0vpdCWBnQ=@vger.kernel.org, AJvYcCUibGnB990/OX1n6n4xO5BzpwtVgy48oGH+eUOfylJw0zvRgn+fSuPuQn24q3EWY4LAY/ecgs36TENB@vger.kernel.org, AJvYcCV6Zg869nf2a+PIevFxfkUI61kf1OHTovU8bg4Hak+5lB6TE/BJECxTIZ7/NyA05Zax2HapuHMF16Dweg==@vger.kernel.org, AJvYcCWXCBpcR+kg5FNkULYn1OIeF+4PiDA5QxXJl/fVmNWTdQ0bjR9gDoWz69bxcm5it2PaNwKrmurImEIiHzxCGGSgA9M=@vger.kernel.org, AJvYcCXEjT2SW13QavE43+Mx9uDHaSVLUSUNc742NilZ14wcQRT7w9IdRu0/45am0wpDKa5o/VSgMIg4jwwp@vger.kernel.org
+X-Received: by 2002:a05:6122:a0a:b0:518:865e:d177 with SMTP id
+ 71dfb90a1353d-51888560690mr1285238e0c.9.1733759364092; Mon, 09 Dec 2024
+ 07:49:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1733759307;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=UNbDc2+nbj0OjRywjZjUZGnKuFExxiJVLNQqpduB6xA=;
-	b=wQl5oELeTbU2hPT1mMaTXQhjZpS0XPAoHPoOnPmcmQGR7VESc4+npimV6bb7w8O1CShooq
-	kQzVikfQpAxbD8O+XG/nEoInqhUKx76lBMwvWKj8oeLcT+GdGYjmjkcMvZLXqkIpUrZUE1
-	quY2JZHQC6lUgn+X/21hWCFqjZh5QmKqks8t6GxPBCFTYjNt5FUleg3QyHZ1hzqFqoM5MS
-	RdVT12OHbRtDB5hoMDVKVbkOg+wgkcdRLJxm+uhlIOAPSo/Hn1fEtX4+32tDsuRSQZuWZW
-	l7z9Z2Ss23pmFWypD8MA8DsfS5+ZE9ypOuezOpWtF273GAFTReVXLjfeHVoTcQ==
-Date: Mon, 09 Dec 2024 16:48:26 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, sebastian.reichel@collabora.com,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Enable automatic fan control on
- Rock 5A/5C
-In-Reply-To: <20241209134113.4783-1-naoki@radxa.com>
-References: <20241209134113.4783-1-naoki@radxa.com>
-Message-ID: <99a3e08c923d26b42636ddaaa48fe08c@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com> <20241113133540.2005850-24-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20241113133540.2005850-24-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 9 Dec 2024 16:49:11 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV0adApx2uGvM=xnY-rBd9UNYQiEouzvwhq6Oupyy0S3w@mail.gmail.com>
+Message-ID: <CAMuHMdV0adApx2uGvM=xnY-rBd9UNYQiEouzvwhq6Oupyy0S3w@mail.gmail.com>
+Subject: Re: [PATCH v3 23/25] arm64: dts: renesas: Add da7212 audio codec node
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com, 
+	broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org, 
+	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Fukaumi,
+Hi Claudiu,
 
-On 2024-12-09 14:41, FUKAUMI Naoki wrote:
-> Link the PWM fan on Radxa ROCK 5A/5C as an active cooling device
-> managed automatically by the thermal subsystem, with a target SoC
-> temperature of 65 oC and a minimum-spin interval from 55 oC to 65 oC,
-> to ensure airflow when the system gets warm.
-> 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+On Wed, Nov 13, 2024 at 2:36=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Add the da7212 audio codec node. Along with it regulators nodes were
+> reworked to be able to re-use them on da7212.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Looking good to me, this DT addition follows the rather usual way
-for ensuring low fan noise levels.  The patch summary and description
-are also looking good now. :)  Thanks for the patch!
+Thanks for your patch!
 
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+> @@ -63,7 +63,6 @@ vcc_sdhi0: regulator0 {
+>                 enable-active-high;
+>         };
+>
+> -#if SW_CONFIG2 =3D=3D SW_ON
+>         vccq_sdhi0: regulator1 {
+>                 compatible =3D "regulator-gpio";
+>                 regulator-name =3D "SDHI0 VccQ";
+> @@ -73,8 +72,8 @@ vccq_sdhi0: regulator1 {
+>                 gpios-states =3D <1>;
+>                 states =3D <3300000 1>, <1800000 0>;
+>         };
+> -#else
+> -       reg_1p8v: regulator1 {
+> +
+> +       reg_1p8v: regulator2 {
+>                 compatible =3D "regulator-fixed";
+>                 regulator-name =3D "fixed-1.8V";
+>                 regulator-min-microvolt =3D <1800000>;
+> @@ -82,9 +81,17 @@ reg_1p8v: regulator1 {
+>                 regulator-boot-on;
+>                 regulator-always-on;
+>         };
+> -#endif
+>
+> -       vcc_sdhi2: regulator2 {
+> +       reg_3p3v: regulator3 {
+> +               compatible =3D "regulator-fixed";
+> +               regulator-name =3D "fixed-3.3V";
+> +               regulator-min-microvolt =3D <3300000>;
+> +               regulator-max-microvolt =3D <3300000>;
+> +               regulator-boot-on;
+> +               regulator-always-on;
+> +       };
+> +
+> +       vcc_sdhi2: regulator4 {
 
-> ---
-> this patch depends on [1] which depends on [2].
-> 
-> [1] 
-> https://patchwork.kernel.org/project/linux-rockchip/cover/20241209132406.4232-1-naoki@radxa.com/
-> [2] 
-> https://patchwork.kernel.org/project/linux-rockchip/cover/20241209125131.4101-1-naoki@radxa.com/
-> ---
-> Changes in v2
-> - reword commit message (Dragan Simic)
-> ---
->  .../boot/dts/rockchip/rk3588s-rock-5.dtsi     | 32 ++++++++++++++++++-
->  1 file changed, 31 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
-> index 7ae032b3534c..d0b9513d56a7 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
-> @@ -64,7 +64,7 @@ led-1 {
->  		};
->  	};
-> 
-> -	pwm-fan {
-> +	fan: pwm-fan {
->  		compatible = "pwm-fan";
->  		#cooling-cells = <2>;
->  		cooling-levels = <0 64 128 192 255>;
-> @@ -380,6 +380,36 @@ rgmii_phy1: ethernet-phy@1 {
->  	};
->  };
-> 
-> +&package_thermal {
-> +	polling-delay = <1000>;
-> +
-> +	trips {
-> +		package_fan0: package-fan0 {
-> +			hysteresis = <2000>;
-> +			temperature = <55000>;
-> +			type = "active";
-> +		};
-> +
-> +		package_fan1: package-fan1 {
-> +			hysteresis = <2000>;
-> +			temperature = <65000>;
-> +			type = "active";
-> +		};
-> +	};
-> +
-> +	cooling-maps {
-> +		map0 {
-> +			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
-> +			trip = <&package_fan0>;
-> +		};
-> +
-> +		map1 {
-> +			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
-> +			trip = <&package_fan1>;
-> +		};
-> +	};
-> +};
-> +
->  &pcie2x1l2 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pcie20x1_2_perstn_m0>,
+So that's why it's better to prefer named over numbered regulators...
+
+>                 compatible =3D "regulator-fixed";
+>                 regulator-name =3D "SDHI2 Vcc";
+>                 regulator-min-microvolt =3D <3300000>;
+
+LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
