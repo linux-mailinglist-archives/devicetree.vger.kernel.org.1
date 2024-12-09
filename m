@@ -1,92 +1,131 @@
-Return-Path: <devicetree+bounces-128902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 553349E9C0B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 17:48:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6B9D9E9C19
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 17:50:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C5E4188526E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:48:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B0F31668D7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:50:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F56145B1B;
-	Mon,  9 Dec 2024 16:48:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B32153808;
+	Mon,  9 Dec 2024 16:49:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V3PqcUfy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VlM0LuNb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDDAC5733A;
-	Mon,  9 Dec 2024 16:48:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31EE314F9FB;
+	Mon,  9 Dec 2024 16:49:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733762906; cv=none; b=GJzw36X4h+ALoCL/0TlsdlKBW0z0bMvHK33aUvXp0wD/cXXG905tpnTcdRG0T39R6oefcUeLc33GTzjTaOSygiu1L4o7ahdyTmqygEq4D8FC+YWqrTXb7+xrBcnKAiaQSCON5TVuaA263mJ0fuMK7r1XecisL656+6M0/24zdBY=
+	t=1733762992; cv=none; b=XQMsrM0kKZR9uVQUD7eoGHRp/nnYRi5A38iiK4AyIhyPmSY9psa7sm97ETJiLYNU1R1yF2WlgxCU+3Wixa9pkA5vgiovBUQ9Jm6cY9oyMPtLlR4zGjq0XbZwCHv+qzfCRKwez/KO9NZ/fUceugaZ8yOAhwvog/uIsPQXJ577XDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733762906; c=relaxed/simple;
-	bh=cbi6k9Bc7Gd/b8fU8fGmkx0Qz40bgiMRK8ty+RVwV8k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Wt6v/65Yil2Ale+K4x6FoDaXbf12LUec2MN278F0+fVN9kU+GAGbK3jrQQvEOLqY/iAU8bZCIVmwusvs/VPv6SlpSHW0QHnnbH+4LvCzh0hcIX+OOLSqf4fUSY4JuIlnMQJ+w31XcFh94ma+IjTDCNnF9wAebZnckO9weEcMOek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V3PqcUfy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 784ABC4AF09;
-	Mon,  9 Dec 2024 16:48:25 +0000 (UTC)
+	s=arc-20240116; t=1733762992; c=relaxed/simple;
+	bh=qDOIcIRamvaYbznkBIfCb96yBhJPKCgcT8jFIZBkfHc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oBgtKjEkvCmC6iTvzaCZ9CAMyITeNhabI9ZjnEXEj/jQE4BqdJMAAEa+llKvDA+W63MRmmipaP75chNR/dNxa62k7x4ZVOsgOu32egszPCNIm+NH3N6CmLHU9V3ZMkE15mYB+FOSGSYulubpk2QA7ANYStX7glvIngdptGGjWwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VlM0LuNb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D7DDC4CED1;
+	Mon,  9 Dec 2024 16:49:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733762905;
-	bh=cbi6k9Bc7Gd/b8fU8fGmkx0Qz40bgiMRK8ty+RVwV8k=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=V3PqcUfypzA5J6c9XxLO17WWI0Ai4P+CvQgw6u2xvqJ8cVdVJpDkNNLUZM+evELBD
-	 mILx7tGapCuE+QIqEIhS3zGO9bHVVv17eGqpZ1ahLLEYjadzXtEYlsGeSBKMMYSqQG
-	 W5TZgQYRp9tnIpXg+A3vls1k9LfCrJbK1jChfTxSoIQ9k15Y6jt+QaqrHmQOffGiRh
-	 K3CTeqCRt9HPdbyO3XMlwmWIqZ9jhvt1EZAGfgYn8cHGLacliXLugNrHuZY/rxELs8
-	 wsA69y/Qk7dJgCW1C9UePQ0xHIbAFQzMNyrrE16bTlK7Y83sv3PkZx1g+9D4+uqK2t
-	 ItRqPnPUF8Nug==
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e3a26de697fso1476320276.3;
-        Mon, 09 Dec 2024 08:48:25 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUHuvx4S0K1TD/MrWtiV8dmEYjf9okSQuDTGTjtKajDXSfiA3JBvNGT8AxZofUQiKIXR0rByqVTHk13nIiM@vger.kernel.org, AJvYcCXpJx15isEcKWySb0GgVmAdT261QTTGfEPc/2YC+nv1wUcs6xQZnMTgHswFYbWZ2XhsBD1OVmtoxj6t@vger.kernel.org
-X-Gm-Message-State: AOJu0YwyDEvKqpfJk8aaCkVHQDhi4lZD2yKeUIJLGNXgXEnfclJTcrlg
-	fI+45r6dh3wcvTvKVwAqYstN601H8stCOBYgsFTkH2hSlfNKpGgvNZqYtz740iiwcSetuXeLtiA
-	l+hRKtl2WFvRnhwxyAmYiYaKOtg==
-X-Google-Smtp-Source: AGHT+IEyVWep2IfeNQaP0+fdSaPz7+aNxs+ZlzyBIx1DSeUc4rTWVPXmTco+bIOFvCQB0GKmtqHWtW35EYdbzGfpl7A=
-X-Received: by 2002:a05:6902:2d06:b0:e39:8b94:16eb with SMTP id
- 3f1490d57ef6-e3a59b2bf08mr816396276.24.1733762904715; Mon, 09 Dec 2024
- 08:48:24 -0800 (PST)
+	s=k20201202; t=1733762991;
+	bh=qDOIcIRamvaYbznkBIfCb96yBhJPKCgcT8jFIZBkfHc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VlM0LuNbsoL2znvYf3Gc0UUL41BG38Em8xK8cePbVnc+u7XhLKxlAFMAFmDvEpUL8
+	 QN9hYXxmSZjZuuGQGGUMhaaRaRf9kokykbw9WSsaCNA4cBVQBwqCPAG/aTcGwHoqlq
+	 8tiFQxAY0/i2M8lU0LiuS0w58nbQ0CoWl2RcXYLDS8XNvcamPn5ZCBN9XrHvDCu/sj
+	 G5xDYZwdjo4cGWN2VNUM6Npp5r9w7W4UjV4Sp7prTEY+c7ADPwUPyxzTGKWYT2i6D/
+	 ZZeYFLfFEPM60Y0fwZE9XZG+Jq5LlQmwbOKEH+LNN1VQ8j1miu1lZiKS5IOsMM1rbf
+	 JtwoJ3cjsyFFw==
+Date: Mon, 9 Dec 2024 16:49:46 +0000
+From: Simon Horman <horms@kernel.org>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v4 3/7] net: ftgmac100: Add reset toggling for
+ Aspeed SOCs
+Message-ID: <20241209164946.GA2455@kernel.org>
+References: <20241205072048.1397570-1-jacky_chou@aspeedtech.com>
+ <20241205072048.1397570-4-jacky_chou@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241206-of_core_fix-v1-0-dc28ed56bec3@quicinc.com> <20241206-of_core_fix-v1-9-dc28ed56bec3@quicinc.com>
-In-Reply-To: <20241206-of_core_fix-v1-9-dc28ed56bec3@quicinc.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 9 Dec 2024 10:48:13 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJvh5pddoVEgaKQvGth0ncgtC9AAGxMEiK__NiZKrjmxA@mail.gmail.com>
-Message-ID: <CAL_JsqJvh5pddoVEgaKQvGth0ncgtC9AAGxMEiK__NiZKrjmxA@mail.gmail.com>
-Subject: Re: [PATCH 09/10] of: property: Implement of_fwnode_property_present()
- by of_property_present()
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: Saravana Kannan <saravanak@google.com>, Leif Lindholm <leif.lindholm@linaro.org>, 
-	Stephen Boyd <stephen.boyd@linaro.org>, Maxime Ripard <mripard@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Grant Likely <grant.likely@secretlab.ca>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Zijun Hu <quic_zijuhu@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241205072048.1397570-4-jacky_chou@aspeedtech.com>
 
-On Thu, Dec 5, 2024 at 6:54=E2=80=AFPM Zijun Hu <zijun_hu@icloud.com> wrote=
-:
->
-> From: Zijun Hu <quic_zijuhu@quicinc.com>
->
-> of_property_read_bool() is deprecated for non-boolean property, but
-> of_fwnode_property_present() still uses it.
->
-> Fix by using of_property_present() instead of of_property_read_bool().
+On Thu, Dec 05, 2024 at 03:20:44PM +0800, Jacky Chou wrote:
+> Toggle the SCU reset before hardware initialization.
+> 
+> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+> ---
+>  drivers/net/ethernet/faraday/ftgmac100.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/drivers/net/ethernet/faraday/ftgmac100.c b/drivers/net/ethernet/faraday/ftgmac100.c
+> index 17ec35e75a65..96c1eee547c4 100644
+> --- a/drivers/net/ethernet/faraday/ftgmac100.c
+> +++ b/drivers/net/ethernet/faraday/ftgmac100.c
+> @@ -9,6 +9,7 @@
+>  #define pr_fmt(fmt)	KBUILD_MODNAME ": " fmt
+>  
+>  #include <linux/clk.h>
+> +#include <linux/reset.h>
+>  #include <linux/dma-mapping.h>
+>  #include <linux/etherdevice.h>
+>  #include <linux/ethtool.h>
+> @@ -98,6 +99,7 @@ struct ftgmac100 {
+>  	struct work_struct reset_task;
+>  	struct mii_bus *mii_bus;
+>  	struct clk *clk;
+> +	struct reset_control *rst;
+>  
+>  	/* AST2500/AST2600 RMII ref clock gate */
+>  	struct clk *rclk;
+> @@ -1979,6 +1981,22 @@ static int ftgmac100_probe(struct platform_device *pdev)
+>  				  priv->base + FTGMAC100_OFFSET_TM);
+>  	}
+>  
+> +	priv->rst = devm_reset_control_get_optional_exclusive(priv->dev, NULL);
+> +	if (IS_ERR(priv->rst))
+> +		goto err_register_netdev;
 
-of_property_present() just calls of_property_read_bool(). For now. I'm
-working on making using of_property_read_bool() on non-boolean a
-warning. No point in this change until that happens.
+Hi Jacky,
 
-Rob
+The goto on the line above will result in this function returning err.
+However, it seems that err is set to 0 here.
+And perhaps it should be set to PTR_ERR(priv->rst).
+
+Flagged by Smatch.
+
+> +
+> +	err = reset_control_assert(priv->rst);
+> +	if (err) {
+> +		dev_err(priv->dev, "Failed to reset mac (%d)\n", err);
+> +		goto err_register_netdev;
+> +	}
+> +	usleep_range(10000, 20000);
+> +	err = reset_control_deassert(priv->rst);
+> +	if (err) {
+> +		dev_err(priv->dev, "Failed to deassert mac reset (%d)\n", err);
+> +		goto err_register_netdev;
+> +	}
+> +
+>  	/* Default ring sizes */
+>  	priv->rx_q_entries = priv->new_rx_q_entries = DEF_RX_QUEUE_ENTRIES;
+>  	priv->tx_q_entries = priv->new_tx_q_entries = DEF_TX_QUEUE_ENTRIES;
+> -- 
+> 2.25.1
+> 
+> 
 
