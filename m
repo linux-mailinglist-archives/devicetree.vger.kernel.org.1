@@ -1,95 +1,158 @@
-Return-Path: <devicetree+bounces-128507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82B3F9E8E75
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:12:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3330E9E8E7B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:16:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A1B31886556
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:12:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC008160570
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:16:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1DA2215F63;
-	Mon,  9 Dec 2024 09:12:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4CC215705;
+	Mon,  9 Dec 2024 09:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="MZ8/j1oE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sBbYr/Sz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.15])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF3A21481E;
-	Mon,  9 Dec 2024 09:12:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.15
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A86FE21507C;
+	Mon,  9 Dec 2024 09:16:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733735533; cv=none; b=nSKVrgpvKy9rE58W7E0g2sXy41iFjW4qKbVkmeT6DWo7RpEb7jPynVCPtosq3QBGOJhAeYh7EMsq8p8r4msVig28GYr1s/uhlBLU+QeOVABZxWOMedJ6cY5JB1oarpJk9lg1H5aY5cpCqAAzYLJMfGvWIHhlEqgdKSLa2CmiSQ4=
+	t=1733735785; cv=none; b=JmRgFc6xWf2iG9V0CZFUTTP4AgtCPXSiHWysBxKeyroIX94WgndmP5x8gxWiyQXJ9+Vq1IgpPV0v5G6kNMGL0advP8tBHIAWj9KENls7R0mprcObxYMidZWPsOesXl7w0M10iitJw1kwJfe63IJneqOCvaQV7/u1O1dAWZMtiIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733735533; c=relaxed/simple;
-	bh=THySfj94iqMosY1olRs08xVkuR/A+URSyqRNUOJ998Y=;
+	s=arc-20240116; t=1733735785; c=relaxed/simple;
+	bh=uvgSr2AH5BgIAzyVifUQ70yRN9JiYiWXcBSaRIQCrlM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=l3aHp1MlPNgaWhw48smfS10m4Y5zEICWIzhwY17UbtGwZqgBGHu9JETWxy6HUAMXl4nxdJYn7xdlpRTuzc3ThuFzyZlVbo17FBB87KfNVdBexcT3+pP6VdKVO1YGshjYA6E3kWXadkE0lMF7xC3ennSpAG39m+ktHPIzV7iw2lw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=MZ8/j1oE; arc=none smtp.client-ip=1.95.21.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=67tvmmn9OuQWrMC+HWaoLNhCgYmT8MPFGmX2K5RtNBA=;
-	b=MZ8/j1oE5cQRVGjm7bWOLx/KOgKTwAVpmJtNPLX8wxeoe/pbrNLSgSvhgSDtKb
-	p4u1fvTJfUV4n3sxw8STx6Chu4oCFQ0XoZrpF8lfCesg2UpEWWQxXNwVjTvAOMo4
-	Kkc/O2zZDuTGikxmI7/Syu0mSaJGR0tyFxvIQqyj9n/p4=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgAHjwUttFZnkWp7BA--.46698S3;
-	Mon, 09 Dec 2024 17:11:11 +0800 (CST)
-Date: Mon, 9 Dec 2024 17:11:09 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	=?iso-8859-1?Q?Jo=E3o?= Rodrigues <jrodrigues@ubimet.com>,
-	Bruno Thomsen <bruno.thomsen@gmail.com>, linux@ew.tq-group.com,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/8] TQMa7x DT cleanup
-Message-ID: <Z1a0Lc+N+J3PGnH7@dragon>
-References: <20241108134926.1324626-1-alexander.stein@ew.tq-group.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=EjbDjsj6jpml01olxO46U+belITfWwvw0C8Ysh3QmJW5gHqV8Jk9d1wTCLzgMndIXKFMO6EFOwvOEPvMpW2r5HaEUCslcBIMAJKZCO1+TtGF1ZWSSly+Phqm9nXmoIvNkT9lqB6Mq5lXQRYAq54ZQcAPE4eNTj4FErmpC2MQf2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sBbYr/Sz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88AF1C4CED1;
+	Mon,  9 Dec 2024 09:16:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733735785;
+	bh=uvgSr2AH5BgIAzyVifUQ70yRN9JiYiWXcBSaRIQCrlM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sBbYr/Szi89JPd/3hkggMgGl/RrPw0qNnKoFM9LyYc6cqp+4HAxokwGCjFOCu/rig
+	 oZekTwOgsSU3AWHMP9/8FDM1szUW9TvG23sVNVDyh2CeW0pzI0NwRDUw3P/Pq/R+hd
+	 haaSV56Ord+sTTqcn2NHiM6jYBvAzUqdFcNINbOrAtfHRIQRrcGyIYfYdZtPl212+J
+	 vvBvCju3yVEBv9jmwlShp41YqLuh6NForLmBtkzD0OVzmEajKthRv076maodDewqWC
+	 NpsGP44aTORMCDYlv1FWWQREP1TamujxAcsdBCXIUaAEJgqxiYymYHbRIOgf6+eqWk
+	 /5+dv6TmiQH3Q==
+Date: Mon, 9 Dec 2024 10:16:21 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Nick Chan <towinchenmi@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
+	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org, 
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: leds: backlight: apple,dwi-bl: Add
+ bindings for Apple DWI backlight
+Message-ID: <iwapssdmronnbtmlmynuarzmkd2oh3ssrmzvlobxx4ixrgwgcl@dnonaahib6jw>
+References: <20241207130433.30351-1-towinchenmi@gmail.com>
+ <20241207130433.30351-2-towinchenmi@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241108134926.1324626-1-alexander.stein@ew.tq-group.com>
-X-CM-TRANSID:Mc8vCgAHjwUttFZnkWp7BA--.46698S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWruryxXr43WryfKFyfXr43ZFb_yoW3uFb_uw
-	15Wa1DZ347Xr4fCw10gwnI9rZ5Ary5Xw4DKFy5Wa9xWr1a9F13GFyfJ34a9FyxXasIgw1D
-	Jr1DZ3W7ZF9FkjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0xu4UUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiEhOwZWdWoWNcVAAAsv
+In-Reply-To: <20241207130433.30351-2-towinchenmi@gmail.com>
 
-On Fri, Nov 08, 2024 at 02:49:18PM +0100, Alexander Stein wrote:
-> Hi all,
-> 
-> this series fixes some DT binding check warnings as well as removing
-> duplicated nodes. Eventually IRQ support for thernet PHYs was added.
-> Additionally add CONFIG_JC42 to imx_v6_v7_defconfig.
-> 
-> Best regards,
-> Alexander
-> 
-> Alexander Stein (8):
->   ARM: dts: imx7-mba7: remove LVDS transmitter regulator
->   ARM: dts: imx7-tqma7: Remove superfluous status="okay" property
->   ARM: dts: imx7-tqma7: add missing vs-supply for LM75A (rev. 01xxx)
->   ARM: dts: imx7-mba7: Add 3.3V and 5.0V regulators
->   ARM: dts: imx7-mba7: Fix SD card vmmc-supply
->   ARM: dts: imx7-mba7: Remove duplicated power supply
->   ARM: dts: imx7[d]-mba7: add Ethernet PHY IRQ support
->   ARM: imx_v6_v7_defconfig: enable JC42 for TQMa7x
+On Sat, Dec 07, 2024 at 09:03:14PM +0800, Nick Chan wrote:
+> Add the device tree bindings for backlight controllers attached via Apple
+> DWI 2-wire interface.
 
-Applied all, thanks!
+A nit, subject: drop second/last, redundant "bindings for". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+> 
+> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+> ---
+>  .../bindings/leds/backlight/apple,dwi-bl.yaml | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/backlight/apple,dwi-bl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/apple,dwi-bl.yaml b/Documentation/devicetree/bindings/leds/backlight/apple,dwi-bl.yaml
+> new file mode 100644
+> index 000000000000..9d4aa243f679
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/backlight/apple,dwi-bl.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/backlight/apple,dwi-bl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple DWI 2-Wire Interface Backlight Controller
+> +
+> +maintainers:
+> +  - Nick Chan <towinchenmi@gmail.com>
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  Apple SoCs contain a 2-wire interface called DWI. On some Apple iPhones,
+> +  iPads and iPod touches with a LCD display, 1-2 backlight controllers
+> +  are connected via DWI. Interfacing with DWI controls all backlight
+> +  controllers at the same time. As such, the backlight controllers are
+> +  treated as a single controller regardless of the underlying
+> +  configuration.
+> +
+
+
+missing allOf: with $ref to common.yaml
+
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - apple,s5l8960x-dwi-bl
+> +          - apple,t7000-dwi-bl
+> +          - apple,s8000-dwi-bl
+> +          - apple,t8010-dwi-bl
+> +          - apple,t8015-dwi-bl
+> +      - const: apple,dwi-bl
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+
+(and this then becomes unevaluatedProperties: false)
+
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      dwi_bl: backlight@20e200010 {
+> +        compatible = "apple,s5l8960x-dwi-bl", "apple,dwi-bl";
+> +        reg = <0x2 0x0e200010 0 8>;
+
+Usual preference is to keep hex everywhere.
+
+Best regards,
+Krzysztof
 
 
