@@ -1,158 +1,186 @@
-Return-Path: <devicetree+bounces-128847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9699A9E9A00
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:06:29 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B184A9E9A11
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:09:20 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7857A188A306
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:07:59 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35DDC1B425D;
+	Mon,  9 Dec 2024 15:07:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CGP7wulN"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49B6528285F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:06:28 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1A41B4250;
-	Mon,  9 Dec 2024 15:06:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b="k7A4mgnu"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E2701B4248
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 15:06:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71F741B422E;
+	Mon,  9 Dec 2024 15:07:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733756784; cv=none; b=FKZAzF+XppAhLemK6MW1p48ZSzudzvVzVJC++VcgGB2CulyxGsfwx8PDcu6teSc1K58p6XI+MHVQtoJ2p1Bz+JvsMjpxyEL1aq0Chx1sNzApPRjqtruDTf/slPTHgmkQWrGLGtT25WniGxOXBGtZJD/EvZhEYKgEWcR0lTcxj8k=
+	t=1733756872; cv=none; b=ezd0v1tdGzOyVJm5kATB8aITaFJSanMysmlR0HpW7gvbujiXwDvh+K/1+l9Zom2yzz3wqD98YWsRxxL+S5uJj3fza+wNqc3Jl0GCq+NzXgTHFoi+jc/2IuqwoZnDENAKkrS4G+9jRg0hGOXXf4iEeyHBOHRa21X6hnYJEe7bcZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733756784; c=relaxed/simple;
-	bh=/BnRrLDy2CQ0qFCGoHbR12w83vjFee5OUi3nbgjO2n8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=H6tAJ3mRIJQmoKvIUlKjhSB3u4UlpCodtAkiqmq3Ft6f8qlE+HltF9D1hjoRS7b0KRTXJRcnFIy9qly5bKjKq4smPTaVK8KjDZoM3iNdrc66OLjQ0Wkf4zX846faiVGuEHzZhzhv1ZHvJcXdIaP09PEDQEx8iAqbSWKWYqLIPmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com; spf=pass smtp.mailfrom=thaumatec.com; dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b=k7A4mgnu; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thaumatec.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-434a742481aso42702585e9.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 07:06:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thaumatec-com.20230601.gappssmtp.com; s=20230601; t=1733756781; x=1734361581; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fBemlKVePg1M8JMVZCDuH/Kc392eD263a2QapCaGV9U=;
-        b=k7A4mgnu2Y6vlRYS/Owj8pDfwxG7HBC5LS+cUoMZU4LzIj3i80XBUGt5lzMDbd5q5N
-         Xj6WudIEdYwyQpxPIDU1U/TOPbm2otGEj4ceVK0e/ACh05fuNHxW/08khY7W9l7MNHgS
-         UYGwD+kE+/VnRusnWkpKTtDhg04+VGW6S0goHZVtgt8DlWiJ1n5M7ME5DyFw+vVJFFiy
-         BjmBlJwtfhKr7ItUyRkQPh/PpYiqEJpB0GumuJtdbv1Z+1mroaRbTcwrqI8ElO/4jnvK
-         HE3cDkXO6Ft/tSSbYtijACWnYTr8JbO7Tk+3aB0x2wEtRTh9nIVDgWK3SG3rirl+Aa0p
-         LVtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733756781; x=1734361581;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fBemlKVePg1M8JMVZCDuH/Kc392eD263a2QapCaGV9U=;
-        b=mdZWRBc+Fx+XRJ2Ex2DCuW9LLwkY97XZQEpv0fZzuMZxt4v+c28N7jA3s5laELRhsU
-         Q17OVXBcd35JAVTDY8tnqRDFfFXcEEFJqkAhSmzcxBk5y63GgGFftR6ZUjWaJw3huRKA
-         taTgSx4yelCe6MtCTbCJkbYoNeEQxJREgFyFckSxjbVyV3SX3jmKrpGUNavEffg52q1z
-         B93oj935G1Ba8+agkr1OPJ6aommByikLBPOGY4Dc4Uth5C+Sg55GXlOVBY5saYTfOmwg
-         vMk0si3rbNjAnfx/KAfq0KjFlIywpFWK4S6al7kfYNzP2LtNZASgzJuZ0lS1RpvQ1CLd
-         uXIw==
-X-Forwarded-Encrypted: i=1; AJvYcCXsEy5hkmGYpfe8Z70H5KpK4kSQNdLEM+dZj/6H5+XoPVUL8MqqyWNgOgQJKZfzTV8U6m49BCALTd/w@vger.kernel.org
-X-Gm-Message-State: AOJu0YynPEM/XootvaLVwSaHbdbttf1DkOpv0sEWcF+RhDLtFFbz18Qd
-	EhJUI+Ifx63BISoRcvccLuO/oPy28VynESBm6hbKHghwlnPctBw/duVy5F1t42U=
-X-Gm-Gg: ASbGncuNFRC79o2lLEsuuaeidwUHE4TmZXUKSNETSMD0CV+/KCViqpBsH/JSYBshjwJ
-	z93TRICJwlSVC9I8YlEmBNWtQHEC/YErFmJ4CQ9ysnMTjG2sOaVZfHPJyLkpE0arfgd7oOKGqbC
-	0VJqcQxE3NdcetslQC3ueE0n846j5Pi4bCWK2BstHsafBdKQ7FwURvFNGZdNLn493j7E75R0kX/
-	Et0NuAXf8fD1eQZ5goPc2U/QHikp12cBaDf2oAA
-X-Google-Smtp-Source: AGHT+IEaMojRUAQLLwed4/ER+OeZapLgzpX/2UyzkziLJwq8W59lZWRdfU3Peh7xaUCEk69zEFgm5A==
-X-Received: by 2002:a05:600c:a09:b0:434:fb65:ebbb with SMTP id 5b1f17b1804b1-434fb65ecb9mr25947035e9.17.1733756781170;
-        Mon, 09 Dec 2024 07:06:21 -0800 (PST)
-Received: from fedora.. ([91.90.172.13])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434d43809fdsm103296665e9.1.2024.12.09.07.06.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Dec 2024 07:06:20 -0800 (PST)
-From: Daniel Semkowicz <dse@thaumatec.com>
-To: heiko@sntech.de
-Cc: Laurent.pinchart@ideasonboard.com,
-	andrzej.hajda@intel.com,
-	andy.yan@rock-chips.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	jernej.skrabec@gmail.com,
-	jonas@kwiboo.se,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	neil.armstrong@linaro.org,
-	quentin.schulz@cherry.de,
-	rfoss@kernel.org,
-	robh@kernel.org,
-	tzimmermann@suse.de
-Subject: Re: [PATCH v3 0/3] drm/rockchip: Add driver for the new DSI2 controller
-Date: Mon,  9 Dec 2024 16:06:08 +0100
-Message-ID: <20241209150619.33998-1-dse@thaumatec.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241203165450.1501219-1-heiko@sntech.de>
-References: <20241203165450.1501219-1-heiko@sntech.de>
+	s=arc-20240116; t=1733756872; c=relaxed/simple;
+	bh=uk/0UdEMXtESb27s2FPly12gPgWEWDNT9EA+JVxL4ng=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=IzsdBwDVJIkNLeQ78OoOdXSnkzr51SF38DMudm1HY611CYw/mPv5tsdYlBpN3nxnscCe2yC/97WoVFBaH6uohYGuRGLcLQAkUWuKKlDIGNLR97RJ33OMRotygqwOfjMLRboPiZvquVMzI0HE5o3vFkj1AlKfqp7eJan+tTQWr5g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CGP7wulN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B9AEdLR031613;
+	Mon, 9 Dec 2024 15:07:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zcXxgrlJj9QA/6b1Wp+0cE8SmamP7uL7/ApWHq7oe+o=; b=CGP7wulNN5n/6q6H
+	r8xgH0M+U9KK+h3pC1izXwe9njH9VUjNx13EI2v5TcySk22qzbCrs+zkyIXcdPLc
+	UL6G6q95KCPpq25NJL3zeK1XZ6LNT6AMox5+IecULWJDy4lNF01kK4bxzyYtrvlt
+	z06xGE7h4Wy1no9KZOlryLwUyYJqbnwXpa++TUJ7i8OVEEvfq78VhL4Kgi7vFTFd
+	BQVrpgBLK8pPzcyEgMfdhMvm0d8kNXwBgnNfxR24opREPlHt4yyQXbF6cZlOD0jb
+	OFYgnlCT5m7XpRgw6hfuKm4R/jUy4j/k+c4x+6fjwWTK6sEwMbHzCN024HFYNAGb
+	qavmkQ==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43cdxxd6ps-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Dec 2024 15:07:42 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B9F7f9H008342
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Dec 2024 15:07:41 GMT
+Received: from [10.50.34.16] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Dec 2024
+ 07:07:32 -0800
+Message-ID: <c275cf76-0335-4b01-8d07-86d38e6d27e0@quicinc.com>
+Date: Mon, 9 Dec 2024 20:37:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
+ flag
+To: Krzysztof Kozlowski <krzk@kernel.org>, <konrad.dybcio@linaro.org>,
+        <andersson@kernel.org>, <andi.shyti@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <conor+dt@kernel.org>, <agross@kernel.org>,
+        <devicetree@vger.kernel.org>, <vkoul@kernel.org>, <linux@treblig.org>,
+        <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
+        <konradybcio@kernel.org>, <bryan.odonoghue@linaro.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>
+CC: <quic_vdadhani@quicinc.com>
+References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
+ <20241129144357.2008465-2-quic_msavaliy@quicinc.com>
+ <db428697-a9dc-46e1-abbe-73341306403f@kernel.org>
+ <a8b1ccd2-c37b-4a6f-b592-caf1a53be02c@quicinc.com>
+ <fc33c4ed-32e5-46cc-87d6-921f2e58b4ff@kernel.org>
+ <75f2cc08-e3ab-41fb-aa94-22963c4ffd82@quicinc.com>
+ <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
+ <fa3ee895-5353-44f5-b816-9d17b6a7d199@kernel.org>
+Content-Language: en-US
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <fa3ee895-5353-44f5-b816-9d17b6a7d199@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 4p6cn0PN7oKNSSsHKWihQNEvHKrwDQg7
+X-Proofpoint-GUID: 4p6cn0PN7oKNSSsHKWihQNEvHKrwDQg7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
+ phishscore=0 mlxlogscore=622 priorityscore=1501 clxscore=1015
+ malwarescore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0 mlxscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412090118
 
-Hello Heiko,
+Hi Krzysztof ,
 
-On 03.12.24 21:54, Heiko Stuebner wrote:
-> This series adds a bridge and glue driver for the DSI2 controller found
-> in the rk3588 soc from Rockchip, that is based on a Synopsis IP block.
+On 12/2/2024 4:43 PM, Krzysztof Kozlowski wrote:
+> On 02/12/2024 12:04, Krzysztof Kozlowski wrote:
+>> On 02/12/2024 11:38, Mukesh Kumar Savaliya wrote:
+>>>>
+>>>> Come with one flag or enum, if needed, covering all your cases like this.
+Please review below comment which was about other cores. I think we can 
+go with single flag naming qcom,shared-corename, for similar features 
+for any core.
+>>>>
+>>> Let me explain, this feature is one of the additional software case
+>>> adding on base protocol support. if we dont have more than one usecase
+>>> or repurposing this feature, why do we need to add enums ? I see one
+>>> flag gpi_mode but it's internal to driver not exposed to user or expose
+>>> any usecase/feature.
+>>>
+>>> Below was our earlier context, just wanted to add for clarity.
+>>> --
+>>>   > Is sharing of IP blocks going to be also for other devices? If yes, then
+>>>   > this should be one property for all Qualcomm devices. If not, then be
+>>>   > sure that this is the case because I will bring it up if you come with
+>>>   > one more solution for something else.
+>>
+>>
+>> You keep repeating the same. You won't receive any other answer.
+>>
+>>>   >
+>>> IP blocks like SE can be shared. Here we are talking about I2C sharing.
+>>> In future it can be SPI sharing. But design wise it fits better to add
+>>> flag per SE node. Same we shall be adding for SPI too in future.
+>>
+>>
+>> How flag per SE node is relevant? I did not ask to move the property.
+>>
+>>>
+>>> Please let me know your further suggestions.
+>> We do not talk about I2C or SPI here only. We talk about entire SoC.
+>> Since beginning. Find other patch proposals and align with rest of
+>> Qualcomm developers so that you come with only one definition for this
+>> feature/characteristic. Or do you want to say that I am free to NAK all
+>> further properties duplicating this one?
+>>
+>> Please confirm that you Qualcomm engineers understand the last statement
+>> and that every block will use se-shared, even if we speak about UFS for
+>> example.
+>>
 > 
-> As the manual states:
-> The Display Serial Interface 2 (DSI-2) is part of a group of communication
-> protocols defined by the MIPI Alliance. The MIPI DSI-2 Host Controller is
-> a digital core that implements all protocol functions defined in the
-> MIPI DSI-2 Specification.
+> I think I was pretty clear also 2 months ago what do I expect from this:
+> 
+> https://lore.kernel.org/all/52f83419-cc5e-49f3-90a7-26a5b4ddd5a0@kernel.org/
 > 
 > 
-> While the driver structure is very similar to the previous DSI controller,
-> the programming model of the core is quite different, with a completely
-> new register set.
-> 
-> Another notable difference is that the phy interface is variable now too
-> in its width and some other settings.
+> I do not see this addressing qcom-wide way at all. Four new versions of
+> patch and you still did not address first fedback you got.
 > 
 
-I did more tests with different LVDS displays. I tested following
-configurations with DSI/LVDS bridge:
-- 1024x600@60.01
-- 1024x768@60.02
-- 1280x800@60.07
-- 1366x768@60.06
+To answer the comment @ 
+https://lore.kernel.org/all/52f83419-cc5e-49f3-90a7-26a5b4ddd5a0@kernel.org/ 
 
-All of them worked without issues, except 1366x768.
-With this resolution, video is blurry, and offset incorrectly
-to the left. There are also repeating errors on the console:
 
-  rockchip-drm display-subsystem: [drm] *ERROR* POST_BUF_EMPTY irq err at vp3
+Sorry for not replying straight to this query. Let me, sort out here 
+being in agreement with you. I queried internally, no USB OR UFS OR PCIe 
+having this case. BAM (sps driver) has such usecase, and if it's comes 
+up in future, we should give similar name like shared-xxx if it's 
+similar in nature.
 
-In correct operation with other resolutions, there is no error.
-I am not sure if this is a problem in your series or rather in VOP2
-driver.
+"qcom,shared-xxx" is what i think a better option. Can it be renamed per 
+core and let individual HW core use it when required ? Just my thought, 
+you may please suggest better and simplified way.
 
-I tried to track down the problem, and it seems to be a generic issue
-when horizontal line width is not divisible by 4.
-Lowering line width to 1364px fixes the issue, but of course I have two
-vertical lines of black pixels on the right.
-I also made some tests with 720x1280 DSI display. Lowering horizontal
-line to 718px shows the same problem. With 720px and 716px it works
-correctly.
+clock controllers, TLMMs, MMUs  etc should also should add similar name 
+if it's best suiting to the needs and similar feature.
 
-Kind regards
-Daniel
+> 
+> Best regards,
+> Krzysztof
 
 
