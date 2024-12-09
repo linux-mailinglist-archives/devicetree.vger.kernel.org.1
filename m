@@ -1,79 +1,127 @@
-Return-Path: <devicetree+bounces-128479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48B639E8D01
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:04:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C1F19E8C36
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:34:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DA771881D70
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:04:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83DD81610D9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 07:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EDD1215162;
-	Mon,  9 Dec 2024 08:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D592147F8;
+	Mon,  9 Dec 2024 07:34:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Hfayqua+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AWvqy8vq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77B0215188;
-	Mon,  9 Dec 2024 08:04:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63F91155751;
+	Mon,  9 Dec 2024 07:34:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733731481; cv=none; b=TFGd42qfVmGhe/1YJwbFXVElqU972JZN/IDx34qYoy6aGkJyLWbi9gtRBJz+tCSFpha7yxLbrfibuXWrEq6fWdFw5EgCfWqOwn3jc5KjMsPwdAAyJ+L3Z0MJ+CMplYNSr4Fn1ZwA0V0HwNVvLge1TPK9n5frHlx5+OSPD6Ohc/E=
+	t=1733729673; cv=none; b=BCSXzYzfv/C8J9g4l/MBB5uqxI1YM3pmNCla7K6qaEOXwu7mJfGrVesVRFDQyWUVWkDBF+NeU5O3LN7ekdZnNAN9EP8ptToHNIRcXtVBeo9M0nmUZuah1olkiPbRAMIEo/MwGuhzdlrPMrwIIu4ULW42Uonb8DQhW8D3VtodGBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733731481; c=relaxed/simple;
-	bh=/7H40Njj3gf7vZrVb7miUhyDm6kTIHd1JIEUnPm70+g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vhw+Mf0vEgk2Ifq3BoYGGsxD6wLmR5RuyV+Um2R8QIqhCIZFOogLqEaCkQlgy6TYGPjw4jZMh+i58lRmgI9URkPlADRFrMP1Wifej3Av2nwduom9A2ILxQ6rrjpkrd9J5XG756kcD/bhwvgfMYuphpYabpcs/X3lecl5G38oFFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Hfayqua+; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=DFeocjNOUdIRJAXa/Rnba2ub2M7xywjcZC0gF4rAoMk=;
-	b=Hfayqua+CSqQlibYs6L8LzVaOkTNskyTk/hsL30DQNAY+UdzhKUb6IA9KyfpaV
-	YrOXfh6CNUcVk6Kd9nM7/eMj9INb1NO0QoObb/JG8m248rS5u9vHcgW0VT7uZu75
-	JPl3/pU5w0RFqF8w7O19h1wefCwXuC/0l/udP2qdJnIkM=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgAnpl1CnVZnpINvBA--.46282S3;
-	Mon, 09 Dec 2024 15:33:24 +0800 (CST)
-Date: Mon, 9 Dec 2024 15:33:22 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] arm64: dts: imx8mq-zii-ultra: remove #address-cells
- of eeprom@a4
-Message-ID: <Z1adQsiNfYMuVgp+@dragon>
-References: <20241018183117.740439-1-Frank.Li@nxp.com>
+	s=arc-20240116; t=1733729673; c=relaxed/simple;
+	bh=eJm6sPgxUntQ2123myJ74O4QKZrmsdqCdqHwho1ihUA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lzY7Mmstg6cwE1dDrLM2q5t/tQouLkImVRQNPuBdEBcn3A+xuvxJjImMhGos60mcfTpWGJoPXlictcC3HH/xOiJrBBKlSB+gjoWRwMY5UuLdrc7TpZ7qUQIxmsjQsKwsgpfJTNdRYogsWpaU4woQWs+AYKQdzE0hcUFd3GjcpOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AWvqy8vq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5823C4CED1;
+	Mon,  9 Dec 2024 07:34:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733729673;
+	bh=eJm6sPgxUntQ2123myJ74O4QKZrmsdqCdqHwho1ihUA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=AWvqy8vqhCp4zh0noR7s+AiCvukEZhrgy6ED7KZ50lCzDshukylBpht6X8ssNnuSp
+	 s9MvGd5rAQYDGFFSh/WAMcbhobWZHT+CySdkeHlULfpaPZmYoClXKPXcgbe9zsCcvg
+	 DKP48+oZytzLLwxJ5evL0csDNTb4eHmkBQcvGJNoHqAJg9x9Ws7EcG2X8jQGGsP3s5
+	 SioM7cCsd8JuR7SilEpW5Dw95rWvApRzPAswdwiw5pvlrxCqPr8xoJTjmgXwwOyA99
+	 7wIocvS9whelQUAPHfmF0qvY6CmnhcV0poEVDPF4gnG/HfUTnH+jiFsT2Rhjpvr/IC
+	 2xGsFgV1On4KA==
+Message-ID: <0bac139b-c89c-43a7-978a-e5fe001d3dd2@kernel.org>
+Date: Mon, 9 Dec 2024 08:34:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241018183117.740439-1-Frank.Li@nxp.com>
-X-CM-TRANSID:M88vCgAnpl1CnVZnpINvBA--.46282S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU4Xo2UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRWwZWdWeNqafwAAs-
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: exynosautov920: add DMA nodes
+To: Faraz Ata <faraz.ata@samsung.com>, devicetree@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, alim.akhtar@samsung.com,
+ rosa.pila@samsung.com
+References: <CGME20241204122402epcas5p2412733eb46d495fadfa30e5af3c5ce83@epcas5p2.samsung.com>
+ <20241204122335.1578-1-faraz.ata@samsung.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241204122335.1578-1-faraz.ata@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Oct 18, 2024 at 02:31:16PM -0400, Frank Li wrote:
-> Remove #address-cells and #size-cells of eeprom@a4 because no children
-> nodes under eeprom@a4.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+On 04/12/2024 13:23, Faraz Ata wrote:
+> +
+> +		spdma1: dma-controller@10190000 {
+> +			compatible = "arm,pl330", "arm,primecell";
+> +			reg = <0x10190000 0x1000>;
+> +			interrupts = <GIC_SPI 917 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cmu_misc CLK_MOUT_MISC_NOC_USER>;
+> +			clock-names = "apb_pclk";
+> +			#dma-cells = <1>;
+> +		};
+> +
+> +		pdma0: dma-controller@101A0000 {
 
-Applied, thanks!
+Please do not send downstream code directly, but fix it to match
+upstream. Lowercase hex everywhere.
 
+Best regards,
+Krzysztof
 
