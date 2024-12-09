@@ -1,128 +1,270 @@
-Return-Path: <devicetree+bounces-128828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 925BA9E98DB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:30:07 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F102B9E98E2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:30:33 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D6831671BA
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:30:27 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E62E1B423B;
+	Mon,  9 Dec 2024 14:29:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eoeWFOHb"
+X-Original-To: devicetree@vger.kernel.org
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95F2B28108A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:30:05 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78DFE1B4240;
-	Mon,  9 Dec 2024 14:28:33 +0000 (UTC)
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABEED1B042A;
-	Mon,  9 Dec 2024 14:28:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7F231B4239;
+	Mon,  9 Dec 2024 14:29:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733754513; cv=none; b=YMKj/DBdkHolaNovQ8sL5DnUmnU2fQ1KUcucTvFxuw93k2BlPWTi0jhmr0NtM+iUxH7fal8R9b++nOuKQy74ybTlQCSUhJIQ+1ejMSGhiyVBCBzLRjgEqyFUn8gBJvoRarOTKg7wSOo+bOlcqEUlJ208QTYq3pGXrDso0tOhX68=
+	t=1733754553; cv=none; b=nrOEsgi+08sUa1vfb8rNHyIDS/AihqSIkhUwgzpmcYqbKYAxN8+dK1ZN5kPL6VwbDWfeeG2wUxTsnz+r6lRxct+hSEywULD1uGS2nMR6s3WZ5duJjAGBXcS/tKj7VfVQ/pzIp4SyyiXVAcHZnpq+GyY2RDyB2jrl2Ih+sBsN73c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733754513; c=relaxed/simple;
-	bh=2PREzsyz85kBTZDq8hlKJq8l2Dc5aeEG1Zkbzhg0BDc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FDNSJnZwyyBb3Ug7eFTkMjMHMpHmQCp/I7XGed7wYxjoVYSnIajVoBhlfFoGDR0EMiVWvSP+jpCgGDtQ4KkIuyv51qh8COK/Bu69+PJlSyPwo6Jwf6X14BgVJFOYkqFkuIfe1vZ7xefYsJhw6k1pfWjCRosJDK6hm0xiagy4T9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4afeccfeda2so514658137.1;
-        Mon, 09 Dec 2024 06:28:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733754510; x=1734359310;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QpsifwGaktyhkJ/lUdGLfzerbmxDEKO6SEecVe7lU18=;
-        b=DkzMRIxOnuzZ1iMX25uBVg/WISZKFjXhOUtidkxtSEDUuy7IrNilbI+XnqJ9R8maxe
-         vVssju3Sh8Rjnf4DS5hbVSFOxuCbHVOHr79ib2VDsA5cXt+Ooe6tvjexjn9RnIUM45t8
-         GScL62Zcm4lctkhUNdih3CdrL5aVtsrmnlT+2F8J58oIQQecldxZngCdkuoTcsN9yL2O
-         6HYNNK73kuVaGtUPPnKUA0l9pK3ILOW/0I3Sp3WjcOuUQt/fK6GZ8DDLPcU9N+kx+eF5
-         9DWx82y6+JjGvNlQFtiG3M8TNwnqTGo/0+jPlVu/1S8zHXuw8rG5RFq/iYgCPIO2FTf+
-         snDg==
-X-Forwarded-Encrypted: i=1; AJvYcCUkgd4PTqhYTl8Sl7+hG5b6TOuE37kjLdK8YdlwpXAwazDa9m1rFBliK97hNyMVy8Jn/hJCAytVQqFUAb8=@vger.kernel.org, AJvYcCUzqn+SEbacqHZiUTTXmJInITse9zNXwL2izeLaWpng4CFAc/YUDr46t6NULRCu77pNACBMGtVxyqIu@vger.kernel.org, AJvYcCVEW2VDvzJd8a0kCmDBpxnJtBSKF8/76mtcauyfYZHKZPYEJE+uMkffG+8fUVQhmGMLFvCvoMXqyR+3/O3W@vger.kernel.org, AJvYcCXOasxixeRxNSGW0r9DGJ7CO8gJ6uM7BVaPM0y3v5FM7+ErBWApyU5G9bYTD46Doib6tdPbJRcj1aNT@vger.kernel.org, AJvYcCXX8YsXLdh9NilkwKOe0O9Uas4HgY0WF/JXI6/W01Gnf6BCpBW1RM3BOE5rx1iDeeS5I8CSaMYozwGm3Q==@vger.kernel.org, AJvYcCXg3Zkj4deyCoTeghGW0MPEHBXSuI+XdPsPa/TayinPohrxbTAg2dY/YEzlt5P+e71wRuzxIJ7rIJgC0mPAJ+Xp3ds=@vger.kernel.org
-X-Gm-Message-State: AOJu0YydMyAgkvL59UspzKLkjO/YyPscN3DlrxdhKhtjZVP0hGSx0ndr
-	qXUWCQMVp0510G/6wS7AV2Lro85uRTJm4AIguqOZG81SSwRyW0wfmLhUxBdh2xM=
-X-Gm-Gg: ASbGncsq4mhTdORkGV7T1WfupRybUIMPWNK95F9JnFngv2g2S2pbNcZ+vEr0boi6EpM
-	JdBWQu931Lk78VBmfF0uLAoQjL0m7PPUS1Nb0Wca2aX+2CD5eXaeaM84cOj2zRLrSTvKK2kexc0
-	VNkFzJHEOu1TphoboA4PbXwHCCjTMuQhzw4k2Y+9xjOoXU7hBzdZtZR3kQyLqP/cwOLeUBR78l9
-	TB2euyOKligPuy8Hre9Kr8Pmo9EXH8t3K5cU+uZBKfXIStE9GI3HRPrEC7WJWsldbJlrCrrLMN9
-	WjRpjWv6fMKz
-X-Google-Smtp-Source: AGHT+IHfiwxw0atZRuCGYkUhIBxXmvM87MpHNe6dbkKiX+2UahfjkIWYdVNbBdhNcEJhOBdma5UOfw==
-X-Received: by 2002:a05:6102:290c:b0:4b1:11c6:d3d2 with SMTP id ada2fe7eead31-4b111c6e527mr1612018137.27.1733754509795;
-        Mon, 09 Dec 2024 06:28:29 -0800 (PST)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85c2b9669a5sm1190575241.3.2024.12.09.06.28.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 06:28:29 -0800 (PST)
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-85c5eb83a7fso440165241.2;
-        Mon, 09 Dec 2024 06:28:28 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUU5OqASY5dox7KhzkUJqVRenoLuPEawPDwmU7XBdvBZBDMjj+LKcY8EqLoBQ3wSAYsONNlmKszxkUc0wwz@vger.kernel.org, AJvYcCUpT3tGq6VHStLT0EzJ05iA7KXCy1B+sCwx2PzsvnY4ce53XxTi2iHGcDGmFzWux1wHCklf81tCPgfR@vger.kernel.org, AJvYcCVe/Mpt6pvw+CzAwz3fl4O4iAUped90MOKfbgu96QQEyRqa1cExqCLnYeGGNVD7EIBFE0pBfz72NDD1m4ag8ibMkR0=@vger.kernel.org, AJvYcCWzxpc5eCaPS4j6Kc57yUG9O/rLXJjd8oO3kf23T1p4tmENHk1Y0Yw95v6pjZRwWhUNeQPy1bcTe2WeSg==@vger.kernel.org, AJvYcCXE9qZuphsmBH5GI6h05Mn74FU//f+NK0mOygoUNcdEpAQWQcCnihn4VSZWZmtCA9zT1LiMf8zfy3uRhZA=@vger.kernel.org, AJvYcCXLJQStWbsTOKrCAd4tBEKrInHhaK6OHryznyA6nbjP1EUPobABSWmjwc4c2bNDbWjplxUmSBeSIg7p@vger.kernel.org
-X-Received: by 2002:a05:6102:2909:b0:4af:4945:9a1c with SMTP id
- ada2fe7eead31-4afcaac87abmr12454406137.19.1733754508690; Mon, 09 Dec 2024
- 06:28:28 -0800 (PST)
+	s=arc-20240116; t=1733754553; c=relaxed/simple;
+	bh=P4eAc7QnnuIdOPiRR3fXjKQOETMWijY5/6m0h0zbD1A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=G+LMbuWT+cHnRinnf52HbXjVPXHZp8xIYPNtXooP4Npr5a0KdOewzaBUvP0c4C6bjkuTLz826umGex9N+HfGC0++eniZe7a95pYmEIWdzKwCeZlcNCBF/sDVqcgY0TGxmvpRtCfpOlc9bIpYFhYHaEmE6VVBYJieN4hnhAosGns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eoeWFOHb; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4B9ET1de2520973
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 9 Dec 2024 08:29:01 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1733754541;
+	bh=tc9SG8RUke5s1hZOp/gwDQS42RmGeAz1F1nntsZF8Cw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=eoeWFOHbv3LIBaQRitgicEkE8EPBWIWc1xc8j+ikgX21cmMYPM2ngYARTJLRbhxrl
+	 5sUhzmDuvFzt9n6zsq1n4yn3ejXZBx+VdJhNDliFPM8O98Gk6ipVyzHVE1GaqaQWjm
+	 VCbNAjD0ZCQBXmlaONLucnn0fyMSApY6nCVK3LI4=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B9ET1pV079241
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 9 Dec 2024 08:29:01 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 9
+ Dec 2024 08:29:01 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 9 Dec 2024 08:29:01 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B9ET0d6044340;
+	Mon, 9 Dec 2024 08:29:00 -0600
+Message-ID: <de6039a6-b7e6-4960-afcc-5f0d29fb27a8@ti.com>
+Date: Mon, 9 Dec 2024 08:29:00 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com>
- <20241113133540.2005850-8-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdVms8xKxuX=gC49ognvXmY+8a3SttJOG=7iuCUVL4vcdQ@mail.gmail.com> <97049f44-cdcf-42be-aefb-c535bd7d0dbc@tuxon.dev>
-In-Reply-To: <97049f44-cdcf-42be-aefb-c535bd7d0dbc@tuxon.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 9 Dec 2024 15:28:16 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXSdY5gwm7U0630UpjtwOyfnjaDKkHMdncdt5ByEdyLOg@mail.gmail.com>
-Message-ID: <CAMuHMdXSdY5gwm7U0630UpjtwOyfnjaDKkHMdncdt5ByEdyLOg@mail.gmail.com>
-Subject: Re: [PATCH v3 07/25] ASoC: renesas: rz-ssi: Use only the proper
- amount of dividers
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com, 
-	broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org, 
-	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: leds: Convert LP8860 into YAML format
+To: "A. Sverdlin" <alexander.sverdlin@siemens.com>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>
+CC: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        <linux-leds@vger.kernel.org>
+References: <20241206203103.1122459-1-alexander.sverdlin@siemens.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20241206203103.1122459-1-alexander.sverdlin@siemens.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Claudiu,
+On 12/6/24 2:31 PM, A. Sverdlin wrote:
+> From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+> 
+> Convert Texas Instruments' LP8860 LED driver bindings into YAML format.
+> 
+> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+> ---
+> The patch is now separated from the LP8864 series:
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241206170717.1090206-2-alexander.sverdlin@siemens.com/
+> 
+>   .../devicetree/bindings/leds/leds-lp8860.txt  | 50 ----------
+>   .../devicetree/bindings/leds/ti,lp8860.yaml   | 95 +++++++++++++++++++
+>   2 files changed, 95 insertions(+), 50 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/leds/leds-lp8860.txt
+>   create mode 100644 Documentation/devicetree/bindings/leds/ti,lp8860.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-lp8860.txt b/Documentation/devicetree/bindings/leds/leds-lp8860.txt
+> deleted file mode 100644
+> index 8bb25749a3da3..0000000000000
+> --- a/Documentation/devicetree/bindings/leds/leds-lp8860.txt
+> +++ /dev/null
+> @@ -1,50 +0,0 @@
+> -* Texas Instruments - lp8860 4-Channel LED Driver
+> -
+> -The LP8860-Q1 is an high-efficiency LED
+> -driver with boost controller. It has 4 high-precision
+> -current sinks that can be controlled by a PWM input
+> -signal, a SPI/I2C master, or both.
+> -
+> -Required properties:
+> -	- compatible :
+> -		"ti,lp8860"
+> -	- reg : I2C slave address
+> -	- #address-cells : 1
+> -	- #size-cells : 0
+> -
+> -Optional properties:
+> -	- enable-gpios : gpio pin to enable (active high)/disable the device.
+> -	- vled-supply : LED supply
+> -
+> -Required child properties:
+> -	- reg : 0
+> -
+> -Optional child properties:
+> -	- function : see Documentation/devicetree/bindings/leds/common.txt
+> -	- color : see Documentation/devicetree/bindings/leds/common.txt
+> -	- label : see Documentation/devicetree/bindings/leds/common.txt (deprecated)
+> -	- linux,default-trigger :
+> -	   see Documentation/devicetree/bindings/leds/common.txt
+> -
+> -Example:
+> -
+> -#include <dt-bindings/leds/common.h>
+> -
+> -led-controller@2d {
+> -	compatible = "ti,lp8860";
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -	reg = <0x2d>;
+> -	enable-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+> -	vled-supply = <&vbatt>;
+> -
+> -	led@0 {
+> -		reg = <0>;
+> -		function = LED_FUNCTION_BACKLIGHT;
+> -		color = <LED_COLOR_ID_WHITE>;
+> -		linux,default-trigger = "backlight";
+> -	};
+> -}
+> -
+> -For more product information please see the link below:
+> -https://www.ti.com/product/lp8860-q1
+> diff --git a/Documentation/devicetree/bindings/leds/ti,lp8860.yaml b/Documentation/devicetree/bindings/leds/ti,lp8860.yaml
+> new file mode 100644
+> index 0000000000000..62f133006fd0e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/ti,lp8860.yaml
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/ti,lp8860.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments - lp8860 4-Channel LED Driver
+> +
+> +maintainers:
+> +  - Andrew Davis <afd@ti.com>
+> +
+> +description: |
+> +  The LP8860-Q1 is an high-efficiency LED driver with boost controller.
+> +  It has 4 high-precision current sinks that can be controlled by a PWM input
+> +  signal, a SPI/I2C master, or both.
+> +
+> +  For more product information please see the link below:
+> +    https://www.ti.com/product/lp8860-q1
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,lp8860
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: I2C slave address
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +    description: GPIO pin to enable (active high) / disable the device
+> +
+> +  vled-supply:
+> +    description: LED supply
+> +
+> +patternProperties:
+> +  "^led@[0]$":
+> +    type: object
+> +    $ref: common.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        description:
+> +          Index of the LED.
+> +        const: 0
+> +
+> +      function: true
+> +      color: true
+> +      label: true
+> +      linux,default-trigger: true
+> +
+> +    required:
+> +      - reg
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        led-controller@2d {
+> +            compatible = "ti,lp8860";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            reg = <0x2d>;
+> +            enable-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+> +            vled-supply = <&vbatt>;
+> +
+> +            led@0 {
 
-On Mon, Dec 9, 2024 at 2:32=E2=80=AFPM Claudiu Beznea <claudiu.beznea@tuxon=
-.dev> wrote:
-> On 09.12.2024 15:22, Geert Uytterhoeven wrote:
-> > On Wed, Nov 13, 2024 at 2:36=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.d=
-ev> wrote:
-> >> -       static s8 ckdv[16] =3D { 1,  2,  4,  8, 16, 32, 64, 128,
-> >> -                              6, 12, 24, 48, 96, -1, -1, -1 };
-> >> +       static s8 ckdv[] =3D { 1,  2,  4,  8, 16, 32, 64, 128, 6, 12, =
-24, 48, 96 };
-> >
-> > "u8", as 128 doesn't fit in s8 (why doesn't the compiler complain?).
->
-> Failed to notice that. Thank you for pointing it! I saw no compiler
-> complains, though.
+So same comment I made in the pre-public review, lets see what the DT
+folks think:
 
-Me neither. And the code has been storing 128 in s8 since the beginning...
+I don't think we want to have the "@0" node naming. It forces us to
+add the "reg =" below, and that then forces us to add the #*-cells above.
+All this to work around not just calling the node "led-0". The driver
+doesn't care either way, and there are no in-tree users of the old way,
+so now should be a safe time to fix this while converting the binding.
 
-Gr{oetje,eeting}s,
+Andrew
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> +                reg = <0>;
+> +                function = LED_FUNCTION_BACKLIGHT;
+> +                color = <LED_COLOR_ID_WHITE>;
+> +                linux,default-trigger = "backlight";
+> +            };
+> +        };
+> +    };
+> +
+> +...
 
