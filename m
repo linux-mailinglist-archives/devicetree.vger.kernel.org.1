@@ -1,111 +1,116 @@
-Return-Path: <devicetree+bounces-128869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7D7B9E9A9A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:31:40 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E726A9E9A85
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:30:38 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 974C9283567
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:31:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7A7D161F00
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:30:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F0FF1F2C33;
-	Mon,  9 Dec 2024 15:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46FF81BEF85;
+	Mon,  9 Dec 2024 15:30:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a/YLjG8g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hidenPXi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAC561C5CD3;
-	Mon,  9 Dec 2024 15:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11B8C1A239B;
+	Mon,  9 Dec 2024 15:30:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733758248; cv=none; b=D+sJ28s6Wk+LOyNmkeyJmQhMx3wYwAJzYv9jidCNKx9ptkEvJMjKWLdCYCjnMs/OInjucjJRlXAWRQwboObNJfM/o5lcvAAiUjGCEHDDnPyMDdoVEC4BdX1KQLsaMeq9dG5wfV9Pjxwu64u996NYGDqX1YYbeseyEllLnaxDT1A=
+	t=1733758235; cv=none; b=GdsIDq0TAw/CUui+wjcGo1Pic9L/dLKjiUZnQjFMpQ8/OwK+oADmafpFDGqK9iAuthPGCDQO+l8L1Gm1p2+XZut3nOYgfaR1o/Bxjt+0IUD/Ywc081NlUvL/CJWP5iRLroMI230zXy1nc53/cALAZtudd5x+XBiT46lJbSVhU2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733758248; c=relaxed/simple;
-	bh=ZM8zjJkGa/qRK0XshDVNYNacIug+9Bt5JFORjs69WfE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=fbNnFwCxPnDQ3I3T5wfHfJsQG8ysiUA5qwNn7ZPdIY4q0EPQXEfP0Z8JFzlycCKWaTSCZaPYaaurVlOzCwekjerOlQgs67NCVKKHk4rFCEBQI1p35/KNHWyv0suTKaZc4qwJ0kmgp0wEqXyBjM2oshohn30wsn1v6YEHY5I/vuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a/YLjG8g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B02D9C4CEDE;
-	Mon,  9 Dec 2024 15:30:46 +0000 (UTC)
+	s=arc-20240116; t=1733758235; c=relaxed/simple;
+	bh=b7PzERVFQcDyxLyoYQXxu7ISxAaaElvwdHKLZeF8fGA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QNAY5XI/c+i+UX8JjcjjNdPT9Sctgw/JF3a4PzkLfI3hmZy7RAKVnVo8DAiSsyDYIUbjDsxhi7m4/IpCJTwMkd5IAc3T7dGD1ZFqcch7/Nu3kRw5ve4EXHXnhl5JQXyf+TEFoCr3jOhhnPBvfSNrdst9/Yp+uAKnpoTaRSA3/Ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hidenPXi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BD36C4CED1;
+	Mon,  9 Dec 2024 15:30:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733758247;
-	bh=ZM8zjJkGa/qRK0XshDVNYNacIug+9Bt5JFORjs69WfE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=a/YLjG8gDfJDCtwG4CBrKcWh6Kj7ygTPW5SMuHRBqD0GhoOTxAsKhl0vhh7wWRFVh
-	 i0iZNztMBs4k7obkf5OTylNn+KLnKXhx+fBt3kh8kW8VfbBOpSZSLRh4/f9xu+H0f4
-	 i0TATrxKnzjL1i0XfSXsSdnhTxkzPzNepDj0d9Znb8IlA0S5+DG7AYHik/lcC9aba+
-	 AaOUf5cLQdt7Gz6tjyxBBTWOknMjnJ6udcKrHi5h3anHH4Wouh6Qz1e7iQah7bZQDx
-	 ayiTJl4ctYkhfuACNdMKwL+x5EuD0Cp3fmyrLIIYxU/QRJFAvJzjiBjHY+o+vUiJ9Q
-	 EojWZFQoa9bwA==
-From: Kalle Valo <kvalo@kernel.org>
-To: ath12k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 8/8] wifi: ath12k: avoid redundant code in DP Rx error process
-Date: Mon,  9 Dec 2024 17:30:34 +0200
-Message-Id: <20241209153034.50558-9-kvalo@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241209153034.50558-1-kvalo@kernel.org>
-References: <20241209153034.50558-1-kvalo@kernel.org>
+	s=k20201202; t=1733758234;
+	bh=b7PzERVFQcDyxLyoYQXxu7ISxAaaElvwdHKLZeF8fGA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hidenPXixJSdsbpf34DXymjH0vYzwTrcqJkN4XJs0jZcOEyRF6p72OOGNgcUfNKyQ
+	 +wukqv8cTs9tNADaUse/xlk7Re4zxJZHthI5VDAZOBoZt1QkYPS3xSdaQ87CrpVCT2
+	 SMNuKZhx63mUbM/uMIQowCPe+5rQY46hIG2ZPI5AOHH9923Lc+1HsywzqrATmrKmNP
+	 NM0hotE7GKxB2zCj/WNqvQo9Ty7F7eChKimyizJShqISoqwL0vRGN6nNxYk0R5/fpW
+	 OsiJClP5HmY8TDECm6OXBZwhcRAXtaNH/oYXqf69iYIXnIHgkiVLrxi/QorBR4/Wta
+	 GSkCJLN/ajEgA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tKfiW-000000006JE-0rDY;
+	Mon, 09 Dec 2024 16:30:36 +0100
+Date: Mon, 9 Dec 2024 16:30:36 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Marek <jonathan@marek.ca>,
+	Stephan Gerhold <stephan.gerhold@linaro.org>,
+	Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	regressions@lists.linux.dev
+Subject: Re: [PATCH v2 0/2] arm64: dts: qcom: x1e80100: fix USB OTG
+ regressions
+Message-ID: <Z1cNHOqlRk2Cxwvd@hovoldconsulting.com>
+References: <20241209111905.31017-1-johan+linaro@kernel.org>
+ <iw2c4fceyppf2w2gueevsqsz2z7hatbqo33vufx3veatprczu5@u4k3j2igy6ee>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <iw2c4fceyppf2w2gueevsqsz2z7hatbqo33vufx3veatprczu5@u4k3j2igy6ee>
 
-From: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
+On Mon, Dec 09, 2024 at 03:23:05PM +0200, Dmitry Baryshkov wrote:
+> On Mon, Dec 09, 2024 at 12:19:03PM +0100, Johan Hovold wrote:
+> > A recent change enabling OTG mode on the Lenovo ThinkPad T14s USB-C
+> > ports can break SuperSpeed device hotplugging.
+> > 
+> > Abel noticed that the corresponding commit for the CRD also triggers a
+> > hard reset during resume from suspend.
+> > 
+> > With retimer (and orientation detection) support not even merged yet,
+> > let's revert at least until we have stable host mode in mainline.
+> > 
+> > Note that Stephan and Dmitry have already identified other problems with
+> > the offending commits here:
+> > 
+> > 	https://lore.kernel.org/all/ZxZO6Prrm2ITUZMQ@linaro.org/
+> > 	https://lore.kernel.org/all/hw2pdof4ajadjsjrb44f2q4cz4yh5qcqz5d3l7gjt2koycqs3k@xx5xvd26uyef
 
-Currently, in DP rx error processing, the MAC id is fetched redundantly from
-the same descriptor for each MSDU. To avoid this redundancy, move the fetch
-handling before the iteration.
+> > Changes in v2
+> >  - revert also the corresponding patch for the CRD which breaks suspend
+> 
+> As you are reverting two commits, please revert the third one too, it
+> breaks pmic-glink.
 
-Tested-on: QCN9274 hw2.0 PCI WLAN.WBE.1.3.1-00173-QCAHKSWPL_SILICONZ-1
-Tested-on: WCN7850 hw2.0 PCI WLAN.HMT.1.0.c5-00481-QCAHMTSWPL_V1.0_V2.0_SILICONZ-3
+Can you be more specific? 
 
-Signed-off-by: Karthikeyan Periyasamy <quic_periyasa@quicinc.com>
-Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
----
- drivers/net/wireless/ath/ath12k/dp_rx.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+I was gonna say that pmic_glink works since hotplug and orientation
+detection still works, but I tested now with DP altmode and that is
+indeed broken unless I revert the third commit (f042bc234c2e ("arm64:
+dts: qcom: x1e80100: enable OTG on USB-C controllers")).
 
-diff --git a/drivers/net/wireless/ath/ath12k/dp_rx.c b/drivers/net/wireless/ath/ath12k/dp_rx.c
-index b24d1de4aabb..2c919503ddef 100644
---- a/drivers/net/wireless/ath/ath12k/dp_rx.c
-+++ b/drivers/net/wireless/ath/ath12k/dp_rx.c
-@@ -3516,6 +3516,13 @@ int ath12k_dp_rx_process_err(struct ath12k_base *ab, struct napi_struct *napi,
- 				    ret);
- 			continue;
- 		}
-+
-+		mac_id = le32_get_bits(reo_desc->info0,
-+				       HAL_REO_DEST_RING_INFO0_SRC_LINK_ID);
-+
-+		pdev_id = ath12k_hw_mac_id_to_pdev_id(ab->hw_params, mac_id);
-+		ar = ab->pdevs[pdev_id].ar;
-+
- 		link_desc_va = link_desc_banks[desc_bank].vaddr +
- 			       (paddr - link_desc_banks[desc_bank].paddr);
- 		ath12k_hal_rx_msdu_link_info_get(link_desc_va, &num_msdus, msdu_cookies,
-@@ -3544,12 +3551,6 @@ int ath12k_dp_rx_process_err(struct ath12k_base *ab, struct napi_struct *napi,
- 		}
- 
- 		for (i = 0; i < num_msdus; i++) {
--			mac_id = le32_get_bits(reo_desc->info0,
--					       HAL_REO_DEST_RING_INFO0_SRC_LINK_ID);
--
--			pdev_id = ath12k_hw_mac_id_to_pdev_id(ab->hw_params, mac_id);
--			ar = ab->pdevs[pdev_id].ar;
--
- 			if (!ath12k_dp_process_rx_err_buf(ar, reo_desc,
- 							  &rx_desc_used_list,
- 							  drop,
--- 
-2.39.5
+Was that what you had in mind? Can you explain why that breaks?
 
+I'll respin with a v3, but please answer the above first.
+
+> > Johan Hovold (2):
+> >   Revert "arm64: dts: qcom: x1e78100-t14s: enable otg on usb-c ports"
+> >   Revert "arm64: dts: qcom: x1e80100-crd: enable otg on usb ports"
+
+Johan
 
