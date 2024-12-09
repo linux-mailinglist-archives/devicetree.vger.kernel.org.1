@@ -1,172 +1,137 @@
-Return-Path: <devicetree+bounces-128825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDC9D9E9874
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:09:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C17D9E9897
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:19:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E37DA1883C37
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:09:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 731241884B93
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:19:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D6D61B0402;
-	Mon,  9 Dec 2024 14:09:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AAD51ACEB8;
+	Mon,  9 Dec 2024 14:19:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a/ojBdj1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B066235968;
-	Mon,  9 Dec 2024 14:09:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 707AB1494BF
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 14:19:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733753359; cv=none; b=id5NF7OujjeJCFmDbxWat7YAgM4rVzzndhD1l7CjcgjABMmcW5WMgrE6r+EPiPWr4gw239URfGGNmcBTQ3q1vbIl1DDndkzwc2NjNfyJwdcNh49Ux9vzG5xACq5JSr8/Dp1vL8AsPWjLlF4SMXEC4AnGdA8ETNTKEhWowyufTGc=
+	t=1733753960; cv=none; b=HCcvd20TdEgD2zjiS/HckIKkM97nPrs6IFz33PlArFGu69clPW1CahTftIn7iVlETjKM3l5H+3ywHAd0E04tYJSgd1bk/bfJ2eIPvzNHeyGRNud2hHrSILefEdv7yX6aNGuZ28fmgwaMWL88ZwaARAKO6WmzJKff+xhjZhiGuU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733753359; c=relaxed/simple;
-	bh=s9Ldmug26kxAmuSbYyoIvZf07MyJobSWL4Un9vG+tFY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RKgwBAkoLc9xGjqYBQL91qG38McnM5ysSmiT8Z5HXrRF0tNcHoCUVY5UAdH3cKu49EDJOSWfdTd8BuBuMQauH03T3UNHNAff7G9Ld0YHhDJF7CgIpbIL45Lx4yri9jngq/oBRtxaMT4ZE7V7Ww71ZMONHpTqnvdwf/WQbPNSBoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-467631f3ae3so6131411cf.0;
-        Mon, 09 Dec 2024 06:09:16 -0800 (PST)
+	s=arc-20240116; t=1733753960; c=relaxed/simple;
+	bh=oJeg0IDLiudQCx+r40Nks4t9ti82fc4uLX5xh9nxdw4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RLaYoqUPscQo/lxbwrLZ6s+0cQ6BzwDHx/WWAAm1kADk6ret8ZW1xZ76a5t0yG0e1JgkU3ai7PRokijfV5qbp/vKZNvqLIsb30tg9WAMsfTJeJR80lD/oemG3ooRtFOEZ6p+Idqm6Y3P41AZI+OqGBzWkFFNrxhg09FBS2K403o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a/ojBdj1; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5d3ea065b79so2505496a12.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 06:19:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733753957; x=1734358757; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FKGxGVFQL+Og6kSlKUo67HxrazoGKfS5bm5biJspKWs=;
+        b=a/ojBdj17hjrP9wFWoyGlap38lL5qiW4MVGskcjs5qhiKA5FHiT/Q7d39MJ6F8DXMT
+         HDMrRKWnEWz03ZgyPcHYRrEAu1jcVVGqTcXREKuY7LVl2KtvEd1+7WBGR2KQgNoSc8JP
+         XQieSWnit1AL/3t/i+1pWLz9VOJtbh/T/NJFGbeZd2Ovx0bRVPVoswN8RWaxI1d8R9h8
+         IZdJFjF7NmvZAYXdnDDbi7tPiNeSmrzKe+npcVAV8ZbB8IRdw96ECWWDJuuAAIqRzzXh
+         LFu8AAVD1H36Pv8aWaPnqzXoDwrlFinY4L3m2n9AqzUybNpe603zb27Hqtex6mznfe3N
+         Z63Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733753355; x=1734358155;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V7vHMlMX/1emap3oJbzw6fcX2VkuumLPk5gGBhXT388=;
-        b=ji6cpONsxOnW3JXNWlvK/nmVVnmFyREgPl5hZiNDgQDWcUnFtCY+m8lMgLLOoIKm2z
-         rcP/TwqQKDai2kghPHFDMl8AQzZXJ5gW3B0A6O1+OH/btbT49WTeBoRsvKAZc/EyE3O7
-         jaG4MNKkJ7hfXRUyz4KTTIuH6GTdDtsICHOPUEiWBp2o2PnT6BA8sXF2vdmxmiw790Fw
-         664R+ok0voKj8wfKTHYG5oEmFxRLUqSOcop8owTY8n3yStSAhUWATZLb83ypxCjEtTKF
-         utHX74CtHP6HBKh4Wwl7pNFdkv5PycEM09FF9r92mKWjlS70FG8B1QEoVPqn4or9GBaV
-         VVDw==
-X-Forwarded-Encrypted: i=1; AJvYcCU63VniDVeKJ6sPY7nZZ+GNC3WlKJ1aQISB4Kx7oEhxqB0k9u/m7oHSZl488kNNbzCb/aQovwFJo18O@vger.kernel.org, AJvYcCU6Cz3Hu3gy8H9RA4ZOJUZkSxm6i9aYbJuwY6RPnDtLBNmpIs/VIiqoGelKmwUyQ0af/GPVTrmiA3w6@vger.kernel.org, AJvYcCVuu40KSvjLc/V8eqzgBDcVXi3wcBIWqp/eJvNs0+DFhQcKKxO2a0e1vVcrM1G5JHznrVgFzVVQ71lhkQ==@vger.kernel.org, AJvYcCW9Wklj1FszkjOXeRZdbpfnX49zOqiGufQyliG4RkfqxdVJtKqirCvJZYSNL344QIQYmr0DuO23/r7XGB8lJamP7do=@vger.kernel.org, AJvYcCWHqNSsuPaObw0o9RRCPTD3whFTOsZmHm1FR+T/nGefmmSruutZVltNOeXxHUBIeBfnwCjXxNR1W6c8UDQ=@vger.kernel.org, AJvYcCWeI59JpovYmVXjpZgImLcEX2DgGDAQ4vvRrjp/DeitBDPkPl8IugUtCJ/BrtJ0xv7YrG3RFy5SGVhVDhvK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0LRM2+FKIxkI8j3teLxy/n0vsVt/maYN1GI0cffKWCUQJuTBC
-	0J4lojVbusBzbZkiTBsdN4VTIRNe6cNFs7P4c3ol3UIaXJC8BMZjygkiMUOhwCI=
-X-Gm-Gg: ASbGnctkIXmoQChIFaX31PepjtiLvP+6wkuH9D4Ne3//xUoXJQUc1aNlneEvopgDYF8
-	Kv5U7sD9cwigC8UL+K6SiASYLdXkisl2+DWw5FISigrtoAaFR3+jeViI5yuVgC59BY2XeXyw2eP
-	KNbAdIJ5Edi5SvrrpArOPDo/04jAlSKAq69eUyTxp68DbMrg2552Wisvf2In12roJCvUso5URFq
-	DvmmehMt3AZbzKn1I/zY2A42pWZsuVyfpKVshYeo1XHhTtickO1s6kIQjgS3nfGGZerSNFGJgLv
-	LUtTLWp9mtu3YAub
-X-Google-Smtp-Source: AGHT+IFmYBf6Lgem1LIc/g0v9i2I6fJ81QKT0JVmvMw49IDJlRz6FCpd2JjuQH7p2i3vtR8e8++dZw==
-X-Received: by 2002:a05:6214:1d0b:b0:6d8:a486:e87c with SMTP id 6a1803df08f44-6d8e70d5e49mr188233176d6.4.1733753355181;
-        Mon, 09 Dec 2024 06:09:15 -0800 (PST)
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com. [209.85.222.173])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6d8da695ca3sm49339036d6.32.2024.12.09.06.09.14
+        d=1e100.net; s=20230601; t=1733753957; x=1734358757;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FKGxGVFQL+Og6kSlKUo67HxrazoGKfS5bm5biJspKWs=;
+        b=S1oeE9nQ6OLytprbrZ95Igyfk1uToCw7i6ODAvoEu+TWSeYFWZOBUqnaIR2gX22EGz
+         0374ssXp6BYAITa4WvdlMqGeZ4QHjRb4bFFAviD0b9OcWO+7rbQOTGlE+oZAXMejsfnE
+         tiixhBmQ8p2DVQ2QdyvOYUsAP63Z87cWLyP8gXsRzMvjyj2W0IdJzvW/02D3+gwUEX1s
+         vNAxselHW3zKOSLLIkSH2vC3QtxHSQPRu0EDRQ/Dfo1tY5Z69B+Ww/b3mGcqjINo2CZF
+         oa3Uj1qf85IYz1tqYgMmrgMCuulmGYrm7Qwq/VN1Xhvi+t5y8sqz1dcdsNTgTudjVcsB
+         9dCg==
+X-Forwarded-Encrypted: i=1; AJvYcCW+hz15xGAULd6RQx9Eu8QFsWZS+sK2aB4ZvbfuaY++Y6p8AZ6w31BmU8yKLviSgDaa6YyVsLgBneRa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyx8hBP/4EN3uDnTqI7Oizd6eXLGEB9iOI/vSndDyEoTU9LBdvK
+	g1fjhxkXYYMmeDRGFtYvQAZf+a0gcSOM7w+XWGUbHbG2Sj638JXFiaJFECqLcSk=
+X-Gm-Gg: ASbGnctybyYnTJRitn/3nQ4zz2xS+/SoSf4UrHBGo8SuuqUx6xnVrCcQw05/3AxbOIU
+	V9eoid3NMmaYOZ82UDBv2sWW3f/HiVQLPU+xQ7AJ4Ct2HcPc09yBv4XGHomtHqn9iQT4Z910GTM
+	ZCsXzEgtO7SQLC4Aux/Bea5zPjplo7TGyLb9vm+yRn81sPAQI/GsWEO0n6NvPhPfPOpkxcaoRjk
+	OVDaY5ERjdgEjXaFl4lXHyT3tdRuyN8cDP1yKiu3iJpmwoXAcO912CDAw==
+X-Google-Smtp-Source: AGHT+IGFZ72A7topG3h6HtsrPbQ9uANyoeaAttq9LuCfJvMZl3glvlTz4zo8uXTpVfHH3Pb/FsB6eA==
+X-Received: by 2002:a05:6402:50d4:b0:5d0:cca6:233a with SMTP id 4fb4d7f45d1cf-5d4185305aamr1118156a12.10.1733753955375;
+        Mon, 09 Dec 2024 06:19:15 -0800 (PST)
+Received: from [192.168.0.14] ([79.115.63.27])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d3eb7722acsm2780231a12.3.2024.12.09.06.19.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 06:09:14 -0800 (PST)
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7b6882c33acso272830485a.2;
-        Mon, 09 Dec 2024 06:09:14 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU9XqkDNMEJgCfajsMhk5PpHOZ4HGRMXiTLOUu4V6j39a12y2v3ISUC3oo67ySQ8SRriNdwbG0RDDAHguUg@vger.kernel.org, AJvYcCUPRk4KnqKl2mUHfU/pTOx87+lcqNyyilF8yDSLiYg6KIyOkpQKwIrJTc2t0jAZCgDcnGrl+XS3oKz6@vger.kernel.org, AJvYcCVPcgtn4FeduTNVMfVjHDIWL70A2E1H0vy8FKZFio9DLa1fUbDs0DIbM7jzhdOudcYcIodmG3KCjP7a@vger.kernel.org, AJvYcCW32Agq1UNv45icop672gD9gJchpoR4IAwyOFFPUmQr4etsmjv+2YhWeDxXL9R1MBsfBE9J5wdYA36zdg==@vger.kernel.org, AJvYcCWAezZx/W/+kIsIaBZdQ7uRl/qclD36CHYhjqInRBFC+Wskn7y1eMLc3CefepEwGa/llD/lf9lyDAva62A=@vger.kernel.org, AJvYcCX+B8+4WqAToKdk6bY3MWzAnhESynP/trlvNFyR8GxmRqtGnF73u5Zl2IoOlb3aYF+jF5RCKwCZ3VBUqvB2VaW2tq0=@vger.kernel.org
-X-Received: by 2002:a05:620a:2619:b0:7b6:d754:207f with SMTP id
- af79cd13be357-7b6d75422bbmr410771985a.50.1733753354661; Mon, 09 Dec 2024
- 06:09:14 -0800 (PST)
+        Mon, 09 Dec 2024 06:19:14 -0800 (PST)
+Message-ID: <38e6687e-c2ee-414b-bba5-483150ba7baa@linaro.org>
+Date: Mon, 9 Dec 2024 14:19:13 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com> <20241113133540.2005850-19-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241113133540.2005850-19-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 9 Dec 2024 15:09:02 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWhWJfuMFoXdbubg3MuJXsFPAoEMCifLOiP-wJanmg1kQ@mail.gmail.com>
-Message-ID: <CAMuHMdWhWJfuMFoXdbubg3MuJXsFPAoEMCifLOiP-wJanmg1kQ@mail.gmail.com>
-Subject: Re: [PATCH v3 18/25] ASoC: renesas: rz-ssi: Issue software reset in
- hw_params API
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com, 
-	broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org, 
-	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: mailbox: add bindings for
+ samsung,exynos
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, alim.akhtar@samsung.com, linux-kernel@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, andre.draszik@linaro.org,
+ kernel-team@android.com, willmcvicker@google.com, peter.griffin@linaro.org
+References: <20241205174137.190545-1-tudor.ambarus@linaro.org>
+ <20241205174137.190545-2-tudor.ambarus@linaro.org>
+ <2lkowhldq5i4otniijfw7cb3jm6ttatwji3npw5w7c5fyevnn5@ynojupmdyqy4>
+ <9886429b-1bf3-4dc3-b0d4-294a98e44ff2@linaro.org>
+ <58d62506-de89-40e4-a3c2-bd27da515a45@kernel.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <58d62506-de89-40e4-a3c2-bd27da515a45@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 13, 2024 at 2:36=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> The code initially issued software reset on SNDRV_PCM_TRIGGER_START
-> action only before starting the first stream. This can be easily moved to
-> hw_params() as the action is similar to setting the clocks. Moreover,
-> according to the hardware manual (Table 35.7 Bits Initialized by Software
-> Reset of the SSIFCR.SSIRST Bit) the software reset action acts also on th=
-e
-> clock dividers bits. Due to this issue the software reset in hw_params()
-> before configuring the clock dividers. This also simplifies the code in
-> trigger API.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> --- a/sound/soc/renesas/rz-ssi.c
-> +++ b/sound/soc/renesas/rz-ssi.c
-> @@ -388,6 +388,15 @@ static int rz_ssi_start(struct rz_ssi_priv *ssi, str=
-uct rz_ssi_stream *strm)
->         return 0;
->  }
->
-> +static int rz_ssi_swreset(struct rz_ssi_priv *ssi)
-> +{
-> +       u32 tmp;
-> +
-> +       rz_ssi_reg_mask_setl(ssi, SSIFCR, SSIFCR_SSIRST, SSIFCR_SSIRST);
+On 12/9/24 8:33 AM, Krzysztof Kozlowski wrote:
+>> I'm thinking of using the same driver for both cases, and differentiate
+>> between the two by compatible and `of_device_id.data`. Thus I propose to
+>> have a "google,gs101-acpm-mbox" compatible for the ACPM SRAM case and in
+>> the future we may add a "google,gs101-mbox" compatible for the messages
+>> passed via the controller's data register case.
+> Good that you pointed it out, I was indeed wondering why this is
+> "acpm-mbox", not "mbox in compatible.
+> 
+> This needs to be fixed - you cannot have two compatibles for the same
+> device.
 
-Nit: no need to clear SSIFCR_SSIRST first:
+Will fix. I followed arm,mhu, which differentiates the transfer mode,
+data or doorbell, via compatible.
 
-    rz_ssi_reg_mask_setl(ssi, SSIFCR, 0, SSIFCR_SSIRST);
+For the fix I'll use "#mbox-cells" as <&phandle type channel>, where
+type specifies doorbel or data type. Clients will use:
+	mboxes = <&ap2apm_mailbox DOORBELL 2>;
+or
+	mboxes = <&ap2apm_mailbox DATA 3>;
 
-cfr. what the original code did below.
+arm,mhu3 and fsl,mu pass the transfer mode in a similar way.
 
-> +       rz_ssi_reg_mask_setl(ssi, SSIFCR, SSIFCR_SSIRST, 0);
-> +       return readl_poll_timeout_atomic(ssi->base + SSIFCR, tmp, !(tmp &=
- SSIFCR_SSIRST), 1, 5);
-> +}
-> +
->  static int rz_ssi_stop(struct rz_ssi_priv *ssi, struct rz_ssi_stream *st=
-rm)
->  {
->         strm->running =3D 0;
-> @@ -782,14 +791,6 @@ static int rz_ssi_dai_trigger(struct snd_pcm_substre=
-am *substream, int cmd,
->
->         switch (cmd) {
->         case SNDRV_PCM_TRIGGER_START:
-> -               /* Soft Reset */
-> -               if (!rz_ssi_is_stream_running(&ssi->playback) &&
-> -                   !rz_ssi_is_stream_running(&ssi->capture)) {
-> -                       rz_ssi_reg_mask_setl(ssi, SSIFCR, 0, SSIFCR_SSIRS=
-T);
-> -                       rz_ssi_reg_mask_setl(ssi, SSIFCR, SSIFCR_SSIRST, =
-0);
-> -                       udelay(5);
-> -               }
-> -
->                 rz_ssi_stream_init(strm, substream);
->
->                 if (ssi->dma_rt) {
 
-Gr{oetje,eeting}s,
+>> Given this, I shall use the more generic name for the bindings, thus
+>> maybe "google,gs101-mbox.yaml"? But then exynos850 has the same
+>> controller, shouldn't we just use "samsung,exynos.yaml"?
+> If exynos850 has the same controller, then add it to the binding. Anyway
+> then use samsung,exynos850-mbox, because samsung,exynos is way too generic.
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Looks the same, yes, it differs by the number of how many data registers
+each has. But I'll stick to "google,gs101-mbox.yaml", as I can't test
+exynos850 and I assume we can rename the file when we'll need it.
 
