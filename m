@@ -1,116 +1,115 @@
-Return-Path: <devicetree+bounces-128859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA189E9A7C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:28:11 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E079E9A87
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:30:51 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1B53161C08
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:28:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79D17280C86
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:30:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEB821C5CAC;
-	Mon,  9 Dec 2024 15:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 112E01E9B0A;
+	Mon,  9 Dec 2024 15:30:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="px+03AIp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8CDF1C5CA0;
-	Mon,  9 Dec 2024 15:28:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC3D61BEF7D;
+	Mon,  9 Dec 2024 15:30:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733758085; cv=none; b=YU+GjqE4B94X+ICSxHYfJ0mnpI6s3SmyMyDUKcaG/uWJYd1DJvJQ6gQbMqDWDGV+ILOu2zUjfDVGwEqlMooXqfzbPeAXoy/MG98cnTsGlsR0q+/r8TMTWaHYfsepiPTBDuH7OU1fi19cZr2ZQ2FTo1DKDza6a1hMeslUZ1In5Ik=
+	t=1733758238; cv=none; b=gQ1mVA8yeDxGFfhJNWr92oWkOtElQn8LSSGPQ3Rppl1AQ5AVnE06+zbOyqfeV9btdvWdlGmw6cGnUlpcxWG2vwyJFl9G3GXSfA5eZ6H3wNSY7tn8WbWu9XOO+TOXn3b+owzh8VtxZzoTH/JUmUqx10S/aprAX/z+1OjummDnfTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733758085; c=relaxed/simple;
-	bh=xdHaTdXFdYTtHxafGhZhv7UCoLyj8YCRBuOdJFcZEkg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AgnoFUzAFfGWSnZ7Uy/BLMagplG/zrG0hp8HU4HN5x2fOVI388lpCVEJ13mzW0ZycsrpnRitw8wjhIvd0wk8PmrPEi8C2UNd32821bqoKekUox6WKL/fE4/nHgXU5r4PP3LQUD7C/tHdPJTW8j+0ZNg/qeBO7/JQ37QhQzIFkag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4afdfefc6c1so591602137.0;
-        Mon, 09 Dec 2024 07:28:03 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733758081; x=1734362881;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KZwCXShpyrYZQBQu1Hq1in63vMRmxTciTHr0EHzD/3o=;
-        b=mw8vtjowdQhiAgYtc8KB6dxOF8ilhdTnJ/JWBLlOQaTP1VI7t9Vh+KcxuvCqqFLFJQ
-         /V1CPBdXLbRQj6fc8k/8cm3D9ULC6dyYrJzHLKptG8EZ8RDERtqpDklLalVFVpB0ajME
-         nIr4POGSiwRZ9OyH4JciYtP221hcbMHf0uLw1Gd1lAVViwJpMHGl9Mvg3J9EqLiqBuiQ
-         C4gtinIeCsj3vCP4OAA5CLDN9hz6jL6ENiLyytPlSLc+Y5fLtu/g9nCsLz+z+/3jnO36
-         rae4FCmCxThcyj7Xc03kbm5pXrMTEUK2CoBgIiIpWQ0vh2y5ee9SPV9ZfBD5v2v4lPLU
-         o6Dw==
-X-Forwarded-Encrypted: i=1; AJvYcCUIwWiiZT44gFnLgHlyLM3i6SkTOBNX4BLd4KwVtIPPT2Arz4EK0YoMKXMrwsgSdX5txMripL7D1UVG@vger.kernel.org, AJvYcCUj3pMhx1hQ4PtRPdbUMOW7klh0Lcxgaajkmr96/Y4mNWgIEdkQu8Y08wNMGG7U7haT/ASVO6JkTfyf@vger.kernel.org, AJvYcCWDH9nQqrrJS0qiq9QqzYrHOpJuvrrdMaX7JuZMiHv1fqtzzM4W/DMGjrTOdQuih1JPuXhaoFRZR+yPFLs=@vger.kernel.org, AJvYcCWeVmYd7wkX+4h/ZZQFMjXfmySt/oaIHjjRPtGXH0TIPS9thVvq892RuNOLArQJvdFPdCgsI7YtUMIXbQ==@vger.kernel.org, AJvYcCXp2dViXYypRHVbvvFu3GRHT807rBReXvBCW4GOTG7YVk4HWN4Z31NqLd6Oe8Lzdcq5sD9TFRQ84mo3KXU7Ky9k9EE=@vger.kernel.org, AJvYcCXuAknrD+Kzbk8CTtzJI5MgWCwjhZwS725iprPdypPSM/lN3nFpXnVepBYYxovli+hn2QuGOlb19KA7kuXZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDzB2q4tcQdBil640DtWeZhRs/esZxL0swlX3QTyCmzBkBmEpJ
-	mC8kD1Uxmrn28OGrOqrosIDwIMNtNC1IZNKJcYj4MxcSeVjVuRv19K9Ow73Rb+g=
-X-Gm-Gg: ASbGnctmMAtTunyB8szYwI1m3uDJAOrxxODaQx1+cy5fyzy1JKxGIk97ZIVV7PzDkDU
-	AJ4AkLxDejd2jwlftwkU4JihS7j934/RJ5g7snY10QW7eSoThYof9kJir8kpGteGld+UNi11jBs
-	ngquyDfTAElbuBT0zA+jjsdZgWVvdshBnzL38zA5jylMIJNpgE23dWBdc1JVjVfZD3SclidZQYt
-	KehWNvKu5vy9osU6D/TVZeKBc+prvItdsP+I5g+jvWTnde5sdk0vdzXJEg1OXw1lf9dZT2WRRVo
-	k6jwuITtxMTO
-X-Google-Smtp-Source: AGHT+IGNSdaAB8TFx0WADF4ID06n0kDRJ+SdlRNl+FGrDknb+lcx1D+C5PAPOSJf0keltduOrOPHkA==
-X-Received: by 2002:a05:6102:5494:b0:4b1:14f3:5d6d with SMTP id ada2fe7eead31-4b114f36884mr1589692137.6.1733758081129;
-        Mon, 09 Dec 2024 07:28:01 -0800 (PST)
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4afd24a30a4sm844685137.17.2024.12.09.07.28.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 07:28:00 -0800 (PST)
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4afdfefc6c1so591586137.0;
-        Mon, 09 Dec 2024 07:28:00 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUYLwWjxWofsBTsikUJSZi5AHTQBxMvvhu9eHj4A4avD6eETItBvR0BZ7vtynW8wzRJBWMUGukJtO+GQkXd@vger.kernel.org, AJvYcCUqskYqOiHkfYEGsEUlIfS4pAWk0owJ8WsWl+ioCYp8clr6lwTvlJojyLfmMJvVksqHa2mfdFHg4ex6QvBTQJ9esOc=@vger.kernel.org, AJvYcCUysLI8pyqjZX2+7DKJNw2yRSmTJ8+GAK+K579UPG999KyqoJCDMl6m1haro9Xnh/i1wblqbIU07gK9h9o=@vger.kernel.org, AJvYcCV/CjC040wz5Io5PwDiO/XZibxnlrHbWZTXnoQNVpl2SJWBMGXKGavlF7Fvkuarkt+wv43QS8NmvW1jCA==@vger.kernel.org, AJvYcCVMgN9fcU4p+PUvdTr/7DbqgGqZSj1bDKdF48gekqgeqkWLGMkctjCUmo66XseAXchKdLk9ZiTAgTmJ@vger.kernel.org, AJvYcCW5jHkVtxaDZFWFKjmUSLhTIkzvcR/2ZmZ6SHtF+v5hv9A4UvK8l2pwjxt3fZZFOMRfzr9leysJfL4M@vger.kernel.org
-X-Received: by 2002:a05:6102:3b8e:b0:4af:eed0:9211 with SMTP id
- ada2fe7eead31-4afeed09e26mr4318188137.13.1733758079660; Mon, 09 Dec 2024
- 07:27:59 -0800 (PST)
+	s=arc-20240116; t=1733758238; c=relaxed/simple;
+	bh=I/SQkPW7UvDlEYoReU9WDUhS/0OXih8QMkx7sMylOaU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=iELlsoe/1YXjEqgH7m1sX+YCTdOTTyZzLfWLId8hEyvg9MtwDs7eR6hst+EQb4cnR1zRZ4lfi7Ug6byYTv89yS1rML0fJIGen3CofGQEwomSdl2ybPP7CX2rW7NG9mpVs5MxlBq49MP/LlWTfpqLAFdCG6eyfUaEX2hrUA1Uaik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=px+03AIp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96292C4CEDE;
+	Mon,  9 Dec 2024 15:30:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733758237;
+	bh=I/SQkPW7UvDlEYoReU9WDUhS/0OXih8QMkx7sMylOaU=;
+	h=From:To:Cc:Subject:Date:From;
+	b=px+03AIpFDcyKsX6s5ZF6dwBk1rQeNTrTEdJomQFvAUnEFmz8C2+aigN65c8xFTc9
+	 UXwSGqg0n/y4AK5j7Wn2iVHoGtrhuL3CEeaHlRATZzjgreEXHbZRub8E4WigWHX+jK
+	 fIb8dPVjQrgjTH/qYXHI8mHY2cQAbDT6WNqRv621wo1mRzOSl37RdH07VcBCBZ9d33
+	 iUlqqAIM7vELuoca2Je/HceeQqXKOwaQryKVt933O2G/6lUEy8cqxVKsJDF1HY8GuR
+	 IktEAD0MSxuVZpSyhyfYQoGaLXWNKYQHMlGHxWK6iAV759Kzz0o5SEzaCCTFDDPU7b
+	 csKlu5zTampbQ==
+From: Kalle Valo <kvalo@kernel.org>
+To: ath12k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/8] wifi: ath12k: MLO support part 7
+Date: Mon,  9 Dec 2024 17:30:26 +0200
+Message-Id: <20241209153034.50558-1-kvalo@kernel.org>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com> <20241113133540.2005850-25-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241113133540.2005850-25-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 9 Dec 2024 16:27:48 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWT+KQ_MdfYKP0c6wEX315e8+=2qOYzty25f-yNRkNkNw@mail.gmail.com>
-Message-ID: <CAMuHMdWT+KQ_MdfYKP0c6wEX315e8+=2qOYzty25f-yNRkNkNw@mail.gmail.com>
-Subject: Re: [PATCH v3 24/25] arm64: dts: renesas: rzg3s-smarc: Enable SSI3
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com, 
-	broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org, 
-	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Nov 13, 2024 at 2:36=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Enable SSI3.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+From: Kalle Valo <quic_kvalo@quicinc.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Implementing Multi-Link Operation (MLO) continues. Bindings document is added
+to get WSI information from DT (patch 1) with the code parsing the information
+(patch 2). Rest of the patches are about configuring MLO in firmware.
 
-Gr{oetje,eeting}s,
+Device Tree bindings were reviewed as RFC earlier:
 
-                        Geert
+[RFC PATCH v3 1/5] dt-bindings: net: wireless: Describe ath12k PCI module with WSI
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+https://lore.kernel.org/ath12k/20241105180444.770951-1-quic_rajkbhag@quicinc.com/
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+The only changes from the RFC are Jeff's email address and using flag instead of bool.
+
+This patchset applies to ath.git main branch. Please review.
+
+Kalle
+
+v2:
+
+* patch 1: change qcom,wsi-controller from a boolean to a flag
+
+v1: https://patchwork.kernel.org/project/linux-wireless/cover/20241205203044.589499-1-kvalo@kernel.org/
+
+Bhagavathi Perumal S (1):
+  wifi: ath12k: Add MLO WMI setup and teardown functions
+
+Karthikeyan Periyasamy (5):
+  wifi: ath12k: send partner device details in QMI MLO capability
+  wifi: ath12k: refactor ath12k_qmi_alloc_target_mem_chunk()
+  wifi: ath12k: add support to allocate MLO global memory region
+  wifi: ath12k: enable MLO setup and teardown from core
+  wifi: ath12k: avoid redundant code in DP Rx error process
+
+Raj Kumar Bhagat (2):
+  dt-bindings: net: wireless: Describe ath12k PCI module with WSI
+  wifi: ath12k: parse multiple device information from Device Tree
+
+ .../net/wireless/qcom,ath12k-wsi.yaml         | 205 +++++++++++++
+ drivers/net/wireless/ath/ath12k/core.c        | 256 +++++++++++++++-
+ drivers/net/wireless/ath/ath12k/core.h        |  18 ++
+ drivers/net/wireless/ath/ath12k/dp_rx.c       |  13 +-
+ drivers/net/wireless/ath/ath12k/mac.c         | 142 +++++++++
+ drivers/net/wireless/ath/ath12k/mac.h         |   3 +
+ drivers/net/wireless/ath/ath12k/qmi.c         | 283 ++++++++++++++----
+ drivers/net/wireless/ath/ath12k/qmi.h         |   1 +
+ drivers/net/wireless/ath/ath12k/wmi.c         | 180 +++++++++++
+ drivers/net/wireless/ath/ath12k/wmi.h         |  49 +++
+ 10 files changed, 1073 insertions(+), 77 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-wsi.yaml
+
+
+base-commit: 400568fb3b022247c1603fdbdd6444b3ef14ffce
+-- 
+2.39.5
+
 
