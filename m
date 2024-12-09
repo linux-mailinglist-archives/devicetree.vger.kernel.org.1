@@ -1,159 +1,117 @@
-Return-Path: <devicetree+bounces-128836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C2CC9E9931
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:43:30 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A9631675EB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:43:23 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF411BEF83;
-	Mon,  9 Dec 2024 14:43:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="I645VjK9"
-X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADF239E9969
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:50:22 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C493C1BEF6E;
-	Mon,  9 Dec 2024 14:43:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F5D9282E3F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:50:20 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D690D1C5CD7;
+	Mon,  9 Dec 2024 14:49:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="omU85tSB"
+X-Original-To: devicetree@vger.kernel.org
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41E271B4254
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 14:49:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733755386; cv=none; b=bpWUIA8iX4f6JbMyBX/6W0oY6epVtxB0hLMm8IHuXw+ZAbkPhh9sKpilh7K4QkXGDw6/14yp6oftSbC3F08GpdEhp8f1CZubgZgpvXyYAEiuMXX9xdAF0fZfRaH85jVyg1YHrJaSVcSzt1VY2/F0ilfWoP8SM1LjEKwY2/f6EWc=
+	t=1733755748; cv=none; b=afftBwE2XIid68Gl8MjbtDUBzddD716KjcGB4ZgsCMtb6i3P7Gt8y3fpESpg72iUUUMw6GbfkRcP+YXoGgGbhWPCIAyzuIjFG7uNfkQJXRey8TcOxyMSqjNCz+KrFb4ivbcTqX6L8FHeZyR6FFk0L3/g+0WrXyC4pWF/b8FOdCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733755386; c=relaxed/simple;
-	bh=oAaN1GSj78zca2LyH1vVjyVyuzC5DSmrRJkeitGwMj4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lj2Gf945eK227h7tCyX1G3lPYOFEVvcqGSBATVYxnLj38/oWqDwZGGvBjFlzB5qQ9XX9FujOig8YrpXbM+MUTOYe0T9g2yy2vcYeI/8T4qoanKnXYze+fpruZboH+hsq7NQe/pIID3qWqqoX5KXwh0LoHcj7Nsp8FLrj1GbkCb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=I645VjK9; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=m16HeTv0L0CtuYH/B+yfB6+rKUcSgAg6Vxdkd5F26V4=; b=I645VjK9kvC67P7dLGOB/uZw3b
-	Z59qZlJPd6n9JOP3MaUmCm1uVX9YCDOmrEvMN7HxwtbMmcu78/hwOo6KzU/vqSYgyPKfZwZ1nR1if
-	dKPYNh9NyZoTYNr8pNjKZi+kA+T5QVf9o3bDGM593vNPHuO+p7tmg4+g5vrgJbo1oBYY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tKeyK-00FgPR-5B; Mon, 09 Dec 2024 15:42:52 +0100
-Date: Mon, 9 Dec 2024 15:42:52 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
-	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-	Felipe Balbi <balbi@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-hardening@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>,
-	Hari Nagalla <hnagalla@ti.com>, linux@ew.tq-group.com
-Subject: Re: [PATCH v2 5/5] arm64: dts: ti: Add TQ-Systems TQMa62xx SoM and
- MBa62xx carrier board Device Trees
-Message-ID: <d25b1447-c28b-4998-b238-92672434dc28@lunn.ch>
-References: <cover.1733737487.git.matthias.schiffer@ew.tq-group.com>
- <95ff66ca2c89f69d893c2ce9eed9a0c677633c7b.1733737487.git.matthias.schiffer@ew.tq-group.com>
- <a9c5cfda-e3e3-436a-8d05-b2f096157cfe@lunn.ch>
- <c902a56cf34838f60cee67624bb923e91d74e9e0.camel@ew.tq-group.com>
+	s=arc-20240116; t=1733755748; c=relaxed/simple;
+	bh=hh17fuoERmwRARxXBgfxrvHDUdhwDZCDEWgY13T37ps=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ecqGA/yqreognzeofHZyRY/ufyGLzdgGJPHcZ2Y0knN4ySrbplLG+3Dc2YWWVcGlymCPbTOf9Uks/0XnRqsIMFaIf7W7BMGbpT+SMjDpKPbQK8LxKQpmsKX0VBuEm8hxEKOb3E4+ye/Dtm4O3ED9ry6s2UITSyEfRZpemaZhAYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=omU85tSB; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Authentication-Results: purelymail.com; auth=pass
+DKIM-Signature: a=rsa-sha256; b=omU85tSBO7Y1q8Jp3QkXwT+aCv1XLNNRnNDhMEk36Mctts3wts4Q9ocOoPdbLHhSiNcsorar1HeB2MCipsookfHTix9XiiKZahfHmSm6Gf+NclFawZGGxeBPG9WU91blZsjpMmjpkAPS0wrw7koDEJwbcK5okcJ1TBWXuMTU/pmFmVW15kWM0NlmkhLzdaVBe0VaOgSaMB8ZaA6V+RSIF1tU+kG/VELWlboGyWL7mxWxdapttCHEgqjSi60iH//tvQ83EJ3MH0A+S4C9DbyKV7GgtFc4bUM7ucWzOBVlFMelDEPod8poE517KXsVTjVe1lMi+2JAGgxljf9Y1+8m9w==; s=purelymail2; d=purelymail.com; v=1; bh=hh17fuoERmwRARxXBgfxrvHDUdhwDZCDEWgY13T37ps=; h=Feedback-ID:Received:From:Subject:Date:To;
+Feedback-ID: 68247:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -291099510;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Mon, 09 Dec 2024 14:48:35 +0000 (UTC)
+From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Subject: [PATCH v4 0/3] clk: samsung: Introduce Exynos990 clock support
+Date: Mon, 09 Dec 2024 15:45:20 +0100
+Message-Id: <20241209-exynos990-cmu-v4-0-57f07080f9e4@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c902a56cf34838f60cee67624bb923e91d74e9e0.camel@ew.tq-group.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIACV2cC/33MQQ6CMBCF4auYrq0ZC63WlfcwLkaYQhNoTYsNh
+ HB3Cytjosv/Je+bWaRgKbLLbmaBko3WuxzlfseqFl1D3Na5mQBRHgUoTuPkfNQaeNW/uDxjjRK
+ kwlqy/HkGMnbcvNs9d2vj4MO08Ums6y8pCQ68VEoZAwhaP649uQG7boroqEfrOusoxIMPDVvpV
+ Hxyp2+uyJyACowiBGHgL7csyxvgLNW6CgEAAA==
+X-Change-ID: 20241206-exynos990-cmu-58ada5056ad5
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Igor Belwon <igor.belwon@mentallysanemainliners.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733755636; l=1630;
+ i=igor.belwon@mentallysanemainliners.org; s=20241206;
+ h=from:subject:message-id; bh=hh17fuoERmwRARxXBgfxrvHDUdhwDZCDEWgY13T37ps=;
+ b=n3BbgPVNEwn1n+dt2NNprNcTmKWI55eTVgUHFTXMOkPkPjCCxxVMDf93F9LLt3h8pEOv/r1TP
+ 8/ttTbd6CPoB4sFnPG6Hmuh6ttsWaGrBvjCxmDwVmUFrH8KujfvLkTp
+X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
+ pk=qKAuSTWKTaGQM0vwBxV0p6hPKMN4vh0CwZ+bozrG5lY=
 
-On Mon, Dec 09, 2024 at 02:55:31PM +0100, Matthias Schiffer wrote:
-> On Mon, 2024-12-09 at 14:24 +0100, Andrew Lunn wrote:
-> > 
-> > > +&cpsw_port1 {
-> > > +	phy-mode = "rgmii-rxid";
-> > > +	phy-handle = <&cpsw3g_phy0>;
-> > > +};
-> > > +
-> > > +&cpsw_port2 {
-> > > +	phy-mode = "rgmii-rxid";
-> > > +	phy-handle = <&cpsw3g_phy3>;
-> > > +};
-> > 
-> > rgmii-rxid is very odd.
-> > 
-> > > +
-> > > +&cpsw3g_mdio {
-> > > +	status = "okay";
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&main_mdio1_pins>;
-> > > +
-> > > +	cpsw3g_phy0: ethernet-phy@0 {
-> > > +		compatible = "ethernet-phy-ieee802.3-c22";
-> > > +		reg = <0x0>;
-> > > +		reset-gpios = <&main_gpio1 11 GPIO_ACTIVE_LOW>;
-> > > +		reset-assert-us = <1000>;
-> > > +		reset-deassert-us = <1000>;
-> > > +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> > 
-> > I guess this is the explanation.
-> > 
-> > What happens when you use rgmii-id, and don't have this delay here?
-> > That would be normal.
-> > 
-> > 	Andrew
-> 
-> 
-> This is normal for AM62-based boards, see the DTSI of the TI reference
-> starterkit for example:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi#n451
-> 
-> With rgmii-id, both ti,rx-internal-delay and ti,tx-internal-delay should be set.
-> As ti,*-internal-delay sets the delay on the PHY side, phy-mode "rgmii" is the
-> one that would not use either:
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/ti,dp83867.yaml#n78
-> 
-> At the end of the day, does it really matter as long as MAC and PHY agree on the
-> used mode? We copied this part of the hardware design from the TI reference
-> board, and did our hardware qualification with these settings, so I think it
-> makes sense to use the same phy-mode configuration.
+Hi all,
 
-What i try to achieve is every board uses the same configuration. The
-PHY adds the delays, not the MAC. There are a few exceptions, because
-a few cheap PHYs don't support delays, and so the MAC needs to add
-them. But in general, any board i review, i always ask that the PHY
-does the delay.
+This patchset adds support for the Clock Management Unit found in the
+Exynos990 SoC. This CMU allows for clocking peripherals such as USB, UFS,
+MCT, et cetera.
 
-Also, don't put too much value in vendor code. Vendors don't care
-about Linux has a whole, being uniform across all systems. Many
-vendors do the minimum to get their stuff working, sometimes Monkeys
-typing Shakespeare, and not a lot more.
+Currently there are two blocks implemented, CMU_TOP which
+generates clocks for other blocks, and CMU_HSI0, which generates clocks
+for USB. More blocks will be added (hopefully soon), like HSI1 for UFS.
 
-I also find a lot of developers don't really understand what phy-mode
-and PHY_INTERFACE_MODE_RGMII_* actually mean. phy-mode = 'rgmii' means
-the board has extra long clock lines, so the MAC/PHY does not need to
-add delays. rgmii-rxid means the board has an extra long rx clock
-line, but a normal length tx clock line. Now, i doubt your board is
-actually like this?
+Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+---
+Changes in v4:
+- bindings: Use one-per-line convention for clock names. (Thanks, Krzysztof!)
 
-You want to correctly describe your hardware in DT, which i guess is
-"rgmii-id". That means something, either the MAC or the PHY needs to
-add delays. PHY_INTERFACE_MODE_RGMII_* is what is passed to the
-PHY. To get it to add the 2ns delays, you pass
-PHY_INTERFACE_MODE_RGMII_ID, and you should not need any additional
-properties in DT, it should default to 2ns. If you need to tune the
-delay, 2ns does not work, but you actually need 1.8ns etc, then you
-can add additional parameters. But given you have
-DP83867_RGMIIDCTL_2_00_NS, i doubt you need this.
+- Link to v3: https://lore.kernel.org/r/20241207-exynos990-cmu-v3-0-20c0f6ea02f0@mentallysanemainliners.org
 
-	Andrew
+- Link to v2: https://lore.kernel.org/r/20241206-exynos990-cmu-v2-0-4666ff0a099b@mentallysanemainliners.org
+
+---
+Igor Belwon (3):
+      dt-bindings: clock: Add Exynos990 SoC CMU bindings
+      clk: samsung: clk-pll: Add support for pll_{0717x, 0718x, 0732x}
+      clk: samsung: Introduce Exynos990 clock controller driver
+
+ .../bindings/clock/samsung,exynos990-clock.yaml    |  121 ++
+ drivers/clk/samsung/Makefile                       |    1 +
+ drivers/clk/samsung/clk-exynos990.c                | 1343 ++++++++++++++++++++
+ drivers/clk/samsung/clk-pll.c                      |   14 +-
+ drivers/clk/samsung/clk-pll.h                      |    3 +
+ include/dt-bindings/clock/samsung,exynos990.h      |  236 ++++
+ 6 files changed, 1716 insertions(+), 2 deletions(-)
+---
+base-commit: ed74808ae420a2ae611738c2d62800ab157a9ee8
+change-id: 20241206-exynos990-cmu-58ada5056ad5
+
+Best regards,
+-- 
+Igor Belwon <igor.belwon@mentallysanemainliners.org>
+
 
