@@ -1,184 +1,167 @@
-Return-Path: <devicetree+bounces-128431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C50F39E8AF9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 06:27:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F31D79E8B01
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 06:32:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 991B21883C17
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 05:27:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E19AB162BF1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 05:32:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC03A15B122;
-	Mon,  9 Dec 2024 05:26:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5927A44C6F;
+	Mon,  9 Dec 2024 05:32:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="MNcFaGRJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aCLOd3am"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5ECC14A4CC;
-	Mon,  9 Dec 2024 05:26:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACE7A46B8;
+	Mon,  9 Dec 2024 05:32:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733722017; cv=none; b=orQFSIUsLGY81V0pA/Mz9CCbETaGJyAopWn2JnP/Rd4gldSa//2Jsqr4rTamcyBEdxRG5DlJ+ge8gR3uH68nqjj6rWJvDE8mimihiyEB/1nX4WWbc+8Fu+iy6WDqtq7zr0ATXKbXgNmSxR28fSfkk0w4lmbIyKjPnKMEpbcmXTs=
+	t=1733722362; cv=none; b=Puw2E8bbw16FQdhJ/mpKInmrtq/XEMTyEmszu9F/nra3CGW8R4h9aGi2ifTYa3wNDKYtYjuNXBf4lD+XcaaCJ7mLBYziWf+HBbws69CN7nQnGJuwfQBaSZg1Nj32mWuI2K42Z0Gd4WRAujzaLg5iny3rN7F+QoIbAg8Z5UMJOTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733722017; c=relaxed/simple;
-	bh=r3GRkniscda1h2jGia96dSzPLBBeCAFfWtcoKtCndGQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i3Ey/5CcDlDfGyEizT1G2idsi5seVhNVvN4f2eemWSNTCyhYgCwH24FybAjm3ogBTLAOwEDgSVyZYw7/oIXwddF68DhoSeVDD+cYd2il5KaxqUS+Dtv1twoVbuFaov6g+zg16BMa3STX7KXCp2WTBOFjKac8EQdulgsJnlwqTxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=MNcFaGRJ; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-157-155-49.elisa-laajakaista.fi [91.157.155.49])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D15D4502;
-	Mon,  9 Dec 2024 06:26:12 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1733721974;
-	bh=r3GRkniscda1h2jGia96dSzPLBBeCAFfWtcoKtCndGQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MNcFaGRJBul5yuH7NaP0tg2XJDSNmygMpCc4b5I+kzpZhFdf/+jqvsUrjcomDAGgW
-	 HMcuw98tx6rcyZZu/0v8bh6E2hdpABQr8j3h+Tq0uBkEBW1Ay7jABVRJQRgvzqYonB
-	 l3zuGGhsdXifB0AVrFn5g9BgwC7qQkiJrDXnZk9M=
-Message-ID: <b0fffc87-a72e-4041-b3f6-7f2a4987916e@ideasonboard.com>
-Date: Mon, 9 Dec 2024 07:26:41 +0200
+	s=arc-20240116; t=1733722362; c=relaxed/simple;
+	bh=RQ5oQo8SxDBtePLqfOBk4lGNufZRMIUd4JHmtubNLNI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ahUgWQAOgc77uosNtAjMhSV6EHjE3gHXBrocQSSLbhAby9V8NzfwsxGnevyv1AYFHpM9qGW4/ygCXkjlmFGrXI66w09+v9DuWuxmv1AyGC914F5Aot1W5h2mJ5KNL7peq7x8x/CvQbFv+jzY3PSE9fIOYUCVug/oh9ARlUqmPPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aCLOd3am; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B8LgcYl014795;
+	Mon, 9 Dec 2024 05:32:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	loJ2PPIiOAPLRSCVZCnNH0CdMiAT0SPjFo21iTGHqUw=; b=aCLOd3amVCjSumKH
+	VekaGnFqozdX+FgK4ZLv1Ou3NCOhF6Q9iFjWMwfc05pz8VONzAZy0rT67S0Zhk8K
+	zzeA0CMBPiU3N9XnOpNL1lahdIjdVCXti9ITqBlhMUjUfOFQ2MCJQSeV/wspS4BS
+	yomD1SvV0mtJ3IDbuD7jIR4ZO2l/tO/m+uZV31Pq8GE3bv0M7zHlo+ZKeR0AhPy1
+	5QIkHXt8LtJTPUM6mKnTmmA5vWOceDB8eT2Zw228GQKgwuNNK2qdkjqMUGhn0ixC
+	UlM5yfHwFjE7Y7OrBp8Q6PQ8RAL5spOLsPLA+/7ETbEskVyw2Ic7Q8tu3XH9/OGy
+	YqvsiA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43cbqn3nah-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Dec 2024 05:32:20 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B95WJx0022049
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Dec 2024 05:32:19 GMT
+Received: from [10.151.36.43] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 8 Dec 2024
+ 21:32:13 -0800
+Message-ID: <569d2c24-daa9-65e2-e5a4-2c2ced2a3b57@quicinc.com>
+Date: Mon, 9 Dec 2024 11:02:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/10] clk: renesas: r8a779h0: Add display clocks
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
- Jagan Teki <jagan@amarulasolutions.com>, Sam Ravnborg <sam@ravnborg.org>,
- Biju Das <biju.das.jz@bp.renesas.com>, dri-devel@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- linux-clk@vger.kernel.org,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-References: <20241206-rcar-gh-dsi-v3-0-d74c2166fa15@ideasonboard.com>
- <20241206-rcar-gh-dsi-v3-5-d74c2166fa15@ideasonboard.com>
- <CAMuHMdU+PPeCNb5y75A1YTf1EvvCQEgD1t-=6C_YyK0gDK3R8A@mail.gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.0
+Subject: Re: [PATCH v14 7/8] arm64: dts: qcom: ipq9574: Add SPI nand support
 Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <CAMuHMdU+PPeCNb5y75A1YTf1EvvCQEgD1t-=6C_YyK0gDK3R8A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <broonie@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
+        <manivannan.sadhasivam@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+References: <20241120091507.1404368-1-quic_mdalam@quicinc.com>
+ <20241120091507.1404368-8-quic_mdalam@quicinc.com>
+ <4c1fe789-5190-465d-bb41-3fe1534d2523@oss.qualcomm.com>
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <4c1fe789-5190-465d-bb41-3fe1534d2523@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: j5vlEIXgkChl_JlH7o1N1NsBaDlrhm4m
+X-Proofpoint-GUID: j5vlEIXgkChl_JlH7o1N1NsBaDlrhm4m
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ spamscore=0 bulkscore=0 adultscore=0 clxscore=1015 mlxlogscore=999
+ malwarescore=0 phishscore=0 lowpriorityscore=0 impostorscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412090043
 
-Hi,
 
-On 06/12/2024 15:43, Geert Uytterhoeven wrote:
-> Hi Tomi,
-> 
-> On Fri, Dec 6, 2024 at 10:33 AM Tomi Valkeinen
-> <tomi.valkeinen@ideasonboard.com> wrote:
->> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+
+On 12/5/2024 10:49 PM, Konrad Dybcio wrote:
+> On 20.11.2024 10:15 AM, Md Sadre Alam wrote:
+>> Add SPI NAND support for ipq9574 SoC.
 >>
->> Add display related clocks for DU, DSI, FCPVD, and VSPD.
->>
->> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
->> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
->> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+>> ---
 > 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> i.e. will queue in renesas-clk for v6.14.
+> [...]
 > 
->> --- a/drivers/clk/renesas/r8a779h0-cpg-mssr.c
->> +++ b/drivers/clk/renesas/r8a779h0-cpg-mssr.c
->> @@ -179,6 +179,9 @@ static const struct mssr_mod_clk r8a779h0_mod_clks[] __initconst = {
->>          DEF_MOD("canfd0",       328,    R8A779H0_CLK_SASYNCPERD2),
->>          DEF_MOD("csi40",        331,    R8A779H0_CLK_CSI),
->>          DEF_MOD("csi41",        400,    R8A779H0_CLK_CSI),
->> +       DEF_MOD("dis0",         411,    R8A779H0_CLK_S0D3),
->> +       DEF_MOD("dsitxlink0",   415,    R8A779H0_CLK_DSIREF),
->> +       DEF_MOD("fcpvd0",       508,    R8A779H0_CLK_S0D3),
->>          DEF_MOD("hscif0",       514,    R8A779H0_CLK_SASYNCPERD1),
->>          DEF_MOD("hscif1",       515,    R8A779H0_CLK_SASYNCPERD1),
->>          DEF_MOD("hscif2",       516,    R8A779H0_CLK_SASYNCPERD1),
->> @@ -227,6 +230,7 @@ static const struct mssr_mod_clk r8a779h0_mod_clks[] __initconst = {
->>          DEF_MOD("vin15",        811,    R8A779H0_CLK_S0D4_VIO),
->>          DEF_MOD("vin16",        812,    R8A779H0_CLK_S0D4_VIO),
->>          DEF_MOD("vin17",        813,    R8A779H0_CLK_S0D4_VIO),
->> +       DEF_MOD("vspd0",        830,    R8A779H0_CLK_S0D1_VIO),
->>          DEF_MOD("wdt1:wdt0",    907,    R8A779H0_CLK_R),
->>          DEF_MOD("cmt0",         910,    R8A779H0_CLK_R),
->>          DEF_MOD("cmt1",         911,    R8A779H0_CLK_R),
+> Feel free to put dt patches in a separate series after Miquel picks
+> up the mtd changes
+Ok
 > 
-> As mentioned by Laurent during his review on v1, all clock parents
-> should probably be some form of R8A779H0_CLK_S0Dx_VIO.
-> So I'm inclined to replace all of them by R8A779H0_CLK_VIOBUSD2 while
-> applying, which would match R-Car V4H.
-
-What do you mean with the above? First you say the clock parents should 
-be some form of S0Dx_VIO, but then you say you'll use VIOBUSD2. Aren't 
-those unrelated clocks, from different PLLs?
-
-> Are you OK with that?
-
-I'm fine with that. I can't really get much out of the docs wrt. 
-clocking, and the clocks I used were from the BSP. Afaics, it looks 
-similar to V4H, so it's probably best have the same clocks, as you suggest.
-
-  Tomi
-
+>>   &usb_0_dwc3 {
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> index d1fd35ebc4a2..45fb26bc9480 100644
+> 
+> board and dtsi patches should be 2 separate ones
+Ok
+> 
+>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> @@ -330,6 +330,33 @@ tcsr: syscon@1937000 {
+>>   			reg = <0x01937000 0x21000>;
+>>   		};
+>>   
+>> +		qpic_bam: dma-controller@7984000 {
+>> +			compatible = "qcom,bam-v1.7.0";
+>> +			reg = <0x7984000 0x1c000>;
+> 
+> Please pad the address part to 8 hex digits with leading zeroes
+Ok
+> 
+>> +			interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
+>> +			clocks = <&gcc GCC_QPIC_AHB_CLK>;
+>> +			clock-names = "bam_clk";
+>> +			#dma-cells = <1>;
+>> +			qcom,ee = <0>;
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		qpic_nand: spi@79b0000 {
+>> +			compatible = "qcom,ipq9574-snand";
+>> +			reg = <0x79b0000 0x10000>;
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +			clocks = <&gcc GCC_QPIC_CLK>,
+>> +				 <&gcc GCC_QPIC_AHB_CLK>,
+>> +				 <&gcc GCC_QPIC_IO_MACRO_CLK>;
+>> +			clock-names = "core", "aon", "iom";
+>> +			dmas = <&qpic_bam 0>,
+>> +			       <&qpic_bam 1>,
+>> +			       <&qpic_bam 2>;
+>> +			dma-names = "tx", "rx", "cmd";
+> 
+> Please make clock/dma names a vertical list, like clocks/dmas
+Ok
+> 
+> Also, is it okay not to use any of the GCC_QPIC_BCR/
+> GCC_QPIC_AHB_ARES/GCC_QPIC_ARES resets found in GCC?
+It's recommended by HW team, will check once again with HW
+team.
+> 
+> Konrad
 
