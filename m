@@ -1,147 +1,87 @@
-Return-Path: <devicetree+bounces-128530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87CF39E8F29
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:49:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E1209E8F44
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:52:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 735FE163AA9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:49:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C49B18869FF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:52:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0E75216600;
-	Mon,  9 Dec 2024 09:49:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00231218586;
+	Mon,  9 Dec 2024 09:51:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gLAlzeCQ"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="kXQPbSzn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D2092165E9;
-	Mon,  9 Dec 2024 09:49:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DA4217724
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 09:50:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733737774; cv=none; b=WdC3NCt77kfVeFpVG9SDtpRlzJ0goi/u5fifF3aRZ+SSQXrM5T19epbsi8NeYNVlB/0znlcSTs0wjd5+OTnB+4xacJ+YSuxAlFeRUcpwgSnj/wvq4/8xdEDdrTYIPQ6iNzYX+EfWE998QmzMXbB+iXrxmXOw8otdrWY2ZFxN4Nc=
+	t=1733737859; cv=none; b=d5DPMGd9ovyJNDmQmRXuWuH4/aQeYEChCtFpkN0qa3iZDSpEMKiCcHZI/+SG/vZx60y01QJBpJBy1goWHxF20dOqBkrQNopojkP5XfhH/qyEJokBjsClq64SKSnvgiqtBA8yPF7se3nM1Og27t/6kZ4o+CjvJaGEVbHXyTHcsog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733737774; c=relaxed/simple;
-	bh=vDVoR6QJHDbAwKUmHAbTLSwKdLlywl2nMTNdrlzT7ps=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y8df98ccjrawouFShcTJtFkaK1UHBeTso5fcBIXHYE8YrKS5Abtf0HApPSpQFZHk+MlHbQSpTzWvqvNMOS0WNiaajWahEU5b0yoOgYR6M8gTXqcLd1tR+i81PJybmz9NYiGGJY5F5mvbrll4ovzUUM5I07IxOMdfYe3Wd/Wa4aI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gLAlzeCQ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1733737770;
-	bh=vDVoR6QJHDbAwKUmHAbTLSwKdLlywl2nMTNdrlzT7ps=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gLAlzeCQfkpTQp2EmlKFXooBQiBUryzCmDJjPB+gfcQaqEw9EgdVaJvhwctpQkX/J
-	 Ob4ObKCYSBfEZ3dkPmuc9169HstBj8Ik0XVxy/ySYno8CqPJGYv60WspYpeKEoWNci
-	 MrsJaNcevihSx7KjRvZH0SRmaI9Yt4Nl+pgIep0xDJZYhpyoJ+/Fm4Jlmq77RVkBjI
-	 kmpgr6Ww4ESZP+Yr5sExjFYAKcqexK6sXrZm+aWPfdb4E/fcN5azk1XtffGLoF8cn7
-	 GTpBsrD7cM8xOqhgz6HUMcTXtlXvEIy11dXbFRfJIryJtBZoQw1fZGF5cvK+M0xd/i
-	 sdm6z27mHpq6Q==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8F2EB17E3615;
-	Mon,  9 Dec 2024 10:49:29 +0100 (CET)
-Message-ID: <b5a77637-64b0-4ed3-9619-e76d094505af@collabora.com>
-Date: Mon, 9 Dec 2024 10:49:28 +0100
+	s=arc-20240116; t=1733737859; c=relaxed/simple;
+	bh=3NPSA3+8fscJ2FyuYaclk2rGZQ3JVTTNETwfOklgM3M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HtX8SbXBMz6budPfH6+SvEbqLlpBsytFaHX/rkp+bB0wpa1y5wK9plXkoB6+V4OzWsgdrovfNIWcC9rEecjchByH/9hcneAXW7d2gCF5dQYTiCRaOYwd+7g+Wn+55r0S34z8mF4kc1Rx81HuPgvc2GYRkIfe33eIKd0o75NH8to=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=kXQPbSzn; arc=none smtp.client-ip=220.197.32.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=ChAIwGV7ZFkveVH5BCfEgrQPKa+agmYwut0/xNKhFek=;
+	b=kXQPbSzn+GbtajNR9BYQgkCkT46oSgqEAk3vHk2xh08y8sMDwLyTPHvGVH86JT
+	90W2P/YNcISXT49tA0P8H+N7ydzUSjU1PgY33KB8wfr8u29gSsqSif+/UCaq5IZs
+	88dVcX/NQ014JwgTSZPM5oBizvpZiAg4d06b2H8j84V0s=
+Received: from dragon (unknown [])
+	by gzsmtp2 (Coremail) with SMTP id Ms8vCgB3NtRBvVZnJDOOBA--.47668S3;
+	Mon, 09 Dec 2024 17:49:55 +0800 (CST)
+Date: Mon, 9 Dec 2024 17:49:52 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, kernel@dh-electronics.com,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH] MAINTAINERS: Update entry for DH electronics DHSOM SoMs
+ and boards
+Message-ID: <Z1a9QGfVsSzc81ZL@dragon>
+References: <20241111113524.10727-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 13/15] drm/mediatek: mtk_hdmi_common: Assign DDC
- adapter pointer to bridge
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "jie.qiu@mediatek.com" <jie.qiu@mediatek.com>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
- <mripard@kernel.org>, =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
- <jitao.shi@mediatek.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "kernel@collabora.com" <kernel@collabora.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "junzhi.zhao@mediatek.com" <junzhi.zhao@mediatek.com>
-References: <20241205114518.53527-1-angelogioacchino.delregno@collabora.com>
- <20241205114518.53527-14-angelogioacchino.delregno@collabora.com>
- <c0e144b3a90881066d0974157e66ac23f09a0fc5.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <c0e144b3a90881066d0974157e66ac23f09a0fc5.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241111113524.10727-1-marex@denx.de>
+X-CM-TRANSID:Ms8vCgB3NtRBvVZnJDOOBA--.47668S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUaznQUUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRWwZWdWsiw1LwAAs8
 
-Il 09/12/24 09:17, CK Hu (胡俊光) ha scritto:
-> Hi, Angelo:
+On Mon, Nov 11, 2024 at 12:34:21PM +0100, Marek Vasut wrote:
+> Update the MAINTAINERS entry to cover all DH electronics DHSOM
+> SoMs and boards. The DHSOM is the name which covers all modules,
+> DHCOM is the SODIMM seated SoM, DHCOR is the solder on module.
+> Use glob pattern to match on every DT file which contains either
+> of those three module substrings in lowercase.
 > 
-> On Thu, 2024-12-05 at 12:45 +0100, AngeloGioacchino Del Regno wrote:
->> External email : Please do not click links or open attachments until you have verified the sender or the content.
->>
->>
->> In preparation for adding the new HDMI TX v2 IP driver, assign the
->> pointer to the DDC adapter to struct drm_bridge during probe.
->>
->> This commit brings no functional changes.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->> index 1b23ab6969ec..4f708b04f5e8 100644
->> --- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
->> @@ -410,6 +410,7 @@ struct mtk_hdmi *mtk_hdmi_common_probe(struct platform_device *pdev)
->>          hdmi->bridge.ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP_HPD;
->>          hdmi->bridge.type = DRM_MODE_CONNECTOR_HDMIA;
->>          hdmi->bridge.of_node = pdev->dev.of_node;
->> +       hdmi->bridge.ddc = hdmi->ddc_adpt;
-> 
-> I don't know why only v2 driver need to assign this?
-> Could you point out the code where access this value?
-> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-v2 uses hdmi helpers, which make use of bridge->ddc.
-mtk_hdmi_v2_bridge_edid_read() calls drm_edid_read().
-
-drm_edid.c -> drm_edid_read()
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/gpu/drm/drm_edid.c?h=next-20241209#n2704
-
-...while v1 feeds the (internal) ddc pointer to drm_edid_read_ddc() instead.
-
-Cheers,
-Angelo
-
-> Regards,
-> CK
-> 
->>
->>          ret = devm_drm_bridge_add(dev, &hdmi->bridge);
->>          if (ret)
->> --
->> 2.47.0
->>
-> 
-
+Applied, thanks!
 
 
