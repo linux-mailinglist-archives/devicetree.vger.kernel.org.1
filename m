@@ -1,62 +1,54 @@
-Return-Path: <devicetree+bounces-128950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F7559EA066
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 21:38:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 361609EA06F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 21:40:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3AF1188264D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 20:38:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B9AE1882A8C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 20:40:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062441991A5;
-	Mon,  9 Dec 2024 20:38:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 218F3199EA3;
+	Mon,  9 Dec 2024 20:39:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ItGglAB7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FmZGLU36"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D02E01990AE;
-	Mon,  9 Dec 2024 20:38:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91731991A5;
+	Mon,  9 Dec 2024 20:39:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733776711; cv=none; b=BBYcItkR5/fkQ9XECxBFytFFmoqi1sVBBjzDa148zaW/Kfg67nN0IBAFddjIH5unWyVyv8DiRUexk61qk5PqI3uVjGqYaPK3TCF4NWJOUZ/IgKjTAa/tu8vSO/1SzcpWlVV66Tr2rXKDeR3Tlx84Sll6g4Mg8rA5AjqvgbnCDAI=
+	t=1733776798; cv=none; b=HquBXpXsjjvwxSBSSBfNcFbgo+RFjEhi+VgA9KFU4+adnAs99sHwyOixXHCu6DOea0KfqzpchXX2QnsxYH7FLhEIVu/djRm48EmgTJZ2V/B+Fk2FQbckRqlZm6iSgqV0vZtgbx3M82dLiFwhD7WnjWslhVgdkLRifmaVGdZRAq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733776711; c=relaxed/simple;
-	bh=fXS//WI1VAjyk8vDSAPq97xcEndiyZAPcauC8VmyTV0=;
+	s=arc-20240116; t=1733776798; c=relaxed/simple;
+	bh=fFJ76UoJhie9GWIhUrvHqJfBebzJhhe10estH3UO9Zk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rwbiX3z5ggwYc2eU2xbb5GL9j1CPtqNIeSDwWqKfhDQ7rvdkWfsXpUxmSSGyi2qSuKuYCWBzkc+ur5D+kNHTl5h1Y1LAqjSrMSnruQG61AijfIqFcM9ViW3RFVaCW7y35LsRdZhpyXkk6cRfSQ3KGyqO1LtYVnn6Pq/mUDSf+wg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ItGglAB7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A5DBC4CED1;
-	Mon,  9 Dec 2024 20:38:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ke15qr9/XglBlXvLRK6mYnvYEqBE6JLu7Ofn+HyqsRLAxKjYYVE+YRlLPWKVzA249p2Kf+5c+tmM9N0kgCO4PmyzJIUPL4lcc/Chl2Cvki8qFUAYZ0oSrC+EgdCV+NkZwcFH4spY8QcPEVjO1DGfhhdHY8sNaUFSbULPb54YWyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FmZGLU36; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 307BEC4CED1;
+	Mon,  9 Dec 2024 20:39:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733776711;
-	bh=fXS//WI1VAjyk8vDSAPq97xcEndiyZAPcauC8VmyTV0=;
+	s=k20201202; t=1733776797;
+	bh=fFJ76UoJhie9GWIhUrvHqJfBebzJhhe10estH3UO9Zk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ItGglAB7A16grjPnyjlQHj05aaM75DuEMm0BC/WtD6JRRF86Aqxr4BO5In5FJYlH6
-	 7Ys5TSUIZXvsiXZtgA3fDbxhG7d94TzxHfXcNg/4hU7H9MIMDv3u0AeidAUvFEUaD5
-	 sRW6Ig5YEbidwG9zxebOkL4qyday83vGjn/4Wh6TxSRLU5JWkcGD7/DiXBJ+PSKjeu
-	 O2wRprl0AangRz/Rm+p2ZahbNVPOnDdCuRtZoBTc5qmrowgwASEoS+htTf4vGANb5+
-	 /5k2az+mXPTgM+0be4xsT/y7NUD7p188dp3W8kB0NsVV/A9mTDWySBmJH0RjWa+ynb
-	 5rZekqR4MvWbA==
-Date: Mon, 9 Dec 2024 14:38:29 -0600
+	b=FmZGLU36+2VA9r4MpKqGzjlhZ0859mvCRBgs/OSksfCE16IuiqERESml2JD7B92Ro
+	 E+m7OlDywVER40yzHyk+4laOqHYQjPqyjpIt+BZCUtGBrzwIdgT7S2uBwbc6Dbwm2W
+	 l0HfAmCZErmHmy3gJiqVIvvWAFQ0jNhrR9OZe75mIBX3ojdcvi3SS/c/dPaQqhA8Np
+	 P7BfHp0c1u/TPA03bHLk46uzpDPUcekf/G95bfaOkhTQa8eAR0+u8rMug7qXUHnhvG
+	 ezNH5s+c9XaWKFmpJQcLRKls9pz6hVxjr2OlyJIX5L7oV4BDw3d76jYIXuw+meQFBn
+	 wMvotQ3mUAHzw==
+Date: Mon, 9 Dec 2024 14:39:55 -0600
 From: Rob Herring <robh@kernel.org>
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Leif Lindholm <leif.lindholm@linaro.org>,
-	Stephen Boyd <stephen.boyd@linaro.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Grant Likely <grant.likely@secretlab.ca>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Zijun Hu <quic_zijuhu@quicinc.com>
-Subject: Re: [PATCH 10/10] of: Simplify API of_find_node_with_property()
- implementation
-Message-ID: <20241209203829.GC925532-robh@kernel.org>
-References: <20241206-of_core_fix-v1-0-dc28ed56bec3@quicinc.com>
- <20241206-of_core_fix-v1-10-dc28ed56bec3@quicinc.com>
+To: Stephen Boyd <swboyd@chromium.org>
+Cc: Saravana Kannan <saravanak@google.com>, linux-kernel@vger.kernel.org,
+	patches@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] of: Hide of_default_bus_match_table[]
+Message-ID: <20241209203955.GA938291-robh@kernel.org>
+References: <20241204194806.2665589-1-swboyd@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,21 +57,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241206-of_core_fix-v1-10-dc28ed56bec3@quicinc.com>
+In-Reply-To: <20241204194806.2665589-1-swboyd@chromium.org>
 
-On Fri, Dec 06, 2024 at 08:52:36AM +0800, Zijun Hu wrote:
-> From: Zijun Hu <quic_zijuhu@quicinc.com>
+On Wed, Dec 04, 2024 at 11:48:05AM -0800, Stephen Boyd wrote:
+> This isn't used outside this file. Hide the array in the C file.
 > 
-> Simplify of_find_node_with_property() implementation
-> by __of_find_property().
-> 
-> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 > ---
->  drivers/of/base.c | 10 +++-------
->  1 file changed, 3 insertions(+), 7 deletions(-)
+> 
+> Changes from v1 https://lore.kernel.org/r/20241204000415.2404264-1-swboyd@chromium.org
+>  * Move of_default_bus_match_table into function so it isn't unused in
+>    different configs
+> 
+>  drivers/of/platform.c       | 23 +++++++++++------------
+>  include/linux/of_platform.h |  2 --
+>  2 files changed, 11 insertions(+), 14 deletions(-)
 
 Applied, thanks.
 
 Rob
-
 
