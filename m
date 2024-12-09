@@ -1,220 +1,154 @@
-Return-Path: <devicetree+bounces-128926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95D739E9E03
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 19:25:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C1D49E9DC9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 19:03:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 004191887879
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 18:25:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3874E166D00
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 18:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50FA915820C;
-	Mon,  9 Dec 2024 18:25:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ifm.com header.i=@ifm.com header.b="tNZlcoTh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C135A1547FE;
+	Mon,  9 Dec 2024 18:03:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pp2023.ppsmtp.net (pp2023.ppsmtp.net [132.145.231.115])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ACCA146A63;
-	Mon,  9 Dec 2024 18:25:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=132.145.231.115
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696A61F5F6;
+	Mon,  9 Dec 2024 18:03:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733768724; cv=none; b=l8/H3PjtM2BF//+T67+/G192hjnqO5o1L7htJPVIM55NmkA3RvcI+2PR89FW6KKKtVwgaLRPVQ1qlRqYmCw01zuqpDSF1oNGDRUIRgC4Y2frEqnHtTjc8geLS4OjQINUcthBoPPYC1/nevrJzaaSCeKrYKkpz1pN830KP2Ecq/s=
+	t=1733767409; cv=none; b=AXN7U45zIpZ2WU4FaERY9owCCGwhivD+YLJ4NUsiuA007s58FRXIpPDEJ5scoeADgRXw9Nhe2+XtQ7jEQ1pdZ/7EPJMfHJWJQLs3qspgDPbBTtmEEGoVxpx/FOniJxV8dU7GqTnzagRCKsCrGay2n6ZJd20NeJONBEwIQJiS01c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733768724; c=relaxed/simple;
-	bh=gLFQw4DMaeJ3d+JdvIzNsbyedDoZCMKcjcOE8enPTXI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=e1dt84fQG+8Rnjll+E/42uJmlMmShx+C4HJsMyhxlbNA6GJ09G7Us9VmHCxmde345Zqs3ECK2kZtmPKujtUVxXctJEp4F2BcXkpYgUtaJ480d0H9QzVU+mbQAvvCzXPztPVPhOY+ZMaVLSOoadCMLpJLF2CZFJq5WQPBn8mpBiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ifm.com; spf=pass smtp.mailfrom=ifm.com; dkim=pass (2048-bit key) header.d=ifm.com header.i=@ifm.com header.b=tNZlcoTh; arc=none smtp.client-ip=132.145.231.115
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ifm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ifm.com
-Received: from pps.filterd (pp2023.ppsmtp.internal [127.0.0.1])
-	by pp2023.ppsmtp.internal (8.18.1.2/8.18.1.2) with ESMTP id 4B9GFPN9001286;
-	Mon, 9 Dec 2024 18:59:11 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ifm.com; h=cc :
- content-transfer-encoding : content-type : date : from : in-reply-to :
- message-id : mime-version : references : subject : to; s=pps;
- bh=lWK9c+ZIejq2822haSA17t/ZFCNoY1YEg/oiU2So7cQ=;
- b=tNZlcoTh2uzHzDoQHOAKkrfrtQn1ca9SBzdw44QWQZTsuFWz5sBITe7FuJjNnj20BvGP
- c9zavcIhIYRcySyhb1TAVeNohwT5JjpeEoKjhUiT0T5CJYcCDqYl3TXTNMO8ZPoQRs3t
- sBXk3zA99LtdtQO41RYhdwSoc1PMYPqig/XIqD1RqDofaVA60J0YMZ+4lhmTXeQ+/Rol
- IdwxrBNJPLZiCJueTSOj19fJJDVWu8ipm+/AFKapJq2AXIafUKbVUiYzIjQMBPbFZ6Js
- sRiiW1Q7bVWlA0AGbjt960BVj/fOAPFeZL7slr3EDKqnpQvGhv5ug/EPMQYSEHhX2FKx Zg== 
-From: Fedor Ross <fedor.ross@ifm.com>
-Date: Mon, 9 Dec 2024 18:58:52 +0100
-Subject: [PATCH net-next 2/2] dt-bindings: net: dsa: microchip: Add of
- config for LED mode for ksz87xx and ksz88x3
+	s=arc-20240116; t=1733767409; c=relaxed/simple;
+	bh=EttPOx8CTHWiEQjm6kODu7k6KrmesqYnGdfpbFKYER8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UdhRG0wHgK2eZsQD4I06rAkAHbhuEuoKeYpU3N/F6thaZnoyhRYhdj1iaxzdVjkpc7+h9IqEaBvyUMQuq39oX8uV+ViPqPBm8NaAdObi9i8t1eqTIw+qfiV3x3ToW6/Zu7e91doqN9iHhs21aQn+iJ8JcoXgRbAn50oSvO+xHL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-540215984f0so987377e87.1;
+        Mon, 09 Dec 2024 10:03:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733767403; x=1734372203;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Vt1eQkp9pAQVTjzNi7SG9xZxFIH63Nwe6vPPAcwIYGQ=;
+        b=TWbCzdTaNExx8NfETUl4vqUPju/f2YZFxk8FeQBWiClzTt2YHzVzTBmBpZUpmnkk+H
+         TvtBA+PsRMtQ36IMol951QkWjE52Nogj/pULJqjJQ5x5Qww82lo1863WvcpCW4uVNImX
+         hw3zP2qT1wqMto/e8PFwbm6BJ/jUyCR/7JHZGZbE22YDFQAGA79EfyM6aCilMl23kOer
+         VNfhGXlEmd3ZVWiKNw93qrghlSNdWpjUoLXHNw8tuQX7/gn+Zv6uvtyAV9u7/5dGqdJR
+         2Zu2D4T5xZZHoHhRbm054Vw2e2iYNa/kFUNBBRFbt71erOlj/reQjWHl1RohLH86B7yD
+         7Jww==
+X-Forwarded-Encrypted: i=1; AJvYcCUoAmAG0Q4QUf2gVlzdZogPDXb74CHVD/xL+4loDwBLApxAE4OfEliWp0qWXodLIuXQ/HkaGisEE2LatqbW@vger.kernel.org, AJvYcCXLWYQ/VxAnySpO8nFI2Qzbrs+tTpMwABh9/EypA3qtz3DfXnt9PBc7Dvph7fk4g/3+oqQM4OefQxsT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJjNaY0T/2dsKZajS+kQRkiHfl6jqqdhN2RQCq35af20jJs+qj
+	Xe2ERWgovTPWzpR36Xhd98kwOxqfvIZMgZ0mj5qCfiVVFi5rKvLvBUzAxQ==
+X-Gm-Gg: ASbGnctbCFadfgdDswYvP+tnRxDZKkrwfSID68E2kMzGRh7LAkbJijwCz/5wUPi9RUD
+	pRtwUmt+nqwuzbikQ1AARd5xqpXdIlUiIavjHPW/M3cyy42wPdab2JxBP365T84Zwi5CvkJ83gr
+	Mv+ILCWTfy0dhb6MKfNSuSaPT97J8M9e8jn4cfz53xF2LmHaKCgl4uxArqx4B+DCh04eLSwVriN
+	nS8qvUA3oWiMp4Gm90XPJNdW4mOZyri9HhI6ciQ9GKJBIMCBl5NKUtELPXS+WquWEoGA6/9U4gk
+	79rYeRc=
+X-Google-Smtp-Source: AGHT+IFREMvkmaQuoq8UAyjZmgeM2srNOKZNVSewT0B21kmxesr1SjsA0Xa+l3V92ddAUb6sEXvdrQ==
+X-Received: by 2002:a05:6512:230b:b0:540:1b7e:7b3d with SMTP id 2adb3069b0e04-54024104993mr700018e87.36.1733767402851;
+        Mon, 09 Dec 2024 10:03:22 -0800 (PST)
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com. [209.85.208.170])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53f23320d1csm751678e87.235.2024.12.09.10.03.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Dec 2024 10:03:22 -0800 (PST)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2ffc76368c6so43866941fa.0;
+        Mon, 09 Dec 2024 10:03:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV5cpQa3C3gu28/trXUxNDrc/zFqaptS+AfOYsJfor8VyZHXNJ4oVddh6k2RREVgQfwvXDZ4S/Tp36E@vger.kernel.org, AJvYcCVcNeHdRXeO7siNkmXfE6XI4h9E1idp4GNP4w/u3MeDJO2/lzrlYT42/pEx/tTEoOJLYSJGx18j+SP2NUZo@vger.kernel.org
+X-Received: by 2002:a05:651c:509:b0:302:2cb3:bb25 with SMTP id
+ 38308e7fff4ca-3022fd7da65mr6276521fa.29.1733767402058; Mon, 09 Dec 2024
+ 10:03:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241209-netdev-net-next-ksz8_led-mode-v1-2-c7b52c2ebf1b@ifm.com>
-References: <20241209-netdev-net-next-ksz8_led-mode-v1-0-c7b52c2ebf1b@ifm.com>
-In-Reply-To: <20241209-netdev-net-next-ksz8_led-mode-v1-0-c7b52c2ebf1b@ifm.com>
-To: Woojung Huh <woojung.huh@microchip.com>, <UNGLinuxDriver@microchip.com>,
-        Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
-        "David S.
- Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Marek Vasut <marex@denx.de>
-CC: <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Woojung Huh
-	<Woojung.Huh@microchip.com>, <devicetree@vger.kernel.org>,
-        Tristram Ha
-	<tristram.ha@microchip.com>,
-        Fedor Ross <fedor.ross@ifm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733767148; l=4792;
- i=fedor.ross@ifm.com; s=20241209; h=from:subject:message-id;
- bh=gLFQw4DMaeJ3d+JdvIzNsbyedDoZCMKcjcOE8enPTXI=;
- b=SWttvsIg5FKxiPzfoKRqznDuYn13YdrZFq2Dcg/fdpa3VONWyIwXv2ssA8NFPiFuPadQFguT8
- uTAbCDFdCBzDISHBx/lDA4TcfMFVyvJ+vAIlG6ze724oEfKJR/c5qbQ
-X-Developer-Key: i=fedor.ross@ifm.com; a=ed25519;
- pk=0Va3CWt8QM1HKXUBlspqksLl0ieto8l/GgQJJyNu/ZM=
-X-ClientProxiedBy: DEESEX10.intra.ifm (172.26.140.25) To DEESEX10.intra.ifm
- (172.26.140.25)
-X-Proofpoint-ID: SID=43cyfjur6c QID=43cyfjur6c-1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2024-12-09_14,2024-12-09_03,2024-11-22_01
+References: <20241205000137.187450-1-csokas.bence@prolan.hu>
+ <20241205000137.187450-2-csokas.bence@prolan.hu> <20241209175637.283312fa@donnerap.manchester.arm.com>
+In-Reply-To: <20241209175637.283312fa@donnerap.manchester.arm.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Tue, 10 Dec 2024 02:03:08 +0800
+X-Gmail-Original-Message-ID: <CAGb2v644AgZvuOmvQCUXGWyJWYCgVnCkVohNdD-Z0FhgOrp1cQ@mail.gmail.com>
+Message-ID: <CAGb2v644AgZvuOmvQCUXGWyJWYCgVnCkVohNdD-Z0FhgOrp1cQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] ARM: dts: suniv: f1c100s: Add support for DMA
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: =?UTF-8?B?Q3PDs2vDoXMsIEJlbmNl?= <csokas.bence@prolan.hu>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	Mesih Kilinc <mesihkilinc@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add support for the led-mode property for the following PHYs which have
-a single LED mode configuration value.
+On Tue, Dec 10, 2024 at 1:56=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
+com> wrote:
+>
+> On Thu, 5 Dec 2024 01:01:36 +0100
+> "Cs=C3=B3k=C3=A1s, Bence" <csokas.bence@prolan.hu> wrote:
+>
+> > From: Mesih Kilinc <mesihkilinc@gmail.com>
+> >
+> > Allwinner suniv F1C100s now has DMA support. Enable it under device
+> > tree.
+> >
+> > Signed-off-by: Mesih Kilinc <mesihkilinc@gmail.com>
+> > [ csokas.bence: Rebased on current master ]
+> > Signed-off-by: Cs=C3=B3k=C3=A1s, Bence <csokas.bence@prolan.hu>
+>
+> Compared against the manual:
+>
+> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 
-KSZ8765, KSZ8794 and KSZ8795 use register 0x0b bits 5,4 to control the
-LED configuration.
+These have already been merged. I picked them from their original
+series.
 
-KSZ8863 and KSZ8873 use register 0xc3 bits 5,4 to control the LED
-configuration.
+ChenYu
 
-Signed-off-by: Fedor Ross <fedor.ross@ifm.com>
----
- .../devicetree/bindings/net/dsa/microchip,ksz.yaml | 89 +++++++++++++---------
- 1 file changed, 55 insertions(+), 34 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-index 62ca63e8a26fda0615cc254acca620f14f47cd10..2420e63d80249e533a34f992a0d3d12d926a3aa6 100644
---- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-@@ -10,9 +10,6 @@ maintainers:
-   - Marek Vasut <marex@denx.de>
-   - Woojung Huh <Woojung.Huh@microchip.com>
- 
--allOf:
--  - $ref: /schemas/spi/spi-peripheral-props.yaml#
--
- properties:
-   # See Documentation/devicetree/bindings/net/dsa/dsa.yaml for a list of additional
-   # required and optional properties.
-@@ -106,38 +103,62 @@ required:
-   - compatible
-   - reg
- 
--if:
--  not:
--    properties:
--      compatible:
--        enum:
--          - microchip,ksz8863
--          - microchip,ksz8873
--then:
--  $ref: dsa.yaml#/$defs/ethernet-ports
--else:
--  patternProperties:
--    "^(ethernet-)?ports$":
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            enum:
-+              - microchip,ksz8863
-+              - microchip,ksz8873
-+    then:
-+      $ref: dsa.yaml#/$defs/ethernet-ports
-+    else:
-       patternProperties:
--        "^(ethernet-)?port@[0-2]$":
--          $ref: dsa-port.yaml#
--          unevaluatedProperties: false
--          properties:
--            microchip,rmii-clk-internal:
--              $ref: /schemas/types.yaml#/definitions/flag
--              description:
--                When ksz88x3 is acting as clock provier (via REFCLKO) it
--                can select between internal and external RMII reference
--                clock. Internal reference clock means that the clock for
--                the RMII of ksz88x3 is provided by the ksz88x3 internally
--                and the REFCLKI pin is unconnected. For the external
--                reference clock, the clock needs to be fed back to ksz88x3
--                via REFCLKI.
--                If microchip,rmii-clk-internal is set, ksz88x3 will provide
--                rmii reference clock internally, otherwise reference clock
--                should be provided externally.
--          dependencies:
--            microchip,rmii-clk-internal: [ethernet]
-+        "^(ethernet-)?ports$":
-+          patternProperties:
-+            "^(ethernet-)?port@[0-2]$":
-+              $ref: dsa-port.yaml#
-+              unevaluatedProperties: false
-+              properties:
-+                microchip,rmii-clk-internal:
-+                  $ref: /schemas/types.yaml#/definitions/flag
-+                  description:
-+                    When ksz88x3 is acting as clock provier (via REFCLKO) it
-+                    can select between internal and external RMII reference
-+                    clock. Internal reference clock means that the clock for
-+                    the RMII of ksz88x3 is provided by the ksz88x3 internally
-+                    and the REFCLKI pin is unconnected. For the external
-+                    reference clock, the clock needs to be fed back to ksz88x3
-+                    via REFCLKI.
-+                    If microchip,rmii-clk-internal is set, ksz88x3 will provide
-+                    rmii reference clock internally, otherwise reference clock
-+                    should be provided externally.
-+              dependencies:
-+                microchip,rmii-clk-internal: [ethernet]
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - microchip,ksz8765
-+              - microchip,ksz8794
-+              - microchip,ksz8795
-+              - microchip,ksz8863
-+              - microchip,ksz8873
-+    then:
-+      properties:
-+        microchip,led-mode:
-+          description:
-+            Set LED mode for ksz8765, ksz8794 or ksz8795 (Register 0x0B, bits 5..4)
-+            and ksz8863 or ksz8873 (Register 0xC3, bits 5..4).
-+          items:
-+            enum:
-+              - 0 # LED0: Link/ACT, LED1: Speed
-+              - 1 # LED0: Link, LED1: ACT
-+              - 2 # LED0: Link/ACT, LED1: Duplex
-+              - 3 # LED0: Link, LED1: Duplex
- 
- unevaluatedProperties: false
- 
-
--- 
-2.34.1
-
+> Cheers,
+> Andre
+>
+> > ---
+> >  arch/arm/boot/dts/allwinner/suniv-f1c100s.dtsi | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/allwinner/suniv-f1c100s.dtsi b/arch/arm/=
+boot/dts/allwinner/suniv-f1c100s.dtsi
+> > index 3c61d59ab5f8..290efe026ceb 100644
+> > --- a/arch/arm/boot/dts/allwinner/suniv-f1c100s.dtsi
+> > +++ b/arch/arm/boot/dts/allwinner/suniv-f1c100s.dtsi
+> > @@ -6,6 +6,7 @@
+> >
+> >  #include <dt-bindings/clock/suniv-ccu-f1c100s.h>
+> >  #include <dt-bindings/reset/suniv-ccu-f1c100s.h>
+> > +#include <dt-bindings/dma/sun4i-a10.h>
+> >
+> >  / {
+> >       #address-cells =3D <1>;
+> > @@ -159,6 +160,15 @@ usbphy: phy@1c13400 {
+> >                       status =3D "disabled";
+> >               };
+> >
+> > +             dma: dma-controller@1c02000 {
+> > +                     compatible =3D "allwinner,suniv-f1c100s-dma";
+> > +                     reg =3D <0x01c02000 0x1000>;
+> > +                     interrupts =3D <18>;
+> > +                     clocks =3D <&ccu CLK_BUS_DMA>;
+> > +                     resets =3D <&ccu RST_BUS_DMA>;
+> > +                     #dma-cells =3D <2>;
+> > +             };
+> > +
+> >               ccu: clock@1c20000 {
+> >                       compatible =3D "allwinner,suniv-f1c100s-ccu";
+> >                       reg =3D <0x01c20000 0x400>;
+>
+>
 
