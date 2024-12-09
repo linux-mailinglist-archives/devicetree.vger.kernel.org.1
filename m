@@ -1,92 +1,137 @@
-Return-Path: <devicetree+bounces-128503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FED29E8E50
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:03:35 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA3349E8DD8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:51:28 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 022C21888F5F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:01:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B2F52809C6
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:51:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 101D5216606;
-	Mon,  9 Dec 2024 08:58:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE460215F53;
+	Mon,  9 Dec 2024 08:51:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="lPkb5FsQ"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="CnU1vpov"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 547CB215F59;
-	Mon,  9 Dec 2024 08:57:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB09821571F
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 08:51:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733734679; cv=none; b=cZhWdU0pXkQ8ud9gmUu2iCMHYyUAXoIWemj+Sp0mfk5+90gQXCxC85S25NricUjX/n++lhJNyYw0t77ZYaf8PAwXJO+K4wyM9mAA27Bmi9bapaJ87sX4wUipZ2tI9GcgOpRtAzazT+d1KlUoN2cUXXfBIEoY0yLSwPXC/TzL90E=
+	t=1733734276; cv=none; b=fLSwLEZnfzXDH2fuIuOjreVASWhvwrOplB0YYRuDRJNHuV3h+K0dIPbvl//247Ovxw6/kZqEJgNwnVIJkQnqTqHeqeyNS4mxvuEPtY3KWxSaPJflUB9oaOdbSJatCij6Jta6dKVvK/Vmt1u7VLv1pwVWBCmAcjNZG0ugZ65G5D8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733734679; c=relaxed/simple;
-	bh=UFKhxK+cDFEI4y3RjLQDe9PWlFuYbRZmoAxoXWWzp5U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OqaAMHLPnXjCwTkf36iqRcFyy+0Pi27zBvT6Eqt5nf5wbENSKbgmMwoZihAvOc0j/Niu3sNJth+YUPwnPA8OiyYMhIRF429zjLHLhrXWO/mccsdxmxG87oyMOQsQJKttVlJmbVWqzlLXBIwDylRe+czTpEp6n1+Nr0z2IcjaabE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=lPkb5FsQ; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=6At0GdwrBbQRQtGqN9J/OMjpky8vIXhTBbHz6TrbWzE=;
-	b=lPkb5FsQmQQdQWYcOzNMDtKfRo1KvT3RUdQ65WJyafYZMQH73wbDb4z/tBVvXp
-	EPf7uwabkJEdy02G4PoQDCh2m0gVWNxAAgU1Bx319nuoUnhIhRrY5ndrT1KBNsAt
-	janG84vU51iRqBU7JeilP008ItQrUcHMePQOX294kZG0A=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgAXPuxxrlZnKVSNBA--.47957S3;
-	Mon, 09 Dec 2024 16:46:43 +0800 (CST)
-Date: Mon, 9 Dec 2024 16:46:41 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Lukasz Majewski <lukma@denx.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH v11 3/3] ARM: dts: mxs: Add descriptions for imx287 based
- btt3-[012] devices
-Message-ID: <Z1aucR3ueKIxOjSX@dragon>
-References: <20241107085705.490940-1-lukma@denx.de>
- <20241107085705.490940-3-lukma@denx.de>
- <20241119165236.69438f75@wsk>
+	s=arc-20240116; t=1733734276; c=relaxed/simple;
+	bh=3vFC/T8pkufuXOBciI8qpD+8xiXD21BBWbTTY8D6JZs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hN6LIphSn4h3TbBSrEnGiW1hJF2pTdLrNP5XGGlOep/k2QpvyBtWToDTGD8Lwpnv88RcSE0pRS1rGX3eZTdG3VxgbJ0uatr+go7bxX+wDjdG1SK57IzPLQA0tydEa0LWrDhWafaMq155V7JyE6J2OH9W8SpN67iP8FXK9VWGWRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=CnU1vpov; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aa5ec8d6f64so479726166b.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 00:51:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1733734272; x=1734339072; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E9Hc3xjrHfup8nIdLq37wXKGA2i5zetjweZEAd4L3ro=;
+        b=CnU1vpov7xBbpEGwTJbU8CkxZi8+sm7IyAmZZQN2YcGWHEm1U9S2bMMfCy3ctyIhiZ
+         VEGsKfDeeBFnapxVW7Uf9Vg4qtOB+YS87uyb2BrY5gSjtH2+HLc4LuWxXSRwt7corkTc
+         hkRLdKdT3jmd3p4eeQZhL4xIqrow4K8qZnK26LR0HpfOranSlXR0XssI+NDjtdtzAzkK
+         Ci2dmwShiwTea/4iwUUb24823K2RUKJMhd08+Yavy/g5/RI/JHRB2mr46PgQR9UwaXgw
+         0SPDn8uzdhWY+6a3e6k6ni6Gstw1nVDmlEusA433fE1DuEjg76Zw2rAUUuvlJsDJLNlG
+         t8ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733734272; x=1734339072;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E9Hc3xjrHfup8nIdLq37wXKGA2i5zetjweZEAd4L3ro=;
+        b=Rwz8VZekqzayBnxCEI4hpmnQVOMx2BIyfhj8Shf2LME62JU9tGxqmPKcd2WLfqj7qL
+         u+YAK1uruVOGUJ88jWqUfs+VGMz+ZGABR4ZvWq5vLRt5Q+b/mM1CizFQPAC09v0BmnLA
+         jy55RzqhTFiu0UEzW0cTQOUCI9i8dCd4+2v6UMiH+zArRScFjOKD7PePZOXpjaZF9Nie
+         fyOAlMmhRRWEoFx44rqBAIWP5RpKu44BDacX1B13X1DkcMNVAw2tmvXPPn5AVTozCUaE
+         m9jh8Lp8Oq105jkALZY6P9PnbRhN0fmSs4Dc/1bWkSzCKwojlMNN7cRPbtES/m6mFHku
+         x7Dw==
+X-Forwarded-Encrypted: i=1; AJvYcCV9naG7IdI8As+lg1hZN1cIhexpUkAXn3RXPwNXNHUFUC9gOB9+iAIRjoqLTlkf45tLEONfJDjVkoJO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyv5S0F95qUGgMx0iB38bcGv3KxPrC7rkx+pBJ62iVT+IVWkG3e
+	DWZ8zry1kHxSvZrJQW0gSkJ4WFVhly3HGq3nXmhdml/BkMMPHAnXh44193onOzU=
+X-Gm-Gg: ASbGncuVtpFxYLQRQo4sQaUQ9KXZuEKHKCCCO6IKFVwExfcbgs9+4X0pDFxkHEOn7m7
+	Uu+WOMdW8aL3KpByBIXB7nzgQTkWMOqV39dvUrK2jX9tb0lqqNiaqf2uRF/GWy08scBulPFsjbf
+	HKB84UF50JjZ7tMWqru8zz7SsvEAbbWV4JUVAdIMKG+mZwMqeL4+1FEVH1AgZgEREH0rCylZcZZ
+	sJNCUA/sZGhtPQC5oHswMXnu5JyVjPNgUqHQmXoNplgIh1fl4juJpO+N+D2zcY=
+X-Google-Smtp-Source: AGHT+IGTTSAOMWti4zwyd2JGUoVCQStjHBohMUQcMUwJfOa0IHr7CHbtGAw0XbsqZPj/g1XSSxcatA==
+X-Received: by 2002:a05:6402:1d55:b0:5d0:ea4f:972f with SMTP id 4fb4d7f45d1cf-5d3be68007emr30680021a12.8.1733734272022;
+        Mon, 09 Dec 2024 00:51:12 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.161])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d3d76f3892sm3614673a12.28.2024.12.09.00.51.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Dec 2024 00:51:11 -0800 (PST)
+Message-ID: <7857083f-e138-48f2-ab86-abb80173cc24@tuxon.dev>
+Date: Mon, 9 Dec 2024 10:51:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241119165236.69438f75@wsk>
-X-CM-TRANSID:Ms8vCgAXPuxxrlZnKVSNBA--.47957S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU4CD7UUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAgiwZWdWlR95wQAAsc
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 13/15] iio: adc: rzg2l_adc: Add support for Renesas
+ RZ/G3S
+Content-Language: en-US
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: prabhakar.mahadev-lad.rj@bp.renesas.com, lars@metafoo.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org, p.zabel@pengutronix.de, linux-iio@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20241206111337.726244-1-claudiu.beznea.uj@bp.renesas.com>
+ <20241206111337.726244-14-claudiu.beznea.uj@bp.renesas.com>
+ <20241207183423.4af1f988@jic23-huawei>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20241207183423.4af1f988@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Nov 19, 2024 at 04:52:36PM +0100, Lukasz Majewski wrote:
-> Dear Community,
+Hi, Jonathan,
+
+On 07.12.2024 20:34, Jonathan Cameron wrote:
+> On Fri,  6 Dec 2024 13:13:35 +0200
+> Claudiu <claudiu.beznea@tuxon.dev> wrote:
 > 
-> > The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
-> > some extend similar to already upstreamed XEA devices, hence are
-> > using common imx28-lwe.dtsi file.
-> > 
-> > New, imx28-btt3.dtsi has been added to embrace common DTS
-> > properties for different HW revisions for this device.
-> > 
-> > As a result - changes introduced in imx28-btt3-[012].dts are
-> > minimal.
-> > 
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> Add ADC support for the Renesas RZ/G3S SoC. The key features of this IP
+>> include:
+>> - 9 channels, with one dedicated to reading the temperature reported by the
+>>   Thermal Sensor Unit (TSU)
+>> - A different default ADCMP value, which is written to the ADM3 register.
+>> - Different default sampling rates
+>> - ADM3.ADSMP field is 8 bits wide
+>> - ADINT.INTEN field is 11 bits wide
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> Hi Claudiu
 > 
-> Are there any more comments / suggestions for this patch set?
+> As my comments were all minor stuff, I have applied this.
+> However they were the sort of minor changes that result in lots of
+> fuzz and hand editing when applying so please check the result.
+> Applied to the testing branch of iio.git.
 
-Patch #2 and #3 look good to me.  That said, I'm waiting #1 to be
-applied first.
+I checked and tested testing branch at iio.git. Everything is good.
 
-Shawn
+Thank you for taking care of this,
+Claudiu
 
+
+> 
+> Thanks,
+> 
+> Jonathan
 
