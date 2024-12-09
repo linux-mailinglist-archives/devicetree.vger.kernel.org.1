@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-128844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABFAF9E99EF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:04:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70C9B9E9A08
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:07:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A08D16851F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:03:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60963188AA5E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:05:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21BE71B4250;
-	Mon,  9 Dec 2024 15:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D946E1C5CAD;
+	Mon,  9 Dec 2024 15:05:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="c/YCBUdV"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XQynOSxf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3A51A23B7;
-	Mon,  9 Dec 2024 15:02:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5110E1A2392;
+	Mon,  9 Dec 2024 15:05:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733756545; cv=none; b=YZfZGnKaQ1ODXOfJwXGAIMHSKY2KkWlDjTmRBsUHFNubRTrvV3bz9fOXZbHUGFFBo/4fAU8TVHMKOrgbSn6OjeTzSrZCd9kVpqYjUn+1BRwxLdGT5x9wsTZyimknZehin6+tOGIARQC5Fsg9gN2Q8H+SIwKCuKcG3jpJeH+p3sU=
+	t=1733756712; cv=none; b=loPUamuNg4/xr1ElG3Y0T+gogS4Uubk8v5uLabdOu2rKOyQt2TqgG4hAT932axXH+HZ2aBcRpaTCteMSucRaQBbbE4tDPikMdsoypisIe10mzdCCp4J6rVSKRHvpAY4KYtzukoVvnG58Kb56rP5bjkGcRXKsE5nDpShXiJM2uQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733756545; c=relaxed/simple;
-	bh=dKlPGxYkwTD/3sIxuE9y+LM1/E1cOyuiFi5A6mgj4nA=;
+	s=arc-20240116; t=1733756712; c=relaxed/simple;
+	bh=9XjJLLBjdUK7G6tIajiloTXf4bXlnh38KVKc1NP51VQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QqMOrTRWFmoP2TkyGlKy6qwIGseLBQhvUSVlSUl5XZhV82zL5CAD4UMTmTBtCTpsgWDj/hs+vEX5xV76FrqcHjew7tuxa0Uxk8+2QCE3e4atnVyVXGbe5dKLnNlF8mB1Z1OfGw6Xqr1p/lK4BtZAgUUPWUCve5FT6Gr8V5YPVJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=c/YCBUdV; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B9AXCM4003487;
-	Mon, 9 Dec 2024 15:02:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dmbJmFBmY5oCW22GTFiwaIUH94lWuVHWFqeXe2H6j60=; b=c/YCBUdVUEskN3qa
-	Ou19cT7IXGamBIjGl4HxR8GqPJcz1j3dRK9u17+FkBKju3XV0EKGuXe9Dt3me+Z2
-	EnxUC2zvZbLpixMNINcxjawARr3kC1SHhxVQXMGL1D9llrgemkFYsdIp195yspBg
-	k1qChwWT5SwzxIwG8oEjuGmHKlcT8wrqM7wcQshPLSj951pNPshApvQLnPPH/wgJ
-	UrCcwWwxsH8UdXHiahVFvOnb2vU8UFzk/QYZ+RRq71HFZ08X0VSJTWgV/c6NbtR8
-	kkxGrSlS+Uh4Zb/ojeveMyYxgh6VlFf58FN3GeARnXzL+IxPWgiNQtsQyEDp6LJR
-	s3KZGw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43dxw40xf2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Dec 2024 15:02:13 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B9F24n7026925
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Dec 2024 15:02:04 GMT
-Received: from [10.50.34.16] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Dec 2024
- 07:01:56 -0800
-Message-ID: <e7b4f266-c2dc-4253-a3e5-53716ef006bd@quicinc.com>
-Date: Mon, 9 Dec 2024 20:31:51 +0530
+	 In-Reply-To:Content-Type; b=K15jqYh97WUzGaiBfEsi90Fq5RdNJDvGccRtnMQLCWKaL7giuGd2V7HBEo3JsDwP+9zKiI29G2/+i/6ng679T+0jDC0rQgQlecGxwKZRtwLBQcPu8M5XQCDVQvkcL5qkjWDlv6tO36ORiQH3d4SZwKN5iVjOR+fO7j2bZAnNvSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XQynOSxf; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4B9F54WK122706;
+	Mon, 9 Dec 2024 09:05:04 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1733756704;
+	bh=D6X8Rn9jbUQ+esL1GB5A8GdEaY6tx/Qp5esXRH9z34w=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=XQynOSxfR3c7kxv2rWxnN+vHej23fASMUuaAPLJZZcS3qN6L0rVi7pureAjHt5WTJ
+	 v/vVeUafLuEI77WR+LIQ2kY9QqiFPOV3akEjmGBYQ8mCmaME5q0C8ltA4fJ7IKBc7q
+	 CY51+HuhSnPuCqmYKjhLD4R2qWTGhiJ+ajchEuGA=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B9F52LN018534
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 9 Dec 2024 09:05:04 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 9
+ Dec 2024 09:05:03 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 9 Dec 2024 09:05:03 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B9F52Sa091874;
+	Mon, 9 Dec 2024 09:05:02 -0600
+Message-ID: <d1122a33-5735-4000-98b3-ae9b1ed73008@ti.com>
+Date: Mon, 9 Dec 2024 09:05:02 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,115 +65,125 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
- flag
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Krzysztof Kozlowski
-	<krzk@kernel.org>, <konrad.dybcio@linaro.org>,
-        <andersson@kernel.org>, <andi.shyti@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <conor+dt@kernel.org>, <agross@kernel.org>,
-        <devicetree@vger.kernel.org>, <vkoul@kernel.org>, <linux@treblig.org>,
-        <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
-        <konradybcio@kernel.org>, <bryan.odonoghue@linaro.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>
-CC: <quic_vdadhani@quicinc.com>
-References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
- <20241129144357.2008465-2-quic_msavaliy@quicinc.com>
- <db428697-a9dc-46e1-abbe-73341306403f@kernel.org>
- <a8b1ccd2-c37b-4a6f-b592-caf1a53be02c@quicinc.com>
- <fc33c4ed-32e5-46cc-87d6-921f2e58b4ff@kernel.org>
- <75f2cc08-e3ab-41fb-aa94-22963c4ffd82@quicinc.com>
- <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
- <da2ba3df-eb47-4b55-a0c9-e038a3b9da30@quicinc.com>
- <a7186553-d8f6-46d4-88da-d042a4a340e2@oss.qualcomm.com>
+Subject: Re: [PATCH] dt-bindings: leds: Convert LP8860 into YAML format
+To: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+CC: "robh@kernel.org" <robh@kernel.org>, "lee@kernel.org" <lee@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "linux-leds@vger.kernel.org"
+	<linux-leds@vger.kernel.org>
+References: <20241206203103.1122459-1-alexander.sverdlin@siemens.com>
+ <de6039a6-b7e6-4960-afcc-5f0d29fb27a8@ti.com>
+ <8e1122977b316ca16e9eec0850ed470c31ae9f24.camel@siemens.com>
 Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <a7186553-d8f6-46d4-88da-d042a4a340e2@oss.qualcomm.com>
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <8e1122977b316ca16e9eec0850ed470c31ae9f24.camel@siemens.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: fcQXGs8dm37uCG8CvS2f-oOGki1Xx-KR
-X-Proofpoint-GUID: fcQXGs8dm37uCG8CvS2f-oOGki1Xx-KR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- suspectscore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
- clxscore=1015 spamscore=0 mlxscore=0 lowpriorityscore=0 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412090118
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-
-
-On 12/2/2024 7:34 PM, Konrad Dybcio wrote:
-> On 2.12.2024 1:55 PM, Mukesh Kumar Savaliya wrote:
->>
->>
->> On 12/2/2024 4:34 PM, Krzysztof Kozlowski wrote:
->>> On 02/12/2024 11:38, Mukesh Kumar Savaliya wrote:
->>>>>
->>>>> Come with one flag or enum, if needed, covering all your cases like this.
->>>>>
->>>> Let me explain, this feature is one of the additional software case
->>>> adding on base protocol support. if we dont have more than one usecase
->>>> or repurposing this feature, why do we need to add enums ? I see one
->>>> flag gpi_mode but it's internal to driver not exposed to user or expose
->>>> any usecase/feature.
->>>>
->>>> Below was our earlier context, just wanted to add for clarity.
->>>> -- 
->>>>    > Is sharing of IP blocks going to be also for other devices? If yes, then
->>>>    > this should be one property for all Qualcomm devices. If not, then be
->>>>    > sure that this is the case because I will bring it up if you come with
->>>>    > one more solution for something else.
->>>
->>>
->>> You keep repeating the same. You won't receive any other answer.
->>>
->> So far i was in context to SEs. I am not sure in qualcomm SOC all cores supporting this feature and if it at all it supports, it may have it's own mechanism then what is followed in SE IP. I was probably thinking on my owned IP core hence i was revolving around.
->>
->> Hope this dt-binding i can conclude somewhere by seeking answer from other IP core owners within qualcomm.
->>>>    >
->>>> IP blocks like SE can be shared. Here we are talking about I2C sharing.
->>>> In future it can be SPI sharing. But design wise it fits better to add
->>>> flag per SE node. Same we shall be adding for SPI too in future.
->>>
->>>
->>> How flag per SE node is relevant? I did not ask to move the property.
->>>
->>>>
->>>> Please let me know your further suggestions.
->>> We do not talk about I2C or SPI here only. We talk about entire SoC.
->>> Since beginning. Find other patch proposals and align with rest of
->>> Qualcomm developers so that you come with only one definition for this
->>> feature/characteristic. Or do you want to say that I am free to NAK all
->>> further properties duplicating this one?
+On 12/9/24 8:35 AM, Sverdlin, Alexander wrote:
+> Hi Andrew,
 > 
-> I'm not sure a single property name+description can fit all possible
-> cases here. The hardware being "shared" can mean a number of different
-> things, with some blocks having hardware provisions for that, while
-> others may have totally none and rely on external mechanisms (e.g.
-> a shared memory buffer) to indicate whether an external entity
-> manages power to them.
+> thanks for the prompt review!
 > 
-I agree. Also i checked internally with UFS team and other peripheral 
-core. Not heard of core being shared the way SE is being shared.
-> Even here, I'm not particularly sure whether dt is the right place.
-> Maybe we could think about checking for clock_is_enabled()? That's
-> just an idea, as it may fall apart if CCF gets a .sync_state impl.
+> On Mon, 2024-12-09 at 08:29 -0600, Andrew Davis wrote:
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +    description: I2C slave address
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 1
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 0
+>>> +
+>>> +  enable-gpios:
+>>> +    maxItems: 1
+>>> +    description: GPIO pin to enable (active high) / disable the device
+>>> +
+>>> +  vled-supply:
+>>> +    description: LED supply
+>>> +
+>>> +patternProperties:
+>>> +  "^led@[0]$":
+>>> +    type: object
+>>> +    $ref: common.yaml#
+>>> +    unevaluatedProperties: false
+>>> +
+>>> +    properties:
+>>> +      reg:
+>>> +        description:
+>>> +          Index of the LED.
+>>> +        const: 0
+>>> +
+>>> +      function: true
+>>> +      color: true
+>>> +      label: true
+>>> +      linux,default-trigger: true
+>>> +
+>>> +    required:
+>>> +      - reg
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - "#address-cells"
+>>> +  - "#size-cells"
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/gpio/gpio.h>
+>>> +    #include <dt-bindings/leds/common.h>
+>>> +
+>>> +    i2c {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        led-controller@2d {
+>>> +            compatible = "ti,lp8860";
+>>> +            #address-cells = <1>;
+>>> +            #size-cells = <0>;
+>>> +            reg = <0x2d>;
+>>> +            enable-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+>>> +            vled-supply = <&vbatt>;
+>>> +
+>>> +            led@0 {
+>>
+>> So same comment I made in the pre-public review, lets see what the DT
+>> folks think:
+>>
+>> I don't think we want to have the "@0" node naming. It forces us to
+>> add the "reg =" below, and that then forces us to add the #*-cells above.
+>> All this to work around not just calling the node "led-0". The driver
+>> doesn't care either way, and there are no in-tree users of the old way,
+>> so now should be a safe time to fix this while converting the binding.
 > 
-I feel DT flag is the only way as one or other way this leads to some 
-need of prior knowledge. in case of using clock_is_enabled() kind of 
-API, we still need a flag to keep the clock enabled. By the way, we keep 
-pinctrl only enabled for shared SE.
+> If I understood you correctly here:
+> 
+>>> And one channel controlling the others is only in this "Display Mode",
+>>> but the currents to the others can be independently controlled in a
+>>> different mode (seems these modes have less features which is probably
+>>> why the driver doesn't make use of that today).
+> 
+> then some mapping between subnode and HW channel would be required.
+> We probably don't want to parse a node name in this case and carve out "-0"
+> part of it, in such case a well-defined property, such as "reg" would be
+> required.
+> 
 
-Please let me know if the given binding can be improved further OR this 
-looks fine ?
-> Konrad
+We are not the only driver to do the "-#" method. Although yes just
+using reg is easier for the Linux driver.
 
+> So preserving the status quo looks more future-proof IMO.
+> 
+
+There will only ever be up to 4 LEDs, but you give fair points. No
+strong preference from me then, and everything else looks good to me,
+
+Acked-by: Andrew Davis <afd@ti.com>
 
