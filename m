@@ -1,154 +1,129 @@
-Return-Path: <devicetree+bounces-128770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E3C9E96A6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:26:33 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 167189E9681
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:23:18 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBD7A188D754
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:22:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DE382839C6
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:23:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E81B222D40;
-	Mon,  9 Dec 2024 13:15:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F541ACEC7;
+	Mon,  9 Dec 2024 13:17:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="OkT4p3Zm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57E1E1B0404;
-	Mon,  9 Dec 2024 13:15:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F65D233126;
+	Mon,  9 Dec 2024 13:17:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733750145; cv=none; b=Ad+5Y9IhyVOqNi+Oz8tHR6UjubObZto7AWjCCfImbj2SPbQSGZ5apdHJr4qpDepaD05lImhGpS6/jUeXDpasaLt1gr9INOhfuvBUMlYkP+oEG3XwwQxqFlySkhyxfmz0HzevR6GmUmHNUqbiJ+gjh/O9rt1sky8AfRQEQRNCQNI=
+	t=1733750240; cv=none; b=FHP/bjEbS4K8nV9dcz3vmA/+Du4w8aBgxv9eQ7m2YFvBRWODYKcmIBiXHCNT1trqC6DW+20JzEe4qIqWQ8UT0OHG5AyMzGoSj5lDgSJQ1/is6xE5dTWl8ErwxTX+I2hNWPiSmWnTQhjcqZNMwTgSf9XRsAqsBBHxHX/pAdR7+cE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733750145; c=relaxed/simple;
-	bh=lh/Nf8r8mXVMnZOUdv/stO7zBDdteR2rS6iLVzqqYwQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=C7GSyzrsVFduYyZqerklGNn9rhWORwjp5riQDsil7LTXJgvLOYUjf/NE5ZF4JU282RMSWcAMgbQRZqRwg3w97dniqHEpMoiB23qNoEO/MvFsZASu4HqGcbLxwRYkAURzWdK64u1nyRdELGmLu9JtElYURbQP4B6g2Y3N4rkQAwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-6d900c27af7so16703446d6.2;
-        Mon, 09 Dec 2024 05:15:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733750140; x=1734354940;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uIGy8FeFMEG5S1lHlLlnwF/0gV8yzkzOW8jZGh+/bqk=;
-        b=P7742JeJ3EuVKWoQ8OFs9G0XjW4JDEnURVT6fEkhweuoesi4GaotWN0eGfKI1Y84bU
-         Dqm4fP/1ahLdH8uqhfP3J64WPnMq7C+VhC4Lgq7u//8i117nY6TpGCvbbkq0UeAEPEPs
-         GiRjuS4+JAYpsAmn0Zxf15vQ3OV+cAX8LhszqoAhtZB++avQ4R+d2v2QcRji0ggx9AyP
-         SDRLvk+YHLNk4GghKIihN9cbCsCpDthh4tkOpFCcFFCFKhz4ETrqqgoDrg0VHh+uNTFX
-         A2M3dx8SgwXEsJbXLWn5VMNzyrmValLenX9VklzdIIXs8R8nIFu/D3VrbZaw13isfYle
-         Y1Jw==
-X-Forwarded-Encrypted: i=1; AJvYcCU3XbUz9oWh3EcGNmhpI6rz127fSQJo0YcyoR4/vfLEg+fG/ZajMqK9a7WYJqWdxYUDyVC+cXbSk8N+iJhrFX/1P1k=@vger.kernel.org, AJvYcCUR4P6Is6cV92a/hWq3tB1FhG+nqYxFAOkl5QjFg/Bw+Dial1O5h8M3s5dQ8R9Ha+oPDMB92rnE@vger.kernel.org, AJvYcCUqmLTnuE0dTHGBINKjAoyyZtNeFc6mBkUw/SGJt6R88JqPLfSvp0qFN8Hg+8m+XpweSvIFIHZ7tSHU+Tg=@vger.kernel.org, AJvYcCUsWjqtp9MLPPEU1zIQZsa1ly/kKt6HjodA/AbJ1TCG8G2zUS9PG12t7TLrlAnVvdQ8ojcbW+37DjuX@vger.kernel.org, AJvYcCV438ofmlFsDfXSdMAHCmb32mYtMqW7JUz9CQRqkscmdA7anEkCxT04zwnMDPpz4+0Ikm9pkUtbsR9wLbqj@vger.kernel.org, AJvYcCVe6C570aLWJwJQv2tjwXGea1OfMgTOEAXHMb+yGOt/8leQrQwnXq+nG/0KMkkrLFHudd2VwDzEeOVY@vger.kernel.org, AJvYcCVy4OD+li3CeYLsb/pn9kDcMlf6kVpnvnEzo3mejxvD2eBY9KwzBFUMmKSYOx7c4tXFnczWdgjLiXdfsw==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfGX/Y9HDimJVpwshvMTm5giVy+17qjg1dBXJOJ5Ya4de60glg
-	sFjJCCmMgSYr0HZ2UQ9Ax9MjL9W79gtrEdmfYc/gUl3VlYhpvN7zLjWoNXmaJfY=
-X-Gm-Gg: ASbGnctl4j16MrhKux2IRmN9d35ovyPJZ8nTTQfzyVrOWA6DcRpqED0dUxIiMmk3trv
-	6AfS4KO0D3n1efd6gd2QkYYzAql3y9AFjnPfSfXrg8ppWLKEJemMZzngHAhXW6ZGajF1Urusxsr
-	wcVGdjCd2ADF8N03izWfe0QVFvBk3HwbOYfWUHUjMqKCRE3c6x+Xgi7ssriQdPbe00CwdWDiGig
-	80A6bKVq8x6Av3jTWXIkZohY6eXuM9e+DozVWgqHyGjCjYB3PXHorc4s3jtpsx4OnHuVL230xQa
-	qHM3maUYILFPv8c7
-X-Google-Smtp-Source: AGHT+IHrqWZIuvIEmy43fVOVGVVSkwU8XBB5DoBQnnvQtgovpWb4fbtF1e8jZLXcDYXLGg2YT4k8vQ==
-X-Received: by 2002:a05:6214:d88:b0:6d8:880b:665d with SMTP id 6a1803df08f44-6d8e73e8b96mr191295966d6.41.1733750140461;
-        Mon, 09 Dec 2024 05:15:40 -0800 (PST)
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com. [209.85.222.180])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6d8f79157f6sm27242336d6.54.2024.12.09.05.15.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 05:15:39 -0800 (PST)
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7b6cade6e1fso123588185a.2;
-        Mon, 09 Dec 2024 05:15:38 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV89GsC/RqBPcYvZEKGXnzQWWaYE0e29YWk6MsHpyUAMtqEn2vKw//txHgiduJ+RKEzmMBOyTMYtSoj5w==@vger.kernel.org, AJvYcCVddHqW4hnsjGsHVekLUp4RxyD8xjH85snkyNgABVrQefF+Yv97RVANRFtOPW0Cqb5XAY4/K14h@vger.kernel.org, AJvYcCVg7vdjiGu39T5LQxNEdt4nrPBU6azZRBz4tBa74wB+h/iT+z3CZxDf5RUNhBR9I6T/oUDlORzbDe/7QJed@vger.kernel.org, AJvYcCWAYgxHvD6m3tQd4UB4jJUDKkeu3sxFsuFIbnrUYXVWewkvF6+J1XzdNWM5nX2MEGrIDqRdaK0HMtpRHFY=@vger.kernel.org, AJvYcCWC4xZWpq9oaLKEjHL4964U3hBnOaJJn6cb7HYPGWp0hewO5UglaRqaCErp3mzW4Lnleg9ul/MCX9F9@vger.kernel.org, AJvYcCWFleGVAFG9hZSPXS5GRjF/BBlXCRW4TtL5ooVEAjiFaimWmQzPvbC5g6BeBez4dW1NM8/GQhpEecEPCUHl29l+2Y8=@vger.kernel.org, AJvYcCWp2a6atfaLVfvbIPWTjF24Qe6OgSTJNf/dO+xoJLg5pU7m6XM7wrJI53PJX6NkIm/oKKTBVx3Rr03H@vger.kernel.org
-X-Received: by 2002:a05:620a:2912:b0:7b6:d4df:28a7 with SMTP id
- af79cd13be357-7b6d4df2b49mr526820785a.38.1733750138520; Mon, 09 Dec 2024
- 05:15:38 -0800 (PST)
+	s=arc-20240116; t=1733750240; c=relaxed/simple;
+	bh=GKJhHjDf9U7/zbeK+J4EKmPqyRYVBJdPoU3fNhpiUDw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gjrr/v2+JzOSNx1v8rpHDj/stQFINPVidwEGMhpK/yQJXEjs2vrkowYb+oOv2hDIrFh/9ZUlBE4c1b9XwhpoZGjjDPTgaCELhQ1wYrhmi8WF01TjOT625+pI8rM0d21TEOmW4uihRpMPbM14mIvAdmnobybBmk583U0qBm5ijNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=OkT4p3Zm; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=a4aNZwKhoEpSgrOUmeaC/mbjjsWaCSSTRiNd1hwQtlU=; b=OkT4p3ZmfazAtxY0zHiUil2mce
+	bVgOGW3Vffzh6CC7+X7tYBmDKZUtgAe+eCURF78RtEdSR7Z8VSthtd0FD8nbpueHZ81igEFvz03nA
+	+EkK5DxQ/dqqboUdOC0U8Hr7PqvIlOm2PrszMDcalcyVHc2j9+OrR+NFqxWopql8xh+E=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tKddI-00FfZp-CA; Mon, 09 Dec 2024 14:17:04 +0100
+Date: Mon, 9 Dec 2024 14:17:04 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: dimitri.fedrau@liebherr.com
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Dimitri Fedrau <dima.fedrau@gmail.com>
+Subject: Re: [PATCH net-next 2/2] net: phy: dp83822: Add support for GPIO2
+ clock output
+Message-ID: <bcef90db-ca9d-4c52-9dc5-2f59ae858824@lunn.ch>
+References: <20241209-dp83822-gpio2-clk-out-v1-0-fd3c8af59ff5@liebherr.com>
+ <20241209-dp83822-gpio2-clk-out-v1-2-fd3c8af59ff5@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com> <20241113133540.2005850-7-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241113133540.2005850-7-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 9 Dec 2024 14:15:26 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUa9GnzOMOBhpQcX88Yy2qvgKmKMdeEwEVo-OXgr-3SMg@mail.gmail.com>
-Message-ID: <CAMuHMdUa9GnzOMOBhpQcX88Yy2qvgKmKMdeEwEVo-OXgr-3SMg@mail.gmail.com>
-Subject: Re: [PATCH v3 06/25] ASoC: renesas: rz-ssi: Terminate all the DMA transactions
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com, 
-	broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org, 
-	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241209-dp83822-gpio2-clk-out-v1-2-fd3c8af59ff5@liebherr.com>
 
-Hi Claudiu,
+>  #define MII_DP83822_RCSR	0x17
+>  #define MII_DP83822_RESET_CTRL	0x1f
+>  #define MII_DP83822_GENCFG	0x465
+> +#define MII_DP83822_IOCTRL2	0x463
+>  #define MII_DP83822_SOR1	0x467
 
-On Wed, Nov 13, 2024 at 2:35=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> In case of full duplex the 1st closed stream doesn't benefit from the
-> dmaengine_terminate_async(). Call it after the companion stream is
-> closed.
->
-> Fixes: 4f8cd05a4305 ("ASoC: sh: rz-ssi: Add full duplex support")
-> Cc: stable@vger.kernel.org
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+These are sorted, so the MII_DP83822_IOCTRL2 should go before
+MII_DP83822_GENCFG.
 
-Thanks for your patch!
+> +	if (dp83822->set_gpio2_clk_out)
+> +		phy_modify_mmd(phydev, DP83822_DEVADDR, MII_DP83822_IOCTRL2,
 
-> Changes in v3:
-> - collected tags
-> - use proper fixes commit SHA1 and description
+I would of preferred MDIO_MMD_VEND2 rather than DP83822_DEVADDR, but
+having just this one instance correct would look a bit odd.
 
-I am not sure which one is the correct one: the above, or commit
-26ac471c5354583c ("ASoC: sh: rz-ssi: Add SSI DMAC support")...
+> +	ret = of_property_read_u32(dev->of_node, "ti,gpio2-clk-out",
+> +				   &dp83822->gpio2_clk_out);
+> +	if (!ret) {
+> +		dp83822->set_gpio2_clk_out = true;
+> +		switch (dp83822->gpio2_clk_out) {
+> +		case DP83822_CLK_SRC_MAC_IF:
+> +			break;
+> +		case DP83822_CLK_SRC_XI:
+> +			break;
+> +		case DP83822_CLK_SRC_INT_REF:
+> +			break;
+> +		case DP83822_CLK_SRC_RMII_MASTER_MODE_REF:
+> +			break;
+> +		case DP83822_CLK_SRC_FREE_RUNNING:
+> +			break;
+> +		case DP83822_CLK_SRC_RECOVERED:
+> +			break;
 
-> --- a/sound/soc/renesas/rz-ssi.c
-> +++ b/sound/soc/renesas/rz-ssi.c
-> @@ -415,8 +415,12 @@ static int rz_ssi_stop(struct rz_ssi_priv *ssi, stru=
-ct rz_ssi_stream *strm)
->         rz_ssi_reg_mask_setl(ssi, SSICR, SSICR_TEN | SSICR_REN, 0);
->
->         /* Cancel all remaining DMA transactions */
-> -       if (rz_ssi_is_dma_enabled(ssi))
-> -               dmaengine_terminate_async(strm->dma_ch);
-> +       if (rz_ssi_is_dma_enabled(ssi)) {
-> +               if (ssi->playback.dma_ch)
-> +                       dmaengine_terminate_async(ssi->playback.dma_ch);
-> +               if (ssi->capture.dma_ch)
-> +                       dmaengine_terminate_async(ssi->capture.dma_ch);
-> +       }
+You can list multiple case statements together, and have one break at
+the end.
 
-rz_ssi_stop() is called twice: once for capture, and a second time for
-playback. How come that doesn't stop both?
-Perhaps the checks at the top of rz_ssi_stop() are not correct?
-Disclaimer: I am no sound expert, so I may be missing something...
+I would personally also only have:
 
->
->         rz_ssi_set_idle(ssi);
+> +		dp83822->set_gpio2_clk_out = true;
 
-Gr{oetje,eeting}s,
+if validation passes, not that it really matters because:
 
-                        Geert
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+> +		default:
+> +			phydev_err(phydev, "ti,gpio2-clk-out value %u not valid\n",
+> +				   dp83822->gpio2_clk_out);
+> +			return -EINVAL;
+> +		}
+> +	}
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+
+    Andrew
+
+---
+pw-bot: cr
 
