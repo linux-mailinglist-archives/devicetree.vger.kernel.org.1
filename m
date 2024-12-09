@@ -1,44 +1,78 @@
-Return-Path: <devicetree+bounces-128671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1B7E9E93BA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:23:18 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A03A018872AA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 12:23:18 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7865C21D008;
-	Mon,  9 Dec 2024 12:23:15 +0000 (UTC)
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6F189E93B9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:22:23 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF4022C6F7
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 12:23:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42E92283689
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 12:22:22 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339C22236FD;
+	Mon,  9 Dec 2024 12:22:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="NfM0HMg1"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 039B721B1A8
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 12:22:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733746995; cv=none; b=mk1hUQwDY3XgBxSFsaznxA4P0p7YhsCMUwJfthWenBQRn2D9n4XjRqJzGV3Mfmi+2VjEuFvfdnviNmCJLGMTibTnaaQW98nVT1yuNR1YRek6G2SLT+aIbj4I68RC4rD9wsUv+D41uZjeoFsVIq5oMvM8GvK0ZBTkbVolVIf0JF4=
+	t=1733746934; cv=none; b=M2OLFQzPinhBrRZErnUNhc3hcw1aYgovwD3cdunHEjNKka51Uue2Rl7jyncTvBojAIcV7aEnJaKxRjcj1tshsDhdGqRp9PyRhM/VPpNDvI0w5i365kIsUUz/nOBgYBgU3s88uwoGRTvBVxBWVMNOPgRVY9quMf7Zn4LmDQ3FIrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733746995; c=relaxed/simple;
-	bh=Tu+VmiKxlUsdbmeD6fyIGZnb0H0N7sctS3HNMDw+n4s=;
+	s=arc-20240116; t=1733746934; c=relaxed/simple;
+	bh=P69xlLlnsh6tfh5k/PNDJbpFeIwWZrU2caWat8R3mr0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KSRKeDz934tbU73PuRPA7Aoc8FPdIIE61aAmR0zyryFqyNXVd3JVu+HJ2h0MJ+mJ4YNXCu0PWIHdUEz9JRYP6ZJdXWFoFu/n5GQS46XK3eOTEMRCO1XAds5AGvQVm6JoDxCtPdRZKs7tRepwL9k+zrUAtYHdIRveE5WqTdDx3hE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.92.39.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip2t1733746924tidce0k
-X-QQ-Originating-IP: u3mdy8MmsDm3Gz1uzpBdmyAsVHR53JE3Rg/iC1QssCQ=
-Received: from [IPV6:240f:10b:7440:1:a0b7:f16b ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 09 Dec 2024 20:22:00 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 4831636596776470644
-Message-ID: <341313D17BDFC5A1+ff192db9-e406-4737-b040-84f6e7c7bc52@radxa.com>
-Date: Mon, 9 Dec 2024 21:22:00 +0900
+	 In-Reply-To:Content-Type; b=Gvt3rI7iqLW5Xc5fosNjgI69bzy5iCfpFIcpEUWIg4GtQCAKdTL7eXVJzm+jh4FZFz05Ub4s7REO2/ifv5YbyHNGJ4l0ndkIBYZeXPZm+akxjA0trXR9fsa8YVus47EmJ3it/sz/MdHqEOGu50sqECOKzd/0WGwyg563qtObzBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=NfM0HMg1; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-aa696d3901bso64695566b.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 04:22:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1733746929; x=1734351729; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HPvy/PspRQz6rBMMwakJ01l4PrgBxzRdAz/Y+7Xngoc=;
+        b=NfM0HMg1s4G6ZeYUU+YXFqYWmuu9kBb62d4UYAsbMjbYxeGbPfov/wquDjXkeEt0kf
+         WxhIImhFep0Tsu3HZSsbOd6L3iFJIjZphU6xHSMAVfNpBBFJHlwotZS0fgIp7nr+gtOk
+         3Q4wHwvZRdtmYVcbAD/5p/Aa0r2V2CMGo7FujAjtROKsISXAW9YIv9uUc3zf9lXAppFx
+         b7Jx4WYmkeJ2VgJH9o6vPQF3uMRP5d1VIbxObCf9H0mAPV8AuaLQzoDrKnWq7bIR11JT
+         KcHPi7grYXvbT1ivhJdwDNPqOzhq2Jupqj7Tcvc3kKktPUFUqJ6zWk14KyL8l+bdAPkN
+         yNPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733746929; x=1734351729;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HPvy/PspRQz6rBMMwakJ01l4PrgBxzRdAz/Y+7Xngoc=;
+        b=A3Gasi5RekB2ZyLscB+jdFU2REccK2OlYnLgD5qv2U8qhVJg2wBBfBg6mruYNe22m1
+         2JtMlbre3ti0FzELUd3WurBEhWrXw/Tk6XGV73c/424RLiaYHutwgersR5n4aEDbIu/a
+         KS9zBzXOEKIbcg6+luZhRZVhDxOejdBCsM5o9xvlKdwnIe/XJFhoL+rdCxbhpxbRl6fZ
+         1TsUd+BNr7LjaI0qkMfTqlZLnFeKXqQah86F3U3Zp2MEii/axkQJKcUTzvniqMddpdT9
+         mk7xn9B/T3+EX9MLY1fhEdxL/WM16nvrz7O3acCVQebmJyjk14gvbrTyYt6n/0IiWeYv
+         L2MQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXO68QMhoxDc3XAKCtuRv8mIz98MT+Y8LxO7ln44MD4rVW/Q+F0DmwvEQyRegmRfgeeODor3/UHS3q5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxR40q4xY7jcldonpswSvc05MmhgZEVjFrsz1fyGnpHL3cZdQkA
+	kgnRLf51/rf4yP8kpb9yYlQhnUs9BB31LlZJALUPGBvHqVY38BplqI4UkR7EkIk=
+X-Gm-Gg: ASbGnctfb2LV4mKuy+zbma3CljRE38yyTOjHVOVNS2YJNtajHmfQKEvC+8o8Ek3Scdb
+	i0kL/Un0JaNky10VWaxlp7Dos2X/qb7LjBR5cN5hVkBFKuKol/iuYGA7TxzU6nYxgOzwbZETPZs
+	qTfSdhtUdmbx3QuuLTUPHezyq/UEAyah3QCA0PMG6cq8RNwSt33A7aXiUzBl3wKFXVlWnXYYvUh
+	S3XdO30otF5qg7lkSDPz6DcxXZixKjR+0C7g+r5ukhafN+JcPbWMFBc+N0=
+X-Google-Smtp-Source: AGHT+IHdIFr9jhhsBk3LA/yMhIo1sPstspknh/fJv6TIYCYORpTOtn3BgFqoQz0uOcxmOjnzfBpxdw==
+X-Received: by 2002:a17:906:4c2:b0:a9a:ad8:fc56 with SMTP id a640c23a62f3a-aa63a2083d8mr1026209966b.44.1733746928786;
+        Mon, 09 Dec 2024 04:22:08 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.161])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa699618041sm39442266b.81.2024.12.09.04.22.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Dec 2024 04:22:08 -0800 (PST)
+Message-ID: <91c80c8e-729d-46ac-bb05-2cdcdb95ba1e@tuxon.dev>
+Date: Mon, 9 Dec 2024 14:22:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,141 +80,107 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: add package_thermal for Radxa
- ROCK 5A/5C
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, sebastian.reichel@collabora.com,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20241204045447.1036-1-naoki@radxa.com>
- <71aa84af7a030e66487076e0976c8cad@manjaro.org>
+Subject: Re: [PATCH v3 02/25] clk: versaclock3: Prepare for the addition of
+ 5L35023 device
 Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <71aa84af7a030e66487076e0976c8cad@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com,
+ broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org,
+ perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de,
+ linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com>
+ <20241113133540.2005850-3-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdVv+2tEQ5hf+sbihbJMo3+=8kJaWy0YNU_spxQnmWF-bA@mail.gmail.com>
+ <d65354a0-c4b8-4379-b824-f4541718a3c2@tuxon.dev>
+ <CAMuHMdV8M49m3h3NshzK+KRbT1G7U8hc09T9xUH0Gz1GefUcMg@mail.gmail.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAMuHMdV8M49m3h3NshzK+KRbT1G7U8hc09T9xUH0Gz1GefUcMg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: MmpliBmRb3iC7IaSfRUGzdf6g6Ak2i7USK/IwqzhsD0Tg7pRdioSAdyk
-	W4wwOJvw/lIgPn3m1wp76rlJ3pdobgj/Al6fJGY6lv+ZGWHOcAWHOmKr1czRoVYoVys4uZy
-	ILnFSk2KLv+MEUjd4u1W+jDQ/QRCmf2rWg//MLQPBfSWRMRyOdprUgOGHGI3H8Z2Ca/CKBa
-	I8ujXvNyMD81PlyJtl8fQvkuHv+wrumIXVECb0gxSbLkD40KCy8ZCM6uqhK37fkFgnl1RKC
-	7RXILPk1RAy3fmP2OcxsWhtmCOkkO8A8SpBNaJVJF9upOh8FhxnHkyuuf4PnK54Ye7p5abb
-	DZe7HSEbOHk/6olkowRpZjXs7YMLuoBOjQL9NxB8DwA0dFJmWMraGjlgf//HVICraiuwvhT
-	+ke+tO44jb379HYSaAamwdPzgYOQ6aCw+mZskouHrn2dnyUHw8W52gkkJ23pRCxUom2vevI
-	5xxmcejcsj5/MKm8gkOGSth5ywJ+G7bkuuoPOhX413+O7I+deMWYsku+FNiA+evt5EHmcEb
-	9wtLXFl2c8gvWjt7vOof4VnX6Si7v7AVneyUwfgJ9Rz9jCcLwSafWeklfpgB5TltMch7oNM
-	i7Rt1TbUslH+rXbFYu3nBq09Q255++iwdWXTObywSrNRUDAW6vJNBMrQ4n9F8lKmieJQaZk
-	XsFtFFO56kkXG3hYtSaouSjvyfUzDyhoiovJx7xMO08lMtqVdTRiD7rgpRmGV9Kgzv8CDOX
-	ATZwtpFUZHgYhHeqClgrmyuhhAHQnksehPBME1b+xR4hUabJmtn8xBF/3jsnJA8aQtZwHf4
-	s1n59AcLxsuIdpyyQR5wznzdoQHirzO3k2SqgtpHPzAQWlZcr+UGTfqNniK7qTEnUZk9Yu4
-	OdbcwoKjfURZ8DnbV6xb4DZAU/DSQzWLoeYVLpD3p6Yczre1hU++9HuE5rlAuDcO3r4CIki
-	PxlEnwxzwyByQlPbVrYLD2XTC
-X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
-X-QQ-RECHKSPAM: 0
 
-Hi,
+Hi, Geert,
 
-On 12/4/24 14:32, Dragan Simic wrote:
-> Hello Fukaumi,
+On 09.12.2024 14:16, Geert Uytterhoeven wrote:
+> Hi CLaudiu,
 > 
-> Please, see a few comments below.
-> 
-> On 2024-12-04 05:54, FUKAUMI Naoki wrote:
->> add and enable package temperature based active cooling.
-> 
-> I'd suggest that you rewrite the patch summary to read like this:
-> 
->    arm64: dts: rockchip: Enable automatic fan control on Rock 5A/5C
-> 
-> and to rewrite the patch description like this, which is a recycled
-> and a bit improved description of the commit 4a152231b050 ("arm64:
-> dts: rockchip: enable automatic fan control on Rock 5B"):
-> 
->    Link the PWM fan on Radxa ROCK 5A/5C as an active cooling device
->    managed automatically by the thermal subsystem, with a target SoC
->    temperature of 65 oC and a minimum-spin interval from 55 oC to
->    65 oC, to ensure airflow when the system gets warm.
-
-thanks! I'll use this message :)
-
->> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->> ---
->> this patch depends on [1] which depends on [2].
+> On Mon, Dec 9, 2024 at 12:14 PM Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
+>> On 09.12.2024 12:57, Geert Uytterhoeven wrote:
+>>> On Wed, Nov 13, 2024 at 2:35 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>
+>>>> The 5P35023 and 5L35035 Versa 3 clock generator variants are different but
+>>>> the versaclock3 driver could be used with small adjustments. The features
+>>>> that are implemented in driver and differs b/w variants are the PLL2 Fvco
+>>>> and clock sel bit for SE2 clock. Adjust the driver to prepare for the
+>>>> addition of 5L35023 device.
+>>>>
+>>>> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>
+>>> Thanks for your patch!
+>>>
+>>>> --- a/drivers/clk/clk-versaclock3.c
+>>>> +++ b/drivers/clk/clk-versaclock3.c
+>>>> @@ -166,12 +167,17 @@ struct vc3_div_data {
+>>>>  struct vc3_hw_data {
+>>>>         struct clk_hw hw;
+>>>>         struct regmap *regmap;
+>>>> -       const void *data;
+>>>> +       void *data;
+>>>>
+>>>>         u32 div_int;
+>>>>         u32 div_frc;
+>>>>  };
+>>>
+>>>> @@ -698,8 +706,6 @@ static struct vc3_hw_data clk_pll[] = {
+>>>>                         .num = VC3_PLL2,
+>>>>                         .int_div_msb_offs = VC3_PLL2_FB_INT_DIV_MSB,
+>>>>                         .int_div_lsb_offs = VC3_PLL2_FB_INT_DIV_LSB,
+>>>> -                       .vco_min = VC3_PLL2_VCO_MIN,
+>>>> -                       .vco_max = VC3_PLL2_VCO_MAX
+>>>>                 },
+>>>>                 .hw.init = &(struct clk_init_data) {
+>>>>                         .name = "pll2",
+>>>
+>>>> @@ -1029,9 +1037,16 @@ static int vc3_probe(struct i2c_client *client)
+>>>>                                              clk_pfd[i].hw.init->name);
+>>>>         }
+>>>>
+>>>> +       data = i2c_get_match_data(client);
+>>>> +
+>>>>         /* Register pll's */
+>>>>         for (i = 0; i < ARRAY_SIZE(clk_pll); i++) {
+>>>>                 clk_pll[i].regmap = regmap;
+>>>> +               if (i == VC3_PLL2) {
+>>>> +                       struct vc3_pll_data *pll_data = clk_pll[i].data;
+>>>> +
+>>>> +                       pll_data->vco = data->pll2_vco;
+>>>
+>>> You cannot modify the global clk_pll[] data, as it is shared when
+>>> there are multiple instances.
 >>
->> [1] https://patchwork.kernel.org/project/linux-rockchip/ 
->> cover/20241128121929.62646-1-naoki@radxa.com/
->> [2] https://patchwork.kernel.org/project/linux-rockchip/ 
->> patch/20241119095113.78151-1-naoki@radxa.com/
->> ---
->>  .../boot/dts/rockchip/rk3588s-rock-5.dtsi     | 32 ++++++++++++++++++-
->>  1 file changed, 31 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
->> b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
->> index a8f40f43c838..a1cac40d439e 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
->> @@ -33,7 +33,7 @@ analog-sound {
->>                "Headphone", "Headphones";
->>      };
->>
->> -    fan {
->> +    fan: fan {
+>> By "multiple instances" do you mean, multiple versa3 devices using this
+>> driver? Do you know if we have such a board integrated, ATM?
 > 
-> It would be better to use "fan: pwm-fan { ... }", to ensure some kind
-> of consistency with the other similar portions of board dts files.
+> Exactly.
+> Currently there are no such (upstream) users for 5p35023,
+> but e.g. the Beacon RZ/G2M kit has two 5p49v6965 instances.
 
-sure. I'll change it in previous patch series for Radxa ROCK 4C.
+Are you OK with keeping it as is for the RZ/G3S SSIF support and returning
+back later with a solution for the scenario you pointed out? Although, ATM,
+I don't have a board to test it.
 
-Best regards,
+Thank you,
+Claudiu
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
->>          compatible = "pwm-fan";
->>          #cooling-cells = <2>;
->>          cooling-levels = <0 64 128 192 255>;
->> @@ -379,6 +379,36 @@ rgmii_phy1: ethernet-phy@1 {
->>      };
->>  };
->>
->> +&package_thermal {
->> +    polling-delay = <1000>;
->> +
->> +    trips {
->> +        package_fan0: package-fan0 {
->> +            hysteresis = <2000>;
->> +            temperature = <55000>;
->> +            type = "active";
->> +        };
->> +
->> +        package_fan1: package-fan1 {
->> +            hysteresis = <2000>;
->> +            temperature = <65000>;
->> +            type = "active";
->> +        };
->> +    };
->> +
->> +    cooling-maps {
->> +        map0 {
->> +            cooling-device = <&fan THERMAL_NO_LIMIT 1>;
->> +            trip = <&package_fan0>;
->> +        };
->> +
->> +        map1 {
->> +            cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
->> +            trip = <&package_fan1>;
->> +        };
->> +    };
->> +};
->> +
->>  &pcie2x1l2 {
->>      pinctrl-names = "default";
->>      pinctrl-0 = <&pcie20x1_2_perstn_m0>,
 > 
-> The rest of the patch is looking good to me.  Thanks for the patch!
+> Gr{oetje,eeting}s,
 > 
-
+>                         Geert
+> 
 
