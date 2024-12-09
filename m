@@ -1,65 +1,79 @@
-Return-Path: <devicetree+bounces-128915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 544D19E9D3A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 18:43:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A61F9E9D46
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 18:44:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E319D1887552
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 17:43:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 058BC18889A8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 17:44:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEE6E14D439;
-	Mon,  9 Dec 2024 17:43:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9B52155725;
+	Mon,  9 Dec 2024 17:44:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="pLL2eUEc"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0eMW83n5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFC82233151
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 17:43:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A3C1552EE
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 17:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733766182; cv=none; b=AnBGLHz66wkl27DG/voJ1FQHenGpxulCioqeYHLYDxfbuHint2zZ7csOz5UNWUNuqdpIAE9UECWwv/QmicNOwMZa9XJZnzMC6B1St9Jua2S7vvPNFKy71oHL5ysBY7EEEDaIa5xps78NE5B8E23zvSvYuN5xc1L6LWWW7D8js0M=
+	t=1733766260; cv=none; b=XLteUo536WRsg7oKfj39ZNw6GgFdYa1tjAPRaUO8fLIhKtAB4YgaeFdrqAnTKpZVezfY8SK3K2h7utkHs6vLMLjB+MQWUHiY88ozF7VnViFqjnPbfQ19MSK56r88YqAIQNaEWRuoAaMTRTnNHKE6jP9d1Ds3RXGkCho1zRex1w8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733766182; c=relaxed/simple;
-	bh=DbznBMZAvjn78/7TbpZIK1GZ7b8OBHxgNefgq6MXpWg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Gi7Bomn2YtD54KlqVZlO3QFVjFHP11E+YePEkZ6FlM4jTbWWUWRi1pfvcDRPkKl67ttLYhSMEsZ6YgZ23aABDdB4tNYs8sTXcw34ltivqTZp226QSLA97XG3YGfVTrEj3tFwrvDINyJb0mzx4MHcUJ0MO7lxNhylxdomoYMTaXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=pLL2eUEc; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B9DaPDf014876;
-	Mon, 9 Dec 2024 18:42:44 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	Y2BGA9jU8VfghUQrUN6Yf64Ypr7lE8Oudb0vhFn8vD4=; b=pLL2eUEcNSIPxR+Y
-	DYvWd4VIezOUREwXUmEvNLjuClUvdPgemUUajj84xw7U3VuY3+K3fiXGojGRZrDB
-	+cCihAc4j19/fVMYmxGkDoPbqh+8fTY0ZvyOivmQd6PaJfF/RJrN8ZE6I8NOlHDQ
-	L6cAx941WpCGlg5pPgEBONjjJSIV5lwUyHo8chwyNtu0tdpo4YMaJqof9lpfcSaj
-	1D20lDpg4388e2Ur0aMtUns9w1BVmu9n6277V2IFD8h+WFmghkkNQUMp0dx1rUaD
-	2maF9H/CKcMSuHV/2i2g5KKxqnn0SCbSBVupzm1yz80MtKHlIkJU1I9jn5PUnQoE
-	unLFeg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 43ccnm1922-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Dec 2024 18:42:44 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 874D740044;
-	Mon,  9 Dec 2024 18:41:39 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 348E72898EE;
-	Mon,  9 Dec 2024 18:41:03 +0100 (CET)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 9 Dec
- 2024 18:41:02 +0100
-Message-ID: <7b0b43c8-0396-4a61-b8fc-6bb277f3a63b@foss.st.com>
-Date: Mon, 9 Dec 2024 18:41:02 +0100
+	s=arc-20240116; t=1733766260; c=relaxed/simple;
+	bh=T8VsNOEm3fdtOz4g+8Npq3QFd9DXTd9hJ4Mx+0kU1Dg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YK5nQwWLkO0RE42INpUyOIpdffgoj9OPflxaTqWG/+oueE7+ti9DjC3MvWl/CH5Hk8CD/CiW6PGHKdAemc8THSFuPqhVJW8TIGwBscxHicy3kpE8jWyQX2PiUhr91dDtTTW5lJ8xzhCrUhyo8eaB2Er4u/0C5bk1IKWLgJRTjrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0eMW83n5; arc=none smtp.client-ip=209.85.167.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3eb494c23e8so304321b6e.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 09:44:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733766256; x=1734371056; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NQaHY150Yps34xQsPyk4V8n2PV48YCsChjwMePfbEZc=;
+        b=0eMW83n5rJvm3Z1VPKBQr0LAAEimjThUcIhFCLXzYmgRdNvLfmjCrkiD/xkEybgWLZ
+         EBI1dbbFooV6lFkfmj+F/exE60/f2wwlfSf1aiJY2DGHnZ0kNIhIvmHe9XZs66DASfYF
+         67twLwgEE2pf1i9ULMP/IaQYLIrwOOfuI0/w8WoBE7cBuFwUDTlM0DF8tc4TeD2pfaZx
+         Jlm3ymiPR6CtNqIa5yGHXJI6t8EefPNZsAQ5gg51kmsHcCYJmrt8V0y9NEFRQL9J39Mm
+         a/k87wdGm/9Pib0+1l29XsxUwD4KybFXgVpwKDrEGdgZytWnNMNKfc2DH95hBmXP0U8D
+         0AUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733766256; x=1734371056;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NQaHY150Yps34xQsPyk4V8n2PV48YCsChjwMePfbEZc=;
+        b=FZ19e/CWAscbnm3oD1fYYZYjCO71zlRoHEztzDxlDy35nX0OVAHQyOSoZQ/5/tySbg
+         sihurRtFrvd7YwE2VoFuo5AtFUtIGLEjX7UnCoo4JFMthMUl4EHvi6Yyp79DeXNnQfQ3
+         tw9hB+zW2lINiQvIppCcwiqrVWfBpWOq9otliWYRlppSSG8IofBaDt0HbvdXj9iPDeN0
+         Ol390+cjrJahspGu3/xwK8IEFE5f8MEDhlKO6JWwdwEs+QBsK0uycDCSTZz65R5GAp9c
+         DALdZ9l7OIQwsPkkN/KnNxe5gm7Xn0+DDtWpRygMzBgmfDJx9HBw1sH47VfKXC5tmvbp
+         Tw0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWVba5AUglMl7Ts3tp/RFmzXrbRBZyiiUR0k2TA3EooTrWSK/S6o4JCKLqmGzw7NK/kWH9nxB4IM+R3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOH4FceE08IAp4f+1q/kEynmK78hnIcPxSAaYgDwZ7xjDIm6Zb
+	qs7SoH8HFIqOf2ZP72AOMbOD5JqznScJqrjlGzfDPw4wUTHbHak7wkNE/h+ejC4=
+X-Gm-Gg: ASbGnculjKuWnVruQ8r4bAIaVbG/Mx/9n9LmKxEDtWBQh1WeyegrW16dyRQ3g+QZU0r
+	zwS4jRk2UKT3xj2Mw4kpHOJOH84TwZC8ZJuxKhFhQpWTNesIBiXDzVR4ksMaHt0lochydzFSmzU
+	82yBWcE5YTFEa4wWdWijECcI9bLYb/pCAPh2AFe3Z8HPzmYjlx3N4BlEFan2JrAHJuzdcVMALfr
+	88e4va8oR+IC0moDfwbZg9slm3boGJhorS7L8pf1TwBFvOYhy171i6DMo7nMfV0ZL2KMQ1oFPB/
+	m1ByoUf2AHw=
+X-Google-Smtp-Source: AGHT+IFb81lytRSGzGy7brox5UjxhmObKKJPioRXNthRoTofZyWXpYB3n+qfmyKwwp6491Ja7RrpNg==
+X-Received: by 2002:a05:6808:1883:b0:3ea:57cf:7c26 with SMTP id 5614622812f47-3eb66e12187mr1006950b6e.19.1733766256635;
+        Mon, 09 Dec 2024 09:44:16 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3eb57b69471sm551260b6e.45.2024.12.09.09.44.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Dec 2024 09:44:16 -0800 (PST)
+Message-ID: <4be8bebb-7db3-43e5-b00e-95ebf7114d80@baylibre.com>
+Date: Mon, 9 Dec 2024 11:44:14 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,77 +81,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: stm32: Increase CPU core voltage on STM32MP13xx
- DHCOR SoM
-To: Marek Vasut <marex@denx.de>, <linux-arm-kernel@lists.infradead.org>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob
- Herring <robh@kernel.org>, <devicetree@vger.kernel.org>,
-        <kernel@dh-electronics.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20241105224728.147384-1-marex@denx.de>
+Subject: Re: [PATCH v7 7/8] dt-bindings: iio: adc: add ad4851
+To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
+ "jic23@kernel.org" <jic23@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>
+References: <20241129153546.63584-1-antoniu.miclaus@analog.com>
+ <20241129153546.63584-8-antoniu.miclaus@analog.com>
+ <2d760894-bda5-4000-9598-914b830333a7@baylibre.com>
+ <CY4PR03MB3399F17206B01006467B602F9B3C2@CY4PR03MB3399.namprd03.prod.outlook.com>
 Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20241105224728.147384-1-marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <CY4PR03MB3399F17206B01006467B602F9B3C2@CY4PR03MB3399.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Marek
-
-On 11/5/24 23:46, Marek Vasut wrote:
-> The STM32MP13xx DHCOR DHSBC is populated with STM32MP13xx part capable
-> of 1 GHz operation, increase the CPU core voltage to 1.35 V to make
-> sure the SoC is stable even if the blobs unconditionally force the CPU
-> to 1 GHz operation.
+On 12/9/24 8:02 AM, Miclaus, Antoniu wrote:
 > 
-> It is not possible to make use of CPUfreq on the STM32MP13xx because
-> the SCMI protocol 0x13 is not implemented by upstream OpTee-OS which
-> is the SCMI provider.
 > 
-> Fixes: 6331bddce649 ("ARM: dts: stm32: Add support for STM32MP13xx DHCOR SoM and DHSBC board")
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: kernel@dh-electronics.com
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> ---
->   arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+> --
+> Antoniu Miclăuş
 > 
-> diff --git a/arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi b/arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi
-> index 07133bd82efa6..8630de147a52b 100644
-> --- a/arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi
-> +++ b/arch/arm/boot/dts/st/stm32mp13xx-dhcor-som.dtsi
-> @@ -85,8 +85,8 @@ regulators {
->   
->   			vddcpu: buck1 { /* VDD_CPU_1V2 */
->   				regulator-name = "vddcpu";
-> -				regulator-min-microvolt = <1250000>;
-> -				regulator-max-microvolt = <1250000>;
-> +				regulator-min-microvolt = <1350000>;
-> +				regulator-max-microvolt = <1350000>;
->   				regulator-always-on;
->   				regulator-initial-mode = <0>;
->   				regulator-over-current-protection;
+>> -----Original Message-----
+>> From: David Lechner <dlechner@baylibre.com>
+>> Sent: Thursday, December 5, 2024 2:46 AM
+>> To: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>; jic23@kernel.org;
+>> robh@kernel.org; conor+dt@kernel.org; linux-iio@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
+>> pwm@vger.kernel.org
+>> Cc: Conor Dooley <conor.dooley@microchip.com>
+>> Subject: Re: [PATCH v7 7/8] dt-bindings: iio: adc: add ad4851
+>>
+>> [External]
+>>
+>> On 11/29/24 9:35 AM, Antoniu Miclaus wrote:
+>>> Add devicetree bindings for ad485x family.
+>>>
+>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>>> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+>>> ---
+>>> changes in v7:
+>>>  - add adc channels support
+>>
+>> What is the reason for this change? In a previous version of this series,
+>> you explained that we didn't want to specify diff-channels in the DT
+>> because there was a use case to use channels as both single-ended and
+>> differential at runtime. So I am surprised to see this being added now.
+>>
+> We had a discussion and we decided to go for the dt approach for specifying
+> the channels configuration, even though in the first place we wanted to avoid this.
+> Overall it makes more sense.
 
+OK, in that case we will also want to make use of the standard "bipolar"
+property from adc.yaml as well since the chip differentiates between
+unipolar and bipolar inputs.
 
-Applied on stm32-next.
+Also, might want to drop Conor's review tag and give an explanation in
+the next revision since adding these channel properties is a bit of
+a big change compared to the version he reviewed.
 
-Thanks!!
-Alex
+> 
+>>> +patternProperties:
+>>> +  "^channel(@[0-7])?$":
+>>> +    $ref: adc.yaml
+>>> +    type: object
+>>> +    description: Represents the channels which are connected to the ADC.
+>>> +
+>>> +    properties:
+>>> +      reg:
+>>> +        description: The channel number in single-ended mode.
+>>> +        minimum: 0
+>>> +        maximum: 7
+>>> +
+>>> +      diff-channels: true
+>>> +
+>>> +    required:
+>>> +      - reg
+>>> +
+>>> +    additionalProperties: false
+>>> +
+
 
