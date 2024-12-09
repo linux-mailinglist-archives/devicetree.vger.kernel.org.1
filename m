@@ -1,90 +1,133 @@
-Return-Path: <devicetree+bounces-128924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC5289E9DF8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 19:22:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 668569E9E2A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 19:37:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2D4F16703C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 18:22:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3FE181634D0
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 18:37:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C4A155C8A;
-	Mon,  9 Dec 2024 18:22:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B37417836B;
+	Mon,  9 Dec 2024 18:37:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="rtl4AdkI"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PNSRFMnv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FFCB14A4DF;
-	Mon,  9 Dec 2024 18:22:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BF787080B;
+	Mon,  9 Dec 2024 18:37:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733768530; cv=none; b=YzCL11T5fHuQyUfoEur++exk7DXhNEAEafHxE+9xx6uDxuHSJkBi2w/wSEc3hP3uInGy+PAg06yFsY2f8B+KFwDMJ7l6x9FkRqtDmH9jzvnuBLC1646iinGHF7nehSjh8KtsyFGRNzw2eI4VYZhNnHp1H9F7GIJOI6b87Cpdqhk=
+	t=1733769452; cv=none; b=JxAhovBROzDu5zmFOl415GzRdA54C/8hfH4RIn2jia6z/Fqgw2ik5Vhfm7yP0ROyKA3sBgTy5n2yY53D4q4QF6u4R8GQHbxe7wLFJQvzS3hYbUNjy14iONE9LzD8YmhyIR/9MXr/HWbB5Oy24NvI2nl4XzqS+OQK7XF/R1HbQGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733768530; c=relaxed/simple;
-	bh=/VGDqhdnkK6ylC+MBbxQLC+Vjx1EVADRGMfyYiYgbmU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aFZh8CCJFOVlbp+yAlZcQiUA97nEZa0cWal+FQd19q+sj4WRyc2C2HSPJF2hGvl/LTqHOtoTuXYgnXrVR+bSo+mFMpjHgDzWwE8HTxkVphJsgHOk/Sr0YoLi+CbtL3lvUU0T4FH8MJlZp2K26Z4xmFacol7RyPXXPbDTamLobMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=rtl4AdkI; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=h196H/GBlXVpDihxGCGdnI+6In7gBytdrMx0dFG8kNc=; b=rtl4AdkItkyBCQujn8370xKHMh
-	GCKMAS7MqlYl/LUkvZwcSYTrqV3ORNix7mjgDdfT9TIcP0/QTVX3qmqq3Z2ZAbNKEp7jPbDqWd396
-	BY24uu1inpbVwxWON4u/d27yh422mngFgHTzyu8u8B9PLCzSWEKz7p9MGUBcDobvpuZs=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tKiOQ-00Fhsa-1v; Mon, 09 Dec 2024 19:22:02 +0100
-Date: Mon, 9 Dec 2024 19:22:02 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Fedor Ross <fedor.ross@ifm.com>
-Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Tristram Ha <tristram.ha@microchip.com>
-Subject: Re: [PATCH net-next 0/2] net: dsa: microchip: Add of config for LED
- mode for ksz87xx and ksz88x3
-Message-ID: <c934f10d-1a75-4ca8-bd0b-f08544c7d333@lunn.ch>
-References: <20241209-netdev-net-next-ksz8_led-mode-v1-0-c7b52c2ebf1b@ifm.com>
+	s=arc-20240116; t=1733769452; c=relaxed/simple;
+	bh=sdh/pKCPulvsYk7s6zcfy6YYPGtMjxgbQkbbF/rlioE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G8jgvwJfE2W6zDN2nQ0FFiGNmX2s3IWJXDfc0iLW23OmpMb3V2opFa24MLhyZb2N6LSBNTdqKFRAq5QO80KqrKzwN9GO6V/j+9r2Q2NEd7r4eA+eyikV7RWVk+HC+2jBJXn5YwDjSNnK+XwhuxIFM/OZHE/IUXm9em6r7w2JtoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PNSRFMnv; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B9Aeavm025562;
+	Mon, 9 Dec 2024 18:37:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=eSt64EjpXHkGT6hboROcLtUd
+	nqbF3vn/huz5rZLzQ7U=; b=PNSRFMnvgehX1EMFuSKOj8kweLo+TuIXELGtFYIW
+	4b8Kl1LxwWylY4hVeX2XyveVQc3L8FM7P3J5ao7hkM47lFcK/PfZmFJU2PNqxgQh
+	TFj9SBqMx63hLgLC7GAOpsZChwoYkiQ/aRMzblA1YiOqWBgPTzaUwxTx0HrB18EC
+	HlYa7DesfTWHUvd/ttonnDct5wMGrXSEzPl7kAs01l8ZqhD+U3CpfweCYIbZGSta
+	HV9Isgnf5LqwBw4Urr6cWmnSKszqAXRvla/KeJm5hYlSugBTN6wIahbQE+JJBGQk
+	DbcObqMGQY9B4TNd9rOMloQJmpFxStolEBphNdRoXbDWTA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43cfhkdpd2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Dec 2024 18:37:27 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B9IbRtZ001925
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Dec 2024 18:37:27 GMT
+Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 9 Dec 2024 10:37:20 -0800
+Date: Tue, 10 Dec 2024 00:07:10 +0530
+From: Wasim Nazir <quic_wasimn@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+Subject: Re: [PATCH v3 0/5] arm64: qcom: Add support for QCS9075 boards
+Message-ID: <Z1c4sIX0QNufi6xe@hu-wasimn-hyd.qualcomm.com>
+References: <20241119174954.1219002-1-quic_wasimn@quicinc.com>
+ <7f52e0d2-0934-49ca-9c7d-4ba88460096a@kernel.org>
+ <Z1LVYelWl3sPPHcD@hu-wasimn-hyd.qualcomm.com>
+ <cpxuqo5luqqk6wtk2d3wqsbchq4awrmna4xoye3klatrzu4j54@axbgklv6kdqs>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20241209-netdev-net-next-ksz8_led-mode-v1-0-c7b52c2ebf1b@ifm.com>
+In-Reply-To: <cpxuqo5luqqk6wtk2d3wqsbchq4awrmna4xoye3klatrzu4j54@axbgklv6kdqs>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ujV6k_xjMjqYmY_kd6ZM18jUeyYhy5J1
+X-Proofpoint-GUID: ujV6k_xjMjqYmY_kd6ZM18jUeyYhy5J1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ impostorscore=0 mlxlogscore=775 mlxscore=0 adultscore=0 lowpriorityscore=0
+ phishscore=0 clxscore=1015 priorityscore=1501 spamscore=0 bulkscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412090144
 
-On Mon, Dec 09, 2024 at 06:58:50PM +0100, Fedor Ross wrote:
-> Add support for the led-mode property for the following PHYs which have
-> a single LED mode configuration value.
+On Sun, Dec 08, 2024 at 07:46:55PM +0200, Dmitry Baryshkov wrote:
+> On Fri, Dec 06, 2024 at 04:13:45PM +0530, Wasim Nazir wrote:
+> > On Wed, Nov 20, 2024 at 05:41:39PM +0100, Krzysztof Kozlowski wrote:
+> > > On 19/11/2024 18:49, Wasim Nazir wrote:
+> > > > This series:
+> > > > 
+> > > > Add support for Qualcomm's rb8, ride/ride-r3 boards using QCS9075 SoC.
+> > > > 
+> > > > QCS9075 is compatible IoT-industrial grade variant of SA8775p SoC
+> > > How does it relate to qcs9100? Why this is not compatible with the
+> > > other? It looks like you duplicate here a lot without trying to make
+> > > these built on top of each other.
+> > > 
+> > 
+> > QCS9075 is non-safe while QCS9100 is safe.
+> > Reference: https://docs.qualcomm.com/bundle/publicresource/87-83840-1_REV_A_Qualcomm_IQ9_Series_Product_Brief.pdf
+> > 
+> > Separate board files are needed as thermal mitigation changes are
+> > required for non-safe variant only.
 > 
-> KSZ8765, KSZ8794 and KSZ8795 use register 0x0b bits 5,4 to control the
-> LED configuration.
+> To reduce possible questions, please include those in the initial
+> submission.
 > 
-> KSZ8863 and KSZ8873 use register 0xc3 bits 5,4 to control the LED
-> configuration.
 
-PHY and MAC LEDs should be configured via /sys/class/leds. Please take
-a look at how the Marvell PHY and DSA driver, qca8k driver etc do
-LEDs.
+Sure, will add the differences in next patch version.
 
-    Andrew
+> -- 
+> With best wishes
+> Dmitry
 
----
-pw-bot: cr
+Thanks & Regards,
+Wasim
 
