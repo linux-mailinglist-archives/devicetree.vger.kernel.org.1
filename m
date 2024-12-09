@@ -1,171 +1,309 @@
-Return-Path: <devicetree+bounces-128418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA4349E8A4F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 05:30:34 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA63E163823
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 04:30:31 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1E25155CA5;
-	Mon,  9 Dec 2024 04:30:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bDPi664h"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BC119E8A58
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 05:33:13 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0072B73446;
-	Mon,  9 Dec 2024 04:30:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46C8A280D8B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 04:33:12 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6313915B547;
+	Mon,  9 Dec 2024 04:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="qw1cQJyo"
+X-Original-To: devicetree@vger.kernel.org
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696CB14F126;
+	Mon,  9 Dec 2024 04:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733718630; cv=none; b=iJ3xr8R8+HHyxfCnPvmHaQHBqCD9hlNdL99gY+2g4hXa0RoK/Bel/PannLySCKQocfJgopQlB7/ckV1WB8kWLLqVx+QXRCLNAxKk2YTYSCWNxPBVKoTTIt/6kXsK/23VUi20IR8v2IcJ1uf2N6NkkxP/a9yCU4Kh+3Kc/ND463Y=
+	t=1733718789; cv=none; b=LkpU3vdOQwGMHMuKjI1kxEFghxIpHQrVxEWfhcifiwhAebh6nyB6Hk5EhxEt2XB9ZeCGIrz4e9c6Oc1DCh8vZ031bG5DkNQ26hZbrBZ91ZB/GSBA4TRepZkjAuM29EMDivC2CbcPRbNZ0PH23qUxrXQ9VgxDsswwQTR8De4xi/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733718630; c=relaxed/simple;
-	bh=qoBVCsPj9LSkNYkv+fShXevsElwvzFhBnbVMk+TP180=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sh5cekPPJ5+LH/fCqmDDS15g4AIprcIB1dx92MyJJaHiTWwfD9K1Dyr3wPL52TYPHlbpn4D3yNHFd3mQF1+E0EVpdry5ZGk8x33G/T5baPvnSpJSdC+/gtC9NBPQaH1/Iuu6nwHe3he1dj8J73wnlJ0ghujqxE85f48W5+aLXt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bDPi664h; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B8MTMZX018941;
-	Mon, 9 Dec 2024 04:30:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fzXSH1rhYvfdhTHAq6+nsYTA7iJW008iqtbY+N7KRvk=; b=bDPi664hLXIyVd3P
-	hc2uDNSA60VSJtvbiWhPzlpm4CNWHW/4Zlv5hvmanbE9ZOOULjuFchnmx+CV42ew
-	FbVRZZb/4Ppju+J6AIfEYaXOZPDDFCGiu47UhthZiVuB1lMKTKaEIq0btEPieC4r
-	ExSeo2YhyyX7tUiZu5LonG538FkqJe8PCzHzDPDFga4fdnvJxpU00ouztpO4HJBV
-	dnwCoYDVMu4AHYgG9HkCQpsQT08Sq0qkTF/MORJvV6G5sIYTB68djjZ4cswwthDm
-	B9LbZcGguao89xNJqzMw/7AtgctchDWafuiPFJgGgpDmLNfYD0suuurZXd3WjKeL
-	SYoAJA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43cc2ebh87-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Dec 2024 04:30:18 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B94UHt0005868
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Dec 2024 04:30:17 GMT
-Received: from [10.216.4.234] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 8 Dec 2024
- 20:30:10 -0800
-Message-ID: <17c9839d-c61e-3c2f-4d77-5e8813f3a9c8@quicinc.com>
-Date: Mon, 9 Dec 2024 10:00:06 +0530
+	s=arc-20240116; t=1733718789; c=relaxed/simple;
+	bh=LY3RsQ2MtH1nNBWndK3puTnO5aAq4/wJBReWAMNoQbQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=TFSlMyRLs8xXyYneANjtB0FYm4WeT8fT+c+rbdjt6xQSl1WYfg1C2tZ/2N+Ika4Td5gKCHnXFPHGI+D0woo1TDf3R+/EgOUyG5NwDAwrpPErQUh0NTmXg2amx9uHMdet8ZK3VpyeX5tBu28S3PWpbAhcNrWEHQpLoLSQJFICqDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=qw1cQJyo; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1733718787; x=1765254787;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:to:cc;
+  bh=LY3RsQ2MtH1nNBWndK3puTnO5aAq4/wJBReWAMNoQbQ=;
+  b=qw1cQJyoXBKw+95R2p3TmCjFBwtofEGky32W79h70xOxWBWhhxPpMe/a
+   Exu16o98/oHzqkX3buRFUnNkTMqeo4LqpD8z0+D/2X/oWy1MCgRq9g1PR
+   DxuaWzMJZQWo2tYVyWEFGLE7McOQFlVc9F88ZicRpzUoOl+uctRdvk/UC
+   20pXwWWged4JtAZ88CFRIiOB0L8ElIy3cnYByXqHJpHRU2eqUZ03l5RRX
+   Z+CHUx+SCZaid6/i8lHkdlezUnpBTfbahvrwObPLf5Sdkhg9mP8DNTGmX
+   0VBBkiCLpjkEM8dX6rVrpW9Pgur+nn/3kYZ8DV03AlkCWoL2rLzf4MVOm
+   w==;
+X-CSE-ConnectionGUID: 72IB33lgRjS11USK+WrWBA==
+X-CSE-MsgGUID: mBb2+HZpQcCgbtECVkhTjQ==
+X-IronPort-AV: E=Sophos;i="6.12,218,1728975600"; 
+   d="scan'208";a="266487019"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Dec 2024 21:32:59 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Sun, 8 Dec 2024 21:32:38 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Sun, 8 Dec 2024 21:32:34 -0700
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+Date: Mon, 9 Dec 2024 10:02:30 +0530
+Subject: [PATCH v2] dt-bindings: mmc: atmel,hsmci: Convert to json schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 2/3] PCI: dwc: Add ECAM support with iATU configuration
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: <cros-qcom-dts-watchers@chromium.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-        "Manivannan
- Sadhasivam" <manivannan.sadhasivam@linaro.org>,
-        Lorenzo Pieralisi
-	<lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
-	<kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, <quic_vbadigan@quicinc.com>,
-        <quic_ramkri@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_vpernami@quicinc.com>,
-        <quic_mrana@quicinc.com>, <mmareddy@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>
-References: <20241204221714.GA3023492@bhelgaas>
-Content-Language: en-US
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <20241204221714.GA3023492@bhelgaas>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 8DbU83nimCF42SVCvQNf9-IrGLpTh27j
-X-Proofpoint-GUID: 8DbU83nimCF42SVCvQNf9-IrGLpTh27j
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- mlxlogscore=999 priorityscore=1501 impostorscore=0 lowpriorityscore=0
- adultscore=0 malwarescore=0 clxscore=1015 suspectscore=0 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412090034
+Message-ID: <20241209-hsmci-v2-1-b5a6d7c59b67@microchip.com>
+X-B4-Tracking: v=1; b=H4sIAN1yVmcC/13MQQ7CIBCF4as0sxZTRpHoynuYLsgwlVlQGjBE0
+ 3B3sUuX/8vLt0HhLFzgNmyQuUqRtPTAwwAU3PJkJb434IhnjaNRoUQSZR2d2F21sdZC/66ZZ3n
+ vzmPqHaS8Uv7sbNW/9V+oWmllHBq+IPqZ/T0K5URB1iOlCFNr7QvoOxkSngAAAA==
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Aubin Constans <aubin.constans@microchip.com>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Dharma Balasubiramani <dharma.b@microchip.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733718754; l=5160;
+ i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
+ bh=LY3RsQ2MtH1nNBWndK3puTnO5aAq4/wJBReWAMNoQbQ=;
+ b=wul3xm8moixq7EJMj3Cr78cgKF6RGexFxWRTaDK16ghCA6IYsyHDynh8McreBentzrQrXVIWF
+ 0NkUoX9qcPMAHu4NGQFOig6bdl/dT9XYfkkcU8p9opbEZr+d/vdPwbw
+X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
+ pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
 
+Convert atmel,hsmci documentation to yaml format. The new file will inherit
+from mmc-controller.yaml.
 
+Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+---
+Changes in v2:
+- Drop the duplicate properties in the slot node.
+- Link to v1: https://lore.kernel.org/r/20241205-hsmci-v1-1-5a25e622dfed@microchip.com
+---
+ .../devicetree/bindings/mmc/atmel,hsmci.yaml       | 110 +++++++++++++++++++++
+ .../devicetree/bindings/mmc/atmel-hsmci.txt        |  73 --------------
+ 2 files changed, 110 insertions(+), 73 deletions(-)
 
-On 12/5/2024 3:47 AM, Bjorn Helgaas wrote:
-> On Wed, Dec 04, 2024 at 07:45:29AM +0530, Krishna Chaitanya Chundru wrote:
->> On 12/4/2024 12:25 AM, Bjorn Helgaas wrote:
->>> On Sun, Nov 17, 2024 at 03:30:19AM +0530, Krishna chaitanya chundru wrote:
->>>> The current implementation requires iATU for every configuration
->>>> space access which increases latency & cpu utilization.
->>>>
->>>> Configuring iATU in config shift mode enables ECAM feature to access the
->>>> config space, which avoids iATU configuration for every config access.
-> 
->>>> +static int dw_pcie_config_ecam_iatu(struct dw_pcie_rp *pp)
->>>> +{
->>>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
->>>> +	struct dw_pcie_ob_atu_cfg atu = {0};
->>>> +	struct resource_entry *bus;
->>>> +	int ret, bus_range_max;
->>>> +
->>>> +	bus = resource_list_first_type(&pp->bridge->windows, IORESOURCE_BUS);
->>>> +
->>>> +	/*
->>>> +	 * Bus 1 config space needs type 0 atu configuration
->>>> +	 * Remaining buses need type 1 atu configuration
->>>
->>> I'm confused about the bus numbering; you refer to "bus 1" and "bus
->>> 2".  Is bus 1 the root bus, i.e., the primary bus of a Root Port?
->>>
->>> The root bus number would typically be 0, not 1, and is sometimes
->>> programmable.  I don't know how the DesignWare core works, but since
->>> you have "bus" here, referring to "bus 1" and "bus 2" here seems
->>> overly specific.
->>>
->> root bus is bus 0 and we don't need any iATU configuration for it as
->> its config space is accessible from the system memory, for usp port of
->> the switch or the direct the endpoint i.e bus 1 we need to send
->> Configuration Type 0 requests and for other buses we need to send
->> Configuration Type 1 requests this is as per PCIe spec, I will try to
->> include PCIe spec details in next patch.
-> 
-> I understand the Type 0/Type 1 differences.  The question is whether
-> the root bus number is hard-wired to 0.
-> 
-It is not hard-wired to 0, we can configure it though bus-range property
-> I don't think specifying "bus 1" really adds anything.  The point is
-> that we need Type 0 accesses for anything directly below a Root Port
-> (regardless of what the RP's secondary bus number is), and Type 1 for
-> things deeper.
-> 
-I will update the comment without mentioning the buses as suggested.
-> When DWC supports multiple Root Ports in a Root Complex, they will not
-> all have a secondary bus number of 1.
-mostly they should be in bus number 0 with different device numbers, but
-it mostly depends upon the design, currently we don't have any multiple
-root ports.
+diff --git a/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
+new file mode 100644
+index 000000000000..26686ada6288
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
+@@ -0,0 +1,110 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mmc/atmel,hsmci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Atmel High-Speed MultiMedia Card Interface (HSMCI)
++
++description:
++  The Atmel HSMCI controller provides an interface for MMC, SD, and SDIO memory
++  cards.
++
++maintainers:
++  - Nicolas Ferre <nicolas.ferre@microchip.com>
++  - Aubin Constans <aubin.constans@microchip.com>
++
++allOf:
++  - $ref: mmc-controller.yaml
++
++properties:
++  compatible:
++    const: atmel,hsmci
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  dmas:
++    maxItems: 1
++
++  dma-names:
++    const: rxtx
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: mci_clk
++
++  "#address-cells":
++    const: 1
++    description: Used for slot IDs.
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "^slot@[0-9]+$":
++    type: object
++    description: A slot node representing an MMC, SD, or SDIO slot.
++
++    allOf:
++      - $ref: mmc-controller.yaml
++
++    properties:
++      reg:
++        description: Slot ID.
++        minimum: 0
++
++    required:
++      - reg
++      - bus-width
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - "#address-cells"
++  - "#size-cells"
++
++anyOf:
++  - required:
++      - slot@0
++  - required:
++      - slot@1
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/clock/at91.h>
++    mmc@f0008000 {
++      compatible = "atmel,hsmci";
++      reg = <0xf0008000 0x600>;
++      interrupts = <12 IRQ_TYPE_LEVEL_HIGH>;
++      clocks = <&mci0_clk>;
++      clock-names = "mci_clk";
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      slot@0 {
++        reg = <0>;
++        bus-width = <4>;
++        cd-gpios = <&pioD 15 0>;
++        cd-inverted;
++      };
++
++      slot@1 {
++        reg = <1>;
++        bus-width = <4>;
++      };
++    };
++...
+diff --git a/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt b/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt
+deleted file mode 100644
+index 07ad02075a93..000000000000
+--- a/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt
++++ /dev/null
+@@ -1,73 +0,0 @@
+-* Atmel High Speed MultiMedia Card Interface
+-
+-This controller on atmel products provides an interface for MMC, SD and SDIO
+-types of memory cards.
+-
+-This file documents differences between the core properties described
+-by mmc.txt and the properties used by the atmel-mci driver.
+-
+-1) MCI node
+-
+-Required properties:
+-- compatible: should be "atmel,hsmci"
+-- #address-cells: should be one. The cell is the slot id.
+-- #size-cells: should be zero.
+-- at least one slot node
+-- clock-names: tuple listing input clock names.
+-	Required elements: "mci_clk"
+-- clocks: phandles to input clocks.
+-
+-The node contains child nodes for each slot that the platform uses
+-
+-Example MCI node:
+-
+-mmc0: mmc@f0008000 {
+-	compatible = "atmel,hsmci";
+-	reg = <0xf0008000 0x600>;
+-	interrupts = <12 4>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	clock-names = "mci_clk";
+-	clocks = <&mci0_clk>;
+-
+-	[ child node definitions...]
+-};
+-
+-2) slot nodes
+-
+-Required properties:
+-- reg: should contain the slot id.
+-- bus-width: number of data lines connected to the controller
+-
+-Optional properties:
+-- cd-gpios: specify GPIOs for card detection
+-- cd-inverted: invert the value of external card detect gpio line
+-- wp-gpios: specify GPIOs for write protection
+-
+-Example slot node:
+-
+-slot@0 {
+-	reg = <0>;
+-	bus-width = <4>;
+-	cd-gpios = <&pioD 15 0>
+-	cd-inverted;
+-};
+-
+-Example full MCI node:
+-mmc0: mmc@f0008000 {
+-	compatible = "atmel,hsmci";
+-	reg = <0xf0008000 0x600>;
+-	interrupts = <12 4>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	slot@0 {
+-		reg = <0>;
+-		bus-width = <4>;
+-		cd-gpios = <&pioD 15 0>
+-		cd-inverted;
+-	};
+-	slot@1 {
+-		reg = <1>;
+-		bus-width = <4>;
+-	};
+-};
 
-- Krishna Chaitanya.
-> 
-> Bjorn
+---
+base-commit: feffde684ac29a3b7aec82d2df850fbdbdee55e4
+change-id: 20241205-hsmci-7ac3ea915777
+
+Best regards,
+-- 
+Dharma Balasubiramani <dharma.b@microchip.com>
+
 
