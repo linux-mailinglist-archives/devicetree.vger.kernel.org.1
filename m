@@ -1,380 +1,277 @@
-Return-Path: <devicetree+bounces-128819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5F1A9E9803
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:59:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5F9A9E981F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:03:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFA3B18829FA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:59:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19AB11888ABB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:03:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4DAB1A23BD;
-	Mon,  9 Dec 2024 13:59:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ABDD1B042A;
+	Mon,  9 Dec 2024 14:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iGcKPUvY"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="Hhyy2Rdy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5554035953;
-	Mon,  9 Dec 2024 13:59:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733752788; cv=none; b=iChkmjncsSv2uA7sUIZcdFBfnqe1ZWmywl3Ue1eGCwpyV9/AdO25mxd3sr5Llqhbt8qMLsSv4vSv8fxw2R7RogY0k/abh6zetH+L2QAA6CFhdGym4edlaJum29qHfYrVcfdtrW2FzL5eqHPMCX1iMZwat6TrWdGL7g0XcCy6a+U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733752788; c=relaxed/simple;
-	bh=qrdXmKYSQ977QhCpCv0DA3fOPvcdyCncNeRQ59d3GVY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hyfMaCg240PSDXk2Xgv44bRcpyGSDkCYTEHR9Mpze42wPGAmV3PUpMreqaUhTjIhYfsni0mgy+TKNVS+JC2LAreN3T71FaMfMyVvKNHWtbNebut1oHLM7gQpkbiqjoSj/50UZ7PPlp3/6rFHqqy9XP3LTmRiRaniiO3+KiSUkf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iGcKPUvY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B9ALoiP027535;
-	Mon, 9 Dec 2024 13:59:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	04aE0TxtkFMh7O1tkeqAwTqWCAWLBAE1vc5IkVspX6o=; b=iGcKPUvYuoQsOnbH
-	gT+BsFvs7q+hnNFH6fnet6bt8O7OEw11soN3QqqNaD+XK6K0EW7Wqp0UdlBd3O6Q
-	hvhzhXOLbRbF/HVBERpcboxk9y447mHar0YWQ9nOt6/FnXaJB4nbsIg+YP5uNUR6
-	CyFoni1P4dxZM6iwlBODjRw/t/bpRwe+5nMbswpNegs29qwgkBjW6Mf8ll6BUprs
-	rA+AmmS1/5kFWfC4InjhcUewyrncGn2oPLbMeML5U57WCvHQgdWPVt8Xw4C8wmt3
-	GtCeyYdYsowwVwJBAA186cAbe0SsOaPF7CFu14/yyxQ/isKB8CHfJCARFqosdQNl
-	ztr7dg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43cdxxd18b-1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4079D35971;
+	Mon,  9 Dec 2024 14:02:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.139.77
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733752958; cv=fail; b=knRyeFu62sTwtzKx1EyzLJpndnOJ/cR2yju3mCz+dDE7wN/RW4JiK89Jcgzndciy//AiQFwExACMSsko3hWSVcaZB7UrExgrAxM9V6vx5L7/bN4udgOlcstdSfV3grO2nwnQB7tYFkGk4IRb0tvvWbvnxeDgyfSMxvPxzZ+QyPk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733752958; c=relaxed/simple;
+	bh=/7iAIpOgWhvfru5IU7DI8/2KoNVbctvII1NZejIhTv0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=qBmrbnAXOXQDh02a4RDiIm9otbku1D5Q+XA0xHfiBqd6cJ2Ahyrh1w/REHP82643m7R/qXi79tEJ0ig/0BSgvQW2OiM0TlC3DTsrbFnt6HNBKk/IZpt08Aee5X1M1vMADBr0bzmA9yrBCmaVE9LQdyoMtY4N4W8kjWRpQn0T5mg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=Hhyy2Rdy; arc=fail smtp.client-ip=148.163.139.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375854.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B9B96Xe005654;
+	Mon, 9 Dec 2024 09:02:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=/7iAI
+	pOgWhvfru5IU7DI8/2KoNVbctvII1NZejIhTv0=; b=Hhyy2RdyKO5iTxqCFZnZ6
+	PSuisLkPAdC5Th4lc6Q5p6bf5cu9PbD0oprLhy6R5QdigvQ8Mizhdasd5SBIV4/7
+	wPETyrC3O/mwm5QPQhf0Mcb6o8CXlHya+PAwD2aoyYeLcTQtGaPlfLhz6hyP6cNG
+	Cf1nglK4uu6fTS+mJb/6mc9CbAZQMQEnJMntjx1cgj8awftuWrARFoQ7Pp+NNfQp
+	Nm0W0iso5hp5+zC7Xep9gItpWnANe5YR+xBsReMFnIg79CkFPTqk4te6ShcpNo+t
+	g+Ugd6JVizSxxNv8AhXFxY68z2g97sIoiEOODb9VxFYzTZg46BNL3RcJbgTUTqaD
+	g==
+Received: from cy7pr03cu001.outbound.protection.outlook.com (mail-westcentralusazlp17012035.outbound.protection.outlook.com [40.93.6.35])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 43dye2gncd-2
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Dec 2024 13:59:38 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B9DxaG3002542
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Dec 2024 13:59:37 GMT
-Received: from [10.253.11.209] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Dec 2024
- 05:59:32 -0800
-Message-ID: <f7dd3758-c1c8-43bb-9a5c-4674077a5e1b@quicinc.com>
-Date: Mon, 9 Dec 2024 21:59:29 +0800
+	Mon, 09 Dec 2024 09:02:31 -0500 (EST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mHjs21tXrsCnFR4IJ7lTm2djKMgEYQJMItQ9usXwtvi32dXnMN124rRr75g9oHHNNbhgl5qk110ITeva+0ltn8L5Aj85daoJh5NIGE7tCYl5EJMeZnx1n68kYglNiLJk7Rtm5uED8YjiH+Is2KFZ6176BM0dnQQtVlJOOzN4WAoK7QdMSEF+PytsQ73z3fyyJtPn+b3WR1wusH9VSgCu+5BGTqhwWK4bmc+XtcQ+6gQtW87VtuLkXMvJxjJQu8CWCNH0juTJ46BLW/isgmNI28WjVSLKpFSeFMjjJ+eXEQ6BmXLvGzr7muoBV13Vfy3QBsSFeoUv749lo0uVV3WDiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/7iAIpOgWhvfru5IU7DI8/2KoNVbctvII1NZejIhTv0=;
+ b=gCERuC1B/FkRZdVzQfni1iWyh+hyCJzyiR+3rpuaExlG9MB75KLcQPf3xKT5kMdnjxO9ZUHwMh7GvR6vZZWVf4DrQnJBKZ0G3Aw03h3D/atZlDqdLwPp5ro/Y6At2tsIEAPtl62iFU5TmsK9mMttKzvVvX3kwU2JACEdNg1rM3bNJEyXcoWcsBPLObpLG1+fcE2X90JEheyqEw1PZ2c0ereaFv4S2cO49sle7ZpYmY9rfPsh+4KGCCU7mDhE9OJiVbFl97L2hp3vv6QuEWgzBZaClweG/lXcGnH0s1LdpGzcJEPKUdGa61JhwyLrx20tzejus5thffEVQhFSeu/9Qg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
+Received: from CY4PR03MB3399.namprd03.prod.outlook.com (2603:10b6:910:57::13)
+ by DM6PR03MB5114.namprd03.prod.outlook.com (2603:10b6:5:1ef::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.19; Mon, 9 Dec
+ 2024 14:02:28 +0000
+Received: from CY4PR03MB3399.namprd03.prod.outlook.com
+ ([fe80::6504:9615:dbab:cc17]) by CY4PR03MB3399.namprd03.prod.outlook.com
+ ([fe80::6504:9615:dbab:cc17%6]) with mapi id 15.20.8137.018; Mon, 9 Dec 2024
+ 14:02:28 +0000
+From: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
+To: David Lechner <dlechner@baylibre.com>,
+        "jic23@kernel.org"
+	<jic23@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "linux-iio@vger.kernel.org"
+	<linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org"
+	<linux-pwm@vger.kernel.org>
+CC: Conor Dooley <conor.dooley@microchip.com>
+Subject: RE: [PATCH v7 7/8] dt-bindings: iio: adc: add ad4851
+Thread-Topic: [PATCH v7 7/8] dt-bindings: iio: adc: add ad4851
+Thread-Index: AQHbQnRywf+nZYqk106wKidFVGgDN7LW2USAgAcm4xA=
+Date: Mon, 9 Dec 2024 14:02:28 +0000
+Message-ID:
+ <CY4PR03MB3399F17206B01006467B602F9B3C2@CY4PR03MB3399.namprd03.prod.outlook.com>
+References: <20241129153546.63584-1-antoniu.miclaus@analog.com>
+ <20241129153546.63584-8-antoniu.miclaus@analog.com>
+ <2d760894-bda5-4000-9598-914b830333a7@baylibre.com>
+In-Reply-To: <2d760894-bda5-4000-9598-914b830333a7@baylibre.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-dg-ref:
+ =?utf-8?B?UEcxbGRHRStQR0YwSUc1dFBTSmliMlI1TG5SNGRDSWdjRDBpWXpwY2RYTmxj?=
+ =?utf-8?B?bk5jWVcxcFkyeGhkWE5jWVhCd1pHRjBZVnh5YjJGdGFXNW5YREE1WkRnME9X?=
+ =?utf-8?B?STJMVE15WkRNdE5HRTBNQzA0TldWbExUWmlPRFJpWVRJNVpUTTFZbHh0YzJk?=
+ =?utf-8?B?elhHMXpaeTB6TjJZNU5HVmxPUzFpTmpNMkxURXhaV1l0WVdabVpDMWtORGd4?=
+ =?utf-8?B?WkRjMU1EWmtaR1ZjWVcxbExYUmxjM1JjTXpkbU9UUmxaV0l0WWpZek5pMHhN?=
+ =?utf-8?B?V1ZtTFdGbVptUXRaRFE0TVdRM05UQTJaR1JsWW05a2VTNTBlSFFpSUhONlBT?=
+ =?utf-8?B?SXhPRFkxSWlCMFBTSXhNek0zT0RJeU5qVTBOalUyTkRBek1ETWlJR2c5SW10?=
+ =?utf-8?B?UFVXUnVLM1F3WjJFNE0zVTNTVGR3U1dST04zQTBNMWxSWXowaUlHbGtQU0lp?=
+ =?utf-8?B?SUdKc1BTSXdJaUJpYnowaU1TSWdZMms5SW1OQlFVRkJSVkpJVlRGU1UxSlZS?=
+ =?utf-8?B?azVEWjFWQlFVVnZRMEZCUW5ac1ZsQTJVV3R5WWtGUmVIaHRVRVZMTVc1MVUw?=
+ =?utf-8?B?UklSMWs0VVhKWFpUVkpSRUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
+ =?utf-8?B?QlFVRklRVUZCUVVSaFFWRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZC?=
+ =?utf-8?B?UVVGRlFVRlJRVUpCUVVGQmJXazNTbTFSUVVGQlFVRkJRVUZCUVVGQlFVRkJT?=
+ =?utf-8?B?alJCUVVGQ2FFRkhVVUZoVVVKbVFVaE5RVnBSUW1wQlNGVkJZMmRDYkVGR09F?=
+ =?utf-8?B?RmpRVUo1UVVjNFFXRm5RbXhCUjAxQlpFRkNla0ZHT0VGYVowSm9RVWQzUVdO?=
+ =?utf-8?B?M1FteEJSamhCV21kQ2RrRklUVUZoVVVJd1FVZHJRV1JuUW14QlFVRkJRVUZC?=
+ =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
+ =?utf-8?B?VUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
+ =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVWQlFVRkJRVUZCUVVG?=
+ =?utf-8?B?QlowRkJRVUZCUVc1blFVRkJSMFZCV2tGQ2NFRkdPRUZqZDBKc1FVZE5RV1JS?=
+ =?utf-8?B?UW5sQlIxVkJXSGRDZDBGSVNVRmlkMEp4UVVkVlFWbDNRakJCU0UxQldIZENN?=
+ =?utf-8?B?RUZIYTBGYVVVSjVRVVJGUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
+ =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
+ =?utf-8?B?QlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZC?=
+ =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRlJR?=
+ =?utf-8?B?VUZCUVVGQlFVRkJRMEZCUVVGQlFVTmxRVUZCUVZsUlFtdEJSMnRCV0hkQ2Vr?=
+ =?utf-8?B?RkhWVUZaZDBJeFFVaEpRVnBSUW1aQlNFRkJZMmRDZGtGSGIwRmFVVUpxUVVo?=
+ =?utf-8?B?UlFXTjNRbVpCU0ZGQllWRkNiRUZJU1VGTlowRkJRVUZCUVVGQlFVRkJRVUZC?=
+ =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
+ =?utf-8?B?VUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
+ =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
+ =?utf-8?B?QlFVRkJRVUZDUVVGQlFVRkJRVUZCUVVsQlFVRkJRVUZCUFQwaUx6NDhMMjFs?=
+ =?utf-8?Q?dGE+?=
+x-dg-rorf:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY4PR03MB3399:EE_|DM6PR03MB5114:EE_
+x-ms-office365-filtering-correlation-id: 8d4fa5b3-d9a7-4ac8-c935-08dd185a1dd0
+x-ld-processed: eaa689b4-8f87-40e0-9c6f-7228de4d754a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?S1VVUFJjWlhXOXN2TnA3MlRNK2xnVEcwenhHeGdUQ1pOOXdXMHN4WXRPZUJB?=
+ =?utf-8?B?NU9pK1RyY012bG5FcTRTbVZYRFhaOWk3MHhtbE5jSUd6dzZ0VWlVV2hRRkJu?=
+ =?utf-8?B?U0hRZU5aeVpxKzVscmprN2l2aHgzOWVZa1ZEY1cwWkRiU3QvR1NMQkNzSVQz?=
+ =?utf-8?B?WU5yNnErMG53MC91eDlYUkVlYTBZZXVjcHBDRWNZQzh4d3JmdGF6VFREUHZm?=
+ =?utf-8?B?QkpJc2dzalZrbmtzYlRRelc5dHVNWlZLNW1MZnNwRGhHbm9wdmNiQTAydEdH?=
+ =?utf-8?B?eGxwRGZwalp2M3hkWTZkajM5VHNhbzVpdmVtRzVZd0ZTeFBXU1dtNVlLZkxY?=
+ =?utf-8?B?SStZK2l0dGdPVHRDVVlTeWFaZDVKZy9laldjSU9Vd1B3a1dpWW5uV0VMRG5n?=
+ =?utf-8?B?REUyMTE1aHFEdU5iQnFjNXQxVWNJbkoxUFBJamVUUnROcjFqLzF0ZFVmbzlq?=
+ =?utf-8?B?UnRQRVUwT0ViS0hiRm1zQlgwZS9qcXduQnlPRm83SVcvOGlWN3lRWU1NeTZ1?=
+ =?utf-8?B?cm5DYUt1OVhlb0wvUCtLTjkzWk9DUmk2SGMwc3o2dWpBRkJ3NDd5N0Y4WUtz?=
+ =?utf-8?B?V0ZycGRBRjUxbDNaWHRIc0I5Z0hFbjJMQkswOGFMSjFHcnZZQjBTWUNCeW5T?=
+ =?utf-8?B?NTV2ODc5KzRzQ0pTVlA0T1JaendUZGFoaWFTVzRKU1Y4RUM5RDZTc1JEZ3Ji?=
+ =?utf-8?B?Um1UNVBXRlJtVGNJS0hsTE1yNEh6b3p1bnV2ZTYwZ2lsVWFHY0JyQ2FpRXp1?=
+ =?utf-8?B?UmpjaVcxM0piTG96REIvUTNFbUdWdlJUUFFTNjcrT2x4ak5NV3pIUWdlMmhV?=
+ =?utf-8?B?S3hadW01UTRpU1Rza1BndlhXUGdIQ296R3lJZnJIWXhISUIzaWNrS1BxVVNn?=
+ =?utf-8?B?cEZJL3ZRVEx5cFp3M2o3RXlJVEhMWStGOThDbTc3Q0RqRnk0aWFRRW1KcnZi?=
+ =?utf-8?B?b092WGNlWi9YSDNpczZTSUxBV1hUeithNHd3eTRrajBSWjFQVTVXNU9STnB3?=
+ =?utf-8?B?bitwVFcvL0JWd29rdGpLcWx5dWtTUGtDNmlXYU11UmIwUy9oTUNzMXNtS2Zm?=
+ =?utf-8?B?U0tGL1h3eC9uNVBtRk1nbE12MkJvU1pwVzhuTVFaY283YzdSWThaT05id21k?=
+ =?utf-8?B?MlJnT0l6TDVDaHhPQ0xXbW9vdnoxUzBoZ0w0Nkh6YU9ZNDM1bEFrdUo0TG9l?=
+ =?utf-8?B?aFZnZWRuME5kV1JOanREMjEvRTNHVk1NVHVwMGl4ZHF6MGt4SzBlUTZoZHlB?=
+ =?utf-8?B?cUNqdll1WlV0TkwwK1R3V05DZUx5TWkxWEVPem5iK0IvckR2ck9IYktNdWpo?=
+ =?utf-8?B?M2hVSXlEeU91UmxVeE53eTdkeVRudHpTRUYzUTAxOWJFeFlQbDRmeFlGK0Rr?=
+ =?utf-8?B?WTNwNlVtcGtVVzFEMk1tdGZ6NmZmbGUyOUNLMXhSQTRJN3h5eXJqelI4V2da?=
+ =?utf-8?B?VkZxTGNDMEU2TDR3ZjVtcDA4NzRpOG1hZHpUcjFjM2JMeGhwV1Bjc29JMXdW?=
+ =?utf-8?B?K2wrZFFKZHRJZEpoSnp5OUZoWTJ5UEtheFRLT3BBZis0Q1NXSENBRCs2cEl4?=
+ =?utf-8?B?dGlOUlZDYzFWVTYrMkJ5TGgzZTNNby9SR2haVHNnUHFNK1Y0RmlTdjRKaVJi?=
+ =?utf-8?B?SmdnNEVDWTRnYlllZDcyamhoV05CZVFiTnFQVW1vb3FSK0lwZ0lRcjdhS0FL?=
+ =?utf-8?B?bFdMV0RaYmZlekg4cnFxdUwxcnBEU0xzRW5Id0Rja05NRnZVbmVSamlUS2xI?=
+ =?utf-8?B?a2JGdEkydUVKNVpZUEpLd0QxT3ZHRnY0akZ1VG9LcnRGRVBGUFVNWnE2a0Jp?=
+ =?utf-8?B?UXNvdVFIYWVRY093RlhMV29mbzFBVzJyaW5OOG5mbllsdG5QdVdxTkpPc3o5?=
+ =?utf-8?B?Q24zcHZhZUtZNVJiNmNwTTZCQkxLTkZPQXh5bE0vTFpPV0E9PQ==?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR03MB3399.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?dXVieE5YbFQwSEhqbTVNQ3draU5TUThIajZVNGpsL05qT0RKTTV0bE9YbjhF?=
+ =?utf-8?B?SU9scFRRM3pyenpBWFpEeTFJRnFtd1dnQjZoZGRZOXNGdzNxOUF1NG5RaXNL?=
+ =?utf-8?B?UDd1SWI5RHFucnhOWUFHUmtpRjVUSkpFNXk4cGl4Rml0Q1BycUNNU2NleVdr?=
+ =?utf-8?B?Zkx6NUxpOGtwTUFkUEd0WFowUy9pUi9tV21tS3BzbHpVSmxiWEsxa3Z6bFVY?=
+ =?utf-8?B?aXNiQnhnUFMzSDVXQ0F4K0VxVjQveWlxL1h3M1g3cEY0SXZBeTU3ZEpJcFJz?=
+ =?utf-8?B?MzJjWkMzQ1F6K3hOWStzOVlSZUl3WUJ5TXB4b0p3OWtTVTRqM25MeGFaaTZ6?=
+ =?utf-8?B?cERmK0l4S0ZzMnlwYWl0cHZhNnQ5dzFYWElSRTV2T3JwdXdMSlRGNmpReWsr?=
+ =?utf-8?B?WnZjTXdTTHd3anN5MGZ6ZXRsbTJlZmU2SWMyL0dOSkdKME9QdU1HNkFHaXVh?=
+ =?utf-8?B?UkQyUTRpUm1qTzZSTEN6dU95VGl6d1NkWVJnRFBXcEtPZnNJTTM4cnpaQ0Mr?=
+ =?utf-8?B?d2ZxYjFBcXNUcEVEQys1ZEZxNFJFLzhqSjJnLzRmaVBQVFcvNk9iODJlbWxi?=
+ =?utf-8?B?b1VCc3hLNEhjRmhicGdlaDJYeEh2bTNUbnlucWpRVzB2dEoyK0UzMzhnUEpv?=
+ =?utf-8?B?VHpjRVJZOU5vcjVsWU9DVDNkczk5UWVqUUJscThWYkxhYjJtN1U3a2tlcXh6?=
+ =?utf-8?B?UGloYUkzNGZoZmkxSjRhTDdJTmkzVENIMFlUUkJyS01GTWt1ZWlqVmRrTHAz?=
+ =?utf-8?B?UUw1U2o0UTRJYkV4bE43djJQeVF6Mno2U1E1bCt1NnhmbFZlTko3bFFqUGNa?=
+ =?utf-8?B?VzV3L3k1OThKdnhiNjUyMWQ3d0p5UklUYTF4L2RaeTZIb1VkYm4rSDZCdTJi?=
+ =?utf-8?B?aVVQeTdZTEdKdG1UR0pHdE1sS2pvdHVJcStVOFVSRWdTQVZaUm9RWVFaYUEz?=
+ =?utf-8?B?MXE3MTZ2N1FjYkwwM2F3WnN2alJFb0VCY1VVSFNtWWNwL053T05hU0FkZ1VR?=
+ =?utf-8?B?eGdTa1JraGIvWmxLbmxHZSt4ZURPVHVFdTdGTzh0Rm54TXJZMW9VVmxDM2xZ?=
+ =?utf-8?B?czh5c0tFbTVSZFFwdWJpZDRFdzJQYW5XZm9WZ3piQkY3QkNPSjlnT1lXdDBS?=
+ =?utf-8?B?WU5yTngyRm5CY21TUVpVemc5a0NjVmc3Vk5IelpGVElkTUhrT1RVdmZSem83?=
+ =?utf-8?B?TXhUM3dCRklZZW1VMnc1SEt5MTJFQVBNMjlqWTdaeXpBUzZxcHErSnJPTTdu?=
+ =?utf-8?B?cGtsOW1ncUFZVjVLek53N2NuSkdSVmd2MFJNOEJHSEpRN1lLUk1MQ3JkU1Jt?=
+ =?utf-8?B?dUpHZ1ZkZUhialVVMHhBbE9wR0IzUGtHWUREYjA0dUFZVmEyK0RUWDVsdm5u?=
+ =?utf-8?B?MUlCZHphd0NuS0VuQzlhaXRnZDB1bk40SUxOYjZWa1JVR1VDNVdZUS9rSk93?=
+ =?utf-8?B?MHVvNzYzdTFrWGxINy9zOXdoZE1EOHVJYXRPai83UmhkbHNlUXhyWnhjTVVt?=
+ =?utf-8?B?eDZqODRWVGlPR1I0RFNQUitWRGlnUGZiTEVZMSs4eGlKNkdrVGRXa3JjcExv?=
+ =?utf-8?B?RW9zVUYvdEd3Ny9mdjdha0E1Y1Y4RWMwZTlwWG9OMGJDUFh5NTlmNllDNEZn?=
+ =?utf-8?B?dlpuejc1S1g4Z3lCdHRUbzFUenJPbzBWbWRZTVAweFpHUnYxamMxVCt1djlG?=
+ =?utf-8?B?TVAzRUFlb2hnU2pYL3hha212T25nejVTYkJBWnF0b3AzSXhBVGtmL2pXbG1J?=
+ =?utf-8?B?YU5CRTRFYjB3V2dUeGlydldIZVN5VWtOS2E1RDBXR2hQUy9KNWp6ZXdrYzhO?=
+ =?utf-8?B?S1NJb0RzbGJjUVNKRDdFcm5mdlJpcVRjTU11N1IrcnhEVUVzUXQ2ZjA0WU5S?=
+ =?utf-8?B?K3BHMHZ3cktsLzZIYjBLbGVyWGRsN015aE14aUlnRi9OTVpDUXo2WnBZY0Zs?=
+ =?utf-8?B?dm9qMDRMSExhM1dUNC9ybThEWEZ1dmdJcmxVditENHlVOFZSTVpYZng4Q1pX?=
+ =?utf-8?B?azZXOVllNmJuVVYwWWhiY0RCREtyclFEdGh6ekZKd3BMc3ZOaGlsVURlT2xr?=
+ =?utf-8?B?WFNHdU55T3loNGJ2a1FSd3QvclhIVmo3blBlZndqT0ZGb0M5aFhnaVdXK3hn?=
+ =?utf-8?B?VWFXcUR2azJXS3ZMQUV0aUdFQWtxRnFDLzJuZXE3dFFncHhVbmF6NzdiQTJO?=
+ =?utf-8?B?blE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] Bluetooth: qca: Expand firmware-name to load
- specific nvm and rampatch
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz
-	<luiz.dentz@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Balakrishna
- Godavarthi" <quic_bgodavar@quicinc.com>,
-        Rocky Liao
-	<quic_rjliao@quicinc.com>,
-        <linux-bluetooth@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <quic_jiaymao@quicinc.com>, <quic_shuaz@quicinc.com>,
-        <quic_zijuhu@quicinc.com>, <quic_mohamull@quicinc.com>
-References: <20241205102213.1281865-1-quic_chejiang@quicinc.com>
- <20241205102213.1281865-3-quic_chejiang@quicinc.com>
- <w7r4itwyrh3jva3rx3kmsm4kqtawqkgkneqrlin4hpjkqb3deo@2qmjd3ijzqn3>
- <541a5682-5b99-4793-84ee-a7c9168cb9a0@quicinc.com>
- <CAA8EJppmTSovZKTPb+syrc0Vvfu8U=HoP18tW072OEZ5nYyOgg@mail.gmail.com>
- <4ef61f91-f1ae-4593-9522-2229680a9707@quicinc.com>
- <fb7exdibh4f5r3io6m34i7lqqe7qo2kk357bfdzcdbie6cppui@mqwwq5w4c57j>
-Content-Language: en-US
-From: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>
-In-Reply-To: <fb7exdibh4f5r3io6m34i7lqqe7qo2kk357bfdzcdbie6cppui@mqwwq5w4c57j>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: JTkwdNLl4nXxRUw4nOIpWpvmCCeFTv4w
-X-Proofpoint-GUID: JTkwdNLl4nXxRUw4nOIpWpvmCCeFTv4w
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR03MB3399.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d4fa5b3-d9a7-4ac8-c935-08dd185a1dd0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Dec 2024 14:02:28.2738
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dh3xr3MlAT5YTNDisD925RnZgtHlt7n1mddpEyx6DAKwjypwKqMevC0A3G30o5YnBRfTc1rKE8bQ+ODrasRkVJ9NMrPIwdKC8NIUM9BVbTg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR03MB5114
+X-Proofpoint-GUID: Z16fX_LrisqD4KWKu9lBxg6dT3mlSrpw
+X-Proofpoint-ORIG-GUID: Z16fX_LrisqD4KWKu9lBxg6dT3mlSrpw
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
- phishscore=0 mlxlogscore=999 priorityscore=1501 clxscore=1015
- malwarescore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412090109
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ mlxlogscore=999 bulkscore=0 priorityscore=1501 lowpriorityscore=0
+ impostorscore=0 malwarescore=0 adultscore=0 spamscore=0 clxscore=1015
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412090110
 
-Hi Dmitry,
-
-On 12/9/2024 6:49 PM, Dmitry Baryshkov wrote:
-> On Mon, Dec 09, 2024 at 05:03:55PM +0800, Cheng Jiang (IOE) wrote:
->> Hi Dmitry,
->>
->> On 12/6/2024 4:34 PM, Dmitry Baryshkov wrote:
->>> On Fri, 6 Dec 2024 at 05:05, Cheng Jiang (IOE)
->>> <quic_chejiang@quicinc.com> wrote:
->>>>
->>>> Hi Dmitry,
->>>>
->>>> On 12/5/2024 8:00 PM, Dmitry Baryshkov wrote:
->>>>> On Thu, Dec 05, 2024 at 06:22:12PM +0800, Cheng Jiang wrote:
->>>>>> The firmware-name property has been expanded to specify the names of NVM
->>>>>> and rampatch firmware for certain chips, such as the QCA6698 Bluetooth
->>>>>> chip. Although it shares the same IP core as the WCN6855, the QCA6698
->>>>>> has different RF components and RAM sizes, necessitating new firmware
->>>>>> files. This change allows for the configuration of NVM and rampatch in
->>>>>> DT.
->>>>>>
->>>>>> Different connectivity boards may be attached to the same platform. For
->>>>>> example, QCA6698-based boards can support either a two-antenna or
->>>>>> three-antenna solution, both of which work on the sa8775p-ride platform.
->>>>>> Due to differences in connectivity boards and variations in RF
->>>>>> performance from different foundries, different NVM configurations are
->>>>>> used based on the board ID.
->>>>>
->>>>> Two separate commits, one for NVM, another one for RAM patch.
->>>>>
->>>> Ack.
->>>>>>
->>>>>> Therefore, in the firmware-name property, if the NVM file has an
->>>>>> extension, the NVM file will be used. Otherwise, the system will first
->>>>>> try the .bNN (board ID) file, and if that fails, it will fall back to
->>>>>> the .bin file.
->>>>>>
->>>>>> Possible configurations:
->>>>>> firmware-name = "QCA6698/hpnv21.bin", "QCA6698/hpbtfw21.tlv";
->>>>>> firmware-name = "QCA6698/hpnv21", "QCA6698/hpbtfw21.tlv";
->>>>>> firmware-name = "QCA6698/hpnv21.bin";
->>>>>>
->>>>>> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
->>>>>> ---
->>>>>>  drivers/bluetooth/btqca.c   | 154 ++++++++++++++++++++++++++----------
->>>>>>  drivers/bluetooth/btqca.h   |   5 +-
->>>>>>  drivers/bluetooth/hci_qca.c |  21 ++++-
->>>>>>  3 files changed, 134 insertions(+), 46 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
->>>>>> index dfbbac922..e8b89b8cc 100644
->>>>>> --- a/drivers/bluetooth/btqca.c
->>>>>> +++ b/drivers/bluetooth/btqca.c
->>>>>> @@ -272,6 +272,31 @@ int qca_send_pre_shutdown_cmd(struct hci_dev *hdev)
->>>>>>  }
->>>>>>  EXPORT_SYMBOL_GPL(qca_send_pre_shutdown_cmd);
->>>>>>
->>>>>> +static int qca_get_alt_nvm_path(char *path, size_t max_size)
->>>>>
->>>>> int is usually for errors, the code suggests bool return type.
->>>>>
->>>> Ack.
->>>>>> +{
->>>>>> +    char fwname[64];
->>>>>> +    const char *suffix;
->>>>>> +
->>>>>> +    suffix = strrchr(path, '.');
->>>>>> +
->>>>>> +    if (!suffix)
->>>>>> +            return 0;
->>>>>> +
->>>>>> +    strscpy(fwname, path, strlen(path));
->>>>>
->>>>> 64 bytes ought to be enough for anybody, correct?
->>>>>
->>>> Yes, in current driver, the max f/w path length is 64.
->>>>
->>>>>> +    fwname[suffix - path] = 0;
->>>>>
->>>>> with path = "qcom/sc7180/Oh.My.Device/name" this is broken.
->>>>>
->>>> Let me test this and fix in next patch.
->>>>>> +
->>>>>> +    snprintf(fwname, sizeof(fwname), "%s.bin", fwname);
->>>>>> +
->>>>>> +    /* If nvm file is already the default one, return false to
->>>>>> +     * skip the retry.
->>>>>> +     */
->>>>>> +    if (strcmp(fwname, path) == 0)
->>>>>> +            return 0;
->>>>>> +
->>>>>> +    snprintf(path, max_size, "%s", fwname);
->>>>>> +    return 1;
->>>>>> +}
->>>>>> +
->>>>>>  static int qca_tlv_check_data(struct hci_dev *hdev,
->>>>>>                             struct qca_fw_config *config,
->>>>>>                             u8 *fw_data, size_t fw_size,
->>>>>> @@ -564,6 +589,19 @@ static int qca_download_firmware(struct hci_dev *hdev,
->>>>>>                                         config->fwname, ret);
->>>>>>                              return ret;
->>>>>>                      }
->>>>>> +            }
->>>>>> +            /* For nvm, if desired nvm file is not present and it's not the
->>>>>> +             * default nvm file(ends with .bin), try to load the default nvm.
->>>>>> +             */
->>>>>> +            else if (config->type == TLV_TYPE_NVM &&
->>>>>> +                     qca_get_alt_nvm_path(config->fwname, sizeof(config->fwname))) {
->>>>>
->>>>> Please, don't rewrite the config. The file may be not present now, but
->>>>> it will reappear later (e.g. when rootfs gets mounted).
->>>>>
->>>> This tries to load a default NVM file if the board-specific NVM is not found.
->>>> It is called when request_firmware fails. It's safe to rewrite the config->fwname
->>>> here since we have already tried to load the board-specific NVM. The config
->>>> is a local variable in qca_uart_setup and will return after downloading the NVM.
->>>
->>> Please read my question before answering it.
->>>
->> Sorry, I'm not clear about your question. Could you please explain it in more detail? 
->> I'm not quite sure how the situation you mentioned affects this code flow if you mean
->> not downloading another NVM file.
->>
->> The board-specific NVM and the default NVM should be in the same folder and should
->> appear simultaneously.
->>
->> From the Bluetooth firmware load flow perspective, the firmware is loaded either 
->> when the kernel module is inserted (insmod) or when Bluetooth is turned off and 
->> then on again via a user-space command. If the firmware is not found at this time, 
->> the ROM code is used instead. It does not attempt to load the firmware automatically,
->> even if the firmware appears later.
-> 
-> I was thinking about the following scenario:
-> 
-> - BT firmware is attempted to load during driver probe, /lib/firmware is
->   not fully populated, so the config is rewritten to use the default
-> - rootfs is fully mounted and populated with the board-specific file
-> - BT interface is being turned on. It is expected that the
->   board-specific file will be loaded, however because the config was
->   changed in one of the previous steps, the driver still loads the
->   default one.
-> 
-> That said, the driver should perform the fallback, etc, but the config
-> should stay intact even in the fallback case.
-> 
-Thank you for the detail explanation. Current flow of BT enable in driver
-likes this:
-
-Enable the soc(Assert BT_EN) -->  read the SOC info --> Change baud rate --> 
-get rampatch file name (based on soc info or dts) --> download rampatch --> 
-get nvm file name(based on soc info or dts) --> download nvm file --> 
-download default nvm (if the board-specific file not found).
-
-Every time the driver probe or the BT interface is turned on, it follows the
-flow described above. The rampatch and NVM file names are reconstructed by 
-the SoC information each time, so the driver always attempts to download the 
-board-specific file first.
-
-Here is the log, there is no hpnv21.b206 and re-insmod the driver. 
-[11850.644220] Bluetooth: HCI UART driver ver 2.3
-[11850.644232] Bluetooth: HCI UART protocol H4 registered
-[11850.644284] Bluetooth: HCI UART protocol LL registered
-[11850.644314] Bluetooth: HCI UART protocol QCA registered
-[11850.645055] Bluetooth: hci0: setting up wcn6855
-[11850.706962] Bluetooth: hci0: QCA Product ID   :0x00000013
-[11850.706975] Bluetooth: hci0: QCA SOC Version  :0x400c0210
-[11850.706978] Bluetooth: hci0: QCA ROM Version  :0x00000201
-[11850.706981] Bluetooth: hci0: QCA Patch Version:0x000038e6
-[11850.714508] Bluetooth: hci0: QCA controller version 0x02100201
-[11850.714518] Bluetooth: hci0: QCA Downloading qca/QCA6698/hpbtfw21.tlv
-[11851.406475] Bluetooth: hci0: QCA Downloading qca/QCA6698/hpnv21.b206
-[11851.406515] bluetooth hci0: Direct firmware load for qca/QCA6698/hpnv21.b206 failed with error -2
-[11851.406522] Bluetooth: hci0: QCA Downloading qca/QCA6698/hpnv21.bin
-[11851.570125] Bluetooth: hci0: QCA setup on UART is completed
-
-hpnv21.b206 exists and then re-insmod the driver.
-[11878.551494] Bluetooth: HCI UART driver ver 2.3
-[11878.551505] Bluetooth: HCI UART protocol H4 registered
-[11878.551553] Bluetooth: HCI UART protocol LL registered
-[11878.551580] Bluetooth: HCI UART protocol QCA registered
-[11878.552131] Bluetooth: hci0: setting up wcn6855
-[11878.618865] Bluetooth: hci0: QCA Product ID   :0x00000013
-[11878.618877] Bluetooth: hci0: QCA SOC Version  :0x400c0210
-[11878.618881] Bluetooth: hci0: QCA ROM Version  :0x00000201
-[11878.618884] Bluetooth: hci0: QCA Patch Version:0x000038e6
-[11878.629674] Bluetooth: hci0: QCA controller version 0x02100201
-[11878.629681] Bluetooth: hci0: QCA Downloading qca/QCA6698/hpbtfw21.tlv
-[11879.318475] Bluetooth: hci0: QCA Downloading qca/QCA6698/hpnv21.b206
-[11879.482082] Bluetooth: hci0: QCA setup on UART is completed
-[11879.505086] Bluetooth: MGMT ver 1.22
-
-Turn on BT has the similar log.
->>
->>>>>> +                    bt_dev_info(hdev, "QCA Downloading %s", config->fwname);
->>>>>> +                    ret = request_firmware(&fw, config->fwname, &hdev->dev);
->>>>>> +                    if (ret) {
->>>>>> +                            bt_dev_err(hdev, "QCA Failed to request file: %s (%d)",
->>>>>> +                                       config->fwname, ret);
->>>>>> +                            return ret;
->>>>>> +                    }
->>>>>>              } else {
->>>>>>                      bt_dev_err(hdev, "QCA Failed to request file: %s (%d)",
->>>>>>                                 config->fwname, ret);
->>>>>> @@ -730,15 +768,38 @@ static inline void qca_get_nvm_name_generic(struct qca_fw_config *cfg,
->>>>>>                       "qca/%snv%02x.b%02x", stem, rom_ver, bid);
->>>>>>  }
->>>>>>
->>>>>> +static void qca_get_nvm_name_by_board(char *fwname, size_t max_size,
->>>>>> +            const char *firmware_name, struct qca_btsoc_version ver,
->>>>>> +            enum qca_btsoc_type soc_type, u16 bid)
->>>>>> +{
->>>>>> +    const char *variant;
->>>>>> +
->>>>>> +    /* Set the variant to empty by default */
->>>>>> +    variant = "";
->>>>>> +    /* hsp gf chip */
->>>>>> +    if (soc_type == QCA_WCN6855) {
->>>>>> +            if ((le32_to_cpu(ver.soc_id) & QCA_HSP_GF_SOC_MASK) == QCA_HSP_GF_SOC_ID)
->>>>>> +                    variant = "g";
->>>>>
->>>>> Didn't you get the 'set but unused' here?
->>>>>
->>>> Yes, miss this part. Thank you!
->>>>>> +    }
->>>>>> +
->>>>>> +    if (bid == 0x0)
->>>>>
->>>>> 0x0 or 0xff?
->>>> board is set to 0 by default, 0x0 means read board id fails, then we should use
->>>> the default one.
->>>
->>> What is the 'unprogrammed' board_id? On the WiFi side it's usually 0xff.
->>>
->> Yes, the 'unprogrammed' board_id should be 0xffff. Then 0 and 0xffff should use the
->> default nvm.  
-> 
-> Good. I think it's safe to safe board_id to 0xffff by default, then you
-> don't have to handle '0' specially.
-> 
->>>>>
->>>>>> +            snprintf(fwname, max_size, "qca/%s.bin", firmware_name);
->>>>>> +    else if (bid & 0xff00)
->>>>>> +            snprintf(fwname, max_size, "qca/%s.b%x", firmware_name, bid);
->>>>>
->>>>> Doesn't ".b%02x" work in this case too?
->>>>>
->>>> No, board id are two bytes, it coudl be 0x0206, then we need .b206. Or it is
->>>> 0x000a, then we need .b0a.
->>>
->>> What will ".b%02x" write in those two cases?
->>>
->> Yes, it works for both cases. Thanks! 
-> 
-> :-)
-> 
->>>>>> +    else
->>>>>> +            snprintf(fwname, max_size, "qca/%s.b%02x", firmware_name, bid);
->>>>>> +}
->>>>>> +
->>>
->>>
->>
-> 
-
+DQoNCi0tDQpBbnRvbml1IE1pY2zEg3XFnw0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0t
+DQo+IEZyb206IERhdmlkIExlY2huZXIgPGRsZWNobmVyQGJheWxpYnJlLmNvbT4NCj4gU2VudDog
+VGh1cnNkYXksIERlY2VtYmVyIDUsIDIwMjQgMjo0NiBBTQ0KPiBUbzogTWljbGF1cywgQW50b25p
+dSA8QW50b25pdS5NaWNsYXVzQGFuYWxvZy5jb20+OyBqaWMyM0BrZXJuZWwub3JnOw0KPiByb2Jo
+QGtlcm5lbC5vcmc7IGNvbm9yK2R0QGtlcm5lbC5vcmc7IGxpbnV4LWlpb0B2Z2VyLmtlcm5lbC5v
+cmc7DQo+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJu
+ZWwub3JnOyBsaW51eC0NCj4gcHdtQHZnZXIua2VybmVsLm9yZw0KPiBDYzogQ29ub3IgRG9vbGV5
+IDxjb25vci5kb29sZXlAbWljcm9jaGlwLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2NyA3
+LzhdIGR0LWJpbmRpbmdzOiBpaW86IGFkYzogYWRkIGFkNDg1MQ0KPiANCj4gW0V4dGVybmFsXQ0K
+PiANCj4gT24gMTEvMjkvMjQgOTozNSBBTSwgQW50b25pdSBNaWNsYXVzIHdyb3RlOg0KPiA+IEFk
+ZCBkZXZpY2V0cmVlIGJpbmRpbmdzIGZvciBhZDQ4NXggZmFtaWx5Lg0KPiA+DQo+ID4gUmV2aWV3
+ZWQtYnk6IENvbm9yIERvb2xleSA8Y29ub3IuZG9vbGV5QG1pY3JvY2hpcC5jb20+DQo+ID4gU2ln
+bmVkLW9mZi1ieTogQW50b25pdSBNaWNsYXVzIDxhbnRvbml1Lm1pY2xhdXNAYW5hbG9nLmNvbT4N
+Cj4gPiAtLS0NCj4gPiBjaGFuZ2VzIGluIHY3Og0KPiA+ICAtIGFkZCBhZGMgY2hhbm5lbHMgc3Vw
+cG9ydA0KPiANCj4gV2hhdCBpcyB0aGUgcmVhc29uIGZvciB0aGlzIGNoYW5nZT8gSW4gYSBwcmV2
+aW91cyB2ZXJzaW9uIG9mIHRoaXMgc2VyaWVzLA0KPiB5b3UgZXhwbGFpbmVkIHRoYXQgd2UgZGlk
+bid0IHdhbnQgdG8gc3BlY2lmeSBkaWZmLWNoYW5uZWxzIGluIHRoZSBEVA0KPiBiZWNhdXNlIHRo
+ZXJlIHdhcyBhIHVzZSBjYXNlIHRvIHVzZSBjaGFubmVscyBhcyBib3RoIHNpbmdsZS1lbmRlZCBh
+bmQNCj4gZGlmZmVyZW50aWFsIGF0IHJ1bnRpbWUuIFNvIEkgYW0gc3VycHJpc2VkIHRvIHNlZSB0
+aGlzIGJlaW5nIGFkZGVkIG5vdy4NCj4gDQpXZSBoYWQgYSBkaXNjdXNzaW9uIGFuZCB3ZSBkZWNp
+ZGVkIHRvIGdvIGZvciB0aGUgZHQgYXBwcm9hY2ggZm9yIHNwZWNpZnlpbmcNCnRoZSBjaGFubmVs
+cyBjb25maWd1cmF0aW9uLCBldmVuIHRob3VnaCBpbiB0aGUgZmlyc3QgcGxhY2Ugd2Ugd2FudGVk
+IHRvIGF2b2lkIHRoaXMuDQpPdmVyYWxsIGl0IG1ha2VzIG1vcmUgc2Vuc2UuDQoNCj4gPiArcGF0
+dGVyblByb3BlcnRpZXM6DQo+ID4gKyAgIl5jaGFubmVsKEBbMC03XSk/JCI6DQo+ID4gKyAgICAk
+cmVmOiBhZGMueWFtbA0KPiA+ICsgICAgdHlwZTogb2JqZWN0DQo+ID4gKyAgICBkZXNjcmlwdGlv
+bjogUmVwcmVzZW50cyB0aGUgY2hhbm5lbHMgd2hpY2ggYXJlIGNvbm5lY3RlZCB0byB0aGUgQURD
+Lg0KPiA+ICsNCj4gPiArICAgIHByb3BlcnRpZXM6DQo+ID4gKyAgICAgIHJlZzoNCj4gPiArICAg
+ICAgICBkZXNjcmlwdGlvbjogVGhlIGNoYW5uZWwgbnVtYmVyIGluIHNpbmdsZS1lbmRlZCBtb2Rl
+Lg0KPiA+ICsgICAgICAgIG1pbmltdW06IDANCj4gPiArICAgICAgICBtYXhpbXVtOiA3DQo+ID4g
+Kw0KPiA+ICsgICAgICBkaWZmLWNoYW5uZWxzOiB0cnVlDQo+ID4gKw0KPiA+ICsgICAgcmVxdWly
+ZWQ6DQo+ID4gKyAgICAgIC0gcmVnDQo+ID4gKw0KPiA+ICsgICAgYWRkaXRpb25hbFByb3BlcnRp
+ZXM6IGZhbHNlDQo+ID4gKw0K
 
