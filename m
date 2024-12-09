@@ -1,72 +1,85 @@
-Return-Path: <devicetree+bounces-128527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B2D39E8F1F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:49:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 232D49E8F21
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:49:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A0CF163A85
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:48:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 152BC163B65
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:49:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10AFF215F60;
-	Mon,  9 Dec 2024 09:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E402163AB;
+	Mon,  9 Dec 2024 09:49:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rhH4UrUL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dhtR2TC0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D97A283CD2;
-	Mon,  9 Dec 2024 09:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 103E621638B;
+	Mon,  9 Dec 2024 09:49:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733737740; cv=none; b=lDtO0Uuq9Qn93LaRAhNDqJ/p3RiNumvI2JAOHyaKoayXGkL6dHYpYIz6MUrg5G4TfmpLGxlN5p8MXXVuJMdql0qGr8udom3DxGvzZTklmxGua9HZzA7p2Cri+BBAzz96hGlhKYJ9A93GTRhWcMqvhufZEgLppUnCtr4mUXysvlY=
+	t=1733737747; cv=none; b=X32pdNalN7RbJd0JECItVGJGn4OMWYdGe2WzQj7sE1nNrNeJsPHuTJM6SoLfMLuu/75hEp0py4ObOTxYkqkhTkZ1daDeB/gNkQrj70h+V06t0WZOSqNrzQKHBRUj5rie8uC90Ze+J+MMXvUJ6lGGGDrPbVtjzBBfsPg+EMcGeDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733737740; c=relaxed/simple;
-	bh=U0CufWdAaA6Me8Q0Og61NZHfw77qNzDNc3cWfEPpdZA=;
+	s=arc-20240116; t=1733737747; c=relaxed/simple;
+	bh=y43p1uapSXC5fw7JnaqXHM4i71jrvsqwiDGw3bHTA2s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IBz5FtW4op3T8n4bc2UfOJN7Bv/9waufIK8oh7FNKcvH8lrS3BvBimEO/Pmha8yWku7kaVhmOjUL0xUIGlaxfimhU2UcGs+BX2tRszWK9a6GcHfT6jUUgKpvt9k7dVAK86m0NpztjtyAGrwZy+sC/xCztAaCp4100wl79XMpYp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rhH4UrUL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 346A9C4CED1;
-	Mon,  9 Dec 2024 09:48:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IeiscPIsjfi+e23l/BWMqQZa6gEvf0I+Gxp6mNa3F0qa6QgB98Ula1CzFHl1lE9e/yIf2xhSPDJ50UQMRhUCnhE47Fn2579jkxsbKJyLFWxxzfO6rHhzQr+wDbpI+fIzgpFWomP6KMEnP0KkUCIz4LAulACLG+YT2wFdIamUKso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dhtR2TC0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F31B8C4CED1;
+	Mon,  9 Dec 2024 09:49:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733737739;
-	bh=U0CufWdAaA6Me8Q0Og61NZHfw77qNzDNc3cWfEPpdZA=;
+	s=k20201202; t=1733737746;
+	bh=y43p1uapSXC5fw7JnaqXHM4i71jrvsqwiDGw3bHTA2s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rhH4UrULssmgCqsspl3KJzRUsXeB8VE3f/jZTl9Clb9CSlLpM4aCumCH0Pm9KNSOy
-	 AZGNhXgOvL1tMbpmSteqJV7ISBUOCJFgqewmU4F7zpyX6gD76sMFhLvi2ca9bha5J/
-	 3Yi2+oSBfOfoi0liJffY8vqo+oYdzUGBx/aTw23ndad3E3fNNl19IdVW4+X1tp96zw
-	 IMl1XaO5rVYZPpi6ksioU/eoPHdVXhfhxLE93OmnnaveNtDVgjYeEEbd50WkxPqfKU
-	 AgdnXIoa+Gw6W3MiJ9mYgtoNg5nigWTz6vpEpDfw5UTRdHlH5cvRzZwWrfMkEixUuz
-	 8cFPkfbPC+Exw==
-Date: Mon, 9 Dec 2024 10:48:53 +0100
-From: Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org, 
-	Arnd Bergmann <arnd@arndb.de>, soc@kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>, 
-	arm@kernel.org, Andy Shevchenko <andy@kernel.org>, 
-	Hans de Goede <hdegoede@redhat.com>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH leds v7 00/11] Turris Omnia LED driver changes
-Message-ID: <sn4jz4tqo6cywpg3vwugl4heh5qt7e2uhmvvnu3l2cf4jj22af@azybtpl5bm63>
-References: <20241111100355.6978-1-kabel@kernel.org>
+	b=dhtR2TC0vGiWpVSG8A097r4XibOSL4QZQ5XbNoI0MtPIYnb8DsbqX7nfOt7/FgKN+
+	 +fFfWrFCmNKkBX+6W4V4trV1JxrqKKW4h79PaD+58P3Pz3ykbxtdGgYOoUiI8XgBQY
+	 9f8E1EFlAFVJ7o6u0SDu1yO9F3XFZekcP9k67Os+L/f+a6x/MOYwQLflHToYbWC7Fq
+	 SNYqL0RTPfrTZyPCs6PvFApCtCstKB9fYfHvjWiVJ6qvfQoemXOK77P8O/SF/Et+OK
+	 bbdfUtdEiyMxQ+aRuWe6u7LZvsSJpMxLi9mDq7phcfJYuiaTPHF6WEhhBwA9cYfdWI
+	 TU7K4YHRYO3Gw==
+Date: Mon, 9 Dec 2024 10:49:04 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Trevor Wu <trevor.wu@mediatek.com>, kernel@collabora.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org
+Subject: Re: [PATCH 2/5] ASoC: dt-bindings: mediatek,mt8188-mt6359: Add
+ compatible for mt8390 evk
+Message-ID: <mycrs2ekxznwcxkvthamvszftrt5t66shvopn5xpuhaldtsb4g@qv2kpx6yt2mv>
+References: <20241205-genio700-audio-output-v1-0-0e955c78c29e@collabora.com>
+ <20241205-genio700-audio-output-v1-2-0e955c78c29e@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241111100355.6978-1-kabel@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241205-genio700-audio-output-v1-2-0e955c78c29e@collabora.com>
 
-Hello Lee,
+On Thu, Dec 05, 2024 at 09:13:55AM -0300, N=C3=ADcolas F. R. A. Prado wrote:
+> Add a compatible for the MT8390 EVK. It is compatible with
+> mediatek,mt8188-mt6359-evb so make that the fallback compatible.
+>=20
+> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> ---
+>  .../devicetree/bindings/sound/mediatek,mt8188-mt6359.yaml  | 14 ++++++++=
++-----
+>  1 file changed, 9 insertions(+), 5 deletions(-)
 
-will you be taking this series for 6.14?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Marek
+Best regards,
+Krzysztof
+
 
