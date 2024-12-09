@@ -1,78 +1,56 @@
-Return-Path: <devicetree+bounces-128554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D11059E9008
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:22:31 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E9079E9040
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:34:16 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 330871886757
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:34:15 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36969216E3E;
+	Mon,  9 Dec 2024 10:32:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="rxCK8EHz"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E426281358
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:22:30 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B371621661D;
-	Mon,  9 Dec 2024 10:22:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h13awTAM"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F4414F12D;
-	Mon,  9 Dec 2024 10:22:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A76D9216E17;
+	Mon,  9 Dec 2024 10:32:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733739746; cv=none; b=SFGynou5XDvKzRa6LeMWa7W5BT4swPBGROkIXljc/rdBzxp5QohTFnzjWiZMGDEwl/j6VPDxUgp1WO+4dx8F80wXx+FWaITQnuMD6t7P0TW5mluDbaTXM+3NT/ZnbT66Rzp7siWYdvrEjY0s5biFEekHo87DJ5IHavdTqUzMfOI=
+	t=1733740367; cv=none; b=OnWMnFzIF8GjbY4e/SargdVVpJZ0SAIJ9rOQ0T7LgOJzRTh7GDUlfLDWBEqZSsLaF6f1OZqq5ji3snGJ9+p8tYEGWem4L9wS6wmgiprrX02hYKgvUyKplBWnJqYzLXyg99stuwIZ0eLHn8a/cguC1SPcdDR0nAFf83ilmLBbTEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733739746; c=relaxed/simple;
-	bh=psJ6EdfRQDJJZjbhcaypGTvllIk2NcKhIpZ9DYRkbhA=;
+	s=arc-20240116; t=1733740367; c=relaxed/simple;
+	bh=IaZmXAaUI3FCLQAuB1Npp/LTLYPPybZ+aVugr6WcA+Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EDvLa7QoT8nCly6ZteNYF+gYORos1V9L7rKgGsGP9uSoDjI5Yal7xVnCrTzmky+zdtnk3qN4HfaNdQ59hpasiMH27Cg6mg03VGWmSyLTbUdEVItaf8ilFY0BTdX3zqkv3qGWLgDDtcC4sa38u02aosGnplISI8PmVcIFSARdmlo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h13awTAM; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-725dac69699so1137507b3a.0;
-        Mon, 09 Dec 2024 02:22:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733739744; x=1734344544; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JK+YHbwbzYxN2fA6jQpylORDnONEVEdYkbUHx87yE3E=;
-        b=h13awTAM9LmqTzUAjoKJgZH4iGNPtm/3vMgRCTqJqLGq+1NqbJaclrXgn1h2UOf6JC
-         PGNBkGulDqinwnCeW1JMDL1Q+ic4ivebfRWwxGFr/Xjigkf3HHJpogcqPev9lvUZl0yF
-         vUU3qEs2MN5IyCbkKX+gttavP2cPl1CwMcI2btFb2RtTIQ4cZ23huvdIn2v0ozlPbuW2
-         Z5iex0/wvo+MhGSgB+dbqcY7TA3OT82rAMrYEuHX6yIt04BVRzx6LmtPkKwLTDDsResK
-         54VHIF+QunfYIs4Bg/mSFBObDRFUYpYVe0Qb5QpqwZn8yQ5puCOmsU3VMO2j2AEmiJ6b
-         u3/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733739744; x=1734344544;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JK+YHbwbzYxN2fA6jQpylORDnONEVEdYkbUHx87yE3E=;
-        b=muPfb6h/Zr9xIwYlUU4G/FFpRy+7+DXUewKztfBvHJS+mhB8T7SY3Aeo7/y9onwDVn
-         p8osqfMV/Q/pjjp3LCYudB3vnFSxBX8EQ8AsPPDluaoDYY49p9V+5f7gkthnsh0wSHsm
-         18It63aHk7DFRED+QIAWfE85ZqK7rF0R5lrRNaD3PGoHWkFgAJl2xeTIEWOfml7flYmg
-         f843Ek1NL7FvS9IWwdoAVswoXixGj8rquxHr3G53LfOX8meW4mg56ZwKhQxHryFQ6xj1
-         Gaueq09D0HoLh9y0dUuriXVv1XTfnCCIGTDKmlnez5dNFp5JECBnWl5v5HzEXjGFUb9k
-         vpJA==
-X-Forwarded-Encrypted: i=1; AJvYcCUrn7MjRoA2CgchGgGlanvZtbOonMSUTzu+outj+EYKAFCCxrBB758vorIlHYb0QgJqPPK3n/TrbRMZ@vger.kernel.org, AJvYcCV88PsI1pP4O8NY4yTXiol9st8DEYJ+oLrdLr5P/SS7m40ttLRoqsBp6p13a/ViSdjHFV1GBr4R5X7ekEuF@vger.kernel.org, AJvYcCX/j13Uy+Kk+BdJ256qbbCnlA9Sk8QlZjPV5xZ3a+YCeNuVjcp7y24398yCq3+XZDqAHxCKCci5AbhKJw==@vger.kernel.org, AJvYcCX9oirflzA8Xc7IEJUKViQlj+5o2mMxqkAlcbDqZ2f3AA7zuE08br0P/Uldo0ioG2OpL6OJdRo+Cr6fi58=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsR1d1hKky2yVTJizFjR8v5D3mtRW5BKlBeNgTTNhX2+LXGbkM
-	+UlLoIJIN4nf+roaZao0/snZwbry1UdbE+3zM3sjCPz5d9uFf7HU
-X-Gm-Gg: ASbGncvjvOJhxuMAYEzTRM1DbscFrez7D+aHoVwOgvAXIKTlMP7rfkFd4geH55g3PCs
-	Vp7RSpUeombUmLc0lMFgi9txK5TXUHvExrbYU1x/yVFY1naCrb/LPBFDQEIBJZv7B1kVO+ed+ZG
-	LLO0OMaVCZidU93zC33gLjl+Xzjn9Zi/6Wz3RUXROe5xrXuRfqlAa34SwEOZthuV73OP/+ibAQH
-	zOZDnov+V2/g4944Rhgl4tBsetaW/uGbUBGqKfGoAUSF0Ol3gMk3ds0QdSlvRTkmBsq
-X-Google-Smtp-Source: AGHT+IGIMaQLW4wct1dsitCDskJol1qDWg2mfuDdPh8GMuIT847eTTcppJMdsxFJj7Ut8lRt0yTYLQ==
-X-Received: by 2002:a05:6a00:4fcc:b0:71d:e93e:f542 with SMTP id d2e1a72fcca58-725b820b43fmr19800743b3a.21.1733739744446;
-        Mon, 09 Dec 2024 02:22:24 -0800 (PST)
-Received: from [192.168.0.115] ([59.188.211.160])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-725d6856bf7sm3620294b3a.192.2024.12.09.02.22.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 02:22:24 -0800 (PST)
-Message-ID: <e06c5d7c-de3c-46ff-b2ee-8ed794577e70@gmail.com>
-Date: Mon, 9 Dec 2024 18:22:17 +0800
+	 In-Reply-To:Content-Type; b=HQs9/q30qfsWlW/jEEwEVDpWvFzrpXwzBCCmBJy/26otHvCbtoQe0+hABX0hfUhzy9LNOh0PSCrpGPVkMVewK43u8/EFzJY/wSerQ1bZEn54wwSEuIZ6omCw+W2MyhomP36OrUUG85wgib0p3NdrskGS/+LlTdLkabAQOoH/FEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=rxCK8EHz; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1733740350; x=1734345150; i=wahrenst@gmx.net;
+	bh=IaZmXAaUI3FCLQAuB1Npp/LTLYPPybZ+aVugr6WcA+Y=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=rxCK8EHzNTk1KR9+KaG2iNQX5+w3OZsr+HRhu+v07NTOmsbRZaufx2q+xrJb4Ete
+	 Wtd9AHyncgqykzcc7yGID+nSS47mrD+0AL0b7+B9atWp7F17+jaa4vzONb+TwK7Ur
+	 e6U40xbgXcS/tG/LwMyTP/w+g5eht45P08sv4t2r8bm+foCbhY6kMIy/LvhnuHVnr
+	 CNKWODzi0+ZOeVqGPiI+TDowtuKNK/cATp8EOKXmYIqJA47ojIYqwBY5CcBb7TKkD
+	 TsiBODkLcvkUJQUhWDczl7yFX5kZAGDAKGMQG8sx6U50B143t8p5QJoZSvg/XoEhC
+	 1xkMsZnUGCMza2XI0Q==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.106] ([37.4.251.153]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MIMfW-1tNwZF4AwW-001qoh; Mon, 09
+ Dec 2024 11:32:30 +0100
+Message-ID: <c8fd371f-fd36-48c4-ad49-1e8f8db01383@gmx.net>
+Date: Mon, 9 Dec 2024 11:32:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,48 +58,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] backlight: dwi_bl: Add Apple DWI backlight driver
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	y@krzk-bin.smtp.subspace.kernel.org
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
- Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
- Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, dri-devel@lists.freedesktop.org,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
- asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20241207130433.30351-1-towinchenmi@gmail.com>
- <20241207130433.30351-3-towinchenmi@gmail.com>
- <bqn4tddl3kgle7zlamgaqlh45pizw6gf5qjwlmcsbkb6fx343l@tf5w63xursi2>
+Subject: Re: [PATCH v11 3/3] ARM: dts: mxs: Add descriptions for imx287 based
+ btt3-[012] devices
+To: Lukasz Majewski <lukma@denx.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241107085705.490940-1-lukma@denx.de>
+ <20241107085705.490940-3-lukma@denx.de> <20241119165236.69438f75@wsk>
 Content-Language: en-US
-From: Nick Chan <towinchenmi@gmail.com>
-In-Reply-To: <bqn4tddl3kgle7zlamgaqlh45pizw6gf5qjwlmcsbkb6fx343l@tf5w63xursi2>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20241119165236.69438f75@wsk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:WT35FUcxkk24pmHWc8SbN7TbdU9tsAN2+EJ+r1nufEZCyVU0DTD
+ LpUn0KYHF8odE8iif7UZ3qkEsIVIWYREq/3CSbPxoRWpo9/4XFBIzmtA2hJsYnCl9ST8Xv+
+ SsGJ5ho7Flmf4F1fdrAi4ZDUiSPZ09qZiEYM8FNGiQofxrmure0utbfJ7gMdSiJ4mXCuBh3
+ xWFlidfqTUrLfwNrK8Bvg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:87TXXS13MfA=;3QWf8OLTUwXBXpKsWpJm8JR9S7T
+ Igl6SlHxcaPbGBuGg7n0haj237PaPA+qn97bMKkt4QahRyMcvSG8H2f67sm2IslbW4oW4yLaM
+ qHTUBaSG1vuAGjkyYgt2GEaDM+NUsB8Y4OM/cKvYyINniEZEqjCg7h+2M87LYIrZry6VPsOb9
+ lN1tdkmbkyVgVK71OEShOTwKlHchKRuXLE4g281fUXAfFKMPMK8Bkjl8MLZXrMagaJm1YUpSP
+ gjKgmKGLOeDnpa0bUYQDshvNi+RH3gTPqJHqZbCctL8k3XXZnRlJMVfETnumbbG8TZJyOSsvM
+ oHIlBbvFvM8etPp7o/BD8vaGmbU86PtxTVNOeblRYUiugZSUt4Kjh6uJm8gPI73nzYooW+ifK
+ Mwrw+T63qWfrq50h6x/xv1FQpodgvjWbYWf8pcmGx3kI4H8FXOHNH+Ijakn2DHEbECgj1YQWp
+ EBjF8tijx3Vom338awhnkLjYXihDM/4qn7/CoZS0epATHVLW9CnkHcaG89Pqu9oDXjjuhS9+l
+ JYIlXT8xERpKbiExA1szYxts1HgEpV9u2nom+kVE43ZQEcoPWTMV4uko2No5vW6d9AJTu7LBD
+ 4v/SAYXSQrucJEc/jHC7NYLjjWyl/elbJkzo+2toK1Vf4i1WJZFApx5OI29HOKGtUoH99FXgd
+ jZpar3SphehSPPJuuLV4K+pm8I+Tq6E3tyP0+BG2tglRGhNZ/UMChHSyp37c+eG5kXomC8mQt
+ 2q4znHrE6kqmctoMFDNZ/xdARwZSkljgoUoZ2VV5Taf/nnXSk+W5O7hPMYfXRRFQkTDl65y1g
+ tF6DS6O/fscb1syiv/jjtIONU6b80XFn04ILFyrItirq/sht2j16P6g/wMoHDyufDYGQdmeK7
+ 1/vk0Yuov0docj3rtbD3E3qthFPEFq9uDWYTuu4DlCbvQADOnR7G8mgQiimjJyxsVggCSxilU
+ 704nfotP/NUB+kV5pbhLcMrkU4Lo3gN6stoZ2EHJ4bUEYn3NyQtgrpDxdnlsqZW/rC8rCaMVa
+ HSPEzJ6t8mkwGZEc3JbUgLcJo8ZWQ4XFRaXegdfIdCKr/qeO5YVb80mNKoiaJ4RHHS41rG1l3
+ 8vd7m/mVzIQQeIkNeliYs1MWtsl0eu
 
-
-
-Krzysztof Kozlowski 於 2024/12/9 下午5:22 寫道:
->> diff --git a/drivers/video/backlight/dwi_bl.c b/drivers/video/backlight/dwi_bl.c
->> new file mode 100644
->> index 000000000000..d4bfd74b3129
->> --- /dev/null
->> +++ b/drivers/video/backlight/dwi_bl.c
->> @@ -0,0 +1,124 @@
-[...]
->> +
->> +	dwi_bl = devm_kzalloc(&dev->dev, sizeof(struct apple_dwi_bl), GFP_KERNEL);
-> 
-> sizeof(*)
-
-Ack this change as well for v4.
-
-> 
->> +	if (!dwi_bl)
->> +		return -ENOMEM;
-[...]
-
-Nick Chan
+Am 19.11.24 um 16:52 schrieb Lukasz Majewski:
+> Dear Community,
+>
+>> The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
+>> some extend similar to already upstreamed XEA devices, hence are
+>> using common imx28-lwe.dtsi file.
+>>
+>> New, imx28-btt3.dtsi has been added to embrace common DTS
+>> properties for different HW revisions for this device.
+>>
+>> As a result - changes introduced in imx28-btt3-[012].dts are
+>> minimal.
+>>
+> Are there any more comments / suggestions for this patch set?
+I've send my RB for this patch on October 31th for V10, but it didn't
+made it into V11.
 
