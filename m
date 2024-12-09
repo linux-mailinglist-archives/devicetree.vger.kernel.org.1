@@ -1,55 +1,78 @@
-Return-Path: <devicetree+bounces-128545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F0339E8F96
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:03:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2FC49E8FB9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:08:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 120931620FD
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:03:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A577418860B2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:08:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD3DE2156FD;
-	Mon,  9 Dec 2024 10:03:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F53C216615;
+	Mon,  9 Dec 2024 10:08:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qIiERnIv"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NmRKl4G1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB8B174EDB;
-	Mon,  9 Dec 2024 10:03:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C2F214A74;
+	Mon,  9 Dec 2024 10:08:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733738609; cv=none; b=XVZ1qNXHIoGe6F13+N4u/o1W28nyBCjr6gEy3drs6cWoNbqzSJEpFLw2cWRTQD9PntOaoPZoY7SZLdxUm2rRYxoV8kUwLn3IsXV6N/LL4IuIAmCsSwfWn3LbCaUm6T3YeodTvnUGAdbrP1lwtD2a+7Zi4VutxKXzcISRwmsp0OU=
+	t=1733738883; cv=none; b=bCOYSG5xAZudW9ANnpPO4lCn9atA/jVdBRNTwo2iMGt7hXsi/BD8ZSGpiCJdG8f9i3jFUYdQrA0efM/D8fmQkZZRR+OFzYL6NPvWUj6gRbHoZWpva6N/fDSktzpNGFPIKSWW3AhyPk3itZIYFeF7wPVLE3qWKOS8KzYaHZUwmOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733738609; c=relaxed/simple;
-	bh=uxDhJyLY3sygy6QpU5RBbCWc5T7HouoogqahrUoEgVQ=;
+	s=arc-20240116; t=1733738883; c=relaxed/simple;
+	bh=fU0JFCK9xqBNnAEfWCALQQcXBFQd2+mLyQO4TWjbXnQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bkJWV3aEjJZzLvOxI9tTHOMcaDOurt/AsOUIkR/mEDBbF/lamq6YdbwOm47V47RXp6141FzOH5jyAwSCM8MDwzZQek9KPzxa/8WWrZl9lkpTCMVYWT2i4dd2gAfXia7zb00jxH5KvTUccJXgMwnk5diqN4cv0zHRQ/HGOe7G1k0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qIiERnIv; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1733738604;
-	bh=uxDhJyLY3sygy6QpU5RBbCWc5T7HouoogqahrUoEgVQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qIiERnIv919/ESyVCG3CtCp2T2qIXTi3k40L/ZXlh5p7nfHQZ7Yk+8lR6/xjB6wVE
-	 3AkTXm61EaKoSdY9cBflFmGUoz/kE1gc0EP45KxaSUT+b/lND0VeAnOUwjnuGAa6OT
-	 LyN2sB3DdfIzAlWtQqHzzqnN1Wwg0lrGiW2hHKA0a0sNcuzVp3IdA/9vL/KOZH5dbR
-	 3o60pvkY6uXerlXMK0djbTSxzTSQarvHIyZ7FCt01xA7ka7HJ+4q2iI4sMfY8CN+tz
-	 uijQPuSyo9iuEeuzA3R3fc8X2pJhm/vMP6Lm/Wj0SPwjUtMq+1+GJGQArr4oNnl+YO
-	 9FVZFihrAB3cA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2474717E3625;
-	Mon,  9 Dec 2024 11:03:24 +0100 (CET)
-Message-ID: <c7407eef-d5dd-4380-ba5e-1defa37ee742@collabora.com>
-Date: Mon, 9 Dec 2024 11:03:23 +0100
+	 In-Reply-To:Content-Type; b=j0l7hPIQT70hWEa9x1nt4IJYeJS4p+HiKEUj0UHWt8Vo8JtjG4tgdXgCVWffywWQQbXeadf6zutVH4+D/sYG8tF3BvTTx8srhrMdmK9Ia5U4hUkPiK7EmPuebA4J3mUvOnUvRTuH2/GtlvaOSd9627YwJRpLz8g3DJdqOsbGDH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NmRKl4G1; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-725c0dd1fbcso2705136b3a.0;
+        Mon, 09 Dec 2024 02:08:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733738881; x=1734343681; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fZp+CFP7K7kOAlodAUCSCzM6XqjZQS3FtVdgKB9HjIU=;
+        b=NmRKl4G1KcNNWxnnIzyTG4zT4+mruz9DO70ibdd8CCb/LSX3NIbJLoEqaaQy5sOCIH
+         I3ho68CSKin3OJDHh63cXNxQkFDSqiH0Rzw4HRwYovhL8zKDKz8loPyBJNOaQ92OaifR
+         Y609ppgSWChmQ0N6hMKVTfcd90QekyclEFMO1OxBDhu5hDT95YBPTBVFnuJrly7v3fHD
+         54M0vLoBlcZSJ0EqY6sCi4x23SSlyScVQrfSm6/THAc8kg9gJ4FN3NsO/GVvMGBMdEJv
+         4im+gsbb3ZApKGEe32qpQXbk5ma09+7DSKhxcf1rYd0YYz5YHldbNnwcuseDPGcSCq/a
+         zW0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733738881; x=1734343681;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fZp+CFP7K7kOAlodAUCSCzM6XqjZQS3FtVdgKB9HjIU=;
+        b=PSqOQQKSIKX/BywqILJueKlYi/W+ldTPRx1nFsUwNK74w6+YVmrHUUw3rNGHzsL/tj
+         38jNF+J/iVQR62vHIAnch0OCaISfU4zEHATHmn3U18eds0oEp500YtS8yLVnOQRpV0Ng
+         wzXrKXBvgy5qRL22CSjK+A1o4Y4JYJXm3GPGpB0iyKZ7IkzL4PZrJJDCgI/BUhbqz0nF
+         I65UcV8mWKuAPyqf2ghl2ttvkk4h8Mi5PZmyja4dS0r1IvXRzTEfH7qqiIk+DB2abTvC
+         YVTSGXvgKv11TFBpD01UssZTgVZz8tkrNF8qkWpgn1mAfDC4Vy3PuRVXfZUsMfLgq9hw
+         0vLA==
+X-Forwarded-Encrypted: i=1; AJvYcCUokxy1peM772iY3a/bYshIdLnEQDlDEh2TZJWMIdecLatVSpv7ungctt0+naE6rqu6pjd07w5v/K5Zfg==@vger.kernel.org, AJvYcCVBHCzS1floGXkVa12EHyVtWnOc/6rJbz+LnXdOanRtg9PXGUszD3kB5qK8VDWXSnX79tW7f672TBpiBzY=@vger.kernel.org, AJvYcCVTy6IAwGFp1E9HG+MoteeImk4a5+qzw8Lmcge54XeDtkv0JiaVL/rSVoAAnp/AN8pjuD+gXKzINRQl@vger.kernel.org, AJvYcCXvdZhHMBaXFCmB8UsoyLNU6eM1FVmI+Zt8TFMD1/jFsrAX0a/CF2YjA/B3m39GLlBldJugH6j47GFPk17j@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgHTyswp3TNkpWy5L4VhIV6BKR++/x9nuxlMskIi9Tz9IPLSMq
+	X1+RI3nlH4T5YlxPQCTPlYHA7WvObuTO3SsHNETR+bZuc0P18M/0
+X-Gm-Gg: ASbGncuCBBSnuEiikOsCmsThZjv//mLST7Q89Flc2Our86DtTj/QsXi+PJ0CIsqnACH
+	yBvK6GoOb7I/GZsCXFUADfJPYfc0BqeK1hCQGlIO7OrfAQ8sQw0uFe5I/NTdkFrm7qcOkQatRwM
+	CyFldC4iJiR3ig3n9qHgI8y+/OUrf3Q6rAJABiIqXUrjpUPHOXfPYGe+BskzUmtaomneYve6lOz
+	Em3n3GmSNqHEbFCTAwpG7MeWQy8q6Zrz7zAA8PDD/PwE3H0FwaiyPgrR3s8mccx1Y07
+X-Google-Smtp-Source: AGHT+IE2AAunC8wmSSoVHJwvOzFoZYPvX4c5A5ejLO9bR6TnjihE9dezvHIlPn7G9UQ6/5A3kkQW9g==
+X-Received: by 2002:a05:6a00:a8c:b0:725:24c2:b794 with SMTP id d2e1a72fcca58-725b8188090mr18378334b3a.23.1733738881124;
+        Mon, 09 Dec 2024 02:08:01 -0800 (PST)
+Received: from [192.168.0.115] ([59.188.211.160])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-725d9b98eb2sm3567122b3a.148.2024.12.09.02.07.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Dec 2024 02:08:00 -0800 (PST)
+Message-ID: <551941de-b9a4-4353-8bb2-0bfc3304ef87@gmail.com>
+Date: Mon, 9 Dec 2024 18:07:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,112 +80,199 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] MT8516/MT8167 dtsi fixes
-To: Val Packett <val@packett.cool>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Fabien Parent <fparent@baylibre.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20241204190524.21862-1-val@packett.cool>
- <7bf536a5-30c1-43d8-9ea3-3aaea65c6b0a@collabora.com>
- <VVS3OS.MZCWW6ICFFUB3@packett.cool>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v2 2/3] backlight: dwi_bl: Add Apple DWI backlight driver
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	y@krzk-bin.smtp.subspace.kernel.org
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+ Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+ Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, dri-devel@lists.freedesktop.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20241207130433.30351-1-towinchenmi@gmail.com>
+ <20241207130433.30351-3-towinchenmi@gmail.com>
+ <bqn4tddl3kgle7zlamgaqlh45pizw6gf5qjwlmcsbkb6fx343l@tf5w63xursi2>
 Content-Language: en-US
-In-Reply-To: <VVS3OS.MZCWW6ICFFUB3@packett.cool>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Nick Chan <towinchenmi@gmail.com>
+In-Reply-To: <bqn4tddl3kgle7zlamgaqlh45pizw6gf5qjwlmcsbkb6fx343l@tf5w63xursi2>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Il 07/12/24 04:11, Val Packett ha scritto:
-> 
-> On Thu, Dec 5 2024 at 01:27:01 PM +01:00:00, AngeloGioacchino Del Regno 
-> <angelogioacchino.delregno@collabora.com> wrote:
->>> I strongly suggest you to also send one that achieves basic boot with UART console
->> as a first step for upstreaming your board, and then go for incremental changes
->> everytime you get a new feature working.
-> 
-> Wanted to get the PMIC in first but sure, could try splitting out the initial 
-> version without the PMIC.
-> 
 
-We all want to get XYZ in first, but then, you'll see that sometimes having at
-least something will help you justify other changes....
 
-If there's nothing upstream, understanding your changes becomes increasingly
-difficult (depending on the nature of those changes, of course) - so... just
-take the advice: sending the initial DT will help you later in the process ;-)
-
-> Oh! One dts/dtsi question: pretty much all MTK devices so far have all pinctrl 
-> configurations defined per-device. But on this SoC, pin assignments have their 
-> "canonical" function in the pin name e.g.: MT8167_PIN_58_SDA0__FUNC_SDA0_0 and on 
-> this device they are used as-is. Would it be fine to place these default pinctrl 
-> configs for SD/MMC, I2C etc. in the SoC dtsi?
-> 
-
-No, because even though this is the default on many boards, it's still something
-board specific, as other boards may define different functions.
-
-Please define that in your board DT.
-
->>> Generally, if the patches are only simple additions, you could send the original
->> patches without any author variation (and fixing that MT6392_IRQ_numbers enum
->> in the original ones because lower case please!) and then your patches on top
->> with your additions.
-> 
-> Right, I was mostly unsure if the email workflow supported just sending someone 
-> else's patches, but I guess that was silly - of course git-send-email should do the 
-> right thing!
-> 
->> The upstream driver just gained support for configuring the display paths
->> entirely in the devicetree as those are obviously device specific.
+Krzysztof Kozlowski 於 2024/12/9 下午5:22 寫道:
+> On Sat, Dec 07, 2024 at 09:03:15PM +0800, Nick Chan wrote:
+>> Add driver for backlight controllers attached via Apple DWI 2-wire
+>> interface, which is found on some Apple iPhones, iPads and iPod touches
+>> with a LCD display.
 >>
->> You can make use of that for upstreaming your tablet after adding the display
->> nodes (and bindings, if required) as if you go for the default configuration
->> that's probably not going to work because it's for the pumpkin boards which
->> will most probably have a different display pipeline compared to your board.
-> 
-> The pipeline seems to be the same.. The pumpkin board was brought up with DSI as 
-> well, the main pipeline I can find in the Android source is the same (+ PWM).
-> 
-> I am still struggling to get it to work though: DSI command mode configuration gets 
-> acknowledged fine, but in burst mode, the vblank never arrives. Tried fiddling with 
-> various things (CMDQ or not, mutex as vblank source since there was an Android 
-> commit doing that, etc.), nothing helped.
-> 
-
-DSI command mode is not supported upstream - only video mode... and that's why you
-can't get your display to work. There's no WDMA driver...
-
-Convert it to video mode and it's gonna work just perfect :-)
-
-P.S.: Also check if your mmsys+mutex configuration is correct!
-
->>> By the way, is anyone familiar with PSCI cpuidle/hot-unplug issues on
->>> Mediatek Android devices from around this time? [..]
+>> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
+>> ---
+>>  drivers/video/backlight/Kconfig  |  12 +++
+>>  drivers/video/backlight/Makefile |   1 +
+>>  drivers/video/backlight/dwi_bl.c | 124 +++++++++++++++++++++++++++++++
+>>  3 files changed, 137 insertions(+)
+>>  create mode 100644 drivers/video/backlight/dwi_bl.c
 >>
->> I did have some issues with an older bootloader on the Xperia M5 smartphone
->> and would even lock up at boot, because on the old firmwares the power
->> domains for the CPUs are not managed automatically by FW.
+>> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
+>> index 3614a5d29c71..e64cc3d51ac5 100644
+>> --- a/drivers/video/backlight/Kconfig
+>> +++ b/drivers/video/backlight/Kconfig
+>> @@ -166,6 +166,18 @@ config BACKLIGHT_EP93XX
+>>  	  To compile this driver as a module, choose M here: the module will
+>>  	  be called ep93xx_bl.
+>>  
+>> +config BACKLIGHT_APPLE_DWI
+>> +	tristate "Apple DWI 2-Wire Interface Backlight Driver"
+>> +	depends on ARCH_APPLE || COMPILE_TEST
+>> +	default y
+>> +	help
+>> +          Say Y to enable the backlight driver for backlight controllers
+>> +          attached via the Apple DWI 2-wire interface which is found in some
+>> +          Apple iPhones, iPads and iPod touches.
 > 
-> Interesting, thanks for the pointer!
+> Mixed/messed indentation. Some spaces?
+Ack. Will be fixed for v4.
+
 > 
-> In the Android kernel sources I could find though, there are no CPU domains in the 
-> mtk-scpsys-mt8167 driver, and the only references I could even find to the related 
-> register bits are from code that *reads* the status of the CPU power domains to 
-> make decisions about sleep states (only_one_cpu_online in mtk_idle). Trying to add 
-> those to the driver anyway, did not succeed so far.
+>> +
+>> +	  To compile this driver as a module, choose M here: the module will
+>> +	  be called dwi_bl.
+>> +
+>>  config BACKLIGHT_IPAQ_MICRO
+>>  	tristate "iPAQ microcontroller backlight driver"
+>>  	depends on MFD_IPAQ_MICRO
+>> diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
+>> index 8fc98f760a8a..0a569d7f0210 100644
+>> --- a/drivers/video/backlight/Makefile
+>> +++ b/drivers/video/backlight/Makefile
+>> @@ -28,6 +28,7 @@ obj-$(CONFIG_BACKLIGHT_BD6107)		+= bd6107.o
+>>  obj-$(CONFIG_BACKLIGHT_CLASS_DEVICE)	+= backlight.o
+>>  obj-$(CONFIG_BACKLIGHT_DA903X)		+= da903x_bl.o
+>>  obj-$(CONFIG_BACKLIGHT_DA9052)		+= da9052_bl.o
+>> +obj-$(CONFIG_BACKLIGHT_APPLE_DWI)	+= dwi_bl.o
+> 
+> Please do not introduce other sorting way - it is sorted by config name.
+> Which will also point you to apple_bl.o and need of explaining the
+> differences, e.g. why this cannot be one driver.
+
+apple_bl is a driver backlight controllers on a PCI bus on Intel Macs,
+which is
+completely different from the Samsung-derived DWI block this driver
+deals with.
+This will be explained in the commit message for v4.
+
+> 
+> 
+>>  obj-$(CONFIG_BACKLIGHT_EP93XX)		+= ep93xx_bl.o
+>>  obj-$(CONFIG_BACKLIGHT_GPIO)		+= gpio_backlight.o
+>>  obj-$(CONFIG_BACKLIGHT_HP680)		+= hp680_bl.o
+>> diff --git a/drivers/video/backlight/dwi_bl.c b/drivers/video/backlight/dwi_bl.c
+>> new file mode 100644
+>> index 000000000000..d4bfd74b3129
+>> --- /dev/null
+>> +++ b/drivers/video/backlight/dwi_bl.c
+>> @@ -0,0 +1,124 @@
+>> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+>> +/*
+>> + * Driver for backlight controllers attached via Apple DWI 2-wire interface
+>> + *
+>> + * Copyright (c) 2024 Nick Chan <towinchenmi@gmail.com>
+>> + */
+>> +
+>> +#include <linux/module.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/io.h>
+>> +#include <linux/backlight.h>
+>> +
+>> +#define DWI_BL_CTL			0x0
+>> +#define DWI_BL_CTL_SEND1		BIT(0)
+>> +#define DWI_BL_CTL_SEND2		BIT(4)
+>> +#define DWI_BL_CTL_SEND3		BIT(5)
+>> +#define DWI_BL_CTL_LE_DATA		BIT(6)
+>> +/* Only used on Apple A9 and later */
+>> +#define DWI_BL_CTL_SEND4		BIT(12)
+>> +
+>> +#define DWI_BL_CMD			0x4
+>> +#define DWI_BL_CMD_TYPE			GENMASK(31, 28)
+>> +#define DWI_BL_CMD_TYPE_SET_BRIGHTNESS	0xa
+>> +#define DWI_BL_CMD_DATA			GENMASK(10, 0)
+>> +
+>> +#define DWI_BL_CTL_SEND			(DWI_BL_CTL_SEND1 | \
+>> +					 DWI_BL_CTL_SEND2 | \
+>> +					 DWI_BL_CTL_SEND3 | \
+>> +					 DWI_BL_CTL_LE_DATA | \
+>> +					 DWI_BL_CTL_SEND4)
+>> +
+>> +#define DWI_BL_MAX_BRIGHTNESS		2047
+>> +
+>> +struct apple_dwi_bl {
+>> +	void __iomem *base;
+>> +};
+>> +
+>> +static int dwi_bl_update_status(struct backlight_device *bl)
+>> +{
+>> +	struct apple_dwi_bl *dwi_bl = bl_get_data(bl);
+>> +
+>> +	int brightness = backlight_get_brightness(bl);
+>> +
+>> +	u32 cmd = 0;
+>> +
+>> +	cmd |= FIELD_PREP(DWI_BL_CMD_DATA, brightness);
+>> +	cmd |= FIELD_PREP(DWI_BL_CMD_TYPE, DWI_BL_CMD_TYPE_SET_BRIGHTNESS);
+>> +
+>> +	writel(cmd, dwi_bl->base + DWI_BL_CMD);
+>> +	writel(DWI_BL_CTL_SEND, dwi_bl->base + DWI_BL_CTL);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int dwi_bl_get_brightness(struct backlight_device *bl)
+>> +{
+>> +	struct apple_dwi_bl *dwi_bl = bl_get_data(bl);
+>> +
+>> +	u32 cmd = readl(dwi_bl->base + DWI_BL_CMD);
+>> +
+>> +	return FIELD_GET(DWI_BL_CMD_DATA, cmd);
+>> +}
+>> +
+>> +static const struct backlight_ops dwi_bl_ops = {
+>> +	.options = BL_CORE_SUSPENDRESUME,
+>> +	.get_brightness = dwi_bl_get_brightness,
+>> +	.update_status	= dwi_bl_update_status
+>> +};
+>> +
+>> +static int dwi_bl_probe(struct platform_device *dev)
+>> +{
+>> +	struct apple_dwi_bl *dwi_bl;
+>> +	struct backlight_device *bl;
+>> +	struct backlight_properties props;
+>> +	struct resource *res;
+>> +
+>> +	dwi_bl = devm_kzalloc(&dev->dev, sizeof(struct apple_dwi_bl), GFP_KERNEL);
+> 
+> sizeof(*)
+> 
+>> +	if (!dwi_bl)
+>> +		return -ENOMEM;
+>> +
+>> +	res = platform_get_resource(dev, IORESOURCE_MEM, 0);
+>> +	if (!res)
+>> +		return -ENXIO;
+>> +
+>> +	dwi_bl->base = devm_ioremap_resource(&dev->dev, res);
+> 
+> Use helper for these two, devm_platform_get_and_ioremap_resource() or
+> similar.
+Ack. Will be fixed for v4.
+
+> 
+> Best regards,
+> Krzysztof
 > 
 
-Downstream, you will find references to "mtcmos" (or anyway cpu mtcmos) - that's
-how power domains are called there (I think. At least, in older downstream kernels
-that's how they're called - and that's the "real" hw name btw).
-
-Cheers,
-Angelo
-
-> ~val
-> 
-> 
-> 
-
+Nick Chan
 
