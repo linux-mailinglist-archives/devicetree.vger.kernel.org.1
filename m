@@ -1,375 +1,577 @@
-Return-Path: <devicetree+bounces-128767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEFD99E95E5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:11:24 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D8701889B2E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:09:38 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B4F622A1F4;
-	Mon,  9 Dec 2024 13:04:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eterYFYR"
-X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8AE39E966F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:20:32 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3E9622836B;
-	Mon,  9 Dec 2024 13:03:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 458B8281463
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:20:31 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B685233141;
+	Mon,  9 Dec 2024 13:09:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DBHurhgN"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AAB9233127
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 13:08:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733749442; cv=none; b=bxla2i7xlEzgaIDezMMog/aUMIF73YZGZ82Nf1VRO1VXXkRPwKJnX/awT53XLULQNDq0klISlj7UzTnxuV0oKwqWjTxplPrWqQUyaf3Z7coMjNw4CsoXmextkQd1UcgOFOmYK3nfui8NI0ZluUGN1KUpmbUIimF3rc9LZ6G+p7M=
+	t=1733749744; cv=none; b=sHiHqCgKQhEoJ7TJA8z9qr8d7xwfgY2QxROhpREnNY95JWScmuvgryEFqDJ4lmmE3x5N9eTJ2vPKvG+Gp8SNVQo3IwRyzcVEQu4zTRkttnoT/BaOSgmuen/cUna4yQwB/gyI/qrUmnM5+NGUxKm33bmxS9vePBw98M2wAKBtJiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733749442; c=relaxed/simple;
-	bh=2m0bRIt84esqdY2tbrfVc8hkhzt9dIH1Tu3l7xr/jOA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ag0ROkgmTFMqEprOUNoPM2W7lQvFNcVhEZRSgKC11N2hB1GPQQHic0dSbv7hc0VVEhF2BpqN76Rxlv+UH2e1m8oLD3Yg++/AGkzvVUxeq0SX0AgHdS/QKPAN6GVkjFIgIZ1CYJQvL2u184vCaFJXNIFntxF1a1xhm23mH0iZjw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eterYFYR; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id B01C02000B;
-	Mon,  9 Dec 2024 13:03:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1733749437;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zwfUhO3+xL3wjByaS4cka9lum+biB/hQLNfnNUBPr5c=;
-	b=eterYFYRQBT9nTiFjHPzhJQC0pdI5oY1z9DhHQlTV5iYPEZpNUGKiZwe4BaU9U3kPX9x9e
-	7gm64ZP5cxdDKpogzB7CIS7xWENdq2dK3rtOfvgdoRuoYjnPE9W0Hm3sXfZEEXUsPSDIpu
-	dDWZxuYoc+6LL9JcAsJxdPvj3PhMONEF6jYSvHMgtFRJ73VE8ySSROJ1Ot+2mX5ky6IHhR
-	qsao6xPSEaCX504P9zY/uwBfX5Iu4Bjr6U5dMSLRfc8ZaChnFB17Cwxcl17mzJic7zNO+O
-	YZLRAQZFTsG1R3/OPyMZONP9UzaYEb/v2xHWHEGsVO2T6Pgu9w8tXpmJcY73PQ==
-From: Herve Codina <herve.codina@bootlin.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lizhi Hou <lizhi.hou@amd.com>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH v5 5/5] PCI: of: Create device-tree PCI host bridge node
-Date: Mon,  9 Dec 2024 14:03:37 +0100
-Message-ID: <20241209130339.81354-6-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241209130339.81354-1-herve.codina@bootlin.com>
-References: <20241209130339.81354-1-herve.codina@bootlin.com>
+	s=arc-20240116; t=1733749744; c=relaxed/simple;
+	bh=SaOg77n+/HbcwEwZaIZl9zKzKiE7/s1TeMGHZmt/q94=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k6TLwJUE5tBaFtGIyNXixZzJ0MYqcQhVfQC/sJRFCfmG2n5BlINUAEn93Br6rZlHD+4L41Ic+t6DUEU53Espzkz/aS8hBiFSri1W97x55eKf9REGozbUc/jlnTCRy2o7WfDUlP4BC+Yv4Pwqnbrv18lTDhGPRONHUflgDwq+zwM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DBHurhgN; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53e3c47434eso1411108e87.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 05:08:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733749738; x=1734354538; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=U4qeseCOkcGmb1Q7UjHhhCciiQ+PXwqE/BempN3gXFk=;
+        b=DBHurhgNSE0lFBxwDQSlxNHgFdRmcnAh8wanLdKHKzp/04sUvCh4STfFh1H1+/ofpQ
+         Ouy1Klne45KsGv75a1QBhrS4Rwd+VYxacNx9mdtSEuHffT0mM1IsTBwFOUkXuZwFs6Tc
+         +8Xof91tM6DFmLb30kycfke/0btGOo+Rj+pBZ6y08emjzDGhjvO+MH20AtNJVhywNkAG
+         ib5PEaxxr2BGIiUQaLDvJ1M8TOpAJBE+wqpZmnUmAoMNLi2tLNHyosZfyQlPW0sN4CDJ
+         sPCi6BGj4ndZ2bYBWJHeo0h/VJmESHscmqQXZTZzyNXNWJqI2fvYV5GZmZKXgUlAw5FZ
+         6zIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733749738; x=1734354538;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U4qeseCOkcGmb1Q7UjHhhCciiQ+PXwqE/BempN3gXFk=;
+        b=ILUkjTiPQUsanC7CBfTHDiBph7bMnhSrBf48HBwrmjMrLLVvJnSuY/mmTALDPnLtHL
+         ++mHVHqAAgZHHcWjayG+TdptEUclQiA+54Im+xqqiIHpWtJCReidIA+DzrbrMVW1TQOX
+         nmwWGZOsoJleS2487TL7fL5zsr1Kft6011mR65miQ4UwVkwX+MUwv1t5/JvfUlxv+sIU
+         R0X3+EIkWhnBbWwD63TetJgxM2Nkea8GO0IOm/uMahFVQUd/eI7c9XTvaLEpRs4ey1Wj
+         FxtG7M0FNlKUJE/2Ri+haqqrHP3udKlX7SM8m0by2UX3FSRnJfvRW2ENYei/22+IqVfM
+         xg7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWxCBRnsjKuii3/fTVbcR5u5F8MlQLJbJgdDJJOZXs1Ljmo+4N/ZI7g2E2mS4RR5wctXNBDUO3kVSt9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAb+Gs7vkaGIA359c8kXNA40P4I30cv3jSGAGWIRlJh+5AxR7h
+	x9CRIMG724uR+ghuTOWGpcP8uhpUOfkZ0J8ItdG3alCf/IlL5eyPDHBRNLJoXUzzDEVcHPxgOOv
+	KaPI=
+X-Gm-Gg: ASbGncsPfv7//ABVnqKzWUJ/MjWjySuMGa8GLjoOlvli55VTDi/9ozvhu0ka38jOTrw
+	Am17D1oIKWHISts1iVNVrdBOM7BeQ9JTKF14bZpfe1zyv51V+tJR3fFbib8uC+BaVKidb5dSZE5
+	k3M8bTcwRMcrdYli7mtBEgNEz2mdMy2wglj78UhHpICTwG7+d01e+tLEni9IR/YE1SnnB8Q1LtF
+	lVKjPNSVLi7tXKJG4fQuCAz9Pnv6xeeiYj8xoohF13vYCXGxKU0o+oMJ5HSplNX6yVLW8gVjxvr
+	t54sHusp8zGls8wQbzqq6KFULzCloQ==
+X-Google-Smtp-Source: AGHT+IGUdBc+9+wumOFZ48LXdGWXapC7mqs9vLjJQuLCvEM7WD0Vfz6HT+z+kwWVA55at0RwHrVYOw==
+X-Received: by 2002:a05:6512:3b29:b0:540:2339:3761 with SMTP id 2adb3069b0e04-5402339387fmr634821e87.31.1733749737946;
+        Mon, 09 Dec 2024 05:08:57 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5401a26babesm604500e87.11.2024.12.09.05.08.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Dec 2024 05:08:57 -0800 (PST)
+Date: Mon, 9 Dec 2024 15:08:55 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, jie.qiu@mediatek.com, 
+	junzhi.zhao@mediatek.com, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 15/15] drm/mediatek: Introduce HDMI/DDC v2 for
+ MT8195/MT8188
+Message-ID: <6snszi7h7444jzrr3r3icbwjmsoxthv4mp73d4crlv4mvhldl7@7dqfq3wuhinh>
+References: <20241205114518.53527-1-angelogioacchino.delregno@collabora.com>
+ <20241205114518.53527-16-angelogioacchino.delregno@collabora.com>
+ <4lvsvo6vsc7bipcgftsq3mzunwxoka3wjqad42ptr37oz77zub@5uarhvjmcxnc>
+ <a4a74f96-29cc-4007-9b03-f634b84d9cc2@collabora.com>
+ <m7u6xzm2o4dmcjot4xfk6do4slikpsp6gi3uyiuw4d35kunbc5@jyzgkrp4xjwc>
+ <3a0512de-bcc0-4253-a8c1-f2e43b5cbfba@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3a0512de-bcc0-4253-a8c1-f2e43b5cbfba@collabora.com>
 
-PCI devices device-tree nodes can be already created. This was
-introduced by commit 407d1a51921e ("PCI: Create device tree node for
-bridge").
+On Mon, Dec 09, 2024 at 12:33:57PM +0100, AngeloGioacchino Del Regno wrote:
+> Il 05/12/24 20:35, Dmitry Baryshkov ha scritto:
+> > On Thu, Dec 05, 2024 at 02:30:51PM +0100, AngeloGioacchino Del Regno wrote:
+> > > Il 05/12/24 13:56, Dmitry Baryshkov ha scritto:
+> > > > On Thu, Dec 05, 2024 at 12:45:17PM +0100, AngeloGioacchino Del Regno wrote:
+> > > > > Add support for the newer HDMI-TX (Encoder) v2 and DDC v2 IPs
+> > > > > found in MediaTek's MT8195, MT8188 SoC and their variants, and
+> > > > > including support for display modes up to 4k60 and for HDMI
+> > > > > Audio, as per the HDMI 2.0 spec.
+> > > > > 
+> > > > > HDCP and CEC functionalities are also supported by this hardware,
+> > > > > but are not included in this commit and that also poses a slight
+> > > > > difference between the V2 and V1 controllers in how they handle
+> > > > > Hotplug Detection (HPD).
+> > > > > 
+> > > > > While the v1 controller was using the CEC controller to check
+> > > > > HDMI cable connection and disconnection, in this driver the v2
+> > > > > one does not.
+> > > > > 
+> > > > > This is due to the fact that on parts with v2 designs, like the
+> > > > > MT8195 SoC, there is one CEC controller shared between the HDMI
+> > > > > Transmitter (HDMI-TX) and Receiver (HDMI-RX): before eventually
+> > > > > adding support to use the CEC HW to wake up the HDMI controllers
+> > > > > it is necessary to have support for one TX, one RX *and* for both
+> > > > > at the same time.
+> > > > > 
+> > > > > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > > > > ---
+> > > > >    drivers/gpu/drm/mediatek/Kconfig            |    8 +
+> > > > >    drivers/gpu/drm/mediatek/Makefile           |    4 +
+> > > > >    drivers/gpu/drm/mediatek/mtk_hdmi_common.c  |    5 +
+> > > > >    drivers/gpu/drm/mediatek/mtk_hdmi_common.h  |    1 +
+> > > > >    drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c  |  403 +++++
+> > > > >    drivers/gpu/drm/mediatek/mtk_hdmi_regs_v2.h |  263 ++++
+> > > > >    drivers/gpu/drm/mediatek/mtk_hdmi_v2.c      | 1488 +++++++++++++++++++
+> > > > >    7 files changed, 2172 insertions(+)
+> > > > >    create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c
+> > > > >    create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi_regs_v2.h
+> > > > >    create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
+> > > > > 
+> > > 
+> > > ..snip..
+> > > 
+> > > > > diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c b/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
+> > > > > new file mode 100644
+> > > > > index 000000000000..05cbfc45be54
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
+> > > > > @@ -0,0 +1,1488 @@
+> > > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > > +/*
+> > > 
+> > > ..snip..
+> > > 
+> > > > > +static int mtk_hdmi_v2_setup_audio_infoframe(struct mtk_hdmi *hdmi)
+> > > > > +{
+> > > > > +	struct hdmi_codec_params *params = &hdmi->aud_param.codec_params;
+> > > > > +	struct hdmi_audio_infoframe frame;
+> > > > > +	u8 buffer[14];
+> > > > > +	ssize_t ret;
+> > > > > +
+> > > > > +	memcpy(&frame, &params->cea, sizeof(frame));
+> > > > > +
+> > > > > +	ret = hdmi_audio_infoframe_pack(&frame, buffer, sizeof(buffer));
+> > > > > +	if (ret < 0)
+> > > > > +		return ret;
+> > > > > +
+> > > > > +	mtk_hdmi_v2_hw_write_audio_infoframe(hdmi, buffer);
+> > > > 
+> > > > This should be handled via HDMI Connector framework too. There is
+> > > > already an interface to set / clear audio infoframes.
+> > > > als I have been working on an interface to make HDMI codec
+> > > > implementation more generic, see [1]. Your comments are appreciated.
+> > > > 
+> > > > [1] https://patchwork.freedesktop.org/series/134927/
+> > > > 
+> > > 
+> > > I didn't go for that because I was afraid that your series wouldn't actually
+> > > land in the same window as this driver.
+> > 
+> > There were two points in my comment (sorry for being not explicit
+> > enough). One is to point to the HDMI codec infra (and you are right,
+> > it's not yet in the mergeable state). Second one is to use
+> > drm_atomic_helper_connector_hdmi_update_audio_infoframe() and
+> > drm_atomic_helper_connector_hdmi_clear_audio_infoframe() if possible (it
+> > might be hard to do it - in fact it being hard kind of forced me to
+> > work on the HDMI codec infra).
+> > 
+> 
+> That *is* indeed hard and adding almost unnecessary complications to my submission.
+> 
+> > > I am at this point puzzled to whether I should add a commit on top of this
+> > > submission that switches this driver to using the generic HDMI Codec infra
+> > > (which could also be helpful as guidance to others trying to do the same on
+> > > other drivers, I guess), or if I should just rebase on top of that.
+> > 
+> > I'd say, a completely separate patch might be even better, I can then
+> > integrate it into the HDMI codec patchset, adding a soft dependency on
+> > your series. If for some reason the codec lands earlier than your
+> > patchset, the patch can be dropped and reintegrated into your series. Or
+> > just committed separately.
+> 
+> I'd rather get the audio part merged as-is with the old handling at this point...
+> 
+> As you can see, once your HDMI Codec infra gets in a mergeable state the cleanup
+> (or conversion, however you prefer to call it) in this driver will be mostly
+> trivial.
+> 
+> This means that whenever your series is ready to merge, I'll be able to send a
+> (single, most probably) commit updating this driver to use the new helpers in a
+> jiffy (or two).
 
-In order to have device-tree nodes related to PCI devices attached on
-their PCI root bus (the PCI bus handled by the PCI host bridge), a PCI
-root bus device-tree node is needed. This root bus node will be used as
-the parent node of the first level devices scanned on the bus. On
-device-tree based systems, this PCI root bus device tree node is set to
-the node of the related PCI host bridge. The PCI host bridge node is
-available in the device-tree used to describe the hardware passed at
-boot.
+SGTM
 
-On non device-tree based system (such as ACPI), a device-tree node for
-the PCI host bridge or for the root bus does not exist. Indeed, the PCI
-host bridge is not described in a device-tree used at boot simply
-because no device-tree are passed at boot.
+> 
+> > 
+> > > I'd rather add a commit on top to mainly avoid risking to delay this driver,
+> > > but if you're absolutely certain that you can get your series merged in the
+> > > same window as this driver I have *zero* problems in just rebasing on top.
+> > > 
+> > > Besides...
+> > > 
+> > > I'll find the time to review your series - I'm sad it didn't land earlier as
+> > > I would've written a bit less code otherwise :-)
+> > > 
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > 
+> > > ..snip..
+> > > 
+> > > > > +
+> > > > > +	/* Enable the controller at attach time for HPD/Pord feedback */
+> > > > > +	ret = mtk_hdmi_v2_enable(hdmi);
+> > > > > +	if (ret)
+> > > > > +		return ret;
+> > > > 
+> > > > This looks like a hack. Please use .hpd_enable() / .hpd_disable()
+> > > > callbacks.
+> > > > 
+> > > 
+> > > ...but there's no way to power on only the HPD - you can either power on
+> > > the entire controller, or nothing.
+> > > 
+> > > I can't call mtk_hdmi_v2_enable/disable() from the HPD callbacks.
+> > 
+> > Why? Add a powerup refcount if necessary.
+> > 
+> 
+> ...but this means that I still have to keep the mtk_hdmi_v2_enable() call
+> here, but I didn't understand the point of this until you made me think
+> about...
+> 
+> > > 
+> > > Perhaps the comment should have been
+> > > 
+> > > "Enable the controller attach time also allows HPD/Pord feedback"?
+> > 
+> > I think it should still be explicit call from those callbacks. Consider
+> > a platform using external GPIO to implement HPD. Then the HDMI
+> > controller can stay disabled if it is not necessary.
+> 
+> ...this case.
+> 
+> I'm still not sure whether I can actually do what you propose because this
+> IP needs another IP (mtk_dpi) to be in a configured state before this one
+> gets enabled, or you get a freeze.
 
-The device-tree PCI host bridge node creation needs to be done at
-runtime. This is done in the same way as for the creation of the PCI
-device nodes. I.e. node and properties are created based on computed
-information done by the PCI core. Also, as is done on device-tree based
-systems, this PCI host bridge node is used for the PCI root bus.
+This sounds like PM runtime and PM devlink from HDMI to DPI, bringing
+DPI up when HDMI is PM-runtime-resumed.
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- drivers/pci/of.c          |  94 ++++++++++++++++++++++++++++++++++-
- drivers/pci/of_property.c | 102 ++++++++++++++++++++++++++++++++++++++
- drivers/pci/pci.h         |   6 +++
- drivers/pci/probe.c       |   2 +
- drivers/pci/remove.c      |   2 +
- 5 files changed, 205 insertions(+), 1 deletion(-)
+> 
+> I'll check - if that's feasible, I'll add the refcounting and will go for
+> the hpd_{en,dis}able callbacks.
+> 
+> > 
+> > > 
+> > > > > +
+> > > > > +	/* Enable Hotplug and Pord pins internal debouncing */
+> > > > > +	regmap_set_bits(hdmi->regs, HPD_DDC_CTRL,
+> > > > > +			HPD_DDC_HPD_DBNC_EN | HPD_DDC_PORD_DBNC_EN);
+> > > > > +
+> > > > > +	irq_clear_status_flags(hdmi->irq, IRQ_NOAUTOEN);
+> > > > > +	enable_irq(hdmi->irq);
+> > > > > +
+> > > > > +	/*
+> > > > > +	 * Check if any HDMI monitor was connected before probing this driver
+> > > > > +	 * and/or attaching the bridge, without debouncing: if so, we want to
+> > > > > +	 * notify the DRM so that we start outputting an image ASAP.
+> > > > > +	 * Note that calling the ISR thread function will also perform a HW
+> > > > > +	 * registers write that enables both the HPD and Pord interrupts.
+> > > > > +	 */
+> > > > > +	__mtk_hdmi_v2_isr_thread(hdmi);
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > 
+> > > ..snip..
+> > > 
+> > > > > +static void mtk_hdmi_v2_bridge_pre_enable(struct drm_bridge *bridge,
+> > > > > +					  struct drm_bridge_state *old_state)
+> > > > > +{
+> > > > > +	struct mtk_hdmi *hdmi = hdmi_ctx_from_bridge(bridge);
+> > > > > +	struct drm_atomic_state *state = old_state->base.state;
+> > > > > +	struct drm_connector_state *conn_state;
+> > > > > +	union phy_configure_opts opts = {
+> > > > > +		.dp = { .link_rate = hdmi->mode.clock * KILO }
+> > > > > +	};
+> > > > > +
+> > > > > +	/* Retrieve the connector through the atomic state */
+> > > > > +	hdmi->curr_conn = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
+> > > > > +
+> > > > > +	conn_state = drm_atomic_get_new_connector_state(state, hdmi->curr_conn);
+> > > > > +	if (WARN_ON(!conn_state))
+> > > > > +		return;
+> > > > > +
+> > > > > +	/*
+> > > > > +	 * Preconfigure the HDMI controller and the HDMI PHY at pre_enable
+> > > > > +	 * stage to make sure that this IP is ready and clocked before the
+> > > > > +	 * mtk_dpi gets powered on and before it enables the output.
+> > > > > +	 */
+> > > > > +	hdmi->dvi_mode = !hdmi->curr_conn->display_info.is_hdmi;
+> > > > 
+> > > > Can you access display_info directly instead?
+> > > > 
+> > > 
+> > > Nice catch. Yeah, I should've done that from the beginning. Fixed for v3.
+> > > 
+> > > > > +	mtk_hdmi_v2_output_set_display_mode(hdmi, &hdmi->mode);
+> > > > > +
+> > > > > +	/* Reconfigure phy clock link with appropriate rate */
+> > > > > +	phy_configure(hdmi->phy, &opts);
+> > > > > +
+> > > > > +	/* Power on the PHY here to make sure that DPI_HDMI is clocked */
+> > > > > +	phy_power_on(hdmi->phy);
+> > > > > +
+> > > > > +	hdmi->powered = true;
+> > > > > +}
+> > > > > +
+> > > > > +static void mtk_hdmi_v2_bridge_enable(struct drm_bridge *bridge,
+> > > > > +				      struct drm_bridge_state *old_state)
+> > > > > +{
+> > > > > +	struct mtk_hdmi *hdmi = hdmi_ctx_from_bridge(bridge);
+> > > > > +	struct drm_atomic_state *state = old_state->base.state;
+> > > > > +	int ret;
+> > > > > +
+> > > > > +	ret = drm_atomic_helper_connector_hdmi_update_infoframes(hdmi->curr_conn, state);
+> > > > > +	if (ret)
+> > > > > +		dev_err(hdmi->dev, "Could not update infoframes: %d\n", ret);
+> > > > > +
+> > > > > +	mtk_hdmi_v2_hw_vid_mute(hdmi, false);
+> > > > > +	mtk_hdmi_v2_hw_aud_mute(hdmi, false);
+> > > > > +
+> > > > > +	/* signal the connect event to audio codec */
+> > > > > +	mtk_hdmi_v2_handle_plugged_change(hdmi, true);
+> > > > 
+> > > > I think it was agreed that this should be called from the hotplug path,
+> > > > see the (linked) HDMI codec infrastructure patchset and dicussions for
+> > > > the previous revisions.
+> > > > 
+> > > 
+> > > Okay, I'll check that out.
+> > > 
+> > > > > +
+> > > > > +	hdmi->enabled = true;
+> > > > > +}
+> > > > > +
+> > > 
+> > > ..snip..
+> > > 
+> > > > > +
+> > > > > +static int mtk_hdmi_v2_hdmi_tmds_char_rate_valid(const struct drm_bridge *bridge,
+> > > > > +						 const struct drm_display_mode *mode,
+> > > > > +						 unsigned long long tmds_rate)
+> > > > > +{
+> > > > > +	if (mode->clock < MTK_HDMI_V2_CLOCK_MIN)
+> > > > > +		return MODE_CLOCK_LOW;
+> > > > > +	else if (mode->clock > MTK_HDMI_V2_CLOCK_MAX)
+> > > > > +		return MODE_CLOCK_HIGH;
+> > > > > +	else
+> > > > > +		return MODE_OK;
+> > > > > +}
+> > > > > +
+> > > > > +static enum drm_mode_status
+> > > > > +mtk_hdmi_v2_bridge_mode_valid(struct drm_bridge *bridge,
+> > > > > +			      const struct drm_display_info *info,
+> > > > > +			      const struct drm_display_mode *mode)
+> > > > > +{
+> > > > > +	unsigned long long rate;
+> > > > > +
+> > > > > +	rate = drm_hdmi_compute_mode_clock(mode, 8, HDMI_COLORSPACE_RGB);
+> > > > > +	return mtk_hdmi_v2_hdmi_tmds_char_rate_valid(bridge, mode, rate);
+> > > > > +}
+> > > > 
+> > > > Please rebase on top of https://patchwork.freedesktop.org/series/140193/
+> > > > There should be no need to do this manually.
+> > > > 
+> > > 
+> > > Oh finally there's a helper for this. Cool, will rebase! Thanks!
+> > 
+> > And it doesn't even add an extra dependency for you.
+> > 
+> 
+> ... Which is even cool-er, yes :-)
+> 
+> > > 
+> > > > > +
+> > > > > +static int mtk_hdmi_v2_hdmi_clear_infoframe(struct drm_bridge *bridge,
+> > > > > +					    enum hdmi_infoframe_type type)
+> > > > > +{
+> > > > > +	struct mtk_hdmi *hdmi = hdmi_ctx_from_bridge(bridge);
+> > > > > +	u32 reg_start, reg_end;
+> > > > > +
+> > > > > +	switch (type) {
+> > > > > +	case HDMI_INFOFRAME_TYPE_AUDIO:
+> > > > > +		regmap_clear_bits(hdmi->regs, TOP_INFO_EN, AUD_EN | AUD_EN_WR);
+> > > > > +		regmap_clear_bits(hdmi->regs, TOP_INFO_RPT, AUD_RPT_EN);
+> > > > > +		reg_start = TOP_AIF_HEADER;
+> > > > > +		reg_end = TOP_AIF_PKT03;
+> > > > > +		break;
+> > > > > +	case HDMI_INFOFRAME_TYPE_AVI:
+> > > > > +		regmap_clear_bits(hdmi->regs, TOP_INFO_EN, AVI_EN_WR | AVI_EN);
+> > > > > +		regmap_clear_bits(hdmi->regs, TOP_INFO_RPT, AVI_RPT_EN);
+> > > > > +		reg_start = TOP_AVI_HEADER;
+> > > > > +		reg_end = TOP_AVI_PKT05;
+> > > > > +		break;
+> > > > > +	case HDMI_INFOFRAME_TYPE_SPD:
+> > > > > +		regmap_clear_bits(hdmi->regs, TOP_INFO_EN, SPD_EN_WR | SPD_EN);
+> > > > > +		regmap_clear_bits(hdmi->regs, TOP_INFO_RPT, SPD_RPT_EN);
+> > > > > +		reg_start = TOP_SPDIF_HEADER;
+> > > > > +		reg_end = TOP_SPDIF_PKT07;
+> > > > > +		break;
+> > > > > +	case HDMI_INFOFRAME_TYPE_VENDOR:
+> > > > > +		regmap_clear_bits(hdmi->regs, TOP_INFO_EN, VSIF_EN_WR | VSIF_EN);
+> > > > > +		regmap_clear_bits(hdmi->regs, TOP_INFO_RPT, VSIF_RPT_EN);
+> > > > > +		reg_start = TOP_VSIF_HEADER;
+> > > > > +		reg_end = TOP_VSIF_PKT07;
+> > > > > +		break;
+> > > > > +	case HDMI_INFOFRAME_TYPE_DRM:
+> > > > > +	default:
+> > > > > +		return 0;
+> > > > > +	};
+> > > > > +
+> > > > > +	for (; reg_start <= reg_end; reg_start += 4)
+> > > > > +		regmap_write(hdmi->regs, reg_start, 0);
+> > > > 
+> > > > Interesting. Usually sending of the infoframe is controlled by a
+> > > > register of a kind.
+> > > > 
+> > > 
+> > > "This callback clears the infoframes in the hardware during commit"
+> > > 
+> > > ...and that's exactly what this function does: clears the infoframes
+> > > in the HW and stops the RPT, making the HW ready for the "next round".
+> > > 
+> > > Did I get the documentation wrong?
+> > > Should this function *send* an all-zero infoframe to the external display?
+> > 
+> > No, it should stop sending the callback. My point was that usually there
+> > is a separate register which controls the infoframes. You code just
+> > clears the header (which probably is handled as disabling in the IP
+> > core).
+> > 
+> 
+> No, my code is clearing everything, not just the header.
+> 
+> The registers in this IP are sequential, I'm setting the code to start writing
+> at HEADER, and stop writing at PKTxx, where PKTxx registers contain the infoframe.
+> 
+> In any case, disabling in the IP core is managed by clearing the _EN and _EN_WR
+> (where WR means "Write", and RPT_EN is "repeat write") bits in the xxx_INFO_EN
+> register(s), and that's what I'm doing at the beginning, before actually cleaning
+> the infoframe registers.
+> 
+> Actually, I could've just cleared the EN bits and that would've been enough, but
+> I wanted to leave the IP in a clean+known state and decided to zero out the entire
+> infoframe header/data register set.
+> 
+> ....but anyway, what you just said before me explaining how this IP works means
+> that I got it right, and that this function does exactly what it is supposed to do.
 
-diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-index 3cca33105b85..108a67be12ea 100644
---- a/drivers/pci/of.c
-+++ b/drivers/pci/of.c
-@@ -726,7 +726,99 @@ void of_pci_make_dev_node(struct pci_dev *pdev)
- out_free_name:
- 	kfree(name);
- }
--#endif
-+
-+void of_pci_remove_host_bridge_node(struct pci_host_bridge *bridge)
-+{
-+	struct device_node *np;
-+
-+	np = pci_bus_to_OF_node(bridge->bus);
-+	if (!np || !of_node_check_flag(np, OF_DYNAMIC))
-+		return;
-+
-+	device_remove_of_node(&bridge->bus->dev);
-+	device_remove_of_node(&bridge->dev);
-+	of_changeset_revert(np->data);
-+	of_changeset_destroy(np->data);
-+	of_node_put(np);
-+}
-+
-+void of_pci_make_host_bridge_node(struct pci_host_bridge *bridge)
-+{
-+	struct device_node *np = NULL;
-+	struct of_changeset *cset;
-+	const char *name;
-+	int ret;
-+
-+	/*
-+	 * If there is already a device-tree node linked to the PCI bus handled
-+	 * by this bridge (i.e. the PCI root bus), nothing to do.
-+	 */
-+	if (pci_bus_to_OF_node(bridge->bus))
-+		return;
-+
-+	/* The root bus has no node. Check that the host bridge has no node too */
-+	if (bridge->dev.of_node) {
-+		dev_err(&bridge->dev, "PCI host bridge of_node already set");
-+		return;
-+	}
-+
-+	/* Check if there is a DT root node to attach the created node */
-+	if (!of_root) {
-+		pr_err("of_root node is NULL, cannot create PCI host bridge node\n");
-+		return;
-+	}
-+
-+	name = kasprintf(GFP_KERNEL, "pci@%x,%x", pci_domain_nr(bridge->bus),
-+			 bridge->bus->number);
-+	if (!name)
-+		return;
-+
-+	cset = kmalloc(sizeof(*cset), GFP_KERNEL);
-+	if (!cset)
-+		goto out_free_name;
-+	of_changeset_init(cset);
-+
-+	np = of_changeset_create_node(cset, of_root, name);
-+	if (!np)
-+		goto out_destroy_cset;
-+
-+	ret = of_pci_add_host_bridge_properties(bridge, cset, np);
-+	if (ret)
-+		goto out_free_node;
-+
-+	/*
-+	 * This of_node will be added to an existing device. The of_node parent
-+	 * is the root OF node and so this node will be handled by the platform
-+	 * bus. Avoid any new device creation.
-+	 */
-+	of_node_set_flag(np, OF_POPULATED);
-+	np->fwnode.dev = &bridge->dev;
-+	fwnode_dev_initialized(&np->fwnode, true);
-+
-+	ret = of_changeset_apply(cset);
-+	if (ret)
-+		goto out_free_node;
-+
-+	np->data = cset;
-+
-+	/* Add the of_node to host bridge and the root bus */
-+	device_add_of_node(&bridge->dev, np);
-+	device_add_of_node(&bridge->bus->dev, np);
-+
-+	kfree(name);
-+
-+	return;
-+
-+out_free_node:
-+	of_node_put(np);
-+out_destroy_cset:
-+	of_changeset_destroy(cset);
-+	kfree(cset);
-+out_free_name:
-+	kfree(name);
-+}
-+
-+#endif /* CONFIG_PCI_DYNAMIC_OF_NODES */
- 
- /**
-  * of_pci_supply_present() - Check if the power supply is present for the PCI
-diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
-index 400c4c2e434d..b03baff651ee 100644
---- a/drivers/pci/of_property.c
-+++ b/drivers/pci/of_property.c
-@@ -394,3 +394,105 @@ int of_pci_add_properties(struct pci_dev *pdev, struct of_changeset *ocs,
- 
- 	return 0;
- }
-+
-+static bool of_pci_is_range_resource(const struct resource *res, u32 *flags)
-+{
-+	if (!(resource_type(res) & IORESOURCE_MEM) &&
-+	    !(resource_type(res) & IORESOURCE_MEM_64))
-+		return false;
-+
-+	if (of_pci_get_addr_flags(res, flags))
-+		return false;
-+
-+	return true;
-+}
-+
-+static int of_pci_host_bridge_prop_ranges(struct pci_host_bridge *bridge,
-+					  struct of_changeset *ocs,
-+					  struct device_node *np)
-+{
-+	struct resource_entry *window;
-+	unsigned int ranges_sz = 0;
-+	unsigned int n_range = 0;
-+	struct resource *res;
-+	int n_addr_cells;
-+	u32 *ranges;
-+	u64 val64;
-+	u32 flags;
-+	int ret;
-+
-+	n_addr_cells = of_n_addr_cells(np);
-+	if (n_addr_cells <= 0 || n_addr_cells > 2)
-+		return -EINVAL;
-+
-+	resource_list_for_each_entry(window, &bridge->windows) {
-+		res = window->res;
-+		if (!of_pci_is_range_resource(res, &flags))
-+			continue;
-+		n_range++;
-+	}
-+
-+	if (!n_range)
-+		return 0;
-+
-+	ranges = kcalloc(n_range,
-+			 (OF_PCI_ADDRESS_CELLS + OF_PCI_SIZE_CELLS +
-+			  n_addr_cells) * sizeof(*ranges),
-+			 GFP_KERNEL);
-+	if (!ranges)
-+		return -ENOMEM;
-+
-+	resource_list_for_each_entry(window, &bridge->windows) {
-+		res = window->res;
-+		if (!of_pci_is_range_resource(res, &flags))
-+			continue;
-+
-+		/* PCI bus address */
-+		val64 = res->start;
-+		of_pci_set_address(NULL, &ranges[ranges_sz], val64 - window->offset,
-+				   0, flags, false);
-+		ranges_sz += OF_PCI_ADDRESS_CELLS;
-+
-+		/* Host bus address */
-+		if (n_addr_cells == 2)
-+			ranges[ranges_sz++] = upper_32_bits(val64);
-+		ranges[ranges_sz++] = lower_32_bits(val64);
-+
-+		/* Size */
-+		val64 = resource_size(res);
-+		ranges[ranges_sz] = upper_32_bits(val64);
-+		ranges[ranges_sz + 1] = lower_32_bits(val64);
-+		ranges_sz += OF_PCI_SIZE_CELLS;
-+	}
-+
-+	ret = of_changeset_add_prop_u32_array(ocs, np, "ranges", ranges, ranges_sz);
-+	kfree(ranges);
-+	return ret;
-+}
-+
-+int of_pci_add_host_bridge_properties(struct pci_host_bridge *bridge,
-+				      struct of_changeset *ocs,
-+				      struct device_node *np)
-+{
-+	int ret;
-+
-+	ret = of_changeset_add_prop_string(ocs, np, "device_type", "pci");
-+	if (ret)
-+		return ret;
-+
-+	ret = of_changeset_add_prop_u32(ocs, np, "#address-cells",
-+					OF_PCI_ADDRESS_CELLS);
-+	if (ret)
-+		return ret;
-+
-+	ret = of_changeset_add_prop_u32(ocs, np, "#size-cells",
-+					OF_PCI_SIZE_CELLS);
-+	if (ret)
-+		return ret;
-+
-+	ret = of_pci_host_bridge_prop_ranges(bridge, ocs, np);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
-index 2e40fc63ba31..0cdb2b3daea8 100644
---- a/drivers/pci/pci.h
-+++ b/drivers/pci/pci.h
-@@ -871,9 +871,15 @@ void of_pci_make_dev_node(struct pci_dev *pdev);
- void of_pci_remove_node(struct pci_dev *pdev);
- int of_pci_add_properties(struct pci_dev *pdev, struct of_changeset *ocs,
- 			  struct device_node *np);
-+void of_pci_make_host_bridge_node(struct pci_host_bridge *bridge);
-+void of_pci_remove_host_bridge_node(struct pci_host_bridge *bridge);
-+int of_pci_add_host_bridge_properties(struct pci_host_bridge *bridge, struct of_changeset *ocs,
-+				      struct device_node *np);
- #else
- static inline void of_pci_make_dev_node(struct pci_dev *pdev) { }
- static inline void of_pci_remove_node(struct pci_dev *pdev) { }
-+static inline void of_pci_make_host_bridge_node(struct pci_host_bridge *bridge) { }
-+static inline void of_pci_remove_host_bridge_node(struct pci_host_bridge *bridge) { }
- #endif
- 
- #ifdef CONFIG_PCIEAER
-diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-index 2e81ab0f5a25..629287f6b3d9 100644
---- a/drivers/pci/probe.c
-+++ b/drivers/pci/probe.c
-@@ -1051,6 +1051,8 @@ static int pci_register_host_bridge(struct pci_host_bridge *bridge)
- 		dev_info(&bus->dev, "root bus resource %pR%s\n", res, addr);
- 	}
- 
-+	of_pci_make_host_bridge_node(bridge);
-+
- 	down_write(&pci_bus_sem);
- 	list_add_tail(&bus->node, &pci_root_buses);
- 	up_write(&pci_bus_sem);
-diff --git a/drivers/pci/remove.c b/drivers/pci/remove.c
-index efc37fcb73e2..9f7df2b20183 100644
---- a/drivers/pci/remove.c
-+++ b/drivers/pci/remove.c
-@@ -163,6 +163,8 @@ void pci_stop_root_bus(struct pci_bus *bus)
- 					 &bus->devices, bus_list)
- 		pci_stop_bus_device(child);
- 
-+	of_pci_remove_host_bridge_node(host_bridge);
-+
- 	/* stop the host bridge */
- 	device_release_driver(&host_bridge->dev);
- }
+I'd say, clearing just the EN/EN_WR/RPT_EN is enough - this is what
+other drivers do.
+
+> 
+> 
+> Cheers!
+> Angelo
+> 
+> > > 
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > > > +static int mtk_hdmi_v2_hdmi_write_infoframe(struct drm_bridge *bridge,
+> > > > > +					    enum hdmi_infoframe_type type,
+> > > > > +					    const u8 *buffer, size_t len)
+> > > > > +{
+> > > > > +	struct mtk_hdmi *hdmi = hdmi_ctx_from_bridge(bridge);
+> > > > > +
+> > > > > +	switch (type) {
+> > > > > +	case HDMI_INFOFRAME_TYPE_AUDIO:
+> > > > > +		mtk_hdmi_v2_hw_write_audio_infoframe(hdmi, buffer);
+> > > > > +		break;
+> > > > > +	case HDMI_INFOFRAME_TYPE_AVI:
+> > > > > +		mtk_hdmi_v2_hw_write_avi_infoframe(hdmi, buffer);
+> > > > > +		break;
+> > > > > +	case HDMI_INFOFRAME_TYPE_SPD:
+> > > > > +		mtk_hdmi_v2_hw_write_spd_infoframe(hdmi, buffer);
+> > > > > +		break;
+> > > > > +	case HDMI_INFOFRAME_TYPE_VENDOR:
+> > > > > +		mtk_hdmi_v2_hw_write_vendor_infoframe(hdmi, buffer);
+> > > > > +		break;
+> > > > > +	case HDMI_INFOFRAME_TYPE_DRM:
+> > > > > +	default:
+> > > > > +		dev_err(hdmi->dev, "Unsupported HDMI infoframe type %u\n", type);
+> > > > > +		break;
+> > > > > +	};
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > > > +static int mtk_hdmi_v2_bridge_atomic_check(struct drm_bridge *bridge,
+> > > > > +					   struct drm_bridge_state *bridge_state,
+> > > > > +					   struct drm_crtc_state *crtc_state,
+> > > > > +					   struct drm_connector_state *conn_state)
+> > > > > +{
+> > > > > +	return drm_atomic_helper_connector_hdmi_check(conn_state->connector,
+> > > > > +						      conn_state->state);
+> > > > > +}
+> > > > 
+> > > > Note to myself, probably we can move this to drm_bridge_connector too.
+> > > > 
+> > > > > +
+> > > > > +static int mtk_hdmi_v2_set_abist(struct mtk_hdmi *hdmi, bool enable)
+> > > > > +{
+> > > > > +	struct drm_display_mode *mode = &hdmi->mode;
+> > > > > +	int abist_format = -EINVAL;
+> > > > > +	bool interlaced;
+> > > > > +
+> > > > > +	if (!enable) {
+> > > > > +		regmap_clear_bits(hdmi->regs, TOP_CFG00, HDMI_ABIST_ENABLE);
+> > > > > +		return 0;
+> > > > > +	}
+> > > > > +
+> > > > > +	if (!mode->hdisplay || !mode->vdisplay)
+> > > > > +		return -EINVAL;
+> > > > > +
+> > > > > +	interlaced = mode->flags & DRM_MODE_FLAG_INTERLACE;
+> > > > 
+> > > > The interlaced modes should be filtered, unless you also set
+> > > > bridge->interlace_allowed to true.
+> > > > 
+> > > 
+> > > Noted. Many Thanks for the review!
+> > > 
+> > > I'll wait until next week for more feedback before sending a v3.
+> > 
+> 
+> 
+> -- 
+> AngeloGioacchino Del Regno
+> Senior Software Engineer
+> 
+> Collabora Ltd.
+> Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
+> Registered in England & Wales, no. 5513718
+
 -- 
-2.47.0
-
+With best wishes
+Dmitry
 
