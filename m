@@ -1,157 +1,111 @@
-Return-Path: <devicetree+bounces-128895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D660B9E9B98
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 17:26:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CE659E9BBA
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 17:32:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2526C188671E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:26:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20ED51886BF7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:32:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A62142E6F;
-	Mon,  9 Dec 2024 16:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDFCE135A63;
+	Mon,  9 Dec 2024 16:32:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KR2uAL3v"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="fy57MCqU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F53F13C81B;
-	Mon,  9 Dec 2024 16:26:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38165BA3D
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 16:32:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733761589; cv=none; b=FEm5OOtUN3HLT1/rDrPW2p0jz5X9NTGMPt3LVTL2OJk1J22l3d7EN9fu7DySswLTEUwEAt8XVyIfcjaD5HN3LDUGHKltUPFsXjX7RHhh66fmnztyRJtiuQI1JsXCcRy3SnKTdu7VdUiJqtypWo/8OP+feWmbQhEULW2R987Fcpc=
+	t=1733761962; cv=none; b=Mn1a+WjFV+6Ghxh91LWNQR3iLaQioA/W+YJ5odFW8JuZrLB2LLgBEZxAxQUav/9rJY4vIdZgzxFm8i5xwLnkGfK8LV33qGzSa3L72G+lmosZW2dhx+sjc5boJ4IGk4k/z8Xc1AyvAVfJnMopkQECRMXvZK67y60dzHf+PGOQYcQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733761589; c=relaxed/simple;
-	bh=c998PD6ESRR3/DLixNhYcyamfLJruxkhcT6TYn31o3U=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=YC+xMAHj6NjR7dkZ7RklFQPfzLvWBKSmQG8NhF45uHHT2lw8wbGSfPo4VS/7Fooe6Jif4P3dZFlo9rMKiqU/smPmsYNUA4XQMVcLbB9k1FY4TLzHwQovKy2qrj5UAMHwK9t1WmA9wjH+mkqUR0P4e+7bRum96peLtfif+Ttn9qE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KR2uAL3v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51D74C4CEDE;
-	Mon,  9 Dec 2024 16:26:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733761588;
-	bh=c998PD6ESRR3/DLixNhYcyamfLJruxkhcT6TYn31o3U=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=KR2uAL3vN4qNK3pLpfR5w3zIdQSJv+ZfIymCIWvKK/N0k3R0WJVO/WrBYVFijtVqo
-	 HXdeyDkbCn3XYXjg92z2UQA6LfhX67QtxLjXuZef9sWobHn4m9H6Ivf0Ds/FvCKibq
-	 KV9KH50DE4AESQ8Zu3g7ZW4OqMGvsfjzd2XdFjlpvf+qL+fy7ZssBfesNZOT7031c8
-	 pcrRbiO0JT2+quqZtYvCJ0RdvORFNXOlnFPwn6RH8dlmD6qtk9ZqRRsz+XfZFDZ8YW
-	 RkR39rExn9Ohqa0VhlHFsJDDtfhJl0eGlvmWDfoKDl9IfMXQbxUgry/0Hjj9RWGF1h
-	 3Ry3xcxbTPMFw==
-Date: Mon, 09 Dec 2024 10:26:26 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1733761962; c=relaxed/simple;
+	bh=hKoZUs950dmzTLRQO2GHonO3p7upLQS8rwZtUsKZrfI=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=XpUgB0KDqx2uE959jjfmgHrk3qWNGpRkS/1vs/b+8l5LtkeXQEXTM7NXMPVLbu/YceLAMSVWMMEOci1rN7yt9StgSv/QbnhJxnfxpiT0iY/aVlOugq6P4sYRWurv6hrsuCQ+nCyhy490lEf+YvSE3eZj9zFytqEIWP2YbxrySuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=fy57MCqU; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Conor Dooley <conor+dt@kernel.org>, Ayush Singh <ayush@beagleboard.org>, 
- Geert Uytterhoeven <geert@linux-m68k.org>, Arnd Bergmann <arnd@arndb.de>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Saravana Kannan <saravanak@google.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Andrew Davis <afd@ti.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-In-Reply-To: <20241209151830.95723-2-herve.codina@bootlin.com>
-References: <20241209151830.95723-1-herve.codina@bootlin.com>
- <20241209151830.95723-2-herve.codina@bootlin.com>
-Message-Id: <173376158687.562854.15324053122820075954.robh@kernel.org>
-Subject: Re: [PATCH 1/7] dt-bindings: Add support for export-symbols node
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1733761958;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5tuPQMBx1XIFP1/5pcBpPF13/7vzl3ejELlsObI/1uU=;
+	b=fy57MCqU0sFGc6J8WnklLdAJ+F2REpFqwZgQd+cYty64lWrXStJsAQXd1W8V5T37BYWyb8
+	FwGsPHmd5Bykh3y/uZqr9fObEkpbYxBv3vmqwul0qDtekgPO0vfiwjCsb6/9jgzS9kiXzQ
+	7f731eL62fEDG1nY0aPDe0DH7Z9+BN3yuIeXkDtyFFkxJFIdK3QMprjOf7xUdMeEmZ46VN
+	PHgQoNv+jhLIJqra+K6qCFQbUkYvu3qFZHh04XmQphEK8SvggjxkpPjXw811QLIS2XcF1c
+	pH+Hufl89XIJM04FKiJX2MxU439EXOs81rRHo7zQE+/anI5w4V05U4hMUMAxVA==
+Date: Mon, 09 Dec 2024 17:32:38 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, sebastian.reichel@collabora.com,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 03/12] arm64: dts: rockchip: fix property for pwm-fan
+ for Radxa ROCK 5C
+In-Reply-To: <20241209125131.4101-4-naoki@radxa.com>
+References: <20241209125131.4101-1-naoki@radxa.com>
+ <20241209125131.4101-4-naoki@radxa.com>
+Message-ID: <ae031ff8c8c5d9e5c266c73026d4dfab@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
+Hello Fukaumi,
 
-On Mon, 09 Dec 2024 16:18:19 +0100, Herve Codina wrote:
-> An export-symbols node allows to export symbols for symbols resolution
-> performed when applying a device tree overlay.
+On 2024-12-09 13:51, FUKAUMI Naoki wrote:
+> fix pwm period to match with vendor kernel[1].
+
+Instead of simply referring to the downstream vendor kernel, in this
+specific case the reasons for adjusting the fan PWM parameters should
+be explained by referring to the actual fan setup you're using, the
+observed fan RPM behavior, etc.
+
+> [1] 
+> https://github.com/radxa/kernel/blob/linux-6.1-stan-rkr1/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
 > 
-> When a device tree overlay is applied on a node having an export-symbols
-> node, symbols listed in the export-symbols node are used to resolve
-> undefined symbols referenced from the overlay.
-> 
-> This allows:
->   - Referencing symbols from an device tree overlay without the need to
->     know the full base board. Only the connector definition is needed.
-> 
->   - Using the exact same overlay on several connectors available on a given
->     board.
-> 
-> For instance, the following description is supported with the
-> export-symbols node:
->  - Base device tree board A:
->     ...
->     foo_connector: connector1 {
->         export-symbols {
->            connector = <&foo_connector>;
->         };
->     };
-> 
->     bar_connector: connector2 {
->         export-symbols {
->            connector = <&bar_connector>;
->         };
->     };
->     ...
-> 
->  - Base device tree board B:
->     ...
->     front_connector: addon-connector {
->         export-symbols {
->            connector = <&front_connector>;
->         };
->     };
->     ...
-> 
->  - Overlay describing an addon board the can be connected on connectors:
->     ...
->     node {
->         ...
->         connector = <&connector>;
->         ...
->     };
->     ...
-> 
-> Thanks to the export-symbols node, the overlay can be applied on
-> connector1 or connector2 available on board A but also on
-> addon-connector available on board B.
-> 
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Fixes: 3ddf5cdb77e6 ("arm64: dts: rockchip: add Radxa ROCK 5C")
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 > ---
->  .../devicetree/bindings/export-symbols.yaml   | 43 +++++++++++++++++++
->  1 file changed, 43 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/export-symbols.yaml
+> Changes in v4:
+> - none
+> Changes in v3:
+> - none
+> Changes in v2:
+> - reword commit message
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-compress: size (5) error for type phandle
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/partitions/fixed-partitions.example.dtb: uimage@100000: compress: b'lzma\x00' is not of type 'object', 'integer', 'array', 'boolean', 'null'
-	from schema $id: http://devicetree.org/schemas/dt-core.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241209151830.95723-2-herve.codina@bootlin.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
+> b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
+> index 630f026d856c..85589d1a6d3b 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
+> @@ -73,7 +73,7 @@ pwm-fan {
+>  		#cooling-cells = <2>;
+>  		cooling-levels = <0 64 128 192 255>;
+>  		fan-supply = <&vcc_5v0>;
+> -		pwms = <&pwm3 0 10000 0>;
+> +		pwms = <&pwm3 0 60000 0>;
+>  	};
+> 
+>  	pcie2x1l2_3v3: regulator-pcie2x1l2-3v3 {
 
