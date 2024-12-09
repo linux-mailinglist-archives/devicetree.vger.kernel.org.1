@@ -1,85 +1,134 @@
-Return-Path: <devicetree+bounces-128982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 923299EA2F5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 00:40:38 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E69629EA31D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 00:49:03 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11260282664
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 23:40:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55DC6161E6E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 23:49:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C42E4224896;
-	Mon,  9 Dec 2024 23:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C8919D065;
+	Mon,  9 Dec 2024 23:48:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kztj4lA8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hfBBUUV/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EF0119B3EE;
-	Mon,  9 Dec 2024 23:40:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4866D1E48A;
+	Mon,  9 Dec 2024 23:48:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733787632; cv=none; b=CJcsU1aJcDOgUmLw3LrYQI0X1a/TIK5UQBlNSkNNjLTlX84FNzaDVCaTfyUyp9r0r5ICrPIVM0a4ZVZRhz1C81/9bo5xZC2rd1+c7z60YqK1vINNFZNsYyX4eAOJv5FNq+iLopBFDklhdEPPnztQD+eufablqNJ30IYsd/rc7+s=
+	t=1733788138; cv=none; b=HSrIm6vu5r/t2d+b8RkG3/LckmzRpnY4HVerr3f/jH1VnKrqQbD9Mw7rSThu3CH4PKXfCS0cYSpedMyIaiLB0SX2kK4ootZIT33jVOSDGSB6EppfdM4WL0RN5Uben8LIBWU1vYjFa2bwWqRqwxXXCavKhXlNrJYr1pBOT0Ivn7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733787632; c=relaxed/simple;
-	bh=BA3duGjUYPvGt2f4+K5L5RH1loqbyxLxJMRIpyaILmo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oTMwlQweUMA95E/h/8e7fl2+TcrsfVENAKzmIBpgj+cm7vRrVJhlLV3LhGwKu1DIMugjNKiIsHGqMq5usmmBKGRBfFNLbN4LF1k2WdjxwxkFAK24+WLP3cdZkhgfeX0NVQRbpDiHZtoNBUrLGI+z6r4tNMOZrq3uLP0hQfTmm6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kztj4lA8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37CABC4CED1;
-	Mon,  9 Dec 2024 23:40:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733787632;
-	bh=BA3duGjUYPvGt2f4+K5L5RH1loqbyxLxJMRIpyaILmo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Kztj4lA8lDAmSnUT5tJAv2cjEFrlBhTk0sI+1anlxEucU7S3ppmCiiWp5j4UokfY5
-	 m2BSlb5gR8sB7vJTcTjbsusvlp3qeZySOwq+xumA8ySDM1kPDzfUE3UC28tuXfdOyu
-	 h9nNK1YCihA7AkI/xYMpeyyJxxf7458SLNL4wVNwRdACYpZ7SqOup4EI6ovshHP8ue
-	 bUE/M59+4CE35vCbPFYegUUYE71neBMWZK/ac0t4DUOfz6rZf1CEdOYHKAGhr1VfCj
-	 6CxapaXrpuDI4Lupv+e3t3V242MpkykZGjpXu5omW31b4jYWhtn/ZVMAlPgZ+UFFBx
-	 bp7H1SQcIDumw==
-Date: Mon, 9 Dec 2024 15:40:30 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew
- Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Vladimir
- Oltean <olteanv@gmail.com>, Srinivas Kandagatla
- <srinivas.kandagatla@linaro.org>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>, Matthias Brugger
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, upstream@airoha.com
+	s=arc-20240116; t=1733788138; c=relaxed/simple;
+	bh=+zGoOp+VflwoGhsgDRcJK53Yg7vYXCoriYkgA8emnjg=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zya6zvBbIzY4cdn0w76rADVdOmE82wxaj/znyqlo/6E/XHfVgp0Gqzl9H9myfgksmcIDK/o4z4mvmPPdL+RpPtWjCKUGuhGlP2gUWLajDEw2k20OU0dQ2FMTo3aRnuCCNJixFRKojG8Omkin0Z+2d8cCdnaWCyk9T1AWdPxDoCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hfBBUUV/; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-434fa6bf744so9028415e9.2;
+        Mon, 09 Dec 2024 15:48:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733788135; x=1734392935; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=2+opuRzsTQ7K1Ei5kmbovGQpDBWvV453DJpnISWYK7E=;
+        b=hfBBUUV/NRDEkEWhrzFaneDwPd9qOItT34kcO0c9K5h6+258UH8pRfHOen32E7mKuK
+         IkIvCTlNjCr4fkWMEWd/rzO/L8dECt48Er1po09NQmuTfXTLFcLOZwHkYhVZ7oRqvv5X
+         CUvTkVLlrKQmOhDexpxiBzc2LlggrnBejjWIHjsmvIBRFFRPBWeGv0QPEvWTogAFBLk/
+         i1Gpex8eAK/ZZEJySGfxVkaqOmAjLS99zF+V4rCukBAuXGnWJlKM85brFCRjQA6LIutC
+         Bw1OCsp9ivpBjkUAOUgvtHNfp/VHNkxUID7TTQiNXE7Hb2zBx3dciAkhk1sYM28n411e
+         z0pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733788135; x=1734392935;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2+opuRzsTQ7K1Ei5kmbovGQpDBWvV453DJpnISWYK7E=;
+        b=mqaysp5zR1N42SwmYI+wzq5uHVqQre/NSfrCOYDkaYdSONvljbNDBzB+dbQunMaSbW
+         06EpFqneAodKrogMTsp9plBLggFlaBTqueVYmi66kIyKkWPuH/9xuu+2CxnMM0sfM0Fa
+         GTdLoGWvuIthna8IefTTL+SUZT/HTWuUXq+nH5icU3dPJyZSr0xTGIN3ZNlhdF9r2KUc
+         Lg4Q8Sn6mTFH5pxo4HVIJ8rntqSOiDnegyCDfHtAthpIBxEYid19Aq0/G/MYt5tTFEnu
+         s1IVWImgT/6EgUA0L8emHZamWtPq5YHvL6AKt7YGaNCfNRoO9sHyVfltO8oPM5QCUSu7
+         3ENw==
+X-Forwarded-Encrypted: i=1; AJvYcCUhDGr8fGx/bLTJDNiHnncHJVRvOlQUG4tFzUBQFfCWAUufPD61+3AW6CDNE00bnQ382gLqLEyQ@vger.kernel.org, AJvYcCV0nlSHozvG1vfeoHDNN3Z3lT2usps2PJzsgkx3cA8OIIopIPuYn4hg4NLpGA1Be6eUUgYd/siZ2RNJfiD9@vger.kernel.org, AJvYcCVVyRmmnCXxCWDxGLqSX9WDhLcANpvk0xBA7q1B0FAOHfxGSiUr9rR4nYc6TEDsZ1LYnCo7DLOB8T0J@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrfypjnNvCw+rlMaBAFn6z1YxZdtRCX2FyD57njIN3hpD5Iq3n
+	meUJ+hydU2RkKr6F8tZwBuoDxxuyGILMNwVXO8eI4rjDurpXvRFk
+X-Gm-Gg: ASbGncuy2hQOVxpujhlCYCxYc7sTN2WX5QojERDbu8bD1cG6AmMqFz7VOoJex+VFDGQ
+	H/IZQggksVcVImeAFbjWlwMtJ3A94p3ImasBjQWH+AeJO+ttgqqtr+jnc+wiO3MA/VJFLkaPXZI
+	5hR/QUBrAMSHQTl7vEvGkqrAQ6lzRZbXajB4u2KBL3ibbQCWk4cEGmcoYqbkAI0YnJJkZWYOAOF
+	aZ9JmVtyTswMmodVdLlsTJekUihlvX+h+xJZHD+Yplcsfn67FausxCkMfeYC4kPhfR7HheaQr5i
+	DoTzM8r5Ig==
+X-Google-Smtp-Source: AGHT+IH9/KxJN7tPNyH97Gbd1yzXNSTFzl3Ym7oZH/K0A2GTk2oxeudvtllbhttHCkYsV4UVpV6MwQ==
+X-Received: by 2002:a05:600c:45c7:b0:434:f297:8e85 with SMTP id 5b1f17b1804b1-434fff69f57mr25414345e9.10.1733788135304;
+        Mon, 09 Dec 2024 15:48:55 -0800 (PST)
+Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38621fbbea8sm14345085f8f.97.2024.12.09.15.48.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Dec 2024 15:48:54 -0800 (PST)
+Message-ID: <675781e6.df0a0220.3c3d71.7a51@mx.google.com>
+X-Google-Original-Message-ID: <Z1eB4tGzFOvn7ME4@Ansuel-XPS.>
+Date: Tue, 10 Dec 2024 00:48:50 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
 Subject: Re: [net-next PATCH v11 5/9] mfd: an8855: Add support for Airoha
  AN8855 Switch MFD
-Message-ID: <20241209154030.0f34d5dd@kernel.org>
-In-Reply-To: <67577bd7.7b0a0220.1ce6b5.fe93@mx.google.com>
 References: <20241209134459.27110-1-ansuelsmth@gmail.com>
-	<20241209134459.27110-6-ansuelsmth@gmail.com>
-	<20241209151813.106eda03@kernel.org>
-	<67577bd7.7b0a0220.1ce6b5.fe93@mx.google.com>
+ <20241209134459.27110-6-ansuelsmth@gmail.com>
+ <20241209151813.106eda03@kernel.org>
+ <67577bd7.7b0a0220.1ce6b5.fe93@mx.google.com>
+ <20241209154030.0f34d5dd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241209154030.0f34d5dd@kernel.org>
 
-On Tue, 10 Dec 2024 00:22:59 +0100 Christian Marangi wrote:
-> Also hope we won't have to request multiple stable tag for this multi
-> subsystem patch. Any hint on that?
+On Mon, Dec 09, 2024 at 03:40:30PM -0800, Jakub Kicinski wrote:
+> On Tue, 10 Dec 2024 00:22:59 +0100 Christian Marangi wrote:
+> > Also hope we won't have to request multiple stable tag for this multi
+> > subsystem patch. Any hint on that?
+> 
+> Sorry I haven't payed much attention to earlier discussions.
+> Why multiple stable tags? AFAICT all trees will need patches 
+> 4 and 5, so we can put that on a stable tag / branch, the rest 
+> can go directly into respective trees (assuming the table tag
+> has been merged in). No?
 
-Sorry I haven't payed much attention to earlier discussions.
-Why multiple stable tags? AFAICT all trees will need patches 
-4 and 5, so we can put that on a stable tag / branch, the rest 
-can go directly into respective trees (assuming the table tag
-has been merged in). No?
+Yes in theory only MFD is really needed (as it does export the page
+symbol)
+
+- NVMEM can go in his own tree. (no need for stable tag)
+- mdio (require stable tag to correctly compile)
+- dsa/phy (no need for stable tag)
+
+So you are right, only one tag needed.
+
+-- 
+	Ansuel
 
