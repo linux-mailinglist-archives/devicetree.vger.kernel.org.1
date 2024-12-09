@@ -1,615 +1,149 @@
-Return-Path: <devicetree+bounces-128561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 803ED9E9060
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:36:38 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 326551886EC4
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:36:34 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 736BB219EB7;
-	Mon,  9 Dec 2024 10:35:01 +0000 (UTC)
-X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC6B9E9065
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:37:01 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5432F21764E
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 10:34:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DF9D2834D7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:37:00 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81EE52185B1;
+	Mon,  9 Dec 2024 10:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n7xPbqvo"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8AA9217722;
+	Mon,  9 Dec 2024 10:35:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733740501; cv=none; b=hehe9kM+qOz6Y1lAwYSxgR/8xt8vQCRmQTXtjONiXRkkYW+X1kA1W8oNnkl/1o1EFyg3uK7IlENq3KCsajpPzv+bI4mPhRNMWuKe5NeOoSJNTrF/GnSP4BA3ZlA3PYDbRJDZSVSjiYRut+YuygJ8Ifb/1XYW4JuRG5Vc7Qg+FBU=
+	t=1733740529; cv=none; b=KKc6uJ8Kl4sEDDRdO2x5VDmQV3fqDLb6E49RdF4cW+7z/Bi+NOlMn/Bvl4PqZSDCDK30H8S/pZabHTvBkmTK1lh1904rL1zme7nUqvP+6mWQoZXppfQMs61vhcSFMXYZyZiBX/kupPvf6md4XndCbuGdvcG/XK0g2+1d7So95Uw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733740501; c=relaxed/simple;
-	bh=Pv1y2rUk4D7YIRTWWFsMKM9CRt6p2zuOxY5NCh5B+JA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aQtH4avGYOwpaiVeLZRU5+TZ2/rBt5OdB2EVFkueoaSWzOo8Z6TPEUNEXILLQSdW4jnNvtriTR5Gn5XElScapfYmz+w6tvnnJQ8cImPuHWQvhNupL6kTqiM8DNn+aF5zjdStjEfKMOBf1C4hdEDBDoyP5mcvnuqb1+obb7wGVc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tKb65-00063w-U5; Mon, 09 Dec 2024 11:34:37 +0100
-Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tKb63-002UsM-0n;
-	Mon, 09 Dec 2024 11:34:36 +0100
-Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1tKb63-001VY0-30;
-	Mon, 09 Dec 2024 11:34:35 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>
-Cc: Roan van Dijk <roan@protonic.nl>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v2 4/4] arm: dts: stm32: Add Priva E-Measuringbox devicetree
-Date: Mon,  9 Dec 2024 11:34:34 +0100
-Message-Id: <20241209103434.359522-5-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241209103434.359522-1-o.rempel@pengutronix.de>
-References: <20241209103434.359522-1-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1733740529; c=relaxed/simple;
+	bh=Z1sCkDdALyoYtaZ60KqBvmpJQQWFOf8UqjcdOXUzh/g=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=D5Ahj+skhI+GU9U+bl/PRcZpyWMuZpKZNDMcfuu/BwP9Vn49HPkGKgH46C4y0Fi3dN5JGNco3bMqU4JHSiNUjs7fk4m26v4VBgB9xz7wksLo1UBhjosxwYTVGSHsNmJCNVp30iyGvfhISyL4mC5jEskvk5LM7rVGnLDExS1r4/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n7xPbqvo; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B9AHxFF004758;
+	Mon, 9 Dec 2024 10:35:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=vPmslVTlyG4/imQzJq/OnI
+	aWHOfv6hepG+iVPXr2rIw=; b=n7xPbqvo7AeaU3loXDRrJrMBINbpR67RvooQKf
+	2Iyb1Rb/G3FCLMvimYNmrrfkxu48r8b7EhMmWj2ziLcdsuxOJGc6Z61C1uNEMhtX
+	fI/kQKI0PCEYT3SdrIir6+6+S2QlBCY0iFZ7aWMRPqpkuyk3fgYlOJ0P7Psphcx5
+	UmqmYFYHpnVOuYmY5wIVXVAtBchUqVOF6ePcPyQn33KLmAXby33TOrhK6+YmR+IV
+	dLHpIsUTz5ARIGGZJyZhhgKxIaVPBbRE6kqkl8sLr2aRWznZfhAlVrK8zHiq6CR4
+	ZH/Wh8QTOL3DyR/MEx15VIs8fV7H3uJoxBAQG2FXTyf0OIPA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43cek1v8y1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Dec 2024 10:35:19 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B9AZInn009133
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Dec 2024 10:35:18 GMT
+Received: from hu-janathot-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 9 Dec 2024 02:35:12 -0800
+From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konradybcio@kernel.org>,
+        Marcel Holtmann
+	<marcel@holtmann.org>,
+        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+CC: <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
+        <quic_anubhavg@quicinc.com>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-bluetooth@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+Subject: [PATCH v5 0/4] Enable Bluetooth on qcs6490-rb3gen2 board
+Date: Mon, 9 Dec 2024 16:04:51 +0530
+Message-ID: <20241209103455.9675-1-quic_janathot@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 4qDlE6bNxjsjQ2P-WidDJ7txcN4DYQHo
+X-Proofpoint-ORIG-GUID: 4qDlE6bNxjsjQ2P-WidDJ7txcN4DYQHo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ mlxscore=0 adultscore=0 clxscore=1011 malwarescore=0 phishscore=0
+ spamscore=0 mlxlogscore=999 lowpriorityscore=0 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412090082
 
-From: Roan van Dijk <roan@protonic.nl>
+- Patch 1/4 Add description of the PMU of the WCN6750 module.
+- Patch 2/4 add and enable BT node for qcs6490-rb3gen board.
+- Patch 3/4 use the power sequencer for wcn6750.
+- Patch 4/4 add support for the WCN6750 PMU.
 
-Introduce the devicetree for the Priva E-Measuringbox board
-(stm32mp133c-prihmb), based on the STM32MP133 SoC.
+----
+Changes from v4:
+* Added reviewed tag by Krzysztof in p1
+* Updated the p2 commit message with sw_ctrl and wifi-enable are
+  handled in wifi FW.
+* Added blank line between the nodes in p2
+* Placed the structures in proper order in p4
+* Link to v4: https://lore.kernel.org/all/20241204131706.20791-1-quic_janathot@quicinc.com/
 
-Signed-off-by: Roan van Dijk <roan@protonic.nl>
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- arch/arm/boot/dts/st/Makefile               |   1 +
- arch/arm/boot/dts/st/stm32mp133c-prihmb.dts | 496 ++++++++++++++++++++
- 2 files changed, 497 insertions(+)
- create mode 100644 arch/arm/boot/dts/st/stm32mp133c-prihmb.dts
+Changes from v3:
+* Defined the PMU node and used the its output to power up BT
+* Used power sequencer for wcn wcn6750 module
+* Split the patch to multiple as per subtree
+* Add description of the PMU of the WCN6750 module
+* Include separate UART state node for sleep pin configuarion
+* Link to v3: https://lore.kernel.org/linux-arm-msm/20241022104600.3228-1-quic_janathot@quicinc.com/
 
-diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefile
-index eab3a9bd435f..c4c01415fa85 100644
---- a/arch/arm/boot/dts/st/Makefile
-+++ b/arch/arm/boot/dts/st/Makefile
-@@ -29,6 +29,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32h743i-eval.dtb \
- 	stm32h743i-disco.dtb \
- 	stm32h750i-art-pi.dtb \
-+	stm32mp133c-prihmb.dtb \
- 	stm32mp135f-dhcor-dhsbc.dtb \
- 	stm32mp135f-dk.dtb \
- 	stm32mp151a-prtt1a.dtb \
-diff --git a/arch/arm/boot/dts/st/stm32mp133c-prihmb.dts b/arch/arm/boot/dts/st/stm32mp133c-prihmb.dts
-new file mode 100644
-index 000000000000..663b6de1b814
---- /dev/null
-+++ b/arch/arm/boot/dts/st/stm32mp133c-prihmb.dts
-@@ -0,0 +1,496 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/regulator/st,stm32mp13-regulator.h>
-+#include "stm32mp133.dtsi"
-+#include "stm32mp13xc.dtsi"
-+#include "stm32mp13-pinctrl.dtsi"
-+
-+/ {
-+	model = "Priva E-Measuringbox board";
-+	compatible = "pri,prihmb", "st,stm32mp133";
-+
-+	aliases {
-+		ethernet0 = &ethernet1;
-+		mdio-gpio0 = &mdio0;
-+		mmc0 = &sdmmc1;
-+		mmc1 = &sdmmc2;
-+		serial0 = &uart4;
-+		serial1 = &usart6;
-+		serial2 = &uart7;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	counter-0 {
-+		compatible = "interrupt-counter";
-+		gpios = <&gpioa 11 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		autorepeat;
-+
-+		button-reset {
-+			label = "reset-button";
-+			linux,code = <BTN_1>;
-+			gpios = <&gpioi 7 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-blue {
-+			function = LED_FUNCTION_HEARTBEAT;
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&gpioa 14 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "heartbeat";
-+			default-state = "off";
-+		};
-+	};
-+
-+	led-controller-0 {
-+		compatible = "pwm-leds-multicolor";
-+
-+		multi-led {
-+			color = <LED_COLOR_ID_RGB>;
-+			function = LED_FUNCTION_STATUS;
-+			max-brightness = <255>;
-+
-+			led-red {
-+				active-low;
-+				color = <LED_COLOR_ID_RED>;
-+				pwms = <&pwm2 2 1000000 1>;
-+			};
-+
-+			led-green {
-+				active-low;
-+				color = <LED_COLOR_ID_GREEN>;
-+				pwms = <&pwm1 1 1000000 1>;
-+			};
-+
-+			led-blue {
-+				active-low;
-+				color = <LED_COLOR_ID_BLUE>;
-+				pwms = <&pwm1 2 1000000 1>;
-+			};
-+		};
-+	};
-+
-+	led-controller-1 {
-+		compatible = "pwm-leds-multicolor";
-+
-+		multi-led {
-+			color = <LED_COLOR_ID_RGB>;
-+			function = LED_FUNCTION_STATUS;
-+			max-brightness = <255>;
-+
-+			led-red {
-+				active-low;
-+				color = <LED_COLOR_ID_RED>;
-+				pwms = <&pwm1 0 1000000 1>;
-+			};
-+
-+			led-green {
-+				active-low;
-+				color = <LED_COLOR_ID_GREEN>;
-+				pwms = <&pwm2 0 1000000 1>;
-+			};
-+
-+			led-blue {
-+				active-low;
-+				color = <LED_COLOR_ID_BLUE>;
-+				pwms = <&pwm2 1 1000000 1>;
-+			};
-+		};
-+	};
-+
-+	/* DP83TD510E PHYs have max MDC rate of 1.75MHz. Since we can't reduce
-+	 * stmmac MDC clock without reducing system bus rate, we need to use
-+	 * gpio based MDIO bus.
-+	 */
-+	mdio0: mdio {
-+		compatible = "virtual,mdio-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpios = <&gpiog 2 GPIO_ACTIVE_HIGH
-+			 &gpioa 2 GPIO_ACTIVE_HIGH>;
-+
-+		/* TI DP83TD510E */
-+		phy0: ethernet-phy@0 {
-+			compatible = "ethernet-phy-id2000.0181";
-+			reg = <0>;
-+			interrupts-extended = <&gpioa 4 IRQ_TYPE_LEVEL_LOW>;
-+			reset-gpios = <&gpioa 3 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10>;
-+			reset-deassert-us = <35>;
-+		};
-+	};
-+
-+	memory@c0000000 {
-+		device_type = "memory";
-+		reg = <0xc0000000 0x10000000>;
-+	};
-+
-+	reg_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		optee@ce000000 {
-+			reg = <0xce000000 0x02000000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&adc_1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&adc_1_pins_a>;
-+	vdda-supply = <&reg_3v3>;
-+	vref-supply = <&reg_3v3>;
-+	status = "okay";
-+};
-+
-+&adc1 {
-+	status = "okay";
-+
-+	channel@0 { /* Fan current PC0*/
-+		reg = <0>;
-+		st,min-sample-time-ns = <10000>;  /* 10µs sampling time */
-+	};
-+	channel@11 { /* Fan voltage */
-+		reg = <11>;
-+		st,min-sample-time-ns = <10000>;  /* 10µs sampling time */
-+	};
-+	channel@15 { /* Supply voltage */
-+		reg = <15>;
-+		st,min-sample-time-ns = <10000>;  /* 10µs sampling time */
-+	};
-+};
-+
-+&dts {
-+	status = "okay";
-+};
-+
-+&ethernet1 {
-+	status = "okay";
-+	pinctrl-0 = <&ethernet1_rmii_pins_a>;
-+	pinctrl-1 = <&ethernet1_rmii_sleep_pins_a>;
-+	pinctrl-names = "default", "sleep";
-+	phy-mode = "rmii";
-+	phy-handle = <&phy0>;
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c1_pins_a>;
-+	pinctrl-1 = <&i2c1_sleep_pins_a>;
-+	clock-frequency = <100000>;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	status = "okay";
-+
-+	board-sensor@48 {
-+		compatible = "ti,tmp1075";
-+		reg = <0x48>;
-+		vs-supply = <&reg_3v3>;
-+	};
-+};
-+
-+&{i2c1_pins_a/pins} {
-+	pinmux = <STM32_PINMUX('D', 3, AF5)>, /* I2C1_SCL */
-+		 <STM32_PINMUX('B', 8, AF4)>; /* I2C1_SDA */
-+	bias-disable;
-+	drive-open-drain;
-+	slew-rate = <0>;
-+};
-+
-+&{i2c1_sleep_pins_a/pins} {
-+	pinmux = <STM32_PINMUX('D', 3, ANALOG)>, /* I2C1_SCL */
-+		 <STM32_PINMUX('B', 8, ANALOG)>; /* I2C1_SDA */
-+};
-+
-+&iwdg2 {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
-+/* SD card without Card-detect */
-+&sdmmc1 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc1_b4_pins_a &sdmmc1_clk_pins_a>;
-+	pinctrl-1 = <&sdmmc1_b4_od_pins_a &sdmmc1_clk_pins_a>;
-+	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-+	broken-cd;
-+	no-sdio;
-+	no-1-8-v;
-+	st,neg-edge;
-+	bus-width = <4>;
-+	vmmc-supply = <&reg_3v3>;
-+	status = "okay";
-+};
-+
-+/* EMMC */
-+&sdmmc2 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_a &sdmmc2_clk_pins_a>;
-+	pinctrl-1 = <&sdmmc2_b4_od_pins_a &sdmmc2_d47_pins_a &sdmmc2_clk_pins_a>;
-+	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_a>;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	no-1-8-v;
-+	st,neg-edge;
-+	mmc-ddr-3_3v;
-+	bus-width = <8>;
-+	vmmc-supply = <&reg_3v3>;
-+	status = "okay";
-+};
-+
-+&timers1 {
-+	status = "okay";
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	pwm1: pwm {
-+		pinctrl-0 = <&pwm1_pins_a>;
-+		pinctrl-1 = <&pwm1_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+};
-+
-+&timers4 {
-+	status = "okay";
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	pwm2: pwm {
-+		pinctrl-0 = <&pwm4_pins_a>;
-+		pinctrl-1 = <&pwm4_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+};
-+
-+/* Fan PWM */
-+&timers5 {
-+	status = "okay";
-+
-+	pwm3: pwm {
-+		pinctrl-0 = <&pwm5_pins_a>;
-+		pinctrl-1 = <&pwm5_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+};
-+
-+&timers2 {
-+	status = "okay";
-+
-+	timer@1 {
-+		status = "okay";
-+	};
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&uart4_pins_a>;
-+	pinctrl-1 = <&uart4_sleep_pins_a>;
-+	pinctrl-2 = <&uart4_idle_pins_a>;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	status = "okay";
-+};
-+
-+&uart7 {
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&uart7_pins_a>;
-+	pinctrl-1 = <&uart7_sleep_pins_a>;
-+	pinctrl-2 = <&uart7_idle_pins_a>;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	status = "okay";
-+};
-+
-+&usart6 {
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&usart6_pins_a>;
-+	pinctrl-1 = <&usart6_sleep_pins_a>;
-+	pinctrl-2 = <&usart6_idle_pins_a>;
-+	linux,rs485-enabled-at-boot-time;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	adc_1_pins_a: adc1-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('C', 0, ANALOG)>, /* ADC1 in0 */
-+				 <STM32_PINMUX('C', 2, ANALOG)>, /* ADC1 in15 */
-+				 <STM32_PINMUX('F', 13, ANALOG)>; /* ADC1 in11 */
-+		};
-+	};
-+
-+	ethernet1_rmii_pins_a: rmii-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('G', 13, AF11)>, /* ETH1_RMII_TXD0 */
-+				 <STM32_PINMUX('G', 14, AF11)>, /* ETH1_RMII_TXD1 */
-+				 <STM32_PINMUX('B', 11, AF11)>, /* ETH1_RMII_TX_EN */
-+				 <STM32_PINMUX('A', 1, AF11)>;   /* ETH1_RMII_REF_CLK */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <2>;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('C', 4, AF11)>,  /* ETH1_RMII_RXD0 */
-+				 <STM32_PINMUX('C', 5, AF11)>,  /* ETH1_RMII_RXD1 */
-+				 <STM32_PINMUX('A', 7, AF11)>;  /* ETH1_RMII_CRS_DV */
-+			bias-disable;
-+		};
-+	};
-+
-+	ethernet1_rmii_sleep_pins_a: rmii-sleep-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('G', 13, ANALOG)>, /* ETH1_RMII_TXD0 */
-+				 <STM32_PINMUX('G', 14, ANALOG)>, /* ETH1_RMII_TXD1 */
-+				 <STM32_PINMUX('B', 11, ANALOG)>, /* ETH1_RMII_TX_EN */
-+				 <STM32_PINMUX('C', 4, ANALOG)>,  /* ETH1_RMII_RXD0 */
-+				 <STM32_PINMUX('C', 5, ANALOG)>,  /* ETH1_RMII_RXD1 */
-+				 <STM32_PINMUX('A', 1, ANALOG)>,  /* ETH1_RMII_REF_CLK */
-+				 <STM32_PINMUX('A', 7, ANALOG)>;  /* ETH1_RMII_CRS_DV */
-+		};
-+	};
-+
-+	pwm1_pins_a: pwm1-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('E', 9, AF1)>, /* TIM1_CH1 */
-+				 <STM32_PINMUX('E', 11, AF1)>, /* TIM1_CH2 */
-+				 <STM32_PINMUX('E', 13, AF1)>; /* TIM1_CH3 */
-+			bias-pull-down;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+	};
-+
-+	pwm1_sleep_pins_a: pwm1-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('E', 9, ANALOG)>, /* TIM1_CH1 */
-+				 <STM32_PINMUX('E', 11, ANALOG)>, /* TIM1_CH2 */
-+				 <STM32_PINMUX('E', 13, ANALOG)>; /* TIM1_CH3 */
-+		};
-+	};
-+
-+	pwm4_pins_a: pwm4-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('D', 12, AF2)>, /* TIM4_CH1 */
-+				 <STM32_PINMUX('B', 7, AF2)>, /* TIM4_CH2 */
-+				 <STM32_PINMUX('D', 14, AF2)>; /* TIM4_CH3 */
-+			bias-pull-down;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+	};
-+
-+	pwm4_sleep_pins_a: pwm4-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('D', 12, ANALOG)>, /* TIM4_CH1 */
-+				 <STM32_PINMUX('B', 7, ANALOG)>, /* TIM4_CH2 */
-+				 <STM32_PINMUX('D', 14, ANALOG)>; /* TIM4_CH3 */
-+		};
-+	};
-+	pwm5_pins_a: pwm5-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('A', 0, AF2)>; /* TIM5_CH1 */
-+		};
-+	};
-+
-+	pwm5_sleep_pins_a: pwm5-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('A', 0, ANALOG)>; /* TIM5_CH1 */
-+		};
-+	};
-+
-+	uart7_pins_a: uart7-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('E', 8, AF7)>; /* UART_TX */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('E', 10, AF7)>; /* UART7_RX */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	uart7_idle_pins_a: uart7-idle-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('E', 8, ANALOG)>; /* UART7_TX */
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('E', 10, AF7)>; /* UART7_RX */
-+			bias-pull-up;
-+		};
-+	};
-+
-+	uart7_sleep_pins_a: uart7-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('E', 8, ANALOG)>, /* UART7_TX */
-+				 <STM32_PINMUX('E', 10, ANALOG)>; /* UART7_RX */
-+		};
-+	};
-+
-+	usart6_pins_a: usart6-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('F', 8, AF7)>, /* USART6_TX */
-+				 <STM32_PINMUX('F', 10, AF7)>; /* USART6_DE */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('H', 11, AF7)>; /* USART6_RX */
-+			bias-disable;
-+		};
-+	};
-+
-+	usart6_idle_pins_a: usart6-idle-0 {
-+		pins1 {
-+			pinmux = <STM32_PINMUX('F', 8, ANALOG)>; /* USART6_TX */
-+		};
-+		pins2 {
-+			pinmux = <STM32_PINMUX('F', 10, AF7)>; /* USART6_DE */
-+			bias-disable;
-+			drive-push-pull;
-+			slew-rate = <0>;
-+		};
-+		pins3 {
-+			pinmux = <STM32_PINMUX('H', 11, AF7)>; /* USART6_RX */
-+			bias-disable;
-+		};
-+	};
-+
-+	usart6_sleep_pins_a: usart6-sleep-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('F', 8, ANALOG)>, /* USART6_TX */
-+				 <STM32_PINMUX('F', 10, ANALOG)>, /* USART6_DE */
-+				 <STM32_PINMUX('H', 11, ANALOG)>; /* USART6_RX */
-+		};
-+	};
-+};
+Changes from v2:
+* Sorted nodes alphabetically
+* Link to v2: https://lore.kernel.org/linux-arm-msm/20241010105107.30118-1-quic_janathot@quicinc.com/
+
+Changes from v1:
+* Corrected the board name in subject
+* Link to v1: https://lore.kernel.org/linux-arm-msm/20241009111436.23473-1-quic_janathot@quicinc.com/
+
+Janaki Ramaiah Thota (4):
+  regulator:·dt-bindings:·qcom,qca6390-pmu:·document wcn6750-pmu
+  arm64: dts: qcom: qcs6490-rb3gen: add and enable BT node
+  Bluetooth: hci_qca: use the power sequencer for wcn6750
+  power: sequencing: qcom-wcn: add support for the WCN6750 PMU
+
+ .../bindings/regulator/qcom,qca6390-pmu.yaml  |  27 +++
+ arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts  | 168 +++++++++++++++++-
+ drivers/bluetooth/hci_qca.c                   |   2 +-
+ drivers/power/sequencing/pwrseq-qcom-wcn.c    |  22 +++
+ 4 files changed, 217 insertions(+), 2 deletions(-)
+
 -- 
-2.39.5
+
 
 
