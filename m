@@ -1,76 +1,125 @@
-Return-Path: <devicetree+bounces-128489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6503B9E8D5D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:28:03 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F8B59E8D64
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:30:06 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DFBE1884E00
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:28:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A27928265E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:30:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 513C6215191;
-	Mon,  9 Dec 2024 08:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF24E2156FF;
+	Mon,  9 Dec 2024 08:30:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="AYBY+R2Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L4qev80Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BDCE374EA;
-	Mon,  9 Dec 2024 08:27:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F9B2156F3;
+	Mon,  9 Dec 2024 08:30:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733732879; cv=none; b=BUOMyFZD+xKJ/NwB74nVFPRTHcJm63GN+GdA2gvsQecOF4zf/9XO6dMFLNPGHycdiY4WswOfchh/39oY6lxY3Z/zgWG/MNCsKGQMfK5ew4vd49U0e49IOU8n1AZ8PNJgdfoJrBvPoNR1YQu0m1jp5Q3Af4o1wGeJ1Fy7tHsjzes=
+	t=1733733002; cv=none; b=YKpxNn88GyZ0WmUEVXsFF/s3xjY+pguJn9giImv4Ck68M+/D5eD2cLYhEmoeWbYBuvflF1jqjJuwdNvyZSSkZ9Mv91Gi2w3jdzt7JRPWKlUuXsuq8TTe+GEmnhJm6ZKFDhc2IQn5fFR8hppavspUIsse2AVXU3rZ+ASLy4Bp4lg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733732879; c=relaxed/simple;
-	bh=i6UXFMAMIY3QiR0e6G2t/WA9FEry4P3PLtzEmgPIU5Y=;
+	s=arc-20240116; t=1733733002; c=relaxed/simple;
+	bh=hefcKfevFSAoEM61KtOENmpzPHMyrIir5nAPgdsgUUk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qQMLuceDHxH7spq9f+loyRILyEqnLCYv1Y2F9wWx0xU+saZc91BazpWbtOJkczg03jX+66EWvEmt0sPcYG7j4l+/sc1CUmZDA0J78CaGii2s5FZcRlr1TVbl7Ip6hWXN9It+Fn/wfdDVYQrKmixtHx+MpnuKFclsCJjTJAaA6SY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=AYBY+R2Y; arc=none smtp.client-ip=220.197.32.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=Uck9vxqkblasHvKIYn8GVu5axHgPGfdiHnrPp5elho4=;
-	b=AYBY+R2Y5CebWsEEabugNRT1aE9+ieboWGLmtFlDxH5T+brP7bxBHxhheEhVCx
-	ciqsJR9CwFRGe4bnLHy4dYj9OOfMK9HHlfx7WJS+6U12tWiYGPT7rgRwDteZxTw7
-	XneVSL7O8SZgwuTWrUfsPGaAEUMqvUZ8h0G5iBi/mUwlA=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgCnDkXlqVZn58h6BA--.46377S3;
-	Mon, 09 Dec 2024 16:27:18 +0800 (CST)
-Date: Mon, 9 Dec 2024 16:27:16 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: imx95: correct the address length of
- netcmix_blk_ctrl
-Message-ID: <Z1ap5M0KGCcz5rfl@dragon>
-References: <20241105054603.1470260-1-wei.fang@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bEe2+Jvd4zkwU5pYj+//KQzvSJSW7YGaq348dMR148oXCVYhKE9RljQNXxwEUAQThg0EEpDWgRc24mGOGuyjwQwql0F6vawxVFJCVHOEBKCMBGKLBxrkPO0AUgSdrNlUDSmzA0PrdBI8Y2BoBc8Gp9v3HRS900FZw90IPysCh+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L4qev80Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DAC0C4CED1;
+	Mon,  9 Dec 2024 08:30:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733733002;
+	bh=hefcKfevFSAoEM61KtOENmpzPHMyrIir5nAPgdsgUUk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L4qev80ZqVUxrGI/ByF3mlXqjOKaEr1fR9eE4OFZKnGQGbFBxFTdRXD/bo3oEqw3h
+	 3szdQa5l8oF0epWqAgq2vhdoP/gahZ+jeZDGUyPAjs50bqP74JEdGz82qWiGdwa9NA
+	 GL4gE/t9WU+AWxNr4zkHVEejbO8oTPCxl8H63ZlnknrUV4TXUbxnVfsHTRLm6A3Cne
+	 RVHMU3DWI2di8PHY/T7uZLByn/jLyW+d7jkiWimsAoFzKD+67e9olj5WuGDX/opxr6
+	 H5o0XX9z6ZSiB6EgaDaKVuYZfE1Jss+P/Gc92dj5cjgc/0YU1kkeUK2o/WeDpx4KVu
+	 QACsk5uUYtg8w==
+Date: Mon, 9 Dec 2024 09:29:58 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Markuss Broks <markuss.broks@gmail.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	alim.akhtar@samsung.com, linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, andre.draszik@linaro.org, 
+	kernel-team@android.com, willmcvicker@google.com, peter.griffin@linaro.org, 
+	javierm@redhat.com, tzimmermann@suse.de, vincent.guittot@linaro.org, 
+	ulf.hansson@linaro.org, arnd@arndb.de
+Subject: Re: [PATCH v3 2/3] firmware: add exynos ACPM protocol driver
+Message-ID: <faghtvhan6xmhoezeaocmdusxkmy4g3vrldzn7mlukbh33isr6@c27o6p7a6a6f>
+References: <20241205175345.201595-1-tudor.ambarus@linaro.org>
+ <20241205175345.201595-3-tudor.ambarus@linaro.org>
+ <ce757b8e-4e6c-4ba9-9483-b57e6e230fdf@linaro.org>
+ <vxqi23hxw7bmtfs5wk3u7szganpv5aa74b26xrvpmbehkltodw@dpum7zrxdz44>
+ <2eedbbe1-6b4c-427b-a369-5b08dc27deaf@linaro.org>
+ <0ba62a72-8247-447f-b710-234385a29d14@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241105054603.1470260-1-wei.fang@nxp.com>
-X-CM-TRANSID:Mc8vCgCnDkXlqVZn58h6BA--.46377S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU-PfHUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiAgqwZWdWlR9k4QAAsj
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <0ba62a72-8247-447f-b710-234385a29d14@gmail.com>
 
-On Tue, Nov 05, 2024 at 01:46:02PM +0800, Wei Fang wrote:
-> The netc_blk_ctrl is controlled by the imx95-blk-ctl clock driver and
-> provides relevant clock configurations for NETC, SAI and MQS. Its address
-> length should be 8 bytes instead of 0x1000.
-> 
-> Fixes: 7764fef26ea9 ("arm64: dts: imx95: Add NETCMIX block control support")
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+On Sun, Dec 08, 2024 at 06:38:50PM +0200, Markuss Broks wrote:
+>=20
+> On 12/6/24 9:50 PM, Daniel Lezcano wrote:
+> > On 12/6/24 14:28, Krzysztof Kozlowski wrote:
+> > > On Fri, Dec 06, 2024 at 12:39:56AM +0100, Daniel Lezcano wrote:
+> > > > > +# SPDX-License-Identifier: GPL-2.0-only
+> > > > > +
+> > > > > +config EXYNOS_ACPM_PROTOCOL
+> > > > > +=C2=A0=C2=A0=C2=A0 tristate "Exynos Alive Clock and Power Manage=
+r (ACPM)
+> > > > > Message Protocol"
+> > > >=20
+> > > > Given the importance of this driver where a lot of PM services
+> > > > rely on, does
+> > > > it really make sense to allow it as a module ?
+> > > >=20
+> > > > Some PM services may be needed very early in the boot process
+> > > >=20
+> > >=20
+> > > If it works as module e.g. on Android, it is beneficial. I think the
+> > > platform was booting fine without it, at least to some shell, so I can
+> > > imagine this can be loaded a bit later.
+> >=20
+> > Usually the firmware sets the frequency to the maximum in order to boot
+> > the kernel as fast as possible. That may lead to thermal issues at boot
+> > time where the thermal framework won't be able to kick in as some
+> > components will depends on ACPM while the system stays at its highest
+> > performance state.
 
-Applied, thanks!
+I disagree with the first assumption: usually firmware selects high, but
+safe frequency. Otherwise you would not be able to wait in bootloader
+prompt.
+
+> Also, as far as I understand, ACPM is used here as an interface to the PM=
+IC,
+> so every driver which would need power management from the main SoC PMIC
+> would get deferred until the ACPM module has been loaded. This would make=
+ it
+
+It was an issue 10 years ago, not anymore. Drivers handle deferred
+probe.
+
+> impossible to e.g. initialize the UFS or the MMC card before initramfs.
+
+Which is not a problem, because you are supposed to have initramfs. This
+is preferred way. Being this a module does not force you to use it as a
+module, e.g. if in your setup you do not have initramfs (although it is
+unlikely for arm64 platforms...).
+
+Best regards,
+Krzysztof
 
 
