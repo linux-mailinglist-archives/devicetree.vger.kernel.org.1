@@ -1,63 +1,54 @@
-Return-Path: <devicetree+bounces-128945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CF689EA025
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 21:19:13 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10CCF9EA041
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 21:28:44 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF935282A23
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 20:19:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B888188874F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 20:28:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7379A137930;
-	Mon,  9 Dec 2024 20:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C59D2199EA1;
+	Mon,  9 Dec 2024 20:28:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dQoCNGGH"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="K5UAnZH9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FCB3849C;
-	Mon,  9 Dec 2024 20:19:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8AA137930;
+	Mon,  9 Dec 2024 20:28:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733775549; cv=none; b=r/bH8a3vcaGsGOf3V09DseKqNid21gamMcFDq46PfrFiAcTjWN49a342PvEo+ap4AoSqJ4Qs5B/lI8gZ0qJQ9sORRj0t91/nsjOYcc02e3WzkxXGK5upgmjaiJXnNAQKIiL3pZmBkkCIyFRF3QvXwY8UqtFGYnob6ePfLMrhBZI=
+	t=1733776118; cv=none; b=qWJrq56Q1VlIaVBA2gquFwv/b7OSfSFMNx8oTkw5DueWSHBUri0r/XuOhDwA5f33h3+Jw1CQ3l5gh3xaimAX8SIbuJxeFCygOxbDQRG2MpUSB+9e3Z4+InenGjotTx3Ckqn9GXl0NiI19LE2y9V1vePXwaHI43665KJ4SLPX46Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733775549; c=relaxed/simple;
-	bh=uz+K+SAXiw7B9fmpjgpXZQAhhDopnh3fXndnk8ms4uo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LkkS2YtMxSWnc2dTFZooDVe8jrfPvZlQYaRYd9cujnfBMvVXC4D/U/HhDk4QyZZKd3bpagx9YD/0N8HP6Zowh2bO9soECe8C+OadBx8CuwrEqPmbw+2LAUiwlBtMemQDKLGBTRCKJbJ88wo6kYCorsTpffu136xgfsd8OkOICQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dQoCNGGH; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B9E6kHS006931;
-	Mon, 9 Dec 2024 20:18:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EbMyNtDxooo6rHnhUiB7v/jMrrTSDUYZJmIjsmUNZGk=; b=dQoCNGGHmCG1pQAq
-	NyaEq4eQIleCYk9XFq8aPxgpmqDNkhDrYwxqALjLxGEhB27VTNQa/jqPDKDQhTOK
-	C/Vyh/IoVwc+8LbsyVohkVTvc+ky+Sevsz8bFyyU0oatonl9rFd2dmHTubUhpwav
-	vhzp9lr5lse6WVXhnFYGXr6rUBkvfaA1DTwymH6o+k4B5Lq6YXr3FxCF32yymDJX
-	6wZISGXoastZ4HMPYKFTvgSebSyBAjRJN5VU6VOS4mMmUeJ3nkYdfw6AtfDfS7jJ
-	JdLBb0fZUJq6YqtHOkrj1sBbR8S1jKENlTw7PsRbeZJhJiHuLaVDg9rL2MPD2dVb
-	YVx9XQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43e21bh2jn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Dec 2024 20:18:47 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B9KIlGm024851
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Dec 2024 20:18:47 GMT
-Received: from [10.134.71.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Dec 2024
- 12:18:43 -0800
-Message-ID: <e7dafea3-2dc6-4737-b257-1dac6d7ce65f@quicinc.com>
-Date: Mon, 9 Dec 2024 12:18:42 -0800
+	s=arc-20240116; t=1733776118; c=relaxed/simple;
+	bh=7QuADeCtgt+7r+IcVHoHNyONh5uPvUsN9FpSQmaPdnY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Mv7bW06IVSBg6sVcpTIvY+lmqyZwWcDr6PoaVA8NLGkaux1iM8gJ04eAv/vFeWEvAA9J5Z2H3zejEbFOaOQeFhWzSb9pOE1aGTt16P1vlgmIVNnSzXgvNnWTDXY7wuJw4CLqPdxmOavYQ8G1s2tC/sXgSKG3oM4AOmTUZvWY5fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=K5UAnZH9; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id B56C4896DC;
+	Mon,  9 Dec 2024 21:28:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1733776115;
+	bh=kqO+qNbDaASSZD90mwuR3nDdiSgV1rdKf5IacQWABfw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=K5UAnZH92iSt5h18mJFDi2BIlgZM4u5RX5pCm2fDA5IdD56FLX4J7CPiKzTaiMTzU
+	 C9yarRvwdNGQ4U77Q438qJyKksc3i+7GbHkDQhmOcUvaInLToawsFixTYjkvL4RlcD
+	 g1DoTWnz2VN5ADhu7lkIl4DE20wIUOYazQ3/jbqNi1NbJYwmq7xN0LDxbUQ/Dm+5lz
+	 LAxukatO1lHTXqkKTUuBduUpcHTaj8sr0DUuuxGCR3ljC9bMWd2gwXfF39gSX5Pu3j
+	 350UAWOyECt46M7Qd1VwdQKjsNmf5ApZOBl3jcQYlvleBmz41qF3jCJv/6hWNcLdcQ
+	 746ZFjtsg23NQ==
+Message-ID: <c970bdbc-5831-470c-9040-b37c4f76baf2@denx.de>
+Date: Mon, 9 Dec 2024 21:26:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,137 +56,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/8] drm/msm/dp: Add maximum width limitation for modes
-To: Xiangxu Yin <quic_xiangxuy@quicinc.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Marijn
- Suijten" <marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Kuogee
- Hsieh" <quic_khsieh@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Kishon
- Vijay Abraham I" <kishon@kernel.org>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, <quic_lliu6@quicinc.com>,
-        <quic_fangez@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-gpio@vger.kernel.org>
-References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
- <20241129-add-displayport-support-for-qcs615-platform-v1-6-09a4338d93ef@quicinc.com>
- <CAA8EJpprTGRTxO+9BC6GRwxE4A3CuvmySsxS2Nh4Tqj0nDRT_Q@mail.gmail.com>
- <95a78722-8266-4d5d-8d2f-e8efa1aa2e87@quicinc.com>
- <CAA8EJpo-1o9i4JhZgdbvRxvoYQE2v18Lz_8dVg=Za7a_pk5EDA@mail.gmail.com>
- <86b9a8be-8972-4c19-af0c-da6b3667cbf4@quicinc.com>
- <fb6enh3wzusadc6r7clg7n7ik2jsucimoi7dnecnsstcz4r6e6@dtahvlm522jj>
- <3e7660b3-934a-4b11-82a3-48137d63ea5d@quicinc.com>
- <5cdd9f7a-2c28-4ac2-a4da-304d25efbca3@quicinc.com>
+Subject: Re: [PATCH net-next 0/2] net: dsa: microchip: Add of config for LED
+ mode for ksz87xx and ksz88x3
+To: Andrew Lunn <andrew@lunn.ch>, Fedor Ross <fedor.ross@ifm.com>
+Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
+ Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Tristram Ha <tristram.ha@microchip.com>
+References: <20241209-netdev-net-next-ksz8_led-mode-v1-0-c7b52c2ebf1b@ifm.com>
+ <c934f10d-1a75-4ca8-bd0b-f08544c7d333@lunn.ch>
 Content-Language: en-US
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <5cdd9f7a-2c28-4ac2-a4da-304d25efbca3@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SehKFPSmVCqQ_Px7chkZwuF6fzktwkaO
-X-Proofpoint-ORIG-GUID: SehKFPSmVCqQ_Px7chkZwuF6fzktwkaO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
- malwarescore=0 lowpriorityscore=0 mlxlogscore=647 priorityscore=1501
- spamscore=0 impostorscore=0 adultscore=0 bulkscore=0 phishscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412090157
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <c934f10d-1a75-4ca8-bd0b-f08544c7d333@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-
-
-On 12/8/2024 5:57 PM, Xiangxu Yin wrote:
+On 12/9/24 7:22 PM, Andrew Lunn wrote:
+> On Mon, Dec 09, 2024 at 06:58:50PM +0100, Fedor Ross wrote:
+>> Add support for the led-mode property for the following PHYs which have
+>> a single LED mode configuration value.
+>>
+>> KSZ8765, KSZ8794 and KSZ8795 use register 0x0b bits 5,4 to control the
+>> LED configuration.
+>>
+>> KSZ8863 and KSZ8873 use register 0xc3 bits 5,4 to control the LED
+>> configuration.
 > 
-> 
-> On 12/7/2024 4:13 AM, Abhinav Kumar wrote:
->>
->>
->> On 12/3/2024 5:58 AM, Dmitry Baryshkov wrote:
->>> On Tue, Dec 03, 2024 at 03:41:53PM +0800, Xiangxu Yin wrote:
->>>>
->>>>
->>>> On 12/2/2024 5:32 PM, Dmitry Baryshkov wrote:
->>>>> On Mon, 2 Dec 2024 at 11:05, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
->>>>>>
->>>>>>
->>>>>>
->>>>>> On 11/29/2024 9:52 PM, Dmitry Baryshkov wrote:
->>>>>>> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
->>>>>>>>
->>>>>>>> Introduce a maximum width constraint for modes during validation. This
->>>>>>>> ensures that the modes are filtered based on hardware capabilities,
->>>>>>>> specifically addressing the line buffer limitations of individual pipes.
->>>>>>>
->>>>>>> This doesn't describe, why this is necessary. What does "buffer
->>>>>>> limitations of individual pipes" mean?
->>>>>>> If the platforms have hw capabilities like being unable to support 8k
->>>>>>> or 10k, it should go to platform data
->>>>>>>
->>>>>> It's SSPP line buffer limitation for this platform and only support to 2160 mode width.
->>>>>> Then, shall I add max_width config to struct msm_dp_desc in next patch? for other platform will set defualt value to ‘DP_MAX_WIDTH 7680'
->>>>>
->>>>> SSPP line buffer limitations are to be handled in the DPU driver. The
->>>>> DP driver shouldn't care about those.
->>>>>
->>>> Ok, Will drop this part in next patch.
->>>
->>> If you drop it, what will be left from the patch itself?
->>>
->>
->> Yes agree with Dmitry, max_width is really not a DP related terminology.
->>
->> This patch should be dropped.
->>
->> So there were two issues, overall in this series causing this patch:
->>
->> 1) In https://patchwork.freedesktop.org/patch/625822/, instead of using VIG_SDM845_MASK, we should be using VIG_SDM845_MASK_SDMA. Without that even 2k will not work, will leave a comment there.
->>
->> 2) 4k will still fail. I dont think we can even support 4k on QCS615 but the modes should be filtered out because there is no 3dmux.
->>
->> I have submitted https://patchwork.freedesktop.org/patch/627694/ to address this.
->>
->> Xiangxu, please let me know if that works for you.
->>
->> Thanks
->>
->> Abhinav
-> Thanks for your patchsets,
-> After apply patch 625822 & 627694，mode filter works correctly on QCS615 platform with both 4k and 2k monitor.
-> work>>>>>>>
+> PHY and MAC LEDs should be configured via /sys/class/leds. Please take
+> a look at how the Marvell PHY and DSA driver, qca8k driver etc do
+> LEDs.
+According to KSZ8794 datasheet, this register 0xb is Global Control:
 
-Thanks. If you can give your Tested-by on 
-https://patchwork.freedesktop.org/patch/627967/, that would be great.
+Register 11 (0x0B): Global Control 9
 
->>>>>>>> Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
->>>>>>>> ---
->>>>>>>>    drivers/gpu/drm/msm/dp/dp_display.c |  3 +++
->>>>>>>>    drivers/gpu/drm/msm/dp/dp_display.h |  1 +
->>>>>>>>    drivers/gpu/drm/msm/dp/dp_panel.c   | 13 +++++++++++++
->>>>>>>>    drivers/gpu/drm/msm/dp/dp_panel.h   |  1 +
->>>>>>>>    4 files changed, 18 insertions(+)
->>>>>
->>>>>
->>>>
->>>
-> 
+So this does not seems like per-port LED control, but rather some global 
+control for all LEDs on all ports on the chip ?
 
