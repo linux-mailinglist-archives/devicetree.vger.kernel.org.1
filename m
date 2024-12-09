@@ -1,235 +1,148 @@
-Return-Path: <devicetree+bounces-128414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2B619E8A35
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 05:18:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00EB99E8A3D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 05:23:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 871BC280DF8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 04:18:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5FFE2821CB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 04:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAAE5155A4E;
-	Mon,  9 Dec 2024 04:18:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BCE915854A;
+	Mon,  9 Dec 2024 04:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="bVOcZ5rB"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KeT3E5bH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com [95.215.58.178])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3BC28691
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 04:18:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A08A156F41;
+	Mon,  9 Dec 2024 04:23:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733717914; cv=none; b=kPtDAdAR5t5Oqam4/vA+br9oIdwiFkEhnAKPXGWLuGK8X48GDlod9DDDb2iYqZFYU74clXdnSvBBRc43wZNaSpZ5/cx87g4TXi/IwOpY1FuEg8lr01YqU17IF4M4FmW8Jnj/LdBgrbDGmhNsj57tLPDjz6xvdd6Je0hld/HhsVQ=
+	t=1733718203; cv=none; b=ewpHhSUUvlct4HPvSioD9+H6EOFzSGpLQqyNPIfMvbzwKPzF5KLXzzG1AkX6kpkg8ZVW/CkYpHlH1tOK65qKsDsl/14lWT5oah0DR1xlHynfHXaswHESANIP38baXdIWgBCojqXkTh6zVEJ5j6slD96QZ1Yp0O/tGR3LFUe8igM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733717914; c=relaxed/simple;
-	bh=fdDzit6VdNWYlkbAt5bnOYr1HpZkx+B3FwG1ZnPAWyM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B+MX5mxqGCGPu8b1eq3cLk/pKQkUo5HIkO+FEwkQgkPiVIw3WiT/uHA33QyWWlll22m+yEzZ5ErLOjsv802FFMit0JPTiqU4eCk0QYecaBD2iyPajGgEIAz9ZHx+UWvGXy7qE9m8Y1BHD561stzQ8oxl+Hp7lwmE2xluxasvX7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=bVOcZ5rB; arc=none smtp.client-ip=95.215.58.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <56d4fc51-d30a-4467-9df0-6aba5818989f@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1733717909;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1CLRMrE1NI/5klhfE3kmyF+H27MvukwsIlJRIa5ZNCI=;
-	b=bVOcZ5rB33oZFYQgAIpbKYj5IoVwq5uLMua5cpRUQ5WzYef132s/+FYnz92Ts/3FpLqeQE
-	LbMhl1TcGggDOfevWDkSUjcBAVg2IfRbbkWJfIY8eK0qLU1mlw5RJZDHYuANb+R7Z3FO2r
-	wWx0XE0rxVt3XbFkXlFCZWZQPPAofAw=
-Date: Mon, 9 Dec 2024 09:47:36 +0530
+	s=arc-20240116; t=1733718203; c=relaxed/simple;
+	bh=iWrUKN2aAIMeQCc+f8mhS9L9J24f9TNKMDk7qd5tRwk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cZOGgI+6FHhcbtXrQQxwYOu6UmY7l6eUp75zg/jSFM1euHMJ84T+59ZS3xM2Gc82u6I0usNllNr6/so1Im62yecWQaFdsiU9U+agN5XXv7VSX2yoJHv1ZDj5lQnKQ9nhO7awomcyonPpnLPsQvKwoJUgFnelEx2e8kjccn2tlus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KeT3E5bH; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B90tFrZ024799;
+	Mon, 9 Dec 2024 04:23:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fsdp49+n36T9gPJ9WNOXXAF+BlRo3wPP4MmbMN7btik=; b=KeT3E5bHaP3nFa3Y
+	gZ7gYePeXa5x0s5Nx7vCvVxGmmEUXMThKzqZnUDmqw8r6UQrvrnu1zYJwJKAs2F9
+	GaDHKuQyu0bmCNyuud5goLyAMZEKpRWQJ8irCHHWJj5IjvjSbOplNS+VMKqf3Tdk
+	GtDNHCS6n0jI1O9qaPCy17ZHEAEdohx1iZoZZzkrc16EO/96Jtn3gR0rVEk/FPhi
+	QFycPP54Dmj34sjIvU0lmcFAA1eBtWQ3JDKQ3eTULs9j5tqM9mWQl1y3fDjeExGf
+	NMYE0etN7hEEosKwyA61Vvv0I/U4FBwbTFIRXxqx7Y6YCAjzpabTDBtZIZIsaBHs
+	5x94QA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43cdpgkbk0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Dec 2024 04:23:14 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B94ND30018215
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Dec 2024 04:23:13 GMT
+Received: from [10.216.28.219] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 8 Dec 2024
+ 20:23:09 -0800
+Message-ID: <b3581663-8dc0-44d4-9395-df385316bb09@quicinc.com>
+Date: Mon, 9 Dec 2024 09:53:05 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v4 0/3] drm/tidss: Add OLDI bridge support
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Nishanth Menon
- <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Devarsh Thakkar <devarsht@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
- Udit Kumar <u-kumar1@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>,
- Francesco Dolcini <francesco@dolcini.it>,
- Alexander Sverdlin <alexander.sverdlin@siemens.com>,
- Max Krummenacher <max.oss.09@gmail.com>,
- DRI Development List <dri-devel@lists.freedesktop.org>,
- Devicetree List <devicetree@vger.kernel.org>,
- Linux Kernel List <linux-kernel@vger.kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
- David Airlie <airlied@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Simona Vetter <simona@ffwll.ch>
-References: <20241124143649.686995-1-aradhya.bhatia@linux.dev>
- <8b57d6a4-6bc1-4542-abf4-8bc4a3120c25@ideasonboard.com>
- <b8bde033-13a8-4726-a9ff-2fa4eff898e1@linux.dev>
- <9ade7a5d-dd87-4a08-9fdd-c24eb20e733c@ideasonboard.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 15/22] wifi: ath12k: add BDF address in hardware
+ parameter
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        <ath12k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20241015182637.955753-1-quic_rajkbhag@quicinc.com>
+ <20241015182637.955753-16-quic_rajkbhag@quicinc.com>
+ <142f92d7-72e1-433b-948d-2c7e7d37ecfc@oss.qualcomm.com>
+ <0796510c-20bd-4a81-bd60-40aacbcf61c0@quicinc.com>
+ <83d216c4-bf9e-4eb4-86d3-e189602f37cc@oss.qualcomm.com>
+ <30e5d714-2e52-4a0e-9dc8-b6cacf6ad382@quicinc.com>
+ <e63af513-5fd8-40b0-a1b2-daa9821ebf5a@oss.qualcomm.com>
 Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
-In-Reply-To: <9ade7a5d-dd87-4a08-9fdd-c24eb20e733c@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <e63af513-5fd8-40b0-a1b2-daa9821ebf5a@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: MsHpbs_igXCvaoRxMGflt1-jYkn0HTdc
+X-Proofpoint-ORIG-GUID: MsHpbs_igXCvaoRxMGflt1-jYkn0HTdc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 clxscore=1015 suspectscore=0 mlxscore=0 priorityscore=1501
+ phishscore=0 mlxlogscore=999 spamscore=0 malwarescore=0 bulkscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412090033
 
-Hi,
-
-On 04/12/24 00:06, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 03/12/2024 20:14, Aradhya Bhatia wrote:
->> Hi,
->>
->> On 03/12/24 17:42, Tomi Valkeinen wrote:
->>> Hi,
+On 12/6/2024 4:19 PM, Konrad Dybcio wrote:
+> On 6.12.2024 5:34 AM, Raj Kumar Bhagat wrote:
+>> On 12/5/2024 11:12 PM, Konrad Dybcio wrote:
+>>> On 3.12.2024 10:18 AM, Raj Kumar Bhagat wrote:
+>>>> On 11/4/2024 7:46 PM, Konrad Dybcio wrote:
+>>>>> On 15.10.2024 8:26 PM, Raj Kumar Bhagat wrote:
+>>>>>> The Ath2k AHB device (IPQ5332) firmware requests BDF_MEM_REGION_TYPE
+>>>>>> memory during QMI memory requests. This memory is part of the
+>>>>>> HOST_DDR_REGION_TYPE. Therefore, add the BDF memory address to the
+>>>>>> hardware parameter and provide this memory address to the firmware
+>>>>>> during QMI memory requests.
+>>>>>
+>>>>> Sounds like something to put in the device tree, no?
+>>>>>
+>>>>
+>>>> This BDF memory address is the RAM offset. We did add this in device tree in
+>>>> version 1. This is removed from device tree in v2 based on the review comment that
+>>>> DT should not store RAM offset.
+>>>>
+>>>> refer below link:
+>>>> Link: https://lore.kernel.org/all/f8cd9c3d-47e1-4709-9334-78e4790acef0@kernel.org/
 >>>
->>> On 24/11/2024 16:36, Aradhya Bhatia wrote:
->>>> Hello all,
->>>>
->>>> This patch series add support for the dual OLDI TXes supported in Texas
->>>> Instruments' AM62x and AM62Px family of SoCs. The OLDI TXes support
->>>> single-lvds
->>>> lvds-clone, and dual-lvds modes. These have now been represented
->>>> through DRM
->>>> bridges within TI-DSS.
->>>>
->>>>    - Some history and hardware description for this patch series.
->>>>
->>>> This patch series is a complete re-vamp from the previously posted
->>>> series[1] and
->>>> hence, the version index has been reset to v1. The OLDI support from
->>>> that series
->>>> was dropped and only the base support for AM62x DSS was kept (and
->>>> eventually
->>>> merged)[2].
->>>>
->>>> The OLDI display that the tidss driver today supports, could not be
->>>> extended for
->>>> the newer SoCs. The OLDI display in tidss is modelled after the DSS
->>>> and OLDI
->>>> hardware in the AM65x SoC. The DSS in AM65x SoC, has two video-ports.
->>>> Both these
->>>> video-ports (VP) output DPI video signals. One of the DPI output (from
->>>> VP1) from
->>>> the DSS connects to a singular OLDI TX present inside the SoC. There
->>>> is no other
->>>> way for the DPI from VP1 to be taken out of the SoC. The other DPI
->>>> output
->>>> however - the one from VP2 - is taken out of the SoC as is. Hence we
->>>> have an
->>>> OLDI bus output and a DPI bus output from the SoC. Since the VP1 and
->>>> OLDI are
->>>> tightly coupled, the tidss driver considers them as a single entity.
->>>> That is
->>>> why, any OLDI sink connects directly to the DSS ports in the OF graphs.
->>>>
->>>> The newer SoCs have varying DSS and OLDI integrations.
->>>>
->>>> The AM62x DSS also has 2 VPs. The 2nd VP, VP2, outputs DPI signals
->>>> which are
->>>> taken out of the SoC - similar to the AM65x above. For the VP1, there
->>>> are 2 OLDI
->>>> TXes. These OLDI TXes can only receive DPI signals from VP1, and don't
->>>> connect
->>>> to VP2 at all.
->>>>
->>>> The AM62Px SoC has 2 OLDI TXes like AM62x SoC. However, the AM62Px SoC
->>>> also has
->>>> 2 separate DSSes. The 2 OLDI TXes can now be shared between the 2 VPs
->>>> of the 2
->>>> DSSes.
->>>>
->>>> The addition of the 2nd OLDI TX (and a 2nd DSS in AM62Px) creates a
->>>> need for
->>>> some major changes for a full feature experience.
->>>>
->>>> 1. The OF graph needs to be updated to accurately show the data flow.
->>>> 2. The tidss and OLDI drivers now need to support the dual-link and
->>>> the cloned
->>>>      single-link OLDI video signals.
->>>> 3. The drivers also need to support the case where 2 OLDI TXes are
->>>> connected to
->>>>      2 different VPs - thereby creating 2 independent streams of
->>>> single-link OLDI
->>>>      outputs.
->>>>
->>>> Note that the OLDI does not have registers of its own. It is still
->>>> dependent on
->>>> the parent VP. The VP that provides the DPI video signals to the OLDI
->>>> TXes, also
->>>> gives the OLDI TXes all the config data. That is to say, the hardware
->>>> doesn't
->>>> sit on the bus directly - but does so through the DSS.
->>>>
->>>> In light of all of these hardware variations, it was decided to have a
->>>> separate
->>>> OLDI driver (unlike AM65x) but not entirely separate so as to be a
->>>> platform
->>>> device. The OLDI TXes are now being represented as DRM bridges under
->>>> the tidss.
->>>>
->>>> Also, since the DRM framework only really supports a linear encoder-
->>>> bridge
->>>> chain, the OLDI driver creates a DRM bridge ONLY for the primary OLDI
->>>> TX in
->>>> cases of dual-link or cloned single-link OLDI modes. That bridge then
->>>> attaches
+>>> Right, I think this could be something under /reserved-memory instead
 >>>
->>> How does the clone case work, then? There are two panels, what does the
->>> second one connect to?
 >>
->> For the clone case, the devicetree will show the true connections - as
->> they are in the hardware.
->>
->> 2 endpoints from a single DSS VP devicetree port will be connected to 2
->> OLDIs, OLDI0 and OLDI1. The outputs of these OLDIs will be connected to
->> 2 distinct single-link panels.
->>
->> The driver and DRM side of things do not show the same picture, however.
->> The tidss_oldi code creates and registers a drm_bridge only for the
->> primary OLDI. The driver is capable of detecting the expected OLDI mode,
->> and if a companion OLDI is present, then the primary OLDI drm_bridge
->> keeps a note of that.
->>
->> The clock and config resources are shared between the primary and
->> companion OLDI hardware. So configuring the primary OLDI takes care of
->> the companion too.
->> The only case where it is not shared is the OLDI IO bit in the Control
->> MMR (ctrl_mmr) region. But, since the primary OLDI drm_bridge remains
->> aware about the presence of companion OLDI, it makes sure to enable /
->> disable the comapnion OLDI IO when required.
+>> Thanks for the suggestion. However, the BDF_MEM_REGION_TYPE is already within the
+>> memory reserved for HOST_DDR_REGION_TYPE through /reserved-memory. Therefore, reserving
+>> the memory for BDF_MEM_REGION_TYPE again in the Device Tree (DT) will cause a warning
+>> for 'overlapping memory reservation'.
 > 
-> But if there's just one bridge (for the first oldi), how is the second
-> panel connected to the DRM pipeline? Who e.g. calls the
-> drm_panel_funcs.enable() in the panel driver for the second panel?
-> 
-> Or, say, if we have two LVDS->HDMI bridges, with the cloning setup, how
-> does all the plumbing work if "DRM framework only really supports a
-> linear encoder-bridge chain"?
+> Then you can grab a handle to it with of_reserved_mem_lookup()
+> and of_reserved_mem_device_init_by_idx()
 > 
 
-Right... The driver does not account for such a case at present. The
-simple panels don't require any additional programming, which is why a
-clone mode with them just happens to work out.
-
-Since there is still only 1 VP behind this, there could only be a single
-crtc. Perhaps, we can have an additional tidss encoder (connected to the
-same crtc) to start this another encoder-bridge chain. I am still murky
-with the details here, but I will try to see what needs to be done.
-
-Thank you! =)
-
-
--- 
-Regards
-Aradhya
-
+The memory HOST_DDR_REGION_TYPE is a bigger memory around 43MB, while the memory
+BDF_MEM_REGION_TYPE is smaller around 256KB within HOST_DDR_REGION_TYPE, Using the
+above mentioned API we still have to store the offset in ath12k to point at memory
+BDF_MEM_REGION_TYPE from the start of HOST_DDR_REGION_TYPE.
 
