@@ -1,134 +1,179 @@
-Return-Path: <devicetree+bounces-128585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B6F59E9144
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 12:03:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E15F9E914E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 12:03:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2F641601AA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:02:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF20C188702A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3634621767D;
-	Mon,  9 Dec 2024 11:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5B7217F34;
+	Mon,  9 Dec 2024 11:02:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w+MeWeUH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5AA215167;
-	Mon,  9 Dec 2024 11:01:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D8B217707
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 11:02:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733742081; cv=none; b=f/1nBo7QFjZcXLQlhr4jntmKNShddG6W/a8d5lQs5Xs4MqrWbLl4SW7NDvf6kr/xAC0anyMyR4sWXXsn5G2oIu2M7n3tmh1q56ISdP8hp2DuJACbNsMEnLLWBL2PSTBNs+DZE6C4AZ0O3+T1SAa0PH6W7MgPGwyvk+5Z6UBi52E=
+	t=1733742151; cv=none; b=SXerWjr8GlH/eyI/eljKTTsPwi9U2VOVa2iWvMjfKoMKiWlzhQG2kom1OmrpVMbRK5NXpV5jbrkxBXg+t7pzp2eETTRyCESjF1phtck+GzgfC8WSDZsnL9K/WJt6UTaUKbJ1auwikrRca2CKqO++BGIe/lrIHmSirTTGD+WJL5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733742081; c=relaxed/simple;
-	bh=Vfky8DJb+MbmUlfgv824SZLc2EdVYz8aaVmnyGcO0Kc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=G5YfO7Gy5r9fFIgzm45UgUPZpnmD+0HdBXwqtRroah2a2it9mHnfEhnm3QEZ08G1MxPqBiCQJD30m1RcbFTTMAHZ6kjnjtjkW7YKYEG4aR2C1mVSx5tO9Y4/E6bUljJcCvN8VyZrgO6tV8BNmRF1x0x8miE5HAZ7/mEiHWVbO5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7b6d6064b93so91798785a.3;
-        Mon, 09 Dec 2024 03:01:19 -0800 (PST)
+	s=arc-20240116; t=1733742151; c=relaxed/simple;
+	bh=IEgdroHjxv1/fUwCBSn5itHcu1a4UfbLETbiD99XN4Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=em3cOJTpc2gEtA/rNLIH3zFPI8C/qAc3L+juUoxiEv8+PD3yNAYJWAiaXD3fVsEdn7/1dOpbHs/s3ekzp6EUv7zyiMKB9n47PleZHptsfpm6AC8oWMamMLeQ9ie5JeDEAUI1sf3xrvhJNC3Ekbj0PvYFvXL8/jcTHq7X0VPtbKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w+MeWeUH; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5d0d6087ca3so625023a12.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 03:02:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733742148; x=1734346948; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wDBYepE70cf1Fcx/3O7JjO6/QxgauEXUIrl3j5K/sQ8=;
+        b=w+MeWeUH2NZJO4WUT/OtrdQMa7qqyB8+ODj5bmn68Rty5CQ0JVXH6INqxCk0YUr1MR
+         GnbDkptAgWh1SOdIXDrj58Ysi+TMmG3agThXqhFBTOfGtypx2yj18iXC/7eHlytMsHsi
+         j5Obs75eV/jQASQHSbhBdaboXmAqRDE3T0Fu7s9njqiVAazeY9kMD1M8jsxKyMY5TiVm
+         v5wCK2xyQt7rzbnVzfgersWp0BmLlnymmY8wdf7d8enaUUehd3NxgcFxEzMsAk7Pg+Qs
+         SuHqIgEhN49eWJTy4qZ/C1oG/6Jf073s+xtaQxw0siP41aYs0A4Bz81kTOFk+2PzmC7k
+         f7cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733742078; x=1734346878;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1pdLSrMJ/sKTz6sczauGRpsp6ND/VIElXQn5Z4wTz0w=;
-        b=iCwDsjjmmWees614R8NYBS4DYO1cVzQlWfUr6ecilDKPSxFhpNI2K+ZBZQdZEnU8xh
-         Q/WJiyPy4FuThLMn4OfwVIQpDaYUI4z0t1UfJIv1kNtzxOiAFSgeXLjJgV8eACj2ab17
-         aF/2TuytkwoH7+oOJtioE14GAPLux3mNAgt/H7cqcqK14Skj2nv881O69BDnRD1E9reR
-         413HhK3dmtoMrqM0DUqGQUgIIrWHsvJjCJjA6XY7auKOEy1dRynDAbk8GqfAALIGAEBW
-         GLbq0F4KyFjGu38ALj4juEOs5ZR4jVgXtOO+i/DlANVRI/gqWxL2V3YABT19eHcOIjtu
-         MWPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZizX9aFLJykK1sGo4mjUOpTcoN78ZQd8lkkIsYsCNRK2u/0WnBzgblO38pa9E5pEr6q7L/Ezr8Bod@vger.kernel.org, AJvYcCV3rc9E4HkCN/7A1Ye6zrlHd47Y38rP5RpPWxfIjDPQa0Q72VQzzeonDMfeAW0Q0Lv/qHrnCQ1cUSk8+rk=@vger.kernel.org, AJvYcCVvYyWsV8xZOYTWMw1tF+xvg5+Uq9voZeZlsmBKRNa7U7WXyu5CRC4vGo2hFszNQG+f4d25PMMktC5K@vger.kernel.org, AJvYcCWZaQ/yuDO4MI7Cy27vRItm+moPc5NWyWE5RNF0qFFY/AKQxH/se8+vbxmqIH2JKS2gCYAimjXfrnU24Q==@vger.kernel.org, AJvYcCWbJQvWkWW2LjC2dHd3cSjEadE0c+K0ayhYuC0E0Sm9OzqR9vmW795l5PMT5KeiwuZq/QBsQo/x2Vk4kgtG@vger.kernel.org, AJvYcCWn34FyZBjE4wDiiB0uxVEif0DU9eoN3xCWHYdyhbVRl4f3nv/yV8QDeV6CxXg2ymUfApdyI8DIiLWPXzt6pJaXXs4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHRYv/dZzLrD9FrFbfzrcThMLUDlPvJmxXGBYB3jnLc4Kqw9w7
-	osrcoIUee3Ouq/F9rduayukAzRYcx83qHjGIFfQuwOCPsdM5IqQd0Pl7cQ8m5yA=
-X-Gm-Gg: ASbGncsZK/YunA4EbFU0HrNRA1oiSN0Ip4XpVPuOTRziXdDCXGri0cpp3nHxc6nZlfm
-	axirMpmPldfYPjFCOVrvXaTpOZyoDAaVYpuKaPsEzlWnfDRYPch3IDlU66t6cHhhOKSg+HUaqea
-	SzfZA8kyP1GNDR6m60v1Mf1tir6Fsnn6Ri25EZPFV+6DhiBU9XdhXsqdPQ0fvjbHYNBcoOHsryP
-	Q/i8WhnzqrxQxI/9eQkHS5XRQIlcFj7og0Al3W+4jIJt1TOxH/30TVWQfIv/9QkMIOaLwk93Kfl
-	hNt8F9wCRT7kLw70
-X-Google-Smtp-Source: AGHT+IE7QcldBVH2RXnrYWZkX5V9Pz16nW3sVSAHtZbPuNRuOn38G0hEPHnPWFEVLw5eS3H0qilLwQ==
-X-Received: by 2002:a05:620a:2702:b0:7b6:d0b0:4ae2 with SMTP id af79cd13be357-7b6d0b04cfamr867273085a.48.1733742077598;
-        Mon, 09 Dec 2024 03:01:17 -0800 (PST)
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com. [209.85.160.172])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b6d8454780sm58052085a.81.2024.12.09.03.01.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 03:01:17 -0800 (PST)
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-46753242ef1so22213861cf.1;
-        Mon, 09 Dec 2024 03:01:17 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUY455U2yNkpoCYlwhewp7Qf22ASTipe2gOH7tN/RCczszunCotpsOWXsE0yszHQdJ/wItn+dFVgstO@vger.kernel.org, AJvYcCUds6Q4YvfepZrtKwyHhIhaYINavo4Gq3kVeOLFu9DlUpE5CiG+h1G6Yj2X9/c18NaDUyLxpEpuZLZNU68/kwKSc1Y=@vger.kernel.org, AJvYcCUrLIm/V6ehssiX9h+BJ5KGkNhDQchyZp6k737B1SkDB85rBqeisKrD1AFGumwQXVoNb/Z9B1kERke2W9ue@vger.kernel.org, AJvYcCV3Y29y5/RptpbmhBuHC6rVnn8pO34Vjdi4+OAOV6mk9YDtEoEo/JLVLgVvkglSRm1Hwx7utje2JlHZEUA=@vger.kernel.org, AJvYcCVZs6S8scgsit2+Ed1VP8aLquzz1ob/pLNyOn0H1jqvC54gjzZMv9dKZE/YrjHxCLpVZvyD9XqhfX9q5w==@vger.kernel.org, AJvYcCVemi5CZY1EVG8jqWhQ1+GYci6a37tE7gZzes717g63GZb33oeVZbVu+PQsrr6gCNsFsplzRXfCdVW7@vger.kernel.org
-X-Received: by 2002:a05:6102:418c:b0:4b1:101f:a5a0 with SMTP id
- ada2fe7eead31-4b1160c1b5cmr38195137.5.1733742066151; Mon, 09 Dec 2024
- 03:01:06 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733742148; x=1734346948;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wDBYepE70cf1Fcx/3O7JjO6/QxgauEXUIrl3j5K/sQ8=;
+        b=qT2xKddFYjfehgBL5U25/EIHg+EaDpYXay5aecBUKsipqceh3R3a+3KTYg5fMlsh6w
+         aa6RY3iyr2X/uSv5KQdEGJHcV+xMKmrjhPv+Ev61CQVAIHzAaC81PKLvSLgb/rVvYx2N
+         fopJf8fKCPQKeFoORmodc5/SvfHMNO4+garPJgeImdulcTZkzS1OGVA+AWsiVAER0IUy
+         ZpMuI2nNEFsSru5MNJA5CQMj2ldRFjiv+XmE/s2+kpVp5lFHqfdVl4lqvkAryd8O5pZ6
+         qnAf8GSsbwhBHn8KPD2UmvFWddotFEbFP70PBc0r1uATVvp+qh1rGs4BznOmP1SrIsbZ
+         xZvw==
+X-Forwarded-Encrypted: i=1; AJvYcCW41etBuBDNPOEjIDNMOZtRGbeY91mXvuVkjkPKh2ulH4IV9vv/xLyccMvp2Vl2p/J+b5n0dcenS0dC@vger.kernel.org
+X-Gm-Message-State: AOJu0YzskV6+emyN9h/68PTcfxcxv7U1C4HjbUVZ965kphdgKhQK9DGC
+	DgiivXCAP4ZeEyfB8rg8hb3rUgtXrkRhljk+e24cTsJtX/6Lu0nXWvm0JiayNOM=
+X-Gm-Gg: ASbGnctx2P1PrwoTPycVpfff/8ov1nzzuNdQBBDbNuM3BI9HvY2BIoJ6KipxqHl+vpT
+	OhRaFtzhfQDurmBNvlDT7Rh+puzRrbJYpQCTyQWpadu9NJDlwL4Hi28wjXOCM8RB7qdQoEmBcVy
+	6y3HJrzmWL/fUQJ3G/I+hjF5WdOKdRUdO8SlNB/5qdMKv8nCDdXVA8bLl85IkZq3g7pbZ5cOGB5
+	krgehmRovH5XyV7ZU+0BnWeoFPIb68dPXd6uGvFqZfJK/nqTA4mIuNtpdmiRAIufg==
+X-Google-Smtp-Source: AGHT+IEhSQwrYUcPJVu4awvtf0CAZIIypgbOVC3IGxdA5RSE6ZoA6mC4Wd0Bj6Jzqp1oCHZpf3m32Q==
+X-Received: by 2002:a05:6402:2791:b0:5d0:8111:e958 with SMTP id 4fb4d7f45d1cf-5d3be7c4f80mr4621046a12.9.1733742147892;
+        Mon, 09 Dec 2024 03:02:27 -0800 (PST)
+Received: from [127.0.1.1] ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d3dd4f641bsm3348818a12.51.2024.12.09.03.02.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Dec 2024 03:02:27 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 00/19] arm64: dts: qcom: Fix remoteproc memory base and
+ length
+Date: Mon, 09 Dec 2024 12:02:05 +0100
+Message-Id: <20241209-dts-qcom-cdsp-mpss-base-address-v2-0-d85a3bd5cced@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 9 Dec 2024 12:00:54 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUg+WmH8741g-M+74TRqs4T1faQKAhQQGDg8oJxE2bC0w@mail.gmail.com>
-Message-ID: <CAMuHMdUg+WmH8741g-M+74TRqs4T1faQKAhQQGDg8oJxE2bC0w@mail.gmail.com>
-Subject: Re: [PATCH v3 00/25] Add audio support for the Renesas RZ/G3S SoC
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com, 
-	broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org, 
-	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC3OVmcC/43NQQ6CMBCF4auQWTumlIrBlfcwLMZ2gCZCcYYQD
+ eHuVk/g8nuL92+gLJEVLsUGwmvUmKYMeyjADzT1jDFkgzXWldbUGBbFp08j+qAzjrMq3kkZKQT
+ hDOKzd6Ym35CH/DILd/H1K9za7CHqkuT9C67ld/3/ey3RoO0q17ALJ6qr6yNOJOmYpId23/cPg
+ nRiis8AAAA=
+X-Change-ID: 20241206-dts-qcom-cdsp-mpss-base-address-ae7c406ac9ac
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Abel Vesa <abel.vesa@linaro.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
+ Luca Weiss <luca.weiss@fairphone.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2700;
+ i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
+ bh=IEgdroHjxv1/fUwCBSn5itHcu1a4UfbLETbiD99XN4Q=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBnVs4wOsWMjSmmGWFeHxM+eHsRKjMqDTy5ShkSW
+ btq6KnQwDCJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ1bOMAAKCRDBN2bmhouD
+ 1226D/sHv42ZR101iYFAonLKQErRTziRoF0Caqepk6uW0XVbUMHIWRICUtCFZ2KrTXCzsiL+cai
+ 9hY7CCwGzO1Zg/ES0uBW6QB/1MT5Y0AsRozFtkhl0qnqvDpwBzv0dVs0b/fige0tR+XtdPjKyPt
+ NJUmmfI43T48DeHPit34tK5jPcZXQHdmp0FtL+h9tlXQt0P4MFwpHu/xROK7eR2qd2On4LhBK2e
+ g26izWZyVHpT98PhnfdyD9Fu7m6DjvwRDbRRGQfW2O6FC9pBXgLBCCoB6G2RWsw7X9zu6j1JNu/
+ th7GJw63KlnkWowWn9JgDP0YO19o83/JAJVdgv+ppOjyNeYFLjTX+HSlF85bVWOLfAPrin3k1Mj
+ tdiBD6xwBOQETcgPGaDDz3I5I0oBjPzeWTv7sXrpSpCIr7Y9vKiWXUtEVm5ZBsQRQTFbFlYGI/I
+ z3jZ0DGvF2TYqmYJBFX0/VW563nv8ZGorOyt6DPCZ5ztxYHD+58BJhlm580KijwutYlMrrbD/2o
+ RlEn6e7hJVkHW3WP9Rtjk5ZArJA/7TpvSMV/CZrcQY1Bt7sdqodJnEuldRZKFW3qnzq/+QDUPKt
+ elD7Vb6+H+ejSqQUmvQpZnV9INBJooM6ZPAGVjbXRZc8kPO1TDXErtKGeOgqe3ktE6VIE+iw9C2
+ dxpI0nONBRE/ihA==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
+ fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Hi Claudiu,
+Changes in v2:
+- arm64: dts: qcom: x1e80100: Fix ADSP...:
+  Commit msg corrections, second paragraph (Johan)
+- Add tags
+- Link to v1: https://lore.kernel.org/r/20241206-dts-qcom-cdsp-mpss-base-address-v1-0-2f349e4d5a63@linaro.org
 
-On Wed, Nov 13, 2024 at 2:35=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> Series enables the audio support for the Renesas RZ/G3S
-> SoC along with runtime PM and suspend to RAM.
->
-> Patches:
-> -    01/25 - add clock, reset and power domain support
-> - 02-04/25 - update versaclock3 clock generator driver to support the
->              5L35023 hardware variant; versaclock3 provides clocks for
->              the audio devices (SSIF, DA7212 codec)
-> -    05/25 - add pin control support for audio
-> - 06-20/25 - add SSIF support for the RZ/G3S SoC; fixes and cleanups
->              were also included
-> - 21-25/25 - add device tree support
->
-> Merge strategy, if any:
-> - clock patches (01-04/25) can go through the Renesas tree
-> - pinctrl patch (05/25) can go though the Renesas tree
-> - audio patches (06-20/25) can go through the audio tree
-> - device tree patches (21-25/25) can go through the Renesas tree
+Konrad pointed out during SM8750 review, that numbers are odd, so I
+looked at datasheets and downstream DTS for all previous platforms.
 
-Note that the versaclock3 patches (02-04) do not fall under my
-jurisdiction.  As there are no hard dependencies, these can just go
-through the clk tree instead.
+Most numbers are odd.
 
-Gr{oetje,eeting}s,
+Older platforms like SM8150, SM8250, SC7280, SC8180X seem fine. I could
+not check few like SDX75 or SM6115, due to lack of access to datasheets.
 
-                        Geert
+SM8350, SM8450, SM8550 tested on hardware. Others not, but I don't
+expect any failures because PAS drivers do not use the address space.
+Which also explains why odd numbers did not result in any failures.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Best regards,
+Krzysztof
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+---
+Krzysztof Kozlowski (19):
+      arm64: dts: qcom: sm8350: Fix ADSP memory base and length
+      arm64: dts: qcom: sm8350: Fix CDSP memory base and length
+      arm64: dts: qcom: sm8350: Fix MPSS memory length
+      arm64: dts: qcom: sm8450: Fix ADSP memory base and length
+      arm64: dts: qcom: sm8450: Fix CDSP memory length
+      arm64: dts: qcom: sm8450: Fix MPSS memory length
+      arm64: dts: qcom: sm8550: Fix ADSP memory base and length
+      arm64: dts: qcom: sm8550: Fix CDSP memory length
+      arm64: dts: qcom: sm8550: Fix MPSS memory length
+      [RFT] arm64: dts: qcom: sm8650: Fix ADSP memory base and length
+      [RFT] arm64: dts: qcom: sm8650: Fix CDSP memory length
+      [RFT] arm64: dts: qcom: sm8650: Fix MPSS memory length
+      arm64: dts: qcom: x1e80100: Fix ADSP memory base and length
+      arm64: dts: qcom: x1e80100: Fix CDSP memory length
+      arm64: dts: qcom: sm6350: Fix ADSP memory length
+      arm64: dts: qcom: sm6350: Fix MPSS memory length
+      [RFT] arm64: dts: qcom: sm6375: Fix ADSP memory length
+      [RFT] arm64: dts: qcom: sm6375: Fix CDSP memory base and length
+      [RFT] arm64: dts: qcom: sm6375: Fix MPSS memory base and length
+
+ arch/arm64/boot/dts/qcom/sm6350.dtsi   |   4 +-
+ arch/arm64/boot/dts/qcom/sm6375.dtsi   |  10 +-
+ arch/arm64/boot/dts/qcom/sm8350.dtsi   | 492 ++++++++++++++++-----------------
+ arch/arm64/boot/dts/qcom/sm8450.dtsi   | 216 +++++++--------
+ arch/arm64/boot/dts/qcom/sm8550.dtsi   | 266 +++++++++---------
+ arch/arm64/boot/dts/qcom/sm8650.dtsi   | 300 ++++++++++----------
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 276 +++++++++---------
+ 7 files changed, 782 insertions(+), 782 deletions(-)
+---
+base-commit: c245a7a79602ccbee780c004c1e4abcda66aec32
+change-id: 20241206-dts-qcom-cdsp-mpss-base-address-ae7c406ac9ac
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
