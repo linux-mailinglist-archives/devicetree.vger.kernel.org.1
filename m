@@ -1,141 +1,104 @@
-Return-Path: <devicetree+bounces-128773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E03F09E9692
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:24:59 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F2B49E96CF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:29:41 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62487282E99
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:24:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4B81188C9A2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EAF535972;
-	Mon,  9 Dec 2024 13:22:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 493AC1ACEC0;
+	Mon,  9 Dec 2024 13:22:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="twHfKoGU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF0A23315B;
-	Mon,  9 Dec 2024 13:22:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 012311ACEBF
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 13:22:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733750573; cv=none; b=Ih/Rz5EyPjLlalLVmZrg4r8XjdCLB1nHCD1FNSTMVrEhO8w8JRlsxsaPejXZ/lF5WQAuNv1PvqM0uoHBvpEKKJnbMIC4wi7DlHVHFCIZJVLuUcVl68C8Lob2/dWscxTY2kYekghZsj93UCIu8xpm+U+JhUU1beNBvP01kUutzZ8=
+	t=1733750579; cv=none; b=p2gleLvytmQZt5oxVWwBX6C5Fy/5MTmcV/IdKtt0kTYCATwWOHWX9/+3QBxmy85lOT1DCOfAl1F72gEDzZliHDkUbteZ7eo92VUEFVtcPw6FvDSAeXziFm4sRYRNiLa5FM7etl5YW4ZKovSHOk/dFds/FuW7JPWjf4yZM/rsxrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733750573; c=relaxed/simple;
-	bh=2D0DQ2jdcuW6TLfqRVVTqkguIuo4pXIcyu0TN7dpVNU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sx7gAEgoLYdPMezTuP72VCt2NTsSXHAmw8sN/kN+SnyucRZr8wewzhaODz7vyTxov9jElzuewKMVBLTEeRBw1AvJVIL4IzPoHRLB6XKWifBWd0zQQBKlg8MDZVU/w4Ae6eZwEsHgjIlf61cwSvaxa/aAxaYvRbG+9QIpC3+12Fk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7b676152a86so535496085a.1;
-        Mon, 09 Dec 2024 05:22:51 -0800 (PST)
+	s=arc-20240116; t=1733750579; c=relaxed/simple;
+	bh=obN/Fup3lM6BqgjXjChpYGnxmki/Om14WHmxJncGUEk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KODjnKk4apw93zfpvnrjlUU+uDjZi4oLeSXamwKW5iylCpSybE74qCBx8H1zjjazeHOauoxPDzMpNJgBapfy9zuPCByTazmnSEe5/JKS8/h1jUjJ6PC45DNfP5IDXMeYCoS23t0oSgJwsJNCLJ79ThDqefVxew3AFcml6AMm8PY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=twHfKoGU; arc=none smtp.client-ip=209.85.160.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4674c597f2eso10719781cf.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 05:22:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733750576; x=1734355376; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=obN/Fup3lM6BqgjXjChpYGnxmki/Om14WHmxJncGUEk=;
+        b=twHfKoGUVyVYNYJaZnO3UZMXGddtmX7o0j/LmGDMrCzVxzs5sbawoou1XV/zRw8VWm
+         LpXRqWjI9UzvDC5lCQFAS+Jb+rkigl/jQjnmRa0PYZCMK4IM0BTsrNTBZzSbPaats9ns
+         m+LLvEfZFGknYFVEeZ1S1DO0SIAEfZ9Cor8n2hGbLKmUEWhntK6XPmgco/fCK4nG6Mph
+         SFE5QQNbMmfpVbYoDX9ZmOS50s44omEeHSnkFri3+7V5dz2l85rmxi/MElt7bj5iAl4f
+         xOf7juhiJkaH78Akkxk1WHgf9sciudZWlgIBFQ02oV6C6b0gsKNhA2yZ3OlorH/Tkxe/
+         GTnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733750570; x=1734355370;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J3/IloxOrCBXmR8YEJvJohhgkefp0ULUgBJK+U/S1mQ=;
-        b=EXCTdyQGyHjPaL4MjbbqImPuIIXb+Ww6IKkiQcUqE5WRFU2xw0H+q+drs5Irb/eZ+n
-         aebQB6PSJ/jmezpcm3ABFaaY7kMpG5ldQqK6xOWruY109B4ppaXQ8dTHdgN0AauM0Lb5
-         zYd0pMmZLwwmAmpARaLBgNhEwt9XE9QKC+VWZkLwm1bjjYnHGIEc2l4zcMl0GWbv/fnc
-         +kou77IpkZT8B3eNSpeS0K+wcn66cMi7RLB90ZRZPTxPTyqy/QJMyXpkjchvbpzAwPkW
-         q1bLN93c/x7SkS1c+Afw02AbLMsub9a416B0Xn9a4zFNw6hJrI2CNblUqtSos7baLojJ
-         PjcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVWlDD2SMdIvDvVdg/0hVD1VBe7zgSrTCvems6CQzVuZe7/lU/KgllAj6+Z4HK9yufMj2W5J/GX+o5J@vger.kernel.org, AJvYcCVqU47xsd4iNcj57KTdfpsuLiGoNAVdYa+lIqIKRyd0WyRt2ULdno0iQem7u7iS5xLkA1uL1BUdWKtosT4=@vger.kernel.org, AJvYcCWK9Vu+W1ijxLrkGjEFLH1/PmZBNAnf23ASzmPILNt0hHi65pUOOOiTvn6e3JzHKMAdP7TmjMQGL1PUd4Ve@vger.kernel.org, AJvYcCWS8fx0PdqkC7SoEPvX7VTQwwcCIPGPorHsZDv8hCuI8r80s7cn67irY96SV2+j0k64foryUYrqBxE9QaBT45IVRss=@vger.kernel.org, AJvYcCWo2uUuX6n4Jhum3NdtLgJH59j0QJKlahu/ENt9gGQcr+DN2si2tyBqA6bn//GjDPhpHwr12x0Q8GL6pA==@vger.kernel.org, AJvYcCXyytjtT0AvMq9ep9DUU4T2VeIUNTEpJX3ZxXjaEs0Jz/MzFPDCneyiGQ7rwBDtzNcgU7MA6z/5++IP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcHraVGGcYtGAT3m9jNmu5LthBfI/ElLVFC8ItkNOZZFc6+OsD
-	uNvQwRnWbKRoBVqoXodGQb65x4vUq89tm414QIEVfzrXtEtji9bCfOSRlgKfbas=
-X-Gm-Gg: ASbGncsVEF3l0WqzBqvYHNgQpkG3BFKpBRtbtdasrOKtVWYmDqRYIRyRr/YbF0ZYVtM
-	pNE1WTBIADPqlQI56YvwKhP3VUZ2sRtgiDNAAqNIceDb2uo+y24e7UGJ4D6I2BpmCk4zejc6krH
-	YgPW+RLaJlask1m1T7qr1wTabVg53nrES5xASc8EOpzKFiZVxONrWYSfFUWDOeAfMP8fjJG5g/4
-	zoPm6YdNDL9Uiz/F7zFCXSKk28BJ2YNXmU3EKQ+FR4No0vJNN/E1gZpTWV8exVMXjxrwO9gHgjj
-	23WxYVd75aobz7bQ
-X-Google-Smtp-Source: AGHT+IFjuvQTyXOZRYengcbPj848hMeTXIulPbD/oirZ3DFkqEdYT2UgbZDAzFYaZ3Zqo3snOQAyhQ==
-X-Received: by 2002:a05:620a:838c:b0:7b6:dd11:5e5f with SMTP id af79cd13be357-7b6dd11fe2bmr35367285a.13.1733750570549;
-        Mon, 09 Dec 2024 05:22:50 -0800 (PST)
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85c4f9eae68sm759192241.28.2024.12.09.05.22.50
+        d=1e100.net; s=20230601; t=1733750576; x=1734355376;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=obN/Fup3lM6BqgjXjChpYGnxmki/Om14WHmxJncGUEk=;
+        b=Z+keUC/U+bce7QmotqbGDnI4mSYn7iQhutTVBcXxBzT+BDX0uPjqFwNf9LuQzpNGbC
+         viuy9Xjyvk1dmXNGTW6QU0553LhmFDtA8n+iY/DE24sGhv4lVPEbB8bS5SWIdSj+k9Jz
+         07kGkd3u34xawfvwkUnV5SbkQCXnLGbzuwngCJqvGugPo+lAMt/oe2JkockfpMb9avq6
+         rHaSIRy9CEnRjXav9zp/WdiIbjQEiPKjAxBB/mXZGBxjff9z1hgIrVloYzwxvonWJdOy
+         1bu7P+qr9yZ79a9ASffncn5y7lQDxZuVByolBgapjagcvL5Hu42QtuFvZyEin7pfMul4
+         GMmg==
+X-Forwarded-Encrypted: i=1; AJvYcCUxdvjPgHR6wtCJnGBMhN6MEzH+xEsL/dZl+0AD4/AHX5dKqyr7v+cFsR177awS96ZaYxygclmtkn0G@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZh5vHblg4vxyBw0hD+UaHFgRuPsyhcCwcHfN14EfRrC/m1kgo
+	7NH8am7fgIxvBX5z1jwD9Q8fv+3LwlsJpjAWADmCIxP5yrus/h0VNTrJMtE0QVo=
+X-Gm-Gg: ASbGnctsdiKchqoW7bg9ShPps1x4Nv//KH4Zh4c2nYgx8sdvokIMuvyPW8arS3F0prd
+	ydaEXnyB52Ne8NGApGvH5oC7oFxQhRA1q90JIhTI2iVekxd/4AgZ5qcGLKtAlyKuOY8lIqW04ZC
+	LO++42CKqOADJI1OeB1kPKpdfpqXS23Y1k++KhOMbGXGUWpF0PiLNtfqNKE1i8sB5/D0kcVUd6W
+	CpSTp3H63l3HkneQPrhE5GUvFWv+jmmP2KLNuUYqZUXW+5OJiGlKIF/covxQoDfIzI27fURwWC9
+	dgZk2aiEZTyXZUdeZQ==
+X-Google-Smtp-Source: AGHT+IG+xAs73bYxu73v5slaTcLQjjeYSAx80IDn1MEZt7aBZNho+qYdCjkxNdOS01ULUhUnXJl6kg==
+X-Received: by 2002:ac8:5fc6:0:b0:467:6505:e3c with SMTP id d75a77b69052e-4676505132dmr63004611cf.24.1733750575932;
+        Mon, 09 Dec 2024 05:22:55 -0800 (PST)
+Received: from [192.168.40.12] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4672978dc20sm51086641cf.71.2024.12.09.05.22.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 05:22:50 -0800 (PST)
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-51544e9a0abso2804094e0c.1;
-        Mon, 09 Dec 2024 05:22:50 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUCg0Y9k3ijXTwqkf2uUrvdkmA68YR2ZnqKzbUd/NgqXwm7J63QxovTDDFaxtLIzU9mrd/RE2lmjyp008rZ@vger.kernel.org, AJvYcCUuMX8ENZCzi3zsHSPFa1v5B/IXXLxjy+nn5bOFqJW+EeXp+81Qr+pRPMcI0I0rymDuEkII/ylCZbJD@vger.kernel.org, AJvYcCUuuu8STNG7x1FYU68BKZcIVotyuJLbIcrWWH/Zq7vEQwLJoVgRD5SklxiJzfxRxZ2AdHa/QVIhrFjzKs2wlMA1FhA=@vger.kernel.org, AJvYcCVC+TxN0oOt+AChJnRAFdbMVCT5Z+SVOYbBiWI5rm8a1zzj7mQZ3dFkcCPK3TMRwRgny9tdzzoYtczOUA==@vger.kernel.org, AJvYcCVanEE5CIT6VccQdxTuZ4nxHXVEp4KVgo1FlqTPZlncJCXZKTrRvbOzJH1lvZwew4vJQnmFdruW+D1kLeY=@vger.kernel.org, AJvYcCXznL61j595NcYP7Q+HcEhNn1+7wvVIAeX3Q9iv2gjfTrs3oV0ZrjFq9eoCy3/vFH1bbxdMzzQoAOGH@vger.kernel.org
-X-Received: by 2002:ac5:c9b9:0:b0:518:8915:89ec with SMTP id
- 71dfb90a1353d-51889158a8bmr371719e0c.1.1733750569916; Mon, 09 Dec 2024
- 05:22:49 -0800 (PST)
+        Mon, 09 Dec 2024 05:22:55 -0800 (PST)
+Message-ID: <b7706ac1-340e-4520-97d3-f8a65de78beb@baylibre.com>
+Date: Mon, 9 Dec 2024 08:22:53 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com> <20241113133540.2005850-8-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241113133540.2005850-8-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 9 Dec 2024 14:22:38 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVms8xKxuX=gC49ognvXmY+8a3SttJOG=7iuCUVL4vcdQ@mail.gmail.com>
-Message-ID: <CAMuHMdVms8xKxuX=gC49ognvXmY+8a3SttJOG=7iuCUVL4vcdQ@mail.gmail.com>
-Subject: Re: [PATCH v3 07/25] ASoC: renesas: rz-ssi: Use only the proper
- amount of dividers
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com, 
-	broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org, 
-	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] pwm: Add Nuvoton MA35D1 PWM controller support
+To: Chi-Wen Weng <cwweng.linux@gmail.com>, ukleinek@kernel.org,
+ robh@kernel.org, krzysztof.kozlowski@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, ychuang3@nuvoton.com, schung@nuvoton.com,
+ cwweng@nuvoton.com
+References: <20241206085501.2623772-1-cwweng.linux@gmail.com>
+ <20241206085501.2623772-3-cwweng.linux@gmail.com>
+Content-Language: en-US
+From: Trevor Gamblin <tgamblin@baylibre.com>
+In-Reply-To: <20241206085501.2623772-3-cwweng.linux@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Claudiu,
 
-On Wed, Nov 13, 2024 at 2:36=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 2024-12-06 03:55, Chi-Wen Weng wrote:
+> This commit adds a generic PWM framework driver for Nuvoton MA35D1 PWM controller.
 >
-> There is no need to populate the ckdv[] with invalid dividers as that
-> part will not be indexed anyway. The ssi->audio_mck/bclk_rate should
-> always be >=3D 0.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-
-Thanks for your patch!
-
-> --- a/sound/soc/renesas/rz-ssi.c
-> +++ b/sound/soc/renesas/rz-ssi.c
-> @@ -258,8 +258,7 @@ static void rz_ssi_stream_quit(struct rz_ssi_priv *ss=
-i,
->  static int rz_ssi_clk_setup(struct rz_ssi_priv *ssi, unsigned int rate,
->                             unsigned int channels)
->  {
-> -       static s8 ckdv[16] =3D { 1,  2,  4,  8, 16, 32, 64, 128,
-> -                              6, 12, 24, 48, 96, -1, -1, -1 };
-> +       static s8 ckdv[] =3D { 1,  2,  4,  8, 16, 32, 64, 128, 6, 12, 24,=
- 48, 96 };
-
-"u8", as 128 doesn't fit in s8 (why doesn't the compiler complain?).
-
->         unsigned int channel_bits =3D 32; /* System Word Length */
->         unsigned long bclk_rate =3D rate * channels * channel_bits;
->         unsigned int div;
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> Signed-off-by: Chi-Wen Weng <cwweng.linux@gmail.com>
+Reviewed-by: Trevor Gamblin <tgamblin@baylibre.com>
 
