@@ -1,91 +1,109 @@
-Return-Path: <devicetree+bounces-128703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181FF9E947A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:40:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE81D9E9486
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:41:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D80E6165E60
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 12:39:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A442188876E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 12:40:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 282822248B0;
-	Mon,  9 Dec 2024 12:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D21E226EC9;
+	Mon,  9 Dec 2024 12:40:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="bdPYyJnV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fS9IjNmq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDBA3224B01;
-	Mon,  9 Dec 2024 12:38:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601BA224AEE;
+	Mon,  9 Dec 2024 12:40:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733747923; cv=none; b=jtp8oI4eoa+x4vHoiyBB3Dp2t4ZUP0c8X/XO3uTvKe5Xed+/Z6ukkyBAljK6jDL6XErmbB8jUvEubsclkmr4fwYAsgtKta8KzVPIk4PT+uP2Aq+6iFqn46nWE80o+vVzj4NlVIDSBMZpbjCPLdWsfghxu0zcr9DzLKa90+CTr7s=
+	t=1733748018; cv=none; b=ZYjH2j+sHLnEuvcADvoReeBqUjwD6Fc2tckCHNySwAsCaLt/RFum6Gudo/B2QhlRk0orN7VHhqzP432hmEP9UXwXuqKFESf1ZscxWx23XL50Aa6E+oy1ZO3aycFSz/2c95RbvhGgfeSWuOsZ2bMUcf3YGiwpT8lVAS4tDWF2JaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733747923; c=relaxed/simple;
-	bh=iiVdNzquENfzqRN+PAL0uNkI7bw6oNB8jDXAupyMIZY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=kBiYi6p+Kcp/fc+sv1qq3eBZz/PPu6ZppXSHUFtV8Nzh2by0HN9zlmQUOuRDfTMDzqAlsTR4SdJLzcna2cAfFB6QwyQFpRUNweEu1KppEwEAKtDOqrVNLKaucpRai8IVxbI3clP91S396ni6/Zdz0Y2dCFITVWLZgpd5rMF+SBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=bdPYyJnV reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=6+g6a9zgOHScfh8pfuzFaT8yOgJ0aWJt0L14J82G1Ls=; b=b
-	dPYyJnV3upeFShwT7RraFAkx/tTKOpnfz4CNYRVFrb3Xx2vYoOoHzqTM1EzxcHPk
-	ifF1GyBRSxmF0YsENDqL1TRqI2BlJRXosYfYhpTUy1PEfCl9RlcEo3QdiqU8DhsU
-	ZBIhczvV0uYDsBmJnxASZHzQglfodIiaJzgnFBld98=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-102 (Coremail) ; Mon, 9 Dec 2024 20:37:59 +0800 (CST)
-Date: Mon, 9 Dec 2024 20:37:59 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: hjc@rock-chips.com, krzk+dt@kernel.org, s.hauer@pengutronix.de, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, derek.foreman@collabora.com, 
-	detlev.casanova@collabora.com, "Andy Yan" <andy.yan@rock-chips.com>
-Subject: Re:[PATCH] drm/rockchip: vop2: Setup delay cycle for Esmart2/3
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
- Copyright (c) 2002-2024 www.mailtech.cn 163com
-In-Reply-To: <20241209122943.2781431-5-andyshrk@163.com>
-References: <20241209122943.2781431-1-andyshrk@163.com>
- <20241209122943.2781431-5-andyshrk@163.com>
-X-NTES-SC: AL_Qu2YAfufuEAs7ySfbOkZnEobh+Y5UcK2s/ki2YFXN5k0tCTI0SYQW29KGUD2y86DDiKsoAirUQVL5MpFRpJHY46IPszNAqsSk9+1LSBw9TfE
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1733748018; c=relaxed/simple;
+	bh=r1y2bZ+c+3Ff9Cb7WwsV2utut88vNUkPy2wrLMTOb6Q=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=V66rfMuW9RjjD4RBcwaigHBS90lS/kkwVRKLG65UuMgLiov+t5xx/1atMbXaxykpzfU/HBc1X3fvabcnKYQL81yeoxuJeDgg9TWjZxOxmKF+nIRNa/EtjJeI4/9ps8MtJz/33Bh8qhS+mK8ckA1s3VxtEzi+W+pZONhFOR2Pkc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fS9IjNmq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD475C4CEE5;
+	Mon,  9 Dec 2024 12:40:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733748016;
+	bh=r1y2bZ+c+3Ff9Cb7WwsV2utut88vNUkPy2wrLMTOb6Q=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=fS9IjNmqpxSlbgxt6H64fVsHAZinOsTi4S7LnACr+qtwiO71aYA1E57jWLdX8CD/G
+	 rKugCGLVRkqWrJtDirPEypi1uXk4gGUohJS09hyxZYjI53p+8BSjwV/QVBvLEFLyan
+	 R7sbm8VSg2n+aZABBPHNDhm+mrFhKeIG/CW1wTW6ckVoyWTe0FAZ7WAsT7SEsaesAc
+	 +l5cU6tTIBQIlxqh+80bu44M/lOcfVjl6fm41FBPrVGPLI+26xHXfJod6kdmLciKBI
+	 oUV66nHLI3RSEc/KotT5qmAkw3thKkBYar5NGBMNLuG1AbNUiLJOAAgERfZC1Oy/VP
+	 krrHYoJO3uAWw==
+Date: Mon, 09 Dec 2024 06:40:15 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <d6e7dee.ba96.193ab6d2e3f.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:ZigvCgD3n76n5FZnEdI6AA--.44307W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiMxSwXmdW3sf+LAABsy
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Pavel Machek <pavel@ucw.cz>, 
+ Conor Dooley <conor+dt@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-leds@vger.kernel.org, Sebastian Reichel <sre@kernel.org>, 
+ Lee Jones <lee@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ linux-kernel@vger.kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>, 
+ linux-pm@vger.kernel.org, 
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, 
+ Hans de Goede <hdegoede@redhat.com>, Purism Kernel Team <kernel@puri.sm>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+In-Reply-To: <20241209-starqltechn_integration_upstream-v11-3-dc0598828e01@gmail.com>
+References: <20241209-starqltechn_integration_upstream-v11-0-dc0598828e01@gmail.com>
+ <20241209-starqltechn_integration_upstream-v11-3-dc0598828e01@gmail.com>
+Message-Id: <173374801505.3246398.1590933015937792151.robh@kernel.org>
+Subject: Re: [PATCH v11 3/9] dt-bindings: power: supply: max17042: split on
+ 2 files
 
-ClNvcnJ5LCBwbGVhc2UgaWdub3JlIHRoaXMgcGF0Y2guCgpBdCAyMDI0LTEyLTA5IDIwOjI5OjE0
-LCAiQW5keSBZYW4iIDxhbmR5c2hya0AxNjMuY29tPiB3cm90ZToKPkZyb206IEFuZHkgWWFuIDxh
-bmR5LnlhbkByb2NrLWNoaXBzLmNvbT4KPgo+RWFjaCBsYXllciBuZWVkcyB0byBzZXQgdGhlIGNv
-cnJlY3QgZGVsYXkgY3ljbGUgdG8gZGlzcGxheSBwcm9wZXJseQo+d2l0aG91dCB1bmV4cGVjdGVk
-IG9mZnNldCBvbiBzY3JlZW4uCj4KPkZpeGVzOiA1YTAyOGU4ZjA2MmYgKCJkcm0vcm9ja2NoaXA6
-IHZvcDI6IEFkZCBzdXBwb3J0IGZvciByazM1ODgiKQo+U2lnbmVkLW9mZi1ieTogQW5keSBZYW4g
-PGFuZHkueWFuQHJvY2stY2hpcHMuY29tPgo+LS0tCj4gZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlw
-L3JvY2tjaGlwX2RybV92b3AyLmMgfCAyICsrCj4gMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9u
-cygrKQo+Cj5kaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL3JvY2tjaGlwX2Ry
-bV92b3AyLmMgYi9kcml2ZXJzL2dwdS9kcm0vcm9ja2NoaXAvcm9ja2NoaXBfZHJtX3ZvcDIuYwo+
-aW5kZXggYzNhNTcyYjFjODcwNC4uN2RjOGJlN2Q2MTE4NCAxMDA2NDQKPi0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9yb2NrY2hpcC9yb2NrY2hpcF9kcm1fdm9wMi5jCj4rKysgYi9kcml2ZXJzL2dwdS9k
-cm0vcm9ja2NoaXAvcm9ja2NoaXBfZHJtX3ZvcDIuYwo+QEAgLTI1MjYsOSArMjUyNiwxMSBAQCBz
-dGF0aWMgdm9pZCB2b3AyX3NldHVwX2RseV9mb3Jfd2luZG93cyhzdHJ1Y3Qgdm9wMiAqdm9wMikK
-PiAJCQlzZGx5IHw9IEZJRUxEX1BSRVAoUkszNTY4X1NNQVJUX0RMWV9OVU1fX0VTTUFSVDEsIGRs
-eSk7Cj4gCQkJYnJlYWs7Cj4gCQljYXNlIFJPQ0tDSElQX1ZPUDJfU01BUlQwOgo+KwkJY2FzZSBS
-T0NLQ0hJUF9WT1AyX0VTTUFSVDI6Cj4gCQkJc2RseSB8PSBGSUVMRF9QUkVQKFJLMzU2OF9TTUFS
-VF9ETFlfTlVNX19TTUFSVDAsIGRseSk7Cj4gCQkJYnJlYWs7Cj4gCQljYXNlIFJPQ0tDSElQX1ZP
-UDJfU01BUlQxOgo+KwkJY2FzZSBST0NLQ0hJUF9WT1AyX0VTTUFSVDM6Cj4gCQkJc2RseSB8PSBG
-SUVMRF9QUkVQKFJLMzU2OF9TTUFSVF9ETFlfTlVNX19TTUFSVDEsIGRseSk7Cj4gCQkJYnJlYWs7
-Cj4gCQl9Cj4tLSAKPjIuMzQuMQo=
+
+On Mon, 09 Dec 2024 14:26:27 +0300, Dzmitry Sankouski wrote:
+> Move max17042 common binding part to separate file, to
+> reuse it for MFDs with platform driver version.
+> 
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/power/supply/maxim,max17042-base.yaml | 66 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>  Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml      | 49 +------------------------------------------------
+>  MAINTAINERS                                                             |  2 +-
+>  3 files changed, 68 insertions(+), 49 deletions(-)
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/supply/maxim,max17042.example.dtb: battery@36: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/power/supply/maxim,max17042-base.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241209-starqltechn_integration_upstream-v11-3-dc0598828e01@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
