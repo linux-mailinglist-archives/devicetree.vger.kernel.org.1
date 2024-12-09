@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-128520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FFD29E8EE2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:39:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1223D9E8EF2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:43:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 983FB163B8F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:39:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11DA81884937
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD4E2165E7;
-	Mon,  9 Dec 2024 09:39:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5392F215F6B;
+	Mon,  9 Dec 2024 09:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A/O2Qu+Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EjFY/ZF0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DC1C21639A;
-	Mon,  9 Dec 2024 09:39:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AC7D215F63;
+	Mon,  9 Dec 2024 09:42:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733737162; cv=none; b=E3IMTFQMSDC334bhcD+8oudOOmYFWY6ZZdv1JgEXVGcrL5PjpquBVX2aN3M0lzLT8hyR3rxPj43akPqcoLBJyfAbrydOy7PZiskS4KgpWN5xPQ+Zsr5KZYlwqazgw6ABcL9c8jw0tt/IH1hrVhykmf8Tij6xPctIYkRpHBttS+w=
+	t=1733737374; cv=none; b=nMT97JD12vl4ycubQd6zATHLhgncZPBdpuNppA9SeLr8NW7zHk5RqFIF/pskGv6QPum+AqWy/1S16wsYRr2k6dbSDB/YZKO7OUMRaQVWp7VuHaCW9eidRCaLUasCp4o3jrXPBCRpNAeFxpxT43LLOYIGcuw3ZKTqGAjNDXMtEfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733737162; c=relaxed/simple;
-	bh=LjzR60E+UhSRTYFgb3A+TDPCEApt2g0xKpBJsiveJOY=;
+	s=arc-20240116; t=1733737374; c=relaxed/simple;
+	bh=VBMr9LsHSJGPFtGqHFVHYbEn1eiiaJRMceDta957bZ4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V8xy9WzEHuSMKufzD70M2+uOQwRP03bC+r+0jYdMI2JVeugLTCDlEAQERDPLKuUYy95p/F98CA4RPcGDa+jE7PbS9rP4DtI3UosUtqiBsh+dQykkdC5NKd70WCqjVRno+0LWY1MX+Jd0C7gYspltNfSSFR3FtRoQbWFSBrl6d6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A/O2Qu+Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11BA4C4CED1;
-	Mon,  9 Dec 2024 09:39:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LMASSAuS06GnJQ6wg2mvOnKpVfZ1AMauEFcPwjep10WK2qgLVaB1Rp8dYMpa2+i8z8o97+357NYATZrefe6JW+A2eSya6vrQv86eVBxUNaFhQM5x0MMTUyNlmiIfjiILfwMbjEGna1te3Jnm0wqu4X7Xr0aI8N1NE0m2P+2zgBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EjFY/ZF0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28F73C4CED1;
+	Mon,  9 Dec 2024 09:42:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733737161;
-	bh=LjzR60E+UhSRTYFgb3A+TDPCEApt2g0xKpBJsiveJOY=;
+	s=k20201202; t=1733737373;
+	bh=VBMr9LsHSJGPFtGqHFVHYbEn1eiiaJRMceDta957bZ4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A/O2Qu+YDCcgCiti8/09pgb6z3TUusuNnDzE9h1AmEpn1xRKXnNoBDNlFOx1wqXF5
-	 R/3+oJJ6HZVI1OG9yuWel2isoFbmV+lU+AF6z68XdmAQ9prEG+oIxbpIgVYfinWO+v
-	 rD8Gga/L/L279OM6wqpZtPn7dv+vWnO2yJVyCfTtZ2cdSACqfIvZ9O26SHDg71TF/U
-	 U2WCI1406i5VXyWm6V9fvuakT6bgxhrgJZo12QZYwxm/L8DYxnsHoiJvfKNQyrf6j5
-	 z+RdrFFAj/CzT3aSLxiSzO6Bz51/cXVoJKEXQcdhQ8d4A8EyypPhRDOH1Dy+Jvu66m
-	 5uheTclriw2Kw==
-Date: Mon, 9 Dec 2024 10:39:18 +0100
+	b=EjFY/ZF0biPlZzHFX8a4yRdYvSt60iFvN7mRVBcIPEcifgQt8w5R7u8h38AxJFA9q
+	 cWAudzQI/acgkYf1+J+L+r7dvU920K5W/YiJz5WK2LS6UC4Ef0/H4u0fVQ6sJ1VXdD
+	 WCzGCJkQ48CHzwfUmYnhD60EkHjxSeKPassSZq6yif1GON0DrBr/w0s/fna1fw9aA8
+	 mKYCOstm9+BSHiX0qpbBwKt0gPF/VfyalxXYshZLZ4MkWh7CWuhCeJsZr4B2/wz0WR
+	 wubHfnCOovIlc9G9HFJfmaIcPEF8do5Bw2jiNQfnx/tOU9hu0xNKdD66z6eV4WqvYq
+	 2lj40laSJfQZg==
+Date: Mon, 9 Dec 2024 10:42:50 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+To: Kever Yang <kever.yang@rock-chips.com>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko.stuebner@cherry.de>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: phy: qcom,qmp-pcie: document the SM8350 two
- lanes PCIe PHY
-Message-ID: <uvgu5fpcoxmqnlqlu2evtufy7qtwl7bfztzpmxtvqsr7lvcdy7@645q74bovcyo>
-References: <20241204-topic-misc-sm8350-pcie-bindings-fix-v1-1-e8eaff1699d7@linaro.org>
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: Update rockchip company
+ name
+Message-ID: <kwx76ihsftsgw3u53l33z4kodihyfcvpqpl2a2nk7aedgnr6e6@2324w7s7zmio>
+References: <20241205082258.857018-1-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,19 +61,14 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241204-topic-misc-sm8350-pcie-bindings-fix-v1-1-e8eaff1699d7@linaro.org>
+In-Reply-To: <20241205082258.857018-1-kever.yang@rock-chips.com>
 
-On Wed, Dec 04, 2024 at 11:34:50AM +0100, Neil Armstrong wrote:
-> Document the two lanes PCIe PHY found on SM8350 SoCs along the
-> already documented single lane PCIe PHY.
-> 
-> This fixes:
-> /soc@0/phy@1c0e000: failed to match any schema with compatible: ['qcom,sm8350-qmp-gen3x2-pcie-phy']
+On Thu, Dec 05, 2024 at 04:22:58PM +0800, Kever Yang wrote:
+> Rockchip company name has update to below name since 2021:
+> Rockchip Electronics Co., Ltd.
 
-Maybe we will succeed this year...
-https://lore.kernel.org/all/20240124-pcie-aux-clk-fix-v1-5-d8a4852b6ba6@linaro.org/
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Some reference would be useful. Wikipedia says:
+Fuzhou Rockchip Electronics Co., Ltd.
 
 Best regards,
 Krzysztof
