@@ -1,68 +1,64 @@
-Return-Path: <devicetree+bounces-128956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CFEC9EA124
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 22:19:21 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01A1C9EA12C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 22:22:44 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A2D318872EF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 21:19:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A06E52811FB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 21:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EF8D176228;
-	Mon,  9 Dec 2024 21:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EA41199E84;
+	Mon,  9 Dec 2024 21:22:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iUb/NKbN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tyL2iuMA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1488170815;
-	Mon,  9 Dec 2024 21:19:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B56249652;
+	Mon,  9 Dec 2024 21:22:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733779159; cv=none; b=jCf27orxHFmQ9NoXQVSafs5M4Fnnx0YQv7zBvHbLPRQUruilsijO9prPrpFfkwilk7W7XSALpKkwho+ArZInl0gdWs7vk8Q3x1qPdRrWEEqAs6KGLsmVz19uQRxbv2CvyDlz03CaCUC0rCkOaBN7gd4Mo7qs7+0RBHH0ge/XWXI=
+	t=1733779361; cv=none; b=f5xWlfWtbF70cBS4tUPba0+/zLdXW3t3jsA8laLOVImLCAD1QmKQxZSiusKSrgIaqA6kywaoJiKUy57fdJ2cjS42Oti+EsCDn2kkb+M3ncCVSjYrEqatQrGWiJADvS0oeplIiouHXNm2iTuB9L5ri4gcYjpZO3veBae2lRjfMV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733779159; c=relaxed/simple;
-	bh=fQf9zpQ+5s9sRVYLqUiIDpZiLT4jPnTuTXJA3SHtA4Y=;
+	s=arc-20240116; t=1733779361; c=relaxed/simple;
+	bh=90Wzf2BnALaciJfqUCZ7IRuSh5rcnWkqt3oeGVrhBSw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G7KVSIwZgmMPskCuTIOpowwPit2tSTxZZCHfCICAt9zCu6OdjEXaHT1eg4hqY1YCUo3jqilBIuNQwzo7r+Wv73oQsCfXYLkuqdKLSjHKzG1YdKZrnGrQzQzU5SDis/fuhv1dfCvJ5turfp8/w9WOnt86q0evaMWH90gYaZlDZoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iUb/NKbN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 685ACC4CED1;
-	Mon,  9 Dec 2024 21:19:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lmV6K+bwJyMCvT9amse25ameJlZXng/bwLwT/so3sqF53hKJ1IPvGOH3f//ndg9pxH1pH5HJsWNda7dQXovc0oeUAicBNPVZ0+ugRdjR3XYFejm7ek6N4lBCamrXa+TewYQ1yK9nRJ/ECiE7WOVZJJR6rZfyFW4mmHsYgYd9/+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tyL2iuMA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A728CC4CED1;
+	Mon,  9 Dec 2024 21:22:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733779158;
-	bh=fQf9zpQ+5s9sRVYLqUiIDpZiLT4jPnTuTXJA3SHtA4Y=;
+	s=k20201202; t=1733779360;
+	bh=90Wzf2BnALaciJfqUCZ7IRuSh5rcnWkqt3oeGVrhBSw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iUb/NKbNQlXWONUnLeHLd9UQEEefBjSvVgaefA85vq+pKHT26jN7ZnrD1eW4bRoYX
-	 TjAuoJh/0PDLCwD7QnBoTxluv1l1sdU0Rhs52afBwuqTyzZlOEGnOco6Je+w4FThlW
-	 h5IfIBHyOYKa3nqfVKbsswfueA0CzgqOVF6eCImjfOVieajMKvc1ty9AxKR5e0r+qw
-	 UMkywIVqD2Bnb1pf8o5rus+AhYLpTjAXNQfHkZH6B9gHkpyMAa8cjqcjOwgs6a42Ts
-	 pgX7oK+qTI9CzLwhT9uwScJ1snm1tWep4vhWR0Heg+wV5zNCVZoT+4NA7Sz4n9+5lQ
-	 zb6ftHv9Ke2Sg==
-Date: Mon, 9 Dec 2024 15:19:16 -0600
+	b=tyL2iuMAtJTI9uVas9+prE56V1/izvjQ1oshD7XQGsVR8UXURxuN1jRSdsES8hAXL
+	 Zj1RqcA+rs3xREWK4Q5YnmF38wakQvxwj8RJQN4PP4SmBviUqPZp+osi6zfkVIx0vE
+	 FTGU37C3MvECg3b2W3i7wb5x3fK97UyrHmQ1Ez1XLdqg6OfRhDDTojvcJsaR8onCq4
+	 d9Ift5CgBnjZZrWrwILMcC/biLZpcFkQtmS6MtIrAOoHFehUY9/KFvACiDbXScJAC8
+	 3/snmbjWPstWoQnpuduC8R2NNvd4lEMtTNOIyDc2xUMU2t1tJdIEpEzvJGZtLGi74Q
+	 ZMmdRykaqyDQw==
+Date: Mon, 9 Dec 2024 15:22:38 -0600
 From: Rob Herring <robh@kernel.org>
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, Marc Zyngier <maz@kernel.org>,
-	Stefan Wiehler <stefan.wiehler@nokia.com>,
-	Grant Likely <grant.likely@linaro.org>,
-	Tony Lindgren <tony@atomide.com>, Kumar Gala <galak@codeaurora.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Julia Lawall <Julia.Lawall@lip6.fr>,
-	Jamie Iles <jamie@jamieiles.com>,
-	Grant Likely <grant.likely@secretlab.ca>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rob Herring <rob.herring@calxeda.com>,
-	Zijun Hu <quic_zijuhu@quicinc.com>, stable@vger.kernel.org
-Subject: Re: [PATCH 4/8] of/irq: Fix using uninitialized variable @addr_len
- in API of_irq_parse_one()
-Message-ID: <20241209211916.GD938291-robh@kernel.org>
-References: <20241209-of_irq_fix-v1-0-782f1419c8a1@quicinc.com>
- <20241209-of_irq_fix-v1-4-782f1419c8a1@quicinc.com>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, rust-for-linux@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 11/13] rust: of: add `of::DeviceId` abstraction
+Message-ID: <20241209212238.GE938291-robh@kernel.org>
+References: <20241205141533.111830-1-dakr@kernel.org>
+ <20241205141533.111830-12-dakr@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,37 +67,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241209-of_irq_fix-v1-4-782f1419c8a1@quicinc.com>
+In-Reply-To: <20241205141533.111830-12-dakr@kernel.org>
 
-On Mon, Dec 09, 2024 at 09:25:02PM +0800, Zijun Hu wrote:
-> From: Zijun Hu <quic_zijuhu@quicinc.com>
+On Thu, Dec 05, 2024 at 03:14:42PM +0100, Danilo Krummrich wrote:
+> `of::DeviceId` is an abstraction around `struct of_device_id`.
 > 
-> of_irq_parse_one() may use uninitialized variable @addr_len as shown below:
+> This is used by subsequent patches, in particular the platform bus
+> abstractions, to create OF device ID tables.
 > 
-> // @addr_len is uninitialized
-> int addr_len;
-> 
-> // This operation does not touch @addr_len if it fails.
-> addr = of_get_property(device, "reg", &addr_len);
-> 
-> // Use uninitialized @addr_len if the operation fails.
-> if (addr_len > sizeof(addr_buf))
-> 	addr_len = sizeof(addr_buf);
-> 
-> // Check the operation result here.
-> if (addr)
-> 	memcpy(addr_buf, addr, addr_len);
-> 
-> Fix by initializing @addr_len before the operation.
-> 
-> Fixes: b739dffa5d57 ("of/irq: Prevent device address out-of-bounds read in interrupt map walk")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 > ---
->  drivers/of/irq.c | 1 +
->  1 file changed, 1 insertion(+)
+>  MAINTAINERS        |  1 +
+>  rust/kernel/lib.rs |  1 +
+>  rust/kernel/of.rs  | 57 ++++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 59 insertions(+)
+>  create mode 100644 rust/kernel/of.rs
 
-Applied, thanks.
-
-Rob
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
