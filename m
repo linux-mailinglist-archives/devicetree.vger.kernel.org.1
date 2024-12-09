@@ -1,54 +1,54 @@
-Return-Path: <devicetree+bounces-128786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B41D99E96B8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:27:50 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC1B09E96F6
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:32:28 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8F0D283F2F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:27:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFF0C169414
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:28:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7360C1ACEBD;
-	Mon,  9 Dec 2024 13:26:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C76171C5CAC;
+	Mon,  9 Dec 2024 13:26:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="enocT7A7"
+	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="AvwBMk2Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from ci74p00im-qukt09082501.me.com (ci74p00im-qukt09082501.me.com [17.57.156.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D982F35963
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 13:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40FE31BEF89
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 13:26:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.57.156.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733750772; cv=none; b=rt9I+g2hl7xDcmD9oy/zxdcP+Tg7MKkTdcdyZWEH4cecJ5IIg4vZ6i8OPio7BsySsjizvOQjLlNAjRDzAA0xwPnSXG0fBV5Cp28Yz0+lZ9ss7SKYCw2TrW3S2bhQBfJpT86P0XUP8XJwnVszfvUxNP//MQZOh/NGzYqe9RdYB+s=
+	t=1733750782; cv=none; b=aIVu/va5918OiNehCFVedHICjPWalZaW5X1SP4Pjck2yYg73yGrCmF+hzhscQ23Lcr7Izrf5Itcfbmuns1lC1E1zyOGeuxAYq9mNgP3LQGNUwWkEVp47aXW4FDPwodlGI0d8mAy4EemqEoDbkpUBwD9LIlod7rHqDj+qEtV+Fvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733750772; c=relaxed/simple;
-	bh=buSZ9Fabg4Kiu8V1aFg4lCJbzCY/oh3Pk+dTilUwq4k=;
+	s=arc-20240116; t=1733750782; c=relaxed/simple;
+	bh=DFw6nTypc9qtDehhi4TlSvMoG4svJBxuwnk7+yt/dgg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eEn8/yyBzGKbSJNasBB2/vZjU0G8Rn0iBPwQ6+91hhRlSoALa8RFqo3rSinvrOohdm4a5o9qiGxPGAhV4zgqi0QMTZqzmiqgodinlfwDnDDqO7Da6SKkPbq1oqhKZkq69jVVmhO/jTDgGi6SF50T0UePiRX+jNBzPkhLi5x4vpc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=enocT7A7; arc=none smtp.client-ip=17.57.156.14
+	 In-Reply-To:To:Cc; b=BHKa7Fr+oq1VhTpXPHwhspTL/PaHfeZmpouIjiskquybkgKOgbqOBni/dxvTk/G3RFvdK1Wm7fiy4ypXO47knlSLS7l+HWhiaKmKHDIM9L3Jd4Xb49EUBtXGikzO90BzWtIILyX1r4dKT9+jPPIzAz226xvfAdQ0uHEIGnV6mmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=AvwBMk2Y; arc=none smtp.client-ip=17.57.156.14
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1733750770;
-	bh=C56FTWVpesqYqDvRuOPp99e/7K+5vPCrrmNEn8wL/GI=;
+	s=1a1hai; t=1733750777;
+	bh=43vrn8p072lQRlN2l1v4tjRk4GuMQ/6xBoBVPns9Qjo=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:
 	 x-icloud-hme;
-	b=enocT7A7mU6vzg8NHwAFTDtnofY/c5D4tQND8D/4ENwtuaFZ8CV9P3m+qhzdYO/V7
-	 8bR8pBObqoyEXdbJTPlJ6QNtzl1edSmWRcbVCvectRzqYTEdgF/Ln8cjhCXCPZJvCz
-	 nyWQukUP5v3+ZEgJpZJo5SSLXVzwbf3LfKlhAMeU9X2dkbyanfXFZeD/bS6ngXPzAG
-	 ZXfxnEnTZ0uzKaORclqSgYdP1+jJ+Bz1Z7CUBfspDzZ0i/AfPygjH/AOwpuxoFH0MH
-	 9iDy9fSQewwQCfnsBPR3XDWYxcWUwPdTYdixHxWIWgMBot1E8oyrS1UtQxBBxYIO0b
-	 eHk6NkOsodc+Q==
+	b=AvwBMk2YjY2K0SY0cydq9qNeDoqdQeOmUhtGa9ev5jxDty5wZ/H3JW0kuAhAk+j6h
+	 RV5LWqFTk0eF5SBSTka/HiIMa1FzunJzEMK2eOKkR2wVxMZGAHa7f755DSuJplVg0d
+	 ZTzqcwYsdVm085XqQu/1kiXrHG3dwagLx2xNbsXV6z0sSE8TZG9+JxpxNaVr5eNEy7
+	 f8DxCJHTrx79JvCX+q1OexNid7VJvVOFungD0D2V63nJhjY6LhxPjpa6fJCln6HUrV
+	 221iaBNFHqtuPhmu18ZTrqlOQ3kqiCehULsN06/BPPc684jp+tRsxR5H1/B3PXNLoC
+	 2O0Lj+D5OmG3A==
 Received: from [192.168.1.26] (ci77p00im-dlb-asmtp-mailmevip.me.com [17.57.156.26])
-	by ci74p00im-qukt09082501.me.com (Postfix) with ESMTPSA id 2DE9A4AA048C;
-	Mon,  9 Dec 2024 13:26:02 +0000 (UTC)
+	by ci74p00im-qukt09082501.me.com (Postfix) with ESMTPSA id C41314AA0355;
+	Mon,  9 Dec 2024 13:26:10 +0000 (UTC)
 From: Zijun Hu <zijun_hu@icloud.com>
-Date: Mon, 09 Dec 2024 21:25:01 +0800
-Subject: [PATCH 3/8] of/irq: Fix device node refcount leakage in API
- of_irq_parse_raw()
+Date: Mon, 09 Dec 2024 21:25:02 +0800
+Subject: [PATCH 4/8] of/irq: Fix using uninitialized variable @addr_len in
+ API of_irq_parse_one()
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +57,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241209-of_irq_fix-v1-3-782f1419c8a1@quicinc.com>
+Message-Id: <20241209-of_irq_fix-v1-4-782f1419c8a1@quicinc.com>
 References: <20241209-of_irq_fix-v1-0-782f1419c8a1@quicinc.com>
 In-Reply-To: <20241209-of_irq_fix-v1-0-782f1419c8a1@quicinc.com>
 To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
@@ -78,36 +78,43 @@ X-Apple-Remote-Links: v=1;h=KCk=;charset=UTF-8
 
 From: Zijun Hu <quic_zijuhu@quicinc.com>
 
-of_irq_parse_raw() will return when meet condition (@ipar == @newpar)
-but Refcount of device node @out_irq->np was increased twice when
-directly return there, hence causes @out_irq->np refcount leakage.
+of_irq_parse_one() may use uninitialized variable @addr_len as shown below:
 
-Fix by putting @out_irq->np refcount before returning there.
+// @addr_len is uninitialized
+int addr_len;
 
-Fixes: 041284181226 ("of/irq: Allow matching of an interrupt-map local to an interrupt controller")
+// This operation does not touch @addr_len if it fails.
+addr = of_get_property(device, "reg", &addr_len);
+
+// Use uninitialized @addr_len if the operation fails.
+if (addr_len > sizeof(addr_buf))
+	addr_len = sizeof(addr_buf);
+
+// Check the operation result here.
+if (addr)
+	memcpy(addr_buf, addr, addr_len);
+
+Fix by initializing @addr_len before the operation.
+
+Fixes: b739dffa5d57 ("of/irq: Prevent device address out-of-bounds read in interrupt map walk")
 Cc: stable@vger.kernel.org
 Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
 ---
- drivers/of/irq.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/of/irq.c | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-index 758eb9b3714868112e83469d131b244ce77d4e82..cb39624a5e7799b9d2f4525f42dac4cd921ab403 100644
+index cb39624a5e7799b9d2f4525f42dac4cd921ab403..64c005dfa23bd157d891f3f10526327deb5e2cfa 100644
 --- a/drivers/of/irq.c
 +++ b/drivers/of/irq.c
-@@ -310,6 +310,12 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
- 		addrsize = (imap - match_array) - intsize;
+@@ -361,6 +361,7 @@ int of_irq_parse_one(struct device_node *device, int index, struct of_phandle_ar
+ 		return of_irq_parse_oldworld(device, index, out_irq);
  
- 		if (ipar == newpar) {
-+			/*
-+			 * Has got @ipar's refcount, but the refcount was
-+			 * got again by of_irq_parse_imap_parent() via its
-+			 * alias @newpair.
-+			 */
-+			of_node_put(ipar);
- 			pr_debug("%pOF interrupt-map entry to self\n", ipar);
- 			return 0;
- 		}
+ 	/* Get the reg property (if any) */
++	addr_len = 0;
+ 	addr = of_get_property(device, "reg", &addr_len);
+ 
+ 	/* Prevent out-of-bounds read in case of longer interrupt parent address size */
 
 -- 
 2.34.1
