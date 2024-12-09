@@ -1,175 +1,183 @@
-Return-Path: <devicetree+bounces-128437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1283F9E8BB7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 07:52:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C18D79E8BC6
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:00:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1B4C2811B1
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 06:51:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79CE928168B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 07:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D3520FA9A;
-	Mon,  9 Dec 2024 06:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDDA1214A67;
+	Mon,  9 Dec 2024 07:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yk5NPPTp"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="FLKy7hql"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011024.outbound.protection.outlook.com [52.101.125.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A1561D555
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 06:51:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733727117; cv=none; b=CTxXGfaA5N35cOzxtjgCYchfrks8ZKrq7WKCQeTyYZFu/tRqW7WgJFhxaF3ptA0bicTU7DgFdKbBfU30/VS9hwE94fNs6K20a473SoNUkQ1T+QUfNfOY5OKfG62VeG9eBSworuz6fIwat4idSNa7DlKdyNskf1jyyZacVap7Ud8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733727117; c=relaxed/simple;
-	bh=gjWi9UfQlY8GyExiw+avsaQCZ/mlkQOOqNPCHaN/8Mc=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=mEkJmC7qAFD7SnT/8+2sk1BNZhFYEAKhmb2ER29jGRTZj1e5A9DNC4ptOXxcC/YYMqQJUJjVFQPVCsazse6pSE9UVT2EikBUSASbwyZBmlWfSbZg6xXqs5ex69emkzu4/05D61IHoJtmiN9jSwmTHZqgaJJz3IzIecu0JVjXM0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yk5NPPTp; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-434a766b475so39024105e9.1
-        for <devicetree@vger.kernel.org>; Sun, 08 Dec 2024 22:51:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733727113; x=1734331913; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UU+rFrYBqU+HyZU9fxW7fsHHwD25k+Ib4ntmd1sD3tw=;
-        b=Yk5NPPTpvRMEs+Am6QeodtOC7RlbENcKZ4NxQslc1HWf+Ih2xMUpTE9FWJgQsIbV7V
-         OfSsIsmy+1RS27icwWERU1Y/ilHhGCy8n5ra0495gJ4UjsD8YzuBE0AXje8XSO+PMJEk
-         lJv9H6Gkskdgqx+6ejLyqRoqrxDh10g0dqBe7FoXyOpwPUujo17fJxOurYB2J+tuVSGJ
-         Y2MT73xFspruI/x+Z//arKKzlPUAA1vPmJrIteC9Qm6eXyBucefikrdMHvNBEBc6wxri
-         SugJaYEQhB/ag6YncZo4dcthGC4+ARBR0B25N6ZvJahuA5ulyaDxpyi1LbFhpfubggd7
-         KbAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733727113; x=1734331913;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UU+rFrYBqU+HyZU9fxW7fsHHwD25k+Ib4ntmd1sD3tw=;
-        b=ZXHuHWfx/rAnWWPpdnVY0aOnTadfR/O3iW9ZNNrJfiBOn3yStlkjmY5OkSJRhsoMQK
-         8cB11T0FftLd4ttrBYcj2Iw+DLsWNg+atTQsYn1gUqvWVDURYNFRVPzd1W0QJ/Gg756t
-         +xwAdbHkVoxFECH9xSrNsvpU8buhTN7DjZDPZtluYjOl7XfH0kpZmIFFTszCpnm+5BvN
-         A6omxCH4uQEvNeFkLGyDExLNEt5BR8BF5XpYEzKeptchxXqInDSxbaa2UyvIt9OR1XRA
-         5sgUS0EieL/Yhu98nhV0Ffk2aCw6VCT2HtrFyWNSfLJpNwL+zFwg+HhdfDlG3pR3BXHC
-         0uHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU200+knuIxSmtMxGsQ/BjHOcILehoh9SIxnBuiWBp3zwQ4FKqYx0GHNfzC9H2dVqSY5lDjCeXyVwa/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw765827FFsxMHYQAEf34UNiyCqcoCsJshapGuc2LqmLYMcZcVi
-	NUwrftcw7zsfBQi6RkxusuT+xvreEtQ7lKLiUr+0T9uUJZ4ocMl0Vb7qvLIuFw4=
-X-Gm-Gg: ASbGnct6kKRA4F8AAODZWL0u++leAPwzBpsTxaVprnrHxROInyICnHdk4/1amX1qnrY
-	/5SIbFS2BeF361/2s+uP+650NAypwe9ZQlsOJkBWDp4kFc3zp32ZCQSruBS8VKensEMfmB6nZAa
-	wdiu0Cg1gRxGKfTYtX4tTButoybHbbSpPzEgcEX/+rZH+cu5NsfB31qezMuXOst+nIhS8njkLWX
-	mfzPzSFlmOEjOD+kr+NyNKUwTFVYQZ7kArJ71jgaISuF7WdVvJOxnQ=
-X-Google-Smtp-Source: AGHT+IGEzc4vwHmaIfvTMIfIV37e15tsohqeHODjPaefoObT5Iz92AFnPqv8LysQYDOG0yI6+qlhwA==
-X-Received: by 2002:a05:600c:3155:b0:431:52b7:a499 with SMTP id 5b1f17b1804b1-434dded67b1mr79239335e9.20.1733727112718;
-        Sun, 08 Dec 2024 22:51:52 -0800 (PST)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434eb8f18fcsm72397395e9.24.2024.12.08.22.51.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Dec 2024 22:51:52 -0800 (PST)
-Date: Mon, 9 Dec 2024 09:51:48 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Haylen Chu <heylenay@4d2.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48207214A77;
+	Mon,  9 Dec 2024 07:00:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.24
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733727611; cv=fail; b=DNk4+wXBHIlOwkdvCin3pDo3W3MTCBNHdxktfRARBFfaL1If5FQMJo4JIEbWzFfwqGPSKX+cV2VrOKmE9F4wf5jZKgbTqhSn36jDOn7gKPErmaEMvYt/TxVySp0BCdtaqvc/Y/Kg1aAec1cbkkMPL5nSH58vI+feSEXicTmMwZU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733727611; c=relaxed/simple;
+	bh=Hm07gnZHLKnw0xWe+Ba7Y804oALfanqRLoGGkn2Zfy4=;
+	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=pdBX6jJ1ZTl++u6L/KXaFLTCGjIXQQX1tFPeKb5iMy4taiH2vSFTZNOpe0FbowLznpXXKXBeKovcJ+9zaxM7CH1XsyDb5BlWEWXz+XpuozGuVFZNqlC5oYLCE1GXBJBmP0ABt4FGBpNSVwN5hrXB/XHV+fmUahj08ay/MZpsJ4o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=FLKy7hql; arc=fail smtp.client-ip=52.101.125.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uStgEHv/vn2nciTCgEboQ4sPlgjBjSUv+n3px00Ok6fk2oeSIHdt2JDmprLraBPu5wdg3RFUXz7VS5plYijI9CcxeNvsINo060Ohr4KFLC9axSw/OysrTWeTP94fY3/IaegBCY9J8/5r8X4NEpWWri2fVbeLcTnW71CUiLRAo4rteWUCp/TwW0rrbEfHJJA7hyObOFpN3GQe8Of63u4xd0QyIQOwKieax5HJ9nf1M2QJXH3kDkk27kRDXpWUIv1UipMJ+YkOqJ33k5o+AwiQMbtxV1FYUNyqyPa83MuK4m02d9URjBpCKkcVarqcVungHJXZYfQ+vy3l9djoMn1yXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1RkCfv+KA2T/iTxEXpe0KiL+eEpp2VODG09ljYTMsaM=;
+ b=dWVOty6dxo/gOSZ3D1JOc67wlwKXPBWKVvznwvepMTa/FIoFz5UgGLd7Hhtq/CfL+AM1SPxmS9dhEdIEx89fOwcBA8ABz4ZP92hQB+O9AMf9SdDN9VT/AWLacGP13OWenqSQ/3w212HjtmFcwOijU99+3JOf5nXL61WJm7B59zWEg732JxGpLqfy2k+gXbKadx8i9RaqLxDZCO89HDneMBe0IpRDy0CsNYUBx74ZGevc/BlWvfIsZwnJvl23a818WvYgjkbA+6wAdz83RfY1k7Mr7b1LcHwjNUFQo/KHrG4sYXl9S4t0LfTl2HYyhZwPyMqUUFAxsHflEmGQ1SYHIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1RkCfv+KA2T/iTxEXpe0KiL+eEpp2VODG09ljYTMsaM=;
+ b=FLKy7hqlH08ZRDns3Wjx+k6wBU06wjBS9T7E/PdQojlT03FmqGnBqEA5eGvkcBxSZj4H1/7Pj9mPJexdAqGNzLNlxoWltbSnKro8fRS77n9pq+MHqjXbWYePxY0jCzWSxuofVIbZuvf38x1QPaJRFplBuEmcdWp9EMSFyRrc2ns=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TYCPR01MB11303.jpnprd01.prod.outlook.com
+ (2603:1096:400:3bf::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.18; Mon, 9 Dec
+ 2024 07:00:06 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%4]) with mapi id 15.20.8230.010; Mon, 9 Dec 2024
+ 07:00:06 +0000
+Message-ID: <87y10pmjd6.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>
-Subject: Re: [PATCH v3 3/3] clk: spacemit: Add clock support for Spacemit K1
- SoC
-Message-ID: <9a3f6975-d99d-430b-9a09-697638667e97@stanley.mountain>
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/5] arm64: renesas: Add R8A779G3 White Hawk Single support
+In-Reply-To: <87y10tvhw1.wl-kuninori.morimoto.gx@renesas.com>
+References: <cover.1733156661.git.geert+renesas@glider.be>
+	<87jzcg1d2f.wl-kuninori.morimoto.gx@renesas.com>
+	<CAMuHMdWF7NcmKYzvF4Dfjh3S5MccbJrpSphK5BhxXNnhxgtmYQ@mail.gmail.com>
+	<87y10tvhw1.wl-kuninori.morimoto.gx@renesas.com>
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Mon, 9 Dec 2024 07:00:05 +0000
+X-ClientProxiedBy: TYCP301CA0024.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:381::14) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241126143125.9980-7-heylenay@4d2.org>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYCPR01MB11303:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e789e25-50bb-454b-e939-08dd181f1c8f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?RAl8B2WyawHbkudxvzoIEeGWJeKw8g/myD+13fq/W3v1oc5oDO426iuKfltC?=
+ =?us-ascii?Q?slquVtKxO/nWitWv9YMvVJkxVAA/bCsC0Pi9WjNYam5prsTkRALBHgMUucrU?=
+ =?us-ascii?Q?zQO+vRGvx0ct4DMpJLHYRhcT/lFU05BKY6EJ8OV9rMxSJRdlmQmaLBIXpYvY?=
+ =?us-ascii?Q?USAm1bXiaZK3XGu9BAYnF/WlC89vU3qzBwx7IYCIbCz5cC7zPNc36RmNhe6o?=
+ =?us-ascii?Q?WaqgSoXbcBT3VVcYhqZYZ2mE6bvfSkGcetRTxZtKFfotj5ceCOBvg9+yG06f?=
+ =?us-ascii?Q?JMxLo6XdghcVPWnCi4JbpClHX94lVUuqr25OO9xaGCoPQ7bLEiRxTTfO5n3y?=
+ =?us-ascii?Q?ywnJXV7+XfKak06Nf0PhNnWAYmwzwANJMD+u8uEwl3HgIhjoDySz25xuPEKH?=
+ =?us-ascii?Q?kXQFp4LiwcoHefO0ysaoALj1TUZzzKHpe4kNRsgO1vd/UBZZTIRBidG40wMa?=
+ =?us-ascii?Q?mMwNixIyHlfvcvGwswCmQA9QR8niYU6z4exvQryySAtRCCr9Rm31QQhyiEcf?=
+ =?us-ascii?Q?T+6I2e1RuZa2wf0316z5G5vXU+VsonNVm0c/3K0zrAQUPWrqal+oaiZ9DpSN?=
+ =?us-ascii?Q?RMo4yLKUcULN18/1g1RmavDDjp+4Xn6t74hcEjCZ4zCFosgVcKxXupXJKs/Z?=
+ =?us-ascii?Q?908Um26bQJQAh1MDRQJaYxCcXoQyt5IR5Gh6gAMZHErEh8EBCadj6rl3itmb?=
+ =?us-ascii?Q?1f7wyHmgeRVwlM5gN8e/a+NMtPgDV0G2pK3RzttATG38VVrfiBQRJ/LMu8or?=
+ =?us-ascii?Q?LGcbJfZ75vZXGOS8qTtrcNwmltdPb/BLquc86nKqNOryX67Jt59SNZQ/zh8o?=
+ =?us-ascii?Q?Fwf6XV+cc8I5Xyf7bpdUMG2DUQ1st9u5JdtLNwMMaONxpHjTciunvUpdZsle?=
+ =?us-ascii?Q?w2HmXxg6zLTk/WSbWspSRYFYXuAoa/wz+uc1aiGNKoK6ETzqHelNE6eimvuj?=
+ =?us-ascii?Q?M1fFbUl7RpHIIGvfHugCQwMkMIlY16iTsTxW4xFC37VmAhNalyVwxmVtxlFg?=
+ =?us-ascii?Q?6hTGB/BYpZTfO+4e7/tmiEZT3NYsh7J/FYPF4NtFUodPJfx+tfIP5eSeObgg?=
+ =?us-ascii?Q?i4bf4HtyTlWF8BRGZgklSV/jvKH1UyYmhvlJ2TG1YoG8D2jBAGNhSkU5TKUx?=
+ =?us-ascii?Q?LMvn5k00pnZCMZxMPmGMsWrdPl5rzVoSX7uYAna7yTbfuQbx5xno5iuvP/L7?=
+ =?us-ascii?Q?C0EwbhG+EGoTwnu1TE3VwtaKFPJhGA4xPMGWhls+sk6INa1GOW19ICssLPoX?=
+ =?us-ascii?Q?MtKOpvuQ8/fN4gn0vUwkvqp2Edg6rV5DWnGo2igYVhS5jEnmaqcZHJwQ9/Zi?=
+ =?us-ascii?Q?FWEe8w2cd9Zy2GCMKmLQE7I+w/AbgUwImqDZiNatshtCYj7rOkpSJsD8pnpp?=
+ =?us-ascii?Q?8afEyZ8Dt9vg/AD23hk6ou9aw0UBwqOoTtKLRZBNCbNTNQTEEg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?7HbcNXYxM9MZopjP5mQVlfQEhder18q0rsfZqBrjUa31zFbpgk/Gf4PkIP1R?=
+ =?us-ascii?Q?MFgyIH96tAI/L5xbIUG5TXArrKHmyFyXHiXiAP04hmIh6Gve7Tb1BbwAOziu?=
+ =?us-ascii?Q?O8W7rzAmrXSH2OFoUpVfPtWl2SH28z27QHLXs8sfPIiCy9emmVW3ysgSa9BU?=
+ =?us-ascii?Q?MXjGa6n+rHV4ojOS1rERe9uDPeQz6qKQMyvqkPJyPFSfycAvIwPymLKFs1Mu?=
+ =?us-ascii?Q?Lj0a8uhlS7hXGt3k1jOH3sg+g9VRtXn2jZTm5KTluwawPNPG+f5CRgsB0Hpj?=
+ =?us-ascii?Q?X3mbl4nvjzWn3EaRGpwmSf4MmRxYIErs2q8bn4KygZrW5NPbrbxnfWe2pyOl?=
+ =?us-ascii?Q?I5cwb+hKIevAH2ZaJwLk/2QtUkAi34KB7U1Mt0YTo8qUxbyHC9mapIAma+Yq?=
+ =?us-ascii?Q?p1Rwhpy2oOXqI8O2AtdGS0tjKliOn85mZ8SXl2Wsy5A93s/VDfwkX6Vbc2ra?=
+ =?us-ascii?Q?abGuvs6ggpw/nm5eyPAF95Jb779/tzpcXzvSWxGAAe0li/Rfxtpi7qUQCCu5?=
+ =?us-ascii?Q?Y4yJe03XTxD7wS53mBUTKVhwl3AbQfd4BMizZYanjQqkbqmY71T84/9Zvx0V?=
+ =?us-ascii?Q?6a9yRc+Wt4JMNGy8BaJCqTwxvvXU28Yn8WwNNgOjyrbA2Cqj/ZPqXL0h587Z?=
+ =?us-ascii?Q?NtgasfGV8jQaZsDG8dcM2/4TT8vh3gCkBDiSYm9XRx4ffTgHPLzV+MhcmviQ?=
+ =?us-ascii?Q?KS81S6k3/8PkQWJfjXEAIjeBga6PrBSxiQVELC56J47ZEOcmRq/05aRUVEx+?=
+ =?us-ascii?Q?wc1bhSYreXtzCfnD3Y/abrJpjolyEt94HHqZZfPnBY0a4igWkkL8TPKGQcQ1?=
+ =?us-ascii?Q?jKNwrM8TTaAjcxIKeSfrrHD4TPGKxpUtp5CjJiPzI2RrOfcNAdcIqxdPBJLk?=
+ =?us-ascii?Q?NIF/i/GmniIfN9nyOwnRkJQhWrJQzw+SMNUj/RkCy2/rOezOrnLzb4xy6ab+?=
+ =?us-ascii?Q?xbtCoG5WOsf4FFo0D0PxGH77Fxod25/u/teqpSUhGMCaHgQIonClFo9WW3TN?=
+ =?us-ascii?Q?+2wmQj8hwvJBHL7TtZXw5N817ParoeemF3OhPRLO+/vVwvaH2s9tybwZwNpo?=
+ =?us-ascii?Q?7nzKeQe70ZXi26IBuiIm+x0SgApD46gXqjEWbnfGgR/gFccIW64Hw9hov5It?=
+ =?us-ascii?Q?llBtadpKn7PmFdGNf19wiIy+HWPg/GyViy3WxOpJ7HO58naLgmC4p2g/gKJB?=
+ =?us-ascii?Q?bWXPYnObnHZBzN6oeLs0dwYSjMriBEBLG6oHyoQnzwgJP5cPaZDrXeqSyXVU?=
+ =?us-ascii?Q?cISo2wB0Xy6fKptKpEith4su3KgVymm7c2nYAaR+KxItAunXejOBCxtSBIKE?=
+ =?us-ascii?Q?8W57JG4TuEjSzkJXkcr0UAMEK/F9nUV6G37w3FZqD5iVxmujI0I/N166YKsN?=
+ =?us-ascii?Q?LSdaFlhtZPe7vzZyZjxO+IGS/UYqQPZ3y0Sfu3NYofWkr9XxxBy+vLpo7Kd+?=
+ =?us-ascii?Q?H+5UrzAMAFvNxE1Cv9XMWfVtQLZGoNhB2YEGN3fw6oWKfr3jjW1RRj+wNe2H?=
+ =?us-ascii?Q?nv9iAm8bxh+WgadGf/PoKgcGkEkM+9a0k7FXG0TbfQvWVHSxX+BtRWGqbXI6?=
+ =?us-ascii?Q?WXqK6KHB1vIDFS8SOddnrMT6vJDRwlzvHbJ7J88hBvh2uRGiW3FJl/dHIrQs?=
+ =?us-ascii?Q?VPKmB26z68u0CWIh+uydkr8=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e789e25-50bb-454b-e939-08dd181f1c8f
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2024 07:00:06.0308
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4KtCALKMYIAbe86L3srU0YJ80VHkstd8PQ85H+EbzWP2vOW91oLJEoLMHJo4iI9hhmBXPNojoMSWDbPctiDmw01UnU0AbsC6CTq/6RJpunqUACL6bYWjr1SHRmMgyL63
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB11303
 
-Hi Haylen,
 
-kernel test robot noticed the following build warnings:
+Hi Geert, again
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Haylen-Chu/dt-bindings-clock-spacemit-Add-clock-controllers-of-Spacemit-K1-SoC/20241128-101248
-base:   2d5404caa8c7bb5c4e0435f94b28834ae5456623
-patch link:    https://lore.kernel.org/r/20241126143125.9980-7-heylenay%404d2.org
-patch subject: [PATCH v3 3/3] clk: spacemit: Add clock support for Spacemit K1 SoC
-config: arm64-randconfig-r073-20241207 (https://download.01.org/0day-ci/archive/20241207/202412072123.ne7GnRyJ-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 14.2.0
+> > -              - renesas,r8a779g2
+> > -              - renesas,r8a779g3
+> > +              - renesas,r8a779g2 # ES2.x
+> > +              - renesas,r8a779g3 # ES3.0
+> > 
+> > but decided against doing so, as "ES3.0" would become stale as soon
+> > as Renesas releases "ES3.1". Alternatively, I could use "ES3.x"
+> > immediately.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202412072123.ne7GnRyJ-lkp@intel.com/
+It seems using "ES3.x" is a good idea.
 
-smatch warnings:
-drivers/clk/spacemit/ccu-k1.c:1686 k1_ccu_probe() error: uninitialized symbol 'lock_map'.
+Thank you for your help !!
 
-vim +/lock_map +1686 drivers/clk/spacemit/ccu-k1.c
-
-e71e4621b06cd42 Haylen Chu 2024-11-26  1651  static int k1_ccu_probe(struct platform_device *pdev)
-e71e4621b06cd42 Haylen Chu 2024-11-26  1652  {
-e71e4621b06cd42 Haylen Chu 2024-11-26  1653  	const struct spacemit_ccu_data *data;
-e71e4621b06cd42 Haylen Chu 2024-11-26  1654  	struct regmap *base_map, *lock_map;
-e71e4621b06cd42 Haylen Chu 2024-11-26  1655  	struct device *dev = &pdev->dev;
-e71e4621b06cd42 Haylen Chu 2024-11-26  1656  	struct spacemit_ccu_priv *priv;
-e71e4621b06cd42 Haylen Chu 2024-11-26  1657  	struct device_node *parent;
-e71e4621b06cd42 Haylen Chu 2024-11-26  1658  	int ret;
-e71e4621b06cd42 Haylen Chu 2024-11-26  1659  
-e71e4621b06cd42 Haylen Chu 2024-11-26  1660  	data = of_device_get_match_data(dev);
-e71e4621b06cd42 Haylen Chu 2024-11-26  1661  	if (WARN_ON(!data))
-e71e4621b06cd42 Haylen Chu 2024-11-26  1662  		return -EINVAL;
-e71e4621b06cd42 Haylen Chu 2024-11-26  1663  
-e71e4621b06cd42 Haylen Chu 2024-11-26  1664  	parent   = of_get_parent(dev->of_node);
-e71e4621b06cd42 Haylen Chu 2024-11-26  1665  	base_map = syscon_node_to_regmap(parent);
-e71e4621b06cd42 Haylen Chu 2024-11-26  1666  	of_node_put(parent);
-e71e4621b06cd42 Haylen Chu 2024-11-26  1667  
-e71e4621b06cd42 Haylen Chu 2024-11-26  1668  	if (IS_ERR(base_map))
-e71e4621b06cd42 Haylen Chu 2024-11-26  1669  		return dev_err_probe(dev, PTR_ERR(base_map),
-e71e4621b06cd42 Haylen Chu 2024-11-26  1670  				     "failed to get regmap\n");
-e71e4621b06cd42 Haylen Chu 2024-11-26  1671  
-e71e4621b06cd42 Haylen Chu 2024-11-26  1672  	if (data->need_pll_lock) {
-e71e4621b06cd42 Haylen Chu 2024-11-26  1673  		lock_map = syscon_regmap_lookup_by_phandle(dev->of_node,
-e71e4621b06cd42 Haylen Chu 2024-11-26  1674  							   "spacemit,mpmu");
-e71e4621b06cd42 Haylen Chu 2024-11-26  1675  		if (IS_ERR(lock_map))
-e71e4621b06cd42 Haylen Chu 2024-11-26  1676  			return dev_err_probe(dev, PTR_ERR(lock_map),
-e71e4621b06cd42 Haylen Chu 2024-11-26  1677  					     "failed to get lock regmap\n");
-e71e4621b06cd42 Haylen Chu 2024-11-26  1678  	}
-
-lock_map not initialized on else path.
-
-e71e4621b06cd42 Haylen Chu 2024-11-26  1679  
-e71e4621b06cd42 Haylen Chu 2024-11-26  1680  	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-e71e4621b06cd42 Haylen Chu 2024-11-26  1681  	if (!priv)
-e71e4621b06cd42 Haylen Chu 2024-11-26  1682  		return -ENOMEM;
-e71e4621b06cd42 Haylen Chu 2024-11-26  1683  
-e71e4621b06cd42 Haylen Chu 2024-11-26  1684  	priv->data	= data;
-e71e4621b06cd42 Haylen Chu 2024-11-26  1685  	priv->base	= base_map;
-e71e4621b06cd42 Haylen Chu 2024-11-26 @1686  	priv->lock_base	= lock_map;
-                                                                  ^^^^^^^^^
-
-e71e4621b06cd42 Haylen Chu 2024-11-26  1687  
-e71e4621b06cd42 Haylen Chu 2024-11-26  1688  	ret = spacemit_ccu_register(dev, priv);
-e71e4621b06cd42 Haylen Chu 2024-11-26  1689  	if (ret)
-e71e4621b06cd42 Haylen Chu 2024-11-26  1690  		return dev_err_probe(dev, ret, "failed to register clocks\n");
-e71e4621b06cd42 Haylen Chu 2024-11-26  1691  
-e71e4621b06cd42 Haylen Chu 2024-11-26  1692  	return 0;
-e71e4621b06cd42 Haylen Chu 2024-11-26  1693  }
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+Best regards
+---
+Kuninori Morimoto
 
