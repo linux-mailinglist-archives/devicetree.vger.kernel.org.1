@@ -1,166 +1,133 @@
-Return-Path: <devicetree+bounces-128480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 642D59E8D0C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:10:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA2349E8D10
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:11:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45B3E18851BF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:10:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C273E16421C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:11:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CD7221516A;
-	Mon,  9 Dec 2024 08:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33594215078;
+	Mon,  9 Dec 2024 08:11:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="PTjMWAR9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UwDvotcZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4A7215078
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 08:10:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 478CA5FEE6
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 08:11:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733731807; cv=none; b=ONYhNLBMtQD+fPhNnW75TAV89pd+hX0lZ88KUHdydqueBWdGLJzlk4LQVS+/9TyafbqnygGe4b7wTAxt/zh1bqw6wtQHr9sruXu4QtCNHHP1lgcMty5idPFjCR7rbtizo/JY+K/7viTKgFc6jM/B0+kahtv0yOOPKywBQsLrfnA=
+	t=1733731901; cv=none; b=g+hKiJbn0O0Ui8RHrytNNd9YmgFbj3M8MrB8cWeNTCRJu1Sl4HFkdXdYsr+Lp7OfnfBKA5j87nWpakJOcsugdsZt22bkbN58YxWJqCOnwR8r1rUrPktdZhI9F1Eh98J/XsSPjHtXXqUnBPMR0jBN6DPX7elaVDMKvKEn/ceg16A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733731807; c=relaxed/simple;
-	bh=e9T1tqdjsB2hx8LoVxJobchZWtItWdr11EkDA8I/jmk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qGsnP0dSQ00yjWEoE14M/I5UhiiDRbdosYUl9PHhLJFhhHVMx2uhCWJ0oBvwtp7tzcmsc/8r2U2tzVs+L1TIdnxr9hlXvL7ofM9GtKSHUpJ/v0n6LYCOJTXqFdDu2b6mf/UFPua5kJj/ms1YrZcuD/mAui1ZzgaL/eKlC3VAjaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=PTjMWAR9; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5cf6f367f97so5857707a12.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 00:10:05 -0800 (PST)
+	s=arc-20240116; t=1733731901; c=relaxed/simple;
+	bh=Rqy1ataKgral7Qwp51f+sXf8c/+cb9+T25l6Ab1PUSQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EUZ0+eJ5RPLo5NHlWXRak6DulNvWXEynYzZ0PaoBdE7EKp/yEfnBdI8yvM4HH4IoFBaRxvPOHDAp5BQ13PDkjclUUXEyRfnfFlfOextMTCgpxpHy1tQBZAx5pkJZpeCp1cgJSN8fIfRzvsVk8ZtzrHM7qtqLAwH3EAPa9Vh292w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UwDvotcZ; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-434a2f3bae4so45174605e9.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 00:11:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1733731804; x=1734336604; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WOdGE0llx04cHDIB0WcrC/Ji09jqKKAXDGd/eNwLnL0=;
-        b=PTjMWAR9MSWkih4EngALJqbP7DguEmG0EXZ5lgpO6c+tk5P5xAPjnRmF0/4f/kW0fW
-         Oee7kt3ZExZhPblbhivejZtnZ0LiMv3u8l3umyZsWUCBC4PPo1k1u8hW3y5nO5w7YT/h
-         x5RbOiDliHvBjGOUvaO5sfB8ccuqKXCK96sFfDx5Tyb3XIAw4GydVCU6m408ag58hKtA
-         b1Pho6ugXRa8jDB1MWb2lXb6Ud6G0PUrexDzuhRxAmAPhskH5ha+xOD+y2i1f6+OisZb
-         NWa+jaB4DxLJGv0MQ2R9VXqZ+onbCPYMm2D+gNt3kj4zAzRj2R90ozoAL1foGviyQAT9
-         aHbw==
+        d=linaro.org; s=google; t=1733731898; x=1734336698; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dTSM1ZL3lya31wOa2eA8/XL6JcurxnBBkRFyqfdvl2E=;
+        b=UwDvotcZGYYNfOCgkjeHOGYEkjL7a43asmkPD0YOXrlmWNyAqleliIkbWvFRyBFHQF
+         PCtTZjGkz/wOh7y+El5pAGYp+rwUciJL64tQ0hHxJ7Ry85AyB05bCcHoEbO+yFLm/lp4
+         tMhuJvroRwKmoUNZktFg47yLx8o+XRBsYkw/ilyAM7xSIHhjoELbNIyNJbGPXWutVFwB
+         gJJIqnLtw2MiOOocoOF9N886fKVV04VsAoe28wuKsPqf7qezcpqPXQ+0lDN1yQTv80jH
+         tw1OJELg/nUIouxwIWY744Qe5gfddXXGUzw3cHtTplvowgHMllLrdrE29dk+2blxMGtd
+         9ScA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733731804; x=1734336604;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WOdGE0llx04cHDIB0WcrC/Ji09jqKKAXDGd/eNwLnL0=;
-        b=YUGodTNJezEUkSks6OZ5TVnZk42k/0s0k7kHC2leX1Y4N7b5/6t3jXBUZ08QGDR7gO
-         egzgJpMSPp8kuzMrhIHPa21i/aTD7nwsQnZepYf4PhL14BdmjWUYu6h3LUShu6a/qeRL
-         JtBp3yiK+kEwcl8BYbW81l7eCI7eEmodNnfn+zcYiZpTQGZf3F/vYBFx3uGALLynjoRF
-         HS1BmvUU/7q4WXE4KZ5rrw4rXG2RJgkUMTVcSRAUh0K5vB4IZLyhBS9A28WSte7UCXkR
-         lcHpzZJ2sAAq4zXZJsEHOJRG7SmcLGrOeBLR+223WSRaXuo/0JUTOeAwsKOTmJ8eHgLF
-         zPgw==
-X-Forwarded-Encrypted: i=1; AJvYcCX4ehTLNQsj+jWG7DYY2F/j+FRG8fAKOZD8tSrJXSId1m1LNgMxLg75oBPBU2DdihUZ79yzSbvKLNyO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyltFJlkZzDzQhSuexsfl6hFYmPFeClrPUj/y4mUk4FxE1IOeZd
-	C5htZMpnbyap1jqlk4CNTijfW/ilL4/LhMSzXj/vg7OtGS4qbO/EwNl4s9enXFww157I8vxh6GT
-	7VBo0Soz9HuFFDKh4iuSBTvRQmtk89BI/norr0w==
-X-Gm-Gg: ASbGncsB5SETIq52Ylg7d+GqyNNIHXkVTPABpvf0ccuss+uIsnl5OfX0Dd+M/AUcPlN
-	/Dx2tzcw7uZ407nzrTdkL/4jgAjsPCz9RexUc
-X-Google-Smtp-Source: AGHT+IGNck5i4vPd2OxR76eBBx6zUGhGMnAu9BdeT9Vh0NpmJctj2kl8Ojqzeyx0WmJshY5K/xlMG+5FLizyFcfrOBI=
-X-Received: by 2002:a05:6402:520d:b0:5d2:723c:a577 with SMTP id
- 4fb4d7f45d1cf-5d3be6d07famr11938931a12.14.1733731803826; Mon, 09 Dec 2024
- 00:10:03 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733731898; x=1734336698;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dTSM1ZL3lya31wOa2eA8/XL6JcurxnBBkRFyqfdvl2E=;
+        b=oMyCrm48d4X1MznyBHHJNmx2fY7HycWZM6yZ5IbeqHYckgwxqhbl4Ux/xzTlT1fEnX
+         LcSaS5Tm9o01rlReYzlGxm5m+/bVjFb9uMptAUHVtUaLAViGxoK4TBp/DKcSzdbSDCpi
+         ZMSeK+pKXPd3mNF43B2ml/kbkbbXsBC4W7ZtSipli6YH8JWgmDaDt5CAjF1RkMPm+j7C
+         fMGAuXDHpPrcb6SQulhsWVIzVce1/IKfwDPqLXgTqN2Vw0YMoJeCu6alyA2yUhIdmh6T
+         lTAIo8kuTIIgLHVMLFWOWXhE98joU1I3ixyfU94QY2WLFzmwNSJ21l8ay8HE9zPsnAr5
+         RW+w==
+X-Forwarded-Encrypted: i=1; AJvYcCVgXLsnlEO9taQOL64qkC0zMDRXBMcP07waKnnScyCyWav0wpNB28KTZVWpK4xxMU+YT5i0e1kZllgT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhEScOdh7KwDQebiq4BmODRutNUgC7VpAeEFyBKrnPx1o6+hyX
+	I0XVcsYxN+HV5qMXshJobxdku7NFtegiomeggqBHVAR9bkXpikQKIUs2BOubyIc=
+X-Gm-Gg: ASbGncty8bwdnLC/KKnlGHBCDezzOEoGdxLhqFLrQAxJKsArP8p31EnKDhtA8NpftWk
+	RdW7tXFch96mUWUuo1Hz/TPazKqyEhQGVG0MQJUne34TjZLVTtInTNBG9mEInnHWNi5gQPahQgy
+	LKggY/xdcFWxniQP2NIM4IoPl2tE246MeJyd1UzMoI9weBQphl2LX0g1JYwM8q8hpxOQ6qBNS0t
+	Tk0zhx6olfwGGt0ije29/chZWeSVsHSk5jyXBObNx+C3XtB6rlCN4uVig==
+X-Google-Smtp-Source: AGHT+IFX24cUkHhTSqFHYkRi7Ptj8ZcdXz5CIVRSOflj14yH1xBA/yL8IBUKGCaXaPHX5jvTE/xqpg==
+X-Received: by 2002:a05:600c:450d:b0:42c:b905:2bf9 with SMTP id 5b1f17b1804b1-434ddeb8ef7mr104821245e9.16.1733731897663;
+        Mon, 09 Dec 2024 00:11:37 -0800 (PST)
+Received: from [192.168.0.14] ([79.115.63.27])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434da113508sm148897065e9.35.2024.12.09.00.11.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Dec 2024 00:11:37 -0800 (PST)
+Message-ID: <9886429b-1bf3-4dc3-b0d4-294a98e44ff2@linaro.org>
+Date: Mon, 9 Dec 2024 08:11:35 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241120-dev-maxh-svukte-v3-v3-0-1e533d41ae15@sifive.com>
- <20241120-dev-maxh-svukte-v3-v3-3-1e533d41ae15@sifive.com> <20241125-7cfad4185ec1a66fa08ff0f0@orel>
-In-Reply-To: <20241125-7cfad4185ec1a66fa08ff0f0@orel>
-From: Max Hsu <max.hsu@sifive.com>
-Date: Mon, 9 Dec 2024 16:09:51 +0800
-Message-ID: <CAHibDyztkj3vFmZ7Gg=0QFoauO7pdm4+c16y8hQiaTkCQPc=LQ@mail.gmail.com>
-Subject: Re: [PATCH RFC v3 3/3] riscv: KVM: Add Svukte extension support for Guest/VM
-To: Andrew Jones <ajones@ventanamicro.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Anup Patel <anup@brainfault.org>, Atish Patra <atishp@atishpatra.org>, 
-	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kvm@vger.kernel.org, 
-	kvm-riscv@lists.infradead.org, Samuel Holland <samuel.holland@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: mailbox: add bindings for
+ samsung,exynos
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, alim.akhtar@samsung.com, linux-kernel@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, andre.draszik@linaro.org,
+ kernel-team@android.com, willmcvicker@google.com, peter.griffin@linaro.org
+References: <20241205174137.190545-1-tudor.ambarus@linaro.org>
+ <20241205174137.190545-2-tudor.ambarus@linaro.org>
+ <2lkowhldq5i4otniijfw7cb3jm6ttatwji3npw5w7c5fyevnn5@ynojupmdyqy4>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <2lkowhldq5i4otniijfw7cb3jm6ttatwji3npw5w7c5fyevnn5@ynojupmdyqy4>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Okay, I understand it now, since the Guest OS may utilize the Svukte
-extension simply by setting the senvcfg.UKTE without any trap.
-In the view of VMM, the Svukte extension should be always presented.
+Thanks for the review, Krzysztof!
 
-I'll add the extra entry in the kvm_riscv_vcpu_isa_disable_allowed()
-for the v4 patches.
+On 12/9/24 7:52 AM, Krzysztof Kozlowski wrote:
+> On Thu, Dec 05, 2024 at 05:41:35PM +0000, Tudor Ambarus wrote:
+>> Add bindings for the Samsung Exynos Mailbox Controller.
+>>
+>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+>> ---
+>>  .../bindings/mailbox/samsung,exynos.yaml      | 70 +++++++++++++++++++
+> 
+> Filename based on compatible, so:
+> google,gs101-acpm-mbox
+> 
+> but then entire binding seems for different device, so you most likely
+> miss here actual Exynos devices.
+> 
 
-Thanks, Anup, Paul, and Andrew for the patience and detailed
-explanation.
+I need some guidance here, please. The mailbox controller can pass the
+mailbox messages either via its own data registers, or via SRAM (like it
+is used by the ACPM protocol).
 
-Best,
-Max Hsu
+I'm thinking of using the same driver for both cases, and differentiate
+between the two by compatible and `of_device_id.data`. Thus I propose to
+have a "google,gs101-acpm-mbox" compatible for the ACPM SRAM case and in
+the future we may add a "google,gs101-mbox" compatible for the messages
+passed via the controller's data register case.
 
-On Mon, Nov 25, 2024 at 8:08=E2=80=AFPM Andrew Jones <ajones@ventanamicro.c=
-om> wrote:
->
-> On Wed, Nov 20, 2024 at 10:09:34PM +0800, Max Hsu wrote:
-> > Add KVM_RISCV_ISA_EXT_SVUKTE for VMM to detect the enablement
-> > or disablement the Svukte extension for Guest/VM
-> >
-> > Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
-> > Signed-off-by: Max Hsu <max.hsu@sifive.com>
-> > ---
-> >  arch/riscv/include/uapi/asm/kvm.h | 1 +
-> >  arch/riscv/kvm/vcpu_onereg.c      | 1 +
-> >  2 files changed, 2 insertions(+)
-> >
-> > diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uap=
-i/asm/kvm.h
-> > index 4f24201376b17215315cf1fb8888d0a562dc76ac..158f9253658c4c28a533b2b=
-da179fb48bf41e1fc 100644
-> > --- a/arch/riscv/include/uapi/asm/kvm.h
-> > +++ b/arch/riscv/include/uapi/asm/kvm.h
-> > @@ -177,6 +177,7 @@ enum KVM_RISCV_ISA_EXT_ID {
-> >       KVM_RISCV_ISA_EXT_ZAWRS,
-> >       KVM_RISCV_ISA_EXT_SMNPM,
-> >       KVM_RISCV_ISA_EXT_SSNPM,
-> > +     KVM_RISCV_ISA_EXT_SVUKTE,
-> >       KVM_RISCV_ISA_EXT_MAX,
-> >  };
-> >
-> > diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.=
-c
-> > index 5b68490ad9b75fef6a18289d8c5cf9291594e01e..4c3a77cdeed0956e21e53d1=
-ab4e948a170ac5c5c 100644
-> > --- a/arch/riscv/kvm/vcpu_onereg.c
-> > +++ b/arch/riscv/kvm/vcpu_onereg.c
-> > @@ -43,6 +43,7 @@ static const unsigned long kvm_isa_ext_arr[] =3D {
-> >       KVM_ISA_EXT_ARR(SVINVAL),
-> >       KVM_ISA_EXT_ARR(SVNAPOT),
-> >       KVM_ISA_EXT_ARR(SVPBMT),
-> > +     KVM_ISA_EXT_ARR(SVUKTE),
-> >       KVM_ISA_EXT_ARR(ZACAS),
-> >       KVM_ISA_EXT_ARR(ZAWRS),
-> >       KVM_ISA_EXT_ARR(ZBA),
-> >
-> > --
-> > 2.43.2
->
-> Anup raised the missing entry in kvm_riscv_vcpu_isa_disable_allowed() in
-> the last review. An additional paragraph was added to the cover letter fo=
-r
-> this review, but I think there's still a misunderstanding. If the guest
-> can always use the extension (whether it's advertised in its ISA string
-> or not), then that means it cannot be disabled from the perspective of
-> the VMM. The only ISA extensions which may be disabled are the ones that
-> trap on their use, allowing KVM to emulate responses which a physical har=
-t
-> without the extension would produce.
->
-> Thanks,
-> drew
+Given this, I shall use the more generic name for the bindings, thus
+maybe "google,gs101-mbox.yaml"? But then exynos850 has the same
+controller, shouldn't we just use "samsung,exynos.yaml"?
+
+Thanks!
+ta
 
