@@ -1,159 +1,234 @@
-Return-Path: <devicetree+bounces-128849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEFA59E9A19
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:12:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8132F9E9A45
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:19:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6874B282427
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:12:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70D8228457A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:19:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6243E1BEF64;
-	Mon,  9 Dec 2024 15:12:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D541B1C5CCA;
+	Mon,  9 Dec 2024 15:18:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RjYtSjUt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36A07233133;
-	Mon,  9 Dec 2024 15:12:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E7811C5CBB;
+	Mon,  9 Dec 2024 15:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733757154; cv=none; b=ijEFrMOAkkpntVyf3clHZ2F8zMvKaqB0ilHtCE1NNr4hhSCAqQlt5NqnWoxCDzV05YctSNYfZciBXxdYklVT2PDBHPDpE1ydTeCxoFW9kz8hkSkZcBsyzzwXkWEe7wEx57Ylzvkf0NgXwIIvaUALa8kCzsiRroCsunlg6VwkG7Y=
+	t=1733757523; cv=none; b=Tx3NdiyNWNpwz8lnVp4rx/IHYfSLOwRw9CYocXFJN9tC4RDlvARRliWZx2bhCXxCbpBRWyWQmaaCdc7715toAZVpgh1d3tfGfOhfX/KVI5OnH418wQ03Dr0kA02wQCabbjeC4jOMsKl00rHJCvK+nzRHvrm/I8A/e/kA/GUbqSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733757154; c=relaxed/simple;
-	bh=+ifZWT9KFK7/CMJKg3gDWnMlJDYO+L1kCWVAFEPVSE0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YfTSTh9EGGMH2G1as27oI9FXgfyZ6BtN3r9vt/g4NBwCtddr4iwAKIjR6ewDqL2JMEy7aBYeoIo3Xjt465wItWt0m03murvYmLaNuAXzSTDMu2PRGVqDe8Jb17Mv/IbgDUFLs5s3Jp2E9uB5g5MG7K6RNwPv/CbP81U+A7B7cZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7b6c375b4f0so143309785a.3;
-        Mon, 09 Dec 2024 07:12:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733757150; x=1734361950;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RTTAFWhXK+GXq2DggiRg3AsKRc195SUBzTDQQERiP0U=;
-        b=HZ+9b8TjTNHe7gtTD5PkGzVXqnZQIi6C5foAMbDE6EMAxdNo4lwfkd/+Nxh0xmFSsK
-         M6x0gDtSiikS4g7Z3Sv1dL13vv/AhPHwkrlAFG4wjN18Pu7F40nXK/BAjISf1y8V3ugZ
-         G40DvdfLZ0WwNp2ayKkZ1PW60gZ1MfpdcSW4GNE+ox23EDPijCRCRnJIU5k8RpgdBxVH
-         sspFyVQ5WFnM2Z+a1cADU58kl7rHeTrkZfcn3B7LqAwhK3Y2KE09Urlup/7JiRHHEaSB
-         YWNIxQb0VEYTz3EdJpqCyKc31Sb9SNr6Gk8ETXbFpPrdr+O/i8/zBbIKTuh+jhBhF5il
-         QwCA==
-X-Forwarded-Encrypted: i=1; AJvYcCVDAXJLt1sG4ru3RvWegPEf8ZDmP0B9MADW9j3O0QTNflrilJYClzhhG0fbDh25imydV4UkRBCDYpHn@vger.kernel.org, AJvYcCVIeXrSFxClw1ZIyM5V90l0JxZCA0TZ7lIjgiXTtWy3rcCRKx3SNlkkpggoVgg2I9RbUZsPuB2SR5EF7PV8@vger.kernel.org, AJvYcCVOgqwzXR/WdGR1OlxXeTEDG+qSBRU9cLXPaigLUoP7wYptA5GxFrWssD9idFlIMH14WrrtMaWtjeqF@vger.kernel.org, AJvYcCVVVLVUmj0EA4de4f9LzGBXAbefaWpEgl641zm2mvBeuxBL2eZJ0BcwTzxL/Fp8sMuuj22X+KE7I08DSubpBu90Fmg=@vger.kernel.org, AJvYcCWMGvRMbZyTynWfPqrZrReGAdhOGMaR25pOm4Wsy4dFHo6+6Kl57ugveLE6tSxAtfYszl6rmRMUjI405A==@vger.kernel.org, AJvYcCXSLisoya4qW3t2Nnh6UGFxC2b2Bh1nQLvGkAKHKNRpl4idcEAD4ckTis0Yycy5VfJPvXqhld1xh8+qAZI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUqMfJgcZ7H1DXGv4mYhmnvHQ8bLMwnfASxMKnFzQfUVM3drux
-	e0OwZr6w9+68nw60IdtblApQz/CZxsZyp6CHecNN3tjICGHXOMTEDeW3jXXLPWc=
-X-Gm-Gg: ASbGncuWvkU/B5iOqVaaM5tECZQ+qLUKYVpSdIzIlPPBcGOOsnBcC2mhHgX19f7WwCD
-	CvYrWoicIISKAeI0ErJLx4c+mxwy+SvImqElJE2OYrLhtzzgfl7ku0rcyLD3cO5wYDMIQuzjjqd
-	Uq8FXR3xpSs/9auTxbaAuHjwEzTPA0jXLukXhAl3nKY2l0pC2mvqbJLhBwoKxK2ZvNR565u/Lq8
-	VIjWfIZ6Ss29NFWhydHbXVDcpwtpFRwu75W2xOl8gfO3pOeuwVlUCADOxbpYlJS4STT/Gh/3LyG
-	LBrxKYxRb6ZLyOab
-X-Google-Smtp-Source: AGHT+IG82yTXDxwxzlwl9ZFHBDQWXX6jUae5TeOWX75g45Aa+giCqoA31qrl+X0wE6OkbATIdHH8kg==
-X-Received: by 2002:a05:620a:2682:b0:7b6:62f9:109b with SMTP id af79cd13be357-7b6bcb924e5mr2040730585a.42.1733757150093;
-        Mon, 09 Dec 2024 07:12:30 -0800 (PST)
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com. [209.85.222.169])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b6d1aae961sm157208485a.93.2024.12.09.07.12.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 07:12:29 -0800 (PST)
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7b6c375b4f0so143307285a.3;
-        Mon, 09 Dec 2024 07:12:29 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCULDQPzqQEsex61hksmg+Gk0lNzaY05EA/NFfYPdJm6kw10CgzHVSsaOxQ8yGYI4Ps/RCZ14rUuyiFPqGEC@vger.kernel.org, AJvYcCVangHVLGKOwzMoWq0PpJkUW6uSpevZXMIRIweQQr4MyM8KhLgRb4YBQCADohP8IpyQUhdS9dEwIV3K@vger.kernel.org, AJvYcCVuLYl5tIMbn+HClaD6Fcn2FVJDJoj/P213XOvDLnLECB8FJ4/VubkJ7hs+qebEIL7PpoDSQchmUm5XXQ==@vger.kernel.org, AJvYcCWMOF0pJMpfKI8xwGgf0bUPqVk/HbfTNsPBe80FhvedqMToadkEpYGHwQ6SkCmV9rMqOk2tTzKOk1rwgsUG/fHCJXw=@vger.kernel.org, AJvYcCXeCKhehmfy+Xt2hHvYZEKicLS8tugM7z3lZu6qXWvvZmJV20dRbFhUIHqsLvUdh0aok4y8Qh7lTjj48NI=@vger.kernel.org, AJvYcCXybg11DKW8yyF7Df7T1U004QmQmJr+cwMp6VbU0qCiwPL6hZvuyhXvBsYpl23tFJX8fews577wpMS4@vger.kernel.org
-X-Received: by 2002:a05:620a:2793:b0:7b6:67a0:4993 with SMTP id
- af79cd13be357-7b6bcac8c15mr1818373285a.6.1733757149521; Mon, 09 Dec 2024
- 07:12:29 -0800 (PST)
+	s=arc-20240116; t=1733757523; c=relaxed/simple;
+	bh=kUZ48bkRDj2l9ZUFqsAT1kYwul3xIoWFIw/NThYClcA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NS4NrWcNXVsFNKS7eARFFtVUhDmqUTW4QiwlAOZxM0GhHWw9xncFYlQGVhNgxYQmRqlzfxrlpfcQAysBMzanyWIv2C2YT3MeCClJ1yGKhkeE8XQcoZDvqhIkn3pbokD+dMftSkKFpHqcp9w1+Fq/fBBjaPenF2Suhkml9LNBqVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RjYtSjUt; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id 5C07F1C0003;
+	Mon,  9 Dec 2024 15:18:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1733757513;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=x3QHdYM24vaWTWagQ5xproeSEoRITPXO+ePJCitXDaY=;
+	b=RjYtSjUtMIJ2qxD6oMLs29ZIqEY9G/uRL8v0Zo9JwUFMuUW6UY5Y8P+dTXbp1Yvj718bYi
+	GBlVj/dW4K/UYzFsEAPPXFwUSQYWeEwhEzrdDyub0Z/DE7vx7KXF0FyqK8ylejJ4NzqNfD
+	XYkUkTLbXxviFsSYj0Hz7m43cbEmLCX0IJlr6ZCQtDBVB8eKdM9piQEOD/sN/dvJmPODrb
+	aSExk31Ln8taqDXl/+kbB26Aj55hKWgUSWcYWsou63yDyfocIaf65fqXx2QEJ2h5IfUzVv
+	AHi5qWy2ABcWr7ZI+n/cBmQSK5RsdEqWF9tKe5Mn0+IBa6DXD+Pp7IPJHqtFTA==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Andrew Davis <afd@ti.com>,
+	Ayush Singh <ayush@beagleboard.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH 0/7] of: overlay: Add support for export-symbols node feature
+Date: Mon,  9 Dec 2024 16:18:18 +0100
+Message-ID: <20241209151830.95723-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com> <20241113133540.2005850-22-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241113133540.2005850-22-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 9 Dec 2024 16:12:17 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWV8zNgqTCc=a9tqP45tQ_rv9NV_zLJcPnqyF-nMoin4A@mail.gmail.com>
-Message-ID: <CAMuHMdWV8zNgqTCc=a9tqP45tQ_rv9NV_zLJcPnqyF-nMoin4A@mail.gmail.com>
-Subject: Re: [PATCH v3 21/25] arm64: dts: renesas: r9a08g045: Add SSI nodes
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com, 
-	broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org, 
-	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Claudiu,
+Hi,
 
-On Wed, Nov 13, 2024 at 2:36=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Add DT nodes for the SSI IPs available on the Renesas RZ/G3S SoC. Along
-> with it external audio clocks were added. Board device tree could use it
-> and update the frequencies.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+At Linux Plumbers Conference 2024, we (me and Luca Ceresolli) talked
+about issues we have with runtime hotplug on non-discoverable busses
+with device tree overlays [1].
 
-Thanks for your patch!
+On our system, a base board has a connector and addon boards can be
+connected to this connector. Both boards are described using device
+tree. The base board is described by a base device tree and addon boards
+are describe by overlays device tree. More details can be found at [2].
 
-> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> @@ -14,6 +14,22 @@ / {
->         #address-cells =3D <2>;
->         #size-cells =3D <2>;
->
-> +       audio_clk1: audio-clk1 {
+This kind of use case can be found also on:
+  - Grove Sunlight Sensor [3]
+  - mikroBUS [4]
 
-audio1-clk (cfr. r9a07g044.dtsi)
+One of the issue we were facing on was referencing resources available
+on the base board device tree from the addon overlay device tree.
 
-> +               compatible =3D "fixed-clock";
-> +               #clock-cells =3D <0>;
-> +               /* This value must be overridden by boards that provide i=
-t. */
-> +               clock-frequency =3D <0>;
-> +               status =3D "disabled";
+Using a nexus node [5] helps decoupling resources and avoid the
+knowledge of the full base board from the overlay. Indeed, with nexus
+node, the overlay need to know only about the nexus node itself.
 
-Please do not disable this node.
+For instance, suppose a connector where a GPIO is connected at PinA. On
+the base board this GPIO is connected to the GPIO 12 of the SoC GPIO
+controller.
 
-> +       };
-> +
-> +       audio_clk2: audio-clk2 {
+The base board can describe this GPIO using a nexus node:
+    soc_gpio: gpio-controller {
+      #gpio-cells = <2>;
+    };
 
-audio2-clk
+    connector1: connector1 {
+        /*
+         * Nexus node for the GPIO available on the connector.
+         * GPIO 0 (Pin A GPIO) is connected to GPIO 12 of the SoC gpio
+         * controller
+         */
+        #gpio-cells = <2>;
+        gpio-map = <0 0 &soc_gpio 12 0>;
+        gpio-map-mask = <0xf 0x0>;
+        gpio-map-pass-thru = <0x0 0xf>;
+    };
 
-> +               compatible =3D "fixed-clock";
-> +               #clock-cells =3D <0>;
-> +               /* This value must be overridden by boards that provide i=
-t. */
-> +               clock-frequency =3D <0>;
-> +               status =3D "disabled";
+The connector pin A GPIO can be referenced using:
+  <&connector1 0 GPIO_ACTIVE_HIGH>
 
-Please do not disable this node.
+This implies that the overlay needs to know about exact label that
+references the connector. This label can be different on a different
+board and so applying the overlay could failed even if it is used to
+describe the exact same addon board. Further more, a given base board
+can have several connectors where the exact same addon board can be
+connected. In that case, the same overlay cannot be used on both
+connector. Indeed, the connector labels have to be different.
 
-> +       };
-> +
+The export-symbols node introduced by this current series solves this
+issue.
 
-The rest LGTM.
+The idea of export-symbols is to have something similar to the global
+__symbols__ node but local to a specific node. Symbols listed in this
+export-symbols are local and visible only when an overlay is applied on
+a node having an export-symbols subnode.
 
-Gr{oetje,eeting}s,
+Using export-symbols, our example becomes:
+    soc_gpio: gpio-controller {
+      #gpio-cells = <2>;
+    };
 
-                        Geert
+    connector1: connector1 {
+        /*
+         * Nexus node for the GPIO available on the connector.
+         * GPIO 0 (Pin A GPIO) is connected to GPIO 12 of the SoC gpio
+         * controller
+         */
+        #gpio-cells = <2>;
+        gpio-map = <0 0 &soc_gpio 12 0>;
+        gpio-map-mask = <0xf 0x0>;
+        gpio-map-pass-thru = <0x0 0xf>;
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+        export-symbols {
+          connector = <&connector1>;
+        };
+    };
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+With that export-symbols node, an overlay applied on connector1 node can
+have the symbol named 'connector' resolved to connector1. Indeed, the
+export-symbols node available at connector1 node is used when the
+overlay is applied. If the overlay has an unresolved 'connector' symbol,
+it will be resolved to connector1 thanks to export-symbols.
+
+Our overlay using the nexus node can contains:
+   node {
+      foo-gpio = <&connector 0 GPIO_ACTIVE_HIGH>;
+   };
+It used the GPIO 0 from the connector it is applied on.
+
+A board with two connectors can be described with:
+    connector1: connector1 {
+        ...
+        export-symbols {
+          connector = <&connector1>;
+        };
+    };
+
+    connector2: connector2 {
+        ...
+        export-symbols {
+          connector = <&connector2>;
+        };
+    };
+
+In that case, the same overlay with unresolved 'connector' symbol can be
+applied on both connectors and the correct symbol resolution (connector1
+or connector2) will be done.
+
+This current series add support for the export-symbols node feature:
+  - Patch 1 describes the export-symbols binding
+  - Patches 2 to 6 prepare and add the support for the export-symbols
+    feature
+  - Patch 7 adds an unittest for the export-symbols feature
+
+Best regards,
+Hervé
+
+[1] https://lpc.events/event/18/contributions/1696/
+[2] https://lore.kernel.org/lkml/20240917-hotplug-drm-bridge-v4-0-bc4dfee61be6@bootlin.com/
+[3] https://lore.kernel.org/lkml/20240702164403.29067-1-afd@ti.com/
+[4] https://lore.kernel.org/lkml/20240627-mikrobus-scratch-spi-v5-0-9e6c148bf5f0@beagleboard.org/
+[5] https://github.com/devicetree-org/devicetree-specification/blob/v0.4/source/chapter2-devicetree-basics.rst#nexus-nodes-and-specifier-mapping
+
+Herve Codina (7):
+  dt-bindings: Add support for export-symbols node
+  of: resolver: Introduce get_phandle_from_symbols_node()
+  of: resolver: Add export_symbols in of_resolve_phandles() parameters
+  of: resolver: Add support for the export symbols node
+  of: overlay: Add export_symbols_name in of_overlay_fdt_apply()
+    parameters
+  of: overlay: Add support for the export symbols node
+  of: unittest: Add tests for export symbols
+
+ .../devicetree/bindings/export-symbols.yaml   | 43 ++++++++++
+ drivers/misc/lan966x_pci.c                    |  3 +-
+ drivers/of/of_kunit_helpers.c                 |  2 +-
+ drivers/of/of_private.h                       |  2 +-
+ drivers/of/overlay.c                          | 30 ++++++-
+ drivers/of/resolver.c                         | 80 ++++++++++++++-----
+ drivers/of/unittest-data/Makefile             |  5 ++
+ .../unittest-data/overlay_export_symbols.dtso | 15 ++++
+ .../of/unittest-data/testcases_common.dtsi    |  1 +
+ .../unittest-data/tests-export-symbols.dtsi   | 30 +++++++
+ drivers/of/unittest.c                         | 76 ++++++++++++++++--
+ include/linux/of.h                            |  6 +-
+ 12 files changed, 259 insertions(+), 34 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/export-symbols.yaml
+ create mode 100644 drivers/of/unittest-data/overlay_export_symbols.dtso
+ create mode 100644 drivers/of/unittest-data/tests-export-symbols.dtsi
+
+-- 
+2.47.0
+
 
