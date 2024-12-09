@@ -1,127 +1,121 @@
-Return-Path: <devicetree+bounces-128453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C1F19E8C36
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:34:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEF319E8C38
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:36:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83DD81610D9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 07:34:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1024188613E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 07:36:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D592147F8;
-	Mon,  9 Dec 2024 07:34:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CB2421481E;
+	Mon,  9 Dec 2024 07:36:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AWvqy8vq"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iJ2PUVR3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63F91155751;
-	Mon,  9 Dec 2024 07:34:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9AB155751;
+	Mon,  9 Dec 2024 07:36:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733729673; cv=none; b=BCSXzYzfv/C8J9g4l/MBB5uqxI1YM3pmNCla7K6qaEOXwu7mJfGrVesVRFDQyWUVWkDBF+NeU5O3LN7ekdZnNAN9EP8ptToHNIRcXtVBeo9M0nmUZuah1olkiPbRAMIEo/MwGuhzdlrPMrwIIu4ULW42Uonb8DQhW8D3VtodGBg=
+	t=1733729765; cv=none; b=j/Df8XiALBGKs1CCsSXuIxxLiCMAHI1zs03N2CZrV0cINLjqOmyVKRbJjujtrnswnKXkShxQqkwE9repgA4E+VPCSz4rxp9T3nmZSL8cXeiCXJ1QGDeF76VLnvo49tTO55Q9lNIrJHOu5UdkBsWBovuyDyUdTBbMV8vF1pnZhfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733729673; c=relaxed/simple;
-	bh=eJm6sPgxUntQ2123myJ74O4QKZrmsdqCdqHwho1ihUA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lzY7Mmstg6cwE1dDrLM2q5t/tQouLkImVRQNPuBdEBcn3A+xuvxJjImMhGos60mcfTpWGJoPXlictcC3HH/xOiJrBBKlSB+gjoWRwMY5UuLdrc7TpZ7qUQIxmsjQsKwsgpfJTNdRYogsWpaU4woQWs+AYKQdzE0hcUFd3GjcpOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AWvqy8vq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5823C4CED1;
-	Mon,  9 Dec 2024 07:34:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733729673;
-	bh=eJm6sPgxUntQ2123myJ74O4QKZrmsdqCdqHwho1ihUA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AWvqy8vqhCp4zh0noR7s+AiCvukEZhrgy6ED7KZ50lCzDshukylBpht6X8ssNnuSp
-	 s9MvGd5rAQYDGFFSh/WAMcbhobWZHT+CySdkeHlULfpaPZmYoClXKPXcgbe9zsCcvg
-	 DKP48+oZytzLLwxJ5evL0csDNTb4eHmkBQcvGJNoHqAJg9x9Ws7EcG2X8jQGGsP3s5
-	 SioM7cCsd8JuR7SilEpW5Dw95rWvApRzPAswdwiw5pvlrxCqPr8xoJTjmgXwwOyA99
-	 7wIocvS9whelQUAPHfmF0qvY6CmnhcV0poEVDPF4gnG/HfUTnH+jiFsT2Rhjpvr/IC
-	 2xGsFgV1On4KA==
-Message-ID: <0bac139b-c89c-43a7-978a-e5fe001d3dd2@kernel.org>
-Date: Mon, 9 Dec 2024 08:34:28 +0100
+	s=arc-20240116; t=1733729765; c=relaxed/simple;
+	bh=ozEPG5B3x7bDnu8neWhW6s4xV4Fs5uDWi0bVNT4nIeY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=OV0WsAYmHqTe0JCoCAqWsnqvV+cqctIzXCh2F/hpJXtc/QBnyXHx8dgUBWWjfua07uVZ+yAGmJ266YFtizERXL/hU3kiQVmRzOJYRNxzC6fPhcAdjBAARfLbb514Tu/aBFz09mj0thjBk/Z8kVn4pnX6bhhZYagXUEXUTkeQcG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iJ2PUVR3; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 882E060023;
+	Mon,  9 Dec 2024 07:35:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1733729754;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ozEPG5B3x7bDnu8neWhW6s4xV4Fs5uDWi0bVNT4nIeY=;
+	b=iJ2PUVR3rsE1jLme5fJDoqFVTfco0xRCs5MY3C0V6CXK0XcKMDvrVlmkVmwXwxGq8rSOhv
+	OzIT0JkNZQSEMPWOa8KWu+ZEvSXM/bWQoSaiPmRg0tFIv6e+uXOe0Onw/O7NgabWIwMEZg
+	1YzPjjb3XmRc/vlzqLA0O8tshWlwbRkNLuu8Z5yzAaeAYlZvfW7+TUFbOOYdFMeVYu5nz3
+	DbpwSL+omkquGi4VJwvPdRjyFrHAbZl7mF3QK0nBZNwnHg7VnUXZeLT1TQxV2rREAaAfaS
+	ZiYnXWM7qeYqDNxSDDY31/Z3iasXkYRthh1Xh5cOxFN/IHP5bgrN95Ypf33kog==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: "Rabara, Niravkumar L" <niravkumar.l.rabara@intel.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,  "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>,  "Richard Weinberger" <richard@nod.at>,
+  Vignesh Raghavendra <vigneshr@ti.com>,  "Rob Herring" <robh@kernel.org>,
+  Krzysztof Kozlowski <krzk+dt@kernel.org>,  "Conor Dooley"
+ <conor+dt@kernel.org>,  "linux-mtd@lists.infradead.org"
+ <linux-mtd@lists.infradead.org>,  "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4] dt-bindings: mtd: cadence: convert
+ cadence-nand-controller.txt to yaml
+In-Reply-To: <BL3PR11MB653282E179DA562E3F4AB707A23C2@BL3PR11MB6532.namprd11.prod.outlook.com>
+	(Niravkumar L. Rabara's message of "Mon, 9 Dec 2024 01:36:57 +0000")
+References: <20241205053350.434370-1-niravkumar.l.rabara@intel.com>
+	<87mshawhta.fsf@bootlin.com>
+	<ugcx6muozaven6lolhzpk5mvrt5fncoaahnsx5lbdsaurid4mc@i4qflh2edqnh>
+	<BL3PR11MB653282E179DA562E3F4AB707A23C2@BL3PR11MB6532.namprd11.prod.outlook.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Mon, 09 Dec 2024 08:35:06 +0100
+Message-ID: <87jzc9mhqt.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: exynosautov920: add DMA nodes
-To: Faraz Ata <faraz.ata@samsung.com>, devicetree@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, alim.akhtar@samsung.com,
- rosa.pila@samsung.com
-References: <CGME20241204122402epcas5p2412733eb46d495fadfa30e5af3c5ce83@epcas5p2.samsung.com>
- <20241204122335.1578-1-faraz.ata@samsung.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241204122335.1578-1-faraz.ata@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On 04/12/2024 13:23, Faraz Ata wrote:
-> +
-> +		spdma1: dma-controller@10190000 {
-> +			compatible = "arm,pl330", "arm,primecell";
-> +			reg = <0x10190000 0x1000>;
-> +			interrupts = <GIC_SPI 917 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cmu_misc CLK_MOUT_MISC_NOC_USER>;
-> +			clock-names = "apb_pclk";
-> +			#dma-cells = <1>;
-> +		};
-> +
-> +		pdma0: dma-controller@101A0000 {
+On 09/12/2024 at 01:36:57 GMT, "Rabara, Niravkumar L" <niravkumar.l.rabara@=
+intel.com> wrote:
 
-Please do not send downstream code directly, but fix it to match
-upstream. Lowercase hex everywhere.
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Sunday, 8 December, 2024 10:26 PM
+>> To: Miquel Raynal <miquel.raynal@bootlin.com>
+>> Cc: Rabara, Niravkumar L <niravkumar.l.rabara@intel.com>;
+>> devicetree@vger.kernel.org; Richard Weinberger <richard@nod.at>; Vignesh
+>> Raghavendra <vigneshr@ti.com>; Rob Herring <robh@kernel.org>; Krzysztof
+>> Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; linu=
+x-
+>> mtd@lists.infradead.org; linux-kernel@vger.kernel.org
+>> Subject: Re: [PATCH v4] dt-bindings: mtd: cadence: convert cadence-nand-
+>> controller.txt to yaml
+>>=20
+>> On Thu, Dec 05, 2024 at 11:22:09AM +0100, Miquel Raynal wrote:
+>> > On 05/12/2024 at 13:33:50 +08, niravkumar.l.rabara@intel.com wrote:
+>> >
+>> > > From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>> > >
+>> > > Convert cadence-nand-controller.txt to yaml format.
+>> > > Update cadence-nand-controller.txt to cdns,hp-nfc.yaml in MAINTAINER
+>> file.
+>> > >
+>> > > Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>> >
+>> > Looks good to me, but I'll wait for binding maintainers ack ofc.
+>>=20
+>> There was one, but author ignored it.
+>>=20
+>> Best regards,
+>> Krzysztof
+>
+> My apologies, I forgot to include the 'Reviewed-by: Conor Dooley
+> conor.dooley@microchip.com' tag that I received in the v3 patch. I will
+> ensure this does not happen again.
 
-Best regards,
-Krzysztof
+Please re-send with the missing tag(s), otherwise they will not be
+picked-up (automatically).
+
+Cheers,
+Miqu=C3=A8l
 
