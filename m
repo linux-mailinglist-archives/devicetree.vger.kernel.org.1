@@ -1,137 +1,139 @@
-Return-Path: <devicetree+bounces-128826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C17D9E9897
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:19:25 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C63C39E98B8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:25:20 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 731241884B93
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:19:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C4542858B4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:25:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AAD51ACEB8;
-	Mon,  9 Dec 2024 14:19:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a/ojBdj1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840F21B042A;
+	Mon,  9 Dec 2024 14:25:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 707AB1494BF
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 14:19:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B201B0407;
+	Mon,  9 Dec 2024 14:25:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733753960; cv=none; b=HCcvd20TdEgD2zjiS/HckIKkM97nPrs6IFz33PlArFGu69clPW1CahTftIn7iVlETjKM3l5H+3ywHAd0E04tYJSgd1bk/bfJ2eIPvzNHeyGRNud2hHrSILefEdv7yX6aNGuZ28fmgwaMWL88ZwaARAKO6WmzJKff+xhjZhiGuU4=
+	t=1733754316; cv=none; b=sa05GrOOod93WqXCk+FkqDApVQVbWv26RBtZHjPvwJ7qzjI2jjFVwinyK/mvHtp6GWg60/cgfA5G3REo/aDOXbTgtBs92jq2wOTijpM+iaA0/hWvv7X9u5gzQGU9VuZSKwKuVjsVn/+hSU+sOIRqbrcZ2IV2WqXZb2Vh5MiSqTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733753960; c=relaxed/simple;
-	bh=oJeg0IDLiudQCx+r40Nks4t9ti82fc4uLX5xh9nxdw4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RLaYoqUPscQo/lxbwrLZ6s+0cQ6BzwDHx/WWAAm1kADk6ret8ZW1xZ76a5t0yG0e1JgkU3ai7PRokijfV5qbp/vKZNvqLIsb30tg9WAMsfTJeJR80lD/oemG3ooRtFOEZ6p+Idqm6Y3P41AZI+OqGBzWkFFNrxhg09FBS2K403o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a/ojBdj1; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5d3ea065b79so2505496a12.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 06:19:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733753957; x=1734358757; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FKGxGVFQL+Og6kSlKUo67HxrazoGKfS5bm5biJspKWs=;
-        b=a/ojBdj17hjrP9wFWoyGlap38lL5qiW4MVGskcjs5qhiKA5FHiT/Q7d39MJ6F8DXMT
-         HDMrRKWnEWz03ZgyPcHYRrEAu1jcVVGqTcXREKuY7LVl2KtvEd1+7WBGR2KQgNoSc8JP
-         XQieSWnit1AL/3t/i+1pWLz9VOJtbh/T/NJFGbeZd2Ovx0bRVPVoswN8RWaxI1d8R9h8
-         IZdJFjF7NmvZAYXdnDDbi7tPiNeSmrzKe+npcVAV8ZbB8IRdw96ECWWDJuuAAIqRzzXh
-         LFu8AAVD1H36Pv8aWaPnqzXoDwrlFinY4L3m2n9AqzUybNpe603zb27Hqtex6mznfe3N
-         Z63Q==
+	s=arc-20240116; t=1733754316; c=relaxed/simple;
+	bh=ZdmH0UfwasIfOntNyjdBgMdNC/1PZsYhQsnDrPL6YH0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bCggGPRlJCt9beqk9mjLFaEM6QkwSLlgZp8oyuCx3FfA4YT+R/4inqk69d4IpiXV1QCh1bJ563vN/xCDZKhx40QdC0UqnVyYdSCry7Z7q+Jx+jd7r7ti3M2IJDq4wLdRQdx9KOF6M7l9tsXB5nUNAquCAwQURX0sfyKtC6v8Enk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4b10dd44c8bso266939137.3;
+        Mon, 09 Dec 2024 06:25:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733753957; x=1734358757;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FKGxGVFQL+Og6kSlKUo67HxrazoGKfS5bm5biJspKWs=;
-        b=S1oeE9nQ6OLytprbrZ95Igyfk1uToCw7i6ODAvoEu+TWSeYFWZOBUqnaIR2gX22EGz
-         0374ssXp6BYAITa4WvdlMqGeZ4QHjRb4bFFAviD0b9OcWO+7rbQOTGlE+oZAXMejsfnE
-         tiixhBmQ8p2DVQ2QdyvOYUsAP63Z87cWLyP8gXsRzMvjyj2W0IdJzvW/02D3+gwUEX1s
-         vNAxselHW3zKOSLLIkSH2vC3QtxHSQPRu0EDRQ/Dfo1tY5Z69B+Ww/b3mGcqjINo2CZF
-         oa3Uj1qf85IYz1tqYgMmrgMCuulmGYrm7Qwq/VN1Xhvi+t5y8sqz1dcdsNTgTudjVcsB
-         9dCg==
-X-Forwarded-Encrypted: i=1; AJvYcCW+hz15xGAULd6RQx9Eu8QFsWZS+sK2aB4ZvbfuaY++Y6p8AZ6w31BmU8yKLviSgDaa6YyVsLgBneRa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyx8hBP/4EN3uDnTqI7Oizd6eXLGEB9iOI/vSndDyEoTU9LBdvK
-	g1fjhxkXYYMmeDRGFtYvQAZf+a0gcSOM7w+XWGUbHbG2Sj638JXFiaJFECqLcSk=
-X-Gm-Gg: ASbGnctybyYnTJRitn/3nQ4zz2xS+/SoSf4UrHBGo8SuuqUx6xnVrCcQw05/3AxbOIU
-	V9eoid3NMmaYOZ82UDBv2sWW3f/HiVQLPU+xQ7AJ4Ct2HcPc09yBv4XGHomtHqn9iQT4Z910GTM
-	ZCsXzEgtO7SQLC4Aux/Bea5zPjplo7TGyLb9vm+yRn81sPAQI/GsWEO0n6NvPhPfPOpkxcaoRjk
-	OVDaY5ERjdgEjXaFl4lXHyT3tdRuyN8cDP1yKiu3iJpmwoXAcO912CDAw==
-X-Google-Smtp-Source: AGHT+IGFZ72A7topG3h6HtsrPbQ9uANyoeaAttq9LuCfJvMZl3glvlTz4zo8uXTpVfHH3Pb/FsB6eA==
-X-Received: by 2002:a05:6402:50d4:b0:5d0:cca6:233a with SMTP id 4fb4d7f45d1cf-5d4185305aamr1118156a12.10.1733753955375;
-        Mon, 09 Dec 2024 06:19:15 -0800 (PST)
-Received: from [192.168.0.14] ([79.115.63.27])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d3eb7722acsm2780231a12.3.2024.12.09.06.19.13
+        d=1e100.net; s=20230601; t=1733754312; x=1734359112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4Dw6tds6khSrmjocR1oI35lAVtq895XJq3pkFmO/1PQ=;
+        b=A6CgIz0Cgh3UE1BLM66IkZxUjD/ICBsKgoFJt66bCDd6J5Gsm6C4WA2GscOO2/5Lqz
+         ravT1I/vYQyrKc6Zpp3DYVy6+QW4dcixvOg6d6nKMcyK/MJIEeI2XPX5fteaiiwaWJBn
+         juUQOBrBXyhAoLJheP0NvYW8LMPixPEsxKmeEGfD8va2XFIxrXwwhOB8ztbJRYo9cwK9
+         ux8p0CGAfAY/2pCVPVb4Yj0vZKR/WFvf/JdrRMMx+vfzUBr5FNFaArWiK2Qmt9BU5zGv
+         QAqFg2JjmAU6ukoMxj1KiPJzEdWF7r+AkZQ/l10ZKB5UeBjrp/ksEAr4ApoXBMxMIwUc
+         Ra5w==
+X-Forwarded-Encrypted: i=1; AJvYcCVhsHdXwucpf8CR3dEWKdQdi8IhNHlilJDD3QUysVDypWq05wh3eE+MBgAkXY5NKsi8Exk89iL6zP2wdfU=@vger.kernel.org, AJvYcCVnbX/eazrohQUpKiyX0QjzqcH5IpKcKT3XUxfEynhsSycxRQkkU8BixWa4RUwS2eGtEuih6Ij1eYKwGQ==@vger.kernel.org, AJvYcCWNtly7Dg9b7po+dEJr9p1HpsUHP64+ecOk8JYraavqjYN2Zjn75N6pXc6d/3FjXrR4txXG1V4Rjr1L@vger.kernel.org, AJvYcCWaLUPKfRym7KsYI3sUVaSV9Ers8vF4Vxhe4YZ35qa9STLwGxjbHjv5cisBHRS/SyrqFTPZ6qchBHmS@vger.kernel.org, AJvYcCWsL0esSOvl3yhDC++zNpDkklfrD/xMc/UPQof9dViUbY9v8b01xb3ot1RTkbAfJFmlzRLvJGGo4K0NV4wU8+/S6Zk=@vger.kernel.org, AJvYcCXukANTaRTiNhJeIphyAmAL4SVoZx/OSfSabXYWoGHXoVC7Gmqoaq27jzLdM5fYjDiivjjxpQs1e6e6sTi+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxFKa1CyADJpLfiWnZH+wJbJtnYxmmOtaKdNC5b+nPCWH2ERQs
+	hFGjgOTtqRFRwercEq1yaX6o37Gai7LcsOVD1ZeYOYgz59eIATOIHT2PKonqqLg=
+X-Gm-Gg: ASbGncvipprJK8D3cHfegTQDNGfdkfn/uPM7YUYqeLHwKS0Zo47+eQLUZPNNWCQbELz
+	U7Wt1BsAQ0d+GAxpBTKEcZmue7oSNZusqhaQdtY68uakLj1+f8FiM1nDQAU7VHEFxnqF9SHt1OO
+	1RILklEa+b2Et8YK7VQ/rLY/xfJjZ9aqxWYsnZxZ0IdOKhK5sG2PElMZPFK8ayKkH4xbCEd+hSb
+	eFs9PqgkJrsC4Z4N5c9LikOSF8lDkBrwPPRzg+BfnG85p7etxZW1s1m2pkKoePYTSi8uVEJrLsO
+	NGM0seRG/VEZ
+X-Google-Smtp-Source: AGHT+IEWxjR1MMmCklb8EHzbiga/NWbJMJQAo6fkhplpKmj1XZKYr6/8nQ8SdkHunfb3F/CD7B3QEA==
+X-Received: by 2002:a05:6102:510c:b0:4af:ef82:ce93 with SMTP id ada2fe7eead31-4afef82de62mr4256022137.21.1733754311961;
+        Mon, 09 Dec 2024 06:25:11 -0800 (PST)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85c5569f71csm759988241.7.2024.12.09.06.25.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 06:19:14 -0800 (PST)
-Message-ID: <38e6687e-c2ee-414b-bba5-483150ba7baa@linaro.org>
-Date: Mon, 9 Dec 2024 14:19:13 +0000
+        Mon, 09 Dec 2024 06:25:11 -0800 (PST)
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4afed7b7d1bso425537137.2;
+        Mon, 09 Dec 2024 06:25:11 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUAh8YeIzUr+IC8pACr2ofHuI03T2feWDCCAYtOxABd/mh2VACtUiILH+iPSxSn6TzB279qSvOTdiNW@vger.kernel.org, AJvYcCUF/9of//+CfW0YJsnpkUbuZyHXv2DGMDEimBPrtLIYxnF8JMwJ5GrrnYIOsbWdtBU0yfuZO81XCCmT@vger.kernel.org, AJvYcCUkX73UnUp1f3vsw3oPJnpoYPgSpBk0q8Edlx5l+/Y92wnFLfoCRe+oKGI5BHqE1yCvLShi+T0k/b2IWu0=@vger.kernel.org, AJvYcCUsAEubn14fnii2edqFgtsQ9Y2IUEYkde0yA5TlSpTYQiC6DpEPGrc+VVzU7iy7d8f1WcO76bVq2njWnA==@vger.kernel.org, AJvYcCVEWbdiICmkM4cLnvAecULfzfmdAro90SreEozBfh3SenpmWog0Z1rrkCjuKVLdRzs7DsVvgk0+REeUoOoWxDHRXHE=@vger.kernel.org, AJvYcCW37adSRU5XB7qTcnRHKwOdzxc8eQ0Dla+3mji+Hf73MNyTbdepR/o7DTd4l+3DIxj14NqMEDv7WoQAUUop@vger.kernel.org
+X-Received: by 2002:a05:6102:4406:b0:4af:ed5a:b697 with SMTP id
+ ada2fe7eead31-4afed5acbe5mr4633339137.13.1733754310864; Mon, 09 Dec 2024
+ 06:25:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: mailbox: add bindings for
- samsung,exynos
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, alim.akhtar@samsung.com, linux-kernel@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, andre.draszik@linaro.org,
- kernel-team@android.com, willmcvicker@google.com, peter.griffin@linaro.org
-References: <20241205174137.190545-1-tudor.ambarus@linaro.org>
- <20241205174137.190545-2-tudor.ambarus@linaro.org>
- <2lkowhldq5i4otniijfw7cb3jm6ttatwji3npw5w7c5fyevnn5@ynojupmdyqy4>
- <9886429b-1bf3-4dc3-b0d4-294a98e44ff2@linaro.org>
- <58d62506-de89-40e4-a3c2-bd27da515a45@kernel.org>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <58d62506-de89-40e4-a3c2-bd27da515a45@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com> <20241113133540.2005850-21-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20241113133540.2005850-21-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 9 Dec 2024 15:24:59 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW_2hMfT3tGNEANyWkUqVW3wAEsSttyqfR=L4mn9VxStA@mail.gmail.com>
+Message-ID: <CAMuHMdW_2hMfT3tGNEANyWkUqVW3wAEsSttyqfR=L4mn9VxStA@mail.gmail.com>
+Subject: Re: [PATCH v3 20/25] ASoC: dt-bindings: renesas,rz-ssi: Document the
+ Renesas RZ/G3S SoC
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com, 
+	broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org, 
+	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Claudiu,
 
+On Wed, Nov 13, 2024 at 2:36=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The SSI IP variant present on the Renesas RZ/G3S SoC is similar to the
+> one found on the Renesas RZ/G2{UL, L, LC} SoCs. Add documentation for
+> it.
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-On 12/9/24 8:33 AM, Krzysztof Kozlowski wrote:
->> I'm thinking of using the same driver for both cases, and differentiate
->> between the two by compatible and `of_device_id.data`. Thus I propose to
->> have a "google,gs101-acpm-mbox" compatible for the ACPM SRAM case and in
->> the future we may add a "google,gs101-mbox" compatible for the messages
->> passed via the controller's data register case.
-> Good that you pointed it out, I was indeed wondering why this is
-> "acpm-mbox", not "mbox in compatible.
-> 
-> This needs to be fixed - you cannot have two compatibles for the same
-> device.
+Thanks for your patch!
 
-Will fix. I followed arm,mhu, which differentiates the transfer mode,
-data or doorbell, via compatible.
+> --- a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
+> @@ -19,6 +19,7 @@ properties:
+>            - renesas,r9a07g043-ssi  # RZ/G2UL and RZ/Five
+>            - renesas,r9a07g044-ssi  # RZ/G2{L,LC}
+>            - renesas,r9a07g054-ssi  # RZ/V2L
+> +          - renesas,r9a08g045-ssi  # RZ/G3S
+>        - const: renesas,rz-ssi
 
-For the fix I'll use "#mbox-cells" as <&phandle type channel>, where
-type specifies doorbel or data type. Clients will use:
-	mboxes = <&ap2apm_mailbox DOORBELL 2>;
-or
-	mboxes = <&ap2apm_mailbox DATA 3>;
+This part is fine.
 
-arm,mhu3 and fsl,mu pass the transfer mode in a similar way.
+The section about the dmas properties also needs an update, as the
+documented MID/RID values do not apply to RZ/G3S.  I recommend just
+dropping the list of values.  People should look them up in the
+hardware documentation.
 
+Gr{oetje,eeting}s,
 
->> Given this, I shall use the more generic name for the bindings, thus
->> maybe "google,gs101-mbox.yaml"? But then exynos850 has the same
->> controller, shouldn't we just use "samsung,exynos.yaml"?
-> If exynos850 has the same controller, then add it to the binding. Anyway
-> then use samsung,exynos850-mbox, because samsung,exynos is way too generic.
+                        Geert
 
-Looks the same, yes, it differs by the number of how many data registers
-each has. But I'll stick to "google,gs101-mbox.yaml", as I can't test
-exynos850 and I assume we can rename the file when we'll need it.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
