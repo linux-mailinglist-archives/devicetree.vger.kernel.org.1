@@ -1,278 +1,217 @@
-Return-Path: <devicetree+bounces-128547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2FC49E8FB9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:08:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 401C29E8FC0
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:10:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A577418860B2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:08:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB5D018825A8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F53C216615;
-	Mon,  9 Dec 2024 10:08:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NmRKl4G1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB08F2165F1;
+	Mon,  9 Dec 2024 10:10:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C2F214A74;
-	Mon,  9 Dec 2024 10:08:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B557012CD8B;
+	Mon,  9 Dec 2024 10:10:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733738883; cv=none; b=bCOYSG5xAZudW9ANnpPO4lCn9atA/jVdBRNTwo2iMGt7hXsi/BD8ZSGpiCJdG8f9i3jFUYdQrA0efM/D8fmQkZZRR+OFzYL6NPvWUj6gRbHoZWpva6N/fDSktzpNGFPIKSWW3AhyPk3itZIYFeF7wPVLE3qWKOS8KzYaHZUwmOU=
+	t=1733739002; cv=none; b=fvJ+quTlnyGtz7947nUQ/e9BuNLOift7GS3+Zw80h0V5BYJJ4e1/673/bWmJGlbmfifwu45jrnaUYLo4pcQFtXHu7bi25EgtqCbdJsgsu2A03YWvr2CWk56zwU1UHzQ4TIJKldqqA4ID5zuLb2j7zQnR2NGwv9gbc80ZY/uQI1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733738883; c=relaxed/simple;
-	bh=fU0JFCK9xqBNnAEfWCALQQcXBFQd2+mLyQO4TWjbXnQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j0l7hPIQT70hWEa9x1nt4IJYeJS4p+HiKEUj0UHWt8Vo8JtjG4tgdXgCVWffywWQQbXeadf6zutVH4+D/sYG8tF3BvTTx8srhrMdmK9Ia5U4hUkPiK7EmPuebA4J3mUvOnUvRTuH2/GtlvaOSd9627YwJRpLz8g3DJdqOsbGDH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NmRKl4G1; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1733739002; c=relaxed/simple;
+	bh=GAkCU3aAd+gVqdVkBWvDsRMR34tLWZNm4N/eTTeZSR0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rAmE1jskweTkzFRGtX9DaJWDBONsmBtiLf/gi4Ym89oPDwtUlEBabrl6ez/BP+s3qhAdsSBi8GAmN/acKG+qBq54m78iQWlsx/IYu79GZs9rI/Sw9VJC/oiUf+8grmk//IEJvCcXBj+/lTqLijz9ww2MVBQAhnA0DnBNkAodJ6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-725c0dd1fbcso2705136b3a.0;
-        Mon, 09 Dec 2024 02:08:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733738881; x=1734343681; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fZp+CFP7K7kOAlodAUCSCzM6XqjZQS3FtVdgKB9HjIU=;
-        b=NmRKl4G1KcNNWxnnIzyTG4zT4+mruz9DO70ibdd8CCb/LSX3NIbJLoEqaaQy5sOCIH
-         I3ho68CSKin3OJDHh63cXNxQkFDSqiH0Rzw4HRwYovhL8zKDKz8loPyBJNOaQ92OaifR
-         Y609ppgSWChmQ0N6hMKVTfcd90QekyclEFMO1OxBDhu5hDT95YBPTBVFnuJrly7v3fHD
-         54M0vLoBlcZSJ0EqY6sCi4x23SSlyScVQrfSm6/THAc8kg9gJ4FN3NsO/GVvMGBMdEJv
-         4im+gsbb3ZApKGEe32qpQXbk5ma09+7DSKhxcf1rYd0YYz5YHldbNnwcuseDPGcSCq/a
-         zW0w==
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-85c48f5e2c1so455331241.3;
+        Mon, 09 Dec 2024 02:10:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733738881; x=1734343681;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fZp+CFP7K7kOAlodAUCSCzM6XqjZQS3FtVdgKB9HjIU=;
-        b=PSqOQQKSIKX/BywqILJueKlYi/W+ldTPRx1nFsUwNK74w6+YVmrHUUw3rNGHzsL/tj
-         38jNF+J/iVQR62vHIAnch0OCaISfU4zEHATHmn3U18eds0oEp500YtS8yLVnOQRpV0Ng
-         wzXrKXBvgy5qRL22CSjK+A1o4Y4JYJXm3GPGpB0iyKZ7IkzL4PZrJJDCgI/BUhbqz0nF
-         I65UcV8mWKuAPyqf2ghl2ttvkk4h8Mi5PZmyja4dS0r1IvXRzTEfH7qqiIk+DB2abTvC
-         YVTSGXvgKv11TFBpD01UssZTgVZz8tkrNF8qkWpgn1mAfDC4Vy3PuRVXfZUsMfLgq9hw
-         0vLA==
-X-Forwarded-Encrypted: i=1; AJvYcCUokxy1peM772iY3a/bYshIdLnEQDlDEh2TZJWMIdecLatVSpv7ungctt0+naE6rqu6pjd07w5v/K5Zfg==@vger.kernel.org, AJvYcCVBHCzS1floGXkVa12EHyVtWnOc/6rJbz+LnXdOanRtg9PXGUszD3kB5qK8VDWXSnX79tW7f672TBpiBzY=@vger.kernel.org, AJvYcCVTy6IAwGFp1E9HG+MoteeImk4a5+qzw8Lmcge54XeDtkv0JiaVL/rSVoAAnp/AN8pjuD+gXKzINRQl@vger.kernel.org, AJvYcCXvdZhHMBaXFCmB8UsoyLNU6eM1FVmI+Zt8TFMD1/jFsrAX0a/CF2YjA/B3m39GLlBldJugH6j47GFPk17j@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgHTyswp3TNkpWy5L4VhIV6BKR++/x9nuxlMskIi9Tz9IPLSMq
-	X1+RI3nlH4T5YlxPQCTPlYHA7WvObuTO3SsHNETR+bZuc0P18M/0
-X-Gm-Gg: ASbGncuCBBSnuEiikOsCmsThZjv//mLST7Q89Flc2Our86DtTj/QsXi+PJ0CIsqnACH
-	yBvK6GoOb7I/GZsCXFUADfJPYfc0BqeK1hCQGlIO7OrfAQ8sQw0uFe5I/NTdkFrm7qcOkQatRwM
-	CyFldC4iJiR3ig3n9qHgI8y+/OUrf3Q6rAJABiIqXUrjpUPHOXfPYGe+BskzUmtaomneYve6lOz
-	Em3n3GmSNqHEbFCTAwpG7MeWQy8q6Zrz7zAA8PDD/PwE3H0FwaiyPgrR3s8mccx1Y07
-X-Google-Smtp-Source: AGHT+IE2AAunC8wmSSoVHJwvOzFoZYPvX4c5A5ejLO9bR6TnjihE9dezvHIlPn7G9UQ6/5A3kkQW9g==
-X-Received: by 2002:a05:6a00:a8c:b0:725:24c2:b794 with SMTP id d2e1a72fcca58-725b8188090mr18378334b3a.23.1733738881124;
-        Mon, 09 Dec 2024 02:08:01 -0800 (PST)
-Received: from [192.168.0.115] ([59.188.211.160])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-725d9b98eb2sm3567122b3a.148.2024.12.09.02.07.57
+        d=1e100.net; s=20230601; t=1733738998; x=1734343798;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jDkEbJbYYDDCIMS580AaIYM47c62x3jRf7aYK2lIXI8=;
+        b=X+YvtCfmy1wRyDj5o7q3tVR0c+Snx19SiBe5/ime9AU+eb1T2iD+abKLOMQMrdxAj2
+         ZOFazvaPm5+0exXl5gofbetdC7WrVNaui8h3Zb9B16haQl+wFOZVfTfGaloxMco5Fp6r
+         8zOGe6imMxX77yyZ2Y2DY4oP0jFQa2UfdV/MBGNWtXue5I6Pb/E2m+ypqPUR0XFIv0S3
+         cBcphNilz8Jb4BgWlS+SmXBXdhVkuuUQ/2gMjk4H6fhYd97t8cc/q8Q8E610G23yLpu4
+         vUbWKWpxyETNUlRMv0Ne9H7ne92+eOWAXgQeuAsCxaEGQlzg9+L7wfxWCIxQ6pIka7yP
+         jz3A==
+X-Forwarded-Encrypted: i=1; AJvYcCU/F8A+a+/EEY8WcTgJhEvBZzPYD6kNyr3jx40QAM6HS0uMEmo14CojHruSBOLt4J/AwGqvzZkiQEDL@vger.kernel.org, AJvYcCUvaNTK3qAEGY9l/H6TyKsxryVDMcFYgWwwDQikQ5YWDkOy0cu+B/45G/gP4uwPWYyCN5E/TWbNjHEXsW8t9v6iIJ8=@vger.kernel.org, AJvYcCVD0enZkSXrWVTd6+kifFLzntpiayzI49nsUS5xLLqEvK1wlazDptVwm0ULz427hu6TLftES3cF7QyuBJCx@vger.kernel.org, AJvYcCVNkFDxE+UATbevX2rxZZKnQTc4z32/AfMYglaTFxH2afQEYuhxPUZmK79JYKxS8lgUoix3EkiQRxhC@vger.kernel.org, AJvYcCWMbn+qHzZ1BcDmhhAL5XJkOGi2v23EU4n+B1pqtMZt1V38qn5yNL3jY5/m9Q659S9Yw0CX47gJVGq19MZi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+NuYMkgcTlnGSMsemIsTFPoa5Id39iByuUTwR0H14tON32aj6
+	ARHBfykS6HRHVWn7ZF4x1UoRwIq1TcsJpHLw1bzSu3GdYm5e+6LjkQ5h4YmI8CY=
+X-Gm-Gg: ASbGncttOhdJW0ninaEJOKKl0zifK0a1g5UKiHzjkKAHwnqo2DsxesVQfJ+B+wI9qig
+	I1suPlR4uTMLre6eUUrvjFHacEGg0XDDkQ1hso5nB0huiOnysIS1tY84BbhvLv54vrqKIAXRZPd
+	bK8x4cjmhXS8xesVb0mszEK8GaRpImakDammWsaN7ej/mQrUG92wseWTL+yz9Itx7XbvK+iL22Y
+	DjRLL3Thg7bEfrJju/oLIDONwS3Bi0GL6PckDRotGoFZU3VUDU8J37yeujuXEaA0vVKsdyoM9w0
+	/wcQWWXRGRmW
+X-Google-Smtp-Source: AGHT+IHNB/BbWrUA6atlQPgW+ghlPNbey5u62+HpcIgynXutov9AchbvlxBKCgPRZnAtv2iQkLiF6A==
+X-Received: by 2002:a05:6102:3751:b0:4af:bb73:9987 with SMTP id ada2fe7eead31-4afcaaed226mr10279060137.18.1733738997756;
+        Mon, 09 Dec 2024 02:09:57 -0800 (PST)
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4affcf39d13sm231482137.8.2024.12.09.02.09.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 02:08:00 -0800 (PST)
-Message-ID: <551941de-b9a4-4353-8bb2-0bfc3304ef87@gmail.com>
-Date: Mon, 9 Dec 2024 18:07:55 +0800
+        Mon, 09 Dec 2024 02:09:57 -0800 (PST)
+Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-85c4b4cf73aso527546241.2;
+        Mon, 09 Dec 2024 02:09:57 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCULs05cLhrZxHoX+dahkTUDmoZ9bcG32aM8ywD3j+dU/hTUJ8kaGqXbO+eWtWZGTetCkhbMEtmYvVlw@vger.kernel.org, AJvYcCUh3rjsMW1G+67OkJACAiQxv0eC+usI3vahDSsSbC4kMs5CHB+i4tKwaa+VAZW7cBu95FvjbRC9IJOTFkfu@vger.kernel.org, AJvYcCV4NIA92Q35mb56txyFI3vqHzVxQben3cQLRlNj7Lw41vAwUkid3I/KqcwwuxTcQI7SWaY/kk3e7eIkAj1u@vger.kernel.org, AJvYcCWFT7RIDUHzXQTSGnLHO0mmbZcDDOP4DZKGOYizp6zZKsHNirb232uROylMHoGFOLQv54vEUL1lb+DF@vger.kernel.org, AJvYcCWZVV0ztV4fPxiqUPo7L43GJGksIof9fXFc2DC0I5F7+gdn03U7cS4UVqju9snbImGV/lTNH3OomCxFp0VB6cJCXFo=@vger.kernel.org
+X-Received: by 2002:a05:6102:162b:b0:4af:b45a:cd20 with SMTP id
+ ada2fe7eead31-4afcab15bafmr11700791137.26.1733738996886; Mon, 09 Dec 2024
+ 02:09:56 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] backlight: dwi_bl: Add Apple DWI backlight driver
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-	y@krzk-bin.smtp.subspace.kernel.org
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
- Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
- Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, dri-devel@lists.freedesktop.org,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
- asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20241207130433.30351-1-towinchenmi@gmail.com>
- <20241207130433.30351-3-towinchenmi@gmail.com>
- <bqn4tddl3kgle7zlamgaqlh45pizw6gf5qjwlmcsbkb6fx343l@tf5w63xursi2>
-Content-Language: en-US
-From: Nick Chan <towinchenmi@gmail.com>
-In-Reply-To: <bqn4tddl3kgle7zlamgaqlh45pizw6gf5qjwlmcsbkb6fx343l@tf5w63xursi2>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20241115134401.3893008-1-claudiu.beznea.uj@bp.renesas.com> <20241115134401.3893008-7-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20241115134401.3893008-7-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 9 Dec 2024 11:09:45 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVgxKHw4PDbgOGAJf7xsRR1Uyzxu-br+=RK_1ouHoj41g@mail.gmail.com>
+Message-ID: <CAMuHMdVgxKHw4PDbgOGAJf7xsRR1Uyzxu-br+=RK_1ouHoj41g@mail.gmail.com>
+Subject: Re: [PATCH v3 6/8] arm64: dts: renesas: rzg3s-smarc-switches: Add a
+ header to describe different switches
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	gregkh@linuxfoundation.org, jirislaby@kernel.org, p.zabel@pengutronix.de, 
+	lethal@linux-sh.org, g.liakhovetski@gmx.de, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-serial@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Claudiu,
 
+On Fri, Nov 15, 2024 at 2:50=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> There are different switches available on both the RZ/G3S SMARC Module an=
+d
+> RZ SMARC Carrier II boards. These switches are used to route different So=
+C
+> signals to different parts available on board.
+>
+> These switches are described in device trees through macros. These macros
+> are set accordingly such that the resulted compiled dtb to describe the
+> on-board switches states.
+>
+> Based on the SW_CONFIG3 switch state (populated on the module board), the
+> SCIF3 SoC interface is routed or not to an U(S)ART pin header available o=
+n
+> the carrier board. As the SCIF3 is accessible through the carrier board,
+> the device tree enables it in the carrier DTS. To be able to cope with
+> these type of configurations, add a header file where all the on-board
+> switches can be described and shared accordingly between module and carri=
+er
+> board.
+>
+> Commit prepares the code to enable SCIF3 on the RZ/G3S carrier device
+> tree.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Krzysztof Kozlowski 於 2024/12/9 下午5:22 寫道:
-> On Sat, Dec 07, 2024 at 09:03:15PM +0800, Nick Chan wrote:
->> Add driver for backlight controllers attached via Apple DWI 2-wire
->> interface, which is found on some Apple iPhones, iPads and iPod touches
->> with a LCD display.
->>
->> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
->> ---
->>  drivers/video/backlight/Kconfig  |  12 +++
->>  drivers/video/backlight/Makefile |   1 +
->>  drivers/video/backlight/dwi_bl.c | 124 +++++++++++++++++++++++++++++++
->>  3 files changed, 137 insertions(+)
->>  create mode 100644 drivers/video/backlight/dwi_bl.c
->>
->> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
->> index 3614a5d29c71..e64cc3d51ac5 100644
->> --- a/drivers/video/backlight/Kconfig
->> +++ b/drivers/video/backlight/Kconfig
->> @@ -166,6 +166,18 @@ config BACKLIGHT_EP93XX
->>  	  To compile this driver as a module, choose M here: the module will
->>  	  be called ep93xx_bl.
->>  
->> +config BACKLIGHT_APPLE_DWI
->> +	tristate "Apple DWI 2-Wire Interface Backlight Driver"
->> +	depends on ARCH_APPLE || COMPILE_TEST
->> +	default y
->> +	help
->> +          Say Y to enable the backlight driver for backlight controllers
->> +          attached via the Apple DWI 2-wire interface which is found in some
->> +          Apple iPhones, iPads and iPod touches.
-> 
-> Mixed/messed indentation. Some spaces?
-Ack. Will be fixed for v4.
+Thanks for your patch!
 
-> 
->> +
->> +	  To compile this driver as a module, choose M here: the module will
->> +	  be called dwi_bl.
->> +
->>  config BACKLIGHT_IPAQ_MICRO
->>  	tristate "iPAQ microcontroller backlight driver"
->>  	depends on MFD_IPAQ_MICRO
->> diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
->> index 8fc98f760a8a..0a569d7f0210 100644
->> --- a/drivers/video/backlight/Makefile
->> +++ b/drivers/video/backlight/Makefile
->> @@ -28,6 +28,7 @@ obj-$(CONFIG_BACKLIGHT_BD6107)		+= bd6107.o
->>  obj-$(CONFIG_BACKLIGHT_CLASS_DEVICE)	+= backlight.o
->>  obj-$(CONFIG_BACKLIGHT_DA903X)		+= da903x_bl.o
->>  obj-$(CONFIG_BACKLIGHT_DA9052)		+= da9052_bl.o
->> +obj-$(CONFIG_BACKLIGHT_APPLE_DWI)	+= dwi_bl.o
-> 
-> Please do not introduce other sorting way - it is sorted by config name.
-> Which will also point you to apple_bl.o and need of explaining the
-> differences, e.g. why this cannot be one driver.
+> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+> @@ -9,25 +9,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
+>
+> -/*
+> - * On-board switches' states:
+> - * @SW_OFF: switch's state is OFF
+> - * @SW_ON:  switch's state is ON
+> - */
+> -#define SW_OFF         0
+> -#define SW_ON          1
+> -
+> -/*
+> - * SW_CONFIG[x] switches' states:
+> - * @SW_CONFIG2:
+> - *     SW_OFF - SD0 is connected to eMMC
+> - *     SW_ON  - SD0 is connected to uSD0 card
+> - * @SW_CONFIG3:
+> - *     SW_OFF - SD2 is connected to SoC
+> - *     SW_ON  - SCIF1, SSI0, IRQ0, IRQ1 connected to SoC
+> - */
+> -#define SW_CONFIG2     SW_OFF
+> -#define SW_CONFIG3     SW_ON
+> +#include "rzg3s-smarc-switches.h"
+>
+>  / {
+>         compatible =3D "renesas,rzg3s-smarcm", "renesas,r9a08g045s33", "r=
+enesas,r9a08g045";
+> diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-switches.h b/arch/ar=
+m64/boot/dts/renesas/rzg3s-smarc-switches.h
+> new file mode 100644
+> index 000000000000..e2d9b953f627
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-switches.h
+> @@ -0,0 +1,32 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 
-apple_bl is a driver backlight controllers on a PCI bus on Intel Macs,
-which is
-completely different from the Samsung-derived DWI block this driver
-deals with.
-This will be explained in the commit message for v4.
+I agree with Rob about the license.
 
-> 
-> 
->>  obj-$(CONFIG_BACKLIGHT_EP93XX)		+= ep93xx_bl.o
->>  obj-$(CONFIG_BACKLIGHT_GPIO)		+= gpio_backlight.o
->>  obj-$(CONFIG_BACKLIGHT_HP680)		+= hp680_bl.o
->> diff --git a/drivers/video/backlight/dwi_bl.c b/drivers/video/backlight/dwi_bl.c
->> new file mode 100644
->> index 000000000000..d4bfd74b3129
->> --- /dev/null
->> +++ b/drivers/video/backlight/dwi_bl.c
->> @@ -0,0 +1,124 @@
->> +// SPDX-License-Identifier: GPL-2.0 OR MIT
->> +/*
->> + * Driver for backlight controllers attached via Apple DWI 2-wire interface
->> + *
->> + * Copyright (c) 2024 Nick Chan <towinchenmi@gmail.com>
->> + */
->> +
->> +#include <linux/module.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/io.h>
->> +#include <linux/backlight.h>
->> +
->> +#define DWI_BL_CTL			0x0
->> +#define DWI_BL_CTL_SEND1		BIT(0)
->> +#define DWI_BL_CTL_SEND2		BIT(4)
->> +#define DWI_BL_CTL_SEND3		BIT(5)
->> +#define DWI_BL_CTL_LE_DATA		BIT(6)
->> +/* Only used on Apple A9 and later */
->> +#define DWI_BL_CTL_SEND4		BIT(12)
->> +
->> +#define DWI_BL_CMD			0x4
->> +#define DWI_BL_CMD_TYPE			GENMASK(31, 28)
->> +#define DWI_BL_CMD_TYPE_SET_BRIGHTNESS	0xa
->> +#define DWI_BL_CMD_DATA			GENMASK(10, 0)
->> +
->> +#define DWI_BL_CTL_SEND			(DWI_BL_CTL_SEND1 | \
->> +					 DWI_BL_CTL_SEND2 | \
->> +					 DWI_BL_CTL_SEND3 | \
->> +					 DWI_BL_CTL_LE_DATA | \
->> +					 DWI_BL_CTL_SEND4)
->> +
->> +#define DWI_BL_MAX_BRIGHTNESS		2047
->> +
->> +struct apple_dwi_bl {
->> +	void __iomem *base;
->> +};
->> +
->> +static int dwi_bl_update_status(struct backlight_device *bl)
->> +{
->> +	struct apple_dwi_bl *dwi_bl = bl_get_data(bl);
->> +
->> +	int brightness = backlight_get_brightness(bl);
->> +
->> +	u32 cmd = 0;
->> +
->> +	cmd |= FIELD_PREP(DWI_BL_CMD_DATA, brightness);
->> +	cmd |= FIELD_PREP(DWI_BL_CMD_TYPE, DWI_BL_CMD_TYPE_SET_BRIGHTNESS);
->> +
->> +	writel(cmd, dwi_bl->base + DWI_BL_CMD);
->> +	writel(DWI_BL_CTL_SEND, dwi_bl->base + DWI_BL_CTL);
->> +
->> +	return 0;
->> +}
->> +
->> +static int dwi_bl_get_brightness(struct backlight_device *bl)
->> +{
->> +	struct apple_dwi_bl *dwi_bl = bl_get_data(bl);
->> +
->> +	u32 cmd = readl(dwi_bl->base + DWI_BL_CMD);
->> +
->> +	return FIELD_GET(DWI_BL_CMD_DATA, cmd);
->> +}
->> +
->> +static const struct backlight_ops dwi_bl_ops = {
->> +	.options = BL_CORE_SUSPENDRESUME,
->> +	.get_brightness = dwi_bl_get_brightness,
->> +	.update_status	= dwi_bl_update_status
->> +};
->> +
->> +static int dwi_bl_probe(struct platform_device *dev)
->> +{
->> +	struct apple_dwi_bl *dwi_bl;
->> +	struct backlight_device *bl;
->> +	struct backlight_properties props;
->> +	struct resource *res;
->> +
->> +	dwi_bl = devm_kzalloc(&dev->dev, sizeof(struct apple_dwi_bl), GFP_KERNEL);
-> 
-> sizeof(*)
-> 
->> +	if (!dwi_bl)
->> +		return -ENOMEM;
->> +
->> +	res = platform_get_resource(dev, IORESOURCE_MEM, 0);
->> +	if (!res)
->> +		return -ENXIO;
->> +
->> +	dwi_bl->base = devm_ioremap_resource(&dev->dev, res);
-> 
-> Use helper for these two, devm_platform_get_and_ioremap_resource() or
-> similar.
-Ack. Will be fixed for v4.
+> +/*
+> + * On-board switches for the Renesas RZ/G3S SMARC Module and RZ SMARC Ca=
+rrier II
+> + * boards.
+> + *
+> + * Copyright (C) 2024 Renesas Electronics Corp.
+> + */
+> +
+> +#ifndef __RZG3S_SMARC_SWITCHES__
+> +#define __RZG3S_SMARC_SWITCHES__
+> +
+> +/*
+> + * On-board switches' states:
+> + * @SW_OFF: switch's state is OFF
+> + * @SW_ON:  switch's state is ON
+> + */
+> +#define SW_OFF         0
+> +#define SW_ON          1
+> +
+> +/*
+> + * SW_CONFIG[x] switches' states:
+> + * @SW_CONFIG2:
+> + *     SW_OFF - SD0 is connected to eMMC
+> + *     SW_ON  - SD0 is connected to uSD0 card
+> + * @SW_CONFIG3:
+> + *     SW_OFF - SD2 is connected to SoC
+> + *     SW_ON  - SCIF3, SSI3, IRQ0, IRQ1 connected to SoC
 
-> 
-> Best regards,
-> Krzysztof
-> 
+Note that the original comment above says "SCIF1, SSI0", and looking
+at the schematics (IC7 and IC8 controlled by SW_SD2_EN#), that is
+actually correct?
 
-Nick Chan
+> + */
+> +#define SW_CONFIG2     SW_OFF
+> +#define SW_CONFIG3     SW_ON
+> +
+> +#endif /* __RZG3S_SMARC_SWITCHES__ */
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
