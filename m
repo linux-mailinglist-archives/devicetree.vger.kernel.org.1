@@ -1,138 +1,149 @@
-Return-Path: <devicetree+bounces-128468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 838599E8CD0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:00:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B64A9E8CF3
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:03:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90E6F164D56
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:00:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89DA41886BFC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:03:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14F6D2156FF;
-	Mon,  9 Dec 2024 07:59:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47C3521517D;
+	Mon,  9 Dec 2024 08:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mxcsPB6k"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="OXz1EUhf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7708321516C;
-	Mon,  9 Dec 2024 07:59:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB2D215074
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 08:02:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733731184; cv=none; b=cy5Qrq4yzK4Dn4wDfJlXASowJ3625OvyU12TniQw/4ReKODI919NQP3UvN8+wFubC3CVCYUs/V/3ZKah5fjgmAfrUxbW2xjXcldi+M/0Wiw+hlAWiINiowvxd0fPLKIqwSC7Ynjgy1sALzHqvx06pZlggUp2/LcKJ5zq0pHQNYA=
+	t=1733731328; cv=none; b=Y0aNO5MgpwNXxTZaaq/CTvAiSv5t1uvcPa5mabFAjqQDh2/l/Ohyna0rq6kzd0xvFqpE7xFZ4I/4gpBNXbLLUmGNS4j2Z+onxnCBcggzr0gGtYKCd8Dc8xbrYp0UzD3OeIK+GXHtS+L4NiJiwlwhSqqdPD7Jv/OYKOsu+ZqFwWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733731184; c=relaxed/simple;
-	bh=pK3f5fCpUmizu3Cy6++UnM5omz/TBo2leaTtg+du6wI=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BKKdFbvmZv5WuLQ0RV8faF2ZS/jn1aAQKjuCuiqo99mXj+A4pFepOD5HSBHmubmTzUBd1ckPWnY/z4aZlpDy0DnBAw1S6ijJ99JYvkqGraXUfnAKoDd/pMsyw0yb7dvm0rCrZw9ERPHghaLFqf3Hu9ugbhjCgEPVH7fxcrsPtIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mxcsPB6k; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-21145812538so34152745ad.0;
-        Sun, 08 Dec 2024 23:59:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733731182; x=1734335982; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ll6kImbemzHgzysNRe/B4ZjSKDdlmM1jCI9QSTOFJgQ=;
-        b=mxcsPB6kpDPlgRyIXExgoHYN0kLpwziGR9sNbN+S2P8ElgkGawla4nGu8VKquWO086
-         RFC47+QiWZYtlh9VoL07IMnwS9ZFTI+NpNZN/eAcaSWavrPKQziD443dwGQqtIlEqq4M
-         jqZ6wET8L0EG//hH3aN9G+L10vv7MDGnID6/zv04KNcSGS88sf5lYYVR0iq/qT6ZPijW
-         TjxQyvqHXd3Z6kaBt3kCsO0OMTG9iqdQ7bSgiUgoVTuDWODquitJDNfZSX6AkYDclwYk
-         KbYrBY++IWgzGnzUMH2If8KYWfzXNEqBpPLk/mgQDXWWwnxtdJbBDDj8/EopB5P7n3NM
-         hfTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733731182; x=1734335982;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ll6kImbemzHgzysNRe/B4ZjSKDdlmM1jCI9QSTOFJgQ=;
-        b=sKKHCsPCn86TpQDErz6EcYF4P7PP3zgAUoBYQMWOUr7oP71ztOpkos1RpYdOPgjY3i
-         bJEDxH5IX0ZHnuI2+YmPH5upw7Xq883QY2hmGCqBm580fqDpyHEVT5MucS+MvIdpP0DM
-         HLhHUbbLoZwV19B9umTbo1eFzHFpU6dTR4YrsxTuvU0ZZAF4QqR2r2rwglYaPH2vTVeI
-         xltvdccXhRLEen6YP5K3GpmbLmSKevmVsIcnEklxKwJL3ve/9TpyJEh9/8LU6iXiVh10
-         9wWhnILH2GAekMvg6QCoGraoUzYlsbksn25p8WHifLeBsG8azll42y4m5V3LMSuNxw+j
-         pTUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUIDXzMV5fCee573hAqwuke3QnFmNSUkKNhc4+4ke4rotpMO34Fa9crpTD+TA/mgch35veg3PgQ+QpYnmQ=@vger.kernel.org, AJvYcCX7uy/IMr8DYHTHe3TKqFBfLOrdtp8dNroNXcayNdlcWfhObSV/gv5oIk4L+D3HjC37q+kQzf+XT4WDdQ==@vger.kernel.org, AJvYcCXIn5WWID78NNmHzp0kYWVq8UeCmGF8bzEaYVp+NgZxkhM10bNkvQMJuzmM9EemifAL0xE68xvHc+t1Ndyj@vger.kernel.org, AJvYcCXtaThWYCGwRRcFEUBQlLpmex3L/oNS5TioyDZQobhOtORqSlkmjWSw5xV92F/AufwVbHEe24Zt+ABX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+NhgVA+jksOCvLjCb4f6bf0pnQtMJCgso2EpcUR2C8xdfxweQ
-	y+bhwKtQmsSj/3ThoH5dkTHaHJJ4aVVFGTqrZmknHOqXGX3xvMkG
-X-Gm-Gg: ASbGncuhWD+zyUdhZC1B7QtbhFRhlo891k4fDB1oo2RPAuwFKpVo+8Hww5g0nhZ8/fP
-	XYjCfQOomScYgf1oYZNVtqdezW84P8NMTR5vCQWwPUs6SD+G6snDXo0kqvSPL/NvBXtlmqnKBlK
-	Td4H8h7TacwnOtKAwCNJDuOlZ9KELBh8bPEnV/KPWxmrzXp4i/09au9ApsAxmpfwREKnGENeMFK
-	KVxc1VE1RSjPPaV6BlnTTEz2LFR0ERkFjdppLJsM9pDYLaYnaxJRbOt2CFUSBFtdA==
-X-Google-Smtp-Source: AGHT+IFLVJdXcJEMtQbEGzS9QEogjBccTI97+be9Pi/cjDczopusFs1mLg5QF1GGPSTJZ9o91Yk57Q==
-X-Received: by 2002:a17:902:d4ca:b0:215:3fb9:5201 with SMTP id d9443c01a7336-21614dd1b11mr167697985ad.44.1733731181698;
-        Sun, 08 Dec 2024 23:59:41 -0800 (PST)
-Received: from localhost.localdomain ([59.188.211.160])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-21628b6588csm36508025ad.235.2024.12.08.23.59.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Dec 2024 23:59:41 -0800 (PST)
-From: Nick Chan <towinchenmi@gmail.com>
-To: Lee Jones <lee@kernel.org>,
-	Daniel Thompson <danielt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Pavel Machek <pavel@ucw.cz>,
+	s=arc-20240116; t=1733731328; c=relaxed/simple;
+	bh=xv0g/k5RohMn5AP1WL+DpPUxCREfDHDlRdXwBYsOnJg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Z8MRDc+8tu8TAsSN+NAIcx6cVBDcgeerUkYKyCP7quLHjtPNTEHDUNO+seqeCC2/NKQWT9sAutZnkfMkv7YEEtJvWOdSrees82FeYKnmElXLH0U4AVVTjT9CSTYFI+j4u40K+nJFMT1Zujg0xgcCeZUELRlcvL0lNmJA/MIUGTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=OXz1EUhf; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Authentication-Results: purelymail.com; auth=pass
+DKIM-Signature: a=rsa-sha256; b=OXz1EUhfInN9iA8Qq++xZZ2u/3bfsrwlgrF0O1AKDGKfOx6o2IxkbV25Q0o/baYg6X8lbnd43Ajj66GqgLc8LSbE/rBx6mw/B+mnh9GZ3YawQSXuPK3GEk08d9jTnFRxyzR2jsKdqPcgi73I7k2frZ/cj8xD0sH4gzScKnNvwXUIyyaQqHF5wCGGKa18H9rKTrv41Q35QdSKD3dZ9hVLA2WaAiDR+avWsf7tEJICykxjzQCXwcMYKIr15V+KT5j7zPyFt6wQz+11lakrtwhsepEq2yQOUYFbfaTktie5nSWQPwDXOoXW1p7VVAUxwtOn8VEal2A3Xv7JWkhd3IgJ6A==; s=purelymail2; d=purelymail.com; v=1; bh=xv0g/k5RohMn5AP1WL+DpPUxCREfDHDlRdXwBYsOnJg=; h=Feedback-ID:Received:From:To:Subject:Date;
+Feedback-ID: 68229:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 1477585645;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Mon, 09 Dec 2024 08:01:11 +0000 (UTC)
+From: Umer Uddin <umer.uddin@mentallysanemainliners.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Helge Deller <deller@gmx.de>,
-	Hector Martin <marcan@marcan.st>,
-	Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Nick Chan <towinchenmi@gmail.com>,
-	dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-fbdev@vger.kernel.org,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 3/3] MAINTAINERS: Add entries for Apple DWI backlight controller
-Date: Mon,  9 Dec 2024 15:58:35 +0800
-Message-ID: <20241209075908.140014-4-towinchenmi@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241209075908.140014-1-towinchenmi@gmail.com>
-References: <20241209075908.140014-1-towinchenmi@gmail.com>
+	igor.belwon@mentallysanemainliners.org
+Subject: [PATCH v7 0/4] Add minimal Samsung Galaxy S20 Series board, SM-G981B and SM-G980F support
+Date: Mon,  9 Dec 2024 08:00:55 +0000
+Message-ID: <20241209080059.11891-1-umer.uddin@mentallysanemainliners.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by Purelymail
+Content-Type: text/plain; charset=UTF-8
 
-Add MAINTAINERS entries for the driver.
+Hi folks,
 
-Signed-off-by: Nick Chan <towinchenmi@gmail.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+This series adds initial support for the Samsung Galaxy S20 Series and also
+initial board support for the Samsung Galaxy S20 5G (SM-G981B)
+codenamed x1s and the Samsung Galaxy S20 (SM-G980F).
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 17daa9ee9384..3a7dec3f9a5a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2196,6 +2196,7 @@ F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
- F:	Documentation/devicetree/bindings/iommu/apple,dart.yaml
- F:	Documentation/devicetree/bindings/iommu/apple,sart.yaml
-+F:	Documentation/devicetree/bindings/leds/backlight/apple,dwi-bl.yaml
- F:	Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
- F:	Documentation/devicetree/bindings/net/bluetooth/brcm,bcm4377-bluetooth.yaml
- F:	Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
-@@ -2221,6 +2222,7 @@ F:	drivers/nvmem/apple-efuses.c
- F:	drivers/pinctrl/pinctrl-apple-gpio.c
- F:	drivers/pwm/pwm-apple.c
- F:	drivers/soc/apple/*
-+F:	drivers/video/backlight/dwi_bl.c
- F:	drivers/watchdog/apple_wdt.c
- F:	include/dt-bindings/interrupt-controller/apple-aic.h
- F:	include/dt-bindings/pinctrl/apple.h
--- 
-2.47.1
+The S20 Series feature a lot of similarities in their configuration
+and internally Samsung named the common devicetrees in their
+downstream kernel 'hubble', please note hubble excludes the
+S20 FE series and Note20 series. To accommodate this, I've
+now named the device tree common's matching the codenames
+(x1s-common).
+The device trees have been tested with dtbs_check W=3D1
+and results in no warnings.
+
+This initial bringup consists of:
+ * pinctrl
+ * gpio-keys
+ * simple-framebuffer
+
+This is enough to reach a shell in an initramfs. More platform support
+will be added in the future.
+
+Just like SM-N981B, the preferred way to boot the upstream kernel is
+by using a shim bootloader, called uniLoader [1], which works around
+some issues with the stock, non-replacable Samsung S-LK bootloader.
+For example, the stock bootloader leaves the decon trigger control
+unset, which causes the framebuffer not to refresh.
+
+Device functionality depends on the patch series from Igor Belwon:
+"Add minimal Exynos990 SoC and SM-N981B support"
+
+[1] https://github.com/ivoszbg/uniLoader
+
+Changes in v7:
+ - Fix old reference to hubble-common
+   in x1slte.
+
+Changes in v6:
+ - Fix indentations in dts makefile
+
+Changes in v5:
+ - Fix dts makefile order
+
+Changes in v4:
+ - Rebase from krzk's kernel tree to accommodate
+   for the merge of r8s
+ - Rename exynos990-hubble-common.dtsi
+   to exynos990-x1s-common.dtsi
+
+Changes in v3:
+ - Fix oversight in yaml
+ - Decommonise memory map
+
+Changes in v2:
+ - Add Samsung Galaxy S20 into device tree bindings
+ - Add support for Samsung Galaxy S20 as well as the 5G variant now
+ - Fix typo in Samsung Galaxy S20 5G commit message
+
+Kind regards,
+Umer
+
+Umer Uddin (4):
+  dt-bindings: arm: samsung: samsung-boards: Add bindings for SM-G981B
+    and SM-G980F board
+  arm64: dts: exynos: Add initial support for Samsung Galaxy S20 Series
+    boards (x1s-common)
+  arm64: dts: exynos: Add initial support for Samsung Galaxy S20 5G
+    (x1s)
+  arm64: dts: exynos: Add initial support for Samsung Galaxy S20
+    (x1slte)
+
+ .../bindings/arm/samsung/samsung-boards.yaml  |  2 +
+ arch/arm64/boot/dts/exynos/Makefile           |  2 +
+ .../boot/dts/exynos/exynos990-x1s-common.dtsi | 98 +++++++++++++++++++
+ arch/arm64/boot/dts/exynos/exynos990-x1s.dts  | 28 ++++++
+ .../boot/dts/exynos/exynos990-x1slte.dts      | 28 ++++++
+ 5 files changed, 158 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990-x1s-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990-x1s.dts
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990-x1slte.dts
+
+--=20
+2.43.0
 
 
