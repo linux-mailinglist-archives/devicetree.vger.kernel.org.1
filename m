@@ -1,168 +1,273 @@
-Return-Path: <devicetree+bounces-128963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EB9A9EA1BD
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 23:19:30 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 603789EA20F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 23:46:39 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2CF31886479
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 22:19:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0157B284969
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 22:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D13219DFB5;
-	Mon,  9 Dec 2024 22:19:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D45D1A00F8;
+	Mon,  9 Dec 2024 22:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CCkAghCC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KdANMJSN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 623F219DF77;
-	Mon,  9 Dec 2024 22:19:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289BA19F104;
+	Mon,  9 Dec 2024 22:37:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733782764; cv=none; b=DvHV5PFT7tq78gwBPbbs/OY5OYvbexoNa9/CzGglDmMUdsDO5YUD3vDpCFL896Jjdep6kyjBRAwlbC1KUxApSNzcG+bER8jM7ztxqJUjlO6uMzpu3EXPZCcmz+u9OtI+G4dsZG0bHuJ7p469rN/AdMyaYGwa/CRodtjQ+9yR/rs=
+	t=1733783829; cv=none; b=XhoORy8sHGrhsBkw6O017e+xNNUa29FaBDhSGod0/+hWG18OZfjEBzSnUnHI+SzkRrqfSDrI00kOsf6fYNLUzpCQBWYEdMRs0BJILb4/GLtrWyxYowEImqx7c8eQgVp6EbGRA3bMC85NkL2bSZvOiip4yffHS4X6J7Yesnn6KT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733782764; c=relaxed/simple;
-	bh=UizDA8id5TOzAqzh5MU69ufJkDcioXInDSASuF7B4qg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=X9spmRc0pOD5KZ313ygNYsmAz4QUsYiIPYPUN6xTRTRcQ871jrssOCXuqHj/m4u6V002lytbUEBrY3dmBRhfzM8DRXmYyewcwBAtJfFpnJ9Fxdw0o2/G59GRyv7IE1Lg4Gq5Sg0b5SrYujm2PmZInNqag4RBQpWVGgpYPGLQXgo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CCkAghCC; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6efea8d5268so2082177b3.1;
-        Mon, 09 Dec 2024 14:19:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733782761; x=1734387561; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TBcPGvste8xIaQ/+MJ0w8njhyN9mQHppjBGBCMsNJJ4=;
-        b=CCkAghCC9t1yB29dpj+1BYkO9ZQ8ClX4z38UJbTgQ0kyeiYblqmLcpHlwS5bjMnI4v
-         FlADVreWdi7e7dsVbK+x0YKpjRAMgL2hUEY0i2Sa10TESN8uwUSD0dKep3dR07n/K/JF
-         pMrrN0qEqab1ebZi5PwPXV+CxxDphldDmwjj0dF3W73Zli//XTyPF8ftCjt2zlqYm2eV
-         Jb4Z7h0aSuf9qqaou/oXO9RaXjzl8UUjahK797AWpOWXlWpPTbAvF0fgNEpN52gk+ry/
-         VBB4VUQMmURQ/0YX2VNJjM6Ig7Mz8UJXR1M+9YaducVYc66yHjGBMFeOVRyrqdab75b8
-         44bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733782761; x=1734387561;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TBcPGvste8xIaQ/+MJ0w8njhyN9mQHppjBGBCMsNJJ4=;
-        b=MvzUfBrgVeUGEPWCtlwGy5G75sS1AuyAqarzRrDlO/BsjFmg4ydnxdYOMx5muJauk6
-         OGnbMiSL3cUzOnjRi6VAtBzrzGAMsHWvGpwzawh0fwuJjEBlPeOOve43vlIJ6FUwNBI1
-         6MpK79TxuIL6VSoCjqqx9nFngSBXjB8/bXyp48GwBKIm3skhOtykUEUaztrmm5aLEwj4
-         vZl3zJrBzrByIVp/Es8ntHSZNbzoylFUbLnx82M9x0atDs6II6GT0aK8TIA4qbOftk5q
-         +NOC85bvB2C4FYIyCEYOqw7k6t1v9SY2XLU78NRAl5yTBEwTfs3GObs7qQO3jjHwGAvR
-         pJlA==
-X-Forwarded-Encrypted: i=1; AJvYcCVLYzW7iYA9D2RJcGTjjDmcI1+3L7zrMC/0kEHosCb/oC/ZxWABYz/FMJrDQX4/OFxxl8Pj9/Ajocc3@vger.kernel.org, AJvYcCXOMK4gyJocZ1CZq1rQoZY8TsyNCE4DWQlUmDZZyxHXxcS8C40W6Kt0BwcPEXFlU0YYyu9UAuNujfaMTzvy@vger.kernel.org, AJvYcCXmcDKAUdK0vBHsB4qhht9s/v1GyIh3fiZt5UCvB1tSuCq9v1sN6hqCVdTu33+C4gCSoXnKTDAWH5p7@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmGOhcJouYnotNrBO1WEm2q2MerH+lQUWLOr6fyBvzU79gufU+
-	Pp+EZz1auWYP+e0FXY/nAQWHK91MHgU5/QID3qEihZoiZQv6NRR+d4sCoYELp5kErwOgGk99tmo
-	lDqp1jD6xX0Usj5T+VIo93gRprHA=
-X-Gm-Gg: ASbGnct/25XcenA2/A2WU2juPNf7TmmFzanDy67uG6v4HkkCjoNHvuMQ+hukVZ/btw/
-	uqh/W5kBHKusVwgyb/umBYamE5IN3ZIItqzQ=
-X-Google-Smtp-Source: AGHT+IH2l+9WfFfXBybh1dyhw89xFdfwcFQxCGPGreisNOmc12R5bHKK18ypQcE+doXoW9vsu8juM6MZZu0tx1DZ6bY=
-X-Received: by 2002:a05:690c:4c13:b0:6ef:53bd:3633 with SMTP id
- 00721157ae682-6efe3c818bbmr54656567b3.5.1733782761161; Mon, 09 Dec 2024
- 14:19:21 -0800 (PST)
+	s=arc-20240116; t=1733783829; c=relaxed/simple;
+	bh=gydmIHaRA9aViXPKnXOypF6IELTweKWjgfFODE/JMz4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UwJs6BLnb5sjvneWORGX72+cUzGandytWLcmZzwgEQX85URLKuy2O1r2YgJ7aVapLJUGOr0j4VSZDuYsY9UbUoxPjz3F5S+yMYAXANkd9oEfkOcD9pE0+2nTYqb6RYMnIm/ilt4cIR8q44cyTIGR9eZ7ZybiOiBRwf9TS2yVE3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KdANMJSN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 650D3C4CED1;
+	Mon,  9 Dec 2024 22:37:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733783828;
+	bh=gydmIHaRA9aViXPKnXOypF6IELTweKWjgfFODE/JMz4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KdANMJSN3mwq9QYGyy+lQIAO8PDtzOQZZEGJYHixyHdqgV9oGgnTly8LJ6R/Ft3/p
+	 m0Rl+YQyp5xBK9oOmxBa+FOqhsED8QA4F2KuiNph9lNBNrlNOQ8TMo2yQiRTXs1mOS
+	 8aIVE1aRMk71mo7dMaycDYqQcffliBITlD25r4//atbCIm8bPiX/4vlZTeFlLa2SBs
+	 /xXERZPGLv1w8fMYsEt8oAzvj19WpZYNIPBJaBpNr3rpqp9W4pXcv7r9gyoZDO/NFf
+	 /NurUjxMxhXGfcqg13OZf61kup966lOd9m8fkLaUOnLR9F655wVYjHVdJwKbKRLhwc
+	 08qzQoFUOGsnA==
+Date: Mon, 9 Dec 2024 16:37:06 -0600
+From: Rob Herring <robh@kernel.org>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, rust-for-linux@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 12/13] rust: platform: add basic platform device /
+ driver abstractions
+Message-ID: <20241209223706.GF938291-robh@kernel.org>
+References: <20241205141533.111830-1-dakr@kernel.org>
+ <20241205141533.111830-13-dakr@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241205171343.308963-1-l.rubusch@gmail.com> <20241205171343.308963-4-l.rubusch@gmail.com>
- <20241208133458.4a8428b7@jic23-huawei>
-In-Reply-To: <20241208133458.4a8428b7@jic23-huawei>
-From: Lothar Rubusch <l.rubusch@gmail.com>
-Date: Mon, 9 Dec 2024 23:18:45 +0100
-Message-ID: <CAFXKEHbPmFc8DNZW=Ww39j+XkAfLOyFY2qgvz+uEUaBYri_3hA@mail.gmail.com>
-Subject: Re: [PATCH v5 03/10] iio: accel: adxl345: measure right-justified
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, eraretuya@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241205141533.111830-13-dakr@kernel.org>
 
-Dear IIO-ML, Hi Jonathan!
+On Thu, Dec 05, 2024 at 03:14:43PM +0100, Danilo Krummrich wrote:
+> Implement the basic platform bus abstractions required to write a basic
+> platform driver. This includes the following data structures:
+> 
+> The `platform::Driver` trait represents the interface to the driver and
+> provides `pci::Driver::probe` for the driver to implement.
+> 
+> The `platform::Device` abstraction represents a `struct platform_device`.
+> 
+> In order to provide the platform bus specific parts to a generic
+> `driver::Registration` the `driver::RegistrationOps` trait is implemented
+> by `platform::Adapter`.
+> 
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> ---
+>  MAINTAINERS                     |   1 +
+>  rust/bindings/bindings_helper.h |   2 +
+>  rust/helpers/helpers.c          |   1 +
+>  rust/helpers/platform.c         |  13 ++
+>  rust/kernel/lib.rs              |   1 +
+>  rust/kernel/platform.rs         | 222 ++++++++++++++++++++++++++++++++
+>  6 files changed, 240 insertions(+)
+>  create mode 100644 rust/helpers/platform.c
+>  create mode 100644 rust/kernel/platform.rs
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7d6bb4b15d2c..365fc48b7041 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -7034,6 +7034,7 @@ F:	rust/kernel/device.rs
+>  F:	rust/kernel/device_id.rs
+>  F:	rust/kernel/devres.rs
+>  F:	rust/kernel/driver.rs
+> +F:	rust/kernel/platform.rs
+>  
+>  DRIVERS FOR OMAP ADAPTIVE VOLTAGE SCALING (AVS)
+>  M:	Nishanth Menon <nm@ti.com>
+> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
+> index 6d7a68e2ecb7..e9fdceb568b8 100644
+> --- a/rust/bindings/bindings_helper.h
+> +++ b/rust/bindings/bindings_helper.h
+> @@ -20,9 +20,11 @@
+>  #include <linux/jump_label.h>
+>  #include <linux/mdio.h>
+>  #include <linux/miscdevice.h>
+> +#include <linux/of_device.h>
+>  #include <linux/pci.h>
+>  #include <linux/phy.h>
+>  #include <linux/pid_namespace.h>
+> +#include <linux/platform_device.h>
+>  #include <linux/poll.h>
+>  #include <linux/refcount.h>
+>  #include <linux/sched.h>
+> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
+> index 3fda33cd42d4..0640b7e115be 100644
+> --- a/rust/helpers/helpers.c
+> +++ b/rust/helpers/helpers.c
+> @@ -20,6 +20,7 @@
+>  #include "kunit.c"
+>  #include "mutex.c"
+>  #include "page.c"
+> +#include "platform.c"
+>  #include "pci.c"
+>  #include "pid_namespace.c"
+>  #include "rbtree.c"
+> diff --git a/rust/helpers/platform.c b/rust/helpers/platform.c
+> new file mode 100644
+> index 000000000000..ab9b9f317301
+> --- /dev/null
+> +++ b/rust/helpers/platform.c
+> @@ -0,0 +1,13 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/platform_device.h>
+> +
+> +void *rust_helper_platform_get_drvdata(const struct platform_device *pdev)
+> +{
+> +	return platform_get_drvdata(pdev);
+> +}
+> +
+> +void rust_helper_platform_set_drvdata(struct platform_device *pdev, void *data)
+> +{
+> +	platform_set_drvdata(pdev, data);
+> +}
+> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+> index 7a0e4c82ad0c..cc8f48aa162b 100644
+> --- a/rust/kernel/lib.rs
+> +++ b/rust/kernel/lib.rs
+> @@ -59,6 +59,7 @@
+>  pub mod of;
+>  pub mod page;
+>  pub mod pid_namespace;
+> +pub mod platform;
+>  pub mod prelude;
+>  pub mod print;
+>  pub mod rbtree;
+> diff --git a/rust/kernel/platform.rs b/rust/kernel/platform.rs
+> new file mode 100644
+> index 000000000000..868cfddb75a2
+> --- /dev/null
+> +++ b/rust/kernel/platform.rs
+> @@ -0,0 +1,222 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! Abstractions for the platform bus.
+> +//!
+> +//! C header: [`include/linux/platform_device.h`](srctree/include/linux/platform_device.h)
+> +
+> +use crate::{
+> +    bindings, container_of, device, driver,
+> +    error::{to_result, Result},
+> +    of,
+> +    prelude::*,
+> +    str::CStr,
+> +    types::{ARef, ForeignOwnable},
+> +    ThisModule,
+> +};
+> +
+> +/// An adapter for the registration of platform drivers.
+> +pub struct Adapter<T: Driver>(T);
+> +
+> +impl<T: Driver + 'static> driver::RegistrationOps for Adapter<T> {
+> +    type RegType = bindings::platform_driver;
+> +
+> +    fn register(
+> +        pdrv: &mut Self::RegType,
+> +        name: &'static CStr,
+> +        module: &'static ThisModule,
+> +    ) -> Result {
+> +        pdrv.driver.name = name.as_char_ptr();
+> +        pdrv.probe = Some(Self::probe_callback);
+> +
+> +        // Both members of this union are identical in data layout and semantics.
+> +        pdrv.__bindgen_anon_1.remove = Some(Self::remove_callback);
+> +        pdrv.driver.of_match_table = T::OF_ID_TABLE.as_ptr();
+> +
+> +        // SAFETY: `pdrv` is guaranteed to be a valid `RegType`.
+> +        to_result(unsafe { bindings::__platform_driver_register(pdrv, module.0) })
+> +    }
+> +
+> +    fn unregister(pdrv: &mut Self::RegType) {
+> +        // SAFETY: `pdrv` is guaranteed to be a valid `RegType`.
+> +        unsafe { bindings::platform_driver_unregister(pdrv) };
+> +    }
+> +}
+> +
+> +impl<T: Driver + 'static> Adapter<T> {
+> +    #[cfg(CONFIG_OF)]
+> +    fn of_id_info(pdev: &Device) -> Option<&'static T::IdInfo> {
+> +        let table = T::OF_ID_TABLE;
+> +
+> +        // SAFETY:
+> +        // - `table` has static lifetime, hence it's valid for read,
+> +        // - `dev` is guaranteed to be valid while it's alive, and so is `pdev.as_ref().as_raw()`.
+> +        let raw_id = unsafe { bindings::of_match_device(table.as_ptr(), pdev.as_ref().as_raw()) };
+> +
+> +        if raw_id.is_null() {
+> +            None
+> +        } else {
+> +            // SAFETY: `DeviceId` is a `#[repr(transparent)` wrapper of `struct of_device_id` and
+> +            // does not add additional invariants, so it's safe to transmute.
+> +            let id = unsafe { &*raw_id.cast::<of::DeviceId>() };
+> +
+> +            Some(table.info(<of::DeviceId as crate::device_id::RawDeviceId>::index(id)))
+> +        }
+> +    }
+> +
+> +    #[cfg(not(CONFIG_OF))]
+> +    fn of_id_info(_pdev: &Device) -> Option<&'static T::IdInfo> {
+> +        None
+> +    }
+> +
+> +    // Try to retrieve an `IdInfo` from any of the ID tables; if we can't find one for a particular
+> +    // table, it means we don't have a match in there. If we don't match any of the ID tables, it
+> +    // means we were matched by name.
+> +    fn id_info(pdev: &Device) -> Option<&'static T::IdInfo> {
+> +        let id = Self::of_id_info(pdev);
+> +        if id.is_some() {
+> +            return id;
+> +        }
+> +
+> +        None
+> +    }
 
-On Sun, Dec 8, 2024 at 2:35=E2=80=AFPM Jonathan Cameron <jic23@kernel.org> =
-wrote:
->
-> On Thu,  5 Dec 2024 17:13:36 +0000
-> Lothar Rubusch <l.rubusch@gmail.com> wrote:
->
-> > Make measurements right-justified, since it is the default for the
-> > driver and sensor. By not setting the ADXL345_DATA_FORMAT_JUSTIFY bit,
-> > the data becomes right-judstified. This was the original setting, there
-> > is no reason to change it to left-justified, where right-justified
-> > simplifies working on the registers.
-> >
-> > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
->
-> I'm still confused by this one.  Does this change affect the data output
-> to userspace?  If seems like it definitely should. If it does we have
-> an ABI regression somewhere. Is it currently broken and wasn't at some
-> earlier stage, or is this the patch breaking things?
-
-No, it should not affect the userspace.
-
-This setting opens the mask for regmap/update bits to allow for
-changing the data format.
-My point is rather, does it actually makes sense to allow to change
-the data format, since
-the driver will use just one format. The bit was never applied, it's
-just the mask here.
-
-May I ask you, if you could also could give me a brief feedback to the
-three questions in
-the cover letter to this series?
-
-I would really appreciate, since I'm still unsure if I actually
-verified everything correctly.
-From what I did about this bit, I removed and set the justified bit in
-STREAM and in
-BYPASSED mode (current mode), without any difference in the results in
-iio_info or
-iio_readdev. The numbers look generally odd to me, though. And, I'd
-rather like to ask
-to still wait with applying the patches, if this is ok for you? But,
-perhaps with the answers
-of the cover letter items, it could become clearer to me. I'm still
-about to measure and
-verify against the old and the input driver results as comparison.
-
-Best,
-L
+These methods are going to have to be duplicated by every bus type which 
+can do DT matching (and later ACPI). Can't this be moved to be part of 
+the common Driver trait.
 
 
-> If it worked and currently doesn't send a fix.  If this changes a previou=
-sly
-> working ABI then drop this patch.  Alternative being to fix up the scale
-> handling to incorporate this justification change.
->
-> Jonathan
->
-> > ---
-> >  drivers/iio/accel/adxl345_core.c | 1 -
-> >  1 file changed, 1 deletion(-)
-> >
-> > diff --git a/drivers/iio/accel/adxl345_core.c b/drivers/iio/accel/adxl3=
-45_core.c
-> > index 88df9547bd6..98ff37271f1 100644
-> > --- a/drivers/iio/accel/adxl345_core.c
-> > +++ b/drivers/iio/accel/adxl345_core.c
-> > @@ -184,7 +184,6 @@ int adxl345_core_probe(struct device *dev, struct r=
-egmap *regmap,
-> >       struct iio_dev *indio_dev;
-> >       u32 regval;
-> >       unsigned int data_format_mask =3D (ADXL345_DATA_FORMAT_RANGE |
-> > -                                      ADXL345_DATA_FORMAT_JUSTIFY |
-> >                                        ADXL345_DATA_FORMAT_FULL_RES |
-> >                                        ADXL345_DATA_FORMAT_SELF_TEST);
-> >       int ret;
->
+I'll say it again for Greg to comment (doubtful he will look at v3 
+again). Really, I think we should also align the probe method interface 
+across bus types. That means getting rid of the 'id' in the PCI probe 
+(or add it for everyone). Most drivers never need it. The typical case 
+is needing nothing or the matched data. In a quick scan[1], there's 
+only a handful of cases. So I think probe should match the common 
+scenario and make retrieving the id match explicit if needed.
+
+Rob
+
+[1] git grep -W 'const struct pci_device_id \*' drivers/ | grep -P 'id->(?!driver_data)'
 
