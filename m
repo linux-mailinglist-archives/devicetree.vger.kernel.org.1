@@ -1,105 +1,179 @@
-Return-Path: <devicetree+bounces-128843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 286579E997A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:54:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABFAF9E99EF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:04:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD5831882EB2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:54:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A08D16851F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 15:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C9C1B425C;
-	Mon,  9 Dec 2024 14:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21BE71B4250;
+	Mon,  9 Dec 2024 15:02:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="vWxH0/h+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="c/YCBUdV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D3341B0420
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 14:54:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3A51A23B7;
+	Mon,  9 Dec 2024 15:02:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733756061; cv=none; b=VMOiccd3ByFkYoTa7s3vJmIYB4aUtrtpaeBxkC4qAgtX4BCPbHBxe/kLji3VJ+2QGpLJxyp4kShp9V/q2pEfbsuvXR0ejCh20+qv+ReuNWff0nTOz2aoiFD+JMNwB+CxxQ6/TwG3tMAPSzl+1aFDfAGjW9QsoGXQAyrt+b9tpOk=
+	t=1733756545; cv=none; b=YZfZGnKaQ1ODXOfJwXGAIMHSKY2KkWlDjTmRBsUHFNubRTrvV3bz9fOXZbHUGFFBo/4fAU8TVHMKOrgbSn6OjeTzSrZCd9kVpqYjUn+1BRwxLdGT5x9wsTZyimknZehin6+tOGIARQC5Fsg9gN2Q8H+SIwKCuKcG3jpJeH+p3sU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733756061; c=relaxed/simple;
-	bh=L3uPqYvqbgHQKbRYysjnG8NJRJoMHAJpo1X5a/nsGbw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jmoOV05ydsBvRVJtSDZ6Z8FwFPCJNLmoq+ZTpVMy5DEkF6ea5J8PFMxgscn55apOevZJUeH53r+60kRleaWkr5tOgR8WvIKAxjSAMGbE3U6sPAYXAU3U1Ivd38NgXXuthuTxQWKW6VRwOs6aviRg7D6sjXRY7ihGkaSwPfKvZ5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=vWxH0/h+; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-53e3a5fa6aaso2087304e87.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 06:54:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1733756057; x=1734360857; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=L3uPqYvqbgHQKbRYysjnG8NJRJoMHAJpo1X5a/nsGbw=;
-        b=vWxH0/h+qrNQJBz4YdxyKiuKZte7A0qFI+1Js97zehJPYd4oKZoCWjMGIfJ6gB1PnF
-         n/jDM81eeDWT6XzeGAIEWi2dOef+8L6VnveKxrtK2FB8SG9ATFLuAlquW3Et5+e54cEY
-         1d6rAvEzT/EJrSAwrhAu6qgv0Ah5bDw4cwW0PQvqI/TTbdHUJ/vGOyzE2mjjXDUeUgp0
-         L3TpyaZpz22PvnnnZHDgjTsAmgTulnKC7RygtmKnD0XJd/jMbg+abLJNridYhbONFOTZ
-         qLFRUUp7xtIJBAjKrUTy2TIuPB1g5zj6HON2vKgZmQY73hENXpk9K4wdJHa24lSMFXMS
-         lqUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733756057; x=1734360857;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=L3uPqYvqbgHQKbRYysjnG8NJRJoMHAJpo1X5a/nsGbw=;
-        b=iqtYGY3KcfZ1SlAmvE/ou9T7spLzymq/EVq9EiJQeLS+0Y0VCPM6/sqMKqouUDtIJ8
-         ZxIm1YP2/bjBewh5xMzZFdg4JeTViwqFxrZMZ9mFe20rv0AizpmV/NtnoyM8ULGnCGS2
-         SRs/CVcGn69PHPIXX5OH5gkuQyGuNyjvQVded3N+ybTxZbPMcYXlDmYFIC+Vn8j/PuId
-         QzOGxoMDUMTpYC4D7MLmfSVobxuPBrlQHHPCaE5141gcej+KMrl7081fc1uF2KQ7Lbag
-         hknJzA1++jf4R4jr4IVru7YVycV1GCO5KTqCx9eMy5+kRAkfvS0nRBn1OkDDxKazj8/q
-         ybQg==
-X-Forwarded-Encrypted: i=1; AJvYcCWHnj2TSPuhgrk3meqE3hW8nR3lRfPp7j0NqxCf4nq1H7Kti/9YP1jUgVjJXhqefozJTVg0wU0wdx9H@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPiMhtOFTz4J6XeofE2QvEi9LR2dsGTAcKGwdlMAGcu439UvwC
-	OTNiaOP6bbEj4BQjmTQ/To9jFMu/Xv7jWDE46nr/Idd/8fhwJtoBTKx/V5ZcUcexjVlxQWJcrl2
-	NLmkeCQsdjdp5TowtIaOjvU3ND7BEIWsOUUL90A==
-X-Gm-Gg: ASbGnctO+eVDhvOPlLVaKOYwzrrw2FphjJ9UN6M96/xMil02xOu6XMBfmD5XVxW3cbz
-	GRmnVo5NGRJUYjYO/pO5bJLlBLdK0nEMrJt6nF4plucdPFBRY5hV9oKpxFxR+rFs=
-X-Google-Smtp-Source: AGHT+IEznO0uqtPL1COzvxGwq+VZpn4uiLON1EYzg8NJIKAdwzxMATkws3UccavvSGGamvwnW6zKLVEwbVjxpooMKJo=
-X-Received: by 2002:a05:6512:6d2:b0:53e:16eb:d845 with SMTP id
- 2adb3069b0e04-53e2b7328d9mr4535052e87.18.1733756057474; Mon, 09 Dec 2024
- 06:54:17 -0800 (PST)
+	s=arc-20240116; t=1733756545; c=relaxed/simple;
+	bh=dKlPGxYkwTD/3sIxuE9y+LM1/E1cOyuiFi5A6mgj4nA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QqMOrTRWFmoP2TkyGlKy6qwIGseLBQhvUSVlSUl5XZhV82zL5CAD4UMTmTBtCTpsgWDj/hs+vEX5xV76FrqcHjew7tuxa0Uxk8+2QCE3e4atnVyVXGbe5dKLnNlF8mB1Z1OfGw6Xqr1p/lK4BtZAgUUPWUCve5FT6Gr8V5YPVJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=c/YCBUdV; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B9AXCM4003487;
+	Mon, 9 Dec 2024 15:02:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	dmbJmFBmY5oCW22GTFiwaIUH94lWuVHWFqeXe2H6j60=; b=c/YCBUdVUEskN3qa
+	Ou19cT7IXGamBIjGl4HxR8GqPJcz1j3dRK9u17+FkBKju3XV0EKGuXe9Dt3me+Z2
+	EnxUC2zvZbLpixMNINcxjawARr3kC1SHhxVQXMGL1D9llrgemkFYsdIp195yspBg
+	k1qChwWT5SwzxIwG8oEjuGmHKlcT8wrqM7wcQshPLSj951pNPshApvQLnPPH/wgJ
+	UrCcwWwxsH8UdXHiahVFvOnb2vU8UFzk/QYZ+RRq71HFZ08X0VSJTWgV/c6NbtR8
+	kkxGrSlS+Uh4Zb/ojeveMyYxgh6VlFf58FN3GeARnXzL+IxPWgiNQtsQyEDp6LJR
+	s3KZGw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43dxw40xf2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Dec 2024 15:02:13 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B9F24n7026925
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 9 Dec 2024 15:02:04 GMT
+Received: from [10.50.34.16] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 9 Dec 2024
+ 07:01:56 -0800
+Message-ID: <e7b4f266-c2dc-4253-a3e5-53716ef006bd@quicinc.com>
+Date: Mon, 9 Dec 2024 20:31:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241209103455.9675-1-quic_janathot@quicinc.com> <20241209103455.9675-2-quic_janathot@quicinc.com>
-In-Reply-To: <20241209103455.9675-2-quic_janathot@quicinc.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Mon, 9 Dec 2024 15:54:06 +0100
-Message-ID: <CAMRc=MeA7vFiWFN6RExmiBFhrcRwfVdz07YdQJ=c0trTbeztNQ@mail.gmail.com>
-Subject: =?UTF-8?B?UmU6IFtQQVRDSCB2NSAxLzRdIHJlZ3VsYXRvcjrCt2R0LWJpbmRpbmdzOsK3cWNvbSxxYw==?=
-	=?UTF-8?B?YTYzOTAtcG11OsK3ZG9jdW1lbnQgd2NuNjc1MC1wbXU=?=
-To: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, quic_mohamull@quicinc.com, 
-	quic_hbandi@quicinc.com, quic_anubhavg@quicinc.com, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
+ flag
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>, <konrad.dybcio@linaro.org>,
+        <andersson@kernel.org>, <andi.shyti@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <conor+dt@kernel.org>, <agross@kernel.org>,
+        <devicetree@vger.kernel.org>, <vkoul@kernel.org>, <linux@treblig.org>,
+        <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
+        <konradybcio@kernel.org>, <bryan.odonoghue@linaro.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>
+CC: <quic_vdadhani@quicinc.com>
+References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
+ <20241129144357.2008465-2-quic_msavaliy@quicinc.com>
+ <db428697-a9dc-46e1-abbe-73341306403f@kernel.org>
+ <a8b1ccd2-c37b-4a6f-b592-caf1a53be02c@quicinc.com>
+ <fc33c4ed-32e5-46cc-87d6-921f2e58b4ff@kernel.org>
+ <75f2cc08-e3ab-41fb-aa94-22963c4ffd82@quicinc.com>
+ <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
+ <da2ba3df-eb47-4b55-a0c9-e038a3b9da30@quicinc.com>
+ <a7186553-d8f6-46d4-88da-d042a4a340e2@oss.qualcomm.com>
+Content-Language: en-US
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <a7186553-d8f6-46d4-88da-d042a4a340e2@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: fcQXGs8dm37uCG8CvS2f-oOGki1Xx-KR
+X-Proofpoint-GUID: fcQXGs8dm37uCG8CvS2f-oOGki1Xx-KR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ suspectscore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
+ clxscore=1015 spamscore=0 mlxscore=0 lowpriorityscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412090118
 
-On Mon, Dec 9, 2024 at 11:35=E2=80=AFAM Janaki Ramaiah Thota
-<quic_janathot@quicinc.com> wrote:
->
-> Add description of the PMU node for the WCN6750B module.
->
-> Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
 
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
+On 12/2/2024 7:34 PM, Konrad Dybcio wrote:
+> On 2.12.2024 1:55 PM, Mukesh Kumar Savaliya wrote:
+>>
+>>
+>> On 12/2/2024 4:34 PM, Krzysztof Kozlowski wrote:
+>>> On 02/12/2024 11:38, Mukesh Kumar Savaliya wrote:
+>>>>>
+>>>>> Come with one flag or enum, if needed, covering all your cases like this.
+>>>>>
+>>>> Let me explain, this feature is one of the additional software case
+>>>> adding on base protocol support. if we dont have more than one usecase
+>>>> or repurposing this feature, why do we need to add enums ? I see one
+>>>> flag gpi_mode but it's internal to driver not exposed to user or expose
+>>>> any usecase/feature.
+>>>>
+>>>> Below was our earlier context, just wanted to add for clarity.
+>>>> -- 
+>>>>    > Is sharing of IP blocks going to be also for other devices? If yes, then
+>>>>    > this should be one property for all Qualcomm devices. If not, then be
+>>>>    > sure that this is the case because I will bring it up if you come with
+>>>>    > one more solution for something else.
+>>>
+>>>
+>>> You keep repeating the same. You won't receive any other answer.
+>>>
+>> So far i was in context to SEs. I am not sure in qualcomm SOC all cores supporting this feature and if it at all it supports, it may have it's own mechanism then what is followed in SE IP. I was probably thinking on my owned IP core hence i was revolving around.
+>>
+>> Hope this dt-binding i can conclude somewhere by seeking answer from other IP core owners within qualcomm.
+>>>>    >
+>>>> IP blocks like SE can be shared. Here we are talking about I2C sharing.
+>>>> In future it can be SPI sharing. But design wise it fits better to add
+>>>> flag per SE node. Same we shall be adding for SPI too in future.
+>>>
+>>>
+>>> How flag per SE node is relevant? I did not ask to move the property.
+>>>
+>>>>
+>>>> Please let me know your further suggestions.
+>>> We do not talk about I2C or SPI here only. We talk about entire SoC.
+>>> Since beginning. Find other patch proposals and align with rest of
+>>> Qualcomm developers so that you come with only one definition for this
+>>> feature/characteristic. Or do you want to say that I am free to NAK all
+>>> further properties duplicating this one?
+> 
+> I'm not sure a single property name+description can fit all possible
+> cases here. The hardware being "shared" can mean a number of different
+> things, with some blocks having hardware provisions for that, while
+> others may have totally none and rely on external mechanisms (e.g.
+> a shared memory buffer) to indicate whether an external entity
+> manages power to them.
+> 
+I agree. Also i checked internally with UFS team and other peripheral 
+core. Not heard of core being shared the way SE is being shared.
+> Even here, I'm not particularly sure whether dt is the right place.
+> Maybe we could think about checking for clock_is_enabled()? That's
+> just an idea, as it may fall apart if CCF gets a .sync_state impl.
+> 
+I feel DT flag is the only way as one or other way this leads to some 
+need of prior knowledge. in case of using clock_is_enabled() kind of 
+API, we still need a flag to keep the clock enabled. By the way, we keep 
+pinctrl only enabled for shared SE.
+
+Please let me know if the given binding can be improved further OR this 
+looks fine ?
+> Konrad
+
 
