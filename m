@@ -1,118 +1,139 @@
-Return-Path: <devicetree+bounces-128795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE7039E972F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:34:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B306B9E9731
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:35:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6089D1881D59
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:30:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AD5F165661
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CAD13597F;
-	Mon,  9 Dec 2024 13:30:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A65A35943;
+	Mon,  9 Dec 2024 13:31:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="waLb87vr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pv50p00im-ztdg10021801.me.com (pv50p00im-ztdg10021801.me.com [17.58.6.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EF0B233157;
-	Mon,  9 Dec 2024 13:30:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 243EC233157
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 13:31:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733751007; cv=none; b=XoohNI4fARx/3pyzKV9YkFpW0ICDa+3A1wnj/ahuHPsIYC8Euv0JB9JCPLd249T719ma0VhjwHvCXXYFBcd65qsUXGIcNecFz2PjuINTeIaXSO+EHRFIXau6m/4M+SvI1HH7XvA4y6GU96toqIFdjzV9hYEkEW2iq9CyPTJrolc=
+	t=1733751114; cv=none; b=Nh9II99cyjlmJgxHWtLotiy/EOCp0zHSsjkR8GYg1AGKfJWvSQTS54AWqhTCRN2pYuvEVCvhsWBTuUXeHVFbf2JSWy7Aa0tXT2KAv8gtnRkxZsngd/HefKCT+/bmBSP1EmYgCORZhES7aGjdNW2plLBIpDIwdfLtR1vVyKMn3Uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733751007; c=relaxed/simple;
-	bh=YEMGXB0MoeTQD9c+Ltz3nao8e0c8pp7JWuZ504qsbtY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=D3CfToxpqnJ7tDum4hN0oUs4NLwyRumYgKA/gZy1zMt2Y+M4q+SGCHUNjSpHqJJSgp2f4LcQ6AGcpl4FTvezPjx33qexYmT+iVJnCUd3/RCkLxp9hhGIdxEbeDenv1MhKItJgEC7v3MmxXMo4Jp9VJ8wDRAyQsaTp4ahDVU4QOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f48.google.com with SMTP id a1e0cc1a2514c-85c529e72bcso470590241.0;
-        Mon, 09 Dec 2024 05:30:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733751002; x=1734355802;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RtZbd29HX50F62FjGhcvqNG8diKJQIVgFd1izOOOLbE=;
-        b=p7+wDI5qh5TWxXsLnAkiaJ5amDuZRotB4+cLCHUdsxEgj/zqSfF4P2Zo9bq7Sp5cDh
-         eSmo5/fNefvodQrEOBHzaAsGx0EJ2rOuKFMfNs87KEZ3zMIjowXhcQkJqxBC/yvy/BqM
-         ly13lXWATDbSwNnbs4EGvWMsJeOT++EztQm+3yd6jVBJBjagbAj8ON9r5FygzGaB1nrj
-         nGq7bc+GN4mF9YUAXWGMgiGjkLBO7dhyHXSkaoGd3i7wnbKQZ1VcdOHnOrdVvEyaQiQ+
-         C+7THjpCP7M+JtW0KR4y4T+02dChhP9xo1Sklfagr6g7tvPccTmspZgm2b3ON1hoMfdf
-         oL9w==
-X-Forwarded-Encrypted: i=1; AJvYcCUdk/Psj0DLP0SNuUjr3HVSdaUYXKvjBO9u9KDdygCBtSG2KSQckaceG7XDgP5S6v7ViNZy+3bPXo1HEfI=@vger.kernel.org, AJvYcCV+o7SVw+gZameFJS/Z4dw/UujUNo1knSma8MJdnh28NjC7C4StE8gxuLuhJ6AwqQOUJBiN+JIZfAU8qagn@vger.kernel.org, AJvYcCVG3G8Micyfm9ZxbZ1vjKekDsw1ioBgOb9eSv7uOKXDZjdF2Jfk0WPfTEtGbz8ezsyKT6DQ4If762JY@vger.kernel.org, AJvYcCW7fsfGnGQQgSAZFkXVp2TDaXr9TwhYMNeADKSwfTEZRGFJLjgcLK8P44tyGdx07ZoxndBRrxyXHwc+EyktwjWRLdA=@vger.kernel.org, AJvYcCXSRYGlDIp4AAsWcCSCZx2GDeuMLgXu2Y9afgNoxy+0y+4KRpeQ8XYLQphR7cGaU+gh62/oGimMcwBLtw==@vger.kernel.org, AJvYcCXVCDFqYytI5UfkVEo+wt/FD5WiWOu9hzYmUQthQ12Kbml1+yOiCYCMZDjJ5lYkMdQY9wanHbMHUFLM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvZ7TlYOvfmtQgewIWCp7KwaSsMjZrQdoaFkPrK2WKW0ZX6PgP
-	SuGqcJvmRBFNWTWMFd5QyGsBU3Q+5xcV61npbPmxrIOgdonPMPfg4jnveR0KzXU=
-X-Gm-Gg: ASbGnctHyCJpF6QX+buY9sTPxHAonZuI97/C67XhB5G+bz7TjRubqhD7yHupIc028F8
-	zaFdijxt/bg3/hasY9RQTZ75UhDZmVALf3unJH5i5PymtHFgZeP0+DEfsUwTeKc0Aq7v0m9mx9N
-	IZa46G3DuFapKVOWT3kvc1b4UkWp9z46qbnKSxxaOAhJRI4yTURbN7TMw94K/nTudsjqS1VdaOJ
-	x5ymfqeQxR721Pq6keytizVXFXK6EemTGdkgL+xwjg+19vgCq8Ad+AmCmHKHJar3OdTZx3DC/Ih
-	H4Rxpqo98XBA
-X-Google-Smtp-Source: AGHT+IGkZWJBKkd8l8W7VhyqTj7gaLve/Og/ZMN0kRbJEDNTdFOfszLfAEWwG+Kbon+YkNGNUELg6g==
-X-Received: by 2002:a05:6122:2a12:b0:518:7eec:be7a with SMTP id 71dfb90a1353d-5188834b027mr631080e0c.5.1733751002301;
-        Mon, 09 Dec 2024 05:30:02 -0800 (PST)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-51606dc43efsm557997e0c.32.2024.12.09.05.30.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 05:30:01 -0800 (PST)
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4aff3f30d9aso406979137.1;
-        Mon, 09 Dec 2024 05:30:01 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVMZvMBn2bzpCgM3TzGY+CVpjx1dCCh4tonItBCPKgnxBupMBTCQeb1+YDDMDrP71ta/jMxdfkeMi6wATk=@vger.kernel.org, AJvYcCVNz8MR/mtCpGAIGke8D9Q5QTLrdy3jxU7cUywf/HlNZOcp1qeAzvPgxI6ltWj/4JA90fEUbRJO9swr@vger.kernel.org, AJvYcCVqJs/rPWQeiC8Oz4QGxNRZIAFvvvSXVAln+WVXQ7F92wMjxnCeMqkYNLhm7d+asZbM5z9E7Uv4UjRAsdyp@vger.kernel.org, AJvYcCVrzU7IkPoIHGmz6aS9lIuMgHviyPDt7M7JH4GZRQNsH/a9V031obsSehs0nN2hGPQWdsOn2aNNTtN1tiPejTY9PTU=@vger.kernel.org, AJvYcCX3cWx3FArGN/tiVPeFYO9RVuoxE8+WSDWmXzdCiDIWGw3oLT3oXoEXI3BVIueHgM8t7ZOvwLGejz9T@vger.kernel.org, AJvYcCXLNFufAQ6lVvBwgE3yM93+RH4EGlH+z1vD+zovaKchrfL6qyLUw3GIjXMXRAezJ4rm0EYPUOH4tVc9Uw==@vger.kernel.org
-X-Received: by 2002:a05:6102:38ca:b0:4af:fa1b:d8f9 with SMTP id
- ada2fe7eead31-4b11604bf5bmr578413137.7.1733751001320; Mon, 09 Dec 2024
- 05:30:01 -0800 (PST)
+	s=arc-20240116; t=1733751114; c=relaxed/simple;
+	bh=El/wr9Ta3ApQw+PvEw7H3w6sJeAN0lSE1EQ+VbMkzqc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XEqqPxnj/QJJdRtyE+Ht2o6+/5s2c8l9pxuwTaFtLobIm6RGTcCeYsgY99gCtYxhDM9/LlLGc4WEiSDIaY9JpSp6eHmo3HyHTaoqAMXrmTS1HQbWL39QP7b+GqbP3UA0cKyw3su/23dXxCV9LzQXfkkMfP8WYQ4zCOPN2futU3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=waLb87vr; arc=none smtp.client-ip=17.58.6.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
+	s=1a1hai; t=1733751111;
+	bh=tUv/yFFQ6zZdPdRgc4vW/Me53Bsusj+0dw280df3j9I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:
+	 x-icloud-hme;
+	b=waLb87vrYBWTOA7QhavjaZBhJ6KykKoDkVygv1FZwPztRi8fV0uyItDRUloCgOTJ1
+	 4OUrP3TjaPcgYCgSLDHboTA0TpS9gogTKNNrPlIPxMisWGsyhqC+67Afj/uTCNkHB9
+	 dxpmgEFvQassyZCBCd0CNcqyz506a1B1m7AW5lV7OgomAoSgHNkToymwRphpW4Z/uU
+	 WiYnl2rJKEMvLnpzB/5EHb4fo+VTrNnHP2Un7HO/RzNGQ8+P8H3BB0030lZNzhj96K
+	 NUp+4sjOTx/uhsAihbsLcbPazxKQmSjJjX/0YuhMjbPBwNhyZTo2fQGghEmkwdnzn8
+	 jAJ1rNO2gkN3Q==
+Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
+	by pv50p00im-ztdg10021801.me.com (Postfix) with ESMTPSA id 5BC912010195;
+	Mon,  9 Dec 2024 13:31:44 +0000 (UTC)
+Message-ID: <8e96f2d7-8ad1-47c9-ba12-49761edb8600@icloud.com>
+Date: Mon, 9 Dec 2024 21:31:37 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com> <20241113133540.2005850-12-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241113133540.2005850-12-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 9 Dec 2024 14:29:49 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWqsSPduGA+3OS7T5jm6dHUPKpmGFSH4aVy1MhjNpQMrQ@mail.gmail.com>
-Message-ID: <CAMuHMdWqsSPduGA+3OS7T5jm6dHUPKpmGFSH4aVy1MhjNpQMrQ@mail.gmail.com>
-Subject: Re: [PATCH v3 11/25] ASoC: renesas: rz-ssi: Remove the first argument
- of rz_ssi_stream_is_play()
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com, 
-	broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org, 
-	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/10] of: Fix alias name length calculating error in API
+ of_find_node_opts_by_path()
+To: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>,
+ Leif Lindholm <leif.lindholm@linaro.org>,
+ Stephen Boyd <stephen.boyd@linaro.org>, Maxime Ripard <mripard@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Grant Likely
+ <grant.likely@secretlab.ca>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>,
+ stable@vger.kernel.org
+References: <20241206-of_core_fix-v1-0-dc28ed56bec3@quicinc.com>
+ <20241206-of_core_fix-v1-1-dc28ed56bec3@quicinc.com>
+ <CAL_JsqK1gsVeCG29RzWMFycbASAGAsds34Utuoq+Egw3-Afi7g@mail.gmail.com>
+Content-Language: en-US
+From: Zijun Hu <zijun_hu@icloud.com>
+In-Reply-To: <CAL_JsqK1gsVeCG29RzWMFycbASAGAsds34Utuoq+Egw3-Afi7g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: Ffe_gFMUaHt6leimceiHP24n7MdknpME
+X-Proofpoint-GUID: Ffe_gFMUaHt6leimceiHP24n7MdknpME
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2024-12-09_10,2024-12-09_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 clxscore=1015 bulkscore=0 adultscore=0
+ mlxscore=0 malwarescore=0 mlxlogscore=999 suspectscore=0 phishscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2412090106
 
-On Wed, Nov 13, 2024 at 2:36=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> The first argument of the rz_ssi_stream_is_play() is not used. Remove it.
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 2024/12/9 21:24, Rob Herring wrote:
+> On Thu, Dec 5, 2024 at 6:53 PM Zijun Hu <zijun_hu@icloud.com> wrote:
+>>
+>> From: Zijun Hu <quic_zijuhu@quicinc.com>
+>>
+>> Alias name length calculated by of_find_node_opts_by_path() is wrong as
+>> explained below:
+>>
+>> Take "alias/serial@llc500:115200n8" as its @patch argument for an example
+>>       ^    ^             ^
+>>       0    5             19
+>>
+>> The right length of alias 'alias' is 5, but the API results in 19 which is
+>> obvious wrong.
+>>
+>> The wrong length will cause finding device node failure for such paths.
+>> Fix by using index of either '/' or ':' as the length who comes earlier.
+> 
+> Can you add a test case in the unittest for this.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+sure. let me try to do it.
 
-Gr{oetje,eeting}s,
+> 
+>>
+>> Fixes: 106937e8ccdc ("of: fix handling of '/' in options for of_find_node_by_path()")
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+>> ---
+>>  drivers/of/base.c | 6 +++---
+>>  1 file changed, 3 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/of/base.c b/drivers/of/base.c
+>> index 7dc394255a0a14cd1aed02ec79c2f787a222b44c..9a9313183d1f1b61918fe7e6fa80c2726b099a1c 100644
+>> --- a/drivers/of/base.c
+>> +++ b/drivers/of/base.c
+>> @@ -893,10 +893,10 @@ struct device_node *of_find_node_opts_by_path(const char *path, const char **opt
+>>         /* The path could begin with an alias */
+>>         if (*path != '/') {
+>>                 int len;
+>> -               const char *p = separator;
+>> +               const char *p = strchrnul(path, '/');
+>>
+>> -               if (!p)
+>> -                       p = strchrnul(path, '/');
+>> +               if (separator && separator < p)
+>> +                       p = separator;
+>>                 len = p - path;
+>>
+>>                 /* of_aliases must not be NULL */
+>>
+>> --
+>> 2.34.1
+>>
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
