@@ -1,77 +1,59 @@
-Return-Path: <devicetree+bounces-128452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB1DA9E8C2D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:31:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48B639E8D01
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:04:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D777F188611B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 07:31:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DA771881D70
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:04:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CEE52147EF;
-	Mon,  9 Dec 2024 07:31:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EDD1215162;
+	Mon,  9 Dec 2024 08:04:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="N97k7Cry"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="Hfayqua+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.17])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34E5E5FEE6;
-	Mon,  9 Dec 2024 07:31:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.17
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77B0215188;
+	Mon,  9 Dec 2024 08:04:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733729484; cv=none; b=RPyexid2FLYiaRiytix0Me9MgC+jCwnU7A7gmkcZTZfEC7rl7ryPWdvtMFHCgeiWvE6tmeDwDGWW+ST7+pm0t0RtzWAP+aBq6n1U5QkvT2uH1jKPEZz3lU/BPvDmJY6fycr7g7Se16cZ/uB3Nl27daEnFnfUOPiY7udPF96bRl8=
+	t=1733731481; cv=none; b=TFGd42qfVmGhe/1YJwbFXVElqU972JZN/IDx34qYoy6aGkJyLWbi9gtRBJz+tCSFpha7yxLbrfibuXWrEq6fWdFw5EgCfWqOwn3jc5KjMsPwdAAyJ+L3Z0MJ+CMplYNSr4Fn1ZwA0V0HwNVvLge1TPK9n5frHlx5+OSPD6Ohc/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733729484; c=relaxed/simple;
-	bh=JlVF6x0+d/bzmlLoYVXR8KZAC5ObMonJdxOXrS/bSkU=;
+	s=arc-20240116; t=1733731481; c=relaxed/simple;
+	bh=/7H40Njj3gf7vZrVb7miUhyDm6kTIHd1JIEUnPm70+g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OstwKuyP2MEiQ+m0jwkrbDN7WBjeeo4qe7t1qZMc5dVqfwbLHew3ZtBOC2wYFaSjdVEqihQuSKaKH41CFEl1gLSQ8PuDTe3j6Dg90H7oT7BV9AcImlO9EEPa3iKBphgt0ic/hpHXKd7wbU/oNE9eJ5Nb0RyCwCM5d6Bo9YPV4fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=N97k7Cry; arc=none smtp.client-ip=1.95.21.17
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vhw+Mf0vEgk2Ifq3BoYGGsxD6wLmR5RuyV+Um2R8QIqhCIZFOogLqEaCkQlgy6TYGPjw4jZMh+i58lRmgI9URkPlADRFrMP1Wifej3Av2nwduom9A2ILxQ6rrjpkrd9J5XG756kcD/bhwvgfMYuphpYabpcs/X3lecl5G38oFFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=Hfayqua+; arc=none smtp.client-ip=1.95.21.14
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
 	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=/kuYzy4TvOvrW5Ysb7raR4QcHn1lxSFVuvD5F5LoL8s=;
-	b=N97k7CryICfX9jh86hJTeBgEADIbl2Lo29RYU94PkaJvrZv89euFfIkA+t8m7E
-	4sFUhL9EKlkhDetYq+lXjqDHhehecPNcCMscua1nbfV9cUrYp0s75prWk5006qpI
-	EuKiOPQXYyTPxhfdREhNVONR9ejRz9VYvu3+9sJopUgX4=
+	Content-Type; bh=DFeocjNOUdIRJAXa/Rnba2ub2M7xywjcZC0gF4rAoMk=;
+	b=Hfayqua+CSqQlibYs6L8LzVaOkTNskyTk/hsL30DQNAY+UdzhKUb6IA9KyfpaV
+	YrOXfh6CNUcVk6Kd9nM7/eMj9INb1NO0QoObb/JG8m248rS5u9vHcgW0VT7uZu75
+	JPl3/pU5w0RFqF8w7O19h1wefCwXuC/0l/udP2qdJnIkM=
 Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgCHe+ZOnFZnMep5BA--.46497S3;
-	Mon, 09 Dec 2024 15:29:20 +0800 (CST)
-Date: Mon, 9 Dec 2024 15:29:18 +0800
+	by gzsmtp3 (Coremail) with SMTP id M88vCgAnpl1CnVZnpINvBA--.46282S3;
+	Mon, 09 Dec 2024 15:33:24 +0800 (CST)
+Date: Mon, 9 Dec 2024 15:33:22 +0800
 From: Shawn Guo <shawnguo2@yeah.net>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	Shawn Guo <shawnguo@kernel.org>,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Shengjiu Wang <shengjiu.wang@gmail.com>,
-	Xiubo Li <Xiubo.Lee@gmail.com>,
-	Nicolin Chen <nicoleotsuka@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Adrien Grassein <adrien.grassein@gmail.com>,
-	Adam Ford <aford173@gmail.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev, linux-renesas-soc@vger.kernel.org,
-	linux-rockchip@lists.infradead.org, linux-mips@vger.kernel.org,
-	alsa-devel@alsa-project.org, linuxppc-dev@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH treewide 04/11] arm64: dts: freescale: imx: Switch to
- simple-audio-card,hp-det-gpios
-Message-ID: <Z1acTq/JV/JTHllY@dragon>
-References: <cover.1727438777.git.geert+renesas@glider.be>
- <b38545c29d6cbf0b394ddb4747ce810c679f95d1.1727438777.git.geert+renesas@glider.be>
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mq-zii-ultra: remove #address-cells
+ of eeprom@a4
+Message-ID: <Z1adQsiNfYMuVgp+@dragon>
+References: <20241018183117.740439-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,17 +62,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b38545c29d6cbf0b394ddb4747ce810c679f95d1.1727438777.git.geert+renesas@glider.be>
-X-CM-TRANSID:Mc8vCgCHe+ZOnFZnMep5BA--.46497S3
+In-Reply-To: <20241018183117.740439-1-Frank.Li@nxp.com>
+X-CM-TRANSID:M88vCgAnpl1CnVZnpINvBA--.46282S3
 X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUodgAUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiERiwZWdWZpHlSgAAs1
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxU4Xo2UUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRWwZWdWeNqafwAAs-
 
-On Fri, Sep 27, 2024 at 02:42:19PM +0200, Geert Uytterhoeven wrote:
-> Replace the deprecated "simple-audio-card,hp-det-gpio" property by
-> "simple-audio-card,hp-det-gpios" in Simple Audio Card device nodes.
+On Fri, Oct 18, 2024 at 02:31:16PM -0400, Frank Li wrote:
+> Remove #address-cells and #size-cells of eeprom@a4 because no children
+> nodes under eeprom@a4.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
 Applied, thanks!
 
