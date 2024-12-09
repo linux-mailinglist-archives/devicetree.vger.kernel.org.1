@@ -1,87 +1,150 @@
-Return-Path: <devicetree+bounces-128957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01A1C9EA12C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 22:22:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A31A89EA151
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 22:40:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A06E52811FB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 21:22:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3154228296C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 21:40:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EA41199E84;
-	Mon,  9 Dec 2024 21:22:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA24019CC20;
+	Mon,  9 Dec 2024 21:40:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tyL2iuMA"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ZMcQewpj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B56249652;
-	Mon,  9 Dec 2024 21:22:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F73846B8;
+	Mon,  9 Dec 2024 21:40:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733779361; cv=none; b=f5xWlfWtbF70cBS4tUPba0+/zLdXW3t3jsA8laLOVImLCAD1QmKQxZSiusKSrgIaqA6kywaoJiKUy57fdJ2cjS42Oti+EsCDn2kkb+M3ncCVSjYrEqatQrGWiJADvS0oeplIiouHXNm2iTuB9L5ri4gcYjpZO3veBae2lRjfMV8=
+	t=1733780455; cv=none; b=JkH2/tGWqhAU9N7341uPbDsw0ZR0OjIyZtWaP6x0vsA+J3nuCyNxOtfffaJBVwCwYHkRI3ghb+qfr4jqdI5H1cYXhqCGbmTVXcvAYoTOF7UDdBvCtXOGGNx/+fLZaDMbsG7u8qTBBKXvOkuFwDkMCnDeJK62YJ2Z/ardl3E/KWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733779361; c=relaxed/simple;
-	bh=90Wzf2BnALaciJfqUCZ7IRuSh5rcnWkqt3oeGVrhBSw=;
+	s=arc-20240116; t=1733780455; c=relaxed/simple;
+	bh=I7z53oMSPeKw57tcADR/kJ8mn9kitYJg4MblUErnws0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lmV6K+bwJyMCvT9amse25ameJlZXng/bwLwT/so3sqF53hKJ1IPvGOH3f//ndg9pxH1pH5HJsWNda7dQXovc0oeUAicBNPVZ0+ugRdjR3XYFejm7ek6N4lBCamrXa+TewYQ1yK9nRJ/ECiE7WOVZJJR6rZfyFW4mmHsYgYd9/+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tyL2iuMA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A728CC4CED1;
-	Mon,  9 Dec 2024 21:22:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733779360;
-	bh=90Wzf2BnALaciJfqUCZ7IRuSh5rcnWkqt3oeGVrhBSw=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=f5wsQD72acdykCsoXvTDMSWTCTvyDmJfSJW+p1fEdkWhx6+A15QRoFxdQqYGC1Kb1Hi/ncIW9YGxi/bswm0MnCb6hHwzMU9bYkQHJbor7ukFY2jFU+IlxY9B6T2+Y3VPZ3CIZ/xW/ocnPzog85mnQz7pudgGW9YEHEjRsxd+2aE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ZMcQewpj; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4C47C502;
+	Mon,  9 Dec 2024 22:40:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1733780418;
+	bh=I7z53oMSPeKw57tcADR/kJ8mn9kitYJg4MblUErnws0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tyL2iuMAtJTI9uVas9+prE56V1/izvjQ1oshD7XQGsVR8UXURxuN1jRSdsES8hAXL
-	 Zj1RqcA+rs3xREWK4Q5YnmF38wakQvxwj8RJQN4PP4SmBviUqPZp+osi6zfkVIx0vE
-	 FTGU37C3MvECg3b2W3i7wb5x3fK97UyrHmQ1Ez1XLdqg6OfRhDDTojvcJsaR8onCq4
-	 d9Ift5CgBnjZZrWrwILMcC/biLZpcFkQtmS6MtIrAOoHFehUY9/KFvACiDbXScJAC8
-	 3/snmbjWPstWoQnpuduC8R2NNvd4lEMtTNOIyDc2xUMU2t1tJdIEpEzvJGZtLGi74Q
-	 ZMmdRykaqyDQw==
-Date: Mon, 9 Dec 2024 15:22:38 -0600
-From: Rob Herring <robh@kernel.org>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
-	chrisi.schrefl@gmail.com, rust-for-linux@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 11/13] rust: of: add `of::DeviceId` abstraction
-Message-ID: <20241209212238.GE938291-robh@kernel.org>
-References: <20241205141533.111830-1-dakr@kernel.org>
- <20241205141533.111830-12-dakr@kernel.org>
+	b=ZMcQewpjew4EGWseaDIabpzeFj3eQ8ky1BYh35ijVN8a9ywaYOzOLW5aJ8B4+zDRM
+	 CsKSUr7uDb5euSsYbjhqp/7Rj4h/tyLzoHrsMuf+tctX+WWcqSOxIMPAA1WbS1D+N/
+	 NOkXtCxPoJGby5mN8LSjJ3IQ8Mh0uJFrLIZO6qNE=
+Date: Mon, 9 Dec 2024 23:40:35 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Subject: Re: [PATCH v3 05/10] clk: renesas: r8a779h0: Add display clocks
+Message-ID: <20241209214035.GB26531@pendragon.ideasonboard.com>
+References: <20241206-rcar-gh-dsi-v3-0-d74c2166fa15@ideasonboard.com>
+ <20241206-rcar-gh-dsi-v3-5-d74c2166fa15@ideasonboard.com>
+ <CAMuHMdU+PPeCNb5y75A1YTf1EvvCQEgD1t-=6C_YyK0gDK3R8A@mail.gmail.com>
+ <b0fffc87-a72e-4041-b3f6-7f2a4987916e@ideasonboard.com>
+ <CAMuHMdUmAbnbJ-UouN+dnodVg7+Lw47to-O4rTAcDanQ=NCGpg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241205141533.111830-12-dakr@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdUmAbnbJ-UouN+dnodVg7+Lw47to-O4rTAcDanQ=NCGpg@mail.gmail.com>
 
-On Thu, Dec 05, 2024 at 03:14:42PM +0100, Danilo Krummrich wrote:
-> `of::DeviceId` is an abstraction around `struct of_device_id`.
+On Mon, Dec 09, 2024 at 08:49:18AM +0100, Geert Uytterhoeven wrote:
+> On Mon, Dec 9, 2024 at 6:26 AM Tomi Valkeinen wrote:
+> > On 06/12/2024 15:43, Geert Uytterhoeven wrote:
+> > > On Fri, Dec 6, 2024 at 10:33 AM Tomi Valkeinen wrote:
+> > >> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> > >>
+> > >> Add display related clocks for DU, DSI, FCPVD, and VSPD.
+> > >>
+> > >> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> > >> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > >> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > >
+> > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > i.e. will queue in renesas-clk for v6.14.
+> > >
+> > >> --- a/drivers/clk/renesas/r8a779h0-cpg-mssr.c
+> > >> +++ b/drivers/clk/renesas/r8a779h0-cpg-mssr.c
+> > >> @@ -179,6 +179,9 @@ static const struct mssr_mod_clk r8a779h0_mod_clks[] __initconst = {
+> > >>          DEF_MOD("canfd0",       328,    R8A779H0_CLK_SASYNCPERD2),
+> > >>          DEF_MOD("csi40",        331,    R8A779H0_CLK_CSI),
+> > >>          DEF_MOD("csi41",        400,    R8A779H0_CLK_CSI),
+> > >> +       DEF_MOD("dis0",         411,    R8A779H0_CLK_S0D3),
+> > >> +       DEF_MOD("dsitxlink0",   415,    R8A779H0_CLK_DSIREF),
+> > >> +       DEF_MOD("fcpvd0",       508,    R8A779H0_CLK_S0D3),
+> > >>          DEF_MOD("hscif0",       514,    R8A779H0_CLK_SASYNCPERD1),
+> > >>          DEF_MOD("hscif1",       515,    R8A779H0_CLK_SASYNCPERD1),
+> > >>          DEF_MOD("hscif2",       516,    R8A779H0_CLK_SASYNCPERD1),
+> > >> @@ -227,6 +230,7 @@ static const struct mssr_mod_clk r8a779h0_mod_clks[] __initconst = {
+> > >>          DEF_MOD("vin15",        811,    R8A779H0_CLK_S0D4_VIO),
+> > >>          DEF_MOD("vin16",        812,    R8A779H0_CLK_S0D4_VIO),
+> > >>          DEF_MOD("vin17",        813,    R8A779H0_CLK_S0D4_VIO),
+> > >> +       DEF_MOD("vspd0",        830,    R8A779H0_CLK_S0D1_VIO),
+> > >>          DEF_MOD("wdt1:wdt0",    907,    R8A779H0_CLK_R),
+> > >>          DEF_MOD("cmt0",         910,    R8A779H0_CLK_R),
+> > >>          DEF_MOD("cmt1",         911,    R8A779H0_CLK_R),
+> > >
+> > > As mentioned by Laurent during his review on v1, all clock parents
+> > > should probably be some form of R8A779H0_CLK_S0Dx_VIO.
+> > > So I'm inclined to replace all of them by R8A779H0_CLK_VIOBUSD2 while
+> > > applying, which would match R-Car V4H.
+> >
+> > What do you mean with the above? First you say the clock parents should
+> > be some form of S0Dx_VIO, but then you say you'll use VIOBUSD2. Aren't
+> > those unrelated clocks, from different PLLs?
 > 
-> This is used by subsequent patches, in particular the platform bus
-> abstractions, to create OF device ID tables.
+> Oops, copy-'n-paste went wrong. I did mean R8A779H0_VIOBUSD*.
 > 
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> ---
->  MAINTAINERS        |  1 +
->  rust/kernel/lib.rs |  1 +
->  rust/kernel/of.rs  | 57 ++++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 59 insertions(+)
->  create mode 100644 rust/kernel/of.rs
+> > > Are you OK with that?
+> >
+> > I'm fine with that. I can't really get much out of the docs wrt.
+> > clocking, and the clocks I used were from the BSP. Afaics, it looks
+> > similar to V4H, so it's probably best have the same clocks, as you suggest.
+> 
+> Agreed.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Works for me too.
+
+-- 
+Regards,
+
+Laurent Pinchart
 
