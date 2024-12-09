@@ -1,185 +1,152 @@
-Return-Path: <devicetree+bounces-128893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23D229E9B78
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 17:22:09 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A0CA9E9BA7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 17:29:51 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5C72165677
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:22:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 063F428161E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 16:29:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D2DA13B58F;
-	Mon,  9 Dec 2024 16:22:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EC9F145B1B;
+	Mon,  9 Dec 2024 16:29:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="tea2egOu"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="jyXFHdpX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7773D13C695
-	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 16:22:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5742143C72;
+	Mon,  9 Dec 2024 16:29:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733761324; cv=none; b=OYPHzo3LCUqC4PEElvvM4/t8AO3gnDgyO9s9ygChcuhWQRe9hfTzV8aIO2V1BAs4hDQHQ3alE8ll7PMA557JpUjiHAM4qksg2BTMw+caKxzg+f/Bd4YypOnz973/Zo4cHAPOhCEDH6ackrRedjrj+qmL36KH2A9VRSpgNSZ7XYA=
+	t=1733761785; cv=none; b=kyR75Fs6sUk1tlZ+N/EmrY4lIgub6SBzWHU/Hov9F+j4aM8s5z09fn25U8rFB0JfTVAVOXXzunKi6QdSztFHCedEtOtpT9nxyN97XVoodnGMPRH/zhj6HoaECQwUq6CJ05YLf/dUDcJVXUxUsXUD+BRyyp1AJUVuooQC5jAzkYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733761324; c=relaxed/simple;
-	bh=X8ey/UIjvzOxRvMp37JXKaQx6i87QRQFmAF77F9r58A=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=OFfrAKQqnYnCDvOR20nUAp744CXiwrxYQmQAOwet19/ZWZiSaxCtUoUb/v9GLP62DIEtr4MX8ef7k8U5D/4WSIAdafyhN/ptGpR8dQ0M5YYMpMvj42yuYx+tXSFBM5efWbcAXLhPp1OuHqVfEV+pY/QVcMZroOpPWYn+F/Sxm04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=tea2egOu; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1733761785; c=relaxed/simple;
+	bh=hKEaeoK3n0J0N+4rTttPEgAYCOirq6k51p+EhD8tcFM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cQe6NGCuMwcN8tK8nmyc60mLqK2UMCXCRQnkWoBroJ1vJKmelhDiX/4iR0BEo6j8O6TjMTjGb4EnysBwNyFJ61jEHVUhvIu7RpYM9lnkLJj4xny14aRMlk2jyxX49pTu1BS+WrbY3ZwE4j0RmjN+jfx58m1qeUzaUkJI6B13LRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=jyXFHdpX; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B9Dk78Y030060;
+	Mon, 9 Dec 2024 17:29:25 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	2xxd9CctnglpS/bsG969EigGTjV63sf0SfJfYKNJ5iA=; b=jyXFHdpXnRIz9ela
+	xCGd6zoUUHUlh9IGm+qSgM1lGwOD4FTBP3Fu4kjMyUYDvwuULVGA7k24qEgqzbFg
+	YwTmpb3ed/xBoBWjRzggG4KLs/6ohRnto954BAlELElqS97MIGG1czrLS5atULp5
+	l0B2+JABQg0tDF+WmiFJi/2Q7sRV2zTE/rpk3it43sLAzMW7wwtKS+K5oS7P2q6C
+	Ly3p3DwCpn0Gy+D0xgPNSz+uLthLYsgczK1AgduUUojr2Tcn4OU4Xjgj6ZiOEggr
+	k1h+LH3vSHyHaDszebc5H3Bp36e9a4qGdkC/41H5fx3urTD0wp3aX1Fc5s8V4LGb
+	WVQa+A==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 43d26n69ug-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Dec 2024 17:29:25 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 3BB7640044;
+	Mon,  9 Dec 2024 17:28:16 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D87CE2945B3;
+	Mon,  9 Dec 2024 17:24:06 +0100 (CET)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 9 Dec
+ 2024 17:24:06 +0100
+Message-ID: <6bbb3044-4c1f-4ff1-a503-ef8392e023ae@foss.st.com>
+Date: Mon, 9 Dec 2024 17:24:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1733761319;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TNu30NMcXpHXQeKZCe45rgGouT76yWzLuEVZhUqrCBo=;
-	b=tea2egOuca8a6xvcOAiUvV8A/iJyDV/OGrvxPVqHctBTofq6XbX9haevYAls6D4Vsz9xse
-	C33EeQCckkYu+Iex1tmslZDnxgU3aDRxv7EaFvO2GPkv2iYywvIatrdU9gjUnjl4CK2e3M
-	lnjCO7Tr67t2npurOlYuvzrDARI2OQ1/blU9qGwlNnPipXtnWy1n1lankdY5JY4gpczby7
-	6+F3q5majfHjZvvyOFmDZIeoslNYSFtdumi9ZWkBDvGHLhzHfWy3FJjaZ/d5ke3hJ+trHY
-	TojDmmVd8y7oCfQ6/2iVFPOTIz4b9pxtN5gFkb+cbp5Gh6z/UJQQBWQOFm3Nyw==
-Date: Mon, 09 Dec 2024 17:21:59 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, sebastian.reichel@collabora.com,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: convert blue LED to "pwd-leds" for
- Radxa ROCK 5A/5C
-In-Reply-To: <20241209134158.4811-1-naoki@radxa.com>
-References: <20241209134158.4811-1-naoki@radxa.com>
-Message-ID: <aa66361152338edcf6bc2709f5120684@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 0/5] Add STM32MP25 USB3/PCIE COMBOPHY driver
+To: Christian Bruel <christian.bruel@foss.st.com>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
+        <p.zabel@pengutronix.de>
+CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <fabrice.gasnier@foss.st.com>
+References: <20240930170847.948779-1-christian.bruel@foss.st.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20240930170847.948779-1-christian.bruel@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Hello Fukaumi,
+Hi Christian
 
-On 2024-12-09 14:41, FUKAUMI Naoki wrote:
-> convert blue(heartbeat) LED from "gpio-leds" to "pwm-leds". user can
-> change brightness.
-
-Please, start all sentences with uppercase letters, because when
-there are periods (i.e. the '.' characters), there should also be
-matching starting uppercase letters.  As we know, that basically
-defines the primary syntax of a sentence in English.
-
-I'm sorry if I'm stating the obvious, but this patch description
-simply doesn't read well.
-
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-
-I haven't checked the entire patch in detail, but as the blue LED
-(a.k.a. the IO_LED) on the ROCK 5A and 5C is powered by a SoC pin
-capable of generating PWM output, according to the board schematics
-that I checked, making it possible to adjust the LED brightness
-makes sense to me, and describes the hardware a bit better.
-
-Thus, please feel free to include my:
-
-Acked-by: Dragan Simic <dsimic@manjaro.org>
-
-... and please send a v2 with the patch description improved as
-already suggested above.  That suggestion also applies to pretty
-much all other patches that you sent recently.
-
-> ---
-> this patch depends on [1] which depends on [2].
+On 9/30/24 19:08, Christian Bruel wrote:
+> Changes in v9:
+>     - Fix bot clang warnings: uninitialized variables and
+>       include bitfield.h for FIELD_GET
 > 
-> [1] 
-> https://patchwork.kernel.org/project/linux-rockchip/cover/20241209132406.4232-1-naoki@radxa.com/
-> [2] 
-> https://patchwork.kernel.org/project/linux-rockchip/cover/20241209125131.4101-1-naoki@radxa.com/
-> ---
->  .../boot/dts/rockchip/rk3588s-rock-5.dtsi     | 34 ++++++++++++-------
->  1 file changed, 22 insertions(+), 12 deletions(-)
+> Changes in v7/v8:
+>     - MAINTAINERS: Reorder STM32MP25 DRIVER entry
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
-> index d0b9513d56a7..d72314d917da 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
-> @@ -46,7 +46,7 @@ hdmi0_con_in: endpoint {
->  	leds {
->  		compatible = "gpio-leds";
->  		pinctrl-names = "default";
-> -		pinctrl-0 = <&led_pins>;
-> +		pinctrl-0 = <&led_pin>;
+> Changes in v6:
+>     - stm32_combophy_pll_init: merge combophy_cr1 accesses and error path.
+>     - Use devm_reset_control_get_exclusive
 > 
->  		led-0 {
->  			color = <LED_COLOR_ID_GREEN>;
-> @@ -54,14 +54,6 @@ led-0 {
->  			function = LED_FUNCTION_POWER;
->  			gpios = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
->  		};
-> -
-> -		led-1 {
-> -			color = <LED_COLOR_ID_BLUE>;
-> -			default-state = "on";
-> -			function = LED_FUNCTION_STATUS;
-> -			gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
-> -			linux,default-trigger = "heartbeat";
-> -		};
->  	};
+> Changes in v5:
+>     - Drop syscfg phandle and change driver to use lookup_by_compatible
+>     - Use clk_bulk API and drop stm32_combophy_enable/disable_clocks
+>     - Reorder required: list.
+>     - Fix access-controllers maxItems
 > 
->  	fan: pwm-fan {
-> @@ -72,6 +64,19 @@ fan: pwm-fan {
->  		pwms = <&pwm3 0 60000 0>;
->  	};
+> Changes in v4:
+>     - "#phy-cells": Drop type item description since it is specified
+>       by user node phandle.
+>     - Rename stm32-combophy.yaml to match compatible
+>     - Drop wakeup-source from bindings (should be generic)
+>     - Alphabetically reorder required: list.
+>     - Drop "Reviewed-by" since those previous changes
 > 
-> +	pwm-leds {
-> +		compatible = "pwm-leds";
-> +
-> +		led-1 {
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			default-state = "on";
-> +			function = LED_FUNCTION_STATUS;
-> +			linux,default-trigger = "heartbeat";
-> +			pwms = <&pwm11 0 1000000 0>;
-> +			max-brightness = <255>;
-> +		};
-> +	};
-> +
->  	vbus_typec: regulator-vbus-typec {
->  		compatible = "regulator-fixed";
->  		regulator-name = "vbus_typec";
-> @@ -422,9 +427,8 @@ &pcie2x1l2 {
+> Changes in v3:
+>     - Reorder MAINTAINERS patch
 > 
->  &pinctrl {
->  	leds {
-> -		led_pins: led-pins {
-> -			rockchip,pins = <3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>,
-> -					<3 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		led_pin: led-pin {
-> +			rockchip,pins = <3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
->  		};
->  	};
+> Changes in v2:
+>     - Reorder entries
+>     - Rename clock_names and reset_names bindings
+>     - Rename and clarify rx-equalizer binding
 > 
-> @@ -467,6 +471,12 @@ &pwm3 {
->  	status = "okay";
->  };
+> Christian Bruel (5):
+>    dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
+>    phy: stm32: Add support for STM32MP25 COMBOPHY.
+>    MAINTAINERS: add entry for ST STM32MP25 COMBOPHY driver
+>    arm64: dts: st: Add combophy node on stm32mp251
+>    arm64: dts: st: Enable COMBOPHY on the stm32mp257f-ev1 board
 > 
-> +&pwm11 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pwm11m3_pins>;
-> +	status = "okay";
-> +};
-> +
->  &saradc {
->  	vref-supply = <&vcca_1v8_s0>;
->  	status = "okay";
+>   .../bindings/phy/st,stm32mp25-combophy.yaml   | 119 ++++
+>   MAINTAINERS                                   |   6 +
+>   arch/arm64/boot/dts/st/stm32mp251.dtsi        |  16 +
+>   arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  14 +
+>   drivers/phy/st/Kconfig                        |  11 +
+>   drivers/phy/st/Makefile                       |   1 +
+>   drivers/phy/st/phy-stm32-combophy.c           | 598 ++++++++++++++++++
+>   7 files changed, 765 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/phy/st,stm32mp25-combophy.yaml
+>   create mode 100644 drivers/phy/st/phy-stm32-combophy.c
+> 
+> 
+> base-commit: 9bd8e1ba97b1f2d0410db9ff182d677992084770
+
+DT patches ([4] & [5]) applied on stm32-next.
+
+Thanks
+Alex
 
