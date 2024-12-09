@@ -1,129 +1,126 @@
-Return-Path: <devicetree+bounces-128771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 167189E9681
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:23:18 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 443D79E96BC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:28:10 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DE382839C6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:23:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E4081673C0
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:24:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F541ACEC7;
-	Mon,  9 Dec 2024 13:17:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCBE423312A;
+	Mon,  9 Dec 2024 13:20:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="OkT4p3Zm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UEFRLIzR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F65D233126;
-	Mon,  9 Dec 2024 13:17:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC9A233125;
+	Mon,  9 Dec 2024 13:20:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733750240; cv=none; b=FHP/bjEbS4K8nV9dcz3vmA/+Du4w8aBgxv9eQ7m2YFvBRWODYKcmIBiXHCNT1trqC6DW+20JzEe4qIqWQ8UT0OHG5AyMzGoSj5lDgSJQ1/is6xE5dTWl8ErwxTX+I2hNWPiSmWnTQhjcqZNMwTgSf9XRsAqsBBHxHX/pAdR7+cE=
+	t=1733750435; cv=none; b=OUGllHLhmMp5FakTHertBnpyQ32jII92KLx2+HX6JGAy13GTGhHHenGAXf/4FWevQzC/VY0By6uAfSJ3bj0q17hXtiHUP13avB5G/avXSMshZsaC+P7hmdhRI6GGQEb0sbZ5FJMGpg67YQ8jivEOGzl+nQkjUgymEub7WV0jKzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733750240; c=relaxed/simple;
-	bh=GKJhHjDf9U7/zbeK+J4EKmPqyRYVBJdPoU3fNhpiUDw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gjrr/v2+JzOSNx1v8rpHDj/stQFINPVidwEGMhpK/yQJXEjs2vrkowYb+oOv2hDIrFh/9ZUlBE4c1b9XwhpoZGjjDPTgaCELhQ1wYrhmi8WF01TjOT625+pI8rM0d21TEOmW4uihRpMPbM14mIvAdmnobybBmk583U0qBm5ijNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=OkT4p3Zm; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=a4aNZwKhoEpSgrOUmeaC/mbjjsWaCSSTRiNd1hwQtlU=; b=OkT4p3ZmfazAtxY0zHiUil2mce
-	bVgOGW3Vffzh6CC7+X7tYBmDKZUtgAe+eCURF78RtEdSR7Z8VSthtd0FD8nbpueHZ81igEFvz03nA
-	+EkK5DxQ/dqqboUdOC0U8Hr7PqvIlOm2PrszMDcalcyVHc2j9+OrR+NFqxWopql8xh+E=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tKddI-00FfZp-CA; Mon, 09 Dec 2024 14:17:04 +0100
-Date: Mon, 9 Dec 2024 14:17:04 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: dimitri.fedrau@liebherr.com
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Dimitri Fedrau <dima.fedrau@gmail.com>
-Subject: Re: [PATCH net-next 2/2] net: phy: dp83822: Add support for GPIO2
- clock output
-Message-ID: <bcef90db-ca9d-4c52-9dc5-2f59ae858824@lunn.ch>
-References: <20241209-dp83822-gpio2-clk-out-v1-0-fd3c8af59ff5@liebherr.com>
- <20241209-dp83822-gpio2-clk-out-v1-2-fd3c8af59ff5@liebherr.com>
+	s=arc-20240116; t=1733750435; c=relaxed/simple;
+	bh=XFMTEb8QfCMbI/gZoAO1uuLBFD648TeW70GHUbaw66c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QiQjRPjCmCCNLz0RaQqGIi79rYRyBbG69y8XMojX0sYOMQ5XigWeoxlyOchXGdseDXfnwcFEpE7bAzvyMpsYmoygxyAtpX38vi07pghZuoAtAEhH2M8XvaYtbdJriPsss0RuGXReH4AaUkBKy32Gp7j/qK/auJUhwC7pZBhF/CY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UEFRLIzR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F799C4CEE0;
+	Mon,  9 Dec 2024 13:20:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733750435;
+	bh=XFMTEb8QfCMbI/gZoAO1uuLBFD648TeW70GHUbaw66c=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=UEFRLIzRl31qUfwO97NjaRgLWxjbqTr12B+u6HFfN6FnVegjNmAnOhIGuQEVoxadL
+	 1JZMU+FFX5TW8J1FE/aDdtwGrJ9rLD6Sm1ytwPxz80wJ3XtWl8ix80V70zWF8+YZN5
+	 g5YkTLBEHvPd8SB00vMLhEeNdtaXDm7PZrFtOAH/h4SaD3QsZxYFHxhV6dN1FCFALh
+	 xEv4uipJMScpx6hg6X7IuSh4yHQiT8t5vpnYnDbP0nzXOotZlsKwkb9XYqp6aV5dEn
+	 j1r3CCVjHWvPEcR584N9C2irQ9P0WZQk9FZa+yqkP73GJfHSVJSKyUBpdSB+JteKLU
+	 Cc2KR/Otm4YyA==
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e398823d6aaso5021976276.0;
+        Mon, 09 Dec 2024 05:20:35 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVUwqoyYNqhtKrts6lFPTN+jVc9tYH+9WpsDsBQtAKWjgpLRWVj0/8biJVXoqomRdLQvRHfCmmK0HTI@vger.kernel.org, AJvYcCVhx6rJQadC363/Du2NFh8xYoON40ml6/rCvkn8vGW3DuSr5Yd/UV27SRmFYUJGLc3AbjoD+hqTMO6ToRsk@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywt138+aDg2oUcYoIcDwcyGPPwbbFJmdV1V0v6ErafcDhKDs9Hs
+	+lmOJOcZhTBhdcqVLSd9J/4vbsSq2sBx/SMbarW63YyLI88TM0UONJcwexNAdF6gX7fGnqXCrLc
+	hsatKlvHffwLLott4sfMp72l1GA==
+X-Google-Smtp-Source: AGHT+IEXAhNVQ7c1s7Q5Gt/9ACLNzysGwHEAdMPMVXV0mvjexywlU78YQyDTyMQDt8Sh1Y9VGQC5TU1xIwEw6L+BXyw=
+X-Received: by 2002:a05:6902:1542:b0:e38:b460:e0e6 with SMTP id
+ 3f1490d57ef6-e3a0a59ee3cmr11408089276.0.1733750434296; Mon, 09 Dec 2024
+ 05:20:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241209-dp83822-gpio2-clk-out-v1-2-fd3c8af59ff5@liebherr.com>
+References: <20241206-of_core_fix-v1-0-dc28ed56bec3@quicinc.com> <20241206-of_core_fix-v1-7-dc28ed56bec3@quicinc.com>
+In-Reply-To: <20241206-of_core_fix-v1-7-dc28ed56bec3@quicinc.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 9 Dec 2024 07:20:23 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+140YAXAtxmb4FPdk2C2EZSJ-9AjOz5ik6jK4oHLOdDg@mail.gmail.com>
+Message-ID: <CAL_Jsq+140YAXAtxmb4FPdk2C2EZSJ-9AjOz5ik6jK4oHLOdDg@mail.gmail.com>
+Subject: Re: [PATCH 07/10] of: Correct comments for of_alias_scan()
+To: Zijun Hu <zijun_hu@icloud.com>
+Cc: Saravana Kannan <saravanak@google.com>, Leif Lindholm <leif.lindholm@linaro.org>, 
+	Stephen Boyd <stephen.boyd@linaro.org>, Maxime Ripard <mripard@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Grant Likely <grant.likely@secretlab.ca>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Zijun Hu <quic_zijuhu@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
->  #define MII_DP83822_RCSR	0x17
->  #define MII_DP83822_RESET_CTRL	0x1f
->  #define MII_DP83822_GENCFG	0x465
-> +#define MII_DP83822_IOCTRL2	0x463
->  #define MII_DP83822_SOR1	0x467
+On Thu, Dec 5, 2024 at 6:53=E2=80=AFPM Zijun Hu <zijun_hu@icloud.com> wrote=
+:
+>
+> From: Zijun Hu <quic_zijuhu@quicinc.com>
+>
+> Correct of_alias_scan() comments by:
+>
+> - Replace /* with /** to start comments since it is not a API.
 
-These are sorted, so the MII_DP83822_IOCTRL2 should go before
-MII_DP83822_GENCFG.
+But it is because it's in of.h. However, you are correct in that it
+has no external callers. So please move the declaration to
+of_private.h.
 
-> +	if (dp83822->set_gpio2_clk_out)
-> +		phy_modify_mmd(phydev, DP83822_DEVADDR, MII_DP83822_IOCTRL2,
-
-I would of preferred MDIO_MMD_VEND2 rather than DP83822_DEVADDR, but
-having just this one instance correct would look a bit odd.
-
-> +	ret = of_property_read_u32(dev->of_node, "ti,gpio2-clk-out",
-> +				   &dp83822->gpio2_clk_out);
-> +	if (!ret) {
-> +		dp83822->set_gpio2_clk_out = true;
-> +		switch (dp83822->gpio2_clk_out) {
-> +		case DP83822_CLK_SRC_MAC_IF:
-> +			break;
-> +		case DP83822_CLK_SRC_XI:
-> +			break;
-> +		case DP83822_CLK_SRC_INT_REF:
-> +			break;
-> +		case DP83822_CLK_SRC_RMII_MASTER_MODE_REF:
-> +			break;
-> +		case DP83822_CLK_SRC_FREE_RUNNING:
-> +			break;
-> +		case DP83822_CLK_SRC_RECOVERED:
-> +			break;
-
-You can list multiple case statements together, and have one break at
-the end.
-
-I would personally also only have:
-
-> +		dp83822->set_gpio2_clk_out = true;
-
-if validation passes, not that it really matters because:
-
-
-> +		default:
-> +			phydev_err(phydev, "ti,gpio2-clk-out value %u not valid\n",
-> +				   dp83822->gpio2_clk_out);
-> +			return -EINVAL;
-> +		}
-> +	}
-
-
-    Andrew
-
----
-pw-bot: cr
+> - Delete return value descriptions since it is a void function.
+>
+> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+> ---
+>  drivers/of/base.c | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index 1c62cda4ebcd9e3dc5f91d10fa68f975226693dd..33abb6227468c03fd191201aa=
+2bbe05a41fdd9f4 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -1812,14 +1812,13 @@ static void of_alias_add(struct alias_prop *ap, s=
+truct device_node *np,
+>                  ap->alias, ap->stem, ap->id, np);
+>  }
+>
+> -/**
+> +/*
+>   * of_alias_scan - Scan all properties of the 'aliases' node
+>   * @dt_alloc:  An allocator that provides a virtual address to memory
+>   *             for storing the resulting tree
+>   *
+>   * The function scans all the properties of the 'aliases' node and popul=
+ates
+> - * the global lookup table with the properties.  It returns the
+> - * number of alias properties found, or an error code in case of failure=
+.
+> + * the global lookup table with the properties.
+>   */
+>  void of_alias_scan(void * (*dt_alloc)(u64 size, u64 align))
+>  {
+>
+> --
+> 2.34.1
+>
+>
 
