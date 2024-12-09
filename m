@@ -1,217 +1,218 @@
-Return-Path: <devicetree+bounces-128548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 401C29E8FC0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:10:08 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF8819E8FCE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:13:32 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB5D018825A8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:10:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99A15280CF9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:13:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB08F2165F1;
-	Mon,  9 Dec 2024 10:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97672216614;
+	Mon,  9 Dec 2024 10:13:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JyYO15VQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B557012CD8B;
-	Mon,  9 Dec 2024 10:10:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5E092163A1
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 10:13:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733739002; cv=none; b=fvJ+quTlnyGtz7947nUQ/e9BuNLOift7GS3+Zw80h0V5BYJJ4e1/673/bWmJGlbmfifwu45jrnaUYLo4pcQFtXHu7bi25EgtqCbdJsgsu2A03YWvr2CWk56zwU1UHzQ4TIJKldqqA4ID5zuLb2j7zQnR2NGwv9gbc80ZY/uQI1o=
+	t=1733739207; cv=none; b=DajY6t8kGPtl3E/ar7rU1MZJ5RZjde39hPnt1o9BshIU+I8vNz84Ej8xT3oOgQ/J6sP/NxXM1VhLDCjPgGwARg7vOiO0dXYjAGjlMU5zDY+SFM+gp3QbSdMxSkgsjs465hUAveAXoNupvGICdRPZdTfz9nCubHhbFLysvI1/DlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733739002; c=relaxed/simple;
-	bh=GAkCU3aAd+gVqdVkBWvDsRMR34tLWZNm4N/eTTeZSR0=;
+	s=arc-20240116; t=1733739207; c=relaxed/simple;
+	bh=tKmczGCJi6w7fkSsT4DEYoM0aEb7uxDmmzVZqraNyU8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rAmE1jskweTkzFRGtX9DaJWDBONsmBtiLf/gi4Ym89oPDwtUlEBabrl6ez/BP+s3qhAdsSBi8GAmN/acKG+qBq54m78iQWlsx/IYu79GZs9rI/Sw9VJC/oiUf+8grmk//IEJvCcXBj+/lTqLijz9ww2MVBQAhnA0DnBNkAodJ6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-85c48f5e2c1so455331241.3;
-        Mon, 09 Dec 2024 02:10:00 -0800 (PST)
+	 To:Cc:Content-Type; b=KloSj6HZ3JCS26HOTQ2pPCtPfiyuX7n5ozLX2pwXlJYPCYLwIrLY7vmfonWexKdlikC2+qbKm1SawQhin+s/IK0RW6jTGBNQc240vM2NbfNuXfHE+UAKakUkVeKWDbNIs1ZgKieZRR6Lz+Hqc3k0py2ChF/SLrMIrf5imDx6AwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JyYO15VQ; arc=none smtp.client-ip=209.85.219.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e396c98af22so3412043276.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 02:13:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733739204; x=1734344004; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Qcha0zHynfu3Ub0724lpoIRWfmwOKO+r/oksIEeJ2RY=;
+        b=JyYO15VQXGKBEvMgXZ1dQ172+oTtZzvdk97fzzouxOsBEQK+H+3bkvn0I/lI97mpmu
+         /eT1cSlszKEMZdWqPCNQGDmgoSEe9CljCgoziOZunaCypXb1pmP2LrtnqwwsTY8Gtmrr
+         /LCJmlYJDixBtsuvLRcn9eL6g9+th3WoPxQio5f6Ixxdo7HGzlu/PxEoWj6WIUeF7n56
+         HNuXzCAVXzgjQxYwZ9XfXhOfj0Vm7ryOV8fgXrpoaDhe5JtBSJ1tSoQItQsa2JckTjc5
+         tcLVPFibSMjn/uJ3MZpsD+Y9/TflYFwfbyyfBo6d5J20k2P1wGza3mefC5lbn2K7I18I
+         QMNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733738998; x=1734343798;
+        d=1e100.net; s=20230601; t=1733739204; x=1734344004;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jDkEbJbYYDDCIMS580AaIYM47c62x3jRf7aYK2lIXI8=;
-        b=X+YvtCfmy1wRyDj5o7q3tVR0c+Snx19SiBe5/ime9AU+eb1T2iD+abKLOMQMrdxAj2
-         ZOFazvaPm5+0exXl5gofbetdC7WrVNaui8h3Zb9B16haQl+wFOZVfTfGaloxMco5Fp6r
-         8zOGe6imMxX77yyZ2Y2DY4oP0jFQa2UfdV/MBGNWtXue5I6Pb/E2m+ypqPUR0XFIv0S3
-         cBcphNilz8Jb4BgWlS+SmXBXdhVkuuUQ/2gMjk4H6fhYd97t8cc/q8Q8E610G23yLpu4
-         vUbWKWpxyETNUlRMv0Ne9H7ne92+eOWAXgQeuAsCxaEGQlzg9+L7wfxWCIxQ6pIka7yP
-         jz3A==
-X-Forwarded-Encrypted: i=1; AJvYcCU/F8A+a+/EEY8WcTgJhEvBZzPYD6kNyr3jx40QAM6HS0uMEmo14CojHruSBOLt4J/AwGqvzZkiQEDL@vger.kernel.org, AJvYcCUvaNTK3qAEGY9l/H6TyKsxryVDMcFYgWwwDQikQ5YWDkOy0cu+B/45G/gP4uwPWYyCN5E/TWbNjHEXsW8t9v6iIJ8=@vger.kernel.org, AJvYcCVD0enZkSXrWVTd6+kifFLzntpiayzI49nsUS5xLLqEvK1wlazDptVwm0ULz427hu6TLftES3cF7QyuBJCx@vger.kernel.org, AJvYcCVNkFDxE+UATbevX2rxZZKnQTc4z32/AfMYglaTFxH2afQEYuhxPUZmK79JYKxS8lgUoix3EkiQRxhC@vger.kernel.org, AJvYcCWMbn+qHzZ1BcDmhhAL5XJkOGi2v23EU4n+B1pqtMZt1V38qn5yNL3jY5/m9Q659S9Yw0CX47gJVGq19MZi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+NuYMkgcTlnGSMsemIsTFPoa5Id39iByuUTwR0H14tON32aj6
-	ARHBfykS6HRHVWn7ZF4x1UoRwIq1TcsJpHLw1bzSu3GdYm5e+6LjkQ5h4YmI8CY=
-X-Gm-Gg: ASbGncttOhdJW0ninaEJOKKl0zifK0a1g5UKiHzjkKAHwnqo2DsxesVQfJ+B+wI9qig
-	I1suPlR4uTMLre6eUUrvjFHacEGg0XDDkQ1hso5nB0huiOnysIS1tY84BbhvLv54vrqKIAXRZPd
-	bK8x4cjmhXS8xesVb0mszEK8GaRpImakDammWsaN7ej/mQrUG92wseWTL+yz9Itx7XbvK+iL22Y
-	DjRLL3Thg7bEfrJju/oLIDONwS3Bi0GL6PckDRotGoFZU3VUDU8J37yeujuXEaA0vVKsdyoM9w0
-	/wcQWWXRGRmW
-X-Google-Smtp-Source: AGHT+IHNB/BbWrUA6atlQPgW+ghlPNbey5u62+HpcIgynXutov9AchbvlxBKCgPRZnAtv2iQkLiF6A==
-X-Received: by 2002:a05:6102:3751:b0:4af:bb73:9987 with SMTP id ada2fe7eead31-4afcaaed226mr10279060137.18.1733738997756;
-        Mon, 09 Dec 2024 02:09:57 -0800 (PST)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4affcf39d13sm231482137.8.2024.12.09.02.09.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Dec 2024 02:09:57 -0800 (PST)
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-85c4b4cf73aso527546241.2;
-        Mon, 09 Dec 2024 02:09:57 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCULs05cLhrZxHoX+dahkTUDmoZ9bcG32aM8ywD3j+dU/hTUJ8kaGqXbO+eWtWZGTetCkhbMEtmYvVlw@vger.kernel.org, AJvYcCUh3rjsMW1G+67OkJACAiQxv0eC+usI3vahDSsSbC4kMs5CHB+i4tKwaa+VAZW7cBu95FvjbRC9IJOTFkfu@vger.kernel.org, AJvYcCV4NIA92Q35mb56txyFI3vqHzVxQben3cQLRlNj7Lw41vAwUkid3I/KqcwwuxTcQI7SWaY/kk3e7eIkAj1u@vger.kernel.org, AJvYcCWFT7RIDUHzXQTSGnLHO0mmbZcDDOP4DZKGOYizp6zZKsHNirb232uROylMHoGFOLQv54vEUL1lb+DF@vger.kernel.org, AJvYcCWZVV0ztV4fPxiqUPo7L43GJGksIof9fXFc2DC0I5F7+gdn03U7cS4UVqju9snbImGV/lTNH3OomCxFp0VB6cJCXFo=@vger.kernel.org
-X-Received: by 2002:a05:6102:162b:b0:4af:b45a:cd20 with SMTP id
- ada2fe7eead31-4afcab15bafmr11700791137.26.1733738996886; Mon, 09 Dec 2024
- 02:09:56 -0800 (PST)
+        bh=Qcha0zHynfu3Ub0724lpoIRWfmwOKO+r/oksIEeJ2RY=;
+        b=GZAqEBFPmcR1RkcTS5d9j8nMJNTTFAkKgd3zeT0x83KlXagyoiJkVR5iSutV1JdD94
+         hq6tNtf7RacRUtWgYLSoR+P5634qPmlLy3flEiD3yR2Wa/jmiZndqhqkMES7bt6QX1Eg
+         udfjqewteW5AZtoqltUv15VipCXsCg+6oWoST93kPoyScThqaAExwP97VtV9GSBcAF4C
+         HxNlXOnblg9IvuUpDrtVfc8NexzcPNwiroXQfsk4FBiEjg1h94372LMKoCOQ5LD+5AWI
+         fJhEkrz5hqAaODw/N5BzlNij0lTnDgcOVCzfJBZE+eJlgMQy5nZL3iLWL60Rv8XwWh7E
+         KbKg==
+X-Forwarded-Encrypted: i=1; AJvYcCV7UyQt4q7MmNH+a3/I4v5xB/gATl2974Z7H116TR5zR8eK/uHh+g/VTvBKzM1qtOTlSNaXHMvx6N2+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuW2DCyHr3mEgkecTsIQVkYQcQnLoonmJElk1eVnfLqUMancN7
+	pHdJXh57aTn4GfwK898kIGbwUn7nQi3XnZHTFwqfpxMcYiJ5G1P2bAHjLTGqByORxlxEHStwpkR
+	GGIvJsBop1JRBkmp3Le7vu/LCnWjwGBQ5qHJs8g==
+X-Gm-Gg: ASbGncu/oT7pi5wZLp5lzWQw6giwSvme7Zymk8pC7g2KtcwuWpjMFQYw+i2ssyV5UI3
+	sIE6toSMDTiT0o0PZdY6hBJdBhEFYvJE=
+X-Google-Smtp-Source: AGHT+IH2bT+gKDdOGRSmqtWgH0YUH5W9D5gi5OgCuogw+kN6ib1DMYcXSnWkxS48FLs9InNsXTrt1JIXrBK8w04Q03w=
+X-Received: by 2002:a05:6902:983:b0:e30:b98e:b111 with SMTP id
+ 3f1490d57ef6-e3a0b0c4f08mr8343409276.17.1733739203685; Mon, 09 Dec 2024
+ 02:13:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241115134401.3893008-1-claudiu.beznea.uj@bp.renesas.com> <20241115134401.3893008-7-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241115134401.3893008-7-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 9 Dec 2024 11:09:45 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVgxKHw4PDbgOGAJf7xsRR1Uyzxu-br+=RK_1ouHoj41g@mail.gmail.com>
-Message-ID: <CAMuHMdVgxKHw4PDbgOGAJf7xsRR1Uyzxu-br+=RK_1ouHoj41g@mail.gmail.com>
-Subject: Re: [PATCH v3 6/8] arm64: dts: renesas: rzg3s-smarc-switches: Add a
- header to describe different switches
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	gregkh@linuxfoundation.org, jirislaby@kernel.org, p.zabel@pengutronix.de, 
-	lethal@linux-sh.org, g.liakhovetski@gmx.de, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-serial@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <cover.1730172244.git.Sandor.yu@nxp.com> <411e42c70e71dce33a80059f663fb6c58fb2ac8c.1730172244.git.Sandor.yu@nxp.com>
+ <efciuvoptv7qxwauswfseb6zlt5w4fmjdbm3huxfsn63a6bm7u@kfgkkvqoz5x4>
+ <PAXPR04MB9448F638D47B5495CF78007AF4522@PAXPR04MB9448.eurprd04.prod.outlook.com>
+ <z6p6bewmykmufsghdojr4lvziurmmfpnrr5m4w3pfjlqzobpwr@zq2d2ukjvtac>
+ <PAXPR04MB9448D68A5CA9755036E9B23DF42F2@PAXPR04MB9448.eurprd04.prod.outlook.com>
+ <foi2sizfkppmunq4yqt4pex47alsvsjyqi3rk32fwyz4f5xepn@zdsx74bzzda4> <PAXPR04MB94488E0A549E519CEB8AA40EF43C2@PAXPR04MB9448.eurprd04.prod.outlook.com>
+In-Reply-To: <PAXPR04MB94488E0A549E519CEB8AA40EF43C2@PAXPR04MB9448.eurprd04.prod.outlook.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 9 Dec 2024 12:13:15 +0200
+Message-ID: <CAA8EJprUKXxGbtP6M95Ep=2Lj2NSiUN31QNaysNJAzvO5g2LdQ@mail.gmail.com>
+Subject: Re: [EXT] Re: [PATCH v18 6/8] phy: freescale: Add DisplayPort/HDMI
+ Combo-PHY driver for i.MX8MQ
+To: Sandor Yu <sandor.yu@nxp.com>
+Cc: "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>, 
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se" <jonas@kwiboo.se>, 
+	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, "airlied@gmail.com" <airlied@gmail.com>, 
+	"daniel@ffwll.ch" <daniel@ffwll.ch>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
+	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, 
+	"festevam@gmail.com" <festevam@gmail.com>, "vkoul@kernel.org" <vkoul@kernel.org>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>, "mripard@kernel.org" <mripard@kernel.org>, 
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, dl-linux-imx <linux-imx@nxp.com>, 
+	Oliver Brown <oliver.brown@nxp.com>, 
+	"alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>, "sam@ravnborg.org" <sam@ravnborg.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Claudiu,
-
-On Fri, Nov 15, 2024 at 2:50=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Mon, 9 Dec 2024 at 10:16, Sandor Yu <sandor.yu@nxp.com> wrote:
 >
-> There are different switches available on both the RZ/G3S SMARC Module an=
-d
-> RZ SMARC Carrier II boards. These switches are used to route different So=
-C
-> signals to different parts available on board.
 >
-> These switches are described in device trees through macros. These macros
-> are set accordingly such that the resulted compiled dtb to describe the
-> on-board switches states.
 >
-> Based on the SW_CONFIG3 switch state (populated on the module board), the
-> SCIF3 SoC interface is routed or not to an U(S)ART pin header available o=
-n
-> the carrier board. As the SCIF3 is accessible through the carrier board,
-> the device tree enables it in the carrier DTS. To be able to cope with
-> these type of configurations, add a header file where all the on-board
-> switches can be described and shared accordingly between module and carri=
-er
-> board.
+> > -----Original Message-----
+> > From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Sent: 2024=E5=B9=B411=E6=9C=8830=E6=97=A5 16:30
+> > To: Sandor Yu <sandor.yu@nxp.com>
+> > Cc: andrzej.hajda@intel.com; neil.armstrong@linaro.org; Laurent Pinchar=
+t
+> > <laurent.pinchart@ideasonboard.com>; jonas@kwiboo.se;
+> > jernej.skrabec@gmail.com; airlied@gmail.com; daniel@ffwll.ch;
+> > robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> > shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
+> > vkoul@kernel.org; dri-devel@lists.freedesktop.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> > linux-kernel@vger.kernel.org; linux-phy@lists.infradead.org;
+> > mripard@kernel.org; kernel@pengutronix.de; dl-linux-imx
+> > <linux-imx@nxp.com>; Oliver Brown <oliver.brown@nxp.com>;
+> > alexander.stein@ew.tq-group.com; sam@ravnborg.org
+> > Subject: Re: [EXT] Re: [PATCH v18 6/8] phy: freescale: Add DisplayPort/=
+HDMI
+> > Combo-PHY driver for i.MX8MQ
+> >
+> > Caution: This is an external email. Please take care when clicking link=
+s or
+> > opening attachments. When in doubt, report the message using the 'Repor=
+t
+> > this email' button
+> >
+> >
+> > On Tue, Nov 26, 2024 at 02:12:19PM +0000, Sandor Yu wrote:
+> > >
+> > > >
+> > > > On Tue, Nov 05, 2024 at 02:05:51PM +0000, Sandor Yu wrote:
+> > > > > >
+> > > > > > On Tue, Oct 29, 2024 at 02:02:14PM +0800, Sandor Yu wrote:
+> > > > > > > Add Cadence HDP-TX DisplayPort and HDMI PHY driver for
+> > i.MX8MQ.
+> > > > > > >
+> > > > > > > Cadence HDP-TX PHY could be put in either DP mode or HDMI mod=
+e
+> > > > > > > base on the configuration chosen.
+> > > > > > > DisplayPort or HDMI PHY mode is configured in the driver.
+> > > > > > >
+> > > > > > > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> > > > > > > Signed-off-by: Alexander Stein
+> > > > > > > <alexander.stein@ew.tq-group.com>
+> > > > > > > ---
+> > > > > > > v17->v18:
+> > > > > > > - fix build error as code rebase to latest kernel version.
+> > > > > > >
+> > > > > > >  drivers/phy/freescale/Kconfig                |   10 +
+> > > > > > >  drivers/phy/freescale/Makefile               |    1 +
+> > > > > > >  drivers/phy/freescale/phy-fsl-imx8mq-hdptx.c | 1337
+> > > > > > ++++++++++++++++++
+> > > > > > >  3 files changed, 1348 insertions(+)  create mode 100644
+> > > > > > > drivers/phy/freescale/phy-fsl-imx8mq-hdptx.c
+> > > > > > >
+> > > > > > > diff --git a/drivers/phy/freescale/Kconfig
+> > > > > > > b/drivers/phy/freescale/Kconfig index
+> > > > > > > dcd9acff6d01a..2b1210367b31c
+> > > > > > > 100644
+> > > > > > > --- a/drivers/phy/freescale/Kconfig
+> > > > > > > +++ b/drivers/phy/freescale/Kconfig
+> > > >
+> > > > [...]
+> > > >
+> > > > I'm sorry, my email client cut the email.
+> > > >
+> > > > > > > +static int cdns_hdptx_dp_configure(struct phy *phy,
+> > > > > > > +                                union phy_configure_opts
+> > > > *opts) {
+> > > > > > > +     struct cdns_hdptx_phy *cdns_phy =3D phy_get_drvdata(phy=
+);
+> > > > > > > +
+> > > > > > > +     cdns_phy->dp.link_rate =3D opts->dp.link_rate;
+> > > > > > > +     cdns_phy->dp.lanes =3D opts->dp.lanes;
+> > > > > >
+> > > > > > Shouldn't this be conditional on set_rate / set_lanes ?
+> > > > >
+> > > > > PHY do not support reconfigure link rate and lane count.
+> > > >
+> > > > So, you don't support reconfiguring the rate / count, but you still
+> > > > copy the new rate and lanes into your driver data. That sounds stra=
+nge.
+> > >
+> > > The PHY will use link rate and lane count to configure its registers
+> >
+> > I'm not sure if I follow it. Do you mean that rate / count configuratio=
+n is static?
 >
-> Commit prepares the code to enable SCIF3 on the RZ/G3S carrier device
-> tree.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> In DP controller driver, rate and lane count are determined during link t=
+raining.
+> These two parameters are fixed in the DP PHY driver and cannot be modifie=
+d.
 
-Thanks for your patch!
-
-> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
-> @@ -9,25 +9,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
->
-> -/*
-> - * On-board switches' states:
-> - * @SW_OFF: switch's state is OFF
-> - * @SW_ON:  switch's state is ON
-> - */
-> -#define SW_OFF         0
-> -#define SW_ON          1
-> -
-> -/*
-> - * SW_CONFIG[x] switches' states:
-> - * @SW_CONFIG2:
-> - *     SW_OFF - SD0 is connected to eMMC
-> - *     SW_ON  - SD0 is connected to uSD0 card
-> - * @SW_CONFIG3:
-> - *     SW_OFF - SD2 is connected to SoC
-> - *     SW_ON  - SCIF1, SSI0, IRQ0, IRQ1 connected to SoC
-> - */
-> -#define SW_CONFIG2     SW_OFF
-> -#define SW_CONFIG3     SW_ON
-> +#include "rzg3s-smarc-switches.h"
->
->  / {
->         compatible =3D "renesas,rzg3s-smarcm", "renesas,r9a08g045s33", "r=
-enesas,r9a08g045";
-> diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-switches.h b/arch/ar=
-m64/boot/dts/renesas/rzg3s-smarc-switches.h
-> new file mode 100644
-> index 000000000000..e2d9b953f627
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-switches.h
-> @@ -0,0 +1,32 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-
-I agree with Rob about the license.
-
-> +/*
-> + * On-board switches for the Renesas RZ/G3S SMARC Module and RZ SMARC Ca=
-rrier II
-> + * boards.
-> + *
-> + * Copyright (C) 2024 Renesas Electronics Corp.
-> + */
-> +
-> +#ifndef __RZG3S_SMARC_SWITCHES__
-> +#define __RZG3S_SMARC_SWITCHES__
-> +
-> +/*
-> + * On-board switches' states:
-> + * @SW_OFF: switch's state is OFF
-> + * @SW_ON:  switch's state is ON
-> + */
-> +#define SW_OFF         0
-> +#define SW_ON          1
-> +
-> +/*
-> + * SW_CONFIG[x] switches' states:
-> + * @SW_CONFIG2:
-> + *     SW_OFF - SD0 is connected to eMMC
-> + *     SW_ON  - SD0 is connected to uSD0 card
-> + * @SW_CONFIG3:
-> + *     SW_OFF - SD2 is connected to SoC
-> + *     SW_ON  - SCIF3, SSI3, IRQ0, IRQ1 connected to SoC
-
-Note that the original comment above says "SCIF1, SSI0", and looking
-at the schematics (IC7 and IC8 controlled by SW_SD2_EN#), that is
-actually correct?
-
-> + */
-> +#define SW_CONFIG2     SW_OFF
-> +#define SW_CONFIG3     SW_ON
-> +
-> +#endif /* __RZG3S_SMARC_SWITCHES__ */
-
-Gr{oetje,eeting}s,
-
-                        Geert
+Yes, llane count, rate and swing are determined during link training.
+However it's not a part of the PHY's job to settle on that. Usually it
+is the DP driver who determines these params and then calls
+phy_configure() to set necessary params for the next iteration of
+clock recovery attempt or link training step. As a part of the calling
+API the DP driver doesn't have to pass full configuration. Instead DP
+driver sets only required parts of the PHY configuration and uses
+these flags to specify which part of the PHY configuration should be
+updated and which parts were not set and must be ignored.
 
 --=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+With best wishes
+Dmitry
 
