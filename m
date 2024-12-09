@@ -1,309 +1,223 @@
-Return-Path: <devicetree+bounces-128419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BC119E8A58
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 05:33:13 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C413A9E8A61
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 05:35:48 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46C8A280D8B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 04:33:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 972071630DF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 04:35:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6313915B547;
-	Mon,  9 Dec 2024 04:33:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1FB31946A0;
+	Mon,  9 Dec 2024 04:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="qw1cQJyo"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fkhoqYdM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696CB14F126;
-	Mon,  9 Dec 2024 04:33:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 429A7189F5C;
+	Mon,  9 Dec 2024 04:35:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733718789; cv=none; b=LkpU3vdOQwGMHMuKjI1kxEFghxIpHQrVxEWfhcifiwhAebh6nyB6Hk5EhxEt2XB9ZeCGIrz4e9c6Oc1DCh8vZ031bG5DkNQ26hZbrBZ91ZB/GSBA4TRepZkjAuM29EMDivC2CbcPRbNZ0PH23qUxrXQ9VgxDsswwQTR8De4xi/8=
+	t=1733718929; cv=none; b=F3R1b0gRaVjZ0uwjoAWobdxdMFsgrsoCvYLgplRuOeM+ZCQMPYpsm3GDnSKDCeu6r+/ypkfhcB4I5rOKqVXfE1QlDWK6QJS9A8VDdTGgJBmCFmxUhK6ATMD9yWKODhmoDnsDO/Tew9RwXbbdHd6W9b2ym0+Ptl1T8BOnoFSrrNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733718789; c=relaxed/simple;
-	bh=LY3RsQ2MtH1nNBWndK3puTnO5aAq4/wJBReWAMNoQbQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=TFSlMyRLs8xXyYneANjtB0FYm4WeT8fT+c+rbdjt6xQSl1WYfg1C2tZ/2N+Ika4Td5gKCHnXFPHGI+D0woo1TDf3R+/EgOUyG5NwDAwrpPErQUh0NTmXg2amx9uHMdet8ZK3VpyeX5tBu28S3PWpbAhcNrWEHQpLoLSQJFICqDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=qw1cQJyo; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+	s=arc-20240116; t=1733718929; c=relaxed/simple;
+	bh=/byX0QN7l6evzZM3VWd51MOOZPsopsId3NhdI4oXh+w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ESVVcYNliWEnVXUHR6gBrDgAYzN+PI2O9N7btVzUjc8Pu/q7xM10JMfqzV2ciFw41SU7nqcrQKtcqzykWgkexzQNd7xFlsvmYW9XGa27Ap8LChbBYVL1H7Ozw+j8l3qAwrkVgu5LMr9ssAr/62pa58ebbzF/Z4XR4qWRGNU8Y+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fkhoqYdM; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1733718787; x=1765254787;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:to:cc;
-  bh=LY3RsQ2MtH1nNBWndK3puTnO5aAq4/wJBReWAMNoQbQ=;
-  b=qw1cQJyoXBKw+95R2p3TmCjFBwtofEGky32W79h70xOxWBWhhxPpMe/a
-   Exu16o98/oHzqkX3buRFUnNkTMqeo4LqpD8z0+D/2X/oWy1MCgRq9g1PR
-   DxuaWzMJZQWo2tYVyWEFGLE7McOQFlVc9F88ZicRpzUoOl+uctRdvk/UC
-   20pXwWWged4JtAZ88CFRIiOB0L8ElIy3cnYByXqHJpHRU2eqUZ03l5RRX
-   Z+CHUx+SCZaid6/i8lHkdlezUnpBTfbahvrwObPLf5Sdkhg9mP8DNTGmX
-   0VBBkiCLpjkEM8dX6rVrpW9Pgur+nn/3kYZ8DV03AlkCWoL2rLzf4MVOm
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733718927; x=1765254927;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/byX0QN7l6evzZM3VWd51MOOZPsopsId3NhdI4oXh+w=;
+  b=fkhoqYdMyJdLs1+n3kSJUn1pGUmPgysJjutToC7cPJRatsYDKfZwvcE2
+   DKD+oK66C3JUM9VnmIbXcL6KJHF2/dOZdpUxAE4wtq2/2Lk4ytxzAu2KB
+   q3NcnN22dQOVHiDJNruXQAWE3BF8HHkGU1GLtt2XyiaCpXz9K8ApS7tzq
+   xxLxBu5uRK15GdxyMKlFZBQvRhGvK+g58HdJnFdhf/YuS09kzGaXwoUIr
+   x7CBJ92E5UuhQeZ/tonEbm5J4MR6cMTOdFFAHwvTebVJXdI80cPC3OIwi
+   lb4KuFBKgYZSncuS2vJsljqyeI5207oqxBWubpNnbWWWz1eYn+66xVg9t
    w==;
-X-CSE-ConnectionGUID: 72IB33lgRjS11USK+WrWBA==
-X-CSE-MsgGUID: mBb2+HZpQcCgbtECVkhTjQ==
+X-CSE-ConnectionGUID: yBUoyfc9ScSVT0ed+0WBQw==
+X-CSE-MsgGUID: +hbTP6rxQ1alJ1qcf21Sqg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11280"; a="34237103"
 X-IronPort-AV: E=Sophos;i="6.12,218,1728975600"; 
-   d="scan'208";a="266487019"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Dec 2024 21:32:59 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 8 Dec 2024 21:32:38 -0700
-Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Sun, 8 Dec 2024 21:32:34 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-Date: Mon, 9 Dec 2024 10:02:30 +0530
-Subject: [PATCH v2] dt-bindings: mmc: atmel,hsmci: Convert to json schema
+   d="scan'208";a="34237103"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2024 20:35:26 -0800
+X-CSE-ConnectionGUID: +CUXQ3szQaSyFv/p6es35w==
+X-CSE-MsgGUID: /NYIfnVgRFyE8+IfO0CAqA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,218,1728975600"; 
+   d="scan'208";a="125844583"
+Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
+  by fmviesa001.fm.intel.com with ESMTP; 08 Dec 2024 20:35:22 -0800
+Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tKVUO-0003sb-08;
+	Mon, 09 Dec 2024 04:35:20 +0000
+Date: Mon, 9 Dec 2024 12:34:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Christian Bruel <christian.bruel@foss.st.com>, lpieralisi@kernel.org,
+	kw@linux.com, manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	p.zabel@pengutronix.de, cassel@kernel.org,
+	quic_schintav@quicinc.com, fabrice.gasnier@foss.st.com
+Cc: oe-kbuild-all@lists.linux.dev, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Christian Bruel <christian.bruel@foss.st.com>
+Subject: Re: [PATCH v2 2/5] PCI: stm32: Add PCIe host support for STM32MP25
+Message-ID: <202412080849.1SXhxzpi-lkp@intel.com>
+References: <20241126155119.1574564-3-christian.bruel@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241209-hsmci-v2-1-b5a6d7c59b67@microchip.com>
-X-B4-Tracking: v=1; b=H4sIAN1yVmcC/13MQQ7CIBCF4as0sxZTRpHoynuYLsgwlVlQGjBE0
- 3B3sUuX/8vLt0HhLFzgNmyQuUqRtPTAwwAU3PJkJb434IhnjaNRoUQSZR2d2F21sdZC/66ZZ3n
- vzmPqHaS8Uv7sbNW/9V+oWmllHBq+IPqZ/T0K5URB1iOlCFNr7QvoOxkSngAAAA==
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Aubin Constans <aubin.constans@microchip.com>
-CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	Dharma Balasubiramani <dharma.b@microchip.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733718754; l=5160;
- i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
- bh=LY3RsQ2MtH1nNBWndK3puTnO5aAq4/wJBReWAMNoQbQ=;
- b=wul3xm8moixq7EJMj3Cr78cgKF6RGexFxWRTaDK16ghCA6IYsyHDynh8McreBentzrQrXVIWF
- 0NkUoX9qcPMAHu4NGQFOig6bdl/dT9XYfkkcU8p9opbEZr+d/vdPwbw
-X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
- pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241126155119.1574564-3-christian.bruel@foss.st.com>
 
-Convert atmel,hsmci documentation to yaml format. The new file will inherit
-from mmc-controller.yaml.
+Hi Christian,
 
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
----
-Changes in v2:
-- Drop the duplicate properties in the slot node.
-- Link to v1: https://lore.kernel.org/r/20241205-hsmci-v1-1-5a25e622dfed@microchip.com
----
- .../devicetree/bindings/mmc/atmel,hsmci.yaml       | 110 +++++++++++++++++++++
- .../devicetree/bindings/mmc/atmel-hsmci.txt        |  73 --------------
- 2 files changed, 110 insertions(+), 73 deletions(-)
+kernel test robot noticed the following build errors:
 
-diff --git a/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
-new file mode 100644
-index 000000000000..26686ada6288
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
-@@ -0,0 +1,110 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/atmel,hsmci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel High-Speed MultiMedia Card Interface (HSMCI)
-+
-+description:
-+  The Atmel HSMCI controller provides an interface for MMC, SD, and SDIO memory
-+  cards.
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Aubin Constans <aubin.constans@microchip.com>
-+
-+allOf:
-+  - $ref: mmc-controller.yaml
-+
-+properties:
-+  compatible:
-+    const: atmel,hsmci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  dmas:
-+    maxItems: 1
-+
-+  dma-names:
-+    const: rxtx
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: mci_clk
-+
-+  "#address-cells":
-+    const: 1
-+    description: Used for slot IDs.
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^slot@[0-9]+$":
-+    type: object
-+    description: A slot node representing an MMC, SD, or SDIO slot.
-+
-+    allOf:
-+      - $ref: mmc-controller.yaml
-+
-+    properties:
-+      reg:
-+        description: Slot ID.
-+        minimum: 0
-+
-+    required:
-+      - reg
-+      - bus-width
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+anyOf:
-+  - required:
-+      - slot@0
-+  - required:
-+      - slot@1
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/at91.h>
-+    mmc@f0008000 {
-+      compatible = "atmel,hsmci";
-+      reg = <0xf0008000 0x600>;
-+      interrupts = <12 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&mci0_clk>;
-+      clock-names = "mci_clk";
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      slot@0 {
-+        reg = <0>;
-+        bus-width = <4>;
-+        cd-gpios = <&pioD 15 0>;
-+        cd-inverted;
-+      };
-+
-+      slot@1 {
-+        reg = <1>;
-+        bus-width = <4>;
-+      };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt b/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt
-deleted file mode 100644
-index 07ad02075a93..000000000000
---- a/Documentation/devicetree/bindings/mmc/atmel-hsmci.txt
-+++ /dev/null
-@@ -1,73 +0,0 @@
--* Atmel High Speed MultiMedia Card Interface
--
--This controller on atmel products provides an interface for MMC, SD and SDIO
--types of memory cards.
--
--This file documents differences between the core properties described
--by mmc.txt and the properties used by the atmel-mci driver.
--
--1) MCI node
--
--Required properties:
--- compatible: should be "atmel,hsmci"
--- #address-cells: should be one. The cell is the slot id.
--- #size-cells: should be zero.
--- at least one slot node
--- clock-names: tuple listing input clock names.
--	Required elements: "mci_clk"
--- clocks: phandles to input clocks.
--
--The node contains child nodes for each slot that the platform uses
--
--Example MCI node:
--
--mmc0: mmc@f0008000 {
--	compatible = "atmel,hsmci";
--	reg = <0xf0008000 0x600>;
--	interrupts = <12 4>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	clock-names = "mci_clk";
--	clocks = <&mci0_clk>;
--
--	[ child node definitions...]
--};
--
--2) slot nodes
--
--Required properties:
--- reg: should contain the slot id.
--- bus-width: number of data lines connected to the controller
--
--Optional properties:
--- cd-gpios: specify GPIOs for card detection
--- cd-inverted: invert the value of external card detect gpio line
--- wp-gpios: specify GPIOs for write protection
--
--Example slot node:
--
--slot@0 {
--	reg = <0>;
--	bus-width = <4>;
--	cd-gpios = <&pioD 15 0>
--	cd-inverted;
--};
--
--Example full MCI node:
--mmc0: mmc@f0008000 {
--	compatible = "atmel,hsmci";
--	reg = <0xf0008000 0x600>;
--	interrupts = <12 4>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	slot@0 {
--		reg = <0>;
--		bus-width = <4>;
--		cd-gpios = <&pioD 15 0>
--		cd-inverted;
--	};
--	slot@1 {
--		reg = <1>;
--		bus-width = <4>;
--	};
--};
+[auto build test ERROR on pci/next]
+[also build test ERROR on pci/for-linus linus/master v6.13-rc1 next-20241206]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
----
-base-commit: feffde684ac29a3b7aec82d2df850fbdbdee55e4
-change-id: 20241205-hsmci-7ac3ea915777
+url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Bruel/dt-bindings-PCI-Add-STM32MP25-PCIe-root-complex-bindings/20241128-101958
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
+patch link:    https://lore.kernel.org/r/20241126155119.1574564-3-christian.bruel%40foss.st.com
+patch subject: [PATCH v2 2/5] PCI: stm32: Add PCIe host support for STM32MP25
+config: openrisc-randconfig-r072-20241208 (https://download.01.org/0day-ci/archive/20241208/202412080849.1SXhxzpi-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241208/202412080849.1SXhxzpi-lkp@intel.com/reproduce)
 
-Best regards,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412080849.1SXhxzpi-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/pci/controller/dwc/pcie-stm32.c: In function 'stm32_pcie_suspend_noirq':
+>> drivers/pci/controller/dwc/pcie-stm32.c:101:16: error: implicit declaration of function 'pinctrl_pm_select_sleep_state' [-Wimplicit-function-declaration]
+     101 |         return pinctrl_pm_select_sleep_state(dev);
+         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pci/controller/dwc/pcie-stm32.c: In function 'stm32_pcie_resume_noirq':
+>> drivers/pci/controller/dwc/pcie-stm32.c:114:24: error: 'struct device' has no member named 'pins'
+     114 |         if (!IS_ERR(dev->pins->init_state))
+         |                        ^~
+>> drivers/pci/controller/dwc/pcie-stm32.c:115:23: error: implicit declaration of function 'pinctrl_select_state' [-Wimplicit-function-declaration]
+     115 |                 ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
+         |                       ^~~~~~~~~~~~~~~~~~~~
+   drivers/pci/controller/dwc/pcie-stm32.c:115:47: error: 'struct device' has no member named 'pins'
+     115 |                 ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
+         |                                               ^~
+   drivers/pci/controller/dwc/pcie-stm32.c:115:61: error: 'struct device' has no member named 'pins'
+     115 |                 ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
+         |                                                             ^~
+>> drivers/pci/controller/dwc/pcie-stm32.c:117:23: error: implicit declaration of function 'pinctrl_pm_select_default_state' [-Wimplicit-function-declaration]
+     117 |                 ret = pinctrl_pm_select_default_state(dev);
+         |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pci/controller/dwc/pcie-stm32.c: In function 'stm32_pcie_probe':
+   drivers/pci/controller/dwc/pcie-stm32.c:243:29: warning: unused variable 'np' [-Wunused-variable]
+     243 |         struct device_node *np = pdev->dev.of_node;
+         |                             ^~
+
+
+vim +/pinctrl_pm_select_sleep_state +101 drivers/pci/controller/dwc/pcie-stm32.c
+
+    88	
+    89	static int stm32_pcie_suspend_noirq(struct device *dev)
+    90	{
+    91		struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
+    92	
+    93		stm32_pcie->link_is_up = dw_pcie_link_up(stm32_pcie->pci);
+    94	
+    95		stm32_pcie_stop_link(stm32_pcie->pci);
+    96		clk_disable_unprepare(stm32_pcie->clk);
+    97	
+    98		if (!device_may_wakeup(dev) && !device_wakeup_path(dev))
+    99			phy_exit(stm32_pcie->phy);
+   100	
+ > 101		return pinctrl_pm_select_sleep_state(dev);
+   102	}
+   103	
+   104	static int stm32_pcie_resume_noirq(struct device *dev)
+   105	{
+   106		struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
+   107		struct dw_pcie *pci = stm32_pcie->pci;
+   108		struct dw_pcie_rp *pp = &pci->pp;
+   109		int ret;
+   110	
+   111		/* init_state must be called first to force clk_req# gpio when no
+   112		 * device is plugged.
+   113		 */
+ > 114		if (!IS_ERR(dev->pins->init_state))
+ > 115			ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
+   116		else
+ > 117			ret = pinctrl_pm_select_default_state(dev);
+   118	
+   119		if (ret) {
+   120			dev_err(dev, "Failed to activate pinctrl pm state: %d\n", ret);
+   121			return ret;
+   122		}
+   123	
+   124		if (!device_may_wakeup(dev) && !device_wakeup_path(dev)) {
+   125			ret = phy_init(stm32_pcie->phy);
+   126			if (ret) {
+   127				pinctrl_pm_select_default_state(dev);
+   128				return ret;
+   129			}
+   130		}
+   131	
+   132		ret = clk_prepare_enable(stm32_pcie->clk);
+   133		if (ret)
+   134			goto clk_err;
+   135	
+   136		ret = dw_pcie_setup_rc(pp);
+   137		if (ret)
+   138			goto pcie_err;
+   139	
+   140		if (stm32_pcie->link_is_up) {
+   141			ret = stm32_pcie_start_link(stm32_pcie->pci);
+   142			if (ret)
+   143				goto pcie_err;
+   144	
+   145			/* Ignore errors, the link may come up later */
+   146			dw_pcie_wait_for_link(stm32_pcie->pci);
+   147		}
+   148	
+   149		pinctrl_pm_select_default_state(dev);
+   150	
+   151		return 0;
+   152	
+   153	pcie_err:
+   154		dw_pcie_host_deinit(pp);
+   155		clk_disable_unprepare(stm32_pcie->clk);
+   156	clk_err:
+   157		phy_exit(stm32_pcie->phy);
+   158		pinctrl_pm_select_default_state(dev);
+   159	
+   160		return ret;
+   161	}
+   162	
+
 -- 
-Dharma Balasubiramani <dharma.b@microchip.com>
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
