@@ -1,159 +1,110 @@
-Return-Path: <devicetree+bounces-128502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C03069E8DDD
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:52:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2A8A9E8E51
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:03:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C051F16112F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 08:52:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 426EF161F40
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:01:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9895B2156ED;
-	Mon,  9 Dec 2024 08:52:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D289C215F4D;
+	Mon,  9 Dec 2024 09:01:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="G8za5VaO"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="YOj+ENX1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A92320FABD;
-	Mon,  9 Dec 2024 08:52:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09ABA1BC4E;
+	Mon,  9 Dec 2024 09:01:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733734344; cv=none; b=jcwgl3fVN+SXijPslKHcVHAeijOxlsJlQtxkwGYCmGuybN9g6hnzN3FFzJtv8jqDgzWDd8MBJMKcx0puVVMSGBICO+xJuT0yiQiZw4MvmcU2HZC6VMZ1q4Jvwe1pJBc6fhQxsGG+nrIQcDSq0QoetXIZEdCghCtU4P4rXRzhqqs=
+	t=1733734873; cv=none; b=PukS1GsDE3vpZzb4Ps1S2CcwTDIMM8sd5EryfycrHlOajYcSLHayomeLxaFoDof6L9PnLclOAG8yP6dqMxCAqWDhAeJWgCdk8xJp6hOblwZC11H+qUMHv1Tt1xNeG9Ew4tL6LhFm/9vbHFpJp8rhVh39D3rJo18nHw2KydPxtI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733734344; c=relaxed/simple;
-	bh=BNcLxl+DcJJbVF5E/p1CQUzZ5UK5Ws+R+EN50rheir8=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XKL2uiAB0o6J9VRcV3wTUX8nRw/491DFrCLV8+yfWZ1K3jhJCMcG6OGl+Dzm5GKftc9p+OCn+ARq9e13WFO38PZn3FQp8pIXm0DkEQjKoSM0zJCjUoC8vntDbAQmn9nJASIrnjdQ7lZclsSamaZ0ITDM7W9jMkqpBsyCjoM5oWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=G8za5VaO; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4B98q2SE2485023
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 9 Dec 2024 02:52:02 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1733734322;
-	bh=X3Af4Y2rLTa8xaPSh9/yanPOZLxr1gQCD0meK+BsxM0=;
-	h=From:To:CC:Subject:Date;
-	b=G8za5VaOkmxrj238Gh9/OUgqCIWot902/BIEsrjms2CvhowaUenL3VCekouk0/kJH
-	 Ab+XKwxyAx0QfEj/hZSKQw/OnGZwPy9YK4vPZOQXafq5us/evMzWTD+mlSkQ+wYEcM
-	 /5GQaahrKnW2EDIHClEn9K1DG3NHNgaPK9LHIhmc=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B98q2i5010368
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 9 Dec 2024 02:52:02 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 9
- Dec 2024 02:52:01 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 9 Dec 2024 02:52:02 -0600
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.81])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B98pwbS085675;
-	Mon, 9 Dec 2024 02:51:58 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-j784s4-j742s2-main-common: Enable ACSPCIE output for PCIe1
-Date: Mon, 9 Dec 2024 14:21:56 +0530
-Message-ID: <20241209085157.1203168-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1733734873; c=relaxed/simple;
+	bh=S3YYC/YNeXowK04rNQ9L8jVyWw3ahMBv+v8lUE0Y0QI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=FcZMwaWVrVMbkcomU0cpPMJAARGybrquZgD/nhPF1agfzB0jz+T010mJMUu5Wij7LeSOgop0rJmU5bQUwqgLYXhKq4xseaVYaELgaiMiZevtHdRib48t6RFw7xRTMK+3R2ScBXeYdeScesJ+aFh/GHAQ8PBX4lH6FnBEkG6bjXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=YOj+ENX1; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B98VISn028237;
+	Mon, 9 Dec 2024 10:00:26 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	4raHiqxQoPVH+LXWyFUosGW/Q2xLlE6E0wYYvSLxcV8=; b=YOj+ENX1/yu/azn+
+	6f4/j18QK7hxDoTpOMaZeTzmhKvPgOhxJWfZTEinxb4/Iq0tBk2UzJAbMsDJI7ri
+	S42H1yBbQOZmmhXCglpUjzdChmDv8XOs2UTiDQ7M7SwXRvzFyvzpTuugJRkMXo4D
+	u7xCUKFKwoHJdBxfdPUogHgiEDsu3F6upLsENPXtH60KZkJC/Ct1vTBrClM7WEYP
+	My56ygdlFcscpK5ATcFo/LDe3dVxvzGIJFJEIs4qT5rvXvKn9qvWYBZDOZuyuBIp
+	cu6BTwu3YFBT33nroessU5wdkyfdLi8KRSf3oqMkIeYg51xw2Vcgr42NXJKSkzXG
+	2YzWPg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 43ccnkxwrc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 09 Dec 2024 10:00:26 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id F07CC40077;
+	Mon,  9 Dec 2024 09:59:23 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 818D524D44F;
+	Mon,  9 Dec 2024 09:58:59 +0100 (CET)
+Received: from [10.48.87.198] (10.48.87.198) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 9 Dec
+ 2024 09:58:58 +0100
+Message-ID: <18c36a0b-f647-4acd-bed2-d5a09b1694b7@foss.st.com>
+Date: Mon, 9 Dec 2024 09:58:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: dma: st-stm32-dmamux: Add description for
+ dma-cell values
+To: Ken Sloat <ksloat@cornersoftsolutions.com>
+CC: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        <dmaengine@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20241206115018.1155149-1-ksloat@cornersoftsolutions.com>
+Content-Language: en-US
+From: Amelie Delaunay <amelie.delaunay@foss.st.com>
+In-Reply-To: <20241206115018.1155149-1-ksloat@cornersoftsolutions.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-The PCIe reference clock required by the PCIe Endpoints connected to the
-PCIe connector corresponding to the PCIe1 instance of PCIe on J784S4-EVM
-and J742S2-EVM is driven by the ACSPCIE module. Add the device-tree support
-for enabling the same.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
 
-Patch is based on linux-next tagged next-20241209.
+On 12/6/24 12:50, Ken Sloat wrote:
+> The dma-cell values for the stm32-dmamux are used to craft the DMA spec
+> for the actual controller. These values are currently undocumented
+> leaving the user to reverse engineer the driver in order to determine
+> their meaning. Add a basic description, while avoiding duplicating
+> information by pointing the user to the associated DMA docs that
+> describe the fields in depth.
+> 
+> Signed-off-by: Ken Sloat<ksloat@cornersoftsolutions.com>
 
-v1:
-https://lore.kernel.org/r/20240715123301.1184833-1-s-vadapalli@ti.com/
-Changes since v1:
-- Rebased patch on linux-next tagged next-20241209.
-- Moved changes from "k3-j784s4-main.dtsi" to its equivalent now which
-  is "k3-j784s4-j742s2-main-common.dtsi" since PCIe1 is common to both
-  J742S2 and J784S4.
-- Renamed "acspcie0-proxy-ctrl" to "clock-controller" to follow generic
-  node naming convention.
-- Added "ti,syscon-acspcie-proxy-ctrl" property at the end of the node
-  since vendor specific properties should be placed at the end.
-
-Since all dependencies mentioned on the v1 patch have been merged, this
-patch has no further dependencies. Patch has been tested on J784S4-EVM
-with an NVMe SSD connected to the PCIe connector corresponding to PCIe1.
-Logs:
-https://gist.github.com/Siddharth-Vadapalli-at-TI/c36e30d8e9eb7bec96f7f400af1ea470
-
-Regards,
-Siddharth.
-
- .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi     | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-index 7721852c1f68..cddadd12f444 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/mux/mux.h>
- #include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/phy/phy-cadence.h>
- #include <dt-bindings/phy/phy-ti.h>
- 
- #include "k3-serdes.h"
-@@ -124,6 +125,11 @@ audio_refclk1: clock@82e4 {
- 			assigned-clock-parents = <&k3_clks 157 63>;
- 			#clock-cells = <0>;
- 		};
-+
-+		acspcie0_proxy_ctrl: clock-controller@1a090 {
-+			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
-+			reg = <0x1a090 0x4>;
-+		};
- 	};
- 
- 	main_ehrpwm0: pwm@3000000 {
-@@ -1091,8 +1097,8 @@ pcie1_rc: pcie@2910000 {
- 		max-link-speed = <3>;
- 		num-lanes = <4>;
- 		power-domains = <&k3_pds 333 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 333 0>;
--		clock-names = "fck";
-+		clocks = <&k3_clks 333 0>, <&serdes0 CDNS_TORRENT_REFCLK_DRIVER>;
-+		clock-names = "fck", "pcie_refclk";
- 		#address-cells = <3>;
- 		#size-cells = <2>;
- 		bus-range = <0x0 0xff>;
-@@ -1103,6 +1109,7 @@ pcie1_rc: pcie@2910000 {
- 		ranges = <0x01000000 0x0 0x18001000  0x00 0x18001000  0x0 0x0010000>,
- 			 <0x02000000 0x0 0x18011000  0x00 0x18011000  0x0 0x7fef000>;
- 		dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
-+		ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x1>;
- 		status = "disabled";
- 	};
- 
--- 
-2.43.0
-
+Reviewed-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
 
