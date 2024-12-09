@@ -1,126 +1,141 @@
-Return-Path: <devicetree+bounces-128772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 443D79E96BC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:28:10 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E4081673C0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:24:21 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCBE423312A;
-	Mon,  9 Dec 2024 13:20:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UEFRLIzR"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E03F09E9692
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:24:59 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BC9A233125;
-	Mon,  9 Dec 2024 13:20:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62487282E99
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:24:58 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EAF535972;
+	Mon,  9 Dec 2024 13:22:54 +0000 (UTC)
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF0A23315B;
+	Mon,  9 Dec 2024 13:22:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733750435; cv=none; b=OUGllHLhmMp5FakTHertBnpyQ32jII92KLx2+HX6JGAy13GTGhHHenGAXf/4FWevQzC/VY0By6uAfSJ3bj0q17hXtiHUP13avB5G/avXSMshZsaC+P7hmdhRI6GGQEb0sbZ5FJMGpg67YQ8jivEOGzl+nQkjUgymEub7WV0jKzI=
+	t=1733750573; cv=none; b=Ih/Rz5EyPjLlalLVmZrg4r8XjdCLB1nHCD1FNSTMVrEhO8w8JRlsxsaPejXZ/lF5WQAuNv1PvqM0uoHBvpEKKJnbMIC4wi7DlHVHFCIZJVLuUcVl68C8Lob2/dWscxTY2kYekghZsj93UCIu8xpm+U+JhUU1beNBvP01kUutzZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733750435; c=relaxed/simple;
-	bh=XFMTEb8QfCMbI/gZoAO1uuLBFD648TeW70GHUbaw66c=;
+	s=arc-20240116; t=1733750573; c=relaxed/simple;
+	bh=2D0DQ2jdcuW6TLfqRVVTqkguIuo4pXIcyu0TN7dpVNU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QiQjRPjCmCCNLz0RaQqGIi79rYRyBbG69y8XMojX0sYOMQ5XigWeoxlyOchXGdseDXfnwcFEpE7bAzvyMpsYmoygxyAtpX38vi07pghZuoAtAEhH2M8XvaYtbdJriPsss0RuGXReH4AaUkBKy32Gp7j/qK/auJUhwC7pZBhF/CY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UEFRLIzR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F799C4CEE0;
-	Mon,  9 Dec 2024 13:20:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733750435;
-	bh=XFMTEb8QfCMbI/gZoAO1uuLBFD648TeW70GHUbaw66c=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=UEFRLIzRl31qUfwO97NjaRgLWxjbqTr12B+u6HFfN6FnVegjNmAnOhIGuQEVoxadL
-	 1JZMU+FFX5TW8J1FE/aDdtwGrJ9rLD6Sm1ytwPxz80wJ3XtWl8ix80V70zWF8+YZN5
-	 g5YkTLBEHvPd8SB00vMLhEeNdtaXDm7PZrFtOAH/h4SaD3QsZxYFHxhV6dN1FCFALh
-	 xEv4uipJMScpx6hg6X7IuSh4yHQiT8t5vpnYnDbP0nzXOotZlsKwkb9XYqp6aV5dEn
-	 j1r3CCVjHWvPEcR584N9C2irQ9P0WZQk9FZa+yqkP73GJfHSVJSKyUBpdSB+JteKLU
-	 Cc2KR/Otm4YyA==
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e398823d6aaso5021976276.0;
-        Mon, 09 Dec 2024 05:20:35 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVUwqoyYNqhtKrts6lFPTN+jVc9tYH+9WpsDsBQtAKWjgpLRWVj0/8biJVXoqomRdLQvRHfCmmK0HTI@vger.kernel.org, AJvYcCVhx6rJQadC363/Du2NFh8xYoON40ml6/rCvkn8vGW3DuSr5Yd/UV27SRmFYUJGLc3AbjoD+hqTMO6ToRsk@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywt138+aDg2oUcYoIcDwcyGPPwbbFJmdV1V0v6ErafcDhKDs9Hs
-	+lmOJOcZhTBhdcqVLSd9J/4vbsSq2sBx/SMbarW63YyLI88TM0UONJcwexNAdF6gX7fGnqXCrLc
-	hsatKlvHffwLLott4sfMp72l1GA==
-X-Google-Smtp-Source: AGHT+IEXAhNVQ7c1s7Q5Gt/9ACLNzysGwHEAdMPMVXV0mvjexywlU78YQyDTyMQDt8Sh1Y9VGQC5TU1xIwEw6L+BXyw=
-X-Received: by 2002:a05:6902:1542:b0:e38:b460:e0e6 with SMTP id
- 3f1490d57ef6-e3a0a59ee3cmr11408089276.0.1733750434296; Mon, 09 Dec 2024
- 05:20:34 -0800 (PST)
+	 To:Cc:Content-Type; b=sx7gAEgoLYdPMezTuP72VCt2NTsSXHAmw8sN/kN+SnyucRZr8wewzhaODz7vyTxov9jElzuewKMVBLTEeRBw1AvJVIL4IzPoHRLB6XKWifBWd0zQQBKlg8MDZVU/w4Ae6eZwEsHgjIlf61cwSvaxa/aAxaYvRbG+9QIpC3+12Fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7b676152a86so535496085a.1;
+        Mon, 09 Dec 2024 05:22:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733750570; x=1734355370;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J3/IloxOrCBXmR8YEJvJohhgkefp0ULUgBJK+U/S1mQ=;
+        b=EXCTdyQGyHjPaL4MjbbqImPuIIXb+Ww6IKkiQcUqE5WRFU2xw0H+q+drs5Irb/eZ+n
+         aebQB6PSJ/jmezpcm3ABFaaY7kMpG5ldQqK6xOWruY109B4ppaXQ8dTHdgN0AauM0Lb5
+         zYd0pMmZLwwmAmpARaLBgNhEwt9XE9QKC+VWZkLwm1bjjYnHGIEc2l4zcMl0GWbv/fnc
+         +kou77IpkZT8B3eNSpeS0K+wcn66cMi7RLB90ZRZPTxPTyqy/QJMyXpkjchvbpzAwPkW
+         q1bLN93c/x7SkS1c+Afw02AbLMsub9a416B0Xn9a4zFNw6hJrI2CNblUqtSos7baLojJ
+         PjcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVWlDD2SMdIvDvVdg/0hVD1VBe7zgSrTCvems6CQzVuZe7/lU/KgllAj6+Z4HK9yufMj2W5J/GX+o5J@vger.kernel.org, AJvYcCVqU47xsd4iNcj57KTdfpsuLiGoNAVdYa+lIqIKRyd0WyRt2ULdno0iQem7u7iS5xLkA1uL1BUdWKtosT4=@vger.kernel.org, AJvYcCWK9Vu+W1ijxLrkGjEFLH1/PmZBNAnf23ASzmPILNt0hHi65pUOOOiTvn6e3JzHKMAdP7TmjMQGL1PUd4Ve@vger.kernel.org, AJvYcCWS8fx0PdqkC7SoEPvX7VTQwwcCIPGPorHsZDv8hCuI8r80s7cn67irY96SV2+j0k64foryUYrqBxE9QaBT45IVRss=@vger.kernel.org, AJvYcCWo2uUuX6n4Jhum3NdtLgJH59j0QJKlahu/ENt9gGQcr+DN2si2tyBqA6bn//GjDPhpHwr12x0Q8GL6pA==@vger.kernel.org, AJvYcCXyytjtT0AvMq9ep9DUU4T2VeIUNTEpJX3ZxXjaEs0Jz/MzFPDCneyiGQ7rwBDtzNcgU7MA6z/5++IP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcHraVGGcYtGAT3m9jNmu5LthBfI/ElLVFC8ItkNOZZFc6+OsD
+	uNvQwRnWbKRoBVqoXodGQb65x4vUq89tm414QIEVfzrXtEtji9bCfOSRlgKfbas=
+X-Gm-Gg: ASbGncsVEF3l0WqzBqvYHNgQpkG3BFKpBRtbtdasrOKtVWYmDqRYIRyRr/YbF0ZYVtM
+	pNE1WTBIADPqlQI56YvwKhP3VUZ2sRtgiDNAAqNIceDb2uo+y24e7UGJ4D6I2BpmCk4zejc6krH
+	YgPW+RLaJlask1m1T7qr1wTabVg53nrES5xASc8EOpzKFiZVxONrWYSfFUWDOeAfMP8fjJG5g/4
+	zoPm6YdNDL9Uiz/F7zFCXSKk28BJ2YNXmU3EKQ+FR4No0vJNN/E1gZpTWV8exVMXjxrwO9gHgjj
+	23WxYVd75aobz7bQ
+X-Google-Smtp-Source: AGHT+IFjuvQTyXOZRYengcbPj848hMeTXIulPbD/oirZ3DFkqEdYT2UgbZDAzFYaZ3Zqo3snOQAyhQ==
+X-Received: by 2002:a05:620a:838c:b0:7b6:dd11:5e5f with SMTP id af79cd13be357-7b6dd11fe2bmr35367285a.13.1733750570549;
+        Mon, 09 Dec 2024 05:22:50 -0800 (PST)
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85c4f9eae68sm759192241.28.2024.12.09.05.22.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Dec 2024 05:22:50 -0800 (PST)
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-51544e9a0abso2804094e0c.1;
+        Mon, 09 Dec 2024 05:22:50 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUCg0Y9k3ijXTwqkf2uUrvdkmA68YR2ZnqKzbUd/NgqXwm7J63QxovTDDFaxtLIzU9mrd/RE2lmjyp008rZ@vger.kernel.org, AJvYcCUuMX8ENZCzi3zsHSPFa1v5B/IXXLxjy+nn5bOFqJW+EeXp+81Qr+pRPMcI0I0rymDuEkII/ylCZbJD@vger.kernel.org, AJvYcCUuuu8STNG7x1FYU68BKZcIVotyuJLbIcrWWH/Zq7vEQwLJoVgRD5SklxiJzfxRxZ2AdHa/QVIhrFjzKs2wlMA1FhA=@vger.kernel.org, AJvYcCVC+TxN0oOt+AChJnRAFdbMVCT5Z+SVOYbBiWI5rm8a1zzj7mQZ3dFkcCPK3TMRwRgny9tdzzoYtczOUA==@vger.kernel.org, AJvYcCVanEE5CIT6VccQdxTuZ4nxHXVEp4KVgo1FlqTPZlncJCXZKTrRvbOzJH1lvZwew4vJQnmFdruW+D1kLeY=@vger.kernel.org, AJvYcCXznL61j595NcYP7Q+HcEhNn1+7wvVIAeX3Q9iv2gjfTrs3oV0ZrjFq9eoCy3/vFH1bbxdMzzQoAOGH@vger.kernel.org
+X-Received: by 2002:ac5:c9b9:0:b0:518:8915:89ec with SMTP id
+ 71dfb90a1353d-51889158a8bmr371719e0c.1.1733750569916; Mon, 09 Dec 2024
+ 05:22:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241206-of_core_fix-v1-0-dc28ed56bec3@quicinc.com> <20241206-of_core_fix-v1-7-dc28ed56bec3@quicinc.com>
-In-Reply-To: <20241206-of_core_fix-v1-7-dc28ed56bec3@quicinc.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 9 Dec 2024 07:20:23 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+140YAXAtxmb4FPdk2C2EZSJ-9AjOz5ik6jK4oHLOdDg@mail.gmail.com>
-Message-ID: <CAL_Jsq+140YAXAtxmb4FPdk2C2EZSJ-9AjOz5ik6jK4oHLOdDg@mail.gmail.com>
-Subject: Re: [PATCH 07/10] of: Correct comments for of_alias_scan()
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: Saravana Kannan <saravanak@google.com>, Leif Lindholm <leif.lindholm@linaro.org>, 
-	Stephen Boyd <stephen.boyd@linaro.org>, Maxime Ripard <mripard@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Grant Likely <grant.likely@secretlab.ca>, 
+References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com> <20241113133540.2005850-8-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20241113133540.2005850-8-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 9 Dec 2024 14:22:38 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVms8xKxuX=gC49ognvXmY+8a3SttJOG=7iuCUVL4vcdQ@mail.gmail.com>
+Message-ID: <CAMuHMdVms8xKxuX=gC49ognvXmY+8a3SttJOG=7iuCUVL4vcdQ@mail.gmail.com>
+Subject: Re: [PATCH v3 07/25] ASoC: renesas: rz-ssi: Use only the proper
+ amount of dividers
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com, 
+	broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org, 
+	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Zijun Hu <quic_zijuhu@quicinc.com>
+	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 5, 2024 at 6:53=E2=80=AFPM Zijun Hu <zijun_hu@icloud.com> wrote=
-:
->
-> From: Zijun Hu <quic_zijuhu@quicinc.com>
->
-> Correct of_alias_scan() comments by:
->
-> - Replace /* with /** to start comments since it is not a API.
+Hi Claudiu,
 
-But it is because it's in of.h. However, you are correct in that it
-has no external callers. So please move the declaration to
-of_private.h.
+On Wed, Nov 13, 2024 at 2:36=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> There is no need to populate the ckdv[] with invalid dividers as that
+> part will not be indexed anyway. The ssi->audio_mck/bclk_rate should
+> always be >=3D 0.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-> - Delete return value descriptions since it is a void function.
->
-> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
-> ---
->  drivers/of/base.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/of/base.c b/drivers/of/base.c
-> index 1c62cda4ebcd9e3dc5f91d10fa68f975226693dd..33abb6227468c03fd191201aa=
-2bbe05a41fdd9f4 100644
-> --- a/drivers/of/base.c
-> +++ b/drivers/of/base.c
-> @@ -1812,14 +1812,13 @@ static void of_alias_add(struct alias_prop *ap, s=
-truct device_node *np,
->                  ap->alias, ap->stem, ap->id, np);
->  }
->
-> -/**
-> +/*
->   * of_alias_scan - Scan all properties of the 'aliases' node
->   * @dt_alloc:  An allocator that provides a virtual address to memory
->   *             for storing the resulting tree
->   *
->   * The function scans all the properties of the 'aliases' node and popul=
-ates
-> - * the global lookup table with the properties.  It returns the
-> - * number of alias properties found, or an error code in case of failure=
-.
-> + * the global lookup table with the properties.
->   */
->  void of_alias_scan(void * (*dt_alloc)(u64 size, u64 align))
+Thanks for your patch!
+
+> --- a/sound/soc/renesas/rz-ssi.c
+> +++ b/sound/soc/renesas/rz-ssi.c
+> @@ -258,8 +258,7 @@ static void rz_ssi_stream_quit(struct rz_ssi_priv *ss=
+i,
+>  static int rz_ssi_clk_setup(struct rz_ssi_priv *ssi, unsigned int rate,
+>                             unsigned int channels)
 >  {
->
-> --
-> 2.34.1
->
->
+> -       static s8 ckdv[16] =3D { 1,  2,  4,  8, 16, 32, 64, 128,
+> -                              6, 12, 24, 48, 96, -1, -1, -1 };
+> +       static s8 ckdv[] =3D { 1,  2,  4,  8, 16, 32, 64, 128, 6, 12, 24,=
+ 48, 96 };
+
+"u8", as 128 doesn't fit in s8 (why doesn't the compiler complain?).
+
+>         unsigned int channel_bits =3D 32; /* System Word Length */
+>         unsigned long bclk_rate =3D rate * channels * channel_bits;
+>         unsigned int div;
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
