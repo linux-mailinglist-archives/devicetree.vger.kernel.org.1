@@ -1,247 +1,163 @@
-Return-Path: <devicetree+bounces-128917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E829E9D67
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 18:47:56 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA6AD9E9D87
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 18:52:25 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1742282ED2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 17:47:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72AD71887323
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 17:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F8101C5CA7;
-	Mon,  9 Dec 2024 17:47:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034971A2398;
+	Mon,  9 Dec 2024 17:52:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bUF2rChN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eE7GpyZw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C14923315E;
-	Mon,  9 Dec 2024 17:47:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701991534EC;
+	Mon,  9 Dec 2024 17:52:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733766449; cv=none; b=DlGL8qinHaDw01bgkq2e3/0UkQwtyffZJJQhxPjydTApqvA2R0JJX83MmgjPWvH8JDbledRI4Em7v6snxGZxaI+EUgEP+dP95yxgVR2fJEhh1brktAJxZbuJq9+Wq2Y4AM23EyHljAM8ACJZDkxfpxO540erkserJm7O9/qyGvs=
+	t=1733766736; cv=none; b=VT1bfX1CBGblgMJkMnfY+kJH60R6Zl1O+RGTevubzSNFFUnm56pgkYtSjf27cMavVC5eA1rxK1hUBEym4YpZ6OxSoBgyrfyYfmdj97ioV1HMZvu6yB+uef1p1uLvgP4iABTl+UZ2T6OLWMWIfdi5O/hoN5IavSl354yLmqrDPpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733766449; c=relaxed/simple;
-	bh=Y3lRbDCfH3A8PYlYcKSPcUcqsZwGYcTg/9f1bdIxfEg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JAaziSHUK99EQxPFlnbZru2H+ld3ORcojsodx10mZHs4rORMKpKxJkBnpPmVv0yyWT8QygCVHd2gp+THnrT/cbvFPkdbGam9fFuWVkiLTEXAAo6cxDZypOioxUtNaFRT9iCwQw4IrmNWnMXAG+kC2PIn8cDn0UByqxfLTJW+Usk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bUF2rChN; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4B9HlEDI2341854
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 9 Dec 2024 11:47:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1733766434;
-	bh=eTG/e2l3KpvcafqmdZO1vCcPlH+GvHFgYJFOv8hUdfs=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=bUF2rChNq+1jH5pkJvE33PgFHVGweZHipwwHO1sRFiT/ABjbc/cLZlkz1mx8+B+t2
-	 fp7eKaMmPUHZP/wD36Ler7nEo3OkFJAeCZXO5jT5RUG5QN6gA4KVw/6WXkxp1HYBqb
-	 aRD67SxPwLY7kWH9RFObyz0/dpu1D26SgYLc9uKg=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B9HlE1S058412
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 9 Dec 2024 11:47:14 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 9
- Dec 2024 11:47:14 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 9 Dec 2024 11:47:14 -0600
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B9HlDO7044631;
-	Mon, 9 Dec 2024 11:47:13 -0600
-Message-ID: <2912af91-6012-4e6a-9439-737e319b7724@ti.com>
-Date: Mon, 9 Dec 2024 11:47:13 -0600
+	s=arc-20240116; t=1733766736; c=relaxed/simple;
+	bh=Lc7CMi5T65fd+xzDNMdvkp4IAYlvO1VlGvQ6pgsERuE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ksnx/qvluYmWw3PPKMrxJlMqhxIK+EDhHJ1kUWlB4SXB1GsA4aLzewfCXgcDnUwdKscHvh313DMRGOnpJqufIFlSmaqS3WtAklQG+e1wYKfLWXis0oxduH2tjLwZEqUGpvbAtaZvDECiTb/KaKO5X1AR5vPz6UHyX9UfFv/SOKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eE7GpyZw; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20cf3e36a76so40366395ad.0;
+        Mon, 09 Dec 2024 09:52:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733766734; x=1734371534; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=y/trAWIOmyeIA9QLmudtLE6fFCuJ9kiR9bEYA8dkGpM=;
+        b=eE7GpyZwi3Z2zuzClFSCgNjUgc+O1qMZRbw37QOpO8BY9b/C7Fpqd3bVtIB3OMPRjz
+         r+9xdJiu7wExiy8QP/J8M7q1qptWqDpJVMQSKzutwMsQ0Krh1BlM3CJaztlKkNjwhSOs
+         hMjCkA0RcwZZn3EOD7AtgxHRJV8M64NGnhTE2bmi8IZBtz52eMUSvC3huQwl2TJrrOy0
+         9sNmNi80nX4bBu15dwAxBeZ4q6Ogb8cL3kjmQq0368bQfFQ8ivKgFw8KnTs1m0tdwHMU
+         F2IO47a+p+hiEZGhalgqgq1qSq1XTDfnSTSUYI+LATyLg77RVbD43U17NEk6tDD1qG+o
+         KjWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733766734; x=1734371534;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y/trAWIOmyeIA9QLmudtLE6fFCuJ9kiR9bEYA8dkGpM=;
+        b=oRjgEWZukmN+B5W0LK+ZQgpivEG/fxqSLYclCgzm6to10W2rRefisBwv9e3B//YwcE
+         soEoAslMBoe+5xNtWkZGi6xdLA1nIlBXoDN3l++MS4rlGNwgr7KLkS8za1qeBD7skC/E
+         YRUzN6/HMvr3DI0aVcf+6FuqUB6aENiJKfIqLwrjPJRlsmMRuqBUfNAupykIWnsIzV57
+         d4tIcpjfqQLgVg01zdI+lcglxP9n89g0/I+d21zPBIoHVQNQir3Q87ppuBgMHFNpd4Ds
+         Hjvmse9cTMZZf0jvfTawuIlob4o3nZ6jLg02GjQ95C7pj3QwpLbh0fVwWbU20SZZICP3
+         iadA==
+X-Forwarded-Encrypted: i=1; AJvYcCUv31uyY85VYNjMcx5/ClWXAY5gNrWIT1PJ/w+7n1XUKbSe/t678T2dmR3doB7VK2zGNTCaA3RWXxqn8+s=@vger.kernel.org, AJvYcCW11gx2hvCGJPbS6rwnWHybsxEbOPxkXjq1gJ+EOsLgeSxQdvJ7OgPPJFtHUEIIdw2s0x/Oos7NMtZzf6QQ@vger.kernel.org, AJvYcCW9Jd6zOhVK7lpgHiQu9Z4GfPQeTyRvJ9aIiV6DDw+51FoNJwHbhD+kq/p3T1RNdjXbCErZczqNvjFhZw==@vger.kernel.org, AJvYcCXVZIyJeH7HaYLQrCsJ4afL4LRDStA9NmWvr8bAeJHSUsLY4+ttCSjlEmbj52wKOKNi8sRyegkNmbZm@vger.kernel.org
+X-Gm-Message-State: AOJu0YyR/tetmxkMhEWG5lfTm2Djek81NsQYF7Ui3sgP//LMW1JEnxYb
+	NJmWaP2N0HimVKExABaD8uyzlD7S6tPS+eG+eAKULVxTANJeMWo0
+X-Gm-Gg: ASbGncvuhwrRo9fRNPAWMKAcv3FMYVGEFapuG5DmpHIBo9eN7aCmt+YtYmW1CizD8tC
+	qe4al9wNJ8NTR6SrF3h83onysIGdjGyPd78la0NKT0lkIUIvpGnc/cCCeJwh8I34TjwOr34EBdT
+	jSxHhZSFHtBEgWNZepbHXZ2SC4MHuBA5JJxD1QkLYMDN5LUSNGf9roOjQQ+975hoVNnJX5fPlvo
+	AmwBj52KizXLy/VKkjAh1WI//CK+SuOXe3bJARuV4lC/Ajsxig=
+X-Google-Smtp-Source: AGHT+IEEsOy5X7sKBxPB0ErJL0U3xEpqXt12FxzWmgM7Kpv/Qhhll30qQ8stWy7rSmWuum3iWYSYdw==
+X-Received: by 2002:a17:903:41ce:b0:216:1e9f:c5db with SMTP id d9443c01a7336-21669fd3b9cmr19690625ad.28.1733766734346;
+        Mon, 09 Dec 2024 09:52:14 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:ecfb:32dc:2452:3a27])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-216363a3176sm34602515ad.246.2024.12.09.09.52.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Dec 2024 09:52:13 -0800 (PST)
+Date: Mon, 9 Dec 2024 09:52:11 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: akemnade@kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Tony Lindgren <tony@atomide.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
+	khilman@baylibre.com, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND 1/2] Input: tsc2007 - accept standard properties
+Message-ID: <Z1cuSxrV-ceaO1k9@google.com>
+References: <20241205204413.2466775-1-akemnade@kernel.org>
+ <20241205204413.2466775-2-akemnade@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node
- feature
-To: Herve Codina <herve.codina@bootlin.com>
-CC: Ayush Singh <ayush@beagleboard.org>,
-        Geert Uytterhoeven
-	<geert@linux-m68k.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann
-	<arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana
- Kannan <saravanak@google.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20241209151830.95723-1-herve.codina@bootlin.com>
- <5889e0aa-15f9-41fe-9d80-ec59fee2f62b@ti.com>
- <20241209180320.30fc0da6@bootlin.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20241209180320.30fc0da6@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241205204413.2466775-2-akemnade@kernel.org>
 
-On 12/9/24 11:03 AM, Herve Codina wrote:
-> On Mon, 9 Dec 2024 10:47:50 -0600
-> Andrew Davis <afd@ti.com> wrote:
+On Thu, Dec 05, 2024 at 09:44:12PM +0100, akemnade@kernel.org wrote:
+> From: Andreas Kemnade <andreas@kemnade.info>
 > 
->> On 12/9/24 9:18 AM, Herve Codina wrote:
->>> Hi,
->>>
->>> At Linux Plumbers Conference 2024, we (me and Luca Ceresolli) talked
->>> about issues we have with runtime hotplug on non-discoverable busses
->>> with device tree overlays [1].
->>>
->>> On our system, a base board has a connector and addon boards can be
->>> connected to this connector. Both boards are described using device
->>> tree. The base board is described by a base device tree and addon boards
->>> are describe by overlays device tree. More details can be found at [2].
->>>
->>> This kind of use case can be found also on:
->>>     - Grove Sunlight Sensor [3]
->>>     - mikroBUS [4]
->>>
->>> One of the issue we were facing on was referencing resources available
->>> on the base board device tree from the addon overlay device tree.
->>>
->>> Using a nexus node [5] helps decoupling resources and avoid the
->>> knowledge of the full base board from the overlay. Indeed, with nexus
->>> node, the overlay need to know only about the nexus node itself.
->>>
->>> For instance, suppose a connector where a GPIO is connected at PinA. On
->>> the base board this GPIO is connected to the GPIO 12 of the SoC GPIO
->>> controller.
->>>
->>> The base board can describe this GPIO using a nexus node:
->>>       soc_gpio: gpio-controller {
->>>         #gpio-cells = <2>;
->>>       };
->>>
->>>       connector1: connector1 {
->>>           /*
->>>            * Nexus node for the GPIO available on the connector.
->>>            * GPIO 0 (Pin A GPIO) is connected to GPIO 12 of the SoC gpio
->>>            * controller
->>>            */
->>>           #gpio-cells = <2>;
->>>           gpio-map = <0 0 &soc_gpio 12 0>;
->>>           gpio-map-mask = <0xf 0x0>;
->>>           gpio-map-pass-thru = <0x0 0xf>;
->>>       };
->>>
->>> The connector pin A GPIO can be referenced using:
->>>     <&connector1 0 GPIO_ACTIVE_HIGH>
->>>
->>> This implies that the overlay needs to know about exact label that
->>> references the connector. This label can be different on a different
->>> board and so applying the overlay could failed even if it is used to
->>> describe the exact same addon board. Further more, a given base board
->>> can have several connectors where the exact same addon board can be
->>> connected. In that case, the same overlay cannot be used on both
->>> connector. Indeed, the connector labels have to be different.
->>>
->>> The export-symbols node introduced by this current series solves this
->>> issue.
->>>
->>> The idea of export-symbols is to have something similar to the global
->>> __symbols__ node but local to a specific node. Symbols listed in this
->>> export-symbols are local and visible only when an overlay is applied on
->>> a node having an export-symbols subnode.
->>>
->>> Using export-symbols, our example becomes:
->>>       soc_gpio: gpio-controller {
->>>         #gpio-cells = <2>;
->>>       };
->>>
->>>       connector1: connector1 {
->>>           /*
->>>            * Nexus node for the GPIO available on the connector.
->>>            * GPIO 0 (Pin A GPIO) is connected to GPIO 12 of the SoC gpio
->>>            * controller
->>>            */
->>>           #gpio-cells = <2>;
->>>           gpio-map = <0 0 &soc_gpio 12 0>;
->>>           gpio-map-mask = <0xf 0x0>;
->>>           gpio-map-pass-thru = <0x0 0xf>;
->>>
->>>           export-symbols {
->>>             connector = <&connector1>;
->>>           };
->>>       };
->>>
->>> With that export-symbols node, an overlay applied on connector1 node can
->>> have the symbol named 'connector' resolved to connector1. Indeed, the
->>> export-symbols node available at connector1 node is used when the
->>> overlay is applied. If the overlay has an unresolved 'connector' symbol,
->>> it will be resolved to connector1 thanks to export-symbols.
->>>
->>> Our overlay using the nexus node can contains:
->>>      node {
->>>         foo-gpio = <&connector 0 GPIO_ACTIVE_HIGH>;
->>>      };
->>> It used the GPIO 0 from the connector it is applied on.
->>>
->>> A board with two connectors can be described with:
->>>       connector1: connector1 {
->>>           ...
->>>           export-symbols {
->>>             connector = <&connector1>;
->>>           };
->>>       };
->>>
->>>       connector2: connector2 {
->>>           ...
->>>           export-symbols {
->>>             connector = <&connector2>;
->>>           };
->>>       };
->>>
->>> In that case, the same overlay with unresolved 'connector' symbol can be
->>> applied on both connectors and the correct symbol resolution (connector1
->>> or connector2) will be done.
->>>    
->>
->> I might be missing something, but how is the correct connector (connector1
->> or connector2) selected? Let's say I connect my addon board to connector2,
->> then I apply the addon board's overlay to the base DTB. What connector
->> just got referenced?
->>
+> Only some driver-specific properties were accepted, change it
+> to use the now-available standard properties which are
+> found in devicetrees containing this chip.
 > 
-> A driver for the connector is needed.
-> The driver applies the overlay using of_overlay_fdt_apply().
-> The node the overlay has to be applied to is passed by the driver to
-> of_overlay_fdt_apply().
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+
+Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+
+> ---
+>  drivers/input/touchscreen/tsc2007.h      | 2 ++
+>  drivers/input/touchscreen/tsc2007_core.c | 5 ++---
+>  2 files changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/input/touchscreen/tsc2007.h b/drivers/input/touchscreen/tsc2007.h
+> index 69b08dd6c8df1..e346fb4f75521 100644
+> --- a/drivers/input/touchscreen/tsc2007.h
+> +++ b/drivers/input/touchscreen/tsc2007.h
+> @@ -19,6 +19,7 @@
+>  #ifndef _TSC2007_H
+>  #define _TSC2007_H
+>  
+> +#include <linux/input/touchscreen.h>
+>  struct gpio_desc;
+>  
+>  #define TSC2007_MEASURE_TEMP0		(0x0 << 4)
+> @@ -63,6 +64,7 @@ struct tsc2007 {
+>  
+>  	struct i2c_client	*client;
+>  
+> +	struct touchscreen_properties prop;
+>  	u16			model;
+>  	u16			x_plate_ohms;
+>  	u16			max_rt;
+> diff --git a/drivers/input/touchscreen/tsc2007_core.c b/drivers/input/touchscreen/tsc2007_core.c
+> index 8d832a372b897..5252301686ec6 100644
+> --- a/drivers/input/touchscreen/tsc2007_core.c
+> +++ b/drivers/input/touchscreen/tsc2007_core.c
+> @@ -142,8 +142,7 @@ static irqreturn_t tsc2007_soft_irq(int irq, void *handle)
+>  			rt = ts->max_rt - rt;
+>  
+>  			input_report_key(input, BTN_TOUCH, 1);
+> -			input_report_abs(input, ABS_X, tc.x);
+> -			input_report_abs(input, ABS_Y, tc.y);
+> +			touchscreen_report_pos(input, &ts->prop, tc.x, tc.y, false);
+>  			input_report_abs(input, ABS_PRESSURE, rt);
+>  
+>  			input_sync(input);
+> @@ -339,9 +338,9 @@ static int tsc2007_probe(struct i2c_client *client)
+>  	input_set_drvdata(input_dev, ts);
+>  
+>  	input_set_capability(input_dev, EV_KEY, BTN_TOUCH);
+> -
+>  	input_set_abs_params(input_dev, ABS_X, 0, MAX_12BIT, ts->fuzzx, 0);
+>  	input_set_abs_params(input_dev, ABS_Y, 0, MAX_12BIT, ts->fuzzy, 0);
+> +	touchscreen_parse_properties(input_dev, false, &ts->prop);
+>  	input_set_abs_params(input_dev, ABS_PRESSURE, 0, MAX_12BIT,
+>  			     ts->fuzzz, 0);
+>  
+> -- 
+> 2.39.2
 > 
 
-So every connector needs a driver? Most connectors are dumb connectors,
-just a bunch of wires broken out to a header.
-
-What if an addon board overlay uses multiple connectors?
-
-If you need a connector-specific driver, and that driver needs to know
-which node this overlay will be applied to, then why not just do a
-fixup directly to the overlay in the driver?
-
-Andrew
-
-> Even if obsolete because I added one more parameter (export_symbols_name)
-> in of_overlay_fdt_apply() in this current series, you can have a look at the
-> following patch to see the connector driver:
->    https://lore.kernel.org/lkml/20240917-hotplug-drm-bridge-v4-8-bc4dfee61be6@bootlin.com/
-> 
-> Best regards,
-> Hervé
-> 
+-- 
+Dmitry
 
