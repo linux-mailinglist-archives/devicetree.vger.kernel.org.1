@@ -1,100 +1,89 @@
-Return-Path: <devicetree+bounces-128946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10CCF9EA041
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 21:28:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D09649EA04A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 21:32:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B888188874F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 20:28:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BF321888747
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 20:32:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C59D2199EA1;
-	Mon,  9 Dec 2024 20:28:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3AED19C546;
+	Mon,  9 Dec 2024 20:32:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="K5UAnZH9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hc3HPJWh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8AA137930;
-	Mon,  9 Dec 2024 20:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B647223315A;
+	Mon,  9 Dec 2024 20:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733776118; cv=none; b=qWJrq56Q1VlIaVBA2gquFwv/b7OSfSFMNx8oTkw5DueWSHBUri0r/XuOhDwA5f33h3+Jw1CQ3l5gh3xaimAX8SIbuJxeFCygOxbDQRG2MpUSB+9e3Z4+InenGjotTx3Ckqn9GXl0NiI19LE2y9V1vePXwaHI43665KJ4SLPX46Q=
+	t=1733776322; cv=none; b=TRXlL6cMY4rcYmV2677XHtPZQNCjv51o6DJIKThRagJDIoUzIwaJIoRMWXkTJZPaiv3lVmKj0/uj/uMu+uDK1nstRfeGvs926nsdCo4YkeIH5MLlLCOSg2DfePFqAHAmmZto0MKPsD28d8dbDDx/4UWniN8pcYfgOT5+YTr/hy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733776118; c=relaxed/simple;
-	bh=7QuADeCtgt+7r+IcVHoHNyONh5uPvUsN9FpSQmaPdnY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Mv7bW06IVSBg6sVcpTIvY+lmqyZwWcDr6PoaVA8NLGkaux1iM8gJ04eAv/vFeWEvAA9J5Z2H3zejEbFOaOQeFhWzSb9pOE1aGTt16P1vlgmIVNnSzXgvNnWTDXY7wuJw4CLqPdxmOavYQ8G1s2tC/sXgSKG3oM4AOmTUZvWY5fk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=K5UAnZH9; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id B56C4896DC;
-	Mon,  9 Dec 2024 21:28:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1733776115;
-	bh=kqO+qNbDaASSZD90mwuR3nDdiSgV1rdKf5IacQWABfw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=K5UAnZH92iSt5h18mJFDi2BIlgZM4u5RX5pCm2fDA5IdD56FLX4J7CPiKzTaiMTzU
-	 C9yarRvwdNGQ4U77Q438qJyKksc3i+7GbHkDQhmOcUvaInLToawsFixTYjkvL4RlcD
-	 g1DoTWnz2VN5ADhu7lkIl4DE20wIUOYazQ3/jbqNi1NbJYwmq7xN0LDxbUQ/Dm+5lz
-	 LAxukatO1lHTXqkKTUuBduUpcHTaj8sr0DUuuxGCR3ljC9bMWd2gwXfF39gSX5Pu3j
-	 350UAWOyECt46M7Qd1VwdQKjsNmf5ApZOBl3jcQYlvleBmz41qF3jCJv/6hWNcLdcQ
-	 746ZFjtsg23NQ==
-Message-ID: <c970bdbc-5831-470c-9040-b37c4f76baf2@denx.de>
-Date: Mon, 9 Dec 2024 21:26:33 +0100
+	s=arc-20240116; t=1733776322; c=relaxed/simple;
+	bh=wpgzYV9P/iqfJu/uKuikGtFuJPC6IBtMiMfoMSv56sM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QSUb9r05Pt87H818KIvN/kfzlTU+Cr1wvkIFE/38QCTgcLx8VArWkOsWbEXULpv+R2ELFDdk5mvZXvJ3C6PYjQjwuJ/pKIQli192n0mlPgl6M34nhv+Fos59rqZqmXVPvUwDxy1lD4nkBCL7U8lhPPPt9Oa9EIHWYbY2PuGiEfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hc3HPJWh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFAF4C4CED1;
+	Mon,  9 Dec 2024 20:32:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733776322;
+	bh=wpgzYV9P/iqfJu/uKuikGtFuJPC6IBtMiMfoMSv56sM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Hc3HPJWhRXcHBxhmPwUYAYM77Ohadjum2ZaPWO+920b5ZpqNB17fExI0q179iPPwU
+	 Tdp5zJajw4LlTgRYxYdKHjde4CvcKowmgHaOzg7uqbwBU+8Uyj1mPD/wgKjrRBZvha
+	 QltwfxUBz1kAfl3S4s72woG4sJKt+m1aidlCTh5SmVNez/SrbnMpEWcZYxlQEhRJta
+	 Cl1SedwtzZnE45u0eVpxeKTn21ieP29RLbj1vs+i6kJsoTp6eytB7c6FvLEdpYw8kf
+	 e9Sfy1AmzyQD43XeOYRrToZc3dwK4fJHI8evPjj5+deqvrk2nRzbGmLHe0rQcpMrEs
+	 k5JO8Nr42k/DQ==
+Date: Mon, 9 Dec 2024 14:32:00 -0600
+From: Rob Herring <robh@kernel.org>
+To: Zijun Hu <zijun_hu@icloud.com>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Leif Lindholm <leif.lindholm@linaro.org>,
+	Stephen Boyd <stephen.boyd@linaro.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Grant Likely <grant.likely@secretlab.ca>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Zijun Hu <quic_zijuhu@quicinc.com>, stable@vger.kernel.org
+Subject: Re: [PATCH 04/10] of: Fix refcount leakage for OF node returned by
+ __of_get_dma_parent()
+Message-ID: <20241209203200.GA925532-robh@kernel.org>
+References: <20241206-of_core_fix-v1-0-dc28ed56bec3@quicinc.com>
+ <20241206-of_core_fix-v1-4-dc28ed56bec3@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 0/2] net: dsa: microchip: Add of config for LED
- mode for ksz87xx and ksz88x3
-To: Andrew Lunn <andrew@lunn.ch>, Fedor Ross <fedor.ross@ifm.com>
-Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Tristram Ha <tristram.ha@microchip.com>
-References: <20241209-netdev-net-next-ksz8_led-mode-v1-0-c7b52c2ebf1b@ifm.com>
- <c934f10d-1a75-4ca8-bd0b-f08544c7d333@lunn.ch>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <c934f10d-1a75-4ca8-bd0b-f08544c7d333@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241206-of_core_fix-v1-4-dc28ed56bec3@quicinc.com>
 
-On 12/9/24 7:22 PM, Andrew Lunn wrote:
-> On Mon, Dec 09, 2024 at 06:58:50PM +0100, Fedor Ross wrote:
->> Add support for the led-mode property for the following PHYs which have
->> a single LED mode configuration value.
->>
->> KSZ8765, KSZ8794 and KSZ8795 use register 0x0b bits 5,4 to control the
->> LED configuration.
->>
->> KSZ8863 and KSZ8873 use register 0xc3 bits 5,4 to control the LED
->> configuration.
+On Fri, Dec 06, 2024 at 08:52:30AM +0800, Zijun Hu wrote:
+> From: Zijun Hu <quic_zijuhu@quicinc.com>
 > 
-> PHY and MAC LEDs should be configured via /sys/class/leds. Please take
-> a look at how the Marvell PHY and DSA driver, qca8k driver etc do
-> LEDs.
-According to KSZ8794 datasheet, this register 0xb is Global Control:
+> __of_get_dma_parent() returns OF device node @args.np, but the node's
+> refcount is increased twice, by both of_parse_phandle_with_args() and
+> of_node_get(), so causes refcount leakage for the node.
+> 
+> Fix by directly returning the node got by of_parse_phandle_with_args().
+> 
+> Fixes: f83a6e5dea6c ("of: address: Add support for the parent DMA bus")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+> ---
+>  drivers/of/address.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Register 11 (0x0B): Global Control 9
+Applied, thanks.
 
-So this does not seems like per-port LED control, but rather some global 
-control for all LEDs on all ports on the chip ?
+Rob
 
