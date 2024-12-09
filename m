@@ -1,99 +1,90 @@
-Return-Path: <devicetree+bounces-128923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39AB29E9DCE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 19:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC5289E9DF8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 19:22:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BB6B166748
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 18:04:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2D4F16703C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 18:22:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CCFC155325;
-	Mon,  9 Dec 2024 18:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01C4A155C8A;
+	Mon,  9 Dec 2024 18:22:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="rtl4AdkI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD0B81F5F6;
-	Mon,  9 Dec 2024 18:04:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FFCB14A4DF;
+	Mon,  9 Dec 2024 18:22:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733767495; cv=none; b=TkkliudCD2zNczEHc2F7OX5OLqpDhnxoGo8+3MmOHTfVx1ARFgF+1ksQMk+2VzmME7EfKMF33gXODBLj7rX9XPR0sDrmLvHmxZvyqbAx4GKPCgs2/tP/jvEexoiWCQnJbEHOqFdHR8JL/SCxrv9OD8XUWbdVeyft4takPE72Ty8=
+	t=1733768530; cv=none; b=YzCL11T5fHuQyUfoEur++exk7DXhNEAEafHxE+9xx6uDxuHSJkBi2w/wSEc3hP3uInGy+PAg06yFsY2f8B+KFwDMJ7l6x9FkRqtDmH9jzvnuBLC1646iinGHF7nehSjh8KtsyFGRNzw2eI4VYZhNnHp1H9F7GIJOI6b87Cpdqhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733767495; c=relaxed/simple;
-	bh=XHJVjy4G8KWnKFDzFwAU7io+1PqalpIVOjawoVejFoA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rHLEhY+t8Nc0LzUBIflfnoJmGVC51FiermZOaq0bi6mnaGWybUbSkUv6xahiHif5LmeOHHR0CHWaxskU0Ebc8lLXp16lImFqMtZrT3jl4faj7g0nm5AfhYB7/FU+JdH6v5Ac+iQqXLabDD6njP6fRFGJYsYg1cCFhdVxHjDUUDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 313CD1650;
-	Mon,  9 Dec 2024 10:05:21 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 77A913F720;
-	Mon,  9 Dec 2024 10:04:50 -0800 (PST)
-Date: Mon, 9 Dec 2024 18:04:47 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: codekipper@gmail.com
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@vger.kernel.org,
- linux-sunxi@googlegroups.com, linux-sunxi@lists.linux.dev,
- devicetree@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- robh@kernel.org, jernej.skrabec@gmail.com, samuel@sholland.org,
- wens@csie.org, macromorgan@hotmail.com, jszhang@kernel.org, uwu@icenowy.me,
- ryan@testtoast.com, dsimic@manjaro.org, mripard@kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: allwinner: Add X96Q Pro support
-Message-ID: <20241209180447.7ddcc231@donnerap.manchester.arm.com>
-In-Reply-To: <20241111162524.46812-1-codekipper@gmail.com>
-References: <20241111162524.46812-1-codekipper@gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1733768530; c=relaxed/simple;
+	bh=/VGDqhdnkK6ylC+MBbxQLC+Vjx1EVADRGMfyYiYgbmU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aFZh8CCJFOVlbp+yAlZcQiUA97nEZa0cWal+FQd19q+sj4WRyc2C2HSPJF2hGvl/LTqHOtoTuXYgnXrVR+bSo+mFMpjHgDzWwE8HTxkVphJsgHOk/Sr0YoLi+CbtL3lvUU0T4FH8MJlZp2K26Z4xmFacol7RyPXXPbDTamLobMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=rtl4AdkI; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=h196H/GBlXVpDihxGCGdnI+6In7gBytdrMx0dFG8kNc=; b=rtl4AdkItkyBCQujn8370xKHMh
+	GCKMAS7MqlYl/LUkvZwcSYTrqV3ORNix7mjgDdfT9TIcP0/QTVX3qmqq3Z2ZAbNKEp7jPbDqWd396
+	BY24uu1inpbVwxWON4u/d27yh422mngFgHTzyu8u8B9PLCzSWEKz7p9MGUBcDobvpuZs=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tKiOQ-00Fhsa-1v; Mon, 09 Dec 2024 19:22:02 +0100
+Date: Mon, 9 Dec 2024 19:22:02 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Fedor Ross <fedor.ross@ifm.com>
+Cc: Woojung Huh <woojung.huh@microchip.com>, UNGLinuxDriver@microchip.com,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Tristram Ha <tristram.ha@microchip.com>
+Subject: Re: [PATCH net-next 0/2] net: dsa: microchip: Add of config for LED
+ mode for ksz87xx and ksz88x3
+Message-ID: <c934f10d-1a75-4ca8-bd0b-f08544c7d333@lunn.ch>
+References: <20241209-netdev-net-next-ksz8_led-mode-v1-0-c7b52c2ebf1b@ifm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241209-netdev-net-next-ksz8_led-mode-v1-0-c7b52c2ebf1b@ifm.com>
 
-On Mon, 11 Nov 2024 17:25:04 +0100
-codekipper@gmail.com wrote:
-
-Hi Marcus,
-
-> From: Marcus Cooper <codekipper@gmail.com>
+On Mon, Dec 09, 2024 at 06:58:50PM +0100, Fedor Ross wrote:
+> Add support for the led-mode property for the following PHYs which have
+> a single LED mode configuration value.
 > 
-> Hi All,
-> The X96Q-Pro is an STB based on the Allwinner H313 SoC with a SD
-> slot, 2 USB-2 ports, a 10/100M ethernet port using the SoC's
-> integrated PHY, Wifi via an sdio wifi chip, HDMI, an IR receiver,
-> a blue LED display, an audio video connector and an digital S/PDIF
-> connector.
-> Further information can be found on the sunxi wiki
-> https://linux-sunxi.org/X96QPro and the vendors site
-> https://x96mini.com/products/android-10-x96q-pro-smart-tv-box
-
-You hinted at sending a v2 some day, will you get the chance to do this
-still this month? Then the DT would have a good chance of getting merged
-into v6.14, I think.
-
-Cheers,
-Andre
-
-
-> Thanks in advance for the reviews,
-> CK
+> KSZ8765, KSZ8794 and KSZ8795 use register 0x0b bits 5,4 to control the
+> LED configuration.
 > 
-> Marcus Cooper (2):
->   dt-bindings: arm: sunxi: Add the X96Q Pro board name
->   arm64: dts: allwinner: Add initial support for the X96Q-Pro STB
-> 
->  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
->  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
->  .../dts/allwinner/sun50i-h313-x96q-pro.dts    | 176 ++++++++++++++++++
->  3 files changed, 182 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h313-x96q-pro.dts
-> 
+> KSZ8863 and KSZ8873 use register 0xc3 bits 5,4 to control the LED
+> configuration.
 
+PHY and MAC LEDs should be configured via /sys/class/leds. Please take
+a look at how the Marvell PHY and DSA driver, qca8k driver etc do
+LEDs.
+
+    Andrew
+
+---
+pw-bot: cr
 
