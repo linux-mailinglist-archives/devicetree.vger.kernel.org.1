@@ -1,156 +1,117 @@
-Return-Path: <devicetree+bounces-128752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBF0A9E957A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:03:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83D029E9563
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:01:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEC6018880D0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:02:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 600161884424
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44856230D21;
-	Mon,  9 Dec 2024 12:55:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CBN2UJ40"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD9C2228361;
+	Mon,  9 Dec 2024 12:55:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF8BF230D1A;
-	Mon,  9 Dec 2024 12:55:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C23B222619B;
+	Mon,  9 Dec 2024 12:55:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733748930; cv=none; b=GaGpoBb/MHYTy67E1NmmHhyFLBfor4BGR+jEvTA9MlZiAFsQCqz4F6EwEx1sXOY99EV2XsvMyHUccPaRyMWYA8VtO1eWQoN9UI/qJ6pMN7gV8VY7rWi5mdA3XYSy4jnsq5R8oXvSxRzBmJ8m6mu4L1EanaLvdBmsbo9z4h2ZpJk=
+	t=1733748909; cv=none; b=tL9d4iHOk6r16pA2UkbiLcV/VVyvtBwGSnsKS0A3MszmwKUQhITbYtHUJCwpcNAjKz1ChZVyO99c3KNwWUlJqnb45dFuLaM3PBBkUS+le6VH/dJUU0bF0jgZ1QN0jrCk47fMswTvISg3HhDB0vNFhsqTTs6OgZ7Qar4QwQi6pbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733748930; c=relaxed/simple;
-	bh=ljYka+yEPL7dtoadjp4FCBcNXplDLLPRhCJ9St112Pw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=i8+6f2o7pQ9W92UYPjzJgnCn/RXU5SYGrDz2DwpRw+dsIIMcBuyv4DXIXMXIWjuBuIXu8rjImY02HURUtZVQ59Ue+1c6DGdyIeU+Cz6HrvPPBp/euw7UGJvQFc6bbDdAiaBbQN4A9i5PlaE4ZYnGNXXltqnPnHTPiGTPXlZjcfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CBN2UJ40; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B9Aw6B8015561;
-	Mon, 9 Dec 2024 12:55:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Oxkw5D/JPs2UYjgb4jIX/CzNiPXlr+l6xOKDFt/4wo8=; b=CBN2UJ40MryjT2Tn
-	00IWnKasxog7ImiBS3IKYdRVx7lCy5jdxEWH+AHZuXqelJdDSd94qHBcoessMIsx
-	wUHoo1dzYl9jhN+YoBghI1+zW8f+23j1kogd173TzOM9alfxibayUE8HKUvkBqnZ
-	03++C+wAF42D092X6cM2ALHkzRGBkyE1a9peYIyP8+O7bkkVqxyps5gQ8bBBTI2I
-	JJpN/0eetfz53MA9nRdS3+/y8sk6qcL+bV9sUreLET0mMtQw4gnXjZat3d0vcl81
-	wOFhm/v4LUeMeyi5EwaAXTgCTTEvYbImxuswrwUkmMGrCpXPZbi9pZGTNVx/hO2Y
-	NT0fuA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43dy8trfg4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 09 Dec 2024 12:55:16 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B9CtGE8015325
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 9 Dec 2024 12:55:16 GMT
-Received: from hu-dikshita-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 9 Dec 2024 04:55:10 -0800
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-Date: Mon, 9 Dec 2024 18:22:13 +0530
-Subject: [PATCH v7 28/28] media: MAINTAINERS: add Qualcomm iris video
- accelerator driver
+	s=arc-20240116; t=1733748909; c=relaxed/simple;
+	bh=BoFHQnV2ZUJRZO3Onx/b6idYeF5wQgGinSz6ETWgvdU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sQAihIxRsNyA0GsA/PFMk+v6wvdjku3V+P9F0L9KMOuKpZl0h26nsyoDASg8l/l84eQNageaQqkaCG+rCZSsqdeCS5PK1liKMOGeeTU5rBzeVLHmpVXMol4VWshX4MP5Ey8Ii79J++jQ2PPM7MX8wqU49Jp9BTp5ao4Bn0A5/rU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4afde39e360so627552137.0;
+        Mon, 09 Dec 2024 04:55:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733748905; x=1734353705;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=flMWz4KvijWpTCU/Mae8t1bctkfOrFBTrsRYC6H9AOI=;
+        b=QN4VfUeNSFZDLqixw0hmavU8YVJorAqLHliHtnLYPA1/kngw5vHYzlAUs5MIQ6Xd3f
+         3KtEZQpswL+fLitGCfchGDQGRH8tJ4AB9Sei1qpGqCWHuMdvQ1AT/Aqma9+gZjJVwO6c
+         Yx62RV/68Ir7PMytGEMWDJKcneaGYj5fR0iXZoBweS2e24uLb1lhyTlbkfz3Q/LFmMUk
+         B7BrLbFxUC+tcWPjniwABzskvm6vZiXf3nL/rztHhluSuDgmBo7hglrlJ/Gc/n9tEQuZ
+         +hRs+beemHtHshrhzPTJUJ28dDq2QYMkbbmSRSVaXFYU8PD2nJPw+Fp7aWPlT+Fkobkb
+         RE9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU7LwrlQpEUrc/mNRlLL4nXcNKUjORMBXVexuQEvnmrAhwVJRI/wNDm3/5JjjZzmZn7J7ClX7Dz5r1J@vger.kernel.org, AJvYcCUGz1YK2SbZGLYWDmYJ2f5Y01+m0UBjpDr7WIFzD9mSFmrqzZh8it0+HGrBq9jclkk4brcbU82dAgnt@vger.kernel.org, AJvYcCUMhYhBoXCVC7B6qUcXtRndL99NdsXolbg6VHrsyMMtf3nRCH2mjT/QcUUwZobtLj8KfmRVQlHa8UzilzE8@vger.kernel.org, AJvYcCV2GEoOt4JQZejB0kHDrzWdYh9wMYybD6ixUsOzoPXVLcBStKz02F/89TJa4PLWZ1WDBOIAhizNyJNb6Q==@vger.kernel.org, AJvYcCXf7eECvGWI6hdE+K5+T2s3ftxhCAy+NjF+ow7OAwznclXVF5GJX71aEfuzGtaQJCA9YoZmu8fFk/Bb28Q=@vger.kernel.org, AJvYcCXiqyqCpUcbKFxPIlBJBfWt1Lnc+A6nXrhMXY6NOD+B14tjTbZj+m1+TM7okZ5pXNftUAXsEhsBw9fi00uCamlrlG4=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywroq1tahT2LI2IJc8cz5uI0AjlPbAbB1NBxRFnMUpgxhizhn5u
+	EIJ8Yun1Srt1dmziwcaq9coeQGhSkNR8hnk5I/UwDynAUx/VoENTYMo+zAJcgFU=
+X-Gm-Gg: ASbGncv1OdHSQR6yqAZCQuw/mwGQYwYN+qw/7sDSlpwH3elZ8sTJoYOU3XtqIgVvDCj
+	blLpeP7dw1ClUElzywdJ2IPLTrHAzYNP3gaM8rc4WLYX7fB8HPSpU0isp9dA5aWO5rBGPhrjH/t
+	1jw0/DsTrLs+W0/UiiiwnViAKVj+6QWolE+7i6V149xwD0eoAMdIUVrdgTKNZ5DMwGP2asnTTF7
+	ZIcu1wzy/uoszm3ehBbnqOeYbR5HEyRfD3TMsZoNXaopd92k4tZSFetK4hzgGN6yRv/rI8oiyCy
+	mdFLN+o9Mp8/
+X-Google-Smtp-Source: AGHT+IH4hnTZxCmMLebS/O3QUWC+xA2zM1dVWbyUeqfS+PlrXtSXiImSZdRB47ehj3UFuGhZdcb7yQ==
+X-Received: by 2002:a05:6102:ccb:b0:4af:deaf:f891 with SMTP id ada2fe7eead31-4b116051204mr376410137.4.1733748905052;
+        Mon, 09 Dec 2024 04:55:05 -0800 (PST)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85c2ba7dc94sm976061241.16.2024.12.09.04.55.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Dec 2024 04:55:03 -0800 (PST)
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-85c61388e68so288731241.3;
+        Mon, 09 Dec 2024 04:55:03 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUMm+vwHBsKW2M2of129Th4T1cklHSH1cTgaXrY+GuYF23VVnbF08NVeQLEJfiEnXh5vERC4K8VEUsZMu+sWi7DfSs=@vger.kernel.org, AJvYcCVfuyTJRDg32iIcT0zl+rSSmZh1nn4ttiULZJVJ652iywuPJ+EdDcWJBjpRnyLXpuXIR4GrHxCvr7lGZA==@vger.kernel.org, AJvYcCVp057uc4nD8EEvE1jnnnDumhQEXDnX+RTpLhb9cU+yCmNfHqZX5YeZKBKO5E0qR3wT/YZful0SVP3y@vger.kernel.org, AJvYcCW3LC1vxoGZL8oYkk1vT9QObOs0cVUFOM8NyhewTadOawE0C9BnlWZLpWEyObeAJwzUmTmJAxhe7kXhOHoR@vger.kernel.org, AJvYcCWHVvOeUHlA+A7FvPpxitHYkKtTn6uXdC55igNSbvMfMyGFICun58+hc2RQplxm2meVvlXEj+VIe79U@vger.kernel.org, AJvYcCX6C1AzbnHox2XZMGC+6YHMeP6ROGd58aN7iUS1CZQIgPteaNDVnEgGdWmsdXGlPyY5a9wOl7NZFdWJ2ds=@vger.kernel.org
+X-Received: by 2002:a05:6102:510b:b0:4af:f6e5:2b3d with SMTP id
+ ada2fe7eead31-4b1160dc12fmr337822137.15.1733748903246; Mon, 09 Dec 2024
+ 04:55:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241209-qcom-video-iris-v7-28-05c6bdead47b@quicinc.com>
-References: <20241209-qcom-video-iris-v7-0-05c6bdead47b@quicinc.com>
-In-Reply-To: <20241209-qcom-video-iris-v7-0-05c6bdead47b@quicinc.com>
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: Hans Verkuil <hverkuil@xs4all.nl>,
-        Sebastian Fricke
-	<sebastian.fricke@collabora.com>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Nicolas Dufresne
-	<nicolas@ndufresne.ca>,
-        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
-	<u.kleine-koenig@baylibre.com>,
-        Jianhua Lu <lujianhua000@gmail.com>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Dikshita
- Agarwal" <quic_dikshita@quicinc.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733748748; l=1060;
- i=quic_dikshita@quicinc.com; s=20240917; h=from:subject:message-id;
- bh=ljYka+yEPL7dtoadjp4FCBcNXplDLLPRhCJ9St112Pw=;
- b=xxeYrghB0So5ldljWVJAS0eV738kSStgvQaIDThbBhAtMv9jptnDtOY3q3RbVD5VWrGMvgKry
- M5yCZ0X6epjAwm1LBo2qHlBDV3af0lIUu2dStQ7B2oo97F+Oz2Tg883
-X-Developer-Key: i=quic_dikshita@quicinc.com; a=ed25519;
- pk=EEvKY6Ar1OI5SWf44FJ1Ebo1KuQEVbbf5UNPO+UHVhM=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 91iZ3z-fKEImQ5DciA7MH_XRfjxsI6c_
-X-Proofpoint-GUID: 91iZ3z-fKEImQ5DciA7MH_XRfjxsI6c_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- priorityscore=1501 mlxlogscore=841 clxscore=1015 mlxscore=0 spamscore=0
- lowpriorityscore=0 malwarescore=0 bulkscore=0 phishscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412090101
+References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com> <20241113133540.2005850-5-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20241113133540.2005850-5-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 9 Dec 2024 13:54:51 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXNokax91t-N3yrcLFupeWoejBz0wtP9tbEb+EaMns6wQ@mail.gmail.com>
+Message-ID: <CAMuHMdXNokax91t-N3yrcLFupeWoejBz0wtP9tbEb+EaMns6wQ@mail.gmail.com>
+Subject: Re: [PATCH v3 04/25] clk: versaclock3: Add support for the 5L35023 variant
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com, 
+	prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com, 
+	broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org, 
+	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add an entry for iris video decoder accelerator driver.
+On Wed, Nov 13, 2024 at 2:35=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Add support for the 5L35023 variant of the Versa 3 clock generator.
+>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
-Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7a14891a8fa9..d647e59d9912 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19156,6 +19156,16 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/regulator/vqmmc-ipq4019-regulator.yaml
- F:	drivers/regulator/vqmmc-ipq4019-regulator.c
- 
-+QUALCOMM IRIS VIDEO ACCELERATOR DRIVER
-+M:	Vikash Garodia <quic_vgarodia@quicinc.com>
-+M:	Dikshita Agarwal <quic_dikshita@quicinc.com>
-+R:	Abhinav Kumar <quic_abhinavk@quicinc.com>
-+L:	linux-media@vger.kernel.org
-+L:	linux-arm-msm@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/media/qcom,*-iris.yaml
-+F:	drivers/media/platform/qcom/iris/
-+
- QUALCOMM NAND CONTROLLER DRIVER
- M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
- L:	linux-mtd@lists.infradead.org
+Gr{oetje,eeting}s,
 
--- 
-2.34.1
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
