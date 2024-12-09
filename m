@@ -1,93 +1,147 @@
-Return-Path: <devicetree+bounces-128529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04A749E8F24
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:49:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87CF39E8F29
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 10:49:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E636F16228F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:49:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 735FE163AA9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 09:49:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D52F42163B8;
-	Mon,  9 Dec 2024 09:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0E75216600;
+	Mon,  9 Dec 2024 09:49:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xn+qMvvb"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gLAlzeCQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A779D83CD2;
-	Mon,  9 Dec 2024 09:49:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D2092165E9;
+	Mon,  9 Dec 2024 09:49:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733737751; cv=none; b=jM3vuvPIlYrU1tlBhKGMV7mIvAfZKPFYywTwfjRScPiN1cHwufsSqa+9ILh11fmOMrG+zzP9YNiado79OGIxQ0UGHGDWW+0jO6ZApmxeVkrvs0pHeu2Vvi7LxwMQV8yJMFO1mWPnvaINxBFbxKGAt/Nm6VVGsyVIdJz44Hjm/Cg=
+	t=1733737774; cv=none; b=WdC3NCt77kfVeFpVG9SDtpRlzJ0goi/u5fifF3aRZ+SSQXrM5T19epbsi8NeYNVlB/0znlcSTs0wjd5+OTnB+4xacJ+YSuxAlFeRUcpwgSnj/wvq4/8xdEDdrTYIPQ6iNzYX+EfWE998QmzMXbB+iXrxmXOw8otdrWY2ZFxN4Nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733737751; c=relaxed/simple;
-	bh=qhrx3ojEXBzEaAfZ+IYNq03LjibZUpkxxO/wLrw5KxA=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=tCXWSal8TGVvzeXXc/+XiS1doUPDwuzp85eWlRJstriMo0f+OkLYeThVQAeFqnDaEvnZpeJI9nKzCwKn8Q+iqCaSbnBaa/xdOiFCCnVllFYgtrDQh0LSePKPf7bj8nxcXYIz5efpPw/7idE9I5C6SI9Fsp49PBQBNOuLf5zt6VY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xn+qMvvb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4738AC4CEDE;
-	Mon,  9 Dec 2024 09:49:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733737751;
-	bh=qhrx3ojEXBzEaAfZ+IYNq03LjibZUpkxxO/wLrw5KxA=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=Xn+qMvvbUXfDiIJZ4474c8UVpIOt4pSffXzuVqUvjAIrPAzgJwmJ5K/gTXQKAvmEn
-	 4TJKKTsIu3MrD7gIU2K//yTQzOk5EHiSR2Toyxp5u9FgB0ZJIVBTDycXnCiQKEROHq
-	 Vxk07kmPKtt7JQhH6+6KpM7OpmJ58ANg1hkto1IdjPmSo6B2aNJsgTK7IGDOVNCCj3
-	 k9dhto7AEeh9WzQrnegSkkSlDJS3VOt1SA5rOCZYXRZbSF3vN+bEJxOlrtRzwGBdEE
-	 nxoAR3ZoaFuA9I1Pe5zZxwZOOLuK3r1uHEWFA58cIhhWdg0b6+ZVDppVuWyzHvWn8n
-	 7O9Yvoqa8cTEg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: ath12k@lists.infradead.org,  linux-wireless@vger.kernel.org,
-  devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/8] dt-bindings: net: wireless: Describe ath12k PCI
- module with WSI
-In-Reply-To: <20241206-sugar-surely-9efffa93aa5c@spud> (Conor Dooley's message
-	of "Fri, 6 Dec 2024 17:05:03 +0000")
-References: <20241205203044.589499-1-kvalo@kernel.org>
-	<20241205203044.589499-2-kvalo@kernel.org>
-	<20241206-sugar-surely-9efffa93aa5c@spud>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
-Date: Mon, 09 Dec 2024 11:49:08 +0200
-Message-ID: <87zfl5rxt7.fsf@kernel.org>
+	s=arc-20240116; t=1733737774; c=relaxed/simple;
+	bh=vDVoR6QJHDbAwKUmHAbTLSwKdLlywl2nMTNdrlzT7ps=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y8df98ccjrawouFShcTJtFkaK1UHBeTso5fcBIXHYE8YrKS5Abtf0HApPSpQFZHk+MlHbQSpTzWvqvNMOS0WNiaajWahEU5b0yoOgYR6M8gTXqcLd1tR+i81PJybmz9NYiGGJY5F5mvbrll4ovzUUM5I07IxOMdfYe3Wd/Wa4aI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gLAlzeCQ; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1733737770;
+	bh=vDVoR6QJHDbAwKUmHAbTLSwKdLlywl2nMTNdrlzT7ps=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gLAlzeCQfkpTQp2EmlKFXooBQiBUryzCmDJjPB+gfcQaqEw9EgdVaJvhwctpQkX/J
+	 Ob4ObKCYSBfEZ3dkPmuc9169HstBj8Ik0XVxy/ySYno8CqPJGYv60WspYpeKEoWNci
+	 MrsJaNcevihSx7KjRvZH0SRmaI9Yt4Nl+pgIep0xDJZYhpyoJ+/Fm4Jlmq77RVkBjI
+	 kmpgr6Ww4ESZP+Yr5sExjFYAKcqexK6sXrZm+aWPfdb4E/fcN5azk1XtffGLoF8cn7
+	 GTpBsrD7cM8xOqhgz6HUMcTXtlXvEIy11dXbFRfJIryJtBZoQw1fZGF5cvK+M0xd/i
+	 sdm6z27mHpq6Q==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8F2EB17E3615;
+	Mon,  9 Dec 2024 10:49:29 +0100 (CET)
+Message-ID: <b5a77637-64b0-4ed3-9619-e76d094505af@collabora.com>
+Date: Mon, 9 Dec 2024 10:49:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 13/15] drm/mediatek: mtk_hdmi_common: Assign DDC
+ adapter pointer to bridge
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "jie.qiu@mediatek.com" <jie.qiu@mediatek.com>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
+ <mripard@kernel.org>, =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
+ <jitao.shi@mediatek.com>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "kernel@collabora.com" <kernel@collabora.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "junzhi.zhao@mediatek.com" <junzhi.zhao@mediatek.com>
+References: <20241205114518.53527-1-angelogioacchino.delregno@collabora.com>
+ <20241205114518.53527-14-angelogioacchino.delregno@collabora.com>
+ <c0e144b3a90881066d0974157e66ac23f09a0fc5.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <c0e144b3a90881066d0974157e66ac23f09a0fc5.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Conor Dooley <conor@kernel.org> writes:
+Il 09/12/24 09:17, CK Hu (胡俊光) ha scritto:
+> Hi, Angelo:
+> 
+> On Thu, 2024-12-05 at 12:45 +0100, AngeloGioacchino Del Regno wrote:
+>> External email : Please do not click links or open attachments until you have verified the sender or the content.
+>>
+>>
+>> In preparation for adding the new HDMI TX v2 IP driver, assign the
+>> pointer to the DDC adapter to struct drm_bridge during probe.
+>>
+>> This commit brings no functional changes.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   drivers/gpu/drm/mediatek/mtk_hdmi_common.c | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>> index 1b23ab6969ec..4f708b04f5e8 100644
+>> --- a/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>> +++ b/drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+>> @@ -410,6 +410,7 @@ struct mtk_hdmi *mtk_hdmi_common_probe(struct platform_device *pdev)
+>>          hdmi->bridge.ops = DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID | DRM_BRIDGE_OP_HPD;
+>>          hdmi->bridge.type = DRM_MODE_CONNECTOR_HDMIA;
+>>          hdmi->bridge.of_node = pdev->dev.of_node;
+>> +       hdmi->bridge.ddc = hdmi->ddc_adpt;
+> 
+> I don't know why only v2 driver need to assign this?
+> Could you point out the code where access this value?
+> 
 
-> On Thu, Dec 05, 2024 at 10:30:37PM +0200, Kalle Valo wrote:
->> +  qcom,wsi-controller:
->> +    type: boolean
->> +    description:
->> +      The WSI controller device in the WSI group aids (is capable) to
->> +      synchronize the Timing Synchronization Function (TSF) clock across
->> +      all devices in the WSI group.
->
-> This should be type: flag btw.
+v2 uses hdmi helpers, which make use of bridge->ddc.
+mtk_hdmi_v2_bridge_edid_read() calls drm_edid_read().
 
-Just so that I understand correctly, do you mean it should be like this:
+drm_edid.c -> drm_edid_read()
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/gpu/drm/drm_edid.c?h=next-20241209#n2704
 
-  qcom,wsi-controller:
-    $ref: /schemas/types.yaml#/definitions/flag
-    description:
-      The WSI controller device in the WSI group aids (is capable) to
-      synchronize the Timing Synchronization Function (TSF) clock across
-      all devices in the WSI group.
+...while v1 feeds the (internal) ddc pointer to drm_edid_read_ddc() instead.
 
-And no changes in the code?
+Cheers,
+Angelo
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+> Regards,
+> CK
+> 
+>>
+>>          ret = devm_drm_bridge_add(dev, &hdmi->bridge);
+>>          if (ret)
+>> --
+>> 2.47.0
+>>
+> 
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
 
