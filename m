@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-128949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7280C9EA058
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 21:37:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F7559EA066
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 21:38:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4218A1667C8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 20:37:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C3AF1188264D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 20:38:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB0219AA72;
-	Mon,  9 Dec 2024 20:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062441991A5;
+	Mon,  9 Dec 2024 20:38:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ctx+0Jzp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ItGglAB7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D1F199EA3;
-	Mon,  9 Dec 2024 20:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D02E01990AE;
+	Mon,  9 Dec 2024 20:38:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733776627; cv=none; b=Ehnw8zlVCoXxuG3LY+yPPmAXAVPBJetdmNeNYC861EyyoJU3NL0zul1Xk/Fekz045ByL1G/QybgKxE8FPe7GJv4xc+PmoVLdS1TzBUiVTx9lEqFRKQn5b8QOsCXVI6kRIErSkHaZmnvY38b5S26g1ZM5IdTITlNKKeHfEgZHVjo=
+	t=1733776711; cv=none; b=BBYcItkR5/fkQ9XECxBFytFFmoqi1sVBBjzDa148zaW/Kfg67nN0IBAFddjIH5unWyVyv8DiRUexk61qk5PqI3uVjGqYaPK3TCF4NWJOUZ/IgKjTAa/tu8vSO/1SzcpWlVV66Tr2rXKDeR3Tlx84Sll6g4Mg8rA5AjqvgbnCDAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733776627; c=relaxed/simple;
-	bh=vq2RaFKA1ZxoTyMKnkiNgT19gJJywdNSTlLNMy0BCIQ=;
+	s=arc-20240116; t=1733776711; c=relaxed/simple;
+	bh=fXS//WI1VAjyk8vDSAPq97xcEndiyZAPcauC8VmyTV0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=deJnhwe472+xrbkyAQAlYOF0VLNT0/Hhp07M8stp+8tZfLHO0o7QoEkNhdS7r9JCaokVniSW6BYHtoqVmWrcNDc0DC9ooqhdR1/qLa1XRU89G2SzrNNM8DQquqGtBFp+5hTFy38DLsh8hC1J8SwVUc/jVCBMfUwTY8g/QPdvoAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ctx+0Jzp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F090C4CED1;
-	Mon,  9 Dec 2024 20:37:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rwbiX3z5ggwYc2eU2xbb5GL9j1CPtqNIeSDwWqKfhDQ7rvdkWfsXpUxmSSGyi2qSuKuYCWBzkc+ur5D+kNHTl5h1Y1LAqjSrMSnruQG61AijfIqFcM9ViW3RFVaCW7y35LsRdZhpyXkk6cRfSQ3KGyqO1LtYVnn6Pq/mUDSf+wg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ItGglAB7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A5DBC4CED1;
+	Mon,  9 Dec 2024 20:38:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733776626;
-	bh=vq2RaFKA1ZxoTyMKnkiNgT19gJJywdNSTlLNMy0BCIQ=;
+	s=k20201202; t=1733776711;
+	bh=fXS//WI1VAjyk8vDSAPq97xcEndiyZAPcauC8VmyTV0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ctx+0JzpqG5XDuXONPCXHmHjxt07PadT+D+r1K2tK28K/u1I6Np+krw2dz4GzIMLb
-	 jqE2bBhne4KK8PsDjPgKvne/i/ifHY8PW+h3EoYdqTiMpY6s8cba3MZVbl242wbYas
-	 7AZuHvHFm5q9qAEO5zqDqkArjq8ALUtUfIA8wMtNeEtlpSmmaX8Irwq/vCtxKfZ6Jp
-	 7Yg1vft83tp+DcvcwmVnlTXx9/uTCwkErsgiR2oPjyjqJhNV7iYYxuuqcYiHipA8KH
-	 ++Z909TcamOq8mueqe1Sog6oP0XloRFtrKgnzX4dwGYHC8UEn1z8LruYGYwRErD45U
-	 gArMyXx6FCZjg==
-Date: Mon, 9 Dec 2024 14:37:04 -0600
+	b=ItGglAB7A16grjPnyjlQHj05aaM75DuEMm0BC/WtD6JRRF86Aqxr4BO5In5FJYlH6
+	 7Ys5TSUIZXvsiXZtgA3fDbxhG7d94TzxHfXcNg/4hU7H9MIMDv3u0AeidAUvFEUaD5
+	 sRW6Ig5YEbidwG9zxebOkL4qyday83vGjn/4Wh6TxSRLU5JWkcGD7/DiXBJ+PSKjeu
+	 O2wRprl0AangRz/Rm+p2ZahbNVPOnDdCuRtZoBTc5qmrowgwASEoS+htTf4vGANb5+
+	 /5k2az+mXPTgM+0be4xsT/y7NUD7p188dp3W8kB0NsVV/A9mTDWySBmJH0RjWa+ynb
+	 5rZekqR4MvWbA==
+Date: Mon, 9 Dec 2024 14:38:29 -0600
 From: Rob Herring <robh@kernel.org>
 To: Zijun Hu <zijun_hu@icloud.com>
 Cc: Saravana Kannan <saravanak@google.com>,
@@ -52,11 +52,11 @@ Cc: Saravana Kannan <saravanak@google.com>,
 	Grant Likely <grant.likely@secretlab.ca>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	Zijun Hu <quic_zijuhu@quicinc.com>
-Subject: Re: [PATCH 06/10] of/fdt: Dump __be32 array in CPU type order in
- of_dump_addr()
-Message-ID: <20241209203704.GB925532-robh@kernel.org>
+Subject: Re: [PATCH 10/10] of: Simplify API of_find_node_with_property()
+ implementation
+Message-ID: <20241209203829.GC925532-robh@kernel.org>
 References: <20241206-of_core_fix-v1-0-dc28ed56bec3@quicinc.com>
- <20241206-of_core_fix-v1-6-dc28ed56bec3@quicinc.com>
+ <20241206-of_core_fix-v1-10-dc28ed56bec3@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,22 +65,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241206-of_core_fix-v1-6-dc28ed56bec3@quicinc.com>
+In-Reply-To: <20241206-of_core_fix-v1-10-dc28ed56bec3@quicinc.com>
 
-On Fri, Dec 06, 2024 at 08:52:32AM +0800, Zijun Hu wrote:
+On Fri, Dec 06, 2024 at 08:52:36AM +0800, Zijun Hu wrote:
 > From: Zijun Hu <quic_zijuhu@quicinc.com>
 > 
-> of_dump_addr() dumps __be32 array without conversion to CPU byte order
-> in advance, that will reduce log readability for little endian CPUs.
-> 
-> Fix by be32_to_cpu() conversion before dump.
+> Simplify of_find_node_with_property() implementation
+> by __of_find_property().
 > 
 > Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
 > ---
->  drivers/of/fdt_address.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/of/base.c | 10 +++-------
+>  1 file changed, 3 insertions(+), 7 deletions(-)
 
 Applied, thanks.
 
 Rob
+
 
