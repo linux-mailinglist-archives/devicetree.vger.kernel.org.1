@@ -1,163 +1,171 @@
-Return-Path: <devicetree+bounces-128815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66FDC9E97D1
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:52:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D842C9E97E7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 14:55:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B44BD188670C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:52:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E58EC1884BB7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 13:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED2E71ACEBA;
-	Mon,  9 Dec 2024 13:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4A4D1A23A7;
+	Mon,  9 Dec 2024 13:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H71hXKx0"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="XSiFwoMr";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="QLvbfbmy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3194E233143;
-	Mon,  9 Dec 2024 13:52:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F4D11A2392;
+	Mon,  9 Dec 2024 13:55:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733752331; cv=none; b=BJsEqzkChr2B3Ju2HC80be+eYrur/8FFvw7bzrrsHr5j8agmJ5D/v822JA55j05tg++5Wv7h5jdHYzgfrbtu/AYOBGHiX9m9lYunTfS4uzkVKJMOKM8W06S34lPkQuYkgRaLFMmkE+zCrUwxnM5dWgoOO2wT/Dp32tsRXnYja9o=
+	t=1733752546; cv=none; b=Cqa1w3U3wCfpoKQC3Pjhitvd4N8C40ZosuK4fQrnEkSvTzvka05BsDEjKk9szAx07oSLJipQkg99kL0uy22qPPOOuuAMWJ4F2CztcVErZu4Q4FTpCT6xSBiJhoPOZHKQHjP5Rd86rUp5lspUurPmYqnAkRaG3evTUygafeFsTGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733752331; c=relaxed/simple;
-	bh=SNjMhfcOqr/2FO2iF7EA+2wyAorUyazYpsjpQjK7AC0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hU6ptD9Yv2N5SDHBEUfC8LMLUReLnk8fSUPRLsBxsJZ6TUx9tVDBS49k7N6f573IE0H5gQZBhq4RZJDsrFq/SBob0gTxUMpKFzl6GqGCEimZU9dbnotAPwfx9oGL/4+23wq3MgBC9YJX3LYz1KXSLIo9ueTZ3vHORsiFvxdK3kw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H71hXKx0; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aa68d0b9e7bso163551266b.3;
-        Mon, 09 Dec 2024 05:52:09 -0800 (PST)
+	s=arc-20240116; t=1733752546; c=relaxed/simple;
+	bh=YYFxratArxvKvbLXTcvgqbbnSqNSpdPcrQS/DK4T2sI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=jy3hQGSnUDYp2njqCFNPLeXtkfDj27dK1DVvsqlyf4+3A3MOE3f8u6DZZdf0Eyy6WTYmxBCeQOWNzyQChKCPTZbmzFCJH2vl5uBObdpoK5XwkF15wafz2i8MRjTVFcqrVVR0fsJvQRoyWFQKKtC60QbhXiGkfqtKXyZpcJ67QqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=XSiFwoMr; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=QLvbfbmy reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733752328; x=1734357128; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=x3k8PAFjXCzW1A3crmS3iem8JuhgrdJrW/SGusHwGXM=;
-        b=H71hXKx0qimCHzU48LSqs03SUnOzJumhHa/waGuwQHqYOks4OBQDHDy4Zj7mKx9mMh
-         NWvvftrjiLQuGeW1Uu1f0/QXLnmtSrqrrDUQElOdMRzdWtyVDwozev6arNiNkYcs9WHy
-         Pu/qMUYmc9bG/fiqJSZYbt51vnLdKwHjkBLAXuu/rlqnpzfn8Qm6aBiqWXFx89eoDL/Y
-         bJwRfhLHW00HnhJJJySfkAG65/gAPh4Zsbh/SDotKD1uRBc2xLZ2ge1e1WW2n1REDMLd
-         ox+UA1ie4USAzLnYhtX8oozRqvjlpv5zhrQWcff06a8jmrG43clCCapPQ3p42yTymrtp
-         MFqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733752328; x=1734357128;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x3k8PAFjXCzW1A3crmS3iem8JuhgrdJrW/SGusHwGXM=;
-        b=syQ0iT3sDWdwbKFKcJFo2tFjJvCmJdi7zJtvmZDVX4cVuOiWmjMlx9ygTF69D9PeG6
-         XlbMqH+jaVKEVJgjvU4eNVGBIFiW+jy/iBPl+VUxM7V3hAuqVKKavvCdtL8HxwAXtC+O
-         YEnnSrxcN426sOKpQpDWk5+6xqzHpU4+QvDOUpFV3XNxFoUXcD/mS+VRHgf8Pi8DGyZj
-         qJU0fU7s+ah74mEO/F3mua01dYoqMPNRCjX30VZ3X4E+zqNAGij+hiI8VYO6TqPWXoyQ
-         KbLaznVn6TNoXL0RAyB0cXm/IJ+LuyUHBMSfSA9gX1gsQdXuu22bY5YYsnE0u5E90EDZ
-         3yAw==
-X-Forwarded-Encrypted: i=1; AJvYcCVMyaTuAMDFAaujdQ8iC5lvygay72UnzTf/ONE97YE2LWpcRtHVNNLP31mxU1QsSzRVAmDHqH1z@vger.kernel.org, AJvYcCVOz+m0WQzkn0DazLDl3kfDVcbLcTDpc7zRL3yPo5KjeBaY+xpVDktrL82Fup5PtdbYZxBvhCoXXr4k@vger.kernel.org, AJvYcCW3Uymt8T4yMuVOKF2WvgrCoBjRCrn+4BWpGrvUIk8xGPL1OmG2OLE0RM8G6WPRZvd9q70jEO9BGwZbJXoY@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZ78HsdkoHBxa1gRnPWYgYewh8Zx7IbGtU6BuJuVtq6caQpqb/
-	n4WoMb+yAYXt6Ar27PTeJGlekXRn7PRdxgafAE2qw5h4aFpS2Jrd
-X-Gm-Gg: ASbGncvQj9dewgKCoRYbuttpv0gv+GQMEJiKh09cs693E2g4oKMRvM9HP7mtb33XUjJ
-	f1S8HP1i3Abm2CmbIidBChsLXBoTfRWxkNXB53gGQTIgFO0tB4nR+J86zTtFyr2gtm/psHkIEd6
-	6BrF01oLrQ6l+eG7vf4AHl4P5aWUITYVKnjLal7tUe6dGe/89xPcsXTt/+B9jGnlddeIGIZnB4t
-	pSXJHn3GukznCt/aqEH/4dFtiIG+DN5P2EAxoWT61+Iazg=
-X-Google-Smtp-Source: AGHT+IEa1yXgo0YXxleWvB+4nj5F1TeFbIRPkRLnibwvdnklQU4c0P4+RHAg2mE43H/3iqAQt/BhBQ==
-X-Received: by 2002:a17:906:308d:b0:aa5:b1b9:5d6a with SMTP id a640c23a62f3a-aa69ce32f01mr48901366b.54.1733752328120;
-        Mon, 09 Dec 2024 05:52:08 -0800 (PST)
-Received: from debian ([2a00:79c0:660:e900:9a0b:ab67:9301:c43c])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa692846b85sm97921066b.127.2024.12.09.05.52.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Dec 2024 05:52:07 -0800 (PST)
-Date: Mon, 9 Dec 2024 14:52:05 +0100
-From: Dimitri Fedrau <dima.fedrau@gmail.com>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1733752542; x=1765288542;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=LteyrmhH69QEmehsyqX62nW+pV4+wAljWT6HLYaaBkI=;
+  b=XSiFwoMrBh/GZPB5sin1Gxf2oVQg8z4traQL752UPJXBq1kuQM1JlIfm
+   KHanbVT26JaMD5am0JgKWeoGy39pOvS9nueBEL1oeg79i9b7s2fXlnbZj
+   /cf0hjqsfW+XV5vCof1+n7DTl6oY4Ru1hg7XVhcUcx6u9Z70NNzsQDu6R
+   vQHehiThDa4g702kekcFj5wihKe6Ym0q6fiuYcKyAj+4ixQgMEb/rw5wl
+   879TZ2l8DUjnF8JwqqmkxZxtQ2oVEKmPgk2lxn0tqRGeTDIubos5tUdIB
+   KhgPNAa4QY7bzPpGlgyVer1gG+y2e3cwGoEJZJoAjNdlAz8c1vYNuIzWE
+   g==;
+X-CSE-ConnectionGUID: oY3/CPafQFaYj6kvAX6lGA==
+X-CSE-MsgGUID: 64VLtlciSiyH8wjSMQSoGQ==
+X-IronPort-AV: E=Sophos;i="6.12,219,1728943200"; 
+   d="scan'208";a="40488462"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 09 Dec 2024 14:55:38 +0100
+X-CheckPoint: {6756F6DA-18-1B231F50-D910A4E3}
+X-MAIL-CPID: 1819D895E6E3B5DBD34CC4AA263FD5E0_5
+X-Control-Analysis: str=0001.0A682F1B.6756F6DA.00E2,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 20C6F166BCD;
+	Mon,  9 Dec 2024 14:55:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1733752534;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LteyrmhH69QEmehsyqX62nW+pV4+wAljWT6HLYaaBkI=;
+	b=QLvbfbmy0PuIHr5aXue1xK8WW6edelWn8QmOxbYyObNboeFIyUcpHv+H+idnIZNdcwpw4D
+	58LL1g/e5cxk6Bv2Pe9cKqfA/GWGGWvuUzfR5ouajVv136ABRijxQJtJ94o/kMGCHATg6i
+	sqjc50OVIpDk8b7XRN1KWAzrrdsxKKp4RmiCoA/mb5PzVuua+Djfhy05CFd2Lm3QULBDv6
+	fnvQM9Oj2CLqHE2KfpYCzQsIPOrJnJxFddZhITrTZrJ2dTQHTDAjPwJ7TzcYkPM04LTDoZ
+	/zKyntbPnmhtGa8/BSx31byOgyUwtAN0dymRYLArJ6B79dpOx8SnPIlUvntJWw==
+Message-ID: <c902a56cf34838f60cee67624bb923e91d74e9e0.camel@ew.tq-group.com>
+Subject: Re: [PATCH v2 5/5] arm64: dts: ti: Add TQ-Systems TQMa62xx SoM and
+ MBa62xx carrier board Device Trees
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 To: Andrew Lunn <andrew@lunn.ch>
-Cc: dimitri.fedrau@liebherr.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: phy: dp83822: Add support for GPIO2
- clock output
-Message-ID: <20241209135205.GA2891@debian>
-References: <20241209-dp83822-gpio2-clk-out-v1-0-fd3c8af59ff5@liebherr.com>
- <20241209-dp83822-gpio2-clk-out-v1-2-fd3c8af59ff5@liebherr.com>
- <bcef90db-ca9d-4c52-9dc5-2f59ae858824@lunn.ch>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Kees Cook <kees@kernel.org>,
+ Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>, Felipe Balbi <balbi@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>, Hari
+ Nagalla <hnagalla@ti.com>, linux@ew.tq-group.com
+Date: Mon, 09 Dec 2024 14:55:31 +0100
+In-Reply-To: <a9c5cfda-e3e3-436a-8d05-b2f096157cfe@lunn.ch>
+References: <cover.1733737487.git.matthias.schiffer@ew.tq-group.com>
+	 <95ff66ca2c89f69d893c2ce9eed9a0c677633c7b.1733737487.git.matthias.schiffer@ew.tq-group.com>
+	 <a9c5cfda-e3e3-436a-8d05-b2f096157cfe@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3-0ubuntu1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bcef90db-ca9d-4c52-9dc5-2f59ae858824@lunn.ch>
+X-Last-TLS-Session-Version: TLSv1.3
 
-Am Mon, Dec 09, 2024 at 02:17:04PM +0100 schrieb Andrew Lunn:
-> >  #define MII_DP83822_RCSR	0x17
-> >  #define MII_DP83822_RESET_CTRL	0x1f
-> >  #define MII_DP83822_GENCFG	0x465
-> > +#define MII_DP83822_IOCTRL2	0x463
-> >  #define MII_DP83822_SOR1	0x467
-> 
-> These are sorted, so the MII_DP83822_IOCTRL2 should go before
-> MII_DP83822_GENCFG.
->
-Will fix it.
+On Mon, 2024-12-09 at 14:24 +0100, Andrew Lunn wrote:
+>=20
+> > +&cpsw_port1 {
+> > +	phy-mode =3D "rgmii-rxid";
+> > +	phy-handle =3D <&cpsw3g_phy0>;
+> > +};
+> > +
+> > +&cpsw_port2 {
+> > +	phy-mode =3D "rgmii-rxid";
+> > +	phy-handle =3D <&cpsw3g_phy3>;
+> > +};
+>=20
+> rgmii-rxid is very odd.
+>=20
+> > +
+> > +&cpsw3g_mdio {
+> > +	status =3D "okay";
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&main_mdio1_pins>;
+> > +
+> > +	cpsw3g_phy0: ethernet-phy@0 {
+> > +		compatible =3D "ethernet-phy-ieee802.3-c22";
+> > +		reg =3D <0x0>;
+> > +		reset-gpios =3D <&main_gpio1 11 GPIO_ACTIVE_LOW>;
+> > +		reset-assert-us =3D <1000>;
+> > +		reset-deassert-us =3D <1000>;
+> > +		ti,rx-internal-delay =3D <DP83867_RGMIIDCTL_2_00_NS>;
+>=20
+> I guess this is the explanation.
+>=20
+> What happens when you use rgmii-id, and don't have this delay here?
+> That would be normal.
+>=20
+> 	Andrew
 
-> > +	if (dp83822->set_gpio2_clk_out)
-> > +		phy_modify_mmd(phydev, DP83822_DEVADDR, MII_DP83822_IOCTRL2,
-> 
-> I would of preferred MDIO_MMD_VEND2 rather than DP83822_DEVADDR, but
-> having just this one instance correct would look a bit odd.
->
-Is it worth fixing it in a separate patch, replacing all DP83822_DEVADDR
-with MDIO_MMD_VEND2 ?
 
-> > +	ret = of_property_read_u32(dev->of_node, "ti,gpio2-clk-out",
-> > +				   &dp83822->gpio2_clk_out);
-> > +	if (!ret) {
-> > +		dp83822->set_gpio2_clk_out = true;
-> > +		switch (dp83822->gpio2_clk_out) {
-> > +		case DP83822_CLK_SRC_MAC_IF:
-> > +			break;
-> > +		case DP83822_CLK_SRC_XI:
-> > +			break;
-> > +		case DP83822_CLK_SRC_INT_REF:
-> > +			break;
-> > +		case DP83822_CLK_SRC_RMII_MASTER_MODE_REF:
-> > +			break;
-> > +		case DP83822_CLK_SRC_FREE_RUNNING:
-> > +			break;
-> > +		case DP83822_CLK_SRC_RECOVERED:
-> > +			break;
-> 
-> You can list multiple case statements together, and have one break at
-> the end.
-> 
-Will fix it.
+This is normal for AM62-based boards, see the DTSI of the TI reference
+starterkit for example:
 
-> I would personally also only have:
-> 
-> > +		dp83822->set_gpio2_clk_out = true;
-> 
-> if validation passes, not that it really matters because:
-> 
-> 
-> > +		default:
-> > +			phydev_err(phydev, "ti,gpio2-clk-out value %u not valid\n",
-> > +				   dp83822->gpio2_clk_out);
-> > +			return -EINVAL;
-> > +		}
-> > +	}
-> 
-Ok.
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arc=
+h/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi#n451
 
-	Dimitri
+With rgmii-id, both ti,rx-internal-delay and ti,tx-internal-delay should be=
+ set.
+As ti,*-internal-delay sets the delay on the PHY side, phy-mode "rgmii" is =
+the
+one that would not use either:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Doc=
+umentation/devicetree/bindings/net/ti,dp83867.yaml#n78
+
+At the end of the day, does it really matter as long as MAC and PHY agree o=
+n the
+used mode? We copied this part of the hardware design from the TI reference
+board, and did our hardware qualification with these settings, so I think i=
+t
+makes sense to use the same phy-mode configuration.
+
+Best regards,
+Matthias
+
+
+--=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+https://www.tq-group.com/
 
