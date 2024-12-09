@@ -1,78 +1,97 @@
-Return-Path: <devicetree+bounces-128976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F31959EA2A6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 00:23:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE0599EA2B5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 00:25:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE0E5166218
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 23:23:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FF48188036F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 23:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E3E1F6671;
-	Mon,  9 Dec 2024 23:23:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BDF61F63FE;
+	Mon,  9 Dec 2024 23:25:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="uAd3CKzB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AEv64krJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E4A19E97A;
-	Mon,  9 Dec 2024 23:23:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C7881F63F7
+	for <devicetree@vger.kernel.org>; Mon,  9 Dec 2024 23:25:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733786608; cv=none; b=jdiHSQUDwwwhyzrVFqc75WZtQIEq5SXRW64EsQ6GRV0kYItrQ1nNlMUeheW47Gnm0aB38M3HWcNFi4xZc1L2cgBnidfOFnwcCTJb6/hsCRnaIv98TzwzkZ9FnXVs5N15xA0VySaZWdpW/loo9/zY/7Wgk9+YljpVq1IrObmDBK0=
+	t=1733786727; cv=none; b=FHeGu90EpRxrQ0qIm1WUhODEnze5itDbSQkiVho/SrSpWDRmVcLtofHd0c/O7WeaoOLDiuvvnb841bTFBUoXgMaD/tHDCsEeoZCI69RV6zavp36XvnHpTzR7LtA+TNi21FSRt1k+I3CKFdJq1rgg5Hk55pUdTcXBPE3frYT2MJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733786608; c=relaxed/simple;
-	bh=onfSVdcpXGO++g+yXPULxyEw7kQFplRigK9pz8Hz9d0=;
+	s=arc-20240116; t=1733786727; c=relaxed/simple;
+	bh=CEaXlqPK5rRfzn025WErMmuun7BXlY5qWgtpEUff2SY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SSdR7hdK7N4nikF9nG/oHjsVSgSdns5F2heC+XhAR9Xw6fceJ8Rpfr2X825XXHGH9iak1NSINqBbEl17rYHiG+uIj2QrEbhg/XRUA7Ip+0LP8bLFZGnnZmghN7zY1HY7xfqi0BnjcogD66b1tLoY/T23iH0ww09Jx5EF36eC/C4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=uAd3CKzB; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 70FEC6EC;
-	Tue, 10 Dec 2024 00:22:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1733786571;
-	bh=onfSVdcpXGO++g+yXPULxyEw7kQFplRigK9pz8Hz9d0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uAd3CKzBDElCZ6cdecisX3szg4bFbShSCShSwsxdcJivihvcqO5Cin+9GS/bjeMJi
-	 9d215cvaZICkNc9FbJTEZTf4MHZ3JFJwXf/qfHnq6wRC8lkN0YWOdH6NmmhwupNXCz
-	 we2F0mX5RyH+LRfdQNz1GTXajhN5h/fwjjwlFZHE=
-Date: Tue, 10 Dec 2024 01:23:08 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
-	Jagan Teki <jagan@amarulasolutions.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Subject: Re: [PATCH v3 02/10] drm/rcar-du: Write DPTSR only if the second
- source exists
-Message-ID: <20241209232308.GD26531@pendragon.ideasonboard.com>
-References: <20241206-rcar-gh-dsi-v3-0-d74c2166fa15@ideasonboard.com>
- <20241206-rcar-gh-dsi-v3-2-d74c2166fa15@ideasonboard.com>
- <20241209230418.GC26531@pendragon.ideasonboard.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sod4UdY6O7Dv1RNZV+LxpSGygtzQKOZWMUf9aRIswQTNnzGPVUhN+FBTxdyi7xhxJy0uTJHBQsxSMgU+xWHrStp7uu5lm6nBwR4U01EV8agDKm0n3cQlrLpKylDd9jRYQ/6vrwivFrJCbD6ekZZVdaKuUse/ogkaQaNpBPOtCCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AEv64krJ; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-30229d5b22fso10340731fa.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 15:25:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733786723; x=1734391523; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=z4s5xgP9DEjlrG5WmtT9MKzX5el9XOMTjRzcfUdtNd0=;
+        b=AEv64krJHOW3bIpvg9guTw5YASn2r3RPOXtZOEyMU7cguznwi4xQS4NsLn3xZ+ee/+
+         avOQYZGQM1XkgSvUsJAW/NBXBy75YwVjYB5yPB+sY6roxK98zeNNtCKLgnslBYew6LXu
+         2UepWZtx+FpIJb6q5Ckz/vJMyr+sMl+cG/q9m7RYNiVbQBI9VATzwR/eQOtn5TIDSPRD
+         NdQLTGtR4CFs7eVTayPClNCDGCfbQFljkOu+p6Y1iyfMqlvCQyjF3sZ2Xw1ti3KUkxep
+         PiMusThBp2V/DTvVTJVjrlyH4CGeYMKTvJT7jt9oAOlC9qcsRhuEqvOBaM13tx8P/34v
+         ZpAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733786723; x=1734391523;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=z4s5xgP9DEjlrG5WmtT9MKzX5el9XOMTjRzcfUdtNd0=;
+        b=fYgMs24DU001fq7aS2M0IB3X6OQnyFdIV8G/Bs2gOdYGafDUokZGNlbEoMKO/cVVEx
+         xsGSmQltM7tzCgFqeSsc/fNH4srN46ECEaazRtnTPF0D4l1ggHvj3HaPqFxV5qBBOShC
+         h7U6yZ7k2UF0HzV1SKSdZ4hghR5wyxb+PFaQBnteCMSYbH3vtr1awlefCcDwa1Kavyf8
+         XDAhCFuJJVjIeJisvLrfZ3gnizYSE7YkQGeMyyNF8OMKIxhBsEP/wy4rQ5I8BEEZ4H6P
+         1Z44I/NYt/aHtt/BE/CnNv3Phbz25oSDjJrJtFzf/Ea3Lzruke/nqbGwHtDkkIbS5vQM
+         UEwg==
+X-Forwarded-Encrypted: i=1; AJvYcCVTsCLRKg76jeT57U+6wAa1VvX5egPxKqgdpHWFszlIXDKQOsdlVmvCQbUbACIxeE6XtuUf8iKQGTHo@vger.kernel.org
+X-Gm-Message-State: AOJu0YziCTV+cFoCF1EVfvET1pqS7sZ3qGXioWG4QrtkhJXSxNfjPZ5P
+	MUMcDACjAgI08NOy0ObCMM7qd//iCVcQSx0TAcT2fX8XQ9TNfxZNeVsYK928z00=
+X-Gm-Gg: ASbGncuBdyQYZjNhufNUyrnkSidUx1tPfF50YSXW6ioe//j8daU1ArqoJhM0+QDhw1k
+	sq4E63v3pXZqzodQgtJl2QB8Azf7n2C8yvTXYc/CFKxkcM61CiNIo7O4FMEZSb9llhwHNIVL2G8
+	kO7xIm7m+tTeTRHV8lQ9jr1jI0OmGyd+3KFNtiunB0LbvMTnLsFYWYG0i46CmVzOMTrBs7FqrTT
+	I1NVlH7bpoSvYdvEQctE7GGn18njYj2m5reIlG9yKW5cwV0BNMOfoqde+6TC+OGGK5ib3bk+37D
+	ikP0PWqMeca3PCMKQTOZHgHIAwMVSIvjKQ==
+X-Google-Smtp-Source: AGHT+IFRsv8O8Y8cCQbsGE4N+L0kx2T/KSebIoitD/nAH3VMhwWh9rOyIPp38ojwD+AvvA4aNdBmOA==
+X-Received: by 2002:a05:6512:1089:b0:53e:1c3e:34 with SMTP id 2adb3069b0e04-54024104806mr952924e87.38.1733786723383;
+        Mon, 09 Dec 2024 15:25:23 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e39f3b193sm983113e87.143.2024.12.09.15.25.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Dec 2024 15:25:22 -0800 (PST)
+Date: Tue, 10 Dec 2024 01:25:19 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Wasim Nazir <quic_wasimn@quicinc.com>, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	kernel@quicinc.com
+Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: Add support for QCS9075 Ride &
+ Ride-r3
+Message-ID: <iu6ssjczkdfkhfy2n6vxf3f3c2pepsepslzvnh5z4susxgxgqa@engwsvhu533x>
+References: <20241119174954.1219002-1-quic_wasimn@quicinc.com>
+ <20241119174954.1219002-6-quic_wasimn@quicinc.com>
+ <9e351979-be01-4d38-9b94-cc23efac4c3f@kernel.org>
+ <Z1LaN9nFr5msfq61@hu-wasimn-hyd.qualcomm.com>
+ <cbed17c2-d839-42cb-8a33-b59538bfccf3@oss.qualcomm.com>
+ <c639ca40-9e4f-4882-8441-57413e835422@kernel.org>
+ <Z1c9wMxQ5xSqvPmf@hu-wasimn-hyd.qualcomm.com>
+ <8cf9edc0-a0cb-4fd0-b10e-2138784dfba3@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,69 +100,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241209230418.GC26531@pendragon.ideasonboard.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8cf9edc0-a0cb-4fd0-b10e-2138784dfba3@kernel.org>
 
-On Tue, Dec 10, 2024 at 01:04:19AM +0200, Laurent Pinchart wrote:
-> On Fri, Dec 06, 2024 at 11:32:35AM +0200, Tomi Valkeinen wrote:
-> > From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+On Mon, Dec 09, 2024 at 08:30:07PM +0100, Krzysztof Kozlowski wrote:
+> On 09/12/2024 19:58, Wasim Nazir wrote:
+> > On Fri, Dec 06, 2024 at 01:49:51PM +0100, Krzysztof Kozlowski wrote:
+> >> On 06/12/2024 13:14, Konrad Dybcio wrote:
+> >>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
+> >>>>>> new file mode 100644
+> >>>>>> index 000000000000..a04c8d1fa258
+> >>>>>> --- /dev/null
+> >>>>>> +++ b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
+> >>>>>> @@ -0,0 +1,12 @@
+> >>>>>> +// SPDX-License-Identifier: BSD-3-Clause
+> >>>>>> +/*
+> >>>>>> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> >>>>>> + */
+> >>>>>> +/dts-v1/;
+> >>>>>> +
+> >>>>>> +#include "sa8775p-ride-r3.dts"
+> >>>>> No guys, you are making these things up. This is EXACTLY the same as
+> >>>>> qcs9100.
+> >>>>
+> >>>> 9100 & 9075 are different from “safe” perspective. They differ in
+> >>>> changes related to thermal which will be added later in devicetree.
+> >>>
+> >>> Since this can't be inferred from just looking at the changes, please
+> >>> make sure to add that to the commit message
+> >>
+> >> Any include of other DTS is clear sign something is odd here. Including
+> >> multiple times without any added nodes is showing these are not real
+> >> products/boards .
 > > 
-> > Currently the driver always writes DPTSR when setting up the hardware.
-> > However, writing the register is only meaningful when the second source
-> > for a plane is used, and the register is not even documented for SoCs
-> > that do not have the second source.
+> > We're adding DTS to reuse the common board changes, with plans to
+> > include the differences in upcoming patches. To provide more clarity, I
+> > will include patches in this series to highlight the differences between
+> > the 9100 and 9075 boards.
 > 
-> I've confirmed that for all the models currently supported by the DU
-> driver.
-> 
-> > So move the write behind a condition.
-> > 
-> > Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> 
-> I will test the series on an M3N board.
+> Sure, still do not include DTS. Just like C files don't include C files.
 
-Tested-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com> # On R-Car M3-N
-
-> > ---
-> >  drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c | 20 +++++++++++++++-----
-> >  1 file changed, 15 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c
-> > index 2ccd2581f544..1ec806c8e013 100644
-> > --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c
-> > +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c
-> > @@ -185,11 +185,21 @@ static void rcar_du_group_setup(struct rcar_du_group *rgrp)
-> >  		dorcr |= DORCR_PG1T | DORCR_DK1S | DORCR_PG1D_DS1;
-> >  	rcar_du_group_write(rgrp, DORCR, dorcr);
-> >  
-> > -	/* Apply planes to CRTCs association. */
-> > -	mutex_lock(&rgrp->lock);
-> > -	rcar_du_group_write(rgrp, DPTSR, (rgrp->dptsr_planes << 16) |
-> > -			    rgrp->dptsr_planes);
-> > -	mutex_unlock(&rgrp->lock);
-> > +	/*
-> > +	 * DPTSR is used to select the source for the planes of a group. The
-> > +	 * first source is chosen by writing 0 to the respective bits, and this
-> > +	 * is always the default value of the register. In other words, writing
-> > +	 * DPTSR is only needed if the SoC supports choosing the second source.
-> > +	 *
-> > +	 * The SoCs documentations seems to confirm this, as the DPTSR register
-> > +	 * is not documented if only the first source exists on that SoC.
-> > +	 */
-> > +	if (rgrp->channels_mask & BIT(1)) {
-> > +		mutex_lock(&rgrp->lock);
-> > +		rcar_du_group_write(rgrp, DPTSR, (rgrp->dptsr_planes << 16) |
-> > +				    rgrp->dptsr_planes);
-> > +		mutex_unlock(&rgrp->lock);
-> > +	}
-> >  }
-> >  
-> >  /*
-> > 
+So, is the solution simple, rename .dts to .dtsi and include it from
+both .dts files?
 
 -- 
-Regards,
-
-Laurent Pinchart
+With best wishes
+Dmitry
 
