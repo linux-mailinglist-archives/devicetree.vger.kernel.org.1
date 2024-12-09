@@ -1,156 +1,236 @@
-Return-Path: <devicetree+bounces-128936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1AD19E9FAA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 20:30:51 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 924929E9FC7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 20:39:57 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC632282169
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 19:30:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DD19164C2F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 19:39:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5DEA198A07;
-	Mon,  9 Dec 2024 19:30:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E243F198823;
+	Mon,  9 Dec 2024 19:39:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cy7rbn23"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LRIsoSC2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 777DE13B584;
-	Mon,  9 Dec 2024 19:30:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B798015853B;
+	Mon,  9 Dec 2024 19:39:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733772614; cv=none; b=jBPQRN7cy9ywqCH2DH7awIYkEUEA5b39fKVnmSqMFfH4r++aTLVooYxZHunOmucmGxvEgOp9cYCtNX5W58YBDCoa9w/2tBHLeocQPCW+iDlm1EKrS6Pvs/9ffiJN52acmDh2M8cvGb/MvkVLjaNkLKbXzZXHgLLVB/44m3bO3k8=
+	t=1733773193; cv=none; b=CpRVi97t8WP3fSfoxzkMLADcHGJEA6HikbouI3wLxoTnxPATTzmtJ/kSYlyY5MHK5A0p2k2N6bcBir8JA+b9tp/ide/s5j9MIcyfa+IYEuScBoOtdvKAE3xZfbuJiuxDhDLnYhbFgbep+T0BO7xFgfs6XdFhq/LVDOwLDoMdWGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733772614; c=relaxed/simple;
-	bh=PMiGmJHW0yzswk7uMwKrH4xujWdWzGIzkLfhtTlgaq0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UYT5bfjoOS1T/PR0yl0SkYMhpwk1WSxZEPDp9x2cZVzyQLZEMGxc0h2noTAYMfzFnrhRXh0wCQHXpFnrr7vMwUJxyExSIFeNoCOU/jjMp/fsvyB1GtzVly9WAn5asDmAz+QWTgGVmfQkEGnY7hmPO2sJMI1fjzILO20cziu/B/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cy7rbn23; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0448C4CED1;
-	Mon,  9 Dec 2024 19:30:09 +0000 (UTC)
+	s=arc-20240116; t=1733773193; c=relaxed/simple;
+	bh=dMc2WRWpZ0/k/Q4HK4bCVYHNe58Od5MxNMvKDHwTLTs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lBisck/4H/ZahLjfkg1lIR9rOYBX2q04/sjVXfBd/tIeNfHXF+ExzO2fDRelOxcMFmJNhLFZVQ3rC0aW6xbQh/v2fGPwNmWFrjWcMjc8jJNlZ4ziM/u2PxTmHI8kDcti7QXDf/Y2Ubl5imBsyMBYbBnU5VBPodkXt9li10tpRCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LRIsoSC2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BC17C4CEE0;
+	Mon,  9 Dec 2024 19:39:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733772614;
-	bh=PMiGmJHW0yzswk7uMwKrH4xujWdWzGIzkLfhtTlgaq0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Cy7rbn23ez1MI4VB4lW224V1iZwUG0Z73cng7xkARO4w1QJMR1nbn3W30SzIaUq72
-	 Qs8aSTkSsWgHh3Wavxd8WNZm0c4X1y3XjyClYlmocJ6gpmHixleuWwe0nzSF751k6U
-	 KzSKDJw1kX2xSRW5uXdP6/9NyJJE3+8G7un6p3RHwcpcZ06Kw8v+yjCJuRBqUR0+GY
-	 XezrDkrsKktEqd4HyJrIH4zLLQBTJbmhqq0g8c6b0ETFZrSEoChUxNX1yiY7vD8IRO
-	 UNjzFy4DR9OYWAOwK5ReVW9/ufog7vInhv91+OPLlafQwDI11d8Tai4yYD/GGNKXuh
-	 A5ngvV2yrO92w==
-Message-ID: <8cf9edc0-a0cb-4fd0-b10e-2138784dfba3@kernel.org>
-Date: Mon, 9 Dec 2024 20:30:07 +0100
+	s=k20201202; t=1733773193;
+	bh=dMc2WRWpZ0/k/Q4HK4bCVYHNe58Od5MxNMvKDHwTLTs=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=LRIsoSC2OqGCNRy7+/UG751xDc9BADfbru6DzVH+ZWegnCC13n4VF2V/04ma/yAVC
+	 ISALpG69njscyJ+XCTfR98oiuucwr0ep7MHBCtiSrR3EJDW7es2R6+snN6zzerriwp
+	 2gdvX6nUNPMJXYtAD5UPbctzRYARg9adRMLVSAM6ZZmAel3e8tzboyRbop/hS44j/F
+	 Ig/qDjldVwIeQy6ZZtGhxJxF8OWSGEgLT3d3v7uBEagPsJUN46KPmeScSUBIM2pS4L
+	 ZjED9Y4JateT5NuZQV+XkhiveAP9B7VN6nr6fhhlHhVhhwuLohaJ5ENxS5m0EPbl5G
+	 z4oZ3LJIY7UHQ==
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6efc58fae20so44289767b3.0;
+        Mon, 09 Dec 2024 11:39:53 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXBR4qWVs80X5qdHw+eehPlSqr8jpapFeilvftHSAzRuV+eClQTf+VHMZ4pUUfMcoAyTHSg1XIdOCSq9czW@vger.kernel.org, AJvYcCXimQ5rX3ZRzDD5f/WhpmY1c6mZ6SzjF7hZDZtHTEfTTYM8R+UYQuY6HcMdLlw6mUZeDH9paKaXICik@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgmC03Ts1oJM4yVE09lnu7SdLe9dtA2EOKMJvehiMzgQGVcWgy
+	Ufz5vuczsJB6CuKpdTjs/NwXFiMlPdMEF2JzdyEEQsyWYKlAZW0cQCyCxUix04e1BGq4a693YES
+	n9NAY/3ILE11zq+2WT4hMar4l2A==
+X-Google-Smtp-Source: AGHT+IFHRcFDx7A3bDa/RTT5Au96A/G/vJcEmJ/aW6pzuUasYiHXNzlGvdG+gjunw22MChCuisZdpdKPIbDnxF55Uyw=
+X-Received: by 2002:a05:690c:46c7:b0:6ef:57f9:ec4 with SMTP id
+ 00721157ae682-6efe3bcf570mr121687677b3.5.1733773192223; Mon, 09 Dec 2024
+ 11:39:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: Add support for QCS9075 Ride &
- Ride-r3
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20241119174954.1219002-1-quic_wasimn@quicinc.com>
- <20241119174954.1219002-6-quic_wasimn@quicinc.com>
- <9e351979-be01-4d38-9b94-cc23efac4c3f@kernel.org>
- <Z1LaN9nFr5msfq61@hu-wasimn-hyd.qualcomm.com>
- <cbed17c2-d839-42cb-8a33-b59538bfccf3@oss.qualcomm.com>
- <c639ca40-9e4f-4882-8441-57413e835422@kernel.org>
- <Z1c9wMxQ5xSqvPmf@hu-wasimn-hyd.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <Z1c9wMxQ5xSqvPmf@hu-wasimn-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20241209151830.95723-1-herve.codina@bootlin.com>
+ <5889e0aa-15f9-41fe-9d80-ec59fee2f62b@ti.com> <20241209180320.30fc0da6@bootlin.com>
+ <2912af91-6012-4e6a-9439-737e319b7724@ti.com>
+In-Reply-To: <2912af91-6012-4e6a-9439-737e319b7724@ti.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 9 Dec 2024 13:39:41 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKg0NpDi1Zf1T+f2rYw5UuVfK7+kjWj1_edFWH8EStjXw@mail.gmail.com>
+Message-ID: <CAL_JsqKg0NpDi1Zf1T+f2rYw5UuVfK7+kjWj1_edFWH8EStjXw@mail.gmail.com>
+Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node feature
+To: Andrew Davis <afd@ti.com>
+Cc: Herve Codina <herve.codina@bootlin.com>, Ayush Singh <ayush@beagleboard.org>, 
+	Geert Uytterhoeven <geert@linux-m68k.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 09/12/2024 19:58, Wasim Nazir wrote:
-> On Fri, Dec 06, 2024 at 01:49:51PM +0100, Krzysztof Kozlowski wrote:
->> On 06/12/2024 13:14, Konrad Dybcio wrote:
->>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
->>>>>> new file mode 100644
->>>>>> index 000000000000..a04c8d1fa258
->>>>>> --- /dev/null
->>>>>> +++ b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
->>>>>> @@ -0,0 +1,12 @@
->>>>>> +// SPDX-License-Identifier: BSD-3-Clause
->>>>>> +/*
->>>>>> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->>>>>> + */
->>>>>> +/dts-v1/;
->>>>>> +
->>>>>> +#include "sa8775p-ride-r3.dts"
->>>>> No guys, you are making these things up. This is EXACTLY the same as
->>>>> qcs9100.
->>>>
->>>> 9100 & 9075 are different from “safe” perspective. They differ in
->>>> changes related to thermal which will be added later in devicetree.
->>>
->>> Since this can't be inferred from just looking at the changes, please
->>> make sure to add that to the commit message
->>
->> Any include of other DTS is clear sign something is odd here. Including
->> multiple times without any added nodes is showing these are not real
->> products/boards .
-> 
-> We're adding DTS to reuse the common board changes, with plans to
-> include the differences in upcoming patches. To provide more clarity, I
-> will include patches in this series to highlight the differences between
-> the 9100 and 9075 boards.
+On Mon, Dec 9, 2024 at 11:47=E2=80=AFAM Andrew Davis <afd@ti.com> wrote:
+>
+> On 12/9/24 11:03 AM, Herve Codina wrote:
+> > On Mon, 9 Dec 2024 10:47:50 -0600
+> > Andrew Davis <afd@ti.com> wrote:
+> >
+> >> On 12/9/24 9:18 AM, Herve Codina wrote:
+> >>> Hi,
+> >>>
+> >>> At Linux Plumbers Conference 2024, we (me and Luca Ceresolli) talked
+> >>> about issues we have with runtime hotplug on non-discoverable busses
+> >>> with device tree overlays [1].
+> >>>
+> >>> On our system, a base board has a connector and addon boards can be
+> >>> connected to this connector. Both boards are described using device
+> >>> tree. The base board is described by a base device tree and addon boa=
+rds
+> >>> are describe by overlays device tree. More details can be found at [2=
+].
+> >>>
+> >>> This kind of use case can be found also on:
+> >>>     - Grove Sunlight Sensor [3]
+> >>>     - mikroBUS [4]
+> >>>
+> >>> One of the issue we were facing on was referencing resources availabl=
+e
+> >>> on the base board device tree from the addon overlay device tree.
+> >>>
+> >>> Using a nexus node [5] helps decoupling resources and avoid the
+> >>> knowledge of the full base board from the overlay. Indeed, with nexus
+> >>> node, the overlay need to know only about the nexus node itself.
+> >>>
+> >>> For instance, suppose a connector where a GPIO is connected at PinA. =
+On
+> >>> the base board this GPIO is connected to the GPIO 12 of the SoC GPIO
+> >>> controller.
+> >>>
+> >>> The base board can describe this GPIO using a nexus node:
+> >>>       soc_gpio: gpio-controller {
+> >>>         #gpio-cells =3D <2>;
+> >>>       };
+> >>>
+> >>>       connector1: connector1 {
+> >>>           /*
+> >>>            * Nexus node for the GPIO available on the connector.
+> >>>            * GPIO 0 (Pin A GPIO) is connected to GPIO 12 of the SoC g=
+pio
+> >>>            * controller
+> >>>            */
+> >>>           #gpio-cells =3D <2>;
+> >>>           gpio-map =3D <0 0 &soc_gpio 12 0>;
+> >>>           gpio-map-mask =3D <0xf 0x0>;
+> >>>           gpio-map-pass-thru =3D <0x0 0xf>;
+> >>>       };
+> >>>
+> >>> The connector pin A GPIO can be referenced using:
+> >>>     <&connector1 0 GPIO_ACTIVE_HIGH>
+> >>>
+> >>> This implies that the overlay needs to know about exact label that
+> >>> references the connector. This label can be different on a different
+> >>> board and so applying the overlay could failed even if it is used to
+> >>> describe the exact same addon board. Further more, a given base board
+> >>> can have several connectors where the exact same addon board can be
+> >>> connected. In that case, the same overlay cannot be used on both
+> >>> connector. Indeed, the connector labels have to be different.
+> >>>
+> >>> The export-symbols node introduced by this current series solves this
+> >>> issue.
+> >>>
+> >>> The idea of export-symbols is to have something similar to the global
+> >>> __symbols__ node but local to a specific node. Symbols listed in this
+> >>> export-symbols are local and visible only when an overlay is applied =
+on
+> >>> a node having an export-symbols subnode.
+> >>>
+> >>> Using export-symbols, our example becomes:
+> >>>       soc_gpio: gpio-controller {
+> >>>         #gpio-cells =3D <2>;
+> >>>       };
+> >>>
+> >>>       connector1: connector1 {
+> >>>           /*
+> >>>            * Nexus node for the GPIO available on the connector.
+> >>>            * GPIO 0 (Pin A GPIO) is connected to GPIO 12 of the SoC g=
+pio
+> >>>            * controller
+> >>>            */
+> >>>           #gpio-cells =3D <2>;
+> >>>           gpio-map =3D <0 0 &soc_gpio 12 0>;
+> >>>           gpio-map-mask =3D <0xf 0x0>;
+> >>>           gpio-map-pass-thru =3D <0x0 0xf>;
+> >>>
+> >>>           export-symbols {
+> >>>             connector =3D <&connector1>;
+> >>>           };
+> >>>       };
+> >>>
+> >>> With that export-symbols node, an overlay applied on connector1 node =
+can
+> >>> have the symbol named 'connector' resolved to connector1. Indeed, the
+> >>> export-symbols node available at connector1 node is used when the
+> >>> overlay is applied. If the overlay has an unresolved 'connector' symb=
+ol,
+> >>> it will be resolved to connector1 thanks to export-symbols.
+> >>>
+> >>> Our overlay using the nexus node can contains:
+> >>>      node {
+> >>>         foo-gpio =3D <&connector 0 GPIO_ACTIVE_HIGH>;
+> >>>      };
+> >>> It used the GPIO 0 from the connector it is applied on.
+> >>>
+> >>> A board with two connectors can be described with:
+> >>>       connector1: connector1 {
+> >>>           ...
+> >>>           export-symbols {
+> >>>             connector =3D <&connector1>;
+> >>>           };
+> >>>       };
+> >>>
+> >>>       connector2: connector2 {
+> >>>           ...
+> >>>           export-symbols {
+> >>>             connector =3D <&connector2>;
+> >>>           };
+> >>>       };
+> >>>
+> >>> In that case, the same overlay with unresolved 'connector' symbol can=
+ be
+> >>> applied on both connectors and the correct symbol resolution (connect=
+or1
+> >>> or connector2) will be done.
+> >>>
+> >>
+> >> I might be missing something, but how is the correct connector (connec=
+tor1
+> >> or connector2) selected? Let's say I connect my addon board to connect=
+or2,
+> >> then I apply the addon board's overlay to the base DTB. What connector
+> >> just got referenced?
+> >>
+> >
+> > A driver for the connector is needed.
+> > The driver applies the overlay using of_overlay_fdt_apply().
+> > The node the overlay has to be applied to is passed by the driver to
+> > of_overlay_fdt_apply().
+> >
+>
+> So every connector needs a driver? Most connectors are dumb connectors,
+> just a bunch of wires broken out to a header.
 
-Sure, still do not include DTS. Just like C files don't include C files.
+Yes. So write a dumb-connector driver for all the dumb/simple/generic
+connectors.
 
-Best regards,
-Krzysztof
+Though once pinmuxing comes into play, I'm not sure that anything will
+be dumb or generic.
+
+Rob
 
