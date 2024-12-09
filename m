@@ -1,137 +1,107 @@
-Return-Path: <devicetree+bounces-128608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5CB9E91F0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 12:16:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C22719E9206
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 12:21:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A9411881B7B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:16:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76409163E24
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 11:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1325D216E25;
-	Mon,  9 Dec 2024 11:16:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47473219EA9;
+	Mon,  9 Dec 2024 11:20:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="gkNTOy1i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IhCRyQMy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 561D72147FF;
-	Mon,  9 Dec 2024 11:16:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1868D218AA6;
+	Mon,  9 Dec 2024 11:20:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733742983; cv=none; b=W038mxq6BMT6EjcFZUSc+lToMk59GOjYAZzNkZCcvx4PPf1PppeUXLlkC5owv37Lg9NiVvOSSs5ixxYQ7nJnHAZUZDPNeyhOSejexIFmrmAohevQb/JfOHk4c/pHExijlvznpUkb1ilqbL/FLCAzzRmwNl4pzwpAPqyg9ccZz30=
+	t=1733743237; cv=none; b=WT3NXPzjesEFg+qofdqGSSJcwg57IM+LHEDQlYKQ70VMy2yz0WGEGyzQsX+P3nRtrZXL/2hIsKEpRs4BikCoys7vVvuNPZbT1TkFQbh1sbe3AmVXu6Kv81mUixbW/mOygoWrR5pfMN9ZcWIuDeS9AZeQPytORkfZwruuvMWhlP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733742983; c=relaxed/simple;
-	bh=VXDgpV43oBqhloYTfWbndUbcKl+eiskjcLfIgvtPKVI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DiCO1pOadM5jNnf37ELILw3sxhamnot8jo6FbR8qQ2qgDAoutcFi3A7QRgrP14XtLrJTFihGMuWDwVfEhePlFvtJKTRl2y8xmxF6kXcYFdOUQEAd9mp0AHonjxSpX1xPJ+NN3ikrvGJZ83lRop251k9pGvSn1BdE/9+zmvXSXNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=gkNTOy1i; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from wsk (095160158109.dynamic-2-waw-k-4-2-0.vectranet.pl [95.160.158.109])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: lukma@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 7BDE6888D5;
-	Mon,  9 Dec 2024 12:16:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1733742980;
-	bh=BuMhiC0OhEfpPn44QIc8qMlaFvp2wk3+ZDJWj+PnNQI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=gkNTOy1idlOOFdrQ8uawL2OO6XsQ3+vYNDYjvlh5yAxwGmyL3ojcnrV880kfujf1o
-	 Oa6EjJ1p9HieoK3rQhHyB0hzjIkitFlBRJzm2CAaMIicc0ioQIrL9iRJTYq2RVktDm
-	 sSC7aCb4crgGekjuQbs9yhMI1rA+HuvyehXvi/oTJjgNM6EEARaAeSMwBQ9Lh/kcVh
-	 D+Lx6PdOWcGpX/ikTclmufyxRJYo47yAI0D0g6Uqi6jRa2/O5BA2LuimbuTqjn0zNT
-	 FvZTJU0YGZI76OJfALGsITRdJxH//e2mbjp8wqwEfu8TYztbI/fDxfQu7saINd2hco
-	 QmVZ+lobvzuoQ==
-Date: Mon, 9 Dec 2024 12:16:19 +0100
-From: Lukasz Majewski <lukma@denx.de>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
- <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v11 3/3] ARM: dts: mxs: Add descriptions for imx287
- based btt3-[012] devices
-Message-ID: <20241209121619.623886a4@wsk>
-In-Reply-To: <c8fd371f-fd36-48c4-ad49-1e8f8db01383@gmx.net>
-References: <20241107085705.490940-1-lukma@denx.de>
-	<20241107085705.490940-3-lukma@denx.de>
-	<20241119165236.69438f75@wsk>
-	<c8fd371f-fd36-48c4-ad49-1e8f8db01383@gmx.net>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1733743237; c=relaxed/simple;
+	bh=11vQLLmphFwGU+kKNcSh9cY4RnEZ6CybkaKni0OR3eE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tKA3ku08DNJIrNVr8MAz4mznxJsa4QiuZqqmwt0RpurM4/7QUADaRf3UVUkF0NI4ZdX7axoolpjYYNWt0GALVGO11+O9X743ULE7Up3tDeC/F+SVil6wPzcseig7FCRNc3mFqknMA+nU79Muy+93N0DLSSnRp4Ma6AcrglZprCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IhCRyQMy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E47D9C4CED1;
+	Mon,  9 Dec 2024 11:20:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733743237;
+	bh=11vQLLmphFwGU+kKNcSh9cY4RnEZ6CybkaKni0OR3eE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=IhCRyQMy3NIaBeMIgCV7dcFcIhpN4w+cPr9FSmscCMbqg3DG6c6CPGceUHM1gPZMC
+	 xn4lASh/8mwyq2DOKcc4EMEayGfFJuIss8D5zXGsmtJeJqCL7wllDKrYaXwjZHdBTU
+	 zmLHK4ztJ+eR1hzupos2aYPwEXmf2m5TD75xEG3Qvzll9qDoW8qgP/Ko5Dg9ojcGpA
+	 8wKYfUIRE3zlF+/qpgZOoQgijeZuQFtVJodJNccT/3BFQn9q748nGBVuzS8bTnYptX
+	 nMfjtRS5DdveL/zDfHo++7+YPZiV8MoZnnp6aEl/oNfcIdO6gf/HD2kbTmSvYQzcbS
+	 BoIUBD0iDuAug==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1tKboc-00000000869-1f8e;
+	Mon, 09 Dec 2024 12:20:38 +0100
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Jonathan Marek <jonathan@marek.ca>,
+	Stephan Gerhold <stephan.gerhold@linaro.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	regressions@lists.linux.dev,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH v2 0/2] arm64: dts: qcom: x1e80100: fix USB OTG regressions
+Date: Mon,  9 Dec 2024 12:19:03 +0100
+Message-ID: <20241209111905.31017-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/jBN468d=YevV1Tnfk/xCbGe";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
 
---Sig_/jBN468d=YevV1Tnfk/xCbGe
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+A recent change enabling OTG mode on the Lenovo ThinkPad T14s USB-C
+ports can break SuperSpeed device hotplugging.
 
-Hi Stefan,
+Abel noticed that the corresponding commit for the CRD also triggers a
+hard reset during resume from suspend.
 
-> Am 19.11.24 um 16:52 schrieb Lukasz Majewski:
-> > Dear Community,
-> > =20
-> >> The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
-> >> some extend similar to already upstreamed XEA devices, hence are
-> >> using common imx28-lwe.dtsi file.
-> >>
-> >> New, imx28-btt3.dtsi has been added to embrace common DTS
-> >> properties for different HW revisions for this device.
-> >>
-> >> As a result - changes introduced in imx28-btt3-[012].dts are
-> >> minimal.
-> >> =20
-> > Are there any more comments / suggestions for this patch set? =20
-> I've send my RB for this patch on October 31th for V10, but it didn't
-> made it into V11.
+With retimer (and orientation detection) support not even merged yet,
+let's revert at least until we have stable host mode in mainline.
 
-Sorry, I've just noticed it.
+Note that Stephan and Dmitry have already identified other problems with
+the offending commits here:
 
-When the yaml patches are applied/accepted, I will either resend the
-dts patches with your Reviewed-by or maybe this tag can be added when
-applying the code by the maintainer (Shawn).
+	https://lore.kernel.org/all/ZxZO6Prrm2ITUZMQ@linaro.org/
+	https://lore.kernel.org/all/hw2pdof4ajadjsjrb44f2q4cz4yh5qcqz5d3l7gjt2koycqs3k@xx5xvd26uyef
+
+Johan
 
 
-Best regards,
+Changes in v2
+ - revert also the corresponding patch for the CRD which breaks suspend
 
-Lukasz Majewski
 
---
+Johan Hovold (2):
+  Revert "arm64: dts: qcom: x1e78100-t14s: enable otg on usb-c ports"
+  Revert "arm64: dts: qcom: x1e80100-crd: enable otg on usb ports"
 
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+ .../boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts  |  8 ++++++++
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts            | 12 ++++++++++++
+ 2 files changed, 20 insertions(+)
 
---Sig_/jBN468d=YevV1Tnfk/xCbGe
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+-- 
+2.45.2
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmdW0YMACgkQAR8vZIA0
-zr2THAf+JgmJiwwSis3XQnIdKHJG+zMF3IYWmEQqljal+UWYz6CmPygErJFdSZI9
-p7Nj+OtF4Vnv4gCGw2WSRHiQD4tA1gjFXmLByhkaTke1vKEa6kSbQTb9kvFAT6Ss
-O95SBMZoePdu4c1uEYpSvuYNUVPkImpw+Is20TjrLHm/Jepxbpjh445DaKhNYQQR
-kC9Hb1i1uum13rH0gRwT0HRCXqlBwAYZTMXdqR4gwc3ogJVLsvuY0ujC+1JNNmmp
-BkYM22XM7CY5qeIa0PUEBwS9C2UQwsPWw1KQ4NgZ/1uEN+4iFkNNFGBgWzqeL+wn
-pmTLrePIuUqCthhv5c83HpXCfamRVQ==
-=8U55
------END PGP SIGNATURE-----
-
---Sig_/jBN468d=YevV1Tnfk/xCbGe--
 
