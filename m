@@ -1,149 +1,148 @@
-Return-Path: <devicetree+bounces-128967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B70A89EA263
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 00:04:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E04C9EA279
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 00:11:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2F501886E1C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 23:04:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD867166466
+	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 23:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBCC319F119;
-	Mon,  9 Dec 2024 23:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 749CB19F41A;
+	Mon,  9 Dec 2024 23:11:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="K/z8bvjw"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="m9Vpyjm4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3E1A19E99E;
-	Mon,  9 Dec 2024 23:04:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A5E19EEB4;
+	Mon,  9 Dec 2024 23:11:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733785478; cv=none; b=TLxGS2tWm4E/IayVlCuoT+e8SjZe2e5a3donBKtwbKWJ0VqS6OWYmBXiig5HRvkPuk0JQDZa6v6eadGOD8xKs35XTHtFF1eVEwn/l/7sbTf+NHnksXB0ZIKW45z2rup+1DHPuMDKhMmi7wKPsR3gy0nK5tKv5AYIYdH39e11gmA=
+	t=1733785874; cv=none; b=XSMReMOAhZDncuxzoYHjT4BE9sg6uN9G2WrMev4XhKiDxm0pISTXeQosa+SxRb2tGfgB5nxmkRSSC/UO8kyysFVTFd/I42ugW8ovPGEptHwX661zGgXCTZ05SqcQ+pysXfr5w9r2uGomEGYuVeUeZAyyT+yeu5A0WWnhygfcaOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733785478; c=relaxed/simple;
-	bh=Qcxa64sqKdeh/6r/m4016i3rOJhE43hZnPajfIkR4ek=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GkdbOhSektU6/Uk2pEtkSnuwDzLGyBS8+cJKRlvGwL1V2gIAPd3aPX1yJGpps1tuicahYhu0Klf6Z+TkXYC/Fi2Ul9wnuoYjBMneRuojUKxkOPgAef1ErjAYzwVbgJlzGBsNY32vwSB/NZo/7temN1baYDZcOPqLbTLSZn8LeE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=K/z8bvjw; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3CC556EC;
-	Tue, 10 Dec 2024 00:04:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1733785441;
-	bh=Qcxa64sqKdeh/6r/m4016i3rOJhE43hZnPajfIkR4ek=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K/z8bvjw0WtKMU/6c110zoSWLuKHA3PhH5s6qjsCLUoYZdfKcTUJsPHKtAr0v6nPK
-	 m0+EK8lGSCPgh1m2q+BINxwB+g0ZLUjG7ykzLBwcwr5OZW9GvqwWZUFcrv6b5GT5Py
-	 zLOI2oWhMAv/ZKI5FaiDvPUgmEMWFZdPKcy7o/gM=
-Date: Tue, 10 Dec 2024 01:04:18 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
-	Jagan Teki <jagan@amarulasolutions.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Subject: Re: [PATCH v3 02/10] drm/rcar-du: Write DPTSR only if the second
- source exists
-Message-ID: <20241209230418.GC26531@pendragon.ideasonboard.com>
-References: <20241206-rcar-gh-dsi-v3-0-d74c2166fa15@ideasonboard.com>
- <20241206-rcar-gh-dsi-v3-2-d74c2166fa15@ideasonboard.com>
+	s=arc-20240116; t=1733785874; c=relaxed/simple;
+	bh=fur/IfXdA0UDSKl37YXOzmS9r/B6EZdOg4tFp1Y9iZY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XN4XO51l52dbjl/eZc++3dSt2LH3lgkWK0+IBldAOWIPg4MPX2+fL7YoSEmhyfx6eIPGQK/9Mzwjb0E/yReSCt618ZLBfNSimSvWqmHIuxBd4uE91+FEA+5+jR2L9ap67L1ULmdTP6T+5KEGZwpugsoQM59LAEmYLfJ6WyV83Dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=m9Vpyjm4; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=8nQmkHAbwxQl1T/Kw4A2hwy2MJmGRj9oZcS+awgb4Gk=; b=m9Vpyjm4A7yCco/EItYeeAYaBS
+	KNTUOD7wzwb6HUqPN8C/2AVPT18GyP06DkxOt/V4hhWl7kZKiisskvX5HKb4BIF3LQ5+xsTrhpryu
+	PCLSQ4EM93PKTPHOOldWRUygZsfyMf8AdaDM+UB9aaq+J0NiMh5Rbs7v91H5RVMPuH1+gFGJdQ467
+	/z4iVammCFdMWBoMhmdfBkox6wcX75y2wTGLHZW77DVJkUN0gJ3Gy8lQr728WZXpbL9DE3IJz3RSB
+	A7RrSyfxHyhs03+ZOwpyCO0eRtZoCReirZ4tc7N/3G62NDMC7ypcgp7BxMJ0c5HBK5/vWjenA0sgx
+	LpcU6AUg==;
+Received: from i53875bc4.versanet.de ([83.135.91.196] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tKmtc-0005Ev-0o; Tue, 10 Dec 2024 00:10:32 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: heiko@sntech.de
+Cc: andy.yan@rock-chips.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	quentin.schulz@cherry.de
+Subject: [PATCH v4 0/3] drm/rockchip: Add driver for the new DSI2 controller
+Date: Tue, 10 Dec 2024 00:10:18 +0100
+Message-ID: <20241209231021.2180582-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241206-rcar-gh-dsi-v3-2-d74c2166fa15@ideasonboard.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Tomi,
+This series adds a bridge and glue driver for the DSI2 controller found
+in the rk3588 soc from Rockchip, that is based on a Synopsis IP block.
 
-Thank you for the patch.
+As the manual states:
+The Display Serial Interface 2 (DSI-2) is part of a group of communication
+protocols defined by the MIPI Alliance. The MIPI DSI-2 Host Controller is
+a digital core that implements all protocol functions defined in the
+MIPI DSI-2 Specification.
 
-On Fri, Dec 06, 2024 at 11:32:35AM +0200, Tomi Valkeinen wrote:
-> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> 
-> Currently the driver always writes DPTSR when setting up the hardware.
-> However, writing the register is only meaningful when the second source
-> for a plane is used, and the register is not even documented for SoCs
-> that do not have the second source.
 
-I've confirmed that for all the models currently supported by the DU
-driver.
+While the driver structure is very similar to the previous DSI controller,
+the programming model of the core is quite different, with a completely
+new register set.
 
-> So move the write behind a condition.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Another notable difference is that the phy interface is variable now too
+in its width and some other settings.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+changes in v4:
+- Update binding example to use phy-type argument
+- Update commit description to use correctly spelled Synopsys
+- use devm_pm_runtime_enable()
+- drop pclk+sys_clk handling from the Rockchip glue-driver
+  (the bridge does that for us already)
 
-I will test the series on an M3N board.
+changes in v3:
+- remove double-empty line in bridge part (Neil)
+- add bitfield.h to both bridge and glue for FIELD_PROP
+  (reported by kernel test robot)
+- add Neil's Reviewed-by to bridge part
+- add Rob's Reviewed-by to binding
 
-> ---
->  drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c | 20 +++++++++++++++-----
->  1 file changed, 15 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c
-> index 2ccd2581f544..1ec806c8e013 100644
-> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c
-> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_group.c
-> @@ -185,11 +185,21 @@ static void rcar_du_group_setup(struct rcar_du_group *rgrp)
->  		dorcr |= DORCR_PG1T | DORCR_DK1S | DORCR_PG1D_DS1;
->  	rcar_du_group_write(rgrp, DORCR, dorcr);
->  
-> -	/* Apply planes to CRTCs association. */
-> -	mutex_lock(&rgrp->lock);
-> -	rcar_du_group_write(rgrp, DPTSR, (rgrp->dptsr_planes << 16) |
-> -			    rgrp->dptsr_planes);
-> -	mutex_unlock(&rgrp->lock);
-> +	/*
-> +	 * DPTSR is used to select the source for the planes of a group. The
-> +	 * first source is chosen by writing 0 to the respective bits, and this
-> +	 * is always the default value of the register. In other words, writing
-> +	 * DPTSR is only needed if the SoC supports choosing the second source.
-> +	 *
-> +	 * The SoCs documentations seems to confirm this, as the DPTSR register
-> +	 * is not documented if only the first source exists on that SoC.
-> +	 */
-> +	if (rgrp->channels_mask & BIT(1)) {
-> +		mutex_lock(&rgrp->lock);
-> +		rcar_du_group_write(rgrp, DPTSR, (rgrp->dptsr_planes << 16) |
-> +				    rgrp->dptsr_planes);
-> +		mutex_unlock(&rgrp->lock);
-> +	}
->  }
->  
->  /*
-> 
+changes in v2:
+- clean up includes (Diederik)
+- fix Kconfig description (Diederik)
+- constant naming (Diederik)
+- binding fixes (paths, sorting, labels) (Rob)
+- move to use regmap
+- drop custom UPDATE macro and use FIELD_PREP instead
+- use dev_err instead of DRM_DEV_ERROR
+
+Heiko Stuebner (3):
+  drm/bridge/synopsys: Add MIPI DSI2 host controller bridge
+  dt-bindings: display: rockchip: Add schema for RK3588 DW DSI2
+    controller
+  drm/rockchip: Add MIPI DSI2 glue driver for RK3588
+
+ .../rockchip/rockchip,rk3588-mipi-dsi2.yaml   |  120 ++
+ drivers/gpu/drm/bridge/synopsys/Kconfig       |    6 +
+ drivers/gpu/drm/bridge/synopsys/Makefile      |    1 +
+ .../gpu/drm/bridge/synopsys/dw-mipi-dsi2.c    | 1030 +++++++++++++++++
+ drivers/gpu/drm/rockchip/Kconfig              |   10 +
+ drivers/gpu/drm/rockchip/Makefile             |    1 +
+ .../gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c  |  487 ++++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |    2 +
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |    1 +
+ include/drm/bridge/dw_mipi_dsi2.h             |   95 ++
+ 10 files changed, 1753 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-mipi-dsi2.yaml
+ create mode 100644 drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c
+ create mode 100644 drivers/gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c
+ create mode 100644 include/drm/bridge/dw_mipi_dsi2.h
 
 -- 
-Regards,
+2.45.2
 
-Laurent Pinchart
 
