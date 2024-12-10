@@ -1,128 +1,171 @@
-Return-Path: <devicetree+bounces-129536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 496D19EBF47
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:32:08 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0324C9EBF58
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:35:56 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B64A2825BA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 23:32:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFA1A188AE6F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 23:35:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A913C1A9B31;
-	Tue, 10 Dec 2024 23:32:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97CD51F193C;
+	Tue, 10 Dec 2024 23:35:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="cJMAoxjq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eTpdAkxq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15EA92451E4;
-	Tue, 10 Dec 2024 23:32:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733873522; cv=pass; b=BePrBRp+nTV+fpcEK/8coFDanGNEALiUTrKIJQxU8UGevo8PnLdzFHYed2WIr0jzZFvPsFEDrAKJM6orKoBGn25dOF52avZVAyftqwYXtEDpAZYTDoqB00O7uZEkYpO26eovTlkzDgTBASYAa9Ex3kcosOK4m0BCGyNK6Db1DVE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733873522; c=relaxed/simple;
-	bh=zK+fUwCot+S6XSSxzM9OM6WROKHVukPbF58akPBJZ0U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gfn4W9fGYsB3iCpvh1RvFGgPM3wtwEdNQ/ZxLnlJ795XfIc6rLkjQLH8GleDsJkmfGIsqwtMjYXi72BBA+tSIwk4uaICFBrsJOmkvfktakslRWmeeedygIBseVvOGOOxxC1TCl0KGoonPmUTtwN60cvzxPaEsOCne/MEOZukZqI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=cJMAoxjq; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1733873502; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=No23tB1s4uQL2//VxNn9c6cmf0ILbcdF8L+MjrujVVQnlThvWFhpLwKW9BnkDi3H+o+zScoHs9En7Yhb7VLKQFSGMSFuXQ/Woz2o1nVRZwm9s+2r9Gmyj3C8/J4GIDr9rc7TxPigmS5daMHYplRn/PNl9b5qdfPdnePL0gq7+g8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1733873502; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=/esxm4ccOpsRmlVwxzHA1qgkxtGDH4KowfW8w4IjlnU=; 
-	b=aLjb6fWekAguV1cAviJJRL7HvWwfeIDka25bEQIINmZdqQ4DAyxOKRy0/axaIFlMbWzmyC4hXBVUrkaTeWCNxoUwcal4e6hijZBBRP76kJJfUxhq+j1K06adb+WmOAXjFryOm2pBzpskuP/jN3FN4zk1hlWQeCBoKhXgUtOijBg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1733873502;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=/esxm4ccOpsRmlVwxzHA1qgkxtGDH4KowfW8w4IjlnU=;
-	b=cJMAoxjqG/c+lk4Lf/QbopxlHtyZPSUmkBX4vg0zRqXkUA8zbIy98WLVSpscI73m
-	9b20ediy3/FSyNXpR+lhbiCLnPKj7qHma60873G6BcsOD8MLg5m9YN1dGp5y5odC5w1
-	EtyVDEEOGlYHeZO9dvp4deiKs/iFnrQFu1oL2omw=
-Received: by mx.zohomail.com with SMTPS id 173387350122675.54327848516868;
-	Tue, 10 Dec 2024 15:31:41 -0800 (PST)
-Received: by mercury (Postfix, from userid 1000)
-	id 0F9A710604B1; Wed, 11 Dec 2024 00:31:37 +0100 (CET)
-Date: Wed, 11 Dec 2024 00:31:37 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Mark Brown <broonie@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCH v4 0/7] Fix RK3588 GPU power domain
-Message-ID: <bd7egcj3mni3is2ozofapadpunawjch4b4pvay6obdfuyxcxny@c74ozkx2ab5e>
-References: <20241210171023.141162-1-sebastian.reichel@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCA51A3056;
+	Tue, 10 Dec 2024 23:35:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733873751; cv=none; b=EiUA69oGZzNDvdH/JpcGwzI/XBmnxp5N53K9U5J5vdv6xAR5ljJ60L+M9eWz1fabzqjpnhGN8T1o1+/enn9gp8WawMUXul25nwKpjGNrDLyHlCBaQvqxyQct5iLS8E16blRSyiusdzMeX4mmNWpYOD8qOU83/g8DYNOoSzK6bic=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733873751; c=relaxed/simple;
+	bh=Z7oibvWnuB8FEKQScYpRrF+GodMgfcygIASE07NiK2s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ny33wKgafvKx0vI92kkucdfFR8c5Kg+BRSssOneU4QYigaTHnfJyJ4zE0Mq4XXVH07hMmxpXldZP3lA+UcLReelyouhTA962eCiVel8fISqHbYPgs0REPA+9UZX4bUjhwzdop7OSBkncajBR8ZVC4v0QnubBZYrFazV0z/wlqds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eTpdAkxq; arc=none smtp.client-ip=209.85.219.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6d8f544d227so25510226d6.1;
+        Tue, 10 Dec 2024 15:35:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733873748; x=1734478548; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=q3or1BVyav+U0mVBbK8UTA6qLz2lo3xASGrx99y+7sM=;
+        b=eTpdAkxq3LP4CZ1Ip57ornpfXW5V6U2rnBMgReyqupwT0r1HPZwJQkNKPkrcAB3+5+
+         GaSWVV/W1gjiHC/EkZ+/PmQLyG68pE7jpQTT5eJtCOhMwyA3WhhEsDFq3c+AKNKClfu5
+         2QJ1/BxArgYXcuVy4aDbUWZkgAbQLEbjRmNGYVAB28B35h/KRVHzMqWYAUiuiz19Q0kv
+         zmWdnm1PIEmwpqsGzgQBEt1WJ2EKnG0mSk3dvw7xjwGnquQgDIPW2PRrJh4EXezDLMaX
+         T3LNCsYPtUAjoAUpJx20rvA7C+8LGamC/KN4McDMzNct6t3dUX60K1mTbPjxO6rYPoCr
+         HOKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733873748; x=1734478548;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q3or1BVyav+U0mVBbK8UTA6qLz2lo3xASGrx99y+7sM=;
+        b=AiCkgz76rHgZsnU7WW1zm1r7WT1dyPQDr4L0ncNHBSId2nDOISBTCu/1/j0WZtwDzj
+         an88smPi3VoLuI5PlQ4PNKax0XtrgcxT0Ie5Bb/11i7qoD0XoQ2mKPK1sEiWQInqrMUr
+         bKYvdhZAkIEsBzhjUzY6paFdvJ2SfvNfPIMibWx6Qwfsvm7DwZ21H4F/jVAAjmzRM2QO
+         aIBOX6KFSTez77YF78cJoV4pJk1ylaBCDpcpvSObcLHF+bWozj6zn8vNeOkrl9fnie74
+         czPBxriiQs1ve1bFwxNG+cC1Z3CE5ezUjuPJHkJDWeM1lVGTUM2oG9EgY9zF4mpMlvIq
+         r2kg==
+X-Forwarded-Encrypted: i=1; AJvYcCVxXftHjL+1SKj0l4ZuppehqzYZUY8TGFNN1r2HrfdAmn0ASrjoizsbOOR9xzYJ0oivFXkJGbzauV2xt2c=@vger.kernel.org, AJvYcCWXUGAQz42+mbzRrQOCxa+g7B4SPIYIYNlwhmXQEFPigW6I+/T7HUVIHWTR0VQYwFqPMAycKgdx7AZr@vger.kernel.org, AJvYcCWYM+Vk/CHz+SR5ktPRgbMgqLgMYmhayllrRlcmb40TX3h0jTm4/yQwmrGR39J3ODdJTg3wfH+k3uKK@vger.kernel.org, AJvYcCXwC4q5hqqjrLT9BeK+vwVYoE1O59nAzX3YHjRD2ayDOsW51rzkIIHHhI8vmSJWa5rKeL4vx6V/qxAm2VGHIw==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx70VNw8ROJBzcm4F0uR9sYo2aNk8Jr4DfaLcpXsZTeqWJorOKo
+	V0Eubn6JO3WLxuv2dBnpI0QU7S1IBdf0JL1Yo4qnzomxquOSu667asZVtLyF
+X-Gm-Gg: ASbGncshopycEIfjzw724yzyEsoUMeGwsQbz6ONwFH2RzMF3udO7StZwv7tJGO5oHJ2
+	FwOzfk7hOx6IOkmPTo1Ylf00GaEW2V2nxzAYXHFi+Xp0Nzdxm1Pe7LtH8VPnujs74t6MnXblRsO
+	DlGtzBoCnsKPkv0Jyb+bEcwXHH5hrAO0+iC41AAaLzTW1MTIhGk9ztNLeb56UXpM53wIbC3FZJ8
+	YR9SMkqe5XkEmvOOgBO38y2J8OyltCttvMVKnlnKg==
+X-Google-Smtp-Source: AGHT+IG4GHwErOdTJqeODeAkL0AXYBeDMEJpGraf5ZwI2PTpkCDT5FYyptL8Z+ONwwS8O/3I8vnJYQ==
+X-Received: by 2002:a05:6214:21a6:b0:6d4:3b7a:313a with SMTP id 6a1803df08f44-6d934b7b5camr15070696d6.32.1733873748586;
+        Tue, 10 Dec 2024 15:35:48 -0800 (PST)
+Received: from localhost ([2607:fea8:52a3:d200::6d3f])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6d8ff0231c0sm39047226d6.65.2024.12.10.15.35.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 15:35:48 -0800 (PST)
+From: Richard Acayan <mailingradian@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Todor Tomov <todor.too@gmail.com>,
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org
+Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Richard Acayan <mailingradian@gmail.com>
+Subject: [PATCH v7 0/5] Add SDM670 camera subsystem
+Date: Tue, 10 Dec 2024 18:35:35 -0500
+Message-ID: <20241210233534.614520-7-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="xmnd76cb7mnv2box"
-Content-Disposition: inline
-In-Reply-To: <20241210171023.141162-1-sebastian.reichel@collabora.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/233.855.81
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
+This adds support for the camera subsystem on the Snapdragon 670.
 
---xmnd76cb7mnv2box
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 0/7] Fix RK3588 GPU power domain
-MIME-Version: 1.0
+Changes since v6 (20241011023724.614584-7-mailingradian@gmail.com):
+- set unit address in node name to first address in regs (2/5, 5/5)
 
-Hi,
+Changes since v5 (20241001023520.547271-9-mailingradian@gmail.com):
+- sort reg and reg-names alphabetically (2/5, 5/5)
+- drop CCI I2C patches since they are applied (formerly 2/7, 3/7)
 
-On Tue, Dec 10, 2024 at 06:06:40PM +0100, Sebastian Reichel wrote:
-> Changes since PATCHv3:
->  * https://lore.kernel.org/linux-rockchip/20241022154508.63563-1-sebastia=
-n.reichel@collabora.com/
->  * Rebase to Heiko's for-next branch
->    - update DT patch to handle new RK3588(s) boards
->    - make sure to use a clean topic branch without HDMI-RX code (Heiko St=
-=FCbner)
->  * Add Tested-by from Heiko St=FCbner
+Changes since v4 (20240904020448.52035-9-mailingradian@gmail.com):
+- change camss interrupts to rising edge in dts (7/7)
+- change IRQs to rising edge in camss dt-bindings example (4/7)
+- move gcc and ahb clocks in camss dt-bindings example (4/7)
+- add reviewed-by for camcc dt-bindings patch (1/7)
 
-mh, I accidently re-send my v3 branch as v4 :( To avoid further
-confusion I will follow up with v5 tomorrow. Sorry for the
-inconvenience.
+Changes since v3 (20240819221051.31489-7-mailingradian@gmail.com):
+- add specific sdm670 compatible for camcc to dt schema and dts (1/7, 6/7)
+- pick up patch from Bryan for CCI driver (3/7)
+- stop assigning CCI frequency in dts (7/7)
+- add maxItems for sdm670 cci clocks (2/7)
+- remove empty line at top of camss dt schema (4/7)
+- move regs and reg-names up in camss dt schema (4/7)
+- move gcc and ahb clocks up in dts and dt schema (4/7, 7/7)
+- add reviewed-by from Vladimir for CCI dt-bindings patch (2/7)
+- add reviewed-by from Bryan for dts patch (7/7)
+- add reviewed-by from Krzysztof for camss dt-bindings patch (4/7)
+- add rewiew tags for camss driver patch (5/7)
 
--- Sebastian
+Changes since v2 (20240813230037.84004-8-mailingradian@gmail.com):
+- drop unnecessary assigned AXI clock frequency (5/5)
+- drop src clocks from cci (5/5)
+- add unit name, remove mmio properties from port in example dts (2/5)
+- correct the reg-names order (2/5)
+- add parent_dev_ops to csid (3/5)
+- remove CSID clocks from VFE (3/5)
+- remove AXI clock from CSIPHY (3/5)
+- change subsystem part of the commit message summary (3/5)
+- add reviewed-by (4/5)
 
---xmnd76cb7mnv2box
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes since v1 (20240806224219.71623-7-mailingradian@gmail.com):
+- define dedicated resource structs/arrays for sdm670 (3/5)
+- separate camcc device tree node into its own patch (4/5)
+- specify correct dual license (2/5)
+- add include directives in dt-bindings camss example (2/5)
+- remove src clocks from dt-bindings (2/5)
+- remove src clocks from dtsi (5/5)
+- add power-domain-names to camss (5/5)
+- specify power domain names (3/5)
+- restrict cci-i2c clocks (1/5)
+- populate a commit message with hw info (2/5)
+- reword commit message (3/5)
 
------BEGIN PGP SIGNATURE-----
+Richard Acayan (5):
+  dt-bindings: clock: qcom,sdm845-camcc: add sdm670 compatible
+  dt-bindings: media: camss: Add qcom,sdm670-camss
+  media: qcom: camss: add support for SDM670 camss
+  arm64: dts: qcom: sdm670: add camcc
+  arm64: dts: qcom: sdm670: add camss and cci
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmdYz1gACgkQ2O7X88g7
-+pqlEQ//TGDn2w/SPBr8NIGD0D8V9EIsCXN8lSJsjKxhL1VKU1R3nQlNT7ZmRJmI
-A+DJXRfaMqnCPWiiZCQ6B8w1EqqEpfl7SLsN5g2NSu0jXBC5PKZ2Y2RNbT8/10Zn
-83Kr68fYQ89vFl8mDlXchQzGGeQwR0XsW6A1uYbS9Gzs+UW7iTi9ukn+TAYp5SdP
-1NZ/Km4jw2XvDsa0QRLanQk4cKC2s3rbwoYj4Gn3LRdGiyHfsUBQvDc8Bcksk409
-hh3D2UoYYS6PTdHQ2Xb8FCNqz4TxhcvsYbofEKHT3BTwwla3chojQR1xMYDD37wE
-CfebaCu3v+ziwL19mY9OEqbs65oQgbXtu1Z33if0RotVQY4bwtSQwm0UHoTLRF+r
-tT+l8Ra161U6v6Sq1FKxXwK33jadjIrw1OG6PSP6nmOGVJTVDyMBCUgBHjtjpOVS
-BVQgr3Vto3VcSNNT+g/VQfAD5hzabM4lF0MjjRpCQeYAouR8LPdJe4DeJNid/2Hi
-r2oNRXRHNtwh3WBS31Ec9XG8YlkHo76Ch7813pIaSvAHA/9qFY2wQldkKtrCu5+1
-gRyWIpdMPdPPg6pim3468bO+5eExkbzkPEs50uOCw1/pyF9uA1Pxmi2Q11+2zc8f
-kWA5nUjFP+n1C29zd1jb389TFxGYoFOqWSu+c1srmjWRcAj3uv0=
-=s7wl
------END PGP SIGNATURE-----
+ .../bindings/clock/qcom,sdm845-camcc.yaml     |   6 +-
+ .../bindings/media/qcom,sdm670-camss.yaml     | 318 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          | 195 +++++++++++
+ drivers/media/platform/qcom/camss/camss.c     | 191 +++++++++++
+ 4 files changed, 709 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
 
---xmnd76cb7mnv2box--
+-- 
+2.47.1
+
 
