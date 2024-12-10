@@ -1,114 +1,77 @@
-Return-Path: <devicetree+bounces-129414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 287519EB854
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 18:32:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B4299EB84F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 18:32:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4684718876E3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:32:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F8771885E00
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E16688635B;
-	Tue, 10 Dec 2024 17:32:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD5623ED6D;
+	Tue, 10 Dec 2024 17:32:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lyVG0jw6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t3OlXSDR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5926023ED6D;
-	Tue, 10 Dec 2024 17:32:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE5623ED64;
+	Tue, 10 Dec 2024 17:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733851956; cv=none; b=lHKbz55kRhOPPqjTEgR7KBAo+SaisagXqvBcRqJwBJueOHAj13eYQF0r3fC52lfsCTz2zZv24zuv3iOrmRzI+3FXpXYbfYILTtAkj0FnsUzhH7w4/K2o4ZL5m76wGiBdqYLi2JC19k9dxnB3fpTIupLI6+FnqNvHdFE91wJs7Z0=
+	t=1733851930; cv=none; b=ndQiYfVnnhJZGzSyM6ZfbZZ0XblRSDLR0z7P4tyfTTFxypmemYQOoqd2bXkR+ovbo3PrtSPe9Neqpyc5ndxYspl94NAwya34wUNGZoaRI6fosknfB64s6xZlvJmTu/TmPhGBRGlQZ3ANLts/0vcpNs3pHvJHo2uWE0s7iaTvQus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733851956; c=relaxed/simple;
-	bh=gTC2WbHsHIxo2KUcFsBzSif50gSYtUeB9LXwHQ9ABW8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BLm+prdQa8L4L/Lk/PkjELpyzQU3H363Np57WcFpiy5xvXRFD3esYue7z22TpFlbhdxmT6G2v5y3P65drpbDRvOEZAt8Kz+ZakL7uSpWRfJzTy6hLjGqGFZ4vUef7DH1G0tKHn0bfFfJaWDDVuaa8cWL3QQBKjLlM9s2Z5OmIwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lyVG0jw6; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e3990f53d30so703274276.1;
-        Tue, 10 Dec 2024 09:32:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733851953; x=1734456753; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=riVnafjJmAbE5C8uQj3rW4S2epeHRFSM2DiMxirvVAc=;
-        b=lyVG0jw6rBxOIjmM7RWSTTUcdL9S18N5ii4jY9A2ovlDB2/wyMKhqoOEkucA8W1jlA
-         auZ+0SPVCSHjbOwUbmoU0kQ02OUI8k29eDtnp9lDVQo4R4qI8AWROSOmCwlWvH7oFs+H
-         K0BWNBzjuYOI7qgzRFxf6VEGDJ/9ATb3w4Huhqsvlq/+WmvGycPqgXZEGBDrLZRGJYKB
-         XA+6ap+Kc9IK5pxFkptAv7nIZ7/meq31VSR173WMIt54MHpGtU/FdvZ9h5kwugCNFuFU
-         j12+h1URd/5DpG4CWYNGEaHESf9hZtNrMN1Zg5aIirYTlyoi22gmbLRyJGQPqgMKGP1q
-         au2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733851953; x=1734456753;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=riVnafjJmAbE5C8uQj3rW4S2epeHRFSM2DiMxirvVAc=;
-        b=TjJ1wE/510dCOP0zLEzqpK69aZMh6UuCP5OJFlNtqts8giTY8veJKX1APkj9WuJNIx
-         8CDTVdONjM3rVhUl2BVPgWvzOEI8Dc2qz+V1uzrOIDlqtGpn8584nQifCLp/ucNfioHU
-         ThlrV43XPFUv7cf8yMua3J5dUxXowOmhxVJ0Jb8MquMYdzjqhWhxnCaxDZedEs8EQ3ua
-         NEKzeg+NWspe7SkkwaRmnGdfF0gzqTijM+oUYF+fcLu4MdKClhnTEqbbRsYpVznSZr3p
-         bXwx2Pj6ahS2ECLszgJ5iFLX0qI7UkzrpvQpPDt7h5k8LPUZykKheZat5V3s/wveAm0q
-         ljgg==
-X-Forwarded-Encrypted: i=1; AJvYcCV07bAMZJXxMYS/3oo2Lv8o/dbx7PHEy+Tdvy4OrAohv4L/r0p6I0UIu17NBUkYIgBFuawrdLUgHgXvbHwB@vger.kernel.org, AJvYcCWAyHfdFjaY6XT/cuXrZ4Vor1VmhclqeHySnN/xCrak/m0u60ddw9pA5hY5lK3WPxAhdGAvYWR0oAtm@vger.kernel.org, AJvYcCXGv5c2mCgKDjnuh4vn0Kvq0ABTbippHp0PZBWyoZHD154wBp5ntMVkwNtaTvhvzuuiushYxjhdmOxI@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTeiAp/2XatG0DGWiLIjj8+IgU2i6lSQ4SPmXqMHUYzZxZeCb5
-	6NWqNI1AWjeaX6N7eojgE/1U+np2quT8QxA6tPhfOZ1+eaAGwbh6NWad3vSVcPIj5ZDsn3qBOQY
-	jliqqLbMhJk7DNBPfMfUGlPKeXpw=
-X-Gm-Gg: ASbGncsSf+e/RTWn1xQS4nLUBxR6ZSOnYSjjbbUkTEvNu1SlYGa+x9l1K1rNxvhNYjX
-	3T+fXpdSI1jdN5kelOnrRp/0OqKoJp0qHXGI=
-X-Google-Smtp-Source: AGHT+IElEqNpYwYR/RLezdGqAkAtOtqt+SgPG0NdRzzrAOgBGD3TTo394TeFkpEr6ceht5/A2akYwBM00eY+33kThTs=
-X-Received: by 2002:a05:690c:3302:b0:6ef:97d0:a989 with SMTP id
- 00721157ae682-6f024e6c89amr17580847b3.4.1733851953190; Tue, 10 Dec 2024
- 09:32:33 -0800 (PST)
+	s=arc-20240116; t=1733851930; c=relaxed/simple;
+	bh=IxO2jZVD7vsyOj0R6kZ+Q4fChpCEVzfOmGWNeuAqZU0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=V73aZg2x+KROnQWkF0Lom/NGDEfdn7WBCW5sBRwoilnHox6yD6efOYKg2GDWQbpzXscecQGNOcxT2i+YoMQ33+qPV2+2PokGdX8qfWJvDy9ezTGn6PIsi06kJdGZTkFgvBjiWNI4fokrZj/+NQ6D7KeK/VfdqiSlFRE1zS9SwBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t3OlXSDR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3E42C4CED6;
+	Tue, 10 Dec 2024 17:32:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733851930;
+	bh=IxO2jZVD7vsyOj0R6kZ+Q4fChpCEVzfOmGWNeuAqZU0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=t3OlXSDRD2a/bgR5s7zm+vNw1rGNC/BISmDSJjCWf4bs/Y+TNQDnMA6iqkulof9xn
+	 H/bWksCsWwz6x8hTF4NKS5WohswdbbwbYsqoTK2ud2J6ivC74OyWwKupVQ+aJNAZ5q
+	 dwENrC8DQS3YCT+llKVL6hHFzOngMso7aXHPTjcbJAJZKys5n3cpjeI6+rtnXWVl+E
+	 P16KlrudVnVpRprYCaYU3WuycyYS4XryHRmAilipCk92y/QENjunkEki/FaesgFgxN
+	 1Yjgv4HuK91TTUD07aHXt0qZA75lZrCW31QSEJ9ReVziEKbCaKuFVYp6swwdnakM+l
+	 /98oUswqsptoQ==
+Date: Tue, 10 Dec 2024 11:32:08 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Chen Wang <unicornxw@gmail.com>
+Cc: kw@linux.com, u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu,
+	arnd@arndb.de, bhelgaas@google.com, unicorn_wang@outlook.com,
+	conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
+	krzk+dt@kernel.org, lee@kernel.org, lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org, palmer@dabbelt.com,
+	paul.walmsley@sifive.com, pbrobinson@gmail.com, robh@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com,
+	fengchun.li@sophgo.com
+Subject: Re: [PATCH v2 3/5] dt-bindings: mfd: syscon: Add sg2042 pcie ctrl
+ compatible
+Message-ID: <20241210173208.GA3248062@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241205171343.308963-1-l.rubusch@gmail.com> <20241205171343.308963-3-l.rubusch@gmail.com>
- <20241208132750.24ff93b8@jic23-huawei>
-In-Reply-To: <20241208132750.24ff93b8@jic23-huawei>
-From: Lothar Rubusch <l.rubusch@gmail.com>
-Date: Tue, 10 Dec 2024 18:31:57 +0100
-Message-ID: <CAFXKEHZu7SFx9DS3-cy-=JXSRL6CD0L-WG_BACNa=0w9f_yOEQ@mail.gmail.com>
-Subject: Re: [PATCH v5 02/10] iio: accel: adxl345: rename variable data to st
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, eraretuya@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <29ceb01afb1838755b4b64ae891f51a5b1bb7716.1733726572.git.unicorn_wang@outlook.com>
 
-Hi,
+On Mon, Dec 09, 2024 at 03:20:14PM +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
+> 
+> Document SOPHGO SG2042 compatible for PCIe control registers.
+> These registers are shared by pcie controller nodes.
 
-On Sun, Dec 8, 2024 at 2:28=E2=80=AFPM Jonathan Cameron <jic23@kernel.org> =
-wrote:
->
-> On Thu,  5 Dec 2024 17:13:35 +0000
-> Lothar Rubusch <l.rubusch@gmail.com> wrote:
->
-> > Rename the locally used variable data to st. The st refers to "state",
-> > representing the internal state of the driver object. Further it
-> > prepares the usage of an internal data pointer needed for the
-> > implementation of the sensor features.
-> >
-> > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
-> Applied to the togreg branch of iio.git. Initially pushed out as testing
-> to let the bots take a look.
-
-Should I actually drop the "applied" patches in a v6? Or, may I keep them?
-
-I see that Dan Carpenters smatch now comes up with some issues. So, do
-the fixes go into v6 here, or better separate?
-
-Best,
-L
+s/pcie/PCIe/ to be consistent (also in subject and other patches).
 
