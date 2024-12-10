@@ -1,136 +1,140 @@
-Return-Path: <devicetree+bounces-129273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D11469EB132
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:50:16 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E009C9EB138
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:50:59 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C92362877B0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:50:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 80A641887684
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:50:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55D791A38F9;
-	Tue, 10 Dec 2024 12:50:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DAEA1A3AB8;
+	Tue, 10 Dec 2024 12:50:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="CvozP1XJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c7gKtQZZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD911CA9C;
-	Tue, 10 Dec 2024 12:50:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2541A4E70
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 12:50:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733835010; cv=none; b=LhKk6Chge5uOGZtkyMLgNffU8kupE8h5AkE90c01KrQ/ydNyWOHHaKczj1mIjN1vMB0GQcMuB8KmDcwkzkzrpgr7xYk66WJTtR49Dg23C5mPxT9mqt3LyZoB+kHzxvjXR+aSX+cBbub45XeWUl1XF0b8UZNQ9emTeOaKTzJJVMA=
+	t=1733835051; cv=none; b=L+R9e6KgrVScLfrVkRpR3LukRde60IYyzjR2x96Wk8B6A5UwZ8N20UDIP7pPmjOZIWjsx8eQQfnQ1+whEA4159OFtaVbZjYYoQHs3A+O7CUa/kPZ/GWDK4+TnjP6x1vot6/ro5GxU10QDHVEbdZy0KJGW2dNA4pA4CGpBCRp80M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733835010; c=relaxed/simple;
-	bh=caMIoAkHWjs05XI5L7ESLFOjqTSD2G4USqirzJlSnDY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=TbveO5zSQbuhUaOar4uNdS57AZVMiIT1m+M93lWV9BK3BLt8GedGqKXQniavzQSBfZ4+OxVitcQ9ei60Y1M1NTuhImuv6gXctl4ajW+RgmiuIt6fGQ7SQMg8+0VhrKIPFUmGG4H+jtMCfybS6EG+2ggTcApLwqzomO7hu+ohm1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=CvozP1XJ reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=nw/CxItkTnCd0XnlMACUyCY4DU5/yrHaEShv6qcL0LQ=; b=C
-	vozP1XJLUbudLGiQHIMaho1wOOeqDo/imAVQUh8/zcrpsdMvRwukD+KnHoXezWlX
-	binZcnTdeEUv6DCCZ8xCnGMuiaDunznjdabiidjqcn6JwTiHyYP0Poqy7G8d7yuP
-	/yGWiZC187PcU1htJkiXsm0GXj97U48L90+Zmybaa4=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-102 (Coremail) ; Tue, 10 Dec 2024 20:48:12 +0800
- (CST)
-Date: Tue, 10 Dec 2024 20:48:12 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
-Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
-	"Daniel Semkowicz" <dse@thaumatec.com>, 
-	"Diederik de Haas" <didi.debian@cknow.org>, andy.yan@rock-chips.com, 
-	Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, jernej.skrabec@gmail.com, 
-	jonas@kwiboo.se, krzk+dt@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	neil.armstrong@linaro.org, quentin.schulz@cherry.de, 
-	rfoss@kernel.org, robh@kernel.org, tzimmermann@suse.de
-Subject: Re:Re: [PATCH v3 0/3] drm/rockchip: Add driver for the new DSI2
- controller
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
- Copyright (c) 2002-2024 www.mailtech.cn 163com
-In-Reply-To: <jl5obi7rd4h6ywozeqruxq2vx62sx5yf4wwpksrq3prdleps2k@d3zbr5ttquvn>
-References: <20241203165450.1501219-1-heiko@sntech.de>
- <20241209150619.33998-1-dse@thaumatec.com>
- <D67AV178CEBD.3QA9VD4ZPRNQ1@cknow.org> <2203458.KiezcSG77Q@diego>
- <4e015ea9.960.193ae0c236a.Coremail.andyshrk@163.com>
- <ay5hbnqqjhopaqof6z7j2rzm2bc6xa2vbzan2ak3if6wzmyip2@kqh7gtrajnm2>
- <33e2c5db.1300.193ae284b6d.Coremail.andyshrk@163.com>
- <CAA8EJprLA09NP0KAztc5eoAMkGcrom84jg_pcbNcwN0FAaSLrw@mail.gmail.com>
- <2d68155e.1e5b.193ae4616b9.Coremail.andyshrk@163.com>
- <jl5obi7rd4h6ywozeqruxq2vx62sx5yf4wwpksrq3prdleps2k@d3zbr5ttquvn>
-X-NTES-SC: AL_Qu2YAfSYu0Ai5COQbOkZnEobh+Y5UcK2s/ki2YFXN5k0tCTI0SYQW29KGUD2y86DDiKsoAirUQVL5MpFRpJHY45QxyzaS0hvthPy8V40pXsw
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1733835051; c=relaxed/simple;
+	bh=bY/aA+IWQ3QxQ2sZnjjb5W3DKLhLKSXmN8peYI/pr7s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JMUjk6g4VCsz1yzj4YDDrRKa4dZVOwGB4kThxFMNr+P7rPF1M9YZJLoTjwotTUj9H4iB7ZecrUEW7Cv6PucIMn6n7GasiHMZfO/qR9bHetAUoZ1ed9gpEIaVx4WOHUL5MrLp6sHDYObXv00FHmvJLKkusuC0P9jdEbytNyRrF9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c7gKtQZZ; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-aa6aad76beeso30707666b.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 04:50:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733835048; x=1734439848; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y7qRHcucb3bJvZLwoVQ1HjlEAIx4MF32wL8i5hALjhQ=;
+        b=c7gKtQZZEwP5pZT1e3RFifBctv/PUanT5oTBJpmb0cnAHLazwA0MwVIeG9noVNbp+2
+         zQP29p8WS7rwVhBMsRpb4CVHnKi7chADGfw6Do9GjceB8oW0ErLa/3QT1ulSaKmkviEU
+         WGBxMgyjMgqM0oS476OyqVb4vMyaLyKtsoJQKawKzcUqXAUCZ9CgM1jmAdGskMpc/1jc
+         AzjR9CDxPoEpkv14KHUPcZGuv/ds4+Tm6Hdi1pyJ58UNA5SJjUAEftUvrFOQ2CJj6vBj
+         H96huddPu6PSHN7UIXmHetguWX56iIKNLlo20kKtaS8b7QrHmRtfF6XKmo70TO+oelJ7
+         91vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733835048; x=1734439848;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y7qRHcucb3bJvZLwoVQ1HjlEAIx4MF32wL8i5hALjhQ=;
+        b=wbA2B+xO8zZyFwjQGEpvWHkeMkTTXuOsS98tGY/9OqYNPCH6o/L4FXsVSR4nPMKG4N
+         5/xCaU1rB2Dk6xLAf/XLJH5NDy8taXvwar+ZkvFOkcuwTPGtNvmsO+kzSjugXkpe3qfz
+         /nIlB8jvvn29tGw6tPgv3HQ2o4UEIY6E9KLObo31UA38fRpzOQFeaw1xP703bdGQTTpX
+         1AebAU7k5sVg8D8PxsVbR7/pDaklh+S9VhCUUQh9+3+HN0YwNiLaW/zl1QzKDxg+++ju
+         u4L9NIVwN2g4UnMAhl8yQ4GxPSeB+V1wnys0xFhS9ojr6tvFHczHnOfbJPOzI/U3NNOa
+         PJFw==
+X-Forwarded-Encrypted: i=1; AJvYcCVVkIlRv9iq+Ga8ZkTLjFuYJcVVGV+MErFYI8iLlcVAOAQM31he+ZYLbfbsu0f9maZ7SQBlkcsn+eqv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuDk5s58EbEHsG69Pl9W00gbq4Tc1MBTRjKDhEa/OkFDR9TfRu
+	oa75x0JSFXIPpaqOh2kcnaAB6j6IivLic6YfFcG4CumJGKMAJCmv9ZteZcAN669EL0zTKK6nnw6
+	aYVBptQHkiBW7q1rdxmwyPPBgI9GTH7OB0hvVxg==
+X-Gm-Gg: ASbGncsQReGXEBjQun1os61bqgb61bkVRRuBrYNPV8jEwFT55KSjfSGhqdlY1Gch5KU
+	+OD7VNsVdTWs/19PaWfgmoKDD9/Wv9gIU8Yg=
+X-Google-Smtp-Source: AGHT+IGUyenOeDiJ6ElklP7HzZFpKG0ehemH7byFc2hBRRMkI05xaWuzUu/O9qFlx4Kz7Wofw600OMm2prli/4lUsnk=
+X-Received: by 2002:a17:906:30d5:b0:aa6:abb2:31f4 with SMTP id
+ a640c23a62f3a-aa6abb2322bmr37782966b.25.1733835047677; Tue, 10 Dec 2024
+ 04:50:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <78e7b8e.b5ee.193b09ce46d.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:ZigvCgD3f7eMOFhn7N07AA--.52128W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiMxWxXmdYMSCOHwABs3
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+References: <20241210-qcom-video-iris-v8-0-42c5403cb1a3@quicinc.com> <20241210-qcom-video-iris-v8-16-42c5403cb1a3@quicinc.com>
+In-Reply-To: <20241210-qcom-video-iris-v8-16-42c5403cb1a3@quicinc.com>
+From: Stefan Schmidt <stefan.schmidt@linaro.org>
+Date: Tue, 10 Dec 2024 13:50:36 +0100
+Message-ID: <CAEvtbuus3scTvcjMuxxrfcqnd61+vqM5G=os-aUuM3+SLp2abQ@mail.gmail.com>
+Subject: Re: [PATCH v8 16/28] media: iris: implement vb2 streaming ops
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Cc: Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sebastian Fricke <sebastian.fricke@collabora.com>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-CkhpIEFsbCwK5ZyoIDIwMjQtMTItMTAgMjA6MzI6MDPvvIwiRG1pdHJ5IEJhcnlzaGtvdiIgPGRt
-aXRyeS5iYXJ5c2hrb3ZAbGluYXJvLm9yZz4g5YaZ6YGT77yaCj5PbiBUdWUsIERlYyAxMCwgMjAy
-NCBhdCAwOTo1NDowOUFNICswODAwLCBBbmR5IFlhbiB3cm90ZToKPj4gCj4+IEhpIERtaXRyeSwK
-Pj4gCj4+IOWcqCAyMDI0LTEyLTEwIDA5OjQ1OjEx77yMIkRtaXRyeSBCYXJ5c2hrb3YiIDxkbWl0
-cnkuYmFyeXNoa292QGxpbmFyby5vcmc+IOWGmemBk++8mgo+PiA+T24gVHVlLCAxMCBEZWMgMjAy
-NCBhdCAwMzoyMiwgQW5keSBZYW4gPGFuZHlzaHJrQDE2My5jb20+IHdyb3RlOgo+PiA+Pgo+PiA+
-Pgo+PiA+PiBIaSBEbWl0cnksCj4+ID4+Cj4+ID4+IOWcqCAyMDI0LTEyLTEwIDA5OjAxOjM477yM
-IkRtaXRyeSBCYXJ5c2hrb3YiIDxkbWl0cnkuYmFyeXNoa292QGxpbmFyby5vcmc+IOWGmemBk++8
-mgo+PiA+PiA+T24gVHVlLCBEZWMgMTAsIDIwMjQgYXQgMDg6NTA6NTFBTSArMDgwMCwgQW5keSBZ
-YW4gd3JvdGU6Cj4+ID4+ID4+Cj4+ID4+ID4+Cj4+ID4+ID4+IEhpLAo+PiA+PiA+Pgo+PiA+PiA+
-PiBBdCAyMDI0LTEyLTEwIDA3OjEyOjI2LCAiSGVpa28gU3TDvGJuZXIiIDxoZWlrb0BzbnRlY2gu
-ZGU+IHdyb3RlOgo+PiA+PiA+PiA+QW0gTW9udGFnLCA5LiBEZXplbWJlciAyMDI0LCAxNzoxMTow
-MyBDRVQgc2NocmllYiBEaWVkZXJpayBkZSBIYWFzOgo+PiA+PiA+PiA+PiBIaSwKPj4gPj4gPj4g
-Pj4KPj4gPj4gPj4gPj4gT24gTW9uIERlYyA5LCAyMDI0IGF0IDQ6MDYgUE0gQ0VULCBEYW5pZWwg
-U2Vta293aWN6IHdyb3RlOgo+PiA+PiA+PiA+PiA+IE9uIDAzLjEyLjI0IDIxOjU0LCBIZWlrbyBT
-dHVlYm5lciB3cm90ZToKPj4gPj4gPj4gPj4gPiA+IFRoaXMgc2VyaWVzIGFkZHMgYSBicmlkZ2Ug
-YW5kIGdsdWUgZHJpdmVyIGZvciB0aGUgRFNJMiBjb250cm9sbGVyIGZvdW5kCj4+ID4+ID4+ID4+
-ID4gPiBpbiB0aGUgcmszNTg4IHNvYyBmcm9tIFJvY2tjaGlwLCB0aGF0IGlzIGJhc2VkIG9uIGEg
-U3lub3BzaXMgSVAgYmxvY2suCj4+ID4+ID4+ID4+ID4gPgo+PiA+PiA+PiA+PiA+Cj4+ID4+ID4+
-ID4+ID4gSSBkaWQgbW9yZSB0ZXN0cyB3aXRoIGRpZmZlcmVudCBMVkRTIGRpc3BsYXlzLiBJIHRl
-c3RlZCBmb2xsb3dpbmcKPj4gPj4gPj4gPj4gPiBjb25maWd1cmF0aW9ucyB3aXRoIERTSS9MVkRT
-IGJyaWRnZToKPj4gPj4gPj4gPj4gPiAtIDEwMjR4NjAwQDYwLjAxCj4+ID4+ID4+ID4+ID4gLSAx
-MDI0eDc2OEA2MC4wMgo+PiA+PiA+PiA+PiA+IC0gMTI4MHg4MDBANjAuMDcKPj4gPj4gPj4gPj4g
-PiAtIDEzNjZ4NzY4QDYwLjA2Cj4+ID4+ID4+ID4+ID4KPj4gPj4gPj4gPj4gPiBBbGwgb2YgdGhl
-bSB3b3JrZWQgd2l0aG91dCBpc3N1ZXMsIGV4Y2VwdCAxMzY2eDc2OC4KPj4gPj4gPj4gPj4gPiBX
-aXRoIHRoaXMgcmVzb2x1dGlvbiwgdmlkZW8gaXMgYmx1cnJ5LCBhbmQgb2Zmc2V0IGluY29ycmVj
-dGx5Cj4+ID4+ID4+ID4+ID4gdG8gdGhlIGxlZnQuIFRoZXJlIGFyZSBhbHNvIHJlcGVhdGluZyBl
-cnJvcnMgb24gdGhlIGNvbnNvbGU6Cj4+ID4+ID4+ID4+ID4KPj4gPj4gPj4gPj4gPiAgIHJvY2tj
-aGlwLWRybSBkaXNwbGF5LXN1YnN5c3RlbTogW2RybV0gKkVSUk9SKiBQT1NUX0JVRl9FTVBUWSBp
-cnEgZXJyIGF0IHZwMwo+PiA+PiA+PiA+PiA+Cj4+ID4+ID4+ID4+ID4gSW4gY29ycmVjdCBvcGVy
-YXRpb24gd2l0aCBvdGhlciByZXNvbHV0aW9ucywgdGhlcmUgaXMgbm8gZXJyb3IuCj4+ID4+ID4+
-ID4+ID4gSSBhbSBub3Qgc3VyZSBpZiB0aGlzIGlzIGEgcHJvYmxlbSBpbiB5b3VyIHNlcmllcyBv
-ciByYXRoZXIgaW4gVk9QMgo+PiA+PiA+PiA+PiA+IGRyaXZlci4KPj4gPj4gPj4gPgo+PiA+PiA+
-PiA+VGhpcyByZWFsbHkgc291bmRzIGxpa2Ugc29tZXRoaW5nIGlzIHdyb25nIG9uIHRoZSB2b3Ag
-c2lkZS4KPj4gPj4gPj4gPlRoZSBpbnRlcnJ1cHQgaXMgcGFydCBvZiB0aGUgdm9wLCB0aGUgZGl2
-aXNhYmxlIGJ5IDQgdGhpbmdzIGxpa2VseSB0b28uCj4+ID4+ID4+Cj4+ID4+ID4+IFRoaXMgaXMg
-YSBoYXJkd2FyZSBsaW1pdGF0aW9uIG9uIHZvcCBzaWRlOgo+PiA+PiA+PiBUaGUgaG9yaXpvbnRh
-bCByZXNvbHV0aW9uIG11c3QgYmUgNCBwaXhlbCBhbGlnbmVkLgo+PiA+PiA+Cj4+ID4+ID5UaGVu
-IG1vZGVfdmFsaWQoKSBhbmQgYXRvbWljX2NoZWNrKCkgbXVzdCByZWplY3QgbW9kZXMgdGhhdCBk
-b24ndCBmaXQuCj4+ID4+Cj4+ID4+IFdlIHJvdW5kIGRvd24gdG8gNCBwaXhlbCBhbGlnbmVkIGlu
-IG1vZGVfZml4dXAgaW4gb3VyIGJzcCBrZXJuZWwsCj4+ID4KPj4gPldoYXQgaXMgbWVhbnQgYnkg
-dGhlICJic3Aga2VybmVsIiBoZXJlPyBJIGRvbid0IHNlZSBpdCBiZWluZyBwcmVzZW50Cj4+IAo+
-PiBic3Aga2VybmVsIG1lYW5zIGRvd25zdHJlYW0gdmVuZG9yIGtlcm5lbC4KPj4gCj4+ID5pbiB0
-aGUgbWFpbmxpbmUga2VybmVsLiBTbywgaWYgdGhlIG1vZGUgaXMgdW5zdXBwb3J0ZWQsIGl0IHNo
-b3VsZCBiZQo+PiAKPj4gV2lsbCBpdCBiZSBhY2NlcHRhYmxlIHRvIGFkZCB0aGlzIHJvdW5kIGRv
-d24gaW4gdGhlIG1haW5saW5lIG1vZGVfZml4dXA/Cj4KPkkgdGhpbmsgc28uCgpUaGVuIEkgY2Fu
-IHdyaXRlIGEgcGF0Y2ggZm9yIGl0LgoKPgo+PiAKPj4gPnJlamVjdGVkLgo+PiA+Cj4+ID4+IGJl
-Y2F1c2Ugc29tZXRpbWVzLCBzb21lIGJvYXJkcyBkbyBpbmRlZWQgY2hvb3NlIGEgc2NyZWVuIHRo
-YXQgaXMgbm90IDQgcGl4ZWwgYWxpZ25lZAo+Cj4tLSAKPldpdGggYmVzdCB3aXNoZXMKPkRtaXRy
-eQo=
+Hello Dikshita,
+
+On Tue, 10 Dec 2024 at 12:07, Dikshita Agarwal
+<quic_dikshita@quicinc.com> wrote:
+>
+> +static int iris_hfi_gen1_session_stop(struct iris_inst *inst, u32 plane)
+> +{
+> +       struct hfi_session_flush_pkt flush_pkt;
+> +       struct iris_core *core = inst->core;
+> +       struct hfi_session_pkt pkt;
+> +       u32 flush_type = 0;
+> +       int ret = 0;
+> +
+> +       if ((V4L2_TYPE_IS_OUTPUT(plane) &&
+> +            inst->state == IRIS_INST_INPUT_STREAMING) ||
+> +           (V4L2_TYPE_IS_CAPTURE(plane) &&
+> +            inst->state == IRIS_INST_OUTPUT_STREAMING) ||
+> +           inst->state == IRIS_INST_ERROR) {
+> +               reinit_completion(&inst->completion);
+> +               iris_hfi_gen1_packet_session_cmd(inst, &pkt, HFI_CMD_SESSION_STOP);
+> +               ret = iris_hfi_queue_cmd_write(core, &pkt, pkt.shdr.hdr.size);
+> +               if (!ret)
+> +                       ret = iris_wait_for_session_response(inst, false);
+> +
+> +               reinit_completion(&inst->completion);
+> +               iris_hfi_gen1_packet_session_cmd(inst, &pkt, HFI_CMD_SESSION_RELEASE_RESOURCES);
+> +               ret = iris_hfi_queue_cmd_write(core, &pkt, pkt.shdr.hdr.size);
+> +               if (!ret)
+> +                       ret = iris_wait_for_session_response(inst, false);
+> +       } else if (inst->state == IRIS_INST_STREAMING) {
+> +               if (V4L2_TYPE_IS_OUTPUT(plane))
+> +                       flush_type = HFI_FLUSH_ALL;
+> +               else if (V4L2_TYPE_IS_CAPTURE(plane))
+> +                       flush_type = HFI_FLUSH_OUTPUT;
+
+Below there is also HFI_FLUSH_OUTPUT2 defined. Do we need to handle
+this flush type here as well?
+
+[...]
+
+> +#define HFI_FLUSH_OUTPUT                               0x1000002
+> +#define HFI_FLUSH_OUTPUT2                              0x1000003
+
+regards
+Stefan Schmidt
 
