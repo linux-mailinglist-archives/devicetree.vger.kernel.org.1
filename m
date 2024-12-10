@@ -1,284 +1,244 @@
-Return-Path: <devicetree+bounces-129361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EB779EB699
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:36:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DAA99EB6B7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:42:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D640F1887207
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:36:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D70DD167A03
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:41:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5C8622FE00;
-	Tue, 10 Dec 2024 16:36:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 276D5234990;
+	Tue, 10 Dec 2024 16:40:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BjH9XQUn"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="1tjTJQF7";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="tbVkz5ki";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="N3eeSNYj";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="6D0lUttY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE6022FDF2;
-	Tue, 10 Dec 2024 16:36:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A902343DB;
+	Tue, 10 Dec 2024 16:40:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733848581; cv=none; b=lvVOxaOG2CH5O0eJJNseB2rthQC2vu3pWj9lHUwN5WsSSJbhl/BLNctaSfM/V4Rl84KHtQ5qWagcPXMA+JfmBj0kiwYH9uTeVGDQzpjoHT3TTpXOx1tt42NcKY7QNL+R880MFdbR+xOz96o7NocKlnlBzgAoxyLaVpDWQQmHzsc=
+	t=1733848853; cv=none; b=eMkCxAC5n0FO5ZK6/s6lrAj5bYhtSGUp1F9A4WW6bONT4UyBoQRv5OnlwjqdLEvlEzivqBgIA6QhtGKi/WrF4NWUFCwBrmehat8UB4qPeI4ZLN8Kd2PG78CNPR3Tn2a0B24wzeqaQSlZM0fQNDwVWdyLs6E1AJ3UlNMKqHARSqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733848581; c=relaxed/simple;
-	bh=7PWSSRiIWGZLnnL3Lzp634to7qJspcp+JF2rxRh0SOA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gK8z3pet/w83wbjQrdGh49jtxB5KlxxKBpOCyDpo5wNeK/340wYjpfOLfYwSdUt2yLkrQoLQIVTye5n2jtGzhBCfhudW6q6CLCm0JKksfhmqr7Rq5kL3gwvhDWFq7WjLoaDBjotjzri8pjvOR+eLR2UX+gRXMKkfZe3Dz7y+YZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BjH9XQUn; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1733848577;
-	bh=7PWSSRiIWGZLnnL3Lzp634to7qJspcp+JF2rxRh0SOA=;
-	h=From:To:Cc:Subject:Date:From;
-	b=BjH9XQUnUbN+GmW1KUFXFFBcOaFN/Cm/xd6KanNCfmLwRC6/xNerGVsDOz3m3xWU5
-	 eTrd7X5LKcdhl6YekxmApK6ICnKhiFzNXnymH8vcgCwAwSKRAmAAP440IxOkC/xxzM
-	 sMqWoxzKOWXvxFrOTGtY6Dc+9G2AmXSV6WSVoP4aZP3AJGATZX78eHZIezpJMtyi9l
-	 eQ7W3vCphNMkDf78JU6auJJwhdOJyGUlhq6jWwYZ+HSxjfiSghMzeh6ez3nj9ouKcy
-	 YWC1zDlt7uVm4UfeL3BvEv/sFi8mq4lAFNO8eVWnrNgUOL1WDfxeRHlr/sXpZqZ66t
-	 myCmxrYeoRuvQ==
-Received: from jupiter.universe (dyndsl-091-248-190-127.ewe-ip-backbone.de [91.248.190.127])
+	s=arc-20240116; t=1733848853; c=relaxed/simple;
+	bh=p85D9s7tysu9FxexEW/PA420b+YkVfiM3KU+ml5gJh8=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JiOnqFSnkPs9eTM/j4SSV1vfECPJ45rNbsc/xi4VZfC/ZNrJdoXh+N6QyUsFbXXECYfpKCO0/DVHMfjJ8oLWHV0ehip6OEpxtt77zXAxRPmVsIBPHz76VTDp4Zufyv0CXXABlvWR55VrTWbUtjpxgJ3cZQ/KfRFg0FhYJicm8BE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=1tjTJQF7; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=tbVkz5ki; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=N3eeSNYj; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=6D0lUttY; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9DCAC17E37AD;
-	Tue, 10 Dec 2024 17:36:17 +0100 (CET)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 2FF0A48CC8A; Tue, 10 Dec 2024 17:36:17 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	kernel@collabora.com
-Subject: [PATCH v1 1/1] arm64: dts: rockchip: Add USB-C support to ROCK 5B
-Date: Tue, 10 Dec 2024 17:36:01 +0100
-Message-ID: <20241210163615.120594-1-sebastian.reichel@collabora.com>
-X-Mailer: git-send-email 2.45.2
+	by smtp-out2.suse.de (Postfix) with ESMTPS id CD7F91F396;
+	Tue, 10 Dec 2024 16:40:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1733848849; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sJoArr2r5pFfdB4/YkzK4PnjaiyKrITWnEHUvllbKDU=;
+	b=1tjTJQF77zM5KNxgTrVYReobO6Bc3SwoDhluK+2wr/BW05lG5sPtkO7ALDTHkXf17+YF7q
+	4pB1KwDP/jHRtyMXzKRxVBG7h6OlToolneQzEoenWVIzou/QtnH8oIfFze7SwplH4dr6Jy
+	fPfrOd4BxurMPWiEfh8HhhjgjOLj5ns=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1733848849;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sJoArr2r5pFfdB4/YkzK4PnjaiyKrITWnEHUvllbKDU=;
+	b=tbVkz5kiORsMHSForUiJFG7QuTOGWB0gEwSws4R+05qRdMDdhA8y60b1c/CpichW0tGTDl
+	wFXWHQ9v4DMfhcBg==
+Authentication-Results: smtp-out2.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=N3eeSNYj;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=6D0lUttY
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1733848848; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sJoArr2r5pFfdB4/YkzK4PnjaiyKrITWnEHUvllbKDU=;
+	b=N3eeSNYjWhFAet28Pu2B6qErZIkvnkJHb3ny0vK33rfNXgi7fkRx7G5s2rZ9F7gXoM0BAO
+	dMbZJjjzvRm6XD0imDiKsYTHkHunFSd34MetSR35G/sYCbFZyL+UOd8DBAj/9PLTZt3uKp
+	Jy/UvJbLJnkZvB3JTEy2kek6qrBn88g=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1733848848;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sJoArr2r5pFfdB4/YkzK4PnjaiyKrITWnEHUvllbKDU=;
+	b=6D0lUttYZ1WaUQQLL54b/ykDLPwFv6zxQ6JLZ/sFrYa+GcnlI6t+0TIgVdCgnW1vsZTMp+
+	xXGWmiMdd/AhPwBg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 32CCB13A15;
+	Tue, 10 Dec 2024 16:40:48 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id l2OOChBvWGcwQAAAD6G6ig
+	(envelope-from <tiwai@suse.de>); Tue, 10 Dec 2024 16:40:48 +0000
+Date: Tue, 10 Dec 2024 17:40:47 +0100
+Message-ID: <87y10n3300.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+	Cezary Rojewski
+	<cezary.rojewski@intel.com>,
+	Takashi Iwai <tiwai@suse.de>,
+	Greg KH <gregkh@linuxfoundation.org>,
+	<srinivas.kandagatla@linaro.org>,
+	<mathias.nyman@intel.com>,
+	<perex@perex.cz>,
+	<conor+dt@kernel.org>,
+	<dmitry.torokhov@gmail.com>,
+	<corbet@lwn.net>,
+	<broonie@kernel.org>,
+	<lgirdwood@gmail.com>,
+	<krzk+dt@kernel.org>,
+	<Thinh.Nguyen@synopsys.com>,
+	<tiwai@suse.com>,
+	<robh@kernel.org>,
+	<linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>,
+	<linux-sound@vger.kernel.org>,
+	<linux-usb@vger.kernel.org>,
+	<linux-input@vger.kernel.org>,
+	<linux-arm-msm@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>
+Subject: Re: [PATCH v30 00/30] Introduce QC USB SND audio offloading support
+In-Reply-To: <75e6516f-5cf5-4b0d-ade8-bfbc5632765f@quicinc.com>
+References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
+	<edfeb642-297e-42bb-ad09-cbf74f995514@quicinc.com>
+	<2024111655-approve-throwback-e7df@gregkh>
+	<2f512d8d-e5f3-4bdd-8172-37114a382a69@quicinc.com>
+	<875xoi3wqw.wl-tiwai@suse.de>
+	<d0da6552-238a-41be-b596-58da6840efbb@quicinc.com>
+	<CF49CA0A-4562-40BC-AA98-E550E39B366A@linux.dev>
+	<65273bba-5ec1-44ea-865b-fb815afccc91@intel.com>
+	<4C900353-B977-451C-B003-BAA51E458726@linux.dev>
+	<e7b8f141-efd4-4933-b074-641638914905@intel.com>
+	<4E9925AF-F297-42A5-9CB8-F8568F0A5EDF@linux.dev>
+	<0a36814a-5818-493a-a9e3-b1a1e9559387@quicinc.com>
+	<75e6516f-5cf5-4b0d-ade8-bfbc5632765f@quicinc.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-7
 Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: CD7F91F396
+X-Spam-Level: 
+X-Spamd-Result: default: False [-2.01 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[linux.dev,intel.com,suse.de,linuxfoundation.org,linaro.org,perex.cz,kernel.org,gmail.com,lwn.net,synopsys.com,suse.com,vger.kernel.org];
+	RCVD_TLS_ALL(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.de:dkim,suse.de:mid];
+	TAGGED_RCPT(0.00)[dt];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	DKIM_TRACE(0.00)[suse.de:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -2.01
+X-Spam-Flag: NO
 
-Add hardware description for the USB-C port in the Radxa Rock 5 Model B.
-This describes the OHCI, EHCI and XHCI USB parts, but not yet the
-DisplayPort AltMode (bindings are not yet upstream).
+On Tue, 10 Dec 2024 01:59:10 +0100,
+Wesley Cheng wrote:
+> 
+> On 12/5/2024 4:53 PM, Wesley Cheng wrote:
+> > On 12/4/2024 2:49 PM, Pierre-Louis Bossart wrote:
+> >>>
+> >>>>> UAOL is one of our priorities right now and some (e.g.: me) prefer to not pollute their mind with another approaches until what they have in mind is crystalized. In short, I'd vote for a approach where USB device has a ASoC representative in sound/soc/codecs/ just like it is the case for HDAudio. Either that or at least a ASoC-component representative, a dependency for UAOL-capable card to enumerate.
+> >>>> The main difference is that we don¢t want the USB audio *control* part to be seen in two places. The only requirement is to stream data with an alternate optimized path, but all the volume control and whatnot is supposed to be done using the regular usb-audio card. It would be complete chaos for userspace if the same volume can be represented differently.
+> >>>> The comparison with HDaudio is not quite right either. In the case of HDaudio, it¢s an all-or-nothing solution. The external device is controlled by one entity, either legacy or ASoC based. That choice is made at driver probe time. In the case of USB, the application needs to have the choice of using either the legacy path, or the optimized path that goes through a DSP. I think the last thing you want given this context is to make the USB audio device an ASoC codec.
+> >>>> I find it rather interesting that this architectural feedback comes at the v30, it¢s unfair to Wesley really...
+> >>> Hi Pierre,
+> >>>
+> >>> Obviously I'm late. After scanning the history of this one, indeed it's been a while since v1 has been sent. And thus I posted no NACKs. At the same time if I am to choose between: provide feedback vs provide no-feedback, I'd rather choose the former even if I'm to be ignored/overridden by a subsystem maintainer.
+> >>>
+> >>> The subsystem maintainers also hold the last word, and I have no problem with them merging the patches if they believe its existing shape is good-enough. For example, my team could follow up this implementation next year with a patchset expanding/updating the functionality. I see this as a viable option.
+> >> That¢s what we had in mind before I left Intel. The interfaces seen by userspace are PCM devices and kcontrols, it doesn¢t matter too much if there is one card, two cards, and if the implementation relies on an ASoC codec, a library or something else. 
+> >> The bulk of the work is to enable the USB offload from top to bottom, by changing PipeWire/CRAS/HAL to select the new optimized path when available and deal with plug/unplug events.
+> >> Improvements at the kernel level can be done later if required. It¢s hard to argue that the proposal in this series is fundamentally broken, but as usual it¢s likely that some requirements are missing or not known yet. The same thing happened with compressed offload, none one thought about gapless playback until Android made it a requirement. Maybe what we¢d need is a ¡protocol version¢ for USB offload so that changes can be tracked and handled?
+> >
+> > Thanks for chiming in, Pierre.  So for now, with the next revision I have prepared, I'm currently adding:
+> >
+> > 1.  Some improvements to xHCI sideband to account for core sequences that need to be notified to the offload driver, ie transfer ring free
+> >
+> > 2.  Moved the USB SND offload mixer driver into the QC vendor module for now, as instructed by Takashi:
+> >
+> > https://lore.kernel.org/linux-usb/87cyiiaxpc.wl-tiwai@suse.de/
+> >
+> > 3.  Added separate kcontrols for fetching mapped PCM device and card indexes (versus one that returns a card and PCM device pair [array])
+> >
+> > 4.  Removed some jack controls (enable/disable) from soc-usb
+> >
+> > 5.  Updated documentation for #3
+> >
+> >
+> > Those are the major changes that will come in the next revision.  I'm just trying to figure out who/where the "protocol version" should be checked if we decided to add it.  (or if we need to check for it anywhere...)  From the userspace perspective, it should be agnostic to how we've implemented offloading from the kernel, and I don't see any major shifts in how userspace implements things even if we make improvements from kernel.
+> 
+> 
+> Hi Takashi,
+> 
+> Could you possibly help share some direction on what you think of the current design, and if you think its detrimental that we make modifications mentioned by Cezary?  I have the next revision ready for review, but I wanted to get a better sense on the likeliness of this landing upstream w/o the major modifications.
 
-The fusb302 node is marked with status "fail", since the board is usually
-powered through the USB-C port. Handling of errors can result in hard
-resets, which removed the bus power for some time resulting in a board
-reset.
+Honestly speaking, I have no big preference about that design
+question.  The most important thing is rather what's visible change to
+users.  An advantage of the current design (sort of add-on to the
+existing USB-audio driver) is that it's merely a few card controls
+that are added and visible, and the rest is just as of now.  The
+remaining design issue (two cards or single card) is rather
+kernel-internal, and has nothing to do with users.  So I'm fine with
+the current design.
 
-The main problem is that devices are supposed to interact with the
-power-supply within 5 seconds after the plug event according to the
-USB PD specification. This is more or less impossible to achieve when
-the kernel is the first software communicating with the power-supply.
+OTOH, if we follow the pattern of HD-audio, at least there will be
+more preliminary changes in USB-audio driver side like we've done for
+HD-audio.  That is, make most of USB-audio code to be usable as (a
+kind of) library code.  It's more work, but certainly doable.  And if
+that can be achieved and there other similar use cases of this stuff
+not only from Qualcomm, it might make sense to go in that way, too.
+That said, it's rather a question about what's extended in future.
+If Intel will need / want to move on that direction, too, that's a
+good reason to reconsider the basic design.
 
-Recent U-Boot (v2025.01) will start doing USB-PD communication, which
-solves this issue. Upstream U-Boot doing USB-PD communication will also
-set the fusb302 node status to "okay". That way booting a kernel with
-the updated DT on an old U-Boot avoids a reset loop.
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- .../boot/dts/rockchip/rk3588-rock-5b.dts      | 121 ++++++++++++++++++
- 1 file changed, 121 insertions(+)
+thanks,
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index d597112f1d5b..cb5990df6ccb 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -5,6 +5,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/leds/common.h>
- #include <dt-bindings/soc/rockchip,vop2.h>
-+#include <dt-bindings/usb/pd.h>
- #include "rk3588.dtsi"
- 
- / {
-@@ -84,6 +85,15 @@ rfkill-bt {
- 		shutdown-gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	vcc12v_dcin: regulator-vcc12v-dcin {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc12v_dcin";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
- 	vcc3v3_pcie2x1l0: regulator-vcc3v3-pcie2x1l0 {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -142,6 +152,7 @@ vcc5v0_sys: regulator-vcc5v0-sys {
- 		regulator-boot-on;
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc12v_dcin>;
- 	};
- 
- 	vcc_1v1_nldo_s3: regulator-vcc-1v1-nldo-s3 {
-@@ -264,6 +275,67 @@ regulator-state-mem {
- 	};
- };
- 
-+&i2c4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c4m1_xfer>;
-+	status = "okay";
-+
-+	usbc0: usb-typec@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <RK_PB4 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbc0_int>;
-+		vbus-supply = <&vcc12v_dcin>;
-+		/*
-+		 * When the board is starting to send power-delivery messages
-+		 * too late (5 seconds according to the specification), the
-+		 * power-supply reacts with a hard-reset. That removes the
-+		 * power from VBUS for some time, which resets te whole board.
-+		 */
-+		status = "fail";
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "sink";
-+			try-power-role = "sink";
-+			op-sink-microwatt = <1000000>;
-+			sink-pdos =
-+				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>,
-+				<PDO_VAR(5000, 20000, 5000)>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					usbc0_role_sw: endpoint {
-+						remote-endpoint = <&dwc3_0_role_switch>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					usbc0_orien_sw: endpoint {
-+						remote-endpoint = <&usbdp_phy0_orientation_switch>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					dp_altmode_mux: endpoint {
-+						remote-endpoint = <&usbdp_phy0_dp_altmode_mux>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i2c6 {
- 	status = "okay";
- 
-@@ -423,6 +495,10 @@ usb {
- 		vcc5v0_host_en: vcc5v0-host-en {
- 			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
-+
-+		usbc0_int: usbc0-int {
-+			rockchip,pins = <3 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
- 	};
- };
- 
-@@ -835,6 +911,14 @@ &uart2 {
- 	status = "okay";
- };
- 
-+&u2phy0 {
-+	status = "okay";
-+};
-+
-+&u2phy0_otg {
-+	status = "okay";
-+};
-+
- &u2phy1 {
- 	status = "okay";
- };
-@@ -866,6 +950,29 @@ &usbdp_phy1 {
- 	status = "okay";
- };
- 
-+&usbdp_phy0 {
-+	mode-switch;
-+	orientation-switch;
-+	sbu1-dc-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
-+	sbu2-dc-gpios = <&gpio4 RK_PA7 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		usbdp_phy0_orientation_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc0_orien_sw>;
-+		};
-+
-+		usbdp_phy0_dp_altmode_mux: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&dp_altmode_mux>;
-+		};
-+	};
-+};
-+
- &usb_host0_ehci {
- 	status = "okay";
- };
-@@ -874,6 +981,20 @@ &usb_host0_ohci {
- 	status = "okay";
- };
- 
-+&usb_host0_xhci {
-+	usb-role-switch;
-+	status = "okay";
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		dwc3_0_role_switch: endpoint {
-+			remote-endpoint = <&usbc0_role_sw>;
-+		};
-+	};
-+};
-+
- &usb_host1_ehci {
- 	status = "okay";
- };
--- 
-2.45.2
-
+Takashi
 
