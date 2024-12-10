@@ -1,60 +1,65 @@
-Return-Path: <devicetree+bounces-129519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 806FB9EBED7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:01:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DF919EBEE8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:04:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9209D162735
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 23:01:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B4E71887E26
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 23:04:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0363D78F58;
-	Tue, 10 Dec 2024 23:01:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49039172BDC;
+	Tue, 10 Dec 2024 23:04:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hDSafgkh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xj3XEYld"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC79E2451C7;
-	Tue, 10 Dec 2024 23:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 161922451C7;
+	Tue, 10 Dec 2024 23:04:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733871688; cv=none; b=RRPIRMF9okCJXSlFfQrMqnOXikmyQUagvjGB+cgqLy6w8XJRjNsCMk3FGLwg2+3eODSXnBVJsA7hOO7A0sOdsE98k/uBpjZMOd78Fyr3pE6seUfs4A6z8P90X7LNq4hx9QBwKpYLdK4uX4PzsBZqx/dKtffP0XQ1kaBeYPN327k=
+	t=1733871876; cv=none; b=gRR8nvKal0b77lxpNJ4OEuMIGfEB2V3ncLuaAgeYo9A9M3QuF2VXCXXgpcsqrC6Y/CBhOO06SzRFonaQWlFv1wGJiohp1pUQG6D5J3LH67g6GH+Hisp6kobRmRh7iLZBOuBPmtnLna6HnmAPUw20uatmy+aiFWHgOlAT7gbc7lU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733871688; c=relaxed/simple;
-	bh=a54ebm90iRSy8tMv4x7Bs3m33w6WRuSwIQ32x1SCINg=;
+	s=arc-20240116; t=1733871876; c=relaxed/simple;
+	bh=xQCH/hk9rXI/a+iW/gD9HalgHRqZY+5qDViVohCJxM0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ERFWMI/4fEmWliLJ1nQsgRWNXPG24dZj7KPx+IZg0vln3MZPeUcA+456Qgb5c4X0jGrZeZfBaIZdXZL3G0+TDIdprhngiKnjerif2FlsGdaP6MmvfjYYOh+2chKShfyKmZuZQCbVzNVi+mX9c670w/xYW+pbWncNeRlcgMBiRYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hDSafgkh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78966C4CED6;
-	Tue, 10 Dec 2024 23:01:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=umqA9VKBHD77SQK5mfBNeoa426v20UFQSlp7RSNrh5UWefCz4E/4s3/pwmeb9Zv5RrgGe0LQ481LPCyEWafnXZSSRnFsTQtmRAzkx/0nmtXDksDOz/2NX8Q1peyT08IeOxtgQmUc0ToB1qDMEzLXzbGO5DF5dlW6noMocMO0hxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xj3XEYld; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BDE1C4CED6;
+	Tue, 10 Dec 2024 23:04:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733871688;
-	bh=a54ebm90iRSy8tMv4x7Bs3m33w6WRuSwIQ32x1SCINg=;
+	s=k20201202; t=1733871875;
+	bh=xQCH/hk9rXI/a+iW/gD9HalgHRqZY+5qDViVohCJxM0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hDSafgkhvXwDzu32v5BPAqsxyoT6unbvxG06jd8yikdsrK9zx0VBumT4s0F9t/mPe
-	 dRR+0BBPfGs6ZAI/sXMrYsNv8xNk2+XSz5cIMROUMxsFzc0v+NBs4SObi57NGuOTjC
-	 UjXgVTol+z6GbvwV+8x0cEGUZ8sF59P7upAZYZAhkqa5HVuu26YScUMSWMovHvUT4e
-	 ULhSciN6MzqB3McOYG2CW13eWJZBvKbGR/0+9xLM3TUvecrbqWGZG25E9XsoW61PEc
-	 zXiZAtjEnf91KsEhALQcBa+RWI1H+urFYNi/NkroSUAOaCoXDveTGtzQJ0Yoa0q8F9
-	 ykUcmr7leIUKA==
-Date: Tue, 10 Dec 2024 17:01:26 -0600
+	b=Xj3XEYld2AI2Cm7U9K1ji/zd5s8p7v9lpfG8nUQN8gPvQLJLiDi/ZpS3BSMKRuQfn
+	 7jsHvT4xWOhXCM8tmGJ9JPT3yMZGxhgFD6yPgJhqoRwrW1qPhD7FItzN/vWn47nhjI
+	 VFyGeVe1Pq+1nAllJfobDOr6R9KdpCc7G44erwIfiVKf4iZBcqj+rTIcZ/Nw29U10F
+	 uG3dnXhVn5kLJOohCk5azbez4ND5JHVdU76HHaSN1abBJ/ipN7pzI8gth+BP5lwaKw
+	 cizgW+9FvhoLvQvy2zSLllOJaxHW6j3ByJAW05R9GLfWmjMKcYvqOJtOlBuUBTeeJV
+	 ThD6hc6wkLR9A==
+Date: Tue, 10 Dec 2024 17:04:33 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Tzung-Bi Shih <tzungbi@kernel.org>
-Cc: conor+dt@kernel.org, linux@weissschuh.net, nfraprado@collabora.com,
-	linux-mediatek@lists.infradead.org, groeck@chromium.org,
-	krzk+dt@kernel.org, matthias.bgg@gmail.com,
-	chrome-platform@lists.linux.dev, lee@kernel.org,
-	angelogioacchino.delregno@collabora.com, bleung@chromium.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: cros-ec: Remove
- google,cros-kbd-led-backlight
-Message-ID: <173387168591.762034.8434485915273819545.robh@kernel.org>
-References: <20241206031405.1711996-1-tzungbi@kernel.org>
- <20241206031405.1711996-3-tzungbi@kernel.org>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Enric Balletbo <eballetb@redhat.com>, devicetree@vger.kernel.org,
+	Will Deacon <will@kernel.org>, linux-rtc@vger.kernel.org,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+	Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org, Alberto Ruiz <aruizrui@redhat.com>,
+	Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-arm-kernel@lists.infradead.org, NXP S32 Linux <s32@nxp.com>
+Subject: Re: [PATCH v6 1/4] dt-bindings: rtc: add schema for NXP S32G2/S32G3
+ SoCs
+Message-ID: <173387187278.766456.7689697615269440552.robh@kernel.org>
+References: <20241206070955.1503412-1-ciprianmarian.costea@oss.nxp.com>
+ <20241206070955.1503412-2-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,25 +68,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241206031405.1711996-3-tzungbi@kernel.org>
+In-Reply-To: <20241206070955.1503412-2-ciprianmarian.costea@oss.nxp.com>
 
 
-On Fri, 06 Dec 2024 03:14:05 +0000, Tzung-Bi Shih wrote:
-> After applying 4c03a44e2668 ("arm64: dts: mediatek: mt8195-cherry: Remove
-> keyboard-backlight node"), there are no users for using the OF match.
-> Instead, the device is added via drivers/mfd/cros_ec_dev.c by
-> 970c3a6b7aa3 ("mfd: cros_ec: Register keyboard backlight subdevice").
+On Fri, 06 Dec 2024 09:09:52 +0200, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 > 
-> Remove the DT bindings.
+> RTC tracks clock time during system suspend and it is used as a wakeup
+> source on S32G2/S32G3 architecture.
 > 
-> Signed-off-by: Tzung-Bi Shih <tzungbi@kernel.org>
+> RTC from S32G2/S32G3 is not battery-powered and it is not kept alive
+> during system reset.
+> 
+> Co-developed-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> Signed-off-by: Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>
+> Co-developed-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 > ---
->  .../chrome/google,cros-kbd-led-backlight.yaml | 36 -------------------
->  .../bindings/mfd/google,cros-ec.yaml          |  3 --
->  2 files changed, 39 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/chrome/google,cros-kbd-led-backlight.yaml
+>  .../devicetree/bindings/rtc/nxp,s32g-rtc.yaml | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/nxp,s32g-rtc.yaml
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
