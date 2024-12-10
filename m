@@ -1,92 +1,113 @@
-Return-Path: <devicetree+bounces-129369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 468D89EB700
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:49:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53EBE9EB707
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:50:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B348318899A5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:48:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5814816251C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:50:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD0B22FE15;
-	Tue, 10 Dec 2024 16:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EA792309B9;
+	Tue, 10 Dec 2024 16:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JBwH5guz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P6SpWtgv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CEA222FE03;
-	Tue, 10 Dec 2024 16:48:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D73A41A76AC
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 16:50:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733849286; cv=none; b=DD7GzicB/CcAeqmqFmu7WT3fKLdYUhxKyAJxY2gIZOEo+S2uoHmB1lbGqeO3e+5npgXuPiMtIjhthovbvjnIOaA/+r/LykD8KvOcuFepMHK17YBV1C3TUL6tD/x9s21VYVmymEH0BO4mx+C9uS/qReoRstvxgx2mGcP/gKftjYA=
+	t=1733849427; cv=none; b=aAIjV0g2C+ddoGQE+qAW5pSmmDvPLPBbAO8rJoR2Csa1ukeNPOe6eDMU/63OCQFJKjDJvOxASvMo9Y7xiiLagbl+2PTB5GHTMfnQdVTdQsmA6Oe5pdxO0fuU5mHOhlQsc9MMeLICV+3pdmHe29gneqKoz7+YpNX2ZxgIdZr2pRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733849286; c=relaxed/simple;
-	bh=FMfWM6Y9s+rwrC3upwCiV+b+s/ByE6z8taj2rlKoDn0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BWSQTJyClebm0ZoYv7xPWRtzgTXNxC5qlrSveuwuf30lCyVQz6pb4FQxRnTTabNiScjt5a1brp3BUA5gijphmeUKDpNu235ZTjQ48yitVJMs3VGVBzrRNjLCOrh4qy/3p2o0qHwHAEXcIPFF0eiX/pz6fJc+TPJT63LpW3gf7Ro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JBwH5guz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9AA9C4CED6;
-	Tue, 10 Dec 2024 16:48:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733849286;
-	bh=FMfWM6Y9s+rwrC3upwCiV+b+s/ByE6z8taj2rlKoDn0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JBwH5guzxXhBqhtgCAPQa98tB5jcGCfzz0ig/4vhMGcWKAyG8TKKLX1qJDaTnplUR
-	 j1Z2ZxvBgQPEVRjrrWd0LcOMcNeP/GXGO1iImQ/fRR5Kw+eGVc20/hmhEyghEsZuPG
-	 frVlv2fp1kg89UpCWMaNydEDbUY+5cxRziyQ1WdGGLIe+3vA4oGYpXELAM4+Vi6Xhc
-	 zi+NrNAF954dm1BQkCcKcHILXVZB3h+vjDn3T1GyzbQm0dMxCtvEijTiM3500yFUKN
-	 6oVo1gs3ZNjUTYxOGBnK3oW1jbL5iYEv4Bg7MIVXwBey92yiOdrbavYwS9Oxw0FHwb
-	 4rZtXMsFD2Cbw==
-Date: Tue, 10 Dec 2024 10:48:04 -0600
-From: Rob Herring <robh@kernel.org>
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, Marc Zyngier <maz@kernel.org>,
-	Stefan Wiehler <stefan.wiehler@nokia.com>,
-	Grant Likely <grant.likely@linaro.org>,
-	Tony Lindgren <tony@atomide.com>, Kumar Gala <galak@codeaurora.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Julia Lawall <Julia.Lawall@lip6.fr>,
-	Jamie Iles <jamie@jamieiles.com>,
-	Grant Likely <grant.likely@secretlab.ca>,
-	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Rob Herring <rob.herring@calxeda.com>,
-	Zijun Hu <quic_zijuhu@quicinc.com>
-Subject: Re: [PATCH 2/8] of/irq: Correct element count for array @dummy_imask
- in API of_irq_parse_raw()
-Message-ID: <20241210164804.GA3771389-robh@kernel.org>
-References: <20241209-of_irq_fix-v1-0-782f1419c8a1@quicinc.com>
- <20241209-of_irq_fix-v1-2-782f1419c8a1@quicinc.com>
+	s=arc-20240116; t=1733849427; c=relaxed/simple;
+	bh=HsR6u5GkvXD7ULQKj36Umti20DpL+0zqbiGBiz0zkCI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SutZLSPcj6+d8oipw0HC8lSZVSPYd5/gFTxvlNmT1/w3Pl2rPihrw+Y/3Hh2QJFtoczhh3sEqq20uo5YLD/7oeC7KYyttTaWE1b4my47Dj/tZQ6HgWTb8bLA/LHcXGX7PgslL5DrnfiRfMOpRqALAuj79lpANXbzEYR8HUuleTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P6SpWtgv; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aa692211331so370499766b.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 08:50:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733849424; x=1734454224; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+DqC+MYPAbbx8P8+tjZh10yMabSG3vK45igpyvKpPMU=;
+        b=P6SpWtgvXhHKgrUpT+/e4fjpT0O/APs5D5bdJWqnVxZJ6MUrQ/8VvBHtvwwR6ds62t
+         JLjImABkpA45cz5Y8mQNsoxanWMXu6xocmp+rX7uYcHi6uryK0tksVWoe5QNBY8lPD2f
+         zWuWirUhqHJPBd3FwdAxgOJeTJmstFS0zhN7pgHIzoeZC/p3lPYMKwW1eXS1sXgO8vm7
+         j6Ho2Yi20dFXzsI0qxRnQZ2OY3A02eAV1sLImgNy6dWFKEgxAfDFAl63s4ixydIBF5Oj
+         cNFkUQK/qTpo6N6FKlMHzmsnXLgefdaS4o+RPQrzAlZ1ChpU9+lI1uFKLEbK/E3z7sEE
+         1gjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733849424; x=1734454224;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+DqC+MYPAbbx8P8+tjZh10yMabSG3vK45igpyvKpPMU=;
+        b=E2WY5ISyoEgaxyUQEVyeiK0Dmo59BGTwlHjhqe7xh5HoJ/igv1VqHt6VOYklwXOgIj
+         FEv693n5FK1RBunoDwDw2SfvvHhYZXamiSdCj2tgUW91tgbZN18hxzWNeIPuW3Ww6c6M
+         M9s19cc+HRfUwldJ7SxAzzu8Tjea/yVAyMgel8cdTqz5Pu7iiAgmwqtxzEGZ9HZtK3Ub
+         9nwqLFwKZTaeOnKeTb7rPmG/vzLpzpwRntmimVuf9nS0n2HNItwJXdGvhgTyp3f74w/K
+         f8uJJdU9PJ7qibkqlZaKj0RyEgobBY4iAG/K31oLnyZ9PB59wewxU8y3WwggtuVkmVca
+         RK1A==
+X-Forwarded-Encrypted: i=1; AJvYcCXJdJq3tBjMmIXI7i2lQKO1Y31jrSq6AwT5Nz922MxGiEQjZp/s6+GakbNjakp6yUaYHJaVgug8xm+r@vger.kernel.org
+X-Gm-Message-State: AOJu0YywSlWdhowmb3uVgAoIfz9m7VnBRg4HjTeZ8I8FW9IE+URDulLY
+	kS6Rhd1TV5FVSp7ktkXwPx5vP9Y+1n4yDg0hgSgyV2qpwK+68m1j48lvFba2e0sLZvy5C0B+WgY
+	rtyCLVLq8K5NOgX7ZFAj6NNtpoE4yTNA9ge4dMQ==
+X-Gm-Gg: ASbGncvM+np+Hg1MOzzMERdqjNaYtX7RmMaqm+X9/ZwKO0JhUSc6zhpPniKTwLfH7iz
+	fzG7VlND+VjMr5H2ycDT6WOY6ItZjPPJVIfw=
+X-Google-Smtp-Source: AGHT+IH1qOThi05+FQaxtQVOf1BOtPYsAHF4Eo2G34Soq2l2ruTqO8or8v0sP6hLQ+NYFOkce6I3HslaJ3ZMDDi5J3A=
+X-Received: by 2002:a17:906:2182:b0:aa6:54df:6abf with SMTP id
+ a640c23a62f3a-aa6a01c0fb4mr427827566b.18.1733849424185; Tue, 10 Dec 2024
+ 08:50:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241209-of_irq_fix-v1-2-782f1419c8a1@quicinc.com>
+References: <20241210-qcom-video-iris-v8-0-42c5403cb1a3@quicinc.com>
+In-Reply-To: <20241210-qcom-video-iris-v8-0-42c5403cb1a3@quicinc.com>
+From: Stefan Schmidt <stefan.schmidt@linaro.org>
+Date: Tue, 10 Dec 2024 17:50:13 +0100
+Message-ID: <CAEvtbuviHys9V6Fa7GveUP0mWH4fJf=r_5iLCVh0bbhy8x=H7Q@mail.gmail.com>
+Subject: Re: [PATCH v8 00/28] Qualcomm iris video decoder driver
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Cc: Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sebastian Fricke <sebastian.fricke@collabora.com>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Vedang Nagar <quic_vnagar@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Dec 09, 2024 at 09:25:00PM +0800, Zijun Hu wrote:
-> From: Zijun Hu <quic_zijuhu@quicinc.com>
-> 
-> Array @dummy_imask only needs MAX_PHANDLE_ARGS elements, but it actually
-> has (MAX_PHANDLE_ARGS + 1) elements.
-> 
-> Fix by using (MAX_PHANDLE_ARGS - 1) as max element index in initializer.
-> 
-> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
-> ---
->  drivers/of/irq.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Hello Dikshita,
 
-Applied, thanks.
+On Tue, 10 Dec 2024 at 12:05, Dikshita Agarwal
+<quic_dikshita@quicinc.com> wrote:
+>
+> Note: A harmless onetime error log "Lucid PLL latch failed. Output may
+> be unstable!" is seen during bootup.  It doesn't impact any video
+> usecase and is currently under discussion.
 
-Rob
+I also see this coming up on x1e (not surprising, given its basically
+SM8550 for this part).
+Any chance we can get this fixed? Merging this series and introducing
+this error is not very reassuring to use the driver. :-)
+Maybe getting the QC clock driver folks involved?
+
+regards
+Stefan Schmidt
 
