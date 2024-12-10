@@ -1,204 +1,144 @@
-Return-Path: <devicetree+bounces-129356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 897D99EB5E3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:17:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6889EB5AD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:10:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64F47166894
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:16:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED6E3161A9A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF9516FF3B;
-	Tue, 10 Dec 2024 16:16:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E637A1B86D5;
+	Tue, 10 Dec 2024 16:10:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="ASaDkeC2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lEQ3b60X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33F8C19D884
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 16:16:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348161AAA0E
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 16:10:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733847386; cv=none; b=n9ElHMVMDKAtsT5IWFlrbdGxZrcOoVcxJarn8su7dhOBbrPs2wchp6cRHJjS7rBUaiFZluYK9SdbzpF3uH/wKaqbMAXOiMPOSSVn8Apds0bURh8XetIX4H4sVpqke2fTyrrwawKC4Ad8fCltsYXkdXIALBwjl/kjk4U3LXXjzFc=
+	t=1733847015; cv=none; b=twNRsJx2/XnKp21UITeQSd1HxbUpFadXeEBu6i3SPIZ7orlK3/0G7oiXK2TO0aaFzPXzbjr3LOEKwiVgZY4F1I8Z55FVDFx+6fwU2xdd+ODfqVJ7RJ6Uv+gY6H0kcn/HEY38uhoTjzRz8NPok7bgttyKgZIMUS/1zlG9lLG/bNs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733847386; c=relaxed/simple;
-	bh=H52cy46JdpnZyjHw+2Rfcb03VLcFF3EuVujI2nROnF8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=De6QMAYCRcNBreFvPvNhraRH4N3NjwW0DEUwHB98olLh5j6lOLc+xff4BS+fwdHjUu/I6lg1c48uYyBTBzZRN9fl5zmEVtGJioNt9+Q5AbO8Q+UqfW4BSH1y6BVZum7CYUszryve4S8fFy9cXdrklU/S9dpsMQoV9iWpeIv/ZGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=ASaDkeC2; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1733847382;
- bh=PyFDOAJVNrvBIfRJIJW+BVdBfeFkP4zy0JFDJEjFdMQ=;
- b=ASaDkeC2hsC3XOnHzz78vZ4xAJApfgilvDzbT1WtHJnS56ZVVOMvm2BOrtFj0RMFcZ8J4olrn
- UEdm7R7HZ+D5goTjNLcykiSECV4li0/sleRDjbW/clMseDC0/FC8HxoCI48X6ZBywcVE0hrp/+m
- IzK6J4NMuwpb1Ywb7F4eLHfq7nR+iayALo7nI+Y0E9JSGiK91V+rhU0IqMlpoIexo/sNDpdBHBL
- H5ThYbwK+PZBh8wGQxl/gH4ACCYOt6/9bHRGBMk+CeoYW62EJ/QtJmQ/nkuBoLzkCdTnnKjRrVo
- 1aO4ZptWdyjRkSE0LrlEwHv3n1VK/wGpCvQS4M6ByL7A==
-Message-ID: <f16b3688-91e1-4760-ac2b-ce53db98ed68@kwiboo.se>
-Date: Tue, 10 Dec 2024 17:05:22 +0100
+	s=arc-20240116; t=1733847015; c=relaxed/simple;
+	bh=5GudjBzxvQaYsCWXxbQ6HJDgG3OjE70z3x4WM6wZ57k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=u7aBS2WsrDshekZdZlR20tUWqhT4ZcCpQDj7h2SDqLGx7vYlLeNIiLxBluiVpnNOBwgyfP78zf03eKvFhaXFyzTNdEbVjCRS79aOLcvOaESsLu3rl3Nmdl2JpehLLHDDsoGbLYkfhXfZ5SkoJnC8T4OEPdzlPA59TMJwcTw9B3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lEQ3b60X; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e39fb8548e2so4731614276.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 08:10:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733847013; x=1734451813; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HNXvfug15XfoQwdKiIGBWtNC3tcA8qpMkETpkFfQs6Q=;
+        b=lEQ3b60Ximaw0rRGcTaxlZOxQ+s69OIiWqzpLCeo6tBC267U7PneKNrv2zBJIPFCdJ
+         lVXTzchz9SIy0P2hFOSLEJ3eLzCalMNZFGv+NNDvk8hUVVkZJKIXdNFvih1XklHcYO+u
+         flV8sRufX/GuITqv7L1oVmhqmEaUGISmCLIIHjvwZh+qaMHptvjkvTSrJMEwWS0IxHvH
+         I0OKtkMwTVQbnNgVO6tU+vy14RlmQWiB0m3pxoBnIiWJteW8WbWhMCrBfgEr4qlydB3R
+         mybKsXjc0eVhODmSaBFPEopy++xpRmgctn8m3eJKG0m0wmLsVIq94NMkZdKQfVrYqQIa
+         8f3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733847013; x=1734451813;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HNXvfug15XfoQwdKiIGBWtNC3tcA8qpMkETpkFfQs6Q=;
+        b=ITLL8sX32WI2wdMu1RmL/diRfNlpXI7LKhEK4d7UfN/fqSCBQRzC2oqfmTY5hjuXbc
+         uku0i1htoPA/0LkUZNd6ccK/6Ol5YNSuBiVW931SiLqEUqty7D8DR6myrxjufzZiLckz
+         5/Q3Zc0lcpVuLefU7B45pXdOp/n7G4l3DWusLGMUiOBFkq0Hl0R4Wwe4eFzZ3h0Wq5sI
+         sPUYb5eldFfavEDdLwq9l20iw99GJJNYEbZHaHs6o9TSHb0PM30ngOqg2Hg/Pqjznwzg
+         uv8gvc5Qg9IH0nkFr8khVM1Fil8GDZEB9Q6IdbFflKV1oBpUCfwJNo1aUdPZrVEyEcSf
+         zztg==
+X-Forwarded-Encrypted: i=1; AJvYcCXgX70Ok0jOVQzuFPlrJouQXwWGhqtVZCUFXhWRH++YpZr9RYtAWNi7zH32wKG9y0C/AQghCq0441Y/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLfSwHul0OW9sTdRNa1IWYmjffjZjHz2XPf4Vv7saqLW7Iq7Pg
+	wpPysSyXZTh0CeQC9Mc3IyhU3BGUHN1xLic9h6a9XIDPnx3cglWA2K39b1OM12EfhQDDIJrdw7Y
+	yxUVNrpuz5jm4cyWedwxXKEBmtAclCgfZzXB70Q==
+X-Gm-Gg: ASbGnctDzTCscyqosov7j+Kz3w7LXGdq140etPoWQaGynMNBCdpo3JabFDWlVMa22Qt
+	iTSq93QfwyAb2Bd9c5ahmQfMyjZwanoPlrrB+
+X-Google-Smtp-Source: AGHT+IELbJvk0NPV36M+fcncTTHMyREVObNbnHGvfeRgsIrYaGiOwpPdOwf890kyMOnEyS8+yJEfq/uf9mQc3jRotz8=
+X-Received: by 2002:a05:6902:2b0c:b0:e38:b889:7eff with SMTP id
+ 3f1490d57ef6-e3a0b071e93mr15453171276.6.1733847013083; Tue, 10 Dec 2024
+ 08:10:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/6] arm64: dts: rockchip: add hevc power domain clock to
- rk3328
-To: Peter Geis <pgwipeout@gmail.com>
-Cc: Dragan Simic <dsimic@manjaro.org>, Heiko Stuebner <heiko@sntech.de>,
- Alex Bee <knaerzche@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- Diederik de Haas <didi.debian@cknow.org>, Johan Jonker <jbx6244@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Liang Chen <cl@rock-chips.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, shironeko <shironeko@tesaguri.club>
-References: <20241210013010.81257-1-pgwipeout@gmail.com>
- <20241210013010.81257-5-pgwipeout@gmail.com>
- <e32fa593abfa6d08202b4f929e0b4bdb@manjaro.org>
- <CAMdYzYp+MQVYr1tOMEOn62vXZGVEYrtd1p9vn6YQzXdrJgSdyA@mail.gmail.com>
- <CAMdYzYquvGBzfWqvUOku7m1sM9qxmBHAL95cANDViUCT1oEEhQ@mail.gmail.com>
- <8c604ada27457698ad6d33d22a39b45a@manjaro.org>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <8c604ada27457698ad6d33d22a39b45a@manjaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 675866c8ce9f514b1380cc1f
+References: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-0-11d9f9200a59@linaro.org>
+In-Reply-To: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-0-11d9f9200a59@linaro.org>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 10 Dec 2024 17:09:37 +0100
+Message-ID: <CAPDyKFon9-3U5Vn2i+WtarSAYQHnA_ho8CGQmiVoboq1tnt4fw@mail.gmail.com>
+Subject: Re: [PATCH v4 0/5] dt-bindings: mmc: document mmc-slot and convert
+ amlogic,meson-mx-sdio.txt to dtschema
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+	Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Maxime Ripard <mripard@kernel.org>, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Peter,
+On Thu, 28 Nov 2024 at 16:16, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>
+> Document mmc-slot because used by amlogic,meson-mx-sdio.txt and
+> cavium-mmc.txt, so make it common.
+>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-On 2024-12-10 14:53, Dragan Simic wrote:
-> Hello Peter,
-> 
-> On 2024-12-10 14:23, Peter Geis wrote:
->> On Tue, Dec 10, 2024 at 8:13 AM Peter Geis <pgwipeout@gmail.com> wrote:
->>> On Tue, Dec 10, 2024 at 5:04 AM Dragan Simic <dsimic@manjaro.org> 
->>> wrote:
->>>> On 2024-12-10 02:30, Peter Geis wrote:
->>>>> There is a race condition at startup between disabling power domains
->>>>> not
->>>>> used and disabling clocks not used on the rk3328. When the clocks are
->>>>> disabled first, the hevc power domain fails to shut off leading to a
->>>>> splat of failures. Add the hevc core clock to the rk3328 power domain
->>>>> node to prevent this condition.
->>>>>
->>>>> rcu: INFO: rcu_sched detected expedited stalls on CPUs/tasks: { 3-....
->>>>> }
->>>>> 1087 jiffies s: 89 root: 0x8/.
->>>>> rcu: blocking rcu_node structures (internal RCU debug):
->>>>> Sending NMI from CPU 0 to CPUs 3:
->>>>> NMI backtrace for cpu 3
->>>>> CPU: 3 UID: 0 PID: 86 Comm: kworker/3:3 Not tainted 6.12.0-rc5+ #53
->>>>> Hardware name: Firefly ROC-RK3328-CC (DT)
->>>>> Workqueue: pm genpd_power_off_work_fn
->>>>> pstate: 20400005 (nzCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
->>>>> pc : regmap_unlock_spinlock+0x18/0x30
->>>>> lr : regmap_read+0x60/0x88
->>>>> sp : ffff800081123c00
->>>>> x29: ffff800081123c00 x28: ffff2fa4c62cad80 x27: 0000000000000000
->>>>> x26: ffffd74e6e660eb8 x25: ffff2fa4c62cae00 x24: 0000000000000040
->>>>> x23: ffffd74e6d2f3ab8 x22: 0000000000000001 x21: ffff800081123c74
->>>>> x20: 0000000000000000 x19: ffff2fa4c0412000 x18: 0000000000000000
->>>>> x17: 77202c31203d2065 x16: 6c6469203a72656c x15: 6c6f72746e6f632d
->>>>> x14: 7265776f703a6e6f x13: 2063766568206e69 x12: 616d6f64202c3431
->>>>> x11: 347830206f742030 x10: 3430303034783020 x9 : ffffd74e6c7369e0
->>>>> x8 : 3030316666206e69 x7 : 205d383738353733 x6 : 332e31202020205b
->>>>> x5 : ffffd74e6c73fc88 x4 : ffffd74e6c73fcd4 x3 : ffffd74e6c740b40
->>>>> x2 : ffff800080015484 x1 : 0000000000000000 x0 : ffff2fa4c0412000
->>>>> Call trace:
->>>>> regmap_unlock_spinlock+0x18/0x30
->>>>> rockchip_pmu_set_idle_request+0xac/0x2c0
->>>>> rockchip_pd_power+0x144/0x5f8
->>>>> rockchip_pd_power_off+0x1c/0x30
->>>>> _genpd_power_off+0x9c/0x180
->>>>> genpd_power_off.part.0.isra.0+0x130/0x2a8
->>>>> genpd_power_off_work_fn+0x6c/0x98
->>>>> process_one_work+0x170/0x3f0
->>>>> worker_thread+0x290/0x4a8
->>>>> kthread+0xec/0xf8
->>>>> ret_from_fork+0x10/0x20
->>>>> rockchip-pm-domain ff100000.syscon:power-controller: failed to get ack
->>>>> on
->>>>> domain 'hevc', val=0x88220
->>>>>
->>>>> Fixes: 52e02d377a72 ("arm64: dts: rockchip: add core dtsi file for
->>>>> RK3328 SoCs")
->>>>> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
->>>>
->>>> While I was unable to formally verify this clock assignment,
->>>> i.e. by using the RK3328 TRM or the downstream kernel source
->>>> from Rockchip, it makes perfect sense to me.  Thanks for the
->>>> patch, and please feel free to include:
->>>>
->>>> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
->>>
->>> It is unfortunate the TRM doesn't include the clock maps, because they
->>> are extremely helpful when one can acquire them. It also doesn't help
->>> that the TRM register definition only referred to this as "pll". I was
->>> sent specifically the usb3 phy clock map for my work on the driver,
->>> which had the location of each switch and divider along with the
->>> register and bit that controlled it. That combined with the TRM
->>> register map allowed me to find this error.
->>
->> Apologies, that's the wrong response for this one.
-> 
-> No worries.
-> 
->> This patch was the result of educated guess combined with testing. I
->> grabbed all of the clocks that looked like they could affect things,
->> then tested them one at a time until I isolated them to this clock. It
->> lives alone with cpll as the parent and has no children according to
->> the clock summary. (Though the writeup i mistakenly included above
->> proves the clock map isn't always accurate).
-> 
-> I see, thanks for all your work on this patch!  It surely took quite
-> a lot of time to perform all the testing.
-> 
->>>>> ---
->>>>>
->>>>>  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 1 +
->>>>>  1 file changed, 1 insertion(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->>>>> b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->>>>> index 0597de415fe0..7d992c3c01ce 100644
->>>>> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->>>>> @@ -333,6 +333,7 @@ power: power-controller {
->>>>>
->>>>>                       power-domain@RK3328_PD_HEVC {
->>>>>                               reg = <RK3328_PD_HEVC>;
->>>>> +                             clocks = <&cru SCLK_VENC_CORE>;
+Applied for next, thanks!
 
-Do we also need to include one or all of the following clocks?
+Kind regards
+Uffe
 
-According to Fig. 3-6 RK3228H Clock Architecture Diagram 5 following
-clocks point to the H265 block:
 
-S51_6 (4PLL) / G6_3 / S51_0 (DivFree 1~32) / D4 ---- aclk_h265
-                                                 \-- pclk_h265
-S51_14 (4PLL) / G6_4 / S51_8 (DivFree 1~32) / D4 - clk_venc_core
-S52_14 (4PLL) / G6_7 / S52_8 (DivFree 1~32) / D4 - clk_venc_dsp
-
-Regards,
-Jonas
-
->>>>>                               #power-domain-cells = <0>;
->>>>>                       };
->>>>>                       power-domain@RK3328_PD_VIDEO {
-
+> ---
+> Changes in v4:
+> - Fixed address-cells description of mmc controller
+> - Cleanup '|' when not needed
+> - Added review tags
+> - Link to v3: https://lore.kernel.org/r/20241007-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v3-0-ad4eb22c2a8d@linaro.org
+>
+> Changes in v3:
+> - Revert and insteads move common properties between slot and controller into mmc-controller-common.yaml
+> - Fix other comments on patch 2 & 3
+> - Link to v2: https://lore.kernel.org/r/20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org
+>
+> Changes in v2:
+> - Fixed description, limited to 3 slots
+> - Moved out mmc-slot in a separate common schema
+> - Link to v1: https://lore.kernel.org/r/20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org
+>
+> ---
+> Neil Armstrong (5):
+>       dt-bindings: mmc: controller: clarify the address-cells description
+>       dt-bindings: mmc: controller: move properties common with slot out to mmc-controller-common
+>       dt-bindings: mmc: controller: remove '|' when not needed
+>       dt-bindings: mmc: document mmc-slot
+>       dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt to dtschema
+>
+>  .../bindings/mmc/amlogic,meson-mx-sdio.txt         |  54 ----
+>  .../bindings/mmc/amlogic,meson-mx-sdio.yaml        |  94 ++++++
+>  .../bindings/mmc/mmc-controller-common.yaml        | 357 +++++++++++++++++++++
+>  .../devicetree/bindings/mmc/mmc-controller.yaml    | 346 +-------------------
+>  .../devicetree/bindings/mmc/mmc-slot.yaml          |  49 +++
+>  5 files changed, 504 insertions(+), 396 deletions(-)
+> ---
+> base-commit: f486c8aa16b8172f63bddc70116a0c897a7f3f02
+> change-id: 20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-6fa70546ebb8
+>
+> Best regards,
+> --
+> Neil Armstrong <neil.armstrong@linaro.org>
+>
 
