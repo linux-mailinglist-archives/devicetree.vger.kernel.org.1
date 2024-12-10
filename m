@@ -1,172 +1,164 @@
-Return-Path: <devicetree+bounces-129249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62CF79EB03F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:55:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BD489EB04A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:58:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64D492810BF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:55:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC81E2829CB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:58:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB67119EED6;
-	Tue, 10 Dec 2024 11:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4B819F41A;
+	Tue, 10 Dec 2024 11:57:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K2to5tnk"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="RuEz1aVQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 194C319E966;
-	Tue, 10 Dec 2024 11:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F02119F11F;
+	Tue, 10 Dec 2024 11:57:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733831711; cv=none; b=ObdqGXr0W1f4Yw5yj4eHc3MIkD35/uJMl93UWkEunO20bXJlMIIcGdyn7hNI4C65YzqVbCpizYN5yivIU1bUAtRMPTz2KFV39sPrTCKAh/g08CdyWKJnp/qIAQSiPKD8NGVaN/DtCeWUThoNQKr88X4Z9i2RAi7negq/luUscqw=
+	t=1733831878; cv=none; b=VzoJKk1t8e0tUqUL/N7zsS2i+l2wTHcRcH3Mn8hW5SyZM4Br6IcSFi+x7hCxmQPJ2WZF5J2PY+I9FiAs8aqsWHy88hnFMxPQ1LesMeA8HpfTsgwmkUVeNjsnf+eD6pioHU6Z/JgQwrqROGL0yB0IsQeCEBp1i/UUei+efjbMQwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733831711; c=relaxed/simple;
-	bh=FFYRaVt398kWlY3AcePts9f2SooVUww1t10zGlceo8M=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K/CKsc0itaT5uHK0duc/ma4vLDDgCyM6mg4dtEhvgWpB5trkjz9zyUQSEQzP7ail3sxCIFTT1ojXuRXRbJeUugpxbCyClhri4XoSbTtI5QZo2ah4AIGhKcTwZaAt86C5POF5KX4pTYwdVTewl31ZuSQeNgm4XlCMa8LLLW9jx/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K2to5tnk; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-385d7f19f20so2496251f8f.1;
-        Tue, 10 Dec 2024 03:55:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733831708; x=1734436508; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=GxtTqQBTIL8qkdLSUdzE6PIJ9G6FWWi9p3lyqXCUMq0=;
-        b=K2to5tnkPpV8JIeCEqkwkLfSeazKcfPnphGNJayvq2m2cHB0/xA1gndJm+DQVOljlW
-         aDIK8qUD2aAMURuj2Jfs0PiA+T2wH15NPotA8Yn1AUZDF1YN2Xw54m93vHWEWPUvv90w
-         KWyumzEbbPKjFW4mdpxUWGQQFubjmMZuGaV7YiRR75F3v7MhtoJXkx9CTWqpBBvcL9nU
-         B/EWwZ1MWzemyqcWZ9TNS6rpF4m0LmXoEtm1PfxUKTHT6y/7AJ1fANfuKgCYrwgQhgGo
-         9+p2DBqFOfqjfMQdW2sk0Iv0mMeOKfiCxVeSKsuvTN+cySQvf7l/nWnW0CnxHukd+OfI
-         EAmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733831708; x=1734436508;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GxtTqQBTIL8qkdLSUdzE6PIJ9G6FWWi9p3lyqXCUMq0=;
-        b=l8QWKFBDOGjpC0oQOiRzojIYCWlTQ5KJonl6H4QCz6CmNbXpNFmjLCrmtUb5jDAnAM
-         eQapDYtaEU7499Qalbj17jO2S/eFrKsB+Pq3zccJRzPi9nUImYbgoJp9LVtA9oTuKK2E
-         BTKK4R/btJZiazhNZj54Wv8uoWi/cBJVcSCbfVYbtFshjUtQ3JS/CfgKTEJiN8GeoGYd
-         qS94g/XxLR5lFvbO1ieoS9OPWzSl15VrcuJZwq+MNSOKKvmR580hwRvL3sqkKx6Apa7h
-         fMVqABSQcpmkG0S7fAMFayxneZXvZpjjgXLwREruP8vFC70MS66FItii9+BJz53jiT/y
-         ftfA==
-X-Forwarded-Encrypted: i=1; AJvYcCWPk/VOBYmso5/9M/9Z/K3ZlbIFxsZPivYpBN12wJ+LNY8N0jB5AePFpyEjI5EguG3lENeJkW5ckLeK4nlg@vger.kernel.org, AJvYcCWazWk7Fbb6fRXcepRhQnLlLkbT83vzuw28iodi0NX0F0f1fKakf8lOs23Bd1rSTHcnBTJm+VFzjXTQYt1b@vger.kernel.org, AJvYcCXdvEX8cGIEX3CKjO+sLNpILVj8INwla9PvMzHsZNyNgG9Hvz29LemhB2suyHJH1SL7PAQvuEvESIPL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0MANT6sSNShdqwIikGWZRvnFH05VM8OGsl+/WQa/P1zmxk70W
-	v9OXkFRdvB+2rcGo1URyEHTm8qSgR617uWH/F7xDqlCvnSqyg3ws
-X-Gm-Gg: ASbGnctK/ch31OUMK9DnOwpVMnXyKZm1mA8f590+VHrQe6oqPV9F3VZWBUcmt1kxbhG
-	8XJr+Y/BeJPg1PCZz9uGZRvY2rWrr+39V6O6NKn2mGWgyccNSwOdgHlvNeHHo2ZogcCvsF97+NS
-	K5Z0lzb+338SYsjUS3uFt5aTvP101gP22dqGZurpibR8oWjX9D+0vgDbZLeA1JaqKg+jH3OokEp
-	C02F3X5X6mVNpnxUJrmyejcAyMYEAMyc1HSOUPGOE2ivwi6l43l9rrYwlNbp6nkxYV6DHIe/1G5
-	+NKhq4NyyQ==
-X-Google-Smtp-Source: AGHT+IEqPyQZxvaTdaCGPBbnnyYvA3iFt3x9GqsjfxRLDxoVwreBtdhs6qFT0if4l4gCopK2n/CUaQ==
-X-Received: by 2002:a5d:6d86:0:b0:386:378c:b7ec with SMTP id ffacd0b85a97d-386378cb923mr8329503f8f.58.1733831708190;
-        Tue, 10 Dec 2024 03:55:08 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-386329a15b0sm11246137f8f.45.2024.12.10.03.55.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 03:55:07 -0800 (PST)
-Message-ID: <67582c1b.050a0220.83ef5.c8df@mx.google.com>
-X-Google-Original-Message-ID: <Z1gsFv24WRhhdqlb@Ansuel-XPS.>
-Date: Tue, 10 Dec 2024 12:55:02 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Antoine Tenart <atenart@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, upstream@airoha.com,
-	Richard van Schagen <vschagen@icloud.com>
-Subject: Re: [PATCH v7 3/3] crypto: Add Inside Secure SafeXcel EIP-93 crypto
- engine support
-References: <20241112015920.22564-1-ansuelsmth@gmail.com>
- <20241112015920.22564-4-ansuelsmth@gmail.com>
- <Z1e0LHycNGcWqd2q@gondor.apana.org.au>
+	s=arc-20240116; t=1733831878; c=relaxed/simple;
+	bh=LdEVmKKOlhCEmtz28en4sZeWOgFsqPYHNRhee3lIzsQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dZIqF7oAMv9S37KQFJOYmvWceA0cUyJ/yv3/9iDs3E/cpm3fVf1cO1hIhqbY2lDhU4OSDxgRBhHBRxUuILfFwVXdaJvUYT+m4etSoMb9sr8/wTvFsmS69oQ0a75mydqUI9BysuUkJw+3E9Wcozov+bLBSqFQjGcWcI7+WCk74Yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=RuEz1aVQ; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=KbVJw5J4GWJ01T8kGIEWydEYZvhCAGIPzpK/iHXKbT8=; b=RuEz1aVQq20Lt9i1RM6zkuMFJP
+	E7gWUPReBqKH8hpAFsniOi4v/LpHXv3Huxx0sfQy6a6Wv4J8NoiuKlL56oJ3qoVXx8FhEKY6PMtJN
+	ZlEeAarE6zVUMWD2bArovq74ytqUrvtYhvxy66Wh7mwUtEnrz0Sz1Iqu5xioV064XpTb4dBa3HR2l
+	LL3z9/hSMcy+0EdyOgpDFDzVLZ0qHW7r4Rn4bBa4SO0AtawcKWHheuFdCZHHYXM2p/E2Ucn2vedyZ
+	C7JA5VBytM4DCLM+U8MgACvIs57uqQXQFYUli/U7BKzTLVA0bNP3xs9OQFSM8Jbttbyl1OFEz0VDU
+	e+IKUKqA==;
+Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tKys5-00058v-Pm; Tue, 10 Dec 2024 12:57:45 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Andy Yan <andyshrk@163.com>
+Cc: hjc@rock-chips.com, krzk+dt@kernel.org, s.hauer@pengutronix.de,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, derek.foreman@collabora.com,
+ detlev.casanova@collabora.com, Andy Yan <andy.yan@rock-chips.com>,
+ Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH v5 01/18] drm/rockchip: vop2: Add debugfs support
+Date: Tue, 10 Dec 2024 12:57:44 +0100
+Message-ID: <4471861.MSiuQNM8U4@diego>
+In-Reply-To: <20241209122943.2781431-4-andyshrk@163.com>
+References:
+ <20241209122943.2781431-1-andyshrk@163.com>
+ <20241209122943.2781431-4-andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z1e0LHycNGcWqd2q@gondor.apana.org.au>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, Dec 10, 2024 at 11:23:24AM +0800, Herbert Xu wrote:
-> On Tue, Nov 12, 2024 at 02:59:00AM +0100, Christian Marangi wrote:
-> >
-> > +static int eip93_hash_export(struct ahash_request *req, void *out)
-> > +{
-> > +	struct eip93_hash_reqctx *rctx = ahash_request_ctx(req);
-> > +	struct eip93_hash_export_state *state = out;
-> > +	DECLARE_CRYPTO_WAIT(wait);
-> > +	int ret;
-> > +
-> > +	crypto_init_wait(&wait);
-> > +	/* Set the req callback for hash_partial_final wait */
-> > +	ahash_request_set_callback(req, CRYPTO_TFM_REQ_MAY_BACKLOG,
-> > +				   crypto_req_done, &wait);
-> > +
-> > +	/* Set for partial hash generation */
-> > +	rctx->partial_hash = true;
-> > +	rctx->export_state = true;
-> > +	rctx->state = state;
-> > +
-> > +	/* Save the first block in state data */
-> > +	if (rctx->left_last || rctx->len) {
-> > +		struct mkt_hash_block *block;
-> > +
-> > +		block = list_first_entry(&rctx->blocks,
-> > +					 struct mkt_hash_block,
-> > +					 list);
-> > +
-> > +		memcpy(state->data, block->data,
-> > +		       SHA256_BLOCK_SIZE - rctx->left_last);
-> > +	}
-> > +
-> > +	/* Call hash_partial_final.
-> > +	 * This will send a dummpy 0 length packet. This is done to
-> > +	 * wait for every descriptor to being handled and sync the sa_state
-> > +	 * from the host. Partial hash and any other data will be copied in
-> > +	 * eip93_hash_handle_result()
-> > +	 */
-> > +	ret = crypto_wait_req(eip93_hash_partial_final(req), &wait);
+Hi Andy,
+
+Am Montag, 9. Dezember 2024, 13:29:13 CET schrieb Andy Yan:
+> From: Andy Yan <andy.yan@rock-chips.com>
 > 
-> Sorry, you can't do that here.  Your hash state should have been
-> exported when the request previously completed.  The export function
-> must not sleep.
->
+> /sys/kernel/debug/dri/vop2/summary:  dump vop display state
+> /sys/kernel/debug/dri/vop2/regs: dump whole vop registers
+> /sys/kernel/debug/dri/vop2/active_regs: only dump the registers of
+> activated modules
+> 
+> Reviewed-by: Sascha Hauer <s.hauer@pengutronix.de>
+> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> Tested-by: Michael Riesch <michael.riesch@wolfvision.net> # on RK3568
+> Tested-by: Detlev Casanova <detlev.casanova@collabora.com>
+> ---
 
-Ah that unfortunate but doesn't that goes against the async idea of ahash
-OPs? Anyway is busy loop acceptable here?
+> +static void __vop2_regs_dump(struct seq_file *s, bool active_only)
+> +{
+> +	struct drm_info_node *node = s->private;
+> +	struct vop2 *vop2 = node->info_ent->data;
+> +	struct drm_minor *minor = node->minor;
+> +	struct drm_device *drm_dev = minor->dev;
+> +	const struct vop2_regs_dump *dump;
+> +	unsigned int i;
+> +
+> +	drm_modeset_lock_all(drm_dev);
+> +
+> +	regcache_drop_region(vop2->map, 0, vop2_regmap_config.max_register);
+> +
+> +	if (vop2->enable_count) {
+> +		for (i = 0; i < vop2->data->regs_dump_size; i++) {
+> +			dump = &vop2->data->regs_dump[i];
+> +			vop2_regs_print(vop2, s, dump, active_only);
+> +		}
+> +	} else {
+> +		seq_printf(s, "VOP disabled\n");
+> +	}
+> +	drm_modeset_unlock_all(drm_dev);
+> +
 
-The main problem here is that .update only enqueue packet to be
-processed and we don't wait for it to finish as that would result in
-really bad performance.
+nit: not needed empty line at the end of the function
 
-To export the state with the previous request (.update) we would have to
-wait for each packet to complete or we would export the wrong partial
-hash.
+> +}
+> +
 
-The process is fast enough so busy loop here should not be problematic
-but waiting for every packet sent to .update on being processed might
-introduce big performance regression.
+> +static void vop2_debugfs_init(struct vop2 *vop2, struct drm_minor *minor)
+> +{
+> +	struct dentry *root;
+> +	unsigned int i;
+> +
+> +	root = debugfs_create_dir("vop2", minor->debugfs_root);
+> +	if (!IS_ERR(root)) {
+> +		for (i = 0; i < ARRAY_SIZE(vop2_debugfs_list); i++)
+> +			vop2_debugfs_list[i].data = vop2;
+> +
+> +		drm_debugfs_create_files(vop2_debugfs_list,
+> +					 ARRAY_SIZE(vop2_debugfs_list),
+> +					 root, minor);
+> +	}
+> +}
+> +
+> +static int vop2_crtc_late_register(struct drm_crtc *crtc)
+> +{
+> +	struct vop2_video_port *vp = to_vop2_video_port(crtc);
+> +	struct vop2 *vop2 = vp->vop2;
+> +
+> +	if (drm_crtc_index(crtc) == 0)
+> +		vop2_debugfs_init(vop2, crtc->dev->primary);
+> +
+> +	return 0;
+> +}
 
-Thanks for checking this hope you can help me understand this.
+I'm wondering about, shoudln't there be an unregister step too?
+I.e. the late_register callback says:
+"should be unregistered in the early_unregister callback" [0].
 
--- 
-	Ansuel
+And there exists drm_debugfs_remove_files(), though it doesn't
+seem t be used much - just by tegra.
+
+I haven't managed to find drm code handling that automatically though?
+
+
+Heiko
+
+
+[0] https://elixir.bootlin.com/linux/v6.12.4/source/include/drm/drm_crtc.h#L737
+[1] https://elixir.bootlin.com/linux/v6.12.4/source/drivers/gpu/drm/drm_debugfs.c#L265
+
+
 
