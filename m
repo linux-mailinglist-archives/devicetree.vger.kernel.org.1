@@ -1,108 +1,95 @@
-Return-Path: <devicetree+bounces-128994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C88A49EA45E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 02:30:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86CA39EA463
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 02:31:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9529C1880671
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 01:30:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62E6A162F39
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 01:31:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE25212C484;
-	Tue, 10 Dec 2024 01:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCE8F19D06E;
+	Tue, 10 Dec 2024 01:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XqUncYvN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fGwJnGdu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBFC340BE0;
-	Tue, 10 Dec 2024 01:30:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34736155308;
+	Tue, 10 Dec 2024 01:30:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733794230; cv=none; b=HT/RphVBZv1yiuwdEzpqysbzjyhgRDt8PuLAoS1ePDBIddpdG6n3VgEOVCbaBVP3Sr0gMMlY/WRYS5hrhNsqifVQMAMe8f708WMWy1YEOkrKvWSc6Fm//9vDU6ZvJCzQRsrsIi6Etr5fhLKUxcvnY6X5g8YqeOTOVHXQqIZ8IUs=
+	t=1733794233; cv=none; b=FrP8a8xgWdn2M09dOEfCmbJWIUpl6nPkdua/mxMsVK2a8OAROrDazpP8fmmNYHqjZeVB45mNMnnLe7+HRyV5K2jQCCvevrc2eoAd17dgx3XQIXoGebaY4hwNG1+u2HQto/FCSuBnKuZtc2dH1LFrVk3s0zQxeO0pQAKIj708mUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733794230; c=relaxed/simple;
-	bh=/3/Fa996/wPp/z2tuRA7CnvQdgcWzerb8WWKan2wAvI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=n/swsfgFkm2JuzYYy/lTT0HGgejeMT/pNvZyx9rMxRpoyBs9hPIBnrXNszLyxhN1H/nsMj7KJjGWCZOPIZ8ctNAH4/8jx57ajeGzEjStmubyYtlwzsJKNw2cceB2cMg4oV8YhEUenxrVADfz1jQl46TMrPhCooZSwDmaqOODpMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XqUncYvN; arc=none smtp.client-ip=209.85.219.50
+	s=arc-20240116; t=1733794233; c=relaxed/simple;
+	bh=DUbLOQDRS/uCD9wQoNVZebUfm7GeL5XJwHgnz9Pasc8=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=mXuFlvb9q/LQ1WGkuiXm19n6TKziQxsCCCerexBNRGaElPaGxq/wMyYsw5Us9m0Z7ir7bieKHWNxkdNWKWf/fKlY7zuwhPGmcgdO9Yb/Slaf4fHuZRg1Vqy9zAMmeKU0mGp8JqhESPojNYhEB4RBZPbgOmo//t3+6eAjJNQ7rxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fGwJnGdu; arc=none smtp.client-ip=209.85.219.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-6d8f1505045so23813036d6.1;
-        Mon, 09 Dec 2024 17:30:25 -0800 (PST)
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6d88d3d1eb6so48206676d6.0;
+        Mon, 09 Dec 2024 17:30:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733794225; x=1734399025; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yLptFqAMCqePRuk20SWKFsGYRWkZDJ2kBARfQHLQM5A=;
-        b=XqUncYvNXnbJ1GrK19YSiN/olUbVDddX3Txyhz5qhe5rngOSkRbwGoGNjB27U9F24G
-         e/RGB7k8urp0JcO3OEZn8GgjN1pwwv3YNcs/KVVr2Mqe2ogbWH0sRF1TQS7PM0zPCwDD
-         gLi8p8PhrT9z4WKo3HSC7NOyY2TIWbY16uC2QyLMLQOTHyhkHf91GKBJv4SlbHV/vH3E
-         RFSDbvfg+L2jI5Ah0hEFLLLXD8ClBEjq0Z08r/mnw/fC6acnr7o72+uP+hZUHxwxprtk
-         nUOZumug84AC7H2EQaRWTgoYXROeWfOIR2Ds4dd1uOpEi1Bd+yF6AkTQ3GaH4az5htEG
-         c3bA==
+        d=gmail.com; s=20230601; t=1733794231; x=1734399031; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7ryxhFq/D6uK4o3TwTQ7Wdb4StN8ThF9XTxHXMGYXkM=;
+        b=fGwJnGdudVZV1qgFDVN+9CH0z8ac/hYJHh+CBPQ4j8+rTh74s2c19A6XBjfIY0eM8A
+         Ss5QR3EwG6YDWRyZe4NlTgAjeGIoqIqPGIUY2ql925iNRkGJq4XmfkdYTOy8xTVM/Sf5
+         4S52ieo9ZpHo2gxN0+dkLQjRVWN7meg31GmFawtaDT43SX+FDErikEKMgosoLid/D7Xa
+         A7vOd2JWOJqMjFIBQxkVY13rBWmfp6uHrASWvtr1hv5PAS0JeL/Cobgdy72PDOjCw4+G
+         ShZuVFRA+FGRkm55c4Y+kbtbs73LH1GPjoaCHthg9Egqs00ixBJj563zDWbj+nqYK3t+
+         t5Tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733794225; x=1734399025;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yLptFqAMCqePRuk20SWKFsGYRWkZDJ2kBARfQHLQM5A=;
-        b=DWBkyY1uWwHE7UVOINgumdMMgct96RYA3I/5SjJEb390VEc5yKPYYvkL7LCCHm/vda
-         ULTtr5wPOF2UNN7E/cnNdncpLlmfWjChvHB4dmdqnWGvmBnWB1L2f2f5pN3USCA07BuI
-         MHuePemXUZqy9dHUVl83aCKpnqixZfI02+VVkV8h5plHQnRJV4qEetEycxu866iURXw1
-         a6y0z/pTMOkwzseKJlYH5GZSIcoQ5qxzPtxFMgp9Yc+/NO6AUgZw0BdrHp1NA/2U3f5C
-         E8z7g6PZb30AKHyX/Q5r5vZ7RuKNCNZGXDwT89PSxSGfmqSfRehigVZcvu8XBbsQEIhP
-         UJYw==
-X-Forwarded-Encrypted: i=1; AJvYcCU60+7dkq/Dz9qZC1Ra1I9U3AzFAurf5s3MtQLmztU1n9DK0N+9N+0xkMuxa1gyDocW5CnZglscLp9YvvD+@vger.kernel.org, AJvYcCUERru12nk433xTZtVJNYJ9epr6yU5ymVeNSkYVIfzXIABNUEadoFS058EzK9EzhwrrtLHZkbJ/M/Q=@vger.kernel.org, AJvYcCUxTGHYyAL0ngtUlGm1Dcrww7ZP/7oDfmJd1mHLhPovd11WbwbOzlogyE7n9MG2wcxxfv7sokiSrbT/@vger.kernel.org, AJvYcCWIbSgnLIit3lnwlwDetjxbvKoCdT8fYMepwdKkdgJEG4Tsu3knqEonjGJuUOFFFraOFqktcx0EB6L0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzITfK3oZGMmosYpY/6rHjWUY+47+KNFomrfRTwz4hlHaiP/cYz
-	YOuHy1+NVRjDpWQe0I/rEKXFYl/DkTlVolaYSdSbvZDuwLKidPFeQRs8iqHE
-X-Gm-Gg: ASbGnct7KsWWX4Q7qBORoRhQAZ4sKbP8dlAhlGZkZeqokLeZVuu+BE/C6UPaN/Shl8J
-	JQ0gqERlBi1NYvhjGZ1HglfC2ohh6FYKPPjy3TAWboUN/jiCOve1+s7T3fXb5EjOakbsly1Zf2v
-	kLAHeyWzQzhdn/omSvGEnSH/Eq/IzB8hOwKRIzFxWbQSmr528bjJC/h5rzHp0W40FC0KxAI6Gwd
-	ATx3U5/LlRKE+veoUakEdWVwGDnfj0XAtvHGy+bzmYNQISmhtlKlmI5BjvoJ/j3iA==
-X-Google-Smtp-Source: AGHT+IGl94+bcjaYHpUAJtAtPKM7ozTtuuRWPzM7fSjzKBKRwV5Bk+GTu1vmg7p1bUUPpYPUkPwp+Q==
-X-Received: by 2002:a05:6214:e6b:b0:6d4:1dc0:2620 with SMTP id 6a1803df08f44-6d91e4465a0mr47573006d6.40.1733794224737;
-        Mon, 09 Dec 2024 17:30:24 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733794231; x=1734399031;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7ryxhFq/D6uK4o3TwTQ7Wdb4StN8ThF9XTxHXMGYXkM=;
+        b=FXKBegJXnT91Hs/PKurXsxKhzr2f7zGy7Y7eoGxdu1qiuPWaORpqQ+xzNLWIhTQBBx
+         SlRYFDvUP46D9l8UfroaoEOGddLK5b1VuLVEd8GWxLpm8rn/vf75ooqax1gEgqtUVrq+
+         +Kng2TxbzoprW62Rf2LEEohQlcWv752MUyKPVhKHbuGSdY8ofOKXqfxHBi/IrBSTCruG
+         /yB8nTx8fXepZjMuVtwJYdMEwEtqmWDKvu/BhQL58bc2WHvYwBwyCKaaIbxVdZiVKv1n
+         jKNUtQL5b1uSM0rF60GaPWHrxkJ+hYZPXPjLsJEH1xGvD6vYoLW1os1VmH7zZOoxMx4I
+         2GgA==
+X-Forwarded-Encrypted: i=1; AJvYcCWLj80ISvnRL6iZ2XgNRIUvJdrTMWwVngGBlDYenIeec4f565+Y7vR5552neLZFrtPKLPLfJyRKbD6IQGRS@vger.kernel.org, AJvYcCXOEvM4adXz3vjITR+A4HAC9cTa6+OMnD5fKDDxsCPINnCkvZXEjg3nGlK6XCG+5ni996rA1rS2v7D3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJnYO5MEUFmHImNXFACa+Saaog9uFJgD6G+h6O1MPRGoQIP6de
+	jEdXFLEVaKb5YbbMaFXpAVgrNAqXYyXcStE0OdUFmCT74c0aRamO
+X-Gm-Gg: ASbGnctzFKaO4apnd/Lg8uAy+rwWlCSixsIsTxiRket0zrorJCgB6feymGp17WEGg1R
+	TJSGbcqnit78+PJmUTQ2dJ4Iw3Xg75cwnZ9THzh41iVwFSJ7Y/Z0IOFmHpETsAoZfzNH7F0Lw9T
+	o4GlvIesivL1g9R6s3kUPz2c/ZZtRxVrUH/cjvD8tggMm0SUTt4tvcYoq7vzxpjwV+TIicx1Vap
+	9v8ihHdOWzOcI+TVDxZf38FL1BBOYTOrTF1MPJMCoMwjo6jtxtevrGhfjNOL02XaQ==
+X-Google-Smtp-Source: AGHT+IGnHu4GKol3hVAzHldnP2oJaYa4cSwD67AUlgoZTcrdM6Y6t8bZ454xDQJ+meiSiuoKJRyJhw==
+X-Received: by 2002:a0c:edcd:0:b0:6d4:287d:b8d9 with SMTP id 6a1803df08f44-6d92128fb74mr27104106d6.2.1733794230935;
+        Mon, 09 Dec 2024 17:30:30 -0800 (PST)
 Received: from master-x64.sparksnet ([204.111.53.234])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6d8f429a79csm36834346d6.72.2024.12.09.17.30.22
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6d8f429a79csm36834346d6.72.2024.12.09.17.30.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Dec 2024 17:30:23 -0800 (PST)
+        Mon, 09 Dec 2024 17:30:29 -0800 (PST)
 From: Peter Geis <pgwipeout@gmail.com>
 To: Heiko Stuebner <heiko@sntech.de>
 Cc: Peter Geis <pgwipeout@gmail.com>,
-	Alex Bee <knaerzche@gmail.com>,
-	Caesar Wang <wxt@rock-chips.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Detlev Casanova <detlev.casanova@collabora.com>,
 	Diederik de Haas <didi.debian@cknow.org>,
 	Dragan Simic <dsimic@manjaro.org>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	Finley Xiao <finley.xiao@rock-chips.com>,
 	Johan Jonker <jbx6244@gmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	Kevin Hilman <khilman@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Levin Du <djw@t-chip.com.cn>,
-	Liang Chen <cl@rock-chips.com>,
-	Michael Turquette <mturquette@baylibre.com>,
 	Rob Herring <robh@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	shironeko <shironeko@tesaguri.club>
-Subject: [PATCH 0/6] rockchip: rk3328 fixes in preparation for usb3-phy
-Date: Tue, 10 Dec 2024 01:30:04 +0000
-Message-Id: <20241210013010.81257-1-pgwipeout@gmail.com>
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH 3/6] arm64: dts: rockchip: remove ethernet alias from rk3328-roc
+Date: Tue, 10 Dec 2024 01:30:07 +0000
+Message-Id: <20241210013010.81257-4-pgwipeout@gmail.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20241210013010.81257-1-pgwipeout@gmail.com>
+References: <20241210013010.81257-1-pgwipeout@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,52 +98,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
+Remove the ethernet alias added back in during the rk3328-roc dtsi
+conversion.
 
-This is a series of fixes I uncovered during my work on the next
-generation rk3328 usb3 phy driver.
+Fixes: f3c6526d6fb2 ("arm64: dts: rockchip: Convert dts files used as parents to dtsi files")
+Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+---
 
-The first patch fixes the error handling of the pm-domain driver. I
-don't expect this to break anything, but it is entirely possible some
-driver code makes some bad assumptions on the fact that this has been
-broken from the very beginning.
+ arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-The second patch fixes the ref_usb3otg clock parent. This was preventing
-correct reclocking of the usb3 phy.
-
-The third patch fixes the ethernet alias that was accidentlly readded
-during the rk3328-roc dtsi conversion.
-
-The fourth patch fixes a race condition between power domains and clocks
-being shut off during boot, which would cause an ugly splat on rk3328
-during boot on recent kernels.
-
-The fifth patch corrects the rk3328-roc fixed regulators and power input
-map. It also cleans up the fixed regulator flags to be consistent.
-
-The sixth patch removes address aligned beats and the redundant rxpbl
-and txpbl flags from the rk3328-roc, which are unnecessary now.
-
-Please examine and test these as necessary, especially the pm-domain fix
-patch.
-
-Very Respectfully,
-Peter Geis
-
-
-Peter Geis (6):
-  pmdomain: rockchip: fix rockchip_pd_power error handling
-  clk: rockchip: fix wrong clk_ref_usb3otg parent for rk3328
-  arm64: dts: rockchip: remove ethernet alias from rk3328-roc
-  arm64: dts: rockchip: add hevc power domain clock to rk3328
-  arm64: dts: rockchip: correct rk3328-roc regulator map
-  arm64: dts: rockchip: Remove address aligned beats from rk3328-roc
-
- arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi | 27 +++++++++++---------
- arch/arm64/boot/dts/rockchip/rk3328.dtsi     |  1 +
- drivers/clk/rockchip/clk-rk3328.c            |  2 +-
- drivers/pmdomain/rockchip/pm-domains.c       |  8 ++++--
- 4 files changed, 23 insertions(+), 15 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+index b5bd5e7d5748..f782c8220dd3 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+@@ -9,7 +9,6 @@
+ 
+ / {
+ 	aliases {
+-		ethernet0 = &gmac2io;
+ 		mmc0 = &sdmmc;
+ 		mmc1 = &emmc;
+ 	};
 -- 
 2.39.5
 
