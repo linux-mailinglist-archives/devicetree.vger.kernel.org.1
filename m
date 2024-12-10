@@ -1,163 +1,274 @@
-Return-Path: <devicetree+bounces-129323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B24C09EB404
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:53:33 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 872029EB41A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:58:48 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67258284DFE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:53:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 112061614EF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:58:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F3AC1B3940;
-	Tue, 10 Dec 2024 14:52:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2771AAE33;
+	Tue, 10 Dec 2024 14:58:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j6l/8maG"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="h17Puscb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 207F81AA786;
-	Tue, 10 Dec 2024 14:52:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 304091A01D4;
+	Tue, 10 Dec 2024 14:58:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733842361; cv=none; b=nsR1HlcTMQtbOoOT+/j82w42p6E8T4toqX47L3NsAL+W4pHfbMuBkxslbzgjArNM9HZQBJ5C84F72qnDVPjdFdIplk8DjVM6KbkPb94CVFkW5JdrO7o7VwPhfZexWoE4+uOaQrJw6HnrLzwQdfrAvuUJ6acV0Z2DBooAwTXNpXk=
+	t=1733842721; cv=none; b=Dmsfjhdvpgr2H6Osg3cSRbmNcEMh37pImLoxC8jBr/Mvg60+sN12qY4mbYX2N75cWh+W3e6iEPCL/rDxSie7kn85SruoFLLrulWGL9yykORVAhKBlpP7CCuv/Rxa2DoE/7pntrr2UlGJzLJCZsAajXygxC1GbU0uC0iKtfXzDRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733842361; c=relaxed/simple;
-	bh=T8bfjPlMu3bOeVNznQxKg8Q5VGqihqrLN21VgNgbq9I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GMSfhBVR9+yoXCyTItugiU61y0O6zgPGsHW4O+cbWu0S9xwBwMxWhQVpFhTn34B+JYad/SD8Ddr3AJmaAF6OPQD8m9/Auelyx6U5/MmGIMw7w7JYHqM1JbPdOYzGSIJSdgQIJdkBfDIMFVfIcVnDDNgBiT9CSRinxdo3N2K+qjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j6l/8maG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 380ECC4CED6;
-	Tue, 10 Dec 2024 14:52:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733842360;
-	bh=T8bfjPlMu3bOeVNznQxKg8Q5VGqihqrLN21VgNgbq9I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=j6l/8maGvxdZZRrkaMVV/zyhkr9OMKDuAGjoE2eqMLfJHJ6OdP//G2ZyAjej81Aid
-	 6YrTWgBvsXeW8B1ZCTenoL4FS4BxCaZAfXKDBQeSHTB693H3RcH+SmL+2H2fDLAKp/
-	 QhKl2vgB9Bwu+j3bCFEZPhXfrlY9wNsLyEhrYmirYXDR1mkgl01PM8f8dQO61uV3u/
-	 NXSxZGXzsw+TCNuBUDvaKBjpAFGpVgzw4yEdLjB+WRDWKpO8zWZ69IT5wHU1lr6z6x
-	 Dg3uFv6f3kdnrUsw1kcowOHA90plNnYkMKmEsENPCcQJGQIOXy0Nqt2Gd6t5m4o6Ug
-	 XXUKnL89+mwmA==
-Message-ID: <bd3f7586-4119-47f5-bbf6-a43bd02088b8@kernel.org>
-Date: Tue, 10 Dec 2024 15:52:36 +0100
+	s=arc-20240116; t=1733842721; c=relaxed/simple;
+	bh=AFXL2cx7lVDFMtZEhTqRl5L9XALWWLwSh/jaS0CRf0Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KkJOcrZh6DUggVuFvrrtQy8uAkmO0rN1ysReD1JLGgNrdXc1DGLpwPVVR4xc0Wil4Wzq8oJRJybU5rKmg4ISvc3evH9agM6uXzkfepGrKYsrRq5PGCSyOmE+Gt7GX/+toZoZwpTKMMPrVgEfQ3t9h+NtlesPWprhEcojgZMPvGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=h17Puscb; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DB0E240004;
+	Tue, 10 Dec 2024 14:58:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1733842716;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wnRE7cR/cIXyL2IFtw6/8xgjxOhuuf+yLB9jfbOtyvk=;
+	b=h17PuscbBXcTBoUzfumiPfUxHfm9BKb1RIB3Rmt1WYFakf3U273nLgvp8bRql8R3LeJp95
+	NyFoBznTIkAYCpmd2xR/gFrkBAUi+qJrc4YOfHJ6lmJriOytgkT4PxNyFaJU+tuyzMbyk4
+	KdM+QawN2fNgJTvkBEC280FibMuy28AXWwxasGfPWrn+WYu01JkIJhx6SqC0XU5qx9SP/S
+	Ve6tdxmMl4mbPLvxEqwU0A5gH2ROzmkxRHsA77sOUGWOMuuNvqbeXIx/j2O6i7AePijyjd
+	5J/LM0bwTH49BLawXuu3jbjz3fkDQoDV3vVQP8CgALk2BuTMCBHpUYz0XISyhw==
+Date: Tue, 10 Dec 2024 15:58:33 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: David Gibson <david@gibson.dropbear.id.au>, Andrew Davis <afd@ti.com>,
+ Ayush Singh <ayush@beagleboard.org>, Geert Uytterhoeven
+ <geert@linux-m68k.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan
+ <saravanak@google.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Devicetree Compiler
+ <devicetree-compiler@vger.kernel.org>
+Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node
+ feature
+Message-ID: <20241210155833.76357d50@bootlin.com>
+In-Reply-To: <CAL_JsqJCbmMJWJnmr8FneKrW4pjvTcyEco94Ot32o2YtaVxRQQ@mail.gmail.com>
+References: <20241209151830.95723-1-herve.codina@bootlin.com>
+	<CAL_JsqLT3prYBcxnsUwAShULCLJScYoU29ta29RJLGyiNkCrTg@mail.gmail.com>
+	<20241210091604.512496d3@bootlin.com>
+	<CAL_JsqJCbmMJWJnmr8FneKrW4pjvTcyEco94Ot32o2YtaVxRQQ@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 11/13] wifi: ath12k: Power up userPD
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Sowmiya Sree Elavalagan <quic_ssreeela@quicinc.com>
-References: <20241210074159.2637933-1-quic_rajkbhag@quicinc.com>
- <20241210074159.2637933-12-quic_rajkbhag@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241210074159.2637933-12-quic_rajkbhag@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 10/12/2024 08:41, Raj Kumar Bhagat wrote:
-> +
-> +	time_left = wait_for_completion_timeout(&ab_ahb->userpd_ready,
-> +						ATH12K_USERPD_READY_TIMEOUT);
-> +	if (!time_left) {
-> +		ath12k_err(ab, "UserPD ready wait timed out\n");
-> +		ret = -ETIMEDOUT;
-> +		goto err_fw2;
-> +	}
-> +
-> +	qcom_smem_state_update_bits(ab_ahb->spawn_state, BIT(ab_ahb->spawn_bit), 0);
-> +
-> +	ath12k_info(ab, "UserPD%d is now UP\n", ab_ahb->userpd_id);
+Hi Rob,
 
-Don't bug users with success messages. Your driver is supposed to be
-silent on success.
+On Tue, 10 Dec 2024 07:46:02 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-> +
-> +err_fw2:
-> +	release_firmware(fw2);
-> +err_fw:
-> +	release_firmware(fw);
-> +	return ret;
-> +}
-> +
->  static void ath12k_ahb_init_qmi_ce_config(struct ath12k_base *ab)
->  {
->  	struct ath12k_qmi_ce_cfg *cfg = &ab->qmi.ce_cfg;
-> @@ -557,6 +694,7 @@ static const struct ath12k_hif_ops ath12k_ahb_hif_ops_ipq5332 = {
->  	.irq_enable = ath12k_ahb_ext_irq_enable,
->  	.irq_disable = ath12k_ahb_ext_irq_disable,
->  	.map_service_to_pipe = ath12k_ahb_map_service_to_pipe,
-> +	.power_up = ath12k_ahb_power_up,
->  };
->  
->  static irqreturn_t ath12k_userpd_irq_handler(int irq, void *data)
-> diff --git a/drivers/net/wireless/ath/ath12k/ahb.h b/drivers/net/wireless/ath/ath12k/ahb.h
-> index 0999e2bbe970..0dbbbfd45eab 100644
-> --- a/drivers/net/wireless/ath/ath12k/ahb.h
-> +++ b/drivers/net/wireless/ath/ath12k/ahb.h
-> @@ -19,7 +19,15 @@
->  #define ATH12K_PCI_IRQ_CE0_OFFSET		3
->  #define ATH12K_ROOTPD_READY_TIMEOUT		(5 * HZ)
->  #define ATH12K_RPROC_AFTER_POWERUP		QCOM_SSR_AFTER_POWERUP
-> -
+> +dtc list and David G.
+> 
+> On Tue, Dec 10, 2024 at 2:16 AM Herve Codina <herve.codina@bootlin.com> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Mon, 9 Dec 2024 14:11:09 -0600
+> > Rob Herring <robh@kernel.org> wrote:
+> >
+> > ...  
+> > > >
+> > > > Our overlay using the nexus node can contains:
+> > > >    node {
+> > > >       foo-gpio = <&connector 0 GPIO_ACTIVE_HIGH>;
+> > > >    };  
+> > >
+> > > Couldn't we make something like this work:
+> > >
+> > > connector: __overlay__ {
+> > >
+> > >    node {
+> > >       foo-gpio = <&connector 0 GPIO_ACTIVE_HIGH>;
+> > >    };
+> > > };
+> > >
+> > > We already have to process all the phandles in the overlay. So this
+> > > just changes handling of 'connector' from being a local phandle which
+> > > we just renumber to an unresolved phandle which we have to lookup and
+> > > replace the phandle uses with.
+> > >  
+> >
+> > I have tried what you suggested but I've got some issues with dtc.
+> >
+> > If a label is not used as a phandle in a dts, dtc doesn't create the phandle
+> > property in the pointed node (except if we use '-@' option but I don't want
+> > to add all symbols in my dtb just for one or two connector symbols).  
+> 
+> Sorry, but that's the cost of using overlays, and that's pretty
+> orthogonal to the issue of how the overlay references the connector
+> node.
+> 
+> However, I agree '-@' is a pretty big switch and an issue that's been
+> discussed before. I also don't like that all labels become part of the
+> ABI nor the fact that overlays can make any random modification
+> anywhere in the DT. I would rather see some sort of explicit opt-in
+> mechanism of nodes we can apply overlays to. Perhaps we could do
+> something like this:
+> 
+> /export/ label: node {
+> };
+> 
+> And then __symbols__ can be only those exported labels (unless -@ is used).
+> 
+> > The way to make sure that the phandle property will be created in the base
+> > DT node by dtc is to reference the label as a phandle in the base DT.
+> > The export-symbols node references this label as a phandle in the base DT
+> > and so, with that, dtc creates the phandle property.
+> >
+> > Also, using 'connector: __overlay__' allows to have only one label from
+> > the base DT to be referenced by the overlay.
+> >
+> > I don't know if use cases exist where more than one label need to be
+> > referenced but this 'one label' constraint is not present with the
+> > export-symbols node.
+> >
+> > The use case where more than one label would be needed is the need for a
+> > phandle from the overlay that couldn't be translated by the connector nexus
+> > node. Maybe pinctrl because it uses of_find_node_by_phandle().  
+> 
+> Labels are an ABI. I can't see that we need to remap them when we can
+> just say the name must be X. We can have multiple labels on a node as
+> well. So I think the problem space is purely mapping 1 name to
+> multiple possible names.
 
-Why? You just added this line in previous commits.
+So, with a base DT having:
+  /export/ label0: node@0 {
+  }
 
-> +#define ATH12K_AHB_FW_PREFIX			"q6_fw"
-> +#define ATH12K_AHB_FW_SUFFIX			".mdt"
+  /export/ label1: node@1 {
+  }
+
+the __symbols__ node will contains:
+  __symbols__ {
+	label0 = ...;
+	label1 = ...;
+  }
+
+without export-symbols, the overlay will look like this:
+  connector: __overlay__ {
+	...
+	ref = <&connector>;
+  }
+
+The "connector" label is the only one we can use from the overlay to
+reference the base DT (special label defined on the __overlay__ node).
+As it is defined to point to __overlay__, it has to be resolved to the
+exported symbol that point to the node where the overlay is applied.
+
+If the overlay is applied on node@0, 'connector' is resolved to node@0.
+
+This case cannot be handled:
+   connector: __overlay__ {
+	...
+	ref1 = <&connector>;
+        ref2 = <&other-label-from-base-dt>;
+   }
+
+Indeed, only one 'connector' label can be resolved to node@0 or node@1.
+other-label-from-base-dt cannot be resolved based on the node the overlay
+is applied to.
+
+Again, I am not sure on my side that we have to handle this case of multiple
+labels in the overlay that point to the base DT dependent on node@0 or node@1.
+
+On my use case, I considered the node@0 or node@1 as nexus nodes and so, all
+GPIOs (soon PWM, I hope, and probably other ressources in the future) can be
+referenced using nexus nodes.
+
+> 
+> The connector handling has to be addressed binding by binding at least
+> for each pattern of binding. Pinctrl binding is pretty unique, so we
+> should make sure we can handle it in this case.
+
+If pinctrl can be handled using nexus node, it should be ok. Otherwise
+things are going to be complicated. Again, with your proposal, we can
+reference only one label from the overlay, the node where the overlay
+is applied to.
+
+> 
+> > Last point, having export-symbols node makes some nodes explicitly
+> > candidates for an overlay and defines the label to be used on the base DT
+> > node side. This specific label can be described in the node binding as well
+> > as the nexus node properties.  
+> 
+> Both David (IIRC) and I feel that putting the overlay info
+> (__symbols__, __fixups__, etc.) within the DT data rather than in the
+> DTB format was a mistake. The export-symbols node expands on that, so
+> I'm not sure that's the right direction.
+> 
+> (We should have rev'ed the DTB format to store type information for
+> (at a minimum) phandles.)
+> 
+> > With 'connector: __overlay__', the overlay can be applied on any nodes, at
+> > least from the needed label point of view without any restrictions.  
+> 
+> Certainly that is something I'd like to have some control over. An
+> /export/ tag would accomplish that.
+> 
+> One idea I have there is that the overlay could have the compatible of
+> the connector and we use that for matching. That would give us a way
+> to know what base DTs overlays apply to. Then you could load an
+> overlay and dispatch it to the correct driver to handle. It would have
+> to be handled as a special case as the compatible may match, but
+> wouldn't necessarily be equal values.
+
+compatible property will not be enough. We can have two exact same
+connectors on the same base board:
+  /export/ label0: node@0 {
+     compatible = 'foo,addon-connector';
+  }
+
+  /export/ label1: node@1 {
+     compatible = 'foo,addon-connector';
+  }
+
+To load the overlay, we can match compatible for sure but we need to node
+the overlay is supposed to be applied to.
+
+Also, it you want to check bindings for node@0 available in the base DT
+and bindings in the overlay, having one compatible string with different
+meaning will introduce some complexity.
+A compatible string can now define the "provider" part (the base DT) and
+the "consumer" part (the overlay).
+
+> 
+> 
+> I'll throw out another idea. What if we make resolving phandle errors
+> something that can be handled by the connector driver? The driver
+> knows 'connector' resolves to the connector node it is applying the
+> overlay to.
+
+Well, my proposal was to give enough information to the resolver instead of
+handling errors.
+
+I probably miss something but I don't see what could be the benefit to do
+that in the other way. Can you give me more details about your idea?
+
 Best regards,
-Krzysztof
+Hervé
 
