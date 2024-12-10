@@ -1,132 +1,117 @@
-Return-Path: <devicetree+bounces-129523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A4989EBEFB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:07:24 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E66769EBEED
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:06:21 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E09C0284746
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 23:07:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1B59165880
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 23:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF0F22080F6;
-	Tue, 10 Dec 2024 23:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F07B1A9B35;
+	Tue, 10 Dec 2024 23:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DMkHw+RP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DjF9pw3+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24A042451EF;
-	Tue, 10 Dec 2024 23:07:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B19D2451C7;
+	Tue, 10 Dec 2024 23:06:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733872036; cv=none; b=fHClkHdgkVlERcjlK9J5hfScyXAEFtZG2ueySH5Yeacc0N5+erpw3Kw5OhMcuvjQu0QJfQ++bliwqi5Rn3d5YjhbeNdnMetHDBu8y30F0MQuf3TikDfJ70N4OaAg7lCxBLN4mOZ4UAn1NTlfg/x2bGXQAy0Gv3xe5s0drFDRt5M=
+	t=1733871978; cv=none; b=M6E3ViXUnqHR7QXJUup8O2lnM62UL+OilSiIIxhDOq2VWCAY3HKeUL1NyQ1Tggtp7hmxq243nAZSA3tWwDEoto5sSM1BqLq8PLLCk2oiJdkXJanIcr6wB7BC7XCWRL2SEdrZ5t33hxwWUF/XdnBmBihtzdZjnbjNOXi4IfQy2O0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733872036; c=relaxed/simple;
-	bh=DuquKXFrrFxNB+/27gdv/HCQ8M7uGVTRTKsJMPlOXKI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=g6ILh6PI/YcSudNXjyoUg0e2XlrQfGnEzprnoWXE/5Dh0hAF9zS0ExT04oaSZ8fn5Ij0nBrojE61Eele9UGR7dGogLjsEgNJAFpiIZhm/yRBk2OwVyS+4v58xrZDTtF3HnzlyOJB2Vm19GbZa1xkqAE13UtqgSilJrfkM2HLLLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DMkHw+RP; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1733872033;
-	bh=DuquKXFrrFxNB+/27gdv/HCQ8M7uGVTRTKsJMPlOXKI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=DMkHw+RPR534EjfaNihm7yVqwmAFsllI1aJJNjZEwR9oiOdaYNkJQBmEkL88Mz9/e
-	 gHMrUkaHZ3gvxBVRJWR1mmcPktW/yNJwS6pv4ywz8nGYr2MrCY5cAiViUwKRMEpmv6
-	 sCp1MuI017fimXj3IlhUvjuUlx0CEXHFO16WtKzWMD82POHnxsIGFdSmypDRqZKota
-	 dV2qT4RK81l5AYaaNvC01NJsliTemLyunZb367hCukiJUcuorGtovQ5nFNLdQh529w
-	 bF0kHhJDgB48P/2+MEBEdjKVx2QLhbQ+zlKRSjluk18KnUHfs0c49zEj2yq2rZrXc7
-	 +ToK1TUyyWM/Q==
-Received: from localhost (unknown [188.27.48.199])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 143C417E09C0;
-	Wed, 11 Dec 2024 00:07:13 +0100 (CET)
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Date: Wed, 11 Dec 2024 01:06:15 +0200
-Subject: [PATCH v2 2/4] arm64: dts: rockchip: Add PHY node for HDMI1 TX
- port on RK3588
+	s=arc-20240116; t=1733871978; c=relaxed/simple;
+	bh=8wfuV3wDVS47C9OCGsMUUSuyZIBev6yuyPkJHz2WFmE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QmsvTzMFAw4e03FX/7BWg8Vlmhyu7sdeRDjIMz4SgskrJ4cLltj7G31kCexPwXLNL0cxl/+q4jPYtMA/+g/eQad21SK9MlVrqrlQ48E6Uo2b/sjZ22uziJwVpJKxtQn9Gy19U9hNMMxhu8syQxhOY8d8Bu7CsLC9kXsA9u6hlcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DjF9pw3+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71C25C4CED6;
+	Tue, 10 Dec 2024 23:06:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733871977;
+	bh=8wfuV3wDVS47C9OCGsMUUSuyZIBev6yuyPkJHz2WFmE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DjF9pw3+pdV7nSjN5ouGZPIG4ALW32/O7DPA+PpdY1SCBuR5FSTqS13h/FhpmFn8r
+	 33BQ/AYp27PmGBacYk3LzICaccUpI/ov7uc/yFNLXriK+hmkkOlFA2M/Bdy/rVxu7q
+	 X8jk+0gZugt5Ob5Fx9iZv+DsCEm9COV99nfQExKIN3W03x6VLo0k4LipFZorZyBqU6
+	 iVIMbI0gRcrIsCOzKNhMy5kxaU6+X7qL9MP7HHILpmiqLGOcrMGhx08bHx+LMkekTG
+	 7dICUcGHOfwNMdqWGINZDSwtHzfo2cCf9JGyVlPq9odupLHpAagWhTc61d9hjgzpga
+	 4irqeQ3uZSArw==
+Date: Tue, 10 Dec 2024 17:06:15 -0600
+From: Rob Herring <robh@kernel.org>
+To: Amit Sunil Dhamne <amitsd@google.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Badhri Jagan Sridharan <badhri@google.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Kyle Tso <kyletso@google.com>, RD Babiera <rdbabiera@google.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: connector: Add pd-revision property
+Message-ID: <20241210230615.GA766674-robh@kernel.org>
+References: <20241205-get_rev_upstream-v1-0-90158ee7d75f@google.com>
+ <20241205-get_rev_upstream-v1-1-90158ee7d75f@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241211-rk3588-hdmi1-v2-2-02cdca22ff68@collabora.com>
-References: <20241211-rk3588-hdmi1-v2-0-02cdca22ff68@collabora.com>
-In-Reply-To: <20241211-rk3588-hdmi1-v2-0-02cdca22ff68@collabora.com>
-To: Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Alexandre ARNOUD <aarnoud@me.com>, kernel@collabora.com, 
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241205-get_rev_upstream-v1-1-90158ee7d75f@google.com>
 
-In preparation to enable the second HDMI output port found on RK3588
-SoC, add the related PHY node.  This requires a GRF, hence add the
-dependent node as well.
+On Thu, Dec 05, 2024 at 11:46:08PM -0800, Amit Sunil Dhamne wrote:
+> Add pd-revision property definition, to specify the maximum Power
+> Delivery Revision and Version supported by the connector.
+> 
+> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> ---
+>  Documentation/devicetree/bindings/connector/usb-connector.yaml | 6 ++++++
+>  Documentation/devicetree/bindings/usb/maxim,max33359.yaml      | 1 +
+>  2 files changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> index 67700440e23b5b7ca0db2c395c8a455bcf650864..341d2872e8d43450d219b7b72d48790051dc4e2b 100644
+> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> @@ -293,6 +293,12 @@ properties:
+>        PD negotiation till BC1.2 detection completes.
+>      default: 0
+>  
+> +  pd-revision:
+> +    description: Specifies the maximum USB PD revision and version supported by
+> +      the connector. This property is specified in the following order;
+> +      <revision_major, revision_minor, version_major, version_minor>.
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+Always exactly 4 entries? Then:
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
-index 0ce0934ec6b793af45585f67d5312434d80357de..68fa9806164776cef8732bb776e958003779ba28 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
-@@ -67,6 +67,11 @@ u2phy1_otg: otg-port {
- 		};
- 	};
- 
-+	hdptxphy1_grf: syscon@fd5e4000 {
-+		compatible = "rockchip,rk3588-hdptxphy-grf", "syscon";
-+		reg = <0x0 0xfd5e4000 0x0 0x100>;
-+	};
-+
- 	i2s8_8ch: i2s@fddc8000 {
- 		compatible = "rockchip,rk3588-i2s-tdm";
- 		reg = <0x0 0xfddc8000 0x0 0x1000>;
-@@ -395,6 +400,22 @@ sata-port@0 {
- 		};
- 	};
- 
-+	hdptxphy1: phy@fed70000 {
-+		compatible = "rockchip,rk3588-hdptx-phy";
-+		reg = <0x0 0xfed70000 0x0 0x2000>;
-+		clocks = <&cru CLK_USB2PHY_HDPTXRXPHY_REF>, <&cru PCLK_HDPTX1>;
-+		clock-names = "ref", "apb";
-+		#phy-cells = <0>;
-+		resets = <&cru SRST_HDPTX1>, <&cru SRST_P_HDPTX1>,
-+			 <&cru SRST_HDPTX1_INIT>, <&cru SRST_HDPTX1_CMN>,
-+			 <&cru SRST_HDPTX1_LANE>, <&cru SRST_HDPTX1_ROPLL>,
-+			 <&cru SRST_HDPTX1_LCPLL>;
-+		reset-names = "phy", "apb", "init", "cmn", "lane", "ropll",
-+			      "lcpll";
-+		rockchip,grf = <&hdptxphy1_grf>;
-+		status = "disabled";
-+	};
-+
- 	usbdp_phy1: phy@fed90000 {
- 		compatible = "rockchip,rk3588-usbdp-phy";
- 		reg = <0x0 0xfed90000 0x0 0x10000>;
+maxItems: 4
 
--- 
-2.47.0
-
+> +
+>  dependencies:
+>    sink-vdos-v1: [ sink-vdos ]
+>    sink-vdos: [ sink-vdos-v1 ]
+> diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> index 20b62228371bdedf2fe92767ffe443bec87babc5..350d39fbf2dcd4d99db07cb8f099467e6fc653ee 100644
+> --- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> +++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+> @@ -70,6 +70,7 @@ examples:
+>                                         PDO_FIXED_DUAL_ROLE)
+>                                         PDO_FIXED(9000, 2000, 0)>;
+>                  sink-bc12-completion-time-ms = <500>;
+> +                pd-revision = /bits/ 8 <0x03 0x01 0x01 0x08>;
+>              };
+>          };
+>      };
+> 
+> -- 
+> 2.47.0.338.g60cca15819-goog
+> 
 
