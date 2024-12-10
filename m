@@ -1,99 +1,156 @@
-Return-Path: <devicetree+bounces-129166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72A429EACB1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:45:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4525E9EAD3E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:58:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B491F29607C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:44:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1626328EDDE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:58:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0AA52080F4;
-	Tue, 10 Dec 2024 09:41:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E6C078F5B;
+	Tue, 10 Dec 2024 09:55:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Li72AVSH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MC+g9xfI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FBC91DC9B2;
-	Tue, 10 Dec 2024 09:41:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D464A23DEB3;
+	Tue, 10 Dec 2024 09:55:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733823707; cv=none; b=rL0oKvtQ/ZdcAOkfVK4lOOAX7Mg7RDNQ8sxoAWvcnuZ3u9xBvCtaZBx7A7FzuZgqdO7ik9maLxloEvqvVwGEFbQHBPI2u/e28YrQBa8tV3ozHo4R9lsT7SW507JP5yCjd4oJPPHUlFjkp2U+YAhUSZkZQpOMBu4m+SsbTqHOa5w=
+	t=1733824555; cv=none; b=ApijAFsDQgT/YEM8FUY8fUnusw0TAjw1z8qkC9i7KLK7NxUMrRCCGYVETqs7G+Ij5BBXBDUuc7dpLbff/ax4DnIEgsrS9Xtuu4bD7J3Uc59SzQTUndlYlZxn+2UIey+WwPeGS3w5tE6XgZNrrC2iya6z41oP5w10LPMJB7lM//s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733823707; c=relaxed/simple;
-	bh=m9UkcUHS1gsOxAAhPurltiUYGQMRkE8u/ZHvIojJzf4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=c9EEEyByDZwzKgWa3HiucdnzbI3ICrTl0xgxFk9ZQdW96rCt+i7DiXG0d2XBkEqbBvKESGRKM/Q8NKBwDow/xx5JXrSrx1k5DtCzHKUXg0rDyJq81i2dtVhcAr525SK3d+5m2Sah2f5+wYp4vhyXvAgIxzkgaIMcmeuLW4iV6RQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Li72AVSH; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C0A7B1BF204;
-	Tue, 10 Dec 2024 09:41:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1733823703;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=MkSoJTJSUagguRx9A3Qz7gE4m7vb0OWuqVCxD40rLns=;
-	b=Li72AVSHWd2IXyPGogLd1ReC8vkunySw7ExsJsUMg2uQ3bIYHn7Czd2JB2QPMc4rAOaQSQ
-	hjTulFKAe1aGUlHw0T29rH9entYOCktpqBhBj7Cryo304vNf06YtW6uASsvL+VnrVmqcEY
-	4MiZyiDXAl8WLvC0gi50oBP91Y72ADOSuN+pF6CZHbupds5AX27j6fm622pN/YKzk8x3X0
-	15+bR7Y3E69qiduRpJLhydosLLXLJ8TGIpWFEtUpM5CdACPlzTSUOUBroXHKlHmW554enB
-	GlloOyaKnKupBLLDDqs1paLdTJAV+v19zdTiMdEY+R5ccPdO2yqfjJNk73zFMA==
-Date: Tue, 10 Dec 2024 10:41:41 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: Andrew Davis <afd@ti.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan
- <saravanak@google.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node
- feature
-Message-ID: <20241210104141.39acffb1@bootlin.com>
-In-Reply-To: <33c61b28-c0b8-478d-8107-c6ed1ff9e466@beagleboard.org>
-References: <20241209151830.95723-1-herve.codina@bootlin.com>
-	<33c61b28-c0b8-478d-8107-c6ed1ff9e466@beagleboard.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1733824555; c=relaxed/simple;
+	bh=+l6+PgCSsvhi/o5m5hkIbcumue3jqzFt3YigC1EsKH8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fcd986zN02W+8hmx5DgF8Lv29F+mR2toNrqgju4VLkPBmAQjLw70fnfsaw9ih0/+geiLGlw7mRS7zvMlPVBY+9TOAqq/YazWGGigJmNCu2/Jkcqd03dcQy+23hF/NOvM5hFOaE8aSMmhWXykRSQwl0CqVSn/PWs5UPObUxSRcYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MC+g9xfI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 41F23C4CED6;
+	Tue, 10 Dec 2024 09:55:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733824555;
+	bh=+l6+PgCSsvhi/o5m5hkIbcumue3jqzFt3YigC1EsKH8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=MC+g9xfIa/vfC5Johpv/CHpfwOPUN8V4JCPTV8aMPQz3EMsEJN+O5gXi5blrsf7dZ
+	 0B9e3DuM67uhWGfS053qp6sFTPOVeEWuNp7LPbj2/zl1RSZ2kLusqjdlrDnsfJmzSO
+	 JJQX+lM3WgkQdSoCl2l4ie7BpiGsbzmQHCU0TRRKX08UkPU5Wo9r7EmsW35dqtx8xY
+	 F+wEwjtOmE/SbL0RYpClLxJNycb36AWpdYl2CmTKaWvcdYg/QjVyT1iFWsr3BYVKcu
+	 NZUCRoOMtAolAJFmpk3hizZk/+pjF8fZnGVjMchvbUtXWNZTQ3Q+3ydVKWjR8HEDtO
+	 B1WGEQLwgAjSQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 33DEDE77181;
+	Tue, 10 Dec 2024 09:55:55 +0000 (UTC)
+From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.linaro.org@kernel.org>
+Subject: [PATCH 0/4] PCI/pwrctrl: Rework pwrctrl driver integration and add
+ driver for PCI slot
+Date: Tue, 10 Dec 2024 15:25:23 +0530
+Message-Id: <20241210-pci-pwrctrl-slot-v1-0-eae45e488040@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAsQWGcC/x3MwQpAQBCA4VfRnE3tDlFeRQ4as0yJbVYoeXeb4
+ 3f4/weSmEqCrnjA5NSk+5bhywJ4GbdZUKdsIEe1J+8wsmK8jA9bMa37gY7YCTeVbylAzqJJ0Pt
+ f9sP7fgk5qKRiAAAA
+To: Bjorn Helgaas <bhelgaas@google.com>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Qiang Yu <quic_qianyu@quicinc.com>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Lukas Wunner <lukas@wunner.de>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2923;
+ i=manivannan.sadhasivam@linaro.org; h=from:subject:message-id;
+ bh=+l6+PgCSsvhi/o5m5hkIbcumue3jqzFt3YigC1EsKH8=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBnWBAjLpiuUdDrkByW3wrJIXuZYkU8mJgsiJzhU
+ moZyrwXFKmJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCZ1gQIwAKCRBVnxHm/pHO
+ 9eJVCACgiwSSquLOVEVQYPD4+QUxVEWIGX3jVgoeLnDkOqrNl+SEPzdULv2NRW205l0ezlh5x4R
+ pa7c+K9LqxvlqnOGsuW/930KDR6j5UZN36pS+cVirgomWjlKWX7s+ngGk9/EFKw9Y6FAXDmqsZ7
+ roQAqJvCSIBdwLbIp8d8NSH/xI+PsgTKzzsUT5dFQQK5ci4OcZGE8AZURjBaEcr7YvCSo+T81KC
+ CD8zB7PZWrb2092TfjUSKlGTCKjYN0uBVOdGXNqm5B6Q0YJ06ltNKYpRlb1Tr3rnswCjwIbfILF
+ QBypsKmxk5/6mEHiHqCCc2rrIFotOkO4+7c+S+QdbIrnVGmq
+X-Developer-Key: i=manivannan.sadhasivam@linaro.org; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
+X-Endpoint-Received: by B4 Relay for
+ manivannan.sadhasivam@linaro.org/default with auth_id=185
+X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Reply-To: manivannan.sadhasivam@linaro.org
 
-Hi Ayush,
+Hi,
 
-On Tue, 10 Dec 2024 14:52:22 +0530
-Ayush Singh <ayush@beagleboard.org> wrote:
+This series reworks the PCI pwrctrl integration (again) by moving the creation
+and removal of pwrctrl devices to pci_scan_device() and pci_destroy_dev() APIs.
+This is based on the suggestion provided by Lukas Wunner [1][2]. With this
+change, it is now possible to create pwrctrl devices for PCI bridges as well.
+This is required to control the power state of the PCI slots in a system. Since
+the PCI slots are not explicitly defined in devicetree, the agreement is to
+define the supplies for PCI slots in PCI bridge nodes itself [3].
 
-...
-> 
-> What is the reason for not using symbols directly as described here [3]?
-> 
-> I do like this approach since it does not pollute the global symbols. 
-> Just want to know if there are any other reasons for it.
-> 
+Based on this, a pwrctrl driver to control the supplies of PCI slots are also
+added in patch 4. With this driver, it is now possible to control the voltage
+regulators powering the PCI slots defined in PCI bridge nodes as below:
 
-Modifying the __symbols__ node at runtime (adding / removing properties in
-it) exposes memory leaks if __symbols__ already exist in the live DT.
-This __symbols__ node exist if the dtb was compiled with '-@' or if you
-chain the overlay (i.e. __symbols__ node created by the first overlay).
+```
+pcie@0 {
+	compatible "pciclass,0604"
+	...
 
-I think also that some conflicts can appears. What happens if you want to
-add a new label but this label is already present for some other purpose?
+	vpcie12v-supply = <&vpcie12v_reg>;
+	vpcie3v3-supply = <&vpcie3v3_reg>;
+	vpcie3v3aux-supply = <&vpcie3v3aux_reg>;
+};
+```
+
+To make use of this driver, the PCI bridge DT node should also have the
+compatible "pciclass,0604". But adding this compatible triggers the following
+checkpatch warning:
+
+WARNING: DT compatible string vendor "pciclass" appears un-documented --
+check ./Documentation/devicetree/bindings/vendor-prefixes.yaml
+
+For fixing it, I added patch 3. But due to some reason, checkpatch is not
+picking the 'pciclass' vendor prefix alone, and requires adding the full
+compatible 'pciclass,0604' in the vendor-prefixes list. Since my perl skills are
+not great, I'm leaving it in the hands of Rob to fix the checkpatch script.
+
+[1] https://lore.kernel.org/linux-pci/Z0yLDBMAsh0yKWf2@wunner.de
+[2] https://lore.kernel.org/linux-pci/Z0xAdQ2ozspEnV5g@wunner.de
+[3] https://github.com/devicetree-org/dt-schema/issues/145
+
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+Manivannan Sadhasivam (4):
+      PCI/pwrctrl: Move creation of pwrctrl devices to pci_scan_device()
+      PCI/pwrctrl: Move pci_pwrctrl_unregister() to pci_destroy_dev()
+      dt-bindings: vendor-prefixes: Document the 'pciclass' prefix
+      PCI/pwrctrl: Add pwrctrl driver for PCI Slots
+
+ .../devicetree/bindings/vendor-prefixes.yaml       |  2 +-
+ drivers/pci/bus.c                                  | 43 ----------
+ drivers/pci/probe.c                                | 34 ++++++++
+ drivers/pci/pwrctrl/Kconfig                        | 11 +++
+ drivers/pci/pwrctrl/Makefile                       |  3 +
+ drivers/pci/pwrctrl/core.c                         |  2 +-
+ drivers/pci/pwrctrl/slot.c                         | 93 ++++++++++++++++++++++
+ drivers/pci/remove.c                               |  2 +-
+ 8 files changed, 144 insertions(+), 46 deletions(-)
+---
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+change-id: 20241210-pci-pwrctrl-slot-02c0ec63172f
 
 Best regards,
-Hervé
+-- 
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+
 
