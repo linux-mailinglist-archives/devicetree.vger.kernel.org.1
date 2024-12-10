@@ -1,341 +1,201 @@
-Return-Path: <devicetree+bounces-129245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D8B69EB013
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:43:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 533469EB026
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:48:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBAC1283CED
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:43:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC1A42838BD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:48:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77AF32080DD;
-	Tue, 10 Dec 2024 11:43:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB8F19AD86;
+	Tue, 10 Dec 2024 11:47:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w6ok7z94"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WUlgVH/Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC3F210F47
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 11:43:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DFA519924F;
+	Tue, 10 Dec 2024 11:47:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733831006; cv=none; b=I/DJs6IziMnhAgzwkM0nUNXCycnfauALw+9zczVQL7+gFKNJpNMDwmFK6qETjBoLQ1c59mlvNE/wnSATiIgtZchjR4cZe0nIakTvvKctwFPeBH/A1ZotIilIxuoY3IoVgCQOA+G4oAICY0Pe+1HCel6LSmR1lPJ+ZnRg+2KqrqQ=
+	t=1733831278; cv=none; b=Az4Q4gF1n4UqpE74M+7qzUNYHwlv464xHPon8weOEMYGL7dq5xThs1oBRdWHB0oGlNTuO3ueBV9HVhnJq44MNOG5Lxr5gwyOSmnwxYk9UQ7nzVSKbOQ1IuB2mUZXYwtI+i6ac/XZPjoi4a6Uh34+D9BQuD0D/I4pObcNruI2gM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733831006; c=relaxed/simple;
-	bh=e8vDgDOcO5RIqHjRBTI9VvF3Ghj3iqWpCsSjLOYAe1w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CZ+3n9hvc4uBz44TfW38F7OGcN7Efb+HVEukJYOjyeU8MKSnVlzPvc+OJ+OxneH/Kgfh7pTbv/6zPTNr6+4s2ConP7jGpm2qPTGDHpTqOxTXMseL9l81QtGlkVv/ZmevTA8aEx/JQh55GtIPzwnxQ9Pe/qNLW73mQe4UWeIWcyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w6ok7z94; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5401c68b89eso2277594e87.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 03:43:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733831002; x=1734435802; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=bDuD4vOJTu/+TNrDw776dXillG1+SO1nfewpcnHal5U=;
-        b=w6ok7z94MY2r//v23HeSurYchUtgl9pTqJVejn+rfg+60ZfXd1/joS11BKZLHLQbZQ
-         RdUSPMabIoVbDlgl/3jpS/2sh2nUH6JHN91mqEocmE4qZHfPOn51wzMJTREf7AbQRG80
-         O7zeHvxoIKt1Lr25qKddrgPSv+7FrRzFvgvyC6KsB7rGlmM1zJa7A48EGYVv6v8S9QI1
-         CXAiYUSNZQ5yXdJm7K2ic3/11MPhkZbGhf4b2p6ka3L4zFOun00cRpsOxEyXN8FrQyFn
-         ZxwV3Eth1Edzc7dBwszzFJUGZHlOYg7buLlFWZHqcPrntiKW3VhASD2TFNr/p/ZC/6Wp
-         EhtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733831002; x=1734435802;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bDuD4vOJTu/+TNrDw776dXillG1+SO1nfewpcnHal5U=;
-        b=qkuLTAw0k1t6FfbukzeqGzBBbw249aD6tx5lJ5BQ89qdLoho17ikG7d3tXAXTSSijX
-         iUjqeFVSwIu+GTsp2UOHj9xGPZwM0cB2vdhwSlfiyYPeMAdFoBVoU/pBxpSjtT2Xf0+p
-         +JzPAJHnuONa8jk2+KMkBv5b22Z4wKI24qppo2PBaGJJxY5Ux7jeCdB7gqg+jMUnHE+e
-         ro/GzSfPkmCLk0cbDmPqFbDP+7H3yjIuq4EaRsshIL6L1LD3qqIVLP2IpCl552PAcv+r
-         KkctJjFYuf4pWF78+lUc3+AEDN8FbUlaCi518aKnA3AgIDje8/W/Nyg7GP9vfv9Dg9c5
-         8ing==
-X-Forwarded-Encrypted: i=1; AJvYcCVBoeZGVmeu8wDq0QC1pLNPdznB8QY0vNAj1QNtBfLo6syRsjjvZIQKzBJwfCTWNrVj05rKBa1APnID@vger.kernel.org
-X-Gm-Message-State: AOJu0YwV10EwZo33hTREUl9bt2Wg16nT9NCfLZJ5RtOUR3ceXJcNoqJ2
-	lj1Ri/fzI9xAAjkMXEyQxwtP1aAW87i0rte1Ph0Kr+VJSrrPFnlxob9Q89M27zo=
-X-Gm-Gg: ASbGncsosq6PCU/0bkMMz0FYKLg3jCy2OHUtocV5mIqc3w2WpFIeQw4kObO23+PvdU5
-	ukNnJgSt4Cgd7XJIkKvTl0LpgCjh3IFHw72hFmV6ktYvci3C0ZljlsEY0iRml+g0pRGvljrqV12
-	tn8E9hs71LnrOo9bpjNSbhXxJjF8dlNDmLOxhZ4EfQ1rUGNcnsMO5c4jo6bM6SMjnKKKx6C/mbF
-	yQfW+2TxVTn8dt4qVIK7jOf0cA+gFcMx1hEX61CYzR8nPxN3DFSq+NEZ9Y9CjFt0JInHmechTm1
-	mDvgEBL/sNDI4eIflyULq678DmJCvRtSmw==
-X-Google-Smtp-Source: AGHT+IHlLpHoQkMoGAXULRnbsa1CNz7DxSd8e5Kk0AkHyX98cxKn2C9E6+kb+xX37fsZPZiAJHZ8UA==
-X-Received: by 2002:a05:6512:3a8e:b0:53e:2246:c262 with SMTP id 2adb3069b0e04-54024f87ef1mr883959e87.0.1733831002365;
-        Tue, 10 Dec 2024 03:43:22 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e3a36ee3fsm1127765e87.107.2024.12.10.03.43.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 03:43:21 -0800 (PST)
-Date: Tue, 10 Dec 2024 13:43:19 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Andrej Picej <andrej.picej@norik.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, marex@denx.de, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de
-Subject: Re: [PATCH v5 2/3] drm/bridge: ti-sn65dsi83: Add ti,lvds-vod-swing
- optional properties
-Message-ID: <irpmhq7vxjra6vhmdh7p63ajj57n3h2c4br3ija2jmwtoewist@zyxfmx6k5m4e>
-References: <20241210091901.83028-1-andrej.picej@norik.com>
- <20241210091901.83028-3-andrej.picej@norik.com>
+	s=arc-20240116; t=1733831278; c=relaxed/simple;
+	bh=rzjp/TyXIjzKiZW1IwrY6tCvrOTe5liapYdopftQ+4A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JM0Uu6ufE3P1jkHPLRLacIqsbJBxYep1MtdRJFpBJMO3su/S77fxDabQnt5IyE9G5It+JqZhcrmPRcJb4/OHaXdIuTJ0gh3cE94E9Bqsv/doPSSExiUY3bX4ebsbO4iqzKjdMDCKXAmWQk31TLOAcySgN/a30nfnYt8OlBcgDEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WUlgVH/Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B388EC4CED6;
+	Tue, 10 Dec 2024 11:47:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733831278;
+	bh=rzjp/TyXIjzKiZW1IwrY6tCvrOTe5liapYdopftQ+4A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WUlgVH/Y66Lxis+Z70rcXNgHpmrvqRrAoDbGTY5Vrny52YhDpeV6eHOuNLhHKUmHO
+	 f1Eb5l32s+d+B+R1R8ki0fvWgjm7z/E0fWLuzwHW8E+JAV4V/mfFf1+EFIPSOOT0dJ
+	 fmMxdwExiXAra/0adHF14oFwZzaJnqZg3cdhs9x9C5y2bXtIgThzttRltOJ43TSojy
+	 uqH5eyMDolaaNfrRsvmiDjQ68ZqDt7/9LUcrsA6xLTDq9aSstPXd/Cy98P/vLruB/6
+	 ZBtndUS5PTVAu4XHfyvioxDKk6GHGdGfER8i+57yF1D2bzqJJNGCxb3vtFW6ia1/mH
+	 q/dEQdY2H7Jnw==
+Message-ID: <1cbaa7a3-e26a-4f8e-a7e0-8f148d516b75@kernel.org>
+Date: Tue, 10 Dec 2024 12:47:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241210091901.83028-3-andrej.picej@norik.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: snps,dwc3: Add
+ snps,filter-se0-fsls-eop quirk
+To: Krishna Kurapati <quic_kriskura@quicinc.com>,
+ Uttkarsh Aggarwal <quic_uaggarwa@quicinc.com>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ quic_ppratap@quicinc.com, quic_jackp@quicinc.com
+References: <20241017114055.13971-1-quic_uaggarwa@quicinc.com>
+ <20241017114055.13971-2-quic_uaggarwa@quicinc.com>
+ <gclvciv5cmrcut6qvo3kh3ycutqt5sot5k4i2nwics6myhuxvq@cf6ajwflxdlc>
+ <1129e0a7-6bd0-416e-8c56-6b8d75600c4e@quicinc.com>
+ <f9f66565-6356-4b61-8653-1e9c006b892c@kernel.org>
+ <99810132-85b6-45ee-9933-7a00c3672c47@quicinc.com>
+ <aa67ea21-b451-4a1d-b4bf-4912b88c0341@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <aa67ea21-b451-4a1d-b4bf-4912b88c0341@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 10, 2024 at 10:19:00AM +0100, Andrej Picej wrote:
-> Add a optional properties to change LVDS output voltage. This should not
-> be static as this depends mainly on the connected display voltage
-> requirement. We have three properties:
-> - "ti,lvds-termination-ohms", which sets near end termination,
-> - "ti,lvds-vod-swing-data-microvolt" and
-> - "ti,lvds-vod-swing-clock-microvolt" which both set LVDS differential
-> output voltage for data and clock lanes. They are defined as an array
-> with min and max values. The appropriate bitfield will be set if
-> selected constraints can be met.
+On 10/12/2024 11:12, Krishna Kurapati wrote:
 > 
-> If "ti,lvds-termination-ohms" is not defined the default of 200 Ohm near
-> end termination will be used. Selecting only one:
-> "ti,lvds-vod-swing-data-microvolt" or
-> "ti,lvds-vod-swing-clock-microvolt" can be done, but the output voltage
-> constraint for only data/clock lanes will be met. Setting both is
-> recommended.
 > 
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> ---
-> Changes in v5:
-> - specify default values in sn65dsi83_parse_lvds_endpoint,
-> - move sn65dsi83_parse_lvds_endpoint for channel B up, outside if,
-> Changes in v4:
-> - fix typo in commit message bitfiled -> bitfield
-> - use arrays (lvds_vod_swing_conf and lvds_term_conf) in private data, instead
-> of separate variables for channel A/B
-> - add more checks on return value of "of_property_read_u32_array"
-> Changes in v3:
-> - use microvolts for default array values 1000 mV -> 1000000 uV.
-> Changes in v2:
-> - use datasheet tables to get the proper configuration
-> - since major change was done change the authorship to myself
-> ---
->  drivers/gpu/drm/bridge/ti-sn65dsi83.c | 142 +++++++++++++++++++++++++-
->  1 file changed, 139 insertions(+), 3 deletions(-)
+> On 11/20/2024 2:53 PM, Krishna Kurapati wrote:
+>>
+>>
+>> On 11/7/2024 3:25 PM, Krzysztof Kozlowski wrote:
+>>> On 07/11/2024 07:17, Krishna Kurapati wrote:
+>>>>
+>>>>
+>>>> On 10/18/2024 11:57 AM, Krzysztof Kozlowski wrote:
+>>>>> On Thu, Oct 17, 2024 at 05:10:54PM +0530, Uttkarsh Aggarwal wrote:
+>>>>>> Adding a new 'snps,filter-se0-fsls-eop quirk' DT quirk to dwc3 core 
+>>>>>> to set
+>>>>>> GUCTL1 BIT 29. When set, controller will ignore single SE0 glitch 
+>>>>>> on the
+>>>>>> linestate during transmission. Only two or more SE0 is considered as
+>>>>>> valid EOP on FS/LS port. This bit is applicable only in FS in 
+>>>>>> device mode
+>>>>>> and FS/LS mode of operation in host mode.
+>>>>>
+>>>>> Why this is not device/compatible specific? Just like all other quirks
+>>>>> pushed last one year.
+>>>>
+>>>> Hi Krzysztof,
+>>>>
+>>>>    Apologies for a late reply from our end.
+>>>>
+>>>>    In DWC3 core/dwc3-qcom atleast, there have been no compatible 
+>>>> specific
+>>>> quirks added.
+>>>
+>>
+>> Sorry again for late reply.
+>>
+>>> Nothing stops from adding these, I think.
+>>>>
+>> Agree, we can take that approach of adding soc specific compatibles to 
+>> dwc3 driver instead of adding through bindings.
+>>
+>>>> Also since this is a property of the Synopsys controller
+>>>> hardware and not QC specific one, can we add it in bindings itself.
+>>>> Because this is a property other vendors might also use and adding it
+>>>> via compatible might not be appropriate.
+>>>
+>>> This does no answer my question. I don't see how this is not related to
+>>> one specific piece of SoC.
+>>>
+>>> If you claim this is board-related, not SoC, give some arguments.
+>>> Repeating the same is just no helping.
+>>>
+>>
+>> But my point was that although the issue was found only on some QC 
+>> SoC's, the solution still lies in some bits being set in controller 
+>> register space and it is part of Synopsys IP. So wouldn't officially we 
+>> add that support in bindings and then enable/disable the feature via DT 
+>> like we did for other quirks ? If many SoC's need it in future, the 
+>> driver needs to add a long list of compatible specific data which 
+>> otherwise might be quirks in DT.
+>>
 > 
-> diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> index 57a7ed13f996..f9578b38da28 100644
-> --- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> +++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> @@ -132,6 +132,16 @@
->  #define  REG_IRQ_STAT_CHA_SOT_BIT_ERR		BIT(2)
->  #define  REG_IRQ_STAT_CHA_PLL_UNLOCK		BIT(0)
->  
-> +enum sn65dsi83_channel {
-> +	CHANNEL_A,
-> +	CHANNEL_B
-> +};
-> +
-> +enum sn65dsi83_lvds_term {
-> +	OHM_100,
-> +	OHM_200
-> +};
-> +
->  enum sn65dsi83_model {
->  	MODEL_SN65DSI83,
->  	MODEL_SN65DSI84,
-> @@ -147,6 +157,8 @@ struct sn65dsi83 {
->  	struct regulator		*vcc;
->  	bool				lvds_dual_link;
->  	bool				lvds_dual_link_even_odd_swap;
-> +	int				lvds_vod_swing_conf[2];
-> +	int				lvds_term_conf[2];
->  };
->  
->  static const struct regmap_range sn65dsi83_readable_ranges[] = {
-> @@ -237,6 +249,36 @@ static const struct regmap_config sn65dsi83_regmap_config = {
->  	.max_register = REG_IRQ_STAT,
->  };
->  
-> +static const int lvds_vod_swing_data_table[2][4][2] = {
-> +	{	/* 100 Ohm */
-> +		{ 180000, 313000 },
-> +		{ 215000, 372000 },
-> +		{ 250000, 430000 },
-> +		{ 290000, 488000 },
-> +	},
-> +	{	/* 200 Ohm */
-> +		{ 150000, 261000 },
-> +		{ 200000, 346000 },
-> +		{ 250000, 428000 },
-> +		{ 300000, 511000 },
-> +	},
-> +};
-> +
-> +static const int lvds_vod_swing_clock_table[2][4][2] = {
-> +	{	/* 100 Ohm */
-> +		{ 140000, 244000 },
-> +		{ 168000, 290000 },
-> +		{ 195000, 335000 },
-> +		{ 226000, 381000 },
-> +	},
-> +	{	/* 200 Ohm */
-> +		{ 117000, 204000 },
-> +		{ 156000, 270000 },
-> +		{ 195000, 334000 },
-> +		{ 234000, 399000 },
-> +	},
-> +};
-> +
->  static struct sn65dsi83 *bridge_to_sn65dsi83(struct drm_bridge *bridge)
->  {
->  	return container_of(bridge, struct sn65dsi83, bridge);
-> @@ -435,12 +477,16 @@ static void sn65dsi83_atomic_pre_enable(struct drm_bridge *bridge,
->  		val |= REG_LVDS_FMT_LVDS_LINK_CFG;
->  
->  	regmap_write(ctx->regmap, REG_LVDS_FMT, val);
-> -	regmap_write(ctx->regmap, REG_LVDS_VCOM, 0x05);
-> +	regmap_write(ctx->regmap, REG_LVDS_VCOM,
-> +			REG_LVDS_VCOM_CHA_LVDS_VOD_SWING(ctx->lvds_vod_swing_conf[CHANNEL_A]) |
-> +			REG_LVDS_VCOM_CHB_LVDS_VOD_SWING(ctx->lvds_vod_swing_conf[CHANNEL_B]));
->  	regmap_write(ctx->regmap, REG_LVDS_LANE,
->  		     (ctx->lvds_dual_link_even_odd_swap ?
->  		      REG_LVDS_LANE_EVEN_ODD_SWAP : 0) |
-> -		     REG_LVDS_LANE_CHA_LVDS_TERM |
-> -		     REG_LVDS_LANE_CHB_LVDS_TERM);
-> +		     (ctx->lvds_term_conf[CHANNEL_A] ?
-> +			  REG_LVDS_LANE_CHA_LVDS_TERM : 0) |
-> +		     (ctx->lvds_term_conf[CHANNEL_B] ?
-> +			  REG_LVDS_LANE_CHB_LVDS_TERM : 0));
->  	regmap_write(ctx->regmap, REG_LVDS_CM, 0x00);
->  
->  	le16val = cpu_to_le16(mode->hdisplay);
-> @@ -576,10 +622,100 @@ static const struct drm_bridge_funcs sn65dsi83_funcs = {
->  	.atomic_get_input_bus_fmts = sn65dsi83_atomic_get_input_bus_fmts,
->  };
->  
-> +static int sn65dsi83_select_lvds_vod_swing(struct device *dev,
-> +	u32 lvds_vod_swing_data[2], u32 lvds_vod_swing_clk[2], u8 lvds_term)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i <= 3; i++) {
-> +		if (lvds_vod_swing_data_table[lvds_term][i][0] >= lvds_vod_swing_data[0] &&
-> +		lvds_vod_swing_data_table[lvds_term][i][1] <= lvds_vod_swing_data[1] &&
-> +		lvds_vod_swing_clock_table[lvds_term][i][0] >= lvds_vod_swing_clk[0] &&
-> +		lvds_vod_swing_clock_table[lvds_term][i][1] <= lvds_vod_swing_clk[1])
-> +			return i;
-> +	}
-> +
-> +	dev_err(dev, "failed to find appropriate LVDS_VOD_SWING configuration\n");
-> +	return -EINVAL;
-> +}
-> +
-> +static int sn65dsi83_parse_lvds_endpoint(struct sn65dsi83 *ctx, int channel)
-> +{
-> +	struct device *dev = ctx->dev;
-> +	struct device_node *endpoint;
-> +	int endpoint_reg;
-> +	/* Set so the property can be freely selected if not defined */
-> +	u32 lvds_vod_swing_data[2] = { 0, 1000000 };
-> +	u32 lvds_vod_swing_clk[2] = { 0, 1000000 };
-> +	u32 lvds_term;
-> +	u8 lvds_term_conf = 0x1;
-> +	int lvds_vod_swing_conf = 0x1;
-
-Magic values
-
-> +	int ret = 0;
-> +	int ret_data;
-> +	int ret_clock;
-> +
-> +	if (channel == CHANNEL_A)
-> +		endpoint_reg = 2;
-> +	else
-> +		endpoint_reg = 3;
-> +
-> +	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, endpoint_reg, -1);
-> +	if (!of_property_read_u32(endpoint, "ti,lvds-termination-ohms", &lvds_term)) {
-
-The code has been better before:
-provide default for lvds_term, read the property (keeping the default in
-case of an error), then use the lvds_term to set up lvds_term_conf, as
-expected.
-
-> +		if (lvds_term == 100)
-> +			lvds_term_conf = OHM_100;
-> +		else
-> +			lvds_term_conf = OHM_200;
-> +	}
-> +
-> +	ctx->lvds_term_conf[channel] = lvds_term_conf;
-> +
-> +	ret_data = of_property_read_u32_array(endpoint,
-> +			"ti,lvds-vod-swing-data-microvolt", lvds_vod_swing_data,
-> +			ARRAY_SIZE(lvds_vod_swing_data));
-> +	if (ret_data != 0 && ret_data != -EINVAL) {
-> +		ret = ret_data;
-> +		goto exit;
-> +	}
-> +
-> +	ret_clock = of_property_read_u32_array(endpoint,
-> +			"ti,lvds-vod-swing-clock-microvolt", lvds_vod_swing_clk,
-> +			ARRAY_SIZE(lvds_vod_swing_clk));
-> +	if (ret_clock != 0 && ret_clock != -EINVAL) {
-> +		ret = ret_clock;
-> +		goto exit;
-> +	}
-> +
-> +	/* If any of the two properties is defined. */
-> +	if (!ret_data || !ret_clock) {
-> +		lvds_vod_swing_conf = sn65dsi83_select_lvds_vod_swing(dev,
-> +			lvds_vod_swing_data, lvds_vod_swing_clk,
-> +			lvds_term_conf);
-> +		if (lvds_vod_swing_conf < 0) {
-> +			ret = lvds_vod_swing_conf;
-> +			goto exit;
-> +		}
-> +	}
-> +
-> +	ctx->lvds_vod_swing_conf[channel] = lvds_vod_swing_conf;
-> +	ret = 0;
-> +exit:
-> +	of_node_put(endpoint);
-> +	return ret;
-> +}
-> +
->  static int sn65dsi83_parse_dt(struct sn65dsi83 *ctx, enum sn65dsi83_model model)
->  {
->  	struct drm_bridge *panel_bridge;
->  	struct device *dev = ctx->dev;
-> +	int ret;
-> +
-> +	ret = sn65dsi83_parse_lvds_endpoint(ctx, CHANNEL_A);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = sn65dsi83_parse_lvds_endpoint(ctx, CHANNEL_B);
-> +	if (ret < 0)
-> +		return ret;
->  
->  	ctx->lvds_dual_link = false;
->  	ctx->lvds_dual_link_even_odd_swap = false;
-> -- 
-> 2.34.1
+> Hi Krzysztof,
 > 
+>   Gentle ping to provide your feedback on the last comment.
+You got clear comments yet you still do not accept them. Nothing
+changed, this is implied by compatible. The only reason this is not
+compatible implied is that this is board specific. I asked for arguments
+for this. Did you provide them? No. Instead we keep discussing same over
+and over again.
 
--- 
-With best wishes
-Dmitry
+You bring downstream arguments - one compatible and hundreds of
+properties - and it is tiring to discuss over and over. There were
+already multiple guidelines written and multiple comments for multiple
+patches on the exact same topic.
+
+I don't find nice being pushed over this and pinged for every little
+disagreement with standard Devicetree rules and guidelines.
+
+
+Best regards,
+Krzysztof
 
