@@ -1,140 +1,120 @@
-Return-Path: <devicetree+bounces-129179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3388F9EAD84
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:03:56 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32B759EAD88
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:04:45 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5877B282B71
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:03:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DA75161935
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:04:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 330CD23DEAC;
-	Tue, 10 Dec 2024 10:03:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lrh5JUcX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A4D23DEA7;
+	Tue, 10 Dec 2024 10:04:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D6BD23DEA3
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:03:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0718223DE96;
+	Tue, 10 Dec 2024 10:04:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733825030; cv=none; b=OJqLJ9I3KKQn+ZrTKk8HtaurbiBnwElslPVj4p9Yc6mob1l6h3LKK1sHwPbLkG3hsoIkyGbPGF+y32uyrJKAEfAqU4hI9wNItiv7v2iDbAYOek9uqo2lH11OH5u9z1c/VSio9mhaikKvChBDwwMLzw11NlU8IeHOUduBTVprSt4=
+	t=1733825080; cv=none; b=vA85h3TblZ77FpKJYFJtk7HNrAo7O0fOW6nS7Tnqpq/iIXQu1Uy5M5tt6man4a9Mn7sSAc0i4b/QP87Wk5GG45/1kWDKdINGJurw3FE7o48OrjcqcVGm/OBWuCskgxNU8s+aHmwUPUfj9OFeQhrH+x/VCDIoo1UNR9bh9lb6X8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733825030; c=relaxed/simple;
-	bh=2NGaNIcyHT/EketuOy+zLUfHygTrUDmbTfcEm9KU0jM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C1FTzpBLp0lGZe71Peh3lnr1ouu8vTTkit5TYXhxja0EBZorOqrxBBE/l67lOy1Ji4/qKo2tgVL7fdS5tNpOAXtpKz+S2vz4msYuYRLUNdZOfhxfax0NysDXkoH+StM9xjogUTSdxKgk5kzWef4ZLk8SPJaZ3T23B64B8XkU3Ew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lrh5JUcX; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53e3a5fa6aaso2866005e87.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 02:03:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733825026; x=1734429826; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lW3VZV3IbhiRxa0/ywOK4fnntFU6GL/zecF0WLK1Tbc=;
-        b=lrh5JUcXVISdmm70pOvCWF9/F03b72hl+EQ6Y2Yzi0FEYWrVwXgGlrLsei5mUMy7xx
-         KdcjYWDK1MnHDXmHcyFsKyHhqWyMQ+p/9BITsEd3xDFf3FvTHIcudSxEU8Ez3ADkKeLw
-         nGiaEP11mKsSajoCcTE4Yrj4qtdctEkhAt+SM/CgLbgV4e9J9oaGKzYer89aRE9W+BuP
-         dm8t7OWwiO6JTrPHW23LmuI0HT4YabQbr3FZHOI5ZDIjECiAddex4lbg9PkQ9YP/hvl0
-         XeinXdslyNW4Gg/bFm7FT08tQSKJauKP+1kqmxTZRXvZHK3ALodybJhj3DB1O6P23ZHu
-         brKQ==
+	s=arc-20240116; t=1733825080; c=relaxed/simple;
+	bh=Kx6ZCL9OLHThg/AlX72V+Zi7+OJ92yG7aHU90uk1kwc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gEmxvj7qUA+L4vDPopQbq0X7w1Rsb/Wi7S45v5liSNw1Ac+doVS3Y9Ej8ZYluYTxbNCZKKxH5WdWDQJCmYqFcKwYsMI51412KBQOdSkDxEu1nyne8UOFMyyjoi/7OkCKTx5oHEPHp19ukgbSISSU8hkyNeacecsgbjMZmSVQd+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4afd68271b6so1105450137.0;
+        Tue, 10 Dec 2024 02:04:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733825026; x=1734429826;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lW3VZV3IbhiRxa0/ywOK4fnntFU6GL/zecF0WLK1Tbc=;
-        b=gfOvsD+rzwpiutarnCQlfmlWAykDgaqDvl2L3LesP+y66H2sBPMo2v2p1oPKmYy/od
-         4AWDqqfwpC7NDMPKa4ot5Mapbuc1OGAJ70XeXJ8W1UiDrnyf6u1PU4rsyuH5JgNgmYU6
-         iXhENpPmKGuO1esSfZlFhtUm/TARbTkAAUQoQSgIEoCa3yoNENiY8AZRW+ivkVkcx/AC
-         sMWeVYFkmXGcCNcl5YH4Us1PUq3Y35pAWk8n+Kq6OZWpzDrmK8WcY4HvMRQHKygGjquX
-         lHBa1UXQRixqxABVu/Daf4Tcmccj+Jw6fHETqnKxZeP1xWA3fN08PWh36GaOecHFsdXY
-         T0OQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVyDH+I2bgsiuyZCPN3KI3NEeQ3+vOo2FiHVCJ5qpHx1rMUwoFypJV1zit5X0N/x2lymWVm4BdAF0r8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwZQMM94DpTJP8pYjyvY6J1PlisminWNg53vyDIgrBlSvpYGNo
-	G//Jm3M4zdlJDRHRRBcEXIEuMnZX2xodjVSjRntae6Uy1qQ2dWVahQlMFcnmOig=
-X-Gm-Gg: ASbGnctuhoz9aIllzes9IaJwy2Ra9GiZdBEo9FM6wmMTbrvbPQwmuEuMdPeA3x3LZxw
-	6kIwhA4oaKJEmlhsOyNGMSLOvH8RbnpSFwR8ug1NUvxVk1S19ZRBZCIhw0Er2uW+v8XRdHEFGsP
-	t3u1gXoaKZt4su3bl9RgBKWooNDQWvldqOXEbcabnWSbgj1z7QJSka4XaS86jvp8jlP0wbZ2M6f
-	O10KCv58vsSd9gIAEi5aQMlEgUQWUp+cEKwmMptJz3TZoEKrI7VUHhYsJeYh2bgCrFnQ3kQWcFY
-	9HmLjG+3fSjgppu2RrBHaGOYKL8ILdyGKg==
-X-Google-Smtp-Source: AGHT+IFLOuvQG3RQchQX/UAJ3ESoE2sy2dYx5qOOAsytWGp1Si3/uCS5tZiWqNTkcM2CJmX/hxkweA==
-X-Received: by 2002:a05:6512:31d2:b0:540:1c67:fc2f with SMTP id 2adb3069b0e04-540251eb26fmr859248e87.14.1733825025971;
-        Tue, 10 Dec 2024 02:03:45 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53ffa80edcdsm919958e87.169.2024.12.10.02.03.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 02:03:44 -0800 (PST)
-Date: Tue, 10 Dec 2024 12:03:42 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Xiangxu Yin <quic_xiangxuy@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Fange Zhang <quic_fangez@quicinc.com>, Li Liu <quic_lliu6@quicinc.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Add support for DisplayPort on the QCS615 RIDE
- platform
-Message-ID: <ua7sstdak6b236pm2ovg4jqfvxkyn6b5sbopewmczzrdtezrln@mavmb45hsyrt>
-References: <20241210-add-displayport-support-to-qcs615-devicetree-v1-0-02f84a92c44b@quicinc.com>
+        d=1e100.net; s=20230601; t=1733825077; x=1734429877;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2CfpFkLkZqxgcX4QF5aNknnKi2/XJy2DSDzk2hxLc1o=;
+        b=CYelmKF9GlfYDZPUZ2DWFn7gFU7oQBOBpEQmI/086W19DitdwEKXhbqkgUX+tavddP
+         tmkEcll97tb0ufRU5i93kaNTnj1tQaFRO6W5Wq+kurdnaqDJf532NrV90CrojkGiH3C6
+         jtaEpTUaIAyLlT3EUHlWHV+xaTGKGwDr9aAg0TpMSem2x+vtdQzOM0ld2rrZUaXkqEC4
+         10I1W/UcEmLNxV/w/TY0CT2MqAgJrmofVcV7MExVxMKpzZ5aZ0j78RqBfutB/ZU4wSuW
+         a2cVJvqB84a1rTHeDOe85mYi0uBlJ8+SHKCFXDpmnEjdJseNP8yhefiP86UVntyj1RmW
+         1nzg==
+X-Forwarded-Encrypted: i=1; AJvYcCWZamr61CR46Cw9wqwfXRz4NQPrUVY+UCuqvUpLo6PIU4Sqj2QV6sNnBVArOae/IEN67y19H5ofns5wPohXNfEztWw=@vger.kernel.org, AJvYcCXGPGJk7vD1LwdNFKLag1FzE3U5VwuTYOIk8c8K0eY5OxXZbun2oBcMMWtWXxfWvr7XB8w+O78kWv/5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzj+yQRrWtWKOk6G7vGDYsijEky9dxskrQGTYi6XSefxhDYOtSU
+	k4JUPbi/tG1iSuICucGmkGsowpc0IsxuaShm9kTT2lrUhpc/RhpKSqHa/Q4j
+X-Gm-Gg: ASbGncuFjn3CYA0y+3xKQc/KfG8U8hYEG9KpIZgXiDvL4bpwaadSj0eivmn7C1mPPB3
+	/1bKLQ3xFoYKGGdhgtQdqrhlhPeu9CoNBSydVPTyyL88eRMtNrnSYKLZMh/PII7eCurvSzKYEP6
+	1uMGFh4Zir1ez8hmYbc/fbzsBQ82rFy1f8kyuhdMsf/CoCP2CL3S9XVVs4QAHjV4xjPBnggW1hP
+	bF4UAMY7NaFCmAf92mGi8/WgsGnBdiSVr4PyiAuQSaDHI8ccKQeew1gyKooLKfPFAzE/lL2j2Yv
+	VugWDX5Mp6R/tTnN
+X-Google-Smtp-Source: AGHT+IHjdcvvlBxqx/gtzf6jqm/Rs3SiLVskNU7e09YTHUdnAlLVn9VuHXRv8SxuAZ1cpw2ciwHMJA==
+X-Received: by 2002:a05:6102:32ce:b0:4af:a990:d212 with SMTP id ada2fe7eead31-4b11607c10cmr4324121137.9.1733825077274;
+        Tue, 10 Dec 2024 02:04:37 -0800 (PST)
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4afd5ee97ecsm1018882137.12.2024.12.10.02.04.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Dec 2024 02:04:37 -0800 (PST)
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-4afdfd3124dso885535137.2;
+        Tue, 10 Dec 2024 02:04:37 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVCMBPeK1yKy4YTGZkv7NFtxO4km9eeWdKppFPqPFvsk7cbouIVMSoEMb6PO7SdgFoSBp0jA7ktvfHr@vger.kernel.org, AJvYcCX5Tz3ZZ3g86mnSagbzZ0iGsLXS6Kevohj1O50PWu0NJPDbibxJLEENmF2eSsZtL6a7nEwbJfAjKzAxMDDeq+e43MA=@vger.kernel.org
+X-Received: by 2002:a05:6102:162c:b0:4af:f2e2:7b56 with SMTP id
+ ada2fe7eead31-4b11623a2c7mr3989869137.25.1733825076815; Tue, 10 Dec 2024
+ 02:04:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241210-add-displayport-support-to-qcs615-devicetree-v1-0-02f84a92c44b@quicinc.com>
+References: <cover.1733156661.git.geert+renesas@glider.be> <87jzcg1d2f.wl-kuninori.morimoto.gx@renesas.com>
+ <CAMuHMdWF7NcmKYzvF4Dfjh3S5MccbJrpSphK5BhxXNnhxgtmYQ@mail.gmail.com>
+ <87y10tvhw1.wl-kuninori.morimoto.gx@renesas.com> <87y10pmjd6.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87y10pmjd6.wl-kuninori.morimoto.gx@renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 10 Dec 2024 11:04:25 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVEdLvSRRUOwZR_jzpvjAM_zr++Bbxph21QzXLLsjY7mw@mail.gmail.com>
+Message-ID: <CAMuHMdVEdLvSRRUOwZR_jzpvjAM_zr++Bbxph21QzXLLsjY7mw@mail.gmail.com>
+Subject: Re: [PATCH 0/5] arm64: renesas: Add R8A779G3 White Hawk Single support
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 10, 2024 at 05:11:04PM +0800, Xiangxu Yin wrote:
-> The patches include:
-> 1.ADD DisplayPort controller and phy nodes to Qualcomm QCS615 dtsi file.
-> 2.Add dp-connector, config hpd-gpios which used for Displayport hotplug detect.
-> 3.Config lane mapping through data-lanes prop.
-> 
-> This patch series depends on below patch series:
-> - dispcc
-> https://lore.kernel.org/all/20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com/
-> - dispcc dts
-> https://lore.kernel.org/lkml/20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com/
-> - display
-> https://lore.kernel.org/all/20241122-add-display-support-for-qcs615-platform-v3-0-35252e3a51fe@quicinc.com/
+Hi Morimoto-san,
 
+On Mon, Dec 9, 2024 at 8:00=E2=80=AFAM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> > > -              - renesas,r8a779g2
+> > > -              - renesas,r8a779g3
+> > > +              - renesas,r8a779g2 # ES2.x
+> > > +              - renesas,r8a779g3 # ES3.0
+> > >
+> > > but decided against doing so, as "ES3.0" would become stale as soon
+> > > as Renesas releases "ES3.1". Alternatively, I could use "ES3.x"
+> > > immediately.
+>
+> It seems using "ES3.x" is a good idea.
 
-> - displayport driver
-> https://lore.kernel.org/all/20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com/
+Thanks for checking, I'll add these comments while applying.
 
-No, it doesn't. The DT and the driver can come up separately.
+Gr{oetje,eeting}s,
 
-> 
-> Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
-> 
-> ---
-> Xiangxu Yin (2):
->       arm64: dts: qcom: Add DisplayPort support for QCS615
->       arm64: dts: qcom: Enable DisplayPort on QCS615 RIDE platform
-> 
->  arch/arm64/boot/dts/qcom/qcs615-ride.dts |  30 +++++++++
->  arch/arm64/boot/dts/qcom/qcs615.dtsi     | 107 ++++++++++++++++++++++++++++++-
->  2 files changed, 135 insertions(+), 2 deletions(-)
-> ---
-> base-commit: 68586ffc0ad47448d0c00a72ba61db66b127c23a
-> change-id: 20241210-add-displayport-support-to-qcs615-devicetree-1575aa4e299d
-> 
-> Best regards,
-> -- 
-> xiangxuy <quic_xiangxuy@quicinc.com>
-> 
+                        Geert
 
--- 
-With best wishes
-Dmitry
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
