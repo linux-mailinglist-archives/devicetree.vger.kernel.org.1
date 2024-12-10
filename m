@@ -1,131 +1,118 @@
-Return-Path: <devicetree+bounces-129315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B1B69EB381
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:37:02 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF854188324C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:36:59 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1EEF1AAA13;
-	Tue, 10 Dec 2024 14:36:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="apGYPtk9"
-X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA4149EB3A1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:41:40 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F61C1AA1FD;
-	Tue, 10 Dec 2024 14:36:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DD752835F0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:41:39 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24AB51B0F10;
+	Tue, 10 Dec 2024 14:41:35 +0000 (UTC)
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F401A2C0B;
+	Tue, 10 Dec 2024 14:41:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733841417; cv=none; b=cRkih6HYCPfCaGa706fVBbebf/E1PSlQp1Ki1RM6GJ4fEBRFIuSoV4MBtqSrwmiTFaYWftQKp2bJlGlvvTSpZ4xonLNCsIrxtqcAjp20P/rvO+/8RDnKplaEZxHUjW7Ld0+miPgJXGApBYB2fq03nPft7NUCmA9+zEr2Z6aq+JQ=
+	t=1733841695; cv=none; b=qNdgtqZY28qgRvZDrjT6O5+ATnMAPxliMd164VOuV8Pmd9GOi8uAeOYFAiCF8lhGrq9PStsWzprbXFKoQDv/fYvRxPGDpYyW+ntplTTES8ftVKxGn5B5zDXpdIdolDafF7TlKFD9/F0mp4i+YoGQeoPj7FjbXZwHcjtMk2lGAQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733841417; c=relaxed/simple;
-	bh=Vm/SMvu/8EpKkDOC/meueBC9lfWEJCHJn3wNu3oS+nU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Asl87HwZHhhMZ97wBzIeivOUvyiCGAunmA5X6NoDPsErX/psp2/77boJtoToLmHdiYnn8YHKYali1uRfYyLsyhxl/3J+gcw8wr8JtbVsvTBhWaKWh0b8CKGPBRABqAkjZAHlA+Zgv8ZroX4NbaoBTRQImCeHB+e2WjAKC8bmUtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=apGYPtk9; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Vm/SMvu/8EpKkDOC/meueBC9lfWEJCHJn3wNu3oS+nU=; b=apGYPtk9B8cEHvRnlKnZRfyPlB
-	UjU0n9BxnezEUSJl9xr/rIS3CAWGyApMVmPm35fTQfK9Lg1qjH1CqrI3pEIUsgAH3IAqgLHXpIi+5
-	1Rn2C4tjKDlVc/d7X34Zq4zZ6HCNJYmUb07z1nntcDroUOFxB3djTFTLeug2S0rRYOYXLX1VKG3d7
-	wnlxrVKNe5R4q/9/UANNYjy5aP2n7mEi9uoUgwPSQFTqN5FNCUlgEBz+0dey58QWAUnSOtLtS+W6w
-	sowpUyWKnenxm2NVdRvHK4tS7iOstRm1QAWChyc+OKiUkXA6I87nkF1VdHmwPKgZxU/V0Fy5rB84E
-	//ZQ2gsg==;
-Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tL1Lk-0006dG-TS; Tue, 10 Dec 2024 15:36:32 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Andy Yan <andyshrk@163.com>
-Cc: Daniel Semkowicz <dse@thaumatec.com>,
- Diederik de Haas <didi.debian@cknow.org>, andy.yan@rock-chips.com,
- Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, jernej.skrabec@gmail.com, jonas@kwiboo.se,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- neil.armstrong@linaro.org, quentin.schulz@cherry.de, rfoss@kernel.org,
- robh@kernel.org, tzimmermann@suse.de
-Subject:
- Re: [PATCH v3 0/3] drm/rockchip: Add driver for the new DSI2 controller
-Date: Tue, 10 Dec 2024 15:36:31 +0100
-Message-ID: <3104907.xgJ6IN8ObU@diego>
-In-Reply-To: <78e7b8e.b5ee.193b09ce46d.Coremail.andyshrk@163.com>
-References:
- <20241203165450.1501219-1-heiko@sntech.de>
- <jl5obi7rd4h6ywozeqruxq2vx62sx5yf4wwpksrq3prdleps2k@d3zbr5ttquvn>
- <78e7b8e.b5ee.193b09ce46d.Coremail.andyshrk@163.com>
+	s=arc-20240116; t=1733841695; c=relaxed/simple;
+	bh=Zzv+t0dImOXdQSdL45Rvawv7Q8Cp4z/FkDvT60wGBbw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WAuDZpCJMCVnZk4fFpOBNbMUKAJd5JuETUoDIHvAEffG38dYlpbfk2RYEaly+4LaFxHRKEGC6JqRzKdFkq1FHDgXvfxGkBSESpf3u7XF5KmpRO/El3Or/mTszvr+jBAW6vb558Sy350jUIGB5HYlP1sOkZD54iJvtnpX4Tj17T8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-5174d53437eso1006460e0c.2;
+        Tue, 10 Dec 2024 06:41:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733841689; x=1734446489;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZLAgH8um3jpFXawSgnIkqC6rHy/Yka70/RZHFuxa5HY=;
+        b=iddtD2IC4zqD1IADRgbvp7aeqOvOIt2Sw/yvgi5v9f4iZhdk4SI7b0QaZsMWArKZ1C
+         oZRUpmqc/k/tHKZsh4V0faUTrUzLkzxV07Uuk0/7Zeau8Rgp+2rvIPFBUKtycBc6IB/L
+         BjxNnTSCfeIBAS/ve0OpPdHMjvSuTiBensTENuRo1dFMfqclsIaIFvzvBtsMTfCDstWd
+         pjBGM8ikfYiuqGR2grOZoZn9G/pFiJKqm2qw6qcmErOeyWXXDGLQG1I7oo9wjwX/MYlZ
+         UPXUg9VP3m7CwI236udscm+rCFo8GkuSaqm4OUIoVuLSaLR4xqaXBQ+yWKdcKMTf60lz
+         XVGw==
+X-Forwarded-Encrypted: i=1; AJvYcCVRhHkMw3Ipp/uh9yhNTM98W5YfUvn1zBuszNNDoVq4CIoRcz888vM4xPLBW486EU8UpItu7WTBHxBS@vger.kernel.org, AJvYcCWzGes/C5aC6ceRe+Zs5HRwLJETKXKeB4IOpM9gkuoOG82S6Fu9sAKrDoOvRlj9uBIA6+hqdO2lPS6vySWvUFb3JeU=@vger.kernel.org, AJvYcCXY20TmIY+fmqcOxZ86UA07QZplMX5rPtfvAkIEkhMYaOmv/Zotw64llvD/y5DD75p6RPGYJCIW1TOy@vger.kernel.org, AJvYcCXosFW2WQeafF4/C3y/RQKlVzDrp1Oxr5a1ZoOwX54Vr7uOiLDto3OrxtDMR4aabsnjgRdpwSKSV71S2n4f@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6rMuXeeTyoHKh+ZXqw9MyOiJa6Y8bWtaYI1VPYZHSRprkP1jf
+	EObJKc7S3Z7CF8FNwpKQ1Rm9XrosH0Ul0Hw4pOdl+m4ORDCXnG1CBTgNeKxE
+X-Gm-Gg: ASbGncvtV9DQTkGI69W5QNpPvO1JSOK1G3cHH6Sd83TJrVv1XeP+TjhK9MmyFO/We/Y
+	KHRYX9uoXgL8/RbOhNraRrcWsPOBPjudkwL2TsETEWmMd+nINPslzOE2Yy1cjYTsYyi8PvLwChE
+	MNjitrfJy+kNOKS1E/OyeF1Ik1uW20KCuJVUniXILODdxH+Z/3OjejWIy5aHwpG12UGpzmTPikR
+	+iU4Nm7Wpy7Pn1LitigduGVhu72mTM9exI6gE4xnqK7lkNIp0Jnh0EsrK6X7mE59bmVLdXfkPdB
+	6Mq7hKKdlIcrtOO6
+X-Google-Smtp-Source: AGHT+IHxdI4ZYDhO7pvI05bOJaKkKR1EDSgHZv8EDA4zKo/FnFFbQc3N0DRfodrV+X6EKMNwmqKnvg==
+X-Received: by 2002:a05:6122:8b08:b0:50d:3ec1:1534 with SMTP id 71dfb90a1353d-515fcae9e39mr14251390e0c.7.1733841689672;
+        Tue, 10 Dec 2024 06:41:29 -0800 (PST)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5168270bbcasm418274e0c.7.2024.12.10.06.41.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Dec 2024 06:41:28 -0800 (PST)
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4afeccfeda2so1153139137.1;
+        Tue, 10 Dec 2024 06:41:28 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV2/eAPxjZ6JyKESNlH8swNA5sYQyR48pSAjK+vXTFshv4BSKj4eieBG4OUFIk+zl7StH6DoRsl+3nO@vger.kernel.org, AJvYcCX2IfqPKDbGLxydooAfwo4LNv5KKeXcQscf3Gg7vqGgNc1sFlF3jhflyw33ZeCr1ir1gEUx71neyWYSrTZ/@vger.kernel.org, AJvYcCXQ4/NKRXo+HH4pXI37Isviy3x4EVn9Mxjy/oDg4awR7ihI4TqQS2//1AC0ifAQq2WxRgwbAjtgF/bX201THJHJHUY=@vger.kernel.org, AJvYcCXp50L1vybO6fL5nZtr9e04p4D3fI1bZo5NJQzCujnyOecXOG2vk0jp/FoPdB5qnUS7Qbj17+O1KZEV@vger.kernel.org
+X-Received: by 2002:a05:6102:54a6:b0:4af:a216:c0e1 with SMTP id
+ ada2fe7eead31-4afca73d06dmr17641388137.0.1733841688498; Tue, 10 Dec 2024
+ 06:41:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com> <20241126092050.1825607-8-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20241126092050.1825607-8-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 10 Dec 2024 15:41:16 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU-e-Dd+it+wgXdDpbUEuRkar2qeCPVvvp7ggg1HfPpRg@mail.gmail.com>
+Message-ID: <CAMuHMdU-e-Dd+it+wgXdDpbUEuRkar2qeCPVvvp7ggg1HfPpRg@mail.gmail.com>
+Subject: Re: [PATCH v2 07/15] dt-bindings: phy: renesas,usb2-phy: Mark resets
+ as required for RZ/G3S
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be, 
+	magnus.damm@gmail.com, gregkh@linuxfoundation.org, 
+	yoshihiro.shimoda.uh@renesas.com, christophe.jaillet@wanadoo.fr, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-usb@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Andy,
+On Tue, Nov 26, 2024 at 10:21=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev>=
+ wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The reset lines are mandatory for the Renesas RZ/G3S platform and must be
+> explicitly defined in device tree.
+>
+> Fixes: f3c849855114 ("dt-bindings: phy: renesas,usb2-phy: Document RZ/G3S=
+ phy bindings")
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Am Dienstag, 10. Dezember 2024, 13:48:12 CET schrieb Andy Yan:
-> =E5=9C=A8 2024-12-10 20:32:03=EF=BC=8C"Dmitry Baryshkov" <dmitry.baryshko=
-v@linaro.org> =E5=86=99=E9=81=93=EF=BC=9A
-> >On Tue, Dec 10, 2024 at 09:54:09AM +0800, Andy Yan wrote:
-> >> =E5=9C=A8 2024-12-10 09:45:11=EF=BC=8C"Dmitry Baryshkov" <dmitry.barys=
-hkov@linaro.org> =E5=86=99=E9=81=93=EF=BC=9A
-> >> >On Tue, 10 Dec 2024 at 03:22, Andy Yan <andyshrk@163.com> wrote:
-> >> >> =E5=9C=A8 2024-12-10 09:01:38=EF=BC=8C"Dmitry Baryshkov" <dmitry.ba=
-ryshkov@linaro.org> =E5=86=99=E9=81=93=EF=BC=9A
-> >> >> >On Tue, Dec 10, 2024 at 08:50:51AM +0800, Andy Yan wrote:
-> >> >> >> At 2024-12-10 07:12:26, "Heiko St=C3=BCbner" <heiko@sntech.de> w=
-rote:
-> >> >> >> >Am Montag, 9. Dezember 2024, 17:11:03 CET schrieb Diederik de H=
-aas:
-> >> >> >> >> On Mon Dec 9, 2024 at 4:06 PM CET, Daniel Semkowicz wrote:
-> >> >> >> >> > On 03.12.24 21:54, Heiko Stuebner wrote:
-> >> >> >> >This really sounds like something is wrong on the vop side.
-> >> >> >> >The interrupt is part of the vop, the divisable by 4 things lik=
-ely too.
-> >> >> >>
-> >> >> >> This is a hardware limitation on vop side:
-> >> >> >> The horizontal resolution must be 4 pixel aligned.
-> >> >> >
-> >> >> >Then mode_valid() and atomic_check() must reject modes that don't =
-fit.
-> >> >>
-> >> >> We round down to 4 pixel aligned in mode_fixup in our bsp kernel,
-> >> >
-> >> >What is meant by the "bsp kernel" here? I don't see it being present
-> >>=20
-> >> bsp kernel means downstream vendor kernel.
-> >>=20
-> >> >in the mainline kernel. So, if the mode is unsupported, it should be
-> >>=20
-> >> Will it be acceptable to add this round down in the mainline mode_fixu=
-p?
-> >
-> >I think so.
->=20
-> Then I can write a patch for it.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-thanks a lot for looking into that :-)
+Gr{oetje,eeting}s,
 
+                        Geert
 
-Heiko
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
