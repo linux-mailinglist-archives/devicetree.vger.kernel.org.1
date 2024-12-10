@@ -1,88 +1,106 @@
-Return-Path: <devicetree+bounces-129003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C407E9EA490
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 02:56:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC1FB9EA485
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 02:53:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4878C18889D2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 01:56:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64AC4188893C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 01:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0D57580C;
-	Tue, 10 Dec 2024 01:56:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A57C70813;
+	Tue, 10 Dec 2024 01:53:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="PrHYY1z8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13F1E41C64;
-	Tue, 10 Dec 2024 01:56:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 672641863E;
+	Tue, 10 Dec 2024 01:53:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733795772; cv=none; b=gJRp3qm7OeHbTUWsTyqkC+M1Yr+uNq6Y7HB4Z+iOTYZUbfyluWYIOxFHhaGOAp3wmZhKZZK56V+9YDklohY2ueoEQ5MZWkNnrI1XePz+uIpBqvOVbtNKIJHQKnrkUcwT7y8SabaipfWYgCqnqowVyzk8/7kesNvm+gbXuHwk9Cg=
+	t=1733795628; cv=none; b=hQaDOMTdATz4Y1ct5IwL2A02cUwxHRZUPa79Tj3ufvr5XrTRSfdA8xn40tozl6oBkvgBcFcVYn9+vj1swqf7QOqFaPD9D8aubzSaUXi0SIZTB0z1mMSaQGeVjXlOMZCazYlh94A8T/HkwDet9u3ISwjmxexmPGnGyalNBsOfJTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733795772; c=relaxed/simple;
-	bh=vG1OrtSx6Xqo9Auqc9Ko65tcZ0Hn9T+5dg2LzUoLJqI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DHc+ezKZprvBlWHRMdioTNq2tviq7Wu/Ki+tM7WD3tfQFNqHaSiZdk/uEZIxNjUEk0s1y4ZuZS15dY8HEKWs1zfNhQCyqd+AJJ+B/s6FX0+H6ELFjZQtA/f/aoPmh+ghEjGJshrnhagsZV/mODLpE/KWsF4+F2hw1ZCjn69EcQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from hay.lan. (unknown [IPv6:2605:59c8:31de:bf00:6ecf:39ff:fe00:8375])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id EA76DB4B23CF;
-	Tue, 10 Dec 2024 02:50:22 +0100 (CET)
-From: E Shattow <e@freeshell.de>
-To: Conor Dooley <conor@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1733795628; c=relaxed/simple;
+	bh=0ohP2btiYgvRGCiZ+by5SNw8/jBZ9VC7lNA30/45sQ8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B7UgDsxWOqTL2CkVkRYM8GdwPWgw+ww2SQq4VzrmdP5ImZHT8xXLU1ZhuCibPlH26SrlV44NaLWjF3Wm/D5dkQg1PcjaXx5Q5ET6j5HisU0WjhbNaXNwt+7CRsjxck9nWQTH5umRsj65emA6oHor3Ja0A/7ezKIXGEpTsLvRwvA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=PrHYY1z8; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=SXp+qtxYbr5cJiQYFPqHbEdcMH4PcZUu6E1u3pNKqeQ=; b=PrHYY1z8LaYBGTRjlMabb+CPuG
+	yslmeEFU9rTTL0FCGvDhAUjzexvuxZAG5WSJ/dh4SGH0pXKnkwtnvkPnPzjw33K9/pENQff2qj99/
+	vcta6hGz06pCRWoPP7hyhazcKoOzSfovgx4MV8bFzLb8n/sAF2DelRYbaFhPM0BM02S8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tKpRO-00FjyY-Aq; Tue, 10 Dec 2024 02:53:34 +0100
+Date: Tue, 10 Dec 2024 02:53:34 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Jianlong Huang <jianlong.huang@starfivetech.com>
-Cc: E Shattow <e@freeshell.de>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] riscv: dts: starfive: jh7110-pinfunc.h
-Date: Mon,  9 Dec 2024 17:48:57 -0800
-Message-ID: <20241210014903.154551-1-e@freeshell.de>
-X-Mailer: git-send-email 2.45.2
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v11 6/9] net: mdio: Add Airoha AN8855 Switch
+ MDIO Passtrough
+Message-ID: <5aec4a94-3cea-41a4-8500-71472fae51d4@lunn.ch>
+References: <20241209134459.27110-1-ansuelsmth@gmail.com>
+ <20241209134459.27110-7-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241209134459.27110-7-ansuelsmth@gmail.com>
 
-Fix a typo in StarFive JH7110 pin function definitions
+> +static int an855_phy_restore_page(struct an8855_mfd_priv *priv,
+> +				  int phy) __must_hold(&priv->bus->mdio_lock)
+> +{
+> +	/* Check PHY page only for addr shared with switch */
+> +	if (phy != priv->switch_addr)
+> +		return 0;
+> +
+> +	/* Don't restore page if it's not set to switch page */
+> +	if (priv->current_page != FIELD_GET(AN8855_PHY_PAGE,
+> +					    AN8855_PHY_PAGE_EXTENDED_4))
+> +		return 0;
+> +
+> +	/* Restore page to 0, PHY might change page right after but that
+> +	 * will be ignored as it won't be a switch page.
+> +	 */
+> +	return an8855_mii_set_page(priv, phy, AN8855_PHY_PAGE_STANDARD);
+> +}
 
-Fixes: e22f09e598d12 ("riscv: dts: starfive: Add StarFive JH7110 pin function definitions")
-Signed-off-by: E Shattow <e@freeshell.de>
----
- arch/riscv/boot/dts/starfive/jh7110-pinfunc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I don't really understand what is going on here. Maybe the commit
+message needs expanding, or the function names changing.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-pinfunc.h b/arch/riscv/boot/dts/starfive/jh7110-pinfunc.h
-index 256de17f5261..ae49c908e7fb 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-pinfunc.h
-+++ b/arch/riscv/boot/dts/starfive/jh7110-pinfunc.h
-@@ -89,7 +89,7 @@
- #define GPOUT_SYS_SDIO1_DATA1			59
- #define GPOUT_SYS_SDIO1_DATA2			60
- #define GPOUT_SYS_SDIO1_DATA3			61
--#define GPOUT_SYS_SDIO1_DATA4			63
-+#define GPOUT_SYS_SDIO1_DATA4			62
- #define GPOUT_SYS_SDIO1_DATA5			63
- #define GPOUT_SYS_SDIO1_DATA6			64
- #define GPOUT_SYS_SDIO1_DATA7			65
+Generally, i would expect a save/restore action. Save the current
+page, swap to the PHY page, do the PHY access, and then restore to the
+saved page.
 
-base-commit: 708d55db3edbe2ccf88d94b5f2e2b404bc0ba37c
--- 
-2.45.2
-
+	Andrew
 
