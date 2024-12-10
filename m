@@ -1,304 +1,118 @@
-Return-Path: <devicetree+bounces-129101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 005759EAA84
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:24:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B40E9EAA94
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:25:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7C33188AC4B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:24:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 574C8188AE2F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:25:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEA0B230982;
-	Tue, 10 Dec 2024 08:23:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 724E0230997;
+	Tue, 10 Dec 2024 08:25:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PQX4AYDE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tYRAo0o6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com [209.85.208.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3096422D4CD;
-	Tue, 10 Dec 2024 08:23:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C4AA22D4EF
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 08:25:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733819035; cv=none; b=lkvBWb5q3F/XThwWL5e/Vp2Fpg3T5JvIlmg1IAurttCQTcureypGhq+iGFLzbdF18Hz5IlJcfAAa+gKqaMvZLkjFFcu0fxU8PrGBiat0vh4TTYhmwLMmR1Mu/Lg1K2j3/TcgvhfFP08140d5lXOFmUjhuzaLXVgkMOsB7Zx2Pyk=
+	t=1733819138; cv=none; b=H4tE6Jm/nU2VjKFpiTab+WUBVNRJUlgTboETPJCA+l98iuw6H5ivW279H7cYSpu69BWqP8X9hyQX00mHf3cVGo3rR8HsDod75a93URSNJHT+aGNLdHs4aRpJWrT4/gimBwnkHWUiwWj/PjNwp9ijPRVc+lka/gStTSJ1INv5OGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733819035; c=relaxed/simple;
-	bh=LxVL3dWaIY5BiEszPJpsF/yeGkMBUNkZigOVtbf3bvc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=ImAb8sPYKQpwIvsPDVrJxS4KpkddnS+xeV4Bsf8C4bfOulBJROLQSsT0X2FzMni/ufvwcVX/77pNRMt7b5IrqdPHRf9sKLInLA1CrDSeOPgqWgGyobIEjRwIPiI/Bak+n6ixknxu9p8viby4hi/O7SX1qdjUu7cOsaEmUqf8x28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PQX4AYDE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BA6GKCH015028;
-	Tue, 10 Dec 2024 08:23:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=MPvKwalamfsowX47Fg6i3O
-	lsKTIsdqMd1PpWR86+a6Q=; b=PQX4AYDEEm/pTwOsBz7aQ/FgJEM7r8L/D0/Emw
-	KJrkIpcIULDf5GQd0U1ehwxQ6FRPJGgE/Q9sMzeztyVPHPZm0sYnJIsqmk2RpzqF
-	2t9FaWBLDrTfCHtm6b00AfQG41R3aEs/udtDPjZbL6LcOT7Cd2Q7fPIXt0u1LZdq
-	joN6kaLe3yWjlI9KhIW9bC19jsgATWapqUjJ0M9rf/WprgYYt78bqUfFeFJZJk5/
-	04Zg30mlxwjZ8CYm3gdCpSIAN0fz7nYXC+s9HPNBRA2pP9aMAPFTmVTrLW/Egvmk
-	2L/y0RT4bETzOtWTquQ2e/rZdGfPZHN2UkAhm7TxRx25kI2A==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43ceetqshy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Dec 2024 08:23:49 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BA8NlIA005628
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Dec 2024 08:23:47 GMT
-Received: from yuanfang4-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 10 Dec 2024 00:23:41 -0800
-From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-Date: Tue, 10 Dec 2024 16:23:21 +0800
-Subject: [PATCH v2] arm64: dts: qcom: Add coresight node for SM8650
+	s=arc-20240116; t=1733819138; c=relaxed/simple;
+	bh=Aat58HQ6zWrd5CswpKxWlkheZjFt8yTkkHKsfeZ+9zE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s1DtXJyIsijSbJ19lj4z0fCgxWR/ATx7fe0nBB92rqVU0YUeJk5DhWntet+gDVuyKRnYNsjS3qJyfMjMD0j/k8uYBeDuqu6pPX7hphjHeKYucFIXfvl8eP+FbRlbDJn6rewCafNRLLfOBku7jhDUCpefSX1lFll6Eo3JVn7mFJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tYRAo0o6; arc=none smtp.client-ip=209.85.208.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f67.google.com with SMTP id 4fb4d7f45d1cf-5d3d143376dso4865492a12.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 00:25:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733819135; x=1734423935; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=HuQWUnaBEntG+4q8CpLCOSV8pyx41H5nC9C794rG3dM=;
+        b=tYRAo0o6RPv1rrvdlV9PscX61aHy+wNKX8dZS0axrHGarM7D3WN3yh/AC6x6zYYyy9
+         S/vn8g1hRLWBVodhqOKwAGaLH+Yu4+TlTTSrwl+km6eSEwb85V/2/xtxSlXkdqrBbzgR
+         25Z2OsZtDkeHDjCu1Q7GHEebN5pPgRp+qzBHZpB+SXwfRsU8c4OZioC0jJMgI9O9fvIN
+         cbSJ5//ec6aDzXe2CfJbEPCsKpjDjbuD8Y2Q6KWtMJ7kKpvjIlnGHiRiYwsM5+sqj6Ao
+         TY6usdrdbG3AI768hEJxd5qx5oiv7m9UPvyaSlM1UtxaAOA18KG+1XY0IcgsHprxFr1O
+         7Prg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733819135; x=1734423935;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HuQWUnaBEntG+4q8CpLCOSV8pyx41H5nC9C794rG3dM=;
+        b=pb3qwJ8euXTZzSopfvSkY6kNR1TX3rakX3uiopVVxuS84kCr/p8dYCevzFHbNOd2om
+         QDpxpQOE/ufW1GMx5cGKqhbS3djnIchuJ21X74dKxOkp3HHp0F9yvGaWVBQPur/4J577
+         1v9D3SqoVkMv9+nPk1CUF6gzl0r4YB8HMPUVLZupPJP1Tacwc4vGZM883HhHej9/S/qr
+         LEHCTMAT5eHfByAjBcuA32K7PPxw4gG+RpYR9ukGzHrZSVqtTDYvX/wLYfcwr6qbw5LO
+         pv5l6SzXQvO3rIaXG5HLuiUcINSIABnJyJ+jwFkoYfH14wiBT11MJPE58JbQgRwqVmF+
+         kBhg==
+X-Forwarded-Encrypted: i=1; AJvYcCWHDBkxD93TGXS+3yFSR4El8q7hGxVhgbfDGGQWyUdFnOAsiwNj3fIrr54Pe9y7kg5c+0agoAuUN7jX@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIjEbREnl94xd2Yfy3eSYNbIrKDNEz21Bb5KqCuap89AqVN7b1
+	GGjotiqhEDH0YcfUehffr725BfNn4ZuYuVcRjJSwSqb1+CkTCzTic7yKnUKHT6c=
+X-Gm-Gg: ASbGncvKSZxCpBNN1skUENZdhhwLYyZqM6sGG4dwDMBv0c9TxB5vEji1Mm1mB25+Jmr
+	6D4S7gxgrOcFpi/3sTOx7GgFQHBGyc3Pm6ywVVeML6fdg5srQHzyaXgFQgrvmQf7Bpm37bPS5WW
+	s/6wsWmM8nbMQzTE27OUB4Ur+3PPnTA+JIXV69GaAXYVzaGllp5kXqwHSyygGIZGdczddISIRoZ
+	atj551W8lLdyJRkFcrekyr83/k/HORFETHEA/BfRGyFe9eqRP9MKLjTWZHjKcfE4Q==
+X-Google-Smtp-Source: AGHT+IFPjnoPDqBWxqnWDU/N/e35ObWn19I59FifQGbgV4N+RARB17TMYTb6ZkIT5SxPDFHD1DTUFw==
+X-Received: by 2002:a05:6402:51c9:b0:5d0:d84c:abb3 with SMTP id 4fb4d7f45d1cf-5d418613125mr4286623a12.26.1733819134964;
+        Tue, 10 Dec 2024 00:25:34 -0800 (PST)
+Received: from linaro.org ([2a02:2454:ff21:ef80:53d9:8daa:420f:c0d0])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d3e4a87ba4sm4433468a12.2.2024.12.10.00.25.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 00:25:34 -0800 (PST)
+Date: Tue, 10 Dec 2024 09:25:28 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-pmics: Enable all SMB2360
+ separately
+Message-ID: <Z1f6-G5fXr-383IK@linaro.org>
+References: <20241203-x1e80100-disable-smb2360-v1-1-80942b7f73da@linaro.org>
+ <01d0b807-6201-43fb-8286-df04d722610f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241210-sm8650-cs-dt-v2-1-cf24c6c9bddc@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAHj6V2cC/1XMQQ7CIBCF4as0s3YMIJDiynuYLhqgdhZtlalE0
- 3B3sXHj8n/J+zbgmCgynJsNUszEtMw11KEBP/bzLSKF2qCE0lIJhzy11gj0jGHFPljtgh96E1u
- ol3uKA7127trVHonXJb13Pcvv+oOk+IeyRInKOutO2kjT6svjSZ5mf/TLBF0p5QNZSOFCqgAAA
- A==
-X-Change-ID: 20241209-sm8650-cs-dt-ad649dcfa5e8
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Yuanfang Zhang
-	<quic_yuanfang@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733819021; l=4281;
- i=quic_yuanfang@quicinc.com; s=20241209; h=from:subject:message-id;
- bh=LxVL3dWaIY5BiEszPJpsF/yeGkMBUNkZigOVtbf3bvc=;
- b=82+zkxe9QXPpQNethGni9O/w3u+LVKw4Z6vcDh770Nxdm62ajwMVobHWHpbvhJ/utgMmZnWp+
- 8TI9i1ifn4UDz5EL9XV1YFEYdWcnGXpeof7Tom/xQTmf5IGC8L+6nk3
-X-Developer-Key: i=quic_yuanfang@quicinc.com; a=ed25519;
- pk=ZrIjRVq9LN8/zCQGbDEwrZK/sfnVjwQ2elyEZAOaV1Q=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: DTHV9US0lY0LD1JhzgOUyx9mgwlTSRUb
-X-Proofpoint-ORIG-GUID: DTHV9US0lY0LD1JhzgOUyx9mgwlTSRUb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- spamscore=0 adultscore=1 clxscore=1015 impostorscore=0 mlxlogscore=883
- bulkscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412100064
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <01d0b807-6201-43fb-8286-df04d722610f@quicinc.com>
 
-Add coresight components: Funnel, ETE and ETF for SM8650.
+On Sat, Dec 07, 2024 at 11:57:54PM +0800, Aiqun Yu (Maria) wrote:
+> On 12/4/2024 12:27 AM, Stephan Gerhold wrote:
+> > At the moment, x1e80100-pmics.dtsi enables two of the SMB2360 PMICs by
+> > default and only leaves the third disabled. This was introduced in commit
+> 
+> One correction: it’s not only the third PMIC that is disabled. Both the
+> third (smb2360_2) and fourth (smb2360_3) are disabled. This information
+> is verified from link[1]:
+> [1]https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+> 
 
-Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
----
-Changes in v2:
-- Update compatible for funnel and etf.
-- remove unnecessary property: reg-names and arm,primecell-periphid.
-- Link to v1: https://lore.kernel.org/r/20241210-sm8650-cs-dt-v1-1-269693451584@quicinc.com
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 165 +++++++++++++++++++++++++++++++++++
- 1 file changed, 165 insertions(+)
+You're right, I didn't realize there can be a fourth SMB2360 at all. :-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 25e47505adcb790d09f1d2726386438487255824..76620d478e872a2b725693dc32364e2a183572b7 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -5654,6 +5654,171 @@ compute-cb@12 {
- 				};
- 			};
- 		};
-+
-+		ete0 {
-+			compatible = "arm,embedded-trace-extension";
-+
-+			cpu = <&cpu0>;
-+			qcom,skip-power-up;
-+
-+			out-ports {
-+				port {
-+					ete0_out_funnel_ete: endpoint {
-+						remote-endpoint = <&funnel_ete_in_ete0>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel_ete {
-+			compatible = "arm,coresight-static-funnel";
-+
-+			in-ports {
-+				port@0 {
-+					reg = <0>;
-+
-+					funnel_ete_in_ete0: endpoint {
-+						remote-endpoint = <&ete0_out_funnel_ete>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					funnel_ete_out_funnel_apss: endpoint {
-+						remote-endpoint = <&funnel_apss_in_funnel_ete>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@13810000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+
-+			reg = <0x0 0x13810000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port@0 {
-+					reg = <0>;
-+
-+					funnel_apss_in_funnel_ete: endpoint {
-+						remote-endpoint = <&funnel_ete_out_funnel_apss>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					funnel_apss_out_funnel_in1: endpoint {
-+						remote-endpoint = <&funnel_in1_in_funnel_apss>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@10042000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+
-+			reg = <0x0 0x10042000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port@4 {
-+					reg = <4>;
-+
-+					funnel_in1_in_funnel_apss: endpoint {
-+						remote-endpoint = <&funnel_apss_out_funnel_in1>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					funnel_in1_out_funnel_qdss: endpoint {
-+						remote-endpoint = <&funnel_qdss_in_funnel_in1>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@10045000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+
-+			reg = <0x0 0x10045000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					funnel_qdss_in_funnel_in1: endpoint {
-+						remote-endpoint = <&funnel_in1_out_funnel_qdss>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					funnel_qdss_out_funnel_aoss: endpoint {
-+						remote-endpoint = <&funnel_aoss_in_funnel_qdss>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@10b04000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+
-+			reg = <0x0 0x10b04000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port@7 {
-+					reg = <7>;
-+
-+					funnel_aoss_in_funnel_qdss: endpoint {
-+						remote-endpoint = <&funnel_qdss_out_funnel_aoss>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					funnel_aoss_out_tmc_etf: endpoint {
-+						remote-endpoint = <&tmc_etf_in_funnel_aoss>;
-+					};
-+				};
-+			};
-+		};
-+
-+		tmc@10b05000 {
-+			compatible = "arm,coresight-tmc", "arm,primecell";
-+
-+			reg = <0x0 0x10b05000 0x0 0x1000>;
-+
-+			clocks = <&aoss_qmp>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					tmc_etf_in_funnel_aoss: endpoint {
-+						remote-endpoint = <&funnel_aoss_out_tmc_etf>;
-+					};
-+				};
-+			};
-+		};
- 	};
- 
- 	thermal-zones {
+It doesn't change anything for the patch itself, but I'll fix the commit
+message in v2 just to avoid any confusion.
 
----
-base-commit: fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
-change-id: 20241209-sm8650-cs-dt-ad649dcfa5e8
-
-Best regards,
--- 
-Yuanfang Zhang <quic_yuanfang@quicinc.com>
-
+Thanks,
+Stephan
 
