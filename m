@@ -1,153 +1,160 @@
-Return-Path: <devicetree+bounces-129333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA0DD9EB462
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:13:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67BBC9EB475
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:17:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68A6D1886143
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:13:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 362C61887945
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:17:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0A61B0F12;
-	Tue, 10 Dec 2024 15:12:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF731B6544;
+	Tue, 10 Dec 2024 15:17:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="enDaiYP5"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J8iHWTWK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E56F1ACDE7;
-	Tue, 10 Dec 2024 15:12:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E71E1CD15;
+	Tue, 10 Dec 2024 15:17:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733843577; cv=none; b=J1vLhDuwlKVmS9ebk8l+gokWVTqGUncwdR8ElYZO16xSAUf4nuwmIO11YD9hsdfJXCFUjfY+g9aZ4iFZ4dBPNhJPbwGs4gwFFLYFg2OSjXggFL+T2kSKvy1zR5g8mVJJsJmNPPKnlK4fw7O5z1nCFYqDMsHlHmzYSTtBflhAYIs=
+	t=1733843862; cv=none; b=lkzPvQEenYQ1yUaCuFo2NE7WKY/vf7/Qpf/lvqeMyKTtUkjDylbhj7oZhQBfT6/WofCQu2lgOKyQQLKG5sOf/prk/Q2dQhUefYTeWY+Sz1WIoeqywFztqJaCGXeIGE+5alrozGZXJH7HHRES+Vo97ldNby9aScQcG2Fdk8ilYEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733843577; c=relaxed/simple;
-	bh=zxUb5xnZiBQR7O22ULKVMRKeZDRwX8HSXdvIH6Vpvtw=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=VYsEb7Sid85x84MWs+DE4DITF8LsdocCo8qfnZj3g25cF6jNV/iltD2JMJzzHmZTqYAU/i+9LV2qXRzt4F4UjC/PeYXSVX9eKB2wOZbqkNaACZVQmb7H1hgZQW6B4vCwMedzVYGd5SstQ1UEOga1RTJGloysFEuagx537gsgSnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=enDaiYP5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DA8EC4CED6;
-	Tue, 10 Dec 2024 15:12:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733843577;
-	bh=zxUb5xnZiBQR7O22ULKVMRKeZDRwX8HSXdvIH6Vpvtw=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=enDaiYP5qbu/9W/1wBjFAMbhveMcfaHSdnng10Zaq9zY07KCckkA8bwLMr8Mk/Qa8
-	 Rst5be8/kTwGTodTlZEr5D1+OLfMyWwiAuYcELM4zlsaRlzg6J7q8I8U/Zw1VZ6Kwl
-	 a2x4r6T5X2giHxAv1iILWECtpUwTAmUQvQbYqL0J/NIQ5s6zL1rjrLNymc8x9hT7fY
-	 Tm1JlBXTezuJeT0Zyv+XYa2dQM8qFGNEXLkepHYaY9CzpNWvGZv8ZYOqgas1YKpJGB
-	 OQAhBszrfgELTXUNmDFHUGjeBmRQdMSui6vzlq93d+SxkmW8RRqpRIRxWpH8l5dzTV
-	 NcFt6VEUuXb3w==
-Message-ID: <001ae2e4-bba8-4b76-a4b6-eda8533c5fc5@kernel.org>
-Date: Tue, 10 Dec 2024 16:12:51 +0100
+	s=arc-20240116; t=1733843862; c=relaxed/simple;
+	bh=Wi43FCd/dRAQg29x1UTQvXfGbBTo+bNPgW6UooecDZI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cQt2KSe19A0RCqb0gAWZqBQv4mdrA0fiTtkyutZTXzraX4qqR7WySw5vsWpFGX3Iz2Lhdrd5BV7PqPuHz4LDpheh6b2e6Yc/MtCCw5pUXMnTVDVJFVC7ElxvVIeLQza3PnjkjDsc95PQZXmrIwgQzWG/X14od8V8Z7HqRddg3w0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J8iHWTWK; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BADtdMF019489;
+	Tue, 10 Dec 2024 15:17:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=iW0ylusmUm4idK/1N8NKEi
+	Jzigzfo5wNMkGkkJEwHv4=; b=J8iHWTWKUVe3o2nsaXvl4pCzNqGrqARXDlzWzM
+	o3rSRPNeLTaaiZIMc1QE2Cam+gtD0kh+3fKYmuyT8paFR0efpbQlfRBks1VvX70H
+	duEUkq9hp62sazoT06fi9lA3HWwqfxwNTBQEJarxZ2HBY9vIv6CABfZG6VVqH1dt
+	5/K3AryxRV9hSE3ZEwYB1Ub0Fg+xdXeDbvr+CNb8jvgSkcmgKpyJk7S5iWNm+3tG
+	PD+PO3AvJDXn+h6iKna7ENq68jwsZU6xZO04XkniEtpVMsx+SpJEqGvWcGdNnUlY
+	//0cWPzLDRSdOiMy9dxd1hP1cL+Nf7YxBx+OC6PAFGw3FjVg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43e341bjwh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Dec 2024 15:17:32 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BAFHWo5026060
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Dec 2024 15:17:32 GMT
+Received: from bt-iot-sh01-lnx.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 10 Dec 2024 07:17:27 -0800
+From: Cheng Jiang <quic_chejiang@quicinc.com>
+To: Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz
+	<luiz.dentz@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Balakrishna
+ Godavarthi" <quic_bgodavar@quicinc.com>,
+        Rocky Liao <quic_rjliao@quicinc.com>
+CC: <linux-bluetooth@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_chejiang@quicinc.com>, <quic_jiaymao@quicinc.com>,
+        <quic_shuaz@quicinc.com>, <quic_zijuhu@quicinc.com>,
+        <quic_mohamull@quicinc.com>
+Subject: [PATCH v4 0/3] Expand firmware-name property to load specific
+Date: Tue, 10 Dec 2024 23:16:32 +0800
+Message-ID: <20241210151636.2474809-1-quic_chejiang@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 00/13] wifi: ath12k: add Ath12k AHB driver support for
- IPQ5332
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20241210074159.2637933-1-quic_rajkbhag@quicinc.com>
- <fd338dd5-db11-4439-835d-b6641f3feb78@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <fd338dd5-db11-4439-835d-b6641f3feb78@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: dohx0REGJxgIzHUW94Wd9g18vtbzLHiK
+X-Proofpoint-ORIG-GUID: dohx0REGJxgIzHUW94Wd9g18vtbzLHiK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 suspectscore=0 mlxlogscore=999 clxscore=1015 mlxscore=0
+ spamscore=0 phishscore=0 malwarescore=0 adultscore=0 impostorscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412100114
 
-On 10/12/2024 16:08, Krzysztof Kozlowski wrote:
-> On 10/12/2024 08:41, Raj Kumar Bhagat wrote:
->> Currently, Ath12k driver only supports WiFi devices that are based on
->> PCI bus. New Ath12k device IPQ5332 is based on AHB bus. Hence, add
->> Ath12k AHB support for IPQ5332.
->>
->> IPQ5332 is IEEE802.11be 2 GHz 2x2 Wifi device. To bring-up IPQ5332
->> device:
->> - Add hardware parameters for IPQ5332.
->> - CE register address space in IPQ5332 is separate from WCSS register
->>   space. Hence, add logic to remap CE register address.
->> - Add support for fixed QMI firmware memory for IPQ5332.
->> - Support userPD handling for WCSS secure PIL driver to enable ath12k
->>   AHB support.
->>
->> v4:
->> - Missed to include some review list in v3. Hence sending v4 with
->>   all review list as per - scripts/get_maintainers.pl
->>
-> The amount of undocumented ABI you add here, points to the problem that
-> either your drivers don't work or your drivers would never work with
-> upstream. Why? Because either you would have wrong DTS or drivers not
-> matching DTS, thus not working.
-> 
-> Please point us to your upstream DTS implementing (and working 100%)
-> this ABI, so we can review that you do not sneak more broken or
-> undocumented things. I will NAK also future submissions without above,
-> because I believe you usptream something which will not work.
+Expand the firmware-name property to specify the names of NVM and
+rampatch firmware to load.
+
+This update will support loading specific firmware (nvm and rampatch)
+for certain chips, like the QCA6698 Bluetooth chip, which shares the
+same IP core as the WCN6855 but has different RF components and RAM
+sizes, requiring new firmware files.
+
+Different connectivity boards may be attached to the same platform. For
+example, QCA6698-based boards can support either a two-antenna or
+three-antenna solution, both of which work on the sa8775p-ride platform.
+Due to differences in connectivity boards and variations in RF
+performance from different foundries, different NVM configurations are
+used based on the board ID.
+
+So In firmware-name, if the NVM file has an extension, the NVM file will
+be used. Otherwise, the system will first try the .bNN (board ID) file,
+and if that fails, it will fall back to the .bin file.
+
+Possible configurations:
+firmware-name = "QCA6698/hpnv21.bin", "QCA6698/hpbtfw21.tlv";
+firmware-name = "QCA6698/hpnv21", "QCA6698/hpbtfw21.tlv";
+firmware-name = "QCA6698/hpnv21.bin";
+
+---
+v4:
+  1. Split nvm and rampatch changes to 2 commits
+  2. Code fix according to review comments
+
+v3:
+  1.Expand firmware-name property to specify the nvm and rampatch to
+  load.
+  2.Change the driver to support two items in firmware-name and choose
+  the NVM file according to board id if there is no extension in NVM
+  file.
+  3.Update the dts file to idendify the firmware for QCA6698.
+---
+
+Cheng Jiang (4):
+  dt-bindings: net: bluetooth: qca: Expand firmware-name property
+  Bluetooth: qca: Add support in firmware-name to load board specific
+    nvm
+  Bluetooth: qca: Expand firmware-name to load specific rampatch
+  arm64: dts: qcom: sa8775p-ride: Add firmware-name in BT node
+
+ .../net/bluetooth/qualcomm-bluetooth.yaml     |   5 +-
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi    |   1 +
+ drivers/bluetooth/btqca.c                     | 149 +++++++++++++-----
+ drivers/bluetooth/btqca.h                     |   5 +-
+ drivers/bluetooth/hci_qca.c                   |  22 ++-
+ 5 files changed, 133 insertions(+), 49 deletions(-)
 
 
-I dug a bit and I found your earlier v2:
-https://lore.kernel.org/all/20241015182637.955753-3-quic_rajkbhag@quicinc.com/
+base-commit: ebe1b11614e079c5e366ce9bd3c8f44ca0fbcc1b
+-- 
+2.25.1
 
-which confirms:
-1. DTS not following coding style, so not possible to accept
-2. Driver relying on that exact DTS, so not really working.
-
-Please post in separate series updated DTS, after fixing all the issues
-pointed out by DTS coding style.
-
-Best regards,
-Krzysztof
 
