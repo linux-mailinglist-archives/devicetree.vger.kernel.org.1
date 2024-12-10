@@ -1,254 +1,138 @@
-Return-Path: <devicetree+bounces-129128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BBEA9EAB50
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:07:29 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 687BA1888569
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:07:29 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 537B9231C8C;
-	Tue, 10 Dec 2024 09:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LsMzy5t5"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC3FB9EAB52
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:07:58 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ACBF1B14FA;
-	Tue, 10 Dec 2024 09:07:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3369A283444
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:07:57 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7461230D28;
+	Tue, 10 Dec 2024 09:07:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jt4sFBHO"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F18071D7E45
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 09:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733821622; cv=none; b=QEu8HZH6S28ZbNHF9mp3AKIjdt23dd2OK+jjIolZf15ITPHegkCyZi5wi4MjNlJ1ZDvfLK5WzZb3CRqgGxBLv7uvngXQiGi9MlMIKMs4vX9+oiGRnJXfI2b5qDa1+vPfX0hPzppgA7w1GP2Hb29fLtm70xh6dDa0HEMIqq21vb0=
+	t=1733821676; cv=none; b=LCt8Aa6mWqsByxMuEiSfOg8CcidFHQuiGK9QszmzQitl3DGEyHZuo0Z5g/Spz5Vq0Kd4ktjclU9eqNkjcYxBW6ahdtHve8B8A4776p6Jb0i7MHCQw3Md3mp7K8seSXAPZUBAWMiatNjPPMcpMPDQuCMbgoPIUJETBebnan1Qhs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733821622; c=relaxed/simple;
-	bh=JSgeQGlVtBEPa2HNmBDtKw1WT+11BoxQYBOeQXtMxZw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hsYFnlVJMXiTMtd/GtmyXaCprOsdQcarwU/bs+iw5cRPx1bWvH3yc0p8O7DLA1+mwsOCDiLLeNwurfC58vQHLOzrkqSbNJ3z9LWa01bMvxEX0BE0CgDKR3mYIh36edME70rnmqSesv0VgUKBPRFkZdcxuzhclENYLh9v1MDGRms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LsMzy5t5; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733821620; x=1765357620;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JSgeQGlVtBEPa2HNmBDtKw1WT+11BoxQYBOeQXtMxZw=;
-  b=LsMzy5t51IrwKjJ+y1WS5vaDcwRJ9QPBdZhBBkekH7tf05lgm+yrEJdQ
-   7kMhGS3OVLVLye947rxj7btXwqKGXQebmz47QUHXrhaZD7jywzVO1/QEI
-   1yU8pkyCnmrrlAanEbCrSdCqWuIBPR1CMqQIsosRtLF+FjBaWark1JIOw
-   Le8dI7jfdZ6xADZk8uAw4SkOrj/FptBWx9L8cgvX9nWT4fz38kYIjVRpp
-   bTKEtCbJOhfew4zxQ4MEPm+fkTSq2/UUQxhCYtJ+AsdWJRlWmB5CTV+Qc
-   Hv7HBKnHRuCADP1L5MPniY/eciE4grBjiojGaDq2NRDo4R/gXKe20gCiM
-   g==;
-X-CSE-ConnectionGUID: MtZAu0ycS3yOOyGsrU0uAA==
-X-CSE-MsgGUID: pVhCVtupSYaSOCwxxCOfEg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="44828131"
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; 
-   d="scan'208";a="44828131"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2024 01:06:59 -0800
-X-CSE-ConnectionGUID: iRCEOdfURB+z/6siuqimIg==
-X-CSE-MsgGUID: C0UPB8POSF2NwL8g/gInWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; 
-   d="scan'208";a="95683861"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by fmviesa010.fm.intel.com with ESMTP; 10 Dec 2024 01:06:57 -0800
-Date: Tue, 10 Dec 2024 17:03:41 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: "Manne, Nava kishore" <nava.kishore.manne@amd.com>
-Cc: "git (AMD-Xilinx)" <git@amd.com>, "mdf@kernel.org" <mdf@kernel.org>,
-	"hao.wu@intel.com" <hao.wu@intel.com>,
-	"yilun.xu@intel.com" <yilun.xu@intel.com>,
-	"trix@redhat.com" <trix@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"saravanak@google.com" <saravanak@google.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [RFC v2 1/1] fpga-region: Add generic IOCTL interface for
- runtime FPGA programming
-Message-ID: <Z1gD7QvhSN8p6//v@yilunxu-OptiPlex-7050>
-References: <20241029091734.3288005-1-nava.kishore.manne@amd.com>
- <20241029091734.3288005-2-nava.kishore.manne@amd.com>
- <ZzwQrYeWVF6cRtgA@yilunxu-OptiPlex-7050>
- <DS7PR12MB6070AAA0C413DBF26F685207CD222@DS7PR12MB6070.namprd12.prod.outlook.com>
- <Z0Z6socXrmHQ26C0@yilunxu-OptiPlex-7050>
- <DS7PR12MB6070F3DD9119CD7955EF8AFCCD372@DS7PR12MB6070.namprd12.prod.outlook.com>
+	s=arc-20240116; t=1733821676; c=relaxed/simple;
+	bh=utGeo5grOxupuEJELa4p53Y7DuDUACjhO28MS7CTAqY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DFjX/m2Qo/j/zCy8xE3qUDbcMAC4A9DMgiL7lU4LkcosMi2BIZQCdhIvNdoe21VQoGhJhbBg5mb8FxL25iigSs/2g7DxzPRpsGmqKv/fQdpbBRJKVXBJuONSTKBEJw9HCXaeO00qCc4aV+mfSYgogrXDhnAv2eW6QIqsYSoHsb8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jt4sFBHO; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-434a044dce2so57959125e9.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 01:07:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733821673; x=1734426473; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wf+gnYSIymugKuSSyDGJc6b7yGexXPwvrFmMRZo5fdI=;
+        b=jt4sFBHOKmues3VIeLGaPpzKt8m4n+u4suTWtsqjAshwwa26oFnOFPEy/EvdTwEJJ1
+         O8qptTYYd4zLtqb1gTtfD+j6p+WtmlreL2cSJF2e4/L7yrhRsW6yPuvfPQ2pcKCyO61r
+         vezCwOEUZiQ8asoutIDsIg/Lng2FTVR6Ezk5bIuoEs5TtgoBen7eCwZdWpuveHgXN3OW
+         6oMBKliiLBuhUcRg4K9HnaP3yDvcB0AslSCK7jlpPg2YrWvA2UAeC51nE58KSwW+tOM3
+         JTi1bpQjZzIyBmm6aKln9nHVGEw4Lv1IK1F5+6nNG8zVI7ze+/sFBvzx0fbkqQ/kH1GN
+         SSKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733821673; x=1734426473;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Wf+gnYSIymugKuSSyDGJc6b7yGexXPwvrFmMRZo5fdI=;
+        b=AY/dSqN8Ck+Rs3k16OW04rFvIlKh5oB0Rx050cvGg9ka3XCgQv8mxKZsnAol2nZuF3
+         9T1vptjva3xJdvTFjAyER5uvRhNorh5IDrQQccQ92RQOWOuaCKfEcqNgiHf0v+1Ay0mj
+         RXGrCoSN9K2V9MpI3l2fI+UcyOSlsfI8+lN5rivLnqx/4DdIKE7v9clnQa36kShd1Lqv
+         u17cCNQSAwAA/HIlgN9ZUyDnG+VPtIpZrpPNVW9Cy9tZ73vCUJ4chGrkZLw2/m+iR7HU
+         m5chXDRxCd9A/YMbrN3QHpY5Dn7RJeTz0lTD6Ulyhx1FB6/kiIvNNrkgO4TIZaxthGlP
+         Dntw==
+X-Forwarded-Encrypted: i=1; AJvYcCVgYwKsUUXv4cESXFutR93s9N7aiqEwBeRdXKcl034QLOKNdRn2AEbgdxpKWF+4V92pamp68lRxbU7i@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxbaMOca0E/0g1EndaVvsspH9SH4pfTZI57Gi7FXPmDDQBc0qe
+	oERpKoeqnbPdsYa9vFwdVkFCEyftaVRt/8TKuUBdB5Bf+qd/Wu9eKyxUSgNn7e8=
+X-Gm-Gg: ASbGncsSwRZhpARyrwYe+VhR8i4zSf5t6w8oxC5HNvPjz8rMnbP7+bZQbwsFijPD7Gg
+	aiNZdVYGHPLmy4HYwPg5lwFNZhjUm0OurVVsy0kwb9Np4nyEoZZHF4yQBxSzQBP/QKKF++IXzvU
+	ypU8XwO0xr8DPpFv9uGn4kcgRUzIwERL+2/smjKNVfPlntRr4Y5T0X5F8egHdr5nvUUxYwes6nR
+	N43f4gSyRP15spjmo0gOEl4cn2WNAEYEEv0MLUm4jJxfhjTvkf83qG4XJOmEYigmss=
+X-Google-Smtp-Source: AGHT+IHyAVrXl61ELMM28zcj8CVjXGQo043sNrk+HcI0seE75ksA6VNRohhC5vPwmPU+7JBUwerRUw==
+X-Received: by 2002:a05:6000:4705:b0:385:ded5:86ee with SMTP id ffacd0b85a97d-38645400e6dmr2986309f8f.57.1733821673273;
+        Tue, 10 Dec 2024 01:07:53 -0800 (PST)
+Received: from [127.0.0.2] ([2a02:2454:ff21:ef40:6709:8d26:5167:3c1d])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa699618041sm173148066b.81.2024.12.10.01.07.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 01:07:52 -0800 (PST)
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+Subject: [PATCH 0/8] arm64: dts: qcom: x1e*: Fix USB QMP PHY supplies
+Date: Tue, 10 Dec 2024 10:07:31 +0100
+Message-Id: <20241210-x1e80100-usb-qmp-supply-fix-v1-0-0adda5d30bbd@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DS7PR12MB6070F3DD9119CD7955EF8AFCCD372@DS7PR12MB6070.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANMEWGcC/x3MwQqDMAyA4VeRnA0knWWbryIeXM22gLra0OEQ3
+ 92y4/cf/h1MkopBW+2Q5Kumn6WA6wrCe1hegjoWgyPXMLPHjeVGTITZHrjOES3HOP3wqRv6ELx
+ c7sN1JAflEJOU/L93/XGcw4+1tm0AAAA=
+X-Change-ID: 20241115-x1e80100-usb-qmp-supply-fix-5cc5e39a7d02
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
+ Marc Zyngier <maz@kernel.org>, Xilin Wu <wuxilin123@gmail.com>, 
+ Abel Vesa <abel.vesa@linaro.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Aleksandrs Vinarskis <alex.vinarskis@gmail.com>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>
+X-Mailer: b4 0.14.2
 
-On Wed, Dec 04, 2024 at 06:40:18AM +0000, Manne, Nava kishore wrote:
-> Hi Yilun,
-> 
-> > -----Original Message-----
-> > From: Xu Yilun <yilun.xu@linux.intel.com>
-> > Sent: Wednesday, November 27, 2024 7:20 AM
-> > To: Manne, Nava kishore <nava.kishore.manne@amd.com>
-> > Cc: git (AMD-Xilinx) <git@amd.com>; mdf@kernel.org; hao.wu@intel.com;
-> > yilun.xu@intel.com; trix@redhat.com; robh@kernel.org; saravanak@google.com;
-> > linux-kernel@vger.kernel.org; linux-fpga@vger.kernel.org;
-> > devicetree@vger.kernel.org
-> > Subject: Re: [RFC v2 1/1] fpga-region: Add generic IOCTL interface for runtime
-> > FPGA programming
-> > 
-> > > > > + * struct fpga_region_ops - ops for low level FPGA region ops for
-> > > > > +device
-> > > > > + * enumeration/removal
-> > > > > + * @region_status: returns the FPGA region status
-> > > > > + * @region_config_enumeration: Configure and enumerate the FPGA region.
-> > > > > + * @region_remove: Remove all devices within the FPGA region
-> > > > > + * (which are added as part of the enumeration).
-> > > > > + */
-> > > > > +struct fpga_region_ops {
-> > > > > +	int (*region_status)(struct fpga_region *region);
-> > > > > +	int (*region_config_enumeration)(struct fpga_region *region,
-> > > > > +					 struct fpga_region_config_info *config_info);
-> > > >
-> > > > My current concern is still about this combined API, it just
-> > > > offloads all work to low level, but we have some common flows.
-> > > > That's why we introduce a common FPGA reprograming API.
-> > > >
-> > > > I didn't see issue about the vendor specific pre configuration. They
-> > > > are generally needed to initialize the struct fpga_image_info, which
-> > > > is a common structure for fpga_region_program_fpga().
-> > > >
-> > > > For port IDs(AFU) inputs for DFL, I think it could also be changed
-> > > > (Don't have to be implemented in this patchset). Previously DFL
-> > > > provides an uAPI for the whole device, so it needs a port_id input
-> > > > to position which fpga_region within the device for programming. But
-> > > > now, we are introducing a per fpga_region programming interface, IIUC port_id
-> > should not be needed anymore.
-> > > >
-> > > > The combined API is truly simple for leveraging the existing
-> > > > of-fpga-region overlay apply mechanism. But IMHO that flow doesn't
-> > > > fit our new uAPI well. That flow is to adapt the generic configfs
-> > > > overlay interface, which comes to a dead end as you mentioned.
-> > > >
-> > > > My gut feeling for the generic programing flow should be:
-> > > >
-> > > >  1. Program the image to HW.
-> > > >  2. Enumerate the programmed image (apply the DT overlay)
-> > > >
-> > > > Why we have to:
-> > > >
-> > > >  1. Start enumeration.
-> > > >  2. On pre enumeration, programe the image.
-> > > >  3. Real enumeration.
-> > > >
-> > >
-> > > I agree with the approach of leveraging vendor-specific callbacks to
-> > > handle the distinct phases of the FPGA programming process.
-> > > Here's the proposed flow.
-> > >
-> > > Pre-Configuration:
-> > > A vendor-specific callback extracts the required pre-configuration
-> > > details and initializes struct fpga_image_info. This ensures that all
-> > > vendor-specific
-> > 
-> > Since we need to construct the fpga_image_info, initialize multiple field as needed,
-> > I'm wondering if configfs could be a solution for the uAPI?
-> > 
-> 
-> A configfs uAPI isn't necessary, we can manage this using the proposed IOCTL flow. 
-> The POC code looks as follows.
+On the X1E80100 CRD, &vreg_l3e_1p2 only powers &usb_mp_qmpphy0/1
+(i.e. USBSS_3 and USBSS_4). The QMP PHYs for USB_0, USB_1 and USB_2
+are actually powered by &vreg_l2j_1p2.
 
-I prefer more to configfs cause it provides standard FS way to create
-the fpga_image_info object, e.g. which attributes are visible for
-OF/non-OF region, which attributes come from image blob and can only be
-RO, etc.
+Since most X1E device trees just mirror the power supplies from the
+x1e80100-crd device tree, this series fixes up all the X1E boards with
+the same change.
 
-Of couse ioctl() could achieve the same goal but would add much more
-specific rules (maybe flags/types) for user to follow.
+Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+---
+Stephan Gerhold (8):
+      arm64: dts: qcom: x1e001de-devkit: Fix USB QMP PHY supplies
+      arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s: Fix USB QMP PHY supplies
+      arm64: dts: qcom: x1e80100-asus-vivobook-s15: Fix USB QMP PHY supplies
+      arm64: dts: qcom: x1e80100-crd: Fix USB QMP PHY supplies
+      arm64: dts: qcom: x1e80100-dell-xps13-9345: Fix USB QMP PHY supplies
+      arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Fix USB QMP PHY supplies
+      arm64: dts: qcom: x1e80100-microsoft-romulus: Fix USB QMP PHY supplies
+      arm64: dts: qcom: x1e80100-qcp: Fix USB QMP PHY supplies
 
-Thanks,
-Yilun
+ arch/arm64/boot/dts/qcom/x1e001de-devkit.dts               | 6 +++---
+ arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts    | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts                  | 6 +++---
+ arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts      | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts   | 6 +++---
+ arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi   | 4 ++--
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts                  | 6 +++---
+ 8 files changed, 20 insertions(+), 20 deletions(-)
+---
+base-commit: f2b086fc9f039773445d2606dc65dc091ec1830f
+change-id: 20241115-x1e80100-usb-qmp-supply-fix-5cc5e39a7d02
 
-> 
-> static long fpga_region_device_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
-> {
-> 	struct fpga_region *region =  (struct fpga_region *)(file->private_data);
-> 	struct fpga_region_config_info config_info;
-> 	void __user *argp = (void __user *)arg;
-> 	struct device *dev = &region->dev;
-> 	struct fpga_image_info *info;
-> 	int err;
-> 
-> 	switch (cmd) {
-> 	case FPGA_REGION_IOCTL_LOAD:
-> 		if (copy_from_user(&config_info, argp, sizeof(struct fpga_region_config_info)))
-> 		return -EFAULT;
-> 
-> 		info = fpga_image_info_alloc(dev);
-> 		if (!info)
-> 			return ERR_PTR(-ENOMEM);
-> 
-> 		/* A vendor-specific callback extracts the required pre-configuration
-> 		 * details and initializes struct fpga_image_info. This ensures that all
-> 		 * vendor-specific requirements are handled before proceeding to
-> 		 * the programming phase.
-> 		 */
-> 		err = region->region_ops->region_preconfig(region, &config_info, info);
-> 		if (err)
-> 			return err;
-> 
-> 		/* The common API fpga_region_program_fpga() is used to program
-> 		 * the image to hardware.
-> 		 */
-> 		region->info = info;
-> 		err = fpga_region_program_fpga(region);
-> 		if (err) {
-> 			fpga_image_info_free(info);
-> 			region->info = NULL;
-> 		}
-> 
-> 		/* A vendor-specific callback is used for real enumeration, enabling
-> 		 * hardware specific customization.
-> 		 */
-> 		err = region->region_ops->region_enumeration(region, &config_info);
-> 
-> 		break;
-> 
-> 	case FPGA_REGION_IOCTL_REMOVE:
-> 		if (copy_from_user(&config_info, argp, sizeof(struct fpga_region_config_info)))
-> 			return -EFAULT;
-> 
-> 		err = region->region_ops->region_remove(region, &config_info);
-> 		if (err)
-> 			return err;
-> 
-> 		fpga_image_info_free(region->info);
-> 
-> 		break;
-> 
-> 	case FPGA_REGION_IOCTL_STATUS:
-> 		unsigned int status;
-> 
-> 		status = region->region_ops->region_status(region);
-> 
-> 		if (copy_to_user((void __user *)arg, &status, sizeof(status)))
-> 			err = -EFAULT;
-> 
-> 		break;
-> 
-> 	default:
-> 		err = -ENOTTY;
-> 	}
-> 
-> 	return err;
-> }
-> 
-> Regards,
-> Navakishore.
+Best regards,
+-- 
+Stephan Gerhold <stephan.gerhold@linaro.org>
+
 
