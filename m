@@ -1,114 +1,102 @@
-Return-Path: <devicetree+bounces-129318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DF839EB3A6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:42:07 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4041D9EB3A7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:42:08 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA1A7165589
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:42:01 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0941B0433;
+	Tue, 10 Dec 2024 14:41:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NfO/9HfI"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D97A281DD6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:42:05 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9B571B3957;
-	Tue, 10 Dec 2024 14:42:02 +0000 (UTC)
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3BC81B394E;
-	Tue, 10 Dec 2024 14:42:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80BCD1B2195;
+	Tue, 10 Dec 2024 14:41:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733841722; cv=none; b=ocsx7YGLkHcreYxSbAzT1iG/SkD1/795NPIIXucKFgNyipZiGqb+gskdJxFBA/KqW+9gKsrWa48px/Dr/5kpgMbpIR8LW7cpVB+0UHESEtV0sD3VqhqpL+qjVBqOcAsK9tKC9wNSWkP8rOtO4nYjoOTnF5Ur2MdZ1jhgM/fX4lY=
+	t=1733841718; cv=none; b=Sj0QFkUPfBTU4hkcuFKPJupzZX68qnLekoKaoQYQCLYuBDquMpDkM/JKb9NCQ6VHjElAZQE87ULiKLEcWnWdLvnNr8ncBluPIeYi144CWk2Om/Kf+mSUnPG3DU9EvBRVIchlB83K1J+mRzdfjLp2YItmZjoKfh9qeiGaVG5DWDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733841722; c=relaxed/simple;
-	bh=zF3aOE1qhKSMRnq/y0n1k9zWj237rQ3rpoCWa9+1JVY=;
+	s=arc-20240116; t=1733841718; c=relaxed/simple;
+	bh=6I+fvpRnzlPuOqr0NtIcUKQjHLNr3VYA1+cn4EHRNgY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=g+4Tr1UXjo/9wqRn6pyUY9aZMLQrTvjc++WSkhdDh/oNMo6YajBjUGV8L4Zm2Z00aC2DTX7wnLvGWowL9AZAGtOftcZRM8Tn7S1QsRaQgvzLK/Xc6NH5OLmBHcXhwPi2DRAoeHx1GidpUlxl2pjtTqEySiCpZg/y+g6veqxqdqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-51878cf85a7so655581e0c.0;
-        Tue, 10 Dec 2024 06:42:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733841718; x=1734446518;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sEeS7eW3dOMIbCnO2yWME8t863RN9RbwOU3IJRVX0qU=;
-        b=rNDKx3hQIXBPSvlR3UlPBZr5Z6mn/S+gL/x2wEqVk3OCbZKZ6kpgLknmkqrmfo2/Qk
-         FnU/N9IViQuSCPmfCi3rCsdoEu5l7ZDBzBZGW5Parf635/HMjzk9TM9r2+V3bPVuCk0+
-         TkZBXH93ywfg7FUAc/KouUyAKfaYZaa5kX9zFRagQ+LrZKgv6V+cWvkFg158OpXq0Ix8
-         8n+UaBxX8rquD+tYMs0CiQEdMge7cFcODxzw5+LG/22jJtQxQliJlijMUMz/z9wfNj8g
-         29mGoa/L89nHPPqvaLzg68HsBCHPYxvgyp/5GplOF612IL0d/4W89qUAgAzRMBsdHgch
-         EgpA==
-X-Forwarded-Encrypted: i=1; AJvYcCUZfZGSJNOkj9WUjH94i12iyS0SQOz1sxFaPDgHIQOfyAAqemWniduUXC+PGEnW3gDsPIYbXh1At+In@vger.kernel.org, AJvYcCV2DXd8yICH/QssrhlGAaUQoVtJxlAGaqivbZi3TG61NMJRky9acurplxEns9dRcPZQ5P5ilSwOR28P@vger.kernel.org, AJvYcCVaxI5MTozbQzTCZwkdlDwG7BSTq/CL42Tb5oLHq6XhchvJQdk4gY3EfqO9TZ0aM0Hcf2lLRhh7MkB35Lsp2lLbgfw=@vger.kernel.org, AJvYcCXgxQlF/8UJ2QoZCBTW7/ydm9dehyC6+NJCq4/X2FZVTlstM6wDwujKP3yhKHedSpabnL70YXt6eTG8stqG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw55u+ExcE2EIo4mfwaf/HTod3jbm9VnPuxdZBjY8816MCShYwt
-	dRTzdV+I5h5vaq40g+Z2GUYUuXFQbU6FgIgYYdKQiR0xQXFYohcerqyVIt3i
-X-Gm-Gg: ASbGncszLQgXAR0TbJJlHRr9cwU49hez7a5TTzAxUO+wydr24Znw5ym8kRiV5p41cCT
-	15WJC9Q9Cj1+gqRreNNpyfvIunRVNY2aTa0aWNfhZ/59kqYhZxdG/J8Ii+fUnSEqEI7eK02B/XP
-	iO3N7JknXOh4HTzxto5ExLzEgXJEDYv1TeIO8xprpk3L7vE8wQ7oLGFsJnxsXbZosPS5KKxYw7S
-	SglhH2WdEavjDDM1w4V4pmGJuB8HBuAXYgSwXrYTdyfQuSEB7GYb4WTIKf0sco++MBWAolJIKnC
-	Bw6KVEae5ZzLlkY+
-X-Google-Smtp-Source: AGHT+IFeFae9WjSBSYnTv5iCaRYYZyAQuApIUWMeI9o4EZOXys6cNzh7eCBzlNSPl72AW2TtBNeTiA==
-X-Received: by 2002:a05:6122:829d:b0:516:1582:f72e with SMTP id 71dfb90a1353d-5161582f8e1mr10713330e0c.2.1733841717579;
+	 To:Cc:Content-Type; b=rlpPl+GBtNESO3niLEsK2GYqZd6EVs8u9GhPjBoZdFENgYm2mIO8jNWxSm4DIVsLXlsTvObfBbGx022RutS1oMXXTl0VP0/UN4PLh/6+387dxNZI6gYTt56HCpV8gsB+LHONgmz2oxQDyP746LOCq1ckiHAT973GUo7VUuD0l1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NfO/9HfI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05DC3C4CEDE;
+	Tue, 10 Dec 2024 14:41:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733841718;
+	bh=6I+fvpRnzlPuOqr0NtIcUKQjHLNr3VYA1+cn4EHRNgY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=NfO/9HfIy+WghyrLVXC0d4Mbpp4/XvHE5Z/uhYp1vxnRlsW+Nd/mEvkBqeZhRvmMK
+	 kgpSMxbXZkrUDhbGe0wGsJMr6V3hKIa7LJZcpIP3jSy0XF1/Lq4PnYHJlgyqhrcSqs
+	 U39FLUtTATfsdQsLIl/XS8pXHunELnvA58omJ+L3+MYnv4qVc99e3oz62ki18/vu1T
+	 cdHegQlu5YNgraaqGwfINe6AT02a9jBlqKu7O/9+la2j8/riwPAFI39fI3FKwggf1f
+	 ovNa7g1R3viYIictxHljFCIBmigeICZyvP8MEHi6NFCidGBwC8gkpUZpGt7tkATpVb
+	 np8JrdX95cybg==
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6eff5ad69a1so28940627b3.3;
         Tue, 10 Dec 2024 06:41:57 -0800 (PST)
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-518837c8955sm237672e0c.17.2024.12.10.06.41.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Dec 2024 06:41:56 -0800 (PST)
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-85c4b4cf73aso909923241.2;
-        Tue, 10 Dec 2024 06:41:56 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU0tXVkXMLhNru09tHw+5etQf4H/rHiKVX0DdUQAoUPQFQ8qL5UBbP5hIMLvJFnXAb7U+aRa7tRW/WLBNqa@vger.kernel.org, AJvYcCUkntAFtTIau+T/aQMssfl/sidfSkU+LedOzC0+EhEf080R29Sw57Ak12dgJ243OwtKmd1EQk+wGSPS@vger.kernel.org, AJvYcCVNlsNMNJdLrFIT2eNrvBhCTcR7GsBsGeVSXunPnF5YPvIs4US6BeOVvQ2cEy71BqHVmMZnzBnKS0c3@vger.kernel.org, AJvYcCVoIaA4rvUMCP2cFtpjdmhUA9+B449V2WDC6lU2Qjgx0Zp2vJVRr7CzeUpmr3DKkgJACDqhnrfh2BFsyr2Neeak0Us=@vger.kernel.org
-X-Received: by 2002:a05:6122:169d:b0:518:97c2:f21a with SMTP id
- 71dfb90a1353d-51897c2f7dcmr1218484e0c.6.1733841716153; Tue, 10 Dec 2024
- 06:41:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWPCJQn0Fh2yFO1qXDLa0/QXLZDOSZUj5RrCK8BVvoIXI1ovMIORkMNus0IISwIxKoqd9LDlWt/0/WOP2PDrBk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRmWCxESIToPFTlb3abM+hZ8pcVeLdfVanWZSWunmtQoxdYE8X
+	tHTj0+xbhD6HCyKEw12bafgns2obtFditvDULNyu0zzfvHDR/ujYdM9bxrCfgvrmLSshiMcni3l
+	ROOOul/rBXO6r4uYahpTewU3hJg==
+X-Google-Smtp-Source: AGHT+IEFK4UoAEDb9osbYUZV0RyjUZPG4SHW9yY8AoUNGN7ZS1Z1jUfl+Uyz1M9es3mv0bzOJ6l1wGkpquMbIdVMzmw=
+X-Received: by 2002:a05:6902:12cc:b0:e39:9a5b:53ac with SMTP id
+ 3f1490d57ef6-e3a0b417f62mr11841401276.40.1733841717209; Tue, 10 Dec 2024
+ 06:41:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com> <20241126092050.1825607-4-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241126092050.1825607-4-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 10 Dec 2024 15:41:44 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUWUw-cAkZ612J0o+0uJ2B8BqC87Q9SjWxay126xqxeDQ@mail.gmail.com>
-Message-ID: <CAMuHMdUWUw-cAkZ612J0o+0uJ2B8BqC87Q9SjWxay126xqxeDQ@mail.gmail.com>
-Subject: Re: [PATCH v2 03/15] soc: renesas: rz-sysc: Enable SYSC driver for RZ/G3S
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be, 
-	magnus.damm@gmail.com, gregkh@linuxfoundation.org, 
-	yoshihiro.shimoda.uh@renesas.com, christophe.jaillet@wanadoo.fr, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-usb@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <a068210820b44d28a6e97eb07f43f3c5@huawei.com>
+In-Reply-To: <a068210820b44d28a6e97eb07f43f3c5@huawei.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 10 Dec 2024 08:41:46 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLGEvGBQ0W_B6+5cME1UEhuKXadBB-6=GoN1tmavw9K_w@mail.gmail.com>
+Message-ID: <CAL_JsqLGEvGBQ0W_B6+5cME1UEhuKXadBB-6=GoN1tmavw9K_w@mail.gmail.com>
+Subject: Re: Separate L1 cache object in CPU@x
+To: Alireza Sanaee <alireza.sanaee@huawei.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	Mailing List <devicetree-spec@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 26, 2024 at 10:21=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev>=
- wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Thu, Nov 28, 2024 at 10:01=E2=80=AFAM Alireza Sanaee
+<alireza.sanaee@huawei.com> wrote:
 >
-> Enable SYSC driver for RZ/G3S. This is necessary for USB support.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> Hi
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Better to send questions like this to devicetree-spec@vger.kernel.org
+if you want them to be seen.
 
-Gr{oetje,eeting}s,
+> I was working on some scenarios where I have multi-threading on for my AR=
+M CPUs and would like to share L1 caches between two hyperthreaded cores. T=
+his is particularly possible to be expressed via ACPI PPTT tables, and it i=
+s important to be able to express the same thing on both devicetree and ACP=
+I PPTT because some use device tree and some use PPTT table for topology an=
+d sharing purposes on ARM. Currently L1 caches are expressed via some prope=
+rties within CPU object and it seems not possible to use a separate cache o=
+bject for L1 looking at the latest spec. I wonder what the thought are on t=
+his?
 
-                        Geert
+The easiest thing to do here is that each thread within a core should
+be a 'reg' entry. So if you have 2 threads per core, the cpu nodes
+would have 2 entries in 'reg'. This is what the DT spec says. Though
+the spec says to do that if the MMU is shared, I would put that down
+as powerpc specific. As the spec came from ePAPR, there's still a lot
+of powerpc specifics left. (Patches welcome.)
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+I don't think we've ever supported multi-threading with DT on ARM, so
+likely there might be some issues to fix in the kernel.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Rob
 
