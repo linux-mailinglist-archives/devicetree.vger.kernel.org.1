@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-129068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6348A9EA9A7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:32:36 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 609C59EA9AC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:32:51 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19D1B285A23
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 07:32:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 694D516955F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 07:32:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 269F422D4E9;
-	Tue, 10 Dec 2024 07:32:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4240322F39D;
+	Tue, 10 Dec 2024 07:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="lppgcg9E"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="nNRq3IaS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5AFF22CBE0
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 07:32:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9555B22E406
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 07:32:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733815943; cv=none; b=fUwUJXeuPqtL1vaIc+C9WlJevFCl98lX+B9CY990wDFdjqzEnSnOgm0pgIJoyrzbi3XZTjlU1b398wKzvqd2eJ5bceAHD9zFv7OOWMVGjwhyWMR3RiPblkISnzjGLWNfyYaTOjhvamNNZ7PH5tPrSqVX3l/t4/PJCaJ201anGzM=
+	t=1733815947; cv=none; b=BPysB7HM1JjAVnU5UWejhK3U1J9hxctKUysnDoHMBJRYXUMjGV/7+MGLD94FfIAOLMKq53yaYNPN1Qe/wqj6h6jCeTgNS9aTxT5I7vWO2HKCAa6ZYYf68F72IXTQ3u3/BhGsowG6EpoOkYsde3scQzRSewa6+tcaXClYBHSR2a4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733815943; c=relaxed/simple;
-	bh=hsirGFiU8BzwJ9k9bRXj/aFU0gO5K783nFnr1XHXDe4=;
+	s=arc-20240116; t=1733815947; c=relaxed/simple;
+	bh=NOfDh6XWMXA3bQDZgyXinaVUDZBBis7f4DQlXXXEj18=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=X47Xl5nUVzSik8dFwKoapJf8DzfUxqDuGK+KSXfE4xTQusPvE5uhHN5zygqyVZxV83so117dffQ5pJt/cjiR4/hP+D5vixTc91LfNdIU/W0x8px1+iicJbI/ejxSR97erPWnHwBKZqwH+8qTpfGBtVeMolnK8+UN0BP99ztQgGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=lppgcg9E; arc=none smtp.client-ip=209.85.214.174
+	 MIME-Version; b=Vzbzty31P5/xCf15Ye6vFMIib5Dg6ZvW/sZXkxwa+uIeFXssOJkkt1U093d+v4/yBLqPjibDFdVvJ7H4SMj2oC5tUNfT1VDTrbWiNMxg1qU4lwC8jy6BYP2R0b97e/P+/8TjTrIAaYh92D4yMKKDCyp6/fBbkIHXjToNZdc0TSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=nNRq3IaS; arc=none smtp.client-ip=209.85.215.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2164b662090so17508775ad.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 23:32:21 -0800 (PST)
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-7f46d5d1ad5so4068810a12.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 23:32:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1733815941; x=1734420741; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1733815944; x=1734420744; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fU9h1qciZfo1eCFrj9RBOWdEPoZjJk9V1VI96TtLyqU=;
-        b=lppgcg9E3wpJVG8vWlDCF3+oOe0ZFP9+e2+dkAGLqdwpnRp/a9Czf7o6P4VqnTQpqM
-         wNcox/86N2wR+8S9IdkuDWepzl6qXBG0BkpOmEAC5SLbX+ahxGTHdgyYSB7rwKWgdyMc
-         E0kwS23XrCdplorg3eDJ1mFoGBaZ0ttr7vDSA=
+        bh=oIYaaljMW1uOvyE52JKpg1mRNjsi/3D4cn4UsNQnmlk=;
+        b=nNRq3IaSCDLph7zpnboRZ1+zFRDvhhk7V0FKhrFDr39iKyHno9vLzL+r4PWE15tXP5
+         IS+2L49n+YGoPTZVK8axS49mFkGdK4HKUHbn5e0/Kv6RRj3DtKUH2L1Aq6Svrn8djXkf
+         D4W7pHiLAxgjJMivWGHR9LiwWR5ZrgazL7Ar4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733815941; x=1734420741;
+        d=1e100.net; s=20230601; t=1733815944; x=1734420744;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fU9h1qciZfo1eCFrj9RBOWdEPoZjJk9V1VI96TtLyqU=;
-        b=pP5YCXoSW6b15GfDfTUR9v0RYL67Ogud58SJiKDdtlop6Fc5e/WjYNuJ08JGoK266Q
-         ToLsk0uhBkzqhCAsfAmS/4MZYNQ/8FnAKmkyzFB6+Ewe6N8+3hJd+Og8mqHN9I5oQFD/
-         Af4XmuhDgl75/jQOubnN0iQdfEdwSDFAdWd2vvLoSHNmdnxdWntbT//r6HEGqW9Hz18k
-         RV89djR3FjMwvK4wZzNNe04z6u8Rl+2nhApcpFqWkJl0GYAw/N8khiSJm43YdTGZqLap
-         6CYUgPFPIqumDB+97vB+dOduDTipWE/1IRBrcd/QgJgOhxraarlWfZYgOBNq6BzYnIsj
-         Fj4A==
-X-Forwarded-Encrypted: i=1; AJvYcCWIiOsPUxDv7RUEZCH7cFq/cBdvzpcOamdn3194ZfQy0PyXYbrr4G8dGHVjbH8w726o8LyDbdUnvoIm@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoK04mXfD+TGkaFjxCDZONsEVmKBgrdeACoPwBf7v1BaEPuOYz
-	uyCD1tIfnPyrqILq4Fk+edRyPmHF4MT2XtZCS+E2uDevvKzzRQwjoRVZa9VewA==
-X-Gm-Gg: ASbGnctz79PxHv6QbRWKBJRcrU1QVJ1fObJSS/23hk0g+Qw+Vnmfb2WF7lnSf496AMQ
-	G91O8E5tfzRQEMoWnCcAEfnQveKbAr7tF7dBEs1oCHXdJc7Q+bykNFq7Yxe+9phJiWh6o+ZNOU2
-	Mos7EMMPsNmxPAlbhJeWd/e1l/fumHgOyDLcSQFsgu/jMJ/UBd7N+gmyiV3yLOS1XJFTCdE+XPh
-	HAkr9ucnUVCz7AgYisvEutpTE/CwvTbSuL7P2KStyMaNWq1y6wDZTLEznYQARm7gGxEaW0H
-X-Google-Smtp-Source: AGHT+IHPmON+PwbNAPPZYDE53KwGnbvTApGQhaNGbUZe2uB605PBpV+ZcftSN2qQ7es0oLZxPl5QBA==
-X-Received: by 2002:a17:902:ecc1:b0:216:3876:2cff with SMTP id d9443c01a7336-21638762fcamr152395915ad.54.1733815940983;
-        Mon, 09 Dec 2024 23:32:20 -0800 (PST)
+        bh=oIYaaljMW1uOvyE52JKpg1mRNjsi/3D4cn4UsNQnmlk=;
+        b=ThEGPC+0eV546Kk+obQ6rTv3uQh+3j1YRJNcQEArxxYiISTESvVKqp+yja0uqESKXv
+         iyyLxGbQ3i7+kApv2IRFfEWlWRrF+yKIM9qdIf+VQ/0RUlW2iJMwRyPzhPfvzjd+X0ML
+         9W1Pk4HUWFxH7Pe4cny/8DAmGqMNLvC0kWe6KoKux+Qc8jCD/I1fBNDS53qwvAh6TS3i
+         GmR5M4glRJgy0hoTNJM500mur36FGOVaPlEDo+G4zw0Y6cDHGt/waWbZ9I8jJKNpvv6g
+         S7oYktkjO+ecceZKXi9VWq/cG5OadQVs3auci0cTf+daZfs15vUmq3TtJiP+t9xJ7PzB
+         K6UQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUqh76CzDVWu+7hGmjT20a3mOC/eZUYem6+OfUSJJ0J8ZQfuBUeaTGJ0bs3sRJOmp49m5+L4VMdcF8V@vger.kernel.org
+X-Gm-Message-State: AOJu0YyD/+3T8CdlIPv985Q8yBI8cefwAM1kt+IlMerQdLud9c926FBO
+	DAo7SfVO7acnmI4GajW+oTwctShqgZ6ecTidbr+8nHKG3nWbpn7oJsLSP+X2lw==
+X-Gm-Gg: ASbGncvq7aytT8qyuSsFgfG1Rda2IYFC7P2q33Oy/bL2M3JeJ8M3zCbqGHZns19muC5
+	ixPiWYhutwtchNpAbQynf58DEK8o96Apju710rAtTOKV/A2AcllWXQBGQCZLB9HpZlaLdeNU7d0
+	og4oNISIH/7GG58ujr6bmlNjZSDMWs0mJoVeIei+ZOWVjNA6oKijOuX7Swx4/EjFDXfB2aaItpR
+	xcuS+RpvhQ0JPMOxDTumj3+vy9TgjzDx11o42krZzlGo/xRUKHVYigrz9yT8jOLGqI/B96+
+X-Google-Smtp-Source: AGHT+IEljjpPjIkRAq9lZ+wjZ9Q+4usk5mFRZZW08ysh+jkDMPJ/btZlL9SUPYyzmbG9svkENmEq7A==
+X-Received: by 2002:a17:902:ce88:b0:216:55a1:35a with SMTP id d9443c01a7336-2166a0097c0mr55964065ad.30.1733815943958;
+        Mon, 09 Dec 2024 23:32:23 -0800 (PST)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:89ce:2db9:f7d5:156d])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-215f8f09146sm83693295ad.199.2024.12.09.23.32.18
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-215f8f09146sm83693295ad.199.2024.12.09.23.32.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Dec 2024 23:32:20 -0800 (PST)
+        Mon, 09 Dec 2024 23:32:23 -0800 (PST)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Chaotian Jing <chaotian.jing@mediatek.com>,
 	Ulf Hansson <ulf.hansson@linaro.org>,
@@ -85,9 +85,9 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	devicetree@vger.kernel.org,
 	Frank Wunderlich <frank-w@public-files.de>,
 	Andy-ld Lu <andy-ld.lu@mediatek.com>
-Subject: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Document compatibles that need two register ranges
-Date: Tue, 10 Dec 2024 15:32:10 +0800
-Message-ID: <20241210073212.3917912-2-wenst@chromium.org>
+Subject: [PATCH v2 2/2] mmc: mtk-sd: Limit getting top_base to SoCs that require it
+Date: Tue, 10 Dec 2024 15:32:11 +0800
+Message-ID: <20241210073212.3917912-3-wenst@chromium.org>
 X-Mailer: git-send-email 2.47.0.338.g60cca15819-goog
 In-Reply-To: <20241210073212.3917912-1-wenst@chromium.org>
 References: <20241210073212.3917912-1-wenst@chromium.org>
@@ -99,47 +99,83 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Besides the MT8183's MMC controller and all its compatible derivatives,
-the recently added MT7986 and MT8196 also require two register ranges.
-This is based on the actual device trees.
+Currently the mtk-sd driver tries to get and map the second register
+base, named top_base in the code, regardless of whether the SoC model
+actually has it or not. This produces confusing big error messages on
+the platforms that don't need it:
 
-Properly enforce this in the binding.
+    mtk-msdc 11260000.mmc: error -EINVAL: invalid resource (null)
 
-Fixes: 4a8bd2b07d88 ("dt-bindings: mmc: mtk-sd: Add mt7988 SoC")
-Fixes: 58927c9dc4ab ("dt-bindings: mmc: mtk-sd: Add support for MT8196")
-Cc: Frank Wunderlich <frank-w@public-files.de>
-Cc: Andy-ld Lu <andy-ld.lu@mediatek.com>
+Limit it to the platforms that actually require it, based on their
+device tree entries, and properly fail if it is missing.
+
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ drivers/mmc/host/mtk-sd.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-index f86ebd81f5a5..0debccbd6519 100644
---- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-@@ -235,11 +235,19 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: mediatek,mt8183-mmc
-+            enum:
-+              - mediatek,mt7986-mmc
-+              - mediatek,mt7988-mmc
-+              - mediatek,mt8183-mmc
-+              - mediatek,mt8196-mmc
-     then:
-       properties:
-         reg:
-           minItems: 2
-+    else:
-+      properties:
-+        reg:
-+          maxItems: 1
+diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
+index e2c385853eef..1bb7044f4ca1 100644
+--- a/drivers/mmc/host/mtk-sd.c
++++ b/drivers/mmc/host/mtk-sd.c
+@@ -414,6 +414,7 @@ struct mtk_mmc_compatible {
+ 	u8 clk_div_bits;
+ 	bool recheck_sdio_irq;
+ 	bool hs400_tune; /* only used for MT8173 */
++	bool needs_top_base;
+ 	u32 pad_tune_reg;
+ 	bool async_fifo;
+ 	bool data_tune;
+@@ -587,6 +588,7 @@ static const struct mtk_mmc_compatible mt7986_compat = {
+ 	.clk_div_bits = 12,
+ 	.recheck_sdio_irq = true,
+ 	.hs400_tune = false,
++	.needs_top_base = true,
+ 	.pad_tune_reg = MSDC_PAD_TUNE0,
+ 	.async_fifo = true,
+ 	.data_tune = true,
+@@ -627,6 +629,7 @@ static const struct mtk_mmc_compatible mt8183_compat = {
+ 	.clk_div_bits = 12,
+ 	.recheck_sdio_irq = false,
+ 	.hs400_tune = false,
++	.needs_top_base = true,
+ 	.pad_tune_reg = MSDC_PAD_TUNE0,
+ 	.async_fifo = true,
+ 	.data_tune = true,
+@@ -653,6 +656,7 @@ static const struct mtk_mmc_compatible mt8196_compat = {
+ 	.clk_div_bits = 12,
+ 	.recheck_sdio_irq = false,
+ 	.hs400_tune = false,
++	.needs_top_base = true,
+ 	.pad_tune_reg = MSDC_PAD_TUNE0,
+ 	.async_fifo = true,
+ 	.data_tune = true,
+@@ -2887,9 +2891,13 @@ static int msdc_drv_probe(struct platform_device *pdev)
+ 	if (IS_ERR(host->base))
+ 		return PTR_ERR(host->base);
  
-   - if:
-       properties:
+-	host->top_base = devm_platform_ioremap_resource(pdev, 1);
+-	if (IS_ERR(host->top_base))
+-		host->top_base = NULL;
++	host->dev_comp = of_device_get_match_data(&pdev->dev);
++
++	if (host->dev_comp->needs_top_base) {
++		host->top_base = devm_platform_ioremap_resource(pdev, 1);
++		if (IS_ERR(host->top_base))
++			return PTR_ERR(host->top_base);
++	}
+ 
+ 	ret = mmc_regulator_get_supply(mmc);
+ 	if (ret)
+@@ -2951,7 +2959,6 @@ static int msdc_drv_probe(struct platform_device *pdev)
+ 	msdc_of_property_parse(pdev, host);
+ 
+ 	host->dev = &pdev->dev;
+-	host->dev_comp = of_device_get_match_data(&pdev->dev);
+ 	host->src_clk_freq = clk_get_rate(host->src_clk);
+ 	/* Set host parameters to mmc */
+ 	mmc->ops = &mt_msdc_ops;
 -- 
 2.47.0.338.g60cca15819-goog
 
