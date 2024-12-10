@@ -1,261 +1,267 @@
-Return-Path: <devicetree+bounces-129320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA6869EB3DD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:48:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C7C59EB3E6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:50:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E17851889CD6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:48:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D421C188A3BF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:50:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B87AA1A08C5;
-	Tue, 10 Dec 2024 14:47:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lc1zlZSL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 134A61AAE25;
+	Tue, 10 Dec 2024 14:49:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BC5578F23;
-	Tue, 10 Dec 2024 14:47:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FD7B1A0BD1
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 14:49:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733842074; cv=none; b=kibZh5cpn6Uub4eCKBzd1sBButKFJKXcOHwlKKtz43WQ9A3flGaOtKRZY/5Q46/YoS0mEIupZ7NaTImmMiJc2uX0PQfQDX23253z/RonfF2UV92K5eXNSb7nrk4+ayA7TSJjgNt/bviVMlNLOTXu6kd8beQ7wZmVekk31AaNevw=
+	t=1733842197; cv=none; b=cEUhyXtkmux5UvQT7f60SViPpsHHh0Rtc31NInfpXsJcbJgxdWpocwlV7lUUztA7+MsnrWv+B2KjWA/FSCtTlJOtJZ+H+lvxsxtZ0ztNz4UCfWgOYFZHtDxXOwWSB1defIWOeng35tC1FbvEU6OKVUPXUF6fAzJmtwYX88IJBVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733842074; c=relaxed/simple;
-	bh=4lW9XNfX+kbAu7CsKaD1PDODoyAj2Ev0VkALIieRNuo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OSqI58vvvtmkA6umaKedK5OGhvLn4Nk+tAFWhyHrWoQQdzNuQOWiHeWPC3l8flWCXfoxf6AKkyDPT9n2sKO49j+d5R3xRdNbvTYcydRrw1p129l3bthj9jhp6FYsW65lwnMfqbdCamMc8slEmRgFhGHXRt7IbB60tIeN7aGm40U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lc1zlZSL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7DE5C4CED6;
-	Tue, 10 Dec 2024 14:47:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733842074;
-	bh=4lW9XNfX+kbAu7CsKaD1PDODoyAj2Ev0VkALIieRNuo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lc1zlZSLQ2TgvZbhxgYixVtpBW+y5s3izYCsIWhjtMaTsZMhtfEPL02LPnUnn/0W6
-	 k4+GfsuO82jOIAi0SdII9H20ykIe2KAty7Nj320as4nW7o43REwbbaEtjSxoK5Vect
-	 QIER7PzGvP+pf3//p8oTZhpkt4Q+BC139eGzXFvKRSZp4pJInuo1MrQgphoX/d+ySj
-	 aeaxS9hr5VsrFOpMO6s73vIR1jKTb8WEOxQHdVbWlKoJZpSc87oCl2CEFsWCf8Qf7E
-	 pb58dqYeRc5N6yQROcB3qY745PVF+97ZyMclfd7pZEulMC03g4LgmXCVhFzVf+Nn+u
-	 Kmy+F37gsATPg==
-Message-ID: <42feceb8-512a-4be3-aefa-116bbde000c1@kernel.org>
-Date: Tue, 10 Dec 2024 15:47:49 +0100
+	s=arc-20240116; t=1733842197; c=relaxed/simple;
+	bh=egbRlbmlhjY1fckZ53UEb1P9iVDOvrQeu9+7WhhX9Qc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QptjUv/Iqej6oFETd2l3IcMOSvyyTckSeuEf+bXccg4rpnsZAUzkb1/UihP90eq6HDF/sa9jZW3ZTBGh5/H6mvCeLi/JaE6Ns3l9eNihybUSgycOKwXJ5g+j/AObh6BfObnu/pMzoV7RcHfvl1V8GtuPlcXpA2lqo3+Kmz8cTJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tL1YR-0005u5-Pz; Tue, 10 Dec 2024 15:49:39 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tL1YQ-002hu8-0r;
+	Tue, 10 Dec 2024 15:49:39 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tL1YQ-008Y8G-2u;
+	Tue, 10 Dec 2024 15:49:38 +0100
+Date: Tue, 10 Dec 2024 15:49:38 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Frank Li <Frank.li@nxp.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengfei Li <pengfei.li_1@nxp.com>, devicetree@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>, imx@lists.linux.dev,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] thermal: imx91: Add support for i.MX91 thermal
+ monitoring unit
+Message-ID: <20241210144938.zf3dkiubqhcxguqv@pengutronix.de>
+References: <20241209-imx91tmu-v1-0-7859c5387f31@nxp.com>
+ <20241209-imx91tmu-v1-2-7859c5387f31@nxp.com>
+ <20241210103646.7gblp7mzxbna5gas@pengutronix.de>
+ <Z1hLlm75iGMogltc@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 08/13] wifi: ath12k: add AHB driver support for IPQ5332
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Balamurugan S <quic_bselvara@quicinc.com>,
- P Praneesh <quic_ppranees@quicinc.com>
-References: <20241210074159.2637933-1-quic_rajkbhag@quicinc.com>
- <20241210074159.2637933-9-quic_rajkbhag@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241210074159.2637933-9-quic_rajkbhag@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z1hLlm75iGMogltc@lizhi-Precision-Tower-5810>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 10/12/2024 08:41, Raj Kumar Bhagat wrote:
-> From: Balamurugan S <quic_bselvara@quicinc.com>
-> 
-> Add Initial Ath12k AHB driver support for IPQ5332. IPQ5332 is AHB
-> based IEEE802.11be 2 GHz 2x2 WiFi device.
-> 
-> Tested-on: IPQ5332 hw1.0 AHB WLAN.WBE.1.3.1-00130-QCAHKSWPL_SILICONZ-1
-> Tested-on: QCN9274 hw2.0 PCI WLAN.WBE.1.1.1-00210-QCAHKSWPL_SILICONZ-1
-> 
-> Signed-off-by: Balamurugan S <quic_bselvara@quicinc.com>
-> Co-developed-by: P Praneesh <quic_ppranees@quicinc.com>
-> Signed-off-by: P Praneesh <quic_ppranees@quicinc.com>
-> Co-developed-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-> ---
->  drivers/net/wireless/ath/ath12k/ahb.c  | 878 +++++++++++++++++++++++++
->  drivers/net/wireless/ath/ath12k/ahb.h  |  37 ++
->  drivers/net/wireless/ath/ath12k/core.h |   4 +
->  drivers/net/wireless/ath/ath12k/hal.h  |   1 +
->  drivers/net/wireless/ath/ath12k/hw.h   |   1 +
->  5 files changed, 921 insertions(+)
->  create mode 100644 drivers/net/wireless/ath/ath12k/ahb.c
->  create mode 100644 drivers/net/wireless/ath/ath12k/ahb.h
-> 
-> diff --git a/drivers/net/wireless/ath/ath12k/ahb.c b/drivers/net/wireless/ath/ath12k/ahb.c
-> new file mode 100644
-> index 000000000000..fcd949faea9f
-> --- /dev/null
-> +++ b/drivers/net/wireless/ath/ath12k/ahb.c
-> @@ -0,0 +1,878 @@
-> +// SPDX-License-Identifier: BSD-3-Clause-Clear
-> +/*
-> + * Copyright (c) 2018-2019 The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/dma-mapping.h>
-> +#include <linux/iommu.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-
-You don't use this header.
-
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/remoteproc.h>
-
-More headers here look unused.
-
-> +#include <linux/soc/qcom/smem.h>
-> +#include <linux/soc/qcom/smem_state.h>
-> +#include "ahb.h"
-> +#include "debug.h"
-> +#include "hif.h"
-> +
-> +static const struct of_device_id ath12k_ahb_of_match[] = {
-> +	{ .compatible = "qcom,ipq5332-wifi",
-> +	  .data = (void *)ATH12K_HW_IPQ5332_HW10,
-> +	},
-> +	{ }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, ath12k_ahb_of_match);
-
-This goes to driver struct declaration. It is really unusual to see it
-in some other places.
-
-
-> +
-> +#define ATH12K_IRQ_CE0_OFFSET 4
-> +
-
+On 24-12-10, Frank Li wrote:
+> On Tue, Dec 10, 2024 at 11:36:46AM +0100, Marco Felsch wrote:
+> > Hi,
+> >
+> > On 24-12-09, Frank Li wrote:
 
 ...
 
-> +
-> +static int ath12k_ahb_probe(struct platform_device *pdev)
-> +{
-> +	struct ath12k_base *ab;
-> +	const struct ath12k_hif_ops *hif_ops;
-> +	struct device_node *mem_node;
-> +	enum ath12k_hw_rev hw_rev;
-> +	u32 addr;
-> +	int ret;
-> +
-> +	hw_rev = ath12k_ahb_get_hw_rev(pdev);
-> +	switch (hw_rev) {
-> +	case ATH12K_HW_IPQ5332_HW10:
-> +		hif_ops = &ath12k_ahb_hif_ops_ipq5332;
-> +		break;
-> +	default:
-> +		dev_err(&pdev->dev, "Unsupported device type %d\n", hw_rev);
+> > > +	/* disable the monitor during initialization */
+> > > +	imx91_tmu_enable(tmu, false);
+> > > +	imx91_tmu_start(tmu, false);
+> >
+> > Make use of pm_runtime?
+> 
+> thermal is always on after probe. continue measure tempature. So pm_runtime
+> is not suitable for this case.
 
-You already print once in ath12k_ahb_get_hw_rev() and none of these can
-happen. No need to print impossible conditions at all. No need to print
-impossible things twice.
+There are at least 3 drivers which use pm-runtime including the i.MX6/7
+imx_thermal.c driver.
 
-> +		return -EOPNOTSUPP;
-> +	}
-> +
+> > > +	ret = imx91_init_from_nvmem_cells(tmu);
+> > > +	if (ret) {
+> > > +		writel_relaxed(DEFAULT_TRIM1_CONFIG, tmu->base + TRIM1);
+> > > +		writel_relaxed(DEFAULT_TRIM2_CONFIG, tmu->base + TRIM2);
+> > > +	}
+> > > +
+> > > +	/* The typical conv clk is 4MHz, the output freq is 'rate / (div + 1)' */
+> > > +	rate = clk_get_rate(tmu->clk);
+> > > +	div = (rate / 4000000) - 1;
+> >
+> > Would be nice to validate the div value before passing to the HW and if
+> > the target rate of 4MHz can't be reached by the div you you should
+> > return -EINVAL.
+> >
+> > > +
+> > > +	/* Set divider value and enable divider */
+> > > +	writel_relaxed(DIV_EN | FIELD_PREP(DIV_MASK, div), tmu->base + REF_DIV);
+> > > +
+> > > +	/* Set max power up delay: 'Tpud(ms) = 0xFF * 1000 / 4000000' */
+> > > +	writel_relaxed(FIELD_PREP(PUDL_MASK, 100U), tmu->base + PUD_ST_CTRL);
+> > > +
+> > > +	/*
+> > > +	 * Set resolution mode
+> > > +	 * 00b - Conversion time = 0.59325 ms
+> > > +	 * 01b - Conversion time = 1.10525 ms
+> > > +	 * 10b - Conversion time = 2.12925 ms
+> > > +	 * 11b - Conversion time = 4.17725 ms
+> > > +	 */
+> > > +	writel_relaxed(FIELD_PREP(CTRL1_RES_MASK, 0x3), tmu->base + CTRL1_CLR);
+> > > +	writel_relaxed(FIELD_PREP(CTRL1_RES_MASK, 0x1), tmu->base + CTRL1_SET);
+> > > +
+> > > +	/*
+> > > +	 * Set measure mode
+> > > +	 * 00b - Single oneshot measurement
+> > > +	 * 01b - Continuous measurement
+> > > +	 * 10b - Periodic oneshot measurement
+> > > +	 */
+> >
+> > For the resolution it's fine to have the values directly coded without a
+> > define, but here we can definitly use a define and drop the comment.
+> >
+> > > +	writel_relaxed(FIELD_PREP(CTRL1_MEAS_MODE_MASK, 0x3), tmu->base + CTRL1_CLR);
+> > > +	writel_relaxed(FIELD_PREP(CTRL1_MEAS_MODE_MASK, 0x1), tmu->base + CTRL1_SET);
+> >
+> > Why do we set it to periodic mode instead of the single-shot? At the
+> > moment the device doesn't have IRQ support, and so there is no need to
+> > run the measurements in background.
+> 
+> It is "continous measurement".  first clean MODE_MASK, then then 01.
 
-> +	ret = dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(32));
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Failed to set 32-bit coherent dma\n");
-> +		return ret;
-> +	}
-> +
-> +	ab = ath12k_core_alloc(&pdev->dev, sizeof(struct ath12k_ahb),
-> +			       ATH12K_BUS_AHB);
-> +	if (!ab) {
-> +		dev_err(&pdev->dev, "failed to allocate ath12k base\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	ab->hif.ops = hif_ops;
-> +	ab->pdev = pdev;
-> +	ab->hw_rev = hw_rev;
-> +	platform_set_drvdata(pdev, ab);
-> +
-> +	/* Set fixed_mem_region to true for platforms that support fixed memory
-> +	 * reservation from DT. If memory is reserved from DT for FW, ath12k driver
-> +	 * need not to allocate memory.
-> +	 */
-> +	if (!of_property_read_u32(ab->dev->of_node, "memory-region", &addr)) {
-> +		set_bit(ATH12K_FLAG_FIXED_MEM_REGION, &ab->dev_flags);
-> +
-> +		/* If the platform supports fixed memory, then it should define/
-> +		 * reserve MLO global memory in DT to support Multi Link Operation
-> +		 * (IEEE 802.11be).
-> +		 * If MLO global memory is not reserved in fixed memory mode, then
-> +		 * MLO cannot be supported.
-> +		 */
-> +		mem_node = of_find_node_by_name(NULL, "mlo_global_mem_0");
+Still, why? You return the temp value upon a request (get_temp). There
+is no async notification from this driver to others. So it can be left
+to single-shot and do the measurement on request (get_temp).
 
-NAK. Incorrect name, not conforming to coding style. Undocumented ABI.
+> _CLR means clean bits according to mask
+> _SET means set bits according to mask.
 
-Drop all calls to of_find_node_by_name() or any other stuff like this.
+I know.
 
-> +		if (!mem_node)
-> +			ab->single_chip_mlo_supp = false;
-> +	}
-> +
-> +	ret = ath12k_core_pre_init(ab);
-> +	if (ret)
-> +		goto err_core_free;
+Regards,
+  Marco
 
-Best regards,
-Krzysztof
+> 
+> Frank
+> 
+> >
+> > > +
+> > > +	/*
+> > > +	 * Set Periodic Measurement Frequency to 25Hz:
+> > > +	 * tMEAS_FREQ = tCONV_CLK * PERIOD_CTRL[MEAS_FREQ]. ->
+> > > +	 * PERIOD_CTRL(MEAS_FREQ) = (1000 / 25) / (1000 / 4000000);
+> > > +	 * Where tMEAS_FREQ = Measurement period and tCONV_CLK = 1/fCONV_CLK.
+> > > +	 * This field should have value greater than count corresponds
+> > > +	 * to time greater than summation of conversion time, power up
+> > > +	 * delay, and six times of conversion clock time.
+> > > +	 * tMEAS_FREQ > (tCONV + tPUD + 6 * tCONV_CLK).
+> > > +	 * tCONV is conversion time determined by CTRL1[RESOLUTION].
+> > > +	 */
+> > > +	writel_relaxed(FIELD_PREP(MEAS_FREQ_MASK, 0x27100), tmu->base + PERIOD_CTRL);
+> >
+> > With the single-shot measurements we could remove this part and..
+> >
+> > > +
+> > > +	/* enable the monitor */
+> > > +	imx91_tmu_enable(tmu, true);
+> > > +	imx91_tmu_start(tmu, true);
+> >
+> > this part as well.
+> >
+> > Regards,
+> >   Marco
+> >
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static void imx91_tmu_remove(struct platform_device *pdev)
+> > > +{
+> > > +	struct imx91_tmu *tmu = platform_get_drvdata(pdev);
+> > > +
+> > > +	/* disable tmu */
+> > > +	imx91_tmu_start(tmu, false);
+> > > +	imx91_tmu_enable(tmu, false);
+> > > +}
+> > > +
+> > > +static int __maybe_unused imx91_tmu_suspend(struct device *dev)
+> > > +{
+> > > +	struct imx91_tmu *tmu = dev_get_drvdata(dev);
+> > > +
+> > > +	/* disable tmu */
+> > > +	imx91_tmu_start(tmu, false);
+> > > +	imx91_tmu_enable(tmu, false);
+> > > +
+> > > +	clk_disable_unprepare(tmu->clk);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int __maybe_unused imx91_tmu_resume(struct device *dev)
+> > > +{
+> > > +	struct imx91_tmu *tmu = dev_get_drvdata(dev);
+> > > +	int ret;
+> > > +
+> > > +	ret = clk_prepare_enable(tmu->clk);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	imx91_tmu_enable(tmu, true);
+> > > +	imx91_tmu_start(tmu, true);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static SIMPLE_DEV_PM_OPS(imx91_tmu_pm_ops,
+> > > +			 imx91_tmu_suspend, imx91_tmu_resume);
+> > > +
+> > > +static const struct of_device_id imx91_tmu_table[] = {
+> > > +	{ .compatible = "fsl,imx91-tmu", },
+> > > +	{ },
+> > > +};
+> > > +MODULE_DEVICE_TABLE(of, imx91_tmu_table);
+> > > +
+> > > +static struct platform_driver imx91_tmu = {
+> > > +	.driver = {
+> > > +		.name	= "i.MX91_thermal",
+> > > +		.pm	= pm_ptr(&imx91_tmu_pm_ops),
+> > > +		.of_match_table = imx91_tmu_table,
+> > > +	},
+> > > +	.probe = imx91_tmu_probe,
+> > > +	.remove = imx91_tmu_remove,
+> > > +};
+> > > +module_platform_driver(imx91_tmu);
+> > > +
+> > > +MODULE_AUTHOR("Peng Fan <peng.fan@nxp.com>");
+> > > +MODULE_DESCRIPTION("i.MX91 Thermal Monitor Unit driver");
+> > > +MODULE_LICENSE("GPL");
+> > >
+> > > --
+> > > 2.34.1
+> > >
+> > >
+> > >
+> 
 
