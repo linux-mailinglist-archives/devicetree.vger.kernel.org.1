@@ -1,276 +1,220 @@
-Return-Path: <devicetree+bounces-129421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 789EC9EB893
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 18:47:27 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39F7D1888C33
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:47:18 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 129AA214223;
-	Tue, 10 Dec 2024 17:46:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Mhd+/GeX"
-X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2071.outbound.protection.outlook.com [40.107.212.71])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F74F9EB8A6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 18:50:35 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DED1214211;
-	Tue, 10 Dec 2024 17:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.212.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733852787; cv=fail; b=pwvV8UsJzvWsanUYCirrpVjHl6BkqEMwQSfyAV9iQPL07bfhgq0ECQ0ZRMMxQoKmQE1Mpx5JfzFqwdkcmiwndK+qNAamPe92ual5o/u9lCI6GeAo0ut4TRhVGJic1HtBo2nm8/0Wqz6QwdvvkO2GvI43TeAXNgjzB1BdO3Z1W2s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733852787; c=relaxed/simple;
-	bh=9EhYSFWsRus1+fVauRO2T+umX6Yu6+CNmfYkzKXcU78=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cJy27XUayN6HXGblbeXE/ZTotfVPjZBfm29iKmcnPmCzo6QTXLaZP5geclIvkBcoMiWXLkuK+QCHnVU+UG14hSvNetS+xYIOmlsgNZwVZc47ntB7Nvet8SEaEp+Vp5idUAe0inBzJuKN9Wly62VRj/GoTJ+Pkb1Sf3Ztb7qO9mA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Mhd+/GeX; arc=fail smtp.client-ip=40.107.212.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VXiAxaSC49CkbfgOHX++pMFqXIu1DTZsbmS3OpcWB+RlpG3Vnvh+qZEv6Nw6Llx1+TBCvYpmoLcXHgUcucdvDWtDPMt5QyGK58Syb4pBNjc1C/IH5EAXlzEUe8XsBqXUwhiv8rfm2VJjDv+ISzpoQuEpM+uHQr8A1Dg/vFP4IQc8tDlDywIrAwrnLZTDi9MNVxlzMjef8ZriZYJAvdnm8cWrOw3lm+aLvUBEcieM06lQnk6a/tRsLam6lm1jzNIXt8vzZ75Jv713uT/pAO1XpOb9/cQ/2Mlq7XeAfweYAIdDRgAaPGAEVJ9gzxM14ryiFvCKzIP8tS+9s3eUuqmCVA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6s1mgzYgjubaFe5vz2yf25UsogL8btmVF5U9yte3mAQ=;
- b=ck6qIdWTuSX0u14YWcjWWuAKiQ6l3C07klEtNes+OcjtX5CidUo0rKj4qv+9qLZ1DfUBKBXh85xxrlXSJvydePhGH5H8hi5V2P2z8O5Ukln5Ih/p5m7CbGwcjtueWHoXDByU/hMK2BW4JdRaAh8PwAeLFlbbenJoC6MEE9ll5wH0CJafNqKUq07jgrk4f+NlhW+ckDS5gCYUx+HU5eKjZ1ci7HSgsASIicmz6S4yix2aIvdKm3CO//3alJVfqEXaQgBjIMD0d/GD2ixp7yEXCDhLwkZVbrO7196wSs/896jm0QdPKu9zewRHbKh9mPij8VQEjpC+KSACQ7XU3JV+zQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6s1mgzYgjubaFe5vz2yf25UsogL8btmVF5U9yte3mAQ=;
- b=Mhd+/GeXEtBWMhXR1YkZxq2Thk8Q2KD3m4Ds6+8FoagZGaVu1VviIFsN9FkVSTad9GME7E/UdombEUzxCoT0RNlKxkSQB4cjEdVqulfggPYI8Dq2bC4iMd9WBHsNjf5fsUh7PZK18BsqYz6iuL9PtTqpQu7S073l6jgXPVxIY5zVYaFxvVAFeasHwWtj8bpLCaXcPT/vAunZ7EeBW+ZZtmZgHvAxeGRQFWKKFN2H+BL89wcz3n0LDNsFXhBeZagCetxGOvflQyUbd2TUxrFd9aJ4L9FBhBzLKxDh2twORfx9n1FDZkTwcYJm7TRc9OY9vzyrOqCfk6Ls4QOS65Fykw==
-Received: from BL6PEPF00013E0A.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:22e:400:0:1001:0:12) by DS0PR12MB7653.namprd12.prod.outlook.com
- (2603:10b6:8:13e::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.18; Tue, 10 Dec
- 2024 17:46:18 +0000
-Received: from MN1PEPF0000ECD9.namprd02.prod.outlook.com
- (2a01:111:f403:f902::3) by BL6PEPF00013E0A.outlook.office365.com
- (2603:1036:903:4::4) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8158.23 via Frontend Transport; Tue,
- 10 Dec 2024 17:46:18 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- MN1PEPF0000ECD9.mail.protection.outlook.com (10.167.242.138) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8251.15 via Frontend Transport; Tue, 10 Dec 2024 17:46:18 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 10 Dec
- 2024 09:46:01 -0800
-Received: from drhqmail203.nvidia.com (10.126.190.182) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Tue, 10 Dec 2024 09:46:01 -0800
-Received: from thinkpad-t480.nvidia.com (10.127.8.10) by mail.nvidia.com
- (10.126.190.182) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Tue, 10 Dec 2024 09:46:00 -0800
-From: Johnny Liu <johnliu@nvidia.com>
-To: <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-	<skomatineni@nvidia.com>, <luca.ceresoli@bootlin.com>,
-	<mperttunen@nvidia.com>, <maarten.lankhorst@linux.intel.com>,
-	<mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
-	<simona@ffwll.ch>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <linux-media@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Johnny Liu <johnliu@nvidia.com>
-Subject: [PATCH v1 5/5] drm/tegra: vic: Register the device with actmon
-Date: Tue, 10 Dec 2024 09:45:54 -0800
-Message-ID: <20241210174554.18869-6-johnliu@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20241210174554.18869-1-johnliu@nvidia.com>
-References: <20241210174554.18869-1-johnliu@nvidia.com>
-X-NVConfidentiality: public
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E3392819C4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:50:34 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 575241DC98C;
+	Tue, 10 Dec 2024 17:50:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ly8mDFP4"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F2E31B4220;
+	Tue, 10 Dec 2024 17:50:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733853024; cv=none; b=bW5f8KVIHCxfBMH0/30WUlUfUckFHu5LQO4q6ovPKcJhyhhYMs5RvWMB+ZjyT6PAqocTv2XZg+72vY6+lsne1w6seFJOidm7C1U5/wRLU7XweyhPJlpolRTEZ6HvevAtTL3cgHUQTtKy0IyfOLlcl6ZIBnaiveEDfyC6r1Lpr80=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733853024; c=relaxed/simple;
+	bh=7vTkwIQXZT5QT9ZHSuseGV3gEM9zZq4Sz/Phju4nRyI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UnoXLbiJXRXWO4ZC1qYzkES28bCByxYwQQa04ZHDXoLcezKDiQEsnTsc7zuTAlqHQa60Dr1Mihp8r8xocj2G6PU8FjzcuTnBmFqtcTBMa3W11WhmQ1CYX1SZNVFJ3/HJ8f6lq+/a22QLJCM3CQQl/6ARXASbIX+yeo94hQJBIe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ly8mDFP4; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6ef95ad9064so2539117b3.2;
+        Tue, 10 Dec 2024 09:50:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733853021; x=1734457821; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FLbWVKTQ8/rFg0yCwbeNU+FV507QZWBZJPr5pJawDUw=;
+        b=Ly8mDFP4Yf70FOF/O3HfbaWwlgYhqb941NSR4ayeD42zcRezYDVMUmslfIOKGDt4YH
+         ebSLGmpBzkhAyJRAslvsv4MnW9aQjxtajYjSfK8jwu4b6ZfkLmHfCeP4FGeTzeIV6skq
+         0GphJQYoeDyWGcDJoKy/mcoEQs7nfNy84ROz0VRbBPgHoczVdz0SWYMAsm4pGJN9m8Ex
+         bSxeaiUswCO5NT3sEa2ukrJkEC5vk1WJWqK+dvLH4lPfDTffIpU/nZc2Ns4jCIaAtIRG
+         CxSfNBQl5eQHsJ2V+Tlm4oMrgMxGy/Z9UqJ80P3nIz9o6fli7/NjX36ttDVTSeC2D6C4
+         lrkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733853021; x=1734457821;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FLbWVKTQ8/rFg0yCwbeNU+FV507QZWBZJPr5pJawDUw=;
+        b=pKa7hs2THMza86rFWf65sZjVIiM4PWzXFWODxsTFyrpnV3kFcLB+RC8t6y+I5QjXiB
+         +8v0xNGfjUO+f2CDd0Fmwn4V+zDmEzPoy/5/EqtGIaSvpiW5kRbPK2jXvKbpf+EvP62Y
+         2BvSxIQ7y/2J4Piu0mqEFdjK4LCRvNPa8UwZ6z0dZDgxyDAo7X5S0UsFDRgqNv/sIqxJ
+         kTZQ+TIhpsSjs0eRpJwAUqGnmMhvReCSoIoIZy5znj/WLAI+V8k4RrjITM0hSXejNzOR
+         2iT47bhmoEr+cI5lVblMV9wajS2sPEWL5+dRtkr9B6XffU0v6wkeCDVq2GAqFRg9OEMe
+         WiyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVnrZugrSOJwzH7asJbjE3DCId1IfsL7j3DxUZ80xi4qrwGwP2CkOVIJTvqB85OWA7chVeEpAokqr2A@vger.kernel.org, AJvYcCVzbRKj9Lh//hHqRvJWGbgv1+irIUM2OomsC4HgjEWmT1/PQrJWy0ReVd2qhGsxKvToxbm2/WMy2g+t@vger.kernel.org, AJvYcCWn31XxAdF57KPPosrAzjQESznJ0ittywSQjNWLsa73KXvYqVK1R323BeMShCx3gIez/MFSs3pF9FW9jtG8@vger.kernel.org
+X-Gm-Message-State: AOJu0YytXvgUdzgV82JUt+3ThwmY022x2/3T3tWpQ1VDqUhstmXijqLk
+	kqQP03CoebVbp0C8cFrFS0Vg+ltx9r+Pj17xVm85CKEOm16/zaQ7OLEoVmDkflqYvvEdBR/PecW
+	x4EQC7qGBrtWzk9bAmbDCnRzxuyY=
+X-Gm-Gg: ASbGncugn+mkUB+NpYtg2b3gsM7OygZzGUGM0lPgE5Tc/uYpXMKoSG5y9W216yzW4Sg
+	KIgLBqSZRgEA9ccIUjoQ68c11XQ03RmsTX8U=
+X-Google-Smtp-Source: AGHT+IF/9mYG/lYevIKCWOwIf4rXGPYEsSstWyTBvNb9hulsYECN5/TsyPzeRBtUOX0YyFWqxkRoLjcWWqoDs3JRNUw=
+X-Received: by 2002:a05:690c:3505:b0:6ef:5754:49e5 with SMTP id
+ 00721157ae682-6f147f6aab0mr283697b3.2.1733853021569; Tue, 10 Dec 2024
+ 09:50:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD9:EE_|DS0PR12MB7653:EE_
-X-MS-Office365-Filtering-Correlation-Id: 914034bc-590a-433e-5265-08dd19428d7f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|82310400026|376014|1800799024|36860700013|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?gdSIMqV62+OgdIjAGgyvsZqDn7wcWuT+o7wDxiz5r2TCAteSDn9yRPiY6RPt?=
- =?us-ascii?Q?iYLq/eYUdBPrqETTXm/WhOGb236zNOVIpRWtGogJOt3XVwqY+I7q7hAPu5jp?=
- =?us-ascii?Q?drp8FEyK9HvHnqSZg8lmnU3jmFExePH7M7/SP3LY1oY8boKgvmI7tOBwOuj9?=
- =?us-ascii?Q?qAB9Sjq+e/pZGKBEmFTiSQita0nDhq3UD4/gsSIFXU8VwIy24WiKJMerbq2D?=
- =?us-ascii?Q?NmiwVvoHW4ObcK0oV0ZR6m1bxh52w0fjM0MjBu3RFUcChZt5Yx2v/lXKY33a?=
- =?us-ascii?Q?4jJE7pGFttwfGWB8V4hq6GTTY90qLOXxRwsoNitfqgQemeXXmL+lwuXDcIls?=
- =?us-ascii?Q?ZH4NUAgAA0+BUJ4kYy436Omi5atSkqYWaDUGuvRntFOln4MvZE8GLvAjBjlK?=
- =?us-ascii?Q?+z1ea+YPfPUUfthlJ+MkRuFLzdS3SOm+CWSafELnr42whJNo1og56FhpNtEz?=
- =?us-ascii?Q?wzrwgJ4s0WAhf4H7h9iQTHoT6RlNURRLYKq5L5V7S0Nhr5lasgslg53HSgY4?=
- =?us-ascii?Q?rLsPYVDKL/y7xfEh2nmdZuKbbiumxRPSXQgRzEABfVglmueyZsFNqsLLzGTs?=
- =?us-ascii?Q?vGBPLhiAAdAEpqf4hxePM5SXSaYwPXd+cs0Phe0JxcHatRqYn+hrbsyyae1e?=
- =?us-ascii?Q?GPPWfMks/fQktH6NEY25OxhOsf2UYA27OET5imOKqMlI1ozShDH9vL0kDr59?=
- =?us-ascii?Q?zF83SGHb42SXpDxQRReCrH/OZ0Z9/OwvsvrpLq5B0gQn2/c5Jmls3p09tEmi?=
- =?us-ascii?Q?xMWArwGqiG4Alq6AQ4waiZ7mi/wa9IlEWoE1cfzZ3uPP+ufZB3FCGKg9TJbJ?=
- =?us-ascii?Q?ppLYk34s3+NakP5l4R3M8klqCW/Sa9X6IbBxpKF16O6XAPG03KYATgRGfGOX?=
- =?us-ascii?Q?KHgrCP3HGkz4BdD9F9t44vdig865mLlaSpaBlCI0PtYOXaCKvbvPYEBuC/M5?=
- =?us-ascii?Q?Vt+WK4bLiMjZWLwyWiK/Gx1t8gj6Hyig2YeRyV058e/QuXRlCMLx/3u3uDMG?=
- =?us-ascii?Q?F2t8Nk37niZIkAhAFDzn/1+Zg4OX7DZqK+qz25wCP9YMYxqnaNZOsDNb5NjY?=
- =?us-ascii?Q?Ren8D3fmC0sPfv6L2LzFdScWUaYMOBGb5TaD1uNX5TDYMY5TzJHonDC7iZyU?=
- =?us-ascii?Q?rxrqZGVdDuu70OmZUi027Sw9arEovcKS6SGzIjYvUoyRwcf5JJWwtzIV+BNS?=
- =?us-ascii?Q?1mhebNTqb37VWVyOQN3UH6HRvXgSGS1tJzBB8HyJdtJiC8F13pXLOKpuLMxU?=
- =?us-ascii?Q?7ft8gMkKIVShHkzeGe4kQ/oCFqVjWhlN0kCWyrWu43kK3SGCDdrX8zDf1/Jd?=
- =?us-ascii?Q?VlIpY77zjguynYrIGyY0wMy9uL04nbN3+NYYAeBwzArQVIu7unlUtqSwleMr?=
- =?us-ascii?Q?l8omQvFCImSqxeWorxXOa5o74NG1Vzr70slsnRYIiXnBUgYBXa9uKpz8ZDYM?=
- =?us-ascii?Q?j5zxd6e7FjUO0Sbl44LRGssLpkHAz/O6VQ2hImw9Lny58u8LdzK+dg=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230040)(7416014)(82310400026)(376014)(1800799024)(36860700013)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2024 17:46:18.7071
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 914034bc-590a-433e-5265-08dd19428d7f
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MN1PEPF0000ECD9.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7653
+References: <20241205171343.308963-1-l.rubusch@gmail.com> <20241205171343.308963-5-l.rubusch@gmail.com>
+ <20241208134220.0a8b84f5@jic23-huawei>
+In-Reply-To: <20241208134220.0a8b84f5@jic23-huawei>
+From: Lothar Rubusch <l.rubusch@gmail.com>
+Date: Tue, 10 Dec 2024 18:49:45 +0100
+Message-ID: <CAFXKEHY4LWm9iJnZ---Zixf9GT6u_Ebk-=sDsrqTjGSR4KCM2g@mail.gmail.com>
+Subject: Re: [PATCH v5 04/10] iio: accel: adxl345: add function to switch
+ measuring mode
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, eraretuya@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-By registering the vic with actmon, engine load information can be
-exported to the user through debugfs for engine profiling purpose.
+On Sun, Dec 8, 2024 at 2:42=E2=80=AFPM Jonathan Cameron <jic23@kernel.org> =
+wrote:
+>
+> On Thu,  5 Dec 2024 17:13:37 +0000
+> Lothar Rubusch <l.rubusch@gmail.com> wrote:
+>
+> > Replace the powerup / powerdown functions by a generic function to put
+> > the sensor in STANDBY, or MEASURE mode. When configuring the FIFO for
+> > several features of the accelerometer, it is recommended to put
+> > measuring in STANDBY mode.
+> >
+> > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+> Hi Lothar,
+>
+> One trivial comment inline.
+>
+> Jonathan
+>
+> > ---
+> >  drivers/iio/accel/adxl345_core.c | 44 ++++++++++++++++++++++----------
+> >  1 file changed, 31 insertions(+), 13 deletions(-)
+> >
+> > diff --git a/drivers/iio/accel/adxl345_core.c b/drivers/iio/accel/adxl3=
+45_core.c
+> > index 98ff37271f1..1d020b0d79c 100644
+> > --- a/drivers/iio/accel/adxl345_core.c
+> > +++ b/drivers/iio/accel/adxl345_core.c
+> > @@ -138,6 +138,34 @@ static int adxl345_write_raw_get_fmt(struct iio_de=
+v *indio_dev,
+> >       }
+> >  }
+> >
+> > +/**
+> > + * adxl345_set_measure_en() - Enable and disable measuring.
+> > + *
+> > + * @st: The device data.
+> > + * @en: Enable measurements, else standby mode.
+> > + *
+> > + * For lowest power operation, standby mode can be used. In standby mo=
+de,
+> > + * current consumption is supposed to be reduced to 0.1uA (typical). I=
+n this
+> > + * mode no measurements are made. Placing the device into standby mode
+> > + * preserves the contents of FIFO.
+> > + *
+> > + * Return: Returns 0 if successful, or a negative error value.
+> > + */
+> > +static int adxl345_set_measure_en(struct adxl345_state *st, bool en)
+> > +{
+> > +     unsigned int val =3D 0;
+> > +
+> > +     val =3D (en) ? ADXL345_POWER_CTL_MEASURE : ADXL345_POWER_CTL_STAN=
+DBY;
+> > +     return regmap_write(st->regmap, ADXL345_REG_POWER_CTL, val);
+> > +}
+> > +
+> > +static void adxl345_powerdown(void *ptr)
+> > +{
+> > +     struct adxl345_state *st =3D ptr;
+> > +
+> > +     adxl345_set_measure_en(st, false);
+> > +}
+> > +
+> >  static IIO_CONST_ATTR_SAMP_FREQ_AVAIL(
+> >  "0.09765625 0.1953125 0.390625 0.78125 1.5625 3.125 6.25 12.5 25 50 10=
+0 200 400 800 1600 3200"
+> >  );
+> > @@ -158,16 +186,6 @@ static const struct iio_info adxl345_info =3D {
+> >       .write_raw_get_fmt      =3D adxl345_write_raw_get_fmt,
+> >  };
+> >
+> > -static int adxl345_powerup(void *regmap)
+> > -{
+> > -     return regmap_write(regmap, ADXL345_REG_POWER_CTL, ADXL345_POWER_=
+CTL_MEASURE);
+> > -}
+> > -
+> > -static void adxl345_powerdown(void *regmap)
+> > -{
+> > -     regmap_write(regmap, ADXL345_REG_POWER_CTL, ADXL345_POWER_CTL_STA=
+NDBY);
+> > -}
+> > -
+> >  /**
+> >   * adxl345_core_probe() - Probe and setup for the accelerometer.
+> >   * @dev:     Driver model representation of the device
+> > @@ -236,13 +254,13 @@ int adxl345_core_probe(struct device *dev, struct=
+ regmap *regmap,
+> >                                    regval, ADXL345_DEVID);
+> >
+> >       /* Enable measurement mode */
+> > -     ret =3D adxl345_powerup(st->regmap);
+> > +     ret =3D adxl345_set_measure_en(st, true);
+> >       if (ret < 0)
+> >               return dev_err_probe(dev, ret, "Failed to enable measurem=
+ent mode\n");
+> >
+> > -     ret =3D devm_add_action_or_reset(dev, adxl345_powerdown, st->regm=
+ap);
+> > +     ret =3D devm_add_action_or_reset(dev, adxl345_powerdown, st);
+> >       if (ret < 0)
+> > -             return ret;
+> > +             return dev_err_probe(dev, ret, "Failed to add action or r=
+eset\n");
+> You will never see that message, though arguably that's an implementation=
+ detail.
+>
+> The only error that devm_add_action_or_reset() returns is -ENOMEM;
+> dev_err_probe() doesn't print on -ENOMEM because enough screaming occurs =
+at
+> other layers.
+>
+> I normally don't bother commenting on this one if it's introduced as one =
+of
+> many messages, but here you are adding just this one so I have commented.
 
-Signed-off-by: Johnny Liu <johnliu@nvidia.com>
----
- drivers/gpu/drm/tegra/vic.c | 39 ++++++++++++++++++++++++++++++++++++-
- drivers/gpu/drm/tegra/vic.h |  9 +++++++++
- 2 files changed, 47 insertions(+), 1 deletion(-)
+Thank you so much. I highly appreciate all the time you spend on
+reviewing and giving
+feedback!! For me there is no hurry with this driver. I'd prefer to go
+a bit more picky
+feedback, according to your patience. Hopefully, I will learn for
+future patches. Already
+when I take a look on the way from v1 of just this driver. Awesome!
 
-diff --git a/drivers/gpu/drm/tegra/vic.c b/drivers/gpu/drm/tegra/vic.c
-index 332c9b563d3f4..54c9b9b2af0a2 100644
---- a/drivers/gpu/drm/tegra/vic.c
-+++ b/drivers/gpu/drm/tegra/vic.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /*
-- * Copyright (c) 2015, NVIDIA Corporation.
-+ * SPDX-FileCopyrightText: Copyright (c) 2015-2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-  */
- 
- #include <linux/clk.h>
-@@ -302,6 +302,28 @@ static int vic_load_firmware(struct vic *vic)
- 	return err;
- }
- 
-+static void vic_actmon_reg_init(struct vic *vic)
-+{
-+	vic_writel(vic,
-+		   VIC_TFBIF_ACTMON_ACTIVE_MASK_STARVED |
-+		   VIC_TFBIF_ACTMON_ACTIVE_MASK_STALLED |
-+		   VIC_TFBIF_ACTMON_ACTIVE_MASK_DELAYED,
-+		   NV_PVIC_TFBIF_ACTMON_ACTIVE_MASK);
-+	vic_writel(vic,
-+		   VIC_TFBIF_ACTMON_ACTIVE_BORPS_ACTIVE,
-+		   NV_PVIC_TFBIF_ACTMON_ACTIVE_BORPS);
-+}
-+
-+static void vic_count_weight_init(struct vic *vic, unsigned long rate)
-+{
-+	struct host1x_client *client = &vic->client.base;
-+	u32 weight = 0;
-+
-+	host1x_actmon_update_client_rate(client, rate, &weight);
-+
-+	if (weight)
-+		vic_writel(vic, weight, NV_PVIC_TFBIF_ACTMON_ACTIVE_WEIGHT);
-+}
- 
- static int __maybe_unused vic_runtime_resume(struct device *dev)
- {
-@@ -328,6 +350,10 @@ static int __maybe_unused vic_runtime_resume(struct device *dev)
- 	if (err < 0)
- 		goto assert;
- 
-+	vic_actmon_reg_init(vic);
-+	vic_count_weight_init(vic, clk_get_rate(vic->clk));
-+	host1x_actmon_enable(&vic->client.base);
-+
- 	return 0;
- 
- assert:
-@@ -352,6 +378,8 @@ static int __maybe_unused vic_runtime_suspend(struct device *dev)
- 
- 	clk_disable_unprepare(vic->clk);
- 
-+	host1x_actmon_disable(&vic->client.base);
-+
- 	return 0;
- }
- 
-@@ -520,12 +548,20 @@ static int vic_probe(struct platform_device *pdev)
- 		goto exit_falcon;
- 	}
- 
-+	err = host1x_actmon_register(&vic->client.base);
-+	if (err < 0) {
-+		dev_info(&pdev->dev, "failed to register host1x actmon: %d\n", err);
-+		goto exit_client;
-+	}
-+
- 	pm_runtime_enable(dev);
- 	pm_runtime_use_autosuspend(dev);
- 	pm_runtime_set_autosuspend_delay(dev, 500);
- 
- 	return 0;
- 
-+exit_client:
-+	host1x_client_unregister(&vic->client.base);
- exit_falcon:
- 	falcon_exit(&vic->falcon);
- 
-@@ -537,6 +573,7 @@ static void vic_remove(struct platform_device *pdev)
- 	struct vic *vic = platform_get_drvdata(pdev);
- 
- 	pm_runtime_disable(&pdev->dev);
-+	host1x_actmon_unregister(&vic->client.base);
- 	host1x_client_unregister(&vic->client.base);
- 	falcon_exit(&vic->falcon);
- }
-diff --git a/drivers/gpu/drm/tegra/vic.h b/drivers/gpu/drm/tegra/vic.h
-index acf35aac948b2..905cd7bfde2f6 100644
---- a/drivers/gpu/drm/tegra/vic.h
-+++ b/drivers/gpu/drm/tegra/vic.h
-@@ -21,6 +21,15 @@
- #define CG_IDLE_CG_EN				(1 << 6)
- #define CG_WAKEUP_DLY_CNT(val)			((val & 0xf) << 16)
- 
-+#define NV_PVIC_TFBIF_ACTMON_ACTIVE_MASK	0x0000204c
-+#define NV_PVIC_TFBIF_ACTMON_ACTIVE_BORPS	0x00002050
-+#define NV_PVIC_TFBIF_ACTMON_ACTIVE_WEIGHT	0x00002054
-+
-+#define VIC_TFBIF_ACTMON_ACTIVE_MASK_STARVED	BIT(0)
-+#define VIC_TFBIF_ACTMON_ACTIVE_MASK_STALLED	BIT(1)
-+#define VIC_TFBIF_ACTMON_ACTIVE_MASK_DELAYED	BIT(2)
-+#define VIC_TFBIF_ACTMON_ACTIVE_BORPS_ACTIVE	BIT(7)
-+
- #define VIC_TFBIF_TRANSCFG	0x00002044
- #define  TRANSCFG_ATT(i, v)	(((v) & 0x3) << (i * 4))
- #define  TRANSCFG_SID_HW	0
--- 
-2.34.1
-
+>
+> >
+> >       return devm_iio_device_register(dev, indio_dev);
+> >  }
+>
 
