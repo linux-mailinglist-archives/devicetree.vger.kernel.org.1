@@ -1,138 +1,123 @@
-Return-Path: <devicetree+bounces-128986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75F809EA3B8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 01:40:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38BC99EA3EC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 01:53:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61934165801
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 00:40:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CDDC168D99
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 00:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F292111A8;
-	Tue, 10 Dec 2024 00:40:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0ED26FB9;
+	Tue, 10 Dec 2024 00:53:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bVyZD5WU"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="H4dZEI47"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A2533EA
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 00:40:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62A0720326;
+	Tue, 10 Dec 2024 00:53:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733791220; cv=none; b=kI6EXtNz6gh6Y74y8g0sxGZYXQ7zp04xk6A5X9tin3LTHzDmWbRWWxhS8aXdZ4S9oGozsrLx/OLCc+Dz3STA+vmkW98D8ODj7j6YWXvMZ3O+N5gYrnMRW5nqBST4CH19oRmKp8Di85o9No1bHbHI5/NW7jD+c3YSXtttYSJlAFs=
+	t=1733792006; cv=none; b=g5uW46XTr7orOlBkHdPiB8tT9uqU5PjJHdmNxz8JVzTpStN7HcJvzwMsRJ1hf6vYGXStnfStaxu8jn8qf8seuZAwUqT+mu0+bxsPJ9pL0Rzw6LfuthrRQkLmgeI+hhbwugJGZS6udpQD0JbqSEtUhL+gH39ahyvz991l0gy55g0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733791220; c=relaxed/simple;
-	bh=Blwa5F8sKfGOXhGTxGho/35swehqGQZvVQCQmXT0hwo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=d9DQBtaZVAQhtlnwTsg7ooIjOKXUoGlHt1u/qZdNPOdH0FTg+sxe0BuJb0zzaR4caoaak+eYv267ww9xeMlRfYyfYPuYytQS046rvlv3cOTM71cCyWAiXXqi7U6UrrPtj+5Ujt91t37XZ4TYx5vlrBQhSChbtX87U1KxwEp+JHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bVyZD5WU; arc=none smtp.client-ip=209.85.160.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-46769b34cbfso18178491cf.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 16:40:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733791217; x=1734396017; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Blwa5F8sKfGOXhGTxGho/35swehqGQZvVQCQmXT0hwo=;
-        b=bVyZD5WUpbUUC98ZGyalbNmn79mcDbdyUQaamTaKl2mhv/lRK3hjDMUREZurNuvjjs
-         5Yr7Jb8Ip5x8AlQpa+IlylFK9y2MEyzq0qqy+pVNMWNfd/dnP/CB5eH3ozKsW6ZYXjj2
-         8ayjr/kvrw2SOBU6IJ8tN3zOYD8ELbCzHZYsym7JiGd3WcSNNFrDRSdO7Vor/9RZQUxs
-         7498Ckk2LdO8eUdY+TyRYlNX9rpeP5KThfvnTSoVNlFThMf0/lr/p6zyaGRvylhpg/cW
-         h6p0ml2WgU0pwlbpafvNzV9j8hhAiJPgNoweCFdADZ0TJb3zXwJ1Pb7Vm/vcBY1MWsL1
-         Henw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733791217; x=1734396017;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Blwa5F8sKfGOXhGTxGho/35swehqGQZvVQCQmXT0hwo=;
-        b=s28wyqQnHifqK8L0LrFAuXfkVs+evJZsMVgZtOWfqwCB6H2U8ou3CWQPYOqJ6f773n
-         tpih4MT9PcrtULeEnTY3y5vEScRRhfXkzZS2Li8W5x1VQ9u8o0hK29LdpsQ9XYbP7hBB
-         jlRlhhXVlzFz3pEeDLb16Fxt8UPpSgAFrgislWuQ3OWy8H9omngB8HjUnPpcJs+TKnD9
-         fGHDcL2docd3BOQAV1fYKst5ncdST/yhR5r5EP5u19MzLOFJieqxwQOOC5fa0HffqHv8
-         WGshaMdZE1N4LUEU6nwIlWOO2ML3J0guFFTRucWXoC9o8ReYRrPjZrfN4Y2TR+UeNiv3
-         Fozg==
-X-Forwarded-Encrypted: i=1; AJvYcCUQG+Mu+cheem/nd0FAHyfEE2kYZVf/TGHDwt9L4fhHGKJUh8Lzg25ydQIU+eRzbqNlOqyVw3QZZcFS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz74t5T97Vzh02DhwVYukGvjWISBfddjYJdmOK4E1Xbk0Bm4Juw
-	2CatYvbYZW/xfW34DodjWihlg5aIRORz8CALXC2ie7Rur6JnmeW0jXdz+kbVwJ57V+/Ryu0VuHZ
-	AN8VicPJJlsStXnOwddezBUC2UIA=
-X-Gm-Gg: ASbGncswj7Owt15KdI7eLcgNysrZZ8hU3hW6ZY1SKmhQxJ52uAkbEXgYGVsv2tfoFaw
-	vKJpC2N6DLdljsul7V4dRxNcbUI/KnaOjSg==
-X-Google-Smtp-Source: AGHT+IGNyhk20QJHN7gcHejjGIkaEDS5jrRjys0nGBN4P3yJXR1F5N0jED33Xdxb9sY7N+dIyopFILsJ+bxgwoYUgJU=
-X-Received: by 2002:ac8:5d0c:0:b0:466:86aa:efd9 with SMTP id
- d75a77b69052e-46772046831mr42972491cf.51.1733791217663; Mon, 09 Dec 2024
- 16:40:17 -0800 (PST)
+	s=arc-20240116; t=1733792006; c=relaxed/simple;
+	bh=mq7QxHqpmP8050zkcHctxYMYPkqICTjonbkVU/Kk+wM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=MwLKNsK01+gTrANvt2DjpdDrFjVgZOthp20eNw+y1aCQw+Q2Iy6Di1SCNQYavHQi1MWVzmhqbY9QXSmSaItdZz4/SXewsbfv3hCikvAeybADMeavzsVD7uAaA03/gyv0n3SLzWOnCIR9JK0T09UOSCbVbfpXiBNV/8SDh8hH5Pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=H4dZEI47 reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=FhW3RxWuSa2qtZWnSfHCog3V8YUyYEUWMbSHUEDeJ6Y=; b=H
+	4dZEI47ysOkjq2nt2vaVeH59o2igH7ym38HY80DnZ+V4Gzm0/3n4KSbUVTVOSsEz
+	4QUoO+0/MtDdhh9xjY6g8CXb8BHECm3+l7pXUrU1amejdQe6oqpYNMts7amWtABu
+	VabSbjvfTfU2NOMwuZTekoLsz8h24rxTfSR5gIeExI=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-102 (Coremail) ; Tue, 10 Dec 2024 08:50:51 +0800
+ (CST)
+Date: Tue, 10 Dec 2024 08:50:51 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: "Daniel Semkowicz" <dse@thaumatec.com>, 
+	"Diederik de Haas" <didi.debian@cknow.org>, andy.yan@rock-chips.com, 
+	Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, jernej.skrabec@gmail.com, 
+	jonas@kwiboo.se, krzk+dt@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	neil.armstrong@linaro.org, quentin.schulz@cherry.de, 
+	rfoss@kernel.org, robh@kernel.org, tzimmermann@suse.de
+Subject: Re:Re: [PATCH v3 0/3] drm/rockchip: Add driver for the new DSI2
+ controller
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2024 www.mailtech.cn 163com
+In-Reply-To: <2203458.KiezcSG77Q@diego>
+References: <20241203165450.1501219-1-heiko@sntech.de>
+ <20241209150619.33998-1-dse@thaumatec.com>
+ <D67AV178CEBD.3QA9VD4ZPRNQ1@cknow.org> <2203458.KiezcSG77Q@diego>
+X-NTES-SC: AL_Qu2YAfuSvkAu5yOeZOkZnEobh+Y5UcK2s/ki2YFXN5k0tCTI0SYQW29KGUD2y86DDiKsoAirUQVL5MpFRpJHY460ozr25CzPaQGPdj10sTtO
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241209125131.4101-1-naoki@radxa.com> <20241209125131.4101-4-naoki@radxa.com>
- <ae031ff8c8c5d9e5c266c73026d4dfab@manjaro.org> <CEFF3F7FDF50046C+6bccd571-3475-46b9-a7b9-e2e8cb94ed91@radxa.com>
-In-Reply-To: <CEFF3F7FDF50046C+6bccd571-3475-46b9-a7b9-e2e8cb94ed91@radxa.com>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Tue, 10 Dec 2024 03:40:08 +0300
-Message-ID: <CABjd4YyV1Pf5RZcwbvd0Ms8UA2kFzq2PuTzq=VVYC+EZtfNrog@mail.gmail.com>
-Subject: Re: [PATCH v4 03/12] arm64: dts: rockchip: fix property for pwm-fan
- for Radxa ROCK 5C
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: Dragan Simic <dsimic@manjaro.org>, heiko@sntech.de, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, sebastian.reichel@collabora.com, 
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Message-ID: <4e015ea9.960.193ae0c236a.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:ZigvCgAXlJxrkFdn5vA6AA--.43974W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiMwmxXmdXikRb2gADsp
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-Hi Naoki,
-
-On Tue, Dec 10, 2024 at 3:30=E2=80=AFAM FUKAUMI Naoki <naoki@radxa.com> wro=
-te:
->
-> Hi,
->
-> Thanks for your review!
->
-> On 12/10/24 01:32, Dragan Simic wrote:
-> > Hello Fukaumi,
-> >
-> > On 2024-12-09 13:51, FUKAUMI Naoki wrote:
-> >> fix pwm period to match with vendor kernel[1].
-> >
-> > Instead of simply referring to the downstream vendor kernel, in this
-> > specific case the reasons for adjusting the fan PWM parameters should
-> > be explained by referring to the actual fan setup you're using, the
-> > observed fan RPM behavior, etc.
->
-> original commit message is:
->
-> | arm64: dts: rockchip: modify fan pwm period to 60us
-> | Reduce pwm frequency to 16.6 KHz for a larger adjustable range of
-> AO3416 mosfet.
->
-> I have no knowledge about this kind of things. Is quoting this message
-> enough?
-
-I think it would be better to expand a bit to make sure the commit
-message explains the whole rationale without too much extra digging.
-Something like this:
-
-arm64: dts: rockchip: Use a longer PWM period for the fan on Radxa ROCK 5C
-
-The fan on Radxa ROCK 5C is driven via an AO3416 MOSFET, which has a
-total switch-on time of 0,6us and a total switch-off time of 6us [1],
-meaning that the current PWM period of just 10us is too short for
-fine-grained fan speed control. Increase the PWM period to 60us, so
-that the switch-on and switch-off time of the MOSFET fall within a
-more reasonable ~10% of the full period, thus making lower PWM duty
-cycles meaningful.
-
-[1] https://www.aosmd.com/pdfs/datasheet/AO3416.pdf
-
-Best regards,
-Alexey
+CgpIaSwKCkF0IDIwMjQtMTItMTAgMDc6MTI6MjYsICJIZWlrbyBTdMO8Ym5lciIgPGhlaWtvQHNu
+dGVjaC5kZT4gd3JvdGU6Cj5BbSBNb250YWcsIDkuIERlemVtYmVyIDIwMjQsIDE3OjExOjAzIENF
+VCBzY2hyaWViIERpZWRlcmlrIGRlIEhhYXM6Cj4+IEhpLAo+PiAKPj4gT24gTW9uIERlYyA5LCAy
+MDI0IGF0IDQ6MDYgUE0gQ0VULCBEYW5pZWwgU2Vta293aWN6IHdyb3RlOgo+PiA+IE9uIDAzLjEy
+LjI0IDIxOjU0LCBIZWlrbyBTdHVlYm5lciB3cm90ZToKPj4gPiA+IFRoaXMgc2VyaWVzIGFkZHMg
+YSBicmlkZ2UgYW5kIGdsdWUgZHJpdmVyIGZvciB0aGUgRFNJMiBjb250cm9sbGVyIGZvdW5kCj4+
+ID4gPiBpbiB0aGUgcmszNTg4IHNvYyBmcm9tIFJvY2tjaGlwLCB0aGF0IGlzIGJhc2VkIG9uIGEg
+U3lub3BzaXMgSVAgYmxvY2suCj4+ID4gPiAKPj4gPgo+PiA+IEkgZGlkIG1vcmUgdGVzdHMgd2l0
+aCBkaWZmZXJlbnQgTFZEUyBkaXNwbGF5cy4gSSB0ZXN0ZWQgZm9sbG93aW5nCj4+ID4gY29uZmln
+dXJhdGlvbnMgd2l0aCBEU0kvTFZEUyBicmlkZ2U6Cj4+ID4gLSAxMDI0eDYwMEA2MC4wMQo+PiA+
+IC0gMTAyNHg3NjhANjAuMDIKPj4gPiAtIDEyODB4ODAwQDYwLjA3Cj4+ID4gLSAxMzY2eDc2OEA2
+MC4wNgo+PiA+Cj4+ID4gQWxsIG9mIHRoZW0gd29ya2VkIHdpdGhvdXQgaXNzdWVzLCBleGNlcHQg
+MTM2Nng3NjguCj4+ID4gV2l0aCB0aGlzIHJlc29sdXRpb24sIHZpZGVvIGlzIGJsdXJyeSwgYW5k
+IG9mZnNldCBpbmNvcnJlY3RseQo+PiA+IHRvIHRoZSBsZWZ0LiBUaGVyZSBhcmUgYWxzbyByZXBl
+YXRpbmcgZXJyb3JzIG9uIHRoZSBjb25zb2xlOgo+PiA+Cj4+ID4gICByb2NrY2hpcC1kcm0gZGlz
+cGxheS1zdWJzeXN0ZW06IFtkcm1dICpFUlJPUiogUE9TVF9CVUZfRU1QVFkgaXJxIGVyciBhdCB2
+cDMKPj4gPgo+PiA+IEluIGNvcnJlY3Qgb3BlcmF0aW9uIHdpdGggb3RoZXIgcmVzb2x1dGlvbnMs
+IHRoZXJlIGlzIG5vIGVycm9yLgo+PiA+IEkgYW0gbm90IHN1cmUgaWYgdGhpcyBpcyBhIHByb2Js
+ZW0gaW4geW91ciBzZXJpZXMgb3IgcmF0aGVyIGluIFZPUDIKPj4gPiBkcml2ZXIuCj4KPlRoaXMg
+cmVhbGx5IHNvdW5kcyBsaWtlIHNvbWV0aGluZyBpcyB3cm9uZyBvbiB0aGUgdm9wIHNpZGUuCj5U
+aGUgaW50ZXJydXB0IGlzIHBhcnQgb2YgdGhlIHZvcCwgdGhlIGRpdmlzYWJsZSBieSA0IHRoaW5n
+cyBsaWtlbHkgdG9vLgoKVGhpcyBpcyBhIGhhcmR3YXJlIGxpbWl0YXRpb24gb24gdm9wIHNpZGU6
+ClRoZSBob3Jpem9udGFsIHJlc29sdXRpb24gbXVzdCBiZSA0IHBpeGVsIGFsaWduZWQuCgoKCj4K
+Pgo+SGVpa28KPgo+Cj4+IAo+PiBPbiBteSBQaW5lVGFiMiBJIGdvdCBzaW1pbGFyIG1lc3NhZ2Vz
+IGFib3V0IDIgd2Vla3MgYWdvOgo+PiByb2NrY2hpcC1kcm0gZGlzcGxheS1zdWJzeXN0ZW06IFtk
+cm1dICpFUlJPUiogUE9TVF9CVUZfRU1QVFkgaXJxIGVyciBhdCB2cDEKPj4gCj4+IFByZWNlZGlu
+ZyB0aG9zZSwgSSBnb3Qgc2V2ZXJhbCBwYW5mcm9zdCByZWxhdGVkIGVycm9yczoKPj4gCj4+IHBh
+bmZyb3N0IGZkZTYwMDAwLmdwdTogZ2V0IGNsb2NrIGZhaWxlZCAtNTE3Cj4+IHBhbmZyb3N0IGZk
+ZTYwMDAwLmdwdTogY2xrIGluaXQgZmFpbGVkIC01MTcKPj4gcGxhdGZvcm0gZmRlNjAwMDAuZ3B1
+OiBkZWZlcnJlZCBwcm9iZSBwZW5kaW5nOiAocmVhc29uIHVua25vd24pCj4+IHBsYXRmb3JtIGNw
+dWZyZXEtZHQ6IGRlZmVycmVkIHByb2JlIHBlbmRpbmc6IChyZWFzb24gdW5rbm93bikKPj4gdmRk
+X2dwdV9ucHU6IGRpc2FibGluZwo+PiAKPj4gQnV0IGNhbiBhbHNvIGJlIHRoYXQgdGhlIFBpbmVU
+YWIyIChsaWtlbHkpIG5lZWRzIHJlZ3VsYXRvci1hbHdheXMtb24KPj4gYW5kIHJlZ3VsYXRvci1i
+b290LW9uIGluIGl0cyB2ZGRfZ3B1X25wdSBub2RlLgo+PiAKPj4gPiBJIHRyaWVkIHRvIHRyYWNr
+IGRvd24gdGhlIHByb2JsZW0sIGFuZCBpdCBzZWVtcyB0byBiZSBhIGdlbmVyaWMgaXNzdWUKPj4g
+PiB3aGVuIGhvcml6b250YWwgbGluZSB3aWR0aCBpcyBub3QgZGl2aXNpYmxlIGJ5IDQuCj4+ID4g
+TG93ZXJpbmcgbGluZSB3aWR0aCB0byAxMzY0cHggZml4ZXMgdGhlIGlzc3VlLCBidXQgb2YgY291
+cnNlIEkgaGF2ZSB0d28KPj4gPiB2ZXJ0aWNhbCBsaW5lcyBvZiBibGFjayBwaXhlbHMgb24gdGhl
+IHJpZ2h0Lgo+PiA+IEkgYWxzbyBtYWRlIHNvbWUgdGVzdHMgd2l0aCA3MjB4MTI4MCBEU0kgZGlz
+cGxheS4gTG93ZXJpbmcgaG9yaXpvbnRhbAo+PiA+IGxpbmUgdG8gNzE4cHggc2hvd3MgdGhlIHNh
+bWUgcHJvYmxlbS4gV2l0aCA3MjBweCBhbmQgNzE2cHggaXQgd29ya3MKPj4gPiBjb3JyZWN0bHku
+Cj4+IAo+PiBJIGhhdmVuJ3QgbG9vayBmdXJ0aGVyIGludG8gaXQsIGJ1dCB0aGUgUFQyIGhhcyBh
+IDEyODB4ODAwIHJlc29sdXRpb24uCj4+IAo+PiBIVEgsCj4+ICAgRGllZGVyaWsKPj4gCj4KPgo+
+Cg==
 
