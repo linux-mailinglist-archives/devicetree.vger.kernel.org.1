@@ -1,127 +1,140 @@
-Return-Path: <devicetree+bounces-129330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73AC49EB44C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:05:36 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B73059EB454
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:09:03 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 930181885FE1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:09:02 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 183F11A0B15;
+	Tue, 10 Dec 2024 15:08:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="swDw5WSn"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5023528284A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:05:32 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0611A0BD1;
-	Tue, 10 Dec 2024 15:05:29 +0000 (UTC)
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0DF323DE87;
-	Tue, 10 Dec 2024 15:05:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD21C23DE87;
+	Tue, 10 Dec 2024 15:08:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733843129; cv=none; b=RG8JuJqEWlMA8A1PpDw4MEo4jdjB7pBS+CXYLyjOau5cSPH7kz3xwwpxz31Uo6t+YGU0nWP+bAFVzRHol47tS6lkjv7XytSYAN9DSMBZChsEg5yUguRRTd8UdpvWL3ArtQTwa2dqqzgpXwZvrl+hbtlbBSDTW3+M13Fo5gX1bms=
+	t=1733843338; cv=none; b=PD+5WCEAnPnfelYzb39jEMy3Ql3cTrZRMmhSSDwB2pkXd0eavxZvNM/k6uG0YL7dN/rGXq0jASs3+Q0WkOEHaIjsMXbI81exv4R5AwqOTioBliYmZUqjRidz9x+7L9GNvouT4SpT7VMxX+kwaSxDA0oj8L6OtpINpw441fWgbFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733843129; c=relaxed/simple;
-	bh=vMyGgUWMCYa9jqjFrSuzP8xhVfxy+uW+SLZCiWm+PtI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BtN/OzDYRxA3WFhkNsde7huesJRH6v32HZ8wGNxt8jBkf3zM2W/PVbWAUQqwMAKjKz30mz1qnMIIUVPPbgAEqNVRRj8eREMj1e6jBeTw5PmldfGZCc8sy4PEqhONjLv45V6uR8v21Fsz8dAwhIOXJxZHVi3nXGeFew3xPnYAUyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.160.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4674c597ee5so25941931cf.0;
-        Tue, 10 Dec 2024 07:05:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733843126; x=1734447926;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b7MWr+x34y8+HIArGxN7+pSUdFwcwNgnGB9mNkNeiU8=;
-        b=ldHMYRNpmg5B2y7/RsSrMzGpC/W30yOswNGkDr47zacPzP9OnZkDxeS4ZI1WqZpNGa
-         uLRoxsJv8KeAMocBtmkJAyYdJ0SkvbYUx69FjDE9UVlA1JHLfszetYx6Ch+xo1QfVUQ6
-         781vE8G+9ObF1ZChF9Ij/JHGUkwfsWT6iVqPYvc388nqvfp0HNG2b6bjhEHnnQNIYaKD
-         OPl0tdKyMl6yFplKCZVJhZuEBKfWB73EawIzqz4a67PR0EgBS4hLdPM+HtKB9OuTTaLx
-         HDZolGeSq8lTSISFEtMaHVcHHlpNz9pJ67bpD4kWu3HxyCHE6974T9/WZkCfgNhcEt3o
-         pDrA==
-X-Forwarded-Encrypted: i=1; AJvYcCVVlniMjIslVQwzC93UnBOQT9CyR2blkDivf58bw1Oe7qk5Xi9JskF+SppLbzkUpEzfT8eHAC/zl4PV@vger.kernel.org, AJvYcCVvzq29d41AgIB6l3qlJbsUdzySnQrROrbNglc8j9TqVIQd3aqbluVcSodzQYrJn5KXjJreo9XX7tvC/W5j@vger.kernel.org, AJvYcCX+2c1KegbjbbiYR11eL4vNmP2dNEhC9n50hsm/jVKC5TOMYpVdFg15hIrF4E9/xtkYH7mGu9cYdLWk@vger.kernel.org, AJvYcCXjmAPUgbgJPLathqrJUfxT+gVn9UdGdXFL0c8Fczi2RWUBaVzx6I0FW8OJS97E9wGWlyOFxIFRfCH9P2+2CyCbXyY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDLK4HZvU3OoG3BJPUHl+RtqtDUDpe7hqZxOwDQhzDlRb+5YvN
-	6Js75tur/6iDSu7rkH6qUk94OabUIuBD9POw2gdVWh3USaMG2BEi3ku9Fz7/
-X-Gm-Gg: ASbGncsd+iT+Uxu9hVMbJmr6mcwM+MxQwXGoWdJAqhixg3uJgBXnLcIhFCAiBna/0pv
-	NidO1DkTn5HNChmznILwt11fN2BupFzaLNTNTqQpX6jq4HC2tMnzm5gINEou+B/eQ1KyBPPPxpD
-	+8CHxYqluqvhkxpy5Crw4EpgAlyhEL2Bn99ULje9Fm5NqEfohRKZ2t1ZuGtPIR/vL0g+WetFtHV
-	6r9jF/ECO+Tsr1Xq39GEg0Aq5ByqrFuzxjR8Twy1HtDrSm8vrHV+CeGX/1LQdKf9ZVMDBU9t7Lx
-	u3L1pNQUcnym2f6+Awb3
-X-Google-Smtp-Source: AGHT+IGPTjSZX+qjTB3TaQJB4xiPWgMYlrBkuYve7Iw2M8Of0t/A7ltpVc4+780yYoZfi0Rw0MpXyg==
-X-Received: by 2002:a05:622a:5a8a:b0:467:5e61:c10c with SMTP id d75a77b69052e-4675e61c42amr159056571cf.0.1733843125740;
-        Tue, 10 Dec 2024 07:05:25 -0800 (PST)
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com. [209.85.222.178])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4676ba6eb1dsm17037001cf.1.2024.12.10.07.05.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Dec 2024 07:05:25 -0800 (PST)
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7b6dd0347dbso100623585a.1;
-        Tue, 10 Dec 2024 07:05:24 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVGexmVsn+AxOTlF6+excVPHJqQ06sUptX+HdOPCHkVOGY8u90gQuSUNpQ1Qnn5RRXU3ZBSYoevY9E2@vger.kernel.org, AJvYcCW71bqU58ObHqSm4dKfNLBjprYKYE2m4u09fErLLwdlb0JkZga8yDUHOZbscD+wUVqXvdi22UXxl76J@vger.kernel.org, AJvYcCXkxwIUjwihN8V4hGvnwWzL1LfN6jwqypt5ePIZSQx2sgjaZ2lKIrUbgKbjYadHtH0JFq3LwxfRAYZqnlTb05GZSlE=@vger.kernel.org, AJvYcCXnm+6P0db8NkDTWauACZcdl027IJqfFeyPIk2DLrX9kqPCrgz8jxm2lGXBDHhRr2gGmIKEPJpFGc/yV5Bd@vger.kernel.org
-X-Received: by 2002:a05:620a:19a6:b0:7b6:67a6:5adb with SMTP id
- af79cd13be357-7b6bcad4a8dmr2816602085a.21.1733843124497; Tue, 10 Dec 2024
- 07:05:24 -0800 (PST)
+	s=arc-20240116; t=1733843338; c=relaxed/simple;
+	bh=L0jZFG/ObQiqmlFhKVnP7nKp03eQCYKfA9KpogBiLlM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PcC5G4RUZVbRVV9tm7EIf6+8X15a3xOhn3E9wBI9cgqWxNTJJ2E1n4F3Rh0jh/Zi6x+QHEVaBKVy7yYHByavOBb3gy7wIODFGqCJsQJXJbPUjg0XyZ9mqsVT4PVvlFkPWBt58RCqrpGXNOHUbRDQbh7TuotMtieDx+iZ0dm0LQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=swDw5WSn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06E1EC4CEDE;
+	Tue, 10 Dec 2024 15:08:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733843337;
+	bh=L0jZFG/ObQiqmlFhKVnP7nKp03eQCYKfA9KpogBiLlM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=swDw5WSntjquD8bsCLjAq7HZigABy+Evloi75i4a/Yx7jiGWmQ0ENoL8smp61Z4Vv
+	 Jm0xh9Yw0WT87VCqltZcIu6wuHsVhZsnJ6X1CqaqQgJWbCJ3vNBWbUCB8e0ynw5Nes
+	 u6YlbB5d8JaOW3YDjVcBktzer9Ienexmvft8UhxnS2EolO1/IzOAbatb8PUe8Ji2kp
+	 O1WzYaxbpLyb0Ts0rN+MkHhei0DHD/eJX4WS2zvRnN34NCMfyJJvaY1vfaaohRdd77
+	 iOOqUtdb9qy+4uEuPaLJRTAXcTVRve5G8Q2bqDNSJyX/wRJO7LEODRMcoKszJhsLlz
+	 JBvk/DVdAfO0Q==
+Message-ID: <fd338dd5-db11-4439-835d-b6641f3feb78@kernel.org>
+Date: Tue, 10 Dec 2024 16:08:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com> <20241126092050.1825607-10-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241126092050.1825607-10-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 10 Dec 2024 16:05:12 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWSgFwNEiijrnSCOif6VK5Ph1-d9=+NpWJsAbNVkaH0SA@mail.gmail.com>
-Message-ID: <CAMuHMdWSgFwNEiijrnSCOif6VK5Ph1-d9=+NpWJsAbNVkaH0SA@mail.gmail.com>
-Subject: Re: [PATCH v2 09/15] phy: renesas: rcar-gen3-usb2: Fix an error
- handling path in rcar_gen3_phy_usb2_probe()
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
-	gregkh@linuxfoundation.org, yoshihiro.shimoda.uh@renesas.com, 
-	christophe.jaillet@wanadoo.fr, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 00/13] wifi: ath12k: add Ath12k AHB driver support for
+ IPQ5332
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241210074159.2637933-1-quic_rajkbhag@quicinc.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241210074159.2637933-1-quic_rajkbhag@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Nov 26, 2024 at 10:21=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev>=
- wrote:
-> From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
->
-> If an error occurs after the reset_control_deassert(),
-> reset_control_assert() must be called, as already done in the remove
-> function.
->
-> Use devm_add_action_or_reset() to add the missing call and simplify the
-> .remove() function accordingly.
->
-> Fixes: 4eae16375357 ("phy: renesas: rcar-gen3-usb2: Add support to initia=
-lize the bus")
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> [claudiu.beznea: removed "struct reset_control *rstc =3D data;" from
->  rcar_gen3_reset_assert()]
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 10/12/2024 08:41, Raj Kumar Bhagat wrote:
+> Currently, Ath12k driver only supports WiFi devices that are based on
+> PCI bus. New Ath12k device IPQ5332 is based on AHB bus. Hence, add
+> Ath12k AHB support for IPQ5332.
+> 
+> IPQ5332 is IEEE802.11be 2 GHz 2x2 Wifi device. To bring-up IPQ5332
+> device:
+> - Add hardware parameters for IPQ5332.
+> - CE register address space in IPQ5332 is separate from WCSS register
+>   space. Hence, add logic to remap CE register address.
+> - Add support for fixed QMI firmware memory for IPQ5332.
+> - Support userPD handling for WCSS secure PIL driver to enable ath12k
+>   AHB support.
+> 
+> v4:
+> - Missed to include some review list in v3. Hence sending v4 with
+>   all review list as per - scripts/get_maintainers.pl
+> 
+The amount of undocumented ABI you add here, points to the problem that
+either your drivers don't work or your drivers would never work with
+upstream. Why? Because either you would have wrong DTS or drivers not
+matching DTS, thus not working.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Please point us to your upstream DTS implementing (and working 100%)
+this ABI, so we can review that you do not sneak more broken or
+undocumented things. I will NAK also future submissions without above,
+because I believe you usptream something which will not work.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
