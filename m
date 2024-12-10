@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-129096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A8BE9EAA73
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:20:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A73D59EAA78
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:21:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C2B72877D3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:20:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 677E22880DC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:21:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B5922F3A6;
-	Tue, 10 Dec 2024 08:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2541622F3A1;
+	Tue, 10 Dec 2024 08:21:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mmc7w0YZ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="h7Z67N44"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CAEC22CBD0;
-	Tue, 10 Dec 2024 08:20:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9A822CBD0;
+	Tue, 10 Dec 2024 08:21:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733818818; cv=none; b=FaFg7uyGwyhiLcw889+LhQsMh+52u2M7JNH1KcQkk2CxDsebs7p+WVMr7tdAC3e794+FJKs0XLOH/HfoYYy5Vev23dj7oaG+c0/GpLAO/hANhhCS2ggYzjG9DIBdMyektHEeKPxM9aCkNxArdG+VPmQjoT8Xre/UOioA8LYa+FI=
+	t=1733818891; cv=none; b=tVcIS/X0m0SdHWrilPjJMTrPnZ9bn4udD7VwngRAOh76/YXfX+aUKqyi+0m0zOTiLIalp0HfPXZyYcR78RwSJc5J5SpNbDv/POANMZGkLjCIv/AY68XW4YK9cCTYHvtEMKhShCo3BLd1ZDzPskQb10LldMKAsmfNnNOUG38ZRms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733818818; c=relaxed/simple;
-	bh=p8JGXEWmEdt5MxzhhM9kkyp4xmbpJJ6oNzPanihGgn0=;
+	s=arc-20240116; t=1733818891; c=relaxed/simple;
+	bh=fK9v0cZTAtqsxeQFFyGcZvjO5yvsqyMJpiYsA2VCctA=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SSeCryHxM6y9hLrQiKQbGwsrSGohwPoZU+R0aPjju/G6iALE3TTFyOwu49YZGO9BY3IvKgn25Q0NAryn3ZVbpQimYsTUZJfrlMSoS+3eK0akPm6qEb2xhqwJzpwVOTfxVbaRJWD4rR4efeugXa5menNjdAMtOk/IhnsT1TTvd2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mmc7w0YZ; arc=none smtp.client-ip=217.70.183.198
+	 MIME-Version:Content-Type; b=nsQw8B1FJRBLzVO7haiSaBav48n7XgQNl1W34N2exi0uwOCLy+N/yxp7JNW6FJtVWJ9iCO9k8dH64+gg/5E8MZ8eTqNefcrBlTSM2XmpdlJTgIsIv0Xb/1xsNME/UczB49KPXTV1h8NuxrD7a9DEfS2p7zgKn9k5g+Ypf4U6mAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=h7Z67N44; arc=none smtp.client-ip=217.70.183.197
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9707DC0002;
-	Tue, 10 Dec 2024 08:20:13 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D19A11C0003;
+	Tue, 10 Dec 2024 08:21:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1733818814;
+	t=1733818885;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=wYOF2Wl1qX6c3I/DkpzehZyI0ZDHmWep+qnl7cvy6B4=;
-	b=mmc7w0YZeO0vH7HMZ+9/ewjYFRvq9ryEiXTTOunK+ufrHJ2Ndt8TITmoctEjvX2loy2G9k
-	NosFeAMjQRWelu3e9viGIlsl4HPRDncOKIRvOH55KmMYKHL2LW+/RT6DqTlm8L6y4AcfqR
-	MQ3xR5or2uSvG23EVc9fVRF2bkbjYv2KzIiTNk4G3jljPRGAzbdKXq1HMLqNiSwf+fLmJq
-	qYnjKGT7PDuGTkhZCyi74qjxi13C+W9z7V45LH5jO3loWHHTQCOFNHTFmxOXRi3Xxd+0Hu
-	mS7SUpgS0JTXRS3kInAhzG4vGUqhP8dlGybKr+/ZMyudbduSDh6QSGelNeiJsw==
-Date: Tue, 10 Dec 2024 09:20:12 +0100
+	bh=1AOUSLYgmnyJ7HVIDZ3/KMWd0NTwOgKPOQaoYfuH55k=;
+	b=h7Z67N445aFInE6NguY+TGyCCtEHwIA/Rgwy3bFzAKDJb/rf44HQMt154jFUdozyASDmZA
+	BgMdV03GmwdZjRb/xZloBNOTxy9QlXVDzIrtxCBunhyziBAoiTf2fIUcTMYMleGCMe4ImX
+	RsXq/sdJMAQT3u/q591xn8+ZspzNTowK+ylflZIWJ8nc8YPp0Mf8fXLUWd3hfwH0YU+SDB
+	gn5BBli5jECNaofv7Sa/Hq6CpkrTFdNAPx3COW9+6yXEF6nX1bDYD6IETDzeSFlp4kZiWM
+	Cfbg8XmJ2iU+4ar+g4ZWbGQfHFOcw3vep3y7XlyJ/laBKd0ubrINva7zuYfSPg==
+Date: Tue, 10 Dec 2024 09:21:24 +0100
 From: Herve Codina <herve.codina@bootlin.com>
 To: Luca Ceresoli <luca.ceresoli@bootlin.com>
 Cc: Andrew Davis <afd@ti.com>, Ayush Singh <ayush@beagleboard.org>, Geert
@@ -55,12 +55,13 @@ Cc: Andrew Davis <afd@ti.com>, Ayush Singh <ayush@beagleboard.org>, Geert
  <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas Petazzoni
  <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 1/7] dt-bindings: Add support for export-symbols node
-Message-ID: <20241210092012.0ba678d2@bootlin.com>
-In-Reply-To: <20241209182722.2dd15f7a@booty>
+Subject: Re: [PATCH 5/7] of: overlay: Add export_symbols_name in
+ of_overlay_fdt_apply() parameters
+Message-ID: <20241210092124.5678b53a@bootlin.com>
+In-Reply-To: <20241209182728.1ab9247a@booty>
 References: <20241209151830.95723-1-herve.codina@bootlin.com>
-	<20241209151830.95723-2-herve.codina@bootlin.com>
-	<20241209182722.2dd15f7a@booty>
+	<20241209151830.95723-6-herve.codina@bootlin.com>
+	<20241209182728.1ab9247a@booty>
 Organization: Bootlin
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
@@ -74,17 +75,18 @@ Content-Transfer-Encoding: 8bit
 X-GND-Sasl: herve.codina@bootlin.com
 
 Hi Luca,
-On Mon, 9 Dec 2024 18:27:22 +0100
+
+On Mon, 9 Dec 2024 18:27:28 +0100
 Luca Ceresoli <luca.ceresoli@bootlin.com> wrote:
 
-...
-> > +patternProperties:
-> > +  "^[a-zA-Z_]?[a-zA-Z0-9_]*$":  
+..
+> > Having the name of the subnode in parameters instead of the subnode
+> > itself avoid the use of an export symbol node that is not directly  
 > 
-> I think the '?' should not be there: "^[a-zA-Z_][a-zA-Z0-9_]*$".
+> s/avoid/avoids/
 > 
 
-You're right. I will update in the next iteration.
+Will be fixed in the next iteration.
 
 Thanks,
 Hervé
