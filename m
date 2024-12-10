@@ -1,167 +1,184 @@
-Return-Path: <devicetree+bounces-129310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B80469EB2A2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:05:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3412D9EB2C7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:10:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E04D71886EB0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:03:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A9F61886FD7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:08:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6764B1BAEF8;
-	Tue, 10 Dec 2024 14:02:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C4EA1AAA2F;
+	Tue, 10 Dec 2024 14:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="p7pee7gc"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="i7TT7o4m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from out-178.mta1.migadu.com (out-178.mta1.migadu.com [95.215.58.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8FA91B4F04;
-	Tue, 10 Dec 2024 14:02:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4112B1A2642
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 14:08:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733839362; cv=none; b=o1sqz2W5uN6IKwrfHClgRVH9H5OKCFSrDkOfaJqCfI4cBfFbS7dBg2f7PpAqW6amdKXuxWLQcYn8nehIoqz0WLP8a8oMrNlkqCnOV5gnjip9IjtXltiI4rG6gyKYsVFBJmQl0nCMDYoOUliXJNLYsagYdxSGL/cmjafWWt91u7w=
+	t=1733839726; cv=none; b=SHqMNQKdkalwbfsNR6Gr7203FE0l7H9Iu7wpXg7eriz5ONBRdjFdOy340JXy4mJOeQC/ReoxQp/w1BVdMzzrks5TRK3HR6l7bVOcfIFsDxXOhC8r21DTqyF8uJm57rw54T4rHUyH6xGkfakKtzaN1wRgjGV1aSGj9mE4eSQ8AHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733839362; c=relaxed/simple;
-	bh=qKuGnKrDI8tSu8y0laNgchv/TAlzf72FKxm9pJA01ek=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YgO37iWx0LoeQcCE3u8uHouXdjxA7TeDeiw/OljJzNrmzXnmj+iV+32XdjibkEbz0yXor4E+wxtfPYyJnnQtKaV3ZkZ5OHI58Qn/XSLm11Wx6gThQOQSN4lHFWi+erWhHvBcQixMeOFPGXiLjlAIA3azaZ3FTqo1JNuJ23H1QHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=p7pee7gc; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BA8P2I8015737;
-	Tue, 10 Dec 2024 14:02:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qxWpVhRjhZwE295T3kgsrVOGaciQb5Kgk+jkfYqg6CQ=; b=p7pee7gcu4pMXx5H
-	oDfqgVsDvVoo8msqleGs1OtDwLKxo7COWn80JKt1NCZ2LfgnMh7jpu9dXVT/xz6s
-	N6bn1uIKcceJLucyBabLKtYDQGQzoAoEvAu012X7HEtQdDnwsdXTR1dkR7J3XkRj
-	ZkqvqTUw3TGxRwfCU5UYrtDiualMkEUZbyMobqdcMEHgm9I5P66n0dwgvcWQv39Z
-	BIWGI8Yk7axJ7YwuUs/J6dFzP6F8igWNXp974sLwvInX1lIHfplVpm+xZLcfbpLz
-	+/hEq9TIwhq1SIrwyZGzDqpDpqWSz/3kuE2q8xyMorKj4aOwuB7oVL595AQET7Mm
-	79+sFQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43dy8tv808-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Dec 2024 14:02:32 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BAE2VRx014982
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Dec 2024 14:02:31 GMT
-Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 10 Dec 2024 06:02:24 -0800
-Date: Tue, 10 Dec 2024 19:32:16 +0530
-From: Wasim Nazir <quic_wasimn@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>
-Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: Add support for QCS9075 Ride &
- Ride-r3
-Message-ID: <Z1hJ6GRB6u50PmlN@hu-wasimn-hyd.qualcomm.com>
-References: <9e351979-be01-4d38-9b94-cc23efac4c3f@kernel.org>
- <Z1LaN9nFr5msfq61@hu-wasimn-hyd.qualcomm.com>
- <cbed17c2-d839-42cb-8a33-b59538bfccf3@oss.qualcomm.com>
- <c639ca40-9e4f-4882-8441-57413e835422@kernel.org>
- <Z1c9wMxQ5xSqvPmf@hu-wasimn-hyd.qualcomm.com>
- <8cf9edc0-a0cb-4fd0-b10e-2138784dfba3@kernel.org>
- <iu6ssjczkdfkhfy2n6vxf3f3c2pepsepslzvnh5z4susxgxgqa@engwsvhu533x>
- <5782d7c6-1a75-4f15-8942-387742e0ae09@kernel.org>
- <Z1gIsrWAT3QftC4c@hu-wasimn-hyd.qualcomm.com>
- <d3f1d92b-cc08-4a7d-a48f-89081a615c48@kernel.org>
+	s=arc-20240116; t=1733839726; c=relaxed/simple;
+	bh=rpq4rB1qFLGN/pPkWko88+qcmLf7FTumkCrJs3ShpBs=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=miTk1YYyLGLsz8wC9kipBsOpMU6qBCO94w/Q1fhDmFqQjeU+goPvss7anxfCqIi/VUtONlyPoaOsXBQQzZhsUUTHdc845mVVGm0c+2HkpdbMBbHzntpcaWfIPw6ON6XZ462/78RyMv4vMuhbFeB3bWCNGMn8MMRyHUywAWfVsdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=i7TT7o4m; arc=none smtp.client-ip=95.215.58.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d3f1d92b-cc08-4a7d-a48f-89081a615c48@kernel.org>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: gyDQnnuAzdRtmsRSHi2HyCj0R63x__Eb
-X-Proofpoint-GUID: gyDQnnuAzdRtmsRSHi2HyCj0R63x__Eb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- priorityscore=1501 mlxlogscore=790 clxscore=1015 mlxscore=0 spamscore=0
- lowpriorityscore=0 malwarescore=0 bulkscore=0 phishscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412100105
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1733839721;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=U+lr9Xj8fasPSLICMtvgJpje7wSb8uDowE1UhnFV4lk=;
+	b=i7TT7o4mPAPdG7vU6a/kLsvJUfv7u5Ia+z4a/tIAc7XkC2g9FKzSWyiwE5Wdp7yAWWpJ9C
+	xJOYKvJzZSyKUE/7akX3awuNlhZSOt26uORS2E82RRA/KJf8Lv0MwMzM/UpcYb1srG0AUu
+	9p3ubdqlEmmnBeH6ehTpnobyxRW9jzVw+OX2jt+kc0BDJyhMPzGux6HZNt9NHjFQsAku6A
+	O8k2LDTbSFS9HnW+H1WNT6rFVDJPdagI6NAOpxryFERH+3iD90F89TtgdS7oGJbJdTKSJH
+	usN8MLZVd/hFVQs/r9zToDJ6rNE7CbjrZXOeTSgQ2wgMSefQWk4mI+K3+wZEYA==
+Content-Type: multipart/signed;
+ boundary=71c82bf461fdb53d31fda9f19110d3c968b0d155862851919717d99cc7ad;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Tue, 10 Dec 2024 15:08:29 +0100
+Message-Id: <D682VQLD81Y8.1K8OD4ECAOSW3@cknow.org>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Peter Geis" <pgwipeout@gmail.com>
+Cc: "Heiko Stuebner" <heiko@sntech.de>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Dragan Simic" <dsimic@manjaro.org>, "Johan Jonker"
+ <jbx6244@gmail.com>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Levin Du"
+ <djw@t-chip.com.cn>, "Rob Herring" <robh@kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <linux-rockchip@lists.infradead.org>
+Subject: Re: [PATCH 5/6] arm64: dts: rockchip: correct rk3328-roc regulator
+ map
+References: <20241210013010.81257-1-pgwipeout@gmail.com>
+ <20241210013010.81257-6-pgwipeout@gmail.com>
+ <D67ZJ6MOM5TH.2WBYCCU20DDJO@cknow.org>
+ <CAMdYzYorTNiAybGhPu0u_YPj2J7qxCO72KBU1ozTde+2zK9Hxg@mail.gmail.com>
+In-Reply-To: <CAMdYzYorTNiAybGhPu0u_YPj2J7qxCO72KBU1ozTde+2zK9Hxg@mail.gmail.com>
+X-Migadu-Flow: FLOW_OUT
 
-On Tue, Dec 10, 2024 at 12:50:51PM +0100, Krzysztof Kozlowski wrote:
-> On 10/12/2024 10:24, Wasim Nazir wrote:
-> > On Tue, Dec 10, 2024 at 08:25:34AM +0100, Krzysztof Kozlowski wrote:
-> >> On 10/12/2024 00:25, Dmitry Baryshkov wrote:
-> >>>>>>>> 9100 & 9075 are different from “safe” perspective. They differ in
-> >>>>>>>> changes related to thermal which will be added later in devicetree.
-> >>>>>>>
-> >>>>>>> Since this can't be inferred from just looking at the changes, please
-> >>>>>>> make sure to add that to the commit message
-> >>>>>>
-> >>>>>> Any include of other DTS is clear sign something is odd here. Including
-> >>>>>> multiple times without any added nodes is showing these are not real
-> >>>>>> products/boards .
-> >>>>>
-> >>>>> We're adding DTS to reuse the common board changes, with plans to
-> >>>>> include the differences in upcoming patches. To provide more clarity, I
-> >>>>> will include patches in this series to highlight the differences between
-> >>>>> the 9100 and 9075 boards.
-> >>>>
-> >>>> Sure, still do not include DTS. Just like C files don't include C files.
-> >>>
-> >>> So, is the solution simple, rename .dts to .dtsi and include it from
-> >>> both .dts files?
-> >>
-> >> For example. This leads to more questions - what is common here? We do
-> >> not create shared DTSI files just because someone wants, but to really
-> >> note shared components or shared designs.
-> >>
-> > 
-> > We can reuse the common dtsi for ride boards, i.e., sa8775p-ride.dtsi,
-> > and then add board-specific changes in the corresponding files.
-> 
-> 
-> So you will create shared DTSI because "someone wants"? Did you read the
-> question above and valid reasons/answers to it?
-> 
+--71c82bf461fdb53d31fda9f19110d3c968b0d155862851919717d99cc7ad
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Sorry, if I couldn't able to answer your question.
+On Tue Dec 10, 2024 at 2:04 PM CET, Peter Geis wrote:
+> On Tue, Dec 10, 2024 at 6:31=E2=80=AFAM Diederik de Haas <didi.debian@ckn=
+ow.org> wrote:
+> > On Tue Dec 10, 2024 at 2:30 AM CET, Peter Geis wrote:
+> > > voltages to vcc_host1_5v, and standardize the order of regulator
+> > > properties among the fixed regulators.
+> >
+> > Big fan of standardization :-) ...
+> >
+> > >
+> > > Fixes: 2171f4fdac06 ("arm64: dts: rockchip: add roc-rk3328-cc board")
+> > > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> > > ---
+> > >
+> > >  arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi | 23 +++++++++++++-----=
+--
+> > >  1 file changed, 15 insertions(+), 8 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi b/arch/arm6=
+4/boot/dts/rockchip/rk3328-roc.dtsi
+> > > index f782c8220dd3..6984387ff8b3 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+> > > @@ -24,22 +24,23 @@ gmac_clkin: external-gmac-clock {
+> > >               #clock-cells =3D <0>;
+> > >       };
+> > >
+> > > -     dc_12v: regulator-dc-12v {
+> > > +     /* fed from passive usb input connector */
+> > > +     dc_5v: regulator-dc-5v {
+> > >               compatible =3D "regulator-fixed";
+> > > -             regulator-name =3D "dc_12v";
+> > > +             regulator-name =3D "dc_5v";
+> > >               regulator-always-on;
+> > >               regulator-boot-on;
+> > > -             regulator-min-microvolt =3D <12000000>;
+> > > -             regulator-max-microvolt =3D <12000000>;
+> > > +             regulator-min-microvolt =3D <5000000>;
+> > > +             regulator-max-microvolt =3D <5000000>;
+> > >       };
+> > >
+> > >       vcc_sd: regulator-sdmmc {
+> > >               compatible =3D "regulator-fixed";
+> > > +             regulator-name =3D "vcc_sd";
+> > >               gpio =3D <&gpio0 RK_PD6 GPIO_ACTIVE_LOW>;
+> > >               pinctrl-names =3D "default";
+> > >               pinctrl-0 =3D <&sdmmc0m1_pin>;
+> > >               regulator-boot-on;
+> > > -             regulator-name =3D "vcc_sd";
+> > >               regulator-min-microvolt =3D <3300000>;
+> > >               regulator-max-microvolt =3D <3300000>;
+> > >               vin-supply =3D <&vcc_io>;
+> >
+> > ... but why not put regulator-name as the first of the regulator
+> > properties as is done in the rk3328-rock64.dts ...
+> >
+> > > @@ -50,22 +51,25 @@ vcc_sdio: regulator-sdmmcio {
+> > >               states =3D <1800000 0x1>, <3300000 0x0>;
+> > >               regulator-name =3D "vcc_sdio";
+> > >               regulator-type =3D "voltage";
+> > > +             regulator-always-on;
+> > >               regulator-min-microvolt =3D <1800000>;
+> > >               regulator-max-microvolt =3D <3300000>;
+> > > -             regulator-always-on;
+> > >               vin-supply =3D <&vcc_sys>;
+> > >       };
+> > >
+> > >       vcc_host1_5v: vcc_otg_5v: regulator-vcc-host1-5v {
+> > >               compatible =3D "regulator-fixed";
+> > > +             regulator-name =3D "vcc_host1_5v";
+> > >               enable-active-high;
+> > >               pinctrl-names =3D "default";
+> > >               pinctrl-0 =3D <&usb20_host_drv>;
+> > > -             regulator-name =3D "vcc_host1_5v";
+> > >               regulator-always-on;
+> > > +             regulator-min-microvolt =3D <5000000>;
+> > > +             regulator-max-microvolt =3D <5000000>;
+> > >               vin-supply =3D <&vcc_sys>;
+> > >       };
+> >
+> > ... and was the case here?
+>
+> That's fair, thank you. I like the alphabetical approach, I'll go that
+> way when I split this out.
 
-We will not be creating any new DTSI files. Since QCS9075 is derived
-from SA8775P, we will be reusing the existing common DTSI files for
-the ride boards of the SA8775P and its derivative SoCs.
+FWIW, I'm fine when regulator-name and regulator-type would be put on
+the top of the regulator-* properties, also because that's currently
+the case for the rk3328-rock64.dts.
+And a strict alphabetical order would look weird anyway as then
+-max-microvolt should be ordered above -min-microvolt.
 
-Here is the change reference for common ride dtsi:
-https://lore.kernel.org/all/20240627114212.25400-3-brgl@bgdev.pl/
+Cheers,
+  Diederik
 
-Please let me know if I missed anything.
+--71c82bf461fdb53d31fda9f19110d3c968b0d155862851919717d99cc7ad
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 
-> > 
-> > If this approach is acceptable, I can proceed with sending the
-> > next patch series. I hope this will help clarify things further.
-> 
-> Best regards,
-> Krzysztof
+-----BEGIN PGP SIGNATURE-----
 
-Thanks & Regards,
-Wasim
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ1hLYgAKCRDXblvOeH7b
+bsqGAP0ausb4UuEsVs1vJjp21RP5uSetGtXSYkjqDm5Iwx0S+QEAhXy7tQEG2SpU
+vxYM7GPJ6U1VLvsRMAenXCAd0jGDOwc=
+=Xo59
+-----END PGP SIGNATURE-----
+
+--71c82bf461fdb53d31fda9f19110d3c968b0d155862851919717d99cc7ad--
 
