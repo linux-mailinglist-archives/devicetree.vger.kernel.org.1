@@ -1,117 +1,122 @@
-Return-Path: <devicetree+bounces-129172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2F539EAD4F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:59:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E04999EAD51
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:59:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51CBA289464
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:59:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AC7D280CA6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:59:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA0A778F44;
-	Tue, 10 Dec 2024 09:56:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43CC62080D9;
+	Tue, 10 Dec 2024 09:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n/E/OdtD"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="E3hp/VzP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA4B278F40
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 09:56:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54CD91DC9BE
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 09:56:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733824601; cv=none; b=VTHJjUO1THGxvDy+fTIeeG/tKef6ni9nGLpPyOIxB7QAFs5ko5iPwLIlNbCgMImwFLyxjkfHH8OtvmfxuYz4GxOS43HkMMfpH6KGK90JXr80tjfLoaAO8Klyh8Dpws0wdKoY1gkMIQQJN/4Qa+5fMWUHu8gktfSPca73tg4ktZQ=
+	t=1733824606; cv=none; b=rI10ZGQf+g6YfoJLX+ZsEIUPpTfmDI5KWQcWug9aBxFR19nlQWSlQZL2CB6H3sOQI3PPD3y11LgN65cL6NuQxoREHsUoYZLq5iVfV1pf8Dnwgc8tVNZ93wsdS++q/9IekY+wE6fUNE3DZPhJV9EmoTv6a8/8pFXkkHvWlXC7/YY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733824601; c=relaxed/simple;
-	bh=C6dLWR01cRv8FPjeu3uMmdCJ92SNjbws/Q2KoohADSs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OFCyfGPUSi0FCqhEMMLXHjbNKIeL99ROafABLn+3v5KH1R/Sykhr1F/yyonfI9QNdtBAzAlG6h718RB+iMNLsW5T71Eq9qthWJ2eoIWMbs6KE9rZ8bQu0gWEoAhDTsHK+ijugJVHVX/PYJgNYnz2bI0V7fICbQ/9J3wLL+QZLj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n/E/OdtD; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5d3e829ff44so4769095a12.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 01:56:39 -0800 (PST)
+	s=arc-20240116; t=1733824606; c=relaxed/simple;
+	bh=kOBH0vMe0xTQDXgWPorv7i1vsjSVrIhgJ0QqbJFZGP4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Qsxde8ZCO+RRLheeUgJI/J9VzaGSMszSVTlRHBAaMcTnwW9IQC81Ono0ItaFsjJM8SmRyqmGPSuSXrRtXWhoPSgIF+CC+NKcgFTCKxacO5Bkzl1DR6i/kFF8fcggnoeh7cHxyA4K4SwJ1zkqIVK0OkUSj9rEpKhjP6gz815j55U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=E3hp/VzP; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3862a4b8ec2so2116666f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 01:56:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733824598; x=1734429398; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=eB4R97+dFiQJvfWzO4gzWibCc3j87hwW/JO+idp2Qys=;
-        b=n/E/OdtDLL9hzTqffXDMLovfS8g4iJNRICqaVcxMo/VIFPvbIaC6ADZsKkHIFPFP6d
-         H6mM7Ag+qWPDsro0iJ3XbcmVt3tbxBhLrXwiesncFmdcZMVHsQwRPpDb4ppLAfwGJlYy
-         aO3B0kNRBaUglM/gubvcbNt/mMlOWyXrX79CtTPNcLnZnBHjWbbRTfu9voac5/88SjRo
-         4VmT7dL6NGwMNSBw+VZDg2SqzF7NEzdYjagKqzWta8pHe5TFcsZG19fZoHgQwUrK7QDP
-         tMxcKqMo5haDmth5WgMqs5uqrw3/lQgdbrJzVUtzOdnPyuBaVFGTIjbibVtfxDwZugLy
-         DQbw==
+        d=tuxon.dev; s=google; t=1733824602; x=1734429402; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kOBH0vMe0xTQDXgWPorv7i1vsjSVrIhgJ0QqbJFZGP4=;
+        b=E3hp/VzPKLaBQJc1w6MPAgYZfc+1H0YB+8+rJ9EWrPGFWPT0kztjQZSoiyATSyUr0i
+         KcKWcx+yWush0dy/9+4PGpr3fBbZoTMu1OYglSVIyB5OZ48/+rXqyat1oaAR53cpDXw5
+         Yi33RHKyuCPGSiNqz5vAa2VpcN469IMWx4kXi8jr20d18DDyQtNe7u5uJ2LaZ11vWqTR
+         bDxUU3JWcEu+x2xQqtRb9HVrkGtzRb2/cVHZlFZBh46kvDe1qi8/ytwZ0n2iwseJYqEJ
+         99s09Sp6TjtT7UUq5q48TdGZ4lBWrFjUNucASTgDO0h7RTtiTQ2z+dxnPoOXgcbDivrG
+         6bfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733824598; x=1734429398;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eB4R97+dFiQJvfWzO4gzWibCc3j87hwW/JO+idp2Qys=;
-        b=Lg03zQ0SbeISHh8KYuffoeW8wMY3nNrskRmU7Mi4tV8vgM7EpIn/4RuOh6AvjVof4n
-         DplWFzR3TJqP75A/lz0FxhRW8iW7Bil7UccBXW/VozcgtN4gLrKd+qacITs4qz19H9Mf
-         fQBenAvaIfr00q4P5SOl4m1rbT9CUyfKJkJSy6y+dd1/9oZQkwvkbfs0+Sv1Qu+5BE/L
-         HRUQBTAcshzHAXstc+JsItX9uZAI49GdGysbm35seK8DtJulZCNv8+QbdaBxEGJtuypQ
-         CcnIUQ70OEpBSuewHFHnN7UVswe3Snb0OtqCLboQxvgx31iXxsCIp+Gc9NOqQTxqSTv6
-         fDIA==
-X-Forwarded-Encrypted: i=1; AJvYcCX1GQ48TV9wf+fCks2TSaDKhUUgf4JEW00i1GLk0C7PfhRpGOc9nRyCJZ+eA9RL6UV2kSpCGmTIt1tT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3Oi1x67FLLzvz3sHEIL/nrBPP98S1UDAKSz8Op/iLoIkRrGBq
-	q/iSgxQI93Mj5jM7FTif4jeGnXXB//EzlJwzJnTv8cAr8oif8HB136y0lIeAiJ0Ivpn8HpYPVa6
-	ZRNfgdNxRgK3BnzPe6xsUN6N0ANxEDnW4AoHFpg==
-X-Gm-Gg: ASbGncvBVl9kzqWENwpL/70dcNG1NyOnGRnRIg8tSiNW7D+XM28S2WIbMiJvfRUFnKT
-	OU9BT09A4ihXQo5sb+Hl2LAwdueGEKjAVkGg=
-X-Google-Smtp-Source: AGHT+IF2Cs6izMr0EPP8N4VEwRkQaw+ITA2b5QjAYykMlPPNbijyGbmHJi1bx5RG8uxupuDZsjfmD96K8rOQcz6jL7Y=
-X-Received: by 2002:a17:907:3d93:b0:aa6:9dcf:e273 with SMTP id
- a640c23a62f3a-aa6a00715b0mr264787866b.12.1733824597988; Tue, 10 Dec 2024
- 01:56:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733824602; x=1734429402;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kOBH0vMe0xTQDXgWPorv7i1vsjSVrIhgJ0QqbJFZGP4=;
+        b=aGBl26oAd0gQQRnilRaxh5UrAg4XnrnPpGeHl9R+TGhah/x83aFGwripyL+IJzEIcX
+         HVMB8Bz7rxIhf1r/K2KYoVDKPYdsiqsRASofKo2n0xtiV4Ya2zOhVexB+cbh2bO2alnw
+         MWv64lroDXGUHxckLRn7j9Py/wruuD7jDyVfSeY8fVV6+o2D+HtTV79Xm85SI7n500BP
+         6EFD95utFCXOf0kxZvx149GzqiEtEijd4aI3uxUluxBUJWzhHrZ2RowMmXapRJE5QO8b
+         BSU5SQToTBo2ilAhI2foUcrWGWTwNl0ZvtVhw3EGx/K9zo1L579PO+8uG1Ke8LnMfE+t
+         LMNg==
+X-Forwarded-Encrypted: i=1; AJvYcCX1ZE3b9xwoik4tdHTJTGR5A9WSnoqv8oVf6urrvSbBNiI8wk2kuYK6yxtyHEWIwvYISGomH+ScIR/N@vger.kernel.org
+X-Gm-Message-State: AOJu0YwL2Xi5rTi4C0eAuekNrXhbA661do01ugVSRO8sUVM6IoLPjrsJ
+	3YFg2vcjAOLr5qiPy12li2lzUnfXQsVrNDPHj/WuRUmPClgV0PZQIOoYkTLWH5c=
+X-Gm-Gg: ASbGncu0yfXUx+fjUAXZNVtZJrQNUfmTk+JL1JiMUrhb6Oi1pSeETVqTUtzln4bloCV
+	lPpLQSZiMBf4oward8nvTdKTDk9JzS72YIfi/WutOdsRI7WBgAoLSS85dp8bK/1E9PVXEJvmMwb
+	rGLGeIgKmn6k2/rzJyoAhkQC24BrqChXqBZoremzUBLeCOLS7JT0ZamurdDwoTpBhOzVXqSTSW0
+	CGgmoH+LedKxs30reZa8NwithwODlV9435zuM8+IZbXDflaNUzmrYbI/7crk3k=
+X-Google-Smtp-Source: AGHT+IGBn3J/kwjMkMOumD3GgGk3HgegGtxShYE8MGa5RyAHXgSBmzxZuUlRrYhXtKyrcLpn+/1Lzg==
+X-Received: by 2002:a5d:6c6d:0:b0:382:4926:98fa with SMTP id ffacd0b85a97d-386453fe979mr2475238f8f.40.1733824602299;
+        Tue, 10 Dec 2024 01:56:42 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.161])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3862190989fsm15684319f8f.73.2024.12.10.01.56.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Dec 2024 01:56:41 -0800 (PST)
+Message-ID: <ed0f6c49-8e39-4cc6-ba93-35a9372bb532@tuxon.dev>
+Date: Tue, 10 Dec 2024 11:56:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241209-qcom-video-iris-v7-0-05c6bdead47b@quicinc.com> <20241209-qcom-video-iris-v7-9-05c6bdead47b@quicinc.com>
-In-Reply-To: <20241209-qcom-video-iris-v7-9-05c6bdead47b@quicinc.com>
-From: Stefan Schmidt <stefan.schmidt@linaro.org>
-Date: Tue, 10 Dec 2024 10:56:27 +0100
-Message-ID: <CAEvtbut6e=08fP68fjUjb29YvV7ieJ7jXdVdCG+XA80fVnAd_Q@mail.gmail.com>
-Subject: Re: [PATCH v7 09/28] media: iris: implement reqbuf ioctl with vb2_queue_setup
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>
-Cc: Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Sebastian Fricke <sebastian.fricke@collabora.com>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 14/25] ASoC: renesas: rz-ssi: Use goto label names that
+ specify their actions
+Content-Language: en-US
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, biju.das.jz@bp.renesas.com,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, lgirdwood@gmail.com,
+ broonie@kernel.org, magnus.damm@gmail.com, linus.walleij@linaro.org,
+ perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de,
+ linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com>
+ <20241113133540.2005850-15-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdU+_NuLp2FuwwcLfJRe2ssMtp=z7fqcsANgYfFehTNJGg@mail.gmail.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAMuHMdU+_NuLp2FuwwcLfJRe2ssMtp=z7fqcsANgYfFehTNJGg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hello Dikshita,
+Hi, Geert,
 
-> +#define HFI_SESSION_ERROR_BEGIN                        0x04000000
-> +#define HFI_ERROR_UNKNOWN_SESSION              0x04000001
-> +#define HFI_ERROR_MAX_SESSIONS                 0x04000002
-> +#define HFI_ERROR_FATAL                                0x04000003
-> +#define HFI_ERROR_INVALID_STATE                        0x04000004
-> +#define HFI_ERROR_INSUFFICIENT_RESOURCES       0x04000005
-> +#define HFI_ERROR_BUFFER_NOT_SET               0x04000006
-> +#define HFI_SESSION_ERROR_END                  0x04FFFFFF
+On 09.12.2024 15:51, Geert Uytterhoeven wrote:
+> Inside this block there are several return statements.
+> As we know DMA is not available when we get here, these do not
+> need to call rz_ssi_release_dma_channels() hence do not use
+> "goto err_release_dma_chs".
+> However, this may be missed when making future changes.
+> So perhaps it may be prudent to make this safer, by moving this inside
+> the failure branch of the rz_ssi_dma_request() check above?
 
-I am running this set on x1e. During tests with fluster I often see
-error code 0x04000008
+I agree! As this series is already big enough I would prefer to handle it
+after it is integrated. Keeping it like this doesn't impact the RZ/G3S support.
 
-[  103.787979] qcom-iris aa00000.video-codec: session error received
-0x4000008: unknown
+Are you OK with this approach?
 
-Seems worthwhile to add this one, and maybe other missing error codes
-as well, here and to iris_hfi_gen2_handle_session_error() below.
-
-regards
-Stefan Schmidt
+Thank you for your review,
+Claudiu
 
