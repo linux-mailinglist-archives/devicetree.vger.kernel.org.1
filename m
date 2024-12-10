@@ -1,134 +1,185 @@
-Return-Path: <devicetree+bounces-129373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FC1A9EB74B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 18:01:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 817679EB791
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 18:11:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 989BD281281
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:01:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B388F28304C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:11:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53A7D207DE4;
-	Tue, 10 Dec 2024 17:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D8C623D420;
+	Tue, 10 Dec 2024 17:10:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XaJqPbE6"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="djH8PAyv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88EF61AA1E5;
-	Tue, 10 Dec 2024 17:01:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8DE23A594;
+	Tue, 10 Dec 2024 17:10:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733850088; cv=none; b=bb1G4BI9Mg4QzhwZoqKFYTiv3ym72FTN29SSgB1LKsjkduxPeaDIsORtn2bpMU0/8gAYePQrLIZmsNpqYCl7fL0RC/D9gyEFggdbDTGGYZDK/C2F2jFNLULW8lDHLshzA1cIfJf2/8iibWwBLSjdLjullAygo7HR9lW19LD7Opc=
+	t=1733850629; cv=none; b=nVX5yQm54tOrRyYE6m+7VTDumcoQRHx3c0NRWWZLZJSZbp70ZIMWeojSKSQBGViMHhVamb5CTL1qPhCEPDinuC85Muj43i/nqdb6CrWweBx9Qxu07bjYz5iEeaR81eaYvvcTuP72RK8FUIhEa/jmCJmzsHK4AQp6woEBlS6JZBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733850088; c=relaxed/simple;
-	bh=iK7Zs5gHKPMay3xJytYJL48O1gUK1sAV2LAgtfnopbU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=dXuUHPbWkUjPgvqXqK0I5wdG7QqgBgI0PkM8oVHfjHbje3AWHpXzSM3/Z6e4OoJqLprRh8RUthVq/7FPI37h/xIIhxpQI6vvDi3h7qWk9IsVw/mu8//UbUouCaFghgu8QpiZkNzwgpTAl3zjAD6HY1XbwmMmt/niGj4nG0bpKMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XaJqPbE6; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BAC2YIO007505;
-	Tue, 10 Dec 2024 17:01:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	n7k592LKv4ycZ6CD3fLqXfBOIulZOmseYrbaN//IVrc=; b=XaJqPbE63YYBdKS9
-	kUVffvXf7cECNFZbVd2acWmn/xSRZMp3/XBulOJMG5XSim4Lsvrv8/hbyN8MPF5Y
-	a2occZ7AOdCIl+Mx3VSvUOfLrA7/2P29+Ohfgn8mFaVN5BT9nEvAWACue76DMXSS
-	U/hOFhC4QE/vm+01XGLRyfkxL0bbQAJ0WNiA/5P9tlHJcIhrZBm5BqA4pWE3fIo5
-	kQ5+7CfoDmYc3PN0WA0ELyeYXS4S9QBfHYmIezoe2bZkq8AvQlj3Rlduz88oqKnP
-	nZur0rf3GEzTwJKNxofCCQp42UHb4e+Ql7Sn77sN0APY+1jObIuHolqkS4PLIg7T
-	TcyATw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43e21bm521-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Dec 2024 17:01:08 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BAH11tM027891
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Dec 2024 17:01:01 GMT
-Received: from [10.216.1.219] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 10 Dec
- 2024 09:00:57 -0800
-Message-ID: <ab745c8c-421d-42de-aec7-54c2064cee58@quicinc.com>
-Date: Tue, 10 Dec 2024 22:30:54 +0530
+	s=arc-20240116; t=1733850629; c=relaxed/simple;
+	bh=FEWnd3vRw56+0zU9iQm+h5IV4wTiZ4mx1GMYuoKmShg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BOP3SjGJi1EyI0N4wa+q1mHketCK6t1VPyGcGYtIQoKIc3stUA51ydDltvUMoHOZv9ZvywmEPyDSMEjDMtQ8mdzqxEKGtsdnPh/qilcy4FSdx/tEBmZKys0cX1q8if5R+hnwX/M1EJStQ+cNzZzPo86ABd/UINgmMssQ9PTPIhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=djH8PAyv; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1733850625;
+	bh=FEWnd3vRw56+0zU9iQm+h5IV4wTiZ4mx1GMYuoKmShg=;
+	h=From:To:Cc:Subject:Date:From;
+	b=djH8PAyv2m0Piy9QfdK2AsmiP3iTCg/H1JJv4rastS0dG3vSRKHmCB0X4ZKWA+nRn
+	 Y1KgCMD/JXS1cnArN4PB59DPTBieyRAEoQlnHR41ekjbnJm+NaQMQbX2lYHY+dSzcY
+	 8zVlRSfIaZKbeoKVktVBMiDaJM0rObgpFiYkFzQA12xMT9laTdOWQIjk6s9PAegBz4
+	 aVRCpkXTKhZ5gPB1mO5cxl/ktAShsZPgy53sTUAE6Pu3iItYn9yf5x8rrZvbM5Vju0
+	 RhNgue7UcvWezuVQHpLVb90Qe6FjBLwVgCE/hEO5626soFEf7yWB7yEWwCFFoZrOjF
+	 pghi4SibnATlw==
+Received: from jupiter.universe (dyndsl-091-248-190-127.ewe-ip-backbone.de [91.248.190.127])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 265A717E37C5;
+	Tue, 10 Dec 2024 18:10:25 +0100 (CET)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id A401648CC8A; Tue, 10 Dec 2024 18:10:24 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	=?UTF-8?q?Adri=C3=A1n=20Mart=C3=ADnez=20Larumbe?= <adrian.larumbe@collabora.com>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH v4 0/7] Fix RK3588 GPU power domain
+Date: Tue, 10 Dec 2024 18:06:40 +0100
+Message-ID: <20241210171023.141162-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 07/13] wifi: ath12k: add support for fixed QMI firmware
- memory
-To: Krzysztof Kozlowski <krzk@kernel.org>, <ath12k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20241210074159.2637933-1-quic_rajkbhag@quicinc.com>
- <20241210074159.2637933-8-quic_rajkbhag@quicinc.com>
- <2d86b600-a7b1-4f7f-87ba-c167ec8c0405@kernel.org>
-Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <2d86b600-a7b1-4f7f-87ba-c167ec8c0405@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6Wzrd0FjgKTPeD15VkVnraTvLWM3MxeK
-X-Proofpoint-ORIG-GUID: 6Wzrd0FjgKTPeD15VkVnraTvLWM3MxeK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
- malwarescore=0 lowpriorityscore=0 mlxlogscore=982 priorityscore=1501
- spamscore=0 impostorscore=0 adultscore=0 bulkscore=0 phishscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412100126
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 12/10/2024 8:13 PM, Krzysztof Kozlowski wrote:
-> On 10/12/2024 08:41, Raj Kumar Bhagat wrote:
->> +		case CALDB_MEM_REGION_TYPE:
->> +			/* Cold boot calibration is not enabled in Ath12k. Hence,
->> +			 * assign paddr = 0.
->> +			 * Once cold boot calibration is enabled add support to
->> +			 * assign reserved memory from DT.
->> +			 */
->> +			ab->qmi.target_mem[idx].paddr = 0;
->> +			ab->qmi.target_mem[idx].v.ioaddr = NULL;
->> +			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
->> +			ab->qmi.target_mem[idx].type = ab->qmi.target_mem[i].type;
->> +			idx++;
->> +			break;
->> +		case M3_DUMP_REGION_TYPE:
->> +			dev_node = of_find_node_by_name(NULL, "m3_dump");
-> 
-> NAK
-> 
-> That's neither correct name nor documented in the bindings. You created
-> now undocumented ABI. Even with incorrect name. :/
-> 
+Hi,
 
-Most of the Device Tree related concern in this series are from the
-undocumented ABIs and wrong naming (use of '_' instead of '-'):
-"m3_dump" and "mlo_global_mem_0".
+I got a report, that the Linux kernel crashes on Rock 5B when the panthor
+driver is loaded late after booting. The crash starts with the following
+shortened error print:
 
-To address the undocumented ABIs, "memory-region" and "memory-region-names"
-should be used to reference all the reserved memory required. This should
-include "m3_dump" and "mlo_global_mem_0" memory region.
+rockchip-pm-domain fd8d8000.power-management:power-controller: failed to set domain 'gpu', val=0
+rockchip-pm-domain fd8d8000.power-management:power-controller: failed to get ack on domain 'gpu', val=0xa9fff
+SError Interrupt on CPU4, code 0x00000000be000411 -- SError
 
-If the above approach valid to address undocumented ABIs?
+This series first does some cleanups in the Rockchip power domain
+driver and changes the driver, so that it no longer tries to continue
+when it fails to enable a domain. This gets rid of the SError interrupt
+and long backtraces. But the kernel still hangs when it fails to enable
+a power domain. I have not done further analysis to check if that can
+be avoided.
+
+Last but not least this provides a fix for the GPU power domain failing
+to get enabled - after some testing from my side it seems to require the
+GPU voltage supply to be enabled.
+
+This introduces devm_of_regulator_get without the _optional suffix, since
+that is more sensible for the Rockchip usecase. Longer explanation can be
+seen in patch 6, which adds the handling to the Rockchip driver. My merge
+suggestion would be that Mark provides an immutable branch.
+
+The last patch, which updates the RK3588 board files should cover all RK3588
+boards that are currently in Heiko's for-next branch. Any board missing the
+update will behave as before, so it is perfectly fine not to update all DT
+files at once (in case I missed any).
+
+Changes since PATCHv3:
+ * https://lore.kernel.org/linux-rockchip/20241022154508.63563-1-sebastian.reichel@collabora.com/
+ * Rebase to Heiko's for-next branch
+   - update DT patch to handle new RK3588(s) boards
+   - make sure to use a clean topic branch without HDMI-RX code (Heiko Stübner)
+ * Add Tested-by from Heiko Stübner
+
+Changes since PATCHv2:
+ * https://lore.kernel.org/linux-rockchip/20240919091834.83572-1-sebastian.reichel@collabora.com/
+ * Rebase to 6.12-rc1 + devm_of_regulator_get_optional branch (Ulf Hansson, Chen-Yu Tsai)
+  - Introduce devm_of_regulator_get()
+  - Add code to only request regulators for domains needing them
+ * Mention other platforms in the DT binding patch (Rob Murphy)
+ * Update more RK3588 DT files (Jonas Karlman)
+
+Changes since PATCHv1:
+ * https://lore.kernel.org/all/20240910180530.47194-1-sebastian.reichel@collabora.com/
+ * Collect Reviewed-by/Acked-by/Tested-by
+ * swap first and second patch to avoid introducing and directly removing a mutex_unlock
+ * fix spelling of indentation
+ * fix double empty line after rockchip_pd_regulator_disable()
+
+Greetings,
+
+-- Sebastian
+
+Sebastian Reichel (7):
+  regulator: Add (devm_)of_regulator_get()
+  pmdomain: rockchip: cleanup mutex handling in rockchip_pd_power
+  pmdomain: rockchip: forward rockchip_do_pmu_set_power_domain errors
+  pmdomain: rockchip: reduce indentation in rockchip_pd_power
+  dt-bindings: power: rockchip: add regulator support
+  pmdomain: rockchip: add regulator support
+  arm64: dts: rockchip: Add GPU power domain regulator dependency for
+    RK3588
+
+ .../power/rockchip,power-controller.yaml      |   3 +
+ .../boot/dts/rockchip/rk3588-armsom-sige7.dts |   4 +
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |   2 +-
+ .../boot/dts/rockchip/rk3588-coolpi-cm5.dtsi  |   4 +
+ .../rockchip/rk3588-edgeble-neu6a-common.dtsi |   4 +
+ .../boot/dts/rockchip/rk3588-evb1-v10.dts     |   4 +
+ .../boot/dts/rockchip/rk3588-fet3588-c.dtsi   |   4 +
+ .../rockchip/rk3588-friendlyelec-cm3588.dtsi  |   4 +
+ .../arm64/boot/dts/rockchip/rk3588-jaguar.dts |   4 +
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   |   4 +
+ .../boot/dts/rockchip/rk3588-ok3588-c.dts     |   4 +
+ .../dts/rockchip/rk3588-orangepi-5-plus.dts   |   4 +
+ .../boot/dts/rockchip/rk3588-quartzpro64.dts  |   4 +
+ .../boot/dts/rockchip/rk3588-rock-5-itx.dts   |   4 +
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |   4 +
+ .../arm64/boot/dts/rockchip/rk3588-tiger.dtsi |   4 +
+ .../boot/dts/rockchip/rk3588-toybrick-x0.dts  |   4 +
+ .../boot/dts/rockchip/rk3588-turing-rk1.dtsi  |   4 +
+ .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   |   4 +
+ .../dts/rockchip/rk3588s-gameforce-ace.dts    |   4 +
+ .../dts/rockchip/rk3588s-indiedroid-nova.dts  |   4 +
+ .../dts/rockchip/rk3588s-khadas-edge2.dts     |   4 +
+ .../boot/dts/rockchip/rk3588s-nanopi-r6s.dts  |   4 +
+ .../boot/dts/rockchip/rk3588s-odroid-m2.dts   |   4 +
+ .../boot/dts/rockchip/rk3588s-orangepi-5.dts  |   4 +
+ .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   4 +
+ drivers/pmdomain/rockchip/pm-domains.c        | 190 +++++++++++-------
+ drivers/regulator/devres.c                    |  17 ++
+ drivers/regulator/of_regulator.c              |  21 ++
+ include/linux/regulator/consumer.h            |   6 +
+ 30 files changed, 266 insertions(+), 69 deletions(-)
+
+-- 
+2.45.2
+
 
