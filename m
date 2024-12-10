@@ -1,106 +1,136 @@
-Return-Path: <devicetree+bounces-129272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F12A9EB119
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:44:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D11469EB132
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:50:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7118B2875A4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:44:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C92362877B0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03BD81A704B;
-	Tue, 10 Dec 2024 12:44:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55D791A38F9;
+	Tue, 10 Dec 2024 12:50:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="TsyEOpjz"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="CvozP1XJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pv50p00im-zteg10021401.me.com (pv50p00im-zteg10021401.me.com [17.58.6.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F77D1A4F1F
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 12:44:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.47
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD911CA9C;
+	Tue, 10 Dec 2024 12:50:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733834667; cv=none; b=p5KtJ9N5gnCv5S4rOfmCuEOn9V/HgGK8kJX8OFR9BvlP4KhXhgrJ6EhlHTG08L4YlV+rJs0OcsA22f81pTfhrfS9utfEU6kuCPo4/TWGe0KGCTBi2cEnk0Bc7yv2sfh7scFIQ0nNnB1dob0hm0bXd0iZauQmdw9jpTFwBSehYbI=
+	t=1733835010; cv=none; b=LhKk6Chge5uOGZtkyMLgNffU8kupE8h5AkE90c01KrQ/ydNyWOHHaKczj1mIjN1vMB0GQcMuB8KmDcwkzkzrpgr7xYk66WJTtR49Dg23C5mPxT9mqt3LyZoB+kHzxvjXR+aSX+cBbub45XeWUl1XF0b8UZNQ9emTeOaKTzJJVMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733834667; c=relaxed/simple;
-	bh=1Or8ky/gQQDQxZVueVYOIvTn9XadCmtEYG+XPJ56src=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HviwY0b/c2TMxdnCXnb4NKoNYNCkVuJm1g3ZxPg9FrbK1fVqUIPnLG3C3jHxOyBsEuPSY1AlWRCeN/YrpX9s6hWHYvowA4sWZeQGOI+jMZlxNdr0DmgIqGNT0Umwkm3SfwPZiSujOHC603a0vpdklGoLNnBOLJet9rC22LIMcwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=TsyEOpjz; arc=none smtp.client-ip=17.58.6.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1733834666;
-	bh=gQGh6Z9zgbZ/t+U8O/w7cP42QXHfGREQL95maqlbm9w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:
-	 x-icloud-hme;
-	b=TsyEOpjzGPcIadc/luHREOBryqzXjhEv8qWjLiUNQ2XA7sCujaXrCeQmWp0SF1j3X
-	 w9CWBDdYg9FhY9TyZWM/nhsp2/4jhgas83/r6GGpNyW5baDKKGfxj94v4Wxjb9cTiW
-	 LfC0S+NDRRt6i0qWvPebQ+LfgJsgAUViQSmY8iFaZpIkBNlK9CFE8qMuMNUu5eiORm
-	 XZz4GIiL+/H2wnkfUIyeFJ/4oEl96s7LSG+1MYklFMkajZxAG75AFoXX1ab9fpMeGa
-	 gVOCzTTQgJIHxRPijdVEDaF1kVADxOTqOfqlTQb2TW5ase3UXaBG8ORv+r5w0/UDJy
-	 8tNyks4MQeeeA==
-Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-zteg10021401.me.com (Postfix) with ESMTPSA id 2AC3B8E05A4;
-	Tue, 10 Dec 2024 12:44:21 +0000 (UTC)
-Message-ID: <dc989762-d868-44ff-968c-6d7be19e41cf@icloud.com>
-Date: Tue, 10 Dec 2024 20:44:17 +0800
+	s=arc-20240116; t=1733835010; c=relaxed/simple;
+	bh=caMIoAkHWjs05XI5L7ESLFOjqTSD2G4USqirzJlSnDY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=TbveO5zSQbuhUaOar4uNdS57AZVMiIT1m+M93lWV9BK3BLt8GedGqKXQniavzQSBfZ4+OxVitcQ9ei60Y1M1NTuhImuv6gXctl4ajW+RgmiuIt6fGQ7SQMg8+0VhrKIPFUmGG4H+jtMCfybS6EG+2ggTcApLwqzomO7hu+ohm1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=CvozP1XJ reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=nw/CxItkTnCd0XnlMACUyCY4DU5/yrHaEShv6qcL0LQ=; b=C
+	vozP1XJLUbudLGiQHIMaho1wOOeqDo/imAVQUh8/zcrpsdMvRwukD+KnHoXezWlX
+	binZcnTdeEUv6DCCZ8xCnGMuiaDunznjdabiidjqcn6JwTiHyYP0Poqy7G8d7yuP
+	/yGWiZC187PcU1htJkiXsm0GXj97U48L90+Zmybaa4=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-102 (Coremail) ; Tue, 10 Dec 2024 20:48:12 +0800
+ (CST)
+Date: Tue, 10 Dec 2024 20:48:12 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
+Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+	"Daniel Semkowicz" <dse@thaumatec.com>, 
+	"Diederik de Haas" <didi.debian@cknow.org>, andy.yan@rock-chips.com, 
+	Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com, 
+	conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, jernej.skrabec@gmail.com, 
+	jonas@kwiboo.se, krzk+dt@kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	neil.armstrong@linaro.org, quentin.schulz@cherry.de, 
+	rfoss@kernel.org, robh@kernel.org, tzimmermann@suse.de
+Subject: Re:Re: [PATCH v3 0/3] drm/rockchip: Add driver for the new DSI2
+ controller
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2024 www.mailtech.cn 163com
+In-Reply-To: <jl5obi7rd4h6ywozeqruxq2vx62sx5yf4wwpksrq3prdleps2k@d3zbr5ttquvn>
+References: <20241203165450.1501219-1-heiko@sntech.de>
+ <20241209150619.33998-1-dse@thaumatec.com>
+ <D67AV178CEBD.3QA9VD4ZPRNQ1@cknow.org> <2203458.KiezcSG77Q@diego>
+ <4e015ea9.960.193ae0c236a.Coremail.andyshrk@163.com>
+ <ay5hbnqqjhopaqof6z7j2rzm2bc6xa2vbzan2ak3if6wzmyip2@kqh7gtrajnm2>
+ <33e2c5db.1300.193ae284b6d.Coremail.andyshrk@163.com>
+ <CAA8EJprLA09NP0KAztc5eoAMkGcrom84jg_pcbNcwN0FAaSLrw@mail.gmail.com>
+ <2d68155e.1e5b.193ae4616b9.Coremail.andyshrk@163.com>
+ <jl5obi7rd4h6ywozeqruxq2vx62sx5yf4wwpksrq3prdleps2k@d3zbr5ttquvn>
+X-NTES-SC: AL_Qu2YAfSYu0Ai5COQbOkZnEobh+Y5UcK2s/ki2YFXN5k0tCTI0SYQW29KGUD2y86DDiKsoAirUQVL5MpFRpJHY45QxyzaS0hvthPy8V40pXsw
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 09/10] of: property: Implement
- of_fwnode_property_present() by of_property_present()
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>,
- Leif Lindholm <leif.lindholm@linaro.org>,
- Stephen Boyd <stephen.boyd@linaro.org>, Maxime Ripard <mripard@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Grant Likely
- <grant.likely@secretlab.ca>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
-References: <20241206-of_core_fix-v1-0-dc28ed56bec3@quicinc.com>
- <20241206-of_core_fix-v1-9-dc28ed56bec3@quicinc.com>
- <CAL_JsqJvh5pddoVEgaKQvGth0ncgtC9AAGxMEiK__NiZKrjmxA@mail.gmail.com>
-Content-Language: en-US
-From: Zijun Hu <zijun_hu@icloud.com>
-In-Reply-To: <CAL_JsqJvh5pddoVEgaKQvGth0ncgtC9AAGxMEiK__NiZKrjmxA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: l6rfo6fDJHytzY_G9afP-quudMfb-Lb1
-X-Proofpoint-ORIG-GUID: l6rfo6fDJHytzY_G9afP-quudMfb-Lb1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2024-12-10_06,2024-12-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 suspectscore=0
- malwarescore=0 spamscore=0 bulkscore=0 adultscore=0 phishscore=0
- mlxlogscore=766 clxscore=1015 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2308100000 definitions=main-2412100095
+Message-ID: <78e7b8e.b5ee.193b09ce46d.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:ZigvCgD3f7eMOFhn7N07AA--.52128W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/1tbiMxWxXmdYMSCOHwABs3
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On 2024/12/10 00:48, Rob Herring wrote:
-> On Thu, Dec 5, 2024 at 6:54 PM Zijun Hu <zijun_hu@icloud.com> wrote:
->>
->> From: Zijun Hu <quic_zijuhu@quicinc.com>
->>
->> of_property_read_bool() is deprecated for non-boolean property, but
->> of_fwnode_property_present() still uses it.
->>
->> Fix by using of_property_present() instead of of_property_read_bool().
-> 
-> of_property_present() just calls of_property_read_bool(). For now. I'm
-> working on making using of_property_read_bool() on non-boolean a
-> warning. No point in this change until that happens.
-> 
-
-what about below idea?
-
-replace all of_property_read_bool() usages with of_property_present()
-then remove the former.
-
-> Rob
-
+CkhpIEFsbCwK5ZyoIDIwMjQtMTItMTAgMjA6MzI6MDPvvIwiRG1pdHJ5IEJhcnlzaGtvdiIgPGRt
+aXRyeS5iYXJ5c2hrb3ZAbGluYXJvLm9yZz4g5YaZ6YGT77yaCj5PbiBUdWUsIERlYyAxMCwgMjAy
+NCBhdCAwOTo1NDowOUFNICswODAwLCBBbmR5IFlhbiB3cm90ZToKPj4gCj4+IEhpIERtaXRyeSwK
+Pj4gCj4+IOWcqCAyMDI0LTEyLTEwIDA5OjQ1OjEx77yMIkRtaXRyeSBCYXJ5c2hrb3YiIDxkbWl0
+cnkuYmFyeXNoa292QGxpbmFyby5vcmc+IOWGmemBk++8mgo+PiA+T24gVHVlLCAxMCBEZWMgMjAy
+NCBhdCAwMzoyMiwgQW5keSBZYW4gPGFuZHlzaHJrQDE2My5jb20+IHdyb3RlOgo+PiA+Pgo+PiA+
+Pgo+PiA+PiBIaSBEbWl0cnksCj4+ID4+Cj4+ID4+IOWcqCAyMDI0LTEyLTEwIDA5OjAxOjM477yM
+IkRtaXRyeSBCYXJ5c2hrb3YiIDxkbWl0cnkuYmFyeXNoa292QGxpbmFyby5vcmc+IOWGmemBk++8
+mgo+PiA+PiA+T24gVHVlLCBEZWMgMTAsIDIwMjQgYXQgMDg6NTA6NTFBTSArMDgwMCwgQW5keSBZ
+YW4gd3JvdGU6Cj4+ID4+ID4+Cj4+ID4+ID4+Cj4+ID4+ID4+IEhpLAo+PiA+PiA+Pgo+PiA+PiA+
+PiBBdCAyMDI0LTEyLTEwIDA3OjEyOjI2LCAiSGVpa28gU3TDvGJuZXIiIDxoZWlrb0BzbnRlY2gu
+ZGU+IHdyb3RlOgo+PiA+PiA+PiA+QW0gTW9udGFnLCA5LiBEZXplbWJlciAyMDI0LCAxNzoxMTow
+MyBDRVQgc2NocmllYiBEaWVkZXJpayBkZSBIYWFzOgo+PiA+PiA+PiA+PiBIaSwKPj4gPj4gPj4g
+Pj4KPj4gPj4gPj4gPj4gT24gTW9uIERlYyA5LCAyMDI0IGF0IDQ6MDYgUE0gQ0VULCBEYW5pZWwg
+U2Vta293aWN6IHdyb3RlOgo+PiA+PiA+PiA+PiA+IE9uIDAzLjEyLjI0IDIxOjU0LCBIZWlrbyBT
+dHVlYm5lciB3cm90ZToKPj4gPj4gPj4gPj4gPiA+IFRoaXMgc2VyaWVzIGFkZHMgYSBicmlkZ2Ug
+YW5kIGdsdWUgZHJpdmVyIGZvciB0aGUgRFNJMiBjb250cm9sbGVyIGZvdW5kCj4+ID4+ID4+ID4+
+ID4gPiBpbiB0aGUgcmszNTg4IHNvYyBmcm9tIFJvY2tjaGlwLCB0aGF0IGlzIGJhc2VkIG9uIGEg
+U3lub3BzaXMgSVAgYmxvY2suCj4+ID4+ID4+ID4+ID4gPgo+PiA+PiA+PiA+PiA+Cj4+ID4+ID4+
+ID4+ID4gSSBkaWQgbW9yZSB0ZXN0cyB3aXRoIGRpZmZlcmVudCBMVkRTIGRpc3BsYXlzLiBJIHRl
+c3RlZCBmb2xsb3dpbmcKPj4gPj4gPj4gPj4gPiBjb25maWd1cmF0aW9ucyB3aXRoIERTSS9MVkRT
+IGJyaWRnZToKPj4gPj4gPj4gPj4gPiAtIDEwMjR4NjAwQDYwLjAxCj4+ID4+ID4+ID4+ID4gLSAx
+MDI0eDc2OEA2MC4wMgo+PiA+PiA+PiA+PiA+IC0gMTI4MHg4MDBANjAuMDcKPj4gPj4gPj4gPj4g
+PiAtIDEzNjZ4NzY4QDYwLjA2Cj4+ID4+ID4+ID4+ID4KPj4gPj4gPj4gPj4gPiBBbGwgb2YgdGhl
+bSB3b3JrZWQgd2l0aG91dCBpc3N1ZXMsIGV4Y2VwdCAxMzY2eDc2OC4KPj4gPj4gPj4gPj4gPiBX
+aXRoIHRoaXMgcmVzb2x1dGlvbiwgdmlkZW8gaXMgYmx1cnJ5LCBhbmQgb2Zmc2V0IGluY29ycmVj
+dGx5Cj4+ID4+ID4+ID4+ID4gdG8gdGhlIGxlZnQuIFRoZXJlIGFyZSBhbHNvIHJlcGVhdGluZyBl
+cnJvcnMgb24gdGhlIGNvbnNvbGU6Cj4+ID4+ID4+ID4+ID4KPj4gPj4gPj4gPj4gPiAgIHJvY2tj
+aGlwLWRybSBkaXNwbGF5LXN1YnN5c3RlbTogW2RybV0gKkVSUk9SKiBQT1NUX0JVRl9FTVBUWSBp
+cnEgZXJyIGF0IHZwMwo+PiA+PiA+PiA+PiA+Cj4+ID4+ID4+ID4+ID4gSW4gY29ycmVjdCBvcGVy
+YXRpb24gd2l0aCBvdGhlciByZXNvbHV0aW9ucywgdGhlcmUgaXMgbm8gZXJyb3IuCj4+ID4+ID4+
+ID4+ID4gSSBhbSBub3Qgc3VyZSBpZiB0aGlzIGlzIGEgcHJvYmxlbSBpbiB5b3VyIHNlcmllcyBv
+ciByYXRoZXIgaW4gVk9QMgo+PiA+PiA+PiA+PiA+IGRyaXZlci4KPj4gPj4gPj4gPgo+PiA+PiA+
+PiA+VGhpcyByZWFsbHkgc291bmRzIGxpa2Ugc29tZXRoaW5nIGlzIHdyb25nIG9uIHRoZSB2b3Ag
+c2lkZS4KPj4gPj4gPj4gPlRoZSBpbnRlcnJ1cHQgaXMgcGFydCBvZiB0aGUgdm9wLCB0aGUgZGl2
+aXNhYmxlIGJ5IDQgdGhpbmdzIGxpa2VseSB0b28uCj4+ID4+ID4+Cj4+ID4+ID4+IFRoaXMgaXMg
+YSBoYXJkd2FyZSBsaW1pdGF0aW9uIG9uIHZvcCBzaWRlOgo+PiA+PiA+PiBUaGUgaG9yaXpvbnRh
+bCByZXNvbHV0aW9uIG11c3QgYmUgNCBwaXhlbCBhbGlnbmVkLgo+PiA+PiA+Cj4+ID4+ID5UaGVu
+IG1vZGVfdmFsaWQoKSBhbmQgYXRvbWljX2NoZWNrKCkgbXVzdCByZWplY3QgbW9kZXMgdGhhdCBk
+b24ndCBmaXQuCj4+ID4+Cj4+ID4+IFdlIHJvdW5kIGRvd24gdG8gNCBwaXhlbCBhbGlnbmVkIGlu
+IG1vZGVfZml4dXAgaW4gb3VyIGJzcCBrZXJuZWwsCj4+ID4KPj4gPldoYXQgaXMgbWVhbnQgYnkg
+dGhlICJic3Aga2VybmVsIiBoZXJlPyBJIGRvbid0IHNlZSBpdCBiZWluZyBwcmVzZW50Cj4+IAo+
+PiBic3Aga2VybmVsIG1lYW5zIGRvd25zdHJlYW0gdmVuZG9yIGtlcm5lbC4KPj4gCj4+ID5pbiB0
+aGUgbWFpbmxpbmUga2VybmVsLiBTbywgaWYgdGhlIG1vZGUgaXMgdW5zdXBwb3J0ZWQsIGl0IHNo
+b3VsZCBiZQo+PiAKPj4gV2lsbCBpdCBiZSBhY2NlcHRhYmxlIHRvIGFkZCB0aGlzIHJvdW5kIGRv
+d24gaW4gdGhlIG1haW5saW5lIG1vZGVfZml4dXA/Cj4KPkkgdGhpbmsgc28uCgpUaGVuIEkgY2Fu
+IHdyaXRlIGEgcGF0Y2ggZm9yIGl0LgoKPgo+PiAKPj4gPnJlamVjdGVkLgo+PiA+Cj4+ID4+IGJl
+Y2F1c2Ugc29tZXRpbWVzLCBzb21lIGJvYXJkcyBkbyBpbmRlZWQgY2hvb3NlIGEgc2NyZWVuIHRo
+YXQgaXMgbm90IDQgcGl4ZWwgYWxpZ25lZAo+Cj4tLSAKPldpdGggYmVzdCB3aXNoZXMKPkRtaXRy
+eQo=
 
