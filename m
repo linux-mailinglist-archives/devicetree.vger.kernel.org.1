@@ -1,139 +1,138 @@
-Return-Path: <devicetree+bounces-128985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B86B69EA331
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 00:55:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75F809EA3B8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 01:40:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B016E160823
-	for <lists+devicetree@lfdr.de>; Mon,  9 Dec 2024 23:55:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61934165801
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 00:40:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 843202147EE;
-	Mon,  9 Dec 2024 23:55:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F292111A8;
+	Tue, 10 Dec 2024 00:40:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uJSprN3B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bVyZD5WU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54136197A8F;
-	Mon,  9 Dec 2024 23:55:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A2533EA
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 00:40:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733788532; cv=none; b=f8b7YoH9ZEnLeiYmDHxICNgZil2/fYI3tNJXE0c74JGuxL5QU/3e2v3/qTHZwyD89BNozf+WJ99qoOJV/nZp/JjgjV24VEop2FoVfSNDueaRx6M4+jDCoIPtc3lvvQYSTNlLzB3+L5qOMPoMl9ejSfnd7M1NbK0tMrldLQ6O4A4=
+	t=1733791220; cv=none; b=kI6EXtNz6gh6Y74y8g0sxGZYXQ7zp04xk6A5X9tin3LTHzDmWbRWWxhS8aXdZ4S9oGozsrLx/OLCc+Dz3STA+vmkW98D8ODj7j6YWXvMZ3O+N5gYrnMRW5nqBST4CH19oRmKp8Di85o9No1bHbHI5/NW7jD+c3YSXtttYSJlAFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733788532; c=relaxed/simple;
-	bh=CG06Lv7MHNV3x4UA2INq8o2HNvD8GFR6sCPVSGN6fsI=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=btyXaQ4faAfy3Aun23y8DQZxFK2OTuzNcPvyx5o6rVGS8NoYydWiMiMxc9SK1W9A7445K0SAkkiZGL+C8dUXbgWq64uaWN74PvbkjXlPDVXHqep4LtDJBJO+JzBPPEIu2EqYSPHP/4N91u0V8HOFu1/JbcF0/u2xAe0+HE4yzJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uJSprN3B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CD37C4CEE0;
-	Mon,  9 Dec 2024 23:55:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733788531;
-	bh=CG06Lv7MHNV3x4UA2INq8o2HNvD8GFR6sCPVSGN6fsI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=uJSprN3BCwn9frkpjNwK4Iq1wZPfr9xCZc6BSp3ncgGB+PuqHdudUAPo4Pc2oVaSm
-	 m9N2N+UG34fJhYXV6yEVBKNITMjPW6MdDYazGlOBK6kf9RTAF/HNWOs1+mpmGLd8nz
-	 SPAvukc0EtfjOx0jTwLsW57CPLCWJJXuM+SSByVRrjTTT5qjD79nqNrCU0Qvm9CAcs
-	 eOWfIK1OqECAHyQrY+tYafaPJQpJzHgiGMBiMqjhe8HJ2HGvL88zLYd/sKzYnCD0jc
-	 y9Aj8Gh5/CWzIHcOEX6G/SRk0GNtCaXxF6Anv8F73n4A1wmDYpZq7d1xCna2d3IOSB
-	 l89X1V+aZslLQ==
-Date: Mon, 9 Dec 2024 17:55:30 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Cc: cros-qcom-dts-watchers@chromium.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, quic_vbadigan@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_skananth@quicinc.com, quic_vpernami@quicinc.com,
-	quic_mrana@quicinc.com, mmareddy@quicinc.com,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH 2/3] PCI: dwc: Add ECAM support with iATU configuration
-Message-ID: <20241209235530.GA3221939@bhelgaas>
+	s=arc-20240116; t=1733791220; c=relaxed/simple;
+	bh=Blwa5F8sKfGOXhGTxGho/35swehqGQZvVQCQmXT0hwo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=d9DQBtaZVAQhtlnwTsg7ooIjOKXUoGlHt1u/qZdNPOdH0FTg+sxe0BuJb0zzaR4caoaak+eYv267ww9xeMlRfYyfYPuYytQS046rvlv3cOTM71cCyWAiXXqi7U6UrrPtj+5Ujt91t37XZ4TYx5vlrBQhSChbtX87U1KxwEp+JHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bVyZD5WU; arc=none smtp.client-ip=209.85.160.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-46769b34cbfso18178491cf.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Dec 2024 16:40:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733791217; x=1734396017; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Blwa5F8sKfGOXhGTxGho/35swehqGQZvVQCQmXT0hwo=;
+        b=bVyZD5WUpbUUC98ZGyalbNmn79mcDbdyUQaamTaKl2mhv/lRK3hjDMUREZurNuvjjs
+         5Yr7Jb8Ip5x8AlQpa+IlylFK9y2MEyzq0qqy+pVNMWNfd/dnP/CB5eH3ozKsW6ZYXjj2
+         8ayjr/kvrw2SOBU6IJ8tN3zOYD8ELbCzHZYsym7JiGd3WcSNNFrDRSdO7Vor/9RZQUxs
+         7498Ckk2LdO8eUdY+TyRYlNX9rpeP5KThfvnTSoVNlFThMf0/lr/p6zyaGRvylhpg/cW
+         h6p0ml2WgU0pwlbpafvNzV9j8hhAiJPgNoweCFdADZ0TJb3zXwJ1Pb7Vm/vcBY1MWsL1
+         Henw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733791217; x=1734396017;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Blwa5F8sKfGOXhGTxGho/35swehqGQZvVQCQmXT0hwo=;
+        b=s28wyqQnHifqK8L0LrFAuXfkVs+evJZsMVgZtOWfqwCB6H2U8ou3CWQPYOqJ6f773n
+         tpih4MT9PcrtULeEnTY3y5vEScRRhfXkzZS2Li8W5x1VQ9u8o0hK29LdpsQ9XYbP7hBB
+         jlRlhhXVlzFz3pEeDLb16Fxt8UPpSgAFrgislWuQ3OWy8H9omngB8HjUnPpcJs+TKnD9
+         fGHDcL2docd3BOQAV1fYKst5ncdST/yhR5r5EP5u19MzLOFJieqxwQOOC5fa0HffqHv8
+         WGshaMdZE1N4LUEU6nwIlWOO2ML3J0guFFTRucWXoC9o8ReYRrPjZrfN4Y2TR+UeNiv3
+         Fozg==
+X-Forwarded-Encrypted: i=1; AJvYcCUQG+Mu+cheem/nd0FAHyfEE2kYZVf/TGHDwt9L4fhHGKJUh8Lzg25ydQIU+eRzbqNlOqyVw3QZZcFS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz74t5T97Vzh02DhwVYukGvjWISBfddjYJdmOK4E1Xbk0Bm4Juw
+	2CatYvbYZW/xfW34DodjWihlg5aIRORz8CALXC2ie7Rur6JnmeW0jXdz+kbVwJ57V+/Ryu0VuHZ
+	AN8VicPJJlsStXnOwddezBUC2UIA=
+X-Gm-Gg: ASbGncswj7Owt15KdI7eLcgNysrZZ8hU3hW6ZY1SKmhQxJ52uAkbEXgYGVsv2tfoFaw
+	vKJpC2N6DLdljsul7V4dRxNcbUI/KnaOjSg==
+X-Google-Smtp-Source: AGHT+IGNyhk20QJHN7gcHejjGIkaEDS5jrRjys0nGBN4P3yJXR1F5N0jED33Xdxb9sY7N+dIyopFILsJ+bxgwoYUgJU=
+X-Received: by 2002:ac8:5d0c:0:b0:466:86aa:efd9 with SMTP id
+ d75a77b69052e-46772046831mr42972491cf.51.1733791217663; Mon, 09 Dec 2024
+ 16:40:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <17c9839d-c61e-3c2f-4d77-5e8813f3a9c8@quicinc.com>
+References: <20241209125131.4101-1-naoki@radxa.com> <20241209125131.4101-4-naoki@radxa.com>
+ <ae031ff8c8c5d9e5c266c73026d4dfab@manjaro.org> <CEFF3F7FDF50046C+6bccd571-3475-46b9-a7b9-e2e8cb94ed91@radxa.com>
+In-Reply-To: <CEFF3F7FDF50046C+6bccd571-3475-46b9-a7b9-e2e8cb94ed91@radxa.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Tue, 10 Dec 2024 03:40:08 +0300
+Message-ID: <CABjd4YyV1Pf5RZcwbvd0Ms8UA2kFzq2PuTzq=VVYC+EZtfNrog@mail.gmail.com>
+Subject: Re: [PATCH v4 03/12] arm64: dts: rockchip: fix property for pwm-fan
+ for Radxa ROCK 5C
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: Dragan Simic <dsimic@manjaro.org>, heiko@sntech.de, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, sebastian.reichel@collabora.com, 
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 09, 2024 at 10:00:06AM +0530, Krishna Chaitanya Chundru wrote:
-> On 12/5/2024 3:47 AM, Bjorn Helgaas wrote:
-> > On Wed, Dec 04, 2024 at 07:45:29AM +0530, Krishna Chaitanya Chundru wrote:
-> > > On 12/4/2024 12:25 AM, Bjorn Helgaas wrote:
-> > > > On Sun, Nov 17, 2024 at 03:30:19AM +0530, Krishna chaitanya chundru wrote:
-> > > > > The current implementation requires iATU for every configuration
-> > > > > space access which increases latency & cpu utilization.
-> > > > > 
-> > > > > Configuring iATU in config shift mode enables ECAM feature to access the
-> > > > > config space, which avoids iATU configuration for every config access.
-> > 
-> > > > > +static int dw_pcie_config_ecam_iatu(struct dw_pcie_rp *pp)
-> > > > > +{
-> > > > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > > > +	struct dw_pcie_ob_atu_cfg atu = {0};
-> > > > > +	struct resource_entry *bus;
-> > > > > +	int ret, bus_range_max;
-> > > > > +
-> > > > > +	bus = resource_list_first_type(&pp->bridge->windows, IORESOURCE_BUS);
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * Bus 1 config space needs type 0 atu configuration
-> > > > > +	 * Remaining buses need type 1 atu configuration
-> > > > 
-> > > > I'm confused about the bus numbering; you refer to "bus 1" and "bus
-> > > > 2".  Is bus 1 the root bus, i.e., the primary bus of a Root Port?
-> > > > 
-> > > > The root bus number would typically be 0, not 1, and is sometimes
-> > > > programmable.  I don't know how the DesignWare core works, but since
-> > > > you have "bus" here, referring to "bus 1" and "bus 2" here seems
-> > > > overly specific.
-> > > > 
-> > > root bus is bus 0 and we don't need any iATU configuration for it as
-> > > its config space is accessible from the system memory, for usp port of
-> > > the switch or the direct the endpoint i.e bus 1 we need to send
-> > > Configuration Type 0 requests and for other buses we need to send
-> > > Configuration Type 1 requests this is as per PCIe spec, I will try to
-> > > include PCIe spec details in next patch.
-> > 
-> > I understand the Type 0/Type 1 differences.  The question is whether
-> > the root bus number is hard-wired to 0.
-> > 
-> It is not hard-wired to 0, we can configure it though bus-range property
->
-> > I don't think specifying "bus 1" really adds anything.  The point is
-> > that we need Type 0 accesses for anything directly below a Root Port
-> > (regardless of what the RP's secondary bus number is), and Type 1 for
-> > things deeper.
->
-> I will update the comment without mentioning the buses as suggested.
->
-> > When DWC supports multiple Root Ports in a Root Complex, they will not
-> > all have a secondary bus number of 1.
->
-> mostly they should be in bus number 0 with different device numbers, but
-> it mostly depends upon the design, currently we don't have any multiple
-> root ports.
+Hi Naoki,
 
-Say "root bus" instead of "bus 0", since you said above that the root
-bus number is configurable.
+On Tue, Dec 10, 2024 at 3:30=E2=80=AFAM FUKAUMI Naoki <naoki@radxa.com> wro=
+te:
+>
+> Hi,
+>
+> Thanks for your review!
+>
+> On 12/10/24 01:32, Dragan Simic wrote:
+> > Hello Fukaumi,
+> >
+> > On 2024-12-09 13:51, FUKAUMI Naoki wrote:
+> >> fix pwm period to match with vendor kernel[1].
+> >
+> > Instead of simply referring to the downstream vendor kernel, in this
+> > specific case the reasons for adjusting the fan PWM parameters should
+> > be explained by referring to the actual fan setup you're using, the
+> > observed fan RPM behavior, etc.
+>
+> original commit message is:
+>
+> | arm64: dts: rockchip: modify fan pwm period to 60us
+> | Reduce pwm frequency to 16.6 KHz for a larger adjustable range of
+> AO3416 mosfet.
+>
+> I have no knowledge about this kind of things. Is quoting this message
+> enough?
 
-Root Ports should all have a *primary* bus number of the root bus, but
-if there are multiple Root Ports, they will all have different
-secondary bus numbers.
+I think it would be better to expand a bit to make sure the commit
+message explains the whole rationale without too much extra digging.
+Something like this:
+
+arm64: dts: rockchip: Use a longer PWM period for the fan on Radxa ROCK 5C
+
+The fan on Radxa ROCK 5C is driven via an AO3416 MOSFET, which has a
+total switch-on time of 0,6us and a total switch-off time of 6us [1],
+meaning that the current PWM period of just 10us is too short for
+fine-grained fan speed control. Increase the PWM period to 60us, so
+that the switch-on and switch-off time of the MOSFET fall within a
+more reasonable ~10% of the full period, thus making lower PWM duty
+cycles meaningful.
+
+[1] https://www.aosmd.com/pdfs/datasheet/AO3416.pdf
+
+Best regards,
+Alexey
 
