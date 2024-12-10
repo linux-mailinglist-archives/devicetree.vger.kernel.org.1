@@ -1,291 +1,199 @@
-Return-Path: <devicetree+bounces-129253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC09A9EB069
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:05:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7875F9EB06C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:05:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F2EA1889C26
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:05:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0697B1889C26
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:05:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 310161A0B12;
-	Tue, 10 Dec 2024 12:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68E021A0B0D;
+	Tue, 10 Dec 2024 12:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eIYKa7D9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FluYWaZO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4889019D899;
-	Tue, 10 Dec 2024 12:04:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 337D923DEBA;
+	Tue, 10 Dec 2024 12:05:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733832291; cv=none; b=unknrnsd/W7AVzGXUAt0bJryHN596y1LzdtctAb/pd1x7Q1XICu68CWa/6jrCOkj4UswpSQ9Tn6GBAk8TcbxU5UWyyi8LRfMKtZMC3MmqOfu/NIs14gm9S9ChB+qyY4J/GxfEZwz9xJthSqvkJ32uBpukzdznLFpP0H/wztTv9M=
+	t=1733832347; cv=none; b=BlnywGnfbDR+Z6xt84t7T6SOfiG5TpW8wzyZe9U+KTbLnYWnc2efscHC3qRdcRnm3GPTBwmVFtScPtd2RooAUarkG93ztKMVylgmFRbZ0FI87nuWruqy8+862Pk2LFwd5uPIckTFWE+/IqrFQbNBQaKf9oVczqT39MqSwpLQ8Cg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733832291; c=relaxed/simple;
-	bh=4Q6CsvGPnuH0ETC75y3qRAUwZ44hv95JrCnAXeuNh7o=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ixuMDaO2wuddGpIF9bgL4XhvxWwyETvQe3zc1EN22UxiAZIDH86u/ZSDy+E9NU8Z7RBRNexXxPqj7wDl3NLeiM9VcvNUiAnA5ukKjdAM2Gz0G7QBbmUTbO4iCPQxmcpY7/T3tHYcH0mBxT7ZblFjsm3AFqDwKrYG8ij7IHv/nmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eIYKa7D9; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-434f74e59c7so23948565e9.3;
-        Tue, 10 Dec 2024 04:04:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733832287; x=1734437087; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QgudF5Nx9tpuAdpAJYzbdPOGbyZ+TN1kZnvYR7ObIaM=;
-        b=eIYKa7D9qgywAuz9eK4LqJlmDHSq3IXlYicxiZbxe6MblbSs2gSeYjI4+EzsoMv6z4
-         +rZ0xoSE+UfPT8Wamv8yr/mqmB6NFB3FRDaL1SuJU4iN7RN4AOxhjLiw4Gn8zcmGT60m
-         xp8mhzPgpF/AYOyDmfPR/PE8rNsWgPGL4cyMQX7zRcb0rvQNW61mkLg+83jK4ukYkrb0
-         /qF9WQN69e6f9Fxk9Zq7BnJBXdYekWDPvlagg9ZKdIPy12D0uTda0+z31U9bzpLRyOeV
-         ygShpQc5fkyBqGUVZVdPlcJxOoL18xeunJhq3F52e7xz0wIY7wOJLkeurV7lXmhmNcEi
-         aiXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733832287; x=1734437087;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QgudF5Nx9tpuAdpAJYzbdPOGbyZ+TN1kZnvYR7ObIaM=;
-        b=OkTXzqZboo9XOjxz7c3dAAUglLFF8TGcnZQ07hzMLoX2HfZB8jaBBOd0MyixORD+b/
-         ouTD5kRlpGW1J0xOetxwra/70/QBsR2oXP+Gdj1RfXFrkhebhX+T0H+EP3r88yrG/+/G
-         UMyIE5Klci1uKnmCbZ5f5yTJKhYdEflp9MhJY+7YfB+rWlegBn6tiT/cYmLg55DyqA+V
-         6x8pvAuYwymACbnUOJgp5RLTRk6QmvwXac0saSnbBk7rzLUCtKkr9u3TAeKmv9XxIVSf
-         4w90+frUjaWtMIt6IdMZtuokC6SuvQT6BvGstxoHKpmfRKvfAuhBkPWIoQzDAGb5+K0L
-         72ag==
-X-Gm-Message-State: AOJu0YzMwUmRuVs7mSojhO2B2ZjcIpCkEBgs8uXFwxF7Mmg7GC8SdJkG
-	t/qx4tX8b7BjmMzXiK4V5FgdWMoFKa0ThvRaJUbxNnqjQ7ZZkf2HUjmRXZJxXfs=
-X-Gm-Gg: ASbGncuZcttpU9Lds2Q0A75ujnHvaZ0aJUlVcjWvV4wPsW3eTVytxJZoVMBID0NTsgQ
-	BOkANlplhic6K2bCzYR4AP+Y9YeT6DqvDN3QXWwjW288bPMK/qyo4elZR4zB0kSL77enYWHPrfx
-	2j5T1ealChnZjGNKVQddGk+QekTh5jbMhM80J/bEpJcBA1Nhw9fGh6s/xgUNMQ1oOCeLpycfGXx
-	70Hv+xmP+EqWobQHFwZu9Bt7qfP4x9N7N5UoalAZKsfD6KP3dWdbQTympCRBxjI+SF91NtlXNIw
-	AEM0Bw==
-X-Google-Smtp-Source: AGHT+IHWwg6YQFgOL9tD0hIZDaWPodDDLRhw7DPHwkp+hTU/M+qtNI2/McfM6WSn2Tr3AiWKBqNBBA==
-X-Received: by 2002:a5d:59ae:0:b0:386:3a8e:64bd with SMTP id ffacd0b85a97d-386453da219mr4093626f8f.22.1733832287115;
-        Tue, 10 Dec 2024 04:04:47 -0800 (PST)
-Received: from KJKCLT3928.esterline.net ([144.178.111.91])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3862a9705dfsm13446132f8f.4.2024.12.10.04.04.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 04:04:46 -0800 (PST)
-From: Jesse Van Gavere <jesseevg@gmail.com>
-X-Google-Original-From: Jesse Van Gavere <jesse.vangavere@scioteq.com>
-To: devicetree@vger.kernel.org
-Cc: netdev@vger.kernel.org,
-	Marek Vasut <marex@denx.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	"David S . Miller" <davem@davemloft.net>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	UNGLinuxDriver@microchip.com,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Jesse Van Gavere <jesse.vangavere@scioteq.com>
-Subject: [PATCH net-next] dt-bindings: net: dsa: microchip,ksz: Improve example to a working one
-Date: Tue, 10 Dec 2024 13:04:43 +0100
-Message-Id: <20241210120443.1813-1-jesse.vangavere@scioteq.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1733832347; c=relaxed/simple;
+	bh=nBO5Ds3JwYoGI0hwO79o3kkiya7ohUrrfSkZ0bb/Wb4=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=VRl/FWEr3DH1LSUH1KLEHMFpjoyuGUDTJq+zhKOhJfbHIkPqJ9zcAm1EkjoqvacV4Z/V004LlAZdzNDAcEiCa0Hh3LUYixWH04r+pWaGSdAzlz7vVAwRgyol0TVYs5RGCexrd+gmMIZp2v1qmpZblmHgPD4tICKMkh9YsAewoM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FluYWaZO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81B12C4CED6;
+	Tue, 10 Dec 2024 12:05:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733832347;
+	bh=nBO5Ds3JwYoGI0hwO79o3kkiya7ohUrrfSkZ0bb/Wb4=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=FluYWaZOcxnf6cXZGyGj8Gml7fo8VPRETZiBZsI5+Agj+Zaq3SZ4FyC0YpaEtVBX5
+	 dslZvImb9rOk6qIbs4ozbhRt5PDoQcCqQAJXiLuo3Qh9Zusq7rKuvv8FDwk15h1Ptv
+	 A8xIQWhXGU/LtLLIWXiRjl3o34gS0PE4fnsqDSvPjJU6fzFUzd+SZ/PzaCo5ZMb1hi
+	 Qv0KuCg0xl2WpHxe5Tq21Q1NBEuIvK3VDP68l3cET05JhCURdAWtq+vkacSabokTlK
+	 ztNlXCBAx+cxpm3env+x2oZWUg1QRSRU2eVD3RQmHzmf8bqjKJCBmrHissS/cwBCEW
+	 VnWAP1X+5oMkw==
+Message-ID: <8b33f935-04a9-48df-8ea1-f6b98efecb9d@kernel.org>
+Date: Tue, 10 Dec 2024 13:05:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
+ flag
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Konrad Dybcio <konradybcio@gmail.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>, konrad.dybcio@linaro.org,
+ andersson@kernel.org, andi.shyti@kernel.org, linux-arm-msm@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, conor+dt@kernel.org, agross@kernel.org,
+ devicetree@vger.kernel.org, vkoul@kernel.org, linux@treblig.org,
+ dan.carpenter@linaro.org, Frank.Li@nxp.com, konradybcio@kernel.org,
+ bryan.odonoghue@linaro.org, krzk+dt@kernel.org, robh@kernel.org
+Cc: quic_vdadhani@quicinc.com
+References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
+ <20241129144357.2008465-2-quic_msavaliy@quicinc.com>
+ <db428697-a9dc-46e1-abbe-73341306403f@kernel.org>
+ <a8b1ccd2-c37b-4a6f-b592-caf1a53be02c@quicinc.com>
+ <fc33c4ed-32e5-46cc-87d6-921f2e58b4ff@kernel.org>
+ <75f2cc08-e3ab-41fb-aa94-22963c4ffd82@quicinc.com>
+ <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
+ <da2ba3df-eb47-4b55-a0c9-e038a3b9da30@quicinc.com>
+ <a7186553-d8f6-46d4-88da-d042a4a340e2@oss.qualcomm.com>
+ <e9fb294b-b6b8-4034-84c9-a25b83321399@kernel.org>
+ <835ac8c6-3fbb-4a0d-aa07-716d1c8aad7c@gmail.com>
+ <f1fa2bde-95ce-45e9-ad2d-f1d82ec6303c@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <f1fa2bde-95ce-45e9-ad2d-f1d82ec6303c@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Currently the example will not work when implemented as-is as there are
-some properties and nodes missing.
-- Define two eth ports, one for each switch for clarity.
-- Add mandatory dsa,member properties as it's a dual switch setup example.
-- Add the mdio node for each switch and define the PHYs under it.
-- Add a phy-mode and phy-handle to each port otherwise they won't come up.
-- Add a mac-address property, without this the port does not come up, in
-the example all 0 is used so the port replicates MAC from the CPU port
+On 10/12/2024 12:53, Krzysztof Kozlowski wrote:
+>>>> I'm not sure a single property name+description can fit all possible
+>>>> cases here. The hardware being "shared" can mean a number of different
+>>>
+>>> Existing property does not explain anything more, either. To recap -
+>>> this block is SE and property is named "se-shared", so basically it is
+>>> equal to just "shared". "shared" is indeed quite vague, so I was
+>>> expecting some wider work here.
+>>>
+>>>
+>>>> things, with some blocks having hardware provisions for that, while
+>>>> others may have totally none and rely on external mechanisms (e.g.
+>>>> a shared memory buffer) to indicate whether an external entity
+>>>> manages power to them.
+>>>
+>>> We have properties for that too. Qualcomm SoCs need once per year for
+>>> such shared properties. BAM has two or three. IPA has two. There are
+>>> probably even more blocks which I don't remember now.
+>>
+>> So, the problem is "driver must not toggle GPIO states", because
+>> "the bus controller must not be muxed away from the endpoint".
+>> You can come up with a number of similar problems by swapping out
+>> the quoted text.
+>>
+>> We can either describe what the driver must do (A), or what the
+>> reason for it is (B).
+>>
+>>
+>> If we go with A, we could have a property like:
+>>
+>> &i2c1 {
+>> 	externally-handled-resources = <(EHR_PINCTRL_STATE | EHR_CLOCK_RATE)>
+>> };
+>>
+>> which would be a generic list of things that the OS would have to
+>> tiptoe around, fitting Linux's framework split quite well
+>>
+>>
+>>
+>> or if we go with B, we could add a property like:
+>>
+>> &i2c1 {
+>> 	qcom,shared-controller;
+>> };
+>>
+>> which would hide the implementation details into the driver
+>>
+>> I could see both approaches having their place, but in this specific
+>> instance I think A would be more fitting, as the problem is quite
+>> simple.
+> 
+> 
+> The second is fine with me, maybe missing information about "whom" do
+> you share it with. Or maybe we get to the point that all this is
+> specific to SoC, thus implied by compatible and we do not need
+> downstream approach (another discussion in USB pushed by Qcom: I want
+> one compatible and 1000 properties).
+> 
+> I really wished Qualcomm start reworking their bindings before they are
+> being sent upstream to match standard DT guidelines, not downstream
+> approach. Somehow these hundreds reviews we give could result in new
+> patches doing things better, not just repeating the same issues.
 
-Signed-off-by: Jesse Van Gavere <jesse.vangavere@scioteq.com>
----
- .../bindings/net/dsa/microchip,ksz.yaml       | 89 +++++++++++++++++--
- 1 file changed, 83 insertions(+), 6 deletions(-)
+This is BTW v5, with all the same concerns from v1 and still no answers
+in commit msg about these concerns. Nothing explained in commit msg
+which hardware needs it or why the same SoC have it once shared, once
+not (exclusive). Basically there is nothing here corresponding to any
+real product, so since five versions all this for me is just copy-paste
+from downstream approach.
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-index 62ca63e8a26f..a08ec0fd01fa 100644
---- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-@@ -145,13 +145,19 @@ examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
- 
--    // Ethernet switch connected via SPI to the host, CPU port wired to eth0:
-+    // Ethernet switches connected via SPI to the host, CPU ports wired to eth0 and eth1:
-     eth0 {
-         fixed-link {
-             speed = <1000>;
-             full-duplex;
-         };
-     };
-+    eth1 {
-+        fixed-link {
-+            speed = <1000>;
-+            full-duplex;
-+        };
-+    };
- 
-     spi {
-         #address-cells = <1>;
-@@ -167,28 +173,46 @@ examples:
- 
-             spi-max-frequency = <44000000>;
- 
-+            dsa,member = <0 0>;
-+
-             ethernet-ports {
-                 #address-cells = <1>;
-                 #size-cells = <0>;
-                 port@0 {
-                     reg = <0>;
-                     label = "lan1";
-+                    phy-mode = "internal";
-+                    phy-handle = <&switch0_phy0>;
-+                    // The MAC is duplicated from the CPU port when all 0
-+                    mac-address = [00 00 00 00 00 00];
-                 };
-                 port@1 {
-                     reg = <1>;
-                     label = "lan2";
-+                    phy-mode = "internal";
-+                    phy-handle = <&switch0_phy1>;
-+                    mac-address = [00 00 00 00 00 00];
-                 };
-                 port@2 {
-                     reg = <2>;
-                     label = "lan3";
-+                    phy-mode = "internal";
-+                    phy-handle = <&switch0_phy2>;
-+                    mac-address = [00 00 00 00 00 00];
-                 };
-                 port@3 {
-                     reg = <3>;
-                     label = "lan4";
-+                    phy-mode = "internal";
-+                    phy-handle = <&switch0_phy3>;
-+                    mac-address = [00 00 00 00 00 00];
-                 };
-                 port@4 {
-                     reg = <4>;
-                     label = "lan5";
-+                    phy-mode = "internal";
-+                    phy-handle = <&switch0_phy4>;
-+                    mac-address = [00 00 00 00 00 00];
-                 };
-                 port@5 {
-                     reg = <5>;
-@@ -201,6 +225,27 @@ examples:
-                     };
-                 };
-             };
-+
-+            mdio {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                switch0_phy0: ethernet-phy@0 {
-+                    reg = <0>;
-+                };
-+                switch0_phy1: ethernet-phy@1 {
-+                  reg = <1>;
-+                };
-+                switch0_phy2: ethernet-phy@2 {
-+                  reg = <2>;
-+                };
-+                switch0_phy3: ethernet-phy@3 {
-+                  reg = <3>;
-+                };
-+                switch0_phy4: ethernet-phy@4 {
-+                  reg = <4>;
-+                };
-+            };
-         };
- 
-         ksz8565: switch@1 {
-@@ -209,28 +254,42 @@ examples:
- 
-             spi-max-frequency = <44000000>;
- 
-+            dsa,member = <1 0>;
-+
-             ethernet-ports {
-                 #address-cells = <1>;
-                 #size-cells = <0>;
-                 port@0 {
-                     reg = <0>;
--                    label = "lan1";
-+                    label = "lan6";
-+                    phy-mode = "internal";
-+                    phy-handle = <&switch1_phy0>;
-+                    mac-address = [00 00 00 00 00 00];
-                 };
-                 port@1 {
-                     reg = <1>;
--                    label = "lan2";
-+                    label = "lan7";
-+                    phy-mode = "internal";
-+                    phy-handle = <&switch1_phy1>;
-+                    mac-address = [00 00 00 00 00 00];
-                 };
-                 port@2 {
-                     reg = <2>;
--                    label = "lan3";
-+                    label = "lan8";
-+                    phy-mode = "internal";
-+                    phy-handle = <&switch1_phy2>;
-+                    mac-address = [00 00 00 00 00 00];
-                 };
-                 port@3 {
-                     reg = <3>;
--                    label = "lan4";
-+                    label = "lan9";
-+                    phy-mode = "internal";
-+                    phy-handle = <&switch1_phy3>;
-+                    mac-address = [00 00 00 00 00 00];
-                 };
-                 port@6 {
-                     reg = <6>;
--                    ethernet = <&eth0>;
-+                    ethernet = <&eth1>;
-                     phy-mode = "rgmii";
- 
-                     fixed-link {
-@@ -239,6 +298,24 @@ examples:
-                     };
-                 };
-             };
-+
-+            mdio {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                switch1_phy0: ethernet-phy@0 {
-+                    reg = <0>;
-+                };
-+                switch1_phy1: ethernet-phy@1 {
-+                  reg = <1>;
-+                };
-+                switch1_phy2: ethernet-phy@2 {
-+                  reg = <2>;
-+                };
-+                switch1_phy3: ethernet-phy@3 {
-+                  reg = <3>;
-+                };
-+            };
-         };
-     };
- ...
--- 
-2.34.1
 
+Best regards,
+Krzysztof
 
