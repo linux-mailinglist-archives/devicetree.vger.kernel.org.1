@@ -1,160 +1,153 @@
-Return-Path: <devicetree+bounces-129332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF8219EB459
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:09:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0DD9EB462
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:13:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B911B1687F4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:09:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68A6D1886143
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:13:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F0B1B21A0;
-	Tue, 10 Dec 2024 15:09:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA0A61B0F12;
+	Tue, 10 Dec 2024 15:12:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v343TJ32"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="enDaiYP5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EFAA1AAA38
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 15:09:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E56F1ACDE7;
+	Tue, 10 Dec 2024 15:12:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733843367; cv=none; b=GrDo1hjHthpvtbmD2Cm6mXpSibSnx7fXTzVu2Ev1v/vYVP8111XMmVWLIFknozavXQL0sZwTcpXpUpNdn0Ays2DG4F9XPDUk0OgTqV1Uv6VkPgMnX9xcoeuLlukdk+k8AdESudEto6q/gl7sI9h0Nxx1w4ABaeOYeexOtnwkjv8=
+	t=1733843577; cv=none; b=J1vLhDuwlKVmS9ebk8l+gokWVTqGUncwdR8ElYZO16xSAUf4nuwmIO11YD9hsdfJXCFUjfY+g9aZ4iFZ4dBPNhJPbwGs4gwFFLYFg2OSjXggFL+T2kSKvy1zR5g8mVJJsJmNPPKnlK4fw7O5z1nCFYqDMsHlHmzYSTtBflhAYIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733843367; c=relaxed/simple;
-	bh=80/01DvwhCk8ER/fRhyWLCJzR9PTogDCxXobO9F/RVQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U1qwl/c63szr82H0roOnLqqkh7bu0I/kAsETvC7a39QOtcFjRXfLzoq00lDxAkX+6QPGcqGn4/LMwMDSXaObet+bDtEozImpYvVIGU8UJEcrRMBqmO/vPLoCGyh/URxCuYsvFxCgpyVLQFf1vQnX55jblh5jl3f2u/6vU10B1kk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v343TJ32; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-30225b2586cso19724911fa.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 07:09:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733843363; x=1734448163; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ONPoAWCr/z6lJfjDFKtgqfFAw1BGCZer+GCPiaXmPhw=;
-        b=v343TJ323DUGi5/m5/FrFrr89Ph+Zv0XeBvNt5huqxBnTkff5QRbzRW4pZWUNVttAH
-         Tlu95DPvvAHT6zUodswBHcvRf56JzyawVTfBR3dNWKdZBuljZlgr98bGiaYlYhsT2uPr
-         gu2V6zwkFTh/b0OkdHryyJxrj6RtGPrHiLfKlc7gYXsQf9dCVs7btgZvkKZX6c2s7A5D
-         j16flk5a/dCWOovI+7SnICyPlYr2x69lQCEDNw3b+KKPoQstS9stPw88m8Cgd+fcoYjM
-         k5eTuUxolSI1b/X9ta78apmdeiOgLYvib+f/TqAunaMr6fsiBMlz4PwghoiKHHVF7aMN
-         xuOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733843363; x=1734448163;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ONPoAWCr/z6lJfjDFKtgqfFAw1BGCZer+GCPiaXmPhw=;
-        b=pmN4XXGKr29WiiS3KtL1mY+asln6GaFb1YXtcSfOYI5v05t1FD+lRnPw65T8tUWAVX
-         /ZHcdFHQK2Ga0/LzHF1HLbI6KX6ZDwOE1AUHOPAkzQwQiNr2EXfp9i6FpsO7IvTToGp7
-         z7tp1TmgcJIttZPs3sOH16VSarbyhTtGIXOmLu7ij4J6kzttuBiKOwvkT/P5ykK6fRqs
-         vgXPU1t0h9Q8Oip/dU3xsX7PvcAOzmjsAYFxOMG74L0AGoOl17Xf2/f+Y/nne47tpDmJ
-         XQa8BmAVF58qzyIatwkC9F0NdOjMUmd7e2ieM1INeAt2qM0BBmCjc4hpyPtPbWjzSiit
-         aWTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW/DfX5Vys5Tv2gl1R9RXTMOfaGlc6KNj1Ds7XlPJJyKTR0/FHQ58Liz3w4s3SGvb5QgK0CBjtLqHCn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYmHi7Eex120DbOM4x8MzFrbHxMaVDdoQZg5HkHtbsCFs3QeOk
-	58kxu2jx6uasuwHlbI/ARwWoUjo2fW8cTOpiWBQ2j8uRweWDlPdU48mbkaLVvfM=
-X-Gm-Gg: ASbGncs+6cDWUylMK8px5LKM1qb6jQkfzDJVnqPwUsjYggiqaAGdvB/I3M5sdastT+z
-	1qSrIahaj8tfcO0qFafNwIIu2L/QeCnT7kbnyXX7wpKzvxkTZsvxV/hfTe1x1P2gznxlePc4p7i
-	eVrdzw1uX8xKYu0hZ5MzzdNlY+jfDGkgNKmZxv8w1EE5dvexUKbbYHZ0zF9CzL0s941Gatzu9Wn
-	OxckBeNM8dLPLwfB+wJgYOlJv1KHwzhXtEw43qWFZXjKV6B/5QwgzBQAhsQPXroG3n0XraA9VeZ
-	K6EbbLb6gv79urdIvuRWqLSIfK9DpnwKsg==
-X-Google-Smtp-Source: AGHT+IH4LG5o5SbyEh1Vovj71WLwSfFbBGhk7NJh/k58qLpSj2p2TBBGrOFSDDq9rnPlmsaGShNmLg==
-X-Received: by 2002:a2e:be0b:0:b0:2ff:b8f5:5a17 with SMTP id 38308e7fff4ca-3023282c1femr12568441fa.5.1733843363188;
-        Tue, 10 Dec 2024 07:09:23 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-302259416c5sm5907321fa.6.2024.12.10.07.09.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 07:09:22 -0800 (PST)
-Date: Tue, 10 Dec 2024 17:09:21 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Xiangxu Yin <quic_xiangxuy@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, quic_lliu6@quicinc.com, quic_fangez@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 3/8] phy: qcom: qmp-usbc: Add DP phy mode support on
- QCS615
-Message-ID: <iqcofcntirmlwcpyfr4yabymqfcgyrij57bibf337tmxpa73t6@npkt6wquenf6>
-References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
- <20241129-add-displayport-support-for-qcs615-platform-v1-3-09a4338d93ef@quicinc.com>
- <CAA8EJppOR_UXoVpMt-dhfWdCz3UNfsXGdz8X9NqpaSmYj3AZDg@mail.gmail.com>
- <5ea14162-567b-462d-be02-b73b954b7507@quicinc.com>
- <5whv4z7u6fkfwlv5muox5dmv6fow4mga76ammapw7wph7vwv3f@xibcjdfqorgf>
+	s=arc-20240116; t=1733843577; c=relaxed/simple;
+	bh=zxUb5xnZiBQR7O22ULKVMRKeZDRwX8HSXdvIH6Vpvtw=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=VYsEb7Sid85x84MWs+DE4DITF8LsdocCo8qfnZj3g25cF6jNV/iltD2JMJzzHmZTqYAU/i+9LV2qXRzt4F4UjC/PeYXSVX9eKB2wOZbqkNaACZVQmb7H1hgZQW6B4vCwMedzVYGd5SstQ1UEOga1RTJGloysFEuagx537gsgSnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=enDaiYP5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DA8EC4CED6;
+	Tue, 10 Dec 2024 15:12:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733843577;
+	bh=zxUb5xnZiBQR7O22ULKVMRKeZDRwX8HSXdvIH6Vpvtw=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=enDaiYP5qbu/9W/1wBjFAMbhveMcfaHSdnng10Zaq9zY07KCckkA8bwLMr8Mk/Qa8
+	 Rst5be8/kTwGTodTlZEr5D1+OLfMyWwiAuYcELM4zlsaRlzg6J7q8I8U/Zw1VZ6Kwl
+	 a2x4r6T5X2giHxAv1iILWECtpUwTAmUQvQbYqL0J/NIQ5s6zL1rjrLNymc8x9hT7fY
+	 Tm1JlBXTezuJeT0Zyv+XYa2dQM8qFGNEXLkepHYaY9CzpNWvGZv8ZYOqgas1YKpJGB
+	 OQAhBszrfgELTXUNmDFHUGjeBmRQdMSui6vzlq93d+SxkmW8RRqpRIRxWpH8l5dzTV
+	 NcFt6VEUuXb3w==
+Message-ID: <001ae2e4-bba8-4b76-a4b6-eda8533c5fc5@kernel.org>
+Date: Tue, 10 Dec 2024 16:12:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <5whv4z7u6fkfwlv5muox5dmv6fow4mga76ammapw7wph7vwv3f@xibcjdfqorgf>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 00/13] wifi: ath12k: add Ath12k AHB driver support for
+ IPQ5332
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241210074159.2637933-1-quic_rajkbhag@quicinc.com>
+ <fd338dd5-db11-4439-835d-b6641f3feb78@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <fd338dd5-db11-4439-835d-b6641f3feb78@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 05, 2024 at 08:31:24PM +0200, Dmitry Baryshkov wrote:
-> On Thu, Dec 05, 2024 at 09:26:47PM +0800, Xiangxu Yin wrote:
-> > 
-> > 
-> > On 11/29/2024 10:33 PM, Dmitry Baryshkov wrote:
-> > > On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
-> > >>
-> > >> Extended DP support for QCS615 USB or DP phy. Differentiated between
-> > >> USBC and DP PHY using the match table’s type, dynamically generating
-> > >> different types of cfg and layout attributes during initialization based
-> > >> on this type. Static variables are stored in cfg, while parsed values
-> > >> are organized into the layout structure.
-> > > 
-> > > We didn't have an understanding / conclusion whether
-> > > qcom,usb-ssphy-qmp-usb3-or-dp PHYs are actually a single device / PHY
-> > > or two PHYs being placed next to each other. Could you please start
-> > > your commit message by explaining it? Or even better, make that a part
-> > > of the cover letter for a new series touching just the USBC PHY
-> > > driver. DP changes don't have anything in common with the PHY changes,
-> > > so you can split the series into two.
-> > > 
-> > Before implement DP extension, we have discussed with abhinav and krishna about whether use combo, usbc or separate phy.
+On 10/12/2024 16:08, Krzysztof Kozlowski wrote:
+> On 10/12/2024 08:41, Raj Kumar Bhagat wrote:
+>> Currently, Ath12k driver only supports WiFi devices that are based on
+>> PCI bus. New Ath12k device IPQ5332 is based on AHB bus. Hence, add
+>> Ath12k AHB support for IPQ5332.
+>>
+>> IPQ5332 is IEEE802.11be 2 GHz 2x2 Wifi device. To bring-up IPQ5332
+>> device:
+>> - Add hardware parameters for IPQ5332.
+>> - CE register address space in IPQ5332 is separate from WCSS register
+>>   space. Hence, add logic to remap CE register address.
+>> - Add support for fixed QMI firmware memory for IPQ5332.
+>> - Support userPD handling for WCSS secure PIL driver to enable ath12k
+>>   AHB support.
+>>
+>> v4:
+>> - Missed to include some review list in v3. Hence sending v4 with
+>>   all review list as per - scripts/get_maintainers.pl
+>>
+> The amount of undocumented ABI you add here, points to the problem that
+> either your drivers don't work or your drivers would never work with
+> upstream. Why? Because either you would have wrong DTS or drivers not
+> matching DTS, thus not working.
 > 
-> What is "DP extension"?
-> 
-> > 
-> > We identified that DP and USB share some common controls for phy_mode and orientation.
-> > Specifically, 'TCSR_USB3_0_DP_PHYMODE' controls who must use the lanes - USB or DP,
-> > while PERIPH_SS_USB0_USB3PHY_PCS_MISC_TYPEC_CTRL controls the orientation.
-> > It would be more efficient for a single driver to manage these controls. 
-> 
-> The question is about the hardware, not about the driver.
-> 
-> > Additionally, this PHY does not support Alt Mode, and the two control registers are located in separate address spaces. 
-> > Therefore, even though the orientation for DP on this platform is always normal and connected to the video output board, 
-> > we still decided to base it on the USBC extension.
-> 
-> Could you please clarify, do usb3-or-dp PHYs support DP-over-USB-C? I
-> thought that usbc-or-dp platforms support that, but they don't
-> support DP+USB pin configuration. Note, the question is broader than
-> just QCS615, it covers the PHY type itself.
-> 
-> Also, is TCSR configuration read/write or read-only? Are we supposed to
-> set the register from OS or are we supposed to read it and thus detemine
-> the PHY mode?
+> Please point us to your upstream DTS implementing (and working 100%)
+> this ABI, so we can review that you do not sneak more broken or
+> undocumented things. I will NAK also future submissions without above,
+> because I believe you usptream something which will not work.
 
-Any updates on these two topics?
 
--- 
-With best wishes
-Dmitry
+I dug a bit and I found your earlier v2:
+https://lore.kernel.org/all/20241015182637.955753-3-quic_rajkbhag@quicinc.com/
+
+which confirms:
+1. DTS not following coding style, so not possible to accept
+2. Driver relying on that exact DTS, so not really working.
+
+Please post in separate series updated DTS, after fixing all the issues
+pointed out by DTS coding style.
+
+Best regards,
+Krzysztof
 
