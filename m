@@ -1,126 +1,134 @@
-Return-Path: <devicetree+bounces-129359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E1419EB65E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:27:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375319EB630
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:24:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB4C1160F6B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:27:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AE511629A5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:24:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E95E1BDABE;
-	Tue, 10 Dec 2024 16:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4A381BC09A;
+	Tue, 10 Dec 2024 16:24:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ta+vKn2r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890C51BEF70;
-	Tue, 10 Dec 2024 16:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C23DD23DEA7
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 16:24:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733848041; cv=none; b=K199j7779efpVo7jRYlSk1PQMhAzPvSQ1wt1V4lCZ5AsJCAbyMqz7TNiuiHE6vEavOAUXiEsh18SR4ff3wZXXR1hp0YUE0z2rbkGLmx4J16R+CRxwb/C3wXp4HRCAY6hibSGC/rCpnYfc3Ma+ps+Z3xaH7VSitQerJo5PaYA+S4=
+	t=1733847850; cv=none; b=okiA/JN+qCYiNYB3dOrW2MyBIbGCiNx4ncEnCHviD4pURCNU7lm0JPuLLedNIPiLDA0jXWVVy9Pnxm9xdM/oASGY01HDiPeXsBRFAMlmuW/J6oKkSHnLBcVZjcA938GGtRtidquHfC/XIUtpfkiCktIys3Q/tJ8qjkx36EzMVwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733848041; c=relaxed/simple;
-	bh=eseIS8yIBUdZrF/1GLTJZ7wLS1Tjs3CB144jSce0lE4=;
+	s=arc-20240116; t=1733847850; c=relaxed/simple;
+	bh=lqZ6jfWQv518JCCW7cIDrKpuYmAnQVHmRlFDMQF5Ifg=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nE3mD/uWF49lREZ1of0z4mLXyEndGS+bVt7fOzVSK/attPKACIUTLkESFONSVTU9IsmmTat6M4p1UW6Hnf1WtJqa3plDojlI3Pm1RsZos3Bo1wXeS054PxaWjJBfYEwhQTpwMqoH7g429FOYCMCiqGuc8zfjzWFypsZZey1gM8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7b6d032bfa0so327020985a.1;
-        Tue, 10 Dec 2024 08:27:18 -0800 (PST)
+	 To:Cc:Content-Type; b=D8hSyZkZ/dQkVF+KQtkhfLHkdRf4M6zDGU2YYmP8YBMd6vP9sTegp+xEpMF1E9Jfyl7ObqnTXTGpXmfzeEDJxNfY395ybdTQBQzXAuWTBIcO+v+5uAdk7+a4RijfLEPWFe2jmk9Rl9kEwxmm6TIhuRayc3VunMLLqVXS22zQSTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ta+vKn2r; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a9ec267b879so1111245266b.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 08:24:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733847847; x=1734452647; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=l1Zl6mnBjiQBNeF1Q3VMTAkh1KaygVJextd08NrJPLQ=;
+        b=Ta+vKn2r6vus4DWqB4e7Mp2tp0yqU5NWY5BVE9UuqdXHqRjo193jP7ZZVYRL3wYqQa
+         KACoAFyF6kE3oERfdu8r3Re3yb2CzH1IjWeLAuYzay7bypjBE6Ax4hV7nI5hCOkK0cn2
+         TAdzpdqZtQwflhVCn4WlDPXNgzOstm8lYyEjb/S+4DHUFOQqWb0Uc9Ial65LSsUhHbfp
+         +x2gkiNGziimVWfjhqnt3WVxGSwBOyyj/i0UmEGUhT0LC/a9jnD6Xr3pb3DC1DUf7xAW
+         i0sy2kNugbSn7ufck5Ei4FpZjB7kgN91MN1fAtvviXVe/5pq3WWF0WbIZJSTqJ5SxDkA
+         TjEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733848037; x=1734452837;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=O4WuJQm0PMXOstokp2zkVSGJA7kGN0iowjzq4BYe14w=;
-        b=eGLqqOi3O03YBiKKRg/S1XSY3qq0b3zyHEMoCcKb9QKZ+PkO/m/Wo0vSlQ222NMg5l
-         eHHxCl+wcarWUoyHSOsi8/si7atPG9kqQvkc3XrtdR1oCmv7VxAYnOEfdYzjEbrlm2Rc
-         Jnmh8i90wO5Pd38WVkm0jxPhVEe5Sa15RiJsreTQvwoa64Ns7boJy+REO58BWVFxO4Ow
-         7JMY3Vr+q8kGWwJ6VAmH26JKCJ23QC16jO20jvk/ENCCgqYRcuK8FMqUXcm6QW2xNLbX
-         dVs6SqWSsFcN/GltlMkNwMtbBmwk0lSVrlxrlIhnxyzrCSm+EDEKlMR43tIXdSb5t2B0
-         xXbA==
-X-Forwarded-Encrypted: i=1; AJvYcCUiXrTQhDFzH2jUclbR1W21rphhKfpXFm7tUlPjXd31DSgFqy/6w/Q6dxZj/WW9XDVqJ/TJWxyWHyh0@vger.kernel.org, AJvYcCW8N6AutrL/zmTSnu4FHHWj1GjD38KoHWACgtUB28LC7oEhr3/TBYboKzdBKhDl0WZD3K0Zm0FewO3aRqU9@vger.kernel.org, AJvYcCWsds0Vx3h9/8LEQJigUyraR5LRY0fLo6rgPDC2Cd8gMSMkTzKY5jVZW7aZbqwk7MdXIb9oPCsnbXj3@vger.kernel.org, AJvYcCXlrWTcscIUXJoNaCbW6WH19jL4FIdUhwmFNRinNGtejtCxVidkXjixbCqUg6AxVeOUN3CiOFAMVeGXxYv4+/V8K8U=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbeDK3MOPoG0hHbXbrtxLh7hzO3bL/qgxno0vNMQq/lyRryQ8H
-	3NO9PNnXVodtYxwVwiDqNhdBl0NwWCvBz51o3F6XkiM0a/bNs5v6o/JUBO+e
-X-Gm-Gg: ASbGnctZr4oIpnCLEcOxXpTuZr2uB/76ETcAUpLDskxF7iq9xkRTyti3ckH0bnfhxAe
-	CX5FFHiBYmax1XgApG8OryTAjNV1OWi+9ohjCEamgNKNYMIeTSf6ys2Zab07BaFlH3sTVKOya18
-	nxyJQA6m60R4VweiaT8uOOUxZRwy1xcpwwWCrsfXwAieZz3i/FZvKrA6kuhW9k6nNmtjZ2Nqmr1
-	eclAq7FES3zp2zl27bcfKnWXRi8djcZn7IjTN7k3A+fuIurvIkNqOeW4ACOTvFDGTC5MgSjtIpr
-	8gQM8AOrwAOwv3fS/42z
-X-Google-Smtp-Source: AGHT+IFkMuCz4cV+pSJi74cVDsyr4TYgxGlOwyR6brUVIuUfA09oCNAsEKfK5f7Ervkvqk5DI/YZzA==
-X-Received: by 2002:a05:620a:4399:b0:7b6:6e59:2864 with SMTP id af79cd13be357-7b6dce96562mr786138485a.43.1733848037133;
-        Tue, 10 Dec 2024 08:27:17 -0800 (PST)
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com. [209.85.160.181])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b6c906ae7csm322707985a.115.2024.12.10.08.27.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Dec 2024 08:27:17 -0800 (PST)
-Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-4675fc06969so23893951cf.3;
-        Tue, 10 Dec 2024 08:27:16 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVIchwL19VKP3rYY+x87D4p2bPyZ9yNK9nYWTd7kbOXIwEyCcTjqxd/c6/h7C11Ed4/PBAKsOw6UoGS4lAG@vger.kernel.org, AJvYcCVoBxaca7PeTSq5/qYqIv/YzOeeoNZHmdMaKlN4VvN1w/4hNt6Dw1yx6IV2X67+wWLSILWfPAe03/cg@vger.kernel.org, AJvYcCWDWZehPcByyoBB0muZvNvpjEJDfEKvxqwBhdCkBJExwcOuYv3eHaiYqepOWc2M8gEMDkhu/y51bSE18cLpFAAJ0GU=@vger.kernel.org, AJvYcCXFSWlqGw00lsEOc7jc9tiLlNojuHTxLdtRjSEJ2HSQEM+AQUmQ5mNyCq6nStO1MsmBUNSz3RsvqH1E@vger.kernel.org
-X-Received: by 2002:a05:620a:2711:b0:7b6:cae1:a3cc with SMTP id
- af79cd13be357-7b6dce18437mr893433085a.19.1733847583252; Tue, 10 Dec 2024
- 08:19:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733847847; x=1734452647;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l1Zl6mnBjiQBNeF1Q3VMTAkh1KaygVJextd08NrJPLQ=;
+        b=RtuNf7IVnuClzukLYAFFsRc3LR46tZuV7ImOjcSlYynXE5zn1wpE0QpZ9J+vHuISIK
+         LR3MdfTH9DPf2nIMIKMwAa21k0Tr1lOVjbprn+JOZ0mwn/mI+cWkmGUvEKUWT9toj3NX
+         yemUBhmcFBf1mPoFYcZ/EN6gQRclIkxx6KHP6XJlHyXgXAUUoRDwvsIg4TYg9sNmincQ
+         y5XsenqqxH43qCXC33CYv8Xkvo6VctKHDiH72yBKoYW6EC3sVApycPC1IykAzzpF3Ysl
+         ws3hqL90BBnYxfxBpharRs9TU7JWslh8fProCOny29uVFcHvpHgTRbQbCquP76rYORe7
+         ex9A==
+X-Forwarded-Encrypted: i=1; AJvYcCXdG4dsBrSMsejIbtiYVsy/DuUOPlNlkBo+0+35XeIW6CHOtK+lrp3XfzWcpyPmfmLVdEZv/6cRzZBW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxoU9zS9eQE7Avzz5N46EuTXJ+AghEJNKixPwZawQlsZhZfoE79
+	Q5kg5tosDlmY7nEK3GpkWvvqbNPW9qEAdHnN4Bh1MfhFnSrmGxourpZggx5QomkmRBiLMRITNIc
+	FoZlbPrL180Bn+2rRO+8Hcfo3txqixZyrJj1trA==
+X-Gm-Gg: ASbGnct6gZe7EQLP/PrblzOy32Zaya8PjeYGX1A9F7TqDFiwqJppNvAg48k54PDloVh
+	0GYogPtJptCS3/Oz+nIpzFhlPaj5UuSBoZjo=
+X-Google-Smtp-Source: AGHT+IEDe+ZlasDaSk7kkMNC2p4PajKO8n+r9pHmoj0mnmgFy9RuiKu/RGzpGKCUoMbkgvfshlUA8vwl2fXnyVlspYY=
+X-Received: by 2002:a17:907:6ea0:b0:aa6:7285:469b with SMTP id
+ a640c23a62f3a-aa69cd5c6cdmr593652366b.18.1733847847098; Tue, 10 Dec 2024
+ 08:24:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241206-rcar-gh-dsi-v3-0-d74c2166fa15@ideasonboard.com> <20241206-rcar-gh-dsi-v3-9-d74c2166fa15@ideasonboard.com>
-In-Reply-To: <20241206-rcar-gh-dsi-v3-9-d74c2166fa15@ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 10 Dec 2024 17:19:31 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUwrAJXg8AH_S_NDAzYuR4FiVLy+dcAfVeVh_J8Di_j9A@mail.gmail.com>
-Message-ID: <CAMuHMdUwrAJXg8AH_S_NDAzYuR4FiVLy+dcAfVeVh_J8Di_j9A@mail.gmail.com>
-Subject: Re: [PATCH v3 09/10] arm64: dts: renesas: r8a779h0: Add display support
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+References: <20241210-qcom-video-iris-v8-0-42c5403cb1a3@quicinc.com> <20241210-qcom-video-iris-v8-27-42c5403cb1a3@quicinc.com>
+In-Reply-To: <20241210-qcom-video-iris-v8-27-42c5403cb1a3@quicinc.com>
+From: Stefan Schmidt <stefan.schmidt@linaro.org>
+Date: Tue, 10 Dec 2024 17:23:56 +0100
+Message-ID: <CAEvtbuuO5Ga+wW9rstX_e_RGnm5jSNSHmyy3w3M9FTopNhKttQ@mail.gmail.com>
+Subject: Re: [PATCH v8 27/28] media: iris: enable video driver probe of SM8250 SoC
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Cc: Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>, 
-	Jagan Teki <jagan@amarulasolutions.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, dri-devel@lists.freedesktop.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-clk@vger.kernel.org, 
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sebastian Fricke <sebastian.fricke@collabora.com>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 6, 2024 at 10:33=E2=80=AFAM Tomi Valkeinen
-<tomi.valkeinen@ideasonboard.com> wrote:
-> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+hello Dikshita,
+
+On Tue, 10 Dec 2024 at 12:08, Dikshita Agarwal
+<quic_dikshita@quicinc.com> wrote:
 >
-> Add the device nodes for supporting DU and DSI.
+> Initialize the platform data and enable video driver probe of SM8250
+> SoC. Add a kernel param to select between venus and iris drivers for
+> platforms supported by both drivers, for ex: SM8250.
 >
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.14.
+[...]
 
-Gr{oetje,eeting}s,
+> --- a/drivers/media/platform/qcom/iris/iris_ctrls.c
+> +++ b/drivers/media/platform/qcom/iris/iris_ctrls.c
+> @@ -17,6 +17,8 @@ static inline bool iris_valid_cap_id(enum platform_inst_fw_cap_type cap_id)
+>  static enum platform_inst_fw_cap_type iris_get_cap_id(u32 id)
+>  {
+>         switch (id) {
+> +       case V4L2_CID_MPEG_VIDEO_DECODER_MPEG4_DEBLOCK_FILTER:
+> +               return DEBLOCK;
+>         case V4L2_CID_MPEG_VIDEO_H264_PROFILE:
+>                 return PROFILE;
+>         case V4L2_CID_MPEG_VIDEO_H264_LEVEL:
+> @@ -32,6 +34,8 @@ static u32 iris_get_v4l2_id(enum platform_inst_fw_cap_type cap_id)
+>                 return 0;
+>
+>         switch (cap_id) {
+> +       case DEBLOCK:
+> +               return V4L2_CID_MPEG_VIDEO_DECODER_MPEG4_DEBLOCK_FILTER;
+>         case PROFILE:
 
-                        Geert
+The handling for DEBLOCK does not seem to be part of the SM8250
+enablement. Or did I miss something?
+It seems they should be part of a different patch that makes use of
+the DEBLOCK cap.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+regards
+Stefan Schmidt
 
