@@ -1,144 +1,126 @@
-Return-Path: <devicetree+bounces-129355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6889EB5AD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:10:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E1419EB65E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:27:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED6E3161A9A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:10:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB4C1160F6B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:27:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E637A1B86D5;
-	Tue, 10 Dec 2024 16:10:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lEQ3b60X"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E95E1BDABE;
+	Tue, 10 Dec 2024 16:27:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348161AAA0E
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 16:10:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890C51BEF70;
+	Tue, 10 Dec 2024 16:27:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733847015; cv=none; b=twNRsJx2/XnKp21UITeQSd1HxbUpFadXeEBu6i3SPIZ7orlK3/0G7oiXK2TO0aaFzPXzbjr3LOEKwiVgZY4F1I8Z55FVDFx+6fwU2xdd+ODfqVJ7RJ6Uv+gY6H0kcn/HEY38uhoTjzRz8NPok7bgttyKgZIMUS/1zlG9lLG/bNs=
+	t=1733848041; cv=none; b=K199j7779efpVo7jRYlSk1PQMhAzPvSQ1wt1V4lCZ5AsJCAbyMqz7TNiuiHE6vEavOAUXiEsh18SR4ff3wZXXR1hp0YUE0z2rbkGLmx4J16R+CRxwb/C3wXp4HRCAY6hibSGC/rCpnYfc3Ma+ps+Z3xaH7VSitQerJo5PaYA+S4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733847015; c=relaxed/simple;
-	bh=5GudjBzxvQaYsCWXxbQ6HJDgG3OjE70z3x4WM6wZ57k=;
+	s=arc-20240116; t=1733848041; c=relaxed/simple;
+	bh=eseIS8yIBUdZrF/1GLTJZ7wLS1Tjs3CB144jSce0lE4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=u7aBS2WsrDshekZdZlR20tUWqhT4ZcCpQDj7h2SDqLGx7vYlLeNIiLxBluiVpnNOBwgyfP78zf03eKvFhaXFyzTNdEbVjCRS79aOLcvOaESsLu3rl3Nmdl2JpehLLHDDsoGbLYkfhXfZ5SkoJnC8T4OEPdzlPA59TMJwcTw9B3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lEQ3b60X; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e39fb8548e2so4731614276.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 08:10:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733847013; x=1734451813; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=HNXvfug15XfoQwdKiIGBWtNC3tcA8qpMkETpkFfQs6Q=;
-        b=lEQ3b60Ximaw0rRGcTaxlZOxQ+s69OIiWqzpLCeo6tBC267U7PneKNrv2zBJIPFCdJ
-         lVXTzchz9SIy0P2hFOSLEJ3eLzCalMNZFGv+NNDvk8hUVVkZJKIXdNFvih1XklHcYO+u
-         flV8sRufX/GuITqv7L1oVmhqmEaUGISmCLIIHjvwZh+qaMHptvjkvTSrJMEwWS0IxHvH
-         I0OKtkMwTVQbnNgVO6tU+vy14RlmQWiB0m3pxoBnIiWJteW8WbWhMCrBfgEr4qlydB3R
-         mybKsXjc0eVhODmSaBFPEopy++xpRmgctn8m3eJKG0m0wmLsVIq94NMkZdKQfVrYqQIa
-         8f3Q==
+	 To:Cc:Content-Type; b=nE3mD/uWF49lREZ1of0z4mLXyEndGS+bVt7fOzVSK/attPKACIUTLkESFONSVTU9IsmmTat6M4p1UW6Hnf1WtJqa3plDojlI3Pm1RsZos3Bo1wXeS054PxaWjJBfYEwhQTpwMqoH7g429FOYCMCiqGuc8zfjzWFypsZZey1gM8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7b6d032bfa0so327020985a.1;
+        Tue, 10 Dec 2024 08:27:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733847013; x=1734451813;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HNXvfug15XfoQwdKiIGBWtNC3tcA8qpMkETpkFfQs6Q=;
-        b=ITLL8sX32WI2wdMu1RmL/diRfNlpXI7LKhEK4d7UfN/fqSCBQRzC2oqfmTY5hjuXbc
-         uku0i1htoPA/0LkUZNd6ccK/6Ol5YNSuBiVW931SiLqEUqty7D8DR6myrxjufzZiLckz
-         5/Q3Zc0lcpVuLefU7B45pXdOp/n7G4l3DWusLGMUiOBFkq0Hl0R4Wwe4eFzZ3h0Wq5sI
-         sPUYb5eldFfavEDdLwq9l20iw99GJJNYEbZHaHs6o9TSHb0PM30ngOqg2Hg/Pqjznwzg
-         uv8gvc5Qg9IH0nkFr8khVM1Fil8GDZEB9Q6IdbFflKV1oBpUCfwJNo1aUdPZrVEyEcSf
-         zztg==
-X-Forwarded-Encrypted: i=1; AJvYcCXgX70Ok0jOVQzuFPlrJouQXwWGhqtVZCUFXhWRH++YpZr9RYtAWNi7zH32wKG9y0C/AQghCq0441Y/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLfSwHul0OW9sTdRNa1IWYmjffjZjHz2XPf4Vv7saqLW7Iq7Pg
-	wpPysSyXZTh0CeQC9Mc3IyhU3BGUHN1xLic9h6a9XIDPnx3cglWA2K39b1OM12EfhQDDIJrdw7Y
-	yxUVNrpuz5jm4cyWedwxXKEBmtAclCgfZzXB70Q==
-X-Gm-Gg: ASbGnctDzTCscyqosov7j+Kz3w7LXGdq140etPoWQaGynMNBCdpo3JabFDWlVMa22Qt
-	iTSq93QfwyAb2Bd9c5ahmQfMyjZwanoPlrrB+
-X-Google-Smtp-Source: AGHT+IELbJvk0NPV36M+fcncTTHMyREVObNbnHGvfeRgsIrYaGiOwpPdOwf890kyMOnEyS8+yJEfq/uf9mQc3jRotz8=
-X-Received: by 2002:a05:6902:2b0c:b0:e38:b889:7eff with SMTP id
- 3f1490d57ef6-e3a0b071e93mr15453171276.6.1733847013083; Tue, 10 Dec 2024
- 08:10:13 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733848037; x=1734452837;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=O4WuJQm0PMXOstokp2zkVSGJA7kGN0iowjzq4BYe14w=;
+        b=eGLqqOi3O03YBiKKRg/S1XSY3qq0b3zyHEMoCcKb9QKZ+PkO/m/Wo0vSlQ222NMg5l
+         eHHxCl+wcarWUoyHSOsi8/si7atPG9kqQvkc3XrtdR1oCmv7VxAYnOEfdYzjEbrlm2Rc
+         Jnmh8i90wO5Pd38WVkm0jxPhVEe5Sa15RiJsreTQvwoa64Ns7boJy+REO58BWVFxO4Ow
+         7JMY3Vr+q8kGWwJ6VAmH26JKCJ23QC16jO20jvk/ENCCgqYRcuK8FMqUXcm6QW2xNLbX
+         dVs6SqWSsFcN/GltlMkNwMtbBmwk0lSVrlxrlIhnxyzrCSm+EDEKlMR43tIXdSb5t2B0
+         xXbA==
+X-Forwarded-Encrypted: i=1; AJvYcCUiXrTQhDFzH2jUclbR1W21rphhKfpXFm7tUlPjXd31DSgFqy/6w/Q6dxZj/WW9XDVqJ/TJWxyWHyh0@vger.kernel.org, AJvYcCW8N6AutrL/zmTSnu4FHHWj1GjD38KoHWACgtUB28LC7oEhr3/TBYboKzdBKhDl0WZD3K0Zm0FewO3aRqU9@vger.kernel.org, AJvYcCWsds0Vx3h9/8LEQJigUyraR5LRY0fLo6rgPDC2Cd8gMSMkTzKY5jVZW7aZbqwk7MdXIb9oPCsnbXj3@vger.kernel.org, AJvYcCXlrWTcscIUXJoNaCbW6WH19jL4FIdUhwmFNRinNGtejtCxVidkXjixbCqUg6AxVeOUN3CiOFAMVeGXxYv4+/V8K8U=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbeDK3MOPoG0hHbXbrtxLh7hzO3bL/qgxno0vNMQq/lyRryQ8H
+	3NO9PNnXVodtYxwVwiDqNhdBl0NwWCvBz51o3F6XkiM0a/bNs5v6o/JUBO+e
+X-Gm-Gg: ASbGnctZr4oIpnCLEcOxXpTuZr2uB/76ETcAUpLDskxF7iq9xkRTyti3ckH0bnfhxAe
+	CX5FFHiBYmax1XgApG8OryTAjNV1OWi+9ohjCEamgNKNYMIeTSf6ys2Zab07BaFlH3sTVKOya18
+	nxyJQA6m60R4VweiaT8uOOUxZRwy1xcpwwWCrsfXwAieZz3i/FZvKrA6kuhW9k6nNmtjZ2Nqmr1
+	eclAq7FES3zp2zl27bcfKnWXRi8djcZn7IjTN7k3A+fuIurvIkNqOeW4ACOTvFDGTC5MgSjtIpr
+	8gQM8AOrwAOwv3fS/42z
+X-Google-Smtp-Source: AGHT+IFkMuCz4cV+pSJi74cVDsyr4TYgxGlOwyR6brUVIuUfA09oCNAsEKfK5f7Ervkvqk5DI/YZzA==
+X-Received: by 2002:a05:620a:4399:b0:7b6:6e59:2864 with SMTP id af79cd13be357-7b6dce96562mr786138485a.43.1733848037133;
+        Tue, 10 Dec 2024 08:27:17 -0800 (PST)
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com. [209.85.160.181])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b6c906ae7csm322707985a.115.2024.12.10.08.27.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Dec 2024 08:27:17 -0800 (PST)
+Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-4675fc06969so23893951cf.3;
+        Tue, 10 Dec 2024 08:27:16 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVIchwL19VKP3rYY+x87D4p2bPyZ9yNK9nYWTd7kbOXIwEyCcTjqxd/c6/h7C11Ed4/PBAKsOw6UoGS4lAG@vger.kernel.org, AJvYcCVoBxaca7PeTSq5/qYqIv/YzOeeoNZHmdMaKlN4VvN1w/4hNt6Dw1yx6IV2X67+wWLSILWfPAe03/cg@vger.kernel.org, AJvYcCWDWZehPcByyoBB0muZvNvpjEJDfEKvxqwBhdCkBJExwcOuYv3eHaiYqepOWc2M8gEMDkhu/y51bSE18cLpFAAJ0GU=@vger.kernel.org, AJvYcCXFSWlqGw00lsEOc7jc9tiLlNojuHTxLdtRjSEJ2HSQEM+AQUmQ5mNyCq6nStO1MsmBUNSz3RsvqH1E@vger.kernel.org
+X-Received: by 2002:a05:620a:2711:b0:7b6:cae1:a3cc with SMTP id
+ af79cd13be357-7b6dce18437mr893433085a.19.1733847583252; Tue, 10 Dec 2024
+ 08:19:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-0-11d9f9200a59@linaro.org>
-In-Reply-To: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-0-11d9f9200a59@linaro.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 10 Dec 2024 17:09:37 +0100
-Message-ID: <CAPDyKFon9-3U5Vn2i+WtarSAYQHnA_ho8CGQmiVoboq1tnt4fw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/5] dt-bindings: mmc: document mmc-slot and convert
- amlogic,meson-mx-sdio.txt to dtschema
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Maxime Ripard <mripard@kernel.org>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+References: <20241206-rcar-gh-dsi-v3-0-d74c2166fa15@ideasonboard.com> <20241206-rcar-gh-dsi-v3-9-d74c2166fa15@ideasonboard.com>
+In-Reply-To: <20241206-rcar-gh-dsi-v3-9-d74c2166fa15@ideasonboard.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 10 Dec 2024 17:19:31 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUwrAJXg8AH_S_NDAzYuR4FiVLy+dcAfVeVh_J8Di_j9A@mail.gmail.com>
+Message-ID: <CAMuHMdUwrAJXg8AH_S_NDAzYuR4FiVLy+dcAfVeVh_J8Di_j9A@mail.gmail.com>
+Subject: Re: [PATCH v3 09/10] arm64: dts: renesas: r8a779h0: Add display support
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>, 
+	Jagan Teki <jagan@amarulasolutions.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, dri-devel@lists.freedesktop.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-clk@vger.kernel.org, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 28 Nov 2024 at 16:16, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+On Fri, Dec 6, 2024 at 10:33=E2=80=AFAM Tomi Valkeinen
+<tomi.valkeinen@ideasonboard.com> wrote:
+> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
 >
-> Document mmc-slot because used by amlogic,meson-mx-sdio.txt and
-> cavium-mmc.txt, so make it common.
+> Add the device nodes for supporting DU and DSI.
 >
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Applied for next, thanks!
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.14.
 
-Kind regards
-Uffe
+Gr{oetje,eeting}s,
 
+                        Geert
 
-> ---
-> Changes in v4:
-> - Fixed address-cells description of mmc controller
-> - Cleanup '|' when not needed
-> - Added review tags
-> - Link to v3: https://lore.kernel.org/r/20241007-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v3-0-ad4eb22c2a8d@linaro.org
->
-> Changes in v3:
-> - Revert and insteads move common properties between slot and controller into mmc-controller-common.yaml
-> - Fix other comments on patch 2 & 3
-> - Link to v2: https://lore.kernel.org/r/20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org
->
-> Changes in v2:
-> - Fixed description, limited to 3 slots
-> - Moved out mmc-slot in a separate common schema
-> - Link to v1: https://lore.kernel.org/r/20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org
->
-> ---
-> Neil Armstrong (5):
->       dt-bindings: mmc: controller: clarify the address-cells description
->       dt-bindings: mmc: controller: move properties common with slot out to mmc-controller-common
->       dt-bindings: mmc: controller: remove '|' when not needed
->       dt-bindings: mmc: document mmc-slot
->       dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt to dtschema
->
->  .../bindings/mmc/amlogic,meson-mx-sdio.txt         |  54 ----
->  .../bindings/mmc/amlogic,meson-mx-sdio.yaml        |  94 ++++++
->  .../bindings/mmc/mmc-controller-common.yaml        | 357 +++++++++++++++++++++
->  .../devicetree/bindings/mmc/mmc-controller.yaml    | 346 +-------------------
->  .../devicetree/bindings/mmc/mmc-slot.yaml          |  49 +++
->  5 files changed, 504 insertions(+), 396 deletions(-)
-> ---
-> base-commit: f486c8aa16b8172f63bddc70116a0c897a7f3f02
-> change-id: 20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-6fa70546ebb8
->
-> Best regards,
-> --
-> Neil Armstrong <neil.armstrong@linaro.org>
->
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
