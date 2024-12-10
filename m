@@ -1,180 +1,190 @@
-Return-Path: <devicetree+bounces-129265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C2A49EB0D8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:32:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF0709EB0ED
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:37:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72912280FA0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:32:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90ABD286750
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:37:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5624D19DF8B;
-	Tue, 10 Dec 2024 12:32:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GEiBAkM7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB3A1A38F9;
+	Tue, 10 Dec 2024 12:37:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64A0523DE98
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 12:32:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB86B23DE98;
+	Tue, 10 Dec 2024 12:37:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733833931; cv=none; b=oPTmAG7xhcydvo8GP5dj2kzcU8lS25c2/PhuUDwxmJvkfLKZObfBwg/lxWBFyAcrK1X/Gb5YEZx5UCsiYaCGaO5Cyq7Jn59KTaHxkuWaA+4IxtnB9U+GXxrNks04YJwq9m5dCNOsU9rgxMpHfLpmP+0bIgPWMHynmwhrjXlznJQ=
+	t=1733834254; cv=none; b=Z/S5eDTnQm7vZrqf60RDFajq2Qk1ZJc1cacJG5oYFfIf7jX/clG9nwkMMuer31GbhZX42TducKwH1F95EP/+1ZmlCcC00uQMuQNg24dMYF4iXPRPV870WYoXXv/jGMsENPiU8YVQ373sTsUfvwn5ChrMtLx64SjRewMrlhLvpCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733833931; c=relaxed/simple;
-	bh=bjSL/+T3XO6+BiIfn0dnykcmizt4Xk3G++g8TSzDjoo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JTokKxWD3P86KiXPECZrRKd5Z8jTj1H1+FonUZzPOBksU7oqAAXCAXRrS0m84sfV078TX1NTHLcxZLKWpV6iUC9q7VisJiBow/NgfDfi/9UvDy2LZdGqe3LnJjc0wI4RjmPVFAf4SROa2wGsZbtEUWL4QP9m+/3KcHNLwxbv9qc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GEiBAkM7; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30167f4c1e3so24744991fa.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 04:32:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733833927; x=1734438727; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=xFyd1PgF3D2/xwv+F2WOR3tO3r6sjTbGoWT6Q3TM8dg=;
-        b=GEiBAkM7bUignmQ/a/2tUcXAeAjMlluUsbkg2Zr/PSUZpfdJowe+qtuAquXsJ24YL+
-         cwqz7aL0Dxp8/uLS+oFsDF4n8AZbB9hnChRkGsHbzMbFgJZLE7Va5xF80gj1JmqkQ3qs
-         U126E7KpapBGj4/adr8SVxU1WNSmbbwa+cNvoaDA1Qd0iLFbUDcccaTLJmBOHgOf6D6T
-         0n/vidFlY3aoTynbJ5u1aA1PwlCLt5OjKjfWaAlcg3aF6/iIbcbLPpZz/L2Ial9qUnWZ
-         ko38nILSG4ELUoZ8GO25N2LoyBw7eiuhhrhIFSmQgg+w//CoAeX8djgDPOYgEVS8R1Wa
-         VrJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733833927; x=1734438727;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xFyd1PgF3D2/xwv+F2WOR3tO3r6sjTbGoWT6Q3TM8dg=;
-        b=J0oyVG6WF3I4/x2GgrDf0SoDXDWYOzSs9oXHaQAsJsHErDgPtZfG1Kx+YtMOvSVttz
-         c6B8evbILpXbEWUgFH57ujSouezmNrgZGXWOyiPvcvKnY5zsi0QglDDOozTDSHEHgNJ1
-         WeVzOBP1ilpc2ofaiNq9Og102bGBlngdVYaxr1Fx34OUB8yDhxvhgci/BnhJhE7GOC2G
-         tjAB8thVAKjWIbsjgJWcL/v66jW/HbyNH8U9RuiDJsjT/hpGIjf3XNzhV5zKfuDlyTj9
-         hTmbgsSpiwHCe0ByibmECQBVa/NvwyBrOpGRR62OVoYAOEk+K1JGJL7gqXX+I5MJsfKF
-         0EcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWW4Zz9DXY3Ozz2C17/NpJk2FOdevSKN7ZRr+z6KlP6sry4Llfc6F7KCx9HCZOYGtI1Y4Np5SRrCVsC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/h30zRvj9+jJ29g5ZYvkOETK8+wDTW0G0I7timImJ12Ixo6pH
-	tiOqKtArloMar/L8oIXRUrUJoUKq5WM7C3PmxkFXGZj5B22J0XQufJFrj3tJ2po=
-X-Gm-Gg: ASbGnctH/ntWP+YnkygydeUckaxtKTF6IrRXVaZ1t1SLZxw7hJZX3CUpzDt+gH4FMck
-	2JPGQ4sOll6U0BHln1kXtMU/SSGnZHJLCDltN3w97Sf50CiAZy9E+JZTW0KbdEEKsRVTDXye8KG
-	nCEJo1o8rrTlEHMqNtxMuKWx9ISn9iLquVE7f3S6ZunDzI1qmmggN0L90A3gMeyOc2QUA2d3HiX
-	0rOSbrb4CpwmRgmvCmzkDYzvfwkPTNOjgUQIgHia4k6BHgUjHSCgrqU8WDnR43jBKFleNeT1dEk
-	ouW3/ruJjivTzvrffl/cZT9vI3OqWQ4new==
-X-Google-Smtp-Source: AGHT+IFJ8BqRGzKbdRKo9sdokdyA13iJnEch3RCwabno4BEnD/wpduTivdAcQ64Maqs8TOr83ohZIw==
-X-Received: by 2002:a05:651c:1582:b0:302:2620:ecc7 with SMTP id 38308e7fff4ca-3022fd82956mr14279341fa.35.1733833927539;
-        Tue, 10 Dec 2024 04:32:07 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30216eb1013sm9110231fa.34.2024.12.10.04.32.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 04:32:06 -0800 (PST)
-Date: Tue, 10 Dec 2024 14:32:03 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Andy Yan <andyshrk@163.com>
-Cc: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, 
-	Daniel Semkowicz <dse@thaumatec.com>, Diederik de Haas <didi.debian@cknow.org>, 
-	andy.yan@rock-chips.com, Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	jernej.skrabec@gmail.com, jonas@kwiboo.se, krzk+dt@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, neil.armstrong@linaro.org, 
-	quentin.schulz@cherry.de, rfoss@kernel.org, robh@kernel.org, tzimmermann@suse.de
-Subject: Re: [PATCH v3 0/3] drm/rockchip: Add driver for the new DSI2
- controller
-Message-ID: <jl5obi7rd4h6ywozeqruxq2vx62sx5yf4wwpksrq3prdleps2k@d3zbr5ttquvn>
-References: <20241203165450.1501219-1-heiko@sntech.de>
- <20241209150619.33998-1-dse@thaumatec.com>
- <D67AV178CEBD.3QA9VD4ZPRNQ1@cknow.org>
- <2203458.KiezcSG77Q@diego>
- <4e015ea9.960.193ae0c236a.Coremail.andyshrk@163.com>
- <ay5hbnqqjhopaqof6z7j2rzm2bc6xa2vbzan2ak3if6wzmyip2@kqh7gtrajnm2>
- <33e2c5db.1300.193ae284b6d.Coremail.andyshrk@163.com>
- <CAA8EJprLA09NP0KAztc5eoAMkGcrom84jg_pcbNcwN0FAaSLrw@mail.gmail.com>
- <2d68155e.1e5b.193ae4616b9.Coremail.andyshrk@163.com>
+	s=arc-20240116; t=1733834254; c=relaxed/simple;
+	bh=r35ib2yZcI898iLxRlmgcgRipcJBXLk0bYxFgs8oIP4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lKdCW/rFZhTUvWiO9VkZAB8VyRpdWqS3rpdCHhEssTwYyZSiUMcB0nz9mDY/w2wG6XZlbomnDZzrwc1vF1KlNOEdE16OURELGkb2hfLmVc4mMrlT3vNcsC1IPM2w/OKGJCKqqlCujSQoOsgIBkqsgrLLTBFGjHJJ4HjHFksMnPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.38])
+	by gateway (Coremail) with SMTP id _____8DxGeAINlhnzuVUAA--.33361S3;
+	Tue, 10 Dec 2024 20:37:28 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.68.38])
+	by front1 (Coremail) with SMTP id qMiowMAxXcIENlhn9Sx+AA--.34092S2;
+	Tue, 10 Dec 2024 20:37:26 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Juxin Gao <gaojuxin@loongson.cn>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v8 0/2] pwm: Introduce pwm driver for the Loongson family chips
+Date: Tue, 10 Dec 2024 20:37:04 +0800
+Message-ID: <cover.1733823417.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.43.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=a
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2d68155e.1e5b.193ae4616b9.Coremail.andyshrk@163.com>
+X-CM-TRANSID:qMiowMAxXcIENlhn9Sx+AA--.34092S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+	ZEXasCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29K
+	BjDU0xBIdaVrnRJUUU9mb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26c
+	xKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vE
+	j48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxV
+	AFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x02
+	67AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21le4C262xC7I0v67AEwI8IwI
+	1l57IF6xkI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv2
+	0xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7
+	xvr2IYc2Ij64vIr41lw4CEx2IqxVAFz4v204v26I0v724l42xK82IYc2Ij64vIr41l4I8I
+	3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxV
+	WUJVWUGwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAF
+	wI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcI
+	k0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r1j
+	6r4UYxBIdaVFxhVjvjDU0xZFpf9x07j1WlkUUUUU=
 
-On Tue, Dec 10, 2024 at 09:54:09AM +0800, Andy Yan wrote:
-> 
-> Hi Dmitry,
-> 
-> 在 2024-12-10 09:45:11，"Dmitry Baryshkov" <dmitry.baryshkov@linaro.org> 写道：
-> >On Tue, 10 Dec 2024 at 03:22, Andy Yan <andyshrk@163.com> wrote:
-> >>
-> >>
-> >> Hi Dmitry,
-> >>
-> >> 在 2024-12-10 09:01:38，"Dmitry Baryshkov" <dmitry.baryshkov@linaro.org> 写道：
-> >> >On Tue, Dec 10, 2024 at 08:50:51AM +0800, Andy Yan wrote:
-> >> >>
-> >> >>
-> >> >> Hi,
-> >> >>
-> >> >> At 2024-12-10 07:12:26, "Heiko Stübner" <heiko@sntech.de> wrote:
-> >> >> >Am Montag, 9. Dezember 2024, 17:11:03 CET schrieb Diederik de Haas:
-> >> >> >> Hi,
-> >> >> >>
-> >> >> >> On Mon Dec 9, 2024 at 4:06 PM CET, Daniel Semkowicz wrote:
-> >> >> >> > On 03.12.24 21:54, Heiko Stuebner wrote:
-> >> >> >> > > This series adds a bridge and glue driver for the DSI2 controller found
-> >> >> >> > > in the rk3588 soc from Rockchip, that is based on a Synopsis IP block.
-> >> >> >> > >
-> >> >> >> >
-> >> >> >> > I did more tests with different LVDS displays. I tested following
-> >> >> >> > configurations with DSI/LVDS bridge:
-> >> >> >> > - 1024x600@60.01
-> >> >> >> > - 1024x768@60.02
-> >> >> >> > - 1280x800@60.07
-> >> >> >> > - 1366x768@60.06
-> >> >> >> >
-> >> >> >> > All of them worked without issues, except 1366x768.
-> >> >> >> > With this resolution, video is blurry, and offset incorrectly
-> >> >> >> > to the left. There are also repeating errors on the console:
-> >> >> >> >
-> >> >> >> >   rockchip-drm display-subsystem: [drm] *ERROR* POST_BUF_EMPTY irq err at vp3
-> >> >> >> >
-> >> >> >> > In correct operation with other resolutions, there is no error.
-> >> >> >> > I am not sure if this is a problem in your series or rather in VOP2
-> >> >> >> > driver.
-> >> >> >
-> >> >> >This really sounds like something is wrong on the vop side.
-> >> >> >The interrupt is part of the vop, the divisable by 4 things likely too.
-> >> >>
-> >> >> This is a hardware limitation on vop side:
-> >> >> The horizontal resolution must be 4 pixel aligned.
-> >> >
-> >> >Then mode_valid() and atomic_check() must reject modes that don't fit.
-> >>
-> >> We round down to 4 pixel aligned in mode_fixup in our bsp kernel,
-> >
-> >What is meant by the "bsp kernel" here? I don't see it being present
-> 
-> bsp kernel means downstream vendor kernel.
-> 
-> >in the mainline kernel. So, if the mode is unsupported, it should be
-> 
-> Will it be acceptable to add this round down in the mainline mode_fixup?
+Hi all:
 
-I think so.
+This patchset introduce a generic PWM framework driver for Loongson family.
+Each PWM has one pulse width output signal and one pulse input signal to be measured.
 
-> 
-> >rejected.
-> >
-> >> because sometimes, some boards do indeed choose a screen that is not 4 pixel aligned
+It can be found on Loongson-2K series cpus and Loongson LS7A bridge chips.
 
+Thanks.
+
+-------
+V8:
+patch (2/2):
+ - Rebase on pwm/for-next;
+ - Drop inappropriate comments in “Limitations”;
+ - Drop HZ_PER_KHZ for readability;
+ - NANOHZ_PER_HZ -> NSEC_PER_SEC;
+ - Rewrite the clk fetch section to look more flexible and not have to
+   care about ACPI or DT;
+ - Add explicit initialization of the CTRL register in probe().
+
+Link to V7:
+https://lore.kernel.org/all/cover.1729583747.git.zhoubinbin@loongson.cn/
+
+V7:
+Thanks for Sean's advice.
+patch (2/2):
+ - Set chip->atomic to keep pwm_apply_atomic() can be used with the pwm.
+ - Test with CONFIG_PWM_DEBUG and CONFIG_DEBUG_ATOMIC_SLEEP enabled.
+
+Link to V6:
+https://lore.kernel.org/all/cover.1728463622.git.zhoubinbin@loongson.cn/
+
+V6:
+patch (2/2):
+ - Rebase on pwm/for-next;
+ - Add Reference Manual;
+ - Shortcut if !pwm->state.enabled;
+ - When state->enabled is true, unconditionally execute
+   pwm_loongson_set_polarity() to avoid that the polarity register is
+   not set correctly.
+
+Link to V5:
+https://lore.kernel.org/all/cover.1720516327.git.zhoubinbin@loongson.cn/
+
+V5:
+patch (2/2):
+ - Rebase on pwm/for-next;
+ - Test with PWM_DEBUG enabled.
+ - In pwm_loongson_apply(), the pwm state is determined before the pwm
+   polarity, avoid test failures when PWM_DEBUG is enabled;
+ - Added DIV64_U64_ROUND_UP in pwm_loongson_get_state() to avoid
+   precision loss and to avoid test failures when PWM_DEBUG is enabled.
+
+Link to V4:
+https://lore.kernel.org/all/cover.1716795485.git.zhoubinbin@loongson.cn/
+
+V4:
+patch (2/2):
+ - Rebase on pwm/for-next;
+ - Addressed Uwe's review comments:
+   - Make use of devm_pwmchip_alloc() function;
+   - Add Limitations description;
+   - Add LOONGSON_ prefix for Loongson pwm register defines;
+   - Keep regs written only once;
+   - Rewrite duty/period calculation;
+   - Add dev_err_probe() in .probe();
+   - Fix some code style.
+
+Link to V3:
+https://lore.kernel.org/linux-pwm/cover.1713164810.git.zhoubinbin@loongson.cn/
+
+V3:
+patch (1/2):
+ - Add Reviewed-by tag from Krzysztof, thanks.
+patch (2/2):
+ - Several code stlye adjustments, such as line breaks.
+
+Link to V2:
+https://lore.kernel.org/all/cover.1712732719.git.zhoubinbin@loongson.cn/
+
+v2:
+- Remove the dts-related patches and update dts at once after all
+relevant drivers are complete.
+patch (1/2):
+ - The dt-binding filename should match compatible, rename it as
+   loongson,ls7a-pwm.yaml;
+ - Update binding description;
+ - Add description for each pwm cell;
+ - Drop '#pwm-cells' from required, for pwm.yaml makes it required already.
+
+Link to v1:
+https://lore.kernel.org/linux-pwm/cover.1711953223.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (2):
+  dt-bindings: pwm: Add Loongson PWM controller
+  pwm: Add Loongson PWM controller support
+
+ .../bindings/pwm/loongson,ls7a-pwm.yaml       |  66 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/pwm/Kconfig                           |  12 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-loongson.c                    | 296 ++++++++++++++++++
+ 5 files changed, 382 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-loongson.c
+
+
+base-commit: 483082d78a092a3c1f343a76a2edb196069b4092
 -- 
-With best wishes
-Dmitry
+2.43.5
+
 
