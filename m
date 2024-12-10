@@ -1,133 +1,137 @@
-Return-Path: <devicetree+bounces-129547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC4B39EBF93
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:48:16 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12BD99EBF9A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:49:32 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF6692823C2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 23:48:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A452A18830DC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 23:49:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80C5D22C35C;
-	Tue, 10 Dec 2024 23:48:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DAF22C35E;
+	Tue, 10 Dec 2024 23:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P2m4GfAW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aTyCii4L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC59A22C352;
-	Tue, 10 Dec 2024 23:48:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515CC1EE7BE
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 23:49:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733874492; cv=none; b=t10wnUMdxAwF5lrweccM28fyaQBYPBi+tg3CmtHnhGiWTGs/XLdzPjF4hemzClQ72U0I9lossHosQcBbgGp2WS+LjMnx6RC9m3PM/h593cYNMas0TKK4bkjzkwtVkrfVyGUAr5fKsgCt4bf3svW+Z7szRorI/9ww6ZLprx4BCJU=
+	t=1733874566; cv=none; b=W1Oc6H5ybNKVwhjjndPn/mtPt0ZgJpNsYifd148PWKQc6GN7JO9HSE6qrNP8lj/50rX36eyNd94mS1NkBRzPsKPAtVVVnuGeRHEUZYijKEeEaEtoXEQ9DR/YI01R8OD5wJOHvdTG3cf2ZeW+E5EZeOGUaULaAjEO5kYxP4H8ol4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733874492; c=relaxed/simple;
-	bh=hS77lKS+qrbWJBqTrtJwzE+mtelSylzhjNAlP86Biz4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nRLbzQIR1tPTafX/gc8xWz9pG/5hY5dDkcPUjzi78lP8qxJ2+sLKFM5MQFrZ9SVcJHKJTgv6ufnFH2H7gxsS4gBCzatDCWjDQxCEkGyb6NKqOJRdczlGR9FqZ1mTdACM0La3n69R06tIhQLYlixEQmZ/EO6M0KzOgASq1iC6NPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P2m4GfAW; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-434e91ac3d4so2716975e9.0;
-        Tue, 10 Dec 2024 15:48:10 -0800 (PST)
+	s=arc-20240116; t=1733874566; c=relaxed/simple;
+	bh=kdVOR3Wklu2GB+n1WaWD3NPikmxtKRQ+RYJP3kaNy8c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AJUCJGVvv9xMYdxF56BijS2qvTzxjamGk5N4xCZZ8apXhnnTEvntKkqIwFeckf9q06lNcK9F4VHhyXa8yc0cKZpKpg8ViSkT7o6GQ3JR2wd+Ch0FG+aYd8x0UyvpgXhuKjVeivzlJHnrQD+thpAnornwclpxk00oVhrKLzxtqgY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aTyCii4L; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5d3bbb0f09dso6640025a12.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 15:49:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733874489; x=1734479289; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=f8UnOGblbQirPOg8RONWJpR4qniXeIU9augpkXN+BVE=;
-        b=P2m4GfAWKfhlGVNXuN101Kn66EhjOSguKFPnE0u4NzHJvCHN+RH4zEtW7S5CxmJU1Z
-         LS9B8A8VrNTREbxWvWf1anZl9DTaFZvtF3nw1CZJrcUsIT96wuN3nuAljfDJlpXaLmmM
-         BLSVNuYNNnVEWXAWBMRPb9+j7JW9p6ts0njwljuWiNztzfHGqdPsNW+MFGBgVqimz76n
-         UHfCSDxXmbrIcAP0wdoqubLuQR3WFqCzUXgE8fFgUo41/jFj1S9payyIJTb8mSVG5JeH
-         EHxMiHnmx4LBTWTuDpCLD+VBmuNwzNiTVh9HCKEfTj6ceSG5Ooz0sj/G6LsR1jSc2goC
-         kEng==
+        d=linaro.org; s=google; t=1733874564; x=1734479364; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w0Bi83nwvzBHW9htNaoYyBIkvuLS9x1PWwSOzilvAhQ=;
+        b=aTyCii4LWyoa2OHa80DLNkJS4aKIv2vO4xR9PuM8UmJ3ysF3MNmds8O+XAnDMS4POL
+         lbcnRX/Td2hFIqMLlZQxw1OIbU9KiZScj8JoVpKPrQQsxU3I1jffXDasJAibMrCy/6wF
+         fRoj/zvYlF9PzEbQHDLsb086pWeYTSeek8qMSVXYmSDOia38BOsQXPUMPvGI2yuQsbxu
+         SFrn+YY4IfNSVIiW4XD0o91QEOX+aDEZZbZvhGp49gEqnt/YeoQFErxKO9LjUJf1+atL
+         NulixXsya6sV0gVGOiJ9G2btnbq2+WUQdg9CEqi/ACl8vjN0mGMtjhmRNpLBeyp2OLhT
+         Ht7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733874489; x=1734479289;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=f8UnOGblbQirPOg8RONWJpR4qniXeIU9augpkXN+BVE=;
-        b=UukBWDMleNeBYw68b5rleNIBhhuIBi+UideepK2IQhnasjhg8zazo96aVg2XYdY2zG
-         Oal7rC9tj9iDPmjf74agHq3oxQR3MOYhrN0YCHraLPpIj9dK3R+RHp17v5Rj3ROIiilG
-         xGr857LR/DppdT1gz9Lc+i4d850ODfFoyLr5gG1esZfTfx/vxhgT9lrgl+JRCs/vxs02
-         mBpstphlCCQQQLgWDKk8LuGXFnBk+xC9l6zW6806A92CGyI8BlV655gscLug+cIAuwti
-         CLxZLhQOgIcOF843O98dP5YQrHl6i8YxvncrNTToJHZ9/pczoSGfNNIFRd3i3rSLUNvl
-         m1hg==
-X-Forwarded-Encrypted: i=1; AJvYcCU2jNBgfrEaN+xqK4EgqelUlBEWUNOafeOLdiYkpc7y385PYmSaTUomv8pxOd6halHptT/3Ukr5IPL4@vger.kernel.org, AJvYcCUp0Xt+030wzGtTozQXFsSWfa7cGmW1lDdTdbgsIsp+y/Hw/x8R2Xv14d0I0mnlPGU+7lY0x7M+gm5TRd4t@vger.kernel.org, AJvYcCW0HKBmiD2YisjPgqwUMaxOTi46uovBUs6BdU0d5nSPaHTiO7MTCk6PzRtw5wIfoK02t4y6rznH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz615epjPXT3anB0xY6Kioe0njCsN9jsYOxUw5+xiL4gEuplTQg
-	NSivL+9dOViCsjbqtbBYzWExh5RHhOdeII4LPDKXACOE80Xui46Y
-X-Gm-Gg: ASbGncvbCIhZr7VQlMJGAG34UQpPTvd1oGl0Is0pn3KXpOTkgPspDWm3F5vAo9+paVk
-	33kkGc2e5r89aGKeUxpAs4pZCZzB5O1i24M3oB2Cw+/KuOFy1oef4x9+AGX9Vo8AyFZNYqRh0l/
-	xLmw9NyBKhe6bmj/5RX1ZBWVsBrREUO1c3k8aBotcynbfFw0jZA3p6ETr8Z+WkityGfrN+ykG8n
-	+CzoZR6J3V/WVJoED0bqhzodtZDHrg8/AnVuGEEDA==
-X-Google-Smtp-Source: AGHT+IGVFyqOsHq8vJbKENcE96HqDNgEWPNEGfHZbGGsVdmVNjmlG8KgXuPni26CXmKkrEf6w3YBNQ==
-X-Received: by 2002:a05:600c:35c9:b0:436:17f4:9b3d with SMTP id 5b1f17b1804b1-4361c434980mr1530815e9.4.1733874488791;
-        Tue, 10 Dec 2024 15:48:08 -0800 (PST)
-Received: from skbuf ([86.127.124.81])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434da0d69dfsm203458605e9.14.2024.12.10.15.48.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 15:48:07 -0800 (PST)
-Date: Wed, 11 Dec 2024 01:48:03 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH v11 5/9] mfd: an8855: Add support for Airoha
- AN8855 Switch MFD
-Message-ID: <20241210234803.pzm7fxrve4dastth@skbuf>
-References: <20241209134459.27110-1-ansuelsmth@gmail.com>
- <20241209134459.27110-1-ansuelsmth@gmail.com>
- <20241209134459.27110-6-ansuelsmth@gmail.com>
- <20241209134459.27110-6-ansuelsmth@gmail.com>
- <20241210211529.osgzd54flq646bcr@skbuf>
- <6758c174.050a0220.52a35.06bc@mx.google.com>
+        d=1e100.net; s=20230601; t=1733874564; x=1734479364;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w0Bi83nwvzBHW9htNaoYyBIkvuLS9x1PWwSOzilvAhQ=;
+        b=oXL1gPBlxvPnvoT1NRaqPVEMvCrATFOY82GAzpySLpK3VEYicXDfdaao9ukoNc1S2b
+         KyMzuM+OijeHiDkcD8HMbHVZCd1YsQvuiFR6B7NYmquwOpbxa5kjeBvGSBe3wicE3u9h
+         F/bz78ichMK/bNAUjgx0o2QIsLW0fx2Wa5gsoNLZvVDE8tJNmnvaI2eGP+THAxXJje/Z
+         /IBCkEflBBN5pgphsOPuWFonCBeyAJp/37emQbj1E21ge9EvRCWSEuNWzWN8oXeO2Gfh
+         HXGUzqMe0tLzs0p5yRjnWKY5m/51/KSqjRzMCMm57pPX23vyCZf+o1P+NibTUqe5toup
+         j46w==
+X-Forwarded-Encrypted: i=1; AJvYcCWFZsHml1661XFLUaoVwwBK/mgT8Ewl1O0Ersk5JYOhdD/Sh4lOo9IfageFfQf8AlsFM6OTF0itMt7d@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxu3kjhYI1dhRsQTimvZ1VaLXOn2lnulDkrpkiV70W2pCAvRSTJ
+	MmroUC7EqFmusFeyWpE8oU/YfaDQOqFtSX1VJS/ZUtEfhAst1vJHMoq+RT88c4MR6qI7wBDIFxj
+	L
+X-Gm-Gg: ASbGnctuoVma7arUY9344JynMwdL6Q0Ah3aED1RgKr7JaUfUz3i0uYhWwcqIhUT8Ko7
+	lz5eKEDJavftQCx6opLldMH0n1hkHDqtMO4KUG3NsAPMwSwqwEzxo+QlE1Ct8wbsdGwAaaLDGVL
+	elz4fsJ/Dh6iqhDdcPkgZ+z3CdCS3A0tPewrDuYVPzcQ11PqzUIa8M8fM0nqiYQcNCTDe+cMx7D
+	F1Dhr44NEXRCBNCFhr90C3dCB127R8y9Av8NpYGj4J5sy97cos/zerfXQBRIgkTUtk=
+X-Google-Smtp-Source: AGHT+IH3jF2Z/UsyE2JcokH/TitWFHL68lwzNBprD9TUestO/ngKH+QJQZekruekHvuCtiR3BRVDbA==
+X-Received: by 2002:a05:6402:5305:b0:5d2:723c:a568 with SMTP id 4fb4d7f45d1cf-5d433094803mr714069a12.10.1733874563797;
+        Tue, 10 Dec 2024 15:49:23 -0800 (PST)
+Received: from [192.168.0.40] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d3ee6ddf5dsm4755794a12.86.2024.12.10.15.49.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Dec 2024 15:49:22 -0800 (PST)
+Message-ID: <fe8dbb4e-9d0e-4ecf-874b-be9225ae1487@linaro.org>
+Date: Tue, 10 Dec 2024 23:49:20 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6758c174.050a0220.52a35.06bc@mx.google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 5/5] arm64: dts: qcom: sdm670: add camss and cci
+To: Richard Acayan <mailingradian@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20241210233534.614520-7-mailingradian@gmail.com>
+ <20241210233534.614520-12-mailingradian@gmail.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20241210233534.614520-12-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 10, 2024 at 11:32:17PM +0100, Christian Marangi wrote:
-> Doesn't regmap add lots of overhead tho? Maybe I should really change
-> the switch regmap to apply a save/restore logic?
-> 
-> With an implementation like that current_page is not needed anymore.
-> And I feel additional read/write are ok for switch OP.
-> 
-> On mdio I can use the parent-mdio-bus property to get the bus directly
-> without using MFD priv.
-> 
-> What do you think?
+On 10/12/2024 23:35, Richard Acayan wrote:
+> +			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
+> +				 <&gcc GCC_CAMERA_AXI_CLK>,
+> +				 <&camcc CAM_CC_SOC_AHB_CLK>,
+> +				 <&camcc CAM_CC_CAMNOC_AXI_CLK>,
+> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_CSID_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_CSID_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY0_CLK>,
+> +				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY1_CLK>,
+> +				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY2_CLK>,
+> +				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_AXI_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_AXI_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>;
+> +			clock-names = "gcc_camera_ahb",
+> +				      "gcc_camera_axi",
+> +				      "soc_ahb",
+> +				      "camnoc_axi",
+> +				      "cpas_ahb",
 
-If performance is a relevant factor at all, it will be hard to measure it, other
-than with synthetic tests (various mixes of switch and PHY register access).
-Though since you mention it, it would be interesting to see a comparison of the
-3 arbitration methods. This could probably be all done from the an8855_mfd_probe()
-calling context: read a switch register and a PHY register 100K times and see how
-long it took, then read 2 switch registers and a PHY register 100K times, then
-3 switch registers.... At some point, we should start seeing the penalty of the
-page restoration in Andrew's proposal, because that will be done after each switch
-register read. Just curious to put it into perspective and see how soon it starts
-to make a difference. And this test will also answer the regmap overhead issue.
+I think you sorted the regs, interrupts but forgot the clocks ?
+
+---
+bod
 
