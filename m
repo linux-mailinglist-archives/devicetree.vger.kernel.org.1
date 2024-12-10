@@ -1,139 +1,160 @@
-Return-Path: <devicetree+bounces-129259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D9FC9EB09C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:16:54 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 277EC9EB0A7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:23:35 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2647B1886F4F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:23:35 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F4341A2567;
+	Tue, 10 Dec 2024 12:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iYKjLFr7"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38FE328413C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:16:53 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0BD41A0708;
-	Tue, 10 Dec 2024 12:16:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dVOzDago"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BB931A08BC;
-	Tue, 10 Dec 2024 12:16:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93A821A2564;
+	Tue, 10 Dec 2024 12:23:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733833011; cv=none; b=cdKrtgaa8361DSwjDYPhMuQExVczfROxQJVNnAq1YI+mV54h7TptutILae8+KdvCrxg24k8LCBIvX7b5AMsYROTbLHSRby5RfetQVxQoqZ00lSjtp2yEzdmMGWwdX7P65TV4PxyZYzABaO9fyGaehBBZgBabh9kz74nd3YSOjiU=
+	t=1733833411; cv=none; b=Yi+A88HZKR0kaLfETD2pnlLfNkIrAvxnO9rxipBw2DPgnAy95HSMwKUE95ZJYkqlZUIPQtDsNoKT5/VO+sOFPBmVQGsmao/XRA4nazttgz/fFqHTsdCtQ1LZas0B28eg+khFI7Vg1AdITp32fy95f5xq2Xi/s1C2xfIMgsEhf4g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733833011; c=relaxed/simple;
-	bh=WDfgjmse2TMOfKgkubZlX/dUuqS21zwt9rwCmWHbd2U=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JxfW+mF0VPbsmlOU/bIEKvsMqxYTMMmQLdoGPDvrCFsdR0iIOtNGpkgxEeUvR//ZW/ArzwYnHt78zoxdeN8gkEVypvsJ+IS1fBjyDECNxCvx2xtjX08XhGBnt1ThV14OQbhkkOtAkkBrlhqTwcdEz2QCBBkWCdplC0Wdj+j/MYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dVOzDago; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3862d161947so2660820f8f.3;
-        Tue, 10 Dec 2024 04:16:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733833008; x=1734437808; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=yf1CFLxebCAG5P70tlgOYPGg7XUceZtr9bdXkbq3ysE=;
-        b=dVOzDagoJXxCJcWjQwJP6wvmRXEe5alhIxZ0oBjip/qgAN/aqFaAJBz91dcT8MMi27
-         MHxMNBIzum8OyYcM2tbRtvOAACx4fknp2Ob+0u7c7gRLdbKD8nfUeKRKdpU6OfDmBuf1
-         qXJ2OECR57ig1ER5+C9ZRi6DZWkr29QkSCb+YfxyLtCvynqo5evA77nFc0YF0LWbH3+p
-         lbthpQf1FV9WZE80f2o0IRJOzJSl1S2ImCt8Ks7hv2SyHqQBiJgxaLc2zxiM77rqyJNF
-         yhZqu5VxT03uK2AUUqHQZjKCJlaAZ2/4MiK5TMVeZQIVn/c7IjAGc2QVKbCNS2UZtrVO
-         2sRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733833008; x=1734437808;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yf1CFLxebCAG5P70tlgOYPGg7XUceZtr9bdXkbq3ysE=;
-        b=b27ufNBQIRItyIc4mnz8qg+7PksJ+OodWO6R3JrBZRDheJiE9QvxK1VO2Y7L2vbYqt
-         7pqSc4Y/uhcahUA6UteAToCm35L0tjpchUmefLLv6Nl0P+tbfNLTK4Ll0fd5PljdHScZ
-         DJC/MIsvgGKszq7Vo79edZrQ36EbGG7jnaHulc3032i7QGELPO5uvJ18aKrGY4eJon4Q
-         bQtVxlC5tuB55IbAabOtQ/Y/28INTa9I+SaFa7K+jz72IoI7HCKo3OEqOZYijnas+VEE
-         8uAf0jQq/ObHxgM5yxmPyYt9l5dTuUvbeG/xoPmbF92rcQ3YbVu8YwywpgFwxSBrNblQ
-         SX6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU5a5pU7D8rxs5WpGy/vfvx0sPFa5oK2PiQ4KVBSeQCf0+ajsn1hryr+0D7fN3Z9Rvgtn/DmhrU+HWK@vger.kernel.org, AJvYcCVX5FPzWl4ge9R6TiXu2BF+AlV+2lkX2PK8DPPTB6qyjVzjrzGwDKLNfUKyylcW1EOcKTUa3NuX6tYNlJ+5@vger.kernel.org, AJvYcCWmWT2BPgDJJawvismslFrdq0kpCF0SGLYjF5R45K1lCSTrcFLQeFLm2gupJpGoI4HsxKfpMJGEaXt7NcW2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw20btfVHcmeTBnB9Tb3DTZTOh2Hf75MzHKNCTrLkLsRwOC953v
-	6eVXsxX2ECCcFusjR7QHTvvoB+KqtFmWxgShVwDnHg5LyEO8eLKf
-X-Gm-Gg: ASbGnctz49PFk2SKaVM0rEP4KjNKvJH6WbwnXyu4yv8bDvIOxWvOa9F/lnC9KzVL6BY
-	ys/TLIeGjR1IeFhWHMflJmxiGju4flp3uAh1XQuxFsWNDb9zx/EobpK6+VGNycX86YZyss2uWwh
-	JKY07+9rBUVDdDzjFWkeCr3JrbbFE3M0x3vFsze4uU8uUjB8ZMvUpzG+nalGUssrJOCOLGph9UD
-	X4tWOzftzIg3rOZvxqAvJob5Qo03GCh5JWy9ainGnckiYlA8NJg22H/DF7XOudk7B6vV3PH3PnT
-	fX68WLLlDQ==
-X-Google-Smtp-Source: AGHT+IFBSN43Psq6k+DTijIAspWlXZR8HbAtwGfM6dwGhrpaSfysjOOAtiOSQbKYF3yUXI06CWd3KA==
-X-Received: by 2002:a5d:64eb:0:b0:386:3918:16a8 with SMTP id ffacd0b85a97d-3863918193dmr7873771f8f.13.1733833008325;
-        Tue, 10 Dec 2024 04:16:48 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3863afc16b0sm7398163f8f.37.2024.12.10.04.16.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 04:16:47 -0800 (PST)
-Message-ID: <6758312f.df0a0220.100594.1c3a@mx.google.com>
-X-Google-Original-Message-ID: <Z1gxKlFB5qeuJpfc@Ansuel-XPS.>
-Date: Tue, 10 Dec 2024 13:16:42 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Antoine Tenart <atenart@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, upstream@airoha.com,
-	Richard van Schagen <vschagen@icloud.com>
-Subject: Re: [PATCH v7 3/3] crypto: Add Inside Secure SafeXcel EIP-93 crypto
- engine support
-References: <20241112015920.22564-1-ansuelsmth@gmail.com>
- <20241112015920.22564-4-ansuelsmth@gmail.com>
- <Z1e0LHycNGcWqd2q@gondor.apana.org.au>
- <67582c1b.050a0220.83ef5.c8df@mx.google.com>
- <Z1guyCJy-Cpo7U11@gondor.apana.org.au>
+	s=arc-20240116; t=1733833411; c=relaxed/simple;
+	bh=6cl9JQbf0zDHUTuNQDwjyxvFKZQ2NYk6bIdDFo0/qwA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bT7sGn9V1yHeFURm4pKgbULa2QLa42FkMeiBfCUbc2y6752qzCYq9M/z/aEXT035Damx6dnldk7JFt2uG7Lsjf9p6MU3HT3SZYTpZwU9ApOrAGDuIjTtUrkLmxgCz5Y4JCixwIpTZXQXzS4v4D6lVh1TDxlPGe2IVhI+mmc4aRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iYKjLFr7; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BA3doJV014046;
+	Tue, 10 Dec 2024 12:23:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=S8aHBtRv4+i0LFbElok+RNV7DcUaJktVWgb22VMdxqs=; b=iY
+	KjLFr7c8dgKTvjhWALmlILd5nR5lVLybr2ofLLQUPMjytCc6TKyjVSUpmqVg2w2T
+	uavHJnTVwZPDDxlO4HADF2rguzkjS+seBPeRKnSd5Rs0hGnpKhyzDPCKZzlBsdZA
+	Ftqsr7zuqABEOfv2aNNH6ylVY1zJ/tF2l3YNTpYlFNqZZ8Anm2v1qYlCuzwKck+c
+	IOov2Hy3T3JPje/4JH7uMhYpjm9gnuOtViDxJ6I7sVqFG/e9d/ZJphmo0Rx8O2lm
+	N3GNQnBFEsTcVQ3xsRmEwqs3HOWENOD6SSRQLmQD3FWWbOgIhYNmJG37rUqm2fK5
+	piiZE0/aioc5zTJwjn0A==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43dvyamhma-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Dec 2024 12:23:18 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BACNHoQ006483
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 10 Dec 2024 12:23:17 GMT
+Received: from jinlmao-gv.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 10 Dec 2024 04:23:13 -0800
+From: Mao Jinlong <quic_jinlmao@quicinc.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: Mao Jinlong <quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+Subject: [PATCH v5 0/2] coresight: Add label sysfs node support
+Date: Tue, 10 Dec 2024 20:22:51 +0800
+Message-ID: <20241210122253.31926-1-quic_jinlmao@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z1guyCJy-Cpo7U11@gondor.apana.org.au>
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: POPrl_dMMfOg8Mg1Z6gG08WpromOUpE-
+X-Proofpoint-ORIG-GUID: POPrl_dMMfOg8Mg1Z6gG08WpromOUpE-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 phishscore=0
+ mlxlogscore=999 mlxscore=0 priorityscore=1501 suspectscore=0 clxscore=1015
+ malwarescore=0 impostorscore=0 adultscore=0 lowpriorityscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412100092
 
-On Tue, Dec 10, 2024 at 08:06:32PM +0800, Herbert Xu wrote:
-> On Tue, Dec 10, 2024 at 12:55:02PM +0100, Christian Marangi wrote:
-> >
-> > The main problem here is that .update only enqueue packet to be
-> > processed and we don't wait for it to finish as that would result in
-> > really bad performance.
-> 
-> You can return from update prior to finishing the hash.  However,
-> you must return -EINPROGRESS in that case.
-> 
-> Once the hash has completed then you must export the hash state
-> from the hardware into the request object, and then invoke the
-> callback to inform the user that the update has finished.
-> 
-> At that point, the user may call export.
-> 
-> The user cannot call export prior to the update completing.
->
+With current design, the name of the non-cpu bounded coresight
+component is the device type with the number. And with 'ls' command
+we can get the register address of the component. But from these
+information, we can't know what the HW or system the component belongs
+to. Add label in DT and show the hw information by reading label sysfs
+node.
 
-Oh! Ok, that is neat. Just to make sure everything is clear,
-to complete the request it's the same used for final, the
-ahash_request_complete(). I tought the -EINPROGRESS,
-ahash_request_complete() pattern was only for final.
+cti_sys0 -> ../../../devices/platform/soc@0/138f0000.cti/cti_sys0
+cti_sys1 -> ../../../devices/platform/soc@0/13900000.cti/cti_sys1
+tpdm0 -> ../../../devices/platform/soc@0/10b0d000.tpdm/tpdm0
+tpdm1 -> ../../../devices/platform/soc@0/10c28000.tpdm/tpdm1
+tpdm2 -> ../../../devices/platform/soc@0/10c29000.tpdm/tpdm2
 
-With the following implementation this is totally ok. Thanks for the
-clarification on this.
+/sys/bus/coresight/devices # cat cti*/label
+cti_dlct_0
+cti_dlct_1
+cti_apss_0
+cti_apss_1
+cti_apss_2
+
+Change since V4:
+1. Add label in DT and add label sysfs node for each coresight device. 
+
+Change since V3:
+1. Change device-name to arm,cs-dev-name.
+2. Add arm,cs-dev-name to only CTI and sources' dt-binding.
+
+Change since V2:
+1. Fix the error in coresight core.
+drivers/hwtracing/coresight/coresight-core.c:1775:7: error: assigning to 'char *' from 'const char *' discards qualifiers
+
+2. Fix the warning when run dtbinding check.
+Documentation/devicetree/bindings/arm/arm,coresight-cpu-debug.yaml: device-name: missing type definition
+
+Change since V1:
+1. Change coresight-name to device name.
+2. Add the device-name in coresight dt bindings.
+
+Mao Jinlong (2):
+  dt-bindings: arm: Add label in the coresight components
+  coresight: Add label sysfs node support
+
+ .../testing/sysfs-bus-coresight-devices-cti   |  6 ++++
+ .../sysfs-bus-coresight-devices-funnel        |  6 ++++
+ .../testing/sysfs-bus-coresight-devices-tpdm  |  6 ++++
+ .../bindings/arm/arm,coresight-cti.yaml       |  6 ++++
+ .../arm/arm,coresight-dummy-sink.yaml         |  6 ++++
+ .../arm/arm,coresight-dummy-source.yaml       |  6 ++++
+ .../arm/arm,coresight-dynamic-funnel.yaml     |  6 ++++
+ .../arm/arm,coresight-dynamic-replicator.yaml |  6 ++++
+ .../arm/arm,coresight-static-funnel.yaml      |  6 ++++
+ .../arm/arm,coresight-static-replicator.yaml  |  6 ++++
+ .../bindings/arm/arm,coresight-tmc.yaml       |  6 ++++
+ .../bindings/arm/qcom,coresight-tpda.yaml     |  6 ++++
+ .../bindings/arm/qcom,coresight-tpdm.yaml     |  6 ++++
+ drivers/hwtracing/coresight/coresight-sysfs.c | 32 +++++++++++++++++++
+ 14 files changed, 110 insertions(+)
 
 -- 
-	Ansuel
+2.17.1
+
 
