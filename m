@@ -1,192 +1,212 @@
-Return-Path: <devicetree+bounces-129313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 866519EB2C3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:10:36 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF1D29EB349
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:29:25 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 904292816F6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:10:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C0BB18883CA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:29:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ACEA1AAA15;
-	Tue, 10 Dec 2024 14:10:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="POAjzOo1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32BB51B4F04;
+	Tue, 10 Dec 2024 14:28:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC2461AA1D4;
-	Tue, 10 Dec 2024 14:10:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB9E1B2195;
+	Tue, 10 Dec 2024 14:28:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733839831; cv=none; b=EL5pGryx+QF2IF4ZwQwbNW6lFXODIWGTk8kIKKgB0PXhrZv9sez62qi4ptQw+UcgQhJsN+Mza9+3LCklmtd3pLrb9ZTLP5CCrL3scsp41hTWRvn/vkxCtrWYssN+pW/a7tCplqNuQuvAxzJM9wGZPLghXkcpgnz7UIEzJtVOLts=
+	t=1733840937; cv=none; b=VZDvBvoLk6A5Cm/SfIJ2O53/88S/AfiIhks+x8xC2k4cF64hK0weE8s7s0ZQPAoZfYJEMUEkNGVagBOmjdtjyODbvL1WDwikapi+KATjZ+9iMghQnIguQ2W5VkcKRVQY24y3ofn3zK+fdmwPBrDZzyK3ALWKVSKWtmT5wAfuF60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733839831; c=relaxed/simple;
-	bh=3gOWcq1zJJ5l+F+w1WdeWxVYtF0psInIaL800cDCG58=;
+	s=arc-20240116; t=1733840937; c=relaxed/simple;
+	bh=DO/NC3Lt0wMt+JWwd2lxWrUtTInAw+KOPEue7pgClmI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PORjMK10y0JyhrH2YuIjBwrRl6hYobPRGNeqcfd53rHTUR7qchi+5sLxruACwPcqa9Um46RUPPPvH6Gp0YsGOFZCBBpF/FQxo9fJxMgCGqZNq3q1hNlRO0V7e0O3IrS2f/GbwjadWSo/T+nNdoSo0/66YjeZrwi9ss7OF8ppAd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=POAjzOo1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64A2AC4CEE3;
-	Tue, 10 Dec 2024 14:10:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733839830;
-	bh=3gOWcq1zJJ5l+F+w1WdeWxVYtF0psInIaL800cDCG58=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=POAjzOo1QAvE9GbJt+kCa/37T9JEvrd3S5bdMljOxTyfvaMISmpvq+4SBH/JWyFDv
-	 ghF07kHJQxVwvEa9MziRBvo/QTVLnPRANjN7uYj3XERHSgRHgR/ygdF3lyO0HLU3nX
-	 DOp0cmVa0WRtONFTWJtH+odpBsRttzOrkbFvrTZXk9tv91UxejojtO3dmxnNP/oRfb
-	 SRtCjasUWh1lgFpAwD3CoY5L3z7xBqWuvK6BboUlUL4EVa82t3kaetJkc8HXKJUYgm
-	 uNf5aF8NIzeZs2l+6Fei8gMaodAkCR+Tm/KHp6JOA4evh5Phh5HTKIZihOSH4hjIfh
-	 o4n2sFo1Xb13g==
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e39f43344c5so5280781276.1;
-        Tue, 10 Dec 2024 06:10:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU7TwXPn9qlXHZbaMfaM3FsJ92PBjefx0bsXOvNftyBJtseO2bVfJhD2DxRQdW3xcFCdqHk6lGVZ0mE@vger.kernel.org, AJvYcCXOWjIBaDOk+8XyVfY34sgw72/9P+VwlpoXudg04v0/dGjR9BNyRAFSv1qQamJ5FENmGsc3Y34lufAq16gd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbGy5ub+5Sf+t4Ahor7zaRe6mfVgJGwhajkHzkb6wq2KVbqT9b
-	5C08hve/Gry3rNpqinmjRvCKKVYYtw9RJw7v0DZkZkoKgTtE03u6bI+C5Zcm99MLvyo9Y5y/fOi
-	fpagUCnbZbfpjJstO52wsdPtBFQ==
-X-Google-Smtp-Source: AGHT+IEXFLVBqbbI8nxouFGI8kPswGmdhkBaKHRUDEu5BqBIxnvKF2faXUVn639s0o86adLeHAKWP1BbTNnHphr9F+I=
-X-Received: by 2002:a05:6902:2388:b0:e33:1c9e:5cf2 with SMTP id
- 3f1490d57ef6-e3a0b479173mr14535963276.39.1733839829438; Tue, 10 Dec 2024
- 06:10:29 -0800 (PST)
+	 To:Cc:Content-Type; b=LH+TJw+RV74SzQk+i5fyufnBy8tthm7DALqU3qDpC9Jky9+BgObi9UURYxSCuWFH04KSkKk7criYCZrrDc/FytF9XcGbEkaPClrWFd94X/UM+E2JQuCYLjfQDvRKehkgZz6jNaY+C9Zl6QPpnavu86eRdYU7wQ+0zPGN1YiShaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-5188311e61cso565591e0c.2;
+        Tue, 10 Dec 2024 06:28:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733840933; x=1734445733;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E1UGUtE3JZONvX3ZU1usLPTPg2Sj35dvZCSUIlPuCyM=;
+        b=PTodSrmqQbW4KShgQbfVuTBl6TetxYNcqtvC6xTAcxSxPEX/HrQ1dld83YIyf35qrq
+         UcsyMKqKZkmJfmFKAnNmnfP2C0NPH2jszK0FPe6cw2jVRd2eyjjiMDd5SwPRFRp/n9e1
+         4BjCgDhH8SP5F02hu4AchHyn7bVULO3t7TVShwHkunvjGGMVKLDzQeDq4ZQx4BtPyRlg
+         XlC6lXB0Vh1jfn3tKmFlduaQsebOcYoB7VV4yCm2n7+DLnipc7Zs/ClDPVMk9VvVQRUO
+         /qz6FN9Bu1fjnq8kKosQzXtFFwc+1k2QkEeuyOI4z3U5PYfIuT0N35l5t5MVr643GhX7
+         Tckw==
+X-Forwarded-Encrypted: i=1; AJvYcCUr2HgLcRhpVFTI4f0P9i0VggLWIyyWznFYOps1sIBIKG5zom0IXJ7RyH52Spgjuqu/+0TWVgiqxTu/@vger.kernel.org, AJvYcCUrB9e95jcgRCHd7m5MkW2eHkB5N8kJhdJVd6OAPHVoXUypMwpFrEhK731TSvbZzUdaw4KJPGP28TFH5kfBQukTO9c=@vger.kernel.org, AJvYcCXb0VSrlH/x5K6LmJsfLPsLYCs9rFADqOO1VMt2xDRn1tm2mKzWOB2mBbo94Nhq8GrnoYilit0BOU4=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPWPH97615+K3cP4G1RAD/1qilzsQyQez6x2sEAwXsiYP0mpyB
+	mRQ6SY6w3Xb95o7WQLeM975n3GC3lF/EPg+snwgFv+dVKhss57U9NOZ7amn+
+X-Gm-Gg: ASbGncsRFFQl3MjAvf6wbpvQasH6Av7akTs7POmQXdrLhwrIlFbVtAbFqCfeC6C56L2
+	CQAMVFKKjmSf+arzokfgQBVwnlnA3BmIhmckuJOB1pj+d9bA6LSOdOY0+nYLqBc8M9caugee5xU
+	OlHkMbaBApV/S4xGsNhstpx5lNQ8WC1tw1gwSCMffFkAVgZ0P0w0OxPMIbg1j4Nm7tuw/rX/SMr
+	fdxVKpvDYW9Y+nwAq1dNWShPhta463S0uqheJ0j+gK+WQl5dsE2Fs8Vd957KmCw7aYP/oWU2c07
+	td7fcFHQQTEUZjVO
+X-Google-Smtp-Source: AGHT+IGm/dnMEmM9P9bHqg9v9ulCXXADNNPznSrswFJ/S0qcG1+tABYxZGZTXzXHy3iKVZDFTTc1yQ==
+X-Received: by 2002:a05:6122:4d0c:b0:518:9582:db90 with SMTP id 71dfb90a1353d-5189582e36fmr1259398e0c.11.1733840933192;
+        Tue, 10 Dec 2024 06:28:53 -0800 (PST)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-515eaf5a6c0sm983358e0c.45.2024.12.10.06.28.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Dec 2024 06:28:53 -0800 (PST)
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-85c4e74e2baso1078714241.0;
+        Tue, 10 Dec 2024 06:28:53 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV7u4i3N7oJPwjI9k0iUFBxR2O2yFR2BeSu+fjeQQiVudZdI6Qm+O/E9bYIWnXOJMfpCgRZr3mSV3A=@vger.kernel.org, AJvYcCVrs5+C8T/vuUHG/r6pbTXomflg1SoL3fhM4zTZmMwEqJk/eEbzEk5z398/pRqVhKsGlmR0WbKfLTxK@vger.kernel.org, AJvYcCWPVCG8hcccSYM3/1qLmfohj/GBaA8eZM/FrIaxadTPjss9b/uCoK4ga6Zl3uiWYWgejVVuOC5boTeZdhJXdzvgyPU=@vger.kernel.org
+X-Received: by 2002:a05:6102:3049:b0:4af:f740:c1b4 with SMTP id
+ ada2fe7eead31-4aff740ca07mr7756339137.5.1733840932791; Tue, 10 Dec 2024
+ 06:28:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241206-of_core_fix-v1-0-dc28ed56bec3@quicinc.com>
- <20241206-of_core_fix-v1-5-dc28ed56bec3@quicinc.com> <CAL_JsqL+CRmCQMzcF4-A-PRBrCsfK8nduJtOO=RrsDtCUUR7og@mail.gmail.com>
- <14fe473e-5f56-4a61-899c-bbb79e2aed3b@icloud.com>
-In-Reply-To: <14fe473e-5f56-4a61-899c-bbb79e2aed3b@icloud.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 10 Dec 2024 08:10:18 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+Aap9Kjzcd5H5m9ArcXMWRogoT0CdPnz4-d8OeRgadUA@mail.gmail.com>
-Message-ID: <CAL_Jsq+Aap9Kjzcd5H5m9ArcXMWRogoT0CdPnz4-d8OeRgadUA@mail.gmail.com>
-Subject: Re: [PATCH 05/10] of: Fix available buffer size calculating error in
- API of_device_uevent_modalias()
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: Saravana Kannan <saravanak@google.com>, Leif Lindholm <leif.lindholm@linaro.org>, 
-	Stephen Boyd <stephen.boyd@linaro.org>, Maxime Ripard <mripard@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Grant Likely <grant.likely@secretlab.ca>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Zijun Hu <quic_zijuhu@quicinc.com>
+References: <cover.1728377971.git.geert+renesas@glider.be> <CAMuHMdXsmAqQL+2+D_y+u1z4nn8JO+xF-mq6wWJ0pAH58n5Wiw@mail.gmail.com>
+ <b273599f-8653-4e98-ac64-09c91b0a1592@arm.com> <CAMuHMdUYnTRDHRdWYHBdJ3hNBKOXBtRMOsu1NiJFET7P-+zc4g@mail.gmail.com>
+ <96d1f356-b36b-4c14-bdd5-c38836bac418@arm.com> <CAMuHMdW25MC-RoCw72_EJ22e4Ae36N1CM8a-r=r7e=kA2-AgHA@mail.gmail.com>
+ <CAMuHMdUoEA0W_1jmUPZ48Zi7N1wbo435-LvAf35O=EvYvO6KDQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdUoEA0W_1jmUPZ48Zi7N1wbo435-LvAf35O=EvYvO6KDQ@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 10 Dec 2024 15:28:41 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXUhqdSCvsDbqu0To8psuBuWpnZtqy+PRTcVqdFeQ2rYQ@mail.gmail.com>
+Message-ID: <CAMuHMdXUhqdSCvsDbqu0To8psuBuWpnZtqy+PRTcVqdFeQ2rYQ@mail.gmail.com>
+Subject: Re: [PATCH/RFC 0/2] arm64: dts: renesas: Re-add voltages to OPP tables
+To: Lukasz Luba <lukasz.luba@arm.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-pm@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 10, 2024 at 6:39=E2=80=AFAM Zijun Hu <zijun_hu@icloud.com> wrot=
-e:
->
-> On 2024/12/10 04:34, Rob Herring wrote:
-> > On Thu, Dec 5, 2024 at 6:53=E2=80=AFPM Zijun Hu <zijun_hu@icloud.com> w=
-rote:
-> >>
-> >> From: Zijun Hu <quic_zijuhu@quicinc.com>
-> >>
-> >> of_device_uevent_modalias() saves MODALIAS value from offset
-> >> (@env->buflen - 1), so the available buffer size should be
-> >> (sizeof(@env->buf) - @env->buflen + 1), but it uses the wrong
-> >> size (sizeof(@env->buf) - @env->buflen).
-> >>
-> >> Fix by using right size (sizeof(@env->buf) - @env->buflen + 1).
-> >
-> > Just writing what the diff says already is not that useful. The key
-> > part you need to know is why we back up by 1 character to begin with.
-> >
->
-> will correct commit message in v2.
->
-> >>
-> >> Fixes: dd27dcda37f0 ("of/device: merge of_device_uevent")
-> >> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
-> >> ---
-> >>  drivers/of/device.c | 4 ++--
-> >>  1 file changed, 2 insertions(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/of/device.c b/drivers/of/device.c
-> >> index edf3be1972658f6dc165f577da53b10c7eebc116..ee29c07c83b9e6abd9b1c7=
-747dd341026bc79eb0 100644
-> >> --- a/drivers/of/device.c
-> >> +++ b/drivers/of/device.c
-> >> @@ -266,10 +266,10 @@ int of_device_uevent_modalias(const struct devic=
-e *dev, struct kobj_uevent_env *
-> >>                 return -ENOMEM;
-> >>
-> >>         sl =3D of_modalias(dev->of_node, &env->buf[env->buflen-1],
-> >
-> > This could use a comment why we back up by 1. Better to put it in a
-> > variable than add/subtract 1 everywhere:
-> >
-> > /* After add_uevent_event(), buflen is at character after the nul char
-> > which needs to be overwritten */
-> > buflen =3D env->buflen - 1;
-> >
-> > And then use 'buflen' throughout.
-> >
->
-> good proposal. may use it for v2 after discussion done.
->
-> >> -                        sizeof(env->buf) - env->buflen);
-> >> +                        sizeof(env->buf) - env->buflen + 1);
-> >>         if (sl < 0)
-> >>                 return sl;
-> >> -       if (sl >=3D (sizeof(env->buf) - env->buflen))
-> >> +       if (sl >=3D (sizeof(env->buf) - env->buflen + 1))
-> >>                 return -ENOMEM;
-> >
-> > There's another potential problem. If we return before here, we end up
-> > with "OF_MODALIAS=3D\0" or "OF_MODALIAS=3Dsome-non-nul-terminated-str".
-> > Maybe that doesn't matter? I haven't looked at the caller.
-> >
->
-> that does not matter since current logic follows below 2 rules
->
-> 1) all strings in @env->buf always terminated with '\0'.
+Hi Lukasz,
 
-Ah, right. However, we still end up with a truncated value though it
-is nul terminated.
-
-> 2) both env->buflen and env->envp_idx are not updated once @env->buf
-> does not enough spaces then failed.
->
-> current logic has no difference with normal add_uevent_var() usage.
-
-There is one major difference. add_uevent_var() will not output
-anything if the whole string doesn't fit. Whereas we might output a
-truncated value because the add_uevent_var() call updated env->buflen
-and env->envp_idx. We could unwind that I suppose, but that involves
-even more mucking with the internals of the env struct.
-
-> > I think a better solution to all this would be making add_uevent_var
-> > work to construct the full value. We could add "%pOFm" format that
-> > calls of_mod_alias(). Then this function becomes just:
+On Wed, Nov 13, 2024 at 5:58=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+> On Mon, Nov 4, 2024 at 4:15=E2=80=AFPM Geert Uytterhoeven <geert@linux-m6=
+8k.org> wrote:
+> > On Mon, Oct 28, 2024 at 2:41=E2=80=AFPM Lukasz Luba <lukasz.luba@arm.co=
+m> wrote:
+> > > On 10/28/24 11:34, Geert Uytterhoeven wrote:
+> > > > On Fri, Oct 25, 2024 at 5:40=E2=80=AFPM Lukasz Luba <lukasz.luba@ar=
+m.com> wrote:
+> > > >> On 10/22/24 14:36, Geert Uytterhoeven wrote:
+> > > >>> On Tue, Oct 8, 2024 at 11:14=E2=80=AFAM Geert Uytterhoeven
+> > > >>> <geert+renesas@glider.be> wrote:
+> > > >>>> When CONFIG_ENERGY_MODEL=3Dy, an error is printed on RZ/G2E and =
+R-Car E3:
+> > > >>>>
+> > > >>>>       cpu cpu0: EM: invalid perf. state: -22
+> > > >>>>
+> > > >>>> This happens because the Operating Points Parameters tables do n=
+ot list
+> > > >>>> voltages, as they are all identical.  Previously, it was assumed=
+ they
+> > > >>>> were optional, and unused, when none of the CPU nodes is tied to=
+ a
+> > > >>>> regulator using the "cpu-supply" property.  This assumption turn=
+ed out
+> > > >>>> to be incorrect, causing the reported error message.
+> > > >>>>
+> > > >>>> This RFC patch series fixes this by adding the missing voltages.
+> > > >>>>
+> > > >>>> Note that the Energy Model calculates energy efficiency by divid=
+ing the
+> > > >>>> (estimated) CPU power consumption by CPU core clock frequency.  =
+When all
+> > > >>>> voltages have the same value, the former is proportional to cloc=
+k
+> > > >>>> frequency, and energy efficiency becomes a constant.  Hence all
+> > > >>>> operating points are considered to have the same efficiency, and=
+ the
+> > > >>>> Energy Model always picks the one with the highest clock rate (s=
+ee also
+> > > >>>> [1]).
+> > > >>>>
+> > > >>>> Alternatively, the Energy Model could be changed to silently ign=
+ore OPP
+> > > >>>> tables with missing frequencies.  IMHO this is not an unusual ca=
+se.
+> > > >>>>
+> > > >>>> Which approach should be taken?
+> > > >>>> Thanks for your comments!
+> > > >>>
+> > > >>> Any comments from the Energy Model and PM people?
+> > > >>
+> > > >> My apologies for delay.
+> > > >>
+> > > >> So you had issue with bogus Voltage values and removed them.
+> > > >>
+> > > >> There is another way to setup EM properly, via DT:
+> > > >> "opp-microwatt" [1].
+> > > >>
+> > > >> That micro watt value won't confuse other subsystems, like
+> > > >> your regulator fwk. It will only be used by the EM fwk.
+> > > >>
+> > > >> This would be an alternative to your voltage values.
+> > > >> Sounds better to you?
+> > > >
+> > > > For opp-microwatt, I do need to know the actual power consumption
+> > > > of the core, right?
+> > >
+> > > Correct. You can try to derived that in a way you did and put below.
+> > > Although, Dhrystone is a synthetic micro-benchmark with small
+> > > impact to data caches, so it will not use much power.
 > >
-> of_modalias() ?
-
-Yes.
-
->
-> agree with you.
-> for good practice, users should only use uevent APIs and should not
-> depend on  uevent's internal implementation.
->
-> > return add_uevent_var(env, "MODALIAS=3D%pOFm");
+> > Do you have a suggestion for a better load test? stress-ng?
 > >
-> > And of_device_modalias() can be:
+> > > > Full system power consumption while running the in-kernel
+> > > > Dhrystones benchmark:
+> > > >
+> > > > 800 MHz: avg 4972,55 mW, stdef 20,474 mW
+> > > > 1000 MHz: avg 5025,93 mW, stdef 18,644 mW
+> > > > 1200 MHz: avg 5059,63 mW, stdef 15,425 mW
+> > >
+> > > Right. From those power values can be try to derive the
+> > > 'CPU only power' values - assuming only one core was
+> > > running the test.
+> > >
+> > > AFAIU you don't have proper DVFS due to missing voltage scaling.
 > >
-> > sl =3D snprintf(str, len, "%pOFm\n", dev->of_node);
-> > if (sl >=3D len)
-> >   return -ENOMEM;
-> > return sl;
+> > Indeed.
 > >
+> > > Therefore...
+> > > Out of that I got these CPU power values:
+> > > 800MHz -> 174mW
+> >
+> > =3D> 217.5 =C2=B5W/MHz
+> >
+> > > 1000MHz -> 212mW
+> >
+> > =3D> 212 =C2=B5W/MHz
+> >
+> > > 1200MHz -> 261mW
 >
-> looks good.
->
-> of_request_module() provides another solution.
+> BTW, how did you get from my avg mW values above to your CPU power mW
+> values? I seem to be missing something...
 
-Yes, that can be simplified to just a kasnprintf() call.
+Ping...
 
-Rob
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
