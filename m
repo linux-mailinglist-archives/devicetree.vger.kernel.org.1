@@ -1,307 +1,128 @@
-Return-Path: <devicetree+bounces-129432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACFD99EB97B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 19:41:03 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50FAF188167E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 18:40:59 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEE031B4245;
-	Tue, 10 Dec 2024 18:40:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="LZELpwG5"
-X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA7B29EB988
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 19:45:32 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B81393C17;
-	Tue, 10 Dec 2024 18:40:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733856055; cv=pass; b=qRr99dj4lSRV+v//g9gcVwenyFtLWHamuGe1m58LPSjUK9ckT/9WA/QueWwryo1oEtjUen5wTC8G5yTFfGCPaEgygmlXAttve/ycwrxBMJt9RcQizX4LdpZMsOo842zK+ZLlGYVM+QWvUEznXstkttmQF1Zl4GWPnPTtEdoz/Nw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733856055; c=relaxed/simple;
-	bh=dPZZtGWmzKLvBfeyJNVXmHLGqOdhCmeWAAu5L0244mg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bvg4GHxfOvlBdSEltFPIH8Hc0UgJumUyH0hyKfzKFP6KSvSG0hpi57LgUHXtKG2ZUHJ+mzyS30sv9TLiq7Yuz9AlM76VZVfJ97Y3LdKUaIGv/V6sQbRwbJdwVamXve4Fcd6XFb5prpheqtAOBes66JLf/7esb8lAynEpjkgsBvk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=LZELpwG5; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1733856018; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=eLJVeQYFPMFmIItBqw+iC3duBThTFKhy7qlLZqlBdIU+QgFxFRfrjF5IP8IoeUjJLJlIeIagNF4wBbn6cTCfihdaenCWHQfWPIEEWhqsABEYYGoxuChoTUuaWDv9sDTwId9YDeW2H7yPFSmw5b4zBYkN/6s/5QF2EGrdhe4shaw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1733856018; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=S6TU7l55Y0mdZ5Q3U4WL8dWps5L9M05F3suGGbIWtgw=; 
-	b=hTLXIKCaSIFGbIMfggLJZhU7NVYsgfCzxi/uJ6Ui4OlECzwHsZYl6nhw6chgxOsMaGd4f0qLM8D8OvpmZrSi4ntJdzPdgH3t9LQBuAdPNUAkU0zsvUwsYmTFuSsn2JuDaDzaPgm+Dlou7lVxKKUt8d9LRsn1dMwWr6lKjdEQX5M=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1733856018;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=S6TU7l55Y0mdZ5Q3U4WL8dWps5L9M05F3suGGbIWtgw=;
-	b=LZELpwG5YCjb+W0kzThoZ7BmxJl1jkkHLx8U5ntvirtepwV6dLYCkEHPcf+wQ4Ye
-	HIAkjXa8s+snIddoOFA0SLqdENEE7uw368T1a62qyAQjo4Nh0Ha4Dqa0pnnoRn5BxTb
-	K2BcZD5DA49FKQYAbt39eq1FPMNUv/x5hfwAnCkE=
-Received: by mx.zohomail.com with SMTPS id 1733856016248872.700989510731;
-	Tue, 10 Dec 2024 10:40:16 -0800 (PST)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: heiko@sntech.de, Andy Yan <andyshrk@163.com>
-Cc: hjc@rock-chips.com, krzk+dt@kernel.org, s.hauer@pengutronix.de,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, derek.foreman@collabora.com,
- Andy Yan <andy.yan@rock-chips.com>, kernel@collabora.com
-Subject: Re: [PATCH v5 05/18] drm/rockchip: vop2: Set AXI id for rk3588
-Date: Tue, 10 Dec 2024 13:40:14 -0500
-Message-ID: <5839604.DvuYhMxLoT@trenzalore>
-In-Reply-To: <20241209122943.2781431-9-andyshrk@163.com>
-References:
- <20241209122943.2781431-1-andyshrk@163.com>
- <20241209122943.2781431-9-andyshrk@163.com>
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2BFD282328
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 18:45:29 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 542501A9B55;
+	Tue, 10 Dec 2024 18:45:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JIG3BqeE"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B120335967;
+	Tue, 10 Dec 2024 18:45:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733856326; cv=none; b=embBU4D1cmcsxM/MNMiiFEMSEyrWWjlx+W5ESo/Jdt+TK9SxIB+MTYGTRWGDPdP8/0KchgN5NTFZjX0HQawAHB1WRri8H/Ll31NAwNYFgODclMVPmUX2hQCLDBS0aABP5eQT4x+307aChViXN7syxAyKPuXH9M36ypP0t/Itc+M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733856326; c=relaxed/simple;
+	bh=olsdmyoTmIU3QYXVIY/p+lmELkDwTdQFw0IaChjqdS0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qBPpyql54fHhhFWlDSR1WEVXU87/tYy6zbSrn1qhFjX7JF2ix2qHivmfLrfycKMLN3GvOjORGrqkjpjJvlAPcIwJ6c1DTzLpGKO+76SqyUwrIyHZ/7ZrZ5vgCBcCzCMDBtwA2Cr5bpd4/Pf1Rnu1dJ+wguuWvWx2udozVGl8G4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JIG3BqeE; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733856325; x=1765392325;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=olsdmyoTmIU3QYXVIY/p+lmELkDwTdQFw0IaChjqdS0=;
+  b=JIG3BqeEPMOxGizDSBuXd6Dt+N6HED9eTfY9x+KgJ0387yox9r65SWhx
+   NqGHT+zlm5cSAhrnA1UbobIwV5UVgGY3z4zwxLyp3br9HTC75p0+y2MXo
+   HkrPa5dZLq6rTXGvcud0W0+OaGuj3ph/dESdt0s6mOdbYDXGi+AHJn3qt
+   SdBlba2NI8INgrRwTPZKIWlMqDJbMiqfiSb8B4ZG+B3UuURQsFxcbvC7X
+   ZdLz5nLJ52KJTMfLo08ZdyGU/cL4X0qze6XNuBDAgOnGFKA//MbopXhjh
+   d8NEWqclY5ZURik5iIWbaCyzmVKXioHcHu0Ghofbgqej32M+w5AmWZ3UC
+   w==;
+X-CSE-ConnectionGUID: hskI4jBGQseqacAluzCs9Q==
+X-CSE-MsgGUID: YxC+SbUoTNiFQ5PJMx37TQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="37998036"
+X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; 
+   d="scan'208";a="37998036"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2024 10:45:25 -0800
+X-CSE-ConnectionGUID: xwJAx2YfSxGQy3OsTuV+mg==
+X-CSE-MsgGUID: UVkc0sTeTx61geoqNG5FMw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; 
+   d="scan'208";a="100537468"
+Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 10 Dec 2024 10:45:19 -0800
+Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tL5ES-0005rl-2p;
+	Tue, 10 Dec 2024 18:45:16 +0000
+Date: Wed, 11 Dec 2024 02:44:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chen Wang <unicornxw@gmail.com>, u.kleine-koenig@baylibre.com,
+	aou@eecs.berkeley.edu, arnd@arndb.de, unicorn_wang@outlook.com,
+	conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
+	krzk+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
+	robh@kernel.org, tglx@linutronix.de, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com,
+	fengchun.li@sophgo.com
+Cc: oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v2 2/3] irqchip: Add the Sophgo SG2042 MSI interrupt
+ controller
+Message-ID: <202412110221.35ohPaia-lkp@intel.com>
+References: <c882fe329932409131be76ce47b81a6155595ce4.1733726057.git.unicorn_wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c882fe329932409131be76ce47b81a6155595ce4.1733726057.git.unicorn_wang@outlook.com>
 
-Hi Andy,
+Hi Chen,
 
-On Monday, 9 December 2024 07:29:18 EST Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
-> 
-> There are two AXI bus in vop2, windows attached on the same bus must
-> have a unique channel YUV and RGB channel ID.
-> 
-> The default IDs will conflict with each other on the rk3588, so they
-> need to be reassigned.
-> 
-> Fixes: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> Tested-by: Derek Foreman <derek.foreman@collabora.com>
-> 
-> ---
-> 
-> Changes in v5:
-> - Added in V5
-> 
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 14 +++++++++++
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  9 +++++++
->  drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 26 +++++++++++++++++++-
->  3 files changed, 48 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c index
-> dc4edd65bc9e..8b9ca046eeeb 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> @@ -1426,6 +1426,12 @@ static void vop2_plane_atomic_update(struct drm_plane
-> *plane, &fb->format->format,
->  		afbc_en ? "AFBC" : "", &yrgb_mst);
-> 
-> +	if (vop2->data->soc_id > 3568) {
+kernel test robot noticed the following build warnings:
 
-Shouldn't this be done only for rk3588, as specified in the comments below ? 
-The test we did before showed that it is failing on rk3576 and 3576 is > 3588.
+[auto build test WARNING on fac04efc5c793dccbd07e2d59af9f90b7fc0dca4]
 
-I suggest
+url:    https://github.com/intel-lab-lkp/linux/commits/Chen-Wang/dt-bindings-interrupt-controller-Add-Sophgo-SG2042-MSI/20241209-151429
+base:   fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
+patch link:    https://lore.kernel.org/r/c882fe329932409131be76ce47b81a6155595ce4.1733726057.git.unicorn_wang%40outlook.com
+patch subject: [PATCH v2 2/3] irqchip: Add the Sophgo SG2042 MSI interrupt controller
+config: alpha-randconfig-r063-20241211 (https://download.01.org/0day-ci/archive/20241211/202412110221.35ohPaia-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241211/202412110221.35ohPaia-lkp@intel.com/reproduce)
 
-	if (vop2->data->soc_id == 3588) {
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412110221.35ohPaia-lkp@intel.com/
 
-Regards,
-Detlev
+All warnings (new ones prefixed by >>):
 
-> +		vop2_win_write(win, VOP2_WIN_AXI_BUS_ID, win->data-
->axi_bus_id);
-> +		vop2_win_write(win, VOP2_WIN_AXI_YRGB_R_ID, win->data-
->axi_yrgb_r_id);
-> +		vop2_win_write(win, VOP2_WIN_AXI_UV_R_ID, win->data-
->axi_uv_r_id);
-> +	}
-> +
->  	if (vop2_cluster_window(win))
->  		vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN, 
-half_block_en);
-> 
-> @@ -3354,6 +3360,10 @@ static struct reg_field
-> vop2_cluster_regs[VOP2_WIN_MAX_REG] = { [VOP2_WIN_Y2R_EN] =
-> REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 8, 8),
->  	[VOP2_WIN_R2Y_EN] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 9, 9),
->  	[VOP2_WIN_CSC_MODE] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL0, 10, 11),
-> +	[VOP2_WIN_AXI_YRGB_R_ID] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL2, 0, 
-3),
-> +	[VOP2_WIN_AXI_UV_R_ID] = REG_FIELD(RK3568_CLUSTER_WIN_CTRL2, 5, 8),
-> +	/* RK3588 only, reserved bit on rk3568*/
-> +	[VOP2_WIN_AXI_BUS_ID] = REG_FIELD(RK3568_CLUSTER_CTRL, 13, 13),
-> 
->  	/* Scale */
->  	[VOP2_WIN_SCALE_YRGB_X] = 
-REG_FIELD(RK3568_CLUSTER_WIN_SCL_FACTOR_YRGB, 0,
-> 15), @@ -3446,6 +3456,10 @@ static struct reg_field
-> vop2_esmart_regs[VOP2_WIN_MAX_REG] = { [VOP2_WIN_YMIRROR] =
-> REG_FIELD(RK3568_SMART_CTRL1, 31, 31),
->  	[VOP2_WIN_COLOR_KEY] = REG_FIELD(RK3568_SMART_COLOR_KEY_CTRL, 0, 
-29),
->  	[VOP2_WIN_COLOR_KEY_EN] = REG_FIELD(RK3568_SMART_COLOR_KEY_CTRL, 
-31, 31),
-> +	[VOP2_WIN_AXI_YRGB_R_ID] = REG_FIELD(RK3568_SMART_CTRL1, 4, 8),
-> +	[VOP2_WIN_AXI_UV_R_ID] = REG_FIELD(RK3568_SMART_CTRL1, 12, 16),
-> +	/* RK3588 only, reserved register on rk3568 */
-> +	[VOP2_WIN_AXI_BUS_ID] = REG_FIELD(RK3588_SMART_AXI_CTRL, 1, 1),
-> 
->  	/* Scale */
->  	[VOP2_WIN_SCALE_YRGB_X] = 
-REG_FIELD(RK3568_SMART_REGION0_SCL_FACTOR_YRGB,
-> 0, 15), diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-> b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h index
-> 8786c2ba48df..0a3b22e8d14e 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.h
-> @@ -78,6 +78,9 @@ enum vop2_win_regs {
->  	VOP2_WIN_COLOR_KEY,
->  	VOP2_WIN_COLOR_KEY_EN,
->  	VOP2_WIN_DITHER_UP,
-> +	VOP2_WIN_AXI_BUS_ID,
-> +	VOP2_WIN_AXI_YRGB_R_ID,
-> +	VOP2_WIN_AXI_UV_R_ID,
-> 
->  	/* scale regs */
->  	VOP2_WIN_SCALE_YRGB_X,
-> @@ -149,6 +152,10 @@ struct vop2_win_data {
->  	unsigned int layer_sel_id;
->  	uint64_t feature;
-> 
-> +	uint8_t axi_bus_id;
-> +	uint8_t axi_yrgb_r_id;
-> +	uint8_t axi_uv_r_id;
-> +
->  	unsigned int max_upscale_factor;
->  	unsigned int max_downscale_factor;
->  	const u8 dly[VOP2_DLY_MODE_MAX];
-> @@ -319,6 +326,7 @@ enum dst_factor_mode {
-> 
->  #define RK3568_CLUSTER_WIN_CTRL0		0x00
->  #define RK3568_CLUSTER_WIN_CTRL1		0x04
-> +#define RK3568_CLUSTER_WIN_CTRL2		0x08
->  #define RK3568_CLUSTER_WIN_YRGB_MST		0x10
->  #define RK3568_CLUSTER_WIN_CBR_MST		0x14
->  #define RK3568_CLUSTER_WIN_VIR			0x18
-> @@ -341,6 +349,7 @@ enum dst_factor_mode {
->  /* (E)smart register definition, offset relative to window base */
->  #define RK3568_SMART_CTRL0			0x00
->  #define RK3568_SMART_CTRL1			0x04
-> +#define RK3588_SMART_AXI_CTRL			0x08
->  #define RK3568_SMART_REGION0_CTRL		0x10
->  #define RK3568_SMART_REGION0_YRGB_MST		0x14
->  #define RK3568_SMART_REGION0_CBR_MST		0x18
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-> b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c index
-> f7d3350594fa..37c65138012d 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-> @@ -395,7 +395,7 @@ static const struct vop2_video_port_data
-> rk3588_vop_video_ports[] = { * AXI1 is a read only bus.
->   *
->   * Every window on a AXI bus must assigned two unique
-> - * read id(yrgb_id/uv_id, valid id are 0x1~0xe).
-> + * read id(yrgb_r_id/uv_r_id, valid id are 0x1~0xe).
->   *
->   * AXI0:
->   * Cluster0/1, Esmart0/1, WriteBack
-> @@ -415,6 +415,9 @@ static const struct vop2_win_data rk3588_vop_win_data[]
-> = { .layer_sel_id = 0,
->  		.supported_rotations = DRM_MODE_ROTATE_90 | 
-DRM_MODE_ROTATE_270 |
->  				       DRM_MODE_REFLECT_X | 
-DRM_MODE_REFLECT_Y,
-> +		.axi_bus_id = 0,
-> +		.axi_yrgb_r_id = 2,
-> +		.axi_uv_r_id = 3,
->  		.max_upscale_factor = 4,
->  		.max_downscale_factor = 4,
->  		.dly = { 4, 26, 29 },
-> @@ -431,6 +434,9 @@ static const struct vop2_win_data rk3588_vop_win_data[]
-> = { .supported_rotations = DRM_MODE_ROTATE_90 | DRM_MODE_ROTATE_270 |
-> DRM_MODE_REFLECT_X | DRM_MODE_REFLECT_Y,
->  		.type = DRM_PLANE_TYPE_PRIMARY,
-> +		.axi_bus_id = 0,
-> +		.axi_yrgb_r_id = 6,
-> +		.axi_uv_r_id = 7,
->  		.max_upscale_factor = 4,
->  		.max_downscale_factor = 4,
->  		.dly = { 4, 26, 29 },
-> @@ -446,6 +452,9 @@ static const struct vop2_win_data rk3588_vop_win_data[]
-> = { .supported_rotations = DRM_MODE_ROTATE_90 | DRM_MODE_ROTATE_270 |
-> DRM_MODE_REFLECT_X | DRM_MODE_REFLECT_Y,
->  		.type = DRM_PLANE_TYPE_PRIMARY,
-> +		.axi_bus_id = 1,
-> +		.axi_yrgb_r_id = 2,
-> +		.axi_uv_r_id = 3,
->  		.max_upscale_factor = 4,
->  		.max_downscale_factor = 4,
->  		.dly = { 4, 26, 29 },
-> @@ -461,6 +470,9 @@ static const struct vop2_win_data rk3588_vop_win_data[]
-> = { .supported_rotations = DRM_MODE_ROTATE_90 | DRM_MODE_ROTATE_270 |
-> DRM_MODE_REFLECT_X | DRM_MODE_REFLECT_Y,
->  		.type = DRM_PLANE_TYPE_PRIMARY,
-> +		.axi_bus_id = 1,
-> +		.axi_yrgb_r_id = 6,
-> +		.axi_uv_r_id = 7,
->  		.max_upscale_factor = 4,
->  		.max_downscale_factor = 4,
->  		.dly = { 4, 26, 29 },
-> @@ -475,6 +487,9 @@ static const struct vop2_win_data rk3588_vop_win_data[]
-> = { .layer_sel_id = 2,
->  		.supported_rotations = DRM_MODE_REFLECT_Y,
->  		.type = DRM_PLANE_TYPE_OVERLAY,
-> +		.axi_bus_id = 0,
-> +		.axi_yrgb_r_id = 0x0a,
-> +		.axi_uv_r_id = 0x0b,
->  		.max_upscale_factor = 8,
->  		.max_downscale_factor = 8,
->  		.dly = { 23, 45, 48 },
-> @@ -488,6 +503,9 @@ static const struct vop2_win_data rk3588_vop_win_data[]
-> = { .layer_sel_id = 3,
->  		.supported_rotations = DRM_MODE_REFLECT_Y,
->  		.type = DRM_PLANE_TYPE_OVERLAY,
-> +		.axi_bus_id = 0,
-> +		.axi_yrgb_r_id = 0x0c,
-> +		.axi_uv_r_id = 0x01,
->  		.max_upscale_factor = 8,
->  		.max_downscale_factor = 8,
->  		.dly = { 23, 45, 48 },
-> @@ -501,6 +519,9 @@ static const struct vop2_win_data rk3588_vop_win_data[]
-> = { .layer_sel_id = 6,
->  		.supported_rotations = DRM_MODE_REFLECT_Y,
->  		.type = DRM_PLANE_TYPE_OVERLAY,
-> +		.axi_bus_id = 1,
-> +		.axi_yrgb_r_id = 0x0a,
-> +		.axi_uv_r_id = 0x0b,
->  		.max_upscale_factor = 8,
->  		.max_downscale_factor = 8,
->  		.dly = { 23, 45, 48 },
-> @@ -514,6 +535,9 @@ static const struct vop2_win_data rk3588_vop_win_data[]
-> = { .layer_sel_id = 7,
->  		.supported_rotations = DRM_MODE_REFLECT_Y,
->  		.type = DRM_PLANE_TYPE_OVERLAY,
-> +		.axi_bus_id = 1,
-> +		.axi_yrgb_r_id = 0x0c,
-> +		.axi_uv_r_id = 0x0d,
->  		.max_upscale_factor = 8,
->  		.max_downscale_factor = 8,
->  		.dly = { 23, 45, 48 },
+>> drivers/irqchip/irq-sg2042-msi.c:273:34: warning: 'sg2042_msi_of_match' defined but not used [-Wunused-const-variable=]
+     273 | static const struct of_device_id sg2042_msi_of_match[] = {
+         |                                  ^~~~~~~~~~~~~~~~~~~
 
 
+vim +/sg2042_msi_of_match +273 drivers/irqchip/irq-sg2042-msi.c
 
+   272	
+ > 273	static const struct of_device_id sg2042_msi_of_match[] = {
+   274		{ .compatible	= "sophgo,sg2042-msi" },
+   275		{}
+   276	};
+   277	
 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
