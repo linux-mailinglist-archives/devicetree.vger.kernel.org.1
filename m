@@ -1,451 +1,247 @@
-Return-Path: <devicetree+bounces-129268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B72F9EB0EF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:37:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75C3A9EB0FC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:38:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B61221695FD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:37:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E68031881B13
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D73BD1A3AA8;
-	Tue, 10 Dec 2024 12:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17BAA1A705C;
+	Tue, 10 Dec 2024 12:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BsYDYLxq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 114371A2860;
-	Tue, 10 Dec 2024 12:37:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2563F1A3AB8;
+	Tue, 10 Dec 2024 12:38:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733834260; cv=none; b=mWyQjyJLdac07IDTfYPHSlpLfvtSJYB99CDJpPb1MAYak1xitGujDKz6Gs6wSvxxTBGH0pngofvH6idjdKyIvkelFnBOGh0F9y3BnaniLUmlh+ONH94a+BUjqnqbiUACAQXC7u0sb7EMWwa/mpXNVY6h8LwxGBBjF4jIM1Ny7fA=
+	t=1733834317; cv=none; b=eXmBTKYab/f50v9310L4y52jqsmMqjf3SbM7txgZrCZVE2rN1FX1jKHlVfnMpDXPG2DCujvBWSoiRgbWtlD6IEAngtmgHtY9vtDTyRNTDjkoTWswGUM2tqC8rWKZq31kMKSk94ilwXQG9BFAvioY3cb78Yd/4JvdP2ZWXS9uwFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733834260; c=relaxed/simple;
-	bh=jBbzONCRbxb5ElO39JOZejDCesdn7j7w82UaxqegLVY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=p8F58AJSv83sTyjcgXamzutI+n61xr3KIUweah2L7jkngL2ay3V2YfaYJgx9XccVyStyIM+CgSGwravbD46LSuHk3x29UVNWYXwweMbWtijIpAI0kTK7XEcan7EGuDzXWkGnlaoduZV+PpfNkuqu7q6/9+rjLoH6divZLHcSb7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [223.64.68.38])
-	by gateway (Coremail) with SMTP id _____8AxQK0QNlhn4OVUAA--.60278S3;
-	Tue, 10 Dec 2024 20:37:36 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.68.38])
-	by front1 (Coremail) with SMTP id qMiowMAxXcIENlhn9Sx+AA--.34092S4;
-	Tue, 10 Dec 2024 20:37:33 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Juxin Gao <gaojuxin@loongson.cn>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v8 2/2] pwm: Add Loongson PWM controller support
-Date: Tue, 10 Dec 2024 20:37:06 +0800
-Message-ID: <be76165d1ab09ec41cdfd4e5fbdae1b415f516b9.1733823417.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.43.5
-In-Reply-To: <cover.1733823417.git.zhoubinbin@loongson.cn>
-References: <cover.1733823417.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1733834317; c=relaxed/simple;
+	bh=6XCqSE4PX87UUcMXJwDzqbV0B9paAPJx9Z1elIYDjEY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OqYHAPh9Lr1rq+ew2TLZUjZoCg6Rfz4xaAQziEzFORHjhdYxtCAjaM7ZjIO7V2iuKZiH6bFggQACdNsCLeuFpvbF4KcAihksfBwm9g3ZdAb6G11UgeX+0tZhaiTFzFPDjBBWuqhZmV9NnrtgsxOFduT0Mj3braQwFot6KixZ07c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BsYDYLxq; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-435f8f29f8aso3394535e9.2;
+        Tue, 10 Dec 2024 04:38:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733834313; x=1734439113; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=/L26b1cngPFNrc6gaDUcEqCgyOcOzvpS/5bv/9HvOTs=;
+        b=BsYDYLxq5mHnDzeNPU074l1YoBfG6lxfylzHAWdFqZb5KnqH27qkQLZZQfxYQcjRn3
+         1KJGBa1HDXLDB+7zXM/8lT1N4ENpd9Oub9Tl1oynPY+qb+rfJCflGdHYb0Zc+ENi93vf
+         Qw0qcQHyAWuifbT2m5w5gq17ReNubRyIVJ5DO7UiPgX6GsuLGSw0GvIukv6Hi+qrJ1r3
+         cgSIQzQhRPBVaIg44pSDOuZBhbSLMFXHol6OiCNxoHu9zPlGvXZEznWPfzX7eMKvYJUW
+         luXG2BnYD4/NiZB1rBwbA1cKdcHQulevfm8zD9tmKsqX56ARUY/Ck3yOG9dTdOPzGNE6
+         Ck4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733834313; x=1734439113;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/L26b1cngPFNrc6gaDUcEqCgyOcOzvpS/5bv/9HvOTs=;
+        b=i45jcZoRsCyTNucnRdPCG8dnqI4bD/8QrUE/+DR1s9GV/DAuI8SQFw2aCAdKHS5A/p
+         LVV2HzqezQmqeOXKGWnJ+36VQnVzDmIFXZrzK+9RoXpR6Wn4yCf3FiuvFThtiUelmoL8
+         cg2kYZrMFdBmC4/Xxbj5PE52yTmG69/TtPmdoV5aFxOCtgRb/kSVFsQV7hsOjEaUfPXE
+         WKltMcjc3qeXeUL83SEfPR/NxDDWDQHfLuDMrRp3RLGDN3HJoJJWjuT86xnOhy7LXXTK
+         nlf1GvGQwJMDehQ6AvY3Pxxb3Vqr5bpZfMiWgVZ7jf9LAr1Y8JZX2lPmBhDW8JCYZ7jZ
+         oc+g==
+X-Forwarded-Encrypted: i=1; AJvYcCUCHfjjgejaNLX2Y+0f2ETx7xgC2gDoRmWIqrt2BLBIUKEZeiF+lDeZcrDokKqvBDC01wLJM6FkikY4C+zdHQ==@vger.kernel.org, AJvYcCUjEXHEprWBeqojTMY6VbDMfIa5gDz5ZQQwtMcMaB44ei+a6wI9+q3Df7aJ2clEg4sYskFgiXAditNa@vger.kernel.org, AJvYcCVDMmk7EYf4hOUX5Tf1VFqAUGi3DPc3OtKnTbUat7hD9i720ZjeC4Q8+q0FUEP9AnDWzhBpPsJ/Wy8D@vger.kernel.org, AJvYcCW+dBFwQoVwgLt6ece/1KhQu6eJPc7LEr+FnoXflfhbL06fcPE4+7c/w4xX9v0AadY1iMuZ1VyH2cvA@vger.kernel.org, AJvYcCWS+6op44NgS0ahlQJL5qIDsIXrNbzs8uRVO+0R+QDMVblMnZgteZ7t+MB7yvc6dMGN+ZyBXbvPAm8V7yAw@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWIHurIAbtLQV+2VT1p34dsOs/ZDYhwSqly/Bn19mstT3K7UqQ
+	bs1ZsJZP6k6i6gZASyd0GAfky5x2+F9ak7E4HQggaZDD2IupeNRM
+X-Gm-Gg: ASbGncv0tkezZJskbK0B2Q2MAG5IMOA6F3RGkiDQYHxxIyEpscLN05ngxScYoqaN+ab
+	QXFUYg8CSx0NHqZBG0IE3tBA39quD2M1kh/swQrmi3zxIm7GvLpxUQ4GU3aCbLXs0k8OY6C6jg7
+	gtIne2uwvYgWwbPfN+xlrjD9tUcKyOnqtDBPNocw/cSByWllfyiJ1qcFblHNmww8LkkIIU6tk2R
+	v98D40M9MOUMbtZ25bqc6miIYfe6iYT/S+s7PcVD4xeB8CGz+wR9fHspuFIFSbSY2jlzAEwvEcu
+	tOHMugFiSXXGIW42VP6wz0TDHQ==
+X-Google-Smtp-Source: AGHT+IGker31etdhubmaX8W/x+4MUbOn5bJSDYHrfshAnDAtpYV5vqGrST/Sh3Lmoukaj9PN1Pm8Og==
+X-Received: by 2002:a05:600c:5756:b0:434:a350:207c with SMTP id 5b1f17b1804b1-434dded76fdmr115871875e9.23.1733834312964;
+        Tue, 10 Dec 2024 04:38:32 -0800 (PST)
+Received: from ?IPV6:2a00:f41:c02:ff08:9aca:84ea:6a33:e5c8? ([2a00:f41:c02:ff08:9aca:84ea:6a33:e5c8])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434da11935asm191728645e9.37.2024.12.10.04.38.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Dec 2024 04:38:31 -0800 (PST)
+Message-ID: <422e6a1e-e76a-4ebc-a0a5-64c47ea57823@gmail.com>
+Date: Tue, 10 Dec 2024 13:38:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowMAxXcIENlhn9Sx+AA--.34092S4
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW3ZF4Uur4xCw1rJryfKFWkXwc_yoWktF17pF
-	95A34YgryayrWjkws8ZFZ5urn8Z34fZasrJFWfCw1Uur9rtw18Zw1kKFn7Gw42yr1kGr1I
-	vFWrCrWFkF4DGFbCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ36c02F40EFcxC0VAKzVAqx4xG6I80ewCIccxYrVCFb4Uv73VFW2AGmfu7
-	bjvjm3AaLaJ3UjIYCTnIWjp_UUUYR7kC6x804xWl14x267AKxVWUJVW8JwAFc2x0x2IEx4
-	CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUXVWUAwA2ocxC64kIII0Yj41l84x0
-	c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2
-	IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2
-	jsIEc7CjxVAFwI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2
-	xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0
-	cI8IcVAFwI0_Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8Jw
-	ACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2Iq
-	xVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r
-	18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkvb40E47kJ
-	MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Gr0_Xr1lIxAIcVC0I7IYx2IY6xkF7I
-	0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8
-	JVWxJwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUvA
-	u4UUUUU
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
+ flag
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>, konrad.dybcio@linaro.org,
+ andersson@kernel.org, andi.shyti@kernel.org, linux-arm-msm@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, conor+dt@kernel.org, agross@kernel.org,
+ devicetree@vger.kernel.org, vkoul@kernel.org, linux@treblig.org,
+ dan.carpenter@linaro.org, Frank.Li@nxp.com, konradybcio@kernel.org,
+ bryan.odonoghue@linaro.org, krzk+dt@kernel.org, robh@kernel.org
+Cc: quic_vdadhani@quicinc.com
+References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
+ <20241129144357.2008465-2-quic_msavaliy@quicinc.com>
+ <db428697-a9dc-46e1-abbe-73341306403f@kernel.org>
+ <a8b1ccd2-c37b-4a6f-b592-caf1a53be02c@quicinc.com>
+ <fc33c4ed-32e5-46cc-87d6-921f2e58b4ff@kernel.org>
+ <75f2cc08-e3ab-41fb-aa94-22963c4ffd82@quicinc.com>
+ <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
+ <da2ba3df-eb47-4b55-a0c9-e038a3b9da30@quicinc.com>
+ <a7186553-d8f6-46d4-88da-d042a4a340e2@oss.qualcomm.com>
+ <e9fb294b-b6b8-4034-84c9-a25b83321399@kernel.org>
+ <835ac8c6-3fbb-4a0d-aa07-716d1c8aad7c@gmail.com>
+ <f1fa2bde-95ce-45e9-ad2d-f1d82ec6303c@kernel.org>
+ <8b33f935-04a9-48df-8ea1-f6b98efecb9d@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konradybcio@gmail.com>
+Autocrypt: addr=konradybcio@gmail.com; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <8b33f935-04a9-48df-8ea1-f6b98efecb9d@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This commit adds a generic PWM framework driver for the PWM controller
-found on Loongson family chips.
 
-Co-developed-by: Juxin Gao <gaojuxin@loongson.cn>
-Signed-off-by: Juxin Gao <gaojuxin@loongson.cn>
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-Acked-by: Huacai Chen <chenhuacai@loongson.cn>
----
- MAINTAINERS                |   1 +
- drivers/pwm/Kconfig        |  12 ++
- drivers/pwm/Makefile       |   1 +
- drivers/pwm/pwm-loongson.c | 296 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 310 insertions(+)
- create mode 100644 drivers/pwm/pwm-loongson.c
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b876db33126e..ed7a4304da2f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13499,6 +13499,7 @@ M:	Binbin Zhou <zhoubinbin@loongson.cn>
- L:	linux-pwm@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/pwm/loongson,ls7a-pwm.yaml
-+F:	drivers/pwm/pwm-loongson.c
- 
- LOONGSON-2 SOC SERIES CLOCK DRIVER
- M:	Yinbo Zhu <zhuyinbo@loongson.cn>
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 0915c1e7df16..ef02a44d83a7 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -351,6 +351,18 @@ config PWM_KEEMBAY
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-keembay.
- 
-+config PWM_LOONGSON
-+	tristate "Loongson PWM support"
-+	depends on MACH_LOONGSON64 || COMPILE_TEST
-+	depends on COMMON_CLK
-+	help
-+	  Generic PWM framework driver for Loongson family.
-+	  It can be found on Loongson-2K series cpus and Loongson LS7A
-+	  bridge chips.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-loongson.
-+
- config PWM_LP3943
- 	tristate "TI/National Semiconductor LP3943 PWM support"
- 	depends on MFD_LP3943
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 9081e0c0e9e0..7c18c9be419f 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -30,6 +30,7 @@ obj-$(CONFIG_PWM_INTEL_LGM)	+= pwm-intel-lgm.o
- obj-$(CONFIG_PWM_IQS620A)	+= pwm-iqs620a.o
- obj-$(CONFIG_PWM_JZ4740)	+= pwm-jz4740.o
- obj-$(CONFIG_PWM_KEEMBAY)	+= pwm-keembay.o
-+obj-$(CONFIG_PWM_LOONGSON)	+= pwm-loongson.o
- obj-$(CONFIG_PWM_LP3943)	+= pwm-lp3943.o
- obj-$(CONFIG_PWM_LPC18XX_SCT)	+= pwm-lpc18xx-sct.o
- obj-$(CONFIG_PWM_LPC32XX)	+= pwm-lpc32xx.o
-diff --git a/drivers/pwm/pwm-loongson.c b/drivers/pwm/pwm-loongson.c
-new file mode 100644
-index 000000000000..2f90eccba0bd
---- /dev/null
-+++ b/drivers/pwm/pwm-loongson.c
-@@ -0,0 +1,296 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2017-2024 Loongson Technology Corporation Limited.
-+ *
-+ * Loongson PWM driver
-+ *
-+ * For Loongson's PWM IP block documentation please refer Chapter 11 of
-+ * Reference Manual: https://loongson.github.io/LoongArch-Documentation/Loongson-7A1000-usermanual-EN.pdf
-+ *
-+ * Author: Juxin Gao <gaojuxin@loongson.cn>
-+ * Further cleanup and restructuring by:
-+ *         Binbin Zhou <zhoubinbin@loongson.cn>
-+ *
-+ * Limitations:
-+ * - If both DUTY and PERIOD are set to 0, the output is a constant low signal.
-+ * - When disabled the output is driven to 0 independent of the configured
-+ *   polarity.
-+ */
-+
-+#include <linux/acpi.h>
-+#include <linux/clk.h>
-+#include <linux/device.h>
-+#include <linux/init.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+#include <linux/units.h>
-+
-+/* Loongson PWM registers */
-+#define LOONGSON_PWM_REG_DUTY		0x4 /* Low Pulse Buffer Register */
-+#define LOONGSON_PWM_REG_PERIOD		0x8 /* Pulse Period Buffer Register */
-+#define LOONGSON_PWM_REG_CTRL		0xc /* Control Register */
-+
-+/* Control register bits */
-+#define LOONGSON_PWM_CTRL_EN		BIT(0)  /* Counter Enable Bit */
-+#define LOONGSON_PWM_CTRL_OE		BIT(3)  /* Pulse Output Enable Control Bit, Valid Low */
-+#define LOONGSON_PWM_CTRL_SINGLE	BIT(4)  /* Single Pulse Control Bit */
-+#define LOONGSON_PWM_CTRL_INTE		BIT(5)  /* Interrupt Enable Bit */
-+#define LOONGSON_PWM_CTRL_INT		BIT(6)  /* Interrupt Bit */
-+#define LOONGSON_PWM_CTRL_RST		BIT(7)  /* Counter Reset Bit */
-+#define LOONGSON_PWM_CTRL_CAPTE		BIT(8)  /* Measurement Pulse Enable Bit */
-+#define LOONGSON_PWM_CTRL_INVERT	BIT(9)  /* Output flip-flop Enable Bit */
-+#define LOONGSON_PWM_CTRL_DZONE		BIT(10) /* Anti-dead Zone Enable Bit */
-+
-+/* default input clk frequency for the ACPI case */
-+#define LOONGSON_PWM_FREQ_DEFAULT	50000 /* Hz */
-+
-+struct pwm_loongson_suspend_store {
-+	u32 ctrl;
-+	u32 duty;
-+	u32 period;
-+};
-+
-+struct pwm_loongson_ddata {
-+	struct clk *clk;
-+	void __iomem *base;
-+	u64 clk_rate;
-+	struct pwm_loongson_suspend_store lss;
-+};
-+
-+static inline struct pwm_loongson_ddata *to_pwm_loongson_ddata(struct pwm_chip *chip)
-+{
-+	return pwmchip_get_drvdata(chip);
-+}
-+
-+static inline u32 pwm_loongson_readl(struct pwm_loongson_ddata *ddata, u32 offset)
-+{
-+	return readl(ddata->base + offset);
-+}
-+
-+static inline void pwm_loongson_writel(struct pwm_loongson_ddata *ddata,
-+				       u32 val, u32 offset)
-+{
-+	writel(val, ddata->base + offset);
-+}
-+
-+static int pwm_loongson_set_polarity(struct pwm_chip *chip, struct pwm_device *pwm,
-+				     enum pwm_polarity polarity)
-+{
-+	u16 val;
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	val = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
-+
-+	if (polarity == PWM_POLARITY_INVERSED)
-+		/* Duty cycle defines LOW period of PWM */
-+		val |= LOONGSON_PWM_CTRL_INVERT;
-+	else
-+		/* Duty cycle defines HIGH period of PWM */
-+		val &= ~LOONGSON_PWM_CTRL_INVERT;
-+
-+	pwm_loongson_writel(ddata, val, LOONGSON_PWM_REG_CTRL);
-+
-+	return 0;
-+}
-+
-+static void pwm_loongson_disable(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	u32 val;
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	val = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
-+	val &= ~LOONGSON_PWM_CTRL_EN;
-+	pwm_loongson_writel(ddata, val, LOONGSON_PWM_REG_CTRL);
-+}
-+
-+static int pwm_loongson_enable(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	u32 val;
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	val = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
-+	val |= LOONGSON_PWM_CTRL_EN;
-+	pwm_loongson_writel(ddata, val, LOONGSON_PWM_REG_CTRL);
-+
-+	return 0;
-+}
-+
-+static int pwm_loongson_config(struct pwm_chip *chip, struct pwm_device *pwm,
-+			       u64 duty_ns, u64 period_ns)
-+{
-+	u32 duty, period;
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	/* duty = duty_ns * ddata->clk_rate / NSEC_PER_SEC */
-+	duty = mul_u64_u64_div_u64(duty_ns, ddata->clk_rate, NSEC_PER_SEC);
-+	pwm_loongson_writel(ddata, duty, LOONGSON_PWM_REG_DUTY);
-+
-+	/* period = period_ns * ddata->clk_rate / NSEC_PER_SEC */
-+	period = mul_u64_u64_div_u64(period_ns, ddata->clk_rate, NSEC_PER_SEC);
-+	pwm_loongson_writel(ddata, period, LOONGSON_PWM_REG_PERIOD);
-+
-+	return 0;
-+}
-+
-+static int pwm_loongson_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			      const struct pwm_state *state)
-+{
-+	int ret;
-+	u64 period, duty_cycle;
-+	bool enabled = pwm->state.enabled;
-+
-+	if (!state->enabled) {
-+		if (enabled)
-+			pwm_loongson_disable(chip, pwm);
-+		return 0;
-+	}
-+
-+	ret = pwm_loongson_set_polarity(chip, pwm, state->polarity);
-+	if (ret)
-+		return ret;
-+
-+	period = min(state->period, NSEC_PER_SEC);
-+	duty_cycle = min(state->duty_cycle, NSEC_PER_SEC);
-+
-+	ret = pwm_loongson_config(chip, pwm, duty_cycle, period);
-+	if (ret)
-+		return ret;
-+
-+	if (!enabled && state->enabled)
-+		ret = pwm_loongson_enable(chip, pwm);
-+
-+	return ret;
-+}
-+
-+static int pwm_loongson_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+				  struct pwm_state *state)
-+{
-+	u32 duty, period, ctrl;
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	duty = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_DUTY);
-+	period = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_PERIOD);
-+	ctrl = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
-+
-+	/* duty & period have a max of 2^32, so we can't overflow */
-+	state->duty_cycle = DIV64_U64_ROUND_UP((u64)duty * NSEC_PER_SEC, ddata->clk_rate);
-+	state->period = DIV64_U64_ROUND_UP((u64)period * NSEC_PER_SEC, ddata->clk_rate);
-+	state->polarity = (ctrl & LOONGSON_PWM_CTRL_INVERT) ? PWM_POLARITY_INVERSED :
-+			  PWM_POLARITY_NORMAL;
-+	state->enabled = (ctrl & LOONGSON_PWM_CTRL_EN) ? true : false;
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops pwm_loongson_ops = {
-+	.apply = pwm_loongson_apply,
-+	.get_state = pwm_loongson_get_state,
-+};
-+
-+static int pwm_loongson_probe(struct platform_device *pdev)
-+{
-+	int ret;
-+	struct pwm_chip *chip;
-+	struct pwm_loongson_ddata *ddata;
-+	struct device *dev = &pdev->dev;
-+
-+	chip = devm_pwmchip_alloc(dev, 1, sizeof(*ddata));
-+	if (IS_ERR(chip))
-+		return PTR_ERR(chip);
-+	ddata = to_pwm_loongson_ddata(chip);
-+
-+	ddata->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(ddata->base))
-+		return PTR_ERR(ddata->base);
-+
-+	ddata->clk = devm_clk_get_optional_enabled(dev, NULL);
-+	if (IS_ERR(ddata->clk))
-+		return dev_err_probe(dev, PTR_ERR(ddata->clk),
-+				     "failed to get pwm clock\n");
-+	if (ddata->clk) {
-+		ret = devm_clk_rate_exclusive_get(dev, ddata->clk);
-+		if (ret)
-+			return ret;
-+
-+		ddata->clk_rate = clk_get_rate(ddata->clk);
-+	} else {
-+		ddata->clk_rate = LOONGSON_PWM_FREQ_DEFAULT;
-+	}
-+
-+	/* Explicitly initialize the CTRL register */
-+	pwm_loongson_writel(ddata, 0, LOONGSON_PWM_REG_CTRL);
-+
-+	chip->ops = &pwm_loongson_ops;
-+	chip->atomic = true;
-+	dev_set_drvdata(dev, chip);
-+
-+	ret = devm_pwmchip_add(dev, chip);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "failed to add PWM chip\n");
-+
-+	return 0;
-+}
-+
-+static int pwm_loongson_suspend(struct device *dev)
-+{
-+	struct pwm_chip *chip = dev_get_drvdata(dev);
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	ddata->lss.ctrl = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_CTRL);
-+	ddata->lss.duty = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_DUTY);
-+	ddata->lss.period = pwm_loongson_readl(ddata, LOONGSON_PWM_REG_PERIOD);
-+
-+	clk_disable_unprepare(ddata->clk);
-+
-+	return 0;
-+}
-+
-+static int pwm_loongson_resume(struct device *dev)
-+{
-+	int ret;
-+	struct pwm_chip *chip = dev_get_drvdata(dev);
-+	struct pwm_loongson_ddata *ddata = to_pwm_loongson_ddata(chip);
-+
-+	ret = clk_prepare_enable(ddata->clk);
-+	if (ret)
-+		return ret;
-+
-+	pwm_loongson_writel(ddata, ddata->lss.ctrl, LOONGSON_PWM_REG_CTRL);
-+	pwm_loongson_writel(ddata, ddata->lss.duty, LOONGSON_PWM_REG_DUTY);
-+	pwm_loongson_writel(ddata, ddata->lss.period, LOONGSON_PWM_REG_PERIOD);
-+
-+	return 0;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(pwm_loongson_pm_ops, pwm_loongson_suspend,
-+				pwm_loongson_resume);
-+
-+static const struct of_device_id pwm_loongson_of_ids[] = {
-+	{ .compatible = "loongson,ls7a-pwm" },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, pwm_loongson_of_ids);
-+
-+static const struct acpi_device_id pwm_loongson_acpi_ids[] = {
-+	{ "LOON0006" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(acpi, pwm_loongson_acpi_ids);
-+
-+static struct platform_driver pwm_loongson_driver = {
-+	.probe = pwm_loongson_probe,
-+	.driver = {
-+		.name = "loongson-pwm",
-+		.pm = pm_ptr(&pwm_loongson_pm_ops),
-+		.of_match_table = pwm_loongson_of_ids,
-+		.acpi_match_table = pwm_loongson_acpi_ids,
-+	},
-+};
-+module_platform_driver(pwm_loongson_driver);
-+
-+MODULE_DESCRIPTION("Loongson PWM driver");
-+MODULE_AUTHOR("Loongson Technology Corporation Limited.");
-+MODULE_LICENSE("GPL");
--- 
-2.43.5
+On 12/10/24 13:05, Krzysztof Kozlowski wrote:
+> On 10/12/2024 12:53, Krzysztof Kozlowski wrote:
+>>>>> I'm not sure a single property name+description can fit all possible
+>>>>> cases here. The hardware being "shared" can mean a number of different
+>>>>
+>>>> Existing property does not explain anything more, either. To recap -
+>>>> this block is SE and property is named "se-shared", so basically it is
+>>>> equal to just "shared". "shared" is indeed quite vague, so I was
+>>>> expecting some wider work here.
+>>>>
+>>>>
+>>>>> things, with some blocks having hardware provisions for that, while
+>>>>> others may have totally none and rely on external mechanisms (e.g.
+>>>>> a shared memory buffer) to indicate whether an external entity
+>>>>> manages power to them.
+>>>>
+>>>> We have properties for that too. Qualcomm SoCs need once per year for
+>>>> such shared properties. BAM has two or three. IPA has two. There are
+>>>> probably even more blocks which I don't remember now.
+>>>
+>>> So, the problem is "driver must not toggle GPIO states", because
+>>> "the bus controller must not be muxed away from the endpoint".
+>>> You can come up with a number of similar problems by swapping out
+>>> the quoted text.
+>>>
+>>> We can either describe what the driver must do (A), or what the
+>>> reason for it is (B).
+>>>
+>>>
+>>> If we go with A, we could have a property like:
+>>>
+>>> &i2c1 {
+>>> 	externally-handled-resources = <(EHR_PINCTRL_STATE | EHR_CLOCK_RATE)>
+>>> };
+>>>
+>>> which would be a generic list of things that the OS would have to
+>>> tiptoe around, fitting Linux's framework split quite well
+>>>
+>>>
+>>>
+>>> or if we go with B, we could add a property like:
+>>>
+>>> &i2c1 {
+>>> 	qcom,shared-controller;
+>>> };
+>>>
+>>> which would hide the implementation details into the driver
+>>>
+>>> I could see both approaches having their place, but in this specific
+>>> instance I think A would be more fitting, as the problem is quite
+>>> simple.
+>>
+>>
+>> The second is fine with me, maybe missing information about "whom" do
+>> you share it with. Or maybe we get to the point that all this is
+>> specific to SoC, thus implied by compatible and we do not need
+>> downstream approach (another discussion in USB pushed by Qcom: I want
+>> one compatible and 1000 properties).
+>>
+>> I really wished Qualcomm start reworking their bindings before they are
+>> being sent upstream to match standard DT guidelines, not downstream
+>> approach. Somehow these hundreds reviews we give could result in new
+>> patches doing things better, not just repeating the same issues.
+> 
+> This is BTW v5, with all the same concerns from v1 and still no answers
+> in commit msg about these concerns. Nothing explained in commit msg
+> which hardware needs it or why the same SoC have it once shared, once
+> not (exclusive). Basically there is nothing here corresponding to any
+> real product, so since five versions all this for me is just copy-paste
+> from downstream approach.
 
+So since this is a software contract and not a hardware
+feature, this is not bound to any specific SoC or "firmware",
+but rather to what runs on other cores (e.g. DSPs, MCUs spread
+across the SoC or in a different software world, like TZ).
+
+Specifying the specific intended use would be helpful though,
+indeed.
+
+Let's see if we can somehow make this saner.
+
+
+Mukesh, do we have any spare registers that we could use to
+indicate that a given SE is shared? Preferably within the
+SE's register space itself. The bootloader or another entity
+(DSP or what have you) would then set that bit before Linux
+runs and we could skip the bindings story altogether.
+
+It would need to be reserved on all SoCs though (future and
+past), to make sure the contract is always held up, but I
+think finding a persistent bit that has never been used
+shouldn't be impossible.
+
+Konrad
 
