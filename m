@@ -1,127 +1,171 @@
-Return-Path: <devicetree+bounces-129446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91E5D9EBADE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:32:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B72749EBAE7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:37:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AB761672C7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 20:32:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C0FA1886630
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 20:37:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADAB514E2CC;
-	Tue, 10 Dec 2024 20:32:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDC58227B99;
+	Tue, 10 Dec 2024 20:37:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KL4k9T6s"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LuabywJN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 041344964F;
-	Tue, 10 Dec 2024 20:31:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98477227597
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 20:37:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733862720; cv=none; b=Mg21G4Lg+Vm0U9nUj5IdtQ6k3Yq/2nUSbPnfBYtDNCsDf0qIHgJEc6w1Oxb2CqewrWVdAlf/LAtLjyDLqTXDVLU/TW/k3k3hnV3qVtXVIy9kan27xhDFkaukb7Fy+EAnUDwz9Kjq9KerYot1IfzlTuq5NQYOho0WVvDS1VuSYLI=
+	t=1733863025; cv=none; b=t/Jid43DQUqhcD9T5iZVzc2kojnGb2+R0IMchi5CjD/PdJhYkLS8NPqT/u/Sedq+Z0baYNCZG5rogQ4T7geWQneVpSPoyhJWtzoN+xQ0QMybVOK6u5VAnC8oyBRaxo8x1YKdqb85ch92LMkzuil3fQGiy6Kh6PTKi40mwChH+qg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733862720; c=relaxed/simple;
-	bh=WrfF3ihMgm7HLbBCTJxw/Qkq++9KZ890JxylLd2D9wI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iK9tPZJbjONfCahvB//sWOxN7fYdTrqNdZHFV2ToAUp99YWtNvSuySnM1lotpVPvCyyyJw78Fkc43+eNaMKBDgmK6RBiiab7AusqOz/fzhj/jEbZQSLttdFn3Z4azxijgUG4Sutz/tP0tFFXMZcdkqWwXv/z7to8kT7/YL6VwCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KL4k9T6s; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aa680fafb3eso36346066b.3;
-        Tue, 10 Dec 2024 12:31:58 -0800 (PST)
+	s=arc-20240116; t=1733863025; c=relaxed/simple;
+	bh=0fQX49mSHPQYrzA8Z31PEJhbNQ8oFJAfOm9cbO8QOh0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sYl5+F7G7uVftgPLZShgGHmWQ7YX4CxEjzNmbR6yQxB3HDCEtppymVNTIIt/ecQgYAMzmfFky8YvYY1npwHPxprnJdd6O1K+WMbnJ06VdZm5iijg5euP6dNrtxnz9BpBuqt7WtiYf8t+WoCjOZHSOA26nWBVRDGirwJyMtnVPUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LuabywJN; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aa6a92f863cso166501166b.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 12:37:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733862717; x=1734467517; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=WrfF3ihMgm7HLbBCTJxw/Qkq++9KZ890JxylLd2D9wI=;
-        b=KL4k9T6slCbrbmlu4HIdDBaYdiwhmrc/twJa7tpVFBdGWB8a+0JgTiurl2f6McyBkB
-         bzQXpakWmPFBt+A5bpqSEYIjZ0N1Ex/ZzdvULHIx49mj7CVYCbu1oT0u2nP9IUmW8ivD
-         i8IyQsqG9/fP0TlmgJKcTBokDUzZSdqO2iJaMLKOYmMje+1nERV4GrQ6ySvk/79AcKYU
-         40Pu7mlpB9lpDIUH2pXuvT9cCa8TMvxmigys2Dsg4LWNVevG2oRhC18J/6gLSfJ1NwHF
-         x2H6V3c990bLRCOOIFanilSUYaYkoTVnT12QHuT528c1HCdGPxQQrPVAY/7XW55R88uq
-         /TFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733862717; x=1734467517;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1733863022; x=1734467822; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WrfF3ihMgm7HLbBCTJxw/Qkq++9KZ890JxylLd2D9wI=;
-        b=JS/LaE9mMkS4jPoMa3dw9Kov3xHoDL+RlWNevy0wP5w0a/CGgMdX0/JskwiDkrkFFi
-         wOm7crEjBYDMLdKIbM7URUUbdqF9lZNN9roQYKMi2Rfoan0zQE/lyjGV/MhnQwpVIR1T
-         /ElH0B7tOckgwas0r+MsHX7R9x7ZF1UjBr8MOmDBXT9Mde0zMdGhMitXOrjwvhoY99UC
-         zTzgFWMIQTXyXpw1BfbqCZOqF7lCj4bRuJze9+B9/ffI6fzNK/mOZUpf+dSUyefAS1i5
-         O/3eX8a0t0ikcJPBpQmtqd4vBLBXE/teWJViWCmLc1VOc0LzunsdIP8iuBOXBPjLhlwh
-         4X6g==
-X-Forwarded-Encrypted: i=1; AJvYcCV3Dx5e0taRRSblwHBUrH+1oDAZIlc6gJ0I8nkeHFxyWOAqPHwnkzXXOCVmPs6r6i2U6P41b3Kpolnq8gc/@vger.kernel.org, AJvYcCWg+8BBJzpUiJl+JwxNKwSIm6MCc6m81TLnWPpUiBZkXPQRTRZjqCKFK4r6X3Ghfz4X7d9/Fsfa31NY@vger.kernel.org, AJvYcCWx254WCKdmRVFeYHgu6qow8WdSFm5tRLwRlVIvlvNU/YAjL6eKfepEbV2uJHUJMKSTv/UHXLpj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIWzSdWOF6CqKZkzZ4aKIi4pkWvTZ0ympDBYctKg7G0Ljyw+ZK
-	C/Mpd1hvXpWCfTM+CLFHF7x+Tx693cnb8yJ4m0PoFRhsMfNzib3F
-X-Gm-Gg: ASbGncs7U8oL5TTmrVIMFZtuoeorIvSaOcufVfYJAT+o9BFHz7E/aFbjuTuQ+EW26kt
-	9qAHyv0p4sepTtno4nHIzluA1ppUITE+TS77AD7UbVUyEzQbyxVFxq9GXA9NmC825fG4DDTazLa
-	X9F+MPDwuppDuaBUpMjWRoDPjiHGzgE+4lkDWokNhcuSXjJq78ImMVyUpu8PkLrgG7PDtXs9loV
-	KE5VmstLVOa309POmt6+Kdz4SWJq7Fs48sCIfYCjw==
-X-Google-Smtp-Source: AGHT+IGLd9lb1MnTFb9FekQ5wROKKkUzu6IDM0uQo95hunfTcUvUs+mTTcbU+ECnXxVHJ4JQmDDN5A==
-X-Received: by 2002:a17:907:a08a:b0:aa6:6792:8bce with SMTP id a640c23a62f3a-aa6b10ece1emr7547866b.3.1733862717125;
-        Tue, 10 Dec 2024 12:31:57 -0800 (PST)
-Received: from skbuf ([86.127.124.81])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa671f14766sm489524966b.169.2024.12.10.12.31.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 12:31:56 -0800 (PST)
-Date: Tue, 10 Dec 2024 22:31:48 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH v9 3/4] net: dsa: Add Airoha AN8855 5-Port
- Gigabit DSA Switch driver
-Message-ID: <20241210203148.2lw5zwldazmwr2rn@skbuf>
-References: <20241205145142.29278-4-ansuelsmth@gmail.com>
- <20241205162759.pm3iz42bhdsvukfm@skbuf>
- <6751e023.5d0a0220.394b90.7bc9@mx.google.com>
- <6751e023.5d0a0220.394b90.7bc9@mx.google.com>
- <20241205180539.6t5iz2m3wjjwyxp3@skbuf>
- <6751f125.5d0a0220.255b79.7be0@mx.google.com>
- <20241205185037.g6cqejgad5jamj7r@skbuf>
- <675200c3.7b0a0220.236ac3.9edf@mx.google.com>
- <20241205235709.pa5shi7mh26cnjhn@skbuf>
- <67543b6f.df0a0220.3bd32.6d5d@mx.google.com>
+        bh=zn4VZjCebgcs43D4JwNn5+c65Hi6gGT2rIBjaMw3GPQ=;
+        b=LuabywJN8jBkE/zSeMixqqnREhLRL/DAC9oGA2N6BEDh6Nbu+LLmD2pj8R1vRaZiLu
+         JrVfnJR0gCfqNB+Y21fm+0FORNBncEuPb2yqYr3lFuH7EIXHEOdEO/o2hdb6cLSo9F9K
+         zVKUYNVs5PeifzUnmz6prTLwStUMvhF3PCeVZlXhTv4WivMOcofDgMBO0iF8EXV5fRl8
+         FkksjkpYJNZXebcJoAoIOWj3dyZ9zdwrUV9yoUxpcy515pisHmcA5uM8Sn0E36wCeEj3
+         6esjjrJg1Kd59pElCyGtAwQVIRfDBtRnLc052DzqHsE8wIaRbq9+BHMGTWRo5K5/EfOb
+         XBcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733863022; x=1734467822;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zn4VZjCebgcs43D4JwNn5+c65Hi6gGT2rIBjaMw3GPQ=;
+        b=CUbKU1agczO30bqBRuVfjhZGzYjHPOuDDx2nkO1tin6qOZGtvyU50JehGzBU7Wmc4N
+         pf0Xq+BRmJ2FR2a+YN7cR155+zbzdTy1+ewljIGl69/QC0/N2qvC+PnNMLVogf1u16NU
+         bQ+KIT4+gDSlCz618lqaiQbiEzzS8IjiRTbdOAxqGlLXRZtZIE0EIj9Z+E8ig3G2iZy4
+         LMrdccOnX/V+T/b0t2veVlFgsG06MADKyzzBBk0bBMdWCQsr8t98jDjgFg//2hKwZE6Y
+         ToU6KMJI1NDNjaQf8NdmXDEypcOw0yCQPpOLZsribEY2ZTlPoHY6XWOeUvwg0CGX2z+w
+         mCpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVJ44WlMiI+bbXv4GhZgZrhUnVTKAUWm7Wwp5BG0ugOSU1sbOHvdGHrfmYVCpqY/3mYss/qG2tkE4op@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpRC2+NgN2qkkDS3Jp7q6tBaXqPnKB+9f6JcpjqNmrG72DatUe
+	WbvTA5Vv0qEIoR/0cNFZXZZQCQzOUyr3KqVNMPd0HlSixg5hTBjhX+CaWlT5mKHVSJmCtTkZ6WD
+	UhRPApvjL2q4omZHYlXYMuYxYsOq+PyrNuIvWQw==
+X-Gm-Gg: ASbGncuoVLDX4xzkVaNxHu0OMANTzVJJG5nihOaLeyLM26T7OPTxhuzagLoG2mKXkyy
+	lKvORZ9TLR21OQJYvoywnAtMhVANZfpBJyss=
+X-Google-Smtp-Source: AGHT+IGWUXD7IWZ/eeOLyw9PNNJAuQCg5LPrjaY10z82+Km24i2uSdLaLZdXA6A5BFJA17MApH7HCIysDMV+DYBFD2w=
+X-Received: by 2002:a17:907:7703:b0:aa6:74a9:ce6e with SMTP id
+ a640c23a62f3a-aa6b1179ab6mr16738566b.16.1733863021774; Tue, 10 Dec 2024
+ 12:37:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <67543b6f.df0a0220.3bd32.6d5d@mx.google.com>
+References: <20241210-qcom-video-iris-v8-0-42c5403cb1a3@quicinc.com>
+In-Reply-To: <20241210-qcom-video-iris-v8-0-42c5403cb1a3@quicinc.com>
+From: Stefan Schmidt <stefan.schmidt@linaro.org>
+Date: Tue, 10 Dec 2024 21:36:51 +0100
+Message-ID: <CAEvtbuubfZq2jtoUesrmitStAyXy3HJXqvdYQYO=BA8L-1eHTA@mail.gmail.com>
+Subject: Re: [PATCH v8 00/28] Qualcomm iris video decoder driver
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Cc: Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sebastian Fricke <sebastian.fricke@collabora.com>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Vedang Nagar <quic_vnagar@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Dec 07, 2024 at 01:11:23PM +0100, Christian Marangi wrote:
-> I finished testing and this works, I'm not using mdio-parent-bus tho as
-> the mdio-mux driver seems overkill for the task and problematic for PAGE
-> handling. (mdio-mux doesn't provide a way to give the current addr that
-> is being accessed)
+Hello Dikshita,
 
-The use of mdio-parent-bus doesn't necessarily imply an mdio-mux. For
-example, you'll also see it used in net/dsa/microchip,ksz.yaml.
+On Tue, 10 Dec 2024 at 12:05, Dikshita Agarwal
+<quic_dikshita@quicinc.com> wrote:
+>
+> Introduce support for Qualcomm new video acceleration hardware i.e.
+> iris, used for video stream decoding.
+>
+> Iris is a multi pipe based hardware that offloads video stream decoding
+> from the application processor (AP). It supports H.264 decoding. The AP
+> communicates with hardware through a well defined protocol, called as
+> host firmware interface (HFI), which provides fine-grained and
+> asynchronous control over individual hardware features.
+>
+> This driver implements upgraded HFI gen2 to communicate with firmware.
+> It supports SM8550 which is based out of HFI gen 2. It also supports
+> SM8250 which is based out of HFI gen1.
+>
+> This driver comes with below capabilities:
+> - V4L2 complaint video driver with M2M and STREAMING capability.
+> - Supports H264 decoder.
+>
+> This driver comes with below features:
+> - Centralized resource management.
+> - Centralized management of core and instance states.
+> - Defines platform specific capabilities and features. As a results, it
+>   provides a single point of control to enable/disable a given feature
+>   depending on specific platform capabilities.
+> - Handles various video recommended sequences, like DRC, Drain, Seek,
+>   EOS.
+> - Implements asynchronous communication with hardware to achieve better
+>   experience in low latency usecases.
+> - Output and capture planes are controlled independently. Thereby
+>   providing a way to reconfigure individual plane.
+> - Native hardware support of LAST flag which is mandatory to align with
+>   port reconfiguration and DRAIN sequence as per V4L guidelines.
 
-You say this switch is also accessible over I2C. How are the internal
-PHYs accessed in that case? Still over MDIO? If so, it would be nice to
-have a unified scheme for both I2C-controlled switch and MDIO-controlled
-switch, which is something that mdio-parent-bus would permit.
+[...]
+
+>
+> To: Vikash Garodia <quic_vgarodia@quicinc.com>
+> To: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> To: Mauro Carvalho Chehab <mchehab@kernel.org>
+> To: Rob Herring <robh@kernel.org>
+> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> To: Conor Dooley <conor+dt@kernel.org>
+> To: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Hans Verkuil <hverkuil@xs4all.nl>
+> Cc: Sebastian Fricke <sebastian.fricke@collabora.com>
+> Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Nicolas Dufresne <nicolas@ndufresne.ca>
+> Cc: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com>
+> Cc: Jianhua Lu <lujianhua000@gmail.com>
+> Cc: Stefan Schmidt <stefan.schmidt@linaro.org>
+> Cc: linux-media@vger.kernel.org
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+>
+> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+
+With my few pending questions and remarks taken into account you can add my
+
+Tested-by: Stefan Schmidt <stefan.schmidt@linaro.org> # x1e80100 (Dell
+XPS 13 9345)
+Reviewed-by: Stefan Schmidt <stefan.schmidt@linaro.org>
+
+for the full series.
+
+regards
+Stefan Schmidt
 
