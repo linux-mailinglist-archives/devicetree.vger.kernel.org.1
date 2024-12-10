@@ -1,153 +1,125 @@
-Return-Path: <devicetree+bounces-129204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 075779EAECE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:57:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF3359EAED4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:58:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E87F7188A15F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:57:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA135162157
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:58:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD982153D2;
-	Tue, 10 Dec 2024 10:55:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABEDA1DC9AE;
+	Tue, 10 Dec 2024 10:57:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Hc7oKrvn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KR1TZpjQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25C02080D0
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:55:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BEF7E575
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:57:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733828149; cv=none; b=XfbK1P0Lv4EMzFQ5GUl1Yl+gQy4coVfOE4KEf+M8POjOD02zjdgAI8fJiArvWxF+VId1X71EafyDJxvf45UmiGCdbie4LWgy8vTU723nU73Jy91Tfph30BbJASaY3ba9ndxvKdWfcbIHhlD6N6GFTnWCZc3xM7QkColFgP+nWbE=
+	t=1733828238; cv=none; b=dYGYoeFu+sbRysyuhrU6eDnZb/1pabQwko+hQZD7/M/AeNq0pmW+JKvEb4VCMB/DYT4uX5zGRxW7G2M514pt6KAQT1dhCKsc+egAPFktKav0ErMEiDrCQbz1CiC8c3QPDbIu3Vs3KzG3AV51kLovDb40isMfzEFom/Ol69x31So=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733828149; c=relaxed/simple;
-	bh=dfXHaZApg1kAp8ngob6EwNugQ82l0HdC7g+rjbDHgZQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jqoIoLK9f+F54so1Gu3QPC60FC93x43NwEdR4QqwKD5whOJVNvyMO6/VX8glTenrheubK7rx6N3z73c1xraCgMU8BT80rd0ex2VRCpz+5mGB438uvkzAwNa64kiQ0K1j1s5fjaBsxmol49yFTLFBWa1SEPPVXonE0SoDH4FfRiA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Hc7oKrvn; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-385f07cd1a4so3650862f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 02:55:47 -0800 (PST)
+	s=arc-20240116; t=1733828238; c=relaxed/simple;
+	bh=kAMlmXdMZNLuk3Hd0o85Nl1h1rX8fxVktadoMv00Pc4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=g9xUaLXKtqpUSAmcZbDD+939FBoAHEsetrn7uUUC9EpvDed38z8BQv+aRw1q5hpN7hm7Fem4Cbbayy8B8z1yy0sEOhPapqhtIkOgSOCnvy7h8BUcivC2igRWzmdFRLDejtqhpupcNtQskpmQWOYq+St7FA6Xg/CsUGpZrvf1Nwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KR1TZpjQ; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-21680814d42so292265ad.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 02:57:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1733828146; x=1734432946; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dfXHaZApg1kAp8ngob6EwNugQ82l0HdC7g+rjbDHgZQ=;
-        b=Hc7oKrvnBTfMx1RQpq+fCnTOZlg0i9ATA2CqHmUpeNxhieXk7wOk9Gw3Ri3lgcrH+s
-         /1wVD0iUIYF9oBI7ILjegYUwaWkPvNYqvZFCQFrudjwxLo2botBNKIB+XBcwzjO8jnwl
-         2L9YRaN1+t7i/l6kZQExjq8S5kMyxGn+GDnsrJmReDJpkaico/uZvHDhkfV+F0rlfJOI
-         cKSHFp1QDOyYi1VSjIxzR0b536+8Gh5K9Ug8n3mwzid0pfsouG3yKTdBSQjywmlyOgt2
-         eE+RyOoMy/4VBvQIsU9HlfDwobRVFBlhw3qeRoujWLWo9mECA2ygXCyAWtjDT0ht1AeW
-         iULw==
+        d=gmail.com; s=20230601; t=1733828236; x=1734433036; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zgUCdWpblI3F1DgOMBM4UZ2prMSNQGxKSsUtwrt9A+E=;
+        b=KR1TZpjQCpvVstxcf548uVteaKPU6dYBGm64k+XcGQuUDLjKI9sH1bhAUaioWeB+U8
+         8xE0qsEWXfnlswmsB+O7UghV/MthiDlrKRe41GA8wIMmRiWPLCkc+dnEKdezyhwJyzyC
+         S9yjFHtn+c9PPhgcJ45Dt80MrJOfO4tJRjGvfsHspyD0LqAKj6uY3jFz9fGuw08pdYpH
+         flZVCR9Vj593Wx+cN0HltOmGObkrfPfd2OW4dgsy7GvfJr2hxCK8Bl7+TMWLt6s6uGxw
+         2jGSM4AY1zCOiGkaD7g4f7I5InlihcQ2HMC+WYBVsT/EXJRkAaWPdjlUAHR9raMbZ2iL
+         sSXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733828146; x=1734432946;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dfXHaZApg1kAp8ngob6EwNugQ82l0HdC7g+rjbDHgZQ=;
-        b=klUkdqGBwmP3Hmfa9Z2vs4ZHlg2/B89sgA/GnOANpj42oCfsr2cY5VguFXLwVHtiCo
-         zgEZ39cl2+FgYZZHQQGhoorhT6QLxvi2B+mvw8egPWQCDXikEM0YS+kL780hm5IgKbNO
-         oDTMY3AxiiWRV2jU4t+M92BT40iX4BBsEQOiF4LtTHaRtDwni7AWED/k0Hf7OKKTj7sD
-         jShJNdSCPXqkDXiJbiVyO3YdcvRO5Ge6Oo2FyBYjGf87DNpPdfv/V/cum9Z2yzpJq3jl
-         2bJdnJnpMP1Va1W4+U8/tnDbZIiKsNHMeorRYQRL5ds09M74lFuQOwLxykNfADlC+gG4
-         qVMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUJ9ocXjWyXaL4MKBXTYsBVrVy8Iws6h0780tqT4syeCDcws9QIMY6GqwNRayg+4onCKsYkwlbYfw/3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzrq8rTM+bfiR9kn1rpDHU7a1jSmU+yOkOb0ITiZOthkzsYExFH
-	xEildK7jPRDkoRRPEaVDLhs84GRrWZ+Fxb51iv9hcNqb+U//hcqAJd3S5hwYC6sdKUyONCslRlT
-	T028SazY208LF7S5nog49pm3JEG5MNrWDQ/9C
-X-Gm-Gg: ASbGnctt4CGZ4nHHbIigpLmypsLl+yrHZWmSzWf8tDmZ6XRL7iKE1G/T5sUKi7Neq8o
-	VcpfmQwz74IH7z9yUPMAijUTbHbqCNgJRuHRl43tEZDNkxx0GMY0oNEkca0Vjw5Dr9g==
-X-Google-Smtp-Source: AGHT+IG0Y9INJmMgnj5Aq1qmzA2XI8kCQB+a+xINu5oEbG4VnKvTmmuaC9cO2DZywjG71233iorWGqYcrsutxnOfz+M=
-X-Received: by 2002:a5d:64c6:0:b0:386:3213:5b9b with SMTP id
- ffacd0b85a97d-38632136068mr10993724f8f.43.1733828145989; Tue, 10 Dec 2024
- 02:55:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733828236; x=1734433036;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zgUCdWpblI3F1DgOMBM4UZ2prMSNQGxKSsUtwrt9A+E=;
+        b=S3tbHVisib0ZgaMwGaHejfaQ/1upBdvDrVslDUti1oOh3rVdw1M6pD/p1fnI4dkA9z
+         rcRDPi6Lw1RyYy1tqvk4vLtJAst+O+fYSq2csTC/UE4V4OuKQvQwMjWbHtPQEf8eIJhr
+         PigdrF7/laj/BR8j1UQ0HX9f5SBKV7GwIiRXcOZtWiAdEwrKInrIMSc2sE5jj0awOFJq
+         iLUi/3yZxrSBE33QjZZ7bT+IM9kc3+CAZaKAByv6XxSDN9P2redyhbOQClZafSaK9DpO
+         MAcqo5CGoRsVxSnTnAJrMOCn3JLq7ZEOdi5aE3IG9gy7DThEx/lHc6jMRMhC/54XOD+v
+         91PQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVfu702VE7cGgdm74ZyNH8L0sl7/5+STtUGTZTjcO9I6lSMTcqvFsL9R0YYqYm33heS8lohUU34aaEr@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZ9f0GH7rqfX6wYr63PGI8ldi2bgVH0l7k8PfCvq3mkMgLJOxW
+	i1GqELg9SXa5NBxYYtVHx0NfCus62lR9dK3k1FGJTOo6uQ62/6oz
+X-Gm-Gg: ASbGncujZWEPfYIWO4mbILaGWyszJf7PswF1raVuvRavr2a2/z+Hg6UajCUTvzp5Pse
+	JsxNER3xyXHyT5IEvU2l3PHMokJ8uwCFGFZVGHUL4Hep2MdIlio9vJTTapIraT+j1LPGZDEP0F9
+	XirosQ1YD3FIxNQVKeLgQ+NQAAjNu/LVMy0IRnx8+qIoyl89RMmDPHvvdbrweHRhs3LYiAdqBYo
+	vWLFO6+3OPE214OeKy5A4cDCqg9HNFZOJQkL7mVL/ij0ckQVth+/jj4xbP/PA7f6J0f
+X-Google-Smtp-Source: AGHT+IFZS+CwL6DlemunV0X7hNvE9zPcFuht9fokHFareRkZRku0/80LFiQQ4eLAdXdtO7akoWhD/A==
+X-Received: by 2002:a17:902:e809:b0:215:8dd3:536a with SMTP id d9443c01a7336-21669f9985emr60165085ad.4.1733828236463;
+        Tue, 10 Dec 2024 02:57:16 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:23ed:f795:ef82:746f])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21615b1e6d6sm71068955ad.104.2024.12.10.02.57.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 02:57:15 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: neil.armstrong@linaro.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2 1/2] dt-bindings: display: panel-lvds: Add compatible for AUO G084SN05 V9
+Date: Tue, 10 Dec 2024 07:57:04 -0300
+Message-Id: <20241210105705.116116-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241205141533.111830-1-dakr@kernel.org> <20241205141533.111830-9-dakr@kernel.org>
- <CAH5fLgh6qgQ=SBn17biSRbqO8pNtSEq=5fDY3iuGzbuf2Aqjeg@mail.gmail.com> <Z1bKA5efDYxd8sTC@pollux.localdomain>
-In-Reply-To: <Z1bKA5efDYxd8sTC@pollux.localdomain>
-From: Alice Ryhl <aliceryhl@google.com>
-Date: Tue, 10 Dec 2024 11:55:33 +0100
-Message-ID: <CAH5fLgixvBWSf-3WDRj=Mxtn4ArQLqdKqMF0aSxyC6xVNPfTFQ@mail.gmail.com>
-Subject: Re: [PATCH v4 08/13] rust: pci: add basic PCI device / driver abstractions
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
-	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com, 
-	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com, 
-	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
-	daniel.almeida@collabora.com, saravanak@google.com, dirk.behme@de.bosch.com, 
-	j@jannau.net, fabien.parent@linaro.org, chrisi.schrefl@gmail.com, 
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, Dec 9, 2024 at 11:44=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> =
-wrote:
->
-> On Fri, Dec 06, 2024 at 03:01:18PM +0100, Alice Ryhl wrote:
-> > On Thu, Dec 5, 2024 at 3:16=E2=80=AFPM Danilo Krummrich <dakr@kernel.or=
-g> wrote:
-> > >
-> > > Implement the basic PCI abstractions required to write a basic PCI
-> > > driver. This includes the following data structures:
-> > >
-> > > The `pci::Driver` trait represents the interface to the driver and
-> > > provides `pci::Driver::probe` for the driver to implement.
-> > >
-> > > The `pci::Device` abstraction represents a `struct pci_dev` and provi=
-des
-> > > abstractions for common functions, such as `pci::Device::set_master`.
-> > >
-> > > In order to provide the PCI specific parts to a generic
-> > > `driver::Registration` the `driver::RegistrationOps` trait is impleme=
-nted
-> > > by `pci::Adapter`.
-> > >
-> > > `pci::DeviceId` implements PCI device IDs based on the generic
-> > > `device_id::RawDevceId` abstraction.
-> > >
-> > > Co-developed-by: FUJITA Tomonori <fujita.tomonori@gmail.com>
-> > > Signed-off-by: FUJITA Tomonori <fujita.tomonori@gmail.com>
-> > > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> >
-> > > +/// The PCI device representation.
-> > > +///
-> > > +/// A PCI device is based on an always reference counted `device:Dev=
-ice` instance. Cloning a PCI
-> > > +/// device, hence, also increments the base device' reference count.
-> > > +#[derive(Clone)]
-> > > +pub struct Device(ARef<device::Device>);
-> >
-> > It seems more natural for this to be a wrapper around
-> > `Opaque<bindings::pci_dev>`. Then you can have both &Device and
-> > ARef<Device> depending on whether you want to hold a refcount or not.
->
-> Yeah, but then every bus device has to re-implement the refcount dance we
-> already have in `device::Device` for the underlying base `struct device`.
->
-> I forgot to mention this in my previous reply to Boqun, but we even docum=
-ented
-> it this way in `device::Device` [1].
->
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr=
-ee/rust/kernel/device.rs#n28
+From: Fabio Estevam <festevam@denx.de>
 
-We could perhaps write a derive macro for AlwaysRefCounted that
-delegates to the inner type? That way, we can have the best of both
-worlds.
+The AUO G084SN05 V9 is an 8.4" 800x600 LVDS display.
 
-Alice
+Add a compatible entry for this LVDS display model.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Changes since v1:
+- Added devicetree@vger.kernel.org on Cc.
+
+ Documentation/devicetree/bindings/display/panel/panel-lvds.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
+index 5af2d6930075..fcb5834f799a 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
+@@ -42,6 +42,8 @@ properties:
+           # Admatec 9904379 10.1" 1024x600 LVDS panel
+           - admatec,9904379
+           - auo,b101ew05
++          # AUO G084SN05 V9 8.4" 800x600 LVDS panel
++          - auo,g084sn05
+           # Chunghwa Picture Tubes Ltd. 7" WXGA (800x1280) TFT LCD LVDS panel
+           - chunghwa,claa070wp03xg
+           # EDT ETML0700Z9NDHA 7.0" WSVGA (1024x600) color TFT LCD LVDS panel
+-- 
+2.34.1
+
 
