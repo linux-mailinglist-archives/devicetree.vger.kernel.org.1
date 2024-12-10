@@ -1,120 +1,216 @@
-Return-Path: <devicetree+bounces-129285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E339EB188
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:02:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A7D89EB198
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:04:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7FBB2188311E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:02:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE03D16C15F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2F71A9B5E;
-	Tue, 10 Dec 2024 13:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82CAC1A0B15;
+	Tue, 10 Dec 2024 13:01:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="myzlr3nP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gam0r8F7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 986A51B3938;
-	Tue, 10 Dec 2024 13:00:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B4C91A2C27;
+	Tue, 10 Dec 2024 13:01:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733835643; cv=none; b=bDgtvgIfoTcWxK1wjxihTLoZmbwVk+kv67DyDB/3Yyim22vUoMti4EBhzP5u19jqdRAcDecO0SKJp3EjVvtdHSfnfTFTGXpVGsmBREcSu6PD5lDwmNoLKI8bq5rkzvhZPpvymbeYiVEwVG73daBLyplBkUfl+Wy+xSYnV8+IQCI=
+	t=1733835693; cv=none; b=ovh2/khS+VRduecJjBFUB4Mc/k0NqPcTcGLGQvdajaXH4U4FUrMuW6MFHgqG8T/UzAw6eilH6UcGjJ9LGi+DCMk9vuzqaOEJX8YCzPM8LLa2jxn9efbxZpbP3eFdK4mKINFsMjYKMZ22+Y6Vb7KjglMSLqrSJibukigOCvKVzPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733835643; c=relaxed/simple;
-	bh=7G7GfT4yW3zCpkGqBz2K23Qi2P4CWzTVgsILI8yLq8o=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=sgAeHDvPxsSUZEiJ868zvQllQf3PcpYo+TNnSGV3bn9p3QuoBj/2VhBZwRFkblvJ4WDF9jL5VRtrtMh8HeC8GTnNuXFg4JLJO/8oIPmGa9pbSAWDbk4WUTsK4uzZPbHj48+6yqfcmHxtUP76GUK0cYwmHF2tsQmHlwf/k/AYbeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=myzlr3nP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F094C4CED6;
-	Tue, 10 Dec 2024 13:00:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733835643;
-	bh=7G7GfT4yW3zCpkGqBz2K23Qi2P4CWzTVgsILI8yLq8o=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=myzlr3nPEt0OthL5kbLhQpwnV1PTKaxRgW/URgQv9tsEAswweBdDjRnp/JLpdKFQv
-	 NpuCNUSbgDe/ylBd3hJQOZX7mr1OUADsFxFpqpD9nconhWgOF8PM1B62JF/Qj/lL61
-	 9KWWTX7sG2RGT1FBZcm0A7x8h7PERX+1KNPQYtSFxlnMdC6kU+Qtzs3KrSu5vx30+K
-	 vNPVYdgLeP7lG/9usdwAANSRVOgc9BtBFLdFRgJ0kCa0qJczFsVl11NXeeEFI9scWJ
-	 0NqKiGfxmI6Q3DOcxh78TYm2eUAmoFQia9AHIlHpHCk+EMjhAbc+xUa77jgCGapUul
-	 YKrUaxWuPfctw==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-Cc: quic_mohamull@quicinc.com, quic_hbandi@quicinc.com, 
- quic_anubhavg@quicinc.com, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
- linux-pm@vger.kernel.org
-In-Reply-To: <20241209103455.9675-1-quic_janathot@quicinc.com>
-References: <20241209103455.9675-1-quic_janathot@quicinc.com>
-Subject: Re: (subset) [PATCH v5 0/4] Enable Bluetooth on qcs6490-rb3gen2
- board
-Message-Id: <173383563938.33920.16190333165637044320.b4-ty@kernel.org>
-Date: Tue, 10 Dec 2024 13:00:39 +0000
+	s=arc-20240116; t=1733835693; c=relaxed/simple;
+	bh=+1F7aJOJ1TMYq5pyz+fERh5c1C50Hm3OQbpLRtwiZtg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aauh8Gtrx+n70MHrQrGjIKAugkQK4EeUvt9wqCg7itO/H4T9mopk5kGwQKIl2fKEVBE91VqvSf88qdmFqywSTFbk9DZUHRPaDg/RHRGg+HbYA56ONDiwUH+gWTe3cSJYSxz5oSstSR3Ft/wy/pvyA8533oRhqBDxuKgmfjbKCI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gam0r8F7; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aa1e6ecd353so898568466b.1;
+        Tue, 10 Dec 2024 05:01:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733835690; x=1734440490; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bHLLYUb5aKmiYBywLpOydX2GHG7acjnCRadd5iwWBCE=;
+        b=gam0r8F7CCQRMZCqRoSuiOApBDYARPlei0qPcdfV4CdwCrUSMXlpQ+YrdrK75yMNUg
+         eR1FCNZi36Mjzj0UbeL5ChMD5TJeOc0TkAPUT9ANQvzqSlN0ZDesEuH8tLuDj0+u6kaP
+         DWf5acKGrGboQ2aT5z0CCFEU0qqiHqsT6fF+TdaEzOYqK4hF55pRF4dwzexbQUjr1BdQ
+         xcNDoCpYACnAoaaMbWwvW3Bfzixb8TnyjdBGhrE4amu82m57KsUn5KDAo7AmHy3FpBt7
+         uAKjNtnBcAXoABr92DoqFXO8anm2MvIHMD1VHqo9owtpHrY5GaGkr377Lz+dE3xBHP+s
+         THfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733835690; x=1734440490;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bHLLYUb5aKmiYBywLpOydX2GHG7acjnCRadd5iwWBCE=;
+        b=jVr2DRx2xMRo70AqCt+1OZhETnlbrEjoGb+M4VvDmO+GndEd6ynWbXDvmyF0rDuFWn
+         SeXCQH75G68AHD1G6mkbMZ0RONjyOLE7WeuZ2jNd8TCiIQu9LhYdimRgv7h8D0vcj3pX
+         GdvFf7A6GVmmAT8nmIpD8oVEyu6/CKSv3kyzT387GG3RV9WQH0+/p+HLHW5HiqgEMsVu
+         QRyAOgZUEeSAsIPlxN+6t5yEUEYUpAzAn1SF4WaQu2/35XjftxCNn37j/O5yq3XZBf/9
+         fCFqPVZ9pUYdU21kCIMjYAFBAxNflbiq5bcsv7AaFEfZZVDskP5+GsTCXJsP/iNRQPR8
+         Rcng==
+X-Forwarded-Encrypted: i=1; AJvYcCV4CbekqQFBx+EWphLDtSVTyd6iMmYIMLwu5A86Dmo8CE0inpED06GFz+9sFbr0VEm9mkdmwnGm6I63@vger.kernel.org, AJvYcCXU7bf1Bp7bzEyPj66SGflqhMAzMEswzPhcAMwNzI3w+xeN/6aGriHVTqR0aE67J3j+BvxUXdfLs1iPRsa8@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiR3snfUmrua8pa3o+pkPgfgJxGo8BgGRk5Aabh72D3GmVaowV
+	FLDOXkFln4BeP3Hl+4aaLQ6N/S65ED6iejHAblmFaIeCxlk38S+xo3MNkwqY+MOZjroy9nraB1n
+	+/46/YmOMGvwf/exY7WfrFAQ91lc=
+X-Gm-Gg: ASbGncsGfUXpFLn9Xqt5WF1zDrc/vJDaNOh0fG6Ul2CDoKTAtjVZmviuMUobz2qzrB3
+	kyaVByb3x62CpLCAue7mF42kSarYF4oFeczxtRpxEw78BYcQKEzrSbqohpNw=
+X-Google-Smtp-Source: AGHT+IE+3dBsg9ycaXlihQEkFOTl6FWUvTA1IQqCmYlgGVvNU9+J2ICqAS0Ely7TDkGOnJtbTgHRvmD88oh1lqiohSs=
+X-Received: by 2002:a05:6402:234f:b0:5d3:ba42:e9fa with SMTP id
+ 4fb4d7f45d1cf-5d41853edb2mr10277905a12.16.1733835688916; Tue, 10 Dec 2024
+ 05:01:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-9b746
+References: <20241210013010.81257-1-pgwipeout@gmail.com> <20241210013010.81257-6-pgwipeout@gmail.com>
+ <14451790.lVVuGzaMjS@diego>
+In-Reply-To: <14451790.lVVuGzaMjS@diego>
+From: Peter Geis <pgwipeout@gmail.com>
+Date: Tue, 10 Dec 2024 08:01:19 -0500
+Message-ID: <CAMdYzYquzAnwbUidBjif3OXOcLaGD+3GdB79Op94BCno2ZtBAQ@mail.gmail.com>
+Subject: Re: [PATCH 5/6] arm64: dts: rockchip: correct rk3328-roc regulator map
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: Conor Dooley <conor+dt@kernel.org>, Diederik de Haas <didi.debian@cknow.org>, 
+	Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Levin Du <djw@t-chip.com.cn>, Rob Herring <robh@kernel.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 09 Dec 2024 16:04:51 +0530, Janaki Ramaiah Thota wrote:
-> - Patch 1/4 Add description of the PMU of the WCN6750 module.
-> - Patch 2/4 add and enable BT node for qcs6490-rb3gen board.
-> - Patch 3/4 use the power sequencer for wcn6750.
-> - Patch 4/4 add support for the WCN6750 PMU.
-> 
-> ----
-> Changes from v4:
-> * Added reviewed tag by Krzysztof in p1
-> * Updated the p2 commit message with sw_ctrl and wifi-enable are
->   handled in wifi FW.
-> * Added blank line between the nodes in p2
-> * Placed the structures in proper order in p4
-> * Link to v4: https://lore.kernel.org/all/20241204131706.20791-1-quic_janathot@quicinc.com/
-> 
-> [...]
+On Tue, Dec 10, 2024 at 5:54=E2=80=AFAM Heiko St=C3=BCbner <heiko@sntech.de=
+> wrote:
+>
+> Am Dienstag, 10. Dezember 2024, 02:30:09 CET schrieb Peter Geis:
+> > The rk3328-roc-cc input power is sourced from a micro-usb port, while
+> > the rk3328-roc-pc input power is sourced from a usb-c port. Both inputs
+> > are 5vdc only. Remove the 12v input from the device tree.
+>
+> full stop. Please don't do "While we are at it" commits.
+>
+> > While we are at it, add missing voltages and supply to vcc_phy, missing
+> > voltages to vcc_host1_5v, and standardize the order of regulator
+> > properties among the fixed regulators.
+>
+> This second part wants to be its own commit :-) .
 
-Applied to
+Thank you, you're right I was torn between doing not enough and doing
+too much and ended up doing both. Thinking about it now this should be
+at least three patches:
+- Power input
+- Drop the phy regulator (it's directly tied to vcc_io, not a separate devi=
+ce)
+- Cosmetic changes.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+Thanks again!
+Peter
 
-Thanks!
-
-[1/4] regulator:·dt-bindings:·qcom,qca6390-pmu:·document wcn6750-pmu
-      commit: 8099b1f7e37e98f73664b883464d54e2e2d9522f
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+>
+> Thanks
+> Heiko
+>
+> > Fixes: 2171f4fdac06 ("arm64: dts: rockchip: add roc-rk3328-cc board")
+> > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> > ---
+> >
+> >  arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi | 23 +++++++++++++-------
+> >  1 file changed, 15 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi b/arch/arm64/=
+boot/dts/rockchip/rk3328-roc.dtsi
+> > index f782c8220dd3..6984387ff8b3 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+> > @@ -24,22 +24,23 @@ gmac_clkin: external-gmac-clock {
+> >               #clock-cells =3D <0>;
+> >       };
+> >
+> > -     dc_12v: regulator-dc-12v {
+> > +     /* fed from passive usb input connector */
+> > +     dc_5v: regulator-dc-5v {
+> >               compatible =3D "regulator-fixed";
+> > -             regulator-name =3D "dc_12v";
+> > +             regulator-name =3D "dc_5v";
+> >               regulator-always-on;
+> >               regulator-boot-on;
+> > -             regulator-min-microvolt =3D <12000000>;
+> > -             regulator-max-microvolt =3D <12000000>;
+> > +             regulator-min-microvolt =3D <5000000>;
+> > +             regulator-max-microvolt =3D <5000000>;
+> >       };
+> >
+> >       vcc_sd: regulator-sdmmc {
+> >               compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "vcc_sd";
+> >               gpio =3D <&gpio0 RK_PD6 GPIO_ACTIVE_LOW>;
+> >               pinctrl-names =3D "default";
+> >               pinctrl-0 =3D <&sdmmc0m1_pin>;
+> >               regulator-boot-on;
+> > -             regulator-name =3D "vcc_sd";
+> >               regulator-min-microvolt =3D <3300000>;
+> >               regulator-max-microvolt =3D <3300000>;
+> >               vin-supply =3D <&vcc_io>;
+> > @@ -50,22 +51,25 @@ vcc_sdio: regulator-sdmmcio {
+> >               states =3D <1800000 0x1>, <3300000 0x0>;
+> >               regulator-name =3D "vcc_sdio";
+> >               regulator-type =3D "voltage";
+> > +             regulator-always-on;
+> >               regulator-min-microvolt =3D <1800000>;
+> >               regulator-max-microvolt =3D <3300000>;
+> > -             regulator-always-on;
+> >               vin-supply =3D <&vcc_sys>;
+> >       };
+> >
+> >       vcc_host1_5v: vcc_otg_5v: regulator-vcc-host1-5v {
+> >               compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "vcc_host1_5v";
+> >               enable-active-high;
+> >               pinctrl-names =3D "default";
+> >               pinctrl-0 =3D <&usb20_host_drv>;
+> > -             regulator-name =3D "vcc_host1_5v";
+> >               regulator-always-on;
+> > +             regulator-min-microvolt =3D <5000000>;
+> > +             regulator-max-microvolt =3D <5000000>;
+> >               vin-supply =3D <&vcc_sys>;
+> >       };
+> >
+> > +     /* sourced from usb input through 3A fuse */
+> >       vcc_sys: regulator-vcc-sys {
+> >               compatible =3D "regulator-fixed";
+> >               regulator-name =3D "vcc_sys";
+> > @@ -73,7 +77,7 @@ vcc_sys: regulator-vcc-sys {
+> >               regulator-boot-on;
+> >               regulator-min-microvolt =3D <5000000>;
+> >               regulator-max-microvolt =3D <5000000>;
+> > -             vin-supply =3D <&dc_12v>;
+> > +             vin-supply =3D <&dc_5v>;
+> >       };
+> >
+> >       vcc_phy: regulator-vcc-phy {
+> > @@ -81,6 +85,9 @@ vcc_phy: regulator-vcc-phy {
+> >               regulator-name =3D "vcc_phy";
+> >               regulator-always-on;
+> >               regulator-boot-on;
+> > +             regulator-min-microvolt =3D <3300000>;
+> > +             regulator-max-microvolt =3D <3300000>;
+> > +             vin-supply =3D <&vcc_io>;
+> >       };
+> >
+> >       leds {
+> >
+>
+>
+>
+>
 
