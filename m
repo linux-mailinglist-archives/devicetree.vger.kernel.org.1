@@ -1,279 +1,116 @@
-Return-Path: <devicetree+bounces-129087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1CB59EAA02
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:47:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A64B9EAA2F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:02:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB0FA281B5F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 07:47:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FE64283930
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:02:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22DC322B8D3;
-	Tue, 10 Dec 2024 07:47:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5397114E2CC;
+	Tue, 10 Dec 2024 08:01:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="UvDwKrsE"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="BsEW4Zpc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D45EC172BD5;
-	Tue, 10 Dec 2024 07:47:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D5F04964F;
+	Tue, 10 Dec 2024 08:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733816828; cv=none; b=HJVvtSQHaxgWicjY03aDKJ6QFAAbnHl5okS+pDoa03UtXYKN+aN7OWn6knsIO6qgw1K6zklZ2TPJ37rYZdERp4tGJ2hDteWjKrEn1l+6p51r5b97CZxveTQmpiKbpG4pfJoumwVui5p9VZxudKoR9x7Go6NWATUDL0MNXSgXwOU=
+	t=1733817718; cv=none; b=P1kB/9Ba7jA2ef8aLx1c5Ov0rjUCprg0PjuLjb4PE+4QVk+IWTwxUHuJ646/JzYpUMnNuh4NTGq4WM9VnZGieC5SVjrfBJS0JO1zCgXMiB3iRioqiKgU9LYCZ1lsgmy0C5fne9ewrPccfAlt5guUVL396hAi9fpwZtcxHtpB1DE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733816828; c=relaxed/simple;
-	bh=F9fylD2jsc17wp8pFzXmIUwAs+7aQ7ODDoAVqLh4MZk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KfATqOvQ152TArEvSMlCD3EBWYXFBCrMGt0vDGhTEsah0kuBhn+HnRhVtQ/4xSX5yF+2V2ggihVfnJmEg/FGCqoi8JVq64wNarAM+BQZ8wtvgvJJjEUpt5rpeAQbhXipMYGY8X9W+D3ICCVkosHyrUWxw+W5gRflWfY9Xbm3tE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=UvDwKrsE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A94CDC4CED6;
-	Tue, 10 Dec 2024 07:47:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1733816826;
-	bh=F9fylD2jsc17wp8pFzXmIUwAs+7aQ7ODDoAVqLh4MZk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UvDwKrsEcogxDYdCEiglfx4I8jpqVva5uswZixExaMCN6z8b9XAoXq7X+Rlk2YfK/
-	 ESEMU0Bjq59A590tmXF2qEdEsHKeDO8unbNCHPNMfZSiz/DgXACn+PJNrnA6MBjGuv
-	 mlyQawat4Vkovncjl8PvGrXjE/jSe3nRSXBPiSQ0=
-Date: Tue, 10 Dec 2024 08:46:29 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Danilo Krummrich <dakr@kernel.org>, rafael@kernel.org,
-	bhelgaas@google.com, ojeda@kernel.org, alex.gaynor@gmail.com,
-	boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
-	benno.lossin@proton.me, tmgross@umich.edu, a.hindborg@samsung.com,
-	aliceryhl@google.com, airlied@gmail.com, fujita.tomonori@gmail.com,
-	lina@asahilina.net, pstanner@redhat.com, ajanulgu@redhat.com,
-	lyude@redhat.com, daniel.almeida@collabora.com,
-	saravanak@google.com, dirk.behme@de.bosch.com, j@jannau.net,
-	fabien.parent@linaro.org, chrisi.schrefl@gmail.com,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 12/13] rust: platform: add basic platform device /
- driver abstractions
-Message-ID: <2024121014-rage-sneak-1b25@gregkh>
-References: <20241205141533.111830-1-dakr@kernel.org>
- <20241205141533.111830-13-dakr@kernel.org>
- <20241209223706.GF938291-robh@kernel.org>
+	s=arc-20240116; t=1733817718; c=relaxed/simple;
+	bh=VvxFakbrl2WAmFaY+Eh05CMYewqVB4xjuQVUxDr5XcY=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=BkcZ1p449ps8Xobgi0pej2rkDhMSlbjV1zYw2VXm/VbAJSainR+odSjX/metmfKRksb8Ptdid7PiJq8pJLSgYnNwE159GljXApY/Ei+FHWyYtQQMfZhli+n+vWIId5ihj2XFE+j8D9RjS/4hLd1skzIP6FfI+GNU8S3W5jpewOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=BsEW4Zpc; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241209223706.GF938291-robh@kernel.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1733817714;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8GJywCfHdvdwHDP5uXNzefsQ0GJ0yUR4X2Zmb8a5Y6g=;
+	b=BsEW4Zpc7tYFRnA/eaiEQ3pYNQXqR0g71UhiABbge+ZG1g8Gc3Yi5Rd+DE0SxCB4hzsVjF
+	6eKOaixnFsoB8OUAYmXfkOG9/+xxvqtobm7vp7ca/5tXkpqaSrDNEMPV/Vi8MGe39ahPUm
+	qC5nTFVc0Vuyrd+5ycS1z6m+rHOIMcf3YtcfUMS4JFB5JWQdMb24AcViZQTjUNJN/GaSL5
+	/X4Z8W5X3/3gcM8GsVY/k5fSFFMyKBs5+tA1H17JatXHIRM6n3A8rYCY8bkUXvhdXePG1G
+	NEEvUIBJMSqDfrmyWQvKDrdA32lh2MVR1l61YeKmrZ+d7BT9ydUEbpQtTxiGIg==
+Date: Tue, 10 Dec 2024 09:01:53 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Peter Geis <pgwipeout@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>,
+ Diederik de Haas <didi.debian@cknow.org>, Johan Jonker <jbx6244@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 3/6] arm64: dts: rockchip: remove ethernet alias from
+ rk3328-roc
+In-Reply-To: <20241210013010.81257-4-pgwipeout@gmail.com>
+References: <20241210013010.81257-1-pgwipeout@gmail.com>
+ <20241210013010.81257-4-pgwipeout@gmail.com>
+Message-ID: <20693a7b7cb1aaed2c21b84fd57c4b72@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Mon, Dec 09, 2024 at 04:37:06PM -0600, Rob Herring wrote:
-> On Thu, Dec 05, 2024 at 03:14:43PM +0100, Danilo Krummrich wrote:
-> > Implement the basic platform bus abstractions required to write a basic
-> > platform driver. This includes the following data structures:
-> > 
-> > The `platform::Driver` trait represents the interface to the driver and
-> > provides `pci::Driver::probe` for the driver to implement.
-> > 
-> > The `platform::Device` abstraction represents a `struct platform_device`.
-> > 
-> > In order to provide the platform bus specific parts to a generic
-> > `driver::Registration` the `driver::RegistrationOps` trait is implemented
-> > by `platform::Adapter`.
-> > 
-> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> > ---
-> >  MAINTAINERS                     |   1 +
-> >  rust/bindings/bindings_helper.h |   2 +
-> >  rust/helpers/helpers.c          |   1 +
-> >  rust/helpers/platform.c         |  13 ++
-> >  rust/kernel/lib.rs              |   1 +
-> >  rust/kernel/platform.rs         | 222 ++++++++++++++++++++++++++++++++
-> >  6 files changed, 240 insertions(+)
-> >  create mode 100644 rust/helpers/platform.c
-> >  create mode 100644 rust/kernel/platform.rs
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 7d6bb4b15d2c..365fc48b7041 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -7034,6 +7034,7 @@ F:	rust/kernel/device.rs
-> >  F:	rust/kernel/device_id.rs
-> >  F:	rust/kernel/devres.rs
-> >  F:	rust/kernel/driver.rs
-> > +F:	rust/kernel/platform.rs
-> >  
-> >  DRIVERS FOR OMAP ADAPTIVE VOLTAGE SCALING (AVS)
-> >  M:	Nishanth Menon <nm@ti.com>
-> > diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
-> > index 6d7a68e2ecb7..e9fdceb568b8 100644
-> > --- a/rust/bindings/bindings_helper.h
-> > +++ b/rust/bindings/bindings_helper.h
-> > @@ -20,9 +20,11 @@
-> >  #include <linux/jump_label.h>
-> >  #include <linux/mdio.h>
-> >  #include <linux/miscdevice.h>
-> > +#include <linux/of_device.h>
-> >  #include <linux/pci.h>
-> >  #include <linux/phy.h>
-> >  #include <linux/pid_namespace.h>
-> > +#include <linux/platform_device.h>
-> >  #include <linux/poll.h>
-> >  #include <linux/refcount.h>
-> >  #include <linux/sched.h>
-> > diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-> > index 3fda33cd42d4..0640b7e115be 100644
-> > --- a/rust/helpers/helpers.c
-> > +++ b/rust/helpers/helpers.c
-> > @@ -20,6 +20,7 @@
-> >  #include "kunit.c"
-> >  #include "mutex.c"
-> >  #include "page.c"
-> > +#include "platform.c"
-> >  #include "pci.c"
-> >  #include "pid_namespace.c"
-> >  #include "rbtree.c"
-> > diff --git a/rust/helpers/platform.c b/rust/helpers/platform.c
-> > new file mode 100644
-> > index 000000000000..ab9b9f317301
-> > --- /dev/null
-> > +++ b/rust/helpers/platform.c
-> > @@ -0,0 +1,13 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +#include <linux/platform_device.h>
-> > +
-> > +void *rust_helper_platform_get_drvdata(const struct platform_device *pdev)
-> > +{
-> > +	return platform_get_drvdata(pdev);
-> > +}
-> > +
-> > +void rust_helper_platform_set_drvdata(struct platform_device *pdev, void *data)
-> > +{
-> > +	platform_set_drvdata(pdev, data);
-> > +}
-> > diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> > index 7a0e4c82ad0c..cc8f48aa162b 100644
-> > --- a/rust/kernel/lib.rs
-> > +++ b/rust/kernel/lib.rs
-> > @@ -59,6 +59,7 @@
-> >  pub mod of;
-> >  pub mod page;
-> >  pub mod pid_namespace;
-> > +pub mod platform;
-> >  pub mod prelude;
-> >  pub mod print;
-> >  pub mod rbtree;
-> > diff --git a/rust/kernel/platform.rs b/rust/kernel/platform.rs
-> > new file mode 100644
-> > index 000000000000..868cfddb75a2
-> > --- /dev/null
-> > +++ b/rust/kernel/platform.rs
-> > @@ -0,0 +1,222 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +//! Abstractions for the platform bus.
-> > +//!
-> > +//! C header: [`include/linux/platform_device.h`](srctree/include/linux/platform_device.h)
-> > +
-> > +use crate::{
-> > +    bindings, container_of, device, driver,
-> > +    error::{to_result, Result},
-> > +    of,
-> > +    prelude::*,
-> > +    str::CStr,
-> > +    types::{ARef, ForeignOwnable},
-> > +    ThisModule,
-> > +};
-> > +
-> > +/// An adapter for the registration of platform drivers.
-> > +pub struct Adapter<T: Driver>(T);
-> > +
-> > +impl<T: Driver + 'static> driver::RegistrationOps for Adapter<T> {
-> > +    type RegType = bindings::platform_driver;
-> > +
-> > +    fn register(
-> > +        pdrv: &mut Self::RegType,
-> > +        name: &'static CStr,
-> > +        module: &'static ThisModule,
-> > +    ) -> Result {
-> > +        pdrv.driver.name = name.as_char_ptr();
-> > +        pdrv.probe = Some(Self::probe_callback);
-> > +
-> > +        // Both members of this union are identical in data layout and semantics.
-> > +        pdrv.__bindgen_anon_1.remove = Some(Self::remove_callback);
-> > +        pdrv.driver.of_match_table = T::OF_ID_TABLE.as_ptr();
-> > +
-> > +        // SAFETY: `pdrv` is guaranteed to be a valid `RegType`.
-> > +        to_result(unsafe { bindings::__platform_driver_register(pdrv, module.0) })
-> > +    }
-> > +
-> > +    fn unregister(pdrv: &mut Self::RegType) {
-> > +        // SAFETY: `pdrv` is guaranteed to be a valid `RegType`.
-> > +        unsafe { bindings::platform_driver_unregister(pdrv) };
-> > +    }
-> > +}
-> > +
-> > +impl<T: Driver + 'static> Adapter<T> {
-> > +    #[cfg(CONFIG_OF)]
-> > +    fn of_id_info(pdev: &Device) -> Option<&'static T::IdInfo> {
-> > +        let table = T::OF_ID_TABLE;
-> > +
-> > +        // SAFETY:
-> > +        // - `table` has static lifetime, hence it's valid for read,
-> > +        // - `dev` is guaranteed to be valid while it's alive, and so is `pdev.as_ref().as_raw()`.
-> > +        let raw_id = unsafe { bindings::of_match_device(table.as_ptr(), pdev.as_ref().as_raw()) };
-> > +
-> > +        if raw_id.is_null() {
-> > +            None
-> > +        } else {
-> > +            // SAFETY: `DeviceId` is a `#[repr(transparent)` wrapper of `struct of_device_id` and
-> > +            // does not add additional invariants, so it's safe to transmute.
-> > +            let id = unsafe { &*raw_id.cast::<of::DeviceId>() };
-> > +
-> > +            Some(table.info(<of::DeviceId as crate::device_id::RawDeviceId>::index(id)))
-> > +        }
-> > +    }
-> > +
-> > +    #[cfg(not(CONFIG_OF))]
-> > +    fn of_id_info(_pdev: &Device) -> Option<&'static T::IdInfo> {
-> > +        None
-> > +    }
-> > +
-> > +    // Try to retrieve an `IdInfo` from any of the ID tables; if we can't find one for a particular
-> > +    // table, it means we don't have a match in there. If we don't match any of the ID tables, it
-> > +    // means we were matched by name.
-> > +    fn id_info(pdev: &Device) -> Option<&'static T::IdInfo> {
-> > +        let id = Self::of_id_info(pdev);
-> > +        if id.is_some() {
-> > +            return id;
-> > +        }
-> > +
-> > +        None
-> > +    }
+Hello Peter,
+
+On 2024-12-10 02:30, Peter Geis wrote:
+> Remove the ethernet alias added back in during the rk3328-roc dtsi
+> conversion.
+
+I just checked again the dtsi parent conversion I performed in
+the commit f3c6526d6fb2 ("arm64: dts: rockchip: Convert dts files
+used as parents to dtsi files"), and both rk3328-roc-cc.dts and
+rk3328-roc-pc.dts had the ethernet0 alias defined before the
+conversion.  Thus, the alias wasn't added back by mistake during
+the conversion, it was there before.
+
+Moreover, I don't see why would we want to delete the ethernet0
+alias(es) in the first place?  It's usual for Rockchip board dts
+files to have ethernetX aliases defined, and both ROC-RK3328-CC
+and ROC-RK3328-PC have their gmac2io DT nodes enabled, and the
+boards have wired Ethernet ports, so they should also have the
+ethernet0 alias(es) defined.
+
+Am I missing something?
+
+> Fixes: f3c6526d6fb2 ("arm64: dts: rockchip: Convert dts files used as
+> parents to dtsi files")
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> ---
 > 
-> These methods are going to have to be duplicated by every bus type which 
-> can do DT matching (and later ACPI). Can't this be moved to be part of 
-> the common Driver trait.
+>  arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
 > 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+> b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+> index b5bd5e7d5748..f782c8220dd3 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+> @@ -9,7 +9,6 @@
 > 
-> I'll say it again for Greg to comment (doubtful he will look at v3 
-> again). Really, I think we should also align the probe method interface 
-> across bus types. That means getting rid of the 'id' in the PCI probe 
-> (or add it for everyone). Most drivers never need it. The typical case 
-> is needing nothing or the matched data. In a quick scan[1], there's 
-> only a handful of cases. So I think probe should match the common 
-> scenario and make retrieving the id match explicit if needed.
-
-If there's a way for the probe callback to get access to the id that
-caused it to match, then it's fine with me to remove it.  But is that
-possible?  Many many drivers encode "stuff" in the id that the driver
-needs to know (quirks, functions, etc.)
-
-If that's not possible, then it needs to stay.
-
-thanks,
-
-greg k-h
+>  / {
+>  	aliases {
+> -		ethernet0 = &gmac2io;
+>  		mmc0 = &sdmmc;
+>  		mmc1 = &emmc;
+>  	};
 
