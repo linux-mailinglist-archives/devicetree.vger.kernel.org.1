@@ -1,187 +1,204 @@
-Return-Path: <devicetree+bounces-129371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 056A79EB722
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:52:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 285D59EB725
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:53:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7320165F6E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:52:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE3F718839DC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:53:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C8292343B9;
-	Tue, 10 Dec 2024 16:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6C8237A54;
+	Tue, 10 Dec 2024 16:52:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YArZUg0v"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="RRdDX4sV";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="TFGrJV/q";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="RRdDX4sV";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="TFGrJV/q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 399672343AA;
-	Tue, 10 Dec 2024 16:52:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 511AF2343CF;
+	Tue, 10 Dec 2024 16:52:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733849533; cv=none; b=gOkPGN5o6U3HQ0Mj5/Z+nxfPHN3G3hFaEF2+tIMei4qN8LQaDWZUqtsUm9jou3gjV9t6WPZt2iDiOq2gqOdmWXo5gQGzehzUU9XNgMHQ1yJ6VsBnWlArFJYi43ZcnITtsGWZdNePx0hwislIPtqEtkxipyzsaB4EOUn6bnrsCSM=
+	t=1733849538; cv=none; b=BAl76jn3sCwhnok8qDQ5+cz6/r+zq7KVKdveN4q/uaU9NgZr3G7z3McPnusx4kkejl4CHaKS1aMLuDQsZ5dgbyvwlmQJ0bwClnMbh4C9u/xUs5nOdRw8LhvO2h4C7PGNqNoi8Rr2XvDql5sKILRZcnq++fr5v7wZJmlHJ5/rRfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733849533; c=relaxed/simple;
-	bh=ktVrGTmpt3/F/GW41gzk3PL3sv/yG1zugRTt+gti1gU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zw3kz5lEgFfTcOet4warQ2UliLkgjTLpS68PPQMfACu9Id66ZuSlNcnZwTmk6/KSTYZeYcEeCbpYbav0YdXkwMnos67k4vgKd9QJb9snKaDFvoLpTXqnMEO3Mtg7UIxEdyaCUMyO9QFLG+vIgkshKo5kaD4nsQmQb10jDKfq7/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YArZUg0v; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733849533; x=1765385533;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ktVrGTmpt3/F/GW41gzk3PL3sv/yG1zugRTt+gti1gU=;
-  b=YArZUg0vDZaTJIZ5eK6qPo4VWg2CnSMWE5hBxcz5Z3C9PAoy88CBRQze
-   j4yKsWt5Gjy2bLV8LfeTEocCx+NCXnggfgjM41cU5jgu2NlBvbw7Yb+ri
-   5KZkvbIIQrYvHjiC7Ovs19vnMF/E5pwSXChAijeVqTA2JbK78DSjT/IW1
-   QQTEqRvBHZBUgOwvVv5u4utEGYy6J1Crx1BZhUBS78fGxThzcEGjlXUoV
-   QqYSXK+bjHOLT354GQcZSnOjT01yBoQ3IXw4b6lJ5emlKC9dcvd22JKLc
-   iLS1eKyqufqhTXt6vAvgqFO/RiTOmR8eSfSknVVjtqynUTwlFrmk8Hipq
-   Q==;
-X-CSE-ConnectionGUID: La1y43AtR9qXhyLtiLNAjA==
-X-CSE-MsgGUID: 1FrBPPYJSZ2AsgWmrt1Zsw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="37888690"
-X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; 
-   d="scan'208";a="37888690"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2024 08:52:12 -0800
-X-CSE-ConnectionGUID: 9LmtNp1cSwyu+lAo7cXK1g==
-X-CSE-MsgGUID: 7+Zp40k0RIeDtWdqUlzVzQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; 
-   d="scan'208";a="95918226"
-Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 10 Dec 2024 08:52:07 -0800
-Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tL3Sv-0005mn-0p;
-	Tue, 10 Dec 2024 16:52:05 +0000
-Date: Wed, 11 Dec 2024 00:51:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Herve Codina <herve.codina@bootlin.com>, Andrew Davis <afd@ti.com>,
-	Ayush Singh <ayush@beagleboard.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 7/7] of: unittest: Add tests for export symbols
-Message-ID: <202412110002.61YacCza-lkp@intel.com>
-References: <20241209151830.95723-8-herve.codina@bootlin.com>
+	s=arc-20240116; t=1733849538; c=relaxed/simple;
+	bh=F768FKvg7FF4b66UZ/Q7WEOc2p7Zd5GIQR2lUzGMMtE=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=G9+TjuwpqV0RUha+2Jv4z6gBwqVMA6ynVDn76ARPNZ8ZA3/CquAInHAY2fPeG55jLsTIjI8yOejlD75LzbGqrlGKRGzKcOm0IgzcyKDT9G68i+yS+TTeAgHdnngH6Qt8RrDKTbffWYNcWWQ/AhDxrgsuJ5bW1kHJbJWh4l9gXKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=RRdDX4sV; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=TFGrJV/q; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=RRdDX4sV; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=TFGrJV/q; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 786C31F396;
+	Tue, 10 Dec 2024 16:52:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1733849534; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/aIP4i4jvUV/G+qzhtRhmfq3gIeQW3kA9mI6aymWOb0=;
+	b=RRdDX4sVHqwXSpZmO5qyaLk+OT0prHhbpm2RuVO3tADPrjjC51flgdy0bBMhilMgSqfKc4
+	Dv+yE6TghAluhsMrjkHgGNWID+PoJ/WHqwfFkxouFBh0COAXQtRzDSLaPKulw82QS7hBhP
+	+JNegq3x34VwLUziHLi3yWibLzKHsDM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1733849534;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/aIP4i4jvUV/G+qzhtRhmfq3gIeQW3kA9mI6aymWOb0=;
+	b=TFGrJV/qKUuxfk4pwQ3vf4hKGth7ZcX/alooGyybcmiPTp3F4ONZLxZLopwxTQX7o9od+3
+	MfCkzXC7nWsDVODA==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1733849534; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/aIP4i4jvUV/G+qzhtRhmfq3gIeQW3kA9mI6aymWOb0=;
+	b=RRdDX4sVHqwXSpZmO5qyaLk+OT0prHhbpm2RuVO3tADPrjjC51flgdy0bBMhilMgSqfKc4
+	Dv+yE6TghAluhsMrjkHgGNWID+PoJ/WHqwfFkxouFBh0COAXQtRzDSLaPKulw82QS7hBhP
+	+JNegq3x34VwLUziHLi3yWibLzKHsDM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1733849534;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/aIP4i4jvUV/G+qzhtRhmfq3gIeQW3kA9mI6aymWOb0=;
+	b=TFGrJV/qKUuxfk4pwQ3vf4hKGth7ZcX/alooGyybcmiPTp3F4ONZLxZLopwxTQX7o9od+3
+	MfCkzXC7nWsDVODA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D559C138D2;
+	Tue, 10 Dec 2024 16:52:13 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id lzzyMr1xWGcDRAAAD6G6ig
+	(envelope-from <tiwai@suse.de>); Tue, 10 Dec 2024 16:52:13 +0000
+Date: Tue, 10 Dec 2024 17:52:13 +0100
+Message-ID: <87wmg732gy.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Cezary Rojewski <cezary.rojewski@intel.com>
+Cc: Wesley Cheng <quic_wcheng@quicinc.com>,
+	<linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>,
+	<linux-sound@vger.kernel.org>,
+	<linux-usb@vger.kernel.org>,
+	<linux-input@vger.kernel.org>,
+	<linux-arm-msm@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>,
+	<srinivas.kandagatla@linaro.org>,
+	<mathias.nyman@intel.com>,
+	<perex@perex.cz>,
+	<conor+dt@kernel.org>,
+	<dmitry.torokhov@gmail.com>,
+	<corbet@lwn.net>,
+	<broonie@kernel.org>,
+	<lgirdwood@gmail.com>,
+	<krzk+dt@kernel.org>,
+	<pierre-louis.bossart@linux.intel.com>,
+	<Thinh.Nguyen@synopsys.com>,
+	<tiwai@suse.com>,
+	<robh@kernel.org>,
+	<gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v30 28/30] ALSA: usb-audio: Add USB offload route kcontrol
+In-Reply-To: <1b77ad01-9621-4d2e-84c0-077032fbc5ef@intel.com>
+References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
+	<20241106193413.1730413-29-quic_wcheng@quicinc.com>
+	<1a361446-7a18-4f49-9eeb-d60d1adaa088@intel.com>
+	<28023a83-04a5-4c62-85a9-ca41be0ba9e1@quicinc.com>
+	<1644aa6b-a4e0-4dbd-a361-276cb95eb534@intel.com>
+	<3e246be8-22a9-4473-8c78-39788ae95650@quicinc.com>
+	<1b77ad01-9621-4d2e-84c0-077032fbc5ef@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241209151830.95723-8-herve.codina@bootlin.com>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
+X-Spam-Level: 
+X-Spamd-Result: default: False [-1.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	TAGGED_RCPT(0.00)[dt];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[quicinc.com,vger.kernel.org,linaro.org,intel.com,perex.cz,kernel.org,gmail.com,lwn.net,linux.intel.com,synopsys.com,suse.com,linuxfoundation.org];
+	TO_DN_SOME(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid]
+X-Spam-Score: -1.80
+X-Spam-Flag: NO
 
-Hi Herve,
+On Tue, 10 Dec 2024 16:24:30 +0100,
+Cezary Rojewski wrote:
+> 
+> On 2024-12-06 9:43 PM, Wesley Cheng wrote:
+> > 
+> > On 12/6/2024 1:09 AM, Cezary Rojewski wrote:
+> 
+> ...
+> 
+> >>>>> +#include <linux/usb.h>
+> >>>>> +
+> >>>>> +#include <sound/core.h>
+> >>>>> +#include <sound/control.h>
+> >>>>> +#include <sound/soc-usb.h>
+> >>>> 
+> >>>> ALSA-components should not be dependent on ASoC ones. It should be done the other way around: ALSA <- ASoC.
+> >>>> 
+> >>> 
+> >>> At least for this kcontrol, we need to know the status of the ASoC state, so that we can communicate the proper path to userspace.  If the ASoC path is not probed or ready, then this module isn't blocked.  It will just communicate that there isn't a valid offload path.
+> >> 
+> >> I'm not asking _why_ you need soc-usb.h header, your reasoning is probably perfectly fine. The code hierarchy is not though. If a sound module is dependent on soc-xxx.h i.e. ASoC symbols, it shall be part of sound/soc/ space.
+> > 
+> > 
+> > That would basically require a significant change in the current design.  Was that requirement documented somewhere, where ALSA components should not be dependent on ASoC?  What was the reasoning for making it one direction, but not the other?
+> 
+> Well, some may call this a common sense. ASoC is founded on
+> ALSA. There are no ALSA-core components which I'm aware of which have
+> a dependency on ASoC components. You may not get compilation problems
+> now, but such approach does not scale and will hit circular dependency
+> problem sooner or later.
 
-kernel test robot noticed the following build errors:
+In this particular case, I guess we don't have to be too strict.
+As long as it's a dynamic add-on, there is less dependency problem.
+OTOH, if it were linked directly, that can cause an issue, though.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.13-rc2 next-20241210]
-[cannot apply to char-misc/char-misc-testing char-misc/char-misc-next char-misc/char-misc-linus]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina/dt-bindings-Add-support-for-export-symbols-node/20241209-232324
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20241209151830.95723-8-herve.codina%40bootlin.com
-patch subject: [PATCH 7/7] of: unittest: Add tests for export symbols
-config: i386-buildonly-randconfig-004-20241210 (https://download.01.org/0day-ci/archive/20241211/202412110002.61YacCza-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241211/202412110002.61YacCza-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412110002.61YacCza-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/of/unittest.c:8:
-   In file included from include/linux/memblock.h:12:
-   In file included from include/linux/mm.h:2223:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/of/unittest.c:4347:2: error: call to undeclared function 'of_unittest_overlay_export_symbols'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    4347 |         of_unittest_overlay_export_symbols();
-         |         ^
-   1 warning and 1 error generated.
+But, which code is put at which place can be reconsidered, yes.  The
+right placing may help better understanding of the code, too.
 
 
-vim +/of_unittest_overlay_export_symbols +4347 drivers/of/unittest.c
+thanks,
 
-  4297	
-  4298	static int __init of_unittest(void)
-  4299	{
-  4300		struct device_node *np;
-  4301		int res;
-  4302	
-  4303		pr_info("start of unittest - you will see error messages\n");
-  4304	
-  4305		/* Taint the kernel so we know we've run tests. */
-  4306		add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
-  4307	
-  4308		/* adding data for unittest */
-  4309		res = unittest_data_add();
-  4310		if (res)
-  4311			return res;
-  4312		if (!of_aliases)
-  4313			of_aliases = of_find_node_by_path("/aliases");
-  4314	
-  4315		np = of_find_node_by_path("/testcase-data/phandle-tests/consumer-a");
-  4316		if (!np) {
-  4317			pr_info("No testcase data in device tree; not running tests\n");
-  4318			return 0;
-  4319		}
-  4320		of_node_put(np);
-  4321	
-  4322		of_unittest_check_tree_linkage();
-  4323		of_unittest_check_phandles();
-  4324		of_unittest_find_node_by_name();
-  4325		of_unittest_dynamic();
-  4326		of_unittest_parse_phandle_with_args();
-  4327		of_unittest_parse_phandle_with_args_map();
-  4328		of_unittest_printf();
-  4329		of_unittest_property_string();
-  4330		of_unittest_property_copy();
-  4331		of_unittest_changeset();
-  4332		of_unittest_changeset_prop();
-  4333		of_unittest_parse_interrupts();
-  4334		of_unittest_parse_interrupts_extended();
-  4335		of_unittest_dma_get_max_cpu_address();
-  4336		of_unittest_parse_dma_ranges();
-  4337		of_unittest_pci_dma_ranges();
-  4338		of_unittest_bus_ranges();
-  4339		of_unittest_bus_3cell_ranges();
-  4340		of_unittest_reg();
-  4341		of_unittest_translate_addr();
-  4342		of_unittest_match_node();
-  4343		of_unittest_platform_populate();
-  4344		of_unittest_overlay();
-  4345		of_unittest_lifecycle();
-  4346		of_unittest_pci_node();
-> 4347		of_unittest_overlay_export_symbols();
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Takashi
 
