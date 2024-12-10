@@ -1,203 +1,493 @@
-Return-Path: <devicetree+bounces-129184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D78D19EADEE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:24:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B71EA9EAE1B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:37:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 453A81626AB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:24:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0DDD1889729
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:37:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB9819DF64;
-	Tue, 10 Dec 2024 10:24:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W3TDEH+7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C660A78F4C;
+	Tue, 10 Dec 2024 10:37:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77A3723DEBC
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:24:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 535DD23DEBE
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:37:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733826281; cv=none; b=cxxdvgj7mQ8zowPDVRCNKUZbFCUNBeRSzkDFmvPxc3DvAlVTrZmL8hS1IOhz2MVcOdcJ4mVHaX3OvCmJPcBVEzgUiRI8pfrpqz3PPJUCEIr2Nnw5J8OTGYuGEPnMqhIeGeZtXK7e28bITKEoQruY4tWMg1xW67Q2NCbv2tmTrD8=
+	t=1733827032; cv=none; b=rTk1dBDJYML87z84OFOwezLedt1vVrHHVbhtzkv5rnUrwx2Mh6PZDeb4uuvkkZ1wecBSkGW7smSAyAC4R+I8xm3qKVmgLxxJGJapaGplCZ4FzcqKqPI7Irf+X6A+etVFprzSKvDUaUzRc8UW2cdlznICDihW6TP7JVyuZFcxw+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733826281; c=relaxed/simple;
-	bh=KacdTMDwGHOubfAMUMEA0y3RYV/hoieH8eSRxF9Vy/k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Psrv1JuhqFHdI5+vSKmLiLSVzqcz+zNcHPslusRURTcQgjEF5QB1ZgsIq1spptcwXu9Tpa8/7CbcfwngBoDmPkaRNX5da8nBtc+Zs1J1+axn56bfD0ufGHk6zMaw1PLmCFt1x+lIcS6HbEwp01kLcWprsVT05sp3YbErphUdVlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W3TDEH+7; arc=none smtp.client-ip=209.85.210.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-71df00181b2so999507a34.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 02:24:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733826278; x=1734431078; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dnxhJKvx9jYvossMLwXlm6WCMeoNqlxmsqhx0tMAQvc=;
-        b=W3TDEH+7hUB3uOktZN2+rAjiIzsIwLe+nbUQCCdTKz617Ax7EZ/Y3eF+MSPcBXZ4Ho
-         ePy9bnnabXq3LtLEEzZrhjJ5VtKelBWpnCR1BQIGToBAKPtbCxC/uvZfz9i0+ZHQPpb/
-         Jy+gYdDntjUUVu2zkZoClfQukKNE+lt0HayX/a+sMioPmZ1bDlLooBJgut/7vUfEfJvW
-         ov6QB3LbJrxszoUsTlLC+DjBamKy0eZ5axYBENbM+H/l3avG7DP+MUx2WJtt3eANoyhg
-         g+OgETo/g1XgsujhdyYaUOI60pZkZ6wX15/9RWIPu2pwh3hi75W/N66hD0byPx4KN743
-         gYnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733826278; x=1734431078;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dnxhJKvx9jYvossMLwXlm6WCMeoNqlxmsqhx0tMAQvc=;
-        b=vzcwIZuFr6y1zhkpEaQzKyRppoKjhLM+bWbXRJVpAir/lKlHRMAThM79w/2XGpoxLW
-         fuAV1yLjTtU7xVe6/xH+SjpSjlfsm1nb7dkLu8pCjqn9SIRqP2WDOk0HsuTsFPh6QC4v
-         URRzEUWa7fsRxuvkU6tpoN94Is3XbXTXllZIJOFskw+GnAnlrQcoxjsUUZDmHzzeeWpo
-         meE+h6sqNXKmJsQvwlunn5AkaKxHQ+gR5pb7pOVY5UfDDDKSmAeKUd2I8unr7uCkijHN
-         pnSk/Rdmc76PQrVQN9YNEMrCvm4hzF4xBZHI+NfNkD4NVn+FhEWk1uqiCaaSran2UbWA
-         WOLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrkmINrX0c84tb6TX12XtAzelGFgDbjbCpkgpVAIpcdpRx4QJCBO3THjFhA/L3aljHEmJE2t35VwOI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvQn3W4dpY20uMTYivD1wGFBdwMzaHu3WwnmNLpIaYh50GMwQr
-	EBTHltbr2D9CmsDAMAooEZ2YZF6oT8uxf2ggh9vO2Xd6z8h8xZ9PgYaQNUg3yqkREG/SuLpa+YA
-	FurpsMuiOVq1i94FVdh7h4o6rzzCsEBc3H/xE3g==
-X-Gm-Gg: ASbGncsOlGz/Z6BzFiz95HGrNUEFY13bhF1jXwja1EFUDIczS3q/bptJVxVxvwW3ybF
-	SdONTYtiVJS+u48rkrnIFcQN7Sr72PzhXecqA
-X-Google-Smtp-Source: AGHT+IFqSNy/U675xZEjsmCHP/7RnRexS72dnpn/UvAKcfve/GQogygTf20YsSMYxyFib0NlWI+JrNXv9DbPSym+qsU=
-X-Received: by 2002:a9d:7d99:0:b0:71d:eee3:fd27 with SMTP id
- 46e09a7af769-71deee3fe91mr4254214a34.1.1733826278464; Tue, 10 Dec 2024
- 02:24:38 -0800 (PST)
+	s=arc-20240116; t=1733827032; c=relaxed/simple;
+	bh=suPiFHdwUXxu5Dm1/7yFbyIMoADlOtHrkoTWTSmgaiw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q0BkEFHLozyUKZl39WDjaWxx6zGq+MqLOYu56w2fILuR2lZr4JeDE+4e5Y0hdI7ULHatXcdpBo7nHJGlU6jGHL/6wWzkOe6CazG9alx8le9VajfTlRF0Lk5Va+QNrYdYyTDIKf1MtVfp3Icq7G74wmZkp11Zfgm4COIeZQUUuio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tKxbk-0000PX-Hu; Tue, 10 Dec 2024 11:36:48 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tKxbi-002frZ-0N;
+	Tue, 10 Dec 2024 11:36:46 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tKxbi-008Te3-2U;
+	Tue, 10 Dec 2024 11:36:46 +0100
+Date: Tue, 10 Dec 2024 11:36:46 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengfei Li <pengfei.li_1@nxp.com>, devicetree@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>, imx@lists.linux.dev,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] thermal: imx91: Add support for i.MX91 thermal
+ monitoring unit
+Message-ID: <20241210103646.7gblp7mzxbna5gas@pengutronix.de>
+References: <20241209-imx91tmu-v1-0-7859c5387f31@nxp.com>
+ <20241209-imx91tmu-v1-2-7859c5387f31@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241202-qcom-tee-using-tee-ss-without-mem-obj-v1-0-f502ef01e016@quicinc.com>
- <20241202-qcom-tee-using-tee-ss-without-mem-obj-v1-5-f502ef01e016@quicinc.com>
-In-Reply-To: <20241202-qcom-tee-using-tee-ss-without-mem-obj-v1-5-f502ef01e016@quicinc.com>
-From: Jens Wiklander <jens.wiklander@linaro.org>
-Date: Tue, 10 Dec 2024 11:24:27 +0100
-Message-ID: <CAHUa44FhZc1ZVgJQrqbDdY1kegNgHrC4VTs66-5CDfY04D6MMw@mail.gmail.com>
-Subject: Re: [PATCH 05/10] qcomtee: implement object invoke support
-To: Amirreza Zarrabi <quic_azarrabi@quicinc.com>
-Cc: Sumit Garg <sumit.garg@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	op-tee@lists.trustedfirmware.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241209-imx91tmu-v1-2-7859c5387f31@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, Dec 3, 2024 at 5:20=E2=80=AFAM Amirreza Zarrabi
-<quic_azarrabi@quicinc.com> wrote:
->
-> Introduce qcom_tee_object, which represents an object in both QTEE and
-> the kernel. QTEE clients can invoke an instance of qcom_tee_object to
-> access QTEE services. If this invocation produces a new object in QTEE,
-> an instance of qcom_tee_object will be returned.
->
-> Similarly, QTEE can request services from the kernel by issuing a callbac=
-k
-> request, which invokes an instance of qcom_tee_object in the kernel.
-> Any subsystem that exposes a service to QTEE should allocate and initiali=
-ze
-> an instance of qcom_tee_object with a dispatcher callback that is called
-> when the object is invoked.
->
-> Signed-off-by: Amirreza Zarrabi <quic_azarrabi@quicinc.com>
+Hi,
+
+On 24-12-09, Frank Li wrote:
+> From: Pengfei Li <pengfei.li_1@nxp.com>
+> 
+> Introduce support for the i.MX91 thermal monitoring unit, which features a
+> single sensor for the CPU. The register layout differs from other chips,
+> necessitating the creation of a dedicated file for this.
+> 
+> Signed-off-by: Pengfei Li <pengfei.li_1@nxp.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  drivers/tee/Kconfig                    |   1 +
->  drivers/tee/Makefile                   |   1 +
->  drivers/tee/qcomtee/Kconfig            |  10 +
->  drivers/tee/qcomtee/Makefile           |   6 +
->  drivers/tee/qcomtee/async.c            | 153 ++++++
->  drivers/tee/qcomtee/core.c             | 928 +++++++++++++++++++++++++++=
-++++++
->  drivers/tee/qcomtee/qcom_scm.c         |  36 ++
->  drivers/tee/qcomtee/qcomtee_msg.h      | 217 ++++++++
->  drivers/tee/qcomtee/qcomtee_private.h  |  47 ++
->  drivers/tee/qcomtee/release.c          |  66 +++
->  include/linux/firmware/qcom/qcom_tee.h | 284 ++++++++++
->  11 files changed, 1749 insertions(+)
->
-[snip]
-
-> +/**
-> + * DOC: Overview
-> + *
-> + * qcom_tee_object provides object ref-counting, id allocation for objec=
-ts hosted in
-> + * REE, and necessary message marshaling for Qualcomm TEE (QTEE).
-> + *
-> + * To invoke an object in QTEE, user calls qcom_tee_object_do_invoke() w=
-hile passing
-> + * an instance of &struct qcom_tee_object and the requested operation + =
-arguments.
-> + *
-> + * After the boot, QTEE provides a static object %ROOT_QCOM_TEE_OBJECT (=
-type of
-> + * %QCOM_TEE_OBJECT_TYPE_ROOT). The root object is invoked to pass user'=
-s credentials and
-> + * obtain other instances of &struct qcom_tee_object (type of %QCOM_TEE_=
-OBJECT_TYPE_TEE)
-> + * that represents services and TAs in QTEE, see &enum qcom_tee_object_t=
-ype.
-> + *
-> + * The object received from QTEE are refcounted. So the owner of these o=
-bjects can
-> + * issue qcom_tee_object_get(), to increase the refcount, and pass objec=
-ts to other
-> + * clients, or issue qcom_tee_object_put() to decrease the refcount, and=
- releasing
-> + * the resources in QTEE.
-> + *
-> + * REE can host services accessible to QTEE. A driver should embed an in=
-stance of
-> + * &struct qcom_tee_object in the struct it wants to export to QTEE (it =
-is called
-> + * callback object). It issues qcom_tee_object_user_init() to set the di=
-spatch()
-> + * operation for the callback object and set its type to %QCOM_TEE_OBJEC=
-T_TYPE_CB_OBJECT.
-> + *
-> + * core.c holds an object table for callback objects. An object id is as=
-signed
-> + * to each callback object which is an index to the object table. QTEE u=
-ses these ids
-> + * to reference or invoke callback objects.
-> + *
-> + * If QTEE invoke a callback object in REE, the dispatch() operation is =
-called in the
-> + * context of thread that called qcom_tee_object_do_invoke(), originally=
-.
+>  drivers/thermal/Kconfig         |  10 ++
+>  drivers/thermal/Makefile        |   1 +
+>  drivers/thermal/imx91_thermal.c | 281 ++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 292 insertions(+)
+> 
+> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+> index d3f9686e26e71..da403ed86aeb1 100644
+> --- a/drivers/thermal/Kconfig
+> +++ b/drivers/thermal/Kconfig
+> @@ -296,6 +296,16 @@ config IMX8MM_THERMAL
+>  	  cpufreq is used as the cooling device to throttle CPUs when the passive
+>  	  trip is crossed.
+>  
+> +config IMX91_THERMAL
+> +	tristate "Temperature sensor driver for NXP i.MX91 SoC"
+> +	depends on ARCH_MXC || COMPILE_TEST
+> +	depends on OF
+> +	help
+> +	  Support for Temperature sensor found on NXP i.MX91 SoC.
+> +	  It supports one critical trip point and one passive trip point. The
+> +	  cpufreq is used as the cooling device to throttle CPUs when the passive
+> +	  trip is crossed.
+> +
+>  config K3_THERMAL
+>  	tristate "Texas Instruments K3 thermal support"
+>  	depends on ARCH_K3 || COMPILE_TEST
+> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+> index 9abf43a74f2bb..08da241e6a598 100644
+> --- a/drivers/thermal/Makefile
+> +++ b/drivers/thermal/Makefile
+> @@ -50,6 +50,7 @@ obj-$(CONFIG_ARMADA_THERMAL)	+= armada_thermal.o
+>  obj-$(CONFIG_IMX_THERMAL)	+= imx_thermal.o
+>  obj-$(CONFIG_IMX_SC_THERMAL)	+= imx_sc_thermal.o
+>  obj-$(CONFIG_IMX8MM_THERMAL)	+= imx8mm_thermal.o
+> +obj-$(CONFIG_IMX91_THERMAL)	+= imx91_thermal.o
+>  obj-$(CONFIG_MAX77620_THERMAL)	+= max77620_thermal.o
+>  obj-$(CONFIG_QORIQ_THERMAL)	+= qoriq_thermal.o
+>  obj-$(CONFIG_DA9062_THERMAL)	+= da9062-thermal.o
+> diff --git a/drivers/thermal/imx91_thermal.c b/drivers/thermal/imx91_thermal.c
+> new file mode 100644
+> index 0000000000000..19c4dafe9c7a9
+> --- /dev/null
+> +++ b/drivers/thermal/imx91_thermal.c
+> @@ -0,0 +1,281 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2024 NXP.
 > + */
 > +
-> +/**
-> + * enum qcom_tee_object_typ - Object types.
-> + * @QCOM_TEE_OBJECT_TYPE_TEE: object hosted on QTEE.
-> + * @QCOM_TEE_OBJECT_TYPE_CB_OBJECT: object hosted on REE.
-> + * @QCOM_TEE_OBJECT_TYPE_ROOT: 'primordial' object.
-> + * @QCOM_TEE_OBJECT_TYPE_NULL: NULL object.
-> + *
-> + * Primordial object is used for bootstrapping the IPC connection betwee=
-n a REE
-> + * and QTEE. It is invoked by REE when it wants to get a 'client env'.
-> + */
-> +enum qcom_tee_object_type {
-> +       QCOM_TEE_OBJECT_TYPE_TEE,
-> +       QCOM_TEE_OBJECT_TYPE_CB_OBJECT,
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/nvmem-consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/thermal.h>
+> +
+> +#define CTRL0			0x0
+> +
+> +#define STAT0			0x10
+> +#define STAT0_DRDY0_IF_MASK	BIT(16)
+> +
+> +#define DATA0			0x20
+> +#define DATA_INT_MASK		GENMASK(14, 7)
+> +#define DATA_FRAC_MASK		GENMASK(6, 0)
+> +
+> +#define THR_CTRL01		0x30
+> +#define THR_CTRL23		0x40
+> +
+> +#define CTRL1			0x200
+> +#define CTRL1_SET		0x204
+> +#define CTRL1_CLR		0x208
+> +#define CTRL1_EN		BIT(31)
+> +#define CTRL1_START		BIT(30)
+> +#define CTRL1_STOP		BIT(29)
+> +#define CTRL1_RES_MASK		GENMASK(19, 18)
+> +#define CTRL1_MEAS_MODE_MASK	GENMASK(25, 24)
+> +
+> +#define PERIOD_CTRL		0x270
+> +#define MEAS_FREQ_MASK		GENMASK(23, 0)
+> +
+> +#define REF_DIV			0x280
+> +#define DIV_EN			BIT(31)
+> +#define DIV_MASK		GENMASK(23, 16)
+> +
+> +#define PUD_ST_CTRL		0x2B0
+> +#define PUDL_MASK		GENMASK(23, 16)
+> +
+> +#define TRIM1			0x2E0
+> +#define TRIM2			0x2F0
+> +
+> +#define TMU_TEMP_LOW_LIMIT	-40000
+> +#define TMU_TEMP_HIGH_LIMIT	125000
+> +
+> +#define DEFAULT_TRIM1_CONFIG 0xB561BC2DU
+> +#define DEFAULT_TRIM2_CONFIG 0x65D4U
 
-The second OBJECT seems redundant. How about QCOM_TEE_OBJECT_TYPE_CB
-or QCOM_TEE_OBJECT_TYPE_CALLBACK instead?
+please align the defines and use lower-case for the hex values.
 
-> +       QCOM_TEE_OBJECT_TYPE_ROOT,
-> +       QCOM_TEE_OBJECT_TYPE_NULL,
+> +struct tmu_sensor {
+> +	struct imx91_tmu *priv;
+> +	struct thermal_zone_device *tzd;
 > +};
-[snip]
 
-Cheers,
-Jens
+This can be part of imx91_tmu right?
+
+> +struct imx91_tmu {
+> +	void __iomem *base;
+> +	struct clk *clk;
+> +	struct device *dev;
+> +	struct tmu_sensor sensors;
+> +};
+> +
+> +static void imx91_tmu_start(struct imx91_tmu *tmu, bool start)
+> +{
+> +	if (start)
+> +		writel_relaxed(CTRL1_START, tmu->base + CTRL1_SET);
+> +	else
+> +		writel_relaxed(CTRL1_STOP, tmu->base + CTRL1_SET);
+
+Nit:
+	unsigned int val = start ? CTRL1_START : CTRL1_STOP;
+
+	writel_relaxed(val, tmu->base + CTRL1_SET);
+
+Aside the nit, why do you use *_relaxed() accessors in you whole code?
+Is the order not strictly required?
+
+> +}
+> +
+> +static void imx91_tmu_enable(struct imx91_tmu *tmu, bool enable)
+> +{
+> +	if (enable)
+> +		writel_relaxed(CTRL1_EN, tmu->base + CTRL1_SET);
+> +	else
+> +		writel_relaxed(CTRL1_EN, tmu->base + CTRL1_CLR);
+
+Same here:
+
+	unsigned int reg = enable ? CTRL1_SET : CTRL1_CLR;
+
+	writel_relaxed(CTRL1_EN, tmu->base + reg);
+> +}
+> +
+> +static int imx91_tmu_get_temp(struct thermal_zone_device *tz, int *temp)
+> +{
+> +	struct tmu_sensor *sensor = thermal_zone_device_priv(tz);
+> +	struct imx91_tmu *tmu = sensor->priv;
+
+With tmu_sensor merged into imx91_tmu you don't need this reverse
+pointer logic.
+
+> +	int val;
+> +	int ret;
+> +
+> +	ret = readl_relaxed_poll_timeout(tmu->base + STAT0, val,
+> +					 val & STAT0_DRDY0_IF_MASK, 1000,
+> +					 40000);
+> +	if (ret)
+> +		return -EAGAIN;
+> +
+> +	val = readl_relaxed(tmu->base + DATA0) & 0xffffU;
+						   ^
+				Please use a MASK define for it, also no
+				need to use the U suffix.
+
+Also according the TRM 58.3.4 this doesn't seem right. According the TRM
+this is a s16 (two's-complement) value. You won't get negative values if
+store it within a int.
+
+> +	*temp = val * 1000L / 64L;
+			  ^     ^
+You don't need to specify the type here explicit since all params would
+be converted to int and no overflow happens.
+
+> +	if (*temp < TMU_TEMP_LOW_LIMIT || *temp > TMU_TEMP_HIGH_LIMIT)
+> +		return -EAGAIN;
+> +
+> +	return 0;
+> +}
+> +
+> +static struct thermal_zone_device_ops tmu_tz_ops = {
+> +	.get_temp = imx91_tmu_get_temp,
+> +};
+> +
+> +static int imx91_init_from_nvmem_cells(struct imx91_tmu *tmu)
+> +{
+> +	struct device *dev = tmu->dev;
+> +	int ret;
+> +	u32 trim1, trim2;
+
+Please use the reverse christmas tree style.
+
+> +	ret = nvmem_cell_read_u32(dev, "trim1", &trim1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = nvmem_cell_read_u32(dev, "trim2", &trim2);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (trim1 == 0 || trim2 == 0)
+> +		return -EINVAL;
+> +
+> +	writel_relaxed(trim1, tmu->base + TRIM1);
+> +	writel_relaxed(trim2, tmu->base + TRIM2);
+> +
+> +	return 0;
+> +}
+> +
+> +static int imx91_tmu_probe(struct platform_device *pdev)
+> +{
+> +	struct imx91_tmu *tmu;
+> +	unsigned long rate;
+> +	u32 div;
+> +	int ret;
+> +	int i = 0;
+
+Same here.
+
+> +	tmu = devm_kzalloc(&pdev->dev, sizeof(struct imx91_tmu), GFP_KERNEL);
+> +	if (!tmu)
+> +		return -ENOMEM;
+> +
+> +	tmu->dev = &pdev->dev;
+> +
+> +	tmu->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(tmu->base))
+> +		return PTR_ERR(tmu->base);
+> +
+> +	tmu->clk = devm_clk_get_prepared(&pdev->dev, NULL);
+> +	if (IS_ERR(tmu->clk))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(tmu->clk), "failed to get tmu clock\n");
+> +
+> +	tmu->sensors.priv = tmu;
+
+As said, no need for the sensors container.
+
+> +	tmu->sensors.tzd = devm_thermal_of_zone_register(&pdev->dev, i, &tmu->sensors, &tmu_tz_ops);
+> +	if (IS_ERR(tmu->sensors.tzd))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(tmu->sensors.tzd),
+> +				     "failed to register thermal zone sensor\n");
+> +
+> +	platform_set_drvdata(pdev, tmu);
+> +
+> +	/* disable the monitor during initialization */
+> +	imx91_tmu_enable(tmu, false);
+> +	imx91_tmu_start(tmu, false);
+
+Make use of pm_runtime?
+
+> +	ret = imx91_init_from_nvmem_cells(tmu);
+> +	if (ret) {
+> +		writel_relaxed(DEFAULT_TRIM1_CONFIG, tmu->base + TRIM1);
+> +		writel_relaxed(DEFAULT_TRIM2_CONFIG, tmu->base + TRIM2);
+> +	}
+> +
+> +	/* The typical conv clk is 4MHz, the output freq is 'rate / (div + 1)' */
+> +	rate = clk_get_rate(tmu->clk);
+> +	div = (rate / 4000000) - 1;
+
+Would be nice to validate the div value before passing to the HW and if
+the target rate of 4MHz can't be reached by the div you you should
+return -EINVAL.
+
+> +
+> +	/* Set divider value and enable divider */
+> +	writel_relaxed(DIV_EN | FIELD_PREP(DIV_MASK, div), tmu->base + REF_DIV);
+> +
+> +	/* Set max power up delay: 'Tpud(ms) = 0xFF * 1000 / 4000000' */
+> +	writel_relaxed(FIELD_PREP(PUDL_MASK, 100U), tmu->base + PUD_ST_CTRL);
+> +
+> +	/*
+> +	 * Set resolution mode
+> +	 * 00b - Conversion time = 0.59325 ms
+> +	 * 01b - Conversion time = 1.10525 ms
+> +	 * 10b - Conversion time = 2.12925 ms
+> +	 * 11b - Conversion time = 4.17725 ms
+> +	 */
+> +	writel_relaxed(FIELD_PREP(CTRL1_RES_MASK, 0x3), tmu->base + CTRL1_CLR);
+> +	writel_relaxed(FIELD_PREP(CTRL1_RES_MASK, 0x1), tmu->base + CTRL1_SET);
+> +
+> +	/*
+> +	 * Set measure mode
+> +	 * 00b - Single oneshot measurement
+> +	 * 01b - Continuous measurement
+> +	 * 10b - Periodic oneshot measurement
+> +	 */
+
+For the resolution it's fine to have the values directly coded without a
+define, but here we can definitly use a define and drop the comment.
+
+> +	writel_relaxed(FIELD_PREP(CTRL1_MEAS_MODE_MASK, 0x3), tmu->base + CTRL1_CLR);
+> +	writel_relaxed(FIELD_PREP(CTRL1_MEAS_MODE_MASK, 0x1), tmu->base + CTRL1_SET);
+
+Why do we set it to periodic mode instead of the single-shot? At the
+moment the device doesn't have IRQ support, and so there is no need to
+run the measurements in background.
+
+> +
+> +	/*
+> +	 * Set Periodic Measurement Frequency to 25Hz:
+> +	 * tMEAS_FREQ = tCONV_CLK * PERIOD_CTRL[MEAS_FREQ]. ->
+> +	 * PERIOD_CTRL(MEAS_FREQ) = (1000 / 25) / (1000 / 4000000);
+> +	 * Where tMEAS_FREQ = Measurement period and tCONV_CLK = 1/fCONV_CLK.
+> +	 * This field should have value greater than count corresponds
+> +	 * to time greater than summation of conversion time, power up
+> +	 * delay, and six times of conversion clock time.
+> +	 * tMEAS_FREQ > (tCONV + tPUD + 6 * tCONV_CLK).
+> +	 * tCONV is conversion time determined by CTRL1[RESOLUTION].
+> +	 */
+> +	writel_relaxed(FIELD_PREP(MEAS_FREQ_MASK, 0x27100), tmu->base + PERIOD_CTRL);
+
+With the single-shot measurements we could remove this part and..
+
+> +
+> +	/* enable the monitor */
+> +	imx91_tmu_enable(tmu, true);
+> +	imx91_tmu_start(tmu, true);
+
+this part as well.
+
+Regards,
+  Marco
+
+> +
+> +	return 0;
+> +}
+> +
+> +static void imx91_tmu_remove(struct platform_device *pdev)
+> +{
+> +	struct imx91_tmu *tmu = platform_get_drvdata(pdev);
+> +
+> +	/* disable tmu */
+> +	imx91_tmu_start(tmu, false);
+> +	imx91_tmu_enable(tmu, false);
+> +}
+> +
+> +static int __maybe_unused imx91_tmu_suspend(struct device *dev)
+> +{
+> +	struct imx91_tmu *tmu = dev_get_drvdata(dev);
+> +
+> +	/* disable tmu */
+> +	imx91_tmu_start(tmu, false);
+> +	imx91_tmu_enable(tmu, false);
+> +
+> +	clk_disable_unprepare(tmu->clk);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused imx91_tmu_resume(struct device *dev)
+> +{
+> +	struct imx91_tmu *tmu = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(tmu->clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	imx91_tmu_enable(tmu, true);
+> +	imx91_tmu_start(tmu, true);
+> +
+> +	return 0;
+> +}
+> +
+> +static SIMPLE_DEV_PM_OPS(imx91_tmu_pm_ops,
+> +			 imx91_tmu_suspend, imx91_tmu_resume);
+> +
+> +static const struct of_device_id imx91_tmu_table[] = {
+> +	{ .compatible = "fsl,imx91-tmu", },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, imx91_tmu_table);
+> +
+> +static struct platform_driver imx91_tmu = {
+> +	.driver = {
+> +		.name	= "i.MX91_thermal",
+> +		.pm	= pm_ptr(&imx91_tmu_pm_ops),
+> +		.of_match_table = imx91_tmu_table,
+> +	},
+> +	.probe = imx91_tmu_probe,
+> +	.remove = imx91_tmu_remove,
+> +};
+> +module_platform_driver(imx91_tmu);
+> +
+> +MODULE_AUTHOR("Peng Fan <peng.fan@nxp.com>");
+> +MODULE_DESCRIPTION("i.MX91 Thermal Monitor Unit driver");
+> +MODULE_LICENSE("GPL");
+> 
+> -- 
+> 2.34.1
+> 
+> 
+> 
 
