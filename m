@@ -1,169 +1,352 @@
-Return-Path: <devicetree+bounces-129114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ED059EAAC4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:33:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D91D39EAACB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:36:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 450001886551
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:33:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA01F18875AF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:36:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98D0E230990;
-	Tue, 10 Dec 2024 08:33:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0698F2309A1;
+	Tue, 10 Dec 2024 08:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZjWTYFMC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ipsr5u3v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f66.google.com (mail-ej1-f66.google.com [209.85.218.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE4322F3A9;
-	Tue, 10 Dec 2024 08:33:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 030841D0F7D
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 08:36:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733819607; cv=none; b=PUpX9nvhqb5KkTrFh/iaqhXFwWv/DXTomtG0dKcxoADumQRWXKTrB3UycTeKZjrHAPoDFetMO+VCVNaRfZOGx6vHA4RYTaN32OdO0+QVgHUgkf/nbkHFHxiyMsp65Tze3QzSBrBFV5KGPwQ//9j5QbN5MP1IC1BCn3fqsE78C78=
+	t=1733819774; cv=none; b=sVlV+m3PKfqmXl5ADlMl/Z5aP8+CvJbZUveBAY8QVbgiHGcnQFL4OwJe3bjIQzV1aPqVJH2sjH/kQlDE44ybeTTvwbLVI3CH7bwX4rpZtymCKjRnsngLFLG9nyyzUN+/xI46q761O849RYjeNkNvj61ffOgvervHl7PxplB/uBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733819607; c=relaxed/simple;
-	bh=X+tjjsPeLh8i0QPWhtWxfKi4DcKHgKLE/YTGz/q1zQs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eetdv7eTrC7Yf2wEk9cA8cHgST9jEUwqDfN4wtx3jJuXCo95cKEfEW8XSolnRaazC93cunIDCFO8jWNJ2Rkwr22ahc8EPATTeSYgLBqA5B8Xs88KY5iXcTXXc6KOgyG7rGUhbRUhTeiYTLe7XjY7KOUDirZVtuzDDGFgIem85Qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZjWTYFMC; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1733819603;
-	bh=X+tjjsPeLh8i0QPWhtWxfKi4DcKHgKLE/YTGz/q1zQs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZjWTYFMCoXfrQyc3DurtEHV5N+EJaJmZTDdkMUzgAq4y1tvzfERQm5BnIgsoPNmGq
-	 H9e952yr6xN+Zy9soveXM1Zt1n0td6BWZmEbFRTUvIlS9M8B36AQEpGaCOD8tNUqdS
-	 AsLqs05j7z8OrHuXy9njoTMzYGUXCUNScoc/o0ffiHkUvcvnsjqnWk16n9l6qmE5Tf
-	 3R9zDYq7VNIPqj7bnG3AtyjdJgktDfg6UhkR8T4drqg8sXXuafEupGI5JqTVHIksKD
-	 OzOQK1lE4ms8rI541oJtzb9pBAHvUqfrdbPOXwJKEnqeiHieUZYLM30V3DLt9fzN2b
-	 GZd1u5Ff3hZUQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E967017E14EA;
-	Tue, 10 Dec 2024 09:33:22 +0100 (CET)
-Message-ID: <50757699-aca2-423a-b463-5a4d74d63447@collabora.com>
-Date: Tue, 10 Dec 2024 09:33:22 +0100
+	s=arc-20240116; t=1733819774; c=relaxed/simple;
+	bh=uow1N9VBwkTBx4xQA1Z6vJux5tMwXu6x8kqawBjy95c=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=OuneyJCjJ28RQSPrwkAiLT+kRr6krfDvKO+0RY11EOvu5gWJeKd2DLDeQMVQkp8O/xm6YjGzQXxDpRMbuPC2Y7K+gqz95o+6Xau3tvE36zqk0vcmJ1Fwc9F/aJVFvPZYNYHEGGFOR0l73jZW5JzKwCFw3RIiux8nsVMHhnoolq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ipsr5u3v; arc=none smtp.client-ip=209.85.218.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f66.google.com with SMTP id a640c23a62f3a-aa66c1345caso152129966b.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 00:36:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733819771; x=1734424571; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=58qniorQWaWIqV9FaGTtR2lysYb+BUrgZIhD2vCySDU=;
+        b=Ipsr5u3vdMSA/9OewO5sB482khT0ViYj8uN3rdBAs60buAf/jfMYnqjP6GJu8ur/jQ
+         CSjXNndMVw3PUrWwrulaj1kCZi/efHN15phhQrq45238BAFK8dpNvLwnkiBTdaBFssb/
+         QpIYEYXncPM4BD+9bV+k1A6zdDuvJjmmaHBWvPIrAs6lN54cK0Spj4wNUmajlzrgEzy4
+         ZHAPP6lAVJk/zqLNQ+yEBzneonMoKrYvIRtFWTKpWpEoJPKdA9b3H27mwoFdIPnAw9AM
+         rHaP7GftWWnymqgVvINHqw4zmpJjrfqDbFKcMbl/66+SbiaWL14q/GiOJrd12NzMO/RW
+         Cfgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733819771; x=1734424571;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=58qniorQWaWIqV9FaGTtR2lysYb+BUrgZIhD2vCySDU=;
+        b=MYAx1/7doSMRTgVc9fsdjj8NBE4MrzzbUKv/pBgEbEnGCdtq4nZLZnSIGJXxxu03kW
+         MNUD/FZ72cxHaDqo7xPImzUKMBEI9S3FtfpJ0lhdu39J0qPsjHUffjwKrnMXhWBm61C1
+         7NXHxVsIV+GL5/v5Mzj66UILdZrJmCZh63h5MCFTUiTRfG+cbDpYJxLBF4ANU4IAVY6t
+         JnIrmViA7mGb3f20aP3R9c5O2xWK7929FgTAOYEnHoZjNWKhZnsCBsAWheCG5VjK/Iui
+         B2brAVMWx3xeXk8478eZl1/rM5QJgBHgl1N/kayt1A+T8ma6wwTr99XpOLpgwKPTT+zR
+         rYlg==
+X-Forwarded-Encrypted: i=1; AJvYcCWtvkKE14AqtW8jx6cAoBZ5Lt9qu4nSL/+gdtEMBYjtPk6jAkAuYPNLg076yvNLvXs5FKZ1Nu2kt5ST@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYalBKZWBgQQFaISC7Ptf32v/y3zjCINQM5rPKWHG/IliLIroW
+	jO6Niwoq8w7usl0UpLE5KDxJQ8wkZs3o/0zE28WqiCCwliyYp9uTelelDpTVkOw=
+X-Gm-Gg: ASbGncucaxwOKKQz2LglNfKIhEjMZDe82atfI5rUtZmnMlynQ/trjPqyJ5Gs3vZRRRA
+	IYEBMDYJaOk477KNut3NPfUypXcPhoMN0t8nejPNY2E+4B7pXF6V5Fmuyroz3BrCn+Si32bNrnG
+	dR7/AgklTKBqQpIeTexm3xQ5AmLRaeFXiqSwpDTxXzqMvAETX2t1g+n9OGda60Ql2hoLoVTQV34
+	0lZejpIHGKsoeZMhtX71VWM4tjuS3JGaT23OkSIzpdTivZDdCix1WPsLbu/XeRqZbQ=
+X-Google-Smtp-Source: AGHT+IGQPNbWbY7Am19yEaRzmYLXWQmVwscaAezJ1evdHhKgXkg1An9ckZEBx5n9PUbBDaZlE+eghw==
+X-Received: by 2002:a17:907:774e:b0:aa6:79fa:b486 with SMTP id a640c23a62f3a-aa679fabfb7mr667984566b.49.1733819771260;
+        Tue, 10 Dec 2024 00:36:11 -0800 (PST)
+Received: from [127.0.0.2] ([2a02:2454:ff21:ef40:6709:8d26:5167:3c1d])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa66c30e99csm438827866b.160.2024.12.10.00.36.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 00:36:10 -0800 (PST)
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+Date: Tue, 10 Dec 2024 09:36:01 +0100
+Subject: [PATCH v2] arm64: dts: qcom: x1e80100-pmics: Enable all SMB2360
+ separately
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 15/15] drm/mediatek: Introduce HDMI/DDC v2 for
- MT8195/MT8188
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "jie.qiu@mediatek.com" <jie.qiu@mediatek.com>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
- <mripard@kernel.org>, =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
- <jitao.shi@mediatek.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "kernel@collabora.com" <kernel@collabora.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "junzhi.zhao@mediatek.com" <junzhi.zhao@mediatek.com>
-References: <20241205114518.53527-1-angelogioacchino.delregno@collabora.com>
- <20241205114518.53527-16-angelogioacchino.delregno@collabora.com>
- <631fdcdfd44e0d401e62df67acc206b0762248c7.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <631fdcdfd44e0d401e62df67acc206b0762248c7.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241210-x1e80100-disable-smb2360-v2-1-2449be2eca29@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAHD9V2cC/3WNSw6CQBBEr0J67ZjuBvm48h6GxQANdIKMmTEEQ
+ 7i7I65dvkrVqw2CeJUA12QDL4sGdXMEPiXQjnYexGgXGRg5I+LKrCQlEqLpNNhmEhMeDac5GsZ
+ WWsoveexBnD+99Loe6nsdedTwcv59PC30TX9SxvS/dCFDpsQq46boi7Szt0ln693Z+QHqfd8/v
+ qH3pcEAAAA=
+X-Change-ID: 20241129-x1e80100-disable-smb2360-20cec1656411
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>, 
+ "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+X-Mailer: b4 0.14.2
 
-Il 10/12/24 04:28, CK Hu (胡俊光) ha scritto:
-> Hi, Angelo:
-> 
-> On Thu, 2024-12-05 at 12:45 +0100, AngeloGioacchino Del Regno wrote:
->> External email : Please do not click links or open attachments until you have verified the sender or the content.
->>
->>
->> Add support for the newer HDMI-TX (Encoder) v2 and DDC v2 IPs
->> found in MediaTek's MT8195, MT8188 SoC and their variants, and
->> including support for display modes up to 4k60 and for HDMI
->> Audio, as per the HDMI 2.0 spec.
->>
->> HDCP and CEC functionalities are also supported by this hardware,
->> but are not included in this commit and that also poses a slight
->> difference between the V2 and V1 controllers in how they handle
->> Hotplug Detection (HPD).
->>
->> While the v1 controller was using the CEC controller to check
->> HDMI cable connection and disconnection, in this driver the v2
->> one does not.
->>
->> This is due to the fact that on parts with v2 designs, like the
->> MT8195 SoC, there is one CEC controller shared between the HDMI
->> Transmitter (HDMI-TX) and Receiver (HDMI-RX): before eventually
->> adding support to use the CEC HW to wake up the HDMI controllers
->> it is necessary to have support for one TX, one RX *and* for both
->> at the same time.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
-> 
-> [snip]
-> 
->> +static void mtk_hdmi_v2_bridge_enable(struct drm_bridge *bridge,
->> +                                     struct drm_bridge_state *old_state)
->> +{
->> +       struct mtk_hdmi *hdmi = hdmi_ctx_from_bridge(bridge);
->> +       struct drm_atomic_state *state = old_state->base.state;
->> +       int ret;
->> +
->> +       ret = drm_atomic_helper_connector_hdmi_update_infoframes(hdmi->curr_conn, state);
->> +       if (ret)
->> +               dev_err(hdmi->dev, "Could not update infoframes: %d\n", ret);
->> +
->> +       mtk_hdmi_v2_hw_vid_mute(hdmi, false);
->> +       mtk_hdmi_v2_hw_aud_mute(hdmi, false);
-> 
-> In v1, it does not unmute when bridge enable.
-> I would like v1 and v2 has the same behavior.
-> If possible, remove these code.
-> If remove thee code would result in some problem,
-> add comment to describe why need these code.
-> 
+At the moment, x1e80100-pmics.dtsi enables two of the SMB2360 PMICs by
+default and leaves the other two disabled. The third one was originally
+also enabled by default, but then disabled in commit a237b8da413c ("arm64:
+dts: qcom: x1e80100: Disable SMB2360_2 by default"). This is inconsistent
+and confusing. Some laptops will even need SMB2360_1 disabled by default if
+they just have a single USB-C port.
 
-I think you even said that in the first review...
+Make this consistent by keeping all SMB2360 disabled in x1e80100-pmics.dtsi
+and enable them separately for all boards where needed. That way it is
+always clear which ones are available and avoids accidentally trying to
+read/write from missing chips when some of the PMICs are not present.
 
-Thanks for repeating, and sorry for missing that in v2, will be done
-for v3
+Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+---
+Changes in v2:
+- Clarify commit message, there are actually two SMB2360 disabled by
+  default (3rd and 4th) and not just the third (Aiqun Yu (Maria))
+- Link to v1: https://lore.kernel.org/r/20241203-x1e80100-disable-smb2360-v1-1-80942b7f73da@linaro.org
+---
+ arch/arm64/boot/dts/qcom/x1e001de-devkit.dts               | 8 ++++++++
+ arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts | 8 ++++++++
+ arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts    | 8 ++++++++
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts                  | 8 ++++++++
+ arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts      | 8 ++++++++
+ arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts   | 8 ++++++++
+ arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi   | 8 ++++++++
+ arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi               | 4 ++++
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts                  | 8 ++++++++
+ 9 files changed, 68 insertions(+)
 
-Cheers,
-Angelo
+diff --git a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
+index c9db6298d528ed505bae08e91bf4da02faef7d76..c3ec0bb2c42dfed9f5e9f56f18874b4ae6c0632c 100644
+--- a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
++++ b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
+@@ -1062,11 +1062,19 @@ &remoteproc_cdsp {
+ 	status = "okay";
+ };
+ 
++&smb2360_0 {
++	status = "okay";
++};
++
+ &smb2360_0_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l2b_3p0>;
+ };
+ 
++&smb2360_1 {
++	status = "okay";
++};
++
+ &smb2360_1_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l14b_3p0>;
+diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
+index 975550139e1024420ed335a2a46e4d54df7ee423..4097d2677285757ce67eef76d8d17669c7130001 100644
+--- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
++++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
+@@ -635,11 +635,19 @@ &remoteproc_cdsp {
+ 	status = "okay";
+ };
+ 
++&smb2360_0 {
++	status = "okay";
++};
++
+ &smb2360_0_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l2b_3p0>;
+ };
+ 
++&smb2360_1 {
++	status = "okay";
++};
++
+ &smb2360_1_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l14b_3p0>;
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+index f25991b887de3fca0092c5f81c881c5d8bd71aac..10f140ed08f47f2cd96e953d4ad3c75f3aad002a 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+@@ -501,11 +501,19 @@ &remoteproc_cdsp {
+ 	status = "okay";
+ };
+ 
++&smb2360_0 {
++	status = "okay";
++};
++
+ &smb2360_0_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l2b_3p0>;
+ };
+ 
++&smb2360_1 {
++	status = "okay";
++};
++
+ &smb2360_1_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l14b_3p0>;
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+index 39f9d9cdc10d8e79824b72288e2529536144fa9e..81c519e690f325f2d4d36c4a99061649da65ec87 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+@@ -932,11 +932,19 @@ &remoteproc_cdsp {
+ 	status = "okay";
+ };
+ 
++&smb2360_0 {
++	status = "okay";
++};
++
+ &smb2360_0_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l2b_3p0>;
+ };
+ 
++&smb2360_1 {
++	status = "okay";
++};
++
+ &smb2360_1_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l14b_3p0>;
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+index b112092fbb9fd955adca1ae8a76294c776fa2d1e..288e818961670be0d25b696730e7186a8d61b56e 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
+@@ -905,11 +905,19 @@ &remoteproc_cdsp {
+ 	status = "okay";
+ };
+ 
++&smb2360_0 {
++	status = "okay";
++};
++
+ &smb2360_0_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l2b_3p0>;
+ };
+ 
++&smb2360_1 {
++	status = "okay";
++};
++
+ &smb2360_1_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l14b_3p0>;
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+index ca5a808f2c7df66a861a933df407fd4bdaea3fe1..3d7e0230dc0381a2c2a3b0c5b766f5b854777937 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
+@@ -717,11 +717,19 @@ &remoteproc_cdsp {
+ 	status = "okay";
+ };
+ 
++&smb2360_0 {
++	status = "okay";
++};
++
+ &smb2360_0_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l2b_3p0>;
+ };
+ 
++&smb2360_1 {
++	status = "okay";
++};
++
+ &smb2360_1_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l14b_3p0>;
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+index 2236095023a135d8fb1baaede111a34be54d160c..af8459d38f210fb61536814577e468e6dfc4bb22 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi
+@@ -1112,11 +1112,19 @@ &remoteproc_cdsp {
+ 	status = "okay";
+ };
+ 
++&smb2360_0 {
++	status = "okay";
++};
++
+ &smb2360_0_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d>;
+ 	vdd3-supply = <&vreg_l2b>;
+ };
+ 
++&smb2360_1 {
++	status = "okay";
++};
++
+ &smb2360_1_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d>;
+ 	vdd3-supply = <&vreg_l14b>;
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+index 5b54ee79f048e3208cbcd6f91e0cec073420fe63..d7a2a2b8fc6c30bdb10df81eac7d92306998838f 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
+@@ -491,6 +491,8 @@ smb2360_0: pmic@7 {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
++		status = "disabled";
++
+ 		smb2360_0_eusb2_repeater: phy@fd00 {
+ 			compatible = "qcom,smb2360-eusb2-repeater";
+ 			reg = <0xfd00>;
+@@ -504,6 +506,8 @@ smb2360_1: pmic@a {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
++		status = "disabled";
++
+ 		smb2360_1_eusb2_repeater: phy@fd00 {
+ 			compatible = "qcom,smb2360-eusb2-repeater";
+ 			reg = <0xfd00>;
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+index 5ef030c60abe2998d093ee60a6754a90cd5aaf72..ffd28fd8059895ec345f4ee8fe6a2c37e7989747 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
+@@ -731,11 +731,19 @@ &remoteproc_cdsp {
+ 	status = "okay";
+ };
+ 
++&smb2360_0 {
++	status = "okay";
++};
++
+ &smb2360_0_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l2b_3p0>;
+ };
+ 
++&smb2360_1 {
++	status = "okay";
++};
++
+ &smb2360_1_eusb2_repeater {
+ 	vdd18-supply = <&vreg_l3d_1p8>;
+ 	vdd3-supply = <&vreg_l14b_3p0>;
 
-> Regards,
-> CK
-> 
->> +
->> +       /* signal the connect event to audio codec */
->> +       mtk_hdmi_v2_handle_plugged_change(hdmi, true);
->> +
->> +       hdmi->enabled = true;
->> +}
->> +
-> 
+---
+base-commit: f2b086fc9f039773445d2606dc65dc091ec1830f
+change-id: 20241129-x1e80100-disable-smb2360-20cec1656411
 
-
+Best regards,
+-- 
+Stephan Gerhold <stephan.gerhold@linaro.org>
 
 
