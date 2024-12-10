@@ -1,88 +1,85 @@
-Return-Path: <devicetree+bounces-129464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E391F9EBB74
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 22:03:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95C259EBB7D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 22:05:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0BCF16830C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:03:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D478118847FD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:05:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4493D230259;
-	Tue, 10 Dec 2024 21:03:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EE9C230268;
+	Tue, 10 Dec 2024 21:05:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NSSYuLUe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U/+1kMLW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7208B22FAF9;
-	Tue, 10 Dec 2024 21:03:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7092323024D;
+	Tue, 10 Dec 2024 21:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733864596; cv=none; b=EeNFLA29DtpxjHEIUIQD0SFCaJZYKICXUlsffGNZ8ESymghVw5ugJQVAgyafW5tsF747afqLv22S+DU6JalGTnVdgB6JMDltAbFbJB5RKHRysyvgYzUhgARgQ3TMrIR6JgTrMJ/hg1o7qC8bakPUuiXEo5LPY82UKu5aPiM/RZk=
+	t=1733864748; cv=none; b=OFWxBvoPjgsQRWUko8nt8FInaaGKhO4YqR1zUe/EZ+rR2yvByARIrMu11qtRihsKMtih642Juegf9vivk8Q6qD/wZkGPDDobdahHRmnCdRqqVF/oiT30dNIMH0JiuEag3AB1bhk/KB+SgoHyQontWO1QXudvNl+hxvexlgenk18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733864596; c=relaxed/simple;
-	bh=df4BzORNegqiD0+TekPPqkkG3Yc2iDOz+Iuw4KrksTI=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bp6gSMYSjmooOfsme6GWifwKHqOJ7d6khNi6ycSFCHMsl+A+pkKVJ/S3HlS1j/NxTAcgKjzlnJc2jPkF6xg7sEqe2niciQSvrCJYvm9LX9IZTR2gGjiwrhimz18LVdPc+ZhiZtm2ftps4zoySm265PtOcf4hWp03R7+yRyjJVRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NSSYuLUe; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1733864748; c=relaxed/simple;
+	bh=ejbmOJTBqR7xEm1e9LER2kA0EB3Jw24MnUDSaZCN97Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cAidj1ANOU6NC+w+ReXAfqX/dcr7YpdR7igJq/HoLR1CBtvtSfoYujLVTVz+8dcbAOtG67o/qhOK5d2wAfL305nm+Jsw79RyCw3sZEpQD6MUU+zpGq4ENxoRUwkF46jatjSHk2E4qD+ijrdhjbLbXCitwfmr4TRKBfK171S+0z4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U/+1kMLW; arc=none smtp.client-ip=209.85.208.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-434f30ba149so19823595e9.0;
-        Tue, 10 Dec 2024 13:03:14 -0800 (PST)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5d3c1f68ef1so841127a12.1;
+        Tue, 10 Dec 2024 13:05:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733864593; x=1734469393; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nm2Mjco+od8VJPNesv7f8taGbBUYsjl37SP0Hd6X4WI=;
-        b=NSSYuLUek7Ldyb3gHNIdmhVCpXG4Y8DKKaf+euS1a0qExym3sOXCKcOFIIl7XvZkkL
-         3KqlIivqxiLztUB2+8V7NFGoAdDl5m6cJRWdVLhBFJClNIIpmDMpWdwjOjIJaZjBOqCD
-         hK4nMq2ZuHKysmiX+FqdvL/6HkPdJdgXHzeJxT8PXAiPBhXdTewgAQK9RAo/+uGii/7j
-         k/xnmDxXl/Fj1VDQjSDN3q82QmE+m1QDeP0cw5XRIBTNIvHRNiV8Z+7M9QUeMRQY7V+j
-         32NojJMWL8SObAPpz4FUHV5CCPthabKEC67q3cu/4fv9T17zb31rGHdP4Le1jydBnG6R
-         w9gQ==
+        d=gmail.com; s=20230601; t=1733864745; x=1734469545; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lCSUmM6tJtHk1cryES3nVKP4N3a8/9+7aIRBtf/l8Mg=;
+        b=U/+1kMLWejjq782xtYbrDBlNWmh54h5OhALz8y+JjsTOeqyPr2IBWFiT7unwge8YXo
+         0toQFN1dzS/Cg6+RG8tsTJ+p5Kdo698TEk2JgDwBYNONOqJ9KDi9f9h+v8Txpdk9f2Ol
+         ApqfrNskGvOOado7qx9QtRK4iv9Om7NW3T9mW7IfRggQrA3/NOABChJEHRHMFFDCfjoQ
+         nKF3JFvQi4cVTk8CV3btUegCJsoGFQT1rxgLUgZDJbkphNu6Odq3dqsNEbDpKEKPgn1d
+         nhUJBH/PnFQpLU/lH0vb+wIFGYsITw/o9DhqhawyOI7WAl/00s5DcgT7AZn3BO18ifwZ
+         v69g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733864593; x=1734469393;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1733864745; x=1734469545;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nm2Mjco+od8VJPNesv7f8taGbBUYsjl37SP0Hd6X4WI=;
-        b=MJPqu8G//Qos7vDOgtgg0MBexgZN9nBtbe3pahZzK/ruyEo3Ibxj+T+9NxqLqBiMmb
-         oKqKQ/F9F+0atSn0i1yQaiLgFJU8oe7GEyvgMqL+ptv2a2+aUae0WKTGFDwBtasipqaO
-         /lxLjsps9CzmhxibZSDaXp+EAvl11cFRTLS0ySMFkwkxom2Wlf6d59HZYZh0B/xfWTX/
-         yTWIow7RuJSnIPgrmDP5vigbnmQ0vUFmqNq1MpYphCuyYPpMShUm1DGg+TlNO7CPSA9P
-         mz4KdehZBi8VTUhEv/58mOM5P1oEWDz9Rs73r/mxs0EByb3dQOixUY96VSnert9VY4nq
-         dVGw==
-X-Forwarded-Encrypted: i=1; AJvYcCVITBnU0IHjG4kIUX377JoaC883JmikITanyB1Jw1GPa6NgBebHPYz86+HjmFWJEWO4P11Q3Mxo6qLxQvep@vger.kernel.org, AJvYcCWUHKLmc+MkHaZVc6UgMaO9dCL5b0HH/hYYVAcLnd3aufjCadhuyco67kQk1T4ZlENnrtcGEDbaHdTd@vger.kernel.org, AJvYcCXpF3eCToFVk9h5tzmkeCNuD84oMQMOHXP39eluhC9eDXJArxOSXUMf2CnmXoxkBBRA2aiF1vox@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxk1tJQGgbxx2HAsQmA4iJ11/gJBoWbPej5pTRETHZ+hFEYkD6b
-	IuePw8lDUX4UrqMJ/l7lX4ZPGoxeX05pjmnJIgdHDNtBlsCi9p0b
-X-Gm-Gg: ASbGnctnC3bGaQAePl784CJ9aLH/9sKylH8hF9dyHEt3hNC6u9GkXfm6haDxtU7TY5S
-	QwFeb2+X6ZGtvIYIH/+omyMhshTQNG536owKuy0tq9xfHjFmGSfsoG8vKcbkIa9O8PG+siFc8N3
-	bPloX9Ayl5F+UvR1plf/ni2eNueJaJUr8iw1rtLGT1vRJxu0bdR8Fvybtf+59z4K4qecsyX8v0y
-	QCzaT7UgCpU/i08hQnkMsXqQ+s+8lzZayRNAl7w+Yp4Fx/uPJAl3w0zmaSM5T57TgwYHA5nqsqQ
-	U+pFhiElow==
-X-Google-Smtp-Source: AGHT+IEXtT2UlScHLsjoILK+fcmMLa5fdqey9hRCAZXHg3/61m4/0ewYioRKLrqpj0zjb4ItoNJGrg==
-X-Received: by 2002:a05:600c:358b:b0:434:f7e3:bfbd with SMTP id 5b1f17b1804b1-4361c3efb43mr2036915e9.23.1733864592696;
-        Tue, 10 Dec 2024 13:03:12 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38621fbbe15sm16620197f8f.92.2024.12.10.13.03.11
+        bh=lCSUmM6tJtHk1cryES3nVKP4N3a8/9+7aIRBtf/l8Mg=;
+        b=cNJvknh5FcY9YTXFam62SUzAIb6CDvK1zavtgTOU5drstu4aAmp2iXnuVf+i3eruMI
+         6aJSxkm+xXTcO3mCYlszRJw/oUcQbyfb88TyFoYAVMZnYdhMj2VUA+bfAen4V26yMxql
+         BBGeT4iJfuRMqZp7EQesc/9WZ3r1wavxBz7TZOFpyC+VdVo7ynyikhgi3OF+At0J8Sxf
+         lbI9XTPRPI+NerVNqT3N8xLX5cTxIR7AQafEVTyE3aQA3eoJjcvdCIsWs+OjR14tQS99
+         2I9jKol2B9xYeXFCfzCJNk3cVzmUOxIdyl3GqWbIjVd9z7paamHxAM+vRcVXo74kw0M1
+         b8DQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVhOJ2FsT+R2EXJ2AUSh8OcnIyUXD9x5rZaTV1vTYq50+ePZ2qTMeOQf26TK3phIVvHinxDOh9P/Lnd@vger.kernel.org, AJvYcCW51XFnCOrjPdUXml3/NRynklkaomXvbTyjxBhbSeEzrAKZ4n6n9yD4HXmeU1kxWU2xDAj6Y96k@vger.kernel.org, AJvYcCX2bby+djxMI/dB9WQgvg0dqjb99aNYEIOs2gIaRyCADz0eZmQMvQ/GL8PYg0iWP4vvwBEkKCG+dnHLMlgp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz13WyRzZG+Yujrs1fGMI9ggSTnNVbMjOH/rivrnrLQlBIx5gH6
+	LjN7lZjf9dLHzCDQsHkh62kgKP5si6mAJFT8GlND/wzVZ9lgCQRd80EIkw==
+X-Gm-Gg: ASbGnctOcbyfqTvWhjZkNbZVDGnnV8ef/hmf8QJ8tMEHLeZKnjt4DM59tqPRwm9COYk
+	kei8Qlq0j7fuJyx5EgBx4x8eiMeJ5aKDu5DppDwAYk2c37IWHrs2cm2RZE/GtWxgoycyycT5n3+
+	Zaim8de6TCwJuYOMf2iHWBSZu4yIlJlMFmHiUlGaEH92mP6foJLU3pQd0pmjL/R/CVv0N0T1NIp
+	gjF3ktGh70h0c1dNE63XBu11In6pBzjNELsA2oyvg==
+X-Google-Smtp-Source: AGHT+IH6uzJqyl9gC3tF9Zg5rL20SJAzl4Fe1it808wM2vN5YRgy4x6E1uwD9tzrmWPmIFxFqiytkQ==
+X-Received: by 2002:a17:907:868a:b0:aa5:163c:69cb with SMTP id a640c23a62f3a-aa6b13ad3abmr7899166b.12.1733864744607;
+        Tue, 10 Dec 2024 13:05:44 -0800 (PST)
+Received: from skbuf ([86.127.124.81])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6a263efc1sm168094066b.68.2024.12.10.13.05.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 13:03:12 -0800 (PST)
-Message-ID: <6758ac90.df0a0220.20ca7f.df40@mx.google.com>
-X-Google-Original-Message-ID: <Z1isjbV2ypR2T2Bh@Ansuel-XPS.>
-Date: Tue, 10 Dec 2024 22:03:09 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Vladimir Oltean <olteanv@gmail.com>
+        Tue, 10 Dec 2024 13:05:44 -0800 (PST)
+Date: Tue, 10 Dec 2024 23:05:40 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>
 Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Andrew Lunn <andrew+netdev@lunn.ch>,
 	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
 	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
 	Heiner Kallweit <hkallweit1@gmail.com>,
 	Russell King <linux@armlinux.org.uk>,
@@ -92,13 +89,12 @@ Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	upstream@airoha.com
-Subject: Re: [net-next PATCH v11 4/9] dt-bindings: mfd: Document support for
- Airoha AN8855 Switch SoC
+Subject: Re: [net-next PATCH v11 5/9] mfd: an8855: Add support for Airoha
+ AN8855 Switch MFD
+Message-ID: <20241210210540.jxhni4p2lrvdwoop@skbuf>
 References: <20241209134459.27110-1-ansuelsmth@gmail.com>
- <20241209134459.27110-1-ansuelsmth@gmail.com>
- <20241209134459.27110-5-ansuelsmth@gmail.com>
- <20241209134459.27110-5-ansuelsmth@gmail.com>
- <20241210205544.g6y7vcyekyfebkoo@skbuf>
+ <20241209134459.27110-6-ansuelsmth@gmail.com>
+ <20241209151813.106eda03@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,63 +103,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241210205544.g6y7vcyekyfebkoo@skbuf>
+In-Reply-To: <20241209151813.106eda03@kernel.org>
 
-On Tue, Dec 10, 2024 at 10:55:44PM +0200, Vladimir Oltean wrote:
-> On Mon, Dec 09, 2024 at 02:44:21PM +0100, Christian Marangi wrote:
-> > +properties:
-> > +  compatible:
-> > +    const: airoha,an8855-mfd
+On Mon, Dec 09, 2024 at 03:18:13PM -0800, Jakub Kicinski wrote:
+> On Mon,  9 Dec 2024 14:44:22 +0100 Christian Marangi wrote:
+> > +	regmap = devm_regmap_init(priv->dev, NULL, priv,
+> > +				  &an8855_regmap_config);
+> > +	if (IS_ERR(regmap))
+>             ^^^^^^^^^^^^^^
+> > +		dev_err_probe(priv->dev, PTR_ERR(priv->dev),
+>                                          ^^^^^^^^^^^^^^^^^^
+> > +			      "regmap initialization failed\n");
 > 
-> After assisting dt-binding reviews in the past, I get the impression
-> that "mfd" in a compatible string name is not going to be accepted.
-> The bindings should be OS-independent, MFD is a Linux implementation.
-> In principle this could be just "airoha,an8855" for the entire SoC.
->
+> wrong ptr?
+> -- 
+> pw-bot: cr
 
-Ok I will use an8855. The DSA switch has the suffix so it's not a
-problem being that generic.
-
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    mdio {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        mfd@1 {
-> 
-> And the node name could be just "soc@1".
-> 
-
-I tought there was a constraint with node name but this is not the case,
-will change to soc.
-
-> > +            compatible = "airoha,an8855-mfd";
-> > +            reg = <1>;
-> > +
-> > +            efuse {
-> ...
-> > +            };
-> > +
-> > +            ethernet-switch {
-> ...
-> > +            };
-> > +
-> > +            mdio {
-> ...
-> > +            };
-> > +        };
-> > +    };
-> 
-> I hope it's not mandatory to duplicate in the example also the bindings
-> of the children, especially since you link to their own schemas.
-
-I checked other example and some duplicate the example and some
-doesn't... My idea here is to try to add the most complete example
-possible. Especially to how to define efuse and how phy makes use of it.
-
--- 
-	Ansuel
+Also, why continue execution if devm_regmap_init() failed?
 
