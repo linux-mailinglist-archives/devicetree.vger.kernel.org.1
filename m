@@ -1,103 +1,213 @@
-Return-Path: <devicetree+bounces-129199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 403499EAEA2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:52:15 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C2B216984B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:52:05 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 233672153C9;
-	Tue, 10 Dec 2024 10:47:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="bx4DDDsQ"
-X-Original-To: devicetree@vger.kernel.org
-Received: from pv50p00im-tydg10021701.me.com (pv50p00im-tydg10021701.me.com [17.58.6.54])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3A439EAE96
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:51:01 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B484B2080DC
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:47:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.54
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65C79287447
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:51:00 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BE5F22CBC9;
+	Tue, 10 Dec 2024 10:46:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="andx9GKd"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22F622541D
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:46:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733827629; cv=none; b=DD1DstCaAaVie8xgRBTT8dJC8NbmNljuVeraKLjLs9GAg/qFH+iDFt7xrJaU+84mFnwB4knnvXmN/a9pSlNPQIunLVKVRQ163uiCOySk/5aVYLEdhulAfzDHtR3KtgiQ8W7viYjUaTI1u/+YCHvTZoH4tRQTc90xE/1fBFzRuOU=
+	t=1733827615; cv=none; b=b144IL+68guI6Oy4meQ86Ej7lN7UVDho5kntJq1Wzdq1b2sS/R7M9kNvQy6oIDWoskeuyGQpGUQKOWATPbJXtFWu2jNw88pKbBXjxHZ0CVhgaONd1C/j0B1wpRRx7X49JjI/kjv7I9V/owJaOefhPTCBESgj4cT5nFLvB+Q4byQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733827629; c=relaxed/simple;
-	bh=7cAOtHmWFYFxgF1IS9o3UOEreFWIfHIRpa4Ir9G603w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UJoCBD2XJPMh6RHoGCePIlB3jXswOAe2tNwI2UsAly42KUW6RpMgjD02JVCyy6tkvpkJDcntLvKe8dBHq9GrCI7++xpWNBqyu4H+CE2tJOCZ7Nh+Q0nb5UGD6QbGEZ/0eBMrVJmN4AG2ol7xwO34ot7YGvPdaxVkm6HzaG7sO6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=bx4DDDsQ; arc=none smtp.client-ip=17.58.6.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1733827627;
-	bh=XDhu6vDHGLx6cprcO+YAHj5YlGKsZNZFDkv2iQGYj6s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:
-	 x-icloud-hme;
-	b=bx4DDDsQN7vJAMKzkOvOlpiD9K7dNA9HTKSqWet2O92TrtWQAyt4WdlJpSaUAEnGO
-	 LcMjnkciSIGzVdhisw9pUZ1XbZ7snk0eE8ZuI5BmDLmQgjUuRPxFQAxloxTfU/IKrK
-	 1hXVEYqi7ZPamkMD1eS2KO6D01ZGWwrW1jKlOE3uqAQkz9gFSsq/3RHeI3aNirTOQ0
-	 9Uv1105+0iH1HyDiwX+/JBjTrw1ZQEQ2kVLxa9kqcsaiV7rgL9K8Ck6oj4hQuYyfyJ
-	 B+IiH1V7axITVKp7y5iEI0UMAfDzUwrbmEv6roZMZM+RuvtGbK/Dquu1am8zkc0rJ4
-	 TUSQVc+se8NeQ==
-Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-tydg10021701.me.com (Postfix) with ESMTPSA id 373D03A0D9A;
-	Tue, 10 Dec 2024 10:46:53 +0000 (UTC)
-Message-ID: <3bcf5847-6f54-4bfb-8752-e121d15ea1ff@icloud.com>
-Date: Tue, 10 Dec 2024 18:46:48 +0800
+	s=arc-20240116; t=1733827615; c=relaxed/simple;
+	bh=q8L+/X8mQMclZDxDMNMoohPiMsPmm9wiBCl25kpj+IE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=NJyLluksPz0LUlWw5KrNr7RFtlyzC9g4sVeuUjTwLdI2xI6bkZN/MoNGXOaKlAbwMCk6LC8hWQS1x/5LlvobZR/40a0E6SvncjmZaEFprbbIBsvtUbPyaU13epTPwH2fTGEQvqFioOVpdw9L+haT86ISfWO/ko/mEck5vhympho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=andx9GKd; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-434a736518eso59267535e9.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 02:46:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733827611; x=1734432411; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YXPVN+H7vvYMLNQs3gMlC+noWJOkuHAbBtVwrLjbmHI=;
+        b=andx9GKd0Ek48YVvpXcfJueL+UcPkEznFG9XVYgPDoFtP3FjEYd5uWK9ikKWMaiBzq
+         PCQIqv5GC31ZmNuljWUqvtfGe6hfnTaExoktOpWyU5eCKc7j/Ny4oiAuHCHA0lsSbEHG
+         38UzT6Lp9k5pyRKyC0/1prOzif5iYFYyIOGEoR6E1SqUaQvyWXT2Fb1ElFDBafivBnNe
+         T8yVBuDbe3j/LZeFH13InrooaiRUpug/Rpxv0px3oN2GAiAXGoqy3mP0YTtbg8w+155k
+         8kIKudIqYd2Nmxan1TU4cCoXi5gvhb4yKxbzgiGctbCjgY97tNgwU5nPFroIsriu8bJi
+         56sw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733827611; x=1734432411;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YXPVN+H7vvYMLNQs3gMlC+noWJOkuHAbBtVwrLjbmHI=;
+        b=HAQgXNLPhufaX96Hraw/TpinZxn6Vqjd1jr4kuQIl/uZKgMdBhtBGlUz1pLK9RzkXd
+         XqN+EJ5RcdkTCFXKWpUx16pK9s4EMXfys+e5lKy/veWYSWnlB9pS5nM9l9TTuBDTQ5pC
+         kzMNCCecNN+PpS2Qsd/u8jX5R0WnjVAe89tl63ok6a6gC4h8V/VWroeuvHNfoXDZImgu
+         QtBa0jSeio6S0AfWxmBreUj/aTnq86XNktV0fdJacXuUDauVWwELqpX9pY9JY3IMXAYd
+         9b6nGzuYmUck4QqybybgxohO8HGQSlrdj6Nv016PZ9fqG+kf9MVI77h3CuLp1tB12AQG
+         gdpA==
+X-Forwarded-Encrypted: i=1; AJvYcCUd4ox1kbxVhCIxT4fYUUtgrFogPieieIbjVH+7vS+fxcckmkdkDqke0HOo55/3Wu6i3CqdNVYNP43i@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQtbcIqbGroy/gDCQZpWzvMpwYXDKeLqkG3QvlRE6pGhs+tc1P
+	uU4ZBswvxO/hjLBKsuSv15kVMeGKiBd5Oi2CgdcOPRXGfy5xFCRUBlTB5l4HiII=
+X-Gm-Gg: ASbGnctdCfFw76qRwHR/jzmCPvA1aML2jX9MdJmQP3wtK6Z3i7r+ZvK8OQbAx/y2/UB
+	0rNrX8POCtwEwPbfRRIz64jDaCkiXmkl6wXv7CWcmfKr/ob5wxRY0XLgeB1rV8wlcL7LDtoMFzP
+	LiSbeyxk+RJSklDtW65E5iGJyNKTfmtjB+n1IthsR2r8EKdnNSc/0pXagWIHP245bJoskysX7po
+	bS7nQAGw8UN4mEMHCsTINVZvP+ovLfTu9YOElUcSBQcNvzxJJwe0KFEsi6XmWETMRcnX1Bi0zd+
+	KA==
+X-Google-Smtp-Source: AGHT+IEjZNifROqSaH0tgV4tC6R+g7G5eQGgzNCQx1BZaVZ3snqitMBsuRIjjsXOy61Ogp6tgAddnA==
+X-Received: by 2002:a05:600c:5114:b0:434:a802:e9a6 with SMTP id 5b1f17b1804b1-434fff30ed9mr39195745e9.7.1733827610857;
+        Tue, 10 Dec 2024 02:46:50 -0800 (PST)
+Received: from [127.0.1.1] (frhb82016ds.ikexpress.com. [185.246.87.17])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434f2d08564sm94543645e9.12.2024.12.10.02.46.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 02:46:50 -0800 (PST)
+From: Guillaume Stols <gstols@baylibre.com>
+Date: Tue, 10 Dec 2024 10:46:48 +0000
+Subject: [PATCH v2 8/9] iio: adc: ad7606: Change channel macros parameters
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] of/irq: Fix wrong value of variable @len in
- of_irq_parse_imap_parent()
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Marc Zyngier <maz@kernel.org>,
- Stefan Wiehler <stefan.wiehler@nokia.com>,
- Grant Likely <grant.likely@linaro.org>, Tony Lindgren <tony@atomide.com>,
- Kumar Gala <galak@codeaurora.org>, Thierry Reding
- <thierry.reding@gmail.com>, Julia Lawall <Julia.Lawall@lip6.fr>,
- Jamie Iles <jamie@jamieiles.com>, Grant Likely <grant.likely@secretlab.ca>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Herring <rob.herring@calxeda.com>, Zijun Hu <quic_zijuhu@quicinc.com>,
- stable@vger.kernel.org
-References: <20241209-of_irq_fix-v1-0-782f1419c8a1@quicinc.com>
- <20241209-of_irq_fix-v1-1-782f1419c8a1@quicinc.com>
- <20241209205613.GB938291-robh@kernel.org>
-Content-Language: en-US
-From: Zijun Hu <zijun_hu@icloud.com>
-In-Reply-To: <20241209205613.GB938291-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: ZLpPG5aPyRsHGBD9VLHiX7wdEYhWswfl
-X-Proofpoint-ORIG-GUID: ZLpPG5aPyRsHGBD9VLHiX7wdEYhWswfl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2024-12-10_04,2024-12-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 malwarescore=0
- spamscore=0 mlxscore=0 phishscore=0 bulkscore=0 suspectscore=0
- clxscore=1015 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2412100080
+Message-Id: <20241210-ad7606_add_iio_backend_software_mode-v2-8-6619c3e50d81@baylibre.com>
+References: <20241210-ad7606_add_iio_backend_software_mode-v2-0-6619c3e50d81@baylibre.com>
+In-Reply-To: <20241210-ad7606_add_iio_backend_software_mode-v2-0-6619c3e50d81@baylibre.com>
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ devicetree@vger.kernel.org, dlechner@baylibre.com, jstephan@baylibre.com, 
+ aardelean@baylibre.com, adureghello@baylibre.com, 
+ Guillaume Stols <gstols@baylibre.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733827603; l=3162;
+ i=gstols@baylibre.com; s=20240417; h=from:subject:message-id;
+ bh=q8L+/X8mQMclZDxDMNMoohPiMsPmm9wiBCl25kpj+IE=;
+ b=S0PrQp4CIcaxFv3AH+5EAQczxw7xbqwMk5SsilNV/T3/SOiEvKEaXgaZBKeehaiSvRB0PB77n
+ B6xClCSvw8FBS84JkOGiRXfg6iHJ/KyRZVVE7mrwobh3jw1bjQdzQg0
+X-Developer-Key: i=gstols@baylibre.com; a=ed25519;
+ pk=XvMm5WHuV67sGYOJZqIYzXndbaJOlNd8Q6li6vnb4Cs=
 
-On 2024/12/10 04:56, Rob Herring wrote:
-> Applied, but rewrote the commit message:
-> 
-> of/irq: Fix interrupt-map cell length check in of_irq_parse_imap_parent()
-> 
-> On a malformed interrupt-map property which is shorter than expected by 
-> 1 cell, we may read bogus data past the end of the property instead of
-> returning an error in of_irq_parse_imap_parent().
-> 
-> Decrement the remaining length when skipping over the interrupt parent  
-> phandle cell.
+Add the possibility to pass the *_available parameters to the main
+macro.
+This is a preparation to add the new channels for software mode and
+hardware mode in iio backend mode more easily.
 
-thank you Rob for these good corrections.
+Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+---
+ drivers/iio/adc/ad7606.h | 51 ++++++++++++++++++++++++------------------------
+ 1 file changed, 25 insertions(+), 26 deletions(-)
+
+diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
+index eca7ea99e24d..ada8065fba4e 100644
+--- a/drivers/iio/adc/ad7606.h
++++ b/drivers/iio/adc/ad7606.h
+@@ -40,37 +40,19 @@
+ #define AD7606_RANGE_CH_ADDR(ch)	(0x03 + ((ch) >> 1))
+ #define AD7606_OS_MODE			0x08
+ 
+-#define AD760X_CHANNEL(num, mask_sep, mask_type, mask_all, bits) {	\
++#define AD760X_CHANNEL(num, mask_sep, mask_type, mask_all,	\
++		mask_sep_avail, mask_all_avail, bits) {		\
+ 		.type = IIO_VOLTAGE,				\
+ 		.indexed = 1,					\
+ 		.channel = num,					\
+ 		.address = num,					\
+ 		.info_mask_separate = mask_sep,			\
++		.info_mask_separate_available =			\
++			mask_sep_avail,				\
+ 		.info_mask_shared_by_type = mask_type,		\
+ 		.info_mask_shared_by_all = mask_all,		\
+-		.scan_index = num,				\
+-		.scan_type = {					\
+-			.sign = 's',				\
+-			.realbits = (bits),			\
+-			.storagebits = (bits) > 16 ? 32 : 16,	\
+-			.endianness = IIO_CPU,			\
+-		},						\
+-}
+-
+-#define AD7606_SW_CHANNEL(num, bits) {				\
+-		.type = IIO_VOLTAGE,				\
+-		.indexed = 1,					\
+-		.channel = num,					\
+-		.address = num,					\
+-		.info_mask_separate =				\
+-			BIT(IIO_CHAN_INFO_RAW) |		\
+-			BIT(IIO_CHAN_INFO_SCALE),		\
+-		.info_mask_separate_available =			\
+-			BIT(IIO_CHAN_INFO_SCALE),		\
+-		.info_mask_shared_by_all =			\
+-			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
+ 		.info_mask_shared_by_all_available =		\
+-			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
++			mask_all_avail,				\
+ 		.scan_index = num,				\
+ 		.scan_type = {					\
+ 			.sign = 's',				\
+@@ -80,14 +62,30 @@
+ 		},						\
+ }
+ 
++#define AD7606_SW_CHANNEL(num, bits)			\
++	AD760X_CHANNEL(num,				\
++		/* mask separate */			\
++		BIT(IIO_CHAN_INFO_RAW) |		\
++		BIT(IIO_CHAN_INFO_SCALE),		\
++		/* mask type */				\
++		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
++		/* mask all */				\
++		0,					\
++		/* mask separate available */		\
++		BIT(IIO_CHAN_INFO_SCALE),		\
++		/* mask all available */		\
++		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
++		bits)
++
+ #define AD7605_CHANNEL(num)				\
+ 	AD760X_CHANNEL(num, BIT(IIO_CHAN_INFO_RAW),	\
+-		BIT(IIO_CHAN_INFO_SCALE), 0, 16)
++		BIT(IIO_CHAN_INFO_SCALE), 0, 0, 0, 16)
+ 
+ #define AD7606_CHANNEL(num, bits)			\
+ 	AD760X_CHANNEL(num, BIT(IIO_CHAN_INFO_RAW),	\
+ 		BIT(IIO_CHAN_INFO_SCALE),		\
+-		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO), bits)
++		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
++		0, 0, bits)
+ 
+ #define AD7616_CHANNEL(num)	AD7606_SW_CHANNEL(num, 16)
+ 
+@@ -95,7 +93,8 @@
+ 	AD760X_CHANNEL(num, 0,				\
+ 		BIT(IIO_CHAN_INFO_SCALE),		\
+ 		BIT(IIO_CHAN_INFO_SAMP_FREQ) |		\
+-		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO), 16)
++		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),  \
++		0, 0, 16)
+ 
+ struct ad7606_state;
+ 
+
+-- 
+2.34.1
+
 
