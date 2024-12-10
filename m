@@ -1,142 +1,201 @@
-Return-Path: <devicetree+bounces-129448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6F049EBAF0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:44:52 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A75DA9EBB09
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:49:29 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99CF81887C2A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 20:44:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49D76283B5C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 20:49:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9573022ACD3;
-	Tue, 10 Dec 2024 20:44:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1A7E22B59E;
+	Tue, 10 Dec 2024 20:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P+TiFuME"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jZUMg/U1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF1E122ACCA;
-	Tue, 10 Dec 2024 20:44:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB1422B597;
+	Tue, 10 Dec 2024 20:49:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733863489; cv=none; b=RKTs2lN3BaZrAdyX1qNiCCxG3IcEKiv0PMH1v1e1FseOkwGh2m7ff85ijXshhAlQuX08D99gC8S0RNLAZ8p0g15lXIJyfuCzpheI2oeUjgJvA9EH+Firjl/PT2XwlkpMfTYg6mS5doL1f7zwwjl1cjKwp5ZWiA8tM0veffa6600=
+	t=1733863764; cv=none; b=CNzNnD+CngYv/DSH0bN0MUAnE88OxXj8vZMZLunYuOAcGJd4i1eHFTCk+Kducenb/tVGQ5kbXiZl9bFLxwCZRvpng0YROnnnhGvtKtd4/z6YzMrjaVqVazGDfzAe2IlePLlZUo2ZPO4FAjtnxlquhc8wGnsyD8ifUrxVinccuSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733863489; c=relaxed/simple;
-	bh=wiUU5YoAOZ55YgXTrWBqWI5AoAogjeS3OF3MSNstWk4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KfxAQQxAlds7utV3UDws4ERJm30JYsIwCCN6TDRRsnbjs21H/96Lu5ivv+UXfkKIUIdCIK4A0dY7XCbTua4CvFRpkr+Bz/JVzgvNH27hznleRollcMcXCEfPhdPX3AQYIOoBqEU3U9wMo4UT6huRy4JpEe4FzbnnvqyToSZE7GM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P+TiFuME; arc=none smtp.client-ip=209.85.221.48
+	s=arc-20240116; t=1733863764; c=relaxed/simple;
+	bh=OLTPVYyc/7nlCM5FPxXemPRns+bgGCcQnKZHAGRTsMA=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=t9VRITUCYGvKNHVwyP96AtkfHXYoXafmmWjm8VE0pUIhnKYNcbeQhOl42bTPYcGI5QViqkOtBmnobv03Z9Fqee1W5o28xBJ0UEdH48bBXGtDW4d47aRHmAzXQXxACa7ElPm6GoR22DQL+P0GT57Kb8goH97bSGWCaIxnE/d84wg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jZUMg/U1; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-38634c35129so2720361f8f.3;
-        Tue, 10 Dec 2024 12:44:47 -0800 (PST)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3862b40a6e0so2662895f8f.0;
+        Tue, 10 Dec 2024 12:49:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733863486; x=1734468286; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=iwyCGq8tBYpLXJEdw3+rIczGnurdoKFj8KXQjbjaFLk=;
-        b=P+TiFuMEG1NA173QcmlA48DkpWa8gvrrY2it6aspRDqEU7CcUWx48EUgrEaZgIVEWo
-         Nv+jMciUUy9bjgcujg+G8EavaystUTtGcu0eTa3gt5rrJT6ZWn/1Hn3xDeJF6J4W8W50
-         aBzl3Hv4x5gTU/Fv/vHA7KcBZViaftR2ZtFEbOgyBD663U9YAcIdqkCALmmQu7RP8JEU
-         FfLYV15Imdon9Vtm9OJDmrMwtTCjcwougWy4QGa1Lp/zhibIqBS41SsNdOuDz9vgmc4/
-         39B55CW6ltLJlqSTQfOrDXRFRBX2LSzYTPF9sooSKFySwJvner2EHXuRaBMxUoUSoPhs
-         p/dg==
+        d=gmail.com; s=20230601; t=1733863761; x=1734468561; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jg5mU2JMtNTWEE8J9PA490rUld5BDirou6U7dgBSKuk=;
+        b=jZUMg/U1vsiNSQuJOjeBb+sknSpZjFZAXjs2RMHNTieBMQpvqs0Sj0EvKY7FCydIZJ
+         I7fySqgz7lsN07BpZAWScosTREF1x1eO4jMLO0YhcyPed2LpbTbq1SCq0IjCikTT61aD
+         k6UnDY+dt12FeZ5qUFBsLQZq5YG6Y5oYb6S4lzgVH3AXChkn/c/Ygm1TkO0a+JYQjddd
+         Fejz/G5Ar3LpEbs4EBm859NDaoATG7W+2Q77jY5U7tJqjTf/YocZEhZIi+gto37QTRq6
+         jk2rsugxoktMGW83F5NDNQfGv0sCHFdVa/ckb1DLpf4DP2NqS8VQHfeb7KFhNhAhYvnn
+         6rVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733863486; x=1734468286;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iwyCGq8tBYpLXJEdw3+rIczGnurdoKFj8KXQjbjaFLk=;
-        b=E23YrhZvYqVl/mYtUG+g6Vd+Poo0500+K54AF789C6rmCKBeMe9yHJTWM3XajOGaV7
-         69hVNcVFd+fve/AIjs5Lmz9oUOp/ZSfsR4X4lDz7SsZDRlFUaX6X9tpHBBDnLLxWdrfm
-         dWV/vRijjrIxgtWroFoSIQeFVBIu0hyydIEB+KD3LuJ7KGlVcx06sxR45Gi7u9nsmHjz
-         qX/zz8rBOWNLSTwm8heV/bntnAMuSDEF8d9T0bWWtIzv0MpJZYA05tIHtE664nNPUhRk
-         +b9SpBMB2vBI8R0IGpHoBdt+fDLuvPC1J8QOkA5HMCl3gcwRNTvRYWx/RgBUGUY+p6Ne
-         sWxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW8zGsqK6+xL1VZ5DYR3QY9XYgYn66wUvz/isC5igJctUhwaLYaqejWEZo2D+xtYjEb9rjE9P7znoXBJPIZaA==@vger.kernel.org, AJvYcCWg75HEXNdnL4IQlH6AS9YtcT00al5+VAL4mlDyGForKmysvjYk5PusXkusT0wFTG62C75y3wTdOlpo/uNF@vger.kernel.org, AJvYcCWqgWzeSGAntP+26wN7WGuxLUNBlXFe4rbIUzmguJWqU6DpYilQH1AlW6eNJnnGPoWhguEeiG74oKSg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxkoa6F2J3/BUgpsZYvJD1FXp46uRxhyTgX7iKW9hdcTNK+py3V
-	Rb3+v8OSdZqnyI8yHsCXWwfbi/LojguHTxeA+U+mg6HhpQo6OXSnNAj7A6ueNywI46XIbajpe1X
-	EobQ8PNPAgjXKHCL5mABUviMEZw==
-X-Gm-Gg: ASbGncuoq/UIB8p3S/FR0Di/Ng9IEIkoAW/lh6UfPrV14XPL01rVCSLbZo8p3ah4gem
-	D6PsmZFTtKN2syRWcCBfudopK0J3suhBhVg==
-X-Google-Smtp-Source: AGHT+IFPwHAdLeO/YMpVL8hdXbKSE0DwHsXkmFGiG9KCRAVZmOE5EzTBijPLZ4yvHP6SCrLORAISTAVMWd4Yn5hkinw=
-X-Received: by 2002:a05:6000:144c:b0:385:f00a:a45b with SMTP id
- ffacd0b85a97d-3864ce925a7mr280370f8f.21.1733863485135; Tue, 10 Dec 2024
- 12:44:45 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733863761; x=1734468561;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jg5mU2JMtNTWEE8J9PA490rUld5BDirou6U7dgBSKuk=;
+        b=DA8Sq3MsztlQvaacL8HXZ1eiqnPS+AIUIGGg4jSeqWxIqHUaYB0m1R2tayYMhKW6BS
+         OiXqBxcXkDwkx5Y/2ZkKF9bVf7urxOZjNAKAidhK0GoXrysY3gGSXehOo0oODapOI+QE
+         1DdwZntRAdRpzeLd64Ys4ReTr7Tc8rqueM4hcTaxXhN4FawTTiPPxmgA8YypF9IhHIlQ
+         1EKHieU2guuIxP14JbRGKJ7CWX46I39nH8im+WPahhdW9PoltLYUr3LCCJWPbae7RYpy
+         7zcrdi9JCfyCDVDGcNC9CF9Gmbxqw9dp5AKOU/UmHQA/oohZLzAu4yydMLQSXhBJidOp
+         AqhA==
+X-Forwarded-Encrypted: i=1; AJvYcCV6y7t+PXES5lFWQzTWPekVoFcuoBpkXDjFrHZcXTOs/ZHwv6f0+tjSQ1YkUyT4h5I/tg/k3ZCHIpNgADTg@vger.kernel.org, AJvYcCW9gcj+6sMnJ+fnCZRR+PIYd8pcolNTk1vUqMfS3JKkFga9LSqtYQcN3ywaTUslxloM15K16s0r28Dj@vger.kernel.org, AJvYcCXsqx3M72ZuAkc1MmNj07kU/lsOlrYNNRgMWdLV7dM/iTLQlBlgwbqm6IsepktS62JfgRdS0EHKAfogBwP+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyP8OVNmBeTPBf314Mi+9T+VAwPUjLe2o9cNuEus2gyN9HCP9to
+	jryr1hN45IlvT+t2uA6JGtnPLnAaCZP1+dQvivlVZjCA6Wj2voFq
+X-Gm-Gg: ASbGncvaGbQPks0SxrVrp1IGUaVqnymQpwo2s5Tcl7AsL+0F6o+JBOA8LErK3S07B9Z
+	46R0zkQ/w67gTXGeoev+sYFU6XJV6sgRSqu9adHR5As8Pf1EpU13WZMHhNmuksfdLvdRQCLmmtM
+	SQOzZzK46fax9BKaCXzTxP2jWVIZK1qoXW6HAAmAaMOUoOFUigeJsdsVqHq2ScJLrA3AI2ezDgq
+	LDDxTS/lbTUmqdr3pIKVSB/XsdQQBv7gCewP5ewYsHvDWu2iKe5VL9hY7JHjC3TcU3ulpo/7nY/
+	hKU/0PaDpk/BDHTfmBvHJDQ=
+X-Google-Smtp-Source: AGHT+IFdGKcgUx09Wfb/ixJSF3YMDPcdaSeYAbxmPfqXTo/jaPabL7YpzhSY2394DQYnDqVsbDBPcg==
+X-Received: by 2002:a05:6000:1f82:b0:385:f56c:d90a with SMTP id ffacd0b85a97d-3864ced1f55mr354339f8f.55.1733863760924;
+        Tue, 10 Dec 2024 12:49:20 -0800 (PST)
+Received: from localhost.localdomain (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-386334d0486sm11808307f8f.50.2024.12.10.12.49.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 12:49:19 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>,
+	Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>,
+	Boqun Feng <boqun.feng@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	llvm@lists.linux.dev,
+	upstream@airoha.com
+Subject: [PATCH v8 0/3] crypto: Add EIP-93 crypto engine support
+Date: Tue, 10 Dec 2024 21:48:30 +0100
+Message-ID: <20241210204853.18765-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241210-x1e80100-usb-qmp-supply-fix-v1-0-0adda5d30bbd@linaro.org>
- <20241210-x1e80100-usb-qmp-supply-fix-v1-5-0adda5d30bbd@linaro.org>
-In-Reply-To: <20241210-x1e80100-usb-qmp-supply-fix-v1-5-0adda5d30bbd@linaro.org>
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Date: Tue, 10 Dec 2024 21:44:33 +0100
-Message-ID: <CAMcHhXpvwR50GCkTvtkmWW4mvV5o9vbMvrvqLiEkJpKDHP_REA@mail.gmail.com>
-Subject: Re: [PATCH 5/8] arm64: dts: qcom: x1e80100-dell-xps13-9345: Fix USB
- QMP PHY supplies
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sibi Sankar <quic_sibis@quicinc.com>, Marc Zyngier <maz@kernel.org>, Xilin Wu <wuxilin123@gmail.com>, 
-	Abel Vesa <abel.vesa@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Johan Hovold <johan@kernel.org>, "Tudor, Laurentiu" <Laurentiu.Tudor1@dell.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, 10 Dec 2024 at 10:07, Stephan Gerhold
-<stephan.gerhold@linaro.org> wrote:
->
-> On the X1E80100 CRD, &vreg_l3e_1p2 only powers &usb_mp_qmpphy0/1
-> (i.e. USBSS_3 and USBSS_4). The QMP PHYs for USB_0, USB_1 and USB_2
-> are actually powered by &vreg_l2j_1p2.
->
-> Since x1e80100-dell-xps13-9345 mostly just mirrors the power supplies from
-> the x1e80100-crd device tree, assume that the fix also applies here.
+This small series add support for the Inside Secure EIP-93.
+This is a predecessor of the current supported EIP197. It doesn't
+require a firmware but instead it's embedded in the SoC.
 
-Though I can't verify schematics (perhaps Laurentiu can?), can confirm
-USBs still work as expected with this change.
+First patch extend guard for spinlock_bh.
 
-Tested-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
+The other actually implement Documentation and Driver.
 
->
-> Cc: stable@vger.kernel.org
-> Fixes: f5b788d0e8cd ("arm64: dts: qcom: Add support for X1-based Dell XPS 13 9345")
-> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
-> index b112092fbb9fd955adca1ae8a76294c776fa2d1e..1aec536218bc2c9197410a43adec291a31f9beed 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
-> @@ -1093,7 +1093,7 @@ &usb_1_ss0_hsphy {
->  };
->
->  &usb_1_ss0_qmpphy {
-> -       vdda-phy-supply = <&vreg_l3e_1p2>;
-> +       vdda-phy-supply = <&vreg_l2j_1p2>;
->         vdda-pll-supply = <&vreg_l1j_0p9>;
->
->         status = "okay";
-> @@ -1125,7 +1125,7 @@ &usb_1_ss1_hsphy {
->  };
->
->  &usb_1_ss1_qmpphy {
-> -       vdda-phy-supply = <&vreg_l3e_1p2>;
-> +       vdda-phy-supply = <&vreg_l2j_1p2>;
->         vdda-pll-supply = <&vreg_l2d_0p9>;
->
->         status = "okay";
->
-> --
-> 2.47.0
->
+The Driver pass all the normal selft test for the supported
+algo and also pass the EXTRA test with fuzz_iterations set to 10000.
+
+Changes v8:
+- Rework export and update to not sleep on exporting state
+  (consume pending packet in update and return -EINPROGRESS)
+Changes v7:
+- Fix copypaste error in __eip93_hash_init
+- Rework import/export to actually export the partial hash
+  (we actually unmap DMA on export)
+- Rename no_finalize variable to better partial_hash
+- Rename 3rd commit title and drop Mediatek from title.
+- Add Cover Letter
+- Add Reviewed-by to DT commit
+(cumulative changes from old series that had changelog in each patch)
+Changes v6:
+- Add SoC specific compatible
+- Add now supported entry for compatible with no user
+Changes v5:
+- Add Ack tag to guard patch
+- Comment out compatible with no current user
+- Fix smatch warning (reported by Dan Carpenter)
+Changes v4:
+- Out of RFC
+- Add missing bitfield.h
+- Drop useless header
+Changes v3:
+- Mute warning from Clang about C23
+- Fix not inizialized err
+- Drop unused variable
+- Add SoC compatible with generic one
+Changes v2:
+- Rename all variables from mtk to eip93
+- Move to inside-secure directory
+- Check DMA map errors
+- Use guard API for spinlock
+- Minor improvements to code
+- Add guard patch
+- Change to better compatible
+- Add description for EIP93 models
+
+Christian Marangi (3):
+  spinlock: extend guard with spinlock_bh variants
+  dt-bindings: crypto: Add Inside Secure SafeXcel EIP-93 crypto engine
+  crypto: Add Inside Secure SafeXcel EIP-93 crypto engine support
+
+ .../crypto/inside-secure,safexcel-eip93.yaml  |  67 ++
+ MAINTAINERS                                   |   7 +
+ drivers/crypto/Kconfig                        |   1 +
+ drivers/crypto/Makefile                       |   1 +
+ drivers/crypto/inside-secure/eip93/Kconfig    |  20 +
+ drivers/crypto/inside-secure/eip93/Makefile   |   5 +
+ .../crypto/inside-secure/eip93/eip93-aead.c   | 710 +++++++++++++
+ .../crypto/inside-secure/eip93/eip93-aead.h   |  38 +
+ .../crypto/inside-secure/eip93/eip93-aes.h    |  16 +
+ .../crypto/inside-secure/eip93/eip93-cipher.c | 413 ++++++++
+ .../crypto/inside-secure/eip93/eip93-cipher.h |  60 ++
+ .../crypto/inside-secure/eip93/eip93-common.c | 822 +++++++++++++++
+ .../crypto/inside-secure/eip93/eip93-common.h |  23 +
+ .../crypto/inside-secure/eip93/eip93-des.h    |  16 +
+ .../crypto/inside-secure/eip93/eip93-hash.c   | 987 ++++++++++++++++++
+ .../crypto/inside-secure/eip93/eip93-hash.h   |  77 ++
+ .../crypto/inside-secure/eip93/eip93-main.c   | 502 +++++++++
+ .../crypto/inside-secure/eip93/eip93-main.h   | 152 +++
+ .../crypto/inside-secure/eip93/eip93-regs.h   | 335 ++++++
+ include/linux/spinlock.h                      |  13 +
+ 20 files changed, 4265 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
+ create mode 100644 drivers/crypto/inside-secure/eip93/Kconfig
+ create mode 100644 drivers/crypto/inside-secure/eip93/Makefile
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-aead.c
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-aead.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-aes.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-cipher.c
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-cipher.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-common.c
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-common.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-des.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-hash.c
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-hash.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-main.c
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-main.h
+ create mode 100644 drivers/crypto/inside-secure/eip93/eip93-regs.h
+
+-- 
+2.45.2
+
 
