@@ -1,113 +1,184 @@
-Return-Path: <devicetree+bounces-129201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E60949EAEB1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:54:13 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 806201882A41
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:54:09 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03CED223328;
-	Tue, 10 Dec 2024 10:49:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="wPuPnjZ4"
-X-Original-To: devicetree@vger.kernel.org
-Received: from pv50p00im-tydg10021701.me.com (pv50p00im-tydg10021701.me.com [17.58.6.54])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04F529EAEC4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:56:43 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D881210F44
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:49:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.54
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFD7428C36D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:56:41 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E82C223304;
+	Tue, 10 Dec 2024 10:54:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="AEgkMytK"
+X-Original-To: devicetree@vger.kernel.org
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C53F2080EA;
+	Tue, 10 Dec 2024 10:54:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733827748; cv=none; b=NL6Gr+4t/+uCXNg0676uI7A3mUI6rY71QZIJLW0Zi7cw794SUiCU3z6aQwfPnfudTWr73DsaLK3S5rqh0WSq7p3vxPYXSG3DaMd5YWnT90WXrprTaLh0nA4PXOwVVFrfG6RNv+qVCh6fcWFnEPL4liicHJCtm7X0MEsmP4RHrS8=
+	t=1733828096; cv=none; b=SJlLp/rHtQC/6tsIbdj2d/ijqOOyPXlClU35imfqMkZCtlKX5BLiuPPjiJhnP0xUT1QhYfe2L4c569Htorz+ApHeN5wA3NKWB5QuzNtnM4+rfA5NGwXWBFbFMW5wn5bGsriwPha5GKuxUGk5vq3HXfNkHjPxga4/7aoVWZfuUHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733827748; c=relaxed/simple;
-	bh=rCUi7YRbVnOv9RIzb+PDCdMtuonEQTe6dWQvX4EnhBU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Uacoey5s7L/y5jjKB3fAFaHwxpzIMw0ewqLYcFO/486G3gS5qLsRhE1xPpl7t7P5db0BtYvZcC8WjOxQZ0XxvLYFpdpDMAs3az4YaDhCX2aLa4pxs7BTalkCDbQquaVf0XRLKOPTc4OKe6XHuok92yyyjEGRH1ibY/nwTQPly8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=wPuPnjZ4; arc=none smtp.client-ip=17.58.6.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1733827740;
-	bh=O4oOUsbjBRsVMugWmEnWjUVb7nrVJHYabFXrGW4IQ3c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:
-	 x-icloud-hme;
-	b=wPuPnjZ4O33udcKvyQgOG/9HBKH4Gjr6h2yI5pQvYv2MKmZGhFfRF0fUchqED+Vtz
-	 kjjshoP2XCVap4k/h5eEDwh+dxU6nSgsZqoMjgkAnzMivV5CJA4h6dxGXHqwe7bPe9
-	 bzAql3opjcYuOoSm8yJIYHlrxZOgsDbj8vmnE4HKM8OjC3mrDbJT7y0VHx9YC2nv5w
-	 prGCsi8X6krXBZpasfej3IBnnOMpX/E6v1rkWt639opPw9pVnmXpubxSpf9tTO9CNO
-	 eoIGIQECo36Rul972DixyV17hMc9F8k/a1K4iInEyvl+oOzaH1p87X1JlKof/6KeVB
-	 FcQYuOGxMEdYA==
-Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-tydg10021701.me.com (Postfix) with ESMTPSA id 9A8D83A09FA;
-	Tue, 10 Dec 2024 10:48:52 +0000 (UTC)
-Message-ID: <7bb56d1f-f3e9-4574-b7d5-f99d33fbe998@icloud.com>
-Date: Tue, 10 Dec 2024 18:48:49 +0800
+	s=arc-20240116; t=1733828096; c=relaxed/simple;
+	bh=aeW6lS0j+MVSxXa9hD08YYwybeT5nWNZJKNckK7APLU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Qe5OxvE/uJtvK5k1QsSGxhRb28kfMGV0sCQ2mrDaDIQvx1Vo0KgNCFLpw6xBEbHDvHPIpHq1IqsUG/BoXkoasVdwuwNbAlMitGC5+AQ/U7SkE2p7S0hBGEJVdBMatkz55VJuu27LEkNJKYsqnZz1XRdkbgpeK/SDuMLZTGtV1mA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=AEgkMytK; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=I/ecQv4FKuCtZE1AnEV/ijXpIAnWHT6qeI4gnhaOi3s=; b=AEgkMytKAjtQ4a1u/MLo8pPK9r
+	lU+a/eCQz7xpnrtDWYQyayPmWoYDo1jY7H1LXJWbT+J4TInvHdQpMhnXnBCV5UUegjvDHswnupRVb
+	3qSvaVJsf7KZtNGiD/0RJ5oQbmC3hFcswx4DNN0KplCbrLNt9sNzvozb2frb6hbl1a5TRpCK9w4rY
+	0tMfIFPQo9bPUoWbDNlVV9r/l+uLkIE+duuQzU4Vr7sfLPyCkgpcSF1vKpy89NceO/xSh+RNPihof
+	iDdpism0coDEv0NrmMTaULx4L1dyPWqbFzSNFydHtLkRCU8nzx5RAeEqEJyUT17xVPYzLs1Ot8xrK
+	i7w7euVA==;
+Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tKxt2-0004QH-Ie; Tue, 10 Dec 2024 11:54:40 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Peter Geis <pgwipeout@gmail.com>
+Cc: Peter Geis <pgwipeout@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+ Diederik de Haas <didi.debian@cknow.org>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Levin Du <djw@t-chip.com.cn>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject:
+ Re: [PATCH 5/6] arm64: dts: rockchip: correct rk3328-roc regulator map
+Date: Tue, 10 Dec 2024 11:54:39 +0100
+Message-ID: <14451790.lVVuGzaMjS@diego>
+In-Reply-To: <20241210013010.81257-6-pgwipeout@gmail.com>
+References:
+ <20241210013010.81257-1-pgwipeout@gmail.com>
+ <20241210013010.81257-6-pgwipeout@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/8] of/irq: fix bugs
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Marc Zyngier <maz@kernel.org>,
- Stefan Wiehler <stefan.wiehler@nokia.com>,
- Grant Likely <grant.likely@linaro.org>, Tony Lindgren <tony@atomide.com>,
- Kumar Gala <galak@codeaurora.org>, Thierry Reding
- <thierry.reding@gmail.com>, Julia Lawall <Julia.Lawall@lip6.fr>,
- Jamie Iles <jamie@jamieiles.com>, Grant Likely <grant.likely@secretlab.ca>,
- Benjamin Herrenschmidt <benh@kernel.crashing.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Herring <rob.herring@calxeda.com>, Zijun Hu <quic_zijuhu@quicinc.com>,
- stable@vger.kernel.org
-References: <20241209-of_irq_fix-v1-0-782f1419c8a1@quicinc.com>
- <20241209211532.GC938291-robh@kernel.org>
-Content-Language: en-US
-From: Zijun Hu <zijun_hu@icloud.com>
-In-Reply-To: <20241209211532.GC938291-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: gGUpTdhN8F1P2IQ8UBU2LUOxqEiK6X8I
-X-Proofpoint-ORIG-GUID: gGUpTdhN8F1P2IQ8UBU2LUOxqEiK6X8I
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2024-12-10_04,2024-12-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=796 spamscore=0
- suspectscore=0 malwarescore=0 adultscore=0 phishscore=0 bulkscore=0
- mlxscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2412100080
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 2024/12/10 05:15, Rob Herring wrote:
-> On Mon, Dec 09, 2024 at 09:24:58PM +0800, Zijun Hu wrote:
->> This patch series is to fix bugs in drivers/of/irq.c
->>
->> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
->> ---
->> Zijun Hu (8):
->>       of/irq: Fix wrong value of variable @len in of_irq_parse_imap_parent()
->>       of/irq: Correct element count for array @dummy_imask in API of_irq_parse_raw()
->>       of/irq: Fix device node refcount leakage in API of_irq_parse_raw()
->>       of/irq: Fix using uninitialized variable @addr_len in API of_irq_parse_one()
->>       of/irq: Fix device node refcount leakage in API of_irq_parse_one()
->>       of/irq: Fix device node refcount leakages in of_irq_count()
->>       of/irq: Fix device node refcount leakages in of_irq_init()
->>       of/irq: Fix device node refcount leakage in API irq_of_parse_and_map()
+Am Dienstag, 10. Dezember 2024, 02:30:09 CET schrieb Peter Geis:
+> The rk3328-roc-cc input power is sourced from a micro-usb port, while
+> the rk3328-roc-pc input power is sourced from a usb-c port. Both inputs
+> are 5vdc only. Remove the 12v input from the device tree.
+
+full stop. Please don't do "While we are at it" commits.
+
+> While we are at it, add missing voltages and supply to vcc_phy, missing
+> voltages to vcc_host1_5v, and standardize the order of regulator
+> properties among the fixed regulators.
+
+This second part wants to be its own commit :-) .
+
+Thanks
+Heiko
+
+> Fixes: 2171f4fdac06 ("arm64: dts: rockchip: add roc-rk3328-cc board")
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> ---
 > 
-> How did you find these refcount issues? Can we get a unit test for 
-> these.
->
+>  arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi | 23 +++++++++++++-------
+>  1 file changed, 15 insertions(+), 8 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+> index f782c8220dd3..6984387ff8b3 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
+> @@ -24,22 +24,23 @@ gmac_clkin: external-gmac-clock {
+>  		#clock-cells = <0>;
+>  	};
+>  
+> -	dc_12v: regulator-dc-12v {
+> +	/* fed from passive usb input connector */
+> +	dc_5v: regulator-dc-5v {
+>  		compatible = "regulator-fixed";
+> -		regulator-name = "dc_12v";
+> +		regulator-name = "dc_5v";
+>  		regulator-always-on;
+>  		regulator-boot-on;
+> -		regulator-min-microvolt = <12000000>;
+> -		regulator-max-microvolt = <12000000>;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+>  	};
+>  
+>  	vcc_sd: regulator-sdmmc {
+>  		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_sd";
+>  		gpio = <&gpio0 RK_PD6 GPIO_ACTIVE_LOW>;
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&sdmmc0m1_pin>;
+>  		regulator-boot-on;
+> -		regulator-name = "vcc_sd";
+>  		regulator-min-microvolt = <3300000>;
+>  		regulator-max-microvolt = <3300000>;
+>  		vin-supply = <&vcc_io>;
+> @@ -50,22 +51,25 @@ vcc_sdio: regulator-sdmmcio {
+>  		states = <1800000 0x1>, <3300000 0x0>;
+>  		regulator-name = "vcc_sdio";
+>  		regulator-type = "voltage";
+> +		regulator-always-on;
+>  		regulator-min-microvolt = <1800000>;
+>  		regulator-max-microvolt = <3300000>;
+> -		regulator-always-on;
+>  		vin-supply = <&vcc_sys>;
+>  	};
+>  
+>  	vcc_host1_5v: vcc_otg_5v: regulator-vcc-host1-5v {
+>  		compatible = "regulator-fixed";
+> +		regulator-name = "vcc_host1_5v";
+>  		enable-active-high;
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&usb20_host_drv>;
+> -		regulator-name = "vcc_host1_5v";
+>  		regulator-always-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+>  		vin-supply = <&vcc_sys>;
+>  	};
+>  
+> +	/* sourced from usb input through 3A fuse */
+>  	vcc_sys: regulator-vcc-sys {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "vcc_sys";
+> @@ -73,7 +77,7 @@ vcc_sys: regulator-vcc-sys {
+>  		regulator-boot-on;
+>  		regulator-min-microvolt = <5000000>;
+>  		regulator-max-microvolt = <5000000>;
+> -		vin-supply = <&dc_12v>;
+> +		vin-supply = <&dc_5v>;
+>  	};
+>  
+>  	vcc_phy: regulator-vcc-phy {
+> @@ -81,6 +85,9 @@ vcc_phy: regulator-vcc-phy {
+>  		regulator-name = "vcc_phy";
+>  		regulator-always-on;
+>  		regulator-boot-on;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&vcc_io>;
+>  	};
+>  
+>  	leds {
+> 
 
-find them by reading codes.
-yes. let me write some necessary unit tests for them.
 
-> Rob
+
 
 
