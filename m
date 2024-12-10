@@ -1,212 +1,131 @@
-Return-Path: <devicetree+bounces-129314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF1D29EB349
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:29:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B1B69EB381
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:37:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C0BB18883CA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:29:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF854188324C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:36:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32BB51B4F04;
-	Tue, 10 Dec 2024 14:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1EEF1AAA13;
+	Tue, 10 Dec 2024 14:36:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="apGYPtk9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FB9E1B2195;
-	Tue, 10 Dec 2024 14:28:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F61C1AA1FD;
+	Tue, 10 Dec 2024 14:36:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733840937; cv=none; b=VZDvBvoLk6A5Cm/SfIJ2O53/88S/AfiIhks+x8xC2k4cF64hK0weE8s7s0ZQPAoZfYJEMUEkNGVagBOmjdtjyODbvL1WDwikapi+KATjZ+9iMghQnIguQ2W5VkcKRVQY24y3ofn3zK+fdmwPBrDZzyK3ALWKVSKWtmT5wAfuF60=
+	t=1733841417; cv=none; b=cRkih6HYCPfCaGa706fVBbebf/E1PSlQp1Ki1RM6GJ4fEBRFIuSoV4MBtqSrwmiTFaYWftQKp2bJlGlvvTSpZ4xonLNCsIrxtqcAjp20P/rvO+/8RDnKplaEZxHUjW7Ld0+miPgJXGApBYB2fq03nPft7NUCmA9+zEr2Z6aq+JQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733840937; c=relaxed/simple;
-	bh=DO/NC3Lt0wMt+JWwd2lxWrUtTInAw+KOPEue7pgClmI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LH+TJw+RV74SzQk+i5fyufnBy8tthm7DALqU3qDpC9Jky9+BgObi9UURYxSCuWFH04KSkKk7criYCZrrDc/FytF9XcGbEkaPClrWFd94X/UM+E2JQuCYLjfQDvRKehkgZz6jNaY+C9Zl6QPpnavu86eRdYU7wQ+0zPGN1YiShaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-5188311e61cso565591e0c.2;
-        Tue, 10 Dec 2024 06:28:54 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733840933; x=1734445733;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E1UGUtE3JZONvX3ZU1usLPTPg2Sj35dvZCSUIlPuCyM=;
-        b=PTodSrmqQbW4KShgQbfVuTBl6TetxYNcqtvC6xTAcxSxPEX/HrQ1dld83YIyf35qrq
-         UcsyMKqKZkmJfmFKAnNmnfP2C0NPH2jszK0FPe6cw2jVRd2eyjjiMDd5SwPRFRp/n9e1
-         4BjCgDhH8SP5F02hu4AchHyn7bVULO3t7TVShwHkunvjGGMVKLDzQeDq4ZQx4BtPyRlg
-         XlC6lXB0Vh1jfn3tKmFlduaQsebOcYoB7VV4yCm2n7+DLnipc7Zs/ClDPVMk9VvVQRUO
-         /qz6FN9Bu1fjnq8kKosQzXtFFwc+1k2QkEeuyOI4z3U5PYfIuT0N35l5t5MVr643GhX7
-         Tckw==
-X-Forwarded-Encrypted: i=1; AJvYcCUr2HgLcRhpVFTI4f0P9i0VggLWIyyWznFYOps1sIBIKG5zom0IXJ7RyH52Spgjuqu/+0TWVgiqxTu/@vger.kernel.org, AJvYcCUrB9e95jcgRCHd7m5MkW2eHkB5N8kJhdJVd6OAPHVoXUypMwpFrEhK731TSvbZzUdaw4KJPGP28TFH5kfBQukTO9c=@vger.kernel.org, AJvYcCXb0VSrlH/x5K6LmJsfLPsLYCs9rFADqOO1VMt2xDRn1tm2mKzWOB2mBbo94Nhq8GrnoYilit0BOU4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPWPH97615+K3cP4G1RAD/1qilzsQyQez6x2sEAwXsiYP0mpyB
-	mRQ6SY6w3Xb95o7WQLeM975n3GC3lF/EPg+snwgFv+dVKhss57U9NOZ7amn+
-X-Gm-Gg: ASbGncsRFFQl3MjAvf6wbpvQasH6Av7akTs7POmQXdrLhwrIlFbVtAbFqCfeC6C56L2
-	CQAMVFKKjmSf+arzokfgQBVwnlnA3BmIhmckuJOB1pj+d9bA6LSOdOY0+nYLqBc8M9caugee5xU
-	OlHkMbaBApV/S4xGsNhstpx5lNQ8WC1tw1gwSCMffFkAVgZ0P0w0OxPMIbg1j4Nm7tuw/rX/SMr
-	fdxVKpvDYW9Y+nwAq1dNWShPhta463S0uqheJ0j+gK+WQl5dsE2Fs8Vd957KmCw7aYP/oWU2c07
-	td7fcFHQQTEUZjVO
-X-Google-Smtp-Source: AGHT+IGm/dnMEmM9P9bHqg9v9ulCXXADNNPznSrswFJ/S0qcG1+tABYxZGZTXzXHy3iKVZDFTTc1yQ==
-X-Received: by 2002:a05:6122:4d0c:b0:518:9582:db90 with SMTP id 71dfb90a1353d-5189582e36fmr1259398e0c.11.1733840933192;
-        Tue, 10 Dec 2024 06:28:53 -0800 (PST)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-515eaf5a6c0sm983358e0c.45.2024.12.10.06.28.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Dec 2024 06:28:53 -0800 (PST)
-Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-85c4e74e2baso1078714241.0;
-        Tue, 10 Dec 2024 06:28:53 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV7u4i3N7oJPwjI9k0iUFBxR2O2yFR2BeSu+fjeQQiVudZdI6Qm+O/E9bYIWnXOJMfpCgRZr3mSV3A=@vger.kernel.org, AJvYcCVrs5+C8T/vuUHG/r6pbTXomflg1SoL3fhM4zTZmMwEqJk/eEbzEk5z398/pRqVhKsGlmR0WbKfLTxK@vger.kernel.org, AJvYcCWPVCG8hcccSYM3/1qLmfohj/GBaA8eZM/FrIaxadTPjss9b/uCoK4ga6Zl3uiWYWgejVVuOC5boTeZdhJXdzvgyPU=@vger.kernel.org
-X-Received: by 2002:a05:6102:3049:b0:4af:f740:c1b4 with SMTP id
- ada2fe7eead31-4aff740ca07mr7756339137.5.1733840932791; Tue, 10 Dec 2024
- 06:28:52 -0800 (PST)
+	s=arc-20240116; t=1733841417; c=relaxed/simple;
+	bh=Vm/SMvu/8EpKkDOC/meueBC9lfWEJCHJn3wNu3oS+nU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Asl87HwZHhhMZ97wBzIeivOUvyiCGAunmA5X6NoDPsErX/psp2/77boJtoToLmHdiYnn8YHKYali1uRfYyLsyhxl/3J+gcw8wr8JtbVsvTBhWaKWh0b8CKGPBRABqAkjZAHlA+Zgv8ZroX4NbaoBTRQImCeHB+e2WjAKC8bmUtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=apGYPtk9; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Vm/SMvu/8EpKkDOC/meueBC9lfWEJCHJn3wNu3oS+nU=; b=apGYPtk9B8cEHvRnlKnZRfyPlB
+	UjU0n9BxnezEUSJl9xr/rIS3CAWGyApMVmPm35fTQfK9Lg1qjH1CqrI3pEIUsgAH3IAqgLHXpIi+5
+	1Rn2C4tjKDlVc/d7X34Zq4zZ6HCNJYmUb07z1nntcDroUOFxB3djTFTLeug2S0rRYOYXLX1VKG3d7
+	wnlxrVKNe5R4q/9/UANNYjy5aP2n7mEi9uoUgwPSQFTqN5FNCUlgEBz+0dey58QWAUnSOtLtS+W6w
+	sowpUyWKnenxm2NVdRvHK4tS7iOstRm1QAWChyc+OKiUkXA6I87nkF1VdHmwPKgZxU/V0Fy5rB84E
+	//ZQ2gsg==;
+Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tL1Lk-0006dG-TS; Tue, 10 Dec 2024 15:36:32 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Andy Yan <andyshrk@163.com>
+Cc: Daniel Semkowicz <dse@thaumatec.com>,
+ Diederik de Haas <didi.debian@cknow.org>, andy.yan@rock-chips.com,
+ Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, jernej.skrabec@gmail.com, jonas@kwiboo.se,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ neil.armstrong@linaro.org, quentin.schulz@cherry.de, rfoss@kernel.org,
+ robh@kernel.org, tzimmermann@suse.de
+Subject:
+ Re: [PATCH v3 0/3] drm/rockchip: Add driver for the new DSI2 controller
+Date: Tue, 10 Dec 2024 15:36:31 +0100
+Message-ID: <3104907.xgJ6IN8ObU@diego>
+In-Reply-To: <78e7b8e.b5ee.193b09ce46d.Coremail.andyshrk@163.com>
+References:
+ <20241203165450.1501219-1-heiko@sntech.de>
+ <jl5obi7rd4h6ywozeqruxq2vx62sx5yf4wwpksrq3prdleps2k@d3zbr5ttquvn>
+ <78e7b8e.b5ee.193b09ce46d.Coremail.andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1728377971.git.geert+renesas@glider.be> <CAMuHMdXsmAqQL+2+D_y+u1z4nn8JO+xF-mq6wWJ0pAH58n5Wiw@mail.gmail.com>
- <b273599f-8653-4e98-ac64-09c91b0a1592@arm.com> <CAMuHMdUYnTRDHRdWYHBdJ3hNBKOXBtRMOsu1NiJFET7P-+zc4g@mail.gmail.com>
- <96d1f356-b36b-4c14-bdd5-c38836bac418@arm.com> <CAMuHMdW25MC-RoCw72_EJ22e4Ae36N1CM8a-r=r7e=kA2-AgHA@mail.gmail.com>
- <CAMuHMdUoEA0W_1jmUPZ48Zi7N1wbo435-LvAf35O=EvYvO6KDQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdUoEA0W_1jmUPZ48Zi7N1wbo435-LvAf35O=EvYvO6KDQ@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 10 Dec 2024 15:28:41 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXUhqdSCvsDbqu0To8psuBuWpnZtqy+PRTcVqdFeQ2rYQ@mail.gmail.com>
-Message-ID: <CAMuHMdXUhqdSCvsDbqu0To8psuBuWpnZtqy+PRTcVqdFeQ2rYQ@mail.gmail.com>
-Subject: Re: [PATCH/RFC 0/2] arm64: dts: renesas: Re-add voltages to OPP tables
-To: Lukasz Luba <lukasz.luba@arm.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, 
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-pm@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Lukasz,
+Hi Andy,
 
-On Wed, Nov 13, 2024 at 5:58=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
-> On Mon, Nov 4, 2024 at 4:15=E2=80=AFPM Geert Uytterhoeven <geert@linux-m6=
-8k.org> wrote:
-> > On Mon, Oct 28, 2024 at 2:41=E2=80=AFPM Lukasz Luba <lukasz.luba@arm.co=
-m> wrote:
-> > > On 10/28/24 11:34, Geert Uytterhoeven wrote:
-> > > > On Fri, Oct 25, 2024 at 5:40=E2=80=AFPM Lukasz Luba <lukasz.luba@ar=
-m.com> wrote:
-> > > >> On 10/22/24 14:36, Geert Uytterhoeven wrote:
-> > > >>> On Tue, Oct 8, 2024 at 11:14=E2=80=AFAM Geert Uytterhoeven
-> > > >>> <geert+renesas@glider.be> wrote:
-> > > >>>> When CONFIG_ENERGY_MODEL=3Dy, an error is printed on RZ/G2E and =
-R-Car E3:
-> > > >>>>
-> > > >>>>       cpu cpu0: EM: invalid perf. state: -22
-> > > >>>>
-> > > >>>> This happens because the Operating Points Parameters tables do n=
-ot list
-> > > >>>> voltages, as they are all identical.  Previously, it was assumed=
- they
-> > > >>>> were optional, and unused, when none of the CPU nodes is tied to=
- a
-> > > >>>> regulator using the "cpu-supply" property.  This assumption turn=
-ed out
-> > > >>>> to be incorrect, causing the reported error message.
-> > > >>>>
-> > > >>>> This RFC patch series fixes this by adding the missing voltages.
-> > > >>>>
-> > > >>>> Note that the Energy Model calculates energy efficiency by divid=
-ing the
-> > > >>>> (estimated) CPU power consumption by CPU core clock frequency.  =
-When all
-> > > >>>> voltages have the same value, the former is proportional to cloc=
-k
-> > > >>>> frequency, and energy efficiency becomes a constant.  Hence all
-> > > >>>> operating points are considered to have the same efficiency, and=
- the
-> > > >>>> Energy Model always picks the one with the highest clock rate (s=
-ee also
-> > > >>>> [1]).
-> > > >>>>
-> > > >>>> Alternatively, the Energy Model could be changed to silently ign=
-ore OPP
-> > > >>>> tables with missing frequencies.  IMHO this is not an unusual ca=
-se.
-> > > >>>>
-> > > >>>> Which approach should be taken?
-> > > >>>> Thanks for your comments!
-> > > >>>
-> > > >>> Any comments from the Energy Model and PM people?
-> > > >>
-> > > >> My apologies for delay.
-> > > >>
-> > > >> So you had issue with bogus Voltage values and removed them.
-> > > >>
-> > > >> There is another way to setup EM properly, via DT:
-> > > >> "opp-microwatt" [1].
-> > > >>
-> > > >> That micro watt value won't confuse other subsystems, like
-> > > >> your regulator fwk. It will only be used by the EM fwk.
-> > > >>
-> > > >> This would be an alternative to your voltage values.
-> > > >> Sounds better to you?
-> > > >
-> > > > For opp-microwatt, I do need to know the actual power consumption
-> > > > of the core, right?
-> > >
-> > > Correct. You can try to derived that in a way you did and put below.
-> > > Although, Dhrystone is a synthetic micro-benchmark with small
-> > > impact to data caches, so it will not use much power.
+Am Dienstag, 10. Dezember 2024, 13:48:12 CET schrieb Andy Yan:
+> =E5=9C=A8 2024-12-10 20:32:03=EF=BC=8C"Dmitry Baryshkov" <dmitry.baryshko=
+v@linaro.org> =E5=86=99=E9=81=93=EF=BC=9A
+> >On Tue, Dec 10, 2024 at 09:54:09AM +0800, Andy Yan wrote:
+> >> =E5=9C=A8 2024-12-10 09:45:11=EF=BC=8C"Dmitry Baryshkov" <dmitry.barys=
+hkov@linaro.org> =E5=86=99=E9=81=93=EF=BC=9A
+> >> >On Tue, 10 Dec 2024 at 03:22, Andy Yan <andyshrk@163.com> wrote:
+> >> >> =E5=9C=A8 2024-12-10 09:01:38=EF=BC=8C"Dmitry Baryshkov" <dmitry.ba=
+ryshkov@linaro.org> =E5=86=99=E9=81=93=EF=BC=9A
+> >> >> >On Tue, Dec 10, 2024 at 08:50:51AM +0800, Andy Yan wrote:
+> >> >> >> At 2024-12-10 07:12:26, "Heiko St=C3=BCbner" <heiko@sntech.de> w=
+rote:
+> >> >> >> >Am Montag, 9. Dezember 2024, 17:11:03 CET schrieb Diederik de H=
+aas:
+> >> >> >> >> On Mon Dec 9, 2024 at 4:06 PM CET, Daniel Semkowicz wrote:
+> >> >> >> >> > On 03.12.24 21:54, Heiko Stuebner wrote:
+> >> >> >> >This really sounds like something is wrong on the vop side.
+> >> >> >> >The interrupt is part of the vop, the divisable by 4 things lik=
+ely too.
+> >> >> >>
+> >> >> >> This is a hardware limitation on vop side:
+> >> >> >> The horizontal resolution must be 4 pixel aligned.
+> >> >> >
+> >> >> >Then mode_valid() and atomic_check() must reject modes that don't =
+fit.
+> >> >>
+> >> >> We round down to 4 pixel aligned in mode_fixup in our bsp kernel,
+> >> >
+> >> >What is meant by the "bsp kernel" here? I don't see it being present
+> >>=20
+> >> bsp kernel means downstream vendor kernel.
+> >>=20
+> >> >in the mainline kernel. So, if the mode is unsupported, it should be
+> >>=20
+> >> Will it be acceptable to add this round down in the mainline mode_fixu=
+p?
 > >
-> > Do you have a suggestion for a better load test? stress-ng?
-> >
-> > > > Full system power consumption while running the in-kernel
-> > > > Dhrystones benchmark:
-> > > >
-> > > > 800 MHz: avg 4972,55 mW, stdef 20,474 mW
-> > > > 1000 MHz: avg 5025,93 mW, stdef 18,644 mW
-> > > > 1200 MHz: avg 5059,63 mW, stdef 15,425 mW
-> > >
-> > > Right. From those power values can be try to derive the
-> > > 'CPU only power' values - assuming only one core was
-> > > running the test.
-> > >
-> > > AFAIU you don't have proper DVFS due to missing voltage scaling.
-> >
-> > Indeed.
-> >
-> > > Therefore...
-> > > Out of that I got these CPU power values:
-> > > 800MHz -> 174mW
-> >
-> > =3D> 217.5 =C2=B5W/MHz
-> >
-> > > 1000MHz -> 212mW
-> >
-> > =3D> 212 =C2=B5W/MHz
-> >
-> > > 1200MHz -> 261mW
->
-> BTW, how did you get from my avg mW values above to your CPU power mW
-> values? I seem to be missing something...
+> >I think so.
+>=20
+> Then I can write a patch for it.
 
-Ping...
+thanks a lot for looking into that :-)
 
-Gr{oetje,eeting}s,
 
-                        Geert
+Heiko
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
