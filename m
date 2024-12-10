@@ -1,99 +1,104 @@
-Return-Path: <devicetree+bounces-129449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96DF59EBB05
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:49:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB0D9EBB22
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:52:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 021F8188852D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 20:49:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E51E18885DA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 20:52:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1996222B597;
-	Tue, 10 Dec 2024 20:49:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0743E22B584;
+	Tue, 10 Dec 2024 20:51:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iTT4OdfT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mZH9DQh2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A2C4226862;
-	Tue, 10 Dec 2024 20:49:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B28723ED69;
+	Tue, 10 Dec 2024 20:51:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733863743; cv=none; b=uM0Zv1ua2R/t8KkcURV+JWnzE8+mKDUjo9j/qIwPE6UYhUWTI7ZUmzoSc+QyBUFpQEt2Ixk7/X1leJJ6p0NXNWPz5hPlO3dxiVnbTsZRSdee8jLebxsZb7S4vgzkJbEBRJpherpecaOcEWdmC3UMLV5uWCXAmerNldMD8AH5BcY=
+	t=1733863916; cv=none; b=gRugXfKtJypFSBnRFrUwElHr1TU1LJTF3gWbUKOSulYota9YQLt8ZqF/8vYj23uTiIN+DkecYFkIBBSYD3aZ28egnY2/RHgtdxIVPPvjb7rn5CAVOmbzxMIXdJ0+X0q2kylSmZf7bzR/UnL6RIkK9ZbgHusfiLNVy8MzZRJudpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733863743; c=relaxed/simple;
-	bh=eC8W6t9huecH7q74kCAQR1oz5UQK9e/WxZ8oJb3G3Go=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AcomdticFFFxXqhsvwXKFVEHWRDmPlY/VA5wGfdqr8VflWu3XDBTxZ6w9IJenAhtwEnyTJZPWY67aAwLgyGIAB1KO0+FRGlMF2vsyr3OQ9j8imfogBtkI4xGI35Ndx9bi8M4Lf/OEeWrNFRFggVNSIKSSgIo1ZmkJGYgnF+wrrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iTT4OdfT; arc=none smtp.client-ip=209.85.208.52
+	s=arc-20240116; t=1733863916; c=relaxed/simple;
+	bh=mRThUMpoJI0H65y7D/bNtmiOmzV709Z7Dn6YssAAgC4=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IZM7iPhV/L47/RoZ3mT+5tCtd39HzUubZkA5CuLrnGIzkt3OJVHY+591p+b9UrQP5WIc6WibcIE0+nEN7TMr5jTrDaVUKQRlal7qlLHaQ1hGdBCdo9E1YIeLJOwqDNUbxaZ9/j/OhPswHvDKFnTCKwzPIVKgyQrMNiO3k/hhqDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mZH9DQh2; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5d3cfa1da14so473483a12.1;
-        Tue, 10 Dec 2024 12:49:01 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-434a2033562so53541615e9.1;
+        Tue, 10 Dec 2024 12:51:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733863739; x=1734468539; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cNaXJ8JhPRuTmwTT3LTe+sP5Z8UoA760Vogy1s7z9Rk=;
-        b=iTT4OdfTGMdsekyXZmM2cynTKa5WfsqDbyZS1ehUn/UGIYhyIdIoILeK8EJ8XqJOuk
-         gRZPNX7jI4kYJkWkRbOWAvH0dziAvJtolCFB0Yb7dTj8f+wmeEFTdwh7sNmTukEyPH9f
-         JDP9gdjw1vOROdW5RG+wBUVmCN8z/rnseZdSoI1KNC4Ame++qicYVpqImW0o3cL9akjr
-         h2V3epK8HoEDGfUbx7J2rEKyQrIAVgpTOeyS0xKlUVRm53YEjBc1h/ghfWVe5gvtLXD/
-         fsXlWEobuAEL2T0S7zIB/IUQUOcPIrQ7MKKrpczceV5SPabjyPvcN46L2F16jIvllY3q
-         lVgA==
+        d=gmail.com; s=20230601; t=1733863914; x=1734468714; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=301wRSRs43OjUWzhsOWOTGwAS/3EIoBXGoWH5/9Rzns=;
+        b=mZH9DQh2StwV5P18WbEgyvb4J4iMSExsWOaV26NAI6fZekxjOZc9/r4FRfv8wi9aZZ
+         wEFwkL1dYuzMpR/xUEVuzXDlwTKZDMonjfnUvO+YBb6UrfGv/UCJzAN3Dr1LB3q0P/IM
+         ShKGIMlNM5AELbRRKzgdtMVrskM6cwZZLIGNaHUb0leRd4eFbNKZEE2ToDrYIq3xuGvw
+         5zfLx9lza946v+ms9Jkj4/JqLrQWegN/HgW+TuUOqKA7Jvasqe9S0lh0CxfekzY0DXYp
+         O1NCMgrEZlckTF+uttWzdrHkKu1KUZMLdUZyQX73cLnc0WLtzjOcIWyAq1m0R4GFLRw5
+         JYUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733863739; x=1734468539;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1733863914; x=1734468714;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cNaXJ8JhPRuTmwTT3LTe+sP5Z8UoA760Vogy1s7z9Rk=;
-        b=MXW/Whn3SjInK0qUzt4sCwOzeHgb67lCpHJB4jf/fgJOiwP77JakOJNad2gdLtWiSp
-         exnZWsKVwepK4Gy8f7ED74YsrmlD7vsKSdutlSIrFk3QqOwY9Ji0RvZni+TmX7t2cPfj
-         VdYxguP/RhpFG9pv+lzpsMVYAGw2nxqwH7nwbK8DjWAEicgll4mRO4gY0jhJp1qX6Sqi
-         FRXQwXtywcpsJXP7hpXcnEA769qB+jWPlCtRw0/KFLwSo0zjoKfN4WV5NBxdTfugCFTP
-         3bHBHABrW25PDLoD3AY04BXjQ2R/w7zqijpN+FBocM8mpdJLX6kTd5S9sXzSMMcUpwJd
-         i//g==
-X-Forwarded-Encrypted: i=1; AJvYcCUZPBR9cpEXrthASDMsaKMIHarrGuyLMzLJabQ+4juPg+8IbqD6RkadtdsxsMfvmtZaowyiwE2gp/fkmP6c@vger.kernel.org, AJvYcCUpgpcOeDxsSEbz72Jarxo2ak9+Jy5160soo0V137pOTM0cQEOknzNKMWcYK/x9YQqj6Lw64qSdWpp5@vger.kernel.org, AJvYcCXwbj8amZNfPsDrI0HkPLwG/UNohBM6QfM703muQPf805OGkBjRepu1K/7k837c4btEPmKTmz8Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpwQQG5Y+fHyB3bgpe6edhQk2cboT/TYeoNiCkdDYUUrarWVka
-	QstWVppkzPiUBkgWf8Sb3mTYqAQZ8iI3HVwjaY+epofhOUzltsop
-X-Gm-Gg: ASbGnctBOpDQ10+9bTQ0wsh3881V2Zhi+uDsnv0oxzD+J1Q+CHCX6QZglbTAk6tTAej
-	JF4fwZnPMd8NReEbCG1uWSBc0JW14qw2pb9gKuZoIixWY3I0/0w6N09cHCyYHeefh+XVRB7zAM6
-	gDGQcGj17P2lr7pIhpxYNa7C/eVi5Z6YDKZhs96hKQLo3R6SVRBAD6WGMk9AqUIt3i3ydpPXqVl
-	A7SiBIaQUNdu1wkXVyUWUWv4H/W8SEzzl2E5tzPTA==
-X-Google-Smtp-Source: AGHT+IGLMYMcvq7FgOuv7NZ8he4Vn2DR++ElkPFM38fkihjTAen52Se+4+I+zeFNB7FVdS9rJ+bpJw==
-X-Received: by 2002:a05:6402:40cd:b0:5d3:d4cf:feba with SMTP id 4fb4d7f45d1cf-5d43314d465mr45987a12.7.1733863739337;
-        Tue, 10 Dec 2024 12:48:59 -0800 (PST)
-Received: from skbuf ([86.127.124.81])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d14c74c3d5sm8097292a12.52.2024.12.10.12.48.56
+        bh=301wRSRs43OjUWzhsOWOTGwAS/3EIoBXGoWH5/9Rzns=;
+        b=uJlx2X7lan42OnWsz5p4wHZvJjBPdRuuPF8HX1Jp1MdwItkm9C6nm8hcIvfpOP+N+Y
+         5f+19aMd1s71vjR4RBAa/lViIJiVPhY+jiDCAROLMTW9G3saSggszZSPkoC9jnUWGJu3
+         1QEuG7FqAAnsWtQZs8qpsCqBbfgDVf0UftC2fstKNsmoE0tanmTEdNOYNfpJgy9MW0xl
+         1poQjNJ41KCzvPBH1U3gr1bf7M+mygVUH17uAoacWB+fX241cSdi3zTLw/CvKubCiU3Y
+         lfmxQxapfPSc4G5ALLU1QdtGPPrbiuSbj9k/kU5KiL9m3wtsmwvPJOPDKMW9SEn8yYxr
+         Lmsg==
+X-Forwarded-Encrypted: i=1; AJvYcCUztqT5z+0WxYA7CrAdZH666AiDET02dVevjfZrKaHAym2VoIl1rP8eVHQrev4b4II1BGlTHXymnFyH@vger.kernel.org, AJvYcCVKLgtk6yguHLCJqsNaAcd9WR6NOPJcRrVIdYbV9+WKd2/H4dJlrOaTrwb98F0yBtS3X6JY9HjDcX+5feSN@vger.kernel.org, AJvYcCW5Tm7pzEJ2oJx0Zq3X4pH4upEfpMD7Z+nQYGo2XGrBMyDDZvxYLSZXcFXzrhEmk2NvgBw5wlnqTUUHmHW+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOQeY47fwlgTGIx1Dv1jFnpOI+a+RBex4pIZlCowGkqYf67Rhw
+	e1DoDuF1dDwNe036TMh/QlUqK6tEUqEd/i14MQpOTbcVziIGO4UF
+X-Gm-Gg: ASbGncvrulRSZRd86GZdAUku5evzTEP1AYZHID8ZDiBzA4b/EECkvWLXQlwgZXi6US+
+	xsRndMXzOyxyuDPLSLyVpNjYUJA7iJUjHxmo+2mV/96gMQHxNpfCAc7GeZCEiZiSmUuHvOM+8Gn
+	YDH+xGZ74rXpaA/cbNWygVhIMinz56ymtl8jkdZZ+na13Hld0wfy6vVMMuYTF9VGGDRR7Xof0a0
+	ql6qSIHTRkQ2D45jYqS0JENhmmoJuyROI5LCXZGht4ZWAHzzS7SdOZfmWmalrpK6wdHJxv0HSph
+	unnAMR7/Gw==
+X-Google-Smtp-Source: AGHT+IEtgELmozDZndyAbIw0+22SolVOahQ6RzPmvQx0tKDwUunyJxMT5/Exd2L84f60qzvt/DM14w==
+X-Received: by 2002:a05:600c:8718:b0:436:aaf:7eb9 with SMTP id 5b1f17b1804b1-4361c429eaamr1449815e9.20.1733863913580;
+        Tue, 10 Dec 2024 12:51:53 -0800 (PST)
+Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434fe9bff74sm57024695e9.8.2024.12.10.12.51.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 12:48:58 -0800 (PST)
-Date: Tue, 10 Dec 2024 22:48:55 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+        Tue, 10 Dec 2024 12:51:52 -0800 (PST)
+Message-ID: <6758a9e8.050a0220.b60b3.184c@mx.google.com>
+X-Google-Original-Message-ID: <Z1ip5hA_x5WEHz6W@Ansuel-XPS.>
+Date: Tue, 10 Dec 2024 21:51:50 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Herbert Xu <herbert@gondor.apana.org.au>
+Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH v11 3/9] dt-bindings: net: dsa: Document support
- for Airoha AN8855 DSA Switch
-Message-ID: <20241210204855.7pgvh74irualyxbn@skbuf>
-References: <20241209134459.27110-1-ansuelsmth@gmail.com>
- <20241209134459.27110-4-ansuelsmth@gmail.com>
+	llvm@lists.linux.dev, upstream@airoha.com,
+	Richard van Schagen <vschagen@icloud.com>
+Subject: Re: [PATCH v7 3/3] crypto: Add Inside Secure SafeXcel EIP-93 crypto
+ engine support
+References: <20241112015920.22564-1-ansuelsmth@gmail.com>
+ <20241112015920.22564-4-ansuelsmth@gmail.com>
+ <Z1e0LHycNGcWqd2q@gondor.apana.org.au>
+ <67582c1b.050a0220.83ef5.c8df@mx.google.com>
+ <Z1guyCJy-Cpo7U11@gondor.apana.org.au>
+ <6758312f.df0a0220.100594.1c3a@mx.google.com>
+ <Z1hB2WftNhyGt9oj@gondor.apana.org.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,79 +107,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241209134459.27110-4-ansuelsmth@gmail.com>
+In-Reply-To: <Z1hB2WftNhyGt9oj@gondor.apana.org.au>
 
-On Mon, Dec 09, 2024 at 02:44:20PM +0100, Christian Marangi wrote:
-> Document support for Airoha AN8855 5-port Gigabit Switch.
+On Tue, Dec 10, 2024 at 09:27:53PM +0800, Herbert Xu wrote:
+> On Tue, Dec 10, 2024 at 01:16:42PM +0100, Christian Marangi wrote:
+> >
+> > Oh! Ok, that is neat. Just to make sure everything is clear,
+> > to complete the request it's the same used for final, the
+> > ahash_request_complete(). I tought the -EINPROGRESS,
+> > ahash_request_complete() pattern was only for final.
 > 
-> It does expose the 5 Internal PHYs on the MDIO bus and each port
-> can access the Switch register space by configurting the PHY page.
+> Correct, the same calling convention applies whether you're doing
+> update or finup/final.  One difference is that after final/finup
+> you don't have to export the hash state because it's no longer
+> defined.
+>
 
-typo: configuring
-Also below.
+I just sent v8 with the thing fixed. Hope everything is good now!
 
-> 
-> Each internal PHY might require calibration with the fused EFUSE on
-> the switch exposed by the Airoha AN8855 SoC NVMEM.
+As always I passed it with the test flag enabled + extra and fuzz set to
+10000.
 
-This paragraph should be irrelevant to the switch binding.
-
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../net/dsa/airoha,an8855-switch.yaml         | 105 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml b/Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
-> new file mode 100644
-> index 000000000000..63bcbebd6a29
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/dsa/airoha,an8855-switch.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Airoha AN8855 Gigabit Switch
-> +
-> +maintainers:
-> +  - Christian Marangi <ansuelsmth@gmail.com>
-> +
-> +description: >
-> +  Airoha AN8855 is a 5-port Gigabit Switch.
-> +
-> +  It does expose the 5 Internal PHYs on the MDIO bus and each port
-> +  can access the Switch register space by configurting the PHY page.
-> +
-> +  Each internal PHY might require calibration with the fused EFUSE on
-> +  the switch exposed by the Airoha AN8855 SoC NVMEM.
-> +
-> +$ref: dsa.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: airoha,an8855-switch
-> +
-> +  reset-gpios:
-> +    description:
-> +      GPIO to be used to reset the whole device
-> +    maxItems: 1
-
-Since this affects the whole device, the SoC node (handled by the
-MFD driver) should handle it. Otherwise you expose the code to weird
-race conditions where one child MFD device resets the whole chip after
-the other MFD children have probed, and this undoes their settings.
-
-> +
-> +  airoha,ext-surge:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      Calibrate the internal PHY with the calibration values stored in EFUSE
-> +      for the r50Ohm values.
-
-Doesn't seem that this pertains to the switch.
+-- 
+	Ansuel
 
