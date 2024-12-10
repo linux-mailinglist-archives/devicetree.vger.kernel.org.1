@@ -1,308 +1,274 @@
-Return-Path: <devicetree+bounces-129123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 422759EAB03
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:51:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 228C69EAB0D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:52:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38D3916159C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:51:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F4CC18884B0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:52:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2429223098B;
-	Tue, 10 Dec 2024 08:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 150F62309BF;
+	Tue, 10 Dec 2024 08:52:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YY4/fzUW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f6NiurQQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7427512DD88;
-	Tue, 10 Dec 2024 08:51:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D882F12DD88;
+	Tue, 10 Dec 2024 08:52:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733820663; cv=none; b=tBA2bqzdf4Fm8u0g7r5NULv/fISqSw+yQGqxzBvT0W5Gzd3ZxS8iqF61Hp1uDfKZwUtxmLM54UvAQjOz2cUzIOTeZ+2ufMR/rDQtPd0S5TAMcoNbK3U8fNmiZ/bkU/FBg8Za1CdTaj8deYmXPa++HfptSUGnF28Lh8A1EE+i36E=
+	t=1733820771; cv=none; b=VWmycLt50XO9RcLQN7ZrmlGPnfOL8xcJR7qUr4+szXZl8bWsFrrQBxYP9qubvdFCN27jf6YqDBbInLq41d2qqxqgvzLd+ZHc7OButvQzFg0QpvcTwfHrnQwzZEDxxh9BJq8BS3nfsXDTY7lnNQec4PjPRrq1VCGqv2Br3XR4Cuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733820663; c=relaxed/simple;
-	bh=RBwUyiJQatXq2bXHGIrBTBqeIDjRTnMdRDACMW7Aabk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Yw4tp/RNI/TcSFX9sn4DVQ6StXFx6pWFPJMmdqXTuMp2LTsgv2VEJt2tyXUMPT3lkJoRJ5oOf14GkJMHVBMhy8xqJgEyBjDodsjVty46PcZUEBz/2q15ZKfaW6wzT0XiqmHRUEu8Dgy8CdbTr1Spv1ItfkTJvGkRuvWK0DPIJOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YY4/fzUW; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2166db59927so1346795ad.0;
-        Tue, 10 Dec 2024 00:51:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733820661; x=1734425461; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lvmAl49q0nOo+CXHprDwYdHIdAg6MStjLB57aFHcjK0=;
-        b=YY4/fzUWTrbBf9DDHquRWV5zTsHNLslI1fDYL+zgkQq8TRJu1GN6G7hQ4AI/BLvJcg
-         bCqrhmQWdEqgaJWfaebmbd6xb338k3XDgKwlfYDZxy/+HG9ACOtP+ljitXbHxLSHMjII
-         exPJSFyaQQyUJAD4n7oCY8zgkQ8MSfm6aZF3bwP2TLRR4fSC0rssI0rUhwGoP1m8GTqI
-         QaYKz9gZsGuOtsYA0HoCmWR4vRXKORr5Tx5FPLW2iG65u8QUyXI14CbKgBDlHqmp0C+I
-         Yqr99xIH9tKpbmfV1AIlhKFHTRLvY4Jvwn3wOTn/WDsi7fcF5jRBw5v+7AkSrqNLdaGO
-         dErA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733820661; x=1734425461;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lvmAl49q0nOo+CXHprDwYdHIdAg6MStjLB57aFHcjK0=;
-        b=fDL/XMpaxZTcOc4Vy6G7eI6sD/wQEeDswSAbIBe1IRJSmaB4dmfd3+O1/g/jhI1MTr
-         nd5/fIxpeBiGb0ZCUSoM9puFK67Yq5909gv/808WrXOhh3iI9ocaAsMrYynhiEJcVKaX
-         HkxHuIXPTpPJ7IqRTRG7ZaNAR2dPoYKn95I4LRCv4KafxLBynh1gJsLFwyXo4li1cHRl
-         gpRfgXP2zp4XJ12jdhsZT6ioADYoaVTVC5QCxtlsW0SPrXRaKgrdXO8SGwmhzYhkbjzR
-         ZNRIiliOaUr/pZaxP1zoBn0ZFB2cvfhOTWvwW8pOpWl9s14A/Fs10g/JQxTbwHdFfxpg
-         dJYw==
-X-Forwarded-Encrypted: i=1; AJvYcCUIGx+8ezB7AiNPlWocd0iLjRCjNhut4IvBeSsjQK8MD9o6ytlLiIkI/CtskstQsqV3dqoHwNsd6ALNFBo=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzguGj24b+GuKsvLdMzsDOv073ADxL4xhB2jBHwaKD08X8DISPW
-	CstMgr421uQ88Obm5U1+MJEGQCYQ0RbmRdmVb3gtcuPOxQuqu22A
-X-Gm-Gg: ASbGnctn44plMmErqXVxXwTUPa8D1pY1gzwGH+aZ8uiXzNJZc/mra1Sn4RmiYArhSMS
-	0yjiRs9mp136kRu5Iau04Mzo54qEEgbp9h1sRVxpM8eVMs4XfBkmgOexTm51KI+ifmrhTgEUvz1
-	3eMOrqNGtcVZTaNx1Mye76oXBCL9ugolP9Y+/9/flNaodNY5MQqMsXJU+Zkpkk+q8CXh9IJGJt1
-	lZ+fO9CRg9qHOG6y3XKhZGp2FHp/U9NsRT3ht86XdULhDAzKmxDrH/cI3jgE6EG59c=
-X-Google-Smtp-Source: AGHT+IHuUD4OQIvKVC68Jcb0WI5maZSwAo50mG73GT8qwADzaNvcHaD5/ggUoORwSEiUbK0S9nZB/A==
-X-Received: by 2002:a17:903:2451:b0:215:a97a:c6bc with SMTP id d9443c01a7336-2166fb9ca4fmr14413735ad.0.1733820660864;
-        Tue, 10 Dec 2024 00:51:00 -0800 (PST)
-Received: from localhost.localdomain ([103.29.142.67])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-215f8e3e807sm85046915ad.57.2024.12.10.00.50.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 00:51:00 -0800 (PST)
-From: Frank Wang <frawang.cn@gmail.com>
-To: heiko@sntech.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	william.wu@rock-chips.com,
-	yubing.zhang@rock-chips.com,
-	tim.chen@rock-chips.com,
-	kever.yang@rock-chips.com,
-	Frank Wang <frank.wang@rock-chips.com>
-Subject: [PATCH] arm64: dts: rockchip: add usb related nodes for rk3576
-Date: Tue, 10 Dec 2024 16:50:53 +0800
-Message-Id: <20241210085053.64294-1-frawang.cn@gmail.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1733820771; c=relaxed/simple;
+	bh=KP7mBNP2pd/DwOBjVN/npe0wHUj0p6vln405+1vkD6E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fOmTDuwHyU7sTTl/ekIxOWfxTHgI6YczXjIxScKSdT9eTNi62n2w4QJxeS/2dclHJwputDGeXCDCsrvi09VypEnkGjhx1heqT7ueS/KKiKyo4xlIiPZrqD5bywNjgLMPKcnTKg+DNOlFpkJLlt+9e/k3dC4RMFDI7uMcDf6bVoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f6NiurQQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C6BCC4CED6;
+	Tue, 10 Dec 2024 08:52:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733820770;
+	bh=KP7mBNP2pd/DwOBjVN/npe0wHUj0p6vln405+1vkD6E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f6NiurQQ4XDxs1gH4XW/dww86rdwL0dyRBY+6cVYQy0dFPRAglysBqyDso5C3KC3R
+	 IpdFgRWwWUxxTvvsTOKRlr7kyICGceIqQCtfH+qojPFNpN5S1iWR2Bt6MFP7GuIaYO
+	 MwmLF+jKgTihBsI8QxB/WHBsU2Xca8fxgafYjp0pVEPo8WEycukLJ8cd+5T4qh/kMY
+	 cfC1j6+8/DATplAI0a8wUogZDvpBBE0cHnSY98sqoSqXnhA8Uxp4zIdf77rqV3kNyF
+	 JBGwDKJrC/izfdjhXh1krX1D9xhtdrPJif2nOQWpJbx4Nt9w/PJYWEJ+U4xtN+fuW5
+	 mUTCeKhY6fXLQ==
+Date: Tue, 10 Dec 2024 09:52:47 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>, Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, Frank <Li@nxp.com>, 
+	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: PCI: mobiveil: convert
+ mobiveil-pcie.txt to yaml format
+Message-ID: <t3mrs7bap5fbiyxpth5r364al4ca2s72ddsoqgutbrlhrgwqae@qmcjeis2akwp>
+References: <20241206222529.3706373-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241206222529.3706373-1-Frank.Li@nxp.com>
 
-From: Frank Wang <frank.wang@rock-chips.com>
+On Fri, Dec 06, 2024 at 05:25:27PM -0500, Frank Li wrote:
+> Convert device tree binding doc mobiveil-pcie.txt to yaml format. Merge
+> layerscape-pcie-gen4.txt into this file.
+> 
+> Additional change:
+> - interrupt-names: "aer", "pme", "intr", which align order in examples.
+> - reg-names: csr_axi_slave, config_axi_slave, which align existed dts file.
 
-This adds USB and USB-PHY related nodes for RK3576 SoC.
+mobiveil-pcie.txt binding suggested reversed orders of above, so please
+mention that you unify the order to match layerscape-pcie-gen4 and
+existing Layerscape DTS users.
 
-Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
----
-The compatible string "rockchip,rk3576-naneng-combphy" in the patch
-depends on the following commit which has not merged into this branch.
- - https://patchwork.kernel.org/project/linux-phy/patch/20241106021357.19782-1-frawang.cn@gmail.com/
 
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 169 +++++++++++++++++++++++
- 1 file changed, 169 insertions(+)
+...
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index 436232ffe4d1..70cfa099089a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -445,6 +445,58 @@ soc {
- 		#size-cells = <2>;
- 		ranges;
- 
-+		usb_drd0_dwc3: usb@23000000 {
-+			compatible = "rockchip,rk3576-dwc3", "snps,dwc3";
-+			reg = <0x0 0x23000000 0x0 0x400000>;
-+			clocks = <&cru CLK_REF_USB3OTG0>,
-+				 <&cru CLK_SUSPEND_USB3OTG0>,
-+				 <&cru ACLK_USB3OTG0>;
-+			clock-names = "ref_clk", "suspend_clk", "bus_clk";
-+			interrupts = <GIC_SPI 261 IRQ_TYPE_LEVEL_HIGH>;
-+			power-domains = <&power RK3576_PD_USB>;
-+			resets = <&cru SRST_A_USB3OTG0>;
-+			dr_mode = "otg";
-+			phys = <&u2phy0_otg>, <&usbdp_phy PHY_TYPE_USB3>;
-+			phy-names = "usb2-phy", "usb3-phy";
-+			phy_type = "utmi_wide";
-+			snps,dis_enblslpm_quirk;
-+			snps,dis-u1-entry-quirk;
-+			snps,dis-u2-entry-quirk;
-+			snps,dis-u2-freeclk-exists-quirk;
-+			snps,dis-del-phy-power-chg-quirk;
-+			snps,dis-tx-ipgap-linecheck-quirk;
-+			snps,parkmode-disable-hs-quirk;
-+			snps,parkmode-disable-ss-quirk;
-+			status = "disabled";
-+		};
-+
-+		usb_drd1_dwc3: usb@23400000 {
-+			compatible = "rockchip,rk3576-dwc3", "snps,dwc3";
-+			reg = <0x0 0x23400000 0x0 0x400000>;
-+			clocks = <&cru CLK_REF_USB3OTG1>,
-+				 <&cru CLK_SUSPEND_USB3OTG1>,
-+				 <&cru ACLK_USB3OTG1>;
-+			clock-names = "ref_clk", "suspend_clk", "bus_clk";
-+			interrupts = <GIC_SPI 260 IRQ_TYPE_LEVEL_HIGH>;
-+			power-domains = <&power RK3576_PD_PHP>;
-+			resets = <&cru SRST_A_USB3OTG1>;
-+			dr_mode = "otg";
-+			phys = <&u2phy1_otg>, <&combphy1_psu PHY_TYPE_USB3>;
-+			phy-names = "usb2-phy", "usb3-phy";
-+			phy_type = "utmi_wide";
-+			snps,dis_enblslpm_quirk;
-+			snps,dis-u1-entry-quirk;
-+			snps,dis-u2-entry-quirk;
-+			snps,dis-u2-freeclk-exists-quirk;
-+			snps,dis-del-phy-power-chg-quirk;
-+			snps,dis-tx-ipgap-linecheck-quirk;
-+			snps,dis_rxdet_inp3_quirk;
-+			snps,parkmode-disable-hs-quirk;
-+			snps,parkmode-disable-ss-quirk;
-+			dma-coherent;
-+			status = "disabled";
-+		};
-+
- 		sys_grf: syscon@2600a000 {
- 			compatible = "rockchip,rk3576-sys-grf", "syscon";
- 			reg = <0x0 0x2600a000 0x0 0x2000>;
-@@ -515,6 +567,65 @@ usbdpphy_grf: syscon@2602c000 {
- 			reg = <0x0 0x2602c000 0x0 0x2000>;
- 		};
- 
-+		usb2phy_grf: syscon@2602e000 {
-+			compatible = "rockchip,rk3576-usb2phy-grf", "syscon", "simple-mfd";
-+			reg = <0x0 0x2602e000 0x0 0x4000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			u2phy0: usb2-phy@0 {
-+				compatible = "rockchip,rk3576-usb2phy";
-+				reg = <0x0 0x10>;
-+				resets = <&cru SRST_OTGPHY_0>, <&cru SRST_P_USBPHY_GRF_0>;
-+				reset-names = "phy", "apb";
-+				clocks = <&cru CLK_PHY_REF_SRC>,
-+					 <&cru ACLK_MMU2>,
-+					 <&cru ACLK_SLV_MMU2>;
-+				clock-names = "phyclk", "aclk", "aclk_slv";
-+				clock-output-names = "usb480m_phy0";
-+				#clock-cells = <0>;
-+				status = "disabled";
-+
-+				u2phy0_otg: otg-port {
-+					#phy-cells = <0>;
-+					interrupts = <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
-+						     <GIC_SPI 351 IRQ_TYPE_LEVEL_HIGH>,
-+						     <GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>;
-+					interrupt-names = "otg-bvalid", "otg-id", "linestate";
-+					status = "disabled";
-+				};
-+			};
-+
-+			u2phy1: usb2-phy@2000 {
-+				compatible = "rockchip,rk3576-usb2phy";
-+				reg = <0x2000 0x10>;
-+				resets = <&cru SRST_OTGPHY_1>, <&cru SRST_P_USBPHY_GRF_1>;
-+				reset-names = "phy", "apb";
-+				clocks = <&cru CLK_PHY_REF_SRC>,
-+					 <&cru ACLK_MMU1>,
-+					 <&cru ACLK_SLV_MMU1>;
-+				clock-names = "phyclk", "aclk", "aclk_slv";
-+				clock-output-names = "usb480m_phy1";
-+				#clock-cells = <0>;
-+				status = "disabled";
-+
-+				u2phy1_otg: otg-port {
-+					#phy-cells = <0>;
-+					interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>,
-+						     <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>,
-+						     <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
-+					interrupt-names = "otg-bvalid", "otg-id", "linestate";
-+					status = "disabled";
-+				};
-+			};
-+		};
-+
-+		vo1_grf: syscon@26036000 {
-+			compatible = "rockchip,rk3576-vo1-grf", "syscon";
-+			reg = <0x0 0x26036000 0x0 0x100>;
-+			clocks = <&cru PCLK_VO1_ROOT>;
-+		};
-+
- 		sdgmac_grf: syscon@26038000 {
- 			compatible = "rockchip,rk3576-sdgmac-grf", "syscon";
- 			reg = <0x0 0x26038000 0x0 0x1000>;
-@@ -1587,6 +1698,64 @@ uart11: serial@2afd0000 {
- 			status = "disabled";
- 		};
- 
-+		usbdp_phy: phy@2b010000 {
-+			compatible = "rockchip,rk3576-usbdp-phy";
-+			reg = <0x0 0x2b010000 0x0 0x10000>;
-+			#phy-cells = <1>;
-+			clocks = <&cru CLK_PHY_REF_SRC >,
-+				 <&cru CLK_USBDP_COMBO_PHY_IMMORTAL>,
-+				 <&cru PCLK_USBDPPHY>,
-+				 <&u2phy0>;
-+			clock-names = "refclk", "immortal", "pclk", "utmi";
-+			resets = <&cru SRST_USBDP_COMBO_PHY_INIT>,
-+				 <&cru SRST_USBDP_COMBO_PHY_CMN>,
-+				 <&cru SRST_USBDP_COMBO_PHY_LANE>,
-+				 <&cru SRST_USBDP_COMBO_PHY_PCS>,
-+				 <&cru SRST_P_USBDPPHY>;
-+			reset-names = "init", "cmn", "lane", "pcs_apb", "pma_apb";
-+			rockchip,u2phy-grf = <&usb2phy_grf>;
-+			rockchip,usb-grf = <&usb_grf>;
-+			rockchip,usbdpphy-grf = <&usbdpphy_grf>;
-+			rockchip,vo-grf = <&vo1_grf>;
-+			status = "disabled";
-+		};
-+
-+		combphy0_ps: phy@2b050000 {
-+			compatible = "rockchip,rk3576-naneng-combphy";
-+			reg = <0x0 0x2b050000 0x0 0x100>;
-+			#phy-cells = <1>;
-+			clocks = <&cru CLK_REF_PCIE0_PHY>,
-+				 <&cru PCLK_PCIE2_COMBOPHY0>,
-+				 <&cru PCLK_PCIE0>;
-+			clock-names = "ref", "apb", "pipe";
-+			assigned-clocks = <&cru CLK_REF_PCIE0_PHY>;
-+			assigned-clock-rates = <100000000>;
-+			resets = <&cru SRST_PCIE0_PIPE_PHY>,
-+				 <&cru SRST_P_PCIE2_COMBOPHY0>;
-+			reset-names = "phy", "apb";
-+			rockchip,pipe-grf = <&php_grf>;
-+			rockchip,pipe-phy-grf = <&pipe_phy0_grf>;
-+			status = "disabled";
-+		};
-+
-+		combphy1_psu: phy@2b060000 {
-+			compatible = "rockchip,rk3576-naneng-combphy";
-+			reg = <0x0 0x2b060000 0x0 0x100>;
-+			#phy-cells = <1>;
-+			clocks = <&cru CLK_REF_PCIE1_PHY>,
-+				 <&cru PCLK_PCIE2_COMBOPHY1>,
-+				 <&cru PCLK_PCIE1>;
-+			clock-names = "ref", "apb", "pipe";
-+			assigned-clocks = <&cru CLK_REF_PCIE1_PHY>;
-+			assigned-clock-rates = <100000000>;
-+			resets = <&cru SRST_PCIE1_PIPE_PHY>,
-+				 <&cru SRST_P_PCIE2_COMBOPHY1>;
-+			reset-names = "phy", "apb";
-+			rockchip,pipe-grf = <&php_grf>;
-+			rockchip,pipe-phy-grf = <&pipe_phy1_grf>;
-+			status = "disabled";
-+		};
-+
- 		sram: sram@3ff88000 {
- 			compatible = "mmio-sram";
- 			reg = <0x0 0x3ff88000 0x0 0x78000>;
--- 
-2.25.1
+
+> +++ b/Documentation/devicetree/bindings/pci/mbvl,gpex40-pcie.yaml
+> @@ -0,0 +1,167 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/mbvl,gpex40-pcie.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mobiveil AXI PCIe Root Port Bridge
+> +
+> +maintainers:
+> +  - Frank Li <Frank Li@nxp.com>
+> +
+> +description:
+> +  Mobiveil's GPEX 4.0 is a PCIe Gen4 root port bridge IP. This configurable IP
+> +  has up to 8 outbound and inbound windows for the address translation.
+> +
+> +  NXP Layerscape PCIe Gen4 controller (Deprecated) base on Mobiveil's GPEX 4.0.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mbvl,gpex40-pcie
+> +      - fsl,lx2160a-pcie
+
+Please reverse them to keep alphabetical order.
+
+> +
+> +  reg:
+> +    items:
+> +      - description: PCIe controller registers
+> +      - description: Bridge config registers
+> +      - description: GPIO registers to control slot power
+> +      - description: MSI registers
+> +    minItems: 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: csr_axi_slave
+> +      - const: config_axi_slave
+> +      - const: gpio_slave
+> +      - const: apb_csr
+> +    minItems: 2
+> +
+> +  apio-wins:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      numbers of requested apio outbound windows
+> +        1. Config window
+> +        2. Memory window
+> +    default: 2
+> +    maximum: 256
+> +
+> +  ppio-wins:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: number of requested ppio inbound windows
+> +    default: 1
+> +    maximum: 256
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  dma-coherent: true
+> +
+> +  msi-parent: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - fsl,lx2160a-pcie
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 2
+> +
+> +        reg-names:
+> +          maxItems: 2
+> +
+
+interrupts:
+  minItems: 3
+
+> +        interrupt-names:
+> +          items:
+> +            - const: aer
+> +            - const: pme
+> +            - const: intr
+> +    else:
+> +      properties:
+> +        dma-coherent: false
+> +        msi-parent: false
+
+reg? interrupts? interrupt-names?
+
+
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    pcie@b0000000 {
+> +        compatible = "mbvl,gpex40-pcie";
+> +        reg = <0xb0000000 0x00010000>,
+> +              <0xa0000000 0x00001000>,
+> +              <0xff000000 0x00200000>,
+> +              <0xb0010000 0x00001000>;
+> +        reg-names = "csr_axi_slave",
+> +                    "config_axi_slave",
+> +                    "gpio_slave",
+> +                    "apb_csr";
+> +        #address-cells = <3>;
+> +        #size-cells = <2>;
+> +        device_type = "pci";
+> +        apio-wins = <2>;
+> +        ppio-wins = <1>;
+> +        bus-range = <0x00000000 0x000000ff>;
+> +        interrupt-controller;
+> +        #interrupt-cells = <1>;
+> +        interrupt-parent = <&gic>;
+> +        interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-map-mask = <0 0 0 7>;
+> +        interrupt-map = <0 0 0 0 &pci_express 0>,
+> +                        <0 0 0 1 &pci_express 1>,
+> +                        <0 0 0 2 &pci_express 2>,
+> +                        <0 0 0 3 &pci_express 3>;
+> +        ranges = <0x83000000 0 0x00000000 0xa8000000 0 0x8000000>;
+
+Please keep ranges after reg-names
+
+> +    };
+> +
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        pcie@3400000 {
+> +            compatible = "fsl,lx2160a-pcie";
+> +            reg = <0x00 0x03400000 0x0 0x00100000   /* controller registers */
+> +                   0x80 0x00000000 0x0 0x00001000>; /* configuration space */
+> +            reg-names = "csr_axi_slave", "config_axi_slave";
+> +            interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
+> +                         <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
+> +                        <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>; /* controller interrupt */
+> +            interrupt-names = "aer", "pme", "intr";
+> +            #address-cells = <3>;
+> +            #size-cells = <2>;
+> +            device_type = "pci";
+> +            apio-wins = <8>;
+> +            ppio-wins = <8>;
+> +            dma-coherent;
+> +            bus-range = <0x0 0xff>;
+> +            msi-parent = <&its>;
+> +            ranges = <0x82000000 0x0 0x40000000 0x80 0x40000000 0x0 0x40000000>;
+
+Ditto here
+
+> +            #interrupt-cells = <1>;
+> +            interrupt-map-mask = <0 0 0 7>;
+> +            interrupt-map = <0000 0 0 1 &gic 0 0 GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <0000 0 0 2 &gic 0 0 GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <0000 0 0 3 &gic 0 0 GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <0000 0 0 4 &gic 0 0 GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+> +        };
+
+Best regards,
+Krzysztof
 
 
