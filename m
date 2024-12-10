@@ -1,63 +1,68 @@
-Return-Path: <devicetree+bounces-129367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9245A9EB6ED
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:48:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 468D89EB700
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:49:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16874168817
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:48:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B348318899A5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 16:48:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BACB52343C4;
-	Tue, 10 Dec 2024 16:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AD0B22FE15;
+	Tue, 10 Dec 2024 16:48:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jY1bMSAM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JBwH5guz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 816E623DE93;
-	Tue, 10 Dec 2024 16:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CEA222FE03;
+	Tue, 10 Dec 2024 16:48:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733849200; cv=none; b=uDc1eg+rMVNGy2N7pn4TgwlxOdMXmGOfBdjcrh8REjEw2YakdBPcYE/7Q8E+7NbJgD9ne1UU7ErC7tSCxvgTAue9x1qyTTKY30qANluD8IlwRefkbdHXqFUvojc1yZDM3AU3zik6IEsQhpJqnvu9zbO//Tp8zsEw4YgybT8oL2M=
+	t=1733849286; cv=none; b=DD7GzicB/CcAeqmqFmu7WT3fKLdYUhxKyAJxY2gIZOEo+S2uoHmB1lbGqeO3e+5npgXuPiMtIjhthovbvjnIOaA/+r/LykD8KvOcuFepMHK17YBV1C3TUL6tD/x9s21VYVmymEH0BO4mx+C9uS/qReoRstvxgx2mGcP/gKftjYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733849200; c=relaxed/simple;
-	bh=xgERl4/Z/66jiwMWRjWIFEY1SmEy62AiuwqklbX6Mh0=;
+	s=arc-20240116; t=1733849286; c=relaxed/simple;
+	bh=FMfWM6Y9s+rwrC3upwCiV+b+s/ByE6z8taj2rlKoDn0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XsN37qA8jfBeDJiTtwYr1lZbw8KtEjajw9dVM5FMt8YklAOYEewS5MBUOltAZf46WufhL2+WyrC2zsdp1pnTZGMz7IpHQq+vnNgwpeH3JfztFdYBX6dDdQXSewvq+Jm2YmeC6bDOrLkpqR+h4p5dFz0oKl1k1BXavRTsXgUHXXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jY1bMSAM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CED50C4CED6;
-	Tue, 10 Dec 2024 16:46:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BWSQTJyClebm0ZoYv7xPWRtzgTXNxC5qlrSveuwuf30lCyVQz6pb4FQxRnTTabNiScjt5a1brp3BUA5gijphmeUKDpNu235ZTjQ48yitVJMs3VGVBzrRNjLCOrh4qy/3p2o0qHwHAEXcIPFF0eiX/pz6fJc+TPJT63LpW3gf7Ro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JBwH5guz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9AA9C4CED6;
+	Tue, 10 Dec 2024 16:48:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733849200;
-	bh=xgERl4/Z/66jiwMWRjWIFEY1SmEy62AiuwqklbX6Mh0=;
+	s=k20201202; t=1733849286;
+	bh=FMfWM6Y9s+rwrC3upwCiV+b+s/ByE6z8taj2rlKoDn0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jY1bMSAMUj5wxQYYb0Yj0ZX+3F46nKMK2ZGNKWWZVadFmPgEGv44gw0mKheU91h/0
-	 RDIJUe2w4VwuV/uAQcleLsaWnIQr0R9CLsX9L2A2T9YD1/YGpHEFxs2drB/oKkTXth
-	 DZ2QWNZdhhE/K3aeNbkRVJICsY8UG+j2kc6ZPZCQ15Yku23bAPJTexPwYE/PSpgt1v
-	 J2vaQG1wTnUypGJkZjkT4PdETR5g/5mP6nRwXaJxJuQ06vrXvIPvK01A8iPQN0V+7D
-	 q/gVdUDjoJIXzQRZ9j90ZNdnkQIyPUvPiXSmO2TuywSd41Cwjh+PSk8sMqk6WH8APT
-	 bgRJp5mM8+73A==
-Date: Tue, 10 Dec 2024 10:46:38 -0600
+	b=JBwH5guzxXhBqhtgCAPQa98tB5jcGCfzz0ig/4vhMGcWKAyG8TKKLX1qJDaTnplUR
+	 j1Z2ZxvBgQPEVRjrrWd0LcOMcNeP/GXGO1iImQ/fRR5Kw+eGVc20/hmhEyghEsZuPG
+	 frVlv2fp1kg89UpCWMaNydEDbUY+5cxRziyQ1WdGGLIe+3vA4oGYpXELAM4+Vi6Xhc
+	 zi+NrNAF954dm1BQkCcKcHILXVZB3h+vjDn3T1GyzbQm0dMxCtvEijTiM3500yFUKN
+	 6oVo1gs3ZNjUTYxOGBnK3oW1jbL5iYEv4Bg7MIVXwBey92yiOdrbavYwS9Oxw0FHwb
+	 4rZtXMsFD2Cbw==
+Date: Tue, 10 Dec 2024 10:48:04 -0600
 From: Rob Herring <robh@kernel.org>
-To: Ryan.Wanner@microchip.com
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
-	mturquette@baylibre.com, sboyd@kernel.org, arnd@arndb.de,
-	dharma.b@microchip.com, mihai.sain@microchip.com,
-	romain.sioen@microchip.com, varshini.rajendran@microchip.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-serial@vger.kernel.org
-Subject: Re: [PATCH v3 07/13] dt-bindings: clock: Add SAMA7D65 PMC compatible
- string
-Message-ID: <20241210164638.GA3770349-robh@kernel.org>
-References: <cover.1733505542.git.Ryan.Wanner@microchip.com>
- <5252a28531deaee67af1edd8e72d45ca57783464.1733505542.git.Ryan.Wanner@microchip.com>
+To: Zijun Hu <zijun_hu@icloud.com>
+Cc: Saravana Kannan <saravanak@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>, Marc Zyngier <maz@kernel.org>,
+	Stefan Wiehler <stefan.wiehler@nokia.com>,
+	Grant Likely <grant.likely@linaro.org>,
+	Tony Lindgren <tony@atomide.com>, Kumar Gala <galak@codeaurora.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Julia Lawall <Julia.Lawall@lip6.fr>,
+	Jamie Iles <jamie@jamieiles.com>,
+	Grant Likely <grant.likely@secretlab.ca>,
+	Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Rob Herring <rob.herring@calxeda.com>,
+	Zijun Hu <quic_zijuhu@quicinc.com>
+Subject: Re: [PATCH 2/8] of/irq: Correct element count for array @dummy_imask
+ in API of_irq_parse_raw()
+Message-ID: <20241210164804.GA3771389-robh@kernel.org>
+References: <20241209-of_irq_fix-v1-0-782f1419c8a1@quicinc.com>
+ <20241209-of_irq_fix-v1-2-782f1419c8a1@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,20 +71,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5252a28531deaee67af1edd8e72d45ca57783464.1733505542.git.Ryan.Wanner@microchip.com>
+In-Reply-To: <20241209-of_irq_fix-v1-2-782f1419c8a1@quicinc.com>
 
-On Fri, Dec 06, 2024 at 12:59:52PM -0700, Ryan.Wanner@microchip.com wrote:
-> From: Dharma Balasubiramani <dharma.b@microchip.com>
+On Mon, Dec 09, 2024 at 09:25:00PM +0800, Zijun Hu wrote:
+> From: Zijun Hu <quic_zijuhu@quicinc.com>
 > 
-> Add the `microchip,sama7d65-pmc` compatible string to the existing binding,
-> since the SAMA7D65 PMC shares the same properties and clock requirements
-> as the SAMA7G5.
+> Array @dummy_imask only needs MAX_PHANDLE_ARGS elements, but it actually
+> has (MAX_PHANDLE_ARGS + 1) elements.
 > 
-> Export MCK3 and MCK5 to be accessed and referenced in DT to assign to
-> the clocks property for sama7d65 SoC.
+> Fix by using (MAX_PHANDLE_ARGS - 1) as max element index in initializer.
 > 
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+> ---
+>  drivers/of/irq.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Missing Conor's ack.
+Applied, thanks.
+
+Rob
 
