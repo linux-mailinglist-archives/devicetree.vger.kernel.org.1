@@ -1,156 +1,197 @@
-Return-Path: <devicetree+bounces-129305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7511A9EB21F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:44:28 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B7109EB222
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:46:19 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65F751888EB0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:46:17 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 926F345009;
+	Tue, 10 Dec 2024 13:46:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvBPD1tR"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 540D3284621
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:44:23 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6449A1A76DE;
-	Tue, 10 Dec 2024 13:44:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="XFWjja7y"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C39023DE8D;
-	Tue, 10 Dec 2024 13:44:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68D9A26AF6;
+	Tue, 10 Dec 2024 13:46:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733838259; cv=none; b=J9uBlspRA43xbGTHmmnDwbXViJP1iel/slWPNI+phDXFNbMso8FqZHtm7mf19OFw/2bBAd5rOaGAlQ6s5gwPUpr42lxMUxKQHYkGbdGst0wHX3M2i0HPlCgqpAHmLzn8cPKoY2NEOZCD4kLJFFpkF0JGUAY4QxUT0J0/ubUwYYE=
+	t=1733838375; cv=none; b=F19QeEa/RYFx55FPufyLzrz9nTObd/T5R1WDWoU+QVEKZQDXIFR9KP5t2mDziASTMKCJhTiDuS6gye6f042fkPEA8TFLCfoPi8S1Yx8LYkvH40QOrsP+5Lqy1mcsqvHrDZ/SwHniTSsjURFQHSn3kDHP1VDCj74i60AV6bZ+Sqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733838259; c=relaxed/simple;
-	bh=2i+Wqaw+wIIX5MFAaDkQu6D44GalB4H+uB+VfiJ0IHw=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=QJBoA8MAtQE7kSEXPvZXlFYxKZSz3dNpkX/iOqi4WSp6gxhkATgmwCTMmf8dvJNst+f8WVuA+389paQ8zUzFSWC9OOJVbELkOzHpO92izzSOnj0vmXzpaBi75K5N7iOyVFpeOIy/u/jad7Iqy8iNsKh/VSg/jod8wSDlKgdMyWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=XFWjja7y; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1733838375; c=relaxed/simple;
+	bh=x730fyX6dMkFw5tutqwYFzZbDyd2+aZYRXnREzK9WoQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OCbM6BfHwV7CWiYjOe9HNJLZP3oWSNnuIdvBXFxOXkbMjxTo8xMMUHtrToZkt0qVPYgkqh5Oz/l5YuUeyaJmyl+ixPCnWmcTFV+19sPKYIL5QVjWLZeSfBldFjea7iCTpQ6HfZJTCY9HBr36/GQA8Yj/rWUBWIbl/FpZBZHK3Ow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XvBPD1tR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04344C4AF0B;
+	Tue, 10 Dec 2024 13:46:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733838375;
+	bh=x730fyX6dMkFw5tutqwYFzZbDyd2+aZYRXnREzK9WoQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=XvBPD1tRBD7OU7iZzwf69SJy3kJ8KrrMxWMwC/bmZjw3iULXdkmxudhpcaTsL8aQa
+	 s+u3+1DPUeVBLUIaHQ8qW2LZQDCcsES+AWLks2sLLZ2tNjX7Sj2PpB38U8XzlMsOoc
+	 JtYXX3pymBvtNuMt0YNrULJMaxxXY7NKObjRbJD3P85Ojcocr+WCdYsg+3NBTi0yRt
+	 EyWImMyp+ie/SMsXZ++kkH3mcrrfCpeyBCS/4x0VLfFqukWC0pjsaCAOg00J/E//iN
+	 qExim+WBCNMQBvZX0DtGfDMvzK0kXtJ/HiRKgRlCkjr0QsQNPYkJ//sowYA6xtCEAy
+	 HncGDn6HADjvg==
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e3988fdb580so4471679276.2;
+        Tue, 10 Dec 2024 05:46:14 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV5veoMHfkjqYxo2okQgrH3dAqGZ8H79rytxb4u4y1UKMUCgaLHtSNQu4NQESUNUFuN5J8zr6yRWk3SwA==@vger.kernel.org, AJvYcCWK/6pUrCZJuCn/1ujrJpORc53bX2AzMVSDgqWoT9Jz8AXZOIt6JcTLTR2FChRGcRsNxaGfBPhfMsJDv8Hc@vger.kernel.org, AJvYcCWk3gQM2yHjIWBpSNsEBDw0JdyDEPEgeuvzjE0Z7SVkmhxZPZZ9wwAytIVW4BRjlWVq4UVLP7lUsN/UzJHOiok79gVZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYs3o3drmZVuPJjWISMDu8IcMlIkF83021W537glQvwLr5uQNK
+	CAlYF31wG6iGT7Bg9sw7ZyLReSoSm7zqRQPOmZSmGul8LaPe9x89iMIYRHMUZHabIr2JE/nZWxQ
+	mOVeT0xd1NQCK+bJVJpB2/T/ruw==
+X-Google-Smtp-Source: AGHT+IFEJu9NTYWGNNmGhCKFl6IIPQSbjUyN0ns29zQAUyT/ZrhFzuKfUga+5b6UJ+tGB6G+6RDedWNBOIows2KSM80=
+X-Received: by 2002:a05:6902:2009:b0:e39:9b9f:7f83 with SMTP id
+ 3f1490d57ef6-e3a59afd53emr4031159276.12.1733838373977; Tue, 10 Dec 2024
+ 05:46:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1733838255;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HR985HiE65wAXM9O8QvXvTA1gJ8FNQIGOl/hU7K0iww=;
-	b=XFWjja7yGGHwKBg/bK2+h1h7SVh2fqrDrWxnE+tVJmxaRVJsqLZ3mtiwtJY3S2u7Z6nKni
-	bROXKcLWiD3kioD0yKVuF2TCPoCBR9+cXomUeftaxuwCex6/Y/dgyuAi8TeqGax9dwu438
-	rG6imA1HJIVtI7w/34QtStg9qUmod9UIuXm0LRhyS4NB8lE3OdlYk5U0MhYBvn93AReZnI
-	oZyJGqmJuQ6eEHbVQ/hplsYZz3OWa6Zt/GoaYA/ImRmI2sNDZIsjGjPoaS4ds1gu56WQTz
-	nsERVgGNpU2+SLEOWl468F+JYzPjJzuBxgZ1P/ycA6PDNX/FRoUqg+d9tJ+cqw==
-Date: Tue, 10 Dec 2024 14:44:14 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Peter Geis <pgwipeout@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Conor Dooley <conor+dt@kernel.org>,
- Diederik de Haas <didi.debian@cknow.org>, Johan Jonker <jbx6244@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 6/6] arm64: dts: rockchip: Remove address aligned beats
- from rk3328-roc
-In-Reply-To: <CAMdYzYpj3d7Rq0O0QjV4r6HEf_e07R0QAhPT2NheZdQV3TnQ6g@mail.gmail.com>
-References: <20241210013010.81257-1-pgwipeout@gmail.com>
- <20241210013010.81257-7-pgwipeout@gmail.com>
- <2b68c2dd3618e5904a4eac1ec87d29a7@manjaro.org>
- <CAMdYzYpj3d7Rq0O0QjV4r6HEf_e07R0QAhPT2NheZdQV3TnQ6g@mail.gmail.com>
-Message-ID: <6453e714b2a48572ff1e57cd74b0f6d3@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+References: <20241209151830.95723-1-herve.codina@bootlin.com>
+ <CAL_JsqLT3prYBcxnsUwAShULCLJScYoU29ta29RJLGyiNkCrTg@mail.gmail.com> <20241210091604.512496d3@bootlin.com>
+In-Reply-To: <20241210091604.512496d3@bootlin.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 10 Dec 2024 07:46:02 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJCbmMJWJnmr8FneKrW4pjvTcyEco94Ot32o2YtaVxRQQ@mail.gmail.com>
+Message-ID: <CAL_JsqJCbmMJWJnmr8FneKrW4pjvTcyEco94Ot32o2YtaVxRQQ@mail.gmail.com>
+Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node feature
+To: Herve Codina <herve.codina@bootlin.com>, David Gibson <david@gibson.dropbear.id.au>
+Cc: Andrew Davis <afd@ti.com>, Ayush Singh <ayush@beagleboard.org>, 
+	Geert Uytterhoeven <geert@linux-m68k.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Devicetree Compiler <devicetree-compiler@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Peter,
++dtc list and David G.
 
-On 2024-12-10 12:29, Peter Geis wrote:
-> On Tue, Dec 10, 2024 at 5:45 AM Dragan Simic <dsimic@manjaro.org> 
-> wrote:
->> Thanks for the patch.  Please, see some comments below.
->> 
->> On 2024-12-10 02:30, Peter Geis wrote:
->> > Since commit 8a469ee35606 ("arm64: dts: rockchip: Add txpbl node for
->> > RK3399/RK3328"), the snps,aal, snps,txpbl, and snps,rxpbl nodes have
->> > been unnecessary in the separate device trees. There is also a
->> > performance loss to using snps,aal. Remove these from the rk3328-roc
->> > device tree.
->> >
->> > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
->> >
->> > ---
->> >
->> >  arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi | 3 ---
->> >  1 file changed, 3 deletions(-)
->> >
->> > diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
->> > b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
->> > index 6984387ff8b3..0d476cc2144d 100644
->> > --- a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
->> > +++ b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
->> > @@ -155,12 +155,9 @@ &gmac2io {
->> >       phy-mode = "rgmii";
->> >       pinctrl-names = "default";
->> >       pinctrl-0 = <&rgmiim1_pins>;
->> > -     snps,aal;
->> 
->> Huh, I see that quite a few RK3328 board dts files specify
->> the snps,aal node.  I wonder was it a "cargo cult" approach
->> at play, :) or was there some real need for it?
->> 
->> Actually, I see now that you added snps,aal to rk3328-roc-
->> cc.dts in the commit 393f3875c385 ("arm64: dts: rockchip:
->> improve rk3328-roc-cc rgmii performance."), so I guess that
->> your further research and testing showed that it actually
->> isn't needed for Ethernet stability?
->> 
->> >       snps,reset-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
->> >       snps,reset-active-low;
->> >       snps,reset-delays-us = <0 10000 50000>;
->> > -     snps,rxpbl = <0x4>;
->> > -     snps,txpbl = <0x4>;
->> 
->> Unless I'm missing something, the commit 8a469ee35606 ("arm64:
->> dts: rockchip: Add txpbl node for RK3399/RK3328") doesn't add
->> the snps,rxpbl node to the RK3328 SoC dtsi, and the respective
->> driver does nothing about it when the snps,txpbl node is found.
->> 
->> Though, I see that rk3328-rock-pi-e.dts is the only other
->> RK3328 board dts file that specifies the snps,rxpbl node, so
->> it seems that removing the snps,rxpbl node here should be safe,
->> especially because it was you who added it in the same commit
->> mentioned above.  If there were some SoC-level issues, all
->> RK3328 boards would've needed it.
-> 
-> Good Morning,
-> 
-> You'll notice the author of that patch was me. Setting aal, txpbl, and
-> rxpbl was the original fix I came up with for the rk3328, which I
-> applied to the only board I had. Someone else later on isolated it
-> specifically isolated it to just the txpbl and applied it to both the
-> rk3328 and rk3399 directly.
-> 
-> This was just something that was left hanging after that result.
-> 
-> Looking at how rk356x was done, I suspect there's an even more elegant
-> solution. However I don't have the deep level knowledge nor
-> documentation to implement it.
+On Tue, Dec 10, 2024 at 2:16=E2=80=AFAM Herve Codina <herve.codina@bootlin.=
+com> wrote:
+>
+> Hi Rob,
+>
+> On Mon, 9 Dec 2024 14:11:09 -0600
+> Rob Herring <robh@kernel.org> wrote:
+>
+> ...
+> > >
+> > > Our overlay using the nexus node can contains:
+> > >    node {
+> > >       foo-gpio =3D <&connector 0 GPIO_ACTIVE_HIGH>;
+> > >    };
+> >
+> > Couldn't we make something like this work:
+> >
+> > connector: __overlay__ {
+> >
+> >    node {
+> >       foo-gpio =3D <&connector 0 GPIO_ACTIVE_HIGH>;
+> >    };
+> > };
+> >
+> > We already have to process all the phandles in the overlay. So this
+> > just changes handling of 'connector' from being a local phandle which
+> > we just renumber to an unresolved phandle which we have to lookup and
+> > replace the phandle uses with.
+> >
+>
+> I have tried what you suggested but I've got some issues with dtc.
+>
+> If a label is not used as a phandle in a dts, dtc doesn't create the phan=
+dle
+> property in the pointed node (except if we use '-@' option but I don't wa=
+nt
+> to add all symbols in my dtb just for one or two connector symbols).
 
-Sure, I noticed that you authored the original Ethernet stability
-fix. :)  With all this in mind, please feel free to include
+Sorry, but that's the cost of using overlays, and that's pretty
+orthogonal to the issue of how the overlay references the connector
+node.
 
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+However, I agree '-@' is a pretty big switch and an issue that's been
+discussed before. I also don't like that all labels become part of the
+ABI nor the fact that overlays can make any random modification
+anywhere in the DT. I would rather see some sort of explicit opt-in
+mechanism of nodes we can apply overlays to. Perhaps we could do
+something like this:
 
-and I'll prepare a patch or two that clean up any and all leftovers
-in other board dts(i) files.
+/export/ label: node {
+};
+
+And then __symbols__ can be only those exported labels (unless -@ is used).
+
+> The way to make sure that the phandle property will be created in the bas=
+e
+> DT node by dtc is to reference the label as a phandle in the base DT.
+> The export-symbols node references this label as a phandle in the base DT
+> and so, with that, dtc creates the phandle property.
+>
+> Also, using 'connector: __overlay__' allows to have only one label from
+> the base DT to be referenced by the overlay.
+>
+> I don't know if use cases exist where more than one label need to be
+> referenced but this 'one label' constraint is not present with the
+> export-symbols node.
+>
+> The use case where more than one label would be needed is the need for a
+> phandle from the overlay that couldn't be translated by the connector nex=
+us
+> node. Maybe pinctrl because it uses of_find_node_by_phandle().
+
+Labels are an ABI. I can't see that we need to remap them when we can
+just say the name must be X. We can have multiple labels on a node as
+well. So I think the problem space is purely mapping 1 name to
+multiple possible names.
+
+The connector handling has to be addressed binding by binding at least
+for each pattern of binding. Pinctrl binding is pretty unique, so we
+should make sure we can handle it in this case.
+
+> Last point, having export-symbols node makes some nodes explicitly
+> candidates for an overlay and defines the label to be used on the base DT
+> node side. This specific label can be described in the node binding as we=
+ll
+> as the nexus node properties.
+
+Both David (IIRC) and I feel that putting the overlay info
+(__symbols__, __fixups__, etc.) within the DT data rather than in the
+DTB format was a mistake. The export-symbols node expands on that, so
+I'm not sure that's the right direction.
+
+(We should have rev'ed the DTB format to store type information for
+(at a minimum) phandles.)
+
+> With 'connector: __overlay__', the overlay can be applied on any nodes, a=
+t
+> least from the needed label point of view without any restrictions.
+
+Certainly that is something I'd like to have some control over. An
+/export/ tag would accomplish that.
+
+One idea I have there is that the overlay could have the compatible of
+the connector and we use that for matching. That would give us a way
+to know what base DTs overlays apply to. Then you could load an
+overlay and dispatch it to the correct driver to handle. It would have
+to be handled as a special case as the compatible may match, but
+wouldn't necessarily be equal values.
+
+
+I'll throw out another idea. What if we make resolving phandle errors
+something that can be handled by the connector driver? The driver
+knows 'connector' resolves to the connector node it is applying the
+overlay to.
+
+Rob
 
