@@ -1,294 +1,133 @@
-Return-Path: <devicetree+bounces-129546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7EB39EBF91
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:46:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC4B39EBF93
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:48:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6B60285806
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 23:46:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF6692823C2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 23:48:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC27522C36C;
-	Tue, 10 Dec 2024 23:46:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80C5D22C35C;
+	Tue, 10 Dec 2024 23:48:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W3KSfrrz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P2m4GfAW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 286E322C360
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 23:46:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC59A22C352;
+	Tue, 10 Dec 2024 23:48:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733874398; cv=none; b=mBZlEG7TQ2NTqTyR9/pTnaOgPEayr923SDPd1cb6HE3lbO9Wc+MTK0V7zGhl92r32EEJx+aY33PYqA0ZPeAtZC3U++zV9XXC4qWr+8N7ClEmA0EJCRooUxas9vcO+6sANWQOM5oEmGm6YpTYQFEkEFQJ8tkR2+EX0IWYvPPH9lo=
+	t=1733874492; cv=none; b=t10wnUMdxAwF5lrweccM28fyaQBYPBi+tg3CmtHnhGiWTGs/XLdzPjF4hemzClQ72U0I9lossHosQcBbgGp2WS+LjMnx6RC9m3PM/h593cYNMas0TKK4bkjzkwtVkrfVyGUAr5fKsgCt4bf3svW+Z7szRorI/9ww6ZLprx4BCJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733874398; c=relaxed/simple;
-	bh=NHZtn57HZS6Yilyx2+/BrLLakb8ArmT1ewmFrl32VwI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F7l0Cl0VNnddS0oHJMlC49bSogISwinjUjteEBKLtgGAEDHaFtww/sEY0wewtR3r+2eJjCo9aj+FcC3XVm3MTlsSQi87nHA7YEFJZqdiFWiriHxRsYgQIsubT1QGB4MNS4uHMbTdrN429wmIbu4mQ7gJPMCMpXYYr4/N391htC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W3KSfrrz; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aa692211331so26310366b.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 15:46:35 -0800 (PST)
+	s=arc-20240116; t=1733874492; c=relaxed/simple;
+	bh=hS77lKS+qrbWJBqTrtJwzE+mtelSylzhjNAlP86Biz4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nRLbzQIR1tPTafX/gc8xWz9pG/5hY5dDkcPUjzi78lP8qxJ2+sLKFM5MQFrZ9SVcJHKJTgv6ufnFH2H7gxsS4gBCzatDCWjDQxCEkGyb6NKqOJRdczlGR9FqZ1mTdACM0La3n69R06tIhQLYlixEQmZ/EO6M0KzOgASq1iC6NPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P2m4GfAW; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-434e91ac3d4so2716975e9.0;
+        Tue, 10 Dec 2024 15:48:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733874394; x=1734479194; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NplEXHZ5p1pND38luXCwrGYCymQMCNR0UaeJKC4t07Q=;
-        b=W3KSfrrzuBiXFSn6jCiapQpXcSaMeYtlcSkxTvBRRh/7bCdv6zgK8e7q2509E6uuCV
-         qGbBD365E+yqQDDc6kLhhmEAh4sAJZP1IP9SbWZ7EJVi7mXpjQ2QKOJEKlmAWAAmFn5n
-         HtvN8tNWlPvso274vjK30x0jYxGUb5ASHFUdi9pd1CW6d7hGBsh5/h4dn9jDCrB8oLsH
-         924HVf8B6B/eKU60ZgEVozjzACIl8rwuWkaM6srFcVPVaY5BBZp+tbI3pnCULkAE+zuR
-         GKhFALGATxzXaD+48DgwqmQh3xo/CuYetY5Rz3bfQHl9Anze2t9lg+wS3/+49QohHLaW
-         bRSw==
+        d=gmail.com; s=20230601; t=1733874489; x=1734479289; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=f8UnOGblbQirPOg8RONWJpR4qniXeIU9augpkXN+BVE=;
+        b=P2m4GfAWKfhlGVNXuN101Kn66EhjOSguKFPnE0u4NzHJvCHN+RH4zEtW7S5CxmJU1Z
+         LS9B8A8VrNTREbxWvWf1anZl9DTaFZvtF3nw1CZJrcUsIT96wuN3nuAljfDJlpXaLmmM
+         BLSVNuYNNnVEWXAWBMRPb9+j7JW9p6ts0njwljuWiNztzfHGqdPsNW+MFGBgVqimz76n
+         UHfCSDxXmbrIcAP0wdoqubLuQR3WFqCzUXgE8fFgUo41/jFj1S9payyIJTb8mSVG5JeH
+         EHxMiHnmx4LBTWTuDpCLD+VBmuNwzNiTVh9HCKEfTj6ceSG5Ooz0sj/G6LsR1jSc2goC
+         kEng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733874394; x=1734479194;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NplEXHZ5p1pND38luXCwrGYCymQMCNR0UaeJKC4t07Q=;
-        b=biNF2CBHyt4A2Qb62bmAWZeVUJvCfI/ZyMhmmLQQhuwEFJ8HjKns/hll/txnR0V1wV
-         beyecd+HHNx8MXz3lbY4yaIMftyTarmv08Ya6ZVFBCZ6goc1EGKkmrEsiXCKFIy0k33k
-         y8PqtRMMpCfvL1KTx6EWX4woglooYEWilu+yIDJ4wqPKhyiz3aGEfpTZ8LFCZPuFjXKU
-         TGCqDaMVbnsTq0hyHRkpJqjICWt0j1f6iFbNUL2hDv/+qIneO8qVeYhZuHlFd5Avmi6R
-         +l0oBMnXgXiovR7v8uydABOfDB6bgzA2nLvMDeSgig5DPQ2pvwj0WaJNhuDpv9+rPqww
-         y3RQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXRuq0JAu2HkhHggXhvQ/E59TPZmbyXJtJqIMzvbNF1e/CpFWWMY7BiOnxZCxp9Xqa7i2AeRb15Rcrv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIOx4y8kwP/qiZ/s2o50zaFAxoRwvODIeCjLLeOe0hemgI9Sio
-	f54j8tYprWXNsEibNa977DEX8B4BJ1SEYAgfTNuY2eU6xouXf9guOtewP3SCLAU=
-X-Gm-Gg: ASbGncvgjVBJlIPdQsMfuplHElxYnT95cWWdFqJjybpe+0wssnFSPKRydz+ZWLDwEpT
-	OZMFRpiW+Xh5Q9E0+5TWouSv2iVzukrKMhETXGGzfeTXbT9Ni+x5BHuDQsBOt268jMwTvI+4r4n
-	Zhi6JOoSJXFWqjLoq/9+Ghul8O76KL4jxIf54o6GxmWFO9gegeWBRvEWiQvVJRlQUTkxF2z3+7y
-	0RsngF6+rfzelfJ1soc/g04YcNhP3ZhLBvUEccTE1bHKmWzAgF1d95jan95r8kn6VY=
-X-Google-Smtp-Source: AGHT+IHVCiSt2Wj5v8UJC5YTQOaABktJaIKXEvGcyjlRlT/nK3Er7PVf+gwNDIiNgKiPwI1bZnszxQ==
-X-Received: by 2002:a17:907:9145:b0:aa6:a526:e015 with SMTP id a640c23a62f3a-aa6b174c8e3mr47415766b.32.1733874394509;
-        Tue, 10 Dec 2024 15:46:34 -0800 (PST)
-Received: from [192.168.0.40] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa68dd43cefsm338697966b.50.2024.12.10.15.46.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Dec 2024 15:46:34 -0800 (PST)
-Message-ID: <814941e4-90f8-40f8-a7aa-cd8edda000e2@linaro.org>
-Date: Tue, 10 Dec 2024 23:46:33 +0000
+        d=1e100.net; s=20230601; t=1733874489; x=1734479289;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=f8UnOGblbQirPOg8RONWJpR4qniXeIU9augpkXN+BVE=;
+        b=UukBWDMleNeBYw68b5rleNIBhhuIBi+UideepK2IQhnasjhg8zazo96aVg2XYdY2zG
+         Oal7rC9tj9iDPmjf74agHq3oxQR3MOYhrN0YCHraLPpIj9dK3R+RHp17v5Rj3ROIiilG
+         xGr857LR/DppdT1gz9Lc+i4d850ODfFoyLr5gG1esZfTfx/vxhgT9lrgl+JRCs/vxs02
+         mBpstphlCCQQQLgWDKk8LuGXFnBk+xC9l6zW6806A92CGyI8BlV655gscLug+cIAuwti
+         CLxZLhQOgIcOF843O98dP5YQrHl6i8YxvncrNTToJHZ9/pczoSGfNNIFRd3i3rSLUNvl
+         m1hg==
+X-Forwarded-Encrypted: i=1; AJvYcCU2jNBgfrEaN+xqK4EgqelUlBEWUNOafeOLdiYkpc7y385PYmSaTUomv8pxOd6halHptT/3Ukr5IPL4@vger.kernel.org, AJvYcCUp0Xt+030wzGtTozQXFsSWfa7cGmW1lDdTdbgsIsp+y/Hw/x8R2Xv14d0I0mnlPGU+7lY0x7M+gm5TRd4t@vger.kernel.org, AJvYcCW0HKBmiD2YisjPgqwUMaxOTi46uovBUs6BdU0d5nSPaHTiO7MTCk6PzRtw5wIfoK02t4y6rznH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz615epjPXT3anB0xY6Kioe0njCsN9jsYOxUw5+xiL4gEuplTQg
+	NSivL+9dOViCsjbqtbBYzWExh5RHhOdeII4LPDKXACOE80Xui46Y
+X-Gm-Gg: ASbGncvbCIhZr7VQlMJGAG34UQpPTvd1oGl0Is0pn3KXpOTkgPspDWm3F5vAo9+paVk
+	33kkGc2e5r89aGKeUxpAs4pZCZzB5O1i24M3oB2Cw+/KuOFy1oef4x9+AGX9Vo8AyFZNYqRh0l/
+	xLmw9NyBKhe6bmj/5RX1ZBWVsBrREUO1c3k8aBotcynbfFw0jZA3p6ETr8Z+WkityGfrN+ykG8n
+	+CzoZR6J3V/WVJoED0bqhzodtZDHrg8/AnVuGEEDA==
+X-Google-Smtp-Source: AGHT+IGVFyqOsHq8vJbKENcE96HqDNgEWPNEGfHZbGGsVdmVNjmlG8KgXuPni26CXmKkrEf6w3YBNQ==
+X-Received: by 2002:a05:600c:35c9:b0:436:17f4:9b3d with SMTP id 5b1f17b1804b1-4361c434980mr1530815e9.4.1733874488791;
+        Tue, 10 Dec 2024 15:48:08 -0800 (PST)
+Received: from skbuf ([86.127.124.81])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434da0d69dfsm203458605e9.14.2024.12.10.15.48.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 15:48:07 -0800 (PST)
+Date: Wed, 11 Dec 2024 01:48:03 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v11 5/9] mfd: an8855: Add support for Airoha
+ AN8855 Switch MFD
+Message-ID: <20241210234803.pzm7fxrve4dastth@skbuf>
+References: <20241209134459.27110-1-ansuelsmth@gmail.com>
+ <20241209134459.27110-1-ansuelsmth@gmail.com>
+ <20241209134459.27110-6-ansuelsmth@gmail.com>
+ <20241209134459.27110-6-ansuelsmth@gmail.com>
+ <20241210211529.osgzd54flq646bcr@skbuf>
+ <6758c174.050a0220.52a35.06bc@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/5] media: qcom: camss: add support for SDM670 camss
-To: Richard Acayan <mailingradian@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-References: <20241210233534.614520-7-mailingradian@gmail.com>
- <20241210233534.614520-10-mailingradian@gmail.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20241210233534.614520-10-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6758c174.050a0220.52a35.06bc@mx.google.com>
 
-On 10/12/2024 23:35, Richard Acayan wrote:
-> The camera subsystem for the SDM670 the same as on SDM845 except with
-> 3 CSIPHY ports instead of 4. Add support for the SDM670 camera
-> subsystem.
+On Tue, Dec 10, 2024 at 11:32:17PM +0100, Christian Marangi wrote:
+> Doesn't regmap add lots of overhead tho? Maybe I should really change
+> the switch regmap to apply a save/restore logic?
 > 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Acked-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->   drivers/media/platform/qcom/camss/camss.c | 191 ++++++++++++++++++++++
->   1 file changed, 191 insertions(+)
+> With an implementation like that current_page is not needed anymore.
+> And I feel additional read/write are ok for switch OP.
 > 
-> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-> index 9fb31f4c18ad..389b49606be0 100644
-> --- a/drivers/media/platform/qcom/camss/camss.c
-> +++ b/drivers/media/platform/qcom/camss/camss.c
-> @@ -738,6 +738,185 @@ static const struct camss_subdev_resources vfe_res_660[] = {
->   	}
->   };
->   
-> +static const struct camss_subdev_resources csiphy_res_670[] = {
-> +	/* CSIPHY0 */
-> +	{
-> +		.regulators = {},
+> On mdio I can use the parent-mdio-bus property to get the bus directly
+> without using MFD priv.
+> 
+> What do you think?
 
-> +	/* CSID0 */
-> +	{
-> +		.regulators = { "vdda-phy", "vdda-pll" },
-
-Please move these regulators into the CSIPHY declaration.
-
-https://lore.kernel.org/linux-arm-msm/20241206191900.2545069-4-quic_vikramsa@quicinc.com
-
-> +		.clock = { "cpas_ahb", "soc_ahb", "vfe0",
-> +				"vfe0_cphy_rx", "csi0" },
-> +		.clock_rate = { { 0 },
-> +				{ 0 },
-> +				{ 100000000, 320000000, 404000000, 480000000, 600000000 },
-> +				{ 384000000 },
-> +				{ 19200000, 75000000, 384000000, 538666667 } },
-> +		.reg = { "csid0" },
-> +		.interrupt = { "csid0" },
-> +		.csid = {
-> +			.hw_ops = &csid_ops_gen2,
-> +			.parent_dev_ops = &vfe_parent_dev_ops,
-> +			.formats = &csid_formats_gen2
-> +		}
-> +	},
-> +
-> +	/* CSID1 */
-> +	{
-> +		.regulators = { "vdda-phy", "vdda-pll" },
-> +		.clock = { "cpas_ahb", "soc_ahb", "vfe1",
-> +				"vfe1_cphy_rx", "csi1" },
-> +		.clock_rate = { { 0 },
-> +				{ 0 },
-> +				{ 100000000, 320000000, 404000000, 480000000, 600000000 },
-> +				{ 384000000 },
-> +				{ 19200000, 75000000, 384000000, 538666667 } },
-> +		.reg = { "csid1" },
-> +		.interrupt = { "csid1" },
-> +		.csid = {
-> +			.hw_ops = &csid_ops_gen2,
-> +			.parent_dev_ops = &vfe_parent_dev_ops,
-> +			.formats = &csid_formats_gen2
-> +		}
-> +	},
-> +
-> +	/* CSID2 */
-> +	{
-> +		.regulators = { "vdda-phy", "vdda-pll" },
-> +		.clock = { "cpas_ahb", "soc_ahb", "vfe_lite",
-> +				"vfe_lite_cphy_rx", "csi2" },
-> +		.clock_rate = { { 0 },
-> +				{ 0 },
-> +				{ 100000000, 320000000, 404000000, 480000000, 600000000 },
-> +				{ 384000000 },
-> +				{ 19200000, 75000000, 384000000, 538666667 } },
-> +		.reg = { "csid2" },
-> +		.interrupt = { "csid2" },
-> +		.csid = {
-> +			.is_lite = true,
-> +			.hw_ops = &csid_ops_gen2,
-> +			.parent_dev_ops = &vfe_parent_dev_ops,
-> +			.formats = &csid_formats_gen2
-> +		}
-> +	}
-> +};
-> +
-> +static const struct camss_subdev_resources vfe_res_670[] = {
-> +	/* VFE0 */
-> +	{
-> +		.regulators = {},
-> +		.clock = { "camnoc_axi", "cpas_ahb", "soc_ahb",
-> +				"vfe0", "vfe0_axi" },
-> +		.clock_rate = { { 0 },
-> +				{ 0 },
-> +				{ 0 },
-> +				{ 100000000, 320000000, 404000000, 480000000, 600000000 },
-> +				{ 0 } },
-> +		.reg = { "vfe0" },
-> +		.interrupt = { "vfe0" },
-> +		.vfe = {
-> +			.line_num = 4,
-> +			.has_pd = true,
-> +			.pd_name = "ife0",
-> +			.hw_ops = &vfe_ops_170,
-> +			.formats_rdi = &vfe_formats_rdi_845,
-> +			.formats_pix = &vfe_formats_pix_845
-> +		}
-> +	},
-> +
-> +	/* VFE1 */
-> +	{
-> +		.regulators = {},
-> +		.clock = { "camnoc_axi", "cpas_ahb", "soc_ahb",
-> +				"vfe1", "vfe1_axi" },
-> +		.clock_rate = { { 0 },
-> +				{ 0 },
-> +				{ 0 },
-> +				{ 100000000, 320000000, 404000000, 480000000, 600000000 },
-> +				{ 0 } },
-> +		.reg = { "vfe1" },
-> +		.interrupt = { "vfe1" },
-> +		.vfe = {
-> +			.line_num = 4,
-> +			.has_pd = true,
-> +			.pd_name = "ife1",
-> +			.hw_ops = &vfe_ops_170,
-> +			.formats_rdi = &vfe_formats_rdi_845,
-> +			.formats_pix = &vfe_formats_pix_845
-> +		}
-> +	},
-> +
-> +	/* VFE-lite */
-> +	{
-> +		.regulators = {},
-> +		.clock = { "camnoc_axi", "cpas_ahb", "soc_ahb",
-> +				"vfe_lite" },
-> +		.clock_rate = { { 0 },
-> +				{ 0 },
-> +				{ 0 },
-> +				{ 100000000, 320000000, 404000000, 480000000, 600000000 } },
-> +		.reg = { "vfe_lite" },
-> +		.interrupt = { "vfe_lite" },
-> +		.vfe = {
-> +			.is_lite = true,
-> +			.line_num = 4,
-> +			.hw_ops = &vfe_ops_170,
-> +			.formats_rdi = &vfe_formats_rdi_845,
-> +			.formats_pix = &vfe_formats_pix_845
-> +		}
-> +	}
-> +};
-> +
->   static const struct camss_subdev_resources csiphy_res_845[] = {
->   	/* CSIPHY0 */
->   	{
-> @@ -2582,6 +2761,17 @@ static const struct camss_resources sdm660_resources = {
->   	.link_entities = camss_link_entities
->   };
->   
-> +static const struct camss_resources sdm670_resources = {
-> +	.version = CAMSS_845,
-> +	.csiphy_res = csiphy_res_670,
-> +	.csid_res = csid_res_670,
-> +	.vfe_res = vfe_res_670,
-> +	.csiphy_num = ARRAY_SIZE(csiphy_res_670),
-> +	.csid_num = ARRAY_SIZE(csid_res_670),
-> +	.vfe_num = ARRAY_SIZE(vfe_res_670),
-> +	.link_entities = camss_link_entities
-> +};
-> +
->   static const struct camss_resources sdm845_resources = {
->   	.version = CAMSS_845,
->   	.csiphy_res = csiphy_res_845,
-> @@ -2627,6 +2817,7 @@ static const struct of_device_id camss_dt_match[] = {
->   	{ .compatible = "qcom,msm8953-camss", .data = &msm8953_resources },
->   	{ .compatible = "qcom,msm8996-camss", .data = &msm8996_resources },
->   	{ .compatible = "qcom,sdm660-camss", .data = &sdm660_resources },
-> +	{ .compatible = "qcom,sdm670-camss", .data = &sdm670_resources },
->   	{ .compatible = "qcom,sdm845-camss", .data = &sdm845_resources },
->   	{ .compatible = "qcom,sm8250-camss", .data = &sm8250_resources },
->   	{ .compatible = "qcom,sc8280xp-camss", .data = &sc8280xp_resources },
-
-Otherwise LGTM.
-
----
-bod
-
+If performance is a relevant factor at all, it will be hard to measure it, other
+than with synthetic tests (various mixes of switch and PHY register access).
+Though since you mention it, it would be interesting to see a comparison of the
+3 arbitration methods. This could probably be all done from the an8855_mfd_probe()
+calling context: read a switch register and a PHY register 100K times and see how
+long it took, then read 2 switch registers and a PHY register 100K times, then
+3 switch registers.... At some point, we should start seeing the penalty of the
+page restoration in Andrew's proposal, because that will be done after each switch
+register read. Just curious to put it into perspective and see how soon it starts
+to make a difference. And this test will also answer the regmap overhead issue.
 
