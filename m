@@ -1,153 +1,287 @@
-Return-Path: <devicetree+bounces-129181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F33E9EAD8F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:05:49 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2202F9EADA5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:11:47 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E94C81882F43
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:04:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0A782833CD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:11:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C4C523DEA9;
-	Tue, 10 Dec 2024 10:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D63423DEB6;
+	Tue, 10 Dec 2024 10:11:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="cZKSv3ld"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="NP0seO6Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from out-185.mta1.migadu.com (out-185.mta1.migadu.com [95.215.58.185])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39EB723DE96;
-	Tue, 10 Dec 2024 10:04:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0402023DE8B
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:11:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.185
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733825090; cv=none; b=DgLmDWRgz6iKzTN9u36QG21er0Do6lH5LWJ87PlGtpeUNG45Y5/QfN9F/l0m5MwsOmLRjkxjjsnpG9G8fMr5IbloBhru1TzZVNq38oUW1/P3dsV3J6Et/uQCf8fatkpzeg/vRBr9wU0xl1h1U/CYZcdZqNfS5zyuZvgJ2JPSY5s=
+	t=1733825494; cv=none; b=hPl0UJCdNbiOi5AbU887carZq0IbKsOvyWYQMmaDTrHrehMLSRZjevzEJwLQY9Vq0fe1xOE4SAaqlWAkrs/tP62yk3fDkYHwuwalYa7JzZcAYuaqQG/Qeavy/iOxP9B2MgHq+L8VIAuVGnaKIdigZL0fhTyuIrhukdXHmJq4ORE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733825090; c=relaxed/simple;
-	bh=1PNJmzZ2WAVkuKjY9BRcQ8kJoyGcegpzX4I1aJ/V/TQ=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Y/+PvgceX4uI8+3OKKxZvlr34AS85l6TJrTYCaRxlINyrWa3L0ZhSelFSw61KGT397B0ZJ/dHFXXO/T0JgWIxxJX7VbT9AsHKkoIABQORBLOsre0G0tMcjvK9mdeR9j5tQpKH+psn7JdKuJS6KuVQJ6GU4bHza6rJzgTVkNQtC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=cZKSv3ld; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1733825494; c=relaxed/simple;
+	bh=Is04EpUqny47P+McpfOwBkWYp5nx/FFC8BY4uWj8p4E=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=dSXwMHyvt5pTn2suNDWtOjzCykR9DGjYuAwFJcBvx4Cm5c3hfQSxgtmK2A9j5yRZcLLDkNqDG7uF4FEtM77ZbaysYO+SvcL1nF7QswlouBK+ATjmRfLlLf1PXxCwdnQMJGHySJ7uH2/e7Fv5mLn0M692JzLimAGkR8PQqxOR/pU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=NP0seO6Z; arc=none smtp.client-ip=95.215.58.185
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1733825085;
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1733825479;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=1I7wfU9DCOpusJPrwzxJlCH5FeLkZRrVEv4XdJSr+ME=;
-	b=cZKSv3ldr6gGegwxMIz1JjnH9exKl+mMNrJ4RQH1roYVzEC9pXfABLJzcSgtzuVa0JSSF8
-	c1iw/TrS9tI7hhFaCOFCh/IhydCmy30ki5QEnHhOVVp6Eoca+TWZYRyiStMK2NUXw9Ezrd
-	2sflyZrMlYoTLKjNvZgSOtIXYuLbZx9vJKpF72u3heuMHd/kau7Uuee9VMrjIM6Ol+i90W
-	PaBdIAm/al7Shz38CJtWFzuzk6M0Tl9R+bvlYQNsuMNI/ijHJEzZZ5E5mxIJJIxcCNHfQP
-	p/WNEjV1I8VNdHKS61vkbwh70p6PNYxvURbKsgPgJiBMRZENNXI/YypoAEju1w==
-Date: Tue, 10 Dec 2024 11:04:45 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Peter Geis <pgwipeout@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Alex Bee <knaerzche@gmail.com>, Conor
- Dooley <conor+dt@kernel.org>, Diederik de Haas <didi.debian@cknow.org>,
- Johan Jonker <jbx6244@gmail.com>, Jonas Karlman <jonas@kwiboo.se>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Liang Chen <cl@rock-chips.com>, Rob Herring
- <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, shironeko <shironeko@tesaguri.club>
-Subject: Re: [PATCH 4/6] arm64: dts: rockchip: add hevc power domain clock to
- rk3328
-In-Reply-To: <20241210013010.81257-5-pgwipeout@gmail.com>
-References: <20241210013010.81257-1-pgwipeout@gmail.com>
- <20241210013010.81257-5-pgwipeout@gmail.com>
-Message-ID: <e32fa593abfa6d08202b4f929e0b4bdb@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+	bh=purajMjFhhk8y5/cpEF3Tr9X2g/M0StBEyNcpYreAGQ=;
+	b=NP0seO6ZkdS2m743DvP2W4u6umphTKJ3vID18ZeBxSHPY0Yo3J+7mkFKSH269V5fr3hvZm
+	T74G377FYPbEDDgtfloYV/kw0OgMQ4wg5UvqGE2V4MaK5sHQZUXBOyaULdn1jfyo/puj2c
+	8Xvj6JMIPwRply5w+fCIm6ZhRmwKpYxZ1e8npoBeJ5zXiEL4V9tkjU1oMrM1zMlh3TcH9x
+	L3BssV0fnPQ8De/3uBS8KENaNxj73YxspCuc3EcZZyUcqlvizwXohOgG10PCmcmoPVZ+q+
+	/0SJNDbGqwoS6ulAFy7hF/4UPKWXILs8u7EVdclE8QdaYJ82hC7QXLG+Ga0hgQ==
+Content-Type: multipart/signed;
+ boundary=f3aa349fa658de3c6bc38a403667b8482bead4ff85b9abcb6690bf442bc1;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Tue, 10 Dec 2024 11:11:09 +0100
+Message-Id: <D67XU0SO4U6D.2GTDZE4V7RK0J@cknow.org>
+Cc: <kernel@collabora.com>, <linux-kernel@vger.kernel.org>,
+ <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <dmitry.osipenko@collabora.com>,
+ "Sebastian Reichel" <sebastian.reichel@collabora.com>, "AngeloGioacchino
+ Del Regno" <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v5 2/4] dt-bindings: media: Document bindings for HDMI
+ RX Controller
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Shreeya Patel" <shreeya.patel@collabora.com>, <heiko@sntech.de>,
+ <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+ <p.zabel@pengutronix.de>, <jose.abreu@synopsys.com>,
+ <nelson.costa@synopsys.com>, <shawn.wen@rock-chips.com>,
+ <nicolas.dufresne@collabora.com>, <hverkuil@xs4all.nl>,
+ <hverkuil-cisco@xs4all.nl>
+References: <20241209200120.3228643-1-shreeya.patel@collabora.com>
+ <01020193ad040150-e0cf3371-115b-469e-840e-4fa97af5b207-000000@eu-west-1.amazonses.com>
+In-Reply-To: <01020193ad040150-e0cf3371-115b-469e-840e-4fa97af5b207-000000@eu-west-1.amazonses.com>
+X-Migadu-Flow: FLOW_OUT
 
-Hello Peter,
+--f3aa349fa658de3c6bc38a403667b8482bead4ff85b9abcb6690bf442bc1
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-On 2024-12-10 02:30, Peter Geis wrote:
-> There is a race condition at startup between disabling power domains 
-> not
-> used and disabling clocks not used on the rk3328. When the clocks are
-> disabled first, the hevc power domain fails to shut off leading to a
-> splat of failures. Add the hevc core clock to the rk3328 power domain
-> node to prevent this condition.
-> 
-> rcu: INFO: rcu_sched detected expedited stalls on CPUs/tasks: { 3-.... 
-> }
-> 1087 jiffies s: 89 root: 0x8/.
-> rcu: blocking rcu_node structures (internal RCU debug):
-> Sending NMI from CPU 0 to CPUs 3:
-> NMI backtrace for cpu 3
-> CPU: 3 UID: 0 PID: 86 Comm: kworker/3:3 Not tainted 6.12.0-rc5+ #53
-> Hardware name: Firefly ROC-RK3328-CC (DT)
-> Workqueue: pm genpd_power_off_work_fn
-> pstate: 20400005 (nzCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
-> pc : regmap_unlock_spinlock+0x18/0x30
-> lr : regmap_read+0x60/0x88
-> sp : ffff800081123c00
-> x29: ffff800081123c00 x28: ffff2fa4c62cad80 x27: 0000000000000000
-> x26: ffffd74e6e660eb8 x25: ffff2fa4c62cae00 x24: 0000000000000040
-> x23: ffffd74e6d2f3ab8 x22: 0000000000000001 x21: ffff800081123c74
-> x20: 0000000000000000 x19: ffff2fa4c0412000 x18: 0000000000000000
-> x17: 77202c31203d2065 x16: 6c6469203a72656c x15: 6c6f72746e6f632d
-> x14: 7265776f703a6e6f x13: 2063766568206e69 x12: 616d6f64202c3431
-> x11: 347830206f742030 x10: 3430303034783020 x9 : ffffd74e6c7369e0
-> x8 : 3030316666206e69 x7 : 205d383738353733 x6 : 332e31202020205b
-> x5 : ffffd74e6c73fc88 x4 : ffffd74e6c73fcd4 x3 : ffffd74e6c740b40
-> x2 : ffff800080015484 x1 : 0000000000000000 x0 : ffff2fa4c0412000
-> Call trace:
-> regmap_unlock_spinlock+0x18/0x30
-> rockchip_pmu_set_idle_request+0xac/0x2c0
-> rockchip_pd_power+0x144/0x5f8
-> rockchip_pd_power_off+0x1c/0x30
-> _genpd_power_off+0x9c/0x180
-> genpd_power_off.part.0.isra.0+0x130/0x2a8
-> genpd_power_off_work_fn+0x6c/0x98
-> process_one_work+0x170/0x3f0
-> worker_thread+0x290/0x4a8
-> kthread+0xec/0xf8
-> ret_from_fork+0x10/0x20
-> rockchip-pm-domain ff100000.syscon:power-controller: failed to get ack 
-> on
-> domain 'hevc', val=0x88220
-> 
-> Fixes: 52e02d377a72 ("arm64: dts: rockchip: add core dtsi file for 
-> RK3328 SoCs")
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+Hi,
 
-While I was unable to formally verify this clock assignment,
-i.e. by using the RK3328 TRM or the downstream kernel source
-from Rockchip, it makes perfect sense to me.  Thanks for the
-patch, and please feel free to include:
-
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
-
+On Mon Dec 9, 2024 at 9:02 PM CET, Shreeya Patel wrote:
+> Document bindings for the Synopsys DesignWare HDMI RX Controller.
+>
+> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
 > ---
-> 
->  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> index 0597de415fe0..7d992c3c01ce 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> @@ -333,6 +333,7 @@ power: power-controller {
-> 
->  			power-domain@RK3328_PD_HEVC {
->  				reg = <RK3328_PD_HEVC>;
-> +				clocks = <&cru SCLK_VENC_CORE>;
->  				#power-domain-cells = <0>;
->  			};
->  			power-domain@RK3328_PD_VIDEO {
+>
+> Changes in v5 :-
+> - Correct the interrupt IRQ number
+>
+> Changes in v4 :-
+> - No change
+>
+> Changes in v3 :-
+> - Rename hdmirx_cma to hdmi_receiver_cma
+> - Add a Reviewed-by tag
+>
+> Changes in v2 :-
+> - Add a description for the hardware
+> - Rename resets, vo1 grf and HPD properties
+> - Add a proper description for grf and vo1-grf phandles
+> - Rename the HDMI Input node name to hdmi-receiver
+> - Improve the subject line
+> - Include gpio header file in example to fix dt_binding_check failure
+>
+>  .../bindings/media/snps,dw-hdmi-rx.yaml       | 132 ++++++++++++++++++
+>  1 file changed, 132 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/snps,dw-hdmi-=
+rx.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml=
+ b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> new file mode 100644
+> index 000000000000..510e94e9ca3a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> @@ -0,0 +1,132 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Device Tree bindings for Synopsys DesignWare HDMI RX Controller
+> +
+> +---
+> +$id: http://devicetree.org/schemas/media/snps,dw-hdmi-rx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys DesignWare HDMI RX Controller
+> +
+> +maintainers:
+> +  - Shreeya Patel <shreeya.patel@collabora.com>
+> +
+> +description:
+> +  Synopsys DesignWare HDMI Input Controller preset on RK3588 SoCs
+
+s/preset/present/ ?
+
+> +  allowing devices to receive and decode high-resolution video streams
+> +  from external sources like media players, cameras, laptops, etc.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: rockchip,rk3588-hdmirx-ctrler
+> +      - const: snps,dw-hdmi-rx
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 3
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: cec
+> +      - const: hdmi
+> +      - const: dma
+> +
+> +  clocks:
+> +    maxItems: 7
+> +
+> +  clock-names:
+> +    items:
+> +      - const: aclk
+> +      - const: audio
+> +      - const: cr_para
+> +      - const: pclk
+> +      - const: ref
+> +      - const: hclk_s_hdmirx
+> +      - const: hclk_vo1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 4
+> +
+> +  reset-names:
+> +    items:
+> +      - const: axi
+> +      - const: apb
+> +      - const: ref
+> +      - const: biu
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +  hpd-gpios:
+> +    description: GPIO specifier for HPD.
+> +    maxItems: 1
+> +
+> +  rockchip,grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle of the syscon node for the general register file
+> +      containing HDMIRX PHY status bits.
+> +
+> +  rockchip,vo1-grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle of the syscon node for the Video Output GRF register
+> +      to enable EDID transfer through SDAIN and SCLIN.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - resets
+> +  - pinctrl-0
+> +  - hpd-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/rk3588-power.h>
+> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> +    hdmi_receiver: hdmi-receiver@fdee0000 {
+> +      compatible =3D "rockchip,rk3588-hdmirx-ctrler", "snps,dw-hdmi-rx";
+> +      reg =3D <0xfdee0000 0x6000>;
+> +      interrupts =3D <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                   <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH 0>,
+> +                   <GIC_SPI 179 IRQ_TYPE_LEVEL_HIGH 0>;
+> +      interrupt-names =3D "cec", "hdmi", "dma";
+> +      clocks =3D <&cru ACLK_HDMIRX>,
+> +               <&cru CLK_HDMIRX_AUD>,
+> +               <&cru CLK_CR_PARA>,
+> +               <&cru PCLK_HDMIRX>,
+> +               <&cru CLK_HDMIRX_REF>,
+> +               <&cru PCLK_S_HDMIRX>,
+> +               <&cru HCLK_VO1>;
+> +      clock-names =3D "aclk",
+> +                    "audio",
+> +                    "cr_para",
+> +                    "pclk",
+> +                    "ref",
+> +                    "hclk_s_hdmirx",
+> +                    "hclk_vo1";
+> +      power-domains =3D <&power RK3588_PD_VO1>;
+> +      resets =3D <&cru SRST_A_HDMIRX>, <&cru SRST_P_HDMIRX>,
+> +               <&cru SRST_HDMIRX_REF>, <&cru SRST_A_HDMIRX_BIU>;
+> +      reset-names =3D "axi", "apb", "ref", "biu";
+> +      memory-region =3D <&hdmi_receiver_cma>;
+> +      pinctrl-0 =3D <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdm=
+im1_rx_sda &hdmirx_5v_detection>;
+> +      pinctrl-names =3D "default";
+> +      hpd-gpios =3D <&gpio1 22 GPIO_ACTIVE_LOW>;
+
+I just found out it isn't documented in the DTS coding style and that
+the binding is technically not specifically for a Rockchip based
+component, but there is a convention to sort the node properties
+alpha-numerically by property name, with some exceptions.
+
+So would it be useful to apply that convention to the example?
+And possibly to the list of required properties as well?
+
+Cheers,
+  Diederik
+
+> +    };
+
+
+--f3aa349fa658de3c6bc38a403667b8482bead4ff85b9abcb6690bf442bc1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ1gTwQAKCRDXblvOeH7b
+bsFZAP9ah94RpYjb318hSsjAUcVveSXQNnXUQZtSOiciapqPPwD9HrzGbq5DsPOY
+Dbp0/AwZTuRb8GPhxezjlT57mTULfAc=
+=kg+g
+-----END PGP SIGNATURE-----
+
+--f3aa349fa658de3c6bc38a403667b8482bead4ff85b9abcb6690bf442bc1--
 
