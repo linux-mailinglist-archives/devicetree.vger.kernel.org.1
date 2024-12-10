@@ -1,134 +1,102 @@
-Return-Path: <devicetree+bounces-128998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-128999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ACBD9EA469
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 02:31:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E2799EA46C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 02:36:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3630166D46
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 01:31:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17FE41884BE9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 01:36:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D01011A08B8;
-	Tue, 10 Dec 2024 01:30:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E59DA4207F;
+	Tue, 10 Dec 2024 01:36:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OnlUz32d"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="zlxM1gJb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37F861A01C6;
-	Tue, 10 Dec 2024 01:30:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A46BA4A04;
+	Tue, 10 Dec 2024 01:36:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733794240; cv=none; b=b8VBjW70Hq78XhpHuOh/exqxHkL7uz6fyfVSV2wRyU7IzKVNSCo+EgssuPYeEuoCrU/8WVHcX6YCa9HYDalxU5Ner3YDbtRHrvkH7auwh9xYQz8fUK4THKfrxeAxHKZhzP9X1Y3gypGcjcOgChfDyWDUi/uhcZ4b9V0GNJq3gwA=
+	t=1733794607; cv=none; b=Bb58Q1qdf/YRmIgL3GWwiATQcmMSvAJOQmoB3TJAseNkAzzf17LxeTncB9yDST0N19/jbAq9mTHjUqFt1ECSE7TLrwLJ/eWFxN+7dReqdSTfc0gxwbCLIQFdh21PLKUnMuo4l672RN+vnVKhAG02hyuuehW1IJzNwwOECvMexgc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733794240; c=relaxed/simple;
-	bh=BZYDFRTpTR3NtC0vC92IDRbXApKJBbwtNKxfulbPgWY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=WJG/9NkHlCdhDy/LexrTpJxE6rCjjKSeOLekIyla3tHG579ebDdNy4XYA1PPfqP8qvEwyFplw9fvbHcBbnxrUOk7F4SpBdaK5xJBTkILb3vZ4Z9OBj5BoXzR2TKlx4VE6X9GTevEnNtGoRT+o5M4Hj5u0kWz0WaF0+R29Nao4Xs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OnlUz32d; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-467777d7c83so1666101cf.3;
-        Mon, 09 Dec 2024 17:30:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733794238; x=1734399038; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Jqw9ssvr+RamFhuTkFddw4DLtLM/EJe/MJOiR1nlAKE=;
-        b=OnlUz32d8X/zRJo4HX4SXTwRWw++VVCWHpD583OC2wOZakMw7MaALrYws/3W9oC5xq
-         xUIBJBjGqE9E83PuF3ecIEILspaQFgtIS99vHiGvy+KYILjp7bkvtNClrOPNeyb/M5s3
-         C7+HpFaZlMdBDPs/hDSM0yoLbYRy8hTbP7eQQkkjzPMKtWu5mSqNAtbDevhBknb0Q4m/
-         kWMRvnjX+AvhKI0wHey2gmsHx5zZv/8Sb/x3Il62wSyBnwfBBq3oQ2tojxi7aFlNn4m8
-         UukkORXXC0rOyF6/gwZRDbXavgFbxz5xVXcmsIwiiTAChvi0tf1W4i7Tyw2SGz8eq2MO
-         mjWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733794238; x=1734399038;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Jqw9ssvr+RamFhuTkFddw4DLtLM/EJe/MJOiR1nlAKE=;
-        b=MOOjadri7kjZ3KuIXztTNJoXX29QTP1BD7Hm8UfjaIp6eAj0Lc38Irw4V+qI2BwN2T
-         pg96qhIStQtgPUq1zv3MuQPxrp3hnVm6/9JpAU04vgrKHceeLl0xz40EV8VEWNzkVNCK
-         oEMpU24UMMUJQWFqN7uXS93URfuPkPVcdk9gKJRrBFVHLmmvwfNcm43enfxxKJOTzrHH
-         Q2D0FDAgH36ba1eDP1RFHN7YxJGIJ/VgKlq8M/hG2AJJj4geNoNBo2QjjOpi21z7Gq1z
-         e2UoZfykQEm5koDCXStDCUsYb7sgfvdcJpk+hpfafcOeG+blIv9XRrH6gNfhczvrfhE9
-         OT7A==
-X-Forwarded-Encrypted: i=1; AJvYcCWfnANBIw/2y5QY/J7s3omOQPv7QVbWHcqFm+xpPbpfbM7vSU6v1OK/j7TqNe89F149pJMMmqunvYhS@vger.kernel.org, AJvYcCXbyAhMa/hymT+v9SXLwB9t8ctE+u9IfEDKY5RchqUOMqmNpN8DgaIWSSkTgKqj4UwP/7emrHIVOW34NNbS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOTevSI9/3Yo9LGZT2VDcmFvLmtJX3SKuecAdQ/a/DmiI0utB0
-	JEceBp4yEiYSxvP9r3lnU6/PxM1frXA2IfRm0oXNNlRcnS0q3TRK
-X-Gm-Gg: ASbGncuxQrciZbuIis0Dyk1WDjAjKCmWYf5EVkb50/fVAV1qrxJwPQqpZNr/5qUb7u+
-	RNhG705f2v7cpXqZoYk9IyaUbfqn4PoOtiuZMJBHtpdrVA965zlHcC3W3Zto8AD+ytIeMkIsOeX
-	u3jAVRxRSie/zJ3J9dz8ASsVWmERGmBaoxvN9CuDkbCyEQmaUknE34pfVcfAeI6m2eS/MWwmL+g
-	6xTbE0kMWjH16Y7GATsDKlG8L1tsE/FY1saTeuc6jHZKWAERX7bkjT+ddTNcr7lpw==
-X-Google-Smtp-Source: AGHT+IH6JIbgEEMAy3xvXZsAPmdWHrEPx5XojlgCSN0/zSm0Ou9M/ynX9WkvMGNi2Bhw9DACvmHMFw==
-X-Received: by 2002:a05:6214:226a:b0:6d8:86c8:c2a9 with SMTP id 6a1803df08f44-6d8e73bf6b0mr241598566d6.31.1733794238061;
-        Mon, 09 Dec 2024 17:30:38 -0800 (PST)
-Received: from master-x64.sparksnet ([204.111.53.234])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6d8f429a79csm36834346d6.72.2024.12.09.17.30.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Dec 2024 17:30:36 -0800 (PST)
-From: Peter Geis <pgwipeout@gmail.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Peter Geis <pgwipeout@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Johan Jonker <jbx6244@gmail.com>,
+	s=arc-20240116; t=1733794607; c=relaxed/simple;
+	bh=IBXxBCGq5VRVnZFSaHJfkZkdGijYMzRvolmtnY5fLKM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CRDQfIcaKLPTOvDbinDo1Z8WXRQ3Vf/nF2cCTXWlGrLru3njHqs52v/YiY/1fP6z10oqqmpoDwPUrMFly2vHDTXrh+YT6Oof/soiLzvA7Weay518Up/bN+ezw4S7G/uEEYsLDs9sKGcP2ZCVqWphrm1CaaJY4ksyQQSxzlR+jK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=zlxM1gJb; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=eo4Cvix0Q6Ny9IVkv622V5LskCRdrNKizWnESnyiqRc=; b=zlxM1gJbeJPhQfj3PB35xuI8ka
+	vkwcwGEOvFv3yoPz55tUJfg/DXCtYKZTlq9jj8viWj3uR/WYXPWDA6puNYS+cDwEyQWxoraWd54M/
+	4LMvidGOhs7EPkylBIkBEcr7FTmVOI5TeH5gBWhxMDVMWJ5Ru37S+YjElYMFjqhx5C+A=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tKpAr-00Fjr0-8U; Tue, 10 Dec 2024 02:36:29 +0100
+Date: Tue, 10 Dec 2024 02:36:29 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH 6/6] arm64: dts: rockchip: Remove address aligned beats from rk3328-roc
-Date: Tue, 10 Dec 2024 01:30:10 +0000
-Message-Id: <20241210013010.81257-7-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241210013010.81257-1-pgwipeout@gmail.com>
-References: <20241210013010.81257-1-pgwipeout@gmail.com>
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v11 9/9] net: phy: Add Airoha AN8855 Internal
+ Switch Gigabit PHY
+Message-ID: <b3b79c80-ac7c-456b-a3b5-eee61f671694@lunn.ch>
+References: <20241209134459.27110-1-ansuelsmth@gmail.com>
+ <20241209134459.27110-10-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241209134459.27110-10-ansuelsmth@gmail.com>
 
-Since commit 8a469ee35606 ("arm64: dts: rockchip: Add txpbl node for
-RK3399/RK3328"), the snps,aal, snps,txpbl, and snps,rxpbl nodes have
-been unnecessary in the separate device trees. There is also a
-performance loss to using snps,aal. Remove these from the rk3328-roc
-device tree.
+> +config AIR_AN8855_PHY
+> +	tristate "Airoha AN8855 Internal Gigabit PHY"
+> +	help
+> +	  Currently supports the internal Airoha AN8855 Switch PHY.
+> +
+>  config AIR_EN8811H_PHY
+>  	tristate "Airoha EN8811H 2.5 Gigabit PHY"
+>  	help
 
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+Do you have any idea why the new one is AN, and previous one is EN?  I
+just like consistent naming, or an explanation why it is not
+consistent.
 
----
+> +#define AN8855_PHY_ID				0xc0ff0410
+> +static struct phy_driver an8855_driver[] = {
+> +{
+> +	PHY_ID_MATCH_EXACT(AN8855_PHY_ID),
 
- arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi | 3 ---
- 1 file changed, 3 deletions(-)
+Is there any documentation about the ID, and the lower nibble. Given
+it is 0, i'm wondering if PHY_ID_MATCH_EXACT() is correct.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
-index 6984387ff8b3..0d476cc2144d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
-@@ -155,12 +155,9 @@ &gmac2io {
- 	phy-mode = "rgmii";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmiim1_pins>;
--	snps,aal;
- 	snps,reset-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
- 	snps,reset-active-low;
- 	snps,reset-delays-us = <0 10000 50000>;
--	snps,rxpbl = <0x4>;
--	snps,txpbl = <0x4>;
- 	tx_delay = <0x24>;
- 	rx_delay = <0x18>;
- 	status = "okay";
--- 
-2.39.5
-
+	Andrew
 
