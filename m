@@ -1,146 +1,139 @@
-Return-Path: <devicetree+bounces-129466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CEBC9EBB9C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 22:10:58 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A0B29EBBAC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 22:15:41 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91B311681E8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:10:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D5B62822CC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:15:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F83E23025D;
-	Tue, 10 Dec 2024 21:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EFC422CBF6;
+	Tue, 10 Dec 2024 21:15:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NV6ZU9yT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XMgjCp/h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98DF1153BF6;
-	Tue, 10 Dec 2024 21:10:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3C0123ED4A;
+	Tue, 10 Dec 2024 21:15:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733865054; cv=none; b=gkeGgJKrhj4r9q+LzfsHK0m3vWJr3Z5NX1QvdS+5JTFDcPebl35OOe9RGHGaVXfLZjBeJWBGQXR8DUgna89gggtVlSEeRGbo4xvPgJwyhbUIfkPmvOSEt6Og4WZqADnsSIThpDqoJtHm8aNVaZGgLSfSFOV3z2pKJAIIeGmw9bY=
+	t=1733865337; cv=none; b=h5+ROOCk0/uIlDSs96juwN4uPx8hClB+iaLu7lrufWkrH95WEFuRFd35oKa5po8kM6Jw0cV3hs6JTAvIJHa5me1ijnDAS13nkkJO2zLQo43h3mm6OR/KxMSc6NKmyR+e2P523aXfghKTbobRPGi8yQL8wfi1iYqH/ovJvrR6xqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733865054; c=relaxed/simple;
-	bh=rGOHQx90VWljTDL3v5Se9+43mGwPkb6TX1hI7BZD5eQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HGCmOjNvcu+Rsh8H03VS7pPnM9KYtnJkDAovXalSqKrt4HilCG4A6TsFrFanvaIfKuxKHsX2Hyzg0b4KIzGOgvv7itULr3vetfOskDgN751DjyaKlLnP6IFwr6jJILrOgIbp/0Stq4mxZ2lKuTXk8ZCJ5cPcCgmz3nN2eROK3o4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NV6ZU9yT; arc=none smtp.client-ip=209.85.208.178
+	s=arc-20240116; t=1733865337; c=relaxed/simple;
+	bh=loF/WZMc4MUUZFW1S1NBMDs3YzeWx6d+kwJy5sZJzZE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ttlb8aqEVZMYsxe5MgiIn425XDtz5Fkd694LwCb1mIgEkmvVhOkWYHkUSJL3avI+nhMz4veLajkI3OK/pWA6woJ3THcEOuOSfocRUiiFE7TE5VnKstMXc5PWnYnvT/0yb5AxCftO5xig2awkyclV1wjfoH05TXoPijrg3R2Tvkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XMgjCp/h; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-30229d5b21cso18931511fa.1;
-        Tue, 10 Dec 2024 13:10:52 -0800 (PST)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aa6935b4f35so37407666b.0;
+        Tue, 10 Dec 2024 13:15:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733865051; x=1734469851; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=i/TEMZfbq0jaQ0Bvw7H8/whT9tQxinQCI6Wxd1hCr6Y=;
-        b=NV6ZU9yTCtvpbxRyJBRPym9onImYNEqchrAfRQPIThTAMdek9okv1yaitP3Y067OoL
-         gYpp/NlqrlMpprHSKzloYbYoPN9U8+8ay1KvrAI+/2G4ElFQy1bGBwEWWYZapBWJQ9py
-         tFHd49K5PsXmeMMFqtTDQOCQO+iA+J6H3yHO6cySC1J+bgAK/jVVjOIANfqauKA0TkYH
-         lNT6tIy3o7NpJcI+bQ3edvj3agfOvIF8ha/DGg794VZYWgqeR7ukMdavMoc9hvj6REFW
-         gQcUQr7U5QmItrfckS7ORVGZ1cfB2lEiXH5+7Cyb3rj2trIgjvMZHpErpBfWPTFwdCTk
-         gmPA==
+        d=gmail.com; s=20230601; t=1733865334; x=1734470134; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=H7QDnRhBemOiZezpHGKSoMKm4TcZsXptVa4lYZVMKw4=;
+        b=XMgjCp/hbtV5wxKZJ1yTeKTavlJofuAgGl4vW4GVI1n6EqeVf3788/Vn9w2qnssQCX
+         hKnexHVjCUBqkPYMKV0a51RLLIMxlFbN0WMieU+Dc768y1/T6KAzxBFyq7E49SMWfAFJ
+         12stgWmDI56kG6pmYmGEbVR5oTe2ivR5sqz4VOLP8qVk615F9ziV2BTGaUEZBMFVBP9T
+         6P5qywjgbXsPg0nzpOvkhIM8QaLeIufqEmE83mznQwc2BJpIkdCpBoC1DiATFTycO/aP
+         DBut+TlDhGYdiNjcGTjfI+osqHPUm8ukUr+uL7MrGZeTgJKe1ryChtZ2Vnd5t2C4NdGX
+         mfmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733865051; x=1734469851;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=i/TEMZfbq0jaQ0Bvw7H8/whT9tQxinQCI6Wxd1hCr6Y=;
-        b=wgvf2HU/8vzdrosTORskCNi5SJn/F48bH/EljMjOL6mxl997CU5/N+2QfSq7G9MBmA
-         +V615xzPsdJB7flfl9lruwcEEUSRbN5nfsVuS5G79LYm1Y/aAetGmNGm9qlP/MrvSNb3
-         lJ8rIsj8OLbzmacYsuA7cDvLhTNAMtPWrQirXUe8D0V16Zwpjwn9zpPkVxDx3W8ylrPS
-         o4hVrLSh8bsMPE0L/3TIn1CJv/H84ruWTEGmgGftZfCnK2SonwfMC2VEwtGIWZburndI
-         eLXcEKhihifuO9E/XRv/WaYaOyIR9WD8gkg0M+wLMYloIPJ+VFkMd1rqku82FO4l7a9S
-         aiGA==
-X-Forwarded-Encrypted: i=1; AJvYcCUJgQld7mzTVCmJxhhcT6tmjgunf7EBUfCDCKYhbSp2CPH9vh30i+qd1+z7uTwMr41lTUDrfwLv6lOi@vger.kernel.org, AJvYcCX6eg9kAkulbFH/CopO0OzaRnBif4cJEAv99DsQcoWh5i2jXLHhuuTKMHabSnEsDVOC66UWbPoUhLAjP/04@vger.kernel.org
-X-Gm-Message-State: AOJu0YziSu9dx1MTj+o18oY5dVPc76FbywEuwLUaWmfp8YNAWSX4pY4d
-	mgv2smyMHA3MBlGWaL0NdFr98khWjNY0tJTL/4hjeQ1XNozcID+S
-X-Gm-Gg: ASbGncsESpJEZ8r8rwko0jLuKEQlcsyTjnKTD9f5oXrZL9hUt7SfGbiE/9jQBaN1pli
-	Q0f9FyQlkZTTX5XftdrSbYeU1SLrvmoFW/YfT52wC3a0apCyo/ZlbuCPUVxNPDvUG+p7qQRHnJI
-	SR6nX4nQ9Hk63z3bKRHCeglyuWKp952O3Hw0fhsi0e0PdGY0s1KQXn/lQq6fVhAzboWC5hAEhaI
-	N052qqX4vi9Awfk+l6+upe5ld3dA8zON7cWzbsPsYOhJDP6rqM+mA0jyuQs3zKVXg==
-X-Google-Smtp-Source: AGHT+IHRit5K/PJSdYi1ezn9KV1uCZK9mQQ4OcVcnES9kI4Wftm++v7qYBkluI6PlbbxGtVfPWA5qw==
-X-Received: by 2002:a2e:9a14:0:b0:2fb:510c:7236 with SMTP id 38308e7fff4ca-30240d728a9mr2089651fa.40.1733865050350;
-        Tue, 10 Dec 2024 13:10:50 -0800 (PST)
-Received: from [192.168.31.111] ([194.39.226.133])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30220a14d61sm8014071fa.115.2024.12.10.13.10.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Dec 2024 13:10:50 -0800 (PST)
-Message-ID: <768b70d3-910a-42f2-a61a-6338a41f41b1@gmail.com>
-Date: Tue, 10 Dec 2024 23:10:46 +0200
+        d=1e100.net; s=20230601; t=1733865334; x=1734470134;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H7QDnRhBemOiZezpHGKSoMKm4TcZsXptVa4lYZVMKw4=;
+        b=OTkdgF5JNVU/0gTmbNKGXmLBR+NzO5EeqcpugdYFCObFWyOrHafme3b8DAkVyM52jX
+         jVbg5KoE6IJiN/qJD6B2pc/lbxhJeRMPutD3rK90OBoA7qGHKYPX/RfYjlyhmHWAtRcb
+         SRLLeIYdeiJqbdGS0vnc6ApuuxGFx6Tnvxu6U/HtLhrKlrGmfS9TXzwY9dxD24oIXXV+
+         XpMMURCU6Qv5wec+Dy191xDqoA4oG+/grmvHSFqH8TcE+wHfqGlYQbXXZKTEs27kVu/v
+         g8oiXXbdR/UdDpVH9o+PdIAqHfLiXHeANCbQGczbB0fpRhowurjQ64fAVXxboF0UHO/n
+         KUGA==
+X-Forwarded-Encrypted: i=1; AJvYcCU2LAnPxc1Aes6SRcMHLPI5yLK7nlRfGdRPcr7KqqW6twqqAgI8s9cCitdQkcbJvzGjYfaHAOHg1iLL@vger.kernel.org, AJvYcCVTceGi+R131pO1wlBp9chOLAJqP+fSqHbQjsHy/frhyrOYJXokoAM5wkI7By2q79gCtgTwK+ZZ@vger.kernel.org, AJvYcCXdsTkUYm4dLBkRDppf/UPBYYQkBlCxSVSjBea0pUSU6zWxvjzILas3C8dUKuhYVBImMruKeR+S9iZPXcwo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyIKH7F6dyF6YkCIbK4nQX6tK39mweKoX1NK9GGArOGK0CWPGH
+	fCBhxPxrc5SSsg5ul7OkxHAsZ76WMFkIKUWoaFpY9XdL8A3fwMAg
+X-Gm-Gg: ASbGncsi2F4meM7NIsEF5Cjk4N16VXEot31HBG4Oi5+Fxwh8+7u2Y5PPu0qcSIiUGXH
+	9OhikyOTqxbXhYdT0iF8WaPluoJgAQ064xfYAfCRK9Leukz1q/CYD8PNfMqtvHBW0qvgYWUe/Ik
+	xcPXBmgAn5W4kEsfw4o78I6XakZK2Q0srjJc8Hs1PeRAjeLLT4nZeOPWndQ8k94Dv6XNYpeWcOQ
+	1bVSCi4JUGYtYtf96UIIbK0ttffFKmhVf4Vgyia8g==
+X-Google-Smtp-Source: AGHT+IGxAjFXMAf+F8mEXMc+auUHpdwpbNPCA+k5jUjJE3/MSupwfdCkIxkoOyQU//98Mv9Et2opNA==
+X-Received: by 2002:a17:907:2cc6:b0:a9a:b50:1c4f with SMTP id a640c23a62f3a-aa6b13c92a2mr5523866b.13.1733865333794;
+        Tue, 10 Dec 2024 13:15:33 -0800 (PST)
+Received: from skbuf ([86.127.124.81])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa650ea7369sm596924566b.74.2024.12.10.13.15.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 13:15:32 -0800 (PST)
+Date: Tue, 10 Dec 2024 23:15:29 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v11 5/9] mfd: an8855: Add support for Airoha
+ AN8855 Switch MFD
+Message-ID: <20241210211529.osgzd54flq646bcr@skbuf>
+References: <20241209134459.27110-1-ansuelsmth@gmail.com>
+ <20241209134459.27110-1-ansuelsmth@gmail.com>
+ <20241209134459.27110-6-ansuelsmth@gmail.com>
+ <20241209134459.27110-6-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] arm64: dts: exynos8895: Add syscon-poweroff and
- syscon-reboot nodes
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241210180216.398165-1-ivo.ivanov.ivanov1@gmail.com>
- <20241210180216.398165-3-ivo.ivanov.ivanov1@gmail.com>
-Content-Language: en-US
-From: Markuss Broks <markuss.broks@gmail.com>
-In-Reply-To: <20241210180216.398165-3-ivo.ivanov.ivanov1@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241209134459.27110-6-ansuelsmth@gmail.com>
+ <20241209134459.27110-6-ansuelsmth@gmail.com>
 
-Hi,
-
-On 12/10/24 8:02 PM, Ivaylo Ivanov wrote:
-> For Exynos8895, a reboot is handled by setting the bit(SWRESET_SYSTEM[1])
-> of SWRESET register(PMU + 0x400) and power-off is handled by setting
-> bit(DATA[8]) of PS_HOLD_CONTROL register (PMU + 0x330c).
->
-> Tested using "reboot" and "poweroff -p" commands.
->
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> ---
->   arch/arm64/boot/dts/exynos/exynos8895.dtsi | 15 +++++++++++++++
->   1 file changed, 15 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/exynos/exynos8895.dtsi b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-> index 90b318b2f..9eb89dd19 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-> @@ -388,6 +388,21 @@ pmu_system_controller: system-controller@16480000 {
->   			compatible = "samsung,exynos8895-pmu",
->   				     "samsung,exynos7-pmu", "syscon";
->   			reg = <0x16480000 0x10000>;
+On Mon, Dec 09, 2024 at 02:44:22PM +0100, Christian Marangi wrote:
+> +int an8855_mii_set_page(struct an8855_mfd_priv *priv, u8 phy_id,
+> +			u8 page) __must_hold(&priv->bus->mdio_lock)
+> +{
+> +	struct mii_bus *bus = priv->bus;
+> +	int ret;
 > +
-> +			poweroff: syscon-poweroff {
-> +				compatible = "syscon-poweroff";
-> +				regmap = <&pmu_system_controller>;
-> +				offset = <0x330c>; /* PS_HOLD_CONTROL */
-> +				mask = <0x100>; /* reset value */
-> +			};
+> +	ret = __mdiobus_write(bus, phy_id, AN8855_PHY_SELECT_PAGE, page);
+> +	if (ret < 0)
+> +		dev_err_ratelimited(&bus->dev,
+> +				    "failed to set an8855 mii page\n");
 > +
-> +			reboot: syscon-reboot {
-> +				compatible = "syscon-reboot";
-> +				regmap = <&pmu_system_controller>;
-> +				offset = <0x400>; /* SWRESET */
-> +				mask = <0x1>; /* SWRESET_SYSTEM */
-> +				value = <0x1>; /* reset value */
-> +			};
->   		};
-Aren't those already included with 
-arm/samsung/exynos-syscon-restart.dtsi? I can see that the values for 
-poweroff are different here though, does it not work with the value from 
-exynos-syscon-restart?
->   
->   		pinctrl_alive: pinctrl@164b0000 {
+> +	/* Cache current page if next mii read/write is for switch */
+> +	priv->current_page = page;
+> +	return ret < 0 ? ret : 0;
+> +}
+> +EXPORT_SYMBOL_GPL(an8855_mii_set_page);
 
+You could keep the implementation more contained, and you could avoid
+exporting an8855_mii_set_page() and an8855_mfd_priv to the MDIO
+passthrough driver, if you implement a virtual regmap and give it to the
+MDIO passthrough child MFD device.
 
-- Markuss
-
+If this bus supports only clause 22 accesses (and it looks like it does),
+you could expose a 16-bit regmap with a linear address space of 32 MDIO
+addresses x 65536 registers. The bus->read() of the MDIO bus passthrough
+just performs regmap_read(), and bus->write() just performs regmap_write().
+The MFD driver decodes the regmap address into a PHY address and a regnum,
+and performs the page switching locally, if needed.
 
