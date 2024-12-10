@@ -1,136 +1,119 @@
-Return-Path: <devicetree+bounces-129206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBCBD9EAED8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:58:17 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C63509EAEE1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:58:54 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B3AC188A47E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:58:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D941328E0C9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 343C92080D7;
-	Tue, 10 Dec 2024 10:57:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7328D2153DE;
+	Tue, 10 Dec 2024 10:58:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FzyMzPAd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RlSpZiIm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAC5519DF61
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:57:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CC552153D5
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:58:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733828242; cv=none; b=Yi9I1fQoMP6eRQEhdaoGlfELZhdDCkG2obrh3nRphgIPJ4wOfXUl+dgFOcg8IF09Z31Bgo7tAaXGyr3bNZUMaQ3ZlbgFSsF1LxxPxDxZVCE82lXh3QQpy5HzgeBHMHu/QAnt68BMEtKM9cCZcTEwrmpxi+wfzrrB1H5E2WZkEyk=
+	t=1733828291; cv=none; b=iaO8SZ9AwquvaKTmM5B86NLoy762gIOvpdLG7F+GXT0SR+NyK/6Scndvf1mOBblrbqwdXNtqh1SMYzcOXUaE+n6+AElfaHxqMXBZ2+NhyzhTzMuRtgmSkLMGiE5JvPSvUcgS80Trrn8nl+NLalpXqHHr3xfwhtmDKhcsXUWsV/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733828242; c=relaxed/simple;
-	bh=5xuJv86INUped5uDGlXBGi7TMcuhOLOC/aMff07MUzs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=JR/3WPC4u/XakUmOMcip2z97teiz7uAaTC6qsQJEHuKg1oWmUA2dBBF8N3kY+eDtTFga5xfwD8JRFzlNnNDIH3Ia83ydDi9yPd/QR35sObfkZc5sJCi8nw48DNsUyHNRPwo/Tn/22ZxTHeQ4HTTSiV+8KpFFXdewUWN2OYGi9Vg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FzyMzPAd; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-216634dd574so10650155ad.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 02:57:20 -0800 (PST)
+	s=arc-20240116; t=1733828291; c=relaxed/simple;
+	bh=fIg3YEalL2M2g2gfhkuZNb95cmhl/Se4u4uhkVU9dPM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KsG40dFKpwf5tJ2IIUS/EUKIQhoxOYMDoznyVulx0LsY775PDG1TMj0OE1We00blgW+G4OomzcKpnjYrsyuHbOleRqMaMTJg3O60Z8iisgus+dEm2/U5VZHxMikOs9uzgT8i4cIVTApT4RSgMTyW/7eGd9vsJYGV6VuwPSpsuWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RlSpZiIm; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-3022598e213so17212211fa.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 02:58:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733828240; x=1734433040; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FAzIOGNvVkOkwBb1FvOdH3YrtXy61Q+UrPzyrwYWppg=;
-        b=FzyMzPAdWl730u5H8hi0wbeweCnzRisoNUXEyVwPJ1MDdFrfwhLBZbkQ4YKiJv7wNI
-         7VLE6RfOhpj1Iq+M/Cl7kpjvqpFV0PYlJ4DYL9XLAKwZCj6ReZNRYFZQI9/p+PNgwn2t
-         RaYRkhYTYvpMY6EEIJNzlBYBaD5A6UXKU511VeVFPN5Gr8VM1zX8HYBm/E7Rr8aKZPW5
-         mMeibpTihw6p0LSEbhE+q0R2i3fzT2FejCJTdkwOH1i7QGUYniQike+uN73YDYtkSZrs
-         fsS8LNdYGdvvxY+rpCTepYudWz1pHS4Z6h7TgnFe1bcvBfIwYNzq/ZOvC+8G0flr9sMA
-         zTKg==
+        d=linaro.org; s=google; t=1733828288; x=1734433088; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=r5ZSfy2xDxDQ8s69afPzdWrhJXHaV4xhzcq4XiywxXg=;
+        b=RlSpZiImkI7a1VsougUJ3dWooDzkka8kwhEl6RylBw0/GNV5hug03My0P0m1zRPIig
+         KDeOExvNa5nwu09WW+SUqzxkDKD1a0qOnFamr5eKmYir5nHaYHxT/FXMMtX1E1jjzpae
+         wb0rRDCg8PaWKvc+uD0MgfIAMR8YZr1VbHBotIr6hUF6+pXSOx51BQPrU8udSMtdY5mi
+         iY9WFImtzNKOzhgAP2EzUBBKP9wP1SHn3Iph9674jf25WmqovFBi1qA8+sxIG5OdyZhJ
+         vq+Z7UljA4nqUZA7Kseq8pacP+jdyovR2oNJvKd5cQCAgYhp/VZKTl9eWsCdjGukoj6j
+         31sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733828240; x=1734433040;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FAzIOGNvVkOkwBb1FvOdH3YrtXy61Q+UrPzyrwYWppg=;
-        b=cN6w9JxGA4vEOFJd/rxZ2Ke8lWw9P3aHcBqRdcEoF2pXmSNPuZ8v9dcG+jG/TB+z8V
-         k0HCIIcM8eTagRsClRKYKfjlMMtHQifJcNU/UyMQYpve8G14Agd1j/1MSQu4q2bA/ZNm
-         B3CJb8sR7yo5g8xJpxkGGU5JLq6r5e5yC+uwHlUfEJGaLzBatm0Ucu+PhVsS01UM9ewy
-         fm7E80TADf/oWinDykekTIYJ0rzzsvvmKE6nsjJ4G2/peUsqGGv4UNxvXMHjQfaEFXZ1
-         rlWaf4F7khmnil3nCCCO0zXs9kyz9hGzffJAJlCQuyPxEZYTKCt+T02xFdFpAR6yxKwK
-         4thg==
-X-Forwarded-Encrypted: i=1; AJvYcCX9BvHeDl5nPZSCDjBnEPV05cRumjBtyeyarWnG8rqJttbzjhAI6AX5x0ZjoP+qOOu+DDr8uuKWDV/V@vger.kernel.org
-X-Gm-Message-State: AOJu0YygTt6IvFTwkpYqR6CmwBzGhfShqbIdcLlvssKgErHy3tsp82VZ
-	d3eUxMk9rGLSiuekEWXj0RNCzSCdALcbLN8HWrTn1PuhF4ByzQhL
-X-Gm-Gg: ASbGncvE6ECkO7b2HSqU+TbHS+IuQEs3MjrC8QHeDbzOjVMLNldE3XFgguiHpB5hDbx
-	zzuddcCrO6nZYvhrRJO4PnQQM/b990e6fIKJMnPa1fkDeF3rzN7nyDWnP1o1Lh3HsM4MlIxcQqE
-	1BnjuTh2s1ySLUPwtkvBfnv3wYklZ6svc+rlNFVkzWMmBNF7hOnLYs0maMsAxZXlH02ekIP7NBk
-	b4BwF9og6wDE5vCMk/f7YmYulfKacOlOz/5YErjsxd/Xct5d6S8aA+Th66mg3fP1IF/
-X-Google-Smtp-Source: AGHT+IHSsGLpcfdmpEL4Mg999asmKbIgDSP7cOPD03IZvcIVz1bYQgiRC4EJz7gHrP9fENJbgq0a8w==
-X-Received: by 2002:a17:902:ce88:b0:215:4a31:47d8 with SMTP id d9443c01a7336-21669fa3baamr61082485ad.9.1733828239875;
-        Tue, 10 Dec 2024 02:57:19 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:23ed:f795:ef82:746f])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21615b1e6d6sm71068955ad.104.2024.12.10.02.57.16
+        d=1e100.net; s=20230601; t=1733828288; x=1734433088;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r5ZSfy2xDxDQ8s69afPzdWrhJXHaV4xhzcq4XiywxXg=;
+        b=Ay9AFQVlJ88qNKqtHLfTmcT100UW32dCb4KLa27JTKu5GYKyX43/BfBxmleiErICTa
+         ihM+nY1oOZ1EIPKID2YiQwxuUIIh5ezdmnyelFvoAOcYlEFtmAgn7u6QkRz3DQeShZiA
+         NiwF6KC0njOlkyRZrKMPa0Srm9a2aLZaIXpCgv/aVpFuuAg6to6vp02RFNnyo0MwcJqw
+         DFEo4el8xBevwomN5oi49Bw5tFiA7q2iSIfDpDPKz3okECPuIyyPB2A6FMmy5Uj0cklc
+         /Lt6NGHI7nq3Db3/Y0K4bt/9/dFQfowS/Rxx5HtbuRWD1pxz29fKQgcRUO4Q7hvM3etA
+         aSSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUTUe03NwynMxioKTWYG5eI8hvr+AandAasF9aGWV8sgTP9WqdjYoyq9gFWap1UynDfFD9kXbAjAnx4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdILIri7Zwtavmb5BebaBWAX6fm35gRTaHA/tr/08lrcmhMSDL
+	lHFJ4LifOkXt2dGCwKgApAfZILEDU7LgfnKV4Hj3lLrtBVA+qC/DSOKQXjKAbek=
+X-Gm-Gg: ASbGncs65yNNYLV9tU7gVbpSb0N78GZK03KMnSND6kclxrJVek7dYXw71Cys10TIMaV
+	V0AO1qawesFTInrCjjAUIss3s0DZl2IvrJzuKiMEWFQzvPF2+oy0In4RaNExDKnk5vVS3fOCCt4
+	bvpqXaXs0zq5QzVG8yyFHSydnkOrhsNMNV5iP5cA7MaNEBMxsKdtBRzCGvtZiZ45Oy+2Ydw474O
+	+TVArO6FQ03UuVq6B0C3dFOr5bm4Oy7ERpg2cMc58WLeEs0S7HZ5SbH72u6hORJP5LvhsrkL/nG
+	mi3pnzmP4QbE+lw8zodVjLFB5B+ubl0OhA==
+X-Google-Smtp-Source: AGHT+IE7+ryAMqJtCxAuJvc/qOGq5Ck0ZMSjTv00rqBtwofn1LyRnlQNhWyrc/EQiBZpPjSjCdJE+Q==
+X-Received: by 2002:a05:6512:238f:b0:540:21d6:d681 with SMTP id 2adb3069b0e04-540240c0f47mr1559055e87.19.1733828287631;
+        Tue, 10 Dec 2024 02:58:07 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e3855a6b8sm1232351e87.69.2024.12.10.02.58.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 02:57:19 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: neil.armstrong@linaro.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2 2/2] arm64: dts: imx8mm-phg: Add LVDS compatible string
-Date: Tue, 10 Dec 2024 07:57:05 -0300
-Message-Id: <20241210105705.116116-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241210105705.116116-1-festevam@gmail.com>
-References: <20241210105705.116116-1-festevam@gmail.com>
+        Tue, 10 Dec 2024 02:58:06 -0800 (PST)
+Date: Tue, 10 Dec 2024 12:58:04 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Fange Zhang <quic_fangez@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krishna Manikandan <quic_mkrishn@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Liu Li <quic_lliu6@quicinc.com>, 
+	Xiangxu Yin <quic_xiangxuy@quicinc.com>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 7/9] drm/msm/dsi: Add support for SM6150
+Message-ID: <3cr32yulhhnruhi5cf4agxxottt4ofnwbnwjqv6ib36ebipswd@qhbuhoejhjld>
+References: <20241210-add-display-support-for-qcs615-platform-v4-0-2d875a67602d@quicinc.com>
+ <20241210-add-display-support-for-qcs615-platform-v4-7-2d875a67602d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241210-add-display-support-for-qcs615-platform-v4-7-2d875a67602d@quicinc.com>
 
-From: Fabio Estevam <festevam@denx.de>
+On Tue, Dec 10, 2024 at 02:53:58PM +0800, Fange Zhang wrote:
+> From: Li Liu <quic_lliu6@quicinc.com>
+> 
+> Add support for DSI 2.3.1 (block used on SM6150).
+> 
+> Signed-off-by: Li Liu <quic_lliu6@quicinc.com>
+> Signed-off-by: Fange Zhang <quic_fangez@quicinc.com>
+> ---
+>  drivers/gpu/drm/msm/dsi/dsi_cfg.c | 2 ++
+>  drivers/gpu/drm/msm/dsi/dsi_cfg.h | 1 +
+>  2 files changed, 3 insertions(+)
+> 
 
-The imx8mm-phg board has an AUO G084SN05 V9 8.4" 800x600 LVDS panel.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Improve the devicetree description by passing the LVDS compatible
-string to fix the following dt-schema warning:
-
-imx8mm-phg.dtb: panel: compatible:0: 'panel-lvds' is not one of
-['admatec,9904379', 'auo,b101ew05', 'auo,g084sn05',
-'chunghwa,claa070wp03xg','edt,etml0700z9ndha', 'hannstar,hsd101pww2',
-'hydis,hv070wx2-1e0', 'jenson,bl-jt60050-01a', 'tbs,a711-panel']
-...
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v1:
-- Added devicetree@vger.kernel.org on Cc.
-
- arch/arm64/boot/dts/freescale/imx8mm-phg.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phg.dts b/arch/arm64/boot/dts/freescale/imx8mm-phg.dts
-index 75bbedc6164c..a134b1833649 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-phg.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-phg.dts
-@@ -82,7 +82,7 @@ reg_usdhc2_vmmc: regulator-vmmc {
- 	};
- 
- 	panel {
--		compatible = "panel-lvds";
-+		compatible = "auo,g084sn05", "panel-lvds";
- 		width-mm = <170>;
- 		height-mm = <28>;
- 		data-mapping = "jeida-18";
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
