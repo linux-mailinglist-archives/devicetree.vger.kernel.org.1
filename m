@@ -1,274 +1,238 @@
-Return-Path: <devicetree+bounces-129324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872029EB41A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:58:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C672D9EB421
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 15:59:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 112061614EF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:58:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B259E1887458
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 14:59:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2771AAE33;
-	Tue, 10 Dec 2024 14:58:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="h17Puscb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0156B1B0F2C;
+	Tue, 10 Dec 2024 14:59:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 304091A01D4;
-	Tue, 10 Dec 2024 14:58:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37D461A01D4;
+	Tue, 10 Dec 2024 14:59:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733842721; cv=none; b=Dmsfjhdvpgr2H6Osg3cSRbmNcEMh37pImLoxC8jBr/Mvg60+sN12qY4mbYX2N75cWh+W3e6iEPCL/rDxSie7kn85SruoFLLrulWGL9yykORVAhKBlpP7CCuv/Rxa2DoE/7pntrr2UlGJzLJCZsAajXygxC1GbU0uC0iKtfXzDRE=
+	t=1733842773; cv=none; b=E0zoWr25b4dDUGDltrjUcHDENq12H9A6kTKvwVeWQ8U+HUHYGcs5nQlHOwhKf6pABrDsm7ahV9pLddHsuKogP+k6DK457DB6Jzcd65ABMdk9b9BMOCe+UuN0AtzsFHEXT/NSEOTM1oBynXFxTDBvYd0esuxRZxfIEgeaf3vma9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733842721; c=relaxed/simple;
-	bh=AFXL2cx7lVDFMtZEhTqRl5L9XALWWLwSh/jaS0CRf0Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KkJOcrZh6DUggVuFvrrtQy8uAkmO0rN1ysReD1JLGgNrdXc1DGLpwPVVR4xc0Wil4Wzq8oJRJybU5rKmg4ISvc3evH9agM6uXzkfepGrKYsrRq5PGCSyOmE+Gt7GX/+toZoZwpTKMMPrVgEfQ3t9h+NtlesPWprhEcojgZMPvGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=h17Puscb; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DB0E240004;
-	Tue, 10 Dec 2024 14:58:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1733842716;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wnRE7cR/cIXyL2IFtw6/8xgjxOhuuf+yLB9jfbOtyvk=;
-	b=h17PuscbBXcTBoUzfumiPfUxHfm9BKb1RIB3Rmt1WYFakf3U273nLgvp8bRql8R3LeJp95
-	NyFoBznTIkAYCpmd2xR/gFrkBAUi+qJrc4YOfHJ6lmJriOytgkT4PxNyFaJU+tuyzMbyk4
-	KdM+QawN2fNgJTvkBEC280FibMuy28AXWwxasGfPWrn+WYu01JkIJhx6SqC0XU5qx9SP/S
-	Ve6tdxmMl4mbPLvxEqwU0A5gH2ROzmkxRHsA77sOUGWOMuuNvqbeXIx/j2O6i7AePijyjd
-	5J/LM0bwTH49BLawXuu3jbjz3fkDQoDV3vVQP8CgALk2BuTMCBHpUYz0XISyhw==
-Date: Tue, 10 Dec 2024 15:58:33 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: David Gibson <david@gibson.dropbear.id.au>, Andrew Davis <afd@ti.com>,
- Ayush Singh <ayush@beagleboard.org>, Geert Uytterhoeven
- <geert@linux-m68k.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan
- <saravanak@google.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Devicetree Compiler
- <devicetree-compiler@vger.kernel.org>
-Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node
- feature
-Message-ID: <20241210155833.76357d50@bootlin.com>
-In-Reply-To: <CAL_JsqJCbmMJWJnmr8FneKrW4pjvTcyEco94Ot32o2YtaVxRQQ@mail.gmail.com>
-References: <20241209151830.95723-1-herve.codina@bootlin.com>
-	<CAL_JsqLT3prYBcxnsUwAShULCLJScYoU29ta29RJLGyiNkCrTg@mail.gmail.com>
-	<20241210091604.512496d3@bootlin.com>
-	<CAL_JsqJCbmMJWJnmr8FneKrW4pjvTcyEco94Ot32o2YtaVxRQQ@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1733842773; c=relaxed/simple;
+	bh=PDyq3QjbNON06ueCsZwu/mHOjWAeMcOexMiBb+pVMeQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=O+JQLCQvZcPgvJf0OKBBCxPvO2lLIY6TGLotLknwpjEhL9IbEhTeLm24RPBI1YLm8RZGY/CjzzrRGBuTCaTjf8pO55e00O6O5If7Ax+k9aEouLh9FgxEL4Q2kcVlocRD18j41m4KUvqfK9POELvr30BSV+I1pzVGYa3Ojhlh78s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-5160f1870f3so991435e0c.0;
+        Tue, 10 Dec 2024 06:59:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733842770; x=1734447570;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=faO2LEB4d7HNsohjeHqWigf+jmzDcTwyV5VFG0HOFDw=;
+        b=T2cn/1R859Edr7GodRc6m+AN8knzGxWrFGAgTKA/KwrIMdGS3gm3o93Om6/j5vc2yA
+         61enQwOFrM+iSQTpv4DRECqs2P3Lj1CprDPd0jTkPl74b8JjQ3tTnqv4Q9Datrpybqj7
+         BxCFe3x4X6McRO/tLGTxnxlU5lbegfnpGuzNhgha+Ed1yPuYQ3mHms+WNgkv5MshpRhl
+         P/lEwJTzzVZC2t+wgSDw4YiWg08dmg2S915ZDYo5a8zWEJwDx5lUg3eS4VksueaRFx7K
+         oPFFS+UmrTEuWkh+a1gWGIKihv9C8P0qGqCTSZE2XjUySGPzxLI72lVYa92SqEbkHJkI
+         bp7A==
+X-Forwarded-Encrypted: i=1; AJvYcCUO8SsdB7mZDv+Ks7EbX3VWlCi807ExHi2/wf/cxVyLNn9TMcl1+ic0IbFa6iBY4k13wjpjSWRiZfxa@vger.kernel.org, AJvYcCVcjglOqciMdVFW05hVtAk3aJIXTjY/1qgJdXiDB9XO2MTFm1MxSQ4ZfnCMe2ou0woUhGsb8c0tZOhm@vger.kernel.org, AJvYcCWiS088ktIuMBW/aRl2xluGGoHkXkwCKk35Jnh+aagGjUYpvHaL0eKw8Ctz9q+yF/Nt8twqlG3Cnx+SPRql@vger.kernel.org, AJvYcCXd+3mc8m3mSyOXWgj2GV/voCVZVCGYJvyC3YOJs0mOwQYw7Y7I3Roz9Xo6m9kFk+JLATgn4DWybio4sxM4JtjULbY=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzihLH3tIHa0Hr99p+XJ7qZ+lyFfDRlrxwd7SdbYJ27L16KU2HZ
+	qa+57zTj/jI0gStFACpgCaaRkd6AcNQeVL7tqI6xJMZP99eRQ7oxhXnjkj/n
+X-Gm-Gg: ASbGncvLfkqRqdEQQu9oC6b1KwU1NUMLQSGTABlBqs7O7V0cYV1rwTg/BCjOOShBBva
+	NPRKETu8nWZLMSJnDlFo8DJmTfeWfWjvtVoQtV0l60FL77RYj7QhaLlNKQkvh70JLdVK452uGpA
+	CC3cQNgFbvWASOLss9CoFBXWORXxzEi+/M3eEvMmGsoQ7+FZNlKYDHRS8rSv2MaPZsQGdZLgWmX
+	OsYGf2w0f/CLMihmO0FnbqH5ZZvL6IJrmp8vkgz0UnBkUGAWBbu9REssyW9Hp4nDF35covaGeGl
+	l3Cm6jIVIyA5qxMI
+X-Google-Smtp-Source: AGHT+IGF6+9Rultkt9bJpuCmFNR+IDisMr0Y0T6WYAtk9yZ2jbYpsIOQxbZmHIT4zitgqxDvHVoLfw==
+X-Received: by 2002:a05:6122:d24:b0:515:e446:b9f2 with SMTP id 71dfb90a1353d-518885725f3mr4839610e0c.12.1733842770062;
+        Tue, 10 Dec 2024 06:59:30 -0800 (PST)
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-515eae68d96sm978323e0c.28.2024.12.10.06.59.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Dec 2024 06:59:29 -0800 (PST)
+Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4afecb2731dso812273137.3;
+        Tue, 10 Dec 2024 06:59:29 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU5/GN0FRmHq7W3m9NukQB4KCbEZeEiyEVaNvvejFHwoucw6ZmrA0+JPiqqCT0bdmaNqaPuE2kjP0Hq@vger.kernel.org, AJvYcCVfvQawlNSrI/adGudzWfLEfXBOlPEJ+C2Pad/dEfVWpFUT0KTb8TVjHwCad4ZwLtvialohRhMzfHd1@vger.kernel.org, AJvYcCX8OKBSo/8XxtG54m74fGth0m8PScb9b/YpxiVybQYhXTKPkbLXaGIcWzNMncfTgczM1FQjlT3qr2d+L6KGcjQ5ESc=@vger.kernel.org, AJvYcCXMFDHyp7Hort+c7sqnB5yx74HGLXkTgWQPQUZvwmne84Ul2YTaPll0GqNVNjkFc78s2wraFNBFmW+GFg6L@vger.kernel.org
+X-Received: by 2002:a05:6102:54a3:b0:4af:bda1:8109 with SMTP id
+ ada2fe7eead31-4b116250734mr4852879137.21.1733842769143; Tue, 10 Dec 2024
+ 06:59:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+References: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com> <20241126092050.1825607-5-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20241126092050.1825607-5-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 10 Dec 2024 15:59:17 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWhGvXhjTV+NYzw2WoDuH6BxQWFdUZC_qkon5vSYsjAhg@mail.gmail.com>
+Message-ID: <CAMuHMdWhGvXhjTV+NYzw2WoDuH6BxQWFdUZC_qkon5vSYsjAhg@mail.gmail.com>
+Subject: Re: [PATCH v2 04/15] soc: renesas: rz-sysc: Add SoC detection support
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
+	gregkh@linuxfoundation.org, yoshihiro.shimoda.uh@renesas.com, 
+	christophe.jaillet@wanadoo.fr, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Rob,
+Hi Claudiu,
 
-On Tue, 10 Dec 2024 07:46:02 -0600
-Rob Herring <robh@kernel.org> wrote:
+On Tue, Nov 26, 2024 at 10:21=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.dev>=
+ wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The RZ SYSC controller has registers that keep the SoC ID data. Add
+> driver support to retrieve the SoC ID and register a SoC driver.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v2:
+> - this was patch 05/16 in v1
+> - changed patch title and description
+> - added SoC initialization code in its own function
+> - addressed the review comments
+> - introduced struct rz_sysc_soc_id_init_data and adjusted the code
+>   accordingly
+> - dropped the RZ/G3S SoC detection code (it will be introduced in
+>   a separate patch)
 
-> +dtc list and David G.
-> 
-> On Tue, Dec 10, 2024 at 2:16 AM Herve Codina <herve.codina@bootlin.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > On Mon, 9 Dec 2024 14:11:09 -0600
-> > Rob Herring <robh@kernel.org> wrote:
-> >
-> > ...  
-> > > >
-> > > > Our overlay using the nexus node can contains:
-> > > >    node {
-> > > >       foo-gpio = <&connector 0 GPIO_ACTIVE_HIGH>;
-> > > >    };  
-> > >
-> > > Couldn't we make something like this work:
-> > >
-> > > connector: __overlay__ {
-> > >
-> > >    node {
-> > >       foo-gpio = <&connector 0 GPIO_ACTIVE_HIGH>;
-> > >    };
-> > > };
-> > >
-> > > We already have to process all the phandles in the overlay. So this
-> > > just changes handling of 'connector' from being a local phandle which
-> > > we just renumber to an unresolved phandle which we have to lookup and
-> > > replace the phandle uses with.
-> > >  
-> >
-> > I have tried what you suggested but I've got some issues with dtc.
-> >
-> > If a label is not used as a phandle in a dts, dtc doesn't create the phandle
-> > property in the pointed node (except if we use '-@' option but I don't want
-> > to add all symbols in my dtb just for one or two connector symbols).  
-> 
-> Sorry, but that's the cost of using overlays, and that's pretty
-> orthogonal to the issue of how the overlay references the connector
-> node.
-> 
-> However, I agree '-@' is a pretty big switch and an issue that's been
-> discussed before. I also don't like that all labels become part of the
-> ABI nor the fact that overlays can make any random modification
-> anywhere in the DT. I would rather see some sort of explicit opt-in
-> mechanism of nodes we can apply overlays to. Perhaps we could do
-> something like this:
-> 
-> /export/ label: node {
-> };
-> 
-> And then __symbols__ can be only those exported labels (unless -@ is used).
-> 
-> > The way to make sure that the phandle property will be created in the base
-> > DT node by dtc is to reference the label as a phandle in the base DT.
-> > The export-symbols node references this label as a phandle in the base DT
-> > and so, with that, dtc creates the phandle property.
-> >
-> > Also, using 'connector: __overlay__' allows to have only one label from
-> > the base DT to be referenced by the overlay.
-> >
-> > I don't know if use cases exist where more than one label need to be
-> > referenced but this 'one label' constraint is not present with the
-> > export-symbols node.
-> >
-> > The use case where more than one label would be needed is the need for a
-> > phandle from the overlay that couldn't be translated by the connector nexus
-> > node. Maybe pinctrl because it uses of_find_node_by_phandle().  
-> 
-> Labels are an ABI. I can't see that we need to remap them when we can
-> just say the name must be X. We can have multiple labels on a node as
-> well. So I think the problem space is purely mapping 1 name to
-> multiple possible names.
+Thanks for your patch!
 
-So, with a base DT having:
-  /export/ label0: node@0 {
-  }
+> --- a/drivers/soc/renesas/rz-sysc.c
+> +++ b/drivers/soc/renesas/rz-sysc.c
+> @@ -211,6 +214,59 @@ static int rz_sysc_signals_init(struct rz_sysc *sysc=
+,
+>         return 0;
+>  }
+>
+> +static int rz_sysc_soc_init(struct rz_sysc *sysc, const struct of_device=
+_id *match)
+> +{
+> +       const struct rz_sysc_init_data *sysc_data =3D match->data;
+> +       const struct rz_sysc_soc_id_init_data *soc_data =3D sysc_data->so=
+c_id_init_data;
+> +       struct soc_device_attribute *soc_dev_attr;
+> +       const char *soc_id_start, *soc_id_end;
+> +       u32 val, revision, specific_id;
+> +       struct soc_device *soc_dev;
+> +       char soc_id[32] =3D {0};
+> +       u8 size;
 
-  /export/ label1: node@1 {
-  }
+unsigned int (or size_t?)
 
-the __symbols__ node will contains:
-  __symbols__ {
-	label0 = ...;
-	label1 = ...;
-  }
+> +
+> +       if (!soc_data || !soc_data->family || !soc_data->offset ||
+> +           !soc_data->revision_mask)
+> +               return -EINVAL;
 
-without export-symbols, the overlay will look like this:
-  connector: __overlay__ {
-	...
-	ref = <&connector>;
-  }
+Cannot happen?
 
-The "connector" label is the only one we can use from the overlay to
-reference the base DT (special label defined on the __overlay__ node).
-As it is defined to point to __overlay__, it has to be resolved to the
-exported symbol that point to the node where the overlay is applied.
+> +
+> +       soc_id_start =3D strchr(match->compatible, ',') + 1;
+> +       soc_id_end =3D strchr(match->compatible, '-');
+> +       size =3D soc_id_end - soc_id_start;
+> +       if (size > 32)
+> +               size =3D 32;
 
-If the overlay is applied on node@0, 'connector' is resolved to node@0.
+sizeof(soc_id) instead of hardcoded 32
 
-This case cannot be handled:
-   connector: __overlay__ {
-	...
-	ref1 = <&connector>;
-        ref2 = <&other-label-from-base-dt>;
-   }
+> +       strscpy(soc_id, soc_id_start, size);
 
-Indeed, only one 'connector' label can be resolved to node@0 or node@1.
-other-label-from-base-dt cannot be resolved based on the node the overlay
-is applied to.
+Doesn't this wipe the last character, as strscpy() always
+NUL-terminates the destination buffer?
 
-Again, I am not sure on my side that we have to handle this case of multiple
-labels in the overlay that point to the base DT dependent on node@0 or node@1.
+> +
+> +       soc_dev_attr =3D devm_kzalloc(sysc->dev, sizeof(*soc_dev_attr), G=
+FP_KERNEL);
+> +       if (!soc_dev_attr)
+> +               return -ENOMEM;
+> +
+> +       soc_dev_attr->family =3D soc_data->family;
 
-On my use case, I considered the node@0 or node@1 as nexus nodes and so, all
-GPIOs (soon PWM, I hope, and probably other ressources in the future) can be
-referenced using nexus nodes.
+Shouldn't you duplicate family? It's in __initconst, hence freed later.
 
-> 
-> The connector handling has to be addressed binding by binding at least
-> for each pattern of binding. Pinctrl binding is pretty unique, so we
-> should make sure we can handle it in this case.
+> +       soc_dev_attr->soc_id =3D devm_kstrdup(sysc->dev, soc_id, GFP_KERN=
+EL);
+> +       if (!soc_dev_attr->soc_id)
+> +               return -ENOMEM;
+> +
+> +       val =3D readl(sysc->base + soc_data->offset);
+> +       revision =3D field_get(soc_data->revision_mask, val);
+> +       specific_id =3D field_get(soc_data->specific_id_mask, val);
+> +       soc_dev_attr->revision =3D devm_kasprintf(sysc->dev, GFP_KERNEL, =
+"%u", revision);
+> +       if (!soc_dev_attr->revision)
+> +               return -ENOMEM;
+> +
+> +       if (soc_data->id && specific_id !=3D soc_data->id) {
+> +               dev_warn(sysc->dev, "SoC mismatch (product =3D 0x%x)\n", =
+specific_id);
+> +               return -ENODEV;
+> +       }
+> +
+> +       dev_info(sysc->dev, "Detected Renesas %s %s Rev %s\n", soc_dev_at=
+tr->family,
+> +                soc_dev_attr->soc_id, soc_dev_attr->revision);
+> +
+> +       soc_dev =3D soc_device_register(soc_dev_attr);
+> +       if (IS_ERR(soc_dev))
+> +               return PTR_ERR(soc_dev);
+> +
+> +       return 0;
+> +}
+> +
+>  static struct regmap_config rz_sysc_regmap =3D {
+>         .name =3D "rz_sysc_regs",
+>         .reg_bits =3D 32,
+> @@ -235,14 +291,15 @@ MODULE_DEVICE_TABLE(of, rz_sysc_match);
+>  static int rz_sysc_probe(struct platform_device *pdev)
+>  {
+>         const struct rz_sysc_init_data *data;
+> +       const struct of_device_id *match;
+>         struct device *dev =3D &pdev->dev;
+> -       struct rz_sysc *sysc;
+>         struct regmap *regmap;
+> +       struct rz_sysc *sysc;
+>         int ret;
+>
+> -       data =3D device_get_match_data(dev);
+> -       if (!data || !data->max_register_offset)
+> -               return -EINVAL;
+> +       match =3D of_match_node(rz_sysc_match, dev->of_node);
+> +       if (!match || !match->data)
 
-If pinctrl can be handled using nexus node, it should be ok. Otherwise
-things are going to be complicated. Again, with your proposal, we can
-reference only one label from the overlay, the node where the overlay
-is applied to.
+!match->data cannot happen
 
-> 
-> > Last point, having export-symbols node makes some nodes explicitly
-> > candidates for an overlay and defines the label to be used on the base DT
-> > node side. This specific label can be described in the node binding as well
-> > as the nexus node properties.  
-> 
-> Both David (IIRC) and I feel that putting the overlay info
-> (__symbols__, __fixups__, etc.) within the DT data rather than in the
-> DTB format was a mistake. The export-symbols node expands on that, so
-> I'm not sure that's the right direction.
-> 
-> (We should have rev'ed the DTB format to store type information for
-> (at a minimum) phandles.)
-> 
-> > With 'connector: __overlay__', the overlay can be applied on any nodes, at
-> > least from the needed label point of view without any restrictions.  
-> 
-> Certainly that is something I'd like to have some control over. An
-> /export/ tag would accomplish that.
-> 
-> One idea I have there is that the overlay could have the compatible of
-> the connector and we use that for matching. That would give us a way
-> to know what base DTs overlays apply to. Then you could load an
-> overlay and dispatch it to the correct driver to handle. It would have
-> to be handled as a special case as the compatible may match, but
-> wouldn't necessarily be equal values.
+> +               return -ENODEV;
+>
+>         sysc =3D devm_kzalloc(dev, sizeof(*sysc), GFP_KERNEL);
+>         if (!sysc)
 
-compatible property will not be enough. We can have two exact same
-connectors on the same base board:
-  /export/ label0: node@0 {
-     compatible = 'foo,addon-connector';
-  }
+Gr{oetje,eeting}s,
 
-  /export/ label1: node@1 {
-     compatible = 'foo,addon-connector';
-  }
+                        Geert
 
-To load the overlay, we can match compatible for sure but we need to node
-the overlay is supposed to be applied to.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Also, it you want to check bindings for node@0 available in the base DT
-and bindings in the overlay, having one compatible string with different
-meaning will introduce some complexity.
-A compatible string can now define the "provider" part (the base DT) and
-the "consumer" part (the overlay).
-
-> 
-> 
-> I'll throw out another idea. What if we make resolving phandle errors
-> something that can be handled by the connector driver? The driver
-> knows 'connector' resolves to the connector node it is applying the
-> overlay to.
-
-Well, my proposal was to give enough information to the resolver instead of
-handling errors.
-
-I probably miss something but I don't see what could be the benefit to do
-that in the other way. Can you give me more details about your idea?
-
-Best regards,
-Hervé
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
