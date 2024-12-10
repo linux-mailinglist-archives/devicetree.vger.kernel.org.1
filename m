@@ -1,205 +1,341 @@
-Return-Path: <devicetree+bounces-129244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ECDD9EAFEB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:31:22 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C4A816A66A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:31:19 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94BED1DC983;
-	Tue, 10 Dec 2024 11:31:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="rhbg1cnD"
-X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D8B69EB013
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:43:28 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351E178F4B
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 11:31:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBAC1283CED
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:43:26 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77AF32080DD;
+	Tue, 10 Dec 2024 11:43:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w6ok7z94"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC3F210F47
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 11:43:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733830278; cv=none; b=nCU6y/W6nE5Mnbvfi0kZABK4jQsanRof6DPSv+BvJ53COFKsFxEfmlGYltOBcVPPH5QenT/a1glZNlMGABdTiZZyQb3Mkoqhio4DP6D96iXcOC4UlGjQUAtGIZ+QrT45JJuTCpGdVLnoMX5dCgSIgDSIA/Hpm41KdnN+OACfW+U=
+	t=1733831006; cv=none; b=I/DJs6IziMnhAgzwkM0nUNXCycnfauALw+9zczVQL7+gFKNJpNMDwmFK6qETjBoLQ1c59mlvNE/wnSATiIgtZchjR4cZe0nIakTvvKctwFPeBH/A1ZotIilIxuoY3IoVgCQOA+G4oAICY0Pe+1HCel6LSmR1lPJ+ZnRg+2KqrqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733830278; c=relaxed/simple;
-	bh=9keLN6u9MLaCHXqWbzaLWWtINTKiS3eNWIl3UFRz3c0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=d++2nrt3WV8bykd2g1WYrx1HoS65VCvBvy8lgOjnBiRe1F9gDLm3LbpXQoiXtPAXCLpbTsbVJ/9sr6JjN61/1v4Fu7FHIgzJ9WXGzWfyauH3VOt2lQnPrB550NlWNrHFuoQRuadsJ/1tjD7/oFkD2sXKXuCdjMlzFdrwpNCVf7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=rhbg1cnD; arc=none smtp.client-ip=91.218.175.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1733831006; c=relaxed/simple;
+	bh=e8vDgDOcO5RIqHjRBTI9VvF3Ghj3iqWpCsSjLOYAe1w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CZ+3n9hvc4uBz44TfW38F7OGcN7Efb+HVEukJYOjyeU8MKSnVlzPvc+OJ+OxneH/Kgfh7pTbv/6zPTNr6+4s2ConP7jGpm2qPTGDHpTqOxTXMseL9l81QtGlkVv/ZmevTA8aEx/JQh55GtIPzwnxQ9Pe/qNLW73mQe4UWeIWcyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w6ok7z94; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5401c68b89eso2277594e87.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 03:43:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733831002; x=1734435802; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bDuD4vOJTu/+TNrDw776dXillG1+SO1nfewpcnHal5U=;
+        b=w6ok7z94MY2r//v23HeSurYchUtgl9pTqJVejn+rfg+60ZfXd1/joS11BKZLHLQbZQ
+         RdUSPMabIoVbDlgl/3jpS/2sh2nUH6JHN91mqEocmE4qZHfPOn51wzMJTREf7AbQRG80
+         O7zeHvxoIKt1Lr25qKddrgPSv+7FrRzFvgvyC6KsB7rGlmM1zJa7A48EGYVv6v8S9QI1
+         CXAiYUSNZQ5yXdJm7K2ic3/11MPhkZbGhf4b2p6ka3L4zFOun00cRpsOxEyXN8FrQyFn
+         ZxwV3Eth1Edzc7dBwszzFJUGZHlOYg7buLlFWZHqcPrntiKW3VhASD2TFNr/p/ZC/6Wp
+         EhtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733831002; x=1734435802;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bDuD4vOJTu/+TNrDw776dXillG1+SO1nfewpcnHal5U=;
+        b=qkuLTAw0k1t6FfbukzeqGzBBbw249aD6tx5lJ5BQ89qdLoho17ikG7d3tXAXTSSijX
+         iUjqeFVSwIu+GTsp2UOHj9xGPZwM0cB2vdhwSlfiyYPeMAdFoBVoU/pBxpSjtT2Xf0+p
+         +JzPAJHnuONa8jk2+KMkBv5b22Z4wKI24qppo2PBaGJJxY5Ux7jeCdB7gqg+jMUnHE+e
+         ro/GzSfPkmCLk0cbDmPqFbDP+7H3yjIuq4EaRsshIL6L1LD3qqIVLP2IpCl552PAcv+r
+         KkctJjFYuf4pWF78+lUc3+AEDN8FbUlaCi518aKnA3AgIDje8/W/Nyg7GP9vfv9Dg9c5
+         8ing==
+X-Forwarded-Encrypted: i=1; AJvYcCVBoeZGVmeu8wDq0QC1pLNPdznB8QY0vNAj1QNtBfLo6syRsjjvZIQKzBJwfCTWNrVj05rKBa1APnID@vger.kernel.org
+X-Gm-Message-State: AOJu0YwV10EwZo33hTREUl9bt2Wg16nT9NCfLZJ5RtOUR3ceXJcNoqJ2
+	lj1Ri/fzI9xAAjkMXEyQxwtP1aAW87i0rte1Ph0Kr+VJSrrPFnlxob9Q89M27zo=
+X-Gm-Gg: ASbGncsosq6PCU/0bkMMz0FYKLg3jCy2OHUtocV5mIqc3w2WpFIeQw4kObO23+PvdU5
+	ukNnJgSt4Cgd7XJIkKvTl0LpgCjh3IFHw72hFmV6ktYvci3C0ZljlsEY0iRml+g0pRGvljrqV12
+	tn8E9hs71LnrOo9bpjNSbhXxJjF8dlNDmLOxhZ4EfQ1rUGNcnsMO5c4jo6bM6SMjnKKKx6C/mbF
+	yQfW+2TxVTn8dt4qVIK7jOf0cA+gFcMx1hEX61CYzR8nPxN3DFSq+NEZ9Y9CjFt0JInHmechTm1
+	mDvgEBL/sNDI4eIflyULq678DmJCvRtSmw==
+X-Google-Smtp-Source: AGHT+IHlLpHoQkMoGAXULRnbsa1CNz7DxSd8e5Kk0AkHyX98cxKn2C9E6+kb+xX37fsZPZiAJHZ8UA==
+X-Received: by 2002:a05:6512:3a8e:b0:53e:2246:c262 with SMTP id 2adb3069b0e04-54024f87ef1mr883959e87.0.1733831002365;
+        Tue, 10 Dec 2024 03:43:22 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e3a36ee3fsm1127765e87.107.2024.12.10.03.43.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 03:43:21 -0800 (PST)
+Date: Tue, 10 Dec 2024 13:43:19 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Andrej Picej <andrej.picej@norik.com>
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, marex@denx.de, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de
+Subject: Re: [PATCH v5 2/3] drm/bridge: ti-sn65dsi83: Add ti,lvds-vod-swing
+ optional properties
+Message-ID: <irpmhq7vxjra6vhmdh7p63ajj57n3h2c4br3ija2jmwtoewist@zyxfmx6k5m4e>
+References: <20241210091901.83028-1-andrej.picej@norik.com>
+ <20241210091901.83028-3-andrej.picej@norik.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1733830272;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=dC9p5FCQHs2anWJcb1DSJZ9Qt5OmqJaqiCA2H3GVUdA=;
-	b=rhbg1cnDCmr4+sq42ofOWItwWMMrQ/fu3jv83RueAD29byK8AuCHomk+TOanv7eTttbQ4O
-	SlK3EjM51VoQtoedkuRdy9/wxUoYnw1tJb5P19ZzuLkzRPyIYhI/Xe9nRsIeXFGf6RZVyh
-	PPRxoFJPVc+Ddh50sp6ecHS6VDOTRDXIA6KddPPRunRntp8cWBkfR+q7WrMsFPL7m6O1AB
-	KLUl/t3jylitbOMRyfrs4zeQGCg2bQOlWC1TqPn3BTkkPJZVMt2Gt2CP/0TxispyBNtH/q
-	RwHbfXmksyJ2Hrwjt2N+NcwGxdhaVhXsaLkqJpemT8rCJgdpM7+I0KEFca0zJA==
-Content-Type: multipart/signed;
- boundary=768b44e4608be46521de5d39885a4e035e23bf1739a34b0bd3d7b81b3cbe;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Tue, 10 Dec 2024 12:31:02 +0100
-Message-Id: <D67ZJ6MOM5TH.2WBYCCU20DDJO@cknow.org>
-Subject: Re: [PATCH 5/6] arm64: dts: rockchip: correct rk3328-roc regulator
- map
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Peter Geis" <pgwipeout@gmail.com>, "Heiko Stuebner" <heiko@sntech.de>
-Cc: "Conor Dooley" <conor+dt@kernel.org>, "Dragan Simic"
- <dsimic@manjaro.org>, "Johan Jonker" <jbx6244@gmail.com>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Levin Du" <djw@t-chip.com.cn>, "Rob
- Herring" <robh@kernel.org>, <devicetree@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <linux-rockchip@lists.infradead.org>
-References: <20241210013010.81257-1-pgwipeout@gmail.com>
- <20241210013010.81257-6-pgwipeout@gmail.com>
-In-Reply-To: <20241210013010.81257-6-pgwipeout@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241210091901.83028-3-andrej.picej@norik.com>
 
---768b44e4608be46521de5d39885a4e035e23bf1739a34b0bd3d7b81b3cbe
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-
-Hi Peter,
-
-Thanks for this series, I already saw some familiar error msgs
-mentioned, so will try this series out soon (tm).
-
-On Tue Dec 10, 2024 at 2:30 AM CET, Peter Geis wrote:
-> The rk3328-roc-cc input power is sourced from a micro-usb port, while
-> the rk3328-roc-pc input power is sourced from a usb-c port. Both inputs
-> are 5vdc only. Remove the 12v input from the device tree.
->
-> While we are at it, add missing voltages and supply to vcc_phy, missing
-> voltages to vcc_host1_5v, and standardize the order of regulator
-> properties among the fixed regulators.
-
-Big fan of standardization :-) ...
-
->
-> Fixes: 2171f4fdac06 ("arm64: dts: rockchip: add roc-rk3328-cc board")
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+On Tue, Dec 10, 2024 at 10:19:00AM +0100, Andrej Picej wrote:
+> Add a optional properties to change LVDS output voltage. This should not
+> be static as this depends mainly on the connected display voltage
+> requirement. We have three properties:
+> - "ti,lvds-termination-ohms", which sets near end termination,
+> - "ti,lvds-vod-swing-data-microvolt" and
+> - "ti,lvds-vod-swing-clock-microvolt" which both set LVDS differential
+> output voltage for data and clock lanes. They are defined as an array
+> with min and max values. The appropriate bitfield will be set if
+> selected constraints can be met.
+> 
+> If "ti,lvds-termination-ohms" is not defined the default of 200 Ohm near
+> end termination will be used. Selecting only one:
+> "ti,lvds-vod-swing-data-microvolt" or
+> "ti,lvds-vod-swing-clock-microvolt" can be done, but the output voltage
+> constraint for only data/clock lanes will be met. Setting both is
+> recommended.
+> 
+> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
 > ---
->
->  arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi | 23 +++++++++++++-------
->  1 file changed, 15 insertions(+), 8 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi b/arch/arm64/bo=
-ot/dts/rockchip/rk3328-roc.dtsi
-> index f782c8220dd3..6984387ff8b3 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
-> @@ -24,22 +24,23 @@ gmac_clkin: external-gmac-clock {
->  		#clock-cells =3D <0>;
->  	};
-> =20
-> -	dc_12v: regulator-dc-12v {
-> +	/* fed from passive usb input connector */
-> +	dc_5v: regulator-dc-5v {
->  		compatible =3D "regulator-fixed";
-> -		regulator-name =3D "dc_12v";
-> +		regulator-name =3D "dc_5v";
->  		regulator-always-on;
->  		regulator-boot-on;
-> -		regulator-min-microvolt =3D <12000000>;
-> -		regulator-max-microvolt =3D <12000000>;
-> +		regulator-min-microvolt =3D <5000000>;
-> +		regulator-max-microvolt =3D <5000000>;
->  	};
-> =20
->  	vcc_sd: regulator-sdmmc {
->  		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "vcc_sd";
->  		gpio =3D <&gpio0 RK_PD6 GPIO_ACTIVE_LOW>;
->  		pinctrl-names =3D "default";
->  		pinctrl-0 =3D <&sdmmc0m1_pin>;
->  		regulator-boot-on;
-> -		regulator-name =3D "vcc_sd";
->  		regulator-min-microvolt =3D <3300000>;
->  		regulator-max-microvolt =3D <3300000>;
->  		vin-supply =3D <&vcc_io>;
+> Changes in v5:
+> - specify default values in sn65dsi83_parse_lvds_endpoint,
+> - move sn65dsi83_parse_lvds_endpoint for channel B up, outside if,
+> Changes in v4:
+> - fix typo in commit message bitfiled -> bitfield
+> - use arrays (lvds_vod_swing_conf and lvds_term_conf) in private data, instead
+> of separate variables for channel A/B
+> - add more checks on return value of "of_property_read_u32_array"
+> Changes in v3:
+> - use microvolts for default array values 1000 mV -> 1000000 uV.
+> Changes in v2:
+> - use datasheet tables to get the proper configuration
+> - since major change was done change the authorship to myself
+> ---
+>  drivers/gpu/drm/bridge/ti-sn65dsi83.c | 142 +++++++++++++++++++++++++-
+>  1 file changed, 139 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> index 57a7ed13f996..f9578b38da28 100644
+> --- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> +++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> @@ -132,6 +132,16 @@
+>  #define  REG_IRQ_STAT_CHA_SOT_BIT_ERR		BIT(2)
+>  #define  REG_IRQ_STAT_CHA_PLL_UNLOCK		BIT(0)
+>  
+> +enum sn65dsi83_channel {
+> +	CHANNEL_A,
+> +	CHANNEL_B
+> +};
+> +
+> +enum sn65dsi83_lvds_term {
+> +	OHM_100,
+> +	OHM_200
+> +};
+> +
+>  enum sn65dsi83_model {
+>  	MODEL_SN65DSI83,
+>  	MODEL_SN65DSI84,
+> @@ -147,6 +157,8 @@ struct sn65dsi83 {
+>  	struct regulator		*vcc;
+>  	bool				lvds_dual_link;
+>  	bool				lvds_dual_link_even_odd_swap;
+> +	int				lvds_vod_swing_conf[2];
+> +	int				lvds_term_conf[2];
+>  };
+>  
+>  static const struct regmap_range sn65dsi83_readable_ranges[] = {
+> @@ -237,6 +249,36 @@ static const struct regmap_config sn65dsi83_regmap_config = {
+>  	.max_register = REG_IRQ_STAT,
+>  };
+>  
+> +static const int lvds_vod_swing_data_table[2][4][2] = {
+> +	{	/* 100 Ohm */
+> +		{ 180000, 313000 },
+> +		{ 215000, 372000 },
+> +		{ 250000, 430000 },
+> +		{ 290000, 488000 },
+> +	},
+> +	{	/* 200 Ohm */
+> +		{ 150000, 261000 },
+> +		{ 200000, 346000 },
+> +		{ 250000, 428000 },
+> +		{ 300000, 511000 },
+> +	},
+> +};
+> +
+> +static const int lvds_vod_swing_clock_table[2][4][2] = {
+> +	{	/* 100 Ohm */
+> +		{ 140000, 244000 },
+> +		{ 168000, 290000 },
+> +		{ 195000, 335000 },
+> +		{ 226000, 381000 },
+> +	},
+> +	{	/* 200 Ohm */
+> +		{ 117000, 204000 },
+> +		{ 156000, 270000 },
+> +		{ 195000, 334000 },
+> +		{ 234000, 399000 },
+> +	},
+> +};
+> +
+>  static struct sn65dsi83 *bridge_to_sn65dsi83(struct drm_bridge *bridge)
+>  {
+>  	return container_of(bridge, struct sn65dsi83, bridge);
+> @@ -435,12 +477,16 @@ static void sn65dsi83_atomic_pre_enable(struct drm_bridge *bridge,
+>  		val |= REG_LVDS_FMT_LVDS_LINK_CFG;
+>  
+>  	regmap_write(ctx->regmap, REG_LVDS_FMT, val);
+> -	regmap_write(ctx->regmap, REG_LVDS_VCOM, 0x05);
+> +	regmap_write(ctx->regmap, REG_LVDS_VCOM,
+> +			REG_LVDS_VCOM_CHA_LVDS_VOD_SWING(ctx->lvds_vod_swing_conf[CHANNEL_A]) |
+> +			REG_LVDS_VCOM_CHB_LVDS_VOD_SWING(ctx->lvds_vod_swing_conf[CHANNEL_B]));
+>  	regmap_write(ctx->regmap, REG_LVDS_LANE,
+>  		     (ctx->lvds_dual_link_even_odd_swap ?
+>  		      REG_LVDS_LANE_EVEN_ODD_SWAP : 0) |
+> -		     REG_LVDS_LANE_CHA_LVDS_TERM |
+> -		     REG_LVDS_LANE_CHB_LVDS_TERM);
+> +		     (ctx->lvds_term_conf[CHANNEL_A] ?
+> +			  REG_LVDS_LANE_CHA_LVDS_TERM : 0) |
+> +		     (ctx->lvds_term_conf[CHANNEL_B] ?
+> +			  REG_LVDS_LANE_CHB_LVDS_TERM : 0));
+>  	regmap_write(ctx->regmap, REG_LVDS_CM, 0x00);
+>  
+>  	le16val = cpu_to_le16(mode->hdisplay);
+> @@ -576,10 +622,100 @@ static const struct drm_bridge_funcs sn65dsi83_funcs = {
+>  	.atomic_get_input_bus_fmts = sn65dsi83_atomic_get_input_bus_fmts,
+>  };
+>  
+> +static int sn65dsi83_select_lvds_vod_swing(struct device *dev,
+> +	u32 lvds_vod_swing_data[2], u32 lvds_vod_swing_clk[2], u8 lvds_term)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i <= 3; i++) {
+> +		if (lvds_vod_swing_data_table[lvds_term][i][0] >= lvds_vod_swing_data[0] &&
+> +		lvds_vod_swing_data_table[lvds_term][i][1] <= lvds_vod_swing_data[1] &&
+> +		lvds_vod_swing_clock_table[lvds_term][i][0] >= lvds_vod_swing_clk[0] &&
+> +		lvds_vod_swing_clock_table[lvds_term][i][1] <= lvds_vod_swing_clk[1])
+> +			return i;
+> +	}
+> +
+> +	dev_err(dev, "failed to find appropriate LVDS_VOD_SWING configuration\n");
+> +	return -EINVAL;
+> +}
+> +
+> +static int sn65dsi83_parse_lvds_endpoint(struct sn65dsi83 *ctx, int channel)
+> +{
+> +	struct device *dev = ctx->dev;
+> +	struct device_node *endpoint;
+> +	int endpoint_reg;
+> +	/* Set so the property can be freely selected if not defined */
+> +	u32 lvds_vod_swing_data[2] = { 0, 1000000 };
+> +	u32 lvds_vod_swing_clk[2] = { 0, 1000000 };
+> +	u32 lvds_term;
+> +	u8 lvds_term_conf = 0x1;
+> +	int lvds_vod_swing_conf = 0x1;
 
-... but why not put regulator-name as the first of the regulator
-properties as is done in the rk3328-rock64.dts ...
+Magic values
 
-> @@ -50,22 +51,25 @@ vcc_sdio: regulator-sdmmcio {
->  		states =3D <1800000 0x1>, <3300000 0x0>;
->  		regulator-name =3D "vcc_sdio";
->  		regulator-type =3D "voltage";
-> +		regulator-always-on;
->  		regulator-min-microvolt =3D <1800000>;
->  		regulator-max-microvolt =3D <3300000>;
-> -		regulator-always-on;
->  		vin-supply =3D <&vcc_sys>;
->  	};
-> =20
->  	vcc_host1_5v: vcc_otg_5v: regulator-vcc-host1-5v {
->  		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "vcc_host1_5v";
->  		enable-active-high;
->  		pinctrl-names =3D "default";
->  		pinctrl-0 =3D <&usb20_host_drv>;
-> -		regulator-name =3D "vcc_host1_5v";
->  		regulator-always-on;
-> +		regulator-min-microvolt =3D <5000000>;
-> +		regulator-max-microvolt =3D <5000000>;
->  		vin-supply =3D <&vcc_sys>;
->  	};
+> +	int ret = 0;
+> +	int ret_data;
+> +	int ret_clock;
+> +
+> +	if (channel == CHANNEL_A)
+> +		endpoint_reg = 2;
+> +	else
+> +		endpoint_reg = 3;
+> +
+> +	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, endpoint_reg, -1);
+> +	if (!of_property_read_u32(endpoint, "ti,lvds-termination-ohms", &lvds_term)) {
 
-... and was the case here?
+The code has been better before:
+provide default for lvds_term, read the property (keeping the default in
+case of an error), then use the lvds_term to set up lvds_term_conf, as
+expected.
 
-Cheers,
-  Diederik
+> +		if (lvds_term == 100)
+> +			lvds_term_conf = OHM_100;
+> +		else
+> +			lvds_term_conf = OHM_200;
+> +	}
+> +
+> +	ctx->lvds_term_conf[channel] = lvds_term_conf;
+> +
+> +	ret_data = of_property_read_u32_array(endpoint,
+> +			"ti,lvds-vod-swing-data-microvolt", lvds_vod_swing_data,
+> +			ARRAY_SIZE(lvds_vod_swing_data));
+> +	if (ret_data != 0 && ret_data != -EINVAL) {
+> +		ret = ret_data;
+> +		goto exit;
+> +	}
+> +
+> +	ret_clock = of_property_read_u32_array(endpoint,
+> +			"ti,lvds-vod-swing-clock-microvolt", lvds_vod_swing_clk,
+> +			ARRAY_SIZE(lvds_vod_swing_clk));
+> +	if (ret_clock != 0 && ret_clock != -EINVAL) {
+> +		ret = ret_clock;
+> +		goto exit;
+> +	}
+> +
+> +	/* If any of the two properties is defined. */
+> +	if (!ret_data || !ret_clock) {
+> +		lvds_vod_swing_conf = sn65dsi83_select_lvds_vod_swing(dev,
+> +			lvds_vod_swing_data, lvds_vod_swing_clk,
+> +			lvds_term_conf);
+> +		if (lvds_vod_swing_conf < 0) {
+> +			ret = lvds_vod_swing_conf;
+> +			goto exit;
+> +		}
+> +	}
+> +
+> +	ctx->lvds_vod_swing_conf[channel] = lvds_vod_swing_conf;
+> +	ret = 0;
+> +exit:
+> +	of_node_put(endpoint);
+> +	return ret;
+> +}
+> +
+>  static int sn65dsi83_parse_dt(struct sn65dsi83 *ctx, enum sn65dsi83_model model)
+>  {
+>  	struct drm_bridge *panel_bridge;
+>  	struct device *dev = ctx->dev;
+> +	int ret;
+> +
+> +	ret = sn65dsi83_parse_lvds_endpoint(ctx, CHANNEL_A);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = sn65dsi83_parse_lvds_endpoint(ctx, CHANNEL_B);
+> +	if (ret < 0)
+> +		return ret;
+>  
+>  	ctx->lvds_dual_link = false;
+>  	ctx->lvds_dual_link_even_odd_swap = false;
+> -- 
+> 2.34.1
+> 
 
-> =20
-> +	/* sourced from usb input through 3A fuse */
->  	vcc_sys: regulator-vcc-sys {
->  		compatible =3D "regulator-fixed";
->  		regulator-name =3D "vcc_sys";
-> @@ -73,7 +77,7 @@ vcc_sys: regulator-vcc-sys {
->  		regulator-boot-on;
->  		regulator-min-microvolt =3D <5000000>;
->  		regulator-max-microvolt =3D <5000000>;
-> -		vin-supply =3D <&dc_12v>;
-> +		vin-supply =3D <&dc_5v>;
->  	};
-> =20
->  	vcc_phy: regulator-vcc-phy {
-> @@ -81,6 +85,9 @@ vcc_phy: regulator-vcc-phy {
->  		regulator-name =3D "vcc_phy";
->  		regulator-always-on;
->  		regulator-boot-on;
-> +		regulator-min-microvolt =3D <3300000>;
-> +		regulator-max-microvolt =3D <3300000>;
-> +		vin-supply =3D <&vcc_io>;
->  	};
-> =20
->  	leds {
-
-
---768b44e4608be46521de5d39885a4e035e23bf1739a34b0bd3d7b81b3cbe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ1gmeQAKCRDXblvOeH7b
-bmMBAQDzQzO1G+w5qzoBp5aUjpUNIUQhGVvq8MR3l/ziGJqI8gEAyBZ7Pt2t9Uc1
-WSOu5/T6z7u4uJ8LYn9q97mYE7UlTg0=
-=qRUc
------END PGP SIGNATURE-----
-
---768b44e4608be46521de5d39885a4e035e23bf1739a34b0bd3d7b81b3cbe--
+-- 
+With best wishes
+Dmitry
 
