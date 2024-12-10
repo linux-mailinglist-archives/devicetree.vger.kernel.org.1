@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-129118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C2359EAAE6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:44:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42F159EAAEA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:45:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3857E1881932
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:44:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F64018828DD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:45:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54E732309AA;
-	Tue, 10 Dec 2024 08:44:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6773A230D03;
+	Tue, 10 Dec 2024 08:45:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sUT2obbg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JgvBjpf5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D07C230982
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 08:44:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8605322E40A
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 08:45:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733820270; cv=none; b=MPxBKJ8/CabIZeMtMl3qYEfyhR+47RM9i8Z9RtexYhZ7i4abR6Tzhznk23cyGMLJShQ6XYwaLw+KNCIb0iuprapHKN0bkCvUrxuCzsX1ctZukt7kQwm4fpO9z2i7Ow6KMKCitycRPG3Oi8nvipqppHeMvmNqn8SnkTWP7o5ig3A=
+	t=1733820310; cv=none; b=Rk2Vob0139dzWuHDW+gnrDYlcgnhBhbLHR34+uFXkuET3pFLWgq4psIRHYqCSO7GkFasGpkGvz89aFAGDjwkSxRvIs+3PQeHDZVJo7ChejeiJLF5ukZsG3AZJ5g3RiHPWt2b9biQDs+MhzrrkB9pxaaoMQdv7VZpdD/65ND5l3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733820270; c=relaxed/simple;
-	bh=gtkbOnbOImJWM921EqNDpx2/bp81PNUuwOmgAcMVe0c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CCFUuDgNbAtS8vPekMpezalNenJdEr3ZdagAiqFIhclQ/jaSbduhE14GsJP5AkwAwmg+THMGuWQ3WHhcn2rDe8CUxTYxQuMdjnLvnaJOXpjXr37lihAi4239c0xmkrrhNJouW4L8XeCtkrqimfQSGZcPuhCIBeye617VIWbplaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sUT2obbg; arc=none smtp.client-ip=209.85.128.42
+	s=arc-20240116; t=1733820310; c=relaxed/simple;
+	bh=+x1Mft7oUP79FmKr4fBecXE4fgVs+62YnJHX8KLkmQc=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=XnuOGBYzMtPXPNLLCP0LSb2GKrj7/Xt+uAA2PSvdl66l3BdraFFwC4FS7rKjdNydPeaI2MzPCIJ7O33TzL+R6JnB7tZwc4bYsGaZi+AT2bA2o37ue2L+9+1dL1q99WkIP9DhMb2YXvRcR1e4PxRlIM5EpOuAZEVvTGfF31lLw94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JgvBjpf5; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-434faac720bso1798705e9.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 00:44:28 -0800 (PST)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-434f398a171so1975275e9.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 00:45:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733820267; x=1734425067; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1733820307; x=1734425107; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
+         :references:cc:to:from:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=gtkbOnbOImJWM921EqNDpx2/bp81PNUuwOmgAcMVe0c=;
-        b=sUT2obbg0XXKhTdFNvpXAm2bYwKu6aUK2hbaqqL8WJBOXr5/3XNGPcqHQsmG8IPkft
-         KT47znP9R97HjPLmwgz0xcDad7odaUeifs/nQcwdbHsPfaRRWaz8yOB79NH9tkMo8lOK
-         I6Y7qHJYzD/pv+2Z33IgebG0rU2NXP55htTYfY504YprrGUwxWv3dW+zBtMjz3mbCgot
-         eBsqS6zSnr9CRFCAxiKfUt4uXck53FfQGUxjfaMmSiJ1v7hqNomDBFtNMIjiEBzihQnX
-         OpixsuEHCp2Nce5S6cAQaZXCo2z0EaljQS3B6RdT/8jqSkx98OdcBKsBf914kg1pFOVT
-         2v9g==
+        bh=EGPzafJOEdoHb7yCUcUHHdTxZLNCJp4WwMrLYstSYKE=;
+        b=JgvBjpf5l2UtQsOsfkXWGV+beLKiUPAycrVMqVUPGwSgPojhHdWDDbZI2HY19WTLfV
+         6ZYCWw13AyNqKaMYeqhHw+Fs4t2c3Ux8XO3RO8Px6pby9kz/1IISBUqwnc5uVw9OV7wB
+         hozyD4meDqMP9fXNTlVh49vXmrjOvd0+r2NTYaVrtHnjuZsUlmxcHexkjUW+I2X8nKTS
+         H7ilfv+cDt68wVA5dIKaiDnNBNcxXQlTIL8EajqAeCgTPnA2r78W6lj7XyrcBfrbtqTT
+         0JmrIyxEhG4f9NOSV0W/8t+YTxS/UHpeZHC7SMZOi+6nOo9J5uNIbxOqHsO7yU+Im4Tt
+         pGAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733820267; x=1734425067;
+        d=1e100.net; s=20230601; t=1733820307; x=1734425107;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
+         :references:cc:to:from:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gtkbOnbOImJWM921EqNDpx2/bp81PNUuwOmgAcMVe0c=;
-        b=AvsE2/47NKo79ULtsTnNHbMh7nIcGgIvSFHQtJ8MppMujuB/wes17apQckDmw6uDis
-         0AqzNK1F/trrzYA9/yMmJN38Jo/x+4wuzRyiojCX7otPeBlNsE4TyJY3DcasQbTOUW2O
-         JdxHcUAQiSVKgKwP8rsP6jhcIUUrC0koqss4rsP9hUBTnaEygc8tDL0KqMu6niYa/5+7
-         P50yVm2OgfSvByFvcKvxUiGNbU7mALS59Ebb0EwEFGI7UffXD7hKfnz/9idKAD8H7Fj2
-         Fc+BnCXFgzutBr//gfMzNMixeCMM+/Tn4GvwX5UUiuDorgstb/eJtw+0UijTGl1LToIq
-         TMIw==
-X-Forwarded-Encrypted: i=1; AJvYcCVXmV4W5hbrm7Pdv6o3+KeL3q+N4dZD8STPY2Df6zoxXn0fjauTlhSBhxfbvCUKgzuSbdipnGeRJvYb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx49jsQhi0KQlev+arIguU7BxeQMlnXFL4jsTBLJHGXWs+NYyTu
-	IgL6GMCc62XQD2f1kTn16JyNoMF/a/qajWhWpzaTziTpEr/sBSpZORqmnS5l+yo=
-X-Gm-Gg: ASbGncs82VfSAfDqxE+fjyB8EfuQ6erTD1nIQNN9Cf/t+j3BB9iGZASr5y7dvVML7bU
-	0Tfzqrv3V9s5qfSu85stNpuegQpoXEwclY7ydoyfzrEOXN2gB9/9YOtYGco6iqy/avZGDp8vP2S
-	lCsFmWwpd8Zn9rHh0keXOB18Gbz8Wm1sFJIO6qgi7X3KM63OMKF5Nw7k9twHeUAZGdXQDoXPllj
-	hbEIptE0uSoENfbNGLwKPPM8pVEXwaJPAKUO8qFxDwTSVSJPGmbqYrmibt3XLZaZ41kcxEwKw==
-X-Google-Smtp-Source: AGHT+IGPo+343UL/XQMovJpUM2fs2wVtTJ2f6VeXfpBxnUXzR6Wmli37wiQCf2jAuAJMbmj0bMBcWA==
-X-Received: by 2002:a05:600c:1c28:b0:434:a0fd:95d0 with SMTP id 5b1f17b1804b1-435019a81abmr8538055e9.4.1733820266783;
-        Tue, 10 Dec 2024 00:44:26 -0800 (PST)
+        bh=EGPzafJOEdoHb7yCUcUHHdTxZLNCJp4WwMrLYstSYKE=;
+        b=hrWQCV9ghFznPClVjYaqf2Mqsobcx0BZkGyatRGQvJop1+rzLKwhP/Ek2YDsH9EmDN
+         GbQQPuD4UphyKWg5dxbZn+1T/nfIL2TIfqGR+DSfB3CXKaJJ5/qsWl1MF/6eKO5fpNXU
+         VjYpDoSYTglOn1tsrLauFUHzHtVwEWHM2Kpuvvl6OXFHQvnWdRq3NBNlUtQHMBo9pRYe
+         4PSBioC/oEntUew5OqZ9atpJ2EoQIcJO/v0SC6wtl83TMxEzrwpRVrvnxWyhQjcdqFui
+         y9Z8WfXpe4BGs43hiesnZ3xVCbPpKXN+lacdtnVrqd/ydSzXVJ/vqy+V/2TsjwWTxoBZ
+         lWuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVl+Q30dj663bMsckkz3rulTlDyOprJ/Q+OpROaFGeAVvPo+OB/LcJH+jdIvkwELPwSt84oihVHLs9h@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8jqUlWsm1AXTzikm1V3ZNtqAJ5iI8U7YU3ChHxj8dS8zL1NXU
+	J9K/Eb0xnDEka+/LJJJwoSzvTz4z9GgaHngOjC/hmL/BJoijzxQ6r6QLewp2PY0=
+X-Gm-Gg: ASbGnctAS/IXCDhTfmzKMIJiRDYmYuAiBYeRmpxUyu207rsM1rrUxrSUzfPPX0OJHa9
+	eBOyura/u50njmXJOi0Jmw9eFW+4gZv3deMt/hKQLWWhSn+Cq/tfBvahK1UUW2OA3LvpmmlGNZj
+	Pg7URD3Ha6vqD9il5SOJEO+/MnDKpCsPZySK7hcjQ0GZ7zN/Tx/pN/MiiIQ3gz5L+zH5n/SJ0bG
+	eDIapONefMQWKng0VoyjVSQTQ1+Tt685eEjYVWNfi4rcU+QjTYTE/DIflG7mqLg22cuaNmO+g==
+X-Google-Smtp-Source: AGHT+IGIbVpoRmpF/fMTJFNEwzOHMG59iwFgI6N67U5I2zZMBPgokITH6VMHyBfnG2hgq55rbdMOGg==
+X-Received: by 2002:a05:600c:1c28:b0:434:a0fd:95d0 with SMTP id 5b1f17b1804b1-435019a81abmr8545715e9.4.1733820306820;
+        Tue, 10 Dec 2024 00:45:06 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.165])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43502fef1f9sm17875605e9.1.2024.12.10.00.44.24
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434da0d26b0sm188531705e9.9.2024.12.10.00.45.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Dec 2024 00:44:26 -0800 (PST)
-Message-ID: <0d23ccf9-3420-45bf-aac7-5c1a075e031f@linaro.org>
-Date: Tue, 10 Dec 2024 09:44:23 +0100
+        Tue, 10 Dec 2024 00:45:06 -0800 (PST)
+Message-ID: <b8c1c4d9-3234-4184-b57c-8cd5cb18f815@linaro.org>
+Date: Tue, 10 Dec 2024 09:45:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,6 +82,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 3/3] mailbox: mediatek: Add mtk-apu-mailbox driver
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: =?UTF-8?B?S2FybCBMaSAo5p2O5pm65ZiJKQ==?= <Karl.Li@mediatek.com>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Cc: =?UTF-8?B?Q2h1bmd5aW5nIEx1ICjlkYLlv6DnqY4p?= <Chungying.Lu@mediatek.com>,
@@ -108,7 +109,7 @@ References: <20241024092608.431581-1-karl.li@mediatek.com>
  <a3c3280478bf86eb97a422782ce60ec4eaa35224.camel@mediatek.com>
  <0f98405c40530d81c342af06dea593e7babedeac.camel@mediatek.com>
  <cf75f3c3932ddc50f5697bc4f394bd77fc16cd39.camel@mediatek.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <0d23ccf9-3420-45bf-aac7-5c1a075e031f@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -154,27 +155,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <cf75f3c3932ddc50f5697bc4f394bd77fc16cd39.camel@mediatek.com>
+In-Reply-To: <0d23ccf9-3420-45bf-aac7-5c1a075e031f@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 05/12/2024 08:32, Karl Li (李智嘉) wrote:
-> On Thu, 2024-12-05 at 07:05 +0000, Karl Li (李智嘉) wrote:
->> Dead maintainers,
-> "Dear" maintainers. Really sorry for the typo...
->>
->> I hope you're doing well. Just a warm reminder that we're following
->> up
->> on these patch and really appreciate any feedback you might have.
->>
+On 10/12/2024 09:44, Krzysztof Kozlowski wrote:
+> On 05/12/2024 08:32, Karl Li (李智嘉) wrote:
+>> On Thu, 2024-12-05 at 07:05 +0000, Karl Li (李智嘉) wrote:
+>>> Dead maintainers,
+>> "Dear" maintainers. Really sorry for the typo...
+>>>
+>>> I hope you're doing well. Just a warm reminder that we're following
+>>> up
+>>> on these patch and really appreciate any feedback you might have.
+>>>
+> 
+> You received like 6 or 7 reviews/replies for your patchset. What are you
+> implying here if feedback was not enough?
+> 
+> Respond and implement the feedback instead ignoring it.
+> 
 
-You received like 6 or 7 reviews/replies for your patchset. What are you
-implying here if feedback was not enough?
+Ah - and obvious static check warnings as well!
 
-Respond and implement the feedback instead ignoring it.
-
-NAK
+Please run standard kernel tools for static analysis, like coccinelle,
+smatch and sparse, and fix reported warnings. Also please check for
+warnings when building with W=1. Most of these commands (checks or W=1
+build) can build specific targets, like some directory, to narrow the
+scope to only your code. The code here looks like it needs a fix. Feel
+free to get in touch if the warning is not clear.
 
 Best regards,
 Krzysztof
+
 
