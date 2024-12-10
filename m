@@ -1,253 +1,116 @@
-Return-Path: <devicetree+bounces-129426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0E159EB8B2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 18:52:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0FED9EB8F0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 19:02:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BBF72834CB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:52:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96CAD282FE6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 18:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 274E9204686;
-	Tue, 10 Dec 2024 17:52:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7651B415C;
+	Tue, 10 Dec 2024 18:02:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="juteAGYA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cr52aB73"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF66204692
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 17:52:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 945E98633C;
+	Tue, 10 Dec 2024 18:02:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733853135; cv=none; b=EY2Wj0QhEgtsuuTj1F2yW69WmMveaPJlmoJIbNxkz8l7zDAVw74VGKMVgcvW6QiIsD22oCDwzrptgMIOEf/pIUn6G05NEv7CVBw2Bv1w3eok08l4XUBwmh5HhlhbTzNv+7tkPwq0L08iNvau1K5yzelVYEd+S2n2PwBEf585zpM=
+	t=1733853744; cv=none; b=BoKrhzWN5q9xmi4/7XNX9uPZNKsrey+RhieZEm4AEznt8sT9mJT1Rw1ZC58YPuw0u4LLAZqlLe354JigfW/cp45k2YH0Jjd6ay5HALszFpDoriF+g5w4V9oHgtQdp2ffhNyloES47JGwhMVjbbnMgeIjRLrlv52bDt0KCaAel20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733853135; c=relaxed/simple;
-	bh=lLbLE1tKKDfeDdO+nD84XWjzeIie3h7aVvVDlDRciV8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sj6clUeL/KYXAf2qGudkKmCAl7mLhbyhtjC9g/h7Il4l910uphpGjcChHRRdMQWExhXYKf5SwXRPJapGKE8dz+C4XY+cAWPXQbRq2S+89bnG65KDNTWgIcDllrQqYNpJFCvTBUcM35owWFr3uUNCSh1sjDlDDD/1mMAUq7oabvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=juteAGYA; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BAEprr9028717
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 17:52:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ege3SlIBABNYQBfJL/StIBqQ
-	Q+7IZD3RScF6Axrafug=; b=juteAGYAt8FC8DoBSBGM2MPvg6n2crWeIjqMgMyJ
-	Vynt9dOSCdk149k6U/9E9j+4RfSx/VlOQciRABFgG9rbZpM5bRPwM0OnHaTTWMa+
-	HhTaSFp5Ik62QLaLN5rzmW5CZAyjkTCkSNN7qmxdlRzhWdb0+efzFgtOKX+hxWuj
-	zTr4wjIKYXBsOwrfPtYVKA0JWabm9FRJN6RVCDFDixYk6HLUsBwhPFq8lPMy5FuV
-	H3bdrH1uWsXpi+WQx6xtNdkr2D8Ore1CQNNELAtZlZm14BQ9GUICkaf8ni69jLoN
-	PYq3mmSbFC1quAFbkbZbjGEG5DlX85B7F982LXIFUHqxxA==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43eg9ej19v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 17:52:12 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2163dc0f689so42719625ad.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 09:52:12 -0800 (PST)
+	s=arc-20240116; t=1733853744; c=relaxed/simple;
+	bh=Wn8dvmhpbqifczjq1ws+Q7oM4cr83bwHC/c4lzlzkrI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Y91Dt07+04ud8hKGiTDmh+Nl0c5R83M7RdSB5qqssE8fkUoWpK4cqpf9VA5NrkspGIwNNwEiXBHaQMC5j4nqiBFzbMNDpWVmSWt9iLjKqEkLKeYuU5+12fasG0yPgWUDsQ7bU6sAyDhDi6tkwmVK5WOfSaMqPWNfOzPU+KIU5tQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cr52aB73; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-aa68b513abcso424358866b.0;
+        Tue, 10 Dec 2024 10:02:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733853741; x=1734458541; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BCY2cGBNnositKDICf7Efd3URLuqM088tDb4fIyX/u8=;
+        b=cr52aB73cyzr+dWE291LQtGWqZi6SJw3+UNDqfjvj1lI4XxzydjdytUKKD2NF0DPZm
+         MUaKquxW4idkeoGqz9DYFm0B69fSQ2Kju3q7fiyRDqZt8vrGVKl0TeEiLHE0dgpxfQDh
+         6NQX332j80Dk2y719puKpK8l9H3xjPX3xubdIdg8F/id1+nYqcKHRrAvfG/yFwsCH482
+         eSOfpJILBHg18uaarJ2da/gCxTf5Avgi+qfHHHi1J9qcwLWhYTfJyLtpgR79h26/UmpK
+         Ev719fDqoGyjlY9UU1FJMPzpUOe6CSdeyQItFO783xFwSYkh0WUgh7AxxQlbiOiUCsFM
+         fCgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733853131; x=1734457931;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ege3SlIBABNYQBfJL/StIBqQQ+7IZD3RScF6Axrafug=;
-        b=NAw4fP0aa49tJ+20/Ti/OBtzVQd+EgJVxKhmRzFL1KHSfI5ohjhk93CPSkYOfMYSL/
-         7s4VkYPWMlSYVGNq6uqlfFZVpxCTmKB9qwFciupDz2WgSCsPcFQQd9N2zDgjRoyqHaRJ
-         SCuAcblaOtme56YWmcGLJ8q8tBz2j5WLYlSKXHAe9twdahTFL9fi0aCFrPr1PUz+v+/J
-         31eLNsxyB+uDfzqjT5YjhYoreWQLm29WeODwe3QWQotgVSlJry9fyU1SKsmr1xYx4z1O
-         yMISs9Wb4svvK3ZzJJRF7TmqPc7KFWOM/xEp8KpaUWpMhv87UvpuPUHVBRA7WdvTLoa7
-         +kDA==
-X-Forwarded-Encrypted: i=1; AJvYcCVdN9LixwR24dSWP8bfDGOYAKUi4wvFCLWwF9YNqnAzgKIhH48GS/Aha2BaS8iYcwiQCdm3C0EdnLjY@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuKDAj3NnTzwj6nfvnTGiMkWDDx85ONVOeTuBoUFUfI6tJK5QA
-	opTcjIwsCPhZq6SfVDNqDY9zF0jocjeSaiG6Wm5X5kKpJk++6oznI1wZb5P512N98qgG4MyRPOl
-	1eyV0au9GNzOqA1FCPLeLHLL3NSwINGABIp2cyAEIDnzajUkfMIoydEGGJBsQ
-X-Gm-Gg: ASbGncsUjDb56JcyKcrc+SyfeT3bNSt7/zpx3eeaKTj/vvySH+l+zufcYiBkCWdOPz/
-	zvDp167C64tGHbkecvLBXUrY3YhVxIIXG7dPL2p7Ribv47XPkdSj8X162v7qxWtGfXkhx5EpXYc
-	ekLH2wBigL2/vjoVoBPDBtW1jH7g7b3s0wVb3Hz5NTZZEI7Qr/uBWrolkINJDsqFkdbNKRnOv1K
-	Jm1fSVv7CBCDtwybU5VuDLfeucdpidhRfkg3j1BLxWI5kBQYhWpUSNdvpGwynIjHQYjs/dxydFW
-	kzhB+Tfqo40g+sZU/aN+X0Ch2RTCyaUI1IbGVQ==
-X-Received: by 2002:a17:902:d54a:b0:216:45b9:43ad with SMTP id d9443c01a7336-2177854b79dmr294795ad.34.1733853131328;
-        Tue, 10 Dec 2024 09:52:11 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHxQAT1KyS2RYreNEX6eE08vhGpymLqRJuMeKy20p+JsymYi0fZ8cLbEJRWiRwWdl0yi3dYjw==
-X-Received: by 2002:a17:902:d54a:b0:216:45b9:43ad with SMTP id d9443c01a7336-2177854b79dmr294315ad.34.1733853130888;
-        Tue, 10 Dec 2024 09:52:10 -0800 (PST)
-Received: from hu-bjorande-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21680814d6bsm5989185ad.157.2024.12.10.09.52.08
+        d=1e100.net; s=20230601; t=1733853741; x=1734458541;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BCY2cGBNnositKDICf7Efd3URLuqM088tDb4fIyX/u8=;
+        b=Koz1nChlkySIE7gd6QE3Q4B34Fjx7DkDj6UUiKuslbw/T/RIpehSc7zlUI8mn3pn4X
+         /GwGb65ivDLFdZVkxZOIp+rYcusjQEhjEbOMnLH8Ra3VCZI0kMTC7295Uk6sgj7XYxyD
+         SV7JfgtI2RE84Uj3eWJxTe4WQvu/wDOCYN13BiLlVYI7EmTGDklOlIIvn4MpZD0VSxOf
+         8fT2xTw0UBSNB2EEuLfR5EWg+fEZwsOCduNuDnljMxDy1LalA9iHlInOaUS3ebT5WKwb
+         k/9aGXRHtSLVJsyUbnJtRV0FALzmvLP6eqZ0Yrb3O0g/R5F3R+v5JKUNcu2Ky0sIVaWH
+         dl2A==
+X-Forwarded-Encrypted: i=1; AJvYcCV81QFcX9Ju6ewZE+QDORURlnAgrzXbwZ1+0iWP75XoJIx34mgFjfJM1/mQjeKyj/x9N5EV23ckwv1H@vger.kernel.org, AJvYcCWjbE7mFEzz1sSx3Fig+clmRekVMl3NDCsDjyM/Fy0m/dt7WxhC1OH72/VxDuuKzFO/XUSDpmeX5C/BnazZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRgoMAgjkp91Os1j/+SXkyulkk9UZYo9yIgczfUuYh7BIrbPHc
+	w9fDmKu48PAWLXVZPjUfGUEFkX5GTKyjot1DPeqNuyYvo7k7+DNb
+X-Gm-Gg: ASbGncsRf2O2QDfXr/jUbQ1xCmuUC+Ja4+8fN5YvmjB7AIFWnI9FoSO56mU0GV9c9Z9
+	xaz41gYJbxQZL7sOrITv6y3t8Xefhntbja/0LH0wGD7FZlPqpO8durmwrENjIwlnigTAeLWu3Zr
+	bUs+qAat0HUeEiNF7P2BLy06pZMeVFuRHnXFXzu3JpSNHDu3QiHmDPo8BanB5athTw57UkePeVC
+	m+kNpqa6trdBxJ6UsclLDsCzYU8JQKw5iVtMiRZ58iFL6cFjYWMYcEjToEe7+XYfppStIJQSIBR
+	Sf7ocTyI23LMzzhcT2lxCqw4kX5pjA==
+X-Google-Smtp-Source: AGHT+IFXTKqLN7rVjG4MT816P3sDPA226Vptf61aO0FKpDWfT8usup+FPSpJd+BDFWR01cmVkV/mUA==
+X-Received: by 2002:a17:906:cc2:b0:aa5:27d4:980a with SMTP id a640c23a62f3a-aa63a242b13mr1598856266b.49.1733853740403;
+        Tue, 10 Dec 2024 10:02:20 -0800 (PST)
+Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa69448304asm276347066b.45.2024.12.10.10.02.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 09:52:10 -0800 (PST)
-Date: Tue, 10 Dec 2024 09:52:07 -0800
-From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-To: Konrad Dybcio <konradybcio@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
-        konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        conor+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
-        vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org,
-        Frank.Li@nxp.com, konradybcio@kernel.org, bryan.odonoghue@linaro.org,
-        krzk+dt@kernel.org, robh@kernel.org, quic_vdadhani@quicinc.com
-Subject: Re: [PATCH v5 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
- flag
-Message-ID: <Z1h/x+QJD5Uob8GZ@hu-bjorande-lv.qualcomm.com>
-References: <fc33c4ed-32e5-46cc-87d6-921f2e58b4ff@kernel.org>
- <75f2cc08-e3ab-41fb-aa94-22963c4ffd82@quicinc.com>
- <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
- <da2ba3df-eb47-4b55-a0c9-e038a3b9da30@quicinc.com>
- <a7186553-d8f6-46d4-88da-d042a4a340e2@oss.qualcomm.com>
- <e9fb294b-b6b8-4034-84c9-a25b83321399@kernel.org>
- <835ac8c6-3fbb-4a0d-aa07-716d1c8aad7c@gmail.com>
- <f1fa2bde-95ce-45e9-ad2d-f1d82ec6303c@kernel.org>
- <8b33f935-04a9-48df-8ea1-f6b98efecb9d@kernel.org>
- <422e6a1e-e76a-4ebc-a0a5-64c47ea57823@gmail.com>
+        Tue, 10 Dec 2024 10:02:19 -0800 (PST)
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] arm64: dts: exynos8895: Add m2-pmu, poweroff and reboot
+Date: Tue, 10 Dec 2024 20:02:14 +0200
+Message-ID: <20241210180216.398165-1-ivo.ivanov.ivanov1@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <422e6a1e-e76a-4ebc-a0a5-64c47ea57823@gmail.com>
-X-Proofpoint-GUID: 3_x34OwEoj2ZX-5M2KXfo2dKlNf9YpI9
-X-Proofpoint-ORIG-GUID: 3_x34OwEoj2ZX-5M2KXfo2dKlNf9YpI9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 phishscore=0 spamscore=0 mlxscore=0 suspectscore=0
- bulkscore=0 lowpriorityscore=0 impostorscore=0 adultscore=0
- mlxlogscore=999 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2412100132
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 10, 2024 at 01:38:28PM +0100, Konrad Dybcio wrote:
-> 
-> 
-> On 12/10/24 13:05, Krzysztof Kozlowski wrote:
-> > On 10/12/2024 12:53, Krzysztof Kozlowski wrote:
-> > > > > > I'm not sure a single property name+description can fit all possible
-> > > > > > cases here. The hardware being "shared" can mean a number of different
-> > > > > 
-> > > > > Existing property does not explain anything more, either. To recap -
-> > > > > this block is SE and property is named "se-shared", so basically it is
-> > > > > equal to just "shared". "shared" is indeed quite vague, so I was
-> > > > > expecting some wider work here.
-> > > > > 
-> > > > > 
-> > > > > > things, with some blocks having hardware provisions for that, while
-> > > > > > others may have totally none and rely on external mechanisms (e.g.
-> > > > > > a shared memory buffer) to indicate whether an external entity
-> > > > > > manages power to them.
-> > > > > 
-> > > > > We have properties for that too. Qualcomm SoCs need once per year for
-> > > > > such shared properties. BAM has two or three. IPA has two. There are
-> > > > > probably even more blocks which I don't remember now.
-> > > > 
-> > > > So, the problem is "driver must not toggle GPIO states", because
-> > > > "the bus controller must not be muxed away from the endpoint".
-> > > > You can come up with a number of similar problems by swapping out
-> > > > the quoted text.
-> > > > 
-> > > > We can either describe what the driver must do (A), or what the
-> > > > reason for it is (B).
-> > > > 
-> > > > 
-> > > > If we go with A, we could have a property like:
-> > > > 
-> > > > &i2c1 {
-> > > > 	externally-handled-resources = <(EHR_PINCTRL_STATE | EHR_CLOCK_RATE)>
-> > > > };
-> > > > 
-> > > > which would be a generic list of things that the OS would have to
-> > > > tiptoe around, fitting Linux's framework split quite well
-> > > > 
-> > > > 
-> > > > 
-> > > > or if we go with B, we could add a property like:
-> > > > 
-> > > > &i2c1 {
-> > > > 	qcom,shared-controller;
-> > > > };
-> > > > 
-> > > > which would hide the implementation details into the driver
-> > > > 
-> > > > I could see both approaches having their place, but in this specific
-> > > > instance I think A would be more fitting, as the problem is quite
-> > > > simple.
-> > > 
-> > > 
-> > > The second is fine with me, maybe missing information about "whom" do
-> > > you share it with. Or maybe we get to the point that all this is
-> > > specific to SoC, thus implied by compatible and we do not need
-> > > downstream approach (another discussion in USB pushed by Qcom: I want
-> > > one compatible and 1000 properties).
-> > > 
-> > > I really wished Qualcomm start reworking their bindings before they are
-> > > being sent upstream to match standard DT guidelines, not downstream
-> > > approach. Somehow these hundreds reviews we give could result in new
-> > > patches doing things better, not just repeating the same issues.
-> > 
-> > This is BTW v5, with all the same concerns from v1 and still no answers
-> > in commit msg about these concerns. Nothing explained in commit msg
-> > which hardware needs it or why the same SoC have it once shared, once
-> > not (exclusive). Basically there is nothing here corresponding to any
-> > real product, so since five versions all this for me is just copy-paste
-> > from downstream approach.
-> 
-> So since this is a software contract and not a hardware
-> feature, this is not bound to any specific SoC or "firmware",
-> but rather to what runs on other cores (e.g. DSPs, MCUs spread
-> across the SoC or in a different software world, like TZ).
-> 
+Hey folks,
 
-I don't think this is a reasonable distinction, the DeviceTree must
-describe the interfaces/environment that the OS is to operate in.
-Claiming that certain properties of that world directly or indirectly
-comes from (static) "software choices" would make the whole concept of
-DeviceTree useless.
+This series adds support for syscon-reboot and syscon-poweroff to
+exynos8895, as well as support for the mongoose cluster PMU in DT hence
+a compatible for that was recently added.
 
-The fact that a serial engine is shared, or not, is a static property of
-the firmware for a given board, no different from "i2c1 being accessible
-by this OS or not" or the fact that i2c1 is actually implement I2C and
-not SPI (i.e. should this node be enabled in the DeviceTree passed to
-the OS or not).
+The new syscon nodes have been tested with reboot and poweroff commands
+respectively.
 
+Kind regards,
+Ivo
 
-That said, the commit message still doesn't clearly describe the system
-design or when this property should be set or not, which is what
-Krzysztof has been asking for multiple times.
+Ivaylo Ivanov (2):
+  arm64: dts: exynos8895: Add a PMU node for the second cluster
+  arm64: dts: exynos8895: Add syscon-poweroff and syscon-reboot nodes
 
-Let's circle back and help Mukesh rewrite the commit message such that
-it clearly documents the problem being solved.
+ arch/arm64/boot/dts/exynos/exynos8895.dtsi | 27 +++++++++++++++++++++-
+ 1 file changed, 26 insertions(+), 1 deletion(-)
 
-> Specifying the specific intended use would be helpful though,
-> indeed.
-> 
-> Let's see if we can somehow make this saner.
-> 
-> 
-> Mukesh, do we have any spare registers that we could use to
-> indicate that a given SE is shared? Preferably within the
-> SE's register space itself. The bootloader or another entity
-> (DSP or what have you) would then set that bit before Linux
-> runs and we could skip the bindings story altogether.
-> 
-> It would need to be reserved on all SoCs though (future and
-> past), to make sure the contract is always held up, but I
-> think finding a persistent bit that has never been used
-> shouldn't be impossible.
-> 
+-- 
+2.43.0
 
-Let's not invent a custom one-off "hardware description" passing
-interface.
-
-Regards,
-Bjorn
-
-> Konrad
 
