@@ -1,191 +1,192 @@
-Return-Path: <devicetree+bounces-129415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 868409EB85C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 18:34:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE4859EB89C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 18:48:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B10D164733
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:33:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 246A51888BEE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 17:48:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8260223ED70;
-	Tue, 10 Dec 2024 17:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EE2586343;
+	Tue, 10 Dec 2024 17:48:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T39kgcRf"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ZUgP8lLT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5522923ED49;
-	Tue, 10 Dec 2024 17:33:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EFE723ED5F
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 17:48:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733852032; cv=none; b=J6R9qkbKo16RFXRaXin+MT4ic4xVVHwvXGqyScCutxZTdeF9awA00ROeRh7t3HA0e70t/xWSEfKYitqVrMA3+Lr9Vnjk84g9xlGYayKWexrFDJ565d4wGzVwpZFCcKppIiOu3zPHONvh1GBO8C/eAjIXqlClFxK4Ew9lTtCzo4M=
+	t=1733852930; cv=none; b=HR7367rfIlWTW6Fknsu3YlC2TzoPYR9qE7kJn7VLGL/8iegMdwlPZqudW+8jsw1t20JLeA4bfT31hYyRXUDWfjIxqX2EJrdNSKkkZikvETseoktjYuJwMVxd6Osamq6YDcPihjGhHCtod7jbz4YpzOPEMHLsHM7Qw/3Vvl1hxPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733852032; c=relaxed/simple;
-	bh=ew+3ZtWBeaC/eFtZKLcAyztF4BPk9mI0PuL1WaDabJQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=PEmfnRn+AmkESXVGBGmPtWWQjnwEMV9PmEX5vVVKS1BFFwY0p29ARYIlnvJ/3QnqqmMHJsS8NDAfLI+Hn1LV73k8o1NIcbRAN/u6lU+9phr/mwSoknhJzXcpKWpkmqCcBVMPBW3ITAUK8zfsAgNBrdiGKPCk3LeOETEyqDtS9wg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T39kgcRf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8385C4CED6;
-	Tue, 10 Dec 2024 17:33:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733852031;
-	bh=ew+3ZtWBeaC/eFtZKLcAyztF4BPk9mI0PuL1WaDabJQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=T39kgcRf3GFXq4r2FXd0HCkM16w7yJpDM6dZFXf3pqdOuuqPtBo4O6XSg0ZYamK6c
-	 uBM6kqoqiwa3v9XO4Um8GxmNm4IJVDVdbjCj4c3zDc2nSa1xCQgZYXtVSkfH1LIYo8
-	 KvJina1zVOVksS411aPbRFITFJs7c7OAwDRViN+iBcgKak4I+TQ1zuWJToaL3IXb9C
-	 JF5A2p6NaxoDV3vgnC0+tF2+X1Ih17zdfVCYOLgTk67ZwCVCftsO3iXY3w3/dRvI8M
-	 7y1VBY9/afIPa/Mb7hjISoSDG/BftkD/w9XpVjT1XWbVCXgrXfxHP3ezku8c3xgA9X
-	 /C/Cc1cvfEqkw==
-Date: Tue, 10 Dec 2024 11:33:50 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: kw@linux.com, u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu,
-	arnd@arndb.de, bhelgaas@google.com, unicorn_wang@outlook.com,
-	conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
-	krzk+dt@kernel.org, lee@kernel.org, lpieralisi@kernel.org,
-	manivannan.sadhasivam@linaro.org, palmer@dabbelt.com,
-	paul.walmsley@sifive.com, pbrobinson@gmail.com, robh@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
-	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com,
-	fengchun.li@sophgo.com
-Subject: Re: [PATCH v2 1/5] dt-bindings: pci: Add Sophgo SG2042 PCIe host
-Message-ID: <20241210173350.GA3222084@bhelgaas>
+	s=arc-20240116; t=1733852930; c=relaxed/simple;
+	bh=zyY+LvfKIlfyAiCLJWS7+1JGxiO0FEIr6sylV/Xgzzg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Iv040XCXaRyJZ27zhmrXIYfQoBdqZ5Vt6HS1kvHhhuBOze0pDugB+TPVX2caQ22G+F05iwnRIP3keMHaZ/PoMgnQVsDQ7sdkidGzuYhl7ct+EWN8L/aRiPhqu0p16BrSgrhMe4LTOgaeQiO6hekSBt/wBGGGh3rOWSNgZ9sErR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ZUgP8lLT; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a9a0ec0a94fso872368266b.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 09:48:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1733852926; x=1734457726; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AjuuFtemyP+DI+76rQdawmoZ3eTqeNEd2wfGxX97PdQ=;
+        b=ZUgP8lLTjqQF4c7R9UbXNhv+gGxw+XmhY1OVgImxaImNQFdjzfsRHtn2GFbO3USUsQ
+         xt91ukH7clj5Pm589LiT/Zdk/jtxar9N6ziu9B+VKCp8hdchZShn6/qV1mbV5vY+JWF/
+         r374D9dUaU4AxVuKzmetg18fkg9ShCnLVtV8A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733852926; x=1734457726;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AjuuFtemyP+DI+76rQdawmoZ3eTqeNEd2wfGxX97PdQ=;
+        b=FmknErinYE5ZOyiRmsDNbAW2Tol1FpVEdYS4ycCYrss1jFyVmyJv12lA/hlhCyU8O1
+         ijLkvaqyJnALDnKyxv9iACQ629EcQUqqdhV49m19oJCpwoYCTiBXJgT9pliICdpNfGDt
+         2y+Nk7ZZA+CTHcDa1xjj+bm+l40bzRMv6JZPJ1lq90cxGSCcv5O3UyqHj6H9fY0US7yA
+         iaZNkwh62x4YIWcktjc57ygfnUaufdIZXKEy1p4/3b0fB36FwT6WNHyXhkWS+flc5qJc
+         9xkkJUFlY+b4fBdu1x0fPyF5oslinOHpUnEgwazlkItlGWmUr7rVyciGmufECiEIIe/i
+         PwNw==
+X-Forwarded-Encrypted: i=1; AJvYcCXxBrophPNHC3dKxAfa7MTqAdLDe2wGBeE7Eo0WY8qbbOE6DFPTckAGYiBT4HBKGD4tY65549p+hzdl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVR9Q8cWrUHN0erDZLrG1ivJzzaJHqS/gALPgRLA24c6clqZ8V
+	o3HbRnfgsS40aPocSfgcfMcPuS8GPqMRJfEDis3H40TyG9/okZounlwrKvK0kk2kgKLdpIl73VQ
+	zunXb
+X-Gm-Gg: ASbGncuCMLYIMke+4G2GZa5yQSNihJ1Hr+ZO5c323YuaUUAPt7dpDzmx/ZGPjP3C/70
+	1gnssDQ4GLMtOKn3EKy92KJHDzSwAl5QS97CGb+n2c40O+BbbnqyNVI7k3v32jWkQ7rcT5HTgQ4
+	9+7iPWnAMbAGcPk3scR4/dOANL52adege3xZWWSWkzSGa8SKJpl4/al8O5PaPHBt6nkPCZaIxnH
+	6wa3BBwu15pVxmfIhmFD3MQ38K8U3eXqdpc88AAAnQ0ED2IpctST6P3NabgJnLtOo1dwbxc+oxi
+	830UElHE7PBKlMnmxg==
+X-Google-Smtp-Source: AGHT+IHfXbu05/g6kBwjR2q7X5WaahppJ3U6oUGZVt0AbfkGWtSr2UuAahdQAP7x5M6McqFylJy6wQ==
+X-Received: by 2002:a17:906:cc45:b0:aa6:7f3d:4f9c with SMTP id a640c23a62f3a-aa67f3d6224mr1052084266b.38.1733852926074;
+        Tue, 10 Dec 2024 09:48:46 -0800 (PST)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com. [209.85.221.46])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6808c03a5sm398944866b.137.2024.12.10.09.48.45
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Dec 2024 09:48:45 -0800 (PST)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-385de9f789cso4334786f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 09:48:45 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX6OgU6P4Aj1BxDDGj2M+NNYc4JNDoZvNe1NJaZlhczZSJxbY0JNH5n0R/vMq9v8YD2vDpkCwiIS6sh@vger.kernel.org
+X-Received: by 2002:a2e:800a:0:b0:302:1c90:58d9 with SMTP id
+ 38308e7fff4ca-30240ced962mr314001fa.16.1733852563643; Tue, 10 Dec 2024
+ 09:42:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <05998df400a64734308e986069ca0b337618e464.1733726572.git.unicorn_wang@outlook.com>
+References: <20241204150326.1470749-1-quic_vdadhani@quicinc.com>
+ <20241204150326.1470749-2-quic_vdadhani@quicinc.com> <CAD=FV=XF+9wxZ5xNtO3Uy8QW9UY4tb+KR46jkondvBeQuVLsrA@mail.gmail.com>
+ <6736db20-127b-45c3-ac90-3e3e359c343b@quicinc.com>
+In-Reply-To: <6736db20-127b-45c3-ac90-3e3e359c343b@quicinc.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Tue, 10 Dec 2024 09:42:31 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=VReNQ3nw+wfZizL7JjxEX9z=GwDEJAFzheNkW7rSrB5Q@mail.gmail.com>
+X-Gm-Features: AZHOrDkKw2FmHmZQUJPUfL4ELobjfrjI9icl10Uq0FkzH_2PdMnaEbBKyuOx5E0
+Message-ID: <CAD=FV=VReNQ3nw+wfZizL7JjxEX9z=GwDEJAFzheNkW7rSrB5Q@mail.gmail.com>
+Subject: Re: [PATCH v1 1/7] dt-bindings: i2c: qcom,i2c-geni: Document DT
+ properties for QUP firmware loading
+To: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
+	broonie@kernel.or, andersson@kernel.org, konradybcio@kernel.org, 
+	johan+linaro@kernel.org, agross@kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-spi@vger.kernel.org, quic_anupkulk@quicinc.com, 
+	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 09, 2024 at 03:19:38PM +0800, Chen Wang wrote:
-> Add binding for Sophgo SG2042 PCIe host controller.
+Hi,
 
-> +  sophgo,pcie-port:
+On Mon, Dec 9, 2024 at 9:28=E2=80=AFPM Viken Dadhaniya
+<quic_vdadhani@quicinc.com> wrote:
+>
+> On 12/4/2024 10:55 PM, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Wed, Dec 4, 2024 at 7:03=E2=80=AFAM Viken Dadhaniya
+> > <quic_vdadhani@quicinc.com> wrote:
+> >>
+> >> Document the 'qcom,load-firmware' and 'qcom,xfer-mode' properties to
+> >> support SE(Serial Engine) firmware loading from the protocol driver an=
+d to
+> >> select the data transfer mode, either GPI DMA (Generic Packet Interfac=
+e)
+> >> or non-GPI mode (PIO/CPU DMA).
+> >>
+> >> I2C controller can operate in one of two modes based on the
+> >> 'qcom,xfer-mode' property, and the firmware is loaded accordingly.
+> >>
+> >> Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> >> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> >> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+> >> ---
+> >>   .../devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml   | 11 +++++++++=
+++
+> >>   1 file changed, 11 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.=
+yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+> >> index 9f66a3bb1f80..a26f34fce1bb 100644
+> >> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+> >> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+> >> @@ -66,6 +66,15 @@ properties:
+> >>     required-opps:
+> >>       maxItems: 1
+> >>
+> >> +  qcom,load-firmware:
+> >> +    type: boolean
+> >> +    description: Optional property to load SE (serial engine) Firmwar=
+e from protocol driver.
+> >> +
+> >> +  qcom,xfer-mode:
+> >> +    description: Value 1,2 and 3 represents FIFO, CPU DMA and GSI DMA=
+ mode respectively.
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    enum: [1, 2, 3]
+> >
+> > I'm a little confused about this. I'll admit I haven't fully analyzed
+> > your patch with actual code in it, but in the past "CPU DMA" mode and
+> > "FIFO" mode were compatible with each other and then it was up to the
+> > driver to decide which of the two modes made sense in any given
+> > situation. For instance, last I looked at the i2c driver it tried to
+> > use DMA for large transfers and FIFO for small transfers. The SPI
+> > driver also has some cases where it will use DMA mode and then
+> > fallback to FIFO mode.
+> >
+> > ...so what exactly is the point of differentiating between "FIFO" and
+> > "CPU DMA" mode here?
+>
+> Yes, correct, Will update in V2.
+> I plan to add 2 modes, GSI and non-GSI(PIO or DMA based on length).
+>
+> >
+> > Then when it comes to "GSI DMA" mode, my understanding is that the
+> > firmware for "GSI DMA" mode is always loaded by Trustzone because the
+> > whole point is that the GSI mode arbitrates between multiple clients.
+> > Presumably if the firmware already loaded the GSI firmware then the
+> > code would just detect that case. ...so there shouldn't need to be any
+> > reason to specify GSI mode here either, right?
+> >
+> > -Doug
+>
+> GSI firmware is loaded from TZ per QUP, but to use GSI mode,
+> we need to configure the SE to use GSI mode by writing into SE register
+> QUPV3_SE_GENI_DMA_MODE_EN and SE_GSI_EVENT_EN. This register is
+> used to configure data transfer mode for Serial Engine.
 
-This is just an index, isn't it?  I don't see why it should include
-"sophgo" unless it encodes something sophgo-specific.
+Can't you detect it's in GSI mode without any device tree property
+like the code does today?
 
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      SG2042 uses Cadence IP, every IP is composed of 2 cores(called link0
-
-Add space before "(".  More instances below.
-
-> +      & link1 as Cadence's term). "sophgo,pcie-port" is used to identify which
-> +      core/link the pcie host controller node corresponds to.
-
-s/pcie/PCIe/ for consistency in the text.  More instances below.
-
-> +      The Cadence IP has two modes of operation, selected by a strap pin.
-> +
-> +      In the single-link mode, the Cadence PCIe core instance associated
-> +      with Link0 is connected to all the lanes and the Cadence PCIe core
-> +      instance associated with Link1 is inactive.
-> +
-> +      In the dual-link mode, the Cadence PCIe core instance associated
-> +      with Link0 is connected to the lower half of the lanes and the
-> +      Cadence PCIe core instance associated with Link1 is connected to
-> +      the upper half of the lanes.
-
-I assume this means there are two separate Root Ports, one for Link0
-and a second for Link1?
-
-> +      SG2042 contains 2 Cadence IPs and configures the Cores as below:
-> +
-> +                     +-- Core(Link0) <---> pcie_rc0   +-----------------+
-> +                     |                                |                 |
-> +      Cadence IP 1 --+                                | cdns_pcie0_ctrl |
-> +                     |                                |                 |
-> +                     +-- Core(Link1) <---> disabled   +-----------------+
-> +
-> +                     +-- Core(Link0) <---> pcie_rc1   +-----------------+
-> +                     |                                |                 |
-> +      Cadence IP 2 --+                                | cdns_pcie1_ctrl |
-> +                     |                                |                 |
-> +                     +-- Core(Link1) <---> pcie_rc2   +-----------------+
-> +
-> +      pcie_rcX is pcie node ("sophgo,sg2042-pcie-host") defined in DTS.
-> +      cdns_pcie0_ctrl is syscon node ("sophgo,sg2042-pcie-ctrl") defined in DTS
-> +
-> +      cdns_pcieX_ctrl contains some registers shared by pcie_rcX, even two
-> +      RC(Link)s may share different bits of the same register. For example,
-> +      cdns_pcie1_ctrl contains registers shared by link0 & link1 for Cadence IP 2.
-
-An RC doesn't have a Link.  A Root Port does.
-
-> +      "sophgo,pcie-port" is defined to flag which core(link) the rc maps to, with
-> +      this we can know what registers(bits) we should use.
-> +
-> +  sophgo,syscon-pcie-ctrl:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the PCIe System Controller DT node. It's required to
-> +      access some MSI operation registers shared by PCIe RCs.
-
-I think this probably means "shared by PCIe Root Ports", not RCs.
-It's unlikely that this hardware has multiple Root Complexes.
-
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - vendor-id
-> +  - device-id
-> +  - sophgo,syscon-pcie-ctrl
-> +  - sophgo,pcie-port
-
-It looks like vendor-id and device-id apply to PCI devices, i.e.,
-things that will show up in lspci, I assume Root Ports in this case.
-Can we make this explicit in the DT, e.g., something like this?
-
-  pcie@62000000 {
-    compatible = "sophgo,sg2042-pcie-host";
-    port0: pci@0,0 {
-      vendor-id = <0x1f1c>;
-      device-id = <0x2042>;
-    };
-
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    pcie@62000000 {
-> +      compatible = "sophgo,sg2042-pcie-host";
-> +      device_type = "pci";
-> +      reg = <0x62000000  0x00800000>,
-> +            <0x48000000  0x00001000>;
-> +      reg-names = "reg", "cfg";
-> +      #address-cells = <3>;
-> +      #size-cells = <2>;
-> +      ranges = <0x81000000 0 0x00000000 0xde000000 0 0x00010000>,
-> +               <0x82000000 0 0xd0400000 0xd0400000 0 0x0d000000>;
-> +      bus-range = <0x80 0xbf>;
-> +      vendor-id = <0x1f1c>;
-> +      device-id = <0x2042>;
-> +      cdns,no-bar-match-nbits = <48>;
-> +      sophgo,pcie-port = <0>;
-> +      sophgo,syscon-pcie-ctrl = <&cdns_pcie1_ctrl>;
-> +      msi-parent = <&msi_pcie>;
-> +      msi_pcie: msi {
-> +        compatible = "sophgo,sg2042-pcie-msi";
-> +        msi-controller;
-> +        interrupt-parent = <&intc>;
-> +        interrupts = <123 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "msi";
-> +      };
-> +    };
-> -- 
-> 2.34.1
-> 
+-Doug
 
