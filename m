@@ -1,177 +1,176 @@
-Return-Path: <devicetree+bounces-129270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 843B69EB101
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:39:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 161F59EB108
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 13:40:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E8BD1881F33
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:39:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DCBC1886089
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 12:40:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ECBA1A3BAD;
-	Tue, 10 Dec 2024 12:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA21B1A725A;
+	Tue, 10 Dec 2024 12:40:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="niqjIXMu"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="R7ZkHnPB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pv50p00im-ztdg10011201.me.com (pv50p00im-ztdg10011201.me.com [17.58.6.39])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5CE1A0BE3
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 12:39:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.39
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D495D1A4F09
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 12:40:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733834376; cv=none; b=E7tGD9lsyT9z9uBQvE7DwSKzJNd3KbnGHHa1favHqNSp3zX/cO/xCLSekH8QaDTb1ZOaKf/AjxYE8SA6M/RSK5xKKf5wV/NEd8v287jYmGqD7bSzk7vpuLvH3KAGiemNKHsYl61Bqu2mwRq8PlKCEKoBIkUtVzPvJqIL2z6tQN4=
+	t=1733834430; cv=none; b=f+craY4Er9rdJYs2Ox8RIXOdrxtju0k9JorilMA49Uq+F3QGTakFc43NzJyzzpXnrkY9suKBYoHebp7Opq0sPskag9omReKwsh0BicdWKzBaXMdq/y/UulknA0Vu4gBS5fjvls9SCXI6vKP7qSoV3+z3CxjZoutY7+JDdhDDVq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733834376; c=relaxed/simple;
-	bh=IHSBE5NoPon8WtLpqsQUcg/k3bQc76aigQCxVnqAJW4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HxET3FTksPJh83rrB2shrZj3a+6fgQjoXq8ko6pGAiUGXeTCuy8xbTjRYK1J7eFjF9IYxIHDnVgynFqLr+D9k0bUG/J+w3ZhGR4xCxAbRr0k3abKdjPhd4YAJN4RI6SYMD1uxHNIQcBGliQ/q2uLov5D16auxhoHsrDX88PKCzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=niqjIXMu; arc=none smtp.client-ip=17.58.6.39
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1733834374;
-	bh=FY67r2LchSE3dywlGIQ6Oub8wkKLXxvVT38Tz1bV7aY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:
-	 x-icloud-hme;
-	b=niqjIXMu5m9q2TA38ZVCvcExh5pAMwIaTJio+v57v979MoHboFSW8YeQE+rS0sn9B
-	 GhURbPl3ExuXa/EN4jX41PQ9iXZOoeA5qDaFP8/ilYfMx7opLb7/5GQzShVLu8eBfj
-	 c3BaEgtNwRJ/qJsF7UpVkzfeVetCd+nPnAFM+9SgqDsDceXqCwHSKqpkjHBPKBm8fz
-	 t1j0VcGgZ/xhWtotmhBue6/b9VJ4gYbDHVQ6zUsgkF+sSsJN32DZgwLno7k9gxQJAx
-	 Su9XtWlX44XkMcXoys/E6c1IzYdjMORzz/PMpNXvtUsw0XNRTiGcvPDDPiD030S20B
-	 6b3/pp12YmLIw==
-Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-ztdg10011201.me.com (Postfix) with ESMTPSA id 70BB5680306;
-	Tue, 10 Dec 2024 12:39:30 +0000 (UTC)
-Message-ID: <14fe473e-5f56-4a61-899c-bbb79e2aed3b@icloud.com>
-Date: Tue, 10 Dec 2024 20:39:27 +0800
+	s=arc-20240116; t=1733834430; c=relaxed/simple;
+	bh=qoCJN0XDlVXX2rDBm9MupgcHVuexB/4QMq/Ob6ML5Mo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GG+gJQAUMW9I6/KRg2zw8Y0DIYRS58SeLetLvdqltD8VVIc4+ElZFKQ5Q3Uv4A7KJT19r6TIsYjLepyoGBXspKuS7LgoSVv0N+cfXf2uO4gVFjpYnpChrnEMK5vpjVKl2+e3T9NFZ4p8uRVbXHchomEP0F/zicnxihqjKW0Mbx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=R7ZkHnPB; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-30229d5b21cso14219761fa.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 04:40:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1733834427; x=1734439227; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uec8wtN5bXe/z6NMkpZDWqH1CVWwSVG3n4rX7hz3fG4=;
+        b=R7ZkHnPB2KaMhz+CIlrSzDtLCdfvUz9lnID31x/AxCKNd22Bzhb5ZF4ue3m21E3Vhq
+         wuYthkWDFMZggycfb3Y/ZarU9Y3esqtAwV2mAJ4oJr9pIm3bQGcK0IvY7PJZKgNXOfbG
+         Xfwpuvq27yR8Ryl3bkI+5EWEA+oVHckneTn1vTlvEEfMoqhYFA4mvEd59ejOmkIUwFJE
+         duzNdVic0KMFWfBK4w2U2ulw/CglfUBUlto5uBB+RGx7JimdeL2bFbHmJtLOSIm4pcf6
+         hyNstnVpnXAUjTwg050g6x+M5DKqCCk3oscXJPLn7L4DMVy+FVVG9zkY3Mejl1xO5+Zq
+         QIzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733834427; x=1734439227;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uec8wtN5bXe/z6NMkpZDWqH1CVWwSVG3n4rX7hz3fG4=;
+        b=meWBzgPKwpO6mV7A+P5J3pBwPk+XRXTs9PCe0YxrJtCrxWv/B1ZzT1TNJc1+qrgdZm
+         hklpsQSdtHGGTsQsRs7BJsOIU4a8eFs5wLK+xxwTXGaJFukdh1V0ti2vXWS7gJOclAq9
+         T8eq0/9YlH5ftxsbsuI3lggynNMmtbwD9bmdurxtCyxpGxGZsbUJX588E3qcatKR+9Os
+         CSrCXN4ekGTtXVw+NICIagPZ1ZxEGoWZMOh3sumN5LB0u3XVC5di4qvJvSScVQsWF/Yj
+         9HXIkGINLeOuleAMromZWAQapNN35jUR9m83YGcw8eKIAPq5kFI7lcvY8Ap/zRtRL5Yg
+         VkNg==
+X-Forwarded-Encrypted: i=1; AJvYcCU11o+/dYSfWnIG7G9NAziNbUN9c/wLVc8fN2B/06VUspZq5zVgPvoJucy7/L76vnIzyDmrPeBqX7Bl@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywj2XX1qrmWGmYozmcjzjlYGdLrdihUKG9cjBSKIyDl+A9YSn3f
+	Taed+lEm3K4UgbN6qUTekiTPeH6QS2Ub3a/8EHV+zxu9VIBQH3vqB0B2F0Ekzq5sj+GinMj8iGv
+	DxHAaYizhYLG9jJg6Bav4ALTKVeTkv1WjbVWsvg==
+X-Gm-Gg: ASbGncvynGCifV2kHNSpVgmVzn5yd7NuULIKTmSjC0Y/PQusEsyX1V1CJH/uua1gcK5
+	6IjZLYJDF8oX/sxn89C7rtCM75C+tXafPKz5dA6sHLQ5rEYYFKNJw+GeGvDGuXz86FeU=
+X-Google-Smtp-Source: AGHT+IFVqvL+/GHDQ61RDn9o0FC8nZtPyXuew4DHpnWom1eAfh3AOK8aU1e1lybYBJfU4Hxy8Svd7zdyP/lhOowaxnw=
+X-Received: by 2002:a05:6512:33ca:b0:53f:8c46:42bb with SMTP id
+ 2adb3069b0e04-540241078d3mr1419815e87.40.1733834426836; Tue, 10 Dec 2024
+ 04:40:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/10] of: Fix available buffer size calculating error in
- API of_device_uevent_modalias()
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>,
- Leif Lindholm <leif.lindholm@linaro.org>,
- Stephen Boyd <stephen.boyd@linaro.org>, Maxime Ripard <mripard@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Grant Likely
- <grant.likely@secretlab.ca>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
-References: <20241206-of_core_fix-v1-0-dc28ed56bec3@quicinc.com>
- <20241206-of_core_fix-v1-5-dc28ed56bec3@quicinc.com>
- <CAL_JsqL+CRmCQMzcF4-A-PRBrCsfK8nduJtOO=RrsDtCUUR7og@mail.gmail.com>
-Content-Language: en-US
-From: Zijun Hu <zijun_hu@icloud.com>
-In-Reply-To: <CAL_JsqL+CRmCQMzcF4-A-PRBrCsfK8nduJtOO=RrsDtCUUR7og@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: 0rbpkwe6xnr7Og7Egqq40JWTy71iyZxm
-X-Proofpoint-GUID: 0rbpkwe6xnr7Og7Egqq40JWTy71iyZxm
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2024-12-10_06,2024-12-10_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 bulkscore=0 phishscore=0
- suspectscore=0 malwarescore=0 mlxscore=0 spamscore=0 clxscore=1015
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2412100094
+References: <20241210-pci-pwrctrl-slot-v1-0-eae45e488040@linaro.org>
+In-Reply-To: <20241210-pci-pwrctrl-slot-v1-0-eae45e488040@linaro.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Tue, 10 Dec 2024 13:40:16 +0100
+Message-ID: <CAMRc=Me39w3oPWQkiGBqY3xSv6AphX6f2oBSEA6WHtmaSbKb3g@mail.gmail.com>
+Subject: Re: [PATCH 0/4] PCI/pwrctrl: Rework pwrctrl driver integration and
+ add driver for PCI slot
+To: manivannan.sadhasivam@linaro.org
+Cc: Bjorn Helgaas <bhelgaas@google.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Qiang Yu <quic_qianyu@quicinc.com>, Lukas Wunner <lukas@wunner.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2024/12/10 04:34, Rob Herring wrote:
-> On Thu, Dec 5, 2024 at 6:53 PM Zijun Hu <zijun_hu@icloud.com> wrote:
->>
->> From: Zijun Hu <quic_zijuhu@quicinc.com>
->>
->> of_device_uevent_modalias() saves MODALIAS value from offset
->> (@env->buflen - 1), so the available buffer size should be
->> (sizeof(@env->buf) - @env->buflen + 1), but it uses the wrong
->> size (sizeof(@env->buf) - @env->buflen).
->>
->> Fix by using right size (sizeof(@env->buf) - @env->buflen + 1).
-> 
-> Just writing what the diff says already is not that useful. The key
-> part you need to know is why we back up by 1 character to begin with.
-> 
+On Tue, Dec 10, 2024 at 10:55=E2=80=AFAM Manivannan Sadhasivam via B4 Relay
+<devnull+manivannan.sadhasivam.linaro.org@kernel.org> wrote:
+>
+> Hi,
+>
+> This series reworks the PCI pwrctrl integration (again) by moving the cre=
+ation
+> and removal of pwrctrl devices to pci_scan_device() and pci_destroy_dev()=
+ APIs.
+> This is based on the suggestion provided by Lukas Wunner [1][2]. With thi=
+s
+> change, it is now possible to create pwrctrl devices for PCI bridges as w=
+ell.
+> This is required to control the power state of the PCI slots in a system.=
+ Since
+> the PCI slots are not explicitly defined in devicetree, the agreement is =
+to
+> define the supplies for PCI slots in PCI bridge nodes itself [3].
+>
+> Based on this, a pwrctrl driver to control the supplies of PCI slots are =
+also
+> added in patch 4. With this driver, it is now possible to control the vol=
+tage
+> regulators powering the PCI slots defined in PCI bridge nodes as below:
+>
+> ```
+> pcie@0 {
+>         compatible "pciclass,0604"
+>         ...
+>
+>         vpcie12v-supply =3D <&vpcie12v_reg>;
+>         vpcie3v3-supply =3D <&vpcie3v3_reg>;
+>         vpcie3v3aux-supply =3D <&vpcie3v3aux_reg>;
+> };
+> ```
+>
+> To make use of this driver, the PCI bridge DT node should also have the
+> compatible "pciclass,0604". But adding this compatible triggers the follo=
+wing
+> checkpatch warning:
+>
+> WARNING: DT compatible string vendor "pciclass" appears un-documented --
+> check ./Documentation/devicetree/bindings/vendor-prefixes.yaml
+>
+> For fixing it, I added patch 3. But due to some reason, checkpatch is not
+> picking the 'pciclass' vendor prefix alone, and requires adding the full
+> compatible 'pciclass,0604' in the vendor-prefixes list. Since my perl ski=
+lls are
+> not great, I'm leaving it in the hands of Rob to fix the checkpatch scrip=
+t.
+>
+> [1] https://lore.kernel.org/linux-pci/Z0yLDBMAsh0yKWf2@wunner.de
+> [2] https://lore.kernel.org/linux-pci/Z0xAdQ2ozspEnV5g@wunner.de
+> [3] https://github.com/devicetree-org/dt-schema/issues/145
+>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+> Manivannan Sadhasivam (4):
+>       PCI/pwrctrl: Move creation of pwrctrl devices to pci_scan_device()
+>       PCI/pwrctrl: Move pci_pwrctrl_unregister() to pci_destroy_dev()
+>       dt-bindings: vendor-prefixes: Document the 'pciclass' prefix
+>       PCI/pwrctrl: Add pwrctrl driver for PCI Slots
+>
+>  .../devicetree/bindings/vendor-prefixes.yaml       |  2 +-
+>  drivers/pci/bus.c                                  | 43 ----------
+>  drivers/pci/probe.c                                | 34 ++++++++
+>  drivers/pci/pwrctrl/Kconfig                        | 11 +++
+>  drivers/pci/pwrctrl/Makefile                       |  3 +
+>  drivers/pci/pwrctrl/core.c                         |  2 +-
+>  drivers/pci/pwrctrl/slot.c                         | 93 ++++++++++++++++=
+++++++
+>  drivers/pci/remove.c                               |  2 +-
+>  8 files changed, 144 insertions(+), 46 deletions(-)
+> ---
+> base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+> change-id: 20241210-pci-pwrctrl-slot-02c0ec63172f
+>
+> Best regards,
+> --
+> Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>
+>
 
-will correct commit message in v2.
-
->>
->> Fixes: dd27dcda37f0 ("of/device: merge of_device_uevent")
->> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
->> ---
->>  drivers/of/device.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/of/device.c b/drivers/of/device.c
->> index edf3be1972658f6dc165f577da53b10c7eebc116..ee29c07c83b9e6abd9b1c7747dd341026bc79eb0 100644
->> --- a/drivers/of/device.c
->> +++ b/drivers/of/device.c
->> @@ -266,10 +266,10 @@ int of_device_uevent_modalias(const struct device *dev, struct kobj_uevent_env *
->>                 return -ENOMEM;
->>
->>         sl = of_modalias(dev->of_node, &env->buf[env->buflen-1],
-> 
-> This could use a comment why we back up by 1. Better to put it in a
-> variable than add/subtract 1 everywhere:
-> 
-> /* After add_uevent_event(), buflen is at character after the nul char
-> which needs to be overwritten */
-> buflen = env->buflen - 1;
-> 
-> And then use 'buflen' throughout.
-> 
-
-good proposal. may use it for v2 after discussion done.
-
->> -                        sizeof(env->buf) - env->buflen);
->> +                        sizeof(env->buf) - env->buflen + 1);
->>         if (sl < 0)
->>                 return sl;
->> -       if (sl >= (sizeof(env->buf) - env->buflen))
->> +       if (sl >= (sizeof(env->buf) - env->buflen + 1))
->>                 return -ENOMEM;
-> 
-> There's another potential problem. If we return before here, we end up
-> with "OF_MODALIAS=\0" or "OF_MODALIAS=some-non-nul-terminated-str".
-> Maybe that doesn't matter? I haven't looked at the caller.
-> 
-
-that does not matter since current logic follows below 2 rules
-
-1) all strings in @env->buf always terminated with '\0'.
-2) both env->buflen and env->envp_idx are not updated once @env->buf
-does not enough spaces then failed.
-
-current logic has no difference with normal add_uevent_var() usage.
-
-> I think a better solution to all this would be making add_uevent_var
-> work to construct the full value. We could add "%pOFm" format that
-> calls of_mod_alias(). Then this function becomes just:
-> 
-of_modalias() ?
-
-agree with you.
-for good practice, users should only use uevent APIs and should not
-depend on  uevent's internal implementation.
-
-> return add_uevent_var(env, "MODALIAS=%pOFm");
-> 
-> And of_device_modalias() can be:
-> 
-> sl = snprintf(str, len, "%pOFm\n", dev->of_node);
-> if (sl >= len)
->   return -ENOMEM;
-> return sl;
-> 
-
-looks good.
-
-of_request_module() provides another solution.
-
-> Rob
-
+Tested-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
