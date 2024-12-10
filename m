@@ -1,195 +1,129 @@
-Return-Path: <devicetree+bounces-129460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F39D49EBB55
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:59:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30D139EBB60
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 22:00:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF2A81881183
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 20:59:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24A941678A1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 20:59:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AC8122B8A3;
-	Tue, 10 Dec 2024 20:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 943BD22CBE1;
+	Tue, 10 Dec 2024 20:59:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fZbM39lr"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="glNcMj6U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5C9822687F;
-	Tue, 10 Dec 2024 20:59:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D55A222B5A2;
+	Tue, 10 Dec 2024 20:59:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733864352; cv=none; b=FC70E4xtlALQHKhUWalbJ9uPkZHuiufBHOml6KFDl0/ttQbNx0aw20O8pMZO4/xh10hASX4QgxAAIT7fWWbA/kO6dVMLRfFCLTMCv1r82laUGXb9MC8JbxBz4uYPHgf9zmBzMPHJx4X9obWzjv5uzKqzZP8D81vHPzsdV1F18Yk=
+	t=1733864393; cv=none; b=pERN34jMbTotkPiQuAlcSgRK1J6BMmFih3g4wWWQT9Um+P7EE/XOaPfSZyy8Xg404pvR7HLV+v3f4qlSogh5SUXdZp/pFDe8RhmaqPbsomK6xbnKb5C1aOn7uXUkJbK6fX5uANMSYvTkyoICAvtf3L4oEUnOLII7rVMIaAP5DtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733864352; c=relaxed/simple;
-	bh=8ay72ah4zoiprvTWL2Yp+qkOORhqO1uhwF6m23dIdoA=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=enDY/M8q5alkr3isWLiYKutEUJpucTUBVAHFsQRd77pWswZNlkUk1ecRjG9TJF7/HmX76nV0Sck6i5jMX+6B6qmnFFL4GL1KJ6SuJ8jPxEMEtl7qPgAeiQBW/KX6D4Z3MJWVL8KRmaa4+tkCcPGM3bmqb6ZO7ngf7Xg4+4HMTn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fZbM39lr; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-434a742481aso53485045e9.3;
-        Tue, 10 Dec 2024 12:59:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733864349; x=1734469149; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=aZoRyVnubsCTXnGDN0W6JhwZ/Q5YmmQyUD3hy10ebHg=;
-        b=fZbM39lr9XFHcKMyCnBpdVjroQGIVyMU7ry7DijQ/jvDmlwDC8PuvGAX8B358V4dsW
-         1iZTviK1FAChTYs6IBD0DLKFDMiNP0K1LulSKqiIzybcFebpm+aP2e409iCBQzpok1Vs
-         Ty/H/MOOOkuzLUuzBbdYLzK/FKDKxzM/qUy5k/zJOz2ps7+FRRkVgv3LSIt84xvgv7rc
-         QzUK+e7JIK80OlJnk1E4vEZCKqKzryJ2DVjxgPIow+t7Rx9pspZEJIsoAdiOPErfS9+s
-         6Ji5afM6158ppi8Ig56H19hH9t7oG86ARgPgwOioeTi3vr+Yfs6oXOZNYIR+FSbvZ9G7
-         Ey7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733864349; x=1734469149;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aZoRyVnubsCTXnGDN0W6JhwZ/Q5YmmQyUD3hy10ebHg=;
-        b=ruRb9ZsM7vEgkX6rPIfT+EbU4m7+WUKw522gi6+WvAPm/wlqLVd9Qyo+5JhVTuU9+a
-         kk75G8OE+Rkrzum9/dSUwnuIKeeEnDm6ty4+SU6grkduWoWycq+qyaH1G6ita83zUwll
-         txTwf1tbFdvpYUf3vKbO6rmr//ez38h8RbaN1aeEhpaPV2rwqlonIt8uOe10MVi/NsCX
-         MBy12qsysKutV+f8Rn/1ODPX9Z4wgd72bGBsXRfg/nBf3PB086sp7ae1VkXFlRAhduk1
-         Sb8m2yvZApNghXwQ/f/BXCgXoobnBN/++MktsqxioXrPKkNI62sMVGKXFjUvYV0ZXJLk
-         FeFg==
-X-Forwarded-Encrypted: i=1; AJvYcCUg9MzNVR5muITXHrVt82AwOUHjqWSrDJ41EqzsHD5iW8vm7PoF1YB4HlGOcG5xHt8SDYuFoSzZaQUS@vger.kernel.org, AJvYcCUgXJwibc/XJNF0j7APD/kpRGcPNCps6H5EgYZHYYFsMappOdoOSlsoxzYHDfMoBSvvir+p0dNziQ80XgQn@vger.kernel.org, AJvYcCVJ5WuQ1OY9lvmmPFi4ZRHQVtlnYPVXOW2VmE2qeLIh5+EbN3b9i+EBgna1SoRK4EPPQ+wkGIs4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwM7dezV8sI/rttOTihqcZhHYNmLPFGWETZXDq7YOs8G1NxJQ/H
-	r3XmEzLxNwQyGHulOyTNQEe2ANcQU41PLaif6gFRJydbBLxjjXTt
-X-Gm-Gg: ASbGncso1voA5/Hh9wrfsUXFLhrPLn27DQzl0yyFfZTmIup20Is4WtrCuUAKx+F8anu
-	uKyuhJ3vvnk2bU/wzdq+Uf5+TrQQ9gfL75k5eliJ7yQYv4brlNzBKxbKUtNefC84NEJskcv1Z8a
-	bmk2cSzFfOYS6zAgttk6OeDAdFdtgol6bmRynKjfQ0X4Sp9WfdrvVIHakMjRktzMgAX/HJzFmAo
-	UTEuKl/OMEgUO6JtYjHLo2mavVVQqcxHmzg1aYXfLkD2+HaGdm6HcP8kQStM4yZvLtTDNqdc4Zz
-	Vao6BmZ2rQ==
-X-Google-Smtp-Source: AGHT+IE2p4zS0d4ssJx5pitNO8yM+2jWAE85KmDwhz76rWPYidu8fzQPEOifjDJac/byApIZwC84jg==
-X-Received: by 2002:a05:6000:1843:b0:386:3b93:6cc6 with SMTP id ffacd0b85a97d-3864ce54e5fmr442280f8f.15.1733864348810;
-        Tue, 10 Dec 2024 12:59:08 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434f5774454sm94941465e9.13.2024.12.10.12.59.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 12:59:07 -0800 (PST)
-Message-ID: <6758ab9b.7b0a0220.3347af.914a@mx.google.com>
-X-Google-Original-Message-ID: <Z1irmE4BWBl1jIz7@Ansuel-XPS.>
-Date: Tue, 10 Dec 2024 21:59:04 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH v11 3/9] dt-bindings: net: dsa: Document support
- for Airoha AN8855 DSA Switch
-References: <20241209134459.27110-1-ansuelsmth@gmail.com>
- <20241209134459.27110-4-ansuelsmth@gmail.com>
- <20241210204855.7pgvh74irualyxbn@skbuf>
+	s=arc-20240116; t=1733864393; c=relaxed/simple;
+	bh=EoUmufUTsV1oFLTehCr54a1tAbPnahD3EjcB8ZDVLXQ=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=CE9jHp2yUyw1DIbXK2rOt8+uudZ0Jqo3lYJG0O5Sl2ifd/+PhJ2Kg05K83kMH5wAz4jcUWc5fKtnbHmr7WfTABkFLV/gtISugrLiZA9YUe4K+9zhKKqUDm5/D2jelXTSYM9uGmU6F4anMOavOysTH1HegkuAw1njIiX4QCcAK2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=glNcMj6U; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4BAKxWG52725724
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 10 Dec 2024 14:59:32 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1733864372;
+	bh=hspGsLToU+Uxnl8VmeGRxJGohMt1dZP4uSVNRC8jvdo=;
+	h=From:Subject:Date:To:CC;
+	b=glNcMj6USt0Uvzd5esm+Q9ttuqOakcFhgUHZVyLi7orJACym7wQYBYzpZxzOoQe3m
+	 cziUIH0wHuy8IhOs0tS37QOCy08MEL9f8D+zweBB+lT/7ynvC5ui+GYpHWDVXZHUQR
+	 JVDozdDlKuAzuAfVI6lCapnOlTV8AK2YH4hslOyM=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4BAKxWjB050702
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 10 Dec 2024 14:59:32 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 10
+ Dec 2024 14:59:31 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 10 Dec 2024 14:59:31 -0600
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BAKxVA9042176;
+	Tue, 10 Dec 2024 14:59:31 -0600
+From: Bryan Brattlof <bb@ti.com>
+Subject: [PATCH 0/2] arm64: dts: ti: remove extra GIC redistributor ranges
+Date: Tue, 10 Dec 2024 14:59:23 -0600
+Message-ID: <20241210-am62-gic-fixup-v1-0-758b4d5b4a0a@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241210204855.7pgvh74irualyxbn@skbuf>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKurWGcC/x2MQQqAMAzAvjJ6tuCqDvQr4kFn1R6cY0MRxL9bP
+ IaQPJA5CWfozAOJL8lyBAVbGPDbGFZGmZWBSqotlQ7H3RGu4nGR+4xY8cS2JXJEDWgUE6v4h/3
+ wvh8qbRX9YAAAAA==
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Bin Liu <b-liu@ti.com>,
+        Bryan Brattlof
+	<bb@ti.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=730; i=bb@ti.com;
+ h=from:subject:message-id; bh=EoUmufUTsV1oFLTehCr54a1tAbPnahD3EjcB8ZDVLXQ=;
+ b=owNCWmg5MUFZJlNZcz+9lQAAZP///nb75uU+/Q//Ddttc4d70/3/c/2tyfvffZrP//b5tv+wA
+ RsbRD1PUAAANAaANDQMmjIaNAADIA0DQYI0AAYg0MQaA0MQD1HqaA09Qfqm2qHQGgMRoAxGgBia
+ DQyMIBptEyABoAaNGmhk0HqGh6QA3pQ0BtTQaAZDQA0DoMjyRpkGgaDIxAyaaBoGmmQGCADCAA9
+ QBoAGhpoMmgyYRoaMgA2o9INGgsXrg1YO7Bjr7vVgEJghigexkbKgFAmmiOD5Qo+KFGukUXpICU
+ tItYCiKhXdiHm97xX2hRuY2r0ZOigSnCtMiHwmDgPVGZudyndKd/mS9ItKa0E7A3rCqcRo+jsG8
+ SpCuK/9SxjyGbN2aReuZjxPQxE879It5RbVssR3ZNQIOLw3EqItHvjRqLL3JlwnP4RBHBw418uP
+ 9gAc7Nw6TKzAWMK7ACw220Ky+NOdb7xL6GNqnnuZeEmFE0ngMGxYXtG4dxjP1fA1WEbyMAbAaE1
+ u+AY8hZn5+zRY1FX2TBwbiUZO2IZOyTF/Ddhy3hBJ47yX8Y020faB61kBFlRgapTZzP0PzezQkK
+ 9PPjZqiLv1CrIRCFIwCGxKfYPnF+u7Nrm4hPQpDdkr7ysDjwNImH6RYaCZBnOcmovk2rIiDw7bO
+ CQj8gg/xdyRThQkHM/vZUA=
+X-Developer-Key: i=bb@ti.com; a=openpgp;
+ fpr=D3D177E40A38DF4D1853FEEF41B90D5D71D56CE0
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Dec 10, 2024 at 10:48:55PM +0200, Vladimir Oltean wrote:
-> On Mon, Dec 09, 2024 at 02:44:20PM +0100, Christian Marangi wrote:
-> > Document support for Airoha AN8855 5-port Gigabit Switch.
-> > 
-> > It does expose the 5 Internal PHYs on the MDIO bus and each port
-> > can access the Switch register space by configurting the PHY page.
-> 
-> typo: configuring
-> Also below.
-> 
-> > 
-> > Each internal PHY might require calibration with the fused EFUSE on
-> > the switch exposed by the Airoha AN8855 SoC NVMEM.
-> 
-> This paragraph should be irrelevant to the switch binding.
-> 
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  .../net/dsa/airoha,an8855-switch.yaml         | 105 ++++++++++++++++++
-> >  MAINTAINERS                                   |   1 +
-> >  2 files changed, 106 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml b/Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
-> > new file mode 100644
-> > index 000000000000..63bcbebd6a29
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/dsa/airoha,an8855-switch.yaml
-> > @@ -0,0 +1,105 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/dsa/airoha,an8855-switch.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Airoha AN8855 Gigabit Switch
-> > +
-> > +maintainers:
-> > +  - Christian Marangi <ansuelsmth@gmail.com>
-> > +
-> > +description: >
-> > +  Airoha AN8855 is a 5-port Gigabit Switch.
-> > +
-> > +  It does expose the 5 Internal PHYs on the MDIO bus and each port
-> > +  can access the Switch register space by configurting the PHY page.
-> > +
-> > +  Each internal PHY might require calibration with the fused EFUSE on
-> > +  the switch exposed by the Airoha AN8855 SoC NVMEM.
-> > +
-> > +$ref: dsa.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: airoha,an8855-switch
-> > +
-> > +  reset-gpios:
-> > +    description:
-> > +      GPIO to be used to reset the whole device
-> > +    maxItems: 1
-> 
-> Since this affects the whole device, the SoC node (handled by the
-> MFD driver) should handle it. Otherwise you expose the code to weird
-> race conditions where one child MFD device resets the whole chip after
-> the other MFD children have probed, and this undoes their settings.
->
+Hello Everyone!
 
-OK.
+While debugging an unrelated issue Bin noticed we've accidentally 
+defined the redistributor range for the GIC-500 two times on the AM62x 
+and AM62Ax. 
 
-> > +
-> > +  airoha,ext-surge:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description:
-> > +      Calibrate the internal PHY with the calibration values stored in EFUSE
-> > +      for the r50Ohm values.
-> 
-> Doesn't seem that this pertains to the switch.
+This simple series removes the extra copy :)
 
-Do you think this should be placed in each PHY node? I wanted to prevent
-having to define a schema also for PHY if possible given how integrated
-these are. (originally it was defined in DT node to follow how it was
-done in Airoha SDK)
+Happy Hacking
+~Bryan
 
+Signed-off-by: Bryan Brattlof <bb@ti.com>
+---
+Bryan Brattlof (2):
+      arm64: dts: ti: k3-am62: remove duplicate GICR reg
+      arm64: dts: ti: k3-am62a: remove duplicate GICR reg
+
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi  | 1 -
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 1 -
+ 2 files changed, 2 deletions(-)
+---
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+change-id: 20241206-am62-gic-fixup-3ebe19226225
+
+Best regards,
 -- 
-	Ansuel
+Bryan Brattlof <bb@ti.com>
+
 
