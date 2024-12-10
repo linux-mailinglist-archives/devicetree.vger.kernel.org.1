@@ -1,240 +1,171 @@
-Return-Path: <devicetree+bounces-129198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29D209EAE9B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:51:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E36E39EAEA7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 11:52:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A740287C45
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:51:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D389288C6E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:52:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 505EA22E9F3;
-	Tue, 10 Dec 2024 10:46:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 228FD2153FC;
+	Tue, 10 Dec 2024 10:48:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2pJDdQ8e"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WtE9uQW+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D389122652F
-	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:46:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 316D92080EF
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 10:48:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733827616; cv=none; b=jXo8jKKX7vlBSZ0KWN0RdkWiOEuSRoNJK+Az+Xpg9zSvCncpzRT5OXBUYPX2Eno/MuFSym9eFvV6seUdALA6qOebwmURpS7YB+XbbGg8GoZC3qCUcN4vK+PFnHHi5/KEX+w6YEU/osiioKDQatIDE71GXfxLrboTvCBVUxRP5Y4=
+	t=1733827701; cv=none; b=BjIiexI5C5T/RhZc+ayxTeJe1Jid3l47xjho47zKlq5QxYvmW7bTVgTLNP1m/hqUg66mA96xxVbkd+MFgcqg/11VsAqeLlf8EC9V4V9vJDzqIjiTizNnAgaDJOPR/v6g1h+5by04dD6g4dSWpJoMMSFOjRrxxCPYKE7TU1VIWNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733827616; c=relaxed/simple;
-	bh=0DaB6GUhAdZIbGZ7qGgEv5Jwt3U+pqBjdF0vztCbme8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZAP7uM7X8jADhligynIjyTLH7PWngJrjH+Rlhfw0CqpVMvpxIPedME3eTBizF2oo/d0XR7j27qa37Q27yIuZIYv5TIdBSUo7T4DED3TYqC+hxMZlEdDISFTL7ixnpp44pHfVdfMDOkJA8TivQVONlH2RJLgarKEDK6mHxFIflaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2pJDdQ8e; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3863494591bso1483386f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 02:46:53 -0800 (PST)
+	s=arc-20240116; t=1733827701; c=relaxed/simple;
+	bh=yg6mqnRnjya98cIEcHfmAv/X4rPVtV86GGq0D+perBc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G3RQ7Uf7pW4Hz88UOSmD1RcZDGYotHO2huxI76d/M/CiQiNV3bCSJ3HJCftQ0AkImM9G4ZgN5cc12Xq+4AMjS1Av4rNxhgURP18ognMa8a2uvxh6I4TbNjv41R3RwJO7InDdiuRClhh74UWVU3CLqic2l6sZXZdM6Us8Q88NGQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WtE9uQW+; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5401c52000fso2048528e87.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 02:48:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733827612; x=1734432412; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wk9n1VymhG4ZV35K+M94OsGqPvBpEPYOxdxmDZ1OOhg=;
-        b=2pJDdQ8eIOTDmxXZ+mhaWVPYjuxVUZgYdHQiYJ5CYFsW45ud6hQ+bdUHNq6I01LyBn
-         4skFKJx74QqPk/olI+GlglaO+uqxucpSnicAT8TRWlYt2NTRSPXGAX3y/hgxKuMtl1jn
-         l7wdh/dfvZD7563ttR2uQc79YsI6PEjbGUp1dpBxOzUr/TwMi5hayFmEcA8ltPSY9apR
-         Gxaum+0woegNmYjqFB3w0Hc4S+Wcp3SHPVb+bCio2bK7c0IDBIBvUgM3dgW8gOF9S/mT
-         Z/DHBoaZa25Tn2+mtC3F2y64NMoMZ0fRwz9VYS9f/eK5mLAi8wAkA/CIaWeTDwi5gkNa
-         lY7g==
+        d=linaro.org; s=google; t=1733827697; x=1734432497; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JTm9JpbxLTN9ernGYfcdV8cr+yCRX12AUqwg0JNmPOg=;
+        b=WtE9uQW+M+JpIweDKNPjpbCer3lOURkVHd8RBAo9RlcT8rQNPnmK1u1zsiqXDsy+E9
+         PgRJNNQwDbyH0tk9wjDyNPANzuKv5JBdL0QlGs6SLk+s9VuMHqfHr45BH530SLwEODEj
+         ayCgxMJu08BxsuM7H5FCC9wAQLBI6g9jmwiur0aNZ6Eb2Xys70sDqtDr+QPt8EdjNZ5U
+         HIFP78Y1J7eD8wOcuJ5mvAL1PWp327D5g//NB8Du78503/eD0Jnz1hb2KzUsJGFrkaoS
+         Z9aE6eTTyUFRhszsMoL1hVDxPy0fl4wUsMwRaXExtb/W4m4mgX42ReEDjQqsLIIwBcTz
+         dXiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733827612; x=1734432412;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wk9n1VymhG4ZV35K+M94OsGqPvBpEPYOxdxmDZ1OOhg=;
-        b=QlNdEjgII2cdfogsngUKsA31m3XGfwLAKKz7XeRzs8LkvqlmUo/n4RIXP7aR5EuNEU
-         2XXrg3655xVgMHc8T7v7gtPr7+ZorvTsOI97uX0LG2fOHDXdpYSWdGgSsIMg9jYTbKx7
-         AIo7LOoWW9yTMu2fekVc7qTUyMxi+EchY1KEAWMvlOjbATzPSHVrIa1eWUS0XJsmcAcJ
-         ln+mJtkYLB3lYd6fCMgx+62aFARiK7BuSFl3IG4IIgZ+sAj9szQj5KGplQOTPyq2UP/6
-         iy3d2jNPvyN/pH5QdIQ9zpYlUw+8fEPFRDEnOuLAyqtO+97WX4/K0QlvNSrVmG7sXtI4
-         8zoA==
-X-Forwarded-Encrypted: i=1; AJvYcCUTtoZFH6qPcDx/IRwDJpuPK+wYKawDSWQSyjNrjIgy+DImJznhy/mvtpv6QSIDd4J0px491yCFd1GW@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIKP2o/jw6MpQfUQNnBvdf1LrzncobBe90r0ZEuWhGLMfvxlyf
-	p81je8VhH52kpdw+DdCcQb7RefniL6SuNyANF1nf2xYIdYGQ2pVy/C3kGvDOYOo=
-X-Gm-Gg: ASbGncvVDpUJv2KSYAgNADWYApEVKmpV2arfRDcfn8bXJsgfA23nJu9ha9i71R7Ba+F
-	j65bPxHuRxmzkSf8SNSipx3P0E4T394vDrwc3ysIgGorwYZfyaasny9PhxL3CodeHcsIOQcXsXJ
-	dCZWv9hmsPqMiKsCLdnNhZ4j4kKlSldd+Chzmam0YMcD06S4xtB+qlQpx2KbhvDY2ERLkmOVtPa
-	bM4vFzJTEMhR4CBRxwE+BTZ7OVlWpAhdBTCXQaY6fSkQGQ4ZvjenvEn9fAGm/5IJPmHK8VIfjjJ
-	rQ==
-X-Google-Smtp-Source: AGHT+IFRt/sdCCdt7tSEIFGCdb9yGqIAORx1RhwLt3cYiSuMkmIfx3a6UZbP57Cj+XHv11sGUmRDiQ==
-X-Received: by 2002:a5d:584f:0:b0:385:f1df:24ea with SMTP id ffacd0b85a97d-386453f69d9mr2896671f8f.40.1733827611877;
-        Tue, 10 Dec 2024 02:46:51 -0800 (PST)
-Received: from [127.0.1.1] (frhb82016ds.ikexpress.com. [185.246.87.17])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434f2d08564sm94543645e9.12.2024.12.10.02.46.50
+        d=1e100.net; s=20230601; t=1733827697; x=1734432497;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JTm9JpbxLTN9ernGYfcdV8cr+yCRX12AUqwg0JNmPOg=;
+        b=w0+gwRnwxX4MFmW8cMeqfOAGq51JcTkxmM0aJm2eBI+/CCumNPizkntiE1/G/HFkzW
+         VD49j8TJcZfVmHdyod0PEI21BXuZeaEI0lcJWGfn9bUkI7EoNf1AEkrAwkRS5rblr0ZH
+         uL6GIWbXifcIBYiO6GyVCHGBrPzlWOkdA8TxyDhpuQKww78LSIJvs6RQxf7B71gQFwUp
+         R+afASD2b4xaBuAV0VACpKAN17BPVI+NEyZDxVK8ImidjeiBvrh8hUxsNMCJkBTkNX04
+         mq8lYq7xc8kQk0dN1XIDfU1gAwKVw/p1szX3y8oatEj2u5kutNk/LOwoZGuvJEpF5tk6
+         M7hQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUQL1gBhfZq6E3d1UCDu6FeiyDTAFBqSSfwo5BEAd6c7pZY0ArZkrnEVe2mMcP8Js11DzPD7ijAVyVI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSFZXpQApqkHn/f39n6HcoUPda+A3+hRguJ6VcUkqnHqtLjbUK
+	kmTwupb0k/iwEkk3rrYioxMnbz/U1lWv70ps1C6qkLh80k79NQD0l9CjakzikfA=
+X-Gm-Gg: ASbGncvn7qMrJWbSOCXH3oWhfT3hUXX/xceeQTeseXXz9b9OMPBvihGGEJx6jNsfDAe
+	7nf8c4CP5CeBiXgZ+8BFpFSi8HSF1O+kl6EefPrKyl1y7N2JmhNWbdULDiUbxixz1748bdoSUt0
+	5QvzahN5ryjb+65LzrdYkZwM08NkGrSxE1/zgyi5LWqV/NEhjSni60LQsHGdD8pLVi0XM60KtFw
+	rZS6JGUF09giFFKwUun/cpd29KEJpYJSvu2JTweh3ycYJZ6cl3h2yZGFX9eqltPo5v+Y7HvDG9R
+	MwbPSaDTGXuda7IdNCTG244tOU8UEE75IA==
+X-Google-Smtp-Source: AGHT+IEYIG0BNjT2FuP4i1xockiULg5HGcfkNFZZ/rLtudxr0/2wNLHD2/ZqAkMAF7rMzr2LwBYpsQ==
+X-Received: by 2002:a05:6512:6cc:b0:540:2257:22ab with SMTP id 2adb3069b0e04-540240cd641mr1438417e87.27.1733827697306;
+        Tue, 10 Dec 2024 02:48:17 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53f22fa81a8sm995927e87.91.2024.12.10.02.48.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 02:46:51 -0800 (PST)
-From: Guillaume Stols <gstols@baylibre.com>
-Date: Tue, 10 Dec 2024 10:46:49 +0000
-Subject: [PATCH v2 9/9] iio: adc: ad7606: Add support for writing registers
- when using backend
+        Tue, 10 Dec 2024 02:48:16 -0800 (PST)
+Date: Tue, 10 Dec 2024 12:48:14 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Fange Zhang <quic_fangez@quicinc.com>, Li Liu <quic_lliu6@quicinc.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: Enable DisplayPort on QCS615 RIDE
+ platform
+Message-ID: <qwx6ieolctmsmlruku2bmxv2ufd3soa64ygsjjzt5b6ntweoan@tpv7w73utvmm>
+References: <20241210-add-displayport-support-to-qcs615-devicetree-v1-0-02f84a92c44b@quicinc.com>
+ <20241210-add-displayport-support-to-qcs615-devicetree-v1-2-02f84a92c44b@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241210-ad7606_add_iio_backend_software_mode-v2-9-6619c3e50d81@baylibre.com>
-References: <20241210-ad7606_add_iio_backend_software_mode-v2-0-6619c3e50d81@baylibre.com>
-In-Reply-To: <20241210-ad7606_add_iio_backend_software_mode-v2-0-6619c3e50d81@baylibre.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Michael Hennerich <michael.hennerich@analog.com>, 
- devicetree@vger.kernel.org, dlechner@baylibre.com, jstephan@baylibre.com, 
- aardelean@baylibre.com, adureghello@baylibre.com, 
- Guillaume Stols <gstols@baylibre.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733827603; l=3756;
- i=gstols@baylibre.com; s=20240417; h=from:subject:message-id;
- bh=0DaB6GUhAdZIbGZ7qGgEv5Jwt3U+pqBjdF0vztCbme8=;
- b=gEIvVwbhrXDeyaZABlBonAmGn84SE5hpsvXKnT+vORvDnqx0Z6zNTjnCRiYqsAota1JS8e1Bi
- q+HCIlVvtLMAW5JB1GpDt6qaVTT8+Tmrc9HLf0S4wuIiw06n/Qrp+ff
-X-Developer-Key: i=gstols@baylibre.com; a=ed25519;
- pk=XvMm5WHuV67sGYOJZqIYzXndbaJOlNd8Q6li6vnb4Cs=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241210-add-displayport-support-to-qcs615-devicetree-v1-2-02f84a92c44b@quicinc.com>
 
-Adds the logic for effectively enabling the software mode for the
-iio-backend, i.e enabling the software mode channel configuration and
-implementing the register writing functions.
+On Tue, Dec 10, 2024 at 05:11:06PM +0800, Xiangxu Yin wrote:
+> Enable the DisplayPort node, config related regulator, lane mapping,
+> hpd-gpios on the Qualcomm QCS615 RIDE platform.
+> 
+> Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> index 694719a09ac46bfa2fe34f1883c0970b9d0902be..0ac543577ec1850d6e4f19ff1d64252b00fffae3 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> @@ -44,6 +44,20 @@ dp_connector_out: endpoint {
+>  			};
+>  		};
+>  	};
 
-Signed-off-by: Guillaume Stols <gstols@baylibre.com>
----
- drivers/iio/adc/ad7606.h     | 15 ++++++++++++
- drivers/iio/adc/ad7606_par.c | 56 ++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 71 insertions(+)
+You mentioned v3 of the display support series. However v3 doesn't
+contain dp_connector_out label.
 
-diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-index ada8065fba4e..9da39c2d5d53 100644
---- a/drivers/iio/adc/ad7606.h
-+++ b/drivers/iio/adc/ad7606.h
-@@ -96,6 +96,21 @@
- 		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),  \
- 		0, 0, 16)
- 
-+#define AD7606_BI_SW_CHANNEL(num)			\
-+	AD760X_CHANNEL(num,				\
-+		/* mask separate */			\
-+		BIT(IIO_CHAN_INFO_SCALE),		\
-+		/* mask type */				\
-+		0,					\
-+		/* mask all */				\
-+		BIT(IIO_CHAN_INFO_SAMP_FREQ) |		\
-+		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
-+		/* mask separate available */		\
-+		BIT(IIO_CHAN_INFO_SCALE),		\
-+		/* mask all available */		\
-+		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
-+		16)
-+
- struct ad7606_state;
- 
- typedef int (*ad7606_scale_setup_cb_t)(struct iio_dev *indio_dev,
-diff --git a/drivers/iio/adc/ad7606_par.c b/drivers/iio/adc/ad7606_par.c
-index 64733b607aa8..c159cd4f7802 100644
---- a/drivers/iio/adc/ad7606_par.c
-+++ b/drivers/iio/adc/ad7606_par.c
-@@ -13,12 +13,14 @@
- #include <linux/module.h>
- #include <linux/platform_device.h>
- #include <linux/property.h>
-+#include <linux/pwm.h>
- #include <linux/types.h>
- 
- #include <linux/iio/backend.h>
- #include <linux/iio/iio.h>
- 
- #include "ad7606.h"
-+#include "ad7606_bi.h"
- 
- static const struct iio_chan_spec ad7606b_bi_channels[] = {
- 	AD7606_BI_CHANNEL(0),
-@@ -31,6 +33,17 @@ static const struct iio_chan_spec ad7606b_bi_channels[] = {
- 	AD7606_BI_CHANNEL(7),
- };
- 
-+static const struct iio_chan_spec ad7606b_bi_sw_channels[] = {
-+	AD7606_BI_SW_CHANNEL(0),
-+	AD7606_BI_SW_CHANNEL(1),
-+	AD7606_BI_SW_CHANNEL(2),
-+	AD7606_BI_SW_CHANNEL(3),
-+	AD7606_BI_SW_CHANNEL(4),
-+	AD7606_BI_SW_CHANNEL(5),
-+	AD7606_BI_SW_CHANNEL(6),
-+	AD7606_BI_SW_CHANNEL(7),
-+};
-+
- static int ad7606_bi_update_scan_mode(struct iio_dev *indio_dev, const unsigned long *scan_mask)
- {
- 	struct ad7606_state *st = iio_priv(indio_dev);
-@@ -86,9 +99,52 @@ static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_dev *indio
- 	return 0;
- }
- 
-+static int ad7606_bi_reg_read(struct iio_dev *indio_dev, unsigned int addr)
-+{
-+	struct ad7606_state *st = iio_priv(indio_dev);
-+	int val, ret;
-+	struct ad7606_platform_data *pdata =  st->dev->platform_data;
-+
-+	iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
-+		ret = pdata->bus_reg_read(st->back,
-+					addr,
-+					&val);
-+	}
-+	if (ret < 0)
-+		return ret;
-+
-+	return val;
-+}
-+
-+static int ad7606_bi_reg_write(struct iio_dev *indio_dev,
-+			       unsigned int addr,
-+			       unsigned int val)
-+{
-+	struct ad7606_state *st = iio_priv(indio_dev);
-+	struct ad7606_platform_data *pdata =  st->dev->platform_data;
-+	int ret;
-+
-+	iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
-+	ret = pdata->bus_reg_write(st->back,
-+					addr,
-+					val);
-+	}
-+	return ret;
-+}
-+
-+static int ad7606_bi_sw_mode_config(struct iio_dev *indio_dev)
-+{
-+	indio_dev->channels = ad7606b_bi_sw_channels;
-+
-+	return 0;
-+}
-+
- static const struct ad7606_bus_ops ad7606_bi_bops = {
- 	.iio_backend_config = ad7606_bi_setup_iio_backend,
- 	.update_scan_mode = ad7606_bi_update_scan_mode,
-+	.reg_read = ad7606_bi_reg_read,
-+	.reg_write = ad7606_bi_reg_write,
-+	.sw_mode_config = ad7606_bi_sw_mode_config,
- };
- 
- static int ad7606_par16_read_block(struct device *dev,
+> +
+> +	dp2-connector {
+> +		compatible = "dp-connector";
+> +		label = "DP2";
+> +		type = "mini";
+> +
+> +		hpd-gpios = <&ioexp 8 GPIO_ACTIVE_HIGH>;
+> +
+> +		port {
+> +			dp2_connector_in: endpoint {
+> +				remote-endpoint = <&mdss_dp0_out>;
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &apps_rsc {
+> @@ -291,6 +305,22 @@ &mdss_dsi0_phy {
+>  	status = "okay";
+>  };
+>  
+> +&mdss_dp0 {
+> +	status = "okay";
+> +};
+> +
+> +&mdss_dp0_out {
+> +	data-lanes = <3 2 0 1>;
+
+This hasn't been agreed upon yet. Please abstain from using the
+configuration bits that are still in discussion.
+
+> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000>;
+> +	remote-endpoint = <&dp2_connector_in>;
+> +};
+> +
+> +&mdss_dp_phy {
+> +	vdda-phy-supply = <&vreg_l11a>;
+> +	vdda-pll-supply = <&vreg_l5a>;
+> +	status = "okay";
+> +};
+> +
+>  &qupv3_id_0 {
+>  	status = "okay";
+>  };
+> 
+> -- 
+> 2.34.1
+> 
 
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
