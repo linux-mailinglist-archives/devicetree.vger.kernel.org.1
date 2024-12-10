@@ -1,98 +1,126 @@
-Return-Path: <devicetree+bounces-129060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD6B9EA938
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:03:48 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 650759EA93F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 08:06:52 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C7441887CAE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 07:03:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C52C282720
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 07:06:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FAB322617C;
-	Tue, 10 Dec 2024 07:03:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EBA922CBC0;
+	Tue, 10 Dec 2024 07:06:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="KIIB39B0"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="FzKEU1gD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC3F515C158;
-	Tue, 10 Dec 2024 07:03:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8774822CBF7
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 07:06:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733814226; cv=none; b=LOZn9sOAnYHeqk3a2NaGgLa55lRQC3tW1JbB+oeHjTQ9r0wXXQEEGr//SWQTY3ciu9Jm2/8PWRNjvMVTV+FwkFCcyJQiSVQ2fOFNYyog1hYmNWvn6N/uoBBehujzZbFpOdlYDOc4rCLk4RUU3oOQI/25tiBOFcB0Tp4FaJNlG+g=
+	t=1733814405; cv=none; b=dM1bTkqXyHqXTCUcaHqgxdZ/uC04kIhYSyK8JRs6LpWag3y2rorWwMAn0S8/K9OEZgcqdmvpBzc/XAGzWaWP9me9zyguERFoAyG1Dequ4P9lPfMrQ8P3MLyehLSq9krTNphAtEPCJa0kbw68ENV9p05fvGK6C5fpKZCGfcgYXOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733814226; c=relaxed/simple;
-	bh=IrLRFPqL5xC8SmHy9nqWA0h4pAbxAC0kTRd0qE+Zoe4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=JWUzjyh5glkNJCX4orFAisvt6DUOQoayV7yqncBQeypI5qZroO8bNbdAPBawj0fHT/6k5ITsY9UTK4wO2bVt+NEfgYQT+/5i8LVrHKSUiihHRprw0ujwzZ0yXU82BhvTzvRWTmijR+ImvdJD+a5u0HOW+fkcAixoMVR/GRAm+Bs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=KIIB39B0 reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=KsNxn/V9jsZH8S8jVaxxltqPa9bgN7LFDP+cLTpZFt4=; b=K
-	IIB39B0ilf71OAen+R8Krs3J1oK6mcpidO3h29l74gkoraTP2mn0Kt3N1bzyQY/B
-	JuZGISFW2i80zu9KoxReVM4NBzvftwk7lV7VFoDom0DpOVnI+zbbsdqvi4qdOl2I
-	gR9/XfU+0mRsyWM7D1WIX6vtLv/PF8cWXA/V4sclGc=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-102 (Coremail) ; Tue, 10 Dec 2024 15:01:50 +0800
- (CST)
-Date: Tue, 10 Dec 2024 15:01:50 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Daniel Stone" <daniel@fooishbar.org>
-Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org, 
-	s.hauer@pengutronix.de, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, derek.foreman@collabora.com, 
-	detlev.casanova@collabora.com, "Andy Yan" <andy.yan@rock-chips.com>
-Subject: Re:Re: [PATCH v5 08/18] drm/rockchip: vop2: Add check for 32 bpp
- format
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
- Copyright (c) 2002-2024 www.mailtech.cn 163com
-In-Reply-To: <CAPj87rO0MG2yE_NTndbxQ77rW-p6-ht5kx5vsaOZikQfVmwrgg@mail.gmail.com>
-References: <20241209122943.2781431-1-andyshrk@163.com>
- <20241209123215.2781721-1-andyshrk@163.com>
- <CAPj87rO0MG2yE_NTndbxQ77rW-p6-ht5kx5vsaOZikQfVmwrgg@mail.gmail.com>
-X-NTES-SC: AL_Qu2YAfSau0kq5imeY+kZnEobh+Y5UcK2s/ki2YFXN5k0tCTI0SYQW29KGUD2y86DDiKsoAirUQVL5MpFRpJHY44bkaXh1iG/7cPZF5Qxw25b
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1733814405; c=relaxed/simple;
+	bh=wdiXVAMvYCLwtbqG0YScPMJW+pp4rzF8UfrIVpIx+h8=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=ogZH8yfptFYYBggJ/HZBuPI6UJrFFbiNfkbtXKdNYi/FbvhBudQoGd39H7JcyOmOdzKYofvOVbpHgBo/4Glc5svGaKBt5R87jHGpfN41n2BsqKahIjnSkFFgeXQf+TOITBwaGlfirTcCUQlNKKsiVzjdptzcG6dNOtiWsF6p3H8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=FzKEU1gD; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <3576a3c5.6d72.193af5fcafb.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:ZigvCgD3X79f51dn73o7AA--.49817W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0gWxXmdX4aZ9kAACsg
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1733814401;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=YOGVrRwUxYBtjrnaFEq4fe751QG4XVw2WupUMsMaI2s=;
+	b=FzKEU1gDU+ZNnUfkVo5abiar+Z53XhQzDkOqWMXqbxg9DBsoIB447f+yTqGrGtEjxn4Qkf
+	hv9LiydJCd3mXaZ7EU6QcZwmCzjVz5uNqiG55lf6JNUBcaYohIWhU0TiK+RHRyI598BA/c
+	YaO8N9rmV5NTwk64NuwFoP8eMjErbqrdlPf/0wtNJ5BrmUjXddwzQaS/5rsCmDPd6s66T2
+	4wh/LjlQQ0KVisFwrefZ2xN7ItHw3piUBFJg+M9UJ0wSQ4hqLaAuMKzm2+2U431jYZxV6r
+	5X20gXNd35z48fh0fb1p/TIkFOcBtTLbHOegBfqt0prXUURGmw48pUGk3qXv2Q==
+Date: Tue, 10 Dec 2024 08:06:40 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, sebastian.reichel@collabora.com,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 03/12] arm64: dts: rockchip: fix property for pwm-fan
+ for Radxa ROCK 5C
+In-Reply-To: <CABjd4YyV1Pf5RZcwbvd0Ms8UA2kFzq2PuTzq=VVYC+EZtfNrog@mail.gmail.com>
+References: <20241209125131.4101-1-naoki@radxa.com>
+ <20241209125131.4101-4-naoki@radxa.com>
+ <ae031ff8c8c5d9e5c266c73026d4dfab@manjaro.org>
+ <CEFF3F7FDF50046C+6bccd571-3475-46b9-a7b9-e2e8cb94ed91@radxa.com>
+ <CABjd4YyV1Pf5RZcwbvd0Ms8UA2kFzq2PuTzq=VVYC+EZtfNrog@mail.gmail.com>
+Message-ID: <77af12634c45c5ae14c6da82aa616f5a@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-CkhpIERhbmllbCwKCkF0IDIwMjQtMTItMTAgMDE6MDY6MDUsICJEYW5pZWwgU3RvbmUiIDxkYW5p
-ZWxAZm9vaXNoYmFyLm9yZz4gd3JvdGU6Cj5IaSBBbmR5LAo+Cj5PbiBNb24sIDkgRGVjIDIwMjQg
-YXQgMTI6MzIsIEFuZHkgWWFuIDxhbmR5c2hya0AxNjMuY29tPiB3cm90ZToKPj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9yb2NrY2hpcF9kcm1fdm9wMi5jIGIvZHJpdmVy
-cy9ncHUvZHJtL3JvY2tjaGlwL3JvY2tjaGlwX2RybV92b3AyLmMKPj4gaW5kZXggYmQ4ZGI0NWVl
-YmE2Li4xZjEwMWEzYzM5NDIgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hp
-cC9yb2NrY2hpcF9kcm1fdm9wMi5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9y
-b2NrY2hpcF9kcm1fdm9wMi5jCj4+IEBAIC0xMjI0LDcgKzEyMjQsMTUgQEAgc3RhdGljIGludCB2
-b3AyX3BsYW5lX2F0b21pY19jaGVjayhzdHJ1Y3QgZHJtX3BsYW5lICpwbGFuZSwKPj4gICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICByZXR1cm4gLUVJTlZBTDsKPj4gICAgICAgICAgICAg
-ICAgICAgICAgICAgfQo+PiAgICAgICAgICAgICAgICAgfQo+PiArICAgICAgIH0KPj4KPj4gKyAg
-ICAgICBpZiAoZmItPmZvcm1hdC0+Zm9ybWF0ID09IERSTV9GT1JNQVRfWFJHQjIxMDEwMTAgfHwg
-ZmItPmZvcm1hdC0+Zm9ybWF0ID09IERSTV9GT1JNQVRfWEJHUjIxMDEwMTApIHsKPj4gKyAgICAg
-ICAgICAgICAgIGlmICh2b3AyLT5kYXRhLT5zb2NfaWQgPT0gMzU4OCkgewo+PiArICAgICAgICAg
-ICAgICAgICAgICAgICBpZiAoIXJvY2tjaGlwX2FmYmMocGxhbmUsIGZiLT5tb2RpZmllcikpIHsK
-Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkcm1fZXJyKHZvcDItPmRybSwgIlVu
-c3VwcG9ydGVkIGxpbmVhciAzMiBicHAgZm9yICVzXG4iLCB3aW4tPmRhdGEtPm5hbWUpOwo+PiAr
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOwo+PiArICAgICAg
-ICAgICAgICAgICAgICAgICB9Cj4+ICsgICAgICAgICAgICAgICB9Cj4KPlBsZWFzZSBkbyB0aGlz
-IGluIHRoZSBmb3JtYXRfbW9kX3N1cHBvcnRlZCgpIGhvb2ssIHNvIHVzZXJzcGFjZSBjYW4KPnNl
-ZSB0aGUgdHJ1ZSBzdXBwb3J0IG9mIGVhY2ggZm9ybWF0L21vZGlmaWVyIHBlciBwbGFuZS4gVGhp
-cyB3aWxsIHRoZW4KPmJlIGNoZWNrZWQgaW4gZHJtX2F0b21pY19wbGFuZV9jaGVjaygpIHNvIHlv
-dSBkb24ndCBuZWVkIHRvIG9wZW4tY29kZQo+aXQgaGVyZS4KClRoYW5rcywgd2lsbCBkbyBpbiBW
-Ni4KCj4KPkNoZWVycywKPkRhbmllbAo=
+Hello Alexey,
+
+On 2024-12-10 01:40, Alexey Charkov wrote:
+> On Tue, Dec 10, 2024 at 3:30 AM FUKAUMI Naoki <naoki@radxa.com> wrote:
+>> Thanks for your review!
+>> 
+>> On 12/10/24 01:32, Dragan Simic wrote:
+>> > Hello Fukaumi,
+>> >
+>> > On 2024-12-09 13:51, FUKAUMI Naoki wrote:
+>> >> fix pwm period to match with vendor kernel[1].
+>> >
+>> > Instead of simply referring to the downstream vendor kernel, in this
+>> > specific case the reasons for adjusting the fan PWM parameters should
+>> > be explained by referring to the actual fan setup you're using, the
+>> > observed fan RPM behavior, etc.
+>> 
+>> original commit message is:
+>> 
+>> | arm64: dts: rockchip: modify fan pwm period to 60us
+>> | Reduce pwm frequency to 16.6 KHz for a larger adjustable range of
+>> AO3416 mosfet.
+>> 
+>> I have no knowledge about this kind of things. Is quoting this message
+>> enough?
+> 
+> I think it would be better to expand a bit to make sure the commit
+> message explains the whole rationale without too much extra digging.
+> Something like this:
+> 
+> arm64: dts: rockchip: Use a longer PWM period for the fan on Radxa ROCK 
+> 5C
+> 
+> The fan on Radxa ROCK 5C is driven via an AO3416 MOSFET, which has a
+> total switch-on time of 0,6us and a total switch-off time of 6us [1],
+> meaning that the current PWM period of just 10us is too short for
+> fine-grained fan speed control. Increase the PWM period to 60us, so
+> that the switch-on and switch-off time of the MOSFET fall within a
+> more reasonable ~10% of the full period, thus making lower PWM duty
+> cycles meaningful.
+> 
+> [1] https://www.aosmd.com/pdfs/datasheet/AO3416.pdf
+
+Well written, thanks.  That's pretty much the same how I wanted
+to explain it, but you were faster. :)
+
+Additionally, it's quite strange that the AO3416 FET is used in
+that place.  Its large continuous current-carrying capability
+(over 5 A at 70 oC!) is an absolute overkill for driving a small
+fan, and its integrated ESD protection ends up basically useless
+in this case.  Radxa could've easily redirected a few pennies into
+something else by using a much less beefy FET.
 
