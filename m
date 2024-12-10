@@ -1,133 +1,111 @@
-Return-Path: <devicetree+bounces-129454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB0D9EBB22
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:52:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61EE79EBB33
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:55:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E51E18885DA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 20:52:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C38121889476
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 20:55:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0743E22B584;
-	Tue, 10 Dec 2024 20:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D8522B8D3;
+	Tue, 10 Dec 2024 20:54:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mZH9DQh2"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="X55KkPeF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B28723ED69;
-	Tue, 10 Dec 2024 20:51:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B2922B5BA;
+	Tue, 10 Dec 2024 20:54:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733863916; cv=none; b=gRugXfKtJypFSBnRFrUwElHr1TU1LJTF3gWbUKOSulYota9YQLt8ZqF/8vYj23uTiIN+DkecYFkIBBSYD3aZ28egnY2/RHgtdxIVPPvjb7rn5CAVOmbzxMIXdJ0+X0q2kylSmZf7bzR/UnL6RIkK9ZbgHusfiLNVy8MzZRJudpY=
+	t=1733864091; cv=none; b=S60HozQkGzroxRHNS3VdObd1fJ3tvbq63SCzi8DtJQP5YculTK+kjj27E2QwHm2QAEDMXNzGm1CbQwxrfGkLQungk4PmYjzOSJIRghAuDVP1desp/J8i0Cv4h14K2M8AsO+seIhH7Q857Q7HpQqMerxWRPuzu9p0JLCtN4MCq5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733863916; c=relaxed/simple;
-	bh=mRThUMpoJI0H65y7D/bNtmiOmzV709Z7Dn6YssAAgC4=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IZM7iPhV/L47/RoZ3mT+5tCtd39HzUubZkA5CuLrnGIzkt3OJVHY+591p+b9UrQP5WIc6WibcIE0+nEN7TMr5jTrDaVUKQRlal7qlLHaQ1hGdBCdo9E1YIeLJOwqDNUbxaZ9/j/OhPswHvDKFnTCKwzPIVKgyQrMNiO3k/hhqDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mZH9DQh2; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-434a2033562so53541615e9.1;
-        Tue, 10 Dec 2024 12:51:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733863914; x=1734468714; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=301wRSRs43OjUWzhsOWOTGwAS/3EIoBXGoWH5/9Rzns=;
-        b=mZH9DQh2StwV5P18WbEgyvb4J4iMSExsWOaV26NAI6fZekxjOZc9/r4FRfv8wi9aZZ
-         wEFwkL1dYuzMpR/xUEVuzXDlwTKZDMonjfnUvO+YBb6UrfGv/UCJzAN3Dr1LB3q0P/IM
-         ShKGIMlNM5AELbRRKzgdtMVrskM6cwZZLIGNaHUb0leRd4eFbNKZEE2ToDrYIq3xuGvw
-         5zfLx9lza946v+ms9Jkj4/JqLrQWegN/HgW+TuUOqKA7Jvasqe9S0lh0CxfekzY0DXYp
-         O1NCMgrEZlckTF+uttWzdrHkKu1KUZMLdUZyQX73cLnc0WLtzjOcIWyAq1m0R4GFLRw5
-         JYUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733863914; x=1734468714;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=301wRSRs43OjUWzhsOWOTGwAS/3EIoBXGoWH5/9Rzns=;
-        b=uJlx2X7lan42OnWsz5p4wHZvJjBPdRuuPF8HX1Jp1MdwItkm9C6nm8hcIvfpOP+N+Y
-         5f+19aMd1s71vjR4RBAa/lViIJiVPhY+jiDCAROLMTW9G3saSggszZSPkoC9jnUWGJu3
-         1QEuG7FqAAnsWtQZs8qpsCqBbfgDVf0UftC2fstKNsmoE0tanmTEdNOYNfpJgy9MW0xl
-         1poQjNJ41KCzvPBH1U3gr1bf7M+mygVUH17uAoacWB+fX241cSdi3zTLw/CvKubCiU3Y
-         lfmxQxapfPSc4G5ALLU1QdtGPPrbiuSbj9k/kU5KiL9m3wtsmwvPJOPDKMW9SEn8yYxr
-         Lmsg==
-X-Forwarded-Encrypted: i=1; AJvYcCUztqT5z+0WxYA7CrAdZH666AiDET02dVevjfZrKaHAym2VoIl1rP8eVHQrev4b4II1BGlTHXymnFyH@vger.kernel.org, AJvYcCVKLgtk6yguHLCJqsNaAcd9WR6NOPJcRrVIdYbV9+WKd2/H4dJlrOaTrwb98F0yBtS3X6JY9HjDcX+5feSN@vger.kernel.org, AJvYcCW5Tm7pzEJ2oJx0Zq3X4pH4upEfpMD7Z+nQYGo2XGrBMyDDZvxYLSZXcFXzrhEmk2NvgBw5wlnqTUUHmHW+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOQeY47fwlgTGIx1Dv1jFnpOI+a+RBex4pIZlCowGkqYf67Rhw
-	e1DoDuF1dDwNe036TMh/QlUqK6tEUqEd/i14MQpOTbcVziIGO4UF
-X-Gm-Gg: ASbGncvrulRSZRd86GZdAUku5evzTEP1AYZHID8ZDiBzA4b/EECkvWLXQlwgZXi6US+
-	xsRndMXzOyxyuDPLSLyVpNjYUJA7iJUjHxmo+2mV/96gMQHxNpfCAc7GeZCEiZiSmUuHvOM+8Gn
-	YDH+xGZ74rXpaA/cbNWygVhIMinz56ymtl8jkdZZ+na13Hld0wfy6vVMMuYTF9VGGDRR7Xof0a0
-	ql6qSIHTRkQ2D45jYqS0JENhmmoJuyROI5LCXZGht4ZWAHzzS7SdOZfmWmalrpK6wdHJxv0HSph
-	unnAMR7/Gw==
-X-Google-Smtp-Source: AGHT+IEtgELmozDZndyAbIw0+22SolVOahQ6RzPmvQx0tKDwUunyJxMT5/Exd2L84f60qzvt/DM14w==
-X-Received: by 2002:a05:600c:8718:b0:436:aaf:7eb9 with SMTP id 5b1f17b1804b1-4361c429eaamr1449815e9.20.1733863913580;
-        Tue, 10 Dec 2024 12:51:53 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434fe9bff74sm57024695e9.8.2024.12.10.12.51.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 12:51:52 -0800 (PST)
-Message-ID: <6758a9e8.050a0220.b60b3.184c@mx.google.com>
-X-Google-Original-Message-ID: <Z1ip5hA_x5WEHz6W@Ansuel-XPS.>
-Date: Tue, 10 Dec 2024 21:51:50 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Antoine Tenart <atenart@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, upstream@airoha.com,
-	Richard van Schagen <vschagen@icloud.com>
-Subject: Re: [PATCH v7 3/3] crypto: Add Inside Secure SafeXcel EIP-93 crypto
- engine support
-References: <20241112015920.22564-1-ansuelsmth@gmail.com>
- <20241112015920.22564-4-ansuelsmth@gmail.com>
- <Z1e0LHycNGcWqd2q@gondor.apana.org.au>
- <67582c1b.050a0220.83ef5.c8df@mx.google.com>
- <Z1guyCJy-Cpo7U11@gondor.apana.org.au>
- <6758312f.df0a0220.100594.1c3a@mx.google.com>
- <Z1hB2WftNhyGt9oj@gondor.apana.org.au>
+	s=arc-20240116; t=1733864091; c=relaxed/simple;
+	bh=NDN0SnBLoWNiGYnla0Xah/O39AF4IpvBlJqD83Budgg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=O9UhpKXRi/RO4MPfLqgwUTPtB6iBRAZT5MJ3LfCkcMFMtpiiBSVSLodSiXJl8ljeNs5sQpqOWzxxeo00CEuVICyJHlqVTyXGMu9yVfhSQwxmkdbAEsGlXWAO28WQH9K54HRY9jz9qhE1kHo4AW9KCFwlyUiqEUimQ+TTVU67yd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=X55KkPeF; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1733864087;
+	bh=NDN0SnBLoWNiGYnla0Xah/O39AF4IpvBlJqD83Budgg=;
+	h=From:Subject:Date:To:Cc:From;
+	b=X55KkPeFFbbC1PUtd8IqdC6yhu9RZlxMgJdIe5Gnb0ee9wLreXlu1HVHk6JqNxsAX
+	 OoFPQF7vhBVfG1TNLa15E3Z4YOaSdikSybexOAogUTaIpPphzgaLB0mrE0SbygcssL
+	 ZM++8Z9PXzFY7jf3qhS9Kc+hBrKRWlSOkMGIAw7AEQ8EA2U0AKdVJ7kp8BwzPwJ1lf
+	 PzeVxxTaRo2J5NZMJKQfaetDeHKPvJvEHI1sjD9jVh9pLMcHdrH7RewJYIwZLN3bfA
+	 Eq6bMJ/nRTzK2isBk+hUdaq1/VvCYmbK693akW0fngbtBUPQfUEUc/fPuqE9rbTRRl
+	 aFtXlQ/d9HIdw==
+Received: from [192.168.0.47] (unknown [IPv6:2804:14c:1a9:53ee::1001])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1976417E3802;
+	Tue, 10 Dec 2024 21:54:42 +0100 (CET)
+From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Subject: [PATCH v2 0/2] Enable audio output for Genio 700 EVK board
+Date: Tue, 10 Dec 2024 17:54:27 -0300
+Message-Id: <20241210-genio700-audio-output-v2-0-c50886ae0be2@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z1hB2WftNhyGt9oj@gondor.apana.org.au>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAIOqWGcC/3WNQQqDMBBFryKz7pQkKGpXvUdxEeOoA9aRJEqLe
+ PemQpddvgf//R0CeaYAt2wHTxsHljmBuWTgRjsPhNwlBqNMro3KcaCZpVQK7dqxoKxxWSP2ra1
+ 6Q63ttIK0XTz1/Dq7jybxyCGKf583m/7aX7H4U9w0KlRUF4UrK2dqujuZJtuKt1cnT2iO4/gAM
+ dKh6L4AAAA=
+X-Change-ID: 20241204-genio700-audio-output-fba8f2ebad10
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Trevor Wu <trevor.wu@mediatek.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>, 
+ Aary Patil <aary.patil@mediatek.com>, 
+ Suhrid Subramaniam <suhrid.subramaniam@mediatek.com>, 
+ parkeryang <Parker.Yang@mediatek.com>
+X-Mailer: b4 0.14.2
 
-On Tue, Dec 10, 2024 at 09:27:53PM +0800, Herbert Xu wrote:
-> On Tue, Dec 10, 2024 at 01:16:42PM +0100, Christian Marangi wrote:
-> >
-> > Oh! Ok, that is neat. Just to make sure everything is clear,
-> > to complete the request it's the same used for final, the
-> > ahash_request_complete(). I tought the -EINPROGRESS,
-> > ahash_request_complete() pattern was only for final.
-> 
-> Correct, the same calling convention applies whether you're doing
-> update or finup/final.  One difference is that after final/finup
-> you don't have to export the hash state because it's no longer
-> defined.
->
+This series enables audio output support for the Genio 700 EVK board.
+Patch 1 adds the missing #sound-dai-cells property in the MT6359 node as
+a prerequisite, and patch 2 describes the audio DT nodes to get audio
+output working on the two audio jacks, Earphone and Speaker, present on
+the board.
 
-I just sent v8 with the thing fixed. Hope everything is good now!
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+---
+Changes in v2:
+- Dropped merged/unnecessary patches (2, 3, 4)
+- Removed unnecessary mediatek,dai-link property
+- Link to v1: https://lore.kernel.org/r/20241205-genio700-audio-output-v1-0-0e955c78c29e@collabora.com
 
-As always I passed it with the test flag enabled + extra and fuzz set to
-10000.
+---
+Nícolas F. R. A. Prado (2):
+      arm64: dts: mt6359: Add #sound-dai-cells property
+      arm64: dts: mediatek: mt8390-genio-700-evk: Add sound output support
 
+ arch/arm64/boot/dts/mediatek/mt6359.dtsi           |  1 +
+ .../boot/dts/mediatek/mt8390-genio-700-evk.dts     | 48 ++++++++++++++++++++++
+ 2 files changed, 49 insertions(+)
+---
+base-commit: d1486dca38afd08ca279ae94eb3a397f10737824
+change-id: 20241204-genio700-audio-output-fba8f2ebad10
+
+Best regards,
 -- 
-	Ansuel
+Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
 
