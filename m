@@ -1,147 +1,135 @@
-Return-Path: <devicetree+bounces-129152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B2909EABDF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:24:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A79789EABE8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 10:26:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 620D918846D6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:24:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A19EA18872C6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 09:26:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1A6233D74;
-	Tue, 10 Dec 2024 09:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D7B233D96;
+	Tue, 10 Dec 2024 09:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LLqFsB0A"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="GHSfJMK/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A352327BD;
-	Tue, 10 Dec 2024 09:24:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51010233D70
+	for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 09:26:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733822685; cv=none; b=bnaGekPEGOT6+Q1VQfE//41Jzc0BC5HgIsh5XESHl4IdnxpG8Br4onSZ7OL1kGJrFfY0pvVtpB1s6wX967T+0gPXVIfW4m+3dRoUuKq/AZDLzWtf1fwwBjIfamdrXynkwID9Po5yStVdYTGSGH7MuSWRR5KO5p0S4uPRUcjbLUU=
+	t=1733822781; cv=none; b=I0N3vtcwkdVDA1lj9TjDBt+sdoNYAIvmwxeNvsqK1l6CYtOszRI7/e7OdiIDXPQIwDGqTIwCCzkGIvQkorrCCN/w92C2EMrxdy2JMUzgUejglSu7z1I/HRQn5jGzKc0mKntajiW2FTnYVo4c4N4rzOqMP0NjlqKf2G6TQqJkcgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733822685; c=relaxed/simple;
-	bh=Bld1RYwFPgcAVNG09chT8LEMCMyY+cirvfjtjyHOHgE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bou6wJj+PwJMZ8zwHRZH8wLLrgedLoQPop+afLszxjJugSLfxI/8ry4Ld3VegjAbFUDFdfdB2PAotOeZRpl2eu8JeYyetTGuzKjk8qFUmRIwHOUaWs+FkBOw25ZWDxKBZPvMelbZIOs3TPvtbQcQmtLxPfuRsSAe8eKFm4TnBJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LLqFsB0A; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BA7rowa002485;
-	Tue, 10 Dec 2024 09:24:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	bMguorV0nYqmE3rzkK2Y78lQNVVtcEmW+iqDqJDT4wQ=; b=LLqFsB0AhrVmz3X8
-	Yyr1elm6cagmq531ChjsQYBAJhtlqaY5Nl4gBC3NmjRU7Q9OV8Aa2QrnT5FTvR1B
-	72MCVn1fCzCT5QQtyKB3au/62xwq6fPOFp3DZcZzToWWSLcr20+6Qz279vj1t40g
-	0+Nrk1Jyd9l5BB+jSNgTi/mVudpLrFkqkiSd2cIQUKj1RHJZjhsjMAObwnPpBrvz
-	6BkboaF4k6kHiLVAvrc5CXDyVkIJfxAACOH0NWdu+BY6YGXDS3O1bZkOI0Hh7ep4
-	NWBLcKqiT9SnVxrM1sRMRYP6jbJXth0gR9AhOJaO8LwZhnS9saCO9MA4DKohtqFp
-	w4mvjA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43dxw43jtw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Dec 2024 09:24:39 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BA9ObmM028576
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 10 Dec 2024 09:24:37 GMT
-Received: from hu-wasimn-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 10 Dec 2024 01:24:30 -0800
-Date: Tue, 10 Dec 2024 14:54:22 +0530
-From: Wasim Nazir <quic_wasimn@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>
-Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: Add support for QCS9075 Ride &
- Ride-r3
-Message-ID: <Z1gIsrWAT3QftC4c@hu-wasimn-hyd.qualcomm.com>
-References: <20241119174954.1219002-1-quic_wasimn@quicinc.com>
- <20241119174954.1219002-6-quic_wasimn@quicinc.com>
- <9e351979-be01-4d38-9b94-cc23efac4c3f@kernel.org>
- <Z1LaN9nFr5msfq61@hu-wasimn-hyd.qualcomm.com>
- <cbed17c2-d839-42cb-8a33-b59538bfccf3@oss.qualcomm.com>
- <c639ca40-9e4f-4882-8441-57413e835422@kernel.org>
- <Z1c9wMxQ5xSqvPmf@hu-wasimn-hyd.qualcomm.com>
- <8cf9edc0-a0cb-4fd0-b10e-2138784dfba3@kernel.org>
- <iu6ssjczkdfkhfy2n6vxf3f3c2pepsepslzvnh5z4susxgxgqa@engwsvhu533x>
- <5782d7c6-1a75-4f15-8942-387742e0ae09@kernel.org>
+	s=arc-20240116; t=1733822781; c=relaxed/simple;
+	bh=dRt7jwAWsviDNd6yFNvQ++iSH09jta3gIXgiARPB+Lc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jyhS8+Yi/PYHtEHzMf/1A1H0anstXR9BgXC62l4ULI3MNPe+paWZizk75U/jzdmkCjc9Pq7KWBQkEr6B4tOBL8V75ErBbwoPV5kGuJyFmgfQBu1iqB+K3X1qZhXKmRnINwvxV6urwndWv3C3vVlupPqTwPlh17aG3jhKZpVOoEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=GHSfJMK/; arc=none smtp.client-ip=209.85.215.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-7fcfb7db9bfso4074442a12.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 01:26:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1733822779; x=1734427579; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kGRD0hSRVjDln2H041utB2MSY4gQ8R47O9Y5WYRUCMw=;
+        b=GHSfJMK/mrAM1hUtA65ZWSI8HSF5zGWkiN7WqFPy2QxG8KasyP8bcEpPWRhjK5JkOw
+         5hTx/FYMoqGi9VAuwFWEmD7i6jPeUMnrSvmuZFIIX6PIg8jL51Xj2NX9MA1rDK7YIwAg
+         8de1kdXFREsareyb590jXGwRrRHS4SR97sIOk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733822779; x=1734427579;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kGRD0hSRVjDln2H041utB2MSY4gQ8R47O9Y5WYRUCMw=;
+        b=qKUPZxNMqbxE+rpR8XIABZQx6Xs46RADNrpWsH/+n1+XE9Ibc4+3udfDAU2+9P/NWo
+         D7BwqEyHMd2N2oORbwJb3yPaueNCcySG1KJbv12I5lvq0lRu5DbLn1i95TFdpynE1OYy
+         Ujs34M4L779QuafznPXos2EGZldUZDWpVzU/Bgjm+9Iw7nAI8n6RWr2PbcK7fndMQlkL
+         vYKroczVdBA73AR9yWJwNgo7P49LVzt0BZE48YEUuc7jxc5Rbro6QhvEtsvPQ8YTj1Bu
+         NIaEirCoPADm1Cwm1IZGWyHgvwmagbghWSAjdkaZugXuokL4lrpZzJEKV20+3+KbUCW6
+         xcxg==
+X-Forwarded-Encrypted: i=1; AJvYcCW+axlaX0s23RTfQhZN1pMmqlTFcCOukL21Qk2zDOP/DFo39SqaGArKMUmtCowCqAlfNBoutjEwuxKb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoadrcfD1c8JTWLDv+6i5N3dn+g20ZXkBw7kcCH0cmpS2l+/Ny
+	Z9vAG1i2HlHLuD+wiYEoM6aCHFNZw3l5nmZpMp3DFMGl7tu5ZMN9/bESrr3q8g==
+X-Gm-Gg: ASbGncujTeJKSsq6vf8BCD72sOplCPhXlsVrYerNGnw6lMbJEy55mX7m6yN+MItqfha
+	jkjlw2//Rw+gTp7ZAphcm6KvyrX3FnzhVZ5UmsRusdsKIIX7RM+3L9SF8yFJdlKLUYuZ7jVnx+c
+	LOQhUcUKVYKLY17x4qxNOp/R8LlicYw29fHKH3u/A+14Ibi5WMsPsx3sLF7oVVYHitbjdD9cJfU
+	9cuWd3ZFYG4dTGDhGNowfrmxftChKOkKFe/EJFY4g5sBi5qEgAJISiXS11KAF2mQkUJBlEV
+X-Google-Smtp-Source: AGHT+IFppVkXUZtU5Ti/lKVHNrZcFZH/mEntPtAhtpRBAEfq5xqQx4M1XdryOoDpDNSLeE8I2hMSbw==
+X-Received: by 2002:a17:902:ce88:b0:215:a97a:c6bb with SMTP id d9443c01a7336-21669fca850mr59408385ad.12.1733822779591;
+        Tue, 10 Dec 2024 01:26:19 -0800 (PST)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:89ce:2db9:f7d5:156d])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21632c4fc62sm49006905ad.194.2024.12.10.01.26.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 01:26:19 -0800 (PST)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: mediatek: mt8173-elm: Fix MT6397 PMIC sub-node names
+Date: Tue, 10 Dec 2024 17:26:12 +0800
+Message-ID: <20241210092614.3951748-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.47.0.338.g60cca15819-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <5782d7c6-1a75-4f15-8942-387742e0ae09@kernel.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 9rMVKJ6zcSB1_APun9m_PZObBHhyzWVl
-X-Proofpoint-GUID: 9rMVKJ6zcSB1_APun9m_PZObBHhyzWVl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- suspectscore=0 priorityscore=1501 adultscore=0 mlxlogscore=644
- clxscore=1015 spamscore=0 mlxscore=0 lowpriorityscore=0 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412100069
 
-On Tue, Dec 10, 2024 at 08:25:34AM +0100, Krzysztof Kozlowski wrote:
-> On 10/12/2024 00:25, Dmitry Baryshkov wrote:
-> >>>>>> 9100 & 9075 are different from “safe” perspective. They differ in
-> >>>>>> changes related to thermal which will be added later in devicetree.
-> >>>>>
-> >>>>> Since this can't be inferred from just looking at the changes, please
-> >>>>> make sure to add that to the commit message
-> >>>>
-> >>>> Any include of other DTS is clear sign something is odd here. Including
-> >>>> multiple times without any added nodes is showing these are not real
-> >>>> products/boards .
-> >>>
-> >>> We're adding DTS to reuse the common board changes, with plans to
-> >>> include the differences in upcoming patches. To provide more clarity, I
-> >>> will include patches in this series to highlight the differences between
-> >>> the 9100 and 9075 boards.
-> >>
-> >> Sure, still do not include DTS. Just like C files don't include C files.
-> > 
-> > So, is the solution simple, rename .dts to .dtsi and include it from
-> > both .dts files?
-> 
-> For example. This leads to more questions - what is common here? We do
-> not create shared DTSI files just because someone wants, but to really
-> note shared components or shared designs.
-> 
+The MT6397 PMIC bindings specify exact names for its sub-nodes. The
+names used in the current dts don't match, causing a validation error.
 
-We can reuse the common dtsi for ride boards, i.e., sa8775p-ride.dtsi,
-and then add board-specific changes in the corresponding files.
+Fix up the names. Also drop the label for the regulators node, since
+any reference should be against the individual regulator sub-nodes.
 
-If this approach is acceptable, I can proceed with sending the
-next patch series. I hope this will help clarify things further.
+Fixes: 689b937bedde ("arm64: dts: mediatek: add mt8173 elm and hana board")
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-> Best regards,
-> Krzysztof
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+index b91072f4723f..b5d4b5baf478 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+@@ -931,7 +931,7 @@ pmic: pmic {
+ 		interrupt-controller;
+ 		#interrupt-cells = <2>;
+ 
+-		clock: mt6397clock {
++		clock: clocks {
+ 			compatible = "mediatek,mt6397-clk";
+ 			#clock-cells = <1>;
+ 		};
+@@ -942,7 +942,7 @@ pio6397: pinctrl {
+ 			#gpio-cells = <2>;
+ 		};
+ 
+-		regulator: mt6397regulator {
++		regulators {
+ 			compatible = "mediatek,mt6397-regulator";
+ 
+ 			mt6397_vpca15_reg: buck_vpca15 {
+@@ -1108,7 +1108,7 @@ mt6397_vibr_reg: ldo_vibr {
+ 			};
+ 		};
+ 
+-		rtc: mt6397rtc {
++		rtc: rtc {
+ 			compatible = "mediatek,mt6397-rtc";
+ 		};
+ 	};
+-- 
+2.47.0.338.g60cca15819-goog
 
-Thanks & Regards,
-Wasim
 
