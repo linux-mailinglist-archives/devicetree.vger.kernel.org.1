@@ -1,86 +1,123 @@
-Return-Path: <devicetree+bounces-129479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB009EBC29
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 22:55:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E399E9EBC64
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 23:01:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2856F188AEC2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 21:55:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79532160F5A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Dec 2024 22:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB5842397A4;
-	Tue, 10 Dec 2024 21:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3C91231CA0;
+	Tue, 10 Dec 2024 22:01:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bRVeJlIg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T2Dw/s4F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDC5E232373;
-	Tue, 10 Dec 2024 21:55:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28150153BF6;
+	Tue, 10 Dec 2024 22:01:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733867736; cv=none; b=na1Ilu2SKcfnn/YGpJaP6xS7KJmzQ+SX6Ue340Nf91XT7rz2DrfJSs8YtJQoIvcUfVyYWiABy8htouZXGO15Pb+2AjEXMoCptu8Ux2BMoZRCKWV1LZcCWIHDHnUUcTyANYLGeoSQ7aP+LTu0lv0iFw3tZeTAlGoQw/qKM7iILGc=
+	t=1733868077; cv=none; b=OyEuzSiDIuiihhrACqcFz5LFDUqKdCpLwE8u0PT0O6ABVQVKO/CheUqw3x2b+W2bc2JLUc81Aj8dkEoJXBdGcxkmkppOdTUwjEVYvkDTRq9kL0vJHNX174OwLilJh1b03q7AlymILdj8r0JocCn9RHfYsjPi0qKWz0mVMvSvnfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733867736; c=relaxed/simple;
-	bh=JGzm5kn0zW/cTRR818QpfYPr3GrBn5g7uRFlG1i+UB4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GrnYBjr0OgEe6G+Tjooo3VJdRP8Ibbb4497sZOCbTQihsOaay2JSc9KYKiF5nQ5bdltahnY2d9tVmWcO5eMKZPb01NCchsyd0iJYauBaSpD80t8wc9DoANBBg/Q+ncd8EBS9Y3Sbudlqa7U+oOCAmXyn5oGWx5+r3TF/OPTkfwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bRVeJlIg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1668EC4CED6;
-	Tue, 10 Dec 2024 21:55:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733867736;
-	bh=JGzm5kn0zW/cTRR818QpfYPr3GrBn5g7uRFlG1i+UB4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bRVeJlIgFWdH778YlGN0wImA7G8elslk5iJjiWW7nCCqfaZLbfhsbCGqUaQdF1/g8
-	 p3kOnian/9WkZZsERBtRad+UKwWAYQYB5nWrzwpFYcmpdY1f75uI1TLW4QsfQm7ffN
-	 vYuWpZzXP7hwwtfJyT2RePWTvETnx+ldF40CDRMk+JQXl0vnZRrEGGUvHsIKyff+Ed
-	 n9BO/bIjAksXzURBTv4E2Qj709YoldpeaM8Yd43VsqDXJpFTuMdY6wFnKbfrGpw6w9
-	 y75/pF8UEh8PRDzqx93QKxd5N5xPZ9cOHm2ECiWGBxy2rHNA/VvPcvCjswW6XdTF13
-	 d9kA8n52GawDA==
-Date: Tue, 10 Dec 2024 15:55:34 -0600
-From: Rob Herring <robh@kernel.org>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	john.madieu@gmail.com, linux-renesas-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/5] dt-bindings: soc: renesas: Document Renesas RZ/G3E
- SoC variants
-Message-ID: <20241210215534.GA531298-robh@kernel.org>
-References: <20241206212559.192705-1-john.madieu.xa@bp.renesas.com>
- <20241206212559.192705-3-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1733868077; c=relaxed/simple;
+	bh=yYKWF0JNmtLLNYt09YupJBTbUcQbehF+4vEK96plF/M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pnxOOzNC8gkxJUcPEE+eLn8mp4/+QDdSb5QGHXTEsVsTEBy/7cs+vBw2ekr7RKJNhXIBNL8h/k8Y/quEA/vjAjRFpJeDTXrtJ9uFxL6bl7oQh5PDfMFemhiLa/vjz7SoIi0ZtHinNyoLMMggZA4e6DlEcuDygh6PDxIK5hJso+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T2Dw/s4F; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-434a736518eso67729475e9.1;
+        Tue, 10 Dec 2024 14:01:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733868074; x=1734472874; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MhKC92nLwSxoxvzx2K+d7QE1ZjnBoVtbTWxJGBJQ+7w=;
+        b=T2Dw/s4F8zgJNX0uOnhXWmCwZldkpJ6ZBTSI0+H6d+sqND5Nft6wELtwzbTnCyW4yx
+         GYH15i9wnJkIaMlDbDjwjm9wkLptRGpHj1Y/Q/iD9zc5WNW9QEO+wPxHxC/Z5Vt+EYXc
+         RZ7sOg7LjLIPglBnhM8Gpj7K4xQsCRMNteJMoKRStWlsYSeY6WLKunBZ8fCXKJZ+udlb
+         yhmB4Ovc8rrHCAVbgeltv+R1k3fR9NI9tgeaEPjvEiWD+0gjuGR2KTTKfQ11B0bmO8Xy
+         4VZmxPMxH6RW6mZd0+gPGYXROa1VQjJAGmjE7rLmHnpdAWkiuWmZNKsFzmozq8oSsayR
+         8nhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733868074; x=1734472874;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MhKC92nLwSxoxvzx2K+d7QE1ZjnBoVtbTWxJGBJQ+7w=;
+        b=uIGc1NliRmdp+edckegGlwSLpAPxVqtoXE9WsWycVuCPY6GN8MbvtFV5RlN9yPo8fg
+         UwjAtlpA/s8e3urAE6zsiV0kr4Q42WnPewMKlnrehskd+6IPQIF2KEafFxDink3VziHp
+         0exjDEDYlnUERltxIGXBXNCVESOYOGd7w5of0xKm7PssRyNBxhpIOYQQIijQlhsISJAK
+         YFL+KMZFEa5jsyNcT97cYUZwrt0lAZrggwiSs/IjdvQDZcU3ow5UlG456LTyeYC2tIYS
+         KVoXjIMBJKpkb5SynQnH9BJLxq2VJabJRmc9kK/PhQimcQ4IrNgtDqDgRsMCBdzbcTt7
+         P1Jw==
+X-Forwarded-Encrypted: i=1; AJvYcCWo1VeFn2p0DDKaNcGdNc3Rkaor6KQL8ed+pzab9NjobUeZ86s2upgAy/B+dKf63ifqIVtcQss=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1alcRxvubiMbHdLYif8Vf0yDULoEoe/qxGz59ScbQjajXcdoq
+	aibMs/Qx6HIfNNV1arYx9yHoyZj30L3qHNmZT0aAL1j2GXA+2UJmWSMviKK9o0eHbhEvhQOAlHO
+	qrwNzj+H7yqpKeKn2Au4Bq5I/oYI=
+X-Gm-Gg: ASbGncuGFPhSMLR6Orft3kxPu4n8FCckJ3LpxR61UwSKNjmyVQ4/lOroljEUThKuwT5
+	1mBgEyC7h3vYC65fQoLPAMySJ9pjrO9fiar7U
+X-Google-Smtp-Source: AGHT+IElCszL1iwj4P8Atz85hoGmJExS9yjkoVbt2Agw69dhFLsOySt7EFf2NoXf2ZWZ0VPGs1OAZFM8xNT1zkrurLU=
+X-Received: by 2002:a05:600c:1c01:b0:434:f0df:9fd with SMTP id
+ 5b1f17b1804b1-4361c393cb6mr3247695e9.2.1733868074073; Tue, 10 Dec 2024
+ 14:01:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241206212559.192705-3-john.madieu.xa@bp.renesas.com>
+References: <20241210120443.1813-1-jesse.vangavere@scioteq.com> <dfb09395-78ce-477f-bbbc-747b0a234d4f@lunn.ch>
+In-Reply-To: <dfb09395-78ce-477f-bbbc-747b0a234d4f@lunn.ch>
+From: Jesse Van Gavere <jesseevg@gmail.com>
+Date: Tue, 10 Dec 2024 23:01:02 +0100
+Message-ID: <CAMdwsN_Kgb23Rw0q041fFr9T70twx2vAX2J+MvJz+585ZyyanQ@mail.gmail.com>
+Subject: Re: [PATCH net-next] dt-bindings: net: dsa: microchip,ksz: Improve
+ example to a working one
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: devicetree@vger.kernel.org, netdev@vger.kernel.org, 
+	Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, 
+	"David S . Miller" <davem@davemloft.net>, Vladimir Oltean <olteanv@gmail.com>, UNGLinuxDriver@microchip.com, 
+	Woojung Huh <woojung.huh@microchip.com>, Jesse Van Gavere <jesse.vangavere@scioteq.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, Dec 06, 2024 at 10:25:56PM +0100, John Madieu wrote:
-> Document RZ/G3E (R9A09G047) SoC variants.
+Hi Andrew
 
-Your subject could be improved so that it doesn't match this one:
+Op di 10 dec 2024 om 17:18 schreef Andrew Lunn <andrew@lunn.ch>:
+>
+> To some extent, the example is for the properties defined in the
+> binding. For properties defined in other bindings, you should look at
+> the examples in other bindings, and then glue it all together in a
+> real .dts file.
+>
+> I don't know if Rob will accept this patch.
+>
+>         Andrew
 
-https://lore.kernel.org/all/20241203105005.103927-3-biju.das.jz@bp.renesas.com/
+To some extent I understand that perspective, but in this case for
+example dsa-port itself has no example, I also struggled quite a bit
+getting the example going (admittedly a bit due to my lack of
+experience, figuring out the dt-schema tool really helped as well).
+In most cases when I look at an example I see the full scope of what
+it should be (or at least enough to get started from there), and this
+one seemed a bit off in that regard as it showcases itself as an
+example but is missing some critical details.
+The microchip,lan yaml in contrast does define these properties and I
+think it gives a much clearer picture of how to implement it in a
+device tree than expecting people to figure out all the places they
+need to look and how to glue that together.
+I don't think it's straightforward for most people getting into device
+trees to know how to glue that all together and knowing where to look
+to begin with, in that sense I figured updating this example might
+help others trying to get this up and running.
 
-Which threw off my tools...
-
-> 
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> ---
->  .../devicetree/bindings/soc/renesas/renesas,r9a09g057-sys.yaml   | 1 +
->  1 file changed, 1 insertion(+)
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Best regards,
+Jesse
 
