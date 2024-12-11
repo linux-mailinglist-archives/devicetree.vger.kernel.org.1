@@ -1,151 +1,158 @@
-Return-Path: <devicetree+bounces-129928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3255D9ED2C6
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:52:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13F889ED2E1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:57:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B808F1885238
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:52:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E3341889F73
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A41C51DE881;
-	Wed, 11 Dec 2024 16:51:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91E9A1DDC3A;
+	Wed, 11 Dec 2024 16:57:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cHXMZrq4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MG9ZxvAx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A200C1DEFE9;
-	Wed, 11 Dec 2024 16:51:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5F341D63CA
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 16:57:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733935898; cv=none; b=IBnxFBSIVwtHjbZK3nRC8BPsrvrpmONH8/eleLAbWuEjYVsHATrokUj25XLXYejR5J4IWkTRgkmLi4wqwl8N/91IaBr43HKg7OTm7ZQV2R1IrfP+/NFgWDrIKofDFKp5ilWZpsyjCYQQXfwQlqQ4INFryIip9yrEqINr7yQgdxo=
+	t=1733936250; cv=none; b=A+8iQw9V88x8PajPUjq9gnKKbvcOarG21DJGKPg2c+jBk/sdsgvW7PkmIN8PI3nGLCtTfzgB+p4GORvroW/gMho/IsLp8JqV1AWpGO+gx+nUkphfaafT0U660XWLQM14tTmY1EasbTVr132gVGdcX4ahOhHyULClMkcykAJg4Ss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733935898; c=relaxed/simple;
-	bh=oXL1PWUG9X6mZ18eEANoN/9N4cIjnfpDgW2D9/ccU7I=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uSmpmcBV4keKfthXCoEkhqj1zAuBSRKfhZ2w21GZ78/t6jX8iLXFwpnN5abwljEWUpiv8fanPlaJwKd4QdsX+jnxgALpLu/uoSdtTtLgKg8igUFlempSVyDkHDvWt0Xa5GWLGeiB1tRTOBvPgBR927D+bXzFHe585vuQYkKft7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cHXMZrq4; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-434e69857d9so5683415e9.0;
-        Wed, 11 Dec 2024 08:51:36 -0800 (PST)
+	s=arc-20240116; t=1733936250; c=relaxed/simple;
+	bh=hgABfKABfbmERmVSCc6PoQGplBLfsOvN+AwZZnCc+Xw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=JWCKsasVA9iij6YMsGlXcVOoAIYKxaZUYKnIuhv2j0FuV58o5wD2w8N0ttLGg9rgcAUZkCPFkM/FFLIUmDMZ6pT18/mEDcqZgfOuQG4T4EXJu1rBP6FyX4YYRaOk612DFf2tb0FcjVyvhYqRDLYHB+2Wc/GUWivECBqD5y7Bpcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MG9ZxvAx; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-434ab938e37so45642265e9.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 08:57:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733935895; x=1734540695; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=riqbhU/T/xicADAGQihGCjcOghkY+7bkr3p3RHDVWXw=;
-        b=cHXMZrq4h7jq3Omho0Jeqc2inVCaFX2XVDo/7uVmTFu+icX1reveWu9B8OVWuVCJsk
-         Q2he0tzQ0NuewygBdFcfzR1blgpqjWp5X7cnEVgMvSSt/arm+0OP9e1lHJYdQ/phpfYH
-         rNereoPbupHXP/AJ+U1Fygm4I78GT2SwHoRE+5qNUBDtp310zx+efAVJs+M5983WUAhx
-         hBrCGnJBVV/XCyYxfnjF6aNwi7HccU2ltSS5XGHNs54ZEBMQ3MyxIrJDpzMdKYsZWZYo
-         hbCssWCS9UKSAcMerTAmnVcLC4QmtHL2JGk3StbEDVWV9zJ7aMDgKoFuoAaiizn33ANH
-         fiXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733935895; x=1734540695;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1733936247; x=1734541047; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=riqbhU/T/xicADAGQihGCjcOghkY+7bkr3p3RHDVWXw=;
-        b=MG/TQSIIFcdT1wc4enHP4ZED38hFtHnUGwIFMme6QdqZMHvPggptZOAGu4QoTVlbzI
-         26uK3qTFMO9CzD/zFYGcOuZx9UmEpfsQUnb6lqrTPAdy6//f81V+GSNU3t2ukHYdysl2
-         ZzlBj7eh03/JaLeqUHKMw0uW71o/TyhHqb0ZGsQucMcjzwnywLzNNDR5PsV9NFI+x0vw
-         VB/9UTTEUTwy/WzS+fWK6w8m6mSdZGpZOXmswQxNgs87dmzNnB8tMqJJFkrBaAWZXkhb
-         c7beB+knuPaVaGGDDFZ6YHzRAnnII8UppSaMKjKqSjHjj2CTciQSZGCeZMkVJlu8sG4g
-         a/Kw==
-X-Forwarded-Encrypted: i=1; AJvYcCVuEHvS2u0owPfjep6mZCGOQNLy0KYSXE4IyGdQf446K9FVjjlaDjzJlNtBzBNBXAdlCyNrsg6a085F@vger.kernel.org, AJvYcCWY8moJZIwq17mAzweUvrzhnmBMt35E1FWXv3Vuc2Jm4RJ1Ulkit7DxbZoU9pa5eqsZpVO3qBXTUTGx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyhtt0RZ4iZsj/+YJ2OYH7xCIMeSRVjh7DlK4tPDHqt9oJIQckH
-	LAlOzRcaO8Oe+PLJ/Ql6vHe/ftdLd1DfchhdEmPS0qLEII64UVZWcA298w==
-X-Gm-Gg: ASbGnctmQ96emNoVh8CP+OnvHyn0jfEyInchgJ+2SjgLZxx/i/gAKbJCIGjoAzr4DOH
-	SSiwBXcf90kB4UzuKvq4jmPMLM9x2tTJkYqMzla4rNcNiKH+cb8sQGzP7JPUu3Dvy9ZYWdQR/Ia
-	A5qw+1rDOHgue9spz3hSHTNt6JpFsUpiCsH8B9dhwXzFVlve/Dgs7eQdLMPdcv9IGNpCDIJ212i
-	ZDYf0FKUqDEKhnq5j0/BlpTg1LzEX+39nxbzi6ro6FXzCbOjOxpV30mB4i1GSui1Q==
-X-Google-Smtp-Source: AGHT+IGtfvB77SCgcHe/Vm+Rv03zyGp/puTRO2gwPi1EWGXTkzx87jMwRMoY0a4cwH7aecfOhmiPOQ==
-X-Received: by 2002:a05:600c:1f18:b0:434:fb8b:deee with SMTP id 5b1f17b1804b1-4361d0b0ad0mr25036325e9.16.1733935894628;
-        Wed, 11 Dec 2024 08:51:34 -0800 (PST)
-Received: from fedora.redhat.com ([67.218.245.240])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-387824a4d19sm1678100f8f.32.2024.12.11.08.51.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 08:51:34 -0800 (PST)
-From: Iker Pedrosa <ikerpedrosam@gmail.com>
-To: linux-kernel@vger.kernel.org
-Cc: Iker Pedrosa <ikerpedrosam@gmail.com>,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	javierm@redhat.com
-Subject: [PATCH v2] dt-bindings: devicetree: explain how to get CS active-high
-Date: Wed, 11 Dec 2024 17:50:50 +0100
-Message-ID: <20241211165054.254164-1-ikerpedrosam@gmail.com>
-X-Mailer: git-send-email 2.47.1
+        bh=0m9l5oOp01vcv+9ToOizO+wEqix55Pyi80seUL6dtBo=;
+        b=MG9ZxvAxcDip4FcF8JE2VdairYhcyar8yzuB3eOL07JVgf3VvIGyBMSJeqdaJDZA0+
+         RSrYSpYVfy8NVfX/prtzTPCP9bFL9GQvFsCHHWWy/hkOB6AgzQeSEU7dsU1Orj0xgKYB
+         FMw1hyzGZULVeJDmLyOgbGL1DX3g43VwIFLn5heCy1mzK/83JncguotgOTY0teFg8s3J
+         blm4nA1BNbA1sFsznP0eX0+1S8OGptgCfltrAqugQ4IVcftan+NKOfpGb34ojmZXTILa
+         IyWVZtfWLHxJgDK+J3mGwQwexUQtCYKlWJ9oPV25bQ0qZlo2bw1tFqjruj7+jVFUDEa0
+         yAAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733936247; x=1734541047;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=0m9l5oOp01vcv+9ToOizO+wEqix55Pyi80seUL6dtBo=;
+        b=ULOXmc0j25nZlZ8/QJcI7kY+4ZVT8e09Ezf6Hxzlzz5DrDZa7UbxnTOXBPJBeA6Yl8
+         Dpl1ch9qjgKnkNiDaUuMSaemk+BdL6dHOAjPCVLPjKq7r992xRUK4Kx0TF5dgiY1ta7s
+         4IsBhDG9LhJnrVPNsFOm87WeWFaHcOo5cKBy9XtMoNwKLcSPoHex6a1YH9tnJrV0+I5K
+         DFhsYwcbEkXcoufQ6kvksu6VHNI8CXhS2G0q1EgxVfuUSvsa7PP4bk2oug9CkY+b187e
+         EJrOPS9fdbGpyFhMF5uNZCbweMzvLwmYiBImJSbU+Je11nOiyvdMRrn0/OcAp+Pqrwjf
+         /Rmw==
+X-Forwarded-Encrypted: i=1; AJvYcCXPNLoQVbQK1CBKxhm/BEVzlkG896MOXE+eX8Lj+blgy04GqBTi3kKiN1XfB6zmggOlIGfQmV/ZRY8B@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVn0UBvYFOoQAo3Y+GdyroZ5Q88+tgmJYE7PE+eNAbfGVm4zsE
+	q+TaEKb26fx7MLW6+n+U9oIc1i//yLrP+N1nY8qFf6ullLTCD4Bf+uTDmgJ2qBA=
+X-Gm-Gg: ASbGncs2WsTxVHWWSBxScASnmcEN5wCqlX/+2G0s/wujNAs3vF8lndwT2jO/WdiA+kK
+	bzQ6DQIdikyXPmiHdjvcHCvckUHPeyMfAF4zKnztvY7u1rbpFyD/EWea+sN8uYG4fRkRCOMPeER
+	ZfA4Fw3RT9QWFDbQRur15SXFKj16CMscK3YoW+gSKvBetCzRafMJflGT8mYCNVLZvMqIeIU7DOP
+	rBT8iaJhBcPXZt4bTEj1biWbPvK2bOvspGKExBTQDIl9ZRvtVlXTaunfYlUm/L2ZHvjuOLUrG++
+	mkOHEE/FBie/+8IgeyMiMIO7rwaYPWU=
+X-Google-Smtp-Source: AGHT+IENx0NcRopIXx3SdVXYZNoSpCbTptpp3hxvIhVQS3f47TcSS/8i3UaxgjzRtqPiK5pkEZ+nig==
+X-Received: by 2002:a05:600c:1d20:b0:431:55c1:f440 with SMTP id 5b1f17b1804b1-4361c431298mr32914025e9.30.1733936247337;
+        Wed, 11 Dec 2024 08:57:27 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:d426:8f10:1673:5657? ([2a01:e0a:982:cbb0:d426:8f10:1673:5657])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4361ec87bc3sm14005935e9.1.2024.12.11.08.57.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Dec 2024 08:57:26 -0800 (PST)
+Message-ID: <1b3d37ce-a362-4846-bb7f-7cbe4c28608b@linaro.org>
+Date: Wed, 11 Dec 2024 17:57:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel-lvds: Add compatible
+ for AUO G084SN05 V9
+To: Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+References: <20241210105705.116116-1-festevam@gmail.com>
+ <yujvdu3s6v7z7th2lrdscqfxocx2zy2u4owakisvnjppz2udqv@5ok2rcf4exd4>
+ <CAOMZO5B3810+4RJsPUtL3ASxqpDd+UmC=GcY6t8-ad7NZXZLjQ@mail.gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <CAOMZO5B3810+4RJsPUtL3ASxqpDd+UmC=GcY6t8-ad7NZXZLjQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-The current documentation does not clearly explain how to invert the SPI
-CS signal to make it active-high. This makes it very difficult to
-understand.
+Hi,
 
-This patch adds a simple explanation on how to set the CS line in
-active-high and adds an example to make it easier for users who need
-that setup for their SPI peripherals.
+On 11/12/2024 17:29, Fabio Estevam wrote:
+> Hi Neil,
+> 
+> On Wed, Dec 11, 2024 at 6:31 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On Tue, Dec 10, 2024 at 07:57:04AM -0300, Fabio Estevam wrote:
+>>> From: Fabio Estevam <festevam@denx.de>
+>>>
+>>> The AUO G084SN05 V9 is an 8.4" 800x600 LVDS display.
+>>>
+>>> Add a compatible entry for this LVDS display model.
+>>>
+>>> Signed-off-by: Fabio Estevam <festevam@denx.de>
+>>> ---
+>>> Changes since v1:
+>>> - Added devicetree@vger.kernel.org on Cc.
+>>>
+>>>   Documentation/devicetree/bindings/display/panel/panel-lvds.yaml | 2 ++
+>>>   1 file changed, 2 insertions(+)
+>>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Would it be OK for you if Shawn applies both patches via his i.MX ARM tree?
 
-Link: https://forums.raspberrypi.com/viewtopic.php?t=378222
-Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
----
- .../bindings/spi/spi-controller.yaml          | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+I don't think it's a good idea, there's no build dependency so I'd
+rather apply patch 1 via drm-misc
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-index 093150c0cb87..960d60e653d9 100644
---- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-@@ -69,6 +69,11 @@ properties:
-          Should be generally avoided and be replaced by
-          spi-cs-high + ACTIVE_HIGH.
- 
-+      The simplest way to obtain an active-high CS signal is to configure the
-+      controller's cs-gpio property with the ACTIVE_HIGH flag and set the
-+      peripheral's spi-cs-high property. See example below for a better
-+      understanding.
-+
-   fifo-depth:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description:
-@@ -189,3 +194,23 @@ examples:
-             stacked-memories = /bits/ 64 <0x10000000 0x10000000>;
-         };
-     };
-+
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi@20204000 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        compatible = "brcm,bcm2835-spi";
-+        reg = <0x7e204000 0x1000>;
-+        interrupts = <2 22>;
-+        clocks = <&clk_spi>;
-+        cs-gpios = <&gpio 8 GPIO_ACTIVE_HIGH>;
-+
-+        display@0 {
-+            compatible = "sitronix,st7920";
-+            spi-max-frequency = <600000>;
-+            reg = <0>;
-+            spi-cs-high;
-+        };
-+    };
--- 
-2.47.1
-
+Neil
 
