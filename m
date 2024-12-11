@@ -1,102 +1,141 @@
-Return-Path: <devicetree+bounces-129774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B5E29ECC01
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:24:55 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6266F9ECC1A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:34:47 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74A15284124
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:24:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F9D41628FE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:34:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDACB225A42;
-	Wed, 11 Dec 2024 12:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D93F211A38;
+	Wed, 11 Dec 2024 12:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XiTFHF0G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WVkmv4vF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970A3238E38;
-	Wed, 11 Dec 2024 12:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A43238E23;
+	Wed, 11 Dec 2024 12:34:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733919885; cv=none; b=nuJkCHM4IsY4qfMQbQTnceAMj9Lpe4Douy88RIG5Y+lft0hdGonScMiouXuSvoqt6fIfmAXpI123ptltkHFveoB0n/pLTn5rXTJWLLxiVL5zdPcQuR/p5xN1cLhkAPXRBk6EfQ3lBCG4jrWdK3q9PFkGtyJPwi407McBteolgeU=
+	t=1733920480; cv=none; b=aBBXjFNaaV3Gweq6Z6oniULA3uAIkP0qOZxjQe9ao3LxrMHwZgLeWqyUQS7Pk7qqpKL87CDw0WfwtlFq/Ov3nGMN+YrQEazv4zyo8gka/S7geMZgLRAIh2mqEvWbd43DKR+RbksqvWaUoVbQNxeiZibpPKP3G+1em1xNEJheezQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733919885; c=relaxed/simple;
-	bh=Ixe+0zlB0lslc06XHD6I5fHFiNcsd+/enywfypzEH6o=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=rREqAlxjXHhvV7sJF+nKbafDPAu9Bh+AxEDHJoojDz5IBU91LD84p7eniMM96Bu34tXjt8v5FQdAtbTam+UO98p67pzoBYW7jn1t2ZNYBxHziA4DQVWbKVMVWiaE8fbxNby4TjKUKtGWH7cGwDmq/nGCojECcsNaIoHeEjoUCrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XiTFHF0G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D61FC4CEDE;
-	Wed, 11 Dec 2024 12:24:44 +0000 (UTC)
+	s=arc-20240116; t=1733920480; c=relaxed/simple;
+	bh=ulryPB7pzGBhA0b8mB5egtFHagiv/GS/PHdpk4cIb4Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WRED3ws5LNgLUxvcnilSiGEDBTDRsTvXjOXEh3dtKZfGFL6sdJmVBQpcZV/XYnZk50xNHfh/N5XCfbQiatp0HvY8baFGTrMbWqGJ390PLsZ0KN8+Tv/3CC1eU3DfMDvpyuzYhvF8ki2CgSTguwTmsogEb9qkVqQFlL5S79WYrKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WVkmv4vF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26CCAC4CED2;
+	Wed, 11 Dec 2024 12:34:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733919885;
-	bh=Ixe+0zlB0lslc06XHD6I5fHFiNcsd+/enywfypzEH6o=;
-	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-	b=XiTFHF0Gio4QQBgKDhi02XZ6TrhhfqCQ4XjLKCuxPGw8w1e44rrWC56dhj2L5ClFG
-	 uYA5axPUtkLuAJ1YETjMesPjrEuRNplG1r68SDUgie088ONVMUXiniZRhfAv7prR6k
-	 PC8xg96LxqBzejT37TlCFNpoqcOzPVcDEcmgIQg2Ye7jNB88MbtUg0GRLMzny7S5YE
-	 xXhxL3lRE2jmJTnGZtU9vtwCvKucR5rYviNGlUtgA54Dj4sENYskwh3G1o4h4fFll6
-	 9V7fGE7FY74Tb35nlw51qNWXlpRtaqVITWJIt5q1HcyQsqknJmje/ZZxDRbe7Vs8w+
-	 pgBk0Ivd4UKIQ==
-Date: Wed, 11 Dec 2024 13:24:42 +0100 (CET)
-From: Jiri Kosina <jikos@kernel.org>
-To: Lee Jones <lee@kernel.org>
-cc: =?ISO-8859-15?Q?Heiko_St=FCbner?= <heiko@sntech.de>, jic23@kernel.org, 
-    robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-    jdelvare@suse.com, linux@roeck-us.net, srinivas.pandruvada@linux.intel.com, 
-    bentiss@kernel.org, dmitry.torokhov@gmail.com, pavel@ucw.cz, 
-    ukleinek@debian.org, devicetree@vger.kernel.org, 
-    linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
-    linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-    linux-input@vger.kernel.org, linux-iio@vger.kernel.org, 
-    linux-leds@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH v9 1/9] HID: hid-sensor-hub: don't use stale platform-data
- on remove
-In-Reply-To: <20241211120844.GD7139@google.com>
-Message-ID: <n914pn7o-pr9n-5ss0-p744-73402nnn843p@xreary.bet>
-References: <20241107114712.538976-1-heiko@sntech.de> <20241107114712.538976-2-heiko@sntech.de> <nycvar.YFH.7.76.2411071358210.20286@cbobk.fhfr.pm> <4934964.GXAFRqVoOG@diego> <nycvar.YFH.7.76.2411071534110.20286@cbobk.fhfr.pm> <20241112143732.GG8552@google.com>
- <20241211120844.GD7139@google.com>
+	s=k20201202; t=1733920479;
+	bh=ulryPB7pzGBhA0b8mB5egtFHagiv/GS/PHdpk4cIb4Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WVkmv4vFHehVM3ULff8r93aH+iezaodkWsAnbXBKlPlYpZkcPnUueEaaWNuAoc9m1
+	 U0w4NnifFN/var1L2/UybnbQ46YjGk0SJtSuE4Q4xp/XC9jwnWEEC37LOe1S8TToOq
+	 kXOIXpD/lPeTOk/PhgERZZS1XtQE6Trx/J1yP834623aPWo7RMdB5xiOVuGSjIS6P5
+	 RLlZcjxjFaucY73h9ePrHZR8mn8xGBlXMCvPoMDTQka8EoY77Yj0sEB7hicHxfSlWo
+	 013b1NjOuUx5sDi/CdDdUot+TyOV7VKd3VWZWh9QDJvErZLfwetigV/Z8OmT2dBw8w
+	 9/A/bpy+KWwOQ==
+Date: Wed, 11 Dec 2024 13:34:31 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: rafael@kernel.org, bhelgaas@google.com, ojeda@kernel.org,
+	alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
+	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, rust-for-linux@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 01/16] rust: pass module name to `Module::init`
+Message-ID: <Z1mG14DMoIzh6xtj@cassiopeiae>
+References: <20241210224947.23804-1-dakr@kernel.org>
+ <20241210224947.23804-2-dakr@kernel.org>
+ <2024121112-gala-skincare-c85e@gregkh>
+ <2024121111-acquire-jarring-71af@gregkh>
+ <2024121128-mutt-twice-acda@gregkh>
+ <2024121131-carnival-cash-8c5f@gregkh>
+ <Z1mEAPlSXA9c282i@cassiopeiae>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z1mEAPlSXA9c282i@cassiopeiae>
 
-On Wed, 11 Dec 2024, Lee Jones wrote:
-
-> > > > This change was more or less a surprise find, because I wanted to make
-> > > > the platform_data pointer in the mfd_cell struct const and this the hid
-> > > > sensor hub stood out as doing something strange ;-) .
+On Wed, Dec 11, 2024 at 01:22:33PM +0100, Danilo Krummrich wrote:
+> On Wed, Dec 11, 2024 at 12:05:10PM +0100, Greg KH wrote:
+> > On Wed, Dec 11, 2024 at 11:59:54AM +0100, Greg KH wrote:
+> > > On Wed, Dec 11, 2024 at 11:48:23AM +0100, Greg KH wrote:
+> > > > On Wed, Dec 11, 2024 at 11:45:20AM +0100, Greg KH wrote:
+> > > > > On Tue, Dec 10, 2024 at 11:46:28PM +0100, Danilo Krummrich wrote:
+> > > > > > In a subsequent patch we introduce the `Registration` abstraction used
+> > > > > > to register driver structures. Some subsystems require the module name on
+> > > > > > driver registration (e.g. PCI in __pci_register_driver()), hence pass
+> > > > > > the module name to `Module::init`.
+> > > > > 
+> > > > > Nit, we don't need the NAME of the PCI driver (well, we do like it, but
+> > > > > that's not the real thing), we want the pointer to the module structure
+> > > > > in the register_driver call.
+> > > > > 
+> > > > > Does this provide for that?  I'm thinking it does, but it's not the
+> > > > > "name" that is the issue here.
 > > > > 
-> > > > So patch 2 of this series actually depends on this change to not cause
-> > > > build errors.
+> > > > Wait, no, you really do want the name, don't you.  You refer to
+> > > > "module.0" to get the module structure pointer (if I'm reading the code
+> > > > right), but as you have that pointer already, why can't you just use
+> > > > module->name there as well as you have a pointer to a valid module
+> > > > structure that has the name already embedded in it.
 > > > 
-> > > Ah, right.
+> > > In digging further, it's used by the pci code to call into lower layers,
+> > > but why it's using a different string other than the module name string
+> > > is beyond me.  Looks like this goes way back before git was around, and
+> > > odds are it's my fault for something I wrote a long time ago.
 > > > 
-> > > > But seeing that we're after -rc6 alredy, I would assume the brunt of the 
-> > > > mcu series might need to wait after 6.13-rc1 anyway - but I guess that 
-> > > > depends on how Lee sees things ;-) .
-> > > 
-> > > OK, I am keeping my hands off it for the time being.
+> > > I'll see if I can just change the driver core to not need a name at all,
+> > > and pull it from the module which would make all of this go away in the
+> > > end.  Odds are something will break but who knows...
 > > 
-> > I can take it now with an Ack.
+> > Nope, things break, the "name" is there to handle built-in modules (as
+> > the module pointer will be NULL.)
+> > 
+> > So what you really want is not the module->name (as I don't think that
+> > will be set), but you want KBUILD_MODNAME which the build system sets.
 > 
-> Looking to apply this set now.
+> That's correct, and the reason why I pass through this name argument.
 > 
-> Ack please.
+> Sorry I wasn't able to reply earlier to save you some time.
+> 
+> > You shouldn't need to pass the name through all of the subsystems here,
+> > just rely on the build system instead.
+> > 
+> > Or does the Rust side not have KBUILD_MODNAME?
+> 
+> AFAIK, it doesn't (or didn't have at the time I wrote the patch).
+> 
+> @Miguel: Can we access KBUILD_MODNAME conveniently?
 
-I'd preferer if Srinivas could ack this as the more specific maintainer. 
-Srinivas, please? 
+Actually, I now remember there was another reason why I pass it through in
+`Module::init`.
 
-Thanks,
+Even if we had env!(KBUILD_MODNAME) already, I'd want to use it from the bus
+abstraction code, e.g. rust/kernel/pci.rs. But since this is generic code, it
+won't get the KBUILD_MODNAME from the module that is using the bus abstraction.
 
--- 
-Jiri Kosina
-SUSE Labs
-
+> 
+> > 
+> > thanks,
+> > 
+> > greg k-h
 
