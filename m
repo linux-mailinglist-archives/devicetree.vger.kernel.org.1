@@ -1,374 +1,308 @@
-Return-Path: <devicetree+bounces-130007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDF599ED7E1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 21:59:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9B199ED7EA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 22:00:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57680188ADF6
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:58:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19731188472E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:59:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CDDB23E6DB;
-	Wed, 11 Dec 2024 20:55:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE79122A817;
+	Wed, 11 Dec 2024 20:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bMSwM9xH"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lhokw8CP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF57E22968B
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 20:55:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A18F722A80B
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 20:56:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733950533; cv=none; b=RmnegisdcSJfJ9I6tlqQvyIXbZ8dijx2dWKom6ZPszv/PSXWjWpYicmoc7OVNmI5QbxatL0OJ5hLd7RlO75oYawr4c5zVAq6bgzDHN1kMOMsga2n1NP2IaN8pGG5DDeS/xRHYoPbA5p8I0BzUS3g3Po5V7a0kImoHDFwqWPPrXI=
+	t=1733950566; cv=none; b=d40srFPncAQiTbtpbfpZFfeMlXA+tA9lh2EW8F5FGIxJTDIlJ3ZuAcJVk7Uc30ROqOVd+A2qJi6dO/+WwQr0kinfIo79O8mRrr1N3hTkgfXtHsEhOfpvkOsrnsfIZEe2x1pTHMEpl7gxW6N1Iiws/WKKa5WlvW95uxSJJI6P0uw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733950533; c=relaxed/simple;
-	bh=OzAu1y/H3v98Oh+obJXz2LVpGi8e3bYBOTQLvfGilLE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TdwY38UcggoixbXGwt0M+0FbJ/46TXzBwUgkuVI9ecYPpTKc74wzuRqu5lema+wLt84wCnGk9nCSIQDD7eo4yNaQZIwZOnVG9ti2kmRtDYSSCMEKDih8jg9z6RvRBqrf4q5Oj/2hXlxTIY/hrdyW+P2mwRaf4G+a3SvN37DafTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bMSwM9xH; arc=none smtp.client-ip=209.85.210.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-71e0351311eso726300a34.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 12:55:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733950530; x=1734555330; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UIG6sINpyGyOIxw92FCk6jPcVNBP3Duj2CqVoFPTTHM=;
-        b=bMSwM9xHzsq1QkBxECtKTZYr3usMseHCs9OeG4rs3pLB5gUTPv6CuFBuijIvI48Twd
-         bhbblW5ui+wmAHA5TWSOz1iBQ//Yk4fOO9VBrKWJdS6lpCZ8tCxGc70CvU1MAjSuGDJv
-         nywyZbydRprQbq560XJW+/6YHA22Swn8+FzVsLOE4JhE7kWlNafbOCTDvcCdMCluw+nF
-         AjsLdJugpDHohNlv07Xs4XIrz2lLoOqxO+iPPIqchcKSpHifi4ZwhjUeZIRE4Ibs2OkK
-         v/f41Bxdn17PoeFsZqNEe9uFbsorCT9GZ4oswLaLsecHqPNwr4eAYLYOCwAY7C10DFoL
-         f/4Q==
+	s=arc-20240116; t=1733950566; c=relaxed/simple;
+	bh=0EPvJM1CidipSrEUVyRtwHDycmAWz7nKFmR2pFgN5Zc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pNgXs7K/ngrZnRGOLXmDSOBoL8UGlQc+TNEWsjqUto4WsMEIx5bspE56iVqpTMprNtNCvAR8v+AfbN66DtJyK+prjEaNoxI/oNjZBuQNxOLl9JHhWDoa5bm9o3EdcvJ9PP89brnZZJIJ2gWIhDrFM0Uzhga1aEbF03DgAEcAVYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lhokw8CP; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BBHDgMT031003
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 20:56:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Cz0Ob+e6s3LgfOXxmCKJHUCu
+	Q2IRtNzVD04yQgOK3d8=; b=lhokw8CPbqlb3bVzAjavaFWKmFFyRBrxAyj9GGyB
+	+gRVE2wKM8L02V/IWPHR+1t1tQAVjkWxI1qDoW4gA+sUDdkHRP6Nx+5geg0gOJCO
+	Ot/1Ns20TA1sKdAQOf1sZXVTfUXKnLT2m1D7XwCenrsLk7PikSnNA7Ha24LoGujd
+	Q+VA13q09v/WFG5skxyGNtGyzEP8MZRFXv7W94O6/2tH3aO/WueJYVmD6X6tWaOZ
+	ZVQ60LZICtAhCZuMrJ41SoNZwj1TCGQqCJkBqr7Rr8sn+ldhmdpw1hdjRitoC0hU
+	eWXm3GxqC5F9Yz95HpxIahs/cFpR9T906qnUm3HLIYhjcw==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43dxw496wj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 20:56:02 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-725f4b412ecso3017755b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 12:56:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733950530; x=1734555330;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UIG6sINpyGyOIxw92FCk6jPcVNBP3Duj2CqVoFPTTHM=;
-        b=a1Bqa1ERlWSKoPT3QmdLWuc70IXScptcsEsHOIr8e87p7kVDpVez/wqce0DdPQhTX6
-         q0qKvhNnkQfaYeS75hVJhP5rMH4Jme2OnS/5CQc0tvrF2RRXHvsNpGIpm5jSZwzABkX6
-         aMForNs3Q44xp0U4A3+L7rBz0KqbH36DTETx8D9VMShVHlAJtSGokD/SiD7f0/RmCQWv
-         zIt2xc6MVPS4XWksDiTZxSmQV3q/zUMUnybOc5uIFizYe+9A3tA2n7/JyTkKj3ogHCaJ
-         8JU7ONXNKx5WI/6o7NsfhE2D205RVWWuUnm98qnq87y33qiYi+qLAtuwtOdNjnUykgPB
-         DRVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWPU1I+Eo+5tHFGCQYtxi1Lu+z0O004fwIs6nuRpvFmk/1dIU0Kd9d+BHiDvX8YpZK6MHeo2YqknYH2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWAv+Gb7dKd/jNlHqVH/4QpU+3I00uzAcLOGeD+4wYEUANMCPI
-	5aNf12qkgxnvldPR7bOdPHwo6lIvUxVGzdGVb2Ko2iobngC3xucRu2CGQwJpdCQ=
-X-Gm-Gg: ASbGnctkYCR7Xg9UoUauESEN4zznMHRpyhNSuwpnhPBHMoBtKzqC2hclZiTfX+YzpOP
-	c9+87rqCqymU/XGkSuCawBwgNVByY8xoHVLCy/zsMbewjft8TQnROPao2CNx3mO4yeHsoV5HNwy
-	KzUOiVh/gtebHv7azhqvWxHuBzvUrdYkTuCySMzlW+tgZNxzIN1VNdG+h2g/2L/5PlAinf9nq5J
-	eQx8UkfJIKWdcPvuRQHcGpMY5sJRs4E5acYtoqN9UafmK4VKflA7JGpecww/vYnGdIytbZ3zUy8
-	Zqy5D1Xf3g==
-X-Google-Smtp-Source: AGHT+IEFT/scxcmkfgIOkKvLV+l02WCW6R4Q/Nhv22dR9dP0pLo0cFMOt9o0Fzd4itbazmNHYYYouQ==
-X-Received: by 2002:a05:6830:438d:b0:718:6da0:72b with SMTP id 46e09a7af769-71e29baca4emr609402a34.7.1733950530105;
-        Wed, 11 Dec 2024 12:55:30 -0800 (PST)
-Received: from [127.0.1.1] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71def651fb2sm1888288a34.27.2024.12.11.12.55.28
+        d=1e100.net; s=20230601; t=1733950560; x=1734555360;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Cz0Ob+e6s3LgfOXxmCKJHUCuQ2IRtNzVD04yQgOK3d8=;
+        b=D5Cehtc9i/QibY5hmoa3atzw+VXR14L9U32Fxjei3gqrb2v4OD5nOUcdH70+5TWenx
+         SyOwyuiPXXmPqJCitY75N8S8wzdAoJxAEylJBHUZXx+LvyL1o6DtRx2a/Zgf31SbSj39
+         EXkKGWPy+SVlfpMy/ahOC1+jhAmp0BaIK7xxi5qRhwGtMpoUyurls4DzOVGcp0FWypl8
+         grAyLqBTQHHLmHUpvt6k2n6gO9eiaB4u1bPIgT0gpDgqNeHGEdHP0VOnlgIDCxlxA7Y6
+         f2FhnImX9kfuwCnWlIckI4ra4RzzeWojmCUbYCHkrUGeIL2n2UaXOICvmo5/ljZL0/6v
+         MLHA==
+X-Forwarded-Encrypted: i=1; AJvYcCXUCMQqO053sGs2uzMTBhkQdkemnWwa/UzEX7mTPojfwuilHZzBB0XOSbu8gVhO5ZRCgjSfhhf3NBSX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3ig5g4WraQeAc+6kXUPV+EuQ8o4YaF6ip0ZkoplBpncTOfL3x
+	u79MlWZJwb6peolIMAG113DpAXY3D2DsJGdW4L7yBZmzVQPpM3mV2aPYRc3QfW5S8vkOuoD1nkt
+	VpNjhuWB1xwtOj/GdsjUTTfW9ji3D05AmX67XUmpC2hvxJLO8m5udJ1oG6B9Z
+X-Gm-Gg: ASbGnctATw9Xqovbg8aSpYIx2b/AY859fkBWVddKUSoeZ+DcMFu8rVjZz+XcEI9KIHL
+	VVHSdY7k5NxWb8RlXVvwkNc4rtHUTsGrQl9Lyv1WeP9XOjuDWBFGrlJVVVCppkJYyAz37ij0QgS
+	DV9qJ2L1etGgbcXcl6/2/gqSrnh1SmHmmW+URjZTeEYSR9AssyJo4alQhGKpYgs9roJpSy1VkMy
+	ahc+be05+YI+2Opgcw9gWnao92W5PLZIwO5b5TULdEYbFrg1u8+9nUXPpsCkfBgcwXwDfhFf81c
+	OaIG63SvDyAuwoFGltYpPEoWcHXPH+vJvNM7EA==
+X-Received: by 2002:a05:6a20:d80f:b0:1e1:a48f:1215 with SMTP id adf61e73a8af0-1e1cebca688mr1120431637.35.1733950560281;
+        Wed, 11 Dec 2024 12:56:00 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGH8f8D4wa4ldohT1wwki2Rnw5Aim3SbcBSFcaHp0PDLIC7xbjoVp1mVCyluwK6DuNmkpSfxA==
+X-Received: by 2002:a05:6a20:d80f:b0:1e1:a48f:1215 with SMTP id adf61e73a8af0-1e1cebca688mr1120400637.35.1733950559845;
+        Wed, 11 Dec 2024 12:55:59 -0800 (PST)
+Received: from hu-bjorande-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-725df830510sm7377447b3a.29.2024.12.11.12.55.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 12:55:29 -0800 (PST)
-From: David Lechner <dlechner@baylibre.com>
-Date: Wed, 11 Dec 2024 14:54:54 -0600
-Subject: [PATCH v6 17/17] iio: dac: ad5791: Add offload support
+        Wed, 11 Dec 2024 12:55:59 -0800 (PST)
+Date: Wed, 11 Dec 2024 12:55:57 -0800
+From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+To: Tingguo Cheng <quic_tingguoc@quicinc.com>
+Cc: tingweiz@qti.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, kernel@quicinc.com,
+        fenglinw@qti.qualcomm.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: qcs615-ride: Fixing power issue in LPM
+Message-ID: <Z1n8XYj0gzh3Q0U3@hu-bjorande-lv.qualcomm.com>
+References: <20241211-bug-fix-qcs615-ride-dts-lpm-power-issue-v1-1-a08d12c415f0@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241211-dlech-mainline-spi-engine-offload-2-v6-17-88ee574d5d03@baylibre.com>
-References: <20241211-dlech-mainline-spi-engine-offload-2-v6-0-88ee574d5d03@baylibre.com>
-In-Reply-To: <20241211-dlech-mainline-spi-engine-offload-2-v6-0-88ee574d5d03@baylibre.com>
-To: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
-Cc: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>, 
- Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org, 
- Axel Haslam <ahaslam@baylibre.com>, David Lechner <dlechner@baylibre.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241211-bug-fix-qcs615-ride-dts-lpm-power-issue-v1-1-a08d12c415f0@quicinc.com>
+X-Proofpoint-ORIG-GUID: AZZQbP00j25x3m2FnU5QvDgRTaik2LBx
+X-Proofpoint-GUID: AZZQbP00j25x3m2FnU5QvDgRTaik2LBx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ suspectscore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
+ clxscore=1015 spamscore=0 mlxscore=0 lowpriorityscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412110145
 
-From: Axel Haslam <ahaslam@baylibre.com>
+On Wed, Dec 11, 2024 at 05:16:15PM +0800, Tingguo Cheng wrote:
+> Change all LPM to HPM for regulators init-mode and disallowed setting
+> mode. LPM mode provides at most 10/30mA current for consumers such as
+> UFS,eMMC,PCIe. That caused problems because consumers take much more
+> than that. At the same time, a lot of drivers didn't set load in code
+> that makes it impossible for regulator framework to know exaclty when
+> to switch mode.
+> 
 
-Add SPI offload support to stream TX buffers using DMA.
-This allows loading samples to the DAC with a rate of 1 MSPS.
+Per https://www.kernel.org/doc/html/latest/process/submitting-patches.html#describe-your-changes
+start with a problem description, then followed by the description of
+the technical solution.
 
-Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
-Signed-off-by: David Lechner <dlechner@baylibre.com>
----
+> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
+> ---
+> At the beginning, The QCS615-ride device gets some power issues when 
+> enabling peripherals on the board as well as in the SoC. After figuring 
+> out the root cause which pointed to that drivers should tell the regula
+> tor framework the required current the devices need separately, so the 
+> regulator framework can get to know when to switch modes to satisfy the 
+> requirment. But a lot of drivers did not set load for peripherals. Some 
+> did setting and some did not, which sometimes caused problem when LPM 
+> of regulators is allowed. E.g. LDO12 supplies UFS and USB. UFS sets the 
+> load of AmA(HPM), while USB PHY does not set any(0mA LPM). In this case, 
+> USB can encounter insufficient power supply when UFS's going to sleep. 
 
-v6 changes: new patch in v6
----
- drivers/iio/dac/Kconfig  |   3 +
- drivers/iio/dac/ad5791.c | 150 +++++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 153 insertions(+)
+Why did you choose to describe your problem in the portion that isn't
+going to make it into the git history?
 
-diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
-index 4cde34e8c8e3356aa41bcd2cba38d67d5c6f8049..f6c5cb632acbdc2432f60b163452bb0c5f89fa72 100644
---- a/drivers/iio/dac/Kconfig
-+++ b/drivers/iio/dac/Kconfig
-@@ -296,6 +296,9 @@ config AD5770R
- config AD5791
- 	tristate "Analog Devices AD5760/AD5780/AD5781/AD5790/AD5791 DAC SPI driver"
- 	depends on SPI
-+	select SPI_OFFLOAD
-+	select IIO_BUFFER
-+	select IIO_BUFFER_DMAENGINE
- 	help
- 	  Say yes here to build support for Analog Devices AD5760, AD5780,
- 	  AD5781, AD5790, AD5791 High Resolution Voltage Output Digital to
-diff --git a/drivers/iio/dac/ad5791.c b/drivers/iio/dac/ad5791.c
-index 24462cb020e19e8e2c6faa13109ac047cf423c37..a2953a9a4e5d5bc17c9c4a8281be4b41b1af5de8 100644
---- a/drivers/iio/dac/ad5791.c
-+++ b/drivers/iio/dac/ad5791.c
-@@ -15,9 +15,12 @@
- #include <linux/module.h>
- #include <linux/regulator/consumer.h>
- #include <linux/slab.h>
-+#include <linux/spi/offload/consumer.h>
- #include <linux/spi/spi.h>
- #include <linux/sysfs.h>
-+#include <linux/units.h>
- 
-+#include <linux/iio/buffer-dmaengine.h>
- #include <linux/iio/dac/ad5791.h>
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
-@@ -64,11 +67,13 @@
-  * struct ad5791_chip_info - chip specific information
-  * @name:		name of the dac chip
-  * @channel:		channel specification
-+ * @channel_offload:	channel specification for offload
-  * @get_lin_comp:	function pointer to the device specific function
-  */
- struct ad5791_chip_info {
- 	const char *name;
- 	const struct iio_chan_spec channel;
-+	const struct iio_chan_spec channel_offload;
- 	int (*get_lin_comp)(unsigned int span);
- };
- 
-@@ -81,6 +86,11 @@ struct ad5791_chip_info {
-  * @gpio_clear:		clear gpio
-  * @gpio_ldac:		load dac gpio
-  * @chip_info:		chip model specific constants
-+ * @offload_msg:	spi message used for offload
-+ * @offload_xfer:	spi transfer used for offload
-+ * @offload:		offload device
-+ * @offload_trigger:	offload trigger
-+ * @offload_trigger_hz:	offload sample rate
-  * @vref_mv:		actual reference voltage used
-  * @vref_neg_mv:	voltage of the negative supply
-  * @ctrl:		control register cache
-@@ -96,6 +106,11 @@ struct ad5791_state {
- 	struct gpio_desc		*gpio_clear;
- 	struct gpio_desc		*gpio_ldac;
- 	const struct ad5791_chip_info	*chip_info;
-+	struct spi_message		offload_msg;
-+	struct spi_transfer		offload_xfer;
-+	struct spi_offload		*offload;
-+	struct spi_offload_trigger	*offload_trigger;
-+	unsigned int			offload_trigger_hz;
- 	unsigned short			vref_mv;
- 	unsigned int			vref_neg_mv;
- 	unsigned			ctrl;
-@@ -232,6 +247,25 @@ static int ad5780_get_lin_comp(unsigned int span)
- 		return AD5780_LINCOMP_10_20;
- }
- 
-+static int ad5791_set_sample_freq(struct ad5791_state *st, int val)
-+{
-+	struct spi_offload_trigger_config config = {
-+		.type = SPI_OFFLOAD_TRIGGER_PERIODIC,
-+		.periodic = {
-+			.frequency_hz = val,
-+		},
-+	};
-+	int ret;
-+
-+	ret = spi_offload_trigger_validate(st->offload_trigger, &config);
-+	if (ret)
-+		return ret;
-+
-+	st->offload_trigger_hz = config.periodic.frequency_hz;
-+
-+	return 0;
-+}
-+
- static int ad5791_read_raw(struct iio_dev *indio_dev,
- 			   struct iio_chan_spec const *chan,
- 			   int *val,
-@@ -259,6 +293,9 @@ static int ad5791_read_raw(struct iio_dev *indio_dev,
- 		do_div(val64, st->vref_mv);
- 		*val = -val64;
- 		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*val = st->offload_trigger_hz;
-+		return IIO_VAL_INT;
- 	default:
- 		return -EINVAL;
- 	}
-@@ -299,6 +336,24 @@ static const struct ad5791_chip_info _name##_chip_info = {		\
- 			},						\
- 			.ext_info = ad5791_ext_info,			\
- 	},								\
-+	.channel_offload = {						\
-+			.type = IIO_VOLTAGE,				\
-+			.output = 1,					\
-+			.indexed = 1,					\
-+			.address = AD5791_ADDR_DAC0,			\
-+			.channel = 0,					\
-+			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),	\
-+			.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |	\
-+				BIT(IIO_CHAN_INFO_OFFSET),		\
-+			.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),\
-+			.scan_type = {					\
-+				.sign = 'u',				\
-+				.realbits = (bits),			\
-+				.storagebits = 32,			\
-+				.shift = (_shift),			\
-+			},						\
-+			.ext_info = ad5791_ext_info,			\
-+	},								\
- }
- 
- AD5791_DEFINE_CHIP_INFO(ad5760, 16, 4, ad5780_get_lin_comp);
-@@ -322,16 +377,95 @@ static int ad5791_write_raw(struct iio_dev *indio_dev,
- 
- 		return ad5791_spi_write(st, chan->address, val);
- 
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		if (val < 0 || val2 < 0)
-+			return -EINVAL;
-+		return ad5791_set_sample_freq(st, val);
- 	default:
- 		return -EINVAL;
- 	}
- }
- 
-+static int ad5791_buffer_preenable(struct iio_dev *indio_dev)
-+{
-+	struct ad5791_state *st = iio_priv(indio_dev);
-+	struct spi_offload_trigger_config config = {
-+		.type = SPI_OFFLOAD_TRIGGER_PERIODIC,
-+		.periodic = {
-+			.frequency_hz = st->offload_trigger_hz,
-+		},
-+	};
-+
-+	if (st->pwr_down)
-+		return -EINVAL;
-+
-+	return spi_offload_trigger_enable(st->offload, st->offload_trigger,
-+					 &config);
-+}
-+
-+static int ad5791_buffer_postdisable(struct iio_dev *indio_dev)
-+{
-+	struct ad5791_state *st = iio_priv(indio_dev);
-+
-+	spi_offload_trigger_disable(st->offload, st->offload_trigger);
-+
-+	return 0;
-+}
-+
-+static const struct iio_buffer_setup_ops ad5791_buffer_setup_ops = {
-+	.preenable = &ad5791_buffer_preenable,
-+	.postdisable = &ad5791_buffer_postdisable,
-+};
-+
-+static int ad5791_offload_setup(struct iio_dev *indio_dev)
-+{
-+	struct ad5791_state *st = iio_priv(indio_dev);
-+	struct spi_device *spi = st->spi;
-+	struct dma_chan *tx_dma;
-+	int ret;
-+
-+	st->offload_trigger = devm_spi_offload_trigger_get(&spi->dev,
-+		st->offload, SPI_OFFLOAD_TRIGGER_PERIODIC);
-+	if (IS_ERR(st->offload_trigger))
-+		return dev_err_probe(&spi->dev, PTR_ERR(st->offload_trigger),
-+				     "failed to get offload trigger\n");
-+
-+	ret = ad5791_set_sample_freq(st, 1 * MEGA);
-+	if (ret)
-+		return dev_err_probe(&spi->dev, ret,
-+				     "failed to init sample rate\n");
-+
-+	tx_dma = devm_spi_offload_tx_stream_request_dma_chan(&spi->dev,
-+							     st->offload);
-+	if (IS_ERR(tx_dma))
-+		return dev_err_probe(&spi->dev, PTR_ERR(tx_dma),
-+				     "failed to get offload TX DMA\n");
-+
-+	ret = devm_iio_dmaengine_buffer_setup_with_handle(&spi->dev,
-+		indio_dev, tx_dma, IIO_BUFFER_DIRECTION_OUT);
-+	if (ret)
-+		return ret;
-+
-+	st->offload_xfer.len = 4;
-+	st->offload_xfer.bits_per_word = 24;
-+	st->offload_xfer.offload_flags = SPI_OFFLOAD_XFER_TX_STREAM;
-+
-+	spi_message_init_with_transfers(&st->offload_msg, &st->offload_xfer, 1);
-+	st->offload_msg.offload = st->offload;
-+
-+	return devm_spi_optimize_message(&spi->dev, st->spi, &st->offload_msg);
-+}
-+
- static const struct iio_info ad5791_info = {
- 	.read_raw = &ad5791_read_raw,
- 	.write_raw = &ad5791_write_raw,
- };
- 
-+static const struct spi_offload_config ad5791_offload_config = {
-+	.capability_flags = SPI_OFFLOAD_CAP_TRIGGER |
-+			    SPI_OFFLOAD_CAP_TX_STREAM_DMA,
-+};
-+
- static int ad5791_probe(struct spi_device *spi)
- {
- 	const struct ad5791_platform_data *pdata = dev_get_platdata(&spi->dev);
-@@ -416,6 +550,21 @@ static int ad5791_probe(struct spi_device *spi)
- 	indio_dev->channels = &st->chip_info->channel;
- 	indio_dev->num_channels = 1;
- 	indio_dev->name = st->chip_info->name;
-+
-+	st->offload = devm_spi_offload_get(&spi->dev, spi, &ad5791_offload_config);
-+	ret = PTR_ERR_OR_ZERO(st->offload);
-+	if (ret && ret != -ENODEV)
-+		return dev_err_probe(&spi->dev, ret, "failed to get offload\n");
-+
-+	if (ret != -ENODEV) {
-+		indio_dev->channels = &st->chip_info->channel_offload;
-+		indio_dev->setup_ops = &ad5791_buffer_setup_ops;
-+		ret =  ad5791_offload_setup(indio_dev);
-+		if (ret)
-+			return dev_err_probe(&spi->dev, ret,
-+					     "fail to setup offload\n");
-+	}
-+
- 	return devm_iio_device_register(&spi->dev, indio_dev);
- }
- 
-@@ -452,3 +601,4 @@ module_spi_driver(ad5791_driver);
- MODULE_AUTHOR("Michael Hennerich <michael.hennerich@analog.com>");
- MODULE_DESCRIPTION("Analog Devices AD5760/AD5780/AD5781/AD5790/AD5791 DAC");
- MODULE_LICENSE("GPL v2");
-+MODULE_IMPORT_NS("IIO_DMAENGINE_BUFFER");
+Perhaps worth trying to reduce the "story telling" nature of this, but
+please do incorporate some of these things into the main commit message
+- so that we capture it for future readers of the git log.
 
--- 
-2.43.0
 
+It would also be useful for that future reader to know that once there
+exist an implementation (i.e. when Linux supports it) that actually do
+manage load votes and there is power savings that can be shown, this
+should be introduced again.
+
+> 
+> There is some discussion about this:
+> https://lore.kernel.org/all/5tbevb5wv2s43pccytv4qol4yhq4s7iw2mmqp23vt3ujqd6xev@hkioqmwoitbd/
+
+It's okay to add this with a Link: tag.
+
+Regards,
+Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 52 +++++---------------------------
+>  1 file changed, 8 insertions(+), 44 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> index a25928933e2b66241258e418c6e5bc36c306101e..32db107dc660cff9d2ccbf19eceb5c5539c591a9 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> @@ -71,30 +71,21 @@ vreg_l1a: ldo1 {
+>  			regulator-name = "vreg_l1a";
+>  			regulator-min-microvolt = <488000>;
+>  			regulator-max-microvolt = <852000>;
+> -			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> -			regulator-allow-set-load;
+> -			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+> -						   RPMH_REGULATOR_MODE_HPM>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l2a: ldo2 {
+>  			regulator-name = "vreg_l2a";
+>  			regulator-min-microvolt = <1650000>;
+>  			regulator-max-microvolt = <3100000>;
+> -			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> -			regulator-allow-set-load;
+> -			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+> -						   RPMH_REGULATOR_MODE_HPM>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l3a: ldo3 {
+>  			regulator-name = "vreg_l3a";
+>  			regulator-min-microvolt = <1000000>;
+>  			regulator-max-microvolt = <1248000>;
+> -			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> -			regulator-allow-set-load;
+> -			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+> -						   RPMH_REGULATOR_MODE_HPM>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l5a: ldo5 {
+> @@ -102,9 +93,6 @@ vreg_l5a: ldo5 {
+>  			regulator-min-microvolt = <875000>;
+>  			regulator-max-microvolt = <975000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> -			regulator-allow-set-load;
+> -			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+> -						   RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l7a: ldo7 {
+> @@ -112,9 +100,6 @@ vreg_l7a: ldo7 {
+>  			regulator-min-microvolt = <1800000>;
+>  			regulator-max-microvolt = <1900000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> -			regulator-allow-set-load;
+> -			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+> -						   RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l8a: ldo8 {
+> @@ -122,9 +107,6 @@ vreg_l8a: ldo8 {
+>  			regulator-min-microvolt = <1150000>;
+>  			regulator-max-microvolt = <1350000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> -			regulator-allow-set-load;
+> -			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+> -						   RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l10a: ldo10 {
+> @@ -132,59 +114,41 @@ vreg_l10a: ldo10 {
+>  			regulator-min-microvolt = <2950000>;
+>  			regulator-max-microvolt = <3312000>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> -			regulator-allow-set-load;
+> -			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+> -						   RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l11a: ldo11 {
+>  			regulator-name = "vreg_l11a";
+>  			regulator-min-microvolt = <1232000>;
+>  			regulator-max-microvolt = <1260000>;
+> -			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> -			regulator-allow-set-load;
+> -			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+> -						   RPMH_REGULATOR_MODE_HPM>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l12a: ldo12 {
+>  			regulator-name = "vreg_l12a";
+>  			regulator-min-microvolt = <1800000>;
+>  			regulator-max-microvolt = <1890000>;
+> -			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> -			regulator-allow-set-load;
+> -			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+> -						   RPMH_REGULATOR_MODE_HPM>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l13a: ldo13 {
+>  			regulator-name = "vreg_l13a";
+>  			regulator-min-microvolt = <3000000>;
+>  			regulator-max-microvolt = <3230000>;
+> -			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> -			regulator-allow-set-load;
+> -			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+> -						   RPMH_REGULATOR_MODE_HPM>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l15a: ldo15 {
+>  			regulator-name = "vreg_l15a";
+>  			regulator-min-microvolt = <1800000>;
+>  			regulator-max-microvolt = <1904000>;
+> -			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> -			regulator-allow-set-load;
+> -			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+> -						   RPMH_REGULATOR_MODE_HPM>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l16a: ldo16 {
+>  			regulator-name = "vreg_l16a";
+>  			regulator-min-microvolt = <3000000>;
+>  			regulator-max-microvolt = <3312000>;
+> -			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
+> -			regulator-allow-set-load;
+> -			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM
+> -						   RPMH_REGULATOR_MODE_HPM>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+>  		vreg_l17a: ldo17 {
+> 
+> ---
+> base-commit: 1b2ab8149928c1cea2d7eca30cd35bb7fe014053
+> change-id: 20241211-bug-fix-qcs615-ride-dts-lpm-power-issue-44e33c8dfd3d
+> 
+> Best regards,
+> -- 
+> Tingguo Cheng <quic_tingguoc@quicinc.com>
+> 
 
