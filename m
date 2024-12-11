@@ -1,125 +1,193 @@
-Return-Path: <devicetree+bounces-129779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FAA59ECC36
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:40:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAC089ECC40
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:42:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 672E218837E3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:40:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94D411637B9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:41:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC5A229128;
-	Wed, 11 Dec 2024 12:40:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5376229132;
+	Wed, 11 Dec 2024 12:41:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="bH2OZSN4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2047.outbound.protection.outlook.com [40.107.92.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC1921C1F25;
-	Wed, 11 Dec 2024 12:40:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733920837; cv=none; b=HbRcUJBUHKPFMRgsVUV3l4GLgtm5Q4pOZXJGwSXvESDMtnkJa1ocfaoR9a0FZo/gW3N7YrNVqM5K9S9e/SXK6soAytAYdzeb/ukcGvMNfGXlf14UJTu14CQHX+ftzbqnL2mXpXBXMiH95CsJmgaJWF1kgcPxR6Rcmpagm8pfxT4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733920837; c=relaxed/simple;
-	bh=sOa9ZYz19luc7etTQ3JKpv5rDbIyWNa9v5idrNMbnsY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UpbwZXTZBL0PXQsJpGYnbzj3nYWZ2CxSSI8Qnu/XQdyXVULpP060a2JffAzc41P2kim5xHBqmoCjsZ3qvMGOim/+eodxCBR5BtTSYm46PmD4VFawPKBywrpl7Fs+RAgOxZjMHq1jUoQIG6QvkqQFPzb+9+g5NY9RNDiq/TboYjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-85ba92b3acfso1747376241.1;
-        Wed, 11 Dec 2024 04:40:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733920833; x=1734525633;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SIHlUetqmjksC19uBnWgzXydGYYm7SjCWz4dlSQwPww=;
-        b=O10lwopRW1yT3Ko8/Ueyvg4FKiE+42qxo1hxvX0zsi7AVEseYro9hRl4yA8fTtU0rt
-         ypuz8oZyQH3GPR3uPJvv7KL9IaraJAOfgqu/IOaH0EasTBV4fSBHoo73lrJ4ZNKhHMTA
-         Ieq6/gnUYokUNs+xT37Xy9A8yhEKok3apB/ibKzMka7FVi8ne3ChvXE59ee64wE00sNL
-         +A8pVjLmEkeIajj2TCshgfo2You0vHTU0q7RUb78Jp/wNbiduR36smgTxOZwc+NMbtYT
-         wVYvp/STb7h+pBvJHJwVItKV7HFMAE3xz1KHQxxHa2Hzn8BqQ2PKwHddzgo4L1BN59L9
-         gI9g==
-X-Forwarded-Encrypted: i=1; AJvYcCU4izEN32P4muoE0gRTsNGrjEZCqx/HrhXyMv9ee5bIN3hiu+SNInsqlaKO+dImyAUt12Pp+4HeOc+f@vger.kernel.org, AJvYcCUAIg+iD7PD3LHS7KL46zLxk/u7ikpDfb6B2xYRUKHMXZVZ+V//X5TFfzj+MSfkh9v43rfNdMY8RfBh@vger.kernel.org, AJvYcCVoOazJQzKIJQ4I7fZvLb39QZLs+zDx4Cr/m2mROZTnwT7RQvVfPaR7e+gXhlWa3FO92tJWEiCKsju+uk2z@vger.kernel.org, AJvYcCWt25UlY011y5pbTYSmhLJqH5Nwq0IiBwbYWjE3O2Lxd2bQY5Y13DomJH+xbZo/jnW37sFx/U9zHiDXfMXWHDbZe74=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxlk9yMf2J2UdGfX7Y72fR7elalx77R9H8v6K6PYWW6UCTxuaPU
-	QD6dabpOpKejuIbrJLc6Zyt0ayXclIGCXus5h23ut+lxuUIPLRSduynuwcp2
-X-Gm-Gg: ASbGncvL+RiOU+rfcDLx8J0iEHen3j53c91+qwzsiChWueBnMMZI+isiMQGDyOVW78o
-	/f9beCTBKsayP/KI+KziuoQVBN1oBnYXm0pi6RNrAIYNZCiZF2RDK00NVyxtul4gWuzUssUu8sR
-	zsOpTyJxuMTi51ARmYZmc5Y8zwlwrOq6eg4+3OJNykPXWifEFxDs/OgS9Ba3B+6qhQj2LTgWs4M
-	R4hMjVesJYbX1MTboQDDJASnCJ58PC/EXcvRCIwUlZy9lP8BS/w9OlENsJRCcQM/BOMiCxrWT78
-	IEJprytsdAPwZlWh
-X-Google-Smtp-Source: AGHT+IHBaKNuC17dOvC3yLJOtQ+mIT/iiwHN1oUXnfSOr95UqanfkvOcCdScvOxSTzk3o7CxVi3SlQ==
-X-Received: by 2002:a05:6102:5127:b0:4af:f5bd:6376 with SMTP id ada2fe7eead31-4b128fe42a0mr2564430137.7.1733920832860;
-        Wed, 11 Dec 2024 04:40:32 -0800 (PST)
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4afda73c931sm1355694137.24.2024.12.11.04.40.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Dec 2024 04:40:32 -0800 (PST)
-Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4b10e0654afso1836690137.2;
-        Wed, 11 Dec 2024 04:40:32 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVHznZ3u9zm/97E63AqU6jJUOPSF01ulkctZFT0vJYoZejRVYWZJZz/sszLX3Qyriht7M3wkz/yB5L/@vger.kernel.org, AJvYcCWBMlXDwXQQ4wFO3ToOeUCntUAArM7ooxr3uQtWn3buFm5CRXZmYZBBUDJLajv6vEEyRqmi1vI+h/biLcxlFc/T3B0=@vger.kernel.org, AJvYcCWr7LMms7n9zXt/qVTMZg9F430KPkYxmr0rMowJbx97NY7ns8oiiJmbOuDc/lZUGBcQrIxi7/LoU+1bCdFP@vger.kernel.org, AJvYcCXqOWJM3ydpXPkAfC3+ThkSbKitVLYWaZTNigQvCuuxmafcSrGxwkDuzAox+X0zgJC8qh+5hGzxrmoF@vger.kernel.org
-X-Received: by 2002:a05:6102:c12:b0:4b1:1eb5:8ee5 with SMTP id
- ada2fe7eead31-4b1291b564bmr2335034137.25.1733920832133; Wed, 11 Dec 2024
- 04:40:32 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5DF1229124;
+	Wed, 11 Dec 2024 12:41:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733920911; cv=fail; b=T02MhTODCzvZlDi8wuSpLlf6kwy8or9NgSU68Wqu8e1Dkj+1J9VM4vmN131b4AWgHmhq1j1DcrGvqjc5DAxfIkbB46NEKZnew2qi0mmIFjI2KnDLo33ovKyIuXzuEwPzRGhn68L2IRisxL6BaOqZomu2jko4JJPtsux/H+9U7ng=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733920911; c=relaxed/simple;
+	bh=xacJ66fk6uB2sDPj5wM0qqur8XXBqRH/0MJF2aBCVok=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VmK9OjoQ7BdNJQFOqQqsAy2v4VI/z0raFxchHWHM6N8BZs7Wo7HP3aVMfEMLkcgBc8Eg3jF5Zv8GMDufpD12SGKJD7ux4vJtfXBpmeZbeFfRCqdcgr1x9vGOvooEAaXpRi1PfbocaapCCwlVX95FPgohXGYtJkkC9GAscDpjrC0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=bH2OZSN4; arc=fail smtp.client-ip=40.107.92.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pHjP6R1l6fs5/yYHBb5wRtp+g26Jmpz/ZRsJuoF0qabu4xKQUCXJpmCL+KTAHQo/fdiZUU9yWEa9cwveW06OxKoqVkqASkSJRUsYMi8XSBYgWzgzvo36NTNpIwf8KT5aLwZKd9/vz3cjsAfml/cf4bEbiRTZ4ZzaQ9VTjPJ8YN3bOQnC8Zedlo3AWYI1aptTNSCNLjZJJHm3P4X7ZOxxhtSJPuUIs9uxNxu6QPjuG5miX1FOdqSQFNC/C8KR6psYnPgcqTBXJ75nq1V6ibTfRYklJ7r9FK1EArgrKCE9IFPIHbJStkRrC4aS4CTmS6y4kAxRhrMiSggXwQTisfW6Bg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/PqJ8uD9J+sGy1zN+DvyxT/uZQbc5ojLhoMVE55H4A4=;
+ b=AUj/beDPZuQJ1FmamWj/MpgyqbKnl5egdyiWT0kGsW/y4WbyI4q7wzVyUnQyGV63KrAvuZPynDoYNtz1Sw+lCw9t2YHr5h3GVDMkCEieD1TJybdmmoJTV4NX7mbnGp+AdoE63X+xAtFUzsAZPUqbqN88Q4g18XR/2cDzEmyzgNta2JBOXIvupsCVco1TI4MTcJ29K3A90lS0JKJRoepBDT2m7dSNGfAKqvny7mG4f3UElP5uzPTHnQDPqbH8VCPqNXJ9chszxHQ5kp72zlGnhs1+Qjpo+cqxwSEOqpzK4+GnXFVOJaWQu7Mu6Ggv0WrmhyT7gsxrC/q9WJK5tGHdfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/PqJ8uD9J+sGy1zN+DvyxT/uZQbc5ojLhoMVE55H4A4=;
+ b=bH2OZSN4SXR5jJaUllopW3b+m6b19V8oHIcfx1FW3lPK2bWyatqMpM8NhJk+vgVKYf98s17SkkrAtvehxPv7RLxutbE4usD84xRX0ZISKGC0teUo3vgW5MVmlm7rdDd8utdGDz8TOTUsNwNpx6gWenRovxe8aspfb57eoZLjfOI=
+Received: from MN2PR07CA0019.namprd07.prod.outlook.com (2603:10b6:208:1a0::29)
+ by CYYPR12MB8751.namprd12.prod.outlook.com (2603:10b6:930:ba::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.18; Wed, 11 Dec
+ 2024 12:41:43 +0000
+Received: from BL02EPF0001A105.namprd05.prod.outlook.com
+ (2603:10b6:208:1a0:cafe::e2) by MN2PR07CA0019.outlook.office365.com
+ (2603:10b6:208:1a0::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8251.14 via Frontend Transport; Wed,
+ 11 Dec 2024 12:41:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL02EPF0001A105.mail.protection.outlook.com (10.167.241.137) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8251.15 via Frontend Transport; Wed, 11 Dec 2024 12:41:41 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 11 Dec
+ 2024 06:41:38 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "moderated
+ list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH 00/15] ARM: zynq: Sync DTs with U-Boot
+Date: Wed, 11 Dec 2024 13:41:19 +0100
+Message-ID: <cover.1733920873.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241210170953.2936724-1-claudiu.beznea.uj@bp.renesas.com> <20241210170953.2936724-21-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241210170953.2936724-21-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 11 Dec 2024 13:40:20 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWK=jkf8eLcapRcNhyBissDJJ0YdFMP2vKW9zqYVkv5Lg@mail.gmail.com>
-Message-ID: <CAMuHMdWK=jkf8eLcapRcNhyBissDJJ0YdFMP2vKW9zqYVkv5Lg@mail.gmail.com>
-Subject: Re: [PATCH v4 20/24] arm64: dts: renesas: r9a08g045: Add SSI nodes
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	lgirdwood@gmail.com, broonie@kernel.org, magnus.damm@gmail.com, 
-	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
-	biju.das.jz@bp.renesas.com, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2108; i=michal.simek@amd.com; h=from:subject:message-id; bh=xacJ66fk6uB2sDPj5wM0qqur8XXBqRH/0MJF2aBCVok=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhvTIjsJv39eZ3IrW/HPFoz9MJbnywQtWoaCN8230681f7 bqie3BvRywLgyATg6yYIou0zZUzeytnTBG+eFgOZg4rE8gQBi5OAZgIgxbD/GId6ytRbU0nilr4 ZmvO9eh/3PjPkWF+mNLdBSxq3sVnnvIs2czdPXOXXvoKAA==
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A105:EE_|CYYPR12MB8751:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6351f587-028d-4543-33d0-08dd19e129cb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?iGlq4KsJVaLa9bwlXC5W7b8ZFn9V9uWi+FO0N942wbxODbGfXpFbOOTK1fEk?=
+ =?us-ascii?Q?xha998lTiqHNux1J7l+iNlYVNA9DnJvzg8ojAgwQ0D3cVhKMryEGQvlTl166?=
+ =?us-ascii?Q?hosKtbL/PIqnut2wjXcwHnp/LewaKgWZWmQjf6MjC4kIYPSUCB7dkG8I5aPu?=
+ =?us-ascii?Q?YPjcEjFrtLRBxZT5za+Cr7Ed0+7ztWwxjtsrH9TAJItEPDRDc+uAd4Zy7YZX?=
+ =?us-ascii?Q?1QSxy9mHvG4G2/MPEMGMjHhjYkycTxA1PlKS6u1d5HZYq93u7Bn5YI9XvGT7?=
+ =?us-ascii?Q?ZLY+VC6ZXK7xl+Axa9jZn5a+cWCB87Iaq23dumHBD0Wqk7iD1s1+91BxMGxu?=
+ =?us-ascii?Q?PfWzcxOkKFOFsuMRuGq1Ntrl+3QnhLW37Kn7WnW2DE3p9VG56P3pSJCk3QqJ?=
+ =?us-ascii?Q?3T+xO2EO+C+77kENG0XRPx6mQkbv2yDzYy90EU3GAGmwW0zAAgBzg6TkbuEM?=
+ =?us-ascii?Q?NNV0gDPO9Ca+3Fk0Cxk1jsb4oplwi66P1RbkTgxQbRdG/qHtwbuK85Lj+Y/K?=
+ =?us-ascii?Q?wa2p48UJ2BJXbB/Klkh2hBpIkk3zFDT9d1tSYDOnbV4Jp9EURXGav5SQH+rz?=
+ =?us-ascii?Q?oBjZRl04or3FhbbFhSexnAvs1wYq7uy7U2H3rgOfS0RHku55cN+5l1MMhnX6?=
+ =?us-ascii?Q?K+UjJn0rl175TlVpUmimPRhYwjOseIR5nWSC7r3rZZFVufB/ZU/zO5lCWqx+?=
+ =?us-ascii?Q?8Cnnf2DHRAs9CH9nvhTg4JjwMLnLvob+Zf/hB/A5e4A1wLN9SljLceVJpYoQ?=
+ =?us-ascii?Q?1CzRd6Q78WsNeiVhiUDwVqhbhN32T+UiNEp4uv5XdANeKP6BwdeQFHArKd6R?=
+ =?us-ascii?Q?+ilKBew5hxaZzWgZkXG08+2daD4TDQo10C8vePbWVFIpRWuUWshqXt4aj1QB?=
+ =?us-ascii?Q?9xwwCSx+cSxSJ11eec8bZAuN+vTyoolOG9ATm1Et8++8Whh/Ppo5tA9yIH61?=
+ =?us-ascii?Q?KB7r0A3oSuTbUX4fNHKMBhrJpGNpGFNKrjm0G7Z0Bxyv3Hf2sUvvHJsShypo?=
+ =?us-ascii?Q?SwyObct7tLcdJUeo+gvkdh6FXTKAYb1+YoSJ/Ze2I0a4Dw2ZVLcf2rHTFf7E?=
+ =?us-ascii?Q?ZIUThtvCv6nDL6Ilg6p72mhH9N7+Qp8g+G4aoesJNkiQtEH/SxeIQx4iTgSS?=
+ =?us-ascii?Q?e2DGiC8SsOOCPXdSeEB7BjqncC+oOkZPyWdHJCryIDekQ5HAhReUiqF6G258?=
+ =?us-ascii?Q?B6vTDbzO0erpLcaMJ7ozf+V+BBzTOgIooot1P+purAEt9jGvru2PEOFzIX10?=
+ =?us-ascii?Q?8nh04JMujSbfDAvT2i6juvJ2crZ247lAG+cDYXu1oFkqqA0hAtf9+l3HBvlY?=
+ =?us-ascii?Q?9OcDUg1wi/bxEgF7hMOuWYK+Gn0OvAD1tziOE/NACddg0kQ6iQ6g6iz7R8qz?=
+ =?us-ascii?Q?qenvO8RcNGmpl3K0S/K+U5JF7wDRJzNHu4zSMBgXaYExXCAmwJgXGQwXxItq?=
+ =?us-ascii?Q?HoMvgs17W/DTjz7zh1zREWWdV61ic201?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2024 12:41:41.5216
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6351f587-028d-4543-33d0-08dd19e129cb
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL02EPF0001A105.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB8751
 
-On Tue, Dec 10, 2024 at 6:10=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Add DT nodes for the SSI IPs available on the Renesas RZ/G3S SoC. Along
-> with it external audio clocks were added. Board device tree could use it
-> and update the frequencies.
->
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->
-> Changes in v4:
-> - s/audio-clk1/audio1-clk
-> - s/audio-clk2/audio2-clk
-> - dropped status for the audio clock nodes
-> - collected tags
+Hi,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.14.
+over years there were some changes pushed to U-Boot which were never merged
+back to Linux. U-Boot introduced new option OF_UPSTREAM and start to sync
+up DTs from Linux back to U-Boot.
+This series is addressing differences.
+There are still 3 more differences but they should be addressed separately.
 
-Gr{oetje,eeting}s,
+Thanks,
+Michal
 
-                        Geert
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Michal Simek (14):
+  ARM: zynq: Remove deprecated device_type property
+  ARM: zynq: DT: List OCM memory for all platforms
+  ARM: zynq: Mark boot-phase-specific device nodes
+  ARM: zynq: Do not define address/size-cells for nand-controller
+  ARM: zynq: Wire smcc with nand/nor memories on zc770 platform
+  ARM: zynq: Add ethernet phy reset information to DT(zc702)
+  ARM: zynq: Define u-boot bootscrip addr via DT
+  ARM: zynq: Point via nvmem0 alias to eeprom on zc702/zc706
+  ARM: zynq: Define rtc alias on zc702/zc706
+  ARM: zynq: Rename i2c?-gpio to i2c?-gpio-grp
+  ARM: zynq: Fix fpga region DT nodes name
+  ARM: zynq: Enable QSPIs on platforms
+  ARM: zynq: Add sdhci to alias node
+  ARM: zynq: Remove ethernet0 alias from Microzed
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Sai Krishna Potthuri (1):
+  ARM: zynq: Replace 'io-standard' with 'power-source' property
+
+ arch/arm/boot/dts/xilinx/zynq-7000.dtsi       | 33 ++++++-
+ arch/arm/boot/dts/xilinx/zynq-cc108.dts       | 41 ++++++++-
+ arch/arm/boot/dts/xilinx/zynq-microzed.dts    | 10 ++-
+ arch/arm/boot/dts/xilinx/zynq-parallella.dts  |  1 -
+ arch/arm/boot/dts/xilinx/zynq-zc702.dts       | 87 +++++++++++++------
+ arch/arm/boot/dts/xilinx/zynq-zc706.dts       | 67 +++++++++++---
+ arch/arm/boot/dts/xilinx/zynq-zc770-xm010.dts | 39 ++++++++-
+ arch/arm/boot/dts/xilinx/zynq-zc770-xm011.dts | 31 +++++++
+ arch/arm/boot/dts/xilinx/zynq-zc770-xm012.dts | 35 ++++++++
+ arch/arm/boot/dts/xilinx/zynq-zc770-xm013.dts | 41 ++++++++-
+ arch/arm/boot/dts/xilinx/zynq-zed.dts         | 43 ++++++++-
+ .../boot/dts/xilinx/zynq-zturn-common.dtsi    |  8 ++
+ arch/arm/boot/dts/xilinx/zynq-zybo-z7.dts     | 10 ++-
+ arch/arm/boot/dts/xilinx/zynq-zybo.dts        |  9 +-
+ 14 files changed, 404 insertions(+), 51 deletions(-)
+
+-- 
+2.43.0
+
 
