@@ -1,181 +1,173 @@
-Return-Path: <devicetree+bounces-129558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3256C9EC10B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 01:46:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18DFD9EC1A6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 02:38:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DEE3168400
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:46:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B568F169116
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 01:38:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CCB6374CC;
-	Wed, 11 Dec 2024 00:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CD2878F45;
+	Wed, 11 Dec 2024 01:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KjCTQrhB"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="iLXQvmIz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DAE81F5EA;
-	Wed, 11 Dec 2024 00:46:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733878006; cv=none; b=AtWsIhr/uSXpNGGDpkNronxlZ8arxtwDXz/yBBcWA1RGFwUNIMi9d3loxhkO3IwGzrB3v0vFnUEG3F2OlJYYDRgYNa+Xaqf0PgjgdX6an3a8eYzRuQPT53A7lMeTc9YjIBppwI2Q6SyhMSIJYMgQsqo+ZnPfdryCl3CZIrjFgNg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733878006; c=relaxed/simple;
-	bh=1H3cIATD0dXLlSVUR/ldxmWO5MYq4IIJi3J0Hk+r9dY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=This7hUD2SpQwiQYcWKzJ+68txULhjMeyPBxPMLVfx4RcNOQgzrxQBmYyZpukzXTv9flvk+Nf/x3CZ+1ZRQwZ8IiP8mZVdaSQZtCG8abITtdIGneuf3mOPZPAHv/SzFq2VMB4+htoatatFw5JlzlnuW2M/u8LE7feE3mrTbSlSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KjCTQrhB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BADXbp4014608;
-	Wed, 11 Dec 2024 00:46:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pOvQ4kEW5+JbIoo3oLAx3A6GmkI7mBSEDvoz1mE4eXw=; b=KjCTQrhBUH38ytjN
-	RUtbiO/IEO49nRXsFTPDMtuOEqVqcvodDRVk5i8iitWNs2a8WE6Q1ZwVJo7OQi7y
-	cXvEum9l7opxX4RhHY4nXSUoZsL2bnmNBCwwS2+i05Q2THqox6sGVMGx7mueioXY
-	PnJ24Hy3X644/kanKm5OxEu7Os4VR507b4b6Wm9pTB6GcvB/TTJC5aJ+0XbD6rzn
-	nSCS2LnaRLNzK70P7nXChTrJVcaCll0nh3ht+BLRbF9pxgvZaw1g9vaoNCmRVKt9
-	/HP8JdX0Ahy2FZwpmOoN0CqY5JBJvx+jsnKQqYu0uoY2F/nhObKJp11xoPFcKtLd
-	4MFU3Q==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43ee3nb71x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Dec 2024 00:46:25 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BB0kPcP029536
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Dec 2024 00:46:25 GMT
-Received: from [10.64.16.135] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 10 Dec
- 2024 16:46:18 -0800
-Message-ID: <527baded-f348-48a8-81cd-3f84c0ff1077@quicinc.com>
-Date: Wed, 11 Dec 2024 08:46:16 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D540C3A8F7;
+	Wed, 11 Dec 2024 01:38:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733881102; cv=pass; b=RYePl54Up2v4q3QtqxGGPIC6VW0GeUxJBJqaJl5mxHQpXbobIGwE9ezDsUQg0CoE89GhwGdXvbjA5KO+SQmtwW4v2GmUmVwAy+al1U6Sur8m4ZnsLcqbVR3AI+l7urXi9qGCK/eAEgFbm02FridztEObnO6X+ExEAF8L95QlO78=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733881102; c=relaxed/simple;
+	bh=MiANRQxAdGZ9xEmS1eGwBnT+TtfM8IekXWmhnbTeeJs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ncvv3hwwh4sewkuNwd3iI6+3pMdH7VlpfpzxO5gXAHRLe6gTjL7ZhO4KJ6uY6n49/7KgN94e3YQOB4ddkP/HQDLpX8B8B8r4SUPeZCmHkAlxDwPK5N4Off7GoY+IpcbaqBFuPS+BbKZmKmIv4qS79JK8umA47yl7BtQE3sJR3cg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=iLXQvmIz; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1733881091; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=MBbJ6zXRPQCvT/XYWEwRK20WqjTmUqwU16AiK4vyrVhNj/jHI/BhIhqlrKjhXO0G/fxUu9GbaTYAoxzAa+rIeCcHZemngcSgtl/eh7vK5MCBaDj1TmRB9zLWdtMEtdvZMggo66LqvC9DjOn/Mzeck+DSWbkjr1cZFD26ssZmitQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1733881091; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=i5QT+7FiT6szOyqoDxYnm2QjssftX3943ZiJ+wM6JZM=; 
+	b=IvluER+xWZeoKGtYBmI4qjXR0zOzaYpNfoSJeSgCzLsG9U2pRBULhGp567xLuokXQiMrL5Hy7DQZTROWHR27yv5RmkormaGoB+MyDk2S2BbwIjdM54yjIeTWKT2LlrlO4ZVW5mgkThHWhFAq0rkrjYNMEgWpWhOX9TQdeHFVvjs=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1733881091;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=i5QT+7FiT6szOyqoDxYnm2QjssftX3943ZiJ+wM6JZM=;
+	b=iLXQvmIzD4wQRi76Q+4y7LuJO/nVikOQPc4jQ/LZKc13jLdvOdqSC1tfOwdotlOd
+	tIkyF75XoziQj3QexsQPiqXJlRz0PVhRS9y32OgX9atYaErXilVkGLdnoa9TZ+MqPVd
+	Yp6KlTiWJemeZ8u0mBke7Ij2XxwzmSHW2KccWPF8=
+Received: by mx.zohomail.com with SMTPS id 173388108866529.45962812053415;
+	Tue, 10 Dec 2024 17:38:08 -0800 (PST)
+Received: by mercury (Postfix, from userid 1000)
+	id 63B0B10604B1; Wed, 11 Dec 2024 02:38:03 +0100 (CET)
+Date: Wed, 11 Dec 2024 02:38:03 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Kim Seer Paller <kimseer.paller@analog.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mike Looijmans <mike.looijmans@topic.nl>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] power/supply: Add support for ltc4162-f/s and
+ ltc4015
+Message-ID: <b5mhivpuhyfj3knw3w5wmi2kxyyej7cdnh3kd6wyenumfy7qpr@vnfvfj5gsmtx>
+References: <20241210060506.10295-1-kimseer.paller@analog.com>
+ <20241210060506.10295-2-kimseer.paller@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/8] phy: qcom: qmp-usbc: Add DP phy mode support on
- QCS615
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Kuogee
- Hsieh" <quic_khsieh@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Kishon
- Vijay Abraham I" <kishon@kernel.org>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, <quic_lliu6@quicinc.com>,
-        <quic_fangez@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-gpio@vger.kernel.org>
-References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
- <20241129-add-displayport-support-for-qcs615-platform-v1-3-09a4338d93ef@quicinc.com>
- <CAA8EJppOR_UXoVpMt-dhfWdCz3UNfsXGdz8X9NqpaSmYj3AZDg@mail.gmail.com>
- <5ea14162-567b-462d-be02-b73b954b7507@quicinc.com>
- <5whv4z7u6fkfwlv5muox5dmv6fow4mga76ammapw7wph7vwv3f@xibcjdfqorgf>
- <iqcofcntirmlwcpyfr4yabymqfcgyrij57bibf337tmxpa73t6@npkt6wquenf6>
-From: Xiangxu Yin <quic_xiangxuy@quicinc.com>
-In-Reply-To: <iqcofcntirmlwcpyfr4yabymqfcgyrij57bibf337tmxpa73t6@npkt6wquenf6>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ygGzruQ_LQRZ7QNeIARNz0cm5J1Cy4Os
-X-Proofpoint-ORIG-GUID: ygGzruQ_LQRZ7QNeIARNz0cm5J1Cy4Os
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- malwarescore=0 spamscore=0 priorityscore=1501 mlxscore=0 impostorscore=0
- mlxlogscore=999 lowpriorityscore=0 adultscore=0 clxscore=1015 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412110004
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="esba6m4ei4fw3vbd"
+Content-Disposition: inline
+In-Reply-To: <20241210060506.10295-2-kimseer.paller@analog.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.3.1/233.855.81
+X-ZohoMailClient: External
 
 
+--esba6m4ei4fw3vbd
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 2/2] power/supply: Add support for ltc4162-f/s and
+ ltc4015
+MIME-Version: 1.0
 
-On 12/10/2024 11:09 PM, Dmitry Baryshkov wrote:
-> On Thu, Dec 05, 2024 at 08:31:24PM +0200, Dmitry Baryshkov wrote:
->> On Thu, Dec 05, 2024 at 09:26:47PM +0800, Xiangxu Yin wrote:
->>>
->>>
->>> On 11/29/2024 10:33 PM, Dmitry Baryshkov wrote:
->>>> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
->>>>>
->>>>> Extended DP support for QCS615 USB or DP phy. Differentiated between
->>>>> USBC and DP PHY using the match table’s type, dynamically generating
->>>>> different types of cfg and layout attributes during initialization based
->>>>> on this type. Static variables are stored in cfg, while parsed values
->>>>> are organized into the layout structure.
->>>>
->>>> We didn't have an understanding / conclusion whether
->>>> qcom,usb-ssphy-qmp-usb3-or-dp PHYs are actually a single device / PHY
->>>> or two PHYs being placed next to each other. Could you please start
->>>> your commit message by explaining it? Or even better, make that a part
->>>> of the cover letter for a new series touching just the USBC PHY
->>>> driver. DP changes don't have anything in common with the PHY changes,
->>>> so you can split the series into two.
->>>>
->>> Before implement DP extension, we have discussed with abhinav and krishna about whether use combo, usbc or separate phy.
->>
->> What is "DP extension"?
->>
-I'm sorry confusion casued by my description. It's means extend DP implemnt for USBC phy driver.
->>>
->>> We identified that DP and USB share some common controls for phy_mode and orientation.
->>> Specifically, 'TCSR_USB3_0_DP_PHYMODE' controls who must use the lanes - USB or DP,
->>> while PERIPH_SS_USB0_USB3PHY_PCS_MISC_TYPEC_CTRL controls the orientation.
->>> It would be more efficient for a single driver to manage these controls. 
->>
->> The question is about the hardware, not about the driver.
->>
->>> Additionally, this PHY does not support Alt Mode, and the two control registers are located in separate address spaces. 
->>> Therefore, even though the orientation for DP on this platform is always normal and connected to the video output board, 
->>> we still decided to base it on the USBC extension.
->>
->> Could you please clarify, do usb3-or-dp PHYs support DP-over-USB-C? I
->> thought that usbc-or-dp platforms support that, but they don't
->> support DP+USB pin configuration. Note, the question is broader than
->> just QCS615, it covers the PHY type itself.
->>
->> Also, is TCSR configuration read/write or read-only? Are we supposed to
->> set the register from OS or are we supposed to read it and thus detemine
->> the PHY mode?
-> 
-> Any updates on these two topics?
-> 
-Still confirming detail info with HW & design team.
-I’ll update the information that has been confirmed so far.
-This phy support DP-over-USB-C,but it's not support alt-mode which 2 lane work for DP, other 2 lane work for USB.
-TCSR phy mode is read/write reg and we can read for determine phy mode.
+Hi,
 
+On Tue, Dec 10, 2024 at 02:05:06PM +0800, Kim Seer Paller wrote:
+>  static int ltc4162l_get_ibat(struct ltc4162l_info *info,
+>  			     union power_supply_propval *val)
+>  {
+> +	const struct ltc4162l_chip_info *chip_info =3D info->chip_info;
+>  	unsigned int regval;
+>  	int ret;
+> =20
+> @@ -249,9 +356,8 @@ static int ltc4162l_get_ibat(struct ltc4162l_info *in=
+fo,
+>  	if (ret)
+>  		return ret;
+> =20
+> -	/* Signed 16-bit number, 1.466=CE=BCV / RSNSB amperes/LSB. */
+>  	ret =3D (s16)(regval & 0xFFFF);
+> -	val->intval =3D 100 * mult_frac(ret, 14660, (int)info->rsnsb);
+> +	val->intval =3D mult_frac(ret, chip_info->ibat_resolution_uv, info->rsn=
+sb);
 
+ibat_resolution_uv is in picovolt as far as I can see:
+
+1.466 uV / RSNSB =3D 1466 nV / RSNSB =3D 1466000 pV / RSNSB
+
+RSNSB is provided in microOhm and picoVolt / microOhm equals
+microAmp, which is the unit expected by the power-supply
+subsystem.
+
+>  	return 0;
+>  }
+> @@ -260,6 +366,7 @@ static int ltc4162l_get_ibat(struct ltc4162l_info *in=
+fo,
+>  static int ltc4162l_get_input_voltage(struct ltc4162l_info *info,
+>  				      union power_supply_propval *val)
+>  {
+> +	const struct ltc4162l_chip_info *chip_info =3D info->chip_info;
+>  	unsigned int regval;
+>  	int ret;
+> =20
+> @@ -267,8 +374,7 @@ static int ltc4162l_get_input_voltage(struct ltc4162l=
+_info *info,
+>  	if (ret)
+>  		return ret;
+> =20
+> -	/* 1.649mV/LSB */
+> -	val->intval =3D  regval * 1694;
+> +	val->intval =3D  regval * chip_info->vin_resolution_mv;
+
+I believe it should be vin_resolution_uv. Microvolt is what the
+power-supply subsystem wants and 1.649 mV (from the comment above) is
+1649 uV (from the chip_info->vin_resolution_mv value) :)
+
+> =20
+>  	return 0;
+>  }
+
+Otherwise LGTM.
+
+-- Sebastian
+
+--esba6m4ei4fw3vbd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmdY7PMACgkQ2O7X88g7
++prZOw//Q9E81WqnzJLQB8b1yVZZRDrkWWCkh3Szb4nJa9ejJcxu8un4xz/PMlO0
+yBxnavwvni/qrPG+ctI0gBg952XSeY6CqMdx2ZzUt93BjqE5VsaQXa2PyKmfOmrb
+JM63fjjJbCzRMnsUEobmoMQjILZNFC93c7Iy+XDSXzVeTS5WL4lU9i91TkSAMTNC
+r/Erb/l9Xv9wa+yCgmvZuMRXS0T+ef0+7iySJVFV9vAJ1ywPjhybJsvtmCdjH+Oq
+BuP61RfDc8fbsm77VJoVhKfZCSwzrhcYNRNrC5r7xYDbobZnZDqmu5bUprN4ld0j
+5KgFeQ8blpFT+cyl6DWQJxe5obX9XM6xroWJMy5vG3MzN9DktkKews9SnXErcSOi
+hR061UxKPn9qy8cEwI5ATZSPhA596pIcQl1LVI4qJazYrdrHxFKpWJPAcY2+fW4+
+yK4uD+R1sJbfupukfa1dW+suvyTQJF0xpfZvqnSHs6GuMOhXK0m8oGqOwpRq6f8b
+UcLroEuFBzx3tf6W5oX8p3RqAwNr/QgVJayQvl7l+DDgWTcLRp4TBcaD5mMWZn2U
+Y5cO+PRSxplVDaqSg/gEOArVglT6WPDYJfJ3O6fYAVV5b6F7CxQ03hLOpzJQJ3+H
+MaEHozCOBf42+PtoxJPLGKkT9uSg1ZYunVZbb/kW1Bho42JSmL4=
+=DZFE
+-----END PGP SIGNATURE-----
+
+--esba6m4ei4fw3vbd--
 
