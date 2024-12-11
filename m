@@ -1,93 +1,96 @@
-Return-Path: <devicetree+bounces-130026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11AB19EDA47
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:42:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F6A49EDAD0
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 00:04:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55203283F3E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 22:42:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8864283736
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:04:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C5171F37D3;
-	Wed, 11 Dec 2024 22:40:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E911F2376;
+	Wed, 11 Dec 2024 23:04:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VIK2v61R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G+FZIPPj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F0C31F37B3;
-	Wed, 11 Dec 2024 22:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18FF61EC01B
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 23:04:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733956827; cv=none; b=OrwjFK2wxTysJ2vDIqnB4tMH+UzlFFMSgo59GoNnl07Yt96qhJkB+mJOszOZmwFpiAwN2XGCCPaB+MJUZ6VLyteMOrhYHGNLoIJV8GbAuYeyrDgQxBPctVrC3FgYqNGVxFcGTzHP4+FrnGD/SAZx76kiU4J9BUoaTlToxdlswAU=
+	t=1733958253; cv=none; b=iIqtRe+3V55aw+/Hq+/FhHJT/C3EWAtJIXeavQyzTVPBpM6e+TyVzwV2gsNwWk/LhG0VaBn7d8P9NbnYUXZd0nx0vYzK/rXy3twybu+0K+kLmPrjh7kDAueaEhhrbeb97fIpUAeMaNoaj60PgqO/74kg6vYv5Y9cxHRefBUnxEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733956827; c=relaxed/simple;
-	bh=2kvRBBph1xJE6pvRj6ZGPkSzRKem9ywKKkiLD48BVGA=;
+	s=arc-20240116; t=1733958253; c=relaxed/simple;
+	bh=lHZ50fRN68M/L9LdirMs0A7G8lwQh+oMMom8ZL+Lh9k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KXaw2v9BDeq+8/tMGmrLOhK8gALfkCv+TxmcFrLCjdU/Djp5bsM9knRkrLgVnl6O7t/kTEG1Tpw97S5UKbb9H3/tgUNDLIzoHnUQEW8NEWpP8rSzWOIp4dAeQ7lprm5B4OmUJUzjFJROBGn7/seiG4QKuAr0scTtusT6YgxobGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VIK2v61R; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733956824; x=1765492824;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2kvRBBph1xJE6pvRj6ZGPkSzRKem9ywKKkiLD48BVGA=;
-  b=VIK2v61RnHO7rjabHMAj1KvSnYwsyLLHiTCF2wDhqjhpzAEoBg8FnJYA
-   c99PuZ4sZCBf/ScENPeTBo4w+DuFbu5iLL+nNr/SXPNgQX+j2hW6cZD7f
-   gdKlOQrmZK1WNoWJJUzrwJ+7URdnXW/Q64zEotUl6exBxUdXF5yBn3wUr
-   yPdlK7O7EKU/RoR/LGzYgszILuY+2cGcaK3Gdwmpg9+iJAK5bqLuKUwq9
-   KtapYld2Jepx6rsDUcQq39b4Q8PyfXYePPt5AApLiH6TKd5J7TC/OOL5Y
-   DqkOBClqDey8fZuB+EUQxEf2D7dz363n0JXbYTf4QDkrZqQJ7KpffNY+p
-   g==;
-X-CSE-ConnectionGUID: xjU1rnH3SY+ipYuFF0zUPQ==
-X-CSE-MsgGUID: ZF1ilPl7REKVrgEC1aU91w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11283"; a="51772134"
-X-IronPort-AV: E=Sophos;i="6.12,226,1728975600"; 
-   d="scan'208";a="51772134"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Dec 2024 14:40:23 -0800
-X-CSE-ConnectionGUID: OCh016OeTByxsIW9zlk+Cw==
-X-CSE-MsgGUID: kTbgP8mzSsaErlQESFa1/w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,226,1728975600"; 
-   d="scan'208";a="96389004"
-Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 11 Dec 2024 14:40:19 -0800
-Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tLVNQ-0007AT-2d;
-	Wed, 11 Dec 2024 22:40:16 +0000
-Date: Thu, 12 Dec 2024 06:39:54 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	"Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
-	Singo Chang <singo.chang@mediatek.com>,
-	Nancy Lin <nancy.lin@mediatek.com>,
-	Moudy Ho <moudy.ho@mediatek.com>,
-	Xavier Chang <xavier.chang@mediatek.com>,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v2 6/8] soc: mediatek: Add programming flow for
- unsupported subsys ID hardware
-Message-ID: <202412120643.qzGYgONG-lkp@intel.com>
-References: <20241211032256.28494-7-jason-jh.lin@mediatek.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TzxgZ1TbTwWrAgGFw8VFE6CtWr0ggYWJGvOLrzwAZH4eTQpEzkmjXSmq7AO2D9WXzMB4walouGrG79ca9FQTLoH1f1kN3cuMjRC691UpEkYqaLXBAM+7k1yALuLu1nLoU8Z5+qHn/ONcXPpIgaqgM9oousWwgRZBwDhckaRLvTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G+FZIPPj; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5401ab97206so3802720e87.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 15:04:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733958249; x=1734563049; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=OMqUgu29dr/kC2j1L26UmKv/roqpPimVfYqNx+1TUQA=;
+        b=G+FZIPPj47NsG4hFpaoQbHYEpMS4e1MQDwYLlCXf/rlIp4BcBe3naUG7pgIwyIx26g
+         KqkaTslg4HC8hJwx2iPB1PeXEvWEGN7v5r5V1J+cb2fc5QWnXCXYDUeiWE3Y7odVOWeP
+         +Auh+A+L1K19dNOlQrzs6i7jfbhh1Kw+hwomrr9OyWRqFLDslMf7t6wSgACzF8mhQH4P
+         8/lit4oCvVuL8YnpkEH9BDTcl7H0/DITS6OzXusNnzRkY93aN0np4lmOda5AvSSHQ+P1
+         +F2fKTr972h2IhC5aQt/sW6j3tUMCHCz8rvwGvOdznNtqWKVGozKm13SFQXv6cpH8IbI
+         dVAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733958249; x=1734563049;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OMqUgu29dr/kC2j1L26UmKv/roqpPimVfYqNx+1TUQA=;
+        b=ob+C20FmOBm4/oGF/QN1rDqLtBTXnHSCBc5YWOF/sa9PCNIzRryDHkwGVd5P8VVER7
+         rMxK1/AqlLCubaXTx8VwuqWV0+gxNFCw8+wGKOs4l4OCxE+xZGATZzJw9AZQUwI4vnO1
+         k1sh11Mho7Jl7t2Bz8+TBSCOnhfhslATncrn9Q94sYf2YVR0J5xqVPo50E8MYotKy3Jk
+         6+RC6UyyGoj2WJ56ip4jGoNv6akU4J1jvXZ5OJwypj1df8i0tEF3yDqyRr9uwD+uFHE0
+         sZQfpNZwnsNg80aiHKapoByAJgxhln4gnyl08zeKxcvzvZ1LwfbcADhjCyxljxEbU3zY
+         JVKw==
+X-Forwarded-Encrypted: i=1; AJvYcCXyOm454BlfCKfYUcudKBiEshrFhbEhCIwSMoZPyEkrElwQSvdKuJU3uPni0dD+FENJecfki76DfMiL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yykg5PQRJYsoxpJX5BLb7vq7rf7I0qwwWYTp/g7dWtPzbFY5d/V
+	ZV0xMSBDk4HfprvZae9M8dcr0eGQyaAqhd8usz2k9GItrUvxW6HGcIY+QSOUQ60=
+X-Gm-Gg: ASbGnctN3oJ+dyrfihD6FFQSJ+fyUFM0lZcJO8k6PkOUQwtZl3FAwoCHCR9NAz2LWi8
+	/cNgP6UkxipHu8ySLQ65LOjnB7g1OIaClWXcm/nCUfc3/IaqparA4QkidnYKNFj8lt4XdiVaBoT
+	vvAnXg/Sz64n8vsst5A9qkjdWdEl54ym3XQ2NlszSqPsnuae2YamwRerNnqNjZYh/KzZMscUjtC
+	NcubmhsdZEZYUO9RrWkzE2KDoqsum0kJA3BcXiFDZ4MclTcpp3hs5sSlhwImL4/GWE8eQ7tCEfr
+	cHI+Yw7SBK2LFeHUgFAh6QOn8TykqRkwRA==
+X-Google-Smtp-Source: AGHT+IEhqGDw0cNCr+jN+DdXJHOmo3kKoG/lFAosZWpVVqXUd4oFiJE89F6qLxbtZeNdIPawBJHAgw==
+X-Received: by 2002:a05:6512:3c99:b0:53f:8c46:42bd with SMTP id 2adb3069b0e04-5402a5e0a12mr1498950e87.15.1733958249174;
+        Wed, 11 Dec 2024 15:04:09 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5401fb5f496sm1102790e87.237.2024.12.11.15.04.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Dec 2024 15:04:07 -0800 (PST)
+Date: Thu, 12 Dec 2024 01:04:05 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Andrej Picej <andrej.picej@norik.com>
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, marex@denx.de, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de
+Subject: Re: [PATCH v5 2/3] drm/bridge: ti-sn65dsi83: Add ti,lvds-vod-swing
+ optional properties
+Message-ID: <rputm4gnjj6nb66ix7dqbxr2janltia6rlb6zunhf7x3mgooxw@o3lblnyp5cci>
+References: <20241210091901.83028-1-andrej.picej@norik.com>
+ <20241210091901.83028-3-andrej.picej@norik.com>
+ <irpmhq7vxjra6vhmdh7p63ajj57n3h2c4br3ija2jmwtoewist@zyxfmx6k5m4e>
+ <aa2de99d-21f4-4843-83b7-5d2db78be86f@norik.com>
+ <qhmsobin3fsmoc7ic2jtancowfscoauyroruxdpwhmqwlogtkz@6by3s2ruwzwp>
+ <519cc025-0782-4f96-a169-1fe87b280173@norik.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,74 +99,242 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241211032256.28494-7-jason-jh.lin@mediatek.com>
+In-Reply-To: <519cc025-0782-4f96-a169-1fe87b280173@norik.com>
 
-Hi Jason-JH.Lin,
+On Wed, Dec 11, 2024 at 08:57:17AM +0100, Andrej Picej wrote:
+> 
+> 
+> On 10. 12. 24 14:59, Dmitry Baryshkov wrote:
+> > On Tue, Dec 10, 2024 at 02:41:01PM +0100, Andrej Picej wrote:
+> > > 
+> > > 
+> > > On 10. 12. 24 12:43, Dmitry Baryshkov wrote:
+> > > > On Tue, Dec 10, 2024 at 10:19:00AM +0100, Andrej Picej wrote:
+> > > > > Add a optional properties to change LVDS output voltage. This should not
+> > > > > be static as this depends mainly on the connected display voltage
+> > > > > requirement. We have three properties:
+> > > > > - "ti,lvds-termination-ohms", which sets near end termination,
+> > > > > - "ti,lvds-vod-swing-data-microvolt" and
+> > > > > - "ti,lvds-vod-swing-clock-microvolt" which both set LVDS differential
+> > > > > output voltage for data and clock lanes. They are defined as an array
+> > > > > with min and max values. The appropriate bitfield will be set if
+> > > > > selected constraints can be met.
+> > > > > 
+> > > > > If "ti,lvds-termination-ohms" is not defined the default of 200 Ohm near
+> > > > > end termination will be used. Selecting only one:
+> > > > > "ti,lvds-vod-swing-data-microvolt" or
+> > > > > "ti,lvds-vod-swing-clock-microvolt" can be done, but the output voltage
+> > > > > constraint for only data/clock lanes will be met. Setting both is
+> > > > > recommended.
+> > > > > 
+> > > > > Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> > > > > ---
+> > > > > Changes in v5:
+> > > > > - specify default values in sn65dsi83_parse_lvds_endpoint,
+> > > > > - move sn65dsi83_parse_lvds_endpoint for channel B up, outside if,
+> > > > > Changes in v4:
+> > > > > - fix typo in commit message bitfiled -> bitfield
+> > > > > - use arrays (lvds_vod_swing_conf and lvds_term_conf) in private data, instead
+> > > > > of separate variables for channel A/B
+> > > > > - add more checks on return value of "of_property_read_u32_array"
+> > > > > Changes in v3:
+> > > > > - use microvolts for default array values 1000 mV -> 1000000 uV.
+> > > > > Changes in v2:
+> > > > > - use datasheet tables to get the proper configuration
+> > > > > - since major change was done change the authorship to myself
+> > > > > ---
+> > > > >    drivers/gpu/drm/bridge/ti-sn65dsi83.c | 142 +++++++++++++++++++++++++-
+> > > > >    1 file changed, 139 insertions(+), 3 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> > > > > index 57a7ed13f996..f9578b38da28 100644
+> > > > > --- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> > > > > +++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> > > > > @@ -132,6 +132,16 @@
+> > > > >    #define  REG_IRQ_STAT_CHA_SOT_BIT_ERR		BIT(2)
+> > > > >    #define  REG_IRQ_STAT_CHA_PLL_UNLOCK		BIT(0)
+> > > > > +enum sn65dsi83_channel {
+> > > > > +	CHANNEL_A,
+> > > > > +	CHANNEL_B
+> > > > > +};
+> > > > > +
+> > > > > +enum sn65dsi83_lvds_term {
+> > > > > +	OHM_100,
+> > > > > +	OHM_200
+> > > > > +};
+> > > > > +
+> > > > >    enum sn65dsi83_model {
+> > > > >    	MODEL_SN65DSI83,
+> > > > >    	MODEL_SN65DSI84,
+> > > > > @@ -147,6 +157,8 @@ struct sn65dsi83 {
+> > > > >    	struct regulator		*vcc;
+> > > > >    	bool				lvds_dual_link;
+> > > > >    	bool				lvds_dual_link_even_odd_swap;
+> > > > > +	int				lvds_vod_swing_conf[2];
+> > > > > +	int				lvds_term_conf[2];
+> > > > >    };
+> > > > >    static const struct regmap_range sn65dsi83_readable_ranges[] = {
+> > > > > @@ -237,6 +249,36 @@ static const struct regmap_config sn65dsi83_regmap_config = {
+> > > > >    	.max_register = REG_IRQ_STAT,
+> > > > >    };
+> > > > > +static const int lvds_vod_swing_data_table[2][4][2] = {
+> > > > > +	{	/* 100 Ohm */
+> > > > > +		{ 180000, 313000 },
+> > > > > +		{ 215000, 372000 },
+> > > > > +		{ 250000, 430000 },
+> > > > > +		{ 290000, 488000 },
+> > > > > +	},
+> > > > > +	{	/* 200 Ohm */
+> > > > > +		{ 150000, 261000 },
+> > > > > +		{ 200000, 346000 },
+> > > > > +		{ 250000, 428000 },
+> > > > > +		{ 300000, 511000 },
+> > > > > +	},
+> > > > > +};
+> > > > > +
+> > > > > +static const int lvds_vod_swing_clock_table[2][4][2] = {
+> > > > > +	{	/* 100 Ohm */
+> > > > > +		{ 140000, 244000 },
+> > > > > +		{ 168000, 290000 },
+> > > > > +		{ 195000, 335000 },
+> > > > > +		{ 226000, 381000 },
+> > > > > +	},
+> > > > > +	{	/* 200 Ohm */
+> > > > > +		{ 117000, 204000 },
+> > > > > +		{ 156000, 270000 },
+> > > > > +		{ 195000, 334000 },
+> > > > > +		{ 234000, 399000 },
+> > > > > +	},
+> > > > > +};
+> > > > > +
+> > > > >    static struct sn65dsi83 *bridge_to_sn65dsi83(struct drm_bridge *bridge)
+> > > > >    {
+> > > > >    	return container_of(bridge, struct sn65dsi83, bridge);
+> > > > > @@ -435,12 +477,16 @@ static void sn65dsi83_atomic_pre_enable(struct drm_bridge *bridge,
+> > > > >    		val |= REG_LVDS_FMT_LVDS_LINK_CFG;
+> > > > >    	regmap_write(ctx->regmap, REG_LVDS_FMT, val);
+> > > > > -	regmap_write(ctx->regmap, REG_LVDS_VCOM, 0x05);
+> > > > > +	regmap_write(ctx->regmap, REG_LVDS_VCOM,
+> > > > > +			REG_LVDS_VCOM_CHA_LVDS_VOD_SWING(ctx->lvds_vod_swing_conf[CHANNEL_A]) |
+> > > > > +			REG_LVDS_VCOM_CHB_LVDS_VOD_SWING(ctx->lvds_vod_swing_conf[CHANNEL_B]));
+> > > > >    	regmap_write(ctx->regmap, REG_LVDS_LANE,
+> > > > >    		     (ctx->lvds_dual_link_even_odd_swap ?
+> > > > >    		      REG_LVDS_LANE_EVEN_ODD_SWAP : 0) |
+> > > > > -		     REG_LVDS_LANE_CHA_LVDS_TERM |
+> > > > > -		     REG_LVDS_LANE_CHB_LVDS_TERM);
+> > > > > +		     (ctx->lvds_term_conf[CHANNEL_A] ?
+> > > > > +			  REG_LVDS_LANE_CHA_LVDS_TERM : 0) |
+> > > > > +		     (ctx->lvds_term_conf[CHANNEL_B] ?
+> > > > > +			  REG_LVDS_LANE_CHB_LVDS_TERM : 0));
+> > > > >    	regmap_write(ctx->regmap, REG_LVDS_CM, 0x00);
+> > > > >    	le16val = cpu_to_le16(mode->hdisplay);
+> > > > > @@ -576,10 +622,100 @@ static const struct drm_bridge_funcs sn65dsi83_funcs = {
+> > > > >    	.atomic_get_input_bus_fmts = sn65dsi83_atomic_get_input_bus_fmts,
+> > > > >    };
+> > > > > +static int sn65dsi83_select_lvds_vod_swing(struct device *dev,
+> > > > > +	u32 lvds_vod_swing_data[2], u32 lvds_vod_swing_clk[2], u8 lvds_term)
+> > > > > +{
+> > > > > +	int i;
+> > > > > +
+> > > > > +	for (i = 0; i <= 3; i++) {
+> > > > > +		if (lvds_vod_swing_data_table[lvds_term][i][0] >= lvds_vod_swing_data[0] &&
+> > > > > +		lvds_vod_swing_data_table[lvds_term][i][1] <= lvds_vod_swing_data[1] &&
+> > > > > +		lvds_vod_swing_clock_table[lvds_term][i][0] >= lvds_vod_swing_clk[0] &&
+> > > > > +		lvds_vod_swing_clock_table[lvds_term][i][1] <= lvds_vod_swing_clk[1])
+> > > > > +			return i;
+> > > > > +	}
+> > > > > +
+> > > > > +	dev_err(dev, "failed to find appropriate LVDS_VOD_SWING configuration\n");
+> > > > > +	return -EINVAL;
+> > > > > +}
+> > > > > +
+> > > > > +static int sn65dsi83_parse_lvds_endpoint(struct sn65dsi83 *ctx, int channel)
+> > > > > +{
+> > > > > +	struct device *dev = ctx->dev;
+> > > > > +	struct device_node *endpoint;
+> > > > > +	int endpoint_reg;
+> > > > > +	/* Set so the property can be freely selected if not defined */
+> > > > > +	u32 lvds_vod_swing_data[2] = { 0, 1000000 };
+> > > > > +	u32 lvds_vod_swing_clk[2] = { 0, 1000000 };
+> > > > > +	u32 lvds_term;
+> > > > > +	u8 lvds_term_conf = 0x1;
+> > > > > +	int lvds_vod_swing_conf = 0x1;
+> > > > 
+> > > > Magic values
+> > > 
+> > > Can you please elaborate.
+> > > 
+> > > I can use:
+> > > u8 lvds_term_conf = OHM_200;
+> > > 
+> > > What about lvds_vod_swing_conf? Should I create additional define for it?
+> > > But this doesn't solve a hidden meaning? Maybe additional comment above?
+> > > Would like to avoid using voltages for it, since then we are reverse
+> > > engineering the table in datasheet to match the default reg value.
+> > 
+> > I think the following example solves both problems:
+> > 
+> > lvds_term = 200;
+> > of_property_read_u32(..., &lvds_term);
+> > 
+> > if (lvds_term == 100)
+> > 	ctx->lvds_term_conf[channel] = OHM_100;
+> > else if (lvds_term == 200)
+> > 	ctx->lvds_term_conf[channel] = OHM_200;
+> > else
+> > 	return -EINVAL;
+> > 
+> > The same approach can be applied to lvds_vod_swing_conf, resulting in
+> > removal of magic values.
+> 
+> Sorry, but I think it is not that easy when it comes to the
+> lvds_vod_swing_conf. We should assign default value if
+> "ti,lvds-vod-swing-data-microvolt" and "ti,lvds-vod-swing-clock-microvolt"
+> are not defined. Default value of the lvds_vod_swing_conf is 0x1, but this
+> doesn't have any straight forward meaning like OHM_200 for example.
+> 
+> What we can do in that case is that we copy the values from defined
+> datasheet tables to the "lvds_vod_swing_data[2]" and "lvds_vod_swing_clk[2]"
+> arrays and then run the
+> sn65dsi83_select_lvds_vod_swing with it, which will return the default value
+> (0x1).
+> 
+> /* If both properties are not defined assign default limits */
+> if (ret_data && ret_clock) {
+> 	memcpy(lvds_vod_swing_data,
+> 	     lvds_vod_swing_data_table[ctx->lvds_term_conf[channel]][1],
+> 	     sizeof(lvds_vod_swing_data));
+> 	memcpy(lvds_vod_swing_clk,
+> 	    lvds_vod_swing_clock_table[ctx->lvds_term_conf[channel]][1],
+> 	    sizeof(lvds_vod_swing_clk));
+> }
+> lvds_vod_swing_conf = sn65dsi83_select_lvds_vod_swing(dev,
+> 	lvds_vod_swing_data, lvds_vod_swing_clk,
+> 	ctx->lvds_term_conf[channel]);
+> if (lvds_vod_swing_conf < 0) {
+> 	ret = lvds_vod_swing_conf;
+> 	goto exit;
+> }
+> 
+> ctx->lvds_vod_swing_conf[channel] = lvds_vod_swing_conf;
+> 
+> I'm not sure if using this approach gets rid of the problem with magic
+> values.
+> Or maybe I'm not seeing the obvious solution so please bear with me.
 
-kernel test robot noticed the following build errors:
+Yes, the defaults (0..1000000) should be fixed to result in the same
+value (0x01) as if the property wasn't specified at all.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.13-rc2 next-20241211]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I think the following should work:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jason-JH-Lin/dt-bindings-mailbox-mediatek-Add-GCE-header-file-for-MT8196/20241211-112605
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20241211032256.28494-7-jason-jh.lin%40mediatek.com
-patch subject: [PATCH v2 6/8] soc: mediatek: Add programming flow for unsupported subsys ID hardware
-config: sparc-randconfig-001-20241212 (https://download.01.org/0day-ci/archive/20241212/202412120643.qzGYgONG-lkp@intel.com/config)
-compiler: sparc-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241212/202412120643.qzGYgONG-lkp@intel.com/reproduce)
+	/* artifical values to select the defaults in both cases */
+	u32 lvds_vod_swing_data[2] = { 190000, 330000 };
+	u32 lvds_vod_swing_clk[2] = { 150000, 250000 };
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412120643.qzGYgONG-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   sparc-linux-ld: drivers/soc/mediatek/mtk-mmsys.o: in function `mtk_mmsys_update_bits':
->> drivers/soc/mediatek/mtk-mmsys.c:173:(.text+0x6c): undefined reference to `cmdq_subsys_is_valid'
-   sparc-linux-ld: drivers/soc/mediatek/mtk-mutex.o: in function `mtk_mutex_enable_by_cmdq':
->> drivers/soc/mediatek/mtk-mutex.c:976:(.text+0x48c): undefined reference to `cmdq_subsys_is_valid'
-
-
-vim +173 drivers/soc/mediatek/mtk-mmsys.c
-
-   162	
-   163	static void mtk_mmsys_update_bits(struct mtk_mmsys *mmsys, u32 offset, u32 mask, u32 val,
-   164					  struct cmdq_pkt *cmdq_pkt)
-   165	{
-   166		int ret;
-   167		u32 tmp;
-   168	
-   169		if (mmsys->cmdq_base.size && cmdq_pkt) {
-   170			struct cmdq_client *cl = (struct cmdq_client *)cmdq_pkt->cl;
-   171	
-   172			offset += mmsys->cmdq_base.offset;
- > 173			if (cmdq_subsys_is_valid(cl->chan, mmsys->cmdq_base.subsys)) {
-   174				ret = cmdq_pkt_write_mask(cmdq_pkt, mmsys->cmdq_base.subsys,
-   175							  offset, val, mask);
-   176			} else {
-   177				/* only MMIO access, no need to check mminfro_offset */
-   178				ret = cmdq_pkt_assign(cmdq_pkt, 0,
-   179						      CMDQ_ADDR_HIGH(mmsys->cmdq_base.pa_base));
-   180				ret |= cmdq_pkt_write_s_mask_value(cmdq_pkt, 0,
-   181								   CMDQ_ADDR_LOW(offset), val, mask);
-   182			}
-   183			if (ret)
-   184				pr_debug("CMDQ unavailable: using CPU write\n");
-   185			else
-   186				return;
-   187		}
-   188		tmp = readl_relaxed(mmsys->regs + offset);
-   189		tmp = (tmp & ~mask) | (val & mask);
-   190		writel_relaxed(tmp, mmsys->regs + offset);
-   191	}
-   192	
+Yes, they are artificial, as stated in the comment. Yes, I think it's
+better than special-casing in the property handling.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
