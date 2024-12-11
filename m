@@ -1,602 +1,107 @@
-Return-Path: <devicetree+bounces-129873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DE729ECF1A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:54:40 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3361D188798B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:54:26 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57B8619F13C;
-	Wed, 11 Dec 2024 14:54:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="BJQiYfyV"
-X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D1639ECF1E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:55:05 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC641494CC;
-	Wed, 11 Dec 2024 14:54:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733928843; cv=pass; b=ZrO8iiye1qI8ci/r+rQnwLpoFUeWeSaPBcEwCMne6H0YQR8gnXq2GGZbnURlM+VM+zW+NWtatyYrdv2Kdaj3qm8rTW+ZQfs+vfIE33CK1muH3ffvYyVhT3bmPBeOx4QLlcQ8RlP2MCA4nh20qlJi7FkY52VwkZfZmkoZFqI+Q/o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733928843; c=relaxed/simple;
-	bh=UIWky3ex/k5L6KRTSSs1e2IkNUC9a5Rx+3kFXhJBrvg=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=T116hRF7aIdut/cSWcjl9DDhyqptwb4M/e6aEfZ5s+U7AG8/kK1X1OseHWCzmdf9gNBKWQV/suHqaME+2qkMcL1ADFlLkXTViul+8IZXW3RmKSGvdGtBRY/iljb9dMDCiaIycBv0EwR+PYgKMN1RLrlwh1M1KGNYQkeR2I6d+Mw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b=BJQiYfyV; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1733928796; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Cm19pc1oDFuD+8xrNwsKFvKy+4fXp3KWRCjyiUnyJH3QC2qYVfBOaGozm5FDF4lryii+U8DB2QS6AYmIj1/D37D/Roui6Em7u2JoxgA0+mibu/s68liWDHLMhjQ7u80VSwYMkXRx0/e4FnMHHthtkrEkgw/U3/sxmOSfMpm2CK0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1733928796; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=La5d4CeOyUbXhv/hA3YkVuNUHhTc6V2xvbNkhh7eqVk=; 
-	b=nQrTzlLpWJxTwdO+YHH/m5pFDFT/c+MwHy1NpJ9ycV9eMHeyk3tmbTXlyxz4bEFAcadoGFw/K6e4wf6WqSTQeeAxqrOHushrw92gQUJt+pCnwvNtAzJcuKkPKgOf09PsW91fYB47nHqNo8HHUY0k68upbCJHjzUAktdX0pEJeMY=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
-	dmarc=pass header.from=<daniel.almeida@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1733928796;
-	s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
-	h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
-	bh=La5d4CeOyUbXhv/hA3YkVuNUHhTc6V2xvbNkhh7eqVk=;
-	b=BJQiYfyVwzWF0KWsPUV2tMc4SzNAdwmuO2+6PgnUhO84Nqiig2qLIACLQw2QlraR
-	N+qbY/S3NXgep128O7HsgY1dAIfSVcyjt1vppu7MkjhfvQYFR0q/WCi8Eenpl9tQhdA
-	g3mzZHoixvGXrrZm5Jnk7KiubhKAsMTOAmQQJDVs=
-Received: by mx.zohomail.com with SMTPS id 173392879429365.08449904994575;
-	Wed, 11 Dec 2024 06:53:14 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AECF1284729
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:55:03 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38EB91A070E;
+	Wed, 11 Dec 2024 14:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="gD8uc+gj"
+X-Original-To: devicetree@vger.kernel.org
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CFC51A0AF7;
+	Wed, 11 Dec 2024 14:54:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733928865; cv=none; b=uOSdyisKAylRe11ZRyMRJfMDyKu3i/3TKwzG5dxm84gy6FBdTy2RQppgkUzT6XrPlj2iHQWnEBMh/HuNNxq7jcCLWWqclfZyR68UAeRk5edFYdKGR/aqR9kncmzSTZqBr/4ph76/K0V94UlB55LTaDs1O/ZCFj8wPwOLaygOBog=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733928865; c=relaxed/simple;
+	bh=xe0UYBCVfKvAz9v8Pjf9aqrBdvihnJHwRRYtEIeVpKc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KCqRe6IQqg34A98IaN9+0aeu9rnol1G1YEyqGR1EWTLYgADAINfWfs3Ngk2ObSvrlmnfQFXYe/ppqTEvAv7Jsu4HvjYBChg/iZvviQJcnCAOn1v+VL9zO2F6h80Jgsh5hYLhlVsqhuSa05jpsAB90Lbjb6A4AqtNlqV4sOUGBrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=gD8uc+gj; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=f0ict5pkgGeI+p368kbyJJKZCXQ+MeVCahfdmbeAq6I=; b=gD8uc+gjmkv9ScT6fm2P5axTzj
+	4En7tUNJbvKNbGNe810TRcRO+MqsrMUpTXWTEhr/ASELmC5WbzjFDl4iw+x5nAP3kdDvlewgyEN6e
+	DPBU8F1dCC4coKT+Y7ps3qe6ZX05LS0SHT/JMCkUyMBmPfnB8m0Gv+jdvT/H8L3sXa397Z+0BQTKF
+	hggERW46N9l3ZfMEnhHejV5O8/RfeA+4QSFzSMho4+KUUkJdpyiGw6lwEl3OU926XEe1jmxCUm46N
+	r0UzdPe8tItMOyCSOqiSJwnO4xT+WEQxSUYBE4DRqd5NJU0iEh71sAwpvaSxSuEvfwjDAsZH39mmD
+	Sx1MkK+Q==;
+Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tLO6M-0004Px-JU; Wed, 11 Dec 2024 15:54:10 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Mark Brown <broonie@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+ Elaine Zhang <zhangqing@rock-chips.com>,
+ =?ISO-8859-1?Q?Adri=E1n_Mart=EDnez?= Larumbe <adrian.larumbe@collabora.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org,
+ Sebastian Reichel <sebastian.reichel@collabora.com>, kernel@collabora.com
+Subject: Re: [PATCH v5 6/7] pmdomain: rockchip: add regulator support
+Date: Wed, 11 Dec 2024 15:54:09 +0100
+Message-ID: <3638293.eFTFzoEnKi@diego>
+In-Reply-To: <20241211143044.9550-7-sebastian.reichel@collabora.com>
+References:
+ <20241211143044.9550-1-sebastian.reichel@collabora.com>
+ <20241211143044.9550-7-sebastian.reichel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.200.121\))
-Subject: Re: [PATCH v4 06/13] rust: add `io::{Io, IoRaw}` base types
-From: Daniel Almeida <daniel.almeida@collabora.com>
-In-Reply-To: <20241205141533.111830-7-dakr@kernel.org>
-Date: Wed, 11 Dec 2024 11:52:55 -0300
-Cc: gregkh@linuxfoundation.org,
- rafael@kernel.org,
- bhelgaas@google.com,
- ojeda@kernel.org,
- alex.gaynor@gmail.com,
- boqun.feng@gmail.com,
- gary@garyguo.net,
- bjorn3_gh@protonmail.com,
- benno.lossin@proton.me,
- tmgross@umich.edu,
- a.hindborg@samsung.com,
- aliceryhl@google.com,
- airlied@gmail.com,
- fujita.tomonori@gmail.com,
- lina@asahilina.net,
- pstanner@redhat.com,
- ajanulgu@redhat.com,
- lyude@redhat.com,
- robh@kernel.org,
- saravanak@google.com,
- dirk.behme@de.bosch.com,
- j@jannau.net,
- fabien.parent@linaro.org,
- chrisi.schrefl@gmail.com,
- rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <747785E6-600F-4D6B-9EB4-6E5CC8BDFD60@collabora.com>
-References: <20241205141533.111830-1-dakr@kernel.org>
- <20241205141533.111830-7-dakr@kernel.org>
-To: Danilo Krummrich <dakr@kernel.org>
-X-Mailer: Apple Mail (2.3826.200.121)
-X-ZohoMailClient: External
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Danilo,
+Am Mittwoch, 11. Dezember 2024, 15:26:51 CET schrieb Sebastian Reichel:
+> Some power domains require extra voltages to be applied. For example
+> trying to enable the GPU power domain on RK3588 fails when the SoC
+> does not have VDD GPU enabled. The same is expected to happen for
+> the NPU, which also has a dedicated supply line.
+> 
+> We get the regulator using devm_of_regulator_get(), so a missing
+> dependency in the devicetree is handled gracefully by printing a warning
+> and creating a dummy regulator. This is necessary, since existing DTs do
+> not have the regulator described. They might still work if the regulator
+> is marked as always-on. It is also working if the regulator is enabled
+> at boot time and the GPU driver is probed before the kernel disables
+> unused regulators.
+> 
+> The regulator itself is not acquired at driver probe time, since that
+> creates an unsolvable circular dependency. The power domain driver must
+> be probed early, since SoC peripherals need it. Regulators on the other
+> hand depend on SoC peripherals like SPI, I2C or GPIO. MediaTek does not
+> run into this, since they have two power domain drivers.
+> 
+> Tested-by: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-> On 5 Dec 2024, at 11:14, Danilo Krummrich <dakr@kernel.org> wrote:
->=20
-> I/O memory is typically either mapped through direct calls to =
-ioremap()
-> or subsystem / bus specific ones such as pci_iomap().
->=20
-> Even though subsystem / bus specific functions to map I/O memory are
-> based on ioremap() / iounmap() it is not desirable to re-implement =
-them
-> in Rust.
->=20
-> Instead, implement a base type for I/O mapped memory, which =
-generically
-> provides the corresponding accessors, such as `Io::readb` or
-> `Io:try_readb`.
->=20
-> `Io` supports an optional const generic, such that a driver can =
-indicate
-> the minimal expected and required size of the mapping at compile time.
-> Correspondingly, calls to the 'non-try' accessors, support compile =
-time
-> checks of the I/O memory offset to read / write, while the 'try'
-> accessors, provide boundary checks on runtime.
->=20
-> `IoRaw` is meant to be embedded into a structure (e.g. pci::Bar or
-> io::IoMem) which creates the actual I/O memory mapping and initializes
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-Maybe the in-flight platform::IoMem would be the other example? I see no =
-`io::IoMem` in
-your patch other than the one in the doctest.
 
-> `IoRaw` accordingly.
->=20
-> To ensure that I/O mapped memory can't out-live the device it may be
-> bound to, subsystems must embed the corresponding I/O memory type =
-(e.g.
-> pci::Bar) into a `Devres` container, such that it gets revoked once =
-the
-> device is unbound.
->=20
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> ---
-> rust/helpers/helpers.c |   1 +
-> rust/helpers/io.c      | 101 ++++++++++++++++
-> rust/kernel/io.rs      | 260 +++++++++++++++++++++++++++++++++++++++++
-> rust/kernel/lib.rs     |   1 +
-> 4 files changed, 363 insertions(+)
-> create mode 100644 rust/helpers/io.c
-> create mode 100644 rust/kernel/io.rs
->=20
-> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-> index 060750af6524..63f9b1da179f 100644
-> --- a/rust/helpers/helpers.c
-> +++ b/rust/helpers/helpers.c
-> @@ -14,6 +14,7 @@
-> #include "cred.c"
-> #include "err.c"
-> #include "fs.c"
-> +#include "io.c"
-> #include "jump_label.c"
-> #include "kunit.c"
-> #include "mutex.c"
-> diff --git a/rust/helpers/io.c b/rust/helpers/io.c
-> new file mode 100644
-> index 000000000000..1dde6374c0e2
-> --- /dev/null
-> +++ b/rust/helpers/io.c
-> @@ -0,0 +1,101 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <linux/io.h>
-> +
-> +void __iomem *rust_helper_ioremap(phys_addr_t offset, size_t size)
-> +{
-> + return ioremap(offset, size);
-> +}
-> +
-> +void rust_helper_iounmap(volatile void __iomem *addr)
-> +{
-> + return iounmap(addr);
-> +}
-> +
-> +u8 rust_helper_readb(const volatile void __iomem *addr)
-> +{
-> + return readb(addr);
-> +}
-> +
-> +u16 rust_helper_readw(const volatile void __iomem *addr)
-> +{
-> + return readw(addr);
-> +}
-> +
-> +u32 rust_helper_readl(const volatile void __iomem *addr)
-> +{
-> + return readl(addr);
-> +}
-> +
-> +#ifdef CONFIG_64BIT
-> +u64 rust_helper_readq(const volatile void __iomem *addr)
-> +{
-> + return readq(addr);
-> +}
-> +#endif
-> +
-> +void rust_helper_writeb(u8 value, volatile void __iomem *addr)
-> +{
-> + writeb(value, addr);
-> +}
-> +
-> +void rust_helper_writew(u16 value, volatile void __iomem *addr)
-> +{
-> + writew(value, addr);
-> +}
-> +
-> +void rust_helper_writel(u32 value, volatile void __iomem *addr)
-> +{
-> + writel(value, addr);
-> +}
-> +
-> +#ifdef CONFIG_64BIT
-> +void rust_helper_writeq(u64 value, volatile void __iomem *addr)
-> +{
-> + writeq(value, addr);
-> +}
-> +#endif
-> +
-> +u8 rust_helper_readb_relaxed(const volatile void __iomem *addr)
-> +{
-> + return readb_relaxed(addr);
-> +}
-> +
-> +u16 rust_helper_readw_relaxed(const volatile void __iomem *addr)
-> +{
-> + return readw_relaxed(addr);
-> +}
-> +
-> +u32 rust_helper_readl_relaxed(const volatile void __iomem *addr)
-> +{
-> + return readl_relaxed(addr);
-> +}
-> +
-> +#ifdef CONFIG_64BIT
-> +u64 rust_helper_readq_relaxed(const volatile void __iomem *addr)
-> +{
-> + return readq_relaxed(addr);
-> +}
-> +#endif
-> +
-> +void rust_helper_writeb_relaxed(u8 value, volatile void __iomem =
-*addr)
-> +{
-> + writeb_relaxed(value, addr);
-> +}
-> +
-> +void rust_helper_writew_relaxed(u16 value, volatile void __iomem =
-*addr)
-> +{
-> + writew_relaxed(value, addr);
-> +}
-> +
-> +void rust_helper_writel_relaxed(u32 value, volatile void __iomem =
-*addr)
-> +{
-> + writel_relaxed(value, addr);
-> +}
-> +
-> +#ifdef CONFIG_64BIT
-> +void rust_helper_writeq_relaxed(u64 value, volatile void __iomem =
-*addr)
-> +{
-> + writeq_relaxed(value, addr);
-> +}
-> +#endif
-> diff --git a/rust/kernel/io.rs b/rust/kernel/io.rs
-> new file mode 100644
-> index 000000000000..36aa2ec1bcc8
-> --- /dev/null
-> +++ b/rust/kernel/io.rs
-> @@ -0,0 +1,260 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Memory-mapped IO.
-> +//!
-> +//! C header: =
-[`include/asm-generic/io.h`](srctree/include/asm-generic/io.h)
-> +
-> +use crate::error::{code::EINVAL, Result};
-> +use crate::{bindings, build_assert};
-> +
-> +/// Raw representation of an MMIO region.
-> +///
-> +/// By itself, the existence of an instance of this structure does =
-not provide any guarantees that
-> +/// the represented MMIO region does exist or is properly mapped.
-> +///
-> +/// Instead, the bus specific MMIO implementation must convert this =
-raw representation into an `Io`
-> +/// instance providing the actual memory accessors. Only by the =
-conversion into an `Io` structure
-> +/// any guarantees are given.
-> +pub struct IoRaw<const SIZE: usize =3D 0> {
-> +    addr: usize,
-> +    maxsize: usize,
-> +}
-> +
-> +impl<const SIZE: usize> IoRaw<SIZE> {
-> +    /// Returns a new `IoRaw` instance on success, an error =
-otherwise.
-> +    pub fn new(addr: usize, maxsize: usize) -> Result<Self> {
-> +        if maxsize < SIZE {
-> +            return Err(EINVAL);
-> +        }
-> +
-> +        Ok(Self { addr, maxsize })
-> +    }
-> +
-> +    /// Returns the base address of the MMIO region.
-> +    #[inline]
-> +    pub fn addr(&self) -> usize {
-> +        self.addr
-> +    }
-> +
-> +    /// Returns the maximum size of the MMIO region.
-> +    #[inline]
-> +    pub fn maxsize(&self) -> usize {
-> +        self.maxsize
-> +    }
-> +}
-> +
-> +/// IO-mapped memory, starting at the base address @addr and spanning =
-@maxlen bytes.
-> +///
-> +/// The creator (usually a subsystem / bus such as PCI) is =
-responsible for creating the
-> +/// mapping, performing an additional region request etc.
-> +///
-> +/// # Invariant
-> +///
-> +/// `addr` is the start and `maxsize` the length of valid I/O mapped =
-memory region of size
-> +/// `maxsize`.
-> +///
-> +/// # Examples
-> +///
-> +/// ```no_run
-> +/// # use kernel::{bindings, io::{Io, IoRaw}};
-> +/// # use core::ops::Deref;
-> +///
-> +/// // See also [`pci::Bar`] for a real example.
-> +/// struct IoMem<const SIZE: usize>(IoRaw<SIZE>);
-> +///
-> +/// impl<const SIZE: usize> IoMem<SIZE> {
-> +///     /// # Safety
-> +///     ///
-> +///     /// [`paddr`, `paddr` + `SIZE`) must be a valid MMIO region =
-that is mappable into the CPUs
-> +///     /// virtual address space.
-> +///     unsafe fn new(paddr: usize) -> Result<Self>{
-> +///         // SAFETY: By the safety requirements of this function =
-[`paddr`, `paddr` + `SIZE`) is
-> +///         // valid for `ioremap`.
-> +///         let addr =3D unsafe { bindings::ioremap(paddr as _, =
-SIZE.try_into().unwrap()) };
-> +///         if addr.is_null() {
-> +///             return Err(ENOMEM);
-> +///         }
-> +///
-> +///         Ok(IoMem(IoRaw::new(addr as _, SIZE)?))
-> +///     }
-> +/// }
-> +///
-> +/// impl<const SIZE: usize> Drop for IoMem<SIZE> {
-> +///     fn drop(&mut self) {
-> +///         // SAFETY: `self.0.addr()` is guaranteed to be properly =
-mapped by `Self::new`.
-> +///         unsafe { bindings::iounmap(self.0.addr() as _); };
-> +///     }
-> +/// }
-> +///
-> +/// impl<const SIZE: usize> Deref for IoMem<SIZE> {
-> +///    type Target =3D Io<SIZE>;
-> +///
-> +///    fn deref(&self) -> &Self::Target {
-> +///         // SAFETY: The memory range stored in `self` has been =
-properly mapped in `Self::new`.
-> +///         unsafe { Io::from_raw(&self.0) }
-> +///    }
-> +/// }
-> +///
-> +///# fn no_run() -> Result<(), Error> {
-> +/// // SAFETY: Invalid usage for example purposes.
-> +/// let iomem =3D unsafe { IoMem::<{ core::mem::size_of::<u32>() =
-}>::new(0xBAAAAAAD)? };
-> +/// iomem.writel(0x42, 0x0);
-> +/// assert!(iomem.try_writel(0x42, 0x0).is_ok());
-> +/// assert!(iomem.try_writel(0x42, 0x4).is_err());
-> +/// # Ok(())
-> +/// # }
-> +/// ```
-> +#[repr(transparent)]
-> +pub struct Io<const SIZE: usize =3D 0>(IoRaw<SIZE>);
-> +
-> +macro_rules! define_read {
-> +    ($(#[$attr:meta])* $name:ident, $try_name:ident, $type_name:ty) =
-=3D> {
-> +        /// Read IO data from a given offset known at compile time.
-> +        ///
-> +        /// Bound checks are performed on compile time, hence if the =
-offset is not known at compile
-> +        /// time, the build will fail.
-> +        $(#[$attr])*
-> +        #[inline]
-> +        pub fn $name(&self, offset: usize) -> $type_name {
-> +            let addr =3D self.io_addr_assert::<$type_name>(offset);
-> +
-> +            // SAFETY: By the type invariant `addr` is a valid =
-address for MMIO operations.
-> +            unsafe { bindings::$name(addr as _) }
-> +        }
-> +
-> +        /// Read IO data from a given offset.
-> +        ///
-> +        /// Bound checks are performed on runtime, it fails if the =
-offset (plus the type size) is
-> +        /// out of bounds.
-> +        $(#[$attr])*
-> +        pub fn $try_name(&self, offset: usize) -> Result<$type_name> =
-{
-> +            let addr =3D self.io_addr::<$type_name>(offset)?;
-> +
-> +            // SAFETY: By the type invariant `addr` is a valid =
-address for MMIO operations.
-> +            Ok(unsafe { bindings::$name(addr as _) })
-> +        }
-> +    };
-> +}
-> +
-> +macro_rules! define_write {
-> +    ($(#[$attr:meta])* $name:ident, $try_name:ident, $type_name:ty) =
-=3D> {
-> +        /// Write IO data from a given offset known at compile time.
-> +        ///
-> +        /// Bound checks are performed on compile time, hence if the =
-offset is not known at compile
-> +        /// time, the build will fail.
-> +        $(#[$attr])*
-> +        #[inline]
-> +        pub fn $name(&self, value: $type_name, offset: usize) {
-> +            let addr =3D self.io_addr_assert::<$type_name>(offset);
-> +
-> +            // SAFETY: By the type invariant `addr` is a valid =
-address for MMIO operations.
-> +            unsafe { bindings::$name(value, addr as _, ) }
-> +        }
-> +
-> +        /// Write IO data from a given offset.
-> +        ///
-> +        /// Bound checks are performed on runtime, it fails if the =
-offset (plus the type size) is
-> +        /// out of bounds.
-> +        $(#[$attr])*
-> +        pub fn $try_name(&self, value: $type_name, offset: usize) -> =
-Result {
-> +            let addr =3D self.io_addr::<$type_name>(offset)?;
-> +
-> +            // SAFETY: By the type invariant `addr` is a valid =
-address for MMIO operations.
-> +            unsafe { bindings::$name(value, addr as _) }
-> +            Ok(())
-> +        }
-> +    };
-> +}
-> +
-> +impl<const SIZE: usize> Io<SIZE> {
-> +    /// Converts an `IoRaw` into an `Io` instance, providing the =
-accessors to the MMIO mapping.
-> +    ///
-> +    /// # Safety
-> +    ///
-> +    /// Callers must ensure that `addr` is the start of a valid I/O =
-mapped memory region of size
-> +    /// `maxsize`.
-> +    pub unsafe fn from_raw<'a>(raw: &IoRaw<SIZE>) -> &'a Self {
-> +        // SAFETY: `Io` is a transparent wrapper around `IoRaw`.
-> +        unsafe { &*core::ptr::from_ref(raw).cast() }
-> +    }
-> +
-> +    /// Returns the base address of this mapping.
-> +    #[inline]
-> +    pub fn addr(&self) -> usize {
-> +        self.0.addr()
-> +    }
-> +
-> +    /// Returns the maximum size of this mapping.
-> +    #[inline]
-> +    pub fn maxsize(&self) -> usize {
-> +        self.0.maxsize()
-> +    }
-> +
-> +    #[inline]
-> +    const fn offset_valid<U>(offset: usize, size: usize) -> bool {
-> +        let type_size =3D core::mem::size_of::<U>();
-> +        if let Some(end) =3D offset.checked_add(type_size) {
-> +            end <=3D size && offset % type_size =3D=3D 0
-> +        } else {
-> +            false
-> +        }
-> +    }
-> +
-> +    #[inline]
-> +    fn io_addr<U>(&self, offset: usize) -> Result<usize> {
-> +        if !Self::offset_valid::<U>(offset, self.maxsize()) {
-> +            return Err(EINVAL);
-> +        }
-> +
-> +        // Probably no need to check, since the safety requirements =
-of `Self::new` guarantee that
-> +        // this can't overflow.
-> +        self.addr().checked_add(offset).ok_or(EINVAL)
-> +    }
-> +
-> +    #[inline]
-> +    fn io_addr_assert<U>(&self, offset: usize) -> usize {
-> +        build_assert!(Self::offset_valid::<U>(offset, SIZE));
-> +
-> +        self.addr() + offset
-> +    }
-> +
-> +    define_read!(readb, try_readb, u8);
-> +    define_read!(readw, try_readw, u16);
-> +    define_read!(readl, try_readl, u32);
-> +    define_read!(
-> +        #[cfg(CONFIG_64BIT)]
-> +        readq,
-> +        try_readq,
-> +        u64
-> +    );
-> +
-> +    define_read!(readb_relaxed, try_readb_relaxed, u8);
-> +    define_read!(readw_relaxed, try_readw_relaxed, u16);
-> +    define_read!(readl_relaxed, try_readl_relaxed, u32);
-> +    define_read!(
-> +        #[cfg(CONFIG_64BIT)]
-> +        readq_relaxed,
-> +        try_readq_relaxed,
-> +        u64
-> +    );
-> +
-> +    define_write!(writeb, try_writeb, u8);
-> +    define_write!(writew, try_writew, u16);
-> +    define_write!(writel, try_writel, u32);
-> +    define_write!(
-> +        #[cfg(CONFIG_64BIT)]
-> +        writeq,
-> +        try_writeq,
-> +        u64
-> +    );
-> +
-> +    define_write!(writeb_relaxed, try_writeb_relaxed, u8);
-> +    define_write!(writew_relaxed, try_writew_relaxed, u16);
-> +    define_write!(writel_relaxed, try_writel_relaxed, u32);
-> +    define_write!(
-> +        #[cfg(CONFIG_64BIT)]
-> +        writeq_relaxed,
-> +        try_writeq_relaxed,
-> +        u64
-> +    );
-> +}
-> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> index 200c5f99a805..d1f30b1a05fb 100644
-> --- a/rust/kernel/lib.rs
-> +++ b/rust/kernel/lib.rs
-> @@ -79,6 +79,7 @@
->=20
-> #[doc(hidden)]
-> pub use bindings;
-> +pub mod io;
-> pub use macros;
-> pub use uapi;
->=20
-> --=20
-> 2.47.0
->=20
-
-I rebased platform::IoMem on top of this, and it still works fine.
-
-As I said, I am testing it by modifying the compatible in =
-`rust_driver_platform`, and
-I=E2=80=99ve been able to successfully map and read from a memory-mapped =
-device register.
-
-It=E2=80=99s a read-only register containing some information about the =
-device, and the value
-read matches what we get in the C driver.
-
-Tested-by: Daniel Almeida <daniel.almeida@collabora.com>
-Reviewed-by: Daniel Almeida  <daniel.almeida@collabora.com>
 
 
