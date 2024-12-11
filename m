@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-129826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E2679ECDC6
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:57:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 016F19ECDC9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:57:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A1B7160E49
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:57:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B9831885736
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:57:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC7952368F2;
-	Wed, 11 Dec 2024 13:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AEAD2336BF;
+	Wed, 11 Dec 2024 13:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gEhqgPWo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EzK9TjPJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7372A38DE9
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 13:57:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31EDA233690
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 13:57:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733925450; cv=none; b=d1uQkddrxbRBS8IOU2yPSe2/oBMQEyS4oYBrYisReVeA7TfK/tINNK+sofU5+Fk4t1fJOjsuBNAdKjKD1QEkg9NJvkcpQI7di5cA4TqmBgtsRrDCrKdSmn3qsDIEjWJB2gd8gVgTSMJ+Xxge2mM2r9ooP/gu6jK2AdHNbynbznU=
+	t=1733925464; cv=none; b=OcNqJ1riseKIWdIkMlE14mBp1AWWopg3LkngRTMRh8PmQBUDWzTVzvHkfgbJQzkY+rH6AS6fo+BL7EVQLw1StWvSzsiHp5W/y1JBanpTCGRRp4C49jQ/ApHXDwWQEqE2IDceXvDxC4xFbs9JE0noi7A85ywCeMJtXsygtdPRjMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733925450; c=relaxed/simple;
-	bh=JhwlRQCUlSido+cOopKgWGuxkf6VA5zfN500pz/rIjs=;
+	s=arc-20240116; t=1733925464; c=relaxed/simple;
+	bh=VDR/LFkNhR6c+K0FS5fF1XjxZAJmm0jHxt2NQS8CF3M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uEp1BvV3k/6v9SAmtgUtgxkfhwi1hu9JcloWMldltNO1AmDZAVZNuukFf8KuGOEOcAmSrTrzUKRczb8jiCXuaQj/vIqPalQAU6Pb4f9Im+1i6D3AA3umIQuqYkng8JlBtUxE5hXB80KcLZrbydRHWZ2nAS3UtyfyQz5U8fkoQ8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gEhqgPWo; arc=none smtp.client-ip=209.85.128.48
+	 Content-Type:Content-Disposition:In-Reply-To; b=W8fpLuWm0Pyr6oCIlfVOj6T8Bq4JfhrL21SUHt18rzdYwyxHqe/RCmqJtSFpH+0/8KXNSnDX0nxnyOe8Yg2OY/iSUrNo8edcKcNrGjatd6BvekXmm1H7Htuan2F3HekqE54WyhDq3hV/X6Dr+7ydNRkZ7HsEL14TfHnZf2jETXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EzK9TjPJ; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-434e3953b65so31101755e9.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 05:57:27 -0800 (PST)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-434e69857d9so4404655e9.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 05:57:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733925446; x=1734530246; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1733925460; x=1734530260; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=O4+3IBZgQdDXFwyfmcTHMczi/2LVRqIwQiyJZ1onodg=;
-        b=gEhqgPWopHRmtCG0E57BKyWnL6k1/eYgGMjvdmXP/5AujETDEa5uWiR/TjKFSfqXEs
-         tUX/+rnSJHRZ6W6ReSjROaqCQyEQI77QayYvauaKATk5XGYYxPhPKDoEyFh5yS2/X7cJ
-         kzaeCJ+Apjss4NoLeB2pqmzbMHXpsac/SaycrwROV3Xz5E8SDn74VXFFGAn3B+7ao8Hy
-         5ZX0dMkMb+hb+7YEJ753Vh7ioH1c2W2dZ10DqmdrF4dAlWBmNX61BKugnFqN+B0R3B+c
-         exlv6sxFrVslgY19Z/9ui5qzL/y6Il7/L1jHWLFp0gycdHPXfKuHyG0KvRV5S62eX1gd
-         hWwQ==
+        bh=mwRyufZV4Hv4BKUozZCvb8TTCpopa4m9EKT2fS3FdAQ=;
+        b=EzK9TjPJf4p9YNiCcinbbsZc9eOyC31xRpwKlqNj6vPaudvGrB756CRAxwtJre4hB2
+         GmKB8lKxbgkNZYAkBT7trWg4tuwauU7P12QG+o/BPwafGWiA5a0TTtwHTATwH7AyP0/n
+         A6tOw0JigkJRIo5ltbjLDbQHr8Sw/puUciiJwNN9CRXOyh4TJuVkiKbYA7z5JrKmO8tb
+         mKqG66OcsxeYYjpkUCEB1ysEcvpaz6py6sARKm6iIgrzQRnyv2rH5qN5ZdsnNdlxM9l3
+         IblOH7HMPKjcNBRPb4DipTd36ipSXWPMIUkvooiZaUy38jWQw7SxnHsn4n2ZK8fldIgl
+         b7sA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733925446; x=1734530246;
+        d=1e100.net; s=20230601; t=1733925460; x=1734530260;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=O4+3IBZgQdDXFwyfmcTHMczi/2LVRqIwQiyJZ1onodg=;
-        b=lNF8cwxV78qo32gwW2kkWyeKGWvdNmqDzSAgRW0/i2o5L7JOsZgKzEwj3KQxOMB1+c
-         FEvueeQXCSldFFSTeKpYucaFOaASqpZNYBYUZl3x7YBPGkpMXckhxlJdwpMivAZbujQo
-         pdIWQJM2uZojzStL2kD/LXtBiH/jOcyUaPAhomKOSxPAaV3m9O/8yYd4LFJ3XIkj30T1
-         4PDvr3VMPOxkXwi0a05RfWqwk1bE+z9uAOzGEC/UoeBEc9vAINkyC+sz3dnASlqLJLTd
-         04N6sJBe9apkZDIPoWJUSMF8+lw1fzjaoQIUh4Gb4i5xP1k1iOUoQpsqRlLSaNp+T+Mv
-         lEFw==
-X-Forwarded-Encrypted: i=1; AJvYcCWHt83XwKZgZHzt6dqoNPrbR7mly09+nOXP0vs579+lOfK5+Q3giG7bDhE3b+U57JGFLfr3Fvv6EhrQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzbu112MhMK6ljlRIePzZCYKznwoo6Vi1kCY5ZvSZ9PdTsvPTJH
-	70ZenrMlgs5klpCIhkF+vyiEOolYMccUgDkucM2W7yX8J+ZLBZYYvty/lonF+k8=
-X-Gm-Gg: ASbGncvwmUV3ORaL6N08d5dw14OFVW6YuUHH8pwRjvawVLlTnKz5u2QeGbbQN2gbuSJ
-	b127SLiZMy/5HIl5xVinpXQ2B5Z2N4vvL9erYbpYqmyZIJjsYUzI4Dda9hwx8m8kEPeGE58qlKa
-	Kf2FPqkoVmDTg4nQjiDqJZdCTgTMFZxYhCxbYoTVCNsZMA+aKGfsrrAvFKjjUhWU99jDdOOYyf/
-	uVPhf3Cp5yDjpuWDnWKxqwzsMFxQoaxdCTW956tU/nmsPqTw+vE
-X-Google-Smtp-Source: AGHT+IGj6e56QapjjDkMGtxmigoFIildblF7J2AdVirl2LbBPSwWrReDkRoqBxNuZpY75ur5m0i4WQ==
-X-Received: by 2002:a05:600c:b86:b0:434:f5c0:32b1 with SMTP id 5b1f17b1804b1-4361c3755afmr24750765e9.15.1733925444346;
-        Wed, 11 Dec 2024 05:57:24 -0800 (PST)
+        bh=mwRyufZV4Hv4BKUozZCvb8TTCpopa4m9EKT2fS3FdAQ=;
+        b=hZA1Yn5p+yZuAvpfdfqi0uEcT3odKmdZTMS5zr8UKbWzD8Z43PbygNwAP5P1/8Q5DM
+         lQx9wU9MLkYJLB76PaYuNLCmlvGmwqdghjti+k4OfD+3wmuqgn5Z+hDg2w8xEc+ywIMK
+         F9fL4zUfEFHntR6sIMCxV9O2huqJJDbS8ZDgH/q+X9cYlVrnSmz9+RsOx4XF8Wr7tG+A
+         n5Mk2fhEoHS2lkDxcpbNZit48ZUPYRH+yfficpx+Qi6DGyo4HBIdVG8kV2qx1yzZ3nXc
+         a6O35gnqD8dD2hCy3G02uP1cKSRINHNC94tEWNXfmpkL+EGmq8xtLUVLFbT+9kE4v3js
+         mZjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUdpp6uwBQMWwWOjRVEDb+2Zq3oVnD089nM1RYtIn+SXCSJIPdN3Q5nW2YbwHosOql07QxMUakxUNbX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCQLHt/C3/x/4HCZxwIvSadJrS574NRVEr33LGbEsDb7xHe9zp
+	O8I9zmcFe8gs+kkw21KdEO9ZUTpXy3lx3CWNf1qVsM3yvbTMl04PiKUzq6nj2GA=
+X-Gm-Gg: ASbGnctOqL+zJGDCvYKui8WAJs9YuxPuPrSGCmptlzdpUxvE4E8w4U6tO/AEPe7xjH1
+	JEk5+SNixmyLECyOzI0mQo3LDXuApDnEykWa6ru4Hd4hCdUpvI0pfuaR2tiFMiC3ALn+r7FSHvF
+	ZD5dAhASDnyp8z4nKeXrc8q2osOiQFVpllRLSe0lBOaOvWTCLOikuKSiP6YI4gndZXIPJl3q6vD
+	DBeSA8mvhvwvINeU+QLlEA+j9Oc74DnBDtrgqEX88b3u/IYhOsC
+X-Google-Smtp-Source: AGHT+IHHGvcjsAaWoQmNtBBOZEdx4io9usowsti1WQThV36SDH9Hnc+lVGaPEvltgGcV3XhTkCAoMw==
+X-Received: by 2002:a05:600c:1616:b0:436:185f:dfae with SMTP id 5b1f17b1804b1-4361c5a3918mr21096715e9.6.1733925460593;
+        Wed, 11 Dec 2024 05:57:40 -0800 (PST)
 Received: from linaro.org ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-387824c8aadsm1332447f8f.60.2024.12.11.05.57.23
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-387824a4a31sm1355432f8f.30.2024.12.11.05.57.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 05:57:23 -0800 (PST)
-Date: Wed, 11 Dec 2024 15:57:22 +0200
+        Wed, 11 Dec 2024 05:57:40 -0800 (PST)
+Date: Wed, 11 Dec 2024 15:57:38 +0200
 From: Abel Vesa <abel.vesa@linaro.org>
 To: Johan Hovold <johan+linaro@kernel.org>
 Cc: Bjorn Andersson <andersson@kernel.org>,
@@ -83,11 +83,11 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	Stephan Gerhold <stephan.gerhold@linaro.org>,
 	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, regressions@lists.linux.dev
-Subject: Re: [PATCH v3 3/3] Revert "arm64: dts: qcom: x1e80100: enable OTG on
- USB-C controllers"
-Message-ID: <Z1maQhIyS1LVfDc6@linaro.org>
+Subject: Re: [PATCH v3 2/3] Revert "arm64: dts: qcom: x1e80100-crd: enable
+ otg on usb ports"
+Message-ID: <Z1maUvW26Cl/VXLr@linaro.org>
 References: <20241210111444.26240-1-johan+linaro@kernel.org>
- <20241210111444.26240-4-johan+linaro@kernel.org>
+ <20241210111444.26240-3-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,65 +96,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241210111444.26240-4-johan+linaro@kernel.org>
+In-Reply-To: <20241210111444.26240-3-johan+linaro@kernel.org>
 
-On 24-12-10 12:14:44, Johan Hovold wrote:
-> This reverts commit f042bc234c2e00764b8aa2c9e2f8177cdc63f664.
+On 24-12-10 12:14:43, Johan Hovold wrote:
+> This reverts commit 2dd3250191bcfe93b0c9da46624af830310400a7.
 > 
-> A recent change enabling role switching for the x1e80100 USB-C
-> controllers breaks UCSI and DisplayPort Alternate Mode when the
-> controllers are in host mode:
+> A recent change enabling OTG mode on the x1e81000 CRD breaks suspend.
+> Specifically, the device hard resets during resume if suspended with all
+> controllers in device mode (i.e. no USB device connected).
 > 
-> 	ucsi_glink.pmic_glink_ucsi pmic_glink.ucsi.0: PPM init failed, stop trying
+> The corresponding change on the T14s also led to SuperSpeed hotplugs not
+> being detected.
 > 
-> As enabling OTG mode currently breaks SuperSpeed hotplug and suspend,
-> and with retimer (and orientation detection) support not even merged
-> yet, let's revert at least until we have stable host mode in mainline.
+> With retimer (and orientation detection) support not even merged yet,
+> let's revert at least until we have stable host mode in mainline.
 > 
-> Fixes: f042bc234c2e ("arm64: dts: qcom: x1e80100: enable OTG on USB-C controllers")
-> Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Link: https://lore.kernel.org/all/hw2pdof4ajadjsjrb44f2q4cz4yh5qcqz5d3l7gjt2koycqs3k@xx5xvd26uyef
-> Link: https://lore.kernel.org/lkml/Z1gbyXk-SktGjL6-@hovoldconsulting.com/
+> Fixes: 2dd3250191bc ("arm64: dts: qcom: x1e80100-crd: enable otg on usb ports")
+> Reported-by: Abel Vesa <abel.vesa@linaro.org>
 > Cc: Jonathan Marek <jonathan@marek.ca>
 > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
 Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
 > ---
->  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 6 ------
->  1 file changed, 6 deletions(-)
+>  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> index 1740fdf7b1de..4c1e01605e87 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> @@ -4422,8 +4422,6 @@ usb_1_ss2_dwc3: usb@a000000 {
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> index 199f6b42aa11..66360390ae7d 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+> @@ -1840,6 +1840,10 @@ &usb_1_ss0 {
+>  	status = "okay";
+>  };
 >  
->  				dma-coherent;
+> +&usb_1_ss0_dwc3 {
+> +	dr_mode = "host";
+> +};
+> +
+>  &usb_1_ss0_dwc3_hs {
+>  	remote-endpoint = <&pmic_glink_ss0_hs_in>;
+>  };
+> @@ -1868,6 +1872,10 @@ &usb_1_ss1 {
+>  	status = "okay";
+>  };
 >  
-> -				usb-role-switch;
-> -
->  				ports {
->  					#address-cells = <1>;
->  					#size-cells = <0>;
-> @@ -4677,8 +4675,6 @@ usb_1_ss0_dwc3: usb@a600000 {
+> +&usb_1_ss1_dwc3 {
+> +	dr_mode = "host";
+> +};
+> +
+>  &usb_1_ss1_dwc3_hs {
+>  	remote-endpoint = <&pmic_glink_ss1_hs_in>;
+>  };
+> @@ -1896,6 +1904,10 @@ &usb_1_ss2 {
+>  	status = "okay";
+>  };
 >  
->  				dma-coherent;
->  
-> -				usb-role-switch;
-> -
->  				ports {
->  					#address-cells = <1>;
->  					#size-cells = <0>;
-> @@ -4777,8 +4773,6 @@ usb_1_ss1_dwc3: usb@a800000 {
->  
->  				dma-coherent;
->  
-> -				usb-role-switch;
-> -
->  				ports {
->  					#address-cells = <1>;
->  					#size-cells = <0>;
+> +&usb_1_ss2_dwc3 {
+> +	dr_mode = "host";
+> +};
+> +
+>  &usb_1_ss2_dwc3_hs {
+>  	remote-endpoint = <&pmic_glink_ss2_hs_in>;
+>  };
 > -- 
 > 2.45.2
 > 
