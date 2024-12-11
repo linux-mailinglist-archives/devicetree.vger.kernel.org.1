@@ -1,90 +1,160 @@
-Return-Path: <devicetree+bounces-129737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121459ECAE0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:11:26 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 958F61888E04
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:11:22 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E86204F8C;
-	Wed, 11 Dec 2024 11:11:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l2Z++UJZ"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF8469ECAE6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:14:21 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EEEF153BF6;
-	Wed, 11 Dec 2024 11:11:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F3A3281020
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:14:20 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 862C0204F8C;
+	Wed, 11 Dec 2024 11:14:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ICw7lIe0"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7E83153BF6;
+	Wed, 11 Dec 2024 11:14:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733915478; cv=none; b=XKIJ4ahp9FTd1WwTA8mLd7aAGFtbxAV5H0pZB41yd8HeMGrjM42/QHhXXYVUhpjp/v30yeWXKK6fZHMmZBSOU0B9olfLwz2vWxMwNrF9AdBKjaOc9X01jUXbb5hX9QB5YgGncSThoXRqhE2dD3+XBKNFIvVgnJcGWQxknHDVgvE=
+	t=1733915657; cv=none; b=lg95R4XkERK9BsFUrt3yAJmHKQUQC/NRfbmwV4r/Amhm5DIQkSpCtxeseBtRXHdBQZHIPMuVtzN7q5NrGzIBR8e21vJHPI0kllfTK0zWASagVwr3/lf692ChmOjHxLu+OMkP3Pn8xE9w3x+OeQ3gD4IMvWc4pcs7HcnUcagKRvQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733915478; c=relaxed/simple;
-	bh=QD7ULHKWVkhxuRiK98gMf9JFOXMuuvch3kUNLecq9q0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F2WbUYul1EtIWaMJSEQwuWLGuvjqKrWfL+r0JTXM1Mq0M/L5fQgjylRyTFGujlupzF0VCN19J4QOz8K84sMDTl2TKeQf/xSLMyXyP+L5et76Q8/TV9AwrylldcCjujmK18vmWwhFMcv1nKZLTiLyCLGLnoZn2fwKfakMjKzETtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l2Z++UJZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF373C4CED2;
-	Wed, 11 Dec 2024 11:11:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733915478;
-	bh=QD7ULHKWVkhxuRiK98gMf9JFOXMuuvch3kUNLecq9q0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l2Z++UJZ42ij54T3mTbjKDuAP/LCbQpcdPKSZ55obe3Gnufnst94+GJdLhgtRqsuf
-	 Ywd+z5hBuhoNwJzPnLLfXE6dElAvFg1rAKfU0GYvsOht44fzzfGx5rC90kkHx2r9py
-	 WFi+BdvQ/IoB10z7NOqFKQqoRdfqDv7KWlMqEsWkqd1twe1Sc41ya298++oBINbORl
-	 NhgzO+Wlyl8xdiFDPibVVdlO33rjBj1+JNOgzxZhcnYgARWioxEAFKmMQPD32SZnKx
-	 WsImhGLGv9zatFaHzIfTb77tpVJ1Bad9Bk9D7MhHYDAMh/cMUnd5OSqZRLaKFas+WI
-	 z5RPGaHkLST+g==
-Date: Wed, 11 Dec 2024 11:11:09 +0000
-From: Lee Jones <lee@kernel.org>
-To: Tzung-Bi Shih <tzungbi@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	nfraprado@collabora.com, angelogioacchino.delregno@collabora.com,
-	matthias.bgg@gmail.com, linux@weissschuh.net,
-	devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-	linux-mediatek@lists.infradead.org, bleung@chromium.org,
-	groeck@chromium.org
-Subject: Re: [PATCH 2/2] dt-bindings: cros-ec: Remove
- google,cros-kbd-led-backlight
-Message-ID: <20241211111109.GA7139@google.com>
-References: <20241206031405.1711996-1-tzungbi@kernel.org>
- <20241206031405.1711996-3-tzungbi@kernel.org>
+	s=arc-20240116; t=1733915657; c=relaxed/simple;
+	bh=AfNfBdoVZNKeajppPLOJvyvZWOLTMsYy+KFWGdvmgPk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Lcvbto+D8neDqGd+UHSA9gy8p9fBKnE0FNp2MthLPZqyxlh5dR2ujPzPsV0k3Uh6f7KFTaziFjN2Sflsv86NJab4nzPv4xqmfefwaKWCbRTEi01VWz2SBtFXOqf+pGQnSxbTiGVztYw0dznuLlE0rwvoAmV8NB1RIe4aUwblEw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ICw7lIe0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BB81Gh0017424;
+	Wed, 11 Dec 2024 11:14:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	BH2B/0le3yWwufp60i2sfpfytwxxHzleO8u4wmCzBqo=; b=ICw7lIe0eAhR1jwS
+	M/OMY1x+JmCh709+7Ftb/jkm7mETYqnzUTwfgq5rGpHncSXibIhKygvPbYMcJLwu
+	SdhQtGFjyUPCp7hZoX00hJmL/G9DTTa7qN5MPBemdcwWFv4UOznCwGBt37vGO21i
+	0BZQwpcBHfvsWiylnDnXNq6rVC6MGTNx0GN7hAbMbnQGOpTjT95GEh9A4wSiQ8sY
+	hQ/46bJy/P7zdK8Gaz0/2TVehYCAXma0oG7t3RT+/rLW/V9EAkIH0nJgIQ9LUthI
+	t8NxBlz5O9Hp5zF5jy5rNBIJ9vlnGfIg6kuRb8QaV1Z3MTNCrAIsrmErTLLVPJZT
+	YhThuQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43eak3deh6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Dec 2024 11:14:04 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BBBE4f0011415
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Dec 2024 11:14:04 GMT
+Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Dec
+ 2024 03:14:00 -0800
+Message-ID: <7bdaa38a-c114-4538-8fbb-85e0f326f436@quicinc.com>
+Date: Wed, 11 Dec 2024 19:13:58 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241206031405.1711996-3-tzungbi@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/2] coresight: Add label sysfs node support
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Bjorn
+ Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20241210122253.31926-1-quic_jinlmao@quicinc.com>
+ <avimk3fdjal6ohezktrexnbguxf6wj5tv6jbcqy5r4bnuww6kz@3xjt3mutne7n>
+Content-Language: en-US
+From: Jinlong Mao <quic_jinlmao@quicinc.com>
+In-Reply-To: <avimk3fdjal6ohezktrexnbguxf6wj5tv6jbcqy5r4bnuww6kz@3xjt3mutne7n>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: _gUCSwLu4NqZhl2SsUr9uXHMUi4OEZPY
+X-Proofpoint-GUID: _gUCSwLu4NqZhl2SsUr9uXHMUi4OEZPY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=999 clxscore=1015 spamscore=0 mlxscore=0 impostorscore=0
+ malwarescore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
+ bulkscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412110084
 
-On Fri, 06 Dec 2024, Tzung-Bi Shih wrote:
 
-> After applying 4c03a44e2668 ("arm64: dts: mediatek: mt8195-cherry: Remove
-> keyboard-backlight node"), there are no users for using the OF match.
-> Instead, the device is added via drivers/mfd/cros_ec_dev.c by
-> 970c3a6b7aa3 ("mfd: cros_ec: Register keyboard backlight subdevice").
+
+On 2024/12/11 16:46, Krzysztof Kozlowski wrote:
+> On Tue, Dec 10, 2024 at 08:22:51PM +0800, Mao Jinlong wrote:
+>> With current design, the name of the non-cpu bounded coresight
+>> component is the device type with the number. And with 'ls' command
+>> we can get the register address of the component. But from these
+>> information, we can't know what the HW or system the component belongs
+>> to. Add label in DT and show the hw information by reading label sysfs
+>> node.
+>>
+>> cti_sys0 -> ../../../devices/platform/soc@0/138f0000.cti/cti_sys0
+>> cti_sys1 -> ../../../devices/platform/soc@0/13900000.cti/cti_sys1
+>> tpdm0 -> ../../../devices/platform/soc@0/10b0d000.tpdm/tpdm0
+>> tpdm1 -> ../../../devices/platform/soc@0/10c28000.tpdm/tpdm1
+>> tpdm2 -> ../../../devices/platform/soc@0/10c29000.tpdm/tpdm2
+>>
+>> /sys/bus/coresight/devices # cat cti*/label
+>> cti_dlct_0
+>> cti_dlct_1
+>> cti_apss_0
+>> cti_apss_1
+>> cti_apss_2
+>>
+>> Change since V4:
+>> 1. Add label in DT and add label sysfs node for each coresight device.
 > 
-> Remove the DT bindings.
+> This is v5, no links to previous versions (I really suggest to start
+> using b4 if you want to make your process easier for you), no other
+> changes so subject is obviously the same and looking for this patchset
+> previous versions gives me 0 results:
 > 
-> Signed-off-by: Tzung-Bi Shih <tzungbi@kernel.org>
+> https://lore.kernel.org/all/?q=%22coresight%3A+Add+label+sysfs+node+support%22
+> 
+> OK, let's try b4 diff:
+> 
+> b4 diff '20241210122253.31926-1-quic_jinlmao@quicinc.com'
+> Grabbing thread from lore.kernel.org/all/20241210122253.31926-1-quic_jinlmao@quicinc.com/t.mbox.gz
+> Checking for older revisions
+> Grabbing search results from lore.kernel.org
+> Nothing matching that query.
 > ---
->  .../chrome/google,cros-kbd-led-backlight.yaml | 36 -------------------
->  .../bindings/mfd/google,cros-ec.yaml          |  3 --
+> Analyzing 3 messages in the thread
+> Could not find lower series to compare against.
+> 
+> 
+> So how do you expect us to do any meaningful review?
+> 
+> Best regards,
+> Krzysztof
+I will resend the patches with the links of lower series.
 
-Acked-by: Lee Jones <lee@kernel.org>
+> 
 
->  2 files changed, 39 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/chrome/google,cros-kbd-led-backlight.yaml
-
--- 
-Lee Jones [李琼斯]
 
