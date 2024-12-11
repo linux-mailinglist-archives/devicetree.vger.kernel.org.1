@@ -1,143 +1,201 @@
-Return-Path: <devicetree+bounces-129724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A75259ECA54
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:32:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D3739ECA6E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:35:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A78E7188BDA9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 10:32:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82AA0188D0B6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 10:35:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37E51A8418;
-	Wed, 11 Dec 2024 10:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 806371FF1B0;
+	Wed, 11 Dec 2024 10:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RUeGxr/m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A8E27080E;
-	Wed, 11 Dec 2024 10:32:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 517831EC4FF;
+	Wed, 11 Dec 2024 10:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733913123; cv=none; b=bx6LGFKvZuivONK8doms0R2m7AZ/hUiFCcMFEqNn8Bm9rlnFihOW4MjIntCUJcuUsYYIEWOSfe//ryu2grV5a8zh86mN+D2mEp2lEmdMcYj1Jc5Dcko0mj0G6NgWBW/e1MioCUwQriKvmGmoftcuKni/aKxddSBTy7NBaqpg+/k=
+	t=1733913305; cv=none; b=D3pVx1RARRIToWYydE9h9YlbPnxi+9DoyduuIjC/Gy+4TJmL4EYqp2RkwlhtX8B44sbyBa/44ANB0jb2TULxvHqwquSJALipcuPPTS4y8rHF5x39RAz9pg7R87H5TlJHkMnoIGXv9dr6UZrcdlmb2CWfr4HKOqcEpCN7QE20y88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733913123; c=relaxed/simple;
-	bh=vvbIMsKFGRouwxwNL2xJ+YwuGu1qOdxwhUKtu12VLrY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ecfm3YIYJWpCncl/6G20d4/3aLg0SB2GNYNe8RUxDme6dsSUKGHzugNhSmq/er1U+1RW+Zsx/H8R0tWG7b3Zvtg+M1t2bVSGQDvuHhTFSfcyDbBflG+kmeVNyrI81xk9bZlVx55LTw0LlZR9fSlIG62EqtwyDpZSQZR4Xf8AjAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-518802a1e7eso1421401e0c.3;
-        Wed, 11 Dec 2024 02:32:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733913119; x=1734517919;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t+MDsr8huyTLqyUVeHOpEDXmsDH5QVNclrAtaTfv2Zc=;
-        b=neOZK7QIENptQukYjhi/ol8odcrIYiDePYaWCvQIX4uH6ch6ICMoRb6K6bmyuX3snx
-         xtQUo/F0r8gQkGwPUBPaynXyooVE0GqrFdStmn3g+b+186IiSSii167UC2igUNqgTjJv
-         VBkQaFw+vbDeauwnF9/DFdMOh8ZN3Q3fLK+1CBAvwQIv5PDG3APwJRysgbF2bti4XPfW
-         zYbZwn/Io6Lyj3X7q+mDhS/tIH9U++VFehonSWUGKrR7WRQy5NyVxHZvC41+NuuMFhWj
-         Jagq8AoW9wefZ2Z42aGJb5+dVLDLaZzvDlHLct7hADfLAHi55x0IjkbqSYQuH2WyTVGN
-         WKUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUfeT9rCGiYxAiy1zKxLe40K/6ltUey4aKWemv+9cvYPyhQLV2yC0utu3gBftoeYufFrQRgus+3VF0=@vger.kernel.org, AJvYcCVZyVJC4pMKEhiEueRBg5CldRpZ+iLUsjGVWnb71p9JP0Wx8Y0Y2uwogdCLwELRBIgmxDwbVGwoliTXxuVX3SuxjJs=@vger.kernel.org, AJvYcCW/rJ6bTibsMjlau6t2BcHT9dkQmHKdBleCSYLTJ4G/BLJr/i6opjuULVBDAYvR55Rflgr8QGxCx7dx@vger.kernel.org, AJvYcCWoPOjt/+NeT7DZR4HSAafpIVCOd1ciKKFSbfxcJHvqGTjz7DPvLxpfOBtakAQeq7wEj0qbXCpev97rKatD@vger.kernel.org, AJvYcCXmM/MLFZzIJsZk2jYPWK3TnzsK1a07ZcW+qNqfIw8iVJvUBLEQ64sEaGnvQoWpbngQnczVRHIRDrJm@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAd3nqNi69xhKqQySKof92PWd9kjeMrmUFdWwyC8Txg1ca4Ajg
-	AvT05w1jz+9fdMT0AyYk+T2o8JTb+Nl+d1heDP4PPIo6HpkVmAiGSs892ufy
-X-Gm-Gg: ASbGncvVJAPQvcNUn6aUM8L3TGl3zUQ/Xe4PRHf5BWjvdrdyciAD7w013qpw7mn14Lo
-	eiHa3Y9b6aouWJh59TiCiakSOLXCl0KXTFE9WizJak6KmOrcma8qClQD3odXAI546lSC/7U7RJ5
-	jsoolGwthLr3TfGgjGXfESIH/HD76rPHVW6p27LGnEV/ZsPiqu4s6eq01NjMR0vy8HzfAeaH4N5
-	UaT5u9LE5b2WbCXkA9FPO2y7gEikgo29GQywjEzHn/YjVFOuWOzb7UeC41faCTFTawoRCBpW1Vg
-	dI6JG1PVG4G0Kyy6
-X-Google-Smtp-Source: AGHT+IFhaaTCve1BtENFDB5mGp85ndp5dT1fXvBQP3z302eXnQ+WSfwC7o1J57Y3eE+sWOm5j2KoMA==
-X-Received: by 2002:a05:6122:2510:b0:50a:d1e3:82f7 with SMTP id 71dfb90a1353d-518a3cc335dmr1718899e0c.8.1733913118747;
-        Wed, 11 Dec 2024 02:31:58 -0800 (PST)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5161697f966sm761130e0c.22.2024.12.11.02.31.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Dec 2024 02:31:58 -0800 (PST)
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4afdf300d07so2346855137.3;
-        Wed, 11 Dec 2024 02:31:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUkClaLpkclzofok/bWdzI0lt/CWEL46IgKex2YF31qXyNH7MJ6OfgAToxQJ88wO/R+WLYjV0HuGco=@vger.kernel.org, AJvYcCV/HGMKcwSno/3G5cO1gqTNcDuOE6gpFPVa85xaN14H0VwOslJtUswnCXNARRCaEIAbdIKwvdIoHKPku/gyiuQkTvY=@vger.kernel.org, AJvYcCV4kQXmmeOHJYrmeX/6VZD0uWCu03t3Hnygho89FaisHa2mkQlMHfSFqNUCb9H9i9YUHSNi9cSB7x8y@vger.kernel.org, AJvYcCWBQOGMKiYCaZAvbuPOt5B1woSpYJ0SC/GTk2GMWw1KYJidHIQgvT9NJb2ugrGAVvlfMwTlQcdlbWOjwC9u@vger.kernel.org, AJvYcCWKwUPo/MXdfkVS6U1Ubo1C/fWk3dwBh+CYFHSJnTRgna7iyB01nHfGxp79uNSbPFPoIUQ3OyQ0gw50@vger.kernel.org
-X-Received: by 2002:a05:6102:5114:b0:4b1:102a:5834 with SMTP id
- ada2fe7eead31-4b1290e242emr1983934137.21.1733913117926; Wed, 11 Dec 2024
- 02:31:57 -0800 (PST)
+	s=arc-20240116; t=1733913305; c=relaxed/simple;
+	bh=PifCWoxA41DNQhBe6905odZu+s/j0m25J2naw6/B7nQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=O0hF+6ZuKxKLKPv2C1T2bXw47qsAE7SA2wUek6pX/U+9BGwrluoTVXzQRn9bEd7siGclYadbKEaCG6UzlqdbGu4pnT/es6yS+u2+ib/Bgi1ejp8aM61q600U8ZlY18SFlF84oV6s5++ch4PLqNy8AYQkQregEj54CEWT/KEBuwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RUeGxr/m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02434C4CED2;
+	Wed, 11 Dec 2024 10:34:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733913304;
+	bh=PifCWoxA41DNQhBe6905odZu+s/j0m25J2naw6/B7nQ=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=RUeGxr/m9s/dSkYW7+Ydh8aBk14fUAhaFmzWAA56kIv4TNuTkqqrCfF+n1aosk0ow
+	 FMmtfAHb8X1cYQSjMF65VBH23ymeTkjqBal0zhUxSuZuh0+iN0PGDZ6BIXNIfSFWjW
+	 hGydlTxJAeFX8jLYbN3W9z5CJAInMtQFiKiAFLJHeNFjTpbQleBjYfInsA4G0nGIy4
+	 9acT7zBhA3eC7/WCM6eqSHW+UIOmC/0TjdBz8bdyGC5G/zF105MhH2Rwtp70UMqBwi
+	 yuY8c42XebqdjCB3CYFjpQwYzeqWR1PdpXGlAsx9Ow0aoRM+/c3ocpmhAzPvmTa03G
+	 3MTi8HshPgjAQ==
+Message-ID: <4f722a25-65f3-49cd-9c45-8710e8242248@kernel.org>
+Date: Wed, 11 Dec 2024 11:34:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240422105355.1622177-1-claudiu.beznea.uj@bp.renesas.com>
- <20240422105355.1622177-9-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdWhRRdfoqg_o6bU7jjt5_Di0=z7MJ4fMh=MJ0m8=u4tgg@mail.gmail.com>
- <80d56236-2499-4c89-8044-6a271e47515d@tuxon.dev> <CAMuHMdXOztsoKp=9-TDXirJN8voRy0O5mYXcVy=Uz-GX0B2N_Q@mail.gmail.com>
-In-Reply-To: <CAMuHMdXOztsoKp=9-TDXirJN8voRy0O5mYXcVy=Uz-GX0B2N_Q@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 11 Dec 2024 11:31:46 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXXTRUiToA3r8+xgS0uUrrfOF8iZA58_na0V9+JB6hg6Q@mail.gmail.com>
-Message-ID: <CAMuHMdXXTRUiToA3r8+xgS0uUrrfOF8iZA58_na0V9+JB6hg6Q@mail.gmail.com>
-Subject: Re: [PATCH v4 8/8] arm64: dts: renesas: r9a08g045: Update
- #power-domain-cells = <1>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, magnus.damm@gmail.com, ulf.hansson@linaro.org, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: phy: qcom,qmp-pcie: add optional current
+ load properties
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Ziyue Zhang <quic_ziyuzhan@quicinc.com>, vkoul@kernel.org,
+ kishon@kernel.org, dmitry.baryshkov@linaro.org, abel.vesa@linaro.org,
+ neil.armstrong@linaro.org, andersson@kernel.org, konradybcio@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241204105249.3544114-1-quic_ziyuzhan@quicinc.com>
+ <20241204105249.3544114-2-quic_ziyuzhan@quicinc.com>
+ <qvjtwilukxbeaxnbyzfkdsfkktm6p4yv3sgx3rbugpb6qkcbjy@rohvixslizhh>
+ <20241211062053.vxdpovlmetvyx3za@thinkpad>
+ <33697bd9-02f4-4a9a-b8c0-4930d7fdaee2@kernel.org>
+ <20241211082404.p7fbmhooikmipxvm@thinkpad>
+ <3c7ddb08-38db-44b3-a7a7-ec7b270a408f@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <3c7ddb08-38db-44b3-a7a7-ec7b270a408f@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Claudiu,
+On 11/12/2024 10:52, Krzysztof Kozlowski wrote:
+> On 11/12/2024 09:24, Manivannan Sadhasivam wrote:
+>> On Wed, Dec 11, 2024 at 09:09:18AM +0100, Krzysztof Kozlowski wrote:
+>>> On 11/12/2024 07:20, Manivannan Sadhasivam wrote:
+>>>> On Thu, Dec 05, 2024 at 11:23:11AM +0100, Krzysztof Kozlowski wrote:
+>>>>> On Wed, Dec 04, 2024 at 06:52:47PM +0800, Ziyue Zhang wrote:
+>>>>>> On some platforms, the power supply for PCIe PHY is not able to provide
+>>>>>> enough current when it works in LPM mode. Hence, PCIe PHY driver needs to
+>>>>>> set current load to vote the regulator to HPM mode.
+>>>>>>
+>>>>>> Document the current load as properties for each power supply PCIe PHY
+>>>>>> required, namely vdda-phy-max-microamp, vdda-pll-max-microamp and
+>>>>>> vdda-qref-max-microamp, respectively.PCIe PHY driver should parse them to
+>>>>>> set appropriate current load during PHY power on.
+>>>>>>
+>>>>>> This three properties are optional and not mandatory for those platforms
+>>>>>> that PCIe PHY can still work with power supply.
+>>>>>
+>>>>>
+>>>>> Uh uh, so the downstream comes finally!
+>>>>>
+>>>>> No sorry guys, use existing regulator bindings for this.
+>>>>>
+>>>>
+>>>> Maybe they got inspired by upstream UFS bindings?
+>>>> Documentation/devicetree/bindings/ufs/ufs-common.yaml:
+>>>>
+>>>> vcc-max-microamp
+>>>> vccq-max-microamp
+>>>> vccq2-max-microamp
+>>>
+>>> And it is already an ABI, so we cannot do anything about it.
+>>>
+>>>>
+>>>> Regulator binding only describes the min/max load for the regulators and not
+>>>
+>>> No, it exactly describes min/max consumers can use. Let's quote:
+>>> "largest current consumers may set"
+>>> It is all about consumers.
+>>>
+>>>> consumers. What if the consumers need to set variable load per platform? Should
+>>>
+>>> Then each platform uses regulator API or regulator bindings to set it? I
+>>> don't see the problem here.
+>>>
+>>>> they hardcode the load in driver? (even so, the load should not vary for each
+>>>> board).
+>>>
+>>> The load must vary per board, because regulators vary per board. Of
+>>> course in practice most designs could be the same, but regulators and
+>>> their limits are always properties of the board, not the SoC.
+>>>
+>>
+>> How the consumer drivers are supposed to know the optimum load?
+>>
+>> I don't see how the consumer drivers can set the load without hardcoding the
+>> values. And I could see from UFS properties that each board has different
+>> values.
+> 
+> 
+> Drivers do not need to know, it's not the driver's responsibility. If
+> these are constraints per board, then regulator properties apply and
+> there is no difference between this "vdd-max-microamp = 10" and
+> "regulator-max-microamp".
+> 
+> If this varies runtime, then your property is already not suitable and
+> very limited and you should use OPP table.
+> 
+Plus let's recap the commit msg which is supposed to fully explain the
+hardware:
+"the power supply for PCIe PHY is not able to provide
+enough current"
 
-On Thu, Aug 1, 2024 at 7:34=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68k=
-.org> wrote:
-> On Thu, Aug 1, 2024 at 7:28=E2=80=AFPM claudiu beznea <claudiu.beznea@tux=
-on.dev> wrote:
-> > On 01.08.2024 19:13, Geert Uytterhoeven wrote:
-> > > On Mon, Apr 22, 2024 at 12:54=E2=80=AFPM Claudiu <claudiu.beznea@tuxo=
-n.dev> wrote:
-> > >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > >>
-> > >> Update CPG #power-domain-cells =3D <1> and move all the IPs to be pa=
-rt of the
-> > >> IP specific power domain as the driver has been modified to support
-> > >> multiple power domains.
-> > >>
-> > >> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > >
-> > > Now the watchdog fixes are in v6.11-rc1, I will queue this in
-> > > renesas-devel for v6.12.
-> >
-> > Only the RZ/G3S support has been merged.
-> >
-> > The watchdog fixes that allows us to use this patch were submitted as R=
-FC
-> > but got no input from Ulf, yet.
->
-> Oops, postponing.
+Well, that's 100% property of power supply - so the regulator node in
+PMIC, not the UFS device (consumer).
 
-The watchdog fix is now commit bad201b2ac4e238c ("watchdog: rzg2l_wdt:
-Power on the watchdog domain in the restart handler") in v6.13-rc2,
-so it is time to revisit this (and rebase my renesas-dts-for-v6.1
-branch to v6.13-rc2)?
+With that commit msg it is clear the properties are placed wrongly.
+However maybe just commit msg is wrong, but then how could we possibly
+know what is the real hardware, right? :)
 
-Thanks!
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
