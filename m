@@ -1,68 +1,61 @@
-Return-Path: <devicetree+bounces-129963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1099C9ED4B2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 19:28:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 956469ED4CB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 19:42:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A436C281D0A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:28:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5559F283DB4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:42:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54F21202F9B;
-	Wed, 11 Dec 2024 18:28:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0A7209F4B;
+	Wed, 11 Dec 2024 18:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r6DSssme"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gluDOk+p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 247431AF0B4;
-	Wed, 11 Dec 2024 18:28:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11ED820969A;
+	Wed, 11 Dec 2024 18:42:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733941715; cv=none; b=Fo05+zFDRQ25csKEU4ReAb4vnC/kw/yEdsD0fLt32PH5PTgg/vqesF4A9pxLDOCyDuS3URrVmdF7hieKO+Z0Q/1O21M5HrRNqzxZtX0EM/ueVXflBjNrmBmvkuKbDIEWripkojy12uTp3Dpd/Y8zk6SLFNjGVxTYyGx3pLq3vg8=
+	t=1733942557; cv=none; b=VsYe21ffiAIJGNeQ22FkW9m4wx+y8iWwnR3pvKck2Iy15dpE7DLfDvv2muu3JBK8Rrqdgh+ETyyOefiBt5TbKaYJx1b9CeBcoxnzqtF78PU+q//eCeRDjBldFImB3ZXAUzyWFzh4OIVFH3cWdoWHqdZlbl31VPza+mB/vj5509A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733941715; c=relaxed/simple;
-	bh=JU4/hbf8LqaPk3w9vxQmPNCv7yc8PUm7ADZHQhjLaoY=;
+	s=arc-20240116; t=1733942557; c=relaxed/simple;
+	bh=pd0k148YzYabUSvUzhzX4borTCtPgUpXrUsJus+zF6s=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UWQ0ij7rm0yOTdL29ZW5xP9STqKgWMJe4hIiY3dL+IQxtxec5l8VXrmfkrNKifhyIZb0O7rKYwRr7fHckoqN4pL6Nd3+AKXDZpL8RBOaoWAM66uYQozU5Nv3Qx9n4KzpNLfdNBXw1sJgdK6J2Z1rBtuu0vBnc81Po/WO4D+q3ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r6DSssme; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8326BC4CED2;
-	Wed, 11 Dec 2024 18:28:22 +0000 (UTC)
+	 MIME-Version:Content-Type; b=SN+nOj9PRMrLyrPGmOpJb3LoZbJ4JC6B6J0LPc4z0KhM1yd+TTG1Gi4W807WSCCplkYm0wVcDtS0n9PXyx5Siu5tVLbulJRuRBCVsP0ooNJ2+o/nuuSoZZcCivz2uGNMR0SRq4HJLo+8vUEeNBtvwjDAH+ApdpB+kCy4vp3tQkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gluDOk+p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B9FCC4CED2;
+	Wed, 11 Dec 2024 18:42:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733941713;
-	bh=JU4/hbf8LqaPk3w9vxQmPNCv7yc8PUm7ADZHQhjLaoY=;
+	s=k20201202; t=1733942556;
+	bh=pd0k148YzYabUSvUzhzX4borTCtPgUpXrUsJus+zF6s=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=r6DSssmeU18QTcKa3b/Dic7+wNzV8rV/DC3hk6bCBVkkm8BivtQMtxTpw8A7I7DGF
-	 6gcMKml4Qqi3Cnaokzt0Ho2AhsoCm3BYlgtA1Y8Ok+YUpsU2Nr60X+wSPA/kILu+zM
-	 Y6l2D5+WTimIA09EkRkDknpoI2hW6ruxJ09+9/WHyUKAmCJuIZmfSIt06vbWG/5WM9
-	 SAEUSyBrS6ozSe9cp4d6lXrAJ4EJPs5KhjOIpJrh64AD4JYhyK75fC4gBXdwb+wY+K
-	 1MFK5FjnAlGttHu/20yM4xPhSYEjylRk1YN2tANQPJcXMxalxlBlwReYNFRk+OKd/v
-	 8C1CDXi4SequA==
-Date: Wed, 11 Dec 2024 18:28:17 +0000
+	b=gluDOk+pxor4QJOt4k9310Tpn/HGCD5SpHotQCPqXcgajyz2dPmFzSWQExT7inOSm
+	 vtMoeCaNMLoVLvaNif5P2KFtGLSwGEsqm8aBxgWldPsNd9YcL7RiNDswwvmyuj5iK4
+	 Fbi7P5dcdVVqxwIuYFH2TScjgEfbf56H7LWAZ61ZOEQPOCHmJIIFREspQKZCUiXzA7
+	 UD/LkRzVrz5A+Rjk7LjeqFoVbwzJOjT6wBLlCnLY3AUyTGKsX4jabE8yhKPjHwecAw
+	 URJo7FXI3ePh5O4Z9ZLS0iZ+q5AnfT6FgaMGdM4QVBiGsfsmisWXm5cp1nwmuYP4db
+	 9/i6UH67p31rQ==
+Date: Wed, 11 Dec 2024 18:42:27 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Yu-Hsian Yang <j2anfernee@gmail.com>
-Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- nuno.sa@analog.com, dlechner@baylibre.com, javier.carrasco.cruz@gmail.com,
- andriy.shevchenko@linux.intel.com, marcelo.schmitt@analog.com,
- olivier.moysan@foss.st.com, mitrutzceclan@gmail.com, tgamblin@baylibre.com,
- matteomartelli3@gmail.com, alisadariana@gmail.com, gstols@baylibre.com,
- thomas.bonnefille@bootlin.com, ramona.nechita@analog.com,
- mike.looijmans@topic.nl, chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
- yhyang2@nuvoton.com, openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: add Nuvoton NCT720x ADC driver
-Message-ID: <20241211182817.12d63645@jic23-huawei>
-In-Reply-To: <CA+4VgcLDQrTcTFjr7MYGtMYpqhzm0gym=zzkt33JGRHFkCXGVg@mail.gmail.com>
-References: <20241203091540.3695650-1-j2anfernee@gmail.com>
-	<20241203091540.3695650-3-j2anfernee@gmail.com>
-	<20241208172236.18441e64@jic23-huawei>
-	<CA+4Vgc+veFb6hCP4A7mPH_uiUCnmbsa=guWySRekYj660osQyg@mail.gmail.com>
-	<CA+4VgcLDQrTcTFjr7MYGtMYpqhzm0gym=zzkt33JGRHFkCXGVg@mail.gmail.com>
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ eraretuya@gmail.com
+Subject: Re: [PATCH v5 02/10] iio: accel: adxl345: rename variable data to
+ st
+Message-ID: <20241211184227.7a843ac0@jic23-huawei>
+In-Reply-To: <CAFXKEHZu7SFx9DS3-cy-=JXSRL6CD0L-WG_BACNa=0w9f_yOEQ@mail.gmail.com>
+References: <20241205171343.308963-1-l.rubusch@gmail.com>
+	<20241205171343.308963-3-l.rubusch@gmail.com>
+	<20241208132750.24ff93b8@jic23-huawei>
+	<CAFXKEHZu7SFx9DS3-cy-=JXSRL6CD0L-WG_BACNa=0w9f_yOEQ@mail.gmail.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -70,58 +63,46 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 10 Dec 2024 13:47:25 +0800
-Yu-Hsian Yang <j2anfernee@gmail.com> wrote:
+On Tue, 10 Dec 2024 18:31:57 +0100
+Lothar Rubusch <l.rubusch@gmail.com> wrote:
 
-> Dear Jonathan Cameron,
-> 
-> Sorry the above mail is not finished and just sent it.
-> I would explain why we can't use bulk read sequential bytes in our chips.
-Ah! I replied to previous. Let me see what you added.
-
-
-> > > > +
-> > > > +     guard(mutex)(&chip->access_lock);
-> > > > +     err  = regmap_read(chip->regmap, REG_CHANNEL_ENABLE_1, &value);
-> > > > +     if (err < 0)
-> > > > +             return err;
-> > > > +     data[0] = (u8)value;
-> > > > +
-> > > > +     err  = regmap_read(chip->regmap, REG_CHANNEL_ENABLE_2, &value);
-> > > > +     if (err < 0)
-> > > > +             return err;  
+> Hi,
+>=20
+> On Sun, Dec 8, 2024 at 2:28=E2=80=AFPM Jonathan Cameron <jic23@kernel.org=
+> wrote:
+> >
+> > On Thu,  5 Dec 2024 17:13:35 +0000
+> > Lothar Rubusch <l.rubusch@gmail.com> wrote:
+> > =20
+> > > Rename the locally used variable data to st. The st refers to "state",
+> > > representing the internal state of the driver object. Further it
+> > > prepares the usage of an internal data pointer needed for the
+> > > implementation of the sensor features.
 > > >
-> > > Here I think you can use a bulk read as the registers are next to each other.
-> > >  
-> >  
-> Generally, registers with 8 bits support Byte format, and registers
-> with more than 8 bits support Word format.
-> If transmission a Word command to a register that supports Byte
-> format, the second byte will get 0xFF.
-> Here, if we use regmap_bulk_read(), we would get first byte correct
-> and second byte is wrong 0xff.
-> 
-> I use i2ctransfer command to demo it.
-> root@evb-npcm845:~# i2ctransfer -f -y 5 w1@0x1d 0x13 r1
-> 0xff
-> root@evb-npcm845:~# i2ctransfer -f -y 5 w1@0x1d 0x14 r1
-> 0x0f
-> 
-> root@evb-npcm845:~# i2ctransfer -f -y 5 w1@0x1d 0x13 r2
-> 0xff 0xff
-> And if we read four bytes, you can see the first and third byte as we wanted.
-> root@evb-npcm845:~# i2ctransfer -f -y 5 w1@0x1d 0x13 r4
-> 0xff 0xff 0x0f 0xff
-> 
-> so we can't use bulk read directly since it would get a second byte 0xff.
-> The safe method is to  use read byte twice.
-That command does not do the same thing as regmap_bulk_read() will here.
-It will issue a series of byte reads.
+> > > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com> =20
+> > Applied to the togreg branch of iio.git. Initially pushed out as testing
+> > to let the bots take a look. =20
+>=20
+> Should I actually drop the "applied" patches in a v6? Or, may I keep them?
+
+Rebase on top of my testing branch or just drop them. Either works.
+
+>=20
+> I see that Dan Carpenters smatch now comes up with some issues. So, do
+> the fixes go into v6 here, or better separate?
+If for things I've picked up, then separate fixup at the beginning of
+your v6.  I might squash them into original patches if I haven't pushed
+out as togreg yet or they are particularly bad and I think worth potentially
+work giving others a messy rebase.
 
 Jonathan
 
+
+>=20
+> Best,
+> L
 
 
