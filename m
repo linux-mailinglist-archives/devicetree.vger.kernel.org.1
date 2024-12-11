@@ -1,450 +1,222 @@
-Return-Path: <devicetree+bounces-129954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25F589ED446
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5BA49ED44F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 19:01:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E099283544
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:59:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B730280CF7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:01:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03207207A39;
-	Wed, 11 Dec 2024 17:59:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBEC51DE3B5;
+	Wed, 11 Dec 2024 18:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Zo0g1d0n"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0C83S1fq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0FE0202F9D;
-	Wed, 11 Dec 2024 17:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F7651BD9CA;
+	Wed, 11 Dec 2024 18:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733939966; cv=none; b=lsr3Hc6MXEXIOvy/CFGicdkbuepGS9DsoILpHgfINn+kfwBcOAzC48Jw776jISdGePUx81qabQyumk6ZkzTO/DJQTkBMaHeroSdXPlk2UHDqV8MErhaRFQtIZlsLikrTRz9j1bLt6nMmeqFIhUaqpUw5nNTq+Scl7h8bzo/GFsE=
+	t=1733940103; cv=none; b=YXttx4Hq7Ubfz3VrWr1GCg4p8xKwTANvmssP2oPhD7O4mW8e65itR2GYT0YnfuV7ET17TjDWUmpcWEvc5uYfWGJtzgBm8a8ZlEhTNWeN9e8o75C0SuT5E/EFIWjDUnPYOb3Q2tsKe5IWdCAaDW7w8nJLN8XNrkLeyI1yu5Q4aCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733939966; c=relaxed/simple;
-	bh=+CyLWlVJTG7DJbK23BLbREkYGd65h/jJ8p09RcWgB9M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Eu6d26LJ5WTNkK4x3AdLAdIWgartyPvWmsqAmx1FwkS9/UQUGA8Z+QaHqE+U2075vxKLcRtPVytYGuJNvaMzDSLs7+qwZQeXuOxnoxvEfFDC+oW1yqrzJ1DKY2ZHEvJ8QIJBpuZlv7Wik6jWnS1iTAM4AVzrb7d6sfn//nLPvJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Zo0g1d0n; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-Received: from [192.168.118.162] (254C2319.nat.pool.telekom.hu [37.76.35.25])
-	by mail.mainlining.org (Postfix) with ESMTPSA id CBDBBE482E;
-	Wed, 11 Dec 2024 17:59:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
-	s=psm; t=1733939963;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ua5tHwuVwE9psNf3/7tv1OI/aaQ0u+NeoIVn2PvXMzY=;
-	b=Zo0g1d0nUKm4b4ZA941o/0DE79MTGH2UZBpFyz0WlqfarDG9SLmt6Hg03h0yqSNWvnKOV6
-	lDQUYVqlQ7Rv4Jly78ouWfK3RKmRgIv26tch8XkbGRhaYxCJk8kUVpIR0MpKZQCfmDEqK5
-	M6h6hy6zqx/DmnOzZGdJCdthDjnZyNL+b3HCa3n7GsdCad3S/e9oJkoxnoeGxCiXB8vpPS
-	WH/sD8JGUAcbWwTL7dAn3KUIuy6YroR+gXmySB5q1Y33HnH+KFHjH8EGVntLpsmzhpAsQ9
-	JCD9DniAT6wVOiDmzfQYV05IhpTS8LT6eFumCxz+HYOiOsHI4IUG3ROg+flvAA==
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Date: Wed, 11 Dec 2024 18:59:12 +0100
-Subject: [PATCH v8 8/8] arm64: dts: qcom: Add Xiaomi Redmi 5A
+	s=arc-20240116; t=1733940103; c=relaxed/simple;
+	bh=3BWFuw1tcoh+KSQaVbmI6GMqbUaoPZlODkZt6GIdBiI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rKh1PcrhLicdx17LO4AuiesAcesoRAmbrGoyWaFAN9drexWD+4L8ssaqTULoR94/HSi0B4IsxJGUxklsqY3n6qXTjDoIfUDiU8wLu6gKHxdi1sflH2sbWNWdaOjUF9LWZ44K4G8zw/1IrDo4NlNdHyR1Dws0mQMixRdH9Zlvfpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0C83S1fq; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=IVHnpLKAbs1P9zKMMrgIzagDvO+w36oIPk+2jsToDwg=; b=0C83S1fq97gn53rq0T/CVl46e6
+	3XCpKkwcn/RffyjiKXUeijI3P7o0clz7e3okpsFw+Vu+NCkLJtwSAQvZ4+pzDUFo4yKl3xs0VJ+pI
+	Dk+Uysaeqc9JOI8qAO9pxQag0R8KtNHGxBwxgzYuVBhvPBsH8kTBk3Q0BAPFGYWv+bujjBFQI++PW
+	oIixUfFkDdQYMLwKE49C/PyMKq6aMutb6tM0MobIhmmsiP8Auqs81KTEz1sKxv2GMwLNRVLw5ODwZ
+	fVe/rxSQtnmMUNIKqgLKz8+7/BJ678z81Stnzhk78oncTkAdB4KsVT8Hc9g+8H+WBZVYaDJ1PN5F6
+	83mXfeyg==;
+Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tLR1Q-0006Ul-Ql; Wed, 11 Dec 2024 19:01:16 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ kernel@collabora.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ FUKAUMI Naoki <naoki@radxa.com>
+Subject:
+ Re: [PATCH v2 3/5] drm/rockchip: vop2: Improve display modes handling on
+ RK3588 HDMI0
+Date: Wed, 11 Dec 2024 19:01:15 +0100
+Message-ID: <1756448.izSxrag8PF@diego>
+In-Reply-To: <a4ex3s23r4k6wehyoaw3aylpcexfrclrxxykjpabhdfne2jgmu@ii6riiiga2zj>
+References:
+ <20241211-vop2-hdmi0-disp-modes-v2-0-471cf5001e45@collabora.com>
+ <1820767.5KxKD5qtyk@diego>
+ <a4ex3s23r4k6wehyoaw3aylpcexfrclrxxykjpabhdfne2jgmu@ii6riiiga2zj>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241211-msm8917-v8-8-197acc042036@mainlining.org>
-References: <20241211-msm8917-v8-0-197acc042036@mainlining.org>
-In-Reply-To: <20241211-msm8917-v8-0-197acc042036@mainlining.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, Amit Kucheria <amitk@kernel.org>, 
- Thara Gopinath <thara.gopinath@gmail.com>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Joerg Roedel <joro@8bytes.org>, 
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
- linux-pm@vger.kernel.org, iommu@lists.linux.dev, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733939948; l=8938;
- i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
- bh=+CyLWlVJTG7DJbK23BLbREkYGd65h/jJ8p09RcWgB9M=;
- b=7jfr1ggBMH+87YSnchEspbwgXDYzsmITUbCbqpN7Eeh29hXcp3+U3v0yPVHX5rx4PYQcKeArl
- 80/24Fl/NG+CvZegRdC9aIjNAwDSIOhKpx+hOKyHn5eTDOXMCRbkg1+
-X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
- pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Add initial support for Xiaomi Redmi 5A (riva).
+Am Mittwoch, 11. Dezember 2024, 18:47:44 CET schrieb Maxime Ripard:
+> On Wed, Dec 11, 2024 at 06:23:03PM +0100, Heiko St=FCbner wrote:
+> > Am Mittwoch, 11. Dezember 2024, 18:07:57 CET schrieb Maxime Ripard:
+> > > On Wed, Dec 11, 2024 at 12:15:07PM +0200, Cristian Ciocaltea wrote:
+> > > > The RK3588 specific implementation is currently quite limited in te=
+rms
+> > > > of handling the full range of display modes supported by the connec=
+ted
+> > > > screens, e.g. 2560x1440@75Hz, 2048x1152@60Hz, 1024x768@60Hz are jus=
+t a
+> > > > few of them.
+> > > >=20
+> > > > Additionally, it doesn't cope well with non-integer refresh rates l=
+ike
+> > > > 59.94, 29.97, 23.98, etc.
+> > > >=20
+> > > > Make use of HDMI0 PHY PLL as a more accurate DCLK source to handle
+> > > > all display modes up to 4K@60Hz.
+> > > >=20
+> > > > Tested-by: FUKAUMI Naoki <naoki@radxa.com>
+> > > > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> > > > ---
+> > > >  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 34 ++++++++++++++++=
+++++++++++++
+> > > >  1 file changed, 34 insertions(+)
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers=
+/gpu/drm/rockchip/rockchip_drm_vop2.c
+> > > > index 8b2f53ffefdbf1cc8737b3a86e630a03a7fd9348..393fe6aa170aaee9663=
+c4a6d98c1cd6a5ef79392 100644
+> > > > --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> > > > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> > > > @@ -158,6 +158,7 @@ struct vop2_video_port {
+> > > >  	struct drm_crtc crtc;
+> > > >  	struct vop2 *vop2;
+> > > >  	struct clk *dclk;
+> > > > +	struct clk *dclk_src;
+> > > >  	unsigned int id;
+> > > >  	const struct vop2_video_port_data *data;
+> > > > =20
+> > > > @@ -212,6 +213,7 @@ struct vop2 {
+> > > >  	struct clk *hclk;
+> > > >  	struct clk *aclk;
+> > > >  	struct clk *pclk;
+> > > > +	struct clk *pll_hdmiphy0;
+> > > > =20
+> > > >  	/* optional internal rgb encoder */
+> > > >  	struct rockchip_rgb *rgb;
+> > > > @@ -220,6 +222,8 @@ struct vop2 {
+> > > >  	struct vop2_win win[];
+> > > >  };
+> > > > =20
+> > > > +#define VOP2_MAX_DCLK_RATE		600000 /* kHz */
+> > > > +
+> > > >  #define vop2_output_if_is_hdmi(x)	((x) =3D=3D ROCKCHIP_VOP2_EP_HDM=
+I0 || \
+> > > >  					 (x) =3D=3D ROCKCHIP_VOP2_EP_HDMI1)
+> > > > =20
+> > > > @@ -1033,6 +1037,9 @@ static void vop2_crtc_atomic_disable(struct d=
+rm_crtc *crtc,
+> > > > =20
+> > > >  	vop2_crtc_disable_irq(vp, VP_INT_DSP_HOLD_VALID);
+> > > > =20
+> > > > +	if (vp->dclk_src)
+> > > > +		clk_set_parent(vp->dclk, vp->dclk_src);
+> > > > +
+> > > >  	clk_disable_unprepare(vp->dclk);
+> > > > =20
+> > > >  	vop2->enable_count--;
+> > > > @@ -2049,6 +2056,27 @@ static void vop2_crtc_atomic_enable(struct d=
+rm_crtc *crtc,
+> > > > =20
+> > > >  	vop2_vp_write(vp, RK3568_VP_MIPI_CTRL, 0);
+> > > > =20
+> > > > +	/*
+> > > > +	 * Switch to HDMI PHY PLL as DCLK source for display modes up
+> > > > +	 * to 4K@60Hz, if available, otherwise keep using the system CRU.
+> > > > +	 */
+> > > > +	if (vop2->pll_hdmiphy0 && mode->crtc_clock <=3D VOP2_MAX_DCLK_RAT=
+E) {
+> > > > +		drm_for_each_encoder_mask(encoder, crtc->dev, crtc_state->encode=
+r_mask) {
+> > > > +			struct rockchip_encoder *rkencoder =3D to_rockchip_encoder(enco=
+der);
+> > > > +
+> > > > +			if (rkencoder->crtc_endpoint_id =3D=3D ROCKCHIP_VOP2_EP_HDMI0) {
+> > > > +				if (!vp->dclk_src)
+> > > > +					vp->dclk_src =3D clk_get_parent(vp->dclk);
+> > > > +
+> > > > +				ret =3D clk_set_parent(vp->dclk, vop2->pll_hdmiphy0);
+> > > > +				if (ret < 0)
+> > > > +					drm_warn(vop2->drm,
+> > > > +						 "Could not switch to HDMI0 PHY PLL: %d\n", ret);
+> > > > +				break;
+> > > > +			}
+> > > > +		}
+> > > > +	}
+> > > > +
+> > >=20
+> > > It seems pretty fragile to do it at atomic_enable time, even more so
+> > > since you don't lock the parent either.
+> > >=20
+> > > Any reason not to do it in the DRM or clock driver probe, and make su=
+re
+> > > you never change the parent somehow?
+> >=20
+> > On rk3588 we have 3 dclk_s and 2 hdmi controllers. Each video-port can
+> > use the clock generated from either the hdmi0phy or hdmi1phy, depending
+> > on which hdmi-controller it uses.
+> >=20
+> > So you actually need to know which vpX will output to which hdmiY to th=
+en
+> > reparent that dclk to the hdmiphy output.
+>=20
+> The Rockchip nomenclature isn't super obvious to me, sorry. Is there a
+> datasheet for this somewhere? Also, does this vpX -> HDMI-Y mapping need
+> to be dynamic?
 
-Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
----
- arch/arm64/boot/dts/qcom/Makefile                |   1 +
- arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts | 333 +++++++++++++++++++++++
- 2 files changed, 334 insertions(+)
+VPs are CRTCs in drm-language and each of them can drive a differing
+number of output encoders. Those video-ports also have differing output
+characteristics in terms of supported resolution and other properties.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 4686f2a8ddd897227360b4de48a0618499ad463e..ee9b262b0e0fc3ec9d6515174c33f8b69b524842 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -62,6 +62,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86518.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86528.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8917-xiaomi-riva.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8929-wingtech-wt82918hd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-huawei-kiwi.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts b/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..f1d22535fedd94467ba3f0a88b2110ce5360e7e1
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts
-@@ -0,0 +1,333 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2023, Barnabas Czeman
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/arm/qcom,ids.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include "msm8917.dtsi"
-+#include "pm8937.dtsi"
-+
-+/delete-node/ &qseecom_mem;
-+
-+/ {
-+	model = "Xiaomi Redmi 5A (riva)";
-+	compatible = "xiaomi,riva", "qcom,msm8917";
-+	chassis-type = "handset";
-+
-+	qcom,msm-id = <QCOM_ID_MSM8917 0>;
-+	qcom,board-id = <0x1000b 2>, <0x2000b 2>;
-+
-+	battery: battery {
-+		compatible = "simple-battery";
-+		charge-full-design-microamp-hours = <3000000>;
-+		energy-full-design-microwatt-hours = <11500000>;
-+		constant-charge-current-max-microamp = <1000000>;
-+		constant-charge-voltage-max-microvolt = <4400000>;
-+		precharge-current-microamp = <256000>;
-+		charge-term-current-microamp = <60000>;
-+		voltage-min-design-microvolt = <3400000>;
-+	};
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		stdout-path = "framebuffer0";
-+
-+		framebuffer0: framebuffer@90001000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0x0 0x90001000 0x0 (720 * 1280 * 3)>;
-+			width = <720>;
-+			height = <1280>;
-+			stride = <(720 * 3)>;
-+			format = "r8g8b8";
-+
-+			clocks = <&gcc GCC_MDSS_AHB_CLK>,
-+				 <&gcc GCC_MDSS_AXI_CLK>,
-+				 <&gcc GCC_MDSS_VSYNC_CLK>,
-+				 <&gcc GCC_MDSS_MDP_CLK>,
-+				 <&gcc GCC_MDSS_BYTE0_CLK>,
-+				 <&gcc GCC_MDSS_PCLK0_CLK>,
-+				 <&gcc GCC_MDSS_ESC0_CLK>;
-+			power-domains = <&gcc MDSS_GDSC>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_keys_default>;
-+		pinctrl-names = "default";
-+
-+		key-volup {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+		};
-+	};
-+
-+	vph_pwr: regulator-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	reserved-memory {
-+		qseecom_mem: qseecom@84a00000 {
-+			reg = <0x0 0x84a00000 0x0 0x1900000>;
-+			no-map;
-+		};
-+
-+		framebuffer_mem: memory@90001000 {
-+			reg = <0x0 0x90001000 0x0 (720 * 1280 * 3)>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&blsp1_i2c3 {
-+	status = "okay";
-+
-+	touchscreen@38 {
-+		compatible = "edt,edt-ft5306";
-+		reg = <0x38>;
-+		interrupts-extended = <&tlmm 65 IRQ_TYPE_LEVEL_LOW>;
-+		reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
-+		pinctrl-0 = <&tsp_int_rst_default>;
-+		pinctrl-names = "default";
-+		vcc-supply = <&pm8937_l10>;
-+		iovcc-supply = <&pm8937_l5>;
-+		touchscreen-size-x = <720>;
-+		touchscreen-size-y = <1280>;
-+	};
-+};
-+
-+&blsp2_i2c1 {
-+	status = "okay";
-+
-+	bq27426@55 {
-+		compatible = "ti,bq27426";
-+		reg = <0x55>;
-+		monitored-battery = <&battery>;
-+	};
-+
-+	bq25601@6b{
-+		compatible = "ti,bq25601";
-+		reg = <0x6b>;
-+		interrupts-extended = <&tlmm 61 IRQ_TYPE_EDGE_FALLING>;
-+		pinctrl-0 = <&bq25601_int_default>;
-+		pinctrl-names = "default";
-+		input-voltage-limit-microvolt = <4400000>;
-+		input-current-limit-microamp = <1000000>;
-+		monitored-battery = <&battery>;
-+	};
-+};
-+
-+&pm8937_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+
-+	status = "okay";
-+};
-+
-+&rpm_requests {
-+	regulators-0 {
-+		compatible = "qcom,rpm-pm8937-regulators";
-+
-+		vdd_s1-supply = <&vph_pwr>;
-+		vdd_s2-supply = <&vph_pwr>;
-+		vdd_s3-supply = <&vph_pwr>;
-+		vdd_s4-supply = <&vph_pwr>;
-+
-+		vdd_l1_l19-supply = <&pm8937_s3>;
-+		vdd_l2_l23-supply = <&pm8937_s3>;
-+		vdd_l3-supply = <&pm8937_s3>;
-+		vdd_l4_l5_l6_l7_l16-supply = <&pm8937_s4>;
-+		vdd_l8_l11_l12_l17_l22-supply = <&vph_pwr>;
-+		vdd_l9_l10_l13_l14_l15_l18-supply = <&vph_pwr>;
-+
-+		pm8937_s1: s1 {
-+			regulator-min-microvolt = <1000000>;
-+			regulator-max-microvolt = <1225000>;
-+		};
-+
-+		pm8937_s3: s3 {
-+			regulator-min-microvolt = <1300000>;
-+			regulator-max-microvolt = <1300000>;
-+		};
-+
-+		pm8937_s4: s4 {
-+			regulator-min-microvolt = <2050000>;
-+			regulator-max-microvolt = <2050000>;
-+		};
-+
-+		pm8937_l2: l2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		pm8937_l5: l5 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8937_l6: l6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8937_l7: l7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8937_l8: l8 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2900000>;
-+		};
-+
-+		pm8937_l9: l9 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8937_l10: l10 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <3000000>;
-+		};
-+
-+		pm8937_l11: l11 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-allow-set-load;
-+			regulator-system-load = <200000>;
-+		};
-+
-+		pm8937_l12: l12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8937_l13: l13 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3075000>;
-+		};
-+
-+		pm8937_l14: l14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8937_l15: l15 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8937_l16: l16 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8937_l17: l17 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2900000>;
-+		};
-+
-+		pm8937_l19: l19 {
-+			regulator-min-microvolt = <1225000>;
-+			regulator-max-microvolt = <1350000>;
-+		};
-+
-+		pm8937_l22: l22 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+		};
-+
-+		pm8937_l23: l23 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+	};
-+
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&pm8937_l8>;
-+	vqmmc-supply = <&pm8937_l5>;
-+
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	cd-gpios = <&tlmm 67 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&pm8937_l11>;
-+	vqmmc-supply = <&pm8937_l12>;
-+	pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
-+	pinctrl-names = "default", "sleep";
-+
-+	status = "okay";
-+};
-+
-+&sleep_clk {
-+	clock-frequency = <32768>;
-+};
-+
-+&tlmm {
-+	bq25601_int_default: bq25601-int-default-state {
-+		pins = "gpio61";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	gpio_keys_default: gpio-keys-default-state {
-+		pins = "gpio91";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	sdc2_cd_default: sdc2-cd-default-state {
-+		pins = "gpio67";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	tsp_int_rst_default: tsp-int-rst-default-state {
-+		pins = "gpio64", "gpio65";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
-+
-+&wcnss {
-+	vddpx-supply = <&pm8937_l5>;
-+
-+	status = "okay";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3620";
-+	vddxo-supply = <&pm8937_l7>;
-+	vddrfa-supply = <&pm8937_l19>;
-+	vddpa-supply = <&pm8937_l9>;
-+	vdddig-supply = <&pm8937_l5>;
-+};
-+
-+&wcnss_mem {
-+	status = "okay";
-+};
-+
-+&xo_board {
-+	clock-frequency = <19200000>;
-+};
+The rk3588 TRM has leaked in a number of places, and if you find a
+TRM-part2, there is a section labeled "Display Output Interface Description"
+that has a nice graphic for that.
 
--- 
-2.47.1
+Or in short:
+=2D CRTC(VP)0 supports 8K resolution and can drive DP0+1, HDMI0+1, eDP0+1
+  [if I'm reading things correctly, 8K together with CRTC1 somehow)
+=2D CRTC(VP)1 supports 4K resolution and can drive DP0+1, HDMI0+1, eDP0+1
+=2D CRTC(VP)2 supports 4K resolution and can drive DP0+1, HDMI0+1, eDP01, D=
+SI0+1
+=2D CRTC(VP)3 supports 2K resolution and can drive DSI0+1 and some BT1120,B=
+T656
+
+so for the 3 higher resolution CRTCs there are essentially 6 or 8 output op=
+tions
+depending on the board design
+
 
 
