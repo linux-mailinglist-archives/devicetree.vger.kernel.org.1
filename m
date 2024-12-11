@@ -1,237 +1,214 @@
-Return-Path: <devicetree+bounces-129970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 047A19ED64C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:18:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C83E9ED652
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:19:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E5CB16B0DA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 19:16:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E1BA166111
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 19:17:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F5D1D6DA4;
-	Wed, 11 Dec 2024 19:14:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91C8722A809;
+	Wed, 11 Dec 2024 19:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VL5E0Nek"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pSwLKZkk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 374102594B3;
-	Wed, 11 Dec 2024 19:14:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62CC7201249
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 19:15:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733944490; cv=none; b=XMCWnkElmY5xdu2Y6q1AsWoXy/8y+eeJ6YR/1wuoj+14QEGyiPxYY6ynXel3onABUkQQhJ6wcHrrWyxMrHoJyIgLYsizPQhVmqTlHbCXrmrl+eno/uymdPcHxsAB28x3uJtYgZHvxbdvITx3N8uiI2IT3rDa84gEm7HWjno0Szo=
+	t=1733944538; cv=none; b=nUG02c2+TM0sN/Q2lSrLOqpY3NgOz7B25rElwlK4UuTd/sxFTSPQuJYqo7akUJIpwXoSZvBzdXxqpM8tiJoOwWClOVFqQf+cmZ1i1sZyTbjVqIRCmubF1zpmEk158QA+pLdDGB260w6Jd5n/i6Yrb9CkOpe0MoacoGK6FtB6uME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733944490; c=relaxed/simple;
-	bh=eAniawxBhtib03GfxX9/u4Ndstdo7x6Aj1ZRkV2OAvQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gOUXvYJ0dNvuJPsuS1QWjISpdVwHVD0QIix9ZDKJY1Al3DvKf10BJ52VVetUjNM/Tu9d7gsQRJsfh1QfZmhlpSkrA0/pGhqGmHG2aYn+NLS0pbNAi7cLAnqEqRl0NC8wac6fXsLvk1hGdKA/9gjWJfR9RmdLrX3Vv0J/c2I2ykM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VL5E0Nek; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACD0FC4CED2;
-	Wed, 11 Dec 2024 19:14:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733944489;
-	bh=eAniawxBhtib03GfxX9/u4Ndstdo7x6Aj1ZRkV2OAvQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=VL5E0NekGGP/+NklIqGa1wt05rnw2b98UGKvBzpJtz6HSKfCf/NFvndulLtRqtsnv
-	 rUfPrAVHWoMVEMEm90gmky87VlyBRj4r7TzLX0G0/f44np9aTYqSbZBghpnkDVuhRz
-	 2osplHggKVpYVd3zFdd4wr49zwDniH4TUb8hT4ZcHTboi977Y2jTL8A7kStLFC7Pr5
-	 HXSnZ52u1rUvlmXd3kQMlAiXad/231ku+/16X1rzvNK7PDd7e+GAzBOpqxTW54jpoe
-	 IdRiWTRlEgdhWZC3zBElbkeTZjNRvgLhiYooX+3/baOKMqAYkfJUm4hLV/QkciFORC
-	 DoWS7tP5XOdug==
-Date: Wed, 11 Dec 2024 19:14:40 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Lothar Rubusch <l.rubusch@gmail.com>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- eraretuya@gmail.com
-Subject: Re: [PATCH v5 10/10] iio: accel: adxl345: add FIFO with watermark
- events
-Message-ID: <20241211191440.0e6f7afd@jic23-huawei>
-In-Reply-To: <CAFXKEHaLzrBXNV=dgTrX3CatvCT751x8Lh69mCXebLK=Fh4jFw@mail.gmail.com>
-References: <20241205171343.308963-1-l.rubusch@gmail.com>
-	<20241205171343.308963-11-l.rubusch@gmail.com>
-	<20241208163418.2d57f185@jic23-huawei>
-	<CAFXKEHaLzrBXNV=dgTrX3CatvCT751x8Lh69mCXebLK=Fh4jFw@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1733944538; c=relaxed/simple;
+	bh=iv4lu3fsbHxWA6dS15zlzvhVDsMUChoLyknk3qVoC6s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=btgp+vPkqC/urYdmrzwXYHTY9HAfgl6gHBtqiqK5vfk+0RyVnK8/am3qPaRC2FUD4ivWpF8QoaNgumqX/N7Zw+UgZJP9WOXXWTUiYE8dBHC6Y61d6NrQxHQ9wd/mfVihneguFW7afJ7lh2yrNkcd01duqcrWAM9PY1LOnSpTfxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pSwLKZkk; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30037784fceso47294971fa.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 11:15:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733944534; x=1734549334; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=xwJG5tVEAPuDua/+zEisi7SKCgTlTwRIJJOT5jh9lAk=;
+        b=pSwLKZkkJwRZMeJcdIh+FexhJtnLbz1gIBy1C02D9oFS0CbOoO3dhEmPrX0tY8eKiM
+         73iL+Qc8NBaJt2K/yDzCLbLKZCxZX+IcipFY3mxl6q7XTEfMPTNpYN8R6PpJr+XQlzQR
+         AhtvsvfA+dE8IhEZeF8fWhbEOdTtDU9fzIV+S1rtUvg4X7U1ID8JTnbo95a1vSLy+CAJ
+         hvGUXhnGZwxwHo0dzqwgxqgiZ9OX5ik1wUcMIg/84DumEw/NCH97DLhyuQumgPBDES2l
+         X8lMktgak0dUToJDtBF2LCJi7fXqkJyX2U79BNJehjqPlKSx81udm6NcWThZw3KS6fOp
+         K6AQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733944534; x=1734549334;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xwJG5tVEAPuDua/+zEisi7SKCgTlTwRIJJOT5jh9lAk=;
+        b=ZV4htnZDWsYLzNUY5tC1Fj0q7snKBSU6tHxKk+xD5ygnkCr/zFlHSS1UWMUSlYaWys
+         2vnLdRHpBTVrXn+pwi9X+K+/o6BFK7A0dNK86TfEW2jiNFUP1A2j2oLtipEHwmyD2rXB
+         nqoh2wogmsv9yt3CDR23MHV2LNngPC9AKRCCtYt2Lrl8IsWQIwXEo2QLPQysqgZGxpLu
+         qG4XE9u9TWhLXaCFqqoK3m81x/zXHcqvA7GzFZtnEizcfJU3kHfrvabp5rJ/sKfVPqsO
+         uc8/yFXptZhI0HFKGhEh8nVOjVUAbajDqAooCTa0FYQ5C+CAhkZrgHuvR1Y+gKAh6oht
+         ed8w==
+X-Forwarded-Encrypted: i=1; AJvYcCV3DRmCV81DCeK+3f5k1yVL42e64qY9NNRlbaX5gQaxMmmKVMOze4iEKqkhaDIlWO7eknZBeRMXk/rd@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdFO67pcKnft8eObuu8VUmzIk7ywun+TtIHvLS/vX8aSS3SGVB
+	WMzZTYwBAzU+ISa4OTFKUOJE7fdUOVYgnFQAbkCBip0aOazSd9FWOVAR7h8jU1Q=
+X-Gm-Gg: ASbGncvheK1rGjOIaxKr6iUAznt9J++BDCmqqZ71QUxKFkQGJ9FZSYXWDn6VHmUFclW
+	t4VVdcQmZatI/M+i55ZG2uLDLBq0XGE9LhF2/0i7V4n7eVdyrRNVCQicLGx2J3pkmf3OUKTapWz
+	kdHgjGI7w7ZSLVJVhZTLx5YRGbdF+Jgm0rVkxamLMkhVtFyjsM3kO6s8rWPDDR8OuEX6BXtl77U
+	RFy5aIcuh8jKDeLkArmRiZmU8eDqbmz/g6I2p9HpNMaOS/7M/DIOmlHlldw2GUAdBQ76c950ADV
+	qs7So+WyoE/viVRd2v+nTc9b1E7yp3r8HQ==
+X-Google-Smtp-Source: AGHT+IF+vVtTZWka6wAG9ssDBMOZChK/BACOngdEv98xkt4y+52aaxKOJEYpuiSr8ME5jDwv2CFS9A==
+X-Received: by 2002:a05:651c:886:b0:302:4115:acd with SMTP id 38308e7fff4ca-3024a21c6c9mr1832311fa.22.1733944534510;
+        Wed, 11 Dec 2024 11:15:34 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30220583defsm10758071fa.4.2024.12.11.11.15.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Dec 2024 11:15:33 -0800 (PST)
+Date: Wed, 11 Dec 2024 21:15:30 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, quic_lliu6@quicinc.com, quic_fangez@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 3/8] phy: qcom: qmp-usbc: Add DP phy mode support on
+ QCS615
+Message-ID: <7vdaasc3flhpabnorjty5qjorlbp22honuscgpbteakgagg2tq@frqa6flk2mmv>
+References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
+ <20241129-add-displayport-support-for-qcs615-platform-v1-3-09a4338d93ef@quicinc.com>
+ <CAA8EJppOR_UXoVpMt-dhfWdCz3UNfsXGdz8X9NqpaSmYj3AZDg@mail.gmail.com>
+ <5ea14162-567b-462d-be02-b73b954b7507@quicinc.com>
+ <5whv4z7u6fkfwlv5muox5dmv6fow4mga76ammapw7wph7vwv3f@xibcjdfqorgf>
+ <iqcofcntirmlwcpyfr4yabymqfcgyrij57bibf337tmxpa73t6@npkt6wquenf6>
+ <527baded-f348-48a8-81cd-3f84c0ff1077@quicinc.com>
+ <t5vcjlf44fhae4f2h75cfs3f7r6tdstw4ysmkapvvawj6xp23x@xnxqnxvyhshe>
+ <d5151b82-5f05-4826-99b4-e925c20550b4@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d5151b82-5f05-4826-99b4-e925c20550b4@quicinc.com>
 
-
-> > > +}
-> > > +
-> > > +/**
-> > > + * adxl345_fifo_transfer() - Read samples number of elements.
-> > > + * @st: The instance of the state object of this sensor.
-> > > + * @samples: The number of lines in the FIFO referred to as fifo_entry,
-> > > + * a fifo_entry has 3 elements for X, Y and Z direction of 2 bytes each.
-> > > + *
-> > > + * It is recommended that a multiple-byte read of all registers be performed to
-> > > + * prevent a change in data between reads of sequential registers. That is to
-> > > + * read out the data registers X0, X1, Y0, Y1, Z0, Z1 at once.  
-> >
-> > Doesn't match the code which is reading just one register lots of times.  
+On Wed, Dec 11, 2024 at 08:50:02PM +0800, Xiangxu Yin wrote:
 > 
-> This is one of my painpoints, regmap_noinc_read() worked here, for a
-> linewise reading of FIFO elements. Say, I could read X0, X1, Y0,... Z1
-> in one command. Also, I tried here regmap_bulk_read(). At all, I find
-> this solution is working, but I'm not sure if there is not a total
-> differnt way to do the read out.
-
-A bulk read is defined as indexing through registers. Eg. ADDR, ADDR + 1, ADDR + 2
-etc.  regmap_noinc_read() just keeps reading the same register, so is typically
-used for fifos.
-
-I opened the datasheet. It seems to say you need to read 3 registers repeatedly
-rather than one 3 times as often.  There isn't a good way to do that sort of
-sequenced read in one go.  So you will need a loop like you have, but it
-should need a bulk read.  Curious it doesn't seem to...
-
-Ah. Device auto increments for both SPI and I2C.  So in that case
-the noinc_read and normal bulk read will actually issue the same thing and
-as these are volatile registers it doesn't matter (it would if you were
-caching the result as the data would end up cached in different places).
-
-It will do the wrong thing though if you have an i2c controller that
-is less capable and can't do large reads.  So you should definitely use
-bulk_read not noinc.
-
-Have you set available_scan_masks?  If not you want to do so as
-per comment I made in the cover letter.
-
-
-
-> > > + * @irq: The irq being handled.
-> > > + * @p: The struct iio_device pointer for the device.
-> > > + *
-> > > + * Return: The interrupt was handled.
-> > > + */
-> > > +static irqreturn_t adxl345_event_handler(int irq, void *p)
-> > > +{
-> > > +     struct iio_dev *indio_dev = p;
-> > > +     struct adxl345_state *st = iio_priv(indio_dev);
-> > > +     u8 int_stat;
-> > > +     int samples;
-> > > +
-> > > +     int_stat = adxl345_get_status(st);
-> > > +     if (int_stat < 0)
-> > > +             return IRQ_NONE;
-> > > +
-> > > +     if (int_stat == 0x0)  
-> > Doesn't this correspond to 'not our interrupt'?
-> > If that's the case return IRQ_NONE is the right way to go and not reset the
-> > interrupt.  You have registered it as maybe shared, and if it is, then this
-> > is a common thing to happen as interrupt from another device.
-> >  
 > 
-> Here I see actually
-> +     int_stat = adxl345_get_status(st);
-> +     if (int_stat < 0)
-> +             return IRQ_NONE; // a bus error, reading register not possible
-> ...and then...
-> +     if (int_stat == 0x0)
-> +             // interrupt sources were 0, so IRQ not from our sensor
+> On 12/11/2024 5:46 PM, Dmitry Baryshkov wrote:
+> > On Wed, Dec 11, 2024 at 08:46:16AM +0800, Xiangxu Yin wrote:
+> >>
+> >>
+> >> On 12/10/2024 11:09 PM, Dmitry Baryshkov wrote:
+> >>> On Thu, Dec 05, 2024 at 08:31:24PM +0200, Dmitry Baryshkov wrote:
+> >>>> On Thu, Dec 05, 2024 at 09:26:47PM +0800, Xiangxu Yin wrote:
+> >>>>>
+> >>>>>
+> >>>>> On 11/29/2024 10:33 PM, Dmitry Baryshkov wrote:
+> >>>>>> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
+> >>>>>>>
+> >>>>>>> Extended DP support for QCS615 USB or DP phy. Differentiated between
+> >>>>>>> USBC and DP PHY using the match table’s type, dynamically generating
+> >>>>>>> different types of cfg and layout attributes during initialization based
+> >>>>>>> on this type. Static variables are stored in cfg, while parsed values
+> >>>>>>> are organized into the layout structure.
+> >>>>>>
+> >>>>>> We didn't have an understanding / conclusion whether
+> >>>>>> qcom,usb-ssphy-qmp-usb3-or-dp PHYs are actually a single device / PHY
+> >>>>>> or two PHYs being placed next to each other. Could you please start
+> >>>>>> your commit message by explaining it? Or even better, make that a part
+> >>>>>> of the cover letter for a new series touching just the USBC PHY
+> >>>>>> driver. DP changes don't have anything in common with the PHY changes,
+> >>>>>> so you can split the series into two.
+> >>>>>>
+> >>>>> Before implement DP extension, we have discussed with abhinav and krishna about whether use combo, usbc or separate phy.
+> >>>>
+> >>>> What is "DP extension"?
+> >>>>
+> >> I'm sorry confusion casued by my description. It's means extend DP implemnt for USBC phy driver.
+> >>>>>
+> >>>>> We identified that DP and USB share some common controls for phy_mode and orientation.
+> >>>>> Specifically, 'TCSR_USB3_0_DP_PHYMODE' controls who must use the lanes - USB or DP,
+> >>>>> while PERIPH_SS_USB0_USB3PHY_PCS_MISC_TYPEC_CTRL controls the orientation.
+> >>>>> It would be more efficient for a single driver to manage these controls. 
+> >>>>
+> >>>> The question is about the hardware, not about the driver.
+> >>>>
+> >>>>> Additionally, this PHY does not support Alt Mode, and the two control registers are located in separate address spaces. 
+> >>>>> Therefore, even though the orientation for DP on this platform is always normal and connected to the video output board, 
+> >>>>> we still decided to base it on the USBC extension.
+> >>>>
+> >>>> Could you please clarify, do usb3-or-dp PHYs support DP-over-USB-C? I
+> >>>> thought that usbc-or-dp platforms support that, but they don't
+> >>>> support DP+USB pin configuration. Note, the question is broader than
+> >>>> just QCS615, it covers the PHY type itself.
+> >>>>
+> >>>> Also, is TCSR configuration read/write or read-only? Are we supposed to
+> >>>> set the register from OS or are we supposed to read it and thus detemine
+> >>>> the PHY mode?
+> >>>
+> >>> Any updates on these two topics?
+> >>>
+> >> Still confirming detail info with HW & design team.
+> >> I’ll update the information that has been confirmed so far.
+> >> This phy support DP-over-USB-C,but it's not support alt-mode which 2 lane work for DP, other 2 lane work for USB.
+> >> TCSR phy mode is read/write reg and we can read for determine phy mode.
+> > 
+> > Ok, thanks for the explanation. From my point of view:
+> > 
+> > - Implement the DP PHY to be a part of the same driver. Each device
+> >   supported by the usbc driver should get both PHYs.
+> > 
+> > - Make sure not to break the ABI: #phy-cells = <0> should still work and
+> >   return USB PHY, keeping backwards compatibility. Newer devices or
+> >   upgraded DT for old devices should return USB PHY for <... 0> and DP
+> >   PHY for <... 1>.
+> > 
+> Yes, currently we have implemented like your description,
+> Each deivce shoud get both PHYs, DP PHY for <... 1> and USB PHY for <... 0>.
+
+Please note the backwards compatibility clause.
+
+> > - I'm not shure how to handle the USB and DP coexistence, especially in
+> >   your case of the USB-or-DP PHY.
+> > 
+> For coexistence process:
 > 
-> I'm unsure if the first IRQ_NONE here is actually correct. I mean, if
-> the bus is not working,
-> actually any IRQ usage should be considered broken. Is there a way to
-> break out of measuring?
-> 
+> When we start implement DP part, usb driver team said only need config TCSR phy mode and orientation during switch in USB-C port.
+> Based on your previous comments avout SW_PWRDN, I'm confirming with the USB team whether SW_REST/SWPWRDN/START_CTRL registers might affect DP.
 
-It is a much debated thing on what you should return if you have no
-idea if it is our interrupt or not.   There isn't really a right
-answer.  If you get a lot of IRQ_NONE and no one else claims it eventually
-the interrupt will be disabled (to break the interrupt storm freezing the
-machine).
+Thanks!
 
+> Anyway, even though the original SoC design supports DP or USB over Type-C，
+> but on QCS615 ADP AIR platform, there are only four USB-A port which works with 'qcs615-qmp-usb3-phy' driver, and no USB-C port.
+> DP port is mappped from usb pin to the video out sub-board.
+> so we are unable to verify the switching case between DP and USB devices under USB-C.
 
-> > > +             goto err;
-> > > +
-> > > +     if (int_stat & ADXL345_INT_OVERRUN)
-> > > +             goto err;
-> > > +
-> > > +     if (int_stat & (ADXL345_INT_DATA_READY | ADXL345_INT_WATERMARK)) {  
-> >
-> > I think you only ever enable the INT_WATERMARK?  If so does it
-> > make sense to check for DATA_READY as well?
-> >  
-> 
-> Watermark comes usually with data ready or overrun. I guess for the
-> FIFO watermark, just evaluating watermark is probably sufficient. For
-> other events, it then might be notification w/ a data ready set.
-> Probably better to introduce data ready when it's actually really
-> needed?
+That's also fine. We will get to that point once MSM8998 / SDM660
+get USB-C support (the only current blocker is the support for the
+TYPEC block of the PMI8998).
 
-Yes.  That dataready is normally used when you are doing capture without
-the fifo and want to read each sample - kind of same as a watermark depth
-of 1, but less hardware turned on.  As such, may be no need to ever support it.
+> However, I'm also confirming whether anything other will affect USB and DP each other.
 
-   return dev_err_probe(dev, ret, "Failed to add action or reset\n");
-> > >
-> > > +     if (st->irq > 0) {
-> > > +             dev_dbg(dev, "initialize for FIFO_STREAM mode\n");
-> > > +
-> > > +             ret = devm_iio_kfifo_buffer_setup(dev, indio_dev, &adxl345_buffer_ops);
-> > > +             if (ret)
-> > > +                     return ret;
-> > > +
-> > > +             ret = devm_request_threaded_irq(dev, st->irq, NULL, &adxl345_event_handler,
-> > > +                             IRQF_SHARED | IRQF_ONESHOT,
-> > > +                             indio_dev->name, indio_dev);
-> > > +             if (ret)
-> > > +                     return dev_err_probe(dev, ret, "Failed to setup triggered buffer\n");
-> > > +
-> > > +     } else {
-> > > +             dev_dbg(dev, "initialize for FIFO_BYPASS mode (fallback)\n");
-> > > +  
-> > Given you haven't removed this code from elsewhere, was the driver relying
-> > on the defaults after reset before this patch?
-> >
-> > I don't mind having this branch as a form of documentation even if that's
-> > true but maybe add a note to the patch description.
-> >  
-> 
-> I'm not sure if I get you correctly. The driver before only
-> implemented "BYPASS" mode. This was the case w/o a defined
-> interrupt-name. My intention now is to keep this behavior as fallback.
-> If no IRQ is around, i.e. interrupt + interrupt-name, the sensor
-> driver will operate the sensor in BYPASS mode.
-> 
-> I was interpreting this also as the "default behavior", you mentioned
-> in the dt-binding patch? Is this correct?
-> 
-> What do you mean when the driver is relying on the defaults after reset?
-
-The driver worked without irq before now.  Which is same as this path.
-So how was the register written here being configured correctly before
-this patch?  I'm guessing it wasn't and that the value written here
-is the default on power up.
-
-Either that or I'm miss understanding what this branch of the if / else is
-about.
-
-Jonathan
-
-> 
-> > > +             fifo_ctl = ADXL345_FIFO_CTL_MODE(ADXL345_FIFO_BYPASS);
-> > > +
-> > > +             ret = regmap_write(st->regmap, ADXL345_REG_FIFO_CTL, fifo_ctl);
-> > > +             if (ret < 0)
-> > > +                     return ret;
-> > > +     }
-> > >       return devm_iio_device_register(dev, indio_dev);
-> > >  }
-> > >  EXPORT_SYMBOL_NS_GPL(adxl345_core_probe, IIO_ADXL345);  
-> >  
-> 
-
+-- 
+With best wishes
+Dmitry
 
