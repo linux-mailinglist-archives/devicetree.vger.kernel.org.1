@@ -1,232 +1,133 @@
-Return-Path: <devicetree+bounces-129974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EB4B9ED659
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:20:30 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E82E39ED673
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:25:35 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3701E2841E1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 19:20:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DEC5167C82
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 19:23:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B669F1C07DF;
-	Wed, 11 Dec 2024 19:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B26E12594A3;
+	Wed, 11 Dec 2024 19:23:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m8C2osmN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gvZ+M8FF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88ACC259496;
-	Wed, 11 Dec 2024 19:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AAB825948D;
+	Wed, 11 Dec 2024 19:23:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733944816; cv=none; b=ZZucYlnJIV+71gtOcIk87JoB2CMJm5vrqkKxGoY8jQzYmI8CDmXQC9VgNcZi2gVc2qG3SnuGMkz0Fr0noMclE1wtLnKaXVE9UIQ/Nfyao1O0kgXWMCK48vobsKiiPA2tveabK1BfK0QE51Bc+jtrBaZU2s5c6/55dgYp4cavxlA=
+	t=1733944991; cv=none; b=mpCsdNYC6cF6LKvLVCoEtmGNeEoixS4ZeH+ORP95VB8KnRUqhG7ZKiVVVIbGjyOWRIZ21Snb1y+Dme1MRZ75RKBfoKZrQ+/hrV0Yfu9hLtHeokcecOdXq3Ak4vprK0o1YiEIDRaw7X5AtKyurMMbTW1icezr4JW82OUfP1VOoto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733944816; c=relaxed/simple;
-	bh=tyykMSo0nPT52ILfZq5q6tJt70N2U4en4/fZrKCHmHY=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=mVVURx3CIS6HIDUs3rCT692ffNK2C4y0LF/puyeehnbEFvtW0di4E2a6ozX+GMpLT/rOoZqmevSpwgK5cvd6keOhLKDGhufIpDXXW2FOILO5wWnT9zh+75SegOuSk1FG6sbH/htCVZgdEziMVtZ56CYx/Xr0JVpqBBHPjWIuuso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m8C2osmN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D363DC4CED2;
-	Wed, 11 Dec 2024 19:20:15 +0000 (UTC)
+	s=arc-20240116; t=1733944991; c=relaxed/simple;
+	bh=zuB3sRSO/sRFvgXYvGAoUrkuagLiyC3cCBGNZtAFLjQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IwLpDPeJYjJ35/9rf2rvvtfITHhF0V8YMwGNTAJq5bHC0nddHqI+XusfuDm5P5/WCZs6ImXdNOUPM7ZC9Y2InSZMiRpmR6mwMpGyUpQkQW8I/W4SV4WOgVuIVg3wjnmqK3bqzZkFqIleS188jYxcAUn81wxeQVyPidP4cTP9Sso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gvZ+M8FF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3084BC4CED2;
+	Wed, 11 Dec 2024 19:23:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733944816;
-	bh=tyykMSo0nPT52ILfZq5q6tJt70N2U4en4/fZrKCHmHY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=m8C2osmN6l2UocCn4/RRS7GssrXcQXio4fsafrI0AzKl3XrZ7qrfsAZgVMKmlnWYV
-	 WyT4PeD9FPXKkD/XfMymM8l/iQsPTRVqgWv7Y/1jZNgLYbTDDXqAGf9iSTipIDvyJY
-	 /j2Biba8AVySUHTICqKF0HNSSBEkQmAGGFIxzvuT9qk9zrOL4DqfFko6n2ZGESlnA5
-	 7z4coFGh0YLmyTSDQGuKzad67JkhSU+NSJkHzzRivur9+b7kxeJ1Vxf/Hl5dpraxDR
-	 NI5vSOEJj6pXPMpqy7PcYhkukWto9WOOT5njZHuxtZmXQcDBL9cp7erHDZm1J1zjWM
-	 Itib4DC9ZCz/Q==
-Date: Wed, 11 Dec 2024 13:20:14 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Chen Wang <unicorn_wang@outlook.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Chen Wang <unicornxw@gmail.com>, kw@linux.com,
-	u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, arnd@arndb.de,
-	bhelgaas@google.com, guoren@kernel.org, inochiama@outlook.com,
-	lee@kernel.org, lpieralisi@kernel.org,
-	manivannan.sadhasivam@linaro.org, palmer@dabbelt.com,
-	paul.walmsley@sifive.com, pbrobinson@gmail.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
-	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com,
-	fengchun.li@sophgo.com
-Subject: Re: [PATCH v2 1/5] dt-bindings: pci: Add Sophgo SG2042 PCIe host
-Message-ID: <20241211192014.GA3302752@bhelgaas>
+	s=k20201202; t=1733944991;
+	bh=zuB3sRSO/sRFvgXYvGAoUrkuagLiyC3cCBGNZtAFLjQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=gvZ+M8FFsfExF5oj5tyRgvcFbCHr7+MeWHxpR+/kRINWRsHs8Al05bNdyG9uJHVSC
+	 E4190/gq/uHso7eyM7dGzTW+0at9hbinBfPk+jTFQQop4T9ZAhidxyIvDl3YJpidxJ
+	 LIveb/TOqMDcu9SLKU8rmgrF7bFtSW2i4eUBeD3N1nIQ4h//feo5VUt3sY9NzHNmy3
+	 MR7HCqiKUJMpaHY+bsguDxDOWPa/FnZR1WFmt7CbEwK3WZ4QhBIjU1qu/6xttFPgvg
+	 8Mb3eYrUYxniP8lJPdksBLv/KoEl1uEzgbnOy0rXnIpXcO4+dC9Iu2qXclAQMqL036
+	 U6UwitIYQ0DTw==
+Date: Wed, 11 Dec 2024 19:23:00 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>
+Cc: Alexandru Ardelean <aardelean@baylibre.com>, Alisa-Dariana Roman
+ <alisa.roman@analog.com>, Andy Shevchenko <andy.shevchenko@gmail.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>, Conor Dooley
+ <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>,
+ Renato Lui Geh <renatogeh@gmail.com>, Rob Herring <robh@kernel.org>, Trevor
+ Gamblin <tgamblin@baylibre.com>
+Subject: Re: [PATCH v6 10/10] iio: adc: ad7124: Implement temperature
+ measurement
+Message-ID: <20241211192300.6218e5a1@jic23-huawei>
+In-Reply-To: <hoiksj7mar2qbegvy4du3b2pq4c23myrgmzmdc7axwl7yzcxm4@dupqkcedvjax>
+References: <cover.1733504533.git.u.kleine-koenig@baylibre.com>
+	<433211af8ac3f02dee58586ecb51d2e98246a095.1733504533.git.u.kleine-koenig@baylibre.com>
+	<hoiksj7mar2qbegvy4du3b2pq4c23myrgmzmdc7axwl7yzcxm4@dupqkcedvjax>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <BM1PR01MB4515ECD36D8FC6ECB7D161C5FE3E2@BM1PR01MB4515.INDPRD01.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-[cc->to: Rob, Krzysztof, Conor because I'm not a DT expert and I'd
-like their thoughts on this idea of describing Root Ports as separate
-children]
+On Mon, 9 Dec 2024 10:28:17 +0100
+Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> wrote:
 
-On Wed, Dec 11, 2024 at 05:00:44PM +0800, Chen Wang wrote:
-> On 2024/12/11 1:33, Bjorn Helgaas wrote:
-> > On Mon, Dec 09, 2024 at 03:19:38PM +0800, Chen Wang wrote:
+> Hello Jonathan,
+>=20
+> On Fri, Dec 06, 2024 at 06:28:42PM +0100, Uwe Kleine-K=C3=B6nig wrote:
+> > diff --git a/drivers/iio/adc/ad7124.c b/drivers/iio/adc/ad7124.c
+> > index 9405cb579324..d858bffd2628 100644
+> > --- a/drivers/iio/adc/ad7124.c
+> > +++ b/drivers/iio/adc/ad7124.c
+> > [...]
+> > @@ -902,6 +941,37 @@ static int ad7124_parse_channel_config(struct iio_=
+dev *indio_dev,
+> >  		chan[channel].channel2 =3D ain[1];
+> >  	}
+> > =20
+> > +	if (num_channels < AD7124_MAX_CHANNELS) {
+> > +		st->channels[num_channels] =3D (struct ad7124_channel) {
+> > +			.nr =3D num_channels,
+> > +			.ain =3D AD7124_CHANNEL_AINP(AD7124_INPUT_TEMPSENSOR) |
+> > +				AD7124_CHANNEL_AINM(AD7124_INPUT_AVSS),
+> > +			.cfg =3D {
+> > +				.bipolar =3D true,
+> > +			},
+> > +		};
+> > +
+> > +		chan[num_channels] =3D (struct iio_chan_spec) {
+> > +			.type =3D IIO_TEMP,
+> > +			.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> > +				BIT(IIO_CHAN_INFO_SCALE) | BIT(IIO_CHAN_INFO_OFFSET) |
+> > +				BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> > +			.scan_type =3D {
+> > +				/*
+> > +				 * You might find it strange that a bipolar
+> > +				 * measurement yields an unsigned value, but
+> > +				 * this matches the device's manual.
+> > +				 */
+> > +				.sign =3D 'u',
+> > +				.realbits =3D 24,
+> > +				.storagebits =3D 32,
+> > +				.endianness =3D IIO_BE,
+> > +			},
+> > +			.address =3D num_channels,
+> > +			.scan_index =3D num_channels,
+> > +		};
+> > +	}; =20
+>=20
+> The kernel build bot wailed about the ; here. Should I send a proper
+> patch, or can you still just rewrite your tree to drop it?
 
-> > > +      The Cadence IP has two modes of operation, selected by a strap pin.
-> > > +
-> > > +      In the single-link mode, the Cadence PCIe core instance associated
-> > > +      with Link0 is connected to all the lanes and the Cadence PCIe core
-> > > +      instance associated with Link1 is inactive.
-> > > +
-> > > +      In the dual-link mode, the Cadence PCIe core instance associated
-> > > +      with Link0 is connected to the lower half of the lanes and the
-> > > +      Cadence PCIe core instance associated with Link1 is connected to
-> > > +      the upper half of the lanes.
+I tweaked it in the tree
 
-> > > +      SG2042 contains 2 Cadence IPs and configures the Cores as below:
-> > > +
-> > > +                     +-- Core(Link0) <---> pcie_rc0   +-----------------+
-> > > +                     |                                |                 |
-> > > +      Cadence IP 1 --+                                | cdns_pcie0_ctrl |
-> > > +                     |                                |                 |
-> > > +                     +-- Core(Link1) <---> disabled   +-----------------+
-> > > +
-> > > +                     +-- Core(Link0) <---> pcie_rc1   +-----------------+
-> > > +                     |                                |                 |
-> > > +      Cadence IP 2 --+                                | cdns_pcie1_ctrl |
-> > > +                     |                                |                 |
-> > > +                     +-- Core(Link1) <---> pcie_rc2   +-----------------+
-> > > +
-> > > +      pcie_rcX is pcie node ("sophgo,sg2042-pcie-host") defined in DTS.
-> > > +      cdns_pcie0_ctrl is syscon node ("sophgo,sg2042-pcie-ctrl") defined in DTS
-> > > +
-> > > +      cdns_pcieX_ctrl contains some registers shared by pcie_rcX, even two
-> > > +      RC(Link)s may share different bits of the same register. For example,
-> > > +      cdns_pcie1_ctrl contains registers shared by link0 & link1 for Cadence IP 2.
+Thanks,
 
-> > > +      "sophgo,pcie-port" is defined to flag which core(link) the rc maps to, with
-> > > +      this we can know what registers(bits) we should use.
+Jonathan
 
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - reg-names
-> > > +  - vendor-id
-> > > +  - device-id
-> > > +  - sophgo,syscon-pcie-ctrl
-> > > +  - sophgo,pcie-port
-> >
-> > It looks like vendor-id and device-id apply to PCI devices, i.e.,
-> > things that will show up in lspci, I assume Root Ports in this case.
-> > Can we make this explicit in the DT, e.g., something like this?
-> > 
-> >    pcie@62000000 {
-> >      compatible = "sophgo,sg2042-pcie-host";
-> >      port0: pci@0,0 {
-> >        vendor-id = <0x1f1c>;
-> >        device-id = <0x2042>;
-> >      };
-> 
-> Sorry, I don't understand your meaning very well.  Referring to the topology
-> diagram I drew above, is it okay to write DTS as follows?
-> 
-> pcie@7060000000 {
->     compatible = "sophgo,sg2042-pcie-host";
->     ...... // other properties
->     pci@0,0 {
->       vendor-id = <0x1f1c>;
->       device-id = <0x2042>;
->     };
-> }
-> 
-> pcie@7062000000 {
->     compatible = "sophgo,sg2042-pcie-host";
->     ...... // other properties
->     pci@0,0 {
->       vendor-id = <0x1f1c>;
->       device-id = <0x2042>;
->     };
-> }
-> 
-> pcie@7062800000 {
->     compatible = "sophgo,sg2042-pcie-host";
->     ...... // other properties
->     pci@1,0 {
->       vendor-id = <0x1f1c>;
->       device-id = <0x2042>;
->     };
-> 
-> }
+>=20
+> Best regards and thanks and sorry,
+> Uwe
 
-Generally makes sense to me.  I'm suggesting that we should start
-describing Root Ports as children of the host bridge node instead of 
-mixing their properties into the host bridge itself.
-
-Some properties apply to the host bridge, e.g., "bus-range" describes
-the bus number aperture, and "ranges" describes the address
-translation between the upstream CPU address space and the PCI address
-space.
-
-Others apply specifically to a Root Port, e.g., "num-lanes",
-"max-link-speed", "phys", "vendor-id", "device-id".  I think it will
-help if we can describe these in separate children, especially when
-there are multiple Root Ports.
-
-Documentation/devicetree/bindings/pci/pci.txt says a Root Port
-should include a reg property that contains the bus/device/function
-number of the RP, e.g.,
-Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt has
-this:
-
-  pcie-controller@3000 {
-     compatible = "nvidia,tegra30-pcie";
-     pci@1,0 {
-       reg = <0x000800 0 0 0 0>;
-     };
-
-where the "0x000800 0 0 0 0" means the "pci@1,0" Root Port is at
-00:01.0 (bus 00, device 01, function 0).  I don't know what the "@1,0"
-part means.
-
-> And with this change, I can drop the “pcie-port”property and use the port
-> name to figure out the port number, right?
-
-Seems likely to me.
-
-> > > +additionalProperties: true
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +
-> > > +    pcie@62000000 {
-> > > +      compatible = "sophgo,sg2042-pcie-host";
-> > > +      device_type = "pci";
-> > > +      reg = <0x62000000  0x00800000>,
-> > > +            <0x48000000  0x00001000>;
-> > > +      reg-names = "reg", "cfg";
-> > > +      #address-cells = <3>;
-> > > +      #size-cells = <2>;
-> > > +      ranges = <0x81000000 0 0x00000000 0xde000000 0 0x00010000>,
-> > > +               <0x82000000 0 0xd0400000 0xd0400000 0 0x0d000000>;
-> > > +      bus-range = <0x80 0xbf>;
-> > > +      vendor-id = <0x1f1c>;
-> > > +      device-id = <0x2042>;
-> > > +      cdns,no-bar-match-nbits = <48>;
-> > > +      sophgo,pcie-port = <0>;
-> > > +      sophgo,syscon-pcie-ctrl = <&cdns_pcie1_ctrl>;
-> > > +      msi-parent = <&msi_pcie>;
-> > > +      msi_pcie: msi {
-> > > +        compatible = "sophgo,sg2042-pcie-msi";
-> > > +        msi-controller;
-> > > +        interrupt-parent = <&intc>;
-> > > +        interrupts = <123 IRQ_TYPE_LEVEL_HIGH>;
-> > > +        interrupt-names = "msi";
-> > > +      };
-> > > +    };
 
