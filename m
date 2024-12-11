@@ -1,127 +1,86 @@
-Return-Path: <devicetree+bounces-129915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A7919ED0BC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:05:00 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30C239ED10C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:16:13 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6C802901E0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:04:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0C886168392
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:16:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 130591D9A54;
-	Wed, 11 Dec 2024 16:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C5311DA11B;
+	Wed, 11 Dec 2024 16:16:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jq4owwYm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iMUHue++"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F3A015CD74;
-	Wed, 11 Dec 2024 16:04:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 111B924635F;
+	Wed, 11 Dec 2024 16:16:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733933091; cv=none; b=pJKpLL8z/u2UBltW2bY2MvkRM9RHpwnY2QZRu+D5PSW25p8jumPv7kNqcfFzaOkJo1C4enDqwEdcKpZM8d/9zr3FMzGNmSxrfiY1Hjl8gtkLhgL6A/T6RChVM1Kxp1AcW7db9ITRvMVvR9K8pHzUm72IlJm+deNFgKuPnY/3i9Q=
+	t=1733933768; cv=none; b=I8R68YJv54YcD/v3uhX8wqdbIgn8jzfSD3yiXY5eKtQ6BvgJC3TZk2spw4C+0fvpe7pmxRsRODGlcxPumxh8l8zAotf8tmr3Em0aC1lq+IrreJJMWtceVy+qS2fuk67OyWqHfOCCh0F9WS56ZX5VMH82ZC+g6RLevENbhK5lpT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733933091; c=relaxed/simple;
-	bh=iyyii2WdrTSdhD9GW0lqQShar6Q26yCBEEXXmmtlegc=;
+	s=arc-20240116; t=1733933768; c=relaxed/simple;
+	bh=oKBNSq3mc2lrPbEFRIMyv15AXFDjsWHNQwb9AyrvQDc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=meMhTFRnRl6EPW6nt921HAhxHW/7QF1M9yRBhuaJGiU9WbRiyBX6VvyY+XI7Ivv4cuSnMZriXD6L62jh+xh1EhKmMS6ZPNOoCM5BxJ8HrUQXoS0He5EizawoLEo4BnzZDEaz1adQ6KLthxQUF7k43dXLMH+2Maf7MFu3p6s8FOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=jq4owwYm; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C821E13C;
-	Wed, 11 Dec 2024 17:04:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1733933053;
-	bh=iyyii2WdrTSdhD9GW0lqQShar6Q26yCBEEXXmmtlegc=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=VvTbgelojPKh/PsuXVlBU1RNtlCzkPnKQLbRvNF8F5qafBh/ulpuzm7I0a5RNQfukeBwtTCH4kCYwfZHMDFe7jTP+cpTxW7YvogvDpvublnzkQCPR5yX6wAByTTToQfYrDn/O/AfoNICReCQYy7/IScnLlUks5+qx2j5EWpuN14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iMUHue++; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42C55C4CED4;
+	Wed, 11 Dec 2024 16:16:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733933767;
+	bh=oKBNSq3mc2lrPbEFRIMyv15AXFDjsWHNQwb9AyrvQDc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jq4owwYmIXPgO9G4CUxnM+C/3UV7w4RDbJKsn7m0dSLCRaCqjxWvW5KLSVtKfnAje
-	 UEKZ7g5kl8O9IuVNMb0ebncg49W36qFjkKR9Ds7bfCCSyWjIPAYVIxmMu3rz+NpIFQ
-	 dK8RA8ebBNysVYuP6FNHRjpdel8W9GVl0uA+b1W4=
-Date: Wed, 11 Dec 2024 17:04:44 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: keke.li@amlogic.com
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com, 
-	laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com
-Subject: Re: [PATCH v4 06/10] media: Add C3ISP_PARAMS and C3ISP_STATS meta
- formats
-Message-ID: <6h2epavsgxonytbar2wv7qv6ojuzryst6gqjcceuccoxubwh64@5wqchwktrivu>
-References: <20241205-c3isp-v4-0-cb1868be0105@amlogic.com>
- <20241205-c3isp-v4-6-cb1868be0105@amlogic.com>
+	b=iMUHue++r6KT0HH4KJSJE6Lofit49dMv2k3Ulo86AA3BGcy02NKU6uZkZbfvs7UeC
+	 KdK7D7C+hntWMNDumN0PiyrTFISDGveYwtjllhVu0dlo72zKiAexCw2bJIAUAg+SXN
+	 WYzGqqvhz1R6BzGj9UvwjHrkwX9LosVPIsL+Nbjlfhlh4AJqSnrWI0Tit6GQi/1WxW
+	 kd10hVlNNGdy3gEHN4qFD65rfZxeHLBYzZ60FIM7GWSyNNYBYaN5zz2Y8Tndd8yewK
+	 +7m+ALcEzwxLVKv47zl6VI3btLjovpVKif3MAwBuO2sQJXn1JVxtPF5bEINRNlLd3W
+	 GO9e0EXcr0GVg==
+Date: Wed, 11 Dec 2024 10:16:05 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ryan.Wanner@microchip.com
+Cc: alexandre.belloni@bootlin.com, romain.sioen@microchip.com,
+	linux-arm-kernel@lists.infradead.org, claudiu.beznea@tuxon.dev,
+	arnd@arndb.de, linux-clk@vger.kernel.org, mihai.sain@microchip.com,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
+	nicolas.ferre@microchip.com, sboyd@kernel.org,
+	dharma.b@microchip.com, linux-gpio@vger.kernel.org,
+	linux-spi@vger.kernel.org, varshini.rajendran@microchip.com,
+	mturquette@baylibre.com, krzk+dt@kernel.org
+Subject: Re: [PATCH v3 03/13] dt-bindings: atmel-sysreg: add sama7d65 RAM and
+ PIT
+Message-ID: <173393376441.3234883.1609232326529788470.robh@kernel.org>
+References: <cover.1733505542.git.Ryan.Wanner@microchip.com>
+ <96e64f01eee264ad0ac4c720a7a1cab4f95c206b.1733505542.git.Ryan.Wanner@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241205-c3isp-v4-6-cb1868be0105@amlogic.com>
+In-Reply-To: <96e64f01eee264ad0ac4c720a7a1cab4f95c206b.1733505542.git.Ryan.Wanner@microchip.com>
 
-Hi Keke
 
-On Thu, Dec 05, 2024 at 05:04:32PM +0800, Keke Li via B4 Relay wrote:
-> From: Keke Li <keke.li@amlogic.com>
->
-> C3ISP_PARAMS is the C3 ISP Parameters format.
-> C3ISP_STATS is the C3 ISP Statistics format.
->
-> Reviewed-by: Daniel Scally <dan.scally@ideasonboard.com>
-> Signed-off-by: Keke Li <keke.li@amlogic.com>
+On Fri, 06 Dec 2024 12:59:48 -0700, Ryan.Wanner@microchip.com wrote:
+> From: Dharma Balasubiramani <dharma.b@microchip.com>
+> 
+> Add SAMA7D65 RAM controller, PIT64 DT bindings.
+> 
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
 > ---
->  drivers/media/v4l2-core/v4l2-ioctl.c | 2 ++
->  include/uapi/linux/videodev2.h       | 4 ++++
->  2 files changed, 6 insertions(+)
->
-> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
-> index 0304daa8471d..dae34b1170d7 100644
-> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
-> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
-> @@ -1460,6 +1460,8 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
->  	case V4L2_META_FMT_RK_ISP1_PARAMS:	descr = "Rockchip ISP1 3A Parameters"; break;
->  	case V4L2_META_FMT_RK_ISP1_STAT_3A:	descr = "Rockchip ISP1 3A Statistics"; break;
->  	case V4L2_META_FMT_RK_ISP1_EXT_PARAMS:	descr = "Rockchip ISP1 Ext 3A Params"; break;
-> +	case V4L2_META_FMT_C3ISP_PARAMS:	descr = "Amlogic C3 ISP Parameters"; break;
-> +	case V4L2_META_FMT_C3ISP_STATS:		descr = "Amlogic C3 ISP Statistics"; break;
->  	case V4L2_PIX_FMT_NV12_8L128:	descr = "NV12 (8x128 Linear)"; break;
->  	case V4L2_PIX_FMT_NV12M_8L128:	descr = "NV12M (8x128 Linear)"; break;
->  	case V4L2_PIX_FMT_NV12_10BE_8L128:	descr = "10-bit NV12 (8x128 Linear, BE)"; break;
-> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-> index e7c4dce39007..eda30640a7a3 100644
-> --- a/include/uapi/linux/videodev2.h
-> +++ b/include/uapi/linux/videodev2.h
-> @@ -858,6 +858,10 @@ struct v4l2_pix_format {
->  #define V4L2_META_FMT_RK_ISP1_STAT_3A	v4l2_fourcc('R', 'K', '1', 'S') /* Rockchip ISP1 3A Statistics */
->  #define V4L2_META_FMT_RK_ISP1_EXT_PARAMS	v4l2_fourcc('R', 'K', '1', 'E') /* Rockchip ISP1 3a Extensible Parameters */
->
-> +/* Vendor specific - used for C3_ISP */
-> +#define V4L2_META_FMT_C3ISP_PARAMS	v4l2_fourcc('C', 'P', 'R', 'M') /* Amlogic C3 ISP Parameters */
-> +#define V4L2_META_FMT_C3ISP_STATS	v4l2_fourcc('C', 'S', 'T', 'S') /* Amlogic C3 ISP Statistics */
+>  .../devicetree/bindings/arm/atmel-sysregs.txt      | 14 ++++++++------
+>  1 file changed, 8 insertions(+), 6 deletions(-)
+> 
 
-I would have used ('C', '3', 'P', 'M') and ('C', '3', 'S', 'T').
-Matter of tastes I guess, but if you will happen to have a different
-format for, say, C7, this would help keeping them separate.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Up to you
-Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-
-Thanks
-  j
-
-> +
->  /* Vendor specific - used for RaspberryPi PiSP */
->  #define V4L2_META_FMT_RPI_BE_CFG	v4l2_fourcc('R', 'P', 'B', 'C') /* PiSP BE configuration */
->  #define V4L2_META_FMT_RPI_FE_CFG	v4l2_fourcc('R', 'P', 'F', 'C') /* PiSP FE configuration */
->
-> --
-> 2.47.0
->
->
->
 
