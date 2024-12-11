@@ -1,166 +1,132 @@
-Return-Path: <devicetree+bounces-129813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64A709ECD05
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:18:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD4199ECD25
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:27:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDE94167695
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:18:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D527118864B4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:27:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A76A522915B;
-	Wed, 11 Dec 2024 13:18:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.fricke@collabora.com header.b="i8gtEjfn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2899E22915D;
+	Wed, 11 Dec 2024 13:27:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA492229149;
-	Wed, 11 Dec 2024 13:18:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733923087; cv=pass; b=AKDnnEyKN0McgGsUvtc2r9LfzcUWdh+m7oP8k2tuKNJxkib0PbtnYvoZrojC9dvIKy+tRLo5nAGN88Hmto9dZIfJL/6w3wUZTuUro0KcBLrz7BpGVoydqNouBu85f9ubOPdXerYEiWkgh03OYlHs9c70n+Ur6Mdp8b4+WRte3GY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733923087; c=relaxed/simple;
-	bh=UO5ZHRjQKWJpBumQE8BkVFZ/40WWTQGw7Zg/3Sb6MsA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I32piBeXJyfiAiTu6ff5m/XFockKmygxKJ656LUZRfRN2flNUu1cGRGshK5WVrdCdNvreeDEi+7aRCBWFhBDjTWdTtVnth3OMzD3g7gEUCsChUxLyyx2Ar9lJJdamguadHBlGIaBfG1zivWuatBs0GAHE+cYjPc/HYBa6GISedQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.fricke@collabora.com header.b=i8gtEjfn; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1733923070; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=FzvZ9vsnFE8JzCyYwN4aLGg2OJMY5cChGxYQKjgnm8TZnC3sivb2D3NQe5AGWFNmfGXvWOhnxlMn9E1wjH88RWTkmxIPE59+cUy8brBq6BLbII2Sf2HejM76PfdtbcXrmHUtPtk4bVXpxDB/fzyVXM7PEwCROi22piNRfSqGnFQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1733923070; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=BsqAVGRVtN7IvQG7hD+SDFUGpEQJ+euBRQSBpwnKYF0=; 
-	b=YyoevzDEhEBD9I0uOZRY1MfqT+sxvkk4ejbLqJgAA9jh/Uvf8ELD0IjayI+vpxsulbTibKcr12gzxnoXg/2l+ExlFqQmeVVlkIfhvhzWBX7LJ0GDJ1+bvHj/Me2ouYAHDJwwPOOZ1WTHCSLHHs4PC5NnA56tYmO9fY0DDFRfFUI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.fricke@collabora.com;
-	dmarc=pass header.from=<sebastian.fricke@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1733923069;
-	s=zohomail; d=collabora.com; i=sebastian.fricke@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=BsqAVGRVtN7IvQG7hD+SDFUGpEQJ+euBRQSBpwnKYF0=;
-	b=i8gtEjfnc1uU6Wn4uJYSxg7l+sdRaVL1IsuPriyvQJj1bILMotZUQVomKAxwnTYo
-	Ijnox4tIspXC/FI7aiWy0tTSWGKqRh3umARJVSIf7rF+3WsZm5RDoWmofwMOBzPerng
-	BqQZjXcxUnRRpUvIA+603sbS00M15OmUn1yvYMWo=
-Received: by mx.zohomail.com with SMTPS id 173392306724954.317217262560916;
-	Wed, 11 Dec 2024 05:17:47 -0800 (PST)
-Date: Wed, 11 Dec 2024 14:17:40 +0100
-From: Sebastian Fricke <sebastian.fricke@collabora.com>
-To: Yunfei Dong <yunfei.dong@mediatek.com>
-Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Nathan Hebert <nhebert@chromium.org>,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v6 1/3] media: mediatek: vcodec: remove vsi operation in
- common interface
-Message-ID: <20241211131740.x6lrlamgi5ogdq7b@basti-XPS-13-9310>
-References: <20241116031616.15656-1-yunfei.dong@mediatek.com>
- <20241116031616.15656-2-yunfei.dong@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 434091F193D;
+	Wed, 11 Dec 2024 13:27:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733923671; cv=none; b=ubAYRVYJBkSxz+n/GgDpMdSSC7mT4/PqbEUKnmK9HPbqxGybcQIqmniaX7Og7+jVV+7z7iVv6Zl6tDp9zNkW1mlWe4REoHzdlTBFnVDOEvuYySgMwVxW4mDVeMbmaufxxxX/AFrtCGp+y998lcoIRomfojw8XEn2C5TsmYPfsCs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733923671; c=relaxed/simple;
+	bh=l0n79E0UwxAsx0c03t/5SUdllR1UMQbgv1in/olMbfg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iaKvy2wc8fUGy0Kv1XiZQLi041YpPAjyzy0Icp86Ho0K5MURSBl2lmC9txHHVFFx8h1S5RG0H2lRP7L1yBP8W+yLLqxvWGerhJmd2NtmWx7S1i6mbLvzNm/G7MYRMaSQ1rPFUlieC0KfqUDY+dIc6HlrFQapdj8dLcsuGWc8dKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4affd0fb6adso883031137.1;
+        Wed, 11 Dec 2024 05:27:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733923666; x=1734528466;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FsR3cWj2rQxpzGsWHeVcLZXw5195PPdpxK8V3I3ghRw=;
+        b=YYZqbrqSyeOZI2Fqzkicj0UKbM+YQNUfFy7PzkfhwkWWJGZ1EeSY5TPwT2mGwdg+dx
+         xyQQvWVr2UbiwGkYiYqBlxGrs64LV5KWdbQWt3Wb4AAtPQtNRWmyvlzu50o+0qdz6KhG
+         TMVOl9VF18wizZUSL7/Wxl8hQnbGHNNp25E2mA6Nk2/9XO8mBxvbGpSWD7JM5GThsG07
+         z483Fj2UvBKlBAyJ7+LEzfecCrHk7GOPo/hYRv5rUsuvNFgmwY0zthqMGIxqIC5OxLKZ
+         0BhEb0LhikChrqxvcfMlwQneLbORa3+s6zxaXHnaWw2+C+yL9hO/vg3XeBrpKFPh0HsD
+         U8AQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVj2as5QSUeRzdZmiRPzuQC1paSBzkJ/IGCG2Z8iU+q6Nv7sFzpY2CY7fR+7qXIDpZN+ekzyCNb9//HL+P/kap0bt4=@vger.kernel.org, AJvYcCXOR/LbON0XZI+fbxITcafV1TqlVuX91gTx0slMX+LPSEmDWO8JY8YnQcy0HNJeEoOmHUjH+TopTTGQAc8w@vger.kernel.org, AJvYcCXTIIyHmX+kF6pttteAvc3KTJ6S6LtOB+Ou73hGzmgzaaQaAx8TgXoryRHsSCb1HWWPEV5tnFlo3EUF@vger.kernel.org, AJvYcCXeVzmDNdHddGmXw3PQjoiXYchnamDpGdVUvw5yBq6o9Oi06heexyFOwemF7FqMS/LjpB9Mvky35h+x@vger.kernel.org, AJvYcCXu3Vv37E8+z5K8WsqWEzcV20222gLa+SkiyXe7Zn3/McTC4QvTo4qpjhqY4tG3GPRIRS4vyeetsH+B@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9p78pnv4NNsAkSZZvoYvzD382z5jCseBxN/1Cgx9V6TvdPAUP
+	+Vms90n1IEvVL6Lh5pvG+mozHJNrE/I8u1usfNQMmxo5bQIi0NmMjL/zX2UF
+X-Gm-Gg: ASbGnculy+oKyCcKE02L74CSRG+fKgbbSifRyw9V3MmliuL4hkRoIMHiaEdQQ+wDKm1
+	3P/f6lzhyu+OLG1xWaEAgEUt5uJsTx4ZfdazAWpZnd+Erwxd2rKykckg7otqLfQjFsJWaTqhRWG
+	cSouJ1x46gORndje7kd7522ymnnA61UE2LXy3ENZ1vreDIEXMY19NMdIhd6EREGOMRLXLazJrFc
+	QT6fYeNWkC1r2G8im2/oy7tottPtSAfpmF1eyVi1rO5ogOlrGJRMgycKTjLFjH8rFU8nZiVAqrt
+	AMFOOjEDa5VYTrtp
+X-Google-Smtp-Source: AGHT+IFG5nawDJgp9Y9hp1fhzqYJ9iMidO8pohabDIzv8vzkSQD2kgphyJLtwTgEP3KQs7hivQbNzQ==
+X-Received: by 2002:a05:6102:32c3:b0:4af:2f95:4ae5 with SMTP id ada2fe7eead31-4b128fa102fmr2556194137.9.1733923666478;
+        Wed, 11 Dec 2024 05:27:46 -0800 (PST)
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4aff0e2fae7sm947447137.3.2024.12.11.05.27.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Dec 2024 05:27:45 -0800 (PST)
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4afde39e360so1352677137.0;
+        Wed, 11 Dec 2024 05:27:45 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUoGjeVU54a+hbZndzpflVRhUw/qJUan4tR6Rv6AHF5gWObp4RpNN+4IKGWsGMt5V6gwiFWbAaFkHbB@vger.kernel.org, AJvYcCVlLLPJkzFYULS8GW7dYBktLzVfbpQKLksGnGKMuG0qWUqbqUf0dlrDtdTta+/5JS/FbMtxSO1sVgvT@vger.kernel.org, AJvYcCVlM5/XRQYy32M5MGtACNL3LPySYxFF72+XUikZjkZ9Fhhjv8VW4TSGXXU4RycapeQmCkXDWSDEN3idD3IZT5FyVCs=@vger.kernel.org, AJvYcCVuxbsV/Vr0ycuP9Zo0Sp7Y9O7v53M/QPsUdoOyrmJHXaaG0PP2f6ZNa2YH/fGLCpUtwQlLI/x1FEzsIw0u@vger.kernel.org, AJvYcCXLrNsn6qO9tP4xhmWnTTbZpWrruAfIHaLmAkkIMaahiE/RU4ZDV4vCE5FGSfSnTFNeskQUWHuvhWAI@vger.kernel.org
+X-Received: by 2002:a05:6102:3747:b0:4af:c31d:b4e9 with SMTP id
+ ada2fe7eead31-4b128fedb4cmr2541368137.13.1733923665100; Wed, 11 Dec 2024
+ 05:27:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20241116031616.15656-2-yunfei.dong@mediatek.com>
-X-ZohoMailClient: External
+References: <20241206111337.726244-1-claudiu.beznea.uj@bp.renesas.com> <20241206111337.726244-15-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20241206111337.726244-15-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 11 Dec 2024 14:27:33 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVMQr9RhG7v32vQeSrepmdh2VdzzwF5obJUpdGNotGV7Q@mail.gmail.com>
+Message-ID: <CAMuHMdVMQr9RhG7v32vQeSrepmdh2VdzzwF5obJUpdGNotGV7Q@mail.gmail.com>
+Subject: Re: [PATCH v2 14/15] arm64: dts: renesas: r9a08g045: Add ADC node
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: prabhakar.mahadev-lad.rj@bp.renesas.com, jic23@kernel.org, lars@metafoo.de, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com, 
+	sboyd@kernel.org, p.zabel@pengutronix.de, linux-iio@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hey Yunfei,
+Hi Claudiu,
 
-On 16.11.2024 11:16, Yunfei Dong wrote:
->Extend struct video shared information (vsi) to send different
->parameters to scp for mt8188 architecture is changed.
->Remove vsi related operation in common interface to make sure the
->interface can be called by extended and non extended architecture
->at the same time. The new extended interfaces with new vsi will
->be introduced in later patches.
-
-My recommendation:
-
-Extend the VSI (video shared information) struct to allow sending slice
-parameters to SCP, as the parameters have changed on MT8188
-architecture. Remove VSI related information from the common interface
-to ensure, that the interface is usable by architectures with and
-without the extended parameters. The new VSI extensions will be
-introduced in later patches.
-
-The rest looks good to me.
-
-Regards,
-Sebastian Fricke
-
->Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-
->Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->---
-> .../vcodec/decoder/vdec/vdec_h264_req_multi_if.c    | 13 +++++++------
-> 1 file changed, 7 insertions(+), 6 deletions(-)
+On Fri, Dec 6, 2024 at 12:14=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
->diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
->index 1ed0ccec5665..ab192ce0b851 100644
->--- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
->+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_h264_req_multi_if.c
->@@ -171,9 +171,9 @@ struct vdec_h264_slice_inst {
-> };
+> Add the device tree node for the ADC IP available on the Renesas RZ/G3S
+> SoC.
 >
-> static int vdec_h264_slice_fill_decode_parameters(struct vdec_h264_slice_inst *inst,
->-						  struct vdec_h264_slice_share_info *share_info)
->+						  struct vdec_h264_slice_share_info *share_info,
->+						  struct vdec_h264_slice_lat_dec_param *slice_param)
-> {
->-	struct vdec_h264_slice_lat_dec_param *slice_param = &inst->vsi->h264_slice_params;
-> 	const struct v4l2_ctrl_h264_decode_params *dec_params;
-> 	const struct v4l2_ctrl_h264_scaling_matrix *src_matrix;
-> 	const struct v4l2_ctrl_h264_sps *sps;
->@@ -266,9 +266,6 @@ static int get_vdec_sig_decode_parameters(struct vdec_h264_slice_inst *inst)
-> 	mtk_vdec_h264_get_ref_list(b0_reflist, v4l2_b0_reflist, reflist_builder.num_valid);
-> 	mtk_vdec_h264_get_ref_list(b1_reflist, v4l2_b1_reflist, reflist_builder.num_valid);
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+> @@ -87,6 +87,59 @@ rtc: rtc@1004ec00 {
+>                         status =3D "disabled";
+>                 };
 >
->-	memcpy(&inst->vsi_ctx.h264_slice_params, slice_param,
->-	       sizeof(inst->vsi_ctx.h264_slice_params));
->-
-> 	return 0;
-> }
->
->@@ -608,7 +605,8 @@ static int vdec_h264_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
-> 	lat_buf->src_buf_req = src_buf_info->m2m_buf.vb.vb2_buf.req_obj.req;
-> 	v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb, &lat_buf->ts_info, true);
->
->-	err = vdec_h264_slice_fill_decode_parameters(inst, share_info);
->+	err = vdec_h264_slice_fill_decode_parameters(inst, share_info,
->+						     &inst->vsi->h264_slice_params);
-> 	if (err)
-> 		goto err_free_fb_out;
->
->@@ -749,6 +747,9 @@ static int vdec_h264_slice_single_decode(void *h_vdec, struct mtk_vcodec_mem *bs
-> 	if (err)
-> 		goto err_free_fb_out;
->
->+	memcpy(&inst->vsi_ctx.h264_slice_params, &inst->h264_slice_param,
->+	       sizeof(inst->vsi_ctx.h264_slice_params));
->+
-> 	buf = (unsigned char *)bs->va;
-> 	nal_start_idx = mtk_vdec_h264_find_start_code(buf, bs->size);
-> 	if (nal_start_idx < 0) {
->-- 
->2.46.0
+> +               adc: adc@10058000 {
+> +                       compatible =3D "renesas,r9a08g045-adc";
+> +                       reg =3D <0 0x10058000 0 0x400>;
+
+Table 5.1 ("Detailed Address Space") says the size is 4 KiB.
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.14, with the above fixed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
