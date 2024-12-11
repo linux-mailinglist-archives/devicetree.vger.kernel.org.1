@@ -1,118 +1,171 @@
-Return-Path: <devicetree+bounces-129780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01D029ECC3B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:41:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 695A89ECC48
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:42:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2975C1883980
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:41:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CD76163106
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:42:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60DC8229127;
-	Wed, 11 Dec 2024 12:41:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6969C23369F;
+	Wed, 11 Dec 2024 12:42:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="ra2PTpwM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2066.outbound.protection.outlook.com [40.107.243.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D55D5238E23;
-	Wed, 11 Dec 2024 12:41:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733920901; cv=none; b=eZuwhRDkB0DybyXpt1FgvMtjc2eYk0Pv3nApY9SHIU2jj9IzO6plDdYBijwDJu0Y2jTl9qWJz+GB45MF5eP3JZbJbSsy0aY4ZGNhfJLC/8e2GQlbxvzF4cjRMguCp0w7jIFC4Nmis46T9Pf1C2EHVwnYhbth5f7e9ZlRhnaeZZM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733920901; c=relaxed/simple;
-	bh=3IPjATGtHTwfv3rm6pB+PvNHKiHP1q5mEaYGiLff47Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=r/UJhwC5WC6iTJ+YpU6951cIJK76q+dP0bXKWkrncfTUFP4Bftq1hdTiws+3velcdj2XHD8a5BkZBQxxbQA36pd1EsX6zxAL8ENAleP1/ezQWwy8Q8lRZIZRz21qQUtYsOj1cJzD3ntqPkSoOOY1FC2m/2PGgZPOOTYUHlioOP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-517aea3ee2aso1554364e0c.2;
-        Wed, 11 Dec 2024 04:41:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733920897; x=1734525697;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9DCrtf7wYIhIaFf1iMVk56iPDLl7IK7GssPMowJhMSw=;
-        b=L2JwBwnTCicNEerBWliUbjdohkJcs/QbxGnJGqkEr/doCxGJ7psHTiKJNHSloXgugX
-         bdaJI47ARvxCh7/EBTUBdZfbQPwPheG+hqu2+JrveGzKaTuoNozFLs8Ho1dMAltrfhbW
-         0vl+5OEk4YpIJjwl39OjHq+MbgLE/6aoWNMTxwLd0R7GVHHFPp2MTGHIydYGhq+CFcxw
-         zlHUnwv1Bis8FKvZIWLtr4nuqsEIgQG90r68MY5dvmK4c/ROVL2oll5Oi8Ox1DQfcJWY
-         nkVX0UzKuWQ1W+F0nwLOXSI5rq+uNYl/wHOvwLQeQ3XJTPD+NOOjus9YnZGNPEr5POY5
-         vD+g==
-X-Forwarded-Encrypted: i=1; AJvYcCVMaW+2L+Usekc6SAZ1a23Z0GP7zFVwTQxuCw4pncmwxgyKm+FeSXJYIYdu5AEIaF9lXgXAYYhkcc+y@vger.kernel.org, AJvYcCWTmMluGjX4cEo8cVDkbkuWiM2rSE8Ndy89zaig7VAxWID3G3jMYqxWUSPGM8jq9SUD15331/Cga3k84jx4@vger.kernel.org, AJvYcCXFh/G4Br9IURzokPO6OcgZJuhYDAmlym7I6ERfxJ6qkOHHBsmt8rQihVg8zejFUrNcwhhsfNBkvfiV@vger.kernel.org, AJvYcCXYlkZe0GkErKprXCEYtAeXBAAsUWQcZBxOVsxSnO3zDkOhCUJ+Leqrt+KsPwsfbjpZ4PaZXDd+yignt99LleAPIvg=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFTnpDF3Zw4mkj/s5rA62X3yVmVIyZXFVh3lEPlguza/1n6wN1
-	LG1CZ11+wvqsXnsf1WK8yVcJutyNSH2Y71hl04b3qtP45A5v87F/0gbyAxU0
-X-Gm-Gg: ASbGncv6oJ3ez3/TAwecu4FWJ2nKQtOXkP9DWUduikKyBDkkqjulVVkE++SU/wltLLD
-	Rrq33N2uQq05++Nj7KvXd7LDSVDJwDCGnY4/DEkRiCN/afjwkL2cuNBJ8LT5mJorw/00enXmVG3
-	qFOJHKCLlr1mVELxZ3xmhCcaa5ppuEK+ZJcQTCOSHB6uguG0dUfb/wkIuKsKufelxyuTlvaUk0t
-	QA02ZYVLmumeIhaY7diVhA4h+oDVjXDS/ZtoP/uLoYhHGJ4QzazVi5XyOVGV3gFBT3Dp5RRYeXu
-	/B0ozErWT09HeelE
-X-Google-Smtp-Source: AGHT+IEcu1crK7F7sNnWMh9RUx1FBBamJrOtV7mJxYZOC4yXqsBWqC+M8OPBC/wsmy+Gjj3CFtoULA==
-X-Received: by 2002:a05:6122:8c07:b0:515:d032:796b with SMTP id 71dfb90a1353d-518a3cf0c9amr2379340e0c.11.1733920897054;
-        Wed, 11 Dec 2024 04:41:37 -0800 (PST)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-515eaf6290bsm1124635e0c.50.2024.12.11.04.41.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Dec 2024 04:41:36 -0800 (PST)
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-85bc7d126b2so2768638241.1;
-        Wed, 11 Dec 2024 04:41:36 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU3cXTcn+C3TVNbyXWfHGChC8pG+R7mRazXgOv2rwBocLEx8o66kgds/nk4EHLNi12UBot6bZtKzLNV2XxnJbNnBMg=@vger.kernel.org, AJvYcCX2KADwhSDGPhyM8zcRwyGaxdMcvkqcWAy1J1STLXExlUON1nk5U7p74ueYrKAwf+hh+qOuU4TsfEZd@vger.kernel.org, AJvYcCXH/ByivBHfNc8uBbe5eB6WAwMXv4kPGvbBSY3j/ejjbUwF1oHAYVEN0EWCHKWz3r+AkYwMdM/TYQ5I@vger.kernel.org, AJvYcCXozF0CCg4gSztsF7bfQ3znJh6HGGc8WtaGjc/mWeQk+HFatfM8gkwTZkhp1V0Z3MN26aM/rLqrqyFzmUtN@vger.kernel.org
-X-Received: by 2002:a05:6102:ccd:b0:4af:e61d:e225 with SMTP id
- ada2fe7eead31-4b128fa1f58mr2267972137.10.1733920895889; Wed, 11 Dec 2024
- 04:41:35 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47FD229132;
+	Wed, 11 Dec 2024 12:42:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733920925; cv=fail; b=JZC5eBbLHO9QZYlkXM8pX9VG88+yebWHawjfpa+Q4q6IUNhZRLQTpMMzviE4oqsJfbWPFW88Hd6NuyUikB5Pgt21tsT91znZSOQTXvZZjlyyl7B7xObbYLDV3lkCbTzT1klQ+r+L6wPQGteACBByxIZLWgJ0sLFU6vnwFyaz2V4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733920925; c=relaxed/simple;
+	bh=usR7Cq/gLig5rw4mEBEJjPc0IIipydLk/618u4l3Qkc=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uChWKcJAEMdZCLDTUrRhd7eNxmeuKuy1JaSEnFvRZsbgRRWHtj/eYHJcRt/VqOaTM9msxRv7Uj/2/8hgw9kySCnzjc0Xrk1hZnI3Qu8nl6H0N73cy0xJQHGDxQuHvKijHJBaHKFyLxW8xP9toQRiKqzNvyy8Gxm58OwLofdnqGI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=ra2PTpwM; arc=fail smtp.client-ip=40.107.243.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nMM6OOA18Uz6AKxDuvU2RGlvgzWGhLhrKc2QjZ+2crZx5mlL4rwSum0yBDvk6Z++8uPlDGIq7qXugS+uqj/3AWeaUbodFAtNVcjX+WMDddcnig27rqBvzpHfdDNeFJ5fkBS56JY5ZZIBGCX0HKDzxcwBu58Cv2/CQYpRCEEYt+V5bxnKWURjFlfFoYiYt01unTRPsQ9Yt+AeZPrt48MrDx8oozRut9wjDRXUD+FyrR3NfgrUgssmfZihza01AGA49Srhh6GpnZ1jb5NNOnWcvdKEmYTvpK3IkqSfb07SGAaUy3hXXk+NC/DOSBEeEdKZqAXWNhY5cZxkAdUSuOikhw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=NKhqV/Kbp5XDa7jO5EboUSXTM142twzk6b4NXk7dVAU=;
+ b=KbsTr8dy4mZme7JFKEuIlypfr+0OQGsH9mvXWaNnt5umG66szg4Gxp9bIsHS5g0XuSm55OoYfYve6Yg6xwc49hOGRBF+E9u+q72WlEN0Cj2fvUAObeX0xBVAgXw5Qn2B8cSjIeFOkkx5Oszx9pg6pto/+P2kDfbpiqV0q+/d8mkyFr0Ka0kZ2Hc7yhJeJQOZABgmqIRH3I1JE9ptSLNDX+4IR8yRWZtfRvoLRiOlEWnZpiawXaH8I5iYwsh05q2JNk4SPBleFokdiJpNTe94tA9xgfSU6SDorfHDfrUYSr9u3ZpnelOh4fXiqF2itS84ap2H15/bGMgF3IyGH66YCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NKhqV/Kbp5XDa7jO5EboUSXTM142twzk6b4NXk7dVAU=;
+ b=ra2PTpwMphNDHwIzXDMTqmPMcY6jMNWXQ4H+HgfOmslrEeYLLc6Nw2ZdJEHDUHYKOe+kJ89RaJ/HZQRkCbM51UbAqjmss/D+Pu2NerKUAEkISZAfdNMZ+8iMs4Upm91UyjPAd12CWWf2Rc/I/fkB8AkLatTIC0N+nE8ha3+esHw=
+Received: from BN0PR03CA0030.namprd03.prod.outlook.com (2603:10b6:408:e6::35)
+ by SJ2PR12MB8720.namprd12.prod.outlook.com (2603:10b6:a03:539::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8230.18; Wed, 11 Dec
+ 2024 12:42:00 +0000
+Received: from BL6PEPF0001AB56.namprd02.prod.outlook.com
+ (2603:10b6:408:e6:cafe::a1) by BN0PR03CA0030.outlook.office365.com
+ (2603:10b6:408:e6::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8207.28 via Frontend Transport; Wed,
+ 11 Dec 2024 12:42:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BL6PEPF0001AB56.mail.protection.outlook.com (10.167.241.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8251.15 via Frontend Transport; Wed, 11 Dec 2024 12:42:00 +0000
+Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 11 Dec
+ 2024 06:41:57 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "moderated
+ list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH 05/15] ARM: zynq: Do not define address/size-cells for nand-controller
+Date: Wed, 11 Dec 2024 13:41:24 +0100
+Message-ID: <37057526d8ee14416f61fb6e2b82bed65bde5d3c.1733920873.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <cover.1733920873.git.michal.simek@amd.com>
+References: <cover.1733920873.git.michal.simek@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241210170953.2936724-1-claudiu.beznea.uj@bp.renesas.com> <20241210170953.2936724-22-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241210170953.2936724-22-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 11 Dec 2024 13:41:23 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXBKd7H7m=84Jh_CT7kEUYr7ANi3czZRCPWR7CcJYw_xg@mail.gmail.com>
-Message-ID: <CAMuHMdXBKd7H7m=84Jh_CT7kEUYr7ANi3czZRCPWR7CcJYw_xg@mail.gmail.com>
-Subject: Re: [PATCH v4 21/24] arm64: dts: renesas: rzg3s-smarc-som: Add versa3
- clock generator node
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org, 
-	lgirdwood@gmail.com, broonie@kernel.org, magnus.damm@gmail.com, 
-	perex@perex.cz, tiwai@suse.com, p.zabel@pengutronix.de, 
-	biju.das.jz@bp.renesas.com, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Developer-Signature: v=1; a=openpgp-sha256; l=711; i=michal.simek@amd.com; h=from:subject:message-id; bh=usR7Cq/gLig5rw4mEBEJjPc0IIipydLk/618u4l3Qkc=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhvTIjuqsx0x+ea6GdglzpqS3bG8ys5+zfssxjuPblj65v kPJ3ta6I5aFQZCJQVZMkUXa5sqZvZUzpghfPCwHM4eVCWQIAxenAEzk+RuGeeoq31855R4RtgyY Lb/eq6Eg/QXTHYb5eQ+YvNYee6b4xiwy4q562v3L74MnAQA=
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB56:EE_|SJ2PR12MB8720:EE_
+X-MS-Office365-Filtering-Correlation-Id: ffa73253-d60a-41d4-8455-08dd19e134dc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?qbav/Jyihrbq4mNWylOqJ6WhywEwNME3rMw3VK4JhSsUBvQbtw/vb+UBM+C5?=
+ =?us-ascii?Q?rKvYo8xEcuFSZcJo9NMOEuXwAYJzyBBDNI7Fo6NbIWLtfcDRd8yo+kIEEsVx?=
+ =?us-ascii?Q?7GmpokuqtTm3G8mWSpYz3hTZ7Z/157TFIRnCbqda8oAuHUU4+BgZRb+jRtKx?=
+ =?us-ascii?Q?/qYGUkVJhGBrpb017NHAfSsLOwlVDIPiy9uIjkgtwToKXx800jizdhhq5fgv?=
+ =?us-ascii?Q?13z2PxiRQL4FysGcNS+OMdeS0TGAUkjT7ywpeueypv5NUMVN1O6NtliLZkM8?=
+ =?us-ascii?Q?q/WZx5HK1Od/vjQvAQooTFmHz9+8VzsgIgMli+mLqvA9y+zcTJDAMrqrZ709?=
+ =?us-ascii?Q?RzcL89cLJLzP/Ny8NHYOQDziuL9PxCjp/YGsp6V8tgIURsYIQI/j82y0zGqR?=
+ =?us-ascii?Q?XCC4VS6b4Y/GVeAI+YxOEDK6ogYjUlcfoj6JPyk9Jh8nqiiO5jSss6ZFqIef?=
+ =?us-ascii?Q?siMsQCPUVPR2s9I/51r7e5gSRycsPWnlxtYwZdN2dvOM2MXvUPlsl7fFvsHM?=
+ =?us-ascii?Q?yogBJThVOLhonDFb47FAfihaZ/+M+GS2wSbkdRFCKPcY11o8zj6cqqtoAQuJ?=
+ =?us-ascii?Q?d+3Tcq+vRjYZluZhAkauVHev2UYUdCWjY/c78kxpC1vE7p0YMUw3o4fTp+Cu?=
+ =?us-ascii?Q?hT1mr9WplJD1UL3moURpK9olpvixzrq69i0O9sqDVhYjICN6sfXFQhvi1fzO?=
+ =?us-ascii?Q?PvMc3vc6GPgQ4HhfvZolOx19Jq9qQl8RB6wObZp/diClKyAb+na0dLp0s0nC?=
+ =?us-ascii?Q?w45aDi5i00dzRUbDAH32jue0iU8b5fLQlXKHI/6FLSWQP1tSFIwIgKM1+bPF?=
+ =?us-ascii?Q?OB+Q/SheKONa6fWYi3W8wqOhIKVZ/5M/CZDLPt8rmXJ77kqb42Euof3FNBaS?=
+ =?us-ascii?Q?WyHt8wkZrwUXZntepA3Y3CEYjvufIR2JVtRUs1Y/RNVJEBdl3JZEd3Kcqz2+?=
+ =?us-ascii?Q?0FwWaOKYW/Xf8XG/Wilu5JCguOG1egMEXqTiaFgX9WwwRFCNPIhqiv64rzlO?=
+ =?us-ascii?Q?SrRhz3Ccbr5fdRqpUtbiP4x60E9zG0UOP6tjjI9cUEtz6LQhsrfL839Jqf1B?=
+ =?us-ascii?Q?KeHHfkwpfdCQcMFL7J7K5amF/tMzh/CESri2l3+UGjE1itvXu3KltDerHmJ8?=
+ =?us-ascii?Q?wJ+N4Btwuq+eqQjW/+ZMK5UK0+7ewSEp/PCp4t65t5w/3aOgakl7fYKRgOuK?=
+ =?us-ascii?Q?ztfTC2xhxnBY21P756guLqgwB1aK01rnAjRSIIjQCykyHMiaA0CuE9ItfCNh?=
+ =?us-ascii?Q?IRKwJkyWF2n0QvxUqCYgcwfuh5KSTjDjRhNOdql0AoLFIHHfaNAD7zls3mtC?=
+ =?us-ascii?Q?l18RWq7uSqEkoCLBka9pU1CuJra4dr0N26CFaHSBDtrm1gdWC2k4AxZYsVTU?=
+ =?us-ascii?Q?I8EO+K4bTvSIdvhLS+X84tQXdQFHS9V4uoY49EmeJFkxHKYDVHXftn2p9hUX?=
+ =?us-ascii?Q?GGohpDSRh4LQWnHRgqf8eEKOb9ej/g7T?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2024 12:42:00.1056
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ffa73253-d60a-41d4-8455-08dd19e134dc
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0001AB56.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8720
 
-On Tue, Dec 10, 2024 at 6:10=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Add versa3 clock generator node. It provides the clocks for the Ethernet
-> PHY, PCIe, audio devices.
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+There is no reason to define address/size-cells without defining child
+nodes. That's why remove them.
 
-Thanks, will queue in renesas-devel for v6.14.
+Signed-off-by: Michal Simek <michal.simek@amd.com>
+---
 
-Gr{oetje,eeting}s,
+ arch/arm/boot/dts/xilinx/zynq-7000.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-                        Geert
+diff --git a/arch/arm/boot/dts/xilinx/zynq-7000.dtsi b/arch/arm/boot/dts/xilinx/zynq-7000.dtsi
+index 0dfe2ddd0b5f..d334b5f75c8e 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-7000.dtsi
++++ b/arch/arm/boot/dts/xilinx/zynq-7000.dtsi
+@@ -294,8 +294,6 @@ nfc0: nand-controller@0,0 {
+ 				compatible = "arm,pl353-nand-r2p1";
+ 				reg = <0 0 0x1000000>;
+ 				status = "disabled";
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+ 			};
+ 		};
+ 
+-- 
+2.43.0
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
