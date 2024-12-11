@@ -1,142 +1,102 @@
-Return-Path: <devicetree+bounces-130037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E53B59EDB13
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 00:18:54 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8FE99EDB16
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 00:19:25 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3FFE168AC0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:18:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63B88284FBC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:19:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6061F2C46;
-	Wed, 11 Dec 2024 23:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA261F0E57;
+	Wed, 11 Dec 2024 23:19:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MWbAuH7t"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="kDuSRDFj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4441F2389
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 23:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9E6D17838C;
+	Wed, 11 Dec 2024 23:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733959124; cv=none; b=SUGFeo8cXS0mLcGrfmy2tz2H2IoKFqxb1ZFSySwfQjLr6b/pwYyMDiq8xHO1DAq/bP7Sp4hEZ3W62vUvVwKTf1YfaHh+g2Gu+zXNQA8Z5qJBWZ+ig9LqhQbWNDLTPw+vydbyNGqAZ5hDWD8+z6f7b872XfJUoyXjlonLgKJLxOI=
+	t=1733959158; cv=none; b=efxrWlOVk1e/1qyoDEFj2APHKqGNB9h6S9QV2zb1u3+OE76i+jU+c18F3n3WhlXNfPYGnYGGqb8aB/i5Pn8qGNOM9RgSYM6BbkrStCkmnbAnCDZ5J7AK60d1Yxv789HOuPG3+sVdHbbw8SBFveMudiN+Nx/R6V/dvVj54Sg3ffs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733959124; c=relaxed/simple;
-	bh=Vw0Rd6A8CkPce9mRpc49aoMHEVtyn7wqJ1+SvBkbGsU=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=RjTZCJRjeu/bA61NC2JvpspQbwSnZB7utgWWIZ7IDgMVX2bPejoczE2XLyI7hWcvTyjgOkDNN8B4VD69N9cd1bVVnh5rpMGSv/nU6/kiwfRCb26hcmxLWi1doExWSWc6UQb9q4YkydxjFqJFrgIWHeUj5SvRfW5ZgmefDEoHQtg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MWbAuH7t; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-434f30ba149so11015e9.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 15:18:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733959119; x=1734563919; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rRHUZTWrw/enXmUg5HJUc+kp5QUA2QAYg8TadYFylJU=;
-        b=MWbAuH7ta3ztE4lKmo1WnN7lPC2b8xNu5vZtA4i+UH0PjfVviZz3NA4W4JifwCVm6F
-         /2XLeSkAc4cj7+Gal2NjL0Qu8Vi+mdTgoSSM3DSPOe8hsl6g2xFrQ06yBxj/U6DXtjc+
-         3AHGvrsoSKQpRlwqWgPmmKOUAi3cpeEj4QAzPcM2/dYYgl2j061tfDsMXVVDLG/E4L1H
-         JvuMpf0p7xz7Y6wbi/8q6nJuapyPvaFKxYoM/wUG9PvZ7FxlifEBkPE86g7SzczeOUUA
-         SvaaAWUxG9D/1+DhRggYpiIzY53s28VkGsZgbTpAHottubI055oPD7pWiHv9Q8rLfyRm
-         sDXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733959119; x=1734563919;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rRHUZTWrw/enXmUg5HJUc+kp5QUA2QAYg8TadYFylJU=;
-        b=S46ZeWs96mKLSZ18ynltHITbu1bok0YB9hvhNP3//IFHsxXjrbN9WwmyUHG9+JTIaM
-         YKwV5dZ5ilXjRB58UPSNK97FJLXFqbfh5X3X8i4bo/Dj1dh5LA+QELOc9xlJribrZ4bi
-         b+g/M6bHEGVPEtdYkypunTiK6BfxjcLEnDaki84lFWWF4ymVKvc5HOPg/ONimDr0iGr2
-         4Z572wGCJrzyCIATnQL3CnnUQ6oB7Q45AzTT+K3O+Oce8A33cb2WSy6KYwUEdc2eKlZq
-         e3bsuqLZnGmk9FJW/NvzLQICSjCl1cu16ug4KpKGnxZezpLfS7RI42p/zcRsS9QueVxy
-         KkHg==
-X-Forwarded-Encrypted: i=1; AJvYcCVgLqZGERlYGDgsv882R3UVnLMxSiFsbAUvnghc7w9y8H917JyORfmzdmce8g80MA9cL741gHhfxQmb@vger.kernel.org
-X-Gm-Message-State: AOJu0YylBMWSYu8tRTaZnqVK2Hea1QZbc1+mWzbqdxDSCZ0sjq1S7LmM
-	Oe8mJG84ATqHl9CT5nnwGrDXG/XOc7xLepyTtDGTNXyQnaGcegXukNrrBNdMeTE=
-X-Gm-Gg: ASbGncsZgo4BBzZDNAY58MQf4J11Y13qNdwqyAWiiB5zygETlg6IvvtKWoDhqrvofzf
-	7av8zamimJcBNBv+pwfuKv/+e9GKvh6Q4qsjg474SpHm0ZGcUYbk6yvv9fuFmuPsa6ucgJdbcMv
-	4z529vG7ZVlvWNsRDziauQLYUuU5I2HBjB9K6IaUibyunGMdyBGGMA0oi8eCJ4TPp0PxWt5VyJ1
-	mTKDn7cl+vM7oGeJs+srUC/GXptFN+rC52D1xkbINGR3/vS/i3bdhyd
-X-Google-Smtp-Source: AGHT+IHm4dUrixa2oAB3OPqhfx0NrTgK9S/ClAQ/+/CAsZLq77t7Elt6vMKKQ3p5VLAN/iyTfeDFTg==
-X-Received: by 2002:a05:600c:3acf:b0:434:a802:e99a with SMTP id 5b1f17b1804b1-4361c346253mr39230375e9.4.1733959118933;
-        Wed, 11 Dec 2024 15:18:38 -0800 (PST)
-Received: from localhost ([2.222.231.247])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434d52c0be4sm273741395e9.28.2024.12.11.15.18.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Dec 2024 15:18:38 -0800 (PST)
+	s=arc-20240116; t=1733959158; c=relaxed/simple;
+	bh=3mQol+kxBBEzejx272hcO9JZECRCz4n4isvDE0UXZKc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tepODfE9kwlMAdGOY8eF6q57IO44eJKTL7/khJVIzT9wqcUrTgvwYDb3esdGa+0YnmxsnTBUyyxjboLj4U+1BWBf5GeAzBLQFTJIHe9A5pFjvEtUOUWia0opGHH41ZMa2PiJNaFMRx+tdG9UP289VGwunr595S4J1YGodMaeM/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=kDuSRDFj; arc=none smtp.client-ip=144.6.53.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
+	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=qAOjMl/GqayOOrw6nEASh0nWNB4CfhlTcekM7AL4b1E=; b=kDuSRDFj2NoOaaycBqDWElWR9C
+	SsLMhRE1ixtf6gYbtYBkCwNZN0I77Qes6BbIpolr7GGq2DbwMEj7huyimTxNVkkX65Rf7WS9iPMpa
+	Mn7xahf9MF4j+DTKGGIHTfOC5cJz6CHM/tyfBNZvtMPtuIfon99F2XMoJ9L5E/pjOmaOp6X1A5BfU
+	kE0m7kvkYiyvG8lf3qDw4DepkN3v+wJ+4EIa/FMU11C1eVJ6t4Qwv3fl2ae7a5OVfhxNZB99Ztbmt
+	3zMSpshe/7S4yxW3wmD1MobqMkObMHWZd9ga3uApG1LmfcLtlP+ezmuAGg8pqE/CjarvWeEs10+gS
+	1oHkhTlA==;
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
+	id 1tLVls-000tOn-1I;
+	Thu, 12 Dec 2024 07:18:54 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Thu, 12 Dec 2024 07:18:53 +0800
+Date: Thu, 12 Dec 2024 07:18:53 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Antoine Tenart <atenart@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	llvm@lists.linux.dev, upstream@airoha.com,
+	Richard van Schagen <vschagen@icloud.com>
+Subject: Re: [PATCH v8 3/3] crypto: Add Inside Secure SafeXcel EIP-93 crypto
+ engine support
+Message-ID: <Z1od3fgP02ay88Wy@gondor.apana.org.au>
+References: <20241210204853.18765-1-ansuelsmth@gmail.com>
+ <20241210204853.18765-4-ansuelsmth@gmail.com>
+ <Z1ldzyPKgoD8GZfx@gondor.apana.org.au>
+ <67597a1e.5d0a0220.9b04.2bef@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 11 Dec 2024 23:18:37 +0000
-Message-Id: <D6997HYLIQ6L.3FN664SYBLTXM@linaro.org>
-Cc: <tiwai@suse.com>, <lgirdwood@gmail.com>, <perex@perex.cz>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <dmitry.baryshkov@linaro.org>, <linux-sound@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 08/10] arm64: dts: qcom: qrb4210-rb2: enable wsa881x
- amplifier
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, <broonie@kernel.org>,
- <konradybcio@kernel.org>, <andersson@kernel.org>,
- <srinivas.kandagatla@linaro.org>
-X-Mailer: aerc 0.18.2
-References: <20241101053154.497550-1-alexey.klimov@linaro.org>
- <20241101053154.497550-9-alexey.klimov@linaro.org>
- <8078589d-d724-422e-a5f0-f5b6c67deafe@oss.qualcomm.com>
-In-Reply-To: <8078589d-d724-422e-a5f0-f5b6c67deafe@oss.qualcomm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <67597a1e.5d0a0220.9b04.2bef@mx.google.com>
 
-On Sat Nov 2, 2024 at 9:30 AM GMT, Konrad Dybcio wrote:
-> On 1.11.2024 6:31 AM, Alexey Klimov wrote:
-> > One WSA881X amplifier is connected on QRB4210 RB2 board
-> > hence only mono speaker is supported. This amplifier is set
-> > to work in analog mode only. Also add required powerdown
-> > pins/gpios.
-> >=20
-> > Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 45 ++++++++++++++++++++++++
-> >  1 file changed, 45 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot=
-/dts/qcom/qrb4210-rb2.dts
-> > index fc71f5930688..76b9ae1b0ebc 100644
-> > --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> > +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> > @@ -63,6 +63,16 @@ hdmi_con: endpoint {
-> >  		};
-> >  	};
-> > =20
-> > +	i2c0_gpio: i2c0 {
-> > +		compatible =3D "i2c-gpio";
-> > +
-> > +		sda-gpios =3D <&tlmm 4 GPIO_ACTIVE_HIGH>;
-> > +		scl-gpios =3D <&tlmm 5 GPIO_ACTIVE_HIGH>;
-> > +		#address-cells =3D <1>;
-> > +		#size-cells =3D <0>;
-> > +		status =3D "disabled";
+On Wed, Dec 11, 2024 at 12:40:09PM +0100, Christian Marangi wrote:
 >
-> Does it not work with &i2c1?
+> Just to make sure, this is only limited to DMA or it's also problematic
+> to the block list? Aka NO FREE should be done in export or NO DMA FREE
+> should be done in export?
 
-Actually it does work with i2c1 (non-gpio version).
-I am going to use that and will see how it behaves.
+It's all resources.
 
-Thanks!
+The user does not have to call export, final or finup.  The request
+object can be freed directly at any time after a call.  So you can
+never hold any resources in the request object between calls.
 
-Best regards,
-Alexey
-
+Cheers,
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
