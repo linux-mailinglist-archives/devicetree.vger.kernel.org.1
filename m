@@ -1,212 +1,140 @@
-Return-Path: <devicetree+bounces-129587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE73F9EC423
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 06:10:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B5149EC432
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 06:24:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA97F1886242
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 05:10:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 503FE1889889
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 05:24:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFA91C07C5;
-	Wed, 11 Dec 2024 05:10:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE001C174A;
+	Wed, 11 Dec 2024 05:24:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Krq5QyUj"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RC8+PZ2G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A24A71BDAA0;
-	Wed, 11 Dec 2024 05:10:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 331431C07E2
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 05:24:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733893809; cv=none; b=ly4Fdlpa76yZFxYxce4L5SwtEqh6TNAohsqPYWhQgfn4rEp9/dA5gWUSmJoLkD8WuKic9LzaDemT9p/k1ygcGMJPTsZnZlYgTWw4+DMQtQc888V5zIRCPwcz20FFQnEeBSFs0BIBLyc5UC7WWjucsry+A70FBjQwc7YTrCO5D8Q=
+	t=1733894676; cv=none; b=rpb2Ge9DGjlHr4tGut93YJI8wGNg65YQsXOa13EgJXA9yh6sqredW0AZYHagHeMrXCkRWjE1HC97GBfY2QuIPxov1mekhNHdkcyacZCtkgXl+LcVnvz9inK1Hk11jNO7fLOBo88g9eZSw0hMxGwU7YObw3Bfc1ivd5VqrnkhiiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733893809; c=relaxed/simple;
-	bh=YdX1dc6xsEAC92Xthg31J1U7TalgtZEvoo0qN6qkuRY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ekfyuBpTAV2uQz/4HXr885CXchoBDRUOkQpbWZftuKURo6tSaHpwdfcZytfBq+xERm69E3ZE8KA4xLfAg+B3FSTx1XyhasoLRPlNR44GsMv9xfrsE0a95DJe35j5cAaDZ8+JdCIRueJAiBEITw5Yo1L3IWNScht9x7gr4vpvjM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Krq5QyUj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21CE6C4CEE2;
-	Wed, 11 Dec 2024 05:10:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733893809;
-	bh=YdX1dc6xsEAC92Xthg31J1U7TalgtZEvoo0qN6qkuRY=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=Krq5QyUjf0EEDOcYntNfcf80ez+thWwtLj9n9hk958Ra4O9siL3nA5Pl422U1BnkO
-	 PDTfyQZfZNf2j37VR/Gqp6GtY10s/DB7Vo8OOwnqvqN2ZVR6+UfLMOIGfhTD7un6L1
-	 iIsLH18Wuy46+8gGFu+x7GjchFROyL+aVk7JOZ5gkIRYbXrAoA0WhCU2mO0TMSr2eE
-	 P0bVwxOtLgcG7Pd2stswbU/WnAFcD6PjAp5WafJ3m+P6X9BdeNmwJzqZbi5+pN0BNU
-	 jomzrEkdjjPbPJWuIx0poiGw9LuozeaReYS79yYq6jWf6zJEuFU3vb4Q1P0k+f23KW
-	 hJxlr/TtS1CNA==
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-3003943288bso45902991fa.0;
-        Tue, 10 Dec 2024 21:10:09 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVsfWoS2qfwrNAocnYCAlI3bCd6GiKsOox86Oi2l/f+nn/nHWdMgmYF2/KhZLxnyv2MEFzZ4gb6+fVyUD1e@vger.kernel.org, AJvYcCWBLk0qeH7KZAlmPowYVTkq60gwEfSU97UaApHkdHh0MhznFUvPKnckuH0P7kF2Ts73wKEr+DYueHDQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1YpNq2V9BfuKZV62n9k5BtpgGQKRRrVmufWygAxgQi1hiZnr4
-	xW+k3AfRBmOtQkxpWvzJa9U6lT6S5xiW70KUV+2fJf1OIUAlkeL45GbI5KUiZiXzqK6kUbzEIXz
-	7lmsOC7AjFhbVmwXOgtU+6dliJ5I=
-X-Google-Smtp-Source: AGHT+IF6N4Na/k+b/kefNQKbmVXbyAnVl/Bv7G3C8f7c+yra9jFGmNFSnmVvDOEzo13KT4U9uvLIdgjGdQPdboaPjQY=
-X-Received: by 2002:a05:651c:b2a:b0:300:3a15:8f15 with SMTP id
- 38308e7fff4ca-30240d23617mr5158551fa.14.1733893807383; Tue, 10 Dec 2024
- 21:10:07 -0800 (PST)
+	s=arc-20240116; t=1733894676; c=relaxed/simple;
+	bh=otYeShkAnGaMRzpsS7tfYUNkIhd1EXYWi/E+Tcp+/7A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=d3B321eU/miLNzQ/1tULx1V/YQOaFRC6dxi0jluYZN0XIcCq6Lm3OcLSOBKexO/A27nIYbkKf4dnEnXJrXNIE/Z+qHbPqTXUWpzj3OZ0v+2EA3a6jrkXsz5YsCbcw9Z82qfv8Lwpio8iY/v/9olFxNcymZDhuhfrAnZ7637EdVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RC8+PZ2G; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-725abf74334so5232291b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 21:24:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1733894674; x=1734499474; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9rNAO84080ar9QYUBnFcj+nugyjxelBE79eeObQSfkg=;
+        b=RC8+PZ2G5wzJnsG7YEbQp2+TmszGV3VEzRzqcy9/MSPdFOq8YjNYBKoRCGLG6fB7nT
+         U2x53v9z1nTusdefaMbYFjmRNhw4VLfWC3ReuPcLoIcfrehrxWBvV9KTBAbBGNnxO2ao
+         FxDC8Wg7y3rQH081XmEzaxTbWt4HQL6hxQs6w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733894674; x=1734499474;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9rNAO84080ar9QYUBnFcj+nugyjxelBE79eeObQSfkg=;
+        b=BTCQxuXT8OdRekJPgo9ye3sOo2YqgP62CPXUbo8qyGCDyJmEVKhvkzw5+Mz68s/GBB
+         ICWkCHyNsdyYT0HZ0ay8yc0h2e7IMYM7/itnXWTV5BanKMHdT8HFvrGR81MItvsl+R+9
+         CM/wqjf9gzShqC5gj4ywz/qXd0H4D80mdKxnD17Xl+K/I+o5SK+Rn+LTq/wWtQz8NbIg
+         gG5S6c/kSc8+1FbNvNnybKzSjHe+MLmLKpWr1I81P+Im93Tq0hWUTAaetz6YTKLTLz1m
+         c64TqnJ9FdGrCTrh9/RiMBJKJaKpNxBftowh5Y2Ez925KM7voppEui/i0itnvDWCRlEv
+         0hOA==
+X-Forwarded-Encrypted: i=1; AJvYcCXKmC6iqKYAPU9uokXPEd6Hh/300H3GTqnlzljKi6ajsaqutSoMiA4H0CKxDCnNRn8dtotKz0N3faQU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJuymrC4J5xf0c8nsMEsFZz4cRF4p8VFs1wdBnlN6p8aA315oR
+	NWO643vLCsEZhexARh4rr57SrqNEyhtpGNKUW98Inm9jESa60Jg2l8JjEpahmg==
+X-Gm-Gg: ASbGncu4yob1Y4NOpKEAHkct6fFSqlVDMY7SwOO/LMkL0fi+0+2jjU/RNYpX+ermEvk
+	VJ7ZTrLrnT4yfbXe3QeF1o07RswxVmrQnWcxdQ9EIlW/3o+FAcKJPQHmY15TdQgXm8RATn6kVq+
+	qs2V3vR20FN70ciJgM56IMu4qcolIatEnCDGGB+VmaSB2UvSx/GiAPhIJkiwba4+Qb5LOcIB1UW
+	Me7MOb2+jYmKWuWsDgbfEFlFU8typaxzAezZPH9EYFubv9CUOpmutVbJBUbFqHSsKVZ+6h7
+X-Google-Smtp-Source: AGHT+IGRXZyCR9vBPnWrRkfxCl9FFb1KFJmcBVsUf9/kW06iS0cwlLUslN7QIGTATGDeY32DTij/Zg==
+X-Received: by 2002:a05:6a00:1915:b0:728:e969:d4b7 with SMTP id d2e1a72fcca58-728ed3e8533mr2451508b3a.12.1733894674483;
+        Tue, 10 Dec 2024 21:24:34 -0800 (PST)
+Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:4dfb:c0ae:6c93:d01e])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-725e66801e2sm5397702b3a.160.2024.12.10.21.24.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 21:24:33 -0800 (PST)
+From: Chen-Yu Tsai <wenst@chromium.org>
+To: Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/8] arm64: dts: mediatek: Drop regulator-compatible property
+Date: Wed, 11 Dec 2024 13:24:18 +0800
+Message-ID: <20241211052427.4178367-1-wenst@chromium.org>
+X-Mailer: git-send-email 2.47.0.338.g60cca15819-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241210092614.3951748-1-wenst@chromium.org> <173386568696.497617.3727087837255802552.robh@kernel.org>
-In-Reply-To: <173386568696.497617.3727087837255802552.robh@kernel.org>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Wed, 11 Dec 2024 13:09:54 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65D9cdTRoEwwpTUcRZBnrdJ+6UZ-osN1vpUP_JxtJMr8Q@mail.gmail.com>
-Message-ID: <CAGb2v65D9cdTRoEwwpTUcRZBnrdJ+6UZ-osN1vpUP_JxtJMr8Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: mediatek: mt8173-elm: Fix MT6397 PMIC
- sub-node names
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, linux-mediatek@lists.infradead.org, 
-	devicetree@vger.kernel.org, Matthias Brugger <matthias.bgg@gmail.com>, 
-	linux-arm-kernel@lists.infradead.org, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Dec 11, 2024 at 5:43=E2=80=AFAM Rob Herring (Arm) <robh@kernel.org>=
- wrote:
->
->
-> On Tue, 10 Dec 2024 17:26:12 +0800, Chen-Yu Tsai wrote:
-> > The MT6397 PMIC bindings specify exact names for its sub-nodes. The
-> > names used in the current dts don't match, causing a validation error.
-> >
-> > Fix up the names. Also drop the label for the regulators node, since
-> > any reference should be against the individual regulator sub-nodes.
-> >
-> > Fixes: 689b937bedde ("arm64: dts: mediatek: add mt8173 elm and hana boa=
-rd")
-> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> > ---
-> >  arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> >
->
->
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
->
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
->
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
->
->   pip3 install dtschema --upgrade
->
->
-> New warnings running 'make CHECK_DTBS=3Dy mediatek/mt8173-evb.dtb' for 20=
-241210092614.3951748-1-wenst@chromium.org:
->
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: buck_vpca15: Une=
-valuated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: buck_vpca7: Unev=
-aluated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: buck_vsramca15: =
-Unevaluated properties are not allowed ('regulator-compatible' was unexpect=
-ed)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: buck_vsramca7: U=
-nevaluated properties are not allowed ('regulator-compatible' was unexpecte=
-d)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: buck_vcore: Unev=
-aluated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: buck_vgpu: Uneva=
-luated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: buck_vdrm: Uneva=
-luated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: buck_vio18: Unev=
-aluated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vtcxo: Uneva=
-luated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_va28: Uneval=
-uated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vio28: Uneva=
-luated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vusb: Uneval=
-uated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vcama: Uneva=
-luated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vmc: Unevalu=
-ated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vmch: Uneval=
-uated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vemc3v3: Une=
-valuated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vgp1: Uneval=
-uated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vgp2: Uneval=
-uated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vgp3: Uneval=
-uated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vgp4: Uneval=
-uated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vgp5: Uneval=
-uated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vgp6: Uneval=
-uated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dtb: regulators: ldo_vibr: Uneval=
-uated properties are not allowed ('regulator-compatible' was unexpected)
->         from schema $id: http://devicetree.org/schemas/regulator/mediatek=
-,mt6397-regulator.yaml#
+Hi folks,
 
-Ack. I already prepared another series to address these.
+This series drops usage of the long deprecated "regulator-compatible"
+property from MediaTek device tree files. The property was introduced
+in 2012, and then subsequently deprecated after two months. It was
+never carried over during the binding YAML conversion.
 
+Drop the property from the MT6315 regulator binding, and all MediaTek
+device tree files. IMO it should never have been used to begin with.
+This also gets rid of any validation errors [1] related to them.
+
+Please have a look.
+
+
+Thanks
 ChenYu
+
+[1] https://lore.kernel.org/all/173386568696.497617.3727087837255802552.robh@kernel.org/
+
+Chen-Yu Tsai (8):
+  regulator: dt-bindings: mt6315: Drop regulator-compatible property
+  arm64: dts: mediatek: mt8173-evb: Drop regulator-compatible property
+  arm64: dts: mediatek: mt8173-elm: Drop regulator-compatible property
+  arm64: dts: mediatek: mt8192-asurada: Drop regulator-compatible
+    property
+  arm64: dts: mediatek: mt8195-cherry: Drop regulator-compatible
+    property
+  arm64: dts: mediatek: mt8195-demo: Drop regulator-compatible property
+  arm64: dts: medaitek: mt8395-nio-12l: Drop regulator-compatible
+    property
+  arm64: dts: mediatek: mt8395-genio-1200-evk: Drop regulator-compatible
+    property
+
+ .../bindings/regulator/mt6315-regulator.yaml  |  6 -----
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi  | 23 -------------------
+ arch/arm64/boot/dts/mediatek/mt8173-evb.dts   | 23 -------------------
+ .../boot/dts/mediatek/mt8192-asurada.dtsi     |  3 ---
+ .../boot/dts/mediatek/mt8195-cherry.dtsi      |  2 --
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts  |  9 --------
+ .../dts/mediatek/mt8395-genio-1200-evk.dts    |  2 --
+ .../dts/mediatek/mt8395-radxa-nio-12l.dts     |  2 --
+ 8 files changed, 70 deletions(-)
+
+-- 
+2.47.0.338.g60cca15819-goog
+
 
