@@ -1,149 +1,131 @@
-Return-Path: <devicetree+bounces-129770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A1819ECBE2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:21:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6580D9ECBED
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:22:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96C7418887A5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:21:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E1CD16A270
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B21C72210F9;
-	Wed, 11 Dec 2024 12:21:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A508D225A30;
+	Wed, 11 Dec 2024 12:22:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AAtUdlJg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iad5o/Mx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF0D886331
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 12:21:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68EE11C1F10;
+	Wed, 11 Dec 2024 12:22:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733919686; cv=none; b=aJ3k22A9LgjdyOCZgSZ/kX1CoZTQdCMRontJwbj8qfNBRdsECZa5hxzUgmtOuA8g8+R13j9f7BBEYSe/jmiRUiAqv7BqRCVgEBUzHQynk3PkO3z8+WRx+PyTj4fDT/jK9BL699oERVCZhMqBz6tIuWLB8U2bDbmcANpkzFRKiOM=
+	t=1733919753; cv=none; b=Dl0W5F2h6zXAwjVv430QeD9zQol9Txy4hmavW196ndfaKKZeimFthYe4BeL0+hU9sfIIgZue/oSuTSDQYz11gjUTb3pshEtKsnGi1kunK95kCArB6O6csswzEhjcz0svrCh7wZE0j36hH5Hr5EM7juPaQGQDxwdvDz+D1GEySyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733919686; c=relaxed/simple;
-	bh=WXDnwL2qDnZBgJlxAzxrz1+c0z0V1ZPWOHKYmI/sOgk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Og97ZHQt/AXsQeaPU4TB3oyO5G9jqB4az9pCEChyOCf7aW2ZfldHSI2rD2FZU22gWLq6s2ghKhXK6XDYDCLDaJd6ha37zsR1LsxNHtO28cEWbaQb2X1qsw1W8ySkxdfCeWk2UPJbND9yzvsVlYUaE5FXfsarMFCH7t0BpboGvUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AAtUdlJg; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-aa6aad76beeso227958266b.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 04:21:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733919683; x=1734524483; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=e/4csaBfXsFFTk2c3ItsNb2FKJCeqt2Yyf1A+buQb4o=;
-        b=AAtUdlJgLO96fZaUkQcDo+xOyPA3nMqs82PLqQ8H3nZmj1GF5QvTbWlN/KHZi13cxC
-         19JG4MBUH9VbV+Nyh3FRB40A3g1aa9CFA4qVUfhnNEiMq3jtKWjAON0frdR+yYSa/oHs
-         CblhnEeEVvBMPpGenG+JoF+5mduGN8c3fKtTo5mq5T9Z6wN+LEt0if9+315uPZDYeWxp
-         aMpzCBZDIWk06d52F7dgdprO7JOwHd63fM20D1PscyQEZNEuQfi+HFx8A2oScLIO1k4n
-         YDeHbaGv66lZNmjVBe4Q/hnLK1vCFf/nRVjDgaKEJ294xycDhEtu4JpXhOHTqrI03YGB
-         t0UQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733919683; x=1734524483;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=e/4csaBfXsFFTk2c3ItsNb2FKJCeqt2Yyf1A+buQb4o=;
-        b=H35wz3y2tzvGTxIuECrnWZ5uiwP2ttCKPeOun9zs55Xg5QPlIhcEOrHMQFnj/J7Ccx
-         zBL9dcBZEM4vuIHHqXvEUwPsgjy/v524hUqalqi6btfmW8OB06eZ7zvdUriMHe05F7MQ
-         s5d6JgitmwMqMFfcF+XBvDJhot3BTqgD4+48N6kFuOSmQMSQWP+Mz6OkLq2TjPUzJdbL
-         P90xVc/yOj/h1RIKUTJxopji5tTFyxvRuVoTMAzZlcq5uBvSjotStxkrc1wSyTYyL5M5
-         nQl3BEhPOx+oyuvgmST6HLzXNS6nsvCOAYyH/C5fHZdnPMCC+b8M+vYuEJGKfKBbZoE8
-         LtTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVrKTe2JFGHbjD3wvXRTBZXr/Bi+Y8ooaA3eeGGSMUkc3162Y7aJSCH7zN7EG0755Fhg+bp9AQFTHqe@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywt0cXvpvn7WzgLu8BulxIzVSRCL042Hn9qDvGF5Q3C3RHmmiv1
-	glD+TqObV+tDyE+QOB/nmo7L4n5Nxoa7KSk17WyEYK5NUjhhJYrrI1cPVIB2bZvKBdYZOoeXIeY
-	y3wEsHcgjOTo+Ss1B3PEI4RBuggF4dw9OS2Zfhw==
-X-Gm-Gg: ASbGncu69SPPhUVA1F7hx0ohesUu91s2HmmEv3F9j91upyzTStFPbA6FPvBY9S1UBIb
-	P+W55ltmeQcQcg6F3165kS6bSsXTPl1GtP4w=
-X-Google-Smtp-Source: AGHT+IGs5pqNqx/r0vQ03W2BhJ9I8iDEAIFgTx5jDKtPQBzfrnqdCIkUH/dpCpEDhV0b4X8UbGBZgwf+T1SDFb1nEUA=
-X-Received: by 2002:a17:906:3ca9:b0:aa6:3f93:fb99 with SMTP id
- a640c23a62f3a-aa6b11f649bmr245079266b.36.1733919683159; Wed, 11 Dec 2024
- 04:21:23 -0800 (PST)
+	s=arc-20240116; t=1733919753; c=relaxed/simple;
+	bh=SkINOBjUcEQO7aCkPmINK0GlIJlOrwRXcxwb11MfeX8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XmZLvQI1J0E/pH81echTxDFJ/6yLUbAn65aGqtMVD+pBtbloOSZ3rJ7/FAk1M81J36w6M7FkZjStUrkpzPw8R1o4ku26NEv1boN72B30Ddl+7aM5gnRpAOllyGtfLz2d7lIDdL04yg+Sbo1zbfgB/xO7gNJhpb11bgpHUzhzDHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iad5o/Mx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31563C4CED2;
+	Wed, 11 Dec 2024 12:22:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733919752;
+	bh=SkINOBjUcEQO7aCkPmINK0GlIJlOrwRXcxwb11MfeX8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iad5o/MxKssJwW0lhPl/ii2SkpWyWYjqLQii33cdJD/PNMlptG8YcRSmaBsJV7+TM
+	 aZOGeq5r1hrV43ZlYJS/T1xi4otiS8RH2wYPCO01yOOzY/j1grq0U6MlKx5Vtbm0HA
+	 yZ14aPxYaoK18/5qbn1lagmGefvs5iOKAxRHlsb2yOeKrfGwJnb9S1bP7GmhS4Px7/
+	 NPANgugIAwthGykCAA4uQq/oYYhWzNlVP4Iha4XMjPa53Joi//W38EcrxJxzrlpF3q
+	 GHr38m17SAMxKovs4goVVkMBhfaDncSQPwQcdM3s2ZdfYIz2LqUK3K04TkNARvvAHO
+	 rz8lZjO7r9yKw==
+Date: Wed, 11 Dec 2024 13:22:24 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: rafael@kernel.org, bhelgaas@google.com, ojeda@kernel.org,
+	alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
+	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, rust-for-linux@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 01/16] rust: pass module name to `Module::init`
+Message-ID: <Z1mEAPlSXA9c282i@cassiopeiae>
+References: <20241210224947.23804-1-dakr@kernel.org>
+ <20241210224947.23804-2-dakr@kernel.org>
+ <2024121112-gala-skincare-c85e@gregkh>
+ <2024121111-acquire-jarring-71af@gregkh>
+ <2024121128-mutt-twice-acda@gregkh>
+ <2024121131-carnival-cash-8c5f@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241210-qcom-video-iris-v8-0-42c5403cb1a3@quicinc.com>
- <20241210-qcom-video-iris-v8-16-42c5403cb1a3@quicinc.com> <CAEvtbuus3scTvcjMuxxrfcqnd61+vqM5G=os-aUuM3+SLp2abQ@mail.gmail.com>
- <27a2ca82-2e8c-8cf9-012c-602cd421bd66@quicinc.com>
-In-Reply-To: <27a2ca82-2e8c-8cf9-012c-602cd421bd66@quicinc.com>
-From: Stefan Schmidt <stefan.schmidt@linaro.org>
-Date: Wed, 11 Dec 2024 13:21:12 +0100
-Message-ID: <CAEvtbusfHwPFRN=3t93McQ_5qD_apoiQyYb_9fFGe84E6AEs8w@mail.gmail.com>
-Subject: Re: [PATCH v8 16/28] media: iris: implement vb2 streaming ops
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>
-Cc: Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Sebastian Fricke <sebastian.fricke@collabora.com>, 
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2024121131-carnival-cash-8c5f@gregkh>
 
-Hello Dikshita,
+On Wed, Dec 11, 2024 at 12:05:10PM +0100, Greg KH wrote:
+> On Wed, Dec 11, 2024 at 11:59:54AM +0100, Greg KH wrote:
+> > On Wed, Dec 11, 2024 at 11:48:23AM +0100, Greg KH wrote:
+> > > On Wed, Dec 11, 2024 at 11:45:20AM +0100, Greg KH wrote:
+> > > > On Tue, Dec 10, 2024 at 11:46:28PM +0100, Danilo Krummrich wrote:
+> > > > > In a subsequent patch we introduce the `Registration` abstraction used
+> > > > > to register driver structures. Some subsystems require the module name on
+> > > > > driver registration (e.g. PCI in __pci_register_driver()), hence pass
+> > > > > the module name to `Module::init`.
+> > > > 
+> > > > Nit, we don't need the NAME of the PCI driver (well, we do like it, but
+> > > > that's not the real thing), we want the pointer to the module structure
+> > > > in the register_driver call.
+> > > > 
+> > > > Does this provide for that?  I'm thinking it does, but it's not the
+> > > > "name" that is the issue here.
+> > > 
+> > > Wait, no, you really do want the name, don't you.  You refer to
+> > > "module.0" to get the module structure pointer (if I'm reading the code
+> > > right), but as you have that pointer already, why can't you just use
+> > > module->name there as well as you have a pointer to a valid module
+> > > structure that has the name already embedded in it.
+> > 
+> > In digging further, it's used by the pci code to call into lower layers,
+> > but why it's using a different string other than the module name string
+> > is beyond me.  Looks like this goes way back before git was around, and
+> > odds are it's my fault for something I wrote a long time ago.
+> > 
+> > I'll see if I can just change the driver core to not need a name at all,
+> > and pull it from the module which would make all of this go away in the
+> > end.  Odds are something will break but who knows...
+> 
+> Nope, things break, the "name" is there to handle built-in modules (as
+> the module pointer will be NULL.)
+> 
+> So what you really want is not the module->name (as I don't think that
+> will be set), but you want KBUILD_MODNAME which the build system sets.
 
-On Wed, 11 Dec 2024 at 10:34, Dikshita Agarwal
-<quic_dikshita@quicinc.com> wrote:
->
->
->
-> On 12/10/2024 6:20 PM, Stefan Schmidt wrote:
-> > Hello Dikshita,
-> >
-> > On Tue, 10 Dec 2024 at 12:07, Dikshita Agarwal
-> > <quic_dikshita@quicinc.com> wrote:
-> >>
-> >> +static int iris_hfi_gen1_session_stop(struct iris_inst *inst, u32 plane)
-> >> +{
-> >> +       struct hfi_session_flush_pkt flush_pkt;
-> >> +       struct iris_core *core = inst->core;
-> >> +       struct hfi_session_pkt pkt;
-> >> +       u32 flush_type = 0;
-> >> +       int ret = 0;
-> >> +
-> >> +       if ((V4L2_TYPE_IS_OUTPUT(plane) &&
-> >> +            inst->state == IRIS_INST_INPUT_STREAMING) ||
-> >> +           (V4L2_TYPE_IS_CAPTURE(plane) &&
-> >> +            inst->state == IRIS_INST_OUTPUT_STREAMING) ||
-> >> +           inst->state == IRIS_INST_ERROR) {
-> >> +               reinit_completion(&inst->completion);
-> >> +               iris_hfi_gen1_packet_session_cmd(inst, &pkt, HFI_CMD_SESSION_STOP);
-> >> +               ret = iris_hfi_queue_cmd_write(core, &pkt, pkt.shdr.hdr.size);
-> >> +               if (!ret)
-> >> +                       ret = iris_wait_for_session_response(inst, false);
-> >> +
-> >> +               reinit_completion(&inst->completion);
-> >> +               iris_hfi_gen1_packet_session_cmd(inst, &pkt, HFI_CMD_SESSION_RELEASE_RESOURCES);
-> >> +               ret = iris_hfi_queue_cmd_write(core, &pkt, pkt.shdr.hdr.size);
-> >> +               if (!ret)
-> >> +                       ret = iris_wait_for_session_response(inst, false);
-> >> +       } else if (inst->state == IRIS_INST_STREAMING) {
-> >> +               if (V4L2_TYPE_IS_OUTPUT(plane))
-> >> +                       flush_type = HFI_FLUSH_ALL;
-> >> +               else if (V4L2_TYPE_IS_CAPTURE(plane))
-> >> +                       flush_type = HFI_FLUSH_OUTPUT;
-> >
-> > Below there is also HFI_FLUSH_OUTPUT2 defined. Do we need to handle
-> > this flush type here as well?
-> The behavior for HFI_FLUSH_OUTPUT2 is same as HFI_FLUSH_OUTPUT so there is
-> no need to add specific handling for HFI_FLUSH_OUTPUT2.
+That's correct, and the reason why I pass through this name argument.
 
-Thanks, in that case we are good.
+Sorry I wasn't able to reply earlier to save you some time.
 
-regards
-Stefan Schmidt
+> You shouldn't need to pass the name through all of the subsystems here,
+> just rely on the build system instead.
+> 
+> Or does the Rust side not have KBUILD_MODNAME?
+
+AFAIK, it doesn't (or didn't have at the time I wrote the patch).
+
+@Miguel: Can we access KBUILD_MODNAME conveniently?
+
+> 
+> thanks,
+> 
+> greg k-h
 
