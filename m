@@ -1,261 +1,184 @@
-Return-Path: <devicetree+bounces-129987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 977869ED770
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 21:46:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18CA99ED77F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 21:53:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 168FA280F00
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:46:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 115CF283473
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25F362036F6;
-	Wed, 11 Dec 2024 20:46:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DDFC211A0B;
+	Wed, 11 Dec 2024 20:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="Sino7N4R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jF9IlOcV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3208D259486;
-	Wed, 11 Dec 2024 20:46:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733950008; cv=pass; b=SPB7AJJHLwWKBZiWhOrrnh8FZ8BHD3AeJXGcSTnz97JbxSoLwOsh6xEMiLHe9n7NvWKTDVbNeDWncGm8S0qCGPT/3UxxmOsckOtViAcy7QUq4AEuJHpSOHJcMlru6CYsmY+GCVPcuCMral9L41eAMwndTdXNn/+XpxuMhOwSe4w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733950008; c=relaxed/simple;
-	bh=RmSK6AsmG2uId15th8lKdy6IVZGu7c1GXJwp4ekgKmc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nMwq+GH2oRZ8yCw1IvTkG+SjZ6HBptxN4+OHA/k4Ewagq4kG+COpjuSd7a8jW5T/QSyfez5MgghtuaWNnoJgoGyV6E4hk4wCY4twQaO03DBJN4X5+RUyCbXYVh/QhJt16xQVfKHiq6XGBkTiwn0YKYgykh9wZfrt+u/WOKb9tBA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=Sino7N4R; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1733949964; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=QWcyrFWnH4Y8H6dcwOzQqEaV0SEsvqACGw54o4ftlIBQZQMPCflngtcHs5EKV73OQ0aXa9gPSDaOuQR7OOmH9rwu04smquzcA1ixDtnn49s4W/lbYyuwClyH8xAyy2zoDIe+wx/IbNJ4MFli2D14/Pf1MPyr2Gb6nERd1YfyDRA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1733949964; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=VXPnSM3GTeNHeZYS08ax4CHEV8xlYT9lwfiCoPy3wAo=; 
-	b=TV1XJ29RZRs8Pi93Xy3tFq6zNZEBDkQqe5CMpOdunqWrQFCi/HwxJsQMTulUUbph1rMUPvX4+2u0C1YSReKi5spqU67NoyKHp9+fVkaIk7ioYy/SoURdEuOYT9VnRFnb0yX1yiSIVJ/gnYIz+BPcSsV0Y1zfjkbHPQR1MvIevls=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1733949964;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=VXPnSM3GTeNHeZYS08ax4CHEV8xlYT9lwfiCoPy3wAo=;
-	b=Sino7N4RbmipXtCFYryGQLF7QQDQl7IENYBxr4OW4yWdWQMtTU0qZTVA2UprbBnW
-	O9hqjiALFjS8CkIS23V6c4EEt89XgASA6+0+A5ByUc1g0myWRG0SqEfebzHsNebTYXt
-	RRvuFBDhaQCDEcgatpw+zwDBG/gCu9e7ZZOVqOHA=
-Received: by mx.zohomail.com with SMTPS id 1733949962296297.8827041831578;
-	Wed, 11 Dec 2024 12:46:02 -0800 (PST)
-Received: by mercury (Postfix, from userid 1000)
-	id BCA1A10604B1; Wed, 11 Dec 2024 21:45:56 +0100 (CET)
-Date: Wed, 11 Dec 2024 21:45:56 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Peter Geis <pgwipeout@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Elaine Zhang <zhangqing@rock-chips.com>, 
-	=?utf-8?B?QWRyacOhbiBNYXJ0w61uZXo=?= Larumbe <adrian.larumbe@collabora.com>, Boris Brezillon <boris.brezillon@collabora.com>, 
-	Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, kernel@collabora.com, 
-	Dragan Simic <dsimic@manjaro.org>
-Subject: Re: [PATCH v5 3/7] pmdomain: rockchip: forward
- rockchip_do_pmu_set_power_domain errors
-Message-ID: <xe2wqm4ktutycxj7x4rskz4pn4cfmoci6zcgfxecmvc5bu7cqi@mqxi3pnehqq3>
-References: <20241211143044.9550-1-sebastian.reichel@collabora.com>
- <20241211143044.9550-4-sebastian.reichel@collabora.com>
- <CAMdYzYqLq=kSC8fiBapRS_8w0s8PaL9Yd46VgM56YbTEmUG1xA@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67B35259498;
+	Wed, 11 Dec 2024 20:53:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733950394; cv=none; b=Uke/0wt4baFOUDxMefEsxkmqxAbcJqNMZ+hYU9trtrQdlAPVCA3pajYpc1fA7gAEQoBiuvX9u9OBxLe+TVb6mXHnw2AnFosqy8KtUcEDuFePKlZUpZ6GimMizith5DQ2Y//tfCcqe3GZ7jmGga4/U9rZndYmKDeaqeriFtyKVNk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733950394; c=relaxed/simple;
+	bh=h5MY6n9s52R9K4S4G1UuwM6yzSqhfXepqx5616VdQqM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DP3iunav920+eYe6nA4N4b1C8aFqR3gnbk96i6862+pVFFtkdd/gyvfYaBV9NYY4vCG/8L3kP0Zn2aazlpr3KAGEESyId18/M+wG+Uj37Cm8doagyhozOxV0zZpQ8yqt5GPRw9xFFPGXC+iwqCCJikQe8FBJCbr/yBDocyKSvEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jF9IlOcV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC3A0C4CED2;
+	Wed, 11 Dec 2024 20:53:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733950394;
+	bh=h5MY6n9s52R9K4S4G1UuwM6yzSqhfXepqx5616VdQqM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=jF9IlOcVZ7CnGk+pLzx3qeNz2UQWzdj4Cq+PAIz6vAYiLBosddkGHEpY2oHZlWhzR
+	 VwlJNbOjH1DLckuLuFBbq58vZJVSnRlcW4RoR6RQpilBd+/qyrZrAo0ZnoMaPHgq6O
+	 BQ9mtKv7GclkmrGiOoisQkbRwirDaKcfO+FqVQMSlyJ+5X2msBsnqNhAz/TScksqiL
+	 Pz+SqKitWfIFec/2yEQ0ILs2VEQL4ZqZUkbWuKGkXBumtHFr6Mu9o38sCdDnTYMXJq
+	 sZixnWZ3JUmlP/QEqDD4TxBVzDwf3GdpkyE4VLIT9LgzzsqFrElfu6ZHYCeatsfcRY
+	 6SZ1SvnBVqE6A==
+Date: Wed, 11 Dec 2024 20:53:02 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+Cc: Mikael Gonella-Bolduc via B4 Relay
+ <devnull+mgonellabolduc.dimonoff.com@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nathan Chancellor
+ <nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, Bill
+ Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, Mikael
+ Gonella-Bolduc <m.gonella.bolduc@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ llvm@lists.linux.dev, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Matti
+ Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: light: Add APDS9160 ALS & Proximity sensor
+ driver
+Message-ID: <20241211205302.2ba32a4a@jic23-huawei>
+In-Reply-To: <Z1dl2C9/BYoeyudu@uva.nl>
+References: <20241206-apds9160-driver-v2-0-be2cb72ef8f4@dimonoff.com>
+	<20241206-apds9160-driver-v2-2-be2cb72ef8f4@dimonoff.com>
+	<20241208122038.18cf7db8@jic23-huawei>
+	<Z1dl2C9/BYoeyudu@uva.nl>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="pgyuyhmom73rgyyw"
-Content-Disposition: inline
-In-Reply-To: <CAMdYzYqLq=kSC8fiBapRS_8w0s8PaL9Yd46VgM56YbTEmUG1xA@mail.gmail.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/233.945.80
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Mon, 9 Dec 2024 16:49:12 -0500
+Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com> wrote:
 
---pgyuyhmom73rgyyw
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 3/7] pmdomain: rockchip: forward
- rockchip_do_pmu_set_power_domain errors
-MIME-Version: 1.0
+> On Sun, Dec 08, 2024 at 12:20:38PM +0000, Jonathan Cameron wrote:
+> > On Fri, 06 Dec 2024 11:09:57 -0500
+> > Mikael Gonella-Bolduc via B4 Relay <devnull+mgonellabolduc.dimonoff.com@kernel.org> wrote:
+> >   
+> > > From: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+> > > 
+> > > APDS9160 is a combination of ALS and proximity sensors.
+> > > 
+> > > This patch add supports for:
+> > >     - Intensity clear data and illuminance data
+> > >     - Proximity data
+> > >     - Gain control, rate control
+> > >     - Event thresholds
+> > > 
+> > > Signed-off-by: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>  
+> > 
+> > Hi Mikael,
+> > 
+> > As the bots noted, the maintainers entry has the wrong vendor prefix,
+> > or the binding does.
+> > 
+> > Also the issue with missing include of linux/bitfield.h
+> > 
+> > Unused gain table is less obvious. Not sure what intent was on that one.
+> > 
+> > Given the discussion with Matti about how to do the gain control, please add
+> > some description here of the outcome.  The control scheme is not particularly
+> > obvious and is the key bit we should be reviewing.  It feels like you've
+> > applied the feedback on v1 to the light channel but it is equally applicable
+> > to proximity channels when they are just measures of reflected light intensity.
+> > 
+> > Various other minor things inline.
+> > 
+> > Thanks,
+> > 
+> > 
+> > Jonathan  
+> 
+> Hi Jonathan,
+> 
+> I will fix the warnings the bots noted and other inline comments for v3, sorry about that.
+> Regarding gain control for ALS, I kept the non-linear table provided in the datasheet.
+> The user can adjust the integration time and the available scales will update
+> depending on the value.
+> For example, at 100ms, you have possible scales of 0.819, 0.269, 0.131, etc. (lux/count).
+> The hardware gain and other relevant registers gets adjusted by the driver depending on selected scale.
+> The attribute is kept as read-only as Matti suggested.
+> 
+> Now, for proximity, again I'm confused. Please bear with me a little.
+> The only "scale" I see in the datasheet is that the proximity sensor is for a short distance of under 70mm.
 
-Hello Peter,
+That sounds like a design point for sensitivity of sensor vs light source brightness.
 
-On Wed, Dec 11, 2024 at 02:53:34PM -0500, Peter Geis wrote:
-> On Wed, Dec 11, 2024 at 9:32=E2=80=AFAM Sebastian Reichel
-> <sebastian.reichel@collabora.com> wrote:
-> >
-> > Currently rockchip_do_pmu_set_power_domain prints a warning if there
-> > have been errors turning on the power domain, but it does not return
-> > any errors and rockchip_pd_power() tries to continue setting up the
-> > QOS registers. This usually results in accessing unpowered registers,
-> > which triggers an SError and a full system hang.
-> >
-> > This improves the error handling by forwarding the error to avoid
-> > kernel panics.
->=20
-> I think we should merge your patch here with my patch for returning
-> errors from rockchip_pmu_set_idle_request [1].
+> There's nothing provided in the datasheet to convert the proximity ADC count to a distance or to anything meaningful like standard units.
+> I don't feel like this is really precise and the intended use case is probably like mine where you can use this to detect
+> if there's something covering the sensor or not.
+> 
+> I took a look at other light/proximity sensors, again, it's not clear for me how to handle this.
+> It seems that some drivers just directly control the hardware gain register with the scale even if it's not really a scale.
+Typical case is that it is a scale, just not of distance.  But rather controls an amplifier on the light sensor,
+so same as for the ambient light sensor.
 
-I will have a look.
+The ABI docs are a little vague on this Documentation/ABI/testing/sysfs-bus-iio
+has
+What:		/sys/.../iio:deviceX/in_proximity_raw
+What:		/sys/.../iio:deviceX/in_proximity_input
+What:		/sys/.../iio:deviceX/in_proximityY_raw
+KernelVersion:	3.4
+Contact:	linux-iio@vger.kernel.org
+Description:
+		Proximity measurement indicating that some
+		object is near the sensor, usually by observing
+		reflectivity of infrared or ultrasound emitted.
 
-> > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> > Tested-by: Heiko Stuebner <heiko@sntech.de>
-> > Tested-by: Adrian Larumbe <adrian.larumbe@collabora.com> # On Rock 5B
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> >  drivers/pmdomain/rockchip/pm-domains.c | 34 +++++++++++++++++---------
-> >  1 file changed, 22 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomain/=
-rockchip/pm-domains.c
-> > index a161ee13c633..8f440f2883db 100644
-> > --- a/drivers/pmdomain/rockchip/pm-domains.c
-> > +++ b/drivers/pmdomain/rockchip/pm-domains.c
-> > @@ -533,16 +533,17 @@ static int rockchip_pmu_domain_mem_reset(struct r=
-ockchip_pm_domain *pd)
-> >         return ret;
-> >  }
-> >
-> > -static void rockchip_do_pmu_set_power_domain(struct rockchip_pm_domain=
- *pd,
-> > -                                            bool on)
-> > +static int rockchip_do_pmu_set_power_domain(struct rockchip_pm_domain =
-*pd,
-> > +                                           bool on)
-> >  {
-> >         struct rockchip_pmu *pmu =3D pd->pmu;
-> >         struct generic_pm_domain *genpd =3D &pd->genpd;
-> >         u32 pd_pwr_offset =3D pd->info->pwr_offset;
-> >         bool is_on, is_mem_on =3D false;
-> > +       int ret;
-> >
-> >         if (pd->info->pwr_mask =3D=3D 0)
-> > -               return;
-> > +               return 0;
-> >
-> >         if (on && pd->info->mem_status_mask)
-> >                 is_mem_on =3D rockchip_pmu_domain_is_mem_on(pd);
-> > @@ -557,16 +558,21 @@ static void rockchip_do_pmu_set_power_domain(stru=
-ct rockchip_pm_domain *pd,
-> >
-> >         wmb();
-> >
-> > -       if (is_mem_on && rockchip_pmu_domain_mem_reset(pd))
-> > -               return;
-> > +       if (is_mem_on) {
-> > +               ret =3D rockchip_pmu_domain_mem_reset(pd);
-> > +               if (ret)
-> > +                       return ret;
-> > +       }
-> >
-> > -       if (readx_poll_timeout_atomic(rockchip_pmu_domain_is_on, pd, is=
-_on,
-> > -                                     is_on =3D=3D on, 0, 10000)) {
-> > -               dev_err(pmu->dev,
-> > -                       "failed to set domain '%s', val=3D%d\n",
-> > -                       genpd->name, is_on);
-> > -               return;
-> > +       ret =3D readx_poll_timeout_atomic(rockchip_pmu_domain_is_on, pd=
-, is_on,
-> > +                                       is_on =3D=3D on, 0, 10000);
-> > +       if (ret) {
-> > +               dev_err(pmu->dev, "failed to set domain '%s' %s, val=3D=
-%d\n",
-> > +                       genpd->name, on ? "on" : "off", is_on);
-> > +               return ret;
-> >         }
-> > +
-> > +       return 0;
-> >  }
-> >
-> >  static int rockchip_pd_power(struct rockchip_pm_domain *pd, bool power=
-_on)
-> > @@ -592,7 +598,11 @@ static int rockchip_pd_power(struct rockchip_pm_do=
-main *pd, bool power_on)
-> >                         rockchip_pmu_set_idle_request(pd, true);
-> >                 }
-> >
-> > -               rockchip_do_pmu_set_power_domain(pd, power_on);
-> > +               ret =3D rockchip_do_pmu_set_power_domain(pd, power_on);
-> > +               if (ret < 0) {
-> > +                       clk_bulk_disable(pd->num_clks, pd->clks);
-> > +                       return ret;
->=20
-> Looking at it, we shouldn't return directly from here because the
-> mutex never gets unlocked.
+		Often these sensors are unit less and as such conversion
+		to SI units is not possible. Higher proximity measurements
+		indicate closer objects, and vice versa. Units after
+		application of scale and offset are meters.
 
-Yes, we should do that after patch 2/7 from this series :)
+So it kind of says we can't relate them to real units, but then we provide
+a unit. Hmm, not our finest and clearest documentation.
 
-> Instead of repeating clk_bulk_disable and return ret for each failure,
-> we can initialize ret =3D 0, have a goto: out pointing to
-> clk_bulk_disable, and change return 0 to return ret at the end.
+Probably best bet is to follow precedence as even if we haven't tightly defined
+it that is what any userspace tuning these value will be using.
 
-Right now there is only a single clk_bulk_disable() in an error
-case, so I did not use the typical error goto chain. I suppose
-it makes a lot more sense with proper error handling for the calls
-to rockchip_pmu_set_idle_request().
+Given inverse square law and different characteristics of reflective surfaces
+I think it is normally a case of crank the gain up until the signal is good.
 
-Greetings,
+In most cases these proximity sensors aren't much more than fancy switches
+though can be used for approaching vs moving away detection.
 
--- Sebastian
+Anyhow, I haven't checked all the precedence in existing drivers but from
+memory scale is the standard choice.
 
->=20
-> What do you think?
->=20
-> Very Respectfully,
-> Peter Geis
->=20
-> [1] https://lore.kernel.org/linux-rockchip/20241210013010.81257-2-pgwipeo=
-ut@gmail.com/
->=20
-> > +               }
-> >
-> >                 if (power_on) {
-> >                         /* if powering up, leave idle mode */
-> > --
-> > 2.45.2
-> >
-> >
-> > _______________________________________________
-> > Linux-rockchip mailing list
-> > Linux-rockchip@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+Hardware gain as a writable control is just rarely used and only in devices where
+it doesn't affect what we are measuring. In proximity that means time of flight
+sensors, not ones based on reflected intensity.
 
---pgyuyhmom73rgyyw
-Content-Type: application/pgp-signature; name="signature.asc"
+Jonathan
 
------BEGIN PGP SIGNATURE-----
+> 
+> What should I do?
+> 
+> Best regards,
+> Mikael
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmdZ+fcACgkQ2O7X88g7
-+poitxAApbTTrpEjlB2v52/YhGg5DXkiutsrUhEmLjEn5X8QpxlCWLwT0NXPGdgi
-VbJKJtKTrJAHlE1ckkg3XApoJbqSHWqsjOtvc6m8D1GINUKOiK3sj8DUg6EK/dTy
-PVGXwigbmpjud6JcbRLSLarsdoCu4SAuuIr77Lvw/b8f29mpA5AeAEQBEgEdCGpX
-WBcNaYdmnSKy341CqQHISRteNiTwooY0s+22MaSfMErxyv1yfCYdzKBHq9p5wSi5
-Txq5w6oKZ5ASPzStI7jX/KK7Dl6eqi8I91bxbP+ddPHtVw+7LWzPmk3lu4/Zc8pq
-qiPHQ20psK4XeSfhFHGl0aElE8x3LD/CFydUa3VM1gkz8tofcgQgtfZ9p/in7TKj
-e7uc4I+KbJQx89Gz20ioAC3q92o179O6JqbomKoYyEcsXfSpzrDwZ2X4g3X+mvsM
-IRetDXYaakkfYfiRK8I36FjP/kiPRBaS3vlch1k+j8wgyVJmgV8bGrNejET/U0ls
-+hrz3lheTZoPw4caoqn7mGQy6iIcMfk6C26IgYWtGgmhgTJn5L/K/r6pJHXrevq6
-m9yKdkJcXbbH5lh5zVFQnbrcGTDI5v+oV5hNKcxpIAwZZF0mJAwb+HWgkn1uSuJu
-cBbLIBr5U2ZcT1DmSNDsYSCRufYW87NXv0l8wVVKAvgtc66TQrg=
-=FhZH
------END PGP SIGNATURE-----
-
---pgyuyhmom73rgyyw--
 
