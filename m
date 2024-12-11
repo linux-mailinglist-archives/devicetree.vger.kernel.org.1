@@ -1,243 +1,189 @@
-Return-Path: <devicetree+bounces-129939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 422479ED316
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:09:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB56F9ED310
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:08:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 115211881253
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:09:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C303A188213B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:08:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086941DDC11;
-	Wed, 11 Dec 2024 17:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 550B01DED4C;
+	Wed, 11 Dec 2024 17:08:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b="CJP0B6Tj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aMm4vFRc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1EE51D798E
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 17:09:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B8821DED40;
+	Wed, 11 Dec 2024 17:08:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733936952; cv=none; b=kaB9B5Rthnxhe1HDQnN/R1A3imIo2h8RXhubAYJF4b5siKtKm/XbCYDADXstaYTr3lrarBgx6t06kJpIaWhXFrfsZQyOKTmA8eZJig/qkV+FV7UTrK2oIH5UnPbmwg2hGsM+XmiYQ9kAH09o8VHyCwX6vjpVws9vErI0mUImHZo=
+	t=1733936885; cv=none; b=SiQGMTRHnJ6mUYK1VZk8d5Pc5RPFVt16d05N6xYPVgdlTBrtcctESPgpaNgTAtYaIfR77m9+bzMUh6QqAHaMrSC76n8qMv+0kmsGfkc0wwxRgae0SmRoMcxQEbFwdR/bvEDp5Z8yDS42uBSDEHbh2ZdSSwYXSik/yDw1Fs9rqpg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733936952; c=relaxed/simple;
-	bh=GGhzZ9HAZ0QpfYxa4daf8/33QdImYTVf8ZhCj9ss+TY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kFYrYG7D7/4BOEfzIuVQs0y99/e0+y+94MrOFYlc6k470Of1p6LYbkmf97ioiXXbqLbDYcN+Huwev32hdUuXZW/jHdtBF5LdPB85Ivt9MVTpZkJGZLw7z3YuUMUPpQihFFZorIYGbYtF0gWW6+fPpwZwka/aROqjhZD+Ij1qgzY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b=CJP0B6Tj; arc=none smtp.client-ip=185.136.65.226
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 20241211170900f7c1f649655c15aa3c
-        for <devicetree@vger.kernel.org>;
-        Wed, 11 Dec 2024 18:09:00 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
- d=siemens.com; i=alexander.sverdlin@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
- bh=di5l4sBKfkp070ErqCt0OmkbAhg9MJHULf+VQGpR0d8=;
- b=CJP0B6TjyQpRWSBLaaS4R3QWUPIeCVARl/8rkFx5wegBXKT7ibBNFWI3nfrfJTlOKSXIs6
- AbX2E0/IdwBW9zDVO4JT6wyqom2VF+eftRkKroi16QjC20I8cbgLOwoS6h+frG6710mG/u3E
- wi2R0MqnL7BuISZInUoI8F9xYe3DB4o5EoHLVHz1hslJXu4+ugI/lViWdMRDO0UIppU9z6Bi
- XGWOEHU17sveCdmmsL2n/zcc5wO+t39FNwdVwvFIbA7KrrRF2hi6Q3sqUhEdWFS28aXoCj01
- UI4PWi7AI1F1Uy6cFBCcn+Qkwqjl8s0pktpgokQIwKPARBQkqXsnICjQ==;
-From: "A. Sverdlin" <alexander.sverdlin@siemens.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-	Andrew Davis <afd@ti.com>,
-	devicetree@vger.kernel.org
-Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-leds@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: leds: Convert LP8860 into YAML format
-Date: Wed, 11 Dec 2024 18:07:29 +0100
-Message-ID: <20241211170734.2345887-1-alexander.sverdlin@siemens.com>
+	s=arc-20240116; t=1733936885; c=relaxed/simple;
+	bh=WurS4i/vhYhierKFv+fQ7duUGagXxLOTVVTuNS+f3Zg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V51TGTzHoXudLrdPRUXg/7VurkbudxMrjs492BaEa0gmWRuIyw9DZw2INtE9nwn6gMxDPDHvL0qZw++wxDYAwdl5repm3y47Ia36JQKgQ6qtHZaiIqLrrFo6Qb0uYW1KVip+Elrw4HarR0OpPY06J9du5YjI5FqlIywymibeCMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aMm4vFRc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98649C4CED4;
+	Wed, 11 Dec 2024 17:08:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733936884;
+	bh=WurS4i/vhYhierKFv+fQ7duUGagXxLOTVVTuNS+f3Zg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aMm4vFRcQrWLa64Jnnv8vMbznT5rJ6oRYP14InrnsLYxxFEd8DijAXDOvQJCdyff4
+	 4PFmCoL/UgZbOj7rxwbQT/ij4PtZFoNAxEpnkvDRK84mf+e0KO7KmBE9LaTPw8Nmye
+	 j0pLsAtsvb/z2I127QyTdNGnzEAxHhA8HREgjesLgz+Pxwox1rjIKzqAuriMTedo30
+	 9BENI1HujkH+QG5saPh+z2UR4BI8Qdy7qmL3vJWYJsRCGuSTOGafRc5Fn1SzbRczYc
+	 LgCYHDf9iv4AMpe+w5r2u5aMTxx9hus4oH0E6QfbQxTPWktcBvCYMxCC8yObI73L5n
+	 55EFEWZb14+jw==
+Date: Wed, 11 Dec 2024 18:07:57 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Sandy Huang <hjc@rock-chips.com>, 
+	Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, FUKAUMI Naoki <naoki@radxa.com>
+Subject: Re: [PATCH v2 3/5] drm/rockchip: vop2: Improve display modes
+ handling on RK3588 HDMI0
+Message-ID: <64vc5pkj44w3qxf5wkcxgghpwhvoagzemcsfqmi7fhsxt7vlqd@yfcgloi45ygh>
+References: <20241211-vop2-hdmi0-disp-modes-v2-0-471cf5001e45@collabora.com>
+ <20241211-vop2-hdmi0-disp-modes-v2-3-471cf5001e45@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-456497:519-21489:flowmailer
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="gljxsvjk34mjobss"
+Content-Disposition: inline
+In-Reply-To: <20241211-vop2-hdmi0-disp-modes-v2-3-471cf5001e45@collabora.com>
 
-From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
 
-Convert Texas Instruments' LP8860 LED driver bindings into YAML format.
+--gljxsvjk34mjobss
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 3/5] drm/rockchip: vop2: Improve display modes
+ handling on RK3588 HDMI0
+MIME-Version: 1.0
 
-Acked-by: Andrew Davis <afd@ti.com>
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
----
-Changelog:
-v2: patternProperties: ^led@[0]$ -> ^led(@[0-3])?$
+On Wed, Dec 11, 2024 at 12:15:07PM +0200, Cristian Ciocaltea wrote:
+> The RK3588 specific implementation is currently quite limited in terms
+> of handling the full range of display modes supported by the connected
+> screens, e.g. 2560x1440@75Hz, 2048x1152@60Hz, 1024x768@60Hz are just a
+> few of them.
+>=20
+> Additionally, it doesn't cope well with non-integer refresh rates like
+> 59.94, 29.97, 23.98, etc.
+>=20
+> Make use of HDMI0 PHY PLL as a more accurate DCLK source to handle
+> all display modes up to 4K@60Hz.
+>=20
+> Tested-by: FUKAUMI Naoki <naoki@radxa.com>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 34 ++++++++++++++++++++++=
+++++++
+>  1 file changed, 34 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/d=
+rm/rockchip/rockchip_drm_vop2.c
+> index 8b2f53ffefdbf1cc8737b3a86e630a03a7fd9348..393fe6aa170aaee9663c4a6d9=
+8c1cd6a5ef79392 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> @@ -158,6 +158,7 @@ struct vop2_video_port {
+>  	struct drm_crtc crtc;
+>  	struct vop2 *vop2;
+>  	struct clk *dclk;
+> +	struct clk *dclk_src;
+>  	unsigned int id;
+>  	const struct vop2_video_port_data *data;
+> =20
+> @@ -212,6 +213,7 @@ struct vop2 {
+>  	struct clk *hclk;
+>  	struct clk *aclk;
+>  	struct clk *pclk;
+> +	struct clk *pll_hdmiphy0;
+> =20
+>  	/* optional internal rgb encoder */
+>  	struct rockchip_rgb *rgb;
+> @@ -220,6 +222,8 @@ struct vop2 {
+>  	struct vop2_win win[];
+>  };
+> =20
+> +#define VOP2_MAX_DCLK_RATE		600000 /* kHz */
+> +
+>  #define vop2_output_if_is_hdmi(x)	((x) =3D=3D ROCKCHIP_VOP2_EP_HDMI0 || \
+>  					 (x) =3D=3D ROCKCHIP_VOP2_EP_HDMI1)
+> =20
+> @@ -1033,6 +1037,9 @@ static void vop2_crtc_atomic_disable(struct drm_crt=
+c *crtc,
+> =20
+>  	vop2_crtc_disable_irq(vp, VP_INT_DSP_HOLD_VALID);
+> =20
+> +	if (vp->dclk_src)
+> +		clk_set_parent(vp->dclk, vp->dclk_src);
+> +
+>  	clk_disable_unprepare(vp->dclk);
+> =20
+>  	vop2->enable_count--;
+> @@ -2049,6 +2056,27 @@ static void vop2_crtc_atomic_enable(struct drm_crt=
+c *crtc,
+> =20
+>  	vop2_vp_write(vp, RK3568_VP_MIPI_CTRL, 0);
+> =20
+> +	/*
+> +	 * Switch to HDMI PHY PLL as DCLK source for display modes up
+> +	 * to 4K@60Hz, if available, otherwise keep using the system CRU.
+> +	 */
+> +	if (vop2->pll_hdmiphy0 && mode->crtc_clock <=3D VOP2_MAX_DCLK_RATE) {
+> +		drm_for_each_encoder_mask(encoder, crtc->dev, crtc_state->encoder_mask=
+) {
+> +			struct rockchip_encoder *rkencoder =3D to_rockchip_encoder(encoder);
+> +
+> +			if (rkencoder->crtc_endpoint_id =3D=3D ROCKCHIP_VOP2_EP_HDMI0) {
+> +				if (!vp->dclk_src)
+> +					vp->dclk_src =3D clk_get_parent(vp->dclk);
+> +
+> +				ret =3D clk_set_parent(vp->dclk, vop2->pll_hdmiphy0);
+> +				if (ret < 0)
+> +					drm_warn(vop2->drm,
+> +						 "Could not switch to HDMI0 PHY PLL: %d\n", ret);
+> +				break;
+> +			}
+> +		}
+> +	}
+> +
 
- .../devicetree/bindings/leds/leds-lp8860.txt  | 50 ----------
- .../devicetree/bindings/leds/ti,lp8860.yaml   | 95 +++++++++++++++++++
- 2 files changed, 95 insertions(+), 50 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/leds/leds-lp8860.txt
- create mode 100644 Documentation/devicetree/bindings/leds/ti,lp8860.yaml
+It seems pretty fragile to do it at atomic_enable time, even more so
+since you don't lock the parent either.
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-lp8860.txt b/Documentation/devicetree/bindings/leds/leds-lp8860.txt
-deleted file mode 100644
-index 8bb25749a3da3..0000000000000
---- a/Documentation/devicetree/bindings/leds/leds-lp8860.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--* Texas Instruments - lp8860 4-Channel LED Driver
--
--The LP8860-Q1 is an high-efficiency LED
--driver with boost controller. It has 4 high-precision
--current sinks that can be controlled by a PWM input
--signal, a SPI/I2C master, or both.
--
--Required properties:
--	- compatible :
--		"ti,lp8860"
--	- reg : I2C slave address
--	- #address-cells : 1
--	- #size-cells : 0
--
--Optional properties:
--	- enable-gpios : gpio pin to enable (active high)/disable the device.
--	- vled-supply : LED supply
--
--Required child properties:
--	- reg : 0
--
--Optional child properties:
--	- function : see Documentation/devicetree/bindings/leds/common.txt
--	- color : see Documentation/devicetree/bindings/leds/common.txt
--	- label : see Documentation/devicetree/bindings/leds/common.txt (deprecated)
--	- linux,default-trigger :
--	   see Documentation/devicetree/bindings/leds/common.txt
--
--Example:
--
--#include <dt-bindings/leds/common.h>
--
--led-controller@2d {
--	compatible = "ti,lp8860";
--	#address-cells = <1>;
--	#size-cells = <0>;
--	reg = <0x2d>;
--	enable-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
--	vled-supply = <&vbatt>;
--
--	led@0 {
--		reg = <0>;
--		function = LED_FUNCTION_BACKLIGHT;
--		color = <LED_COLOR_ID_WHITE>;
--		linux,default-trigger = "backlight";
--	};
--}
--
--For more product information please see the link below:
--https://www.ti.com/product/lp8860-q1
-diff --git a/Documentation/devicetree/bindings/leds/ti,lp8860.yaml b/Documentation/devicetree/bindings/leds/ti,lp8860.yaml
-new file mode 100644
-index 0000000000000..98eef21604b86
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/ti,lp8860.yaml
-@@ -0,0 +1,95 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/ti,lp8860.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments - lp8860 4-Channel LED Driver
-+
-+maintainers:
-+  - Andrew Davis <afd@ti.com>
-+
-+description: |
-+  The LP8860-Q1 is an high-efficiency LED driver with boost controller.
-+  It has 4 high-precision current sinks that can be controlled by a PWM input
-+  signal, a SPI/I2C master, or both.
-+
-+  For more product information please see the link below:
-+    https://www.ti.com/product/lp8860-q1
-+
-+properties:
-+  compatible:
-+    const: ti,lp8860
-+
-+  reg:
-+    maxItems: 1
-+    description: I2C slave address
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  enable-gpios:
-+    maxItems: 1
-+    description: GPIO pin to enable (active high) / disable the device
-+
-+  vled-supply:
-+    description: LED supply
-+
-+patternProperties:
-+  "^led(@[0-3])?$":
-+    type: object
-+    $ref: common.yaml#
-+    unevaluatedProperties: false
-+
-+    properties:
-+      reg:
-+        description:
-+          Index of the LED.
-+        const: 0
-+
-+      function: true
-+      color: true
-+      label: true
-+      linux,default-trigger: true
-+
-+    required:
-+      - reg
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/leds/common.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        led-controller@2d {
-+            compatible = "ti,lp8860";
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            reg = <0x2d>;
-+            enable-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
-+            vled-supply = <&vbatt>;
-+
-+            led@0 {
-+                reg = <0>;
-+                function = LED_FUNCTION_BACKLIGHT;
-+                color = <LED_COLOR_ID_WHITE>;
-+                linux,default-trigger = "backlight";
-+            };
-+        };
-+    };
-+
-+...
--- 
-2.47.1
+Any reason not to do it in the DRM or clock driver probe, and make sure
+you never change the parent somehow?
 
+Maxime
+
+--gljxsvjk34mjobss
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ1nG7QAKCRAnX84Zoj2+
+dpdmAYCCcouiF/N2wsyzoJ03sS1P6+Vt3Goa72/Bp5LrI0BNyZANLkbqfClu1Jcb
+N3gpVKsBf2Fo7XESPECmzfBSnoFo1ZnN7OYvO+VaqOlfsdQFJ87erU462RtfsyrY
+62pq8Cr9hg==
+=5eEH
+-----END PGP SIGNATURE-----
+
+--gljxsvjk34mjobss--
 
