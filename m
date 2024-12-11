@@ -1,528 +1,252 @@
-Return-Path: <devicetree+bounces-130035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 947959EDAF9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 00:08:32 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96B1D9EDB02
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 00:11:46 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A7D62830B5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:08:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BB4418837D7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:11:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9EEC1F8665;
-	Wed, 11 Dec 2024 23:07:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C660B1F238B;
+	Wed, 11 Dec 2024 23:11:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vm5oXJd4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QOyoSWR6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74ED11F63DC;
-	Wed, 11 Dec 2024 23:07:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E48491EC4FF;
+	Wed, 11 Dec 2024 23:11:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733958434; cv=none; b=HKq5lXqzKvtBF+x5r/out+yGqrkuRg3ILaTNifz4MgkM9EHPqHfMQ9GuaVPBNi6UaIqT1UlenYOcPBivSt0BWvT/WyFSIXyrNR6ooSf0n7vmcIKH6ggOzsRzCjFF7xNm3QFnBRseLw/jniuGdBBfhaQJJ2GXyjwgSXo2afsPHMk=
+	t=1733958701; cv=none; b=TXG57ioNhPSbWl54X/wzmtsNuPEBdZTKUVUIOctqRoB++6N01+XFAM4TTNT6v6rFXVo17TSGm92bkLncCImjXhwwwHqbTARtt375upFZyA7lyc47B1IKia6SJ23j/111cm6tAoQ/YmHCRGND+58ux8EvMZCgApt6MJazZVW+pJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733958434; c=relaxed/simple;
-	bh=uyuuNqCUhTh6PsNFzf1gqV8796nQZKFFkD4/dxc71cI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=BrK7SZNqY1FsjB+1G7ido+D2miCGLISSP5T6565QC/BBSlf6DMmsqKEAnneop84Ize2kqbPLfO+ZX2ytaACA6tLqMrK49pYpUk9fTo3cIW66T/uWsnEYzwdoZJjnW4GittfHUG0lsjbAuvfgDq9MGawlbrV7a9cFd9JVat6o7t4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Vm5oXJd4; arc=none smtp.client-ip=209.85.218.49
+	s=arc-20240116; t=1733958701; c=relaxed/simple;
+	bh=8dYracxQcqXH7RO7AuMCREdDCK+nw64UWPDNSr72gKI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NwW+I/fR4M9LA5v1wXbiX4QjjwSI/9xkm/NmrxY/DTQt75EMG7gClTfbdDQVjs2V1mWPNlqkbU34sZhjZjdn8kuIlLBNzaAP2YjhUWGuzxBuyCoEwwUh6ca8MDPDMkFkMCgf+Uc75jkgs/1NleeqjJ7onl1U8iXSoAbGESwcZDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QOyoSWR6; arc=none smtp.client-ip=209.85.208.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aa659775dd5so63088766b.0;
-        Wed, 11 Dec 2024 15:07:12 -0800 (PST)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5d3d14336f0so9209411a12.3;
+        Wed, 11 Dec 2024 15:11:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733958431; x=1734563231; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1733958698; x=1734563498; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=W9+60i128BFsYVtDJnM1GnUpwBAGwJV3rhgLTU/dojM=;
-        b=Vm5oXJd4evafbut4oXHoxqj9hv/crrxsJ7hYX78YO/qnISjyk5sBHSSWa1k0dEnAuY
-         AHl4usR3eibStO+DucjNeHxt3hTVflQMZZn1Dh3mPueGh+vFjVWIDYUkHPVDliCB8HMQ
-         page/fY0hF6j+QrmX+qm3rU2IzOkyrYdQ6X2bANExqOr36X6eGOfGnELEEj1Pl33QZPD
-         +NG8fKJ+tsiwoqg/GLEz8MAIoPq6eQnqJLRsOU5MV3QwyR6VQAE+gh0MRDIUaxO12228
-         tyQ/9PC5NIM5clxCdU4n/UWpUzVvJzCg4eX26HLRuyLVqVvqW32vXpjUmiyezoxVDOMR
-         tdMQ==
+        bh=7DEsYbv+14YcD3cx8SHU+N63+rhoslsxxNsNwT6XSRs=;
+        b=QOyoSWR6nKUYLPQgIlONQ/PDjgn3+z4Fmx7CMyMOBo1XYhhdXmTR1lLkmF4BnfTWgm
+         U+lPQ9QNRcJL1nX/27+BtEQPAl7L66wK2nSmppk4Uo4iqrnD13+x9IHt6z1nBqqj4Ley
+         fk3Cg2YGAI3bQggkYuRjxfwiY2ub9mOomvzskCDVoWqmSrodtWVsvKJ+RPoafnpERMwD
+         Fw1kc/SQMXlVA9ao3jfpUdjpKg1/wNF7uQmouTXr1POuAVf6hnX0OqIB0VbAO8RZD0wg
+         UxzrnhWU3cy7Yf7gBjuONCJv/wja1XHiiVSB0X8wMZk/GNA7cVpDqUnxL/56/5GlKWSI
+         MVAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733958431; x=1734563231;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1733958698; x=1734563498;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=W9+60i128BFsYVtDJnM1GnUpwBAGwJV3rhgLTU/dojM=;
-        b=evEMQSFMSedhrSWn3pRI2OIYqOUkRbzMv9qOarUl0uuG06UhfdVprMSka/WPgfbeaA
-         5tpk5YGZU7kA6km4IdEnye/vJRCUcnuh0sVwe4RlwKnWAzhesIIpOTUz+wpz7nPrcUSs
-         7JRyiEuFefXIjCZHp72MyVs3OyL2sNEH5vHDQ/PJAC7P4khrSPICrbi97st4xwGYcCmK
-         wWl4Ib3mAxY5ZECEqektM/l/ob81MoIpER1F9JtyVbjT5lw2LqrLQzuRNoVokrH5BThW
-         r4zHnBxu1A2804G6waEsyVsak/bHj/fZ5cuP811xvUGHR3VL6lGiuQ9nxoGZQe3wq5g0
-         /Fcg==
-X-Forwarded-Encrypted: i=1; AJvYcCV7Yp/O5ZmlZ3nIGj1HcUasIRQjG5JWMhWqX+QUvxia0HthVU7z/YKsOTWZmkx4ILMcpk+ySfQWllk=@vger.kernel.org, AJvYcCXyjXQ1euBh+YF7smVPqoDl+ctKUNnIV+kV5JFvBiENtb+F+lHhPUgFwJ9ztvT5GeoQSpsYnC1UisYfXAxd@vger.kernel.org
-X-Gm-Message-State: AOJu0YybCYEV1MjH3rEGCvhJGVevYFRsC9TAaIwKiHnpO5h9qtYaltD/
-	Ape3u01eK+OcNMThPfBslkwQD1sVh9Z/wGxDB7rCkQD2umaLaSuC
-X-Gm-Gg: ASbGncugxLPk4Me1z97o5ryS9MEz7cY7ISZ+i4ScqJdCgNnGV0fcA+jWj0O1nfeTkGG
-	3dxN9u8RvLMhJ0tW1j2snvOEu38S2hJ/LaYdiVEvo9RbYiL/9XInXKgrOymp8XYfJVhv/oBK6zR
-	9J/5HDM2eX68nshd/dtaOkHFIFFCx9mckzO3uoweaEtrqqXiwSMF1PV6uWqwZpWzelu4DPIm3ex
-	aG4MufXgnBvxEFF2EMdzqv87U6dPJ6W+evzz3KZPsRdc1pmQLQWD16V2u+LeVsyemwvSI7WrD8F
-	MdKHpUE6I61aq08JCHYCZpGBnTqm8ixB
-X-Google-Smtp-Source: AGHT+IH26ufAE/q2GhMSKYt7No5Y8a0NsC7Ifnd7R3lxk8vY+x4VEq4yGXPLcsQ2J6FIxD5n1GKnAQ==
-X-Received: by 2002:a17:907:9710:b0:aa6:91ca:3674 with SMTP id a640c23a62f3a-aa6b1168062mr181001366b.4.1733958430498;
-        Wed, 11 Dec 2024 15:07:10 -0800 (PST)
-Received: from 34fd2088d136.v.cablecom.net (84-72-156-211.dclient.hispeed.ch. [84.72.156.211])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa655653d96sm747350366b.185.2024.12.11.15.07.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 15:07:10 -0800 (PST)
-From: Lothar Rubusch <l.rubusch@gmail.com>
-To: lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	jic23@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	eraretuya@gmail.com,
-	l.rubusch@gmail.com
-Subject: [PATCH v6 7/7] iio: accel: adxl345: add FIFO with watermark events
-Date: Wed, 11 Dec 2024 23:06:48 +0000
-Message-Id: <20241211230648.205806-8-l.rubusch@gmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241211230648.205806-1-l.rubusch@gmail.com>
-References: <20241211230648.205806-1-l.rubusch@gmail.com>
+        bh=7DEsYbv+14YcD3cx8SHU+N63+rhoslsxxNsNwT6XSRs=;
+        b=Bqym6w8cUS1B6nCogY5QByZon04Kwiu6WgSlXxoNdPehKKbTqXdIYnDaGefsHI37gD
+         KOzGyYsSIvuix9497g0OUtDuE3mX2YmcHUQx5z3S4dV7m/D6EpGoG39sxlqXeiLTLcsH
+         nz5s6RLag+1w4ii87GaOggD/1nlD7b3VFK0sNccSF3F1kZlVeRo7029Pa/w8/vONeDv4
+         6+UiZrmFKhF+cJSscWu1Bctd35Z6abUATnvj7UQSSKCXCF603sJqqsKisRRV+3xlc7Rz
+         cWmrYikKkgkYew7e0AWZVQuFqPAgBO1TV3zzO9f5hikgKC8irjfQQCjSIwmwoBmE7Q+0
+         Itwg==
+X-Forwarded-Encrypted: i=1; AJvYcCUDLzQZSFnDJS5snA2KRBigTYJXNKCBXb0KkpFIpQYW77GuIAM0yFzwf5QtqMO6HWEZM1fbH8NXf9Eh3ehe@vger.kernel.org, AJvYcCVarw30CdvvdsqFLHjsPXjWQ6vnIK8r8olBSR3yeVaoT9Ji8LEGodcsvyYOfzdmirjGeLnOeelteYNK@vger.kernel.org, AJvYcCVf9BWEUYP/8qTk1+Ptz0e9VA7W4T1eJkg+uU8igBtID1GKYDzJC9I9gmt8fWQpVoAAfgYMZa7uCiw=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGl5uoVrVd8S07gzuu9msWzdX+/SSvYQaxnRuCp5fwHszrdHPt
+	V/gvWKK/tyLqA/loys37Jsa6DM1SmsgXmm4LE7UFOVxIghrj00hSFO+3bKpybE71aU6piRfsBgn
+	6ePSElqNP0jys/3rC4qQSPDLXb0uC3I87
+X-Gm-Gg: ASbGncsCcgRxqhQc6asLli0bNYBGBQL5947gmEKx+cE2i+C6J5vSONxMdYbFBQ8Oidf
+	uPu+m0PBTQmQmVbpcWNU5HPSdqYyl/1mBmDFwR5U=
+X-Google-Smtp-Source: AGHT+IEYnXu22m40I+M5yIWPJ0DddwBgpRlRSQLnu5K7XsASm55CzvCUktO2mqurNfbV8WshyxJABShiYjVjYlW2C5o=
+X-Received: by 2002:a05:6402:2114:b0:5d0:d9e6:fea1 with SMTP id
+ 4fb4d7f45d1cf-5d4330d3799mr3651305a12.19.1733958697900; Wed, 11 Dec 2024
+ 15:11:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20241211143044.9550-1-sebastian.reichel@collabora.com>
+ <20241211143044.9550-4-sebastian.reichel@collabora.com> <CAMdYzYqLq=kSC8fiBapRS_8w0s8PaL9Yd46VgM56YbTEmUG1xA@mail.gmail.com>
+ <xe2wqm4ktutycxj7x4rskz4pn4cfmoci6zcgfxecmvc5bu7cqi@mqxi3pnehqq3>
+In-Reply-To: <xe2wqm4ktutycxj7x4rskz4pn4cfmoci6zcgfxecmvc5bu7cqi@mqxi3pnehqq3>
+From: Peter Geis <pgwipeout@gmail.com>
+Date: Wed, 11 Dec 2024 18:11:24 -0500
+Message-ID: <CAMdYzYpDXHtz_Fq5NJXqTdxVTcJcHkjcjU4-J=zwmE0BWmSsNw@mail.gmail.com>
+Subject: Re: [PATCH v5 3/7] pmdomain: rockchip: forward rockchip_do_pmu_set_power_domain
+ errors
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Mark Brown <broonie@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Elaine Zhang <zhangqing@rock-chips.com>, 
+	=?UTF-8?Q?Adri=C3=A1n_Mart=C3=ADnez_Larumbe?= <adrian.larumbe@collabora.com>, 
+	Boris Brezillon <boris.brezillon@collabora.com>, Chen-Yu Tsai <wens@csie.org>, 
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, kernel@collabora.com, 
+	Dragan Simic <dsimic@manjaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add a basic setup for FIFO with configurable watermark. Add a handler
-for watermark interrupt events and extend the channel for the
-scan_index needed for the iio channel. The sensor is configurable to use
-a FIFO_BYPASSED mode or a FIFO_STREAM mode. For the FIFO_STREAM mode now
-a watermark can be configured, or disabled by setting 0. Further features
-require a working FIFO setup.
+On Wed, Dec 11, 2024 at 3:46=E2=80=AFPM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> Hello Peter,
+>
+> On Wed, Dec 11, 2024 at 02:53:34PM -0500, Peter Geis wrote:
+> > On Wed, Dec 11, 2024 at 9:32=E2=80=AFAM Sebastian Reichel
+> > <sebastian.reichel@collabora.com> wrote:
+> > >
+> > > Currently rockchip_do_pmu_set_power_domain prints a warning if there
+> > > have been errors turning on the power domain, but it does not return
+> > > any errors and rockchip_pd_power() tries to continue setting up the
+> > > QOS registers. This usually results in accessing unpowered registers,
+> > > which triggers an SError and a full system hang.
+> > >
+> > > This improves the error handling by forwarding the error to avoid
+> > > kernel panics.
+> >
+> > I think we should merge your patch here with my patch for returning
+> > errors from rockchip_pmu_set_idle_request [1].
+>
+> I will have a look.
+>
+> > > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> > > Tested-by: Heiko Stuebner <heiko@sntech.de>
+> > > Tested-by: Adrian Larumbe <adrian.larumbe@collabora.com> # On Rock 5B
+> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > > ---
+> > >  drivers/pmdomain/rockchip/pm-domains.c | 34 +++++++++++++++++-------=
+--
+> > >  1 file changed, 22 insertions(+), 12 deletions(-)
+> > >
+> > > diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomai=
+n/rockchip/pm-domains.c
+> > > index a161ee13c633..8f440f2883db 100644
+> > > --- a/drivers/pmdomain/rockchip/pm-domains.c
+> > > +++ b/drivers/pmdomain/rockchip/pm-domains.c
+> > > @@ -533,16 +533,17 @@ static int rockchip_pmu_domain_mem_reset(struct=
+ rockchip_pm_domain *pd)
+> > >         return ret;
+> > >  }
+> > >
+> > > -static void rockchip_do_pmu_set_power_domain(struct rockchip_pm_doma=
+in *pd,
+> > > -                                            bool on)
+> > > +static int rockchip_do_pmu_set_power_domain(struct rockchip_pm_domai=
+n *pd,
+> > > +                                           bool on)
+> > >  {
+> > >         struct rockchip_pmu *pmu =3D pd->pmu;
+> > >         struct generic_pm_domain *genpd =3D &pd->genpd;
+> > >         u32 pd_pwr_offset =3D pd->info->pwr_offset;
+> > >         bool is_on, is_mem_on =3D false;
+> > > +       int ret;
+> > >
+> > >         if (pd->info->pwr_mask =3D=3D 0)
+> > > -               return;
+> > > +               return 0;
+> > >
+> > >         if (on && pd->info->mem_status_mask)
+> > >                 is_mem_on =3D rockchip_pmu_domain_is_mem_on(pd);
+> > > @@ -557,16 +558,21 @@ static void rockchip_do_pmu_set_power_domain(st=
+ruct rockchip_pm_domain *pd,
+> > >
+> > >         wmb();
+> > >
+> > > -       if (is_mem_on && rockchip_pmu_domain_mem_reset(pd))
+> > > -               return;
+> > > +       if (is_mem_on) {
+> > > +               ret =3D rockchip_pmu_domain_mem_reset(pd);
+> > > +               if (ret)
+> > > +                       return ret;
+> > > +       }
+> > >
+> > > -       if (readx_poll_timeout_atomic(rockchip_pmu_domain_is_on, pd, =
+is_on,
+> > > -                                     is_on =3D=3D on, 0, 10000)) {
+> > > -               dev_err(pmu->dev,
+> > > -                       "failed to set domain '%s', val=3D%d\n",
+> > > -                       genpd->name, is_on);
+> > > -               return;
+> > > +       ret =3D readx_poll_timeout_atomic(rockchip_pmu_domain_is_on, =
+pd, is_on,
+> > > +                                       is_on =3D=3D on, 0, 10000);
+> > > +       if (ret) {
+> > > +               dev_err(pmu->dev, "failed to set domain '%s' %s, val=
+=3D%d\n",
+> > > +                       genpd->name, on ? "on" : "off", is_on);
+> > > +               return ret;
+> > >         }
+> > > +
+> > > +       return 0;
+> > >  }
+> > >
+> > >  static int rockchip_pd_power(struct rockchip_pm_domain *pd, bool pow=
+er_on)
+> > > @@ -592,7 +598,11 @@ static int rockchip_pd_power(struct rockchip_pm_=
+domain *pd, bool power_on)
+> > >                         rockchip_pmu_set_idle_request(pd, true);
+> > >                 }
+> > >
+> > > -               rockchip_do_pmu_set_power_domain(pd, power_on);
+> > > +               ret =3D rockchip_do_pmu_set_power_domain(pd, power_on=
+);
+> > > +               if (ret < 0) {
+> > > +                       clk_bulk_disable(pd->num_clks, pd->clks);
+> > > +                       return ret;
+> >
+> > Looking at it, we shouldn't return directly from here because the
+> > mutex never gets unlocked.
+>
+> Yes, we should do that after patch 2/7 from this series :)
 
-Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
----
- drivers/iio/accel/adxl345.h      |   2 +
- drivers/iio/accel/adxl345_core.c | 314 ++++++++++++++++++++++++++++++-
- 2 files changed, 311 insertions(+), 5 deletions(-)
+That's excellent!
 
-diff --git a/drivers/iio/accel/adxl345.h b/drivers/iio/accel/adxl345.h
-index 3c2e12452..1faad1c8c 100644
---- a/drivers/iio/accel/adxl345.h
-+++ b/drivers/iio/accel/adxl345.h
-@@ -43,6 +43,7 @@
- #define ADXL345_REG_INT_ENABLE		0x2E
- #define ADXL345_REG_INT_MAP		0x2F
- #define ADXL345_REG_INT_SOURCE		0x30
-+#define ADXL345_REG_INT_SOURCE_MSK	0xFF
- #define ADXL345_REG_DATA_FORMAT		0x31
- #define ADXL345_REG_XYZ_BASE		0x32
- #define ADXL345_REG_DATA_AXIS(index)				\
-@@ -50,6 +51,7 @@
- 
- #define ADXL345_REG_FIFO_CTL		0x38
- #define ADXL345_REG_FIFO_STATUS		0x39
-+#define ADXL345_REG_FIFO_STATUS_MSK	0x3F
- 
- #define ADXL345_DEVID			0xE5
- 
-diff --git a/drivers/iio/accel/adxl345_core.c b/drivers/iio/accel/adxl345_core.c
-index fc4f89f22..f429b8f56 100644
---- a/drivers/iio/accel/adxl345_core.c
-+++ b/drivers/iio/accel/adxl345_core.c
-@@ -15,9 +15,17 @@
- 
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/kfifo_buf.h>
- 
- #include "adxl345.h"
- 
-+#define ADXL345_FIFO_BYPASS	0
-+#define ADXL345_FIFO_FIFO	1
-+#define ADXL345_FIFO_STREAM	2
-+
-+#define ADXL345_DIRS 3
-+
- #define ADXL345_INT_NONE		0xff
- #define ADXL345_INT1			0
- #define ADXL345_INT2			1
-@@ -26,27 +34,68 @@ struct adxl345_state {
- 	int irq;
- 	const struct adxl345_chip_info *info;
- 	struct regmap *regmap;
-+	__le16 fifo_buf[ADXL345_DIRS * ADXL345_FIFO_SIZE];
- 	bool fifo_delay; /* delay: delay is needed for SPI */
- 	u8 intio;
-+	u8 int_map;
-+	u8 watermark;
-+	u8 fifo_mode;
- };
- 
--#define ADXL345_CHANNEL(index, axis) {					\
-+#define ADXL345_CHANNEL(index, reg, axis) {					\
- 	.type = IIO_ACCEL,						\
- 	.modified = 1,							\
- 	.channel2 = IIO_MOD_##axis,					\
--	.address = index,						\
-+	.address = (reg),						\
- 	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
- 		BIT(IIO_CHAN_INFO_CALIBBIAS),				\
- 	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |		\
- 		BIT(IIO_CHAN_INFO_SAMP_FREQ),				\
-+	.scan_index = (index),				\
-+	.scan_type = {					\
-+		.sign = 's',				\
-+		.realbits = 13,				\
-+		.storagebits = 16,			\
-+		.endianness = IIO_LE,			\
-+	},						\
- }
- 
-+enum adxl345_chans {
-+	chan_x, chan_y, chan_z,
-+};
-+
- static const struct iio_chan_spec adxl345_channels[] = {
--	ADXL345_CHANNEL(0, X),
--	ADXL345_CHANNEL(1, Y),
--	ADXL345_CHANNEL(2, Z),
-+	ADXL345_CHANNEL(0, chan_x, X),
-+	ADXL345_CHANNEL(1, chan_y, Y),
-+	ADXL345_CHANNEL(2, chan_z, Z),
- };
- 
-+static const unsigned long adxl345_scan_masks[] = {
-+	BIT(chan_x) | BIT(chan_y) | BIT(chan_z),
-+	0,
-+};
-+
-+static int adxl345_set_interrupts(struct adxl345_state *st)
-+{
-+	int ret;
-+	unsigned int int_enable = st->int_map;
-+	unsigned int int_map;
-+
-+	/*
-+	 * Any bits set to 0 in the INT map register send their respective
-+	 * interrupts to the INT1 pin, whereas bits set to 1 send their respective
-+	 * interrupts to the INT2 pin. The intio shall convert this accordingly.
-+	 */
-+	int_map = FIELD_GET(ADXL345_REG_INT_SOURCE_MSK,
-+			st->intio ? st->int_map : ~st->int_map);
-+
-+	ret = regmap_write(st->regmap, ADXL345_REG_INT_MAP, int_map);
-+	if (ret)
-+		return ret;
-+
-+	return regmap_write(st->regmap, ADXL345_REG_INT_ENABLE, int_enable);
-+}
-+
- static int adxl345_read_raw(struct iio_dev *indio_dev,
- 			    struct iio_chan_spec const *chan,
- 			    int *val, int *val2, long mask)
-@@ -132,6 +181,31 @@ static int adxl345_write_raw(struct iio_dev *indio_dev,
- 	return -EINVAL;
- }
- 
-+static int adxl345_set_watermark(struct iio_dev *indio_dev, unsigned int value)
-+{
-+	struct adxl345_state *st = iio_priv(indio_dev);
-+	unsigned int fifo_mask = 0x1F;
-+	int ret;
-+
-+	if (value == 0) {
-+		st->int_map &= ~ADXL345_INT_WATERMARK;
-+		return 0;
-+	}
-+
-+	if (value > ADXL345_FIFO_SIZE)
-+		value = ADXL345_FIFO_SIZE;
-+
-+	ret = regmap_update_bits(st->regmap, ADXL345_REG_FIFO_CTL,
-+				 fifo_mask, value);
-+	if (ret)
-+		return ret;
-+
-+	st->watermark = value;
-+	st->int_map |= ADXL345_INT_WATERMARK;
-+
-+	return 0;
-+}
-+
- static int adxl345_write_raw_get_fmt(struct iio_dev *indio_dev,
- 				     struct iio_chan_spec const *chan,
- 				     long mask)
-@@ -187,11 +261,220 @@ static const struct attribute_group adxl345_attrs_group = {
- 	.attrs = adxl345_attrs,
- };
- 
-+static int adxl345_set_fifo(struct adxl345_state *st)
-+{
-+	u8 fifo_ctl;
-+	int ret;
-+
-+	/* FIFO should only be configured while in standby mode */
-+	ret = adxl345_set_measure_en(st, false);
-+	if (ret < 0)
-+		return ret;
-+
-+	fifo_ctl = ADXL345_FIFO_CTL_SAMPLES(st->watermark) |
-+		ADXL345_FIFO_CTL_TRIGGER(st->intio) |
-+		ADXL345_FIFO_CTL_MODE(st->fifo_mode);
-+
-+	ret = regmap_write(st->regmap, ADXL345_REG_FIFO_CTL, fifo_ctl);
-+	if (ret < 0)
-+		return ret;
-+
-+	return adxl345_set_measure_en(st, true);
-+}
-+
-+/**
-+ * adxl345_get_samples() - Read number of FIFO entries.
-+ * @st: The initialized state instance of this driver.
-+ *
-+ * The sensor does not support treating any axis individually, or exclude them
-+ * from measuring.
-+ *
-+ * Return: negative error, or value.
-+ */
-+static int adxl345_get_samples(struct adxl345_state *st)
-+{
-+	unsigned int regval = 0;
-+	int ret;
-+
-+	ret = regmap_read(st->regmap, ADXL345_REG_FIFO_STATUS, &regval);
-+	if (ret < 0)
-+		return ret;
-+
-+	return FIELD_GET(ADXL345_REG_FIFO_STATUS_MSK, regval);
-+}
-+
-+/**
-+ * adxl345_fifo_transfer() - Read samples number of elements.
-+ * @st: The instance of the state object of this sensor.
-+ * @samples: The number of lines in the FIFO referred to as fifo_entry.
-+ *
-+ * It is recommended that a multiple-byte read of all registers be performed to
-+ * prevent a change in data between reads of sequential registers. That is to
-+ * read out the data registers X0, X1, Y0, Y1, Z0, Z1, i.e. 6 bytes at once.
-+ *
-+ * Return: 0 or error value.
-+ */
-+static int adxl345_fifo_transfer(struct adxl345_state *st, int samples)
-+{
-+	size_t count;
-+	int i, ret = 0;
-+
-+	/* count is the 3x the fifo_buf element size, hence 6B */
-+	count = sizeof(st->fifo_buf[0]) * ADXL345_DIRS;
-+	for (i = 0; i < samples; i++) {
-+		/* read 3x 2 byte elements from base address into next fifo_buf position */
-+		ret = regmap_bulk_read(st->regmap, ADXL345_REG_XYZ_BASE,
-+				st->fifo_buf + (i * count / 2), count);
-+		if (ret < 0)
-+			return ret;
-+
-+		/*
-+		 * To ensure that the FIFO has completely popped, there must be at least 5
-+		 * us between the end of reading the data registers, signified by the
-+		 * transition to register 0x38 from 0x37 or the CS pin going high, and the
-+		 * start of new reads of the FIFO or reading the FIFO_STATUS register. For
-+		 * SPI operation at 1.5 MHz or lower, the register addressing portion of the
-+		 * transmission is sufficient delay to ensure the FIFO has completely
-+		 * popped. It is necessary for SPI operation greater than 1.5 MHz to
-+		 * de-assert the CS pin to ensure a total of 5 us, which is at most 3.4 us
-+		 * at 5 MHz operation.
-+		 */
-+		if (st->fifo_delay && (samples > 1))
-+			udelay(3);
-+	}
-+	return ret;
-+}
-+
-+/**
-+ * adxl345_fifo_reset() - Empty the FIFO in error condition.
-+ * @st: The instance to the state object of the sensor.
-+ *
-+ * Read all elements of the FIFO. Reading the interrupt source register
-+ * resets the sensor.
-+ */
-+static void adxl345_fifo_reset(struct adxl345_state *st)
-+{
-+	int regval;
-+	int samples;
-+
-+	adxl345_set_measure_en(st, false);
-+
-+	samples = adxl345_get_samples(st);
-+	if (samples > 0)
-+		adxl345_fifo_transfer(st, samples);
-+
-+	regmap_read(st->regmap, ADXL345_REG_INT_SOURCE, &regval);
-+
-+	adxl345_set_measure_en(st, true);
-+}
-+
-+static int adxl345_buffer_postenable(struct iio_dev *indio_dev)
-+{
-+	struct adxl345_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	ret = adxl345_set_interrupts(st);
-+	if (ret < 0)
-+		return ret;
-+
-+	st->fifo_mode = ADXL345_FIFO_STREAM;
-+	return adxl345_set_fifo(st);
-+}
-+
-+static int adxl345_buffer_predisable(struct iio_dev *indio_dev)
-+{
-+	struct adxl345_state *st = iio_priv(indio_dev);
-+	int ret;
-+
-+	st->fifo_mode = ADXL345_FIFO_BYPASS;
-+	ret = adxl345_set_fifo(st);
-+	if (ret < 0)
-+		return ret;
-+
-+	st->int_map = 0x00;
-+	return adxl345_set_interrupts(st);
-+}
-+
-+static const struct iio_buffer_setup_ops adxl345_buffer_ops = {
-+	.postenable = adxl345_buffer_postenable,
-+	.predisable = adxl345_buffer_predisable,
-+};
-+
-+static int adxl345_get_status(struct adxl345_state *st)
-+{
-+	int ret;
-+	unsigned int regval;
-+
-+	ret = regmap_read(st->regmap, ADXL345_REG_INT_SOURCE, &regval);
-+	if (ret < 0)
-+		return ret;
-+
-+	return FIELD_GET(ADXL345_REG_INT_SOURCE_MSK, regval);
-+}
-+
-+static int adxl345_fifo_push(struct iio_dev *indio_dev,
-+				  int samples)
-+{
-+	struct adxl345_state *st = iio_priv(indio_dev);
-+	int i, ret;
-+
-+	if (samples <= 0)
-+		return -EINVAL;
-+
-+	ret = adxl345_fifo_transfer(st, samples);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < ADXL345_DIRS * samples; i += ADXL345_DIRS)
-+		iio_push_to_buffers(indio_dev, &st->fifo_buf[i]);
-+
-+	return 0;
-+}
-+
-+/**
-+ * adxl345_irq_handler() - Handle irqs of the ADXL345.
-+ * @irq: The irq being handled.
-+ * @p: The struct iio_device pointer for the device.
-+ *
-+ * Return: The interrupt was handled.
-+ */
-+static irqreturn_t adxl345_irq_handler(int irq, void *p)
-+{
-+	struct iio_dev *indio_dev = p;
-+	struct adxl345_state *st = iio_priv(indio_dev);
-+	int int_stat;
-+	int samples;
-+
-+	int_stat = adxl345_get_status(st);
-+	if (int_stat <= 0)
-+		return IRQ_NONE;
-+
-+	if (int_stat & ADXL345_INT_OVERRUN)
-+		goto err;
-+
-+	if (int_stat & ADXL345_INT_WATERMARK) {
-+		samples = adxl345_get_samples(st);
-+		if (samples < 0)
-+			goto err;
-+
-+		if (adxl345_fifo_push(indio_dev, samples) < 0)
-+			goto err;
-+
-+	}
-+	return IRQ_HANDLED;
-+
-+err:
-+	adxl345_fifo_reset(st);
-+
-+	return IRQ_HANDLED;
-+}
-+
- static const struct iio_info adxl345_info = {
- 	.attrs		= &adxl345_attrs_group,
- 	.read_raw	= adxl345_read_raw,
- 	.write_raw	= adxl345_write_raw,
- 	.write_raw_get_fmt	= adxl345_write_raw_get_fmt,
-+	.hwfifo_set_watermark = adxl345_set_watermark,
- };
- 
- /**
-@@ -222,6 +505,7 @@ int adxl345_core_probe(struct device *dev, struct regmap *regmap,
- 					 ADXL345_DATA_FORMAT_JUSTIFY |
- 					 ADXL345_DATA_FORMAT_FULL_RES |
- 					 ADXL345_DATA_FORMAT_SELF_TEST);
-+	u8 fifo_ctl;
- 	int ret;
- 
- 	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-@@ -242,6 +526,7 @@ int adxl345_core_probe(struct device *dev, struct regmap *regmap,
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 	indio_dev->channels = adxl345_channels;
- 	indio_dev->num_channels = ARRAY_SIZE(adxl345_channels);
-+	indio_dev->available_scan_masks = adxl345_scan_masks;
- 
- 	if (setup) {
- 		/* Perform optional initial bus specific configuration */
-@@ -292,6 +577,25 @@ int adxl345_core_probe(struct device *dev, struct regmap *regmap,
- 			st->intio = ADXL345_INT_NONE;
- 	}
- 
-+	if (st->intio != ADXL345_INT_NONE) {
-+		/* FIFO_STREAM mode is going to be activated later */
-+		ret = devm_iio_kfifo_buffer_setup(dev, indio_dev, &adxl345_buffer_ops);
-+		if (ret)
-+			return ret;
-+
-+		ret = devm_request_threaded_irq(dev, st->irq, NULL, &adxl345_irq_handler,
-+				IRQF_SHARED | IRQF_ONESHOT,
-+				indio_dev->name, indio_dev);
-+		if (ret)
-+			return ret;
-+	} else {
-+		/* FIFO_BYPASS mode */
-+		fifo_ctl = ADXL345_FIFO_CTL_MODE(ADXL345_FIFO_BYPASS);
-+		ret = regmap_write(st->regmap, ADXL345_REG_FIFO_CTL, fifo_ctl);
-+		if (ret < 0)
-+			return ret;
-+	}
-+
- 	return devm_iio_device_register(dev, indio_dev);
- }
- EXPORT_SYMBOL_NS_GPL(adxl345_core_probe, IIO_ADXL345);
--- 
-2.39.5
+>
+> > Instead of repeating clk_bulk_disable and return ret for each failure,
+> > we can initialize ret =3D 0, have a goto: out pointing to
+> > clk_bulk_disable, and change return 0 to return ret at the end.
+>
+> Right now there is only a single clk_bulk_disable() in an error
+> case, so I did not use the typical error goto chain. I suppose
+> it makes a lot more sense with proper error handling for the calls
+> to rockchip_pmu_set_idle_request().
 
+If you'd like, I can base my v2 on this patch series with the changes
+I'm suggesting?
+
+>
+> Greetings,
+>
+> -- Sebastian
+>
+> >
+> > What do you think?
+> >
+> > Very Respectfully,
+> > Peter Geis
+> >
+> > [1] https://lore.kernel.org/linux-rockchip/20241210013010.81257-2-pgwip=
+eout@gmail.com/
+> >
+> > > +               }
+> > >
+> > >                 if (power_on) {
+> > >                         /* if powering up, leave idle mode */
+> > > --
+> > > 2.45.2
+> > >
+> > >
+> > > _______________________________________________
+> > > Linux-rockchip mailing list
+> > > Linux-rockchip@lists.infradead.org
+> > > http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
