@@ -1,106 +1,85 @@
-Return-Path: <devicetree+bounces-129726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9079ECA85
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:44:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33BBF9ECA8C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:46:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBE472870A1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 10:44:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A09A928611F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 10:46:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3621A239BA6;
-	Wed, 11 Dec 2024 10:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E07E41EE7A5;
+	Wed, 11 Dec 2024 10:45:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="GPXVlF94"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="dXF9uNRq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A985239BA0;
-	Wed, 11 Dec 2024 10:44:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96691EC4EA;
+	Wed, 11 Dec 2024 10:45:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733913857; cv=none; b=Yl9l8B24egftSnpY3fkkDvYCqMg+efu+Jj9BFOlryts3VGwKjc6orD5isvqsUvoft5SIVYrsx8fnNa222RcDg9K5mofDtWP3/rEysviJ97XzqD1IE1/sBjvzhRgKMNbG94QNo2+AxTHnguN0biNmOnYVvG4VgvWrlcEfeGWeU04=
+	t=1733913957; cv=none; b=ap8Al+KjELWoqKAEHUHmD+l92SDAUx612VDMOvqZwUnDcZkg283ixOhKQmCeZFdFdjKwVp1XQKKuJJkaauGTEsLDlzVEA7qApZEd3oGikTAWm3QwtR5B1pKC2qtUYDJBQjpLPm5JXVWCmai+OY7GsuN4TMjSbQWZB0qX7G9lnh0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733913857; c=relaxed/simple;
-	bh=u3hWEDf3jNATqhRTwv5ZXzI4pW2CBusFMxBkF3C/zMY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hxDtAMIuOTparj8RQ1jd5jcFTKWBERpodLZ1+7eJvRVIbUPrc6wfxMlWPmrXJZu9XwcuUevB4wYcnNWStZrq8DrKPM69XpHL7KsLfMIMRBdkt4BE7SIaTmvkHHbqHJfSvHM4y591pRq2KNSGNjiv+rjpZ/q4RfAY7xLS/b5uf00=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=GPXVlF94; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=EV0DzN/aRpIaOzSPvYfCHGoC2ttPbO09aHLQyIdly64=; b=GPXVlF94a82JRfXo0MuftR38+o
-	EPuKL7i9Bbdnlhjixyj/tPflX+n7eqReFh5PEE3ff4jbMdHlhRqNRovWS13UH3kY/aqf80tj5sCv4
-	FkUaHkdorBrYAWxiVC2uLb1m50H/TloWhkQffIkRc0kAoAD4E4vv1tz5xBU6e5fCnlRZ4UM3SFM67
-	wVJ9yp5ioiYBDStUdfNR41mtofEe27i+4qfV7uyEP5tR3JgWNl/VKTAa7nLLxR4xanoMIkvqibB0J
-	wI4uYmjgn/93sKeen5ecCOF/05jNdGISz0yYyTrljgIlO/k14nMlVGlgerWbUTAZLAOvjvVqnfg90
-	on7vqbcw==;
-Received: from i53875bc4.versanet.de ([83.135.91.196] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tLKC8-0001Vg-Hx; Wed, 11 Dec 2024 11:43:52 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Alexandre ARNOUD <aarnoud@me.com>,
-	kernel@collabora.com,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1733913957; c=relaxed/simple;
+	bh=FSJoGJA16IrMFlzP3UXcblADMuQGyd2uOHDdOrXfzug=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PTw0VM6hp1WSF5sX6LD0D4f+Hk5F9JtlN/PnIC/MhZPfXltsWwCYL7xJvs0chNn0P+FYoN9ilP+SQdJKY0q5g/Np0eBUezzKoaGji9BtxFC7ON5u8VJTbN/Be0iCO/g6vbNX/7wTaiWVR/jMPLAi44EvHeEeyGF64jky5WtN0p4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=dXF9uNRq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0CEEC4CED2;
+	Wed, 11 Dec 2024 10:45:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1733913957;
+	bh=FSJoGJA16IrMFlzP3UXcblADMuQGyd2uOHDdOrXfzug=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dXF9uNRqFX8Om3BkOdwkpt8ayUyJpKaZBIB6JNk/sK9eziaCzQrG+arR4dCR8oNcC
+	 hFfzrxUgdJfqUGGTdO8iDbjZlzQ8UtNPTiVY+AuFiTfHDqGujTZYMEDkdOB1cCDGw1
+	 aI4g9uoYzoZFKIkE4q97Tx/KzYhjmfGtN8EoNdK4=
+Date: Wed, 11 Dec 2024 11:45:20 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: rafael@kernel.org, bhelgaas@google.com, ojeda@kernel.org,
+	alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
+	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, rust-for-linux@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 0/4] Add support for HDMI1 output on RK3588 SoC
-Date: Wed, 11 Dec 2024 11:43:42 +0100
-Message-ID: <173391381115.2426313.13144345816370660962.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241211-rk3588-hdmi1-v2-0-02cdca22ff68@collabora.com>
-References: <20241211-rk3588-hdmi1-v2-0-02cdca22ff68@collabora.com>
+Subject: Re: [PATCH v5 01/16] rust: pass module name to `Module::init`
+Message-ID: <2024121112-gala-skincare-c85e@gregkh>
+References: <20241210224947.23804-1-dakr@kernel.org>
+ <20241210224947.23804-2-dakr@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241210224947.23804-2-dakr@kernel.org>
 
+On Tue, Dec 10, 2024 at 11:46:28PM +0100, Danilo Krummrich wrote:
+> In a subsequent patch we introduce the `Registration` abstraction used
+> to register driver structures. Some subsystems require the module name on
+> driver registration (e.g. PCI in __pci_register_driver()), hence pass
+> the module name to `Module::init`.
 
-On Wed, 11 Dec 2024 01:06:13 +0200, Cristian Ciocaltea wrote:
-> The patches provide the basic support to handle the second HDMI output
-> port found on Rockchip RK3588 SoC.
-> 
-> For now I enabled it on Radxa ROCK 5B only, the board I've been using to
-> validate this.
-> 
-> ** IMPORTANT **
-> 
-> [...]
+Nit, we don't need the NAME of the PCI driver (well, we do like it, but
+that's not the real thing), we want the pointer to the module structure
+in the register_driver call.
 
-Applied, thanks!
+Does this provide for that?  I'm thinking it does, but it's not the
+"name" that is the issue here.
 
-[1/4] drm/rockchip: dw_hdmi_qp: Add support for RK3588 HDMI1 output
-      commit: 0f818db20c77506ddd870761785740f8230a4207
+thanks,
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+greg k-h
 
