@@ -1,340 +1,145 @@
-Return-Path: <devicetree+bounces-130027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F6A49EDAD0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 00:04:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B6D9EDAE4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 00:07:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8864283736
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:04:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 220D4283352
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:07:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E911F2376;
-	Wed, 11 Dec 2024 23:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC431F2383;
+	Wed, 11 Dec 2024 23:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G+FZIPPj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZMFknNZe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18FF61EC01B
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 23:04:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE9F8632B;
+	Wed, 11 Dec 2024 23:07:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733958253; cv=none; b=iIqtRe+3V55aw+/Hq+/FhHJT/C3EWAtJIXeavQyzTVPBpM6e+TyVzwV2gsNwWk/LhG0VaBn7d8P9NbnYUXZd0nx0vYzK/rXy3twybu+0K+kLmPrjh7kDAueaEhhrbeb97fIpUAeMaNoaj60PgqO/74kg6vYv5Y9cxHRefBUnxEE=
+	t=1733958422; cv=none; b=gFCR4QKFW9pBKQdB0Rn3g+QsjCTZp19ETvyfWTmvcqLoEgR/rOjQFrkU2KqmuB1dKyk+7AznaWyGUwpS8kZdPtwsYibcDomBhTUnNB7RrYx5y2Pe/tfdmf5tWkdRaZJDd4/KClVpCdNKDnGYoDfHDPJInX0Nz1dyIeZ6uCVNo30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733958253; c=relaxed/simple;
-	bh=lHZ50fRN68M/L9LdirMs0A7G8lwQh+oMMom8ZL+Lh9k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TzxgZ1TbTwWrAgGFw8VFE6CtWr0ggYWJGvOLrzwAZH4eTQpEzkmjXSmq7AO2D9WXzMB4walouGrG79ca9FQTLoH1f1kN3cuMjRC691UpEkYqaLXBAM+7k1yALuLu1nLoU8Z5+qHn/ONcXPpIgaqgM9oousWwgRZBwDhckaRLvTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G+FZIPPj; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5401ab97206so3802720e87.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 15:04:10 -0800 (PST)
+	s=arc-20240116; t=1733958422; c=relaxed/simple;
+	bh=N440mI4lPh9FV0sYkQNMGHfegipJE5wkdCagZRePdZk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=fD03GYc4rOH6MPCimfySVDviYbkMBYp+hnwiX+MuYw04B+7eFSlOAgVAkal1nhqjq1qW750B//TAeMIUPL+rqwtSy3aVyjSVjhrdFNcskH0KOIPW2jP+yTGb+EmbDESpmnSEh6iCNYlywpGY7SmPO2s4gQtEPYrutpf8iJNOdYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZMFknNZe; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aa67bc91f88so79731566b.0;
+        Wed, 11 Dec 2024 15:07:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733958249; x=1734563049; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OMqUgu29dr/kC2j1L26UmKv/roqpPimVfYqNx+1TUQA=;
-        b=G+FZIPPj47NsG4hFpaoQbHYEpMS4e1MQDwYLlCXf/rlIp4BcBe3naUG7pgIwyIx26g
-         KqkaTslg4HC8hJwx2iPB1PeXEvWEGN7v5r5V1J+cb2fc5QWnXCXYDUeiWE3Y7odVOWeP
-         +Auh+A+L1K19dNOlQrzs6i7jfbhh1Kw+hwomrr9OyWRqFLDslMf7t6wSgACzF8mhQH4P
-         8/lit4oCvVuL8YnpkEH9BDTcl7H0/DITS6OzXusNnzRkY93aN0np4lmOda5AvSSHQ+P1
-         +F2fKTr972h2IhC5aQt/sW6j3tUMCHCz8rvwGvOdznNtqWKVGozKm13SFQXv6cpH8IbI
-         dVAw==
+        d=gmail.com; s=20230601; t=1733958419; x=1734563219; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ns/gLdWbvGFbcQ77DtchWC5SisSXw1ObyqM5yQEnWE0=;
+        b=ZMFknNZerz7VCgL73/k2dWJyrTQfsouAf+h8OPQLm7uDGIBGmS7mxw8IEE/jL3qA+U
+         uJY4Or+d3tioRkNzEjr9+x12ES5cd7looXMoWA0qx3sio2yFAhUD3hMwuea60Vy7qvFF
+         dNV8hUFweR5Wqoe253CSi9gdTCaznKJ/937AYHRW0dz2LWElbOQP/xxlS42kBlElFSQu
+         Gdwv5dQRCDSgz9jbmScWDJlGNHCUWLWNVtUHmU4JhBR7UdaLiKkjumYZ3WNrcyCF/d80
+         kH995VZ17rSLlZnIa4t41ZSsQhJL36SfXQI8xWRFvgTdO0rjIxaeubDXYO2yKdWKEEdR
+         bOBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733958249; x=1734563049;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OMqUgu29dr/kC2j1L26UmKv/roqpPimVfYqNx+1TUQA=;
-        b=ob+C20FmOBm4/oGF/QN1rDqLtBTXnHSCBc5YWOF/sa9PCNIzRryDHkwGVd5P8VVER7
-         rMxK1/AqlLCubaXTx8VwuqWV0+gxNFCw8+wGKOs4l4OCxE+xZGATZzJw9AZQUwI4vnO1
-         k1sh11Mho7Jl7t2Bz8+TBSCOnhfhslATncrn9Q94sYf2YVR0J5xqVPo50E8MYotKy3Jk
-         6+RC6UyyGoj2WJ56ip4jGoNv6akU4J1jvXZ5OJwypj1df8i0tEF3yDqyRr9uwD+uFHE0
-         sZQfpNZwnsNg80aiHKapoByAJgxhln4gnyl08zeKxcvzvZ1LwfbcADhjCyxljxEbU3zY
-         JVKw==
-X-Forwarded-Encrypted: i=1; AJvYcCXyOm454BlfCKfYUcudKBiEshrFhbEhCIwSMoZPyEkrElwQSvdKuJU3uPni0dD+FENJecfki76DfMiL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yykg5PQRJYsoxpJX5BLb7vq7rf7I0qwwWYTp/g7dWtPzbFY5d/V
-	ZV0xMSBDk4HfprvZae9M8dcr0eGQyaAqhd8usz2k9GItrUvxW6HGcIY+QSOUQ60=
-X-Gm-Gg: ASbGnctN3oJ+dyrfihD6FFQSJ+fyUFM0lZcJO8k6PkOUQwtZl3FAwoCHCR9NAz2LWi8
-	/cNgP6UkxipHu8ySLQ65LOjnB7g1OIaClWXcm/nCUfc3/IaqparA4QkidnYKNFj8lt4XdiVaBoT
-	vvAnXg/Sz64n8vsst5A9qkjdWdEl54ym3XQ2NlszSqPsnuae2YamwRerNnqNjZYh/KzZMscUjtC
-	NcubmhsdZEZYUO9RrWkzE2KDoqsum0kJA3BcXiFDZ4MclTcpp3hs5sSlhwImL4/GWE8eQ7tCEfr
-	cHI+Yw7SBK2LFeHUgFAh6QOn8TykqRkwRA==
-X-Google-Smtp-Source: AGHT+IEhqGDw0cNCr+jN+DdXJHOmo3kKoG/lFAosZWpVVqXUd4oFiJE89F6qLxbtZeNdIPawBJHAgw==
-X-Received: by 2002:a05:6512:3c99:b0:53f:8c46:42bd with SMTP id 2adb3069b0e04-5402a5e0a12mr1498950e87.15.1733958249174;
-        Wed, 11 Dec 2024 15:04:09 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5401fb5f496sm1102790e87.237.2024.12.11.15.04.06
+        d=1e100.net; s=20230601; t=1733958419; x=1734563219;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ns/gLdWbvGFbcQ77DtchWC5SisSXw1ObyqM5yQEnWE0=;
+        b=tye2iU+PyEfvUAY3OU1nps5UZ3gNJRk5bcW67aNdK0dUxGBuMnzbQmIU906oosgvjX
+         DbVmBB2lXtOS/3+NPXHW05/Kin0j0HM4jMZC1dwtM6XrWVKC4BJ8ua1huL1YyYGShwMc
+         IBju8r8PMsclt+O8PB5qFq/JSsy7poTpkGBwP+wFd6LDAFTSTDtwG4x9oX4bZ/O8ytJa
+         i7Wws3pz77inLJAF/Qk0RQCvt0pa05vPfRuv6U9CfUC94+kpd3K0V3hlFgIZnboPdIga
+         OhqaJASgDuNEckKXg0QpraMvAyLJ6VK/kMNExb/bRnLPly7z+ELAiEzEL2XzeBDWD6mQ
+         u12g==
+X-Forwarded-Encrypted: i=1; AJvYcCV/vteSLa6G0XbhXA9LjgnWHQxxTxvGNnvSnpILFxgZtuzkfqxT9jDHHTdOLtJCylEthMDGHWqdg/Fj5DQQ@vger.kernel.org, AJvYcCXO2v3dnCJ6okOqeCNlj9qGqBLfPAJF9g8Aq42nsMSRvuSR+mPtDRawcdmtykl4DOH2uUUSDEbxK7A=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7xtVpQk/Ui+g73H5+u/D5XclKMpYi2e9+Hf0HBjc/ZZAqr+lH
+	1kEyMSikD4UFafFf9d2wUVZqOaHu/OmEazS2qUHp49GpNiGhn8Lx
+X-Gm-Gg: ASbGncttOPr7/7QZ4qM33p4thiR0WEGfwG1XBT9TM7Xj4UUjeofgEB/vdQbUQIT57Fm
+	r0eVZF37mruNkU2WTW7jfx8nJZHEcVgQKFkMQYabXV+FYsUoTjVizj5yOMielv/vclIGlS+ZL+W
+	KpVNkEt6BDdR3dRIRafegoHOzvORqPN2PKepU8EQS/8QgKxmb8k1p7us81c+erfWDEfe/SvUf0/
+	vdqOB+nwo1En65OP8cQ/v5/oN25awOMIdhcMNPLYKufX7v07EEJtMMNBVdsWWPoe1PuZ+XGj16/
+	mkTWXbhZ+joMIjADtHdA3cVjz0Exegln
+X-Google-Smtp-Source: AGHT+IEZaLVhE4s9//07OCh7uFISHaQDEwcthssjznjoiBGBc/R6BaRpLCQ1NVTw+blU9Fu6N8atzg==
+X-Received: by 2002:a17:907:7b8d:b0:a9e:80ed:5cc6 with SMTP id a640c23a62f3a-aa6b13bcf50mr146741266b.13.1733958418431;
+        Wed, 11 Dec 2024 15:06:58 -0800 (PST)
+Received: from 34fd2088d136.v.cablecom.net (84-72-156-211.dclient.hispeed.ch. [84.72.156.211])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa655653d96sm747350366b.185.2024.12.11.15.06.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 15:04:07 -0800 (PST)
-Date: Thu, 12 Dec 2024 01:04:05 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Andrej Picej <andrej.picej@norik.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, marex@denx.de, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de
-Subject: Re: [PATCH v5 2/3] drm/bridge: ti-sn65dsi83: Add ti,lvds-vod-swing
- optional properties
-Message-ID: <rputm4gnjj6nb66ix7dqbxr2janltia6rlb6zunhf7x3mgooxw@o3lblnyp5cci>
-References: <20241210091901.83028-1-andrej.picej@norik.com>
- <20241210091901.83028-3-andrej.picej@norik.com>
- <irpmhq7vxjra6vhmdh7p63ajj57n3h2c4br3ija2jmwtoewist@zyxfmx6k5m4e>
- <aa2de99d-21f4-4843-83b7-5d2db78be86f@norik.com>
- <qhmsobin3fsmoc7ic2jtancowfscoauyroruxdpwhmqwlogtkz@6by3s2ruwzwp>
- <519cc025-0782-4f96-a169-1fe87b280173@norik.com>
+        Wed, 11 Dec 2024 15:06:57 -0800 (PST)
+From: Lothar Rubusch <l.rubusch@gmail.com>
+To: lars@metafoo.de,
+	Michael.Hennerich@analog.com,
+	jic23@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	eraretuya@gmail.com,
+	l.rubusch@gmail.com
+Subject: [PATCH v6 0/7] iio: accel: adxl345: add FIFO operating with IRQ triggered watermark events
+Date: Wed, 11 Dec 2024 23:06:41 +0000
+Message-Id: <20241211230648.205806-1-l.rubusch@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <519cc025-0782-4f96-a169-1fe87b280173@norik.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Dec 11, 2024 at 08:57:17AM +0100, Andrej Picej wrote:
-> 
-> 
-> On 10. 12. 24 14:59, Dmitry Baryshkov wrote:
-> > On Tue, Dec 10, 2024 at 02:41:01PM +0100, Andrej Picej wrote:
-> > > 
-> > > 
-> > > On 10. 12. 24 12:43, Dmitry Baryshkov wrote:
-> > > > On Tue, Dec 10, 2024 at 10:19:00AM +0100, Andrej Picej wrote:
-> > > > > Add a optional properties to change LVDS output voltage. This should not
-> > > > > be static as this depends mainly on the connected display voltage
-> > > > > requirement. We have three properties:
-> > > > > - "ti,lvds-termination-ohms", which sets near end termination,
-> > > > > - "ti,lvds-vod-swing-data-microvolt" and
-> > > > > - "ti,lvds-vod-swing-clock-microvolt" which both set LVDS differential
-> > > > > output voltage for data and clock lanes. They are defined as an array
-> > > > > with min and max values. The appropriate bitfield will be set if
-> > > > > selected constraints can be met.
-> > > > > 
-> > > > > If "ti,lvds-termination-ohms" is not defined the default of 200 Ohm near
-> > > > > end termination will be used. Selecting only one:
-> > > > > "ti,lvds-vod-swing-data-microvolt" or
-> > > > > "ti,lvds-vod-swing-clock-microvolt" can be done, but the output voltage
-> > > > > constraint for only data/clock lanes will be met. Setting both is
-> > > > > recommended.
-> > > > > 
-> > > > > Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> > > > > ---
-> > > > > Changes in v5:
-> > > > > - specify default values in sn65dsi83_parse_lvds_endpoint,
-> > > > > - move sn65dsi83_parse_lvds_endpoint for channel B up, outside if,
-> > > > > Changes in v4:
-> > > > > - fix typo in commit message bitfiled -> bitfield
-> > > > > - use arrays (lvds_vod_swing_conf and lvds_term_conf) in private data, instead
-> > > > > of separate variables for channel A/B
-> > > > > - add more checks on return value of "of_property_read_u32_array"
-> > > > > Changes in v3:
-> > > > > - use microvolts for default array values 1000 mV -> 1000000 uV.
-> > > > > Changes in v2:
-> > > > > - use datasheet tables to get the proper configuration
-> > > > > - since major change was done change the authorship to myself
-> > > > > ---
-> > > > >    drivers/gpu/drm/bridge/ti-sn65dsi83.c | 142 +++++++++++++++++++++++++-
-> > > > >    1 file changed, 139 insertions(+), 3 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> > > > > index 57a7ed13f996..f9578b38da28 100644
-> > > > > --- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> > > > > +++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> > > > > @@ -132,6 +132,16 @@
-> > > > >    #define  REG_IRQ_STAT_CHA_SOT_BIT_ERR		BIT(2)
-> > > > >    #define  REG_IRQ_STAT_CHA_PLL_UNLOCK		BIT(0)
-> > > > > +enum sn65dsi83_channel {
-> > > > > +	CHANNEL_A,
-> > > > > +	CHANNEL_B
-> > > > > +};
-> > > > > +
-> > > > > +enum sn65dsi83_lvds_term {
-> > > > > +	OHM_100,
-> > > > > +	OHM_200
-> > > > > +};
-> > > > > +
-> > > > >    enum sn65dsi83_model {
-> > > > >    	MODEL_SN65DSI83,
-> > > > >    	MODEL_SN65DSI84,
-> > > > > @@ -147,6 +157,8 @@ struct sn65dsi83 {
-> > > > >    	struct regulator		*vcc;
-> > > > >    	bool				lvds_dual_link;
-> > > > >    	bool				lvds_dual_link_even_odd_swap;
-> > > > > +	int				lvds_vod_swing_conf[2];
-> > > > > +	int				lvds_term_conf[2];
-> > > > >    };
-> > > > >    static const struct regmap_range sn65dsi83_readable_ranges[] = {
-> > > > > @@ -237,6 +249,36 @@ static const struct regmap_config sn65dsi83_regmap_config = {
-> > > > >    	.max_register = REG_IRQ_STAT,
-> > > > >    };
-> > > > > +static const int lvds_vod_swing_data_table[2][4][2] = {
-> > > > > +	{	/* 100 Ohm */
-> > > > > +		{ 180000, 313000 },
-> > > > > +		{ 215000, 372000 },
-> > > > > +		{ 250000, 430000 },
-> > > > > +		{ 290000, 488000 },
-> > > > > +	},
-> > > > > +	{	/* 200 Ohm */
-> > > > > +		{ 150000, 261000 },
-> > > > > +		{ 200000, 346000 },
-> > > > > +		{ 250000, 428000 },
-> > > > > +		{ 300000, 511000 },
-> > > > > +	},
-> > > > > +};
-> > > > > +
-> > > > > +static const int lvds_vod_swing_clock_table[2][4][2] = {
-> > > > > +	{	/* 100 Ohm */
-> > > > > +		{ 140000, 244000 },
-> > > > > +		{ 168000, 290000 },
-> > > > > +		{ 195000, 335000 },
-> > > > > +		{ 226000, 381000 },
-> > > > > +	},
-> > > > > +	{	/* 200 Ohm */
-> > > > > +		{ 117000, 204000 },
-> > > > > +		{ 156000, 270000 },
-> > > > > +		{ 195000, 334000 },
-> > > > > +		{ 234000, 399000 },
-> > > > > +	},
-> > > > > +};
-> > > > > +
-> > > > >    static struct sn65dsi83 *bridge_to_sn65dsi83(struct drm_bridge *bridge)
-> > > > >    {
-> > > > >    	return container_of(bridge, struct sn65dsi83, bridge);
-> > > > > @@ -435,12 +477,16 @@ static void sn65dsi83_atomic_pre_enable(struct drm_bridge *bridge,
-> > > > >    		val |= REG_LVDS_FMT_LVDS_LINK_CFG;
-> > > > >    	regmap_write(ctx->regmap, REG_LVDS_FMT, val);
-> > > > > -	regmap_write(ctx->regmap, REG_LVDS_VCOM, 0x05);
-> > > > > +	regmap_write(ctx->regmap, REG_LVDS_VCOM,
-> > > > > +			REG_LVDS_VCOM_CHA_LVDS_VOD_SWING(ctx->lvds_vod_swing_conf[CHANNEL_A]) |
-> > > > > +			REG_LVDS_VCOM_CHB_LVDS_VOD_SWING(ctx->lvds_vod_swing_conf[CHANNEL_B]));
-> > > > >    	regmap_write(ctx->regmap, REG_LVDS_LANE,
-> > > > >    		     (ctx->lvds_dual_link_even_odd_swap ?
-> > > > >    		      REG_LVDS_LANE_EVEN_ODD_SWAP : 0) |
-> > > > > -		     REG_LVDS_LANE_CHA_LVDS_TERM |
-> > > > > -		     REG_LVDS_LANE_CHB_LVDS_TERM);
-> > > > > +		     (ctx->lvds_term_conf[CHANNEL_A] ?
-> > > > > +			  REG_LVDS_LANE_CHA_LVDS_TERM : 0) |
-> > > > > +		     (ctx->lvds_term_conf[CHANNEL_B] ?
-> > > > > +			  REG_LVDS_LANE_CHB_LVDS_TERM : 0));
-> > > > >    	regmap_write(ctx->regmap, REG_LVDS_CM, 0x00);
-> > > > >    	le16val = cpu_to_le16(mode->hdisplay);
-> > > > > @@ -576,10 +622,100 @@ static const struct drm_bridge_funcs sn65dsi83_funcs = {
-> > > > >    	.atomic_get_input_bus_fmts = sn65dsi83_atomic_get_input_bus_fmts,
-> > > > >    };
-> > > > > +static int sn65dsi83_select_lvds_vod_swing(struct device *dev,
-> > > > > +	u32 lvds_vod_swing_data[2], u32 lvds_vod_swing_clk[2], u8 lvds_term)
-> > > > > +{
-> > > > > +	int i;
-> > > > > +
-> > > > > +	for (i = 0; i <= 3; i++) {
-> > > > > +		if (lvds_vod_swing_data_table[lvds_term][i][0] >= lvds_vod_swing_data[0] &&
-> > > > > +		lvds_vod_swing_data_table[lvds_term][i][1] <= lvds_vod_swing_data[1] &&
-> > > > > +		lvds_vod_swing_clock_table[lvds_term][i][0] >= lvds_vod_swing_clk[0] &&
-> > > > > +		lvds_vod_swing_clock_table[lvds_term][i][1] <= lvds_vod_swing_clk[1])
-> > > > > +			return i;
-> > > > > +	}
-> > > > > +
-> > > > > +	dev_err(dev, "failed to find appropriate LVDS_VOD_SWING configuration\n");
-> > > > > +	return -EINVAL;
-> > > > > +}
-> > > > > +
-> > > > > +static int sn65dsi83_parse_lvds_endpoint(struct sn65dsi83 *ctx, int channel)
-> > > > > +{
-> > > > > +	struct device *dev = ctx->dev;
-> > > > > +	struct device_node *endpoint;
-> > > > > +	int endpoint_reg;
-> > > > > +	/* Set so the property can be freely selected if not defined */
-> > > > > +	u32 lvds_vod_swing_data[2] = { 0, 1000000 };
-> > > > > +	u32 lvds_vod_swing_clk[2] = { 0, 1000000 };
-> > > > > +	u32 lvds_term;
-> > > > > +	u8 lvds_term_conf = 0x1;
-> > > > > +	int lvds_vod_swing_conf = 0x1;
-> > > > 
-> > > > Magic values
-> > > 
-> > > Can you please elaborate.
-> > > 
-> > > I can use:
-> > > u8 lvds_term_conf = OHM_200;
-> > > 
-> > > What about lvds_vod_swing_conf? Should I create additional define for it?
-> > > But this doesn't solve a hidden meaning? Maybe additional comment above?
-> > > Would like to avoid using voltages for it, since then we are reverse
-> > > engineering the table in datasheet to match the default reg value.
-> > 
-> > I think the following example solves both problems:
-> > 
-> > lvds_term = 200;
-> > of_property_read_u32(..., &lvds_term);
-> > 
-> > if (lvds_term == 100)
-> > 	ctx->lvds_term_conf[channel] = OHM_100;
-> > else if (lvds_term == 200)
-> > 	ctx->lvds_term_conf[channel] = OHM_200;
-> > else
-> > 	return -EINVAL;
-> > 
-> > The same approach can be applied to lvds_vod_swing_conf, resulting in
-> > removal of magic values.
-> 
-> Sorry, but I think it is not that easy when it comes to the
-> lvds_vod_swing_conf. We should assign default value if
-> "ti,lvds-vod-swing-data-microvolt" and "ti,lvds-vod-swing-clock-microvolt"
-> are not defined. Default value of the lvds_vod_swing_conf is 0x1, but this
-> doesn't have any straight forward meaning like OHM_200 for example.
-> 
-> What we can do in that case is that we copy the values from defined
-> datasheet tables to the "lvds_vod_swing_data[2]" and "lvds_vod_swing_clk[2]"
-> arrays and then run the
-> sn65dsi83_select_lvds_vod_swing with it, which will return the default value
-> (0x1).
-> 
-> /* If both properties are not defined assign default limits */
-> if (ret_data && ret_clock) {
-> 	memcpy(lvds_vod_swing_data,
-> 	     lvds_vod_swing_data_table[ctx->lvds_term_conf[channel]][1],
-> 	     sizeof(lvds_vod_swing_data));
-> 	memcpy(lvds_vod_swing_clk,
-> 	    lvds_vod_swing_clock_table[ctx->lvds_term_conf[channel]][1],
-> 	    sizeof(lvds_vod_swing_clk));
-> }
-> lvds_vod_swing_conf = sn65dsi83_select_lvds_vod_swing(dev,
-> 	lvds_vod_swing_data, lvds_vod_swing_clk,
-> 	ctx->lvds_term_conf[channel]);
-> if (lvds_vod_swing_conf < 0) {
-> 	ret = lvds_vod_swing_conf;
-> 	goto exit;
-> }
-> 
-> ctx->lvds_vod_swing_conf[channel] = lvds_vod_swing_conf;
-> 
-> I'm not sure if using this approach gets rid of the problem with magic
-> values.
-> Or maybe I'm not seeing the obvious solution so please bear with me.
+The adxl345 sensor offers several features. Most of them are based on
+using the hardware FIFO and reacting on events coming in on an interrupt
+line. Add access to configure and read out the FIFO, handling of interrupts
+and configuration and application of the watermark feature on that FIFO.
 
-Yes, the defaults (0..1000000) should be fixed to result in the same
-value (0x01) as if the property wasn't specified at all.
+Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+---
+v5 -> v6:
+- dropped justify patch, since unnecessary change to format mask
+- added separate dt-bindings patch to remove required interrupts property
+- merged FIFO watermark patches
+- reworked bitfield handling
+- group irq setup in probe()
+- several type fixes by smatch and tools
+v4 -> v5:
+- fix dt-binding for enum array of INT1 and INT2
+v3 -> v4:
+- fix dt-binding indention 
+v2 -> v3:
+- reorganize commits, merge the watermark handling
+- INT lines are defined by binding
+- kfifo is prepared by devm_iio_kfifo_buffer_setup()
+- event handler is registered w/ devm_request_threaded_irq()
+v1 -> v2:
+Fix comments according to Documentation/doc-guide/kernel-doc.rst
+and missing static declaration of function.
+---
 
-I think the following should work:
+Lothar Rubusch (7):
+  iio: accel: adxl345: add function to switch measuring mode
+  iio: accel: adxl345: complete the list of defines
+  dt-bindings: iio: accel: adxl345: add interrupt-names
+  dt-bindings: iio: accel: adxl345: make interrupts not a required
+    property
+  iio: accel: adxl345: introduce interrupt handling
+  iio: accel: adxl345: initialize FIFO delay value for SPI
+  iio: accel: adxl345: add FIFO with watermark events
 
-	/* artifical values to select the defaults in both cases */
-	u32 lvds_vod_swing_data[2] = { 190000, 330000 };
-	u32 lvds_vod_swing_clk[2] = { 150000, 250000 };
-
-Yes, they are artificial, as stated in the comment. Yes, I think it's
-better than special-casing in the property handling.
+ .../bindings/iio/accel/adi,adxl345.yaml       |   7 +-
+ drivers/iio/accel/adxl345.h                   |  95 ++++-
+ drivers/iio/accel/adxl345_core.c              | 383 +++++++++++++++++-
+ drivers/iio/accel/adxl345_i2c.c               |   2 +-
+ drivers/iio/accel/adxl345_spi.c               |   7 +-
+ 5 files changed, 461 insertions(+), 33 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.39.5
+
 
