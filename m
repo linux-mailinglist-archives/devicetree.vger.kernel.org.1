@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-129646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03FE29EC6A9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 09:12:24 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 740169EC6B5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 09:15:02 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44179282379
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 08:12:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3567167480
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 08:14:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93B041D2B0E;
-	Wed, 11 Dec 2024 08:12:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27F431D31A5;
+	Wed, 11 Dec 2024 08:14:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mDJprwK3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mQqL78pM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE2F1C5CD6;
-	Wed, 11 Dec 2024 08:12:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F130642A95;
+	Wed, 11 Dec 2024 08:14:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733904734; cv=none; b=lMbIMQC3UW2NGYUizFZ34seNAcgUmyiS5pRuJVgkLiMGIoNoz5uJJsHMaTEJY48iiuBnrySV2b98bAiL1S+fYt6fx87zTp+ygC0UdjZnLeeNFqD9N4x7bGMHYZZ9NTjzlM32wcxeDnlXpVGcHb3fypOWp0agzuC6yYJrXqzRGJ4=
+	t=1733904889; cv=none; b=Kt5HN0lNVKSMVypBMnxig7fCwLe/zqFTpe4Ose+XcLBrLwVMiG2Oy1knKaktuj4OCv8UPHtbFuJU0vlxuB/m9BkLL2uVh3862llOeijntHMGcFuTJZV5WeLAZLzeK6o17GUacVdlXZP/b33f+izhKUvm0eGFXvZxw3zNlSFdlB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733904734; c=relaxed/simple;
-	bh=N/ItqLYj3QbF6/FwQkGMvHs86qw3nQZyuArAK4zXrYY=;
+	s=arc-20240116; t=1733904889; c=relaxed/simple;
+	bh=V2q0zWwwsBKs962FCQ6ySi5Ynu80X0iWHQ4PkBhm/2s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=egz5f5i1VQhomqw5G7PVcqoRmAvYk/DKP+ePY7kIfoUBlFHH9tiPOBpNzu7vibahKc5VQcsNq80CpWg0fQNQamPechRPaw3R5Tede3YT542V5Iq4UfK6X3goSkRYqu+UUkjA+lksDsUYfZgq2RXtdC6LCJeqP6ka79uFvegR0Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mDJprwK3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4A2BC4CED2;
-	Wed, 11 Dec 2024 08:12:08 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mGJUyZ9gZYHkxjwIL68NwRwtWgSOWC2kuoTEGwUKYbC25vpvXUFIP/KuJ+NDsbDxE1CzqJU1bQ1ltsdf8viknu5k4UCsgg1GVTerMOZBfvuyyGJxvMxtpr6XSZ6+rRYamqutJ3C/qR1GrPofKG8VR5FdDE7dGxGeyiwY82DUCs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mQqL78pM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6BF2C4CED2;
+	Wed, 11 Dec 2024 08:14:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733904733;
-	bh=N/ItqLYj3QbF6/FwQkGMvHs86qw3nQZyuArAK4zXrYY=;
+	s=k20201202; t=1733904888;
+	bh=V2q0zWwwsBKs962FCQ6ySi5Ynu80X0iWHQ4PkBhm/2s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mDJprwK3H7OMiqmWp/AzG+vx1Cwn/Bxx4puSrnAuZ4gnHhJ59WXRt8OLbw/030wSk
-	 vPcKhhy1e5UsmSRVccoRDrET8jSb4ifpPFKqT/vWLaKsRo0OO6a4IEGSlobd4GBRCS
-	 1US4BrpmyrEiIfTorRQ9t04HtOGFvGK9mcLr1lMDATYfaEKey5AlcdPofV/hbdZVm1
-	 C+qC0fhgZdfwpjVZnLRcIM3J6YLPX7PFrfLdwRcnTmfeK1y8u6w/DF4SKORVVQqQth
-	 FDH49GX5IUXzUuN0p8yjbjRMJ/DFKjse1Aue1XzeCIrK8rtIzVf9WNhO+ZF7QF7M+c
-	 xuUehVCXY0mVQ==
-Message-ID: <7e5e8390-9602-4ee5-9940-40e195a0b521@kernel.org>
-Date: Wed, 11 Dec 2024 09:12:06 +0100
+	b=mQqL78pM1NNygavjXU6miUQB64oS0YBAw1RWFW//N+bQUspiMHMaD2vfaAOiYsKZx
+	 qho8R4lb1JpiIlYRwEG/f4UZoFKHa8wR3IgZ6qI+gpNN1K792eX6oCbgG8Xsi6kWKt
+	 JrZ//hnhMH5OO37ryOqc2TF+PyvzrLsmmfrSk3jK1OscedDZDGrCcO6X4f4zbUxkrg
+	 f8/EWvbGuRhPut8tUrmC4064h5zdhyoeuhuDlklQN2DWD1Q/5c1NcUjTmcKl+IYKvy
+	 bdNaYGOhvpgen2GwaElZXdqZhONEaQT0tJO0ZmS72KLheiSsKAFZK/xeRItFAerkVU
+	 HPLKnP6uFLKjg==
+Message-ID: <5199ca0e-70d8-48f6-a6f5-827242ff83e9@kernel.org>
+Date: Wed, 11 Dec 2024 09:14:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] dt-bindings: PCI: mobiveil: convert
- mobiveil-pcie.txt to yaml format
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Frank Li <Frank.Li@nxp.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
- Hou Zhiqiang <Zhiqiang.Hou@nxp.com>, Frank <Li@nxp.com>,
- "open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS"
- <linux-pci@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- imx@lists.linux.dev
-References: <20241210170742.GA3246646@bhelgaas>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: convert rt5682.txt to dt-schema
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bard Liao <bardliao@realtek.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241211-topic-misc-rt5682-convert-v2-1-9e1dd4ff7093@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,43 +103,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241210170742.GA3246646@bhelgaas>
+In-Reply-To: <20241211-topic-misc-rt5682-convert-v2-1-9e1dd4ff7093@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/12/2024 18:07, Bjorn Helgaas wrote:
-> On Tue, Dec 10, 2024 at 09:42:31AM +0100, Krzysztof Kozlowski wrote:
->> On Mon, Dec 09, 2024 at 05:51:21PM -0600, Bjorn Helgaas wrote:
->>> On Fri, Dec 06, 2024 at 05:25:27PM -0500, Frank Li wrote:
->>>> Convert device tree binding doc mobiveil-pcie.txt to yaml format. Merge
->>>> layerscape-pcie-gen4.txt into this file.
->>>>
->>>> Additional change:
->>>> - interrupt-names: "aer", "pme", "intr", which align order in examples.
->>>> - reg-names: csr_axi_slave, config_axi_slave, which align existed dts file.
->>>
->>> Is there any way to split this into two patches:
->>>
->>>   - Convert to yaml and update MAINTAINERS
->>>   - Update interrupt-names, reg-names
->>>
->>> It's hard to review the interrupt-names, reg-names when they're mixed
->>> in with the yaml conversion.
->>
->> The conversion should result in a correct binding, so if original
->> binding had some issues (and TXT bindings often have: missing or
->> stale/not-udpated properties), then we expect any fixes in the same
->> commit.  New things, not supported by existing in-kernel upstream users
->> or bindings, should be of course in separate patch.
+On 11/12/2024 09:09, Neil Armstrong wrote:
+> Convert the text bindings for the Realtek rt5682 and
+> rt5682i codecs to dt-schema.
 > 
-> Maybe they could be added to the original TXT binding first in one
-> patch, and then converted to yaml in a second patch?
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+> Changes in v2:
+> - Dropped invalid realtek,amic-delay-ms
+> - Wrapped descriptions
+> - Moved unevaluatedProperties after required
+> - Link to v1: https://lore.kernel.org/r/20241204-topic-misc-rt5682-convert-v1-1-0fedc4ab15e8@linaro.org
+> ---
 
 
-This would solve one thing and cause another issues: you add lines in
-one commit which are immediately removed in the next commit, plus we
-don't want any changes in TXT because absolute lack of means for
-verification/testing.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
