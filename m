@@ -1,119 +1,83 @@
-Return-Path: <devicetree+bounces-129907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41DCF9ED060
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:50:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1382F9ED064
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:50:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D982188C690
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:49:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D90A1619B4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:49:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC941D6DDA;
-	Wed, 11 Dec 2024 15:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 846AB1D959B;
+	Wed, 11 Dec 2024 15:48:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y8zqfTpr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QDgJfxW7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FCA418BC3F;
-	Wed, 11 Dec 2024 15:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53770246349;
+	Wed, 11 Dec 2024 15:48:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733932035; cv=none; b=RVppL0Ka4Rv8lk3kU5G5YB6uU6REmntTOOqfPmzEzfLJdFlOF/x6MksD7XMGr4ArGohdsZJqYQ/DdX5WD6vjpz6y4xMp0M2L++4+grBYvS1YItv6rdSguQzixBlelpFd+wSvUUCxWtXXkPibYqvApo77av1O/TANVY7fLG6YHfA=
+	t=1733932091; cv=none; b=l1SdRishVGQ+5L+b0OPtrjEYKlacfmtF5Xz2XQx/hXu+h7Xv2FYc0+2LbDXXFhw1mqjf4Ur9BTPXaw+phegD2nUe0ZSFLr/QP8pgxn/xQ6leJU8Qcv7gpnIbQyjEnp+n73vZBJCAgr4c/4b94dR7tDpqbvdSKukfYyGM89M68+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733932035; c=relaxed/simple;
-	bh=qsPmqbckC0QLNUpCrEGTyFuyNNsWpyK6tx/uRzgBwzY=;
+	s=arc-20240116; t=1733932091; c=relaxed/simple;
+	bh=xeXUrKq1VEB8ey8qNxSP1xuOrXdj3Vug8+48gWTfqSk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tZuJNHy2wubYLhyX/6Wk4qwL209QU1JcE6uuPpLX/k01uQQ9l43PTXKwBS1GD7+tltu5GGbuu/+LBo+qZQ+JV8u+HsPFIkBX7FlbXua2Bhijo2aTLXQCb5z/ka9luuFOc8cdNV0JY/i8s/vBpJMtC6i0w/ORotdbh6rInfS8EdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y8zqfTpr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC786C4CED2;
-	Wed, 11 Dec 2024 15:47:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gT6e78J12zqDA4pwraMv5+FhlRZX33rdXLH6/nDv8TRRs4MHs+sG3eeKy7athwnMgj0m0ss6dQJo2ph7MRFcq7VlX7pNGmH8+fpwJrJcO9MQYomb20dGqc+ldc55H4plGav4szhqnpBcG+7f9FZYzA5GPAjuIhqiR7UyviwohC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QDgJfxW7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F8E6C4CED2;
+	Wed, 11 Dec 2024 15:48:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733932035;
-	bh=qsPmqbckC0QLNUpCrEGTyFuyNNsWpyK6tx/uRzgBwzY=;
+	s=k20201202; t=1733932090;
+	bh=xeXUrKq1VEB8ey8qNxSP1xuOrXdj3Vug8+48gWTfqSk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y8zqfTprkNTe1s93rc5PaCRN99PLuwqz02R0j6clNhKwEiZz7moxd1G7TSOF/sxLn
-	 tqx2PB3FNZHno/X1jtiFVA9FKqXfw+qKjYyws/jH/RGBzrLRBh0oefYfkc00uEzAOM
-	 cFH2GMIVQOedciLDQgsrRsgmTWPz4Wv7cjNxdiiao9zs/P343SngRRKTfPCsYeQaU+
-	 DcvC3zVRTIUjMWWIwIXhAig6mIbzd967tMnYkdWOXutBqmRdCIkComwQXRj+ewu6Go
-	 qtDp66bq4Z9WueQU3wTQdatO6ox7zea5ZP7ffhNMlg/aRxx+RuK+Fi9v898oL907Kj
-	 70mmTbcE3KZNQ==
-Date: Wed, 11 Dec 2024 09:47:13 -0600
+	b=QDgJfxW7BUCUoFU6Y8PFna6nm45LEfHdKuQPuiO6ZProjbxDV6Al2T2vr76vdqR9C
+	 VaBw+4aZzdoSleFpSv/VYcvibjWBBSA9AKOqeS9fgGLqpLDvdbChQ9TALiLbHrqQR2
+	 WOXr8TXk9yqjrRXDxHfmUWZ6Jxpmtko8bOPNMcX3Ik4yhWFl//ewR671KqJmJ47LZU
+	 e/2HNQBqFuFSpo0ON50W9zwHFvgiDbPzmsFK1aWnwCE6bWa5+IZ54S3VUALdGoo4X4
+	 OmbE7guGiqUOsl8oFFnPzOOUJklFn7CYfoInSzZaWKY7u8rx/BDKZ2adsirlakktoj
+	 /OKnWgxaNka/w==
+Date: Wed, 11 Dec 2024 09:48:08 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Roy Luo <royluo@google.com>, Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Will McVicker <willmcvicker@google.com>,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	devicetree@vger.kernel.org,
-	Peter Griffin <peter.griffin@linaro.org>,
-	linux-samsung-soc@vger.kernel.org,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Vinod Koul <vkoul@kernel.org>,
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	linux-clk@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+	Imran Shaik <quic_imrashai@quicinc.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	kernel-team@android.com, Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/7] dt-bindings: phy: samsung,usb3-drd-phy: gs101:
- require Type-C properties
-Message-ID: <173393203254.3086087.14024716233496700566.robh@kernel.org>
-References: <20241206-gs101-phy-lanes-orientation-phy-v4-0-f5961268b149@linaro.org>
- <20241206-gs101-phy-lanes-orientation-phy-v4-2-f5961268b149@linaro.org>
+	devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+	Ajit Pandey <quic_ajipan@quicinc.com>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: clock: qcom: Add SM8750 video clock
+ controller
+Message-ID: <173393208778.3087438.15451207086861596466.robh@kernel.org>
+References: <20241206-sm8750_videocc-v1-0-5da6e7eea2bd@quicinc.com>
+ <20241206-sm8750_videocc-v1-2-5da6e7eea2bd@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241206-gs101-phy-lanes-orientation-phy-v4-2-f5961268b149@linaro.org>
+In-Reply-To: <20241206-sm8750_videocc-v1-2-5da6e7eea2bd@quicinc.com>
 
 
-On Fri, 06 Dec 2024 16:31:02 +0000, André Draszik wrote:
-> orientation-switch is the standard declaration to inform the Type-C mux
-> layer that a remote-endpoint is capable of processing orientation
-> change messages.
+On Fri, 06 Dec 2024 23:07:12 +0530, Taniya Das wrote:
+> Add compatible string for SM8750 video clock controller and the bindings
+> for SM8750 Qualcomm SoC.
 > 
-> The USB PHY on gs101 needs to be configured based on the orientation of
-> the connector. For that the DTS needs a link between the phy's port and
-> a TCPCi, and we'll need to inform the phy driver that it should handle
-> the orientation (register a handler).
-> 
-> Update the schema to enforce that by requiring the orientation-switch
-> and port properties on gs101 (only). We disallow orientation-switch on
-> all other supported platforms, since other versions of this phy (or its
-> system integration) don't currently support or even need it.
-> 
-> Even though this new required gs101 property is an ABI break, the
-> intention for the driver is to behave as before if it's missing
-> (meaning for gs101 it will work in SS mode in one orientation only).
-> Other platforms are not affected.
-> 
-> Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 > ---
-> v3:
-> * update as per Rob's suggestion (I hope :-)
-> 
-> v2:
-> * squash original patches #2 and #3
-> * actually disallow orientation-switch on !gs101 (not just optional) (Conor)
-> * update commit message to clarify that the intention for the driver is
->   to work with old and new DTS (Conor)
-> * collect tags
-> 
-> foo
-> ---
->  Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+>  .../bindings/clock/qcom,sm8450-videocc.yaml        |  3 ++
+>  include/dt-bindings/clock/qcom,sm8750-videocc.h    | 40 ++++++++++++++++++++++
+>  2 files changed, 43 insertions(+)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
