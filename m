@@ -1,132 +1,279 @@
-Return-Path: <devicetree+bounces-129921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797109ED1BA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:30:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC68A9ED1C8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:30:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7219C188983B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:30:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E901C161546
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:30:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC00B1DDA15;
-	Wed, 11 Dec 2024 16:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD531DCB09;
+	Wed, 11 Dec 2024 16:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JlE0rn1S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HZMl9/Do"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BE161DC197;
-	Wed, 11 Dec 2024 16:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43D20132111;
+	Wed, 11 Dec 2024 16:30:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733934590; cv=none; b=JNRVTKeYBqxNmTZ4S2rvVkkx6Ehk4zE8jWkwY80q6m8jS9vXJUcRpCoJTQOVkfnXSyTLi3xMwHOsqro/EV4kj5S2ler3KuG0YjF8KRuMrPuhYceFscdmMmSssZEJ3nYM8gfHUbOCACns1W29EptJplcDCn0uSkhiUHIrgKM4LSo=
+	t=1733934633; cv=none; b=qbpl/lupWaYg69yV3fpwBpi23vS+jtWyoDnrHZ4iIMB73/Old9zaf5gQazvRlmNH2IIsJhdaG0+/2Ct28lCzH/WIB8sEDTzguIADwj1buNw7aEW1GDwFweucRHdrHfi1Y07tGu3jKUwuv4yNsEoXI1AMJP1NbxJZs7VFbKlfjOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733934590; c=relaxed/simple;
-	bh=GbTFieq30Tp3qpHIb/Fq1WHJxQBwEO2fnhKu6VM3Pg0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=o1sP1fKSMvAF8cM5/zI3xVXGRH4YGDzLXpD1tQn3zob1zLdl4lxgAQ519Xv9FYRig3//GKBZf779JCtKv4ztPZhPNW7g3rhZlMsMprP42TqJALD6BGa1XkV8+GGGs3SpKeQlWHZTyET0iKC2tOaiMnRDtMYXMYzfTnH3QJ5PiUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JlE0rn1S; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-aa543c4db92so616306666b.0;
-        Wed, 11 Dec 2024 08:29:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733934587; x=1734539387; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VZXwQI7YS6Q3F5RUIqA6y7OiUdvPTyw1jR4jWoj37sI=;
-        b=JlE0rn1SnWPSEPfAu41yusjMaoz5J/R6RKVPIt8bVmLLtyazTl7JKlYUlbeZz5jyUb
-         LR6THBGFBch+rZQ52LOLd7QEMNGe8vU6/5c7jn6knmR24fY51T+UZl8zkkvWLrvsuooR
-         stKb90ZBkYZsk8PY63MOT3ssLfmBRUeH5NPGN0A/QgkvZI0DqDtXAOLGbXlL2DYBgDCT
-         3AA7fjooMK4IH2ViIqkyVTVfxWS1Ip3cocWMG1Y1XRgxTcJ9Xv+lSCB1M12GdNUmyTQK
-         ratDpJOhBxpknMonwpzyA3sepLXqPNpqcnpl5ZR/bkTryjxVzaHnHdbW0LinE2bZmJs2
-         Q2FA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733934587; x=1734539387;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VZXwQI7YS6Q3F5RUIqA6y7OiUdvPTyw1jR4jWoj37sI=;
-        b=ROGhFbYBpFp7Bvd7eTK6t/oZVPZ4MJEy9xdP48GIRJLA+L3bGWunD9ABA9msDo3WTf
-         2s9CbSlx2uc0ddflkF1Vpmuf1etC+IrA/7tIewK/El26yjel1sj08CWb3ofxlfGjkTiH
-         ZH+jaIjbJDjCNLzhzWIVJt/fXyj4quy+hmYFF9OYPVl2BDQK2qeRxaj7xQlEDooWYiZz
-         7Ew4FaN0ikR7T/fq7fkrrY1cuxbcigY4CnuF31Bp96oaxbdwiyCJtgEcqg1o23IEHE6s
-         HxBKfY2/tKA3ALz/NJX9p2yb2Wl7mMR1g9C5wZUYi1mF9YxE3TjZnVYLZLHWKJLmy9cn
-         rO1w==
-X-Forwarded-Encrypted: i=1; AJvYcCUGP+ScJD18iDeqkpU6AdlaUw/3aBP7ibRTLL5oJbq+xzXr0hCb9leLl82gdjmCdYTi/yNk6xZbPZk7WDfO@vger.kernel.org, AJvYcCXZG1PhHV9PDCvbhX15h+jhVMFDQ6Qsw4+bZytFjsgQKopil65Q9B51ugClYlHR/V/cq+eJ/Xgj5poI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzE6WA3CsP3S2HlozjxQMp88jk84N8mlkUoXQLT9XFRfs/BDcK+
-	6jQKZo/vrwBKcajRjN2ztlqyHmWArndC5ehOKW4WemkvA78EOIfk/8EPNqh+
-X-Gm-Gg: ASbGncv5ouS2L4lNcPm72nqBNLzrBUQEJYsGLFw+5tBPGzAbOouQpGdUXNu7a0NYVtG
-	IqLPnbpi3JUrtel0b54JpPi8TMlE8GwT6fWCsHGBJPsDRJzeE2lLpPtVpqNBm0EW0ZQCRUshfoT
-	/g8KHPFdqCsnwSU54tYIAgX6ezcpVbvffXofPtBP6s3TPIzI5oq5iZ+E8ef0/EAeP/xXqke6dvn
-	Zd1RttyX9muzxioOAb7IvBLuJHPBGLXuYHt+is0Jo61Qd7zapQaT8OoWXX6TjXFOWa2AZmxp6xw
-	VBOxWmrmSTdeDkH9YIew2WSxvx/dVA==
-X-Google-Smtp-Source: AGHT+IF89Azw7R+LBtZ5j/GcwiiT1UcuEZB17VWqEacuhbhtSs2qPWqHLMZjnAqNMgw3+9T0X8dl2g==
-X-Received: by 2002:a17:906:59a6:b0:aa6:c169:4e21 with SMTP id a640c23a62f3a-aa6c1694ecamr50424066b.6.1733934587197;
-        Wed, 11 Dec 2024 08:29:47 -0800 (PST)
-Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa663334906sm678451866b.72.2024.12.11.08.29.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 08:29:46 -0800 (PST)
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/1] arm64: dts: exynos8895: Add a PMU node for the second cluster
-Date: Wed, 11 Dec 2024 18:29:42 +0200
-Message-ID: <20241211162942.450525-2-ivo.ivanov.ivanov1@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241211162942.450525-1-ivo.ivanov.ivanov1@gmail.com>
-References: <20241211162942.450525-1-ivo.ivanov.ivanov1@gmail.com>
+	s=arc-20240116; t=1733934633; c=relaxed/simple;
+	bh=3/jm22/tohnG6rM042xvVnRl8MCx4o5+LTddYTYPNgM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HqwI7rdM1vLhSRY4UCjjqQRPVRCI7tFZP4kaZYZjvOwHT8zP/EnY1ZevURBDZQZ9e7O5Ilk77cCQD0fXn4pz0phtYejjnQNBMGuB05OzGHg7RUlPDo+6yukNxnj2ldrax37vlpr1AunadiwzBd4/AzFiEH5VO+CjhxqwiAh1qa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HZMl9/Do; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA164C4CED2;
+	Wed, 11 Dec 2024 16:30:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733934632;
+	bh=3/jm22/tohnG6rM042xvVnRl8MCx4o5+LTddYTYPNgM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=HZMl9/Do1u1QKRvc1Qzw66fUiJkY9/mzukWiT/mcgOpmbZhHHGdX4k96r+zySjJ75
+	 Yvodn3eb7xM0E16YzASNoDYbm8gkAT02/mEPA0OV7mYYPUrdLiTNN7c8WbU7at0p4N
+	 Y7rhlHaJwPGInNF7Ut12z/tfKxIvDZhru/3Uz52LnYucOJMQLtKj2zhvsk8uBZAsM0
+	 OylbvFiU87Q8KTQNGxHMJ4PYDASDQHmjSHzQ+EAQvpfvvIXMaayRG1krUG4zBPbj/h
+	 SxvfNI7o2MK06eOl7/0sLYXGpi4RiD2LDQeuVWnHevZGHjHC8T7dnWDjGh8j3T8nyU
+	 onml7FZMAcAPA==
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6ef7640e484so81214847b3.3;
+        Wed, 11 Dec 2024 08:30:32 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU0/lEZTrdmT/RT0QItHhBkux2//sitEDkHL2TB2xI587QM9jD6iMiBCOJ6aXiXUUpAccoZNUn8ngkn@vger.kernel.org, AJvYcCWOOiTUPsueRgcrMZshgrxOQcOcsbCkOfGlUow8/cb1JUy+Gy+x393uLSzHX544PC3WeH3XX+znxYFB9w==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOnDiODAtHdCGygPMagTej1+cNJX5WiPzqUZD/HZRvjHABZ1CX
+	GTND5UcMPIqWEYXS6pd57ruGd3uMflo7hp8yGUoaC/aHORcd0LQfiRI3nIpMw2CWmOND44MWhh2
+	tpMNUNd6W3YkSGlrME0t2BYSoyg==
+X-Google-Smtp-Source: AGHT+IGvdv9S+ZPKC2b+1/sGgOTG9iTS2T6vjsnAOtbdTlfJ07QbNV7aJ1spSpDEO2AhVu38aZsoYrtgr8gOpWMh13I=
+X-Received: by 2002:a05:690c:dd1:b0:6ef:7c8e:eff8 with SMTP id
+ 00721157ae682-6f19e87161fmr805317b3.39.1733934631965; Wed, 11 Dec 2024
+ 08:30:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20241206203103.1122459-1-alexander.sverdlin@siemens.com>
+ <de6039a6-b7e6-4960-afcc-5f0d29fb27a8@ti.com> <20241211162622.GA3242096-robh@kernel.org>
+In-Reply-To: <20241211162622.GA3242096-robh@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 11 Dec 2024 10:30:20 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLWvs0rRiSA5KM=ACMqrCbQNB+9-5MOCMMfp8jXLSGjbg@mail.gmail.com>
+Message-ID: <CAL_JsqLWvs0rRiSA5KM=ACMqrCbQNB+9-5MOCMMfp8jXLSGjbg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: leds: Convert LP8860 into YAML format
+To: Andrew Davis <afd@ti.com>
+Cc: "A. Sverdlin" <alexander.sverdlin@siemens.com>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Since we have a PMU compatible for Samsung's Mongoose cores now, drop
-the comment that explains the lack of it and define the node.
+On Wed, Dec 11, 2024 at 10:26=E2=80=AFAM Rob Herring <robh@kernel.org> wrot=
+e:
+>
+> On Mon, Dec 09, 2024 at 08:29:00AM -0600, Andrew Davis wrote:
+> > On 12/6/24 2:31 PM, A. Sverdlin wrote:
+> > > From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+> > >
+> > > Convert Texas Instruments' LP8860 LED driver bindings into YAML forma=
+t.
+> > >
+> > > Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+> > > ---
+> > > The patch is now separated from the LP8864 series:
+> > > https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202412=
+06170717.1090206-2-alexander.sverdlin@siemens.com/
+> > >
+> > >   .../devicetree/bindings/leds/leds-lp8860.txt  | 50 ----------
+> > >   .../devicetree/bindings/leds/ti,lp8860.yaml   | 95 ++++++++++++++++=
++++
+> > >   2 files changed, 95 insertions(+), 50 deletions(-)
+> > >   delete mode 100644 Documentation/devicetree/bindings/leds/leds-lp88=
+60.txt
+> > >   create mode 100644 Documentation/devicetree/bindings/leds/ti,lp8860=
+.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/leds/leds-lp8860.txt b=
+/Documentation/devicetree/bindings/leds/leds-lp8860.txt
+> > > deleted file mode 100644
+> > > index 8bb25749a3da3..0000000000000
+> > > --- a/Documentation/devicetree/bindings/leds/leds-lp8860.txt
+> > > +++ /dev/null
+> > > @@ -1,50 +0,0 @@
+> > > -* Texas Instruments - lp8860 4-Channel LED Driver
+> > > -
+> > > -The LP8860-Q1 is an high-efficiency LED
+> > > -driver with boost controller. It has 4 high-precision
+> > > -current sinks that can be controlled by a PWM input
+> > > -signal, a SPI/I2C master, or both.
+> > > -
+> > > -Required properties:
+> > > -   - compatible :
+> > > -           "ti,lp8860"
+> > > -   - reg : I2C slave address
+> > > -   - #address-cells : 1
+> > > -   - #size-cells : 0
+> > > -
+> > > -Optional properties:
+> > > -   - enable-gpios : gpio pin to enable (active high)/disable the dev=
+ice.
+> > > -   - vled-supply : LED supply
+> > > -
+> > > -Required child properties:
+> > > -   - reg : 0
+> > > -
+> > > -Optional child properties:
+> > > -   - function : see Documentation/devicetree/bindings/leds/common.tx=
+t
+> > > -   - color : see Documentation/devicetree/bindings/leds/common.txt
+> > > -   - label : see Documentation/devicetree/bindings/leds/common.txt (=
+deprecated)
+> > > -   - linux,default-trigger :
+> > > -      see Documentation/devicetree/bindings/leds/common.txt
+> > > -
+> > > -Example:
+> > > -
+> > > -#include <dt-bindings/leds/common.h>
+> > > -
+> > > -led-controller@2d {
+> > > -   compatible =3D "ti,lp8860";
+> > > -   #address-cells =3D <1>;
+> > > -   #size-cells =3D <0>;
+> > > -   reg =3D <0x2d>;
+> > > -   enable-gpios =3D <&gpio1 28 GPIO_ACTIVE_HIGH>;
+> > > -   vled-supply =3D <&vbatt>;
+> > > -
+> > > -   led@0 {
+> > > -           reg =3D <0>;
+> > > -           function =3D LED_FUNCTION_BACKLIGHT;
+> > > -           color =3D <LED_COLOR_ID_WHITE>;
+> > > -           linux,default-trigger =3D "backlight";
+> > > -   };
+> > > -}
+> > > -
+> > > -For more product information please see the link below:
+> > > -https://www.ti.com/product/lp8860-q1
+> > > diff --git a/Documentation/devicetree/bindings/leds/ti,lp8860.yaml b/=
+Documentation/devicetree/bindings/leds/ti,lp8860.yaml
+> > > new file mode 100644
+> > > index 0000000000000..62f133006fd0e
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/leds/ti,lp8860.yaml
+> > > @@ -0,0 +1,95 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/leds/ti,lp8860.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Texas Instruments - lp8860 4-Channel LED Driver
+> > > +
+> > > +maintainers:
+> > > +  - Andrew Davis <afd@ti.com>
+> > > +
+> > > +description: |
+> > > +  The LP8860-Q1 is an high-efficiency LED driver with boost controll=
+er.
+> > > +  It has 4 high-precision current sinks that can be controlled by a =
+PWM input
+> > > +  signal, a SPI/I2C master, or both.
+> > > +
+> > > +  For more product information please see the link below:
+> > > +    https://www.ti.com/product/lp8860-q1
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: ti,lp8860
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +    description: I2C slave address
+> > > +
+> > > +  "#address-cells":
+> > > +    const: 1
+> > > +
+> > > +  "#size-cells":
+> > > +    const: 0
+> > > +
+> > > +  enable-gpios:
+> > > +    maxItems: 1
+> > > +    description: GPIO pin to enable (active high) / disable the devi=
+ce
+> > > +
+> > > +  vled-supply:
+> > > +    description: LED supply
+> > > +
+> > > +patternProperties:
+> > > +  "^led@[0]$":
+> > > +    type: object
+> > > +    $ref: common.yaml#
+> > > +    unevaluatedProperties: false
+> > > +
+> > > +    properties:
+> > > +      reg:
+> > > +        description:
+> > > +          Index of the LED.
+> > > +        const: 0
+> > > +
+> > > +      function: true
+> > > +      color: true
+> > > +      label: true
+> > > +      linux,default-trigger: true
+> > > +
+> > > +    required:
+> > > +      - reg
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - "#address-cells"
+> > > +  - "#size-cells"
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/gpio/gpio.h>
+> > > +    #include <dt-bindings/leds/common.h>
+> > > +
+> > > +    i2c {
+> > > +        #address-cells =3D <1>;
+> > > +        #size-cells =3D <0>;
+> > > +
+> > > +        led-controller@2d {
+> > > +            compatible =3D "ti,lp8860";
+> > > +            #address-cells =3D <1>;
+> > > +            #size-cells =3D <0>;
+> > > +            reg =3D <0x2d>;
+> > > +            enable-gpios =3D <&gpio1 28 GPIO_ACTIVE_HIGH>;
+> > > +            vled-supply =3D <&vbatt>;
+> > > +
+> > > +            led@0 {
+> >
+> > So same comment I made in the pre-public review, lets see what the DT
+> > folks think:
+> >
+> > I don't think we want to have the "@0" node naming. It forces us to
+> > add the "reg =3D" below, and that then forces us to add the #*-cells ab=
+ove.
+> > All this to work around not just calling the node "led-0". The driver
+> > doesn't care either way, and there are no in-tree users of the old way,
+> > so now should be a safe time to fix this while converting the binding.
+>
+> Just 'led' should be allowed for the single child case.
+>
+> However, as there are 4 channels, shouldn't the schema be '^led@[0-3]$'?
+> If you want to support both that and just 'led', then that can be done
+> too.
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
----
- arch/arm64/boot/dts/exynos/exynos8895.dtsi | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+Well, those are the options if this was a new binding. But it is not,
+so perhaps just stick with what you have here. Expanding it to 4 child
+nodes would be fine, but changing to 'led' may be an ABI issue (though
+we tend to treat 'led' vs. 'led@0' the same).
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos8895.dtsi b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-index ee393f4f0..90b318b2f 100644
---- a/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-@@ -38,7 +38,17 @@ arm-a53-pmu {
- 				     <&cpu3>;
- 	};
- 
--	/* There's no PMU model for the Mongoose cores */
-+	mongoose-m2-pmu {
-+		compatible = "samsung,mongoose-pmu";
-+		interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu4>,
-+				     <&cpu5>,
-+				     <&cpu6>,
-+				     <&cpu7>;
-+	};
- 
- 	cpus {
- 		#address-cells = <1>;
--- 
-2.43.0
-
+Rob
 
