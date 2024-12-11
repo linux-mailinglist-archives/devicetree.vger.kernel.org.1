@@ -1,239 +1,148 @@
-Return-Path: <devicetree+bounces-130017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C9A69ED943
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:03:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A3F09ED96A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:15:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DE821885768
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 22:03:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F3181886C8D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 22:15:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04251F2C23;
-	Wed, 11 Dec 2024 22:01:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A491F0E5F;
+	Wed, 11 Dec 2024 22:15:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cw0MaO6Y"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="ULa7wd4N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF54E1F0E45
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 22:01:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CEF91F0E50
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 22:15:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733954516; cv=none; b=DejWuz8AeTLLagwCBt5voQv+idbv9DOpHEZ1L/M+OiPtnBa/apdYD6u1wVR9gWb7P6+jLNL7zwvMv2NJaqx0pNaOO8oo/MAkYkxL+B1iGSIE3xV2H+QjVdBe767rsMi9LVSL25U5t+cofQZ5Bqc+oLtkhrZ/q+roJrvj8OVNpsA=
+	t=1733955306; cv=none; b=uMOGhsWckNLTdrCs8sYn3qEbWZnjWs25tGYBFtk2SKiUjgE2ooGZDorXCpGFKOZbOc/z2VDq8Uer4juzAKp6Vi8yb9mDeHsbV6d/4F4okk7bLbNfpvZ5RfUfm9vdh68plzvnsbX2qyx+Gm3i4UTIHZvR5gI2qhnir5uyqTxFhCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733954516; c=relaxed/simple;
-	bh=Hu2ByqklQuQmDfnHBLNSZnJnXSQP/3lhW+QeaRZXie8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GsLVyn7TGb0dOW/qTet/jE/Xj1D8BtDVEmEHVqJXgfFyahJbAtOsDAP9bfL9YqMAKLZ9rpryrI+4GiWYZ2V1wHNW/gI4tEgLp3GajcWXNwFd18QNn0YZnr4dDtmNPn5khRKLF3tMpOfFFTL4mBlBhzfA9boPZ1809nR0uF31tCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cw0MaO6Y; arc=none smtp.client-ip=209.85.160.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-29fcbf3d709so1367299fac.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 14:01:53 -0800 (PST)
+	s=arc-20240116; t=1733955306; c=relaxed/simple;
+	bh=oB07gn9pqpSgUy9iB+7ERltxmhD9+hy9AfchbX0xjA8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CRxDy8TDNFgnhOXb2vp41f0iLPv68xquzExTC+2FCZ5YD4P4s9vYDpz0lHoh5ISTj/zDIxrrb9oZw6K/2oTTo2Vkem/vt01KohoWmjPG8YXmRVtsM8rL2SWvVMK0JXyJFL6OiY91deIkA/00CUZDU+t0xfp6r/DDm4GHTrSeZl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=ULa7wd4N; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7fbd9be84bdso8801a12.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 14:15:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733954513; x=1734559313; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YfgiN8bKA/zV2iECs+IeycK2wa4XqflJ7gHTNLn9LPA=;
-        b=cw0MaO6YPlIWZR4oO/H/vhAMl1A1V9xCiU4H7Gz2sXHb1XG6dJm/mW0fkuY4pwYqPs
-         oc2JnUpC+N3E+B6PMcJi1yxrEBGILxOnpsyxaBxzokr3zzewyeaGJ73NYofP5uFJZHRF
-         VZndnVhfnu6ifHJHD2TtNeExs75JZ43ehqvmi971EHnSEfR2nH3pLbN3yI7s0O39N+1+
-         W3MH8d+MIgfDn/GpMQ0IJ52xneuMYqhnTFodT2KYTr2g6jpQjA64BP6ZVpOco5/7VpA5
-         SpH9l6m4WDjTUgu2ViRj8RVvSUWWoYRuLRK/I8UNNAVNufjQRXI4AOmj5rHWwneA7Jbw
-         jJug==
+        d=tenstorrent.com; s=google; t=1733955304; x=1734560104; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=L3bvWRkboCH041Q0f62pL6WYiocCI+DadvD/PAjyygU=;
+        b=ULa7wd4Nq1wUGxlkkbPXrHx9F+YOGkgJoVFGKp7WocwO8S7jflVKqqsGaJzfY3ZMqI
+         rs156QLObNvvla+/Uf9nr3P4TVwvAH3YECX7w/msvUCZAe0h/HusXQc5G8NB5AuNzxlM
+         Lg84IWevj1ZjmEW717HbMjFyj3/3azq3NfgDYfC7nsCVu/g3iAB83Z16I6KOrywjjK3F
+         UkC5HmylPxRABmcFHWSRwyiJn7qBX3zsjICIGIVtVyO7NbwqeE+BCy6IoSnMAinheWEe
+         coYIpJfA4gKARBqETvAFfUCIGJK12XZdrXJB79wB7x4ETZzKxOkAvI+/jiykCs/74PT1
+         BZbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733954513; x=1734559313;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YfgiN8bKA/zV2iECs+IeycK2wa4XqflJ7gHTNLn9LPA=;
-        b=hLM+q8s6quRI16D+cRc1HbghBYs2gUpT0SINQkebDPCYNYjjyiQlhfkuXbZHkcEePc
-         Dm5pkresxQQ+Gv8c+vjX7GBp02gcD83YvAY0zUFhmctyOhfVhoqGYS7xifb16T+jVXl7
-         eEtm7+Db19HL9AJv5aWMNqLITGKPcdzlfEFLFkR+Sskyb3TmYpMYx1Dc3KK8OipHPyec
-         Kfa9iMnHitLAdv4OD8M1wF2kKi0FwhOiL2z6cnYZ78X+lLBfOpfOWFhST5ydxtDZT5zU
-         HxcJ+Am9ABdF8jAKmqt7HEST9Zwb7E/jgzPoKQHmaoqyZ5EIXWh9qpEtfxhbIZEs98DT
-         /xuA==
-X-Forwarded-Encrypted: i=1; AJvYcCX34kjX5ZJ2YvXncXOgKOoxjw32hN07Q5L3YkS+9NnsqzhEZ7LJq2cku/M7+OFd1TM1CU85KDBvgVOu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZSHVeEzULfq3ArHreDTHPyj0rswNdfcsI42bFNw6XsC1hS25T
-	pSfgT8P+FNlvYu8+6HN+KHKE+1UGwQwlMj/qe5tYiuf+d7L8A6o0Xubxp/gH8mA=
-X-Gm-Gg: ASbGnctBJ6rIFlwYEhpAwkkPf6BCnZWf4AWyPP6AxK59WKkO2rzvBBlEgMEYoXuZuKn
-	ROJhQqexOw9VrNeDvToJyQCKMsrvZG9jRSKcJw840I+mBdCEYB19LZfSVmAHfOnSZb861LcwR0i
-	uzXsnDZY/IJZFXjD1Mu83lM4OVfxJlqjF7HPD3wgwRaLgKF+lgCKqM0cHBwhZt/YfkCaFi8R3l/
-	hl4PyFFxdUuB2g15kYeHGbRgryR33J2e1qNULVRsjdhawYVeffbLTM7CNhid9zcsTZfEGAU6rl9
-	bBQxlpmYon8efEA=
-X-Google-Smtp-Source: AGHT+IE1lOU8aJHTLEOGRoysIOnnkI1kkr5ONpELSEis3dXuvxQLyp4Yadpz+/hT2lXzq9apzGKBPg==
-X-Received: by 2002:a05:6870:5490:b0:29d:c870:74 with SMTP id 586e51a60fabf-2a012dc23acmr3059922fac.27.1733954512698;
-        Wed, 11 Dec 2024 14:01:52 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-29fb0192599sm2701232fac.39.2024.12.11.14.01.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Dec 2024 14:01:51 -0800 (PST)
-Message-ID: <9ff2ba8c-fdb6-4792-905a-71ca2ddc58b9@baylibre.com>
-Date: Wed, 11 Dec 2024 16:01:49 -0600
+        d=1e100.net; s=20230601; t=1733955304; x=1734560104;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L3bvWRkboCH041Q0f62pL6WYiocCI+DadvD/PAjyygU=;
+        b=LWBNleKzQSfe+iNW4kcdgq6L+Kyw0O+6nsIfkdjkg8/x/n7ls41Cckh7xUMn0aXzpl
+         TqydhEN0c+6L5DAZ8pwurGqOKLCKZPhp+q7mUtukFkhg/VXcHgpFYHWyTHKNL49FmxLU
+         qPVokXPTM0B+aPKKjVqjO/hCs/f+RpgKsHtoPyZ652a+3xaKdfJ5nOHXQsWIQlHd5vPl
+         YgaIyQEJBj0V4/qr0GlDcZNcxEPasplonQxhSLxUEWC+8GquL8Q89iq/c+FxNj1ZoN1g
+         E35hHsuaQCu7aGtE9LolGfUWADSGlJasT0F3b81T3P2xL50NYjExkFY7tn7y1Lep4PoS
+         SzMA==
+X-Forwarded-Encrypted: i=1; AJvYcCUgsDJMtbcFzVMel3b8+rLNCMXj7WpwxTMG2R00mOjOfaqHr3Fv1YQxG4Wtx+7WcN0Wyz3s0/UKEPrT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTNXmXh1Ytqjk/qz3PbIc3zgm4ZNrPjgYeRoZAydC8WLrr7T9N
+	SVpwLNOLoeh+Bn5zxkW5VGzhH8NXu8Rz3l5D1gwg6qVwQGGs5klNQnha5s+dKlg=
+X-Gm-Gg: ASbGncucvP4fyjZ1iiUc7eeN3FO/QTe1uZcrI9/eh58pYQirNW4Gov8TZnOxxP6DtMu
+	8t1OVJEPT6QhlaH5Dp6Oss517YW+uYTUOr8BsCa9z7EPAhtyO8agIIUYvFb2w5WJugYZ74HpQza
+	sHuqHhtYTo0bTaXiQPerKkZCPDVETlI583Gz6mB7UFdGuy3FO/qhc3pizdDB0aaxUCROH4alTTG
+	G1ugwqwe4c2+PU5faX9Oa5UpISzgL7lLCSJXUcnOR7BGOWMDp20gvF53zz33l7VRGAJamEd2jBs
+	jA==
+X-Google-Smtp-Source: AGHT+IEb6jrcS620SuawsDm8dcAts71In8z21uu+C1uHb7i7S2+w4kvORWkHg4Zn3dKoRKn7AByUgQ==
+X-Received: by 2002:a17:90b:4b01:b0:2ee:863e:9fff with SMTP id 98e67ed59e1d1-2f127fa5c8emr7725668a91.10.1733955303743;
+        Wed, 11 Dec 2024 14:15:03 -0800 (PST)
+Received: from x1 (75-164-218-15.ptld.qwest.net. [75.164.218.15])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f12d32170dsm1630237a91.46.2024.12.11.14.15.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Dec 2024 14:15:03 -0800 (PST)
+Date: Wed, 11 Dec 2024 14:15:01 -0800
+From: Drew Fustini <dfustini@tenstorrent.com>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
+	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, m.szyprowski@samsung.com,
+	samuel.holland@sifive.com, emil.renner.berthing@canonical.com,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, christophe.jaillet@wanadoo.fr
+Subject: Re: [PATCH v6 3/3] riscv: dts: thead: Add mailbox node
+Message-ID: <Z1oO5ewIOMFco4KI@x1>
+References: <20241104100734.1276116-1-m.wilczynski@samsung.com>
+ <CGME20241104100801eucas1p27cd0d7b9b5b4500604470664884c42fb@eucas1p2.samsung.com>
+ <20241104100734.1276116-4-m.wilczynski@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/9] dt-bindings: iio: dac: adi-axi-adc: Add ad7606
- variant
-To: Guillaume Stols <gstols@baylibre.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, jstephan@baylibre.com, aardelean@baylibre.com,
- adureghello@baylibre.com
-References: <20241210-ad7606_add_iio_backend_software_mode-v2-0-6619c3e50d81@baylibre.com>
- <20241210-ad7606_add_iio_backend_software_mode-v2-2-6619c3e50d81@baylibre.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20241210-ad7606_add_iio_backend_software_mode-v2-2-6619c3e50d81@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241104100734.1276116-4-m.wilczynski@samsung.com>
 
-On 12/10/24 4:46 AM, Guillaume Stols wrote:
-> A new compatible is added to reflect the specialized version of the HDL.
-> We use the parallel interface to write the ADC's registers, and
-> accessing this interface requires to use
-> ADI_AXI_REG_CONFIG_RD,ADI_AXI_REG_CONFIG_WR and ADI_AXI_REG_CONFIG_CTRL
-> in a custom fashion.
+On Mon, Nov 04, 2024 at 11:07:34AM +0100, Michal Wilczynski wrote:
+> Add mailbox device tree node. This work is based on the vendor kernel [1].
 > 
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+> Link: https://github.com/revyos/thead-kernel.git [1]
+> 
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 > ---
->  .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   | 53 ++++++++++++++++++++++
->  1 file changed, 53 insertions(+)
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-> index e1f450b80db2..6c3fc44422cc 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
-> @@ -17,13 +17,22 @@ description: |
->    interface for the actual ADC, while this IP core will interface
->    to the data-lines of the ADC and handle the streaming of data into
->    memory via DMA.
-> +  In some cases, the AXI ADC interface is used to perform specialized
-> +  operation to a particular ADC, e.g access the physical bus through
-> +  specific registers to write ADC registers.
-> +  In this case, we use a different compatible whch indicates the target
-
-s/whch/which/
-
-> +  chip(s)'s name.
-
-s/chip(s)'s/IP core's/
-
-> +  The following IP is currently supported:
-> +    -axi_ad7606X: Backend for all the chips from the ad7606 family.
-
-s/axi_ad7606X/AXI AD7606X/ # proper name of the IP core
-s/Backend/Specialized version of the IP core/
-
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> index 6992060e6a54..89de5634d3d3 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -520,6 +520,22 @@ timer7: timer@ffffc3303c {
+>  			status = "disabled";
+>  		};
 >  
->    https://wiki.analog.com/resources/fpga/docs/axi_adc_ip
-> +  http://analogdevicesinc.github.io/hdl/library/axi_ad7606x/index.html
->  
->  properties:
->    compatible:
->      enum:
->        - adi,axi-adc-10.0.a
-> +      - adi,axi-ad7606x
->  
->    reg:
->      maxItems: 1
-> @@ -53,6 +62,24 @@ required:
->    - reg
->    - clocks
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: adi,axi-ad7606x
-> +    then:
-> +      patternProperties:
-> +        "^adc@[0-9a-f]+$":
-> +          type: object
-> +          properties:
-> +            reg:
-> +              maxItems: 1
-> +          additionalProperties: true
-> +          required:
-> +            - compatible
-> +            - reg
+> +		mbox_910t: mailbox@ffffc38000 {
+> +			compatible = "thead,th1520-mbox";
+> +			reg = <0xff 0xffc38000 0x0 0x6000>,
+> +			      <0xff 0xffc40000 0x0 0x6000>,
+> +			      <0xff 0xffc4c000 0x0 0x2000>,
+> +			      <0xff 0xffc54000 0x0 0x2000>;
+> +			reg-names = "local", "remote-icu0", "remote-icu1", "remote-icu2";
+> +			clocks = <&clk CLK_MBOX0>, <&clk CLK_MBOX1>, <&clk CLK_MBOX2>,
+> +				 <&clk CLK_MBOX3>;
+> +			clock-names = "clk-local", "clk-remote-icu0", "clk-remote-icu1",
+> +				      "clk-remote-icu2";
+> +			interrupt-parent = <&plic>;
+> +			interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
+> +			#mbox-cells = <1>;
+> +		};
 > +
-
-The preferred way to compatible-specific bindings is to add
-everything at the top level and then disable ones that don't
-apply using -if: blocks.
-
-So under the top-level properties:, add
-
-  '#address-cells':
-    const: 1
-  '#size-cells':
-    const 0
-
-and move the patternProperties: to the top level.
-
-Then add not: to the -if: and make the then:
-
-    properties:
-      '#address-cells': false
-      '#size-cells': false
-    patternProperties:
-      "^adc@[0-9a-f]+$": false
-
->  additionalProperties: false
->  
->  examples:
-> @@ -65,4 +92,30 @@ examples:
->          clocks = <&axi_clk>;
->          #io-backend-cells = <0>;
->      };
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    axi-adc@44a00000 {
-
-Shouldn't we have the label iio_backend: here?
-
-Also, could use a more generic name like "parallel-bus-controller"
-instead of "axi-adc".
-
-> +        compatible = "adi,axi-ad7606x";
-> +        reg = <0x44a00000 0x10000>;
-> +        dmas = <&rx_dma 0>;
-> +        dma-names = "rx";
-> +        clocks = <&ext_clk>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adi_adc@0 {
-> +            compatible = "adi,ad7606b";
-> +            reg = <0>;
-> +            pwms = <&axi_pwm_gen 0 0>;
-> +            pwm-names = "cnvst_n";
-> +            avcc-supply = <&adc_vref>;
-> +            reset-gpios = <&gpio0 91 GPIO_ACTIVE_HIGH>;
-> +            standby-gpios = <&gpio0 90 GPIO_ACTIVE_LOW>;
-> +            adi,range-gpios = <&gpio0 89 GPIO_ACTIVE_HIGH>;
-> +            adi,oversampling-ratio-gpios = <&gpio0 88 GPIO_ACTIVE_HIGH
-> +                            &gpio0 87 GPIO_ACTIVE_HIGH
-> +                            &gpio0 86 GPIO_ACTIVE_HIGH>;
-> +            io-backends = <&iio_backend>;
-> +        };
-> +    };
->  ...
+>  		ao_gpio0: gpio@fffff41000 {
+>  			compatible = "snps,dw-apb-gpio";
+>  			reg = <0xff 0xfff41000 0x0 0x1000>;
+> -- 
+> 2.34.1
 > 
 
+Reviewed-by: Drew Fustini <dfustini@tenstorrent.com>
+
+dt_binding_check and dtbs_check are clean when I apply this patch to
+v6.13-rc1. There is trivial conflict due to the gpio node label having
+changed. I'll resolve it when I apply the patch to thead-dt-for-next.
+
+Thanks,
+Drew
 
