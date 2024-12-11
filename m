@@ -1,258 +1,145 @@
-Return-Path: <devicetree+bounces-129611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 833E99EC501
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 07:48:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10FCA9EC54E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 08:04:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87D9B166FE3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 06:48:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCC82188686F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 07:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B89521C5CB7;
-	Wed, 11 Dec 2024 06:48:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lVzI0Alg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E0FE1C683;
+	Wed, 11 Dec 2024 07:04:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbg150.qq.com (smtpbg150.qq.com [18.132.163.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F461C5496;
-	Wed, 11 Dec 2024 06:48:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E1771C5CD3
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 07:03:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.132.163.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733899689; cv=none; b=Gr2HD1tRCOpWvhU54GCVoHBG2kStbKcYaNMfcOoUbT41N+lTkZcwpBp5x3nYNteX3mXd/zxJPsIxV3URpqNC4srJ/peuWR2gT+THEEDmeMgfPz9O5m0r/Ot3whBrF8E6ozMDsbWLMFkaBo6sqPLJd+BNejwis4YkSwXGayhRmqQ=
+	t=1733900642; cv=none; b=m8e2cguSojV4rS/D/Y3uu6ZlSNJNF7+2FkJX+oVldXCDF++lUzEzJ+xnXpjBG93jnjul0JagPYdc+yZCiWeMqS82YQyCfFqegLmL9OlABWA72HSgjqgQORAkaDBpOHpYCUxmZMGj2Am8Y/C9GOj4lSmqE3MzkIxmvdv2zBKT9u4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733899689; c=relaxed/simple;
-	bh=UPPnlWPu9KoNlNpvsqGTfPyBQbXQZd4qU+Jb/czZ7/A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KuvLduEI4WLlW2SBGk2euWoEnqUiBuB844e7YVzeFWOjiprTTbuSIJZ0FdDL/XW8B6sOPBrMTL+K7GGK2b5i9ScDYZoua8xfYoBsTEPVLr7MS5BVW22b+mN+bFijDK2L5qo3mPrI5OsSKgQTF/V9ayWX+QrWsM3KXh+dlIvNPF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lVzI0Alg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 21097C4AF0C;
-	Wed, 11 Dec 2024 06:48:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733899689;
-	bh=UPPnlWPu9KoNlNpvsqGTfPyBQbXQZd4qU+Jb/czZ7/A=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=lVzI0Algq+XTOAf/dYDHZb1kI7b3r7XQ2Qhixv6gouPmJBqrx/IhUObZRNdUrZGVb
-	 ugFaymGbSB6Oxv6oFu5lSHWOi0QRCHbu6yZojlcvu8baXMi0Tw/bZmpKKO4rGrCaxC
-	 pYNVLM42CfqaiQU9QPPLjlkUspBmlptdF0t8zuVtuaK0G9ODHAiVee7LqhmhnpMCrN
-	 CZ5zWLazfue4AK1WZLzBg3NqY5QT8JWHVPfqkBSoyUCfmutiQWuN9/myG3bRED4UqU
-	 PQ+STpDvXXvH3vIBf7E2WlkyNPpAjCmHiEkTp4njDXX2G17+XqPRiTVYiBJQYpohcI
-	 sGD4A4netMulg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 112EFE77183;
-	Wed, 11 Dec 2024 06:48:09 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 11 Dec 2024 14:47:51 +0800
-Subject: [PATCH RFC 3/3] arm64: dts: amlogic: a4: add pinctrl node
+	s=arc-20240116; t=1733900642; c=relaxed/simple;
+	bh=HXIzGAt1EWle9dzPeQXP5jteJ6YNOFdgJAyYz1we3K4=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=ksrTV6S2022zsci0zvJN8x2txtx+idwXx9J03LCTAb5EbnRCYxJlbZ5zys/c1NkXbxw6V0fR3pEUE4aGLFd6GzZBV+YcnBzm3I1fvskKSOdrPhozziRouUy+Zki4mmK4FDE/MFwxILAqAyaq8Azoy0nRjOLP6GIRFP4SczloMAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=18.132.163.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtpip4t1733900548trh11jr
+X-QQ-Originating-IP: 47EKH+0Yq9shoVzZtADBwSuTSEChfvGL1X839OC80n8=
+Received: from [IPV6:240f:10b:7440:1:b238:648b ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 11 Dec 2024 15:02:24 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 9423853600473397212
+Message-ID: <699843916ED096AB+f9c38503-2cd7-4ffb-9832-494f57a21b41@radxa.com>
+Date: Wed, 11 Dec 2024 16:02:24 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241211-amlogic-pinctrl-v1-3-410727335119@amlogic.com>
-References: <20241211-amlogic-pinctrl-v1-0-410727335119@amlogic.com>
-In-Reply-To: <20241211-amlogic-pinctrl-v1-0-410727335119@amlogic.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733899686; l=4294;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=wd2xEkVGIb+QQGNlpn9fPOzOszeVPGCMX5Z9RWeBF+M=;
- b=V4CFjbseLot8PdTVnt01ycVpwibk0w7BRAlIO9BREobCH/cbUT9/dccE5TNzvbad920xz3xTq
- s+Cse5B+iI3AcJLNHYnZKdsjFDFM1RhjPRWGZUwmwwqX1JaULRCXsW2
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: arm: rockchip: add Radxa ROCK 5C Lite
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, macromorgan@hotmail.com, jonas@kwiboo.se,
+ andyshrk@163.com, liujianfeng1994@gmail.com, tim@feathertop.org,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+References: <20241211060936.57452-1-naoki@radxa.com>
+ <c6ba70f1681bb635190e9452ecb22d59@manjaro.org>
+ <FE22A7AEB0707DE7+903efcab-b291-4a12-a9a5-ba1cc3658016@radxa.com>
+Content-Language: en-US
+In-Reply-To: <FE22A7AEB0707DE7+903efcab-b291-4a12-a9a5-ba1cc3658016@radxa.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: MY3/p6yUwwyTKhWeGHrQApRFi6b1sZeNU4/mRIoiCvW+M0/MCReusRiE
+	nKNdEvkdEWg/xqKZ7Tb2GxpO27aDZD4W/TOJTMYG5jTlxpL1S/lUBzUc+7wB8je9oV45cbL
+	7YqlV9/tWSrWirg6Ze4rZw8vkMW3KRkUb9TWI1n6QXH22q1oTVwymucn2U3esyd8is6miTP
+	AvJ7UjPfp46SeAZtEDw43TMIehlj6+qSswEU7lV01zUmNsGqWmw0JZ549wfY8vjR2VnEdJ/
+	rCmq3cOE3VmHTLgQCbS/+FPLYvfJ2RNb9A0sqo+xGwIGDuhhlHXKDcPLYRccxnA0ypOVWdB
+	Vy6fSMk2VATxabGbJAfhKVrsjP4f0nPpCUiKCNAsWciybSVk9qKRD5bwdmmr1IJyrzyVNES
+	KVLvipPDmFwL3xR1epg9HAUrRNyb45CKgUnj/+WwMZQEZYJe9jzy+s6uNdd+9bvKbap2+eH
+	IEhCPVzZ8BapEFT7FmvnTfLj63klXjiU7o0jl34kGL6jrueVjeEy+pT+hk8RtR6CQqbCVwz
+	6N1RmEQ7xjjxOx+JwB3Q1dQmo+zbg5FZcce/ScI2v4XZLEQi/Nv459AQOpfkXt/OKbGgGr9
+	cRW6stWaGX5sNzMEwH9b9ILzlO7CzDHMVJjI/ywP7YnZP67ZdJuFd2euAL4Q56ss2XIDCOr
+	a1EEVo/amLfodI8HlXTFXOZfoq4Z08oW+ke7k0ara+vl/I3I3ZTR/ANN3yUZ9wXeaTkpEk2
+	ElWxyUmoyAlbFvFOMAkZ1e5eqysOlQ1Mx8ds/b3UE/NztaOaxgyNWIi8t5n613PK/K3gdIF
+	gMFbZQwwSMf7GxP45hD11l2m5dCEcqnqvjV+2tnCowLDqz6D9bkXftjQ35+CQJYjNOXHWOE
+	wclLEIuza4U6enE2VRKTryYk6QrfTjydNT6LCILTJ1TkexeoCjDEBI4N+EN/tAG/PEYx3c9
+	XPs7pLJkWE//2u3NmLUeZDiONlRxpxHQzQ/TSjIev+sgUoA==
+X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
+X-QQ-RECHKSPAM: 0
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+just FYI,
 
-Add pinctrl device to support Amlogic A4 and add uart pinconf.
+https://lore.kernel.org/linux-rockchip/?q=e52c
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 146 ++++++++++++++++++++++++++++
- 1 file changed, 146 insertions(+)
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-index de10e7aebf21..fccae7c9758a 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-@@ -5,6 +5,7 @@
- 
- #include "amlogic-a4-common.dtsi"
- #include <dt-bindings/power/amlogic,a4-pwrc.h>
-+#include <dt-bindings/pinctrl/amlogic,pinctrl.h>
- / {
- 	cpus {
- 		#address-cells = <2>;
-@@ -48,3 +49,148 @@ pwrc: power-controller {
- 		};
- 	};
- };
-+
-+&apb {
-+	periphs_pinctrl: pinctrl@4000 {
-+		compatible = "amlogic,pinctrl";
-+		reg = <0x0 0x4000 0x0 0x0050>,
-+		      <0x0 0x40c0 0x0 0x0220>;
-+		reg-names = "mux", "gpio";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+
-+		gpiob: gpiob {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			npins = <14>;
-+			bank-index = <AMLOGIC_GPIO_B>;
-+			reg-mux-offset = <0>;
-+			reg-gpio-offset = <0x60>;
-+			bank-name = "GPIOB";
-+		};
-+
-+		gpiod: gpiod {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			npins = <16>;
-+			bank-index = <AMLOGIC_GPIO_D>;
-+			reg-mux-offset = <0x10>;
-+			reg-gpio-offset = <0x30>;
-+			bank-name = "GPIOD";
-+		};
-+
-+		gpioe: gpioe {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			npins = <2>;
-+			bank-index = <AMLOGIC_GPIO_E>;
-+			reg-mux-offset = <0x12>;
-+			reg-gpio-offset = <0x40>;
-+			bank-name = "GPIOE";
-+		};
-+
-+		gpiot: gpiot {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			npins = <23>;
-+			bank-index = <AMLOGIC_GPIO_T>;
-+			reg-mux-offset = <0xb>;
-+			reg-gpio-offset = <0x20>;
-+			bank-name = "GPIOT";
-+		};
-+
-+		gpiox: gpiox {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			npins = <18>;
-+			bank-index = <AMLOGIC_GPIO_X>;
-+			reg-mux-offset = <0x3>;
-+			reg-gpio-offset = <0x10>;
-+			bank-name = "GPIOX";
-+		};
-+
-+		func-uart-a {
-+			uart_a_default: uart-a-pins1{
-+				pinmux= <AML_PINMUX(AMLOGIC_GPIO_X, 11, AF1)>,
-+					<AML_PINMUX(AMLOGIC_GPIO_X, 12, AF1)>,
-+					<AML_PINMUX(AMLOGIC_GPIO_X, 13, AF1)>,
-+					<AML_PINMUX(AMLOGIC_GPIO_X, 13, AF1)>;
-+			};
-+
-+			uart-a-pins2{
-+				pinmux= <AML_PINMUX(AMLOGIC_GPIO_D, 2, AF3)>,
-+					<AML_PINMUX(AMLOGIC_GPIO_D, 3, AF3)>;
-+				bias-pull-up;
-+				drive-strength-microamp = <4000>;
-+			};
-+		};
-+
-+		func-uart-b {
-+			uart_b_default: uart-b-default{
-+				pinmux= <AML_PINMUX(AMLOGIC_GPIO_E, 0, AF3)>,
-+					<AML_PINMUX(AMLOGIC_GPIO_E, 1, AF3)>;
-+				bias-pull-up;
-+				drive-strength-microamp = <4000>;
-+			};
-+		};
-+
-+		func-uart-d {
-+			uart_d_default: uart-d-pins1{
-+				pinmux= <AML_PINMUX(AMLOGIC_GPIO_T, 18, AF4)>,
-+					<AML_PINMUX(AMLOGIC_GPIO_T, 19, AF4)>;
-+				bias-pull-up;
-+				drive-strength-microamp = <4000>;
-+			};
-+
-+			uart-d-pins2{
-+				pinmux= <AML_PINMUX(AMLOGIC_GPIO_T, 7, AF2)>,
-+					<AML_PINMUX(AMLOGIC_GPIO_T, 8, AF2)>,
-+					<AML_PINMUX(AMLOGIC_GPIO_T, 9, AF2)>,
-+					<AML_PINMUX(AMLOGIC_GPIO_T, 10, AF2)>;
-+				bias-pull-up;
-+				drive-strength-microamp = <4000>;
-+			};
-+		};
-+
-+		func-uart-e {
-+			uart_e_default: uart-e-pins{
-+				pinmux= <AML_PINMUX(AMLOGIC_GPIO_T, 14, AF3)>,
-+					<AML_PINMUX(AMLOGIC_GPIO_T, 15, AF3)>,
-+					<AML_PINMUX(AMLOGIC_GPIO_T, 16, AF3)>,
-+					<AML_PINMUX(AMLOGIC_GPIO_T, 17, AF3)>;
-+				bias-pull-up;
-+				drive-strength-microamp = <4000>;
-+			};
-+		};
-+	};
-+
-+	aobus_pinctrl: pinctrl@8e700 {
-+		compatible = "amlogic,pinctrl";
-+		reg = <0x0 0x8e700 0x0 0x04>,
-+		      <0x0 0x8e704 0x0 0x60>;
-+		reg-names = "mux", "gpio";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+
-+		gpioao: gpioao {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			npins = <7>;
-+			bank-index = <AMLOGIC_GPIO_AO>;
-+			reg-mux-offset = <0>;
-+			reg-gpio-offset = <0>;
-+			bank-name = "GPIOAO";
-+		};
-+
-+		test_n: gpiotestn {
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			npins = <1>;
-+			bank-index = <AMLOGIC_GPIO_TEST_N>;
-+			reg-mux-offset = <0>;
-+			bit-mux-offset = <28>;
-+			reg-gpio-offset = <0x10>;
-+			bank-name = "TEST_N";
-+		};
-+	};
-+};
-
--- 
-2.37.1
-
+On 12/11/24 15:44, FUKAUMI Naoki wrote:
+> Hi Dragan,
+> 
+> On 12/11/24 15:36, Dragan Simic wrote:
+>> Hello Fukaumi,
+>>
+>> On 2024-12-11 07:09, FUKAUMI Naoki wrote:
+>>> The Radxa ROCK 5C Lite uses a different SoC (RK3582) compared to the
+>>> Radxa ROCK 5C (RK3588S2), but the two are compatible from a software
+>>> perspective.
+>>>
+>>> Fixes: df4e08a5eed1 ("dt-bindings: arm: rockchip: add Radxa ROCK 5C")
+>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>> b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>> index 753199a12923..2254ee079094 100644
+>>> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+>>> @@ -895,7 +895,7 @@ properties:
+>>>            - const: radxa,rock-5b
+>>>            - const: rockchip,rk3588
+>>>
+>>> -      - description: Radxa ROCK 5C
+>>> +      - description: Radxa ROCK 5C/5C Lite
+>>>          items:
+>>>            - const: radxa,rock-5c
+>>>            - const: rockchip,rk3588s
+>>
+>> I think it would be better to use "rockchip,rk3582" here, to allow
+>> us to possibly use that information later.  For example, we might
+>> want to be able to recognize RK3582-based boards in U-Boot without
+>> the need to look into the e-fuses at some point, for which purpose
+>> having a clear designator in the DT would fit perfectly.
+> 
+> It may be okay to introduce "rockchip,rk3582", but reading e-fuse is 
+> still required in U-Boot because which unit (cpu coreX, gpu, etc) is 
+> broken cannot be determined without reading e-fuse at run-time.
+> 
+> Best regards,
+> 
+> -- 
+> FUKAUMI Naoki
+> Radxa Computer (Shenzhen) Co., Ltd.
+> 
+>> As a reminder, using "rockchip,rk3582" would also require a small
+>> addition to drivers/irqchip/irq-gic-v3-its.c.
+>>
+> 
+> 
 
 
