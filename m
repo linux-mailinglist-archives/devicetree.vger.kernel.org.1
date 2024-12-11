@@ -1,136 +1,142 @@
-Return-Path: <devicetree+bounces-129619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41DC49EC58E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 08:29:47 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F7D1188A014
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 07:29:41 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D961C5F1D;
-	Wed, 11 Dec 2024 07:29:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OQtqNQ5i"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 095879EC596
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 08:30:33 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A71311C5F0C;
-	Wed, 11 Dec 2024 07:29:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF94C285A5E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 07:30:31 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45D7E1D88D0;
+	Wed, 11 Dec 2024 07:29:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="rG4dnS5y"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E74E1D7E4F;
+	Wed, 11 Dec 2024 07:29:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733902174; cv=none; b=G6IxB13x9eshP1UEdF7nBLraI8xNYQQ3T5QenbMdPSmYPzzJG4QrSa8+b7Hq2tWyQVTqsCmPge4+iM74OcsJVL2yBCw6OzAuit+qKZuM6OuoGzmACfINHgwaKYi/NtwibseJbRJaLcpCWTqlyghoakzGvTg5DNgynFKM65humGM=
+	t=1733902183; cv=none; b=VM732ViiZv89GsDJhScIk9QlCZtA7XZPCjADKLcPgM6ejhpgv+hYY1Pz2/IABFWO1AfaHPje2VgYB2nPOA/ICgabRK6fX3rhN4Uss9vbE0kDMFkkgVhYvRvtELrBPFzIWer0Xj1/t7OGi/lJPbudzaeOnUINm2fPILzKNlanEyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733902174; c=relaxed/simple;
-	bh=kE9grQmLn6LHMLUwo50GIjdSNUInWEzzqpTKkKa/hkc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pWZDScTYEu08I0Y3PQJNCDEnL5b53jkZ6wIGiSqKXxn+aAaH+od6jkqbjSkbODjEdtPIPA2c5e7y+sljFviLq5DHqKVvqCqmNHHXTVWrxTczCAMgaY4ANmgW8eAJRphQ5/nfna2veGJIaBUMFVOUyhNo2k/kW2oO+bI30wDu0zw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OQtqNQ5i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 46846C4CEDF;
-	Wed, 11 Dec 2024 07:29:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733902174;
-	bh=kE9grQmLn6LHMLUwo50GIjdSNUInWEzzqpTKkKa/hkc=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=OQtqNQ5i83nJoTgEiQRuOvahuc+ongdQ8RMDh6WVZcHY6Nt8P2k4hkzeoUaYok5Zl
-	 kNnnp/5WUBjy8daGfUrsO9LuUCNdBYWrvWJwGh0qLzHNogLaBEvSpZkyebVhQB+CSt
-	 oJU4Gk2KJtMJsh3PtUoL2fz+DvxUZTxlr76+veAKNIgYyyZXPz8iVN+NB5jdFE0Cuu
-	 YKYWwVn/I3ilhYHMGL4SfQQeVP/uN53u7y2LLE3iBYji4DmjAxBr9elmO2xIrWCHyI
-	 tIJRkeFkt+2H99iiGtxyCQPJHIA5K+juoKMbelGsgJvlp1AqtxBIIv2hp0WGADBFqd
-	 io+ch03Tp0ecg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 22782E77183;
-	Wed, 11 Dec 2024 07:29:34 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Wed, 11 Dec 2024 08:29:10 +0100
-Subject: [PATCH 2/2] power: supply: gpio-charger: add support for default
- charge current limit
+	s=arc-20240116; t=1733902183; c=relaxed/simple;
+	bh=60Gl75FbOb7f1sqLyRSsP32t2VD/75Ekq7eLr8Pt1aY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rHXcjOgIFeC/EHqqX35fMVO59jDFp0OClGGYydeAEOZPmstnTlLwDE76ZRTJ/i3FhPdlYBLq9ZmFvv9oEnFLsmhlNj0YmERAQUN/Duu+PCVQRbTSUV9ZTSzYNx4IC2Nwso+ypV49F90o71RQ+kxLlgzlWr/CMiEbev1mI8WRSdI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=rG4dnS5y; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1733902179;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=hSvPaPYTDrhaxeXHOjgIwmnYGfYQBlYwxY0RwWwuTDc=;
+	b=rG4dnS5y6JnYoM1DAPyUi8dQvdMTe4IKS8rR8evqzGQHVFSLrYV8R2cuG4NLsht7d//3sm
+	nSxum/OIHO7IS/2w7w2xwLr/jk0b/CBI9XUfszoDHQAV0vQM+t5fqw9yLB8ArUgHcwwlSH
+	6pSncdl6KmtufzEsEIODza0Q++MRWr/MXivVowlvAXnwH9N7AlgERmokJR/rTdEctr06wp
+	WQUaGzWo4bVgHuUic/iO1exwpUvlgkwBVRRD3TcOAcJxYnQrmiRi07QTum0mezA1Pqajik
+	McBCzIm9e+9r3C32AcsgdRvVkBOFWzlOWr2QEPezozMRXlimU3leYjMHT34fhw==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Peter Geis <pgwipeout@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Delete redundant RK3328 GMAC stability fixes
+Date: Wed, 11 Dec 2024 08:29:32 +0100
+Message-Id: <e00f08d2351e82d6acd56271a68c7ed05b3362e8.1733901896.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241211-default-charge-current-limit-v1-2-7819ba06ee2a@liebherr.com>
-References: <20241211-default-charge-current-limit-v1-0-7819ba06ee2a@liebherr.com>
-In-Reply-To: <20241211-default-charge-current-limit-v1-0-7819ba06ee2a@liebherr.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733902172; l=1905;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=5B4rPOB+5702QfWy45U125DyTvkQjxqeDuDwvqB5EFA=;
- b=l8QShK3uZiH18nY4r7xOEo4cv0gfqVRaW/2J265DhezaihkaAy0HwBwCqQ+G6mRZfyWcwg0Sa
- 0VNOLf+2hZQD7E3yzorunI2tX/1KVje4RqETuOmCDQ7PLRD3q3h3ut6
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Since the commit 8a469ee35606 ("arm64: dts: rockchip: Add txpbl node for
+RK3399/RK3328"), having "snps,txpbl" properties defined as Ethernet stability
+fixes in RK3328-based board dts(i) files is redundant, because that commit
+added the required fix to the RK3328 SoC dtsi, so let's delete them.
 
-The driver defaults to smallest current limitation for safety reasons. Add
-support for setting default current limitation via DT.
+It has been determined that the Ethernet stability fixes no longer require
+the "snps,rxpbl" and "snps,aal" properties, [1] out of which the latter also
+induces performance penalties, so let's delete these properties from the
+relevant RK3328-based board dts(i) files.
 
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+This commit completes the removal of these redundant "snps,*" properties
+that was started by a patch from Peter Geis. [2]
+
+[1] https://lore.kernel.org/linux-rockchip/CAMdYzYpj3d7Rq0O0QjV4r6HEf_e07R0QAhPT2NheZdQV3TnQ6g@mail.gmail.com/
+[2] https://lore.kernel.org/linux-rockchip/20241210013010.81257-7-pgwipeout@gmail.com/
+
+Cc: Peter Geis <pgwipeout@gmail.com>
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
 ---
- drivers/power/supply/gpio-charger.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3328-a1.dts                | 1 -
+ arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi        | 1 -
+ arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi | 1 -
+ arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts         | 3 ---
+ 4 files changed, 6 deletions(-)
 
-diff --git a/drivers/power/supply/gpio-charger.c b/drivers/power/supply/gpio-charger.c
-index 68212b39785beabfe5536a18fa15bc249f7b1eea..1c1fce6579464b61dbaf4125d0a91dc34c18c4d0 100644
---- a/drivers/power/supply/gpio-charger.c
-+++ b/drivers/power/supply/gpio-charger.c
-@@ -187,6 +187,8 @@ static int init_charge_current_limit(struct device *dev,
- {
- 	int i, len;
- 	u32 cur_limit = U32_MAX;
-+	bool set_def_limit;
-+	u32 def_limit;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+index 824183e515da..24baaa7f1d8c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+@@ -110,7 +110,6 @@ &gmac2io {
+ 	phy-supply = <&vcc_io>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&rgmiim1_pins>;
+-	snps,aal;
+ 	snps,pbl = <0x4>;
+ 	tx_delay = <0x26>;
+ 	rx_delay = <0x11>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi
+index f9fab35aed23..d5f129e304e5 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi
+@@ -142,7 +142,6 @@ &gmac2io {
+ 	phy-supply = <&vcc_io_33>;
+ 	pinctrl-0 = <&rgmiim1_pins>;
+ 	pinctrl-names = "default";
+-	snps,aal;
  
- 	gpio_charger->current_limit_gpios = devm_gpiod_get_array_optional(dev,
- 		"charge-current-limit", GPIOD_OUT_LOW);
-@@ -220,6 +222,9 @@ static int init_charge_current_limit(struct device *dev,
- 	if (len < 0)
- 		return len;
+ 	mdio {
+ 		compatible = "snps,dwmac-mdio";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
+index 181ec6de0019..9ec93f61433e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
+@@ -113,7 +113,6 @@ &gmac2io {
+ 	phy-supply = <&vcc_io>;
+ 	pinctrl-0 = <&rgmiim1_pins>;
+ 	pinctrl-names = "default";
+-	snps,aal;
  
-+	set_def_limit = !device_property_read_u32(dev,
-+						  "charge-current-limit-default",
-+						  &def_limit);
- 	for (i=0; i < gpio_charger->current_limit_map_size; i++) {
- 		if (gpio_charger->current_limit_map[i].limit_ua > cur_limit) {
- 			dev_err(dev, "charge-current-limit-mapping not sorted by current in descending order\n");
-@@ -227,8 +232,16 @@ static int init_charge_current_limit(struct device *dev,
- 		}
- 
- 		cur_limit = gpio_charger->current_limit_map[i].limit_ua;
-+		if (set_def_limit && def_limit == cur_limit) {
-+			set_charge_current_limit(gpio_charger, cur_limit);
-+			return 0;
-+		}
- 	}
- 
-+	if (set_def_limit)
-+		dev_warn(dev, "charge-current-limit-default %u not listed in charge-current-limit-mapping\n",
-+			 def_limit);
-+
- 	/* default to smallest current limitation for safety reasons */
- 	len = gpio_charger->current_limit_map_size - 1;
- 	set_charge_current_limit(gpio_charger,
-
--- 
-2.39.5
-
-
+ 	mdio {
+ 		compatible = "snps,dwmac-mdio";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+index 3e08e2fd0a78..59dead1cc503 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+@@ -153,9 +153,6 @@ &gmac2io {
+ 	phy-supply = <&vcc_io>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&rgmiim1_pins>;
+-	snps,aal;
+-	snps,rxpbl = <0x4>;
+-	snps,txpbl = <0x4>;
+ 	tx_delay = <0x26>;
+ 	rx_delay = <0x11>;
+ 	status = "okay";
 
