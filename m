@@ -1,44 +1,63 @@
-Return-Path: <devicetree+bounces-129557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F402D9EC105
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 01:41:50 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3256C9EC10B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 01:46:52 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DB5B284470
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:41:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DEE3168400
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 00:46:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42B452C190;
-	Wed, 11 Dec 2024 00:41:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CCB6374CC;
+	Wed, 11 Dec 2024 00:46:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KjCTQrhB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.62.65])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56293259C;
-	Wed, 11 Dec 2024 00:41:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.132.62.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DAE81F5EA;
+	Wed, 11 Dec 2024 00:46:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733877707; cv=none; b=K3PYdEAsUHaNOdhZ0fBx1mSWKdE17gtIRuCcAbqeThvV1xMyv2xAVor1QQkOBhtSJ8bIkgPB1/4vNhF4sE7llO87XJgEGsyj1298s16RBXtf4T5wU/LQgJoMaEBIjZL0wH8yGtnwdaJRsYeE8W9Iic+cDVbbIiTK3LjJxD11dFs=
+	t=1733878006; cv=none; b=AtWsIhr/uSXpNGGDpkNronxlZ8arxtwDXz/yBBcWA1RGFwUNIMi9d3loxhkO3IwGzrB3v0vFnUEG3F2OlJYYDRgYNa+Xaqf0PgjgdX6an3a8eYzRuQPT53A7lMeTc9YjIBppwI2Q6SyhMSIJYMgQsqo+ZnPfdryCl3CZIrjFgNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733877707; c=relaxed/simple;
-	bh=gMDurvn7HqoxdyWKlgRG8xpN2rAdJn3Ktdm0m0F8P/0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=FxpMKP2SlJ0kzgx4bUDJCy1V6LL5kEgtbIl4r8n8Fx4MK+KI0bK/MhUyT6qeG2oRm/niRFogf/3oImh29t2277j/Jzb/E9HtS4UquzUTMiK6lQ6hFIaqQ7B4gcx+CMLjNlqWLdB8qJjKpCJK0QQGbFt1UIa+/gLnheR2mOZdVDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=114.132.62.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip4t1733877616ty8czwh
-X-QQ-Originating-IP: YCAB/W5lc5XhIctXFs+ypJMkuS4H4EsdXpj2oghLazI=
-Received: from [IPV6:240f:10b:7440:1:9e54:d32d ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 11 Dec 2024 08:40:13 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 306073378999332624
-Message-ID: <3D830E407DCD15A2+de00ea1d-96d5-4766-9dc5-616fc76f404b@radxa.com>
-Date: Wed, 11 Dec 2024 09:40:13 +0900
+	s=arc-20240116; t=1733878006; c=relaxed/simple;
+	bh=1H3cIATD0dXLlSVUR/ldxmWO5MYq4IIJi3J0Hk+r9dY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=This7hUD2SpQwiQYcWKzJ+68txULhjMeyPBxPMLVfx4RcNOQgzrxQBmYyZpukzXTv9flvk+Nf/x3CZ+1ZRQwZ8IiP8mZVdaSQZtCG8abITtdIGneuf3mOPZPAHv/SzFq2VMB4+htoatatFw5JlzlnuW2M/u8LE7feE3mrTbSlSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KjCTQrhB; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BADXbp4014608;
+	Wed, 11 Dec 2024 00:46:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pOvQ4kEW5+JbIoo3oLAx3A6GmkI7mBSEDvoz1mE4eXw=; b=KjCTQrhBUH38ytjN
+	RUtbiO/IEO49nRXsFTPDMtuOEqVqcvodDRVk5i8iitWNs2a8WE6Q1ZwVJo7OQi7y
+	cXvEum9l7opxX4RhHY4nXSUoZsL2bnmNBCwwS2+i05Q2THqox6sGVMGx7mueioXY
+	PnJ24Hy3X644/kanKm5OxEu7Os4VR507b4b6Wm9pTB6GcvB/TTJC5aJ+0XbD6rzn
+	nSCS2LnaRLNzK70P7nXChTrJVcaCll0nh3ht+BLRbF9pxgvZaw1g9vaoNCmRVKt9
+	/HP8JdX0Ahy2FZwpmOoN0CqY5JBJvx+jsnKQqYu0uoY2F/nhObKJp11xoPFcKtLd
+	4MFU3Q==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43ee3nb71x-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Dec 2024 00:46:25 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BB0kPcP029536
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Dec 2024 00:46:25 GMT
+Received: from [10.64.16.135] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 10 Dec
+ 2024 16:46:18 -0800
+Message-ID: <527baded-f348-48a8-81cd-3f84c0ff1077@quicinc.com>
+Date: Wed, 11 Dec 2024 08:46:16 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,262 +65,117 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/1] arm64: dts: rockchip: Add USB-C support to ROCK 5B
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>,
- Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-References: <20241210163615.120594-1-sebastian.reichel@collabora.com>
- <FFD6E87BED20DB1B+38b8064e-9945-4cd8-a30e-7800a8c6f37b@radxa.com>
-Content-Language: en-US
-In-Reply-To: <FFD6E87BED20DB1B+38b8064e-9945-4cd8-a30e-7800a8c6f37b@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 3/8] phy: qcom: qmp-usbc: Add DP phy mode support on
+ QCS615
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Kuogee
+ Hsieh" <quic_khsieh@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Kishon
+ Vijay Abraham I" <kishon@kernel.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, <quic_lliu6@quicinc.com>,
+        <quic_fangez@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
+ <20241129-add-displayport-support-for-qcs615-platform-v1-3-09a4338d93ef@quicinc.com>
+ <CAA8EJppOR_UXoVpMt-dhfWdCz3UNfsXGdz8X9NqpaSmYj3AZDg@mail.gmail.com>
+ <5ea14162-567b-462d-be02-b73b954b7507@quicinc.com>
+ <5whv4z7u6fkfwlv5muox5dmv6fow4mga76ammapw7wph7vwv3f@xibcjdfqorgf>
+ <iqcofcntirmlwcpyfr4yabymqfcgyrij57bibf337tmxpa73t6@npkt6wquenf6>
+From: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+In-Reply-To: <iqcofcntirmlwcpyfr4yabymqfcgyrij57bibf337tmxpa73t6@npkt6wquenf6>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: OHcJgPpQFonKT4cjqi5uhJ+oDJt3cHW4mhpP6EN4oVPCgHnu+xKGTDnM
-	CfTFPpH+bPn7Rvg8+hOLIN0KohfWYGJJ8zsPxZUvHwmh7A9kGYLUcZ4+j66wBLSE6HPDH2r
-	uQTmLRe6qmygW+c1djF1K8CxJW9KdEj1xPTa0qqM6FnSnNXT+bx3AHcqyAS0J8xh/4Qexhy
-	y2fyF7UXL+VkQogBlNf6VFCb1TUJa06zEHK8sCcI7FSxdO5ofj3NHlB4PN9mgPe68Hb0Yif
-	0yznI7SJCN1rtw7l0hUkptVfY0uggWYZeDMXvkHCuj5Vk5J6jfZ9vrKl+FM2qRg6K/ZdKPX
-	5+pIoNq9e8xhIPOBYx00wDpd5wyJ1IyarvT2ddsftwcljhQC8IlUGuSugsvRC4WBLHOs3Gc
-	C9wZp7TBaAchbjxkGnSKGnC8//AudJysAXPISYZOAqhTgnLW8h61Otytm1vqLcKvz7bNWi1
-	D40TJNTWAqZQB4d6RC8ICUHk9BHJ1Q7mp2ztpqoxriud9t2Vg6YK+kZ26VuPAEO40CxcKar
-	SgD6myOPIFmYp9hMjyaVue+jPmK9ojZb4KAJqg1e/g3/EL5MfDZuyuqHLvBIwgXSdoQF13A
-	hbN3eVxLw5z8HXkeYZ+ZPhr0QD+a05ZgDWlYdOFG8WP0yWbNmmN/IGQkRZNvsmhICKovK0f
-	X3TE9CZkRfHKbAVo1DhglrzmQVhP+WNG7pOneMBxZ6441F/kg3gAGUOc1whIzOOIndk6rfw
-	+Ga+yQXFY8CeaIxKzX8ARkCLopJQG8s467x5P0ZSsQ9scrZNJP1x7RGqlJc12IdKTT7AX8O
-	zrv9BvQnaYRh/ZrcCThXqrGJ84vzPP6QxQgCjXt32KfLDdGF2reZTUImABA+b9wexIXlWnO
-	M3xShQ5PDfXXA4eh4Hs5T+S+bW7YglMNP6pDcq4dXWHzxBRxukG74KDNHLJAnNh4jFBf9ck
-	zOfiK6OsrKGgr0iJrk8UWZKCAkLbjktttvY0=
-X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
-X-QQ-RECHKSPAM: 0
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ygGzruQ_LQRZ7QNeIARNz0cm5J1Cy4Os
+X-Proofpoint-ORIG-GUID: ygGzruQ_LQRZ7QNeIARNz0cm5J1Cy4Os
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
+ malwarescore=0 spamscore=0 priorityscore=1501 mlxscore=0 impostorscore=0
+ mlxlogscore=999 lowpriorityscore=0 adultscore=0 clxscore=1015 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412110004
 
-Hi Sebastian,
 
-Sorry for many emails...
 
-I got random reboot during booting kernel/userland...
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-On 12/11/24 09:06, FUKAUMI Naoki wrote:
-> Sorry, I forgot to write one thing...
-> 
-> On 12/11/24 01:36, Sebastian Reichel wrote:
->> Add hardware description for the USB-C port in the Radxa Rock 5 Model B.
->> This describes the OHCI, EHCI and XHCI USB parts, but not yet the
->> DisplayPort AltMode (bindings are not yet upstream).
+On 12/10/2024 11:09 PM, Dmitry Baryshkov wrote:
+> On Thu, Dec 05, 2024 at 08:31:24PM +0200, Dmitry Baryshkov wrote:
+>> On Thu, Dec 05, 2024 at 09:26:47PM +0800, Xiangxu Yin wrote:
+>>>
+>>>
+>>> On 11/29/2024 10:33 PM, Dmitry Baryshkov wrote:
+>>>> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
+>>>>>
+>>>>> Extended DP support for QCS615 USB or DP phy. Differentiated between
+>>>>> USBC and DP PHY using the match table’s type, dynamically generating
+>>>>> different types of cfg and layout attributes during initialization based
+>>>>> on this type. Static variables are stored in cfg, while parsed values
+>>>>> are organized into the layout structure.
+>>>>
+>>>> We didn't have an understanding / conclusion whether
+>>>> qcom,usb-ssphy-qmp-usb3-or-dp PHYs are actually a single device / PHY
+>>>> or two PHYs being placed next to each other. Could you please start
+>>>> your commit message by explaining it? Or even better, make that a part
+>>>> of the cover letter for a new series touching just the USBC PHY
+>>>> driver. DP changes don't have anything in common with the PHY changes,
+>>>> so you can split the series into two.
+>>>>
+>>> Before implement DP extension, we have discussed with abhinav and krishna about whether use combo, usbc or separate phy.
 >>
->> The fusb302 node is marked with status "fail", since the board is usually
->> powered through the USB-C port. Handling of errors can result in hard
->> resets, which removed the bus power for some time resulting in a board
->> reset.
+>> What is "DP extension"?
 >>
->> The main problem is that devices are supposed to interact with the
->> power-supply within 5 seconds after the plug event according to the
->> USB PD specification. This is more or less impossible to achieve when
->> the kernel is the first software communicating with the power-supply.
+I'm sorry confusion casued by my description. It's means extend DP implemnt for USBC phy driver.
+>>>
+>>> We identified that DP and USB share some common controls for phy_mode and orientation.
+>>> Specifically, 'TCSR_USB3_0_DP_PHYMODE' controls who must use the lanes - USB or DP,
+>>> while PERIPH_SS_USB0_USB3PHY_PCS_MISC_TYPEC_CTRL controls the orientation.
+>>> It would be more efficient for a single driver to manage these controls. 
 >>
->> Recent U-Boot (v2025.01) will start doing USB-PD communication, which
->> solves this issue. Upstream U-Boot doing USB-PD communication will also
->> set the fusb302 node status to "okay". That way booting a kernel with
->> the updated DT on an old U-Boot avoids a reset loop.
+>> The question is about the hardware, not about the driver.
 >>
->> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> 
-> Tested-by: FUKAUMI Naoki <naoki@radxa.com>
-> 
-> -- 
-> FUKAUMI Naoki
-> Radxa Computer (Shenzhen) Co., Ltd.
-> 
->> ---
->>   .../boot/dts/rockchip/rk3588-rock-5b.dts      | 121 ++++++++++++++++++
->>   1 file changed, 121 insertions(+)
+>>> Additionally, this PHY does not support Alt Mode, and the two control registers are located in separate address spaces. 
+>>> Therefore, even though the orientation for DP on this platform is always normal and connected to the video output board, 
+>>> we still decided to base it on the USBC extension.
 >>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/ 
->> arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> index d597112f1d5b..cb5990df6ccb 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->> @@ -5,6 +5,7 @@
->>   #include <dt-bindings/gpio/gpio.h>
->>   #include <dt-bindings/leds/common.h>
->>   #include <dt-bindings/soc/rockchip,vop2.h>
->> +#include <dt-bindings/usb/pd.h>
->>   #include "rk3588.dtsi"
->>   / {
->> @@ -84,6 +85,15 @@ rfkill-bt {
->>           shutdown-gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
->>       };
->> +    vcc12v_dcin: regulator-vcc12v-dcin {
->> +        compatible = "regulator-fixed";
->> +        regulator-name = "vcc12v_dcin";
->> +        regulator-always-on;
->> +        regulator-boot-on;
->> +        regulator-min-microvolt = <12000000>;
->> +        regulator-max-microvolt = <12000000>;
->> +    };
->> +
->>       vcc3v3_pcie2x1l0: regulator-vcc3v3-pcie2x1l0 {
->>           compatible = "regulator-fixed";
->>           enable-active-high;
->> @@ -142,6 +152,7 @@ vcc5v0_sys: regulator-vcc5v0-sys {
->>           regulator-boot-on;
->>           regulator-min-microvolt = <5000000>;
->>           regulator-max-microvolt = <5000000>;
->> +        vin-supply = <&vcc12v_dcin>;
->>       };
->>       vcc_1v1_nldo_s3: regulator-vcc-1v1-nldo-s3 {
->> @@ -264,6 +275,67 @@ regulator-state-mem {
->>       };
->>   };
->> +&i2c4 {
->> +    pinctrl-names = "default";
->> +    pinctrl-0 = <&i2c4m1_xfer>;
->> +    status = "okay";
->> +
->> +    usbc0: usb-typec@22 {
->> +        compatible = "fcs,fusb302";
->> +        reg = <0x22>;
->> +        interrupt-parent = <&gpio3>;
->> +        interrupts = <RK_PB4 IRQ_TYPE_LEVEL_LOW>;
->> +        pinctrl-names = "default";
->> +        pinctrl-0 = <&usbc0_int>;
->> +        vbus-supply = <&vcc12v_dcin>;
->> +        /*
->> +         * When the board is starting to send power-delivery messages
->> +         * too late (5 seconds according to the specification), the
->> +         * power-supply reacts with a hard-reset. That removes the
->> +         * power from VBUS for some time, which resets te whole board.
->> +         */
->> +        status = "fail";
->> +
->> +        usb_con: connector {
->> +            compatible = "usb-c-connector";
->> +            label = "USB-C";
->> +            data-role = "dual";
->> +            power-role = "sink";
->> +            try-power-role = "sink";
->> +            op-sink-microwatt = <1000000>;
->> +            sink-pdos =
->> +                <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>,
->> +                <PDO_VAR(5000, 20000, 5000)>;
->> +
->> +            ports {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                port@0 {
->> +                    reg = <0>;
->> +                    usbc0_role_sw: endpoint {
->> +                        remote-endpoint = <&dwc3_0_role_switch>;
->> +                    };
->> +                };
->> +
->> +                port@1 {
->> +                    reg = <1>;
->> +                    usbc0_orien_sw: endpoint {
->> +                        remote-endpoint = 
->> <&usbdp_phy0_orientation_switch>;
->> +                    };
->> +                };
->> +
->> +                port@2 {
->> +                    reg = <2>;
->> +                    dp_altmode_mux: endpoint {
->> +                        remote-endpoint = <&usbdp_phy0_dp_altmode_mux>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +    };
->> +};
->> +
->>   &i2c6 {
->>       status = "okay";
->> @@ -423,6 +495,10 @@ usb {
->>           vcc5v0_host_en: vcc5v0-host-en {
->>               rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
->>           };
->> +
->> +        usbc0_int: usbc0-int {
->> +            rockchip,pins = <3 RK_PB4 RK_FUNC_GPIO &pcfg_pull_none>;
->> +        };
->>       };
->>   };
->> @@ -835,6 +911,14 @@ &uart2 {
->>       status = "okay";
->>   };
->> +&u2phy0 {
->> +    status = "okay";
->> +};
->> +
->> +&u2phy0_otg {
->> +    status = "okay";
->> +};
->> +
->>   &u2phy1 {
->>       status = "okay";
->>   };
->> @@ -866,6 +950,29 @@ &usbdp_phy1 {
->>       status = "okay";
->>   };
->> +&usbdp_phy0 {
->> +    mode-switch;
->> +    orientation-switch;
->> +    sbu1-dc-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
->> +    sbu2-dc-gpios = <&gpio4 RK_PA7 GPIO_ACTIVE_HIGH>;
->> +    status = "okay";
->> +
->> +    port {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        usbdp_phy0_orientation_switch: endpoint@0 {
->> +            reg = <0>;
->> +            remote-endpoint = <&usbc0_orien_sw>;
->> +        };
->> +
->> +        usbdp_phy0_dp_altmode_mux: endpoint@1 {
->> +            reg = <1>;
->> +            remote-endpoint = <&dp_altmode_mux>;
->> +        };
->> +    };
->> +};
->> +
->>   &usb_host0_ehci {
->>       status = "okay";
->>   };
->> @@ -874,6 +981,20 @@ &usb_host0_ohci {
->>       status = "okay";
->>   };
->> +&usb_host0_xhci {
->> +    usb-role-switch;
->> +    status = "okay";
->> +
->> +    port {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        dwc3_0_role_switch: endpoint {
->> +            remote-endpoint = <&usbc0_role_sw>;
->> +        };
->> +    };
->> +};
->> +
->>   &usb_host1_ehci {
->>       status = "okay";
->>   };
+>> Could you please clarify, do usb3-or-dp PHYs support DP-over-USB-C? I
+>> thought that usbc-or-dp platforms support that, but they don't
+>> support DP+USB pin configuration. Note, the question is broader than
+>> just QCS615, it covers the PHY type itself.
+>>
+>> Also, is TCSR configuration read/write or read-only? Are we supposed to
+>> set the register from OS or are we supposed to read it and thus detemine
+>> the PHY mode?
 > 
+> Any updates on these two topics?
+> 
+Still confirming detail info with HW & design team.
+I’ll update the information that has been confirmed so far.
+This phy support DP-over-USB-C,but it's not support alt-mode which 2 lane work for DP, other 2 lane work for USB.
+TCSR phy mode is read/write reg and we can read for determine phy mode.
+
 
 
