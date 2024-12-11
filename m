@@ -1,222 +1,105 @@
-Return-Path: <devicetree+bounces-129955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5BA49ED44F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 19:01:50 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 890609ED4A9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 19:23:33 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B730280CF7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:01:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 145061887238
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:23:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBEC51DE3B5;
-	Wed, 11 Dec 2024 18:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A68D202F61;
+	Wed, 11 Dec 2024 18:23:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0C83S1fq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ufJq4F0c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F7651BD9CA;
-	Wed, 11 Dec 2024 18:01:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E46724632E;
+	Wed, 11 Dec 2024 18:23:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733940103; cv=none; b=YXttx4Hq7Ubfz3VrWr1GCg4p8xKwTANvmssP2oPhD7O4mW8e65itR2GYT0YnfuV7ET17TjDWUmpcWEvc5uYfWGJtzgBm8a8ZlEhTNWeN9e8o75C0SuT5E/EFIWjDUnPYOb3Q2tsKe5IWdCAaDW7w8nJLN8XNrkLeyI1yu5Q4aCA=
+	t=1733941402; cv=none; b=teqFXkeoDq1TT3p8OanyKxNpdZ1WllGqfnxhCdW6O6S8ow0DCGDEi3cfmN1uALDanDXnNmOmihtTQTYW/PpORdbMfxP26oSr1yZjizSKBMMu16lsNo0jJKPS/gtZSXcN/ahY+8l13hG7QszhpiO3/n1iB59pNL2exVhSmG8QOOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733940103; c=relaxed/simple;
-	bh=3BWFuw1tcoh+KSQaVbmI6GMqbUaoPZlODkZt6GIdBiI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rKh1PcrhLicdx17LO4AuiesAcesoRAmbrGoyWaFAN9drexWD+4L8ssaqTULoR94/HSi0B4IsxJGUxklsqY3n6qXTjDoIfUDiU8wLu6gKHxdi1sflH2sbWNWdaOjUF9LWZ44K4G8zw/1IrDo4NlNdHyR1Dws0mQMixRdH9Zlvfpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0C83S1fq; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=IVHnpLKAbs1P9zKMMrgIzagDvO+w36oIPk+2jsToDwg=; b=0C83S1fq97gn53rq0T/CVl46e6
-	3XCpKkwcn/RffyjiKXUeijI3P7o0clz7e3okpsFw+Vu+NCkLJtwSAQvZ4+pzDUFo4yKl3xs0VJ+pI
-	Dk+Uysaeqc9JOI8qAO9pxQag0R8KtNHGxBwxgzYuVBhvPBsH8kTBk3Q0BAPFGYWv+bujjBFQI++PW
-	oIixUfFkDdQYMLwKE49C/PyMKq6aMutb6tM0MobIhmmsiP8Auqs81KTEz1sKxv2GMwLNRVLw5ODwZ
-	fVe/rxSQtnmMUNIKqgLKz8+7/BJ678z81Stnzhk78oncTkAdB4KsVT8Hc9g+8H+WBZVYaDJ1PN5F6
-	83mXfeyg==;
-Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tLR1Q-0006Ul-Ql; Wed, 11 Dec 2024 19:01:16 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- kernel@collabora.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- FUKAUMI Naoki <naoki@radxa.com>
-Subject:
- Re: [PATCH v2 3/5] drm/rockchip: vop2: Improve display modes handling on
- RK3588 HDMI0
-Date: Wed, 11 Dec 2024 19:01:15 +0100
-Message-ID: <1756448.izSxrag8PF@diego>
-In-Reply-To: <a4ex3s23r4k6wehyoaw3aylpcexfrclrxxykjpabhdfne2jgmu@ii6riiiga2zj>
-References:
- <20241211-vop2-hdmi0-disp-modes-v2-0-471cf5001e45@collabora.com>
- <1820767.5KxKD5qtyk@diego>
- <a4ex3s23r4k6wehyoaw3aylpcexfrclrxxykjpabhdfne2jgmu@ii6riiiga2zj>
+	s=arc-20240116; t=1733941402; c=relaxed/simple;
+	bh=w2M+TjlpNPYsNFuhmIFntzAXEa02IOyc1xKcuHjzAQI=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=gNOtueOKxcZabaEjyBT76LeYImQFb9wXYTWghOIkhTibbPJ0aexQ15SWSs3cJnZRZQ7L6sEQ30Xo4EPmwlZGzFTiu0x913/f+rKscGoOKG7N5mIPppWNH4r1gDbn24SqBolRTvlKsyqPBD1scpSAS808dMOeM7GrFCBa/F6E1YI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ufJq4F0c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91FA8C4CED2;
+	Wed, 11 Dec 2024 18:23:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733941401;
+	bh=w2M+TjlpNPYsNFuhmIFntzAXEa02IOyc1xKcuHjzAQI=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=ufJq4F0cTQtxm6pWkP2NE4Y5SAsClVAuUMrj0US9cUPtgX2KVjAdv57p7IwBPTceX
+	 lygWrh2Nwh0cWUYItsm77f340NIT/XNJY9rEETqtlr9TS9Q33WKPTxqnQ+5rgqRk/c
+	 GIz6hRJSBj/JrlcjsSI5ZNvab8YDEcaiNKJSZDFOejZUNZBNpjoOB9OH9LeXZLQAi+
+	 Gifvh0OP4+YYHUVUcY30rrrM7VVvxfJYTkvmXzarUg/JEMb0zy0/7v6M2F83OSmwo7
+	 SBE2N5ijixKGcn3azwEld8EgBo1CZUs+m0LtIaqEraFj1gQ2SwXGq13Ts8Jv4PLD0f
+	 kqlqJ2Wbv7yaQ==
+Date: Wed, 11 Dec 2024 12:23:19 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-spi@vger.kernel.org, krzk+dt@kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ javierm@redhat.com, conor+dt@kernel.org, broonie@kernel.org
+To: Iker Pedrosa <ikerpedrosam@gmail.com>
+In-Reply-To: <20241211165054.254164-1-ikerpedrosam@gmail.com>
+References: <20241211165054.254164-1-ikerpedrosam@gmail.com>
+Message-Id: <173394139968.3514802.10365052671543587756.robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: devicetree: explain how to get CS
+ active-high
 
-Am Mittwoch, 11. Dezember 2024, 18:47:44 CET schrieb Maxime Ripard:
-> On Wed, Dec 11, 2024 at 06:23:03PM +0100, Heiko St=FCbner wrote:
-> > Am Mittwoch, 11. Dezember 2024, 18:07:57 CET schrieb Maxime Ripard:
-> > > On Wed, Dec 11, 2024 at 12:15:07PM +0200, Cristian Ciocaltea wrote:
-> > > > The RK3588 specific implementation is currently quite limited in te=
-rms
-> > > > of handling the full range of display modes supported by the connec=
-ted
-> > > > screens, e.g. 2560x1440@75Hz, 2048x1152@60Hz, 1024x768@60Hz are jus=
-t a
-> > > > few of them.
-> > > >=20
-> > > > Additionally, it doesn't cope well with non-integer refresh rates l=
-ike
-> > > > 59.94, 29.97, 23.98, etc.
-> > > >=20
-> > > > Make use of HDMI0 PHY PLL as a more accurate DCLK source to handle
-> > > > all display modes up to 4K@60Hz.
-> > > >=20
-> > > > Tested-by: FUKAUMI Naoki <naoki@radxa.com>
-> > > > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> > > > ---
-> > > >  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 34 ++++++++++++++++=
-++++++++++++
-> > > >  1 file changed, 34 insertions(+)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers=
-/gpu/drm/rockchip/rockchip_drm_vop2.c
-> > > > index 8b2f53ffefdbf1cc8737b3a86e630a03a7fd9348..393fe6aa170aaee9663=
-c4a6d98c1cd6a5ef79392 100644
-> > > > --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> > > > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> > > > @@ -158,6 +158,7 @@ struct vop2_video_port {
-> > > >  	struct drm_crtc crtc;
-> > > >  	struct vop2 *vop2;
-> > > >  	struct clk *dclk;
-> > > > +	struct clk *dclk_src;
-> > > >  	unsigned int id;
-> > > >  	const struct vop2_video_port_data *data;
-> > > > =20
-> > > > @@ -212,6 +213,7 @@ struct vop2 {
-> > > >  	struct clk *hclk;
-> > > >  	struct clk *aclk;
-> > > >  	struct clk *pclk;
-> > > > +	struct clk *pll_hdmiphy0;
-> > > > =20
-> > > >  	/* optional internal rgb encoder */
-> > > >  	struct rockchip_rgb *rgb;
-> > > > @@ -220,6 +222,8 @@ struct vop2 {
-> > > >  	struct vop2_win win[];
-> > > >  };
-> > > > =20
-> > > > +#define VOP2_MAX_DCLK_RATE		600000 /* kHz */
-> > > > +
-> > > >  #define vop2_output_if_is_hdmi(x)	((x) =3D=3D ROCKCHIP_VOP2_EP_HDM=
-I0 || \
-> > > >  					 (x) =3D=3D ROCKCHIP_VOP2_EP_HDMI1)
-> > > > =20
-> > > > @@ -1033,6 +1037,9 @@ static void vop2_crtc_atomic_disable(struct d=
-rm_crtc *crtc,
-> > > > =20
-> > > >  	vop2_crtc_disable_irq(vp, VP_INT_DSP_HOLD_VALID);
-> > > > =20
-> > > > +	if (vp->dclk_src)
-> > > > +		clk_set_parent(vp->dclk, vp->dclk_src);
-> > > > +
-> > > >  	clk_disable_unprepare(vp->dclk);
-> > > > =20
-> > > >  	vop2->enable_count--;
-> > > > @@ -2049,6 +2056,27 @@ static void vop2_crtc_atomic_enable(struct d=
-rm_crtc *crtc,
-> > > > =20
-> > > >  	vop2_vp_write(vp, RK3568_VP_MIPI_CTRL, 0);
-> > > > =20
-> > > > +	/*
-> > > > +	 * Switch to HDMI PHY PLL as DCLK source for display modes up
-> > > > +	 * to 4K@60Hz, if available, otherwise keep using the system CRU.
-> > > > +	 */
-> > > > +	if (vop2->pll_hdmiphy0 && mode->crtc_clock <=3D VOP2_MAX_DCLK_RAT=
-E) {
-> > > > +		drm_for_each_encoder_mask(encoder, crtc->dev, crtc_state->encode=
-r_mask) {
-> > > > +			struct rockchip_encoder *rkencoder =3D to_rockchip_encoder(enco=
-der);
-> > > > +
-> > > > +			if (rkencoder->crtc_endpoint_id =3D=3D ROCKCHIP_VOP2_EP_HDMI0) {
-> > > > +				if (!vp->dclk_src)
-> > > > +					vp->dclk_src =3D clk_get_parent(vp->dclk);
-> > > > +
-> > > > +				ret =3D clk_set_parent(vp->dclk, vop2->pll_hdmiphy0);
-> > > > +				if (ret < 0)
-> > > > +					drm_warn(vop2->drm,
-> > > > +						 "Could not switch to HDMI0 PHY PLL: %d\n", ret);
-> > > > +				break;
-> > > > +			}
-> > > > +		}
-> > > > +	}
-> > > > +
-> > >=20
-> > > It seems pretty fragile to do it at atomic_enable time, even more so
-> > > since you don't lock the parent either.
-> > >=20
-> > > Any reason not to do it in the DRM or clock driver probe, and make su=
-re
-> > > you never change the parent somehow?
-> >=20
-> > On rk3588 we have 3 dclk_s and 2 hdmi controllers. Each video-port can
-> > use the clock generated from either the hdmi0phy or hdmi1phy, depending
-> > on which hdmi-controller it uses.
-> >=20
-> > So you actually need to know which vpX will output to which hdmiY to th=
-en
-> > reparent that dclk to the hdmiphy output.
->=20
-> The Rockchip nomenclature isn't super obvious to me, sorry. Is there a
-> datasheet for this somewhere? Also, does this vpX -> HDMI-Y mapping need
-> to be dynamic?
 
-VPs are CRTCs in drm-language and each of them can drive a differing
-number of output encoders. Those video-ports also have differing output
-characteristics in terms of supported resolution and other properties.
+On Wed, 11 Dec 2024 17:50:50 +0100, Iker Pedrosa wrote:
+> The current documentation does not clearly explain how to invert the SPI
+> CS signal to make it active-high. This makes it very difficult to
+> understand.
+> 
+> This patch adds a simple explanation on how to set the CS line in
+> active-high and adds an example to make it easier for users who need
+> that setup for their SPI peripherals.
+> 
+> Link: https://forums.raspberrypi.com/viewtopic.php?t=378222
+> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> ---
+>  .../bindings/spi/spi-controller.yaml          | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
 
-The rk3588 TRM has leaked in a number of places, and if you find a
-TRM-part2, there is a section labeled "Display Output Interface Description"
-that has a nice graphic for that.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Or in short:
-=2D CRTC(VP)0 supports 8K resolution and can drive DP0+1, HDMI0+1, eDP0+1
-  [if I'm reading things correctly, 8K together with CRTC1 somehow)
-=2D CRTC(VP)1 supports 4K resolution and can drive DP0+1, HDMI0+1, eDP0+1
-=2D CRTC(VP)2 supports 4K resolution and can drive DP0+1, HDMI0+1, eDP01, D=
-SI0+1
-=2D CRTC(VP)3 supports 2K resolution and can drive DSI0+1 and some BT1120,B=
-T656
+yamllint warnings/errors:
 
-so for the 3 higher resolution CRTCs there are essentially 6 or 8 output op=
-tions
-depending on the board design
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/spi/spi-controller.example.dtb: /example-1/spi@20204000/display@0: failed to match any schema with compatible: ['sitronix,st7920']
 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241211165054.254164-1-ikerpedrosam@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
