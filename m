@@ -1,115 +1,213 @@
-Return-Path: <devicetree+bounces-129817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 637179ECD3B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:33:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DB1C9ECD51
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:35:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 274CE161BAA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:32:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7280E169662
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:35:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1F6225A50;
-	Wed, 11 Dec 2024 13:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9CD623690E;
+	Wed, 11 Dec 2024 13:35:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="BhfT5EaY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F365023FD1E;
-	Wed, 11 Dec 2024 13:32:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300A52336B2
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 13:35:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733923973; cv=none; b=ekPfJXMd9rCg+WB5lJKON4PvTr6dIO5jNAWQey80t/tuI2QPPFUTclYTf4xV00g3c3qOVvPO2jMVsudobtFQMH2aWLw3eu3CmbHMOqwKzjGyuCVnE4sYMoHlJyDI4++M0c7MhBhLy8MJNb6AO0BnAMIrz/OYmJDEmpMNaip2GuY=
+	t=1733924116; cv=none; b=oWsYUcw62eRqbzoM+zW6wu6ldZTbTUc8Sl0e9KirSG/7NV78sSb2/3FY1AtBAMNaSawRa69dHdQMzD3gEQhOk6SR2YP08WfBikUcvh2W9EXJIn4xFswbhoNbM1dW9skyW2YdpIawGp1XPsbORbzHmr3inD3jmF6NEjq3Nrng7mA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733923973; c=relaxed/simple;
-	bh=WBpyGmIb70wg9K9GwaOM4gN82HO8z8OSG/O0/eeYFNk=;
+	s=arc-20240116; t=1733924116; c=relaxed/simple;
+	bh=BuYhbD4rX4zl3utJjQBcdTO/iTewSt4YyC1J4oAAu64=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hReiiFgfKE+OFNZXSOwhf+B5JydZHnil97qFBRtaFGn8QlBtS2fLj+C3od1XoVq/KHtM6Y3sHStRZMV6dgYAjnlrGfza2vNeIkDym3u0hYfVxJEbuvCnQMMjj59q398of9UgjlYHQVhCtXGAYXjuXtISV7gxsLu7tWirQvsSzds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4afd68271b6so1505798137.0;
-        Wed, 11 Dec 2024 05:32:51 -0800 (PST)
+	 To:Cc:Content-Type; b=JGn63QUQ1lFIBzLsjg7BfKKxJ7CzJW8s3GIFUlA3Q4PkC46lHVWJQv3v3S7del7gsNQBXtDedSjEi6qmqFTDxIqLcJFci+fSlIFT2bywwDg6v80g9z7ebQwebez90ZfNDAsgyiKVpbekReH87ny7E2HaPSKM1MHKiYBw4Ac7920=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=BhfT5EaY; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2ef8c012913so3002044a91.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 05:35:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1733924114; x=1734528914; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ku7DkOVzzle9z1Ec1uYT0I4WbNTgYq8/0HLdlZJN9mg=;
+        b=BhfT5EaYrlD38HWOKjgE/0q0a+pxW0qtuexScOH6l3UUH+7BOgRPiD0OX1FuSpS2cB
+         YxTVvaeqF0/Fg8TYq7Wr0VEQQg+jEaLyTEIkousTiHO62oFG2DXD6G7FzveijQ9s1BIB
+         UhNfPO47v7jRHbgJExIlBgErEBYxJCDAzJnwqjbLf51iFzmOmBVrbe8klAZXqGHqxA6g
+         +ZODnGMxU+3MG96Pr/WK3WUff1YKIQI78p3tLafEl3ggl3qrrUCH8mR3nNkWt4d6T8Yr
+         2yTUhZ6e/l/HIo6/HPpICzADIziUSrFmpQtqRDXVk/Nl3xpoHIfh7bGhzYmHL/QA3vZF
+         XHLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733923969; x=1734528769;
+        d=1e100.net; s=20230601; t=1733924114; x=1734528914;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=tWGPA9eK5LfhZIVxz8KXWeG48hXCJW35NUBXQ7NNPJ8=;
-        b=E1CZtHYGcqDUOdSF/jHdg3N7s3rG6phqGG74h+eupU1mf9MqIxfeQtwujGwzWtmlB0
-         I81CuraBdJ8jqcAKxf7ZYnA4Lg8hDet/akJN+J5LL8OkIr0JE89WG7gggUR7gu2q3no3
-         jGZzkfsZP6A02uNUj9UmHXr/Y0ySu3e6x30RMljrOpfdjHtUfQ4TQQY9lmW92MD4IWes
-         2TV6gVv8Wcozw/UcB/0hwhzorD7Wl3L+2Ss96z4m7OxOR0mT8KelU9MArfO66zUOJ9gG
-         8T14FPO+Z/vY6SLeGBYWocJwf+1OkZ5k71ipx+OgDQcYTsfBQ7/tohqMzyWwjSz8vg6k
-         r8oA==
-X-Forwarded-Encrypted: i=1; AJvYcCUqYvMdse7bPNR3yTZC/4P5LiCAEqzun4TD2EpU3EE+oH5CleC+Dp/efdRCYBAdyXtR4hvUAcn6rjbu@vger.kernel.org, AJvYcCV9fC517rSKQZ5BsjTVz90VJ083lHT6MkcuUjddtF/8s+uE4Xm3M0s9U+CMiwh7GRdd5LyFHv535cLrcy2G66rpkGs=@vger.kernel.org, AJvYcCWQiIHGKAb/6eI7XAU3vinzBsLcQHclRTYMIRHgn6y1eD/bGyloHlwTgFZS25/1tWT75AN+qccVbHTs@vger.kernel.org, AJvYcCXNm1SLOIpS1PTyMvKloiNkxaoycUuqxplixLhHWOrACjkriyMXlS2c2rpe97BYarCk9ok8w14SmbBp@vger.kernel.org, AJvYcCXSVoFi+HDvrQsqrIbDqdf1TkVlAEIqKzLn4/GnyurUh88SxZtHWHyuh0bC6pYi0wUKOanE7uYhDTa9YceL@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuhM+XFZlRnfFv+Vo1SXE56yCTCupHUozqeTdtMZf9eylYepKE
-	mt04a0F+kptvjBDzGrnIYM/HPZhQ9VHr67kOBkO1hx5Oaf/anvT/p5S2pHRb
-X-Gm-Gg: ASbGncu5e73GoxiblbpZeeSltqAZ45DkNoDxLIo3325rE4rlI7SHQoWD46Fo0KCIJx6
-	oierMav+3OX5utd1zi15XXdyrKAaJQO56ooEAuMvtgqBvAgdYpzcXt5ytebYpZPWbYqjuhDbFJd
-	tDrgZj8lEpILZ9F+g7QBeGKoLxKn/9ACSUOmHlspfKVqetrIx4UGEGiXomtt9C/jSdH0yvZ1+Pu
-	S4rgbMzNGk1vsdJH+DFMX9VwnZUHyK64v6pqYUvf0zq7oc3lbJ790/6P5/wGCqMcBwb7FCEZWU0
-	DXz9fCr5h7pfA00/
-X-Google-Smtp-Source: AGHT+IHjDkl/ZJ0BrMEY4W5QAo2VBdlQDLSZZ5oerYsa27e5xs8LPz8RoxK6+BmavjLuLfZJ1+qNjg==
-X-Received: by 2002:a05:6102:b11:b0:4b0:93ef:d573 with SMTP id ada2fe7eead31-4b128cf0887mr3390198137.0.1733923968985;
-        Wed, 11 Dec 2024 05:32:48 -0800 (PST)
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85c2ba7dc94sm1423319241.16.2024.12.11.05.32.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Dec 2024 05:32:48 -0800 (PST)
-Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-4b1279ca1d2so299247137.3;
-        Wed, 11 Dec 2024 05:32:48 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUE5nzAbVJ1V6tjJxn1nmQ89gfqMcyhNKJnNbVWom5pmkEUJfSM0yj5cU1kNC1IyQratXiiVNPc4mMk@vger.kernel.org, AJvYcCUvfq5L/NOne520Wkkz3oSYQeB1+io9AdYkkVvOGu1nTrJpMfh7AnMSsfCxVhXTrWOAG4is2k5qranz@vger.kernel.org, AJvYcCUzODeLQObdv85cKt+ODxa2aQcDhF7RwMHTv/0P3De0n1m2RnAqmTfkum5MKukg473PqsNJyzBH9o3qJUuG@vger.kernel.org, AJvYcCWIK/sjHHV5jFCP3JT7O11PK6qb6V3DRX6/vLFS9a60BONl3vcIxvgGXT2rLEn3Aq8uQxejDeCbUZST@vger.kernel.org, AJvYcCWolfmMO2DNCqgvrRocPUYicLO1G5ZXZdqz16igJYyTSkUshcEJ0Cl3MQVb+klzOa6fDpbEz4uPuSUcUSfvZKa3OJY=@vger.kernel.org
-X-Received: by 2002:a05:6102:5494:b0:4af:ba38:d04a with SMTP id
- ada2fe7eead31-4b129087fefmr2891431137.21.1733923968163; Wed, 11 Dec 2024
- 05:32:48 -0800 (PST)
+        bh=Ku7DkOVzzle9z1Ec1uYT0I4WbNTgYq8/0HLdlZJN9mg=;
+        b=gd/+Q23T2PrOyDO8L/ORtb4/f/LwYoM7uXfqSJBRmUcxfD6Jc2L7DSa4JSfYqnOZBG
+         gw73EfkUG0fR0J6Qh/vx/PcnkkwmIlJAuw5cW4NdATvvJIMlLnaCPySrckrp5uD5OI44
+         UQq0TBbwjnxx29yTAnAb8tZnzIZehcpdLqKJosEcoFE80P8V5eshCseEHEIfdEZgJdPF
+         uxB6oJyIKXDY989nAOn3gGVgHo51/wMBR57obRlYbFAJkoH/58jGJHZ8EQhEl6FtbQai
+         woW88oGkhWT82suL7zw0Q2OxiS7SfKA/d6lwbNm1BzWJpvqOT+9pWt5t3p/Si17Qjp8f
+         Jo8g==
+X-Forwarded-Encrypted: i=1; AJvYcCWYyOgOBwTLBNvski6lVgrMcKHak9Z8bePFYpt6/8QnRF0xU5zqLshqwBfjuYcc6XMjrmlwVMQ7WCmR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAmyXkqV9hXrhLpcn8x9A6Q2DpcZA18KNxxDQtLNT/z0c+1tq4
+	d6oZxxHGRF0GBIcRwskgQpBcTGNIpoNNe3OTXlRObbj31TC+LWD1SO3RqYM+YeUEZ/Fh/gg3D8C
+	24LW/RNiYSGtWDx2dlU3IYJ/Jq3FivUxHm1mm
+X-Gm-Gg: ASbGnctCE1EypWEKWhQcy2BUeqivAVbomWNn/tx9CsVSIYYVH5GjHz6hXVyk4DlSBSC
+	jE6ss3ZDS5h867JnMAt7A5UfTRY8u/783SD7KKoivCTdTkdCWmu1fFA34aRmX404fRg==
+X-Google-Smtp-Source: AGHT+IEnM1tzLPIDTRYuyTHakXiG8NvRRFsE1nGgmeTcz35DMENnCwernFqnRXsvkvtr10TnQHQeZczHhKeAKVx4Exg=
+X-Received: by 2002:a17:90b:1810:b0:2ee:ed07:d6d2 with SMTP id
+ 98e67ed59e1d1-2f128048f0emr4720486a91.37.1733924114218; Wed, 11 Dec 2024
+ 05:35:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241206111337.726244-1-claudiu.beznea.uj@bp.renesas.com> <20241206111337.726244-16-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241206111337.726244-16-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 11 Dec 2024 14:32:36 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWU5vV_Q5c0NgJ2yF=BwHNX25he3OThbLJbt0TN=sbwGA@mail.gmail.com>
-Message-ID: <CAMuHMdWU5vV_Q5c0NgJ2yF=BwHNX25he3OThbLJbt0TN=sbwGA@mail.gmail.com>
-Subject: Re: [PATCH v2 15/15] arm64: dts: renesas: rzg3s-smarc-som: Enable ADC
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: prabhakar.mahadev-lad.rj@bp.renesas.com, jic23@kernel.org, lars@metafoo.de, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	p.zabel@pengutronix.de, linux-iio@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20241210224947.23804-1-dakr@kernel.org> <20241210224947.23804-2-dakr@kernel.org>
+ <2024121112-gala-skincare-c85e@gregkh> <2024121111-acquire-jarring-71af@gregkh>
+ <2024121128-mutt-twice-acda@gregkh> <2024121131-carnival-cash-8c5f@gregkh>
+ <Z1mEAPlSXA9c282i@cassiopeiae> <Z1mG14DMoIzh6xtj@cassiopeiae>
+ <2024121109-ample-retrain-bde0@gregkh> <Z1mUG8ruFkPhVZwj@cassiopeiae>
+In-Reply-To: <Z1mUG8ruFkPhVZwj@cassiopeiae>
+From: Alice Ryhl <aliceryhl@google.com>
+Date: Wed, 11 Dec 2024 14:34:54 +0100
+Message-ID: <CAH5fLgh3rwS1sFmrhx3zCaSBbAJfhJTV_kbyCVX6BhvnBZ+cQA@mail.gmail.com>
+Subject: Re: [PATCH v5 01/16] rust: pass module name to `Module::init`
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Greg KH <gregkh@linuxfoundation.org>, rafael@kernel.org, bhelgaas@google.com, 
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
+	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com, 
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com, 
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
+	daniel.almeida@collabora.com, saravanak@google.com, dirk.behme@de.bosch.com, 
+	j@jannau.net, fabien.parent@linaro.org, chrisi.schrefl@gmail.com, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 6, 2024 at 12:14=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+On Wed, Dec 11, 2024 at 2:31=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> =
 wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
-> Enable ADC.
+> On Wed, Dec 11, 2024 at 02:14:37PM +0100, Greg KH wrote:
+> > On Wed, Dec 11, 2024 at 01:34:31PM +0100, Danilo Krummrich wrote:
+> > > On Wed, Dec 11, 2024 at 01:22:33PM +0100, Danilo Krummrich wrote:
+> > > > On Wed, Dec 11, 2024 at 12:05:10PM +0100, Greg KH wrote:
+> > > > > On Wed, Dec 11, 2024 at 11:59:54AM +0100, Greg KH wrote:
+> > > > > > On Wed, Dec 11, 2024 at 11:48:23AM +0100, Greg KH wrote:
+> > > > > > > On Wed, Dec 11, 2024 at 11:45:20AM +0100, Greg KH wrote:
+> > > > > > > > On Tue, Dec 10, 2024 at 11:46:28PM +0100, Danilo Krummrich =
+wrote:
+> > > > > > > > > In a subsequent patch we introduce the `Registration` abs=
+traction used
+> > > > > > > > > to register driver structures. Some subsystems require th=
+e module name on
+> > > > > > > > > driver registration (e.g. PCI in __pci_register_driver())=
+, hence pass
+> > > > > > > > > the module name to `Module::init`.
+> > > > > > > >
+> > > > > > > > Nit, we don't need the NAME of the PCI driver (well, we do =
+like it, but
+> > > > > > > > that's not the real thing), we want the pointer to the modu=
+le structure
+> > > > > > > > in the register_driver call.
+> > > > > > > >
+> > > > > > > > Does this provide for that?  I'm thinking it does, but it's=
+ not the
+> > > > > > > > "name" that is the issue here.
+> > > > > > >
+> > > > > > > Wait, no, you really do want the name, don't you.  You refer =
+to
+> > > > > > > "module.0" to get the module structure pointer (if I'm readin=
+g the code
+> > > > > > > right), but as you have that pointer already, why can't you j=
+ust use
+> > > > > > > module->name there as well as you have a pointer to a valid m=
+odule
+> > > > > > > structure that has the name already embedded in it.
+> > > > > >
+> > > > > > In digging further, it's used by the pci code to call into lowe=
+r layers,
+> > > > > > but why it's using a different string other than the module nam=
+e string
+> > > > > > is beyond me.  Looks like this goes way back before git was aro=
+und, and
+> > > > > > odds are it's my fault for something I wrote a long time ago.
+> > > > > >
+> > > > > > I'll see if I can just change the driver core to not need a nam=
+e at all,
+> > > > > > and pull it from the module which would make all of this go awa=
+y in the
+> > > > > > end.  Odds are something will break but who knows...
+> > > > >
+> > > > > Nope, things break, the "name" is there to handle built-in module=
+s (as
+> > > > > the module pointer will be NULL.)
+> > > > >
+> > > > > So what you really want is not the module->name (as I don't think=
+ that
+> > > > > will be set), but you want KBUILD_MODNAME which the build system =
+sets.
+> > > >
+> > > > That's correct, and the reason why I pass through this name argumen=
+t.
+> > > >
+> > > > Sorry I wasn't able to reply earlier to save you some time.
+> > > >
+> > > > > You shouldn't need to pass the name through all of the subsystems=
+ here,
+> > > > > just rely on the build system instead.
+> > > > >
+> > > > > Or does the Rust side not have KBUILD_MODNAME?
+> > > >
+> > > > AFAIK, it doesn't (or didn't have at the time I wrote the patch).
+> > > >
+> > > > @Miguel: Can we access KBUILD_MODNAME conveniently?
+> > >
+> > > Actually, I now remember there was another reason why I pass it throu=
+gh in
+> > > `Module::init`.
+> > >
+> > > Even if we had env!(KBUILD_MODNAME) already, I'd want to use it from =
+the bus
+> > > abstraction code, e.g. rust/kernel/pci.rs. But since this is generic =
+code, it
+> > > won't get the KBUILD_MODNAME from the module that is using the bus ab=
+straction.
+> >
+> > Rust can't do that in a macro somehow that all pci rust drivers can pul=
+l
+> > from?
 >
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> The problem is that register / unregister is encapsulated within methods =
+of the
+> abstraction types. So the C macro trick (while generally possible) isn't
+> applicable.
+>
+> I think we could avoid having an additional `name` parameter in `Module::=
+init`,
+> but it would still need to be the driver resolving `env!(KBUILD_MODNAME)`
+> passing it into the bus abstraction.
+>
+> However, similar to what Alice suggested in another thread, we could incl=
+ude
+> this step in the `module_*_driver!` macros.
+>
+> Modules that don't use this convenience macro would need to do it by hand
+> though. But that's probably not that big a deal.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.14.
+I think we can do it in the core `module!` macro that everyone has to use.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Alice
 
