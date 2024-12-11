@@ -1,164 +1,185 @@
-Return-Path: <devicetree+bounces-129950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 440129ED42E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:56:19 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB8AF9ED463
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 19:05:00 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1F0A164D80
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:56:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64F77281398
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:04:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9733C204F6A;
-	Wed, 11 Dec 2024 17:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1376202F9B;
+	Wed, 11 Dec 2024 18:04:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="l5IIFg55"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="O7k1Zazs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B26032040AD
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 17:55:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCAEC1DE4C8;
+	Wed, 11 Dec 2024 18:04:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733939737; cv=none; b=eUpeaneShaO05/jmoYnUAfc07n0vJvcg6xfc7B4ydXNCXieDrLyo1CQ1wsTAvdtTCiJSJepY7vvGNM40AiMcVZ9wSPgVFxcLn2Bu4Gf4MfJFkoswgQSRVA4BrDKkoeCQsgb4fMqJ1sIanSzW0zf9BuO/pFiRNtjZjMh8FRL58jw=
+	t=1733940287; cv=none; b=HUZpFtIGqToAGdBoXRtMus4Rh5XHmJG7V7zTakaDGeqLKHs/7lNnB+r10V+335yr0weRn25hFvRD8wue9UI1D1b7TVcB0Ax2OlDmPABx93JL3p00VN/OvUIbxi5NxIyiurJYwBmYJrO12EdkkXEtCRsy7ODiY98HTqOVXPDRlG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733939737; c=relaxed/simple;
-	bh=kDPd8U5uK5R4uekTRa3wapZvJ0AawT6vwbSHt7TAt+U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H7vlfjZ/KBk2X4w4eUBfuUdVeZ2QZ2IikRmupAQj+hZrB1TNuotS6ULVmQxPimaXxtPAGERUckjlVw4gRdFJmudaQ1PU6iSrp8IxyZbCO7CxstpU2gd8d/5aXneTViymj41kbDHjpUnV0q+EmWfoCOT4Obc0Ab6090MIV0Au2JA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=l5IIFg55; arc=none smtp.client-ip=209.85.167.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3ea55a2a38bso3644103b6e.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 09:55:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733939735; x=1734544535; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6NxV4GoHK/ahyIflRv/mOazvo62QwExn028Ncg5fkKE=;
-        b=l5IIFg55BcHfsKZKMfFFC1xMkRFJlHPIzqDAy0AeLEKD/XacZuS06CGwGSMFFoOyNN
-         NDCWoaNbAEOflz8e6IEoNhh5ryh3GBbswZvzGmsYC52N7YoRCTbco25zsMW6WWqEr9VO
-         gfHjH8KSINNuT/SVVx4jGyMHq3BCPMOkEHPI353CQ0S5PotmBmhS1HbOspmC9dRwYBGB
-         s1Ut/b4dGWhiv3DY1KqjG+cJW1APZ7X1CTr+TU5wkZb6pFWl2ubF9i5s/jr9snibtRd7
-         BjG8sSg/qmTl5MKcAw7RZ56ZVTZeTT5dW8cfMwujOs9c2u23giLJ086sfocEgEMm9p0K
-         B0wA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733939735; x=1734544535;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6NxV4GoHK/ahyIflRv/mOazvo62QwExn028Ncg5fkKE=;
-        b=e7sLUZI0uJmz+cwKB+6dzz56/IeEOfq6Y58cu8EqBOdwllagZmv/VnoEJ/QImNqyGB
-         36LGDhPjjDZQIEvvA2t2tzKWFFkT+vOTQNG+PBFr2mZymtwT/ogWM6wI6RInLqf3IM1O
-         DCjaRzljnxIPN/gmonInxQHHf9kgTTILSmgW6Jlu4gLpnyP6RdEafAQBzy/JtOhuqA/l
-         oYIZnghk+eUvCsvXB1W01TXqotx6ai+fjzyxflTt8p6sf2OU7+ccxoSaXk6IJD4o74Rd
-         pGN0aP67+dR1ouXbGL19pIociBJWXqru+R5NG9ToYEE+U2ZZ31/S2YucTuCV2USP8Gfu
-         x1/w==
-X-Forwarded-Encrypted: i=1; AJvYcCU9cS74729CMMOiqaLhX//INtIz2lIY1sV+A3TUJehkGwnearJNM41f0OhmN6cjKUKs5gfgT7TigKcp@vger.kernel.org
-X-Gm-Message-State: AOJu0YyiiiecdslGAp+LQhG4O7dBpiMqTTYLmTwiIxgxjiDy119NwnJH
-	cxqljghSyUXEq3Z7gLZhCLHBc4u7NUKN45JOVUs4iZOTUAmOCp+1RxEtS8b8UIDKchwLEbXT23l
-	2sqki3U9ry6uinyYtI9Lo88FWcxi4HdjBefPUOw==
-X-Gm-Gg: ASbGncvVgR1N0PmRQY1z3D+VsyXddvPWCiKZktqwa5/R2EK/PXWY208yzxw7R07Un4g
-	694GU1tOTRwCgvaxP3n80N4jIIvaUfM3Mh7Y=
-X-Google-Smtp-Source: AGHT+IF4vtTjbxANqGCquCOW86vWqQwnJkVwBIy0+PKUY3mXo9+jIK2tbaAnXdNFAA6ijnfwpTtlzsC6XGNl2/h4Y9Q=
-X-Received: by 2002:a05:6808:189c:b0:3e6:6097:847d with SMTP id
- 5614622812f47-3eb85a8b199mr2732633b6e.7.1733939734907; Wed, 11 Dec 2024
- 09:55:34 -0800 (PST)
+	s=arc-20240116; t=1733940287; c=relaxed/simple;
+	bh=l94BK7mrqrW7wfB86W1pvJPZMlYxTL4bfJJgI4EhRVQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=D737FP4bGt//0vnxDeNMCUNConCof1L/YVXtxpR5m3nknAAey7tUWQgvKikYBtRd4I4tXbeltOtnakalkrHIUtNeXfA3H9kCeOjsLiFC0tRpyhliuPAtc1TnUowfZkv2d+w1IFQ5Qd4Cc+TBmqe7+pWsyE1WbthrM2a3h9Z6r7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=O7k1Zazs; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+Received: from [192.168.118.162] (254C2319.nat.pool.telekom.hu [37.76.35.25])
+	by mail.mainlining.org (Postfix) with ESMTPSA id BFA8CE44CE;
+	Wed, 11 Dec 2024 17:59:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mainlining.org;
+	s=psm; t=1733939950;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=AQb1l6P2tQO5E8YgADPihN0HvZV+3EZDBO65HMerFUg=;
+	b=O7k1ZazsmnVW8KqgLQWR1tYndN87ZMRb1G6rvZLqC7AWNO1TblfK3J2aJ3rCdFQg1w7I43
+	Z09r/5fmOZfTznjhJtgbqQa+Woi9pgX1A5uPyRjxdHHvRj5Tv7MOgStJbbWrJmgpauht5e
+	V9tAzk932GZHrDbx5EeuMLtrCZg+PEKmgtVeCgF7E+mhJtI2dpjjm13aYqm/Y+t7majLfL
+	gcq9bE+pqWsBOlMfCB4GK40wSOKugig5+JpUTgaEwYohQdJWPerRXoxUv/L3hXCel/Qh33
+	lYu8hN5s8STLx/3fczhgC2ph6t+IRBxOyhtB5q2i7UM0vndKiTUTh9yiAx4/Xw==
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH v8 0/8] Add MSM8917/PM8937/Redmi 5A
+Date: Wed, 11 Dec 2024 18:59:04 +0100
+Message-Id: <20241211-msm8917-v8-0-197acc042036@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241206-gs101-phy-lanes-orientation-phy-v4-0-f5961268b149@linaro.org>
- <20241206-gs101-phy-lanes-orientation-phy-v4-6-f5961268b149@linaro.org> <CADrjBPoZqbAM=2zOdgXD_dTrgh-J7yE+OX_JSVJ42Lmzb-DPEw@mail.gmail.com>
-In-Reply-To: <CADrjBPoZqbAM=2zOdgXD_dTrgh-J7yE+OX_JSVJ42Lmzb-DPEw@mail.gmail.com>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Wed, 11 Dec 2024 17:55:23 +0000
-Message-ID: <CADrjBPpv7Y-v4w-ZjsM52wPXM1G=v028BxmJA=_zb4ksDq21EQ@mail.gmail.com>
-Subject: Re: [PATCH v4 6/7] phy: exynos5-usbdrd: subscribe to orientation
- notifier if required
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Sam Protsenko <semen.protsenko@linaro.org>, Will McVicker <willmcvicker@google.com>, 
-	Roy Luo <royluo@google.com>, kernel-team@android.com, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAOjSWWcC/23PTW7DIBAF4KtErOuKYcAwXfUeUReYHweptitTW
+ aki3704G5Di5RvxvWEeLIc1hcw+Lg+2hi3ltMwlmLcLczc7j6FLvmQmuJDAgbopT4ZAd6Adeh6
+ jtEqw8vpnDTHdn03Xr5JvKf8u69+zeINj+tqxQce7CBGdBW9MUJ+TTfN3mtM8vi/ryI6iTTQYo
+ WJRsLFcq2itoQFOMVYMXFeMBffeO2WdJ22GUyxb3HxbHpuHQMSlJmHPsWowiIpVweVglB4RCM5
+ x32KsuC/YoTRxUEQxxFOsGyxkxfq4GYQWZFD2qn/B+77/A+i7qgMRAgAA
+X-Change-ID: 20241019-msm8917-17c3d0ff4a52
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Amit Kucheria <amitk@kernel.org>, 
+ Thara Gopinath <thara.gopinath@gmail.com>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Joerg Roedel <joro@8bytes.org>, 
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ linux-pm@vger.kernel.org, iommu@lists.linux.dev, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
+ Dang Huynh <danct12@riseup.net>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733939948; l=3685;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=l94BK7mrqrW7wfB86W1pvJPZMlYxTL4bfJJgI4EhRVQ=;
+ b=R633mGFXByhKcb6oYnzij7wzGsygYNA9ivAfglNKI0x1s9HqtWuDx2IWw8tx9a1zMvvCxc3Sa
+ IyqzwT7Ae7qAFZYq90Vw5wSb0ga8bUwu+ovbvbdQkRUMcZUbaOVkkOw
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
 
-Hi Andr=C3=A9,
+This patch series add support for MSM8917 soc with PM8937 and
+Xiaomi Redmi 5A (riva).
 
-On Sat, 7 Dec 2024 at 21:31, Peter Griffin <peter.griffin@linaro.org> wrote=
-:
->
-> Hi Andr=C3=A9,
->
-> Firstly, thanks for all your work getting USB on Pixel 6 / gs101
-> working upstream :)
->
-> On Fri, 6 Dec 2024 at 16:31, Andr=C3=A9 Draszik <andre.draszik@linaro.org=
-> wrote:
-> >
-> > gs101's SS phy needs to be configured differently based on the
-> > connector orientation, as the SS link can only be established if the
-> > mux is configured correctly.
-> >
-> > The code to handle programming of the mux is in place already, this com=
-mit
-> > now adds the missing pieces to subscribe to the Type-C orientation
-> > switch event.
-> >
-> > Note that for this all to work we rely on the USB controller
-> > re-initialising us. It should invoke our .exit() upon cable unplug, and
-> > during cable plug we'll receive the orientation event after which we
-> > expect our .init() to be called.
-> >
-> > Above reinitialisation happens if the DWC3 controller can enter runtime
-> > suspend automatically. For the DWC3 driver, this is an opt-in:
-> >     echo auto > /sys/devices/.../11110000.usb/power/control
-> > Once done, things work as long as the UDC is not bound as otherwise it
-> > stays busy because it doesn't cancel / stop outstanding TRBs. For now
-> > we have to manually unbind the UDC in that case:
-> >      echo "" > sys/kernel/config/usb_gadget/.../UDC
-> >
-> > Note that if the orientation-switch property is missing from the DT,
-> > the code will behave as before this commit (meaning for gs101 it will
-> > work in SS mode in one orientation only). Other platforms are not
-> > affected either way.
-> >
-> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
->
-> Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-> Tested-by: Peter Griffin <peter.griffin@linaro.org>
->
-> Notes on testing:
->
-> I tested this series with the corresponding DT using a Pixel 6 device
-> with 2 different USB hubs and also plugging directly into my laptop.
-> I've tried various combinations of plugging / unplugging from both
-> ends of the USB cable and changing cable orientation. With the latest
-> series the disconnect/reconnect always seems robustly detected and
-> Pixel is enumerated as a USB device by the host, adb connection to the
-> phone is possible even with the cable orientation changing between
-> disconnect/reconnect.
->
-> One thing I did notice during testing is that in one cable orientation
-> Pixel is detected as a `SuperSpeed USB device` by the host and in the
-> other cable orientation it is detected as a `high-speed USB device`.
-> Which suggests there is still a latent bug in the phy
-> re-configuration.
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+---
+Changes in v8:
+- pm8937, msm8917, msm8917-xiaomi-riva: remove unused includes
+- Link to v7: https://lore.kernel.org/r/20241124-msm8917-v7-0-612729834656@mainlining.org
 
-You can disregard this last point, I had a typo in my test setup :( I
-just confirmed that it is detected as SuperSpeed in both orientations.
+Changes in v7:
+- msm8917-xiaomi-riva:
+  - Add pinctrls for used GPIO pins.
+  - Use interrupts-extend for charger.
+  - Order properies.
+- Link to v6: https://lore.kernel.org/r/20241113-msm8917-v6-0-c348fb599fef@mainlining.org
 
-Thanks,
+Changes in v6:
+- msm8917:
+  - Consolidate SDC pins, remove sdc2-cd-on/off pins.
+  - Remove cluster-sleep-0 and cluster-sleep-1
+  and rename cluster-sleep-2 to cluster-sleep-0.
+  - Fix spi, i2c and related pinctrl namings.
+- msm8917-xiaomi-riva: follow i2c name changes.
+- Link to v5: https://lore.kernel.org/r/20241112-msm8917-v5-0-3ca34d33191b@mainlining.org
 
-Peter
+Changes in v5:
+- msm8917:
+  - Remove aliases.
+  - Rename spi, i2c labels and pins.
+  - Remove clock-frequency from timers
+  - Remove unused mpss_mem region.
+  - Use mboxes where it can be used, only smd-edge uses qcom,ipc.
+- msm8917-xiaomi-riva: Follow i2c label changes.
+- Link to v4: https://lore.kernel.org/r/20241109-msm8917-v4-0-8be9904792ab@mainlining.org
+
+Changes in v4:
+- msm8917 pinctrl: Fix gpio regexp in the schema.
+- msm8937 tsens: Rename ops_msm8976 to ops_common and use it for msm8937.
+- msm8917: fix address padding, naming and ordering, remove polling-delays.
+- Remove applied patches from the series.
+- Link to v3: https://lore.kernel.org/r/20241107-msm8917-v3-0-6ddc5acd978b@mainlining.org
+
+Changes in v3:
+- msm8917-xiaomi-riva: Fix issues addressed by Konrad.
+- msm8917: Fix node addresses, orders of some properties.
+- pm8937: simplify vadc channels.
+- msm8917 pinctrl: Fix schema issues addressed by Krzysztof. 
+- Remove applied tcsr patch from this series.
+- Reword some commit title.
+- Link to v2: https://lore.kernel.org/r/20241031-msm8917-v2-0-8a075faa89b1@mainlining.org
+
+Changes in v2:
+- Add msm8937 tsens support.
+- Fix issues addressed by reviews.
+- Link to v1: https://lore.kernel.org/r/20241019-msm8917-v1-0-f1f3ca1d88e5@mainlining.org
+
+---
+Barnabás Czémán (5):
+      dt-bindings: pinctrl: qcom: Add MSM8917 pinctrl
+      dt-bindings: iommu: qcom,iommu: Add MSM8917 IOMMU to SMMUv1 compatibles
+      dt-bindings: nvmem: Add compatible for MS8917
+      dt-bindings: arm: qcom: Add Xiaomi Redmi 5A
+      arm64: dts: qcom: Add Xiaomi Redmi 5A
+
+Dang Huynh (1):
+      arm64: dts: qcom: Add PM8937 PMIC
+
+Otto Pflüger (2):
+      pinctrl: qcom: Add MSM8917 tlmm pinctrl driver
+      arm64: dts: qcom: Add initial support for MSM8917
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    7 +
+ .../devicetree/bindings/iommu/qcom,iommu.yaml      |    1 +
+ .../devicetree/bindings/nvmem/qcom,qfprom.yaml     |    1 +
+ .../bindings/pinctrl/qcom,msm8917-pinctrl.yaml     |  160 ++
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts   |  333 ++++
+ arch/arm64/boot/dts/qcom/msm8917.dtsi              | 1944 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/pm8937.dtsi               |  150 ++
+ drivers/pinctrl/qcom/Kconfig.msm                   |    6 +
+ drivers/pinctrl/qcom/Makefile                      |    1 +
+ drivers/pinctrl/qcom/pinctrl-msm8917.c             | 1620 ++++++++++++++++
+ 11 files changed, 4224 insertions(+)
+---
+base-commit: 1b2ab8149928c1cea2d7eca30cd35bb7fe014053
+change-id: 20241019-msm8917-17c3d0ff4a52
+
+Best regards,
+-- 
+Barnabás Czémán <barnabas.czeman@mainlining.org>
+
 
