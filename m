@@ -1,112 +1,101 @@
-Return-Path: <devicetree+bounces-129763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3BC99ECB7D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:42:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C28F9ECB82
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:44:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E10001889E3A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:42:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF9D2188A532
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:44:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB178211A06;
-	Wed, 11 Dec 2024 11:42:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 048F5211A09;
+	Wed, 11 Dec 2024 11:44:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="prW8fMoh"
+	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="kuRM/eZ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pv50p00im-ztdg10021801.me.com (pv50p00im-ztdg10021801.me.com [17.58.6.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C97C238E27;
-	Wed, 11 Dec 2024 11:42:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF9D9211A24
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 11:44:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733917343; cv=none; b=NUu3uJun+GWsFTrq/0JXwiDL/rulDspNfM9oQVKQifjcNNfVyd+7sFJKWppvqyjsL1NWNH6LecmsBzzcD/Kz6HTf37vq8scEH017gaxbU60uBPAYD+gwYvpiiXxjxhzR+StDPhxI5nqMGN11lco8XS3iLIlbltuAHFP1DW5m1D0=
+	t=1733917457; cv=none; b=nEZ1P6Nx/8iRt2t2LmyQP96viOUSZRBYaY6ZFzWp5Qswef+qCEehDQy4/dFn9+I7Xfh4JJOZaBV8vOp4GX9fK3XyD7126k/q3UN15q/jo/4NdUTxlgWAk2ls4IK/X9sB/aEjPosl6xCALNTnAkEbnSncm7Dn56lyRMb4+zTMjtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733917343; c=relaxed/simple;
-	bh=yedsCnzVN74BVIIARNATqyJIu4NbvsCe8HTrkCpphMA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lV9Z+WNkSSaXfewmtUiXdetTmzreQa+dTxfLpoOCnuZQaxyTKCPcG/FeL2caFOe7nejk8BxozOAxTrrEw3+enc2+NAPWcsCvHyO/GSIWboLqKGAh0BuiBsq6iF1Sl4da9JUSdN11orl5qRRyMKJw8KLIri13wQrP+s04BJO8Lhg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=prW8fMoh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0909BC4CED2;
-	Wed, 11 Dec 2024 11:42:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733917343;
-	bh=yedsCnzVN74BVIIARNATqyJIu4NbvsCe8HTrkCpphMA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=prW8fMohAf8HEEmGWWarvi6CXE3aB8pEsbfCs2fqiF76+pyZbFFpz3wByAildGDgd
-	 0CC/UI3QjptdF7xpSTJmkqgufOXLQrWDBpIK7ql/DNIMFZCQQPCrmXaizavSWIFA19
-	 jhK5HfLmN+3K/86DRdHr7xcn7+cNjbDYS15liX30EArh8wW99MscUJSuhDHlyZuy/G
-	 W8WJmH831FMEOzFQYBrVUJLAL1gc2yMV4ssb0nm6pp3lYCtIBrMWFdpgxwTsvFUCaA
-	 rnMKvVMxMI5+vGMV4drhz9Nr9gIcN3VE3Q9ozoUBtS3LD+4VWK7R1Gg/+XM/Jh0sCT
-	 4wP5JphFsvqkw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1tLL6o-000000002JR-1ZW6;
-	Wed, 11 Dec 2024 12:42:26 +0100
-Date: Wed, 11 Dec 2024 12:42:26 +0100
-From: Johan Hovold <johan@kernel.org>
-To: "Tudor, Laurentiu" <Laurentiu.Tudor1@dell.com>
-Cc: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>, Marc Zyngier <maz@kernel.org>,
-	Xilin Wu <wuxilin123@gmail.com>, Abel Vesa <abel.vesa@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 5/8] arm64: dts: qcom: x1e80100-dell-xps13-9345: Fix USB
- QMP PHY supplies
-Message-ID: <Z1l6omxQoKKAyqSS@hovoldconsulting.com>
-References: <20241210-x1e80100-usb-qmp-supply-fix-v1-0-0adda5d30bbd@linaro.org>
- <20241210-x1e80100-usb-qmp-supply-fix-v1-5-0adda5d30bbd@linaro.org>
- <CAMcHhXpvwR50GCkTvtkmWW4mvV5o9vbMvrvqLiEkJpKDHP_REA@mail.gmail.com>
- <CY5PR19MB61475B208EC527ED7143B536BA3E2@CY5PR19MB6147.namprd19.prod.outlook.com>
+	s=arc-20240116; t=1733917457; c=relaxed/simple;
+	bh=RYufHWxSlkzSmjLTGP6SJrhGZCpAoM0Qu5uSmhrjUgk=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=XEJSUizKTeY8+KBzh680kI9So91J/GxvmhfLz1N4MkPF0JVactQyAkUg+feoq3Amnx4cbgipI0oSleDSbZ0x3TLn/0DEmAY9aMPfn1s9Y6de/ATDXFm5qopQFjY3rX9lvYcIGYUNB5lotRNr0f9KeeLvVs1fLA+VyW9NU2Vemd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=kuRM/eZ/; arc=none smtp.client-ip=17.58.6.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
+	s=1a1hai; t=1733917456;
+	bh=olsUnbbcCu4bwm3gBuWccI/504DZmXXYNoZZOMNxRa4=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Content-Type:
+	 x-icloud-hme;
+	b=kuRM/eZ/ATjHo1O4i0Ug8Tvies0uy9YI9hphNsvITSWbkJNF+SmfMg7o4kuHBjG6v
+	 y//ey3faQrpbRDaHJODNHv1Sdiaf8b7A4Wgu0GfiG6xbRl3vaY6SVwyTWXxVMOcfjT
+	 i27oEVLtFbbckO56N04hRrU4rlbeqyZGImng4gXpGKSE7zBCJFYwroEJZAb+SMZTP1
+	 a/G7W0P3sfcs+lQVecYxySIrD0ufrnHeka0pbf1RCJH+bSvha6veL2wmnfLly7Hdqx
+	 D0pFq8oCJnRYXvwjTWlR1Mj/dqZLr79AMLuCakK+jTAR/x4wUoBQk8vbZ/NPJMd32X
+	 7o4wlkF+rfTbw==
+Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
+	by pv50p00im-ztdg10021801.me.com (Postfix) with ESMTPSA id EC3CF2010252;
+	Wed, 11 Dec 2024 11:44:12 +0000 (UTC)
+Message-ID: <696f754e-605e-4564-9d17-b197b72ec055@icloud.com>
+Date: Wed, 11 Dec 2024 19:44:08 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CY5PR19MB61475B208EC527ED7143B536BA3E2@CY5PR19MB6147.namprd19.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+From: Zijun Hu <zijun_hu@icloud.com>
+Subject: Re: [PATCH 05/10] of: Fix available buffer size calculating error in
+ API of_device_uevent_modalias()
+To: Rob Herring <robh@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, Maxime Ripard
+ <mripard@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Grant Likely <grant.likely@secretlab.ca>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
+References: <20241206-of_core_fix-v1-0-dc28ed56bec3@quicinc.com>
+ <20241206-of_core_fix-v1-5-dc28ed56bec3@quicinc.com>
+ <CAL_JsqL+CRmCQMzcF4-A-PRBrCsfK8nduJtOO=RrsDtCUUR7og@mail.gmail.com>
+ <14fe473e-5f56-4a61-899c-bbb79e2aed3b@icloud.com>
+ <CAL_Jsq+Aap9Kjzcd5H5m9ArcXMWRogoT0CdPnz4-d8OeRgadUA@mail.gmail.com>
+Content-Language: en-US
+In-Reply-To: <CAL_Jsq+Aap9Kjzcd5H5m9ArcXMWRogoT0CdPnz4-d8OeRgadUA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: Gwo7sHspSDEBi0l84sogjbAdEQ_lpRxJ
+X-Proofpoint-GUID: Gwo7sHspSDEBi0l84sogjbAdEQ_lpRxJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2024-12-11_10,2024-12-10_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 spamscore=0 bulkscore=0
+ mlxscore=0 mlxlogscore=999 phishscore=0 suspectscore=0 clxscore=1015
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2412110086
 
-On Wed, Dec 11, 2024 at 11:35:37AM +0000, Tudor, Laurentiu wrote:
+On 2024/12/10 22:10, Rob Herring wrote:
+> Ah, right. However, we still end up with a truncated value though it
+> is nul terminated.
 > 
-> Internal Use - Confidential
+>> 2) both env->buflen and env->envp_idx are not updated once @env->buf
+>> does not enough spaces then failed.
+>>
+>> current logic has no difference with normal add_uevent_var() usage.
+> There is one major difference. add_uevent_var() will not output
+> anything if the whole string doesn't fit. Whereas we might output a
+> truncated value because the add_uevent_var() call updated env->buflen
+> and env->envp_idx. We could unwind that I suppose, but that involves
+> even more mucking with the internals of the env struct.
 
-Looks like you need to fix your mail setup for when you're interacting
-with the community and mailing lists.
+you are right.
+i would like to try to solve involved issue in next revision. (^^)
 
-> > -----Original Message-----
-> > From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-> > Sent: Tuesday, December 10, 2024 10:45 PM
-> >
-> > On Tue, 10 Dec 2024 at 10:07, Stephan Gerhold <stephan.gerhold@linaro.org>
-> > wrote:
-> > >
-> > > On the X1E80100 CRD, &vreg_l3e_1p2 only powers &usb_mp_qmpphy0/1
-> > (i.e.
-> > > USBSS_3 and USBSS_4). The QMP PHYs for USB_0, USB_1 and USB_2 are
-> > > actually powered by &vreg_l2j_1p2.
-> > >
-> > > Since x1e80100-dell-xps13-9345 mostly just mirrors the power supplies
-> > > from the x1e80100-crd device tree, assume that the fix also applies here.
-> >
-> > Though I can't verify schematics (perhaps Laurentiu can?)can confirm USBs
-> > still work as expected with this change.
-> 
-> Yep, just checked the schematics and can confirm.
-
-Thanks for confirming.
-
-Johan
 
