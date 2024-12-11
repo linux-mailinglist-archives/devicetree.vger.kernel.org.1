@@ -1,243 +1,137 @@
-Return-Path: <devicetree+bounces-129571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2924F9EC2D0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 04:07:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 002E79EC32F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 04:23:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D61A81882503
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 03:07:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2EF51881D80
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 03:23:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24C39207A1A;
-	Wed, 11 Dec 2024 03:07:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 531C5216606;
+	Wed, 11 Dec 2024 03:23:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OEQZvE8B"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="kApDiNmB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA3312451C5;
-	Wed, 11 Dec 2024 03:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA70F20C000;
+	Wed, 11 Dec 2024 03:23:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733886446; cv=none; b=ZYrG+4cc2cUNhZwRtbOdPO8O2MLC4Lq+fOOhPPOBpyqggGWlhhvrgCmmYtQJBIxRQgKg6ctBLei9vMvYNIGYVUDXHlM6Pvy2CtYjbpHC8hMV2QW8Fbfg/9w5Oto5QzqjUEYjilNAybKF1tEUF7pZx4ow6KZnEPs4HOjKOZk75gk=
+	t=1733887388; cv=none; b=Hs/04aXOdd+JBBOPI+3audEeuJzO7bYHEBEm7PQjv5DGOodteP6K59Y4p4JdGtb3Muz648WdcZC/t7hKaKlAFZ/nzN8IPUoCcMN/BBC4zgahu9Mt1bu6CbSj1ePL2lp6kSIp/pWE2GoGM72lS36vok55sGRu3f0oeALP967qntw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733886446; c=relaxed/simple;
-	bh=Z6X7dtscopNLoz8nldaGstB4IaOylCRwJyOS1rJBRL8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VNLQgSanAJ/dSJUTuAH4HzSMLQybdMxgrzDj8sZw5uc8bA/946Oy7BVVUGCQSp8SQLohFaA/YipQ3LtCym100MtSIJk5cFpBqEfe9L8BrP4DsLW4ZpgMaNSjZaeaRwxgRypsGdEXMpD1dvfccifoiTT6ufFS8B6zr1YIJMzViik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OEQZvE8B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A63C4C4CEE8;
-	Wed, 11 Dec 2024 03:07:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733886445;
-	bh=Z6X7dtscopNLoz8nldaGstB4IaOylCRwJyOS1rJBRL8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=OEQZvE8BBM6PtI7CrFIFlGfd/cAROEDjV1Ez7QpvyteHQHLf9CFKaPNzP70SnLcKI
-	 KYUIaWEOLUDV/GmjSkXTrLyNHKOtH4XpfSPTW+rTs0wQH06DU3wHmvudISnHK1urU7
-	 dSgJkA2bgR5gRjynQnFcgpQ6zD62U06bLiaAYa0eYhkdRgkcQp6JoZDEvjdE70POxt
-	 AN8W4aVVLlqiWVqZ3jsdywL3bgfkldOEFoFKxDm4UHYtw04RoWSEWqCGgsW6pBc3Do
-	 oMr7I2180W95Pvf3+VlsE+0I6d2jc4/lY3P8oy1CrtfFxIhamqfwlUxmnAn5ngwPBb
-	 zOnfK52KkEWAQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 97684E77180;
-	Wed, 11 Dec 2024 03:07:25 +0000 (UTC)
-From: Amit Sunil Dhamne via B4 Relay <devnull+amitsd.google.com@kernel.org>
-Date: Tue, 10 Dec 2024 19:07:09 -0800
-Subject: [PATCH v2 3/3] usb: typec: tcpm: Add new AMS for Get_Revision
- response
+	s=arc-20240116; t=1733887388; c=relaxed/simple;
+	bh=MSmYHjlj6UzLNtoLb9EKbLVZf4MyQ0EgklgBomxysFY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=idHpeTu3VFtdDjrZ0NPWb6ojtspF3oX9CQZZdbHCZZo1LyXFJuue/XxM7la95UJnTCOVWBwdfhrV0z87DCjj2k+77OWn1YRJybkxoQRzaPsZgRIWbJJx+HL9kQNn/2gqWIBUpW1fAq0QvFgBWPExpCHsyN7zBCOZYiG6hoie6wk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=kApDiNmB; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 38e61b3ab76f11efbd192953cf12861f-20241211
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=0KJPkukya59nfR1aGhl7T2oGpeA9UVjg5hfMTy1E8j0=;
+	b=kApDiNmBd/kpFvYlEry3Htj7EsXzUt92K2V4SVCXWUA55Wl4bT22N9270juSlHuZWT+CGKjVSBBGCxk8sYZF1VsZEMANEprAU4FRRn+DS8pnxQVggfhsFZQrK9eUrtIZFbbrpxsmGahE/gYmefLS9KyzDgukFLm9dTvLJbWl4g0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.45,REQID:127a1e49-b043-4adf-986c-cdcf697e45b6,IP:0,U
+	RL:0,TC:0,Content:36,EDM:-30,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTI
+	ON:release,TS:6
+X-CID-META: VersionHash:6493067,CLOUDID:e266c53b-e809-4df3-83cd-88f012b9e9ba,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:3,EDM:2,IP:nil,UR
+	L:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,S
+	PR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 38e61b3ab76f11efbd192953cf12861f-20241211
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw02.mediatek.com
+	(envelope-from <jason-jh.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 125515625; Wed, 11 Dec 2024 11:22:59 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 11 Dec 2024 11:22:58 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 11 Dec 2024 11:22:58 +0800
+From: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+To: Jassi Brar <jassisinghbrar@gmail.com>, Chun-Kuang Hu
+	<chunkuang.hu@kernel.org>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>
+CC: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-media@vger.kernel.org>,
+	"Jason-JH . Lin" <jason-jh.lin@mediatek.com>, Singo Chang
+	<singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>, Moudy Ho
+	<moudy.ho@mediatek.com>, Xavier Chang <xavier.chang@mediatek.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Jason-jh Lin
+	<jason-jh.lin@mediatek.corp-partner.google.com>
+Subject: [PATCH v2 0/8] Add GCE support for MT8196
+Date: Wed, 11 Dec 2024 11:22:48 +0800
+Message-ID: <20241211032256.28494-1-jason-jh.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241210-get_rev_upstream-v2-3-d0094e52d48f@google.com>
-References: <20241210-get_rev_upstream-v2-0-d0094e52d48f@google.com>
-In-Reply-To: <20241210-get_rev_upstream-v2-0-d0094e52d48f@google.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Badhri Jagan Sridharan <badhri@google.com>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: Kyle Tso <kyletso@google.com>, RD Babiera <rdbabiera@google.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-usb@vger.kernel.org, Amit Sunil Dhamne <amitsd@google.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733886444; l=4930;
- i=amitsd@google.com; s=20241031; h=from:subject:message-id;
- bh=YvUI3CfbZ7WfPHWV3UO69yuWSZoIOQnnvLn9UUmlros=;
- b=twZ9Jg43zeC+dNyfJ/GALSE7oL41cdMQiWpprn4cLvNLH3jh8ty5Ew4EenHBCJ7nptF9YdgGp
- JsaKD+KOGDTDI5AXMGEPXBWth+BM86m0mMv2gKPlMRbhzwmGF0K+uGt
-X-Developer-Key: i=amitsd@google.com; a=ed25519;
- pk=wD+XZSST4dmnNZf62/lqJpLm7fiyT8iv462zmQ3H6bI=
-X-Endpoint-Received: by B4 Relay for amitsd@google.com/20241031 with
- auth_id=262
-X-Original-From: Amit Sunil Dhamne <amitsd@google.com>
-Reply-To: amitsd@google.com
+Content-Type: text/plain
+X-MTK: N
 
-From: Amit Sunil Dhamne <amitsd@google.com>
+From: Jason-jh Lin <jason-jh.lin@mediatek.corp-partner.google.com>
 
-This commit adds a new AMS for responding to a "Get_Revision" request.
-Revision message consists of the following fields:
+This patch series adds support for the MediaTek MT8196 SoC in the CMDQ
+driver and related subsystems. The changes include adding compatible
+names and properties, updating driver data to accommodate hardware
+changes, and modifying the usage of CMDQ API to support non-subsys ID
+hardware.
 
- +----------------------------------------------------+
- |         Header             |         RMDO          |
- |  No. of data objects = 1   |                       |
- +----------------------------------------------------+
-
- While RMDO consists of:
-  * B31..28     Revision Major
-  * B27..24     Revision Minor
-  * B23..20     Version Major
-  * B19..16     Version Minor
-  * B15..0      Reserved, shall be set to zero.
-
-As per the PD spec ("8.3.3.16.2.1 PR_Give_Revision State"), a request is
-only expected when an explicit contract is established and the port is
-in ready state. This AMS is only supported for PD >= 3.0.
-
-Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-Reviewed-by: Badhri Jagan Sridharan <badhri@google.com>
 ---
- drivers/usb/typec/tcpm/tcpm.c | 41 ++++++++++++++++++++++++++++++++++++++++-
- include/linux/usb/pd.h        | 22 ++++++++++++++++++++--
- 2 files changed, 60 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
-index 59621cfaee3d67a36f3ad6870bd1aa92d382f33a..460dbde9fe2239b10c43cfb12dce92c736b1cea9 100644
---- a/drivers/usb/typec/tcpm/tcpm.c
-+++ b/drivers/usb/typec/tcpm/tcpm.c
-@@ -185,7 +185,8 @@
- 	S(UNSTRUCTURED_VDMS),			\
- 	S(STRUCTURED_VDMS),			\
- 	S(COUNTRY_INFO),			\
--	S(COUNTRY_CODES)
-+	S(COUNTRY_CODES),			\
-+	S(REVISION_INFORMATION)
- 
- #define GENERATE_ENUM(e)	e
- #define GENERATE_STRING(s)	#s
-@@ -225,6 +226,7 @@ enum pd_msg_request {
- 	PD_MSG_CTRL_NOT_SUPP,
- 	PD_MSG_DATA_SINK_CAP,
- 	PD_MSG_DATA_SOURCE_CAP,
-+	PD_MSG_DATA_REV,
- };
- 
- enum adev_actions {
-@@ -1244,6 +1246,24 @@ static u32 tcpm_forge_legacy_pdo(struct tcpm_port *port, u32 pdo, enum typec_rol
- 	}
- }
- 
-+static int tcpm_pd_send_revision(struct tcpm_port *port)
-+{
-+	struct pd_message msg;
-+	u32 rmdo;
-+
-+	memset(&msg, 0, sizeof(msg));
-+	rmdo = RMDO(port->pd_rev.rev_major, port->pd_rev.rev_minor,
-+		    port->pd_rev.ver_major, port->pd_rev.ver_minor);
-+	msg.payload[0] = cpu_to_le32(rmdo);
-+	msg.header = PD_HEADER_LE(PD_DATA_REVISION,
-+				  port->pwr_role,
-+				  port->data_role,
-+				  port->negotiated_rev,
-+				  port->message_id,
-+				  1);
-+	return tcpm_pd_transmit(port, TCPC_TX_SOP, &msg);
-+}
-+
- static int tcpm_pd_send_source_caps(struct tcpm_port *port)
- {
- 	struct pd_message msg;
-@@ -3547,6 +3567,17 @@ static void tcpm_pd_ctrl_request(struct tcpm_port *port,
- 				   PD_MSG_CTRL_NOT_SUPP,
- 				   NONE_AMS);
- 		break;
-+	case PD_CTRL_GET_REVISION:
-+		if (port->negotiated_rev >= PD_REV30 && port->pd_rev.rev_major)
-+			tcpm_pd_handle_msg(port, PD_MSG_DATA_REV,
-+					   REVISION_INFORMATION);
-+		else
-+			tcpm_pd_handle_msg(port,
-+					   port->negotiated_rev < PD_REV30 ?
-+					   PD_MSG_CTRL_REJECT :
-+					   PD_MSG_CTRL_NOT_SUPP,
-+					   NONE_AMS);
-+		break;
- 	default:
- 		tcpm_pd_handle_msg(port,
- 				   port->negotiated_rev < PD_REV30 ?
-@@ -3791,6 +3822,14 @@ static bool tcpm_send_queued_message(struct tcpm_port *port)
- 				tcpm_ams_finish(port);
- 			}
- 			break;
-+		case PD_MSG_DATA_REV:
-+			ret = tcpm_pd_send_revision(port);
-+			if (ret)
-+				tcpm_log(port,
-+					 "Unable to send revision msg, ret=%d",
-+					 ret);
-+			tcpm_ams_finish(port);
-+			break;
- 		default:
- 			break;
- 		}
-diff --git a/include/linux/usb/pd.h b/include/linux/usb/pd.h
-index d50098fb16b5d2e2d9e39c55db4329224115e8b1..3068c3084eb6176d7d9184c3959a4110282a9fa0 100644
---- a/include/linux/usb/pd.h
-+++ b/include/linux/usb/pd.h
-@@ -33,7 +33,9 @@ enum pd_ctrl_msg_type {
- 	PD_CTRL_FR_SWAP = 19,
- 	PD_CTRL_GET_PPS_STATUS = 20,
- 	PD_CTRL_GET_COUNTRY_CODES = 21,
--	/* 22-31 Reserved */
-+	/* 22-23 Reserved */
-+	PD_CTRL_GET_REVISION = 24,
-+	/* 25-31 Reserved */
- };
- 
- enum pd_data_msg_type {
-@@ -46,7 +48,9 @@ enum pd_data_msg_type {
- 	PD_DATA_ALERT = 6,
- 	PD_DATA_GET_COUNTRY_INFO = 7,
- 	PD_DATA_ENTER_USB = 8,
--	/* 9-14 Reserved */
-+	/* 9-11 Reserved */
-+	PD_DATA_REVISION = 12,
-+	/* 13-14 Reserved */
- 	PD_DATA_VENDOR_DEF = 15,
- 	/* 16-31 Reserved */
- };
-@@ -453,6 +457,20 @@ static inline unsigned int rdo_max_power(u32 rdo)
- #define EUDO_TBT_SUPPORT		BIT(14)
- #define EUDO_HOST_PRESENT		BIT(13)
- 
-+/*
-+ * Request Message Data Object (PD Revision 3.1+ only)
-+ * --------
-+ * <31:28> :: Revision Major
-+ * <27:24> :: Revision Minor
-+ * <23:20> :: Version Major
-+ * <19:16> :: Version Minor
-+ * <15:0>  :: Reserved, Shall be set to zero
-+ */
-+
-+#define RMDO(rev_maj, rev_min, ver_maj, ver_min)			\
-+	(((rev_maj) & 0xf) << 28 | ((rev_min) & 0xf) << 24 |		\
-+	 ((ver_maj) & 0xf) << 20 | ((ver_min) & 0xf) << 16)
-+
- /* USB PD timers and counters */
- #define PD_T_NO_RESPONSE	5000	/* 4.5 - 5.5 seconds */
- #define PD_T_DB_DETECT		10000	/* 10 - 15 seconds */
+Change in v2:
+1. Remove the constant and fix warning in dt-bindings.
+2. Remove the pa_base parameter of CMDQ APIs and related modification.
+3. Move subsys checking to client drivers and use 2 alternative
+   CMDQ APIs to achieve the same functionality.
+
+---
+
+Jason-JH.Lin (8):
+  dt-bindings: mailbox: mediatek: Add GCE header file for MT8196
+  dt-bindings: mailbox: mediatek: Add MT8196 support for gce-mailbox
+  mailbox: mtk-cmdq: Add driver data to support for MT8196
+  soc: mediatek: mtk-cmdq: Add pa_base parsing for unsupported subsys ID
+    hardware
+  soc: mediatek: mtk-cmdq: Add mminfra_offset compatibility for DRAM
+    address
+  soc: mediatek: Add programming flow for unsupported subsys ID hardware
+  drm/mediatek: Add programming flow for unsupported subsys ID hardware
+  media: mediatek: mdp3: Add programming flow for unsupported subsys ID
+    hardware
+
+ .../mailbox/mediatek,gce-mailbox.yaml         |    4 +
+ drivers/gpu/drm/mediatek/mtk_ddp_comp.c       |   34 +-
+ drivers/mailbox/mtk-cmdq-mailbox.c            |  107 +-
+ .../platform/mediatek/mdp3/mtk-mdp3-cmdq.c    |   26 +-
+ .../platform/mediatek/mdp3/mtk-mdp3-comp.h    |   41 +-
+ drivers/soc/mediatek/mtk-cmdq-helper.c        |   53 +-
+ drivers/soc/mediatek/mtk-mmsys.c              |   16 +-
+ drivers/soc/mediatek/mtk-mutex.c              |   12 +-
+ .../dt-bindings/mailbox/mediatek,mt8196-gce.h | 1439 +++++++++++++++++
+ include/linux/mailbox/mtk-cmdq-mailbox.h      |    3 +
+ include/linux/soc/mediatek/mtk-cmdq.h         |    1 +
+ 11 files changed, 1701 insertions(+), 35 deletions(-)
+ create mode 100644 include/dt-bindings/mailbox/mediatek,mt8196-gce.h
 
 -- 
-2.47.0.338.g60cca15819-goog
-
+2.43.0
 
 
