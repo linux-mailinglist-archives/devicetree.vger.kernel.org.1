@@ -1,149 +1,197 @@
-Return-Path: <devicetree+bounces-129752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35E829ECB2C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:29:19 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0098118889DD
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:29:18 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B11B238E0A;
-	Wed, 11 Dec 2024 11:29:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pcDZHljc"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2F679ECB3A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:30:57 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED5E7238E00;
-	Wed, 11 Dec 2024 11:29:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44CB228682B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:30:54 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE7F2211289;
+	Wed, 11 Dec 2024 11:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="cTqxYv6A"
+X-Original-To: devicetree@vger.kernel.org
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975821C5CD3;
+	Wed, 11 Dec 2024 11:30:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733916553; cv=none; b=VOeZVHbB4n26z/71x/MuDHgHz5BC5HbwQwBnSuzql9gFrad6H81zb12F5c/FrFF7Y6X684lCd5FTDQCzpQYxkXR6ujByEV14zK8KJMFtsp5PaYLyI9tctZwxZt4sfDQpYQVDWTF/CRyFppRqGMzCwo8YV0YUFFsh4wlSxeZKg7o=
+	t=1733916643; cv=none; b=caVBBNtb4UC6yBy4Fl8HffOKphj4F9wWRUrOrjvN1Rp6PhiSC9/ZlTAtZbuXbyBRR9PIIornkjSpggFwVt+a/ECg8OdYUrCcj9Z6LWYBkgFBRSNLWMV7BCL5qCKUeRSe/6fpyND5ZaLILibfJziOwKbAG+o5nebCGRYnxE6+ijk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733916553; c=relaxed/simple;
-	bh=BaV6qQnBNX5zfLvctmeCPNjfcIxwBcTpE+8jy0ByVjk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mw7uP4/af237wN84KVsOiuQe9d0cE1o6kyPvlZTB7I17HWuX574Dpifd3QIcIfhuJrzYqxt6kyB0g5rC5mTRH5/1AamXoYx92kmBQ2F28YIft7BT8LhSKMMpKAnVNzduK73yj+SNmPQs00j79DaxiAEolWCXXzcYWXie44V/Jc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pcDZHljc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0602C4CED2;
-	Wed, 11 Dec 2024 11:29:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733916552;
-	bh=BaV6qQnBNX5zfLvctmeCPNjfcIxwBcTpE+8jy0ByVjk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pcDZHljc062sGHRJq2M7d9YYoVhdIU8vnNzBs8t2UoXT/z/0B03wZj6LWWNUZt59l
-	 iLH6zbeDrw2oah/h1A04mwkIhWRo4rx9ohMZ8YyOpxsRaDJ1i/xCUAfu26LNuf2Uoc
-	 dFLuuWFwBQ5pY5cr1hKuiwF1h7fXXp//20MUlitB3Hn/Tru4D6FuisJjQ2yb8YoDrv
-	 zyJr1JPrDhTD/CAAOXcb0w1zzA/3BAekRlM4dxQRXpZ4KiWR86sMAzLhcdSPVowAIW
-	 vyHYWGQdfKBd1aZXKNLNEHD1zZ4lrXLEwvAj4NyD9/u2/YKLQWg/q1htPLMN5/Xarl
-	 6Z5G2FUufa0Kw==
-Message-ID: <0358a6ac-4037-444b-8e65-4e5afa29e8c3@kernel.org>
-Date: Wed, 11 Dec 2024 12:29:05 +0100
+	s=arc-20240116; t=1733916643; c=relaxed/simple;
+	bh=iPOrmQo40/Y6+1KGTiFI9GGLEnsZAFtFPdeZ4AoSdPk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=AnNGA5RLV9MN1BOlrpP2d3I7jrEa+/26GNliaKjqji76Aine22YY4OzPw2VWaRvAH4aXnTKEwV2lt2jWtmLbn8PO7dTC3rOr6h355gYKZZMR6Mt0l1iFAumhmNMR+6IlML9uaGUD0+baDn2QgPvtpoRV3qJsCwx0pZtVpFYlkPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=cTqxYv6A; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1733916641; x=1765452641;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:to:cc;
+  bh=iPOrmQo40/Y6+1KGTiFI9GGLEnsZAFtFPdeZ4AoSdPk=;
+  b=cTqxYv6AIZSqi6PEa3ARg1lV2Z5pL0nel9hwRWdjosOFuhmOv7BmI+7J
+   xDQvmCXi0irRUqsVwMcB4t5wumaNTIdtALWnOotYK+vO6DZeWdyqIQOHX
+   uvvvctE8MDbSUgUmmkAKKL+96rOBtgztlxiavFeyo98XH1Olu+sYbsvIV
+   zb/2xFhxPrJo2S+83Zu959P8QDg+hmrKOx9yqqlW2ZPTC8A7U+ZdfPGNo
+   jOM6Shc9U7OlY7caJyhzIYsspkVetZgz/f/IirOlgIPQZrgu7NCcUgzMI
+   ssVLdakuVGofFSJHQlVGC/mWZav92o4wPceChD+O9vdCyUNhVjTxwX5/V
+   w==;
+X-CSE-ConnectionGUID: z6mtNcPgQSWb4wbULwIckA==
+X-CSE-MsgGUID: PZhcstPRSaC5msD+A2iNsg==
+X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; 
+   d="scan'208";a="35084913"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Dec 2024 04:30:34 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 11 Dec 2024 04:30:03 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Wed, 11 Dec 2024 04:29:59 -0700
+From: Charan Pedumuru <charan.pedumuru@microchip.com>
+Date: Wed, 11 Dec 2024 16:59:22 +0530
+Subject: [PATCH] dt-bindings: mfd: atmel,at91sam9260: Convert to json
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ASoC: dt-bindings: sound: atmel-at91sam9g20ek: convert
- to json-schema
-To: Balakrishnan Sambath <balakrishnan.s@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Andrei Simion <andrei.simion@microchip.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241211-sound-atmel-at91sam9g20ek-v2-1-86a0e31e6af9@microchip.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241211-sound-atmel-at91sam9g20ek-v2-1-86a0e31e6af9@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-ID: <20241211-matrix-v1-1-5ef0104a3af4@microchip.com>
+X-B4-Tracking: v=1; b=H4sIAJF3WWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDI0MD3dzEkqLMCl1jAwMjQzNzs7QkszQloOKCotS0zAqwQdGxtbUAbCM
+ x6VgAAAA=
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Nicolas
+ Ferre" <nicolas.ferre@microchip.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Charan Pedumuru
+	<charan.pedumuru@microchip.com>
+X-Mailer: b4 0.14.1
 
-On 11/12/2024 10:46, Balakrishnan Sambath wrote:
-> +properties:
-> +  compatible:
-> +    const: atmel,at91sam9g20ek-wm8731-audio
-> +
-> +  atmel,model:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: The user-visible name of this sound complex.
-> +
-> +  atmel,audio-routing:
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +    description: A list of the connections between audio components.
-> +    items:
-> +      enum:
-> +        # Board Connectors
-> +        - Ext Spk
-> +        - Int Mic
-> +
-> +        # CODEC Pins
-> +        - LOUT
-> +        - ROUT
-> +        - LHPOUT
-> +        - RHPOUT
-> +        - LLINEIN
-> +        - RLINEIN
-> +        - MICIN
+Convert old text based binding to json schema.
+Changes during conversion:
+Add a fallback for all compatibles as the IP core is compatible
+with `syscon`.
 
-As previously questioned, I don't think you can create infinite amount
-of pairs out of it. Assuming you always connect board with codec
-(because codec-codec are already defined inside the codec), you can have
-max 14 pairs, but most likely less in practice.
+Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
+---
+ .../bindings/mfd/atmel,at91sam9260-matrix.yaml     | 54 ++++++++++++++++++++++
+ .../devicetree/bindings/mfd/atmel-matrix.txt       | 26 -----------
+ 2 files changed, 54 insertions(+), 26 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mfd/atmel,at91sam9260-matrix.yaml b/Documentation/devicetree/bindings/mfd/atmel,at91sam9260-matrix.yaml
+new file mode 100644
+index 000000000000..0e827882823f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/atmel,at91sam9260-matrix.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/atmel,at91sam9260-matrix.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip AT91 Bus Matrix
++
++maintainers:
++  - Nicolas Ferre <nicolas.ferre@microchip.com>
++
++description:
++  The Bus Matrix (MATRIX) implements a multi-layer AHB, based on the
++  AHB-Lite protocol, that enables parallel access paths between multiple
++  masters and slaves in a system, thus increasing the overall bandwidth.
++
++properties:
++  compatible:
++    anyOf:
++      - items:
++          - enum:
++              - atmel,at91sam9260-matrix
++              - atmel,at91sam9261-matrix
++              - atmel,at91sam9263-matrix
++              - atmel,at91sam9rl-matrix
++              - atmel,at91sam9g45-matrix
++              - atmel,at91sam9n12-matrix
++              - atmel,at91sam9x5-matrix
++              - atmel,sama5d3-matrix
++          - const: syscon
++      - items:
++          - const: microchip,sam9x60-matrix
++          - const: atmel,at91sam9x5-matrix
++          - const: syscon
++      - items:
++          - const: microchip,sam9x7-matrix
++          - const: atmel,at91sam9x5-matrix
++          - const: syscon
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    matrix@ffffec00 {
++        compatible = "atmel,sama5d3-matrix", "syscon";
++        reg = <0xffffec00 0x200>;
++    };
+diff --git a/Documentation/devicetree/bindings/mfd/atmel-matrix.txt b/Documentation/devicetree/bindings/mfd/atmel-matrix.txt
+deleted file mode 100644
+index 6e5f83614e83..000000000000
+--- a/Documentation/devicetree/bindings/mfd/atmel-matrix.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-* Device tree bindings for Atmel Bus Matrix
+-
+-The Bus Matrix registers are used to configure Atmel SoCs internal bus
+-behavior (master/slave priorities, undefined burst length type, ...)
+-
+-Required properties:
+-- compatible:		Should be one of the following
+-			"atmel,at91sam9260-matrix", "syscon"
+-			"atmel,at91sam9261-matrix", "syscon"
+-			"atmel,at91sam9263-matrix", "syscon"
+-			"atmel,at91sam9rl-matrix", "syscon"
+-			"atmel,at91sam9g45-matrix", "syscon"
+-			"atmel,at91sam9n12-matrix", "syscon"
+-			"atmel,at91sam9x5-matrix", "syscon"
+-			"atmel,sama5d3-matrix", "syscon"
+-			"microchip,sam9x60-matrix", "syscon"
+-			"microchip,sam9x7-matrix", "atmel,at91sam9x5-matrix", "syscon"
+-- reg:			Contains offset/length value of the Bus Matrix
+-			memory region.
+-
+-Example:
+-
+-matrix: matrix@ffffec00 {
+-	compatible = "atmel,sama5d3-matrix", "syscon";
+-	reg = <0xffffec00 0x200>;
+-};
+
+---
+base-commit: 1b2ab8149928c1cea2d7eca30cd35bb7fe014053
+change-id: 20241210-matrix-30021676fb6f
 
 Best regards,
-Krzysztof
+-- 
+Charan Pedumuru <charan.pedumuru@microchip.com>
+
 
