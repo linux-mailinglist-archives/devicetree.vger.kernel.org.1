@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-129925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B969ED21C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:36:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4F1F9ED22F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:37:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6078F1881E57
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:36:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1E06188869B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:37:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB77F1DDA3C;
-	Wed, 11 Dec 2024 16:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60B681DD9AC;
+	Wed, 11 Dec 2024 16:37:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RJOvR9Oo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V5EYCr7B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BC8819FA93;
-	Wed, 11 Dec 2024 16:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D4DA748A;
+	Wed, 11 Dec 2024 16:37:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733934959; cv=none; b=ToQTvlKJzNZ9l73y9i4GwPfOpyYu5VZimx+itizChSTlMv4OEl3bqg5hpizko1tve1ZAbuuLRYfUGTwsdxvQXilnsl/Q0kiKPIft9+BUwfzKOz73CQSDUExycz8HW/XKzZ6kMJ7vGVdHUOd2mxvxWo/YXATXTZ/Eucbj7D8lx/0=
+	t=1733935044; cv=none; b=WTtI/yD6VRLhvCm7gIO/G/TYS7daLyK0jxh+OVDHrpigAJSCH6/itzfTByAjaeH5hiqJkMIslnnyZMhisD+d/rN123b/pdFoy8VS4VlVEK9xXJpV2hWaxDgRfNcxgGUirV+3ObyAlu8kHpKAMfJ95DsuqysseFnkwg9aBvu0x1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733934959; c=relaxed/simple;
-	bh=wX4pAsllcMh3GaB9tysl6VWDG5D5WSQ6Tz3GDBXPVV0=;
+	s=arc-20240116; t=1733935044; c=relaxed/simple;
+	bh=8eA9BJX3oFLeozHhMdBrICHXFRV2fuAROPLxJNk6lUY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HnX5NvncZCOcxE9f9KbOZ7MCrYKaFGocTxCJ3GhasqibNbiBazZw8Puap+trZVzJ9w0tZcnQPudhOB8IhJReffcUC00bEy445ZAoD1a1HucqRaforTLdMwSnTkZKvy7bFxBt7RxLClkko85UrOUTfQGyVZqAas0OScqNVm3BwPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RJOvR9Oo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 319E8C4CED2;
-	Wed, 11 Dec 2024 16:35:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QuBh0/zC2aGdxqwtYN+GBDciMGsQ6VKrFnkS4Kg6ZBQ4RnKywVoHIKfSa2+4I+HJRMuCXvNrBRmMJQBIPWWmkrrz7qbI683jwNOmO85/FsKPa38nbaOTFpy+0B/O+PO4Rbrab7g5mQSPCgVgJ8StbWOhiB6M8N/to254pnebvns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V5EYCr7B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82F52C4CED7;
+	Wed, 11 Dec 2024 16:37:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733934959;
-	bh=wX4pAsllcMh3GaB9tysl6VWDG5D5WSQ6Tz3GDBXPVV0=;
+	s=k20201202; t=1733935043;
+	bh=8eA9BJX3oFLeozHhMdBrICHXFRV2fuAROPLxJNk6lUY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RJOvR9Oo8MYprBVSPVD1Kx7ZYvB0gJRfslCPAtpBbfOYZ8dXVci2d5REpsus5+6vU
-	 TtGYAnl4ezvGU24qbQkQ+PWcpBMgSc66Eu8qVuQPCl86xR3WqQxnQ40wkZRU185/bc
-	 dx+N6azNaVPpsPKPVovF8/d8NRaxUyHFgd5f63euNLPd1FgAQjmblQFTkJcpGqlku7
-	 y4Oj5tek5PszLMkv28czTyVP220E1VqYul7CyjkWhNNofL3j91MuFp4LqE7pHuohZi
-	 jc6yVtdNuxUMegfNvQywDOFqooRvj2o9cBUUluhdQtqmGOJa9GAHDLIjkWehS7MrYc
-	 XRrB7t5JmBvqQ==
-Date: Wed, 11 Dec 2024 10:35:57 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joy Zou <joy.zou@nxp.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH 1/2] regulator: dt-bindings: pf9453: add new PMIC PF9453
- support
-Message-ID: <20241211163557.GA3256322-robh@kernel.org>
-References: <20241206-pf9453-v1-0-1e4685114271@nxp.com>
- <20241206-pf9453-v1-1-1e4685114271@nxp.com>
+	b=V5EYCr7BqnWJ0CEsAN7uY0ekYvJx0hzWo36sqoka1qlxDZebe2Am8u2Z2sQM+4L1/
+	 rbGISmg/vznvKUkEu8EtNtu0dP5gaZiepJI0FcceA5hymSvklNzu0zrv9Xi0Axc3Ry
+	 YFmGWrqFR9HgjvO1CJSBjx7lpS32SkpjYEORdAdRsO1t8BwOAHJeYguyXGzl+LqCh/
+	 CGXe7h8AbX+TkhSQhu4Wt+KuwB8CbS/0ENWJgKg4QDQJ8EklFI5wlqdFWlr1KMyqmS
+	 5JBkPKRSx+lvjNt60tGazC64YcZQR3o5EamQVFiXUFU5OgXPbz/tqyeMoTRwV4i86g
+	 goFUs/j1S2Jiw==
+Date: Wed, 11 Dec 2024 10:37:21 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>, upstream@airoha.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v7 1/2] dt-bindings: cpufreq: Document support for Airoha
+ EN7581 CPUFreq
+Message-ID: <173393504106.3264222.5725746620417782948.robh@kernel.org>
+References: <20241206211145.2823-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +62,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241206-pf9453-v1-1-1e4685114271@nxp.com>
+In-Reply-To: <20241206211145.2823-1-ansuelsmth@gmail.com>
 
-On Fri, Dec 06, 2024 at 03:32:40PM -0500, Frank Li wrote:
-> From: Joy Zou <joy.zou@nxp.com>
+
+On Fri, 06 Dec 2024 22:11:24 +0100, Christian Marangi wrote:
+> On newer Airoha SoC, CPU Frequency is scaled indirectly with SMC commands
+> to ATF.
 > 
-> Support new bindings PMIC PF9453, which is totally difference with existed
-> PCA9450, so create new file for it.
+> A virtual clock is exposed. This virtual clock is a get-only clock and
+> is used to expose the current global CPU clock. The frequency info comes
+> by the output of the SMC command that reports the clock in MHz.
+> 
+> The SMC sets the CPU clock by providing an index, this is modelled as
+> performance states in a power domain.
+> 
+> CPUs can't be individually scaled as the CPU frequency is shared across
+> all CPUs and is global.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+> ---
+> Changes v7:
+> - Add more info to the description for usage of clock and
+>   performance-domain
+> - Drop redundant nodes from example
+> Changes v6:
+> - No changes
+> Changes v5:
+> - Add Reviewed-by tag
+> - Fix OPP node name error
+> - Rename cpufreq node name to power-domain
+> - Rename CPU node power domain name to perf
+> - Add model and compatible to example
+> Changes v4:
+> - Add this patch
+> 
+>  .../cpufreq/airoha,en7581-cpufreq.yaml        | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+> 
 
-You say that, but it is all the same custom properties as 
-nxp,pca9450-regulator.yaml. It's only differring numbers of LDO and 
-BUCK regulators AFAICT. It should be one schema.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
