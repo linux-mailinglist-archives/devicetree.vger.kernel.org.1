@@ -1,140 +1,161 @@
-Return-Path: <devicetree+bounces-129650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 021E59EC6C5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 09:16:10 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E41BE9EC6D8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 09:17:01 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 654ED2825B3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 08:16:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B56FE18894CE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 08:17:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A3C41D8A0B;
-	Wed, 11 Dec 2024 08:15:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yQ4maqbK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 858521D7985;
+	Wed, 11 Dec 2024 08:16:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D671D2B0E
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 08:15:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A9C1D5CFB;
+	Wed, 11 Dec 2024 08:16:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733904945; cv=none; b=Egqn1ILz2J8fuiDXupe+bmCfuntdqM681cxpV88mU/99cZJZ9mhz5TLk40KP8ZYUwOYZt+qqFR6DqALtt2Fi6s3zA1w3z5tx5+Tc072T/jooGNKMglY3+bjYZioCkDQKlSkJSHBkMsdHTRLTTaryceik9YnpKPP93HwaOxIUdSU=
+	t=1733905001; cv=none; b=JIy8/QsOtcV9Rl+n2zW1afwUc87gR0Zs6ltoANnTDedyO9bkwC4xswVddtaNN4o1g9HSnsNB+8yLNzAMVkZIZqgzBe+XIqYcqb5wcpJyZcvwCy+yJBDoaqPHxtBznA6EkB03GYCLSrUyL/XjNkPAbkTjKQlLQewg02yQ6ayzSh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733904945; c=relaxed/simple;
-	bh=4v3oOoQWSli7YbuAxSISycLPKQIV86edayFLunvbPT4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aRg68IN8ERsqB730GV7g8fi9NHWEvTHe4HhRDgnKaNzfx9rKaJkXCBID6yvI4qAs0kJ3gmkkn+7MMDy4irEsU+sahtKH1tpvr5B5b3hYneTEJDZ/mbDyBlM7dttMMSJUqsmLLv6mlzyldRmo/4E/9z1FE8iDNp92AYuNxmNsOEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yQ4maqbK; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-435004228c0so24512505e9.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 00:15:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733904941; x=1734509741; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=faYUbZmk+oO0+fwkL0PaNbJ1ed0r1J41R6DIwAiEqhI=;
-        b=yQ4maqbKrkd8Nhfm4PmVgTstboD+YAFo64fa51QHgH+o09IqSYJqy5PM5MuLSiFJTO
-         fhMM5SoJJ0p6bue3wixlUr0NUtApYjbKDQPgMbCtkzU6JL1p0hvdHzGE2Qrymuv3654M
-         V/aJfzyVDESk7H9IGv4h6koTRvSJh43sMazVPPd7lTko9+OyEC4aUwBNaZKMelxSgHbl
-         P7dr6xzCm8W66K8StlfjHv8SFVs6M/DhfIwvg0OV/lH3xJyHzKE1ZRikAUFapP3B11pI
-         +nCba2sgeAb+kwx5EDTTSxlC1Buycon3pD4p5UU0em6lJFK2hOrXIFiEh26yub2bv4HC
-         PZHg==
+	s=arc-20240116; t=1733905001; c=relaxed/simple;
+	bh=biO91JnATLAGSRO58Hw1O7G20km0aNxHEm4JoTIOAKA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=u9SNmVNUrSV65D371MVsRDm8ADBCJgjloACcPYKCqvrA1yQX3yqqiSxh3IT+RagiFKehTOXzX0+nO2kmNTSYVpI5WWTQSIKo7bafOnIHTHQikHu5dI2V1fa2RGoD+qt+tTiWJqoWMiZAMRcWesy4k9PJPEcgOfkAVjvKPzpjenU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-51889930cb1so622147e0c.0;
+        Wed, 11 Dec 2024 00:16:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733904941; x=1734509741;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1733904996; x=1734509796;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=faYUbZmk+oO0+fwkL0PaNbJ1ed0r1J41R6DIwAiEqhI=;
-        b=eRGMc+KGj0XTfb6GzruACvKOj6Ycalf3TJSxRCkCsByTz2eBoI26PxgUrbrsgMVcNY
-         FiwG0aqBW4nNGe7smGiH2dv/70HvdVRtj95V6dkPb8pBWyP55ZncKRKLgA5Hl/FiWZU/
-         6DNDP+6O7T04hPWBNp+azvaApH5Y3ufG/jbtxAXPXhgwNXd27jjYvt8CTgrdCV7HO8vI
-         hL84mKintoNlhq8MEYocwNXSvoCzvCw60JK2sch99kF2V56I/qnp5evs4ak3khDHZG+U
-         x4sVz20OXdegvSp2e9zKdbr+dwVjKMYN+P65XROYBSiEkg6yP2eWoldCv260tc6ZrE5m
-         U9Kg==
-X-Forwarded-Encrypted: i=1; AJvYcCW0+45XkaIBkUD5cHhpQ3WW2bM1hkIRbXYQcAxdG9lrMpl03cGK0Y1kec0BkpsPgdqQXt1daU/YMWEd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCTjPeLx1m0UihqyTIg8UER0n8mBtKGhWfXU+/X7smAlz/HEM+
-	TVV0NrFdSiNNF653n/4STtJclK8Y3z5SjRuHSg22Suu8QQ5u0C19unasiNW+n+o=
-X-Gm-Gg: ASbGncs5+bhOdgZq8UESM58wrK+WPf5E2y+KtTqGayyhW0Fo6dqbjyqj+Ez//6dsGOI
-	OwlxNLuRORq+Na/Z9+hV8rtFDSIwUSo9QAcL4Ljb6HmRtGpuXGq9fB5Mzsmnx62LPKMs3hmGgsn
-	IfG5WbnO3dhUT3v4nX0h4Vm6WZMOzphlMHtttvtIcfYBb5HIma4HwseNDqb5BcG82RtllP67FUm
-	q7QVvEeJMmgP+IBV/DCAWU4EF6IH8WMsGcA85SPvBGAf6mnbRpd/q8T/1YYMA/4nnoGRQGS+wY=
-X-Google-Smtp-Source: AGHT+IE4S+mxlPucsduby3hxGoJOYZe4dTUNN1LQHvVuaK6BTjme29I5UInUU3EsHl8AVbhn6PWYUQ==
-X-Received: by 2002:a05:600c:1f18:b0:434:9ec0:9e4e with SMTP id 5b1f17b1804b1-4361c43dc32mr14094835e9.30.1733904940786;
-        Wed, 11 Dec 2024 00:15:40 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4361f6d878asm6231805e9.2.2024.12.11.00.15.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 00:15:40 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Wed, 11 Dec 2024 09:15:37 +0100
-Subject: [PATCH v3 2/2] MAINTAINERS: update dlg,da72??.txt to yaml
+        bh=5FY0XX7TvU9anI/w2FWrAwi4RB2/V1Am38o5HNJIjvQ=;
+        b=DGZ0ypmFUK3MuGngPGmwSnZt6zBttBqkUM5FPeLEs9qDvnwE+ZWm3uKFKPVuoIzlhR
+         stUOVlMS9G1MaVhqMihpdhB4T73Hx9zQ4J3mlHN3AgnqbzSbNavR9RMg3fWVJLAR7WpF
+         sEUlSySY2t5wqBBTuQsqBgSbjLAKK6roHdYKbN1lH7/Jv2hJkrjMsAhX8xXpu1ErEHsF
+         pp/PIxVdcbiFUNX848YP2xKBK9YPMxtlKg0uJWvfLjoYRD+b8AhwUd5A3mCydGen8evz
+         PtIhaYBExiDs0Jks1zURzTLJIcnedwxfd5ATvGP6UoMqyVHdHTAW2tCS/CaO5toT1l+S
+         sYSg==
+X-Forwarded-Encrypted: i=1; AJvYcCUIz9QDK2fuQCZQW1tse8E3gNvxMcbw+8Qf11057nWhjGn1nwDoSgvtoXc1ycwoFtf+SHFqdIHHYbmH@vger.kernel.org, AJvYcCUlYaanKgJr6wqPVIMaD6GPQM2le6mTIkWXbEOrn7jvyHf5gIwXPlDd29w5GNw5Z5Prm+dU70gYl8u+@vger.kernel.org, AJvYcCUpXUF6AyLZ2WPknG9lGQKSCHQlkx1CuPOy9H9xsgMBJbhZXvbD7J5URyZmkg0cm2E9/vmOEVkHHEBv7Bl9Wvlq2pQ=@vger.kernel.org, AJvYcCXvfl9CFqUcTJcN1KFe9ZOTVjC3jB0tkPmn+On/OKFRYYxoVm8loz6KuynJ9ybhmQXZhP+pjY/Rf3g90zc+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0UsyqEnHFuXS9LydWbipJyCoAFpZSvPiD1M1DXgNByHCh9G19
+	XYUmerd9grUjwZlYmKOO3AoJgMXxBm1cVasL7Ge9/5mSr/YFQknBBgIqSJmG
+X-Gm-Gg: ASbGncu3VYhWe9cs2s1tLY8f35Zi6wOG+Kj23f0Nsm5TNgpj+KYOvsgLdQ/jdCYSZi8
+	/Sqd68TmZ/5R8tULQePYfH2MugY24qaGMVmly9ZXCP59W5+0sDWn5a0RZGtQeilyFtckGVEE7XB
+	JBseAnoS+6nK1RbPDNCf9sIoiWb+iWqLHBItpovM//X/BFOY6f4x46vzTcDCrmVMacjqzFlisxJ
+	CQnCDb4vek3aYPdPyAO/EP4fNJCcsIVL5F/LVaFInWyzcdNUObvO2mtCpkU/7KmPaBGuUn6EddP
+	07xk15t3+p8iGeMW
+X-Google-Smtp-Source: AGHT+IGyFRKJPR/XDq3+Fa87B0TS/OBCS3zjgdrPOSgETVivHf9G7+1buM4yxq0mWBmA3QhiNRZNYQ==
+X-Received: by 2002:a05:6122:2a4e:b0:50a:c70b:9453 with SMTP id 71dfb90a1353d-518a3c21c53mr1847644e0c.10.1733904996551;
+        Wed, 11 Dec 2024 00:16:36 -0800 (PST)
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5174fbc9923sm482141e0c.11.2024.12.11.00.16.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Dec 2024 00:16:36 -0800 (PST)
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-85bc5d0509bso1321341241.1;
+        Wed, 11 Dec 2024 00:16:36 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVsDmfi63mbGMlpkth50wrJCwcj6FmfXtUmhwtAv+hNkHUw1qwXyI9rN97QVNYhV3+C4Ex9z+tC41TFGxCR4bYSzyM=@vger.kernel.org, AJvYcCWCj4WsyXKciNBDD8bO8wcQZLH8QavUoV6uQ9GNq2eMCgvXPW9Sf/UUoMs9c0J+iPZDo6x00zqwa7Cf@vger.kernel.org, AJvYcCXJEd7oB0PXrjcdUlhzAZyRT5c9LTMBCYgTknxO7cYxM3XJ74DirCnXGKz+a/B7L+XikD4pQlPrbO8O@vger.kernel.org, AJvYcCXlKQJ6Bv4wfNTV8IBNob9QTHL8PwLMMAe1ryGCRXjaoWZcT5YaoVofQmeWuLu3z/BKe6STfbjLXsx3ktr7@vger.kernel.org
+X-Received: by 2002:a05:6102:5108:b0:4af:f275:e747 with SMTP id
+ ada2fe7eead31-4b12912a99bmr1969256137.22.1733904995896; Wed, 11 Dec 2024
+ 00:16:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241211-topic-misc-da7280-convert-v3-2-4df87ac08881@linaro.org>
-References: <20241211-topic-misc-da7280-convert-v3-0-4df87ac08881@linaro.org>
-In-Reply-To: <20241211-topic-misc-da7280-convert-v3-0-4df87ac08881@linaro.org>
-To: Support Opensource <support.opensource@diasemi.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Roy Im <roy.im.opensource@diasemi.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>, 
- kernel test robot <lkp@intel.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1039;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=4v3oOoQWSli7YbuAxSISycLPKQIV86edayFLunvbPT4=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnWUop90QKan0aYnZGtYX9JKYn5D4JQLaPX2NH83m4
- verMwPCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ1lKKQAKCRB33NvayMhJ0SeRD/
- 9nVqw+ZxeVclqcLK5TFO31t4fKLZo6+mXk91vSrpyT+1txgqHOVT/053MCi8Nt/trcHJHh05sMr2nD
- 0TbRjviiiKNl1oB2o/k1e3C8Ssab7UsADan5pAPzsXoePqGt2MGgUklGG/2yp+75ZcVzc2+VVjepcU
- ZkzfkxevXcjVQ+ZDEVdeGdgHzFXVbPWfqubpyBZUfsxxxWR3C81rL/YKjpV0ruz5mpZgWksK18rna+
- PL0R7if8i5sIJKM4BhJpqQRw7ikveTcwwfVb0vX0z05N6PQXwh2DRZmo+n9UiGEeUDl/Rsg/JX88LT
- v8Q0CXWB9RTm5FYDD1Z9lVVnNkJjcll6ZffpXU+sU6ZSY5/lGu9tE4mzCJGubN4y6GsV32+0q8IUww
- iZ1/4oXqDSTUmY+hSDYhsdtG/NeS9LkVqWRL7idn9Q2vT7EV/6DqT2oOALfW8/ftNSHWbxcNPmgOQQ
- zYdZcpxADKLJpcQ7FrJPdUkK6sZH1No3BUn8rLDXBTxzc2O49X9Ia+hGjwJN5PMrJy+ObgwdLwgRdJ
- cTiF548P0DW2PLjWu6UiyJB+i8fCYf7iH9fIUf/f+IdXyYdXEJ/kPQ7CvUwFpc8h/S11i65c0j5kaR
- jre0BZGw+p+yTF5xzPGgOyJ/YCUnJcCkvKAdPJB4K6pPg8EO7fObJAaPburQ==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+References: <20241206-rcar-gh-dsi-v3-0-d74c2166fa15@ideasonboard.com>
+ <20241206-rcar-gh-dsi-v3-10-d74c2166fa15@ideasonboard.com>
+ <CAMuHMdXMt74okJjqinLwrVmf5hZFm7YQkE5s3u2F9AOTWk+zXQ@mail.gmail.com> <da31d29e-6a2b-45fc-bb16-3ee78be41d66@ideasonboard.com>
+In-Reply-To: <da31d29e-6a2b-45fc-bb16-3ee78be41d66@ideasonboard.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 11 Dec 2024 09:16:23 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXsmnPrXSWqh_JN04d+Gh=X=4SWKEWZyfUE6Mim97d06Q@mail.gmail.com>
+Message-ID: <CAMuHMdXsmnPrXSWqh_JN04d+Gh=X=4SWKEWZyfUE6Mim97d06Q@mail.gmail.com>
+Subject: Re: [PATCH v3 10/10] arm64: dts: renesas: gray-hawk-single: Add
+ DisplayPort support
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	LUU HOAI <hoai.luu.ub@renesas.com>, Jagan Teki <jagan@amarulasolutions.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-clk@vger.kernel.org, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Now the dlg,da7280.txt file has been converted to dt-schema,
-update the corresponding MAINTAINERS entry.
+Hi Tomi,
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202412070625.zZpw80SM-lkp@intel.com/
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Tue, Dec 10, 2024 at 7:10=E2=80=AFPM Tomi Valkeinen
+<tomi.valkeinen@ideasonboard.com> wrote:
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6cca913af7a8b21cbea32e0fa65372e3c18aabe0..a28ee868193a161e6ece558303cb54dfcabf1d94 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -6684,7 +6684,7 @@ DIALOG SEMICONDUCTOR DRIVERS
- M:	Support Opensource <support.opensource@diasemi.com>
- S:	Supported
- W:	http://www.dialog-semiconductor.com/products
--F:	Documentation/devicetree/bindings/input/dlg,da72??.txt
-+F:	Documentation/devicetree/bindings/input/dlg,da72??.yaml
- F:	Documentation/devicetree/bindings/input/dlg,da9062-onkey.yaml
- F:	Documentation/devicetree/bindings/mfd/da90*.txt
- F:	Documentation/devicetree/bindings/mfd/dlg,da90*.yaml
+> On 10/12/2024 18:34, Geert Uytterhoeven wrote:
+> > On Fri, Dec 6, 2024 at 10:33=E2=80=AFAM Tomi Valkeinen
+> > <tomi.valkeinen@ideasonboard.com> wrote:
+> >> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> >>
+> >> Add support for the mini DP output on the Gray Hawk board.
+> >>
+> >> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com=
+>
+> >> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.c=
+om>
+> >> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >
+> > Thanks for your patch!
+> >
+> >> --- a/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
+> >> +++ b/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
 
--- 
-2.34.1
+> >> +               compatible =3D "ti,sn65dsi86";
+> >> +               reg =3D <0x2c>;
+> >> +
+> >> +               clocks =3D <&sn65dsi86_refclk>;
+> >> +               clock-names =3D "refclk";
+> >> +
+> >> +               interrupt-parent =3D <&intc_ex>;
+> >> +               interrupts =3D <0 IRQ_TYPE_LEVEL_HIGH>;
+> >
+> > interrupts-extended =3D ...
+>
+> Is that just to use the same style in the whole dts, or is there some
+> specific need for the extended one here?
 
+There is no real technical need to use the extended one, but it is
+more concise. That's why we just converted all such cases in Renesas
+DTS files in v6.13-rc1.
+
+And of course it reduces the difference between
+arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi and
+arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
