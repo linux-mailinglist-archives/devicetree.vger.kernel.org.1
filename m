@@ -1,232 +1,315 @@
-Return-Path: <devicetree+bounces-130020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87FFD9ED9AB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:28:09 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A82469EDA2B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:40:12 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7513F282B12
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 22:28:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F6C5167798
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 22:40:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD8821F237B;
-	Wed, 11 Dec 2024 22:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC02620DD78;
+	Wed, 11 Dec 2024 22:33:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="g25QaZNV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SCx0gGwl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7CAE1F2362
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 22:27:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED5101F37DB;
+	Wed, 11 Dec 2024 22:33:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733956061; cv=none; b=Jh11aUUuB+dy09yd3Ro//hUSNacQK74F39nFVbFi/pWGdT7lmQGzElHR9zFC7LGKa/VAuVldu8j0vR9dFfL/syYpkzBJAJ70VT3KhRV6mD6id5G8oCHZ0axuHV1MeLCwLXXgwsBiFPggu0JogCfuip1V4dvxp9xeMw/Y1rJRdaI=
+	t=1733956394; cv=none; b=nAHGQb8R9aY5xgWa+3OFBKpM3YBFQX0Yn+bT9z4sdYsrM740M7Hd39jcwk3tIRYCdzl4HoZ1gEtg3cOjdBvh3tp+kDkUZL16i2qnVHuqi9gzrD5ByVNtNK7zAWE/rkIUwSwjbH85jgpvdFo2WcJzG8AniMtPqA+e99e/LbMOVNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733956061; c=relaxed/simple;
-	bh=CxczlAVJ2KXIHFoak56IOVnj4UTzCb1FwfYB8pYAXj4=;
+	s=arc-20240116; t=1733956394; c=relaxed/simple;
+	bh=YgTHLubS5k1wjTkb8qsRT7Zz1A+VHCdbJD5zJybDSqI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IwpDE74NzbLKDqdn6mbh+usgabmEBpn4jmn3ZF3iMHR32/HO3ZbAgSpbLnuwaKLsIkgM6Wq7yRAWws9ViTeW4xmKj6T/fYjcNp4UL/UpvPVoT4ONwK4yt/OP6E8U9wpeMIAKaWcJR25vkTjXD6GBwUZDqK7MLCNJgeE/ai+yfa8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=g25QaZNV; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-3003e203acaso43172111fa.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 14:27:39 -0800 (PST)
+	 To:Cc:Content-Type; b=JlNxpttSyfQ+vNWnheeW1D8uhvaCEFqXJdbJBYu6NKvBYsLeCf017Tyl2jn0AbAx/+TQDJwZDy6HqXA8rvySt5l2cNh5L5kdbdKY1Sc8NRAvDvGQv63ydaGNUzKOsrshnKPER7ikRctt3viJfMZcQK3Y9HLG1SZpsmtV4IBSqBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SCx0gGwl; arc=none smtp.client-ip=209.85.219.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e3990f53d30so859741276.1;
+        Wed, 11 Dec 2024 14:33:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1733956056; x=1734560856; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1733956392; x=1734561192; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OP5yTlQX9Qcr5Sy7oqm3jVaqriEDKIPmmSAXtfhzrP8=;
-        b=g25QaZNVdLsi49hDDiQ8E7JV55EgTicKHuTYYH6lkrZFKd2ce8yPqbz+i/6yNX6QJd
-         2xc3ubIZzfMdQ3qXza9FJbFo9XKQ2NISV20jH5RR5TZ/sMfU2zxHvHwRAiTtHViIYhmw
-         j041ffngNuD+E15ZcolLVvr4QKNCF/sSkUStk=
+        bh=USS/fCbhCuGymUN2mXk4mqLJ6V5CqqTLPjkKHlyMS7E=;
+        b=SCx0gGwl4lFqxCM0Z2N1BQV97zW0zXst8kHVrwwGXUarl3enGjJ+eZwMBJFpiBeT6+
+         ugIBuVfQzcOxLtNCViYoL1nccVzQPHhZNTCBIGgLaSBzxdvBXoLEujx/qy1zSqgVklbu
+         y6GhFt+RQsRQ+mo/zFwdpDNs1EUBrysRd0R/876aHKbcDjq/HO8oD5JWYGH02xLa4JIU
+         MmxFGtKzG1lk7y5JcRMGJaQGmgKkHynOwdiGGLA/jVQPx5+jD7jjqHTVNvs2A/qJoam9
+         kxy4QVEaoVGEe+J99GjYlFmaeWMC0DCqYgoWclfggJC/4KayIGDWEctmEZFJnagwJtjd
+         VDjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733956056; x=1734560856;
+        d=1e100.net; s=20230601; t=1733956392; x=1734561192;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OP5yTlQX9Qcr5Sy7oqm3jVaqriEDKIPmmSAXtfhzrP8=;
-        b=LWGUq8MWQAlFLaMO9Sd7xwDpbDcyxTWTX/LdO5sZIg00+Wzsegzg0DNBfd5bcmm3TZ
-         Xl/QtAVxoeJChhBFcWij84pWM7Jf0uPsS/E3h6zFZZuF1W8MGkImZ++uKTX4tkaNfL/o
-         WLz0XpsWN8/5W0Qt4zyGZ2PCC6v7B06vmPyq69y6wyYLQqk/wp6Y2w6j7niQxA2EJ/hM
-         Y9INnyO7z0lc4yHQHt/viAwNv1oVqH8s+TckpbBoNNUqdN9hMkMJ2/JTLjcJ4JuphiDv
-         NYxsvvXbndLADMMm+p9Js0rmVqmJeRcPOX0PpyauDkeL6yElTADMAHppvM1LHeHAZ89a
-         LZkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWpT41iGoqEqvetaWnfK5dNM2Ng7rO04xAG7C6g7UTGe6gM9WjZ636e+VrzlClIJeaDWdVfSCQhNsGD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTWmT4q3ycTqor3WPNUetFkzXWBFE8g5qoWwNwddGVZOSQMZH1
-	WiyF/SzBi0BHfF+9G6pUbu2RnwyDUFva0XdX0nvEo5OkE88qxtLY5gv3hOdvuBkzX7y+bCx1Wk2
-	6Ow==
-X-Gm-Gg: ASbGncuRvZnXXuCGpLUgTqbQttlMvDHxXFclqu+/gJryghIsznzRXb9vpwZIaRbOqdm
-	vsYjRNPPDFolLh9+2Up5tfNL7mFs2Kh98d0psuL5P3x60x2FIy/G2EVniQc9AKue2SqHUUIpHE3
-	4WD5l9qBR1F79lItVZkkgdRn2GvjHxjWPU9mOrY7wd3XvbdReYM0wYCSF0O+jG5vZqpF30uFZpB
-	hVAoxu9Gl4UBryQi5K+O6XkFyk81n+0x3rKTfsjGhuFTu/4NzjHjkvW8Rt881jlegIjWoVW1sXS
-	6TR0k71/8UIX/+s7pPgjog==
-X-Google-Smtp-Source: AGHT+IGlLI9rrJw6gXsQSoLT8FQu3/0I4ICp5mdC0HgD3i2tYqQMlagPtJid+wyIvO6YeYAtWvCtpw==
-X-Received: by 2002:a05:651c:210c:b0:300:3a15:8f2a with SMTP id 38308e7fff4ca-30249e00c59mr4195621fa.2.1733956055876;
-        Wed, 11 Dec 2024 14:27:35 -0800 (PST)
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com. [209.85.208.177])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3021d99f412sm13111631fa.75.2024.12.11.14.27.34
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Dec 2024 14:27:35 -0800 (PST)
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-300392cc4caso49797781fa.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 14:27:34 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXyD1Bbv0niK33tochpxth8c51YHTA6EkLgEyrlekCxLwqUxSHVyvibzQSQqfpKe3Y856g5EfVPyBgL@vger.kernel.org
-X-Received: by 2002:a05:651c:210c:b0:300:3a15:8f2a with SMTP id
- 38308e7fff4ca-30249e00c59mr4195391fa.2.1733956053624; Wed, 11 Dec 2024
- 14:27:33 -0800 (PST)
+        bh=USS/fCbhCuGymUN2mXk4mqLJ6V5CqqTLPjkKHlyMS7E=;
+        b=gCNriFbd5BijhtWCCVH/R09dlBz1NhvuFw7jcOlQuoDhsu05ocWk92bpqMtwjZL9Xw
+         Mauhsh3il0Lg5VlpnHoRsaznS3PUGgu3q8ovUUU1i2Z1l85iQsOm8rj3nzV4HM8AtQto
+         5VsSS+IyzXfVk5ksk8a+WjgeBqVMMmiqxT9k0ygyzjr8fA3i6uNJgE5ceCR1RFNb1M7J
+         PU6/GQnsLvKUes1ZUWxq7wr3bupdlEP2qkJKzPleDy2AtdXPIqFpVSZQD6q8wJ+9n5sd
+         g03eKqczXCOAXMgs8kuieRMNmI5WmRjULWMfoflT8OOv5v2fiRiF6Bw4WGQvySgL8MZi
+         JAFA==
+X-Forwarded-Encrypted: i=1; AJvYcCUoQmQNSZnUWMm1BLnvhxHVdqGvsX1KNSl/ryTNykEr02TAkfbsDXze71MXQdwUORhQ3+u4QvuXsXUE@vger.kernel.org, AJvYcCWhGwhWJ4wZX0mRnLcmNXUqgbe7GK9V4fnQKijjYTpQOeRZ1UDQN+Wya8JqfJv4xwn5S/lR7KWYDmE/@vger.kernel.org, AJvYcCXVdh/sBpkW6S1Mdl9pNC9PyqhXnU7FwPe4rqPV1jMwOzbjsuXqVczZWw63qIbem/Djf5H52OZna0NktyVP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBzagF7wRyJpZavL1Gphra1osG5poVKoG6UXgtWLpWsad7grqf
+	aqyLHCVBOtv2qu2uZO7s+tm2fnTf43fk58JIrG6Q4VxR7U2mjVp2Bno+CIeBkRiEVQu2mJpaI4c
+	iTWToeiPB9iuvMSNHgidiFxkstCw=
+X-Gm-Gg: ASbGncuYSpQK7/C1o745I/WqIV1HZx3pf2skTTKOmB/xgehZreRNCV9/4bEkFpd2NLt
+	cBZEX5jgT+l9QWISXbQ8ZxqkvRzQrBqeJp64=
+X-Google-Smtp-Source: AGHT+IH55y2QYsbpfMCYEY6iO3ZeJ3oA/f/UKwJvTeb5B9Om5D2PAkuL6yBadJmV6x1NIfJ97pUxBS2c5g+T+BW0ihs=
+X-Received: by 2002:a05:6902:2e09:b0:e3c:8b14:e7dc with SMTP id
+ 3f1490d57ef6-e3da26bab16mr419161276.9.1733956391760; Wed, 11 Dec 2024
+ 14:33:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241204150326.1470749-1-quic_vdadhani@quicinc.com>
- <20241204150326.1470749-2-quic_vdadhani@quicinc.com> <CAD=FV=XF+9wxZ5xNtO3Uy8QW9UY4tb+KR46jkondvBeQuVLsrA@mail.gmail.com>
- <6736db20-127b-45c3-ac90-3e3e359c343b@quicinc.com> <CAD=FV=VReNQ3nw+wfZizL7JjxEX9z=GwDEJAFzheNkW7rSrB5Q@mail.gmail.com>
- <65ded632-963a-4bfd-906c-1b09e916b5e0@quicinc.com>
-In-Reply-To: <65ded632-963a-4bfd-906c-1b09e916b5e0@quicinc.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 11 Dec 2024 14:27:22 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=WrXegUW7n0e5Lp6AMN9u492Rn1yFXCOzGRbs36VeKrMA@mail.gmail.com>
-X-Gm-Features: AZHOrDnd4yPKzZ7z0r-DDC60k0pmk_2L5RUUePsjv7ZkRWOmo6qWozIHPBzjPco
-Message-ID: <CAD=FV=WrXegUW7n0e5Lp6AMN9u492Rn1yFXCOzGRbs36VeKrMA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/7] dt-bindings: i2c: qcom,i2c-geni: Document DT
- properties for QUP firmware loading
-To: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
-	broonie@kernel.or, andersson@kernel.org, konradybcio@kernel.org, 
-	johan+linaro@kernel.org, agross@kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-spi@vger.kernel.org, quic_anupkulk@quicinc.com, 
-	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+References: <20241205171343.308963-1-l.rubusch@gmail.com> <20241205171343.308963-11-l.rubusch@gmail.com>
+ <20241208163418.2d57f185@jic23-huawei> <CAFXKEHaLzrBXNV=dgTrX3CatvCT751x8Lh69mCXebLK=Fh4jFw@mail.gmail.com>
+ <20241211191440.0e6f7afd@jic23-huawei>
+In-Reply-To: <20241211191440.0e6f7afd@jic23-huawei>
+From: Lothar Rubusch <l.rubusch@gmail.com>
+Date: Wed, 11 Dec 2024 23:32:35 +0100
+Message-ID: <CAFXKEHb+6xd_F7v7t3sRBoziokr1moNQFdv93ra7X+FKKattnQ@mail.gmail.com>
+Subject: Re: [PATCH v5 10/10] iio: accel: adxl345: add FIFO with watermark events
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, eraretuya@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hello Jonathan,
+Thank you again. This brought several pieces together for me.
+See answeres down below.
+Best,
+L
 
-On Tue, Dec 10, 2024 at 9:27=E2=80=AFPM Viken Dadhaniya
-<quic_vdadhani@quicinc.com> wrote:
+
+On Wed, Dec 11, 2024 at 8:14=E2=80=AFPM Jonathan Cameron <jic23@kernel.org>=
+ wrote:
 >
-> On 12/10/2024 11:12 PM, Doug Anderson wrote:
-> > Hi,
+>
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * adxl345_fifo_transfer() - Read samples number of elements.
+> > > > + * @st: The instance of the state object of this sensor.
+> > > > + * @samples: The number of lines in the FIFO referred to as fifo_e=
+ntry,
+> > > > + * a fifo_entry has 3 elements for X, Y and Z direction of 2 bytes=
+ each.
+> > > > + *
+> > > > + * It is recommended that a multiple-byte read of all registers be=
+ performed to
+> > > > + * prevent a change in data between reads of sequential registers.=
+ That is to
+> > > > + * read out the data registers X0, X1, Y0, Y1, Z0, Z1 at once.
+> > >
+> > > Doesn't match the code which is reading just one register lots of tim=
+es.
 > >
-> > On Mon, Dec 9, 2024 at 9:28=E2=80=AFPM Viken Dadhaniya
-> > <quic_vdadhani@quicinc.com> wrote:
-> >>
-> >> On 12/4/2024 10:55 PM, Doug Anderson wrote:
-> >>> Hi,
-> >>>
-> >>> On Wed, Dec 4, 2024 at 7:03=E2=80=AFAM Viken Dadhaniya
-> >>> <quic_vdadhani@quicinc.com> wrote:
-> >>>>
-> >>>> Document the 'qcom,load-firmware' and 'qcom,xfer-mode' properties to
-> >>>> support SE(Serial Engine) firmware loading from the protocol driver =
-and to
-> >>>> select the data transfer mode, either GPI DMA (Generic Packet Interf=
-ace)
-> >>>> or non-GPI mode (PIO/CPU DMA).
-> >>>>
-> >>>> I2C controller can operate in one of two modes based on the
-> >>>> 'qcom,xfer-mode' property, and the firmware is loaded accordingly.
-> >>>>
-> >>>> Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-> >>>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-> >>>> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-> >>>> ---
-> >>>>    .../devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml   | 11 ++++++=
-+++++
-> >>>>    1 file changed, 11 insertions(+)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qco=
-m.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-> >>>> index 9f66a3bb1f80..a26f34fce1bb 100644
-> >>>> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-> >>>> @@ -66,6 +66,15 @@ properties:
-> >>>>      required-opps:
-> >>>>        maxItems: 1
-> >>>>
-> >>>> +  qcom,load-firmware:
-> >>>> +    type: boolean
-> >>>> +    description: Optional property to load SE (serial engine) Firmw=
-are from protocol driver.
-> >>>> +
-> >>>> +  qcom,xfer-mode:
-> >>>> +    description: Value 1,2 and 3 represents FIFO, CPU DMA and GSI D=
-MA mode respectively.
-> >>>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>>> +    enum: [1, 2, 3]
-> >>>
-> >>> I'm a little confused about this. I'll admit I haven't fully analyzed
-> >>> your patch with actual code in it, but in the past "CPU DMA" mode and
-> >>> "FIFO" mode were compatible with each other and then it was up to the
-> >>> driver to decide which of the two modes made sense in any given
-> >>> situation. For instance, last I looked at the i2c driver it tried to
-> >>> use DMA for large transfers and FIFO for small transfers. The SPI
-> >>> driver also has some cases where it will use DMA mode and then
-> >>> fallback to FIFO mode.
-> >>>
-> >>> ...so what exactly is the point of differentiating between "FIFO" and
-> >>> "CPU DMA" mode here?
-> >>
-> >> Yes, correct, Will update in V2.
-> >> I plan to add 2 modes, GSI and non-GSI(PIO or DMA based on length).
-> >>
-> >>>
-> >>> Then when it comes to "GSI DMA" mode, my understanding is that the
-> >>> firmware for "GSI DMA" mode is always loaded by Trustzone because the
-> >>> whole point is that the GSI mode arbitrates between multiple clients.
-> >>> Presumably if the firmware already loaded the GSI firmware then the
-> >>> code would just detect that case. ...so there shouldn't need to be an=
+> > This is one of my painpoints, regmap_noinc_read() worked here, for a
+> > linewise reading of FIFO elements. Say, I could read X0, X1, Y0,... Z1
+> > in one command. Also, I tried here regmap_bulk_read(). At all, I find
+> > this solution is working, but I'm not sure if there is not a total
+> > differnt way to do the read out.
+>
+> A bulk read is defined as indexing through registers. Eg. ADDR, ADDR + 1,=
+ ADDR + 2
+> etc.  regmap_noinc_read() just keeps reading the same register, so is typ=
+ically
+> used for fifos.
+>
+> I opened the datasheet. It seems to say you need to read 3 registers repe=
+atedly
+> rather than one 3 times as often.  There isn't a good way to do that sort=
+ of
+> sequenced read in one go.  So you will need a loop like you have, but it
+> should need a bulk read.  Curious it doesn't seem to...
+>
+> Ah. Device auto increments for both SPI and I2C.  So in that case
+> the noinc_read and normal bulk read will actually issue the same thing an=
+d
+> as these are volatile registers it doesn't matter (it would if you were
+> caching the result as the data would end up cached in different places).
+>
+> It will do the wrong thing though if you have an i2c controller that
+> is less capable and can't do large reads.  So you should definitely use
+> bulk_read not noinc.
+>
+> Have you set available_scan_masks?  If not you want to do so as
+> per comment I made in the cover letter.
+>
+
+For v6 I'll setup available_scan_masks, as I understand its usage. I'm
+not sure if I understood what it actually does. I can see it needs the
+channel indexes available, but I'll need to read a bit more code.
+Hopefully for now it'll be sufficient.
+
+>
+> > > > + * @irq: The irq being handled.
+> > > > + * @p: The struct iio_device pointer for the device.
+> > > > + *
+> > > > + * Return: The interrupt was handled.
+> > > > + */
+> > > > +static irqreturn_t adxl345_event_handler(int irq, void *p)
+> > > > +{
+> > > > +     struct iio_dev *indio_dev =3D p;
+> > > > +     struct adxl345_state *st =3D iio_priv(indio_dev);
+> > > > +     u8 int_stat;
+> > > > +     int samples;
+> > > > +
+> > > > +     int_stat =3D adxl345_get_status(st);
+> > > > +     if (int_stat < 0)
+> > > > +             return IRQ_NONE;
+> > > > +
+> > > > +     if (int_stat =3D=3D 0x0)
+> > > Doesn't this correspond to 'not our interrupt'?
+> > > If that's the case return IRQ_NONE is the right way to go and not res=
+et the
+> > > interrupt.  You have registered it as maybe shared, and if it is, the=
+n this
+> > > is a common thing to happen as interrupt from another device.
+> > >
+> >
+> > Here I see actually
+> > +     int_stat =3D adxl345_get_status(st);
+> > +     if (int_stat < 0)
+> > +             return IRQ_NONE; // a bus error, reading register not pos=
+sible
+> > ...and then...
+> > +     if (int_stat =3D=3D 0x0)
+> > +             // interrupt sources were 0, so IRQ not from our sensor
+> >
+> > I'm unsure if the first IRQ_NONE here is actually correct. I mean, if
+> > the bus is not working,
+> > actually any IRQ usage should be considered broken. Is there a way to
+> > break out of measuring?
+> >
+
+Here actually, I merged them, when returning IRQ_NONE in both
+statements. I mean, if the bus is broken, the sensor driver then is
+anyway not operational anymore. It cannot process interrupts anymore
+be it from someone else or own ones.
+
+When the interrupt source register was 0, then the interrupt was not
+ours for sure. As I understand, if such happens, there will be no more
+IRQs anyway as long as interrupt source reg and fifo are not cleaned
+up.
+
+> It is a much debated thing on what you should return if you have no
+> idea if it is our interrupt or not.   There isn't really a right
+> answer.  If you get a lot of IRQ_NONE and no one else claims it eventuall=
 y
-> >>> reason to specify GSI mode here either, right?
-> >>>
-> >>> -Doug
-> >>
-> >> GSI firmware is loaded from TZ per QUP, but to use GSI mode,
-> >> we need to configure the SE to use GSI mode by writing into SE registe=
-r
-> >> QUPV3_SE_GENI_DMA_MODE_EN and SE_GSI_EVENT_EN. This register is
-> >> used to configure data transfer mode for Serial Engine.
-> >
-> > Can't you detect it's in GSI mode without any device tree property
-> > like the code does today?
-> >
-> > -Doug
+> the interrupt will be disabled (to break the interrupt storm freezing the
+> machine).
 >
-> No, we can't detect GSI mode in the current design. The GSI firmware is
-> loaded from the TZ side, while mode selection occurs on the APPS side
-> based on the Device Tree property.
+>
+> > > > +             goto err;
+> > > > +
+> > > > +     if (int_stat & ADXL345_INT_OVERRUN)
+> > > > +             goto err;
+> > > > +
+> > > > +     if (int_stat & (ADXL345_INT_DATA_READY | ADXL345_INT_WATERMAR=
+K)) {
+> > >
+> > > I think you only ever enable the INT_WATERMARK?  If so does it
+> > > make sense to check for DATA_READY as well?
+> > >
+> >
+> > Watermark comes usually with data ready or overrun. I guess for the
+> > FIFO watermark, just evaluating watermark is probably sufficient. For
+> > other events, it then might be notification w/ a data ready set.
+> > Probably better to introduce data ready when it's actually really
+> > needed?
+>
+> Yes.  That dataready is normally used when you are doing capture without
+> the fifo and want to read each sample - kind of same as a watermark depth
+> of 1, but less hardware turned on.  As such, may be no need to ever suppo=
+rt it.
+>
+>    return dev_err_probe(dev, ret, "Failed to add action or reset\n");
+> > > >
+> > > > +     if (st->irq > 0) {
+> > > > +             dev_dbg(dev, "initialize for FIFO_STREAM mode\n");
+> > > > +
+> > > > +             ret =3D devm_iio_kfifo_buffer_setup(dev, indio_dev, &=
+adxl345_buffer_ops);
+> > > > +             if (ret)
+> > > > +                     return ret;
+> > > > +
+> > > > +             ret =3D devm_request_threaded_irq(dev, st->irq, NULL,=
+ &adxl345_event_handler,
+> > > > +                             IRQF_SHARED | IRQF_ONESHOT,
+> > > > +                             indio_dev->name, indio_dev);
+> > > > +             if (ret)
+> > > > +                     return dev_err_probe(dev, ret, "Failed to set=
+up triggered buffer\n");
+> > > > +
+> > > > +     } else {
+> > > > +             dev_dbg(dev, "initialize for FIFO_BYPASS mode (fallba=
+ck)\n");
+> > > > +
+> > > Given you haven't removed this code from elsewhere, was the driver re=
+lying
+> > > on the defaults after reset before this patch?
+> > >
+> > > I don't mind having this branch as a form of documentation even if th=
+at's
+> > > true but maybe add a note to the patch description.
+> > >
+> >
+> > I'm not sure if I get you correctly. The driver before only
+> > implemented "BYPASS" mode. This was the case w/o a defined
+> > interrupt-name. My intention now is to keep this behavior as fallback.
+> > If no IRQ is around, i.e. interrupt + interrupt-name, the sensor
+> > driver will operate the sensor in BYPASS mode.
+> >
+> > I was interpreting this also as the "default behavior", you mentioned
+> > in the dt-binding patch? Is this correct?
+> >
+> > What do you mean when the driver is relying on the defaults after reset=
+?
+>
+> The driver worked without irq before now.  Which is same as this path.
+> So how was the register written here being configured correctly before
+> this patch?  I'm guessing it wasn't and that the value written here
+> is the default on power up.
+>
+> Either that or I'm miss understanding what this branch of the if / else i=
+s
+> about.
 
-Presumably you can check to see if the geni firmware has already been
-loaded before the kernel started, right? In the case that it's already
-loaded, can't you fall back to the way that existing code detects GSI
-mode? From reading `drivers/spi/spi-geni-qcom.c` I see that if the
-FIFO is disabled then it assumes we must be in GSI mode...
-Specifically, it checks:
+Well, I'm pretty convinced the sensor before was operated in
+FIFO_BYPASS mode. TBH I'm not sure now if this is default setting, or
+explicitely configured. But I remember that also from somewhere in the
+datasheet. That's why I used this as fallback.
 
-readl(se->base + GENI_IF_DISABLE_RO) & FIFO_IF_DISABLE;
-
-The i2c code today (`drivers/i2c/busses/i2c-qcom-geni.c`) does the same.
-
-So, essentially:
-
-* If geni firmware has already been loaded, then check
-FIFO_IF_DISABLE. If the FIFO is disabled it's GSI. If not then both
-"CPU DMA" and "FIFO" are allowed.
-
-* If geni firmware hasn't already been loaded then it's impossible to
-be in GSI mode since GSI only makes sense if the geni firmware was
-loaded before the kernel started. Thus we're in "CPU DMA" / "FIFO"
-mode.
-
-In both cases you don't need an attribute telling you whether to use
-GSI mode or not, right?
-
--Doug
+> Jonathan
+>
+> >
+> > > > +             fifo_ctl =3D ADXL345_FIFO_CTL_MODE(ADXL345_FIFO_BYPAS=
+S);
+> > > > +
+> > > > +             ret =3D regmap_write(st->regmap, ADXL345_REG_FIFO_CTL=
+, fifo_ctl);
+> > > > +             if (ret < 0)
+> > > > +                     return ret;
+> > > > +     }
+> > > >       return devm_iio_device_register(dev, indio_dev);
+> > > >  }
+> > > >  EXPORT_SYMBOL_NS_GPL(adxl345_core_probe, IIO_ADXL345);
+> > >
+> >
+>
 
