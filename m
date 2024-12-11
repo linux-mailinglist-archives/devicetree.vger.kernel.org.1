@@ -1,211 +1,144 @@
-Return-Path: <devicetree+bounces-129581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D499EC339
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 04:24:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B5F9EC357
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 04:30:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04C671670D0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 03:24:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E32A5188A3F3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 03:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE5FF2358AE;
-	Wed, 11 Dec 2024 03:23:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 133A221128D;
+	Wed, 11 Dec 2024 03:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="MK2FNaR6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vMATBJWx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F7B6214228;
-	Wed, 11 Dec 2024 03:23:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 071C83A8D2
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 03:30:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733887390; cv=none; b=Ss1EARYhEeVnAyuvZMvI1Zbxvaw0TKon8i9H2zgEEfp/fQ048Mv32x/gRPzn6WDhfcQpwIoeHO95Qcuk7J3mXld2tNjCcMUvDlvKtSgM5P0YCWCrenbYKhfmnZ9r5ZYdIJmOxaYR+PO7G6adPdWaUx8xNC3vmuffKxnaYpfcP6I=
+	t=1733887833; cv=none; b=MmI6FbUOLT+rO3SMoou3Lli5WLcDEiCX0l5xc+dv6TdkruxttvVCCDC/lbFAvpYtjaKLoESnns34pu91E+LHVm2BQln7XAagTxTQYfQ7Td2kurOt/eWu3+hMo4sBIaxvmWY5y68TEoCVdGyNDRBPAuMXoH+9EG6EXqTyb1relQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733887390; c=relaxed/simple;
-	bh=IIjyV2JskEjfgq5nQqJYUv2JNRs2MOYUMeNB4e4IIU4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tbIhumcVpyLqgVjIxv/QKiZB7EZ/ru+wFqY/TmrBp7A5Yhy4jwAtYLVfs5hSc9v+vv017/v2BhLnQZW1WT5zdxSEz39h2RhyKeiLXC4JteSulrMlIgc3LAj3y9NyvEB874eGAHANDWmrfdEhLFG6Tja5wJNm6MoSsZFWnaQsR0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=MK2FNaR6; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 39cfd13ab76f11ef99858b75a2457dd9-20241211
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=XXYbZaarLcOFWSwit2AJs5GzodrHS17+95EDCQbDaJk=;
-	b=MK2FNaR6gOUNiXx7D2effV2Vmhn5YBYgTNBuUuu38g0UMx6RA535eGAcXyBa5pGZEJjtzqhNCqYm3o8e2qA8vrLIsO2iQowMWwLdMBJzdWgYPGgmUk0CYW3V4/2LC2XfPKJRcpj1BLSvj25/11GN/an7vlGP5HGqFxrdypyLymQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.45,REQID:9f4a2da2-409b-4980-afa9-4f39ed5cf47f,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6493067,CLOUDID:60532dc1-1c82-4420-82d9-d6eb228f5c4a,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0,EDM:-3,IP
-	:nil,URL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_ULN,TF_CID_SPAM_SNR
-X-UUID: 39cfd13ab76f11ef99858b75a2457dd9-20241211
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-	(envelope-from <jason-jh.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1853415402; Wed, 11 Dec 2024 11:23:01 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 11 Dec 2024 11:22:59 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 11 Dec 2024 11:22:59 +0800
-From: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>, Chun-Kuang Hu
-	<chunkuang.hu@kernel.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>
-CC: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-media@vger.kernel.org>,
-	"Jason-JH . Lin" <jason-jh.lin@mediatek.com>, Singo Chang
-	<singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>, Moudy Ho
-	<moudy.ho@mediatek.com>, Xavier Chang <xavier.chang@mediatek.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v2 8/8] media: mediatek: mdp3: Add programming flow for unsupported subsys ID hardware
-Date: Wed, 11 Dec 2024 11:22:56 +0800
-Message-ID: <20241211032256.28494-9-jason-jh.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20241211032256.28494-1-jason-jh.lin@mediatek.com>
-References: <20241211032256.28494-1-jason-jh.lin@mediatek.com>
+	s=arc-20240116; t=1733887833; c=relaxed/simple;
+	bh=KPVIZUaYLPhhu+NT5yPD4CmhA0oRk+MtYTE4fN805/4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ftf96viEOV8Df9dARny0a3f3jd7yrqTana+Yfuu299Cryd5TRTJhe0vjmoOz0noK/FwOTMRSvs72MGHsWocBItFAjW+gDxXg0qoXqCq7tsrWrMDBk+j3itiA51I6eG5Oz3ouPnZ3HWChF18EwI3je2SEP3GIgULkxzzm4RHaHW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vMATBJWx; arc=none smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-71e0351311eso491450a34.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 19:30:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733887829; x=1734492629; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=v+SqWvKMXn53ySqihikLvjixvoulHaOpfvaW+kjjCzk=;
+        b=vMATBJWxEVpJYR3+JJayfGyyJYnULB8Bi28j+3caQDRLzYhIbPUDi3K5bqgcI7pc8Z
+         EAzgqLqKPTH/Kp3awp57sb5Wy+IYW2hgHKyD3PvhoeA30mO4aERHVKOMmo3hRP+T7JUF
+         Bz2fmwZPv5iF0yxKmcc47mX6/c7U9jLSGUDkli5adfVNztKsnlM1S8JRmJd6+9cVATxk
+         ilnUrTGzpKtilB9JI2fq1qlCq60xX8Lns/hc2NKegVe8LL1NgqZEcMqXzMo31OyUOfYu
+         NmemYMO4eQprDPG1VmWhAjMjQ1ztOdfhyz1C0shrL8fhCmitE0BgIVCl7dGQXml9sSgn
+         F/1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733887829; x=1734492629;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v+SqWvKMXn53ySqihikLvjixvoulHaOpfvaW+kjjCzk=;
+        b=V6a3tw+r3ZluzomelA6X384fRSdwUDwzIZEs8d+9pT5h+qLKWxK95Z0A0Bd3g4vb3H
+         5YtrkHNetVBZMCoD4bjRJWOpWfBMYMZQPQ1AkvW2ksAbRzlToxFQl6aBpob5m8GnQK+h
+         TvJ68lGlTO7HvOjsWEthBj+rXD0K2ou15Wnoh1BN1zo7WmawCsIezTO1juHIUtpLqxce
+         QdsAUfjjR25W4Kbd7J26Rac2MQR1PvtxgA2eFfR+R0PElo+a4YezpGJ4RjWVyUnXKJnT
+         9Bg3TPQVngfsNuWcUZ1Q0ra2Z00HWa9CAfRCs9+F+IICgEd/27W+7pqLmqoJwlZX29bg
+         KrRg==
+X-Forwarded-Encrypted: i=1; AJvYcCWKPo0KxUr/CHV0PBkGo9FjJszMIyXSuwZOwBSHQI3hGOU3vLevH+AyX13iZQSzKL79XNzNMZkjkPOz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2zc8MtRfayTGPHJv/NuB7RlHqPNJcILkOd037zeDo9tl5jBkn
+	MlYCi+nDjBeww/8mggvwSjSbo2Z7tgMtgNQH+tEvH0sbScAe2UEqMGgn4rIQg/Y=
+X-Gm-Gg: ASbGnctbSHJAncoBm5/omQFx2sWCLwtkFMV09IZJ0+J53k5OPoHkXL3wCCNELwjdaq2
+	2T9nicbJ6SZrNivsSyTsqG5AVfM1diDw5pmKRuKVMYlVoBMifsj56jtEiDFaZDhc0pglytORLLp
+	2hv0dEeR7KncYO6kFdIF6vgrN0/PjNQUB6bY8OukXzkKPg9JFFe4Zw3q4z4oSQBG4fq/3koz0tv
+	suO8CYAauNFS0KUydkSx7L7afNs2o2FCfKmbqgJlbpZjzJUkkI60WHuIh0=
+X-Google-Smtp-Source: AGHT+IFxuwtOuX7RSi7QuMnWBVAHW2v93lQ0WBBx/aGpBUEB+zUeX9kV14JIgbiv2kahMG99yLppvg==
+X-Received: by 2002:a05:6830:25d4:b0:717:f701:4842 with SMTP id 46e09a7af769-71e19b5ac55mr619830a34.28.1733887829115;
+        Tue, 10 Dec 2024 19:30:29 -0800 (PST)
+Received: from localhost ([136.62.192.75])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5f2c472a028sm996004eaf.33.2024.12.10.19.30.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Dec 2024 19:30:28 -0800 (PST)
+From: Sam Protsenko <semen.protsenko@linaro.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: exynos: Specify reserved secure memory explicitly
+Date: Tue, 10 Dec 2024 21:30:27 -0600
+Message-Id: <20241211033027.12985-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK: N
+Content-Transfer-Encoding: 8bit
 
-To support hardware without subsys IDs on new SoCs, add a programming
-flow that checks whether the subsys ID is valid. If the subsys ID is
-invalid, the flow will call 2 alternative CMDQ APIs:
-cmdq_pkt_assign() and cmdq_pkt_write_s_mask_value() to achieve the
-same functionality.
+Instead of carving out the secure area in 'memory' node, let's describe
+it in 'reserved-memory'. That makes it easier to understand both RAM
+regions and particular secure world memory region. Originally the device
+tree was created in a way to make sure it was well aligned with the way
+LittleKernel bootloader modified it. But later it was found the
+LittleKernel works fine with properly described reserved regions, so
+it's possible now to define those in a cleaner way.
 
-Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 ---
- .../platform/mediatek/mdp3/mtk-mdp3-cmdq.c    | 26 ++++++++++--
- .../platform/mediatek/mdp3/mtk-mdp3-comp.h    | 41 +++++++++++++++----
- 2 files changed, 55 insertions(+), 12 deletions(-)
+ arch/arm64/boot/dts/exynos/exynos850-e850-96.dts | 15 ++++++---------
+ 1 file changed, 6 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
-index df0ab338ef41..58beeffd3fdf 100644
---- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
-+++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
-@@ -320,9 +320,18 @@ static int mdp_path_config_subfrm(struct mdp_cmdq_cmd *cmd,
- 		return ret;
- 	/* Enable mux settings */
- 	for (index = 0; index < ctrl->num_sets; index++) {
-+		struct cmdq_client *cl = (struct cmdq_client *)cmd->pkt.cl;
+diff --git a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
+index f074df8982b3..7d70a32e75b2 100644
+--- a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
++++ b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
+@@ -45,17 +45,9 @@ usb_dr_connector: endpoint {
+ 		};
+ 	};
+ 
+-	/*
+-	 * RAM: 4 GiB (eMCP):
+-	 *   - 2 GiB at 0x80000000
+-	 *   - 2 GiB at 0x880000000
+-	 *
+-	 * 0xbab00000..0xbfffffff: secure memory (85 MiB).
+-	 */
+ 	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 0x3ab00000>,
+-		      <0x0 0xc0000000 0x40000000>,
++		reg = <0x0 0x80000000 0x80000000>,
+ 		      <0x8 0x80000000 0x80000000>;
+ 	};
+ 
+@@ -146,6 +138,11 @@ reserved-memory {
+ 		#size-cells = <1>;
+ 		ranges;
+ 
++		secure_mem: memory@bab00000 {
++			reg = <0x0 0xbab00000 0x5500000>;
++			no-map;
++		};
 +
- 		set = &ctrl->sets[index];
--		cmdq_pkt_write_mask(&cmd->pkt, set->subsys_id, set->reg,
--				    set->value, 0xFFFFFFFF);
-+		if (cmdq_subsys_is_valid(cl->chan, set->subsys_id)) {
-+			cmdq_pkt_write_mask(&cmd->pkt, set->subsys_id, set->reg,
-+					    set->value, 0xFFFFFFFF);
-+		} else {
-+			/* only MMIO access, no need to check mminfro_offset */
-+			cmdq_pkt_assign(&cmd->pkt, 0, CMDQ_ADDR_HIGH(set->reg));
-+			cmdq_pkt_write_s_mask_value(&cmd->pkt, 0, CMDQ_ADDR_LOW(set->reg),
-+						    set->value, 0xFFFFFFFF);
-+		}
- 	}
- 	/* Config sub-frame information */
- 	for (index = (num_comp - 1); index >= 0; index--) {
-@@ -376,9 +385,18 @@ static int mdp_path_config_subfrm(struct mdp_cmdq_cmd *cmd,
- 	}
- 	/* Disable mux settings */
- 	for (index = 0; index < ctrl->num_sets; index++) {
-+		struct cmdq_client *cl = (struct cmdq_client *)cmd->pkt.cl;
-+
- 		set = &ctrl->sets[index];
--		cmdq_pkt_write_mask(&cmd->pkt, set->subsys_id, set->reg,
--				    0, 0xFFFFFFFF);
-+		if (cmdq_subsys_is_valid(cl->chan, set->subsys_id)) {
-+			cmdq_pkt_write_mask(&cmd->pkt, set->subsys_id, set->reg,
-+					    0, 0xFFFFFFFF);
-+		} else {
-+			/* only MMIO access, no need to check mminfro_offset */
-+			cmdq_pkt_assign(&cmd->pkt, 0, CMDQ_ADDR_HIGH(set->reg));
-+			cmdq_pkt_write_s_mask_value(&cmd->pkt, 0, CMDQ_ADDR_LOW(set->reg),
-+						    0, 0xFFFFFFFF);
-+		}
- 	}
- 
- 	return 0;
-diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.h b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.h
-index 3e5d2da1c807..f6c041934779 100644
---- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.h
-+++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.h
-@@ -9,9 +9,25 @@
- 
- #include "mtk-mdp3-cmdq.h"
- 
--#define MM_REG_WRITE_MASK(cmd, id, base, ofst, val, mask, ...)	\
--	cmdq_pkt_write_mask(&((cmd)->pkt), id,			\
--		(base) + (ofst), (val), (mask), ##__VA_ARGS__)
-+#define MM_REG_WRITE_MASK(cmd, id, base, ofst, val, mask, ...)				\
-+do {											\
-+	typeof(cmd) (_cmd) = (cmd);							\
-+	typeof(id) (_id) = (id);							\
-+	typeof(base) (_base) = (base);							\
-+	typeof(ofst) (_ofst) = (ofst);							\
-+	typeof(val) (_val) = (val);							\
-+	typeof(mask) (_mask) = (mask);							\
-+	if (cmdq_subsys_is_valid(((struct cmdq_client *)_cmd->pkt.cl)->chan, _id)) {	\
-+		cmdq_pkt_write_mask(&_cmd->pkt, _id, _base + _ofst, _val,		\
-+				    _mask, ##__VA_ARGS__);				\
-+	} else {									\
-+		/* only MMIO access, no need to check mminfro_offset */			\
-+		cmdq_pkt_assign(&_cmd->pkt, 0, CMDQ_ADDR_HIGH(_base));			\
-+		cmdq_pkt_write_s_mask_value(&_cmd->pkt, 0,				\
-+					    CMDQ_ADDR_LOW(_base + _ofst), _val,		\
-+					    _mask, ##__VA_ARGS__);			\
-+	}										\
-+} while (0)
- 
- #define MM_REG_WRITE(cmd, id, base, ofst, val, mask, ...)	\
- do {								\
-@@ -49,11 +65,20 @@ do {								\
- 	cmdq_pkt_set_event(&((c)->pkt), (e));			\
- } while (0)
- 
--#define MM_REG_POLL_MASK(cmd, id, base, ofst, val, _mask, ...)	\
--do {								\
--	typeof(_mask) (_m) = (_mask);				\
--	cmdq_pkt_poll_mask(&((cmd)->pkt), id,			\
--		(base) + (ofst), (val), (_m), ##__VA_ARGS__);	\
-+#define MM_REG_POLL_MASK(cmd, id, base, ofst, val, _mask, ...)				\
-+do {											\
-+	typeof(cmd) (_cmd) = (cmd);							\
-+	typeof(id) (_id) = (id);							\
-+	typeof(base) (_base) = (base);							\
-+	typeof(ofst) (_ofst) = (ofst);							\
-+	typeof(val) (_val) = (val);							\
-+	typeof(_mask) (_m) = (_mask);							\
-+	if (cmdq_subsys_is_valid(((struct cmdq_client *)_cmd->pkt.cl)->chan, _id))	\
-+		cmdq_pkt_poll_mask(&_cmd->pkt, _id, _base + _ofst, _val,		\
-+				   _m, ##__VA_ARGS__);					\
-+	else										\
-+		cmdq_pkt_poll_addr(&_cmd->pkt, _base + _ofst, _val,			\
-+				   _m, ##__VA_ARGS__);					\
- } while (0)
- 
- #define MM_REG_POLL(cmd, id, base, ofst, val, mask, ...)	\
+ 		ramoops@f0000000 {
+ 			compatible = "ramoops";
+ 			reg = <0x0 0xf0000000 0x200000>;
 -- 
-2.43.0
+2.39.5
 
 
