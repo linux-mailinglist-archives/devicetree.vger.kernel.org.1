@@ -1,71 +1,73 @@
-Return-Path: <devicetree+bounces-129588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B5149EC432
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 06:24:41 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D36419EC434
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 06:24:50 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 503FE1889889
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 05:24:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88FDF285778
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 05:24:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE001C174A;
-	Wed, 11 Dec 2024 05:24:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C9131C2317;
+	Wed, 11 Dec 2024 05:24:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RC8+PZ2G"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="EQsp/ycf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 331431C07E2
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 05:24:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C361C1F0D
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 05:24:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733894676; cv=none; b=rpb2Ge9DGjlHr4tGut93YJI8wGNg65YQsXOa13EgJXA9yh6sqredW0AZYHagHeMrXCkRWjE1HC97GBfY2QuIPxov1mekhNHdkcyacZCtkgXl+LcVnvz9inK1Hk11jNO7fLOBo88g9eZSw0hMxGwU7YObw3Bfc1ivd5VqrnkhiiM=
+	t=1733894679; cv=none; b=LRNDmlmkhHqx8Ig+dyeRxhwMUVMagjJ0j8dmRIK2BTeVKdijGMixIxgT/aGNgtk7ewSzES45NgVYVHl673YS0OPDSvkDFM5YHmHmqIxjw9nU0sFKj92/hkoiK1Q0JWU2Qb9BeNNUDEiabbsRBy3fqfqWqZr6PBK6OT/NUUz2gK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733894676; c=relaxed/simple;
-	bh=otYeShkAnGaMRzpsS7tfYUNkIhd1EXYWi/E+Tcp+/7A=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=d3B321eU/miLNzQ/1tULx1V/YQOaFRC6dxi0jluYZN0XIcCq6Lm3OcLSOBKexO/A27nIYbkKf4dnEnXJrXNIE/Z+qHbPqTXUWpzj3OZ0v+2EA3a6jrkXsz5YsCbcw9Z82qfv8Lwpio8iY/v/9olFxNcymZDhuhfrAnZ7637EdVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RC8+PZ2G; arc=none smtp.client-ip=209.85.210.171
+	s=arc-20240116; t=1733894679; c=relaxed/simple;
+	bh=YkHq7D+rlNexmE0dy3Najsp7Zr+LoaWgmv/7GupaDx8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Ee1ZU6P2RkYk7gxmZFpU3akj9nK/fAZKS3ddh8N10XPoLtAOrm1kYsspu7kYMSLSN9ndRtOmpFrdi9uXoveI8IaobnEGroVrCQqLyGjT7Y/9WaxJC3hqH7MIdJOI/gEzrOeRCJJU7yRSEGx+/g7s4XNgR8xXVnlyLHfb9OUZqVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=EQsp/ycf; arc=none smtp.client-ip=209.85.210.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-725abf74334so5232291b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 21:24:34 -0800 (PST)
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-728e78c4d7bso271415b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Dec 2024 21:24:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1733894674; x=1734499474; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9rNAO84080ar9QYUBnFcj+nugyjxelBE79eeObQSfkg=;
-        b=RC8+PZ2G5wzJnsG7YEbQp2+TmszGV3VEzRzqcy9/MSPdFOq8YjNYBKoRCGLG6fB7nT
-         U2x53v9z1nTusdefaMbYFjmRNhw4VLfWC3ReuPcLoIcfrehrxWBvV9KTBAbBGNnxO2ao
-         FxDC8Wg7y3rQH081XmEzaxTbWt4HQL6hxQs6w=
+        d=chromium.org; s=google; t=1733894677; x=1734499477; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Jun60MmpzFO+KyxqgW/fdFZZGJL7nbsZCnl87/9ABDo=;
+        b=EQsp/ycfTfWZw3IwZROKj5Ck57/NxV23e6MPcdQqsSxDA9e2ZlexCvL1B0bCZhu/sl
+         T/yjoA/qvuF3cZmqcIAdD2kMa3upvRUnAJv3X9bL1RKZM7QS4LuMp/g7HeMqd7BVff2a
+         JDwgFEb0LnVXvsbJ9DcYQy4KN7Ly227O+8gME=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733894674; x=1734499474;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9rNAO84080ar9QYUBnFcj+nugyjxelBE79eeObQSfkg=;
-        b=BTCQxuXT8OdRekJPgo9ye3sOo2YqgP62CPXUbo8qyGCDyJmEVKhvkzw5+Mz68s/GBB
-         ICWkCHyNsdyYT0HZ0ay8yc0h2e7IMYM7/itnXWTV5BanKMHdT8HFvrGR81MItvsl+R+9
-         CM/wqjf9gzShqC5gj4ywz/qXd0H4D80mdKxnD17Xl+K/I+o5SK+Rn+LTq/wWtQz8NbIg
-         gG5S6c/kSc8+1FbNvNnybKzSjHe+MLmLKpWr1I81P+Im93Tq0hWUTAaetz6YTKLTLz1m
-         c64TqnJ9FdGrCTrh9/RiMBJKJaKpNxBftowh5Y2Ez925KM7voppEui/i0itnvDWCRlEv
-         0hOA==
-X-Forwarded-Encrypted: i=1; AJvYcCXKmC6iqKYAPU9uokXPEd6Hh/300H3GTqnlzljKi6ajsaqutSoMiA4H0CKxDCnNRn8dtotKz0N3faQU@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJuymrC4J5xf0c8nsMEsFZz4cRF4p8VFs1wdBnlN6p8aA315oR
-	NWO643vLCsEZhexARh4rr57SrqNEyhtpGNKUW98Inm9jESa60Jg2l8JjEpahmg==
-X-Gm-Gg: ASbGncu4yob1Y4NOpKEAHkct6fFSqlVDMY7SwOO/LMkL0fi+0+2jjU/RNYpX+ermEvk
-	VJ7ZTrLrnT4yfbXe3QeF1o07RswxVmrQnWcxdQ9EIlW/3o+FAcKJPQHmY15TdQgXm8RATn6kVq+
-	qs2V3vR20FN70ciJgM56IMu4qcolIatEnCDGGB+VmaSB2UvSx/GiAPhIJkiwba4+Qb5LOcIB1UW
-	Me7MOb2+jYmKWuWsDgbfEFlFU8typaxzAezZPH9EYFubv9CUOpmutVbJBUbFqHSsKVZ+6h7
-X-Google-Smtp-Source: AGHT+IGRXZyCR9vBPnWrRkfxCl9FFb1KFJmcBVsUf9/kW06iS0cwlLUslN7QIGTATGDeY32DTij/Zg==
-X-Received: by 2002:a05:6a00:1915:b0:728:e969:d4b7 with SMTP id d2e1a72fcca58-728ed3e8533mr2451508b3a.12.1733894674483;
-        Tue, 10 Dec 2024 21:24:34 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733894677; x=1734499477;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Jun60MmpzFO+KyxqgW/fdFZZGJL7nbsZCnl87/9ABDo=;
+        b=HYJD2jDukmFZymX68Yw93EaMJgOvKa+LssAE17+zpqwRzDnLXy8Gkb1a+PSQntiQoK
+         afJHX0Yd0b+upLI9EHj/63Kw3DAkjq4R8BlJvmT7pbJI19RarzVAq3REF43wHM/g0Mrj
+         7TI53C4ZY4DCcSLd1+tAEXGns2xTgaNvNlfhY0oiKPq32XUpr4iC4y2+IxrFXsqwIoA8
+         LFPva/W66rGZIdfA+E+CF4S6XOI3JzRwD9fCCWrgCIhxT89T3gYtaIHpUWMxlArOONHP
+         /LMYW0evwdyK3j1JARKC3Wupu/MNUvB1ZiVjgQ+yOEGWpRouuX23wMbqiU7luAprfay5
+         DK+w==
+X-Forwarded-Encrypted: i=1; AJvYcCWOM2LEciUkYjtuSkfFMkP8soWrtGMEQpURuLOxLkUXZB+5Ixw8KK99ak8dLRbk+bQlul3O03cMqYJE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsdoSI7I8y74y4dbrnAwmmdpG1EJ2ocuMKnWRn7VrwZ5gl+zsw
+	mETguL61jddFIbmODBnl9003fUJ4t416XOFqPs51hjrgWXeMh7maofin14fScA==
+X-Gm-Gg: ASbGncuZyEjK0VedxqIxzmr0GBxSpsVOoEYIixgJf93fpbNNHjtPHraXHC3aurKu/0C
+	plh5obgO0JvWrSsyasF+DpaHKt1IpLGBZfcQA0x7/Hbp5mkdKy2fJguKkBKvYVUXGal1Xrf7PAL
+	nykPiXDTDkX9VejsMtbSXnfaBHHyKf6JTcsGJ43/vNu/nPeFXp9LmKskcnk+66MGzwbzui6QhQx
+	rcyCQ142+9L66lA8bOz7Elt7tfwqdEQg44kNyqQq0c7CutVp1Yajkln+s5s0GgfQiYz9l+5
+X-Google-Smtp-Source: AGHT+IGbqDRc3+clit5iH+/2d79c7sSOb6z0W5OMm5yS5wDnwt6aR/KeI2oLsBGyyaqwf97b+Km3wg==
+X-Received: by 2002:a05:6a00:3cc8:b0:725:4a1b:38ec with SMTP id d2e1a72fcca58-728edb5c343mr2486433b3a.3.1733894677079;
+        Tue, 10 Dec 2024 21:24:37 -0800 (PST)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:4dfb:c0ae:6c93:d01e])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-725e66801e2sm5397702b3a.160.2024.12.10.21.24.31
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-725e66801e2sm5397702b3a.160.2024.12.10.21.24.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Dec 2024 21:24:33 -0800 (PST)
+        Tue, 10 Dec 2024 21:24:36 -0800 (PST)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -79,10 +81,12 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	linux-mediatek@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 0/8] arm64: dts: mediatek: Drop regulator-compatible property
-Date: Wed, 11 Dec 2024 13:24:18 +0800
-Message-ID: <20241211052427.4178367-1-wenst@chromium.org>
+Subject: [PATCH 1/8] regulator: dt-bindings: mt6315: Drop regulator-compatible property
+Date: Wed, 11 Dec 2024 13:24:19 +0800
+Message-ID: <20241211052427.4178367-2-wenst@chromium.org>
 X-Mailer: git-send-email 2.47.0.338.g60cca15819-goog
+In-Reply-To: <20241211052427.4178367-1-wenst@chromium.org>
+References: <20241211052427.4178367-1-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,49 +95,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hi folks,
+The "regulator-compatible" property has been deprecated since 2012 in
+commit 13511def87b9 ("regulator: deprecate regulator-compatible DT
+property"), which is so old it's not even mentioned in the converted
+regulator bindings YAML file. It should not have been used for new
+submissions such as the MT6315.
 
-This series drops usage of the long deprecated "regulator-compatible"
-property from MediaTek device tree files. The property was introduced
-in 2012, and then subsequently deprecated after two months. It was
-never carried over during the binding YAML conversion.
+Drop the property from the MT6315 regulator binding and its examples.
 
-Drop the property from the MT6315 regulator binding, and all MediaTek
-device tree files. IMO it should never have been used to begin with.
-This also gets rid of any validation errors [1] related to them.
+Fixes: 977fb5b58469 ("regulator: document binding for MT6315 regulator")
+Fixes: 6d435a94ba5b ("regulator: mt6315: Enforce regulator-compatible, not name")
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+ .../devicetree/bindings/regulator/mt6315-regulator.yaml     | 6 ------
+ 1 file changed, 6 deletions(-)
 
-Please have a look.
-
-
-Thanks
-ChenYu
-
-[1] https://lore.kernel.org/all/173386568696.497617.3727087837255802552.robh@kernel.org/
-
-Chen-Yu Tsai (8):
-  regulator: dt-bindings: mt6315: Drop regulator-compatible property
-  arm64: dts: mediatek: mt8173-evb: Drop regulator-compatible property
-  arm64: dts: mediatek: mt8173-elm: Drop regulator-compatible property
-  arm64: dts: mediatek: mt8192-asurada: Drop regulator-compatible
-    property
-  arm64: dts: mediatek: mt8195-cherry: Drop regulator-compatible
-    property
-  arm64: dts: mediatek: mt8195-demo: Drop regulator-compatible property
-  arm64: dts: medaitek: mt8395-nio-12l: Drop regulator-compatible
-    property
-  arm64: dts: mediatek: mt8395-genio-1200-evk: Drop regulator-compatible
-    property
-
- .../bindings/regulator/mt6315-regulator.yaml  |  6 -----
- arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi  | 23 -------------------
- arch/arm64/boot/dts/mediatek/mt8173-evb.dts   | 23 -------------------
- .../boot/dts/mediatek/mt8192-asurada.dtsi     |  3 ---
- .../boot/dts/mediatek/mt8195-cherry.dtsi      |  2 --
- arch/arm64/boot/dts/mediatek/mt8195-demo.dts  |  9 --------
- .../dts/mediatek/mt8395-genio-1200-evk.dts    |  2 --
- .../dts/mediatek/mt8395-radxa-nio-12l.dts     |  2 --
- 8 files changed, 70 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml b/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
+index cd4aa27218a1..fa6743bb269d 100644
+--- a/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/mt6315-regulator.yaml
+@@ -35,10 +35,6 @@ properties:
+         $ref: regulator.yaml#
+         unevaluatedProperties: false
+ 
+-        properties:
+-          regulator-compatible:
+-            pattern: "^vbuck[1-4]$"
+-
+     additionalProperties: false
+ 
+ required:
+@@ -56,7 +52,6 @@ examples:
+ 
+       regulators {
+         vbuck1 {
+-          regulator-compatible = "vbuck1";
+           regulator-min-microvolt = <300000>;
+           regulator-max-microvolt = <1193750>;
+           regulator-enable-ramp-delay = <256>;
+@@ -64,7 +59,6 @@ examples:
+         };
+ 
+         vbuck3 {
+-          regulator-compatible = "vbuck3";
+           regulator-min-microvolt = <300000>;
+           regulator-max-microvolt = <1193750>;
+           regulator-enable-ramp-delay = <256>;
 -- 
 2.47.0.338.g60cca15819-goog
 
