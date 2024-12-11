@@ -1,175 +1,190 @@
-Return-Path: <devicetree+bounces-129905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C2049ED041
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:47:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57C1B9ED03F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:47:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 815EC188C66E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:46:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01451160E47
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:46:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 608CA1CB9EA;
-	Wed, 11 Dec 2024 15:45:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B5E1D9350;
+	Wed, 11 Dec 2024 15:45:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="Pt7bzOnO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qbLbG1Cy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B12F1A4F22;
-	Wed, 11 Dec 2024 15:45:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733931942; cv=pass; b=TtKbiwY9v/Ck3zGY7ENqtrCNrAcwjt6zuwtWgJmimlzORYWDQ2y+3zH43KQnnhOVMJmCb8ez9inreQsBOjiP/AAWUNsNU/mNCl8iwj2lRWwv4uejQk3HrfaH5tNgSoSh4XSpHhSG9+i7C6QRrA0PBTe1HDhcqO+nfGCiqeMpDzw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733931942; c=relaxed/simple;
-	bh=qugaGRp61PEcokWZ4Y386Ws00DFF0zxviSOHBt/mmLo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZnwKZH3CCk9dH9n+jzd8Dh+ph9KTDy6C7seqBmj8OXGx4q5Kf82R/OBkQR5AYQQWhUo2Ak7kG4t/A7Zhjzo2zLO64MZ2k4iz/p9BACy9Y+3xI9BoAuSWC6RLgdf2JkpQT++ITEGJiFQPRblfp51tWJ/EBq1wAXPeSFlKlNSXs1k=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=Pt7bzOnO; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1733931906; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=GTxSzouE/mJE+KcWqIisOlkVG9j+OotNYODT4LEZjRPdaSYKc7i1d0Crd7pyMjvDqdU5eLTRAX/5IeTigPpE5dHS8QXY1M4Jrn3NnjBVtKwOEaAb5Z5EktNEONCh+XYNOQCPSC6Br72m6UZTTrYsbjK8gBMsPTsLpkfFRVXWgDc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1733931906; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=OHdp4oLrGWXBegQfCTP9oaUHfCcRbALc/9btYKwbm/g=; 
-	b=RRnoLm5el6MLEoSqg88YRisYqGEx4pCOHZTWeSIdwTFwAa5e9+bRtwp+6zz1NaoPvMj8ouM9AxoI9MRiqTrYbcGY2YhARM/0SC6JpRC2Avt10K4KSe+oPS1dJog8rJ8+3gtXha+sFsmrpps0DAq2Xo7RzrcUJZ8Mv6SCxeWHqo4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
-	dmarc=pass header.from=<detlev.casanova@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1733931906;
-	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=OHdp4oLrGWXBegQfCTP9oaUHfCcRbALc/9btYKwbm/g=;
-	b=Pt7bzOnOJxObbbrVV2c8d+mjSfJf2B1OyEdq1aUsl6K6KJ04U4xsbT8gez0v24Bu
-	R1VLpZQv362bO7DGcB5tjH/VGBBwZcXzaLjyJk1HH+zdCKborvP0hG7Tr1kl96XVi8e
-	FGuQlhU9cF2G4AfJVjHSIeh8h5wbkRjmyJArBfG8=
-Received: by mx.zohomail.com with SMTPS id 1733931903262633.7303262296845;
-	Wed, 11 Dec 2024 07:45:03 -0800 (PST)
-From: Detlev Casanova <detlev.casanova@collabora.com>
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org,
- s.hauer@pengutronix.de, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- derek.foreman@collabora.com, Andy Yan <andy.yan@rock-chips.com>,
- kernel@collabora.com
-Subject: Re: [PATCH v5 05/18] drm/rockchip: vop2: Set AXI id for rk3588
-Date: Wed, 11 Dec 2024 10:45:01 -0500
-Message-ID: <5843712.DvuYhMxLoT@bootstrap>
-In-Reply-To: <2d381563.5e54.193b46d2f30.Coremail.andyshrk@163.com>
-References:
- <20241209122943.2781431-1-andyshrk@163.com> <5839604.DvuYhMxLoT@trenzalore>
- <2d381563.5e54.193b46d2f30.Coremail.andyshrk@163.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9461D6DBE;
+	Wed, 11 Dec 2024 15:45:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733931911; cv=none; b=AaIoygG8jecAcby8CV/HaQVgttyjIKvBYSaxH1L6E14CnJLQfchIPIKXritLygaXoFd6XCb1wgdirFNRwaLTUqe4JBQ4P06RMWjdxODqD0jqStMkdEJJ8Qxt1mLDQ1yV0qGI6KABYV5ehYOEYshQJhYe3b+HsRSqkEGSEbbJFyE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733931911; c=relaxed/simple;
+	bh=MBbRNgdop2g+7oHTiSpbX1PwiZ7XpUad/UNENbU5KRA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HfNcAJ11uIMnMODKQWAdESh9cL5/xwRslDaFxy//U6rfbboEG9o4V7FA5DftH8kdHEcHWOwguIZc1/j2NLLppKn3caxtJUS3GkMlnmFAYIBmr1PYrkpscCano+0s3XSzAtgteFZ8rxasqeLhceYqO2oXy/XJh79ZBZdEWVdajMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qbLbG1Cy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84E3BC4CED2;
+	Wed, 11 Dec 2024 15:45:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733931910;
+	bh=MBbRNgdop2g+7oHTiSpbX1PwiZ7XpUad/UNENbU5KRA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qbLbG1CyrO+FxeF77MAmWKG+jumCQK39mbiCtU98j4Xp5Yix84b1ubTCJFT1uxgkD
+	 XMYWYtm0LdDwhVGDBSQRwBQZHiI45PBJF74eQEmFaxxD4p+/omD71kMJQGS1TqUSP9
+	 BYx+yRr0O6OaHkIosWeNaGcrb33ywbtGhfz+8W73phHRWKx0fBp+z7+O6KqogteCkD
+	 weAzsmoJqcerU1E7qKeRMA2msE6k6U47NLIKCoFzFbNj3tE3ndBe/hssCA83fFMKRF
+	 DjH+sevrK8eKUuQv0LMddIfBtd27bESZGDpwX8wjaqBzDw9nRtcSMiZywMh//EsBvT
+	 gjopTpCU8nSBw==
+Date: Wed, 11 Dec 2024 09:45:08 -0600
+From: Rob Herring <robh@kernel.org>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+	linux-clk@vger.kernel.org,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Subject: Re: [PATCH v3 04/10] dt-bindings: display: renesas,du: Add r8a779h0
+Message-ID: <20241211154508.GA3075383-robh@kernel.org>
+References: <20241206-rcar-gh-dsi-v3-0-d74c2166fa15@ideasonboard.com>
+ <20241206-rcar-gh-dsi-v3-4-d74c2166fa15@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241206-rcar-gh-dsi-v3-4-d74c2166fa15@ideasonboard.com>
 
-On Wednesday, 11 December 2024 01:34:34 EST Andy Yan wrote:
-> Hi Detlev,
->=20
-> At 2024-12-11 02:40:14, "Detlev Casanova" <detlev.casanova@collabora.com>=
-=20
-wrote:
-> >Hi Andy,
-> >
-> >On Monday, 9 December 2024 07:29:18 EST Andy Yan wrote:
-> >> From: Andy Yan <andy.yan@rock-chips.com>
-> >>=20
-> >> There are two AXI bus in vop2, windows attached on the same bus must
-> >> have a unique channel YUV and RGB channel ID.
-> >>=20
-> >> The default IDs will conflict with each other on the rk3588, so they
-> >> need to be reassigned.
-> >>=20
-> >> Fixes: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
-> >> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> >> Tested-by: Derek Foreman <derek.foreman@collabora.com>
-> >>=20
-> >> ---
-> >>=20
-> >> Changes in v5:
-> >> - Added in V5
-> >>=20
-> >>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 14 +++++++++++
-> >>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  9 +++++++
-> >>  drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 26 +++++++++++++++++++-
-> >>  3 files changed, 48 insertions(+), 1 deletion(-)
-> >>=20
-> >> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> >> b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c index
-> >> dc4edd65bc9e..8b9ca046eeeb 100644
-> >> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> >> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> >> @@ -1426,6 +1426,12 @@ static void vop2_plane_atomic_update(struct
-> >> drm_plane *plane, &fb->format->format,
-> >>=20
-> >>  		afbc_en ? "AFBC" : "", &yrgb_mst);
-> >>=20
-> >> +	if (vop2->data->soc_id > 3568) {
-> >
-> >Shouldn't this be done only for rk3588, as specified in the comments bel=
-ow
-> >? The test we did before showed that it is failing on rk3576 and 3576 is=
- >
-> >3588.
-> I think this is because you tested before with the patch I gave Derek=20
-> without axi id assigned for rk3576.
-> I assigned axi id for rk3576 in this version 18/18=EF=BC=88The new ID ass=
-ignment can
-> adapt to more application scenarios.=EF=BC=89, can you test it with the w=
-hole V5
-> version again?
+On Fri, Dec 06, 2024 at 11:32:37AM +0200, Tomi Valkeinen wrote:
+> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> 
+> Extend the Renesas DU display bindings to support the r8a779h0 V4M.
+> 
+> Note that we remove the requirement for two ports from the global part
+> of the bindings, as each conditional part defines the number of required
+> ports already. This came up with r8a779h0 as it's the first one that has
+> only one port.
+> 
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  .../devicetree/bindings/display/renesas,du.yaml    | 52 ++++++++++++++++++++--
+>  1 file changed, 48 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> index c5b9e6812bce..7dec47aea052 100644
+> --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
+> +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> @@ -41,6 +41,7 @@ properties:
+>        - renesas,du-r8a77995 # for R-Car D3 compatible DU
+>        - renesas,du-r8a779a0 # for R-Car V3U compatible DU
+>        - renesas,du-r8a779g0 # for R-Car V4H compatible DU
+> +      - renesas,du-r8a779h0 # for R-Car V4M compatible DU
+>  
+>    reg:
+>      maxItems: 1
+> @@ -69,10 +70,6 @@ properties:
+>          $ref: /schemas/graph.yaml#/properties/port
+>          unevaluatedProperties: false
+>  
+> -    required:
+> -      - port@0
+> -      - port@1
+> -
+>      unevaluatedProperties: false
+>  
+>    renesas,cmms:
+> @@ -807,6 +804,53 @@ allOf:
+>          - reset-names
+>          - renesas,vsps
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,du-r8a779h0
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: Functional clock
+> +
+> +        clock-names:
+> +          items:
+> +            - const: du.0
+> +
+> +        interrupts:
+> +          maxItems: 1
+> +
+> +        resets:
+> +          maxItems: 1
+> +
+> +        reset-names:
+> +          items:
+> +            - const: du.0
+> +
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              description: DSI 0
+> +            port@1: false
+> +            port@2: false
+> +            port@3: false
+> +
+> +          required:
+> +            - port@0
+> +
+> +        renesas,vsps:
+> +          minItems: 1
 
-Yes, I will do that. But patch 18 mentions:
-+       /* Read only bit on rk3576*/
-+       [VOP2_WIN_AXI_BUS_ID] =3D REG_FIELD(RK3568_CLUSTER_CTRL, 13, 13),
+maxItems? The min is already 1.
 
-And the bit is being written here. If it is indeed writable, then I would d=
-rop=20
-that comment.
+Note maxItems is missing in all the other cases too. Since the top-level 
+definition has no constraints, all the constraints under if/then schemas 
+need both minItems and maxItems. (Unless there's no max).
 
-> >I suggest
-> >
-> >	if (vop2->data->soc_id =3D=3D 3588) {
-> >
-> >Regards,
-> >Detlev
-> >
-> >> +		vop2_win_write(win, VOP2_WIN_AXI_BUS_ID, win->data-
-> >>
-> >>axi_bus_id);
-> >>
-> >> +		vop2_win_write(win, VOP2_WIN_AXI_YRGB_R_ID, win->data-
-> >>
-> >>axi_yrgb_r_id);
-> >>
-> >> +		vop2_win_write(win, VOP2_WIN_AXI_UV_R_ID, win->data-
-> >>
-> >>axi_uv_r_id);
-> >>
-> >> +	}
-> >> +
-> >>=20
-> >>  	if (vop2_cluster_window(win))
-> >>  =09
-> >>  		vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN,
-> >
-> >half_block_en);
-> >
-
-Detlev.
-
-
+> +
+> +      required:
+> +        - clock-names
+> +        - interrupts
+> +        - resets
+> +        - reset-names
+> +        - renesas,vsps
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> 
+> -- 
+> 2.43.0
+> 
 
