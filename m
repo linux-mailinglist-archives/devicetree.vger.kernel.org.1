@@ -1,545 +1,799 @@
-Return-Path: <devicetree+bounces-129941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 315D29ED325
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:13:50 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDBCD9ED347
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:21:41 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61B6A287C82
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:13:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58AD6161F4D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:21:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 438B11DE3C0;
-	Wed, 11 Dec 2024 17:13:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B31A41FBEA4;
+	Wed, 11 Dec 2024 17:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="SsMQXOY8"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="TsWCuN9g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2087.outbound.protection.outlook.com [40.107.105.87])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27461DDC11;
-	Wed, 11 Dec 2024 17:13:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.87
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733937221; cv=fail; b=PVTrTNwGRRhkOU3llzmITx7gU31V7BEYVlmHXymVWoj5hje6YWUedGDE4R4HRSaOdy3c8WykL/HXlzlZU1V+t7fkucsIGsvilkXZ19GGiFefSC8Vr4PCmXZXUB/bsMPuZW0doi7W+mfznOfneznBELTxaBYZge8RyWxGNBfIxE8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733937221; c=relaxed/simple;
-	bh=gYJR4lKCwQmLIMC4EOeJtFeCoCpT0mGjTxoaVChZ6JE=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=n1YqtNt7ouz1YNd882wcnFkzOX08i0f/cZGZwuPEPjZV8b8C81X3M5sR+cbIteaSPI3IjiZSl+hZvAqN1p75Hba9In8nsjk+l2nZX4B8VWZVatGfVHbKK74DA/UejDPIqD5dCuMEQDkoC483wIx7ry/k0dRYHm6a/4AujM9UouE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=SsMQXOY8; arc=fail smtp.client-ip=40.107.105.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wcZh/wKGhEb+Uf31sU4a34SCCCp4p0TekteiUsniBO1SrR88ikRvlrhQYoF9rxTtIIZCLNT2sEvDAJF7O/3P4A4RUsuNqQ+IEoP73cwly/UDKDQQVGTU+5s81e1FMs02pa98HHm6AEm7SsaRHFpA5LPpUulKOISzeTmCvW43uZafEJBUYD8NH8ts+p1I5/viumNB1rHkpEc4/wY4E2xiO+c5vO3HxTaWyS6W+hjJYMOsNO9BGSRcTdA5RlRlnFFIDPsEVp/LAIlJZCQBFEUurqR4NO2W4xMLcO7ZkEjGKa4Fav+hAWQz4ZpO8bQCoHqWUPbrDDh6jUBjkITRdmSdmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jq+DzQKg5/uJlPUpbg2uD9SkaufF9+/slw7inz8CbAM=;
- b=xd+7S2MH6ImnA09inXpOBe85KOgr0RSWXTMwHZgCNSHkFV1tEs6jrhlneAay9Z8N7YGawr7NiY501yEYIsDW/Gebjue+8U13s8chpDIm7gD2QWzNEzVnrELSJuBQJCLxktsRYt17qR5Tg8el1eo3Cqkf3n+Hzkr3YWnIcDKvQxgYBH+jW+1Zc4vLmRcI2TcD8g4NskwGmimgg1/PI6Y0YRuE3BE9ZCdgkUj54kkfgLSI6bjE7D6/oSSJkmeziZUBBw9YuBq5VUJxpfyAekkFusRNaZapZq3vyH2A0OgPYj9D1F6MVMEA/qGUMA9GUz2JzLNA/aCD+bCwLqYPUPPgFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jq+DzQKg5/uJlPUpbg2uD9SkaufF9+/slw7inz8CbAM=;
- b=SsMQXOY8nPOB8qJRfgLsP0Kz/LUpcTHq58QZsKrpapln7zZ/A/a+Hp/ZfpiPRMjVJEONEhbaTlLDZd5i+KD2i5lCowHuNtwmua8lSQ0zEPjZMINgop7Fef2K67KdFmyoXAn37QfAIDiHPbFAkxl+GADKJyoSbeBi/EtmC3ELDoDfc3SEil5LA9fwTDltkArcgPOBozKGjB1csZ8xyel038XP6H6KOhupSUNnu/5nWeyQPkDZ4igCZVQj5W5DvK7gGy9uy8iq/+GqsDnmz0KMi0OfgLMBqLYN4Nvtj87CbTyz6sEKJMoTWewC4bygDhR9Ilop7qnWZJwsaQfUdxiy3w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM9PR04MB7537.eurprd04.prod.outlook.com (2603:10a6:20b:282::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.15; Wed, 11 Dec
- 2024 17:13:33 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8230.010; Wed, 11 Dec 2024
- 17:13:33 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>,
-	Hou Zhiqiang <Zhiqiang.Hou@nxp.com>,
-	Frank <Li@nxp.com>,
-	linux-pci@vger.kernel.org (open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v3 1/1] dt-bindings: PCI: mobiveil: convert mobiveil-pcie.txt to yaml format
-Date: Wed, 11 Dec 2024 12:13:16 -0500
-Message-Id: <20241211171318.4129818-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SA0PR11CA0041.namprd11.prod.outlook.com
- (2603:10b6:806:d0::16) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99AF31F9F70;
+	Wed, 11 Dec 2024 17:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733937684; cv=none; b=Q+1b/jHWIy0FIz4mIotygajgBP+p6yNKd/ff9oBc3k3WUnwyk1ALyv1z/Oe0KP2UVP7G5CotwJlMTj86lerc4Ed+9jPKI+pRnjFH5nASub22P6/drct0RgHliqV60dYzVP7buR6YKnZRIigpJAI7dpCYezEXtaHP9GNceH5TCjM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733937684; c=relaxed/simple;
+	bh=MpTsHwW4a2ZAUE4wnln4f3KV1OTxGZAwaXjrkoO1+hw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GmBWjAzrybWo2+4dQczitYngK1IdOiy/7f9XSBpTSm0qTqpdVeaEDOn/U9L9nx57OEzFA4nDPzp7fLnrCAbbT9YtchPLHydf4OPdxihROYUlaW2QSpasUtoGu0Vo4+nJk1ue/QbZllBnfM5oKKeo7XFm0iiXnYjvYfskJK78k5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=TsWCuN9g; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6738D352;
+	Wed, 11 Dec 2024 18:20:42 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1733937642;
+	bh=MpTsHwW4a2ZAUE4wnln4f3KV1OTxGZAwaXjrkoO1+hw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TsWCuN9geGyxRvRsSIM1S04thV+zm2GYM8iaud0Jn+4D/rWaVPdhkZL30ky05Mpuo
+	 qJrHlS9D30OOBefI+XOVXZ9qyGTRh40x06SCldOwAacjAXB45ajLaf9+nprAxsmx/O
+	 FD+uCnAi6mrlGrBC/SWW+5fwuW34F39jNiZF6/tA=
+Date: Wed, 11 Dec 2024 18:21:12 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: keke.li@amlogic.com
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com, 
+	laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com
+Subject: Re: [PATCH v4 07/10] media: uapi: Add stats buffer and parameters
+ buffer for c3 ISP
+Message-ID: <uep67vpp245wrbzs3xpwlxmknalnri7vc3paooqqpb67qx53zt@zdibmsldg2yn>
+References: <20241205-c3isp-v4-0-cb1868be0105@amlogic.com>
+ <20241205-c3isp-v4-7-cb1868be0105@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB7537:EE_
-X-MS-Office365-Filtering-Correlation-Id: cd9e83c4-a5e3-424f-2cec-08dd1a072402
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|52116014|376014|1800799024|366016|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?gbjDBwTcH0lLAjDGY2CVEJsVfs+LDGATF+F81GUfj6YUkiIUKsS6dKI/GsFs?=
- =?us-ascii?Q?FCW/3qnSVTLbp84bDt3UGnmzySlcX1vfbQlp6YxJme0qv+5BSimZqONyNodk?=
- =?us-ascii?Q?ubE9F3oMPmFHwi/ybAZchjs2OCdVgi3dPJp/32GDxtup3lRB3fyGuSxfWIuC?=
- =?us-ascii?Q?BcZ20oeWs70aLE/EZ3mx8fsB6ytbEUpMvtClSAg1ETl4PVjVnxpu4DrQunVj?=
- =?us-ascii?Q?Rk1yvxoQP/mWGzTJ78RRNetugP1z71boID018LGq6Ogk0wfGLgpBlo414w7F?=
- =?us-ascii?Q?hQOfP5cEAfcaA2BAS8EnMik4BqPGxPBeEvyGEyd9HvHPu8sQZikLm23sOjtC?=
- =?us-ascii?Q?S353E+XqxSM9siaN9Yu2ga6ndUxuzdPsA309a7tc1XxkHVDZEBjn0+m9QdR6?=
- =?us-ascii?Q?yC74fPPfoZ7eahocgR16OSo7nE2YszTFHpbP4vlEIFPucPOiN9TDDwCs10P7?=
- =?us-ascii?Q?kHQnh2jvJCrP+K3JKQf+99JlplZ/M5iVYltj5zZc/0fYDpDbCzGbTi+L6yIk?=
- =?us-ascii?Q?SRkRtYVZvFfhUE2tlGobzPLaw3/YsrH8RinhKW01KiTRM7NMnwGkPppz81Ej?=
- =?us-ascii?Q?GfHAb6oHbjlNx4/pHxIlFdyNEOnJV+8wLIIWBbOsLVdjRUQ4K8d9QLgHJ7Sc?=
- =?us-ascii?Q?CrblvtMEZlTmdcX/OnozZjrR4ZfG488cJQYhW/YQ04Txdy5zNhAalwDgMsmn?=
- =?us-ascii?Q?A5I08pIaLo1iFlwl1fMrePMgbTP58l4/gJVG26rG05FxJVTdLfLxRnTWjODQ?=
- =?us-ascii?Q?ZK2JOdHqcsSdJRvpEu90smpGwSsAghWUFXXVp38f1rek31wzPUSBjFeNdCAS?=
- =?us-ascii?Q?18yPxbiFMAeRozMFn0L90XRXmibJlI55/FCOu30Jq9VMGsU6dUtCZMDTVDND?=
- =?us-ascii?Q?XvyfheonWz3WrauiakGpakRuYKzJ5P7PhVLDVBRy1QhUYHVzaQE1UXZLFMlW?=
- =?us-ascii?Q?HRQnWtDmc5/PY1VX3W5TkxHX3Yrlpj4UNt6CAApCW2DgKDhh3MGlnmulDtW9?=
- =?us-ascii?Q?TvUnwYzzI0OH0MtPhlgQq/GEHu9wv/y3E3qaIcz3zJMDvBiy5xPEJBW4VuIL?=
- =?us-ascii?Q?waaOifnqdDHXANM1Kv8XPtvmkXqAmzv3KkHvEuu2Ht/tv8Tnfcic14etM186?=
- =?us-ascii?Q?TwMNP18k0FXxNcdEST/0XuGeqrHBrRvPyVtA8xNVMEZ6dVJojPMgXgQe+A1+?=
- =?us-ascii?Q?zwVAdPXKkluriR/HCFf1MC89shfHAxV1eMZZWkTkK1f9MKjdQjaWBK+nwP2w?=
- =?us-ascii?Q?ZT5EBomQBnnS5QD1ta4wL7pGxko81danyztECfuEt5Un6+z+FnwrF9qEHiJe?=
- =?us-ascii?Q?+l4voNFUmsTthAH/rA0e/EsSjx5p3C/wvFZwsOgZyimC3P9vY6RFbUGkV5To?=
- =?us-ascii?Q?oOXoZZE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(376014)(1800799024)(366016)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?ysTjGGezYGQSKdfLwVITpegbixH3aHkWKqnicqqc4c3KESpINa5w7J/XtNnX?=
- =?us-ascii?Q?NsgHXC6ZegJai+TbmIoDwxzmqofYd/Rmid/SmiVg9rxtapzvZGjdO2l/d2n/?=
- =?us-ascii?Q?yJdBUKrm8fWz4WdgBNsEBMCYeCj0WbmzeLZkWhQNc5hXqCcAOE6DjRXRXijV?=
- =?us-ascii?Q?HEi+6uk2udWbc0KzSKBL128WI/yRQv0fQzzShWN4hrgnV767YU7NgPDWTgzP?=
- =?us-ascii?Q?FaWI/CM0yfakTpBn6JEbngOqTSGuiDxw8gd7JaaLAHEQxEl54Q8r1bWUabRl?=
- =?us-ascii?Q?sXdIZ2T3qSmC+kbBlMTydfFfpWCk+t8wkmwzJgdnQ5terXhehj2pJSS1MJE5?=
- =?us-ascii?Q?28bADoRtq8p8dbOOl+Zyu7M/9E999JSfGFXAI61/ot/18HYBDBTK9WIA9YgW?=
- =?us-ascii?Q?PQR6hYkh6KOTT69ErPwtwoEgU73+Hh25Kk2KEQzI65PDzou+NlgfEMj7oHbb?=
- =?us-ascii?Q?WpP+NQYsCYWeYrPmm8+lfuaqq73GeZ8q5L1AFysky++H5ltb19R4Z/UgM0VA?=
- =?us-ascii?Q?77BcFr27p0IcaTwdIcoRxXYsk3+s0G0bitssUAjNVaH3gZsev5SuUgYsxs9H?=
- =?us-ascii?Q?/ZB6fDEiX2lWjmsosPEa9efRzOUvJUcomMoGtzNKkUIFDq+7MKobf4n9svjI?=
- =?us-ascii?Q?KCuQMTN+l/lFS9dCOTyOWdyR9qdcS6tTE3HHZeAzCtASC3gHMxZGjUkPg+QH?=
- =?us-ascii?Q?McTkpSvzy4l1aCG5+bCF9o70YufeJAJ7vD2QFT6t6skOxR2ybdGP6TaHXokU?=
- =?us-ascii?Q?iosCVbZBfxDFLx1YLhW0MrmE7bLSiRmEVjK3fuAPQ6MIeKl9nVWv2/5dUTsH?=
- =?us-ascii?Q?FdeM3gvlur7+fBPFz1BgbynHPV3P+/p5Ch+U93X/zX72MTMFgjZABq7oAS9a?=
- =?us-ascii?Q?+i8zB0h+YtjcQhe7R7R2i63z0Zegu1KF6yAx2Lm7ohGOZw9JfPpccHZDFcup?=
- =?us-ascii?Q?sLLEK1XiFlvHFg0oLekHeKpJafVHqMoV4rp9zlf7A1jyJoVXETbrj8KJCUiL?=
- =?us-ascii?Q?xwtORmqJDndfq1NWr9aK/cdSEPDzIqB8mDdGC9FNRqjOBgaUtpy6m0bUfbrm?=
- =?us-ascii?Q?/L6X8RVbgoPpCIJi5RwsgeTl7xaOe9axI1T5P7kn68tTFGkpx79ZiyV/TL5M?=
- =?us-ascii?Q?EG2rzPKRuiOpen75Fjme93Cp9xjJGykCEXKpYYZO98+cM7pMxmPvCXfmqPE5?=
- =?us-ascii?Q?MRU9iDdZ1Jbe4RqqeAylGHd3n5H/OBpdz1Msa/C6ybAnoKrU+GW1u9QcruOf?=
- =?us-ascii?Q?OrNRD5F0+oL6QV2aDabkAOT8DR1b4MEgjppKVrYp491vmlKiPF/VZoN4/8BU?=
- =?us-ascii?Q?LymoLYxcNz4pUErCz5hDjlthQb8j1qobZbw71Pn3Qe2e1L3k8wNGFcHkQCmq?=
- =?us-ascii?Q?PnAdQjxm4ICJni/IEJkoqaVeILU+NGihW5CbcYZBukqxhVbGCJyX3ZQBVZTi?=
- =?us-ascii?Q?X/6kF/GdrHIhUB0UnN0N0sx9WoNW/BzxqQrr70LKbxWWOVLA986Ucz2dPUtv?=
- =?us-ascii?Q?McxxEMsFQs+ySpIMTmExvGDvwRqjasE/UzGlcqouQEW7+496eSyIJ8vtOIHJ?=
- =?us-ascii?Q?fmK723fpGmPDtmZ9A3I=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd9e83c4-a5e3-424f-2cec-08dd1a072402
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2024 17:13:33.0328
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rOITLz9MbYsKS5QHqTCkClvWN827f76S+d4Mgb2AYYhMy/z1O3IXuA5DyL08Fq0sKcmCkKsP/RRQGhdClKFWvw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7537
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241205-c3isp-v4-7-cb1868be0105@amlogic.com>
 
-Convert device tree binding doc mobiveil-pcie.txt to yaml format. Merge
-layerscape-pcie-gen4.txt into this file.
+Hi Keke
 
-Additional change:
-- interrupt-names: "aer", "pme", "intr", which align order in examples.
-- reg-names: reorder as csr_axi_slave, config_axi_slave to match
-layerscape-pcie-gen4 and existed Layerscape DTS users.
+On Thu, Dec 05, 2024 at 05:04:33PM +0800, Keke Li via B4 Relay wrote:
+> From: Keke Li <keke.li@amlogic.com>
+>
+> Add a header that describes the 3A statistics buffer and the
+> parameters buffer for c3 ISP
+>
+> Signed-off-by: Keke Li <keke.li@amlogic.com>
+> ---
+>  include/uapi/linux/media/amlogic/c3-isp-config.h | 555 +++++++++++++++++++++++
+>  1 file changed, 555 insertions(+)
+>
+> diff --git a/include/uapi/linux/media/amlogic/c3-isp-config.h b/include/uapi/linux/media/amlogic/c3-isp-config.h
+> new file mode 100644
+> index 000000000000..52b9b805f870
+> --- /dev/null
+> +++ b/include/uapi/linux/media/amlogic/c3-isp-config.h
+> @@ -0,0 +1,555 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> +/*
+> + * Copyright (C) 2024 Amlogic, Inc. All rights reserved
+> + */
+> +
+> +#ifndef _UAPI_C3_ISP_CONFIG_H_
+> +#define _UAPI_C3_ISP_CONFIG_H_
+> +
+> +#include <linux/types.h>
+> +
+> +/*
+> + * Frames are split into zones of almost equal width and height - a zone is a
+> + * rectangular tile of a frame. The metering blocks within the ISP collect
+> + * aggregated statistics per zone.
+> + */
+> +#define C3_ISP_AE_MAX_ZONES               (17 * 15)
+> +#define C3_ISP_AF_MAX_ZONES               (17 * 15)
+> +#define C3_ISP_AWB_MAX_ZONES              (32 * 24)
+> +
+> +/* The maximum number of point on the diagonal of the frame for statistics */
+> +#define C3_ISP_AE_MAX_PT_NUM              18
+> +#define C3_ISP_AF_MAX_PT_NUM              18
+> +#define C3_ISP_AWB_MAX_PT_NUM             33
+> +
+> +/**
+> + * struct c3_isp_awb_zone_stats - AWB statistics of a zone
+> + *
+> + * AWB zone stats is aligned with 8 bytes
+> + *
+> + * @rg: the ratio of R / G in a zone
+> + * @bg: the ratio of B / G in a zone
+> + * @pixel_sum: the total number of pixels used in a zone
+> + */
+> +struct c3_isp_awb_zone_stats {
+> +	__u16 rg;
+> +	__u16 bg;
+> +	__u32 pixel_sum;
+> +};
+> +
+> +/**
+> + * struct c3_isp_awb_stats - Auto white balance statistics information.
+> + *
+> + * AWB statistical information of all zones.
+> + *
+> + * @stats: array of auto white balance statistics
+> + */
+> +struct c3_isp_awb_stats {
+> +	struct c3_isp_awb_zone_stats stats[C3_ISP_AWB_MAX_ZONES];
+> +} __attribute__((aligned(16)));
 
-Fix below CHECK_DTBS warning:
-arch/arm64/boot/dts/freescale/fsl-lx2160a-qds.dtb: /soc/pcie@3400000: failed to match any schema with compatible: ['fsl,lx2160a-pcie']
+the 16 bytes alignment is to match the layout produced by the HW ?
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Change from v2 to v3
-- add discription in commit message bout reoder csr_axi_slave
-and config_axi_slave
-- sort compatible string
-- move range after reg-names
-- Add restriction for reg\interrupts\interrupt-names for mbvl,gpex40-pcie
-- Add interrupts minItems for layerscape-pcie-gen4
+> +
+> +/**
+> + * struct c3_isp_ae_zone_stats - AE statistics of a zone
+> + *
+> + * AE zone stats is aligned with 8 bytes.
+> + * This is a 5-bin histogram and the total sum is
+> + * normalized to 0xffff.
 
-Change from v1 to v2
-- update MAINTEAINER file to fix below
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412070127.BkBJhnZ4-lkp@intel.com/
+Here and in many other comments text should be re-flowed to 80 cols
 
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/pci/mobiveil-pcie.txt
->> Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/pci/layerscape-pcie-gen4.txt
+> + * So hist2 = 0xffff - (hist0 + hist1 + hist3 + hist4)
+> + *
+> + * @hist0: the global normalized pixel count for bin 0
+> + * @hist1: the global normalized pixel count for bin 1
+> + * @hist3: the global normalized pixel count for bin 3
+> + * @hist4: the global normalized pixel count for bin 4
+> + */
+> +struct c3_isp_ae_zone_stats {
+> +	__u16 hist0;
+> +	__u16 hist1;
+> +	__u16 hist3;
+> +	__u16 hist4;
+> +};
+> +
+> +/**
+> + * struct c3_isp_ae_stats - Exposure statistics information
+> + *
+> + * AE statistical information consists of
+> + * all blocks information and a 1024-bin histogram.
+> + *
+> + * @stats: array of auto exposure block statistics
+> + * @reserved: undefined buffer space
+> + * @hist: a 1024-bin histogram for the entire image
+> + */
+> +struct c3_isp_ae_stats {
+> +	struct c3_isp_ae_zone_stats stats[C3_ISP_AE_MAX_ZONES];
+> +	__u32 reserved[2];
+> +	__u32 hist[1024];
+> +} __attribute__((aligned(16)));
+> +
+> +/**
+> + * struct c3_isp_af_zone_stats - AF statistics of a zone
+> + *
+> + * AF zone stats is aligned with 8 bytes.
+> + * The zonal accumulated contrast metrics are stored
+> + * in floating point format with 16 bits mantissa and
+> + * 5 or 6 bits exponent.
+> + * Apart from contrast metrics we accumulate squared image and
+> + * quartic image data over the zone.
+> + *
+> + * @i2_mat: the mantissa of zonal squared image pixel sum
+> + * @i4_mat: the mantissa of zonal quartic image pixel sum
+> + * @e4_mat: the mantissa of zonal multi-directional quartic edge sum
+> + * @e4_exp: the exponent of zonal multi-directional quartic edge sum
+> + * @i2_exp: the exponent of zonal squared image pixel sum
+> + * @i4_exp: the exponent of zonal quartic image pixel sum
+> + */
+> +struct c3_isp_af_zone_stats {
+> +	__u16 i2_mat;
+> +	__u16 i4_mat;
+> +	__u16 e4_mat;
+> +	__u16 e4_exp: 5;
+> +	__u16 i2_exp: 5;
+> +	__u16 i4_exp: 6;
+> +};
+> +
+> +/**
+> + * struct c3_isp_af_stats - Auto Focus statistics information
+> + *
+> + * AF statistical information of each zone
+> + *
+> + * @stats: array of auto focus block statistics
+> + * @reserved: undefined buffer space
+> + */
+> +struct c3_isp_af_stats {
+> +	struct c3_isp_af_zone_stats stats[C3_ISP_AF_MAX_ZONES];
+> +	__u32 reserved[2];
+> +} __attribute__((aligned(16)));
+> +
+> +/**
+> + * struct c3_isp_stats_buffer - V4L2_META_FMT_C3ISP_STATS
+> + *
+> + * Contains ISP statistics
+> + *
+> + * @awb: auto white balance stats
+> + * @ae: auto exposure stats
+> + * @af: auto focus stats
+> + */
+> +struct c3_isp_stats_buffer {
+> +	struct c3_isp_awb_stats awb;
+> +	struct c3_isp_ae_stats ae;
+> +	struct c3_isp_af_stats af;
+> +};
+> +
+> +/**
+> + * enum c3_isp_params_buffer_version -  C3 ISP parameters block versioning
+> + *
+> + * @C3_ISP_PARAMS_BUFFER_V0: First version of C3 ISP parameters block
+> + */
+> +enum c3_isp_params_buffer_version {
+> +	C3_ISP_PARAMS_BUFFER_V0,
+> +};
+> +
+> +/**
+> + * enum c3_isp_params_block_type - Enumeration of C3 ISP parameter blocks
+> + *
+> + * Each block configures a specific processing block of the C3 ISP.
+> + * The block type allows the driver to correctly interpret
+> + * the parameters block data.
 
-lx2160a r2 already don't use this IP. But someone still complain when I
-try to remove old r1 support.
+can be reflowed
 
-So convert to yaml file to avoid annoised CHECK_DTBS warnings.
----
- .../bindings/pci/layerscape-pcie-gen4.txt     |  52 ------
- .../bindings/pci/mbvl,gpex40-pcie.yaml        | 173 ++++++++++++++++++
- .../devicetree/bindings/pci/mobiveil-pcie.txt |  72 --------
- MAINTAINERS                                   |   3 +-
- 4 files changed, 174 insertions(+), 126 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pci/layerscape-pcie-gen4.txt
- create mode 100644 Documentation/devicetree/bindings/pci/mbvl,gpex40-pcie.yaml
- delete mode 100644 Documentation/devicetree/bindings/pci/mobiveil-pcie.txt
+> + *
+> + * @C3_ISP_PARAMS_BLOCK_AWB_GAINS: White balance gains
+> + * @C3_ISP_PARAMS_BLOCK_AWB_CONFIG: AE statistics parameters
 
-diff --git a/Documentation/devicetree/bindings/pci/layerscape-pcie-gen4.txt b/Documentation/devicetree/bindings/pci/layerscape-pcie-gen4.txt
-deleted file mode 100644
-index b40fb5d15d3d9..0000000000000
---- a/Documentation/devicetree/bindings/pci/layerscape-pcie-gen4.txt
-+++ /dev/null
-@@ -1,52 +0,0 @@
--NXP Layerscape PCIe Gen4 controller
--
--This PCIe controller is based on the Mobiveil PCIe IP and thus inherits all
--the common properties defined in mobiveil-pcie.txt.
--
--Required properties:
--- compatible: should contain the platform identifier such as:
--  "fsl,lx2160a-pcie"
--- reg: base addresses and lengths of the PCIe controller register blocks.
--  "csr_axi_slave": Bridge config registers
--  "config_axi_slave": PCIe controller registers
--- interrupts: A list of interrupt outputs of the controller. Must contain an
--  entry for each entry in the interrupt-names property.
--- interrupt-names: It could include the following entries:
--  "intr": The interrupt that is asserted for controller interrupts
--  "aer": Asserted for aer interrupt when chip support the aer interrupt with
--	 none MSI/MSI-X/INTx mode,but there is interrupt line for aer.
--  "pme": Asserted for pme interrupt when chip support the pme interrupt with
--	 none MSI/MSI-X/INTx mode,but there is interrupt line for pme.
--- dma-coherent: Indicates that the hardware IP block can ensure the coherency
--  of the data transferred from/to the IP block. This can avoid the software
--  cache flush/invalid actions, and improve the performance significantly.
--- msi-parent : See the generic MSI binding described in
--  Documentation/devicetree/bindings/interrupt-controller/msi.txt.
--
--Example:
--
--	pcie@3400000 {
--		compatible = "fsl,lx2160a-pcie";
--		reg = <0x00 0x03400000 0x0 0x00100000   /* controller registers */
--		       0x80 0x00000000 0x0 0x00001000>; /* configuration space */
--		reg-names = "csr_axi_slave", "config_axi_slave";
--		interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
--			     <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
--			     <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>; /* controller interrupt */
--		interrupt-names = "aer", "pme", "intr";
--		#address-cells = <3>;
--		#size-cells = <2>;
--		device_type = "pci";
--		apio-wins = <8>;
--		ppio-wins = <8>;
--		dma-coherent;
--		bus-range = <0x0 0xff>;
--		msi-parent = <&its>;
--		ranges = <0x82000000 0x0 0x40000000 0x80 0x40000000 0x0 0x40000000>;
--		#interrupt-cells = <1>;
--		interrupt-map-mask = <0 0 0 7>;
--		interrupt-map = <0000 0 0 1 &gic 0 0 GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
--				<0000 0 0 2 &gic 0 0 GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
--				<0000 0 0 3 &gic 0 0 GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>,
--				<0000 0 0 4 &gic 0 0 GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
--	};
-diff --git a/Documentation/devicetree/bindings/pci/mbvl,gpex40-pcie.yaml b/Documentation/devicetree/bindings/pci/mbvl,gpex40-pcie.yaml
-new file mode 100644
-index 0000000000000..667b955bf25d4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/mbvl,gpex40-pcie.yaml
-@@ -0,0 +1,173 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/mbvl,gpex40-pcie.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mobiveil AXI PCIe Root Port Bridge
-+
-+maintainers:
-+  - Frank Li <Frank Li@nxp.com>
-+
-+description:
-+  Mobiveil's GPEX 4.0 is a PCIe Gen4 root port bridge IP. This configurable IP
-+  has up to 8 outbound and inbound windows for the address translation.
-+
-+  NXP Layerscape PCIe Gen4 controller (Deprecated) base on Mobiveil's GPEX 4.0.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,lx2160a-pcie
-+      - mbvl,gpex40-pcie
-+
-+  reg:
-+    items:
-+      - description: PCIe controller registers
-+      - description: Bridge config registers
-+      - description: GPIO registers to control slot power
-+      - description: MSI registers
-+    minItems: 2
-+
-+  reg-names:
-+    items:
-+      - const: csr_axi_slave
-+      - const: config_axi_slave
-+      - const: gpio_slave
-+      - const: apb_csr
-+    minItems: 2
-+
-+  apio-wins:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      numbers of requested apio outbound windows
-+        1. Config window
-+        2. Memory window
-+    default: 2
-+    maximum: 256
-+
-+  ppio-wins:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: number of requested ppio inbound windows
-+    default: 1
-+    maximum: 256
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 1
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 3
-+
-+  interrupt-names:
-+    minItems: 1
-+    maxItems: 3
-+
-+  dma-coherent: true
-+
-+  msi-parent: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+
-+allOf:
-+  - $ref: /schemas/pci/pci-host-bridge.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - fsl,lx2160a-pcie
-+    then:
-+      properties:
-+        reg:
-+          maxItems: 2
-+
-+        reg-names:
-+          maxItems: 2
-+
-+        interrupts:
-+          minItems: 3
-+
-+        interrupt-names:
-+          items:
-+            - const: aer
-+            - const: pme
-+            - const: intr
-+    else:
-+      properties:
-+        dma-coherent: false
-+        msi-parent: false
-+        interrupts:
-+          maxItems: 1
-+        interrupt-names: false
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    pcie@b0000000 {
-+        compatible = "mbvl,gpex40-pcie";
-+        reg = <0xb0000000 0x00010000>,
-+              <0xa0000000 0x00001000>,
-+              <0xff000000 0x00200000>,
-+              <0xb0010000 0x00001000>;
-+        reg-names = "csr_axi_slave",
-+                    "config_axi_slave",
-+                    "gpio_slave",
-+                    "apb_csr";
-+        ranges = <0x83000000 0 0x00000000 0xa8000000 0 0x8000000>;
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+        device_type = "pci";
-+        apio-wins = <2>;
-+        ppio-wins = <1>;
-+        bus-range = <0x00000000 0x000000ff>;
-+        interrupt-controller;
-+        #interrupt-cells = <1>;
-+        interrupt-parent = <&gic>;
-+        interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-map-mask = <0 0 0 7>;
-+        interrupt-map = <0 0 0 0 &pci_express 0>,
-+                        <0 0 0 1 &pci_express 1>,
-+                        <0 0 0 2 &pci_express 2>,
-+                        <0 0 0 3 &pci_express 3>;
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+        pcie@3400000 {
-+            compatible = "fsl,lx2160a-pcie";
-+            reg = <0x00 0x03400000 0x0 0x00100000   /* controller registers */
-+                   0x80 0x00000000 0x0 0x00001000>; /* configuration space */
-+            reg-names = "csr_axi_slave", "config_axi_slave";
-+            ranges = <0x82000000 0x0 0x40000000 0x80 0x40000000 0x0 0x40000000>;
-+            interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>, /* AER interrupt */
-+                         <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>, /* PME interrupt */
-+                        <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>; /* controller interrupt */
-+            interrupt-names = "aer", "pme", "intr";
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            device_type = "pci";
-+            apio-wins = <8>;
-+            ppio-wins = <8>;
-+            dma-coherent;
-+            bus-range = <0x0 0xff>;
-+            msi-parent = <&its>;
-+            #interrupt-cells = <1>;
-+            interrupt-map-mask = <0 0 0 7>;
-+            interrupt-map = <0000 0 0 1 &gic 0 0 GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
-+                            <0000 0 0 2 &gic 0 0 GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>,
-+                            <0000 0 0 3 &gic 0 0 GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>,
-+                            <0000 0 0 4 &gic 0 0 GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/pci/mobiveil-pcie.txt b/Documentation/devicetree/bindings/pci/mobiveil-pcie.txt
-deleted file mode 100644
-index 64156993e052d..0000000000000
---- a/Documentation/devicetree/bindings/pci/mobiveil-pcie.txt
-+++ /dev/null
-@@ -1,72 +0,0 @@
--* Mobiveil AXI PCIe Root Port Bridge DT description
--
--Mobiveil's GPEX 4.0 is a PCIe Gen4 root port bridge IP. This configurable IP
--has up to 8 outbound and inbound windows for the address translation.
--
--Required properties:
--- #address-cells: Address representation for root ports, set to <3>
--- #size-cells: Size representation for root ports, set to <2>
--- #interrupt-cells: specifies the number of cells needed to encode an
--	interrupt source. The value must be 1.
--- compatible: Should contain "mbvl,gpex40-pcie"
--- reg: Should contain PCIe registers location and length
--	Mandatory:
--	"config_axi_slave": PCIe controller registers
--	"csr_axi_slave"	  : Bridge config registers
--	Optional:
--	"gpio_slave"	  : GPIO registers to control slot power
--	"apb_csr"	  : MSI registers
--
--- device_type: must be "pci"
--- apio-wins : number of requested apio outbound windows
--		default 2 outbound windows are configured -
--		1. Config window
--		2. Memory window
--- ppio-wins : number of requested ppio inbound windows
--		default 1 inbound memory window is configured.
--- bus-range: PCI bus numbers covered
--- interrupt-controller: identifies the node as an interrupt controller
--- #interrupt-cells: specifies the number of cells needed to encode an
--	interrupt source. The value must be 1.
--- interrupts: The interrupt line of the PCIe controller
--		last cell of this field is set to 4 to
--		denote it as IRQ_TYPE_LEVEL_HIGH type interrupt.
--- interrupt-map-mask,
--	interrupt-map: standard PCI properties to define the mapping of the
--	PCI interface to interrupt numbers.
--- ranges: ranges for the PCI memory regions (I/O space region is not
--	supported by hardware)
--	Please refer to the standard PCI bus binding document for a more
--	detailed explanation
--
--
--Example:
--++++++++
--	pcie0: pcie@a0000000 {
--		#address-cells = <3>;
--		#size-cells = <2>;
--		compatible = "mbvl,gpex40-pcie";
--		reg =	<0xa0000000 0x00001000>,
--			<0xb0000000 0x00010000>,
--			<0xff000000 0x00200000>,
--			<0xb0010000 0x00001000>;
--		reg-names =	"config_axi_slave",
--				"csr_axi_slave",
--				"gpio_slave",
--				"apb_csr";
--		device_type = "pci";
--		apio-wins = <2>;
--		ppio-wins = <1>;
--		bus-range = <0x00000000 0x000000ff>;
--		interrupt-controller;
--		interrupt-parent = <&gic>;
--		#interrupt-cells = <1>;
--		interrupts = < 0 89 4 >;
--		interrupt-map-mask = <0 0 0 7>;
--		interrupt-map = <0 0 0 0 &pci_express 0>,
--				<0 0 0 1 &pci_express 1>,
--				<0 0 0 2 &pci_express 2>,
--				<0 0 0 3 &pci_express 3>;
--		ranges = < 0x83000000 0 0x00000000 0xa8000000 0 0x8000000>;
--
--	};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1e930c7a58b13..e0fcdd8b6434c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17901,7 +17901,7 @@ M:	Karthikeyan Mitran <m.karthikeyan@mobiveil.co.in>
- M:	Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
- L:	linux-pci@vger.kernel.org
- S:	Supported
--F:	Documentation/devicetree/bindings/pci/mobiveil-pcie.txt
-+F:	Documentation/devicetree/bindings/pci/mbvl,gpex40-pcie.yaml
- F:	drivers/pci/controller/mobiveil/pcie-mobiveil*
- 
- PCI DRIVER FOR MVEBU (Marvell Armada 370 and Armada XP SOC support)
-@@ -17925,7 +17925,6 @@ M:	Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
- L:	linux-pci@vger.kernel.org
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
--F:	Documentation/devicetree/bindings/pci/layerscape-pcie-gen4.txt
- F:	drivers/pci/controller/mobiveil/pcie-layerscape-gen4.c
- 
- PCI DRIVER FOR PLDA PCIE IP
--- 
-2.34.1
+This is AWB
 
+> + * @C3_ISP_PARAMS_BLOCK_AE_CONFIG: AE statistics parameters
+> + * @C3_ISP_PARAMS_BLOCK_AF_CONFIG: AF statistics parameters
+
+I would say "statistic format configuration" for all blocks that
+configure how stats are generated
+
+
+> + * @C3_ISP_PARAMS_BLOCK_PST_GAMMA: post gamma parameters
+> + * @C3_ISP_PARAMS_BLOCK_CCM: Color correction matrix parameters
+> + * @C3_ISP_PARAMS_BLOCK_CSC: Color space conversion parameters
+> + * @C3_ISP_PARAMS_BLOCK_BLC: Black level correction parameters
+> + * @C3_ISP_PARAMS_BLOCK_SENTINEL: First non-valid block index
+> + */
+> +enum c3_isp_params_block_type {
+> +	C3_ISP_PARAMS_BLOCK_AWB_GAINS,
+> +	C3_ISP_PARAMS_BLOCK_AWB_CONFIG,
+> +	C3_ISP_PARAMS_BLOCK_AE_CONFIG,
+> +	C3_ISP_PARAMS_BLOCK_AF_CONFIG,
+> +	C3_ISP_PARAMS_BLOCK_PST_GAMMA,
+> +	C3_ISP_PARAMS_BLOCK_CCM,
+> +	C3_ISP_PARAMS_BLOCK_CSC,
+> +	C3_ISP_PARAMS_BLOCK_BLC,
+> +	C3_ISP_PARAMS_BLOCK_SENTINEL
+> +};
+> +
+> +#define C3_ISP_PARAMS_BLOCK_FL_NONE		0
+
+mmm, in other versions of the extensible format (rkisp1) there's an
+ENABLED and DISABLED flag. It seems to me you're using FL_NONE as
+FL_ENABLED here. I'm not sure what's best, as setting a field to FL_NONE
+seems weird, but also having to specify FL_ENABLED might be
+redundant...
+
+> +#define C3_ISP_PARAMS_BLOCK_FL_DISABLED		BIT(0)
+> +
+> +/**
+> + * struct c3_isp_params_block_header - C3 ISP parameter block header
+> + *
+> + * This structure represents the common part of all the ISP configuration
+> + * blocks. Each parameters block shall embed an instance of this structure type
+> + * as its first member, followed by the block-specific configuration data. The
+> + * driver inspects this common header to discern the block type and its size and
+> + * properly handle the block content by casting it to the correct block-specific
+> + * type.
+> + *
+> + * The @type field is one of the values enumerated by
+> + * :c:type:`c3_isp_params_block_type` and specifies how the data should be
+> + * interpreted by the driver. The @size field specifies the size of the
+> + * parameters block and is used by the driver for validation purposes. The
+> + * @flags field is a bitmask of per-block flags C3_ISP_PARAMS_FL*.
+> + *
+> + * When userspace wants to disable an ISP block the
+> + * C3_ISP_PARAMS_BLOCK_FL_DISABLED bit should be set in the @flags field. In
+> + * this case userspace may optionally omit the remainder of the configuration
+> + * block, which will be ignored by the driver.
+> + *
+> + * When a new configuration of an ISP block needs to be applied userspace
+> + * shall fully populate the ISP block and omit setting the
+> + * C3_ISP_PARAMS_BLOCK_FL_DISABLED bit in the @flags field.
+> + *
+> + * Userspace is responsible for correctly populating the parameters block header
+> + * fields (@type, @flags and @size) and the block-specific parameters.
+> + *
+> + * For example:
+> + *
+> + * .. code-block:: c
+> + *
+> + *	void populate_pst_gamma(struct c3_isp_params_block_header *block) {
+> + *		struct c3_isp_params_pst_gamma *gamma =
+> + *			(struct c3_isp_params_pst_gamma *)block;
+> + *
+> + *		gamma->header.type = C3_ISP_PARAMS_BLOCK_PST_GAMMA;
+> + *		gamma->header.flags = C3_ISP_PARAMS_BLOCK_FL_NONE;
+
+maybe explicitly saying FL_ENABLED is better ?
+
+I guess it also depends if your driver differentiate "update the
+config without enabling" from "apply a config and enable the block".
+
+I'll find out in later patches I presume...
+
+> + *		gamma->header.size = sizeof(*gamma);
+> + *
+> + *		for (unsigned int i = 0; i < 129; i++)
+> + *			gamma->pst_gamma_lut[i] = i;
+> + *	}
+> + *
+> + * @type: The parameters block type from :c:type:`c3_isp_params_block_type`
+> + * @flags: A bitmask of block flags
+> + * @size: Size (in bytes) of the parameters block, including this header
+> + */
+> +struct c3_isp_params_block_header {
+> +	__u16 type;
+> +	__u16 flags;
+> +	__u32 size;
+> +};
+> +
+> +/**
+> + * struct c3_isp_params_awb_gains - Gains for auto-white balance
+> + *
+> + * This struct allows users to configure the gains for white balance. There
+> + * are four gain settings corresponding to each colour channel in the bayer domain.
+
+easy to reflow to 80 cols
+
+> + * All of the gains are stored in Q4.8 format.
+> + *
+> + * header.type should be set to C3_ISP_PARAMS_BLOCK_AWB_GAINS
+> + * from :c:type:`c3_isp_params_block_type`
+> + *
+> + * @header: The C3 ISP parameters block header
+> + * @gr_gain: Multiplier for Gr channel (Q4.8 format)
+> + * @r_gain: Multiplier for R channel (Q4.8 format)
+> + * @b_gain: Multiplier for B channel (Q4.8 format)
+> + * @gb_gain: Multiplier for Gb channel (Q4.8 format)
+> + */
+> +struct c3_isp_params_awb_gains {
+> +	struct c3_isp_params_block_header header;
+> +	__u16 gr_gain;
+> +	__u16 r_gain;
+> +	__u16 b_gain;
+> +	__u16 gb_gain;
+> +};
+> +
+> +/*
+
+If you want this documented by kernel-doc use /**
+
+> + * enum c3_isp_params_awb_tap_points - Tap points for the AWB statistics
+> + * @C3_ISP_AWB_STATS_TAP_FE: immediately after the optical frontend block
+> + * @C3_ISP_AWB_STATS_TAP_GE: immediately after the green equal block
+> + * @C3_ISP_AWB_STATS_TAP_BEFORE_WB: immediately before the white balance block
+> + * @C3_ISP_AWB_STATS_TAP_AFTER_WB: immediately after the white balance block
+> + */
+> +enum c3_isp_params_awb_tap_point {
+> +	C3_ISP_AWB_STATS_TAP_OFE = 0,
+> +	C3_ISP_AWB_STATS_TAP_GE,
+> +	C3_ISP_AWB_STATS_TAP_BEFORE_WB,
+> +	C3_ISP_AWB_STATS_TAP_AFTER_WB,
+> +};
+> +
+> +/**
+> + * struct c3_isp_params_awb_config - Stats settings for auto-white balance
+> + *
+> + * This struct allows the configuration of the statistics generated for auto
+> + * white balance.
+> + *
+> + * header.type should be set to C3_ISP_PARAMS_BLOCK_AWB_CONFIG
+> + * from :c:type:`c3_isp_params_block_type`
+> + *
+> + * @header: the C3 ISP parameters block header
+> + * @tap_point: the tap point from enum c3_isp_params_awb_tap_point
+> + * @satur_vald: AWB statistic over saturation control
+> + *	        value: 0: disable, 1: enable
+> + * @horiz_zones_num: active zones number of hotizontal [0..32]
+
+active number of horizontal zones
+
+> + * @vert_zones_num: active zones number of vertical [0..24]
+
+ditto
+
+> + * @rg_min: minimum R/G ratio (Q4.8 format)
+> + * @rg_max: maximum R/G ratio (Q4.8 format)
+> + * @bg_min: minimum B/G ratio (Q4.8 format)
+> + * @bg_max: maximum B/G ratio (Q4.8 format)
+> + * @rg_low: R/G ratio trim low (Q4.8 format)
+> + * @rg_high: R/G ratio trim hight (Q4.8 format)
+> + * @bg_low: B/G ratio trim low (Q4.8 format)
+> + * @bg_high: B/G ratio trim high (Q4.8 format)
+> + * @zone_weight: array of weights for AWB statistics zones [0..15]
+> + * @horiz_cood: the horizontal coordinate of point on the diagonal [0..2888]
+> + * @vert_cood: the vertical coordinate of point on the diagonal [0..2240]
+> + */
+> +struct c3_isp_params_awb_config {
+> +	struct c3_isp_params_block_header header;
+> +	__u8 tap_point;
+> +	__u8 satur_vald;
+> +	__u8 horiz_zones_num;
+> +	__u8 vert_zones_num;
+> +	__u16 rg_min;
+> +	__u16 rg_max;
+> +	__u16 bg_min;
+> +	__u16 bg_max;
+> +	__u16 rg_low;
+> +	__u16 rg_high;
+> +	__u16 bg_low;
+> +	__u16 bg_high;
+> +	__u8 zone_weight[C3_ISP_AWB_MAX_ZONES];
+> +	__u16 horiz_cood[C3_ISP_AWB_MAX_PT_NUM];
+> +	__u16 vert_cood[C3_ISP_AWB_MAX_PT_NUM];
+> +};
+> +
+> +/*
+
+ditto, use /** if you want this documented
+
+> + * enum c3_isp_params_ae_tap_points - Tap points for the AE statistics
+> + * @C3_ISP_AE_STATS_TAP_GE: immediately after the green equal block
+> + * @C3_ISP_AE_STATS_TAP_MLS: immediately after the mesh lens shading block
+> + */
+> +enum c3_isp_params_ae_tap_point {
+> +	C3_ISP_AE_STATS_TAP_GE = 0,
+> +	C3_ISP_AE_STATS_TAP_MLS,
+> +};
+> +
+> +/**
+> + * struct c3_isp_params_ae_config - Stats settings for auto-exposure
+> + *
+> + * This struct allows the configuration of the statistics generated for
+> + * auto exposure.
+> + *
+> + * header.type should be set to C3_ISP_PARAMS_BLOCK_AE_CONFIG
+> + * from :c:type:`c3_isp_params_block_type`
+> + *
+> + * @header: the C3 ISP parameters block header
+> + * @horiz_zones_num: active zones number of hotizontal [0..17]
+
+s/hotizontal/horizontal
+
+same comment as per the AWB stats
+
+> + * @vert_zones_num: active zones number of vertical [0..15]
+> + * @tap_point: the tap point from enum c3_isp_params_ae_tap_point
+> + * @zone_weight: array of weights for AE statistics zones [0..15]
+> + * @horiz_cood: the horizontal coordinate of point on the diagonal [0..2888]
+> + * @vert_cood: the vertical coordinate of point on the diagonal [0..2240]
+
+I'm not sure how these fields are used, so I'm not sure if this should
+be 'point' or 'points'
+
+> + */
+> +struct c3_isp_params_ae_config {
+> +	struct c3_isp_params_block_header header;
+> +	__u8 tap_point;
+> +	__u8 horiz_zones_num;
+> +	__u8 vert_zones_num;
+> +	__u8 zone_weight[C3_ISP_AE_MAX_ZONES];
+> +	__u16 horiz_cood[C3_ISP_AE_MAX_PT_NUM];
+> +	__u16 vert_cood[C3_ISP_AE_MAX_PT_NUM];
+> +};
+
+When passed through pahole this gives me
+
+	/* size: 340, cachelines: 6, members: 7 */
+	/* padding: 2 */
+
+Because the compile aligns to the larger members in the struct which
+is a __u32.
+
+so I think you should
+
+        __u8 reserved[2];
+
+at the end of the structure to avoid the compiler insert padding
+bytes.
+
+Generally, for uAPI it's a good idea to avoid implicit alignments and
+holes, and possibly align to 8 bytes.
+
+This is a new format, and it's extensible, so it's versioned, but I
+would rather make sure all holes/fields are declared as reserved and
+the driver requires to have them set to 0 by userspace.
+
+Reason is, assume you add a field to this structure in a future kernel
+revision: existing userspace compiled against an older header version
+will set the fields to 0 and the driver can ignore them, newer
+userspace can populate them and the driver can use them. Relying on
+implicit padding means that if you have to extend this single
+structure a new version of the extensible should be declared and the
+driver prepared to handle both, while I do expect the extensible
+format version to be updated only when a major change to the data
+layout (or the header) is performed.
+
+All in all I would:
+1) Add __attribute__((aligned(8))); to all types
+2) Check with paholes is there are holes or padding bytes and declare
+them as reserved, documenting that those fields should be set to 0 by
+userspace.
+
+The discussion we had with Hans and Laurent to provide some background
+https://lore.kernel.org/all/20240724085004.82694-1-jacopo.mondi@ideasonboard.com/T/#m5333e7b6ab4230bb32efa063ab6fd73a529fdc29
+(I hope I got all points right).
+
+For pahole, what I've done is simply
+
+-------------------- main.c -------------------------------------
+#include "c3-isp-config.h"
+
+int main(int argc, char *argv[])
+{
+	struct c3_isp_params_awb_gains awb_gains;
+	struct c3_isp_params_awb_config awb_config;
+	struct c3_isp_params_ae_config ae_config;
+	struct c3_isp_params_af_config af_config;
+	struct c3_isp_params_pst_gamma gamm;
+	struct c3_isp_params_ccm ccm;
+	struct c3_isp_params_csc csc;
+	struct c3_isp_params_blc blc;
+
+	return 0;
+}
+-------------------- main.c -------------------------------------
+
+$ gcc -g main.c
+$ pahole ./a.out
+
+> +
+> +/*
+> + * enum c3_isp_params_af_tap_points - Tap points for the AF statistics
+> + * @C3_ISP_AF_STATS_TAP_SNR: immediately after the spatial noise reduce block
+> + * @C3_ISP_AF_STATS_TAP_DMS: immediately after the demosaic block
+> + */
+> +enum c3_isp_params_af_tap_point {
+> +	C3_ISP_AF_STATS_TAP_SNR = 0,
+> +	C3_ISP_AF_STATS_TAP_DMS,
+> +};
+> +
+> +/**
+> + * struct c3_isp_params_af_config - Stats settings for auto-focus
+> + *
+> + * This struct allows the configuration of the statistics generated for
+> + * auto focus.
+> + *
+> + * header.type should be set to C3_ISP_PARAMS_BLOCK_AF_CONFIG
+> + * from :c:type:`c3_isp_params_block_type`
+> + *
+> + * @header: the C3 ISP parameters block header
+> + * @tap_point: the tap point from enum c3_isp_params_af_tap_point
+> + * @horiz_zones_num: active zones number of hotizontal [0..17]
+> + * @vert_zones_num: active zones number of vertical [0..15]
+> + * @horiz_cood: the horizontal coordinate of point on the diagonal [0..2888]
+> + * @vert_cood: the vertical coordinate of point on the diagonal [0..2240]
+
+same comments as above about 'point' or 'points'
+
+> + */
+> +struct c3_isp_params_af_config {
+> +	struct c3_isp_params_block_header header;
+> +	__u8 tap_point;
+> +	__u8 horiz_zones_num;
+> +	__u8 vert_zones_num;
+
+Pahole points out an hole here
+
+	/* XXX 1 byte hole, try to pack */
+
+> +	__u16 horiz_cood[C3_ISP_AF_MAX_PT_NUM];
+
+Because this should be aligned to 2 bytes boundary. Add a reserved
+field in between.
+
+> +	__u16 vert_cood[C3_ISP_AF_MAX_PT_NUM];
+> +};
+> +
+> +/**
+> + * struct c3_isp_params_pst_gamma - Post gamma configuration
+> + *
+> + * This struct allows the configuration of the look up table for
+> + * post gamma. The gamma curve consists of 129 points, so need to
+> + * set lut[129].
+> + *
+> + * header.type should be set to C3_ISP_PARAMS_BLOCK_PST_GAMMA
+> + * from :c:type:`c3_isp_params_block_type`
+> + *
+> + * @header: the C3 ISP parameters block header
+> + * @lut: look up table for P-Stitch gamma [0..1023]
+
+lookup
+
+> + */
+> +struct c3_isp_params_pst_gamma {
+> +	struct c3_isp_params_block_header header;
+> +	__u16 lut[129];
+> +};
+
+Check padding
+
+> +
+> +/**
+> + * struct c3_isp_params_ccm - ISP CCM configuration
+> + *
+> + * This struct allows the configuration of the matrix for
+> + * color correction. The matrix consists of 3 x 3 points,
+> + * so need to set matrix[3][3].
+> + *
+> + * header.type should be set to C3_ISP_PARAMS_BLOCK_CCM
+> + * from :c:type:`c3_isp_params_block_type`
+> + *
+> + * @header: the C3 ISP parameters block header
+> + * @matrix: a 3 x 3 matrix used for color correction,
+> + *          the value of matrix[x][y] is orig_value x 256. [-4096..4095]
+> + */
+> +struct c3_isp_params_ccm {
+> +	struct c3_isp_params_block_header header;
+> +	__s16 matrix[3][3];
+
+check padding here as well
+
+> +};
+> +
+> +/**
+> + * struct c3_isp_params_csc - ISP Color Space Conversion configuration
+> + *
+> + * This struct allows the configuration of the matrix for
+> + * color space conversion. The matrix consists of 3 x 3 points,
+> + * so need to set matrix[3][3].
+> + *
+> + * header.type should be set to C3_ISP_PARAMS_BLOCK_CSC
+> + * from :c:type:`c3_isp_params_block_type`
+> + *
+> + * @header: the C3 ISP parameters block header
+> + * @matrix: a 3x3 matrix used for the color space conversion,
+> + *          the value of matrix[x][y] is orig_value x 256. [-4096..4095]
+> + */
+> +struct c3_isp_params_csc {
+> +	struct c3_isp_params_block_header header;
+> +	__s16 matrix[3][3];
+> +};
+
+Check padding here as well
+
+> +
+> +/**
+> + * struct c3_isp_params_blc - ISP Black Level Correction configuration
+> + *
+> + * This struct allows the configuration of the block level offset
+> + * for each color channel.
+> + *
+> + * header.type should be set to C3_ISP_PARAMS_BLOCK_BLC
+> + * from :c:type:`c3_isp_params_block_type`
+> + *
+> + * @header: the C3 ISP parameters block header
+> + * @gr_ofst: Gr blc offset (Q4.8 format)
+> + * @r_ofst: R blc offset (Q4.8 format)
+> + * @b_ofst: B blc offset (Q4.8 format)
+> + * @gb_ofst: Gb blc offset(Q4.8 format)
+> + */
+> +struct c3_isp_params_blc {
+> +	struct c3_isp_params_block_header header;
+> +	__u16 gr_ofst;
+> +	__u16 r_ofst;
+> +	__u16 b_ofst;
+> +	__u16 gb_ofst;
+> +};
+> +
+> +/**
+> + * define C3_ISP_PARAMS_MAX_SIZE - Maximum size of all C3 ISP Parameters
+> + *
+> + * Though the parameters for the C3 ISP are passed as optional blocks, the
+> + * driver still needs to know the absolute maximum size so that it can allocate
+> + * a buffer sized appropriately to accommodate userspace attempting to set all
+> + * possible parameters in a single frame.
+> + */
+> +#define C3_ISP_PARAMS_MAX_SIZE                           \
+> +	(sizeof(struct c3_isp_params_awb_gains) +        \
+> +	sizeof(struct c3_isp_params_awb_config) +        \
+> +	sizeof(struct c3_isp_params_ae_config) +         \
+> +	sizeof(struct c3_isp_params_af_config) +         \
+> +	sizeof(struct c3_isp_params_pst_gamma) +         \
+> +	sizeof(struct c3_isp_params_ccm) +               \
+> +	sizeof(struct c3_isp_params_csc) +               \
+> +	sizeof(struct c3_isp_params_blc))
+> +
+> +/**
+> + * struct c3_isp_params_cfg - C3 ISP configuration parameters
+> + *
+> + * This struct contains the configuration parameters of the C3 ISP
+> + * algorithms, serialized by userspace into an opaque data buffer. Each
+> + * configuration parameter block is represented by a block-specific structure
+> + * which contains a :c:type:`c3_isp_param_block_header` entry as first
+> + * member. Userspace populates the @data buffer with configuration parameters
+> + * for the blocks that it intends to configure. As a consequence, the data
+> + * buffer effective size changes according to the number of ISP blocks that
+> + * userspace intends to configure.
+> + *
+> + * The parameters buffer is versioned by the @version field to allow modifying
+> + * and extending its definition. Userspace should populate the @version field to
+> + * inform the driver about the version it intends to use. The driver will parse
+> + * and handle the @data buffer according to the data layout specific to the
+> + * indicated revision and return an error if the desired revision is not
+> + * supported.
+> + *
+> + * For each ISP block that userspace wants to configure, a block-specific
+> + * structure is appended to the @data buffer, one after the other without gaps
+> + * in between nor overlaps. Userspace shall populate the @total_size field with
+> + * the effective size, in bytes, of the @data buffer.
+> + *
+> + * The expected memory layout of the parameters buffer is::
+> + *
+> + *	+-------------------- struct c3_isp_params_cfg ---- ------------------+
+> + *	| version = C3_ISP_PARAM_BUFFER_V0;                                   |
+> + *	| data_size = sizeof(struct c3_isp_params_awb_gains) +                |
+> + *	|              sizeof(struct c3_isp_params_awb_config);       |
+> + *	| +------------------------- data  ---------------------------------+ |
+> + *	| | +------------ struct c3_isp_params_awb_gains) ------------------+ |
+> + *	| | | +---------  struct c3_isp_params_block_header header -----+ | | |
+> + *	| | | | type = C3_ISP_PARAMS_BLOCK_AWB_GAINS;                   | | | |
+> + *	| | | | flags = C3_ISP_PARAMS_BLOCK_FL_NONE;                    | | | |
+> + *	| | | | size = sizeof(struct c3_isp_params_awb_gains);          | | | |
+> + *	| | | +---------------------------------------------------------+ | | |
+> + *	| | | gr_gain = ...;                                              | | |
+> + *	| | | r_gain = ...;                                               | | |
+> + *	| | | b_gain = ...;                                               | | |
+> + *	| | | gb_gain = ...;                                              | | |
+> + *	| | +------------------ struct c3_isp_params_awb_config ----------+ | |
+> + *	| | | +---------- struct c3_isp_param_block_header header ------+ | | |
+> + *	| | | | type = C3_ISP_PARAMS_BLOCK_AWB_CONFIG;                  | | | |
+> + *	| | | | flags = C3_ISP_PARAMS_BLOCK_FL_NONE;                    | | | |
+> + *	| | | | size = sizeof(struct c3_isp_params_awb_config)          | | | |
+> + *	| | | +---------------------------------------------------------+ | | |
+> + *	| | | tap_point = ...;                                            | | |
+> + *	| | | satur_vald = ...;                                           | | |
+> + *	| | | horiz_zones_num = ...;                                      | | |
+> + *	| | | vert_zones_num = ...;                                       | | |
+> + *	| | +-------------------------------------------------------------+ | |
+> + *	| +-----------------------------------------------------------------+ |
+> + *	+---------------------------------------------------------------------+
+> + *
+> + * @version: The C3 ISP parameters buffer version
+> + * @data_size: The C3 ISP configuration data effective size,
+> + *		excluding this header
+
+can be reflowed.
+
+Thanks
+  j
+
+> + * @data: The C3 ISP configuration blocks data
+> + */
+> +struct c3_isp_params_cfg {
+> +	__u8 version;
+> +	__u32 data_size;
+> +	__u8 data[C3_ISP_PARAMS_MAX_SIZE];
+> +};
+> +
+> +#endif
+>
+> --
+> 2.47.0
+>
+>
+>
 
