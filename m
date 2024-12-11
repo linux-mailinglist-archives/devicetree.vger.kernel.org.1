@@ -1,160 +1,249 @@
-Return-Path: <devicetree+bounces-129977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB7069ED680
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:29:00 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 046609ED6A7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:40:18 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E55122824F7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 19:28:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BE661883F98
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 19:39:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BDF82594B8;
-	Wed, 11 Dec 2024 19:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32FD51C4612;
+	Wed, 11 Dec 2024 19:39:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BHXkqup9"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="LGslob5m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89D8E2594AF
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 19:28:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 484ED259491
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 19:39:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733945335; cv=none; b=N62Iyx1FaSfNcqdLVfiRRrDZn0spUUaf283SBsB3ljI9+uhCH1VeqMrxz8VouQ4lbnv5iEOuz9WlGlLlkglSG1Df+cq/gtWroUV8/WCbOBI27E650BLzlUy/+PKDIaF8ikPuWY/okX8t4eXQC9q6phfG+2oBUX6SBZRxvYuRdrE=
+	t=1733945988; cv=none; b=neaJy7TrmFOTX9dF7ZFdYVjeNAfZST0he6n7ZMM4zNCy9BVedd5Lafldaec0xxS5lMCk1l8Q919+TlZ/LoM4JoTCVec0VYu5ASslLjI+kEruNcacKEXx7bGCtvGh84ogviglAsUZbaIfoyKiKK0nZoATmXiJtZ26pV+0/vlq98M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733945335; c=relaxed/simple;
-	bh=saI+TJ4WwQAKgDdrklhcfnFFyZMNGfi+r+nYwnAQ5lk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ErYlwW+vNT6DJEd52u9pHNuqcma2OLSvqdXfv/rS9mD7QyKU1Q1MpXPWqCsaRZc/L8/O8hTaU777oWMCrjV+dPclbC3lxw9zm374dIablXJgIILwyURAho9aUxSI8H1aPoARq4G4IXISzR86OZZH5thZVmPVub1wfiHgv+6juOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BHXkqup9; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5401d3ea5a1so3758956e87.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 11:28:53 -0800 (PST)
+	s=arc-20240116; t=1733945988; c=relaxed/simple;
+	bh=eSv6jyYS7bs1pXUu2BATQ7WIGDGOMoLBSgAqFdPRo0U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aMjnqSj5iylKpoc7vCrxuNu6iXlwvoh6yU1fdNuPCSojYzXVfCNHU6CBEGmQ6sELCi16G1NiNOoklZgVw2+Z/ATxwwM9zHlb991fdVSBFFk8hVtmILUv3GILsWa1BdLY7KgTTI0Zw0TmPJohxNEgxqOTvgu7ilNagt0AXp4/thg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=LGslob5m; arc=none smtp.client-ip=209.85.160.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-4678afeb133so8148531cf.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 11:39:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733945332; x=1734550132; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=aNVz/ArW/lLNjVQfl87+kX9B15NlodHN27QuCLAE0kw=;
-        b=BHXkqup9Y/cmRamG56yF+N9RKYHjpfdvEZA40eLUkK4wV74ALF7+EX3b+Mq/wa66W8
-         xGmeGp1cD+f2QWkkm5R6RjjDyINZ+fmcB8m5U3nAKDkJObjt47InkBlZYnQrXShUdOkS
-         DQ8cr+iPdpFeYiLR5yFworFlJKZ9ePZrMPI4HxoX0QSDCoMA1Nv9oq2//POsxzWndCKs
-         DydgprNCHQ23jWUDIuCl82DMHnt+sLh/rEFKI+1M9RVYsoWVKovXsJMcbEgp+Kg8KjGa
-         pLhdPyLWEgIBeoLwmsWPgzAbdVYLfKuXCtivx6eSlH00GjLjdoeelow20g+NeVgOM80y
-         pgpw==
+        d=broadcom.com; s=google; t=1733945985; x=1734550785; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=iIB7OgclvuXmXcCb+7ry5WHS9m+ub2PzlVh4AHBJ290=;
+        b=LGslob5m/WWjUWYTqogvacsddGGozjxLntHEgp9t7dI5Q8NKTAfRWlutU9qXbRgCkh
+         +HC4gBYoSloGpLNSvqdkxLMSB1/KSNKsc820bqklkjjduC+69zOEQcyGb1C2RXKposd5
+         Jy/Kgyzb3kXQSISLnfaFL17x7zdxAVPz7e+Oo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733945332; x=1734550132;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1733945985; x=1734550785;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=aNVz/ArW/lLNjVQfl87+kX9B15NlodHN27QuCLAE0kw=;
-        b=otyG3VfD+AYBT2cyKYPiVPdgKXCqILUwCER7ryZvAGgwxuKow9HPeVcDZd6MNUT7Vp
-         fg6s79F6eNNu6pOptCQb+8FpkwxEQpb3Oquakb893801dj5qPzpUkhtPlHsgQ7wRPkW7
-         rvsAgijPISPfjOQA4MRxjxcMMGQcJOVwYUxf5fySIGuyy2jg0zEwTSAh78RYPrIMZaoc
-         rmaaYSEN70hVCsvbIRqjEpx2TgUSmGMKdNhVX+RiGB97KkGUH8XF4Z4V17u4hwP2IN1t
-         AaBmgsO5NXdj+ACfBrRSI/j0rbGLq6JTfnkCzXVK7PQ9GI8BhRPLDsP/+TaQelIIklGW
-         oFSg==
-X-Forwarded-Encrypted: i=1; AJvYcCWqvm8mJHu67y/es6OC5a9Nsu4p1AsCc4S9g7IImELsVZCbjtZMCdXNYuUW4tkG66qzkAdMH+mpZul/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyzAD3JKmJPcsxx6oRiZE+UBeechZgAXlCO7Mrpin6e6UGvYhh2
-	Rm6gdfn5pGOToedp4P6aFRptIr7kErPZiLVBp+qQCLqTanQjTzDc8hUxZ8xOsls=
-X-Gm-Gg: ASbGncsIZhfuyftJ65S5962gFchiUQpTlAKxDToCXmPSmSlD9HWjHxFKaDBOC6wcfMv
-	0+GAGI/+Z/Qff/+3D/kUKIUVr1U6fn3OBZeQ8+kB0zz9531sTazo497GxcHAvnS9Tm3z6q0IM0f
-	w8WXIWf1MnD684I+/HZ5guTuDnZXNL3ABsSDn6ojesGfHIejesskQ4cpa76w5133pSuvZc4gs/O
-	Qq0cLmENjWwLF+/2yQYbD9XvGurIYBAzeqh6200YDII6HM9kXs7LJabcW1f4J+iPv2upF+tIEda
-	s1wDHAQBhHXjW3Od6iIgxWp/gzkfuZkk7Q==
-X-Google-Smtp-Source: AGHT+IGOfbXPT4dn2jZV1RKLOlrX7K+m2akt+BVMHTUk1WVTQ0bQV6RFUx4RBGUDnQfN4dhyAyjPRA==
-X-Received: by 2002:a05:6512:1391:b0:53e:20af:db96 with SMTP id 2adb3069b0e04-5402a5d3993mr1464865e87.10.1733945331546;
-        Wed, 11 Dec 2024 11:28:51 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e2fbbb0c0sm1773317e87.191.2024.12.11.11.28.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 11:28:50 -0800 (PST)
-Date: Wed, 11 Dec 2024 21:28:47 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
-	Marcel Holtmann <marcel@holtmann.org>, Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, 
-	Rocky Liao <quic_rjliao@quicinc.com>, linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, quic_jiaymao@quicinc.com, 
-	quic_shuaz@quicinc.com, quic_zijuhu@quicinc.com, quic_mohamull@quicinc.com
-Subject: Re: [PATCH v4 1/4] dt-bindings: net: bluetooth: qca: Expand
- firmware-name property
-Message-ID: <dukhhbf22w2hcr32jtjuvminpuzgi3a3tkkux7pd32j4d4gzkx@mvgckzd22she>
-References: <20241210151636.2474809-1-quic_chejiang@quicinc.com>
- <20241210151636.2474809-2-quic_chejiang@quicinc.com>
- <vbwg7djb4me6i4ow2q74ltqjxvkxeulhzyq4n6ak7aifhtf36f@x66pjje2iu6u>
- <62afbaea-67b1-4572-9e78-d1dbe5fae20a@quicinc.com>
- <f818f089-0490-42da-9aee-1a7006c11978@kernel.org>
- <65fd0932-4519-44ac-ba9d-55ee97b43233@quicinc.com>
+        bh=iIB7OgclvuXmXcCb+7ry5WHS9m+ub2PzlVh4AHBJ290=;
+        b=bQVnn6BtosswtdOa9D4X3tnCyORN9/NU6nIJetsdCehS2GL5bzNtxIins+KLXqFEiD
+         7wDOoA3yST5euHlaxNWFCzYLyVcOdx+ENIj9OWKm7o19wBWbxv+5YdwNArR91hX/y1iy
+         cT4lGNnaH0r0LI5w7gvL4H0rkf6isPguB6PeSuJNV+uJbJyRiwWgLJ/ADO3UbGOV7CHZ
+         5jViHMbQSYIP8JGmoXN7NsM4VTImXMpt6otZB9Xr4suKOXZCbCngl0fPMkTciChti8dg
+         UOzIDKQ4QQASdfBru7jvPxkgPdPOIIj1yzAYIZEhZvmWtWoadTteF1+oDoTzjdh4uNTv
+         Zsig==
+X-Forwarded-Encrypted: i=1; AJvYcCW230MJzXkLYIMcMTD+cqRC4SZYRW1K2l3oNj70SwHhjOx9TJozFDw4m/QMm9IIptYtbMw951Ca7LhW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZBNi5oPb4WJbp2zScHVEmPTDN6xs9uf1/C+t9wB0dSLvHiqG0
+	zXnwydeaG+C7a+BksDgw1J34xnSEG7V8AwCc92BBi4krBFPgZsyrmzAD4LVd9A==
+X-Gm-Gg: ASbGncv4/yXntVuNGdg4RATV9LVmmZ052L4xtNLF/Gvs5eWwPVi9nKDc8TmsX75joc8
+	EwUUFD1cNTir7Z4bUZZe3mNBWQAjghH1lXSX4b3St6FGZwGYVzKAJvGgkdeaSmiqOTjPVhNccPx
+	Nzb9sSm/iqbK6vCtQmrKOmvnF86xa86nnyyzQC9XPmsGCpARjoLjjVcsHaNQ241HIwOkSNW3cFY
+	XysmSrLm8GJfXDMnbhw5QA6WVKFXjwhkwCa7lCCkA2IkMcL1oAID+uHPGFQvQrGfio7t6g1xv7q
+	6kDQfCkPlZ9I9no=
+X-Google-Smtp-Source: AGHT+IE7tWa/E0nByPLL7S0B6qviBPi3v4T4dJLWOaG0p2vZl2++JiBW87VesGV7kVDu4s3AD+/ezQ==
+X-Received: by 2002:a05:622a:1102:b0:467:6703:d469 with SMTP id d75a77b69052e-46796810483mr6964701cf.2.1733945985176;
+        Wed, 11 Dec 2024 11:39:45 -0800 (PST)
+Received: from [10.28.17.173] ([192.19.144.250])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4672978dd2asm75448881cf.60.2024.12.11.11.39.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Dec 2024 11:39:44 -0800 (PST)
+Message-ID: <474e5e38-37a4-439b-b25a-fe60df03f25b@broadcom.com>
+Date: Wed, 11 Dec 2024 14:39:42 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <65fd0932-4519-44ac-ba9d-55ee97b43233@quicinc.com>
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v4 08/10] PCI: brcmstb: Adjust PHY PLL setup to use a
+ 54MHz input refclk
+To: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Jim Quinlan <jim2101024@gmail.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Andrea della Porta <andrea.porta@suse.com>,
+ Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>
+References: <20241025124515.14066-1-svarbanov@suse.de>
+ <20241025124515.14066-9-svarbanov@suse.de>
+ <4bbdf9ed-f429-411b-8f5f-e51857f0f9d0@broadcom.com>
+ <f9f49030-0518-4e30-91a7-3c088c31180b@suse.de>
+Content-Language: en-US
+From: James Quinlan <james.quinlan@broadcom.com>
+Autocrypt: addr=james.quinlan@broadcom.com; keydata=
+ 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
+In-Reply-To: <f9f49030-0518-4e30-91a7-3c088c31180b@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Dec 11, 2024 at 06:16:44PM +0800, Cheng Jiang (IOE) wrote:
-> Hi Krzysztof,
-> 
-> On 12/11/2024 5:48 PM, Krzysztof Kozlowski wrote:
-> > On 11/12/2024 10:39, Cheng Jiang (IOE) wrote:
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-> >>>> index 7bb68311c..2782d2325 100644
-> >>>> --- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
-> >>>> @@ -101,7 +101,10 @@ properties:
-> >>>>    max-speed: true
-> >>>>  
-> >>>>    firmware-name:
-> >>>> -    description: specify the name of nvm firmware to load
-> >>>> +    description:
-> >>>> +      If one item is present, specify the name of the NVM firmware to load.
-> >>>> +      If two items are present, the first item specifies the name of the NVM,
-> >>>> +      and the second specifies the name of the rampatch firmware to load.
-> >>>
-> >>> Don't repeat constraints in free form text. Use proper constraints so
-> >>> you can validate your DTS. And then actually do validate your DTS...
-> >>>
-> >> It seems unnecessary to add this description, so I will drop this change. Is that okay?
-> > 
-> > You need to list the items and describe them. See how all other bindings
-> > do it.
-> > 
-> The firmware names are not fixed strings; they vary depending on the chip, board, or platform.
-> 
-> How about the following description? Thank you!
-> 
->   firmware-name:
->     $ref: /schemas/types.yaml#/definitions/string
->     description: |
->       List of firmware names. The first item is the name of the NVM firmware
->       to load. The second item is the name of the rampatch firmware to load,
->       if present.
->     minItems: 1
->     maxItems: 2
+On 12/10/24 08:42, Stanimir Varbanov wrote:
+> Hi Jim
+>
+> On 12/10/24 12:52 AM, James Quinlan wrote:
+>> On 10/25/24 08:45, Stanimir Varbanov wrote:
+>>> The default input reference clock for the PHY PLL is 100Mhz, except for
+>>> some devices where it is 54Mhz like bcm2712C1 and bcm2712D0.
+>>>
+>>> To implement this adjustments introduce a new .post_setup op in
+>>> pcie_cfg_data and call it at the end of brcm_pcie_setup function.
+>>>
+>>> The bcm2712 .post_setup callback implements the required MDIO writes that
+>>> switch the PLL refclk and also change PHY PM clock period.
+>>>
+>>> Without this RPi5 PCIex1 is unable to enumerate endpoint devices on
+>>> the expansion connector.
+>>>
+>>> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+>>> ---
+>>> v3 -> v4:
+>>>    - Improved patch description (Florian)
+>>>
+>>>    drivers/pci/controller/pcie-brcmstb.c | 42 +++++++++++++++++++++++++++
+>>>    1 file changed, 42 insertions(+)
+>>>
+>>> diff --git a/drivers/pci/controller/pcie-brcmstb.c b/drivers/pci/
+>>> controller/pcie-brcmstb.c
+>>> index d970a76aa9ef..2571dcc14560 100644
+>>> --- a/drivers/pci/controller/pcie-brcmstb.c
+>>> +++ b/drivers/pci/controller/pcie-brcmstb.c
+>>> @@ -55,6 +55,10 @@
+>>>    #define PCIE_RC_DL_MDIO_WR_DATA                0x1104
+>>>    #define PCIE_RC_DL_MDIO_RD_DATA                0x1108
+>>>    +#define PCIE_RC_PL_PHY_CTL_15                0x184c
+>>> +#define  PCIE_RC_PL_PHY_CTL_15_DIS_PLL_PD_MASK        0x400000
+>>> +#define  PCIE_RC_PL_PHY_CTL_15_PM_CLK_PERIOD_MASK    0xff
+>>> +
+>>>    #define PCIE_MISC_MISC_CTRL                0x4008
+>>>    #define  PCIE_MISC_MISC_CTRL_PCIE_RCB_64B_MODE_MASK    0x80
+>>>    #define  PCIE_MISC_MISC_CTRL_PCIE_RCB_MPS_MODE_MASK    0x400
+>>> @@ -251,6 +255,7 @@ struct pcie_cfg_data {
+>>>        u8 num_inbound_wins;
+>>>        int (*perst_set)(struct brcm_pcie *pcie, u32 val);
+>>>        int (*bridge_sw_init_set)(struct brcm_pcie *pcie, u32 val);
+>>> +    int (*post_setup)(struct brcm_pcie *pcie);
+>>>    };
+>>>      struct subdev_regulators {
+>>> @@ -826,6 +831,36 @@ static int brcm_pcie_perst_set_generic(struct
+>>> brcm_pcie *pcie, u32 val)
+>>>        return 0;
+>>>    }
+>>>    +static int brcm_pcie_post_setup_bcm2712(struct brcm_pcie *pcie)
+>>> +{
+>>> +    const u16 data[] = { 0x50b9, 0xbda1, 0x0094, 0x97b4, 0x5030,
+>>> 0x5030, 0x0007 };
+>>> +    const u8 regs[] = { 0x16, 0x17, 0x18, 0x19, 0x1b, 0x1c, 0x1e };
+>>> +    int ret, i;
+>>> +    u32 tmp;
+>>> +
+>>> +    /* Allow a 54MHz (xosc) refclk source */
+>>> +    ret = brcm_pcie_mdio_write(pcie->base, MDIO_PORT0,
+>>> SET_ADDR_OFFSET, 0x1600);
+>>> +    if (ret < 0)
+>>> +        return ret;
+>>> +
+>>> +    for (i = 0; i < ARRAY_SIZE(regs); i++) {
+>>> +        ret = brcm_pcie_mdio_write(pcie->base, MDIO_PORT0, regs[i],
+>>> data[i]);
+>>> +        if (ret < 0)
+>>> +            return ret;
+>>> +    }
+>>> +
+>>> +    usleep_range(100, 200);
+>>> +
+>>> +    /* Fix for L1SS errata */
+>>> +    tmp = readl(pcie->base + PCIE_RC_PL_PHY_CTL_15);
+>>> +    tmp &= ~PCIE_RC_PL_PHY_CTL_15_PM_CLK_PERIOD_MASK;
+>>> +    /* PM clock period is 18.52ns (round down) */
+>>> +    tmp |= 0x12;
+>>> +    writel(tmp, pcie->base + PCIE_RC_PL_PHY_CTL_15);
+>> Hi Stan,
+>>
+>> Can you please say more about where this errata came from?  I asked the
+>> 7712 PCIe HW folks and they said that there best guess was that it was a
+>> old workaround for a particular Broadcom Wifi endpoint.  Do you know its
+>> origin?
+> Unfortunately, I don't know the details. See the comments on previous
+> series version [1]. My observation shows that MDIO writes are
+> implemented in RPi platform firmware only for pcie2 (where RP1 south
+> bridge is connected) but not for pcie1 expansion connector.
 
-I think this is better:
+Well, I think my concern is more about the comment "Fix for L1SS errata" 
+rather than the code.  If this is a bonafide errata it should have an 
+identifier and some documentation somewhere. Declaring it to be an 
+unknown errata provides little info.
 
-firmware-name:
-  minItems: 1
-  items:
-    - description: NVM firmware to load (extend the desription)
-    - description: rampatch (extend the description)
+Code-wise, you could use u32p_replace_bits(..., PM_CLK_PERIOD_MASK) to 
+do the field value insertion.
 
-> > Best regards,
-> > Krzysztof
-> 
+All the above being said, I have no objection since this code is 
+specific to the RPi platform.
 
--- 
-With best wishes
-Dmitry
+Jim Quinlan  Broadcom STB/CM
+
+>
+> ~Stan
+>
+> [1] https://www.spinics.net/lists/linux-pci/msg160842.html
+>
+
 
