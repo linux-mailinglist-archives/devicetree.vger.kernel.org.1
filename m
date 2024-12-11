@@ -1,180 +1,142 @@
-Return-Path: <devicetree+bounces-129560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD9A49EC1BA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 02:50:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB9989EC1CB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 02:59:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D6712850E1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 01:50:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66A7A284F3C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 01:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AAC61DEFF9;
-	Wed, 11 Dec 2024 01:50:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 784BD1DF258;
+	Wed, 11 Dec 2024 01:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="EXeJbGls"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LXD0rmE5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C35D1DF273
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 01:50:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84891DED47;
+	Wed, 11 Dec 2024 01:59:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733881839; cv=none; b=Z9TsKd+CIcUM1SCNoBrx3xkXpOMcUPVQKvApwqCm1gD2j7n3g/3aMDLcD0G/QamWT4DapXkHWl0FoHu6nZBUbOh4jz949CkuQKcxlLshiX+/FnUneHrU56xjgisZc0ud9bPwasOv3x/vvrQAVPOVglFann9th1qLquG1Dclw55M=
+	t=1733882359; cv=none; b=DFCiOTJ8ylEiNMlifycFEnZ/jYn7a+2/J/2wnkNDlTMyaSSVTvH9gpxvQplYeATAV+fcZOxvl+wb4E7CojMzPX7tefV/GXUWXAq0cFIzvDtjqYbTLMPteWFnyND/EXSH8IhOR2yU1Fap17i4JCQeeo1HAphjlIrU9PkilrgpLsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733881839; c=relaxed/simple;
-	bh=Lz7xFK6ODOj+KNAtcFSOv8d/FZ8I8/XogocvDGICrtY=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=s2W2uAG4nErXPms+0S+nofR35uwnm/DJiLgBXNUazJ5McCEKxILIxNdU164VBNV7Op7CxpQMWKJbLhG14LA7ieDn7EUhTgHx2o+65u0crQ23FthyJPMKP1h1aOvM6zv9SzPKrDypaB9VR3wAdeVA3yqZfzTEM4li64Q4mGZSacY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=EXeJbGls; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20241211015028epoutp03f9fc36d383d0448fea1015d301ec282e~P-FZByGJC0327603276epoutp03Q
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 01:50:28 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20241211015028epoutp03f9fc36d383d0448fea1015d301ec282e~P-FZByGJC0327603276epoutp03Q
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1733881829;
-	bh=cYwHho9KcGwqfLq7T2him2vuLSNJFKniJMfHJ4dX97Q=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=EXeJbGlsEJx3WPSg/ybT7TkDCTI4WMYm7zwSq/a/CKx1M06UXPwQA2R/sRlq1QKZs
-	 /rMH9m2sfn1xVq0WYBB1qRNCRyfN8KwuuyZyer0De7GwO22QE+D5yFPDSPSW+lB23s
-	 i5IKVsuSK2toeh/L1DTmjNYxR5S9JtcaGYFXXang=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-	20241211015028epcas2p1117c5ae9b0a21a62e5b25c293d5dd7d2~P-FYo2o_b0996709967epcas2p1e;
-	Wed, 11 Dec 2024 01:50:28 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.89]) by
-	epsnrtp2.localdomain (Postfix) with ESMTP id 4Y7JTJ19Nlz4x9Px; Wed, 11 Dec
-	2024 01:50:28 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-	epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-	94.65.22094.4EFE8576; Wed, 11 Dec 2024 10:50:28 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-	20241211015027epcas2p34d588c74f1db0da0880d2a2a2c49a007~P-FXu9WJZ2078920789epcas2p3E;
-	Wed, 11 Dec 2024 01:50:27 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20241211015027epsmtrp1979b564e95793b0897958f8df6cd14d8~P-FXuDubQ2416624166epsmtrp1u;
-	Wed, 11 Dec 2024 01:50:27 +0000 (GMT)
-X-AuditID: b6c32a46-d31d72400000564e-86-6758efe4b990
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	AC.2A.18729.3EFE8576; Wed, 11 Dec 2024 10:50:27 +0900 (KST)
-Received: from KORCO119526 (unknown [10.229.8.143]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20241211015027epsmtip21cd2b237883ed62838960ab799b7c5ba~P-FXgetpC0407204072epsmtip2S;
-	Wed, 11 Dec 2024 01:50:27 +0000 (GMT)
-From: =?utf-8?B?6rmA7YOc7JmE?= <trunixs.kim@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Wim Van Sebroeck'"
-	<wim@linux-watchdog.org>, "'Guenter Roeck'" <linux@roeck-us.net>, "'Rob
- Herring'" <robh@kernel.org>, "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>,
-	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
-	<alim.akhtar@samsung.com>
-Cc: <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, "'Byoungtae Cho'" <bt.cho@samsung.com>
-In-Reply-To: <510e826d-a434-437d-8d2e-3f2618c28b7f@kernel.org>
-Subject: RE: [PATCH v4 1/1] arm64: dts: exynosautov920: add watchdog DT node
-Date: Wed, 11 Dec 2024 10:50:27 +0900
-Message-ID: <000101db4b6f$0d31c460$27954d20$@samsung.com>
+	s=arc-20240116; t=1733882359; c=relaxed/simple;
+	bh=Qin8aGcUZb8vNzoOZBdj9PnK2Rh+bnYpjrtsl+gWVD8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=fFbohoSB+6UA87nO2KRtdXPxIzScc+Y5ofetw6ociaSB7fmFJlcsAqNXKqiZLh5QyUP6+t4OirCRWt2RLeYrH3sKLvISV1fSrJRLQ9ezn51Ljm1D56mYblaS4aYV80P8WNH34jrM/mi1GEYpzZyAlrG/nHg7WUWjbQwB2wymtW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LXD0rmE5; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BAMLvmF018051;
+	Wed, 11 Dec 2024 01:59:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=ognURcBK1+7hoSJ7P6ej1u
+	5vSlt9elZKquIVaB6LhqM=; b=LXD0rmE5MowQuUdbU3R668Guz7Ng7nM6o7Wy7V
+	YAhrxo6nL9tt1PU4sDkXut1ZxDFijAc4AVh2HlIfU+v9VGZ8ezxFqp7woq0XfNnG
+	XpTMdIZZNw2G1t6HndAaSaEFSOr71hmQmU0TmUG9vlS8bw1+31jnlpHfjJrJ5TPS
+	5TCG/ejyVdN0Af3resVdg5CQUyp9TjmmhnJM3lhVViOq+GXX2FSLskn0HBLoJBXk
+	QagJ4zm3+CFMZNh09z5dNgUHWdVIS6M9Tjjcx3EX4ft868hrGR/RgGlhm3sK00u0
+	AJ58FeIWwW8D0/TmrcHhodn/CL4QzsipPbS8L6jb4nkOoU2Q==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43eak3bw10-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Dec 2024 01:59:14 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BB1xDhQ025678
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 11 Dec 2024 01:59:13 GMT
+Received: from songxue-gv.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 10 Dec 2024 17:59:08 -0800
+From: Song Xue <quic_songxue@quicinc.com>
+Subject: [PATCH 0/2] arm64: dts: qcom: Add DT support for secondary usb on
+ QCS615
+Date: Wed, 11 Dec 2024 09:57:56 +0800
+Message-ID: <20241211-add_usb_host_mode_for_qcs615-v1-0-edce37204a85@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQGRpYUbE1kmIx7vVDERT7TS+PBmVwKCnclrAeE4rOgCHZavxLM/hzKQ
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOJsWRmVeSWpSXmKPExsWy7bCmme6T9xHpBlf62S0ezNvGZnH/Ux+T
-	xZq955gs5h85x2rxctY9Novz5zewW2x6fI3V4vKuOWwWM87vY7K4sW4fu8WThWeYLP7v2cFu
-	8fjlP2YHXo9NqzrZPFauWcPqsXlJvcfO7w3sHn1bVjF6fN4kF8AWlW2TkZqYklqkkJqXnJ+S
-	mZduq+QdHO8cb2pmYKhraGlhrqSQl5ibaqvk4hOg65aZA3SokkJZYk4pUCggsbhYSd/Opii/
-	tCRVISO/uMRWKbUgJafAvECvODG3uDQvXS8vtcTK0MDAyBSoMCE7Y9rMJpaCVVwV3a0rWBsY
-	l3F0MXJySAiYSCx618raxcjFISSwg1Gi8clbRgjnE6PEwVMdbBDON0aJS/92McG0LD73lhki
-	sZdRonfTcijnBaPEwtbJrCBVbAIWEkuufWACSYgIbGCSmHrmJliCWeA2o8TO98YgNqeAncSy
-	u5/B4sICPhKtG1YDNXBwsAioSvx9GggS5hWwlFh+dxsbhC0ocXLmExaIMfIS29/OYYa4SEHi
-	59NlYGNEBNwkrs6dxQRRIyIxu7MN7DgJgTMcEk/XrWIEmS8h4CIxYVYdRK+wxKvjW9ghbCmJ
-	l/1tUHa+xMqVJ6A+rpG417aLBcK2l1h05ic7yBhmAU2J9bv0ISYqSxy5BXUZn0TH4b/sEGFe
-	iY42IQhTVWL6sgCIGdISE2esZZvAqDQLyVuzkLw1C8n5sxBWLWBkWcUollpQnJueWmxUYASP
-	6uT83E2M4BSs5baDccrbD3qHGJk4GA8xSnAwK4nwcniHpgvxpiRWVqUW5ccXleakFh9iNAWG
-	80RmKdHkfGAWyCuJNzSxNDAxMzM0NzI1MFcS573XOjdFSCA9sSQ1OzW1ILUIpo+Jg1OqgalN
-	7cyXPKa/alGnDBt/s6w3/ROiHL4x0qneU1d7+uyrp15fY2HX49+tx1p9TX128epzJu/vLHHI
-	csyu43G0edVsvmZhqfCBs4oVkqubphucO7HZKGx9mWne+Y9Hg1rCWo0vnlBttvtZVsHw8MGP
-	vzG3VX2qdzdeZeK/Ny02YkNgmbWl38WDnv/sXp6YpVis6P+gXdLV/0VP0JG7fQxcrWnFSc65
-	rxVONqxfvqdlTdOJM8xTlAuvTUsKk45Z7eL0btfGl5YqzDxbNs9cfepL1b8HE1ujyisbJovt
-	WPGxVOTWlcdlt+NObGaLnigQdvXQtpdGzU4FJTsL1b5fMPpbeeXVHdZVD2eczav4+65u9gUl
-	luKMREMt5qLiRABkj4wBSgQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOIsWRmVeSWpSXmKPExsWy7bCSvO7j9xHpBncuyVg8mLeNzeL+pz4m
-	izV7zzFZzD9yjtXi5ax7bBbnz29gt9j0+BqrxeVdc9gsZpzfx2RxY90+dosnC88wWfzfs4Pd
-	4vHLf8wOvB6bVnWyeaxcs4bVY/OSeo+d3xvYPfq2rGL0+LxJLoAtissmJTUnsyy1SN8ugStj
-	2swmloJVXBXdrStYGxiXcXQxcnJICJhILD73lrmLkYtDSGA3o0Rnz1VGiIS0xJHfL9ggbGGJ
-	+y1HWCGKnjFKPN/4lhUkwSZgIbHk2gcmkISIwBYmiemvTjGCOMwCDxkl/r86ANXylVFi5rfT
-	zCAtnAJ2EsvufgZrFxbwkWjdsBqonYODRUBV4u/TQJAwr4ClxPK729ggbEGJkzOfsIDYzALa
-	Ek9vPoWy5SW2v53DDHGegsTPp8vARooIuElcnTuLCaJGRGJ2ZxvzBEbhWUhGzUIyahaSUbOQ
-	tCxgZFnFKJlaUJybnltsWGCYl1quV5yYW1yal66XnJ+7iREcl1qaOxi3r/qgd4iRiYPxEKME
-	B7OSCC+Hd2i6EG9KYmVValF+fFFpTmrxIUZpDhYlcV7xF70pQgLpiSWp2ampBalFMFkmDk6p
-	BqZJzSc+S13kXM/p/WW+QnLokwN7j0/n3npw7ZOKzf0bebNOnzfSediTtdW/NK/yuZWmnN7S
-	1q8RjztvttSfjdo7VaujSqt/4kmPDQIKOwpOWnH0WQYX9fDobbQwVZdaXjt94e0Hn/etMDlm
-	tnV3xm12d8b39msZ1Ke2RqQve7zuRsH8FdL8hrdb7PcanLVU1DD35Dna/fyxscz+q9urrFoP
-	hjyNeyuksZ/zk5hF6x6ubwfK2xte3BA4+ED6oUPi3gxr8WKJpzns3b2KYueOxLy0XJJiJ9U8
-	R+T57qPP/wWl/fUxlYwO2bWzvILDlfOSveSdU9NiM1XenQ9Ma1d03pHzWdw/q8FDIfLDhwOs
-	7EosxRmJhlrMRcWJAAO9CHY6AwAA
-X-CMS-MailID: 20241211015027epcas2p34d588c74f1db0da0880d2a2a2c49a007
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20241206025156epcas2p4c55f230accc4354e6f4bf324ab9a5833
-References: <20241206025139.2148833-1-trunixs.kim@samsung.com>
-	<CGME20241206025156epcas2p4c55f230accc4354e6f4bf324ab9a5833@epcas2p4.samsung.com>
-	<20241206025139.2148833-2-trunixs.kim@samsung.com>
-	<510e826d-a434-437d-8d2e-3f2618c28b7f@kernel.org>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKTxWGcC/yXNSw6DIBSF4a0YxiXhouJjK40hwL1UBkoFbZoY9
+ 15Sh98Z/OdkmVKgzMbqZIk+IYe4FsCjYm4264t4wGImhWxAAnCDqI9s9RzzrpeIpH1MenNZQcs
+ VeLIgvbEoWEm8E/nw/eef0+1E21Fe9ntk1mTiLi5L2MfKSyt65d3gRT10Xd00LUolFDrVohMDk
+ IO+Fp5N1/UDT0+/sroAAAA=
+X-Change-ID: 20241211-add_usb_host_mode_for_qcs615-61feb12fabd0
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Krishna Kurapati
+	<krishna.kurapati@oss.qualcomm.com>,
+        Song Xue <quic_songxue@quicinc.com>
+X-Mailer: b4 0.15-dev-88a27
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733882348; l=1089;
+ i=quic_songxue@quicinc.com; s=20240911; h=from:subject:message-id;
+ bh=TqlTX0bLEfiSPxAFrw520lc7bqKnFJ7oWldk8b4i/M0=;
+ b=55MaLgjlOLvC2jPxz3eQGxepRZq2OQoqrES/0d1B8M9+zMl/mcv3/jgyimU7VuI+SJPK6O/r4
+ EKWMoVOLsB7BliRJWmxHf9n9Cz2VKOI/jaBIsg7w5Uu/dz3Mon6wxId
+X-Developer-Key: i=quic_songxue@quicinc.com; a=ed25519;
+ pk=Z6tjs+BBbyg1kYqhBq0EfW2Pl/yZdOPXutG9TOVA1yc=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: RUfW_0sVQa-Z02FFmy4doqvgRO-pBXM_
+X-Proofpoint-GUID: RUfW_0sVQa-Z02FFmy4doqvgRO-pBXM_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=666 clxscore=1015 spamscore=0 mlxscore=0 impostorscore=0
+ malwarescore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
+ bulkscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412110014
 
-on 11/12/2024 01:50 UTC+09:00, Taewan Kim wrote:
->> From: Byoungtae Cho <bt.cho@samsung.com>
->>
->> Adds two watchdog devices for ExynosAutoV920 SoC.
->>
->> Signed-off-by: Byoungtae Cho <bt.cho@samsung.com>
->> Signed-off-by: Taewan Kim <trunixs.kim@samsung.com>
->> ---
->>  .../arm64/boot/dts/exynos/exynosautov920.dtsi | 20 +++++++++++++++++++
->>  1 file changed, 20 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
->b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
->> index c759134c909e..7b9591255e91 100644
->> --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
->> +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
->> @@ -183,6 +183,26 @@ cmu_misc: clock-controller@10020000 {
->>  				      "noc";
->>  		};
->>
->> +		watchdog_cl0: watchdog@10060000 {
->
->You need to do careful rebase, not just accept whatever tools shown you.
->
->This is now placed in incorrect order - not keeping sorting by unit address.
+From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
 
-I seems to me that the addresses are sorted correctly in order. 
-Could you kindly check again?
+These series aim at enabling secondary USB on QCS615. The secondary
+controller is High Speed capable and has a QUSB2 Phy.
 
-        clock-controller@1002_0000
-                  watchdog@1006_0000 
-                  watchdog@1007_0000
-    interrupt-controller@1040_0000
+Base DT Support has been added and is enabled on Ride Platform. The
+secondary controller is enabled in host mode.
 
-And if there are any rules I might not be aware of, please let me know.
+Signed-off-by: Song Xue <quic_songxue@quicinc.com>
+---
+Dependencies:
+Link to bindings and driver changes:
+https://lore.kernel.org/all/20241017130701.3301785-1-quic_kriskura@quicinc.com/
+
+PMIC DT:
+https://lore.kernel.org/all/20241202-adds-spmi-pmic-peripherals-for-qcs615-v6-0-bdd306b4940d@quicinc.com/
+
+---
+Krishna Kurapati (2):
+      arm64: dts: qcom: Add support for secondary usb node on QCS615
+      arm64: dts: qcom: Enable secondary USB controller on QCS615 Ride
+
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts | 28 ++++++++++++
+ arch/arm64/boot/dts/qcom/qcs615.dtsi     | 76 ++++++++++++++++++++++++++++++++
+ 2 files changed, 104 insertions(+)
+---
+base-commit: f2b086fc9f039773445d2606dc65dc091ec1830f
+change-id: 20241211-add_usb_host_mode_for_qcs615-61feb12fabd0
 
 Best regards,
-Taewan Kim
+-- 
+Song Xue <quic_songxue@quicinc.com>
 
 
