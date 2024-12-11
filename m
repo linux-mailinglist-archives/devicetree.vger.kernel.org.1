@@ -1,190 +1,208 @@
-Return-Path: <devicetree+bounces-129877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE6FE9ECF32
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:59:25 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 297959ECF45
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:04:19 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 886C31889594
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:04:03 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40E271D63DE;
+	Wed, 11 Dec 2024 15:03:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hYm2p65y"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1138B281294
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:59:23 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867F61A0BCF;
-	Wed, 11 Dec 2024 14:59:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZqUSXot9"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF98419F116;
-	Wed, 11 Dec 2024 14:59:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C52E1A4F22;
+	Wed, 11 Dec 2024 15:03:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733929159; cv=none; b=OOLm07ja1fc6gPzPsagLSOUIvyvhmXPfp0U2EBrXuCYH/4kR1phuHyqQpXBHQFft2SxX1l82Y70idi9p+V/g6vjZHC4wddAdIg4qQf9Bd+Wlo6xKmwXo4hJmAEt8RV3btv2YG5lZ8KTXKgqjdLFJ8Gb5YM0K2GG69Xsu+GK07Ps=
+	t=1733929414; cv=none; b=knuq9wAeLUFnA85UfG2lPXBZNrvzpB5VKNYAB7wGNPOSEGzupLm1gUJJmnDLBqerYykraqoo11rk/Wau1Z8pXl5fO5R4yx52+hzHAU6osnjIQBk8h/ZlubZUpf2fgf9ndgsX6Mf/b3jHQ4MCHGlQvSTJUyWksDBJ2knUJBaQQGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733929159; c=relaxed/simple;
-	bh=tm+XYf5eyhi5AgwnwhFjnz+5HTDe+tvhTnN4isbxBIs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YGIDRLO8RPGKfzIxOFSPG+BFmCI1sXG9+mXyHUUzOCA7SNELzgbT1lbJ0Ljs9WIL28vejv8xuGIXJ90+xO7V1tcz8bJjLdggiQIpjWjWEyNW2iOMTnu5jemQoJpAy7EGF2Y1iOb6Nyacar3B4SaU1T0Epq73upUjiipR6vqZc0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZqUSXot9; arc=none smtp.client-ip=209.85.222.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-85c4c9349b3so1157916241.3;
-        Wed, 11 Dec 2024 06:59:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733929156; x=1734533956; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qISq7GajMdBCcxBbvv6KzdEHLpfNlyE+uR1h/30xNC8=;
-        b=ZqUSXot9D9GoFGHIHt1/f2mzBl3Qz/F7E3gi6c6ZX961It8TFEfAye8FzQ1REylUKr
-         xQ0V6i2HY2exMKDui/Db/F7CuiovehjgLhrpQ7R99oNezzENInG/37vYI1FdeNcRRBgz
-         Bxx7rGhwOv7yp6mbadGcD/qlgtrJzVIFCiJn1iVyK8y7rFFJnXfJceObzDfphVpmQLVz
-         WZpmeqXOuMMuKHcqhPDUW1PghCbWjZcUDKqkaX0+WBj1uo0UdkHaWBfCbvcBZvstWHhc
-         p8aPwGxrUJLaNUzMAZdsjBFTEEgX0nExGi3WQFL4jHwoVTm3r2mmnHjWdLV8E0E0t2Pn
-         vANA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733929156; x=1734533956;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qISq7GajMdBCcxBbvv6KzdEHLpfNlyE+uR1h/30xNC8=;
-        b=NUf4u3Sn1ySkD96jGCd2Hg1aokUiCtSqtphPMNfIHc1BBYEaOfPUnDa7mt2ZT2FAL9
-         9c0Va5DkAorQfmPLQuK0e0hv13Ubfriaj2i5Mgk5PPgWBZ8dE6ATPE7zQ9my0Nc6Tii2
-         PQqRaHvTaXHOXPkAYHESuru59VlEso6tI6IejQT46EcGsnDjq+lMvbZV3wS5ZWi1F/kn
-         x7B0qNtdAnDx0HZVXTTu8JkLCJDXd7rHwtwHdffMxlbs9V1jN+yBtBr+LYc6gg02c1tz
-         DZKSRY/g2BsRrE2T9yphwUkF/NWbcsU7P3gTDCiyBgO6mDaNT8DXnsee4uRMAwyFdFRy
-         acXA==
-X-Forwarded-Encrypted: i=1; AJvYcCUpKBy3c6Sz4+FGaUdCS0Ky2lRyTXZZcAlB+Uk0XqVZ+D75FFDv8qmu3hpMfUA6cuc6o1LDjxZOScoXJRE=@vger.kernel.org, AJvYcCUr2FjC6hAl0V4BMiXERVj4+A+ZlxyILcS1OdJa8fIQZfR8Pp1TahwGxKeNSZD8F19jStldfZcv+A1s@vger.kernel.org, AJvYcCV7aiQHcIPt58QyBIvCLLhw7bV0BF1tKyzMJOgtirs9fbj+z61EcI3GLKhLe++qrfqhm/rcBW4AGiQ=@vger.kernel.org, AJvYcCXMLfuSndeIf1xrCk2CWofc0lrgfWPlJJd45+P3NDqVmI/sRuTVXkxERZWoUjcZd0u6JyqU3gg7/mtFLA==@vger.kernel.org, AJvYcCXgsLj7cO28HHgKWMMMQGlhLDvLKKnY3wRZgbPzgg1syUs/5il25cSCVc2DxvQbYc2Up/GLZLXbsLX+nFJ5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBeUW/4HrBXYqZ7EH7J+pzu3Il52GK/uBT43wAfGWjPLY8ufxw
-	4uPvymC899tJXyyog7g9mK9fpY/0m3HmLo8+0b3T+G6yBHgu+fexGsXGlx7TPgr5H9rceaB+BRT
-	4mUGq0vdUy1fdk4zBVrtJrLPfrWw=
-X-Gm-Gg: ASbGncuaynHAHfdk43aktfedFN7cAwQ2qtHnRFua6h4NtO1DhcKVkWff6O3V0SFvkNe
-	+aAOTvR7qQ2EGIuCm7JLyRGtkndRaqMK2CQ==
-X-Google-Smtp-Source: AGHT+IFDABXEejeuf1IKWb+Gu9FePZZpIgNOQ4IYdnMw3Kzd/38DL0IjJiFWqIpwT6VMj6TTqmfk4vxvTsyrCXE6AH8=
-X-Received: by 2002:a05:6102:4b89:b0:4b1:5cc5:8ffd with SMTP id
- ada2fe7eead31-4b15cc59238mr3092106137.11.1733929156563; Wed, 11 Dec 2024
- 06:59:16 -0800 (PST)
+	s=arc-20240116; t=1733929414; c=relaxed/simple;
+	bh=++gHfME6FjD30uzJSwWqEax28nPvJc+pk7lRQ5VJ+9Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QTHGHZfFYY26FWADG5NQEvQitYJJ1PSaJYXKeXNv1tSJJsDCbEJ2LvvyW9qv6OH/Lix/potCBkDPiGLsdGJf/Q0SFHBALVvIIPgjE120Vg8Kyrl6PKMXVK40iPAAZJmh6Qtl70+sBxSesJfmWMSE5uyqYXdafRxEj+LycFoO5Tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hYm2p65y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1FE0C4CEDF;
+	Wed, 11 Dec 2024 15:03:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733929413;
+	bh=++gHfME6FjD30uzJSwWqEax28nPvJc+pk7lRQ5VJ+9Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hYm2p65yRbO4It9+v+O19mfMGKLsXujECBYjOJYqVxhZAdzSZSorQYzhImGVbdzdO
+	 zXtaCDAzITTmkh7p9emHVE2cN96YxQiaLOAo05u7IM7MTgHtPyV9ob4a4Al+yQHBno
+	 U03UTKNhXzdLk7QJvfeob/Ti0mlPR5tAkW/jwK2vcSmoyZBYJ+BYgvrMTqPvi7m6rL
+	 tGn2Zn6sAs02ISJM30cvXCvx4Oo3QtUNbZFYzu/17A9xu3LWBcPSI8NO5djFunp9AV
+	 q2fTa+4OH/lxD9Fl8SZxZFsE5GtX//VNDQZ7sjd1ybcZnNWh4i37F76jAnkWf317l6
+	 Nxck1W0/HXQjw==
+Date: Wed, 11 Dec 2024 16:03:25 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Alice Ryhl <aliceryhl@google.com>
+Cc: Greg KH <gregkh@linuxfoundation.org>, rafael@kernel.org,
+	bhelgaas@google.com, ojeda@kernel.org, alex.gaynor@gmail.com,
+	boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
+	benno.lossin@proton.me, tmgross@umich.edu, a.hindborg@samsung.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	robh@kernel.org, daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, rust-for-linux@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 01/16] rust: pass module name to `Module::init`
+Message-ID: <Z1mpvRDnlZN9Mc5o@cassiopeiae>
+References: <2024121131-carnival-cash-8c5f@gregkh>
+ <Z1mEAPlSXA9c282i@cassiopeiae>
+ <Z1mG14DMoIzh6xtj@cassiopeiae>
+ <2024121109-ample-retrain-bde0@gregkh>
+ <Z1mUG8ruFkPhVZwj@cassiopeiae>
+ <CAH5fLgh3rwS1sFmrhx3zCaSBbAJfhJTV_kbyCVX6BhvnBZ+cQA@mail.gmail.com>
+ <Z1mh2rPC3ZOjg-pO@cassiopeiae>
+ <CAH5fLgjg82x5EiWa1BTC7DpbhteBm5Or8XtpLAL0hQz+huXMCw@mail.gmail.com>
+ <Z1mnFoap_AnPPNfu@cassiopeiae>
+ <CAH5fLgiyGjhpVDNkRHtYhk7jY0oJZmPYx3TJRnBvpt1H+-6Y-g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241209-starqltechn_integration_upstream-v11-0-dc0598828e01@gmail.com>
- <20241209-starqltechn_integration_upstream-v11-3-dc0598828e01@gmail.com> <7qt7thbuh5mvoaknxaiteusbmcmiusc23k2oiyvq3bwn4l6wsw@p4qid73hmiry>
-In-Reply-To: <7qt7thbuh5mvoaknxaiteusbmcmiusc23k2oiyvq3bwn4l6wsw@p4qid73hmiry>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Wed, 11 Dec 2024 17:59:05 +0300
-Message-ID: <CABTCjFD4ipvapWX9gJF1KXWpzj_jhL9pYB0z+Q4sEi-cu6mx7Q@mail.gmail.com>
-Subject: Re: [PATCH v11 3/9] dt-bindings: power: supply: max17042: split on 2 files
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
-	Hans de Goede <hdegoede@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
-	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAH5fLgiyGjhpVDNkRHtYhk7jY0oJZmPYx3TJRnBvpt1H+-6Y-g@mail.gmail.com>
 
-=D0=B2=D1=82, 10 =D0=B4=D0=B5=D0=BA. 2024=E2=80=AF=D0=B3. =D0=B2 10:38, Krz=
-ysztof Kozlowski <krzk@kernel.org>:
->
-> On Mon, Dec 09, 2024 at 02:26:27PM +0300, Dzmitry Sankouski wrote:
-> > Move max17042 common binding part to separate file, to
-> > reuse it for MFDs with platform driver version.
+On Wed, Dec 11, 2024 at 03:55:47PM +0100, Alice Ryhl wrote:
+> On Wed, Dec 11, 2024 at 3:52 PM Danilo Krummrich <dakr@kernel.org> wrote:
 > >
-> > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/power/supply/maxim,max17042-base.yam=
-l | 66 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-> >  Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml    =
-  | 49 +------------------------------------------------
-> >  MAINTAINERS                                                           =
-  |  2 +-
-> >  3 files changed, 68 insertions(+), 49 deletions(-)
+> > On Wed, Dec 11, 2024 at 03:45:53PM +0100, Alice Ryhl wrote:
+> > > On Wed, Dec 11, 2024 at 3:29 PM Danilo Krummrich <dakr@kernel.org> wrote:
+> > > >
+> > > > On Wed, Dec 11, 2024 at 02:34:54PM +0100, Alice Ryhl wrote:
+> > > > > On Wed, Dec 11, 2024 at 2:31 PM Danilo Krummrich <dakr@kernel.org> wrote:
+> > > > > >
+> > > > > > On Wed, Dec 11, 2024 at 02:14:37PM +0100, Greg KH wrote:
+> > > > > > > On Wed, Dec 11, 2024 at 01:34:31PM +0100, Danilo Krummrich wrote:
+> > > > > > > > On Wed, Dec 11, 2024 at 01:22:33PM +0100, Danilo Krummrich wrote:
+> > > > > > > > > On Wed, Dec 11, 2024 at 12:05:10PM +0100, Greg KH wrote:
+> > > > > > > > > > On Wed, Dec 11, 2024 at 11:59:54AM +0100, Greg KH wrote:
+> > > > > > > > > > > On Wed, Dec 11, 2024 at 11:48:23AM +0100, Greg KH wrote:
+> > > > > > > > > > > > On Wed, Dec 11, 2024 at 11:45:20AM +0100, Greg KH wrote:
+> > > > > > > > > > > > > On Tue, Dec 10, 2024 at 11:46:28PM +0100, Danilo Krummrich wrote:
+> > > > > > > > > > > > > > In a subsequent patch we introduce the `Registration` abstraction used
+> > > > > > > > > > > > > > to register driver structures. Some subsystems require the module name on
+> > > > > > > > > > > > > > driver registration (e.g. PCI in __pci_register_driver()), hence pass
+> > > > > > > > > > > > > > the module name to `Module::init`.
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > Nit, we don't need the NAME of the PCI driver (well, we do like it, but
+> > > > > > > > > > > > > that's not the real thing), we want the pointer to the module structure
+> > > > > > > > > > > > > in the register_driver call.
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > Does this provide for that?  I'm thinking it does, but it's not the
+> > > > > > > > > > > > > "name" that is the issue here.
+> > > > > > > > > > > >
+> > > > > > > > > > > > Wait, no, you really do want the name, don't you.  You refer to
+> > > > > > > > > > > > "module.0" to get the module structure pointer (if I'm reading the code
+> > > > > > > > > > > > right), but as you have that pointer already, why can't you just use
+> > > > > > > > > > > > module->name there as well as you have a pointer to a valid module
+> > > > > > > > > > > > structure that has the name already embedded in it.
+> > > > > > > > > > >
+> > > > > > > > > > > In digging further, it's used by the pci code to call into lower layers,
+> > > > > > > > > > > but why it's using a different string other than the module name string
+> > > > > > > > > > > is beyond me.  Looks like this goes way back before git was around, and
+> > > > > > > > > > > odds are it's my fault for something I wrote a long time ago.
+> > > > > > > > > > >
+> > > > > > > > > > > I'll see if I can just change the driver core to not need a name at all,
+> > > > > > > > > > > and pull it from the module which would make all of this go away in the
+> > > > > > > > > > > end.  Odds are something will break but who knows...
+> > > > > > > > > >
+> > > > > > > > > > Nope, things break, the "name" is there to handle built-in modules (as
+> > > > > > > > > > the module pointer will be NULL.)
+> > > > > > > > > >
+> > > > > > > > > > So what you really want is not the module->name (as I don't think that
+> > > > > > > > > > will be set), but you want KBUILD_MODNAME which the build system sets.
+> > > > > > > > >
+> > > > > > > > > That's correct, and the reason why I pass through this name argument.
+> > > > > > > > >
+> > > > > > > > > Sorry I wasn't able to reply earlier to save you some time.
+> > > > > > > > >
+> > > > > > > > > > You shouldn't need to pass the name through all of the subsystems here,
+> > > > > > > > > > just rely on the build system instead.
+> > > > > > > > > >
+> > > > > > > > > > Or does the Rust side not have KBUILD_MODNAME?
+> > > > > > > > >
+> > > > > > > > > AFAIK, it doesn't (or didn't have at the time I wrote the patch).
+> > > > > > > > >
+> > > > > > > > > @Miguel: Can we access KBUILD_MODNAME conveniently?
+> > > > > > > >
+> > > > > > > > Actually, I now remember there was another reason why I pass it through in
+> > > > > > > > `Module::init`.
+> > > > > > > >
+> > > > > > > > Even if we had env!(KBUILD_MODNAME) already, I'd want to use it from the bus
+> > > > > > > > abstraction code, e.g. rust/kernel/pci.rs. But since this is generic code, it
+> > > > > > > > won't get the KBUILD_MODNAME from the module that is using the bus abstraction.
+> > > > > > >
+> > > > > > > Rust can't do that in a macro somehow that all pci rust drivers can pull
+> > > > > > > from?
+> > > > > >
+> > > > > > The problem is that register / unregister is encapsulated within methods of the
+> > > > > > abstraction types. So the C macro trick (while generally possible) isn't
+> > > > > > applicable.
+> > > > > >
+> > > > > > I think we could avoid having an additional `name` parameter in `Module::init`,
+> > > > > > but it would still need to be the driver resolving `env!(KBUILD_MODNAME)`
+> > > > > > passing it into the bus abstraction.
+> > > > > >
+> > > > > > However, similar to what Alice suggested in another thread, we could include
+> > > > > > this step in the `module_*_driver!` macros.
+> > > > > >
+> > > > > > Modules that don't use this convenience macro would need to do it by hand
+> > > > > > though. But that's probably not that big a deal.
+> > > > >
+> > > > > I think we can do it in the core `module!` macro that everyone has to use.
+> > > >
+> > > > How? The `module!` macro does not know about the registration instances within
+> > > > the module structure.
+> > >
+> > > You could have the module! macro emit something along these lines:
+> > >
+> > > impl ModuleName for {type_} {
+> > >     const NAME: &'static CStr = c_str!(env!("KBUILD_MODNAME"));
+> > > }
+> > >
+> > > Then you can do `<Self as ModuleName>::NAME` to obtain the name elsewhere.
 > >
-> > diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17=
-042-base.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max170=
-42-base.yaml
-> > new file mode 100644
-> > index 000000000000..1653f8ae11f7
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/power/supply/maxim,max17042-bas=
-e.yaml
-> > @@ -0,0 +1,66 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/power/supply/maxim,max17042-base.ya=
-ml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Maxim 17042 fuel gauge series
-> > +
-> > +maintainers:
-> > +  - Sebastian Reichel <sre@kernel.org>
-> > +
-> > +allOf:
-> > +  - $ref: power-supply.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - maxim,max17042
-> > +      - maxim,max17047
-> > +      - maxim,max17050
-> > +      - maxim,max17055
-> > +      - maxim,max77705-battery
-> > +      - maxim,max77849-battery
->
-> Shared schemas define only shared properties, not compatibles. But the
-> main problem is you did not answer nor resolve my previous concerns -
-> either this device has separate address and probably is a separate
-> device on the same or different bus.
->
-> Plus this was not tested and does not really work, but anyway let's
-> focus on my previous concerns first.
->
+> > Where {type_} would need to be the driver's `Driver` structure?
+> >
+> > We'd then need to define the bus adapter as:
+> >
+> > `pub struct Adapter<T: Driver + ModuleName>(T)`
+> >
+> > But the question stands I guess, how would the module macro know {type_}?
+> 
+> If you look at the macro implementation in rust/macros/module.rs you
+> will find many uses of {type_} throughout the expansion. It's whatever
+> is passed to the macro using the `type:` argument.
 
-Ah, indeed, the device tree in this and previous patches doesn't
-reflect hardware wiring.
+Oh, I see. So, this means that module / driver author would still need to create
+the "connection" by listing the correspong driver types in the module! macro,
+right?
 
-MAX77705 fuel gauge has a separate i2c address, i.e. I may move it out of t=
-he
-MAX77705 MFD node. However, the device on that address has additional featu=
-res,
-like measuring system and input current, which is out of fuel gauge
-responsibility.
+If so, I think it'd be better to do it in the `module_*_driver!` macro and let
+people implement the trait by hand for modules with multiple drivers (which
+should be pretty rare).
 
-So I guess I should create another MFD for fuel gauge, i. e. max77705 examp=
-le
-would look like:
+The reason is that I think that otherwise we're probably encoding too much
+semantics into the `module!` macro that isn't obvious and people need to
+understand.
 
-...
-  pmic@66 {
-    compatible =3D "maxim,max77705";
-...
-  };
-
-  meter@36 {
-    compatible =3D "maxim,max77705-meter";
-
-    // max17042 fuel gauge driver in platform mode
-    fuel-gauge {
-      power-supplies =3D <&max77705_charger>;
-      maxim,rsns-microohm =3D <5000>;
-      interrupt-parent =3D <&pm8998_gpios>;
-      interrupts =3D <11 IRQ_TYPE_LEVEL_LOW>;
-    };
-  };
-
---=20
-Best regards and thanks for review,
-Dzmitry
+> 
+> 
+> Alice
 
