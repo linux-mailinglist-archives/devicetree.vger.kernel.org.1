@@ -1,143 +1,170 @@
-Return-Path: <devicetree+bounces-129670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17E339EC7A2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 09:47:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 762409EC7A0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 09:47:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E230E188C6C2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 08:47:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A971816A745
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 08:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E301E9B0A;
-	Wed, 11 Dec 2024 08:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4041E9B2E;
+	Wed, 11 Dec 2024 08:47:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="fFDwsdp2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Od9pYJ27"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD2471E9B06;
-	Wed, 11 Dec 2024 08:47:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E45401E9B23
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 08:47:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733906855; cv=none; b=iiRJYOxaaPKOTYOoXMJjYJSdi2L+XMyUxGxr8pqd/cndasLDPwdaNH/YGZAKO4KTd7yI/KGx7rGCwbfb9ZMIGyMSBT2cA7jfuFr1NND/KLw8mHoq+VX+eg4uIug3H7so2WBFUE789fxQxc5gKbNU1+pABIvfTjF6e2HVc5qQgfY=
+	t=1733906841; cv=none; b=d54OdzljZUbm/bwNjWj0X+70b3V6Ufq+L7i2rKsju6m4c/E4GqUazZqZThMfscdh1ayL7gQmd/z9qeYeT1b5NBITZKQZCSWF5bIO36ZZ9jQlAmY5loXIGwucuLxmiU0m2VNnMcsbdUOQOagXjte1U6Q8hSK2qtdjw0np4ujtGKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733906855; c=relaxed/simple;
-	bh=koDuNN51UZqR0k8WbBv23cNisUQJ9LuwQj5sXklqQQI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t9oB0utaATd93b6GvDXjUW0WlAF2Uoxwa8101INQjQnepbN3Ubcr6rrNTWNDUq5Kv0PMRVXR75FXBVjwpXDXhWx4S2T4u2wGza+cAwbSeHX2hoVU9Nmun9OVuWIA88+w4dwmNHCOa7+eJBvLfAQPif+M9KkJtgrslPjWWD4kups=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=fFDwsdp2; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=TOB+Fxp49rSShIZTVjtd1jIBj8qsd4mGBRlOc0nOjoY=; b=fFDwsdp22wcbCT+bR3kubCHU7P
-	RgjeyO2qzR2mrXOHIzbvyXNyJmiTtyixsDWmkL+7GTA458f+BQtAlLKGR5M0koTY12SzYatQzcfAT
-	KVFy/duNKx3RB/Ay3zxnrJX+o9QFscjXydr3HfVAiNkVEWgy0R6uIce38V3EsH2n3WpWN7rkr1YGS
-	G29nCmuM0v4Ss6poRMfMmEd6faZJrAEpe7in/bMwYsBCZy1lNZqzTmHebq2W/HjDUbaka33acg0HH
-	T3kBCi086tPHtknNMKNEtd+jjETUR+6Nl5NdgwcVJf7OunvqLCf4v1iMWTNzGHjDeZFCVM+Xkx90y
-	xhDC3BFQ==;
-Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tLIN0-0000Bg-N9; Wed, 11 Dec 2024 09:46:58 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Alexandre ARNOUD <aarnoud@me.com>, kernel@collabora.com,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] Add support for HDMI1 output on RK3588 SoC
-Date: Wed, 11 Dec 2024 09:46:57 +0100
-Message-ID: <12942826.iMDcRRXYNz@diego>
-In-Reply-To: <20241211-rk3588-hdmi1-v2-0-02cdca22ff68@collabora.com>
-References: <20241211-rk3588-hdmi1-v2-0-02cdca22ff68@collabora.com>
+	s=arc-20240116; t=1733906841; c=relaxed/simple;
+	bh=VCdtky//FuKQ1O98k1ZwZq74x732mntDSu0a0sp4nnI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Cdzczy7pwdf3doW/0PfC+r7vUw482bUs3A3LmCxlSiX7lDNm902kv7ZrVHoqLBMbpndApuq3tDkMQHu+NbGEANWPcYaruK94nGPM8XWXCNeWJkbE2hrGPJFclHHIvfQDH0RSke1uVrQ5FGeS/8kwj4gam25IiJ3W1Y8ftSNe9J0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Od9pYJ27; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30037784fceso41568281fa.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 00:47:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733906838; x=1734511638; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WZ9yw5+eiQnubxYw3ZTt7r7hhaE0oRY7onPmgVMFj5s=;
+        b=Od9pYJ27MmeUIMvCcBya10un1oCujI97lTizjsJg/4JUKva00FaOwTMnp0h1qhGOj0
+         KgKgA5tqPFKv9NdDHHMqS/z1fkyNtPq43yYIRrB0mSvYay/9Is3tJJlOTTD/ztcpe4Oz
+         28ksnIu5jUzLAivNW1AMmu0hSa9hK0pXoo12lDloeM6F0TRBtERFjaNu6I9eX+KoKGZv
+         zl2+hOoFNeNts/AfGhf3jA9O/FlF+yUlwa3VZRiHGUQ+lVaXNXOlWrkUIKHiKTALHwGz
+         ClrzT0BudeUIDra1fa+8AZtWx8OPLYl7BG9n3mnnv0Mfm8NssqeetyDRD2muu7ts2EXa
+         qPjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733906838; x=1734511638;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WZ9yw5+eiQnubxYw3ZTt7r7hhaE0oRY7onPmgVMFj5s=;
+        b=TMDFsKgeV/4OVnkBU/NMOU4O92NjZv7rPu+WF7BoqlL5HDzA8NFQVQCYmGQzsjr/gj
+         fdqAFvVV6p/1dLm/BD35u/cyw2undl245DewyD6Sh9zl+/VScTStT+KKCUdN+WkoJOFu
+         v4ncjoBYtvJNs+Isgy1M9hT9zzg4rZ9sAK3bQgAbSzr5Uw/ox4LvQr4tcrYok3S5LWxD
+         HZHBw8w0v0qBGLrj2rSdz/he+diNSuf6UQmcKSqYCKF8QPDHwi/Nj6CtY9bliUzAeGNr
+         I1vejta4MrW+Fg2qvnobdVC+qXKsg8s+AROajalTX56upLVHyU9osSPTrclRAxMm/7e9
+         EZbA==
+X-Forwarded-Encrypted: i=1; AJvYcCV3Ass7enXACItiJZCJKbSEn0wi/cAScCvsvR9PZtLHtzoSIEUEQve1wSaPh01vcFBVeouVe+yFCp2H@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywm4DoDbWO+JwL2JOX/n2IQPCEMK7FVhIs+ovIGt0Njm3D9ZG9L
+	za7e23naBQOZeF6g8y5eOnxd+1+eKvxllwjYzHeQLvSurvLd4pbgDokRgEOT624=
+X-Gm-Gg: ASbGncsLXU9JrxjxYaggkpw9THMv4FSm3U6NWtABrrYirZ+SAq7MRq5FE7yJjLKAW31
+	2pmfD1E2/YnNigCZraIFDTnD1yS2IC+FSy8ihESSYfgltFm6Gl/36b4Fccuz2L4BP3htxbxx9R8
+	7rPXS58HlvBI0Hpzr3UzkjHPXq/NkcsmGoPRav3U38i8tv5uMkQ2ES/FuSaqtSkyO2mjwbzvSV3
+	xkXMb/DXCI6/ITvw5Ak1sME+hfWSSKU1Ut6aNIAfGHgLHh0haBzyypyGRbtfohRpQF4JCAU1dAW
+	i0EeBgVe3dzJ+UIS8GdBXwWpI45YCAunLQ==
+X-Google-Smtp-Source: AGHT+IEzbCuaw2gb4SoiLfoCGhV4qUqReRteL4cHA8BdEPX67hviGCcUhbWK23EzV3nUwwQBFx6QyA==
+X-Received: by 2002:a05:6512:3d18:b0:540:2339:3761 with SMTP id 2adb3069b0e04-5402a5ea3c0mr647882e87.31.1733906837971;
+        Wed, 11 Dec 2024 00:47:17 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54020b50393sm796000e87.20.2024.12.11.00.47.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Dec 2024 00:47:16 -0800 (PST)
+Date: Wed, 11 Dec 2024 10:47:14 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Cc: Stefan Schmidt <stefan.schmidt@linaro.org>, 
+	Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sebastian Fricke <sebastian.fricke@collabora.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 27/28] media: iris: enable video driver probe of
+ SM8250 SoC
+Message-ID: <35tpvx2uok22tmq76fe6mluiqnkymm2es6iu5jjj2zapeio6me@l4obuknsn3gz>
+References: <20241210-qcom-video-iris-v8-0-42c5403cb1a3@quicinc.com>
+ <20241210-qcom-video-iris-v8-27-42c5403cb1a3@quicinc.com>
+ <CAEvtbuuO5Ga+wW9rstX_e_RGnm5jSNSHmyy3w3M9FTopNhKttQ@mail.gmail.com>
+ <b4f35301-6361-9e07-73dc-023e87c80857@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b4f35301-6361-9e07-73dc-023e87c80857@quicinc.com>
 
-Hi Cristian,
-
-Am Mittwoch, 11. Dezember 2024, 00:06:13 CET schrieb Cristian Ciocaltea:
-> The patches provide the basic support to handle the second HDMI output
-> port found on Rockchip RK3588 SoC.
+On Wed, Dec 11, 2024 at 11:54:09AM +0530, Dikshita Agarwal wrote:
 > 
-> For now I enabled it on Radxa ROCK 5B only, the board I've been using to
-> validate this.
 > 
-> ** IMPORTANT **
-> 
-> The series has a runtime dependency on "phy: phy-rockchip-samsung-hdptx:
-> Don't use dt aliases to determine phy-id", a patch submitted recently by
-> Heiko [1].  Without applying it, the functionality on both HDMI TX ports
-> will break.
+> On 12/10/2024 9:53 PM, Stefan Schmidt wrote:
+> > hello Dikshita,
+> > 
+> > On Tue, 10 Dec 2024 at 12:08, Dikshita Agarwal
+> > <quic_dikshita@quicinc.com> wrote:
+> >>
+> >> Initialize the platform data and enable video driver probe of SM8250
+> >> SoC. Add a kernel param to select between venus and iris drivers for
+> >> platforms supported by both drivers, for ex: SM8250.
+> >>
+> >> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> > 
+> > [...]
+> > 
+> >> --- a/drivers/media/platform/qcom/iris/iris_ctrls.c
+> >> +++ b/drivers/media/platform/qcom/iris/iris_ctrls.c
+> >> @@ -17,6 +17,8 @@ static inline bool iris_valid_cap_id(enum platform_inst_fw_cap_type cap_id)
+> >>  static enum platform_inst_fw_cap_type iris_get_cap_id(u32 id)
+> >>  {
+> >>         switch (id) {
+> >> +       case V4L2_CID_MPEG_VIDEO_DECODER_MPEG4_DEBLOCK_FILTER:
+> >> +               return DEBLOCK;
+> >>         case V4L2_CID_MPEG_VIDEO_H264_PROFILE:
+> >>                 return PROFILE;
+> >>         case V4L2_CID_MPEG_VIDEO_H264_LEVEL:
+> >> @@ -32,6 +34,8 @@ static u32 iris_get_v4l2_id(enum platform_inst_fw_cap_type cap_id)
+> >>                 return 0;
+> >>
+> >>         switch (cap_id) {
+> >> +       case DEBLOCK:
+> >> +               return V4L2_CID_MPEG_VIDEO_DECODER_MPEG4_DEBLOCK_FILTER;
+> >>         case PROFILE:
+> > 
+> > The handling for DEBLOCK does not seem to be part of the SM8250
+> > enablement. Or did I miss something?
+> > It seems they should be part of a different patch that makes use of
+> > the DEBLOCK cap.
+> > 
+> this cap is part of platform caps of SM8250 and the value(set by
+> client/default) of this will set to firmware as part of start streaming
+> through set APIs.
 
-Looking at the drm/rockchip patch, that should not cause disruptions on
-its own, right?
+Then it still makes sense to split into two parts: one for DEBLOCK
+handling, one for the platform data only. Or you can safely merge
+DEBLOCK into the main caps commit.
 
-Only with the dts-parts enabled would we run into phy-issue.
-(Asking, because things go through different trees and the drm
-part looks ready)
-
-
-Heiko
-
-
-> Furthermore, please note this is subject to the same limitations as
-> HDMI0 when it comes to the supported display modes.  The fixes provided
-> via [2] are not applicable to HDMI1, hence I will handle it separately
-> as soon as all dependencies are merged.
+> {
+> +		.cap_id = DEBLOCK,
+> +		.min = 0,
+> +		.max = 1,
+> +		.step_or_mask = 1,
+> +		.value = 0,
+> +		.hfi_id = HFI_PROPERTY_CONFIG_VDEC_POST_LOOP_DEBLOCKER,
+> +		.set = iris_set_u32,
+> +	},
 > 
 > Thanks,
-> Cristian
-> 
-> [1] https://lore.kernel.org/lkml/20241206103401.1780416-3-heiko@sntech.de/
-> [2] https://lore.kernel.org/all/20241116-vop2-hdmi0-disp-modes-v1-0-2bca51db4898@collabora.com/
-> 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
-> Changes in v2:
-> - Override hdmi1 pinctrl-0 on rock-5b as it requires hdmim0_tx1_cec
->   instead of hdmim2_tx1_cec (fixes a pin conflict when enabling
->   CONFIG_SPI_ROCKCHIP_SFC)
-> - Link to v1: https://lore.kernel.org/r/20241207-rk3588-hdmi1-v1-0-ca3a99b46a40@collabora.com
-> 
-> ---
-> Cristian Ciocaltea (4):
->       drm/rockchip: dw_hdmi_qp: Add support for RK3588 HDMI1 output
->       arm64: dts: rockchip: Add PHY node for HDMI1 TX port on RK3588
->       arm64: dts: rockchip: Add HDMI1 node on RK3588
->       arm64: dts: rockchip: Enable HDMI1 on rock-5b
-> 
->  arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi  |  62 ++++++++++++
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts |  44 ++++++++-
->  drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c  | 119 +++++++++++++++++++-----
->  3 files changed, 200 insertions(+), 25 deletions(-)
-> ---
-> base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
-> change-id: 20241207-rk3588-hdmi1-704cbb7cd75f
-> 
-> 
+> Dikshita
+> > regards
+> > Stefan Schmidt
 
-
-
-
+-- 
+With best wishes
+Dmitry
 
