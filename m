@@ -1,181 +1,128 @@
-Return-Path: <devicetree+bounces-129732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFB069ECAAD
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:52:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEAA89ECAC1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:58:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50E96168FDC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 10:52:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34FF7169C40
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 10:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0506D1B21A0;
-	Wed, 11 Dec 2024 10:52:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 098AE209660;
+	Wed, 11 Dec 2024 10:58:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bcKpA8X2"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="tEI+Eomk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C035239BD7;
-	Wed, 11 Dec 2024 10:52:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37129208986
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 10:58:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733914368; cv=none; b=kNyDciRwJ86PulHmcBPwKcUbrv+dm22f0XomqTEtBzye7vpSi9fguTaxgaVTByTKO2P72Xx5tNFMErdsrDIMOXYO+W2RMW9vk3T3a99WoVq2+hZmS9NibRwRQdJTu7ofarlmFP+YwMXiCL7gPjpZ4qNliSa/Yp9dpgeG1HWbkkc=
+	t=1733914682; cv=none; b=GpTxxXxgVwA0PP1iCpvIo9T1khpWbzj1yZB3BV/VWdpUkB4FZ4zxB9mTE36gFRGxM656CRwh3Q5HS8Ln2Db3o4gSobXhOgkbmaLEkaJDaVySOqQk+w15KAGuAPHThiY6gxaYQqj1VuN6SnrnuUn2Dwcq/MGLtkjAGjhUAmeczgc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733914368; c=relaxed/simple;
-	bh=BgZhTlevp6pqoGWsVWl9p/I9hGt8OABfUQFAsOGdESw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ISUHCswJLq9AEMPzzrRp7/0JZBEeWR6sBitCVkFUx/LqxRCF7HmJjD+qNAMMrFhxXVX94qLfgkfTcQqCAm1MKNCAW5Mj3CobR8P7qv3f7axUK11SJXF7SQoNpFgv3DLqRIEp3ZkcALiCdiUmKkUYISeJmvY4zikqxFvH4n3EH3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bcKpA8X2; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aa68d0b9e7bso564552766b.3;
-        Wed, 11 Dec 2024 02:52:46 -0800 (PST)
+	s=arc-20240116; t=1733914682; c=relaxed/simple;
+	bh=avf3tUXOuYRSKETT3gs06EPn1ESwA+EPARe+dlRGr1Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=o6d08IgcdSwIohuuP6Nt3+GgF//VqVVDV7Ma2ewwtyXkcryXPimv6pOzZAf0ZpcWu2f+njqnqBjMdY8u8eEBHyZzhOB5ZR1OU3HhEIlO8xZfAyEbX46DbIjIkoguedVYO7dCsTC+VjdymyJCDYnktf7FxHirQMeyPfFaMsX3oFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=tEI+Eomk; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-435f8f29f8aso10529895e9.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 02:58:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733914365; x=1734519165; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0ar7X7quiyDOv9lF7YgSvJbRmBbIs8Br6m+T2KQOTxk=;
-        b=bcKpA8X2Gq51dTOFtTbs5SwxuC3uuY9PpbMydWBOfwErwgJXe389Ij0b4oSYgcuUNP
-         eQOGbfMtgaryRmu6NoX8uBagVG+zPf306Mu2XmO2cMmToSM6oE7mwD7u2ggsHOQH4ZNF
-         3sMkY5PAMVXPOIBV5NdYzI3IMWENSBOJeUKKKJQcH+jNglVdiU8fvZnGQibHFNK/pdTB
-         v2iDGJur1DqJufnqaH9KbiOMsjT/TByvCHDVOr9VOoLicBps7q75V6txtGgPY5kri6Hh
-         QjofZ3pUcQkWSVKp0+uZ6XYctvVkx2lKgv7l26xfS3/YdorIGPUDPzf6/I798G5JgiP9
-         qGzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733914365; x=1734519165;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=google.com; s=20230601; t=1733914679; x=1734519479; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0ar7X7quiyDOv9lF7YgSvJbRmBbIs8Br6m+T2KQOTxk=;
-        b=HAC+kr1c8oErApDWwZOZqecVfu7QznuADoyGALyGdEBAQrGZQl/nh2CEBirJdFLW19
-         D3+oulai7ASqrjpeHmacpjO6SqMbpQKDOW36noW1TftEfYa/C5mb3v+DwM0G3/bfYEQj
-         aW1f0l3YEcS2Yqvsk/B0/YPXnsG8Duq/ppTvQ+7RufQrteFSEL8kgvChh9CETZ1GpLvI
-         WlnkZ09LF5nM+4SeKro10kWG7JIZ3iIEkzZHXYU8KjvMR/I6UZ1EjTO5hZsV075W6p1m
-         h0gT9oZ0nu0C8T2TIUJaz0GiyohAHHPoyKabP8ydKgPmouU3fEsMw0pDNLZftyPhmLkb
-         RdHw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1xaaxjctrC1YA9cPdi1mW46Ac3C2eeCbgpzdgU7cOkn79RCMQwRiYs/1iJsIpp5RWo4ViERzsrJHY@vger.kernel.org, AJvYcCWeLK652pphDwOdjbg5llm8UMN35DiTLtuOmy/60mllKuaFxr0ZJVriaJ9m1WFriFKqWQHg5j1z@vger.kernel.org, AJvYcCXV1HXLk2CqGUCoDba18H9wneux2H5wMgJiw1Qa/6utCjaxsz68Dtlx7fIqRAS1udgO6llIpZ+N7Zjifq8m@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzvt+/GntnLPYhyOmCqMLv/eLE36TKZ7jMiTgKjc10rFkJ6ah0n
-	CkAi5OzOmcsFZJltaxR88Vb4JLSzxpfZR/e9PpzbCacPJDtw2FSD
-X-Gm-Gg: ASbGnctluSNb8gC5YcofWMFWMVDb4z0XDZn14yaH6NMAN0tq6Fe9YMW/jy9+Hme46sG
-	MFo9o6TzEtTE+X7R+16IATYc71uc+5WtwJj20CwDq9fQ1RMUzGM3rxI0D5EBRtYZ5+gArRPUbYt
-	dwLX9lOukqiBMOTBd9pv18NiCcl+3l7f4S7c7gVta9rVYg8vGGZLVztvzkWJYvCQJBKXlI5rv7z
-	U5uHCGX7acyAGiIviOsYXbTlBqLK8fy8BLQIxESG71ke9do6Q==
-X-Google-Smtp-Source: AGHT+IHwiOT3GsBg/NVpMOQ92ESIyoTXbNqLBTHHdiqMKQk4eQbTAxxraV2PCuqQkMb1fjMOP2h/7A==
-X-Received: by 2002:a17:906:3190:b0:aa6:851d:af4d with SMTP id a640c23a62f3a-aa6b115b2bcmr151872666b.21.1733914365146;
-        Wed, 11 Dec 2024 02:52:45 -0800 (PST)
-Received: from debian ([2a00:79c0:67c:dd00:303:6c5b:4b07:6715])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa68c8944basm415879866b.143.2024.12.11.02.52.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 02:52:44 -0800 (PST)
-Date: Wed, 11 Dec 2024 11:52:42 +0100
-From: Dimitri Fedrau <dima.fedrau@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 2/2] net: phy: dp83822: Add support for GPIO2
- clock output
-Message-ID: <20241211105242.GB4424@debian>
-References: <20241211-dp83822-gpio2-clk-out-v2-0-614a54f6acab@liebherr.com>
- <20241211-dp83822-gpio2-clk-out-v2-2-614a54f6acab@liebherr.com>
- <qqqwdzmcnkuga6qvvszgg7o2myb26sld5i37e4konhln2n4cgc@mwtropwj3ywv>
+        bh=o9PtumkMFYAOvEEd8+H2rccuyHQFzgSMwrAW2ht91xU=;
+        b=tEI+Eomk3yZRfly493gKnYlsts4AE/ZSDEjokgV8AkdytdkGeUAD5RVDmGuU9gvnZJ
+         EX6XtkiPq6uE7KN6nAhPlNcFsOiRmuDfYxyGuLFI/iC5VdumP/J2sZo1FZUVywE4BINk
+         JFrZHwXpaRYgsEcfAqXtL64CB9ESIUHis0qPsmQ8jGXK0lwoG9xOWTW7WgEr+1WTALte
+         oNNVYTu44UTo8J0BgqYcJwwlI8VXaK2mXCD3EZTjtNfy/j28TPMqvUjlOyv1mpUJxGFv
+         k9U9/VBvFdrZG7EAhZo0cmTk6VTYA3C5IJSiYaXdD89LGvv18wbk4cSUjLRPVDxmJv1c
+         lhUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733914679; x=1734519479;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=o9PtumkMFYAOvEEd8+H2rccuyHQFzgSMwrAW2ht91xU=;
+        b=rvwEeZPddtfP0HMGAWd3c9719kJiXnsLefzHX9hu4fSaxaxbzMI+Z6aLDQF5PmSfAv
+         AsQCfjSjzOMZn97wwh4IV0944r6MOoL5L3zQwPvQ8SdD2iu7BiWf/I5+SLZEnSrsx6df
+         NQxaUdReoZ75ygteXyEDuCSy4QVj0jI0htsGWrTOUR/izDDt2z3ZFwuP1HuM+JiuAHLU
+         RiqJdmwP11VlQVbyPIGhXOjKU6qrquYL+VU9DJF5AoNN/5G4HAQUKyHnk0usDQCufkYe
+         hnTOfS3Z69xravoPnjbZoMFTrF/mqLwV9AwBhA9yvP+9bMqlH9ByrftmUXg4gI6jZQSj
+         ZP2g==
+X-Forwarded-Encrypted: i=1; AJvYcCULdPwMvKLv9XrDcdkUBWHtnMGuqVHg5mQD5dsJgD/BIrpKlZ6FcXWulKXJGu87SAC7CdICn2togX3K@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+ascAAYnV1/grI3+uhBrKrbLHjLX3LRuyf4oUAX/j4SoLPQse
+	XafhgidfKWOU6sqmeBJJXz4w36vw3IuXY/qCixIPjVNa5AqUVUx1GAYqrbR3MriYVGLj6kT+3DF
+	dTL8qZQsofZwNVqQTJZtLiIT3DdOLyFW0wPkr
+X-Gm-Gg: ASbGncuvyYRPNv/s7W2ck2z2O21SjwYxjqJcNe57c+8iUvF8imPeeF2o0B98ZvPvGVd
+	itAL0lPZIzgGgNIeeCpLqMoXkqQb3Zu0tQFU65GbEGbzXoPFJJTxH2TG5b3AVLSfUZQ==
+X-Google-Smtp-Source: AGHT+IEo1dBS36E4Exb3soYdCQkI9XhgNGcMH5O/gbeJ4gRSazPIpyMzj5iXmoR3+umlkKVaSTzxPHrFrJGOjnVnbqw=
+X-Received: by 2002:a05:6000:1f81:b0:385:e3b8:f331 with SMTP id
+ ffacd0b85a97d-3864ce97173mr1517915f8f.14.1733914679348; Wed, 11 Dec 2024
+ 02:57:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <qqqwdzmcnkuga6qvvszgg7o2myb26sld5i37e4konhln2n4cgc@mwtropwj3ywv>
+References: <20241210224947.23804-7-dakr@kernel.org> <20241211104742.533392-1-benoit@dugarreau.fr>
+In-Reply-To: <20241211104742.533392-1-benoit@dugarreau.fr>
+From: Alice Ryhl <aliceryhl@google.com>
+Date: Wed, 11 Dec 2024 11:57:47 +0100
+Message-ID: <CAH5fLgg3QXiJFvfEE63kcxQ6=ZRE38CViZ0E6=Xec6a1+njbWw@mail.gmail.com>
+Subject: Re: [PATCH v5 06/16] rust: add `Revocable` type
+To: =?UTF-8?Q?Beno=C3=AEt_du_Garreau?= <benoit@dugarreau.fr>
+Cc: Danilo Krummrich <dakr@kernel.org>, gregkh@linuxfoundation.org, rafael@kernel.org, 
+	bhelgaas@google.com, ojeda@kernel.org, alex.gaynor@gmail.com, 
+	boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com, 
+	benno.lossin@proton.me, tmgross@umich.edu, a.hindborg@samsung.com, 
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net, 
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
+	daniel.almeida@collabora.com, saravanak@google.com, dirk.behme@de.bosch.com, 
+	j@jannau.net, fabien.parent@linaro.org, chrisi.schrefl@gmail.com, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	Wedson Almeida Filho <wedsonaf@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Am Wed, Dec 11, 2024 at 10:45:53AM +0100 schrieb Krzysztof Kozlowski:
-> On Wed, Dec 11, 2024 at 09:04:40AM +0100, Dimitri Fedrau wrote:
-> > The GPIO2 pin on the DP83822 can be configured as clock output. Add support
-> > for configuration via DT.
-> > 
-> > Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> > ---
-> >  drivers/net/phy/dp83822.c | 40 ++++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 40 insertions(+)
-> > 
-> > diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
-> > index 25ee09c48027c86b7d8f4acb5cbe2e157c56a85a..dc5595eae6cc74e5c77914d53772c5fad64c3e70 100644
-> > --- a/drivers/net/phy/dp83822.c
-> > +++ b/drivers/net/phy/dp83822.c
-> > @@ -14,6 +14,8 @@
-> >  #include <linux/netdevice.h>
-> >  #include <linux/bitfield.h>
-> >  
-> > +#include <dt-bindings/net/ti-dp83822.h>
-> > +
-> >  #define DP83822_PHY_ID	        0x2000a240
-> >  #define DP83825S_PHY_ID		0x2000a140
-> >  #define DP83825I_PHY_ID		0x2000a150
-> > @@ -30,6 +32,7 @@
-> >  #define MII_DP83822_FCSCR	0x14
-> >  #define MII_DP83822_RCSR	0x17
-> >  #define MII_DP83822_RESET_CTRL	0x1f
-> > +#define MII_DP83822_IOCTRL2	0x463
-> >  #define MII_DP83822_GENCFG	0x465
-> >  #define MII_DP83822_SOR1	0x467
-> >  
-> > @@ -104,6 +107,11 @@
-> >  #define DP83822_RX_CLK_SHIFT	BIT(12)
-> >  #define DP83822_TX_CLK_SHIFT	BIT(11)
-> >  
-> > +/* IOCTRL2 bits */
-> > +#define DP83822_IOCTRL2_GPIO2_CLK_SRC		GENMASK(6, 4)
-> > +#define DP83822_IOCTRL2_GPIO2_CTRL		GENMASK(2, 0)
-> > +#define DP83822_IOCTRL2_GPIO2_CTRL_CLK_REF	GENMASK(1, 0)
-> > +
-> >  /* SOR1 mode */
-> >  #define DP83822_STRAP_MODE1	0
-> >  #define DP83822_STRAP_MODE2	BIT(0)
-> > @@ -139,6 +147,8 @@ struct dp83822_private {
-> >  	u8 cfg_dac_minus;
-> >  	u8 cfg_dac_plus;
-> >  	struct ethtool_wolinfo wol;
-> > +	bool set_gpio2_clk_out;
-> > +	u32 gpio2_clk_out;
-> >  };
-> >  
-> >  static int dp83822_config_wol(struct phy_device *phydev,
-> > @@ -413,6 +423,15 @@ static int dp83822_config_init(struct phy_device *phydev)
-> >  	int err = 0;
-> >  	int bmcr;
-> >  
-> > +	if (dp83822->set_gpio2_clk_out)
-> > +		phy_modify_mmd(phydev, MDIO_MMD_VEND2, MII_DP83822_IOCTRL2,
-> > +			       DP83822_IOCTRL2_GPIO2_CTRL |
-> > +			       DP83822_IOCTRL2_GPIO2_CLK_SRC,
-> > +			       FIELD_PREP(DP83822_IOCTRL2_GPIO2_CTRL,
-> > +					  DP83822_IOCTRL2_GPIO2_CTRL_CLK_REF) |
-> > +			       FIELD_PREP(DP83822_IOCTRL2_GPIO2_CLK_SRC,
-> > +					  dp83822->gpio2_clk_out));
-> 
-> You include the header but you do not use the defines, so it's a proof
-> these are register values. Register values are not bindings, they do not
-> bind anything. Bindings are imaginary numbers starting from 0 or 1 which
-> are used between drivers and DTS, serving as abstraction layer (or
-> abstraction values) between these two.
-> 
-> You do not have here abstraction. Drop the bindings header entirely.
+On Wed, Dec 11, 2024 at 11:48=E2=80=AFAM Beno=C3=AEt du Garreau <benoit@dug=
+arreau.fr> wrote:
 >
-Ok, thanks for the explanation.
+> On Tue, 10 Dec 2024 23:46:33 +0100 Danilo Krummrich <dakr@kernel.org> wro=
+te:
+> > +/// A guard that allows access to a revocable object and keeps it aliv=
+e.
+> > +///
+> > +/// CPUs may not sleep while holding on to [`RevocableGuard`] because =
+it's in atomic context
+> > +/// holding the RCU read-side lock.
+> > +///
+> > +/// # Invariants
+> > +///
+> > +/// The RCU read-side lock is held while the guard is alive.
+> > +pub struct RevocableGuard<'a, T> {
+> > +    data_ref: *const T,
+> > +    _rcu_guard: rcu::Guard,
+> > +    _p: PhantomData<&'a ()>,
+> > +}
+>
+> Shouldn't this type hold a `&'a T` directly instead of a raw pointer ?
 
-Best regards,
-Dimitri Fedrau
+No, because the value might get destroyed before the end of the
+lifetime 'a. It's not legal to use references for containers that
+might free or otherwise invalidate the referent in their destructor.
+
+That said, the PhantomData field should probably be `&'a T`. It
+doesn't actually change anything, but it carries the right intent.
+
+Alice
 
