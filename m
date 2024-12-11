@@ -1,78 +1,79 @@
-Return-Path: <devicetree+bounces-130016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BC1B9ED928
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 22:57:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C9A69ED943
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:03:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CF031883CA7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 21:57:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DE821885768
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 22:03:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D06451F0E35;
-	Wed, 11 Dec 2024 21:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A04251F2C23;
+	Wed, 11 Dec 2024 22:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yVEY8Hdc"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cw0MaO6Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B2BD1EC4D4
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 21:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF54E1F0E45
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 22:01:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733954257; cv=none; b=KA6Krvt+AOuRBZ8GTR4FGWw1966p23RJNj5JaBVaV0WEF9Yg0tXYIANx4U4FoT+AOYfjoOgKpVK2O/ySnuZabto2StPjNT6JT3ZF0S0GyWCHPjsYxBxRrJ9JSr4aAk3wV+cMG3SyXpN+M1Cf7U5L6/rcDtO/3hGsZRyZIE06ySQ=
+	t=1733954516; cv=none; b=DejWuz8AeTLLagwCBt5voQv+idbv9DOpHEZ1L/M+OiPtnBa/apdYD6u1wVR9gWb7P6+jLNL7zwvMv2NJaqx0pNaOO8oo/MAkYkxL+B1iGSIE3xV2H+QjVdBe767rsMi9LVSL25U5t+cofQZ5Bqc+oLtkhrZ/q+roJrvj8OVNpsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733954257; c=relaxed/simple;
-	bh=NoocTxI69ryT8lgZX5nyYh4EyrV+I82c3ZNBMnlnPK0=;
+	s=arc-20240116; t=1733954516; c=relaxed/simple;
+	bh=Hu2ByqklQuQmDfnHBLNSZnJnXSQP/3lhW+QeaRZXie8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BDFJwel6IwXQ69flgU7ANwZ3nbhVNq4GgBVHyQtJLZ1iMAVzcdtd7OkZOG473mCXXB8k6FIcKDP2Z9gT0UvQ1gU9evfofSK0N9oynQ0ylTBlMGJ1a8DaoGKF515ThyYESPsSjLBRNgwmTNlQq+x7DO06AQeE7p/MN2JYcQNHE2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yVEY8Hdc; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-385e87b25f0so730324f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 13:57:34 -0800 (PST)
+	 In-Reply-To:Content-Type; b=GsLVyn7TGb0dOW/qTet/jE/Xj1D8BtDVEmEHVqJXgfFyahJbAtOsDAP9bfL9YqMAKLZ9rpryrI+4GiWYZ2V1wHNW/gI4tEgLp3GajcWXNwFd18QNn0YZnr4dDtmNPn5khRKLF3tMpOfFFTL4mBlBhzfA9boPZ1809nR0uF31tCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cw0MaO6Y; arc=none smtp.client-ip=209.85.160.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-29fcbf3d709so1367299fac.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 14:01:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733954253; x=1734559053; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733954513; x=1734559313; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OiMsT5ZPIfov52Mx3AVw33KMoPobt05c+bdtT6TpK0A=;
-        b=yVEY8HdcZOYUsY8g7PVKHe0lDXk3YDPcwh9j/FVqXDQeuG5JXI9H44c7FvUgkzmnXy
-         Vi0zZNrR5+QCTiI48idYjYWHFk/+VXfP20fYQ3I/jDnJJhLjJ0TBxIHl7fuSd+7EMkas
-         EZ1r+tnMHEiWKvbWve0zH19pvHXHVMV8Wg7FOBgM/POhelOnRZ4GV0EjBjDgAConf+ql
-         +Nsa+qUvY03LKOy+8ZSWMZp+hs8UMbG+PQrvQ4dkVc9R5XhCJ7l2SuQ1tjWugIzkf9rA
-         Zh+nhhf5We/++/Qiy8af9tEdSuZBsAPq3YIxQiKKIkPxJ9J/l5dZb8RMiD/QxvDTkMFf
-         XokQ==
+        bh=YfgiN8bKA/zV2iECs+IeycK2wa4XqflJ7gHTNLn9LPA=;
+        b=cw0MaO6YPlIWZR4oO/H/vhAMl1A1V9xCiU4H7Gz2sXHb1XG6dJm/mW0fkuY4pwYqPs
+         oc2JnUpC+N3E+B6PMcJi1yxrEBGILxOnpsyxaBxzokr3zzewyeaGJ73NYofP5uFJZHRF
+         VZndnVhfnu6ifHJHD2TtNeExs75JZ43ehqvmi971EHnSEfR2nH3pLbN3yI7s0O39N+1+
+         W3MH8d+MIgfDn/GpMQ0IJ52xneuMYqhnTFodT2KYTr2g6jpQjA64BP6ZVpOco5/7VpA5
+         SpH9l6m4WDjTUgu2ViRj8RVvSUWWoYRuLRK/I8UNNAVNufjQRXI4AOmj5rHWwneA7Jbw
+         jJug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733954253; x=1734559053;
+        d=1e100.net; s=20230601; t=1733954513; x=1734559313;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OiMsT5ZPIfov52Mx3AVw33KMoPobt05c+bdtT6TpK0A=;
-        b=kdeA8VJ9ONUIG4gXNFLCdumUCzzAm3c4QnkgIv26dEmdB+k5BxC8KPyT78rSgberBm
-         QeuHEViShT6Soomu0iQDL6kitGO7UGPV1bHZFA6st3AdFl1D4Cmt8z1DZCYUzKl4lSVw
-         l3elc30gNDaWa+n2cWJjj3FuKSsab2aQzxQbuAfP+vSFMYREi/VfejEYd9I+Xn25zz0j
-         5zyZtjDsVobTlAQqMnH0yyTFEESJFD7zdh7TtuNNUIoQBmITQPA4qY4xguO/gKI989Kx
-         PZBAJeav4SdL68huJAvz+KRA8BACqFRpr6tT74cPyZdm6cWd2om6aC25H3OUJ/eL8PD/
-         b1ig==
-X-Forwarded-Encrypted: i=1; AJvYcCW1CBozqifLmsS1xDHPBHMx5cOPFMKmFQPw0YpJwZOLYfnxa61FKDpKUkbRkWcRB9padyAE3Rfw2Lxw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1Vbfo8W4xbHqfrVR29LXhI3IiHPXGp8k/cH07ebXLRr8UP92u
-	+ALei8O6kLBBpr3MA/3Es5I7DQG2BfGXvxTgDRbfEAHikS8HGYtfjkTR/fZwkPI=
-X-Gm-Gg: ASbGncuI4ZTK0f+CbaRXdI2aaC9KoJ6llpBLJ0ZoO3YwlJrbuBcl3RBxoLwjTMVx2bT
-	KVq+xmvXx8TFRcCPIU5HegcKsHuyci5Z7TN4hcvxDrQBszt5pr7YvkREJ+7oG4ad03RByC87b5Q
-	9qknF/gRhtyk0DWbWAQm38iDwZN+sexaXJ2j/+RBQv4dgnKH1huo0Gud2L19ZmHAuLinu285kDn
-	XL5beIYhAxRkTYFyWDuWWWC+M24AK4/EEW1kUAghIsOOGHH05nFnVLw3sY/NkxcWLY=
-X-Google-Smtp-Source: AGHT+IFFp+r/vdKuglbxh8YThlHAVZQ6EWL6sTWl2g1jqrOQgWrFNPXYNjeb7DaZjcHoAt35YUmQpQ==
-X-Received: by 2002:a05:6000:1543:b0:386:2e8c:e26d with SMTP id ffacd0b85a97d-3878840808emr704391f8f.0.1733954253597;
-        Wed, 11 Dec 2024 13:57:33 -0800 (PST)
-Received: from [192.168.0.27] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4361d1cd906sm33498175e9.12.2024.12.11.13.57.31
+        bh=YfgiN8bKA/zV2iECs+IeycK2wa4XqflJ7gHTNLn9LPA=;
+        b=hLM+q8s6quRI16D+cRc1HbghBYs2gUpT0SINQkebDPCYNYjjyiQlhfkuXbZHkcEePc
+         Dm5pkresxQQ+Gv8c+vjX7GBp02gcD83YvAY0zUFhmctyOhfVhoqGYS7xifb16T+jVXl7
+         eEtm7+Db19HL9AJv5aWMNqLITGKPcdzlfEFLFkR+Sskyb3TmYpMYx1Dc3KK8OipHPyec
+         Kfa9iMnHitLAdv4OD8M1wF2kKi0FwhOiL2z6cnYZ78X+lLBfOpfOWFhST5ydxtDZT5zU
+         HxcJ+Am9ABdF8jAKmqt7HEST9Zwb7E/jgzPoKQHmaoqyZ5EIXWh9qpEtfxhbIZEs98DT
+         /xuA==
+X-Forwarded-Encrypted: i=1; AJvYcCX34kjX5ZJ2YvXncXOgKOoxjw32hN07Q5L3YkS+9NnsqzhEZ7LJq2cku/M7+OFd1TM1CU85KDBvgVOu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZSHVeEzULfq3ArHreDTHPyj0rswNdfcsI42bFNw6XsC1hS25T
+	pSfgT8P+FNlvYu8+6HN+KHKE+1UGwQwlMj/qe5tYiuf+d7L8A6o0Xubxp/gH8mA=
+X-Gm-Gg: ASbGnctBJ6rIFlwYEhpAwkkPf6BCnZWf4AWyPP6AxK59WKkO2rzvBBlEgMEYoXuZuKn
+	ROJhQqexOw9VrNeDvToJyQCKMsrvZG9jRSKcJw840I+mBdCEYB19LZfSVmAHfOnSZb861LcwR0i
+	uzXsnDZY/IJZFXjD1Mu83lM4OVfxJlqjF7HPD3wgwRaLgKF+lgCKqM0cHBwhZt/YfkCaFi8R3l/
+	hl4PyFFxdUuB2g15kYeHGbRgryR33J2e1qNULVRsjdhawYVeffbLTM7CNhid9zcsTZfEGAU6rl9
+	bBQxlpmYon8efEA=
+X-Google-Smtp-Source: AGHT+IE1lOU8aJHTLEOGRoysIOnnkI1kkr5ONpELSEis3dXuvxQLyp4Yadpz+/hT2lXzq9apzGKBPg==
+X-Received: by 2002:a05:6870:5490:b0:29d:c870:74 with SMTP id 586e51a60fabf-2a012dc23acmr3059922fac.27.1733954512698;
+        Wed, 11 Dec 2024 14:01:52 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-29fb0192599sm2701232fac.39.2024.12.11.14.01.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Dec 2024 13:57:33 -0800 (PST)
-Message-ID: <138cc2e5-6b31-49d9-b70e-400a3f3c3bfa@linaro.org>
-Date: Wed, 11 Dec 2024 21:57:31 +0000
+        Wed, 11 Dec 2024 14:01:51 -0800 (PST)
+Message-ID: <9ff2ba8c-fdb6-4792-905a-71ca2ddc58b9@baylibre.com>
+Date: Wed, 11 Dec 2024 16:01:49 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,35 +81,159 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 15/16] media: qcom: camss: Add CSID 780 support
-To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, vladimir.zapolskiy@linaro.org
-Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com,
- Yongsheng Li <quic_yon@quicinc.com>
-References: <20241211140738.3835588-1-quic_depengs@quicinc.com>
- <20241211140738.3835588-16-quic_depengs@quicinc.com>
+Subject: Re: [PATCH v2 2/9] dt-bindings: iio: dac: adi-axi-adc: Add ad7606
+ variant
+To: Guillaume Stols <gstols@baylibre.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, jstephan@baylibre.com, aardelean@baylibre.com,
+ adureghello@baylibre.com
+References: <20241210-ad7606_add_iio_backend_software_mode-v2-0-6619c3e50d81@baylibre.com>
+ <20241210-ad7606_add_iio_backend_software_mode-v2-2-6619c3e50d81@baylibre.com>
 Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20241211140738.3835588-16-quic_depengs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20241210-ad7606_add_iio_backend_software_mode-v2-2-6619c3e50d81@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/12/2024 14:07, Depeng Shao wrote:
-> +static int csid_configure_testgen_pattern(struct csid_device *csid, s32 val)
-> +{
-> +	return 0;
-> +}
+On 12/10/24 4:46 AM, Guillaume Stols wrote:
+> A new compatible is added to reflect the specialized version of the HDL.
+> We use the parallel interface to write the ADC's registers, and
+> accessing this interface requires to use
+> ADI_AXI_REG_CONFIG_RD,ADI_AXI_REG_CONFIG_WR and ADI_AXI_REG_CONFIG_CTRL
+> in a custom fashion.
+> 
+> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   | 53 ++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+> index e1f450b80db2..6c3fc44422cc 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,axi-adc.yaml
+> @@ -17,13 +17,22 @@ description: |
+>    interface for the actual ADC, while this IP core will interface
+>    to the data-lines of the ADC and handle the streaming of data into
+>    memory via DMA.
+> +  In some cases, the AXI ADC interface is used to perform specialized
+> +  operation to a particular ADC, e.g access the physical bus through
+> +  specific registers to write ADC registers.
+> +  In this case, we use a different compatible whch indicates the target
 
-Could we avoid this empty callback by checking csid->ctrl in csid.c ?
+s/whch/which/
 
-If so, please make that change.
+> +  chip(s)'s name.
 
-If not, it's fine.
+s/chip(s)'s/IP core's/
 
-For either case.
+> +  The following IP is currently supported:
+> +    -axi_ad7606X: Backend for all the chips from the ad7606 family.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+s/axi_ad7606X/AXI AD7606X/ # proper name of the IP core
+s/Backend/Specialized version of the IP core/
+
+>  
+>    https://wiki.analog.com/resources/fpga/docs/axi_adc_ip
+> +  http://analogdevicesinc.github.io/hdl/library/axi_ad7606x/index.html
+>  
+>  properties:
+>    compatible:
+>      enum:
+>        - adi,axi-adc-10.0.a
+> +      - adi,axi-ad7606x
+>  
+>    reg:
+>      maxItems: 1
+> @@ -53,6 +62,24 @@ required:
+>    - reg
+>    - clocks
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,axi-ad7606x
+> +    then:
+> +      patternProperties:
+> +        "^adc@[0-9a-f]+$":
+> +          type: object
+> +          properties:
+> +            reg:
+> +              maxItems: 1
+> +          additionalProperties: true
+> +          required:
+> +            - compatible
+> +            - reg
+> +
+
+The preferred way to compatible-specific bindings is to add
+everything at the top level and then disable ones that don't
+apply using -if: blocks.
+
+So under the top-level properties:, add
+
+  '#address-cells':
+    const: 1
+  '#size-cells':
+    const 0
+
+and move the patternProperties: to the top level.
+
+Then add not: to the -if: and make the then:
+
+    properties:
+      '#address-cells': false
+      '#size-cells': false
+    patternProperties:
+      "^adc@[0-9a-f]+$": false
+
+>  additionalProperties: false
+>  
+>  examples:
+> @@ -65,4 +92,30 @@ examples:
+>          clocks = <&axi_clk>;
+>          #io-backend-cells = <0>;
+>      };
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    axi-adc@44a00000 {
+
+Shouldn't we have the label iio_backend: here?
+
+Also, could use a more generic name like "parallel-bus-controller"
+instead of "axi-adc".
+
+> +        compatible = "adi,axi-ad7606x";
+> +        reg = <0x44a00000 0x10000>;
+> +        dmas = <&rx_dma 0>;
+> +        dma-names = "rx";
+> +        clocks = <&ext_clk>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        adi_adc@0 {
+> +            compatible = "adi,ad7606b";
+> +            reg = <0>;
+> +            pwms = <&axi_pwm_gen 0 0>;
+> +            pwm-names = "cnvst_n";
+> +            avcc-supply = <&adc_vref>;
+> +            reset-gpios = <&gpio0 91 GPIO_ACTIVE_HIGH>;
+> +            standby-gpios = <&gpio0 90 GPIO_ACTIVE_LOW>;
+> +            adi,range-gpios = <&gpio0 89 GPIO_ACTIVE_HIGH>;
+> +            adi,oversampling-ratio-gpios = <&gpio0 88 GPIO_ACTIVE_HIGH
+> +                            &gpio0 87 GPIO_ACTIVE_HIGH
+> +                            &gpio0 86 GPIO_ACTIVE_HIGH>;
+> +            io-backends = <&iio_backend>;
+> +        };
+> +    };
+>  ...
+> 
+
 
