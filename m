@@ -1,134 +1,120 @@
-Return-Path: <devicetree+bounces-129607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C6B49EC4FA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 07:46:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C40A9EC4FC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 07:48:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BA0D18879C8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 06:46:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D733167303
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 06:48:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171C71BD004;
-	Wed, 11 Dec 2024 06:46:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65DDE1C5485;
+	Wed, 11 Dec 2024 06:48:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N/0q+uk4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2332E46BF
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 06:46:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37AD546BF;
+	Wed, 11 Dec 2024 06:48:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733899569; cv=none; b=WKqwf4q/eh6+QoaYFlxH0138Y41oVuHcsxK6jyUTGux+Eody98vCr73xYRkVQoC5EOVZGMpXcLRN8xgPobtyHmO3buJbBw84Tt9fNzgcCxBaNNcVOxqf85uRJM86dIMtkPe/0Wuy8kdy9iujN4UUbYEkC0tNX6Ph7Zq3+X76Ndg=
+	t=1733899689; cv=none; b=qum5FSDcYq0OAP0J4FqhQdWgqB9kttJ9QTuqACghuDMJBmEdj8EYvlsxopKmK1gNWJpbodCe5n6tbOskZAVXa5+e7jl3feu9eLGSijT36KifnWQSumwhf8I90g+dbuWs1SEK+HcaToaQ5dbP3MWFnhVjeWLnQ9VwvImBIWUSZTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733899569; c=relaxed/simple;
-	bh=JsLMh/E9UR4vux8SHx9nwrSwK9SL1fHUroLMlscWSVY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VLToAjIEaSJtYHZcxztwhNAFY7sQ1KO3DGXOVRgomK9YNaBFPBIEBBHoSQwS/U0B4tr7QYa+p3zYgyKE0Zv7gB6C2V66g59joBPubSBtuu487LFB619/+4q5oluiOoIq+TUQFlqogJTDWPRjiHaYWykspoLquhrJt2qu8xfWMA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.207.22.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip2t1733899481taganfs
-X-QQ-Originating-IP: tpkQmNVQxR3dRVrRmzOKQtyi/1JHE+2mRyLL+ZjgCrg=
-Received: from [IPV6:240f:10b:7440:1:b238:648b ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 11 Dec 2024 14:44:36 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 13522001219215429364
-Message-ID: <FE22A7AEB0707DE7+903efcab-b291-4a12-a9a5-ba1cc3658016@radxa.com>
-Date: Wed, 11 Dec 2024 15:44:36 +0900
+	s=arc-20240116; t=1733899689; c=relaxed/simple;
+	bh=OXcuGUST6PRMVKw++DvXhy9nNIvoCMMSwx2WhM7mMpE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=T5mxEFsi/dxY7xkV7Fqw3UnS1dc/r3ln9y4obcRYQjlEimQi3Tm1n2R2sv2dx5BHL9TGNtOtxoGUwdW9xKq19qRoIkN2VQyLdIkFNY8zxro+3tH/EXyilnkGNYTcOJz7tIuD7DcrM2Xp3f9TJe0FKUp9wdT78o3kmosyCyYkDFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N/0q+uk4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C46DEC4CED2;
+	Wed, 11 Dec 2024 06:48:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733899688;
+	bh=OXcuGUST6PRMVKw++DvXhy9nNIvoCMMSwx2WhM7mMpE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=N/0q+uk4pcblU+kTaaEjyJHlXZoWqczJyXf6kd0KyqJeZWja5iW/ZFcCsfCX61h93
+	 p3bx2wZac38j/yWcivf/sdKyLKHzm9kGiO6LqIu6y86Hp89hRBV8H8NPIlljRSn/Nj
+	 KApbLe1O0cBhAVsaUmb3oDUPKNhZQTPO+UfAPeG9sGxLGGDWlCrz3vak5gglj0qSn/
+	 Vtti01Oz5Pw2cq8vZgYRwDx1Zf9KjsSO/kXmQU8mx5SMzVbCqwJuKP8aMKIvKNFHLp
+	 aDg9eJK3jbRBuBZf1VSI/rlQL41TXbinZ1qnVf54BiZpFfKv486M1B2QURiv+w90j3
+	 03FkEpnuyWRBg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A9DF3E77180;
+	Wed, 11 Dec 2024 06:48:08 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH RFC 0/3] Pinctrl: Add Amlogic pinctrl driver
+Date: Wed, 11 Dec 2024 14:47:48 +0800
+Message-Id: <20241211-amlogic-pinctrl-v1-0-410727335119@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: rockchip: add Radxa ROCK 5C Lite
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, macromorgan@hotmail.com, jonas@kwiboo.se,
- andyshrk@163.com, liujianfeng1994@gmail.com, tim@feathertop.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20241211060936.57452-1-naoki@radxa.com>
- <c6ba70f1681bb635190e9452ecb22d59@manjaro.org>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <c6ba70f1681bb635190e9452ecb22d59@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: Mm/Yx8ZY6QnDP4UcM5U5HndmKWWzuZ0GYlWfdvdxKXYrS0RY6tyt4ViT
-	FLAZy96jnYJ6iLQHLWM6vCYu2lcAk3GhtxULYnYpkDLJfAwioNSHzdh395o1yFiUWFILsog
-	NHrQzheyOllqlw4K7B0PDvl6WrWQtQKoQbEXZLRiZ+y4dphInNhWTS4mvbeHfHYjsBYVHrF
-	PQRq8VtYbB4jNq1lQzOWG7sTDVOxVwhxq8sdeOPZK87kc6veacp2LVdZOF+k7tBorVV/7vu
-	wGsOJQaCz7pfhd2W4OF1Py26GBzHXYn2KNCOk8qc7h2pHxT/TMN4ljz9ogX04ALGVB5kypD
-	xjjJ1e/qpnOlZpT+ex0z4p0CjJksqDnnelDPBtaSS7NG2Oa1N+0GQP31sq8SmHS1asP1UKi
-	1FS4MeJXUDrinsQrV5RMklwjvSgSw4v7KBVtFJCQ0xZlL34Kw2Z7Y6/Qf4tEhx28Wai1Wxx
-	xR5SdTBuv5M/XDrT+nz6rxSKjuLEMC8px3yQ0lXbHFOPEph/rnCkX9Z9NyiIIGlY4JviyOd
-	dAYec/8Jc7sAo5hbN6DmSzig8rn0OYonT91m7fOoxn27vz5oqIYzu5Qg6eXUi5qErvChYuu
-	jwkUaEpvlGyRah8BTMSPFHb1nIHrPzutsKO/mB2IwXd/1i12r7cOpQsfru+ivSHFXro4Oi+
-	labVc3itfkT685Gm3XCyssZO6Pdt9VgAE/D9IFvzMYS+z6u991UoiBW8JnN7aPPdi9/oHR5
-	bt0hbcwYCOJS9rtCv+tHWZrjKMlh278bCdgwi41hd/jCUBuGAT7tE+imqKzaCJsTGgAfcPG
-	2pRGZQT+hdK/0i3igC5kE92Op/28OgCKjkjs9sq2v2zHuOdyqnodwhPwhfQ08yNGfggC7xC
-	kXOQgRuymD++Xr7XmXkKivAyO0ssle535kKrEbF4SwGBtmgtFxD5vIexFkmdOaTXFrYSP86
-	7GE4UPfgRaBzxOFEUC+Wonr+rQQuBmqZ4B+g=
-X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJQ1WWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDI0ND3cTcnPz0zGTdgsy85JKiHF0jo9REM0MLI4MUgxQloK6CotS0zAq
+ widFKQW7OSrG1tQCTIDtuZgAAAA==
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733899686; l=1432;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=OXcuGUST6PRMVKw++DvXhy9nNIvoCMMSwx2WhM7mMpE=;
+ b=FCAXcPi+2/pdauQ4NMuHxESiRUOmogABmpyrp0hwKtO3ielhPDS+1E/wKrJ4TTlFKTKZDGwDt
+ um+UAOvzQjIDnQFdm51p4MCGAvMyKCjf+u4yv8ye9qDZAgNmUxQiOuK
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-Hi Dragan,
+Add pinctrl driver support for Amloigc SoCs
 
-On 12/11/24 15:36, Dragan Simic wrote:
-> Hello Fukaumi,
-> 
-> On 2024-12-11 07:09, FUKAUMI Naoki wrote:
->> The Radxa ROCK 5C Lite uses a different SoC (RK3582) compared to the
->> Radxa ROCK 5C (RK3588S2), but the two are compatible from a software
->> perspective.
->>
->> Fixes: df4e08a5eed1 ("dt-bindings: arm: rockchip: add Radxa ROCK 5C")
->> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->> ---
->>  Documentation/devicetree/bindings/arm/rockchip.yaml | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml
->> b/Documentation/devicetree/bindings/arm/rockchip.yaml
->> index 753199a12923..2254ee079094 100644
->> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
->> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
->> @@ -895,7 +895,7 @@ properties:
->>            - const: radxa,rock-5b
->>            - const: rockchip,rk3588
->>
->> -      - description: Radxa ROCK 5C
->> +      - description: Radxa ROCK 5C/5C Lite
->>          items:
->>            - const: radxa,rock-5c
->>            - const: rockchip,rk3588s
-> 
-> I think it would be better to use "rockchip,rk3582" here, to allow
-> us to possibly use that information later.  For example, we might
-> want to be able to recognize RK3582-based boards in U-Boot without
-> the need to look into the e-fuses at some point, for which purpose
-> having a clear designator in the DT would fit perfectly.
+Base on the previous discussion,
+https://lore.kernel.org/r/20241113-a4_pinctrl-v6-0-35ba2401ee35@amlogic.com
+The existed meson driver failed to meet the requirement of the current dt-binding.
+So we start this new pinctrl driver to solve problem.
 
-It may be okay to introduce "rockchip,rk3582", but reading e-fuse is 
-still required in U-Boot because which unit (cpu coreX, gpu, etc) is 
-broken cannot be determined without reading e-fuse at run-time.
+The advantage of this version: Once the source file and binding document
+are added, adding dts node will be only operation for subsequent Amlogic SoCs
+(such as A4, A5).
+
+The code in DTS file is also readable when using GPIO, as below:
+reset-gpios = <&gpiob 6 GPIO_ACTIVE_LOW>;
+
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Xianwei Zhao (3):
+      dt-bindings: pinctrl: Add support for Amlogic SoCs
+      pinctrl: Add driver support for Amlogic SoCs
+      arm64: dts: amlogic: a4: add pinctrl node
+
+ .../bindings/pinctrl/amlogic,pinctrl.yaml          |  150 +++
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        |  146 +++
+ drivers/pinctrl/Kconfig                            |   18 +
+ drivers/pinctrl/Makefile                           |    1 +
+ drivers/pinctrl/pinctrl-amlogic.c                  | 1190 ++++++++++++++++++++
+ include/dt-bindings/pinctrl/amlogic,pinctrl.h      |   68 ++
+ 6 files changed, 1573 insertions(+)
+---
+base-commit: 171aa289a6fe65faffeb92a1fda283c055435a62
+change-id: 20241211-amlogic-pinctrl-22ea61820d0d
 
 Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> As a reminder, using "rockchip,rk3582" would also require a small
-> addition to drivers/irqchip/irq-gic-v3-its.c.
-> 
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
 
 
