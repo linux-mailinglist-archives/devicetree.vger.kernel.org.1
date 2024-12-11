@@ -1,173 +1,180 @@
-Return-Path: <devicetree+bounces-129559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18DFD9EC1A6
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 02:38:27 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B568F169116
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 01:38:23 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CD2878F45;
-	Wed, 11 Dec 2024 01:38:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="iLXQvmIz"
-X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9A49EC1BA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 02:50:49 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D540C3A8F7;
-	Wed, 11 Dec 2024 01:38:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733881102; cv=pass; b=RYePl54Up2v4q3QtqxGGPIC6VW0GeUxJBJqaJl5mxHQpXbobIGwE9ezDsUQg0CoE89GhwGdXvbjA5KO+SQmtwW4v2GmUmVwAy+al1U6Sur8m4ZnsLcqbVR3AI+l7urXi9qGCK/eAEgFbm02FridztEObnO6X+ExEAF8L95QlO78=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733881102; c=relaxed/simple;
-	bh=MiANRQxAdGZ9xEmS1eGwBnT+TtfM8IekXWmhnbTeeJs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ncvv3hwwh4sewkuNwd3iI6+3pMdH7VlpfpzxO5gXAHRLe6gTjL7ZhO4KJ6uY6n49/7KgN94e3YQOB4ddkP/HQDLpX8B8B8r4SUPeZCmHkAlxDwPK5N4Off7GoY+IpcbaqBFuPS+BbKZmKmIv4qS79JK8umA47yl7BtQE3sJR3cg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=iLXQvmIz; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1733881091; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=MBbJ6zXRPQCvT/XYWEwRK20WqjTmUqwU16AiK4vyrVhNj/jHI/BhIhqlrKjhXO0G/fxUu9GbaTYAoxzAa+rIeCcHZemngcSgtl/eh7vK5MCBaDj1TmRB9zLWdtMEtdvZMggo66LqvC9DjOn/Mzeck+DSWbkjr1cZFD26ssZmitQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1733881091; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=i5QT+7FiT6szOyqoDxYnm2QjssftX3943ZiJ+wM6JZM=; 
-	b=IvluER+xWZeoKGtYBmI4qjXR0zOzaYpNfoSJeSgCzLsG9U2pRBULhGp567xLuokXQiMrL5Hy7DQZTROWHR27yv5RmkormaGoB+MyDk2S2BbwIjdM54yjIeTWKT2LlrlO4ZVW5mgkThHWhFAq0rkrjYNMEgWpWhOX9TQdeHFVvjs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1733881091;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=i5QT+7FiT6szOyqoDxYnm2QjssftX3943ZiJ+wM6JZM=;
-	b=iLXQvmIzD4wQRi76Q+4y7LuJO/nVikOQPc4jQ/LZKc13jLdvOdqSC1tfOwdotlOd
-	tIkyF75XoziQj3QexsQPiqXJlRz0PVhRS9y32OgX9atYaErXilVkGLdnoa9TZ+MqPVd
-	Yp6KlTiWJemeZ8u0mBke7Ij2XxwzmSHW2KccWPF8=
-Received: by mx.zohomail.com with SMTPS id 173388108866529.45962812053415;
-	Tue, 10 Dec 2024 17:38:08 -0800 (PST)
-Received: by mercury (Postfix, from userid 1000)
-	id 63B0B10604B1; Wed, 11 Dec 2024 02:38:03 +0100 (CET)
-Date: Wed, 11 Dec 2024 02:38:03 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Kim Seer Paller <kimseer.paller@analog.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mike Looijmans <mike.looijmans@topic.nl>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] power/supply: Add support for ltc4162-f/s and
- ltc4015
-Message-ID: <b5mhivpuhyfj3knw3w5wmi2kxyyej7cdnh3kd6wyenumfy7qpr@vnfvfj5gsmtx>
-References: <20241210060506.10295-1-kimseer.paller@analog.com>
- <20241210060506.10295-2-kimseer.paller@analog.com>
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D6712850E1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 01:50:48 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AAC61DEFF9;
+	Wed, 11 Dec 2024 01:50:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="EXeJbGls"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C35D1DF273
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 01:50:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733881839; cv=none; b=Z9TsKd+CIcUM1SCNoBrx3xkXpOMcUPVQKvApwqCm1gD2j7n3g/3aMDLcD0G/QamWT4DapXkHWl0FoHu6nZBUbOh4jz949CkuQKcxlLshiX+/FnUneHrU56xjgisZc0ud9bPwasOv3x/vvrQAVPOVglFann9th1qLquG1Dclw55M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733881839; c=relaxed/simple;
+	bh=Lz7xFK6ODOj+KNAtcFSOv8d/FZ8I8/XogocvDGICrtY=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=s2W2uAG4nErXPms+0S+nofR35uwnm/DJiLgBXNUazJ5McCEKxILIxNdU164VBNV7Op7CxpQMWKJbLhG14LA7ieDn7EUhTgHx2o+65u0crQ23FthyJPMKP1h1aOvM6zv9SzPKrDypaB9VR3wAdeVA3yqZfzTEM4li64Q4mGZSacY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=EXeJbGls; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20241211015028epoutp03f9fc36d383d0448fea1015d301ec282e~P-FZByGJC0327603276epoutp03Q
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 01:50:28 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20241211015028epoutp03f9fc36d383d0448fea1015d301ec282e~P-FZByGJC0327603276epoutp03Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1733881829;
+	bh=cYwHho9KcGwqfLq7T2him2vuLSNJFKniJMfHJ4dX97Q=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=EXeJbGlsEJx3WPSg/ybT7TkDCTI4WMYm7zwSq/a/CKx1M06UXPwQA2R/sRlq1QKZs
+	 /rMH9m2sfn1xVq0WYBB1qRNCRyfN8KwuuyZyer0De7GwO22QE+D5yFPDSPSW+lB23s
+	 i5IKVsuSK2toeh/L1DTmjNYxR5S9JtcaGYFXXang=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20241211015028epcas2p1117c5ae9b0a21a62e5b25c293d5dd7d2~P-FYo2o_b0996709967epcas2p1e;
+	Wed, 11 Dec 2024 01:50:28 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.89]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4Y7JTJ19Nlz4x9Px; Wed, 11 Dec
+	2024 01:50:28 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+	epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+	94.65.22094.4EFE8576; Wed, 11 Dec 2024 10:50:28 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20241211015027epcas2p34d588c74f1db0da0880d2a2a2c49a007~P-FXu9WJZ2078920789epcas2p3E;
+	Wed, 11 Dec 2024 01:50:27 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20241211015027epsmtrp1979b564e95793b0897958f8df6cd14d8~P-FXuDubQ2416624166epsmtrp1u;
+	Wed, 11 Dec 2024 01:50:27 +0000 (GMT)
+X-AuditID: b6c32a46-d31d72400000564e-86-6758efe4b990
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	AC.2A.18729.3EFE8576; Wed, 11 Dec 2024 10:50:27 +0900 (KST)
+Received: from KORCO119526 (unknown [10.229.8.143]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20241211015027epsmtip21cd2b237883ed62838960ab799b7c5ba~P-FXgetpC0407204072epsmtip2S;
+	Wed, 11 Dec 2024 01:50:27 +0000 (GMT)
+From: =?utf-8?B?6rmA7YOc7JmE?= <trunixs.kim@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Wim Van Sebroeck'"
+	<wim@linux-watchdog.org>, "'Guenter Roeck'" <linux@roeck-us.net>, "'Rob
+ Herring'" <robh@kernel.org>, "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>,
+	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
+	<alim.akhtar@samsung.com>
+Cc: <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, "'Byoungtae Cho'" <bt.cho@samsung.com>
+In-Reply-To: <510e826d-a434-437d-8d2e-3f2618c28b7f@kernel.org>
+Subject: RE: [PATCH v4 1/1] arm64: dts: exynosautov920: add watchdog DT node
+Date: Wed, 11 Dec 2024 10:50:27 +0900
+Message-ID: <000101db4b6f$0d31c460$27954d20$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="esba6m4ei4fw3vbd"
-Content-Disposition: inline
-In-Reply-To: <20241210060506.10295-2-kimseer.paller@analog.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/233.855.81
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGRpYUbE1kmIx7vVDERT7TS+PBmVwKCnclrAeE4rOgCHZavxLM/hzKQ
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOJsWRmVeSWpSXmKPExsWy7bCmme6T9xHpBlf62S0ezNvGZnH/Ux+T
+	xZq955gs5h85x2rxctY9Novz5zewW2x6fI3V4vKuOWwWM87vY7K4sW4fu8WThWeYLP7v2cFu
+	8fjlP2YHXo9NqzrZPFauWcPqsXlJvcfO7w3sHn1bVjF6fN4kF8AWlW2TkZqYklqkkJqXnJ+S
+	mZduq+QdHO8cb2pmYKhraGlhrqSQl5ibaqvk4hOg65aZA3SokkJZYk4pUCggsbhYSd/Opii/
+	tCRVISO/uMRWKbUgJafAvECvODG3uDQvXS8vtcTK0MDAyBSoMCE7Y9rMJpaCVVwV3a0rWBsY
+	l3F0MXJySAiYSCx618raxcjFISSwg1Gi8clbRgjnE6PEwVMdbBDON0aJS/92McG0LD73lhki
+	sZdRonfTcijnBaPEwtbJrCBVbAIWEkuufWACSYgIbGCSmHrmJliCWeA2o8TO98YgNqeAncSy
+	u5/B4sICPhKtG1YDNXBwsAioSvx9GggS5hWwlFh+dxsbhC0ocXLmExaIMfIS29/OYYa4SEHi
+	59NlYGNEBNwkrs6dxQRRIyIxu7MN7DgJgTMcEk/XrWIEmS8h4CIxYVYdRK+wxKvjW9ghbCmJ
+	l/1tUHa+xMqVJ6A+rpG417aLBcK2l1h05ic7yBhmAU2J9bv0ISYqSxy5BXUZn0TH4b/sEGFe
+	iY42IQhTVWL6sgCIGdISE2esZZvAqDQLyVuzkLw1C8n5sxBWLWBkWcUollpQnJueWmxUYASP
+	6uT83E2M4BSs5baDccrbD3qHGJk4GA8xSnAwK4nwcniHpgvxpiRWVqUW5ccXleakFh9iNAWG
+	80RmKdHkfGAWyCuJNzSxNDAxMzM0NzI1MFcS573XOjdFSCA9sSQ1OzW1ILUIpo+Jg1OqgalN
+	7cyXPKa/alGnDBt/s6w3/ROiHL4x0qneU1d7+uyrp15fY2HX49+tx1p9TX128epzJu/vLHHI
+	csyu43G0edVsvmZhqfCBs4oVkqubphucO7HZKGx9mWne+Y9Hg1rCWo0vnlBttvtZVsHw8MGP
+	vzG3VX2qdzdeZeK/Ny02YkNgmbWl38WDnv/sXp6YpVis6P+gXdLV/0VP0JG7fQxcrWnFSc65
+	rxVONqxfvqdlTdOJM8xTlAuvTUsKk45Z7eL0btfGl5YqzDxbNs9cfepL1b8HE1ujyisbJovt
+	WPGxVOTWlcdlt+NObGaLnigQdvXQtpdGzU4FJTsL1b5fMPpbeeXVHdZVD2eczav4+65u9gUl
+	luKMREMt5qLiRABkj4wBSgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOIsWRmVeSWpSXmKPExsWy7bCSvO7j9xHpBncuyVg8mLeNzeL+pz4m
+	izV7zzFZzD9yjtXi5ax7bBbnz29gt9j0+BqrxeVdc9gsZpzfx2RxY90+dosnC88wWfzfs4Pd
+	4vHLf8wOvB6bVnWyeaxcs4bVY/OSeo+d3xvYPfq2rGL0+LxJLoAtissmJTUnsyy1SN8ugStj
+	2swmloJVXBXdrStYGxiXcXQxcnJICJhILD73lrmLkYtDSGA3o0Rnz1VGiIS0xJHfL9ggbGGJ
+	+y1HWCGKnjFKPN/4lhUkwSZgIbHk2gcmkISIwBYmiemvTjGCOMwCDxkl/r86ANXylVFi5rfT
+	zCAtnAJ2EsvufgZrFxbwkWjdsBqonYODRUBV4u/TQJAwr4ClxPK729ggbEGJkzOfsIDYzALa
+	Ek9vPoWy5SW2v53DDHGegsTPp8vARooIuElcnTuLCaJGRGJ2ZxvzBEbhWUhGzUIyahaSUbOQ
+	tCxgZFnFKJlaUJybnltsWGCYl1quV5yYW1yal66XnJ+7iREcl1qaOxi3r/qgd4iRiYPxEKME
+	B7OSCC+Hd2i6EG9KYmVValF+fFFpTmrxIUZpDhYlcV7xF70pQgLpiSWp2ampBalFMFkmDk6p
+	BqZJzSc+S13kXM/p/WW+QnLokwN7j0/n3npw7ZOKzf0bebNOnzfSediTtdW/NK/yuZWmnN7S
+	1q8RjztvttSfjdo7VaujSqt/4kmPDQIKOwpOWnH0WQYX9fDobbQwVZdaXjt94e0Hn/etMDlm
+	tnV3xm12d8b39msZ1Ke2RqQve7zuRsH8FdL8hrdb7PcanLVU1DD35Dna/fyxscz+q9urrFoP
+	hjyNeyuksZ/zk5hF6x6ubwfK2xte3BA4+ED6oUPi3gxr8WKJpzns3b2KYueOxLy0XJJiJ9U8
+	R+T57qPP/wWl/fUxlYwO2bWzvILDlfOSveSdU9NiM1XenQ9Ma1d03pHzWdw/q8FDIfLDhwOs
+	7EosxRmJhlrMRcWJAAO9CHY6AwAA
+X-CMS-MailID: 20241211015027epcas2p34d588c74f1db0da0880d2a2a2c49a007
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20241206025156epcas2p4c55f230accc4354e6f4bf324ab9a5833
+References: <20241206025139.2148833-1-trunixs.kim@samsung.com>
+	<CGME20241206025156epcas2p4c55f230accc4354e6f4bf324ab9a5833@epcas2p4.samsung.com>
+	<20241206025139.2148833-2-trunixs.kim@samsung.com>
+	<510e826d-a434-437d-8d2e-3f2618c28b7f@kernel.org>
 
+on 11/12/2024 01:50 UTC+09:00, Taewan Kim wrote:
+>> From: Byoungtae Cho <bt.cho@samsung.com>
+>>
+>> Adds two watchdog devices for ExynosAutoV920 SoC.
+>>
+>> Signed-off-by: Byoungtae Cho <bt.cho@samsung.com>
+>> Signed-off-by: Taewan Kim <trunixs.kim@samsung.com>
+>> ---
+>>  .../arm64/boot/dts/exynos/exynosautov920.dtsi | 20 +++++++++++++++++++
+>>  1 file changed, 20 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+>b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+>> index c759134c909e..7b9591255e91 100644
+>> --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+>> +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+>> @@ -183,6 +183,26 @@ cmu_misc: clock-controller@10020000 {
+>>  				      "noc";
+>>  		};
+>>
+>> +		watchdog_cl0: watchdog@10060000 {
+>
+>You need to do careful rebase, not just accept whatever tools shown you.
+>
+>This is now placed in incorrect order - not keeping sorting by unit address.
 
---esba6m4ei4fw3vbd
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 2/2] power/supply: Add support for ltc4162-f/s and
- ltc4015
-MIME-Version: 1.0
+I seems to me that the addresses are sorted correctly in order. 
+Could you kindly check again?
 
-Hi,
+        clock-controller@1002_0000
+                  watchdog@1006_0000 
+                  watchdog@1007_0000
+    interrupt-controller@1040_0000
 
-On Tue, Dec 10, 2024 at 02:05:06PM +0800, Kim Seer Paller wrote:
->  static int ltc4162l_get_ibat(struct ltc4162l_info *info,
->  			     union power_supply_propval *val)
->  {
-> +	const struct ltc4162l_chip_info *chip_info =3D info->chip_info;
->  	unsigned int regval;
->  	int ret;
-> =20
-> @@ -249,9 +356,8 @@ static int ltc4162l_get_ibat(struct ltc4162l_info *in=
-fo,
->  	if (ret)
->  		return ret;
-> =20
-> -	/* Signed 16-bit number, 1.466=CE=BCV / RSNSB amperes/LSB. */
->  	ret =3D (s16)(regval & 0xFFFF);
-> -	val->intval =3D 100 * mult_frac(ret, 14660, (int)info->rsnsb);
-> +	val->intval =3D mult_frac(ret, chip_info->ibat_resolution_uv, info->rsn=
-sb);
+And if there are any rules I might not be aware of, please let me know.
 
-ibat_resolution_uv is in picovolt as far as I can see:
+Best regards,
+Taewan Kim
 
-1.466 uV / RSNSB =3D 1466 nV / RSNSB =3D 1466000 pV / RSNSB
-
-RSNSB is provided in microOhm and picoVolt / microOhm equals
-microAmp, which is the unit expected by the power-supply
-subsystem.
-
->  	return 0;
->  }
-> @@ -260,6 +366,7 @@ static int ltc4162l_get_ibat(struct ltc4162l_info *in=
-fo,
->  static int ltc4162l_get_input_voltage(struct ltc4162l_info *info,
->  				      union power_supply_propval *val)
->  {
-> +	const struct ltc4162l_chip_info *chip_info =3D info->chip_info;
->  	unsigned int regval;
->  	int ret;
-> =20
-> @@ -267,8 +374,7 @@ static int ltc4162l_get_input_voltage(struct ltc4162l=
-_info *info,
->  	if (ret)
->  		return ret;
-> =20
-> -	/* 1.649mV/LSB */
-> -	val->intval =3D  regval * 1694;
-> +	val->intval =3D  regval * chip_info->vin_resolution_mv;
-
-I believe it should be vin_resolution_uv. Microvolt is what the
-power-supply subsystem wants and 1.649 mV (from the comment above) is
-1649 uV (from the chip_info->vin_resolution_mv value) :)
-
-> =20
->  	return 0;
->  }
-
-Otherwise LGTM.
-
--- Sebastian
-
---esba6m4ei4fw3vbd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmdY7PMACgkQ2O7X88g7
-+prZOw//Q9E81WqnzJLQB8b1yVZZRDrkWWCkh3Szb4nJa9ejJcxu8un4xz/PMlO0
-yBxnavwvni/qrPG+ctI0gBg952XSeY6CqMdx2ZzUt93BjqE5VsaQXa2PyKmfOmrb
-JM63fjjJbCzRMnsUEobmoMQjILZNFC93c7Iy+XDSXzVeTS5WL4lU9i91TkSAMTNC
-r/Erb/l9Xv9wa+yCgmvZuMRXS0T+ef0+7iySJVFV9vAJ1ywPjhybJsvtmCdjH+Oq
-BuP61RfDc8fbsm77VJoVhKfZCSwzrhcYNRNrC5r7xYDbobZnZDqmu5bUprN4ld0j
-5KgFeQ8blpFT+cyl6DWQJxe5obX9XM6xroWJMy5vG3MzN9DktkKews9SnXErcSOi
-hR061UxKPn9qy8cEwI5ATZSPhA596pIcQl1LVI4qJazYrdrHxFKpWJPAcY2+fW4+
-yK4uD+R1sJbfupukfa1dW+suvyTQJF0xpfZvqnSHs6GuMOhXK0m8oGqOwpRq6f8b
-UcLroEuFBzx3tf6W5oX8p3RqAwNr/QgVJayQvl7l+DDgWTcLRp4TBcaD5mMWZn2U
-Y5cO+PRSxplVDaqSg/gEOArVglT6WPDYJfJ3O6fYAVV5b6F7CxQ03hLOpzJQJ3+H
-MaEHozCOBf42+PtoxJPLGKkT9uSg1ZYunVZbb/kW1Bho42JSmL4=
-=DZFE
------END PGP SIGNATURE-----
-
---esba6m4ei4fw3vbd--
 
