@@ -1,221 +1,266 @@
-Return-Path: <devicetree+bounces-129989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4920C9ED783
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 21:54:31 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E2839ED78A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 21:55:06 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90E7D28397E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:54:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C6351883630
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:55:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4224D2210F2;
-	Wed, 11 Dec 2024 20:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B3A32288DD;
+	Wed, 11 Dec 2024 20:54:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="UHBXB+K/"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="JqPs31EW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A1620B81C
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 20:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C70D52210E9
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 20:54:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733950465; cv=none; b=JpK35fjKWmQ5ZxXceKLIATtFGtC2xZzbTv+VwwzqN6iNRAE/UUHVKCxx52DAT6nXceAIxCH0LcdCWoD5f3BwZ+b3y/IeUZRQJxu4eSnR0CpezKueQ5KrC2JRU0vuFJrlz4goP1fBIb0Kg428EB4Jm0o388Pk8f4/wPscCRQ/Yj8=
+	t=1733950498; cv=none; b=M9ALOctTVE456cH/zApGxg2XT7oqD7TdoVYMeE5PoCa/ecOFhJhnDUubWYGen031ziTsouBvFHg5qAHU7mFWyP6L3mmB+6xUPyktDwRpsA55ktCOpEWkG1RnpIVRIKrirYZQQB68glO0nBjfGpCi9ELUT4nI/tLMPW/nmNXlAUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733950465; c=relaxed/simple;
-	bh=lzTKxdg9CiwLG8Mb+IW6XOFzKRazhl7sBeUUxZG7AUg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S7rlcjnjmM2roVzt+W/gLnmzV1hunp0tuvTSS7WTx6Ql01e8+IF+MQY1G5JqxqoMFzG727gfx0Ul1qZJEI80WxSKo5NhZrRJGGu8TJkAvauVVMQQ9fUsf2lPypa1pyvvLm8o59k+h7u/WVbqFhqGAT0hNzcxxRa+gUgPbrQIhjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=UHBXB+K/; arc=none smtp.client-ip=209.85.222.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-85c5adbca8eso1065643241.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 12:54:23 -0800 (PST)
+	s=arc-20240116; t=1733950498; c=relaxed/simple;
+	bh=OvwiQLnYA0FC4btps/SB28eG/A2uLzi8u4tHo5Ohxic=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=i4o+T5aPGW0Ao5U9ffUAgTI8zFKnVyvHtSxQb2MECDcgmBibD2i//Nh5ARJNA+yl11Z3ImmbH3qpmKSP9q5HHahJ20kJKoxc6LJMMw81QC/tocfIxwhgfW/7cDXm9hHdEyPJgd3I1aRQitSrNVEXGr5TtUSgkzOiI0t29PH9fMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=JqPs31EW; arc=none smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-71e2764aa46so362770a34.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 12:54:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1733950462; x=1734555262; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=dYliTF35nPNFNRmXPIOQ4ksdgvuWl/AzFHNeTIQ3J/I=;
-        b=UHBXB+K/JmvoFXlqeKXFnhxUFPmcm4hU+HGtfvPT9QVzn3LpJGPZQi57NrMaMzTNWB
-         eLQye3V2ULNKRgPVSlwLIsHaintS4g2mfHVaf/N6c9S9BOruc30Jx956+ZnU57mkp9pE
-         WVm9FdCT2Tq54ydJNfrxnY0hsTzjZ5EaI63fOFA8gNiQbTc++785NmpP59JhuFbRzgp+
-         9BOllmASrhhjTt2QoE9q93jBWsezme4apvQA4Gp7Un7FSddq1yPgkkbaP4WwUIyu1V1e
-         ZbZGCWnyP3Y6xHZcw2B6e+LPuh1D05u3CKtBFwYwoyuSGQnAVAHHnGMrrqnLQ5dppIGS
-         57KQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733950494; x=1734555294; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=W6v76obBpEyhyDBRmwYte1jAQRvqqCqDiU8b8n9rTgs=;
+        b=JqPs31EWFlctSOKZmmjkJPQgXw2ga4CuwPBdtrvAEjHkf5yAnVLpLC6Tu277Tl0ZSL
+         gBf28vRo4lXjWr+kq+DDlXsY1kGIG6ntpZWjwYE1DIqKPsHviTtfyx2cpF8ZMSuzUQcV
+         fkjmBrEDFJovwaTb2lHebjmqS6DbRysSq60tiywvJjJ/4RGYEttXfzbRX6XnmFhd2hBI
+         RqLfHF48DFwe8SnOzsN0oELcgS8U6gCJ//RXlddmqtRSbF4VbYCTifrdtBxHt4lkAq33
+         mKbIl7+LAZ1+Y05XThcED6Ytk05+uEnM+qQD1Y1uPYe5IRztVbZYO6DE2vwTn2rpbdXw
+         4E3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733950462; x=1734555262;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1733950494; x=1734555294;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=dYliTF35nPNFNRmXPIOQ4ksdgvuWl/AzFHNeTIQ3J/I=;
-        b=pg6EcWjnEMbGQvsL3y/VfhtekMntFWFD81PikyhB5MS0JK7Sa7k9g8kDGylwTpiyKx
-         pTKeIzafepxQJippnr+Gd12q5+NFSiyyzJ5Mvspm77hhHDxKXaM7LPviRREUORCFnCAx
-         U00FeFz9bXAeYVrumiX/TAtiO6g5g/av1fXe+5f+ZHf7WC7a5NA2BSheyFbB6dAMsRkg
-         nNbF50E0ZrAdybQdZc50tHZgyEoOD3pd5Gl6NEIQi/IRh4jj6DOzPX/EkBEyCBpnAiyE
-         d76nexZjYnSj7ikk5Q5bZD9cQeNsD0oTCZXAk2cQMLPb8C/ZTL6txo4FFrcXjPZRpi0y
-         tWRw==
-X-Forwarded-Encrypted: i=1; AJvYcCUYqMNUvl8jTlu2AJ/S4TtXuP3G+bsvuaeUQBIZryWU5vwTG8A19hAfbLno2s4nfHMd8km5ArvNRtX1@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqodAuz7GXuwH3JLsWQOvJounDbV3H0EtM9itqjKInyVEOl32Y
-	OIxP948gG4BzJOYchLRLKLEzPO1rG1SfkIWvHGlNs9akxU/3sGMXKBf1HnkPrQYJpXT61oXZDxM
-	ckCCsDRzshgQS88eCBvhSXWKpyy9hdsU/hMnWuQ==
-X-Gm-Gg: ASbGnctXHKvwMb2p4ZrEWlcmsULi5fkLgQy1JR7OHL33K2WsBY8I6/xtEn1wCd4kf6w
-	BH7E9oVtpl6+ka6AipdXHEBmMpNk2SexEoWJXVvcxG+AL0EYmRuQXuf9a/dAXPMjdqw==
-X-Google-Smtp-Source: AGHT+IFDJ3hxR2NNeGvlMcd40FPBdx04p3qGo6Inh+bBqmvdcNtdNFdP1cY9W4nm5HsXXzcK6b0wp6lE6uUBauKHkAs=
-X-Received: by 2002:a05:6102:50ac:b0:4af:d487:45f3 with SMTP id
- ada2fe7eead31-4b2478d8b65mr1386165137.23.1733950462194; Wed, 11 Dec 2024
- 12:54:22 -0800 (PST)
+        bh=W6v76obBpEyhyDBRmwYte1jAQRvqqCqDiU8b8n9rTgs=;
+        b=xK6zTEzeW8/vSP0gk474Rb1I94Gc26Bm4GYsmQM3oUtx8EDvQm0+zesP56Jgh/C7pB
+         BFv8hr9SBZyuikiL4jUh6lKv6uE7fEQTWC3reIeHJ/mrl5F+abTHeTrUbc+Qwi2mKlS/
+         DCUGdlEt1uYAQefq3DPvb+OMIcgp2yaA2qY6bCJe6KbVsRzPKqJZlLN5pCCGypEJIxxg
+         KO7RZQuyJlL8gh3d3OrM1LpTXFjKX9Qy0CHMSJjwWPZpo7baHnSc0u9qX82+fOb3IntD
+         TMqUyKMbbXWrW8BAZKnvxzpkiwB2qcgoMojMc7byv7T3Sls2MLitKIb1KULB1BQS6sfV
+         QqTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVHSep8WeEehdt+4RebBtgU7Vg+Pgz3faqovPcpRbjcZjmxFiCjSqRvawOHtrQDKJMMUYbGr25Qj88y@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlH3BT84GpnB55nIYaxKbfaAQvbeH5c8YrVisF5935SvQvwnII
+	HyJElouoIjalE9GqB2+BXG4sjENxQ4NfLwPMmxpyRms3mu3dK3ZtKSlciCwURbU=
+X-Gm-Gg: ASbGncv/4uMzhpwfcls8F1qvT7oytxaAPwAVg1P0SVEcwqBZQBltlODNjHANrHDo4lW
+	dEPAvVrO0wRdN/FksdtFti46gYGchXivtDBO1yQlc+ygscDuUMaa2wCdLi6wdRKrpajbPTxZKVG
+	I1wsgcRaSjlLalUbST95E2EJMTolbmkUKhtdC3ISVNu6CLczUR+PUhozBFNVEbOHoXhMdrJwFw5
+	hESD8bGa8Fc+bV3NsurkjUxhg9irBORwhCDqKMLhu98FlFLKyy0xog+xcTOoDjB3M6+ZFY6zn53
+	zfwJYJsRwQ==
+X-Google-Smtp-Source: AGHT+IFNDEOjvNOX5bJwM+maGY3ABusKGwINCwh8iOScXEB4QUNI10mrV2AERnfTCXNrv8EfRusM7w==
+X-Received: by 2002:a05:6830:6c09:b0:71d:63fc:2ea6 with SMTP id 46e09a7af769-71e29bb5a0fmr595822a34.8.1733950493780;
+        Wed, 11 Dec 2024 12:54:53 -0800 (PST)
+Received: from [127.0.1.1] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71def651fb2sm1888288a34.27.2024.12.11.12.54.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Dec 2024 12:54:52 -0800 (PST)
+From: David Lechner <dlechner@baylibre.com>
+Subject: [PATCH v6 00/17] spi: axi-spi-engine: add offload support
+Date: Wed, 11 Dec 2024 14:54:37 -0600
+Message-Id: <20241211-dlech-mainline-spi-engine-offload-2-v6-0-88ee574d5d03@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241025124515.14066-1-svarbanov@suse.de> <20241025124515.14066-9-svarbanov@suse.de>
- <4bbdf9ed-f429-411b-8f5f-e51857f0f9d0@broadcom.com> <f9f49030-0518-4e30-91a7-3c088c31180b@suse.de>
- <474e5e38-37a4-439b-b25a-fe60df03f25b@broadcom.com>
-In-Reply-To: <474e5e38-37a4-439b-b25a-fe60df03f25b@broadcom.com>
-From: Jonathan Bell <jonathan@raspberrypi.com>
-Date: Wed, 11 Dec 2024 20:54:12 +0000
-Message-ID: <CADQZjwci2SVN=AG178kj3yN=17nVixOHEZOjZCs9LSUihbby4Q@mail.gmail.com>
-Subject: Re: [PATCH v4 08/10] PCI: brcmstb: Adjust PHY PLL setup to use a
- 54MHz input refclk
-To: James Quinlan <james.quinlan@broadcom.com>
-Cc: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, Jim Quinlan <jim2101024@gmail.com>, 
-	Nicolas Saenz Julienne <nsaenz@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Andrea della Porta <andrea.porta@suse.com>, 
-	Phil Elwell <phil@raspberrypi.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA38WWcC/5XRzWrDMAwA4FcJPs/Dkf972nuMHWRbbg1p0iVZa
+ Cl997kptDB66C7GMuiTLJ3ZRGOhiW2aMxtpKVMZ+hqYt4bFHfZb4iXVmIEAJXQreOoo7vgeS9+
+ Vnvh0KJz67fU65NwNmDhwzJGk9SJoDKxKh5FyOa5VPr9qvCvTPIyntegC19f/+QtwwZ0VFusRl
+ dQfAU9dCSO9x2HPriUW+WAtwGusrKxVIEjplI0PT1h1Z1sB8jVWVTa7FnTwPmtsn7D6wbatfo3
+ VlQ2ErtUhacK/Q7jcBj/S90/d6nybPjvgXOWSNo0lk6QJOYIB0gZisCppUORNCkYZr4RREsy6w
+ HtWckZR9tmhlUI6gKRF0k6gpxCSS1Ko6BDXrIAT8drLvsybpqfjzNcPQitqd5df5Lt1YXsCAAA
+ =
+X-Change-ID: 20240510-dlech-mainline-spi-engine-offload-2-afce3790b5ab
+To: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
+Cc: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>, 
+ Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+ David Lechner <dlechner@baylibre.com>, Axel Haslam <ahaslam@baylibre.com>
+X-Mailer: b4 0.14.2
 
-On Wed, 11 Dec 2024 at 19:39, James Quinlan <james.quinlan@broadcom.com> wrote:
->
-> On 12/10/24 08:42, Stanimir Varbanov wrote:
-> > Hi Jim
-> >
-> > On 12/10/24 12:52 AM, James Quinlan wrote:
-> >> On 10/25/24 08:45, Stanimir Varbanov wrote:
-> >>> The default input reference clock for the PHY PLL is 100Mhz, except for
-> >>> some devices where it is 54Mhz like bcm2712C1 and bcm2712D0.
-> >>>
-> >>> To implement this adjustments introduce a new .post_setup op in
-> >>> pcie_cfg_data and call it at the end of brcm_pcie_setup function.
-> >>>
-> >>> The bcm2712 .post_setup callback implements the required MDIO writes that
-> >>> switch the PLL refclk and also change PHY PM clock period.
-> >>>
-> >>> Without this RPi5 PCIex1 is unable to enumerate endpoint devices on
-> >>> the expansion connector.
-> >>>
-> >>> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> >>> ---
-> >>> v3 -> v4:
-> >>>    - Improved patch description (Florian)
-> >>>
-> >>>    drivers/pci/controller/pcie-brcmstb.c | 42 +++++++++++++++++++++++++++
-> >>>    1 file changed, 42 insertions(+)
-> >>>
-> >>> diff --git a/drivers/pci/controller/pcie-brcmstb.c b/drivers/pci/
-> >>> controller/pcie-brcmstb.c
-> >>> index d970a76aa9ef..2571dcc14560 100644
-> >>> --- a/drivers/pci/controller/pcie-brcmstb.c
-> >>> +++ b/drivers/pci/controller/pcie-brcmstb.c
-> >>> @@ -55,6 +55,10 @@
-> >>>    #define PCIE_RC_DL_MDIO_WR_DATA                0x1104
-> >>>    #define PCIE_RC_DL_MDIO_RD_DATA                0x1108
-> >>>    +#define PCIE_RC_PL_PHY_CTL_15                0x184c
-> >>> +#define  PCIE_RC_PL_PHY_CTL_15_DIS_PLL_PD_MASK        0x400000
-> >>> +#define  PCIE_RC_PL_PHY_CTL_15_PM_CLK_PERIOD_MASK    0xff
-> >>> +
-> >>>    #define PCIE_MISC_MISC_CTRL                0x4008
-> >>>    #define  PCIE_MISC_MISC_CTRL_PCIE_RCB_64B_MODE_MASK    0x80
-> >>>    #define  PCIE_MISC_MISC_CTRL_PCIE_RCB_MPS_MODE_MASK    0x400
-> >>> @@ -251,6 +255,7 @@ struct pcie_cfg_data {
-> >>>        u8 num_inbound_wins;
-> >>>        int (*perst_set)(struct brcm_pcie *pcie, u32 val);
-> >>>        int (*bridge_sw_init_set)(struct brcm_pcie *pcie, u32 val);
-> >>> +    int (*post_setup)(struct brcm_pcie *pcie);
-> >>>    };
-> >>>      struct subdev_regulators {
-> >>> @@ -826,6 +831,36 @@ static int brcm_pcie_perst_set_generic(struct
-> >>> brcm_pcie *pcie, u32 val)
-> >>>        return 0;
-> >>>    }
-> >>>    +static int brcm_pcie_post_setup_bcm2712(struct brcm_pcie *pcie)
-> >>> +{
-> >>> +    const u16 data[] = { 0x50b9, 0xbda1, 0x0094, 0x97b4, 0x5030,
-> >>> 0x5030, 0x0007 };
-> >>> +    const u8 regs[] = { 0x16, 0x17, 0x18, 0x19, 0x1b, 0x1c, 0x1e };
-> >>> +    int ret, i;
-> >>> +    u32 tmp;
-> >>> +
-> >>> +    /* Allow a 54MHz (xosc) refclk source */
-> >>> +    ret = brcm_pcie_mdio_write(pcie->base, MDIO_PORT0,
-> >>> SET_ADDR_OFFSET, 0x1600);
-> >>> +    if (ret < 0)
-> >>> +        return ret;
-> >>> +
-> >>> +    for (i = 0; i < ARRAY_SIZE(regs); i++) {
-> >>> +        ret = brcm_pcie_mdio_write(pcie->base, MDIO_PORT0, regs[i],
-> >>> data[i]);
-> >>> +        if (ret < 0)
-> >>> +            return ret;
-> >>> +    }
-> >>> +
-> >>> +    usleep_range(100, 200);
-> >>> +
-> >>> +    /* Fix for L1SS errata */
-> >>> +    tmp = readl(pcie->base + PCIE_RC_PL_PHY_CTL_15);
-> >>> +    tmp &= ~PCIE_RC_PL_PHY_CTL_15_PM_CLK_PERIOD_MASK;
-> >>> +    /* PM clock period is 18.52ns (round down) */
-> >>> +    tmp |= 0x12;
-> >>> +    writel(tmp, pcie->base + PCIE_RC_PL_PHY_CTL_15);
-> >> Hi Stan,
-> >>
-> >> Can you please say more about where this errata came from?  I asked the
-> >> 7712 PCIe HW folks and they said that there best guess was that it was a
-> >> old workaround for a particular Broadcom Wifi endpoint.  Do you know its
-> >> origin?
-> > Unfortunately, I don't know the details. See the comments on previous
-> > series version [1]. My observation shows that MDIO writes are
-> > implemented in RPi platform firmware only for pcie2 (where RP1 south
-> > bridge is connected) but not for pcie1 expansion connector.
->
-> Well, I think my concern is more about the comment "Fix for L1SS errata"
-> rather than the code.  If this is a bonafide errata it should have an
-> identifier and some documentation somewhere. Declaring it to be an
-> unknown errata provides little info.
+Not much to say for this revision. The main changes were making the
+trigger-sources/#trigger-source-cells properties more generic,
+splitting up the spi-offload.h header into consumer/provider/types.h
+and adding a DAC driver patch to make use of the TX DMA stream API.
 
-I'm the originator of this thunk - erratum is perhaps the wrong description.
-If the reference clock provided to the RC is 54MHz and not 100MHz, as
-is the case on BCM2712, then many of the L1 sub-state timers run
-slower which means state transitions are unnecessarily lengthened.
+If we think this is good enough to go in, the SPI patches should be
+applying fine since this is based on a recent linux-next. But the IIO
+patches will need some care. There are dependencies on both the
+iio/fixes-togreg and the iio/testing branches as well as a couple of
+patches that haven't been applied yet because they are waiting for other
+dependencies [1]. So best would be to let Mark pick up the SPI stuff and
+create an immutable branch and let Jonathan work out the IIO stuff.
 
-This change, and the MDIO manipulation above, should be applied
-regardless of the RC instance and/or connected EP.
+[1]: https://lore.kernel.org/all/20241124125206.1ffd6e6c@jic23-huawei/
 
-> Code-wise, you could use u32p_replace_bits(..., PM_CLK_PERIOD_MASK) to
-> do the field value insertion.
->
-> All the above being said, I have no objection since this code is
-> specific to the RPi platform.
->
-> Jim Quinlan  Broadcom STB/CM
->
-> >
-> > ~Stan
-> >
-> > [1] https://www.spinics.net/lists/linux-pci/msg160842.html
-> >
->
+---
+Changes in v6:
+- Dropped the "spi: dt-bindings: add trigger-source.yaml" patch. It was
+  reworked and merged into dt-schema in
+  https://github.com/devicetree-org/dt-schema/pull/147
+- Adjusted other dt-bindings patches to account for above change.
+- Dropped one iio patch that was already applied to iio tree.
+- Added a DAC patch to make use of the TX DMA stream API.
+- Minor fixes and improvements to other patches based on feedback.
+- Link to v5: https://lore.kernel.org/r/20241115-dlech-mainline-spi-engine-offload-2-v5-0-bea815bd5ea5@baylibre.com
 
-Regards
-Jonathan
+Changes in v5:
+- Dropped pwm patch. A variant of this patch has been picked up in the
+  pwm tree.
+- Addressed review comments (see details in individual patches).
+- Added some polish, like MAINTAINERS entries and updating ADC docs.
+- Link to v4: https://lore.kernel.org/r/20241023-dlech-mainline-spi-engine-offload-2-v4-0-f8125b99f5a1@baylibre.com
+
+Changes in v4:
+- Dropped #spi-offload-cells and spi-offload properties from DT bindings.
+- Made an attempt at a more generic trigger interface instead of using
+  clk framework. This also includes a new driver for a generic PWM
+  trigger.
+- Addressed IIO review comments.
+- Added new patches for iio/adc/ad4695 as 2nd user of SPI offload.
+- Link to v3: https://lore.kernel.org/r/20240722-dlech-mainline-spi-engine-offload-2-v3-0-7420e45df69b@baylibre.com
+
+Changes in v3:
+- Reworked DT bindings to have things physically connected to the SPI
+  controller be properties of the SPI controller and use more
+  conventional provider/consumer properties.
+- Added more SPI APIs for peripheral drivers to use to get auxillary
+  offload resources, like triggers.
+- Link to v2: https://lore.kernel.org/r/20240510-dlech-mainline-spi-engine-offload-2-v2-0-8707a870c435@baylibre.com
+
+Individual patches have more details on these changes and earlier revisions too.
+---
+
+As a recap, here is the background and end goal of this series:
+
+The AXI SPI Engine is a SPI controller that has the ability to record a
+series of SPI transactions and then play them back using a hardware
+trigger. This allows operations to be performed, repeating many times,
+without any CPU intervention. This is needed for achieving high data
+rates (millions of samples per second) from ADCs and DACs that are
+connected via a SPI bus.
+
+The offload hardware interface consists of a trigger input and a data
+output for the RX data. These are connected to other hardware external
+to the SPI controller.
+
+To record one or more transactions, commands and TX data are written
+to memories in the controller (RX buffer is not used since RX data gets
+streamed to an external sink). This sequence of transactions can then be
+played back when the trigger input is asserted.
+
+This series includes core SPI support along with the first SPI
+controller (AXI SPI Engine) and SPI peripheral (AD7944 ADC) that use
+them. This enables capturing analog data at 2 million samples per
+second.
+
+The hardware setup looks like this:
+
++-------------------------------+   +------------------+
+|                               |   |                  |
+|  SOC/FPGA                     |   |  AD7944 ADC      |
+|  +---------------------+      |   |                  |
+|  | AXI SPI Engine      |      |   |                  |
+|  |             SPI Bus ============ SPI Bus          |
+|  |                     |      |   |                  |
+|  |  +---------------+  |      |   |                  |
+|  |  | Offload 0     |  |      |   +------------------+
+|  |  |   RX DATA OUT > > > >   |
+|  |  |    TRIGGER IN < < <  v  |
+|  |  +---------------+  | ^ v  |
+|  +---------------------+ ^ v  |
+|  | AXI PWM             | ^ v  |
+|  |                 CH0 > ^ v  |
+|  +---------------------+   v  |
+|  | AXI DMA             |   v  |
+|  |                 CH0 < < <  |
+|  +---------------------+      |
+|                               |
++-------------------------------+
+
+---
+Axel Haslam (1):
+      iio: dac: ad5791: Add offload support
+
+David Lechner (16):
+      spi: add basic support for SPI offloading
+      spi: offload: add support for hardware triggers
+      dt-bindings: trigger-source: add generic PWM trigger source
+      spi: offload-trigger: add PWM trigger driver
+      spi: add offload TX/RX streaming APIs
+      spi: dt-bindings: axi-spi-engine: add SPI offload properties
+      spi: axi-spi-engine: implement offload support
+      iio: buffer-dmaengine: split requesting DMA channel from allocating buffer
+      iio: buffer-dmaengine: add devm_iio_dmaengine_buffer_setup_with_handle()
+      iio: adc: ad7944: don't use storagebits for sizing
+      iio: adc: ad7944: add support for SPI offload
+      doc: iio: ad7944: describe offload support
+      dt-bindings: iio: adc: adi,ad4695: add SPI offload properties
+      iio: adc: ad4695: Add support for SPI offload
+      doc: iio: ad4695: add SPI offload support
+      iio: dac: ad5791: sort include directives
+
+ .../devicetree/bindings/iio/adc/adi,ad4695.yaml    |  13 +
+ .../bindings/spi/adi,axi-spi-engine.yaml           |  24 ++
+ .../bindings/trigger-source/pwm-trigger.yaml       |  37 ++
+ Documentation/iio/ad4695.rst                       |  68 +++
+ Documentation/iio/ad7944.rst                       |  24 +-
+ MAINTAINERS                                        |  12 +
+ drivers/iio/adc/Kconfig                            |   2 +
+ drivers/iio/adc/ad4695.c                           | 445 +++++++++++++++++++-
+ drivers/iio/adc/ad7944.c                           | 307 +++++++++++++-
+ drivers/iio/adc/adi-axi-adc.c                      |   2 +-
+ drivers/iio/buffer/industrialio-buffer-dmaengine.c | 144 +++++--
+ drivers/iio/dac/Kconfig                            |   3 +
+ drivers/iio/dac/ad5791.c                           | 166 +++++++-
+ drivers/iio/dac/adi-axi-dac.c                      |   2 +-
+ drivers/spi/Kconfig                                |  16 +
+ drivers/spi/Makefile                               |   4 +
+ drivers/spi/spi-axi-spi-engine.c                   | 314 +++++++++++++-
+ drivers/spi/spi-offload-trigger-pwm.c              | 162 +++++++
+ drivers/spi/spi-offload.c                          | 465 +++++++++++++++++++++
+ drivers/spi/spi.c                                  |  10 +
+ include/dt-bindings/iio/adc/adi,ad4695.h           |   7 +
+ include/linux/iio/buffer-dmaengine.h               |   7 +-
+ include/linux/spi/offload/consumer.h               |  39 ++
+ include/linux/spi/offload/provider.h               |  47 +++
+ include/linux/spi/offload/types.h                  |  99 +++++
+ include/linux/spi/spi.h                            |  20 +
+ 26 files changed, 2336 insertions(+), 103 deletions(-)
+---
+base-commit: 8ca8e57217e8263bc6dda6b77ef6c9051c2b6241
+change-id: 20240510-dlech-mainline-spi-engine-offload-2-afce3790b5ab
+prerequisite-patch-id: 7e6d36bfc262e562cb74d524e96db64694064326
+prerequisite-patch-id: d864ef9f8a7303822d50d580a9ebbd8d304c8aa6
+
+Best regards,
+-- 
+David Lechner <dlechner@baylibre.com>
+
 
