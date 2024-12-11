@@ -1,183 +1,223 @@
-Return-Path: <devicetree+bounces-129944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B4C29ED34E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:23:46 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D93599ED353
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:24:19 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF10E28154B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:23:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68ED916157B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A6C1FE479;
-	Wed, 11 Dec 2024 17:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CFFC1FECAF;
+	Wed, 11 Dec 2024 17:23:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="2W5Hs4dE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j6uH2B+d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38C9E1FF1BB;
-	Wed, 11 Dec 2024 17:23:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F5DF1FECBB;
+	Wed, 11 Dec 2024 17:23:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733937814; cv=none; b=faDnz5KXgN8LPDFJqRpQL9euk9gCkuezgvRHNo4rJToyU2NjKL6DhOkJtQhfORkQQ638eYE7rKVzHPxMBfNUm9+0JWU35Ipmnx+A05E8JShZr+RiU1/2GnmOCr9z8RyIYMD3QblygGzCzd5jEv+K/C5OVViYoaYr1/WghLp4buE=
+	t=1733937839; cv=none; b=YYQd9c2O+xlAHDz/NP9HIA/kRGa9WGKhd0dUSJP9WWYAODx8GfrOwQf/RFZd/ZziCNFUsXtIoG2U4I10V24eU5keocOUQhlqDu5vtGxRI+nwQU/slbmUsYRlsU4ZmaxMDyBexEUkHs1Sozr/Oyp7sXPtMZC0Koa4k1dD8OzapW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733937814; c=relaxed/simple;
-	bh=UUQ/DzUFyCwcxIK3PMsUVm1c4BxQMhiQ/9Nqzn7iDcc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H1YSAXxFEgghUpCGZ9T/q2fBXMMTKv3ezdPo6bxH61dDRatRIFhGRASHER6MCLHEh/V2QP4RcHsIzSW3TmBgrmdrutPGEcRGH82cAnSpQRazty5GJqXqVsh2UzdynJpm7lYb5isK6Nvnahy38u6JOchOR26pfMJqTBVwWxd9344=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=2W5Hs4dE; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=u003TtXLqRdl21a2NWcQiJL7JcZsNB0P9eljCYzTzjc=; b=2W5Hs4dExuwoJVN6KAAy7vsVT8
-	q8ibUEy9c8pdKQrMtX4D57ESDxDZMe9l6EsD9jXwvIsbgUT5878dNDDjXO3Dw+O/7w7Bq/hP9jOkX
-	wX2Zs3uIAu/MV2PAAw5nEzIpkIvvq0UR07OAuOONfXY1lXVt64sh/sgrk2c20vi3XVmkEP2ulBfog
-	E2wpfVvR4vypUbQiDtJDA1t2K8gUR00uMBbUPxlOgWkHF6oQWSyd50veAACWTqlcN6DfKStMmFgCm
-	0K5cg/n4Ex8wYoFM9fUkBAmqTnMxHK1dsV5jg2g6Jt+QW5GCpZnjltNrlFvWnbkX5jtPVfrSf6usd
-	FyEOxEQg==;
-Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tLQQS-00063M-PG; Wed, 11 Dec 2024 18:23:04 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Maxime Ripard <mripard@kernel.org>
-Cc: Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- kernel@collabora.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- FUKAUMI Naoki <naoki@radxa.com>
-Subject:
- Re: [PATCH v2 3/5] drm/rockchip: vop2: Improve display modes handling on
- RK3588 HDMI0
-Date: Wed, 11 Dec 2024 18:23:03 +0100
-Message-ID: <1820767.5KxKD5qtyk@diego>
-In-Reply-To: <64vc5pkj44w3qxf5wkcxgghpwhvoagzemcsfqmi7fhsxt7vlqd@yfcgloi45ygh>
-References:
- <20241211-vop2-hdmi0-disp-modes-v2-0-471cf5001e45@collabora.com>
- <20241211-vop2-hdmi0-disp-modes-v2-3-471cf5001e45@collabora.com>
- <64vc5pkj44w3qxf5wkcxgghpwhvoagzemcsfqmi7fhsxt7vlqd@yfcgloi45ygh>
+	s=arc-20240116; t=1733937839; c=relaxed/simple;
+	bh=r+0SQ5DaZWtMTNOBe4D9P1bu9mQ3k2WFITiTQexdaIk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=LF2WtpykS/rlwznWKyBiXauuPR/K6xB+N4lIr0a+GzQG2gxWLis1jCfTcFdj62xZsxqeGG1AJZDu3XHSEYOX3bACcgQplN7qD4kGBUL61IZp53Nj7TSjzVnoAZMbfMmhA07pm+gWijQHlZEC9rcOOgc6VPPJHTEO0VQ5dgDFfkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j6uH2B+d; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5d3d479b1e6so6422828a12.2;
+        Wed, 11 Dec 2024 09:23:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733937835; x=1734542635; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xImzGzANXk5DxjlwcfseHJU01hxo/jjlwQJDD52qyl0=;
+        b=j6uH2B+d3MsaSxXrOshm+yMd5bIBhzSYLFybK50AM8UEdLAwHaWpfDCTsYBD0xKZoA
+         Eqvw744TH6JjOO405l2uCwMEFFUhYv7tWIk2pHX4A4hZQESRWc+dbasH8y6uBZMqxzY2
+         286VeY0kn5/waYRD9n+ipcKqPHCe8uWlq+zZcq2g3pGvpaUbMHy38QXj3fT2iyJU4E4v
+         KyK5b7DjS4v9mFOrntqwrYuGHLyCp15JJ/I1So4GhwyIagJHQuLQApZX71Ct/pkvRFzH
+         95M1lpSVEoveygFRUTBLrrID4UPb/DAsiIhkBql8r2znaJwVKB7HWgGdedRTTikVnj4p
+         5y3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733937835; x=1734542635;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xImzGzANXk5DxjlwcfseHJU01hxo/jjlwQJDD52qyl0=;
+        b=nyV4Le8VxaSNkxQvq8G0nvfsWXDfLgHUF7Sktblr/SLhciMO+Fj0mVt1p6XZundsS9
+         sbwv5bbKKp1S75l2DkF2oADacBS1KMtieChVU7VUCdLjy6hAnz7IIY+LXKJSNUNmRpja
+         1zkV0qVA53g5mW8p7psWXyRGK5FG95CSn/KJH7ix+rar88T8bNQ/rEhd6JRQx6uSYGLQ
+         QtVwuOHqWZKBhe1esDWuSc69ixhtvulGzghaEbybFi5TeLobceCf7Sztx4N+zoNKtDpq
+         5mk0PL4PeH6kvQj7+e9Cwx006DwT49zgZkrxdHAoXRDUIBsdqohXnocfhKPLb9C3jAMF
+         LJWg==
+X-Forwarded-Encrypted: i=1; AJvYcCU++viNaA+00oLnTJpsfPcdYtT6QLxAu8ILREr2S6ro3QGv+LloYjD512d83pU42g3B3Ev+1XWD9RDlSG1j@vger.kernel.org, AJvYcCWXZl+WJTIsPVc/2BZKLtAW0ttwRP9Q9oojqcfvjpEFH4RevV8Oq6HHPIuHOinIopP5Sp0jM+396E2G@vger.kernel.org
+X-Gm-Message-State: AOJu0YyS3TTYfdsJMutARZzMhlOqH9m2upfF/NWvWR5NWlHinH/4fAH+
+	I2pC7G264PUwxVgpvFPMIk4uNtdV5GFxWMQxffoqejPm/SjUXs2j+s/kCety
+X-Gm-Gg: ASbGnctrS8aJc90rKSntCNxL7QXnxeGt9U9N2bNBHnSrFGntgEFN5F2Fx1XuW7E6P7z
+	L2l6ubQOcRk+4E7NN72WViOn5u1XOnfW9jd3LciDACbJtwp96EI7JwKGnQJeZBGncgUcHDmwakh
+	VKCKdNqgGzgUUaguF4BlW7Tl5QxfzgGtOcQe6RGNDeYqntLg0qjnbCYu1hFsw3phTEkLPoABhU/
+	/HBBfgF2Xw5o1WN2By4r5pBX7Wdd2h8LwxOsxwgDhnCcSJ8UZAgT+V3I80kAQmJ4/lXigY0UgVB
+	GlHoUAavDmXqV67pPr8sEpNvsw+YfUVI
+X-Google-Smtp-Source: AGHT+IH0RIu4uq5umvRtCi0hsAZI3eC3FhPsXctvlNPCuDi9NspA8MfTgjbIzEfgLbI6zohVlTLE5A==
+X-Received: by 2002:a05:6402:5207:b0:5d0:c697:1f02 with SMTP id 4fb4d7f45d1cf-5d4330a49f1mr7965722a12.17.1733937835207;
+        Wed, 11 Dec 2024 09:23:55 -0800 (PST)
+Received: from [192.168.1.107] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6a3537ea9sm285032666b.58.2024.12.11.09.23.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Dec 2024 09:23:54 -0800 (PST)
+Message-ID: <f395a019-800f-49a4-a3cc-28efafc4faa9@gmail.com>
+Date: Wed, 11 Dec 2024 19:23:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: power: actions,owl-sps: convert to YAML
+Content-Language: en-US
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Andreas_F=C3=A4rber?=
+ <afaerber@suse.de>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241103123917.2890436-1-ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20241103123917.2890436-1-ivo.ivanov.ivanov1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Am Mittwoch, 11. Dezember 2024, 18:07:57 CET schrieb Maxime Ripard:
-> On Wed, Dec 11, 2024 at 12:15:07PM +0200, Cristian Ciocaltea wrote:
-> > The RK3588 specific implementation is currently quite limited in terms
-> > of handling the full range of display modes supported by the connected
-> > screens, e.g. 2560x1440@75Hz, 2048x1152@60Hz, 1024x768@60Hz are just a
-> > few of them.
-> > 
-> > Additionally, it doesn't cope well with non-integer refresh rates like
-> > 59.94, 29.97, 23.98, etc.
-> > 
-> > Make use of HDMI0 PHY PLL as a more accurate DCLK source to handle
-> > all display modes up to 4K@60Hz.
-> > 
-> > Tested-by: FUKAUMI Naoki <naoki@radxa.com>
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> > ---
-> >  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 34 ++++++++++++++++++++++++++++
-> >  1 file changed, 34 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> > index 8b2f53ffefdbf1cc8737b3a86e630a03a7fd9348..393fe6aa170aaee9663c4a6d98c1cd6a5ef79392 100644
-> > --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> > +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> > @@ -158,6 +158,7 @@ struct vop2_video_port {
-> >  	struct drm_crtc crtc;
-> >  	struct vop2 *vop2;
-> >  	struct clk *dclk;
-> > +	struct clk *dclk_src;
-> >  	unsigned int id;
-> >  	const struct vop2_video_port_data *data;
-> >  
-> > @@ -212,6 +213,7 @@ struct vop2 {
-> >  	struct clk *hclk;
-> >  	struct clk *aclk;
-> >  	struct clk *pclk;
-> > +	struct clk *pll_hdmiphy0;
-> >  
-> >  	/* optional internal rgb encoder */
-> >  	struct rockchip_rgb *rgb;
-> > @@ -220,6 +222,8 @@ struct vop2 {
-> >  	struct vop2_win win[];
-> >  };
-> >  
-> > +#define VOP2_MAX_DCLK_RATE		600000 /* kHz */
-> > +
-> >  #define vop2_output_if_is_hdmi(x)	((x) == ROCKCHIP_VOP2_EP_HDMI0 || \
-> >  					 (x) == ROCKCHIP_VOP2_EP_HDMI1)
-> >  
-> > @@ -1033,6 +1037,9 @@ static void vop2_crtc_atomic_disable(struct drm_crtc *crtc,
-> >  
-> >  	vop2_crtc_disable_irq(vp, VP_INT_DSP_HOLD_VALID);
-> >  
-> > +	if (vp->dclk_src)
-> > +		clk_set_parent(vp->dclk, vp->dclk_src);
-> > +
-> >  	clk_disable_unprepare(vp->dclk);
-> >  
-> >  	vop2->enable_count--;
-> > @@ -2049,6 +2056,27 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
-> >  
-> >  	vop2_vp_write(vp, RK3568_VP_MIPI_CTRL, 0);
-> >  
-> > +	/*
-> > +	 * Switch to HDMI PHY PLL as DCLK source for display modes up
-> > +	 * to 4K@60Hz, if available, otherwise keep using the system CRU.
-> > +	 */
-> > +	if (vop2->pll_hdmiphy0 && mode->crtc_clock <= VOP2_MAX_DCLK_RATE) {
-> > +		drm_for_each_encoder_mask(encoder, crtc->dev, crtc_state->encoder_mask) {
-> > +			struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-> > +
-> > +			if (rkencoder->crtc_endpoint_id == ROCKCHIP_VOP2_EP_HDMI0) {
-> > +				if (!vp->dclk_src)
-> > +					vp->dclk_src = clk_get_parent(vp->dclk);
-> > +
-> > +				ret = clk_set_parent(vp->dclk, vop2->pll_hdmiphy0);
-> > +				if (ret < 0)
-> > +					drm_warn(vop2->drm,
-> > +						 "Could not switch to HDMI0 PHY PLL: %d\n", ret);
-> > +				break;
-> > +			}
-> > +		}
-> > +	}
-> > +
-> 
-> It seems pretty fragile to do it at atomic_enable time, even more so
-> since you don't lock the parent either.
-> 
-> Any reason not to do it in the DRM or clock driver probe, and make sure
-> you never change the parent somehow?
+On 11/3/24 14:39, Ivaylo Ivanov wrote:
+> Convert the Actions Semi Owl Smart Power System (SPS) bindings to DT
+> schema.
+>
+> Changes during conversion:
+>  - Add a description
+>
+> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+> v2: add r-b tag from Krzysztof Kozlowski <krzk@kernel.org>
+> v2: update commit message to be accurate (Krzysztof)
+> v2: don't preserve formatting in the description (Krzysztof)
+> v2: add a blank line after additionalProperties (Krzysztof)
+> ---
+>  .../bindings/power/actions,owl-sps.txt        | 21 --------
+>  .../bindings/power/actions,owl-sps.yaml       | 51 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 52 insertions(+), 22 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/power/actions,owl-sps.txt
+>  create mode 100644 Documentation/devicetree/bindings/power/actions,owl-sps.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/power/actions,owl-sps.txt b/Documentation/devicetree/bindings/power/actions,owl-sps.txt
 
-On rk3588 we have 3 dclk_s and 2 hdmi controllers. Each video-port can
-use the clock generated from either the hdmi0phy or hdmi1phy, depending
-on which hdmi-controller it uses.
+BUMP - what happened with the patch? Been a month now and
+all the other ones have been applied.
 
-So you actually need to know which vpX will output to which hdmiY to then
-reparent that dclk to the hdmiphy output.
+Best regards, Ivo.
 
-
-
-
+> deleted file mode 100644
+> index a3571937b..000000000
+> --- a/Documentation/devicetree/bindings/power/actions,owl-sps.txt
+> +++ /dev/null
+> @@ -1,21 +0,0 @@
+> -Actions Semi Owl Smart Power System (SPS)
+> -
+> -Required properties:
+> -- compatible          :  "actions,s500-sps" for S500
+> -                         "actions,s700-sps" for S700
+> -                         "actions,s900-sps" for S900
+> -- reg                 :  Offset and length of the register set for the device.
+> -- #power-domain-cells :  Must be 1.
+> -                         See macros in:
+> -                          include/dt-bindings/power/owl-s500-powergate.h for S500
+> -                          include/dt-bindings/power/owl-s700-powergate.h for S700
+> -                          include/dt-bindings/power/owl-s900-powergate.h for S900
+> -
+> -
+> -Example:
+> -
+> -		sps: power-controller@b01b0100 {
+> -			compatible = "actions,s500-sps";
+> -			reg = <0xb01b0100 0x100>;
+> -			#power-domain-cells = <1>;
+> -		};
+> diff --git a/Documentation/devicetree/bindings/power/actions,owl-sps.yaml b/Documentation/devicetree/bindings/power/actions,owl-sps.yaml
+> new file mode 100644
+> index 000000000..0855d82f3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/actions,owl-sps.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/actions,owl-sps.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Actions Semi Owl Smart Power System (SPS)
+> +
+> +maintainers:
+> +  - Andreas Färber <afaerber@suse.de>
+> +
+> +description:
+> +  Actions Semi Owl SoCs feature a Smart Power System (SPS) that manages power
+> +  domains to optimize power usage across various hardware blocks. Each power
+> +  domain corresponds to a specific hardware block and is represented by a bit
+> +  in the power control register and an acknowledgment bit, which is then
+> +  translated into a corresponding voltage on a rail.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - actions,s500-sps
+> +      - actions,s700-sps
+> +      - actions,s900-sps
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#power-domain-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#power-domain-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/power/owl-s500-powergate.h>
+> +    soc {
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +      sps: power-controller@b01b0100 {
+> +        compatible = "actions,s500-sps";
+> +        reg = <0xb01b0100 0x100>;
+> +        #power-domain-cells = <1>;
+> +      };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 76ea65128..420d06d37 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2023,7 +2023,7 @@ F:	Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
+>  F:	Documentation/devicetree/bindings/mmc/owl-mmc.yaml
+>  F:	Documentation/devicetree/bindings/net/actions,owl-emac.yaml
+>  F:	Documentation/devicetree/bindings/pinctrl/actions,*
+> -F:	Documentation/devicetree/bindings/power/actions,owl-sps.txt
+> +F:	Documentation/devicetree/bindings/power/actions,owl-sps.yaml
+>  F:	Documentation/devicetree/bindings/timer/actions,owl-timer.yaml
+>  F:	arch/arm/boot/dts/actions/
+>  F:	arch/arm/mach-actions/
 
 
