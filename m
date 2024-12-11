@@ -1,326 +1,582 @@
-Return-Path: <devicetree+bounces-129821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2B739ECD8D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:45:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEDD09ECCDC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:09:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 599DF16983A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:45:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8E6D167D6A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:09:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C7E223694F;
-	Wed, 11 Dec 2024 13:44:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dell.com header.i=@dell.com header.b="q2ZrGd1P"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E331922914F;
+	Wed, 11 Dec 2024 13:09:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00154904.pphosted.com (mx0b-00154904.pphosted.com [148.163.137.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE892368ED;
-	Wed, 11 Dec 2024 13:44:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.137.20
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733924676; cv=fail; b=WMSIEeyGUKEzjeOBSddWCVBGgBmCXpRGAyUQBGe0GDVizt/boBqcOb5SKmrfNGqXlt11jbrzoaDElWvXPamzHG5LMSJWAXdKTYGISiFEUoiPGoIyxkuSVkZa39IGfaQrYAqWNih2t7gs7vZkyRnbdDLwXJlSI2VLN93zr+zqCjs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733924676; c=relaxed/simple;
-	bh=ls/SfsqmLBfWYbgqq8KN3UtmDW12PufZ4XcnBIGCjS8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=P/4PEbcfWBocGSjEtQQF2yAlxAZLEc+9gQYOF5LmcB5OHjzOr4o4/XgrWuXeSgwVwVXlHycFEM5vP+5gAONNvWSI18xzXzLSsBQO5RtacVjfjcFyD4E67ywC8T7RYHXv0VcKDEgpkyk53yFi46EAaN+ANrLTY9lG+Pb3dIua1uM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=dell.com; spf=pass smtp.mailfrom=dell.com; dkim=pass (2048-bit key) header.d=dell.com header.i=@dell.com header.b=q2ZrGd1P; arc=fail smtp.client-ip=148.163.137.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=dell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dell.com
-Received: from pps.filterd (m0170394.ppops.net [127.0.0.1])
-	by mx0b-00154904.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BB98Tnn000364;
-	Wed, 11 Dec 2024 06:35:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dell.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=smtpout1; bh=r
-	yb0uwvZ8hBb4a0fHWXypjgVCgETH8yO4/gII5DRhDM=; b=q2ZrGd1PucMN5x2W4
-	EhymjR8M7VUiap3DGuzjqtKJZiMzJNLfH3FQ2iW11P0j//EBTuKdxCK7TfjQSWrw
-	R8hyDaLIBtn8RsuYlWXlJDA8S0bkmlLWNfzPoADIsmQ80a3SPCm1G4vKQjs5Gkny
-	sxdZIRmwJIyEowiMtgVwmGZ9JSDNju3KB73IJdayXozdfUwnp8ySHF/MCii9fzSt
-	Wt7twqp1HCtqmGd8GDL51O8Fkjr6wXlKKowW2Zk/A8fyWa4nu3OuDVdq4WCmsz3q
-	YP/jFXwqLjkglLTv70EDXGviK8yZAGi+PsbghSDUbQw92V0JMmKZe8PaWpZYAzsE
-	4NVbQ==
-Received: from mx0a-00154901.pphosted.com (mx0a-00154901.pphosted.com [67.231.149.39])
-	by mx0b-00154904.pphosted.com (PPS) with ESMTPS id 43chta28gp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Dec 2024 06:35:42 -0500 (EST)
-Received: from pps.filterd (m0134746.ppops.net [127.0.0.1])
-	by mx0a-00154901.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BBBAZnP003399;
-	Wed, 11 Dec 2024 06:35:41 -0500
-Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2041.outbound.protection.outlook.com [104.47.70.41])
-	by mx0a-00154901.pphosted.com (PPS) with ESMTPS id 43f982gnjt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 11 Dec 2024 06:35:40 -0500 (EST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EQeRbF0ghUdEQbl46dyHW1cEVHpyftEuWkt9c5zky0wcZt6N2Edc0L0RKFVb6scvz6KAdec8adSwZ6Kceku1E/SgUxD/cCRl7avwaGP547em1hHynhxJ14ahro45jwlX8grOBvkUD7THLqw8Zlo66n8uarpvgvkTfXxm+sMYAbwukmRX5VpuaFxbpmmUF1oTN+lr46FwwFtZ0eoQvhL2J64BLc+A9ONFodcBE0wuOA2dkGH+WOMuPQRa5DH+Ho+AF88NLzRgqfUsg2fkTvZO8xlBZOxwDMEY8bHfEvMytsxoZSI7VCZo7iIpjNxYspYwKrsDniDafrdmZK5lP14EqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ryb0uwvZ8hBb4a0fHWXypjgVCgETH8yO4/gII5DRhDM=;
- b=IEzLIgqQ9sai7jce92+8npDlnWhxwkwFQAR2SZuJjC98EIrRpgp6nO/d2bPHpx2/nQB6z/Jrs9VkIb5c2NyK/lz381oWl401nlCl1AHIHoRsc2+zewlABGwd4yEXzrjWu/0E7EN1uHRJavQxAhUSzYxdzwG/s/6/a+K7WeABftAnkl8HJ/arziBvdeC7UgjroTsUvGTls/lLTKYNI6vvHKUjNbzqnrjPbD3boeKHTTeBZFj0Er50L81yxGioU4r43fmA1PFo1y9MAsNHe/d1WcUhoM1wtK5/W3F2ktChz77Fb3fcw4b5U/oldE4562KO2cGk9Y5+ceeYhxz3IcePKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=dell.com; dmarc=pass action=none header.from=dell.com;
- dkim=pass header.d=dell.com; arc=none
-Received: from CY5PR19MB6147.namprd19.prod.outlook.com (2603:10b6:930:c::14)
- by SA1PR19MB5596.namprd19.prod.outlook.com (2603:10b6:806:238::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.19; Wed, 11 Dec
- 2024 11:35:37 +0000
-Received: from CY5PR19MB6147.namprd19.prod.outlook.com
- ([fe80::d390:13bd:b078:f743]) by CY5PR19MB6147.namprd19.prod.outlook.com
- ([fe80::d390:13bd:b078:f743%6]) with mapi id 15.20.8251.008; Wed, 11 Dec 2024
- 11:35:37 +0000
-From: "Tudor, Laurentiu" <Laurentiu.Tudor1@dell.com>
-To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
-        Stephan Gerhold
-	<stephan.gerhold@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sibi Sankar
-	<quic_sibis@quicinc.com>, Marc Zyngier <maz@kernel.org>,
-        Xilin Wu
-	<wuxilin123@gmail.com>, Abel Vesa <abel.vesa@linaro.org>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>,
-        Srinivas Kandagatla
-	<srinivas.kandagatla@linaro.org>,
-        "linux-arm-msm@vger.kernel.org"
-	<linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        Johan Hovold <johan@kernel.org>
-Subject: RE: [PATCH 5/8] arm64: dts: qcom: x1e80100-dell-xps13-9345: Fix USB
- QMP PHY supplies
-Thread-Topic: [PATCH 5/8] arm64: dts: qcom: x1e80100-dell-xps13-9345: Fix USB
- QMP PHY supplies
-Thread-Index: AQHbS0RfK+ByFmCJM02775fsjGwRzrLg6pDQ
-Date: Wed, 11 Dec 2024 11:35:37 +0000
-Message-ID:
- <CY5PR19MB61475B208EC527ED7143B536BA3E2@CY5PR19MB6147.namprd19.prod.outlook.com>
-References:
- <20241210-x1e80100-usb-qmp-supply-fix-v1-0-0adda5d30bbd@linaro.org>
- <20241210-x1e80100-usb-qmp-supply-fix-v1-5-0adda5d30bbd@linaro.org>
- <CAMcHhXpvwR50GCkTvtkmWW4mvV5o9vbMvrvqLiEkJpKDHP_REA@mail.gmail.com>
-In-Reply-To:
- <CAMcHhXpvwR50GCkTvtkmWW4mvV5o9vbMvrvqLiEkJpKDHP_REA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_73dd1fcc-24d7-4f55-9dc2-c1518f171327_ActionId=374049a1-96f4-43cc-8022-5b317cdb5167;MSIP_Label_73dd1fcc-24d7-4f55-9dc2-c1518f171327_ContentBits=0;MSIP_Label_73dd1fcc-24d7-4f55-9dc2-c1518f171327_Enabled=true;MSIP_Label_73dd1fcc-24d7-4f55-9dc2-c1518f171327_Method=Standard;MSIP_Label_73dd1fcc-24d7-4f55-9dc2-c1518f171327_Name=No
- Protection (Label Only) - Internal
- Use;MSIP_Label_73dd1fcc-24d7-4f55-9dc2-c1518f171327_SetDate=2024-12-11T11:33:50Z;MSIP_Label_73dd1fcc-24d7-4f55-9dc2-c1518f171327_SiteId=945c199a-83a2-4e80-9f8c-5a91be5752dd;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY5PR19MB6147:EE_|SA1PR19MB5596:EE_
-x-ms-office365-filtering-correlation-id: 432b51c6-d728-47fb-693b-08dd19d7eecc
-x-exotenant: 2khUwGVqB6N9v58KS13ncyUmMJd8q4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-7?B?NTFqM0QwSVUzYzBxRlNLMXZKS1FhKy1rd1ZYOXI1RnVpU1RGY3NVSFk4bTZW?=
- =?utf-7?B?UmIzdzZ0QWZRNDk0WDN2Q2JKRVU1TzBjbVkrLVgxQkROaEd2UEV3bDIvbHo=?=
- =?utf-7?B?Ky1zelQ5YnlUeXNBR2toUTFwRjhWVmh4akNZTzVGSTc5c3IwZUtWU1ZBaktl?=
- =?utf-7?B?MndxOGxoWGRYZTZvbHU4U2tzU3JacThoR3puaEk2YXE5OXBIRW9IVGNYdHlP?=
- =?utf-7?B?ZkxRUkVwSEVaT1orLW1OWUg1Y3B5M3JCSC9tN2k3Ky04bTd2MDVTWWhGQndw?=
- =?utf-7?B?bEU0aWs3U1VrNjZHSFhURjhmdnQwKy16TjZkNUhLTUtVN1RhTmlOQ3l2ZVFX?=
- =?utf-7?B?NW0xUzdHM0cxQVdIOElHdlVoSU1RNk9JOHd6ZDhHM0JXdDZka3RKVmtRdzk4?=
- =?utf-7?B?NDBDZ0k0MDNpSjJXMjRTZXBrUmVmN1NtUFhtcWxBcGdSNjQ3aVQ5S2k5SVB2?=
- =?utf-7?B?VjBFT1plekh1MWlnby91WFc2U1RrMzZKMUtLUjB2RTh6SWhEZVJmMlF4N2JL?=
- =?utf-7?B?N1psV2p1bURBN09UUU1iZEtxdWtWZ3ZWTHZXWW1Jei9VdUY3L1ZqeS93TEVO?=
- =?utf-7?B?YnErLXJQejdkNWxITEtKdnFvMHJoUHBMRjRQR1pXS3FYMkVPVWhGY29xNjM=?=
- =?utf-7?B?Ky1iU0xBREpzYUh4TEVnbm9zVHpub2R1REpjNWYyUHNJWnRmZVhtKy02TnZ0?=
- =?utf-7?B?dENnSVhWQ0hmQWs4ZTR3aTBCZG81TmUxbGNXcHBRWXdpa0dVZDJHbDdMQ08z?=
- =?utf-7?B?VlhRdzd5R3pXQVhNNkIrLTY2MzJ5cHc0NE81Ky1XKy1xZjlRSmpNbm5YWkts?=
- =?utf-7?B?dUQ3d1lka2ZRVENDUWovVXdjdzZneUdGenNIclc0ek05d2wyOWNVQnRYeEVy?=
- =?utf-7?B?QVN0YThTTkdOODcrLW8yN21nZkVWMnZlLzJhb0J5dU9kY0kvS3ZEMkJrdXNB?=
- =?utf-7?B?MEVCMU9LYVJjS0VLSCstNUp5akxqMWl0Z3BKcFZsYSstcjNQSlpEWGxHUjJs?=
- =?utf-7?B?VEMzNEVsVG9wL2VJOGZvTTR1S2lWaHpGbEh4VHQ4QjY0U2tLbHloMXhVU2xV?=
- =?utf-7?B?ZVF0YUk1V2E1Y0IwUy9qdjV0WTVQdkVRZUFVM0FlKy1jZ2xrMlVkempuN2dk?=
- =?utf-7?B?UDdreWNqQzE5SW1lMlFmQ1JtcjRrZlFGN0pKZE9Zb1FaTFdiVHA5b2ttM0R4?=
- =?utf-7?B?SGp0MHNKbHZ6ckd3eERWeFZZUHd6ckdFUmo5RWdST0lFalYzNzVRdGphRjB0?=
- =?utf-7?B?SllhQ3dUUTRWRGpZTXNITUJRVUt4eC9DcDgwb1cvR2xveDV5WDFwZGNlV3Ri?=
- =?utf-7?B?QW1zZ1pJalRIbE5GZUpzeHF3RzE4aUF5NC9DS2Z5T0NCeGtSL2RxdENMQTli?=
- =?utf-7?B?MGMwdCstdGwrLXFBTm5PSmF6cmVEblUyeGJIN05vQi9vZXdSaldEbktWc0V6?=
- =?utf-7?B?TnFRSmFyNEd2d01RYVh3T0xSZHFmUktGTWgycistcjBEZDRaVDg2SDdZR1Y1?=
- =?utf-7?B?aEtDd3hmTEtOUUIvM01BMFhKVDFseVZkYXNxNWRRY0VER2VGT0R3aystZ2gv?=
- =?utf-7?B?aFVET3lValQvRVUxaFExNkxUcVc5dDQ5eCsteUdCbWY0Yi94eFcrLTltZDZ4?=
- =?utf-7?B?bnVlbmdZb1h1anNlektSaUpmUnR6QjZISkxaelVEb2xNOTd1R3lUTlRGY241?=
- =?utf-7?B?NjU0TTQ2b1BaYVhFNGdWRHdCaEpxV2kyR2JsRUdrRjBNVkM1REVWN2EzTGNR?=
- =?utf-7?B?TUhrS0xSNVh4R3QrLXJaN1RxYmtjejVUSHZCekliYWNyZ25QTE4rLWxaSHlS?=
- =?utf-7?B?MFFuN1NVMlVyVmljeHVscXFyVmR6aHVYZGhCbWw5SHNtWkg5dk0vcGRoL3VS?=
- =?utf-7?B?OWNNa2ZVRXlXdUVnYTUvZ2VyZHkwdXRyN21SVGRobmlqZEdGbFc4UXhKRHY0?=
- =?utf-7?B?NjNmUVRheHJvcy9RVExXdytBRDBBUFEt?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY5PR19MB6147.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-7?B?d00ycTV2L2ZRYWVLd0djOHd2YVh3TkRueVVqRTMrLXlkekhwR0tHcWdnL0tP?=
- =?utf-7?B?N1NiZHZNMSstL2hwaGYvUlE5VzUzaTRYT2loVmwxSjl3dCstYkI3VjllQXZi?=
- =?utf-7?B?UE1LOFcvS05XTHdvVHFtMFNUTlllM3ZVTlRIRW1CYURPKy1CaEtWZU5UY25u?=
- =?utf-7?B?WDFOZjZNV09DZTQ0dWRXWUFRS0syZEFuVFZqaE1BOThUdVlRS0RBMjlnUHZG?=
- =?utf-7?B?TDVWUEIxMU1NVmRhZHIwL2lKWXUvc09sTTVUb2lBbHhXTjRhOXhzYzdCOUYy?=
- =?utf-7?B?dU9uNFErLVZva3pkL2NwazUvUnRGMHVFKy0zaGZNclVWSnpuR1dsazdKNmtS?=
- =?utf-7?B?UWdxdExZZENyMG5nRm5JQlM1L3MydndUUUovUForLVlUUHF2MEVXeTZMN2J5?=
- =?utf-7?B?aXdrMGZCVFVOSXdmOXZrRmttMDVTSzM0em80TzNtMDllMngwL0IxZ3Q3UDJN?=
- =?utf-7?B?VistS2YybHQ5ajg1dlhlczA1bWl5UWJNdFBCcDZqOWI3ZXVRM2VDOWw4S3JS?=
- =?utf-7?B?Uk40WWUwNUN4OURUdnBhZVVMRlkvTmV3NHprcFRNN21kd1hkWWF3Y0RUOUpN?=
- =?utf-7?B?c1NjemFWcklBblN5R3Z6VHNHRERyQXptdFhtL2wwN002aEVXZlc5QnQ4anZ3?=
- =?utf-7?B?ZlRNQ20zTXQ3Ky1IbWpPRGE0TTd0b2xicU8yQkZGKy1ZR29XRXN6TGFGSjdL?=
- =?utf-7?B?REo5Qnhra0JtOW5UTkRSVXhmaG4yZEthNjJMSnBERUZrTVU0YnNjYkVyTEJO?=
- =?utf-7?B?QlRXUUhTR1hnVVMzYzBkaW1rTnZjczF0b3FHVkhObURBVVRXbFBMVVF2bFox?=
- =?utf-7?B?NXkyT0xubWhxSGVEeFFRNTU3Ky12VXJBZUd6MjlhMEpNcFZFQjR2a3M5dTcw?=
- =?utf-7?B?M2hxTDVRREhxMWorLWdlTE5rNUNFOVRWL3ROTDRyNWhHL1JYaFpSc2JGeXpX?=
- =?utf-7?B?akN6YThjZGM5T3J4QktjeVhsa3YrLUpoRGgwSDNJaWVtbmlPdUhtUHRvWWZM?=
- =?utf-7?B?WnN4TGtOR1RjTXFBTEhiTmVNVG5CVEpEZzJtak8zNmlSVE9QaXhiN3UxeG9E?=
- =?utf-7?B?QUhJdmtDSWdjMUNtY1JYaHQyWXhnSTdSdHVJVzhYODhxZVNHNTJ5WnZuTDhP?=
- =?utf-7?B?eVo4UFZheWdyNS9JeUhNVmNMYjFWcVZyeW5kUEllNjBDejV5WmZRL0dlcnBK?=
- =?utf-7?B?a0tqOXNRU25Sb0wxT3p6cjVxOXQrLVQwRXlNM2dsRFlFRmt6Zm0xNjNSSTBk?=
- =?utf-7?B?dkFVRTU3TDJzbHladG9iRHBHa1AxZ0h0dUtTWk5lV016aVZTMForLTM5OG1K?=
- =?utf-7?B?V01mUGxhWlpXWVUwdnZVM24zWmhQTlM1dGNBOWJUTExYKy1QR1F0d3RSd1hh?=
- =?utf-7?B?MW5KKy0vaFN0TmJQT0cybS8wb2x1ZEltZk5wQmNZM09kZ0R1MTMzSUZzVnVr?=
- =?utf-7?B?T2xJN3VLa3RNZWVLNVd0Y1gvdEZUU3FnZUh6TnRrUWxnZ0RzUnVDYTMwcWRS?=
- =?utf-7?B?aEZnTzBmVHFCYzQ0Yml0b3FTVWpIV3V6elB3aTYybTk3Q1F1dU9URDNVRmNN?=
- =?utf-7?B?bG4vb01wdk5CUHN6anBlKy1zTlVVSlJnYkxiUVBWOEFxN0JmNXh3SDE0b2Rw?=
- =?utf-7?B?NHc0M0h4M0hCRWtNQ0IvQ3YzUVlpV1A1Rlhuc0pkWFVOU0FwWGw4bTFSOHBV?=
- =?utf-7?B?NjZ3UjdxMURqekttZ1JBMXpKQjQrLURaWVJtMFZUYjJacXhBSkptWU5GNU9n?=
- =?utf-7?B?MkR3bDF1ZWRCclNVcUdtdkhsbm0rLWt5ZFFDTE9SM2haMnNxcystbWlhZTZ5?=
- =?utf-7?B?NTdTQkZDWHQvSUpKMUNRMDdsWEdNQzlGdFMvNFpldFBKV21VSlRtelRoUjY1?=
- =?utf-7?B?ZWk4L1E3ZVVrZW1iSDR6VkJSSERjNWNzN2s0NDdrS04xU2IrLTNpOFVRa29M?=
- =?utf-7?B?SmtXaXVnREl4emJIUEwwaDc3ZEFKOERtM2hlTENiWWczSkJXNVdpZmtlSm1w?=
- =?utf-7?B?WlYwMnByWWJDWG9PRmt4b0thV0d2VGt1YVdqZ1gyOE9Yc05LMGducTdhemx4?=
- =?utf-7?B?Vk9hQm1nTXBaM2xBS055L1V3Y214RjhPZmFFSXZuVmFvR091a1AxTEtycEVm?=
- =?utf-7?B?NUE5Ty9oZE1zUHBsVmhGMlBkR3BFNEJiQW1pVHFrZXRBQ3I2Z2xmUlRwZUp6?=
- =?utf-7?B?eDM=?=
-Content-Type: text/plain; charset="utf-7"
-Content-Transfer-Encoding: quoted-printable
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9A1C1F193D;
+	Wed, 11 Dec 2024 13:08:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733922541; cv=none; b=Sj4LQ1dn8mDb1jYYFnkERLPmXp46sVWXCLeJMJjcleX7F6TPNyiyMq8PcFlfimMBRFcNEKMMG+LAR3WgfGKx5qVO7gaYY5fKX4Mw8PW4otXGvaIz08xSUNSMdqmpGhfAYY4b9p4YX2W10i8cssoiU1rEFuyz5HypEYZNVAWyW/w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733922541; c=relaxed/simple;
+	bh=i6aUOe2OBsx6iZoR6pTdacZbmJ8yZNSQb2sDoYsA4gg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=r0ujyPGM3u1k2dNa/Et0eE8qfOlPcmrramVtX5rFYAHBQvh25+YWf2y44cOjC7ToD2gJ7hlj2exi4VmPfnUzSFfzx3/5vAqlrnEVw6fKAdIINp8lOD9JEjzLvlBWGfw3Bs6TmTy64j76B8qpoWA3kuENiQAgoeRrtJut2GVhHec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1A2E31063;
+	Wed, 11 Dec 2024 05:09:26 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 07ECA3F720;
+	Wed, 11 Dec 2024 05:08:55 -0800 (PST)
+Date: Wed, 11 Dec 2024 13:08:53 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] ARM: dts: sunxi: add support for RerVision
+ A33-Vstar board
+Message-ID: <20241211130853.25b82d7b@donnerap.manchester.arm.com>
+In-Reply-To: <7310cb53109197e61a24659b259f5148b3962328.camel@icenowy.me>
+References: <20240913104845.4112986-1-uwu@icenowy.me>
+	<20240913104845.4112986-2-uwu@icenowy.me>
+	<7310cb53109197e61a24659b259f5148b3962328.camel@icenowy.me>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: Dell.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR19MB6147.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 432b51c6-d728-47fb-693b-08dd19d7eecc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Dec 2024 11:35:37.0951
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 945c199a-83a2-4e80-9f8c-5a91be5752dd
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yjJjg7zlTrK5lwgFgNtcZCPCd6plbKg82ypO9BwnN8Sg4wS01fUyq/qgW6gHYQpee9393VngcvT29lSsSSGvInTmt68OKkOjvZc5XpuwHDA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR19MB5596
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-27_02,2024-09-26_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 mlxlogscore=999 mlxscore=0 malwarescore=0
- lowpriorityscore=0 spamscore=0 suspectscore=0 clxscore=1011 phishscore=0
- bulkscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412110085
-X-Proofpoint-ORIG-GUID: 6fkjwSwayfEOWi8GxYToEWKkDxBUGY4E
-X-Proofpoint-GUID: 6fkjwSwayfEOWi8GxYToEWKkDxBUGY4E
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 lowpriorityscore=0
- mlxlogscore=960 impostorscore=0 suspectscore=0 clxscore=1011
- priorityscore=1501 spamscore=0 phishscore=0 adultscore=0 mlxscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412110085
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, 17 Sep 2024 17:54:38 +0800
+Icenowy Zheng <uwu@icenowy.me> wrote:
 
-Internal Use - Confidential
-+AD4- -----Original Message-----
-+AD4- From: Aleksandrs Vinarskis +ADw-alex.vinarskis+AEA-gmail.com+AD4-
-+AD4- Sent: Tuesday, December 10, 2024 10:45 PM
-+AD4-
-+AD4- On Tue, 10 Dec 2024 at 10:07, Stephan Gerhold +ADw-stephan.gerhold+AE=
-A-linaro.org+AD4-
-+AD4- wrote:
-+AD4- +AD4-
-+AD4- +AD4- On the X1E80100 CRD, +ACY-vreg+AF8-l3e+AF8-1p2 only powers +ACY=
--usb+AF8-mp+AF8-qmpphy0/1
-+AD4- (i.e.
-+AD4- +AD4- USBSS+AF8-3 and USBSS+AF8-4). The QMP PHYs for USB+AF8-0, USB+A=
-F8-1 and USB+AF8-2 are
-+AD4- +AD4- actually powered by +ACY-vreg+AF8-l2j+AF8-1p2.
-+AD4- +AD4-
-+AD4- +AD4- Since x1e80100-dell-xps13-9345 mostly just mirrors the power su=
-pplies
-+AD4- +AD4- from the x1e80100-crd device tree, assume that the fix also app=
-lies here.
-+AD4-
-+AD4- Though I can't verify schematics (perhaps Laurentiu can?)can confirm =
-USBs
-+AD4- still work as expected with this change.
+Hi,
 
-Yep, just checked the schematics and can confirm.
+I do understand it's too late now, but just saw some oddities about the
+regulator voltages when looking at the U-Boot version of this patch:
 
----
-Best Regards, Laurentiu
+> =E5=9C=A8 2024-09-13=E6=98=9F=E6=9C=9F=E4=BA=94=E7=9A=84 18:48 +0800=EF=
+=BC=8CIcenowy Zheng=E5=86=99=E9=81=93=EF=BC=9A
+> > RerVision A33-Vstar board is a board based on their A33-Core1 SoM
+> > (A33
+> > SoC + 512MiB DRAM + 4GiB eMMC + AXP223 PMIC), with multiple
+> > peripherals:
+> >=20
+> > - MicroSD card slot
+> > - 4.0mm/1.7mm DC jack connected to ACIN of AXP223 (and a XH2.54 2-pin
+> > =C2=A0 connector for alternative 5V DC IN)
+> > - OTG-capable microUSB port
+> > - Reserved pads for soldering Li-ion battery and/or 3V RTC battery
+> > - 3 LRADC-attached keys and 2 fixed function power/reset keys
+> > - AP6212 Wi-Fi/BT combo module
+> > - On-board GL850G hub attached to the USB host port of A33, and a
+> > =C2=A0 RTL8152 USB Ethernet chip at the downstream of the hub
+> > - Onboard microphone (not supported yet) and headphone jack
+> > - 3 UART ports as PH2.0 3-pin connectors (UART2 one is currently used
+> > as
+> > =C2=A0 debug output and others are ignored yet)
+> >=20
+> > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > --- =20
+>=20
+> Add a dependency to this patch at [1], which allows GL850G to have
+> downstream device nodes in DT.
+>=20
+> [1]
+> https://lore.kernel.org/lkml/20240917094008.283529-1-uwu@icenowy.me/
+>=20
+> > =C2=A0arch/arm/boot/dts/allwinner/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > =C2=A0.../dts/allwinner/sun8i-a33-vstar-core1.dtsi=C2=A0 |=C2=A0 96 +++=
++++++
+> > =C2=A0.../boot/dts/allwinner/sun8i-a33-vstar.dts=C2=A0=C2=A0=C2=A0 | 205
+> > ++++++++++++++++++
+> > =C2=A03 files changed, 302 insertions(+)
+> > =C2=A0create mode 100644 arch/arm/boot/dts/allwinner/sun8i-a33-vstar-
+> > core1.dtsi
+> > =C2=A0create mode 100644 arch/arm/boot/dts/allwinner/sun8i-a33-vstar.dts
+> >=20
+> > diff --git a/arch/arm/boot/dts/allwinner/Makefile
+> > b/arch/arm/boot/dts/allwinner/Makefile
+> > index cd0d044882cf8..d548f4a2621a1 100644
+> > --- a/arch/arm/boot/dts/allwinner/Makefile
+> > +++ b/arch/arm/boot/dts/allwinner/Makefile
+> > @@ -215,6 +215,7 @@ dtb-$(CONFIG_MACH_SUN8I) +=3D \
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sun8i-a33-olinuxino.dtb=
+ \
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sun8i-a33-q8-tablet.dtb=
+ \
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sun8i-a33-sinlinx-sina3=
+3.dtb \
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sun8i-a33-vstar.dtb \
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sun8i-a83t-allwinner-h8=
+homlet-v2.dtb \
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sun8i-a83t-bananapi-m3.=
+dtb \
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0sun8i-a83t-cubietruck-p=
+lus.dtb \
+> > diff --git a/arch/arm/boot/dts/allwinner/sun8i-a33-vstar-core1.dtsi
+> > b/arch/arm/boot/dts/allwinner/sun8i-a33-vstar-core1.dtsi
+> > new file mode 100644
+> > index 0000000000000..ba794b842ec4e
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/allwinner/sun8i-a33-vstar-core1.dtsi
+> > @@ -0,0 +1,96 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright (C) 2024 Icenowy Zheng <uwu@icenowy.me>
+> > + */
+> > +
+> > +#include "sun8i-a33.dtsi"
+> > +
+> > +&mmc2 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pinctrl-names =3D "default";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pinctrl-0 =3D <&mmc2_8bit_pi=
+ns>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0vmmc-supply =3D <&reg_dcdc1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bus-width =3D <8>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0non-removable;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cap-mmc-hw-reset;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +};
+> > +
+> > +&mmc2_8bit_pins {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Increase drive strength f=
+or DDR modes */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drive-strength =3D <40>;
+> > +};
+> > +
+> > +&r_rsb {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0axp22x: pmic@3a3 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0compatible =3D "x-powers,axp223";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0reg =3D <0x3a3>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0interrupt-parent =3D <&r_intc>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_LOW>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0eldoin-supply =3D <&reg_dcdc1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0x-powers,drive-vbus-en;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +};
+> > +
+> > +#include "axp223.dtsi"
+> > +
+> > +&reg_aldo1 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-always-on;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D =
+<3300000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D =
+<3300000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vcc-io";
+> > +};
+> > +
+> > +&reg_aldo2 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-always-on;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D =
+<2350000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D =
+<2650000>;
 
-+AD4- Tested-by: Aleksandrs Vinarskis +ADw-alex.vinarskis+AEA-gmail.com+AD4=
--
-+AD4-
-+AD4- +AD4-
-+AD4- +AD4- Cc: stable+AEA-vger.kernel.org
-+AD4- +AD4- Fixes: f5b788d0e8cd (+ACI-arm64: dts: qcom: Add support for X1-=
-based Dell
-+AD4- +AD4- XPS 13 9345+ACI-)
-+AD4- +AD4- Signed-off-by: Stephan Gerhold +ADw-stephan.gerhold+AEA-linaro.=
-org+AD4-
-+AD4- +AD4- ---
-+AD4- +AD4-  arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts +AHw- 4 =
-+-+---
-+AD4- +AD4-  1 file changed, 2 insertions(+-), 2 deletions(-)
-+AD4- +AD4-
-+AD4- +AD4- diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.=
-dts
-+AD4- +AD4- b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
-+AD4- +AD4- index
-+AD4- +AD4-
-+AD4- b112092fbb9fd955adca1ae8a76294c776fa2d1e..1aec536218bc2c9197410a4
-+AD4- 3adec
-+AD4- +AD4- 291a31f9beed 100644
-+AD4- +AD4- --- a/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
-+AD4- +AD4- +-+-+- b/arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
-+AD4- +AD4- +AEAAQA- -1093,7 +-1093,7 +AEAAQA- +ACY-usb+AF8-1+AF8-ss0+AF8-h=
-sphy +AHs-  +AH0AOw-
-+AD4- +AD4-
-+AD4- +AD4-  +ACY-usb+AF8-1+AF8-ss0+AF8-qmpphy +AHs-
-+AD4- +AD4- -       vdda-phy-supply +AD0- +ADwAJg-vreg+AF8-l3e+AF8-1p2+AD4A=
-Ow-
-+AD4- +AD4- +-       vdda-phy-supply +AD0- +ADwAJg-vreg+AF8-l2j+AF8-1p2+AD4=
-AOw-
-+AD4- +AD4-         vdda-pll-supply +AD0- +ADwAJg-vreg+AF8-l1j+AF8-0p9+AD4A=
-Ow-
-+AD4- +AD4-
-+AD4- +AD4-         status +AD0- +ACI-okay+ACIAOw-
-+AD4- +AD4- +AEAAQA- -1125,7 +-1125,7 +AEAAQA- +ACY-usb+AF8-1+AF8-ss1+AF8-h=
-sphy +AHs-  +AH0AOw-
-+AD4- +AD4-
-+AD4- +AD4-  +ACY-usb+AF8-1+AF8-ss1+AF8-qmpphy +AHs-
-+AD4- +AD4- -       vdda-phy-supply +AD0- +ADwAJg-vreg+AF8-l3e+AF8-1p2+AD4A=
-Ow-
-+AD4- +AD4- +-       vdda-phy-supply +AD0- +ADwAJg-vreg+AF8-l2j+AF8-1p2+AD4=
-AOw-
-+AD4- +AD4-         vdda-pll-supply +AD0- +ADwAJg-vreg+AF8-l2d+AF8-0p9+AD4A=
-Ow-
-+AD4- +AD4-
-+AD4- +AD4-         status +AD0- +ACI-okay+ACIAOw-
-+AD4- +AD4-
-+AD4- +AD4- --
-+AD4- +AD4- 2.47.0
-+AD4- +AD4-
+So what is the value? I guess no one is adjusting this, ever? So it stays
+at the 2.5V that U-Boot programs? I think we should fix this to this
+voltage, then. What's the value that the BSP uses, is that different?
+
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vdd-dll";
+> > +};
+> > +
+> > +&reg_aldo3 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-always-on;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D =
+<3300000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D =
+<3300000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vcc-avcc=
+";
+> > +};
+> > +
+> > +&reg_dc5ldo {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-always-on;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D =
+<900000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D =
+<1400000>;
+
+Same here, why a range? I don't see U-Boot setting this, so does it stay
+at some reset value, or does the kernel adjust it when the AXP driver
+comes up? If any case, we should have exactly one voltage in here.
+
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vdd-cpus=
+";
+> > +};
+> > +
+> > +&reg_dcdc1 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-always-on;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D =
+<3300000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D =
+<3300000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vcc-3v3";
+> > +};
+> > +
+> > +&reg_dcdc2 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-always-on;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D =
+<900000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D =
+<1400000>;
+
+Sames as above, looks like to be 1.1V here?
+
+There reason I am pointing this out is this relies on U-Boot setting some
+hardcoded values, which I want to get rid off, as U-Boot should read the
+voltages from the DT as well.
+
+Cheers,
+Andre
+
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vdd-sys";
+> > +};
+> > +
+> > +&reg_dcdc3 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-always-on;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D =
+<900000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D =
+<1400000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vdd-cpu";
+> > +};
+> > +
+> > +&reg_dcdc5 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-always-on;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D =
+<1500000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D =
+<1500000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vcc-dram=
+";
+> > +};
+> > +
+> > +&reg_rtc_ldo {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vcc-rtc";
+> > +};
+> > diff --git a/arch/arm/boot/dts/allwinner/sun8i-a33-vstar.dts
+> > b/arch/arm/boot/dts/allwinner/sun8i-a33-vstar.dts
+> > new file mode 100644
+> > index 0000000000000..9f5c29b3df46d
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/allwinner/sun8i-a33-vstar.dts
+> > @@ -0,0 +1,205 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright (C) 2024 Icenowy Zheng <uwu@icenowy.me>
+> > + */
+> > +
+> > +/dts-v1/;
+> > +#include "sun8i-a33-vstar-core1.dtsi"
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/input/input.h>
+> > +
+> > +/ {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0model =3D "Rervision A33-Vst=
+ar";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "rervision,a3=
+3-vstar",
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "rervision,a33-core1",
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "allwinner,sun8i-a33";
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0aliases {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0serial0 =3D &uart0;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0ethernet0 =3D &r8152;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0chosen {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0stdout-path =3D "serial0:115200n8";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg_usb1_vbus: regulator-usb=
+1-vbus {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0compatible =3D "regulator-fixed";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "usb1-vbus";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D <5000000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D <5000000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0regulator-boot-on;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0enable-active-high;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0gpio =3D <&pio 1 2 GPIO_ACTIVE_HIGH>; /* PB2 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0wifi_pwrseq: pwrseq {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0compatible =3D "mmc-pwrseq-simple";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0reset-gpios =3D <&r_pio 0 6 GPIO_ACTIVE_LOW>; /* PL6 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0clocks =3D <&rtc CLK_OSC32K_FANOUT>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0clock-names =3D "ext_clock";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +};
+> > +
+> > +&ac_power_supply {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +};
+> > +
+> > +&codec {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +};
+> > +
+> > +&dai {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +};
+> > +
+> > +&ehci0 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <0>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0hub@1 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0/* Onboard GL850G hub which needs no extra power
+> > sequence */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0compatible =3D "usb5e3,608";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0reg =3D <1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <0>;
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0r8152: ethernet@4 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Onb=
+oard Realtek RTL8152 USB Ethernet,
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * wit=
+h no MAC address programmed
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0compat=
+ible =3D "usbbda,8152";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg =
+=3D <4>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0};
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +};
+> > +
+> > +&lradc {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0vref-supply =3D <&reg_aldo3>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0button-191 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0label =3D "V+";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0linux,code =3D <KEY_VOLUMEUP>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0channel =3D <0>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0voltage =3D <191011>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0button-391 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0label =3D "V-";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0linux,code =3D <KEY_VOLUMEDOWN>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0channel =3D <0>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0voltage =3D <391304>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0button-600 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0label =3D "BACK";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0linux,code =3D <KEY_BACK>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0channel =3D <0>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0voltage =3D <600000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +};
+> > +
+> > +&mmc0 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0vmmc-supply =3D <&reg_dcdc1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bus-width =3D <4>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cd-gpios =3D <&pio 1 4 GPIO_=
+ACTIVE_LOW>; /* PB4 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +};
+> > +
+> > +&mmc1 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pinctrl-names =3D "default";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pinctrl-0 =3D <&mmc1_pg_pins=
+>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0vmmc-supply =3D <&reg_dldo1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mmc-pwrseq =3D <&wifi_pwrseq=
+>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bus-width =3D <4>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0non-removable;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0brcmf: wifi@1 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0reg =3D <1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0compatible =3D "brcm,bcm4329-fmac";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0interrupt-parent =3D <&r_pio>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0interrupts =3D <0 7 IRQ_TYPE_LEVEL_LOW>; /* PL7 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0interrupt-names =3D "host-wake";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +};
+> > +
+> > +/*
+> > + * Our WiFi chip needs both DLDO1 and DLDO2 to be powered at the
+> > same
+> > + * time, with the two being in sync. Since this is not really
+> > + * supported right now, just use the two as always on, and we will
+> > fix
+> > + * it later.
+> > + */
+> > +&reg_dldo1 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-always-on;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D =
+<3300000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D =
+<3300000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vcc-wifi=
+0";
+> > +};
+> > +
+> > +&reg_dldo2 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-always-on;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D =
+<3300000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D =
+<3300000>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vcc-wifi=
+1";
+> > +};
+> > +
+> > +&reg_drivevbus {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "usb0-vbu=
+s";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +};
+> > +
+> > +&sound {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* TODO: on-board microphone=
+ */
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0simple-audio-card,widgets =
+=3D "Headphone", "Headphone Jack";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0simple-audio-card,routing =3D
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0"Left DAC", "DACL",
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0"Right DAC", "DACR",
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0"Headphone Jack", "HP";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +};
+> > +
+> > +&uart0 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pinctrl-names =3D "default";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pinctrl-0 =3D <&uart0_pb_pin=
+s>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +};
+> > +
+> > +&uart1 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pinctrl-names =3D "default";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pinctrl-0 =3D <&uart1_pg_pin=
+s>, <&uart1_cts_rts_pg_pins>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0uart-has-rtscts;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bluetooth {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0compatible =3D "brcm,bcm43438-bt";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0clocks =3D <&rtc CLK_OSC32K_FANOUT>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0clock-names =3D "lpo";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0vbat-supply =3D <&reg_dldo1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0device-wakeup-gpios =3D <&r_pio 0 10 GPIO_ACTIVE_HIGH>;
+> > /* PL10 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0host-wakeup-gpios =3D <&r_pio 0 9 GPIO_ACTIVE_HIGH>; /*
+> > PL9 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0shutdown-gpios =3D <&r_pio 0 8 GPIO_ACTIVE_HIGH>; /*
+> > PL8 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > +};
+> > +
+> > +&usb_otg {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dr_mode =3D "otg";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +};
+> > +
+> > +&usb_power_supply {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +};
+> > +
+> > +&usbphy {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0usb0_id_det-gpios =3D <&pio =
+7 8 GPIO_ACTIVE_HIGH>; /* PH8 */
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0usb0_vbus_power-supply =3D <=
+&usb_power_supply>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0usb0_vbus-supply =3D <&reg_d=
+rivevbus>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0usb1_vbus-supply =3D <&reg_u=
+sb1_vbus>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +}; =20
+>=20
+
 
