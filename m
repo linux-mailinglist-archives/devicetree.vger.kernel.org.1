@@ -1,98 +1,148 @@
-Return-Path: <devicetree+bounces-129930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEF229ED2E4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:58:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1D179ED2F6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 18:00:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE3A316856B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:57:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2955168888
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 17:00:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA2F1DE2A9;
-	Wed, 11 Dec 2024 16:57:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F1E41DE899;
+	Wed, 11 Dec 2024 17:00:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VMBgc627"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EKkSP7CA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BA9E1D63CA;
-	Wed, 11 Dec 2024 16:57:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0AC1DE884;
+	Wed, 11 Dec 2024 17:00:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733936277; cv=none; b=AX8SKqcFigUzy5z16tdMnDA+tW3yThFr4hfCyJdiF7pR4VW/amL/nKOm4eXtqt1KEbMF1uHpzCObGaMwbaGXMIOcVGA5BMNgTb4DcNj8+PBMojDlUxDULTR0uPNEu+A69fyTKZp8Zy7YjDe3cPGfCCXhxXKf82QCtDp35p58Zi4=
+	t=1733936409; cv=none; b=VWF/rI3z99c7UCod2pwpBj5kinuZKnDx21rntbafgdxM7Id8BWqosDgUuWQLleiI1xgOASjYnmGyrxFenG//13b+frvG5Uf2Q/5NNL/Ks2x546TXl9lxv34k2KdlwBqFovI8HmAHsYGmSpK99eVugzlcOmwJasx2jk3ar+I5Gvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733936277; c=relaxed/simple;
-	bh=1yIWus27OtZE7bJMyA2cso+dtL6NIpeS6Aafk4CnEz8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G4DmRmA3Is7S2ES5riwX8G5UGm+FoJt2Wz/8Be1ypI7HcR5Cu9VSNPehpDCQX9Y+4nhqHm+d3YtKlL7L/0JkBrOIV8Afme2UfWd19nFx6CtpR7uYtgHc4j+yXLl+KZL11gshenZC/H+BSaQR8cjsPD+5MtkOd9hFOcykRr+xQXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VMBgc627; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41A8EC4CED2;
-	Wed, 11 Dec 2024 16:57:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733936277;
-	bh=1yIWus27OtZE7bJMyA2cso+dtL6NIpeS6Aafk4CnEz8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VMBgc6278Cqxq3Ef8j4RI7sPxNL8KGlOEXqFR3ncDfyNJDh9fo8ioFSlxytsavnyG
-	 a4m6KQfUIdeEFhGyDrR4kmgHzdQVBeC5oFo0Hmw4nKuKNnMFHSQNsbpUXk2YxOzLg1
-	 pisPX6uTpX/zXb4N7LlQjeGrHwpXJdDM/XPT3f6L4K7FoJ64W21fsUZVhyadHxhAH/
-	 EZ1R/mGt+sJKUunuzbXpDbhCL4XrEezcb8VnzRxvbtO1snWWibwpllKRL4uadE6MwL
-	 w9zEIh2EzcF9U5dd4nQQ+209lVUFtjtn6WUeW3bD8QsDtT3wnrwYRRtu2AIYyYdnx7
-	 mbMrXiPGoi7vw==
-Date: Wed, 11 Dec 2024 16:57:52 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Iker Pedrosa <ikerpedrosam@gmail.com>
-Cc: linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, javierm@redhat.com
-Subject: Re: [PATCH v2] dt-bindings: devicetree: explain how to get CS
- active-high
-Message-ID: <aac3c2a2-6034-4cd1-b03e-3582f03f18c8@sirena.org.uk>
-References: <20241211165054.254164-1-ikerpedrosam@gmail.com>
+	s=arc-20240116; t=1733936409; c=relaxed/simple;
+	bh=bwaO47C/VDBLli4uK24DxQvuVZGRCzTeS8I7FFz++X4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=o0+dW4Tpw3wFZjZZJoI7L3EhFwn4Az3h1dMPgBzlQR0yzTdzN28XThfsBAvJtgPazbpM6Vts1CNAH1/xGTewLEW7ptGPT6/xFiVjF2hojFuIldsoghCjeRcsggreocqu4hIb7d4qOqlRC2XXEGFY3l4nbyAz7KLd+T1Rmd+BEn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EKkSP7CA; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1733936399;
+	bh=bwaO47C/VDBLli4uK24DxQvuVZGRCzTeS8I7FFz++X4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=EKkSP7CAyFZKwzhXEbg0pgRDCzeqdyuvFiLTmVXdKCmf3bR63zLQUnJ860nLD9I/f
+	 BOq9XGgi4apIRWVOoh1nVfQzLdZcXTiKxyyGm2C7Gmq7GaQDPubYAMI057Ur/rTiim
+	 NUWn4uDhgtX93QlKY8YtaguOwcHfujvGO45A/V6Kye5L72r4ZqlxDeGcHHzWOtf5fU
+	 4ubxYQjv0+ee9hgJuqnXfTTlrgyKsb6cb/CPIb72yMfpxIMJvxGw67q33Vydx5JjDK
+	 t8zsVkq3/ArjdP9CqV5F83kipesJpXeIyditY5RKMuK1kqKVk7f7QgXPX+LcB9ph0g
+	 gE3NoqwgAr4Mw==
+Received: from jupiter.universe (dyndsl-091-248-215-089.ewe-ip-backbone.de [91.248.215.89])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sre)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2E6CD17E37C2;
+	Wed, 11 Dec 2024 17:59:59 +0100 (CET)
+Received: by jupiter.universe (Postfix, from userid 1000)
+	id 78C0E48CC8A; Wed, 11 Dec 2024 17:59:58 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Heiko Stuebner <heiko@sntech.de>,
+	linux-clk@vger.kernel.org
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	huangtao@rock-chips.com,
+	andy.yan@rock-chips.com,
+	Michal Tomek <mtdev79b@gmail.com>,
+	Ilya K <me@0upti.me>,
+	Chad LeClair <leclair@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	kernel@collabora.com
+Subject: [PATCH v12 0/5] rockchip: clk: add GATE_LINK support
+Date: Wed, 11 Dec 2024 17:58:49 +0100
+Message-ID: <20241211165957.94922-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="YWrt2eyDDIld0rVQ"
-Content-Disposition: inline
-In-Reply-To: <20241211165054.254164-1-ikerpedrosam@gmail.com>
-X-Cookie: Every path has its puddle.
+Content-Transfer-Encoding: 8bit
 
+Hi,
 
---YWrt2eyDDIld0rVQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This implements proper GATE_LINK support following the suggestion from Stephen
+Boyd to use clk PM operations by creating MFD dynamically. This required some
+restructuring, since CLK_OF_DECLARE() is called before devices are available.
 
-On Wed, Dec 11, 2024 at 05:50:50PM +0100, Iker Pedrosa wrote:
-> The current documentation does not clearly explain how to invert the SPI
-> CS signal to make it active-high. This makes it very difficult to
-> understand.
+Apart from improved power consumption, this fixes the runtime errors from the
+pmdomain driver (failed to set idle on domain '%s'). Last but not least it is
+a first step towards reducing usage of CLK_OF_DECLARE_DRIVER() registered
+clocks, which should only be used for early clocks needed for the system
+timer (see this talk from LPC: https://www.youtube.com/watch?v=dofbbVuIAPk ).
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+Changes since PATCHv11:
+ * https://lore.kernel.org/all/20241024181621.210509-1-sebastian.reichel@collabora.com/
+ * rebase to v6.13-rc1 based for-next branch from Heiko
+   - no changes needed, so v12 is more or less a resend of v11
 
---YWrt2eyDDIld0rVQ
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes since PATCHv10:
+ * https://lore.kernel.org/linux-rockchip/20240913184720.57381-1-sebastian.reichel@collabora.com/
+ * rebased to v6.12-rc1
+ * make struct platform_driver static
 
------BEGIN PGP SIGNATURE-----
+Changes since PATCHv9:
+ * https://lore.kernel.org/linux-rockchip/20240325193609.237182-1-sebastian.reichel@collabora.com/
+ * drop patches 1 & 5 (merged)
+ * keep reporting ENOENT for missing clocks after CRU has been fully initialized
+ * drop module remove support for the linked gate clock driver
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmdZxI8ACgkQJNaLcl1U
-h9ADhwf5AZKYVSZtRXMACXd+PAZ6HtnJLoJD1+C2KMjRWsG1q63iBYuQqTkIxCLo
-6eUtg8lbmWMbhY5PJa9/W086T3h5tafwpRuIcBblkws723aVnHoawIR2/085Kupp
-lTCvhnTXRjxu5S2j0vCt2eCL/dQGizPfrYwndYP4c6UTLCcEqBFA0w7njr3YIsBq
-AKzrc3gKIq+HMXBZ4sCecZB0HUawH0OB896lBn5LOmcsRR8azK6KBO3f6uTIjYZ3
-OMoSaZIGUORwJnDuk5av5XouZOEXW35BFaGxdoFV9XAebJ7EO/ebIJSvuL85YoPi
-T2VAoZrOgGRaTYowIChhVGPflxpYkA==
-=1xoi
------END PGP SIGNATURE-----
+Changes since PATCHv8:
+ * https://lore.kernel.org/linux-rockchip/20240126182919.48402-1-sebastian.reichel@collabora.com/
+ * rebased to v6.9-rc1
+ * dropped all merged patches (i.e. all but the last one)
+ * rewrote and split the final patch
+   - should be easier to review
+   - properly calls pm_clk_suspend/pm_clk_resume
+   - now works on Orange Pi
 
---YWrt2eyDDIld0rVQ--
+Changes since PATCHv7:
+ * https://lore.kernel.org/all/20231213185114.47565-1-sebastian.reichel@collabora.com/
+ * rebased to v6.8-rc1
+ * Collected Reviewed-by/Acked-by from Krzysztof Kozlowski for DT binding patches
+ * support nr_clk=0 in rockchip_clk_find_max_clk_id() for smatch
+
+Greetings,
+
+-- Sebstian
+
+Sebastian Reichel (5):
+  clk: rockchip: support clocks registered late
+  clk: rockchip: rk3588: register GATE_LINK later
+  clk: rockchip: expose rockchip_clk_set_lookup
+  clk: rockchip: implement linked gate clock support
+  clk: rockchip: rk3588: drop RK3588_LINKED_CLK
+
+ drivers/clk/rockchip/Makefile     |   1 +
+ drivers/clk/rockchip/clk-rk3588.c | 116 ++++++++++++++++++------------
+ drivers/clk/rockchip/clk.c        | 101 ++++++++++++++++++++++----
+ drivers/clk/rockchip/clk.h        |  40 +++++++++++
+ drivers/clk/rockchip/gate-link.c  |  85 ++++++++++++++++++++++
+ 5 files changed, 285 insertions(+), 58 deletions(-)
+ create mode 100644 drivers/clk/rockchip/gate-link.c
+
+-- 
+2.45.2
+
 
