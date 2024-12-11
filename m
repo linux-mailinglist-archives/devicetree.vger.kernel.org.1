@@ -1,90 +1,120 @@
-Return-Path: <devicetree+bounces-129884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 879A09ECFB5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:29:09 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05E849ECFCB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:34:43 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4551A281389
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:29:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29F241670FA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:34:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D191AC444;
-	Wed, 11 Dec 2024 15:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B7911A0BED;
+	Wed, 11 Dec 2024 15:34:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YHgXlIQS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aH5Af9qx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42261AA1C4;
-	Wed, 11 Dec 2024 15:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4216D13B2A9;
+	Wed, 11 Dec 2024 15:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733930944; cv=none; b=nwppIAcZs8siE4NGyApd3SDw3lQa32sTXBJiu0jUDZeJ1abAOT0uOsamPjsrvbYt5k3kFFNhyx7+97aqVKdAzFlM0riWLFxMU5VwtJaiojB0kOHZv6yLDLoi4OmSzYg2+h0f0EIs2zDq8jnqdvHwXGXcevy99VopAaBlkrkqxh4=
+	t=1733931276; cv=none; b=Th3b9SfUDJKAfsy8AsbBpIEWqRKYq0U0lT5TBtlLwMaTJ1kNZr9ZorJx83Cw2hmqb9Rg09tjHItqeffbvkD5rlXlFZMY9ohQJUuh9OLpU0N81PXR2XYdsNxueh4umiD5T6Ej6o51KVU8LYGcYjtCKyCCPA/UoFF2suBXYsnNBfk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733930944; c=relaxed/simple;
-	bh=TAkXGoru7IboFNheO16srMs+Hv5/y72CCn02eUzuyLM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c5mVkS/tdNlBlJel+bnsUYfYpE3Vm25DT0seMj7A+ZuINeJQ/n43MdtsZU7CyQglQ1X0/7A2VGY/4fC6ecgoZeNNLGf4TcYFUEsMK/wYs0BkP82kNAIt80b+Ly7aNOouuzxjGX9gY0eINHawDyzGl6b9EImfEU1wnCESHMJWzxI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YHgXlIQS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D080C4CED2;
-	Wed, 11 Dec 2024 15:29:04 +0000 (UTC)
+	s=arc-20240116; t=1733931276; c=relaxed/simple;
+	bh=L7wzVvymBJg0eN3gAGAMtzo6S3quGzzL4FwBiMvbaVA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FrJOJpoklvjA+SPemOR39z/19igPjwEdGuY4c60bKkqGELT/Q7dGkIrM8f9CwRIFY16BSZP9kV6M0UTcORMdDxj2Zmdc94l8Bk6+v7hjJvJmrFpxFFQl+hV0vwhh7bLutR1detOHSJfJeSpx1FQeSuc9SaFI5l5lTg44LE0zTig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aH5Af9qx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1F9BC4CED2;
+	Wed, 11 Dec 2024 15:34:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733930944;
-	bh=TAkXGoru7IboFNheO16srMs+Hv5/y72CCn02eUzuyLM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YHgXlIQS5eH2JmCMGpmZPM3HedoUkg84SHg9kmruUuiNuDtG8QDl7H9t36d5WxEr5
-	 aXrrnqQPNu6bNZvZ9mVaybvDJFw3N6gl8it+sISL8MZFDk5IQIadFCvyYky3GRWpK/
-	 QHgF9I/k74OIcP2X/f1ghbYfyNdIOjgF65uSPv5RwonYOB4RHY26yWOG17CJy1l7Uk
-	 RNZGin55Y5nDXqx2JBI/1yuTAXYr77znMJsV3ecZFqUU1jW2b2nDQ7StuVWthpA/Xs
-	 1UZ2YWHIr+edDF9GGvVGCVwK6Jfo/guMgaO9dYAxSf5qRbN81YGMPtqyT2cPw8nQoV
-	 zeik5zrE7WbKA==
-Date: Wed, 11 Dec 2024 09:29:02 -0600
-From: Rob Herring <robh@kernel.org>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
-	chrisi.schrefl@gmail.com, rust-for-linux@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	s=k20201202; t=1733931275;
+	bh=L7wzVvymBJg0eN3gAGAMtzo6S3quGzzL4FwBiMvbaVA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=aH5Af9qxMczA7RImVZQQ3v97VuwhambD2XO/wI9quAbUk0khDM6TDhk0twy6S0B5b
+	 N+usp0qBFTbnub3TCdMVCqczN/t9xkNWL64yXiau+0UdNAp2VhcbAkLE9vPkg9ceXb
+	 cdTX4G5LUJSTbP3gGnYD8xdBBAoOf8CUd5ZeAXbkg21tq7JwR6XSWrx/r9tT92TxHP
+	 YN80hBjOCDGOyzD7DCOGzacpXDyaQN65w67K1Z9x6oFJ4QlsSloTGLXe5xcLYFnbWI
+	 unP65MqKjZ3PbKg3t02AgV613HjWgCj1+TsaJDShrfGBcTh76o/TmtMObR3I7Vgf0S
+	 L0DghhQSLq35Q==
+From: Kalle Valo <kvalo@kernel.org>
+To: ath12k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 15/16] samples: rust: add Rust platform sample driver
-Message-ID: <20241211152902.GB2906470-robh@kernel.org>
-References: <20241210224947.23804-1-dakr@kernel.org>
- <20241210224947.23804-16-dakr@kernel.org>
+Subject: [PATCH v3 0/8] wifi: ath12k: MLO support part 7
+Date: Wed, 11 Dec 2024 17:34:24 +0200
+Message-Id: <20241211153432.775335-1-kvalo@kernel.org>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241210224947.23804-16-dakr@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 10, 2024 at 11:46:42PM +0100, Danilo Krummrich wrote:
-> Add a sample Rust platform driver illustrating the usage of the platform
-> bus abstractions.
-> 
-> This driver probes through either a match of device / driver name or a
-> match within the OF ID table.
-> 
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> ---
->  MAINTAINERS                                  |  1 +
->  drivers/of/unittest-data/tests-platform.dtsi |  5 ++
->  samples/rust/Kconfig                         | 10 ++++
->  samples/rust/Makefile                        |  1 +
->  samples/rust/rust_driver_platform.rs         | 49 ++++++++++++++++++++
->  5 files changed, 66 insertions(+)
->  create mode 100644 samples/rust/rust_driver_platform.rs
+From: Kalle Valo <quic_kvalo@quicinc.com>
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Implementing Multi-Link Operation (MLO) continues. Bindings document is added
+to get WSI information from DT (patch 1) with the code parsing the information
+(patch 2). Rest of the patches are about configuring MLO in firmware.
+
+Device Tree bindings were reviewed as RFC earlier:
+
+[RFC PATCH v3 1/5] dt-bindings: net: wireless: Describe ath12k PCI module with WSI
+
+https://lore.kernel.org/ath12k/20241105180444.770951-1-quic_rajkbhag@quicinc.com/
+
+The only changes from the RFC are Jeff's email address, using flag instead of
+bool and moving the WSI description to the beginning of the doc.
+
+This patchset applies to ath.git main branch. Please review.
+
+Kalle
+
+v3:
+
+* patch 1: move description of WSI to the beginning of the doc
+
+v2: https://patchwork.kernel.org/project/linux-wireless/cover/20241209153034.50558-1-kvalo@kernel.org/
+
+* patch 1: change qcom,wsi-controller from a boolean to a flag
+
+v1: https://patchwork.kernel.org/project/linux-wireless/cover/20241205203044.589499-1-kvalo@kernel.org/
+
+Bhagavathi Perumal S (1):
+  wifi: ath12k: Add MLO WMI setup and teardown functions
+
+Karthikeyan Periyasamy (5):
+  wifi: ath12k: send partner device details in QMI MLO capability
+  wifi: ath12k: refactor ath12k_qmi_alloc_target_mem_chunk()
+  wifi: ath12k: add support to allocate MLO global memory region
+  wifi: ath12k: enable MLO setup and teardown from core
+  wifi: ath12k: avoid redundant code in DP Rx error process
+
+Raj Kumar Bhagat (2):
+  dt-bindings: net: wireless: Describe ath12k PCI module with WSI
+  wifi: ath12k: parse multiple device information from Device Tree
+
+ .../net/wireless/qcom,ath12k-wsi.yaml         | 204 +++++++++++++
+ drivers/net/wireless/ath/ath12k/core.c        | 256 +++++++++++++++-
+ drivers/net/wireless/ath/ath12k/core.h        |  18 ++
+ drivers/net/wireless/ath/ath12k/dp_rx.c       |  13 +-
+ drivers/net/wireless/ath/ath12k/mac.c         | 142 +++++++++
+ drivers/net/wireless/ath/ath12k/mac.h         |   3 +
+ drivers/net/wireless/ath/ath12k/qmi.c         | 283 ++++++++++++++----
+ drivers/net/wireless/ath/ath12k/qmi.h         |   1 +
+ drivers/net/wireless/ath/ath12k/wmi.c         | 180 +++++++++++
+ drivers/net/wireless/ath/ath12k/wmi.h         |  49 +++
+ 10 files changed, 1072 insertions(+), 77 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-wsi.yaml
+
+
+base-commit: 400568fb3b022247c1603fdbdd6444b3ef14ffce
+-- 
+2.39.5
+
 
