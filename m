@@ -1,117 +1,175 @@
-Return-Path: <devicetree+bounces-129903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 126449ED03C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:46:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C2049ED041
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:47:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45B3216A7BC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:46:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 815EC188C66E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB8A81DC1A7;
-	Wed, 11 Dec 2024 15:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 608CA1CB9EA;
+	Wed, 11 Dec 2024 15:45:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uwdZuG/9"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="Pt7bzOnO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BBBC1D8DFB;
-	Wed, 11 Dec 2024 15:45:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733931904; cv=none; b=dUk9rSGtUWf/+5n3LAgqN6YCAIyVbrT8QeZvsG8m/m+Ca3OPALhUYVDvA8jEKSlGdrK/6+XHOFSHtwxzeErlQ57Efd/4D+5FnTQPP3UNsjVACR7YWBFSycTK5ksrhvtvxv+/3ibZ9VQQxMWfP0z+f+6QNAN8ASqCboUTWvdkvho=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733931904; c=relaxed/simple;
-	bh=vHm0I24vOCK9hphozbx59ldx5MK6x+yw152du/dxzQM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oNiRADiNOK9KCkICOBtSIcqY7Nc2KVrAGd++ENetmIfj6e6fyNHO+0d9iv4CMo2th3LpHxwMxLsMkdIGB/C/DvOKoFJZ5zd7/V36j/r3Ic9r+9bZXyDBtfk5gWoD4ae21iHvL6HqOUy1kcbEr4XeDS4oGG9FL/OFda7SV7/pBlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uwdZuG/9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEB6CC4CED7;
-	Wed, 11 Dec 2024 15:44:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733931904;
-	bh=vHm0I24vOCK9hphozbx59ldx5MK6x+yw152du/dxzQM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uwdZuG/9DGh1Kv6z9czTnByEkoQ7zv0Ni6reos4sf6Y+LDh737/aEjnOnrpzbywKM
-	 MI7cbuFIN67NNDauEeu/pvjX/UM8XiGRcVOdHbwnmkMeK3I/BKuIxFewEB0AJUqmZo
-	 YMo4QxJ6xG3o5gY7sE1SlZUtBDdAZ0OwjKEQwI3FItt3VwFzlA9Tv4cnPG/MzfGNC1
-	 0TkVsoLpJP/U21I4jq7fnEBgdnT9JH/+4pj74d419+luMBlcSTGzSLnfkROYMdhreS
-	 7PtOaZx+l/aRJG0ONrGstgp7mn7m5hCcPSwh89UlGIdIaN3TUHrMdvnTGujDQTUBhc
-	 o+xjgo1wLNXqg==
-Date: Wed, 11 Dec 2024 15:44:55 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>,
-	Larisa Grigore <larisa.grigore@nxp.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Dong Aisheng <aisheng.dong@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v6 2/7] mfd: nxp-siul2: add support for NXP SIUL2
-Message-ID: <3b090335-20b4-4d73-aabc-ddac98311e33@sirena.org.uk>
-References: <20241113101124.1279648-1-andrei.stefanescu@oss.nxp.com>
- <20241113101124.1279648-3-andrei.stefanescu@oss.nxp.com>
- <20241211124454.GE7139@google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B12F1A4F22;
+	Wed, 11 Dec 2024 15:45:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733931942; cv=pass; b=TtKbiwY9v/Ck3zGY7ENqtrCNrAcwjt6zuwtWgJmimlzORYWDQ2y+3zH43KQnnhOVMJmCb8ez9inreQsBOjiP/AAWUNsNU/mNCl8iwj2lRWwv4uejQk3HrfaH5tNgSoSh4XSpHhSG9+i7C6QRrA0PBTe1HDhcqO+nfGCiqeMpDzw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733931942; c=relaxed/simple;
+	bh=qugaGRp61PEcokWZ4Y386Ws00DFF0zxviSOHBt/mmLo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZnwKZH3CCk9dH9n+jzd8Dh+ph9KTDy6C7seqBmj8OXGx4q5Kf82R/OBkQR5AYQQWhUo2Ak7kG4t/A7Zhjzo2zLO64MZ2k4iz/p9BACy9Y+3xI9BoAuSWC6RLgdf2JkpQT++ITEGJiFQPRblfp51tWJ/EBq1wAXPeSFlKlNSXs1k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=Pt7bzOnO; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1733931906; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=GTxSzouE/mJE+KcWqIisOlkVG9j+OotNYODT4LEZjRPdaSYKc7i1d0Crd7pyMjvDqdU5eLTRAX/5IeTigPpE5dHS8QXY1M4Jrn3NnjBVtKwOEaAb5Z5EktNEONCh+XYNOQCPSC6Br72m6UZTTrYsbjK8gBMsPTsLpkfFRVXWgDc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1733931906; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=OHdp4oLrGWXBegQfCTP9oaUHfCcRbALc/9btYKwbm/g=; 
+	b=RRnoLm5el6MLEoSqg88YRisYqGEx4pCOHZTWeSIdwTFwAa5e9+bRtwp+6zz1NaoPvMj8ouM9AxoI9MRiqTrYbcGY2YhARM/0SC6JpRC2Avt10K4KSe+oPS1dJog8rJ8+3gtXha+sFsmrpps0DAq2Xo7RzrcUJZ8Mv6SCxeWHqo4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1733931906;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=OHdp4oLrGWXBegQfCTP9oaUHfCcRbALc/9btYKwbm/g=;
+	b=Pt7bzOnOJxObbbrVV2c8d+mjSfJf2B1OyEdq1aUsl6K6KJ04U4xsbT8gez0v24Bu
+	R1VLpZQv362bO7DGcB5tjH/VGBBwZcXzaLjyJk1HH+zdCKborvP0hG7Tr1kl96XVi8e
+	FGuQlhU9cF2G4AfJVjHSIeh8h5wbkRjmyJArBfG8=
+Received: by mx.zohomail.com with SMTPS id 1733931903262633.7303262296845;
+	Wed, 11 Dec 2024 07:45:03 -0800 (PST)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org,
+ s.hauer@pengutronix.de, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ derek.foreman@collabora.com, Andy Yan <andy.yan@rock-chips.com>,
+ kernel@collabora.com
+Subject: Re: [PATCH v5 05/18] drm/rockchip: vop2: Set AXI id for rk3588
+Date: Wed, 11 Dec 2024 10:45:01 -0500
+Message-ID: <5843712.DvuYhMxLoT@bootstrap>
+In-Reply-To: <2d381563.5e54.193b46d2f30.Coremail.andyshrk@163.com>
+References:
+ <20241209122943.2781431-1-andyshrk@163.com> <5839604.DvuYhMxLoT@trenzalore>
+ <2d381563.5e54.193b46d2f30.Coremail.andyshrk@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wVbzCNTZslHN//4Y"
-Content-Disposition: inline
-In-Reply-To: <20241211124454.GE7139@google.com>
-X-Cookie: Every path has its puddle.
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
+
+On Wednesday, 11 December 2024 01:34:34 EST Andy Yan wrote:
+> Hi Detlev,
+>=20
+> At 2024-12-11 02:40:14, "Detlev Casanova" <detlev.casanova@collabora.com>=
+=20
+wrote:
+> >Hi Andy,
+> >
+> >On Monday, 9 December 2024 07:29:18 EST Andy Yan wrote:
+> >> From: Andy Yan <andy.yan@rock-chips.com>
+> >>=20
+> >> There are two AXI bus in vop2, windows attached on the same bus must
+> >> have a unique channel YUV and RGB channel ID.
+> >>=20
+> >> The default IDs will conflict with each other on the rk3588, so they
+> >> need to be reassigned.
+> >>=20
+> >> Fixes: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
+> >> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+> >> Tested-by: Derek Foreman <derek.foreman@collabora.com>
+> >>=20
+> >> ---
+> >>=20
+> >> Changes in v5:
+> >> - Added in V5
+> >>=20
+> >>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 14 +++++++++++
+> >>  drivers/gpu/drm/rockchip/rockchip_drm_vop2.h |  9 +++++++
+> >>  drivers/gpu/drm/rockchip/rockchip_vop2_reg.c | 26 +++++++++++++++++++-
+> >>  3 files changed, 48 insertions(+), 1 deletion(-)
+> >>=20
+> >> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> >> b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c index
+> >> dc4edd65bc9e..8b9ca046eeeb 100644
+> >> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> >> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+> >> @@ -1426,6 +1426,12 @@ static void vop2_plane_atomic_update(struct
+> >> drm_plane *plane, &fb->format->format,
+> >>=20
+> >>  		afbc_en ? "AFBC" : "", &yrgb_mst);
+> >>=20
+> >> +	if (vop2->data->soc_id > 3568) {
+> >
+> >Shouldn't this be done only for rk3588, as specified in the comments bel=
+ow
+> >? The test we did before showed that it is failing on rk3576 and 3576 is=
+ >
+> >3588.
+> I think this is because you tested before with the patch I gave Derek=20
+> without axi id assigned for rk3576.
+> I assigned axi id for rk3576 in this version 18/18=EF=BC=88The new ID ass=
+ignment can
+> adapt to more application scenarios.=EF=BC=89, can you test it with the w=
+hole V5
+> version again?
+
+Yes, I will do that. But patch 18 mentions:
++       /* Read only bit on rk3576*/
++       [VOP2_WIN_AXI_BUS_ID] =3D REG_FIELD(RK3568_CLUSTER_CTRL, 13, 13),
+
+And the bit is being written here. If it is indeed writable, then I would d=
+rop=20
+that comment.
+
+> >I suggest
+> >
+> >	if (vop2->data->soc_id =3D=3D 3588) {
+> >
+> >Regards,
+> >Detlev
+> >
+> >> +		vop2_win_write(win, VOP2_WIN_AXI_BUS_ID, win->data-
+> >>
+> >>axi_bus_id);
+> >>
+> >> +		vop2_win_write(win, VOP2_WIN_AXI_YRGB_R_ID, win->data-
+> >>
+> >>axi_yrgb_r_id);
+> >>
+> >> +		vop2_win_write(win, VOP2_WIN_AXI_UV_R_ID, win->data-
+> >>
+> >>axi_uv_r_id);
+> >>
+> >> +	}
+> >> +
+> >>=20
+> >>  	if (vop2_cluster_window(win))
+> >>  =09
+> >>  		vop2_win_write(win, VOP2_WIN_AFBC_HALF_BLOCK_EN,
+> >
+> >half_block_en);
+> >
+
+Detlev.
 
 
---wVbzCNTZslHN//4Y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Wed, Dec 11, 2024 at 12:45:56PM +0000, Lee Jones wrote:
-
-> Seeing as the vast majority of this 400 line driver pertains to Regmap
-> handling (!), would you be kind enough to cast your expert eye over it
-> please?
-
-Is there something specific you're concerned about there?  It looks like
-it's just data which should be fine.
-
---wVbzCNTZslHN//4Y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmdZs3cACgkQJNaLcl1U
-h9DjSwf/a3+f8IyMBTLXlpe5a4EfnD4elhoE27ywlRj5aQYmHVvYh/b/32n4w27U
-WkS8gziks+D3cLHY34wMDKv+Vvv20SrhfVTUIOjfzNibhRpIb4QhaQE6BBd4+iXa
-aRkjxjYkPEUnAkkREJnTqhHddR1J3iNLi6ADGPmzRPd3vHbF5gwg7RytZpJPyYjr
-y65mFPZIQQXb/9w3cEp9UTUyrpOy7bjV1eeoGj+SlnFmGipONjjS56azAV4IxBg4
-2xgFkB28tT7gNMWacjT3ha8MGAKRPK+GFzYiVxFJo6nsBkajTLZ1RyVI+fjiFY8Q
-yyJ5g5C3ZWYjAL87ug96nFUMV/sC8A==
-=0gSx
------END PGP SIGNATURE-----
-
---wVbzCNTZslHN//4Y--
 
