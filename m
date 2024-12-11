@@ -1,192 +1,149 @@
-Return-Path: <devicetree+bounces-129751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECBF39ECB20
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:27:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35E829ECB2C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 12:29:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D97DD18809EF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:27:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0098118889DD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:29:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30881238E08;
-	Wed, 11 Dec 2024 11:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B11B238E0A;
+	Wed, 11 Dec 2024 11:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JzEHgHx3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pcDZHljc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ED9F238E00;
-	Wed, 11 Dec 2024 11:27:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED5E7238E00;
+	Wed, 11 Dec 2024 11:29:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733916423; cv=none; b=DK1M3mddB2aGDs5NqApFdcbD8qwSaoE7sIxTre0TAfBomUAPnTc9RzXUfQGjrBoH2Cgbxzjv+wpFXAdCPl1GRvkxypLuvfhjGTaVxVO+TvfOJMXCZVrYMhtLFrpq/Vw58nOQszPsqlCryPzjgoeu1HzP1afE1sR9BQW08wAUB0A=
+	t=1733916553; cv=none; b=VOeZVHbB4n26z/71x/MuDHgHz5BC5HbwQwBnSuzql9gFrad6H81zb12F5c/FrFF7Y6X684lCd5FTDQCzpQYxkXR6ujByEV14zK8KJMFtsp5PaYLyI9tctZwxZt4sfDQpYQVDWTF/CRyFppRqGMzCwo8YV0YUFFsh4wlSxeZKg7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733916423; c=relaxed/simple;
-	bh=kRoCN44NiV2nWFB+xquMsmKtCCz/Ubb4phkGmdcrVT4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gR7pVDBmJqVaafIDHj1ooxgb7y7QwR2pgn0sTiN/TIsdCDix3d9zJZRvP3mdAkDoYRLLvTcgF7ve6npMEi9bc5LVgJxqKhrACboMaLNXScOkw4DPwxJWW8+iKUwpuMoaKMnDEVCtl8St2nyAsAj/3P+onPuLh/hECaWIkK3m2gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JzEHgHx3; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5d34030ebb2so9157396a12.1;
-        Wed, 11 Dec 2024 03:27:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733916420; x=1734521220; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9QTNgmzYB7WhakHI7BtpiVfr7WRGVdLXuQWsgOk30eY=;
-        b=JzEHgHx3PbqSQ916RlxflELMa9bLHoNVPBFhxNT4uCpCRiTBFxlt7AUoQPEUe9aiTP
-         tEuJYv4DrFdpQnADS+5jdk68+QEQKs+b02xCiGvqZyKnUWIu+fq6QTT+qbfm+Uoh5237
-         lOxgH9olsCYmN9+md6i8+O8kX2Y4NtUAYnIdbhHaK+R5rMZQtzTxxE/HwRiwkrzD6KlC
-         HzZDf0l6JcJ23M0vWjaYaFAjhCdbKvvDlZFceR20vzPtidLjWXzsfKmU4Ym+2UsDGBUN
-         eFy8s1OZbRbg1YihOiimvU70x91q6/oIqBAj5flr2IH17w+UmPM1qujKFrpZR9DCC+EN
-         /wGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733916420; x=1734521220;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9QTNgmzYB7WhakHI7BtpiVfr7WRGVdLXuQWsgOk30eY=;
-        b=OG+ysDl8GGvFO8jUxWU+yz7EiMmgY+/PKw81/jiyxMj1q9wTl9CmemtXIrb56XawQL
-         poRg+SQBtaHPjEWEkC3IX3jcNITJxxc78BXY5FNLmYVkzVOs4yonmDdiYIMnVdb16utZ
-         7sIHxUWSztuFvNeD+pMsrUH3FnZpI12F+MUdXKUAefbnJdnU2Bi877I+60Zhlc11H5ad
-         k4ssRkK0iVPnjbxBZ2WJGozpjPeylQw4OICrON4m0IeAodMcRn8epmu939R1xTirhAfm
-         STxCzvZ1QkepjzQI7h35738Q3p7Vx5V+6PsfrwiLfdiMVRrUrDCD40ZqtKAzClGfNlL/
-         nfjw==
-X-Forwarded-Encrypted: i=1; AJvYcCUJq4KZgVaLBl7Dfs8OKP50RQsaboFK/0KmKjed7/od9WHwSvkN+JnNWs9zg954azXTF9rWA0mKzhgiVk/n@vger.kernel.org, AJvYcCX7Rk4s1TqAs5spw08bvDowGv4K9W0U2/09UjQ0ZvF+387Zx5rO1f6i+PfxLIU7c8AT4qrRfdnfpPng@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/039/87mGHxU/EGobckmTojnpR96a1exgluMok9Qm7n4nuerR
-	V51qAvK37SW2DHqFX+44hCc9kjfKMWD5SAv9d6GnSJ2Edypj3RQaas7gSXQfWW4Hqzz6VOMOZ//
-	AcbddbvOGyFaeyVw/RnX+e5DWEV4=
-X-Gm-Gg: ASbGncvfi5wnViU+NS7BmBgXg65AW4Pi8+N1ZZmUXJ/Ytsm4XMvz9YXP0wruB/e527Y
-	gDGgDLuH/8dybfhP5xr9LYeStfVubrx5CiDfT
-X-Google-Smtp-Source: AGHT+IGm7Cc0UCKCXs6Zci5MhmEB6BM+vhudXV8nstxvwpWP8Qfr3RbFbc33+jNWjYOvcsdishshabpxzxK6uMTtoQo=
-X-Received: by 2002:a05:6402:35c6:b0:5d1:2652:42ba with SMTP id
- 4fb4d7f45d1cf-5d4330ab69dmr2432050a12.16.1733916419489; Wed, 11 Dec 2024
- 03:26:59 -0800 (PST)
+	s=arc-20240116; t=1733916553; c=relaxed/simple;
+	bh=BaV6qQnBNX5zfLvctmeCPNjfcIxwBcTpE+8jy0ByVjk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mw7uP4/af237wN84KVsOiuQe9d0cE1o6kyPvlZTB7I17HWuX574Dpifd3QIcIfhuJrzYqxt6kyB0g5rC5mTRH5/1AamXoYx92kmBQ2F28YIft7BT8LhSKMMpKAnVNzduK73yj+SNmPQs00j79DaxiAEolWCXXzcYWXie44V/Jc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pcDZHljc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0602C4CED2;
+	Wed, 11 Dec 2024 11:29:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733916552;
+	bh=BaV6qQnBNX5zfLvctmeCPNjfcIxwBcTpE+8jy0ByVjk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pcDZHljc062sGHRJq2M7d9YYoVhdIU8vnNzBs8t2UoXT/z/0B03wZj6LWWNUZt59l
+	 iLH6zbeDrw2oah/h1A04mwkIhWRo4rx9ohMZ8YyOpxsRaDJ1i/xCUAfu26LNuf2Uoc
+	 dFLuuWFwBQ5pY5cr1hKuiwF1h7fXXp//20MUlitB3Hn/Tru4D6FuisJjQ2yb8YoDrv
+	 zyJr1JPrDhTD/CAAOXcb0w1zzA/3BAekRlM4dxQRXpZ4KiWR86sMAzLhcdSPVowAIW
+	 vyHYWGQdfKBd1aZXKNLNEHD1zZ4lrXLEwvAj4NyD9/u2/YKLQWg/q1htPLMN5/Xarl
+	 6Z5G2FUufa0Kw==
+Message-ID: <0358a6ac-4037-444b-8e65-4e5afa29e8c3@kernel.org>
+Date: Wed, 11 Dec 2024 12:29:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <e00f08d2351e82d6acd56271a68c7ed05b3362e8.1733901896.git.dsimic@manjaro.org>
-In-Reply-To: <e00f08d2351e82d6acd56271a68c7ed05b3362e8.1733901896.git.dsimic@manjaro.org>
-From: Peter Geis <pgwipeout@gmail.com>
-Date: Wed, 11 Dec 2024 06:26:46 -0500
-Message-ID: <CAMdYzYpnx=pHJ+oqshgfZFp=Mfqp3TcMmEForqJ+s9KuhkgnqA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Delete redundant RK3328 GMAC
- stability fixes
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] ASoC: dt-bindings: sound: atmel-at91sam9g20ek: convert
+ to json-schema
+To: Balakrishnan Sambath <balakrishnan.s@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Andrei Simion <andrei.simion@microchip.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241211-sound-atmel-at91sam9g20ek-v2-1-86a0e31e6af9@microchip.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241211-sound-atmel-at91sam9g20ek-v2-1-86a0e31e6af9@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Dec 11, 2024 at 2:29=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> w=
-rote:
->
+On 11/12/2024 10:46, Balakrishnan Sambath wrote:
+> +properties:
+> +  compatible:
+> +    const: atmel,at91sam9g20ek-wm8731-audio
+> +
+> +  atmel,model:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: The user-visible name of this sound complex.
+> +
+> +  atmel,audio-routing:
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +    description: A list of the connections between audio components.
+> +    items:
+> +      enum:
+> +        # Board Connectors
+> +        - Ext Spk
+> +        - Int Mic
+> +
+> +        # CODEC Pins
+> +        - LOUT
+> +        - ROUT
+> +        - LHPOUT
+> +        - RHPOUT
+> +        - LLINEIN
+> +        - RLINEIN
+> +        - MICIN
 
-Good Morning,
+As previously questioned, I don't think you can create infinite amount
+of pairs out of it. Assuming you always connect board with codec
+(because codec-codec are already defined inside the codec), you can have
+max 14 pairs, but most likely less in practice.
 
-> Since the commit 8a469ee35606 ("arm64: dts: rockchip: Add txpbl node for
-> RK3399/RK3328"), having "snps,txpbl" properties defined as Ethernet stabi=
-lity
-> fixes in RK3328-based board dts(i) files is redundant, because that commi=
-t
-> added the required fix to the RK3328 SoC dtsi, so let's delete them.
->
-> It has been determined that the Ethernet stability fixes no longer requir=
-e
-> the "snps,rxpbl" and "snps,aal" properties, [1] out of which the latter a=
-lso
-> induces performance penalties, so let's delete these properties from the
-> relevant RK3328-based board dts(i) files.
-
-You may want to include snps,force_thresh_dma_mode in this group such
-as on the rock64. It's even more limiting than snps,aal.
-
-Otherwise,
-Acked-by: Peter Geis <pgwipeout@gmail.com>
-
-Very Respectfully,
-Peter Geis
-
->
-> This commit completes the removal of these redundant "snps,*" properties
-> that was started by a patch from Peter Geis. [2]
->
-> [1] https://lore.kernel.org/linux-rockchip/CAMdYzYpj3d7Rq0O0QjV4r6HEf_e07=
-R0QAhPT2NheZdQV3TnQ6g@mail.gmail.com/
-> [2] https://lore.kernel.org/linux-rockchip/20241210013010.81257-7-pgwipeo=
-ut@gmail.com/
->
-> Cc: Peter Geis <pgwipeout@gmail.com>
-> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3328-a1.dts                | 1 -
->  arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi        | 1 -
->  arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi | 1 -
->  arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts         | 3 ---
->  4 files changed, 6 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot=
-/dts/rockchip/rk3328-a1.dts
-> index 824183e515da..24baaa7f1d8c 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
-> @@ -110,7 +110,6 @@ &gmac2io {
->         phy-supply =3D <&vcc_io>;
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&rgmiim1_pins>;
-> -       snps,aal;
->         snps,pbl =3D <0x4>;
->         tx_delay =3D <0x26>;
->         rx_delay =3D <0x11>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi b/arch/ar=
-m64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi
-> index f9fab35aed23..d5f129e304e5 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi
-> @@ -142,7 +142,6 @@ &gmac2io {
->         phy-supply =3D <&vcc_io_33>;
->         pinctrl-0 =3D <&rgmiim1_pins>;
->         pinctrl-names =3D "default";
-> -       snps,aal;
->
->         mdio {
->                 compatible =3D "snps,dwmac-mdio";
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi b/=
-arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
-> index 181ec6de0019..9ec93f61433e 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
-> @@ -113,7 +113,6 @@ &gmac2io {
->         phy-supply =3D <&vcc_io>;
->         pinctrl-0 =3D <&rgmiim1_pins>;
->         pinctrl-names =3D "default";
-> -       snps,aal;
->
->         mdio {
->                 compatible =3D "snps,dwmac-mdio";
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm=
-64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> index 3e08e2fd0a78..59dead1cc503 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
-> @@ -153,9 +153,6 @@ &gmac2io {
->         phy-supply =3D <&vcc_io>;
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&rgmiim1_pins>;
-> -       snps,aal;
-> -       snps,rxpbl =3D <0x4>;
-> -       snps,txpbl =3D <0x4>;
->         tx_delay =3D <0x26>;
->         rx_delay =3D <0x11>;
->         status =3D "okay";
+Best regards,
+Krzysztof
 
