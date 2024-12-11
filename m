@@ -1,219 +1,125 @@
-Return-Path: <devicetree+bounces-130012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BAF69ED849
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 22:17:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15F619ED878
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 22:23:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A925418865ED
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 21:17:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1620018874AC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 21:22:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F31ED1E9B27;
-	Wed, 11 Dec 2024 21:17:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8961F0E43;
+	Wed, 11 Dec 2024 21:22:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZtY+Gpko"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="NrQKah9/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 229C11C07E4
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 21:17:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EDD21F0E3E
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 21:21:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733951868; cv=none; b=fikwK7rDoS3VVuFRNtRu9eMUWP3BOfslVZeHyaRUwy6OCH9Bqmar+4+9RzRsr+BH+H1lcySu5syi0Rjhy8CGAiiIfQ/Fa04hGcfWDL2vQoyeTJbhHEaYb306FAoHVXW8an7pTKZNvPQoMfIq/k1yJU5MHQHl8VHZ0hyFriEmrCI=
+	t=1733952120; cv=none; b=m6tEEm7MT/AszAoFF7QDTKWcqF8j7ouh1iRa20BEpuGa2zmtJZG13oHyvtIAMtAK3C7NcM5/+NNwrGC6xjPgYOs9jSx5LXFis6YuTHUDDkmv1evJY83kaO70YnOOTBjckhGzNiSQGWtpKeS/JfSZHqP7v4YrNT2KxddKP4VmoOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733951868; c=relaxed/simple;
-	bh=NLLIVPFkvrmcvJBHZr+3gnlNPWzVakxJWnGXHrKeUDI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=Y/8ZHHfMcc/XbgEJdfzQsd9JLbvdT0uhEjU2jTNo2ImK+QJZraasf/x3ZF9Lm/RUOnqsRYQ9WjJoHS0rJfZLwubsWTJN9o7krJfXAOCUvPn1pLtIwkcOfy6ut6l57b9g2Zu4Kr8NetCWeUNIAg0qADaEzS90BGQVpw3DhJcrUEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZtY+Gpko; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3862df95f92so3657413f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 13:17:46 -0800 (PST)
+	s=arc-20240116; t=1733952120; c=relaxed/simple;
+	bh=n0KCyGqSL5oapRSBhlfukCbAuOyAuMPivoVisArJl+M=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tUZudF86ekBbsCK7kLRdV6hjCoxnpX1HQJ8Tf/x76HDGtkG9nrgWTV/Hq2SDPvFEEZLBaON7rYvuvoVLrLyl8eOVqXfKepzI/+eHY4BI5LTSn/RMS33072Ll9ZS9Vk8IvZ3NfxUmTNRLVhrd0hP1TDxUxVQfLqACx6SDJFjEV1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=NrQKah9/; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6ef60e500d7so49774737b3.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 13:21:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733951865; x=1734556665; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Gu9W5rLRLveyKjB8JDBAIK7fwfcOOf2kFwcU8a9GQFw=;
-        b=ZtY+GpkoWwwi+YbsJJW7WNb5F57L98mbMm2bWNqAm+6HYN7wNveivGfOv0wgsBr84u
-         J4IGG0CKazA2K9IZ9kg0OIsZAL1fM1inf6DE8kRxAy9SbsNtlfZcjL/yim1j3DyRXRu2
-         haFvMTfHwcKzhYaOTOD2/1KuFfJbLC2jOMXhbKHG2JklYAG9dcqNSnreQOZ3FdO85GHN
-         ViFY5VMeGBhz4SK7EbQ5F3cE2vu28fc4szP1A+2BKYvxVe6/wFxz0Ot9O0CdEhKB0hNY
-         hBjkl0Se8vEm4K4d32hoNbEFLU714CdrmIY7AqWm5QffLxUEs0DqmWzRLIzd+4zakX+t
-         G2HQ==
+        d=chromium.org; s=google; t=1733952117; x=1734556917; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=n0KCyGqSL5oapRSBhlfukCbAuOyAuMPivoVisArJl+M=;
+        b=NrQKah9/GtAbLk+n5naUtjdmTSXP5ciHHBxWB3bwlMO5fbiDJNXe0y7IQAIr1kYopx
+         FcXU2UH41S+qnx13K+ygG5ITJ5YsX332Yh8kqf90EtdduGvgm8/gtQtLxojfsK5w059w
+         +yZ3SL98Ac34K4Whtv8TWDrluiH6qeiRFww/g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733951865; x=1734556665;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Gu9W5rLRLveyKjB8JDBAIK7fwfcOOf2kFwcU8a9GQFw=;
-        b=v/Eyk8uuYDhIlf8Osx8cSHOMG65E5MD2zQ3+zaXk0/6JH8G12q3R9PT1JMGdCDCh2M
-         rFKNkaeVkAZM9KAwJGtxIpxe3yfWs/XsrtqJQBUJ6CM/eyWDdPcv1DTPws/gpTefYVzW
-         9rJ34plrBq3ZfJAXyxgZ3rmKa6qNR6I3wKNy1KbZ1WsBZtZsHd+wwVxOey6CbzHSjLAT
-         2YxVz1hQSPRo/vJnh5P3eWVJH4gXl/V/OSM9guuhO2ioVmND3SAal3CVhUe87wp3S96b
-         Dz/B+rBG5NoL9jKEzJnjyw94EhT2oEemB9WTHSIg6UegqzmSJ5mBMaR4g8PCXasKqbbG
-         nbbw==
-X-Forwarded-Encrypted: i=1; AJvYcCW9kne/H/e93xhCNjbuRrg0XIkiNEnPeAbeg/Ai8q2UoImSxRd020cgljTvxiJcAM8OQhiEA0corfmr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfoXt8cwDZDdq6sqBAZ4bS6C27LWtnn+g4GJF0g6Fttuczufxi
-	Goz400JCr0CotebL7gCHj67hSbhn3LDOm5r8YAgZMNctR1RbTaIzgEYHfOEm1OI=
-X-Gm-Gg: ASbGncuoFp6gqJnNTEDEkDAhE7wmbJDp+dUGC98ubfYskJHrQ7IhoEiokNVGfwq9LON
-	yy6ekoJsCPumq8XQbSZqKzJtRS5YE/8ncRTntLahLtzHv3MHq/9BgZ3V8qk4PtkO0dW52Jy8lFh
-	SxqNmC8k604iQIfmLxhBwt37jn7bx7/hAJ5wJ2fvFdkl6lhns0zObErQ/70IeRjtqoXsIVh11ju
-	GDzvrOl7FOET5Or4AUhr9a7PVpKdfTYjVnRjWpvo67brlnTvJVVZwZ8
-X-Google-Smtp-Source: AGHT+IEHmLv8L1dBsbuMcUIu7bMmHwCG7Qb7cnnUXWL0/aeB0rj/zBLMa9c3AQt3KXFc5jwS+RRTcw==
-X-Received: by 2002:a5d:6487:0:b0:385:fc32:1ec6 with SMTP id ffacd0b85a97d-387876c37abmr846125f8f.50.1733951865400;
-        Wed, 11 Dec 2024 13:17:45 -0800 (PST)
-Received: from localhost ([2.222.231.247])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4361b6d6ea0sm40805885e9.16.2024.12.11.13.17.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Dec 2024 13:17:44 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733952117; x=1734556917;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n0KCyGqSL5oapRSBhlfukCbAuOyAuMPivoVisArJl+M=;
+        b=iI6K0om81GmsOX1by2mfL63tTIm0TAyhtliJRAd1xAj4wd/wCbfmuZ3hXgjOxPMR0I
+         kFHqxFBrALGo2CQUr6a0AdMTSt2iI92o0ikRdaVzRrYnrEWnGJFF5W3F0MRq9znafOgk
+         62BydtpApgJRzxm3pKTil5V98f7HG/lrvFDeJhzk3A3lwB/n94FsaWGwCVUwEqOlzM5i
+         HhFb4JLhFiYurR8Gg0K/7SEYRotL4cF+9x1XW9agDgMTw7NnYMDMwRxn8UVomTL/jNX2
+         OJayT1YT3VFU3z6poq2SBxPF/lYgzNjsMZtGhtykWxo3mAWypNJnzuay+76SYWpwzxiY
+         A4pA==
+X-Forwarded-Encrypted: i=1; AJvYcCWIAAJ1b0UZZdtXp/mcE+6Vb4agKNiFIuBMsOEmJg8ZLD04FgDX2KwW10Y7QT8H+DPJbe+mSkHMCN30@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3hFn6uaeXpyIectU1rt6x3zMLFetN+eAOcrXMIQt3RdH4SFFQ
+	FbvVGG+AQltEWy5lqLvG3p6UbKdThu/SLhVPaJErA9j7om8yBKYqEZ0/Bio/TFLKFFTYkBaNFFx
+	Y8zxUkdmNU/EEKnggtuC35ZpZ/QJ+YaypqOoj
+X-Gm-Gg: ASbGncvLkxKGhWnUEkWQbF/taOIhjMwN/RntVAga5Zdq/bdJJWytKRksP7v6jlTWpoz
+	yLdP1GcCQXgMf7Vq2Gby6QiMtELnYz4WocXIUjd3oIOB8Wx8WFOy4yIWufv+6pRA=
+X-Google-Smtp-Source: AGHT+IEOpRCkZGb0mjL6N5K1OyWZ7lwzUq/9xZP89m+PnB//8BwUpGSf7eNg+mNPOjGTasCVPWXdK3o+/j/FVah3RXc=
+X-Received: by 2002:a05:690c:ecc:b0:6ea:7afd:d901 with SMTP id
+ 00721157ae682-6f19e4fe961mr11687997b3.18.1733952117669; Wed, 11 Dec 2024
+ 13:21:57 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 11 Dec 2024 13:21:57 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 11 Dec 2024 21:17:43 +0000
-Message-Id: <D696MX61IL6R.1AU1HXYUNH9LI@linaro.org>
-Cc: <broonie@kernel.org>, <konradybcio@kernel.org>,
- <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>,
- <srinivas.kandagatla@linaro.org>, <tiwai@suse.com>, <lgirdwood@gmail.com>,
- <perex@perex.cz>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>,
- <linux-sound@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 07/10] ASoC: codecs: add wsa881x-i2c amplifier codec
- driver
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-X-Mailer: aerc 0.18.2
-References: <20241101053154.497550-1-alexey.klimov@linaro.org>
- <20241101053154.497550-8-alexey.klimov@linaro.org>
- <jqsa7lsypf62uqjydqbyspvtnt7iuwxclfwuyatgee2zgduwvd@4wwagvovam4k>
-In-Reply-To: <jqsa7lsypf62uqjydqbyspvtnt7iuwxclfwuyatgee2zgduwvd@4wwagvovam4k>
+MIME-Version: 1.0
+In-Reply-To: <CAA8EJppVgw1Qb4kGY1Y-A3-KrinKfX2zGUuwMCY_-gG96fgocA@mail.gmail.com>
+References: <yk3xidaisbd56yndaucax7otijjauqmm7lqm6q4q633kdawlqo@qaq27lwxmvwd>
+ <hqmx7jtkvrwvb27n56hw7rpefhp37lhr3a5fawz7gsl76uuj5s@h7m6wpdhibkk>
+ <CAE-0n50y1O2C47zOGJPmMjKXK_m6a=jhpEAP4nW+RymZbo2xyg@mail.gmail.com>
+ <5kisfv22tgqwzjpxqrbx56ywr7l4r7pny3pl2r7crv4rijqbwk@azricdasttg7>
+ <CAE-0n50Bxi2GfnxOmMwe-F+k5jMSiyAVPDb6K8pYm-i6hpJTOA@mail.gmail.com>
+ <cartdeijkv6z23dgm7uif4lti3lahfqmuyxcmruzqbefhsp6yk@m6ocjhncs2ko>
+ <CAE-0n51-QLLje0f7T4p3xK6Q-FRk4K0NUrVVm4cxkKoevuzktw@mail.gmail.com>
+ <kidsjzklpxvvamct3glvoawavoi5mjuyh3on5kbtfp6gavwxxn@eack224zuqa3>
+ <CAE-0n52F+cvVyXm8g8idN2eMfx4bpaEpWQRchr8=AO87N7E3fg@mail.gmail.com> <CAA8EJppVgw1Qb4kGY1Y-A3-KrinKfX2zGUuwMCY_-gG96fgocA@mail.gmail.com>
+From: Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+Date: Wed, 11 Dec 2024 13:21:56 -0800
+Message-ID: <CAE-0n50D40VWOsgnNqKzJR=GG44SKcps5mZb-HM=aix7XYn2hg@mail.gmail.com>
+Subject: Re: [PATCH v4 15/18] dt-bindings: usb: Add ports to
+ google,cros-ec-typec for DP altmode
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	patches@lists.linux.dev, devicetree@vger.kernel.org, 
+	Douglas Anderson <dianders@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Benson Leung <bleung@chromium.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+	dri-devel@lists.freedesktop.org, Guenter Roeck <groeck@chromium.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Lee Jones <lee@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Prashant Malani <pmalani@chromium.org>, 
+	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Ivan Orlov <ivan.orlov0322@gmail.com>, 
+	linux-acpi@vger.kernel.org, linux-usb@vger.kernel.org, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri Nov 1, 2024 at 8:12 AM GMT, Krzysztof Kozlowski wrote:
-> On Fri, Nov 01, 2024 at 05:31:51AM +0000, Alexey Klimov wrote:
-> > Add support to analog mode of WSA8810/WSA8815 Class-D Smart Speaker
-> > family of amplifiers. Such amplifiers is primarily interfaced with
-> > SoundWire but they also support analog mode which is configurable
-> > by setting one of the pins to high/low. In such case the WSA881X
-> > amplifier is configurable only using i2c.
-> >=20
-> > To have stereo two WSA881X amplifiers are required but mono
-> > configurations are also possible.
-> >=20
-> > Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> > ---
-> >  sound/soc/codecs/Kconfig          |   11 +
-> >  sound/soc/codecs/Makefile         |    2 +
-> >  sound/soc/codecs/wsa881x-common.h |   19 +
-> >  sound/soc/codecs/wsa881x-i2c.c    | 1454 +++++++++++++++++++++++++++++
-> >  4 files changed, 1486 insertions(+)
-> >  create mode 100644 sound/soc/codecs/wsa881x-i2c.c
-
-> > +++ b/sound/soc/codecs/wsa881x-i2c.c
-
-[...]
-
-> > +struct reg_default wsa881x_ana_reg_defaults[] =3D {
+Quoting Dmitry Baryshkov (2024-12-11 13:16:56)
+> On Wed, 11 Dec 2024 at 23:11, Stephen Boyd <swboyd@chromium.org> wrote:
+> >
+> > It is pure DP. Maybe we can have a google,cros-ec-usbc-hdmi compatible
+> > string here because this is a weird design.
 >
-> Not const?
+> Just google,cros-ec-hdmi for the corresponding connector?
 >
-> Same question everywhere further.
 
-Here it doesn't work:
-
-sound/soc/codecs/wsa881x-i2c.c: In function =E2=80=98wsa881x_update_reg_def=
-aults_2_0=E2=80=99:
-sound/soc/codecs/wsa881x-i2c.c:421:65: error: assignment of member =E2=80=
-=98def=E2=80=99 in read-only object
-  421 |                                 wsa881x_ana_reg_defaults[j].def =3D
-      |                                                                 ^
-sound/soc/codecs/wsa881x-i2c.c:428:65: error: assignment of member =E2=80=
-=98def=E2=80=99 in read-only object
-  428 |                                 wsa881x_ana_reg_defaults[j].def =3D
-      |                                                                 ^
-
-but I updated it other places.
-
-> > +	{WSA881X_CHIP_ID0, 0x00},
-> > +	{WSA881X_CHIP_ID1, 0x00},
-
-[...]
-
-> > +static void wsa881x_clk_ctrl(struct snd_soc_component *component, bool=
- enable)
-> > +{
-> > +	struct wsa881x_priv *wsa881x =3D
-> > +				snd_soc_component_get_drvdata(component);
-> > +
-> > +	dev_dbg(component->dev, "%s:ss enable:%d\n", __func__, enable);
->
-> Please drop all tracing-like debugs from final code.
-
-With a pleasure.
-
-> > +static int wsa881x_i2c_probe(struct i2c_client *client)
-> > +{
-> > +	struct device *dev =3D &client->dev;
-> > +	struct wsa881x_priv *wsa881x;
-> > +	int wsa881x_index =3D 0;
-> > +	int ret;
-> > +
-> > +	ret =3D wsa881x_probe_common(&wsa881x, dev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret =3D wsa881x_i2c_get_client_index(client, &wsa881x_index);
-> > +	if (ret) {
-> > +		dev_err(dev, "get codec I2C client failed\n");
-> > +		return ret;
-> > +	}
-> > +	wsa881x->index =3D wsa881x_index;
->
-> I cannot find how this is used. Your entire I2C address detection seems
-> odd and not used at all. None of the I2C drivers are supposed to do
-> this.
-
-This is used to differentiate between two amplifiers, mostly in sound
-component names. I found another way to implement this and it will be
-present in version 2.
-
-[..]
-
-> > +	wsa881x->driver =3D devm_kzalloc(dev, sizeof(*wsa881x->driver),
-> > +				       GFP_KERNEL);
-> > +	if (!wsa881x->driver)
-> > +		return -ENOMEM;
-> > +
-> > +	memcpy(wsa881x->driver, &soc_codec_dev_wsa881x,
-> > +	       sizeof(*wsa881x->driver));
->
-> Why not devm_kmemdump?
-
-Because it doesn't yet exist in kernel.
-But there is another nice thingy -- devm_kmemdup that can be used. Thanks!
-
-> > +	wsa881x->dai_driver =3D devm_kzalloc(dev,
-
-[...]
-
-> Why this is just not module_i2c_driver?
-
-Thank you for the review. I was aware that initialisation is not perfect,
-it is inherited from downstream code.
-I reworked a lot of these parts of wsa881x-i2c.c driver and will share it
-in version 2.
-
-Best regards,
-Alexey
-
+Sure.
 
