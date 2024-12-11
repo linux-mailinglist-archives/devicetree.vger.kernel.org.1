@@ -1,150 +1,145 @@
-Return-Path: <devicetree+bounces-129820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E07FF9ECD71
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:41:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6FA89ECD6F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:41:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E16B128457E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:41:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BA9A2820E1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C37D122C36A;
-	Wed, 11 Dec 2024 13:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 137FC22ACCA;
+	Wed, 11 Dec 2024 13:40:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="htefGGcB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C4oA2paB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6DC023FD00;
-	Wed, 11 Dec 2024 13:41:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D996723FD00;
+	Wed, 11 Dec 2024 13:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733924472; cv=none; b=HK0Zdt3pRR7WtcAVxaMq+PL1nDet6bHjXssQctj8Rz9wtJEV4Q9Fjxd/Hg1cAIgCEXofmyr4jkB6x17BBl8EA7WKLHhs417zVgWpbVUMiVOl6JmYOmIiKl2ctaIjIncUxSolDcOxNcD+jg+xa6s//bAeD0CsM6lKabaXYBRGn6c=
+	t=1733924459; cv=none; b=U5Om3ultPcZeW4ANUiB342JhZffgPOQ25rh0gsNQetniGPneCQZ0z2Kx3zS4znKsubYULfWVwUTzcTHcWKTlihfAONPNRZoNXFkCpBojU1VJnQSpD9VYR6xErdSKNARgkD4JR3wSrcH+nMI4WH0MDTocfeg7mQTI355EydxYraI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733924472; c=relaxed/simple;
-	bh=8e19zAXg7Rv8dVSb132mYsMYuz4SKK1xxylwQPPeLKY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oLiHK0pDT3wHTVz1sX3otOeNJbYYHWl7ud6O182H/cRbwbfqZyE+c9y5EMCKji+b23DLxLbOjN72VRK9hebKSCzVh3tiaBipKZcFgw48rkrCtXrtdmKIYVjOlYdUW2YGYcBSabmQZSijSET6E/KWNv8Z8OR0y9odM197uNT/luA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=htefGGcB; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-434fef8203fso18500175e9.1;
-        Wed, 11 Dec 2024 05:41:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733924469; x=1734529269; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mhExhDrgWABDqpjLnj2+v3HQ5s0zHIAmpRzOT1p8kQQ=;
-        b=htefGGcB57pzEn3tYukaMy/P4BCDwM0tuyDYmKtHjd2wDO7b400qb6uTaBuFQMVlun
-         f4Ixx6gZj/vehPjulzg+Dk/IGBOUoGKTfXUivvAt5o0+ZV8ktGPMCdp4uv1vyQgILvcB
-         IM4Y4efIWT3BrulHg0UCnCvSSjiDaFV6YKkG7UD2/275ETE0D+GKQ0WuEYdDYV0U+cPq
-         L3Vxm7kwUjXXPmiS4ARPkfXgEEEhP1zrzxlcX5U3EnaKjd0R2IEHOXdUn0EDFaO0omG2
-         rADOVWCDyurBPQQnNzHfcACRo/1PlEyniWj4918vR+9X/mFgDA6yDWbDIGJZ2ub3i+G1
-         Fv1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733924469; x=1734529269;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mhExhDrgWABDqpjLnj2+v3HQ5s0zHIAmpRzOT1p8kQQ=;
-        b=Lctz+t0Qf4Uvg7E5FtTG6MhOhrO6ctNiDRqJOIHwui+/BhbTLiQh8+KIgD4G1DGYQC
-         16CbWdXH2FkZntdGalF0A40ctENvHGGn2+AJletwKCsuCjOhWPb1jSHerd3cZ84Aegvo
-         GDrtcQRT+8ZamfVlRNLY0dFWOgsq79v5GK6Zc5sF/lsyevC75I/OGUDNQ4EEYrZMnFVD
-         LFVIKfioc85JPi0DUkSHoLX+m+SLnVtfr4ETFcDsjhJMUwvIXkdHikrBYmSBLEqmink3
-         1L3EzxBPKfoRLKG27IcnwbiZMkpxIRj4Ustf8Fi82BZPIivQt3aSBwJ7zUKnVhyZa9m3
-         9MVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWtIw98oBIJH8PrRbEYEUNA0zUZdOj7QiU/ObwWJiL9++Lheq7ZJUbcXRRkVpuK8GQF+ecKy1ZXev6c@vger.kernel.org, AJvYcCXQ+V1jf3lvfc+1bhh90bdV2zHpINlG6djUgo+aDNEay3LgKQfCmck3I/N9ybrrMkAze3iMrvRWmc0r@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRUzAb4fst0wFGwN1t1mJznYb7Fd049+t13kzzG9AeCsUQBFEx
-	YSTCOjjl4jFW+fSf4m7Tb434Bm1fRTeOdjOSoOqq1lsDp+w68cWqV79FFQ==
-X-Gm-Gg: ASbGncuz83oE2TWY+Kz6HGjv83L2TlC1jtQ/DVreTzJ5A7mQs1j6tGTc7KwUz8c8wJS
-	nrdhGFdGCVsGf4x+wR0MACIZWRRgoCrVT1PpmxcHm3qtKuLAPAWok4r8ke8hh2zCcuyGPmP5JHU
-	sm8SUBBdxI68mQHg+DUFLmT+scqjuGe4zvB+SR5JAZ2XAM8R5doOQUQ1xqmIJ34IHNSBo04ait6
-	pvc1YWfn2+3DoCoGx+S+vnht0Gjd6QY3yWjOaMVlnNTSihUpTKwHE6es3X+fsM1BQ==
-X-Google-Smtp-Source: AGHT+IEOOFZb/b4CVILg4KmP71SN2zMH8s09AMYV4q0kp3AAkqkMK0r7aVUS7IpD81AXnDzianhL8Q==
-X-Received: by 2002:a05:600c:4f11:b0:430:563a:b20a with SMTP id 5b1f17b1804b1-4361c3aa6demr21039065e9.11.1733924468977;
-        Wed, 11 Dec 2024 05:41:08 -0800 (PST)
-Received: from fedora.redhat.com ([67.218.245.240])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434f43aedb2sm124958295e9.41.2024.12.11.05.41.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 05:41:08 -0800 (PST)
-From: Iker Pedrosa <ikerpedrosam@gmail.com>
-To: linux-kernel@vger.kernel.org
-Cc: Iker Pedrosa <ikerpedrosam@gmail.com>,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	javierm@redhat.com
-Subject: [PATCH] dt-bindings: devicetree: explain how to get CS active-high
-Date: Wed, 11 Dec 2024 14:40:17 +0100
-Message-ID: <20241211134023.222473-1-ikerpedrosam@gmail.com>
-X-Mailer: git-send-email 2.47.1
+	s=arc-20240116; t=1733924459; c=relaxed/simple;
+	bh=Iz7itDZPgXt+hJBcGAc+8dkENjwtvdTEGmlkTrPk7Vw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cdQo04xsCAWR+n1vfyDk5AOnYTrVBzjLkrEIK87OIm3LUmB3Y/0rBLazhwJcKKEhyzkY6Rm3FDXlKYc4R0qkPmq6iTf7qUDFLYE9o7DdS7yA+Lq9eD9QTvKsC3b5+1FBXgULeR3c6Hqyds8LH0pzeD9GgJsVpR5gpY6Anyad3sM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C4oA2paB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB259C4CED2;
+	Wed, 11 Dec 2024 13:40:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733924458;
+	bh=Iz7itDZPgXt+hJBcGAc+8dkENjwtvdTEGmlkTrPk7Vw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=C4oA2paBUBNdO/odAUzUcGgdxwAoZsivqUXs2B1VTmLF2+aDVei9R/M/DcnizK+2/
+	 y8mlBwRXwBP85pXJz0aDoK9RX5tiaExfyRJ0KLCdYsnxr7IS5lKQ5pVBuDuKLsf8GQ
+	 zb+VrMuXWHlK83pNiOoDBFi7vjejzMvTCedl9XR3r19W5G6nEsoewKcJVQPe7o2MKv
+	 YQ3QR1TR43XQWGF4zn9VsFN41nFFK+Jtj4DfVuzFWO0ARNNEU6TD+xREW5wgNG8ctv
+	 1dqJoerP8Jm+cUVQ5F9XEIxpCmL2Fq0HYDCgYH/a6jxQXcHSJr9TXlQnwUoFK9FCTU
+	 GstHY3DBje1tQ==
+Message-ID: <3e99f80a-a051-4b8a-b086-ff8d949b5417@kernel.org>
+Date: Wed, 11 Dec 2024 14:40:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 1/2] dt-bindings: net: dp83822: Add support
+ for GPIO2 clock output
+To: Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241211-dp83822-gpio2-clk-out-v2-0-614a54f6acab@liebherr.com>
+ <20241211-dp83822-gpio2-clk-out-v2-1-614a54f6acab@liebherr.com>
+ <hayqmsohcpdg43yh5obmkbxpw3stckxpmm3myhqfsf62jdpquh@ndwfhr3gqm3b>
+ <20241211105100.GA4424@debian>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241211105100.GA4424@debian>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The current documentation does not clearly explain how to invert the SPI
-CS signal to make it active-high. This makes it very difficult to
-understand.
+On 11/12/2024 11:51, Dimitri Fedrau wrote:
+>>> +
+>>> +/* IO_MUX_GPIO_CTRL - Clock source selection */
+>>> +#define DP83822_CLK_SRC_MAC_IF			0x0
+>>> +#define DP83822_CLK_SRC_XI			0x1
+>>> +#define DP83822_CLK_SRC_INT_REF			0x2
+>>> +#define DP83822_CLK_SRC_RMII_MASTER_MODE_REF	0x4
+>>> +#define DP83822_CLK_SRC_FREE_RUNNING		0x6
+>>> +#define DP83822_CLK_SRC_RECOVERED		0x7
+>>
+>> These are not really bindings but some register values. Hex numbers
+>> indicate that. Don't store register values as bindings, because this
+>> is neither necessary nor helping.
+>>
+> Ok, got it. Have seen similar in <dt-bindings/net/ti-dp83867.h> or
+> <dt-bindings/net/ti-dp83869.h>, is it wrong there ?
 
-This patch adds a simple explanation on how to set the CS line in
-active-high and adds an example to make it easier for users who need
-that setup for their SPI peripherals.
 
-Link: https://forums.raspberrypi.com/viewtopic.php?t=378222
-Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
----
- .../bindings/spi/spi-controller.yaml          | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Yes, it is. Rules were much more relaxed 10 years ago but these were not
+even sent for DT review and did not receive any ack/review.
+> 
+> Best regards,
+> Dimitri Fedrau
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-index 093150c0cb87..02dc3e1abcad 100644
---- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-@@ -69,6 +69,11 @@ properties:
-          Should be generally avoided and be replaced by
-          spi-cs-high + ACTIVE_HIGH.
- 
-+      The simplest way to obtain an active-high CS signal is to configure the
-+      controller's cs-gpio property with the ACTIVE_HIGH flag and set the
-+      peripheral's spi-cs-high property. See example below for a better
-+      understanding.
-+
-   fifo-depth:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description:
-@@ -189,3 +194,22 @@ examples:
-             stacked-memories = /bits/ 64 <0x10000000 0x10000000>;
-         };
-     };
-+
-+  - |
-+    spi@20204000 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        compatible = "brcm,bcm2835-spi";
-+        reg = <0x7e204000 0x1000>;
-+        interrupts = <2 22>;
-+        clocks = <&clk_spi>;
-+        cs-gpios = <&gpio 8 GPIO_ACTIVE_HIGH>;
-+
-+        display@0 {
-+            compatible = "sitronix,st7920";
-+            spi-max-frequency = <600000>;
-+            reg = <0>;
-+            spi-cs-high;
-+        };
-+    };
-+
--- 
-2.47.1
 
+Best regards,
+Krzysztof
 
