@@ -1,252 +1,142 @@
-Return-Path: <devicetree+bounces-130036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96B1D9EDB02
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 00:11:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E53B59EDB13
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 00:18:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BB4418837D7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:11:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3FFE168AC0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 23:18:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C660B1F238B;
-	Wed, 11 Dec 2024 23:11:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6061F2C46;
+	Wed, 11 Dec 2024 23:18:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QOyoSWR6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MWbAuH7t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E48491EC4FF;
-	Wed, 11 Dec 2024 23:11:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4441F2389
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 23:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733958701; cv=none; b=TXG57ioNhPSbWl54X/wzmtsNuPEBdZTKUVUIOctqRoB++6N01+XFAM4TTNT6v6rFXVo17TSGm92bkLncCImjXhwwwHqbTARtt375upFZyA7lyc47B1IKia6SJ23j/111cm6tAoQ/YmHCRGND+58ux8EvMZCgApt6MJazZVW+pJc=
+	t=1733959124; cv=none; b=SUGFeo8cXS0mLcGrfmy2tz2H2IoKFqxb1ZFSySwfQjLr6b/pwYyMDiq8xHO1DAq/bP7Sp4hEZ3W62vUvVwKTf1YfaHh+g2Gu+zXNQA8Z5qJBWZ+ig9LqhQbWNDLTPw+vydbyNGqAZ5hDWD8+z6f7b872XfJUoyXjlonLgKJLxOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733958701; c=relaxed/simple;
-	bh=8dYracxQcqXH7RO7AuMCREdDCK+nw64UWPDNSr72gKI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NwW+I/fR4M9LA5v1wXbiX4QjjwSI/9xkm/NmrxY/DTQt75EMG7gClTfbdDQVjs2V1mWPNlqkbU34sZhjZjdn8kuIlLBNzaAP2YjhUWGuzxBuyCoEwwUh6ca8MDPDMkFkMCgf+Uc75jkgs/1NleeqjJ7onl1U8iXSoAbGESwcZDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QOyoSWR6; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5d3d14336f0so9209411a12.3;
-        Wed, 11 Dec 2024 15:11:39 -0800 (PST)
+	s=arc-20240116; t=1733959124; c=relaxed/simple;
+	bh=Vw0Rd6A8CkPce9mRpc49aoMHEVtyn7wqJ1+SvBkbGsU=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=RjTZCJRjeu/bA61NC2JvpspQbwSnZB7utgWWIZ7IDgMVX2bPejoczE2XLyI7hWcvTyjgOkDNN8B4VD69N9cd1bVVnh5rpMGSv/nU6/kiwfRCb26hcmxLWi1doExWSWc6UQb9q4YkydxjFqJFrgIWHeUj5SvRfW5ZgmefDEoHQtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MWbAuH7t; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-434f30ba149so11015e9.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 15:18:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733958698; x=1734563498; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1733959119; x=1734563919; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7DEsYbv+14YcD3cx8SHU+N63+rhoslsxxNsNwT6XSRs=;
-        b=QOyoSWR6nKUYLPQgIlONQ/PDjgn3+z4Fmx7CMyMOBo1XYhhdXmTR1lLkmF4BnfTWgm
-         U+lPQ9QNRcJL1nX/27+BtEQPAl7L66wK2nSmppk4Uo4iqrnD13+x9IHt6z1nBqqj4Ley
-         fk3Cg2YGAI3bQggkYuRjxfwiY2ub9mOomvzskCDVoWqmSrodtWVsvKJ+RPoafnpERMwD
-         Fw1kc/SQMXlVA9ao3jfpUdjpKg1/wNF7uQmouTXr1POuAVf6hnX0OqIB0VbAO8RZD0wg
-         UxzrnhWU3cy7Yf7gBjuONCJv/wja1XHiiVSB0X8wMZk/GNA7cVpDqUnxL/56/5GlKWSI
-         MVAw==
+        bh=rRHUZTWrw/enXmUg5HJUc+kp5QUA2QAYg8TadYFylJU=;
+        b=MWbAuH7ta3ztE4lKmo1WnN7lPC2b8xNu5vZtA4i+UH0PjfVviZz3NA4W4JifwCVm6F
+         /2XLeSkAc4cj7+Gal2NjL0Qu8Vi+mdTgoSSM3DSPOe8hsl6g2xFrQ06yBxj/U6DXtjc+
+         3AHGvrsoSKQpRlwqWgPmmKOUAi3cpeEj4QAzPcM2/dYYgl2j061tfDsMXVVDLG/E4L1H
+         JvuMpf0p7xz7Y6wbi/8q6nJuapyPvaFKxYoM/wUG9PvZ7FxlifEBkPE86g7SzczeOUUA
+         SvaaAWUxG9D/1+DhRggYpiIzY53s28VkGsZgbTpAHottubI055oPD7pWiHv9Q8rLfyRm
+         sDXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733958698; x=1734563498;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7DEsYbv+14YcD3cx8SHU+N63+rhoslsxxNsNwT6XSRs=;
-        b=Bqym6w8cUS1B6nCogY5QByZon04Kwiu6WgSlXxoNdPehKKbTqXdIYnDaGefsHI37gD
-         KOzGyYsSIvuix9497g0OUtDuE3mX2YmcHUQx5z3S4dV7m/D6EpGoG39sxlqXeiLTLcsH
-         nz5s6RLag+1w4ii87GaOggD/1nlD7b3VFK0sNccSF3F1kZlVeRo7029Pa/w8/vONeDv4
-         6+UiZrmFKhF+cJSscWu1Bctd35Z6abUATnvj7UQSSKCXCF603sJqqsKisRRV+3xlc7Rz
-         cWmrYikKkgkYew7e0AWZVQuFqPAgBO1TV3zzO9f5hikgKC8irjfQQCjSIwmwoBmE7Q+0
-         Itwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUDLzQZSFnDJS5snA2KRBigTYJXNKCBXb0KkpFIpQYW77GuIAM0yFzwf5QtqMO6HWEZM1fbH8NXf9Eh3ehe@vger.kernel.org, AJvYcCVarw30CdvvdsqFLHjsPXjWQ6vnIK8r8olBSR3yeVaoT9Ji8LEGodcsvyYOfzdmirjGeLnOeelteYNK@vger.kernel.org, AJvYcCVf9BWEUYP/8qTk1+Ptz0e9VA7W4T1eJkg+uU8igBtID1GKYDzJC9I9gmt8fWQpVoAAfgYMZa7uCiw=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGl5uoVrVd8S07gzuu9msWzdX+/SSvYQaxnRuCp5fwHszrdHPt
-	V/gvWKK/tyLqA/loys37Jsa6DM1SmsgXmm4LE7UFOVxIghrj00hSFO+3bKpybE71aU6piRfsBgn
-	6ePSElqNP0jys/3rC4qQSPDLXb0uC3I87
-X-Gm-Gg: ASbGncsCcgRxqhQc6asLli0bNYBGBQL5947gmEKx+cE2i+C6J5vSONxMdYbFBQ8Oidf
-	uPu+m0PBTQmQmVbpcWNU5HPSdqYyl/1mBmDFwR5U=
-X-Google-Smtp-Source: AGHT+IEYnXu22m40I+M5yIWPJ0DddwBgpRlRSQLnu5K7XsASm55CzvCUktO2mqurNfbV8WshyxJABShiYjVjYlW2C5o=
-X-Received: by 2002:a05:6402:2114:b0:5d0:d9e6:fea1 with SMTP id
- 4fb4d7f45d1cf-5d4330d3799mr3651305a12.19.1733958697900; Wed, 11 Dec 2024
- 15:11:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733959119; x=1734563919;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rRHUZTWrw/enXmUg5HJUc+kp5QUA2QAYg8TadYFylJU=;
+        b=S46ZeWs96mKLSZ18ynltHITbu1bok0YB9hvhNP3//IFHsxXjrbN9WwmyUHG9+JTIaM
+         YKwV5dZ5ilXjRB58UPSNK97FJLXFqbfh5X3X8i4bo/Dj1dh5LA+QELOc9xlJribrZ4bi
+         b+g/M6bHEGVPEtdYkypunTiK6BfxjcLEnDaki84lFWWF4ymVKvc5HOPg/ONimDr0iGr2
+         4Z572wGCJrzyCIATnQL3CnnUQ6oB7Q45AzTT+K3O+Oce8A33cb2WSy6KYwUEdc2eKlZq
+         e3bsuqLZnGmk9FJW/NvzLQICSjCl1cu16ug4KpKGnxZezpLfS7RI42p/zcRsS9QueVxy
+         KkHg==
+X-Forwarded-Encrypted: i=1; AJvYcCVgLqZGERlYGDgsv882R3UVnLMxSiFsbAUvnghc7w9y8H917JyORfmzdmce8g80MA9cL741gHhfxQmb@vger.kernel.org
+X-Gm-Message-State: AOJu0YylBMWSYu8tRTaZnqVK2Hea1QZbc1+mWzbqdxDSCZ0sjq1S7LmM
+	Oe8mJG84ATqHl9CT5nnwGrDXG/XOc7xLepyTtDGTNXyQnaGcegXukNrrBNdMeTE=
+X-Gm-Gg: ASbGncsZgo4BBzZDNAY58MQf4J11Y13qNdwqyAWiiB5zygETlg6IvvtKWoDhqrvofzf
+	7av8zamimJcBNBv+pwfuKv/+e9GKvh6Q4qsjg474SpHm0ZGcUYbk6yvv9fuFmuPsa6ucgJdbcMv
+	4z529vG7ZVlvWNsRDziauQLYUuU5I2HBjB9K6IaUibyunGMdyBGGMA0oi8eCJ4TPp0PxWt5VyJ1
+	mTKDn7cl+vM7oGeJs+srUC/GXptFN+rC52D1xkbINGR3/vS/i3bdhyd
+X-Google-Smtp-Source: AGHT+IHm4dUrixa2oAB3OPqhfx0NrTgK9S/ClAQ/+/CAsZLq77t7Elt6vMKKQ3p5VLAN/iyTfeDFTg==
+X-Received: by 2002:a05:600c:3acf:b0:434:a802:e99a with SMTP id 5b1f17b1804b1-4361c346253mr39230375e9.4.1733959118933;
+        Wed, 11 Dec 2024 15:18:38 -0800 (PST)
+Received: from localhost ([2.222.231.247])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434d52c0be4sm273741395e9.28.2024.12.11.15.18.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Dec 2024 15:18:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20241211143044.9550-1-sebastian.reichel@collabora.com>
- <20241211143044.9550-4-sebastian.reichel@collabora.com> <CAMdYzYqLq=kSC8fiBapRS_8w0s8PaL9Yd46VgM56YbTEmUG1xA@mail.gmail.com>
- <xe2wqm4ktutycxj7x4rskz4pn4cfmoci6zcgfxecmvc5bu7cqi@mqxi3pnehqq3>
-In-Reply-To: <xe2wqm4ktutycxj7x4rskz4pn4cfmoci6zcgfxecmvc5bu7cqi@mqxi3pnehqq3>
-From: Peter Geis <pgwipeout@gmail.com>
-Date: Wed, 11 Dec 2024 18:11:24 -0500
-Message-ID: <CAMdYzYpDXHtz_Fq5NJXqTdxVTcJcHkjcjU4-J=zwmE0BWmSsNw@mail.gmail.com>
-Subject: Re: [PATCH v5 3/7] pmdomain: rockchip: forward rockchip_do_pmu_set_power_domain
- errors
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Mark Brown <broonie@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Elaine Zhang <zhangqing@rock-chips.com>, 
-	=?UTF-8?Q?Adri=C3=A1n_Mart=C3=ADnez_Larumbe?= <adrian.larumbe@collabora.com>, 
-	Boris Brezillon <boris.brezillon@collabora.com>, Chen-Yu Tsai <wens@csie.org>, 
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, kernel@collabora.com, 
-	Dragan Simic <dsimic@manjaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 11 Dec 2024 23:18:37 +0000
+Message-Id: <D6997HYLIQ6L.3FN664SYBLTXM@linaro.org>
+Cc: <tiwai@suse.com>, <lgirdwood@gmail.com>, <perex@perex.cz>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <dmitry.baryshkov@linaro.org>, <linux-sound@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 08/10] arm64: dts: qcom: qrb4210-rb2: enable wsa881x
+ amplifier
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, <broonie@kernel.org>,
+ <konradybcio@kernel.org>, <andersson@kernel.org>,
+ <srinivas.kandagatla@linaro.org>
+X-Mailer: aerc 0.18.2
+References: <20241101053154.497550-1-alexey.klimov@linaro.org>
+ <20241101053154.497550-9-alexey.klimov@linaro.org>
+ <8078589d-d724-422e-a5f0-f5b6c67deafe@oss.qualcomm.com>
+In-Reply-To: <8078589d-d724-422e-a5f0-f5b6c67deafe@oss.qualcomm.com>
 
-On Wed, Dec 11, 2024 at 3:46=E2=80=AFPM Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
+On Sat Nov 2, 2024 at 9:30 AM GMT, Konrad Dybcio wrote:
+> On 1.11.2024 6:31 AM, Alexey Klimov wrote:
+> > One WSA881X amplifier is connected on QRB4210 RB2 board
+> > hence only mono speaker is supported. This amplifier is set
+> > to work in analog mode only. Also add required powerdown
+> > pins/gpios.
+> >=20
+> > Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> > Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 45 ++++++++++++++++++++++++
+> >  1 file changed, 45 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot=
+/dts/qcom/qrb4210-rb2.dts
+> > index fc71f5930688..76b9ae1b0ebc 100644
+> > --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> > +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> > @@ -63,6 +63,16 @@ hdmi_con: endpoint {
+> >  		};
+> >  	};
+> > =20
+> > +	i2c0_gpio: i2c0 {
+> > +		compatible =3D "i2c-gpio";
+> > +
+> > +		sda-gpios =3D <&tlmm 4 GPIO_ACTIVE_HIGH>;
+> > +		scl-gpios =3D <&tlmm 5 GPIO_ACTIVE_HIGH>;
+> > +		#address-cells =3D <1>;
+> > +		#size-cells =3D <0>;
+> > +		status =3D "disabled";
 >
-> Hello Peter,
->
-> On Wed, Dec 11, 2024 at 02:53:34PM -0500, Peter Geis wrote:
-> > On Wed, Dec 11, 2024 at 9:32=E2=80=AFAM Sebastian Reichel
-> > <sebastian.reichel@collabora.com> wrote:
-> > >
-> > > Currently rockchip_do_pmu_set_power_domain prints a warning if there
-> > > have been errors turning on the power domain, but it does not return
-> > > any errors and rockchip_pd_power() tries to continue setting up the
-> > > QOS registers. This usually results in accessing unpowered registers,
-> > > which triggers an SError and a full system hang.
-> > >
-> > > This improves the error handling by forwarding the error to avoid
-> > > kernel panics.
-> >
-> > I think we should merge your patch here with my patch for returning
-> > errors from rockchip_pmu_set_idle_request [1].
->
-> I will have a look.
->
-> > > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> > > Tested-by: Heiko Stuebner <heiko@sntech.de>
-> > > Tested-by: Adrian Larumbe <adrian.larumbe@collabora.com> # On Rock 5B
-> > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > > ---
-> > >  drivers/pmdomain/rockchip/pm-domains.c | 34 +++++++++++++++++-------=
---
-> > >  1 file changed, 22 insertions(+), 12 deletions(-)
-> > >
-> > > diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/pmdomai=
-n/rockchip/pm-domains.c
-> > > index a161ee13c633..8f440f2883db 100644
-> > > --- a/drivers/pmdomain/rockchip/pm-domains.c
-> > > +++ b/drivers/pmdomain/rockchip/pm-domains.c
-> > > @@ -533,16 +533,17 @@ static int rockchip_pmu_domain_mem_reset(struct=
- rockchip_pm_domain *pd)
-> > >         return ret;
-> > >  }
-> > >
-> > > -static void rockchip_do_pmu_set_power_domain(struct rockchip_pm_doma=
-in *pd,
-> > > -                                            bool on)
-> > > +static int rockchip_do_pmu_set_power_domain(struct rockchip_pm_domai=
-n *pd,
-> > > +                                           bool on)
-> > >  {
-> > >         struct rockchip_pmu *pmu =3D pd->pmu;
-> > >         struct generic_pm_domain *genpd =3D &pd->genpd;
-> > >         u32 pd_pwr_offset =3D pd->info->pwr_offset;
-> > >         bool is_on, is_mem_on =3D false;
-> > > +       int ret;
-> > >
-> > >         if (pd->info->pwr_mask =3D=3D 0)
-> > > -               return;
-> > > +               return 0;
-> > >
-> > >         if (on && pd->info->mem_status_mask)
-> > >                 is_mem_on =3D rockchip_pmu_domain_is_mem_on(pd);
-> > > @@ -557,16 +558,21 @@ static void rockchip_do_pmu_set_power_domain(st=
-ruct rockchip_pm_domain *pd,
-> > >
-> > >         wmb();
-> > >
-> > > -       if (is_mem_on && rockchip_pmu_domain_mem_reset(pd))
-> > > -               return;
-> > > +       if (is_mem_on) {
-> > > +               ret =3D rockchip_pmu_domain_mem_reset(pd);
-> > > +               if (ret)
-> > > +                       return ret;
-> > > +       }
-> > >
-> > > -       if (readx_poll_timeout_atomic(rockchip_pmu_domain_is_on, pd, =
-is_on,
-> > > -                                     is_on =3D=3D on, 0, 10000)) {
-> > > -               dev_err(pmu->dev,
-> > > -                       "failed to set domain '%s', val=3D%d\n",
-> > > -                       genpd->name, is_on);
-> > > -               return;
-> > > +       ret =3D readx_poll_timeout_atomic(rockchip_pmu_domain_is_on, =
-pd, is_on,
-> > > +                                       is_on =3D=3D on, 0, 10000);
-> > > +       if (ret) {
-> > > +               dev_err(pmu->dev, "failed to set domain '%s' %s, val=
-=3D%d\n",
-> > > +                       genpd->name, on ? "on" : "off", is_on);
-> > > +               return ret;
-> > >         }
-> > > +
-> > > +       return 0;
-> > >  }
-> > >
-> > >  static int rockchip_pd_power(struct rockchip_pm_domain *pd, bool pow=
-er_on)
-> > > @@ -592,7 +598,11 @@ static int rockchip_pd_power(struct rockchip_pm_=
-domain *pd, bool power_on)
-> > >                         rockchip_pmu_set_idle_request(pd, true);
-> > >                 }
-> > >
-> > > -               rockchip_do_pmu_set_power_domain(pd, power_on);
-> > > +               ret =3D rockchip_do_pmu_set_power_domain(pd, power_on=
-);
-> > > +               if (ret < 0) {
-> > > +                       clk_bulk_disable(pd->num_clks, pd->clks);
-> > > +                       return ret;
-> >
-> > Looking at it, we shouldn't return directly from here because the
-> > mutex never gets unlocked.
->
-> Yes, we should do that after patch 2/7 from this series :)
+> Does it not work with &i2c1?
 
-That's excellent!
+Actually it does work with i2c1 (non-gpio version).
+I am going to use that and will see how it behaves.
 
->
-> > Instead of repeating clk_bulk_disable and return ret for each failure,
-> > we can initialize ret =3D 0, have a goto: out pointing to
-> > clk_bulk_disable, and change return 0 to return ret at the end.
->
-> Right now there is only a single clk_bulk_disable() in an error
-> case, so I did not use the typical error goto chain. I suppose
-> it makes a lot more sense with proper error handling for the calls
-> to rockchip_pmu_set_idle_request().
+Thanks!
 
-If you'd like, I can base my v2 on this patch series with the changes
-I'm suggesting?
+Best regards,
+Alexey
 
->
-> Greetings,
->
-> -- Sebastian
->
-> >
-> > What do you think?
-> >
-> > Very Respectfully,
-> > Peter Geis
-> >
-> > [1] https://lore.kernel.org/linux-rockchip/20241210013010.81257-2-pgwip=
-eout@gmail.com/
-> >
-> > > +               }
-> > >
-> > >                 if (power_on) {
-> > >                         /* if powering up, leave idle mode */
-> > > --
-> > > 2.45.2
-> > >
-> > >
-> > > _______________________________________________
-> > > Linux-rockchip mailing list
-> > > Linux-rockchip@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
