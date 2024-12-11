@@ -1,78 +1,77 @@
-Return-Path: <devicetree+bounces-130010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2567E9ED833
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 22:11:22 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 795ED9ED842
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 22:17:14 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2E5E1634F7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 21:11:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34192281E8C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 21:17:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10339211A0B;
-	Wed, 11 Dec 2024 21:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0361E9B00;
+	Wed, 11 Dec 2024 21:17:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="UG0Nrv9R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AfrK1rhH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AB452010E5
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 21:11:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7510F1C3038
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 21:17:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733951477; cv=none; b=nQA9yrb2Sv22xuoO4jxSHcyeSHoadsRkAikxbSChk8+cmgoLj4d9u0ymoX8sy19OA7PV/ZuVHouiBTyZ/ENoKDwQZjrcq2+93DfK2xdPrnpcTHJ1BscPZSzzHzdY9B9+mVFfriOdQESAINYP0hAd6ux56wt9xhxrUthxa+O1/Zo=
+	t=1733951830; cv=none; b=Gc+3l64zkTmjcvZ/phTfc9rdpbSzbwXG2/iOqzzsYcsjYqrFTuH2Zs9PrHq9Oc9yg5Zm9y0H1S/yVlITsvrdbGYtSMZUdot72oooM13nD+EK5lDF307shEFAEMg+sRJa+Gs/ErclRZscdx0Q3EdE99t40TjoPOd6sQtUgn/0DTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733951477; c=relaxed/simple;
-	bh=fL4AZO7DuUqncD1hviX7Ju8fEoY0KFiDTXpqXPG3i0I=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nVl0LSxg2/8dDRGTHzGM4+FfBKxNR7ZE74YoVlQI3bMhugPluxPvJkOCDW3DLR2B8SpFzn7QMmZBDbCU1OoossXarbr4F196Ejl/mLfqRFFKpeV8JetbN5QJg5Z/b3dkIXSBacEGRkFzE3EvgULzxDKBgKVjylruU587fnMdS/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=UG0Nrv9R; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e3c9ec344efso432818276.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 13:11:16 -0800 (PST)
+	s=arc-20240116; t=1733951830; c=relaxed/simple;
+	bh=Gd2Z3aLtq0yk3TJ1sI0ESwqS2vGsvt4ZlCI44gpExwA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=d2NVIlh7L4HJQwpgU/DHLQz4IJSP2+MIWVFBvDWneICqBSDoVT0ysfb+whQLdgVOM3l4j334j2O3B+tPKH03z1R/hdLDPuX87l0BnSE4zF+ILePH0Ge9vmS8/k57s1Zs+Qzd4snpJxojWe0TCxhkB2rUQoumiG4qzMCbtIWv3ys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AfrK1rhH; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6eff4f0d627so41375227b3.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 13:17:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1733951475; x=1734556275; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fL4AZO7DuUqncD1hviX7Ju8fEoY0KFiDTXpqXPG3i0I=;
-        b=UG0Nrv9ROYrAh4RJlrrpGCknqqheVtFgQIF0xNEOcCam9+JC8M0XeVs/iLWkgKbOxv
-         cU57kRf90yJ1qpxYrLK8bFk2TEFNTjOt7dkKoHkb+Ku6gIAdPxXfF/e8tPZOWyWduie3
-         b5PENYqPFGSy6nARcOTLv9Gtxa9Tf13qTIZ08=
+        d=linaro.org; s=google; t=1733951827; x=1734556627; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=vbOAZlNnNpVSTQN+1o758lLTB1uimwZrSwxfkYzKt/0=;
+        b=AfrK1rhHampRbVt5OBFKyDJglBG04ofcXtMw4u8c2IQ5LB7y5bQkckYfZ7OJHsfdnS
+         hIKtFbs0wS+04pea01vBGAIWmek1G/iwQhhfbi8lguOEtOOLqFnnrhYglH9y7EkOSrR2
+         hTKwDVVukTXnoxplYXAf82cavuOXWw8pO4itkPkt2VQHwlxXmBe26D9O7oHk4UZ0T1Rx
+         5dtEkC/2G0RD2iC8AHEQgor1KG1ixRgcsNA6GYgpMezu1K8uIrkGC4L0aAUORSd+2vmz
+         MyAXbfsB+nF53S/fJLK9w36vIkuMvJeULyNZhkvejmqgRM4TOynWYIBsYb57m802szzX
+         pqdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733951475; x=1734556275;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fL4AZO7DuUqncD1hviX7Ju8fEoY0KFiDTXpqXPG3i0I=;
-        b=xNEXLikDeWDli8930IKPG/NfrX7woTKjVawlAK9OzWgAS98vpPfKrjsTSMAYpQU8ca
-         k+EH4InG+D4krF6OH4coNbN46fl8SWqD+N/zg3IEcxFGGUrxyfMgGeMC2CsKIvXJHyW2
-         a46eyIF+cuj82qKWVyUoCZOKuby5O9jdl3hOeBgck7Kr99/1oGHY94TI7VLbpNIGDD4l
-         Z/VtGVoH4huAcPcHdoupz8xvIMkYeZIMINjxuNhs1HoKjQ07dxG/4NRxwjMLHqbqasWE
-         YXy1KodByaz82hH/oY4gY+Sc0+tAI0oJZEhViypTSLTYD8PNxtl/RqhL8spEy/MMkRGU
-         GWsg==
-X-Forwarded-Encrypted: i=1; AJvYcCXXUO6l2BLoMaklVen4W/vgafhM61qFZ7/Lia90DA9BFJbQ7jozE9bc4qSUT4AjZV5uBFlscF+BZrgG@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCUYzUpahrY54VAOI1KPZr4KZ3nBuz5xJQ0ex1aR00p9XG8IKA
-	3fsChpknwJ2QaUlW85h+9TNn1/Z82KK/2OiNZjXDiulgo9WMQmtXHvpK1D3EiFz+k0gMI9ddqPR
-	jaeJ29hthB79np3Mq9MPIEvfjW+sqSDMTUciG
-X-Gm-Gg: ASbGncvTEwQKSGkiw5e45B2GW0O+Q0opF6E0sAPDntDXKmjNnZAWXXgyny2HqODuEil
-	vvW3wGI6gDSMVzBFNwTBQYaJc+5wyfrtV0ogYgizaWjnyUYEx3XvGu3tzNFFek80=
-X-Google-Smtp-Source: AGHT+IGR6ED4gGgHGmi77s2dwB+gnLghGdTv2zo6xXg1u+pxnZVS/4VVQlWKhmq+504JY9ZZ4GSEuX2qWpyqxoxUo7A=
-X-Received: by 2002:a05:6902:1b87:b0:e39:7a24:a5c3 with SMTP id
- 3f1490d57ef6-e3da1eed190mr753786276.32.1733951475289; Wed, 11 Dec 2024
- 13:11:15 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 11 Dec 2024 13:11:14 -0800
+        d=1e100.net; s=20230601; t=1733951827; x=1734556627;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vbOAZlNnNpVSTQN+1o758lLTB1uimwZrSwxfkYzKt/0=;
+        b=TzQ3nVTnw8fFS3B0FN40Bps8cVUMw5OY4T7U3K+KkvrHtTrqNRtne7Oau4bFdB4Vow
+         7mmONF96eZutHn3bumSW1c5vSnz10eV6TjK5zZ/xMDXaWefYUp5eyC0o5ABGwQIrFoXt
+         EANdh2tSRKgUSzkgC2WJ/tjI5dw/zqAii/C+NaSMR0bjyTA5Wz5ubdZpckYJKkLC/y5h
+         f+Nbx5Xlhw0pqKb7jjBoGXsnQfHNpWip1BsQ5gGLul6a+RRQDpcU7xvmqIgmI63tXpGF
+         fCr4QQYU/xl8el4U64OCnHrlSs6t9CMajvJ+UfDEEB8jWTHVIqfcLPlGM0FcdqH3HvXl
+         RENQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWO49+6g+PBnDfLL55IrnfdlYe8bvGw8MLTfTFldUT9M8tnob9WkzfU8wRCZsyHcgJSsVkruoMvNqOO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1EqQgfrN3a1ZsXhJf5lKB57P4AQr/HDz4d0RkhT9lZfJpkTU+
+	AkQOH4WnRPl4nui7lHo9VJlUu3nOWv7GmnNpXkYrJdBeoOyRMadbr9ROVinYR1XY3veppOM99Sa
+	ilXp8n2UcGq8RMD72U+aaHJTVIlKMmLcA1U11Eg==
+X-Gm-Gg: ASbGncssQG4vi+KOdZ3FxA49N3G36PmgYS5zw23ccHmbHabVgGFCwn8gtVf9Rpm8J9V
+	5JUzHP9olwXtd6CPhFxKH/3YqwiZNrdAGsSZp
+X-Google-Smtp-Source: AGHT+IFfEcADkSKdG/yxS4NVADevkh5d06VtG5D2MymFrYSLQArMJkdl7zeaP7DPQ5MsRfbOG1YaN86DJzP4pureEqE=
+X-Received: by 2002:a05:690c:6f10:b0:6ee:a89e:af3b with SMTP id
+ 00721157ae682-6f198a3ce6amr10757187b3.9.1733951827476; Wed, 11 Dec 2024
+ 13:17:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <kidsjzklpxvvamct3glvoawavoi5mjuyh3on5kbtfp6gavwxxn@eack224zuqa3>
 References: <yk3xidaisbd56yndaucax7otijjauqmm7lqm6q4q633kdawlqo@qaq27lwxmvwd>
  <gstohhcdnmnkszk4l2ikd5xiewtotgo5okia62paauj6zpaw7y@4wchyvoynm2p>
  <CAE-0n50z6MNa7WOsg-NU7k8BpFeJJyYfHX3ov6DsthLWauSNpA@mail.gmail.com>
@@ -81,14 +80,15 @@ References: <yk3xidaisbd56yndaucax7otijjauqmm7lqm6q4q633kdawlqo@qaq27lwxmvwd>
  <5kisfv22tgqwzjpxqrbx56ywr7l4r7pny3pl2r7crv4rijqbwk@azricdasttg7>
  <CAE-0n50Bxi2GfnxOmMwe-F+k5jMSiyAVPDb6K8pYm-i6hpJTOA@mail.gmail.com>
  <cartdeijkv6z23dgm7uif4lti3lahfqmuyxcmruzqbefhsp6yk@m6ocjhncs2ko>
- <CAE-0n51-QLLje0f7T4p3xK6Q-FRk4K0NUrVVm4cxkKoevuzktw@mail.gmail.com> <kidsjzklpxvvamct3glvoawavoi5mjuyh3on5kbtfp6gavwxxn@eack224zuqa3>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
-Date: Wed, 11 Dec 2024 13:11:14 -0800
-Message-ID: <CAE-0n52F+cvVyXm8g8idN2eMfx4bpaEpWQRchr8=AO87N7E3fg@mail.gmail.com>
+ <CAE-0n51-QLLje0f7T4p3xK6Q-FRk4K0NUrVVm4cxkKoevuzktw@mail.gmail.com>
+ <kidsjzklpxvvamct3glvoawavoi5mjuyh3on5kbtfp6gavwxxn@eack224zuqa3> <CAE-0n52F+cvVyXm8g8idN2eMfx4bpaEpWQRchr8=AO87N7E3fg@mail.gmail.com>
+In-Reply-To: <CAE-0n52F+cvVyXm8g8idN2eMfx4bpaEpWQRchr8=AO87N7E3fg@mail.gmail.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 11 Dec 2024 23:16:56 +0200
+Message-ID: <CAA8EJppVgw1Qb4kGY1Y-A3-KrinKfX2zGUuwMCY_-gG96fgocA@mail.gmail.com>
 Subject: Re: [PATCH v4 15/18] dt-bindings: usb: Add ports to
  google,cros-ec-typec for DP altmode
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Stephen Boyd <swboyd@chromium.org>
 Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
 	patches@lists.linux.dev, devicetree@vger.kernel.org, 
 	Douglas Anderson <dianders@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
@@ -112,24 +112,32 @@ Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
 	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 
-Quoting Dmitry Baryshkov (2024-12-05 10:47:08)
-> On Tue, Dec 03, 2024 at 03:50:58PM -0800, Stephen Boyd wrote:
-> >
-> > The easiest way to imagine this is that we took the usb-c-connector and
-> > jammed an HDMI dongle in there with some glue so that it can never be
-> > removed. There isn't any USB going there either because it can't be
-> > used. I suppose we can continue to describe this with an
-> > altmodes/displayport node but then add some compatible like
-> > "usb-c-hdmi-connector" or another property to the altmodes/displayport
-> > node like "type = hdmi" that signifies this is a connector that only
-> > outputs HDMI.
+On Wed, 11 Dec 2024 at 23:11, Stephen Boyd <swboyd@chromium.org> wrote:
 >
-> Does that DP-to-HDMI bridge talk USB-C or just pure DP? In other words,
-> will it be properly discovered and handled if we just leave it as a
-> weird usb-c-connector (maybe with an additional annotation, we have
-> USB_PORT_CONNECT_TYPE_HARD_WIRED for USB ports, we might have something
-> similar for Type-C connectors).
+> Quoting Dmitry Baryshkov (2024-12-05 10:47:08)
+> > On Tue, Dec 03, 2024 at 03:50:58PM -0800, Stephen Boyd wrote:
+> > >
+> > > The easiest way to imagine this is that we took the usb-c-connector and
+> > > jammed an HDMI dongle in there with some glue so that it can never be
+> > > removed. There isn't any USB going there either because it can't be
+> > > used. I suppose we can continue to describe this with an
+> > > altmodes/displayport node but then add some compatible like
+> > > "usb-c-hdmi-connector" or another property to the altmodes/displayport
+> > > node like "type = hdmi" that signifies this is a connector that only
+> > > outputs HDMI.
+> >
+> > Does that DP-to-HDMI bridge talk USB-C or just pure DP? In other words,
+> > will it be properly discovered and handled if we just leave it as a
+> > weird usb-c-connector (maybe with an additional annotation, we have
+> > USB_PORT_CONNECT_TYPE_HARD_WIRED for USB ports, we might have something
+> > similar for Type-C connectors).
+>
+> It is pure DP. Maybe we can have a google,cros-ec-usbc-hdmi compatible
+> string here because this is a weird design.
 
-It is pure DP. Maybe we can have a google,cros-ec-usbc-hdmi compatible
-string here because this is a weird design.
+Just google,cros-ec-hdmi for the corresponding connector?
+
+-- 
+With best wishes
+Dmitry
 
