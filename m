@@ -1,139 +1,134 @@
-Return-Path: <devicetree+bounces-129824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129825-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9149ECDB1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:53:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF119ECDC0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 14:56:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 880F5162F35
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:53:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9755B1633AD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 13:56:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 849B523690B;
-	Wed, 11 Dec 2024 13:53:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD86E2336A1;
+	Wed, 11 Dec 2024 13:56:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="We7Ro6Qp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mRLikzjc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 457CA22913A
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 13:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9BA22C353
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 13:56:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733925210; cv=none; b=IWnyrCTgZmOQoiGBi5yPWT7w/OiP5j+d2DOwZtxwUFrQZ4WblIfuffM8Nqy6oEF2D8CqQjWuzxc8+4yNeeoISV6R0mXD2vPGn5oY/hLI00ZIJYbP/h6tW1jirRr9Nvol9qXWyQTlLtsWZVkEHRKM1xbPtW56L6znLFc5kyVD7gM=
+	t=1733925386; cv=none; b=SGkk3OnK179jDFrlmhJQL6SzBEmAX7f0WCTil+FS0eo861yRuBZSGTh1OUJ2QB7+gHG7N+m00uHLr1tMNY9z2LbJrEwR3qPFRqDCQat/S6qgX3/7XbSZJuBbKw2Ky8RaBDxCxoOMQDyhwBYwhhf6gDpRpnQjREyuKCSA4MYAROI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733925210; c=relaxed/simple;
-	bh=YSdh0Mm0FonlMgaa3imnf9PPReZOary7MqBo29RKeZI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WqLPIFPR0OGQJhT/ihmB9bJXsav79bOxXJeX8ob0AR/0vahAqUBw6Q45W0jOWPw//LAH3nK0Hj4igbNfB21AcUltSx0r4is5uyFyf7HsjOuDAU9Y79WBjwMIfuCl4dhAfbyvE4F91IUufrwHqo8lI6ri2FEXdwjdPtW4bZYzaiA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=We7Ro6Qp; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aa67af4dc60so607320566b.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 05:53:27 -0800 (PST)
+	s=arc-20240116; t=1733925386; c=relaxed/simple;
+	bh=jJNvd5CzRMOJ5gUrBQXY1b7u4hCix9pxT1OewNbVyCg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mhTk9rfVvEc7iexQoL7mNb0l3MKtKbJ5bMSFjyM5yQvvqATTGz6qzRESNtGNDZA9Dq5vHC97tr2gdkr2JUiR/4IXYM+JzlaodrfcJLlG9zoS9G2vcJfn/a86OErjYTSTQHE6LrX5Oug/1gDDDr0re6caXdZ3CrtCjvmSoL00pYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mRLikzjc; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-434a852bb6eso64651555e9.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 05:56:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1733925205; x=1734530005; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2JAQ94DgwmZTsFqQuFhEr5XjtlJo5Liq/MWFSbEP7oQ=;
-        b=We7Ro6QpXdFqx1EZCLNk/BGMGe7KhGl6PAlNriTd27U4td+pcYwIjAR39eWjr3fQV3
-         hbwqiaKicF/joN8+62DAYg8Wf9/MURxT8V6z8bGdUlL0iV0Y0xNXupuRo9OjB3QYbfXB
-         csYSDW2tU10Y1v8TLomFlX/NG62h5wyDlxRXMB8/GWwUj6vIlZrublRxbyO8JQNTZs1M
-         OcPBeDjVKdSmVLyG3jFTn0n0XIj0HAlr/ZL0YbhyX4t0B5HGjOtgCwRfE8wv4qfhgf1p
-         XHhWsm3/GVeyw5+QUaPsEKGZ4IfFzeXu8dZNVG5Z9qY2DOR51vj1yLn1M/mVxfIyXI4X
-         sg9A==
+        d=linaro.org; s=google; t=1733925383; x=1734530183; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jtSEM+vm+bIJ/KTsXmMQlqO+KHdG4/pkOfrFSV7O0Lo=;
+        b=mRLikzjcayj7jg7rQppmNaqnvV6z25LWDzY71mbo84HYprBkKtze/LrPHGqB3YlB8r
+         pp/21g1/Cvds0yKrtnLI5qckd/1L5hU622ieRwdBQ5sIiUAUXQTT6vPEIWEBdME+Pxxp
+         PutO3Vbvl+lhJuaCMzVyLXvdQRjtJfqWpaZ26pzTPPyXaw324EWdmYeRAxE7IijdHqW0
+         MLNkMM6MvFi3t28R9P8Bct5TUDnqeyNrjUwUHg+U4ktWUymb/ryeiYkeZ5APfxVuRfTt
+         Ngu9ngl79yRx/9P7xoUHGVeiDCkliYFHJlaakqAd25xerIyTM1CnjNr1FYUMBwIMYYX4
+         rsqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733925205; x=1734530005;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2JAQ94DgwmZTsFqQuFhEr5XjtlJo5Liq/MWFSbEP7oQ=;
-        b=hM3+EwYM2oiba2U9pK2Wh8tAmunkyIZ8FYaOXuPsdHbx6qMzGDfCaYW+htOq6CCDtU
-         wIXjiQtl2ttH6y2VCnRlvxCC4UPZVlH4zakQZHro9sFidoaLcmKDx0appJ2fTKgKbSlS
-         KiYdzXHtuSPvV52Z74Gw2EAITFJWLAgBik7MG1d15DDbZ2QjGBCqDXMRg5KLeVO3D7Fb
-         929XWrmdHxqzyMruJSYPUcOSjpv+hwPS+lRmiaIfWSi/Y8KMwi8SKsrJ3eQHObl/ESGt
-         b6NvOZeILI9I4Y5tYMkszj7dnDV/OenMwWjZ+lvkOfPlEwF0snu1nfu0h8rNCYZVZS+M
-         5xXA==
-X-Forwarded-Encrypted: i=1; AJvYcCUpJPlL1yCYrfqeYrp027pmB3tW7JXM/58AXQxTtZ9OWMWzDKM4UP3MXHB48V1+J/3ykfgmkJFIRq8O@vger.kernel.org
-X-Gm-Message-State: AOJu0YywuOe1CYBQeeUXFVVS5fYFmKiqsKElOuSDBnkk4A84y8khEBh3
-	nIWP3khaYzOvTDJoVECbqdCR7yBR8cMVFxoo/XOthb0iV0zveVhLA25o93IPPOr4VvNtpSXLtJU
-	4
-X-Gm-Gg: ASbGncvFb8E3qryoMQfPH1hrhWu3b+zh/0mjkV+c/nNURJB8Z36418Y3bmPS4u1HrjB
-	KZLXhQT9br4myaEuYyK72LnPPCRvFUoT+c3Zbeg0q2GvF4FPGrHb34qWnqHsBiZeT9yXLdOg1rB
-	02UeH0gQ4cviHrjJvgMQl+qLv7QGzCqzvVjMojnlff+xHzjWRvOwiITpWZr6e4djK2VJZU8+B6H
-	JxKGguNFK7zLT9sCdpe8OFw/VUgMzH5U5SWwnr743TkFzs0/YXkWxo2WSukE7A=
-X-Google-Smtp-Source: AGHT+IHhR+q/yjOR8fMgpp+HvsWmN+ncd/5Lo5Mk+pkPGE0cvah/TqVw4ZywcOYOxY2cukLaXrgmug==
-X-Received: by 2002:a17:906:b3a1:b0:aa6:75e1:186c with SMTP id a640c23a62f3a-aa6b1505cf0mr213318566b.50.1733925205362;
-        Wed, 11 Dec 2024 05:53:25 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.161])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa653d1df95sm682900766b.98.2024.12.11.05.53.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Dec 2024 05:53:24 -0800 (PST)
-Message-ID: <5e7d316d-2e13-436d-8474-48411e2a12d9@tuxon.dev>
-Date: Wed, 11 Dec 2024 15:53:22 +0200
+        d=1e100.net; s=20230601; t=1733925383; x=1734530183;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jtSEM+vm+bIJ/KTsXmMQlqO+KHdG4/pkOfrFSV7O0Lo=;
+        b=c2wQXgTz9KdGxi1KjFFcC35zOym3yLtR+eIrxLUYSanD2qgbkzp+pSUzrxyUqMN+TI
+         NvBeROH3XmBWjs6vjH7FwugapumHB+cyJPoI4uOkDZh14U005j4SK3Mdrln4k5Ekph3+
+         /vMd2v/rRBv6fPihhAfMO5gq2vgO5eDwymU3E7XTXtGqKBeOsuRSpM+P3dJhDixAOwOv
+         EYz47gD2CZ4yHGxjeM/wTwrf3aGo+Anc897pqyfWAVbIWy94Hb+Zi1pZqVHWYyuSdTc2
+         kaabaoNAw78qpl+WJr23q95FFCUgBA9aYegu50nre4SPGpNKo1OdPHPWVAQ/+o2FMJ0c
+         kCJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW9UXf+2fBG2j4xzUAmZrJvsAV8iYO+Kl6iW0i+mX9aYEL+Mz+bWmxxXzaBeSgugA7cUphFzrw01Rmp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCVILSHNA99swPseCAIqx4KRumWhfIQiB+eXKRDKWFGNQEyYa+
+	HhZx3I4MaNNMYAgOdHqy70xdk1au60DBogmzhXsCLkzNCTRCyJwhwLPLFNrY3yg=
+X-Gm-Gg: ASbGnctO63FsdTe+xNX5oqwQ78N5dpC0kZjoQgAxkDe0E9BNn/Zcpd3gMO7Gh9vZABU
+	vtoo/HwIWlwZ/WLasIFYKsvfxvJ+UlwPdcXV0mJlwoSOZazL+BAhc5Y1IHKoznf3tZZDR+5irCt
+	3nKlFKlGyBjvJ/Zp5cSSFU28VeSPfh+Pd06JA1pSW5LQR54K+uLVIhhsWK/y/bF+0pc1H9wZaCS
+	vLNKVIOEXNRKctTNROe3bUjpqnwi3kKux3ZrrCZ5q1jZ4cZ5ZOQ
+X-Google-Smtp-Source: AGHT+IF2z7GNLeCXaPcEuFWlypAl7tCU8l7GX3KX4YAoY6IJG61/b+lP2czNLPCrQwDT7QmPykXLwg==
+X-Received: by 2002:a05:600c:c89:b0:434:f5c0:3296 with SMTP id 5b1f17b1804b1-4361c3a35f8mr23007175e9.18.1733925383220;
+        Wed, 11 Dec 2024 05:56:23 -0800 (PST)
+Received: from linaro.org ([82.76.168.176])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4361ec75410sm13569135e9.1.2024.12.11.05.56.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Dec 2024 05:56:22 -0800 (PST)
+Date: Wed, 11 Dec 2024 15:56:21 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Johan Hovold <johan@kernel.org>,
+	"Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100-pmics: Enable all SMB2360
+ separately
+Message-ID: <Z1maBcM3jG2SjhAo@linaro.org>
+References: <20241210-x1e80100-disable-smb2360-v2-1-2449be2eca29@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 14/15] arm64: dts: renesas: r9a08g045: Add ADC node
-Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: prabhakar.mahadev-lad.rj@bp.renesas.com, jic23@kernel.org,
- lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
- sboyd@kernel.org, p.zabel@pengutronix.de, linux-iio@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20241206111337.726244-1-claudiu.beznea.uj@bp.renesas.com>
- <20241206111337.726244-15-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdVMQr9RhG7v32vQeSrepmdh2VdzzwF5obJUpdGNotGV7Q@mail.gmail.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CAMuHMdVMQr9RhG7v32vQeSrepmdh2VdzzwF5obJUpdGNotGV7Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241210-x1e80100-disable-smb2360-v2-1-2449be2eca29@linaro.org>
 
-Hi, Geert,
+On 24-12-10 09:36:01, Stephan Gerhold wrote:
+> At the moment, x1e80100-pmics.dtsi enables two of the SMB2360 PMICs by
+> default and leaves the other two disabled. The third one was originally
+> also enabled by default, but then disabled in commit a237b8da413c ("arm64:
+> dts: qcom: x1e80100: Disable SMB2360_2 by default"). This is inconsistent
+> and confusing. Some laptops will even need SMB2360_1 disabled by default if
+> they just have a single USB-C port.
+> 
+> Make this consistent by keeping all SMB2360 disabled in x1e80100-pmics.dtsi
+> and enable them separately for all boards where needed. That way it is
+> always clear which ones are available and avoids accidentally trying to
+> read/write from missing chips when some of the PMICs are not present.
+> 
+> Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 
-On 11.12.2024 15:27, Geert Uytterhoeven wrote:
-> Hi Claudiu,
-> 
-> On Fri, Dec 6, 2024 at 12:14 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> Add the device tree node for the ADC IP available on the Renesas RZ/G3S
->> SoC.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> Thanks for your patch!
-> 
->> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
->> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
->> @@ -87,6 +87,59 @@ rtc: rtc@1004ec00 {
->>                         status = "disabled";
->>                 };
->>
->> +               adc: adc@10058000 {
->> +                       compatible = "renesas,r9a08g045-adc";
->> +                       reg = <0 0x10058000 0 0x400>;
-> 
-> Table 5.1 ("Detailed Address Space") says the size is 4 KiB.
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> i.e. will queue in renesas-devel for v6.14, with the above fixed.
+Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
-Thank you!
+> ---
+> Changes in v2:
+> - Clarify commit message, there are actually two SMB2360 disabled by
+>   default (3rd and 4th) and not just the third (Aiqun Yu (Maria))
+> - Link to v1: https://lore.kernel.org/r/20241203-x1e80100-disable-smb2360-v1-1-80942b7f73da@linaro.org
+> ---
+>  arch/arm64/boot/dts/qcom/x1e001de-devkit.dts               | 8 ++++++++
+>  arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts | 8 ++++++++
+>  arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts    | 8 ++++++++
+>  arch/arm64/boot/dts/qcom/x1e80100-crd.dts                  | 8 ++++++++
+>  arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts      | 8 ++++++++
+>  arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts   | 8 ++++++++
+>  arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus.dtsi   | 8 ++++++++
+>  arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi               | 4 ++++
+>  arch/arm64/boot/dts/qcom/x1e80100-qcp.dts                  | 8 ++++++++
+>  9 files changed, 68 insertions(+)
+> 
 
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
+[...]
 
