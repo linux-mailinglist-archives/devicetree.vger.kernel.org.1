@@ -1,110 +1,85 @@
-Return-Path: <devicetree+bounces-129694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C45F99EC918
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 10:31:49 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F1CE9EC926
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 10:32:57 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B32E282815
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 09:31:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48E56188C515
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 09:32:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B18A1C5F00;
-	Wed, 11 Dec 2024 09:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8BDB1A8410;
+	Wed, 11 Dec 2024 09:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="ih91x07p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MvWqNMMX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AF661A83E9;
-	Wed, 11 Dec 2024 09:31:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A03651A8402;
+	Wed, 11 Dec 2024 09:31:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733909493; cv=none; b=DzrSZqhe+UKeSeEcIr0GqIP5244E9miHimEBos0o0ej6eMQtrcyQKDH8wg/jV8Ne5n2pRm/AX5ZmBzZd9AoRJfxQh921gIjLoD2fJjRMfbESJ3b+Rd1Zog8t8QYQ9Kk8SBFlVvsDXINfIHRacIAhUCEAB7jWieGh/pphvnASWJs=
+	t=1733909505; cv=none; b=Et7BTr8Hezhk/86XBA6pPhin3kUkVMcRgI0R+JxlPEjhprEQq+HnUAQtZNi+Y4E98T9/q016U0o8qF0VcTN8X6yhfMWKXaa0BhgZ1x7mWZNsTCkob/ad1/3T/mkIP5twFknT/nIeZzgAdGpuxj8GmEcflwu61nenHVhbB1lB33g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733909493; c=relaxed/simple;
-	bh=n5YgshR1sFfXUiS//KEredRhU0DpugW9DrAjNrcfVvE=;
+	s=arc-20240116; t=1733909505; c=relaxed/simple;
+	bh=JNi0/3oudx6uDms5WbJLo0swIVqX1h8w+/7VjhgYUGQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VnlE9XRywsBmyfvb0Quh6p4GverWV73+oAsSTzFEzKJTWhQAcXkxiHTQQ+kMRIz6Jyf3+nyOwHrwjd2ugTXhAtA8M1Np0SbGQSKSwFEcgE/E2XG9kYSxn/rwBBcPNTLGFbxmBL2zb8DlCUraG77HfkXuTE7+lCFcPe41sPXItIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=ih91x07p; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
-	s=formenos; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=fEl58DL4MAFxwTJpgb3U+ILMMojCdQUomfAFX9LGcFA=; b=ih91x07ptKzgvYvaZFqB8HkGp0
-	S3jxXecIsMf8iPyMFc1jli0GDmZBr3S8IDuY3/RrzuhQzzE0vuFQXnBm9ptKMVD6RbIfXDjr04OHW
-	+sGtLQudD91dYkQ5MCBnIemPulnRszwNSGQnSMSapehxH7rubyqEfSJ//Eq7pAQFltq4qIXESOlFe
-	Qp2GhLRc6LwKkk9NVVVmTZhRqWw8qm+jCN4BMuBI/Krq8+HkadFPGWVGSHi5xbAPVxmweeSU2+3ns
-	WnraUcKtzmmK1P6GTLHRIfKVgHju4tyY9OC0bOWnEM9Fo28w00N7FZm/TMCDQkiT2wZ2c0dtajH2M
-	JLOkT+3g==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
-	id 1tLIqe-000iLO-0Q;
-	Wed, 11 Dec 2024 17:30:57 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Wed, 11 Dec 2024 17:30:56 +0800
-Date: Wed, 11 Dec 2024 17:30:56 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Antoine Tenart <atenart@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, upstream@airoha.com,
-	Richard van Schagen <vschagen@icloud.com>
-Subject: Re: [PATCH v8 3/3] crypto: Add Inside Secure SafeXcel EIP-93 crypto
- engine support
-Message-ID: <Z1lb0ImxhhFs4Kuz@gondor.apana.org.au>
-References: <20241210204853.18765-1-ansuelsmth@gmail.com>
- <20241210204853.18765-4-ansuelsmth@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=F1Uck0hqqk0kz7VVwqq6LcBXqp3UEPyU+/sjj0WF/huthjjOj5c1YrcdYXzNLlt9Jh9LqiQleKCE9sCFS/o5RaX3bdHeokBSd3UdEs3Z0+r0AGdeLQwH2Nj26Moo3CvxnFxNTT1W0X2qTWilevcYxq2vt5Rss9Z+ZyVIlq6mEHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MvWqNMMX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 875DBC4CEDE;
+	Wed, 11 Dec 2024 09:31:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733909505;
+	bh=JNi0/3oudx6uDms5WbJLo0swIVqX1h8w+/7VjhgYUGQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MvWqNMMXvUhTvZWxgzetbfm6yY3dOIOEBxzvPnoz8/rM8f35CW41AWsUko76vGn0W
+	 gxAIsC1oHBcU61LVKG1Befs0jxv3rey4zg8jglsnGTEbY2/dHpyVxZoMaKvtyGxBd9
+	 qHIgcXyNAGNBEuIg3bznfrMYmzQmeXaXMAwVc4qxDebrbYQxSCyRx7NLiRjJY6Fv3p
+	 nJx4fiQlVzK5akanxGBIVKOqu19SUl4x/3KO1iTuvdQUJgieGyZNG0IqRqJntyj+GP
+	 ly4ne6+N5h8xCzgSiLG5HHCrbQr4fudCr7dQMwa2RzCo5H/iXKkRaYZox8RweQpx5G
+	 Bk4kqeJXcE4Vw==
+Date: Wed, 11 Dec 2024 10:31:42 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: neil.armstrong@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, shawnguo@kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel-lvds: Add compatible
+ for AUO G084SN05 V9
+Message-ID: <yujvdu3s6v7z7th2lrdscqfxocx2zy2u4owakisvnjppz2udqv@5ok2rcf4exd4>
+References: <20241210105705.116116-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241210204853.18765-4-ansuelsmth@gmail.com>
+In-Reply-To: <20241210105705.116116-1-festevam@gmail.com>
 
-On Tue, Dec 10, 2024 at 09:48:33PM +0100, Christian Marangi wrote:
->
-> +	/*
-> +	 * Consume remaining data.
-> +	 * 1. Loop until we consume all the data in block of 64bytes
-> +	 * 2. Send full block of 64bytes
-> +	 * 3. Skip sending last block for future update() or for final() to
-> +	 *    enable HASH_FINALIZE bit.
-> +	 */
-> +	while (to_consume > 0) {
-> +		int to_read = min(to_consume, SHA256_BLOCK_SIZE);
-> +
-> +		block = kzalloc(sizeof(*block), GFP_KERNEL);
+On Tue, Dec 10, 2024 at 07:57:04AM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> The AUO G084SN05 V9 is an 8.4" 800x600 LVDS display.
+> 
+> Add a compatible entry for this LVDS display model.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+> Changes since v1:
+> - Added devicetree@vger.kernel.org on Cc.
+> 
+>  Documentation/devicetree/bindings/display/panel/panel-lvds.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-You should avoid allocating memory.  If you really must do it,
-then it needs to be GFP_ATOMIC, and your algorithm needs to set
-CRYPTO_ALG_ALLOCATES_MEMORY which means that it won't be used
-by the storage layer as memory allocations may lead to dead-lock.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The preferred way to access extra memory is through the request
-context structure.
+Best regards,
+Krzysztof
 
-Cheers,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
