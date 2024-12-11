@@ -1,241 +1,115 @@
-Return-Path: <devicetree+bounces-129980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1689ED6F3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 21:01:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 379D29ED712
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 21:12:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8116282CEA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:01:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A822D2832E0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 20:12:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0576E20B7F4;
-	Wed, 11 Dec 2024 20:01:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FCAC20B20A;
+	Wed, 11 Dec 2024 20:12:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="EKV225Ll"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FATNfFS1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4146520ADC5
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 20:01:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 131642594B3
+	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 20:12:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733947305; cv=none; b=pdbQgsgw6ZIgV3c2x5WSH8WdTBneqXPtTa0fcWPFZGBgK3IxqkoslmuIh52cIhOeSFmoI3X/V0REauHw3sAjwH6s1agxyOvNznTzUwgVICrTH337ibHj1mNdAYk9Ihnr++V9gMkg5X2VunW+krABxYouun+ttcyhE5i5X6nhvLI=
+	t=1733947962; cv=none; b=hOjU48YzVCrU/3p5iiA2makUAVQMYYIMMOFXX0H3sl6tzTjluar6eNKjzNCTlCDy0d3rk4DBgK/5RKz73RNkuDZh4DYY+4gqSLA32blOtMJDhkq5nrT/5Sff/S4pmuoTGpPpTTOChBwDUOMa3DymPvb4TiO10NfMqRoVusvAlfA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733947305; c=relaxed/simple;
-	bh=F0M8NGa4GfHUrZooP1Zinaaxwf3Co2ffNjNkg35UMTc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ghwzDZfJM6puszmH1GadjgKQZNXP1p12TGOsf7MuqCFYd3V2MsKz4TUTptW2fZRH6ulD2eelJq5i6X9DJuomLg2oA2e1GCMsDX5sQx6kfzbUbli5idFLKXAOTOOCf5bqmX2flvb44jcUCez47nM7Bo3NgKkFJrEkNM9gnazvryA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=EKV225Ll; arc=none smtp.client-ip=209.85.160.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-46792996074so6482471cf.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 12:01:44 -0800 (PST)
+	s=arc-20240116; t=1733947962; c=relaxed/simple;
+	bh=/fVcvfI/nJgq0KL9QHFEEc3B//jpEClgu6sMbVc2hJE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=n3VKhgXMKJFF3v442Zi7pBgMFwfZGpSjfG+jh6N/resdQdsiRoHcg628CgctgP+CHgilLuvkDbz3TOkURAYirlsWtdKpy2TOeQ6xx5IG0L15WTexnI6Ih8a5QwltxN1/ueNMcG7AucElFVkdosOG+nGEgm2pL6AhGb0RSDMNHic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FATNfFS1; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-385d7f19f20so3434167f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 12:12:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1733947303; x=1734552103; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=RF+SgaA8A4yu1/WtuO/9GkUtQsQvHRuIDWUMOSCXiAk=;
-        b=EKV225LlIVMUZItRLdA7G6ugsy1JEul2f98IrubU45RkiYqY2DL8urr+GVjFduWfif
-         qBFvOG1Z1IJIfOmMtkN8aU5cQqirgYFOheeQ4Tuck51zqWebAYvXCWrZxXDD6VPlIsFb
-         rD2lWFFRbb8yQI7mDbCCcZ6ZN4i6lnZUSa4iY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733947303; x=1734552103;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1733947957; x=1734552757; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RF+SgaA8A4yu1/WtuO/9GkUtQsQvHRuIDWUMOSCXiAk=;
-        b=B+zY9fUFcOcmT7VueonlYFrR3GvujuNjrYjfS1eFn5pkoumznIOPvjMldl5pxzi0E9
-         K9jFVT9w7bbFvgIMN0tKavVg4ISdFQTXN8XcfrcAUWR+8wXaTIG1lHlnsmmmLhySJ2gf
-         2D20fvEbXmaI2EMtmMeo/UJEAxEMHuWOdZlYIndlpz2Nvu64br6NHnQkLNjZ/NfFKpaL
-         URny/VyxADc4qfyT1tH478XxUerb+qBlpH4uw1UyDq+WEnA5SZ80/G3BY096nX2GLRgf
-         x0mMmA8h+1qEiTEsLgkxgr+UUuf79IyIuAxCATgvCC+taPqub1LrhkaECYhb7splFf85
-         HiAw==
-X-Forwarded-Encrypted: i=1; AJvYcCVm70patBpVc5S4XljzkI1J58Ghm9tRzD0QrviTl36YoIf71TfItV/fze50hrdD02GOoqEYdetqHIky@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzh6MAKkhpSFQNlt+RO/k2QEnu6pOGZBwfeYAtOQu9Pjdq6DrH8
-	wRVznUJbiDkuu/JbyJwD0q2tmUX337KRWNHWg/yuaRzxilOtmMemedos60QrBw==
-X-Gm-Gg: ASbGncssAWDbqV3WdMSpIJoLu0Jw3CyFFEW05c9f50xZc59XHzg8aCVXfj5GkuQSDaV
-	7CmbCXoJAkVhf+IdXOPKRXy/vPkqH62G87V5Kj9DEce0tgo/4ysJ0wDX4mlajtyLhmKYYCJ/2DV
-	sYaXRZn9rdSRKAdsTvQFrVCp3MAH/T+z+tdZPuLEKNrhF9rwV4AtR69rPvNrTcCfczjT6GYAI8Y
-	bpN+BVzUedoRhA0xtdJmLTrFCnf2CxFiIlWK//kzPwLvhiWbWaCk5MZmAizPk6d5BP96JZzXSXP
-	cKuBCEdnwzs3y10=
-X-Google-Smtp-Source: AGHT+IH1EItEhDF0PhWzxH0hzNi2adGVkl/4FI0Nh7NmAubh3vPiMk36HkqtIjpl2KFJLYurfshIMQ==
-X-Received: by 2002:ac8:7f42:0:b0:467:59a3:b44a with SMTP id d75a77b69052e-467962a741dmr12907131cf.56.1733947303166;
-        Wed, 11 Dec 2024 12:01:43 -0800 (PST)
-Received: from [10.28.17.173] ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-467583c1b6asm43931021cf.44.2024.12.11.12.01.41
+        bh=TPN2+AhDq4P0SWNYP6pOLiBUFHEUMd0r1OKMpQRaBeY=;
+        b=FATNfFS18kvqaKIJKr/FAXZZq8pJ/DSe7M5/JRLICn/BMsu08fL3+FZjtQ8m4JgnMf
+         opTGKwMkj/aDAc5KoTV90802yFTRaaKVvfbnhqPtKXQcL5MgSBA0K4cNb08RJlVWMur9
+         Bo8EH0L1D0ez1LbfxXYS3zE78TJPNRw/CE5xVP/OvqtBTk4l2iHy0Qhmj2wGGnY1Jt9T
+         kMa9GWTIFfpM9YOnu4B5+7EbpePIh5tJ9DDb35Zes1aVxb4i4T0t3tQ51N1LKWXNMHi2
+         CKdhHQUxhz35Vckk+VlLIMgNUiQKrHd4oHbwGxjgBmYanNhAwg0skyxrGtZEWHBrVCe2
+         QhdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733947957; x=1734552757;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TPN2+AhDq4P0SWNYP6pOLiBUFHEUMd0r1OKMpQRaBeY=;
+        b=J5q0udN7+NDyinUw9/Q3jIH1LWgP6Dy8E4PK3jaeNeIg4vXui2zAx/gb1kX2CjBp79
+         BFW1F5SpDzN8AWuCqCRHg3kKXJh4Cr7Bf1JDtXcAKDXtIzrXIw8LpnHTala8yTm1MCZx
+         koUr/GgQOpdm1nb0kkOVrv7Aovec7tjAsBtT1oHNrwqXMv0QFUltAzUfTNO0IN1d6e3z
+         MIDZ2XjAArj3SfmQa2sA5kooiBIXlnwEbszQPAHX3FNQNsPMf8Cqe6oIdCi03ZHELtl2
+         BKVBpeArxNMvyrfyAc++TH5KXLnG41c1oo30e7HB7EdWcNFkQcTZWWgQLA6sBRp7cLh2
+         bURQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUIwbV/ZXxrKU+eXQ2verkhpDmUH4WrqSwxgD9GdYvcxWpxa4/kFG/uDG2/qe/ye2n05UOOtE48vCf2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2BnqFJZLqQhepigzyzMmy9us/l/eP2HHozK0C8bDPeiUKfm+X
+	NqBcYwD6SiwH8Su4gsVh1alI7y9nQQGR1NsPf7z9t9cjw4P41Nmye0Bjbm/Q9DM=
+X-Gm-Gg: ASbGnctvbYpkRAAKD6v813XFwm8aNrV9mm5vT+/yDf7F3e8T1AYiWpQEAWVu7F2yvt7
+	lOIS4QV5z6o9LQNr5rbz9fJnC0HwsQl4KE/r3wZ86yHEGpIWZ/jcgEzwiWGPw1KnBpY70tcl9Ht
+	zjISe0qNEkOD96jc02N5dH3bIOdUZdU3wt8OaPY9cdwvbU0Tw9pyDFks2I5R+wedhlnC/SUK02B
+	UhcbzXYX/tzJ9g1artWxX/EKa7PANE46kewxxEaH3riGViU5V3ZSVHt
+X-Google-Smtp-Source: AGHT+IGhKdHf66Trsg0Xay3Wa/RqDWr8rS+2Oi6F9OIapryWlc50G8eqxXs0nor3X97sj8+KlZI9gA==
+X-Received: by 2002:a5d:5984:0:b0:385:edd1:2245 with SMTP id ffacd0b85a97d-3864cea45bbmr3619738f8f.30.1733947957412;
+        Wed, 11 Dec 2024 12:12:37 -0800 (PST)
+Received: from localhost ([2.222.231.247])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4361ee54736sm23968785e9.41.2024.12.11.12.12.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Dec 2024 12:01:42 -0800 (PST)
-Message-ID: <f0a734d9-6bf6-4d28-b30b-99b6be9f62dc@broadcom.com>
-Date: Wed, 11 Dec 2024 15:01:40 -0500
+        Wed, 11 Dec 2024 12:12:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v4 06/10] PCI: brcmstb: Enable external MSI-X if available
-To: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrea della Porta <andrea.porta@suse.com>,
- Phil Elwell <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>
-References: <20241025124515.14066-1-svarbanov@suse.de>
- <20241025124515.14066-7-svarbanov@suse.de>
-Content-Language: en-US
-From: James Quinlan <james.quinlan@broadcom.com>
-Autocrypt: addr=james.quinlan@broadcom.com; keydata=
- xsBNBFa+BXgBCADrHC4AsC/G3fOZKB754tCYPhOHR3G/vtDmc1O2ugnIIR3uRjzNNRFLUaC+
- BrnULBNhYfCKjH8f1TM1wCtNf6ag0bkd1Vj+IbI+f4ri9hMk/y2vDlHeC7dbOtTEa6on6Bxn
- r88ZH68lt66LSWEciIn+HMFRFKieXwYGqWyc4reakWanRvlAgB8R5K02uk9O9fZKL7uFyolD
- 7WR4/qeHTMUjyLJQBZJyaMj++VjHfyXj3DNQjFyW1cjIxiLZOk9JkMyeWOZ+axP/Aoe6UvWl
- Pg7UpxkAwCNHigmqMrZDft6e5ORXdRT163en07xDbzeMr/+DQyvTgpYst2CANb1y4lCFABEB
- AAHNKEppbSBRdWlubGFuIDxqYW1lcy5xdWlubGFuQGJyb2FkY29tLmNvbT7CwO8EEAEIAJkF
- AmNo/6MgFAAAAAAAFgABa2V5LXVzYWdlLW1hc2tAcGdwLmNvbYwwFIAAAAAAIAAHcHJlZmVy
- cmVkLWVtYWlsLWVuY29kaW5nQHBncC5jb21wZ3BtaW1lCAsJCAcDAgEKAhkBBReAAAAAGRhs
- ZGFwOi8va2V5cy5icm9hZGNvbS5uZXQFGwMAAAADFgIBBR4BAAAABBUICQoACgkQ3G9aYyHP
- Y/47xgf/TV+WKO0Hv3z+FgSEtOihmwyPPMispJbgJ50QH8O2dymaURX+v0jiCjPyQ273E4yn
- w5Z9x8fUMJtmzIrBgsxdvnhcnBbXUXZ7SZLL81CkiOl/dzEoKJOp60A7H+lR1Ce0ysT+tzng
- qkezi06YBhzD094bRUZ7pYZIgdk6lG+sMsbTNztg1OJKs54WJHtcFFV5WAUUNUb6WoaKOowk
- dVtWK/Dyw0ivka9TE//PdB1lLDGsC7fzbCevvptGGlNM/cSAbC258qnPu7XAii56yXH/+WrQ
- gL6WzcRtPnAlaAOz0jSqqOfNStoVCchTRFSe0an8bBm5Q/OVyiTZtII0GXq11c7ATQRWvgV4
- AQgA7rnljIJvW5f5Zl6JN/zJn5qBAa9PPf27InGeQTRiL7SsNvi+yx1YZJL8leHw67IUyd4g
- 7XXIQ7Qog83TM05dzIjqV5JJ2vOnCGZDCu39UVcF45oCmyB0F5tRlWdQ3/JtSdVY55zhOdNe
- 6yr0qHVrgDI64J5M3n2xbQcyWS5/vhFCRgBNTDsohqn/4LzHOxRX8v9LUgSIEISKxphvKGP5
- 9aSst67cMTRuode3j1p+VTG4vPyN5xws2Wyv8pJMDmn4xy1M4Up48jCJRNCxswxnG9Yr2Wwz
- p77WvLx0yfMYo/ednfpBAAaNPqzQyTnUKUw0mUGHph9+tYjzKMx/UnJpzQARAQABwsGBBBgB
- AgErBQJWvgV5BRsMAAAAwF0gBBkBCAAGBQJWvgV4AAoJEOa8+mKcd3+LLC4IAKIxCqH1yUnf
- +ta4Wy+aZchAwVTWBPPSL1xJoVgFnIW1rt0TkITbqSPgGAayEjUvUv5eSjWrWwq4rbqDfSBN
- 2VfAomYgiCI99N/d6M97eBe3e4sAugZ1XDk1TatetRusWUFxLrmzPhkq2SMMoPZXqUFTBXf0
- uHtLHZ2L0yE40zLILOrApkuaS15RVvxKmruqzsJk60K/LJaPdy1e4fPGyO2bHekT9m1UQw9g
- sN9w4mhm6hTeLkKDeNp/Gok5FajlEr5NR8w+yGHPtPdM6kzKgVvv1wjrbPbTbdbF1qmTmWJX
- tl3C+9ah7aDYRbvFIcRFxm86G5E26ws4bYrNj7c9B34ACgkQ3G9aYyHPY/7g8QgAn9yOx90V
- zuD0cEyfU69NPGoGs8QNw/V+W0S/nvxaDKZEA/jCqDk3vbb9CRMmuyd1s8eSttHD4RrnUros
- OT7+L6/4EnYGuE0Dr6N9aOIIajbtKN7nqWI3vNg5+O4qO5eb/n+pa2Zg4260l34p6d1T1EWy
- PqNP1eFNUMF2Tozk4haiOvnOOSw/U6QY8zIklF1N/NomnlmD5z063WrOnmonCJ+j9YDaucWm
- XFBxUJewmGLGnXHlR+lvHUjHLIRxNzHgpJDocGrwwZ+FDaUJQTTayQ9ZgzRLd+/9+XRtFGF7
- HANaeMFDm07Hev5eqDLLgTADdb85prURmV59Rrgg8FgBWw==
-In-Reply-To: <20241025124515.14066-7-svarbanov@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 11 Dec 2024 20:12:36 +0000
+Message-Id: <D69592H3JKB6.21HDMPXX9Q6OF@linaro.org>
+Cc: <broonie@kernel.org>, <konradybcio@kernel.org>,
+ <konrad.dybcio@oss.qualcomm.com>, <andersson@kernel.org>,
+ <srinivas.kandagatla@linaro.org>, <tiwai@suse.com>, <lgirdwood@gmail.com>,
+ <perex@perex.cz>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <dmitry.baryshkov@linaro.org>,
+ <linux-sound@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 05/10] dt-bindings: arm: qcom-soc: extend pattern
+ matching for QRB4210/QRB2210 SoCs
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+X-Mailer: aerc 0.18.2
+References: <20241101053154.497550-1-alexey.klimov@linaro.org>
+ <20241101053154.497550-6-alexey.klimov@linaro.org>
+ <ghlkqehfs5sagxrcvyywixfkt6ie3pwwtqm2j3n3c3xytjl3sb@d435kwmo3nki>
+In-Reply-To: <ghlkqehfs5sagxrcvyywixfkt6ie3pwwtqm2j3n3c3xytjl3sb@d435kwmo3nki>
 
-On 10/25/24 08:45, Stanimir Varbanov wrote:
-> On RPi5 there is an external MIP MSI-X interrupt controller
-> which can handle up to 64 interrupts.
+On Fri Nov 1, 2024 at 7:54 AM GMT, Krzysztof Kozlowski wrote:
+> On Fri, Nov 01, 2024 at 05:31:49AM +0000, Alexey Klimov wrote:
+> > Add missing QRB platform name to the pattern matching Qualcomm compatib=
+les.
+> >=20
+> > Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/arm/qcom-soc.yaml | 4 ++--
 >
-> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> ---
-> v3 -> v4:
->   - no changes.
->
->   drivers/pci/controller/pcie-brcmstb.c | 63 +++++++++++++++++++++++++--
->   1 file changed, 59 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/pci/controller/pcie-brcmstb.c b/drivers/pci/controller/pcie-brcmstb.c
-> index c01462b07eea..af01a7915c94 100644
-> --- a/drivers/pci/controller/pcie-brcmstb.c
-> +++ b/drivers/pci/controller/pcie-brcmstb.c
-> @@ -1318,6 +1318,52 @@ static int brcm_pcie_start_link(struct brcm_pcie *pcie)
->   	return 0;
->   }
->   
-> +static int brcm_pcie_enable_external_msix(struct brcm_pcie *pcie,
-> +					  struct device_node *msi_np)
-> +{
-> +	struct inbound_win inbound_wins[PCIE_BRCM_MAX_INBOUND_WINS];
-> +	u64 msi_pci_addr, msi_phys_addr;
-> +	struct resource r;
-> +	int mip_bar, ret;
-> +	u32 val, reg;
-> +
-> +	ret = of_property_read_reg(msi_np, 1, &msi_pci_addr, NULL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = of_address_to_resource(msi_np, 0, &r);
-> +	if (ret)
-> +		return ret;
-> +
-> +	msi_phys_addr = r.start;
-> +
-> +	/* Find free inbound window for MIP access */
-> +	mip_bar = brcm_pcie_get_inbound_wins(pcie, inbound_wins);
-> +	if (mip_bar < 0)
-> +		return mip_bar;
-> +
-> +	mip_bar += 1;
-> +	reg = brcm_bar_reg_offset(mip_bar);
-> +
-> +	val = lower_32_bits(msi_pci_addr);
-> +	val |= brcm_pcie_encode_ibar_size(SZ_4K);
-> +	writel(val, pcie->base + reg);
-> +
-> +	val = upper_32_bits(msi_pci_addr);
-> +	writel(val, pcie->base + reg + 4);
-> +
-> +	reg = brcm_ubus_reg_offset(mip_bar);
-> +
-> +	val = lower_32_bits(msi_phys_addr);
-> +	val |= PCIE_MISC_UBUS_BAR1_CONFIG_REMAP_ACCESS_EN_MASK;
-> +	writel(val, pcie->base + reg);
-> +
-> +	val = upper_32_bits(msi_phys_addr);
-> +	writel(val, pcie->base + reg + 4);
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Hi Stan,
-
-It looks like all this is doing is setting up an identity-mapped inbound 
-window, is that correct?  If so, couldn't you get the same effect by 
-adding an identity-mapped dma-range in the PCIe DT node?
-
-Jim Quinlan  Broadcom STB/CM
-
-> +
-> +	return 0;
-> +}
-> +
->   static const char * const supplies[] = {
->   	"vpcie3v3",
->   	"vpcie3v3aux",
-> @@ -1879,11 +1925,20 @@ static int brcm_pcie_probe(struct platform_device *pdev)
->   		goto fail;
->   	}
->   
-> -	msi_np = of_parse_phandle(pcie->np, "msi-parent", 0);
-> -	if (pci_msi_enabled() && msi_np == pcie->np) {
-> -		ret = brcm_pcie_enable_msi(pcie);
-> +	if (pci_msi_enabled()) {
-> +		msi_np = of_parse_phandle(pcie->np, "msi-parent", 0);
-> +		const char *str;
-> +
-> +		if (msi_np == pcie->np) {
-> +			str = "internal MSI";
-> +			ret = brcm_pcie_enable_msi(pcie);
-> +		} else {
-> +			str = "external MSI-X";
-> +			ret = brcm_pcie_enable_external_msix(pcie, msi_np);
-> +		}
-> +
->   		if (ret) {
-> -			dev_err(pcie->dev, "probe of internal MSI failed");
-> +			dev_err(pcie->dev, "enable of %s failed\n", str);
->   			goto fail;
->   		}
->   	}
-
+Since I am not going to use "qrb" in this patches, should I resend
+it as a separate patch? Because we have platforms qrb4210 and etc.?
 
 
