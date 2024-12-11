@@ -1,184 +1,128 @@
-Return-Path: <devicetree+bounces-129715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC9FD9EC9DC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:00:32 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C059ECA13
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 11:15:38 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DA6516A0E3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 10:00:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9C8C284A81
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 10:15:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3287C204F67;
-	Wed, 11 Dec 2024 10:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255A786330;
+	Wed, 11 Dec 2024 10:15:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="keSgyuPX"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IKrpu1xP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57F21236F98
-	for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 10:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B03236F84;
+	Wed, 11 Dec 2024 10:15:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733911218; cv=none; b=lv6r3nem+1c1e4m9ZRx9yX9bK8zz5XEE+Go+5aRPvkYtEa7TYvPHBz1706PFHJvdL1eJ5kZ+U7mMueYXmInXnig1D9OBn0C8BJ157QO+h1pHy4Ku075G+jwWy9bvYOBXrD8YcrVO48IZP43felelriwc/W9nulBHLk/xfbbRWcc=
+	t=1733912131; cv=none; b=EX4U45vpmOeoEcoxsGCNX1dEaYxk3cizHEcvQLdnOn5Lh1chFyWJ13UAEhBAiCLJig60StofnLh7KmhrUznjJ/mFmbeohbrVOGmPBfDt29dxteRoTsOqu6P93+MOhrL+QIv1CX/frW98Gg5gwzbT3rSdlqasC7A7/8+NRlMwlP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733911218; c=relaxed/simple;
-	bh=qqXk888hHXN5lM/hj5UqNdhLJKFzxJyCfxlTAxkzIC8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fSK/KgBP58TKn8G9K0rtNUbhe/n6VB06L+biSQ1XLZ8fxZbAKGsJ3tFDbeFGIclnU/H2z2bQhd2+0yjNDVU2WsdCd3gBwmTsBRJNscrYriRUF2Cl4JdovvVWRVvPLlhv+EqzfXhretayzbTT46fmN87cipTKUOgR/2J0s8HdUyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=keSgyuPX; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-53e399e3310so4462426e87.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 02:00:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733911213; x=1734516013; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0FTHrDYAt+5sU4z/xE3NqRqqJ1EH4zKbhQxiihcV6pQ=;
-        b=keSgyuPXwRLcR9mkodwZbvymknKhIp3EOL2GjltF4WWVV+xow3rpyEITHLMWqy+44o
-         EH2AwNMqzwt7tTJzp5A2SzUwc7v1Itk9krdxVCDaM8ewfjda6Gk/wSSGdtj5f9bAEgIo
-         xYbwaXn8PKS2Ck11zS6M0wENzLrNm4C7Bm39EPpPXJIBVkb7yWuv/hQByz3EQQjWduYr
-         PXl7iGWaiBAWI+gP/qfGIGtuJ4SAwR1L1TVkvJ11DBIsMknMbGHXNN6f7avZlII9Gi7K
-         6ip7MaHUeK/QJuhrRvVZy1tdL+NmP1eg68DWgjNOwDxwdYbTR6Kgsb8in/lVsd0kn8gF
-         9IUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733911213; x=1734516013;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0FTHrDYAt+5sU4z/xE3NqRqqJ1EH4zKbhQxiihcV6pQ=;
-        b=ezARSntpfTAsEPUSwKjfyH11P+uEPPjqcCXiWVYeXA4rPUfjlF8k3+Hh5W85ol1e2g
-         jYZKoELkPQPnBhpjJROJ5vInGtY9zL9/7eXx7qI/acEtAZYY92lEAdpg/6D7IIRDzeZX
-         4+AOjO0x0nUoIHhj0H2/9KRuhlvyxaGdj/VJ2ufhHnCUJyZuz+0YNk2jvXDvnVWJUkj5
-         xjKt4PA8SNOGsagMyo7rW5tz5Qe3e3Ur9vDg7raBrUHEtOXNdUHMWl11RDGECXmxeIx/
-         us26zCcySEUpC2XvQX5xMwhwdT9KmXort+Hu1nl9GvXxUeDoCKEjo64iqiLKLxhje9iF
-         TEJg==
-X-Forwarded-Encrypted: i=1; AJvYcCXQkKWJhcnsRK8LPkNu8Xu81R5uARIy4r8lcT0N+hpmrKTyBLOnT8srqRiH5sxYIUh1eQBrLzT749R8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzB/V9XsRW/JlmTXjVAhrsmM5lvaQFoXJPciKum/A+FoCYzo0vu
-	qUL+nryGbrvM+cFR3SasVd2c+Oph4NwFZWNTT9XJZyUxrI9cbOhBhJ0p34ZckV4=
-X-Gm-Gg: ASbGncs9KIox9rH9Ddd3xzjF1qVKtL4V3joDCjNhUfDDiFfqdEORIJpFnw4/xsuehGU
-	PFZ0kclECCcttauBADZoUMs1QPZgAb4xlhal4TBzNmJ5u/E6Y/QfOrf1WQlXzH99c7iHODRWyWk
-	ng4dN+zlVZCmhuxFkZgGmsM1mY74m0746CFINjNU28UGxZqk3p6nplrb1MKxP7eoUrU5XDCIsvI
-	8cuaBM5cl+McFvKel2kYAyIvPp53/Mgcvbxnc7pEe5t7TifCoGaY8k1YXostaZSMlEffY+nxFqT
-	Il20+PEiPegk8xoBNT4+c6oEqO3U+xjdsw==
-X-Google-Smtp-Source: AGHT+IHwSI2H5G/Mkb4MlxNeFcU4xm+OEFZBwe8yugoHJEmLqb/TvNYKgiOgmKZuczcoqpvpuKUFPQ==
-X-Received: by 2002:a05:6512:128a:b0:53e:2f9d:6a7c with SMTP id 2adb3069b0e04-5402a5d6fecmr658688e87.5.1733911213443;
-        Wed, 11 Dec 2024 02:00:13 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5401b7ad992sm1141679e87.18.2024.12.11.02.00.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 02:00:12 -0800 (PST)
-Date: Wed, 11 Dec 2024 12:00:09 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Dikshita Agarwal <quic_dikshita@quicinc.com>
-Cc: Stefan Schmidt <stefan.schmidt@linaro.org>, 
-	Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
-	Sebastian Fricke <sebastian.fricke@collabora.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 27/28] media: iris: enable video driver probe of
- SM8250 SoC
-Message-ID: <jsskqncqdh7qgquckoochpfxxemn7o6djyljou5ofktdidk2vz@wnqtca5vgu3h>
-References: <20241210-qcom-video-iris-v8-0-42c5403cb1a3@quicinc.com>
- <20241210-qcom-video-iris-v8-27-42c5403cb1a3@quicinc.com>
- <CAEvtbuuO5Ga+wW9rstX_e_RGnm5jSNSHmyy3w3M9FTopNhKttQ@mail.gmail.com>
- <b4f35301-6361-9e07-73dc-023e87c80857@quicinc.com>
- <35tpvx2uok22tmq76fe6mluiqnkymm2es6iu5jjj2zapeio6me@l4obuknsn3gz>
- <5220b8ad-021f-38f6-8617-34352093e494@quicinc.com>
+	s=arc-20240116; t=1733912131; c=relaxed/simple;
+	bh=ih7Vsnj9ywdYxh7tR2qjlznCSvRVx5lmggLsQKhoolI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ljRVNKU34qro1+HO+kPgEhdqibN6Wug4tflBwZcp1qW9XCZGbQMG5wyucIuABgcSYZmfLqWwz/AZlJzzjQwrHDIqK2kisfR+tY+X/MoOwtZ1C7TlNQl4JaXxHVCM4HbcIEun/flE3TAkUxlq7w3HAL+jLxSKAATHZMChJM5FoR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IKrpu1xP; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1733912127;
+	bh=ih7Vsnj9ywdYxh7tR2qjlznCSvRVx5lmggLsQKhoolI=;
+	h=From:Subject:Date:To:Cc:From;
+	b=IKrpu1xPLywnKIeJ53zP0EULAmN3li50hVFXh2h8PoJ56+0TOh8pjicWQRgcPun5N
+	 wsAtHooBHZH/JsRTU66C/RcxcdXou1sV95/A46QFVTGcvxEvMFYDgMpqapncJLqpCF
+	 qBYgAK47aPvXfAtPYD/9qaGHUjt9c1Q92YrSql5eqyPEHTA5OHoFd9MugDPVtoaNYn
+	 5faLjjYOgqmoZcJZwsUEXdAbsoa0v2UG956+pFxY+iGgfhhXffXPa3uunWY8uUh0n/
+	 KANbkGeQs9Vty3nV9HyH3t7jYFrBVGQTCYs5n0sChEBqy+F30QRb3YYagWlcMyA4o5
+	 p4qxkd88HP24Q==
+Received: from localhost (unknown [188.27.48.199])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1888017E35F5;
+	Wed, 11 Dec 2024 11:15:27 +0100 (CET)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH v2 0/5] Improve Rockchip VOP2 display modes handling on
+ RK3588 HDMI0
+Date: Wed, 11 Dec 2024 12:15:04 +0200
+Message-Id: <20241211-vop2-hdmi0-disp-modes-v2-0-471cf5001e45@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5220b8ad-021f-38f6-8617-34352093e494@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAChmWWcC/4WNTQ6CMBBGr0Jm7RhaEMGV9zAs+jPIJMCQ1jQaw
+ t2tXMDle8n3vg0iBaYIt2KDQIkjy5JBnwpwo1mehOwzgy51rZRqMMmqcfQzl+g5rjiLp4i26qh
+ qVHdt2gHydg008PvoPvrMI8eXhM9xk9TP/ismhSVq68xFeVu3XXt3Mk3GSjBnJzP0+75/AXjGU
+ P6+AAAA
+X-Change-ID: 20241116-vop2-hdmi0-disp-modes-b39e3619768f
+To: Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ FUKAUMI Naoki <naoki@radxa.com>
+X-Mailer: b4 0.14.2
 
-On Wed, Dec 11, 2024 at 02:37:15PM +0530, Dikshita Agarwal wrote:
-> 
-> 
-> On 12/11/2024 2:17 PM, Dmitry Baryshkov wrote:
-> > On Wed, Dec 11, 2024 at 11:54:09AM +0530, Dikshita Agarwal wrote:
-> >>
-> >>
-> >> On 12/10/2024 9:53 PM, Stefan Schmidt wrote:
-> >>> hello Dikshita,
-> >>>
-> >>> On Tue, 10 Dec 2024 at 12:08, Dikshita Agarwal
-> >>> <quic_dikshita@quicinc.com> wrote:
-> >>>>
-> >>>> Initialize the platform data and enable video driver probe of SM8250
-> >>>> SoC. Add a kernel param to select between venus and iris drivers for
-> >>>> platforms supported by both drivers, for ex: SM8250.
-> >>>>
-> >>>> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> >>>
-> >>> [...]
-> >>>
-> >>>> --- a/drivers/media/platform/qcom/iris/iris_ctrls.c
-> >>>> +++ b/drivers/media/platform/qcom/iris/iris_ctrls.c
-> >>>> @@ -17,6 +17,8 @@ static inline bool iris_valid_cap_id(enum platform_inst_fw_cap_type cap_id)
-> >>>>  static enum platform_inst_fw_cap_type iris_get_cap_id(u32 id)
-> >>>>  {
-> >>>>         switch (id) {
-> >>>> +       case V4L2_CID_MPEG_VIDEO_DECODER_MPEG4_DEBLOCK_FILTER:
-> >>>> +               return DEBLOCK;
-> >>>>         case V4L2_CID_MPEG_VIDEO_H264_PROFILE:
-> >>>>                 return PROFILE;
-> >>>>         case V4L2_CID_MPEG_VIDEO_H264_LEVEL:
-> >>>> @@ -32,6 +34,8 @@ static u32 iris_get_v4l2_id(enum platform_inst_fw_cap_type cap_id)
-> >>>>                 return 0;
-> >>>>
-> >>>>         switch (cap_id) {
-> >>>> +       case DEBLOCK:
-> >>>> +               return V4L2_CID_MPEG_VIDEO_DECODER_MPEG4_DEBLOCK_FILTER;
-> >>>>         case PROFILE:
-> >>>
-> >>> The handling for DEBLOCK does not seem to be part of the SM8250
-> >>> enablement. Or did I miss something?
-> >>> It seems they should be part of a different patch that makes use of
-> >>> the DEBLOCK cap.
-> >>>
-> >> this cap is part of platform caps of SM8250 and the value(set by
-> >> client/default) of this will set to firmware as part of start streaming
-> >> through set APIs.
-> > 
-> > Then it still makes sense to split into two parts: one for DEBLOCK
-> > handling, one for the platform data only. Or you can safely merge
-> > DEBLOCK into the main caps commit.
-> I am just adding the platform caps for SM8250 and mapping between cap id
-> and corresponding v4l2 id in this patch.
-> Handling of all these caps are already part of main commit.
+VOP2 support for RK3588 SoC is currently not capable to handle the full
+range of display modes advertised by the connected screens, e.g. it
+doesn't cope well with non-integer refresh rates like 59.94, 29.97,
+23.98, etc.
 
-Please move the mapping too.
+There are two HDMI PHYs available on RK3588, each providing a PLL that
+can be used by three out of the four VOP2 video ports as an alternative
+and more accurate pixel clock source. This is able to correctly handle
+all display modes up to 4K@60Hz.
 
-> 
-> > 
-> >> {
-> >> +		.cap_id = DEBLOCK,
-> >> +		.min = 0,
-> >> +		.max = 1,
-> >> +		.step_or_mask = 1,
-> >> +		.value = 0,
-> >> +		.hfi_id = HFI_PROPERTY_CONFIG_VDEC_POST_LOOP_DEBLOCKER,
-> >> +		.set = iris_set_u32,
-> >> +	},
-> >>
-> >> Thanks,
-> >> Dikshita
-> >>> regards
-> >>> Stefan Schmidt
-> > 
+As for the moment HDMI1 output is not supported upstream, the patch
+series targets HDMI0 only.
 
--- 
-With best wishes
-Dmitry
+Additionally, note that testing any HDMI 2.0 specific modes, e.g.
+4K@60Hz, requires high TMDS clock ratio and scrambling support [1]. The
+patch is usable but not yet ready to be submitted - I will handle this
+soon.
+
+Thanks,
+Cristian
+
+[1] https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commits/rk3588-hdmi-bridge-next-20241115
+
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+---
+Changes in v2:
+- Collected Acked-by tag from Rob and Tested-by from Naoki
+- Rebased series onto v6.13-rc1
+- Link to v1: https://lore.kernel.org/r/20241116-vop2-hdmi0-disp-modes-v1-0-2bca51db4898@collabora.com
+
+---
+Cristian Ciocaltea (5):
+      dt-bindings: display: vop2: Add optional PLL clock properties
+      drm/rockchip: vop2: Drop unnecessary if_pixclk_rate computation
+      drm/rockchip: vop2: Improve display modes handling on RK3588 HDMI0
+      arm64: dts: rockchip: Enable HDMI0 PHY clk provider on RK3588
+      arm64: dts: rockchip: Add HDMI0 PHY PLL clock source to VOP2 on RK3588
+
+ .../bindings/display/rockchip/rockchip-vop2.yaml   |  4 +++
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |  7 +++--
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       | 36 +++++++++++++++++++++-
+ 3 files changed, 44 insertions(+), 3 deletions(-)
+---
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+change-id: 20241116-vop2-hdmi0-disp-modes-b39e3619768f
+
 
