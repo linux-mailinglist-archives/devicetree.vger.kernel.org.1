@@ -1,146 +1,113 @@
-Return-Path: <devicetree+bounces-129912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-129913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A45549ED07C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:55:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A0699ED09A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 16:59:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32C281882A75
-	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:55:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8B101674FB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Dec 2024 15:59:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A915C1DA60B;
-	Wed, 11 Dec 2024 15:54:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF07A1D63E0;
+	Wed, 11 Dec 2024 15:59:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aD4w8jRI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="avLHJdc0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FAD11DA116;
-	Wed, 11 Dec 2024 15:54:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED09B18BC3F;
+	Wed, 11 Dec 2024 15:59:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733932485; cv=none; b=ukkQipPxLwUvBQ8CD+N3HYSpStgmt6GR2uUboFjtUBmgmyQim7xmhZ7Csxt4ccF7olGb245NyaCtGSacOD09ItbWhrUa5SPg7Vrt2NFr0+7YSp5HULYWvUGcEMOGRVOarfRUsWp/pLy04+bsWnr7lHOOpB4PTpiJyPyRClGAjS0=
+	t=1733932755; cv=none; b=IAWju/YZSIG81qbCUdVNLaKjVe3GCMsp8oVi4K0SBf8vXp5XnryVHrEJ2BltBZ4p5s2M7Qu0IkHrgE1uDLhnHYmeQJJF7fqGPStzlxNgX9ToXn9YbL2jDsQs7sjcMAXZleIGE1FsnfP5aHIVNJYBODhq1gjWjWg82+SEAWdUk0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733932485; c=relaxed/simple;
-	bh=fAtpFU5o1h8YJcA6IRudumE4PM0E6ftZoO/iy29wxhs=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=mF3JaZkZuluhWg1lJ9iY6JqDS0sN5vH8Z7O4jHjEU1xWBio+JmdxAG6oas8fKONDOA3OeCQVoJLOG1RLmu92dOcXemJzP1Zzg24XMm9B6DKO88o3MA3Vu1XJ81/ZbUYqMuwTKFEZ+xkvvoyDvfWlzCc6PR7jFSfvoWcSFNFZsTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aD4w8jRI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9A3CC4CED4;
-	Wed, 11 Dec 2024 15:54:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733932485;
-	bh=fAtpFU5o1h8YJcA6IRudumE4PM0E6ftZoO/iy29wxhs=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=aD4w8jRIi5OxX3I7JaG5HNrTi7cZ86UlXSCIeMWi56us7kfrgQXGR21qKlLLZlN8B
-	 BaF4Fv+I9qAMl9qycu8PLBXFwR/ViNMo0jC3v7pVPQMVFgR4m5p2qMn0XgsVN1hhCg
-	 dox1hXfIBlE/djXlGOVaPrmO8xKNUvn/+BeMUOvBkiee9zI3VPYzfac/37iZy2ki92
-	 XnA90BNTCDLMNcd7nL7c/tBw/corbCM1wO6ILKR8P9+Gli48mDcNzN7r7+saycF4tT
-	 BQuks1MCZ+PfFYxQJCDSlr6jNy754ivvaaBD7yUQuue6Ma/uuXZV5be0YiOg07rSid
-	 5z9lf23U/zbxg==
-Date: Wed, 11 Dec 2024 09:54:43 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1733932755; c=relaxed/simple;
+	bh=PStEIKVCBoB+LDS+e+Ey3xMizBgpYogWYnRK02FOek8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DavYW6oMWhFhgSqruil6m5HyGgWTE4vvGTV2WTfAw9lLkoFgDZ6rsrjldtFdO3BJlw9M/ZhRWi7QlL+hUlVxOLL9yL/mbXFVoZ/5DLKeIPn7bkfPF8I3u67NKTxo3W+RA6M8QAxvYnPuDyJTH/1hX6jM9+3EtF1ccfZWnFCaEMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=avLHJdc0; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-3022c61557cso27593361fa.0;
+        Wed, 11 Dec 2024 07:59:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733932752; x=1734537552; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZChbzObT8yiyu3oc7dwGuAXjmHiQ0fUscqfsIIfuVr0=;
+        b=avLHJdc0N50d29IBi/AhmkPQFD8sANprxI6tVSoK8spV/drT7FabCFzJx8Z47kaP4H
+         /iRLjjoKpVJ+hpbmdxAhY0E5QgmJ1Xa9QQRKtp2+XLz99MaBq1coalYtB7FwpgdwKNtr
+         er75q8p3pLTzcyj8VdNvKz3hFpyyai3Nl3DdaI9O8zTc5QLMiSSBOt7KMvjozYRmh8vu
+         CCYet5Lp5t4+L2c+BPCq0JQ+D4gw2raooKoYov0RstrWlZ7ygTtOAWk7WQgmOSv9/1IC
+         j5rraPmgDy5XVKrhPyGjPDjhnr9wUejRkHxKQAPRSJJqSR+2O4twnSmA6+lPymKgJXl2
+         Pggw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733932752; x=1734537552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZChbzObT8yiyu3oc7dwGuAXjmHiQ0fUscqfsIIfuVr0=;
+        b=ZjQwC1cZE9RipRlKKOvucdWx8zEa5xvhFlYjWWGaiANbUtx7r9+kWCgnHzbr4bt2Ua
+         m2G1M9K3qzeIsxJMyMEw2PK5P+nAHGy0CayjcCz7L27bRxCnO5yaztlMfcDRPj2qTPVs
+         eUBrY+7DONL3Y7ZDlzdZklTXXPoXKqezIVw7n1xYqywANzQeiVX+ErV68iGcuLe7ndop
+         9dRCYV5uyaQxQcBEIfceMWFVeA+bNZQ1lYGqh+FgPfpV5Iz7dbd5+44so8lKUTNeKGBr
+         wpjpr9PY3IMF+qSE8Tmkz12xobBq4OuoHrlrA8sp3Ai28QlAccTE0cXgWiwK9oh3F6Az
+         rJdg==
+X-Forwarded-Encrypted: i=1; AJvYcCW/Yd7lNLUn/nj6saqg+PY+8GFbc1DLoN6qEa0pvgnuIc5lWpxcsNhVU8uOGDRBL4DXMLR6xESfB03enleY@vger.kernel.org, AJvYcCWBzSvFY5P2sHSNDHuUwSVoCh7zlVIT9/bKhv45mm+dB6K1CQaIyEyaHDESnE5Z2e1me/aQ3L1+KOM=@vger.kernel.org, AJvYcCWy5TJ5TjuCEMO9P1UX5w1QmWdspE/nleHJ3plqjEZ+sat3Ef6PvBl6yxmEEO4fptas8pUpBe5nh4x+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzu/5H7ETiqADrq4sNRQaRy9FwvS7KrFaMc1RpKUwX+AQUrBJs4
+	IEVIR0ETf6izdX5YVn5wlPsTHK63jAVhY2hyQUnaco+FjegRpDjcLe9rPwqzel98BAEwhJtdcDb
+	Lheddpu9ZsljJ8ugSwD0peOsZEH4=
+X-Gm-Gg: ASbGncs3qoIIeYdzmfRyGfc7YAq3Bsu/anONYdGteHigNwVqR5WGq33nJ7/u2MhPbJL
+	HhFWbSs7IFIoSi/FzwM9w/oyC1VDzpkc/ZDrXEG5kNvOxwYvYLZ1otRpW8BX7BcU1PSY=
+X-Google-Smtp-Source: AGHT+IGjjd845gZqD6VbvGu8xD0QWI1LY7dIDKnnhm4caENDAWdY8siyqutCix247rdvw0pP+hHXXkECcEPStZBxUKE=
+X-Received: by 2002:a2e:be89:0:b0:2fa:d2c3:a7e8 with SMTP id
+ 38308e7fff4ca-30240d4a03emr12884291fa.13.1733932751765; Wed, 11 Dec 2024
+ 07:59:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: "moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
- michal.simek@xilinx.com, monstr@monstr.eu, git@xilinx.com
-To: Michal Simek <michal.simek@amd.com>
-In-Reply-To: <cover.1733920873.git.michal.simek@amd.com>
-References: <cover.1733920873.git.michal.simek@amd.com>
-Message-Id: <173393224728.3091150.11085112233542602601.robh@kernel.org>
-Subject: Re: [PATCH 00/15] ARM: zynq: Sync DTs with U-Boot
+References: <20241210-imx91tmu-v2-0-5032aad4d88e@nxp.com> <20241210-imx91tmu-v2-2-5032aad4d88e@nxp.com>
+In-Reply-To: <20241210-imx91tmu-v2-2-5032aad4d88e@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Wed, 11 Dec 2024 12:59:00 -0300
+Message-ID: <CAOMZO5DC=Y=BU-MX0B_ecOBnkhbiUXXKDDYgn4-uhDNyihOXoA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] thermal: imx91: Add support for i.MX91 thermal
+ monitoring unit
+To: Frank Li <Frank.Li@nxp.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Pengfei Li <pengfei.li_1@nxp.com>, 
+	Marco Felsch <m.felsch@pengutronix.de>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Dec 10, 2024 at 6:27=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
 
-On Wed, 11 Dec 2024 13:41:19 +0100, Michal Simek wrote:
-> Hi,
-> 
-> over years there were some changes pushed to U-Boot which were never merged
-> back to Linux. U-Boot introduced new option OF_UPSTREAM and start to sync
-> up DTs from Linux back to U-Boot.
-> This series is addressing differences.
-> There are still 3 more differences but they should be addressed separately.
-> 
-> Thanks,
-> Michal
-> 
-> 
-> Michal Simek (14):
->   ARM: zynq: Remove deprecated device_type property
->   ARM: zynq: DT: List OCM memory for all platforms
->   ARM: zynq: Mark boot-phase-specific device nodes
->   ARM: zynq: Do not define address/size-cells for nand-controller
->   ARM: zynq: Wire smcc with nand/nor memories on zc770 platform
->   ARM: zynq: Add ethernet phy reset information to DT(zc702)
->   ARM: zynq: Define u-boot bootscrip addr via DT
->   ARM: zynq: Point via nvmem0 alias to eeprom on zc702/zc706
->   ARM: zynq: Define rtc alias on zc702/zc706
->   ARM: zynq: Rename i2c?-gpio to i2c?-gpio-grp
->   ARM: zynq: Fix fpga region DT nodes name
->   ARM: zynq: Enable QSPIs on platforms
->   ARM: zynq: Add sdhci to alias node
->   ARM: zynq: Remove ethernet0 alias from Microzed
-> 
-> Sai Krishna Potthuri (1):
->   ARM: zynq: Replace 'io-standard' with 'power-source' property
-> 
->  arch/arm/boot/dts/xilinx/zynq-7000.dtsi       | 33 ++++++-
->  arch/arm/boot/dts/xilinx/zynq-cc108.dts       | 41 ++++++++-
->  arch/arm/boot/dts/xilinx/zynq-microzed.dts    | 10 ++-
->  arch/arm/boot/dts/xilinx/zynq-parallella.dts  |  1 -
->  arch/arm/boot/dts/xilinx/zynq-zc702.dts       | 87 +++++++++++++------
->  arch/arm/boot/dts/xilinx/zynq-zc706.dts       | 67 +++++++++++---
->  arch/arm/boot/dts/xilinx/zynq-zc770-xm010.dts | 39 ++++++++-
->  arch/arm/boot/dts/xilinx/zynq-zc770-xm011.dts | 31 +++++++
->  arch/arm/boot/dts/xilinx/zynq-zc770-xm012.dts | 35 ++++++++
->  arch/arm/boot/dts/xilinx/zynq-zc770-xm013.dts | 41 ++++++++-
->  arch/arm/boot/dts/xilinx/zynq-zed.dts         | 43 ++++++++-
->  .../boot/dts/xilinx/zynq-zturn-common.dtsi    |  8 ++
->  arch/arm/boot/dts/xilinx/zynq-zybo-z7.dts     | 10 ++-
->  arch/arm/boot/dts/xilinx/zynq-zybo.dts        |  9 +-
->  14 files changed, 404 insertions(+), 51 deletions(-)
-> 
-> --
-> 2.43.0
-> 
-> 
-> 
+> +#define CTRL0                  0x0
+> +
+> +#define STAT0                  0x10
+...
+> +#define DATA0                  0x20
 
+These generic short macro names can easily clash in the future.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+It would be better to add a better namespace definition.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+For example:
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y xilinx/zynq-cc108.dtb xilinx/zynq-microzed.dtb xilinx/zynq-parallella.dtb xilinx/zynq-zc702.dtb xilinx/zynq-zc706.dtb xilinx/zynq-zc770-xm010.dtb xilinx/zynq-zc770-xm011.dtb xilinx/zynq-zc770-xm012.dtb xilinx/zynq-zc770-xm013.dtb xilinx/zynq-zed.dtb xilinx/zynq-zybo-z7.dtb xilinx/zynq-zybo.dtb' for cover.1733920873.git.michal.simek@amd.com:
-
-arch/arm/boot/dts/xilinx/zynq-parallella.dtb: ethernet@e000b000: ethernet-phy@0: Unevaluated properties are not allowed ('marvell,reg-init' was unexpected)
-	from schema $id: http://devicetree.org/schemas/net/cdns,macb.yaml#
-arch/arm/boot/dts/xilinx/zynq-zc702.dtb: ethernet@e000b000: Unevaluated properties are not allowed ('phy-reset-active-low', 'phy-reset-gpio' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/cdns,macb.yaml#
-
-
-
-
-
+IMX91_THERMAL_CTRL0
+IMX91_THERMAL_STAT0
+IMX91_THERMAL_DATA0
 
