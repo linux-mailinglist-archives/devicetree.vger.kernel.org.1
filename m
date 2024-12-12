@@ -1,125 +1,309 @@
-Return-Path: <devicetree+bounces-130443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66FD79EFC3E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 20:21:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C2269EFCCF
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 20:55:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 948E61890BAD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 19:21:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F1311886BE1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 19:55:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C0D18F2C1;
-	Thu, 12 Dec 2024 19:21:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F5D19E968;
+	Thu, 12 Dec 2024 19:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="UXJZs3Xf"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OzlgFAK9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A2CF17BB34;
-	Thu, 12 Dec 2024 19:21:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734031261; cv=pass; b=dOB3JbA2Zjgljrdokm6P+ad5puc3s5kpiAnszQkvP2MnosXKKWBL4o6mfYJlWeiZ68fLh/50mGfHL+wW+11xUYuN8nlri6dVD7ZaNJj5zOsJ8DqkAebttwTmbmspnHS4eWMFe317FgFlUmzI1uuvPKdfBkxQt9Q/A3OMbi20e1k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734031261; c=relaxed/simple;
-	bh=cTjkIgTpmVLR/SFFv4x6gVWSD6/UyHK9Mz2fPwKPeqc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SQnk/rDwoNQ0l9do7xkVutq08RJFvHKXq6ROy/EdiodGywWTV54j8Y5bVpmDNjmsHcqjXyW7H+AQNfIZe+YI+Ji1q/9SBTYNXbG4VmHKnQwXrao3ZPTkGLSB4eu67xKjsknF6bBdyc9Ww97x5QipzR7xPcYqRksHPAUPZ63bV2A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=UXJZs3Xf; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1734031239; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=hv3pMKnVGMQwJkekmHeL7LjXMImIf+604RZ+vFWB8clSywL0s8606l692wKCRauqztXbbu0B6A2+2vKfIVVJKpSbEcFPFubKlulBCmTZqVSXffMGsd9q4GILhQ4eqzrmnDHBUA/Zjg/5XYGQiCyfn/wV7IbrWFNMtME8aX4Uko4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1734031239; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=cTjkIgTpmVLR/SFFv4x6gVWSD6/UyHK9Mz2fPwKPeqc=; 
-	b=SZ816jn/eZIXEtHBFKgy4qvWAkKRLS4FCd7wkTXfR95VIdsaj0fppDkJTY6pNTlMB2IYR777zackFUaXppIMN/Fg29VmKi4QZi/ZnPGwFEBGy5J4OZP4Q+Kl+/ihy7AlyswgbhqRyADGtelgmQqr55iJTqJeJ7fi+q+U8tNlTdU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1734031239;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=cTjkIgTpmVLR/SFFv4x6gVWSD6/UyHK9Mz2fPwKPeqc=;
-	b=UXJZs3XfwiJKwKhDAbQlSo9msmOJx2iSiv3PfKQd77qWfQ2BIxEwlRfXnGdZAWgY
-	6SxHMDpzMm5zhsi/BoBcXXoGf14OETsQqYDNescbTs4e1tAvlRLljDp8rYgjFwvrnRi
-	BpDDTBKGEM9ZDIdPTbW6ud+9SEcwdq2PTJ8WtJAY=
-Received: by mx.zohomail.com with SMTPS id 1734031237501123.28761842157633;
-	Thu, 12 Dec 2024 11:20:37 -0800 (PST)
-Received: by mercury (Postfix, from userid 1000)
-	id E4C6810604B1; Thu, 12 Dec 2024 20:20:33 +0100 (CET)
-Date: Thu, 12 Dec 2024 20:20:33 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v1 1/1] arm64: dts: rockchip: Add USB-C support to ROCK 5B
-Message-ID: <iloxbrj7ktqto5yphr7i3tioq3cbecqwu4ovxmezovux3nw7t3@j2siyintvy7j>
-References: <20241210163615.120594-1-sebastian.reichel@collabora.com>
- <FFD6E87BED20DB1B+38b8064e-9945-4cd8-a30e-7800a8c6f37b@radxa.com>
- <3D830E407DCD15A2+de00ea1d-96d5-4766-9dc5-616fc76f404b@radxa.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A6FB25948B
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 19:55:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734033317; cv=none; b=t5hWB9ssX/F3NRz7smoDqewq+6uGWt1AT2tBxWm4sS78eZUC2KEfQ6cTPP4rkjeaxLZVtkfxLAAL5+EBiR2bFNkEoefEox3dlaPK2NkTD2VJAkGE87o9vFRPOpKgdDTjIDqYwwFDfpK6EZqyxriYXwX/rDT0F/UeH1Zv4dePxvA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734033317; c=relaxed/simple;
+	bh=4Xk0iuSuUcACy1SkPzsDgJfFobNYaYnbcTp17a02bNY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eZh9CQ5fes4xKq7ayM//XkwJoW8FTD11GF+rh2CSaN0oH7LJO/+H2s/8KivV6GWWL04i1ZyE7UHm4x9lYCzy0VchhRfMTr8TgqDLgxbe5bNvu3N8+6ds899C3ZVH1Nzatw9sZd1TOu0e7sB14Or+rMU/gLdZeDyIf0VuPfs+qqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OzlgFAK9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BCCE7D0001145
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 19:55:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	FhgiumrxiM7n/En/vNa/ikofuwRr79X7+UFWSDfUsGI=; b=OzlgFAK90iTRsPl3
+	1EIm/Bw2dZW2JEfcXYGB82FHlB0eTIlv5uEoHQ83G0Go+d5HNpcpsiIgeKMyYQt1
+	KgRicLNBO/SxKC4z6fdwgxYIE/DeBDfYVa50g1DouqhxlMQJB/NmB8+vfaAZ11As
+	mkthpASPywnF3kDeh2RMdUufizXIvSyOGGhiW4FR+m69Mq1PxWlyUU2AaU6uNxwU
+	YDWvfIEWi8PXjVD1EG13pDsqOoBN9ph0ejJWzjr0gRwK/9xNQo+DzHMWqufA1waX
+	D7jD5AQ7aRBMgn0ohboOWPILpIWgmN70JWy7f/Knk810501zQntq7weHTbEhBVnb
+	Ieuz2Q==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fqes2ke5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 19:55:14 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6dadb08366eso2060216d6.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 11:55:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734033313; x=1734638113;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FhgiumrxiM7n/En/vNa/ikofuwRr79X7+UFWSDfUsGI=;
+        b=srledYNhm/INcwymX4CK1axpyghOPxuP8DKZEsrleR47dBqB07BegOkECGTq6vj7N6
+         4tQxYCLxXvpOgiUQKgqQg+RE5vYAqZeS5Yu0eurTVbEdVRcGj4OqOd6jFUMNJAozYvj2
+         Z24dFqDCKiWyjE5gae6v6hd0eLpVMkczSJnkGMKVpgZbmbZWeYRGrG39xvVM9C+SPzRj
+         C5WW9olX7aajVgH+x3z6IfX44h91nvoY54qKExtlRbGxwBRx7jxuWiWRaIHoLAUUYXAD
+         hNEz3ZnOZBC0t3YHbucFqmp/QhVhhou+xXBnxdvZeJYCmc9Z32iJO/f3POuEhrC4kMDY
+         zRGw==
+X-Forwarded-Encrypted: i=1; AJvYcCU6I8UdeRQm4Pm1MgmkCxgPqo0hQlNXsfjcm1qyoWPEC0qgaOPkf8TaC8agpOm3cA61Mmq9tRHUfmwx@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtCd/B2PqNuNnd0TBFAm092FLvB7hS2XVW/wKkOzNTkhrxp/en
+	cNFARIZPZX2vWrmPZ5WOFovt1tJmZ3xHu19AWGZIzoiF8KmHHRUdOOqI32I8k2SG7/cDRkC1oQX
+	RHFvM/jtvORorJ76oquGnlMT5gey/JdVNrZvXIJd+htyZfbZEGt4bLxAXPvOH
+X-Gm-Gg: ASbGncscI0h1i6kEqiQJo8MsRMwjMEBCZZ73j1pyhk5Av23Vf1+dxYQfIVS3CLw3OrL
+	H/Jbm1jX+DBPOYjG88DZTzUFxHX7DrHguzMIJQtHrxD1kpxMIWuNMdV/LPCaMxqth/CszP0lKM4
+	fElmh/8RG+vLA7nb75tdCtbPVggt5UhINotFaznNUXS/a07eI1iX82uAngTNlrHhL9DAzLP5phB
+	zmObsOilSnOagJe027dCMnyJZtfM2KCo1o3WKj216Cd4gZIFFkIcBYN3wHHE3SuUeM7FhZibqr+
+	ZW7CAQqdSHLMR3XvjktH7zGkpvPjS7ILw21sHg==
+X-Received: by 2002:a05:6214:2527:b0:6d8:f750:b2f1 with SMTP id 6a1803df08f44-6db0f833ae5mr8033316d6.11.1734033313177;
+        Thu, 12 Dec 2024 11:55:13 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGjTsRrIxl4jM8Aw3TRdwR13Fi0Jt/svjVNrvUPTFZaAFCRmzkg7Yfxtsyp/ej45ehVuNN9Xg==
+X-Received: by 2002:a05:6214:2527:b0:6d8:f750:b2f1 with SMTP id 6a1803df08f44-6db0f833ae5mr8033156d6.11.1734033312773;
+        Thu, 12 Dec 2024 11:55:12 -0800 (PST)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa69448304asm550614466b.45.2024.12.12.11.55.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Dec 2024 11:55:12 -0800 (PST)
+Message-ID: <3aad9de3-76a5-4106-a513-4707b3e39e7a@oss.qualcomm.com>
+Date: Thu, 12 Dec 2024 20:55:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5aanin4ghjoz6zq2"
-Content-Disposition: inline
-In-Reply-To: <3D830E407DCD15A2+de00ea1d-96d5-4766-9dc5-616fc76f404b@radxa.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/233.931.41
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/7] drm/msm: adreno: add plumbing to generate
+ bandwidth vote table for GMU
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20241211-topic-sm8x50-gpu-bw-vote-v5-0-6112f9f785ec@linaro.org>
+ <20241211-topic-sm8x50-gpu-bw-vote-v5-2-6112f9f785ec@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241211-topic-sm8x50-gpu-bw-vote-v5-2-6112f9f785ec@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: ywYZI2wHKitTflwSxPd1ODqqR9LaNpeR
+X-Proofpoint-ORIG-GUID: ywYZI2wHKitTflwSxPd1ODqqR9LaNpeR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
+ lowpriorityscore=0 impostorscore=0 clxscore=1015 malwarescore=0
+ mlxlogscore=999 priorityscore=1501 bulkscore=0 phishscore=0 mlxscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412120144
+
+On 11.12.2024 9:29 AM, Neil Armstrong wrote:
+> The Adreno GPU Management Unit (GMU) can also scale DDR Bandwidth along
+> the Frequency and Power Domain level, but by default we leave the
+> OPP core scale the interconnect ddr path.
+> 
+> While scaling via the interconnect path was sufficient, newer GPUs
+> like the A750 requires specific vote paremeters and bandwidth to
+> achieve full functionality.
+> 
+> In order to calculate vote values used by the GPU Management
+> Unit (GMU), we need to parse all the possible OPP Bandwidths and
+> create a vote value to be sent to the appropriate Bus Control
+> Modules (BCMs) declared in the GPU info struct.
+> 
+> This vote value is called IB, while on the other side the GMU also
+> takes another vote called AB which is a 16bit quantized value
+> of the floor bandwidth against the maximum supported bandwidth.
+> The AB vote will be calculated later when setting the frequency.
+> 
+> The vote array will then be used to dynamically generate the GMU
+> bw_table sent during the GMU power-up.
+> 
+> Reviewed-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 144 ++++++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/msm/adreno/a6xx_gmu.h |  13 +++
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu.h |   1 +
+>  3 files changed, 158 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> index 14db7376c712d19446b38152e480bd5a1e0a5198..36696d372a42a27b26a018b19e73bc6d8a4a5235 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/pm_domain.h>
+>  #include <linux/pm_opp.h>
+>  #include <soc/qcom/cmd-db.h>
+> +#include <soc/qcom/tcs.h>
+>  #include <drm/drm_gem.h>
+>  
+>  #include "a6xx_gpu.h"
+> @@ -1287,6 +1288,101 @@ static int a6xx_gmu_memory_probe(struct a6xx_gmu *gmu)
+>  	return 0;
+>  }
+>  
+> +/**
+> + * struct bcm_db - Auxiliary data pertaining to each Bus Clock Manager (BCM)
+> + * @unit: divisor used to convert bytes/sec bw value to an RPMh msg
+> + * @width: multiplier used to convert bytes/sec bw value to an RPMh msg
+> + * @vcd: virtual clock domain that this bcm belongs to
+> + * @reserved: reserved field
+> + */
+> +struct bcm_db {
+> +	__le32 unit;
+> +	__le16 width;
+> +	u8 vcd;
+> +	u8 reserved;
+> +};
+
+No. This is a direct copypasta of drivers/interconnect/qcom/icc-rpmh.h
+You cannot just randomly duplicate things..
+
+Move it out to a shared header in include/ (and remove the duplicate from
+clk-rpmh.c while at it)
 
 
---5aanin4ghjoz6zq2
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v1 1/1] arm64: dts: rockchip: Add USB-C support to ROCK 5B
-MIME-Version: 1.0
+I'd also really prefer if you took
 
-Hi Naoki,
+drivers/interconnect/qcom/bcm-voter.c : tcs_list_gen()
 
-On Wed, Dec 11, 2024 at 09:40:13AM +0900, FUKAUMI Naoki wrote:
-> I got random reboot during booting kernel/userland...
+and abstracted it to operate on struct bcm_db with any additional
+required parameters passed as arguments.. Still left some comments
+on this version if you decide to go with it
 
-That is probably related to USB-C PD communication resulting in
-another hard reset :( Can you try to get some tcpm_log() data
-=66rom debugfs while the board is powered from the GPIO header or
-PoE?
+> +
+> +static int a6xx_gmu_rpmh_bw_votes_init(const struct a6xx_info *info,
+> +				       struct a6xx_gmu *gmu)
+> +{
+> +	const struct bcm_db *bcm_data[GMU_MAX_BCMS] = { 0 };
+> +	unsigned int bcm_index, bw_index, bcm_count = 0;
+> +
+> +	if (!info->bcms)
+> +		return 0;
 
-Greetings,
+You already checked that from the caller
 
--- Sebastian
+> +
+> +	/* Retrieve BCM data from cmd-db */
+> +	for (bcm_index = 0; bcm_index < GMU_MAX_BCMS; bcm_index++) {
+> +		size_t count;
+> +
+> +		/* Stop at first unconfigured bcm */
+> +		if (!info->bcms[bcm_index].name)
+> +			break;
 
---5aanin4ghjoz6zq2
-Content-Type: application/pgp-signature; name="signature.asc"
+Unconfigured doesn't really fit here.. Maybe just mention the list is NULL
+-terminated
 
------BEGIN PGP SIGNATURE-----
+> +
+> +		bcm_data[bcm_index] = cmd_db_read_aux_data(
+> +						info->bcms[bcm_index].name,
+> +						&count);
+> +		if (IS_ERR(bcm_data[bcm_index]))
+> +			return PTR_ERR(bcm_data[bcm_index]);
+> +
+> +		if (!count)
+> +			return -EINVAL;
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmdbN4EACgkQ2O7X88g7
-+prghA//cw22TCdJFEV/aPEbXVU4VC06Qj2R7CNV7lRGfsQFVzv8OFK7qkkWjTqt
-/7jF+oc2slSdPJEkXvpFNz44On84KcrPyKqGgCaDegY3+rx468nNTcUCBXRc19/7
-6VMyJWlSReXFg9/SDpze3edKVY6vTiMVZrqb+1wC/563e21EQNC92jwTAQ0ZAHvn
-BCv5mr6YEX0184k7KC58wAHmKbD3zJ7lblba37ba8cHSJL9wIqL+iDhdJL6TGl6s
-f41Hwy147NBM5G8Usk9zRfS0MWwZFgDQCQ9xq51cJ8uKRanr8RyW1JciGe4CzAp3
-bxi4CfCTsBuXkJdFluq6hribUdZISyJ2qtdpNiMqCv0htjcdvsmFJiRnPm7bCo6Y
-4iXvLGooLQIuKQlzjrbzH8ZGDzqYia/yvzZ8uHvvbZXCaFNXHIaPWv7ExGMQ2geo
-tAi2qlEUpjHiGdhjfMYxmJ+6EQb3OVk5+jKpD7wLkNvktjYo5Vn+2Mwq9HEplfvW
-GWNNaTuLOZveIkGeiuVJ6/Z8nUXnX/xV44FnwIJMP4p6rzmfqR6076UmCmUG20Xg
-jEwL77CGF+MUkSc5JsZ7Y4hpuefIgIoH0MjwrMqQFsHRLm/MSjLdFOaRc1QekPIW
-4Kgs9kTF50ZVEi8f7gcIdw5c8wiCIXyvRhY4cDzOTUvhnPtdm+g=
-=W28Q
------END PGP SIGNATURE-----
+If this condition ever happens, it'll be impossible to track down,
+please add an err message
 
---5aanin4ghjoz6zq2--
+> +
+> +		++bcm_count;
+
+I've heard somewhere that prefixed increments are discouraged for
+"reasons" and my OCD would like to support that
+
+> +	}
+> +
+> +	/* Generate BCM votes values for each bandwidth & BCM */
+> +	for (bw_index = 0; bw_index < gmu->nr_gpu_bws; bw_index++) {
+> +		u32 *data = gmu->gpu_ib_votes[bw_index];
+> +		u32 bw = gmu->gpu_bw_table[bw_index];
+> +
+> +		/* Calculations loosely copied from bcm_aggregate() & tcs_cmd_gen() */
+> +		for (bcm_index = 0; bcm_index < bcm_count; bcm_index++) {
+> +			bool commit = false;
+> +			u64 peak;
+> +			u32 vote;
+> +
+> +			/* Skip unconfigured BCM */
+> +			if (!bcm_data[bcm_index])
+> +				continue;
+
+I don't see how this is useful here
+
+> +
+> +			if (bcm_index == bcm_count - 1 ||
+> +			    (bcm_data[bcm_index + 1] &&
+> +			     bcm_data[bcm_index]->vcd != bcm_data[bcm_index + 1]->vcd))
+> +				commit = true;
+> +
+> +			if (!bw) {
+> +				data[bcm_index] = BCM_TCS_CMD(commit, false, 0, 0);
+> +				continue;
+> +			}
+> +
+> +			if (info->bcms[bcm_index].fixed) {
+
+You may want to take a pointer to info->bcms[bcm_index]
+
+> +				u32 perfmode = 0;
+> +
+> +				if (bw >= info->bcms[bcm_index].perfmode_bw)
+> +					perfmode = info->bcms[bcm_index].perfmode;
+> +
+> +				data[bcm_index] = BCM_TCS_CMD(commit, true, 0, perfmode);
+> +				continue;
+> +			}
+> +
+> +			/* Multiply the bandwidth by the width of the connection */
+> +			peak = (u64)bw * le16_to_cpu(bcm_data[bcm_index]->width);
+> +			do_div(peak, info->bcms[bcm_index].buswidth);
+> +
+> +			/* Input bandwidth value is in KBps, scale the value to BCM unit */
+> +			peak *= 1000ULL;
+
+I don't think this needs to be ULL since the other argument is an u64
+
+> +			do_div(peak, le32_to_cpu(bcm_data[bcm_index]->unit));
+> +
+> +			vote = clamp(peak, 1, BCM_TCS_CMD_VOTE_MASK);
+> +
+> +			data[bcm_index] = BCM_TCS_CMD(commit, true, vote, vote);
+
+x is the avg vote, y is the peak vote
+
+Just noting down for my future self I guess, a6xx sets ab=0,
+a7xx sets ab=ib like you did here
+
+Konrad
 
