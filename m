@@ -1,67 +1,64 @@
-Return-Path: <devicetree+bounces-130167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFF529EE2AE
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 10:22:33 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F77116126C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 09:22:25 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A878212D62;
-	Thu, 12 Dec 2024 09:20:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="k57Lu+Nk"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D8E89EE2D7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 10:25:38 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5060C2116ED;
-	Thu, 12 Dec 2024 09:20:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05F6C2824D8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 09:25:36 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D13A2116F6;
+	Thu, 12 Dec 2024 09:24:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="M7WAJLyh"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9AEE21149E;
+	Thu, 12 Dec 2024 09:24:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733995238; cv=none; b=dXw25CpeDpAwTMvuQslrXy6J7i1YdGgUhqFh4DpRTxGAOBmWwiwYkFZApyzPM8R26yCQ0hQf0qua9Wd04i56N/2W2F93YWN9wHJgYq722iB8MCLfS86KPWiFv3mZzU4AH+OqrMYw63OUiWK9/BfexboyrWzCMLHOoMjotZyKRmc=
+	t=1733995465; cv=none; b=bmSVGbhhHskaqwi7jkiFsuS6emzja7q4jktmNmhyrYJzAyYPOxKI1OevoHbPfQlwm2T7jKqbpw5oJ/hTWqbOeXHeg5dyAlsMIKNvMG5mGOk9cfe1AAbHcf2kTa5G5JfNhx9lnNLMmE3WLsa84DVL8/V9MynbZwos4/907BwsqBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733995238; c=relaxed/simple;
-	bh=IVKavr+K48iqxiFhfFBMeYJJlpEf7vHMlZR9ODob5i8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=awBGC12tS/PIrdFUe7kU0rNRa6gU9qxSI3+112v3UMic3w+yR0J3aXxmIq33vphwk18MW0Yp0pBZgh6HnmP49RxYaMsHP7fiG8WlbC7aO2ZxJfzakBEOUOLWyfYFxtOnt6+xIem98RlEQynemhq1fBH8xYDdwOXaS77JwzPt3Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=k57Lu+Nk; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BC6PcM0025503;
-	Thu, 12 Dec 2024 10:20:09 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	HjDi2PEX6tMG3AujQ/N2jgctUN3yYamP6j1mFZotwQA=; b=k57Lu+Nkn4AQpLR7
-	W12vax/Wj7Ht3/SwpzZX2+QYUOqePP5ge5u2tr9QQOAHRZi8F93fon321x7tdVJ4
-	cNE37EIz/MlN9CLwNCKUa4YyFgigJicxUXZBlPqgThqoF7cZAxkdv1wzMsPy8j1M
-	rYbm6rkw0YIPAhXxkikbWjdDpXWKqgVB346Qrrt06jfXL5iVnqUb6FNvdsIcH7c4
-	zb9MAB0sjoxPhR5HShKdHHtYX7K+jo4OBSgqMbWuEn1jieYgxgNi4tUrsHJ0NNpt
-	yGGgEb3tijcqEY4fb69LNl+ZsRXwKFf61VCbfLq7OzrkmdlOzJmfBUMicF//nrqR
-	bHeuzQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 43ftj70qp0-1
+	s=arc-20240116; t=1733995465; c=relaxed/simple;
+	bh=6E/T+GZ5juoXqET0Uv5nEv8S2NdF/YnTyLRun6ttthE=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=aW6vWOQ3n3smkGrZ2fRpvBpOSTzCZtzGo2SiQV/yRe522xQXlaByH5YMryeMoBATRYL0vzinM9BHQgBiw5i0GImQXQ7zwmZQ5AqJuYef+XtxstPoMpsFxxql/JrVWkwmrIioSDE8uUeYZWflAQMZPYXfLJPQadfB/Zi0jibITjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=M7WAJLyh; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BC7QhB0029905;
+	Thu, 12 Dec 2024 09:24:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=vruSfhkHwPeSC3Q/54ME5b
+	1o6qN3z5UKTYp8dgse4f8=; b=M7WAJLyhOPLPGiu3NKcHoww0oa98JZg9w6tlsV
+	CaXdoJQAVAIVk8QWKC+VvslNh8unINRHUEOZrRjpAMJUbRwVyyW/Iq/5F0H7sESC
+	QYWUyTcYbFkyM8wm1k3UcbKtLHLRAN1KxDeq/1KNFvlp/ropcGtygYtzfA0i5Xkh
+	QqpbjI4KqTdjrRgc11ugO0Mslp6imfiMV3J/LnumLHr+LUgO31jyFyrtgcHndmYx
+	91tpMwog6lcP2/fwJtyHgNHiTUEhAFsDb3ZcZ1CQ61ivCp+RgGDZ5bgAju+Qlbko
+	YiPwm3wMaKNi5OQpTHIaimD2bNlOkuwu9NN8jTARioB0sbLw==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fd4xtd2n-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Dec 2024 10:20:09 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8D07F40051;
-	Thu, 12 Dec 2024 10:19:02 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5D3DE24FC03;
-	Thu, 12 Dec 2024 10:18:12 +0100 (CET)
-Received: from localhost (10.129.178.65) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 12 Dec
- 2024 10:18:12 +0100
-From: Alain Volmat <alain.volmat@foss.st.com>
-Date: Thu, 12 Dec 2024 10:17:39 +0100
-Subject: [PATCH v4 15/15] arm64: dts: st: enable imx335/csi/dcmipp pipeline
- on stm32mp257f-ev1
+	Thu, 12 Dec 2024 09:24:19 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BC9OIYw022235
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Dec 2024 09:24:18 GMT
+Received: from lijuang2-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 12 Dec 2024 01:24:12 -0800
+From: Lijuan Gao <quic_lijuang@quicinc.com>
+Subject: [PATCH 0/6] Correct the number of GPIOs in gpio-ranges for QCS615
+ and QCS8300
+Date: Thu, 12 Dec 2024 17:23:59 +0800
+Message-ID: <20241212-correct_gpio_ranges-v1-0-c5f20d61882f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,163 +67,81 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20241212-csi_dcmipp_mp25-v4-15-fbeb55a05ed7@foss.st.com>
-References: <20241212-csi_dcmipp_mp25-v4-0-fbeb55a05ed7@foss.st.com>
-In-Reply-To: <20241212-csi_dcmipp_mp25-v4-0-fbeb55a05ed7@foss.st.com>
-To: Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Mauro Carvalho Chehab
-	<mchehab@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Sakari Ailus
-	<sakari.ailus@linux.intel.com>,
+X-B4-Tracking: v=1; b=H4sIAK+rWmcC/x2MQQqAIBAAvxJ7TsilKPpKhIhutheVNSKI/p51H
+ JiZGwoJU4G5uUHo5MIpVtBtA263MZBiXxmww16j1solEXKHCZmTkc8oivxkcbAekUaoZRba+Pq
+ vy/o8L/14FZdlAAAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
         Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Philipp
- Zabel <p.zabel@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>, Hans
- Verkuil <hverkuil@xs4all.nl>
-CC: <linux-media@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Alain Volmat <alain.volmat@foss.st.com>
-X-Mailer: b4 0.14.1
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
+        "Jingyi
+ Wang" <quic_jingyw@quicinc.com>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Lijuan Gao <quic_lijuang@quicinc.com>
+X-Mailer: b4 0.15-dev-99b12
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733995452; l=1516;
+ i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
+ bh=6E/T+GZ5juoXqET0Uv5nEv8S2NdF/YnTyLRun6ttthE=;
+ b=UkpbjoW625oPEv/ILcZLPBMjVnya1NYP4EXRextdWohGRO61Oqpc9U67sTu4STeRagz7NFRK+
+ ed+sshQow09CBtSQqM27T2e1qhoYuVmQ9xhXiVvrEAd1UeDz8ATVYZ7
+X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
+ pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: jqWGCh8gCKNZgrLQP0h_wPmOZYPrS16z
+X-Proofpoint-GUID: jqWGCh8gCKNZgrLQP0h_wPmOZYPrS16z
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 bulkscore=0 mlxlogscore=653 phishscore=0 adultscore=0
+ suspectscore=0 spamscore=0 mlxscore=0 impostorscore=0 clxscore=1011
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412120065
 
-Enable the camera pipeline with a imx335 sensor connected to the
-dcmipp via the csi interface.
+The UFS_RESET pin is expected to be wired to the reset pin of the
+primary UFS memory, it's a general purpose output pin. Reorder it and
+expose it as a gpio, so that the UFS driver can toggle it.
 
-Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+The QCS615 TLMM pin controller has GPIOs 0-122, so correct the
+gpio-rangs to 124.
 
+The QCS8300 TLMM pin controller has GPIOs 0-132, so correct the
+gpio-rangs to 134.
+
+Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
 ---
+Lijuan Gao (6):
+      dt-bindings: pinctrl: qcom: correct gpio-ranges in examples for qcs615
+      dt-bindings: pinctrl: qcom: correct gpio-ranges in examples for qcs8300
+      pinctrl: qcom: correct the number of ngpios for QCS615
+      pinctrl: qcom: correct the number of ngpios for QCS8300
+      arm64: dts: qcom: correct gpio-ranges for QCS615
+      arm64: dts: qcom: correct gpio-ranges for QCS8300
 
-v2:
-  - correct regulators & camera node names
-  - removal of powerdown property within imx335 node
-  - removal of useless status property within imx335 node
-  - correct imx335 reset-gpio polarity
+ Documentation/devicetree/bindings/pinctrl/qcom,qcs615-tlmm.yaml  | 2 +-
+ Documentation/devicetree/bindings/pinctrl/qcom,qcs8300-tlmm.yaml | 2 +-
+ arch/arm64/boot/dts/qcom/qcs615.dtsi                             | 2 +-
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi                            | 2 +-
+ drivers/pinctrl/qcom/pinctrl-qcs615.c                            | 2 +-
+ drivers/pinctrl/qcom/pinctrl-qcs8300.c                           | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
 ---
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 85 ++++++++++++++++++++++++++++++
- 1 file changed, 85 insertions(+)
+base-commit: 91e71d606356e50f238d7a87aacdee4abc427f07
+change-id: 20241211-correct_gpio_ranges-ed8a25ad22e7
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 6f393b082789..a6a57cbcf730 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -27,6 +27,38 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	clocks {
-+		clk_ext_camera: clk-ext-camera {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+			clock-frequency = <24000000>;
-+		};
-+	};
-+
-+	imx335_2v9: regulator-2v9 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "imx335-avdd";
-+		regulator-min-microvolt = <2900000>;
-+		regulator-max-microvolt = <2900000>;
-+		regulator-always-on;
-+	};
-+
-+	imx335_1v8: regulator-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "imx335-ovdd";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
-+	imx335_1v2: regulator-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "imx335-dvdd";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-always-on;
-+	};
-+
- 	memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x80000000 0x1 0x0>;
-@@ -50,6 +82,40 @@ &arm_wdt {
- 	status = "okay";
- };
- 
-+&csi {
-+	vdd-supply =  <&scmi_vddcore>;
-+	vdda18-supply = <&scmi_v1v8>;
-+	status = "okay";
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		port@0 {
-+			reg = <0>;
-+			csi_sink: endpoint {
-+				remote-endpoint = <&imx335_ep>;
-+				data-lanes = <1 2>;
-+				bus-type = <4>;
-+			};
-+		};
-+		port@1 {
-+			reg = <1>;
-+			csi_source: endpoint {
-+				remote-endpoint = <&dcmipp_0>;
-+			};
-+		};
-+	};
-+};
-+
-+&dcmipp {
-+	status = "okay";
-+	port {
-+		dcmipp_0: endpoint {
-+			remote-endpoint = <&csi_source>;
-+			bus-type = <4>;
-+		};
-+	};
-+};
-+
- &ethernet2 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&eth2_rgmii_pins_a>;
-@@ -81,6 +147,25 @@ &i2c2 {
- 	i2c-scl-falling-time-ns = <13>;
- 	clock-frequency = <400000>;
- 	status = "okay";
-+
-+	imx335: camera@1a {
-+		compatible = "sony,imx335";
-+		reg = <0x1a>;
-+		clocks = <&clk_ext_camera>;
-+		avdd-supply = <&imx335_2v9>;
-+		ovdd-supply = <&imx335_1v8>;
-+		dvdd-supply = <&imx335_1v2>;
-+		reset-gpios = <&gpioi 7 (GPIO_ACTIVE_LOW | GPIO_PUSH_PULL)>;
-+
-+		port {
-+			imx335_ep: endpoint {
-+				remote-endpoint = <&csi_sink>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+				link-frequencies = /bits/ 64 <594000000>;
-+			};
-+		};
-+	};
- };
- 
- &i2c8 {
-
+Best regards,
 -- 
-2.34.1
+Lijuan Gao <quic_lijuang@quicinc.com>
 
 
