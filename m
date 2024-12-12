@@ -1,86 +1,120 @@
-Return-Path: <devicetree+bounces-130325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AD029EEEA7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 17:00:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D4AB59EEED5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 17:02:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 73FDA16DC75
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 15:54:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6489D16F338
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 15:56:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E282253F8;
-	Thu, 12 Dec 2024 15:53:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A3A222D42;
+	Thu, 12 Dec 2024 15:55:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JbTyuEFz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE9E223E9C;
-	Thu, 12 Dec 2024 15:53:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11F08215764;
+	Thu, 12 Dec 2024 15:55:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734018790; cv=none; b=d8vqGmqFOi9YSzGvHgrITylU4TAj3VUrDoD/s29sguR5Vqenn2PysK/irfWaEKuNvS7/xQ/70CPi2J5AW05Za5KJWYKuOX6Lf8ZPyP6IIESdcqOyMud/2uk/ZY6972PHKcMJhxbzCz1PHu008EzpEAFatJd2nYlHyISGhL3PK0E=
+	t=1734018941; cv=none; b=HaA+Qukjxt+CksE8MEAFg9MngHr9DEIG/bWnUiAbN5mefpMiuUyT4gUpViKqRQKl8gTBMuuKXzkQbpQ2TReVMvKejWffvljvMNrWwu3WylfnVWxdMtHnGe/DbTfEs29LVMg5S6Ge8wdxoWO8L3vwegDuWs55JaIPxRAVTks9uDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734018790; c=relaxed/simple;
-	bh=sCfwn1vl381W37kWDW29ndnhO/jyYxada+x67UTn2z4=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ChahpGUUU7x6q/oFt14humjCYvtiWV621iCM8KIDcjh1aYuLc72URQ8VOBqfgppJeCL+VLFDy155mBXHzj4uuiPuk4oTaYbEYmkRvyS96IT4101Ihm7VnN7rnegGf53mwUBWUWKdywy5dFl8HMmq9KHXxtk5tME399i3UzP5U90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Thu, 12 Dec
- 2024 23:52:42 +0800
-Received: from localhost.localdomain (192.168.10.10) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
- Transport; Thu, 12 Dec 2024 23:52:42 +0800
-From: Kevin Chen <kevin_chen@aspeedtech.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<joel@jms.id.au>, <andrew@codeconstruct.com.au>, <tglx@linutronix.de>,
-	<catalin.marinas@arm.com>, <will@kernel.org>, <arnd@arndb.de>,
-	<olof@lixom.net>, <quic_bjorande@quicinc.com>, <geert+renesas@glider.be>,
-	<dmitry.baryshkov@linaro.org>, <konradybcio@kernel.org>,
-	<neil.armstrong@linaro.org>, <johan+linaro@kernel.org>,
-	<kevin_chen@aspeedtech.com>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-kernel@vger.kernel.org>, <soc@lists.linux.dev>
-Subject: [PATCH v3 6/6] arm64: defconfig: Add ASPEED AST2700 family support
-Date: Thu, 12 Dec 2024 23:52:37 +0800
-Message-ID: <20241212155237.848336-9-kevin_chen@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241212155237.848336-1-kevin_chen@aspeedtech.com>
-References: <20241212155237.848336-1-kevin_chen@aspeedtech.com>
+	s=arc-20240116; t=1734018941; c=relaxed/simple;
+	bh=PKNBf0TCKuwNcifWvhSa7hUFVANZKsYx7vGJQEMnWHs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oo3yWXeinRwcFx5xeplb7M8e7G3MBAiGur17IHghqY+fTz0AMxkQxv1xo3Dl1gnBXqk+W7RxDDLHnFCtEBbCNYbheuCrTaFPex47aPBk1zKrvx8yH5I5ar7Wxl7XTejV612SuBv5dnpAGwWlqXQpCNAjrjzZ3kMGTkgKnie8PtE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JbTyuEFz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9073DC4CED3;
+	Thu, 12 Dec 2024 15:55:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734018940;
+	bh=PKNBf0TCKuwNcifWvhSa7hUFVANZKsYx7vGJQEMnWHs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JbTyuEFzQhdRJOmDrKJyk9vWtv59qHQf6NV5vzbP3QL+w07scAiTpND/D+fCd5C8M
+	 HGFo7Zr4lA5KuhQLh7wMkG5WWx5Kwal2PKprL1LophqlY/WN+VyLBpsZN7PTE0uCjd
+	 XCQ0F8h0QOZONPX2obr7xgnwPTHDCgpgZWYhjXMhHfrPQXzgzL7yfoJDVJvO65o1bq
+	 w/zHPnbEtKLRQh0t0kyUZvpJsBX6ZnpdESQlKb/vt8tTSwZJc/KFJ6+Q+rhQJ5VEUp
+	 PKEBQhBU2DPnV/ofyaUbQV54Hzth2cvwnkNcKOatzAiuYps8eAMqojXzk68jfIL7aF
+	 PBNJQBAh1PLCA==
+Date: Thu, 12 Dec 2024 15:55:33 +0000
+From: Lee Jones <lee@kernel.org>
+To: Jiri Kosina <jikos@kernel.org>
+Cc: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>, jic23@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	jdelvare@suse.com, linux@roeck-us.net,
+	srinivas.pandruvada@linux.intel.com, bentiss@kernel.org,
+	dmitry.torokhov@gmail.com, pavel@ucw.cz, ukleinek@debian.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-input@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v9 1/9] HID: hid-sensor-hub: don't use stale
+ platform-data on remove
+Message-ID: <20241212155533.GG7139@google.com>
+References: <20241107114712.538976-1-heiko@sntech.de>
+ <20241211120844.GD7139@google.com>
+ <n914pn7o-pr9n-5ss0-p744-73402nnn843p@xreary.bet>
+ <3196449.TQGk6oTFT5@diego>
+ <4s41717n-3888-os6o-384n-7678n0361r0s@xreary.bet>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <4s41717n-3888-os6o-384n-7678n0361r0s@xreary.bet>
 
-Enable CONFIG_ARCH_ASPEED in arm64 defconfig.
+On Wed, 11 Dec 2024, Jiri Kosina wrote:
 
-Signed-off-by: Kevin Chen <kevin_chen@aspeedtech.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+> On Wed, 11 Dec 2024, Heiko Stübner wrote:
+> 
+> > > > > > > This change was more or less a surprise find, because I wanted to make
+> > > > > > > the platform_data pointer in the mfd_cell struct const and this the hid
+> > > > > > > sensor hub stood out as doing something strange ;-) .
+> > > > > > > 
+> > > > > > > So patch 2 of this series actually depends on this change to not cause
+> > > > > > > build errors.
+> > > > > > 
+> > > > > > Ah, right.
+> > > > > > 
+> > > > > > > But seeing that we're after -rc6 alredy, I would assume the brunt of the 
+> > > > > > > mcu series might need to wait after 6.13-rc1 anyway - but I guess that 
+> > > > > > > depends on how Lee sees things ;-) .
+> > > > > > 
+> > > > > > OK, I am keeping my hands off it for the time being.
+> > > > > 
+> > > > > I can take it now with an Ack.
+> > > > 
+> > > > Looking to apply this set now.
+> > > > 
+> > > > Ack please.
+> > > 
+> > > I'd preferer if Srinivas could ack this as the more specific maintainer. 
+> > > Srinivas, please? 
+> > 
+> > The patch already includes the
+> >    Ack from Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
+> > from a previous version, so I guess it should be ok already?
+> 
+> Ah, I missed that, indeed, sorry for the noise.
+> 
+> With that
+> 
+> 	Acked-by: Jiri Kosina <jkosina@suse.com>
+> 
+> and Lee, please feel free to take it.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index c62831e61586..8826068c7c1d 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -38,6 +38,7 @@ CONFIG_ARCH_AIROHA=y
- CONFIG_ARCH_SUNXI=y
- CONFIG_ARCH_ALPINE=y
- CONFIG_ARCH_APPLE=y
-+CONFIG_ARCH_ASPEED=y
- CONFIG_ARCH_BCM=y
- CONFIG_ARCH_BCM2835=y
- CONFIG_ARCH_BCM_IPROC=y
+Thanks, will do.
+
 -- 
-2.34.1
-
+Lee Jones [李琼斯]
 
