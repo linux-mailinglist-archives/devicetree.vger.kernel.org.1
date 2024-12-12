@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-130269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD2D79EE6C9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 13:33:50 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A76BF9EE6DB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 13:38:11 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 635C216548A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 12:33:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E165428320D
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 12:38:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E355210F4A;
-	Thu, 12 Dec 2024 12:33:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 550CD2080D8;
+	Thu, 12 Dec 2024 12:38:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="DwS46AdY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K42NDTWk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-22.smtpout.orange.fr [80.12.242.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB090259484;
-	Thu, 12 Dec 2024 12:33:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE6E212B2A;
+	Thu, 12 Dec 2024 12:38:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734006823; cv=none; b=A/iem+twv3NuNOsq+Vajjo+HB5U75uLBnZk/5qHixW53tp2Br0+a+/+iWApk//tENQh2bswF+VNF4PVqqa5EnjQ24rlr99fDHkzt2c3mJH8tkGvgXL8jAyxVEkp5XWXwieBTfXQsmKNL2J6ShXj5V/sfi9Fi0ThinOsLr8g+PnY=
+	t=1734007087; cv=none; b=b/IpzCo9pIaliAAUvqhb6IeiHYl0azt3tIp5C7YEZxGE18FEZT0BuIRTXzsn13f1zRVC5oX/eIUSYfhQGMYRqXd6ulVpDpU8cRRIJtMtVTavtkB+cT3VeRmW1/YjfS854sXBLoWck9f46Pnr4jcT2Ht2IqrDpKnRPIts2rxg1Yg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734006823; c=relaxed/simple;
-	bh=bn2ky9pyJErxzLjZ9doIiWcwO49NUUAjN5n9fqmyhNI=;
-	h=Message-ID:Date:MIME-Version:Subject:References:From:Cc:To:
-	 In-Reply-To:Content-Type; b=Db6O1Sez6DHPXAp1G40sYd3cxqCvroP15p+wVb/Wjbffxj4g1BqbzU7MzbdV1oZmoFjI3waRjxtzZLLyvQbWQFoLy4PblU7ttGuwlbciSI9YFb7AE1V6P328vDJS/aSHpBYowCpKEOscVi1m3S47nLRJQifKVco2UC7wKvZPdAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=DwS46AdY; arc=none smtp.client-ip=80.12.242.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id LiNptubjiI1FGLiNptgWq8; Thu, 12 Dec 2024 13:33:39 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1734006819;
-	bh=UoVTbaL4YNuWYLH975v+DNNPn9DDGWZVxGYR9Qdxa6s=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To;
-	b=DwS46AdYDXC+9ZAsRLRjPUp1SCcuBxmFNKhonH5F5UWdvmPdW7vVhza+qcdT3QN4s
-	 Cs+Z5Al/+1IMjvmnJc+gr4Mb5fbRWLE7QLeYlZTsJDZxy5IQoIYnowlN0BgYhvEG1T
-	 3MO2M8I2/YbJAnnfN2J1udFQ/FTpo1z1iETzWtSyCOjnUp9RcQAoNO3UIgGdv6UsSz
-	 UetoPuHOaS9OWFM05EPhZuzdie0Rkj8GsK3d3qHr8IILz4UHsiZXYlW1z9Fu/CsogA
-	 BPlNhaljpKHp/QxwseVtkuFpdRUeUWFmaADh8ubMr9u62LkDeZrBwajpEmlxvoG0Tp
-	 9tml5snDXE3Xg==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Thu, 12 Dec 2024 13:33:39 +0100
-X-ME-IP: 90.11.132.44
-Message-ID: <45f90007-3136-4b59-a3fc-6fc0147b8ad8@wanadoo.fr>
-Date: Thu, 12 Dec 2024 13:33:32 +0100
+	s=arc-20240116; t=1734007087; c=relaxed/simple;
+	bh=2hiFvC59FNpieiAYTQra9Yz/spEN5UV3papx3pMqLGg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Xp+MKqER4OrB+kNjLoydOaCwQy/eaujo1OyATCXcpPVLW4FtXXRPDKHvxzO/Ww/vEQp+QuNdFy6jDQJXCUwiDjLryc8acjK11vlVMs58Euc+4GM6wJAU1RVWVyXzirZRuyn9FN44HtuSqAtAk7+JghsrfKyDlQuKATph5dHjyZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K42NDTWk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DD78C4CECE;
+	Thu, 12 Dec 2024 12:38:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734007086;
+	bh=2hiFvC59FNpieiAYTQra9Yz/spEN5UV3papx3pMqLGg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=K42NDTWkAAzzbOpebO2EDvFMZGXoyFtxl5I4eJeMhPlV6sdiWq1HdbOVMVtthUQlQ
+	 tNppESFlHdKBqjzLH33QlTsen47jwcBrPFHlqAUluRoZqeixuQaErT4921Vf3B7No8
+	 nDpYW1oQPxauMftbWJF/+SX0GncDnm5Ax5UFHDdJlO8Mgwy3S3JLRt68NbCLx3jrLz
+	 7ixK/vczC//mok9W8frU1jFTifq+/MY6udLJXxCJCPysMoo0KCUAQp0ka9Rvp0gN+u
+	 KkyHC3BnuOBmUe8bt4PCqwi6LSGla+BULIEC+WfZslKK49Gckt5rQ3JGJ+UKYG2bAD
+	 w5Uvrmotft93A==
+Message-ID: <9ceb9f9d-633d-49e6-ab1b-1db739e4f2a4@kernel.org>
+Date: Thu, 12 Dec 2024 13:37:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,141 +50,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] drm/bridge: ti-sn65dsi83: Add ti,lvds-vod-swing
- optional properties
-References: <20241212121712.214639-1-andrej.picej@norik.com>
- <20241212121712.214639-3-andrej.picej@norik.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de,
- andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, marex@denx.de
-To: Andrej Picej <andrej.picej@norik.com>
-In-Reply-To: <20241212121712.214639-3-andrej.picej@norik.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: x1e80100: Add PCIe lane
+ equalization preset properties
+To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
+ Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Jingoo Han <jingoohan1@gmail.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ konrad.dybcio@oss.qualcomm.com, quic_mrana@quicinc.com,
+ quic_vbadigan@quicinc.com, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+References: <20241212-preset_v2-v2-0-210430fbcd8a@oss.qualcomm.com>
+ <20241212-preset_v2-v2-1-210430fbcd8a@oss.qualcomm.com>
+ <beb7d859-8d68-49d9-8a35-b2ba50f00c33@kernel.org>
+ <bd9d0b2b-cb69-3a20-8ae6-125c7010c1e5@quicinc.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <bd9d0b2b-cb69-3a20-8ae6-125c7010c1e5@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Le 12/12/2024 à 13:17, Andrej Picej a écrit :
-> Add a optional properties to change LVDS output voltage. This should not
-> be static as this depends mainly on the connected display voltage
-> requirement. We have three properties:
-> - "ti,lvds-termination-ohms", which sets near end termination,
-> - "ti,lvds-vod-swing-data-microvolt" and
-> - "ti,lvds-vod-swing-clock-microvolt" which both set LVDS differential
-> output voltage for data and clock lanes. They are defined as an array
-> with min and max values. The appropriate bitfield will be set if
-> selected constraints can be met.
+On 12/12/2024 13:32, Krishna Chaitanya Chundru wrote:
+>> 2. There are no such properties. It does not look like you tested the
+>> DTS against bindings. Please run `make dtbs_check W=1` (see
+>> Documentation/devicetree/bindings/writing-schema.rst or
+>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+>> for instructions).
+> The property is added recently in to the dtschema in github repo, I
+> added the pull request details in the cover letter, I will add the
+> github link as part of the comment section for this patch in next
+> series.
 > 
-> If "ti,lvds-termination-ohms" is not defined the default of 200 Ohm near
-> end termination will be used. Selecting only one:
-> "ti,lvds-vod-swing-data-microvolt" or
-> "ti,lvds-vod-swing-clock-microvolt" can be done, but the output voltage
-> constraint for only data/clock lanes will be met. Setting both is
-> recommended.
+Mention in the commit msg or cover letter where are the bindings.
 
-...
-
-> +static int sn65dsi83_select_lvds_vod_swing(struct device *dev,
-> +	u32 lvds_vod_swing_data[2], u32 lvds_vod_swing_clk[2], u8 lvds_term)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i <= 3; i++) {
-> +		if (lvds_vod_swing_data_table[lvds_term][i][0] >= lvds_vod_swing_data[0] &&
-> +		lvds_vod_swing_data_table[lvds_term][i][1] <= lvds_vod_swing_data[1] &&
-> +		lvds_vod_swing_clock_table[lvds_term][i][0] >= lvds_vod_swing_clk[0] &&
-> +		lvds_vod_swing_clock_table[lvds_term][i][1] <= lvds_vod_swing_clk[1])
-
-Adding a few spaces to align things would help reading.
-
-> +			return i;
-> +	}
-> +
-> +	dev_err(dev, "failed to find appropriate LVDS_VOD_SWING configuration\n");
-> +	return -EINVAL;
-> +}
-> +
-> +static int sn65dsi83_parse_lvds_endpoint(struct sn65dsi83 *ctx, int channel)
-> +{
-> +	struct device *dev = ctx->dev;
-> +	struct device_node *endpoint;
-> +	int endpoint_reg;
-> +	/* Set so the property can be freely selected if not defined */
-> +	u32 lvds_vod_swing_data[2] = { 0, 1000000 };
-> +	u32 lvds_vod_swing_clk[2] = { 0, 1000000 };
-> +	/* Set default near end terminataion to 200 Ohm */
-> +	u32 lvds_term = 200;
-> +	int lvds_vod_swing_conf;
-> +	int ret = 0;
-> +	int ret_data;
-> +	int ret_clock;
-> +
-> +	if (channel == CHANNEL_A)
-> +		endpoint_reg = 2;
-> +	else
-> +		endpoint_reg = 3;
-> +
-> +	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, endpoint_reg, -1);
-> +
-> +	of_property_read_u32(endpoint, "ti,lvds-termination-ohms", &lvds_term);
-> +	if (lvds_term == 100)
-> +		ctx->lvds_term_conf[channel] = OHM_100;
-> +	else if (lvds_term == 200)
-> +		ctx->lvds_term_conf[channel] = OHM_200;
-> +	else
-> +		return -EINVAL;
-
-Should it be:
-	else {
-		ret = -EINVAL;
-		goto exit;
-	}
-?
-
-> +
-> +	ret_data = of_property_read_u32_array(endpoint, "ti,lvds-vod-swing-data-microvolt",
-> +					lvds_vod_swing_data, ARRAY_SIZE(lvds_vod_swing_data));
-> +	if (ret_data != 0 && ret_data != -EINVAL) {
-> +		ret = ret_data;
-> +		goto exit;
-> +	}
-> +
-> +	ret_clock = of_property_read_u32_array(endpoint, "ti,lvds-vod-swing-clock-microvolt",
-> +					lvds_vod_swing_clk, ARRAY_SIZE(lvds_vod_swing_clk));
-> +	if (ret_clock != 0 && ret_clock != -EINVAL) {
-> +		ret = ret_clock;
-> +		goto exit;
-> +	}
-> +
-> +	/* Use default value if both properties are NOT defined. */
-> +	if (ret_data == -EINVAL && ret_clock == -EINVAL)
-> +		lvds_vod_swing_conf = 0x1;
-> +
-> +	/* Use lookup table if any of the two properties is defined. */
-> +	if (!ret_data || !ret_clock) {
-> +		lvds_vod_swing_conf = sn65dsi83_select_lvds_vod_swing(dev, lvds_vod_swing_data,
-> +						lvds_vod_swing_clk, ctx->lvds_term_conf[channel]);
-> +		if (lvds_vod_swing_conf < 0) {
-> +			ret = lvds_vod_swing_conf;
-> +			goto exit;
-> +		}
-> +	}
-> +
-> +	ctx->lvds_vod_swing_conf[channel] = lvds_vod_swing_conf;
-> +	ret = 0;
-> +exit:
-> +	of_node_put(endpoint);
-> +	return ret;
-> +}
-
-...
-
-CJ
+Best regards,
+Krzysztof
 
