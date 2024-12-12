@@ -1,120 +1,224 @@
-Return-Path: <devicetree+bounces-130326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4AB59EEED5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 17:02:48 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6489D16F338
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 15:56:25 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A3A222D42;
-	Thu, 12 Dec 2024 15:55:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JbTyuEFz"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD4B09EEE67
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 16:57:01 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11F08215764;
-	Thu, 12 Dec 2024 15:55:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 785BC28683A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 15:57:00 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE582210CF;
+	Thu, 12 Dec 2024 15:56:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GhBa2UBz"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8055D10F2
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 15:56:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734018941; cv=none; b=HaA+Qukjxt+CksE8MEAFg9MngHr9DEIG/bWnUiAbN5mefpMiuUyT4gUpViKqRQKl8gTBMuuKXzkQbpQ2TReVMvKejWffvljvMNrWwu3WylfnVWxdMtHnGe/DbTfEs29LVMg5S6Ge8wdxoWO8L3vwegDuWs55JaIPxRAVTks9uDo=
+	t=1734018998; cv=none; b=uHkPzXxo5mAMYu9KYl7m/G3MZO9I/OlHmYaAX3li6MSHyemooxlpQNbcJMFfym2nTH5qn3U8owQdTu5Obkw3KC/QmOAn1V1iemL/h2emY2aGB4fF5Odv++KkYG9xhTvSZ5tHhYEw2BvYprtc6pemKMIY33Hh0bwpgbNCw9e4+Bw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734018941; c=relaxed/simple;
-	bh=PKNBf0TCKuwNcifWvhSa7hUFVANZKsYx7vGJQEMnWHs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oo3yWXeinRwcFx5xeplb7M8e7G3MBAiGur17IHghqY+fTz0AMxkQxv1xo3Dl1gnBXqk+W7RxDDLHnFCtEBbCNYbheuCrTaFPex47aPBk1zKrvx8yH5I5ar7Wxl7XTejV612SuBv5dnpAGwWlqXQpCNAjrjzZ3kMGTkgKnie8PtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JbTyuEFz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9073DC4CED3;
-	Thu, 12 Dec 2024 15:55:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734018940;
-	bh=PKNBf0TCKuwNcifWvhSa7hUFVANZKsYx7vGJQEMnWHs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JbTyuEFzQhdRJOmDrKJyk9vWtv59qHQf6NV5vzbP3QL+w07scAiTpND/D+fCd5C8M
-	 HGFo7Zr4lA5KuhQLh7wMkG5WWx5Kwal2PKprL1LophqlY/WN+VyLBpsZN7PTE0uCjd
-	 XCQ0F8h0QOZONPX2obr7xgnwPTHDCgpgZWYhjXMhHfrPQXzgzL7yfoJDVJvO65o1bq
-	 w/zHPnbEtKLRQh0t0kyUZvpJsBX6ZnpdESQlKb/vt8tTSwZJc/KFJ6+Q+rhQJ5VEUp
-	 PKEBQhBU2DPnV/ofyaUbQV54Hzth2cvwnkNcKOatzAiuYps8eAMqojXzk68jfIL7aF
-	 PBNJQBAh1PLCA==
-Date: Thu, 12 Dec 2024 15:55:33 +0000
-From: Lee Jones <lee@kernel.org>
-To: Jiri Kosina <jikos@kernel.org>
-Cc: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>, jic23@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	jdelvare@suse.com, linux@roeck-us.net,
-	srinivas.pandruvada@linux.intel.com, bentiss@kernel.org,
-	dmitry.torokhov@gmail.com, pavel@ucw.cz, ukleinek@debian.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-input@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v9 1/9] HID: hid-sensor-hub: don't use stale
- platform-data on remove
-Message-ID: <20241212155533.GG7139@google.com>
-References: <20241107114712.538976-1-heiko@sntech.de>
- <20241211120844.GD7139@google.com>
- <n914pn7o-pr9n-5ss0-p744-73402nnn843p@xreary.bet>
- <3196449.TQGk6oTFT5@diego>
- <4s41717n-3888-os6o-384n-7678n0361r0s@xreary.bet>
+	s=arc-20240116; t=1734018998; c=relaxed/simple;
+	bh=3C4Yt5oeNRaxZqqS6cTEgAB9qT5fjNpBMGuaoHcL2gk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BAkwYuCQVeH1X9FD2ZpPhU5b2hpVoAaQoRPNH97eXdjLrFlocaoSEcQIzlvWXIJ19uHowU0Br9HRTVaQ+b1nYZAr+1LXAPDepnJUwElcMJhqUS/6p3Y431E4U8SrmAqYyjzEhLagTfSDmf2+KHHFwJ0SBZx7O6osQBuTvH+WYWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GhBa2UBz; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BC7qm26002103
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 15:56:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	n3nqq3ds2PAwM46hFlxa1nrVPoI1aem45H25wLz0YZc=; b=GhBa2UBzDWDC9qNH
+	PyDoEL6SJBJmonT+danyYZyzmWIv2g9+Oo/nj1/YYmW+uI7BYqeFfTRuWP7DFLNu
+	1EeUurdeptMgCP4rArd/ZC9NK1R3thQS2F7WMjA/H4bYAw2641wGvHo8cydmoozp
+	nVd/x4kOVwncwO+7CMBvy01BGo41AegqEcvXR4eYTusFPCxILVOaHW1IkEVdsJOi
+	lTyYV63/7AWiovZ1aKIuD5AxSIOwyYPklN24lKrjuBmx8ZG4j79g6vwbaXW1Imox
+	jHv17FXzLoE+0bSt3YcyH9GiENQmlsZRsXdPWXsbXl/BSztn82I0IcZs+Nxm7h+2
+	QrcEDw==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43f0r9wxwj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 15:56:35 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6da2abe1720so1916006d6.2
+        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 07:56:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734018994; x=1734623794;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n3nqq3ds2PAwM46hFlxa1nrVPoI1aem45H25wLz0YZc=;
+        b=mDNJfbdG8SHweHRK871Zpv8SBF9LIuyTx5wWQF5qXZY/p2a6dhUesbVCM6FyYbHNN8
+         YDIa2/0adTj0PYnQbS1QWsi+MzBJRI7QIOUhNRidR/qrgpM3kb+k1cbn5PvK6Meygbxl
+         IIyCRXuwfH7m+c38q3w2b0KT5VctB9LmiBIsvL4qKpZk5a2hjE3HoyJBY5+56GeiF2aR
+         mUPQv9QKf3JpnGlXiGAq92wkAoDq/URCkzfQmNbGO7HymDixzoNtllCowpRWq67PxGOY
+         o7IF3hx7DMtkHlqMs4rxn69U3FXRglVsnqiQj+02L1qCBXcDipYkFgC+SdOzZ4XPscPn
+         5DqA==
+X-Forwarded-Encrypted: i=1; AJvYcCWcy6yfUIZBqKnNcwZRMwYm15yrIIe1ISXvyii4UY/twExHL2FFcoQ2P7LyOw3gkbYQ5tdR1Q8U3sr+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9e7GHdGpgAfzA5i8rRNONxr/bDqUuXCBct73gn/WHihqQT49S
+	Op4y5I0knBq6ijbAoWCDlBdnh8WOAR6tW96vh309GDvgHOB3vKYnCzrv1PUUPvuK/W950OjiF2W
+	E3jjY0L+1O8GeYvgKFGhh6zlCV8/IhrRtkSzn7LeheqF1Vt7o2OjkYs0FHtsI
+X-Gm-Gg: ASbGncu6qb1XRcRZauE9FyXaeVWpmRxZztqPafiWNUpEatCY/ZFqUIBvvVPCGwshnfU
+	XqtvhlUOxY8cQdLm8BylTx9+/oa2ke38Q5Jtghhn8Va72XmXa0WDgB/536rvqAfMyu1+mLjUSNF
+	ryP9YCJYGc9nUP60CxXqPRAFTKN+rlGUyJIpCYtjf6oz62FXT1suRsRMzhwBv/pMlNhxgk0TFOV
+	Fn7M2inNziyxyiUG6Dz11zLjGepanFsfH3Di2BQnramT71kQttiloDUK+7oszGybD0S+ner6NPP
+	2urRw0l1Smicn1SOaE/VMgimUUwBDRjMc+/JBw==
+X-Received: by 2002:a05:622a:199a:b0:467:5462:4a18 with SMTP id d75a77b69052e-467a13dbb86mr5797621cf.0.1734018994480;
+        Thu, 12 Dec 2024 07:56:34 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHrTTXRfbuepculS9NtXEOABh5da5aY3tMlxBBBwXa+/U6qTkKw/SXlHeil5FX0OuqtidmsCw==
+X-Received: by 2002:a05:622a:199a:b0:467:5462:4a18 with SMTP id d75a77b69052e-467a13dbb86mr5797071cf.0.1734018993424;
+        Thu, 12 Dec 2024 07:56:33 -0800 (PST)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa683f9a8fbsm626885266b.37.2024.12.12.07.56.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Dec 2024 07:56:32 -0800 (PST)
+Message-ID: <8ad1db59-9326-461a-ba8e-52891922eb3b@oss.qualcomm.com>
+Date: Thu, 12 Dec 2024 16:56:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/7] Add support to load QUP SE firmware from
+To: neil.armstrong@linaro.org, Konrad Dybcio
+ <konrad.dybcio@oss.qualcomm.com>,
+        Viken Dadhaniya
+ <quic_vdadhani@quicinc.com>, andi.shyti@kernel.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.or,
+        andersson@kernel.org, konradybcio@kernel.org, johan+linaro@kernel.org,
+        dianders@chromium.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
+Cc: =quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com
+References: <20241204150326.1470749-1-quic_vdadhani@quicinc.com>
+ <9d5e5b8b-aeaf-4ec8-b34a-8edeaec20037@oss.qualcomm.com>
+ <42b1c187-e924-4690-8338-4c694f3e16d9@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <42b1c187-e924-4690-8338-4c694f3e16d9@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4s41717n-3888-os6o-384n-7678n0361r0s@xreary.bet>
+X-Proofpoint-ORIG-GUID: 5Z1pF-435xGmxYpS5YsaZhSrNFbDVixh
+X-Proofpoint-GUID: 5Z1pF-435xGmxYpS5YsaZhSrNFbDVixh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 phishscore=0 spamscore=0 clxscore=1015 mlxlogscore=999
+ malwarescore=0 lowpriorityscore=0 mlxscore=0 bulkscore=0 suspectscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412120115
 
-On Wed, 11 Dec 2024, Jiri Kosina wrote:
+On 9.12.2024 3:45 PM, neil.armstrong@linaro.org wrote:
+> On 05/12/2024 16:59, Konrad Dybcio wrote:
+>> On 4.12.2024 4:03 PM, Viken Dadhaniya wrote:
+>>> In Qualcomm SoCs, firmware loading for Serial Engines (SE) in the QUP
+>>> hardware has traditionally been managed by TrustZone (TZ). This setup
+>>> handled Serial Engines(SE) assignments and access control permissions,
+>>> ensuring a high level of security but limiting flexibility and
+>>> accessibility.
+>>>   This limitation poses a significant challenge for developers who need more
+>>> flexibility to enable any protocol on any of the SEs within the QUP
+>>> hardware.
+>>>   To address this, we are introducing a change that opens the firmware
+>>> loading mechanism to the Linux environment. This enhancement increases
+>>> flexibility and allows for more streamlined and efficient management. We
+>>> can now handle SE assignments and access control permissions directly
+>>> within Linux, eliminating the dependency on TZ.
+>>>   We propose an alternative method for firmware loading and SE
+>>> ownership/transfer mode configuration based on device tree configuration.
+>>> This method does not rely on other execution environments, making it
+>>> accessible to all developers.
+>>>   For SEs used prior to the kernel, their firmware will be loaded by the
+>>> respective image drivers (e.g., Debug UART, Secure or trusted SE).
+>>> Additionally, the GSI firmware, which is common to all SEs per QUPV3 core,
+>>> will not be loaded by Linux driver but TZ only. At the kernel level, only
+>>> the SE protocol driver should load the respective protocol firmware.
+>>
+>> I think this is a great opportunity to rethink the SE node in general.
+>>
+>> Currently, for each supported protocol, we create a new node that
+>> differs in (possibly) interconnects and pinctrl states. These are really
+>> defined per-SE however and we can programmatically determine which ones
+>> are relevant.
+>>
+>> With the growing number of protocols supported, we would have to add
+>> 20+ nodes in some cases for each one of them. I think a good one would
+>> look like:
+>>
+>> geni_se10: serial-engine@abcdef {
+>>     compatible = "qcom,geni-se";
+>>
+>>     reg
+>>     clocks
+>>     power-domains
+>>     interconnects
+>>     ...
+>>
+>>     status
+>>
+>>     geni_se10_i2c: i2c {
+>>         // i2c-controller.yaml
+>>     };
+>>
+>>     geni_se10_spi: spi {
+>>         // spi-controller.yaml
+>>     };
+>>
+>>     ...
+>> }
+>>
+>> Or maybe even get rid of the subnodes and restrict that to a single
+>> se-protocol = <SE_PROTOCOL_xyz> property, if the bindings folks agree.
+>>
+>> We could extend the DMA APIs to dynamically determine the protocol
+>> ID and get rid of hardcoding it.
+>>
+>> And then we could spawn an instance of the spi, i2c, etc. driver from
+>> the GENI SE driver.
+> 
+> How/where would you add the peripheral subnodes ? A Serial Engine can only be a
+> single type on a board, but I agree we could have a "generic" serial engine node
+> that would be differenciated in the board DT with the protocol, and use the bindings
+> yaml checked to properly check the subnodes/properties depending on the protocol
+> property.
+> 
+> But we would still need all the serial nodes in the SoC DT.
 
-> On Wed, 11 Dec 2024, Heiko Stübner wrote:
-> 
-> > > > > > > This change was more or less a surprise find, because I wanted to make
-> > > > > > > the platform_data pointer in the mfd_cell struct const and this the hid
-> > > > > > > sensor hub stood out as doing something strange ;-) .
-> > > > > > > 
-> > > > > > > So patch 2 of this series actually depends on this change to not cause
-> > > > > > > build errors.
-> > > > > > 
-> > > > > > Ah, right.
-> > > > > > 
-> > > > > > > But seeing that we're after -rc6 alredy, I would assume the brunt of the 
-> > > > > > > mcu series might need to wait after 6.13-rc1 anyway - but I guess that 
-> > > > > > > depends on how Lee sees things ;-) .
-> > > > > > 
-> > > > > > OK, I am keeping my hands off it for the time being.
-> > > > > 
-> > > > > I can take it now with an Ack.
-> > > > 
-> > > > Looking to apply this set now.
-> > > > 
-> > > > Ack please.
-> > > 
-> > > I'd preferer if Srinivas could ack this as the more specific maintainer. 
-> > > Srinivas, please? 
-> > 
-> > The patch already includes the
-> >    Ack from Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
-> > from a previous version, so I guess it should be ok already?
-> 
-> Ah, I missed that, indeed, sorry for the noise.
-> 
-> With that
-> 
-> 	Acked-by: Jiri Kosina <jkosina@suse.com>
-> 
-> and Lee, please feel free to take it.
+Correct, but NUM_PROTOCOLS times less. NUM_PROTOCOLS is 3 upstream as
+of right now, but it's much higher in general (which will trickle
+upstream one day or another).
 
-Thanks, will do.
+> 
+> This may make the software support harder, meaning we would either need to
+> have the same compatible probed in sequence from the i2c/spi/uart driver until
+> one matches the protocol, or have the qup driver spawn an auxiliary device.
 
--- 
-Lee Jones [李琼斯]
+No, just read back the protocol id from hardware (if the SE is running), or
+from some DT property (if we need to load the FW ourselves).
+
+Then, based on that, we can call
+
+platform_device_register_data(dev, "geni_i2c", ...) 
+
+(or similar)
+
+> Honestly, not sure it would be much simpler...
+
+Not sure if I'm happy to maintain NUM_QUPs * NUM_SEs * NUM_PROTOCOLS DT nodes,
+per each platform separately..
+
+Konrad
 
