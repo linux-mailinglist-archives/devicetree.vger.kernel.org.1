@@ -1,190 +1,183 @@
-Return-Path: <devicetree+bounces-130065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D63B9EDCD2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 01:50:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 258989EDCE7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 02:06:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F34718868C7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 00:50:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45D27188A108
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 01:06:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E39418B470;
-	Thu, 12 Dec 2024 00:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC23518AEA;
+	Thu, 12 Dec 2024 01:06:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cf0yDtv6"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="X4hHxJwo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CEA187FEC
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 00:47:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C2A4A29;
+	Thu, 12 Dec 2024 01:06:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733964482; cv=none; b=AvLSbA738fU4Vjomke21LmhqJoVdcuVxVaEEr28GIIXqJFX+5RWKjih14fWqNYP27KdhvQSrjaH1zuxXLnA0R90ek8diHwiBgcjPkPlDxU4Vrz8dDgTlvfCii1z1AJbHlfwc0169MCMZsrFXk70cmF5bR3ANBrqPcPltpDxXUrg=
+	t=1733965574; cv=none; b=TH6hLP0N3xQiMwNzqMwwuUyiM/oLhutw0dKfjmnQLI3E9NgLR1PnTc3WvyJWGhEGQljRj9cHH86bO8wuzSL106kqAyhzxYBAdJSwXXSAEtfl/Y2YxSez21/THAKh0VF36O6MDK45q7f/6c6CVHzvjopMgcl0avXCcW8GneD5r24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733964482; c=relaxed/simple;
-	bh=QzuIeMsbqn06WI5qhPV1wr/oyc12cKZ+XBOtXN5CYbk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jAaRf1scOtqdaDATKRGRLg+RcaqtgczouXjqnfqsAvv0AGZrThKTfn2cJuhLhwwJq2HmmCDjcyDzF7joB60/iwiYswbQlEyWw5DIuo3WjVYTy49bZ5fBgjDi3hmHDuwOVbjCmU3HXVQNuZeMYbvtba5wa8fB3fVhlk9PNu7Y8Og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Cf0yDtv6; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-385ef8b64b3so24272f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 16:47:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733964478; x=1734569278; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8YUv9wXf1xeMulszUqTOEITp7UUlDCUgSWoOEuWnA1U=;
-        b=Cf0yDtv61ODSF0SdIoYHtgfcMmCSDWWtc/iE3ul6sPR6qU4XVCOI3tDDXgvhgF6SQG
-         n10ix4qfFx+qAvU4XHjm3zpvwLR9N/FqS1MsByQMCwwz4N1aKH6C81c66QDnQv9FKze/
-         cjfo+YgZsKg3mzhObTqbx8tYbOwDFY/2kRS7mvQQvA+RpeEyHujBB8AOuM88t661GzAu
-         JiUZwBW31X2g0Zfv7rZHUxRGz3QDWTPI51FZbn1uOM62LY+zWaFOKfRrr8wwtcLcTTIj
-         jS6plzepqGM15KRz3j9Vl4F4oyslsOCBZji7jeqx2SGjL0pF1qGg39EDnkTzHXwlYqY2
-         kPHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733964478; x=1734569278;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8YUv9wXf1xeMulszUqTOEITp7UUlDCUgSWoOEuWnA1U=;
-        b=RWlNXaA41iomc5SwY21p2CaSTNqnCzMU4DiMyG0rpURBxsHingu7oheALBUTjsXxI1
-         kDwD/pxUpgt5VPr26rvzxAZhaMsE2EChcWnBzMQQVRO+SjqYVC4P823eYjhOj92WkUQO
-         XoGrKULeU0ODW9etS0awpwRADD3AtU2CYDwNY0Kv+F1upplg9ilLBW25JnFNLYErLTiy
-         LlRFcUvQ/scNeylb8ltTdJeFDvqZ83w+IOSkF6qcfIysnf35dpqmgfUEFtu9PgoRpLFp
-         2UJAYoC2EyIaaXdYbZjuN86BI8IHQk3kzI4kEu6t8TjH3nFFDVY3ofGXcFaXfj7BAx5r
-         PHFw==
-X-Forwarded-Encrypted: i=1; AJvYcCUjLhr3QiFVkZegGPnSiUjnJVbjkz4s3vWH9Oq7VFf4csuSz3jmPn4LcyYcT2/IIy3oyG9W9Olk8xVO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8XRPIGJ5J4ztK1R8UxRJdgCn6GLeIHuJpj3I+MT0/RJvCZk9x
-	CJuL+ZbLzUcZx9rDw4EEZMfGJyxPu6RXuQ2605Ygp6At+kRtkx+oJ7ctebXLUIU=
-X-Gm-Gg: ASbGncueciZby7MmlqkFwiVGlvCi9lQ1L6RYOzs9rimPNqU8mrs6rIilRe2UAIWWZ2e
-	UoOFJgvsNqC94m37Gmm5axKS89dTFM9pLNQi7lX/KReNFTKIyx9wZGzM5F5NO+g2NZH+szHlAcz
-	fUlgczXAtO8MF4lrCv4Yq8yigiqYze+8fU+UCI4kjjACYB29FtHKtDxUghGTUyRbJisc8eR0TOa
-	9ulu5SC4ZvFnD6mN5CM83kxhxTh4lYqMBp64r5oD8n1KM2D811dZzTT5HIEiV6YYGptQDl5
-X-Google-Smtp-Source: AGHT+IGJvDlNsdYx4DutxMjQy1pOyYpJ0oJ3EbMe3FkPnkQ/U4TLzzGqGgOOv0KPDA2qNTcXJbpfuQ==
-X-Received: by 2002:a5d:6f1e:0:b0:385:ea11:dd92 with SMTP id ffacd0b85a97d-3878768e6a0mr1224692f8f.15.1733964477946;
-        Wed, 11 Dec 2024 16:47:57 -0800 (PST)
-Received: from localhost.localdomain ([2.222.231.247])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-387824a4ef4sm2459660f8f.39.2024.12.11.16.47.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 16:47:56 -0800 (PST)
-From: Alexey Klimov <alexey.klimov@linaro.org>
-To: broonie@kernel.org,
-	konradybcio@kernel.org,
-	konrad.dybcio@oss.qualcomm.com,
-	andersson@kernel.org,
-	srinivas.kandagatla@linaro.org
-Cc: tiwai@suse.com,
-	lgirdwood@gmail.com,
-	perex@perex.cz,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dmitry.baryshkov@linaro.org,
-	linux-sound@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 14/14] ASoC: qcom: sm8250: force single channel via RX_1 output for qrb4210
-Date: Thu, 12 Dec 2024 00:47:27 +0000
-Message-ID: <20241212004727.2903846-15-alexey.klimov@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241212004727.2903846-1-alexey.klimov@linaro.org>
-References: <20241212004727.2903846-1-alexey.klimov@linaro.org>
+	s=arc-20240116; t=1733965574; c=relaxed/simple;
+	bh=Yl648KHfxYWRCrRS9pqwRnJA4UQcE6R5/Ilt+h7VHJ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=toadSyx9C6q23hISQSy6U25IYvmEDSM7n+PCcOBlzBNdA+DqQY4JzrAqmXWGjsquEH0JUlfLbeXIulcNmDsgzW4rW1zbpKJyY2MYocCjMlq61yTkMBfRPyZsWUWafbusQsLSi+hU+1SQDpRW2gCIGLHWc7EtPgHHRuPfxLwWxJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=X4hHxJwo; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733965573; x=1765501573;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Yl648KHfxYWRCrRS9pqwRnJA4UQcE6R5/Ilt+h7VHJ0=;
+  b=X4hHxJwoST8e/Sv6HUq00cxGgfguNziA0j0ibjSN1XnOFXl9ZT/g3xnX
+   4nQKxbliUYGvfs4Gm7n+jcMDP14TXicpahBEJrAEpUXL8uRPmUGZo6+m/
+   AGpNJ8QjYjyUoMuZ+yN3xqaELAHL19n4iYFohUFHmAJAzl8NQ816gUSMV
+   McIyyr41bnBmasNKgPopJoGuR7FhYeEUO8TNRYgFW1XV8POgofYnLo6XI
+   BBbNIY9TNjabDDAwvXCMnAXvtCxAM6keainlxBzr5WNskiGcy8bWjN/Us
+   2ML5IaBt3FKNbMC+OnD93e4vtbLKT1rA+DYytYt/2veZ5FzJMH4Shggev
+   A==;
+X-CSE-ConnectionGUID: IHTq6V5lQWeaYJosxrOAog==
+X-CSE-MsgGUID: jaBqR3JNSDW3qKPexFYRsQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11283"; a="33697512"
+X-IronPort-AV: E=Sophos;i="6.12,227,1728975600"; 
+   d="scan'208";a="33697512"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Dec 2024 17:06:12 -0800
+X-CSE-ConnectionGUID: BneZOs//QjCf+Tq5AcwdVA==
+X-CSE-MsgGUID: 7snD8UFhT4Ornm4unWxTRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,227,1728975600"; 
+   d="scan'208";a="96446682"
+Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
+  by fmviesa010.fm.intel.com with ESMTP; 11 Dec 2024 17:06:08 -0800
+Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tLXeY-0007HB-0E;
+	Thu, 12 Dec 2024 01:06:06 +0000
+Date: Thu, 12 Dec 2024 09:05:54 +0800
+From: kernel test robot <lkp@intel.com>
+To: Herve Codina <herve.codina@bootlin.com>, Andrew Davis <afd@ti.com>,
+	Ayush Singh <ayush@beagleboard.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 7/7] of: unittest: Add tests for export symbols
+Message-ID: <202412120806.IiuXJ0WZ-lkp@intel.com>
+References: <20241209151830.95723-8-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241209151830.95723-8-herve.codina@bootlin.com>
 
-In case of mono configurations we need to enforce single channel
-output. This is required for audio playback on QRB4210 RB2 board
-since it has only one WSA8815 amplifier.
-Implement data variant for qrb4210-rb2-sndcard with
-sm8250_qrb4210_fixup_params() that does that.
+Hi Herve,
 
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
----
- sound/soc/qcom/sm8250.c | 28 +++++++++++++++++++++++++---
- 1 file changed, 25 insertions(+), 3 deletions(-)
+kernel test robot noticed the following build errors:
 
-diff --git a/sound/soc/qcom/sm8250.c b/sound/soc/qcom/sm8250.c
-index 45e0c33fc3f3..b54acaee8dd1 100644
---- a/sound/soc/qcom/sm8250.c
-+++ b/sound/soc/qcom/sm8250.c
-@@ -23,8 +23,23 @@ struct sm8250_snd_data {
- 	struct sdw_stream_runtime *sruntime[AFE_PORT_MAX];
- 	struct snd_soc_jack jack;
- 	bool jack_setup;
-+	void (*sndcard_fixup_params)(struct snd_interval *channels,
-+				     struct snd_soc_dai *cpu_dai);
- };
- 
-+static void sm8250_qrb4210_fixup_params(struct snd_interval *channels,
-+					struct snd_soc_dai *cpu_dai)
-+{
-+	/* QRB410 RB2 board has only one WSA8815 amplifier */
-+	switch (cpu_dai->id) {
-+	case RX_CODEC_DMA_RX_1:
-+		channels->min = channels->max = 1;
-+		break;
-+	default:
-+		break;
-+	}
-+}
-+
- static int sm8250_snd_init(struct snd_soc_pcm_runtime *rtd)
- {
- 	struct sm8250_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
-@@ -35,14 +50,19 @@ static int sm8250_snd_init(struct snd_soc_pcm_runtime *rtd)
- static int sm8250_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
- 				     struct snd_pcm_hw_params *params)
- {
-+	struct sm8250_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
- 	struct snd_interval *rate = hw_param_interval(params,
- 					SNDRV_PCM_HW_PARAM_RATE);
- 	struct snd_interval *channels = hw_param_interval(params,
- 					SNDRV_PCM_HW_PARAM_CHANNELS);
-+	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
- 
- 	rate->min = rate->max = 48000;
- 	channels->min = channels->max = 2;
- 
-+	if (data->sndcard_fixup_params)
-+		data->sndcard_fixup_params(channels, cpu_dai);
-+
- 	return 0;
- }
- 
-@@ -168,6 +188,7 @@ static int sm8250_platform_probe(struct platform_device *pdev)
- 	if (!data)
- 		return -ENOMEM;
- 
-+	data->sndcard_fixup_params = device_get_match_data(&pdev->dev);
- 	card->dev = dev;
- 	dev_set_drvdata(dev, card);
- 	snd_soc_card_set_drvdata(card, data);
-@@ -181,9 +202,10 @@ static int sm8250_platform_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id snd_sm8250_dt_match[] = {
--	{.compatible = "qcom,sm8250-sndcard"},
--	{.compatible = "qcom,qrb4210-rb2-sndcard"},
--	{.compatible = "qcom,qrb5165-rb5-sndcard"},
-+	{.compatible = "qcom,sm8250-sndcard", .data = NULL },
-+	{.compatible = "qcom,qrb4210-rb2-sndcard",
-+	 .data = sm8250_qrb4210_fixup_params },
-+	{.compatible = "qcom,qrb5165-rb5-sndcard", .data = NULL },
- 	{}
- };
- 
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.13-rc2 next-20241211]
+[cannot apply to char-misc/char-misc-testing char-misc/char-misc-next char-misc/char-misc-linus]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina/dt-bindings-Add-support-for-export-symbols-node/20241209-232324
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241209151830.95723-8-herve.codina%40bootlin.com
+patch subject: [PATCH 7/7] of: unittest: Add tests for export symbols
+config: arc-randconfig-001-20241210 (https://download.01.org/0day-ci/archive/20241212/202412120806.IiuXJ0WZ-lkp@intel.com/config)
+compiler: arc-elf-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241212/202412120806.IiuXJ0WZ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412120806.IiuXJ0WZ-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/of/unittest.c: In function 'of_unittest':
+>> drivers/of/unittest.c:4347:9: error: implicit declaration of function 'of_unittest_overlay_export_symbols'; did you mean 'of_unittest_overlay_high_level'? [-Werror=implicit-function-declaration]
+    4347 |         of_unittest_overlay_export_symbols();
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         |         of_unittest_overlay_high_level
+   cc1: some warnings being treated as errors
+
+
+vim +4347 drivers/of/unittest.c
+
+  4297	
+  4298	static int __init of_unittest(void)
+  4299	{
+  4300		struct device_node *np;
+  4301		int res;
+  4302	
+  4303		pr_info("start of unittest - you will see error messages\n");
+  4304	
+  4305		/* Taint the kernel so we know we've run tests. */
+  4306		add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
+  4307	
+  4308		/* adding data for unittest */
+  4309		res = unittest_data_add();
+  4310		if (res)
+  4311			return res;
+  4312		if (!of_aliases)
+  4313			of_aliases = of_find_node_by_path("/aliases");
+  4314	
+  4315		np = of_find_node_by_path("/testcase-data/phandle-tests/consumer-a");
+  4316		if (!np) {
+  4317			pr_info("No testcase data in device tree; not running tests\n");
+  4318			return 0;
+  4319		}
+  4320		of_node_put(np);
+  4321	
+  4322		of_unittest_check_tree_linkage();
+  4323		of_unittest_check_phandles();
+  4324		of_unittest_find_node_by_name();
+  4325		of_unittest_dynamic();
+  4326		of_unittest_parse_phandle_with_args();
+  4327		of_unittest_parse_phandle_with_args_map();
+  4328		of_unittest_printf();
+  4329		of_unittest_property_string();
+  4330		of_unittest_property_copy();
+  4331		of_unittest_changeset();
+  4332		of_unittest_changeset_prop();
+  4333		of_unittest_parse_interrupts();
+  4334		of_unittest_parse_interrupts_extended();
+  4335		of_unittest_dma_get_max_cpu_address();
+  4336		of_unittest_parse_dma_ranges();
+  4337		of_unittest_pci_dma_ranges();
+  4338		of_unittest_bus_ranges();
+  4339		of_unittest_bus_3cell_ranges();
+  4340		of_unittest_reg();
+  4341		of_unittest_translate_addr();
+  4342		of_unittest_match_node();
+  4343		of_unittest_platform_populate();
+  4344		of_unittest_overlay();
+  4345		of_unittest_lifecycle();
+  4346		of_unittest_pci_node();
+> 4347		of_unittest_overlay_export_symbols();
+
 -- 
-2.45.2
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
