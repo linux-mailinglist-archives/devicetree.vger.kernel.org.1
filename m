@@ -1,115 +1,132 @@
-Return-Path: <devicetree+bounces-130142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C6E79EE177
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 09:40:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CB719EE17B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 09:41:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D52016588E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:40:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CE63165AEC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:41:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3442E20B21D;
-	Thu, 12 Dec 2024 08:39:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8CA20C479;
+	Thu, 12 Dec 2024 08:41:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="wdV6OOZQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A95259496;
-	Thu, 12 Dec 2024 08:39:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B166259496;
+	Thu, 12 Dec 2024 08:41:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733992799; cv=none; b=tI0jH5PVQaomxQunGjf5eTG8zwP1KOV7jYiDngziAjphW6D0GJvZh6kwqNl9smOq5fKnSgbEJCgwn1GkU4sl5cxS7oCfdauw3H3417wOKnOARPPzEOKdv+9jhH18JLiTWTUt3ZF3mSRp+4Wk67RbNWYJZj/lSNc+C9SQCVMLznU=
+	t=1733992884; cv=none; b=H0iyrwi1Kw8otuWPrnzfm96imiASw6OPO93BdrYDP/W56YYIesSeHQCXDNj+wonjSP0pwauClAvPRzKc+p8aJPYseuNdcPSMNLyqukH3OetfYvGdIRB3TU02dLvOskzcdK3rddCuJSYPh94kfO9WLFk2x4t/bo282rsugJ1v9RE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733992799; c=relaxed/simple;
-	bh=h5oj/YCgadl4DNWPD+FEaJ5jCAxC5cbl4IGm01tjhn0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q7qc7S7gdrvPgjUKBf6U3Cq35fzG2Kcraix2RJ3pfTmVDip5ojL0jKYmCAFKt37bCwTKqCUDVip5rkK/fyQMxGZ7j/FVG6peXuXP4nD4ATpBKVf4WtGuJTf4FhVaUd6AX0w967iGptInb8PJYE7HkD1kXOr3hm0sl7tr/vTktUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4afe6a8d2e1so195733137.1;
-        Thu, 12 Dec 2024 00:39:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733992795; x=1734597595;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kswEXNgu6h6p41UQ2kpE02FUHTphvDII2iRCuGcExDo=;
-        b=TDmtPIrr8pSBnCElPIAduXE4yiO8FGEAnHXCVk4GyhoVYPKm7DIjCrq4OsmJw0ip1C
-         SZXmQoLs/fi7n6u2b90IET2SQUoC03x03BaJYQ8rSnPfI7Wetgi/ZGW29MNq+o3k31n3
-         +Y8p72RnnZ7LWX5loJqIrLqgzbqadq8Foc446DPcWOzmAgclc2MpISGXEMO5QyaGNqRA
-         QFVLCM3MNVeENR2DLMDtaO/yDA4rjUTMmQ69Y0+2Y0y8913+t6J8HN8GhcLRw5YzCIsZ
-         UIBwBvr3oYwhZZMqt2MQymmg35MEQoiboJfbuC/bbOkvEq2MeYLYICCaF54fnDu0wF18
-         YOHg==
-X-Forwarded-Encrypted: i=1; AJvYcCVMuQvf8PQwcAYSITb1bxnYwkXnB6E3wDXhrRuBgYrOaZSNk4jq3moZl1mrbxQf+zW8K4MfUDO+ILRgUPr0NwQsHFY=@vger.kernel.org, AJvYcCX8tW39YonRjAy1nC7LuDndfI4E9+v/KCm/m6ZGZ+LBMoq3H5V7wstsVh/sOmJEvhMujfmlelGkOqTR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwqIBWcG4jV+Dn6VAcDJhshJ4kYJ1xMmAuqB1eGbGbZnCJjBPa
-	pAZBKAnKSiuMx81EwNmSB3ADESIMrg5Y9pe04W6w71IbRa0CHdKWXU+PEnIBzb8=
-X-Gm-Gg: ASbGnctqRablWfgL9l3vSBVV94a8GZZk3lU0Df/OwroNPJB2oZMtYDRu/aZ2c6oL8lu
-	wyppzYxN560Ioy3H88ne61XMbFX2lOyIu0xbKMsQ0VUx0ArnNbu9NOjqBf5uaVqQwJN6fSr/8MX
-	99kim74gSHm6XAKD/AVv76k/eVktql0tA4ZGx8J9BC5KDD+cnRgfNtiH43psNayIpMH1KbQvKzJ
-	YQZOGwr/sYmQefTo+hzvNe3m/ikFZIlufg+tMc3PX3h8dVs995J4D7jpEdfu1mGaiJCvqxVHVKw
-	n1emhOaui9MEibzl+Ik=
-X-Google-Smtp-Source: AGHT+IEf9N5xWqNi6Dm7ACbkRg9H7cLhPAW9YEUKW9A6W+2NmzbU49/qUDTXJYwnyCQQhtkuVSZKUA==
-X-Received: by 2002:a05:6102:4694:b0:4af:fa96:1ff with SMTP id ada2fe7eead31-4b248001697mr1974172137.6.1733992795044;
-        Thu, 12 Dec 2024 00:39:55 -0800 (PST)
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4afee7ebc1asm1211280137.26.2024.12.12.00.39.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Dec 2024 00:39:54 -0800 (PST)
-Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4aff1c57377so213014137.0;
-        Thu, 12 Dec 2024 00:39:54 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWvQCaj8J5lQ3TLfvaCjPvL3weGZbEieYGBaNyEHx6u0jUN3IilSdLdpmqWbtIYkeCiw1++MrNJ1M21Er6naK9PveY=@vger.kernel.org, AJvYcCWvpSdgvCDOVPdxvuKX/VGa6HTovhBsR27GpphyvMiM6HIVmmGCEejMr5aut0dxRhddDBGVdssR7aZP@vger.kernel.org
-X-Received: by 2002:a67:fa47:0:b0:4af:57df:8697 with SMTP id
- ada2fe7eead31-4b24821132bmr2299129137.10.1733992794465; Thu, 12 Dec 2024
- 00:39:54 -0800 (PST)
+	s=arc-20240116; t=1733992884; c=relaxed/simple;
+	bh=1IvYEZ0rjs9KMpfuLglLhjeENQ/twygsYDNbWfg7+bU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B6oi4GoVA+gyr7M5VL1imIIVueK9gqVlSg48pG1ppAZyknKXZBJVe0tCqdCHtkLRn9VMjtA0I2LLekFURpJGuO0KtPJYWX5sreAmfNdQwr3m7nKgoX7UwI5pojycoM97H6pQyyMPlDq2IFHHsZtPQ8Pqglv/mi4zjgXvTkktJz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=wdV6OOZQ; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (unknown [IPv6:2001:b07:6462:5de2:459e:1ee6:26ea:2d31])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A35FB316;
+	Thu, 12 Dec 2024 09:40:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1733992846;
+	bh=1IvYEZ0rjs9KMpfuLglLhjeENQ/twygsYDNbWfg7+bU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=wdV6OOZQGor1fhNe6Twa/rvQ/Ka2Kvatl33g5DIKFds2+vkrY7Wg+pWiVy9t4xyzx
+	 AWKeczEhoTU9bxiTBFWi+9x1iU+n9101WuMXAmpFAy68UFCNNmlXK4VYwxUkQcKTDy
+	 k2AP/E35aURQTpNQfElqc38Aw2zSCjV+8lDR8zPo=
+Date: Thu, 12 Dec 2024 09:41:16 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: keke.li@amlogic.com, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com, 
+	laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com
+Subject: Re: [PATCH v4 02/10] media: platform: Add c3 mipi csi2 driver
+Message-ID: <5sen6lv5xg4hjdc4j2l6k5iywqpllbutoaebyln74aeuplawtu@nmpmzgwkkgih>
+References: <20241205-c3isp-v4-0-cb1868be0105@amlogic.com>
+ <20241205-c3isp-v4-2-cb1868be0105@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241023154643.4025941-1-niklas.soderlund+renesas@ragnatech.se> <20241023154643.4025941-2-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20241023154643.4025941-2-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 12 Dec 2024 09:39:42 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVvF8Qv75mrcOg_O07NDp1SrH1p9AZ3BwAY4b+QG5YmQA@mail.gmail.com>
-Message-ID: <CAMuHMdVvF8Qv75mrcOg_O07NDp1SrH1p9AZ3BwAY4b+QG5YmQA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: renesas: r8a779a0: Remove address- and
- size-cells from AVB[1-5]
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241205-c3isp-v4-2-cb1868be0105@amlogic.com>
 
-On Wed, Oct 23, 2024 at 5:47=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> When describing the PHYs on the Falcon Ethernet breakout board mdio
-> nodes will be needed to describe the connections, and each mdio node
-> will need to contain these two properties instead. This will make the
-> address-cells and size-cells described in the base SoC include file
-> redundant and they will produce warnings, remove them.
+Hi Keke,
+  a question for Laurent and Sakari
+
+On Thu, Dec 05, 2024 at 05:04:28PM +0800, Keke Li via B4 Relay wrote:
+> From: Keke Li <keke.li@amlogic.com>
 >
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
+> This driver is used to receive mipi data from image sensor.
+>
+> Reviewed-by: Daniel Scally <dan.scally@ideasonboard.com>
+> Signed-off-by: Keke Li <keke.li@amlogic.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.14.
+[snip]
 
-Gr{oetje,eeting}s,
+> +
+> +static int c3_mipi_csi_configure_clocks(struct csi_device *csi)
+> +{
+> +	const struct csi_info *info = csi->info;
+> +	int ret;
+> +	u32 i;
+> +
+> +	for (i = 0; i < info->clock_num; i++)
+> +		csi->clks[i].id = info->clocks[i];
+> +
+> +	ret = devm_clk_bulk_get(csi->dev, info->clock_num, csi->clks);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for (i = 0; i < info->clock_num; i++) {
+> +		if (!info->clock_rates[i])
+> +			continue;
+> +		ret = clk_set_rate(csi->clks[i].clk, info->clock_rates[i]);
+> +		if (ret) {
+> +			dev_err(csi->dev, "Failed to set %s rate %u\n", info->clocks[i],
+> +				info->clock_rates[i]);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
 
-                        Geert
+[snip]
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+> +
+> +static const struct csi_info c3_mipi_csi_info = {
+> +	.clocks = {"vapb", "phy0"},
+> +	.clock_rates = {0, 200000000},
+> +	.clock_num = 2
+> +};
+> +
+> +static const struct of_device_id c3_mipi_csi_of_match[] = {
+> +	{ .compatible = "amlogic,c3-mipi-csi2",
+> +	  .data = &c3_mipi_csi_info,
+> +	},
+> +	{ },
+> +};
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+All the drivers in this patch series implement the same pattern when
+it comes to handling clock. There's a list of clock providers in the
+driver associated with a clock frequency. The driver bulk_get the
+clocks and set_rate() using the per-compatible info table.
+
+Do you think this should rather come from dts using the
+assigned-clocks and assigned-clock-rates properties ?
 
