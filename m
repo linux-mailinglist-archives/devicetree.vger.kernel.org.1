@@ -1,238 +1,205 @@
-Return-Path: <devicetree+bounces-130107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 863459EE035
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:26:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39D489EE03B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:29:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2253E2812E0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 07:26:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AF6E281497
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 07:29:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3126020ADF3;
-	Thu, 12 Dec 2024 07:25:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0304E20ADFC;
+	Thu, 12 Dec 2024 07:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lR0unn6B"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J4NN+21D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5684945027;
-	Thu, 12 Dec 2024 07:25:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1669F45027;
+	Thu, 12 Dec 2024 07:29:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733988357; cv=none; b=q1gqh2povUrxy8qIUuv8r+BRNTzlLy4tYAQ1gA8HnFcgHzWPORT4uruzHTUL4ucCcdDv2GogZ8zaCMUAu8P6WkmJznabPtgFIs8TTViyZax6wXd2ki6F+mtocxMJLEiJnt2+tnzeC3syYxLiEIkycrGyVvS6+ENHp66WN7HRKT0=
+	t=1733988576; cv=none; b=ApWp8sAEkXGqp0BJz9SUN5vLSeamZR6m9DKmkxqLS01NnjOvFB2bHWj1Q4Ij97Jfo+u/ECwDJvaSMzg4bOemovLRT05nPlT0Po/syCOJfpqeEvboPUTRMyXoI+Ts59NPxe1zDkLkoZGcZz6wsOa0eOb/fGMAfxKc7bSWCLpo6IA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733988357; c=relaxed/simple;
-	bh=WQgesphKPZtQtDkSSaKmZdO5cVGMF3Bi1WZp8uEHTrA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U5dz/j8Mpwcaprj6l3dFdK7WhMrgHiLYHv+k7QEmC6HckwFxns/knSX554Pp0ll+nQoJkajWsidYg6yyWvX6al/Cs4DlclvWKlnbZ4jp9QKExL5HoS3HoGdSn+BCbUnB3j4ZIDbgOQCEqBUD+lI6+uuStc7N7u77Eo5v3fNTbkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lR0unn6B; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733988355; x=1765524355;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=WQgesphKPZtQtDkSSaKmZdO5cVGMF3Bi1WZp8uEHTrA=;
-  b=lR0unn6Byw3WyKTjob4qgFQipqm0cE3C6YdpY1rO8CykV9gvgwRfJGAo
-   TuiQ5mQTV1pXvMRjoIWMAiOsqTl2qRHDkDzCkJqSjpFsHQE7+Tvowqaz/
-   6dH0yuPXRFsP0k4vxlmgQREZPIvBf6x0pKejZcnufa+t80hr3v42cUBD4
-   OOkp4Xd3ov5iB4NLwVgVlHM9y5R4EqeppkIzgwXzArduCXT8BoJjXH0Wc
-   mq7/hqVxP1LEPyJ72Y/RdiV12GmAIkboomzxslHQRGpJS5HuopeablgY6
-   Zhcpj9n64nnnnKJJpgaGWhHdUCKMGQ9csYqbN9wK0R+lNrUxpWYXsM1GF
-   A==;
-X-CSE-ConnectionGUID: 77A/qfrDRLmMyXtZnPxQ0w==
-X-CSE-MsgGUID: WMeSDTAUSuKI/NvzPU913g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11283"; a="34313112"
-X-IronPort-AV: E=Sophos;i="6.12,227,1728975600"; 
-   d="scan'208";a="34313112"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Dec 2024 23:25:49 -0800
-X-CSE-ConnectionGUID: O5T98L/HQj+9++OChIET0w==
-X-CSE-MsgGUID: pKrY4UCpSwyigNxg5j2Edw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="119391224"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Dec 2024 23:25:43 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id 3E24011F81D;
-	Thu, 12 Dec 2024 09:25:38 +0200 (EET)
-Date: Thu, 12 Dec 2024 07:25:38 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] media: v4l: fwnode: Parse MiPI DisCo for C-PHY
- line-orders
-Message-ID: <Z1qP8uY72kw9uX2E@kekkonen.localdomain>
-References: <20241121134108.2029925-1-niklas.soderlund+renesas@ragnatech.se>
- <20241121134108.2029925-3-niklas.soderlund+renesas@ragnatech.se>
+	s=arc-20240116; t=1733988576; c=relaxed/simple;
+	bh=5dLiOhUKaCVKsArGKXDPWzoqvg9T37jPkUsIDJWiRg8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=qD7GejuokevEGHjZT1KnjZ8tl/LwCzi5IQH3LPdDY+dbfH+gJuHYkko3QsHRWkynqEs0aaGGBvqfTQ4PRhdUQxav/c+uhGjYim9fExK2phut+1nWEzEkJ1Ebl4s84Ye5w7Bv5lCepF6Td0WFyynqNhE+RpbicoJ3K4kKqkzCRAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J4NN+21D; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BC2s8jn001463;
+	Thu, 12 Dec 2024 07:29:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OybyDqhRyS7zewunA4/2FtQ2IjJn/DxV8X7ZYsb+0kA=; b=J4NN+21DBOJ/yViK
+	lCihi9bLjtZXqaPknnlYkZODfkKmxT5YOpkAYxcrISvpmIPTBHZRBRj3rM/8IGZN
+	KQ3wlMbmecoNM0E4eGOxafUY5BsnQMb0C+LEl9JuUF3j9hpqzqt62RM+FYACp/7A
+	rWT5bHdY4zXOHVlu0LoCEyfber9WEqLhqPz576QjqOg8lTUx31CamM5EIi1VDKmR
+	zBoje+ubA2ckM1+0uZ0jpWP+uopRZKzMBdma/sfRi6cOxUJ5d4O1Z5JJePEiXZ7O
+	fDk2xIcKMpkenTNTU2rWCiBbhcbUUdaJfSmI6KQnI9YyVmiy25qjqoF/W/+7Vqi7
+	lPMKSg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fqes0js7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Dec 2024 07:29:26 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BC7TPrt001979
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Dec 2024 07:29:25 GMT
+Received: from [10.253.8.225] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Dec
+ 2024 23:29:19 -0800
+Message-ID: <16d109d8-d1be-4ecb-ba25-8e21e9d48dad@quicinc.com>
+Date: Thu, 12 Dec 2024 15:29:16 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: phy: qcom,qmp-pcie: add optional current
+ load properties
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        "Krzysztof
+ Kozlowski" <krzk@kernel.org>
+CC: <vkoul@kernel.org>, <kishon@kernel.org>, <dmitry.baryshkov@linaro.org>,
+        <abel.vesa@linaro.org>, <neil.armstrong@linaro.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_qianyu@quicinc.com>
+References: <20241204105249.3544114-1-quic_ziyuzhan@quicinc.com>
+ <20241204105249.3544114-2-quic_ziyuzhan@quicinc.com>
+ <qvjtwilukxbeaxnbyzfkdsfkktm6p4yv3sgx3rbugpb6qkcbjy@rohvixslizhh>
+ <20241211062053.vxdpovlmetvyx3za@thinkpad>
+ <33697bd9-02f4-4a9a-b8c0-4930d7fdaee2@kernel.org>
+ <20241211082404.p7fbmhooikmipxvm@thinkpad>
+ <3c7ddb08-38db-44b3-a7a7-ec7b270a408f@kernel.org>
+ <20241211115034.4hrpmninbx5uryev@thinkpad>
+From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+In-Reply-To: <20241211115034.4hrpmninbx5uryev@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241121134108.2029925-3-niklas.soderlund+renesas@ragnatech.se>
-
-Hej Niklas,
-
-On Thu, Nov 21, 2024 at 02:41:06PM +0100, Niklas Söderlund wrote:
-> Extend the fwnode parsing to validate and fill in the CSI-2 C-PHY
-> line-orders order properties as defined in MIPI Discovery and
-> Configuration (DisCo) Specification for Imaging.
-> 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> ---
-> * Changes since v1
-> - Use array instead of switch to get printable line order string for
->   debug output.
-> - Wrap lines harder for 80 chars instead of 100, but keep string formats
->   on same line even if they break the 80 chars.
-> ---
->  drivers/media/v4l2-core/v4l2-fwnode.c | 43 ++++++++++++++++++++++++++-
->  include/media/v4l2-mediabus.h         | 21 +++++++++++++
->  2 files changed, 63 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/v4l2-core/v4l2-fwnode.c b/drivers/media/v4l2-core/v4l2-fwnode.c
-> index f19c8adf2c61..bb5ea3e00414 100644
-> --- a/drivers/media/v4l2-core/v4l2-fwnode.c
-> +++ b/drivers/media/v4l2-core/v4l2-fwnode.c
-> @@ -127,7 +127,7 @@ static int v4l2_fwnode_endpoint_parse_csi2_bus(struct fwnode_handle *fwnode,
->  {
->  	struct v4l2_mbus_config_mipi_csi2 *bus = &vep->bus.mipi_csi2;
->  	bool have_clk_lane = false, have_data_lanes = false,
-> -		have_lane_polarities = false;
-> +		have_lane_polarities = false, have_line_orders = false;
->  	unsigned int flags = 0, lanes_used = 0;
->  	u32 array[1 + V4L2_MBUS_CSI2_MAX_DATA_LANES];
->  	u32 clock_lane = 0;
-> @@ -197,6 +197,17 @@ static int v4l2_fwnode_endpoint_parse_csi2_bus(struct fwnode_handle *fwnode,
->  		have_lane_polarities = true;
->  	}
->  
-> +	rval = fwnode_property_count_u32(fwnode, "line-orders");
-> +	if (rval > 0) {
-> +		if (rval != num_data_lanes) {
-> +			pr_warn("invalid number of line-orders entries (need %u, got %u)\n",
-> +				num_data_lanes, rval);
-> +			return -EINVAL;
-> +		}
-> +
-> +		have_line_orders = true;
-> +	}
-> +
->  	if (!fwnode_property_read_u32(fwnode, "clock-lanes", &v)) {
->  		clock_lane = v;
->  		pr_debug("clock lane position %u\n", v);
-> @@ -250,6 +261,36 @@ static int v4l2_fwnode_endpoint_parse_csi2_bus(struct fwnode_handle *fwnode,
->  		} else {
->  			pr_debug("no lane polarities defined, assuming not inverted\n");
->  		}
-> +
-> +		if (have_line_orders) {
-> +			fwnode_property_read_u32_array(fwnode,
-> +						       "line-orders", array,
-> +						       num_data_lanes);
-> +
-> +			for (i = 0; i < num_data_lanes; i++) {
-> +				static const char * const orders[] = {
-> +					"ABC", "ACB", "BAC", "BCA", "CAB", "CBA"
-> +				};
-> +
-> +				if (array[i] > 5) {
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: WpBSgAiqzoP_c1xrOTCrxXhE9a0ibP_a
+X-Proofpoint-ORIG-GUID: WpBSgAiqzoP_c1xrOTCrxXhE9a0ibP_a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
+ lowpriorityscore=0 impostorscore=0 clxscore=1011 malwarescore=0
+ mlxlogscore=999 priorityscore=1501 bulkscore=0 phishscore=0 mlxscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412120050
 
 
-I'd use:
+åœ¨ 12/11/2024 7:50 PM, Manivannan Sadhasivam å†™é“:
+> On Wed, Dec 11, 2024 at 10:52:11AM +0100, Krzysztof Kozlowski wrote:
+>> On 11/12/2024 09:24, Manivannan Sadhasivam wrote:
+>>> On Wed, Dec 11, 2024 at 09:09:18AM +0100, Krzysztof Kozlowski wrote:
+>>>> On 11/12/2024 07:20, Manivannan Sadhasivam wrote:
+>>>>> On Thu, Dec 05, 2024 at 11:23:11AM +0100, Krzysztof Kozlowski wrote:
+>>>>>> On Wed, Dec 04, 2024 at 06:52:47PM +0800, Ziyue Zhang wrote:
+>>>>>>> On some platforms, the power supply for PCIe PHY is not able to provide
+>>>>>>> enough current when it works in LPM mode. Hence, PCIe PHY driver needs to
+>>>>>>> set current load to vote the regulator to HPM mode.
+>>>>>>>
+>>>>>>> Document the current load as properties for each power supply PCIe PHY
+>>>>>>> required, namely vdda-phy-max-microamp, vdda-pll-max-microamp and
+>>>>>>> vdda-qref-max-microamp, respectively.PCIe PHY driver should parse them to
+>>>>>>> set appropriate current load during PHY power on.
+>>>>>>>
+>>>>>>> This three properties are optional and not mandatory for those platforms
+>>>>>>> that PCIe PHY can still work with power supply.
+>>>>>>
+>>>>>> Uh uh, so the downstream comes finally!
+>>>>>>
+>>>>>> No sorry guys, use existing regulator bindings for this.
+>>>>>>
+>>>>> Maybe they got inspired by upstream UFS bindings?
+>>>>> Documentation/devicetree/bindings/ufs/ufs-common.yaml:
+>>>>>
+>>>>> vcc-max-microamp
+>>>>> vccq-max-microamp
+>>>>> vccq2-max-microamp
+>>>> And it is already an ABI, so we cannot do anything about it.
+>>>>
+>>>>> Regulator binding only describes the min/max load for the regulators and not
+>>>> No, it exactly describes min/max consumers can use. Let's quote:
+>>>> "largest current consumers may set"
+>>>> It is all about consumers.
+>>>>
+>>>>> consumers. What if the consumers need to set variable load per platform? Should
+>>>> Then each platform uses regulator API or regulator bindings to set it? I
+>>>> don't see the problem here.
+>>>>
+>>>>> they hardcode the load in driver? (even so, the load should not vary for each
+>>>>> board).
+>>>> The load must vary per board, because regulators vary per board. Of
+>>>> course in practice most designs could be the same, but regulators and
+>>>> their limits are always properties of the board, not the SoC.
+>>>>
+>>> How the consumer drivers are supposed to know the optimum load?
+>>>
+>>> I don't see how the consumer drivers can set the load without hardcoding the
+>>> values. And I could see from UFS properties that each board has different
+>>> values.
+>>
+>> Drivers do not need to know, it's not the driver's responsibility. If
+> What? I think there is a misunderstanding here. The intention of these proposed
+> properties is to allow the PHY driver to set the required load of the regulator
+> using regulator_set_load() API. As per the API description:
+>
+> 'Consumer devices notify their supply regulator of the maximum power they will
+> require (can be taken from device datasheet in the power consumption tables)
+> when they change operational status and hence power state'.
+>
+> IIUC, your concern is that the devicetree shouldn't specify the load for each
+> consumer but just the min/max load of the regulator. And the consumer driver
+> should figure out the load and set it accordingly.
+>
+> Correct me if I'm wrong.
+>
+> In that case, I was wondering if the load set by the driver is going to vary
+> between platforms (boards) or not (question to Ziyue Zhang). If it varies
+> between SoC, then we can hardcode the load in driver based on compatible.
 
-				if (... >= ARRAY_SIZE(order)) {
+Hi Mani, Krzystof
 
-I can do the change while applying...
+Now we set  the current to 165mA which is the max power supply the regulator
+can provide, so this is platform(boards) related. But we think PCIe PHY needs
+to set the current value we need, which is soc related.
 
-> +					pr_warn("lane %u invalid line-order assuming ABC (got %u)\n",
-> +						i, array[i]);
-> +					bus->line_orders[i] =
-> +						V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC;
-> +					continue;
-> +				}
-> +
-> +				bus->line_orders[i] = array[i];
-> +				pr_debug("lane %u line order %s", i,
-> +					 orders[array[i]]);
-> +			}
-> +		} else {
-> +			for (i = 0; i < num_data_lanes; i++)
-> +				bus->line_orders[i] =
-> +					V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC;
-> +
-> +			pr_debug("no line orders defined, assuming ABC\n");
-> +		}
->  	}
->  
->  	return 0;
-> diff --git a/include/media/v4l2-mediabus.h b/include/media/v4l2-mediabus.h
-> index 5bce6e423e94..e7f019f68c8d 100644
-> --- a/include/media/v4l2-mediabus.h
-> +++ b/include/media/v4l2-mediabus.h
-> @@ -73,6 +73,24 @@
->  
->  #define V4L2_MBUS_CSI2_MAX_DATA_LANES		8
->  
-> +/**
-> + * enum v4l2_mbus_csi2_cphy_line_orders_type - CSI-2 C-PHY line order
-> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC: C-PHY line order ABC (default)
-> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ACB: C-PHY line order ACB
-> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BAC: C-PHY line order BAC
-> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BCA: C-PHY line order BCA
-> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CAB: C-PHY line order CAB
-> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CBA: C-PHY line order CBA
-> + */
-> +enum v4l2_mbus_csi2_cphy_line_orders_type {
-> +	V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC,
-> +	V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ACB,
-> +	V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BAC,
-> +	V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BCA,
-> +	V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CAB,
-> +	V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CBA,
-> +};
-> +
->  /**
->   * struct v4l2_mbus_config_mipi_csi2 - MIPI CSI-2 data bus configuration
->   * @flags: media bus (V4L2_MBUS_*) flags
-> @@ -81,6 +99,8 @@
->   * @num_data_lanes: number of data lanes
->   * @lane_polarities: polarity of the lanes. The order is the same of
->   *		   the physical lanes.
-> + * @line_orders: line order of the data lanes. The order is the same of the
-> + *		   physical lanes.
->   */
->  struct v4l2_mbus_config_mipi_csi2 {
->  	unsigned int flags;
-> @@ -88,6 +108,7 @@ struct v4l2_mbus_config_mipi_csi2 {
->  	unsigned char clock_lane;
->  	unsigned char num_data_lanes;
->  	bool lane_polarities[1 + V4L2_MBUS_CSI2_MAX_DATA_LANES];
-> +	enum v4l2_mbus_csi2_cphy_line_orders_type line_orders[V4L2_MBUS_CSI2_MAX_DATA_LANES];
->  };
->  
->  /**
+BRs
+Ziyue
 
--- 
-Med vänliga hälsingar,
-
-Sakari Ailus
+>> If
+>> these are constraints per board, then regulator properties apply and
+>> there is no difference between this "vdd-max-microamp = 10" and
+>> "regulator-max-microamp".
+>>
+> There is a difference. Regulator properties are just threshold. So unless the
+> consumer sets the load, they won't take effect. I think you got confused by the
+> 'max' wording in the proposed properties?
+>
+>> If this varies runtime, then your property is already not suitable and
+>> very limited and you should use OPP table.
+>>
+> The consumer driver may request different loads based on their operational
+> state.
+>
+> - Mani
+>
 
