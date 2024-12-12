@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-130382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3287B9EF423
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 18:06:05 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7E2B9EF4E4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 18:12:07 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E93328C29D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 17:06:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1EDE18941F9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 16:55:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F9EC2253EE;
-	Thu, 12 Dec 2024 17:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1D91239BD4;
+	Thu, 12 Dec 2024 16:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CNomjwdY"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lHgFMnCa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE0E4223E99
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 17:04:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B2C7239BC3
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 16:47:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734023053; cv=none; b=T6wllRpP/CHN8tekLoJDt5pjTVel1o1rlIbwkrVtLafxfa6EMXfsRJif/MQkLNBwUOL8OhMAYKiENHOhs/HIUJfo3AM8lb1bpPBDkKJEvuoAew39B+Zc3zs/JMxNNdHarbAbSESjkySTq/qMrRuGkXX0cpZTy8GGcP63nqy3p88=
+	t=1734022027; cv=none; b=SewDsDsttT6Con/5QM/BfMnmtUH0DXQz09DrEHzlj0nqrpHSbFqv20wjGSnrbi5BHHbrQgiX+Wtkj1yOVPW4neoQMlm5/RXPoEt5DjGqtO5X9swuk7eUsPxR+QDd2Bxl2SA9ugSQwkoxgsluFTDg3ukGwPUY2rjHljsL4sQddLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734023053; c=relaxed/simple;
-	bh=rBjwzO53CbAB9t5GEYSOjc+7gazVend8nDzOa2WOHHg=;
+	s=arc-20240116; t=1734022027; c=relaxed/simple;
+	bh=gakp5Aj3FEv816mtcgel/jdY/v/jGPkhjk+8fdyuKqE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=APQEpu94JiGwJj6GfGjEoX5z8GcW++VrkuyhHcycBOsgppilfOgE9BMD8K2k6GWJDUQ0JS9p2qfvIu8NrhuBmjxQo81vzzJrKwpy8/IUzCm3xVPPwcTc0VJIHMUm+IWRzyd2xI/yvlxN4wgB2RlgKbwExfSw3gRnj7WdTlNpR1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CNomjwdY; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=cIy5o4LEB1sJR+bt2mqMmJSVsPN7nxdeOT4s+lib0X5QG6budfP//h5WssbFe/KHdpgheNv6nnY0Hx0Nrgl/VfgFdp4Lc3lJYx3arXVTEYv5goOTDpM8gPy2Vg83582n/y7nXiTtsVWNhC4l3trFv7ZBAgbaiU5lie3FNWTmGZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lHgFMnCa; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BCGMNC6002233
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 17:04:10 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BC7rcCA030319
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 16:47:05 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fNew4i/yxHEuenMoncvUi+FNwXBhAQ4xpLpoY8gs/d0=; b=CNomjwdYP/mLl0vy
-	SxQHxGb2CceC7C1jcS9jfXNg08Sk1xrxhj4KqbjntBJ97uxztDiJnPkoXL2Dk0Gz
-	CUjSAz02PXqbEcaHiHdSxir4BWu96neFQhYkiB9F+Z++INm8VgYUt1O49Jz7GTYL
-	AhXbhOBudN2rLZrCPE6oxkZjIJ26eQVYxXxabqeSbQLT+D98Gp3eEStO3xM4NXF0
-	ULT6WRCm2Z5AXm/A0DtD3XpY9b9ujOSZJjXE1O9mlrAsc2EVahBSCf3ILniX2u8t
-	2oL4oDt3MFLrQ5mGBG6CZgHBhBg2iNR1YxMkSr6tKp5ijJ6i/IQlP3IO5CHhnYXf
-	cJumEQ==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43eyg666ym-1
+	Z4OtdDfHtUd2K5YuFPJH9FsYSx7IvdHrXF4yoTvVqjQ=; b=lHgFMnCaTEpWxUcT
+	nc+bvY+Y6RoafPPoduGjjTFdoLoXzZHh4Iy7caYmn0uGPuFZ79woF07U9ANdioi4
+	tvcTIQrcztcZCof6X6yVDA5HbAlf1sT55m8PyDBLSWHFnsJX2hAVQqS6+kOXZGck
+	ThsqK1HmdJBjgJbh4wbUTqYxIAxhmI70y6qxOahsKF89L8qAJwYaqWbBDN8pHhCs
+	E33Dm7QMfxKLwW7VccjlIalndkM7CxbNLW+vjbcjCRey0DAHcyBT5ovRG04AgnPL
+	bLbm0llXi0Vy+Nur4boAi3HnF0B6MOTwc5TWfqfg3ujAVd2+RgATNk+/BzB0+tQp
+	tJjgCA==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43dxw4c1hf-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 17:04:10 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6da2abe1720so2028446d6.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 09:04:10 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 16:47:04 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4674128bca3so1477091cf.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 08:47:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734023050; x=1734627850;
+        d=1e100.net; s=20230601; t=1734022024; x=1734626824;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fNew4i/yxHEuenMoncvUi+FNwXBhAQ4xpLpoY8gs/d0=;
-        b=WQYuJiSJXREtibpEUeGfR6dRj9Re5unzsRSeoASWGWMfXZRF5KkWHMDpG2bxg8jKKK
-         adrs10JSOnCzg034OMBAG3zE2hYDoEPMveXLo6M7Ym4/oHAEDpO0vfEMwdDAt6Jxx48s
-         PO+B0B8jXaOrZS+A/w2ALDlMe9lmCwQMBfIHwnqG9GMYAS2CM8rgNILis+0117HnDlKU
-         RPpli2nyrfp2JfZc/8/wDVq/SCDFiBezy8n2eu2HVhdNz7T3JK2Uy5bduXuupuGp7x7n
-         2H5mw+69KKcH/Qx/ez+4xa93UEoRIts7eWGwrjGZGVCZzGfK16/e/KTyhhJoCT2LW4pO
-         rSpg==
-X-Forwarded-Encrypted: i=1; AJvYcCWMOXOUy9V2pbyt/k77wEVKKn3k2SafcUzq0nCmZuSyxZyHT5QEWmnz9mBfRBo3zpVdrVBzclzQOrIi@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYB1Y0JVSbGrd/ZpyFvvhcaHB/O7AvE4vLznucfgPMSAaqEX4R
-	ritBF/x5ohS14Bm0ZyUcA0ui+h2kHFPitfBRB+r0KCZHcj+/OEF1lLMqBTAFvQq0dPHekbFDV6r
-	gVC8nNCcmLdY7MAhrpmEgXI7OoqlEoP22J0WP5UcjWAiHVHm6UbXlmJPY/ixo
-X-Gm-Gg: ASbGncsXl8aLPBHbyV7dG1xB9uEjN5ZzpuGeiUUV3UCJTaQmFUp4SYyClkK3b7MQ4gL
-	N/hz6YUF485uU66PuCF9y9LK9z5c6LXDCA63t39MKq26ZOGGvFziz6qBWOKIaoaROfJiDE1/xwT
-	bRxKu24Roo6kJ7g1QxBHb76cHJfM9+qQS/9atZvJB/L9kgJNMRp41xwaRi6H5w7xz88w5HqPOAR
-	ey7zSK3iUbdU5GZdv6b+rUHwSqiizMwAIu7lPnrmRBuL9OgVOlAT4NTlNpQ2fpUu8uMrb8+B//k
-	CMRPQDb5mre8MdDOEQHxdghQQ9Bwa01BvbdgTg==
-X-Received: by 2002:ac8:5748:0:b0:466:88ba:2026 with SMTP id d75a77b69052e-467a16def05mr6097041cf.14.1734023049821;
-        Thu, 12 Dec 2024 09:04:09 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH8vgfWWK+oQ5exWPFkUHGzlUOH1BmQ8/OxS0NIBoRvTTZC3B/uHCd1ekuzkScTL2816D1C4Q==
-X-Received: by 2002:ac8:5748:0:b0:466:88ba:2026 with SMTP id d75a77b69052e-467a16def05mr6096841cf.14.1734023049283;
-        Thu, 12 Dec 2024 09:04:09 -0800 (PST)
+        bh=Z4OtdDfHtUd2K5YuFPJH9FsYSx7IvdHrXF4yoTvVqjQ=;
+        b=K0+6jL5T2GVf8osTFQ0q1h6IexDiCD0Lm0TCjCWCf1P5awl4sgX0Wmj/O8eG7zdHK0
+         lCNAJnImNNRoIkaT+3wlORm7z0VtA+iHHwjUeeIjo/nOZT5nK6F9zJWahQ2iYWL/D0rt
+         FhfUbAQVh/NyZ85ksAyhSUoaxWb3IaD9ExEpxs0CmXgMdHCGNcixwukXphhWt1hGUxqS
+         IQTCClO7CUi8l2uP1/Gh4Lu4YDyrLadyLBpRjHT3pWqhFEaQAxv+i9f0HetrqVblMIsP
+         UVBgaxpybNAI888x3LtliCRkgkit3t/+z0JPv6IiWBMoWRK2gR6T8Owwqjq4qlxbIbm2
+         279g==
+X-Forwarded-Encrypted: i=1; AJvYcCVZzHGWryXioy9zvj2ORdwsQ2niFAMy/lc3QU0fZdv65Jr1pFWSWlPwoFVtyIbmrGk5kZ9oOkzRilMJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3kEI26vvlE9g+JLD07jQyizvEqAqnQpHWB296kP07Fbgv80qG
+	mVtZ8WCwhA4CkXhoowbTs7dqZDK9ee410njMpsM1q0M01+Tq3+mFvF7bNlaFtiVBcA6pKUVDaCq
+	BiqLSyUVYY+Msdqh21zGhN0xtlhzWoT2dhY5f1PhWbPGYVp7qy2xcik+qk9Nn
+X-Gm-Gg: ASbGncvoP9S9N+J5aIDuSOxkJKE8E2BTgAr6g7Fk93uG/eKBq2yQWWmiTuIsWuNmJO2
+	8ssib1s2caaDLje69orEm97KwMQ65z5DYj5SDZMZzoGrfT1kwVbFTVQpGZ+JqTGWt2mXeP2GUYr
+	gI4A3eZgY0sH8nvg9aBZTd4ET4iFImdjnXVlCsr7nGG9K2LCPCNZaE+q1lzH0p4jru/aj2KwVHT
+	ybI4ZErvSpi4O0XhZAwHTYrW0kpxfyAl9+g1w/cNSh57Tm9dg2llEG+/9Yp5U1nxL0CKzOb0T+5
+	ScZdYD1piLdKKAlamfiHmrB1s0Y4MYjzznVgGA==
+X-Received: by 2002:a05:622a:110a:b0:461:1fc9:61a3 with SMTP id d75a77b69052e-467a1556cdcmr6368801cf.9.1734022024022;
+        Thu, 12 Dec 2024 08:47:04 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGbmP4pXDhW5EBpXexeneOeQ1H0OIhDr8GB0bZnmXl6AR8XFHt2k4+lrHiAsVPutnSuge9M8A==
+X-Received: by 2002:a05:622a:110a:b0:461:1fc9:61a3 with SMTP id d75a77b69052e-467a1556cdcmr6368521cf.9.1734022023575;
+        Thu, 12 Dec 2024 08:47:03 -0800 (PST)
 Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6810027c6sm662648366b.104.2024.12.12.09.04.07
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6ab7fe8bdsm311763466b.160.2024.12.12.08.47.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Dec 2024 09:04:08 -0800 (PST)
-Message-ID: <d41df236-48b1-40fb-a19b-5d7024884186@oss.qualcomm.com>
-Date: Thu, 12 Dec 2024 18:04:06 +0100
+        Thu, 12 Dec 2024 08:47:03 -0800 (PST)
+Message-ID: <1777f0c7-7cea-43d6-a7c0-4777bfb3f1f1@oss.qualcomm.com>
+Date: Thu, 12 Dec 2024 17:47:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,73 +89,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: Add coresight node for SM8650
-To: Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+Subject: Re: [PATCH v3 2/6] arm64: dts: qcom:
+ sdm845-db845c-navigation-mezzanine: remove disabled ov7251 camera
+To: Neil Armstrong <neil.armstrong@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241210-sm8650-cs-dt-v2-1-cf24c6c9bddc@quicinc.com>
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Felipe Balbi <felipe.balbi@microsoft.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20241211-topic-misc-dt-fixes-v3-0-010ac10529b1@linaro.org>
+ <20241211-topic-misc-dt-fixes-v3-2-010ac10529b1@linaro.org>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241210-sm8650-cs-dt-v2-1-cf24c6c9bddc@quicinc.com>
+In-Reply-To: <20241211-topic-misc-dt-fixes-v3-2-010ac10529b1@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: vlSUzpEr_AMjWKrJu-o7OIW0DUn0HMA7
-X-Proofpoint-ORIG-GUID: vlSUzpEr_AMjWKrJu-o7OIW0DUn0HMA7
+X-Proofpoint-ORIG-GUID: HIZZYD6qNGeGrmtowVDzzXdgMbOFkYoc
+X-Proofpoint-GUID: HIZZYD6qNGeGrmtowVDzzXdgMbOFkYoc
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- lowpriorityscore=0 priorityscore=1501 adultscore=0 impostorscore=0
- mlxlogscore=999 phishscore=0 suspectscore=0 mlxscore=0 clxscore=1015
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ suspectscore=0 priorityscore=1501 adultscore=0 mlxlogscore=943
+ clxscore=1015 spamscore=0 mlxscore=0 lowpriorityscore=0 phishscore=0
  malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412120122
+ engine=8.19.0-2411120000 definitions=main-2412120120
 
-On 10.12.2024 9:23 AM, Yuanfang Zhang wrote:
-> Add coresight components: Funnel, ETE and ETF for SM8650.
+On 11.12.2024 9:03 AM, Neil Armstrong wrote:
+> The ov7251node has bindings check errors in the endpoint, and the
+> camera node was disabled since the beginning. Even when switching the
+> node to okay, the endpoint description to the csiphy is missing along
+> with the csiphy parameters.
 > 
-> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-> ---
-> Changes in v2:
-> - Update compatible for funnel and etf.
-> - remove unnecessary property: reg-names and arm,primecell-periphid.
-> - Link to v1: https://lore.kernel.org/r/20241210-sm8650-cs-dt-v1-1-269693451584@quicinc.com
-> ---
->  arch/arm64/boot/dts/qcom/sm8650.dtsi | 165 +++++++++++++++++++++++++++++++++++
->  1 file changed, 165 insertions(+)
+> Drop the ov7251 camera entirely until it's properly described.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index 25e47505adcb790d09f1d2726386438487255824..76620d478e872a2b725693dc32364e2a183572b7 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -5654,6 +5654,171 @@ compute-cb@12 {
->  				};
->  			};
->  		};
-> +
-> +		ete0 {
-> +			compatible = "arm,embedded-trace-extension";
-> +
-> +			cpu = <&cpu0>;
-> +			qcom,skip-power-up;
-> +
-> +			out-ports {
-> +				port {
-> +					ete0_out_funnel_ete: endpoint {
-> +						remote-endpoint = <&funnel_ete_in_ete0>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		funnel_ete {
+> This obviously fixes:
+> sdm845-db845c-navigation-mezzanine.dtso: camera@60: port:endpoint:data-lanes: [0, 1] is too long
+> 	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov7251.yaml#
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
-Node names must not contain underscores, use '-' instead
+Since:
 
-Also, nodes without a reg property/unit address don't belong under /soc
+* nobody cared for so many years
+* there don't seem to be (m)any active users of DB845c left
+* /\, even less with this specific mezz and usecase
+
+I'm happy to see it gone
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
 Konrad
 
