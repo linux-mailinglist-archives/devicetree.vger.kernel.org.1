@@ -1,92 +1,184 @@
-Return-Path: <devicetree+bounces-130114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC8F49EE059
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:40:21 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 250EB9EE062
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:42:14 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B2CD283C4A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 07:40:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 831E41678E8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 07:42:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C1BB1EBFFA;
-	Thu, 12 Dec 2024 07:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 942AB2063E2;
+	Thu, 12 Dec 2024 07:42:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tT23hIpT"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="yLdzr3Vn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D88B25949C;
-	Thu, 12 Dec 2024 07:40:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7660025949C;
+	Thu, 12 Dec 2024 07:42:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733989216; cv=none; b=SIBQrDkvPHPd3PMzgCdB9wAeLcGP1w+o8v34URPKqX9HJ6YfQvsrUgWGRLpuwgJWDzy60SdD7rMzF3k5lND1gj7I0ACukRXQVV4bspMOVgryTWNPiuXa9gDAte1idmR8BBoBGu3KEYrRlg/z0mzB1HMTl4Kmzm5DAq/Y9E3VeYQ=
+	t=1733989327; cv=none; b=qhhlX1TcyMLZM/UMWSKfFjxTGdbkyIHLEOgrR8p0JNbPeALJnzOUb+LvDn3HnKUR7NNbNKkTWKqjZ0WCNkiHEOAQaX9BGOfwd8iB2LUGQTtU8RjpaXgnBNmwjV7KuG+/2ZVL9IBUwXaBazwYj5JZ1DfnqrNV8Bp5Fk0tOz+VwVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733989216; c=relaxed/simple;
-	bh=Q6k8Hs03LaIo7faNDNXtidBSUYC4c/6GiFw4hUyWv3c=;
+	s=arc-20240116; t=1733989327; c=relaxed/simple;
+	bh=22g68YoUG7ggvCcHl2heS5NuYgSrkP+Tus51SlR8lr4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D++9jPY1vwElp9iF3i3LHoxrp+2oApxmpg9GDF3DQX3UUFG4G61Qf+sclypGxz9ge51Y6B/JnhrnpBJnM4WygwPMpJvIvmYe1bZ+99+3dfaejzEN27wlGtwU28iYkdsS4jsAcqsfB3WiDbi0hQ8E28UxN6xzsm9VFQlArUDcZoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tT23hIpT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2447CC4CECE;
-	Thu, 12 Dec 2024 07:40:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733989216;
-	bh=Q6k8Hs03LaIo7faNDNXtidBSUYC4c/6GiFw4hUyWv3c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tT23hIpT30V9yfa80ppTZ2KXYRYao6mym8r6bSFRsU0omHxLbyPJlbYZfVVv8gTpB
-	 kTZ6nYL//RVqY1R7LW8NyetuGG0je4qlrDBwWm9MGbg5UfHckrYDvFuf1aIuiRVRRQ
-	 S8QiFsSWGlEEgq6cqVxz1oZ3q3Lk9ngAm5GB1+Ck1Ly+SQkXSaZ4MFEc7NG2TDbxlx
-	 uUExGzOlxdZ3xXdPTbyEXp9vpaomhEEJT0fgYoe2r17CxFeNe5U7dAMtLlaU4dYBW2
-	 9CFSG/WsSVE4PaRnzrnCaZJOdBj+Kvr3zq3UygkC+1pAJwvqwUaZMOycosCMAUyOhU
-	 O2HmIsiOwDPuQ==
-Date: Thu, 12 Dec 2024 08:40:12 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: broonie@kernel.org, konradybcio@kernel.org, 
-	konrad.dybcio@oss.qualcomm.com, andersson@kernel.org, srinivas.kandagatla@linaro.org, 
-	tiwai@suse.com, lgirdwood@gmail.com, perex@perex.cz, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, dmitry.baryshkov@linaro.org, 
-	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 02/14] ASoC: codecs: va-macro: add sm6115 compatible
-Message-ID: <uyu6mogjouv3cghyuqtdf5saiyes7iokn6jjrhue5xgznq7bit@wcjxebmft3my>
-References: <20241212004727.2903846-1-alexey.klimov@linaro.org>
- <20241212004727.2903846-3-alexey.klimov@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ij2KSIupGcyKzgrLz+UMi6vpqBLKkLNuM6UtY+9/eqUz6tzoRHvQKA34AAgM7D3ZlCLIl5xqbgvcDgZb2nPPOQn6JNB9SyJHrUpMwZHg/ylWNtwFLpLnr1M4QsR1eSHeoErz6ld2p8VP2mEmV8Ttfd9fW8AzO/OK4JVoLinbPH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=yLdzr3Vn; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=+T1OM/4I/e4utRodgxqpykIDeKJt0bCoOkqM8Dxbxek=; b=yLdzr3Vn6s+jjfyD9VxGX5qMAF
+	EqPr5/+u6TVImRbAQqE0AsZDajl40IPeoUslp5rjTS1pJ9WoOddyn6bkUMMUUvczg/lPqHdOjeY7o
+	W54413RVE5O39+1yGDVa8nVehT0/7UHinzjzQjYUucPTHmC2TAQTK6HDHvkBz3fsgcJk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tLdpD-000Arz-6f; Thu, 12 Dec 2024 08:41:31 +0100
+Date: Thu, 12 Dec 2024 08:41:31 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	tsbogend@alpha.franken.de, hkallweit1@gmail.com,
+	linux@armlinux.org.uk, markus.stockhausen@gmx.de,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: Re: [PATCH 4/4] net: mdio: Add RTL9300 MDIO driver
+Message-ID: <2424683a-4620-43e6-9693-2cf959eacb7c@lunn.ch>
+References: <20241211235342.1573926-1-chris.packham@alliedtelesis.co.nz>
+ <20241211235342.1573926-5-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241212004727.2903846-3-alexey.klimov@linaro.org>
+In-Reply-To: <20241211235342.1573926-5-chris.packham@alliedtelesis.co.nz>
 
-On Thu, Dec 12, 2024 at 12:47:15AM +0000, Alexey Klimov wrote:
-> Add vamacro compatible for sm6115.
-> 
-> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
->  sound/soc/codecs/lpass-va-macro.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/sound/soc/codecs/lpass-va-macro.c b/sound/soc/codecs/lpass-va-macro.c
-> index c781da476240..443dd4dd9b19 100644
-> --- a/sound/soc/codecs/lpass-va-macro.c
-> +++ b/sound/soc/codecs/lpass-va-macro.c
-> @@ -1722,6 +1722,7 @@ static const struct dev_pm_ops va_macro_pm_ops = {
->  
->  static const struct of_device_id va_macro_dt_match[] = {
->  	{ .compatible = "qcom,sc7280-lpass-va-macro", .data = &sm8250_va_data },
-> +	{ .compatible = "qcom,sm6115-lpass-va-macro", .data = &sm8450_va_data },
+> +	/* get_phy_c45_ids() will stop the mdio bus scan if we return an error
+> +	 * here. So even though the SMI controller indicates an error for an
+> +	 * absent device don't proagate it here.
+> +	 */
+> +	//if (val & BIT(25)) {
+> +	//	err = -ENODEV;
+> +	//	return err;
+> +	//}
 
-Looks comaptible with sm8450, so maybe should be made as compatible in
-the bindings.
+Please don't leave committed out code. It should either be needed, and
+uncommented, or deleted.
 
-Best regards,
-Krzysztof
+> +static int realtek_mdiobus_init(struct realtek_mdio_priv *priv)
+> +{
+> +	u32 port_addr[5] = { };
+> +	u32 poll_sel[2] = { 0, 0 };
+> +	u32 glb_ctrl_mask = 0, glb_ctrl_val = 0;
+> +	int i, err;
+> +
+> +	for (i = 0; i < MAX_PORTS; i++) {
+> +		int pos;
+> +
+> +		if (priv->smi_bus[i] > 3)
+> +			continue;
+> +
+> +		pos = (i % 6) * 5;
+> +		port_addr[i / 6] |=  priv->smi_addr[i] << pos;
+> +
+> +		pos = (i % 16) * 2;
+> +		poll_sel[i / 16] |= priv->smi_bus[i] << pos;
+> +	}
+> +
+> +	for (i = 0; i < MAX_SMI_BUSSES; i++) {
+> +		if (priv->smi_bus_isc45[i]) {
+> +			glb_ctrl_mask |= GLB_CTRL_INTF_SEL(i);
+> +			glb_ctrl_val |= GLB_CTRL_INTF_SEL(i);
+> +		}
+> +	}
 
+Please could you add some comments because i don't understand this at
+all.
+
+> +
+> +	err = regmap_bulk_write(priv->regmap, priv->reg_base + SMI_PORT0_5_ADDR_CTRL,
+> +				port_addr, 5);
+> +	if (err)
+> +		return err;
+> +
+> +	err = regmap_bulk_write(priv->regmap, priv->reg_base + SMI_PORT0_15_POLLING_SEL,
+> +				poll_sel, 2);
+> +	if (err)
+> +		return err;
+> +
+> +	err = regmap_update_bits(priv->regmap, priv->reg_base + SMI_GLB_CTRL,
+> +				 glb_ctrl_mask, glb_ctrl_val);
+> +	if (err)
+> +		return err;
+> +
+> +	return 0;
+> +}
+> +
+> +static int realtek_mdiobus_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct realtek_mdio_priv *priv;
+> +	struct fwnode_handle *child;
+> +	struct mii_bus *bus;
+> +	int err;
+> +
+> +	bus = devm_mdiobus_alloc_size(dev, sizeof(*priv));
+> +	if (!bus)
+> +		return -ENOMEM;
+> +
+> +	bus->name = "Reaktek Switch MDIO Bus";
+> +	bus->read_c45 = realtek_mdio_read_c45;
+> +	bus->write_c45 =  realtek_mdio_write_c45;
+> +	bus->parent = dev;
+> +	priv = bus->priv;
+> +
+> +	priv->regmap = syscon_node_to_regmap(dev->parent->of_node);
+> +	if (IS_ERR(priv->regmap))
+> +		return PTR_ERR(priv->regmap);
+> +
+> +	err = device_property_read_u32(dev, "reg", &priv->reg_base);
+> +	if (err)
+> +		return err;
+> +
+> +	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
+> +
+> +	device_for_each_child_node(dev, child) {
+> +		u32 pn, smi_addr[2];
+> +
+> +		err = fwnode_property_read_u32(child, "reg", &pn);
+> +		if (err)
+> +			return err;
+> +
+> +		if (pn > MAX_PORTS)
+> +			return dev_err_probe(dev, -EINVAL, "illegal port number %d\n", pn);
+> +
+> +		err = fwnode_property_read_u32_array(child, "realtek,smi-address", smi_addr, 2);
+> +		if (err) {
+> +			smi_addr[0] = 0;
+> +			smi_addr[1] = pn;
+> +		}
+
+Would returning -EINVAL be better here, since it indicates a bug in
+the device tree?
+
+> +
+> +		if (fwnode_device_is_compatible(child, "ethernet-phy-ieee802.3-c45"))
+> +			priv->smi_bus_isc45[smi_addr[0]] = true;
+
+If it is not C45 then what? I don't see any support for C22.
+
+	Andrew
 
