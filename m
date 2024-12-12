@@ -1,570 +1,319 @@
-Return-Path: <devicetree+bounces-130216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9E059EE4D3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 12:11:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A13459EE4EE
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 12:25:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C16C8282B1D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 11:11:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4771E2810CE
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 11:25:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F972116FC;
-	Thu, 12 Dec 2024 11:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 509722116E9;
+	Thu, 12 Dec 2024 11:25:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LUKcs36i"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="cG/pUwW2";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="I5CQi8nL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FE2A1EC4D2;
-	Thu, 12 Dec 2024 11:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734001896; cv=none; b=pL6aO575cGUnl3CyXuClnv/TiWvCnZzrG+q3+WVjoOrBGsmzQFg8lfPnAs9ButwE+76XF+gxwQIjSCEp9ZnEiKcOYoMXf9hQiNImIvbZgILvEfZO0ieb3YTYNA22wT2w8bq1IQQb7erDEXc8ekJrhpiv/8c4lX9MU347PFz+90E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734001896; c=relaxed/simple;
-	bh=zVwfCEeR8BYVTwY4aKq4w64kbqTLzQ4gAGabJ5lBAMs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fTm0ChjXwJabMjJsFCC3sQo0tlktSxTWwUrG4fGe6RiPm8M89qyKoJ+VgdttTPzFtRvoIB5KwKUqUCdFAbNCdCOQhb7PC/p4/KRnd1B0Agno7JMeUhPRsJG6a/+GvQa0ZA3PZPo4Kc6tGucMsstL7C+veZeb9vVFZzLUITWvg08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LUKcs36i; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5cedf5fe237so781496a12.3;
-        Thu, 12 Dec 2024 03:11:34 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 344291C5497;
+	Thu, 12 Dec 2024 11:24:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734002703; cv=fail; b=T3H/A3rvdJD4jh2J5GpKBYunJs6QT1bNP5NsXcbH/grd5CQVr1fMI6FYykl55lj92cgnNAgD6n/suM12FGuatf3SFitUraIngmZZx1gbXHn9aPV8uKDRuRAYnBUZVExmPreLpII+CwjODFHZxyTx3mFzR7Pq+jp0zCEPb1l8/kY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734002703; c=relaxed/simple;
+	bh=xrgjaxmphWi9X6Z77+drmjWU/tnSTZVKXjVOW53XlAQ=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=mHu/4n2fq3y1g5c38nixOh77wuUljWPfE09CLcdbU9X1am+xTbIsjDfpEociSM/twNyKwxq1Vhm3EHyrtY56AJyVv/54vEYzrWNKMl4aGxpLz6mJVOV4A+aOZqtRfHI/qTDp7rCWlUVynfHRn9EggepKctS32FdeGi4LVB7hBU0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=cG/pUwW2; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=I5CQi8nL; arc=fail smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: b587b006b87b11efbd192953cf12861f-20241212
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=xrgjaxmphWi9X6Z77+drmjWU/tnSTZVKXjVOW53XlAQ=;
+	b=cG/pUwW2VaKX9DZjHhFyOeFmb9Bv+XWolboiJXSVhYMI/RUvwi+h5J3DJqyMF641kOcsjFjnWKL2esd4KLeGYGKyGm1pLqcg/MHcroMFxuFE/OUriKXu+5gzGKmpeIJLm9x+mTmJMW24NR9rdgCZHrRxYuaIyCeZkpUsw9mmNfI=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.45,REQID:db5f3cfe-b7af-46dc-b363-0194f7f996fa,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6493067,CLOUDID:72f16928-d2eb-4de2-b5c9-495d1bc17256,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0,EDM
+	:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
+	,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: b587b006b87b11efbd192953cf12861f-20241212
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+	(envelope-from <jason-jh.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1823280295; Thu, 12 Dec 2024 19:24:53 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 12 Dec 2024 19:24:52 +0800
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 12 Dec 2024 19:24:52 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XZLahgtfLFZz9q+h/mueVVOetn+m9yIMN0PS8qR529BHdm9vAhCT66TXBzJ1dnx/vzubFgz+SoerDARyTkiBNLF0Zspohy1tyZLbjTmy11P0w3F7Mw6s824P2lIGk8zgoxMghjQyt3vn2/lr4Y4blLnIBZNMJfndR6OTbrCRDat9/gNsyPMJRsXn7bEVL2KDT3bN/OIsxQAiJt7A12SShpL2Y2CS2N+s+veodaDTqqcy30KmiNJApcg4/6ojre2F/Yw+Sisiygd8Dl7LwOgl5FnP/RyYfmixQ11HUWmbwiQzKzfd1xdEuBNYs6F24I8Y2P8ZSjxKJrWGWd6QCNM5sw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xrgjaxmphWi9X6Z77+drmjWU/tnSTZVKXjVOW53XlAQ=;
+ b=e4PWGXE2Lb5sRPtcKqaMfNPI7PTa+fx+z9yBJ0/YRwLak0kdav6rDhgdh8dhInmOdAcMUZx087JC2uHD0fgwcyTo+v48kUiNXU0Kw5s2/P3QjIjdJFwEFU9asEu0Umtr2jbukTImSVEi8cWMP/HTD/MrgVY55yFWy075WguMBJdy54P36z5X1U32PP3kzwo2j3zJFr460xuM77DHU4JUg+x29i6NXCi7E3V+CuO3/2qJEYkVZlKgczIuFEzv2AyDumjbz4MZ+kGTrWgFvDSwEOgdNgcla22+reaRsLNPfea5NGQjlWr9shzW/PCBncyxWVDVFNGhAdLWuS6mroFXiw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734001893; x=1734606693; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IaN0kKcSk37U6rmBe26lnuj1wEmPvM80JRtxgz+AmiY=;
-        b=LUKcs36io8InEh2i2h9fIfmgqYgnEfRC2rG3ipJ6k7Pz16gIJuHcG4G/jqzo973srK
-         cyyfbLxm7iyNQCsyHs0MqXTRhrcqvXKdFB0ALbTwbW0c+I/WPxrbsVJ3SYWhpxeLGNCo
-         ATjDj13rDK0tY6C2w7jTe/JJO9buJwsD1fOMIOIjnFjergWM6ISqDDtT3Zh166Jj1RsV
-         naAzHt7Jrhp57V+tPD9qyaXlzWoVAi4lRYEuQ/0IGQHKKvHthOVh+ho/ie4coMNe7puw
-         nhqLkqkUiUTpLT4jaSk9kgCy56zwsnviGR6aLRgYbVYkPnSlrA6PCK31bhLpNr4uuh7g
-         oS1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734001893; x=1734606693;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IaN0kKcSk37U6rmBe26lnuj1wEmPvM80JRtxgz+AmiY=;
-        b=PyM38vhwTQWJvOPDRxzoWhAI14f7jK55cTrHZUP6pC5KpIRr2BBoixGThj5gnj7X7e
-         QcHGcja0EsDmmVVCv1WK47ysKIiIEN954syfj86LAU5InYV3FGjFSRcciMvrpnRkc2Yj
-         mcLPaSGv8IadNB7Xp/5GiVnYMPH6HHHPC7oJofz+QD6d3zb4O+Dp0Jjq+Ly/bFulVIbA
-         qRo0j3eon8zn966RiZfWepKDMXkX9MAPLpYv3mHt1DOX77zS+m9dKQkZUjKfFyIe/ni8
-         4JtKgy0L3dwUsZGLr3azD4+uPglzRn/hgeX0YG/pvhW49yAu1ChQI6AkxUWNIOaE7+CF
-         BbBg==
-X-Forwarded-Encrypted: i=1; AJvYcCU8t9/28MSG46rRju4D/bMqbKkvpP9uU0VhuNO9h0FHOD06xfLl54gusefWdBP6+WHeUfVW7xP4iWjmXFmW@vger.kernel.org, AJvYcCUZssWmJt+M2gqcrNlNQq4OystFYvNjfEA3+K3osTg/eSO8ufQ5md47aGiWyKu1dV65qA0U2t0Ay5Yo@vger.kernel.org, AJvYcCVzbsqtYH7HnpDlACWG5oBAwBBE3nPSZQkBcHcRl79SSoiLJ4oQV+Rgg7de3ezsSrjoHWCa3l3TURFW7YU=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxizuuU5hCqSkvpLFkhBR2eJbxmovEVn2JLmYnfDWwIhC1pHBxv
-	uOXV/1aOJb7Bs7KPwYVzN3VHZfDiuvkS3MEi63qL5RVxb1w/bB16
-X-Gm-Gg: ASbGnct49ZjzBO4BSAzDfNSBB1HHW25vLL631OI5ckHmkgmlDLJUnMZX8BbTb4TpxlM
-	PgvcwKRHxPmsRS++X3/j/VmNKh/Ud9m49cXjoLhEDQ0wAOblxlYBJ0o8HRvJFaTW1G49uIXA6PC
-	yf4XcJrO3oA7288GMM2Wg39GU7hZodE8QN6mD9Jfa5gulPibfxUoCnCBeRnhQcLFo5poIPspBPS
-	zDobUWKmIdsaHkZHTRw45MxlS6VdM2Kaqt+MKS3xXEW6J7s5UvVGSw8N54I27zBK8KR/fKql3bj
-	F4AkHQ==
-X-Google-Smtp-Source: AGHT+IHIpwOjVa7ssUoWSqoTOzLvWRVfCq9dW++SsNASJJapQEQs92vXNORpWuFsu3Hjg5UVc5CeZA==
-X-Received: by 2002:a05:6402:3508:b0:5ce:d028:e11 with SMTP id 4fb4d7f45d1cf-5d4edcdeb88mr659138a12.17.1734001892507;
-        Thu, 12 Dec 2024 03:11:32 -0800 (PST)
-Received: from [192.168.7.105] ([92.120.5.4])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d14b60789asm10116126a12.37.2024.12.12.03.11.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Dec 2024 03:11:31 -0800 (PST)
-Message-ID: <c47710a5-7e53-48b1-bd6b-c0123865aee5@gmail.com>
-Date: Thu, 12 Dec 2024 13:11:29 +0200
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xrgjaxmphWi9X6Z77+drmjWU/tnSTZVKXjVOW53XlAQ=;
+ b=I5CQi8nLt+fLOFK3gkELL1T5PCr0I58JXZLKvgWr5Fjr78o13M66COBjcGZEalWOupanDIiUtRY7f/7GzrVWQwbDsY+zjTyho151DNJ7epzUk8q4gbPS/Q8sxMkt8f/JXl6+XfEjVhD0MaLK9/O5W91GL8Yyij8nRmH3FVjfWPs=
+Received: from SEYPR03MB7682.apcprd03.prod.outlook.com (2603:1096:101:149::11)
+ by JH0PR03MB7730.apcprd03.prod.outlook.com (2603:1096:990:8::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.16; Thu, 12 Dec
+ 2024 11:24:48 +0000
+Received: from SEYPR03MB7682.apcprd03.prod.outlook.com
+ ([fe80::c6cc:cbf7:59cf:62b6]) by SEYPR03MB7682.apcprd03.prod.outlook.com
+ ([fe80::c6cc:cbf7:59cf:62b6%5]) with mapi id 15.20.8251.008; Thu, 12 Dec 2024
+ 11:24:47 +0000
+From: =?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
+To: "krzk@kernel.org" <krzk@kernel.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	=?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "simona@ffwll.ch"
+	<simona@ffwll.ch>, "mchehab@kernel.org" <mchehab@kernel.org>,
+	=?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+	=?utf-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"robh@kernel.org" <robh@kernel.org>, Project_Global_Chrome_Upstream_Group
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, "airlied@gmail.com"
+	<airlied@gmail.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
+	<matthias.bgg@gmail.com>, =?utf-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?=
+	<Xavier.Chang@mediatek.com>, "jassisinghbrar@gmail.com"
+	<jassisinghbrar@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v2 1/8] dt-bindings: mailbox: mediatek: Add GCE header
+ file for MT8196
+Thread-Topic: [PATCH v2 1/8] dt-bindings: mailbox: mediatek: Add GCE header
+ file for MT8196
+Thread-Index: AQHbS3wqkgkOb2qikki77NU3E0fbTbLgycKAgAEkjQCAAEdmgIAARDaA
+Date: Thu, 12 Dec 2024 11:24:47 +0000
+Message-ID: <ce68d58f78d12317cab689e0ee1c02dc373d50dc.camel@mediatek.com>
+References: <20241211032256.28494-1-jason-jh.lin@mediatek.com>
+	 <20241211032256.28494-2-jason-jh.lin@mediatek.com>
+	 <ozifi65uycmxc5hqeu4onbths5u7dg532iufjxplsjw4jjmhf6@6bdsaabd7hl7>
+	 <04f7bd2a7d69ab7d02c88cf05bda5ae0c4cb6573.camel@mediatek.com>
+	 <e9caf0fe-a77f-40cb-9fc3-9da3d95f27ca@kernel.org>
+In-Reply-To: <e9caf0fe-a77f-40cb-9fc3-9da3d95f27ca@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEYPR03MB7682:EE_|JH0PR03MB7730:EE_
+x-ms-office365-filtering-correlation-id: dad42fdf-e788-45ba-5e1f-08dd1a9f95bc
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?RndHc2t0OVUxZmdGbFNiVmVYVlFmRytHSEVTelpHc1ZYYXpKOGViWGNPdXRU?=
+ =?utf-8?B?R1NrUWhpWGt5NGlkSVFuV2RKWm5GektiaE5PbmV2dXNYVXc3bW1GSlJMbkN2?=
+ =?utf-8?B?NFFmM3dBVzdBVFVXc1oySENJZS9vdVRzc1NDWldJRCtBd3JvTWU1V3h4QXFj?=
+ =?utf-8?B?WlFDUTQxSjdOK1JYWHdETmZyV3A1SjNYckdUNHo3akdmQlV6WVJlMXZxYkUw?=
+ =?utf-8?B?RmxhOGRJZUJMeVo5OUVpZ09pbmdnOFRaaStjZGRncTFuT1k5NFRVVHVvSnZU?=
+ =?utf-8?B?djg3WjJOa04xSU9VaVNRaDFyaGx3THNkUG9LeWFiV2dnaVBTSzVqdHFsZWRt?=
+ =?utf-8?B?QU95Z2RtOVdTeE1TQUZoVW1jbkZvdkhQaitsY3J4VVNSaVI0UTZXcEkrUHBB?=
+ =?utf-8?B?b21HYmJURlgxa3NNR3FkNUtxbnlIQ0pmTmpPTFBOSmNFL3hxa2lCRU1EQjRs?=
+ =?utf-8?B?TnlDRlRWYkZ6ZjlobmF2UTVWUDhOUEJzc2pIRVBUSmtkWmUwaWJDS1NDc1ps?=
+ =?utf-8?B?bDVDcXFHaUdFejJtQ3IrSU5kQXl5REx3SjFJeXNScXU3L2t0ZTZiTTZndlNz?=
+ =?utf-8?B?ZVpsL2xoanVOV29wajN6blk5eTNwd2gwc1VsT1k0MTFjdGZjaWhRL3BrQ0M2?=
+ =?utf-8?B?aWg2M2NiaGtCU0NsR0FtbWx5T2RSYXFyNjc2QjF6Y3MyVGNoNDFodWxzSkZX?=
+ =?utf-8?B?a243bVVicitNMS9qM0ZLRUUyeHNSdlhrRjlscVh3R3lDcjliTHVpZndPODds?=
+ =?utf-8?B?WkR5L1FkLysrL213RjlsUldPM21oYUp5SllyNytNOWh1YzVvclNkOHBmNHUz?=
+ =?utf-8?B?cThOR3F1cGpGSnBPTmt5NCtEeGwyUTM1c0p3L1dsZEV2OGNmeWk5bVFBclpN?=
+ =?utf-8?B?WEw2SHo0UnFsTG5VeCt2ZEpPUXhOeGlmYmM2aCtWaG9KbVUrK1VOSGN0VGpk?=
+ =?utf-8?B?RjFlSExtVldUdHo3SDhpdGNCZHUvTXUyOWh4azRsaVl6SGE5SGQ0RFQvKzBV?=
+ =?utf-8?B?WUZRZ0pBdm96QWdFZDVZVTZabTdHWUtlMDViWGtVQXhmQ1lwVUYxS08zMmEz?=
+ =?utf-8?B?NlRDNm5DVkc2OTBBdGlSNkxKdjBZdjlEN1llYmRkTDZFRTQ3dVd3TzdYdjBo?=
+ =?utf-8?B?K0dCaG16bnNMNEJjWm1wZCtYdU96aGdTNHJNM3FXSDVKNkZwZFFPNWEvSzFa?=
+ =?utf-8?B?alFHMDhHY0svVHRlYjVtL1pWTnZyY1I3RzlQMTJCT2VMcFRnUm5EQnkzbW4z?=
+ =?utf-8?B?L0RsaHZ0QmppRXpHYUIwRnpXYzY3K2tCOTRPN2xLYzY5MjFVV1MwVmNVRk40?=
+ =?utf-8?B?dVZkUzUzaldLemlJZmhtN2xaTHpFWEJmcjc2VHRPUzlPUEVXTEppcGxhTFBM?=
+ =?utf-8?B?QmFPbHBDa3pUOEhlcGNKR3pGT2FkMy9wZElCc0l6L1lVWG03bmdqVzBURnVq?=
+ =?utf-8?B?N1FLTDIzc1NFNUxraHJ0b0xQZEV4VW9GUmtselhxd2VVbFdwcytlaFprUVlU?=
+ =?utf-8?B?QTh2M2JTTllETjRWa0M1MGppV2ZDMVdWMjdseVlYR1ZWUTlEYldQNks4MG8r?=
+ =?utf-8?B?MEM0ejFQc2EwTjJ6eTFNbXpSWldzbkEraERjanMzdUw1N0pUY3h0WTNOdFl6?=
+ =?utf-8?B?Wm9rYTYvQjlDWnZESy9ZLy9IaVh6b2g2ei8yZ0FSUGhWRG8wczA1TnA1NVQ3?=
+ =?utf-8?B?TDR5WmV3UUFzbEUwUWtFRTZuTjhhQjlDdlRRYXlpQ09GMmlMUFNGaFZuRUtk?=
+ =?utf-8?B?N3AybnJkbGdOMTc4VU9JKzcwM3IwT2xTcDJKVUpBWXdseE85N0tnNjVJYUtx?=
+ =?utf-8?B?MTkwRzJQQjMxN3lMZzZad0xqbURLbDdEWlJLY29DZzd1TkQ1ckNDc1JINVBm?=
+ =?utf-8?B?OXBmV1FpWHpoSEtjM2xHWFEvNzVXZlhOdGpXdTkzb05LV2dmZGhIMUZ6blhz?=
+ =?utf-8?Q?mj5F460/+TpbUHAAlYLIUVA8Fhm+NDSH?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR03MB7682.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aHBnR3RHdTVrSnNDQ0pWZnRva2gzUHBKOUM3aDRkWk9IT2dKWXNVclRRNVN2?=
+ =?utf-8?B?Y1M2L3FIMlAvZzdaZ2JodUZBRGlqR3pNam43SWQzSjVPLzNhNUttVEFQaVk2?=
+ =?utf-8?B?MDJpYmErZlFlNy9WTlNTaW9aUDR2RnIvbUpkOUJSQ3ovY01HVHZiZWxDWnlE?=
+ =?utf-8?B?ZGswOS9xZnY0S09vck1VZjRucTlsMEhZS2o3UHhMS2VpV2h2R1JucFZPWnVs?=
+ =?utf-8?B?SEN2Yk8wdzFoWTNMemxiUXhyOHRsSjVrZ2k4RXd5M1dGUFlaQ1pBZ213YkdX?=
+ =?utf-8?B?NE5KY2RteXpPcklWY1VkVmx4aUxVS3J4LzR6THFVOUZkYm95NDMvU0dDdi9m?=
+ =?utf-8?B?M2JDeSsrTUdxVlhVcnZGRzFZU1hKR1hhMDBJOVAxNVRQT2dvRFF5Q0hYakVj?=
+ =?utf-8?B?S1hzTGU3djhob0NnZ3Z0cUNJeTFlcVk5NEZhMENZdk9PcHZqT0RPQVNUWkdH?=
+ =?utf-8?B?L0diSGROMDUyRkxZbkJWTGJqVHRBWFdTOVg3T0F4R3hHQVQxTDRKRjA0VGdp?=
+ =?utf-8?B?LzNrOGl0MU5Ha3RHaW4wMW53ZFNGNlFscDJxQ1ZDcXZrZXBGU2pCNUxXdzF2?=
+ =?utf-8?B?RVBEZ1ZoUGIvRkVXMjVmUTFiNmJqeGlDdHJuMVYrOXRMT1dteTBmMURMY0M2?=
+ =?utf-8?B?YitRbFBDd0NpR2ExN01oME5Wb3dDYmZiMmJ4SFlwSm90b0w1SVBHbUJCSmRp?=
+ =?utf-8?B?dmtxVjNZdVNLN3EyMFdUM3hrRG5XZnZZK2Zra3Y2T0ZUMGhra2RFRlkwRU9F?=
+ =?utf-8?B?eWE4Skg5MWdWc0tpZzlaSE1lWmVmeVpJblh1UGJUa3dia3JJMzEvZjNtd2Vo?=
+ =?utf-8?B?M2lXZzNrVkZ1Y0IrVTJMQkkxdlViYnhhMUMwdjF4TStvOERmVkgwdy9yQWlZ?=
+ =?utf-8?B?VUVKWDNuMWJhQlRaMUFieU80RStaQTE5UEFyMWFsQktLSVFlcTVLdEJlZE11?=
+ =?utf-8?B?QTV6R2kyM3NYN2czMWhobDZPUEFGUXpFRGVGdEVlSU5LVkJCSkNPdkR0cDk3?=
+ =?utf-8?B?dGk0OXc1eUdhRVZlUDU3V2EzRGI4ckJCV1l2bEkrNWQrcXNIQWlwd2RnM2hq?=
+ =?utf-8?B?dXZqRyt4OEdTVTZTZ0JLOGZ1dmNLWEc5ZjBCWjRMaGJQYnFrMUxNTC83UlpW?=
+ =?utf-8?B?dGtqejREZlhoV05WMzRrbXJnZHp2ZTFjOHZhREpTRWVwdWZPc0VoQ0tUYUZC?=
+ =?utf-8?B?OVlkVHBpdHo4OGtnSFVJVmx4SmFTYjlwZFJWZW1YNUg2dmRucGI3ZTNXWFVH?=
+ =?utf-8?B?MFpybW1CT09IUDBmdjdidmF0WW1UTU4vRXVUSGdCM3htK1YzS1BYNWdJR2pC?=
+ =?utf-8?B?aHI3ZENMZUJiWHhTV25oaUo1NitPWHJSR0JuS1VsMllET1JnMit5ZFFjYlov?=
+ =?utf-8?B?OWhyemFwcjRPd2diaVI0SUYzbGN6UFM4MFRDV2lwU2FoY0NwZ2s2aGdlRTQ4?=
+ =?utf-8?B?Qng4OE1UNm9zTzRtRngzejRPUXYzY2VpbU1XT3MrQW5nZGpTZW5xL2xHUDRM?=
+ =?utf-8?B?N09BOEhQblczTW04b3hVb2R5RkZmL0F6NzQwRm5naWNEeDY5WkJWY3Jxa2Ry?=
+ =?utf-8?B?ZWViSHQ4ZnZmeGorMnJJWm83VHUyRjhvZzN6Y0QxdVFHOUppVjdKSUtyZ3VP?=
+ =?utf-8?B?eEZ3U01vZVpMVGJBMUFLVmhIYkpzTk1VK2NUcWJ5YTU2OGpCdHdZY3VqQ295?=
+ =?utf-8?B?Y1pGaE5VNTVqbUZsTkk0RzdBTUd1MytRSyt6cFN5VmU0WU8yVjYrck1pU0ll?=
+ =?utf-8?B?RTRTRFEvZU9CbFh0NjZ0ZkdjbEJUZVJRR3daamd1Nk5iaWxRQ1IwYldFUWEr?=
+ =?utf-8?B?N2o0ekdDTEtXa05GbUhGSmhuSWNiSkhjbmxyRTViZ25SQzF1L2wwbjBFOVJl?=
+ =?utf-8?B?QmU1NVJxNlZKVzBtMW5OUU40QllwYXlidDZVNHNtUmg4bzNYNHZOM3VTNGpt?=
+ =?utf-8?B?eE1TNGpGYXRNVU1SVHJqZE5HR1VVcFJOTEsvUnRXcHhldGhlMjdIMHF1ZlFM?=
+ =?utf-8?B?VDBDeVAyeEpyZkZVMEZJSlZBT281b3ZHYUREM21wSVBqQVExcDdzQVFveDMw?=
+ =?utf-8?B?RWVmQWlIL2ZLelRkTVN5ZGVHVVl1QlY4ZE9lWTJBamtzUnBNOGRTUjZTNHlG?=
+ =?utf-8?B?WXpYVHdnYStHUitUakFsOWpKRk5tYUkrYmlhRGhhRjVyRGVUbi9kRWw3QVZO?=
+ =?utf-8?B?SUE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3F6A434505915F408E7A0749E5EAD440@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/5] ASoC: SOF: imx: add driver for imx95
-Content-Language: en-US
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Daniel Baluta <daniel.baluta@nxp.com>,
- Mark Brown <broonie@kernel.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- Takashi Iwai <tiwai@suse.com>, Bard Liao <yung-chuan.liao@linux.intel.com>,
- Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
- Jaroslav Kysela <perex@perex.cz>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
- imx@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20241113195240.3699-1-laurentiumihalcea111@gmail.com>
- <20241113195240.3699-5-laurentiumihalcea111@gmail.com>
- <ZzUJQCeWclsrr/lr@lizhi-Precision-Tower-5810>
-From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
-In-Reply-To: <ZzUJQCeWclsrr/lr@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR03MB7682.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dad42fdf-e788-45ba-5e1f-08dd1a9f95bc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Dec 2024 11:24:47.0214
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tTr2abIQmavLfDzz9nVE+C3/mxQG6q0qESG+93DnfMFaxwUvEeGbqen1N1Cx5bi2tGe+Z+aMKonlCN+Duyp/r/L48JM3fCsvQHP7wMJ7uYs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7730
 
-
-
-On 11/13/2024 10:17 PM, Frank Li wrote:
-> On Wed, Nov 13, 2024 at 02:52:39PM -0500, Laurentiu Mihalcea wrote:
->> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->>
->> Add SOF driver for imx95.
->>
->> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
->> ---
->>  sound/soc/sof/imx/Kconfig  |   8 +
->>  sound/soc/sof/imx/Makefile |   2 +
->>  sound/soc/sof/imx/imx95.c  | 401 +++++++++++++++++++++++++++++++++++++
-> why not reused exist one? look likes simular.
->
-> Frank
-the SOF drivers do indeed have some similarities, but each of them has their own quirks which IMO makes it a bit harder to add the 95 support. We need to figure out the common parts and then move them to imx-common, but I believe this can be solved incrementally.
->
->>  3 files changed, 411 insertions(+)
->>  create mode 100644 sound/soc/sof/imx/imx95.c
->>
->> diff --git a/sound/soc/sof/imx/Kconfig b/sound/soc/sof/imx/Kconfig
->> index 4751b04d5e6f..51a70a193533 100644
->> --- a/sound/soc/sof/imx/Kconfig
->> +++ b/sound/soc/sof/imx/Kconfig
->> @@ -50,4 +50,12 @@ config SND_SOC_SOF_IMX8ULP
->>  	  Say Y if you have such a device.
->>  	  If unsure select "N".
->>
->> +config SND_SOC_SOF_IMX95
->> +	tristate "SOF support for i.MX95"
->> +	depends on IMX_DSP
->> +	help
->> +	  This adds support for Sound Open Firmware for NXP i.MX95 platforms.
->> +	  Say Y if you have such a device.
->> +	  If unsure select "N".
->> +
->>  endif ## SND_SOC_SOF_IMX_TOPLEVEL
->> diff --git a/sound/soc/sof/imx/Makefile b/sound/soc/sof/imx/Makefile
->> index be0bf0736dfa..715ac3798668 100644
->> --- a/sound/soc/sof/imx/Makefile
->> +++ b/sound/soc/sof/imx/Makefile
->> @@ -2,10 +2,12 @@
->>  snd-sof-imx8-y := imx8.o
->>  snd-sof-imx8m-y := imx8m.o
->>  snd-sof-imx8ulp-y := imx8ulp.o
->> +snd-sof-imx95-y := imx95.o
->>
->>  snd-sof-imx-common-y := imx-common.o
->>
->>  obj-$(CONFIG_SND_SOC_SOF_IMX8) += snd-sof-imx8.o
->>  obj-$(CONFIG_SND_SOC_SOF_IMX8M) += snd-sof-imx8m.o
->>  obj-$(CONFIG_SND_SOC_SOF_IMX8ULP) += snd-sof-imx8ulp.o
->> +obj-$(CONFIG_SND_SOC_SOF_IMX95) += snd-sof-imx95.o
->>  obj-$(CONFIG_SND_SOC_SOF_IMX_COMMON) += imx-common.o
->> diff --git a/sound/soc/sof/imx/imx95.c b/sound/soc/sof/imx/imx95.c
->> new file mode 100644
->> index 000000000000..5a0e44f5bd48
->> --- /dev/null
->> +++ b/sound/soc/sof/imx/imx95.c
->> @@ -0,0 +1,401 @@
->> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-3-Clause)
->> +/*
->> + * Copyright 2024 NXP
->> + */
->> +
->> +#include <linux/arm-smccc.h>
->> +#include <linux/clk.h>
->> +#include <linux/firmware/imx/dsp.h>
->> +#include <linux/module.h>
->> +#include <linux/of_platform.h>
->> +#include <linux/of_reserved_mem.h>
->> +#include <sound/sof.h>
->> +
->> +#include "../sof-of-dev.h"
->> +#include "../ops.h"
->> +
->> +#define IMX_SIP_SRC 0xC2000005
->> +#define IMX_SIP_SRC_M_RESET_ADDR_SET 0x03
->> +
->> +#define IMX95_CPU_VEC_FLAGS_BOOT BIT(29)
->> +
->> +#define IMX_SIP_LMM 0xC200000F
->> +#define IMX_SIP_LMM_BOOT 0x0
->> +#define IMX_SIP_LMM_SHUTDOWN 0x1
->> +
->> +#define IMX95_M7_LM_ID 0x1
->> +
->> +#define MBOX_DSPBOX_OFFSET 0x1000
->> +#define MBOX_WINDOW_OFFSET 0x6000000
->> +
->> +struct imx95_priv {
->> +	struct platform_device *ipc_dev;
->> +	struct imx_dsp_ipc *ipc_handle;
->> +	resource_size_t bootaddr;
->> +};
->> +
->> +static void imx95_ipc_handle_reply(struct imx_dsp_ipc *ipc)
->> +{
->> +	unsigned long flags;
->> +	struct snd_sof_dev *sdev = imx_dsp_get_data(ipc);
->> +
->> +	spin_lock_irqsave(&sdev->ipc_lock, flags);
->> +	snd_sof_ipc_process_reply(sdev, 0);
->> +	spin_unlock_irqrestore(&sdev->ipc_lock, flags);
->> +}
->> +
->> +static void imx95_ipc_handle_request(struct imx_dsp_ipc *ipc)
->> +{
->> +	snd_sof_ipc_msgs_rx(imx_dsp_get_data(ipc));
->> +}
->> +
->> +static struct imx_dsp_ops ipc_ops = {
->> +	.handle_reply = imx95_ipc_handle_reply,
->> +	.handle_request = imx95_ipc_handle_request,
->> +};
->> +
->> +static int imx95_disable_enable_core(bool enable)
->> +{
->> +	struct arm_smccc_res res;
->> +
->> +	if (enable)
->> +		arm_smccc_smc(IMX_SIP_LMM, IMX_SIP_LMM_BOOT, IMX95_M7_LM_ID,
->> +			      0, 0, 0, 0, 0, &res);
->> +	else
->> +		arm_smccc_smc(IMX_SIP_LMM, IMX_SIP_LMM_SHUTDOWN, IMX95_M7_LM_ID,
->> +			      0, 0, 0, 0, 0, &res);
->> +
->> +	return res.a0;
->> +}
->> +
->> +static int imx95_run(struct snd_sof_dev *sdev)
->> +{
->> +	return imx95_disable_enable_core(true);
->> +}
->> +
->> +static int imx95_send_msg(struct snd_sof_dev *sdev, struct snd_sof_ipc_msg *msg)
->> +{
->> +	struct imx95_priv *priv = sdev->pdata->hw_pdata;
->> +
->> +	sof_mailbox_write(sdev, sdev->host_box.offset,
->> +			  msg->msg_data, msg->msg_size);
->> +
->> +	imx_dsp_ring_doorbell(priv->ipc_handle, 0);
->> +
->> +	return 0;
->> +}
->> +
->> +static int imx95_get_mailbox_offset(struct snd_sof_dev *sdev)
->> +{
->> +	return MBOX_DSPBOX_OFFSET + MBOX_WINDOW_OFFSET;
->> +}
->> +
->> +static int imx95_get_bar_index(struct snd_sof_dev *sdev, u32 type)
->> +{
->> +	switch (type) {
->> +	case SOF_FW_BLK_TYPE_SRAM:
->> +		return type;
->> +	default:
->> +		return -EINVAL;
->> +	}
->> +}
->> +
->> +static int imx95_get_window_offset(struct snd_sof_dev *sdev, u32 id)
->> +{
->> +	return MBOX_WINDOW_OFFSET;
->> +}
->> +
->> +static int imx95_set_power_state(struct snd_sof_dev *sdev,
->> +				 const struct sof_dsp_power_state *target_state)
->> +{
->> +	sdev->dsp_power_state = *target_state;
->> +
->> +	return 0;
->> +}
->> +
->> +static int imx95_suspend_resume(struct snd_sof_dev *sdev, bool suspend)
->> +{
->> +	struct imx95_priv *priv;
->> +	int ret, i;
->> +
->> +	priv = sdev->pdata->hw_pdata;
->> +
->> +	if (suspend) {
->> +		ret = imx95_disable_enable_core(false);
->> +		if (ret) {
->> +			dev_err(sdev->dev, "failed to stop core\n");
->> +			return ret;
->> +		}
->> +	}
->> +
->> +	for (i = 0; i < DSP_MU_CHAN_NUM; i++) {
->> +		if (suspend)
->> +			imx_dsp_free_channel(priv->ipc_handle, i);
->> +		else
->> +			imx_dsp_request_channel(priv->ipc_handle, i);
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static int imx95_runtime_resume(struct snd_sof_dev *sdev)
->> +{
->> +	int ret;
->> +	const struct sof_dsp_power_state target_state = {
->> +		.state = SOF_DSP_PM_D0,
->> +	};
->> +
->> +	ret = imx95_suspend_resume(sdev, false);
->> +	if (ret < 0) {
->> +		dev_err(sdev->dev, "failed to runtime resume: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	return snd_sof_dsp_set_power_state(sdev, &target_state);
->> +}
->> +
->> +static int imx95_resume(struct snd_sof_dev *sdev)
->> +{
->> +	int ret;
->> +	const struct sof_dsp_power_state target_state = {
->> +		.state = SOF_DSP_PM_D0,
->> +	};
->> +
->> +	ret = imx95_suspend_resume(sdev, false);
->> +	if (ret < 0) {
->> +		dev_err(sdev->dev, "failed to resume: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	if (pm_runtime_suspended(sdev->dev)) {
->> +		pm_runtime_disable(sdev->dev);
->> +		pm_runtime_set_active(sdev->dev);
->> +		pm_runtime_mark_last_busy(sdev->dev);
->> +		pm_runtime_enable(sdev->dev);
->> +		pm_runtime_idle(sdev->dev);
->> +	}
->> +
->> +	return snd_sof_dsp_set_power_state(sdev, &target_state);
->> +}
->> +
->> +static int imx95_runtime_suspend(struct snd_sof_dev *sdev)
->> +{
->> +	int ret;
->> +	const struct sof_dsp_power_state target_state = {
->> +		.state = SOF_DSP_PM_D3,
->> +	};
->> +
->> +	ret = imx95_suspend_resume(sdev, true);
->> +	if (ret < 0) {
->> +		dev_err(sdev->dev, "failed to runtime suspend: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	return snd_sof_dsp_set_power_state(sdev, &target_state);
->> +}
->> +
->> +static int imx95_suspend(struct snd_sof_dev *sdev, unsigned int target_state)
->> +{
->> +	int ret;
->> +	const struct sof_dsp_power_state target_power_state = {
->> +		.state = target_state,
->> +	};
->> +
->> +	if (!pm_runtime_suspended(sdev->dev)) {
->> +		ret = imx95_suspend_resume(sdev, true);
->> +		if (ret < 0) {
->> +			dev_err(sdev->dev, "failed to suspend: %d\n", ret);
->> +			return ret;
->> +		}
->> +	}
->> +
->> +	return snd_sof_dsp_set_power_state(sdev, &target_power_state);
->> +}
->> +
->> +static struct snd_soc_dai_driver imx95_dai[] = {
->> +	{
->> +		.name = "sai3",
->> +		.playback = {
->> +			.channels_min = 1,
->> +			.channels_max = 32,
->> +		},
->> +		.capture = {
->> +			.channels_min = 1,
->> +			.channels_max = 32,
->> +		},
->> +	},
->> +};
->> +
->> +static int imx95_probe(struct snd_sof_dev *sdev)
->> +{
->> +	struct platform_device *pdev;
->> +	struct imx95_priv *priv;
->> +	struct resource *res;
->> +	struct arm_smccc_res smc_ret;
->> +	int ret;
->> +
->> +	pdev = container_of(sdev->dev, struct platform_device, dev);
->> +
->> +	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
->> +	if (!priv)
->> +		return dev_err_probe(&pdev->dev, -ENOMEM, "failed to alloc priv\n");
->> +
->> +	sdev->pdata->hw_pdata = priv;
->> +
->> +	/* map SRAM */
->> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +	if (!res)
->> +		return dev_err_probe(&pdev->dev, -ENODEV,
->> +				     "failed to fetch SRAM region\n");
->> +
->> +	sdev->bar[SOF_FW_BLK_TYPE_SRAM] = devm_ioremap(&pdev->dev, res->start,
->> +						       resource_size(res));
->> +	if (IS_ERR(sdev->bar[SOF_FW_BLK_TYPE_SRAM]))
->> +		return dev_err_probe(&pdev->dev,
->> +				     PTR_ERR(sdev->bar[SOF_FW_BLK_TYPE_SRAM]),
->> +				     "failed to map SRAM region\n");
->> +
->> +	sdev->mmio_bar = SOF_FW_BLK_TYPE_SRAM;
->> +	sdev->mailbox_bar = SOF_FW_BLK_TYPE_SRAM;
->> +	sdev->dsp_box.offset = MBOX_DSPBOX_OFFSET + MBOX_WINDOW_OFFSET;
->> +	priv->bootaddr = res->start;
->> +
->> +	ret = of_reserved_mem_device_init(sdev->dev);
->> +	if (ret)
->> +		return dev_err_probe(&pdev->dev, ret,
->> +				     "failed to bind DMA region\n");
->> +
->> +	priv->ipc_dev = platform_device_register_data(&pdev->dev, "imx-dsp",
->> +						      PLATFORM_DEVID_NONE,
->> +						      pdev, sizeof(*pdev));
->> +	if (IS_ERR(priv->ipc_dev))
->> +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->ipc_dev),
->> +				     "failed to create IPC device\n");
->> +
->> +	priv->ipc_handle = dev_get_drvdata(&priv->ipc_dev->dev);
->> +	if (!priv->ipc_handle) {
->> +		ret = -EPROBE_DEFER;
->> +		dev_err(&pdev->dev, "failed to fetch ipc handle\n");
->> +		goto err_unregister_ipc_dev;
->> +	}
->> +
->> +	priv->ipc_handle->ops = &ipc_ops;
->> +	imx_dsp_set_data(priv->ipc_handle, sdev);
->> +
->> +	/* set core boot reset address */
->> +	arm_smccc_smc(IMX_SIP_SRC, IMX_SIP_SRC_M_RESET_ADDR_SET, priv->bootaddr,
->> +		      IMX95_CPU_VEC_FLAGS_BOOT, 0, 0, 0, 0, &smc_ret);
->> +	if ((int)smc_ret.a0 < 0) {
->> +		ret = smc_ret.a0;
->> +		dev_err(&pdev->dev, "failed to set boot address: %d", ret);
->> +		goto err_unregister_ipc_dev;
->> +	}
->> +
->> +	return 0;
->> +
->> +err_unregister_ipc_dev:
->> +	platform_device_unregister(priv->ipc_dev);
->> +
->> +	return ret;
->> +}
->> +
->> +static void imx95_remove(struct snd_sof_dev *sdev)
->> +{
->> +	struct imx95_priv *priv;
->> +
->> +	priv = sdev->pdata->hw_pdata;
->> +
->> +	if (imx95_disable_enable_core(false))
->> +		dev_err(sdev->dev, "failed to stop core\n");
->> +
->> +	platform_device_unregister(priv->ipc_dev);
->> +}
->> +
->> +static const struct snd_sof_dsp_ops sof_imx95_ops = {
->> +	.probe = imx95_probe,
->> +	.remove = imx95_remove,
->> +
->> +	/* mandatory "DSP" ops */
->> +	.run = imx95_run,
->> +	.block_read = sof_block_read,
->> +	.block_write = sof_block_write,
->> +	.send_msg = imx95_send_msg,
->> +	.load_firmware = snd_sof_load_firmware_memcpy,
->> +	.ipc_msg_data = sof_ipc_msg_data,
->> +
->> +	.mailbox_read = sof_mailbox_read,
->> +	.mailbox_write = sof_mailbox_write,
->> +
->> +	.get_mailbox_offset = imx95_get_mailbox_offset,
->> +	.get_bar_index = imx95_get_bar_index,
->> +	.get_window_offset = imx95_get_window_offset,
->> +
->> +	.pcm_open = sof_stream_pcm_open,
->> +	.pcm_close = sof_stream_pcm_close,
->> +	.set_stream_data_offset = sof_set_stream_data_offset,
->> +
->> +	.runtime_suspend = imx95_runtime_suspend,
->> +	.runtime_resume = imx95_runtime_resume,
->> +
->> +	.resume = imx95_resume,
->> +	.suspend = imx95_suspend,
->> +
->> +	.set_power_state = imx95_set_power_state,
->> +
->> +	.drv = imx95_dai,
->> +	.num_drv = ARRAY_SIZE(imx95_dai),
->> +
->> +	.hw_info = SNDRV_PCM_INFO_MMAP |
->> +		   SNDRV_PCM_INFO_MMAP_VALID |
->> +		   SNDRV_PCM_INFO_INTERLEAVED |
->> +		   SNDRV_PCM_INFO_PAUSE |
->> +		   SNDRV_PCM_INFO_BATCH |
->> +		   SNDRV_PCM_INFO_NO_PERIOD_WAKEUP,
->> +};
->> +
->> +static struct snd_sof_of_mach sof_imx95_machs[] = {
->> +	{
->> +		.compatible = "fsl,imx95-19x19-evk",
->> +		.sof_tplg_filename = "sof-imx95-wm8962.tplg",
->> +		.drv_name = "asoc-audio-graph-card2",
->> +	},
->> +	{
->> +	},
->> +};
->> +
->> +static struct sof_dev_desc sof_of_imx95_desc = {
->> +	.of_machines = sof_imx95_machs,
->> +	.ipc_supported_mask = BIT(SOF_IPC_TYPE_3),
->> +	.ipc_default = SOF_IPC_TYPE_3,
->> +	.default_fw_path = {
->> +		[SOF_IPC_TYPE_3] = "imx/sof",
->> +	},
->> +	.default_tplg_path = {
->> +		[SOF_IPC_TYPE_3] = "imx/sof-tplg",
->> +	},
->> +	.default_fw_filename = {
->> +		[SOF_IPC_TYPE_3] = "sof-imx95.ri",
->> +	},
->> +	.ops = &sof_imx95_ops,
->> +};
->> +
->> +static const struct of_device_id sof_of_imx95_ids[] = {
->> +	{ .compatible = "fsl,imx95-cm7-sof", .data = &sof_of_imx95_desc },
->> +	{ },
->> +};
->> +MODULE_DEVICE_TABLE(of, sof_of_imx95_ids);
->> +
->> +static struct platform_driver snd_sof_of_imx95_driver = {
->> +	.probe = sof_of_probe,
->> +	.remove = sof_of_remove,
->> +	.driver = {
->> +		.name = "sof-audio-of-imx95",
->> +		.pm = &sof_of_pm,
->> +		.of_match_table = sof_of_imx95_ids,
->> +	},
->> +};
->> +module_platform_driver(snd_sof_of_imx95_driver);
->> +
->> +MODULE_LICENSE("Dual BSD/GPL");
->> +MODULE_DESCRIPTION("SOF support for i.MX95 platforms");
->> +MODULE_AUTHOR("Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>");
->> --
->> 2.34.1
->>
-
+T24gVGh1LCAyMDI0LTEyLTEyIGF0IDA4OjIwICswMTAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOg0KPiBFeHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3Bl
+biBhdHRhY2htZW50cyB1bnRpbA0KPiB5b3UgaGF2ZSB2ZXJpZmllZCB0aGUgc2VuZGVyIG9yIHRo
+ZSBjb250ZW50Lg0KPiANCj4gDQo+IE9uIDEyLzEyLzIwMjQgMDQ6MDUsIEphc29uLUpIIExpbiAo
+5p6X552/56WlKSB3cm90ZToNCj4gPiBIaSBLcnp5c3p0b2YsDQo+ID4gDQo+ID4gVGhhbmtzIGZv
+ciB0aGUgcmV2aWV3cy4NCj4gPiANCj4gPiBPbiBXZWQsIDIwMjQtMTItMTEgYXQgMTA6MzcgKzAx
+MDAsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+ID4gPiBFeHRlcm5hbCBlbWFpbCA6IFBs
+ZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cw0KPiA+ID4gdW50aWwN
+Cj4gPiA+IHlvdSBoYXZlIHZlcmlmaWVkIHRoZSBzZW5kZXIgb3IgdGhlIGNvbnRlbnQuDQo+ID4g
+PiANCj4gPiA+IA0KPiA+ID4gT24gV2VkLCBEZWMgMTEsIDIwMjQgYXQgMTE6MjI6NDlBTSArMDgw
+MCwgSmFzb24tSkguTGluIHdyb3RlOg0KPiA+ID4gPiBBZGQgdGhlIEdsb2JhbCBDb21tYW5kIEVu
+Z2luZSAoR0NFKSBoZWFkZXIgZmlsZSB0byBkZWZpbmUgdGhlDQo+ID4gPiA+IEdDRQ0KPiA+ID4g
+PiB0aHJlYWQgcHJpb3JpdHksIEdDRSBzdWJzeXMgSUQgYW5kIEdDRSBldmVudHMgZm9yIE1UODE5
+Ni4NCj4gPiA+IA0KPiA+ID4gVGhpcyB3ZSBzZWUgZnJvbSB0aGUgZGlmZi4gV2hhdCB3ZSBkbyBu
+b3Qgc2VlIGlzIHdoeSBwcmlvcml0eSBpcw0KPiA+ID4gYQ0KPiA+ID4gYmluZGluZy4gTG9va2lu
+ZyBicmllZmx5IGF0IGV4aXN0aW5nIGNvZGU6IGl0IGlzIG5vdCBhIGJpbmRpbmcsDQo+ID4gPiB0
+aGVyZQ0KPiA+ID4gaXMNCj4gPiA+IG5vIGRyaXZlciB1c2VyLg0KPiA+ID4gDQo+ID4gDQo+ID4g
+VGhpcyBwcmlvcml0eSB2YWx1ZSBpcyB1c2VkIHRvIGNvbmZpZ3VyZSB0aGUgcHJpb3JpdHkgbGV2
+ZWwgZm9yDQo+ID4gZWFjaA0KPiA+IEdDRSBoYXJkd2FyZSB0aHJlYWQsIHNvIGl0IGlzIGEgbmVj
+ZXNzYXJ5IGhhcmR3YXJlIGF0dHJpYnV0ZS4NCj4gDQo+IEkgZGlkIG5vdCBzYXkgdGhlc2UgYXJl
+IG5vdCAiaGFyZHdhcmUiLiBJIHNhaWQgdGhlc2UgYXJlIG5vdA0KPiBiaW5kaW5ncy4NCj4gQnJp
+bmcgYXJndW1lbnRzIHdoeSB0aGVzZSBhcmUgYmluZGluZ3MuDQo+IA0KDQpOb3Qgb25seSBicmlu
+Z2luZyBhcmd1bWVudHMsIHdlIHVzZSBpdCB0byBjb25maWd1cmUgZWFjaCBHQ0UgdGhyZWFkJ3MN
+CnByaW9yaXR5Lg0KDQpQbGVhc2UgZm9yZ2l2ZSBtZSB0byBhc2sgYSB0cml2aWFsIHF1ZXN0aW9u
+Lg0KRG8geW91IG1lYW4gaWYgdGhlcmUgaXMgbm8gZHJpdmVyIHVzaW5nIGl0IGRpcmVjdGx5LCB0
+aGVuIGl0IGNhbiBub3QgYmUNCmEgYmluZGluZz8NCk9yIGNvdWxkIHlvdSBnaXZlIG1lIGFuIGV4
+YW1wbGUgZm9yIHdoYXQgc2hvdWxkIGJlIGJpbmRpbmcgYW5kIHdoYXQNCnNob3VsZCBub3QgYmUg
+YmluZGluZz8NCg0KDQpDb25zaWRlcmluZyB0byB0aGVzZSAzIHBvaW50cywgSSB0aGluayBHQ0Ug
+dGhyZWFkIHByaW9yaXR5IGlzIHN1aXRhYmxlDQp0byBiZSBwYXJ0IG9mIHRoZSBEZXZpY2UgVHJl
+ZSBCaW5kaW5nOg0KDQoxLiBEZXNjcmliaW5nIEhhcmR3YXJlIFByb3BlcnRpZXMNCi0gVGhlIERl
+dmljZSBUcmVlIGlzIGEgZGF0YSBzdHJ1Y3R1cmUgZm9yIGRlc2NyaWJpbmcgaGFyZHdhcmUsIGFu
+ZCBHQ0UNCnRocmVhZCBwcmlvcml0eSwgYXMgcGFydCBvZiB0aGUgaGFyZHdhcmUsIHNob3VsZCBi
+ZSBkZXNjcmliZWQgaW4gdGhlDQpEZXZpY2UgVHJlZS4NCg0KMi4gRHJpdmVyIFVzYWdlDQotIERl
+dmljZSBUcmVlIGRhdGEgaXMgdXNlZCBieSBkcml2ZXJzIHRvIGluaXRpYWxpemUgYW5kIGNvbmZp
+Z3VyZQ0KaGFyZHdhcmUsIGFuZCBHQ0UgdGhyZWFkIHByaW9yaXR5IGlzIG5lY2Vzc2FyeSBjb25m
+aWd1cmF0aW9uIGRhdGEgZm9yDQp0aGUgZHJpdmVyLiBBZnRlciBwYXJzaW5nIHRoZSBtYm94ZXMg
+YXJncyBmcm9tIERUUywgQ01EUSBkcml2ZXIgdXNlIGl0DQp0byBjb25maWd1cmUgR0NFIHRocmVh
+ZC4NCg0KMy4gU3RhbmRhcmRpemF0aW9uDQotIERldmljZSBUcmVlIGJpbmRpbmdzIHNob3VsZCBi
+ZSBzdGFuZGFyZGl6ZWQsIGFuZCBHQ0UgdGhyZWFkIHByaW9yaXR5DQpzaG91bGQgaGF2ZSBjb25z
+aXN0ZW50IG1lYW5pbmcgYW5kIHVzYWdlIGFjcm9zcyBkaWZmZXJlbnQgaGFyZHdhcmUNCnBsYXRm
+b3Jtcy4gTG9va2luZyBpbnRvIHRoZSBsYXRlc3QgaGVhZGVyOiBtZWRpYXRlayxtdDgxODgtZ2Nl
+LmgsDQptZWRpYXRlayxtdDY3OTUtZ2NlLmggYW5kIG10ODE5NS1nY2UuaCwgdGhleSBhbGwgaGF2
+ZSBkZWZpbmVkIEdDRQ0KdGhyZWFkIHByaW9yaXR5Lg0KDQo+ID4gDQo+ID4gSXQncyBoYXJkIHRv
+IGZpbmQgd2hlcmUgdGhlIHByaW9yaXR5IGlzIHVzZWQgaW4gZXhpc3RpbmcgZHJpdmVyDQo+ID4g
+Y29kZQ0KPiA+IGJlY2F1c2Ugd2UgcGFyc2VkIGl0IGZyb20gRFRTLg0KPiANCj4gU28gbm90IGEg
+YmluZGluZy4NCj4gDQo+ID4gDQo+ID4gSXQgaXMgdXNlZCBpbiBhbGwgbWVkaWFUZWtzJyBEVFMg
+dXNpbmcgdGhlIEdDRS4NCj4gPiBGb3IgZXhhbXBsZSwgaW4gbXQ4MTk1LmR0czoNCj4gPiANCj4g
+PiB2ZG9zeXMwOiBzeXNjb25AMWMwMWEwMDAgew0KPiA+ICAgICBjb21wYXRpYmxlID0gIm1lZGlh
+dGVrLG10ODE5NS12ZG9zeXMwIiwgIm1lZGlhdGVrLG10ODE5NS0NCj4gPiBtbXN5cyIsDQo+ID4g
+InN5c2NvbiI7DQo+ID4gICAgIHJlZyA9IDwwIDB4MWMwMWEwMDAgMCAweDEwMDA+Ow0KPiA+ICAg
+ICBtYm94ZXMgPSA8JmdjZTAgMCBDTURRX1RIUl9QUklPXzQ+Ow0KPiA+ICAgICAjY2xvY2stY2Vs
+bHMgPSA8MT47DQo+ID4gICAgIG1lZGlhdGVrLGdjZS1jbGllbnQtcmVnID0gPCZnY2UwIFNVQlNZ
+U18xYzAxWFhYWCAweGEwMDANCj4gPiAweDEwMDA+Ow0KPiA+IH0NCj4gPiANCj4gPiBDTURRIGRy
+aXZlcihtdGstY21kcS1tYWlsYm94LmMpIHdpbGwgZ2V0IHRoZSBhcmdzIHBhcnNlZCBmcm9tDQo+
+ID4gbWJveGVzDQo+ID4gcHJvcGVydHkgaW4gY21kcV94bGF0ZSgpIGFuZCB0aGVuIGl0IHdpbGwg
+c3RvcmUgQ01EUV9USFJfUFJJT180IHRvDQo+ID4gdGhlDQo+ID4gc3BlY2lmaWMgdGhyZWFkIHN0
+cnVjdHVyZS4NCj4gDQo+IFNvIG5vdCBhIGJpbmRpbmcuDQo+IA0KPiA+IFRoZSB1c2VyIG9mIENN
+RFEgZHJpdmVyIHdpbGwgc2VuZCBjb21tYW5kIHRvIENNRFEgZHJpdmVyIGJ5DQo+ID4gY21kcV9t
+Ym94X3NlbmRfZGF0YSgpLCBhbmQgdGhpcyBwcmlvcml0eSBzZXR0aW5nIHdpbGwgYmUgY29uZmln
+dXJlZA0KPiA+IHRvDQo+ID4gR0NFIGhhcmR3YXJlIHRocmVhZC4NCj4gDQo+IEFuZCBvdGhlciB0
+aGluZ3MgdGhlcmUgYXJlIHRoZSBzYW1lLCB3ZSBkbyBub3QgdGFsayBvbmx5IGFib3V0IHRoaXMN
+Cj4gb25lDQo+IHRoaW5nLiBJIGFza2VkIGxhc3QgdGltZSB0byBkcm9wIHdoaWNoIGlzIG5vdCBh
+IGJpbmRpbmcuDQo+IA0KPiANCg0KSSBqdXN0IHJlZmVyZW5jZSBhbGwgdGhlIHByZXZpb3VzIG1l
+ZGlhdGVrLG10WFhYWC1nY2UuaCB0byBhZGQgdGhlIHNhbWUNCmJpbmRpbmcuIEV4Y2VwdCBmb3Ig
+dGhlIEdQUiBwYXJ0IEkgYWRkZWQgdGhpcyB0aW1lLCBJIGRvbid0IGtub3cgd2hhdA0KZWxzZSBz
+aG91bGQgYmUgZHJvcHBlZC4NCg0KPiAuLi4NCj4gDQo+ID4gPiA+ICsNCj4gPiA+ID4gKy8qDQo+
+ID4gPiA+ICsgKiBHQ0UgR2VuZXJhbCBQdXJwb3NlIFJlZ2lzdGVyIChHUFIpIHN1cHBvcnQNCj4g
+PiA+ID4gKyAqIExlYXZlIG5vdGUgZm9yIHNjZW5hcmlvIHVzYWdlIGhlcmUNCj4gPiA+ID4gKyAq
+Lw0KPiA+ID4gPiArLyogR0NFOiB3cml0ZSBtYXNrICovDQo+ID4gPiANCj4gPiA+IFRoYXQncyBh
+IGRlZmluaXRlIG5vLWdvLiBSZWdpc3RlciBtYXNrcyBhcmUgbm90IGJpbmRpbmdzLg0KPiA+ID4g
+DQo+ID4gDQo+ID4gSSdtIHNvcnJ5IHRvIHRoZSBjb25mdXNpb24uDQo+ID4gDQo+ID4gVGhlc2Ug
+ZGVmaW5lcyBhcmUgdGhlIGluZGV4IG9mIEdDRSBHZW5lcmFsIFB1cnBvc2UgUmVnaXN0ZXIgZm9y
+DQo+ID4gZ2VuZXJhdGluZyBpbnN0cnVjdGlvbnMsIHRoZXkgYXJlIG5vdCByZWdpc3RlciBtYXNr
+cy4NCj4gDQo+IEluZGV4IG9mIHJlZ2lzdGVyIGlzIGFsc28gc291bmRpbmcgbGlrZSByZWdpc3Rl
+ci4NCj4gDQo+ID4gDQo+ID4gVGhlIGNvbW1lbnQgIi8qIEdDRTogd3JpdGUgbWFzayAqLyIgaXMg
+YnJpZWZseSBkZXNjcmliZSB0aGF0IHRoZQ0KPiA+IHVzYWdlDQo+ID4gb2YgR0NFX0dQUl9SMCBh
+bmQgR0NFX0dQUl9SMDEgaXMgdXNlZCB0byBzdG9yZSB0aGUgcmVnaXN0ZXIgbWFzaw0KPiA+IHdo
+ZW4NCj4gPiBHQ0UgZXhlY3V0aW5nIHRoZSBXUklURSBpbnN0cnVjdGlvbi4gQW5kIGl0IGNhbiBh
+bHNvIHN0b3JlIHRoZQ0KPiA+IHJlZ2lzdGVyDQo+ID4gbWFzayBvZiBQT0xMIGFuZCBSRUFEIGlu
+c3RydWN0aW9uLg0KPiA+IA0KPiA+IEkgd2lsbCBhZGQgbW9yZSB3b3JkcyB0byBtYWtlIHRoaXMg
+Y29tbWVudCBjbGVhcmVyLCBsaWtlIHRoaXM6DQo+ID4gLypHQ0U6IHN0b3JlIHRoZSBtYXNrIG9m
+IGluc3RydWN0aW9uICovDQo+IA0KPiBOb3Qgc3VyZSwgYmVjYXVzZSBJIGZlZWwgeW91IGp1c3Qg
+YXZvaWQgZG9pbmcgd2hhdCBpcyByaWdodCBhbmQga2VlcA0KPiBwdXNoaW5nIHlvdXIgb3duIG5h
+cnJhdGl2ZS4gV2hlcmUgaXMgaXQgdXNlZCBpbiB0aGUgZHJpdmVyPw0KPiANCj4gSSBqdXN0IGxv
+b2tlZCBmb3IgIkdDRV9HUFJfUjAwIiAtIG5vIHVzYWdlIGF0IGFsbC4gU28gbm90IGEgYmluZGlu
+Zy4NCj4gDQoNCkN1cnJlbnRseSwgR0NFX0dQUl9SMTUgaXMgdXNlZCBmb3IgZ2VuZXJhdGluZyBQ
+T0xMIGluc3RydWN0aW9uIGFuZCBpdA0KaGFzIGJlZW4gZGVmaW5lZCBhcyBhIE1BQ1JPIGAjZGVm
+aW5lIENNRFFfUE9MTF9BRERSX0dQUiAoMTUpYA0KaW4gbXRrLWNtZHEtaGVscGVyLmMuDQoNCk90
+aGVycyBHUFJzIGFyZSBub3QgdXNlZCBjdXJyZW50bHkgYW5kIHRoZXkgY2FuIGJlIGRlZmluZSBh
+cyBNQUNSTyBpbg0KdGhlIHNhbWUgd2F5IG9mIEdDRV9HUFJfUjE1LCBzbyBJIGNhbiBkcm9wIHRo
+ZXNlIEdQUiBkZWZpbmUgaW4gdGhlIG5leHQNCnZlcnNpb24uIFBlcmhhcHMgdGhlIFNvQ3MgaW4g
+dGhlIGZ1dHVyZSBoYXMgY2hhbmdlZCB0aGUgcnVsZXMgb2YgR1BSDQppbmRleCwgd2UgY2FuIGFk
+ZCBpdCBiYWNrIGFuZCBnZXQgdGhlbSBmcm9tIERUUy4NCg0KUmVnYXJkcywNCkphc29uLUpILkxp
+bg0KDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQo=
 
