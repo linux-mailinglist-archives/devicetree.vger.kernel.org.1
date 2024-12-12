@@ -1,73 +1,79 @@
-Return-Path: <devicetree+bounces-130128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C3439EE0D2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 09:03:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3734D9EE0D8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 09:07:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D294F167E6F
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:03:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFCD418830F4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:07:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8528520CCF7;
-	Thu, 12 Dec 2024 08:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD8BD20B219;
+	Thu, 12 Dec 2024 08:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BR/0VgML"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AlWozK+c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5971020CCEC;
-	Thu, 12 Dec 2024 08:03:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93823558BA;
+	Thu, 12 Dec 2024 08:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733990581; cv=none; b=LWZDEBOlj011m/Qvt707XCnY8zKjFISHdeExgRIp4hN9ronN1Ld1ZvzFre7QfpNIrKApmQg7YU13in8qv9Qd1C7XReYHWUMzByDS9F4kjIbQ5np0eiy2wzIT6/KcwTXNU4LdLGXMQKjNW25XuS0Qby815rT0fssiK5WO8KgtjVw=
+	t=1733990849; cv=none; b=fW2mrtHO43ghw7u6NP0lmTsG2q8CXemVl0AwFQ9sPaWrcJwd2n0C9k1Sz+4C/0BDQ2wpCc+Lw1uXp5uGz5/21iEFEu4sl/qi1dGz4z50fpROzdo8b85Kpg2YHmvyVUdvNWaszL9jFOMvoe2HS8xKgmXRftpBi3xQJSZgLwIvU8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733990581; c=relaxed/simple;
-	bh=gEtg6k4+jAA27/mwhy/FA8PtloL7/FESqCtmrmaO7BQ=;
-	h=Message-ID:Date:From:To:Subject:In-Reply-To:References:Cc; b=JiDevLav5t0qneUMMeDHZlmFalxMta5rH1WjlTmW3lNJotC77DT7DT8a4VY4A7o/wZRWbUcnAJ8bx/GKbIsnduL8Zv9nxHt29RZL7fj124NED3vrincerAtkM7px4lHKaBFDQFM6u47r6NoPdY9LwE+xrtzM8QspLYxhLz55RN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BR/0VgML; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 449E5C4CEDE;
-	Thu, 12 Dec 2024 08:03:00 +0000 (UTC)
+	s=arc-20240116; t=1733990849; c=relaxed/simple;
+	bh=bvmxcorHen4rPUu4gUVJQ57vn4Ri3EwuQEcpWR0m5RY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LxvDg9nOuwNR7KVlSb0cc0gmMmumXceEh/cmoMt541+MKqKNUtipALgeOeVFPTIwHrDTXbPE+skA5qJaCLekUNZz9C8n+RWvvc2GkF+dltIbSVpRSzBpCKLdzalbhRy5C4Hrm4HRbuCltAcGnDwQkrOJ0yidpI5hMcMReX7/0Cs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AlWozK+c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35BF5C4CECE;
+	Thu, 12 Dec 2024 08:07:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733990580;
-	bh=gEtg6k4+jAA27/mwhy/FA8PtloL7/FESqCtmrmaO7BQ=;
-	h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
-	b=BR/0VgMLmeBvtGLMhmxicV1p3cT0rJrL7HMfyUDwbFDKrTsWMxIezNqF03ItvwzQm
-	 BWCxKncYJ4DuvDj28nHX8gF66YLkzRa1jyLtovsPam05NUHK+UaTOTdCWvH1UnPCLG
-	 djylASve6pz+jBANGjaOinZxwQ6zFmwWRO2nUDx1j5qbxXnA5iEvrpy5SjzDdvtap4
-	 fEn8ZD5mI0ACd9DQdVfsJOFoRAfNI9lQqedW+hUGKJjSSLxXcIrRTYVKzgVYJtlFwN
-	 Me41vB3x9e2uoQCbKy12dIp8ygwLzGaLeSQqsqN9vm5h/T9NXLrah9H/7TeMRI4qMT
-	 xDUi3JlSL+CLg==
-Message-ID: <f3051a8c08d8af623d686cea162c945e@kernel.org>
-Date: Thu, 12 Dec 2024 08:02:58 +0000
-From: "Maxime Ripard" <mripard@kernel.org>
-To: "Liu Ying" <victor.liu@nxp.com>
-Subject: Re: [PATCH v6 12/19] drm/imx: Add i.MX8qxp Display Controller KMS
-In-Reply-To: <20241209033923.3009629-13-victor.liu@nxp.com>
-References: <20241209033923.3009629-13-victor.liu@nxp.com>
-Cc: agx@sigxcpu.org, airlied@gmail.com, aisheng.dong@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org, dri-devel@lists.freedesktop.org, festevam@gmail.com, francesco@dolcini.it, frank.li@nxp.com, imx@lists.linux.dev, kernel@pengutronix.de, kishon@kernel.org, krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org, p.zabel@pengutronix.de, robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org, simona@ffwll.ch, tglx@linutronix.de, tzimmermann@suse.de, u.kleine-koenig@baylibre.com, vkoul@kernel.org, "Maxime
- Ripard" <mripard@kernel.org>
-Content-Transfer-Encoding: quoted-printable
+	s=k20201202; t=1733990849;
+	bh=bvmxcorHen4rPUu4gUVJQ57vn4Ri3EwuQEcpWR0m5RY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AlWozK+cpnXVLIbkjenkDHGPiuySwAWne3UWR000okZM/L0l5EYL2XY80rSLpzd0v
+	 OQNWaLbVE+yE2FOGZZDi1le+tkPD+3X7k4dWf2lsc3fgvIC0RgHFcylfT6icxZP24q
+	 tDmH92e4PJjQCSDtUgHsEDNm6B9J7KnCfe59lh4cDgUXYMxF0Bi16tMzr8kPvwfXRD
+	 9fZ0BlafKUTGJeeKThbUzOBKo6gt5xduQnKVQUFXhGMrPuLUl4YyFDZmbAilesYwVL
+	 wvujtvAPYW8g5AGf9C6J2UvV/uJpk+5QsU98kmz632NYuUTtCpertT5EjZ+qUR4d2B
+	 A+I0e+Ol1t8pg==
+Date: Thu, 12 Dec 2024 09:07:25 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	eraretuya@gmail.com
+Subject: Re: [PATCH v6 2/7] iio: accel: adxl345: complete the list of defines
+Message-ID: <ldsvh5heh6gkdljxvgovwl6ni55cudvqw2mihbrliw7dqanrnk@lwlg6irtvg4x>
+References: <20241211230648.205806-1-l.rubusch@gmail.com>
+ <20241211230648.205806-3-l.rubusch@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241211230648.205806-3-l.rubusch@gmail.com>
 
-On Mon, 9 Dec 2024 11:39:16 +0800, Liu Ying wrote:
-> i.MX8qxp Display Controller(DC) is comprised of three main components that
-> include a blit engine for 2D graphics accelerations, display controller f=
-or
-> display output processing, as well as a command sequencer.  Add kernel
-> mode setting support for the display controller part with two CRTCs and
-> two primary planes(backed by FetchLayer and FetchWarp respectively).  The
->=20
-> [ ... ]
+On Wed, Dec 11, 2024 at 11:06:43PM +0000, Lothar Rubusch wrote:
+> Extend the list of constants. Keep them the header file for readability.
+> The defines allow the implementation of events like watermark, single
+> tap, double tap, freefall, etc.
 
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
+We don't store constants just to store constants, so this commit does
+not have reason to be separate. We store constants/defines only to
+implement the driver. Merge these with the users... unless you want to
+say there are no users of this at all, but then make it clear: move the
+patch to the end.
 
-Thanks!
-Maxime
+Best regards,
+Krzysztof
+
 
