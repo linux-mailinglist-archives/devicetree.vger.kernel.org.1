@@ -1,129 +1,130 @@
-Return-Path: <devicetree+bounces-130282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C0BD9EE7BB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 14:35:16 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59E419EE7DF
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 14:41:03 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C652016120A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 13:40:58 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C25321577D;
+	Thu, 12 Dec 2024 13:40:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NtFPOP6i"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32496282D46
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 13:35:14 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0E0E2153F8;
-	Thu, 12 Dec 2024 13:34:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aawc+2ND"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3AD2153DF;
-	Thu, 12 Dec 2024 13:34:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B688A2153EC;
+	Thu, 12 Dec 2024 13:40:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734010483; cv=none; b=Ghi4ZkDRm4irqnIuaVtwXTLIJygUOKWmqQzfdFkUIfWo3MOa7kBIw3oCGJUAd1h9Dq3dmQ9sIj0dSZ7csd3nIfMgG+8gAgZtB/DwvvGz44NUVlIOLUP6DXb6W5ErtE11vV6nlqYPuEQjJ8LwKTAPeChuKfp5pgsRpNAXAl7s7Qs=
+	t=1734010817; cv=none; b=EPKUgBItwXmjsr9DdfgbOBRs56c5qHz1ZcdthtWsrpknBxZHMQ69lsG6Vbkwn6aPNCbnd/vTD8Pvvydy/ljBFTHmCWW5TwKnUoAuOAigGl6BWCocPP8umSDwYfboj7HbpumCvv+YKY1ep7K8d2wk3U6OgE3mKSyIflMLOKCCTYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734010483; c=relaxed/simple;
-	bh=/d4vfpu/U/HMN8WJs97o1xq/2F4WnPVYBuljYRlwy7E=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qF2TW+A+nHGW7npRK28bJl6SgvivFhq5VUC6tblhfp46SY184V33sQ4u9QObF8TZupG8EVr88N86hUEj0RDerTcx2QcnA5wTX+/qR3ZxP44W++tUU0+G4rAToB4AvZz1Wrv+Ld2tHFn3+dmMUpO8zhx8HRtQ/zFvaXqckTsPbkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aawc+2ND; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2156e078563so4601205ad.2;
-        Thu, 12 Dec 2024 05:34:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734010481; x=1734615281; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B+9a62ZNb/EWT2KZraUPUvnwvMhSxc9YsoXJSC42SEw=;
-        b=aawc+2NDEHt4xxzj4J8Mz2TQazuXCLK2EGMANKTOwStzaVIvykYv5gIdbAjRoi6Zuq
-         yyj6ScvWTeg4RWfweKgYsfol7Hmmz4U3Y/q8Ei0OG0SXEmPJS5w2QVqgk7Toy4/flDPU
-         abldpOKfKgYrnR5lyfK6yuF7r8P4JOxyy0PArK5S4peOckgxIUmEkrMxGLpdRl/vrnJh
-         1doCq6XalZExHM5kKWB9Q1QCHipKbh7o2oMPwuUPGsEPTcHI3EfybFOy/HPpJ6V7bSkc
-         AuHuxwj+oWU7Lasxc/ObRweoHHEZOzGsJ01Ng6kh4jC7HXZSfWah4MIb9nQh5ZkkC1YZ
-         RPsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734010481; x=1734615281;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B+9a62ZNb/EWT2KZraUPUvnwvMhSxc9YsoXJSC42SEw=;
-        b=S8fc3XtU88KjSt0uq8VlwATo3UAqa87AMot/US4x0YEeycmiMu7EMRbKMj/HgYjJDL
-         TA4ajFtljSVqqk8Uc5cMaRH4sFgPGSBDtm1Itovr673rcfi1l7g91j74GJhnD34LsM1C
-         7NzCPSeRK0lTBY1LdvBuDu1fNQYGgVUcmYBueNZqeXqdhT7Jb/MQPDKX8vHmJ0YKznSo
-         C2nEwTjPmvkmgl7qzVmZ4o7yCT4eR0rEb+Yl5Q95ahKSrc8uOE8pj2DYujy/BAZocUzq
-         Yk+qvLGMH/VLxDBqhfTKca3AvZ+Fx1Qy/Ahax4Tn2KZrq7G4COeocPH6vzOswGh513Fq
-         dMGg==
-X-Forwarded-Encrypted: i=1; AJvYcCVQfncU/Ixe2MmFuj9aMFOUpf0L898wwwsa0LNVwFfh09o/JCejrp0wOtXHfLSoenW1HzgDv/cRXfGdkcCa@vger.kernel.org, AJvYcCWo6cWlePdcaaw5jaIEWXLN4ajmk18IMHffoIV9vxhjwSwI7QBCUdwSixBK4IRMq7c3y0gC4M0QHFMU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzASVz1MdgBQvC4vbSc06RdXfjFYWNbDCqmIs2wSVMNJY7j6pBg
-	Vzthsxy4WyujTxH4BWAM7nYWaGo2A2P/Z6dg8qX1aFtg89/qbqgR
-X-Gm-Gg: ASbGncvyMsnNeZunvdpeYcmGt4xXKAF1R/8fD5oETejs+AALaFgq5vGNGKp8IdgN31o
-	Tw+8IGwcl27fC0UTCdJCOBOyyCy7D7YMjU8LwQJy8I2ixpmZcY3GRfPKSZSxjT9JVVcinQMq0xs
-	JbVLm7/FlYCSuIcwrAkDWLoXK7Gc/cZnEm7yULbcSC1Vh4OdZrwYIyosuOZMDPY2W12PNo76XTN
-	Kkd3/yu6jlAbdk9t6wg7x6a9WLiB3l2hvT/hqH2Ss573oLoTZ8JIOrq+IZ6KmYSr5vPN1Sn0H+Y
-	jCRA8jiF9M24Kt1tI2LINWrfIsluf1YBAxZGKbf7YdOFxptQICN/iWYQ7z2ZX0JM3lOFIcWvtxw
-	rDzXs
-X-Google-Smtp-Source: AGHT+IHy1BSLKHF/ez/arq9rOsDz9L+2JIM6hHhlvZ3suOhtFcy4XDdXZnNQNlk3OKOkub/hn6NdTQ==
-X-Received: by 2002:a17:902:cec4:b0:216:5e6e:68b4 with SMTP id d9443c01a7336-2178aeed4c4mr63751705ad.46.1734010481565;
-        Thu, 12 Dec 2024 05:34:41 -0800 (PST)
-Received: from obliging-System-Product-Name.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2163562a838sm83390165ad.29.2024.12.12.05.34.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Dec 2024 05:34:41 -0800 (PST)
-From: Yang Chen <yangchen.openbmc@gmail.com>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	andrew@codeconstruct.com.au,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	patrick@stwcx.xyz,
-	amithash@meta.com
-Cc: Jerry.Lin@quantatw.com,
-	yang.chen@quantatw.com
-Subject: [PATCH v1 4/4] ARM: dts: aspeed: minerva: add second source RTC
-Date: Thu, 12 Dec 2024 21:32:26 +0800
-Message-Id: <20241212133226.342937-5-yangchen.openbmc@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241212133226.342937-1-yangchen.openbmc@gmail.com>
-References: <20241212133226.342937-1-yangchen.openbmc@gmail.com>
+	s=arc-20240116; t=1734010817; c=relaxed/simple;
+	bh=jVvhvxo08oMfxjmztohSudN71ehY7yU6sVeC/s1ugTY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=YFsjwDSLG3ipuW8gsQ6KlHWvUGnXT/p0Crab7q2Qa60dBRb6t+mC4GFUNLvAnMGWhM9KYHBl1i0DYdYuOJWEqH1LAXwZ26Bmw3pAfoVMa/JyRgGRppID/VgH6PAu0ngGLYGAvkpJZV/4xmpwMpfiU7LLKeNeKMbgbKUfSt0SFn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NtFPOP6i; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BC8K3CT028100;
+	Thu, 12 Dec 2024 13:40:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	no2kTIvkCui7mJdpXu4zGYtIWboKW1PAu+eHBL3uA5g=; b=NtFPOP6ivp7Eg4Dh
+	YfxESKt8qfcH87xk8CS1bNbAVD7TcfLWWri2zttIw2S29DQuaC9n3woZYQXnoJXR
+	2W3hXqM9CH+SKR91PZC4hR4bfCsNruSzsbJHtLpMFAl/agwLmbn3xPfvoxbYeLjL
+	RZJwjACx65YBCHL8UV52IlYg7WMFXmjB2zVREJ1600s6kEOyKbXbijFru9O9R3JE
+	d/VAwna9JnG2SrjVWzEr1i40/9iTKzGaQjTccW+EvovnE0K5qOCeNg+czKGOXOVD
+	yR2QoHp84vMDAuCCnY4t3gaP850riStRK9aCbQSy9LtoLxkpiSprS9OjwpG/Qvbh
+	TLzfPw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fd4xu3rx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Dec 2024 13:40:10 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BCDe9sK023928
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Dec 2024 13:40:09 GMT
+Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 12 Dec
+ 2024 05:40:02 -0800
+Message-ID: <82f61951-89c3-4793-82c9-581f737b5303@quicinc.com>
+Date: Thu, 12 Dec 2024 21:39:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/16] dt-bindings: media: camss: Add qcom,sm8550-camss
+ binding
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, <rfoss@kernel.org>,
+        <todor.too@gmail.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <vladimir.zapolskiy@linaro.org>
+CC: <quic_eberman@quicinc.com>, <linux-media@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
+        Yongsheng Li
+	<quic_yon@quicinc.com>
+References: <20241211140738.3835588-1-quic_depengs@quicinc.com>
+ <20241211140738.3835588-13-quic_depengs@quicinc.com>
+ <d8b73275-a52a-4cfb-91d7-948686d3a5f1@linaro.org>
+Content-Language: en-US
+From: Depeng Shao <quic_depengs@quicinc.com>
+In-Reply-To: <d8b73275-a52a-4cfb-91d7-948686d3a5f1@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: jt-p3Edx7fpvv5crQjGHWS-CWpgPa3Pv
+X-Proofpoint-GUID: jt-p3Edx7fpvv5crQjGHWS-CWpgPa3Pv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 bulkscore=0 mlxlogscore=843 phishscore=0 adultscore=0
+ suspectscore=0 spamscore=0 mlxscore=0 impostorscore=0 clxscore=1015
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412120098
 
-Add second source RTC on i2c bus 9.
+Hi Bryan,
 
-Signed-off-by: Yang Chen <yangchen.openbmc@gmail.com>
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+On 12/11/2024 11:17 PM, Bryan O'Donoghue wrote:
+> On 11/12/2024 14:07, Depeng Shao wrote:
+>> +            interconnects = <&gem_noc MASTER_APPSS_PROC 0 &config_noc 
+>> SLAVE_CAMERA_CFG 0>,
+>> +                            <&mmss_noc MASTER_CAMNOC_HF 0 &mc_virt 
+>> SLAVE_EBI1 0>,
+>> +                            <&mmss_noc MASTER_CAMNOC_ICP 0 &mc_virt 
+>> SLAVE_EBI1 0>,
+>> +                            <&mmss_noc MASTER_CAMNOC_SF 0 &mc_virt 
+>> SLAVE_EBI1 0>;
+> 
+> Have a look at 7280.
+> 
+> The parameters to the NOC should be named.
+> 
+> https://lore.kernel.org/all/20241206191900.2545069-2- 
+> quic_vikramsa@quicinc.com
+> 
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
-index 7fddbe833cc2..ef96b17becb2 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-minerva.dts
-@@ -1292,6 +1292,11 @@ rtc@51 {
- 		compatible = "nxp,pcf8563";
- 		reg = <0x51>;
- 	};
-+
-+	rtc@68 {
-+		compatible = "dallas,ds1339";
-+		reg = <0x68>;
-+	};
- };
- 
- &i2c12 {
--- 
-2.34.1
+Do you mean use QCOM_ICC_TAG_ACTIVE_ONLY and QCOM_ICC_TAG_ALWAYS?
+And, I will also remove the ICP and SF interconnects which are used by 
+offline HW, rather than real time VFE.
+
+Thanks,
+Depeng
 
 
