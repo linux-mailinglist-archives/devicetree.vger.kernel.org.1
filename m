@@ -1,121 +1,85 @@
-Return-Path: <devicetree+bounces-130473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 173739EFF5D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 23:30:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6236F9EFFD5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 00:09:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 274B5162752
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 22:30:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77C13169E37
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 23:09:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61D231DACB8;
-	Thu, 12 Dec 2024 22:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mLaq9Bxk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96CC91DE3DF;
+	Thu, 12 Dec 2024 23:09:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33BEE19CC0F;
-	Thu, 12 Dec 2024 22:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 773441D63E0;
+	Thu, 12 Dec 2024 23:09:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734042628; cv=none; b=rB1gHVFHmyFBSQigvwsSsazk2CSX09wGmF3Jgqm76CIX0IjmPXS2C/aoimxeFZp9Q2iujltNNY7dwtx2viK74dJ0C6FrkbHyUKEqag2u/z1unPGihoexrnp3D9DqgdDdfvUYNAOey5AnuIcn2Y8a1rLU68tIlNqMFoHLxnBFUnA=
+	t=1734044951; cv=none; b=GChMy4T/TOFlGstpInu9oU6BUvONlYQg/sJ3tUQy+4Qsb/0Y5jM3Kl44f0SP3WzXtmIAlr7D0ihNylNLqZelJxsSPpiXGnVKM9C1KrcsRIobdV6QRJSu8UtmhYgIc98vyUSoyvzCc9qn9zilCzs/ysIvbdC++KTjuUy+4cGTmWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734042628; c=relaxed/simple;
-	bh=GfgvB7VvI35d4Y+A3lfg32jaJdQuBRvgZUCRKZU/NDA=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=pwqLIb+pWjTJdvFLwHbAr6AHVl0G1KnUnS3tg2pE56knJ/VBeynE1Vz/LxxCgy2Tj23pq+Zd5IBIQrO/mUF2UFlVFnbpennW+Od0HzTazj0SPMdnZtPaWdoKiIPP2rAhycbM0b6GgNrJWo518AkGZ7DLE6x3XN65ls466QMDZPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mLaq9Bxk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9691EC4CECE;
-	Thu, 12 Dec 2024 22:30:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734042627;
-	bh=GfgvB7VvI35d4Y+A3lfg32jaJdQuBRvgZUCRKZU/NDA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=mLaq9Bxk3T7mh86p6zkb4Ec0ewssBIdzj4uNX3smwvAeWx1QasB99CUvJGH8qvWWf
-	 6WyIdk8ECJXakyB7fSFlgipr8s2Ez2rCTtECyciq3x2iC+TATu9Sh18Coza/JnhMvL
-	 +hC56oloGoBD6RXMtWdVv78fVDT5FH4HkWqmAmqghBF3JyRv/gPtOZktF4kyAvePuB
-	 EjgQ62I7JKRwQx9N+Fs4hGpbVs2Fcu/kD2FDmN4ZFF1VHRnHbqCPQU5KuDX42fs0EW
-	 rDXHYXwWFt2dXU2W6PnT01Kexg/k26D5uoL24acpGK05eFGYGKp64Vfy158tdF3ZNd
-	 5gQfiEXMRHWjw==
-Date: Thu, 12 Dec 2024 16:30:25 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1734044951; c=relaxed/simple;
+	bh=bsBat5rzqPYUOt1ktqKJsKCJLIM20Iykg/xaFrhHLlE=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=sovBDAmrHHmyMYMN/m1tnHRKWYcXiQ978TtB1LlVjrHSexfSVaP4g/YLsyC0yN9FItWGJeCd3S8XPrHqcTe9zSDlUGWLbjvXA7vf8k7Nqc3yXeFL+9+aRCX8umjqqv0j84t82o0irFpGM36vG+3kOsuzfgHYRUzefOYAyb2n6a8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01F7CC4CED0;
+	Thu, 12 Dec 2024 23:09:10 +0000 (UTC)
+Received: by mercury (Postfix, from userid 1000)
+	id AECBC10604FB; Fri, 13 Dec 2024 00:09:08 +0100 (CET)
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+ claudiu.beznea@tuxon.dev, sre@kernel.org, p.zabel@pengutronix.de, 
+ mihai.sain@microchip.com, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org, 
+ Varshini Rajendran <varshini.rajendran@microchip.com>
+In-Reply-To: <20241010120142.92057-1-varshini.rajendran@microchip.com>
+References: <20241010120142.92057-1-varshini.rajendran@microchip.com>
+Subject: Re: (subset) [PATCH v8 0/9] Add support for sam9x7 SoC family
+Message-Id: <173404494870.2565720.7657048690139336001.b4-ty@collabora.com>
+Date: Fri, 13 Dec 2024 00:09:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Alim Akhtar <alim.akhtar@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Maksym Holovach <nergzd@nergzd723.xyz>, 
- Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-To: Markuss Broks <markuss.broks@gmail.com>
-In-Reply-To: <20241212-speedy-v1-1-544ad7bcfb6a@gmail.com>
-References: <20241212-speedy-v1-0-544ad7bcfb6a@gmail.com>
- <20241212-speedy-v1-1-544ad7bcfb6a@gmail.com>
-Message-Id: <173404262581.3370297.1817961099331187454.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: soc: samsung: exynos-speedy: Document
- SPEEDY host controller bindings
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
 
-On Thu, 12 Dec 2024 23:09:01 +0200, Markuss Broks wrote:
-> Add the schema for the Samsung SPEEDY serial bus host controller.
-> The bus has 4 bit wide addresses for addressing devices
-> and 8 bit wide register addressing. Each register is also 8
-> bit long, so the address can be 0-f (hexadecimal), node name
-> for child device follows the format: node_name@[0-f].
+On Thu, 10 Oct 2024 17:31:42 +0530, Varshini Rajendran wrote:
+> This patch series adds support for the new SoC family - sam9x7.
+>  - The device tree, configs and drivers are added
+>  - Clock driver for sam9x7 is added
+>  - Support for basic peripherals is added
+>  - Target board SAM9X75 Curiosity is added
 > 
-> Co-developed-by: Maksym Holovach <nergzd@nergzd723.xyz>
-> Signed-off-by: Maksym Holovach <nergzd@nergzd723.xyz>
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-> ---
->  .../bindings/soc/samsung/exynos-speedy.yaml        | 78 ++++++++++++++++++++++
->  1 file changed, 78 insertions(+)
+>  Changes in v8:
+>  --------------
 > 
+> [...]
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Applied, thanks!
 
-yamllint warnings/errors:
+[2/9] power: reset: at91-poweroff: lookup for proper pmc dt node for sam9x7
+      commit: 2a16675e254a35f13203c6738a1137093c773056
+[3/9] power: reset: at91-reset: add reset support for sam9x7 SoC
+      commit: ef4f3ac4be990511a2c958443744d0c0c97deb5b
+[4/9] power: reset: at91-reset: add sdhwc support for sam9x7 SoC
+      commit: 250bbd612bb1103745ea6c891a2a1d5f5e1576a3
+[6/9] dt-bindings: power: reset: atmel,sama5d2-shdwc: add sam9x7
+      commit: 2d656827a0fc9ca4982c245f1bec3b606fab30d8
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/samsung/exynos-speedy.yaml: ignoring, error in schema: properties: clock-names
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/samsung/exynos-speedy.yaml: properties:compatible: [{'items': [{'enum': ['samsung,exynos9810-speedy']}, {'const': 'samsung,exynos-speedy'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/samsung/exynos-speedy.yaml: properties:clock-names: [{'const': 'pclk'}] is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/samsung/exynos-speedy.yaml: properties:compatible: [{'items': [{'enum': ['samsung,exynos9810-speedy']}, {'const': 'samsung,exynos-speedy'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/samsung/exynos-speedy.yaml: properties:clock-names: [{'const': 'pclk'}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-Documentation/devicetree/bindings/soc/samsung/exynos-speedy.example.dtb: /example-0/speedy@141c0000: failed to match any schema with compatible: ['samsung,exynos9810-speedy', 'samsung-exynos-speedy']
-Documentation/devicetree/bindings/soc/samsung/exynos-speedy.example.dtb: /example-0/speedy@141c0000: failed to match any schema with compatible: ['samsung,exynos9810-speedy', 'samsung-exynos-speedy']
-Documentation/devicetree/bindings/soc/samsung/exynos-speedy.example.dtb: /example-0/speedy@141c0000/pmic@0: failed to match any schema with compatible: ['samsung,s2mps18-pmic']
-Documentation/devicetree/bindings/soc/samsung/exynos-speedy.example.dtb: /example-0/speedy@141c0000/regulator@1: failed to match any schema with compatible: ['samsung,s2mps18-regulator']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241212-speedy-v1-1-544ad7bcfb6a@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
 
