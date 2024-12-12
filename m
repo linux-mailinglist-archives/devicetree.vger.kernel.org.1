@@ -1,93 +1,157 @@
-Return-Path: <devicetree+bounces-130194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E159EE3A7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 11:05:08 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C17079EE3EA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 11:16:34 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7C05287297
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 10:05:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E600E1615B6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 10:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26A44211272;
-	Thu, 12 Dec 2024 10:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB1620E02C;
+	Thu, 12 Dec 2024 10:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KceayNH6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JK/i3slw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50466210F49;
-	Thu, 12 Dec 2024 10:04:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1971545027;
+	Thu, 12 Dec 2024 10:16:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733997897; cv=none; b=Ggnerk49Q74Bv07V/sh9rerJ7czKIiZyJ17Msjdr8mSK0w933TbzjZbEjX+xlJyx5xmGgpdsNV6//7ZpciClaspdbU3osp/Mj6o0jxsbSy3cVb6YlOpFuAH07Vu2hJFKrtMvh5Dx2SSiRtswIY5c4HLXrakfTMeFXP55Z+0IeX8=
+	t=1733998587; cv=none; b=SlAZZaodYK62hqHk7eSkRtloCVik/yDf4wsO5iFuI7jHjLpiuEa2B5DexEp6WFT8/zw7+5TkQs1Qm4e5KF6ySCb69ZiuivX7G64kf24Oxxbl+d3gUOcDMDNThu6RUylSv67hAWYGirr3XlvsR9XPpCCV0gtks6CDd3At0E6nD5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733997897; c=relaxed/simple;
-	bh=4imzcdqytTqZaeyZyRJF4wFBv511nhafaA/Ho1Wo49Q=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=FZzzZ6juJgWSGidcNBGjPC1MZ4z8kd/gu5lpeNiSLqzkPuFtztPfTtWonoybVofJDhC1IcB/8OtotqxTOpE1VIpdn+D/dLKBSd4RwWeXyaFmjFWwQ4hrFj2HA1XLNNfuKrUE1WEE/n+argM1Tadi8MYHcAij2EjZHUSdrzBAg5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KceayNH6; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1733997893;
-	bh=4imzcdqytTqZaeyZyRJF4wFBv511nhafaA/Ho1Wo49Q=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=KceayNH6dmyR2Gd3zsxk5Jc5A17Igi68zq07Ii2zXXwyEnZkWd1gCBCcwLmysCs6Z
-	 JS6EhPiiDYmVxAKZ2pXCUSQnhV4LsDylNzoes9n8WkhyqUXKWAUSvFW8YlGGYLTkfs
-	 K5ODka/3TEgEoktrjx7z5psfsiPgbz5Ha1CbQmyT34tDJUgkD9EhVAdkLN5l+vlnMH
-	 A9jdiTbDIvEvZKcZJE2gsTcSLRLj0nlj9ChgpguVzrFWWTBoNYIQy4urjT1ZH3S1cj
-	 sCpHuR/ZfFt4VwPh65kZW/ZJFEAqfWPOR+WtGbbjIDWJGV/jNFHroPNpn2MSMhjpLo
-	 nUjiDa8x5nr9Q==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3DA0717E35F4;
-	Thu, 12 Dec 2024 11:04:53 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20241210092614.3951748-1-wenst@chromium.org>
-References: <20241210092614.3951748-1-wenst@chromium.org>
-Subject: Re: [PATCH 1/2] arm64: dts: mediatek: mt8173-elm: Fix MT6397 PMIC
- sub-node names
-Message-Id: <173399789318.41280.12144237345151657264.b4-ty@collabora.com>
-Date: Thu, 12 Dec 2024 11:04:53 +0100
+	s=arc-20240116; t=1733998587; c=relaxed/simple;
+	bh=qo3Rv5arEF3Bj2lIGlIG/vss34EB5qy39uBtzPHP6Js=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bfqfLDGRf1cUJmGcWpi6Puut/6REUbpcUpcCXHbCm5dEcV6zqEUPu1TGrqS3Eh9q5kSVQXteT+ArYT+y+p62zQoRPYpOUFr4MxxsdbbTfJzJiP7AFMcaO+d4w9GVTI/jl5o/oRduSmBxGugyeE/4mePwkFTpo57J/Eg21iVS+vE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JK/i3slw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BC7gVva029034;
+	Thu, 12 Dec 2024 10:16:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YYYW2nbLGoQmKqk5fl+o+ckY9lAaIAA/oyPAHuafN1M=; b=JK/i3slw16jkUlh4
+	Wet47N+GP5osyqMP/N9hspmtl6S+7KAn9ixHmaydJ7t67RaIcyP/QoGr0S8x1wdV
+	DY0wS6oqaqEg5hYGo/XrrkEBwX4r4Gf+CtSXyOJNRSIdSmhZhn9+vqbOtPYEhmy3
+	eZiZkCTQrVH+x7JsBFKeGB99fq9IG/EKpVYbZOT5oldG+Suwt/VkRuN71kp5/cNM
+	s5z5kUGX4vmdfpYghv22dgYXkAZCC7OO3bZvNhtNsbh3dEhpuFQho8aUPSTbYbr6
+	lfWANzBZ4DzjkFX91gnZQvYHyr/CdNEMMMS/EqTz28Bg502SBgXrSSaepzT1XfmM
+	b2Ezng==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fd4xthm7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Dec 2024 10:16:19 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BCAGIFP016708
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Dec 2024 10:16:18 GMT
+Received: from [10.231.216.175] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 12 Dec
+ 2024 02:16:13 -0800
+Message-ID: <06566196-f87a-4d66-bea5-83b640651489@quicinc.com>
+Date: Thu, 12 Dec 2024 18:16:05 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] dt-bindings: net: bluetooth: qca: Expand
+ firmware-name property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz
+	<luiz.dentz@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Balakrishna
+ Godavarthi" <quic_bgodavar@quicinc.com>,
+        Rocky Liao
+	<quic_rjliao@quicinc.com>,
+        <linux-bluetooth@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_jiaymao@quicinc.com>, <quic_shuaz@quicinc.com>,
+        <quic_zijuhu@quicinc.com>, <quic_mohamull@quicinc.com>
+References: <20241210151636.2474809-1-quic_chejiang@quicinc.com>
+ <20241210151636.2474809-2-quic_chejiang@quicinc.com>
+ <vbwg7djb4me6i4ow2q74ltqjxvkxeulhzyq4n6ak7aifhtf36f@x66pjje2iu6u>
+ <62afbaea-67b1-4572-9e78-d1dbe5fae20a@quicinc.com>
+ <f818f089-0490-42da-9aee-1a7006c11978@kernel.org>
+ <65fd0932-4519-44ac-ba9d-55ee97b43233@quicinc.com>
+ <ecb8535a-d421-4774-88d3-e904bb08a0e4@kernel.org>
+Content-Language: en-US
+From: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>
+In-Reply-To: <ecb8535a-d421-4774-88d3-e904bb08a0e4@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: F_uqG9jF01yQDUbVHmxyw8m919_J5m4k
+X-Proofpoint-GUID: F_uqG9jF01yQDUbVHmxyw8m919_J5m4k
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ priorityscore=1501 bulkscore=0 mlxlogscore=999 phishscore=0 adultscore=0
+ suspectscore=0 spamscore=0 mlxscore=0 impostorscore=0 clxscore=1015
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412120072
 
-On Tue, 10 Dec 2024 17:26:12 +0800, Chen-Yu Tsai wrote:
-> The MT6397 PMIC bindings specify exact names for its sub-nodes. The
-> names used in the current dts don't match, causing a validation error.
+Hi Krzysztof,
+
+On 12/12/2024 3:16 PM, Krzysztof Kozlowski wrote:
+> On 11/12/2024 11:16, Cheng Jiang (IOE) wrote:
+>> Hi Krzysztof,
+>>
+>> On 12/11/2024 5:48 PM, Krzysztof Kozlowski wrote:
+>>> On 11/12/2024 10:39, Cheng Jiang (IOE) wrote:
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+>>>>>> index 7bb68311c..2782d2325 100644
+>>>>>> --- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+>>>>>> @@ -101,7 +101,10 @@ properties:
+>>>>>>    max-speed: true
+>>>>>>  
+>>>>>>    firmware-name:
+>>>>>> -    description: specify the name of nvm firmware to load
+>>>>>> +    description:
+>>>>>> +      If one item is present, specify the name of the NVM firmware to load.
+>>>>>> +      If two items are present, the first item specifies the name of the NVM,
+>>>>>> +      and the second specifies the name of the rampatch firmware to load.
+>>>>>
+>>>>> Don't repeat constraints in free form text. Use proper constraints so
+>>>>> you can validate your DTS. And then actually do validate your DTS...
+>>>>>
+>>>> It seems unnecessary to add this description, so I will drop this change. Is that okay?
+>>>
+>>> You need to list the items and describe them. See how all other bindings
+>>> do it.
+>>>
+>> The firmware names are not fixed strings; they vary depending on the chip, board, or platform.
 > 
-> Fix up the names. Also drop the label for the regulators node, since
-> any reference should be against the individual regulator sub-nodes.
+> Instead of replying immediately and pushing this back again on us, read
+> other bindings. There are nowhere "fixed strings".
 > 
+Ack. I will take care of it next time. Thank you!
 > 
-> [...]
-
-Applied to v6.13-next/dts64, thanks!
-
-[1/2] arm64: dts: mediatek: mt8173-elm: Fix MT6397 PMIC sub-node names
-      commit: beb06b727194f68b0a4b5183e50c88265ce185af
-[2/2] arm64: dts: mediatek: mt8173-evb: Fix MT6397 PMIC sub-node names
-      commit: 9545ba142865b9099d43c972b9ebcf463606499a
-
-Cheers,
-Angelo
-
+> Best regards,
+> Krzysztof
 
 
