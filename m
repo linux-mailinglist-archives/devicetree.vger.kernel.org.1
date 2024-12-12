@@ -1,193 +1,133 @@
-Return-Path: <devicetree+bounces-130091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEEA99EDFC0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:00:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 737729EDFD1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:04:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB0B2188BE60
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 07:00:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14DB5188A9FD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 07:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2171D14FF;
-	Thu, 12 Dec 2024 07:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C857204C0E;
+	Thu, 12 Dec 2024 07:04:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZTxInMDC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gK4wPw2D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B383288DA;
-	Thu, 12 Dec 2024 07:00:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23DFF1632D9;
+	Thu, 12 Dec 2024 07:04:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733986844; cv=none; b=bTVCiA2+7P4fIjYE55tZ5JuzOCorfLEivCoySMOQMwJrnNpa2z5d0axdSd9gEayKGXVU3QLcBlzFnIQ+xOHWHOYoPQ9bKvrQMS+rS6c3FYR0rFA4vqAZeRDO3eNxtvF4eqW/8KUZzvP6dJUi2+Wgcxi3IFiOGHZgw19Eek8TVHM=
+	t=1733987081; cv=none; b=cfOQuPisugi+GOZEVR0AB5CtQ1zVzj6hQ8BES8+nLRpoE9Tle9fhdKKU08tqfapdkSONF9d9Th7zeYDz3nkuTg3Zw8SehSsvj73V0nBp184LqbQelcR5CWFRj8zk6UPiTfj5lNG3V3v31md3260j2Vk0HUNBP4zBUsbMlPRQbbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733986844; c=relaxed/simple;
-	bh=tr3H9l9bGW6ozzkXMOSie+z2ipjQ3UPuQLVoO3W9s64=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BjRwxsh1cogknKad1bxgg4tCbnS8dyCMwlNMN5fAdpRlPo/ZZkl1ZBhS4vRbjxLhGN5elbYLZl+gjgAK3MFvNpE40fTOeo1rngMd/8PxpDsujI8MZKgqkQ1ney5I+v40CxZq3zmLiITlldlg8DNoRvBRbprxjwEto+bbX3PF6p8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZTxInMDC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BBHD9T0027283;
-	Thu, 12 Dec 2024 07:00:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	542Z1YhSgDVb8yaviufnRA8DzBabzMl5pL3RWJoYS64=; b=ZTxInMDC9O01VbaD
-	pTAj7Kuff0O/thuJ+0syDGjLbK+UsqBrklpnDBvK7QI0H+z2zakGNEGUjCAGvtdN
-	Tm1e8j1Mq0N7O6M5HaowNemZJ4tffMH3vvSynuIEUfuscsZPhlXzL076mth+PpVq
-	/xtImtoKqXSfrsn4hzs7UaU+IHloUt35TozWPo4j6zPpcUKf5q0IxP8xCScXFlaF
-	rpZI5OQEwsFtir4JkSSnFEyKHjCUrA15S35Up/bfOTG0UMzG+spfFZtMMkLZFyBc
-	RQjr4WxDfEx7VIhp3jirE8mPjMXJw/z9eo4U8+atbL3KLSAQ24ReIOgEwP/tr+q5
-	EMbmdg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43etn8w9yu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Dec 2024 07:00:38 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BC70bmw000595
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Dec 2024 07:00:37 GMT
-Received: from [10.50.15.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 11 Dec
- 2024 23:00:32 -0800
-Message-ID: <2b0a4a87-b67c-4d24-9091-4a1d0c434815@quicinc.com>
-Date: Thu, 12 Dec 2024 12:30:29 +0530
+	s=arc-20240116; t=1733987081; c=relaxed/simple;
+	bh=2clUMBF+zfM0MT3b4JiMSxRP50eR+oc99K9vxRX3gc0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gKWRQ+jYNKWqumI1YfGglBw4xZgUtFC02WqwFLCsUGpgIs6C97Qiwt/sc78+JieVRuxEhzqrhIY14K7NrCD8feeA4FqBT0wT7tQeG7llAZCUt+0GPME+OeHcOs8ar18tpcnW7FUZaTdB+c17XnRXbgbe5ajswdbF+mvHxYfaw0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gK4wPw2D; arc=none smtp.client-ip=209.85.210.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-728e81257bfso220132b3a.2;
+        Wed, 11 Dec 2024 23:04:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733987079; x=1734591879; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SIv08M5NuYFMrbLnuplDgqYvTP/RY0BpL7xzh6gruXQ=;
+        b=gK4wPw2DFDiJQy4ZyQryEGZ/8tuvEf5a+/kCyTjjH5XmVYXOZXEThq2reW7JMdHRbs
+         dSGlgnwaXOIPjJs8x/Mfjsn0iKVrpHpMnayuDBfjr/uBtMvFy2BnD/0wTEVWGguUhiTL
+         GKBtFYnHKOPPxjsHPfXNd4sq9v4bzNh5TY4SSCyU9/rGtbUHZ6TdVzpSSfUBuRDOXmqn
+         Nn1jQE4aONWTlfde5CX8yePooTNiIIDGsTA8TnvaEably+yK6JM8jp8qUu1kYNSwQavZ
+         4TqQpgs27nRl4xZS92me1WNRkgh5pUEQMBN5CBZUEgcLvuOSYW4p8mF/6e92bzoBNdwT
+         C+wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733987079; x=1734591879;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SIv08M5NuYFMrbLnuplDgqYvTP/RY0BpL7xzh6gruXQ=;
+        b=ZFnyL+v4TCPFp+74HWRZbVMMiZbodR94BrJRhoxV5JzWMELUA/CA0QLW8DcQpiOJbi
+         xxS+WuQDVRiGkM/cAO4iVIH/mhuBQBzzvXq9insft///ursW4/hNwrE6qMxcCg134Xzh
+         0wEid6Vn2ItzjDHfdn3cVe6R47fWujhqlBSKGtUyBopYfKZZ+zrEA/3PahAxFkYMFeL2
+         Ao2ywud3NtVtem4zlu3/ZSfhJSk44IARqVnIyPlCTnv549agLMyQwmw3qCTH0Wc1WWfn
+         whQKqb2r9KxhJl3DXcvzEO0YfGwGOCC7tWXFGfMpOW+W6V527uTmQ+9T4G/5vrnaCq5u
+         lzww==
+X-Forwarded-Encrypted: i=1; AJvYcCVlpCyHSyncuSKpqe41GgXihiSfPvgzR5Eec7mChW66nMpiAJJxG0C4FxtBzegNPxiwaMVMuA07i7Q=@vger.kernel.org, AJvYcCX0h3n7R8+0sJDm5yiN0Vts9IqU2tp21cJ2kBAaNPWtCSi0l9NBqBI0HjAQ/GRm0fu6ow9Lw5zJGPv2QbPB@vger.kernel.org, AJvYcCXDXSpByIB+y+kZ7xWaggdB5HLfmOqEaJ/2XBrSzAU/88GhyvWO4kz/MaC4F3HNpmMOWRVz9pP9l3AL@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNVT4TNwdYn5YbZW0aYWwjvyhLe0mLQ33jxmZtkIgcm5PWDWD6
+	UfJxhqRRd74Ln+cj9y/D15l7hsDiHvIiCXyjx0UxWexKTHvoH1r8Xke4UUM7
+X-Gm-Gg: ASbGnctyLPElWGwAp2N/XkhaTbdxvggeibXIGU+P9ppPR2Z+hmIuPb11J8JAsyHQVTl
+	yLNadJMqYS9G9Ia6aTs2RWp5TUKkkGSCk4c9sBrjTo9IXNMty5SiUbuA2VVwkjZslegy01lead0
+	NaKCCy78lv+iaPCxIDDLqkEJ5127wXrSH9K87Ntt/Ld9+6Ld8j+G6rs6+WmawbM6dRdeyOvJ5sf
+	CK80xfbDMVPMNov51w+QPy+ss8vQDQqIphVb4CS1itNS30TGeiblRAlpclGYL1yRWtUt7bs
+X-Google-Smtp-Source: AGHT+IE2taDr2+F/QNnwkBgUaYbLlW++dErTzZng9ixbTcmDK5lHBmPiyyr/YT2Yg8/ifsjbQynqqA==
+X-Received: by 2002:a05:6a20:7347:b0:1e0:d32f:24e2 with SMTP id adf61e73a8af0-1e1cebdfe8bmr3622509637.38.1733987079385;
+        Wed, 11 Dec 2024 23:04:39 -0800 (PST)
+Received: from localhost.localdomain ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-725ee10f928sm6519386b3a.32.2024.12.11.23.04.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Dec 2024 23:04:38 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+To: Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Asahi Linux <asahi@lists.linux.dev>,
+	Linux ARM Kernel Architecture <linux-arm-kernel@lists.infradead.org>,
+	Linux power management <linux-pm@vger.kernel.org>,
+	Devicetree <devicetree@vger.kernel.org>,
+	LKML <linux-kernel@vger.kernel.org>
+Cc: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH v2 0/7] Apple A7-A11, T2 SoC cpufreq support
+Date: Thu, 12 Dec 2024 15:02:59 +0800
+Message-ID: <20241212070344.3858-1-towinchenmi@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 RESEND 1/2] dt-bindings: clock: Add Qualcomm SM6115
- LPASS clock controller
-To: Alexey Klimov <alexey.klimov@linaro.org>, <andersson@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <krzk+dt@kernel.org>
-CC: <konradybcio@kernel.org>, <konrad.dybcio@oss.qualcomm.com>,
-        <robh@kernel.org>, <conor+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241212002551.2902954-1-alexey.klimov@linaro.org>
- <20241212002551.2902954-2-alexey.klimov@linaro.org>
-Content-Language: en-US
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <20241212002551.2902954-2-alexey.klimov@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: SXzxlJepK6j9VJZMM5FkPzJanUtT3e8Y
-X-Proofpoint-GUID: SXzxlJepK6j9VJZMM5FkPzJanUtT3e8Y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
- lowpriorityscore=0 spamscore=0 impostorscore=0 adultscore=0 suspectscore=0
- bulkscore=0 priorityscore=1501 malwarescore=0 phishscore=0 mlxscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412120046
+Content-Transfer-Encoding: 8bit
+
+This series add driver support for cpufreq Apple A7-A11, T2 SoCs.
+Device Tree nodes will be included in another series.
+
+Changes since v1:
+- transition_latency is in ns, APPLE_DVFS_TRANSITION_TIMEOUT in us.
+Multiply APPLE_DVFS_TRANSITION_TIMEOUT by 1000 before setting it as
+transition_latency.
+
+v1: https://lore.kernel.org/asahi/20241211112244.18393-1-towinchenmi@gmail.com/T
+
+Nick Chan
+---
+Hector Martin (1):
+  cpufreq: apple-soc: Drop setting the PS2 field on M2+
+
+Nick Chan (6):
+  dt-bindings: cpufreq: apple,cluster-cpufreq: Add A7-A11, T2
+    compatibles
+  cpufreq: apple-soc: Allow per-SoC configuration of APPLE_DVFS_CMD_PS1
+  cpufreq: apple-soc: Use 32-bit read for status register
+  cpufreq: apple-soc: Increase cluster switch timeout to 400us
+  cpufreq: apple-soc: Set fallback transition latency to
+    APPLE_DVFS_TRANSITION_TIMEOUT
+  cpufreq: apple-soc: Add Apple A7-A8X SoC cpufreq support
+
+ .../cpufreq/apple,cluster-cpufreq.yaml        | 10 +++-
+ drivers/cpufreq/apple-soc-cpufreq.c           | 56 +++++++++++++++----
+ 2 files changed, 54 insertions(+), 12 deletions(-)
 
 
+base-commit: fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
+-- 
+2.47.1
 
-On 12/12/2024 5:55 AM, Alexey Klimov wrote:
-> From: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
-> SM6115 (and its derivatives or similar SoCs) has an LPASS clock
-> controller block which provides audio-related resets.
-> 
-> Add bindings for it.
-> 
-> Cc: Konrad Dybcio <konradybcio@kernel.org>
-> Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> [alexey.klimov] slightly changed the commit message
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
-> ---
->  .../bindings/clock/qcom,sm6115-lpasscc.yaml   | 46 +++++++++++++++++++
->  .../dt-bindings/clock/qcom,sm6115-lpasscc.h   | 15 ++++++
->  2 files changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6115-lpasscc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,sm6115-lpasscc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6115-lpasscc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6115-lpasscc.yaml
-> new file mode 100644
-> index 000000000000..247b6b0a9f5a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm6115-lpasscc.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sm6115-lpasscc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm LPASS Core & Audio Clock Controller on SM6115
-> +
-> +maintainers:
-> +  - Konrad Dybcio <konrad.dybcio@linaro.org>
-
-Please check the mail id.
-
-> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> +
-> +description: |
-> +  Qualcomm LPASS core and audio clock controllers provide audio-related resets
-> +  on SM6115 and its derivatives.
-> +
-> +  See also::
-> +    include/dt-bindings/clock/qcom,sm6115-lpasscc.h
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sm6115-lpassaudiocc
-> +      - qcom,sm6115-lpasscc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#reset-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    lpass_audiocc: clock-controller@a6a9000 {
-> +        compatible = "qcom,sm6115-lpassaudiocc";
-> +        reg = <0x0a6a9000 0x1000>;
-> +        #reset-cells = <1>;
-> +    };
-> +...
-> diff --git a/include/dt-bindings/clock/qcom,sm6115-lpasscc.h b/include/dt-bindings/clock/qcom,sm6115-lpasscc.h
-> new file mode 100644
-> index 000000000000..799274517c9a
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/qcom,sm6115-lpasscc.h
-> @@ -0,0 +1,15 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) 2023, Linaro Ltd.
-> + */
-
-Do we need to update the Copyright year?
-
-Thanks & Regards,
-Manikanta.
 
