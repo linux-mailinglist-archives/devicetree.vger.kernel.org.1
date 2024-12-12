@@ -1,48 +1,79 @@
-Return-Path: <devicetree+bounces-130270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76BF9EE6DB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 13:38:11 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 396EA9EE6E3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 13:41:16 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E165428320D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 12:38:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D11D016583F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 12:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 550CD2080D8;
-	Thu, 12 Dec 2024 12:38:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DBBE213252;
+	Thu, 12 Dec 2024 12:41:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K42NDTWk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KwHOg104"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE6E212B2A;
-	Thu, 12 Dec 2024 12:38:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62F01212FA1
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 12:41:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734007087; cv=none; b=b/IpzCo9pIaliAAUvqhb6IeiHYl0azt3tIp5C7YEZxGE18FEZT0BuIRTXzsn13f1zRVC5oX/eIUSYfhQGMYRqXd6ulVpDpU8cRRIJtMtVTavtkB+cT3VeRmW1/YjfS854sXBLoWck9f46Pnr4jcT2Ht2IqrDpKnRPIts2rxg1Yg=
+	t=1734007273; cv=none; b=qER4xdDSnYEs5EpF796GeWsievU9M+DWDLbHXqw1hfpJoobs+HNETQQjTW7Qr8qUlU+SxQqFSuwmj3DFTNdAl+RghUvPCVZs6cT3Y4+ss11TR74+R3qXj4tDYfYQJy2x1waZB0kC1jpTf3WNXcYTuzIAvHRBDxpAOiXxMECsIqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734007087; c=relaxed/simple;
-	bh=2hiFvC59FNpieiAYTQra9Yz/spEN5UV3papx3pMqLGg=;
+	s=arc-20240116; t=1734007273; c=relaxed/simple;
+	bh=Tu/dFKzeet27GmDqbtWEt4iGTBlq3wEZqSveNunZQyY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xp+MKqER4OrB+kNjLoydOaCwQy/eaujo1OyATCXcpPVLW4FtXXRPDKHvxzO/Ww/vEQp+QuNdFy6jDQJXCUwiDjLryc8acjK11vlVMs58Euc+4GM6wJAU1RVWVyXzirZRuyn9FN44HtuSqAtAk7+JghsrfKyDlQuKATph5dHjyZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K42NDTWk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DD78C4CECE;
-	Thu, 12 Dec 2024 12:38:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734007086;
-	bh=2hiFvC59FNpieiAYTQra9Yz/spEN5UV3papx3pMqLGg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=K42NDTWkAAzzbOpebO2EDvFMZGXoyFtxl5I4eJeMhPlV6sdiWq1HdbOVMVtthUQlQ
-	 tNppESFlHdKBqjzLH33QlTsen47jwcBrPFHlqAUluRoZqeixuQaErT4921Vf3B7No8
-	 nDpYW1oQPxauMftbWJF/+SX0GncDnm5Ax5UFHDdJlO8Mgwy3S3JLRt68NbCLx3jrLz
-	 7ixK/vczC//mok9W8frU1jFTifq+/MY6udLJXxCJCPysMoo0KCUAQp0ka9Rvp0gN+u
-	 KkyHC3BnuOBmUe8bt4PCqwi6LSGla+BULIEC+WfZslKK49Gckt5rQ3JGJ+UKYG2bAD
-	 w5Uvrmotft93A==
-Message-ID: <9ceb9f9d-633d-49e6-ab1b-1db739e4f2a4@kernel.org>
-Date: Thu, 12 Dec 2024 13:37:57 +0100
+	 In-Reply-To:Content-Type; b=pCMULXyeEMLa80+gH7UiiM0nnAUnmXs53fRdPSMTaPjvr+q6jJsahFIZmcrqio3J5ZqW7Qm8SIRZr44+YQsATgyn7NbtoKOEjodTnRhBtx6IOvZNIcq1mP1hEHOF9d0lac0OYGF6qfiVIigBo6qOReM4tgX0/r7fMZOtrXDcZXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KwHOg104; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5d3f65844deso876210a12.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 04:41:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734007270; x=1734612070; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8bkw8aLWhg4IdC3Iyd2UGPgLYgTX4eLLSzr6WZhm6c4=;
+        b=KwHOg104tECUeLCic1AROAit2IBxU/WGSotQgXtsXdvytz1q/epPlaZQVKNnQCIheK
+         FsfkCXS6s6trGXfAChurRlz7DDJcbKH6yemZgn8f8kIFq9+DvnsAHNT4ZuZhlTFy+GG/
+         jJcxoIXrphCH1gr+fiUDjbT9aQaVHqdw3Ldf97Am+c99blwgiZCJjT5aDkuJ6tXY6XUe
+         ChMMrimbnQcMTBxkOazSjqS3dvkS/fpLFzlPbloC7LdnutPsmP033JNyqtoKUj//UZLs
+         2MGqAdkEMMoAx6txP4aon8iGMdpbv+THKqc6Al9RJcEzZNXN1R4427ZNXoTPJxieFEjj
+         mMbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734007270; x=1734612070;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8bkw8aLWhg4IdC3Iyd2UGPgLYgTX4eLLSzr6WZhm6c4=;
+        b=kV4FOUEuPu5BNcURDcrVd1XtbMT0zs49EBjfJY46JBS3lcICIhz5Jh9Usrju6J+7GA
+         cBF66WQYGv3nflCxvP+oHU7YWO2GXnFeP8+ULMgvXQW/J8PPQM264EQN3r4ZEwBTKBja
+         pq2s4olpqm/rASJyqeFEzR3HDqWU7gfjEo3BHM0PqvxSnxh6949AajzhDbyNEcrrgmC6
+         25bxl7uNaViQmUYrfwYiHM0aYNOt0SVwQWgU73SOKTRpxSa2MNeSOF+sbdrSi8E46GUO
+         EINu+fkeFa+ve1/TzZbfIYCPzdO0GGjK8lB1/zZEOb9I3ByIXxkbGeWuOYCLjJV7ft+Y
+         G6Uw==
+X-Forwarded-Encrypted: i=1; AJvYcCXpPm7ZYNW/ch5vIUrFZwCtTmAEdIY+N88cz3TP0TA/WPU5K4C98eeTucSRbBj0upplPUXu/fnIDwGt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/mRG32mqGR8aYwfhKvIKVsgjAGbP4sHzV06SfwAGOVnr2m6BM
+	DzWjWmlK+3gbqFw6BJ97XhbplB5eVutqqhvb8w9Mgqih7MWEIZqJokDtMci6S0H3IMZuL43jDJn
+	Z
+X-Gm-Gg: ASbGncs2VTHWtXcoJDTypj0ZaklQ0WFwcrNtIis05NhhrvTEAp6v4gJoJBNx53eEWUK
+	NjKOe1XtFoUZHlPeDYUipvSFAVYgZ0LEJtm1kpypXsFmPzyARAwR0/hBWa8Ih3uDp7rsz0rnIZ7
+	1Wo1uJm3lxRsjC7qpatQrJ3qLIQpvrTd4G5INgU28WV5znMavVSwbE8dsPwicTYzL41rn19eMxZ
+	tgB1BrpwMW8reR9DH4uA4mgQdngkYGU+kpSSxxm3/YtT/NNg/TCExbqEGVIqRyfVw1qVg==
+X-Google-Smtp-Source: AGHT+IFur+anvIPrRfunzJYLh6wEtqp7DK5VjkUBpxyuQDBjTbkTiH5jVNJtu8OGD0/LBKO7AI5Oow==
+X-Received: by 2002:a05:6402:2396:b0:5d3:e766:6140 with SMTP id 4fb4d7f45d1cf-5d6337e00a8mr76871a12.24.1734007269761;
+        Thu, 12 Dec 2024 04:41:09 -0800 (PST)
+Received: from [192.168.0.40] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d42a754cb0sm3172232a12.88.2024.12.12.04.41.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Dec 2024 04:41:09 -0800 (PST)
+Message-ID: <b4afb2ea-eb5e-404b-9df8-3e11d08a6bff@linaro.org>
+Date: Thu, 12 Dec 2024 12:41:08 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,87 +81,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: x1e80100: Add PCIe lane
- equalization preset properties
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
- Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- Jingoo Han <jingoohan1@gmail.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
- konrad.dybcio@oss.qualcomm.com, quic_mrana@quicinc.com,
- quic_vbadigan@quicinc.com, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-References: <20241212-preset_v2-v2-0-210430fbcd8a@oss.qualcomm.com>
- <20241212-preset_v2-v2-1-210430fbcd8a@oss.qualcomm.com>
- <beb7d859-8d68-49d9-8a35-b2ba50f00c33@kernel.org>
- <bd9d0b2b-cb69-3a20-8ae6-125c7010c1e5@quicinc.com>
+Subject: Re: [PATCH 15/16] media: qcom: camss: Add CSID 780 support
+To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, vladimir.zapolskiy@linaro.org
+Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com,
+ Yongsheng Li <quic_yon@quicinc.com>
+References: <20241211140738.3835588-1-quic_depengs@quicinc.com>
+ <20241211140738.3835588-16-quic_depengs@quicinc.com>
+ <138cc2e5-6b31-49d9-b70e-400a3f3c3bfa@linaro.org>
+ <28b1c828-f338-4d57-bcb7-b0a8652c82fb@quicinc.com>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <bd9d0b2b-cb69-3a20-8ae6-125c7010c1e5@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <28b1c828-f338-4d57-bcb7-b0a8652c82fb@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/12/2024 13:32, Krishna Chaitanya Chundru wrote:
->> 2. There are no such properties. It does not look like you tested the
->> DTS against bindings. Please run `make dtbs_check W=1` (see
->> Documentation/devicetree/bindings/writing-schema.rst or
->> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->> for instructions).
-> The property is added recently in to the dtschema in github repo, I
-> added the pull request details in the cover letter, I will add the
-> github link as part of the comment section for this patch in next
-> series.
+On 12/12/2024 11:28, Depeng Shao wrote:
+>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > 
-Mention in the commit msg or cover letter where are the bindings.
+> Vladimir suggested to add a dummy "return 0" function [1] for the 
+> unsupported interface. So, I added this empty callback, will keep the 
+> empty callback if no other concern. Thanks.
+> 
+> [1] https://lore.kernel.org/all/b1e1ff88-5bba-4424- 
+> bc85-38caa85b831f@linaro.org/
 
-Best regards,
-Krzysztof
+Go ahead.
+
+---
+bod
 
