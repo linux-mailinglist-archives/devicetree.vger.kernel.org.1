@@ -1,120 +1,110 @@
-Return-Path: <devicetree+bounces-130299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC5919EEC18
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 16:31:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA7899EEC98
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 16:36:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B3A6166FB9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 15:29:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82E03188850F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 15:34:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D81C2153DD;
-	Thu, 12 Dec 2024 15:29:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6B8E2210DE;
+	Thu, 12 Dec 2024 15:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="dnVUqQ+k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 840A320969B;
-	Thu, 12 Dec 2024 15:29:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BE6B21765E;
+	Thu, 12 Dec 2024 15:34:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734017363; cv=none; b=iFDYpWsdzXPfQlxgrVI6GyI8Bh/Z7bKvY3rrRBuC1/mL1oFAqe5vCq0gMcJ5fZhJ8UXRwiRraAN3/BLHsBb3VnozEEIElQN2YpeyrzJrHmQKysbOaXCkPhru4VE9bS9FVPTBFRYg375Pnl6f4wPmsGCMkpEeymVjvBAGvMkK/ic=
+	t=1734017642; cv=none; b=kdD7JdIxtqYUikZbze+AzlZ33V80AcMEfH31HOgsjbTTw/uzvC/+VjO27mXMbZBU6X9akYCiklC/DBrNrpwjqTJxpXUjtvYs595OYTPXebwot9zZzZL5hGqaP2f69t8fqF57ZZpvroQqPtmbqYPd7+B9lmYMHdtdr/ZiVkMkGP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734017363; c=relaxed/simple;
-	bh=N7JyC24jCutU4HV2fQBh1VxLh59FGqmDx/1Ycy1gPe0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qY/mSdo3w0/AirhiKMnCo3iPZOQ0oav0LlXTyaBj1ZyTME7Sest7qH2up/Can60Mz89eh9OAd39J1zXSVpNxQm1UnwSL/rCNK1PDeS+h5WUEMwe4E4qvhTarvh2ZqHxik3cWXyGZBXBb05JAFbNoOP8R3Kf9A+xMNwCHF2PaS+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4affd0fb6adso150186137.1;
-        Thu, 12 Dec 2024 07:29:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734017359; x=1734622159;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p/pLyU9DSDmmH7CeVu2jmMIutOHbrWQV9qNZEezcsa8=;
-        b=qPaJz6QXrWOcNugz2QDwb/p0U9N7jCdtS7QWRtyFwHSe68ani0wS6MrKl9EXOXOHBk
-         D1Ub9OY4kNDFUako2oA9op/YgQGFqfcvd37CWdqiMqmWn8DRWqZa8EpzUAoDn77M6r0+
-         S9MqclZK5tZvsJp1lEiQZ3p9GEvdIQiTAO8r/wt8aluc8FnXdP6Frx1krt345Lqz7Tuw
-         KwjfF2dWE1jAXHlOKjScxJStGFhMQxRRpXvVZZ7XA/zvbqMnvE7UZUURhDEXupO+Z1Js
-         28JpMLDbQ6Tv0+k5rbbukDeYdY8dPwo2VeTrzkZUpvxZHz3cUdh0+3oIhn81Gr0pugu2
-         08RQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU9gW08CWkLOLZqaT0xSaQRMPVx7u75YFjD/FfjfNczir0dxQP3ad4wMtEYTyjdxtoTuzcFfY8tQ2e6Hh3PgTXGlPA=@vger.kernel.org, AJvYcCUn84nbeTG3DXS+jujtaAxH4REhY58d913Z9OjEb/s4atvyC9RA0r8wZI+x2VNMngMokcpMCJnLEP8Q@vger.kernel.org, AJvYcCVkIM50wbatSrbGFJAUmVVcEzvBUAjtLUAGc/EO17/RJpnVoCYDxdgwKIWxq64mOoMDypT30g4QeQ8e@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfQEql8FuCvDjaZQlpSvI7LGLkdQ+ZZqVpJOHC5G4+7WzJN5QE
-	guufKswn5hNWaJEoT2bzITmfYGFyVSRO6RQDhe0ZLVD5B9wKgcp2Q6XnJsFOwvo=
-X-Gm-Gg: ASbGncsl8z9CUv6/soQsxUIzzvTSYfzOHkEL39pgxVJ87JyEHRR6vm5CFGKJh0osLGh
-	sIbzbqUzSTFXZLhpP4lq/ICnGxfTUXnm+VGKrW/tbh7xzsOsX011S7Uce4LJeYXquZYJApJDake
-	Ruph9wAd59OYCqy8V2OgEnSzPaAI6FbDFiYhFZ/YoPQli3QWDHeEyPOlmXB8+IL9n+Lpn23zLOD
-	l0303NXcBk4MddRd8ly8W4M3yLW+gmxkg/4tbinnCUuTLa4EY+hIgkCheIrrH9kVS0IfNzCWicV
-	DqpYFc8pwpt28m3NVR4=
-X-Google-Smtp-Source: AGHT+IEEQeFmWwMs2Hf9JLa0KeSuekIFXw3GM2vMWU/SoDa/TLVj8UFKJN6I8gAkcsZBUQmjMdlugQ==
-X-Received: by 2002:a05:6102:1486:b0:4af:de38:dff7 with SMTP id ada2fe7eead31-4b257d334ffmr1572784137.0.1734017359100;
-        Thu, 12 Dec 2024 07:29:19 -0800 (PST)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85c66b1ee44sm1434780241.11.2024.12.12.07.29.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Dec 2024 07:29:18 -0800 (PST)
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4afefc876c6so170164137.2;
-        Thu, 12 Dec 2024 07:29:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUXV+QKSTIaPOztd7is1jcwnFC40Yrg0asmSJ1/ldE0EGrTibhxtnfY4L0Rdrj1iyPZPPAkV52oW9sm@vger.kernel.org, AJvYcCX86TSbJB2Ff2QHaHapzeYJjsOTl4soM5h9pnfU0NoRn9ZPGx1o9KiASPJJCauL7uqhHtQrZ78htDTO1ZRtMRVxI1M=@vger.kernel.org, AJvYcCXdiJBJdpemlgxi+6lo7KqnXbaXpsDrtD2ID2FqryD7iJSVo6LP0dr2uA+K3O2ylSRAKm+TxDjAGCxb@vger.kernel.org
-X-Received: by 2002:a05:6102:3712:b0:4af:ad76:fec8 with SMTP id
- ada2fe7eead31-4b257f33bafmr1244942137.5.1734017358780; Thu, 12 Dec 2024
- 07:29:18 -0800 (PST)
+	s=arc-20240116; t=1734017642; c=relaxed/simple;
+	bh=CgdcSNEMwQHcY/EYa0A+XFW5GRiQ375dpydBFO30BLQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ozFUcVixEEBj0xRvtckCSTfY6QiOT9kkWbCS+n2Vf1q4xcKFkdr5JVdNndG+tAka74ymUQDBIjvBEfqz18fwB+KMb574pTyPFH6ogaabsJqdGqSPHaHLhTpmUOeAwQwWco/0dyY6aaXXEzp8Bel9fxE2RrVNhevSxFLCPuJg++c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=dnVUqQ+k; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 7aaf02d6b89e11ef99858b75a2457dd9-20241212
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=zRv4gIVobaa+kTHMR3lPKYtayqlhOe1elNpsMFFmacU=;
+	b=dnVUqQ+kLxfQAOnjYGds/gxiF+hD2ELq+0l5KKLEOGMKQlPFdCZjwwqDu6JI7lSV4nh0deK+NxemD/6A0pRWXXPya0fIUNXqp2+Aa+j7OW+9tU1+lzv/Xx8y9GxVHpfWMy511R7KakKgUF9PaZxZd0iYumjJHavDlOY4/ArQhnU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.45,REQID:1570ec2e-91c2-4731-8543-3d8f60d910dd,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6493067,CLOUDID:46e90813-8f5d-4ac6-9276-7b9691c7b8d6,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 7aaf02d6b89e11ef99858b75a2457dd9-20241212
+Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
+	(envelope-from <jason-jh.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 199065366; Thu, 12 Dec 2024 23:33:47 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 12 Dec 2024 23:33:46 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 12 Dec 2024 23:33:46 +0800
+From: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, "Jason-JH . Lin"
+	<jason-jh.lin@mediatek.com>, Singo Chang <singo.chang@mediatek.com>, Nancy
+ Lin <nancy.lin@mediatek.com>, Shawn Sung <shawn.sung@mediatek.com>,
+	<dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Fei Shao
+	<fshao@chromium.org>
+Subject: [PATCH 0/2] Update MT8188 OVL compatible from MT8183 to MT8195
+Date: Thu, 12 Dec 2024 23:33:42 +0800
+Message-ID: <20241212153344.27408-1-jason-jh.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241203105005.103927-1-biju.das.jz@bp.renesas.com> <20241203105005.103927-5-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20241203105005.103927-5-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 12 Dec 2024 16:29:07 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU2v+FqOewXb7t3EJO1VGSn-4YVT52Bfyj2vH4Z0HTcNw@mail.gmail.com>
-Message-ID: <CAMuHMdU2v+FqOewXb7t3EJO1VGSn-4YVT52Bfyj2vH4Z0HTcNw@mail.gmail.com>
-Subject: Re: [PATCH v2 04/13] dt-bindings: clock: renesas: Document RZ/G3E SoC CPG
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	Biju Das <biju.das.au@gmail.com>, Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-MTK: N
 
-On Tue, Dec 3, 2024 at 11:50=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Document the device tree bindings for the Renesas RZ/G3E SoC
-> Clock Pulse Generator (CPG).
->
-> Also define constants for the core clocks of the RZ/G3E SoC.
->
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v1->v2:
->  * Added Ack from Conor Dooley.
->  * Fixed typo "CORE_CLK*"->"CORECLK*" to match with hardware manual.
+This patch series updates the compatible strings for the MediaTek OVL
+in the MT8188 dts and the corresponding dt-binding.
+The changes ensure that the MT8188 OVL device is correctly identified
+and managed by the appropriate drivers.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in a shared renesas-r9a09g047-dt-binding-defs branch.
+The first patch is resending the reviewed and acked patch from:
+- https://lore.kernel.org/all/5d9e6f6c-604d-4e2d-a448-fc5b8bd24a75@collabora.com/
+and rebase it to the latest linux-next-20241212.
 
-Gr{oetje,eeting}s,
+The second patch is updating the mt8188.dtsi according to the first patch.
 
-                        Geert
+Hsiao Chien Sung (1):
+  dt-bindings: display: mediatek: ovl: Modify rules for MT8195/MT8188
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Jason-JH.Lin (1):
+  dts: arm64: mediatek: mt8188: Update OVL compatible from MT8183 to
+    MT8195
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+ .../bindings/display/mediatek/mediatek,ovl.yaml           | 8 +++-----
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi                  | 2 +-
+ 2 files changed, 4 insertions(+), 6 deletions(-)
+
+-- 
+2.43.0
+
 
