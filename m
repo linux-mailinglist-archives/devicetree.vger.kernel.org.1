@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-130105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D738E9EE02B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:20:51 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B5FD9EE031
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:23:37 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D173D162FAF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 07:20:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 276152811F7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 07:23:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B13A20ADC0;
-	Thu, 12 Dec 2024 07:20:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5AC620ADE9;
+	Thu, 12 Dec 2024 07:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q9s1MAoo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K8qXUcZ3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DC42259485;
-	Thu, 12 Dec 2024 07:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F7945027;
+	Thu, 12 Dec 2024 07:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733988048; cv=none; b=tzYPMfA5YOKbWuyrKdVxtzifiOLJbPQhBks1ZTdtCOx2i/6NZmnTyZ1vyYfBlFy+iwEm6AHeFck2lgoIURiRM/is4eaxWJ+/JiLiW9oUt6YUwnaSJpaIQGEKSnIU9RBiOSf2r/aKOQlNugz+WOwkwjVlMzYpQ3g+iYXF3xnfqMA=
+	t=1733988209; cv=none; b=aobJFw0owFZt6vMUhfrBnclsVISWVCvnvuRk5gHPCIu5X/6VU9HqV56+/JVcmUfGZ2dcIIK5LZ3b7OksZExIkTg09RzXIJ55yKP1EftCFl02svOS/GDK80OxT4FAQum9G+Aqfe57ZQ2Pl4v+xgH0eu0Vi7z/lh3TZac/soCjskk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733988048; c=relaxed/simple;
-	bh=+9rt0PRfIWzVxs0bppBKdIprXJmp3kFXb9fiuE6Pokg=;
+	s=arc-20240116; t=1733988209; c=relaxed/simple;
+	bh=JZk+vkzVVHoIxLeiYJCOuR339GJF+lQkjwNZYJNxM88=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OGG9ZenQWkEB1m1kBERNPrvvRyVr0aoflX4Za5fVU92KkT0zHo6Nv7L/kGBZTv3x9qIueiTr3Ql9YQomnjYjTWgxog6B4WYtc82GJJFuSGXNUHkHWD5Y5Fxn0W8fZYxLrdU57MYr7ZfYzTC9T+ZSYzYbsTSaYfR0SU+DLLYbUc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q9s1MAoo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46C48C4CECE;
-	Thu, 12 Dec 2024 07:20:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JLCUEtEnIvl8jsQzgVW7ryP6gs1ptotJnWWsuE+v3xRL0WWoY1McnS3ksiWf0CRnjRFXzQI/CDKbYh8vof/C/20ryh6VylGoDVohZToXsXdyyWojpEj/aGOW0XfvmLPI15LMAByRvGFPaDQayP+2OjHVU8+b4bgfE319neLwP20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K8qXUcZ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B573C4CECE;
+	Thu, 12 Dec 2024 07:23:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733988047;
-	bh=+9rt0PRfIWzVxs0bppBKdIprXJmp3kFXb9fiuE6Pokg=;
+	s=k20201202; t=1733988209;
+	bh=JZk+vkzVVHoIxLeiYJCOuR339GJF+lQkjwNZYJNxM88=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Q9s1MAooaGf2212S1+2rxj+Tbt1GtxsbeGkx6GutSPrK42HibpIXmDyTpSxEDsd30
-	 cfSAvMMVmImpgpnRPSZshrAF/VEYsGgjy7M6cziwxi0NEmyqbAXwBH8Z3pwJ3eh2I8
-	 C37jvROVwg7uJOysaZadSZFw+BsJwQ4Lq9w+1OxKBdy9tf9XdZEsKgVlKDwL3k6zF2
-	 t79giWp++33ERVWmLDNDOZ1AiDyRXKL45hNQ2h56Xqyexetddh0XLHi3QRRmrOzn6C
-	 g6vCkQEVxiKTRFdcYzMRBgrFqIa4PfeD/mP86AjuIxVQ0qR6+CCctJBM/g/1kz6UB4
-	 0yviVyZm1KPWw==
-Message-ID: <e9caf0fe-a77f-40cb-9fc3-9da3d95f27ca@kernel.org>
-Date: Thu, 12 Dec 2024 08:20:37 +0100
+	b=K8qXUcZ3Z5yASYBvKbj7xTYYiXDIFjtIJKpALdYOYbHXSpNbnyoZizBtINLHgilDw
+	 Fd2NNAlV5V/Y62/PFS0x8N21tafJT1e9ZToploNZ2zyJG6BVkWKQwtrG5uPQPMIWTS
+	 z0Y0fBd+CClMHxNaLh6wIAxAsa+wu9QZpnm7WS9yR0JRb4TgBFwtjI9CCgf/eBecA/
+	 G44o010ZzG4jilRvLuNEXSZKVW6oF/pQ30qlXfY9TKS1+Qghse/AdXOo0Vr9RBAfxQ
+	 zdWu6tVmNS7ExsDXELMtIoIq4VrGTJ8brHMJzXXVD6VPlWH9LRZNxvsvey5ppi5edz
+	 tIkLVsZvsr7Mg==
+Message-ID: <44c97ee6-ba32-452c-8b83-ad39139fd310@kernel.org>
+Date: Thu, 12 Dec 2024 08:23:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,35 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/8] dt-bindings: mailbox: mediatek: Add GCE header
- file for MT8196
-To: =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "simona@ffwll.ch" <simona@ffwll.ch>, "mchehab@kernel.org"
- <mchehab@kernel.org>, =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?=
- <Nancy.Lin@mediatek.com>, =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?=
- <Moudy.Ho@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "robh@kernel.org" <robh@kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>,
- "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-References: <20241211032256.28494-1-jason-jh.lin@mediatek.com>
- <20241211032256.28494-2-jason-jh.lin@mediatek.com>
- <ozifi65uycmxc5hqeu4onbths5u7dg532iufjxplsjw4jjmhf6@6bdsaabd7hl7>
- <04f7bd2a7d69ab7d02c88cf05bda5ae0c4cb6573.camel@mediatek.com>
+Subject: Re: [PATCH v1 06/10] ASoC: dt-bindings: add wsa881x-i2c binding for
+ analog mode
+To: Alexey Klimov <alexey.klimov@linaro.org>
+Cc: broonie@kernel.org, konradybcio@kernel.org,
+ konrad.dybcio@oss.qualcomm.com, andersson@kernel.org,
+ srinivas.kandagatla@linaro.org, tiwai@suse.com, lgirdwood@gmail.com,
+ perex@perex.cz, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dmitry.baryshkov@linaro.org, linux-sound@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241101053154.497550-1-alexey.klimov@linaro.org>
+ <20241101053154.497550-7-alexey.klimov@linaro.org>
+ <woeeh7cosv47z4ckqbomfc3rqqxfolyfycgcz32do2yadg7xdj@geqank3dp55t>
+ <D695QHHBLGUF.7HOOI1E8RMTS@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -124,101 +109,91 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <04f7bd2a7d69ab7d02c88cf05bda5ae0c4cb6573.camel@mediatek.com>
+In-Reply-To: <D695QHHBLGUF.7HOOI1E8RMTS@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 12/12/2024 04:05, Jason-JH Lin (林睿祥) wrote:
-> Hi Krzysztof,
-> 
-> Thanks for the reviews.
-> 
-> On Wed, 2024-12-11 at 10:37 +0100, Krzysztof Kozlowski wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
+On 11/12/2024 21:35, Alexey Klimov wrote:
+> On Fri Nov 1, 2024 at 7:57 AM GMT, Krzysztof Kozlowski wrote:
+>> On Fri, Nov 01, 2024 at 05:31:50AM +0000, Alexey Klimov wrote:
+>>> Add binding document for WSA881X family of smart speaker amplifiers
+>>> that set to work in analog mode only and configurable via i2c only.
+>>> Such devices are found in Qualcomm QRB4210 RB2 boards with
+>>> SM4250/SM6115 SoCs.
+>>>
+>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>>> ---
+>>>  .../bindings/sound/qcom,wsa881x-i2c.yaml      | 103 ++++++++++++++++++
+>>>  1 file changed, 103 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa881x-i2c.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/sound/qcom,wsa881x-i2c.yaml b/Documentation/devicetree/bindings/sound/qcom,wsa881x-i2c.yaml
+>>> new file mode 100644
+>>> index 000000000000..51b040b134d2
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/sound/qcom,wsa881x-i2c.yaml
 >>
+>> Filename must match compatible.
 >>
->> On Wed, Dec 11, 2024 at 11:22:49AM +0800, Jason-JH.Lin wrote:
->>> Add the Global Command Engine (GCE) header file to define the GCE
->>> thread priority, GCE subsys ID and GCE events for MT8196.
->>
->> This we see from the diff. What we do not see is why priority is a
->> binding. Looking briefly at existing code: it is not a binding, there
->> is
->> no driver user.
->>
-> 
-> This priority value is used to configure the priority level for each
-> GCE hardware thread, so it is a necessary hardware attribute.
-
-I did not say these are not "hardware". I said these are not bindings.
-Bring arguments why these are bindings.
-
-> 
-> It's hard to find where the priority is used in existing driver code
-> because we parsed it from DTS.
-
-So not a binding.
-
-> 
-> It is used in all mediaTeks' DTS using the GCE.
-> For example, in mt8195.dts:
-> 
-> vdosys0: syscon@1c01a000 {
->     compatible = "mediatek,mt8195-vdosys0", "mediatek,mt8195-mmsys",
-> "syscon";
->     reg = <0 0x1c01a000 0 0x1000>;
->     mboxes = <&gce0 0 CMDQ_THR_PRIO_4>;
->     #clock-cells = <1>;
->     mediatek,gce-client-reg = <&gce0 SUBSYS_1c01XXXX 0xa000 0x1000>;
-> }
-> 
-> CMDQ driver(mtk-cmdq-mailbox.c) will get the args parsed from mboxes
-> property in cmdq_xlate() and then it will store CMDQ_THR_PRIO_4 to the
-> specific thread structure. 
-
-So not a binding.
-
-> The user of CMDQ driver will send command to CMDQ driver by 
-> cmdq_mbox_send_data(), and this priority setting will be configured to
-> GCE hardware thread.
-
-And other things there are the same, we do not talk only about this one
-thing. I asked last time to drop which is not a binding.
-
-
-...
-
+>>> @@ -0,0 +1,103 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/sound/qcom,wsa881x-i2c.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >>> +
->>> +/*
->>> + * GCE General Purpose Register (GPR) support
->>> + * Leave note for scenario usage here
->>> + */
->>> +/* GCE: write mask */
+>>> +title: Qualcomm WSA8810/WSA8815 Class-D Smart Speaker Amplifier in Analog mode
+>>> +
+>>> +maintainers:
+>>> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>> +  - Alexey Klimov <alexey.klimov@linaro.org>
+>>> +
+>>> +description: |
+>>> +  WSA8810 is a class-D smart speaker amplifier and WSA8815
+>>> +  is a high-output power class-D smart speaker amplifier.
+>>> +  Their primary operating mode uses a SoundWire digital audio
+>>> +  interface however the amplifier also supports analog mode and it
+>>> +  can be controlled via I2C. This binding is for I2C interface.
+>>> +
+>>> +allOf:
+>>> +  - $ref: dai-common.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: qcom,qrb4210-wsa881x-i2c-codec
 >>
->> That's a definite no-go. Register masks are not bindings.
+>> qrb4210 is a name of a board, not codec. i2c is redundant, codec as
+>> well. 'x' is not allowed.
+> 
+> qcom,qrb4210-wsa881x-i2c-codec came from qcom-soc.yaml with the advice
+> that it should be qcom,SoC-IP.
+
+I am sorry, but qcom,soc.yaml is about SoC. Is this a SoC? It is the
+first time I see WSA integrated into the SoC.
+
+> 
+> Anyway I am working on updating the qcom,wsa881x.yaml as you pointed out
+> in another email.
+> 
+>> This is qcom,wsa8810 and qcom,wsa8815 compatible with it.
 >>
 > 
-> I'm sorry to the confusion.
+> [..]
 > 
-> These defines are the index of GCE General Purpose Register for
-> generating instructions, they are not register masks.
-
-Index of register is also sounding like register.
-
+>>> +
+>>> +      wsa881x@e {
+>>
+>> Node names should be generic. See also an explanation and list of
+>> examples (not exhaustive) in DT specification:
+>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 > 
-> The comment "/* GCE: write mask */" is briefly describe that the usage
-> of GCE_GPR_R0 and GCE_GPR_R01 is used to store the register mask when
-> GCE executing the WRITE instruction. And it can also store the register
-> mask of POLL and READ instruction.
-> 
-> I will add more words to make this comment clearer, like this:
-> /*GCE: store the mask of instruction */
+> The best I can come up with is "amplifier", or it should be at least "codec'.
 
-Not sure, because I feel you just avoid doing what is right and keep
-pushing your own narrative. Where is it used in the driver?
+amplifier, speakers, you can check how this is called in 10 existing DTS
+files or their bindings for WSA speakers.
 
-I just looked for "GCE_GPR_R00" - no usage at all. So not a binding.
 
 Best regards,
 Krzysztof
