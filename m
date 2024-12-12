@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-130052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9B5F9EDCA8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 01:47:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 799C39EDCAC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 01:48:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6577028371B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 00:47:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D84962836E4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 00:47:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D89D129CFB;
-	Thu, 12 Dec 2024 00:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABDC34084D;
+	Thu, 12 Dec 2024 00:47:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TfJV82nx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JaR+0hBT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDD0217555
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 00:47:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE5662AD21
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 00:47:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733964455; cv=none; b=fkikLaoTNDjlLEQAonCqLEblVekWRw0be/Y720X9iOhol8RInz60nKEO8XlDAEk5fEuoQjPej8MbduzBCmWGC663axXX6OAqFROsY3c9epNR+HuNoXUfTX73XFEP3MPWN3PuKQ6JUiFv8FovJNFXhY2B3W+HW4Tz+ulux2CTDtk=
+	t=1733964457; cv=none; b=q5OATxZHTccpOReHpSjk51tlJ0UYQYeS42XGGJaZLGySniRp39BDNpsA9W6R4QYGNbCkVVI3NNuNqZPj3p3JQLjjOqFwkAQc9mjIW4iedFbXLvAyIkmXpB2l9mEtSDQ2Flu6moqa19LGScENg7bZVTYMB9pAbrEZr86zNXsaWbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733964455; c=relaxed/simple;
-	bh=3R3OPMfTuyqQexC84gUaI5ofdVj4g5npIdYgx8O4VNY=;
+	s=arc-20240116; t=1733964457; c=relaxed/simple;
+	bh=gI7279BFVBU24wfEPp4Je1wvSfa/qbfIzJF36p2a+iQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SK4xXV1lAxkx5rJEzSntelDXP8z4EtkpEmz9rf/J0A3aTFtawqcM9RnO43dujSOI85NHqY60GCwQ3/oMzl5BvyG2hY1YDYKJPcIZb7M9C8YcT3X8K/47ev2SShPYLKD8JoDlwPTmXZiSOygd2OGfPHuhsf2wN2YFqlWd7M0ww2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TfJV82nx; arc=none smtp.client-ip=209.85.221.42
+	 MIME-Version; b=Re4OFblvhLO6bYI6u5wCJNIq+VlTuBawgwJEfOjM9Z7b4NNa8IBURMQrvq48ZvkogE1yJndmAsvYc6UYrLHEcp75jZzsqizW2kfBRrnPhCumHpqOM7FjiXzW6ufBQw6X4ar/QeYXhr8Sl1Pdhn86Qf71OABgGsbeVHG2QnSKeKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JaR+0hBT; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-382610c7116so11099f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 16:47:33 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4361a50e337so296035e9.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Dec 2024 16:47:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733964452; x=1734569252; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1733964454; x=1734569254; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bxSzgj3Vq2uPgrMY9L1M3DS9SZdOaUlr7HUWtclhijg=;
-        b=TfJV82nxRpRj+irEv+/PnGsx828tWuNkyn+K+E0kP7hXuegJ26jBNa+Hpe7TeVyOc6
-         q95d2WKxkdwZQ2s/CfGF+QzHGNO+G6ud/A+jSpPhmiZQcZgs3g/Kxpyc7S/+G/vyP3oV
-         YVinfoiYG12z5vtO5cFrwUfTRR8lAmakfoZDoFqt5+HRWgmGyCa9rKz6XUfYA5PlNxta
-         D46bUCEQ6QPL2NU1CMrgRgfR2E+ze62hkpmZPpJH5HVGWlP8rHshRpI5feE568zRm5+P
-         a2f0KPGUJT0Hcx+scA2GLlr5gM3KvmctaUTRu2tjaRaD34KyboMp87DPFDSPFlxIjQPX
-         2ocw==
+        bh=0mDzWrPswVqL2jIJMPNBr5jz29qiE8AhUOmE7OcegD8=;
+        b=JaR+0hBTtMGmbIEsp+WxtNuDFrT8Kv9vNaNG9AwbBP6dYXDXZabiu4B5KFqzDTAgED
+         /NnLUnDWHp5+dtbv067qMk9RuA3t3Ft2EljzBO846rJ+xTctrbA2hHOHpLN1vuf/pONX
+         HR64ldA6sm9vI41rKCy44S6Vs31LCU5Gf177isG3XUDKny9b1eJbU8FGu0xIkc2X4Swf
+         x4U69Rmj+J9cxogf/iU9mQ6P6JPpTL/JY5ICHJQcgKp5ZlCCt8SWHJKaUcQoGI9tzcpG
+         8govD1HvrpuvkQ/biL2e3Qc0wrptgCLzMMZhSrGN+smg+UFXXj3hZX6P2dBNfrVAzWzY
+         M2JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733964452; x=1734569252;
+        d=1e100.net; s=20230601; t=1733964454; x=1734569254;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=bxSzgj3Vq2uPgrMY9L1M3DS9SZdOaUlr7HUWtclhijg=;
-        b=YexcJqPOdS+GsO1fLIM+tnDh6S6XOIwLw6gemBaWAtqVcWrC/iTTVGc8X5L4yCpxBl
-         88wOGuIlahkUY0lKPIqZptVxtXA1PVWVc/attyIJc8OydPiiojYZbQWSX8ncnIfm+aGh
-         kJ+p0BvY18CGKFH/lC0yN+Nh8GsdqRxF51w2gyqS40hsCuuq4YGNOGlZox0ELmh5bpUL
-         pM6BnqNx2b45JfcLD8KgHbYoYg5Ic0dTVNrwvlhy1iaBp0o0+7sAZxoK3Fo1IWCcHOdf
-         tiU1R+nR7F29iZ2jdSpm7+bixN/1ujK2EY6IKKzOP6TIxeCqbnCjRnFmLX1p9R0cFhaP
-         uY6g==
-X-Forwarded-Encrypted: i=1; AJvYcCXULyiMlK6WhvLXsZXGiv5TuHbD/glrjn9KlUoigMEQHQAw3okH0yk8QmU3uM6gDWObFQEu0oJKQI3G@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYBBDX20bNJk+i9Gj4JcgoYpYY0Rx1ATsr7Z5PZ8DbpS/uDe9p
-	T20NwDMQoFXrFgFWsOBaQmBlppVZjhIh0BnmvV9ISjEsLkCIidoyFxCGi1JnVX8=
-X-Gm-Gg: ASbGncvlfdVKMzHPOESFOFjsBk14TaA2zGQ5rAPWXevtug6MxTYMVNqqex5OpoT7Ztv
-	oYQSvy6jhiMuxsG8yQnLVIgq/pudteqSNyy8YNtZfk9YCykI8oYmnUSVwXSoH9GoNvbcEJP4QXQ
-	AQLnKhmi9n4ZMs3TvM9wG+hAK3rUg4yeX20cMMb5aLWQSJHv3pJkz/3rvHpmEjpg2bbFL3XEu8h
-	JegL3ZdLQctQ/cHwAIH8GGwsC+Lxqo7U1ATg6cMUIoyM1BNF91ZbG9nsNq5cp7B2mKv+Rc+
-X-Google-Smtp-Source: AGHT+IE1OUN0yGKV1J8sFJ5lu50pkndsUsBhL3KLv+epv+i5SZeHxNPxl2b8YjdtlAtpqWnNX2i6ig==
-X-Received: by 2002:a05:6000:1562:b0:385:f220:f798 with SMTP id ffacd0b85a97d-3864ce4af31mr3619903f8f.6.1733964452283;
-        Wed, 11 Dec 2024 16:47:32 -0800 (PST)
+        bh=0mDzWrPswVqL2jIJMPNBr5jz29qiE8AhUOmE7OcegD8=;
+        b=QUGpvaDXQmDHwOEm6ddr/IkeQaMHDMkhzgwiMI2y70vxz3hiVhrgq4BWoEpbIGkC03
+         4HEOE4xkaR35mxBPCAmDZUA4e6NG0jhYb/En6RzyY1ZFYi7HViT+PuoSB17ybHJL8SXc
+         re7I2Wkdzd04tZNaWnuA/m0P88lvVzb1LR1jMl3QaBMg05CVK0lOB9s5IBJl84O+DmIW
+         5YkUEA8Gd61jyC9qPpOkR+TQhElnjiP8DxKyUBU7AEQw0KTlAXemoJ9K5KuQuxd5Eain
+         EJIBg+lk9n5sqPZI+TyB1vWOt5T4kcfbjPqHcX9bI6PK3XvEDr2svHj1HdB3ZReeVf5f
+         Qycw==
+X-Forwarded-Encrypted: i=1; AJvYcCWL3ayacvhOeY8+dDYqJC9+GuYvbRUVTNNbKoQPG38foJpsyW2Uk+ZjqJpE5QJYoZWDkC3nJGY/UlEL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5ZeFSuTEKDDMayv1gJ+P+1PpYpUyxaadM8598BLGvQ5OM1Zcr
+	vOkMjiOtyeR7Yw+87HTPFDVVTo+oiYS6UQ1b8Z3QCxjofVdeRGJv/WFCN9jOdyQ=
+X-Gm-Gg: ASbGncteCN1coj87hYADuPKUYtpR7FGxm8t4P9Jj3rS/mrEQSWuGheQ4tqUP19gbKiG
+	qdHdI0iDj5CHwrTVB/+6CNXBqT9PYhN+SNVb6fwwIw7vQLe9MndeL+EA0lIRRZLnD0a+MzwCXwA
+	j7v2a1pGHjCwNGsI49EwY4TlVeEGd+Qb2y9fdaeVEFAmMvRFtGEiEJshJuEfH0r5SLv5sCmSb67
+	uCQ2Q74Evt0SObBt2m1pjC4rP9bvRUbl8Xiz+cM7qsbsyUgqhAPLYymwTJuo3cWHcV/f3/F
+X-Google-Smtp-Source: AGHT+IE7vuVokWsKA+OSg/kSc554NchXd8bbNr3lBMdwH/A0uq3kq3gqrXVPdiGpvQAMDioUQZG3+g==
+X-Received: by 2002:a5d:584a:0:b0:386:4a0c:fe17 with SMTP id ffacd0b85a97d-3864ce602femr3957618f8f.27.1733964454139;
+        Wed, 11 Dec 2024 16:47:34 -0800 (PST)
 Received: from localhost.localdomain ([2.222.231.247])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-387824a4ef4sm2459660f8f.39.2024.12.11.16.47.30
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-387824a4ef4sm2459660f8f.39.2024.12.11.16.47.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Dec 2024 16:47:31 -0800 (PST)
+        Wed, 11 Dec 2024 16:47:33 -0800 (PST)
 From: Alexey Klimov <alexey.klimov@linaro.org>
 To: broonie@kernel.org,
 	konradybcio@kernel.org,
@@ -88,9 +88,9 @@ Cc: tiwai@suse.com,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 01/14] ASoC: dt-bindings: qcom: Add SM6115 LPASS rxmacro and vamacro codecs
-Date: Thu, 12 Dec 2024 00:47:14 +0000
-Message-ID: <20241212004727.2903846-2-alexey.klimov@linaro.org>
+Subject: [PATCH v2 02/14] ASoC: codecs: va-macro: add sm6115 compatible
+Date: Thu, 12 Dec 2024 00:47:15 +0000
+Message-ID: <20241212004727.2903846-3-alexey.klimov@linaro.org>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241212004727.2903846-1-alexey.klimov@linaro.org>
 References: <20241212004727.2903846-1-alexey.klimov@linaro.org>
@@ -102,88 +102,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Document compatibles for Qualcomm SM6115 SoC macro digital codecs
-(RX and VA).
+Add vamacro compatible for sm6115.
 
 Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
 ---
- .../bindings/sound/qcom,lpass-rx-macro.yaml   | 19 +++++++++++++++++++
- .../bindings/sound/qcom,lpass-va-macro.yaml   | 17 +++++++++++++++++
- 2 files changed, 36 insertions(+)
+ sound/soc/codecs/lpass-va-macro.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
-index 92f95eb74b19..697c5591ae7c 100644
---- a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
-@@ -14,6 +14,7 @@ properties:
-     oneOf:
-       - enum:
-           - qcom,sc7280-lpass-rx-macro
-+          - qcom,sm6115-lpass-rx-macro
-           - qcom,sm8250-lpass-rx-macro
-           - qcom,sm8450-lpass-rx-macro
-           - qcom,sm8550-lpass-rx-macro
-@@ -80,6 +81,24 @@ allOf:
-                 - const: npl
-                 - const: fsgen
+diff --git a/sound/soc/codecs/lpass-va-macro.c b/sound/soc/codecs/lpass-va-macro.c
+index c781da476240..443dd4dd9b19 100644
+--- a/sound/soc/codecs/lpass-va-macro.c
++++ b/sound/soc/codecs/lpass-va-macro.c
+@@ -1722,6 +1722,7 @@ static const struct dev_pm_ops va_macro_pm_ops = {
  
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sm6115-lpass-rx-macro
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 4
-+          maxItems: 4
-+        clock-names:
-+          items:
-+            - const: mclk
-+            - const: npl
-+            - const: dcodec
-+            - const: fsgen
-+
-   - if:
-       properties:
-         compatible:
-diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-index f41deaa6f4df..30a44b444f39 100644
---- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-@@ -14,6 +14,7 @@ properties:
-     oneOf:
-       - enum:
-           - qcom,sc7280-lpass-va-macro
-+          - qcom,sm6115-lpass-va-macro
-           - qcom,sm8250-lpass-va-macro
-           - qcom,sm8450-lpass-va-macro
-           - qcom,sm8550-lpass-va-macro
-@@ -83,6 +84,22 @@ allOf:
-           items:
-             - const: mclk
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,sm8250-lpass-va-macro
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+          maxItems: 3
-+        clock-names:
-+          items:
-+            - const: mclk
-+            - const: dcodec
-+            - const: npl
-+
-   - if:
-       properties:
-         compatible:
+ static const struct of_device_id va_macro_dt_match[] = {
+ 	{ .compatible = "qcom,sc7280-lpass-va-macro", .data = &sm8250_va_data },
++	{ .compatible = "qcom,sm6115-lpass-va-macro", .data = &sm8450_va_data },
+ 	{ .compatible = "qcom,sm8250-lpass-va-macro", .data = &sm8250_va_data },
+ 	{ .compatible = "qcom,sm8450-lpass-va-macro", .data = &sm8450_va_data },
+ 	{ .compatible = "qcom,sm8550-lpass-va-macro", .data = &sm8550_va_data },
 -- 
 2.45.2
 
