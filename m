@@ -1,205 +1,142 @@
-Return-Path: <devicetree+bounces-130328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30CB29EEF53
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 17:14:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEE539EF00F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 17:24:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C4E4171ED2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 16:05:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07E8318991FA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 16:14:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034CF237A3B;
-	Thu, 12 Dec 2024 15:58:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D78B622968D;
+	Thu, 12 Dec 2024 16:00:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HPnX/gYa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="heclECXw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56081223E62
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 15:58:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CDA0217679
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 16:00:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734019087; cv=none; b=nVVPdfYU9kcsaeeIMqRY0NmGvj83QX+JBepWJB5hWRrRAz4HnBrJbLuEbl91BAcCNJVMgrlMpKKy2+xhkYG6OS22XXpZ3pw93sU5+WLQ2kaXuaw/Qf6p8Miu1xuKbb7HwBnMv1D9utRyveXJ4txFIkNlADy5QIRsZiyQ7od9INI=
+	t=1734019252; cv=none; b=rLvhLIqyPY2a1RF6FbP0ovC5lw+oYP8y8XdBT1NS/fkfocJ1I5OpDAlhnVD2mUv5tgo0K9+HuQ66+/mMkbI9hWB3nC3Np8K3IkKbzDyst8PaG7cPkj51uzHE+4DgQYNPA4rWbZnyNp1leFBfVQLV03EmBtFeqdG49wy57yhX1uU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734019087; c=relaxed/simple;
-	bh=QYsdmsdQRyfQfdAB6L7gWpWteWX3xhz20XE3vNMmjco=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j/MPWEJT/N+8totFBVGx20tjGUqdv9TGvrmP/2sFczxfr4r4pp9KepOrhFuKOvtOUJCUFy0feAUxaran78pb3IZBXgB4feWCx5iwjQ4dKbidT0S8oPTrkkl9Ph6bVeA8YBWk1PPP6uRRo/vYMQd7L+SVcWFPbKRMqYmGY/YEL8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HPnX/gYa; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BCBM0NV028121
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 15:58:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vJjX/MyJzuAT/EI3JjEw0NhNv1cX5Ve0A0YxRcHKPxA=; b=HPnX/gYahucMhgZ5
-	1rBuW4CMlWK9GOox8dbF1mcNgL7yZV+M9d5GD+1hLpSBsXn1X8xJyoln8yV2TdE1
-	uPjjyJChmbLOIzyCBMfvNqW5Z9I05mksRFJX5Q0R4l1qwE9A8NZDQbwwcjfqpPXi
-	GEQaZQ/lGDVw0UWvOswzgrWtMGIin9qYrRGkvgLQZZpG7DJod7kyttQLpZ8fozPf
-	C/NggHGODbqvQUFPshdbr9pzdi9gFpIUcjgUrV/g4j82vNZezZNwER5zhD74LANu
-	oRL9q2eWYJrSYQQN/7FLQpryTxQyG9pLGPUqlp66rnLO/AjvQrlS+LGHd7StZuUc
-	phxk8A==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fxw4rt50-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 15:58:05 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4678aa83043so1932481cf.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 07:58:05 -0800 (PST)
+	s=arc-20240116; t=1734019252; c=relaxed/simple;
+	bh=gPZKjY/Cv6dqyLwE285RezILuvSeCSXXgwbDcAwcRGE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=i6Ivd2jceuYavexVw4vLkUJkqbS/ZC1GinCQfiRd9RmQRWTL5zxeCEWQmtvxU0gEml+jORw71kgrHEsg7yezjqdAPK8eFwGGXNZ794WbAlSkL7ZZBkEY+TFQg1SmXSrof+ttyUqf4t/jgwm0yDscgmjvtdttynhvTD8GU040Gcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=heclECXw; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-434e3953b65so5698535e9.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 08:00:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734019248; x=1734624048; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OqueOt3m+Hz5NDiZkEdxcD3dFeoon3Sxm9uk7ivrbRM=;
+        b=heclECXw4zytSEM3yQPd3fha5UPdBK0BXFPDbKsEJhZdJtOBX+ON6rMEZoNCiX6FjL
+         4kzTL2xBR1Ej7OorfiMulmjulSf1ogqLCOLBFduA3SFMH6+Grc6cYeuKazi0lL132QM5
+         xgAyqM4x0GdcZgfb0rnJ1ZdK4CiNo1TAPapO9Ud2qf4S8OCkckjx0BP+MpO+WtuL3LtW
+         RwV3SkvVFD4U8Obeq+dQ70USrJLFYzzVvzN+G1H+rzoEBk9G01NdSWV2Kkq7AcLaNf1d
+         bR2ANtAQ+pneZnuqpuSsT+3ArQq4f5nABLKQSk2MghEo9A89mmZpLTVLKTJeOMLh8E38
+         JNlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734019084; x=1734623884;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vJjX/MyJzuAT/EI3JjEw0NhNv1cX5Ve0A0YxRcHKPxA=;
-        b=G5btU4vVnSv/qMjTVLxXVFE9KbYPmx2YXQtObUYZ8Iy0fh3mIvpGrmjz+h6pMSoC0A
-         3+J7Yd9x08W3W7zyZt9xYaeYR18Ro7n/aZ+q1RFt44KnJBbDEYb4zaR/zY5NBtxbUzlZ
-         e6J9pU5mE4C+/r6J3cR+kWqW0gChZ14u8/xUzC1UUbbjWxLS2anw6/AcMSgjB+nD/Jbg
-         dpUFTQl28M/QRuftmuOV8dQYvAe4cCjJIYZV5lEiSSBCxwvsw3tvUmV56oL5OT9QrVGS
-         +gs7cN/GUDI+lU5O0m/0Vu7TTkfiS47n69sQ76Zb+RH4pzOwAEVUH32IO9QjjAHbmIeO
-         KkzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX+VUan5T7TLD2pX0fy0mdIXZ6649x2/KIre3r0qG11qb+7Y/ScIo22N1I4+zlrbO9LRX80+y6zKKjy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvJrWZ4saVBa0bb5lBtSMOjfwmGZBEl8rcP+VqK9Cnnv5BQ5Pv
-	Iq+ka78oqKMnhpch1t7SwMBDZ2+u0QfMMJv244flMkclyfTJwyOpv+UmlIyCJGHNsdPnaGVSQYJ
-	lZoZz2LWM1UTJ4qzppP0Jzp82mGLwH91X1Q1CZ1ZZvQyLu7KNCc8oaTuvPrQ2caVit6bL
-X-Gm-Gg: ASbGncvnmxaB1NXuxFliHseLOfkQu1OvJBx+rOiidivUQXgun+TAGkpPanxEMRD0tpv
-	UjDg7yEzJiZnU4l/4wtVE+3Vc7/nef6+oKBMsd/XxuQz7MqceK5ZqpP6NME8tVRu425/BLX0hS2
-	9VftAgEUdsfHhi1jNAYQ5yEiatSBnhAxrsCuMGTwldESPCo2ljJwX4qM7UB1yE8Ovod34T9ZjCw
-	OSrdTYTHS5ql+hkONzTKUu/y4G8QSxmK7EO+1UUVKRf5qJY/9B+7LEBgRLn0mWh2U6e4kiGqkQ2
-	Xq4h5c1rKlw6zQuxX+3huQEmrVbJ8IiH+ac6lQ==
-X-Received: by 2002:ac8:7c53:0:b0:467:83b3:ab1b with SMTP id d75a77b69052e-467a16465camr4716051cf.11.1734019083967;
-        Thu, 12 Dec 2024 07:58:03 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFDpyydyZgcmJzGotmy5Lcyw380UvTYk8yA7QWo9f4QdRtgnrCRTjELtL6/Ijg0eg39K1LYKg==
-X-Received: by 2002:ac8:7c53:0:b0:467:83b3:ab1b with SMTP id d75a77b69052e-467a16465camr4715951cf.11.1734019083601;
-        Thu, 12 Dec 2024 07:58:03 -0800 (PST)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa695c3ac07sm524055966b.66.2024.12.12.07.58.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Dec 2024 07:58:03 -0800 (PST)
-Message-ID: <9f114f7e-8a97-468a-9245-10c2b565da81@oss.qualcomm.com>
-Date: Thu, 12 Dec 2024 16:58:00 +0100
+        d=1e100.net; s=20230601; t=1734019248; x=1734624048;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OqueOt3m+Hz5NDiZkEdxcD3dFeoon3Sxm9uk7ivrbRM=;
+        b=wbWgpB69eLcdK2v1eRP1zIo4xK3pD78vHtNAdASarIu7WzWHEiLaaNTti+NkP7nx+H
+         wmyAzTKbw3XW7PFZDaHGZI4J6ZEJUcI/tDqyvuu4BQ7YrpLYZxMtaksSIb+BHrCb1s6N
+         AQkwU1YjmKR4pg0ZlTKx9h9RvLHodXLuwSKUzKczwkH50ihLa01UueoNKFlLpAy2yWmi
+         3car/oxwxgRlSy5GfI6tiiKJpTSmLV6pFbSlTKp6vt3lQH8DBmJlPJPQdJ1+3yOTwr2k
+         Xha0N4doMuE17G9Ev0T4DiSuel7HIWXV45V0YzB3e8kh5rlQJLKHL/Mr+d3GdWE5+fE3
+         HEyw==
+X-Forwarded-Encrypted: i=1; AJvYcCUVM2wCeLU83CFwz6+pp6WpW9H7oV19TgPvHG4pri2hWdfRpfvqBoGzqpCfEW56cg9I2tkuQBb+G4nz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgYcHFfSKggQg7mTq6a0qIRqOrXTO9drS5vDSmo1MMZoUSCJt2
+	b+bANpp8Is8/tSHBSDwrtp0NqncT81I3KGZK4I8VAEdoUFt81mtw84ddCDHnVos=
+X-Gm-Gg: ASbGncvb5aup7STMUjNLpYBL44U3AeVRM783ZHLEW3yfIxb3QPAIokqFJ8giHfiOzNB
+	mHIJYu3C+wwjDs4qEGqpBRN0xcbXOkfSUuOtQS63MrguErtjGXw0EtpcWU13W1sxVxUi35l/MXU
+	jH5/wzwUeh8JgsL+BWEpVVD7YB+KWvrOFDLrM2ln9B9TF0FvQp4tYdIGIMoWhKMQMqzT/Dew3Bl
+	6peLSw/baKdFQ2Gc5Sg/dyhe6Dk79ap41BZ6M44d7V5T+FREQwZhwxnLwD/EdgpZgMNxBOZyLJL
+	587SO0oud+DXcnEWyEGkp1pBx5ZoDgB84g==
+X-Google-Smtp-Source: AGHT+IEO8F14DLA6a9uq51Fn4E/i11A1F4D4K6m8q0VdStEpDipMvlbI8LBPnMinLyLtzeI1CSuDpg==
+X-Received: by 2002:a05:600c:4f11:b0:434:fbda:1f44 with SMTP id 5b1f17b1804b1-4361c3976ffmr61803215e9.19.1734019248210;
+        Thu, 12 Dec 2024 08:00:48 -0800 (PST)
+Received: from ta2.c.googlers.com (32.134.38.34.bc.googleusercontent.com. [34.38.134.32])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38782514d35sm4462941f8f.74.2024.12.12.08.00.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Dec 2024 08:00:47 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v2 0/4] arm64: exynos: gs101: add ACPM related nodes
+Date: Thu, 12 Dec 2024 16:00:37 +0000
+Message-Id: <20241212-b4-acpm-v4-upstream-dts-v2-0-91b7a6f6d0b0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/7] Add support to load QUP SE firmware from
-To: Viken Dadhaniya <quic_vdadhani@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andi.shyti@kernel.org,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.or,
-        andersson@kernel.org, konradybcio@kernel.org, johan+linaro@kernel.org,
-        dianders@chromium.org, agross@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
-Cc: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
-        quic_anupkulk@quicinc.com
-References: <20241204150326.1470749-1-quic_vdadhani@quicinc.com>
- <9d5e5b8b-aeaf-4ec8-b34a-8edeaec20037@oss.qualcomm.com>
- <9af6d639-9066-46a1-96c8-1b0b1790191d@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <9af6d639-9066-46a1-96c8-1b0b1790191d@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: ErW_FZUDMuzx-7u_HtYcPpmhMAqG8-RY
-X-Proofpoint-GUID: ErW_FZUDMuzx-7u_HtYcPpmhMAqG8-RY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- impostorscore=0 clxscore=1015 phishscore=0 spamscore=0 priorityscore=1501
- malwarescore=0 mlxscore=0 bulkscore=0 lowpriorityscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412120115
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKUIW2cC/x3MMQ6DMAxA0asgz7UU3KhDr4IYnMRQD9Aopggpy
+ t0bMb7h/womRcXgPVQocqrpd++gxwDxw/sqqKkbyJEfaSQMHjnmDU+Pv2xHEd4wHYa0RBde/Aw
+ hMfQ6F1n0us/T3NofDngjvWkAAAA=
+To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
+ peter.griffin@linaro.org, daniel.lezcano@linaro.org, 
+ vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1734019247; l=1387;
+ i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
+ bh=gPZKjY/Cv6dqyLwE285RezILuvSeCSXXgwbDcAwcRGE=;
+ b=hZ8flcnYPQV3TsFaQwLja8Fw09eEAZUxRLkGCgisxH6sMxSgluJopwrXKflaZZNoFnCvdGKQi
+ Kz9nhpbJs61DlRKVpDVEdcXwIY5mz7OEpQOlEU6cijK4KqS3rNlA0dw
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
+ pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-On 10.12.2024 6:06 AM, Viken Dadhaniya wrote:
-> 
-> 
-> On 12/5/2024 9:29 PM, Konrad Dybcio wrote:
->> On 4.12.2024 4:03 PM, Viken Dadhaniya wrote:
->>> In Qualcomm SoCs, firmware loading for Serial Engines (SE) in the QUP
->>> hardware has traditionally been managed by TrustZone (TZ). This setup
->>> handled Serial Engines(SE) assignments and access control permissions,
->>> ensuring a high level of security but limiting flexibility and
->>> accessibility.
->>>   This limitation poses a significant challenge for developers who need more
->>> flexibility to enable any protocol on any of the SEs within the QUP
->>> hardware.
->>>   To address this, we are introducing a change that opens the firmware
->>> loading mechanism to the Linux environment. This enhancement increases
->>> flexibility and allows for more streamlined and efficient management. We
->>> can now handle SE assignments and access control permissions directly
->>> within Linux, eliminating the dependency on TZ.
->>>   We propose an alternative method for firmware loading and SE
->>> ownership/transfer mode configuration based on device tree configuration.
->>> This method does not rely on other execution environments, making it
->>> accessible to all developers.
->>>   For SEs used prior to the kernel, their firmware will be loaded by the
->>> respective image drivers (e.g., Debug UART, Secure or trusted SE).
->>> Additionally, the GSI firmware, which is common to all SEs per QUPV3 core,
->>> will not be loaded by Linux driver but TZ only. At the kernel level, only
->>> the SE protocol driver should load the respective protocol firmware.
->>
->> I think this is a great opportunity to rethink the SE node in general.
->>
->> Currently, for each supported protocol, we create a new node that
->> differs in (possibly) interconnects and pinctrl states. These are really
->> defined per-SE however and we can programmatically determine which ones
->> are relevant.
->>
->> With the growing number of protocols supported, we would have to add
->> 20+ nodes in some cases for each one of them. I think a good one would
->> look like:
->>
->> geni_se10: serial-engine@abcdef {
->>     compatible = "qcom,geni-se";
->>
->>     reg
->>     clocks
->>     power-domains
->>     interconnects
->>     ...
->>
->>     status
->>
->>     geni_se10_i2c: i2c {
->>         // i2c-controller.yaml
->>     };
->>
->>     geni_se10_spi: spi {
->>         // spi-controller.yaml
->>     };
->>
->>     ...
->> }
->>
->> Or maybe even get rid of the subnodes and restrict that to a single
->> se-protocol = <SE_PROTOCOL_xyz> property, if the bindings folks agree.
->>
->> We could extend the DMA APIs to dynamically determine the protocol
->> ID and get rid of hardcoding it.
->>
->> And then we could spawn an instance of the spi, i2c, etc. driver from
->> the GENI SE driver.
->>
->> Konrad
-> 
-> Thanks for the advice.
-> The above design suggested by you may add more code change into protocol driver as well as common driver.
-> I am really interested to discuss more options and come to better design. let me discuss with you on this.
-> Also do you think we can push the re-design of DTSI nodes as separate change instead of clubbing with this FW load change ?
+Define SRAM, mailbox and ACPM protocol in device tree.
+Enable the mailbox and ACPM protocol in defconfig.
 
-Sure, the firmware loading support itself is a separate change.
-I simply used this thread as an opportunity to talk about a future
-cleanup.
+Use a constant for the channel type until the bindings header file gets
+queued. Bindings and driver changes at:
+Link: https://lore.kernel.org/all/20241212-acpm-v4-upstream-mbox-v4-0-02f8de92cfaf@linaro.org/
+Link: https://lore.kernel.org/all/20241212-b4-acpm-v4-upstream-firmware-v4-0-3f18ca64f1b9@linaro.org/
 
-Konrad
+Changes in v2:
+- update nodes based on the bindings updates
+- update mailbox and power-management (mailbox client) nodes to specify
+  channel type (doorbell or data) and channel ID.
+
+v1:
+Link: https://lore.kernel.org/linux-arm-kernel/20241205180200.203146-1-tudor.ambarus@linaro.org/
+
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+Tudor Ambarus (4):
+      arm64: dts: exynos: gs101: add SRAM node
+      arm64: dts: exynos: gs101: add AP to APM mailbox node
+      arm64: dts: exynos: gs101: add ACPM protocol node
+      arm64: defconfig: enable ACPM protocol and Exynos mailbox
+
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 39 ++++++++++++++++++++++++++++
+ arch/arm64/configs/defconfig                 |  2 ++
+ 2 files changed, 41 insertions(+)
+---
+base-commit: fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
+change-id: 20241212-b4-acpm-v4-upstream-dts-2fc0b6a3bbda
+
+Best regards,
+-- 
+Tudor Ambarus <tudor.ambarus@linaro.org>
+
 
