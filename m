@@ -1,193 +1,187 @@
-Return-Path: <devicetree+bounces-130356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 114229EF279
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 17:49:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBAE89EF290
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 17:50:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FFD2189EDB6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 16:36:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0385E16CF6A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 16:37:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEB8E23D43F;
-	Thu, 12 Dec 2024 16:25:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VGgmxxLH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A9E8222D7B;
+	Thu, 12 Dec 2024 16:26:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB9922A1C0;
-	Thu, 12 Dec 2024 16:25:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1099D222D7D;
+	Thu, 12 Dec 2024 16:26:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734020742; cv=none; b=a1uDBUUQsSjW2AdCcuigPyrsNnGowPv5tLN9vrisAMNgqVUbDyitGwjjSp99icTpz2l6xg23s+CgZ6JiJpdSFMB7liEYyfSnRTH+h8mhMEhlzifEmAt7MjFHY6jTNTallPXi9tPXMfZdcPk4jGLbXmuf40RokHXYpkXehClzd0I=
+	t=1734020810; cv=none; b=dsCkWtwd4HvP/iSzTWNp95nxH6kl3lOrlwZJ8zfklmXXOASLF+CZYz60MwKlNMxFKzBE4pzgK242iUVYwRuFGkhpC/FDznrICGtGDtwHUoDmS+RaLC6ufQwRiG3VtDCDGwYW2RevJsatxnzv7TMNYoRZdmZ+5fdOTHvlmlp2LlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734020742; c=relaxed/simple;
-	bh=/80D6SSlGn7n1xvUC5voFQwABZp0R2C/r631Sf2IRfQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oWQ4t1IZy9eaYqEdgMnbnb5VZtTGYY+BnEpB2S1b/VPzLIoquzoW/uVown5N2TS/IFdVNI4u/uc/nhAA0h4hfDUPUXyYnfSye2z7so0dDzyy6M8/E71Oi8CSthcJK7P0axBk3b5ocbpW6dfwTYsm+juPdxoOovgr3TGtkbgh+sM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VGgmxxLH; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BC7wX6T030073;
-	Thu, 12 Dec 2024 16:25:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	l/1hRtL88eL8s2U9Di8ClmmpZhI+xqSo8rdmBhnrAjc=; b=VGgmxxLHRhTgBPwy
-	kQzOKPGCTEe9BwccXSYWlHgU0xwjRNq1MZ408UopA8jJt/fAvGjji2w+jcyV6bW6
-	0C7gghUksGBPkGMmxVBvpvsaYrtJzzkZpunD4Gn8ik4kaW6GN9wuWiNB2vMsigw/
-	3rFOZ+xpe8O3wmfDIKYYcsn89YZsD1Z1y+pPpCwGbk2WHtw+YiJ/096qQ1ywOONl
-	VVp3kbiJ51pkBXdww+FRKHTEeAS94PQApgZ74KvvwrnBFGoTUKAsZ5GSV7tqr+m6
-	fS7RJmYkDbkbcnIdaxFazFJBlgWvKrGuYKhDd7M8mf+3FelZBEAKiDM+l9gSPjlU
-	m9q5gw==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43dxw4byye-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Dec 2024 16:25:29 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BCGPSk8014761
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Dec 2024 16:25:28 GMT
-Received: from hu-mohs-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 12 Dec 2024 08:25:21 -0800
-From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Bard Liao
-	<yung-chuan.liao@linux.intel.com>,
-        Jaroslav Kysela <perex@perex.cz>, "Takashi
- Iwai" <tiwai@suse.com>
-CC: Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-        Sanyog Kale
-	<sanyog.r.kale@intel.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_pkumpatl@quicinc.com>, <kernel@quicinc.com>,
-        Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-Subject: [PATCH v5 4/4] ASoC: qcom: sdw: Add get and set channel maps support from codec to cpu dais
-Date: Thu, 12 Dec 2024 21:53:34 +0530
-Message-ID: <20241212162334.36739-5-quic_mohs@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241212162334.36739-1-quic_mohs@quicinc.com>
-References: <20241212162334.36739-1-quic_mohs@quicinc.com>
+	s=arc-20240116; t=1734020810; c=relaxed/simple;
+	bh=3BqDJ9IE28Vm637IKbe7D+AverMUfpFzzOLy73Ms0L0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PM3iV10ZERTnMGJCyICaEmHnHD1r/Jrr/AMhchK9GCouGEwr992r9bVkoIQG+7499UH2Fs3I2jWuafdinqh5RgXTDwr9C0+xBhXqYcXcDRXJfg2Oj8EOAmUBWt0OXgreBGyI+4v4u9b2fxsCKWthgUZfgiSARUb8x0jA1RJLIPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7b6e9586b82so58918385a.1;
+        Thu, 12 Dec 2024 08:26:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734020806; x=1734625606;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2gmd/BJFeq2Hao7Wbaw63l9kXbYIa+IGJrdLMUYPON4=;
+        b=E616Pp6BeICL+WZT3DtYeEyZ0jJ1CnYJtkFTzJQMmfv8EzKnKLxNKIcvHylSGNba5U
+         5GU89rahS9qdvsP57s4wjDYeljK2Pz/8K8xWbjae8eiEnfkDGeOUE3O1l4RoGQ+Kz3U1
+         DAmnhG4x2JuYP5BMtzcC+QFv3WS1j4FQ0QbdTPtIzqu2aMv7wgv8VxGsh4bqqZQWKOJC
+         n4F5gnWbl4PaULlZmOJzg3lEEKD17LLEUnJL35RBoW0uPb4tgyboi60BA6d044HRvis3
+         B04tFQbRceeWUHX1OtdLXSGxGRzbdaowcExZakEXrgk8phoKG7OAMPcDXyAGWS7ellD/
+         VtlA==
+X-Forwarded-Encrypted: i=1; AJvYcCVhIM64MmKocwKpCKcuchfQiUgCh3oVsX/Tcuw2uGDyOVqkJfn7bItu4lzNnLhk8iTgTsoedx7THX6e@vger.kernel.org, AJvYcCVurQtk8kIWj1vnOeLVhLJULVllorcJFfro7jamoLAzRMWG8B8RZohZ9belT0KJS6hBn8fDc2QhzkBLMg==@vger.kernel.org, AJvYcCWhSzdpJe6VKVS0uRwlvhLsdqAnyHkMdEgk2jl7hus4U2sVefYAntDkL2SH2mOphkOL5Nd1/VYGRb+yV+jjWKwRDBM=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDlWuCU0gK7p/g3tZ79DYwjgjJiLQhc85wslRFGbxoYU8i+HIF
+	hscV82rUvLf9veRvb0HReVV2zE8D0juG/VFW9l7/LF/s8Oh6YXcgXRuUIY/BySM=
+X-Gm-Gg: ASbGncvld85A6djPLmJpoo7RH1xugBszkcodFxFi9qkJxosbGf9Z8a1b5glyPyK2SiG
+	PVYIno0OVjfb1ld3MR1rAYYtZBiHsEjR29eWbpiZCCfZZneZfBoiY14RPbH3SOYOGIF6Qc9prJR
+	lV6+knqA9TZg0Bie+dJBbuySUBLqjmn0lAqECFbvnnLcYMpZUtoFr/BQ/IfoaVLmih7Qr4AHH1A
+	YxpWlLg3KmPDhqUQdq77Og18GNEueLX2F2FzF+44Jm6/4oNu601VO3Dc72Zly6mTGow7bhTrwHk
+	vGIbJDE0GcR1HsR5x1w=
+X-Google-Smtp-Source: AGHT+IGl+ZVExP5Fh4dgDfIj+1iHyCdZzI+mDeaZvywnXKlC5YnDUP8TctR2GnoRWT2UOdpES4y+UQ==
+X-Received: by 2002:a05:620a:240f:b0:7b6:d383:3cca with SMTP id af79cd13be357-7b6f89acff5mr124571285a.35.1734020806597;
+        Thu, 12 Dec 2024 08:26:46 -0800 (PST)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85c464d9216sm1763780241.5.2024.12.12.08.26.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Dec 2024 08:26:46 -0800 (PST)
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4afed12283eso397459137.1;
+        Thu, 12 Dec 2024 08:26:46 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVbKIDWP//Isf68+QWSVzX3VT6/ffuFX3TtznurtIOyrWSfAk+rQmVJ+NchghzYUrd32bWrYDnQOzuW@vger.kernel.org, AJvYcCW7hqtq5uzguCVghrKF3t9UUN0U+atDamWX5ITga4N0L96ua+t0CFm2i0cLVEGPoUj6NbacgD0LaKO4Hw==@vger.kernel.org, AJvYcCWxCxQQJM6LIDg8OMDD8clTOp+4vkYwsX3Qs57qnopiAd1FAOsw3w9YWJ4yyo4mbzMyugxvAWJkQIcE8nrtU/81ERw=@vger.kernel.org
+X-Received: by 2002:a05:6102:3f88:b0:4b2:48dd:aade with SMTP id
+ ada2fe7eead31-4b257f7d94amr1900641137.12.1734020806064; Thu, 12 Dec 2024
+ 08:26:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: CbMJFmKfZ1pk65Ju96SOug-iGSAyq2jh
-X-Proofpoint-GUID: CbMJFmKfZ1pk65Ju96SOug-iGSAyq2jh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- suspectscore=0 priorityscore=1501 adultscore=0 mlxlogscore=999
- clxscore=1015 spamscore=0 mlxscore=0 lowpriorityscore=0 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412120118
+References: <20241206102327.8737-1-biju.das.jz@bp.renesas.com> <20241206102327.8737-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20241206102327.8737-2-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 12 Dec 2024 17:26:34 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVWaVscNyhsN3eKC2EqQc_Hp3kALiLso+4AOic6huMAXA@mail.gmail.com>
+Message-ID: <CAMuHMdVWaVscNyhsN3eKC2EqQc_Hp3kALiLso+4AOic6huMAXA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: pinctrl: renesas: Document RZ/G3E SoC
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Biju Das <biju.das.au@gmail.com>, Prabhakar Lad <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add get and set channel maps support from codec to cpu dais.
+Hi Biju,
 
-Implemented logic to get the channel map in case of only sdw stream and
-set channel map only for specific cpu dais.
+On Fri, Dec 6, 2024 at 11:23=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> Add documentation for the pin controller found on the Renesas RZ/G3E
+> (R9A09G047) SoC. The RZ/G3E PFC is similar to the RZ/V2H SoC but has more
+> pins(P00-PS3). The port number is alpha-numeric compared to the number on
+> the other SoCs. So add macros for alpha-numeric to number conversion.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v1->v2:
+>  * Fixed the warnings reported by bot.
 
-Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
----
- drivers/soundwire/qcom.c |  5 ++---
- sound/soc/qcom/sdw.c     | 34 +++++++++++++++++++++++++++++++---
- 2 files changed, 33 insertions(+), 6 deletions(-)
+Thanks for the update!
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 86763ba3a3b2..eb0cf725872e 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -1276,11 +1276,10 @@ static void *qcom_swrm_get_sdw_stream(struct snd_soc_dai *dai, int direction)
- }
- 
- static int qcom_swrm_set_channel_map(struct snd_soc_dai *dai,
--				     unsigned int tx_num, unsigned int *tx_slot,
--				     unsigned int rx_num, unsigned int *rx_slot)
-+				     unsigned int tx_num, const unsigned int *tx_slot,
-+				     unsigned int rx_num, const unsigned int *rx_slot)
- {
- 	struct qcom_swrm_ctrl *ctrl = dev_get_drvdata(dai->dev);
--	struct sdw_stream_runtime *sruntime = ctrl->sruntime[dai->id];
- 	int i;
- 
- 	if (tx_slot) {
-diff --git a/sound/soc/qcom/sdw.c b/sound/soc/qcom/sdw.c
-index f2eda2ff46c0..d4d8ed46e6ff 100644
---- a/sound/soc/qcom/sdw.c
-+++ b/sound/soc/qcom/sdw.c
-@@ -25,7 +25,9 @@ int qcom_snd_sdw_startup(struct snd_pcm_substream *substream)
- 	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
- 	struct sdw_stream_runtime *sruntime;
- 	struct snd_soc_dai *codec_dai;
--	int ret, i;
-+	int ret, i, j;
-+	u32 rx_ch[SDW_MAX_PORTS], tx_ch[SDW_MAX_PORTS];
-+	u32 rx_ch_cnt = 0, tx_ch_cnt = 0;
- 
- 	sruntime = sdw_alloc_stream(cpu_dai->name);
- 	if (!sruntime)
-@@ -35,9 +37,35 @@ int qcom_snd_sdw_startup(struct snd_pcm_substream *substream)
- 		ret = snd_soc_dai_set_stream(codec_dai, sruntime,
- 					     substream->stream);
- 		if (ret < 0 && ret != -ENOTSUPP) {
--			dev_err(rtd->dev, "Failed to set sdw stream on %s\n",
--				codec_dai->name);
-+			dev_err(rtd->dev, "Failed to set sdw stream on %s\n", codec_dai->name);
- 			goto err_set_stream;
-+		} else if (ret == -ENOTSUPP) {
-+			/* Ignore unsupported */
-+			continue;
-+		}
-+
-+		ret = snd_soc_dai_get_channel_map(codec_dai, &tx_ch_cnt, tx_ch,
-+						  &rx_ch_cnt, rx_ch);
-+		if (ret != 0 && ret != -ENOTSUPP) {
-+			dev_err(rtd->dev, "Failed to get codec chan map %s\n", codec_dai->name);
-+			goto err_set_stream;
-+		} else if (ret == -ENOTSUPP) {
-+			/* Ignore unsupported */
-+			continue;
-+		}
-+	}
-+
-+	switch (cpu_dai->id) {
-+	case RX_CODEC_DMA_RX_0:
-+	case TX_CODEC_DMA_TX_3:
-+		if (tx_ch_cnt || rx_ch_cnt) {
-+			for_each_rtd_codec_dais(rtd, j, codec_dai) {
-+				ret = snd_soc_dai_set_channel_map(codec_dai,
-+								  tx_ch_cnt, tx_ch,
-+								  rx_ch_cnt, rx_ch);
-+				if (ret != 0 && ret != -ENOTSUPP)
-+					goto err_set_stream;
-+			}
- 		}
- 	}
- 
--- 
-2.34.1
+> --- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yam=
+l
+> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yam=
+l
 
+The changes to the bindings LGTM.
+
+> diff --git a/include/dt-bindings/pinctrl/rzg2l-pinctrl.h b/include/dt-bin=
+dings/pinctrl/rzg2l-pinctrl.h
+> index c78ed5e5efb7..1b1b1114a84c 100644
+> --- a/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
+> +++ b/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
+> @@ -11,13 +11,38 @@
+>
+>  #define RZG2L_PINS_PER_PORT    8
+>
+> +#define RZG3E_P0               0
+> +#define RZG3E_P1               1
+> +#define RZG3E_P2               2
+> +#define RZG3E_P3               3
+> +#define RZG3E_P4               4
+> +#define RZG3E_P5               5
+> +#define RZG3E_P6               6
+> +#define RZG3E_P7               7
+> +#define RZG3E_P8               8
+> +#define RZG3E_PA               9
+> +#define RZG3E_PB               10
+> +#define RZG3E_PC               11
+> +#define RZG3E_PD               12
+> +#define RZG3E_PE               13
+> +#define RZG3E_PF               14
+> +#define RZG3E_PG               15
+> +#define RZG3E_PH               16
+> +#define RZG3E_PJ               17
+> +#define RZG3E_PK               18
+> +#define RZG3E_PL               19
+> +#define RZG3E_PM               20
+> +#define RZG3E_PS               21
+
+This maps the discontiguous alpha-numerical port name range to a
+contiguous numerical range.
+As there are corresponding holes in the register layout, I am not sure
+such a mapping is a good idea.
+What if a future variant (or a future documentation update) exposes
+the ports in between?
+
+> +
+>  /*
+>   * Create the pin index from its bank and position numbers and store in
+>   * the upper 16 bits the alternate function identifier
+>   */
+>  #define RZG2L_PORT_PINMUX(b, p, f)     ((b) * RZG2L_PINS_PER_PORT + (p) =
+| ((f) << 16))
+> +#define RZG3E_PORT_PINMUX(b, p, f)     RZG2L_PORT_PINMUX(RZG3E_P##b, p, =
+f)
+>
+>  /* Convert a port and pin label to its global pin index */
+>  #define RZG2L_GPIO(port, pin)  ((port) * RZG2L_PINS_PER_PORT + (pin))
+> +#define RZG3E_GPIO(port, pin)  RZG2L_GPIO(RZG3E_P##port, pin)
+>
+>  #endif /* __DT_BINDINGS_RZG2L_PINCTRL_H */
+
+Note that I do like the clever scheme to handle alpha-numerical
+port names. Perhaps this should be implemented for RZ/V2H, too?
+RZG2L_GPIO(10, 2) and RZG2L_GPIO(10, 3) in r9a09g057h44-rzv2h-evk.dts
+do refer to PA2 and PA3.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
