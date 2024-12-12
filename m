@@ -1,354 +1,139 @@
-Return-Path: <devicetree+bounces-130462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0DA79EFE9D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 22:45:15 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A55E29EFEBC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 22:50:27 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0917188CCEC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 21:50:27 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04BC81DDC0D;
+	Thu, 12 Dec 2024 21:50:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="Eun+Ov/e"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93025285D0C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 21:45:14 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE711DB520;
-	Thu, 12 Dec 2024 21:45:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qRcBeUIA"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 146001DACA1
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 21:45:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B26B1B0F39;
+	Thu, 12 Dec 2024 21:50:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734039914; cv=none; b=epfVkBLpg8OK1hDNyvShrFC7gD8V/lfu2Cwk0vQCCFvsgBpZPhok0RQXDl+zdTsR9+VFLObyqqglhto9ddUU6BKrnNSQPDbIb1yJBxTlxwpYnyOfFwcopsMXec3thLmDZu+ElWaM9m3GARfFHd8x6NEk0HF6uwpM4QpY8fAln5o=
+	t=1734040216; cv=none; b=JGyuGoCa3XeZfRY5f/wrIN2kxI8WYYyoGLs6ykmRTeSzG5gOAWao19R/1egA0cRXxqqvIkC/Dp5NwEaPR4NaZZC8mG8JtMJY+ADIDA573ImRQ4j9u5zcpvvrb8LJ3AVxHUA8o1c8QBTQsyhVkrz0jVCNKkHT5csIqbjMHdEJJVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734039914; c=relaxed/simple;
-	bh=+pJC1tYp5SsRp+I/N+6d6y4+PFvu3012i6C7y4ybq4M=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=VJBePbpcC9sCW6fUzc4hl1yK1KHUQ43rR1WU+lMeq4ERFTEZXqNN7ktymJqYoSzXhpsFAMLmtEkju1OxVg9mMDRCAQAHmFfNzcPurApIvZQHqZdi6kAiXVHHZJOmTJxiTLtSLiRrcjzlJAx6D3rAY9bT/wk0VDptvBq3B4l/hSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qRcBeUIA; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43622267b2eso11160995e9.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 13:45:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734039910; x=1734644710; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6EqGMbuCS/ZZIE29NMrOme5aBpr93tYRrvJdfmFw3cs=;
-        b=qRcBeUIAZtlPvcol7fuAjVwTuY4WKP4f36A1B6OwRTzqVd8Sp7Z312ZEDfC7QLpzGa
-         Q0+7v4BB0qix2fpUaq1Ch+HSJMHFwLpBr1WOWC7mFvJbc25uCbs3nwLRqQwvoAHjPuQR
-         lIyv55Aw67VplWprRvAc7aKDoDzmZFcNO07mca63sg1mwmCL/Gl6WJJrPdcfBV+NmRnf
-         vig1M6LN27b46GKfuZ1kLmPQz+m8AV5u8u0N7A165tG2aeXimjq16LOAJcZRahlid2/U
-         oi/CN8HuYeovWh0QCdjgU1j1dwMhbrRs8EwUijuayQC1GHBHrQ5ZtzgfmlnoiNQLK7+5
-         GV+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734039910; x=1734644710;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=6EqGMbuCS/ZZIE29NMrOme5aBpr93tYRrvJdfmFw3cs=;
-        b=kdgYuNUWhVLvz5gzWS0k3ssAE/u7aXlKeLT1wqPK9jTeMyoj0VvMJc1vh6HKTMcbxc
-         lpypjR2Zkx7GwxBb7kzkvE3yNljxJG8NRlRU9iMmXjhdc4lKOycQWwasst/+0772CiS6
-         ryqnRECot+itFO6TRPB1qkXPVY3/kTzN/2DDGz12qIdhNz8bRN1D26HSOpzp/rtkfxTG
-         mZiY2fqQryzYB/qlPy8nCW4WePxv4tdLm8L+GY1hOrZZlm599fgdrb3HWVWLjeQAnYtP
-         Tp4hw2EGi6z9mr164ZbI1+5TU8hdIMhPg7RisK0M2aaXe9pGnaxOye0uRY1ei1eGX56P
-         r8HA==
-X-Forwarded-Encrypted: i=1; AJvYcCX5R/UnDNMTM8C3xqARJzuGjpb+Gp2dESxXFKbPDXB86CKojfuPIHTCAgRQ0jqTBCuG7mIhxxvpSea5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwF7IrqAvb194Fk+aj5MV11renRyBu+HyjdfUHnnoXYpKuQS/Yr
-	YrEQ1PTmhuAiVO5ePlhgUZwWMsCIx5cC2ihCCPXhxQi1aD9vAQcvi89koNDoMe4=
-X-Gm-Gg: ASbGncu34VfkDybCV22rNMOQ6Lja/Q1wOdcdcjWppEJbgLh3NCi0e2MZmyB5GxqpMzd
-	4C/JZp1GtsutkB54sNceUzQVIszNXyiUSaOeG33vkaSZsmmanNiMYNfdd8wwiCANUdzCwvSDtk3
-	ZFusIhYwP9/3yjmZxhEx+0e6EnKQM6BceAr6zPLRm5ndxTbeWmdpNay0m4vLhSoH2gOoByEytb0
-	DJ3SNnqjbG+iOhN/cEBSXxsK/ISszwGsas9VXZueGFF5bMLpBW6BHX22aIzWunqPp3SkR6DBgOq
-	xVnH1F+gjUCE5xIaGiRa0NE2fJf1/TkX2g==
-X-Google-Smtp-Source: AGHT+IF5/+Jrvgv4s3ueVCJoCsZwKVU/EjZP6+PRD2aegZfz2rCwFND7aIZnKE6iaKTEjWY1J9n7fg==
-X-Received: by 2002:a05:600c:c11:b0:434:a684:9b1 with SMTP id 5b1f17b1804b1-4362aa1549bmr1300265e9.4.1734039910424;
-        Thu, 12 Dec 2024 13:45:10 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:b98a:c6fe:3a5d:f20a? ([2a01:e0a:982:cbb0:b98a:c6fe:3a5d:f20a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436255800f6sm27926505e9.18.2024.12.12.13.45.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Dec 2024 13:45:10 -0800 (PST)
-Message-ID: <924bb119-178d-4778-800f-94e884acc5a3@linaro.org>
-Date: Thu, 12 Dec 2024 22:45:08 +0100
+	s=arc-20240116; t=1734040216; c=relaxed/simple;
+	bh=jzXsbxnn1E7qnYIlZaX191I5JrUszgjrMO4VoCxJcG4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=G7/Hq8hsmnK6aRTYwXzRLiZI3Z1/GDG/kIUeEoJ6VvhsALtO1x+TPNITbm8JyTiIO3adcx5tcBeqoqUctqKKLViv30tK6R9lu86dkPsBjp7HDoBA47gXueSI3REhwMbpRayjJyeXePcIsb7mYbwFLXvZXRDNr3F4mfQnGGNlXPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=Eun+Ov/e; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353725.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BCHHNP1029647;
+	Thu, 12 Dec 2024 21:49:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=pp1; bh=sQSRIpbMZMTvSt/ONP7qcZFmo/OmYcaw7A/YcvOiJ
+	xU=; b=Eun+Ov/ejazf5dJAtHZffyPyka2SPRWHNX95vIR0ulqUblko6XdBRitqV
+	PoQt054qhSB+cDeNn58SBtCMtQULwGCc0TWWvkDhhn8MGBINlMav2GZnCgBdhyPe
+	ecLis80cr0+hIiwQ+1XDeJHrfw2fcY6f52UpVToh4xUOK3FKmh3/7fGEkclxSfar
+	PV693d9CAXMY7TlFEivhVV6g9yjaEiMFRssfhmvWXqQKt2h9PMzqpd38GGKMpOPe
+	an1Y1vJYUIr1lMDFfNAaaOcj6vEnu9dCB/NyCsZbNixiecqSZEf4pFtCMl1EgsHX
+	jIl0f3zTSfV4gHlP9kG/lupG+ZszA==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 43ccsjwnbx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Dec 2024 21:49:35 +0000 (GMT)
+Received: from m0353725.ppops.net (m0353725.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 4BCLmpVu014905;
+	Thu, 12 Dec 2024 21:49:34 GMT
+Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 43ccsjwnbu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Dec 2024 21:49:34 +0000 (GMT)
+Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma12.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 4BCJWAhG032760;
+	Thu, 12 Dec 2024 21:49:33 GMT
+Received: from smtprelay02.wdc07v.mail.ibm.com ([172.16.1.69])
+	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 43d0pstx59-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 12 Dec 2024 21:49:33 +0000
+Received: from smtpav06.wdc07v.mail.ibm.com (smtpav06.wdc07v.mail.ibm.com [10.39.53.233])
+	by smtprelay02.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 4BCLnW8131392502
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 12 Dec 2024 21:49:32 GMT
+Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 49F5558056;
+	Thu, 12 Dec 2024 21:49:32 +0000 (GMT)
+Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id A148958054;
+	Thu, 12 Dec 2024 21:49:30 +0000 (GMT)
+Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
+	by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Thu, 12 Dec 2024 21:49:30 +0000 (GMT)
+From: Ninad Palsule <ninad@linux.ibm.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        eajames@linux.ibm.com, jdelvare@suse.com, linux@roeck-us.net,
+        corbet@lwn.net, joel@jms.id.au, andrew@codeconstruct.com.au,
+        Delphine_CC_Chiu@Wiwynn.com, broonie@kernel.org,
+        peteryin.openbmc@gmail.com, noahwang.wang@outlook.com,
+        naresh.solanki@9elements.com, lukas@wunner.de, jbrunet@baylibre.com,
+        patrick.rudolph@9elements.com, gregkh@linuxfoundation.org,
+        peterz@infradead.org, pbiel7@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-i2c@vger.kernel.org
+Cc: Ninad Palsule <ninad@linux.ibm.com>
+Subject: [PATCH v1 0/4] Add support for Intel CRPS PSU
+Date: Thu, 12 Dec 2024 15:48:59 -0600
+Message-ID: <20241212214927.3586509-1-ninad@linux.ibm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v5 2/7] drm/msm: adreno: add plumbing to generate
- bandwidth vote table for GMU
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20241211-topic-sm8x50-gpu-bw-vote-v5-0-6112f9f785ec@linaro.org>
- <20241211-topic-sm8x50-gpu-bw-vote-v5-2-6112f9f785ec@linaro.org>
- <3aad9de3-76a5-4106-a513-4707b3e39e7a@oss.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <3aad9de3-76a5-4106-a513-4707b3e39e7a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: icj0bAT7zzgFYlr1nDRjw_RxSGMuUP5q
+X-Proofpoint-ORIG-GUID: lvlUArhSuLBsHdj0aE27zUlAmBm5SjQD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
+ impostorscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=979
+ mlxscore=0 priorityscore=1501 suspectscore=0 malwarescore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412120156
 
-On 12/12/2024 20:55, Konrad Dybcio wrote:
-> On 11.12.2024 9:29 AM, Neil Armstrong wrote:
->> The Adreno GPU Management Unit (GMU) can also scale DDR Bandwidth along
->> the Frequency and Power Domain level, but by default we leave the
->> OPP core scale the interconnect ddr path.
->>
->> While scaling via the interconnect path was sufficient, newer GPUs
->> like the A750 requires specific vote paremeters and bandwidth to
->> achieve full functionality.
->>
->> In order to calculate vote values used by the GPU Management
->> Unit (GMU), we need to parse all the possible OPP Bandwidths and
->> create a vote value to be sent to the appropriate Bus Control
->> Modules (BCMs) declared in the GPU info struct.
->>
->> This vote value is called IB, while on the other side the GMU also
->> takes another vote called AB which is a 16bit quantized value
->> of the floor bandwidth against the maximum supported bandwidth.
->> The AB vote will be calculated later when setting the frequency.
->>
->> The vote array will then be used to dynamically generate the GMU
->> bw_table sent during the GMU power-up.
->>
->> Reviewed-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 144 ++++++++++++++++++++++++++++++++++
->>   drivers/gpu/drm/msm/adreno/a6xx_gmu.h |  13 +++
->>   drivers/gpu/drm/msm/adreno/a6xx_gpu.h |   1 +
->>   3 files changed, 158 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
->> index 14db7376c712d19446b38152e480bd5a1e0a5198..36696d372a42a27b26a018b19e73bc6d8a4a5235 100644
->> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
->> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
->> @@ -9,6 +9,7 @@
->>   #include <linux/pm_domain.h>
->>   #include <linux/pm_opp.h>
->>   #include <soc/qcom/cmd-db.h>
->> +#include <soc/qcom/tcs.h>
->>   #include <drm/drm_gem.h>
->>   
->>   #include "a6xx_gpu.h"
->> @@ -1287,6 +1288,101 @@ static int a6xx_gmu_memory_probe(struct a6xx_gmu *gmu)
->>   	return 0;
->>   }
->>   
->> +/**
->> + * struct bcm_db - Auxiliary data pertaining to each Bus Clock Manager (BCM)
->> + * @unit: divisor used to convert bytes/sec bw value to an RPMh msg
->> + * @width: multiplier used to convert bytes/sec bw value to an RPMh msg
->> + * @vcd: virtual clock domain that this bcm belongs to
->> + * @reserved: reserved field
->> + */
->> +struct bcm_db {
->> +	__le32 unit;
->> +	__le16 width;
->> +	u8 vcd;
->> +	u8 reserved;
->> +};
-> 
-> No. This is a direct copypasta of drivers/interconnect/qcom/icc-rpmh.h
-> You cannot just randomly duplicate things..
-> 
-> Move it out to a shared header in include/ (and remove the duplicate from
-> clk-rpmh.c while at it)
-> 
+Hello,
 
-Not sure if this a good idea
+Please review the changes for Intel CRPS power supply driver.
+I need to add label in the pmbus core as new application like PSUSensor
+requires it.
 
-> 
-> I'd also really prefer if you took
-> 
-> drivers/interconnect/qcom/bcm-voter.c : tcs_list_gen()
-> 
-> and abstracted it to operate on struct bcm_db with any additional
-> required parameters passed as arguments.. Still left some comments
-> on this version if you decide to go with it
+Ninad Palsule (4):
+  hwmon: pmbus-core: Add label for fan and temp
+  hwmon: (pmbus/crps) Add Intel CRPS185 power supply
+  dt-bindings: hwmon: intel,crps185: Add to trivial
+  ARM: dts: aspeed: system1: Use crps PSU driver
 
-They are still very different, look closely, tcs_list_gen is designed to
-operate on BW aggregations + scsaling, it would make no sense to unify them.
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ Documentation/hwmon/crps.rst                  |  95 ++++++
+ MAINTAINERS                                   |   7 +
+ .../dts/aspeed/aspeed-bmc-ibm-system1.dts     |   8 +-
+ drivers/hwmon/pmbus/Kconfig                   |   9 +
+ drivers/hwmon/pmbus/Makefile                  |   1 +
+ drivers/hwmon/pmbus/crps.c                    | 299 ++++++++++++++++++
+ drivers/hwmon/pmbus/pmbus_core.c              |  14 +
+ 8 files changed, 431 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/hwmon/crps.rst
+ create mode 100644 drivers/hwmon/pmbus/crps.c
 
-The calculation is simple enough, I made it explicitely easy to read and
-maintain, but honestly there's nothing special.
-
-> 
->> +
->> +static int a6xx_gmu_rpmh_bw_votes_init(const struct a6xx_info *info,
->> +				       struct a6xx_gmu *gmu)
->> +{
->> +	const struct bcm_db *bcm_data[GMU_MAX_BCMS] = { 0 };
->> +	unsigned int bcm_index, bw_index, bcm_count = 0;
->> +
->> +	if (!info->bcms)
->> +		return 0;
-> 
-> You already checked that from the caller
-
-Good catch
-
-> 
->> +
->> +	/* Retrieve BCM data from cmd-db */
->> +	for (bcm_index = 0; bcm_index < GMU_MAX_BCMS; bcm_index++) {
->> +		size_t count;
->> +
->> +		/* Stop at first unconfigured bcm */
->> +		if (!info->bcms[bcm_index].name)
->> +			break;
-> 
-> Unconfigured doesn't really fit here.. Maybe just mention the list is NULL
-> -terminated
-
-Ack
-
-> 
->> +
->> +		bcm_data[bcm_index] = cmd_db_read_aux_data(
->> +						info->bcms[bcm_index].name,
->> +						&count);
->> +		if (IS_ERR(bcm_data[bcm_index]))
->> +			return PTR_ERR(bcm_data[bcm_index]);
->> +
->> +		if (!count)
->> +			return -EINVAL;
-> 
-> If this condition ever happens, it'll be impossible to track down,
-> please add an err message
-
-Hmm sure
-
-> 
->> +
->> +		++bcm_count;
-> 
-> I've heard somewhere that prefixed increments are discouraged for
-> "reasons" and my OCD would like to support that
-
-Never got this memo...
-
-> 
->> +	}
->> +
->> +	/* Generate BCM votes values for each bandwidth & BCM */
->> +	for (bw_index = 0; bw_index < gmu->nr_gpu_bws; bw_index++) {
->> +		u32 *data = gmu->gpu_ib_votes[bw_index];
->> +		u32 bw = gmu->gpu_bw_table[bw_index];
->> +
->> +		/* Calculations loosely copied from bcm_aggregate() & tcs_cmd_gen() */
->> +		for (bcm_index = 0; bcm_index < bcm_count; bcm_index++) {
->> +			bool commit = false;
->> +			u64 peak;
->> +			u32 vote;
->> +
->> +			/* Skip unconfigured BCM */
->> +			if (!bcm_data[bcm_index])
->> +				continue;
-> 
-> I don't see how this is useful here
-
-It's a leftover, will drop
-
-> 
->> +
->> +			if (bcm_index == bcm_count - 1 ||
->> +			    (bcm_data[bcm_index + 1] &&
->> +			     bcm_data[bcm_index]->vcd != bcm_data[bcm_index + 1]->vcd))
->> +				commit = true;
->> +
->> +			if (!bw) {
->> +				data[bcm_index] = BCM_TCS_CMD(commit, false, 0, 0);
->> +				continue;
->> +			}
->> +
->> +			if (info->bcms[bcm_index].fixed) {
-> 
-> You may want to take a pointer to info->bcms[bcm_index]
-
-Sure, will help
-
-> 
->> +				u32 perfmode = 0;
->> +
->> +				if (bw >= info->bcms[bcm_index].perfmode_bw)
->> +					perfmode = info->bcms[bcm_index].perfmode;
->> +
->> +				data[bcm_index] = BCM_TCS_CMD(commit, true, 0, perfmode);
->> +				continue;
->> +			}
->> +
->> +			/* Multiply the bandwidth by the width of the connection */
->> +			peak = (u64)bw * le16_to_cpu(bcm_data[bcm_index]->width);
->> +			do_div(peak, info->bcms[bcm_index].buswidth);
->> +
->> +			/* Input bandwidth value is in KBps, scale the value to BCM unit */
->> +			peak *= 1000ULL;
-> 
-> I don't think this needs to be ULL since the other argument is an u64
-> 
->> +			do_div(peak, le32_to_cpu(bcm_data[bcm_index]->unit));
->> +
->> +			vote = clamp(peak, 1, BCM_TCS_CMD_VOTE_MASK);
->> +
->> +			data[bcm_index] = BCM_TCS_CMD(commit, true, vote, vote);
-> 
-> x is the avg vote, y is the peak vote
-
-downstream sets both calculated from the exact same value and the same way...
-
-> 
-> Just noting down for my future self I guess, a6xx sets ab=0,
-> a7xx sets ab=ib like you did here
-
-Probably, I'll need to check on that, but it can be done in a second step when enabling it on a6xx
-
-> 
-> Konrad
+-- 
+2.43.0
 
 
