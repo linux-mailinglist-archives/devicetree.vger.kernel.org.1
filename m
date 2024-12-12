@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-130133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EF1B9EE0F0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 09:13:39 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4C669EE100
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 09:17:38 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6F0128272D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:13:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 355CD1641F7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ED0C20B7F2;
-	Thu, 12 Dec 2024 08:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4C820C003;
+	Thu, 12 Dec 2024 08:17:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X403YC3n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dU8i6Qv6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98C41FECD6;
-	Thu, 12 Dec 2024 08:13:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901D0126C01;
+	Thu, 12 Dec 2024 08:17:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733991211; cv=none; b=pZh5Pl6xc3bAcSHF+n72za6sOIsgJtl1AlGXCtEu/cNQNRk5tGV/GiE1R4+oxIpl3Z4yK31/+avBbKaV5KlDx+UwV45tZhMSrvevcWWinSxVOIMLq4gzCV8Fg0/0dDhcbuo0//9zPkG/bqyGvDkTREypdUlGW4uWzlaokXP7Qok=
+	t=1733991451; cv=none; b=QynJHs5Dh1OFBvClrm8/fBkzf1tvBwka+3BvbHbcVIzMe36G1BKJLautpIMrG8qZguxf75NaZ2vLyryNFWPmEL0nWKPM++ffPfgGD0ADMwq4P/frK2ZvC6HN0BWV3totj9jnbT1BeMU8hNK1KdvkWSHb55/rs/twMHNQD7jt0V8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733991211; c=relaxed/simple;
-	bh=yFRZ+IH3VruDCKluh2Mfy3YvjHuvC7u/oBOqXdHG/UQ=;
+	s=arc-20240116; t=1733991451; c=relaxed/simple;
+	bh=k0FKOuDzgEVL7PpLLyql5QGBAf1lpNggxg9A2Cs/6gs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c0EZ0B2z+G374Ruu9F8LDjESLLDnyYBTC8GYoo0fSX1DuUcH9PWR8rCCwnwSeQ2bx+D4u8qr4nWv1TrUU4WdtqAIe50s3wR6qnmVVpnhXwtmjKnvNEwpOp6nEATdlL6+Bap6BsZ7PNshx9eSsPToK+4sbFkBkFBJBzB4QoM30k0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X403YC3n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0DBBC4CECE;
-	Thu, 12 Dec 2024 08:13:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DE7BHfEMQ6xz+e4bmBQt7wf6flk3gQQsZ7eJGdkbMWL+oPVbKIUbLwqMkIFF+99fSQIHnE1EvpnfHuthupW/1rmCMSDaj7tFeSP9OxPO+Ijp4GJ3vRyeu20uDm+ESQzBxQpQs4osUO+2ckgIv32F6hSgGlE7B2wV5Hz6TFx7MoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dU8i6Qv6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6253CC4CECE;
+	Thu, 12 Dec 2024 08:17:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733991210;
-	bh=yFRZ+IH3VruDCKluh2Mfy3YvjHuvC7u/oBOqXdHG/UQ=;
+	s=k20201202; t=1733991451;
+	bh=k0FKOuDzgEVL7PpLLyql5QGBAf1lpNggxg9A2Cs/6gs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X403YC3nzX85sUU0gMsuEEhNCgIEXOUpGQE5pbSXbWlnTW9NCHbM8Q3f9cGjpt+hA
-	 6Y0s/H8FcFTkbkCLs3YHflvhtK8mzxgctedejqkte9rAG9l195yutRCvrB07H/1szj
-	 MzwgVw8v+V34GvVlDRYINKQRhxlICRxQ/LPaCE19SlwBah4IFu/Dvp3ceFu4tVsTYk
-	 IsyjI5WujSg7PLnlEPJVoZDu33oE6xjyVdqhXbFdKzpb8PS4LZmhktymYDJPtgF/3a
-	 DFSFEWTPpsPCAH2wrAFpSFXRgFSjQeTuVIUunj7PaQ4qY1R/9VNZPoRkx0yWHb67Fc
-	 X86sGlmel0fiA==
-Date: Thu, 12 Dec 2024 09:13:27 +0100
+	b=dU8i6Qv6AHW8QJDEe6c/rZc4kMHxuZ/sXsid0haVKb6BqAg2fZzGn/HILsGnBXLDk
+	 JKhwLrxrVxoTts/73qlTnAUTUUmNZGpkTEKJNx/ugh70oRkCtMcIV1av4UgQeOayMW
+	 PrwN8vGoH3uJY1YzeZpcanLDgEmNu3CvlA6zvP8IH3C56jGxQt+TeuJ8EzDgThGchc
+	 q83iE1qlRAxAPDRTGvtMx97lwtVvogqMi5HuDJaiuD7XpUp8KmPVNIWYomP/FPhye1
+	 GOzdlA4HUqcC17Ovv8gRefokYwG6r98t2ktCmWs3Vz7pmIf87Oz+Bu/hu5m/fcPr2l
+	 fYLQcaO/y0Jng==
+Date: Thu, 12 Dec 2024 09:17:27 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Nick Chan <towinchenmi@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
-	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
-	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org, 
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: leds: backlight: apple,dwi-bl: Add
- Apple DWI backlight
-Message-ID: <6fazyksxkcbhugivwgozuyjdig37vnshbwtdmzjcbrqywgszvd@sm27uhqgsma4>
-References: <20241211113512.19009-1-towinchenmi@gmail.com>
- <20241211113512.19009-2-towinchenmi@gmail.com>
+To: Ryan Wanner <ryan.wanner@microchip.com>
+Cc: Rob Herring <robh@kernel.org>, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, 
+	mturquette@baylibre.com, sboyd@kernel.org, arnd@arndb.de, dharma.b@microchip.com, 
+	mihai.sain@microchip.com, romain.sioen@microchip.com, varshini.rajendran@microchip.com, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v3 07/13] dt-bindings: clock: Add SAMA7D65 PMC compatible
+ string
+Message-ID: <s77ndnhfnpssi4hynbf5n2ylkrhftnlfu37km5vpqbeb552w47@fhklcvdnwasa>
+References: <cover.1733505542.git.Ryan.Wanner@microchip.com>
+ <5252a28531deaee67af1edd8e72d45ca57783464.1733505542.git.Ryan.Wanner@microchip.com>
+ <20241210164638.GA3770349-robh@kernel.org>
+ <fb11338b-986f-4a9a-a0dd-e8f4e63941aa@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,18 +66,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241211113512.19009-2-towinchenmi@gmail.com>
+In-Reply-To: <fb11338b-986f-4a9a-a0dd-e8f4e63941aa@microchip.com>
 
-On Wed, Dec 11, 2024 at 07:34:37PM +0800, Nick Chan wrote:
-> Add backlight controllers attached via Apple DWI 2-wire interface.
-> 
-> Signed-off-by: Nick Chan <towinchenmi@gmail.com>
-> ---
->  .../bindings/leds/backlight/apple,dwi-bl.yaml | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/backlight/apple,dwi-bl.yaml
+On Wed, Dec 11, 2024 at 08:25:32AM -0700, Ryan Wanner wrote:
+> On 12/10/24 09:46, Rob Herring wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > 
+> > On Fri, Dec 06, 2024 at 12:59:52PM -0700, Ryan.Wanner@microchip.com wrote:
+> >> From: Dharma Balasubiramani <dharma.b@microchip.com>
+> >>
+> >> Add the `microchip,sama7d65-pmc` compatible string to the existing binding,
+> >> since the SAMA7D65 PMC shares the same properties and clock requirements
+> >> as the SAMA7G5.
+> >>
+> >> Export MCK3 and MCK5 to be accessed and referenced in DT to assign to
+> >> the clocks property for sama7d65 SoC.
+> >>
+> >> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> >> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
+> > 
+> > Missing Conor's ack.
+> I removed the ack because I have changed the original patch that was
+> acked. Should the ack not have been removed even though the original
+> patch as been changed?
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Nothing in changelog says about changes to this patch. Nothing also
+mentions dropping acks.
+
+Please read:
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
 
 Best regards,
 Krzysztof
