@@ -1,187 +1,340 @@
-Return-Path: <devicetree+bounces-130357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBAE89EF290
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 17:50:11 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 243469EF1D9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 17:41:59 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0385E16CF6A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 16:37:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9958F290D8A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 16:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A9E8222D7B;
-	Thu, 12 Dec 2024 16:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC2ED2210FB;
+	Thu, 12 Dec 2024 16:34:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SDdncNkb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1099D222D7D;
-	Thu, 12 Dec 2024 16:26:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E525216E3B;
+	Thu, 12 Dec 2024 16:34:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734020810; cv=none; b=dsCkWtwd4HvP/iSzTWNp95nxH6kl3lOrlwZJ8zfklmXXOASLF+CZYz60MwKlNMxFKzBE4pzgK242iUVYwRuFGkhpC/FDznrICGtGDtwHUoDmS+RaLC6ufQwRiG3VtDCDGwYW2RevJsatxnzv7TMNYoRZdmZ+5fdOTHvlmlp2LlQ=
+	t=1734021292; cv=none; b=p/TiRMFPRWcLRtvd0RV8d1xVncaVEc76U1Nf96OfROmrzFG5Vfk2nfSDwzwivnoNjf6292VDzGcckx1BttBbvb8A66eZZet/Iyrbcfow9aEzciKDdsFyYTqqL37BZxTvugwR/LF1Dp659Egk3IDyyr5fY17NXNz3do2lJpB7ja4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734020810; c=relaxed/simple;
-	bh=3BqDJ9IE28Vm637IKbe7D+AverMUfpFzzOLy73Ms0L0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PM3iV10ZERTnMGJCyICaEmHnHD1r/Jrr/AMhchK9GCouGEwr992r9bVkoIQG+7499UH2Fs3I2jWuafdinqh5RgXTDwr9C0+xBhXqYcXcDRXJfg2Oj8EOAmUBWt0OXgreBGyI+4v4u9b2fxsCKWthgUZfgiSARUb8x0jA1RJLIPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7b6e9586b82so58918385a.1;
-        Thu, 12 Dec 2024 08:26:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734020806; x=1734625606;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2gmd/BJFeq2Hao7Wbaw63l9kXbYIa+IGJrdLMUYPON4=;
-        b=E616Pp6BeICL+WZT3DtYeEyZ0jJ1CnYJtkFTzJQMmfv8EzKnKLxNKIcvHylSGNba5U
-         5GU89rahS9qdvsP57s4wjDYeljK2Pz/8K8xWbjae8eiEnfkDGeOUE3O1l4RoGQ+Kz3U1
-         DAmnhG4x2JuYP5BMtzcC+QFv3WS1j4FQ0QbdTPtIzqu2aMv7wgv8VxGsh4bqqZQWKOJC
-         n4F5gnWbl4PaULlZmOJzg3lEEKD17LLEUnJL35RBoW0uPb4tgyboi60BA6d044HRvis3
-         B04tFQbRceeWUHX1OtdLXSGxGRzbdaowcExZakEXrgk8phoKG7OAMPcDXyAGWS7ellD/
-         VtlA==
-X-Forwarded-Encrypted: i=1; AJvYcCVhIM64MmKocwKpCKcuchfQiUgCh3oVsX/Tcuw2uGDyOVqkJfn7bItu4lzNnLhk8iTgTsoedx7THX6e@vger.kernel.org, AJvYcCVurQtk8kIWj1vnOeLVhLJULVllorcJFfro7jamoLAzRMWG8B8RZohZ9belT0KJS6hBn8fDc2QhzkBLMg==@vger.kernel.org, AJvYcCWhSzdpJe6VKVS0uRwlvhLsdqAnyHkMdEgk2jl7hus4U2sVefYAntDkL2SH2mOphkOL5Nd1/VYGRb+yV+jjWKwRDBM=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDlWuCU0gK7p/g3tZ79DYwjgjJiLQhc85wslRFGbxoYU8i+HIF
-	hscV82rUvLf9veRvb0HReVV2zE8D0juG/VFW9l7/LF/s8Oh6YXcgXRuUIY/BySM=
-X-Gm-Gg: ASbGncvld85A6djPLmJpoo7RH1xugBszkcodFxFi9qkJxosbGf9Z8a1b5glyPyK2SiG
-	PVYIno0OVjfb1ld3MR1rAYYtZBiHsEjR29eWbpiZCCfZZneZfBoiY14RPbH3SOYOGIF6Qc9prJR
-	lV6+knqA9TZg0Bie+dJBbuySUBLqjmn0lAqECFbvnnLcYMpZUtoFr/BQ/IfoaVLmih7Qr4AHH1A
-	YxpWlLg3KmPDhqUQdq77Og18GNEueLX2F2FzF+44Jm6/4oNu601VO3Dc72Zly6mTGow7bhTrwHk
-	vGIbJDE0GcR1HsR5x1w=
-X-Google-Smtp-Source: AGHT+IGl+ZVExP5Fh4dgDfIj+1iHyCdZzI+mDeaZvywnXKlC5YnDUP8TctR2GnoRWT2UOdpES4y+UQ==
-X-Received: by 2002:a05:620a:240f:b0:7b6:d383:3cca with SMTP id af79cd13be357-7b6f89acff5mr124571285a.35.1734020806597;
-        Thu, 12 Dec 2024 08:26:46 -0800 (PST)
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85c464d9216sm1763780241.5.2024.12.12.08.26.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Dec 2024 08:26:46 -0800 (PST)
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4afed12283eso397459137.1;
-        Thu, 12 Dec 2024 08:26:46 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVbKIDWP//Isf68+QWSVzX3VT6/ffuFX3TtznurtIOyrWSfAk+rQmVJ+NchghzYUrd32bWrYDnQOzuW@vger.kernel.org, AJvYcCW7hqtq5uzguCVghrKF3t9UUN0U+atDamWX5ITga4N0L96ua+t0CFm2i0cLVEGPoUj6NbacgD0LaKO4Hw==@vger.kernel.org, AJvYcCWxCxQQJM6LIDg8OMDD8clTOp+4vkYwsX3Qs57qnopiAd1FAOsw3w9YWJ4yyo4mbzMyugxvAWJkQIcE8nrtU/81ERw=@vger.kernel.org
-X-Received: by 2002:a05:6102:3f88:b0:4b2:48dd:aade with SMTP id
- ada2fe7eead31-4b257f7d94amr1900641137.12.1734020806064; Thu, 12 Dec 2024
- 08:26:46 -0800 (PST)
+	s=arc-20240116; t=1734021292; c=relaxed/simple;
+	bh=DO2QYXMwRMXnmyGS3QWvp+O2rljVVxWwZLeT8AMk1jE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BqeC43m2woIY788JUuGj0bswd/sdxn/wBkP3k9VQKMzI2U9k2N7Si5SjxuW5cDaBDQyEj8A9XdXLfEVHV53M+GOtflnNb922gy70fQG+o85wuSvDuyopdbQNhcgqGQT33fJbITKGeiyZ+YbPDeS4Y3nPBi3yUAmQpoyzBa9WcRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SDdncNkb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7CC7C4CECE;
+	Thu, 12 Dec 2024 16:34:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734021292;
+	bh=DO2QYXMwRMXnmyGS3QWvp+O2rljVVxWwZLeT8AMk1jE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=SDdncNkbV9F/Lao+30otLxscJ/kmMRF9xGOxYOEC6UgEuN1jTjCvb29i6Hj1dGENI
+	 VSPMbmob95+/6GhpNE6f3gvf2C49Qe0VLSGHtbnWaKc0Fo2+CDjuFv1yKfMFiy2SSb
+	 JEPObdDMTIs/8Zxndb/0KiSKA/DSlARsX+2koXddXnaVelGYHS2rs2BiOyWn04nbu5
+	 TBgeDLmn3PFrUPg4Oh3JbBS6mPNKFOUpk0oS/TXB1AAMKaSB9JYdqoHc4ahh3xQ0zw
+	 P8VeJR6Hx4RuZoPTmj3Ulyo9PHOMhT1hsjUS7fxLAb8/6JjAu3pcBs1yllclmzovcG
+	 PvMQolO0XctBw==
+From: Danilo Krummrich <dakr@kernel.org>
+To: gregkh@linuxfoundation.org,
+	rafael@kernel.org,
+	bhelgaas@google.com,
+	ojeda@kernel.org,
+	alex.gaynor@gmail.com,
+	boqun.feng@gmail.com,
+	gary@garyguo.net,
+	bjorn3_gh@protonmail.com,
+	benno.lossin@proton.me,
+	tmgross@umich.edu,
+	a.hindborg@samsung.com,
+	aliceryhl@google.com,
+	airlied@gmail.com,
+	fujita.tomonori@gmail.com,
+	lina@asahilina.net,
+	pstanner@redhat.com,
+	ajanulgu@redhat.com,
+	lyude@redhat.com,
+	robh@kernel.org,
+	daniel.almeida@collabora.com,
+	saravanak@google.com,
+	dirk.behme@de.bosch.com,
+	j@jannau.net,
+	fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com,
+	paulmck@kernel.org
+Cc: rust-for-linux@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	rcu@vger.kernel.org,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH v6 00/16] Device / Driver PCI / Platform Rust abstractions
+Date: Thu, 12 Dec 2024 17:33:31 +0100
+Message-ID: <20241212163357.35934-1-dakr@kernel.org>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241206102327.8737-1-biju.das.jz@bp.renesas.com> <20241206102327.8737-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20241206102327.8737-2-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 12 Dec 2024 17:26:34 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVWaVscNyhsN3eKC2EqQc_Hp3kALiLso+4AOic6huMAXA@mail.gmail.com>
-Message-ID: <CAMuHMdVWaVscNyhsN3eKC2EqQc_Hp3kALiLso+4AOic6huMAXA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: pinctrl: renesas: Document RZ/G3E SoC
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	Biju Das <biju.das.au@gmail.com>, Prabhakar Lad <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Biju,
+This patch series implements the necessary Rust abstractions to implement
+device drivers in Rust.
 
-On Fri, Dec 6, 2024 at 11:23=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Add documentation for the pin controller found on the Renesas RZ/G3E
-> (R9A09G047) SoC. The RZ/G3E PFC is similar to the RZ/V2H SoC but has more
-> pins(P00-PS3). The port number is alpha-numeric compared to the number on
-> the other SoCs. So add macros for alpha-numeric to number conversion.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v1->v2:
->  * Fixed the warnings reported by bot.
+This includes some basic generalizations for driver registration, handling of ID
+tables, MMIO operations and device resource handling.
 
-Thanks for the update!
+Those generalizations are used to implement device driver support for two
+busses, the PCI and platform bus (with OF IDs) in order to provide some evidence
+that the generalizations work as intended.
 
-> --- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yam=
-l
-> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yam=
-l
+The patch series also includes two patches adding two driver samples, one PCI
+driver and one platform driver.
 
-The changes to the bindings LGTM.
+The PCI bits are motivated by the Nova driver project [1], but are used by at
+least one more OOT driver (rnvme [2]).
 
-> diff --git a/include/dt-bindings/pinctrl/rzg2l-pinctrl.h b/include/dt-bin=
-dings/pinctrl/rzg2l-pinctrl.h
-> index c78ed5e5efb7..1b1b1114a84c 100644
-> --- a/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
-> +++ b/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
-> @@ -11,13 +11,38 @@
->
->  #define RZG2L_PINS_PER_PORT    8
->
-> +#define RZG3E_P0               0
-> +#define RZG3E_P1               1
-> +#define RZG3E_P2               2
-> +#define RZG3E_P3               3
-> +#define RZG3E_P4               4
-> +#define RZG3E_P5               5
-> +#define RZG3E_P6               6
-> +#define RZG3E_P7               7
-> +#define RZG3E_P8               8
-> +#define RZG3E_PA               9
-> +#define RZG3E_PB               10
-> +#define RZG3E_PC               11
-> +#define RZG3E_PD               12
-> +#define RZG3E_PE               13
-> +#define RZG3E_PF               14
-> +#define RZG3E_PG               15
-> +#define RZG3E_PH               16
-> +#define RZG3E_PJ               17
-> +#define RZG3E_PK               18
-> +#define RZG3E_PL               19
-> +#define RZG3E_PM               20
-> +#define RZG3E_PS               21
+The platform bits, besides adding some more evidence to the base abstractions,
+are required by a few more OOT drivers aiming at going upstream, i.e. rvkms [3],
+cpufreq-dt [4], asahi [5] and the i2c work from Fabien [6].
 
-This maps the discontiguous alpha-numerical port name range to a
-contiguous numerical range.
-As there are corresponding holes in the register layout, I am not sure
-such a mapping is a good idea.
-What if a future variant (or a future documentation update) exposes
-the ports in between?
+The patches of this series can also be [7], [8] and [9].
 
-> +
->  /*
->   * Create the pin index from its bank and position numbers and store in
->   * the upper 16 bits the alternate function identifier
->   */
->  #define RZG2L_PORT_PINMUX(b, p, f)     ((b) * RZG2L_PINS_PER_PORT + (p) =
-| ((f) << 16))
-> +#define RZG3E_PORT_PINMUX(b, p, f)     RZG2L_PORT_PINMUX(RZG3E_P##b, p, =
-f)
->
->  /* Convert a port and pin label to its global pin index */
->  #define RZG2L_GPIO(port, pin)  ((port) * RZG2L_PINS_PER_PORT + (pin))
-> +#define RZG3E_GPIO(port, pin)  RZG2L_GPIO(RZG3E_P##port, pin)
->
->  #endif /* __DT_BINDINGS_RZG2L_PINCTRL_H */
+Changes in v6:
+==============
+- Module:
+  - remove patch to pass the module name in `Module::init`
+  - add a patch adding the `ModuleMetadata` trait to retreive the module name
 
-Note that I do like the clever scheme to handle alpha-numerical
-port names. Perhaps this should be implemented for RZ/V2H, too?
-RZG2L_GPIO(10, 2) and RZG2L_GPIO(10, 3) in r9a09g057h44-rzv2h-evk.dts
-do refer to PA2 and PA3.
+- Driver:
+  - generate module structure within `module_driver!`, such that we get a unique
+    module type for which `ModuleMetadata` can be implemented to retreive the
+    module name
+  - let `Adapter::of_id_table` return `Option<of::IdTable<Self::IdInfo>>`
 
-Gr{oetje,eeting}s,
+- Platform:
+  - change type of `platform::Driver::OF_ID_TABLE` to `Option<of::IdTable>`
 
-                        Geert
+- RCU:
+  - add RCU abstraction to MAINTAINERS file
+
+- MISC:
+  - pick up a couple of RBs
+
+Changes in v5:
+==============
+- Opaque:
+  - add `Opaque::pin_init`
+
+- Revocable:
+  - use const generic instead of bool in `revoke_internal`
+  - don't open code things with `Opaque::try_ffi_init`, use
+    `Opaque::pin_init` instead
+
+- Driver:
+  - fix `DriverOps` -> `RegistrationOps` in commit message
+  - fix signature of `register` and `unregister` to take an
+    `Opaque<T::RegType>` instead of a mutable reference
+  - implement generic `driver::Adapter`
+
+- ID table:
+  - fix `module_device_table!` macro, according to commit 054a9cd395a7
+   (modpost: rename alias symbol for MODULE_DEVICE_TABLE())
+
+- PCI:
+  - remove `pci::DeviceId` argument from probe()
+  - provide `vendor_id` and `device_id` accessor functions
+  - use `addr_of_mut!` for the device in probe()
+
+- OF:
+  - move OF `IdTable` type alias from platform.rs to of.rs
+
+- Platform:
+  - use `addr_of_mut!` for the device in probe()
+  - move generic OF code to `driver::Adapter`
+
+- MISC:
+  - rebase onto latest rust-next (-rc2)
+
+Changes in v4:
+==============
+- Revocable
+  - convert `Revocable::data` to `Opaque`
+  - introduce `revoke_nosync`, which does not wait for an RCU grace period
+  - fix minor typo
+
+- Device ID
+  - fix ID table export name to always be unique
+  - remove `#![allow(stable_features)]`
+  - move `#![allow(const_refs_to_cell)]` to the "stable in 1.83" list
+
+- I/O
+  - split `Io<SIZE>` in `IoRaw<SIZE>` and `Io<SIZE>`
+  - add rust helper for ioremap() and iounmap() (needed by doctests)
+
+- Devres
+  - optimze `drop` by using `revoke_nosync` (we're guaranteed there are no more
+    concurrent users, hence no need to wait for a full grace period)
+
+- OF
+  - rename "Open Firmware" -> "Device Tree / Open Firmware" (Rob)
+  - remove unused C header reference
+  - add TODO comment to loop in `DeviceId::new`
+  - remove `DeviceId::compatible`; was only used in sample code
+  - add missing `#[repr(transparent)]`
+  - use #[cfg(CONFIG_OF)] for the relevant functions
+
+- PCI
+  - let Rust helper for pci_resource_len() return resource_size_t
+
+- PCI Sample
+  - remove unnecessary `from_le`
+
+- Platform
+  - fix example compatible string
+  - add example for `platform::Driver`
+  - rename `ID_TABLE` to `OF_ID_TABLE`
+  - don't allow public use of `of_match_table`; convert to `of_id_info` to
+    retrieve the `of::DeviceId` to gather the corresponding `IdInfo`
+  - remove wrong example reference in the documentation of `platform::Driver`
+  - remove `as_dev`, as we already implement `AsRef` for `platform::Device`
+
+- Platform Sample
+  - fix compatible string; add corresponding entry to drivers/of/unittest-data/tests-platform.dtsi
+  - remove usage of `of_match_table`
+
+- MISC
+  - fix a few spelling mistakes
+  - rebase onto rust-next (v6.13-rc1)
+
+Changes in v3:
+==============
+- add commits for `Opaque::try_ffi_init` and `InPlaceModule`
+- rename `DriverOps` to `RegistrationOps`
+- rework device ID abstractions to get rid of almost all macro magic (thanks to
+  Gary Guo for working this out!)
+  - this is possible due to recently stabilized language features
+- add modpost alias generation for device ID tables
+  - unfortunately, this is the part that still requires some macro magic in the
+    device ID abstractions
+- PCI
+  - represent the driver private data with the driver specific `Driver` instance
+    and bind it's lifetime to the time of the driver being bound to a device
+    - this allows us to handle class / subsystem registrations in a cleaner way
+  - get rid of `Driver::remove`
+    - Rust drivers should bind cleanup code to the `Drop` implementation of the
+      corresponding structure instead and put it into their driver structure for
+      automatic cleanup
+  - add a sample PCI driver
+- add abstractions for `struct of_device_id`
+- add abstractions for the platform bus, including a sample driver
+- update the MAINTAINERS file accordingly
+  - currently this turns out a bit messy, but it should become better once the
+    build system supports a treewide distribution of the kernel crate
+  - I didn't add myself as maintainer, but (if requested) I'm willing to do so
+    and help with maintenance
+
+Changes in v2:
+==============
+- statically initialize driver structures (Greg)
+- move base device ID abstractions to a separate source file (Greg)
+- remove `DeviceRemoval` trait in favor of using a `Devres` callback to
+  unregister drivers
+- remove `device::Data`, we don't need this abstraction anymore now that we
+  `Devres` to revoke resources and registrations
+- pass the module name to `Module::init` and `InPlaceModule::init` in a separate
+  patch
+- rework of `Io` including compile time boundary checks (Miguel, Wedson)
+- adjust PCI abstractions accordingly and implement a `module_pci_driver!` macro
+- rework `pci::Bar` to support a const SIZE
+- increase the total amount of Documentation, rephrase some safety comments and
+  commit messages for less ambiguity
+- fix compilation issues with some documentation examples
+
+[1] https://gitlab.freedesktop.org/drm/nova/-/tree/nova-next
+[2] https://github.com/metaspace/linux/tree/rnvme
+[3] https://lore.kernel.org/all/20240930233257.1189730-1-lyude@redhat.com/
+[4] https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/linux.git/log/?h=rust/cpufreq-dt
+[5] https://github.com/AsahiLinux/linux
+[6] https://github.com/Fabo/linux/tree/fparent/rust-i2c
+[7] https://github.com/Rust-for-Linux/linux/tree/staging/rust-device
+[8] https://github.com/Rust-for-Linux/linux/tree/staging/rust-pci
+[9] https://github.com/Rust-for-Linux/linux/tree/staging/dev
+
+Danilo Krummrich (14):
+  rust: module: add trait `ModuleMetadata`
+  rust: implement generic driver registration
+  rust: implement `IdArray`, `IdTable` and `RawDeviceId`
+  rust: types: add `Opaque::pin_init`
+  rust: add `io::{Io, IoRaw}` base types
+  rust: add devres abstraction
+  rust: pci: add basic PCI device / driver abstractions
+  rust: pci: implement I/O mappable `pci::Bar`
+  samples: rust: add Rust PCI sample driver
+  rust: of: add `of::DeviceId` abstraction
+  rust: driver: implement `Adapter`
+  rust: platform: add basic platform device / driver abstractions
+  samples: rust: add Rust platform sample driver
+  MAINTAINERS: add Danilo to DRIVER CORE
+
+Wedson Almeida Filho (2):
+  rust: add rcu abstraction
+  rust: add `Revocable` type
+
+ MAINTAINERS                                  |  10 +
+ drivers/of/unittest-data/tests-platform.dtsi |   5 +
+ rust/bindings/bindings_helper.h              |   3 +
+ rust/helpers/device.c                        |  10 +
+ rust/helpers/helpers.c                       |   5 +
+ rust/helpers/io.c                            | 101 +++++
+ rust/helpers/pci.c                           |  18 +
+ rust/helpers/platform.c                      |  13 +
+ rust/helpers/rcu.c                           |  13 +
+ rust/kernel/device_id.rs                     | 165 +++++++
+ rust/kernel/devres.rs                        | 179 ++++++++
+ rust/kernel/driver.rs                        | 174 ++++++++
+ rust/kernel/io.rs                            | 260 +++++++++++
+ rust/kernel/lib.rs                           |  20 +
+ rust/kernel/of.rs                            |  60 +++
+ rust/kernel/pci.rs                           | 438 +++++++++++++++++++
+ rust/kernel/platform.rs                      | 198 +++++++++
+ rust/kernel/revocable.rs                     | 223 ++++++++++
+ rust/kernel/sync.rs                          |   1 +
+ rust/kernel/sync/rcu.rs                      |  47 ++
+ rust/kernel/types.rs                         |  11 +
+ rust/macros/module.rs                        |   4 +
+ samples/rust/Kconfig                         |  21 +
+ samples/rust/Makefile                        |   2 +
+ samples/rust/rust_driver_pci.rs              | 110 +++++
+ samples/rust/rust_driver_platform.rs         |  49 +++
+ 26 files changed, 2140 insertions(+)
+ create mode 100644 rust/helpers/device.c
+ create mode 100644 rust/helpers/io.c
+ create mode 100644 rust/helpers/pci.c
+ create mode 100644 rust/helpers/platform.c
+ create mode 100644 rust/helpers/rcu.c
+ create mode 100644 rust/kernel/device_id.rs
+ create mode 100644 rust/kernel/devres.rs
+ create mode 100644 rust/kernel/driver.rs
+ create mode 100644 rust/kernel/io.rs
+ create mode 100644 rust/kernel/of.rs
+ create mode 100644 rust/kernel/pci.rs
+ create mode 100644 rust/kernel/platform.rs
+ create mode 100644 rust/kernel/revocable.rs
+ create mode 100644 rust/kernel/sync/rcu.rs
+ create mode 100644 samples/rust/rust_driver_pci.rs
+ create mode 100644 samples/rust/rust_driver_platform.rs
 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+base-commit: fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
+-- 
+2.47.1
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
