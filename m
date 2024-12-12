@@ -1,264 +1,157 @@
-Return-Path: <devicetree+bounces-130190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA8559EE390
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 11:00:16 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5326116502F
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 10:00:10 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB47210197;
-	Thu, 12 Dec 2024 10:00:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="VdKfS77S"
-X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB51C9EE392
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 11:00:43 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60946210198;
-	Thu, 12 Dec 2024 10:00:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE000286B66
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 10:00:38 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631DC20B211;
+	Thu, 12 Dec 2024 10:00:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="CPX/mSah";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="1esnBfxa"
+X-Original-To: devicetree@vger.kernel.org
+Received: from fhigh-b8-smtp.messagingengine.com (fhigh-b8-smtp.messagingengine.com [202.12.124.159])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8585B20ADFF;
+	Thu, 12 Dec 2024 10:00:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.159
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733997610; cv=none; b=P84PTuZ6nYOwETN/ZMbEV+DVSBEbjekIjUYbIF5QJoLN+g79Vw+DU/DPLeoy6XS9NGbbL4xQ0hym9F1fS22j1LfU7J+WyAPcUYFy+eXL9IrE3/HCu/gd5chmq22J02MZDpTOk+9zUBpcXymZoGGIGH27Y+ITgTkpRaB8fEnNzTI=
+	t=1733997636; cv=none; b=RAu+KYLOs3wZ9Su2HXL0mAnunCZ8Z3yfnZaCmx8EZhkd9ClLI8HcqZpOowVJt8pV4yb5tMZL+DYJ7LFLGSWEcKdDV1Lhep0ZnHwOa/mLMKJxPBw6ai6nvnXMVhzvuTaRGGT8UfkqrkB83wBZXW+wCPwgQX3lB2/QfC8pJFwnNLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733997610; c=relaxed/simple;
-	bh=qDAv2Xv6N2kuxJQLsjfm1axhvIqwPsan4GylkV4QvzY=;
+	s=arc-20240116; t=1733997636; c=relaxed/simple;
+	bh=M9VrbnKEvDAIV9al6fI2QXKaUO6atGmp2JYF9fK7oLU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z0sfh8mVcSVFQtw7HPyI6pTih7ABhfzmpgb7h9cP8OhYaXWvf8amxXNV28x+n7WdLiP7pPxbaO7MFjLcrWgPGlLCnwBTt2naH5jkUaSzqRBfQpWV1Kc5smEe1CNWUVZh9P0yWe3Qk+m70o+MM+0UpPRTX5QP4IvhbCOqP1kyEEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=VdKfS77S; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=wA41zs323CaxwCsbLDOAz6jafr2ZMVwJEresqJ562hE=; b=VdKfS77SJboOdDhtPNF3vqvb86
-	UPC1q2HKZ90KAVOWlP7iooe6gv7dhK7+e0dKXQNRtNU0UEjRv4cTsIh9QYbDiXZ1h4jWgPCwdHZ0g
-	NHYAxxMY67JEcM+LPoOtH694kdgAb9lPWqDXjk/HUCumQgB+XwoKFFvwAHE8VtNmHdo2E74rVLUn+
-	mmDgYejw0tNQzdGErxsB0jWiR9kW7JpDhsAHn+KvBM232HWoEAF0jMejSGjSebb5HTZ1ffRTt8btF
-	Vv5vIZILY/TKJT22kt9DMVyjBckS/8dlYIB1+KdG6lp50lUHPLUw41/J2o7jxMiQUnddP66KqAbQC
-	Yt7MMrbQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45064)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tLfyz-00054Z-1C;
-	Thu, 12 Dec 2024 09:59:45 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tLfys-0005FA-2P;
-	Thu, 12 Dec 2024 09:59:38 +0000
-Date: Thu, 12 Dec 2024 09:59:38 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	tsbogend@alpha.franken.de, hkallweit1@gmail.com,
-	markus.stockhausen@gmx.de, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	linux-mips@vger.kernel.org
-Subject: Re: [PATCH 4/4] net: mdio: Add RTL9300 MDIO driver
-Message-ID: <Z1q0CuDXe8VFuBfZ@shell.armlinux.org.uk>
-References: <20241211235342.1573926-1-chris.packham@alliedtelesis.co.nz>
- <20241211235342.1573926-5-chris.packham@alliedtelesis.co.nz>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JyuO5p7TufVGXTkCq4zTx5qW9FAHJNXaW2Av41J9kdBqxLuf0ebEU/2LSgRVN91Gq4bpPO9oE8fFeSCuaWakrCCI5f35dUGs+ksxkshpxozHdhFsdnC36QybWvGg/LccJOGn+hUnp+4AIdHCqpImaL+KBKIl/o4udBf6/XiuXwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=CPX/mSah; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=1esnBfxa; arc=none smtp.client-ip=202.12.124.159
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-11.internal (phl-compute-11.phl.internal [10.202.2.51])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id DD7DC2540233;
+	Thu, 12 Dec 2024 05:00:31 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-11.internal (MEProxy); Thu, 12 Dec 2024 05:00:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1733997631;
+	 x=1734084031; bh=82ny8HWGyeETqWuhdlFyRrim1Mu/kr+WNMTnCtjuXRs=; b=
+	CPX/mSahpgCcOfKBoux0CaLhEds97KXWXAs0MLiRcLSQ+xCMxgz841EAkZQnCpai
+	O3y7mvSjDk3zKfRDsQmeYnNEw56fxrdr1ZnV1iTX6keastZ/BFe1e0kTwMLM/1yV
+	Pw22VYMubHI1Crh7Tfoyrh3Ej8c4oUnFI1cVrW9xSQ05e4N5Go7zaGQevDZoTTbn
+	KTcPB3VAw59/tAZgYMCLYST/n3QBYqxACg+/77Ny3O5XOr1yj/gnt/B8TzKCgnyN
+	QpUttPs02KdfopNA58PZTLdoLP4R6cy8mqWFU8m1HfxQW2nbvO/1XRXnzgPqdwvj
+	xQcA6rkOtTZsWDXv2AuKxw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1733997631; x=
+	1734084031; bh=82ny8HWGyeETqWuhdlFyRrim1Mu/kr+WNMTnCtjuXRs=; b=1
+	esnBfxaXBQ5TySt6ZXoa/PCTBDy8HiIK4MHnhz6tzBamSWu41HUnJdHMcxd+XHJa
+	qNvDLK7OXra4668y9veItZaje+GS73G2o4xWTe11bJs+uKW7fejqnhVjzKD/VbCX
+	fp+g1d76q0nZXwU6IH8pT2SVjDUpmg33nDoWkYzyvd8U7NFa5/dRThBRbW8OSHFq
+	w+fmKG/HNkJ6bjxX6CJfwbt8Iy9T8/YEh7+UvTZGXj6Pcm0+zoQGhF2cZXKQUTEp
+	lEfLtwgm6xwlDtqvmW+UiYgZyfejt5c4r8sh1ItaC8XRlF+7fDfWbyffYn8OCXue
+	NXfOCx0575hIgjgkTMqkQ==
+X-ME-Sender: <xms:P7RaZ6rRwfDKTmEMuD1Gj4I3hRJUeKn09lRWeEr_Lla3Kw4KFgUTnw>
+    <xme:P7RaZ4odk6FMp5tTbMZsUld6nZD4BkmUyOl1emV4I6JaZs08PbCpM0xyNst6-gVHR
+    hp7kSTf1-2N9DNY9ps>
+X-ME-Received: <xmr:P7RaZ_PnxdYmRRoPefim8oOhdGe3P8lgsz6m-y9FOprDpAIK0ffY1Nj0xcPYSN9u_okrVaddEkFV2a8zGlhSU6jbZ7jJML7Wqw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrkeehgddtkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdpuffr
+    tefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnth
+    hsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeen
+    ucfhrhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvg
+    hrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthht
+    vghrnhepfefhleelhfffjefgfedugfegjeelhfevheeikefhueelgfdtfeeuhefftddvle
+    einecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhi
+    khhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvg
+    dpnhgspghrtghpthhtohepuddtpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehs
+    rghkrghrihdrrghilhhusheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhope
+    hmtghhvghhrggssehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhn
+    vghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtg
+    hpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgvggv
+    rhhtodhrvghnvghsrghssehglhhiuggvrhdrsggvpdhrtghpthhtoheplhgruhhrvghnth
+    drphhinhgthhgrrhhtsehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehl
+    ihhnuhigqdhmvgguihgrsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepug
+    gvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:P7RaZ56AjxPOa8DKjMoIx6Hr6WGgiynOjgipJ8agdoK-4TWoV843Tw>
+    <xmx:P7RaZ557kxNMOBomRHVpkzBG7TD0USn5wDkfwwt6yhBlViMVBjMgbg>
+    <xmx:P7RaZ5gyalFAFXfV6Mdz146QT782-Tr9Hqlz3UPJx-014v8faURUAg>
+    <xmx:P7RaZz6safopNW7O32xVIPO2CtzCpzUTrD9fePfJqZRA8c3mFc2rbQ>
+    <xmx:P7RaZ2wxaPMni-HEnjdq2hUWuDjmO-h1SoICfDtZO3SoWn688Zaqp4qL>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 12 Dec 2024 05:00:30 -0500 (EST)
+Date: Thu, 12 Dec 2024 11:00:28 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] media: v4l: fwnode: Parse MiPI DisCo for C-PHY
+ line-orders
+Message-ID: <20241212100028.GA878403@ragnatech.se>
+References: <20241121134108.2029925-1-niklas.soderlund+renesas@ragnatech.se>
+ <20241121134108.2029925-3-niklas.soderlund+renesas@ragnatech.se>
+ <Z1qP8uY72kw9uX2E@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241211235342.1573926-5-chris.packham@alliedtelesis.co.nz>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z1qP8uY72kw9uX2E@kekkonen.localdomain>
 
-On Thu, Dec 12, 2024 at 12:53:42PM +1300, Chris Packham wrote:
-> +#define SMI_GLB_CTRL			0x000
-> +#define   GLB_CTRL_INTF_SEL(intf)	BIT(16 + (intf))
-> +#define SMI_PORT0_15_POLLING_SEL	0x008
-> +#define SMI_ACCESS_PHY_CTRL_0		0x170
-> +#define SMI_ACCESS_PHY_CTRL_1		0x174
-> +#define   PHY_CTRL_RWOP			BIT(2)
+Hej Sakari,
 
-Presumably, reading the code, this bit is set when writing?
+Tack för att du tog dig tid och tittade på detta.
 
-> +#define   PHY_CTRL_TYPE			BIT(1)
+On 2024-12-12 07:25:38 +0000, Sakari Ailus wrote:
+> > @@ -250,6 +261,36 @@ static int 
+> > v4l2_fwnode_endpoint_parse_csi2_bus(struct fwnode_handle *fwnode,
+> >  		} else {
+> >  			pr_debug("no lane polarities defined, assuming not inverted\n");
+> >  		}
+> > +
+> > +		if (have_line_orders) {
+> > +			fwnode_property_read_u32_array(fwnode,
+> > +						       "line-orders", array,
+> > +						       num_data_lanes);
+> > +
+> > +			for (i = 0; i < num_data_lanes; i++) {
+> > +				static const char * const orders[] = {
+> > +					"ABC", "ACB", "BAC", "BCA", "CAB", "CBA"
+> > +				};
+> > +
+> > +				if (array[i] > 5) {
+> 
+> 
+> I'd use:
+> 
+> 				if (... >= ARRAY_SIZE(order)) {
+> 
+> I can do the change while applying...
 
-Presumably, reading the code, this bit indicates we want to use clause
-45?
-
-> +#define   PHY_CTRL_CMD			BIT(0)
-> +#define   PHY_CTRL_FAIL			BIT(25)
-> +#define SMI_ACCESS_PHY_CTRL_2		0x178
-> +#define SMI_ACCESS_PHY_CTRL_3		0x17c
-> +#define SMI_PORT0_5_ADDR_CTRL		0x180
-> +
-> +#define MAX_PORTS       32
-> +#define MAX_SMI_BUSSES  4
-> +
-> +struct realtek_mdio_priv {
-> +	struct regmap *regmap;
-> +	u8 smi_bus[MAX_PORTS];
-> +	u8 smi_addr[MAX_PORTS];
-> +	bool smi_bus_isc45[MAX_SMI_BUSSES];
-
-Not sure about the support for !C45 - you appear to set this if you
-find a PHY as a child of this device which has the PHY C45 compatible,
-but as you don't populate the C22 MDIO bus operations, I'm not sure
-how a C22 PHY can work.
-
-> +	u32 reg_base;
-> +};
-> +
-> +static int realtek_mdio_wait_ready(struct realtek_mdio_priv *priv)
-> +{
-> +	u32 val;
-> +
-> +	return regmap_read_poll_timeout(priv->regmap, priv->reg_base + SMI_ACCESS_PHY_CTRL_1,
-> +					val, !(val & PHY_CTRL_CMD), 10, 500);
-> +}
-> +
-> +static int realtek_mdio_read_c45(struct mii_bus *bus, int phy_id, int dev_addr, int regnum)
-> +{
-> +	struct realtek_mdio_priv *priv = bus->priv;
-> +	u32 val;
-> +	int err;
-> +
-> +	err = realtek_mdio_wait_ready(priv);
-> +	if (err)
-> +		return err;
-> +
-> +	err = regmap_write(priv->regmap, priv->reg_base + SMI_ACCESS_PHY_CTRL_2, phy_id << 16);
-> +	if (err)
-> +		return err;
-> +
-> +	err = regmap_write(priv->regmap, priv->reg_base + SMI_ACCESS_PHY_CTRL_3,
-> +			   dev_addr << 16 | (regnum & 0xffff));
-> +	if (err)
-> +		return err;
-> +
-> +	err = regmap_write(priv->regmap, priv->reg_base + SMI_ACCESS_PHY_CTRL_1,
-> +			   PHY_CTRL_TYPE | PHY_CTRL_CMD);
-> +	if (err)
-> +		return err;
-
-Maybe consider using a local variable for "regmap" and "reg_base" to
-reduce the line length/wrapping?
-
-> +static int realtek_mdiobus_init(struct realtek_mdio_priv *priv)
-> +{
-> +	u32 port_addr[5] = { };
-> +	u32 poll_sel[2] = { 0, 0 };
-> +	u32 glb_ctrl_mask = 0, glb_ctrl_val = 0;
-
-Please use reverse Christmas tree order.
-
-> +	int i, err;
-> +
-> +	for (i = 0; i < MAX_PORTS; i++) {
-> +		int pos;
-> +
-> +		if (priv->smi_bus[i] > 3)
-> +			continue;
-> +
-> +		pos = (i % 6) * 5;
-> +		port_addr[i / 6] |=  priv->smi_addr[i] << pos;
-
-s/  / /
-
-> +
-> +		pos = (i % 16) * 2;
-> +		poll_sel[i / 16] |= priv->smi_bus[i] << pos;
-> +	}
-> +
-> +	for (i = 0; i < MAX_SMI_BUSSES; i++) {
-> +		if (priv->smi_bus_isc45[i]) {
-> +			glb_ctrl_mask |= GLB_CTRL_INTF_SEL(i);
-> +			glb_ctrl_val |= GLB_CTRL_INTF_SEL(i);
-> +		}
-> +	}
-> +
-> +	err = regmap_bulk_write(priv->regmap, priv->reg_base + SMI_PORT0_5_ADDR_CTRL,
-> +				port_addr, 5);
-> +	if (err)
-> +		return err;
-> +
-> +	err = regmap_bulk_write(priv->regmap, priv->reg_base + SMI_PORT0_15_POLLING_SEL,
-> +				poll_sel, 2);
-> +	if (err)
-> +		return err;
-> +
-> +	err = regmap_update_bits(priv->regmap, priv->reg_base + SMI_GLB_CTRL,
-> +				 glb_ctrl_mask, glb_ctrl_val);
-> +	if (err)
-> +		return err;
-> +
-> +	return 0;
-> +}
-> +
-> +static int realtek_mdiobus_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct realtek_mdio_priv *priv;
-> +	struct fwnode_handle *child;
-> +	struct mii_bus *bus;
-> +	int err;
-> +
-> +	bus = devm_mdiobus_alloc_size(dev, sizeof(*priv));
-> +	if (!bus)
-> +		return -ENOMEM;
-> +
-> +	bus->name = "Reaktek Switch MDIO Bus";
-> +	bus->read_c45 = realtek_mdio_read_c45;
-> +	bus->write_c45 =  realtek_mdio_write_c45;
-> +	bus->parent = dev;
-> +	priv = bus->priv;
-> +
-> +	priv->regmap = syscon_node_to_regmap(dev->parent->of_node);
-> +	if (IS_ERR(priv->regmap))
-> +		return PTR_ERR(priv->regmap);
-> +
-> +	err = device_property_read_u32(dev, "reg", &priv->reg_base);
-> +	if (err)
-> +		return err;
-> +
-> +	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
-> +
-> +	device_for_each_child_node(dev, child) {
-> +		u32 pn, smi_addr[2];
-> +
-> +		err = fwnode_property_read_u32(child, "reg", &pn);
-> +		if (err)
-> +			return err;
-> +
-> +		if (pn > MAX_PORTS)
-> +			return dev_err_probe(dev, -EINVAL, "illegal port number %d\n", pn);
-
-You validate the port number.
-
-> +
-> +		err = fwnode_property_read_u32_array(child, "realtek,smi-address", smi_addr, 2);
-> +		if (err) {
-> +			smi_addr[0] = 0;
-> +			smi_addr[1] = pn;
-> +		}
-
-You don't validate the "smi_addr", so:
-
-	realtek,smi-address = <4, ...>;
-
-would silently overflow priv->smi_bus_isc45. However, I haven't checked
-whether the binding would warn about this.
-
-Thanks.
+Thanks and pleas do.
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Kind Regards,
+Niklas Söderlund
 
