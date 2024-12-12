@@ -1,183 +1,310 @@
-Return-Path: <devicetree+bounces-130152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C543A9EE22B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 10:02:10 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9401B9EE249
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 10:10:56 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A64561886356
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 09:01:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6A94281272
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 09:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10A6420E6F0;
-	Thu, 12 Dec 2024 09:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F2820C01A;
+	Thu, 12 Dec 2024 09:10:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Bm2MQOWk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [195.130.132.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m15579.qiye.163.com (mail-m15579.qiye.163.com [101.71.155.79])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA07120E6ED
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 09:01:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D9913E40F;
+	Thu, 12 Dec 2024 09:10:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.79
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733994091; cv=none; b=MbIuNkEiD648cfmTN+wSf7M/7Ksh4HwRkSEylktACdftUyOKsiN0v16gixtASJYr7uNvZd2YRmQpJM5TW9LWLWLhvgSz6VIffWyW+uu9eHEuP9oKbQNX5p65xUMKhK+cPkHpiVAvhJTeonnYUFNI/cs23PlWEtGI3XZT9ovRXqw=
+	t=1733994649; cv=none; b=c8Kj/U/zDyh/Vo7nWnYAmnrADtBfPAZsqAWDaJaJDRqMACFCSL/Hry8OPXo3pAOyCEUMRpUZWu5/qyGHzK99siD+BTEqFOzNInP88wsHDUouqE9Ak/aBDrtc9II1tm4GCEypaYbK63S4xmbNyu/UtFKJCAH+1DmZlP6nsrKHjGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733994091; c=relaxed/simple;
-	bh=j15g7+Zs11MXgNdFt9xjPzQq0JE/TjMvjYfFKO5EiIg=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=bVwbAM3GjEhIK6JF2EtULdvNZGPkaLDLKFw0MRulX6jILSantTZnPR3kNlzIZ01sLXB9Z6rancmAJC5owDyQtIX7t4PUbWUwNJq/g2HnK3tiyYO7eHxTMR76EVczG/KYbj0lwAdt9l9PqjgQYFmztB+ha9wRvbDJPTbUmfhfQKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:a086:deff:83e6:222b])
-	by andre.telenet-ops.be with cmsmtp
-	id nl1E2D0091T2bNC01l1E1c; Thu, 12 Dec 2024 10:01:20 +0100
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1tLf4J-000pxW-F0;
-	Thu, 12 Dec 2024 10:01:14 +0100
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1tLf4H-00DEXi-0G;
-	Thu, 12 Dec 2024 10:01:09 +0100
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alex Shi <alexs@kernel.org>,
-	Yanteng Si <si.yanteng@linux.dev>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Andrew Davis <afd@ti.com>,
-	Andy Shevchenko <andriy.shevchenko@intel.com>,
-	Masahiro Yamada <masahiroy@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Yanteng Si <siyanteng@loongson.cn>
-Subject: [PATCH v2 resend 2] docs: dt: Update overlay file extension
-Date: Thu, 12 Dec 2024 10:01:07 +0100
-Message-Id: <a3b98f8590b834d090fc0c7faf6fd0f8d6078e8c.1733993924.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1733994649; c=relaxed/simple;
+	bh=jwYrXDddRG3PR4qyYG5gwWlBh42QqTd8zTyJJlniWlY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BZgNrnpoydXEoM/szrOVcG7DkRiPMbgsbJXWsfehaPx9tsNcR9dJ6ptw4fP2aZNxbZkyj5cTEmVxpkNT6lvRy9BWfHjqqt9EttgTWUp/NxFP9Kcm6oKYFlj+LRhaV4KGeN8gsx1AOlYx8SGc3n0Nf8Ek8dF3PRmNFZn7JRZU2eA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Bm2MQOWk; arc=none smtp.client-ip=101.71.155.79
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.26] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 587970be;
+	Thu, 12 Dec 2024 16:55:19 +0800 (GMT+08:00)
+Message-ID: <f6fd6efe-73bb-4aa2-a075-9a03c39951df@rock-chips.com>
+Date: Thu, 12 Dec 2024 16:55:19 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 06/10] drm/bridge: analogix_dp: Add support for phy
+ configuration.
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: heiko@sntech.de, robh@kernel.org, conor+dt@kernel.org,
+ algea.cao@rock-chips.com, rfoss@kernel.org, devicetree@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+ sebastian.reichel@collabora.com, dri-devel@lists.freedesktop.org,
+ hjc@rock-chips.com, kever.yang@rock-chips.com,
+ linux-rockchip@lists.infradead.org, vkoul@kernel.org,
+ andy.yan@rock-chips.com, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, l.stach@pengutronix.de
+References: <20241127075157.856029-1-damon.ding@rock-chips.com>
+ <20241127075157.856029-7-damon.ding@rock-chips.com>
+ <twhosvpoyafo472gqsblpvxmuewe2lkqufxabp2q7o636uinfm@unzyfv2pchqn>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <twhosvpoyafo472gqsblpvxmuewe2lkqufxabp2q7o636uinfm@unzyfv2pchqn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGk1DT1YYHk1DQkkaHUtOGUpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a93ba14685803a3kunm587970be
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MzI6Qjo4FTIPOjQOCTcYCB0h
+	DS8wCT9VSlVKTEhIQkJITElKQ09MVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFMTE1JNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=Bm2MQOWkXjx8Pf9F3W4LsD7hTW78m7eB7oq2XDcJbwtsVGle3yaMemLVAEN+zVoWZx1sSiKi07Y1Rcxs8X+7lH/hi9FsqJO5eqOVWzogYs3zRK3doeb9Kv0vTMPvpyP88zoti2YuAe7NHqy+LN/uRRr11+USss2pTU7MU1cFiqk=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=FoVNNZh4L/GMNtlxTr6ggp+PnIEfUziJ14W8Sk9sycA=;
+	h=date:mime-version:subject:message-id:from;
 
-Building DTB overlays from .dts files is no longer supported.
-Update the documentation to reflect this.
+Hi Dmitry,
 
-Fixes: 81d362732bac05f6 ("kbuild: Disallow DTB overlays to built from .dts named source files")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Andrew Davis <afd@ti.com>
-Reviewed-by: Yanteng Si <siyanteng@loongson.cn>
----
-v2:
-  - Add Acked-by, Reviewed-by.
----
- Documentation/devicetree/overlay-notes.rst           | 12 ++++++------
- .../translations/zh_CN/devicetree/overlay-notes.rst  | 12 ++++++------
- 2 files changed, 12 insertions(+), 12 deletions(-)
+On 2024/11/30 16:53, Dmitry Baryshkov wrote:
+> On Wed, Nov 27, 2024 at 03:51:53PM +0800, Damon Ding wrote:
+>> Add support to configurate link rate, lane count, voltage swing and
+>> pre-emphasis with phy_configure(). It is helpful in application scenarios
+>> where analogix controller is mixed with the phy of other vendors.
+>>
+>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>> ---
+>>   .../drm/bridge/analogix/analogix_dp_core.c    |  4 +-
+>>   .../drm/bridge/analogix/analogix_dp_core.h    |  2 +
+>>   .../gpu/drm/bridge/analogix/analogix_dp_reg.c | 90 +++++++++++++++++++
+>>   3 files changed, 94 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+>> index 6f10d88a34c5..7624ed13cdbf 100644
+>> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+>> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+>> @@ -1672,7 +1672,7 @@ EXPORT_SYMBOL_GPL(analogix_dp_probe);
+>>   
+>>   int analogix_dp_suspend(struct analogix_dp_device *dp)
+>>   {
+>> -	phy_power_off(dp->phy);
+>> +	analogix_dp_phy_power_off(dp);
+> 
+> Why?
+> 
+>>   
+>>   	if (dp->plat_data->power_off)
+>>   		dp->plat_data->power_off(dp->plat_data);
+>> @@ -1696,7 +1696,7 @@ int analogix_dp_resume(struct analogix_dp_device *dp)
+>>   	if (dp->plat_data->power_on)
+>>   		dp->plat_data->power_on(dp->plat_data);
+>>   
+>> -	phy_power_on(dp->phy);
+>> +	analogix_dp_phy_power_on(dp);
+> 
+> Why?
+> 
 
-diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/devicetree/overlay-notes.rst
-index e139f22b363e9f36..35e79242af9a928d 100644
---- a/Documentation/devicetree/overlay-notes.rst
-+++ b/Documentation/devicetree/overlay-notes.rst
-@@ -38,10 +38,10 @@ Lets take an example where we have a foo board with the following base tree::
- 	};
-     ---- foo.dts ---------------------------------------------------------------
- 
--The overlay bar.dts,
-+The overlay bar.dtso,
- ::
- 
--    ---- bar.dts - overlay target location by label ----------------------------
-+    ---- bar.dtso - overlay target location by label ---------------------------
- 	/dts-v1/;
- 	/plugin/;
- 	&ocp {
-@@ -51,7 +51,7 @@ The overlay bar.dts,
- 			... /* various properties and child nodes */
- 		};
- 	};
--    ---- bar.dts ---------------------------------------------------------------
-+    ---- bar.dtso --------------------------------------------------------------
- 
- when loaded (and resolved as described in [1]) should result in foo+bar.dts::
- 
-@@ -88,9 +88,9 @@ in the base DT. In this case, the target path can be provided. The target
- location by label syntax is preferred because the overlay can be applied to
- any base DT containing the label, no matter where the label occurs in the DT.
- 
--The above bar.dts example modified to use target path syntax is::
-+The above bar.dtso example modified to use target path syntax is::
- 
--    ---- bar.dts - overlay target location by explicit path --------------------
-+    ---- bar.dtso - overlay target location by explicit path -------------------
- 	/dts-v1/;
- 	/plugin/;
- 	&{/ocp} {
-@@ -100,7 +100,7 @@ The above bar.dts example modified to use target path syntax is::
- 			... /* various properties and child nodes */
- 		}
- 	};
--    ---- bar.dts ---------------------------------------------------------------
-+    ---- bar.dtso --------------------------------------------------------------
- 
- 
- Overlay in-kernel API
-diff --git a/Documentation/translations/zh_CN/devicetree/overlay-notes.rst b/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
-index 43e3c0bc5a9f8235..ba5edd05dc1e7fd2 100644
---- a/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
-+++ b/Documentation/translations/zh_CN/devicetree/overlay-notes.rst
-@@ -43,10 +43,10 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
- 	};
-     ---- foo.dts ---------------------------------------------------------------
- 
--覆盖bar.dts,
-+覆盖bar.dtso,
- ::
- 
--    ---- bar.dts - 按标签覆盖目标位置 ----------------------------
-+    ---- bar.dtso - 按标签覆盖目标位置 ---------------------------
- 	/dts-v1/;
- 	/插件/;
- 	&ocp {
-@@ -56,7 +56,7 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
- 			... /* 各种属性和子节点 */
- 		};
- 	};
--    ---- bar.dts ---------------------------------------------------------------
-+    ---- bar.dtso --------------------------------------------------------------
- 
- 当加载（并按照[1]中描述的方式解决）时，应该产生foo+bar.dts::
- 
-@@ -90,9 +90,9 @@ Documentation/devicetree/dynamic-resolution-notes.rst[1]的配套文档。
- DT中的适当位置。在这种情况下，可以提供目标路径。通过标签的目标位置的语法是比
- 较好的，因为不管标签在DT中出现在哪里，覆盖都可以被应用到任何包含标签的基础DT上。
- 
--上面的bar.dts例子被修改为使用目标路径语法，即为::
-+上面的bar.dtso例子被修改为使用目标路径语法，即为::
- 
--    ---- bar.dts - 通过明确的路径覆盖目标位置 --------------------
-+    ---- bar.dtso - 通过明确的路径覆盖目标位置 -------------------
- 	/dts-v1/;
- 	/插件/;
- 	&{/ocp} {
-@@ -102,7 +102,7 @@ DT中的适当位置。在这种情况下，可以提供目标路径。通过标
- 			... /* 各种外围设备和子节点 */
- 		}
- 	};
--    ---- bar.dts ---------------------------------------------------------------
-+    ---- bar.dtso --------------------------------------------------------------
- 
- 
- 内核中关于覆盖的API
--- 
-2.34.1
+These changes for phy_power_on()/phy_power_off() may be unnecessary. I 
+will just put the phy_set_mode() before phy_power_on() in next version.
+
+>>   
+>>   	analogix_dp_init_dp(dp);
+>>   
+>> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
+>> index 774d11574b09..a76079d61768 100644
+>> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
+>> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.h
+>> @@ -232,5 +232,7 @@ int analogix_dp_send_psr_spd(struct analogix_dp_device *dp,
+>>   			     struct dp_sdp *vsc, bool blocking);
+>>   ssize_t analogix_dp_transfer(struct analogix_dp_device *dp,
+>>   			     struct drm_dp_aux_msg *msg);
+>> +void analogix_dp_phy_power_on(struct analogix_dp_device *dp);
+>> +void analogix_dp_phy_power_off(struct analogix_dp_device *dp);
+>>   
+>>   #endif /* _ANALOGIX_DP_CORE_H */
+>> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
+>> index 3afc73c858c4..809bb0c72d18 100644
+>> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
+>> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_reg.c
+>> @@ -11,6 +11,7 @@
+>>   #include <linux/gpio/consumer.h>
+>>   #include <linux/io.h>
+>>   #include <linux/iopoll.h>
+>> +#include <linux/phy/phy.h>
+>>   
+>>   #include <drm/bridge/analogix_dp.h>
+>>   
+>> @@ -513,10 +514,27 @@ void analogix_dp_enable_sw_function(struct analogix_dp_device *dp)
+>>   void analogix_dp_set_link_bandwidth(struct analogix_dp_device *dp, u32 bwtype)
+>>   {
+>>   	u32 reg;
+>> +	int ret;
+>>   
+>>   	reg = bwtype;
+>>   	if ((bwtype == DP_LINK_BW_2_7) || (bwtype == DP_LINK_BW_1_62))
+>>   		writel(reg, dp->reg_base + ANALOGIX_DP_LINK_BW_SET);
+>> +
+>> +	if (dp->phy) {
+>> +		union phy_configure_opts phy_cfg = {0};
+>> +
+>> +		phy_cfg.dp.lanes = dp->link_train.lane_count;
+> 
+> You can drop this, .set_lanes is false.
+> 
+>> +		phy_cfg.dp.link_rate =
+>> +			drm_dp_bw_code_to_link_rate(dp->link_train.link_rate) / 100;
+>> +		phy_cfg.dp.set_lanes = false;
+>> +		phy_cfg.dp.set_rate = true;
+>> +		phy_cfg.dp.set_voltages = false;
+> 
+> You don't need to set those to false, it's cleared by = {0};
+> 
+>> +		ret = phy_configure(dp->phy, &phy_cfg);
+>> +		if (ret && ret != -EOPNOTSUPP) {
+>> +			dev_err(dp->dev, "%s: phy_configure() failed: %d\n", __func__, ret);
+>> +			return;
+>> +		}
+>> +	}
+>>   }
+>>   
+>>   void analogix_dp_get_link_bandwidth(struct analogix_dp_device *dp, u32 *bwtype)
+>> @@ -530,9 +548,24 @@ void analogix_dp_get_link_bandwidth(struct analogix_dp_device *dp, u32 *bwtype)
+>>   void analogix_dp_set_lane_count(struct analogix_dp_device *dp, u32 count)
+>>   {
+>>   	u32 reg;
+>> +	int ret;
+>>   
+>>   	reg = count;
+>>   	writel(reg, dp->reg_base + ANALOGIX_DP_LANE_COUNT_SET);
+>> +
+>> +	if (dp->phy) {
+>> +		union phy_configure_opts phy_cfg = {0};
+>> +
+>> +		phy_cfg.dp.lanes = dp->link_train.lane_count;
+>> +		phy_cfg.dp.set_lanes = true;
+>> +		phy_cfg.dp.set_rate = false;
+>> +		phy_cfg.dp.set_voltages = false;
+> 
+> Likewise
+> 
+>> +		ret = phy_configure(dp->phy, &phy_cfg);
+>> +		if (ret && ret != -EOPNOTSUPP) {
+>> +			dev_err(dp->dev, "%s: phy_configure() failed: %d\n", __func__, ret);
+>> +			return;
+>> +		}
+>> +	}
+>>   }
+>>   
+>>   void analogix_dp_get_lane_count(struct analogix_dp_device *dp, u32 *count)
+>> @@ -546,10 +579,39 @@ void analogix_dp_get_lane_count(struct analogix_dp_device *dp, u32 *count)
+>>   void analogix_dp_set_lane_link_training(struct analogix_dp_device *dp)
+>>   {
+>>   	u8 lane;
+>> +	int ret;
+>>   
+>>   	for (lane = 0; lane < dp->link_train.lane_count; lane++)
+>>   		writel(dp->link_train.training_lane[lane],
+>>   		       dp->reg_base + ANALOGIX_DP_LN0_LINK_TRAINING_CTL + 4 * lane);
+>> +
+>> +	if (dp->phy) {
+>> +		union phy_configure_opts phy_cfg = {0};
+>> +
+>> +		for (lane = 0; lane < dp->link_train.lane_count; lane++) {
+>> +			u8 training_lane = dp->link_train.training_lane[lane];
+>> +			u8 vs, pe;
+>> +
+>> +			vs = (training_lane & DP_TRAIN_VOLTAGE_SWING_MASK) >>
+>> +			     DP_TRAIN_VOLTAGE_SWING_SHIFT;
+>> +			pe = (training_lane & DP_TRAIN_PRE_EMPHASIS_MASK) >>
+>> +			     DP_TRAIN_PRE_EMPHASIS_SHIFT;
+>> +			phy_cfg.dp.voltage[lane] = vs;
+>> +			phy_cfg.dp.pre[lane] = pe;
+>> +		}
+>> +
+>> +		phy_cfg.dp.lanes = dp->link_train.lane_count;
+>> +		phy_cfg.dp.link_rate =
+>> +			drm_dp_bw_code_to_link_rate(dp->link_train.link_rate) / 100;
+> 
+> You can drop these two.
+
+Indeed, all the needless assignments for phy_configure() will be deleted 
+in next version.
+
+> 
+>> +		phy_cfg.dp.set_lanes = false;
+>> +		phy_cfg.dp.set_rate = false;
+>> +		phy_cfg.dp.set_voltages = true;
+>> +		ret = phy_configure(dp->phy, &phy_cfg);
+>> +		if (ret && ret != -EOPNOTSUPP) {
+>> +			dev_err(dp->dev, "%s: phy_configure() failed: %d\n", __func__, ret);
+>> +			return;
+>> +		}
+>> +	}
+>>   }
+>>   
+>>   u32 analogix_dp_get_lane_link_training(struct analogix_dp_device *dp, u8 lane)
+>> @@ -1053,3 +1115,31 @@ ssize_t analogix_dp_transfer(struct analogix_dp_device *dp,
+>>   
+>>   	return -EREMOTEIO;
+>>   }
+>> +
+>> +void analogix_dp_phy_power_on(struct analogix_dp_device *dp)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = phy_set_mode(dp->phy, PHY_MODE_DP);
+>> +	if (ret) {
+>> +		dev_err(dp->dev, "%s: phy_set_mode() failed: %d\n", __func__, ret);
+>> +		return;
+>> +	}
+>> +
+>> +	ret = phy_power_on(dp->phy);
+>> +	if (ret) {
+>> +		dev_err(dp->dev, "%s: phy_power_on() failed: %d\n", __func__, ret);
+> 
+> There is already a dev_err() call in phy_power_on().
+> 
+>> +		return;
+>> +	}
+>> +}
+>> +
+>> +void analogix_dp_phy_power_off(struct analogix_dp_device *dp)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = phy_power_off(dp->phy);
+>> +	if (ret) {
+>> +		dev_err(dp->dev, "%s: phy_power_off() failed: %d\n", __func__, ret);
+> 
+> There is already a dev_err() call in phy_power_off().
+> 
+>> +		return;
+>> +	}
+>> +}
+>> -- 
+>> 2.34.1
+>>
+>>
+>> _______________________________________________
+>> Linux-rockchip mailing list
+>> Linux-rockchip@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> 
+
+Best regards,
+Damon
 
 
