@@ -1,152 +1,127 @@
-Return-Path: <devicetree+bounces-130267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D49989EE6B3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 13:27:36 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A6A09EE6AB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 13:27:03 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 439012831CC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 12:27:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD7D7188541F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 12:27:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 085E220967D;
-	Thu, 12 Dec 2024 12:27:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B4D5213237;
+	Thu, 12 Dec 2024 12:26:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="AcEFiVzI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MASb9seW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D1C0208987
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 12:27:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 569C12066FA;
+	Thu, 12 Dec 2024 12:26:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734006450; cv=none; b=XK1RZ0tzkzysWXsSRsUV0PbEWahHNvG5dq7aPLQZ/9SccZgdnbUsvQ+5A8i6BsQRo3r9hg5lHdk4Lc1D0DBuoz6IKJJQRreF+0y21IsV+tPki/fLaz3O79pFiBoAl3B0duJbC1CPQQyAvXyJLnkgglWWHbDwVaEktJfd2fhKNmQ=
+	t=1734006417; cv=none; b=JEmrtw+fXp2p45+v2MJp+XBmyINXcgcuiU4u4fCAYqgm1b+/YOe1w2vsfXZ4NDsVlj5qR1UuHAPo5a/AEJJduMjD3iTIOOlWRQr2EBF4XBtQ/0q8JV4Od1rzMlLbXMUukNo5gliQ4wu+Q2Su5PRguIX1qfDthwYcnDETjSvkkSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734006450; c=relaxed/simple;
-	bh=ItKK/rW7n6Q3SCp+L1Rvo/bgYgrq6XzS2/w7yj9DpMU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BiIWq1XTnQ4Yw5cJSYdwzFYazEKA0aogo3eKSznOUcnoCgi3PEhuZF2SDugJQZgWir/Bl3Iwmn1UZHBAAOab8kagqI20bJz0DIeHK+yvBsS9XN7TxtBwF3+yOjhkyHo6E19jLR6MMaUX5759oXMrh4t6kPVRL69iBtuVx4EW/V0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=AcEFiVzI; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7AB5B1048AF4C;
-	Thu, 12 Dec 2024 13:27:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1734006446;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mHcwm2VnyijozizWEdk9YvkCDMsezL1mm+SRcqgwyTI=;
-	b=AcEFiVzIZnhFKRflGmQpq2rJGJHR0Eq0tOC7A/hJLm5NzlfgZ+GWU3fKDeeZb6PiiyrpPz
-	d0ihkVK5J5dTmgjB9hs3de4oaoxdXPC3JsRpEN8b/y7nXuXF/TsY1NaQ6W0piDY5M9y7NU
-	3RwwSNFBruThL9kGDwk2ilUgBMBgvKG0vAaxWQaDqULlyS3N1C8qHMc0rjqTeVDWYBwuRU
-	pc57uFR0FUqhy3w32hku2/4BlSbgCpwuVYTAg3yaJ3C31dZWczIPB32O1TMkIn9SWMbskP
-	XBOLhyjIDxYTlfUb4C97W6GQpkXRUucdFnHO0M0jnAh63R4PnCDKwDsB4hpYKQ==
-From: Marek Vasut <marex@denx.de>
-To: dri-devel@lists.freedesktop.org
-Cc: Marek Vasut <marex@denx.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	devicetree@vger.kernel.org
-Subject: [PATCH 2/2] drm/panel: simple: add Multi-Inno Technology MI1010Z1T-1CP11
-Date: Thu, 12 Dec 2024 13:26:29 +0100
-Message-ID: <20241212122701.25305-2-marex@denx.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241212122701.25305-1-marex@denx.de>
-References: <20241212122701.25305-1-marex@denx.de>
+	s=arc-20240116; t=1734006417; c=relaxed/simple;
+	bh=BlFdkLDtYUoDDDhgR15YdKD0RfmzdPYpVSLZ+FD5O0g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pYcZPj5Fg3Tp8sVfsYWU02yBBK/wo67zTIQfx80fu70bEfvYLNthsLLJhG0nta+NLzxXlg3qsPYrjBYUWw1zPZVP5HZk9XOVZgVQ3IHxYWR2cL8VXN5MUdugF3x9Ix3SnK6ozJIhONoXO81xmQvamO852PCJrnFmLfzqHuFq1DI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MASb9seW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE3F6C4CECE;
+	Thu, 12 Dec 2024 12:26:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734006417;
+	bh=BlFdkLDtYUoDDDhgR15YdKD0RfmzdPYpVSLZ+FD5O0g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MASb9seWXAoAxpnkJvlmfuKS99pfCmezxA6op3gwQ9w6hubWweTdPM+OTLZDuCVBA
+	 cAsMwC3U2HrsaXQnPfPikG3tYuEPwVarg0z9xLw3nt6AapulUgr1sPmDhxEKEj58DP
+	 Ltjn6L/hvcdqrumtdpmR5AQCVRGJdCD+wCwpe06uWnrmIxGe/eD9NxTQRRta50lcax
+	 Wb9a53MmN4gXuUSfTaJCEhGfqbcFjetyzmPe1Ry1WT4liqTEDHN4RwWKQ6iKVPEIfl
+	 ZplpSDSeESX8p/ngblgwLVCTmuN2An3Qe42E9OmPeVJLUoCAnxgWQG9z0qI0zK4GQh
+	 DDI0tZpqJj+Qg==
+Message-ID: <a1473261-a182-4768-8e02-99fec9dc56be@kernel.org>
+Date: Thu, 12 Dec 2024 13:26:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] PCI: dwc: Add support for configuring lane
+ equalization presets
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Jingoo Han <jingoohan1@gmail.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ konrad.dybcio@oss.qualcomm.com, quic_mrana@quicinc.com,
+ quic_vbadigan@quicinc.com, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Krishna chaitanya chundru <quic_krichai@quicinc.com>
+References: <20241212-preset_v2-v2-0-210430fbcd8a@oss.qualcomm.com>
+ <39012a4a-7d02-b954-bc06-53708b772a7c@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <39012a4a-7d02-b954-bc06-53708b772a7c@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add Multi-Inno Technology MI1010Z1T-1CP11 10.1" 1024x600 LVDS panel support.
+On 12/12/2024 11:40, Krishna Chaitanya Chundru wrote:
+> Please ignore this series it has wrong patches I will send new series to 
+> fix this.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Jessica Zhang <quic_jesszhan@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
----
- drivers/gpu/drm/panel/panel-simple.c | 30 ++++++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
+You got feedback already.
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index d5bb850df9d20..d68662b7265ae 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -3340,6 +3340,33 @@ static const struct panel_desc multi_inno_mi1010ait_1cp = {
- 	.connector_type = DRM_MODE_CONNECTOR_LVDS,
- };
- 
-+static const struct display_timing multi_inno_mi1010z1t_1cp11_timing = {
-+	.pixelclock = { 40800000, 51200000, 67200000 },
-+	.hactive = { 1024, 1024, 1024 },
-+	.hfront_porch = { 30, 110, 130 },
-+	.hback_porch = { 30, 110, 130 },
-+	.hsync_len = { 30, 100, 116 },
-+	.vactive = { 600, 600, 600 },
-+	.vfront_porch = { 4, 13, 80 },
-+	.vback_porch = { 4, 13, 80 },
-+	.vsync_len = { 2, 9, 40 },
-+	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-+		 DISPLAY_FLAGS_DE_HIGH,
-+};
-+
-+static const struct panel_desc multi_inno_mi1010z1t_1cp11 = {
-+	.timings = &multi_inno_mi1010z1t_1cp11_timing,
-+	.num_timings = 1,
-+	.bpc = 6,
-+	.size = {
-+		.width = 260,
-+		.height = 162,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB666_1X7X3_SPWG,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct display_timing nec_nl12880bc20_05_timing = {
- 	.pixelclock = { 67000000, 71000000, 75000000 },
- 	.hactive = { 1280, 1280, 1280 },
-@@ -4944,6 +4971,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "multi-inno,mi1010ait-1cp",
- 		.data = &multi_inno_mi1010ait_1cp,
-+	}, {
-+		.compatible = "multi-inno,mi1010z1t-1cp11",
-+		.data = &multi_inno_mi1010z1t_1cp11,
- 	}, {
- 		.compatible = "nec,nl12880bc20-05",
- 		.data = &nec_nl12880bc20_05,
--- 
-2.45.2
-
+Best regards,
+Krzysztof
 
