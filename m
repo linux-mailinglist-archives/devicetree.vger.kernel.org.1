@@ -1,142 +1,505 @@
-Return-Path: <devicetree+bounces-130439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B9639EFBED
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 19:58:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C9A89EFBF7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 19:59:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EDCB188FD4F
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 18:58:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47F7A188FD18
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 18:59:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F091DA314;
-	Thu, 12 Dec 2024 18:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F178317E016;
+	Thu, 12 Dec 2024 18:59:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="a2WpEYE0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y4lto2r3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 911DF1D9353
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 18:55:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C66A917AE1C;
+	Thu, 12 Dec 2024 18:59:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734029737; cv=none; b=gy27Yl1dT14uraTd2VCuiGktYDIjZjbHbfq4M8Lwact8mwBakHdmb+b99Pp2Y409RC5JWY/CX46x/Bd5/L0Y5IqpPmbDT8X+4oQ0pvpL7jCzKZ4lL8kzE5P2N3knnpFDGWLtG7PybDN4UFrxyZEp8n5bQ1t+AdTCDM+SurziCf0=
+	t=1734029971; cv=none; b=KvhORmTQ383h8R8aIhQg1pKuwHc+30JaTfeAj2lqsXp2rCfxk8ZHFPGC8NBGnXgScprMNKFQRQdGy6w5FCfdnQPzLPtIz4DWen3apv9Zud7m5wkTJ0WPNKQ+veL1Nzal+2Uk/j2qvmsjHKbk0z7rNMRA9rruBlQncSeW/JoMrRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734029737; c=relaxed/simple;
-	bh=6Ykd4LXZc/kByKynylSQh3A2HAOdlX7jGwrQ/D7Gu/w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WP28WqYRK9+iW7ZdzbGKz10/GckpPUARCAnPqd1cPjBjGzi+8ku3HrePkvG9sN0R7PLgYI+UygmKekQkylUnkhNG/pYIPGAN2vafgsliN8TCEilDVeaJ6otYP4DI0sQxAY/zKv9m/1zR+MKUe0DEwl35CPh3yfnzMGGXfxFCYhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=a2WpEYE0; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BCICfiN022799
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 18:55:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zI72/iwp++JOMDiSSOOOuPR56P6EMEm6GaLozzp9c4A=; b=a2WpEYE0cl20+RAf
-	UXqg25+GsO49TBrUKDH+nX8dRa7DGQTlPf0La7TqVs7JyH96aLu+jl+OOfmIZ3Ea
-	nsanIhGMZYGORwwA+vf5BilmoXXabtttelPCuHMGX/osVsabHCwYTCko0S+8ono2
-	oa4TSVow2l1kRK54HsDpFla5MIa9pBhjByzhlIFGMt2UEpznVDxQ0+g5SJEJaiID
-	ujNpK02FrT64efJR9shiKIxnc6NGhZp60qatxwEJ+CAf7l7oFwTlY3paJ5K9ec84
-	I6OBDFS12HrdUhYMuaLoPx3MGcle+Em82ZN8Y2djkEMGGHLw5uVhZHY42ifRHpJH
-	JnRQTw==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43g4wn839t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 18:55:34 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6d8a3cb9dbfso2191886d6.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 10:55:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734029733; x=1734634533;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zI72/iwp++JOMDiSSOOOuPR56P6EMEm6GaLozzp9c4A=;
-        b=KuzEqDuTT56CFvSAdsZQkK1xTm4PkgnM0XcQ3SVAd6ARjuPZCTLXZM8jkwyH0nnIe2
-         t8bRvKuRBuA+b3PUUPAyCHJDuz7HPrOIyUq475nRhEt6BmnFmcbGWSsODpl+wQmkEZq9
-         kbdHcJYRVz3Zjz5eRHhVLIBNxjXujDioTHUR6shCTm+v4G+Xq6JtTXPNItQqPJSPGNSt
-         GLvj5V2/GDYW5i+Fb9Nue+wiJo584slOtOqP5/hgkGM+d7PEgfJfMIzT1Vhpo1YDSPie
-         0VzNDSUri+ruHswyZFwObkILVHDRxtO2tT2T4E1PNbt2b4eQVffD84c54BILfsIYEu4d
-         sEFA==
-X-Forwarded-Encrypted: i=1; AJvYcCV2JGhOuiVCvgA5tiboGoWwGiHlvYo6t8pqpw++zU8dlEgEAVdtHjNKdw3RKkFuSRB62eC1FvS1bEUT@vger.kernel.org
-X-Gm-Message-State: AOJu0YyjNuHZyA9JifvmzHHGx6XdWFhiFf8u3JveKyZhc6FUAMdwp0sY
-	nhPsN5bT5t0XsH0pBDNSzC32a5s3FsFTax/lIMYBMoYZyCUct2zmlrEqKN52+RTn4nXmAaJGNUB
-	TBizBtPkLHu1U/ox3H2WblbZIHuTjAr5WbxMBeCJdRlRvNUeKG9tSeG+wVdMy
-X-Gm-Gg: ASbGncvyeMLuUVtewW1GP4RY4RhS6y7Cr+hQf1Frnre0KYlasTkeQW8Bw7iSwnlTo7E
-	o+XgTZJvXaznhZHEDk39II1/Qml+8s1Vl9yBCQK+Df1yLc6WK3PE3AkFtxvD+FztWKwXf7DGzqm
-	lbt461KDBJUg9SnhckIovnQIW6OjFUuXIO6vKS2Su0YSv4EM+9qlG9oNoUW0RCqtwidEQEmUkJl
-	tFkOtbYkoy/K/5lzn/+Jjb67RZh9/eoTjtzYSjxcauQlsuys24ncMP1aWZfoyWU2TZxZQz+LEEm
-	4hoHp25s26lB/FlKQbl9r9jvlSdHRwOG/UtS8A==
-X-Received: by 2002:ac8:5d0b:0:b0:467:5462:4a14 with SMTP id d75a77b69052e-467a13bcb81mr9719111cf.0.1734029733539;
-        Thu, 12 Dec 2024 10:55:33 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHh+6GqlSEppTRVHfwFh6/LFI4/HjserV6YHyLGu2Tmb1xxtvWO18Oqsh69zRHwYho2dvwIyw==
-X-Received: by 2002:ac8:5d0b:0:b0:467:5462:4a14 with SMTP id d75a77b69052e-467a13bcb81mr9718891cf.0.1734029733124;
-        Thu, 12 Dec 2024 10:55:33 -0800 (PST)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa653a95e90sm836436566b.173.2024.12.12.10.55.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Dec 2024 10:55:32 -0800 (PST)
-Message-ID: <5cbcb8a5-f39b-4416-8317-15d56f932915@oss.qualcomm.com>
-Date: Thu, 12 Dec 2024 19:55:30 +0100
+	s=arc-20240116; t=1734029971; c=relaxed/simple;
+	bh=ucD7ZlOj4QbEyAyzavhmxea8rupx8Xrf7/SaQgUrG9s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LVgVjno1OBDCj3p5lFs8oD7KrcUMwlr6Wled0LrTj9W2I3/IcHIZ7wefCbUsHXGxYc2FscqU4Q/TQgNTHnbe5JwD1/fMY8K3dJNWByOgGQltPV75BPQWKmNj1QQDxpybrqjbomyci82Mfa9JbYpGzroI8iRNP1iyHmyy9m7OVRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y4lto2r3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E61CCC4CECE;
+	Thu, 12 Dec 2024 18:59:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734029971;
+	bh=ucD7ZlOj4QbEyAyzavhmxea8rupx8Xrf7/SaQgUrG9s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Y4lto2r3Ly9Zd6tPHZIwD7YnqgTE8KIrLs2RXFBNMKXdl9UzKaSaHliYfcez9moaB
+	 9n43j37P6eV1eMDl7tCmNvI5NLtxeHQYXDDhaqvQRMQ95R4iPsZ8O/wyKCw368Thd/
+	 MuKOQjhYspDcvZDnyMbMAinOXyGORj8LX7rKx5oeHEjLsL07TnU4NYEBtfc8KkAk5+
+	 2D5tbpAc/Qn/iB7YAsRSEqTAZ9Ia1kBZ2WRfyhzZ7F/1zjeQANIG3oJeQ6vFwtsW/8
+	 ujUlkX+L0PMYT++3lfjAngwXRjvKxd57ztZivE4cduK5QY+3RUnmZkDljPObPkqqPQ
+	 K0LMOAxsUpv/A==
+Date: Thu, 12 Dec 2024 18:59:26 +0000
+From: Lee Jones <lee@kernel.org>
+To: "A. Sverdlin" <alexander.sverdlin@siemens.com>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>
+Subject: Re: [PATCH v3 2/2] leds: lp8864: New driver
+Message-ID: <20241212185926.GL7139@google.com>
+References: <20241209084602.1199936-1-alexander.sverdlin@siemens.com>
+ <20241209084602.1199936-3-alexander.sverdlin@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 16/19] arm64: dts: qcom: sm6350: Fix MPSS memory length
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Abel Vesa
- <abel.vesa@linaro.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Luca Weiss <luca.weiss@fairphone.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20241209-dts-qcom-cdsp-mpss-base-address-v2-0-d85a3bd5cced@linaro.org>
- <20241209-dts-qcom-cdsp-mpss-base-address-v2-16-d85a3bd5cced@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241209-dts-qcom-cdsp-mpss-base-address-v2-16-d85a3bd5cced@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: tr1JO5nGKoWTsY_744Dj_e145oUMbrHp
-X-Proofpoint-GUID: tr1JO5nGKoWTsY_744Dj_e145oUMbrHp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 priorityscore=1501 mlxlogscore=889 spamscore=0
- mlxscore=0 clxscore=1015 adultscore=0 phishscore=0 suspectscore=0
- bulkscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2412120136
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241209084602.1199936-3-alexander.sverdlin@siemens.com>
 
-On 9.12.2024 12:02 PM, Krzysztof Kozlowski wrote:
-> The address space in MPSS/Modem PAS (Peripheral Authentication Service)
-> remoteproc node should point to the QDSP PUB address space
-> (QDSP6...SS_PUB) which has a length of 0x10000.  Value of 0x4040 was
-> copied from older DTS, but it grew since then.
+On Mon, 09 Dec 2024, A. Sverdlin wrote:
+
+> From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
 > 
-> This should have no functional impact on Linux users, because PAS loader
-> does not use this address space at all.
+> Add driver for TI LP8864, LP8864S, LP8866 4/6 channel LED-backlight drivers
+> with I2C interface.
 > 
-> Cc: stable@vger.kernel.org
-> Tested-by: Luca Weiss <luca.weiss@fairphone.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Link: https://www.ti.com/lit/gpn/lp8864-q1
+> Link: https://www.ti.com/lit/gpn/lp8864s-q1
+> Link: https://www.ti.com/lit/gpn/lp8866-q1
+> Link: https://www.ti.com/lit/gpn/lp8866s-q1
+> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
 > ---
+> Changelog:
+> v3:
+> - dropped lp8864_init(), REGCACHE_NONE, %pe in dev_err_probe(),
+>   i2c_set_clientdata()
+> - added devm_add_action_or_reset() return value check, dev_err_probe() after
+>   devm_regmap_init_i2c()
+> v2: no changes
+> 
+>  MAINTAINERS                |   7 +
+>  drivers/leds/Kconfig       |  12 ++
+>  drivers/leds/Makefile      |   1 +
+>  drivers/leds/leds-lp8864.c | 308 +++++++++++++++++++++++++++++++++++++
+>  4 files changed, 328 insertions(+)
+>  create mode 100644 drivers/leds/leds-lp8864.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 21f855fe468bc..a89f0b9d991fb 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -23262,6 +23262,13 @@ S:	Supported
+>  F:	Documentation/devicetree/bindings/iio/dac/ti,dac7612.yaml
+>  F:	drivers/iio/dac/ti-dac7612.c
+>  
+> +TEXAS INSTRUMENTS' LB8864 LED BACKLIGHT DRIVER
+> +M:	Alexander Sverdlin <alexander.sverdlin@siemens.com>
+> +L:	linux-leds@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
+> +F:	drivers/leds/leds-lp8864.c
+> +
+>  TEXAS INSTRUMENTS' SYSTEM CONTROL INTERFACE (TISCI) PROTOCOL DRIVER
+>  M:	Nishanth Menon <nm@ti.com>
+>  M:	Tero Kristo <kristo@kernel.org>
+> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> index b784bb74a8378..6d0e88e501614 100644
+> --- a/drivers/leds/Kconfig
+> +++ b/drivers/leds/Kconfig
+> @@ -511,6 +511,18 @@ config LEDS_LP8860
+>  	  on the LP8860 4 channel LED driver using the I2C communication
+>  	  bus.
+>  
+> +config LEDS_LP8864
+> +	tristate "LED support for the TI LP8864/LP8866 4/6 channel LED drivers"
+> +	depends on LEDS_CLASS && I2C && OF
+> +	select REGMAP_I2C
+> +	help
+> +	  If you say yes here you get support for the TI LP8864-Q1,
+> +	  LP8864S-Q1, LP8866-Q1, LP8866S-Q1 4/6 channel LED backlight
+> +	  drivers with I2C interface.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called leds-lp8864.
+> +
+>  config LEDS_CLEVO_MAIL
+>  	tristate "Mail LED on Clevo notebook"
+>  	depends on LEDS_CLASS && BROKEN
+> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
+> index 18afbb5a23ee5..f66bf2e13665f 100644
+> --- a/drivers/leds/Makefile
+> +++ b/drivers/leds/Makefile
+> @@ -57,6 +57,7 @@ obj-$(CONFIG_LEDS_LP55XX_COMMON)	+= leds-lp55xx-common.o
+>  obj-$(CONFIG_LEDS_LP8501)		+= leds-lp8501.o
+>  obj-$(CONFIG_LEDS_LP8788)		+= leds-lp8788.o
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>  obj-$(CONFIG_LEDS_LP8860)		+= leds-lp8860.o
+> +obj-$(CONFIG_LEDS_LP8864)		+= leds-lp8864.o
 
-Konrad
+How different are these two devices?  Do you need a new driver?
+
+>  obj-$(CONFIG_LEDS_LT3593)		+= leds-lt3593.o
+>  obj-$(CONFIG_LEDS_MAX5970)		+= leds-max5970.o
+>  obj-$(CONFIG_LEDS_MAX77650)		+= leds-max77650.o
+> diff --git a/drivers/leds/leds-lp8864.c b/drivers/leds/leds-lp8864.c
+> new file mode 100644
+> index 0000000000000..1617aa0422d33
+> --- /dev/null
+> +++ b/drivers/leds/leds-lp8864.c
+> @@ -0,0 +1,308 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * TI LP8864/LP8866 4/6 Channel LED Driver
+> + *
+> + * Copyright (C) 2024 Siemens AG
+> + *
+> + * Based on LP8860 driver by Dan Murphy <dmurphy@ti.com>
+> + */
+> +
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/leds.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/slab.h>
+> +
+> +#define LP8864_BRT_CONTROL		0x00
+> +#define LP8864_USER_CONFIG1		0x04
+> +#define   LP8864_BRT_MODE_MASK		GENMASK(9, 8)
+> +/* Brightness controlled by DISPLAY_BRT register */
+> +#define   LP8864_BRT_MODE_REG		BIT(9)
+> +#define LP8864_SUPPLY_STATUS		0x0e
+> +#define LP8864_BOOST_STATUS		0x10
+> +#define LP8864_LED_STATUS		0x12
+> +/* Writeable bits in the LED_STATUS register */
+> +#define   LP8864_LED_STATUS_WR_MASK	GENMASK(14, 9)
+
+Not keen on the comments jammed in there like that.  Consider either
+placing them at the end of the line or providing some space above them.
+
+> +
+> +/* Textual meaning for every register bit */
+> +static const char *const lp8864_supply_status_msg[] = {
+> +	NULL, "Vin under-voltage fault",
+> +	NULL, "Vin over-voltage fault",
+> +	NULL, "Vdd under-voltage fault",
+> +	NULL, "Vin over-current fault",
+> +	NULL, "Missing charge pump fault",
+> +	NULL, "Charge pump fault",
+> +	NULL, "Missing boost sync fault",
+> +	NULL, "CRC error fault ",
+> +};
+> +
+> +/* Textual meaning for every register bit */
+> +static const char *const lp8864_boost_status_msg[] = {
+> +	NULL, "Boost OVP low fault",
+> +	NULL, "Boost OVP high fault",
+> +	NULL, "Boost over-current fault",
+> +	NULL, "Missing boost FSET resistor fault",
+> +	NULL, "Missing MODE SEL resistor fault",
+> +	NULL, "Missing LED resistor fault",
+> +	NULL, "ISET resistor short to ground fault",
+> +	NULL, "Thermal shutdown fault",
+> +};
+> +
+> +/* Textual meaning for every register bit */
+> +static const char *const lp8864_led_status_msg[] = {
+> +	"LED 1 fault",
+> +	"LED 2 fault",
+> +	"LED 3 fault",
+> +	"LED 4 fault",
+> +	"LED 5 fault",
+> +	"LED 6 fault",
+> +	"LED open fault",
+> +	"LED internal short fault",
+> +	"LED short to GND fault",
+> +	NULL, NULL, NULL,
+> +	"Invalid string configuration fault",
+> +	NULL,
+> +	"I2C time out fault",
+> +};
+> +
+> +/**
+> + * struct lp8864_led
+> + * @client: Pointer to the I2C client
+> + * @led_dev: led class device pointer
+> + * @regmap: Devices register map
+> + * @led_status_mask: Helps to report LED fault only once
+> + */
+> +struct lp8864_led {
+> +	struct i2c_client *client;
+> +	struct led_classdev led_dev;
+> +	struct regmap *regmap;
+> +	u16 led_status_mask;
+> +};
+> +
+> +static int lp8864_fault_check(struct lp8864_led *led)
+> +{
+> +	int ret, i;
+> +	unsigned int buf;
+
+Buf implies an array to me.
+
+> +	ret = regmap_read(led->regmap, LP8864_SUPPLY_STATUS, &buf);
+> +	if (ret)
+> +		goto err;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(lp8864_supply_status_msg); i++)
+> +		if (lp8864_supply_status_msg[i] && buf & BIT(i))
+
+So are we using the NULL values in the odd indices as skip values?
+
+Either way, please add some commentary as to why this is needed.
+
+Why not 'i += 2' instead?
+
+> +			dev_err(&led->client->dev, "%s\n",
+> +				lp8864_supply_status_msg[i]);
+
+Use up to 100-chars to prevent wrapping.  It's not the 1990s. :)
+
+> +	/*
+> +	 * Clear bits have an index preceding the corresponding Status bits;
+> +	 * both have to be written "1" simultaneously to clear the corresponding
+> +	 * Status bit.
+> +	 */
+
+Nice, thanks.
+
+> +	if (buf)
+> +		ret = regmap_write(led->regmap, LP8864_SUPPLY_STATUS,
+> +				   buf >> 1 | buf);
+> +	if (ret)
+> +		goto err;
+> +
+> +	ret = regmap_read(led->regmap, LP8864_BOOST_STATUS, &buf);
+> +	if (ret)
+> +		goto err;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(lp8864_boost_status_msg); i++)
+> +		if (lp8864_boost_status_msg[i] && buf & BIT(i))
+> +			dev_err(&led->client->dev, "%s\n",
+> +				lp8864_boost_status_msg[i]);
+
+If you're printing an error, you must return an error.
+
+> +	if (buf)
+> +		ret = regmap_write(led->regmap, LP8864_BOOST_STATUS,
+> +				   buf >> 1 | buf);
+> +	if (ret)
+> +		goto err;
+> +
+> +	ret = regmap_read(led->regmap, LP8864_LED_STATUS, &buf);
+> +	if (ret)
+> +		goto err;
+> +
+> +	/*
+> +	 * Clear already reported faults that maintain their value until device
+> +	 * power-down
+> +	 */
+> +	buf &= ~led->led_status_mask;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(lp8864_led_status_msg); i++)
+> +		if (lp8864_led_status_msg[i] && buf & BIT(i))
+> +			dev_err(&led->client->dev, "%s\n",
+> +				lp8864_led_status_msg[i]);
+> +
+> +	/*
+> +	 * Mark those which maintain their value until device power-down as
+> +	 * "already reported"
+> +	 */
+> +	led->led_status_mask |= buf & ~LP8864_LED_STATUS_WR_MASK;
+> +
+> +	/*
+> +	 * Only bits 14, 12, 10 have to be cleared here, but others are RO,
+> +	 * we don't care what we write to them.
+> +	 */
+> +	if (buf & LP8864_LED_STATUS_WR_MASK)
+> +		ret = regmap_write(led->regmap, LP8864_LED_STATUS,
+> +				   buf >> 1 | buf);
+> +	if (ret)
+> +		goto err;
+> +
+> +	return 0;
+> +
+> +err:
+> +	dev_err(&led->client->dev, "Cannot read/clear faults (%pe)\n",
+> +		ERR_PTR(ret));
+> +
+> +	return ret;
+> +}
+> +
+> +static int lp8864_brightness_set(struct led_classdev *led_cdev,
+> +				 enum led_brightness brt_val)
+> +{
+> +	struct lp8864_led *led = container_of(led_cdev, struct lp8864_led,
+> +					      led_dev);
+> +	unsigned int val = brt_val * 0xffff / LED_FULL;
+
+Should this be bracketed?  What's 0xffff?  Better clarify with a define?
+
+> +	int ret;
+> +
+> +	ret = lp8864_fault_check(led);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(led->regmap, LP8864_BRT_CONTROL, val);
+> +	if (ret)
+> +		dev_err(&led->client->dev, "Cannot write BRT_CONTROL\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static enum led_brightness lp8864_brightness_get(struct led_classdev *led_cdev)
+> +{
+> +	struct lp8864_led *led = container_of(led_cdev, struct lp8864_led,
+> +					      led_dev);
+> +	unsigned int buf;
+> +	int ret;
+> +
+> +	ret = regmap_read(led->regmap, LP8864_BRT_CONTROL, &buf);
+> +	if (ret) {
+> +		dev_err(&led->client->dev, "Cannot read BRT_CONTROL\n");
+> +		return ret;
+> +	}
+> +
+> +	return buf * LED_FULL / 0xffff;
+> +}
+> +
+> +static const struct regmap_config lp8864_regmap_config = {
+> +	.reg_bits		= 8,
+> +	.val_bits		= 16,
+> +	.val_format_endian	= REGMAP_ENDIAN_LITTLE,
+> +};
+> +
+> +static void lp8864_disable_gpio(void *data)
+> +{
+> +	struct gpio_desc *gpio = data;
+> +
+> +	gpiod_set_value(gpio, 0);
+> +}
+> +
+> +static int lp8864_probe(struct i2c_client *client)
+> +{
+> +	int ret;
+> +	struct lp8864_led *led;
+> +	struct device_node *np = dev_of_node(&client->dev);
+> +	struct device_node *child_node;
+> +	struct led_init_data init_data = {};
+> +	struct gpio_desc *enable_gpio;
+> +
+> +	led = devm_kzalloc(&client->dev, sizeof(*led), GFP_KERNEL);
+> +	if (!led)
+> +		return -ENOMEM;
+> +
+> +	child_node = of_get_next_available_child(np, NULL);
+> +	if (!child_node) {
+> +		dev_err(&client->dev, "No LED function defined\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = devm_regulator_get_enable_optional(&client->dev, "vled");
+> +	if (ret && ret != -ENODEV)
+> +		return dev_err_probe(&client->dev, ret,
+> +				     "Failed to enable vled regulator\n");
+> +
+> +	enable_gpio = devm_gpiod_get_optional(&client->dev, "enable",
+> +					      GPIOD_OUT_HIGH);
+> +	if (IS_ERR(enable_gpio))
+> +		return dev_err_probe(&client->dev, PTR_ERR(enable_gpio),
+> +				     "Failed to get enable GPIO\n");
+> +
+> +	ret = devm_add_action_or_reset(&client->dev, lp8864_disable_gpio,
+> +				       enable_gpio);
+> +	if (ret)
+> +		return ret;
+> +
+> +	led->client = client;
+> +	led->led_dev.brightness_set_blocking = lp8864_brightness_set;
+> +	led->led_dev.brightness_get = lp8864_brightness_get;
+> +
+> +	led->regmap = devm_regmap_init_i2c(client, &lp8864_regmap_config);
+> +	if (IS_ERR(led->regmap))
+> +		return dev_err_probe(&client->dev, PTR_ERR(led->regmap),
+> +				     "Failed to allocate register map\n");
+
+If you want to shorten this 'regmap' is fine.
+
+> +	/* Control brightness by DISPLAY_BRT register */
+> +	ret = regmap_update_bits(led->regmap, LP8864_USER_CONFIG1,
+> +				 LP8864_BRT_MODE_MASK, LP8864_BRT_MODE_REG);
+> +	if (ret) {
+> +		dev_err(&led->client->dev, "Cannot write USER_CONFIG1\n");
+
+Write user friendly messages.
+
+"Failed to set the ..."
+
+> +		return ret;
+> +	}
+> +
+> +	ret = lp8864_fault_check(led);
+> +	if (ret)
+> +		return ret;
+> +
+> +	init_data.fwnode = of_fwnode_handle(child_node);
+> +	init_data.devicename = "lp8864";
+> +	init_data.default_label = ":display_cluster";
+> +
+> +	ret = devm_led_classdev_register_ext(&client->dev, &led->led_dev,
+> +					     &init_data);
+> +	if (ret)
+> +		dev_err(&client->dev, "Failed to register LED device (%pe)\n",
+> +			ERR_PTR(ret));
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct i2c_device_id lp8864_id[] = {
+> +	{ "lp8864" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(i2c, lp8864_id);
+> +
+> +static const struct of_device_id of_lp8864_leds_match[] = {
+> +	{ .compatible = "ti,lp8864" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, of_lp8864_leds_match);
+> +
+> +static struct i2c_driver lp8864_driver = {
+> +	.driver = {
+> +		.name	= "lp8864",
+> +		.of_match_table = of_lp8864_leds_match,
+> +	},
+> +	.probe		= lp8864_probe,
+> +	.id_table	= lp8864_id,
+> +};
+> +module_i2c_driver(lp8864_driver);
+> +
+> +MODULE_DESCRIPTION("Texas Instruments LP8864/LP8866 LED driver");
+> +MODULE_AUTHOR("Alexander Sverdlin <alexander.sverdlin@siemens.com>");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.47.1
+> 
+> 
+
+-- 
+Lee Jones [李琼斯]
 
