@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-130422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CC589EFB31
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 19:37:43 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E7AE9EFB36
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 19:37:59 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB95028973B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 18:37:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7390D1887B30
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 18:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08F08226555;
-	Thu, 12 Dec 2024 18:36:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD05F22A7E9;
+	Thu, 12 Dec 2024 18:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="cAgBQ7jP"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="CmwF6xds"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4409A228380
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 18:36:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FEAA229670
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 18:36:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734028610; cv=none; b=HtX+tPsbjh69SRbO/zSvFeUpDBy8ykNJZbc3w/OHjt8ERsHlS6TfHDpKWf9vx8L1opmmbFipQGArzg0oosyE6D8CPOpwfEomZ/PzS6ep9QC+RC+NJAodGbwvHon37DOwpRzngE6DBDFLvt2c5rE1YG9RbZHVPEpSXCvf+jLEd1g=
+	t=1734028612; cv=none; b=tfkfbbn2evLznN6boIvZ1uwREL+/NP8OBoUkHILtGwaUU5iF1fjuIBUdDWtFGc1fKFNSkLauWSwYf4waLLXf59FrvhumiGDutuQ6ANr+Y0ERUdl4XDN2Hyj1Szg0jnVqdilq/gr1GAQ9sR3XOJ3bThQxzlsLRNRaJixIR3ePM5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734028610; c=relaxed/simple;
-	bh=p0I2HVUBbWRZhBgsdTrryTL6GkY8GKKUGtVy3VSjrfQ=;
+	s=arc-20240116; t=1734028612; c=relaxed/simple;
+	bh=Qqxoymj22X4R98zAPdTR2WxILJdbVSevs8eEpI4zaVU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YUwkMkLEMNn21AffMCDuLuOyzQRl4wT5z0svC5Y3W+GFPE96FxbvKFwOZQBmsBcZd5ESDYH/WLNs+c10RnaumG5pW3cIcPbCTBfK8v7V4BsmyMEVwXZTmSno/UPLEaQBFYJAwJ3tgoBJAW7xuyFlnPwliWFfkXi0AERC/ZheX4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=cAgBQ7jP; arc=none smtp.client-ip=209.85.128.51
+	 In-Reply-To:To:Cc; b=fne38JwNOOxAKBfMrR29EjBDWrWjD+Ll9Wl3Wpy8V+tEKNEEMudU1glaHPnMDIXxIyOSGHb0ti499aQQEAckbDeGTzkIaCe+Xdb88d2FSh9kEcvtT0iHlnobXMT0VccXl6jwyXlubYNXh9hnTqztoAjQ28qDvMTz33xP2gJoewQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=CmwF6xds; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-436249df846so6998325e9.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 10:36:48 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-436202dd7f6so10197255e9.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 10:36:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1734028607; x=1734633407; darn=vger.kernel.org;
+        d=raspberrypi.com; s=google; t=1734028609; x=1734633409; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SDsnxHgs8pPYbt5Sxgc7PD1JuNe9FEImA9X5O9hYyxM=;
-        b=cAgBQ7jPLZW9c/hx2yATjDQqoWuJnK65lVnqng/WuEspcgF2LDmHTLqC/fkUSzsrJn
-         ZGqllXgxGS432jdTbTFPhJr9zEQd5a3tIulgvaL7gkDB0cOC7SKB3H8lBnVpgjWOFSss
-         aruyt9ds2vl/tvk58dd2we8Wrhejc4MuObsKbRQs/y953YFAwHMbiGC7+icX3K5JBd49
-         2fXGol8wnh9YyoGRf8UMaOyHghhdjgfjYeAYv5Ur2BIR6ZJA8ww1BfJ5iKsXWom5E0fq
-         bVVJkT6oM+UltVScpXHge1SjRmJPsIEwnMhQLpMgVuo0n4n2j7RyRJbNvAzAh+phd/7u
-         Z4BQ==
+        bh=ZNTGzlog7Q9IZQyQd4eTU3kXEBDBdmsulQeLjahgS6Q=;
+        b=CmwF6xdsMw0+T6NYcQYsopv4cTrT3SeGlco5yU+thZif3jU4Jy292itbCv2lYiP9rL
+         3u8R2lFpr9t/2dVp9ZScKtBbYx4/f6icj12Qbi3dW9UZP1xwYT5krOiDQ3AeqWhJrC2Z
+         ARXSKtbd//PnDXBmzQLlMw9jPIDR7hiuxRONTSov0gQgRwSacHD9OVHYcMK3t+NWJRgp
+         h00n/vVCHMjR7M601hBATTdkhH1yBbTyKlnPeFRJKDmyE7U50NACr0DpiNELyZ4CdPVK
+         qSESpYWd/tb/ai21wzxDVQJsvM9yRqPFoXiwBPzx16DzQ6R49SijwHs0fduH9AespLkB
+         CtTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734028607; x=1734633407;
+        d=1e100.net; s=20230601; t=1734028609; x=1734633409;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=SDsnxHgs8pPYbt5Sxgc7PD1JuNe9FEImA9X5O9hYyxM=;
-        b=b1YREb8dCNiFbnU0aYgsXVoJnVY4n2GQ/RraZHBtjBAH3clF5QGxS3RGLStqD6BWJy
-         bCzIl9iai8SVftm1WNNJbQQZxrxXkfYY3o6f4S7rXkGKxEMlEHt3yypRI1mk+WTJ3www
-         ErV6Az4VIEKb+lGWNH7yovsLljriweBk2erBxoDGY7PU4LHwxtukniud86co7bWNCCXF
-         8AK3pRh7WNYBu9tx907ZQvemrGakFLUFKYPvH+ALWYKVslIejqxzWnxPqQTZzAH9yAdX
-         i2WR0JRzgG2hliq4brPe4wp9StqlS6DcGsgXpcUuI179N10k2xa08iooAenqyZolAklV
-         /InQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXly/U3XQz5uDfKsEHOozQppapvNjy6UxHYr9atMG+L2XfnauG+6Ccew+CshLXqgWm47lfp7c+hov5I@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx639PIhkaoqJJbmkczdL60esSEr0MCObk2oI+XqNJ9AoSRW2X8
-	wYMn3hYdIfPKIWIxhd6hIdaLKXSADUjmSUwghQPrxL7ldcVDZ94DbUf8vrISaXs=
-X-Gm-Gg: ASbGncskhdYKtzjH+yd+g3ssF7enAvkVMukPTEL4Ir+eI2aAq9ZDuHNXsXioSFnn1lX
-	8PcJy4lqKU0isIIr5/jNMEzlDv6KuYAlFRpcotUm1iInVFKkJkztDTSAELlTuUbcpSvDBJtDvlA
-	SnM2djtY/zVYKWt2T0TttmiUDyaZMujUMdRhoH8HurbjxPD98cuvUAGXCprtuZCnKYOL2z6PO2W
-	4akFphMzn7cYEqGP2l0TQ9EFgZD57m4daP1u6Xp7Mwj5bnd
-X-Google-Smtp-Source: AGHT+IEu2xL/+FXU63UNRhzK1AOzvmFc4RtXIaDc5vdsewo82JD1gWWmf7YI8MTxRmnxwh6YKbXzGQ==
-X-Received: by 2002:a05:600c:19cd:b0:434:a07d:b709 with SMTP id 5b1f17b1804b1-4361c441bcdmr59652015e9.29.1734028607573;
-        Thu, 12 Dec 2024 10:36:47 -0800 (PST)
+        bh=ZNTGzlog7Q9IZQyQd4eTU3kXEBDBdmsulQeLjahgS6Q=;
+        b=NUt95cJbeM0ta7Joj0bvVJUzFmc2DTSFXMHOAP4KQQkC4cyE+NUUTfC0Bnh2a3KzYA
+         bd6rqvC4rnDM6yNJFA25cQtrmrNUXN8NIvXul2DdVQWldrj5284PkLHwsUUbLTSj6HoD
+         YNXtSMl7l4x8c/Eedjrd0twJu/c4Sc6DHn9MG/Y+N7dF41npSYSJOjvQcc+D+ZbN4uPL
+         iapKsDt4E0BRrUVWM1Shq4aJhrGkqQDHqkK0oPGmmeU0vdOV88hwXGElpvt2EmRmmIhW
+         WL4rcOwK7vYeE5P2LlEgWLWukBieVJQdkWr8CgeZko3q3D3gqpGmKR71w5ADxdONOZOp
+         zCLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXWhY2dAq8XuWB9tigGQnAqXsEUAIFjfWojEcM2ySCRJEr6LIoszXS06PuWiTd4a11LKu52gi8yXi2i@vger.kernel.org
+X-Gm-Message-State: AOJu0YylcbulK6cCJbs5kPNKWwfbxy1uXR7faCLpuo+ID9bjkuzJGqg4
+	Oi+zkSkjXdqpRMwiMXru0V46Cg/htKc4sD9I1OpOM1LIVLxi3f4kZAgx79IWbBE=
+X-Gm-Gg: ASbGncvuyIPR45HoQumRZUSMKSZZll1m85V1IjrHDpc2EQmQZSG8T8vph1HvJjhdbsh
+	Vkys4igIRt21BTZhrt0y+yOmXqV9KZ/r4g+9VUuxNkdTDWF62Kg0CT2Otzu4Pz6iq46GeRk2qQh
+	0WYL5nCjL1xCLwj59b8CCuU4nbJ1aUibhV7TukdF6stBuY2/1pCvHZofM5SY4weEMjFyJ0oG77B
+	aj7aatpDGQ3sFgYaCR6KVbf5wE7/uoS8Ha7kvrILvWJM1O2
+X-Google-Smtp-Source: AGHT+IHxOChpNRcv2gtV3EutMkkx5eEcKsuaWzHm1MNie1E2mh6dZNeg/6vYwQX7jygVWMDmg6R6rw==
+X-Received: by 2002:a05:600c:4e49:b0:434:edcf:7474 with SMTP id 5b1f17b1804b1-43622883cd8mr39952895e9.33.1734028609546;
+        Thu, 12 Dec 2024 10:36:49 -0800 (PST)
 Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436257178e3sm24651995e9.41.2024.12.12.10.36.46
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436257178e3sm24651995e9.41.2024.12.12.10.36.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Dec 2024 10:36:47 -0800 (PST)
+        Thu, 12 Dec 2024 10:36:48 -0800 (PST)
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Thu, 12 Dec 2024 18:36:33 +0000
-Subject: [PATCH v3 6/7] arm64: dts: broadcom: Correct hdmi device node
- names
+Date: Thu, 12 Dec 2024 18:36:34 +0000
+Subject: [PATCH v3 7/7] arm64: dts: broadcom: Remove intc controller on
+ BCM2712.
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241212-dt-bcm2712-fixes-v3-6-44a7f3390331@raspberrypi.com>
+Message-Id: <20241212-dt-bcm2712-fixes-v3-7-44a7f3390331@raspberrypi.com>
 References: <20241212-dt-bcm2712-fixes-v3-0-44a7f3390331@raspberrypi.com>
 In-Reply-To: <20241212-dt-bcm2712-fixes-v3-0-44a7f3390331@raspberrypi.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -106,37 +106,34 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-gpio@vger.kernel.org, Dave Stevenson <dave.stevenson@raspberrypi.com>
 X-Mailer: b4 0.14.1
 
-The names of the hdmi0 and hdmi1 nodes had addresses that
-didn't match the reg properties for the nodes.
+The brcm,bcm2836-l1-intc controller isn't used on this platform.
+It is used on 32-bit kernels for the smp_boot_secondary hook, but
+BCM2712 can't run a 32-bit kernel.
 
-Fixes: f66b382affd8 ("arm64: dts: broadcom: Add display pipeline support to BCM2712")
+Remove the node.
+
+Fixes: e1417095a139 ("arm64: dts: broadcom: Add firmware clocks and power nodes to Pi5 DT")
 Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 ---
- arch/arm64/boot/dts/broadcom/bcm2712.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/broadcom/bcm2712.dtsi | 5 -----
+ 1 file changed, 5 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-index bd78af0211b6..f42fad2d8b37 100644
+index f42fad2d8b37..9a426aa27c74 100644
 --- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
 +++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-@@ -352,7 +352,7 @@ main_irq: interrupt-controller@7d508400 {
- 			#interrupt-cells = <1>;
+@@ -221,11 +221,6 @@ mailbox: mailbox@7c013880 {
+ 			#mbox-cells = <0>;
  		};
  
--		hdmi0: hdmi@7ef00700 {
-+		hdmi0: hdmi@7c701400 {
- 			compatible = "brcm,bcm2712-hdmi0";
- 			reg = <0x7c701400 0x300>,
- 			      <0x7c701000 0x200>,
-@@ -381,7 +381,7 @@ hdmi0: hdmi@7ef00700 {
- 			ddc = <&ddc0>;
- 		};
- 
--		hdmi1: hdmi@7ef05700 {
-+		hdmi1: hdmi@7c706400 {
- 			compatible = "brcm,bcm2712-hdmi1";
- 			reg = <0x7c706400 0x300>,
- 			      <0x7c706000 0x200>,
+-		local_intc: interrupt-controller@7cd00000 {
+-			compatible = "brcm,bcm2836-l1-intc";
+-			reg = <0x7cd00000 0x100>;
+-		};
+-
+ 		uart10: serial@7d001000 {
+ 			compatible = "arm,pl011", "arm,primecell";
+ 			reg = <0x7d001000 0x200>;
 
 -- 
 2.34.1
