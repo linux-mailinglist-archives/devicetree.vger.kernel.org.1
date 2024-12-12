@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-130103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 001AB9EE019
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:16:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D69D9EE025
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:20:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 770F1162C52
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 07:16:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08DB4162FC1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 07:20:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E1E1259485;
-	Thu, 12 Dec 2024 07:16:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F078209F33;
+	Thu, 12 Dec 2024 07:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L17uqeCn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JY66ghJ7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27DCC259481;
-	Thu, 12 Dec 2024 07:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3C9259485;
+	Thu, 12 Dec 2024 07:20:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733987795; cv=none; b=DB6QaQ/FppntPcWQEbNNmZCWvpORfTNGKyWPvrbrgKBs8egyLaNRhWrT23Vo7zTTMgvL1TLrvhe2dtrsNUF377xjduNIg11lA88f45MGD88jvkIqJyjC+f0JrX0YdOABlQV6VM+JlNDDgn5SPliPQ+s5NTQ2KX9S6ToDWk09A/g=
+	t=1733988011; cv=none; b=K7Ps61RxdB27G0tIYVeJ9sNfw2ctMBcn+9gG7bgP8AlvYcFT1ZEaHbwh6NC+kCxU3xsedjM8pdCwGK3q+v1hjEBcAXSoLBU0JhTyz9rJQ30+3kBFc8D06sc2o6ehNmP2d0XNs8+A5DnVmCLQFv93sPSFWyYOr1oSdZusyfdurRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733987795; c=relaxed/simple;
-	bh=UqElnz4uGe42lv9Y3Bp2dv+DQRNjaTIKlj+yzpAL/D8=;
+	s=arc-20240116; t=1733988011; c=relaxed/simple;
+	bh=6Ri8IP/B/7EsHxKZjeJyUIP+NcIoxWnyAQZWysjxBVU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QrDZK2dmGiDu1QJ/IDKcpb7xRAxalVKM8ZFEupTJ9MH5qaoHZDNVQe8ftu4p6SAMNLIA7AW0yiNZCAUQ5EZr9Bc/Z0cH4a+91lSKiLwqSq85aiW8HCW0I24tp9kmqDbACLQ9K1/tPIOpKdiqXdAgcD7h1ep3pMEqH2W+nh65k/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L17uqeCn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD781C4CECE;
-	Thu, 12 Dec 2024 07:16:29 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IRXEiBr1IbN5nFPZnlk90zQ2fLqbFDfjMdt5jJF9DdQKP+syqiGLKierNE0EvxCRyE073+B17R27maX0fxhjFjPogChcF7eDWAiBwe+b2z/8MCu0M45/pF+ltiSAa4ehSiaofz7b87GK+jcb563Ghs3OOPTYKIllJ7UACNm2WYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JY66ghJ7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B31CAC4CECE;
+	Thu, 12 Dec 2024 07:20:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733987794;
-	bh=UqElnz4uGe42lv9Y3Bp2dv+DQRNjaTIKlj+yzpAL/D8=;
+	s=k20201202; t=1733988010;
+	bh=6Ri8IP/B/7EsHxKZjeJyUIP+NcIoxWnyAQZWysjxBVU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=L17uqeCnxXYViMuE6E/i1jKmjOJem5LAK2OlImKGJthJfc1nhT6sze9YR6Ck2BETO
-	 W0I5U6Xfr5HTGbEQ+/kyjq8IJDgS9Jxi+geZpUzUBTLmw7s3OjKRoYxGQKey2zS6Fm
-	 QDkj519aYhYY9CwZeiiZYr0M6gfuScf2P8MdfDcmSoCXFHiOlcKoLnNdQaemj+8lwK
-	 1piWOmx05rf28WX3LghmgrGG93oNfdNiqHHH0EI/bLXIMUfzC29ULzWhcMUxPmCUap
-	 avnMZgNr7DiiEvOuFSEG1YyKYZI82Eq700zyFPJEMZzki3t6+AvW1WAhyI3Of78hlG
-	 WzPKeVs4fzckA==
-Message-ID: <ecb8535a-d421-4774-88d3-e904bb08a0e4@kernel.org>
-Date: Thu, 12 Dec 2024 08:16:26 +0100
+	b=JY66ghJ74hd/i2e7ZI/W3+6ojvRb8zUSchDan/ecwDjIjGYQCmUgf5K1kiLzvguZ0
+	 gfZ5NuxEbDOQrj3S85YQQbNoU778IWoEHuNNhex3tWRlgJfXdVOo9f/4629VWfsAlC
+	 ap9m8pcPvg1wUBVKSiJycPqbhCf5TzLd3Y1heYxSgFKuoM4TT2wDxNpWQy2IuaNQbp
+	 RTYekfoADtEIpDtZ5Oy+egjPIM8ex9UWTWNo9tkIxM3rLxBzQX2GmocTFy8sb4Kntf
+	 6EHqdk6AYXz2FwD7CJO4noDSO2DyY58M8jZyotcI+fNcXmrZYccgvSLEV247unSW5K
+	 Q+Z/y4JxIQ4Dg==
+Message-ID: <8cf7e03a-7994-4dd5-b496-e00b4827ee22@kernel.org>
+Date: Thu, 12 Dec 2024 08:20:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: net: bluetooth: qca: Expand
- firmware-name property
-To: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
- Rocky Liao <quic_rjliao@quicinc.com>, linux-bluetooth@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, quic_jiaymao@quicinc.com,
- quic_shuaz@quicinc.com, quic_zijuhu@quicinc.com, quic_mohamull@quicinc.com
-References: <20241210151636.2474809-1-quic_chejiang@quicinc.com>
- <20241210151636.2474809-2-quic_chejiang@quicinc.com>
- <vbwg7djb4me6i4ow2q74ltqjxvkxeulhzyq4n6ak7aifhtf36f@x66pjje2iu6u>
- <62afbaea-67b1-4572-9e78-d1dbe5fae20a@quicinc.com>
- <f818f089-0490-42da-9aee-1a7006c11978@kernel.org>
- <65fd0932-4519-44ac-ba9d-55ee97b43233@quicinc.com>
+Subject: Re: [PATCH v2 2/8] dt-bindings: mailbox: mediatek: Add MT8196 support
+ for gce-mailbox
+To: =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
+ "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "mchehab@kernel.org"
+ <mchehab@kernel.org>, =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?=
+ <Nancy.Lin@mediatek.com>, =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?=
+ <Moudy.Ho@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "robh@kernel.org" <robh@kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ =?UTF-8?B?WGF2aWVyIENoYW5nICjlvLXnjbvmlocp?= <Xavier.Chang@mediatek.com>,
+ "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+References: <20241211032256.28494-1-jason-jh.lin@mediatek.com>
+ <20241211032256.28494-3-jason-jh.lin@mediatek.com>
+ <yhfxpflyumevs66sdwgiiyuablpfxfxw3e7ybrxju7ssicmnu5@truuiuvxlq6e>
+ <64326843358d450c9172f3dea1c85e7422e20430.camel@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,43 +124,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <65fd0932-4519-44ac-ba9d-55ee97b43233@quicinc.com>
+In-Reply-To: <64326843358d450c9172f3dea1c85e7422e20430.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/12/2024 11:16, Cheng Jiang (IOE) wrote:
+On 12/12/2024 04:41, Jason-JH Lin (林睿祥) wrote:
 > Hi Krzysztof,
 > 
-> On 12/11/2024 5:48 PM, Krzysztof Kozlowski wrote:
->> On 11/12/2024 10:39, Cheng Jiang (IOE) wrote:
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
->>>>> index 7bb68311c..2782d2325 100644
->>>>> --- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
->>>>> +++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
->>>>> @@ -101,7 +101,10 @@ properties:
->>>>>    max-speed: true
->>>>>  
->>>>>    firmware-name:
->>>>> -    description: specify the name of nvm firmware to load
->>>>> +    description:
->>>>> +      If one item is present, specify the name of the NVM firmware to load.
->>>>> +      If two items are present, the first item specifies the name of the NVM,
->>>>> +      and the second specifies the name of the rampatch firmware to load.
->>>>
->>>> Don't repeat constraints in free form text. Use proper constraints so
->>>> you can validate your DTS. And then actually do validate your DTS...
->>>>
->>> It seems unnecessary to add this description, so I will drop this change. Is that okay?
+> Thanks for the reviews.
+> 
+> On Wed, 2024-12-11 at 10:39 +0100, Krzysztof Kozlowski wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
 >>
->> You need to list the items and describe them. See how all other bindings
->> do it.
 >>
-> The firmware names are not fixed strings; they vary depending on the chip, board, or platform.
-
-Instead of replying immediately and pushing this back again on us, read
-other bindings. There are nowhere "fixed strings".
-
+>> On Wed, Dec 11, 2024 at 11:22:50AM +0800, Jason-JH.Lin wrote:
+>>> Add compatible name and iommus property for MT8196.
+>>>
+>>> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+>>> ---
+>>>  .../devicetree/bindings/mailbox/mediatek,gce-mailbox.yaml     | 4
+>>> ++++
+>>>  1 file changed, 4 insertions(+)
+>>
+>> Headers are never separate from the bindings patch...
+> 
+> Do you mean I need to merge [PATCH 1/8] and [PATCH 2/8] into 1 patch?
+I asked this last time.
 
 Best regards,
 Krzysztof
