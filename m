@@ -1,61 +1,80 @@
-Return-Path: <devicetree+bounces-130273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D70029EE71A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 13:51:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 659659EE766
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 14:08:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1B99166174
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 12:51:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12788165EFA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 13:08:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919342116EC;
-	Thu, 12 Dec 2024 12:51:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEB492144A2;
+	Thu, 12 Dec 2024 13:08:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gKE5esdb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kM3M//hA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 673BB1714D7;
-	Thu, 12 Dec 2024 12:51:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CF4F2135B8
+	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 13:08:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734007905; cv=none; b=B36eNqSQdlbLC273WRBFKVLMnqHmBQKCxx+w7aRQPJHizjB6am3qPpFJ9yeNaNbY+X1BoNgXGizzfYdT9Tpy73ze1jkey4+mPSfLAnPfQUmLJkeD7rUY06aHN/eLAhpNQ/0fDKWKP9upIx/2GNZOhw7o7UflhYaFxBFFqLatx3k=
+	t=1734008928; cv=none; b=YluPH1dP5sQRIKQwFdjtbDUmGUQqnAqo2EZhajY4NxVItzDOsaS4EvGyvXYS51O8QcmfMgLQU77Jw6TsARltNQfnsMFwWS+4JZntiArXpD/xE4Qk7VCA/LNWlQRlaOPD7GkP7N2ppZqk73eWzOy5rCdVmHW1JBVkfZFaVk7xd1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734007905; c=relaxed/simple;
-	bh=oGXtoPx45D5829J+m52KpKDc1mjPcUrynCRTW7p6Glc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=UklmdzdS4quw7gLX+4S5wFBnp9qQVRFV6snqhwzYNgwO30MGyDHgTYyUx7EEEuVRk4/e70SUoPIGXG4jPV6Wi4jl5DqIDkS1g4MVHuW713lFjQITwx0IVIr4VlTt3c8+cf6KAp2ZpIRbVzHEV/8drH+pTfGXK6DBGH0FIqVbaKk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gKE5esdb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9352C4CECE;
-	Thu, 12 Dec 2024 12:51:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734007904;
-	bh=oGXtoPx45D5829J+m52KpKDc1mjPcUrynCRTW7p6Glc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=gKE5esdb+JZid2Zing04LqmZtMK4qXG6ucEdMtgrWLIFylmyLOdwvKyWvrd+pMU62
-	 NNwzBzi2oD6X3zTbxqb72WqV3SXdjq5DDgl3YkVG5v6QyIpBXTQp3UcCnH9RxE5sT3
-	 Rt691hmrFz3oKTXzexw21eN76rPy/qboMqzHOa8GyK5hImrOOA2pMFTyyD+lL4b1ya
-	 L9wylYUB+rsepevcpuAHCEguRmlkRQ1kKq+wiWcSYR/8K5zcr1wM3tD/MuzhYnk6MY
-	 K0hbAAQw3ukHfGij9cNUX4dZSfYxZzf7G7JcO9Y6cI9zr2mTmy6Zj3v1Cij8Fvy/f9
-	 eTNMljcBbFt1w==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20241211052427.4178367-1-wenst@chromium.org>
-References: <20241211052427.4178367-1-wenst@chromium.org>
-Subject: Re: (subset) [PATCH 0/8] arm64: dts: mediatek: Drop
- regulator-compatible property
-Message-Id: <173400790262.46374.4565987048605318462.b4-ty@kernel.org>
-Date: Thu, 12 Dec 2024 12:51:42 +0000
+	s=arc-20240116; t=1734008928; c=relaxed/simple;
+	bh=UFD28TkJljZHWIG/COEi/QEH0/KPejNH2q0f4aHxkrs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BrBKOd5eWNoPQwqw8Azt6IeRzGQ/4GVOZJ1v/MwYnDScmKoHoP8c8XnGiqS0eQtZxu7/kRH5NK0jbzRJH8Z4jSViC395DLXZ7aX4HnaTQ2M0eyFSrEsYjuNRrZBm4hbxW733Gqikll3sNGrB6SOCiwgHIuO7oj6mtNzYS48ZqVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kM3M//hA; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aa6a618981eso89480566b.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 05:08:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734008924; x=1734613724; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MSth3/irkWCqbGYvPdAI4UFQ10GoXyRIpHT4W2xQ1t8=;
+        b=kM3M//hAZlm2x44xX8xrpQ+oJ55csQ/ML6ZrH4Gaph9xYBLgKRUH1Tv5PGnotU5tSZ
+         bmTPu+mPwo8GId6PoVD5LQXE8B9oZxzFvshwpawfWNLOlzBk4A2x0T2QZ3EMhpfgk0FN
+         jV3PpsW+HuXcGX1gvsctpJb7v9YLIbyCJrGMty2TQJEa5lWwohtPt27AGH2azq/rR3wW
+         46+SI4dG+ehsP20oWIhFU5hR9QG5mBi9BNl6532VtfM5nyy/BVi7wdPobKwd56ydbTV9
+         bAtOXy5dPB3i8xp9nwAoiy87FtnzyOa+6kt+Wz+sXDyHKg0/oSJxDO9+yhAw5zf5NK7+
+         JSbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734008924; x=1734613724;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MSth3/irkWCqbGYvPdAI4UFQ10GoXyRIpHT4W2xQ1t8=;
+        b=Mj+Av/3We+z7Bnfi3AvOdNGTqtmas81S/qoZCKNGAf5vbH7YsN4H+t9emlJHpQKGpd
+         xNgW0dejNH0VFK4pgi+CwntjMZ+60YA4xKo8dSFhyOFlY9oh5XpLFrk+2zMxmgI15tvd
+         Nq3/qtTvBGPmMpruBZliBzSPlaukZ2pL/BnhOiB1Kyc9CC1tD+FFOp8b+egzBhSMX6vs
+         1iNb5eOugcVOk+7hum9DbXUttY1UV+OvXbCGzV9QDl9fM39SHOWfH1lyQP9WwUQJw+fw
+         wikLqnOiFr+rcJscYpzmDO8pUNE8IRZRcKJJ1b1DiVCZ/pPnmEDRQL9M/rHMD0I8Rb+m
+         7Hlg==
+X-Forwarded-Encrypted: i=1; AJvYcCXy/I72AXrHnhHzk2pwUI2yMFLiR+YH2ewjfBucidj3Vk+aZrturexeE1FhI1X21VufziVf2qqZJ8xT@vger.kernel.org
+X-Gm-Message-State: AOJu0YynbYXyZFuo5eyO2yDolQCZI6Rq90rFWbkbGNUTGl4YVytoGj60
+	QAPEO3/uxvdB2SSlSximrDUt/vbHKKtnikEwtRJTJ1IXoGbd4lh8LAsQ30fhgdxYt4/EpMI3fpl
+	FS5E=
+X-Gm-Gg: ASbGnctdbY693A30VHjB6PGEV/zEGsGBOZ3l1FavlKsr7lmWsq3pdrWjg4+6Vtns9m9
+	aLPlwWX5ejJMsI8iYzxAgGmfg0SEwhNFxtKsoCSp1UIft+GR9KYObNZL+M7Ig/1hg+T/Ar9ZJH4
+	2Ablah3s6Goo+iigLCNqgb+6NhFsSvOIldJIbX/tNIwxFy/sSvgoDme6GD6FPbcnPXLixku+2ET
+	LmP858EEq1o0lZ5PuPM9vZfGFZhCADAQwjDhTs8jh3ncSdXLqiN+aVmYF2nrvq6nOO2CQ==
+X-Google-Smtp-Source: AGHT+IH5HnspAa4JrCnVw3hwDOXAnn4yvcS0nZlULcM6v3q4z8daLlH1OPoEy+LFJrd9QTFOsOaImg==
+X-Received: by 2002:a17:907:3a57:b0:aa6:6331:936c with SMTP id a640c23a62f3a-aa6b13f8d18mr561440466b.59.1734008924498;
+        Thu, 12 Dec 2024 05:08:44 -0800 (PST)
+Received: from [127.0.0.2] ([2a02:2454:ff21:ef40:3c0e:7a2d:e7e3:9cf8])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6845ab4absm605843366b.73.2024.12.12.05.08.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Dec 2024 05:08:44 -0800 (PST)
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+Subject: [PATCH 0/3] Add FSUSB42 USB switch and external DP for Qualcomm
+ X1E80100 QCP
+Date: Thu, 12 Dec 2024 14:08:22 +0100
+Message-Id: <20241212-x1e80100-qcp-dp-v1-0-37cb362a0dfe@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,46 +83,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-9b746
+X-B4-Tracking: v=1; b=H4sIAEbgWmcC/x2MQQqAIBAAvyJ7TnAlQ/pKdChday9mCiFIf0+Cu
+ cxhpkGhzFRgFg0yPVz4il1wEODOLR4k2XcHrfSIGlFWJKtQKXm7JH3HGY1k7OT2AL1KmQLX/7i
+ s7/sBgh0rN2EAAAA=
+X-Change-ID: 20241211-x1e80100-qcp-dp-dc521e586cbf
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
+ Johan Hovold <johan@kernel.org>
+X-Mailer: b4 0.14.2
 
-On Wed, 11 Dec 2024 13:24:18 +0800, Chen-Yu Tsai wrote:
-> This series drops usage of the long deprecated "regulator-compatible"
-> property from MediaTek device tree files. The property was introduced
-> in 2012, and then subsequently deprecated after two months. It was
-> never carried over during the binding YAML conversion.
-> 
-> Drop the property from the MT6315 regulator binding, and all MediaTek
-> device tree files. IMO it should never have been used to begin with.
-> This also gets rid of any validation errors [1] related to them.
-> 
-> [...]
+The Qualcomm X1E80100 QCP has FSUSB42 USB switches on each of the USB-C
+ports that handle orientation switching for the SBU lines. This is needed
+to enable DisplayPort support for external displays.
 
-Applied to
+Add the onnn,fsusb42 compatible to the existing gpio-sbu-mux binding and
+then describe all the necessary components in the x1e80100-qcp device tree
+to make external DP work correctly.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
+---
+Stephan Gerhold (3):
+      dt-bindings: usb: gpio-sbu-mux: Add an entry for FSUSB42
+      arm64: dts: qcom: x1e80100-qcp: Add FSUSB42 USB switches
+      arm64: dts: qcom: x1e80100-qcp: Enable external DP support
 
-Thanks!
+ .../devicetree/bindings/usb/gpio-sbu-mux.yaml      |   1 +
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts          | 178 +++++++++++++++++++++
+ 2 files changed, 179 insertions(+)
+---
+base-commit: 3e42dc9229c5950e84b1ed705f94ed75ed208228
+change-id: 20241211-x1e80100-qcp-dp-dc521e586cbf
 
-[1/8] regulator: dt-bindings: mt6315: Drop regulator-compatible property
-      commit: 08242719a8af603db54a2a79234a8fe600680105
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+-- 
+Stephan Gerhold <stephan.gerhold@linaro.org>
 
 
