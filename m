@@ -1,132 +1,129 @@
-Return-Path: <devicetree+bounces-130143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CB719EE17B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 09:41:30 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CE63165AEC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:41:25 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8CA20C479;
-	Thu, 12 Dec 2024 08:41:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="wdV6OOZQ"
-X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D38779EE1A6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 09:44:22 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B166259496;
-	Thu, 12 Dec 2024 08:41:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59A52283371
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:44:20 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4467820E00E;
+	Thu, 12 Dec 2024 08:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UY+lLJN8"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B8A120DD77;
+	Thu, 12 Dec 2024 08:44:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733992884; cv=none; b=H0iyrwi1Kw8otuWPrnzfm96imiASw6OPO93BdrYDP/W56YYIesSeHQCXDNj+wonjSP0pwauClAvPRzKc+p8aJPYseuNdcPSMNLyqukH3OetfYvGdIRB3TU02dLvOskzcdK3rddCuJSYPh94kfO9WLFk2x4t/bo282rsugJ1v9RE=
+	t=1733993057; cv=none; b=kR0iiY8t6pJEvHslwkRKjrd8IQEm4/uNdnsxrI8JxZ4KzkOantmvh09HmYwfFYS+fxiOpGL+4DAMuvUrdEbB2MJZaYbVK+Ekd0WJdy8KUsfvnyc4rakHgC61X8MuCLktOFrGo86pD36wty5BEWGlzFHshNz32BS9KP7tIFRNVvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733992884; c=relaxed/simple;
-	bh=1IvYEZ0rjs9KMpfuLglLhjeENQ/twygsYDNbWfg7+bU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B6oi4GoVA+gyr7M5VL1imIIVueK9gqVlSg48pG1ppAZyknKXZBJVe0tCqdCHtkLRn9VMjtA0I2LLekFURpJGuO0KtPJYWX5sreAmfNdQwr3m7nKgoX7UwI5pojycoM97H6pQyyMPlDq2IFHHsZtPQ8Pqglv/mi4zjgXvTkktJz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=wdV6OOZQ; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from ideasonboard.com (unknown [IPv6:2001:b07:6462:5de2:459e:1ee6:26ea:2d31])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A35FB316;
-	Thu, 12 Dec 2024 09:40:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1733992846;
-	bh=1IvYEZ0rjs9KMpfuLglLhjeENQ/twygsYDNbWfg7+bU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=wdV6OOZQGor1fhNe6Twa/rvQ/Ka2Kvatl33g5DIKFds2+vkrY7Wg+pWiVy9t4xyzx
-	 AWKeczEhoTU9bxiTBFWi+9x1iU+n9101WuMXAmpFAy68UFCNNmlXK4VYwxUkQcKTDy
-	 k2AP/E35aURQTpNQfElqc38Aw2zSCjV+8lDR8zPo=
-Date: Thu, 12 Dec 2024 09:41:16 +0100
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-To: keke.li@amlogic.com, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kieran.bingham@ideasonboard.com, 
-	laurent.pinchart@ideasonboard.com, dan.scally@ideasonboard.com
-Subject: Re: [PATCH v4 02/10] media: platform: Add c3 mipi csi2 driver
-Message-ID: <5sen6lv5xg4hjdc4j2l6k5iywqpllbutoaebyln74aeuplawtu@nmpmzgwkkgih>
-References: <20241205-c3isp-v4-0-cb1868be0105@amlogic.com>
- <20241205-c3isp-v4-2-cb1868be0105@amlogic.com>
+	s=arc-20240116; t=1733993057; c=relaxed/simple;
+	bh=BsCgYFZcnDgVtF99wPIkB0aPEfMbStFx+F00Xk/qQfg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EWcMQue95Y8QmARuUppZ1Smm5Ukj6T9Z+bJqV27WN/gd6EEDf5N+AdIOG0gLzBOkKiFZ3ONowESz/FuVqMsPuusALHCHnRCfn+rQzxdXLgKznGMnDXBshj3LNYxTJjqFmofujIy3oGNQIgbWN7ubdPA/cxaFkKz4Cf7BUV8V9b4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UY+lLJN8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BADD3C4CED1;
+	Thu, 12 Dec 2024 08:44:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733993056;
+	bh=BsCgYFZcnDgVtF99wPIkB0aPEfMbStFx+F00Xk/qQfg=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=UY+lLJN8wjdd28yefr6xtu7mrW1prG6HvqLDD5jVqU4X+SZW3luhIKOSpIh7nE1P6
+	 VBGe2lYUJZC3zHpR+eOGBx9kIcRtXZxqQtMQxwvwkJ3LKy1/DSCYnID+wzJUGz4rl8
+	 5ES9Ki0L4ZW3+orfdcWrlTctcI3SLGt5X89qxANAE52M/Laab7bDoywMGP9on7M1po
+	 X7xQ1baIpMYkQUbRAOuxRI1yAkTtPWFjXe3rsRSX5O1wu58MXEGttCnaWHbE4A9wu7
+	 E369NtGVMe/TGAY3VtuaBWdAjKbfGs+iwQqf5dCnLoP8l8u1F7nTjUmUSArIszWiG0
+	 nlCQ6ZxN28lYQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A874EE7717F;
+	Thu, 12 Dec 2024 08:44:16 +0000 (UTC)
+From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
+Subject: [PATCH net-next v3 0/2] net: phy: dp83822: Add support for GPIO2
+ clock output
+Date: Thu, 12 Dec 2024 09:44:05 +0100
+Message-Id: <20241212-dp83822-gpio2-clk-out-v3-0-e4af23490f44@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241205-c3isp-v4-2-cb1868be0105@amlogic.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFWiWmcC/3XN0Q6CIBgF4FdxXPc3ASXtqvdoXSD8KKvEgTGb8
+ 91jrIvW5uXZ2fnOSgJ6i4Gci5V4jDZYN6bADwVRgxx7BKtTJqxkFWWlAD01vGEM+sk6BupxB/e
+ aQelWGcGRn7QhaTt5NHbJ7pWMOMOIy0xuqRlsmJ1/58NIc/+12x07UijBaK4aaerWmPrysNgN6
+ P1RuWdGI/uBKN2DWIIErWRdGSGV7P6gbds+04fsRBABAAA=
+X-Change-ID: 20241206-dp83822-gpio2-clk-out-cd9cf63e37df
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
+ Dimitri Fedrau <dima.fedrau@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733993055; l=1627;
+ i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
+ bh=BsCgYFZcnDgVtF99wPIkB0aPEfMbStFx+F00Xk/qQfg=;
+ b=arNm8HpkQ/hNROhZaSL+MMtw3sgiZkb8Qqo0ATyNiD2tTdFWk+9DFb2cOnueh7L75oYQ+pWx4
+ tyQZYnbO/b5B5xUD1aEn9N27qvWhFxGoOo32jX6r1QBw4n0oGsINntf
+X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
+ pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
+X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
+ with auth_id=290
+X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Reply-To: dimitri.fedrau@liebherr.com
 
-Hi Keke,
-  a question for Laurent and Sakari
+The DP83822 has several clock configuration options for pins GPIO1, GPIO2
+and GPIO3. Clock options include:
+  - MAC IF clock
+  - XI clock
+  - Free-Running clock
+  - Recovered clock
+This patch adds support for GPIO2, the support for GPIO1 and GPIO3 can be
+easily added if needed. Code and device tree bindings are derived from
+dp83867 which has a similar feature.
 
-On Thu, Dec 05, 2024 at 05:04:28PM +0800, Keke Li via B4 Relay wrote:
-> From: Keke Li <keke.li@amlogic.com>
->
-> This driver is used to receive mipi data from image sensor.
->
-> Reviewed-by: Daniel Scally <dan.scally@ideasonboard.com>
-> Signed-off-by: Keke Li <keke.li@amlogic.com>
+Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+---
+Changes in v3:
+- Dropped <dt-bindings/net/ti-dp83822.h>
+- Moved defines from <dt-bindings/net/ti-dp83822.h> to dp83822.c
+- Switched to enum of type string for property ti,gpio2-clk-out and added
+  explanation for values, added example.
+- Link to v2: https://lore.kernel.org/r/20241211-dp83822-gpio2-clk-out-v2-0-614a54f6acab@liebherr.com
 
-[snip]
+Changes in v2:
+- Move MII_DP83822_IOCTRL2 before MII_DP83822_GENCFG
+- List case statements together, and have one break at the end.
+- Move dp83822->set_gpio2_clk_out = true at the end of the validation
+- Link to v1: https://lore.kernel.org/r/20241209-dp83822-gpio2-clk-out-v1-0-fd3c8af59ff5@liebherr.com
 
-> +
-> +static int c3_mipi_csi_configure_clocks(struct csi_device *csi)
-> +{
-> +	const struct csi_info *info = csi->info;
-> +	int ret;
-> +	u32 i;
-> +
-> +	for (i = 0; i < info->clock_num; i++)
-> +		csi->clks[i].id = info->clocks[i];
-> +
-> +	ret = devm_clk_bulk_get(csi->dev, info->clock_num, csi->clks);
-> +	if (ret)
-> +		return ret;
-> +
-> +	for (i = 0; i < info->clock_num; i++) {
-> +		if (!info->clock_rates[i])
-> +			continue;
-> +		ret = clk_set_rate(csi->clks[i].clk, info->clock_rates[i]);
-> +		if (ret) {
-> +			dev_err(csi->dev, "Failed to set %s rate %u\n", info->clocks[i],
-> +				info->clock_rates[i]);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
+---
+Dimitri Fedrau (2):
+      dt-bindings: net: dp83822: Add support for GPIO2 clock output
+      net: phy: dp83822: Add support for GPIO2 clock output
 
-[snip]
+ .../devicetree/bindings/net/ti,dp83822.yaml        | 27 ++++++++++++
+ drivers/net/phy/dp83822.c                          | 48 ++++++++++++++++++++++
+ 2 files changed, 75 insertions(+)
+---
+base-commit: 65fb414c93f486cef5408951350f20552113abd0
+change-id: 20241206-dp83822-gpio2-clk-out-cd9cf63e37df
 
-> +
-> +static const struct csi_info c3_mipi_csi_info = {
-> +	.clocks = {"vapb", "phy0"},
-> +	.clock_rates = {0, 200000000},
-> +	.clock_num = 2
-> +};
-> +
-> +static const struct of_device_id c3_mipi_csi_of_match[] = {
-> +	{ .compatible = "amlogic,c3-mipi-csi2",
-> +	  .data = &c3_mipi_csi_info,
-> +	},
-> +	{ },
-> +};
+Best regards,
+-- 
+Dimitri Fedrau <dimitri.fedrau@liebherr.com>
 
-All the drivers in this patch series implement the same pattern when
-it comes to handling clock. There's a list of clock providers in the
-driver associated with a clock frequency. The driver bulk_get the
-clocks and set_rate() using the per-compatible info table.
 
-Do you think this should rather come from dts using the
-assigned-clocks and assigned-clock-rates properties ?
 
