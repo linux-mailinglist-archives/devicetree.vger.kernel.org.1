@@ -1,157 +1,124 @@
-Return-Path: <devicetree+bounces-130197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C17079EE3EA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 11:16:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EEE09EE3F4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 11:19:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E600E1615B6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 10:16:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A3571888DFF
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 10:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB1620E02C;
-	Thu, 12 Dec 2024 10:16:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JK/i3slw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C18C20FA85;
+	Thu, 12 Dec 2024 10:19:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1971545027;
-	Thu, 12 Dec 2024 10:16:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08EFD20E02C;
+	Thu, 12 Dec 2024 10:19:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733998587; cv=none; b=SlAZZaodYK62hqHk7eSkRtloCVik/yDf4wsO5iFuI7jHjLpiuEa2B5DexEp6WFT8/zw7+5TkQs1Qm4e5KF6ySCb69ZiuivX7G64kf24Oxxbl+d3gUOcDMDNThu6RUylSv67hAWYGirr3XlvsR9XPpCCV0gtks6CDd3At0E6nD5Y=
+	t=1733998753; cv=none; b=josOilj5MbC4I7aYQ/7tXrQ09yVsmutebR7E32pU94egNeS+X5nhrF6f18NLhk6wBCvhfn0mW72cdG0dmg2FACYtGCVUa+DcRpxQ3uZVhkKqIxUlADqDzdgmd5YiKSMw9+C8NDXVhu7g/0clsrTto/Z24+NwJkhTNi2LGT6wypM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733998587; c=relaxed/simple;
-	bh=qo3Rv5arEF3Bj2lIGlIG/vss34EB5qy39uBtzPHP6Js=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bfqfLDGRf1cUJmGcWpi6Puut/6REUbpcUpcCXHbCm5dEcV6zqEUPu1TGrqS3Eh9q5kSVQXteT+ArYT+y+p62zQoRPYpOUFr4MxxsdbbTfJzJiP7AFMcaO+d4w9GVTI/jl5o/oRduSmBxGugyeE/4mePwkFTpo57J/Eg21iVS+vE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JK/i3slw; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BC7gVva029034;
-	Thu, 12 Dec 2024 10:16:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YYYW2nbLGoQmKqk5fl+o+ckY9lAaIAA/oyPAHuafN1M=; b=JK/i3slw16jkUlh4
-	Wet47N+GP5osyqMP/N9hspmtl6S+7KAn9ixHmaydJ7t67RaIcyP/QoGr0S8x1wdV
-	DY0wS6oqaqEg5hYGo/XrrkEBwX4r4Gf+CtSXyOJNRSIdSmhZhn9+vqbOtPYEhmy3
-	eZiZkCTQrVH+x7JsBFKeGB99fq9IG/EKpVYbZOT5oldG+Suwt/VkRuN71kp5/cNM
-	s5z5kUGX4vmdfpYghv22dgYXkAZCC7OO3bZvNhtNsbh3dEhpuFQho8aUPSTbYbr6
-	lfWANzBZ4DzjkFX91gnZQvYHyr/CdNEMMMS/EqTz28Bg502SBgXrSSaepzT1XfmM
-	b2Ezng==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fd4xthm7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Dec 2024 10:16:19 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BCAGIFP016708
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 12 Dec 2024 10:16:18 GMT
-Received: from [10.231.216.175] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 12 Dec
- 2024 02:16:13 -0800
-Message-ID: <06566196-f87a-4d66-bea5-83b640651489@quicinc.com>
-Date: Thu, 12 Dec 2024 18:16:05 +0800
+	s=arc-20240116; t=1733998753; c=relaxed/simple;
+	bh=hnnh1ud49QqX1E1UbJ24ijhdVRhE3HXpcad8vHLOfbs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CeM2PrsKPbrZ9t2Ol8zv2MULlEoYvoj4RxJ59E94agGQTTL7bg9AqHdf0S/ofEo59OijUuzi4a3m0YjDhJP7N7hhUhUu0PmYvXT/iTqUS4fF/b4gyAOq1Y6FoON/VpwFgzVniYlX2gNgIMJJkYuAllwOzkeAyaJNPCaJBFHERwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Date: Thu, 12 Dec 2024 18:19:01 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Conor Dooley <conor.dooley@microchip.com>
+Cc: linux-riscv@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, cyy@cyyself.name, daniel.lezcano@linaro.org,
+	tglx@linutronix.de, samuel.holland@sifive.com, anup@brainfault.org,
+	gregkh@linuxfoundation.org, jirislaby@kernel.org, lkundrak@v3.sk,
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Jesse Taube <mr.bossman075@gmail.com>,
+	inochiama@outlook.com, zhangmeng.kevin@spacemit.com,
+	jszhang@kernel.org, matthias.bgg@kernel.org, kevin.z.m@hotmail.com
+Subject: Re: [PATCH v5 00/10] riscv: add initial support for SpacemiT K1
+Message-ID: <20241212101901-GYA2292414@gentoo>
+References: <20240730-k1-01-basic-dt-v5-0-98263aae83be@gentoo.org>
+ <173395638199.1729195.1529576042123666894.git-patchwork-notify@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: net: bluetooth: qca: Expand
- firmware-name property
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz
-	<luiz.dentz@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Balakrishna
- Godavarthi" <quic_bgodavar@quicinc.com>,
-        Rocky Liao
-	<quic_rjliao@quicinc.com>,
-        <linux-bluetooth@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <quic_jiaymao@quicinc.com>, <quic_shuaz@quicinc.com>,
-        <quic_zijuhu@quicinc.com>, <quic_mohamull@quicinc.com>
-References: <20241210151636.2474809-1-quic_chejiang@quicinc.com>
- <20241210151636.2474809-2-quic_chejiang@quicinc.com>
- <vbwg7djb4me6i4ow2q74ltqjxvkxeulhzyq4n6ak7aifhtf36f@x66pjje2iu6u>
- <62afbaea-67b1-4572-9e78-d1dbe5fae20a@quicinc.com>
- <f818f089-0490-42da-9aee-1a7006c11978@kernel.org>
- <65fd0932-4519-44ac-ba9d-55ee97b43233@quicinc.com>
- <ecb8535a-d421-4774-88d3-e904bb08a0e4@kernel.org>
-Content-Language: en-US
-From: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>
-In-Reply-To: <ecb8535a-d421-4774-88d3-e904bb08a0e4@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: F_uqG9jF01yQDUbVHmxyw8m919_J5m4k
-X-Proofpoint-GUID: F_uqG9jF01yQDUbVHmxyw8m919_J5m4k
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 bulkscore=0 mlxlogscore=999 phishscore=0 adultscore=0
- suspectscore=0 spamscore=0 mlxscore=0 impostorscore=0 clxscore=1015
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412120072
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <173395638199.1729195.1529576042123666894.git-patchwork-notify@kernel.org>
 
-Hi Krzysztof,
+Hi Conor:
 
-On 12/12/2024 3:16 PM, Krzysztof Kozlowski wrote:
-> On 11/12/2024 11:16, Cheng Jiang (IOE) wrote:
->> Hi Krzysztof,
->>
->> On 12/11/2024 5:48 PM, Krzysztof Kozlowski wrote:
->>> On 11/12/2024 10:39, Cheng Jiang (IOE) wrote:
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
->>>>>> index 7bb68311c..2782d2325 100644
->>>>>> --- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
->>>>>> @@ -101,7 +101,10 @@ properties:
->>>>>>    max-speed: true
->>>>>>  
->>>>>>    firmware-name:
->>>>>> -    description: specify the name of nvm firmware to load
->>>>>> +    description:
->>>>>> +      If one item is present, specify the name of the NVM firmware to load.
->>>>>> +      If two items are present, the first item specifies the name of the NVM,
->>>>>> +      and the second specifies the name of the rampatch firmware to load.
->>>>>
->>>>> Don't repeat constraints in free form text. Use proper constraints so
->>>>> you can validate your DTS. And then actually do validate your DTS...
->>>>>
->>>> It seems unnecessary to add this description, so I will drop this change. Is that okay?
->>>
->>> You need to list the items and describe them. See how all other bindings
->>> do it.
->>>
->> The firmware names are not fixed strings; they vary depending on the chip, board, or platform.
+On 22:33 Wed 11 Dec     , patchwork-bot+linux-riscv@kernel.org wrote:
+> Hello:
 > 
-> Instead of replying immediately and pushing this back again on us, read
-> other bindings. There are nowhere "fixed strings".
+> This series was applied to riscv/linux.git (fixes)
+> by Conor Dooley <conor.dooley@microchip.com>:
 > 
-Ack. I will take care of it next time. Thank you!
+> On Tue, 30 Jul 2024 00:28:03 +0000 you wrote:
+> > SpacemiT K1 is an ideal chip for some new extension such as RISC-V Vector
+> > 1.0 and Zicond evaluation now. Add initial support for it to allow more
+> > people to participate in building drivers to mainline for it.
+> > 
+> > This kernel has been tested upon Banana Pi BPI-F3 board on vendor U-Boot
+> > bootflow generated by Armbian SDK[1] and patched OpenSBI[2] to enable
+> > Zicboz, which does not in the vendor dts on its U-Boot. Then successfully
+> > booted to busybox on initrd with this log[3].
+> > 
+> > [...]
 > 
-> Best regards,
-> Krzysztof
+> Here is the summary with links:
+>   - [v5,01/10] dt-bindings: vendor-prefixes: add spacemit
+>     https://git.kernel.org/riscv/c/7cf3e9bfc63d
+If I understand correctly, only patch [01/10] of this series was accepted
+to 6.13-rc1
 
+for the rest of patches, they would be expected to go through SpacemiT's
+SoC tree? which should I take care of them.. so if no objection, I'd like to
+queue them at branch k1/dt-for-next [1] first, we might rebase or revert if
+something happens before merging (since the clock driver is still under review)
+
+Let me know what you think..
+
+Link: https://github.com/spacemit-com/linux/tree/k1/dt-for-next [1]
+ 
+
+>   - [v5,02/10] dt-bindings: riscv: Add SpacemiT X60 compatibles
+>     (no matching commit)
+>   - [v5,03/10] dt-bindings: riscv: add SpacemiT K1 bindings
+>     (no matching commit)
+>   - [v5,04/10] dt-bindings: timer: Add SpacemiT K1 CLINT
+>     (no matching commit)
+>   - [v5,05/10] dt-bindings: interrupt-controller: Add SpacemiT K1 PLIC
+>     (no matching commit)
+>   - [v5,06/10] dt-bindings: serial: 8250: Add SpacemiT K1 uart compatible
+>     (no matching commit)
+>   - [v5,07/10] riscv: add SpacemiT SoC family Kconfig support
+>     (no matching commit)
+>   - [v5,08/10] riscv: dts: add initial SpacemiT K1 SoC device tree
+>     (no matching commit)
+>   - [v5,09/10] riscv: dts: spacemit: add Banana Pi BPI-F3 board device tree
+>     (no matching commit)
+>   - [v5,10/10] riscv: defconfig: enable SpacemiT SoC
+>     (no matching commit)
+> 
+> You are awesome, thank you!
+> -- 
+> Deet-doot-dot, I am a bot.
+> https://korg.docs.kernel.org/patchwork/pwbot.html
+> 
+> 
+
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
 
