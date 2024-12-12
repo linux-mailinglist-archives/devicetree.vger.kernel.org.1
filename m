@@ -1,143 +1,117 @@
-Return-Path: <devicetree+bounces-130333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB9719EEFC7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 17:21:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D819EF070
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 17:28:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02EA418996FD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 16:14:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F01C01778FA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 16:17:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81FDC243B90;
-	Thu, 12 Dec 2024 16:00:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D4D230D2D;
+	Thu, 12 Dec 2024 16:05:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oc3pg1tG"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TLW5LTOp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B5B22A7E6
-	for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 16:00:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1F12309BA;
+	Thu, 12 Dec 2024 16:05:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734019256; cv=none; b=BxWKPSBrgrDIv/fOaicIiw+Q0nE5S7efkXUZLZxuyG7LKOqdm5p2+df//x5RlpSQh+omaNX9aW+kttMxeGBTB2xB1fAUwTyTiJdyHorQRHzgCxc76cYKng10OU/vujsqtisVWHwywQ77pdQYgSYgT/ctpqFaGYno0xHZgolvgBU=
+	t=1734019541; cv=none; b=OqUSLDLT/yRvD3TugdZ4g7Fknxpbx7LJo9bKFVXP8bWRfUQXoBY1vZL36XsGREnvOKmpVM/wqLhfroD1fxY0DbMhtodCT0TDB+DN9bzSSF8Aqlsi0hxMdI1/7UB0rIU2G3yIhV2A0cOIJiZ7HVmzYTdy1SPlFztnUhaytG/M4Uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734019256; c=relaxed/simple;
-	bh=/C7bHQrkgGdLprOLUDNL1QPrbsGLOKte0YUezSURupU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZHcx7bYCpXgcYKR3YTiyGPHCP+HfQTxCCkv+Ecpak2TDbSqYH7MczLP8UZr6V6ASdSKiXUNYhW7CSEsqhUGXrG4pcQpYmGDIAtONkW9qtAJ/attmfhVQrfX6WwkpfXaO/TGHoRU7+GWRBqdJXo6JUyLDf0gSYPWn0fsgMqkx0cI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oc3pg1tG; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-385deda28b3so563527f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 08:00:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734019253; x=1734624053; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mUJZKl6ex9Y6tnVneUNF04HScPdq/LgCtN2B23fl+ms=;
-        b=oc3pg1tG5cZU3BVT9S1eH4v24orfEjakcbFRdzF40K32ojWsMRowUnw0RX9Mt1Vxdy
-         O0EhVQ1o+YqWE0dgYZSiQKa5mSUbKNzfPKI8vX4dpUJYlRMbW2ATxV6+WJJMJ99zTP8A
-         DZboSDqEWInTm5yYp3+Q8L13C4lawOFK/TI+0PoDXF6u6ElwWA2aciWqzndQjd0C1Opj
-         YjqwV4pAHnM0jHV5e18l/NutkLlolc+MpHF8/XHaLwwieBe6VzVXb/wzlpD8iVaKnu3A
-         GJGOQ8ZfYyLLGQCxfAvpQF71JfeDBwsDXQ7J0GzXrofn7boMgCtA66mECU/z0VwIHIUK
-         YLoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734019253; x=1734624053;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mUJZKl6ex9Y6tnVneUNF04HScPdq/LgCtN2B23fl+ms=;
-        b=BTC/vKqxxAvp9dFEKCG7qjj+2y/8GogceYapDn+lLIjEdk6BKOvo+XScqYOaiikUFU
-         gfAPyzU9lMySYdDwCn693wFM0Xnidp9DHP3IuKfSyLdnXlZrvyF/xAibRsWuXZxWuZYo
-         FVJVbc8nKRyhZAKCNEvcxUEQ5Z2djrtBGt2//TLMW0GA/cg7cOT3dxohBSf5DLQrYxQo
-         jSLZhzdAHzRVnoqBYfB9R5HbQuCi5VOIv+c6zuhyqVRhVcGGporEPf4SfDTEhdh7cy+J
-         YIt6hL5zNXNCWG0OcqHb/ZqIhheKCwEE73H0/kFJs1wml6fkVV73mFYLgDoVFholEDtb
-         nF9A==
-X-Forwarded-Encrypted: i=1; AJvYcCWm+E9bhbuVUwNaZwC+CmCWmmVQHVRquoxk8JkBBNt66THGqWj6pZe/uy4bs9AC+JdPzyYKv9kputtO@vger.kernel.org
-X-Gm-Message-State: AOJu0YywzxlH9Yi+lZAqzOQbtaMt27kp7fYiyHoVWhSPd3u74Bc58kU3
-	TbJmWg1FcPp1QMJqww6BF+IN9yD+6CzbjR6WuiCVXcz1epFVOhaw09I3Nj9ymf0=
-X-Gm-Gg: ASbGncs9580WZ49ei4bDzuEbjqYb0btBdT++z4Eb64tz3blNIJdHZad/hbFpg2g43Bv
-	/4BTEbwUYzpaV7SCe5lkk824FxoD/eQ879E95AO0X3oj2WWPpazzNwkYby9b7YcvNHHgCq4GqBX
-	GLpS/5OhYbTrILdvl1AbzX/ZAaTOcoKzZO2Et6smegGO5dn1fIr2DcnJDFvCFfu/xiusFnUUp8P
-	6qWTj7/lqZskIR6d/7JG1/4XatfK5obtsgGgLxgZpfSGZeQyM5hmuQxm4B3sFuqwddhGArY3AZK
-	54gjHTXdoraOEq8/rE0TVwoWR74NFccf0w==
-X-Google-Smtp-Source: AGHT+IEN5nwnyUkAQMvO2q9jKMCm5xWXv8+YOzw7jcftLoAsAmmzmAcKvyZSzw3KzqJ0H/b/wrjw7w==
-X-Received: by 2002:a05:6000:186b:b0:385:ec8d:8ca9 with SMTP id ffacd0b85a97d-387877c98ffmr3397430f8f.42.1734019251001;
-        Thu, 12 Dec 2024 08:00:51 -0800 (PST)
-Received: from ta2.c.googlers.com (32.134.38.34.bc.googleusercontent.com. [34.38.134.32])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38782514d35sm4462941f8f.74.2024.12.12.08.00.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Dec 2024 08:00:50 -0800 (PST)
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Thu, 12 Dec 2024 16:00:41 +0000
-Subject: [PATCH v2 4/4] arm64: defconfig: enable ACPM protocol and Exynos
- mailbox
+	s=arc-20240116; t=1734019541; c=relaxed/simple;
+	bh=J1scdp67Yf0dN731s+TeIiFUh/val29sz3XZEjfTzxU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=umfPNqSsXEu46oNQmTRzNWFz+bqWuxApw9yTpCpWbwZLKkx4PNnul9YKNNGfU/e7hzg4djSkkzE1tv4CmDz5Q8fZtv+V6oNyByOU5Jc1V5z6DFLk/Mu2E9i+RedmztKiPXOhdLsK/2W13GM6KLxA0dj1iGv0L1OyPO3Q3amG6wg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TLW5LTOp; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1734019537;
+	bh=J1scdp67Yf0dN731s+TeIiFUh/val29sz3XZEjfTzxU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TLW5LTOpDIKHws5iJ9xFtxE1SpY4vug6sm8YNGS9UMeD/RRqKXzTAAtKX20365AJh
+	 kILazhLvIPfBGbHfUhkqqWlYRkMyX87RVJY6maxF5yVxSg0qzxMMnqywXWBqdGdtMM
+	 L1wKaWDqLDWhCzJ9zS7wvrLU48dloqzWKKFjqumNdiNkF1nvBEAK4BjAoWtvXB2HuY
+	 SZFeZAfjqFp8elCWJTxyvNMYMd89BIcZRkkrYwl3mSC6m1xXhK3QhA2nMHECjSTJev
+	 TFgFupVDtvA6s9cAe6sZ0iFiJ3oo0P3EaGbrhYcgCqrzramOKQHrjReMSuwLpg09Ah
+	 Cqt0DYXeNJ9AA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id C079417E37A4;
+	Thu, 12 Dec 2024 17:05:36 +0100 (CET)
+Message-ID: <6710abd1-128d-48ff-84a1-880053fd9e84@collabora.com>
+Date: Thu, 12 Dec 2024 17:05:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dts: arm64: mediatek: mt8188: Update OVL compatible
+ from MT8183 to MT8195
+To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
+ Shawn Sung <shawn.sung@mediatek.com>, dri-devel@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ Fei Shao <fshao@chromium.org>
+References: <20241212153344.27408-1-jason-jh.lin@mediatek.com>
+ <20241212153344.27408-3-jason-jh.lin@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20241212153344.27408-3-jason-jh.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241212-b4-acpm-v4-upstream-dts-v2-4-91b7a6f6d0b0@linaro.org>
-References: <20241212-b4-acpm-v4-upstream-dts-v2-0-91b7a6f6d0b0@linaro.org>
-In-Reply-To: <20241212-b4-acpm-v4-upstream-dts-v2-0-91b7a6f6d0b0@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
- peter.griffin@linaro.org, daniel.lezcano@linaro.org, 
- vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de, 
- Tudor Ambarus <tudor.ambarus@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1734019247; l=1030;
- i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=/C7bHQrkgGdLprOLUDNL1QPrbsGLOKte0YUezSURupU=;
- b=q/qMWb3Eov9H0T2BHl7oTCrCuPXOj90JVrh0cjnd8k61RuCnu1AB8+Cevc0d3x4+b2BnG9tb0
- ExoRQa94+dQA0btBlEStNmn/o64BWNR7SWxVKOt/i78pqHEKVU8gpwT
-X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
- pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-Enable the Samsung Exynos ACPM protocol and its transport layer, the
-Exynos mailbox driver. Samsung Exynos platforms implement ACPM to
-provide support for PMIC, clock frequency scaling, clock configuration
-and temperature sensors.
+Il 12/12/24 16:33, Jason-JH.Lin ha scritto:
+> The OVL hardware capabilities have changed starting from MT8195,
+> making the MT8183 compatible no longer applicable.
+> Therefore, it is necessary to update the OVL compatible from MT8183 to
+> MT8195.
+> 
+> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
 
-Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
----
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+Jason, just so you know - I have patches here adding DSC and merge components of
+VDO0, other than all MDP3 components.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index c62831e61586..91139b1cf813 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -262,6 +262,7 @@ CONFIG_IMX_SCU=y
- CONFIG_QCOM_TZMEM_MODE_SHMBRIDGE=y
- CONFIG_QCOM_QSEECOM=y
- CONFIG_QCOM_QSEECOM_UEFISECAPP=y
-+CONFIG_EXYNOS_ACPM_PROTOCOL=m
- CONFIG_GNSS=m
- CONFIG_GNSS_MTK_SERIAL=m
- CONFIG_MTD=y
-@@ -1378,6 +1379,7 @@ CONFIG_HWSPINLOCK_QCOM=y
- CONFIG_TEGRA186_TIMER=y
- CONFIG_RENESAS_OSTM=y
- CONFIG_ARM_MHU=y
-+CONFIG_EXYNOS_MBOX=m
- CONFIG_IMX_MBOX=y
- CONFIG_OMAP2PLUS_MBOX=m
- CONFIG_PLATFORM_MHU=y
+Those are almost ready to send, I only need to finish some testing before ;-)
 
--- 
-2.47.0.338.g60cca15819-goog
+For this one, anyway:
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8188.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> index faccc7f16259..23ec3ff6cad9 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> @@ -2488,7 +2488,7 @@ jpeg_decoder: jpeg-decoder@1a040000 {
+>   		};
+>   
+>   		ovl0: ovl@1c000000 {
+> -			compatible = "mediatek,mt8188-disp-ovl", "mediatek,mt8183-disp-ovl";
+> +			compatible = "mediatek,mt8188-disp-ovl", "mediatek,mt8195-disp-ovl";
+>   			reg = <0 0x1c000000 0 0x1000>;
+>   			clocks = <&vdosys0 CLK_VDO0_DISP_OVL0>;
+>   			interrupts = <GIC_SPI 636 IRQ_TYPE_LEVEL_HIGH 0>;
+
 
 
