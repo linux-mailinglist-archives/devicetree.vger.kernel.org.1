@@ -1,200 +1,238 @@
-Return-Path: <devicetree+bounces-130106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B5FD9EE031
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:23:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 863459EE035
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 08:26:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 276152811F7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 07:23:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2253E2812E0
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 07:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5AC620ADE9;
-	Thu, 12 Dec 2024 07:23:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3126020ADF3;
+	Thu, 12 Dec 2024 07:25:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K8qXUcZ3"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lR0unn6B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F7945027;
-	Thu, 12 Dec 2024 07:23:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5684945027;
+	Thu, 12 Dec 2024 07:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733988209; cv=none; b=aobJFw0owFZt6vMUhfrBnclsVISWVCvnvuRk5gHPCIu5X/6VU9HqV56+/JVcmUfGZ2dcIIK5LZ3b7OksZExIkTg09RzXIJ55yKP1EftCFl02svOS/GDK80OxT4FAQum9G+Aqfe57ZQ2Pl4v+xgH0eu0Vi7z/lh3TZac/soCjskk=
+	t=1733988357; cv=none; b=q1gqh2povUrxy8qIUuv8r+BRNTzlLy4tYAQ1gA8HnFcgHzWPORT4uruzHTUL4ucCcdDv2GogZ8zaCMUAu8P6WkmJznabPtgFIs8TTViyZax6wXd2ki6F+mtocxMJLEiJnt2+tnzeC3syYxLiEIkycrGyVvS6+ENHp66WN7HRKT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733988209; c=relaxed/simple;
-	bh=JZk+vkzVVHoIxLeiYJCOuR339GJF+lQkjwNZYJNxM88=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JLCUEtEnIvl8jsQzgVW7ryP6gs1ptotJnWWsuE+v3xRL0WWoY1McnS3ksiWf0CRnjRFXzQI/CDKbYh8vof/C/20ryh6VylGoDVohZToXsXdyyWojpEj/aGOW0XfvmLPI15LMAByRvGFPaDQayP+2OjHVU8+b4bgfE319neLwP20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K8qXUcZ3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B573C4CECE;
-	Thu, 12 Dec 2024 07:23:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733988209;
-	bh=JZk+vkzVVHoIxLeiYJCOuR339GJF+lQkjwNZYJNxM88=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=K8qXUcZ3Z5yASYBvKbj7xTYYiXDIFjtIJKpALdYOYbHXSpNbnyoZizBtINLHgilDw
-	 Fd2NNAlV5V/Y62/PFS0x8N21tafJT1e9ZToploNZ2zyJG6BVkWKQwtrG5uPQPMIWTS
-	 z0Y0fBd+CClMHxNaLh6wIAxAsa+wu9QZpnm7WS9yR0JRb4TgBFwtjI9CCgf/eBecA/
-	 G44o010ZzG4jilRvLuNEXSZKVW6oF/pQ30qlXfY9TKS1+Qghse/AdXOo0Vr9RBAfxQ
-	 zdWu6tVmNS7ExsDXELMtIoIq4VrGTJ8brHMJzXXVD6VPlWH9LRZNxvsvey5ppi5edz
-	 tIkLVsZvsr7Mg==
-Message-ID: <44c97ee6-ba32-452c-8b83-ad39139fd310@kernel.org>
-Date: Thu, 12 Dec 2024 08:23:21 +0100
+	s=arc-20240116; t=1733988357; c=relaxed/simple;
+	bh=WQgesphKPZtQtDkSSaKmZdO5cVGMF3Bi1WZp8uEHTrA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U5dz/j8Mpwcaprj6l3dFdK7WhMrgHiLYHv+k7QEmC6HckwFxns/knSX554Pp0ll+nQoJkajWsidYg6yyWvX6al/Cs4DlclvWKlnbZ4jp9QKExL5HoS3HoGdSn+BCbUnB3j4ZIDbgOQCEqBUD+lI6+uuStc7N7u77Eo5v3fNTbkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lR0unn6B; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733988355; x=1765524355;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=WQgesphKPZtQtDkSSaKmZdO5cVGMF3Bi1WZp8uEHTrA=;
+  b=lR0unn6Byw3WyKTjob4qgFQipqm0cE3C6YdpY1rO8CykV9gvgwRfJGAo
+   TuiQ5mQTV1pXvMRjoIWMAiOsqTl2qRHDkDzCkJqSjpFsHQE7+Tvowqaz/
+   6dH0yuPXRFsP0k4vxlmgQREZPIvBf6x0pKejZcnufa+t80hr3v42cUBD4
+   OOkp4Xd3ov5iB4NLwVgVlHM9y5R4EqeppkIzgwXzArduCXT8BoJjXH0Wc
+   mq7/hqVxP1LEPyJ72Y/RdiV12GmAIkboomzxslHQRGpJS5HuopeablgY6
+   Zhcpj9n64nnnnKJJpgaGWhHdUCKMGQ9csYqbN9wK0R+lNrUxpWYXsM1GF
+   A==;
+X-CSE-ConnectionGUID: 77A/qfrDRLmMyXtZnPxQ0w==
+X-CSE-MsgGUID: WMeSDTAUSuKI/NvzPU913g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11283"; a="34313112"
+X-IronPort-AV: E=Sophos;i="6.12,227,1728975600"; 
+   d="scan'208";a="34313112"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Dec 2024 23:25:49 -0800
+X-CSE-ConnectionGUID: O5T98L/HQj+9++OChIET0w==
+X-CSE-MsgGUID: pKrY4UCpSwyigNxg5j2Edw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="119391224"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Dec 2024 23:25:43 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id 3E24011F81D;
+	Thu, 12 Dec 2024 09:25:38 +0200 (EET)
+Date: Thu, 12 Dec 2024 07:25:38 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] media: v4l: fwnode: Parse MiPI DisCo for C-PHY
+ line-orders
+Message-ID: <Z1qP8uY72kw9uX2E@kekkonen.localdomain>
+References: <20241121134108.2029925-1-niklas.soderlund+renesas@ragnatech.se>
+ <20241121134108.2029925-3-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 06/10] ASoC: dt-bindings: add wsa881x-i2c binding for
- analog mode
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: broonie@kernel.org, konradybcio@kernel.org,
- konrad.dybcio@oss.qualcomm.com, andersson@kernel.org,
- srinivas.kandagatla@linaro.org, tiwai@suse.com, lgirdwood@gmail.com,
- perex@perex.cz, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dmitry.baryshkov@linaro.org, linux-sound@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241101053154.497550-1-alexey.klimov@linaro.org>
- <20241101053154.497550-7-alexey.klimov@linaro.org>
- <woeeh7cosv47z4ckqbomfc3rqqxfolyfycgcz32do2yadg7xdj@geqank3dp55t>
- <D695QHHBLGUF.7HOOI1E8RMTS@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <D695QHHBLGUF.7HOOI1E8RMTS@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241121134108.2029925-3-niklas.soderlund+renesas@ragnatech.se>
 
-On 11/12/2024 21:35, Alexey Klimov wrote:
-> On Fri Nov 1, 2024 at 7:57 AM GMT, Krzysztof Kozlowski wrote:
->> On Fri, Nov 01, 2024 at 05:31:50AM +0000, Alexey Klimov wrote:
->>> Add binding document for WSA881X family of smart speaker amplifiers
->>> that set to work in analog mode only and configurable via i2c only.
->>> Such devices are found in Qualcomm QRB4210 RB2 boards with
->>> SM4250/SM6115 SoCs.
->>>
->>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
->>> ---
->>>  .../bindings/sound/qcom,wsa881x-i2c.yaml      | 103 ++++++++++++++++++
->>>  1 file changed, 103 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa881x-i2c.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/sound/qcom,wsa881x-i2c.yaml b/Documentation/devicetree/bindings/sound/qcom,wsa881x-i2c.yaml
->>> new file mode 100644
->>> index 000000000000..51b040b134d2
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/sound/qcom,wsa881x-i2c.yaml
->>
->> Filename must match compatible.
->>
->>> @@ -0,0 +1,103 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/sound/qcom,wsa881x-i2c.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Qualcomm WSA8810/WSA8815 Class-D Smart Speaker Amplifier in Analog mode
->>> +
->>> +maintainers:
->>> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>> +  - Alexey Klimov <alexey.klimov@linaro.org>
->>> +
->>> +description: |
->>> +  WSA8810 is a class-D smart speaker amplifier and WSA8815
->>> +  is a high-output power class-D smart speaker amplifier.
->>> +  Their primary operating mode uses a SoundWire digital audio
->>> +  interface however the amplifier also supports analog mode and it
->>> +  can be controlled via I2C. This binding is for I2C interface.
->>> +
->>> +allOf:
->>> +  - $ref: dai-common.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: qcom,qrb4210-wsa881x-i2c-codec
->>
->> qrb4210 is a name of a board, not codec. i2c is redundant, codec as
->> well. 'x' is not allowed.
-> 
-> qcom,qrb4210-wsa881x-i2c-codec came from qcom-soc.yaml with the advice
-> that it should be qcom,SoC-IP.
+Hej Niklas,
 
-I am sorry, but qcom,soc.yaml is about SoC. Is this a SoC? It is the
-first time I see WSA integrated into the SoC.
-
+On Thu, Nov 21, 2024 at 02:41:06PM +0100, Niklas Söderlund wrote:
+> Extend the fwnode parsing to validate and fill in the CSI-2 C-PHY
+> line-orders order properties as defined in MIPI Discovery and
+> Configuration (DisCo) Specification for Imaging.
 > 
-> Anyway I am working on updating the qcom,wsa881x.yaml as you pointed out
-> in another email.
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> ---
+> * Changes since v1
+> - Use array instead of switch to get printable line order string for
+>   debug output.
+> - Wrap lines harder for 80 chars instead of 100, but keep string formats
+>   on same line even if they break the 80 chars.
+> ---
+>  drivers/media/v4l2-core/v4l2-fwnode.c | 43 ++++++++++++++++++++++++++-
+>  include/media/v4l2-mediabus.h         | 21 +++++++++++++
+>  2 files changed, 63 insertions(+), 1 deletion(-)
 > 
->> This is qcom,wsa8810 and qcom,wsa8815 compatible with it.
->>
-> 
-> [..]
-> 
->>> +
->>> +      wsa881x@e {
->>
->> Node names should be generic. See also an explanation and list of
->> examples (not exhaustive) in DT specification:
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> The best I can come up with is "amplifier", or it should be at least "codec'.
-
-amplifier, speakers, you can check how this is called in 10 existing DTS
-files or their bindings for WSA speakers.
+> diff --git a/drivers/media/v4l2-core/v4l2-fwnode.c b/drivers/media/v4l2-core/v4l2-fwnode.c
+> index f19c8adf2c61..bb5ea3e00414 100644
+> --- a/drivers/media/v4l2-core/v4l2-fwnode.c
+> +++ b/drivers/media/v4l2-core/v4l2-fwnode.c
+> @@ -127,7 +127,7 @@ static int v4l2_fwnode_endpoint_parse_csi2_bus(struct fwnode_handle *fwnode,
+>  {
+>  	struct v4l2_mbus_config_mipi_csi2 *bus = &vep->bus.mipi_csi2;
+>  	bool have_clk_lane = false, have_data_lanes = false,
+> -		have_lane_polarities = false;
+> +		have_lane_polarities = false, have_line_orders = false;
+>  	unsigned int flags = 0, lanes_used = 0;
+>  	u32 array[1 + V4L2_MBUS_CSI2_MAX_DATA_LANES];
+>  	u32 clock_lane = 0;
+> @@ -197,6 +197,17 @@ static int v4l2_fwnode_endpoint_parse_csi2_bus(struct fwnode_handle *fwnode,
+>  		have_lane_polarities = true;
+>  	}
+>  
+> +	rval = fwnode_property_count_u32(fwnode, "line-orders");
+> +	if (rval > 0) {
+> +		if (rval != num_data_lanes) {
+> +			pr_warn("invalid number of line-orders entries (need %u, got %u)\n",
+> +				num_data_lanes, rval);
+> +			return -EINVAL;
+> +		}
+> +
+> +		have_line_orders = true;
+> +	}
+> +
+>  	if (!fwnode_property_read_u32(fwnode, "clock-lanes", &v)) {
+>  		clock_lane = v;
+>  		pr_debug("clock lane position %u\n", v);
+> @@ -250,6 +261,36 @@ static int v4l2_fwnode_endpoint_parse_csi2_bus(struct fwnode_handle *fwnode,
+>  		} else {
+>  			pr_debug("no lane polarities defined, assuming not inverted\n");
+>  		}
+> +
+> +		if (have_line_orders) {
+> +			fwnode_property_read_u32_array(fwnode,
+> +						       "line-orders", array,
+> +						       num_data_lanes);
+> +
+> +			for (i = 0; i < num_data_lanes; i++) {
+> +				static const char * const orders[] = {
+> +					"ABC", "ACB", "BAC", "BCA", "CAB", "CBA"
+> +				};
+> +
+> +				if (array[i] > 5) {
 
 
-Best regards,
-Krzysztof
+I'd use:
+
+				if (... >= ARRAY_SIZE(order)) {
+
+I can do the change while applying...
+
+> +					pr_warn("lane %u invalid line-order assuming ABC (got %u)\n",
+> +						i, array[i]);
+> +					bus->line_orders[i] =
+> +						V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC;
+> +					continue;
+> +				}
+> +
+> +				bus->line_orders[i] = array[i];
+> +				pr_debug("lane %u line order %s", i,
+> +					 orders[array[i]]);
+> +			}
+> +		} else {
+> +			for (i = 0; i < num_data_lanes; i++)
+> +				bus->line_orders[i] =
+> +					V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC;
+> +
+> +			pr_debug("no line orders defined, assuming ABC\n");
+> +		}
+>  	}
+>  
+>  	return 0;
+> diff --git a/include/media/v4l2-mediabus.h b/include/media/v4l2-mediabus.h
+> index 5bce6e423e94..e7f019f68c8d 100644
+> --- a/include/media/v4l2-mediabus.h
+> +++ b/include/media/v4l2-mediabus.h
+> @@ -73,6 +73,24 @@
+>  
+>  #define V4L2_MBUS_CSI2_MAX_DATA_LANES		8
+>  
+> +/**
+> + * enum v4l2_mbus_csi2_cphy_line_orders_type - CSI-2 C-PHY line order
+> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC: C-PHY line order ABC (default)
+> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ACB: C-PHY line order ACB
+> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BAC: C-PHY line order BAC
+> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BCA: C-PHY line order BCA
+> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CAB: C-PHY line order CAB
+> + * @V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CBA: C-PHY line order CBA
+> + */
+> +enum v4l2_mbus_csi2_cphy_line_orders_type {
+> +	V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC,
+> +	V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ACB,
+> +	V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BAC,
+> +	V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BCA,
+> +	V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CAB,
+> +	V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CBA,
+> +};
+> +
+>  /**
+>   * struct v4l2_mbus_config_mipi_csi2 - MIPI CSI-2 data bus configuration
+>   * @flags: media bus (V4L2_MBUS_*) flags
+> @@ -81,6 +99,8 @@
+>   * @num_data_lanes: number of data lanes
+>   * @lane_polarities: polarity of the lanes. The order is the same of
+>   *		   the physical lanes.
+> + * @line_orders: line order of the data lanes. The order is the same of the
+> + *		   physical lanes.
+>   */
+>  struct v4l2_mbus_config_mipi_csi2 {
+>  	unsigned int flags;
+> @@ -88,6 +108,7 @@ struct v4l2_mbus_config_mipi_csi2 {
+>  	unsigned char clock_lane;
+>  	unsigned char num_data_lanes;
+>  	bool lane_polarities[1 + V4L2_MBUS_CSI2_MAX_DATA_LANES];
+> +	enum v4l2_mbus_csi2_cphy_line_orders_type line_orders[V4L2_MBUS_CSI2_MAX_DATA_LANES];
+>  };
+>  
+>  /**
+
+-- 
+Med vänliga hälsingar,
+
+Sakari Ailus
 
