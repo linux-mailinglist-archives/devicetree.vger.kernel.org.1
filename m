@@ -1,68 +1,71 @@
-Return-Path: <devicetree+bounces-130195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D6219EE3A8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 11:05:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42F399EE3AA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 11:05:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1BB7B188B4BD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 10:05:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D97F188B78E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Dec 2024 10:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27070211273;
-	Thu, 12 Dec 2024 10:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1799C21147B;
+	Thu, 12 Dec 2024 10:04:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="mpVbdCY2"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CMNjt9Kr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 504C6210F4A;
-	Thu, 12 Dec 2024 10:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E72C210F6A;
+	Thu, 12 Dec 2024 10:04:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733997897; cv=none; b=BT1IaU65Nskl6cw/3SDLcKv1HuCqOqCZUKtGlRqYIA8MVFno5+VslDiaSTX0A65ejyPqO9s0S17EX65Vm5ptas6anUF81bKYiMyQhlcrsqdfw1c3e7xgBEUEkke47UtCz12dP4Z7haFjs8P9X0n/UAfAzsEgmMMsJwQkVTvDrBU=
+	t=1733997898; cv=none; b=RBfFMIV9jzH4MmzvCY+dUgKXdWiy86mLwJh+2NajXRJ9N9Hp/TxxH005smiNQehYpe/cFOWE4Obg2SNbF89rfN/6n86w4aWI814wWnoLUKFt0F7Dq4LQkAlsw3zjIkNCpz/YfCQaR/hd8tPwfr/Pel+LqTyFMXwSBEqvHb+ix7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733997897; c=relaxed/simple;
-	bh=r4vBtZGzMSY3w44LNP2WSbN/PdhlBAw89h+kvrRSONQ=;
+	s=arc-20240116; t=1733997898; c=relaxed/simple;
+	bh=BJAKUmR3xWQ9qzG9ppN4jAGJ2iMpKpc+JdEgddk4Bxc=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=MBE5+oe+FzJ352zpRplr6Yc6jFeIFCcw88APsXmeZ6Jy8LEE7Sw2coaT8DL5pxi7e2Dd6asjNstNvgp8mhNwmmwML0jk3N3lDULVqJaEUU4HqYuwTe2PUZ19l2HJiiYWLT5SUgh4w+BNGm6pU/ulRXdZ8M+54I1s6gmWkNaweWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=mpVbdCY2; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version:Content-Type; b=nJNwz6uLsDLLG3LbzWzltIDtyzx5K8f4n4kLsCsRSiFcFLD+OWMO5fLrtl8g1OM/ZZGbBGilq6Zr5IXsYvyV46Cu0X8V2cI8+w5sXG6WdPXoKrr9Tf2jGg4XNRyoEKTYFHq2Emhz/EbM/bsUvPXxOfJpnkVR1P7qIF0ZjHO2GgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=CMNjt9Kr; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1733997893;
-	bh=r4vBtZGzMSY3w44LNP2WSbN/PdhlBAw89h+kvrRSONQ=;
+	s=mail; t=1733997894;
+	bh=BJAKUmR3xWQ9qzG9ppN4jAGJ2iMpKpc+JdEgddk4Bxc=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=mpVbdCY2Va0Smw/rNAyfLNXZVoH/jmvic4/QBN87YO/il4dDjTmTIxUeqIrZcbWhe
-	 KiFlCwNpebrNjrt4b64IFuM8D3ERAK8+2I9q4nejBmdaZZyD9+WodxHqtve1gShgAm
-	 09oAF/sCZgTw+UxyigyNNI8sMW2sgMf1OBmsKamG3ETXoltoHj5iU12xADtovxk65/
-	 cGPKY4cku6ubJo5DPq3PvF7MPyjw2rwHqNOOsw0AAsiFIfv0NJNcKfBHnG5iZ4/Aa7
-	 M2elu+gDn6mlCUaRn8UpL67AvmcjHWyPCmDE+uihqfMaeHfgmL1+DL09Tp+AebD7V9
-	 JD3M5oZUxc6kA==
+	b=CMNjt9KrL72tAJutKI5akwTGiPtV6M1Dw//IwYzpHNQ+Bpu+qBxRkFNBlhPrveAYa
+	 rBReguwRxy/uMP6x3OxHNW1bh5QK1Yyv9GTx/OlqSaFcw36N/sYEJPFJFSuWbVqwWQ
+	 m5J0utModagdtptTLzcd4OUwddtYjuqJWpOjE22FND305Zgabj/g/Dt7w+E2Oft6bX
+	 wGSn5T78mWTQCPop8xryfvmYMOR02cAMaID28/TxBw8HypbfxZVuSqiStMFHdILvm4
+	 dYCoo/EmQdb4uO41W6Zn+SV+9lnvEijtKbQN6uzirXuEVILHCNhU3++Em5kbNNzGCe
+	 ypTIMmExhTaOA==
 Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 81A7317E35F2;
-	Thu, 12 Dec 2024 11:04:52 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id BDEF517E35FA;
+	Thu, 12 Dec 2024 11:04:53 +0100 (CET)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Matthias Brugger <matthias.bgg@gmail.com>, 
- Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20241211052427.4178367-1-wenst@chromium.org>
-References: <20241211052427.4178367-1-wenst@chromium.org>
-Subject: Re: (subset) [PATCH 0/8] arm64: dts: mediatek: Drop
- regulator-compatible property
-Message-Id: <173399789246.41280.12946526807536049492.b4-ty@collabora.com>
-Date: Thu, 12 Dec 2024 11:04:52 +0100
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Trevor Wu <trevor.wu@mediatek.com>, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org, 
+ Aary Patil <aary.patil@mediatek.com>, 
+ Suhrid Subramaniam <suhrid.subramaniam@mediatek.com>, 
+ parkeryang <Parker.Yang@mediatek.com>
+In-Reply-To: <20241210-genio700-audio-output-v2-0-c50886ae0be2@collabora.com>
+References: <20241210-genio700-audio-output-v2-0-c50886ae0be2@collabora.com>
+Subject: Re: [PATCH v2 0/2] Enable audio output for Genio 700 EVK board
+Message-Id: <173399789370.41280.16875335834079584278.b4-ty@collabora.com>
+Date: Thu, 12 Dec 2024 11:04:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,37 +73,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailer: b4 0.14.2
 
-On Wed, 11 Dec 2024 13:24:18 +0800, Chen-Yu Tsai wrote:
-> This series drops usage of the long deprecated "regulator-compatible"
-> property from MediaTek device tree files. The property was introduced
-> in 2012, and then subsequently deprecated after two months. It was
-> never carried over during the binding YAML conversion.
+On Tue, 10 Dec 2024 17:54:27 -0300, Nícolas F. R. A. Prado wrote:
+> This series enables audio output support for the Genio 700 EVK board.
+> Patch 1 adds the missing #sound-dai-cells property in the MT6359 node as
+> a prerequisite, and patch 2 describes the audio DT nodes to get audio
+> output working on the two audio jacks, Earphone and Speaker, present on
+> the board.
 > 
-> Drop the property from the MT6315 regulator binding, and all MediaTek
-> device tree files. IMO it should never have been used to begin with.
-> This also gets rid of any validation errors [1] related to them.
 > 
 > [...]
 
 Applied to v6.13-next/dts64, thanks!
 
-[2/8] arm64: dts: mediatek: mt8173-evb: Drop regulator-compatible property
-      commit: a6d5983e40f5d5b219337569cdd269727f5a3e2e
-[3/8] arm64: dts: mediatek: mt8173-elm: Drop regulator-compatible property
-      commit: 4b907b3ea5fba240808136cc5599d14b52230b39
-[4/8] arm64: dts: mediatek: mt8192-asurada: Drop regulator-compatible property
-      commit: d1fb968551c8688652b8b817bb081fdc9c25cd48
-[5/8] arm64: dts: mediatek: mt8195-cherry: Drop regulator-compatible property
-      commit: 4dbaa5d5def2c49e44efaa5e796c23d9b904be09
-[6/8] arm64: dts: mediatek: mt8195-demo: Drop regulator-compatible property
-      commit: 2a8af9b95f504260a6d8200a11f0ae5c90e9f787
-[7/8] arm64: dts: medaitek: mt8395-nio-12l: Drop regulator-compatible property
-      commit: ab60442f26b15ba69b210974722a851ed03188ff
-[8/8] arm64: dts: mediatek: mt8395-genio-1200-evk: Drop regulator-compatible property
-      commit: b99bf07c2c8b3c85c1935ddca2a73bc686f8d847
+[1/2] arm64: dts: mt6359: Add #sound-dai-cells property
+      commit: 9bc8353be720ca1f9cb6e03825929bc172e1157d
+[2/2] arm64: dts: mediatek: mt8390-genio-700-evk: Add sound output support
+      commit: b8457716eeee45ed5cb6b8fdc5a5b459f7ebe819
 
 Cheers,
 Angelo
