@@ -1,152 +1,224 @@
-Return-Path: <devicetree+bounces-130677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C3839F0A1E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:53:38 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47C239F0A26
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:55:32 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE4CB282046
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:53:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B0A8C1886641
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:55:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B26EF1C3BFD;
-	Fri, 13 Dec 2024 10:53:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092F81C3BF3;
+	Fri, 13 Dec 2024 10:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="awszngcr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gGl3GROS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6C61C3BE9
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 10:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0A4A1C3BEB;
+	Fri, 13 Dec 2024 10:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734087210; cv=none; b=aSLGgMDrhGKBJiRlDlAQ29qwl5xDR3VE0+ECFMvuf8ldq+vLpeUz/gBfkmGN2J+MZoTD81CIbSWQybEwWWGMmWSgKilRB3IJurqK0PvUVjqVqG5xY+CVdp4j1AQkzkl3I+Sn8aSFQuhSu4RHkul64KOd4Undrx7cya9kSXdD+/0=
+	t=1734087328; cv=none; b=rbog/J1YulD1KwsDZ33N+1y+IJSjIA98vnjEwaQXHYuEK+aw0HITwNFWThofH4fjc7FJ1CfctM0R8i8xbOWu0+Y/jcmJiBLUZu4Pwtlgeri5d7K+lzvbC+9YKMXNk9BEXAv73JeYZ8Coejeqh4RxBJXBr/OcTgNDn5oABoNeVNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734087210; c=relaxed/simple;
-	bh=j6ZHJdqxkJJHiblJ7Jq0v6xzFd8n7Cjkl3kVBrD/pAs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aG1Fk5sGe9ionTssOR9axWK/b594ZUphSpg3sZE8FVbStpzpm1gyS66Dz4vO8ednyL6S8zyMNQ+1kvqM52mLC9NYhZXR3HcFetihD5q5coaZD+m3Wq6ghExsdM8bf/gzKpNCx69hrY9SywSdmTLw86C5d8PAZ9iHLR8mm6tiZt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=awszngcr; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD9qcIP007055
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 10:53:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	irpyIGk/Q0YF6woDF/wcVcUCJnQrVPx3H7tZ92Jopi8=; b=awszngcrShQZzvPi
-	n0hEB9bmooPgpZMyxjWdWzE1FdZbWqj0rY+4baPFg33/WXHP3sYkcH1MER0bcb6Z
-	GBGQjqtFicTO4Yk9za0JTmJt2w6+krDe2OHTzo5nuRsE5p0Up7e48hfHCCIqzanN
-	ONm+ZGMnJOX6QL4cIFPm37VsovtYSR5hKAz+MfvvFwelvo1ibQl0cvbrVbt7HVYK
-	SWiU54j9uq/1MS8IVskDjcrdGgbqi0ji2l4eu3VdtD5bCBpA66+SxUMCz5pXgJPT
-	Dy4Yt8Jp5w/4gCsdPuiTxiUnxJwrrWXyjNyk7q4FVCFEYnr/JED9weoKVI/ZlaeC
-	8P2jqg==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43g6xusv4y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 10:53:26 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-467a437e5feso1865411cf.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 02:53:26 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734087206; x=1734692006;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=irpyIGk/Q0YF6woDF/wcVcUCJnQrVPx3H7tZ92Jopi8=;
-        b=Hcrmzm9uyfNLHvmyN2TygeEXLyVzTmYqC9b6d8WYopVT9q9FOGKQ40b155QAGEoDot
-         jEtDuJB+kUoMrkLTnaNzXi1flZ8nKFWMjNCaSV24lAbUgAnJQ6y3grgaWUIcZxpZklrb
-         +up6SSLVrs/iEICkmv3Q34Vrcn9egSffY+D1UNja2VihQZOcGipPb35XSWFxgaYzRDZV
-         HwbKH6Vkbb7zJfEssPjV7cKawEjjFNEJsCixVpifqZvZyPycGxdTLucc7UDKl5LNmzPY
-         P9d4qwDULMMRSiXavjp03V05oErVdK+v5XWp1NMHGOoUBXcO9p3oFG81bw5DEz3itbUp
-         rorA==
-X-Forwarded-Encrypted: i=1; AJvYcCVsod4xP/DKNJrwF8u7GufzH7WFVK8DYRNdgxo97XWMym+75RYxIlmWYzCY5CEbCtYyiOOiMEq0Huv4@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTwHk6+o5tZVQUK9sd3hYAJ7aPeNazsJKOUN9nEDBrPSom5DYv
-	en+VLfUHJLEu9AG+QGfopOX8sT/unx/AAM1+V28YD+X+5Y6bur2aodsaBFGfdPEx7egpN183/a0
-	Xh41CrF7oMtrcn7/o09tCBI3J+bHCxwV9VXiu5b/FYYEkYKOKqMsYkV3Y0tXB
-X-Gm-Gg: ASbGncvne1XsCYKoXx1Ai8YRWTeqqkgS1RDYnQfJnsMBEqaJf/pg8tm2pMIiqtDGN7Z
-	dXx5ua6qhSn9y/eypb8ffrRhfU4aEFRodK4mEZK0dzjeMTniQ4ZyQxKJGfB+Qi/vFh8OcDx7d+q
-	gQI15gdMT3oJQx65NpYrN3Gg6Xh8/c8B5y6RZGkkRsgml+G2M3i/fCOnTA2tmCW4ebI+RQfRdMW
-	DQsoPOorwUTkg/YK7BMyKfkr5PkIx7q3wwhc7od7R/BYVl5DVYuDkkTyqQlxtIq8DTiQlcOBLtX
-	pTtoOdUR818wNtf7nQowsnc2MNhSDrsvNLKu
-X-Received: by 2002:a05:622a:13d1:b0:467:825e:133b with SMTP id d75a77b69052e-467a582600cmr13964391cf.13.1734087206070;
-        Fri, 13 Dec 2024 02:53:26 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IECRFHuS1VOciP42gwRe9QYsYpR8HsKDaOPO2V5MwSaCuCKb67oOndG87qRS6M/GWLhkhClaA==
-X-Received: by 2002:a05:622a:13d1:b0:467:825e:133b with SMTP id d75a77b69052e-467a582600cmr13964081cf.13.1734087205613;
-        Fri, 13 Dec 2024 02:53:25 -0800 (PST)
-Received: from [192.168.58.241] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d3bf50397csm10148990a12.79.2024.12.13.02.53.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Dec 2024 02:53:24 -0800 (PST)
-Message-ID: <28bf46a5-dedb-4491-b9be-23fdfb99035f@oss.qualcomm.com>
-Date: Fri, 13 Dec 2024 11:53:21 +0100
+	s=arc-20240116; t=1734087328; c=relaxed/simple;
+	bh=/sIQNiCyvCJV1BU0yujr3/A2B9wAu1BGuwyBU4noC2U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dtydaH76Zg622wTzBVB4WMbcpeFmJ877EofKmW7MIO1ZD7q27firWZrezFG8v3KU+37x5GutZSxFdleT7gk6JmB0P4HVsTvJ+ZF53/VexYpsp46MyI0HXIVSdQHao5MeFuAbWYVuOeERmdMn8nXmDop2y4WyoLShWdFeuJRUFyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gGl3GROS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADCECC4CED0;
+	Fri, 13 Dec 2024 10:55:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734087326;
+	bh=/sIQNiCyvCJV1BU0yujr3/A2B9wAu1BGuwyBU4noC2U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gGl3GROSZcllCztHrgYMNvJ+Ez+9jaWvrE0TcBxsMc3at1ozAWYkDyT7Cr3AP+615
+	 G5svGg75KGrSqcJrBgMFtdjqUD9FLjOLKF6K3P9mT+uYYsPNnxqtzyG+XZfgeFjZHr
+	 IlVigeckSfCcmoyMzYvt4EcMHKDCW2r8mo/Gygwniiuj28Go8LSL0plhXT8CwnyDFR
+	 Cyh8RP7qLYfP2joQoaYh/oKuLjP3J8IsmECgvF69CcLUanJE4Y94jDhR599d7cQpXj
+	 HfDIm4Gq8B7cZ5r4He81i5vT161LKmcQXi+JScrV6yZAOv/2Wb9LPPqS/bi+qBo4Pp
+	 SVZgHaXJsAH3A==
+Date: Fri, 13 Dec 2024 11:55:22 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Paul Handrigan <paulha@opensource.cirrus.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, linux-clk@vger.kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-binding: clock: cs2600: Add support for the CS2600
+Message-ID: <gofhuzpxqm4fmusebwkjbgblffk5ail27mtgdk4vpwjvyhipcw@2ep6gpgjkgwl>
+References: <20241211003236.2523604-1-paulha@opensource.cirrus.com>
+ <20241211003236.2523604-2-paulha@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: display/msm/gmu: Document RGMU
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Rob Clark
- <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        20241104-add_initial_support_for_qcs615-v5-4-9dde8d7b80b0@quicinc.com,
-        20241022-qcs615-clock-driver-v4-3-3d716ad0d987@quicinc.com,
-        20240924143958.25-2-quic_rlaggysh@quicinc.com,
-        20241108-qcs615-mm-clockcontroller-v3-7-7d3b2d235fdf@quicinc.com,
-        20241108-qcs615-mm-dt-nodes-v1-1-b2669cac0624@quicinc.com,
-        20241122074922.28153-1-quic_qqzhou@quicinc.com
-References: <20241213-qcs615-gpu-dt-v2-0-6606c64f03b5@quicinc.com>
- <20241213-qcs615-gpu-dt-v2-2-6606c64f03b5@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241213-qcs615-gpu-dt-v2-2-6606c64f03b5@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: i3dn4b2HHyDYHz1qUdZVQuyzffq7YT0I
-X-Proofpoint-GUID: i3dn4b2HHyDYHz1qUdZVQuyzffq7YT0I
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 clxscore=1015 malwarescore=0 adultscore=0 mlxlogscore=999
- suspectscore=0 spamscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412130075
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241211003236.2523604-2-paulha@opensource.cirrus.com>
 
-On 13.12.2024 11:35 AM, Akhil P Oommen wrote:
-> RGMU a.k.a Reduced Graphics Management Unit is a small state machine
-> with the sole purpose of providing IFPC support. Compared to GMU, it
-> doesn't manage GPU clock, voltage scaling, bw voting or any other
-> functionalities. All it does is detect an idle GPU and toggle the
-> GDSC switch. So it doesn't require iommu & opp table.
+On Tue, Dec 10, 2024 at 06:32:35PM -0600, Paul Handrigan wrote:
+> Add device tree support for the Cirrus Logic CS2600 clock
+> device.
 > 
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> Signed-off-by: Paul Handrigan <paulha@opensource.cirrus.com>
 > ---
+>  .../bindings/clock/cirrus,cs2600.yaml         | 78 +++++++++++++++++++
+>  include/dt-bindings/clock/cirrus,cs2600.h     | 23 ++++++
+>  2 files changed, 101 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml
+>  create mode 100644 include/dt-bindings/clock/cirrus,cs2600.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml b/Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml
+> new file mode 100644
+> index 000000000000..ed23f347f382
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/cirrus,cs2600.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Cirrus Logic Fractional-N Clock Synthesizer & Clock Multiplier
+> +
+> +maintainers:
+> +  - Paul Handrigan <paulha@opensource.cirrus.com>
+> +  - patches@opensource.cirrus.com>
+> +
+> +description: |
 
-The bindings file exists so that people that are not in the know, can
-reference it and learn about the hardware. Please spell out IFPC, as
-that's a non-obvious, hw-specific  acronym.
+Do not need '|' unless you need to preserve formatting.
 
-Otherwise looks ok
+> +  The CS2600 is a system-clocking device that enables frequency synthesis and
+> +  clock generation from a stable timing reference clock. The device can generate
+> +  low-jitter clocks from a noisy clock reference at frequencies as low as 50 Hz.
 
-Konrad
+Be sure these are wrapped at 80 (looks like 81).
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - cirrus,cs2600
+> +
+> +  clocks:
+> +    description:
+> +      Common clock binding for XTI/REF_CLK, CLK_IN
+
+Just drop description, kind of obvious from the clock-names. If you want
+to keep it, then rather list the items with description per each item.
+
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref_clk
+
+s/ref_clk/ref/
+(or xti)
+
+"clk" is just obvious.
+
+> +      - const: clk_in
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: Power Supply
+> +
+> +  cirrus,aux-output-source:
+> +    description:
+> +      Specifies the function of the auxiliary clock output pin
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum:
+> +      - 0 # CS2600_AUX_OUTPUT_FREQ_UNLOCK: Frequency unlock notification
+> +      - 1 # CS2600_AUX_OUTPUT_PHASE_UNLOCK: Phase unlock notification
+> +      - 2 # CS2600_AUX_OUTPUT_NO_CLKIN: CLK_IN is not available
+
+I don't get the meanings - how clock output could be clock is not
+available? clk_in is a required property, so it cannot be unavailable.
+
+
+> +    default: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/cirrus,cs2600.h>
+> +
+> +    i2c@0 {
+
+i2c {
+
+> +      reg = <0x0 0x100>;
+
+Drop reg
+
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      clock-controller@2c {
+> +        #clock-cells = <1>;
+> +        compatible = "cirrus,cs2600";
+> +        reg = <0x2c>;
+> +        clocks = <&xtl_clk>, <&sync_clock>;
+> +        clock-names = "ref_clk", "clk_in";
+> +        vdd-supply = <&vreg>;
+> +      };
+> +    };
+> diff --git a/include/dt-bindings/clock/cirrus,cs2600.h b/include/dt-bindings/clock/cirrus,cs2600.h
+> new file mode 100644
+> index 000000000000..673b4b4cb1f4
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/cirrus,cs2600.h
+> @@ -0,0 +1,23 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +/*
+> + * Copyright (c) 2024 Cirrus Logic, Inc. and
+> + *		      Cirrus Logic International Simiconductor Ltd.
+> + *
+> + * Author: Paul Handrigan <paulha@opensource.cirrus.com>
+> + *
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLK_CIRRUS_CS2600_H
+> +#define _DT_BINDINGS_CLK_CIRRUS_CS2600_H
+> +
+> +/* CS2600 Clock Outputs  */
+> +#define CS2600_CLK_OUTPUT		0
+
+Drop "OUTPUT". These are names of the clocks.
+
+> +#define CS2600_BCLK_OUTPUT		1
+> +#define CS2600_FSYNC_OUTPUT		2
+> +
+> +/* CS2600 Auxiliary Output */
+> +#define CS2600_AUX_OUTPUT_FREQ_UNLOCK	0
+> +#define CS2600_AUX_OUTPUT_PHASE_UNLOCK	1
+> +#define CS2600_AUX_OUTPUT_NO_CLKIN	2
+
+Not sure what are these, but feel like some register values. Otherwise,
+why these are exactly bindings? What part of driver do they bind?
+
+Best regards,
+Krzysztof
+
 
