@@ -1,141 +1,99 @@
-Return-Path: <devicetree+bounces-130939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D13B9F15E1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 20:32:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A39D99F16B0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 20:47:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7406916A978
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 19:32:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14E501886DF0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 19:47:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F12C41EC4C3;
-	Fri, 13 Dec 2024 19:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FB7E17C21E;
+	Fri, 13 Dec 2024 19:45:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NhNUIDKC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="0UV6EKHn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C424C1EC014;
-	Fri, 13 Dec 2024 19:32:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1383383;
+	Fri, 13 Dec 2024 19:45:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734118362; cv=none; b=qoLdMBsYl2/XeuOGQ9FMChhRRf/9ikk7fE1l/g69ZiQBmkq08lBOKzcNEsyrUNN0PVK7z5qXYblwgOHbvJec8FVQ+lWfYfWMQPcLNnbs9Dy5l4H+Ntju4O2lvrojGY4YZq1BFUK1tFlD9zGXaRJunbtMnNjIroc2qbQQbfCpbq0=
+	t=1734119138; cv=none; b=ATDo58JdcwI+9/3v0EPeB2cZdJyo8G4a6qLlhneKws+CfqstSnlu+0sjbPDAVsQyXAa4qQthwfAOztzdMHcJdBqqM51Z6/1XAbasuP+AmhTuZQhGsbqZ5dMN2VZo8QBiLjH361rL0y8f6nZx8wYKVRBCb11dXql1u0Qo1Y2dk38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734118362; c=relaxed/simple;
-	bh=hR2OWxnI4AiLexpWZFfBMDeP0lHpudXLW6rkM6ur0TU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=vDvIz/RuOqX8ruPcQQaUxiz+/04IVGdXd83hWQprwFFERoGZ38h25EuUTUrrrdMiM3KwxB0dJCesRhpi3qg2er6b2Va8SS0ShIvRDxKhx30TKpawSftgPr4926u1qxoetYOxKys0gY7SSmnuYQDg58bxu4hP0kL4b+/gowPYUo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NhNUIDKC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 56AD5C4CED6;
-	Fri, 13 Dec 2024 19:32:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734118361;
-	bh=hR2OWxnI4AiLexpWZFfBMDeP0lHpudXLW6rkM6ur0TU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=NhNUIDKCSaOKqdoStmKMjeWWK/yO74LY2oC+mp8cMzGkuprfyRYCCXDclP5G+8y6q
-	 ixe4oTeAbE+iXcW48h53BiGjstJyVGcAz6884CA5GcIOum3OS1bgTj2n/8KqICuYtM
-	 ADTCj2QxjGWAHhTsLACcjsanoHZbakxXGOKqrkPpPXXyLgYQa8aJ6q1OFd/kbLPmJ6
-	 bHdHOzActpcMd06X7hHthttFqP5cLlBs/J2TrqWxBUod0GNxgPoWHk7zuwBjMeESm1
-	 3wtSBV/xmDUooNQlGdrMp3OvkK8cLmFASk6RshgmTcXYOHJkLr/ssmZ091W2UXGYAe
-	 HJirBo90lrCyQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4371BE77184;
-	Fri, 13 Dec 2024 19:32:41 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Fri, 13 Dec 2024 20:32:34 +0100
-Subject: [PATCH v2 2/2] power: supply: gpio-charger: add support for
- default charge current limit
+	s=arc-20240116; t=1734119138; c=relaxed/simple;
+	bh=/NGVVzayzEEZuxZAoyNwRjkMZVsgtmClsk+jQ6Ass9s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zi/54WYQie9UptyDT0VRlQKJvVolv2qSvu8LyYGthykbjSZ3eKz9mkCFBk590TBP5YjS/y5duHNHHB957khoHmaWpkmTgTWGzzsY7t7tGbpsshbXM8ii0rrNPEvZKaZ+FPk+SwT2h3sGOveNYK23hdw5Hd8kel+L5wYeM/1Vw1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=0UV6EKHn; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=2OKWWGal3o7LbTV2TO3uDGVhmx9PqnQujifRZi9s2So=; b=0UV6EKHnRYzDrMqVxlBYCouvTp
+	FlYRRMm0syDARUJNEYq7CGX0KQCnszoZMQCtZ93d0oGy7OGL2t/a7f+uCcGXMRSfRGqILVSZRp2yJ
+	cWNVXNCKl3yRizT26AuIaDtOmNIuUjKOLkGpJB87Vc0gO+15C9lxkb0sDboR+eAg2sjyfghav+OBi
+	9O3VJBM9xERg6lUmPOIBWUvYpf6SgbEowi/FuHczwpBcWEEPUXjY0yHyONW6nCIUqc4K/ivQe9sOJ
+	cou9JA3e/M2lKQPihGgaFbz8YFBZrKZvOjP0bvdNRmTl2G/bM/NVXXWWlWqY98O558A8vs+K1u+fx
+	RVOYHXiA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34272)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tMBbE-0007Fd-2S;
+	Fri, 13 Dec 2024 19:45:20 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tMBbC-0006Yr-0S;
+	Fri, 13 Dec 2024 19:45:18 +0000
+Date: Fri, 13 Dec 2024 19:45:17 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Daniel Machon <daniel.machon@microchip.com>
+Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	jacob.e.keller@intel.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, robert.marko@sartura.hr
+Subject: Re: [PATCH net-next v4 5/9] net: sparx5: only return PCS for modes
+ that require it
+Message-ID: <Z1yOzaL-gwXIE94O@shell.armlinux.org.uk>
+References: <20241213-sparx5-lan969x-switch-driver-4-v4-0-d1a72c9c4714@microchip.com>
+ <20241213-sparx5-lan969x-switch-driver-4-v4-5-d1a72c9c4714@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241213-default-charge-current-limit-v2-2-45886fce905c@liebherr.com>
-References: <20241213-default-charge-current-limit-v2-0-45886fce905c@liebherr.com>
-In-Reply-To: <20241213-default-charge-current-limit-v2-0-45886fce905c@liebherr.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1734118360; l=2214;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=8kkaeG3Fu8A0mMHCllTq6XlCfvacmcvVln/ePhFAfLE=;
- b=l1eFTt5Hpnmk4r5m9dimQx/rMfKLcUx4nHVb3uN0U9n72cqYd4WKhxzux+t615DWImfJgTDb9
- PbudIbCxdGEDfRoJiLC8J0+qokkTQ0ruJNf9krtZ2W4wtfsWA8lzBP6
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241213-sparx5-lan969x-switch-driver-4-v4-5-d1a72c9c4714@microchip.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+On Fri, Dec 13, 2024 at 02:41:04PM +0100, Daniel Machon wrote:
+> The RGMII ports have no PCS to configure. Make sure we only return the
+> PCS for port modes that require it.
+> 
+> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
 
-With DT properties charge-current-limit-gpios and
-charge-current-limit-mapping one can define charge current limits in uA
-using up to 32 GPIOs. At the moment the driver defaults to smallest charge
-current limitation for safety reasons. When disabling charging is
-supported, which should be common, the driver defaults to non charging on
-probe. By having a default, charging can be enabled on probe for such
-devices.
+Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
----
- drivers/power/supply/gpio-charger.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/drivers/power/supply/gpio-charger.c b/drivers/power/supply/gpio-charger.c
-index 68212b39785beabfe5536a18fa15bc249f7b1eea..56149545a1dc6004b474cec44984c6dfad3413b5 100644
---- a/drivers/power/supply/gpio-charger.c
-+++ b/drivers/power/supply/gpio-charger.c
-@@ -187,6 +187,8 @@ static int init_charge_current_limit(struct device *dev,
- {
- 	int i, len;
- 	u32 cur_limit = U32_MAX;
-+	bool set_def_limit;
-+	u32 def_limit;
- 
- 	gpio_charger->current_limit_gpios = devm_gpiod_get_array_optional(dev,
- 		"charge-current-limit", GPIOD_OUT_LOW);
-@@ -220,6 +222,9 @@ static int init_charge_current_limit(struct device *dev,
- 	if (len < 0)
- 		return len;
- 
-+	set_def_limit = !device_property_read_u32(dev,
-+						  "charge-current-limit-default-microamp",
-+						  &def_limit);
- 	for (i=0; i < gpio_charger->current_limit_map_size; i++) {
- 		if (gpio_charger->current_limit_map[i].limit_ua > cur_limit) {
- 			dev_err(dev, "charge-current-limit-mapping not sorted by current in descending order\n");
-@@ -227,8 +232,16 @@ static int init_charge_current_limit(struct device *dev,
- 		}
- 
- 		cur_limit = gpio_charger->current_limit_map[i].limit_ua;
-+		if (set_def_limit && def_limit == cur_limit) {
-+			set_charge_current_limit(gpio_charger, cur_limit);
-+			return 0;
-+		}
- 	}
- 
-+	if (set_def_limit)
-+		dev_warn(dev, "charge-current-limit-default-microamp %u not listed in charge-current-limit-mapping\n",
-+			 def_limit);
-+
- 	/* default to smallest current limitation for safety reasons */
- 	len = gpio_charger->current_limit_map_size - 1;
- 	set_charge_current_limit(gpio_charger,
+Thanks!
 
 -- 
-2.39.5
-
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
