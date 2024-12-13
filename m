@@ -1,234 +1,158 @@
-Return-Path: <devicetree+bounces-130917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 314C19F142B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 18:44:35 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 418769F1478
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 18:58:29 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 71D4D188D258
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 17:44:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1295281102
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 17:58:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B5B1E22E6;
-	Fri, 13 Dec 2024 17:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5268E1E411D;
+	Fri, 13 Dec 2024 17:58:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nHVUzKIT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hDO3EZ1i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C63171E412A;
-	Fri, 13 Dec 2024 17:44:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 637D01DFE29
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 17:58:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734111871; cv=none; b=LvIYac1MvNTAk6DZPPcda9qiR4C4cMkSZprxqJQq4vdQ8z/HfEfc/MX4Hz6ZLLZI+tur1dc5ksRi1ZRQfetHjz5MHrmgbkO5Nlz0JqzRuCCLVU6qDeGdHflPAGIwScvizuq6ehosr6i0qB42NTu8XTxpFe6BjUpDA6VBtzbcoCo=
+	t=1734112707; cv=none; b=h7SIYC5AVOzAV1rGNjLFtQbFos6QGpm6ospA2LeAR8+jav120Nqnf1GKzQoFh1ZSo3Rvfm0PP6mrEgdv6bH+YlZ7GcKpfFCSlF8Jq8i2FuXZ5Q3AYlUE0V8VF1kJnsj8m0mLM10jf1aV1ZvazPq3plX4iwNGn7NF9Fmhgbq5M7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734111871; c=relaxed/simple;
-	bh=nknOgVwG3RCKQlEd/MN7YEnG/xsR+xdHy7WgwRNk+50=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hz7wMEGg4/IEGTzq2IrtQL2rZDgBMj53kz4qdJ6lKDAldSH7ni18N1U35w84MsdXKfHTxn7QGtGI6j553F19XM1PssD5xd0u0wWpaJ1JgKy5+XG6t0uDmoI7HYKrN1/WUtkxUzgRy2+PIbpMFcLAur2G8cW41NndO4UB+eHoLuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nHVUzKIT; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43628e97467so13810005e9.3;
-        Fri, 13 Dec 2024 09:44:27 -0800 (PST)
+	s=arc-20240116; t=1734112707; c=relaxed/simple;
+	bh=fJMJGGIs8XwoUh5eaP+N5nnUuULzD6iUDWJ2PhMddOE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hzGS1lbbCDSG+7DIWPRLoDea0oVsqNSWKCxCgHFs1/xAY7X7oIOFXkVU1oJ43hF8DhlsyC28CX2WxyJJ0eHEw/jPb8gqzjomz0gZ/nCX+F1Pg43xilD8C8t4cbEA88dcP54mwyNbNiWk2V9EehSLqb5cyuZEA49DAcTG2Tfg/ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hDO3EZ1i; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-302217866b5so694831fa.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 09:58:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734111866; x=1734716666; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LdGzxlnxXPszw2dmBRPxwLpnCH861/F9dbdJa9ZUBPg=;
-        b=nHVUzKITKVwaYfQtLZg5f3T9i7sKSu58904SjzENzGckK8P14pL3UtYBYjzfKQwGSn
-         HvYZ2LI20SoFMls7MSqPd3/wJaSTlpK//pARoyqSXb7CH3oi9p/oqxdf7U3Xzxi3ijFK
-         GDc+dOrcmb4+e/T6tVzaps39Y4pB+BTa3n2Sb/2Lc09x6gx9reqGtbF5dmNi6GP2iu7n
-         aLJVjqIimeA8nDnQVcJoMQlIsiIq5xvdCIz426V9aKnTnFPkXmdE8iW9ZyGY/iRFF0K3
-         3JN0xN9ZyXaDASxasDatzAh6QEhcgiaAdVN/De7Z/oNZ4eKTG38FhDc4J24p8xWfgiK9
-         Sk1g==
+        d=linaro.org; s=google; t=1734112703; x=1734717503; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JP0v5TL7oePTh21UGaiJDFEPSqS7AXPH+Qkz4Rr1cGc=;
+        b=hDO3EZ1itKK9oaB3oPBrr9zLVwgndKkZM0/2bJ88i4MrEF7X7resYq/hcL7BmZgNR6
+         6I69X6Jbz9qS4q02+/Lg6cvwDQ3YjNxF0/7/lvRFOluYZGdDk2gztKLLV6BKsb9C9nV3
+         ZQ1arKYQb59uTdSsvKuKHbbTvYnzjqSgQsmPLj4qwaHx/czcgXT83C0VM2aAfph/agvi
+         oLIeP3YsscSWTv+5R/kO8GxM3bvXoXCMeC2FVQukHlUUk5F58J6E6z31rSmLpz0AiCBh
+         jC6LgSon7AbuiooBkK2rgWocIdTe/s6V+d8OuY7DUn8jBJqbS8EmGBapcQs22/vMjWvm
+         9xiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734111866; x=1734716666;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LdGzxlnxXPszw2dmBRPxwLpnCH861/F9dbdJa9ZUBPg=;
-        b=jb73BLvHdc/JiXN3zfYJVPvO7PKPIEO4u1O/6ueaz3QBTIgbUem66JOLJxL8bPqn5g
-         /jB7f5XwOEewtrMbjyUF7xZcOuvi86nidFr5EUdInpypAaXXX0JRtFsg+kdamcFwpl1o
-         fYgpT/UXRMF82BDeoGKjtkq9oDvd7N1Zgbi9g+iuAG5HUksw1pUKQzozMsAP3wkOVuTk
-         U4cAdEf01eISjM0lDAGap7VuWk0BA/Z4qlxgILaxHXtVBEcF7qkhPAf4BDMl2Kh/yCy9
-         uUVh1AaaKg4FEixel5b7hDi65Qb8F/Q3pP3gsq8bJjw88GUolh5NkcIiDAzYySP+yy+M
-         7K/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU6Z03oOqeOQ7UHJc3LWuRUfsWho0gIqY+aWp7dtsBs1BbKzR7rfwBo07TTGYDk/3GIsda3onQlnJu5hNi0jRA=@vger.kernel.org, AJvYcCUcSjufG5yLbcwfmYUeRzaOk3eXaV8MYxOwr7MQKqmVin7sUYJ1hXT3F+xmxsarQMZNAHYsIOrQnWCpT3V5PFetVig=@vger.kernel.org, AJvYcCUiD6GVcReXrKDsbO8LdamFX5qyDpSgpPbLrmd9oWsrRcKjyHbga33WR5pnF5QcmHNJo/18QSPzHi/Dz+Q=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyU4KoD0Nl4X4N+ULPc2wtt8v2vbenQW7iESpD54UNWXplb5GZ+
-	uN9qpW1+zmTYhBg3TuV9bVD/ge5tLzZacMN2Fhuc1u73u+nmY1sj
-X-Gm-Gg: ASbGnctsOUWK2lebrtK0oNJcbPp0m5L2l5LcMoEpPjuMF8AxL5oRGyDvgETGRd6SSaX
-	pni0IfGYERL6E4KmOO9o2XNQtcqXLsXvylj/neX1uaM1117c/h0tIeSLfSdLwu2YT2qVgDJnC28
-	ytudBZn4+VTEjyGPeDdnNrueGj+3Mwzq6eSgvMlaoPcxJgozy0nFqrl0sqJHSpyNbskQXIWLrDX
-	mp+H8uDwA/T/JHPyJIyt3cUaC4W3BwVon1FC7HF1GKVKmDAcChY0p7Skb3SQdH1gGNFA1p8tRB4
-	MCx4H6mWgA==
-X-Google-Smtp-Source: AGHT+IFUBR0OpCNikkib0NSmTgitbT6MEEfTidX4W4kFAXM+zLn5PcXdSK8IwCJy/N+pHg236pGtUA==
-X-Received: by 2002:a05:600c:4511:b0:434:f4f9:8104 with SMTP id 5b1f17b1804b1-4362aaa4ca1mr29348615e9.33.1734111865861;
-        Fri, 13 Dec 2024 09:44:25 -0800 (PST)
-Received: from prasmi.Home ([2a06:5906:61b:2d00:4eec:e99c:89a6:d7a6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43625717c9fsm55520975e9.44.2024.12.13.09.44.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Dec 2024 09:44:24 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
-	linux-watchdog@vger.kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [RFC PATCH] watchdog: rzv2h_wdt: Add support to retrieve the bootstatus information
-Date: Fri, 13 Dec 2024 17:44:19 +0000
-Message-ID: <20241213174419.908525-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1734112703; x=1734717503;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JP0v5TL7oePTh21UGaiJDFEPSqS7AXPH+Qkz4Rr1cGc=;
+        b=QnJ5Czq+Gs8UA69ySinjKnaJkAKGbM3KHc9J6txpnahBSNHU1RdVpAMclNS7/08J/7
+         i5j/x99zAqI8jdq8N/ylLboDoh4iNiLgEQ43V0ygaTTO2i6hcde8lDcu6BpNHxv7wihj
+         3pESZjYYuXt1mLlLfJOqQcha4kuydC9taH69Q8USyVga8/w25jGQOAn6vccWm7cS+/LA
+         DGqY65lD/68Opm3x/a+xsJKjSXSRec4zQprbP8UAJ9iXIZ+OZWMawqOWgTtzMUwbStRL
+         TD4lnxtQQw+4ZYf8fM+WwKX92TE4du1VwwFPsOA++8aXDnevstZ5XOpOKtEyPuWqBSAt
+         ypTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVe+NFZu9gxG/avIJUAdowQM6piDdWp1k/A3/436SN91WBMiCIa3nLHSzoEg9UNKiKt3ClNFFaOIgk0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+c23Vml3KIoY2wan3io7tmrHOZ1AlA71Bu6qIBLZ2mVR1QrcP
+	/sb457adxfaCOQpOtJAkGizeWMdxRp6b2fzwFiZptNb25ynmOrrnQ29N45x4xHo=
+X-Gm-Gg: ASbGncvoGdsKdBpqI4EecDFerI3Gs65tQJZaxaV/Qpy0+afMCeAETNllz7ZsbSwrf+k
+	IGg1jCkJLWYKZ08HSHzOzZrPU+4Ggu1c7NM2Ta6ftbfI6cTsichiWknX3EASGnx+oXOW1mlWc9w
+	HAiqJfnXuaEMXxIW3JBKihYZ2WWzQFNFhun/AhwDGbtdTZjoicZIIDorPtDhFO08PTBOK3eum+1
+	m5eT2hwVuKD6vzy1bQKkeVFz763+x2jkse0SIF3wwPHhJb9E7lvhuHHU64A9Z5pdT1yy9k5KDLE
+	/PkdMiO6GS2tjXFn0bxkqVueDtEcFG+1gZg=
+X-Google-Smtp-Source: AGHT+IHrAfr6s54EMZzdZibt61xiXAEyvwCU0wxpSg2sJKxDaCspoqErH2abtAvmUlYyFr7yIzet5w==
+X-Received: by 2002:a05:651c:b20:b0:302:4113:2023 with SMTP id 38308e7fff4ca-3025451db77mr4619631fa.3.1734112703518;
+        Fri, 13 Dec 2024 09:58:23 -0800 (PST)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-302245cf66csm15409481fa.25.2024.12.13.09.58.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Dec 2024 09:58:22 -0800 (PST)
+Message-ID: <8308a825-2f33-4ec6-bfd2-9d3ed31c4a56@linaro.org>
+Date: Fri, 13 Dec 2024 19:58:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] media: qcom: camss: Restrict endpoint bus-type to
+ D-PHY
+Content-Language: ru-RU
+To: Luca Weiss <luca.weiss@fairphone.com>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Barnabas Czeman <barnabas.czeman@mainlining.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+ Caleb Connolly <caleb.connolly@linaro.org>, David Heidelberg <david@ixit.cz>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241209-camss-dphy-v1-0-5f1b6f25ed92@fairphone.com>
+ <20241209-camss-dphy-v1-2-5f1b6f25ed92@fairphone.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20241209-camss-dphy-v1-2-5f1b6f25ed92@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Luca.
 
-On the RZ/V2H(P) SoC we can determine if the current boot is due to
-`Power-on-Reset` or due to the `Watchdog`. The information used to
-determine this is present on the CPG block.
+On 12/9/24 14:01, Luca Weiss wrote:
+> Currently the Qualcomm CAMSS driver only supports D-PHY while the
+> hardware on most SoCs also supports C-PHY. Until this support is added,
+> check for D-PHY to make it somewhat explicit that C-PHY won't work.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>   drivers/media/platform/qcom/camss/camss.c | 9 +++++++++
+>   1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
+> index 9fb31f4c18adee886cd0bcf84438a8f27635e07f..b99af35074cdf6fa794a0d2f0d54ecf12ac354d9 100644
+> --- a/drivers/media/platform/qcom/camss/camss.c
+> +++ b/drivers/media/platform/qcom/camss/camss.c
+> @@ -1855,6 +1855,15 @@ static int camss_of_parse_endpoint_node(struct device *dev,
+>   	if (ret)
+>   		return ret;
+>   
+> +	/*
+> +	 * Most SoCs support both D-PHY and C-PHY standards, but currently only
+> +	 * D-PHY is supported in the driver.
+> +	 */
+> +	if (vep.bus_type != V4L2_MBUS_CSI2_DPHY) {
+> +		dev_err(dev, "Unsupported bus type %d\n", vep.bus_type);
+> +		return -EINVAL;
+> +	}
+> +
+>   	csd->interface.csiphy_id = vep.base.port;
+>   
+>   	mipi_csi2 = &vep.bus.mipi_csi2;
 
-The CPG_ERROR_RSTm(m = 2 -8 ) registers are set in response to an error
-interrupt causing an reset. CPG_ERROR_RST2[ERROR_RST1] is set if there
-was an underflow/overflow on WDT1 causing an error interrupt.
+My cautious worries were futile, the change works as expected and
+the regression testing on RB5 is passed:
 
-To fetch this information from CPG block `syscon` is used and bootstatus
-field in the watchdog device is updated based on the
-CPG_ERROR_RST2[ERROR_RST1] bit. Upon consumig CPG_ERROR_RST2[ERROR_RST1]
-bit we are also clearing it.
+===== begin parsing endpoint /soc@0/camss@ac6a000/ports/port@2/endpoint
+fwnode video bus type not specified (0), mbus type not specified (0)
+lane 0 position 0
+lane 1 position 1
+lane 2 position 2
+lane 3 position 3
+clock lane position 7
+no lane polarities defined, assuming not inverted
+assuming media bus type MIPI CSI-2 D-PHY (5)
+===== end parsing endpoint /soc@0/camss@ac6a000/ports/port@2/endpoint
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-@Geert, I intend to drop WDT0/2/3 nodes (and related clocks) as HW manual
-says WDT1 is for CA55 (I'll first confirm this internally)
+Tested-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-Hi Geert/Rob,
-
-I havent included a binding changes as part of the RFC as I wanted to get
-some initial feedback on the implementation. Currently CPG block doesnt
-have the "syscon" this patch has been tested with below diff to SoC DTSI
-
-Cheers,
-Prabhakar
-
-Changes to SoC DTSI:
-@@ -243,7 +243,7 @@ pinctrl: pinctrl@10410000 {
-                };
-
-                cpg: clock-controller@10420000 {
--                       compatible = "renesas,r9a09g057-cpg";
-+                       compatible = "renesas,r9a09g057-cpg", "syscon";
-                        reg = <0 0x10420000 0 0x10000>;
-                        clocks = <&audio_extal_clk>, <&rtxin_clk>, <&qextal_clk>;
-                        clock-names = "audio_extal", "rtxin", "qextal";
-@@ -455,6 +456,7 @@ wdt1: watchdog@14400000 {
-                        clock-names = "pclk", "oscclk";
-                        resets = <&cpg 0x76>;
-                        power-domains = <&cpg>;
-+                       syscon = <&cpg>;
-                        status = "disabled";
-                };
-
----
- drivers/watchdog/rzv2h_wdt.c | 27 ++++++++++++++++++++++++++-
- 1 file changed, 26 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/watchdog/rzv2h_wdt.c b/drivers/watchdog/rzv2h_wdt.c
-index 8defd0241213..8e0901bb7d2b 100644
---- a/drivers/watchdog/rzv2h_wdt.c
-+++ b/drivers/watchdog/rzv2h_wdt.c
-@@ -4,14 +4,17 @@
-  *
-  * Copyright (C) 2024 Renesas Electronics Corporation.
-  */
-+#include <linux/bitfield.h>
- #include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/io.h>
- #include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regmap.h>
- #include <linux/reset.h>
- #include <linux/units.h>
- #include <linux/watchdog.h>
-@@ -40,6 +43,10 @@
- 
- #define WDT_DEFAULT_TIMEOUT	60U
- 
-+#define CPG_ERROR_RST2			0xb40
-+#define CPG_ERROR_RST2_ERR_RST1		BIT(1)
-+#define CPG_ERROR_RST2_ERR_RST1_WEN	(BIT(1) << 16)
-+
- static bool nowayout = WATCHDOG_NOWAYOUT;
- module_param(nowayout, bool, 0);
- MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
-@@ -135,7 +142,7 @@ static int rzv2h_wdt_stop(struct watchdog_device *wdev)
- }
- 
- static const struct watchdog_info rzv2h_wdt_ident = {
--	.options = WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING | WDIOF_SETTIMEOUT,
-+	.options = WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING | WDIOF_SETTIMEOUT | WDIOF_CARDRESET,
- 	.identity = "Renesas RZ/V2H WDT Watchdog",
- };
- 
-@@ -207,12 +214,29 @@ static int rzv2h_wdt_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct rzv2h_wdt_priv *priv;
-+	struct regmap *regmap;
-+	unsigned int buf;
- 	int ret;
- 
- 	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
- 		return -ENOMEM;
- 
-+	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	ret = regmap_read(regmap, CPG_ERROR_RST2, &buf);
-+	if (ret)
-+		return -EINVAL;
-+
-+	if (buf & CPG_ERROR_RST2_ERR_RST1) {
-+		ret = regmap_write(regmap, CPG_ERROR_RST2,
-+				   CPG_ERROR_RST2_ERR_RST1_WEN | CPG_ERROR_RST2_ERR_RST1);
-+		if (ret)
-+			return -EINVAL;
-+	}
-+
- 	priv->base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(priv->base))
- 		return PTR_ERR(priv->base);
-@@ -243,6 +267,7 @@ static int rzv2h_wdt_probe(struct platform_device *pdev)
- 	priv->wdev.info = &rzv2h_wdt_ident;
- 	priv->wdev.ops = &rzv2h_wdt_ops;
- 	priv->wdev.parent = dev;
-+	priv->wdev.bootstatus = buf & CPG_ERROR_RST2_ERR_RST1 ? WDIOF_CARDRESET : 0;
- 	watchdog_set_drvdata(&priv->wdev, priv);
- 	watchdog_set_nowayout(&priv->wdev, nowayout);
- 	watchdog_stop_on_unregister(&priv->wdev);
--- 
-2.43.0
-
+--
+Best wishes,
+Vladimir
 
