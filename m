@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-130918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 418769F1478
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 18:58:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 466719F14A8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 19:03:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1295281102
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 17:58:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F33DF280CDD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 18:03:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5268E1E411D;
-	Fri, 13 Dec 2024 17:58:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99C691DFE29;
+	Fri, 13 Dec 2024 18:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hDO3EZ1i"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P3CWLe/u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 637D01DFE29
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 17:58:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C18DC18660F;
+	Fri, 13 Dec 2024 18:03:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734112707; cv=none; b=h7SIYC5AVOzAV1rGNjLFtQbFos6QGpm6ospA2LeAR8+jav120Nqnf1GKzQoFh1ZSo3Rvfm0PP6mrEgdv6bH+YlZ7GcKpfFCSlF8Jq8i2FuXZ5Q3AYlUE0V8VF1kJnsj8m0mLM10jf1aV1ZvazPq3plX4iwNGn7NF9Fmhgbq5M7g=
+	t=1734113001; cv=none; b=cQZlmNaXDTp4kkgCM1eWRL7sfcENjmsXV4RHtLMlPjpAx8F8hcjdJHlHX342IpBdHrzSX9MpJM7B3TNsMuXTRsvWAHJ91uUfUPXYMP1UBsGMFiYmTdW/9wYZM/heZvsgx1naA5R7gYbt401brS2n3vU5GJ/zm+YTwmAIzNE6bUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734112707; c=relaxed/simple;
-	bh=fJMJGGIs8XwoUh5eaP+N5nnUuULzD6iUDWJ2PhMddOE=;
+	s=arc-20240116; t=1734113001; c=relaxed/simple;
+	bh=g0f2r9DOolk30FSnQ+OAzCzM/b34pc0RljcoApfTC4A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hzGS1lbbCDSG+7DIWPRLoDea0oVsqNSWKCxCgHFs1/xAY7X7oIOFXkVU1oJ43hF8DhlsyC28CX2WxyJJ0eHEw/jPb8gqzjomz0gZ/nCX+F1Pg43xilD8C8t4cbEA88dcP54mwyNbNiWk2V9EehSLqb5cyuZEA49DAcTG2Tfg/ww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hDO3EZ1i; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-302217866b5so694831fa.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 09:58:25 -0800 (PST)
+	 In-Reply-To:Content-Type; b=qkf58EwAxzrILwFi/to/bSYK91xtQfXDN60tGcdFV6Vhr564bwhCURDWueN/EZ/+4jrp9sP0FXjqjLQMrJrMEvOkhiYevbRuspOQ0y+ctcCVAoAxg8A4U25J5XTeN+SO67XebaXJkHc+mz3zmyFzucht7f9FNPRJYqAAG3Rgvvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P3CWLe/u; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-7fd49d85f82so1673246a12.3;
+        Fri, 13 Dec 2024 10:03:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734112703; x=1734717503; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JP0v5TL7oePTh21UGaiJDFEPSqS7AXPH+Qkz4Rr1cGc=;
-        b=hDO3EZ1itKK9oaB3oPBrr9zLVwgndKkZM0/2bJ88i4MrEF7X7resYq/hcL7BmZgNR6
-         6I69X6Jbz9qS4q02+/Lg6cvwDQ3YjNxF0/7/lvRFOluYZGdDk2gztKLLV6BKsb9C9nV3
-         ZQ1arKYQb59uTdSsvKuKHbbTvYnzjqSgQsmPLj4qwaHx/czcgXT83C0VM2aAfph/agvi
-         oLIeP3YsscSWTv+5R/kO8GxM3bvXoXCMeC2FVQukHlUUk5F58J6E6z31rSmLpz0AiCBh
-         jC6LgSon7AbuiooBkK2rgWocIdTe/s6V+d8OuY7DUn8jBJqbS8EmGBapcQs22/vMjWvm
-         9xiA==
+        d=gmail.com; s=20230601; t=1734112999; x=1734717799; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=F6jMM81flLKy4QRMajRgWR11Tzbfd+NW69qafUSop9c=;
+        b=P3CWLe/uhCVOFAkT5Z5ZHHhg6ky5HXoDvAP6GIKltSdIvy8IKWlUD8rfSy8pNBI9/P
+         aE4FnSZI9tb+GnpXkCUtfJkHXoYdKhYLxKwrPOjwPnsWtk3DPmfJi6bSor5hRlQf5YS0
+         AZIvRxHJWBR5Wj0RHgP2fCXcyWtGp7WLD93yklByd9KJtbFbxUq95L1fsY1lXzHcKD02
+         51SdZZ0WqkRcmk4thcY3p3s+WHqs/wmsDTD7kHadNoXprqrVRZRZK6JPK5XOLx6J/RKW
+         y2dXf80iM0c3wvz8+debV1qAj9bA/1W8UjYSnquWXase11GjoEykj71AD1t8SFLf4T/X
+         v0MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734112703; x=1734717503;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JP0v5TL7oePTh21UGaiJDFEPSqS7AXPH+Qkz4Rr1cGc=;
-        b=QnJ5Czq+Gs8UA69ySinjKnaJkAKGbM3KHc9J6txpnahBSNHU1RdVpAMclNS7/08J/7
-         i5j/x99zAqI8jdq8N/ylLboDoh4iNiLgEQ43V0ygaTTO2i6hcde8lDcu6BpNHxv7wihj
-         3pESZjYYuXt1mLlLfJOqQcha4kuydC9taH69Q8USyVga8/w25jGQOAn6vccWm7cS+/LA
-         DGqY65lD/68Opm3x/a+xsJKjSXSRec4zQprbP8UAJ9iXIZ+OZWMawqOWgTtzMUwbStRL
-         TD4lnxtQQw+4ZYf8fM+WwKX92TE4du1VwwFPsOA++8aXDnevstZ5XOpOKtEyPuWqBSAt
-         ypTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVe+NFZu9gxG/avIJUAdowQM6piDdWp1k/A3/436SN91WBMiCIa3nLHSzoEg9UNKiKt3ClNFFaOIgk0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+c23Vml3KIoY2wan3io7tmrHOZ1AlA71Bu6qIBLZ2mVR1QrcP
-	/sb457adxfaCOQpOtJAkGizeWMdxRp6b2fzwFiZptNb25ynmOrrnQ29N45x4xHo=
-X-Gm-Gg: ASbGncvoGdsKdBpqI4EecDFerI3Gs65tQJZaxaV/Qpy0+afMCeAETNllz7ZsbSwrf+k
-	IGg1jCkJLWYKZ08HSHzOzZrPU+4Ggu1c7NM2Ta6ftbfI6cTsichiWknX3EASGnx+oXOW1mlWc9w
-	HAiqJfnXuaEMXxIW3JBKihYZ2WWzQFNFhun/AhwDGbtdTZjoicZIIDorPtDhFO08PTBOK3eum+1
-	m5eT2hwVuKD6vzy1bQKkeVFz763+x2jkse0SIF3wwPHhJb9E7lvhuHHU64A9Z5pdT1yy9k5KDLE
-	/PkdMiO6GS2tjXFn0bxkqVueDtEcFG+1gZg=
-X-Google-Smtp-Source: AGHT+IHrAfr6s54EMZzdZibt61xiXAEyvwCU0wxpSg2sJKxDaCspoqErH2abtAvmUlYyFr7yIzet5w==
-X-Received: by 2002:a05:651c:b20:b0:302:4113:2023 with SMTP id 38308e7fff4ca-3025451db77mr4619631fa.3.1734112703518;
-        Fri, 13 Dec 2024 09:58:23 -0800 (PST)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-302245cf66csm15409481fa.25.2024.12.13.09.58.20
+        d=1e100.net; s=20230601; t=1734112999; x=1734717799;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F6jMM81flLKy4QRMajRgWR11Tzbfd+NW69qafUSop9c=;
+        b=OsBCHsUuJFEEzxrocPEp5qy7x6TRKua072VvNKXebPMr6Q0ki39xzIRu4W0uO/yZqC
+         bYMNaDBdu7d9g5+8TeH+f+mO6VsKQftXk0d7xMuAwGNDnoQ6JFVSqILbVDnNdsvetQrg
+         b8hE8DaivuEJOcGpY+ssxkDm33HntDtyBQNTb+fMIujkHBSaymet59vlTnHhPCA33bCf
+         rntrMTl2uZ5f835Vn1sm9a4JRwcfk+FB0Ss4COAnZRR7EYKaa1ws9OFb4xTS1zEklW9r
+         0SliunU11nVKLYyynWAnkw1kprRdqgJTJwX0UfPHdDk8ks/C08fkfIgo2Y21O6JqkLqd
+         KxpA==
+X-Forwarded-Encrypted: i=1; AJvYcCVRZyRcLqEZkMi5YtTxeVfzCMhnyKNc4llk7fIJv8pfulsh8seqnUEso4ftjTHIdoXDY3w03/1EDqwB23+6iog=@vger.kernel.org, AJvYcCWPz7pBhXFl/2WNaIP1rBIIsGn+5mtguYi/QxBFVTQ9L2N3XQWB5BiYNPSXX/utL5nVl+4yotoMGn7dSss=@vger.kernel.org, AJvYcCXIRP2Elh/Xb2HhqfJYfk9OC3mMUbsgE2zNUY8T6jqxy1F0JEsXp2mWHaSuhB3UADjtKxE6F7wkePd1rot+hX3WCvA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPu1PV1yO3A7PRLqQpUrXJJ19b22+DJk8bQExMpcRl4lVvgdgn
+	Ww12Yd74dIXvdn+jh4/x6raV8DACeKA1vTo3XSzbHp41pr+txeMR
+X-Gm-Gg: ASbGnct+Y5dITwmbF6rS0zwolYuIU3rWLb2qv7ciZ+efPFQkjfJ/0tf2xazcYNeb/Rm
+	w67FV5XHAB+o/AI6ZXRrl2j91nE0KHyDvuPwt8gYQByvWEgqol37ELzaQIu2kREjjrNlbtz4tg0
+	Cv9wrbbsCJ2SlRjOFcCCRBLmt/puZT452y4U28NeU7QY45QqkFaZS0whPNKQzMYy9IgeP4fXGob
+	DF5azDFHHZ+L3vkfWxGPFayIy4Tx/fWoegOJrcB7UBaTjuEBUot/ZbebAt8tG1nfpkz/KeAhcQu
+	rsmndPyTUCwRx9vYwXxQS1jtgn6hFQ==
+X-Google-Smtp-Source: AGHT+IG7A7M3YjX6+06+tv2Zfdp1aGAJkbcwwTaLRtBDDGmepQ2IUkuXRqoHUrmq9sEkhz+1WcWPCA==
+X-Received: by 2002:a17:90b:5284:b0:2ee:8430:b847 with SMTP id 98e67ed59e1d1-2f28fa54f36mr5120363a91.6.1734112998960;
+        Fri, 13 Dec 2024 10:03:18 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e705f0sm442915ad.265.2024.12.13.10.03.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Dec 2024 09:58:22 -0800 (PST)
-Message-ID: <8308a825-2f33-4ec6-bfd2-9d3ed31c4a56@linaro.org>
-Date: Fri, 13 Dec 2024 19:58:20 +0200
+        Fri, 13 Dec 2024 10:03:16 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <4d3e6f12-7cea-45ce-b1e2-c1fda94b92cd@roeck-us.net>
+Date: Fri, 13 Dec 2024 10:03:14 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,78 +83,224 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] media: qcom: camss: Restrict endpoint bus-type to
- D-PHY
-Content-Language: ru-RU
-To: Luca Weiss <luca.weiss@fairphone.com>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Barnabas Czeman <barnabas.czeman@mainlining.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
- Caleb Connolly <caleb.connolly@linaro.org>, David Heidelberg <david@ixit.cz>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241209-camss-dphy-v1-0-5f1b6f25ed92@fairphone.com>
- <20241209-camss-dphy-v1-2-5f1b6f25ed92@fairphone.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20241209-camss-dphy-v1-2-5f1b6f25ed92@fairphone.com>
+Subject: Re: [RFC PATCH] watchdog: rzv2h_wdt: Add support to retrieve the
+ bootstatus information
+To: Prabhakar <prabhakar.csengg@gmail.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
+ linux-watchdog@vger.kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20241213174419.908525-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20241213174419.908525-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi Luca.
-
-On 12/9/24 14:01, Luca Weiss wrote:
-> Currently the Qualcomm CAMSS driver only supports D-PHY while the
-> hardware on most SoCs also supports C-PHY. Until this support is added,
-> check for D-PHY to make it somewhat explicit that C-PHY won't work.
+On 12/13/24 09:44, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> On the RZ/V2H(P) SoC we can determine if the current boot is due to
+> `Power-on-Reset` or due to the `Watchdog`. The information used to
+> determine this is present on the CPG block.
+> 
+> The CPG_ERROR_RSTm(m = 2 -8 ) registers are set in response to an error
+> interrupt causing an reset. CPG_ERROR_RST2[ERROR_RST1] is set if there
+> was an underflow/overflow on WDT1 causing an error interrupt.
+> 
+> To fetch this information from CPG block `syscon` is used and bootstatus
+> field in the watchdog device is updated based on the
+> CPG_ERROR_RST2[ERROR_RST1] bit. Upon consumig CPG_ERROR_RST2[ERROR_RST1]
+> bit we are also clearing it.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->   drivers/media/platform/qcom/camss/camss.c | 9 +++++++++
->   1 file changed, 9 insertions(+)
+> @Geert, I intend to drop WDT0/2/3 nodes (and related clocks) as HW manual
+> says WDT1 is for CA55 (I'll first confirm this internally)
 > 
-> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-> index 9fb31f4c18adee886cd0bcf84438a8f27635e07f..b99af35074cdf6fa794a0d2f0d54ecf12ac354d9 100644
-> --- a/drivers/media/platform/qcom/camss/camss.c
-> +++ b/drivers/media/platform/qcom/camss/camss.c
-> @@ -1855,6 +1855,15 @@ static int camss_of_parse_endpoint_node(struct device *dev,
->   	if (ret)
->   		return ret;
+> Hi Geert/Rob,
+> 
+> I havent included a binding changes as part of the RFC as I wanted to get
+> some initial feedback on the implementation. Currently CPG block doesnt
+> have the "syscon" this patch has been tested with below diff to SoC DTSI
+> 
+> Cheers,
+> Prabhakar
+> 
+> Changes to SoC DTSI:
+> @@ -243,7 +243,7 @@ pinctrl: pinctrl@10410000 {
+>                  };
+> 
+>                  cpg: clock-controller@10420000 {
+> -                       compatible = "renesas,r9a09g057-cpg";
+> +                       compatible = "renesas,r9a09g057-cpg", "syscon";
+>                          reg = <0 0x10420000 0 0x10000>;
+>                          clocks = <&audio_extal_clk>, <&rtxin_clk>, <&qextal_clk>;
+>                          clock-names = "audio_extal", "rtxin", "qextal";
+> @@ -455,6 +456,7 @@ wdt1: watchdog@14400000 {
+>                          clock-names = "pclk", "oscclk";
+>                          resets = <&cpg 0x76>;
+>                          power-domains = <&cpg>;
+> +                       syscon = <&cpg>;
+>                          status = "disabled";
+>                  };
+> 
+> ---
+>   drivers/watchdog/rzv2h_wdt.c | 27 ++++++++++++++++++++++++++-
+>   1 file changed, 26 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/watchdog/rzv2h_wdt.c b/drivers/watchdog/rzv2h_wdt.c
+> index 8defd0241213..8e0901bb7d2b 100644
+> --- a/drivers/watchdog/rzv2h_wdt.c
+> +++ b/drivers/watchdog/rzv2h_wdt.c
+> @@ -4,14 +4,17 @@
+>    *
+>    * Copyright (C) 2024 Renesas Electronics Corporation.
+>    */
+> +#include <linux/bitfield.h>
+>   #include <linux/clk.h>
+>   #include <linux/delay.h>
+>   #include <linux/io.h>
+>   #include <linux/kernel.h>
+> +#include <linux/mfd/syscon.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+>   #include <linux/reset.h>
+>   #include <linux/units.h>
+>   #include <linux/watchdog.h>
+> @@ -40,6 +43,10 @@
 >   
-> +	/*
-> +	 * Most SoCs support both D-PHY and C-PHY standards, but currently only
-> +	 * D-PHY is supported in the driver.
-> +	 */
-> +	if (vep.bus_type != V4L2_MBUS_CSI2_DPHY) {
-> +		dev_err(dev, "Unsupported bus type %d\n", vep.bus_type);
+>   #define WDT_DEFAULT_TIMEOUT	60U
+>   
+> +#define CPG_ERROR_RST2			0xb40
+> +#define CPG_ERROR_RST2_ERR_RST1		BIT(1)
+> +#define CPG_ERROR_RST2_ERR_RST1_WEN	(BIT(1) << 16)
+
+I could understand BIT(17) or BIT(1 + 16) or
+
+#define CPG_ERROR_RST2_ERR_RST1_BIT	1
+#define CPG_ERROR_RST2_ERR_RST1		BIT(CPG_ERROR_RST2_ERR_RST1_BIT)
+#define CPG_ERROR_RST2_ERR_RST1_WEN	BIT(CPG_ERROR_RST2_ERR_RST1_BIT + 16)
+
+but "BIT(1) << 16" really does not add value.
+
+> +
+>   static bool nowayout = WATCHDOG_NOWAYOUT;
+>   module_param(nowayout, bool, 0);
+>   MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
+> @@ -135,7 +142,7 @@ static int rzv2h_wdt_stop(struct watchdog_device *wdev)
+>   }
+>   
+>   static const struct watchdog_info rzv2h_wdt_ident = {
+> -	.options = WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING | WDIOF_SETTIMEOUT,
+> +	.options = WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING | WDIOF_SETTIMEOUT | WDIOF_CARDRESET,
+>   	.identity = "Renesas RZ/V2H WDT Watchdog",
+>   };
+>   
+> @@ -207,12 +214,29 @@ static int rzv2h_wdt_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+>   	struct rzv2h_wdt_priv *priv;
+> +	struct regmap *regmap;
+> +	unsigned int buf;
+
+That is a bad variable name since it suggests a buffer, not some
+register content.
+
+>   	int ret;
+>   
+>   	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+>   	if (!priv)
+>   		return -ENOMEM;
+>   
+> +	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+
+That is a change in behavior. Up to now the syscon phandle did not have to exist
+for the driver to work. Is it guaranteed to not result in regressions on systems
+where it doesn't ? Also, is this documented ? I don't seem to be able to find it.
+
+> +	ret = regmap_read(regmap, CPG_ERROR_RST2, &buf);
+> +	if (ret)
 > +		return -EINVAL;
+
+Pass error codes back to caller. This is most definitely not an
+"Invalid argument".
+
+"
+> +
+> +	if (buf & CPG_ERROR_RST2_ERR_RST1) {
+> +		ret = regmap_write(regmap, CPG_ERROR_RST2,
+> +				   CPG_ERROR_RST2_ERR_RST1_WEN | CPG_ERROR_RST2_ERR_RST1);
+> +		if (ret)
+> +			return -EINVAL;
+
+Same as above.
+
 > +	}
 > +
->   	csd->interface.csiphy_id = vep.base.port;
->   
->   	mipi_csi2 = &vep.bus.mipi_csi2;
+>   	priv->base = devm_platform_ioremap_resource(pdev, 0);
+>   	if (IS_ERR(priv->base))
+>   		return PTR_ERR(priv->base);
+> @@ -243,6 +267,7 @@ static int rzv2h_wdt_probe(struct platform_device *pdev)
+>   	priv->wdev.info = &rzv2h_wdt_ident;
+>   	priv->wdev.ops = &rzv2h_wdt_ops;
+>   	priv->wdev.parent = dev;
+> +	priv->wdev.bootstatus = buf & CPG_ERROR_RST2_ERR_RST1 ? WDIOF_CARDRESET : 0;
+>   	watchdog_set_drvdata(&priv->wdev, priv);
+>   	watchdog_set_nowayout(&priv->wdev, nowayout);
+>   	watchdog_stop_on_unregister(&priv->wdev);
 
-My cautious worries were futile, the change works as expected and
-the regression testing on RB5 is passed:
-
-===== begin parsing endpoint /soc@0/camss@ac6a000/ports/port@2/endpoint
-fwnode video bus type not specified (0), mbus type not specified (0)
-lane 0 position 0
-lane 1 position 1
-lane 2 position 2
-lane 3 position 3
-clock lane position 7
-no lane polarities defined, assuming not inverted
-assuming media bus type MIPI CSI-2 D-PHY (5)
-===== end parsing endpoint /soc@0/camss@ac6a000/ports/port@2/endpoint
-
-Tested-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-
---
-Best wishes,
-Vladimir
 
