@@ -1,179 +1,137 @@
-Return-Path: <devicetree+bounces-130654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D290C9F0953
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:22:41 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60CBB9F0961
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:26:41 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C6DC1886972
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:22:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 222882838A6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:26:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 773651B6D1C;
-	Fri, 13 Dec 2024 10:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11E871B87CA;
+	Fri, 13 Dec 2024 10:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gv1KlQTY"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="n1jyphI9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA23B1B4145;
-	Fri, 13 Dec 2024 10:22:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED491B86F7
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 10:26:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734085358; cv=none; b=gQ9XNI/9ziWt+gzsdVPfi9RfuU59tY0y25YjEaRHdgS2VcfDrjZEsr7V+v5hcIeDFQ7oOYObdRfBDmoA2GyrSgmDcJFp//awj50yShnw1lA7K58pdWAnXtUyJIkCFt5vG6LagvYWQHTbNAetooZWd0aWhah5DS7AGbDxSyIf5rg=
+	t=1734085597; cv=none; b=sAHTFU83FGFfaXfh7+MGfcFVpCHDKG5uFuAQvgHcgP7Lm9R6u4TXcof/q59IsFp8JXJhS0028pazlL6PL7br1jd1wfu53CTsYZOAIvBnvCh41ersiRyJ0N2BFoB7lCSqZBufd0MwHpp5tpAtiBgYAUefcMsQBXcq6HmIUTyR/Ok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734085358; c=relaxed/simple;
-	bh=UkZ6UX3wbhpTMWKhfGVviIfRnepmz/D+4/sLUT9R15g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kbncv+gxCyCEEt/BfbCcBTN5sRX7xwSPS12XWN8pJi0kUrTG7NlXAjYgJYXqq8aYaei4aWb8IerQB1KxzxvBWpYSVh5N4G198uSsl8jp3k86jI4sF40Z+2AyYSAZuQhpntew0ejGQ+DvvzXlNv3xsoETUtet6qdxjcu5XzsijYc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gv1KlQTY; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-436281c8a38so8299905e9.3;
-        Fri, 13 Dec 2024 02:22:36 -0800 (PST)
+	s=arc-20240116; t=1734085597; c=relaxed/simple;
+	bh=FZell5Yk6YkTJ23+SinIBFSOK/Zawuga4Qf4iOV7bSk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IoVSo/Rt5z9Iz9yldLmQK8X0kLQsVgKdfey0j6a5cgo9n5Aht8aOSvf96AYNuWOmqTHaLlsBnEQsiyz2gMxE2vlGHKra26e3mzBP2cVT/r+CPiE495KME+VPVGuoBcivBVIXK0cQ6BL/PXuekxFjCrRcaWQ3OJgF7QFsZNWdAhk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=n1jyphI9; arc=none smtp.client-ip=209.85.210.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-71e16519031so802586a34.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 02:26:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734085355; x=1734690155; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=giZ9jsyVfJWeS3+0vIYhnScRBVjh9bK37ZKfH//2K1Q=;
-        b=Gv1KlQTYrFrrPo2cPXgpfv11/KmdoXrpyrbJZnqT9LPYnWAatamIzfTYpDxThwKC7E
-         u7hSeDT1CwWBkpN/mkZWwdBVCJmt3ZpDH8RfOC5/7gSaXH7hXWopRybOx40nFEtUUTzF
-         eb8yC4zb5F51iHG95rCefjVxUxS8GBwqqc4t7JIYZpSkIwqCca2D1yVv1YaDgoNnhZnN
-         924KtT+JD5UjP7rIbEihwDvQThrruODfFXdrpykIcE2Bin8kE+OG7K09S507OTgmF6S2
-         HOBwWmaiOFKdaH3MDBk4tC1Dl/72sTunHHAWky5hy2EUb4ydIFiYGVdo+KJMewt7Ts3x
-         z2yQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734085355; x=1734690155;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1734085594; x=1734690394; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=giZ9jsyVfJWeS3+0vIYhnScRBVjh9bK37ZKfH//2K1Q=;
-        b=Zy8HTap3OLD4pjHo16xKmei9HqP9MS9m7xTBu09g6yERPfkQsiNQQuVj9jnuEAfc+B
-         WLUKaArTYnbn0VFzSPKkP7SzhvZDUuwHzhqrGmttd1kgbnHGfPvQORxllqx0EKFIY5vd
-         SJCcmRmoSN7+I/JmJCXqJH8vufIYlvybxTi6pv0ZUS3MEYXy+CKPqvjGr6PV2qSLjLVU
-         BXYX8BXUr3lZ1Dxh3sm/JX4n5TLQEgLWgbMxRAw78Ov9nGPU9CJVQfl7MYrjNDbKx3q8
-         M+Lw0Hv4yNObuwpJf8QlMLAbtGUbRfHYVAhQOBIlUD8RgQ5uFYNmxFgW8T+xwYTKdTo6
-         8ogg==
-X-Forwarded-Encrypted: i=1; AJvYcCWcJRBI0k92f9OEmWQGJSMUqvf2hlLwpLp8+YBGAdhkihIOWF3UWifEgIxImQ4rmb/7mhzwEOFdQokKhYI=@vger.kernel.org, AJvYcCXpRU5aFWFx2FrUouzU708dtJuXlK1j2x2QdCjUx/+4gvv2vB9tiKtXXtF50PGuDjQvETxffdCC9FjH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzInYmHNuBmTEaiDCbCD+b0x1FQ1x8iKg+Y2CSgOtSZu0Oo2z3U
-	qjONTEJ3ni4T8VBL6CFfnhDjF842V+Kza0t1SJiwmelgVnByF+5x
-X-Gm-Gg: ASbGncs+W3Kn69D7wS+9F+mZHYq9GfieAps/MFqVpeWtrdWQ6AdCsbFy74X07UWrwUz
-	33lbkjXKwrG48uoYWT+LZQNEg5o/KHIosiQ40s4cayfMVKz5MIY9gzSk6lMJQ0bP3CU7Td/uJ7k
-	KcxagWZRPaVCXgH1iwPRW8u0zZvXp1XEhtuFvQkwsn81apKv1DcqTS4n8Fkk0vQbrAOT4UQm9+f
-	xxRPFHtkls5PZOtCJRE8MWFNmN/HRZAGchPKnYwhVCAjWn/oFaIBUQv9LLSPjBWiqu1PSnO82wH
-	IC2cTozRf/6n01XMBHr/suDXgfK1rG2RBhWdhaFbUOk=
-X-Google-Smtp-Source: AGHT+IFjIMRn+NRwFWkOqfsjTOiIDgsRM66RAjwM3mtaSDdfsv9XTy0D083hw/UKzM3E72D+pPvb8A==
-X-Received: by 2002:a05:600c:348d:b0:42f:7e87:3438 with SMTP id 5b1f17b1804b1-4362a981141mr18292865e9.0.1734085354875;
-        Fri, 13 Dec 2024 02:22:34 -0800 (PST)
-Received: from orome (p200300e41f281900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1900:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43625706caesm44490405e9.32.2024.12.13.02.22.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Dec 2024 02:22:34 -0800 (PST)
-Date: Fri, 13 Dec 2024 11:22:32 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Ivy Huang <yijuh@nvidia.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, Brad Griffis <bgriffis@nvidia.com>, 
-	Sumit Gupta <sumitg@nvidia.com>
-Subject: Re: [PATCH 1/2] arm64: tegra: fix typo in Tegra234 dce-fabric
- compatible
-Message-ID: <jr6zj5znqckjg7hxgekn2vtculqu5lluf3tnsrxdgpgxgloqyn@epkjmqd2yqim>
-References: <20241213000305.3533971-1-yijuh@nvidia.com>
- <20241213000305.3533971-2-yijuh@nvidia.com>
- <dd45836a-a4f4-4383-8ade-d81c1b11c660@nvidia.com>
+        bh=gKqDqgeGFaNiglPykk1ZWFq+KoOVfgPfTAi6q8lDcbU=;
+        b=n1jyphI9kVCVo/lYYgmOq3d5EwLLFWld1Qr2VGaZN9RMAU3rMmcDvjKAQ7fTrK6inr
+         NmsV6YGd1i3mfhP3aDBMhsmyAGtT+XRV57LrLEr3uPTawKpYUG9JibVY/BxnR5g7afO9
+         MLKFN/+8abnQPHThlz7FCaqbUXgqObnKTWb/c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734085594; x=1734690394;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gKqDqgeGFaNiglPykk1ZWFq+KoOVfgPfTAi6q8lDcbU=;
+        b=A1l3Durv2JxSNbGFHmwPNEgqqy/0wji427dX9H2XZPQdtD9GAabO2W2rfH4HsPFI+n
+         l5jljeBcwe2a2Ljd7f63YCheW/cFXPjbMRW+Cl3p01uPJWTsYOsNYQzYMdVOwd0q6w+5
+         ZBJlVk1Utkjpf/wABhUQvyE9cGLXfgsC8KnRMn+4fkz6P7bSOrCsAXfsGdu7IlRieH1v
+         gCScweujL7N695i4lRjTX49eCJD2z/sKlb1qiIjyVI950GUBHwckrEOZAPtlVEl9ltds
+         Ied2+ZyVzJZcC4UZfBtaPkw3G7uCK2iyA1KgxA20VuqoVkpyNYIlneuXOZl2qlw0FNRQ
+         ikag==
+X-Forwarded-Encrypted: i=1; AJvYcCWJ8I7ILEKIIn7FsOsGXFGFxRzO7anGH8auc+IBl2gJr49b9oNxJ2cHLzMuYZvG9ojwM5dKBHi9vIYR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQoMn0GKDYh/QNFGgDBKlSKMNhEyRYxN7YfuAupv6bqDRJJUEs
+	ixUIcEqlsM7kk/upIzhnxrGgEQ4HK6isI2qsi+i+qIR0V/P6V/cyEfSh9NB6kQomqL4JegE2hy7
+	iz9Pom56Gq3uJTFnCiaId16N3HuYu4sErc52Z
+X-Gm-Gg: ASbGncuIibWUc/YNNjofV3UOR3uHM+T+/GjDPDKdfjmNu4aaJA3e8bBBqfm8vTmLLUK
+	F1gQ/2Ewgtj6wdlhwyhWFkX7kyYMDuO3GfcwlNQmjRKPKPAWsCFhEi/fPn0yUk47+
+X-Google-Smtp-Source: AGHT+IENCMH98mpXyF3VrVAuDfFFYvkYege6xGr7xJlAm+RCTMb9aQXAq9gG3Wn85+C8PlkKAH60Qe9TT1gWu6utMaQ=
+X-Received: by 2002:a05:6830:448a:b0:71e:30e:e022 with SMTP id
+ 46e09a7af769-71e3be44e5bmr1104651a34.10.1734085594573; Fri, 13 Dec 2024
+ 02:26:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="dghwowecb5yfj7om"
-Content-Disposition: inline
-In-Reply-To: <dd45836a-a4f4-4383-8ade-d81c1b11c660@nvidia.com>
-
-
---dghwowecb5yfj7om
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+References: <20241213095044.23757-1-jason-jh.lin@mediatek.com> <20241213095044.23757-3-jason-jh.lin@mediatek.com>
+In-Reply-To: <20241213095044.23757-3-jason-jh.lin@mediatek.com>
+From: Pin-yen Lin <treapking@chromium.org>
+Date: Fri, 13 Dec 2024 18:26:23 +0800
+Message-ID: <CAEXTbpcp31oWOCh2c41QbWOc5F_gpD1Bia0NiZeVyDbqKo98Lw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dts: arm64: mediatek: mt8188: Update OVL
+ compatible from MT8183 to MT8195
+To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>, 
+	Shawn Sung <shawn.sung@mediatek.com>, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com, 
+	Fei Shao <fshao@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 1/2] arm64: tegra: fix typo in Tegra234 dce-fabric
- compatible
-MIME-Version: 1.0
 
-On Fri, Dec 13, 2024 at 09:44:23AM +0000, Jon Hunter wrote:
->=20
-> On 13/12/2024 00:03, Ivy Huang wrote:
-> > From: Sumit Gupta <sumitg@nvidia.com>
-> >=20
-> > Fix typo in the compatible string of Tegra234 dce-fabric.
-> >=20
-> > Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> > Signed-off-by: Ivy Huang <yijuh@nvidia.com>
-> > ---
-> >   arch/arm64/boot/dts/nvidia/tegra234.dtsi | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot=
-/dts/nvidia/tegra234.dtsi
-> > index 984c85eab41a..d08faf6bb505 100644
-> > --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> > +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> > @@ -3995,7 +3995,7 @@
-> >   		};
-> >   		dce-fabric@de00000 {
-> > -			compatible =3D "nvidia,tegra234-sce-fabric";
-> > +			compatible =3D "nvidia,tegra234-dce-fabric";
-> >   			reg =3D <0x0 0xde00000 0x0 0x40000>;
-> >   			interrupts =3D <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH>;
-> >   			status =3D "okay";
->=20
->=20
-> LGTM! However, we are missing a 'Fixes' tag. We should add the following
-> above the 'signed-off-by'.
->=20
-> Fixes: 302e154000ec ("arm64: tegra: Add node for CBB 2.0 on Tegra234")
->=20
-> Thierry, do you want to apply the fixes tag when merging? Could also be a
-> candidate for stable.
+Hi Jason,
 
-Yeah, I can add the fixes tag, no need to resend. That should also take
-care of it getting picked up into stable automatically.
+On Fri, Dec 13, 2024 at 5:50=E2=80=AFPM Jason-JH.Lin <jason-jh.lin@mediatek=
+.com> wrote:
+>
+> The OVL hardware capabilities have changed starting from MT8195,
+> making the MT8183 compatible no longer applicable.
+> Therefore, it is necessary to update the OVL compatible from MT8183 to
+> MT8195.
 
-Thierry
+This probably doesn't need an (immediate) respin, but this patch needs:
 
-> Otherwise ...
->=20
-> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
->=20
-> Jon
->=20
-> --=20
-> nvpublic
->=20
+Fixes: 7075b21d1a8e ("arm64: dts: mediatek: mt8188: Add display nodes
+for vdosys0")
+>
+> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8188.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8188.dtsi
+> index faccc7f16259..23ec3ff6cad9 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> @@ -2488,7 +2488,7 @@ jpeg_decoder: jpeg-decoder@1a040000 {
+>                 };
+>
+>                 ovl0: ovl@1c000000 {
+> -                       compatible =3D "mediatek,mt8188-disp-ovl", "media=
+tek,mt8183-disp-ovl";
+> +                       compatible =3D "mediatek,mt8188-disp-ovl", "media=
+tek,mt8195-disp-ovl";
+>                         reg =3D <0 0x1c000000 0 0x1000>;
+>                         clocks =3D <&vdosys0 CLK_VDO0_DISP_OVL0>;
+>                         interrupts =3D <GIC_SPI 636 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> --
+> 2.43.0
+>
 
---dghwowecb5yfj7om
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmdcCugACgkQ3SOs138+
-s6GczxAAsIWKNCVU3zM6yRZLAOioiqomr0yqF26XHzeRRsUeHNWeMEjte4/6fSvi
-C6j5vk27nhwtCATSC7r5GuM9gWV3UvPnT3sKanFuZpzIBOTd1RP8z9Q5eYKbeybY
-h6nZenm8yPwVTCoh+UCcl6csLNHQzgHswjA0r54kURcXHacLUcCFvlVaSh+/E0HM
-fwoDXDBCIQbxTp6fBMFLiLVcYIAFSF8izkuJtSH11BA33WFq/5SXEr202OJ+WzP5
-lDOZehc5E92bpxco2PYOQkPy3EtifAMwS4NVkXdAn4/ghX/ohcO6F6X19/ARdWDN
-k/o0MkzyKXn6jFfApeH0bMg2SKt0DmiQzG0tEdqYyj+eKZemK6HDkSKrUXBaQR/6
-rjbG1Gzf35X2oSRU4HenJPrjEyJjjArKhGC53F4iwaRqeNm729aTtZsg1sEfzCy6
-kQZMCjfhZw4awlqU30DNLU9bpYDBK4I1jMPm9EOKB/weFF2yVvSlbDvoIpUCUpGO
-neh3aL8AqxIHPXu0sP9tYQHu9CFOvvY95sxRPyIie22qFv+UxC5HqpWh0d61KLB2
-0gc/+GM3PUejbuNs8apnTv1O+EGjAWueq3Q7VhljdUo10R3Pl9r2MEzaJ6sU2OoE
-5rkyaZ2Vv69Cs7HUxTDutbtdZvI28Jl1qtcx3pzm8O5I7ldbX3Q=
-=KEzT
------END PGP SIGNATURE-----
-
---dghwowecb5yfj7om--
+Regards,
+Pin-yen
 
