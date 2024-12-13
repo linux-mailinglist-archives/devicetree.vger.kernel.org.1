@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-130693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 304979F0A74
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 12:10:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD0CF9F0A7B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 12:11:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 716DF188A4F0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:10:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC1FB16A41F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 662B01CEADF;
-	Fri, 13 Dec 2024 11:10:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E8F91CF5EA;
+	Fri, 13 Dec 2024 11:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oQyAlS8j"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xt4zScni"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C9CE1C07F0
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 11:10:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 991E31CEADF
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 11:11:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734088212; cv=none; b=U01d+JK6mj2Szi5dR/BxUUDM+sfEiG49rb6Zu3f+2DqHzsmSyVE3pZPkbYGMwZ6YZnqVPh2EQ70bZI2tBuvxXRs7KDdtphPRrETvSIanJriIQk+LWvjqY+UA85AaGbMsv4QpywUzXKFaFBhLI4j5F09foS314rlP58AFDNWJS0U=
+	t=1734088269; cv=none; b=RwEh+AIvLLrMruUAns9wLHLffXLOfO1wwLozyuW4n6ai6L/IP+V2Nh6YJToEHZiqKKort2by7KNGGzSRySIQoOGVCjlIp65usawdlq7ufCYUy0EoKRgcre6M8mgmwMhRHlXDZ8pqPqlRTuyR/LxO6wFJxYuH1d9gfgiZwSPQFnM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734088212; c=relaxed/simple;
-	bh=ntPrzCpC78xY4j26XVHR3bpfnCr7yYInt1IayGqko2E=;
+	s=arc-20240116; t=1734088269; c=relaxed/simple;
+	bh=sEq/4/+mWVVsscdN35vcbTmE9ZR+8pw7out/EOz+SXU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=co/7/bJYhj+ubLDlCE05dTnV/A4YRbXEy1MjUzAOi8AKO2K/aOPMJ2m30+f3CLA4iuYDg7pP+SX/cM14vTX0D7Pkhy6bone088OE1GaaOZemzBMKKU3pjDewLb1P3AVFuCOatLxSaReMnRelCJiSYFBb87XOZfr5z1v/SNcUOqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oQyAlS8j; arc=none smtp.client-ip=209.85.221.46
+	 In-Reply-To:Content-Type; b=X9OwIcagn5DGVc5/STmYddu2Sd6aqanHVE/zbGNRyBB1x20fFHzKQi0Xn5aC1ntIXGLq0bRlOlYhRW5QoTPYCWV8LAFkFi3/gAZcin4iRpLOjDafCP/f5MGcrxaka4dgfYgchWWqvhp/hbPcWLsCYTmxPVHeUYq7xoWWYRaw9XM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xt4zScni; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-385db79aafbso105860f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 03:10:10 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-436284cdbe0so1469315e9.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 03:11:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734088209; x=1734693009; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1734088266; x=1734693066; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/nsYgCi6e6qkxZtTE0P0xHTr9/Q2SottdR4aAlyfjB0=;
-        b=oQyAlS8jJA5r3TZG2CnXd9i0dmd7PNhOhkKWdEBRKvcXHAvcX3OxlW8jU9AdZH4FCR
-         iBWGvSUL8XJgYHvliIBQudpOw6ciufNfw1EPH1jKc4tTfcksSRNwfNQMmdvh9ysIhjQi
-         86nGo3jVOHmLrVKV6+qWMjId3ppzU9e7KmB3jGBuUvPcfpmtVDGEEr+6YPMFva81cxzQ
-         2jB1GCc2rsZweP2ZKoWAKfO7IEzW7p5lm+pJHfrggvq+UWHLxLdvs64CZX/casGtDsCh
-         JFROhwfsG9nrShThgZthkcMDL89x6e/dR2VBqSO1AvVqKMGTsNp4aj7qp9vb1Xmayilz
-         lcMw==
+        bh=ftTcqME+5edDCL49fhDBbDNlmCUYxzXTj2YtEy7JWb4=;
+        b=xt4zScniBo2vIKQUaDmiby257wD0gVsNd9hQxJOwMW3+oidLRxLVAajKi7V+xaguUq
+         rKcxaUEFC8+BFibMyKY6hjJ3LXnJJ0e8URoaNDxsqxpundynMOt4Fufpys6dLdBnb+FW
+         E85Z90hZ0Gh4vaeGfc6OfF2vmpACiFEl3q8O0tWUAlZAgUgCtqmIURQBj68nbwnESKOA
+         +feETb0MxS07ipwXutVpLY0WwBlLWVi2s1EnQbFBztBNs7GRdPyWF7qqqnZ8C5DvB/tS
+         2dTiIP8Tlbs1rnq+M2M+L7XaBcoK9/T04VIdyrqC8WXYscnJPf5byTxyTwbCW0DKWnm9
+         19Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734088209; x=1734693009;
+        d=1e100.net; s=20230601; t=1734088266; x=1734693066;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/nsYgCi6e6qkxZtTE0P0xHTr9/Q2SottdR4aAlyfjB0=;
-        b=PgIW/j6BGHiGOEMhgiRdQGy1ETC48XkvDZLB5eyFdX2M3ZjvwMJ4VjxAq37xuCuSGb
-         EuhQXpio/coGoY1mqjGcVQtLek6Y9L96EhSKctLMRDPtbdLAIcFM/meJ8nnVPHSvjCsE
-         OAnJrUv26ws2EoqJUWG4JnxhEvY9VJMLfdJN0YRnS/rrF44rCMB84ZEXdFO3cDP4zMKH
-         ZNOwzGPPofoAVAicX4w93mGN2MPFJ1TYuVeXSj9JjuHPICl3zuj4hKlYxv03kO4rJ8DE
-         AkCCBmsaISYD5rFbFB3D9DFHiqVqTZ2qOkQYfFV9ceeAtpH+Qx5GUNT6n6cfIq/WKCmQ
-         UfEg==
-X-Forwarded-Encrypted: i=1; AJvYcCXcWyh2xI5rWqPLZnxrbCuDFcjE5IMrNMHMOsuCnpCQ6Skcpiq0zFNUrC+Jowjp0r1wwGg/hr9z4m5h@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsPccrIFbZeHiuBEEagVBvRihOV1cwdSErbhKoBRW1kZ9l+BB4
-	dCAinV1nSvfRxrkV+cPSDZajXtWNG1H0RuBlwwqZgS2s3sGm30rfOqmRueVsKlM=
-X-Gm-Gg: ASbGnct2jfe0IKChedF1vuqs6IiJlNGLXsgxz0PrGAVQtyUjAXkQC3nAzTYv5jJvcFt
-	6M2J/K19AvIyTXQtHLTmED0wIFrf9wCQaq6XLvD6P04grs8/tzuSjD+q7gonBq12NBo8xWMjqCs
-	1XmThGsWeIy/wdnssJ873ayPhZ3TGDf0jZK/wcs1ZUv7/Un0vZWryv+pl3+KWjnXIdXfZiqo6k2
-	btamo4acJsse3OUh2Ip9u04PyGbU1yWi4xBkjh7EarGBDWgbVknTnWzHok0nFhS09HrpK5j7DWf
-X-Google-Smtp-Source: AGHT+IEeyKxYV9Iz769kDqCw+MyFfFsVNrbX8Rk2saxYfrSzOalEB8qoK/qhwbUbGpZ27prI4m1NKw==
-X-Received: by 2002:a05:6000:18a5:b0:385:ee59:44f3 with SMTP id ffacd0b85a97d-38880ac6b1amr660170f8f.3.1734088208795;
-        Fri, 13 Dec 2024 03:10:08 -0800 (PST)
+        bh=ftTcqME+5edDCL49fhDBbDNlmCUYxzXTj2YtEy7JWb4=;
+        b=IvE2SjUOWFOUlULBpBbSa/ruxZpZiBM+A1GC0y+sEqZc03Ev8jHF3tw+FvPfystGa/
+         kbZP3roYsD/bu9xFWEEzPt01If0I8Ap6yUm4glOltAyA06Oe/i2B841zZRqOK6F38dMk
+         rpzZkzulx0719mn/4rKuP5WjNDKmzaNKEwH7FrRE3SMCUuKefdqP22O/FAl/RmDVdt4n
+         kmL/S9jV3BUfP40WmJY2ahCuMPA6sW/jYvEKv0AdUM2ifxy9ToE67HGDJEqHSELM16kr
+         OGiY4lkZ1iIS/0bzyLMM2VZj6aHXTxQulqn3mcmEZW2Y80mRse69Gtc87jisCfZ5Xsro
+         ja1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCX0cdNFJP94hWzreKYK+eE1j9p9psRwsBsH7Oq3RyI+6O1DWd8l+6KiGtJadwA6xZe+u06mGUC+wA09@vger.kernel.org
+X-Gm-Message-State: AOJu0YzthbbBKlFGPFEFotreUozc7ccazIuI6rvyNkAIdY9bmx1WLoOZ
+	7hxalltJNUVkSfIRS30HVkmfCFzyOqycrn6u7LvhUcyWDI+Wd/Az/23zagS6G+w=
+X-Gm-Gg: ASbGncsmN3+88TuxOD3NEvngXKy+I/nozR2xe+zm/zstEFpY9dxuxtUypZnr6nqpPHp
+	mqHTI88pe9u3EMRXjxiGRgce9McA6o6YBxEhpRmDCq3HBaiFYneiC90TV/BqilWPyZmHjKPFyYE
+	ZpBNugrtTCfw/OWj9f3EI1WTMYUlFKKe4DfWk+Ej0uteftJ8lhiHTXad5ZZ/ie3Rxn/EXNq0RTj
+	wIJbewsE1XMXz96PbxUicOSTsYG0ZYtVWwaCwhlW/Cr7NDPfe/a/BiDH/uIknLQtdLKO++6iXaJ
+X-Google-Smtp-Source: AGHT+IFyiF1YQIhU5o9ZNFX3dIdgreb6Nvi1ivk4mtUR1kDhA/SPpOCeTsPnnpL78Ymr3hgnBqWieA==
+X-Received: by 2002:a05:600c:4fc5:b0:434:ff85:dd77 with SMTP id 5b1f17b1804b1-4362aa3a62dmr6402505e9.3.1734088266027;
+        Fri, 13 Dec 2024 03:11:06 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.223.165])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-387824c5c98sm6712752f8f.58.2024.12.13.03.10.07
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43625553208sm45488485e9.9.2024.12.13.03.11.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Dec 2024 03:10:08 -0800 (PST)
-Message-ID: <ffd6ec4e-61a6-4713-8be2-20d06ae5b448@linaro.org>
-Date: Fri, 13 Dec 2024 12:10:06 +0100
+        Fri, 13 Dec 2024 03:11:05 -0800 (PST)
+Message-ID: <827f4554-d6c6-49e8-a578-da7329a0f247@linaro.org>
+Date: Fri, 13 Dec 2024 12:11:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,15 +83,17 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] arm64: tegra: fix typo in Tegra234 dce-fabric
  compatible
-To: Ivy Huang <yijuh@nvidia.com>, Rob Herring <robh@kernel.org>,
+To: Thierry Reding <thierry.reding@gmail.com>,
+ Jon Hunter <jonathanh@nvidia.com>
+Cc: Ivy Huang <yijuh@nvidia.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- Brad Griffis <bgriffis@nvidia.com>
-Cc: Sumit Gupta <sumitg@nvidia.com>
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, Brad Griffis <bgriffis@nvidia.com>,
+ Sumit Gupta <sumitg@nvidia.com>
 References: <20241213000305.3533971-1-yijuh@nvidia.com>
  <20241213000305.3533971-2-yijuh@nvidia.com>
+ <dd45836a-a4f4-4383-8ade-d81c1b11c660@nvidia.com>
+ <jr6zj5znqckjg7hxgekn2vtculqu5lluf3tnsrxdgpgxgloqyn@epkjmqd2yqim>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -138,23 +140,40 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20241213000305.3533971-2-yijuh@nvidia.com>
+In-Reply-To: <jr6zj5znqckjg7hxgekn2vtculqu5lluf3tnsrxdgpgxgloqyn@epkjmqd2yqim>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/12/2024 01:03, Ivy Huang wrote:
-> From: Sumit Gupta <sumitg@nvidia.com>
+On 13/12/2024 11:22, Thierry Reding wrote:
+>>>
+>>> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>>> index 984c85eab41a..d08faf6bb505 100644
+>>> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>>> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>>> @@ -3995,7 +3995,7 @@
+>>>   		};
+>>>   		dce-fabric@de00000 {
+>>> -			compatible = "nvidia,tegra234-sce-fabric";
+>>> +			compatible = "nvidia,tegra234-dce-fabric";
+>>>   			reg = <0x0 0xde00000 0x0 0x40000>;
+>>>   			interrupts = <GIC_SPI 381 IRQ_TYPE_LEVEL_HIGH>;
+>>>   			status = "okay";
+>>
+>>
+>> LGTM! However, we are missing a 'Fixes' tag. We should add the following
+>> above the 'signed-off-by'.
+>>
+>> Fixes: 302e154000ec ("arm64: tegra: Add node for CBB 2.0 on Tegra234")
+>>
+>> Thierry, do you want to apply the fixes tag when merging? Could also be a
+>> candidate for stable.
 > 
-> Fix typo in the compatible string of Tegra234 dce-fabric.
+> Yeah, I can add the fixes tag, no need to resend. That should also take
+> care of it getting picked up into stable automatically.
 
-In what way fix? How does it affect users?
-
-Why no fixes tag?
-
-You CC-ed an address, which suggests you do not work on mainline kernel
-or you do not use get_maintainers.pl/b4/patman. Please rebase and always
-work on mainline or start using mentioned tools, so correct addresses
-will be used.
+No, this changed some days ago. If this is a real fix which should go to
+stable, then with proper explanation what is the bug and how it affects
+users, you need cc-stable tag.
 
 Best regards,
 Krzysztof
