@@ -1,48 +1,51 @@
-Return-Path: <devicetree+bounces-130770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FFE59F0E1F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 14:58:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C6349F0ED1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 15:15:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B65BF188ECA6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 13:57:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E99E9188ECC7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 14:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 500AA1E0DBA;
-	Fri, 13 Dec 2024 13:55:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D37E1E1A08;
+	Fri, 13 Dec 2024 14:12:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dtYPRT/9"
+	dkim=pass (2048-bit key) header.d=armadeus.com header.i=@armadeus.com header.b="mKpZoGCm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from 10.mo561.mail-out.ovh.net (10.mo561.mail-out.ovh.net [87.98.165.232])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 210BF1E0B82;
-	Fri, 13 Dec 2024 13:55:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4DC41DF975
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 14:12:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=87.98.165.232
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734098145; cv=none; b=S2eXVMwNinQtka9sdiB0seWiAYSVaM+12QoYKyUzJSyZNUgQb6u9eiqhImmCNPf2Qufuj9zdmJ5MQo1Au/hJla6mbzcpwU7X1emqAvT2b69MXYo7hLQBeF9ZhMml/B54Nu1RUK3Iy7gVMdtiAKl2Pz2qeF0KTCLGgEPy9OjUoJk=
+	t=1734099150; cv=none; b=A0TbQxIqDHDPnuyYC3ZIjkJ0UkE75JNul7Dr+H70F1qVmUSIVtb6XK1ACtMJcd8VZ9eUh29QKvoOl3mfqMfkYYEN5Q8O0AD43NeR72iVQzwn0MfO0SSo8UCacMU2miKKGTZkJOxH+0s4gJ7hFzQARmgXD76p9pk4CsMJ6LIkYy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734098145; c=relaxed/simple;
-	bh=ths8MR1YNFWiuyBReULUqZ+xI05R3epwcT2UsMF7djg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ntJLHWlwx8ugOpzg/emhCH8PTwd5MVvEH6pcgheEI6XbRtjGGFV4vDIgJHsEjRxzDOJeKK95kumekuHGW8lvybCfr6nFY/Fpgdw2lt/yAv3TXyyDKTNaj+Fi0tjBePO27vJEvGh+BZSIY2C9mhmgO0wa1Mm82p42+3VppKiX1uQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dtYPRT/9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C346C4CED0;
-	Fri, 13 Dec 2024 13:55:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734098143;
-	bh=ths8MR1YNFWiuyBReULUqZ+xI05R3epwcT2UsMF7djg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dtYPRT/9MYTfq4o3qAxdcfg5SUSYQA+tw0CJiqzO4lCZrjC9IXILEcmvRl5O5yO+8
-	 jyKzUiLzkdY848+P1fWfqwqoakZmsz/esiRr/SINL+/uY4MeC9Vk32cswkpgXfiSgE
-	 sMjohswL9df8CGaiYdVPmX2enBBg2434twjPjd/riPt5eGR6JGRb+3dnH0ZFBIFqtO
-	 a9kpTgaQPo7/EpVcdOe/TkcI8oie/pes4QUDHWzKAqZBgiadAbmhv7a9s1oE7jF0x/
-	 9npbpx0ftNShB5Rl8Br/sRhXqQGtBbYKYi0yc++QkqoaBpOHOI2DmQ7e+cKNI94jN7
-	 tFUGGPAm6USbA==
-Message-ID: <c0d58c4d-e3dc-445d-93c4-a2aed07af143@kernel.org>
-Date: Fri, 13 Dec 2024 14:55:38 +0100
+	s=arc-20240116; t=1734099150; c=relaxed/simple;
+	bh=rwHTCI38F2W/M23fk0xPREXg6fA27mVLNmNt8j0l3cU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Th+QOTiQxHrbnYQTEq8R+Tiwj+65Rx75WWaShGLAsruNOTX8t5Qymb2WZ2I8+fwN8pkoLpdtQ39iUQJyfsfk+EWxuk5mSIMLU6OonCgaoW0szQTOnspyOGNJuzM5HoUvd+v7+tnscOxPQeZ/kkczIGnPEROZ4JGcxJxz3ZhsQnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=armadeus.com; spf=pass smtp.mailfrom=armadeus.com; dkim=pass (2048-bit key) header.d=armadeus.com header.i=@armadeus.com header.b=mKpZoGCm; arc=none smtp.client-ip=87.98.165.232
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=armadeus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=armadeus.com
+Received: from director8.ghost.mail-out.ovh.net (unknown [10.108.25.249])
+	by mo561.mail-out.ovh.net (Postfix) with ESMTP id 4Y8rch6LdSz1TKg
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 14:02:12 +0000 (UTC)
+Received: from ghost-submission-5b5ff79f4f-46sqs (unknown [10.110.168.204])
+	by director8.ghost.mail-out.ovh.net (Postfix) with ESMTPS id 9A2DB1FE99;
+	Fri, 13 Dec 2024 14:02:12 +0000 (UTC)
+Received: from armadeus.com ([37.59.142.103])
+	by ghost-submission-5b5ff79f4f-46sqs with ESMTPSA
+	id fvHSHWQ+XGdobxsAqQRD9Q
+	(envelope-from <sebastien.szymanski@armadeus.com>); Fri, 13 Dec 2024 14:02:12 +0000
+Authentication-Results:garm.ovh; auth=pass (GARM-103G005b246f7d0-3865-44b3-b6a6-10aabdd0da58,
+                    AC9E123DAEBE92F67EA64EF011D6E8896A637286) smtp.auth=sebastien.szymanski@armadeus.com
+X-OVh-ClientIp:92.148.253.243
+Message-ID: <16825ef1-4748-4dba-8703-9dac9857b050@armadeus.com>
+Date: Fri, 13 Dec 2024 15:02:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,286 +53,208 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] soc: samsung: Add a driver for Samsung SPEEDY host
- controller
-To: Markuss Broks <markuss.broks@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Maksym Holovach <nergzd@nergzd723.xyz>
-References: <20241212-speedy-v1-0-544ad7bcfb6a@gmail.com>
- <20241212-speedy-v1-2-544ad7bcfb6a@gmail.com>
- <f08b068e-bc6b-4d9d-9839-370883309b88@kernel.org>
- <2a7f71b6-0967-40ee-9d0f-d7144eafcd5a@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <2a7f71b6-0967-40ee-9d0f-d7144eafcd5a@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: Splashcreen sur Screenboard 7
+To: Hubert CHAUMETTE <hubert.c@abioexpertise.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>
+References: <DB9PR05MB90088B32599A567EDABD2DD1904A2@DB9PR05MB9008.eurprd05.prod.outlook.com>
+ <640c864a-5121-42db-ab92-5dba4ca4c8b0@armadeus.com>
+ <DB9PR05MB9008368D802458B3DF72F16590512@DB9PR05MB9008.eurprd05.prod.outlook.com>
+ <DB7PR05MB4508F50A90FFD3B5F575F02C902E2@DB7PR05MB4508.eurprd05.prod.outlook.com>
+ <2cfcc6ed-db1e-4ed3-9ba1-dd0f52413313@armadeus.com>
+ <AM0PR05MB4499447A630C4694F95ADDE290382@AM0PR05MB4499.eurprd05.prod.outlook.com>
+Content-Language: fr
+From: =?UTF-8?Q?S=C3=A9bastien_Szymanski?= <sebastien.szymanski@armadeus.com>
+Autocrypt: addr=sebastien.szymanski@armadeus.com; keydata=
+ xsBNBFNfZLEBCACv1lqSePHJNpRgcnER+3emy+Arjz84zFax3XkogjY/e3ZneihIgWrVKe5M
+ ql16pX4KTkzNgMUKz4bG/XwT3kjcrXshxFLlg7KrHMl287C+W+QOUjnjVeRi/su+SPmjz8VD
+ yr11h+ZkVLAWhS+uQJ93jy1NwG8M4t1kBLAVHHD5Vw4FJ+3ouaVYIp1X1Cr8bVKQw33Q1aTd
+ ro0kMBb96B9vNu7ciJZ3gvlaBzUEKOgNnq9KaywuLnqrqr4HUIn5JuxZjCjJzt9kTAKcTfp2
+ cJM8qpp+2FF5qtbkse9fZ6M64qozgOPr9Tk4Amf9fZEUQ6UNw14mmBZuXSzoHe75gI7TABEB
+ AAHNN1PDqWJhc3RpZW4gU1pZTUFOU0tJIDxzZWJhc3RpZW4uc3p5bWFuc2tpQGFybWFkZXVz
+ LmNvbT7CwJAEEwEIADoCGyMHCwkIBwMCAQYVCAIJCgsEFgIDAQIeAQIXgBYhBJwGygpYm/1C
+ /GCmwbCaKeiBMmTiBQJdhIHLAAoJELCaKeiBMmTixXIH/2W3kbzRG0UF81jtRRnp0H83rjDT
+ v0H+8fgFMRL/7HCJ1QPArkfRJlM2wlJkN+ChP09CCarYfUEHfRCHlTb7At6Yyrz1jziD7ZwX
+ 8IWHYRXnZkY5eZc5DsiUgq6JH49kt+GPzK8UVP9MTa6zkBpPCUf7LzZ4pD3FihdkT52BU3gI
+ d9P49fSI0TYySlb/VKn815aOhvwEr7+Dh3mZUjSh7saofbRmVUOr7p+R3MvvGI19/IJZjeOE
+ ZWliODDOt6HnBOtoGSXMcNIFF6snH52D5N5gY88njZjTwhgGGUBix1bsgf/EY0v4R5itZBXB
+ B/Ze4Tm++YHaB75hZK6PQu/YRv7OwE0EU19ksQEIALo7jhXddrXBTRu5SAjelV53jyHBJTX/
+ vN4nL/VbbW/saca+NJjDSxx5DBmotZbQdWIyZiSIjU/xnTREvtDrl6ZeSsKWd7ZqiuiY4fSR
+ zwuQp9rd0yqRuxesrWeyJB1zCSdEvLyKASERt+nxkOA+IzJ4y1qLtvnWr+SL1AXgTMw+Tkyw
+ KIDCRWHTIYas11ldGj82gOIpYeXnapeNLHfT4EQwg0NeWYHynJxAQWiX5aPlw0uSpAQSsBXQ
+ FIe3fpoveMSnXK+PG2BBOzexYv7r4S70a6sF9sgTTPpfKqUaqqC+u1+bUX6alTAKhGKJywaF
+ 6ViqLlgY8PfwohSyAlqlTRMAEQEAAcLAdgQYAQgAIAIbDBYhBJwGygpYm/1C/GCmwbCaKeiB
+ MmTiBQJdhIHSAAoJELCaKeiBMmTitU8IAK7NQM3fEwaF5XaKtepYWsVka44CD8A9e4r7NVK9
+ ugirKvXirIxBSDmN/Db862NmVpITsZ6ERNSNZLm/7k55N+TexKYiFZeU7G92TEfAM6qPElvx
+ DLEcrkNMq9r08YZeUloacsq31AL5fK4LW+xdvXudkdiKRMJsdTpmff3x5kIziGOHjwFP9wve
+ ZgEH52gpbRsP8Whx/Z2lNX/BBRmFM8OnEXFsjjqDzYThdxTq85wGPpkgvvUGyPNRD7TpbB1C
+ pajOUUkPxgj5LKt77HD1afeZNudWhgcdkbtT5PMQTT0WY6wvMEj9S1+bGPeXRGWLYB7gHQ+L
+ JNoSD7Kz6Y9qnKo=
+In-Reply-To: <AM0PR05MB4499447A630C4694F95ADDE290382@AM0PR05MB4499.eurprd05.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 4495718330327624481
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeefuddrkeejgdehkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefkffggfgfuvfhfhfgjtgfgsehtkeertddtvdejnecuhfhrohhmpefurogsrghsthhivghnucfuiiihmhgrnhhskhhiuceoshgvsggrshhtihgvnhdrshiihihmrghnshhkihesrghrmhgruggvuhhsrdgtohhmqeenucggtffrrghtthgvrhhnpeekvdevudegjeffgeelueeifedugfdvuefgvefhgfevlefhtdduvefgheetffetudenucfkphepuddvjedrtddrtddruddpledvrddugeekrddvheefrddvgeefpdefjedrheelrddugedvrddutdefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepuddvjedrtddrtddruddpmhgrihhlfhhrohhmpehsvggsrghsthhivghnrdhsiiihmhgrnhhskhhisegrrhhmrgguvghushdrtghomhdpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheeiudgmpdhmohguvgepshhmthhpohhuth
+DKIM-Signature: a=rsa-sha256; bh=frqmVDtlCYuf01qK0niHOypQ+fwqAltg7ZkY81uiRoE=;
+ c=relaxed/relaxed; d=armadeus.com; h=From; s=ovhmo103079-selector1;
+ t=1734098533; v=1;
+ b=mKpZoGCmNMDUHEOVI/JzPILFxbygBj5IaYTHfLQTr42H0XSAlFQiOOIUiGG0Dii74SN4ysUk
+ nSxBxirFEW3uw7fHq+LvH9S7kA3CFTk/qozSoMDrii3O2vEy8ZWHlj3APcmmppFwK+7y2KgxpJK
+ iPXqU5vRoRpzbvm3P9OX3OkxHzw+B3PPgzwKMnDEetFV1PTgxXm8VdE6QlilQeDCPKhUgtZGvzz
+ GhbouWctoi9UusL/hStHMBRx3An1eEkjL2RKKTBhFP/BSM/g/3HzPQw94rB7lp4a66tlsD8j7LA
+ w401NPTHUswWSb+sbh03jZAX/BPWMqYVbNRU/DU2Yk5uA==
 
-On 13/12/2024 10:42, Markuss Broks wrote:
-> Hi Krzysztof,
+Bonjour,
+
+mes réponses sont ci-dessous,
+
+On 12/13/24 13:31, Hubert CHAUMETTE wrote:
+> Bonjour Sébastien,
 > 
-> On 12/13/24 9:49 AM, Krzysztof Kozlowski wrote:
->> On 12/12/2024 22:09, Markuss Broks wrote:
->>> Add a driver for Samsung SPEEDY serial bus host controller.
->>> SPEEDY is a proprietary 1 wire serial bus used by Samsung
->>> in various devices (usually mobile), like Samsung Galaxy
->>> phones. It is usually used for connecting PMIC or various
->>> other peripherals, like audio codecs or RF components.
->>>
->>> This bus can address at most 1MiB (4 bit device address,
->>> 8 bit registers per device, 8 bit wide registers:
->>> 256*256*16 = 1MiB of address space.
->>>
->>> Co-developed-by: Maksym Holovach <nergzd@nergzd723.xyz>
->>> Signed-off-by: Maksym Holovach <nergzd@nergzd723.xyz>
->>> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
->>> ---
->>>   drivers/soc/samsung/Kconfig               |  13 +
->>>   drivers/soc/samsung/Makefile              |   2 +
->>>   drivers/soc/samsung/exynos-speedy.c       | 457 ++++++++++++++++++++++++++++++
->>>   include/linux/soc/samsung/exynos-speedy.h |  56 ++++
->>>   4 files changed, 528 insertions(+)
->>>
->>> diff --git a/drivers/soc/samsung/Kconfig b/drivers/soc/samsung/Kconfig
->>> index 1a5dfdc978dc4069eb71c4e8eada7ff1913b86b3..a38150fc9999ded1e1e93e2a9ef43b88175d34bd 100644
->>> --- a/drivers/soc/samsung/Kconfig
->>> +++ b/drivers/soc/samsung/Kconfig
->>> @@ -49,6 +49,19 @@ config EXYNOS_PMU_ARM_DRIVERS
->>>   	bool "Exynos PMU ARMv7-specific driver extensions" if COMPILE_TEST
->>>   	depends on EXYNOS_PMU
->>>   
->>> +config EXYNOS_SPEEDY
->>> +	tristate "Exynos SPEEDY host controller driver"
->>> +	depends on ARCH_EXYNOS || COMPILE_TEST
->>> +	depends on OF
->>> +	depends on REGMAP_MMIO
->>> +	help
->>> +	  Enable support for Exynos SPEEDY host controller block.
->>> +	  SPEEDY is a 1 wire proprietary Samsung serial bus, found in
->>> +	  modern Samsung Exynos SoCs, like Exynos8895 and newer.
->>
->> I did not check that much but this looks like 1wire for which we have
->> subsystem. Please investigate more and figure out the differences.
+> J'ai à nouveau passé du temps sur ce pb...
+> Recompiler explicitement le noyau aide en effet (avec linux-tools en 
+> prime sinon j'ai une erreur), mais une image à la résolution 1024x600 ne 
+> passe pas avec Linux.
+> Voici la situation :
 > 
-> This is not compatible with Dallas Semi 1-Wire bus. There are several 
-> differences but the phy level is not compatible, looking at the Samsung 
-> patent. [1] The most obvious difference is that 1-Wire is discoverable, 
-> and this bus isn't. I'm pretty sure this is Samsung's own solution to a 
-> serial interface through only one wire.
+>   *
+>     Le fichier /boot/logo.bmp en 1024x600 s'affiche correctement dans U-
+>     Boot quand j'exécute :
+>     if load mmc ${mmcdev}:${mmcpart} ${loadaddr} ${splashfile}; then bmp
+>     display; fi
+>   *
+>     Le noyau l'efface immédiatement en démarrant, et affiche le pb suivant :
+>     [    1.524727] [drm] Initialized mxsfb-drm 1.0.0 20160824 for
+>     21c8000.lcdif on minor 0
+>     [    1.591467] fbcon_init: disable boot-logo (boot-logo bigger than
+>     screen).
+>     [    1.591486] Console: switching to colour frame buffer device 128x37
+>     [    1.637948] mxsfb 21c8000.lcdif: [drm] fb0: mxsfb-drmdrmfb frame
+>     buffer device
+>   *
+>     J'ai testé avec différentes variations de bootargs, sans résultat :
+>       o
+>         setenv bootargs $bootargs logo.nologo
+>       o
+>         setenv bootargs $bootargs video=video=mxsfb:1024x600-16@60
+>       o
+>         setenv bootargs $bootargs video=mxsfb:1024x600-16@60,rotate=1
+>       o
+>         setenv bootargs $bootargs video=mxsfb:1024x600-32,rotate=1
+>         fbcon=rotate:1
 > 
+> Peu m'importe si c'est Linux ou U-Boot qui affiche le logo, mais 
+> j'aimerai une solution avec un logo qui persiste le temps du démarrage 
+> du système. Au pire réutiliser le logo de la Screenboard 3.5 pour peu 
+> qu'on puisse le centrer dans Linux.
 
-It's fine then.
+J'avais déjà expliqué à Johan Develon que ce n'est pas possible dans 
+l'état actuel des versions des logiciels utilisés (U-Boot et Linux), 
+vous aurez toujours un fading pendant la transition U-Boot -> Linux.
+Une solution est de ne pas allumé l'écran sous U-Boot (ou juste le 
+backlight) et d'afficher le logo sous Linux.
+Je ne vois pas pourquoi Linux ne veut pas de votre logo.
 
->>
->>> +
->>> +	  Select this if you have a Samsung Exynos device which uses
->>> +	  SPEEDY bus.
->>> +
->>
->>> +
->>> +/* SPEEDY_PACKET_GAP_TIME register bits */
->>> +#define SPEEDY_FIFO_TX_ALMOST_EMPTY			(1 << 4)
->>> +#define SPEEDY_FIFO_RX_ALMOST_FULL			(1 << 8)
->>> +#define SPEEDY_FSM_INIT					(1 << 1)
->>> +#define SPEEDY_FSM_TX_CMD				(1 << 2)
->>> +#define SPEEDY_FSM_STANDBY				(1 << 3)
->>> +#define SPEEDY_FSM_DATA					(1 << 4)
->>> +#define SPEEDY_FSM_TIMEOUT				(1 << 5)
->>> +#define SPEEDY_FSM_TRANS_DONE				(1 << 6)
->>> +#define SPEEDY_FSM_IO_RX_STAT_MASK			(3 << 7)
->>> +#define SPEEDY_FSM_IO_TX_IDLE				(1 << 9)
->>> +#define SPEEDY_FSM_IO_TX_GET_PACKET			(1 << 10)
->>> +#define SPEEDY_FSM_IO_TX_PACKET				(1 << 11)
->>> +#define SPEEDY_FSM_IO_TX_DONE				(1 << 12)
->>> +
->>> +#define SPEEDY_RX_LENGTH(n)				((n) << 0)
->>> +#define SPEEDY_TX_LENGTH(n)				((n) << 8)
->>> +
->>> +#define SPEEDY_DEVICE(x)				((x & 0xf) << 15)
->>> +#define SPEEDY_ADDRESS(x)				((x & 0xff) << 7)
->>> +
->>> +static const struct of_device_id speedy_match[] = {
->>> +	{ .compatible = "samsung,exynos9810-speedy" },
->>> +	{ /* Sentinel */ }
->>> +};
->>> +MODULE_DEVICE_TABLE(of, speedy_match);
->> This is never at top of the file, but immediately before driver
->> structure. Look at other drivers.
-> The function speedy_get_device uses this to match the compatible, do I 
-> just leave the prototype here?
+Cordialement,
 
-
-1. Entire speedy_get_device() is unused so it will be removed.
-2. Even if it stays, speedy_get_device() is not supposed to match
-anything. How are you supposed to use Samsung PMIC on different
-controller? These things should not be tied.
-
-
->>
->>> +
->>> +static const struct regmap_config speedy_map_cfg = {
->>> +	.reg_bits = 32,
->>> +	.val_bits = 32,
->>> +};
-
-
-...
-
->>> +	cmd = SPEEDY_ACCESS_RANDOM | SPEEDY_DIRECTION_READ |
->>> +	      SPEEDY_DEVICE(reg) | SPEEDY_ADDRESS(addr);
->>> +
->>> +	int_ctl = SPEEDY_TRANSFER_DONE_EN | SPEEDY_FIFO_RX_ALMOST_FULL_EN |
->>> +		  SPEEDY_RX_FIFO_INT_TRAILER_EN | SPEEDY_RX_MODEBIT_ERR_EN |
->>> +		  SPEEDY_RX_GLITCH_ERR_EN | SPEEDY_RX_ENDBIT_ERR_EN |
->>> +		  SPEEDY_REMOTE_RESET_REQ_EN;
->>> +
->>> +	ret = speedy_int_clear(speedy);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	ret = regmap_write(speedy->map, SPEEDY_INT_ENABLE, int_ctl);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	ret = regmap_write(speedy->map, SPEEDY_CMD, cmd);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	/* Wait for xfer done */
->>> +	ret = regmap_read_poll_timeout(speedy->map, SPEEDY_INT_STATUS, int_status,
->>> +				       int_status & SPEEDY_TRANSFER_DONE, 5000, 50000);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	ret = regmap_read(speedy->map, SPEEDY_RX_DATA, val);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	ret = speedy_int_clear(speedy);
->>> +
->>> +	mutex_unlock(&speedy->io_lock);
->>> +
->>> +	return ret;
->>> +}
->>> +
->>> +int exynos_speedy_read(const struct speedy_device *device, u32 addr, u32 *val)
->>> +{
->>> +	return _speedy_read(device->speedy, device->reg, addr, val);
->>> +}
->>> +EXPORT_SYMBOL_GPL(exynos_speedy_read);
->> Nope, drop, unused.
-> This is intended to be used with other device drivers, this driver in 
-> itself doesn't do anything, it only configures the controller and makes 
-> it ready for transmitting data, it's other drivers that will come (e.g. 
-> S2MPS18 PMIC, which uses SPEEDY for communication with the SoC) that 
-> will utilize those functions.
-
-Post entire series, so we see users of this API. If you post API without
-users, it won't be accepted simply because there are no users and we do
-not want dead, unused code.
-
-Anyway we must see how you intend to use that interface to properly
-review it.
-
->>
->>> +
->>> +/**
->>> + * _speedy_write() - internal speedy write operation
->>> + * @speedy:	pointer to speedy controller struct
->>> + * @reg:	address of device on the bus
->>> + * @addr:       address to write
->>> + * @val:        value to write
->>> + *
+> 
+> Avez-vous des pistes ?
+> 
+> Cordialement,
+> 
+> Hubert CHAUMETTE
+> ------------------------------------------------------------------------
+> *De :* Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+> *Envoyé :* mardi 26 novembre 2024 10:18
+> *À :* Hubert CHAUMETTE <hubert.c@abioexpertise.com>
+> *Objet :* Re: Prise de contact
+> Bonjour Hubert,
+> 
+> mes réponses sont ci-dessous.
+> 
+> On 11/25/24 16:22, Hubert CHAUMETTE wrote:
+>  > Bonjour Sébastien,
+>  >
+>  > Je suis toujours sur le splashcreen :
+>  >
+>  >   *
+>  >     J'ai mis à jour /boot/logo.bmp et j'arrive à l'afficher depuis U-
+>  >     Boot en modifiant show_update_logo (ce qui prouve aussi que mes
+>  >     overlays fonctionnent).
+>  >   *
+>  >     Pourtant, au démarrage le logo n'est pas affiché par U-Boot (écran
+>  >     noir).
+> 
+> Je peux voir les logs U-Boot, svp ?
+> 
+>  >   *
+>  >     De plus, le logo affiché par le noyau est celui de la screenboard
+>  >     3.5 alors que j'ai modifié le defconfig...
+> 
+> Avez-vous recompilé le kernel ?
+> 
+> make linux-rebuild
+> 
+> Cordialement,
+> 
+>  >   *
+>  >     Les paramètres splash* de U-Boot sont les mêmes que sur la version
+>  >     fonctionnelle sur screenboard 3.5.
+>  >
+>  > Avez-vous des pistes ?
+>  > Cordialement,
+>  >
+>  > Hubert CHAUMETTE
+>  > ------------------------------------------------------------------------
+>  > *De :* Hubert CHAUMETTE <hubert.c@abioexpertise.com>
+>  > *Envoyé :* lundi 4 novembre 2024 09:29
+>  > *À :* Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+>  > *Objet :* RE: Prise de contact
+>  > Bonjour Sébastien,
+>  >
+>  > J'ai regardé pour adapter le splashscreen U-Boot à l'écran 7 pouces, je
+>  > ne parviens pas à reproduire le format de la bitmap (sRGB 8bits je
+>  > crois). Comment faites-vous pour générer une image au bon format ?
+>  > Cordialement,
+>  >
+>  > Hubert CHAUMETTE
+>  > ------------------------------------------------------------------------
+>  > *De :* Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+>  > *Envoyé :* lundi 28 octobre 2024 11:43
+>  > *À :* Hubert CHAUMETTE <hubert.c@abioexpertise.com>
+>  > *Cc :* Stéphane BONILLA <stephane.b@abioexpertise.com>
+>  > *Objet :* Re: Prise de contact
+>  > Bonjour,
+>  >
+>  > On 10/28/24 11:33, Hubert CHAUMETTE wrote:
+>  >> Bonjour Sébastien,
+>  >> Je prends la suite de Johan pour le suivi de notre collaboration, en
+>  >> tant qu'Architect Logiciel chez Alliance Bio Expertise.
+>  >> Si j'ai bien compris, c'est à vous que nous devons le BSP buildroot pour
+>  >> nos screenboards 3.5 et 7 ?
+>  >
+>  > Oui, c'est bien moi.
+>  >
+>  > Cordialement,
+>  >
+>  >> Cordialement,
+>  >> Hubert CHAUMETTE
+>  >>
+>  >
+>  >
+>  > --
+>  > Sébastien Szymanski, Armadeus Systems
+>  > Software engineer
+> 
+> 
+> --
+> Sébastien Szymanski, Armadeus Systems
+> Software engineer
 
 
-...
-
->>> +}
->>> +
->>> +static struct platform_driver speedy_driver = {
->>> +	.probe = speedy_probe,
->>> +	.driver = {
->>> +		.name = "exynos-speedy",
->>> +		.of_match_table = speedy_match,
->>> +	},
->>> +};
->>> +
->>> +module_platform_driver(speedy_driver);
->>> +
->>> +MODULE_DESCRIPTION("Samsung Exynos SPEEDY host controller driver");
->>> +MODULE_AUTHOR("Markuss Broks <markuss.broks@gmail.com>");
->>> +MODULE_LICENSE("GPL");
->>> diff --git a/include/linux/soc/samsung/exynos-speedy.h b/include/linux/soc/samsung/exynos-speedy.h
->>> new file mode 100644
->>> index 0000000000000000000000000000000000000000..b2857d65d3b50927373866dd8ae1c47e98af6d7b
->>> --- /dev/null
->>> +++ b/include/linux/soc/samsung/exynos-speedy.h
->> Drop the header, not used.
-> Same here, please clarify how this should be handled. This driver 
-> implements the devm_speedy_get_device and read/write functions for its 
-> child devices in that header, future drivers for e.g. PMIC would use 
-> this header and call devm_speedy_get_device to get a speedy_device 
-> pointer and then use read/write functions to read/write from the bus.
-
-This needs to be proper bus with proper speedy_driver clients. See how
-other buses - struct bus_type. Recent example of bus using platform
-drivers for devices would be pwrseq (power/sequence). Not so old other
-bus using its own xxx_driver for devices could be cxl or ffa (arm_ffa).
-This current non-bus approach, could also work if this is really Samsung
-specific. See memory/ for examples of MMIO buses and MMIO clients.
-
-I don't know good examples of non-MMIO buses not using bus_type and I am
-not sure whether this is accepted in general. I'll ask on IRC, maybe
-someone will give some hints.
-
-
-Best regards,
-Krzysztof
+-- 
+Sébastien Szymanski, Armadeus Systems
+Software engineer
 
