@@ -1,110 +1,157 @@
-Return-Path: <devicetree+bounces-130964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 888EF9F1949
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 23:42:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E8A9F1952
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 23:46:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AAF3D163547
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 22:42:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29075163953
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 22:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729A419A2A3;
-	Fri, 13 Dec 2024 22:42:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 217D719992C;
+	Fri, 13 Dec 2024 22:46:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tMF1VBhi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u1C6JoOz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 443562114;
-	Fri, 13 Dec 2024 22:42:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A90F1946AA
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 22:46:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734129769; cv=none; b=B1xQyqisE4D49hQe2mAzu/pKvFnEQieyTEERqILNI89CzzZa1kg4XjVYLhM+kvdw+huibnH3wdJtAkcwE4xg/iTKwrIJT2E/9JtAykoEeA8Y7IKYYgXy/WT+kQyTDblZ4V2b/15mnCcbBJW89kb0unLnEjMCJ/GvpWbv2HGuk18=
+	t=1734130001; cv=none; b=hnFJcg1+rMrGWJd1nVVe7EKGSxieQH12G7/5+F2LfizHxWkCeHlImihodWc2pC7PBeNxOou/zwVXmWzich2AyclM3byns0bdgx9qb3B937eCo4KGtxAmxLSftktMx2ZX95/ImmwUCJFdcB3DD490WzqtSi08PzGVHUjzpIKHnRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734129769; c=relaxed/simple;
-	bh=BjX0VDPGHA5y83hhzu2EPb7yjqStV6ntNJC4ipvu+JM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=iBles1atRhIfKemOCmhWle4ynss5Qrz2th0x5ZJoOM5kzLH3NXMz2Rjrt32mon9BN8uO9q6q7xhtvfFsvq9cOhaAPIUVQYcN5PhNozK0B8yrhhZqmnNm+CX8fgpuJrWZdJG3oFMKQHF6QU5t0PMi7GrQWQeUYDWMl5k6/+PWs5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tMF1VBhi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0BBAC4CED0;
-	Fri, 13 Dec 2024 22:42:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734129769;
-	bh=BjX0VDPGHA5y83hhzu2EPb7yjqStV6ntNJC4ipvu+JM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=tMF1VBhiap2XocNJchcool8rG+hEsgRF4GWq8OKn1lwtRQsBpNQLGtdOsYgZaki2L
-	 1xV/UNu9KfFjkZLcPqJJ00Xdby0RgA6fXraNZyV/pUaSLysJENGiqK4QWpBpc0zu7t
-	 /ukI0LFI9QZ3LkdjVHYgclifQ/sznxWj0aOKZ/3mYQpqjDI50taYbL2bOphuccGGTZ
-	 /snKJWMCN+6yzaU6tfsNM7604frhp8L8TwLh1v1ucJn8QnE7AKrU+PeG70KNkTu85D
-	 0+WBrCgI9rnROIGhd2urMOEaBuNuDBkH7vu/5efjhPElT1k8HrJe4gTBw4bUO93EjO
-	 ts0qdhn9akRMw==
-Date: Fri, 13 Dec 2024 16:42:47 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1734130001; c=relaxed/simple;
+	bh=40UdhAIFkNpCWAKbO0Y7oEN+u3yqHZKe340TjJTE2Pg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NVHCHmGFiSTg0AvgguSYRbu6Tr4iR23Ugm0uPctXNzK2i0aJ67Zw4kHa+F8FDIRKkje4dWefH5KW/seAG98RR8gqGmag6U+wFRc+jX93BvlTa3WO/VHd8jzfM1oQYlzB0CNJSyDeLoxQx/zJY25aIipqKQPgGyLOgypYRUeFm7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u1C6JoOz; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4361b6f9faeso14193345e9.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 14:46:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734129997; x=1734734797; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KTuOD6icErcsFYaW9j21xu4YdtqCIv9gqicrizfjG+A=;
+        b=u1C6JoOzkQJPC3UQZDOR4MvJw28UOvYZGDM57yLagGpDp8kI9tIPdAGfegoiGkiVaE
+         8M/MZwHxbXq+GlHTWOghP20oYfSj4Bl+KWDL17cCUXn6XSUBYSRsB2zEBtx5K0mZNrH5
+         ZytIBuQQVDDm1pgYnfgSLkiuKr1xgqpV4kWAIU2TsoxbgWXqpqCAi4LzuQmEcm3ZRF+N
+         +w4+WXCBJK0v+Ha4C2h8Fd7CJto+bYteYgvbnAhtCEZDRGyAeMysKZzljEQxtO7BW/TU
+         x0PlqUQi5ua089j0S8bF6WzA04xyllyy4csPc5Gn4LTf+xg9sCzV9eDU6xVbE9e/eMIt
+         AopQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734129997; x=1734734797;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KTuOD6icErcsFYaW9j21xu4YdtqCIv9gqicrizfjG+A=;
+        b=oRhezlQk11AGhTGUBGFaG8K48h9B4NYF0mSljg7smS7maxMW4M9aDPmp5Bh0+zwRkP
+         zORLrYeYGBIK6QwaiFDm+azSQNWvjixYEjU1G7RkZk1+gg6sxgFPvIHngkyPO7XoTdke
+         e0C2pcqlDxL0pziDyqLNp5SJAz6P9pwNnLN5eFli6QwwNMvNQEoll11nB/z4wYBw6/ss
+         yn5bMH/JiKBR0bEZguFV7erNeWQeFTVUSMHJAdSLiOdsB6DU7AkNOotl1SpkbE5z06PO
+         ORLyqWAxWHP+vn7zZNGWDqv7Qr6I9kFSsNLg01jJwJVk609ZWDHSpt0GrfX4fdNr6aSc
+         TNKw==
+X-Forwarded-Encrypted: i=1; AJvYcCWbagGfj/QoxmAvBM0ox6TmTixPLSclihxKfODZySNo/Whvngs8c6hulBYvviGztXXlvwrf6tMR+1DK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+Azj0MU0x7e+xwdtrwdpH4hdRwEbsHnaAWWNY0KjFlJ9EVHHa
+	qnIk8+wmh0G+14DAOJuLsmN8ysMY4jZ35JjTg8fnsFdif5GcTwy6UkOKEveKYIw=
+X-Gm-Gg: ASbGncvKJe5Q8m1bGBNJtXdVwZ2sr7Jsg857em6F6n6R7eer3HjepIZXIGkdqOp8xE1
+	POq9iPW+N5oZNFJTRYeLGKFA9109fWYNRYOBITOxYOKWEyPws67Zo8NM4g1GACvThJROa/lFIp3
+	07KNq8mIdmZtUBDaZAlCYLGZclz+Te92iEyqa6b4b+T99OjuBbescyPbllBG+UQNye357Hrgd8E
+	eTPenLWL/+nyb2/jmM6bYaWpoRXP3Qnwbx/aduGUGtnHJhuLK37IGqqsb6lPQJdaoKkgg==
+X-Google-Smtp-Source: AGHT+IF8LUTsKZXa8frqGxeBxZl582Ej5d81AFeE5NCeWffygpOwWGp+rL8WjqRfyLO0969GF07PDw==
+X-Received: by 2002:a05:600c:c8c:b0:42c:b8c9:16c8 with SMTP id 5b1f17b1804b1-4362b14bbe0mr32131525e9.10.1734129997407;
+        Fri, 13 Dec 2024 14:46:37 -0800 (PST)
+Received: from [192.168.0.40] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436255531b1sm63871835e9.2.2024.12.13.14.46.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Dec 2024 14:46:36 -0800 (PST)
+Message-ID: <47d81240-2717-48f6-89c5-f64f7bbd7505@linaro.org>
+Date: Fri, 13 Dec 2024 22:46:35 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Michael.Hennerich@analog.com, 
- conor+dt@kernel.org, linux-iio@vger.kernel.org, jic23@kernel.org, 
- eraretuya@gmail.com, krzk+dt@kernel.org, devicetree@vger.kernel.org, 
- lars@metafoo.de
-To: Lothar Rubusch <l.rubusch@gmail.com>
-In-Reply-To: <20241213211909.40896-4-l.rubusch@gmail.com>
-References: <20241213211909.40896-1-l.rubusch@gmail.com>
- <20241213211909.40896-4-l.rubusch@gmail.com>
-Message-Id: <173412976723.2600598.3789006007464686028.robh@kernel.org>
-Subject: Re: [PATCH v7 3/7] dt-bindings: iio: accel: adxl345: add
- interrupt-names
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] media: venus: Populate video encoder/decoder
+ nodename entries
+To: Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: quic_renjiang@quicinc.com, quic_vnagar@quicinc.com,
+ quic_dikshita@quicinc.com, konradybcio@kernel.org,
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ Stanimir Varbanov <stanimir.varbanov@linaro.org>
+References: <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-0-ef7e5f85f302@linaro.org>
+ <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-2-ef7e5f85f302@linaro.org>
+ <e159b61f620eea520b06e20a294bf84be781fe19.camel@ndufresne.ca>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <e159b61f620eea520b06e20a294bf84be781fe19.camel@ndufresne.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 13/12/2024 20:00, Nicolas Dufresne wrote:
+> Hope this hardcoding of node name is historical ? 
 
-On Fri, 13 Dec 2024 21:19:05 +0000, Lothar Rubusch wrote:
-> Add interrupt-names INT1 and INT2 for the two interrupt lines of the
-> sensor.
-> 
-> When one of the two interrupt lines is connected, the interrupt as its
-> interrupt-name, need to be declared in the devicetree. The driver then
-> configures the sensor to indicate its events on either INT1 or INT2.
-> 
-> If no interrupt is configured, then no interrupt-name should be
-> configured, and vice versa. In this case the sensor runs in FIFO BYPASS
-> mode. This allows sensor measurements, but none of the sensor events.
-> 
-> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
-> ---
->  .../devicetree/bindings/iio/accel/adi,adxl345.yaml     | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
+Hardcoding is historical in dts.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+We need to add two more chips into venus before iris is merged and at 
+feature parity for HFI_6XX and above - HFI_GEN2
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml:45:17: [error] string value is redundantly quoted with any quotes (quoted-strings)
-./Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml:46:22: [error] string value is redundantly quoted with any quotes (quoted-strings)
+Something like this.
 
-dtschema/dtc warnings/errors:
+enum {
+	HFI_1XX
+	..
+	HFI_6XX
+	HFI_GEN2
+	..
+};
 
-doc reference errors (make refcheckdocs):
+ > And not done for newer chips ?
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241213211909.40896-4-l.rubusch@gmail.com
+HFI_6XX and above will be fully supported in "iris" with encoder/decoder 
+selection done at session creation time.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Iris is being added phased. Basic decoder with one format, followed by 
+decoder and additional formats.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Once we get to feature parity HFI_6XX and above will be supported in 
+Iris and removed from venus.
 
-pip3 install dtschema --upgrade
+Leaving HFI_4XX and below.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+That's a long winded way of saying new chips minted from the fab will 
+either be HFI_GEN2+ or HFI_6XX.
 
+> We discourage userspace on relying on node names cause it always leads to
+> complication and non-portable code.
+
+Writing this driver from scratch - basically what HFI_6XX in Iris does, 
+you'd select encoder/decoder when you create the initial session - the 
+initial state.
+
+For venus that's an unknown amount of work to do.
+
+What we _could_ certainly do is make the static assignment in this 
+series assignable via a kernel parameter.
+
+I'd say though that's an additional series on top of this.
+
+First pass here is just to fix up the original sin, not to improve 
+selectivity, just yet.
+
+---
+bod
 
