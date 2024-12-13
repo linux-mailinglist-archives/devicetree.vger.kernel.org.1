@@ -1,164 +1,164 @@
-Return-Path: <devicetree+bounces-130632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B35CA9F08C5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:57:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 968239F08CF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:57:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2C1F169180
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:56:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 635F31695D1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:57:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE361BD000;
-	Fri, 13 Dec 2024 09:54:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 287A21C3BE1;
+	Fri, 13 Dec 2024 09:55:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mL5Qbrip"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X5JXQOXl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E2C51BC9F0;
-	Fri, 13 Dec 2024 09:54:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A03B1C1AA9;
+	Fri, 13 Dec 2024 09:55:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734083652; cv=none; b=Hoou/58piGCiIR9VTNhy5gRd/9eyCbQXoZhka+w2LSybm+NI8qhxhzGKCftP3ze06Z969NC5udhSfGb3mRu/ux58ig0cMhk6NlkEG7Kdge0daMZTMb9kOZLODEwaHx3z+SQBx8sTiHJ/Sf1n3JGPniusGpMRxUJmQPpr5whZvEM=
+	t=1734083725; cv=none; b=SJ6UnoTfBDM8KriIhb0kCJfT9Han/p+Ny39v0mGADQJyf2Bs7Rjkn9r8PvutPK3OgoZzS0WyDOcCtmR4jnmJ+tHah3Gn3XgClS0hA2g04pbZ5y+DxGtNNkY8n4pz7B05ZhcLtaG6FW0jYusC9q5CVhNQXkvjFTll7DrwOuY/UxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734083652; c=relaxed/simple;
-	bh=aKG4i07kiCddb1xwUz+PztNo/8/oFF8l0nSWciEoALo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=upV6DaB6YyDWn8Chk3SAyak2e1jEQOaxchhONzmorYCj2L1dJSz8tg8hoLklLiX6fhcSxYfX8PxBHb6FawQeCS3TL6Hb6Q/iAmDcRruMtTPcA1mgorjzl/0mgmi4kmSFx34Q3LCeYUc9Ss53ae52VD8k+h0k26EBcWlomfq3/ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mL5Qbrip; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD8I4Gl026835;
-	Fri, 13 Dec 2024 09:54:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	wAmn3DosKvgeBaH3Y7+6qa9IT0ctg4ChW3co3TKAT8g=; b=mL5Qbripm92EDfjL
-	ncuTzuYNvozuo43KLxlEaAvbTV8dmiqGGs3vddXdJW7A5cOh0W1yCYKxgUukTZMJ
-	1omKTgRk5G/yY++XquvDadbWdcRa6WkwOn4BIN/Y4twSw+wk3WcA+vle1rCpQwmp
-	vZErGEMFBeWTxYwP5xtyvdn7+Y5ZRP6O/7FWa7GJA7RYXf0sQFW3wLOA/FbpsgSX
-	G7pNNT9asRPA3RYTWQOTxuphy1bjs23NzNnabuuB8wjZvEWIr+vZ+mhZA15egh3B
-	J9qTlkx/3BVRpjJBOh59sp9794gVqfoIaCWLx6tC/uRF8dzJtAH+wKh5spMUwJMJ
-	Qw9QAA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fd40nvqu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 09:54:07 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BD9s6vl024380
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 09:54:06 GMT
-Received: from hu-prashk-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 13 Dec 2024 01:54:02 -0800
-From: Prashanth K <quic_prashk@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Kurapati
-	<krishna.kurapati@oss.qualcomm.com>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <cros-qcom-dts-watchers@chromium.org>,
-        Prashanth K <quic_prashk@quicinc.com>
-Subject: [PATCH v2 19/19] arm64: dts: qcom: Disable USB U1/U2 entry for SC8180X
-Date: Fri, 13 Dec 2024 15:22:37 +0530
-Message-ID: <20241213095237.1409174-20-quic_prashk@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241213095237.1409174-1-quic_prashk@quicinc.com>
-References: <20241213095237.1409174-1-quic_prashk@quicinc.com>
+	s=arc-20240116; t=1734083725; c=relaxed/simple;
+	bh=rUgmDMTlla3bRCyAWZxXRbJxFwUiKYGnqMqQF22MfHk=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=IIea9f2I/y+cbT9P7vzyDTFdskuIH9NibwsLzcTXVw/5MBGWQceIvgZcL3v8ulGjDza1MYCIYjeQ0dJkfNaW7MyHIVjbJJpNKqQ0qCfC67+ln2tY5JmhtqqrS5wJK1FKHJm1yOmag15ZKbYvpi9plebHTchFIokstoRDjm5Z/Hg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X5JXQOXl; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-aa6c0d1833eso262569866b.1;
+        Fri, 13 Dec 2024 01:55:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734083721; x=1734688521; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jeEYpoT5ymS8tRy1xVLDixRmFAc5fwDD3sDDNeC0nh8=;
+        b=X5JXQOXlCMVqEj5UwFvF4Chk3S3oCWN/Wyv2ZQtfMGrdPfGbDxNuuruJYr1eWWjhf7
+         J28JZct5liGlv88Wv7TQoE6Zqfsr1vipM2gFP6Tv/CoKY0w2C25mTtJTZZqw1IM3mqKo
+         X2EjPgdBwV069+um5pcZP4f8adWp2XqHsWH+zWCBrcghHYdQosz01ptxP9yki2NoBbde
+         4zqLETCNxrTlSyO+UuM5LWZuXhtLFUgQPFjb/6wEeKuylA1nlekuTpyjDS9X/rBIsogq
+         /TNOoVgmuZPEFZAaOLmzi0mDjY+hLXoVP9v3qtwStM11wh2DNeM1lilDg8Btt0Y3FQsF
+         MhwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734083721; x=1734688521;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jeEYpoT5ymS8tRy1xVLDixRmFAc5fwDD3sDDNeC0nh8=;
+        b=KdemYH9DOviA9ANmuzoqROu8IEu4zsvLwtJQJAOD2bRjolOSjnQPZ3d2r4WE2QGNiy
+         dV4MaA/Rm5or1I/oqhTK4ka+gLay5Qy4EwiZAsyW6byVIWzAwON1SIertIwkhgtOJPC9
+         4V4SROYVZItAZBKWx/4RQ25itE4P48hnEZgF+wz52MZz9SN2kxygNHE2tz33vbnXaCE7
+         882Fu8T7RUPnITT/BoIPkapVJqTXWfyw2XJWoZsdCMEHfxUvwrGO/RVi00ERb/HG2dXG
+         i0La2/R+l5Hs0wTIK0SSo9oH3gsVpEmNXYK+Y7F3qYU9Nw620icFIfnxdA68MZxs+PMr
+         1Daw==
+X-Forwarded-Encrypted: i=1; AJvYcCVj3i+9F5oACrLoowKtACNYbZSt6ZBS1rvO+b7yZ53ruC81mEBLKYLmTCCHn12ZeRw78tGPUw8c@vger.kernel.org, AJvYcCXrg7qhpQEMyeUrxTuhkAI6Lfiyb4k9ZiiR4vhBbrXG6s0PjIssd7dVFW9xYPhR5Eq0XCELKUzixCsOfUc=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxw9NL7MWGn+3OULoI0PLBGL9g/ZG5yd7y7LgJdfxn/Hwee7bSG
+	9ragTqRJfRad+TKLrKget3c00iUvy0AwqsA4GnCwCB/KeDL2EajxEiSPr/ij
+X-Gm-Gg: ASbGncvAbMbBJ1m2A5oMUFwVQUPSQQdxkarbCpOk76FCAQ1oCvHj8ARIYGhwoVqLp8M
+	xNh44ZwzuWCyYZrSYIFCmHDmDgxv6u0Zs3O8EmGnqqIJP1XyIItsVsVwis1DdQ40M9Bts9mAZ3D
+	MWwqApbCd7Dn1eCk0KwMVUKv9GIVDmUV0Ur1SWJbHLSTXu6ICdUnsyrvZOaM1r87iakP1Z7yDK7
+	NxAyZxy3nXwHcA3qhArDgjS8Xr9ZakblY1N3f491eDXDdUr2uMwJ9iEvJVthqk2/U2m2H0MCuR+
+	H1q67vMhoQz72UW+YMVPLY7HwQ==
+X-Google-Smtp-Source: AGHT+IHZMHT5CWtXaqVR5si+MBRX4Sk47tkz4p5lH/eSEWo0dRkleARMLltPnuR/+triSY+HnVjWaA==
+X-Received: by 2002:a17:907:1c8b:b0:aa6:7cae:dba7 with SMTP id a640c23a62f3a-aab778c6ef1mr216718366b.4.1734083721229;
+        Fri, 13 Dec 2024 01:55:21 -0800 (PST)
+Received: from opti3050-1.lan (ip092042140082.rev.nessus.at. [92.42.140.82])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6969a7645sm598970866b.16.2024.12.13.01.55.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Dec 2024 01:55:20 -0800 (PST)
+From: Jakob Unterwurzacher <jakobunt@gmail.com>
+X-Google-Original-From: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
+Date: Fri, 13 Dec 2024 10:54:58 +0100
+Subject: [PATCH v4] arm64: dts: rockchip: increase gmac rx_delay on
+ rk3399-puma
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: MeGZY4hikj39LEubDm0k-bFSeZyWq8fx
-X-Proofpoint-ORIG-GUID: MeGZY4hikj39LEubDm0k-bFSeZyWq8fx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
- suspectscore=0 impostorscore=0 phishscore=0 clxscore=1015 bulkscore=0
- lowpriorityscore=0 mlxlogscore=462 priorityscore=1501 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412130067
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241213-puma_rx_delay-v4-1-8e8e11cc6ed7@cherry.de>
+X-B4-Tracking: v=1; b=H4sIAHEEXGcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyTHQUlJIzE
+ vPSU3UzU4B8JSMDIxNDI0Nj3YLS3MT4oor4lNScxErdtMSUpOSUNANLcwtjJaCegqLUtMwKsHn
+ RsbW1AFzzeNhfAAAA
+X-Change-ID: 20241213-puma_rx_delay-fadbcdf09783
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Klaus Goger <klaus.goger@theobroma-systems.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org, Quentin Schulz <quentin.schulz@cherry.de>, 
+ Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
+X-Mailer: b4 0.14.2
 
-Disable U1 and U2 power-saving states to improve stability of USB.
-These low-power link states, designed to reduce power consumption
-during idle periods, can cause issues in latency-sensitive or high
-throughput use cases. Over the years, some of the issues seen are
-as follows:
+During mass manufacturing, we noticed the mmc_rx_crc_error counter,
+as reported by "ethtool -S eth0 | grep mmc_rx_crc_error", to increase
+above zero during nuttcp speedtests. Most of the time, this did not
+affect the achieved speed, but it prompted this investigation.
 
-1. In device mode of operation, when UVC is active, enabling U1/U2
-is sometimes causing packets drops due to delay in entry/exit of
-intermittent these low power states. These packet drops are often
-reflected as missed isochronous transfers, as the controller wasn't
-able to send packet in that microframe interval and hence glitches
-are seen on the final transmitted video output.
+Cycling through the rx_delay range on six boards (see table below) of
+various ages shows that there is a large good region from 0x12 to 0x35
+where we see zero crc errors on all tested boards.
 
-2. On QCS6490-Rb3Gen2 Vision kit, ADB connection is heavily unstable
-when U1/U2 is enabled. Often when link enters U2, there is a re-
-enumeration seen and device is unusable for many use cases.
+The old rx_delay value (0x10) seems to have always been on the edge for
+the KSZ9031RNX that is usually placed on Puma.
 
-3. On QCS8300/QCS9100, it is observed that when Link enters U2, when
-the cable is disconnected and reconnected to host PC in HS, there
-is no link status change interrupt seen and the plug-in in HS doesn't
-show up a bus reset and enumeration failure happens.
+Choose "rx_delay = 0x23" to put us smack in the middle of the good
+region. This works fine as well with the KSZ9131RNX PHY that was used
+for a small number of boards during the COVID chip shortages.
 
-Disabling these intermittent power states enhances device stability
-without affecting power usage.
+	Board S/N        PHY        rx_delay good region
+	---------        ---        --------------------
+	Puma TT0069903   KSZ9031RNX 0x11 0x35
+	Puma TT0157733   KSZ9031RNX 0x11 0x35
+	Puma TT0681551   KSZ9031RNX 0x12 0x37
+	Puma TT0681156   KSZ9031RNX 0x10 0x38
+	Puma 17496030079 KSZ9031RNX 0x10 0x37 (Puma v1.2 from 2017)
+	Puma TT0681720   KSZ9131RNX 0x02 0x39 (alternative PHY used in very few boards)
 
-Signed-off-by: Prashanth K <quic_prashk@quicinc.com>
+	Intersection of good regions = 0x12 0x35
+	Middle of good region = 0x23
+
+Fixes: 2c66fc34e945 ("arm64: dts: rockchip: add RK3399-Q7 (Puma) SoM")
+Cc: stable@vger.kernel.org
+Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
+Tested-by: Quentin Schulz <quentin.schulz@cherry.de> # Puma v2.1 and v2.3 with KSZ9031
+Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
 ---
- arch/arm64/boot/dts/qcom/sc8180x.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+v4: drop internal Relates-to tag, add Tested-by, rebase to Linus master, send with b4
+v3: use rx_delay = 0x23 instead of 0x11, which was not enough.
+v2: cc stable, add "Fixes:", add omitted "there" to commit msg,
+v1: initial submission
+---
+ arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-index 745a7d0b8381..28693a3bfc7f 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-@@ -2762,6 +2762,8 @@ usb_mp_dwc3: usb@a400000 {
- 				iommus = <&apps_smmu 0x60 0>;
- 				snps,dis_u2_susphy_quirk;
- 				snps,dis_enblslpm_quirk;
-+				snps,dis-u1-entry-quirk;
-+				snps,dis-u2-entry-quirk;
- 				phys = <&usb_mp_hsphy0>,
- 				       <&usb_mp_qmpphy0>,
- 				       <&usb_mp_hsphy1>,
-@@ -2825,6 +2827,8 @@ usb_prim_dwc3: usb@a600000 {
- 				iommus = <&apps_smmu 0x140 0>;
- 				snps,dis_u2_susphy_quirk;
- 				snps,dis_enblslpm_quirk;
-+				snps,dis-u1-entry-quirk;
-+				snps,dis-u2-entry-quirk;
- 				phys = <&usb_prim_hsphy>, <&usb_prim_qmpphy QMP_USB43DP_USB3_PHY>;
- 				phy-names = "usb2-phy", "usb3-phy";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+index d12e661dfd9917f820284477a215389c16205f46..995b30a7aae01a0326e9f80d6be930f227968539 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+@@ -182,7 +182,7 @@ &gmac {
+ 	snps,reset-active-low;
+ 	snps,reset-delays-us = <0 10000 50000>;
+ 	tx_delay = <0x10>;
+-	rx_delay = <0x10>;
++	rx_delay = <0x23>;
+ 	status = "okay";
+ };
  
-@@ -2902,6 +2906,8 @@ usb_sec_dwc3: usb@a800000 {
- 				iommus = <&apps_smmu 0x160 0>;
- 				snps,dis_u2_susphy_quirk;
- 				snps,dis_enblslpm_quirk;
-+				snps,dis-u1-entry-quirk;
-+				snps,dis-u2-entry-quirk;
- 				phys = <&usb_sec_hsphy>, <&usb_sec_qmpphy QMP_USB43DP_USB3_PHY>;
- 				phy-names = "usb2-phy", "usb3-phy";
- 
+
+---
+base-commit: f932fb9b40749d1c9a539d89bb3e288c077aafe5
+change-id: 20241213-puma_rx_delay-fadbcdf09783
+
+Best regards,
 -- 
-2.25.1
+Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
 
 
