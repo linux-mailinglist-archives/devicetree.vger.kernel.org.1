@@ -1,138 +1,160 @@
-Return-Path: <devicetree+bounces-130640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8557A9F08EF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:00:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A84579F08DA
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:58:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37448282F77
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:00:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5ACEA28320E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:58:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E1B81DF961;
-	Fri, 13 Dec 2024 09:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7381B5EBC;
+	Fri, 13 Dec 2024 09:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="L4AwSnpJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lfFF/lV3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8051DF724;
-	Fri, 13 Dec 2024 09:57:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 976791B415F
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 09:57:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734083867; cv=none; b=F28eBgtc2+TgJ2Rxr79ARo2sMgcyGiXc9txXBxC3jUjknZEo6ZJVZ42scfS1Jd1BnTyq8olx+HoLs7Rr5enbCNMw4oDl46I/nva9JqS8DsW97T9acy9hy6uiJVlzPHgzPQQsUhvf5OeY2V6GCs9f73iTKk6HIWFNZ7LL5O8Y6zs=
+	t=1734083828; cv=none; b=X0iMrSFkVE03wvdg7eQwiuNliU1leixZTn0T0qrtblIbr88C28G364FmOuMY+FvMV4ToW7TeTSbTo214U6A69Aru4UjdrOBY2DOgcp4mo/aJkzIcXUoS2sUNmTclDFxuCY+o4/PkWTG5tpR+557Htjz6UZ45DuzY7XwLh9hylkc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734083867; c=relaxed/simple;
-	bh=KwWEWFCB5ShOc5u4wAgQHgytmXEGoQcKusA3At0d9GU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=aVH8RxcQcLBBqFxa3lRBvJ67VRztZSPv2C+QYnOxgifOctfcX6vnIgAfICTNfWojprhQ8EPflHixT0NV4TmRZGykdCjW8FhGGUTaqtBwEiri3o4VTF8HDWq6Bu6UX42wb2EfwhJejqgdAgblilZWFc8k6qFI9j3qGgwcGXTjqdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=L4AwSnpJ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD1Vq8J001463;
-	Fri, 13 Dec 2024 09:57:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4SElXYnGf35AatXlxXldZcr44qubrPnAWZUpZmhsISg=; b=L4AwSnpJV3FowTuk
-	sF5JSjzO1lLHQtbLllzL3FsRv5Dbj5YJDOOO/najpE3eaYkx2eFLqFgFqVs3OVtv
-	BB6l/3blW3EMaoRSAr6+7eqXbxcxzXR52g7SVyoiYhGVx/JAvIvk2xBNz+PKYgzS
-	cgsernB0oyx51LcV8afFkV5JO4r4I+1eF+lKj8AhLv5B+8ItsDxyJEQgF7NJQ7GB
-	BAC9OJWP00PA0l+w595f7ycXAgISCleU3Q8I7LgSfZWLo/x5jtpXZ9kAX1v/yHu6
-	iuDr54j1JXzyxskqZg5wPz6vzvxuUNgyrKYT9RDAFlHAPUsilqXTBphw7BsXWQyc
-	63vm5Q==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fqes4cky-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 09:57:40 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BD9vdSt016969
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 09:57:39 GMT
-Received: from hu-renjiang-sha.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 13 Dec 2024 01:57:35 -0800
-From: Renjiang Han <quic_renjiang@quicinc.com>
-Date: Fri, 13 Dec 2024 15:26:49 +0530
-Subject: [PATCH v4 4/4] arm64: dts: qcom: qcs615-ride: enable venus node
+	s=arc-20240116; t=1734083828; c=relaxed/simple;
+	bh=YO+n7MU+2RrIu0W3P8KTbdPkEDXVBp1+wV8pfB3/vmY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t1dVkV6CyAmnRPnqlFsG+7mOy6XcRdk6NzW/coHpmIjkU7RwcLPsDIsJJWyZGTZFjNSGEcAKl2/DdT0IbkWj/LHbV1MW5V2FdUWCQDAWSIy7KuSTKAUrdEhr/ONJOE67zT1I8VCnFeyCJZDX2Uzz6MHrl6uM0gpgAD/DHdsVL1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lfFF/lV3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5299C4CED0;
+	Fri, 13 Dec 2024 09:57:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734083828;
+	bh=YO+n7MU+2RrIu0W3P8KTbdPkEDXVBp1+wV8pfB3/vmY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lfFF/lV3jMn5IZmBjfw2DdXbPyKhmR7LojbJD+U3vMhinHAchlngazi6gVNLZKo5H
+	 3c/vw5bDPzKXFCeIgt9XnZcJaQx/2IGi/Y+HPw5MRsfsH46kWp37FmrBLHTmx+JV1c
+	 HTAFZgT95bUGtdc9KBg0i8y181+/yaLdNrPL0ZOCwEeqL0yQY0hTY2qFMuPq09/3CQ
+	 3SrkYeJ74FvL/00qeak04gvPF2Q+zVJh/tEkZgDGm7XbOGrsFIBqEkJp9RDbQRCDWP
+	 5AN1Sv6bmFVlx6zNicHsSF4mVYpmYI8AMGTvfsDrWhg7y9ri1Bt8n9HLP3TR6qj7nE
+	 DybA3SJKZAQ8A==
+Message-ID: <03ceb5ac-e83b-4aed-b435-18f02391aa66@kernel.org>
+Date: Fri, 13 Dec 2024 10:57:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: How to check (an updated) schema if make dt_binding_check fails
+ already?
+To: Andy Shevchenko <andriy.shevchenko@intel.com>, devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <Z1skz3Dmz3mPIskX@smile.fi.intel.com>
+ <Z1vMmlr1l7hcTEWA@smile.fi.intel.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <Z1vMmlr1l7hcTEWA@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20241213-add-venus-for-qcs615-v4-4-7e2c9a72d309@quicinc.com>
-References: <20241213-add-venus-for-qcs615-v4-0-7e2c9a72d309@quicinc.com>
-In-Reply-To: <20241213-add-venus-for-qcs615-v4-0-7e2c9a72d309@quicinc.com>
-To: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Renjiang Han
-	<quic_renjiang@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1734083839; l=680;
- i=quic_renjiang@quicinc.com; s=20241001; h=from:subject:message-id;
- bh=KwWEWFCB5ShOc5u4wAgQHgytmXEGoQcKusA3At0d9GU=;
- b=ZiQaIIEmjgrVpjfXtPxAIoMt44O5pgBIH/00mAzebjp1Hb2KryCBYJ3hr5gDNsSm+WSa7uj96
- r/Pm+XANo0kDXOli5HHneGi5DbXwXs6Aj9ipN4YQwYyVaxmcqnP3/CP
-X-Developer-Key: i=quic_renjiang@quicinc.com; a=ed25519;
- pk=8N59kMJUiVH++5QxJzTyHB/wh/kG5LxQ44j9zhUvZmw=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: HHa_j0bMl6_KD_p64ulH_iovaJ3LtY22
-X-Proofpoint-ORIG-GUID: HHa_j0bMl6_KD_p64ulH_iovaJ3LtY22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
- lowpriorityscore=0 impostorscore=0 clxscore=1011 malwarescore=0
- mlxlogscore=559 priorityscore=1501 bulkscore=0 phishscore=0 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412130067
 
-Enable the venus node so that the video codec will start working.
+On 13/12/2024 06:56, Andy Shevchenko wrote:
+> On Thu, Dec 12, 2024 at 08:00:47PM +0200, Andy Shevchenko wrote:
+>>
+>> Hi!
+>>
+>> I would like to extend an existing schema, the checker currently (on Debian
+>> unstable) fails with the recent in-kernel schema. What should I do?
+>>
+>> $ make dt_binding_check DT_SCHEMA_FILES=/usb/snps,dwc3.yaml
+>>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>>   Traceback (most recent call last):
+>>     File "/usr/bin/dt-mk-schema", line 8, in <module>
+>>         sys.exit(main())
+>>                  ^^^^^^
+>>       File "/usr/lib/python3/dist-packages/dtschema/mk_schema.py", line 28, in main
+>>         schemas = dtschema.DTValidator(args.schemas).schemas
+>>                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>>       File "/usr/lib/python3/dist-packages/dtschema/validator.py", line 363, in __init__
+>>         self.make_property_type_cache()
+>>       File "/usr/lib/python3/dist-packages/dtschema/validator.py", line 420, in make_property_type_cache
+>>         self.props, self.pat_props = get_prop_types(self.schemas)
+>>                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>>       File "/usr/lib/python3/dist-packages/dtschema/validator.py", line 187, in get_prop_types
+>>         del props[r'^[a-z][a-z0-9\-]*$']
+>>             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+>>     KeyError: '^[a-z][a-z0-9\\-]*$'
+>>     make[2]: *** [Documentation/devicetree/bindings/Makefile:63: Documentation/devicetree/bindings/processed-schema.json] Error 1
+>>     make[2]: *** Deleting file 'Documentation/devicetree/bindings/processed-schema.json'
+>>     make[1]: *** Makefile:1509: dt_binding_schemas] Error 2
+>>     make: *** [Makefile:251: __sub-make] Error 2
+> 
+> FWIW, this traceback happens independently on presence or content of
+> the DT_SCHEMA_FILE variable.
+> 
+> So, any suggestions, please? Can this be fixed rather sooner than later?
+dtschema is kind of developers tool, still being actively changing, not
+a stable product, so we expect people running moderately recent
+releases. Recent could mean, one or two months old. Not year old, that's
+like ancient world for us. Sorry.
 
-Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+And it is not only because of changes in the tool itself, but also
+because dtschema contains the core schema. If you use something from
+2023, you miss entire new schema and new bindings. There is no way
+recent kernel will pass such checks because of that missing bindings,
+regardless of actual tool issues like above.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index a25928933e2b66241258e418c6e5bc36c306101e..de954ede27f0942397d982f9aa725e59a8de9657 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -237,6 +237,10 @@ &usb_1_dwc3 {
- 	dr_mode = "peripheral";
- };
- 
-+&venus {
-+	status = "okay";
-+};
-+
- &watchdog {
- 	clocks = <&sleep_clk>;
- };
+We all use and *only* recommend pip (or pipx mentioned earlier for some
+distros).
 
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
