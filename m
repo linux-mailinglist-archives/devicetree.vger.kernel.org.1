@@ -1,258 +1,149 @@
-Return-Path: <devicetree+bounces-130946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 677309F1721
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 21:08:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EA509F16E3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 20:58:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A9341611F3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 20:08:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A42831887798
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 19:58:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E8041F0E52;
-	Fri, 13 Dec 2024 20:01:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1515A192D91;
+	Fri, 13 Dec 2024 19:55:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="OuwXYHd0"
+	dkim=pass (2048-bit key) header.d=uni-heidelberg.de header.i=@uni-heidelberg.de header.b="FD3E/TEI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3.uni-heidelberg.de (relay3.uni-heidelberg.de [129.206.100.213])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6F51E8839
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 20:01:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E2A7191489;
+	Fri, 13 Dec 2024 19:55:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.206.100.213
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734120085; cv=none; b=ElOusHZxylCPetEcOT0kfrFZ91vi5lUrRjASwKAWi4ZSaGisJ70qTUBHJ81+wW+bQZ7sMp/KZ4xtp3UUeEYxbsjSXW5KHjJLGcgl7LNGhWx0oxR5draAZMYWYislPS7fhJIIbD+Il6Srg/4KvCaW2uGVG5YMLkZaxr/kt4jtG5k=
+	t=1734119748; cv=none; b=cOB1hI2D0c5fp9dXvOEGW5Gjb7vPNpbqfkge3mK3MMMDmdXG5/QBv26iLrm/u2vopIQ8hWIm9mOQ6OoI+30QpfWdh/HaVt048IWKGs4ZPguOVRrxDP50m6quOhHagbPkizWGFAF588f7izHb1K57aocmqQXSsaSEmgHXUXy8Nc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734120085; c=relaxed/simple;
-	bh=+IBdDuUpH0ffV3eW21HSRtsMzybmo8R7I3/oqhIog4o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dWY4WffvddIM2Vc5sC9xON+pjD9hVRUfJlVY8F6KgM1necGNL3ZGfWGevH++3bTsVevBwEtO+N6/zkous60/vqHZINDvYmjh8DQpzUVXV4YgUrqy/6H5It902ri2rbEfy8r8qX7PEg6jBNA3Eia6M7u13bCT2OvPnngl4gRHmFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=OuwXYHd0; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6ef7640e484so23888627b3.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 12:01:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1734120082; x=1734724882; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WjFjYpSxXBJz9M1hdmG3iiPhNXo18zA2UB8YwR16DTw=;
-        b=OuwXYHd0EggZdYHqAQplpWeF1HSEa+cngmjVJtlthiLjyKy4kOeuST4V7Kk5nDV6OX
-         GXQXIse+JEDXBZuPrT99x9gwSSiJwlDJGf4B25y4WQ2sSrdF1yXCfGgUqEL8kgQlPfTd
-         96PD6iQo2e2b/lGJb5ne5jMY4S9dBwF+KfF0tK5GEFIaWJVv2HJcBw5Asqva9z8h2Eo5
-         rUZRx/8/fCNcQ509XQNM7/Ea3PzVkQI/ACvRPturJdMoaXOn0Bw1RYGaUWfLhPUIAzw6
-         CLpR2SHIrBb7RTAgl+RhR4jM87x1RssIxegwHj+q6Ts9HiQB/GYAZtbkZOsRQd4CcAT3
-         6NYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734120082; x=1734724882;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WjFjYpSxXBJz9M1hdmG3iiPhNXo18zA2UB8YwR16DTw=;
-        b=Kdlcrn0kw+R2jx2sUMfRO1UCdnv5lsRi46fiQ/MywDR60jy4kwDkJ66qRiPmYK2nOa
-         MJLoaSWTKrcQln9Nv+Q/FnVqetvp114reoNCF3c/+0y0LsGXH10QlsH5lkYCBORjuLUQ
-         3qPE3LVkn0nb9EBVvQ1cYKeeuZDr6hkxhyUPNpWEujSoOTizn7wDoPIuwxmHpRG2vyvj
-         NWCcB51xGZp4Z6W9d2OnJkHp95m7Rd79UmLwHnzwAN3E5r6zyZUOYg5RKtm+0m71MM/l
-         UX9sY/8AgaIZtDtCx/0I4fZaxzBf1S538l4g7+sv08RfXrFjZzwM6RPXmE4twG4s4Pg2
-         GTlg==
-X-Forwarded-Encrypted: i=1; AJvYcCVAYiCQpP3fIkz2zeD8GKpZVA3axJfCEK8P49kCcZ4v0vy5G7ZCaNfsPV4syWTlmhkj6WUgizaInm5B@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhA6JGQGBvDwkM+x+gAwpl6R3Lk2h4MU2Jfj08X9NynwfNQAk+
-	qyx4LIi2OEMt/5pp2jA7Ghn3VGs+PEEYptdHi75WH9KvNgjb57wBPSW/QkcEejRPxZ2KVP/B4rq
-	Do2lZe4Pb4UvGB7Sa9kJhx1mpJpWTCAUDl3DyaSMBC+qA9XUCxT8=
-X-Gm-Gg: ASbGnctl0Zrl3s1xHiLreKQLT0WrfBKGQ6s+TfYB3UuAgDaaQsMXKe95dEqNLrkML+p
-	0hF307+aTM8p8e0KyFuZg7TzfLc7wwiMcFTSQWw==
-X-Google-Smtp-Source: AGHT+IEywBNIbwjppPoVSQ/XELBsV0fF8sTiDrKGwA9AnZLBRibm/aOssHinTtzowKOKfn5HmY+4fB4H6J+nE2ZGRjI=
-X-Received: by 2002:a17:90b:2242:b0:2ee:ba0c:1726 with SMTP id
- 98e67ed59e1d1-2f2901b253dmr5268444a91.34.1734119680395; Fri, 13 Dec 2024
- 11:54:40 -0800 (PST)
+	s=arc-20240116; t=1734119748; c=relaxed/simple;
+	bh=zFml9V48tq1Bs/Zu8HpapxYWnav6z7nwM0EEjEzGWV0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=Olo/VBun3xzMu7peSSMqsqj3AR1dOmA/WGO1fSrgm4tLHc3a4ll1c2oFQCSKrqeJUCIkspbLRTuv3beWiyLFn0/SYXNAfSDqY5IyCNZkzJRCKTYcyoXpNj+IZVtma2e9U6PRiuNCe8bhyhKb4ZFaclMq7DzZCMWISlbKKClRvTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=uni-heidelberg.de; spf=none smtp.mailfrom=lemon.iwr.uni-heidelberg.de; dkim=pass (2048-bit key) header.d=uni-heidelberg.de header.i=@uni-heidelberg.de header.b=FD3E/TEI; arc=none smtp.client-ip=129.206.100.213
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=uni-heidelberg.de
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=lemon.iwr.uni-heidelberg.de
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=uni-heidelberg.de; i=@uni-heidelberg.de; q=dns/txt;
+  s=s1; t=1734119745; x=1765655745;
+  h=date:from:to:cc:subject:message-id:mime-version;
+  bh=zFml9V48tq1Bs/Zu8HpapxYWnav6z7nwM0EEjEzGWV0=;
+  b=FD3E/TEIgozCbpiRNQpKRQA5l47MY9f7F6fmb0hBxG73l+NoaGV9ntAY
+   gtaWHe2p0Fr8fg2qywzC2tplB2cacqL3oT9+WY+ZgxvHEawrbKJz33iTy
+   WMJ/EDmQqomrajLwoIzEd6JivCJToCm71/N6fyNVCGxXp+drjqWQu5kEp
+   5XVf5tAbPBNNKaImVLBPoVELHgfKiv+cW2bW3399mMkf9xPkIiDvaruad
+   vbMF6QjHuJPg9GCLYVzYQW4rFjrDpGtPEwzR9rLuT0XavvXFUNAsXrdm1
+   bysQtEr8oXlnb4igTdc4BNU3266dVSevJkaugOmGxbv1eleL//RC6U+Gh
+   w==;
+X-CSE-ConnectionGUID: +ub3uNglS8mJbHVh7XVuPA==
+X-CSE-MsgGUID: OFt8zcDWTwaDCed5i4LwPQ==
+X-IPAS-Result: =?us-ascii?q?A2AWAwDYj1xn/1BqzoFagQmBU4IcgwmEVbAJFIF5AQEBA?=
+ =?us-ascii?q?QEBAQEBCUQEAQGFB4puKDQJDgECBAEBAQEDAgMBAQEBAQEBAQ4BAQYBAQEBA?=
+ =?us-ascii?q?QcFgSGGCIcEVjIDAiYCFjoOARKFZrFigTKBAd5KgVaBGi6ITgGFazuCDYR+g?=
+ =?us-ascii?q?RQBg2iEJQU2gz46gi8EiRydO4FNeDIBVRMXCwcFgTo6AyIMNjECgR6BAhQGF?=
+ =?us-ascii?q?QSBC0Y9gklpSToCDQI2aYE7JFiCTYUZhGWEVYJLVYJ9ghl8gSEdQAMLbT03B?=
+ =?us-ascii?q?g4bnSVGhxijZKMjB6ViBBYzl1GTAJYbgmAiqQiBZ4IVMz6DNlIZD49PAQLFB?=
+ =?us-ascii?q?nc8AgcLAQEDCZFtAQE?=
+IronPort-Data: A9a23:1HeE5q3I+T8eX8BU3/bD5Y12kn2cJEfYwER7XKvMYLTBsI5bpzEPz
+ 2sYCmCOO/zcZmqnKd4iYYzi8khUuZ7VyNNgHlNv3Hw8FHgiRejtXInGdBeuY0t+DSFhoGZPt
+ Zh2hgzodZhsJpPkjk7wdOCn9z8kjv3gqoPUUIbsIjp2SRJvVBAvgBdin/9RqoNziLBVOSvV0
+ T/Ji5OZYQXNNwJcaDpOt/vZ8Ug35pwehRtB1rAATaET1LPhvyRNZH4vDfnZB2f1RIBSAtm7S
+ 47rpF1u1jqEl/uFIorNfofTKiXmcJaLVeS9oiI+t5yZv/R3jndaPpDXlBYrQRw/Zz2hx7idw
+ TjW3HC6YV9B0qbkwIzxX/TEes1zFfUuxVPJHZSwmY+OxRbbVXTo+KVrLksWA41HythqOUgbo
+ JT0KBhVBvyCr+a7xbW9DOhznII+KsiuPI4etnxkxzzDArAqTPgvQY2Tv44ehm9uwJkWQ7COP
+ 6L1ahI2BPjESx1LM0oaEro6keKvgD/+bCcetVSU4Ko64mTeyAZ8yrerPNe9ltmiH58LxBnB/
+ jyYl4j/KjY0KIyNwha6zm2lqsTCkX76BKYNLITto5aGh3XJnzdCVUZIPbehmtGjjUS+c9FSM
+ UoZ/mwpt6da3E+xXNq+UwGQo3OeuBMYHd1KHIUS4waLzbCX7xqxBWUeSDNFLts8u6ceWjEsz
+ XeChNLkQzt1v9W9S3+H8LqW6yixIyEfIGQqaioNTA9D6N7myKkohxfSQ9JLC66yitn8Hz22x
+ CqFxAA6hrMOnYsCzaD+/l3dhT+ojpzIVRIuoATRUHis4g5waMiifYPAwVza6+tQaZ2ESEmAl
+ HwFgNSFquQPC4yd0iCAXo0lELy35v2ILCfRjHZxEJQ7sTeg4XiuecZX+j4WDENoNNsUPDzke
+ knevStP65JJenind6l6Z8S2EctC8ET7PdDoU/fSKNtReN5scg7C/CxvaUOU1W33nw4gnMnTJ
+ Kt3b+7vEHxBFIJoyAHmQsUX8YErmRAA2Fv6EMWTIwuc7ZKSY3ucSLEgOVSIb/wk4K7snOkz2
+ 4sOXydt40gEONASchXqHZgvwUciAVVTOHwbg8hac+mFZAt5Aic8Df6Uwb4gd4FhlalPmaHE8
+ xlRu3O0KnKl3RUryi3TNBiPjY8Dur4l9RoG0dQEZwrA5pTaSd/HAWd2X8JfkUMb3OJi1+Voa
+ PIOZt+NBP9CIhyepG9BNcOt9t05JU/w7e5rA8ZDSGVuF3KHb1GSkuIIgiOynMXzJnPs7JBk8
+ 9VMKCuHG8VfL+idMComQKj2lALs5iZ1dBNaQk3JPNRJY0Tw+YV2Yyz8j/M6J8sBMxqr+9dp/
+ 1j+PPrZzMGTy7IIHC7h3PDV9NvzQrciRiK33QDztN6LCMUTxUL7qacobQpCVWm1uL/ckEl6W
+ dho8g==
+IronPort-HdrOrdr: A9a23:rY+Rk61FrAls5XRAVLpPOQqjBJAkLtp133Aq2lEZdPUzSL38qy
+ nOpoV56faQsl0ssR4b6LK90cW7L080sKQFhbX5Xo3PYOCFggSVxehZhOOO/9SjIVyYygc378
+ ddmsZFaeHYMXg/q9rm6w+lFNsazMCA673Av5an8593JzsaDZ2IAj0JczpymSBNLjV7OQ==
+X-Talos-CUID: 9a23:arNhm2Fey9i/vTZ2qmIk6URPB+YqdkaNyVXaA3G4VlZXVYW8HAo=
+X-Talos-MUID: =?us-ascii?q?9a23=3AjMg1/Q+zjebslZCPOxUPhzOQf+BG//S8A2wyrYo?=
+ =?us-ascii?q?Pl+KJOXFxZxOCtA3iFw=3D=3D?=
+X-IronPort-Anti-Spam-Filtered: true
+Received: from lemon.iwr.uni-heidelberg.de ([129.206.106.80])
+  by relay3.uni-heidelberg.de with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Dec 2024 20:54:34 +0100
+Received: from hlauer by lemon.iwr.uni-heidelberg.de with local (Exim 4.92)
+	(envelope-from <hlauer@lemon.iwr.uni-heidelberg.de>)
+	id 1tMBk9-0000QN-SP; Fri, 13 Dec 2024 20:54:33 +0100
+Date: Fri, 13 Dec 2024 20:54:33 +0100
+From: Hermann.Lauer@uni-heidelberg.de
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ARM: dts: sun8i-r40: remove unused GPIO regulator
+Message-ID: <20241213195433.GA1568@lemon.iwr.uni-heidelberg.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241213-sparx5-lan969x-switch-driver-4-v4-0-d1a72c9c4714@microchip.com>
-In-Reply-To: <20241213-sparx5-lan969x-switch-driver-4-v4-0-d1a72c9c4714@microchip.com>
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Fri, 13 Dec 2024 20:54:29 +0100
-Message-ID: <CA+HBbNG0k24fO5OG42jw-7trWbT3iVTdo6Hh=55s1MaTh28p-A@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 0/9] net: lan969x: add RGMII support
-To: Daniel Machon <daniel.machon@microchip.com>
-Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Lars Povlsen <lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, Russell King <linux@armlinux.org.uk>, 
-	jacob.e.keller@intel.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
 
-On Fri, Dec 13, 2024 at 2:41=E2=80=AFPM Daniel Machon
-<daniel.machon@microchip.com> wrote:
->
-> =3D=3D Description:
->
-> This series is the fourth of a multi-part series, that prepares and adds
-> support for the new lan969x switch driver.
->
-> The upstreaming efforts is split into multiple series (might change a
-> bit as we go along):
->
->         1) Prepare the Sparx5 driver for lan969x (merged)
->
->         2) Add support for lan969x (same basic features as Sparx5
->            provides excl. FDMA and VCAP, merged).
->
->         3) Add lan969x VCAP functionality (merged).
->
->     --> 4) Add RGMII support.
->
->         5) Add FDMA support.
->
-> =3D=3D RGMII support:
->
-> The lan969x switch device includes two RGMII port interfaces (port 28
-> and 29) supporting data speeds of 1 Gbps, 100 Mbps and 10 Mbps.
->
-> =3D=3D Patch breakdown:
->
-> Patch #1 does some preparation work.
->
-> Patch #2 adds new function: is_port_rgmii() to the match data ops.
->
-> Patch #3 uses the is_port_rgmii() in a number of places.
->
-> Patch #4 makes sure that we do not configure an RGMII device as a
->          low-speed device, when doing a port config.
->
-> Patch #5 makes sure we only return the PCS if the port mode requires
->          it.
->
-> Patch #6 adds checks for RGMII PHY modes in sparx5_verify_speeds().
->
-> Patch #7 adds registers required to configure RGMII.
->
-> Patch #8 adds RGMII implementation.
->
-> Patch #9 documents RGMII delays in the dt-bindings.
->
-> Details are in the commit description of the individual patches
->
-> To: UNGLinuxDriver@microchip.com
-> To: Andrew Lunn <andrew+netdev@lunn.ch>
-> To: David S. Miller <davem@davemloft.net>
-> To: Eric Dumazet <edumazet@google.com>
-> To: Jakub Kicinski <kuba@kernel.org>
-> To: Paolo Abeni <pabeni@redhat.com>
-> To: Lars Povlsen <lars.povlsen@microchip.com>
-> To: Steen Hegelund <Steen.Hegelund@microchip.com>
-> To: Horatiu Vultur <horatiu.vultur@microchip.com>
-> To: Russell King <linux@armlinux.org.uk>
-> To: jacob.e.keller@intel.com
-> To: robh@kernel.org
-> To: krzk+dt@kernel.org
-> To: conor+dt@kernel.org
-> Cc: devicetree@vger.kernel.org
-> Cc: netdev@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: robert.marko@sartura.hr
->
-> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+Subject: [PATCH v2] ARM: dts: sun8i-r40: remove unused GPIO regulator
 
-Tested-by: Robert Marko <robert.marko@sartura.hr>
+Banana Pi M2 Ultra V1.1 board resets immediately when the usb core tries
+to setup PH23 GPIO. It turned out that the V1.0 board USB-A ports are
+always power supplied and according to the board scheme PH23 is simply
+not connected.
 
-> ---
-> Changes in v4:
->
-> - Split patch #4 in v3 into two patches, where the new patch #5 handles
->   PCS selection, by returning the PCS only for ports that require it.
->
-> - Got rid of the '|' symbol for {rx,tx}-internal-delay-ps property
->   description in the dt-bindings (patch #9).
->
-> - Link to v3: https://lore.kernel.org/r/20241118-sparx5-lan969x-switch-dr=
-iver-4-v3-0-3cefee5e7e3a@microchip.com
->
-> Changes in v3:
->
-> v2 was kindly tested by Robert Marko. Not carrying the tag to v3 since
-> we have changes to the handling of the delays.
->
-> - Modified lan969x_rgmii_delay_config() to not apply any MAC delay when
->   the {rx,tx}-internal-delay-ps properties are missing or set to 0
->   (patch #7).
->
-> - Removed 'required' constraint from {rx-tx}-internal-delay-ps
->   properties. Also added description and default value (Patch #8).
->
-> - Link to v2: https://lore.kernel.org/r/20241113-sparx5-lan969x-switch-dr=
-iver-4-v2-0-0db98ac096d1@microchip.com
->
-> Changes in v2:
->
->   Most changes are in patch #7. RGMII implementation has been moved to
->   it's own file lan969x_rgmii.c.
->
->   Details:
->
->     - Use ETH_P_8021Q and ETH_P_8021AD instead of the Sparx5 provided
->       equivalents (patch #7).
->     - Configure MAC delays through "{rx,tx}-internal-delay-ps"
->       properties (patch #7).
->     - Add selectors for all the phase shifts that the hardware supports
->       (instead of only 2.0 ns, patch #7).
->     - Add selectors for all the port speeds (instead of only 1000 mbps.)
->     - Document RGMII delays in dt-bindings.
->
->   - Link to v1: https://lore.kernel.org/r/20241106-sparx5-lan969x-switch-=
-driver-4-v1-0-f7f7316436bd@microchip.com
->
-> ---
-> Daniel Machon (9):
->       net: sparx5: do some preparation work
->       net: sparx5: add function for RGMII port check
->       net: sparx5: use is_port_rgmii() throughout
->       net: sparx5: skip low-speed configuration when port is RGMII
->       net: sparx5: only return PCS for modes that require it
->       net: sparx5: verify RGMII speeds
->       net: lan969x: add RGMII registers
->       net: lan969x: add RGMII implementation
->       dt-bindings: net: sparx5: document RGMII delays
->
->  .../bindings/net/microchip,sparx5-switch.yaml      |  18 ++
->  drivers/net/ethernet/microchip/sparx5/Makefile     |   3 +-
->  .../ethernet/microchip/sparx5/lan969x/lan969x.c    |   5 +
->  .../ethernet/microchip/sparx5/lan969x/lan969x.h    |  10 +
->  .../microchip/sparx5/lan969x/lan969x_rgmii.c       | 224 +++++++++++++++=
-++++++
->  .../net/ethernet/microchip/sparx5/sparx5_main.c    |  29 ++-
->  .../net/ethernet/microchip/sparx5/sparx5_main.h    |   3 +
->  .../ethernet/microchip/sparx5/sparx5_main_regs.h   | 145 +++++++++++++
->  .../net/ethernet/microchip/sparx5/sparx5_phylink.c |  14 +-
->  .../net/ethernet/microchip/sparx5/sparx5_port.c    |  57 ++++--
->  .../net/ethernet/microchip/sparx5/sparx5_port.h    |   5 +
->  11 files changed, 484 insertions(+), 29 deletions(-)
-> ---
-> base-commit: 2c27c7663390d28bc71e97500eb68e0ce2a7223f
-> change-id: 20241104-sparx5-lan969x-switch-driver-4-d59b7820485a
->
-> Best regards,
-> --
-> Daniel Machon <daniel.machon@microchip.com>
->
+So remove the PH23 setup: Doesn't harm V1.0 (with R40) and let V1.1
+(with A40i) start.
 
+Signed-off-by: Hermann Lauer <Hermann.Lauer@uni-heidelberg.de>
+---
+V2: shorten subject, rm dangerous PH23 regulator completely
 
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura d.d.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+diff --git a/arch/arm/boot/dts/allwinner/sun8i-r40-bananapi-m2-ultra.dts b/arch/arm/boot/dts/allwinner/sun8i-r40-bananapi-m2-ultra.dts
+--- a/arch/arm/boot/dts/allwinner/sun8i-r40-bananapi-m2-ultra.dts
++++ b/arch/arm/boot/dts/allwinner/sun8i-r40-bananapi-m2-ultra.dts
+@@ -91,15 +91,6 @@
+ 		};
+ 	};
+ 
+-	reg_vcc5v0: vcc5v0 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "vcc5v0";
+-		regulator-min-microvolt = <5000000>;
+-		regulator-max-microvolt = <5000000>;
+-		gpio = <&pio 7 23 GPIO_ACTIVE_HIGH>; /* PH23 */
+-		enable-active-high;
+-	};
+-
+ 	wifi_pwrseq: pwrseq {
+ 		compatible = "mmc-pwrseq-simple";
+ 		reset-gpios = <&pio 6 10 GPIO_ACTIVE_LOW>; /* PG10 WIFI_EN */
+@@ -347,7 +338,5 @@
+ };
+ 
+ &usbphy {
+-	usb1_vbus-supply = <&reg_vcc5v0>;
+-	usb2_vbus-supply = <&reg_vcc5v0>;
+ 	status = "okay";
+ };
 
