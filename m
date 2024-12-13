@@ -1,156 +1,143 @@
-Return-Path: <devicetree+bounces-130545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D819F05EF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:03:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B5DE9F05FF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:07:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDAD418819EC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 08:03:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C1D71881D4F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 08:07:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ECFD192D7B;
-	Fri, 13 Dec 2024 08:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635E219A297;
+	Fri, 13 Dec 2024 08:07:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VCflS9Wq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V5k1o8q8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6EC918DF7C;
-	Fri, 13 Dec 2024 08:03:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD961192D70;
+	Fri, 13 Dec 2024 08:07:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734077036; cv=none; b=AwfB8o83Y6jjly7dCyBotZ3/zvsRzp7Wj//dllmI1ctbdz57tbwcY26AgMa5KIl8ULWCgoMHM1P2UIi8d9AJ6upXLvnqqPAySLPB7jKxUabDEsHS3TVFAqta/Qqdk+qL3I/6cPcmbV8IBj8eQZ2qm6m/Cr+iSAavff8HbE0SnTI=
+	t=1734077239; cv=none; b=c8DnfnTAwadU3ToFj3WjxwoknksLcXdpV0l5FvSWBoiuw7uuTkr20y8ZKEHf+CLpBJ1mLarb9ZYegMq62Jk5vfWv28blyqn8nTwMxwGYopewCywXAgZQ0h665YpLMk+bq10v36U64AFmA1OJ4rmh8U8wTSHZshuPcYQ+AXUZCHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734077036; c=relaxed/simple;
-	bh=a427peznSb9rd/430/QkT+uXHAFd5aCvLum2pl93qig=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
-	 In-Reply-To:Content-Type; b=F3JxiMqUR2bF1w8WrLyjQc5QcjgaVZlELgcd8mt7vN6haCNIr2g+bkaq5l7f45QFuPoZ5I3n8HAkNvvfXphrHOIZVNZvhmjgQVt4wS8GpSzebT5S6KRvhDaeo8Mk23/CVt4pLklypa0iiSFh0BTPGmzs4xVAe9s4uwlrz0kY9dI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VCflS9Wq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACF10C4CED0;
-	Fri, 13 Dec 2024 08:03:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734077035;
-	bh=a427peznSb9rd/430/QkT+uXHAFd5aCvLum2pl93qig=;
-	h=Date:Subject:From:To:References:In-Reply-To:From;
-	b=VCflS9WqFIdAL12O6EMv/nY5QV0YiVxxWGfv9lb26mzyIccZ8nTm8zXNJMeels9T4
-	 GDo8sfUj5ycdYnH9L3cimdj+wqOD8KyKgPicfOtzOOJ1VUmacZMpXfxDlpaofGW2Hp
-	 l7egv5NduCSgMBV3P+kCpU1L6PhQNebemKo1yKktJfC0bJYSSqrn6HC/+3NkvXtSCg
-	 6nlyPoqSohERvegkJvdo4ieXfKHz5ULK33N7xEn9X7CeVAq8i9a6lWbHmob2SskDfw
-	 SmYTFz12ZBJoAJyRMRuSvY6tchjYU9OMik9tzhmwcrKXo95oT+JAyFUSIKMfYSmlBC
-	 46OrqHN4y/+8Q==
-Message-ID: <7b991fca-6e2f-454f-a94d-6a583854769b@kernel.org>
-Date: Fri, 13 Dec 2024 09:03:46 +0100
+	s=arc-20240116; t=1734077239; c=relaxed/simple;
+	bh=lMngbI0/z97n+hdCLmt0jLziyBdQJ7fRHaH2DkZPF0g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BHhJn+5lhCmFWN/wbqP1uq65WL0PJ3OEx2kpBLTGbkhkkQqulos9r6iFCnm5/NOym18tHFzJPWru2ZWyEut033UHC7vaJPhK1S/KrwsqQoDTwPtYUZFopn1aVYYhXNf0XhzUd+UOJ0w8hORXS0DilIgthMLNSV6qh47ixNdOI8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V5k1o8q8; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e3c88163a00so187153276.2;
+        Fri, 13 Dec 2024 00:07:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734077236; x=1734682036; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lMngbI0/z97n+hdCLmt0jLziyBdQJ7fRHaH2DkZPF0g=;
+        b=V5k1o8q8dacPx/N9ECUsAyofa0FMACOsD0vyBaYJ16OBxc2sGYylcynnDRit3TIIO/
+         nnwyDoTq+SMzmaeU9WdLKmOPBIak6YLHZ2AklgdJlvVocs1NMro0EKwyiSjHnQCjEbD0
+         qpPDVdzxQLB9IqqVmFizXO7cxDnLHizAOKlF/GH6rDEKFjEpQC7+WxE7Zs/JqQTZsX2r
+         RPsLsPywGyycEGyDvA6ntGhptvJAcF0Gh0oqihrFz+lohZLb2YsrdrpH3nVXqq0NQIJ7
+         kC1n4VTD/Kd8l8SLvTjZXUaFaaV8O3ehBnyN+MS/ALKF6IuN2+c0gl8vQQNeWVLvXMJS
+         krpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734077236; x=1734682036;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lMngbI0/z97n+hdCLmt0jLziyBdQJ7fRHaH2DkZPF0g=;
+        b=spdmGsZhvrthQTa95a1o+chJirztIhHZKicFIL1S5qZGJGEPjyjtFhZ/x7r67G5Iq8
+         K5QqUPQciUlG41dbtJ3bnRcEgDicUSa3hXc2HyH/BNF5nbB68ynZhYqX5j8ZMbo50N3r
+         ASK4Dk/blgxDxGWLTqkFsy9TjJZ2k/u8CHXQWYmxKFNcNnghxNXNLCf/u1YjwPPxQm1X
+         l/LYvuuKfEtkFbeGYBMtH3c0xYculhGFnjc3styXe1sNhq4rmQ86tHoa4fZiwcp84wl+
+         u0d6edcGSWJ/kSZla2G3DMNcKlJt+W7sBbGqRY8frsrF/gKmJmd8XXqkEGZsZ+xlLip1
+         tuAw==
+X-Forwarded-Encrypted: i=1; AJvYcCUrv95YwZiAzfKxYj4uve81Fd3hgaa9KL+kml6gx5BbVC1xX0t6OFgGjMfjYfPNDHf/mmonVHxtJyp//gLn@vger.kernel.org, AJvYcCW95XXeqv/erBrfP34bwvtZfLNzA3Quq9vaDo4K1IzRJ6lfXM/8SbiINy023+FC5NM32JVEzpmSR0Zn@vger.kernel.org, AJvYcCWOab9Y+eMMjfuFvPRHqEo0m6nf8WdeaQYiPormdRPyLd9WS+p9JFqtNFrVAmdXM3ycV4ghyqFC/ndE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yww4j3vsf2e0kPcMj7ezxA9/pJbkMzItUI6FVY2tOsej+CJylQj
+	VnX7aEV45ojHHveRAp3ruHJLGFYnEwZ0pzP0mtGR+dYba/X7z1sW/99DvS5LZl2LzZX1fV8GnQ4
+	oVAH4+WzNCPkUpu32rPkceLDbUMs=
+X-Gm-Gg: ASbGncvvUfh24vBWLaJ2cPQ8qgvwN/cr8YG1LKXXg/Rvf4UJCr7vv4o+EIV+H5Vos/y
+	ICd97v6rXaVsdK4ElsE3ONx1ZhyXc9mk2xnfwyQ==
+X-Google-Smtp-Source: AGHT+IHln3GREML7DSIIx+2UAC2Ue9EF+yfWddVt3c1PyKWO74it203O7aM9MJ+fsu7FSNHL/nCpazUmIlfqwgNQqDE=
+X-Received: by 2002:a05:690c:3588:b0:6ea:8a23:7679 with SMTP id
+ 00721157ae682-6f279ac3723mr7759957b3.1.1734077235665; Fri, 13 Dec 2024
+ 00:07:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/6] dt-bindings: arm: aspeed: Add ASPEED AST27XX SoC
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kevin Chen <kevin_chen@aspeedtech.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
- andrew@codeconstruct.com.au, tglx@linutronix.de, catalin.marinas@arm.com,
- will@kernel.org, arnd@arndb.de, olof@lixom.net, quic_bjorande@quicinc.com,
- geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
- konradybcio@kernel.org, neil.armstrong@linaro.org, johan+linaro@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- soc@lists.linux.dev
-References: <20241212155237.848336-1-kevin_chen@aspeedtech.com>
- <20241212155237.848336-4-kevin_chen@aspeedtech.com>
- <7289a50a-e139-453f-a512-3dd68a0839a2@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <7289a50a-e139-453f-a512-3dd68a0839a2@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241211230648.205806-1-l.rubusch@gmail.com> <20241211230648.205806-5-l.rubusch@gmail.com>
+ <iqdm3x6fhyosqkm4mdknf6ee2idizq3p2nt7rjqgtuzxr75iaj@tcdl2e6l5g2s>
+In-Reply-To: <iqdm3x6fhyosqkm4mdknf6ee2idizq3p2nt7rjqgtuzxr75iaj@tcdl2e6l5g2s>
+From: Lothar Rubusch <l.rubusch@gmail.com>
+Date: Fri, 13 Dec 2024 09:06:39 +0100
+Message-ID: <CAFXKEHatgV9gYVCvcxmjce9qcHtVLhvQuuSuC7rxtqFa5XLtMg@mail.gmail.com>
+Subject: Re: [PATCH v6 4/7] dt-bindings: iio: accel: adxl345: make interrupts
+ not a required property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, eraretuya@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 13/12/2024 08:59, Krzysztof Kozlowski wrote:
-> On 12/12/2024 16:52, Kevin Chen wrote:
->> Signed-off-by: Kevin Chen <kevin_chen@aspeedtech.com>
->> ---
->>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
->> index 2f92b8ab08fa..20191fee1f5b 100644
->> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
->> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
->> @@ -101,4 +101,10 @@ properties:
->>                - ufispace,ncplite-bmc
->>            - const: aspeed,ast2600
->>  
->> +      - description: AST2700 based boards
->> +        items:
->> +          - enum:
->> +              - aspeed,ast2700-evb
->> +          - const: aspeed,ast2700
->> +
->>  additionalProperties: true
-> 
-> 
-> 
-> This patchset is just corrupted. You already sent it as patch #1.
-> 
-> Please run scripts/checkpatch.pl and fix reported warnings. Then please
-> run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
-> Some warnings can be ignored, especially from --strict run, but the code
-> here looks like it needs a fix. Feel free to get in touch if the warning
-> is not clear.
-BTW, you already got here same comments before and this is third time
-you send exactly the same without implementing what we asked you.
+On Thu, Dec 12, 2024 at 9:11=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Wed, Dec 11, 2024 at 11:06:45PM +0000, Lothar Rubusch wrote:
+> > Remove interrupts from the list of required properties. The ADXL345
+> > provides two interrupt lines. Anyway, the interrupts are an option, to
+> > be used for additional event features. The driver can measure without
+> > interrupts. Hence, interrupts should never have been required for the
+> > ADXL345. Thus having interrupts required can be considered to be a
+> > mistake.
+>
+> Partially this explains my question on previous patch, so consider
+> reordering them.
+>
 
-Three times same issue.
+I understand.
 
-NAK
+> And with combined knowledge, your driver now depends on interrupt names
+> to setup interrupts. "interrupts" property alone is not sufficient, so
+> you should encode it in the binding and explain in rationale why this is
+> required (it is a change in ABI).
+>
+> https://elixir.bootlin.com/linux/v6.8-rc3/source/Documentation/devicetree=
+/bindings/example-schema.yaml#L193
+>
 
-Best regards,
-Krzysztof
+The accelerometer does not need interrupts connected/configured for
+basic functionality. Interrupt declaration allows for additional
+features. Then there are two possible interrupt lines, only one is
+connected. Thus, either only one INT out of two, or none needs to be
+configured in the DT depending on the hardware setup. This also needs
+to be configured then in the sensor, which INT line to use for
+signalling. Thus we need the information if INT1 or INT2 was setup, if
+any.
+
+Hence, configuring an "interrupts" property only makes sense, if also
+a "interrupt-names" is configured, and vice versa. None of them are
+required for basic accelerometer functionality.
+
+Thank you so much for providing me the link to the annotated
+example-schema. I'll try then to set vice versa dependency of
+interrupts and interrupt-names and hope.. I'm sure you'll let me know
+right away if I'm doing something wrong.
+
+Seriously, thanks the link is really helpful!
+Best,
+L
+
+> Best regards,
+> Krzysztof
+>
 
