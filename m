@@ -1,124 +1,118 @@
-Return-Path: <devicetree+bounces-130563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C68A9F06DE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:46:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AA1B9F06E4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:50:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8887316209D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 08:46:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 823CE188B441
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 08:50:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3281AA7B9;
-	Fri, 13 Dec 2024 08:46:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C2D1B413A;
+	Fri, 13 Dec 2024 08:49:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="C7lJ3mYp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I/sSkSqe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13DF5189B8D;
-	Fri, 13 Dec 2024 08:46:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B43FD1A8F71;
+	Fri, 13 Dec 2024 08:49:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734079596; cv=none; b=ipGjAzNAnzA0e8bYdgycqZ9soqgdLLC0fBudO2HR30EeMRgDNDsTzfzgZfa0KzfWEcijiC/zIjkZvFH//KJvgOWEb3fL8AmRJ84Y4IBue1+Xk+kQj77i9bjNFJHgInNHUEfXZmB3/R/MiS89A4nVOqMu8//1egc8bZ1uGhxdI5I=
+	t=1734079755; cv=none; b=et0Q5gRJfAaYyKRFKOH4URzgKkzk9ZulB1niHM0GMwLXAlEcGjFaGkr8HMILwTy3z6M7F/t/psrplasdafJwnk7L9uIf306tGl0O/id8SpLv2ATkv1VftBs/XAOiMS8/H6Wsyd4v/al3+eYWH7MEqtzwjpr6wf/uHnNhbjFCzXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734079596; c=relaxed/simple;
-	bh=47NxR9KCELO8PruWQYNX7KqePgWw1VCn5s2bcIzXSAY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bTHx6CgrDgB2j/Am/zTA81vTKyG0anUNuWyfbl1eC1D+ON51QE42vvu/e/MQTA8T87CBQvINI/ByoNKiHfsBakCT83Zm7CIdQqFhFek24toMavMa2DWbruAgX0qyMQ1LmhI6tHLCvWcUV+4G+hrK15LTpYBGd3nR7Xgtoxu2kA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=C7lJ3mYp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD2fPXD000445;
-	Fri, 13 Dec 2024 08:46:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tSnXGtn6GXzdhPngFZLGEkQPgshiY3jX9QtjxirFWMg=; b=C7lJ3mYpJ8G9IT2e
-	S5AU+ynYPTzvjwgg1JVgf3XzTeF3eRfqr5R34kkIRjUDZRqacUmxmKU31NrXyC7E
-	7x28VyVord0/Vk/+PM60MHbyjM46hRJYctHT5H1cBB2yp18O6J8fhmCLPIGeczRV
-	G/eAqMDAF/aIiSIh859+ZmLvA6+jfxgyojsJAkCHCoZkn2SB62vAS9lBJWBUtrAT
-	ffVX87xB19uw39XuvkQnyG9WbgWDS3S+4Y/+nsVXzcnGNlJyupP+JqJOp1S2LCtL
-	2Ke/YEHa1xgt1uM6wnbzFgoX71ElQjThu60BP050r23tnuOH8Fc8T+8+k/iWegsx
-	vcfmsQ==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fqes45cj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 08:46:31 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BD8kKiP018048
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 08:46:20 GMT
-Received: from [10.151.36.43] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 13 Dec
- 2024 00:46:17 -0800
-Message-ID: <b2f54530-c2e6-b067-9630-63835560d7f1@quicinc.com>
-Date: Fri, 13 Dec 2024 14:16:14 +0530
+	s=arc-20240116; t=1734079755; c=relaxed/simple;
+	bh=3HHbI/8U1x533ln7X0lZpqT9A6MISkLGuUXtILr5Tms=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=O71Z+Y+NzV8WVPjpJoGsmmFgF+acb3OAMP9BVc2UmYuIxLBnRVAj2Y1raJZJspqI/+wzM4y8MKTy5jdk4ji3jt3XrXMUzeYCpbNQQwuOY9lzdFyCKI6vMx8EJd4dQW/W+w3AkS6YFRhzUoUf+kXvwcfZ0hn9gWcwN8WY1/PGBr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I/sSkSqe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53308C4CED0;
+	Fri, 13 Dec 2024 08:49:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734079755;
+	bh=3HHbI/8U1x533ln7X0lZpqT9A6MISkLGuUXtILr5Tms=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=I/sSkSqe+OXO6gWM3BUfiYvAzjo/GeuhRK7BdMByEa6zsmrBzs/47cymXE+8GDKSB
+	 FiuPjsBeaAtB1jl1R2g2e1wJB3QbcdEHCEXdQHi8Ze2CIR3ufyurTM19UdXi8nLFtn
+	 NB9HbLwlm/d8yL4cIMMDc6vazidX8I3H0E2lTGTrwCjFKEiaarIw+nQsm+aW+qJg9f
+	 Bx4uOQcKM5UgHdrPVLcGvuuk61SMIF8MFlg2ZX5GrkY+lU94CfJwrwOQ3Oadwr83G2
+	 pc1VPxctrVF7sgItrnEHzM/aa9QI4wfh/wqLVPBEJvrKsO0zGrohPQJDXa4z9/z4Yw
+	 easA8zgAFkfoA==
+Date: Fri, 13 Dec 2024 09:49:11 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	eraretuya@gmail.com
+Subject: Re: [PATCH v6 4/7] dt-bindings: iio: accel: adxl345: make interrupts
+ not a required property
+Message-ID: <vndl6ovfuebbyck36li5xzhaatkbl7hbm3mdelz2j6s4ckrs54@da3npmwzgnw3>
+References: <20241211230648.205806-1-l.rubusch@gmail.com>
+ <20241211230648.205806-5-l.rubusch@gmail.com>
+ <iqdm3x6fhyosqkm4mdknf6ee2idizq3p2nt7rjqgtuzxr75iaj@tcdl2e6l5g2s>
+ <CAFXKEHatgV9gYVCvcxmjce9qcHtVLhvQuuSuC7rxtqFa5XLtMg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH 0/3] Enable TRNG support
-Content-Language: en-US
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20241206072057.1508459-1-quic_mdalam@quicinc.com>
- <11d49831-8d20-45ee-94ae-38248340fa1f@quicinc.com>
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-In-Reply-To: <11d49831-8d20-45ee-94ae-38248340fa1f@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: I-QI3nZ0eoJAWcZyXrYWZz25StGTP-NT
-X-Proofpoint-ORIG-GUID: I-QI3nZ0eoJAWcZyXrYWZz25StGTP-NT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
- lowpriorityscore=0 impostorscore=0 clxscore=1015 malwarescore=0
- mlxlogscore=533 priorityscore=1501 bulkscore=0 phishscore=0 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412130059
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAFXKEHatgV9gYVCvcxmjce9qcHtVLhvQuuSuC7rxtqFa5XLtMg@mail.gmail.com>
 
+On Fri, Dec 13, 2024 at 09:06:39AM +0100, Lothar Rubusch wrote:
+> On Thu, Dec 12, 2024 at 9:11=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.=
+org> wrote:
+> >
+> > On Wed, Dec 11, 2024 at 11:06:45PM +0000, Lothar Rubusch wrote:
+> > > Remove interrupts from the list of required properties. The ADXL345
+> > > provides two interrupt lines. Anyway, the interrupts are an option, to
+> > > be used for additional event features. The driver can measure without
+> > > interrupts. Hence, interrupts should never have been required for the
+> > > ADXL345. Thus having interrupts required can be considered to be a
+> > > mistake.
+> >
+> > Partially this explains my question on previous patch, so consider
+> > reordering them.
+> >
+>=20
+> I understand.
+>=20
+> > And with combined knowledge, your driver now depends on interrupt names
+> > to setup interrupts. "interrupts" property alone is not sufficient, so
+> > you should encode it in the binding and explain in rationale why this is
+> > required (it is a change in ABI).
+> >
+> > https://elixir.bootlin.com/linux/v6.8-rc3/source/Documentation/devicetr=
+ee/bindings/example-schema.yaml#L193
+> >
+>=20
+> The accelerometer does not need interrupts connected/configured for
+> basic functionality. Interrupt declaration allows for additional
+> features. Then there are two possible interrupt lines, only one is
+> connected. Thus, either only one INT out of two, or none needs to be
+> configured in the DT depending on the hardware setup. This also needs
+> to be configured then in the sensor, which INT line to use for
+> signalling. Thus we need the information if INT1 or INT2 was setup, if
+> any.
 
+I meant, explain in the commit msg.
 
-On 12/6/2024 12:59 PM, Manikanta Mylavarapu wrote:
-> 
-> 
-> On 12/6/2024 12:50 PM, Md Sadre Alam wrote:
->> This patch series enables support for Truly Random Number
->> Generators (TRNG) across various targets, including IPQ95xx,
->> IPQ32xx, and IPQ54xx.
->>
-> 
-> It should be IPQ53xx, not IPQ32xx.
-Ok
-> 
-> --Manikanta.
-> 
->> Md Sadre Alam (3):
->>    arm64: dts: qcom: ipq5424: Add TRNG node
->>    arm64: dts: qcom: ipq9574: Enable TRNG instead PRNG
->>    arm64: dts: qcom: ipq5332: Enable TRNG instead of PRNG
->>
->>   arch/arm64/boot/dts/qcom/ipq5332.dtsi | 2 +-
->>   arch/arm64/boot/dts/qcom/ipq5424.dtsi | 7 +++++++
->>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 2 +-
->>   3 files changed, 9 insertions(+), 2 deletions(-)
->>
-> 
+>=20
+> Hence, configuring an "interrupts" property only makes sense, if also
+> a "interrupt-names" is configured, and vice versa. None of them are
+> required for basic accelerometer functionality.
+
+I know, I already stated this. But almost every question should have its
+answer in the commit msg.
+
+Best regards,
+Krzysztof
+
 
