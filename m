@@ -1,190 +1,206 @@
-Return-Path: <devicetree+bounces-130487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3C849F0128
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 01:38:42 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BEB49F012F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 01:40:21 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EE90286691
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 00:38:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 365241614E3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 00:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED65917D2;
-	Fri, 13 Dec 2024 00:35:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED702913;
+	Fri, 13 Dec 2024 00:40:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ajKfVmdk"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="GNUewspX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010052.outbound.protection.outlook.com [52.101.228.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 516AC10F7
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 00:35:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734050116; cv=none; b=YPz1WU7zlpUYqBMZ8n3jdfDMuUsID9iEp+EinNrYMz23t+jbnV0shQsCYsG0ZmuRurvxzvC9YstzXDU/HrbZJMkhJ7IpoUV4+4fOLrcSwezEC1ofCNOLdvypTWiOn0ky46ZbeRKcklLvjaxnOLkkdH/hVUPbfVja/K+THD2nYdk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734050116; c=relaxed/simple;
-	bh=C1OmHTKMqj6ZyG3Qgh1f216yP5FMglwHPg8jL/N65MI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m/g6xGVLzKvrNmeDIPI3g2g4Ex1AP0JVtdwGZPDIKsgnAFzLmpR8HVUIO0JQcyoU6tjQXN0bAdUpv4lGzZhT5Uqpf29GQO4uk4CdaDT/meCJgpB1sX89x95ZRrVUlhgy4ne+gmHVffxBFU5ZYW0ep71pcRr2ZBgZifDJFKN4qLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ajKfVmdk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BCD8V51001661
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 00:35:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	k4/hjPmcafZUlY4Ld9J6krmjotFTLTKt0ZqTJYFEDnU=; b=ajKfVmdkeLq3ub1r
-	v7ZQam+QRotUWzVt8CZuByHdERmyd4Fkw8vGJ6XdQAme7ctLCHsS4yoK9YgnH4WI
-	WSEW75Jbtsegv/ZMnjnKwwHUt+1th8kTmCzwoWqos2MqnNsAR4O1aYFnx6grPtQ+
-	mJSGg5+RIt/rN7eiyp+hlAuTkJfJZXZHTBDGfePebyzYT3nyakv5Xpy6GaNsgwdO
-	led1iDuMviBAQvGQSYSxYd8/DOsEA+tZg8yuqthDw9ND/8M0A3N53ozCDlQoSLtf
-	Nu8Djo+mKylzFNYrPoXW3TCJt6Q5qGuNzZXLrwaFo8bhahKE0K0dHWsJCmBwRUnA
-	ZeN1JA==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fqes33j0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 00:35:13 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4678aa83043so3069681cf.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 16:35:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734050113; x=1734654913;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k4/hjPmcafZUlY4Ld9J6krmjotFTLTKt0ZqTJYFEDnU=;
-        b=R1Jij4Am36UuZRW6poU9YOI6JcVjaUjMOZ0Kdu7YHaObo8UCv1iqffdXpc1hdpXp96
-         4ziT+pPnZW1auKHcq72OCcFyFnftXKiEyb2uVIJ40VEhgR8EpYNe+Q69OJBbJPTUHWmv
-         5UkcrHiA99kFuDdO3Sf1rlupqr+spVxH1HWO6g7Y0w+BXNgLecksIuuDEeX1J41BXX9e
-         5A3ChLen0wD/j5XnXnZYokBBvP6moOcx6y820rogzEtP5+sgApVi5PN4JQs98sY+NJZ4
-         g3Et5O+NZyQbzmO4oJ3LURc8y5VMX2pwmNhlmHGJ1+rMPlhhF2M7drQT8SvdAvzLuRZS
-         +5Dw==
-X-Forwarded-Encrypted: i=1; AJvYcCX4uS8x9sAnzWc5q/4MSNQGDvqk/Y8X5MiTHHKVsxK2j/E+3Igll7YjlxhglloR4eh7Mkhi2EJoRlji@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4QLf6oqk8YcWAvaHiPN+RYkhEIS5ydsJbz1wL00w8CcSQlCKj
-	0O3kXjHzoMvCDejDbzPRPWhOPPdHwEES9/jLu40AtPF0bhhwu0cwZavcE+Jahu9+t5rzd5+oqCL
-	NWkqRMpnopd2mJzfZoTbsZGS/HF+SzbWN36TROuqv/ufA7ARNOOUfMVP49lFW
-X-Gm-Gg: ASbGncvFNoKxQe3S814zGsXv1CweOpKRbH0SKALCKHvE+TUw5WFh8diXEviACfvsZFR
-	Bzol+THAF/Gl2utOAnfx8i9KI0DzRnz+e3UxbKN4et6fgeKmB8vtElFHaxfaa51XVQ9cguvTxvR
-	jFktebCnNShwurIti+SwThEFY83VRnKnUvE/S5el+H0qrHGaiW9P4Kgezw3p676gr5dPR7LsHQw
-	he3LAZBtHrmoERcgF0lnSNPMsW7NHw6pqG7paIw14LNOvSX8d/IQRYXJcx20+tbfPaKdNJFCMCz
-	sR9ZiDV0IREeX5aTgWnkV8WqPmV9LokDJuXZ
-X-Received: by 2002:a05:622a:1306:b0:467:5eaf:7d23 with SMTP id d75a77b69052e-467a5720eebmr4326271cf.2.1734050113165;
-        Thu, 12 Dec 2024 16:35:13 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHCRcA24YH+lngVm2gGOGtnM1SuWe0DhJ4BCmyW8qiqcvMK8GKw87YjeMZ0iDDOKqF/YGtJ3A==
-X-Received: by 2002:a05:622a:1306:b0:467:5eaf:7d23 with SMTP id d75a77b69052e-467a5720eebmr4326141cf.2.1734050112821;
-        Thu, 12 Dec 2024 16:35:12 -0800 (PST)
-Received: from [192.168.58.241] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d3db53b828sm8362477a12.74.2024.12.12.16.35.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Dec 2024 16:35:11 -0800 (PST)
-Message-ID: <04d23c55-9167-4e8a-9e5b-6dcf66b02b8f@oss.qualcomm.com>
-Date: Fri, 13 Dec 2024 01:35:09 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C6C1854;
+	Fri, 13 Dec 2024 00:40:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734050416; cv=fail; b=KJsheOzQxZfrGjn2X0pORh6TUPySf7aZfvk1aDsH7tUcjCoe4zlYNDoDhqGU9x+Po7b+7K/GJWdb/vYq6DkWPd66eaByiYdUlhxTUw+ezQAIFd/+qz2PNyRL1xXF5pRbfvSZ12tszUvpY2DgE+6Pq7yDiqtQxqxTrZu/VGX+Fl8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734050416; c=relaxed/simple;
+	bh=1u5TI6jh6792kpBpLQ8H6PHGKAPLfBQ1n7sGOqTadfA=;
+	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=nCXoDlBAcJ7rb2Hxu4UpnPlIto5ih9ct2+pDH6DMzqAp3tiaGxMiRLP9KKGmpAUSkpSKjGiYhNtkbpbf+9ySPqyfat3pptCMnwwVdzvyQWIZZnNdMqcHgJpc8p/OaQwuQIfeqPHNYsgsyjzh6p5cH/ej2yPXZ/bqTN8i3tldFl4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=GNUewspX; arc=fail smtp.client-ip=52.101.228.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rYAB/DEdxzoPcppESexyASXGXu0H9JogLErx6zFGM2/MN9bPyGJjT9tMDV2UxwEcpdevn8Zo7q3WtNiKGX+gcbxWnfT0F4Zr1nfMTbSHlwOgJqAWPMK65ocsHjxNsR/Gk6dB/Q30nNovX8pHSuCAK8WlirKYCL8/sNGh9kXZfT2SeUMNDbnb/v/p/GuADeI95d7ZONYqunD6oM896MDi1pQ5FvhJ6T8ahzJomxnwbGC5n4mxdktz7NDgDLv7Yf3pKBnPI3oNQUjGa+ANrqIGewy0hE8TlnzDFezoN6x30nxbTYBJaPJbH11HWetzy8PunmuTuiwJdBLCJd0uXP9FCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b97zXbe593hSNySV5bPbs5AKsgT9G6XTgV9fEXsQCn4=;
+ b=Z+Jk3L4LmiKjh1JQByNgcqG8/Er0YZOTqPRuaEx0sDPUyOZrFXE7r6H5gZEYAmFQnsZZ541sdRPgImtFtctWUBgNDHRmP0/FUEfpBpN+pzsp8s0uJgWBtuS+IHynwK7Vn7raVvpSVsV0v9ZlWtR4P3iVHlHhtqDjI2VM3FPZr3QsmBAany0jHruqPvJ8L6U/7v+UW4NCOUE8xjO86ipkQr7otfu9ka22MEiJ7BI9pFm0xW3EjxXy/LRMbXYZMSYlolsdukfXyMeVoJXg2wvZvCCKnBSrp+u9QRXQYJChFyBrKY0Pd1Z8le6wfiuN5QW5ht7vS4bOog0CDVRYWPYr6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b97zXbe593hSNySV5bPbs5AKsgT9G6XTgV9fEXsQCn4=;
+ b=GNUewspXYr0FwO/LodfgROAcAbZWy+3CCk4N7185pXkPYqsvvvoMPEnPfLFAO3pba9WWjocphA+N2wcODeAIHypxHxkpWfVqsHiZZUuC8rbbZj+CumXT6Nm3NAPnzVMlxwDESijnSNai+pih41sRcGt5lWZ3L70BTfYoZHZG4N8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by OSCPR01MB13008.jpnprd01.prod.outlook.com
+ (2603:1096:604:336::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.18; Fri, 13 Dec
+ 2024 00:40:11 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%4]) with mapi id 15.20.8251.015; Fri, 13 Dec 2024
+ 00:40:11 +0000
+Message-ID: <87cyhw8lg5.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Frank Li <Frank.li@nxp.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Mark Brown <broonie@kernel.org>,
+	Takashi Iwai <tiwai@suse.com>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>,
+	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] ASoC: dt-bindings: audio-graph-card2: add widgets and hp-det-gpios support
+In-Reply-To: <1fc1f1ae-766d-4266-84ec-11dbd67a608a@gmail.com>
+References: <20241113195240.3699-1-laurentiumihalcea111@gmail.com>
+	<20241113195240.3699-4-laurentiumihalcea111@gmail.com>
+	<ZzUH3n50Vw6RhmNJ@lizhi-Precision-Tower-5810>
+	<1fc1f1ae-766d-4266-84ec-11dbd67a608a@gmail.com>
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Fri, 13 Dec 2024 00:40:11 +0000
+X-ClientProxiedBy: TYCP301CA0024.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:381::14) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: Add coresight nodes for QCS8300
-To: Jie Gan <quic_jiegan@quicinc.com>,
-        "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20241205084418.671631-1-quic_jiegan@quicinc.com>
- <16efb6a8-ecaf-4097-ac5f-368ebab177a8@quicinc.com>
- <25a410a7-2418-45bd-be06-3672a9fb1928@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <25a410a7-2418-45bd-be06-3672a9fb1928@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: FfLkbXWmw6QWFTE0nN6nAFHprlbqb7se
-X-Proofpoint-ORIG-GUID: FfLkbXWmw6QWFTE0nN6nAFHprlbqb7se
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
- lowpriorityscore=0 impostorscore=0 clxscore=1015 malwarescore=0
- mlxlogscore=999 priorityscore=1501 bulkscore=0 phishscore=0 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412130003
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|OSCPR01MB13008:EE_
+X-MS-Office365-Filtering-Correlation-Id: 685e3db3-443a-45ec-0b1c-08dd1b0eb380
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|376014|366016|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ng09GBKiEUYQw8FZrZz92xz7Yp07gyjNbH0Z956WE2VYnPglBRzn9hsftrlW?=
+ =?us-ascii?Q?tZA5jQvjyokgXgUcutQtH1HJR62pd3uvtWTZ+9m4Pp68HerG2kA52CL8isvF?=
+ =?us-ascii?Q?F0LBdRkfrJMG2mf25lQ48I0DZmq9ByZVwgxQ5pD/jymeCgHvMo+YAkoQnlWU?=
+ =?us-ascii?Q?9TBjrTka9rh5AwRkGRJdWaAH5ZHoQkolOxkVYsCVUowpT4fskfOuR7Co3NJZ?=
+ =?us-ascii?Q?aQMk9wCCH5bMoSJU2SUKD0y0akS40VhiVSJ+NqgJ1U7NISzPxUVAHpaleltY?=
+ =?us-ascii?Q?big4PLlntxBC+BwE+AsRe5JoDKi2IJhLisczQUsN3ftAEW1euil2dHBLFcHi?=
+ =?us-ascii?Q?WOnMBkP1UzS96IUIHeJbLhaziggoTmi3Fjrfnfg11UZtYa+hIiJzlkLogx+h?=
+ =?us-ascii?Q?+psubCOgXoR2WyBsA9NAhX0uFAsMylIw74tLeIRwVXY+prXBBw1nULfVBdHk?=
+ =?us-ascii?Q?5T220CUrOPNAImYrZuPBaJ03782DUp5UNHZLqFeha22qHOwkU8cU2yOJfD7h?=
+ =?us-ascii?Q?icpSwTh5dNJpyHtP/kCq8fLFVuzTwVsBkKUZObbQfm1YDRNnJ8SeBH0bXs+j?=
+ =?us-ascii?Q?Pp7xZ8WyVmvahT7lHmvwSFiqgI9H3d1c+uFcfOudsU3qNzaGRBPxR6CKtwA1?=
+ =?us-ascii?Q?59d6i35zCsFxnpR8A2QAhGa69kmvAt+LiB6JBi0a8iD6cWZRL/zmfpXRrv07?=
+ =?us-ascii?Q?qwbe4QULVB9cukP/5/ROl5r+YAixkgg2mgMvnezuInLMSzZ7Kv7PcwL7Sghy?=
+ =?us-ascii?Q?2hH+8vUCUsVfqFzRsfNFhPsd7YWzcGPVCN+drfkQV/Y+kWVt/v1D+cOfPsJv?=
+ =?us-ascii?Q?20MOh0nKxxGyYHcVfD+QL9FdJxdp8MmWjIciI3lWnPooFHG8rZMvaVXhFi6z?=
+ =?us-ascii?Q?7+fpwXf+UnD/XJYTJQw4X4pfx/XEAJPfh5e3yUZ98WRK89RlPkyz87OYqngC?=
+ =?us-ascii?Q?A9Eob2Do+gxHh/YNGLbFIEfQSsN2ogv2IgVoceut0MYCLKvec6WlI6m7wpb2?=
+ =?us-ascii?Q?boCdMg05jTNptceJsjZzvoT4E5vDgQBufJlR/31LdMNAhYdeBI46PrH1FnbP?=
+ =?us-ascii?Q?BmLiyWEVeGkkwRQ4ppc6rBZjwjtla6t/0rE81fkK3jLNr+d+0KcGkb8o6Nry?=
+ =?us-ascii?Q?VdU8bTOPLBK5zFZ/W0iOySku7QBuW0utJeraqJGTD9EF/zxaYd0aXTlkIjfv?=
+ =?us-ascii?Q?pTrtCqLAasq6i/pMPbR9O1ey4GPnRR+ZgSRTLtsShy/Y7K3LT0LAhVlYauJ/?=
+ =?us-ascii?Q?mjvOWCflteEbBClEctiIkacMBEYNsTVdy4Cl/jOtSsm4PkjWfxqckSRowo+x?=
+ =?us-ascii?Q?dgNDIIoGbprVLX5SuSKvuychGH/2W7y5VrA03U8BFlinenaCLnJ6RddMiRaR?=
+ =?us-ascii?Q?r+3/FdWKY9R0fenJL7Ui4tfL35VbO7+ENOWeyl924bCVn4EnxA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?rSlJ70Z67oAI3EfzsrTZlUib2yzZ3TgiYNFyW8L9rXfxs23xZhp4T5iY6NV9?=
+ =?us-ascii?Q?S+VlvY+QKVvoHj/hFA6P/q4uWpW5DgJd8QZswS2a9RWoN+6MZ7KfqOEmPs1M?=
+ =?us-ascii?Q?t+/PBMyc/Htss2Y0gTcJXUWbBydAEJfrUxL+j72M6lg5rfKsYiLc2sAa2C0W?=
+ =?us-ascii?Q?j5lt0KNeqR9rPgnHzedw75dnSneIuH1OwidiSKU6o/gLHJJStZXMxORWAiGJ?=
+ =?us-ascii?Q?6WrI0g7Jaw1s8zVQOHdsiodeRkmuhffSc+Ndqw4Vszk6FOZzvoiiQ1j7f7t6?=
+ =?us-ascii?Q?3sA8Ql6j9EWZKJlpvfUQeYZgBkYqqfqCrmeqsuBWai8HbweU1o0fFdzdFilJ?=
+ =?us-ascii?Q?xlUmu/1BezUF0qrT1cpnwufODLHrRqjyWhyrIqWv6wQkxvNOToRf9UBhgXvz?=
+ =?us-ascii?Q?8eGRcqaeg/2YK7/Fu9TC/KJ1EEiNmb5nv3ntN/G1voOjnlfR+jWCYeYb3i7s?=
+ =?us-ascii?Q?8JwnFWWUqlWczjcITgl0/NMg9jQfvV6Pi85Fxm/1G70WSb9kNTMI4t/OGuOT?=
+ =?us-ascii?Q?G+CiZTO/HtZaSWGGMFtcIGx+NmsDbhu7cPxzSnQRqEdHIQvUAsYJ8S86wDRM?=
+ =?us-ascii?Q?HNKv4AZqqNH1rYEjf5XdMcXUJ9rcvi0Lkxh4wcu3m3qrQE8ICG1lWJPMMuxT?=
+ =?us-ascii?Q?JU5j/QTA0G9hzfZG+NWq9Z9V992WLpOmWauzRqMvizwJK5bUJ1YyuI0R2YWh?=
+ =?us-ascii?Q?5MzQqQEMxeZy7IL4Ll5evgsaPjtIbWBD7VUmiw6F+ctzTx7ko+VM14ALK1Et?=
+ =?us-ascii?Q?3u8DvZHWiMWmeoe/3IO+Bfkw9DebidlmX5FAZP52IuXYa7IPeX6DbHbuPldG?=
+ =?us-ascii?Q?YP4Fm7SSDW5jB+9yyYOGjyPQBwTVvYrMMF5lgf3y9ccY3ftmv0r9ZKnIgfyN?=
+ =?us-ascii?Q?k8D5ebcb7pmftwx9qDPjZLlpKuS2wWrpQsUjHZ1nFRM87DH9r3bjgfgsn63C?=
+ =?us-ascii?Q?FsRKLv9jSe90+8jG2CS+ALMUo4om9TDjUHuLIjAb0KJ53n+BUAXTXmO7IklD?=
+ =?us-ascii?Q?lQ4667tyKQTwL1FHWjo7yDuGMHocI459Y16Bn2cSz7eOUamfFkrgy2NVHwNm?=
+ =?us-ascii?Q?TpwB+Jon0+JVLgDzXsvkTGibUyuAZin7+eUgOtu81hXxymh5iBNpErsXqgQR?=
+ =?us-ascii?Q?Ory7DPmtg9DQGFifeyvYNuqGLh2nIEyQuPbnRlmNF5Bokeh3wDGB1PLBcxQ/?=
+ =?us-ascii?Q?CdQqzUBWWizOpRym5XdlIJ+LGMHdtueDiCdXhImO8sP+e3I3lR2Yc2fRY15g?=
+ =?us-ascii?Q?YG7DI7pCJ/5B2QE9Pc42m5Hb/kfDB0X6EDnoc24Bm2SOLgHir3BsIB4Nn4kK?=
+ =?us-ascii?Q?3fItX01fdL3emIcL2cESjDWs7IuVVQdZX2fyOpmdfTzFH3pfvLjPncAaKSws?=
+ =?us-ascii?Q?MT+Tp7AryKu+IRPczdJLneQSjFk/MQ4G59WMj+SMm0xxMU7vMLlUQ0U6yNAk?=
+ =?us-ascii?Q?T3Y9n56hQt8RS6257sLJMD5r8V20KjYC+/8zfTutzrH0PnUXGA14ODslM5Fp?=
+ =?us-ascii?Q?j4LUbfjJF1r8PIt4PGHvuCd30F3QDEZZUBXjm0m+yWLWeuOkxO2/fYg67mN4?=
+ =?us-ascii?Q?FnMkY+fr6I2EByXRld2WR/VfmRE2eEwtl+4PVfhWrJpBHGzGyONT7laHRR/N?=
+ =?us-ascii?Q?hJWRnBRPBrKnyuZNVEcTqtg=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 685e3db3-443a-45ec-0b1c-08dd1b0eb380
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2024 00:40:11.2748
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1Jscj33+9NLYLe5oLzeXLU7c18Y+dpz6ZSY7F1T7Zvm+BkTPL8zLaJ5m/XFEWJQ19WeycrBfrtx2Ro4OX8M9heMO4cI81kyAtlaiZuV03Du7qfkZ6yQBEw+yrWLWJFLQ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSCPR01MB13008
 
-On 9.12.2024 3:01 AM, Jie Gan wrote:
-> 
-> 
-> On 12/8/2024 12:28 AM, Aiqun Yu (Maria) wrote:
->>
->>
->> On 12/5/2024 4:44 PM, Jie Gan wrote:
->>> Add following coresight components for QCS8300 platform.
->>> It includes CTI, dummy sink, dynamic Funnel, Replicator, STM,
->>> TPDM, TPDA and TMC ETF.
->>>
->>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
->>> ---
->>> Changes in V2:
->>> 1. Rebased on tag next-20241204.
->>> 2. Padding the register address to 8 bits.
->>> Link to V1 - https://lore.kernel.org/linux-arm-msm/20240929-add_coresight_devices_for_qcs8300-v1-1-4f14e8cb8955@quicinc.com/
->>> ---
->>>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 2150 +++++++++++++++++++++++++
->>>   1 file changed, 2150 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->>> index 73abf2ef9c9f..eaec674950d8 100644
->>> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->>> @@ -293,6 +293,18 @@ system_sleep: domain-sleep {
->>>           };
->>>       };
->>>   +    dummy_eud: dummy-sink {
->>> +        compatible = "arm,coresight-dummy-sink";
->>> +
->>> +        in-ports {
->>> +            port {
->>> +                eud_in: endpoint {
->>> +                    remote-endpoint = <&swao_rep_out1>;
->>> +                };
->>> +            };
->>> +        };
->>> +    };
->>> +
-> 
-> [...]
-> 
->>> +
->>> +        tpdm@482c000 {
->>> +            compatible = "qcom,coresight-tpdm", "arm,primecell";
->>> +            reg = <0x0 0x0482c000 0x0 0x1000>;
->>> +
->>> +            clocks = <&aoss_qmp>;
->>> +            clock-names = "apb_pclk";
->>> +
->>> +            qcom,dsb-element-bits = <32>;
->>> +            qcom,dsb-msrs-num = <32>;
->>> +            status = "disabled";
->>
->> Could you please provide more detailed information on why some TPDM
->> nodes are disabled by default while others are not?
-> Some of TPDM nodes are disabled by default because the one of the following reasons:
-> 1. TPDM device are designed to generate HW events, it needs a clock source to read&write its registers. Coresight driver cannot control the clock source ouside AP core, so those TPDM devices without enabled clock source will crash device in probe.
-> 2. Some of TPDM devices can't bootup with fused devices.
-> 3. Some of TPDM devices have known hardware issues that not resolved.
-> 
-> I put those disabled TPDM devices in DT in case some of them may be "fixed" in future.
 
-Please mark them as
+Hi
 
-/* Hardware issues */
-status = "fail";
+> >> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml b/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
+> >> index f943f90d8b15..94588353f852 100644
+> >> --- a/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
+> >> +++ b/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
+> >> @@ -37,6 +37,10 @@ properties:
+> >>    codec2codec:
+> >>      type: object
+> >>      description: Codec to Codec node
+> >> +  hp-det-gpios:
+> >> +    $ref: audio-graph.yaml#/properties/hp-det-gpios
+> >> +  widgets:
+> >> +    $ref: audio-graph.yaml#/properties/widgets
+>
+> > why not direct ref Documentation/devicetree/bindings/sound/audio-graph.yaml
+> > and define these again here.
+>
+> We don't actually want all the properties from 'audio-graph.yaml'
+> (for the moment at least). Also ref-ing 'audio-graph.yaml' will make the
+> 'dais' property required, which is not targeted in this patch.
+> Maybe Kuninori Morimoto can comment more on this.
 
-Konrad
+I'm not a DT yaml expert, but audio-graph.yaml is for audio-graph-card and
+its custom card. unfortunately audio-graph-card2 is using different style,
+so ref audio-graph.yaml on audio-graph-card2 is impossible, or makes yaml
+more complex.
+
+Thank you for your help !!
+
+Best regards
+---
+Kuninori Morimoto
 
