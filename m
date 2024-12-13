@@ -1,313 +1,145 @@
-Return-Path: <devicetree+bounces-130510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 462C99F040F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 06:16:44 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8093E9F0417
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 06:20:29 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52DC516A101
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 05:16:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B957283CDF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 05:20:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCA9186E56;
-	Fri, 13 Dec 2024 05:16:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3045E1885A1;
+	Fri, 13 Dec 2024 05:20:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DkhxM+gA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hcnIoA+2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0FE2187555;
-	Fri, 13 Dec 2024 05:16:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0E5188015
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 05:20:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734066999; cv=none; b=ZkRoKoTEByeUjvFBpdkvv5a+sOWBheZWN8bXmjWIDUTC3os/l+WqL/qJ4Ok+wK1h4noZkr1cK6Rj0m9H9hPFlasohzpMLZQ9h58oAvoW5D/MduIqdDkUWBsTGf/ukfzl3ctGsBRhvUBKTnLCCmgt+opvxuW1Basy6NQZqRc4Xug=
+	t=1734067225; cv=none; b=BimPG47EnBJ9Y9hb+8TBc2iG1NxDJAowtrSKzpX8Xm/G0vN6eaG7h62rVJBJ4l8lrQJvdUpK4CNYlv9T9Gu4wLnQnhbzLKixiGiGl+/HnBUXRTn/DYknGC42G+jkAGGfeuMZFFlFkq5HdPkqc4vLaJ+dJThmjTwez1BjZjkqONc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734066999; c=relaxed/simple;
-	bh=1rsc7fW/DcL37vNJsBlJAPYnU57zvw2XgJMTITFpGz0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=WuiDA0wyYCfdJSwUL0yjAoLrlb16ADrp2FkxhAz3LCh8i4mKIJoG/4PafufwNWqlrVgdVl0ajQtsEWQMSOwNIjM2W1+JfiYj9GtwLnU4mrXtH7btmEggfm/lLepePBoDg0nIadctmA5ziKpQFcbMuP9yDy423O/PpYbG0voTphk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DkhxM+gA; arc=none smtp.client-ip=209.85.210.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-725eff44ba5so99873b3a.2;
-        Thu, 12 Dec 2024 21:16:37 -0800 (PST)
+	s=arc-20240116; t=1734067225; c=relaxed/simple;
+	bh=ijQqiQx39a34E+zUxQPwt279N6b3F/EZYkp457t1zaw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VUnBKjBNMT2Uc+aVMmFmTjNKQMrckk9RWrNbtWWyvJNXzME02Mj1ed3Wq5+mgUPxf2uMVWNaHk1Qboh5wVgwHu7mw4j6eIm26THqtJaJA2kOy2cec6chznyYAmm8Y63K/4AD+/HR6HLyv+GkYtjkrObZcRgU51mwbI6/RW+VyPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hcnIoA+2; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-3011c7b39c7so12394911fa.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Dec 2024 21:20:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734066997; x=1734671797; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=H86v53hVC/MSheWi92plk7akkZTe1OQ4u5ChEyoup1E=;
-        b=DkhxM+gAbSZPNCIRxEOPn4tYjvOSJuZhQmoLqAEnU0MsQhoW9meYG++n+Ltov6QliM
-         gqAmEZUrjYpBK7OsY17yeo14DvWjAi341m+QBx8Pqye3/lgO+mj0l5xPNSFBXgZKrJsX
-         hEwXUIbH7fdUYQzlaqH+7Zso9v27ukPTkrGrRm/U+p8sLUMOCi+Bh0nPGSZR/NUG88YC
-         /SO3B9hpMYunCP+du2kSTDntUzzPGIQB47xjMFX3FREOFHLXorOpJLsUTjUHEXnyWvdM
-         8NDGi4Can1/rysm8dAj2PkQwFal+Q6AkUFw5OE+2AMBeqoVMdRg8DASXZY5+sbik4eNN
-         2A0A==
+        d=linaro.org; s=google; t=1734067221; x=1734672021; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xiz6ukFw9DSCPef3k+S6Ii3ZGWR6/g7hmh8hbZiwQWs=;
+        b=hcnIoA+2RO2u98ss/RODlfV78qL/DiMzxWt3N7SoS8DgVW6QMBWRDoY53Ce7+Ae9hT
+         v9/dKFBJQNkscf+cYaJY3QLCQN27CmZWd2Lh0gvmYoylLTyfy5CHCqeEKjFGOHbfUz65
+         KGxgBOoOWLTdsDlp3JAfjiYuQllLM64HutyFUMYrVGgSwVcFO+SbFbWQzPeunVMc/kpi
+         VkXyHqUNYf5GOBomJcMh71kbeA78v9VBMcpbbkglQ/SH6KTPCTQVcY98eP4Ba6Z4/1Er
+         X/mMPdM81dRgjGIjG3afXnQt1udTYndQa6fBrXIMn5wdmYrrQ69eDFDFXfgE6QQrZBKH
+         ePJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734066997; x=1734671797;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=H86v53hVC/MSheWi92plk7akkZTe1OQ4u5ChEyoup1E=;
-        b=Cje/q5CzFSq9h1dqVC8x6mMOR+8M+Vlxh8skFTO8cr6q9pLoa1/TI3eWRUf8BlPU1Z
-         HA7Ic1/+3WdpE8rHQon0CTo/6IpdsrIa8xoOHTZ9xBDsn4MKIcXDoVJwBOHE+Tm+3FSi
-         GT47zjY0ACH9Ie7VkAst513Kchjx3EhyOlHJmO2sMgBh4nBdshgIr02WiwrPwjilmHUU
-         NN803r6Mf/Efmenxg2YTwrgpqtWFeN1KFdroQFtNCrckXNenrewOBQ45dzoQjjG91wcU
-         IyuUa07UxBOoSHZ19k0X7Shi/AcjvynpsPUDyCkRps/8AEEZhaU4Xxavxh7S9zvQmlvV
-         eHWA==
-X-Forwarded-Encrypted: i=1; AJvYcCVSVhmTYEhXjENSQBgeMbQszwZvIUbW0B0d9BBUSC2tsr0NUk6BdKuTjXQnFvkrR3+QLKgCrpeShFOG@vger.kernel.org, AJvYcCWnYJVyupASGCCrL0dS0eB9lVqY+tq+p8hJcepXaj7oKd8NbQKd0Gfd+7Bv5ZyG8zbzXZqrRAtc7cU4@vger.kernel.org, AJvYcCXaBnObo5YHUiH63JIxEh/F+WjnPDLDUUQ2BIjQvVxlGRQDFaSYx0ziUgQlrxxGC7XzxPUNKcWHVCRdMjoP@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqznQBAwXs7LniAUajYPOo2GZtHMXkE/xpeoon45pLmnsgKBuy
-	SyrayJtDfMTqLGdFNQjRBASEDbp/fNCmpr9oXUOkhwAOH3Us9w/Y
-X-Gm-Gg: ASbGncuZDvSBcnElwX56uCR+r5YS1b99EqvwXZyhbUk0935JL2sKf/eoBOBp4RcZTrG
-	I9m+GoIozriLf+sF7udmc9wdEeZIXGcb+1K5NBpayYh9KTfbCMoF2YCMRr637n3o/RnP8BK2hQs
-	RphcWfRzX9zI2WphlLzXwqC7JYKWhYxGE+rGhquFSAIgpSmlr6Pq9THvDC+qko/qjUK36mBzeJ3
-	jLZEnfbknlOuBnixgA/Xu18NuiJz+Ms5kblUby1rMctJkK6MRlaUvsP1DoEXPe8ak3d+A1dflSH
-	y7MBlrdd0A==
-X-Google-Smtp-Source: AGHT+IEbiRXrfJYyiA8RFucB09CjaqfhTKCHdvMMODzj+3i/Tzn/2xdpcIPwvQWXg+SGjDM5seiq9w==
-X-Received: by 2002:a05:6a00:3e29:b0:725:1257:bbc with SMTP id d2e1a72fcca58-7290c2a2693mr743260b3a.7.1734066996901;
-        Thu, 12 Dec 2024 21:16:36 -0800 (PST)
-Received: from localhost.localdomain (p67.ucndns.in. [103.187.249.67])
-        by smtp.googlemail.com with ESMTPSA id d2e1a72fcca58-725eeed027csm7982326b3a.131.2024.12.12.21.16.33
+        d=1e100.net; s=20230601; t=1734067221; x=1734672021;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Xiz6ukFw9DSCPef3k+S6Ii3ZGWR6/g7hmh8hbZiwQWs=;
+        b=O1LPyCFpEC10I+EMNc2ujPCK0qZPSCqFBEyZksE8FP1JKw0bRobpaIOa93/9TI5Ljk
+         rEybsee7jtX8hhJfuSVPpd3qBM/7SGWmN4x5/eMzWNUcHJITPbGVlT7JHKkBEi95eYs8
+         0uB2f6g5wbbOLVe9AlW9ZfcxxKPoyveLUNr+71lizZOHUh+xwBvVp0swS39occet4dAj
+         fBwXS/d26Fr/ccF695LDiAwF/qND+mbvE5KG+gOzqNh55fbx8I+H3NXr+gD2Ug7U2O2T
+         h4v2D6OLuUL62anzn65IOpzTEVI9t+ciduYVTmnaTU3PXrcqt6o0mXmIlCmQLEKCtAsM
+         99ug==
+X-Forwarded-Encrypted: i=1; AJvYcCV7TTrOqjdcgBBx1BRHtqeI0D/YImZE1bdi4YH2F6C32polYO/49ZEWHWvsxWFetHtZBJGgshmk2G1B@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIFEFXGMTMBm4XmhJMmz1U9PINDqJBsoXUKZ3WBURjz4wgUU2R
+	B/YUNZqPVYdbfG5yD2YRerZI0SNGkGcKDTcwK3xSH1bLjPPC7Lg2DzY+E1KUUs0=
+X-Gm-Gg: ASbGncszGshP/JPuktUmx++Qu0A/4+OuzSWUlG2ZqVVuVfciwaP3qShrJ8stXrgmJ04
+	KQrksJmNkEsOkhUiboiBpI4TaqkVhoV05ktoLu9rWLsn3hRnfg7Gw9v7GAXxRCoR6fo2/hxmJ0q
+	Ew2GFiMnuOMysBzlxU3jcXhwwoV8w1xMq71A2rkbTRhK/jhLk1nmZbAh2zOjWFNd38Xf+g1b06M
+	RJi8M3k2qjEO6sonhd5osh77JByUCpCeWZQvUP5NSFlcwQqWof5JK9Du1Srhq+m5eVGdAOf5/DK
+	gTvv47/khKS37G3gKm7781E9Xv8WMOnin1TR
+X-Google-Smtp-Source: AGHT+IHOJupQxEawtaa7cDYeQAk5vSL5tMs4fYXQcgwGIrxsMhJTKZ4dQJrjbPiYB5lxSiGNzIoQyA==
+X-Received: by 2002:a2e:a781:0:b0:302:4a4e:67da with SMTP id 38308e7fff4ca-302545b94ddmr3231881fa.36.1734067221232;
+        Thu, 12 Dec 2024 21:20:21 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30227d58ca3sm13077291fa.5.2024.12.12.21.20.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Dec 2024 21:16:36 -0800 (PST)
-From: Kanak Shilledar <kanakshilledar@gmail.com>
-To: 
-Cc: Kanak Shilledar <kanakshilledar@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Carvalho Chehab <mchehab@kernel.org>,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: usb: dwc3-st: convert to dt schema
-Date: Fri, 13 Dec 2024 10:45:55 +0530
-Message-Id: <20241213051559.6066-1-kanakshilledar@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Thu, 12 Dec 2024 21:20:19 -0800 (PST)
+Date: Fri, 13 Dec 2024 07:20:17 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Song Xue <quic_songxue@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kernel@quicinc.com, 
+	Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: Enable secondary USB controller
+ on QCS615 Ride
+Message-ID: <lqscul6yal5mmztup23rcgmyqhfj3vt45rxxsw6ocrnumwfpfe@g3at5zqvtd5u>
+References: <20241211-add_usb_host_mode_for_qcs615-v2-0-2c4abdf67635@quicinc.com>
+ <20241211-add_usb_host_mode_for_qcs615-v2-2-2c4abdf67635@quicinc.com>
+ <cc3edfc6-f53c-401b-b766-f8e560eb24b9@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cc3edfc6-f53c-401b-b766-f8e560eb24b9@oss.qualcomm.com>
 
-Convert ST DWC3 glue logic bindings to DT schema. Added missing includes
-in example, modified the example to be similar to the actual .dts file
-and removed st,syscon from the required property, added st,syscfg
-property.
+On Thu, Dec 12, 2024 at 07:14:22PM +0100, Konrad Dybcio wrote:
+> On 11.12.2024 9:26 AM, Song Xue wrote:
+> > From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+> > 
+> > Enable secondary USB controller on QCS615 Ride platform. The secondary
+> > USB controller is made "host", as it is a Type-A port.
+> > 
+> > Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+> > Co-developed-by: Song Xue <quic_songxue@quicinc.com>
+> > Signed-off-by: Song Xue <quic_songxue@quicinc.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 28 ++++++++++++++++++++++++++++
+> >  1 file changed, 28 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> > index f41319ff47b983d771da52775fa78b4385c4e532..26ce0496d13ccbfea392c6d50d9edcab85fbc653 100644
+> > --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> > +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> > @@ -203,6 +203,15 @@ &gcc {
+> >  		 <&sleep_clk>;
+> >  };
+> >  
+> > +&pm8150_gpios {
+> > +	usb2_en_state: usb2-en-state {
+> > +		pins = "gpio10";
+> > +		function = "normal";
+> > +		output-high;
+> > +		power-source = <0>;
+> > +	};
+> 
+> Does this go to an enable pin of a vreg / switch?
+> 
+> I think we settled on describing such cases as fixed regulators
+> (that are always-on for now) - would you remember, +Dmitry?
 
-Signed-off-by: Kanak Shilledar <kanakshilledar@gmail.com>
----
- .../devicetree/bindings/usb/dwc3-st.txt       |  66 ----------
- .../bindings/usb/st,stih407-dwc3.yaml         | 123 ++++++++++++++++++
- 2 files changed, 123 insertions(+), 66 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/usb/dwc3-st.txt
- create mode 100644 Documentation/devicetree/bindings/usb/st,stih407-dwc3.yaml
+You are right. Usually it's a fixed regulator. At least there should be
+an explanation for that pin.
 
-diff --git a/Documentation/devicetree/bindings/usb/dwc3-st.txt b/Documentation/devicetree/bindings/usb/dwc3-st.txt
-deleted file mode 100644
-index 4aa368447b1e..000000000000
---- a/Documentation/devicetree/bindings/usb/dwc3-st.txt
-+++ /dev/null
-@@ -1,66 +0,0 @@
--ST DWC3 glue logic
--
--This file documents the parameters for the dwc3-st driver.
--This driver controls the glue logic used to configure the dwc3 core on
--STiH407 based platforms.
--
--Required properties:
-- - compatible	: must be "st,stih407-dwc3"
-- - reg		: glue logic base address and USB syscfg ctrl register offset
-- - reg-names	: should be "reg-glue" and "syscfg-reg"
-- - st,syscon	: should be phandle to system configuration node which
--		  encompasses the glue registers
-- - resets	: list of phandle and reset specifier pairs. There should be two entries, one
--		  for the powerdown and softreset lines of the usb3 IP
-- - reset-names	: list of reset signal names. Names should be "powerdown" and "softreset"
--See: Documentation/devicetree/bindings/reset/st,stih407-powerdown.yaml
--See: Documentation/devicetree/bindings/reset/reset.txt
--
-- - #address-cells, #size-cells : should be '1' if the device has sub-nodes
--   with 'reg' property
--
-- - pinctl-names	: A pinctrl state named "default" must be defined
--See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
--
-- - pinctrl-0	: Pin control group
--See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
--
-- - ranges	: allows valid 1:1 translation between child's address space and
--		  parent's address space
--
--Sub-nodes:
--The dwc3 core should be added as subnode to ST DWC3 glue as shown in the
--example below. The DT binding details of dwc3 can be found in:
--Documentation/devicetree/bindings/usb/snps,dwc3.yaml
--
--NB: The dr_mode property described in [1] is NOT optional for this driver, as the default value
--is "otg", which isn't supported by this SoC. Valid dr_mode values for dwc3-st are either "host"
--or "device".
--
--[1] Documentation/devicetree/bindings/usb/usb-drd.yaml
--
--Example:
--
--st_dwc3: dwc3@8f94000 {
--	compatible	= "st,stih407-dwc3";
--	reg		= <0x08f94000 0x1000>, <0x110 0x4>;
--	reg-names	= "reg-glue", "syscfg-reg";
--	st,syscfg	= <&syscfg_core>;
--	resets		= <&powerdown STIH407_USB3_POWERDOWN>,
--			  <&softreset STIH407_MIPHY2_SOFTRESET>;
--	reset-names	= "powerdown", "softreset";
--	#address-cells	= <1>;
--	#size-cells	= <1>;
--	pinctrl-names	= "default";
--	pinctrl-0	= <&pinctrl_usb3>;
--	ranges;
--
--	dwc3: dwc3@9900000 {
--		compatible	= "snps,dwc3";
--		reg		= <0x09900000 0x100000>;
--		interrupts	= <GIC_SPI 155 IRQ_TYPE_NONE>;
--		dr_mode		= "host";
--		phy-names	= "usb2-phy", "usb3-phy";
--		phys		= <&usb2_picophy2>, <&phy_port2 PHY_TYPE_USB3>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/usb/st,stih407-dwc3.yaml b/Documentation/devicetree/bindings/usb/st,stih407-dwc3.yaml
-new file mode 100644
-index 000000000000..709cdb17f28d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/st,stih407-dwc3.yaml
-@@ -0,0 +1,123 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/st,stih407-dwc3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ST DWC3 glue logic
-+
-+description:
-+  This binding describes the parameters for the dwc3-st driver,
-+  which controls the glue logic used to configure the DWC3 core on
-+  STiH407-based platforms.
-+
-+maintainers:
-+  - Mauro Carvalho Chehab <mchehab@kernel.org>
-+
-+properties:
-+  compatible:
-+    const: st,stih407-dwc3
-+
-+  reg:
-+    # minItems: 2
-+    items:
-+      - description: Glue logic base address.
-+      - description: USB syscfg ctrl register offset.
-+
-+  reg-names:
-+    # minItems: 2
-+    items:
-+      - const: reg-glue
-+      - const: syscfg-reg
-+
-+  st,syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: Phandle to system configuration node which.
-+
-+  resets:
-+    maxItems: 2
-+
-+  reset-names:
-+    items:
-+      - const: powerdown
-+      - const: softreset
-+
-+  st,syscfg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 1
-+
-+  pinctrl-names:
-+    items:
-+      - const: default
-+
-+  pinctrl-0:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description: |
-+      Pin control group
-+      See: Documentation/devicetree/bindings/pinctrl/pinctrl-bindings.txt
-+
-+  ranges:
-+    description: Valid 1:1 translation between child's and parent's address space.
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - resets
-+  - reset-names
-+  - pinctrl-names
-+  - pinctrl-0
-+  - ranges
-+
-+additionalProperties: false
-+
-+patternProperties:
-+  "^usb@[0-9a-f]+$":
-+    type: object
-+    description: DWC3 core sub-node
-+    $ref: snps,dwc3.yaml#
-+    unevaluatedProperties: false
-+    properties:
-+      dr_mode:
-+        enum:
-+          - host
-+          - device
-+        description: |
-+          Specifies the operating mode. The default value "otg" is not
-+          supported by this SoC. Valid values are "host" or "device".
-+          See: Documentation/devicetree/bindings/usb/usb-drd.yaml
-+
-+examples:
-+  - |
-+    #include <dt-bindings/phy/phy.h>
-+    #include <dt-bindings/reset/stih407-resets.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    st_dwc3: dwc3@8f94000 {
-+        compatible	= "st,stih407-dwc3";
-+        reg		= <0x08f94000 0x1000>, <0x110 0x4>;
-+        reg-names	= "reg-glue", "syscfg-reg";
-+        st,syscfg	= <&syscfg_core>;
-+        resets		= <&powerdown STIH407_USB3_POWERDOWN>,
-+              <&softreset STIH407_MIPHY2_SOFTRESET>;
-+        reset-names	= "powerdown", "softreset";
-+        #address-cells	= <1>;
-+        #size-cells	= <1>;
-+        pinctrl-names	= "default";
-+        pinctrl-0	= <&pinctrl_usb3>;
-+        ranges;
-+
-+        dwc3: usb@9900000 {
-+            compatible	= "snps,dwc3";
-+            reg		= <0x09900000 0x100000>;
-+            interrupts	= <GIC_SPI 155 IRQ_TYPE_NONE>;
-+            dr_mode		= "host";
-+            phy-names	= "usb2-phy", "usb3-phy";
-+            phys		= <&usb2_picophy2>, <&phy_port2 PHY_TYPE_USB3>;
-+        };
-+    };
+> 
+> The rest looks good.
+> 
+> Konrad
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
