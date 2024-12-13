@@ -1,58 +1,55 @@
-Return-Path: <devicetree+bounces-130913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 629BF9F13F9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 18:39:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F0E29F13FF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 18:39:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 82427166567
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 17:39:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D692188A220
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 17:39:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8874E1E5705;
-	Fri, 13 Dec 2024 17:39:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 236B41E571B;
+	Fri, 13 Dec 2024 17:39:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCCAE17B505;
-	Fri, 13 Dec 2024 17:39:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E1331E5018;
+	Fri, 13 Dec 2024 17:39:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734111571; cv=none; b=Di07ULobCRo+Hp0eLZ1eMY54OkeQI7ZycFAI3bmz5Ok5JLN1tl+7SA9YCbQNGZLK2Kb6vAO737RoosxgGL5DdoHYWBUpinRI80yMpGuyLqJbRmaBRWanwbJGEbFk46fXeuy1DtG3sEYWrY59DpBuS4JkJiEo0dJTwLltiRh9yPA=
+	t=1734111574; cv=none; b=U/sYWiNFLFo87r9y+YXseA1LTJ1brv2uWSKYJFrsIyYWar1GR3rYRgguXLQ2/ee4iIPR3WPG/ScChRQf8K0rrHyHxyGCSvExe9hH3RH5ghbwIoC/B/S/wShWXz5GbN0GoOP3tT5NGKdNTO85tvm78+CR+smy/zpVc5pBORxlSjg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734111571; c=relaxed/simple;
-	bh=n2JhVDjflUMEtHO9FTHZxGaP8ZpXeCDSpDPSjPdaGAw=;
+	s=arc-20240116; t=1734111574; c=relaxed/simple;
+	bh=F1lKnEL2023YnaU5z9xWY6+i+287KKEDmTSa+0GgEss=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=K/188BnA2evXrnn9mW/AueTI/svK3yotWaC9Hy3yKnql1wsUEmPZPSIMdeFlguHBvz56huqVw5Jp4+SuXv6jnD97QzXqeFxS3INWPMqwLXhG60CHdCJqzGhsSJ4IMSPKIVmNiPIO7K6QQ2roqZDZPM45Va9Vl6/fmDQgG0JXheQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+	 MIME-Version; b=jn8Xn4rgxxV3yS9Y2wcUP8JS0xDMmAicVPuaLYZKEcIKqZtBnixqwVOlyi6jkqXe9VUifRSE7gvYViKxmE59rdeazUdVdY2naP9wy4XCJ63Z6EN1JrUtA6pz1xQKxAo/0cLpllcFeZ8sdCWJLBDh4KpA96S+ZeVQUmHOeWHTE8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: iUskIyrsTD+s2/9bP7wmoA==
-X-CSE-MsgGUID: ZnxeHr2IRXOTrJoiY+AkIw==
+X-CSE-ConnectionGUID: zXL6SaqnTbGxlM/H6dOywQ==
+X-CSE-MsgGUID: FtP/sXIDR7CHZ6pCtLi9AA==
 X-IronPort-AV: E=Sophos;i="6.12,231,1728918000"; 
-   d="scan'208";a="231774194"
+   d="scan'208";a="227797737"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 14 Dec 2024 02:39:27 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 14 Dec 2024 02:39:28 +0900
 Received: from localhost.localdomain (unknown [10.226.92.203])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0ADFF4009BE2;
-	Sat, 14 Dec 2024 02:39:11 +0900 (JST)
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id C2E00400514D;
+	Sat, 14 Dec 2024 02:39:21 +0900 (JST)
 From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
 Cc: Biju Das <biju.das.jz@bp.renesas.com>,
 	Geert Uytterhoeven <geert+renesas@glider.be>,
 	Magnus Damm <magnus.damm@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
 	linux-renesas-soc@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 2/7] dt-bindings: pinctrl: renesas: Document RZ/G3E SoC
-Date: Fri, 13 Dec 2024 17:38:48 +0000
-Message-ID: <20241213173901.599226-3-biju.das.jz@bp.renesas.com>
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v3 5/7] arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Replace RZG2L macros
+Date: Fri, 13 Dec 2024 17:38:51 +0000
+Message-ID: <20241213173901.599226-6-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241213173901.599226-1-biju.das.jz@bp.renesas.com>
 References: <20241213173901.599226-1-biju.das.jz@bp.renesas.com>
@@ -64,95 +61,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add documentation for the pin controller found on the Renesas RZ/G3E
-(R9A09G047) SoC. The RZ/G3E PFC is similar to the RZ/V2H SoC but has more
-pins(P00-PS3).
+Replace RZG2L_* macros with RZV2H_* macros, so that we can define
+port names in alpha-numeric.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
-v2->v3:
- * Updated the macros with hardware indices in the hardware manual.
- * The changes are trivial, so retained ack tag from Conor.
-v1->v2:
- * Fixed the warnings reported by bot.
+v3:
+ * New patch.
 ---
- .../pinctrl/renesas,rzg2l-pinctrl.yaml        |  7 +++++--
- include/dt-bindings/pinctrl/rzg2l-pinctrl.h   | 19 +++++++++++++++++++
- 2 files changed, 24 insertions(+), 2 deletions(-)
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    | 34 +++++++++----------
+ 1 file changed, 17 insertions(+), 17 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-index a1805b6e3f63..768bb3c2b456 100644
---- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-@@ -26,6 +26,7 @@ properties:
-               - renesas,r9a07g043-pinctrl # RZ/G2UL{Type-1,Type-2} and RZ/Five
-               - renesas,r9a07g044-pinctrl # RZ/G2{L,LC}
-               - renesas,r9a08g045-pinctrl # RZ/G3S
-+              - renesas,r9a09g047-pinctrl # RZ/G3E
-               - renesas,r9a09g057-pinctrl # RZ/V2H(P)
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
+index 4703da8e9cff..182191a2c5ca 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g057h44-rzv2h-evk.dts
+@@ -56,7 +56,7 @@ reg_3p3v: regulator1 {
+ 	vqmmc_sdhi1: regulator-vccq-sdhi1 {
+ 		compatible = "regulator-gpio";
+ 		regulator-name = "SDHI1 VccQ";
+-		gpios = <&pinctrl RZG2L_GPIO(10, 2) GPIO_ACTIVE_HIGH>;
++		gpios = <&pinctrl RZV2H_GPIO(A, 2) GPIO_ACTIVE_HIGH>;
+ 		regulator-min-microvolt = <1800000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		gpios-states = <0>;
+@@ -158,38 +158,38 @@ &ostm7 {
  
-       - items:
-@@ -125,7 +126,7 @@ additionalProperties:
-         drive-push-pull: true
-         renesas,output-impedance:
-           description:
--            Output impedance for pins on the RZ/V2H(P) SoC. The value provided by this
-+            Output impedance for pins on the RZ/{G3E,V2H(P)} SoC. The value provided by this
-             property corresponds to register bit values that can be set in the PFC_IOLH_mn
-             register, which adjusts the drive strength value and is pin-dependent.
-           $ref: /schemas/types.yaml#/definitions/uint32
-@@ -142,7 +143,9 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: renesas,r9a09g057-pinctrl
-+            enum:
-+              - renesas,r9a09g047-pinctrl
-+              - renesas,r9a09g057-pinctrl
-     then:
-       properties:
-         resets:
-diff --git a/include/dt-bindings/pinctrl/rzg2l-pinctrl.h b/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
-index c70308961dfa..ab6f71d9504d 100644
---- a/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
-+++ b/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
-@@ -24,16 +24,35 @@
- #define PORT_P9		9
- #define PORT_PA		10
- #define PORT_PB		11
-+#define PORT_PC		12
-+#define PORT_PD		13
-+#define PORT_PE		14
-+#define PORT_PF		15
-+#define PORT_PG		16
-+#define PORT_PH		17
-+#define PORT_PI		18
-+#define PORT_PJ		19
-+#define PORT_PK		20
-+#define PORT_PL		21
-+#define PORT_PM		22
-+#define PORT_PN		23
-+#define PORT_PO		24
-+#define PORT_PP		25
-+#define PORT_PQ		26
-+#define PORT_PR		27
-+#define PORT_PS		28
+ &pinctrl {
+ 	i2c0_pins: i2c0 {
+-		pinmux = <RZG2L_PORT_PINMUX(3, 0, 1)>, /* I2C0_SDA */
+-			 <RZG2L_PORT_PINMUX(3, 1, 1)>; /* I2C0_SCL */
++		pinmux = <RZV2H_PORT_PINMUX(3, 0, 1)>, /* I2C0_SDA */
++			 <RZV2H_PORT_PINMUX(3, 1, 1)>; /* I2C0_SCL */
+ 	};
  
- /*
-  * Create the pin index from its bank and position numbers and store in
-  * the upper 16 bits the alternate function identifier
-  */
- #define RZG2L_PORT_PINMUX(b, p, f)	((b) * RZG2L_PINS_PER_PORT + (p) | ((f) << 16))
-+#define RZG3E_PORT_PINMUX(b, p, f)	RZG2L_PORT_PINMUX(PORT_P##b, p, f)
- #define RZV2H_PORT_PINMUX(b, p, f)	RZG2L_PORT_PINMUX(PORT_P##b, p, f)
+ 	i2c1_pins: i2c1 {
+-		pinmux = <RZG2L_PORT_PINMUX(3, 2, 1)>, /* I2C1_SDA */
+-			 <RZG2L_PORT_PINMUX(3, 3, 1)>; /* I2C1_SCL */
++		pinmux = <RZV2H_PORT_PINMUX(3, 2, 1)>, /* I2C1_SDA */
++			 <RZV2H_PORT_PINMUX(3, 3, 1)>; /* I2C1_SCL */
+ 	};
  
- /* Convert a port and pin label to its global pin index */
- #define RZG2L_GPIO(port, pin)	((port) * RZG2L_PINS_PER_PORT + (pin))
-+#define RZG3E_GPIO(port, pin)	RZG2L_GPIO(PORT_P##port, pin)
- #define RZV2H_GPIO(port, pin)	RZG2L_GPIO(PORT_P##port, pin)
+ 	i2c2_pins: i2c2 {
+-		pinmux = <RZG2L_PORT_PINMUX(2, 0, 4)>, /* I2C2_SDA */
+-			 <RZG2L_PORT_PINMUX(2, 1, 4)>; /* I2C2_SCL */
++		pinmux = <RZV2H_PORT_PINMUX(2, 0, 4)>, /* I2C2_SDA */
++			 <RZV2H_PORT_PINMUX(2, 1, 4)>; /* I2C2_SCL */
+ 	};
  
- #endif /* __DT_BINDINGS_RZG2L_PINCTRL_H */
+ 	i2c3_pins: i2c3 {
+-		pinmux = <RZG2L_PORT_PINMUX(3, 6, 1)>, /* I2C3_SDA */
+-			 <RZG2L_PORT_PINMUX(3, 7, 1)>; /* I2C3_SCL */
++		pinmux = <RZV2H_PORT_PINMUX(3, 6, 1)>, /* I2C3_SDA */
++			 <RZV2H_PORT_PINMUX(3, 7, 1)>; /* I2C3_SCL */
+ 	};
+ 
+ 	i2c6_pins: i2c6 {
+-		pinmux = <RZG2L_PORT_PINMUX(4, 4, 1)>, /* I2C6_SDA */
+-			 <RZG2L_PORT_PINMUX(4, 5, 1)>; /* I2C6_SCL */
++		pinmux = <RZV2H_PORT_PINMUX(4, 4, 1)>, /* I2C6_SDA */
++			 <RZV2H_PORT_PINMUX(4, 5, 1)>; /* I2C6_SCL */
+ 	};
+ 
+ 	i2c7_pins: i2c7 {
+-		pinmux = <RZG2L_PORT_PINMUX(4, 6, 1)>, /* I2C7_SDA */
+-			 <RZG2L_PORT_PINMUX(4, 7, 1)>; /* I2C7_SCL */
++		pinmux = <RZV2H_PORT_PINMUX(4, 6, 1)>, /* I2C7_SDA */
++			 <RZV2H_PORT_PINMUX(4, 7, 1)>; /* I2C7_SCL */
+ 	};
+ 
+ 	i2c8_pins: i2c8 {
+-		pinmux = <RZG2L_PORT_PINMUX(0, 6, 1)>, /* I2C8_SDA */
+-			 <RZG2L_PORT_PINMUX(0, 7, 1)>; /* I2C8_SCL */
++		pinmux = <RZV2H_PORT_PINMUX(0, 6, 1)>, /* I2C8_SDA */
++			 <RZV2H_PORT_PINMUX(0, 7, 1)>; /* I2C8_SCL */
+ 	};
+ 
+ 	scif_pins: scif {
+@@ -199,7 +199,7 @@ scif_pins: scif {
+ 
+ 	sd1-pwr-en-hog {
+ 		gpio-hog;
+-		gpios = <RZG2L_GPIO(10, 3) GPIO_ACTIVE_HIGH>;
++		gpios = <RZV2H_GPIO(A, 3) GPIO_ACTIVE_HIGH>;
+ 		output-high;
+ 		line-name = "sd1_pwr_en";
+ 	};
+@@ -219,7 +219,7 @@ sd1_clk {
+ 		};
+ 
+ 		sd1_cd {
+-			pinmux = <RZG2L_PORT_PINMUX(9, 4, 14)>; /* SD1_CD */
++			pinmux = <RZV2H_PORT_PINMUX(9, 4, 14)>; /* SD1_CD */
+ 		};
+ 	};
+ };
 -- 
 2.43.0
 
