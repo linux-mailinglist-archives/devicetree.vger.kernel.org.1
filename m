@@ -1,146 +1,94 @@
-Return-Path: <devicetree+bounces-130960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3529F1844
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 23:01:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B82CE9F184F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 23:03:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD90D7A060D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 22:01:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76B49188B7A0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 22:03:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E18618E377;
-	Fri, 13 Dec 2024 22:01:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B59E519307F;
+	Fri, 13 Dec 2024 22:03:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EL3hq83d"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="o8LES4es"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F09581DA4E;
-	Fri, 13 Dec 2024 22:01:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C60ED1DA4E;
+	Fri, 13 Dec 2024 22:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734127301; cv=none; b=FN2xC1JhGkvWM/gwMAhAaAf3cxDQ4fzwjPpfQP/oAeqdyohxtywxSliMAyzTNIdKb6suRpAwzon4rVRoO+ciAil/N0xGA8tiXzpqLbEdIk1+hurFF+Qf8yRSq0J4wkaVKySX0FC5uRzlXxEbC+H/rbuBvwDRvSkdPmm21bAdqBI=
+	t=1734127414; cv=none; b=A4FiMQMWH1ISDXje203Cvcbsg8Asc8C56+K4btEyG1CuFVzmCRofWOx/UGD4sAes4Qm7dj+eM569tVsXMe1khMpNPmY4nUQU57raH98Y5UI/EdNoxSLFH9EWYS5lvM/Zl2MNXxACgAI9k7cstaM1mh/BCNkRGdBnXm2AqqzM6v0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734127301; c=relaxed/simple;
-	bh=DAYWgjbpzdwfTbL6Q4+XD5NxSEJ76iHQuJ0aIVL25+8=;
+	s=arc-20240116; t=1734127414; c=relaxed/simple;
+	bh=LU5Q54IyACTz/utArs59J3eKJnMem5IwvIjcL7beJBw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r8BFViPTKlnzo3ifN45usoI0FpZa6dJwuivQdMDjcgHN+FjszXEvkvWsnTxT3R4CG8ovYg68pq/A6XnUXZKy4cQzwXVNjAesPEBHVAgN1uYutJp9TySg3hGg4Dd7Geqvdt5pUWzy5abRLqYuCdwBDsuS9w1p5JDhA0X2q9wFR2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EL3hq83d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 354E4C4CED6;
-	Fri, 13 Dec 2024 22:01:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734127300;
-	bh=DAYWgjbpzdwfTbL6Q4+XD5NxSEJ76iHQuJ0aIVL25+8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EL3hq83dxp6IU4BETWH43koxDKv17qkSQ81KJqxCyzmxFmWdw8Q1QEBNvImUoNe1s
-	 ilGOE81TFWoLYJtcRhy2YQJXVIOS2eHk5YsX8OjVrRlLfQf37ULe6ESpKImAQwjF20
-	 rXLZp90b9AUNzfy+UOEY510bP7sdWyYq7TLxqPDDm1K9icJa6gI02ct96UyI5AQrnf
-	 Byqokq5pEkJhy1f3594kShtSa42RAGZgHw2dadVaiiTfgax2P1gia0ZI6xPE44evCT
-	 Gx0BhG7UNx8d5dkb6Rrg731CBHxSUSkkNY8SqH3DEpJSwcujnqH8ntrkR7phxtSt2e
-	 Qw/4xjyHAx6DQ==
-Received: by mercury (Postfix, from userid 1000)
-	id 6411310604D3; Fri, 13 Dec 2024 23:01:37 +0100 (CET)
-Date: Fri, 13 Dec 2024 23:01:37 +0100
-From: Sebastian Reichel <sre@kernel.org>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: Kim Seer Paller <kimseer.paller@analog.com>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mike Looijmans <mike.looijmans@topic.nl>
-Subject: Re: [PATCH v6 2/2] power/supply: Add support for ltc4162-f/s and
- ltc4015
-Message-ID: <v4apnrdr2ydc3jpuiqfqk4ttof45zj37wpm5vr3u4w3drtfbl7@wk7khzxnfg3q>
-References: <20241213023746.34168-1-kimseer.paller@analog.com>
- <20241213023746.34168-3-kimseer.paller@analog.com>
- <723a8253-a936-4901-9a05-a20f27fdb07c@wanadoo.fr>
+	 Content-Type:Content-Disposition:In-Reply-To; b=O8EIAb/jJ70GQcwF7IeqvcK+rVzdmXnuGIVnFE+ntsqQI9Py+4zvew8OmYUo0mkx4pT8dsC0QFUDaVjnDM9nkJW5SS10OTHkH0q9Cb4QXu2VHYKcVFYCVVdxp46hhXqHkyVXsp/prQcd5aDlV0zVACT+/Ys4hmLakhKfDtgLYUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=o8LES4es; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=eAJ5fUjEEvUD9VbWS1/Qwk4AOyP6PIZbu8dIgzfahvY=; b=o8LES4esZv5ix34Gc9JkGkRBTO
+	8jI9+EB6WnLt/SWorb5xz0+RR+w4GtBHikIa1l2xzyFOy/+DqD3IiiUsDn18/JmaOuNc1UqxmkS4G
+	+wtVybgpSzeROJwq1f272TjTknbbYXdq0TiI7LX+1XeEeYlsePbam5iUH4WdIwXgLHUc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tMDkd-000OJn-GH; Fri, 13 Dec 2024 23:03:11 +0100
+Date: Fri, 13 Dec 2024 23:03:11 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ninad Palsule <ninad@linux.ibm.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	joel@jms.id.au, andrew@codeconstruct.com.au,
+	devicetree@vger.kernel.org, eajames@linux.ibm.com,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org,
+	NINAD PALSULE <ninadpalsule@us.ibm.com>
+Subject: Re: [PATCH v1 3/8] ARM: dts: aspeed: system1: Add RGMII support
+Message-ID: <4a8788c1-8424-40f6-a9da-bf135acad29b@lunn.ch>
+References: <20241213145037.3784931-1-ninad@linux.ibm.com>
+ <20241213145037.3784931-4-ninad@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="fephdck4dwpqzcfc"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <723a8253-a936-4901-9a05-a20f27fdb07c@wanadoo.fr>
+In-Reply-To: <20241213145037.3784931-4-ninad@linux.ibm.com>
 
+> +&mac0 {
+> +	status = "okay";
+> +
+> +	phy-mode = "rgmii-rxid";
 
---fephdck4dwpqzcfc
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 2/2] power/supply: Add support for ltc4162-f/s and
- ltc4015
-MIME-Version: 1.0
+Why is everybody getting RGMII wrong this week?
 
-Hi,
+Do you have an extra long clock line on the PCB for the TX clock?
 
-On Fri, Dec 13, 2024 at 07:31:45PM +0100, Christophe JAILLET wrote:
-> Le 13/12/2024 =E0 03:37, Kim Seer Paller a =E9crit=A0:
-> > LTC4162-L 35V/3.2A Multi-Cell Lithium-Ion Step-Down Battery Charger
-> > LTC4162-F 35V/3.2A Multi-Cell LiFePO4 Step-Down Battery Charger
-> > LTC4162-S 35V/3.2A Lead-Acid Step-Down Battery Charger
-> > LTC4015 35V/3.2A Multichemistry Buck Battery Charger Controller
->=20
-> ...
->=20
-> > +static int ltc4015_get_vcharge(struct ltc4162l_info *info,
-> > +			       unsigned int reg,
-> > +			       union power_supply_propval *val)
-> >   {
-> > -	u8 cell_count =3D ltc4162l_get_cell_count(info);
-> > +	unsigned int regval, chem_type;
-> > +	int ret;
-> > +	u32 voltage;
-> > +
-> > +	ret =3D regmap_read(info->regmap, reg, &regval);
-> > +	if (ret)
-> > +		return ret;
-> > -	if (!cell_count)
-> > -		return -EBUSY; /* Not available yet, try again later */
-> > +	regval &=3D BIT(6) - 1; /* Only the lower 5 bits */
->=20
-> Nitpick, should there be a v7:
-> 	Would using GENMASK(5, 0) be clearer and self-explanatory?
+> +	phy-handle = <&ethphy0>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii1_default>;
+> +};
+> +
+>  &mac2 {
+>  	status = "okay";
+> +
+> +	phy-mode = "rgmii";
 
-I merged the driver, but getting a follow-up patch with this change
-would be nice :)
+Do you have extra long clock lines on the PCB for both Rx and Tx
+clock?
 
--- Sebastian
+I suspect you don't and the RGMII delays are messed up somehow.
 
->=20
-> > +
-> > +	/*
-> > +	 * charge voltage setting can be computed from:
-> > +	 * cell_count =D7 (vcharge_setting =D7 a + b)
-> > +	 * where vcharge_setting ranges from 0 to c (d).
-> ...
->=20
-> CJ
->=20
-
---fephdck4dwpqzcfc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmdcrroACgkQ2O7X88g7
-+prGJQ/7BwF5dLIDqN0sCRSaskwIpW+2+zx+UmFZ8bnKP8ZqmPhHCeyrm0VT0Whg
-OJS477D/IHBW8CJeTYF6vm61cVsVg1Ee4pqLsEcgyi7ivOL7aYD3Hb15EZ6jrvhb
-twXBY3VQcIbrw0js61DemMR+U1THsEq9D0x1vCxoBJbtIRkYJTJtRksUGMQK4oer
-ymmreZJUJ2kJhU2ctDSAlTlWhEBWmczPxjuhknQF7iM4oJAkcNIT/z4cQyGOPCGh
-ORJQpc+GXgmSr87MZvPNTbpW0fJm0DXtosk4B25Oyev0tr4khBnRmLE1b8NzgZpR
-pBJ/CJ/GJ2jr+wn/9aVt0HhRWPUtpxb/MZpXkqeQtXtt1guHmmp6wnHK7mbwzAJk
-EQ7akhDLLquuAdHe4F3LEPuW0eA3f+8wmqJB23/R/lHt4QAAFP0BzaHu1TYo8gq0
-7qMuZgTcnLSTO223XyeFSg3BBABuec0V5m8TiduHNI0q5piL0ztx5Z5Jv3Q58fLu
-R6lLW1EmDA8I0iaScl6QDfLD5Z40rlX2o3x1TX6KCSikQZ8nD2R1lCA3w7NQ0Vi/
-o1nI9VPT1OO35keKWDv0dawsW8Z+t35aZx1wkzBTWiVZ6T4Htnhx8qZe/PCloFiY
-lL2keVOXaZwzR/LeMR5uDprPVHSxgNTycoDYiF6kXgJFk91555M=
-=+9Rc
------END PGP SIGNATURE-----
-
---fephdck4dwpqzcfc--
+	Andrew
 
