@@ -1,130 +1,122 @@
-Return-Path: <devicetree+bounces-130762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B04049F0D8F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 14:44:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55C029F0DD1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 14:52:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DC0B188CAAF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 13:43:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23E23188D820
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 13:52:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1650C1E3DCD;
-	Fri, 13 Dec 2024 13:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD5481E2849;
+	Fri, 13 Dec 2024 13:51:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="zHqSpPnX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="l9F57L+u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B2471E32BD;
-	Fri, 13 Dec 2024 13:42:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E505C1E0E11;
+	Fri, 13 Dec 2024 13:51:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734097333; cv=none; b=bjiQ434BJH8P9UUsN8evMuQqG7nUDWZJi7xFR3mBSloZJxMeNFgA/g/CMN/7nSKzithAEmImRw6Ac9aMqPPjH9/JXPTEuPE4DaNEoCmpL/+Pw+3aBtAB2xdtye6Ich5bJdwYUdsH96nhpgU5MXCte44kj5+Z7maIRYOii+3ymwU=
+	t=1734097864; cv=none; b=KcbxW/6xMMfFd3FgIaE1dArsLhZdJyyDaYg1E625GYyq/RcA0PWRUHWxOoU6c6RP8XrPxLlFwdVuD2kbBTTMGUiO7eDteVltu8MSAdJkvubTF7P5rO8IfAHXP4shL7zjYSOf7TRLUQn/jCmAojhL8X5NFfDIT0fx4/J/XpIU55Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734097333; c=relaxed/simple;
-	bh=gAozP5K90a5QtGx5y/pORzNem212AxL/4iPw5UgdVy4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=s7slhwrxgjgn+fptC0Bt4qTNCP5hrMI2pFYnBRra93AtRhqc1mFDUfJsY4AD9z2szg+prEy299vU7dA8XIOPX66LhjA3CbQV4iWEXUIkSWCZmpu8/qPgqur8tZT056fbMHW+dYCyPI+vvBS+sG3oP9vl0GjTcsTnnobOwCD2K1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=zHqSpPnX; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1734097331; x=1765633331;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=gAozP5K90a5QtGx5y/pORzNem212AxL/4iPw5UgdVy4=;
-  b=zHqSpPnX0LzhTk5x5JrVjLAw7kgJKLKntW/VOtrvwvxD1dzz/ip24Qxs
-   RzHhvIe80WHzopKUTkAP4jRzvtMYs/QTIVpKOB5dq2lQrux27Hykq0pOv
-   oAi463lq3VtZz3lXkRDh9OIjNVpFLiduhUFWIOPeH+ecJ2SR/kFov2/D5
-   14nmtedamV3gWXhAmkiMh9dNrWWbP5QtiNIxi1WR7rbFJqzk1uu3LPf9B
-   +/kZjRl90heRjWc9dcghxpgqZZZ/1ZK2n5rXRL3bKW6PW3KsnNDt5W+32
-   uJCgCvBlzwTLOeNL2/niqCCxIbgGpSXNbOOs8YsQFlkvmchdQhiT9F/G/
-   A==;
-X-CSE-ConnectionGUID: itc9LroWQgSaHh3I2qeP/g==
-X-CSE-MsgGUID: 6PGRUvmUQNW2bos1uLvnmw==
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; 
-   d="scan'208";a="39217656"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Dec 2024 06:42:08 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 13 Dec 2024 06:41:46 -0700
-Received: from DEN-DL-M70577.microchip.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Fri, 13 Dec 2024 06:41:43 -0700
-From: Daniel Machon <daniel.machon@microchip.com>
-Date: Fri, 13 Dec 2024 14:41:08 +0100
-Subject: [PATCH net-next v4 9/9] dt-bindings: net: sparx5: document RGMII
- delays
+	s=arc-20240116; t=1734097864; c=relaxed/simple;
+	bh=+pt97p/V0tj8vTmjacL+OERmsbqFH/R1gdECrEcJbpE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BzXxDW3m+1q/lujgPXx7CQhnHdGa93pSKLHFeFPmlRUnm5DyXOGAsGi3SMwIFHL+LPD4zOqSt8xny5a5cVXrs6sS1jk2ECJ+IiT2qlMHaxQLmSd8CH0cW1yy8caqX2qGagd9GdqomRD15S87TrPS2/SgPWXjIMHHMO0oo+u27n4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=l9F57L+u; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD81XTY022106;
+	Fri, 13 Dec 2024 13:50:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=jOC9nOhDr9jq4AtuIBHj+8
+	zR/D+ZeUbHj/hHK/7AGvU=; b=l9F57L+uQz/Dkc6XkGG3delsj1IpuaWxs7r2WQ
+	k3MZxB7/MKbf0xL07tdoF2jIesdgMdfm5W95myFxsKLl/605oEuErxPkc8p8PH0L
+	C7BvTDSKhqUu7PttbxdK3FkqJ9OJVq/PRmiWc0Gkm41o0kXsdiFOAnu/OwEhBfwd
+	SjKdd0GZeepddVkB9GU1FsPSsBXJHKbqR4ij/K4X6XyEd8MEDCr5VbrQhYGx54XT
+	X3d6uXNOXr6RipGUxumKtiLnENAnrmb6LIiInMAW8lUC4hS9xl/yUWjwydTFXZrJ
+	t9kZjARnkytr2QY9wbhIbwCWjogh18cbkALbrfij/uNhzchA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43gh271043-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Dec 2024 13:50:50 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BDDonZU014540
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Dec 2024 13:50:49 GMT
+Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 13 Dec 2024 05:50:44 -0800
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+Subject: [PATCH 0/4] Add PCIe support for IPQ5424
+Date: Fri, 13 Dec 2024 19:19:46 +0530
+Message-ID: <20241213134950.234946-1-quic_mmanikan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241213-sparx5-lan969x-switch-driver-4-v4-9-d1a72c9c4714@microchip.com>
-References: <20241213-sparx5-lan969x-switch-driver-4-v4-0-d1a72c9c4714@microchip.com>
-In-Reply-To: <20241213-sparx5-lan969x-switch-driver-4-v4-0-d1a72c9c4714@microchip.com>
-To: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, "Lars
- Povlsen" <lars.povlsen@microchip.com>, Steen Hegelund
-	<Steen.Hegelund@microchip.com>, Horatiu Vultur
-	<horatiu.vultur@microchip.com>, Russell King <linux@armlinux.org.uk>,
-	<jacob.e.keller@intel.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<robert.marko@sartura.hr>
-X-Mailer: b4 0.14-dev
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: nbneuj_EhbWNdlFAkyiJQC1rtLKTGG4P
+X-Proofpoint-GUID: nbneuj_EhbWNdlFAkyiJQC1rtLKTGG4P
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ priorityscore=1501 spamscore=0 mlxlogscore=719 impostorscore=0
+ suspectscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412130097
 
-The lan969x switch device supports two RGMII port interfaces that can be
-configured for MAC level rx and tx delays. Document two new properties
-{rx,tx}-internal-delay-ps in the bindings, used to select these delays.
+This series adds support for enabling the PCIe host devices (PCIe0,
+PCIe1, PCIe2, PCIe3) found on IPQ5424 platform. The PCIe0 & PCIe1
+are 1-lane Gen3 host and PCIe2 & PCIe3 are 2-lane Gen3 host.
 
-Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
----
- .../bindings/net/microchip,sparx5-switch.yaml          | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Depends On:
+https://lore.kernel.org/linux-arm-msm/20241205064037.1960323-1-quic_mmanikan@quicinc.com/
+https://lore.kernel.org/linux-arm-msm/20241213105808.674620-1-quic_varada@quicinc.com/
 
-diff --git a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-index dedfad526666..a73fc5036905 100644
---- a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-+++ b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-@@ -129,6 +129,24 @@ properties:
-             minimum: 0
-             maximum: 383
- 
-+          rx-internal-delay-ps:
-+            description:
-+              RGMII Receive Clock Delay defined in pico seconds, used to select
-+              the DLL phase shift between 1000 ps (45 degree shift at 1Gbps) and
-+              3300 ps (147 degree shift at 1Gbps). A value of 0 ps will disable
-+              any delay. The Default is no delay.
-+            enum: [0, 1000, 1700, 2000, 2500, 3000, 3300]
-+            default: 0
-+
-+          tx-internal-delay-ps:
-+            description:
-+              RGMII Transmit Clock Delay defined in pico seconds, used to select
-+              the DLL phase shift between 1000 ps (45 degree shift at 1Gbps) and
-+              3300 ps (147 degree shift at 1Gbps). A value of 0 ps will disable
-+              any delay. The Default is no delay.
-+            enum: [0, 1000, 1700, 2000, 2500, 3000, 3300]
-+            default: 0
-+
-         required:
-           - reg
-           - phys
+Manikanta Mylavarapu (4):
+  dt-bindings: PCI: qcom: Document the IPQ5424 PCIe controller
+  dt-bindings: phy: qcom,ipq8074-qmp-pcie: Document the IPQ5424 QMP PCIe
+    PHYs
+  arm64: dts: qcom: ipq5424: Add PCIe PHYs and controller nodes
+  arm64: dts: qcom: ipq5424: Enable PCIe PHYs and controllers
 
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |   4 +
+ .../phy/qcom,ipq8074-qmp-pcie-phy.yaml        |  21 +-
+ arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts   |  43 ++
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi         | 482 +++++++++++++++++-
+ 4 files changed, 539 insertions(+), 11 deletions(-)
+
+
+base-commit: 3e42dc9229c5950e84b1ed705f94ed75ed208228
+prerequisite-patch-id: 8ca651806ea679db4420e18aaa9f43aea27a519d
+prerequisite-patch-id: 3c4107e3b3a47df73db7ae672b55fa5d995c1f30
+prerequisite-patch-id: 56470ae6a75766d02d7db8f04c03a028de0c901a
+prerequisite-patch-id: abf79dda8233d882c345774ca693e48dafaeadaa
 -- 
 2.34.1
 
