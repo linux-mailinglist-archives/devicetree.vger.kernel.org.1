@@ -1,126 +1,124 @@
-Return-Path: <devicetree+bounces-130922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4F919F14BD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 19:10:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C92159F14DD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 19:23:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6E6E7A05BC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 18:10:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E88E816A822
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 18:23:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDAB71E8826;
-	Fri, 13 Dec 2024 18:10:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE281E47DB;
+	Fri, 13 Dec 2024 18:23:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QZC352md"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="EcCr8kT5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618AD1E6DCF;
-	Fri, 13 Dec 2024 18:10:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AFF2188A3B;
+	Fri, 13 Dec 2024 18:23:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734113429; cv=none; b=lcZu3NOGOF8dckUYpsOtqpjvlnD1NAaAHh5LJ7cS51TiGT/+M+3IIWWJdP1ENiJlfsWvdzO6z9PsLpe/7/kMgzFd/7+mtABUBiBknLYCmbRiiW2MW94v4fVx+df3AAXpV2ksgM9jyupnwfmFpx81UWPL8w2GL/RPyj/sovXzfLk=
+	t=1734114188; cv=none; b=dpAoIhYabjwR4OuT1ZmMsgJHJYnl/y05BGKmrYfrlyR8HQShy9ct3cwnLO9kwuerJyJC15cI3QcBhAV+V/lNKgNmfyDa265WMVv/9lhfGzU91mre8xDLi3JPTzLRTMvpy4n0AdtFEdy+96NBU72KQ33yKsRID45xIo+wGnU0sBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734113429; c=relaxed/simple;
-	bh=wCwlt+7GCLxcopJC5MJMifpu7xdIRDMWb2raqFoT4oQ=;
+	s=arc-20240116; t=1734114188; c=relaxed/simple;
+	bh=GiqVSUISJqJr5NiO8mWU9AKAaONp+d/mksQ49e50zm4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kjurkQpmN24oPpdfPKrSvdkKIHyUforwsUzXQbby6eYdKOwWJUmSAq/WbtQiKAAdSlnQmm5qrXeHsLcwtC2N6xk1smYHL42UN0wAxDoTQEHUOnDJ0dTlKRwLb3N99y+CLkb1AFXCsPTVr2PCuP5SgnGVZlr+KPrRPg63rTiYLLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QZC352md; arc=none smtp.client-ip=209.85.166.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-844e394395aso53293439f.3;
-        Fri, 13 Dec 2024 10:10:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734113427; x=1734718227; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JXPrXpI449ov9UhSKua2z+0yiJDVS90M3hJvDU48AIU=;
-        b=QZC352mdwrs4oWUP97qY7JU1MawykQfJatAAZsVQ0saNDbjeXWpDKaTB1T642RyjGO
-         znBBHIFcUU6qYTm1kKHdv+2iNTibHRT3cAciQRAYFyODTVnqjm+taBw5M33mEfVU0977
-         kJ26onMvmFfd+VUY1/oe8GQQ1qz5EVDu0JkvHtj3M+3rQNXCuZQ1DgpGnanp+6lIfajx
-         V7ACXO3NY5g6KrUpKr6xkmV0q2Pb9Y7pe9QZcqwDr2cqDDrnxWGddCo/Em00xeyh0RoY
-         lBlOgQ5fUKaSOLJsKIeGYPaEnfp16bfPhziLVGErInixXJClg4d0mPjQLNAFN42EvC97
-         ZIpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734113427; x=1734718227;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JXPrXpI449ov9UhSKua2z+0yiJDVS90M3hJvDU48AIU=;
-        b=i5H+yHCC3pR6teUTmuyvfIluLCrKiMZM4dv2V2Q2W9icv+y89BTPpRafgdvL9BmWEP
-         kJ1Gy6ZOZuo543hhbC64NqnRp6KkBxkVJUS213bvqDikcoKNTYN2R8/zP7ThnoEt2LnE
-         q6K9DvzcE1PId1XiqzwxPZmlAAAbBMV1g4LRweg3u6KFMWFy7T7cqJE4oEprJfHSPL1V
-         KcBKnNic7g2lMNbFoaVbNY7UVSADZva6ojWAy4R1vvMAIAOQd+7QNiZUeR9/QgenEPry
-         HNgof6b4f/TUqL1n3gBOw+lh3+Ie30f3lVZCJQSl3jEpJE4ijv2MQjQw5kvmOq27F9Lt
-         72Ig==
-X-Forwarded-Encrypted: i=1; AJvYcCXOMwuFQQ8oaiqnRjjZXg8jqcWhj/1jUc4H4rb5GXtlAXYcHHniR9h+4p3nh9yMZc3kja1H40iN5vU=@vger.kernel.org, AJvYcCXjqxb40Fin5tY2hZS+pwpEwnQOJQ9uGysC9waRXFxhtP0xCeM4yoSkgRJrced7uun8MCLrrOqBZeHE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxn1SfvWBnZiRct1Ah4BvJDK5R3AZQn/c9lUSK9cBab8DlbZQcp
-	be6kplq9LMbNb8qdXlsEcnT+FGzGdcXmY00JxYrowb6uoVzJEcp/Pu9Vzw==
-X-Gm-Gg: ASbGncuioVX+a8II95kEdi6ysafhMT0xgNFNi3f63yO3i3n/OxEBt5CacndBhvkct8W
-	QVeUfNC99XmL6ejJLPlAkYUEVZ8x4BehpqJP0fvdPGvWWkNMep1WI02vsromTyu7ex6H9ga3Gai
-	KNUJHx+SL0U9eWybmrVUgSNUju6YBh3FzeESDU9+mxfW8NCxtXCQmqq6QpR3sK4bcTlObiKCP2u
-	SGkieV0rIwlobo7L4R83Q2TxpA6mz3+YoW6/lY3dmjG7SvqKGgvo8guW/3gm2CfAaEwxC+x2rh2
-	nZVk0YSARV8hwX9HyWVFVpbpMd8=
-X-Google-Smtp-Source: AGHT+IHLYxooB8Sqn2S8F7OH0vGMIzkYzZ3Jr/Pux0565zJs3ssqRpJ8c0d/gYSGr71vt+GOdL6q1Q==
-X-Received: by 2002:a05:6602:6416:b0:841:a678:de3f with SMTP id ca18e2360f4ac-844e8698247mr499346639f.0.1734113426981;
-        Fri, 13 Dec 2024 10:10:26 -0800 (PST)
-Received: from localhost.localdomain (65-128-205-244.mpls.qwest.net. [65.128.205.244])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4e2baf714cesm2922533173.101.2024.12.13.10.10.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Dec 2024 10:10:26 -0800 (PST)
-From: Shimrra Shai <shimrrashai@gmail.com>
-To: linux-kernel@vger.kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-pm@vger.kernel.org,
-	Shimrra Shai <shimrrashai@gmail.com>
-Subject: [PATCH v2 2/2] dt-bindings: arm: rockchip: Add Firefly ITX-3588J board
-Date: Fri, 13 Dec 2024 12:08:55 -0600
-Message-ID: <20241213180855.16472-3-shimrrashai@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241213180855.16472-1-shimrrashai@gmail.com>
-References: <20241213180855.16472-1-shimrrashai@gmail.com>
+	 MIME-Version:Content-Type; b=RIOsV98XSH/VZdQCUIzcPtXfSh9HWTOEBBldtA/DzdFErtjmg/vO0veMXnsDWMOVd1rDan7+KC63aV/JkTtPuAsZPTYYTxBpzOo1zUGcZxfO6PYTer5A1GBoHOI+hMKy/T6zHKC/nH4p4vlmvC3NFJEuJV3ErpafPtsPMHkRd3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=EcCr8kT5; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=i3YibXlXnh2nxnKraQDFOv5AxvjsQSovo3m91FxIX/E=; b=EcCr8kT5LaBT0fWsCrzlHiDjVM
+	wMpYf4dYNpORW0wp2+AlVVBHRZYQrQdLli0jqD5dCV0mCDe9pdbRssQasOALVpAkkX9S82rGvk6Mv
+	P3jTVRsraO0MdM0uHxBZ6l3iUNckAA9J1XG3ubEx63BeffX6bGu05/bPSZzD+V7c/eZKHq/3WfP+R
+	5RZqWzvdEvDavL7l59FVJmdzO0e0C8fOe1RW5moZErd4uY25TAK6EtzwelXWhYyFW/jyRNM0H8zKr
+	GZMk0lSsr5o1X4dYTb+7nZYQZzSydDPM3NnVmd//vHXfdEpIlfyP5cLrfkY20N/BZ/aNRI9bTCWKX
+	qPKb6DUg==;
+Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tMAJR-0008Ao-8N; Fri, 13 Dec 2024 19:22:53 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: linux-kernel@vger.kernel.org, Shimrra Shai <shimrrashai@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org,
+ Shimrra Shai <shimrrashai@gmail.com>
+Subject:
+ Re: [PATCH v2 2/2] dt-bindings: arm: rockchip: Add Firefly ITX-3588J board
+Date: Fri, 13 Dec 2024 19:22:52 +0100
+Message-ID: <1908542.tdWV9SEqCh@diego>
+In-Reply-To: <20241213180855.16472-3-shimrrashai@gmail.com>
+References:
+ <20241213180855.16472-1-shimrrashai@gmail.com>
+ <20241213180855.16472-3-shimrrashai@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Document the compatibles for the new board.
+Hi,
 
-Signed-off-by: Shimrra Shai <shimrrashai@gmail.com>
----
- Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+Am Freitag, 13. Dezember 2024, 19:08:55 CET schrieb Shimrra Shai:
+> Document the compatibles for the new board.
+> 
+> Signed-off-by: Shimrra Shai <shimrrashai@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> index 753199a12..9ee96acdc 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -190,6 +190,11 @@ properties:
+>            - const: firefly,firefly-rk3399
+>            - const: rockchip,rk3399
+>  
+> +      - description: Firefly ITX-3588J
+> +        items:
+> +          - const: firefly,itx-3588j
+> +          - const: rockchip,rk3588
+> +
 
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 753199a12..9ee96acdc 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -190,6 +190,11 @@ properties:
-           - const: firefly,firefly-rk3399
-           - const: rockchip,rk3399
- 
-+      - description: Firefly ITX-3588J
-+        items:
-+          - const: firefly,itx-3588j
-+          - const: rockchip,rk3588
-+
-       - description: Firefly ROC-RK3308-CC
-         items:
-           - const: firefly,roc-rk3308-cc
--- 
-2.45.2
+looking at the product-page, this is not _one_ complete board. Instead
+it seems to be a system-on-module + baseboard design.
+
+It looks like it uses the Core-3588J system-on-module [0].
+
+We already have a number of those in the binding file to take as example
+on how to structure that. For example FriendlyElec CM3588-based boards .
+
+So you could do
+
+      - description: Firefly Core-3588J-based boards
+        items:
+          - enum:
+              - firefly,itx-3588j
+          - const: firefly,core-rk3588j
+          - const: rockchip,rk3588
+
+
+Thanks
+Heiko
+
+
+
+[0] https://en.t-firefly.com/product/core/core3588j
+
 
 
