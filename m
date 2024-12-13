@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-130534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A9D59F052A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 08:06:24 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 288989F0599
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 08:40:43 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79AF8168D08
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 07:06:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BADB8283D8C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 07:40:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18C8018A6BC;
-	Fri, 13 Dec 2024 07:06:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37D2E196D8F;
+	Fri, 13 Dec 2024 07:40:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GWHuvmh1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZdzTf/o8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4275C1372;
-	Fri, 13 Dec 2024 07:06:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A3C188CC9;
+	Fri, 13 Dec 2024 07:40:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734073580; cv=none; b=BthLqh2yXwYO/yehbwAAen7XrVjEMzTntbzMM/uazQk2WYnuR+ubsSp5DeHDSdiKFjleXgVJITI2kD+d86CFBCeTBUfy4UxO8pOXVOv7rl1sbZl/LsVBlc9xYGiV8R1e8zYPrT/CVC7sH2vITGAA2mOBgZ61lVjB4we4d3f6iww=
+	t=1734075639; cv=none; b=eSj9iDNH9MvzDuN0MMRLpanIE8rqLWVL4L6jag3TN/qAVK7ymn/2fyEspykLj7Q1b32pUp52VPlIfwumrzh+Jc/8cYOJmpJ+qgEUqrytvfOZSYiokhSC2nbnsRmA6BHz1ZmeyezYqeoL07UrYwDz6+HdFjNpQX0m+zzMWSHV8uo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734073580; c=relaxed/simple;
-	bh=9XnvVYl+YZ24uJZB1nNo0oLCc3tEoJXLzFdrQlqruV8=;
+	s=arc-20240116; t=1734075639; c=relaxed/simple;
+	bh=z+QOYR6IAaXu9IrXrCJYATLfMZuGKCN7F03jfOvDO+Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W1gIoYbqhR7Ii+Fb0jt/pGLZOvnXJwSFgjd5rGDT2xESSeM3mNc1ygaVEcBkY2X7U/ovUyvfTmS/uLNzWhPo7BwdHp0zyw6NWqSqEXMjuAhmAVFNY2Sh55U05k4VdTIZNAnNBnEGlJhHVXND120NHH2CVo/br+sRN13yXmzWkRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GWHuvmh1; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aa68d0b9e7bso263244766b.3;
-        Thu, 12 Dec 2024 23:06:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734073575; x=1734678375; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zxrQwrMDRX39hUvqMvsuz8UTw88tsq0nhYKLS4FpEXc=;
-        b=GWHuvmh1RUdZHF1XGUijnMqCz0CupU/mH/bHmbUSdXx3plUIShWnIvtKIhWg06l/3p
-         4jjOE8QkB12IDLY5IFrMiWnN36r1r2VCHm0dMJJooKKk8rFW+VSmln8RB4nipD07US+k
-         KxZjBjbSgH9RBlvrn6ZNiP2yDBrqOaSzKpy47mYpKqs7o2+g3mNBrw6kVU36WrZe61ww
-         rCuiZ2qGJGP4tHRMJn3HYPys4lXbPlfX8SzW8pREYSxvE4Gp7270dfgOQ9H3xHz5/fpS
-         BPIUGa9vbAjnvnEuBUuJndRqUOraPN9JJeAAeCIDf6QfVJFFvErYmCqARyY0g8VUyy3C
-         QOAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734073575; x=1734678375;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zxrQwrMDRX39hUvqMvsuz8UTw88tsq0nhYKLS4FpEXc=;
-        b=Vhp3PLeRzJYTB0YVutNkRAjYV/FDaMBN4P3gTmyPBDj5BGxxADO10PBSQT/BH+X5XE
-         123mJpl6T5sNV4RJmFXH17zaeiUqYUnvQvmJHB+XEoSypha9FbQfmXkwqSvG1xMwqZv3
-         yVeY47UsFA4wLnstMS7s3+PIGvmVV4QfacA14tZJDuI9oYl6JWSt3IhJdz4JHtn/3wJs
-         Tb+avWJ9sjPP3D7jpUIQE4gDx7GG98cz+N9ji7orU1QuLU+F8ZIj3MqR76FgAzPWUKsJ
-         5Hyq8/PnBuc0zRBeevXChLEau6sc0BZYk5Ucwe4otjPwVfrWxtRdVBCsoXpTLcQdsz19
-         wg6w==
-X-Forwarded-Encrypted: i=1; AJvYcCU0NSTGBUksVKxgtaBZLvl+S9PiOD1x9HFvu/nlw5y/OsO6frEV4EDrXOs2uueDXDOpLUf+@vger.kernel.org, AJvYcCVQAiUBT6xkDcPdDhXEph+6bbZ6+uwsSn2fp2MJKSKgPkrLwG0wvzbjTBeV5duFIM7680P8Eid+ffNs@vger.kernel.org, AJvYcCVo60E2Lj8oD73OwEZkIhYSOWbbC0B/Hx7mF/t9j0an8eJgwML2k6s2baI8PdYG9DPB4bEEuq2QnqNNGlMQ@vger.kernel.org, AJvYcCXtctm6F//BoL9A04NE5tK+poqKLpwzZIDfinqerYprNH3Yu7zRwW0mEqtdjpuvTKrWzvsuCUQEpfD0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQjrNwzos72EJfJDSe4ZWEx0te7g1fYQBX81f0WFLp53SCA0WI
-	LtQBaGyz115I7Pmo/tieU+B6J8N33rcqPcZAFpL5UKWXk6N7yzuH
-X-Gm-Gg: ASbGnctXwUdW2VnoaBtTfUCyeZMcNgnV5myvBQu2jKbyuKHRW4KmDyMEKVX3/aZ20LC
-	uZ78bG/v8SIMwBS2H45C36S0cw8H80fCzIGIn4NrPDyNSl3vbKusdPxY29Of973qZWUJhdICeJC
-	9fhXBHtkUdH2gxoT5X7asI699niF0dFLlYhvHtBcVkXKCDkhIwyVuZrPQA42JkpWyFRM0vGFV81
-	7CTJMj1cEkmhtj/+B9QUzrBNbq4J0mcXaNvUXXj/cLpdoy/SHahEdnbTsPGyNQWroVj4umueAXr
-	iBc0IKsdu5k228FC2ena68r0p9wKK2OExQsV0AY0m06vYF8EMotpOTzajqdFZr+FMnMs6Em/Csi
-	BawChY2cuTIAE
-X-Google-Smtp-Source: AGHT+IHFJ+kRGpSorLtHc8TbJrTe4EAI6jr1TsoG5rRi6v2qDv0r5gf2yVynewdjhGrIVYCgXoTJJg==
-X-Received: by 2002:a17:906:6a04:b0:aa6:800a:1295 with SMTP id a640c23a62f3a-aab778d9d9cmr155786966b.5.1734073575257;
-        Thu, 12 Dec 2024 23:06:15 -0800 (PST)
-Received: from ?IPV6:2003:df:bf0d:b400:9583:b351:67da:b15e? (p200300dfbf0db4009583b35167dab15e.dip0.t-ipconnect.de. [2003:df:bf0d:b400:9583:b351:67da:b15e])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa685b6cf77sm687526266b.83.2024.12.12.23.06.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Dec 2024 23:06:14 -0800 (PST)
-Message-ID: <00dd07c9-21a6-4515-9b62-351c6aff2d1b@gmail.com>
-Date: Fri, 13 Dec 2024 08:06:13 +0100
+	 In-Reply-To:Content-Type; b=ZHDoeRV9wMF1yVJIjZzoAlRCXFxRJtj6N+KHICD6A6lYPnB12UKScgCVrvnueofWMJTI33etYUZwwI+3KEcO0CpSQPIWBuNtREQu+RWb0VKPCQveWSHioS5cZ9H9jZuoVvSJVMhhL/sNUiQ/WUYXhiPxZ5o/UJP8DIMjE8hk/YM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZdzTf/o8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F4CBC4CED0;
+	Fri, 13 Dec 2024 07:40:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734075638;
+	bh=z+QOYR6IAaXu9IrXrCJYATLfMZuGKCN7F03jfOvDO+Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZdzTf/o8P3OgApWUgLgc63+Jve+OJn36APqyfcMJrA1I9KRigR1DbwTWD0B2HS7Eh
+	 9m7KDaugbjrjV+/x0zbl3VtdD5rx/9pYwFhUnMRNNWYApkei+B9ux50bySecAKlE0z
+	 031frx74FTFjiIozFeNR2M1Hqt8Tm8EBcUoIF3GXXF6cRoNBEszIbB+Y6GGIm7Elgr
+	 k/0xz2/DKoWciBopFREtfGbiMgxcvORQFI6egKXDqDHFhhmZxoKeDdZgRVfrC8HJH8
+	 pKe/xWj8uIoeTCoEXDIQ2wnDxE1Y8sDVDIojnxxK6LnPA8dcqJ/2taOnLJLNBQNvIG
+	 7oOfnY3cuyStw==
+Message-ID: <207354ad-e363-4156-ba6b-86dbaa13ab95@kernel.org>
+Date: Fri, 13 Dec 2024 08:40:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,58 +50,196 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 00/16] Device / Driver PCI / Platform Rust abstractions
-To: Danilo Krummrich <dakr@kernel.org>, gregkh@linuxfoundation.org,
- rafael@kernel.org, bhelgaas@google.com, ojeda@kernel.org,
- alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
- bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
- a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
- fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
- ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
- daniel.almeida@collabora.com, saravanak@google.com, dirk.behme@de.bosch.com,
- j@jannau.net, fabien.parent@linaro.org, chrisi.schrefl@gmail.com,
- paulmck@kernel.org
-Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org, rcu@vger.kernel.org
-References: <20241212163357.35934-1-dakr@kernel.org>
-Content-Language: de-AT-frami, en-US
-From: Dirk Behme <dirk.behme@gmail.com>
-In-Reply-To: <20241212163357.35934-1-dakr@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: soc: samsung: exynos-speedy: Document
+ SPEEDY host controller bindings
+To: Markuss Broks <markuss.broks@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Maksym Holovach <nergzd@nergzd723.xyz>
+References: <20241212-speedy-v1-0-544ad7bcfb6a@gmail.com>
+ <20241212-speedy-v1-1-544ad7bcfb6a@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20241212-speedy-v1-1-544ad7bcfb6a@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12.12.24 17:33, Danilo Krummrich wrote:
-> This patch series implements the necessary Rust abstractions to implement
-> device drivers in Rust.
-> 
-> This includes some basic generalizations for driver registration, handling of ID
-> tables, MMIO operations and device resource handling.
-> 
-> Those generalizations are used to implement device driver support for two
-> busses, the PCI and platform bus (with OF IDs) in order to provide some evidence
-> that the generalizations work as intended.
-> 
-> The patch series also includes two patches adding two driver samples, one PCI
-> driver and one platform driver.
-> 
-> The PCI bits are motivated by the Nova driver project [1], but are used by at
-> least one more OOT driver (rnvme [2]).
-> 
-> The platform bits, besides adding some more evidence to the base abstractions,
-> are required by a few more OOT drivers aiming at going upstream, i.e. rvkms [3],
-> cpufreq-dt [4], asahi [5] and the i2c work from Fabien [6].
-> 
-> The patches of this series can also be [7], [8] and [9].
+On 12/12/2024 22:09, Markuss Broks wrote:
+> Add the schema for the Samsung SPEEDY serial bus host controller.
+> The bus has 4 bit wide addresses for addressing devices
+> and 8 bit wide register addressing. Each register is also 8
+> bit long, so the address can be 0-f (hexadecimal), node name
+> for child device follows the format: node_name@[0-f].
 
-With v6.13-rc2 and Fabien's regmap/regulator/I2C on top I gave it a
-try on x86 with qemu. Additionally cross compiled for arm64 and will
-try it on real hardware once I have it available. But previous
-versions of this series have been fine on that, already. No issues
-observed for running the samples and for the examples/KUnit. So:
 
-Tested-by: Dirk Behme <dirk.behme@de.bosch.com>
+This wasn't tested so limited review.
 
-Many thanks!
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-Dirk
+> 
+> Co-developed-by: Maksym Holovach <nergzd@nergzd723.xyz>
+> Signed-off-by: Maksym Holovach <nergzd@nergzd723.xyz>
+> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> ---
+>  .../bindings/soc/samsung/exynos-speedy.yaml        | 78 ++++++++++++++++++++++
+
+Filename must match compatible.
+
+>  1 file changed, 78 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-speedy.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-speedy.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..304b322a74ea70f23d8c072b44b6ca86b7cc807f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-speedy.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/samsung/exynos-speedy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung Exynos SPEEDY serial bus host controller
+
+Speedy or SPEEDY?
+
+> +
+> +maintainers:
+> +  - Markuss Broks <markuss.broks@gmail.com>
+> +
+> +description:
+> +  Samsung SPEEDY is a proprietary Samsung serial 1-wire bus.
+
+1-wire? But not compatible with w1 (onwire)?
+
+> +  It is used on various Samsung Exynos chips. The bus can
+> +  address at most 4 bit (16) devices. The devices on the bus
+> +  have 8 bit long register line, and the registers are also
+> +  8 bit long each. It is typically used for communicating with
+> +  Samsung PMICs (s2mps17, s2mps18, ...) and other Samsung chips,
+> +  such as RF parts.
+> +
+> +properties:
+> +  compatible:
+> +    - items:
+> +        - enum:
+> +            - samsung,exynos9810-speedy
+> +        - const: samsung,exynos-speedy
+
+Drop last compatible and use only SoC specific.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    - const: pclk
+
+Drop clock-names, not needed for one entry.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+
+You do not have them in the properties, anyway required goes before
+additionalProperties
+
+> +
+> +patternProperties:
+> +  "^[a-z][a-z0-9]*@[0-9a-f]$":
+
+That's odd regex. Look at other bus bindings.
+
+> +    type: object
+> +    additionalProperties: true
+> +
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+
+maximum: 15
+
+> +
+> +    required:
+> +      - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    speedy0: speedy@141c0000 {
+
+Drop unused label.
+
+> +      compatible = "samsung,exynos9810-speedy",
+> +                   "samsung-exynos-speedy";
+> +      reg = <0x141c0000 0x2000>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+
+No resources? No clocks? No interrupts?
+
+
+
+Best regards,
+Krzysztof
 
