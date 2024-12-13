@@ -1,276 +1,239 @@
-Return-Path: <devicetree+bounces-130603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 342A49F0858
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:47:25 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38E72168A8D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:47:22 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 899541B3930;
-	Fri, 13 Dec 2024 09:47:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iV3VGXZY"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC219F085E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:47:54 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FDC91AE01B;
-	Fri, 13 Dec 2024 09:47:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66D60282905
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:47:53 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 542611B395C;
+	Fri, 13 Dec 2024 09:47:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fKxf7ca6"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A8491B392E;
+	Fri, 13 Dec 2024 09:47:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734083241; cv=none; b=UydrFrOVMFxkkM+ppZx8mcJslRvRS91Zd22MaI4LyBCY8Ps6lNGVos/Mo9Vca21wVsz/XaM9boYSDhn/V2runUY4DB4fW8I/s7DDWKnurBC62znXm8A3AOnmmx6207d83GYyDgwvN8xyUNREyhgysWbzSScAbcyBwFmONLOS/FQ=
+	t=1734083261; cv=none; b=TeRIciNubcdxllLsZF7VXQBtPqc09vZwMV7dTuOQfT51H4pKJ0efdN+Ejf79mAFGEaL3TvKla/aSFgiSx0mYeso50n7lRqaZLwkAkG21n4CcHmyMhqZ4SwTYVPPvsb9Gj0/FnfEKnP6tYR+/W4imemhCjwBO8hRMa2dPFHVWtbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734083241; c=relaxed/simple;
-	bh=CsUSpJzbuGKFaVUKenfHD5hOCr81hHhImJcfyZvjwVw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HLjOwYJ+G6zI3lr5rIY9nv/p2/iNbwARyqBjdJSahHcUSlHoQYeSn0OnQCn9yF4KyY2RFhGISDtVtSaMfF5WAIt++XZRrUh+6x/bmRsDiUQTU1I+czsS7RQBvfKAzDMYr/o3FIMSPLr0BU2g+ZLxDeD7aYXyEMsovWcK9LfGhMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iV3VGXZY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49CDEC4CED1;
-	Fri, 13 Dec 2024 09:47:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734083239;
-	bh=CsUSpJzbuGKFaVUKenfHD5hOCr81hHhImJcfyZvjwVw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iV3VGXZYJ5EPnlYVp6EltRKys5jYp0pk0J8VwESvsYYiz5S4i7VDdyTj2VuZEyuPd
-	 dXawjAYiJM71+UZG8OxlP4KZ9/D1DIEaaZcTEsnuM4hgAlCQNtP1/S4b7pdKnGnU8F
-	 uJGiMOZjzyoWP0sjI+Wvok2fThJ9n6tq+rxQRy6U0E1xonHTt0LAUYsLkQ5oTq8Tzp
-	 DKHGhUSTIHF9otTSmb6MX7qxZ+aYkmNczYzanGi9Q+JHpoaWv2es4OdTrVUFLav3hz
-	 dOTLAK/+tCoeO8cCZaBw1SMf2PIOP10D1g0Pv9th4Dm6ZLv7f5pvAR43mxMUwgPJi5
-	 MRjTeygDlVjjg==
-Date: Fri, 13 Dec 2024 10:47:17 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jesse Van Gavere <jesseevg@gmail.com>
-Cc: devicetree@vger.kernel.org, netdev@vger.kernel.org, 
-	Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, 
-	"David S . Miller" <davem@davemloft.net>, Vladimir Oltean <olteanv@gmail.com>, 
-	Andrew Lunn <andrew@lunn.ch>, UNGLinuxDriver@microchip.com, 
-	Woojung Huh <woojung.huh@microchip.com>, Jesse Van Gavere <jesse.vangavere@scioteq.com>
-Subject: Re: [PATCH net-next] dt-bindings: net: dsa: microchip,ksz: Improve
- example to a working one
-Message-ID: <jpou4vundlwdmnq5iyjf3hyqclrxktxye6znxkulps3f3rbszu@pzvgwoge2a7a>
-References: <20241210120443.1813-1-jesse.vangavere@scioteq.com>
+	s=arc-20240116; t=1734083261; c=relaxed/simple;
+	bh=oCE+dd5SPcmuqEdvLxpo+CPfYUW0b61fh7ss8dlVND0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IdeuckDc7cKGv+ldjfLM+Il4rhxwladEa5nw+LNCeQPNgTEIqrGpm53uCbNpBlISH3ROsfxFCeoMb1NqzU8TrriStN5xg5+v11FznWtlUtcD8hB/pdB28RB6dJPzLiJaWTYsP+MNRUDJeqjiQ8k4az9I9a1OQ/74UDaBELl64lU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fKxf7ca6; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a9a0ef5179dso236566266b.1;
+        Fri, 13 Dec 2024 01:47:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734083258; x=1734688058; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kpephPbr8Jh4XgfdsqtKilUmRrp2rdQXAGdN0OMY/vk=;
+        b=fKxf7ca6K+6WicLWXPCyMapx1JZq3M3lzAhJWQU/2Wf3aV4rOR2ZM77fzA5MQGYGnj
+         3fsLoA/H/tud+N9o3ZvSHdIFKvrvpnsCvI8XI1f+w3J8jf0dP9zXGEWBvODwHutJn42G
+         774Y2lkvNXNnD2ciNzdR6mZ61Ug0ECO6Jm2+Ixk4oiSq8hmfqIpje1BjpUSMUkymfiDb
+         opajE6e1O3Cvw+j3AR5asamLXVkzFSaN7riRNEY+zxoj3rN1gTT7QtnqG+1Y5K91wC39
+         cJPqkZX5Xn5dTtBEIm2hWdsHx/7ICzwjYSZE2DLCIL8xZzZSVpWOQs6p8XRhzvv0zNgb
+         ztvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734083258; x=1734688058;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kpephPbr8Jh4XgfdsqtKilUmRrp2rdQXAGdN0OMY/vk=;
+        b=BToBXfptDLvIDcWGiaMemCbKz3E0TWE4OipmVlIfNXXPPBFbIZS2llLOUAiASvtGbU
+         hhBfZn+7PpIjXnam6eA1YruOE6DQCZ0yJbbfwKOgRjnm3WJssmM1T5fmHf67m5Mwxbdl
+         aIGAgV4giOOnLQIDeP4i4zrDBFkwUgvdhqQHct17NyL2UPeZP7NzNB4JxeUTmTmgqVX1
+         7TY4VyPtSIVOjkWAcKIThGPWcFpmehVX1uZSl6C23Bo5nM+YgThvUMrFlwPZiRzusi7o
+         CYbH012KgRO+wQSAfp336z8UEpytJPVKqq7CrE9OwMgFhCIflXVaY+FWuhutQZPoTpzy
+         Hadg==
+X-Forwarded-Encrypted: i=1; AJvYcCVr03568UrbwGuRnADCqU3Lnd0Lvv5prgMbj2dGK5TtCf+GEcs8IyKZxEgn0umNYfbTUxZwa1ydyi+C/H9q@vger.kernel.org, AJvYcCW4m/fgUXi/WMFWt3B+Rb7124rLCnKyyl2x/PZ6u3dWREnF2EP4xAWxYQEMLFOyiFqEuFEy6ARyK0hQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzhm2ZG+S5q0WtTnEbvnMP02vlqawOzzp7dTRbyPl4yVU/1Wss2
+	buII8RIHedyBE5nlkWlayQ2IssQGzPjFsnUQySZM4KEdJN1QmqPj
+X-Gm-Gg: ASbGnctvf3xRfVpgt/Xkt80NDE3HAwmcpY6KRzXcT+b6TMP+EGbW5lQEgF+i4UT/6+5
+	UAXRq1Aud9Rr+VqpC49XOIEhNVULmJGw1UjCU8gdesx4WTXodlKgWyX5cC2+AWwsmfEai2h2bcT
+	SMqJKBflW1ca8aux1vd1UjIj5jOxgbrppLO31tFPq1kmRzXzBj9igGYenkJjpaOzfLDgEl6S3rd
+	94CK3D+Mk3WLWhw8l82+sQCeoW6hR5tVP6IS1yZkqLip3kCboJ8puUXqhjYLa6g4Zdt
+X-Google-Smtp-Source: AGHT+IFbJyb8LbVaxZmbBTC8001dyPPQdOCNGCC+QQjAz4MNlXdB1nD7gssl9owCB/VTMauuYyt5IA==
+X-Received: by 2002:a17:906:3112:b0:aa6:82ea:69d6 with SMTP id a640c23a62f3a-aab77907a5fmr190336166b.18.1734083257326;
+        Fri, 13 Dec 2024 01:47:37 -0800 (PST)
+Received: from [192.168.31.111] ([194.39.226.133])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d3bc829433sm10177180a12.38.2024.12.13.01.47.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Dec 2024 01:47:36 -0800 (PST)
+Message-ID: <7753293a-0ab1-48b1-abcd-a9cd544cc356@gmail.com>
+Date: Fri, 13 Dec 2024 11:47:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241210120443.1813-1-jesse.vangavere@scioteq.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: soc: samsung: exynos-speedy: Document
+ SPEEDY host controller bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Maksym Holovach <nergzd@nergzd723.xyz>
+References: <20241212-speedy-v1-0-544ad7bcfb6a@gmail.com>
+ <20241212-speedy-v1-1-544ad7bcfb6a@gmail.com>
+ <207354ad-e363-4156-ba6b-86dbaa13ab95@kernel.org>
+Content-Language: en-US
+From: Markuss Broks <markuss.broks@gmail.com>
+In-Reply-To: <207354ad-e363-4156-ba6b-86dbaa13ab95@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 10, 2024 at 01:04:43PM +0100, Jesse Van Gavere wrote:
-> Currently the example will not work when implemented as-is as there are
-> some properties and nodes missing.
-> - Define two eth ports, one for each switch for clarity.
+Hi Krzysztof,
 
-For clarity of what? That's just example, not complete code. Aren't you
-adding unrelated pieces - ones not being part of this binding?
+On 12/13/24 9:40 AM, Krzysztof Kozlowski wrote:
+> On 12/12/2024 22:09, Markuss Broks wrote:
+>> Add the schema for the Samsung SPEEDY serial bus host controller.
+>> The bus has 4 bit wide addresses for addressing devices
+>> and 8 bit wide register addressing. Each register is also 8
+>> bit long, so the address can be 0-f (hexadecimal), node name
+>> for child device follows the format: node_name@[0-f].
+>
+> This wasn't tested so limited review.
+>
+> A nit, subject: drop second/last, redundant "bindings". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+>
+>> Co-developed-by: Maksym Holovach <nergzd@nergzd723.xyz>
+>> Signed-off-by: Maksym Holovach <nergzd@nergzd723.xyz>
+>> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+>> ---
+>>   .../bindings/soc/samsung/exynos-speedy.yaml        | 78 ++++++++++++++++++++++
+> Filename must match compatible.
+>
+>>   1 file changed, 78 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-speedy.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-speedy.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..304b322a74ea70f23d8c072b44b6ca86b7cc807f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-speedy.yaml
+>> @@ -0,0 +1,78 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/soc/samsung/exynos-speedy.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Samsung Exynos SPEEDY serial bus host controller
+> Speedy or SPEEDY?
+Technically it's an acronym (Serial Protocol in an EffEctive Digital 
+waY), but we could agree on if we use the capitalized or uncapitalised 
+version and use it consistently throughout.
+>
+>> +
+>> +maintainers:
+>> +  - Markuss Broks <markuss.broks@gmail.com>
+>> +
+>> +description:
+>> +  Samsung SPEEDY is a proprietary Samsung serial 1-wire bus.
+> 1-wire? But not compatible with w1 (onwire)?
+Nope, I suppose this requires more clarification, as explained in the 
+previous letter, there are several differences between the protocols, 
+looking at the Samsung patent. [1]
+>
+>> +  It is used on various Samsung Exynos chips. The bus can
+>> +  address at most 4 bit (16) devices. The devices on the bus
+>> +  have 8 bit long register line, and the registers are also
+>> +  8 bit long each. It is typically used for communicating with
+>> +  Samsung PMICs (s2mps17, s2mps18, ...) and other Samsung chips,
+>> +  such as RF parts.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    - items:
+>> +        - enum:
+>> +            - samsung,exynos9810-speedy
+>> +        - const: samsung,exynos-speedy
+> Drop last compatible and use only SoC specific.
+Makes sense, for some reason I didn't realise it doesn't make much sense.
+>
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    - const: pclk
+> Drop clock-names, not needed for one entry.
+>
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - "#address-cells"
+>> +  - "#size-cells"
+> You do not have them in the properties, anyway required goes before
+> additionalProperties
+>
+>> +
+>> +patternProperties:
+>> +  "^[a-z][a-z0-9]*@[0-9a-f]$":
+> That's odd regex. Look at other bus bindings.
+Okay, I'll look into it.
+>
+>> +    type: object
+>> +    additionalProperties: true
+>> +
+>> +    properties:
+>> +      reg:
+>> +        maxItems: 1
+> maximum: 15
+>
+>> +
+>> +    required:
+>> +      - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    speedy0: speedy@141c0000 {
+> Drop unused label.
+>
+>> +      compatible = "samsung,exynos9810-speedy",
+>> +                   "samsung-exynos-speedy";
+>> +      reg = <0x141c0000 0x2000>;
+>> +      #address-cells = <1>;
+>> +      #size-cells = <0>;
+>> +
+> No resources? No clocks? No interrupts?
+Will extend the example.
+>
+>
+>
+> Best regards,
+> Krzysztof
 
-> - Add mandatory dsa,member properties as it's a dual switch setup example.
-> - Add the mdio node for each switch and define the PHYs under it.
-> - Add a phy-mode and phy-handle to each port otherwise they won't come up.
-> - Add a mac-address property, without this the port does not come up, in
-> the example all 0 is used so the port replicates MAC from the CPU port
-> 
-> Signed-off-by: Jesse Van Gavere <jesse.vangavere@scioteq.com>
-
-Mismatched SoB.
-
-Please run scripts/checkpatch.pl and fix reported warnings. Then please
-run 'scripts/checkpatch.pl --strict' and (probably) fix more warnings.
-Some warnings can be ignored, especially from --strict run, but the code
-here looks like it needs a fix. Feel free to get in touch if the warning
-is not clear.
-
-
-> ---
->  .../bindings/net/dsa/microchip,ksz.yaml       | 89 +++++++++++++++++--
->  1 file changed, 83 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> index 62ca63e8a26f..a08ec0fd01fa 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> @@ -145,13 +145,19 @@ examples:
->    - |
->      #include <dt-bindings/gpio/gpio.h>
->  
-> -    // Ethernet switch connected via SPI to the host, CPU port wired to eth0:
-> +    // Ethernet switches connected via SPI to the host, CPU ports wired to eth0 and eth1:
->      eth0 {
->          fixed-link {
->              speed = <1000>;
->              full-duplex;
->          };
->      };
-> +    eth1 {
-> +        fixed-link {
-> +            speed = <1000>;
-> +            full-duplex;
-> +        };
-> +    };
->  
->      spi {
->          #address-cells = <1>;
-> @@ -167,28 +173,46 @@ examples:
->  
->              spi-max-frequency = <44000000>;
->  
-> +            dsa,member = <0 0>;
-> +
->              ethernet-ports {
->                  #address-cells = <1>;
->                  #size-cells = <0>;
->                  port@0 {
->                      reg = <0>;
->                      label = "lan1";
-> +                    phy-mode = "internal";
-> +                    phy-handle = <&switch0_phy0>;
-> +                    // The MAC is duplicated from the CPU port when all 0
-> +                    mac-address = [00 00 00 00 00 00];
->                  };
->                  port@1 {
->                      reg = <1>;
->                      label = "lan2";
-> +                    phy-mode = "internal";
-> +                    phy-handle = <&switch0_phy1>;
-> +                    mac-address = [00 00 00 00 00 00];
->                  };
->                  port@2 {
->                      reg = <2>;
->                      label = "lan3";
-> +                    phy-mode = "internal";
-> +                    phy-handle = <&switch0_phy2>;
-> +                    mac-address = [00 00 00 00 00 00];
->                  };
->                  port@3 {
->                      reg = <3>;
->                      label = "lan4";
-> +                    phy-mode = "internal";
-> +                    phy-handle = <&switch0_phy3>;
-> +                    mac-address = [00 00 00 00 00 00];
->                  };
->                  port@4 {
->                      reg = <4>;
->                      label = "lan5";
-> +                    phy-mode = "internal";
-> +                    phy-handle = <&switch0_phy4>;
-> +                    mac-address = [00 00 00 00 00 00];
->                  };
->                  port@5 {
->                      reg = <5>;
-> @@ -201,6 +225,27 @@ examples:
->                      };
->                  };
->              };
-> +
-> +            mdio {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                switch0_phy0: ethernet-phy@0 {
-> +                    reg = <0>;
-> +                };
-> +                switch0_phy1: ethernet-phy@1 {
-> +                  reg = <1>;
-> +                };
-> +                switch0_phy2: ethernet-phy@2 {
-> +                  reg = <2>;
-> +                };
-> +                switch0_phy3: ethernet-phy@3 {
-> +                  reg = <3>;
-> +                };
-> +                switch0_phy4: ethernet-phy@4 {
-> +                  reg = <4>;
-> +                };
-> +            };
->          };
->  
->          ksz8565: switch@1 {
-> @@ -209,28 +254,42 @@ examples:
->  
->              spi-max-frequency = <44000000>;
->  
-> +            dsa,member = <1 0>;
-> +
->              ethernet-ports {
->                  #address-cells = <1>;
->                  #size-cells = <0>;
->                  port@0 {
->                      reg = <0>;
-> -                    label = "lan1";
-> +                    label = "lan6";
-
-What's wrong with lan1? Just drop the second switch node, why do you
-need it in the first place? We expect only one example, unless they
-differ which is not the case - they are the same (difference in
-compatible does not count, lacking gpios is rather negative indication
-of needingi the example). More examples, more code to maintain, more
-bugs, more issues - see further comment.
-
-> +                    phy-mode = "internal";
-> +                    phy-handle = <&switch1_phy0>;
-> +                    mac-address = [00 00 00 00 00 00];
+- Markuss
 
 
->                  };
->                  port@1 {
->                      reg = <1>;
-> -                    label = "lan2";
-> +                    label = "lan7";
-> +                    phy-mode = "internal";
-> +                    phy-handle = <&switch1_phy1>;
-> +                    mac-address = [00 00 00 00 00 00];
->                  };
->                  port@2 {
->                      reg = <2>;
-> -                    label = "lan3";
-> +                    label = "lan8";
-> +                    phy-mode = "internal";
-> +                    phy-handle = <&switch1_phy2>;
-> +                    mac-address = [00 00 00 00 00 00];
->                  };
->                  port@3 {
->                      reg = <3>;
-> -                    label = "lan4";
-> +                    label = "lan9";
-> +                    phy-mode = "internal";
-> +                    phy-handle = <&switch1_phy3>;
-> +                    mac-address = [00 00 00 00 00 00];
->                  };
->                  port@6 {
->                      reg = <6>;
-> -                    ethernet = <&eth0>;
-> +                    ethernet = <&eth1>;
->                      phy-mode = "rgmii";
->  
->                      fixed-link {
-> @@ -239,6 +298,24 @@ examples:
->                      };
->                  };
->              };
-> +
-> +            mdio {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                switch1_phy0: ethernet-phy@0 {
-> +                    reg = <0>;
-> +                };
-> +                switch1_phy1: ethernet-phy@1 {
-> +                  reg = <1>;
-
-Messed alignment.
-
-
-Best regards,
-Krzysztof
+[1] https://patents.google.com/patent/US9882711B1/en
 
 
