@@ -1,147 +1,234 @@
-Return-Path: <devicetree+bounces-130752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC9329F0D67
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 14:37:43 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B139F0D71
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 14:41:36 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D052283AFE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 13:37:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8723F188BD8A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 13:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1651E009E;
-	Fri, 13 Dec 2024 13:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A2411E0487;
+	Fri, 13 Dec 2024 13:41:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WR9W7c00"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="S+l8Phye"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA95338DE1;
-	Fri, 13 Dec 2024 13:37:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7E638DE1;
+	Fri, 13 Dec 2024 13:41:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734097060; cv=none; b=Q4KQPoUI1bP9/x8W/wkTnuy+d3KdelLiIZU32GSSv8E1AgiegPb94IdTtupwBU8Yxd9ebIpZbGxFZKgImLRNMDsP1VbWh8/BwM22nD+bYDf2GQNfFIzdLoP19DyekyTTuXKYAW+XnbQjWz2DHQCpNzu//iqm6oB0SCQ9c9aCmr4=
+	t=1734097292; cv=none; b=H6Ab10xOmoMMTok7qhj+fB6vlw+MugKTdSuX+GWR7zP8XNh5bFyVTYMkncTgUaQbLS+JF6dxm4xGekgw9GN3i+2UzKRbtm7DCADW5FqyxbDIkVNh6FVHvW9NQGBxTQD3qvtOdygAUKIjrI7Qt66KhawgbuWJASL0si6vXrjTHsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734097060; c=relaxed/simple;
-	bh=qoFk5BHIQXYDzLpPruQaqO0fOwCLOUhE6gz5VlyFQPI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=oTanHOY9/nlIURupLtfTTVmriaLZF7Nr11HJbkom/xvi7KuQbqz7hhS/VHM2eL9phw8a89vOE5boh0TvKs9joX4e4d0VF4skke27fRj1rLDojVIGDg61vNJdp9BUWoiSOoVPxylUDM6hLjWvBoLwEhribRLTz787L5LTWCxSsMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WR9W7c00; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BDBhkrg017764;
-	Fri, 13 Dec 2024 13:37:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	6oSf14VYTD1Dy2OgN5EQWQcU/iRtkhJhW3V9nmUxeNA=; b=WR9W7c00T3eeYcq6
-	mlqzuu3xjHe8Pzrh8EjGXhoEFmXXPiefxmVSsUCQ6g2F1Ge7KavuyDpe8M33ZWQZ
-	9wZT0YSP+BffhqT/wMenfdfogsYKZ6ikHyCPR8CrwcTfSp64mfvotA55AxH4ytTb
-	lcamLdaBpvNjl2yJaiaRkFcNQjIVZtuVW5Pe2xjXPROmcLd42PFZO6wdoe+dhFa6
-	OO4MBb9u1n1ObmArd1DomysBl8GMzh4xtCWEfKOMo6NUfcUnBdh28p02LI9Eizd6
-	AStpW4FYSWZk7eocJJBQIshixd6sFg+LrvFeTLtkUeu0v29r62sDKvrhSMw1wrpc
-	Rq2c+A==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43gmac09hu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 13:37:26 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BDDbOnQ017995
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 13:37:24 GMT
-Received: from [10.204.101.130] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 13 Dec
- 2024 05:37:17 -0800
-Message-ID: <e2ae139a-0285-455a-a2b1-520deeeacc0b@quicinc.com>
-Date: Fri, 13 Dec 2024 19:07:14 +0530
+	s=arc-20240116; t=1734097292; c=relaxed/simple;
+	bh=zhRKhkXM9NV1IvPbodM/PpN5XKo5eHA3bD2RJIcWmUA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=eGL42TZL5j1v8i8AsbFSRmwKqkoizaQEBRbqZ+IJ2rfmdBVnwGl5gH/XTp4hMw++8aVQjVVGveWOW0D65WL5eR/oXhKz2kqncMZyn4y5MifmUQYxQpQDCcpY+gI+JlHI4pOLq6OZgAzq4eupnoieZkFVhkvA9ECtUfeNLNhtwrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=S+l8Phye; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1734097290; x=1765633290;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=zhRKhkXM9NV1IvPbodM/PpN5XKo5eHA3bD2RJIcWmUA=;
+  b=S+l8PhyendLrLbjbqw0/mlQGms0O5BDs40QupdavJMGXzfHHmDzJEI3b
+   heTk2cmoLuy75xBVN5Tlwv/EnDB583EImhib6ByrRzgn0rAsRVBCRqJHl
+   SBaD+GzMNqV5ZfFRBLPj8kErn2Ie1mYmzGm7xNxhkkCXMraKwpjYcPfgq
+   1xFbnzVXL1tlwObkG8n/XYlkiJQ5y48RbO7//ewk96DMmY7FODVnVNlgB
+   Ik4i1kLM2AMVurmUhYwWJRjC1iK4uA2ERxXNB5dAR3RjVdw3xer6+GjDn
+   ljs/lUKSCgLpTxdOfdGJGvIh8j9J2H2SNprph6eS2DojfVP9XP7pdBn+J
+   Q==;
+X-CSE-ConnectionGUID: +Dz6lc3EQgqK8+CPf2Bkrw==
+X-CSE-MsgGUID: 7b3ndOfnTk6UYN4rKutt3w==
+X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; 
+   d="scan'208";a="202965468"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Dec 2024 06:41:28 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 13 Dec 2024 06:41:16 -0700
+Received: from DEN-DL-M70577.microchip.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Fri, 13 Dec 2024 06:41:12 -0700
+From: Daniel Machon <daniel.machon@microchip.com>
+Subject: [PATCH net-next v4 0/9] net: lan969x: add RGMII support
+Date: Fri, 13 Dec 2024 14:40:59 +0100
+Message-ID: <20241213-sparx5-lan969x-switch-driver-4-v4-0-d1a72c9c4714@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: display/msm/gmu: Document RGMU
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Clark
-	<robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Dmitry
- Baryshkov" <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <20241104-add_initial_support_for_qcs615-v5-4-9dde8d7b80b0@quicinc.com>,
-        <20241022-qcs615-clock-driver-v4-3-3d716ad0d987@quicinc.com>,
-        <20240924143958.25-2-quic_rlaggysh@quicinc.com>,
-        <20241108-qcs615-mm-clockcontroller-v3-7-7d3b2d235fdf@quicinc.com>,
-        <20241108-qcs615-mm-dt-nodes-v1-1-b2669cac0624@quicinc.com>,
-        <20241122074922.28153-1-quic_qqzhou@quicinc.com>
-References: <20241213-qcs615-gpu-dt-v2-0-6606c64f03b5@quicinc.com>
- <20241213-qcs615-gpu-dt-v2-2-6606c64f03b5@quicinc.com>
- <28bf46a5-dedb-4491-b9be-23fdfb99035f@oss.qualcomm.com>
-Content-Language: en-US
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <28bf46a5-dedb-4491-b9be-23fdfb99035f@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: F2-cLpN7sj4SRHwnUinA5cU8tO6xNmBd
-X-Proofpoint-GUID: F2-cLpN7sj4SRHwnUinA5cU8tO6xNmBd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
- suspectscore=0 spamscore=0 adultscore=0 mlxlogscore=999 lowpriorityscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412130096
+X-B4-Tracking: v=1; b=H4sIAGs5XGcC/4XOS2rEMAyA4asMXlfFjp2Hu+o9yiz8UGpB4wQ7u
+ BmG3L2e0MVQClkKoe/XnWVMhJm9Xe4sYaFMc6yDerkwF0z8RCBfZ9bwRgnBFeTFpK2FLxN1pzf
+ I37S6AD5RwQQKfKttPzRcDa1hFVkSjrQdgQ8WcYWI28qudWNNRrDJRBcegclQfBwEyuucbsdDR
+ Rxnv+3urF0EcBj7sZeiU7Kz/n0il2YXaHl183RUS/NECnlKNpXk3urBOK47L/4j5TM5nJKyktL
+ hiNhij9L8Jfd9/wG9QZsWlwEAAA==
+To: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, "Lars
+ Povlsen" <lars.povlsen@microchip.com>, Steen Hegelund
+	<Steen.Hegelund@microchip.com>, Horatiu Vultur
+	<horatiu.vultur@microchip.com>, Russell King <linux@armlinux.org.uk>,
+	<jacob.e.keller@intel.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<robert.marko@sartura.hr>
+X-Mailer: b4 0.14-dev
 
-On 12/13/2024 4:23 PM, Konrad Dybcio wrote:
-> On 13.12.2024 11:35 AM, Akhil P Oommen wrote:
->> RGMU a.k.a Reduced Graphics Management Unit is a small state machine
->> with the sole purpose of providing IFPC support. Compared to GMU, it
->> doesn't manage GPU clock, voltage scaling, bw voting or any other
->> functionalities. All it does is detect an idle GPU and toggle the
->> GDSC switch. So it doesn't require iommu & opp table.
->>
->> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->> ---
-> 
-> The bindings file exists so that people that are not in the know, can
-> reference it and learn about the hardware. Please spell out IFPC, as
-> that's a non-obvious, hw-specific  acronym.
-> 
-> Otherwise looks ok
+== Description:
 
-Ah right. Krzysztof schooled me that a while ago.
-Will update.
+This series is the fourth of a multi-part series, that prepares and adds
+support for the new lan969x switch driver.
 
--Akhil.
+The upstreaming efforts is split into multiple series (might change a
+bit as we go along):
 
-> 
-> Konrad
+        1) Prepare the Sparx5 driver for lan969x (merged)
+
+        2) Add support for lan969x (same basic features as Sparx5
+           provides excl. FDMA and VCAP, merged).
+
+        3) Add lan969x VCAP functionality (merged).
+
+    --> 4) Add RGMII support.
+
+        5) Add FDMA support.
+
+== RGMII support:
+
+The lan969x switch device includes two RGMII port interfaces (port 28
+and 29) supporting data speeds of 1 Gbps, 100 Mbps and 10 Mbps.
+
+== Patch breakdown:
+
+Patch #1 does some preparation work.
+
+Patch #2 adds new function: is_port_rgmii() to the match data ops.
+
+Patch #3 uses the is_port_rgmii() in a number of places.
+
+Patch #4 makes sure that we do not configure an RGMII device as a
+         low-speed device, when doing a port config.
+
+Patch #5 makes sure we only return the PCS if the port mode requires
+         it.
+
+Patch #6 adds checks for RGMII PHY modes in sparx5_verify_speeds().
+
+Patch #7 adds registers required to configure RGMII.
+
+Patch #8 adds RGMII implementation.
+
+Patch #9 documents RGMII delays in the dt-bindings.
+
+Details are in the commit description of the individual patches
+
+To: UNGLinuxDriver@microchip.com
+To: Andrew Lunn <andrew+netdev@lunn.ch>
+To: David S. Miller <davem@davemloft.net>
+To: Eric Dumazet <edumazet@google.com>
+To: Jakub Kicinski <kuba@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+To: Lars Povlsen <lars.povlsen@microchip.com>
+To: Steen Hegelund <Steen.Hegelund@microchip.com>
+To: Horatiu Vultur <horatiu.vultur@microchip.com>
+To: Russell King <linux@armlinux.org.uk>
+To: jacob.e.keller@intel.com
+To: robh@kernel.org
+To: krzk+dt@kernel.org
+To: conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: netdev@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: robert.marko@sartura.hr
+
+Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+---
+Changes in v4:
+
+- Split patch #4 in v3 into two patches, where the new patch #5 handles
+  PCS selection, by returning the PCS only for ports that require it.
+
+- Got rid of the '|' symbol for {rx,tx}-internal-delay-ps property
+  description in the dt-bindings (patch #9).
+
+- Link to v3: https://lore.kernel.org/r/20241118-sparx5-lan969x-switch-driver-4-v3-0-3cefee5e7e3a@microchip.com
+
+Changes in v3:
+
+v2 was kindly tested by Robert Marko. Not carrying the tag to v3 since
+we have changes to the handling of the delays.
+
+- Modified lan969x_rgmii_delay_config() to not apply any MAC delay when
+  the {rx,tx}-internal-delay-ps properties are missing or set to 0
+  (patch #7).
+
+- Removed 'required' constraint from {rx-tx}-internal-delay-ps
+  properties. Also added description and default value (Patch #8).
+
+- Link to v2: https://lore.kernel.org/r/20241113-sparx5-lan969x-switch-driver-4-v2-0-0db98ac096d1@microchip.com
+
+Changes in v2:
+
+  Most changes are in patch #7. RGMII implementation has been moved to
+  it's own file lan969x_rgmii.c.
+
+  Details:
+
+    - Use ETH_P_8021Q and ETH_P_8021AD instead of the Sparx5 provided
+      equivalents (patch #7).
+    - Configure MAC delays through "{rx,tx}-internal-delay-ps"
+      properties (patch #7).
+    - Add selectors for all the phase shifts that the hardware supports
+      (instead of only 2.0 ns, patch #7).
+    - Add selectors for all the port speeds (instead of only 1000 mbps.)
+    - Document RGMII delays in dt-bindings.
+
+  - Link to v1: https://lore.kernel.org/r/20241106-sparx5-lan969x-switch-driver-4-v1-0-f7f7316436bd@microchip.com
+
+---
+Daniel Machon (9):
+      net: sparx5: do some preparation work
+      net: sparx5: add function for RGMII port check
+      net: sparx5: use is_port_rgmii() throughout
+      net: sparx5: skip low-speed configuration when port is RGMII
+      net: sparx5: only return PCS for modes that require it
+      net: sparx5: verify RGMII speeds
+      net: lan969x: add RGMII registers
+      net: lan969x: add RGMII implementation
+      dt-bindings: net: sparx5: document RGMII delays
+
+ .../bindings/net/microchip,sparx5-switch.yaml      |  18 ++
+ drivers/net/ethernet/microchip/sparx5/Makefile     |   3 +-
+ .../ethernet/microchip/sparx5/lan969x/lan969x.c    |   5 +
+ .../ethernet/microchip/sparx5/lan969x/lan969x.h    |  10 +
+ .../microchip/sparx5/lan969x/lan969x_rgmii.c       | 224 +++++++++++++++++++++
+ .../net/ethernet/microchip/sparx5/sparx5_main.c    |  29 ++-
+ .../net/ethernet/microchip/sparx5/sparx5_main.h    |   3 +
+ .../ethernet/microchip/sparx5/sparx5_main_regs.h   | 145 +++++++++++++
+ .../net/ethernet/microchip/sparx5/sparx5_phylink.c |  14 +-
+ .../net/ethernet/microchip/sparx5/sparx5_port.c    |  57 ++++--
+ .../net/ethernet/microchip/sparx5/sparx5_port.h    |   5 +
+ 11 files changed, 484 insertions(+), 29 deletions(-)
+---
+base-commit: 2c27c7663390d28bc71e97500eb68e0ce2a7223f
+change-id: 20241104-sparx5-lan969x-switch-driver-4-d59b7820485a
+
+Best regards,
+-- 
+Daniel Machon <daniel.machon@microchip.com>
 
 
