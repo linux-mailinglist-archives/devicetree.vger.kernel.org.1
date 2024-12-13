@@ -1,143 +1,187 @@
-Return-Path: <devicetree+bounces-130717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 888DA9F0B41
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 12:35:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 110A89F0B39
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 12:34:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2C50188AFC3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:34:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0268B1883D39
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:33:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629B81DFD9F;
-	Fri, 13 Dec 2024 11:33:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A49461DEFE6;
+	Fri, 13 Dec 2024 11:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="khzazzgB"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="ZSt1HQDo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com [209.85.214.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873DC1DF73E;
-	Fri, 13 Dec 2024 11:33:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A7A1E493
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 11:33:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734089604; cv=none; b=h1sxRl3O8CjiHTL5kdGiCagSdm1Nlf40zKAhVSk1XxdHcCMeVDeaJcE2fCxkRiuO7dRnhiLPW4q0R3cBy9pwDX7cpINw0ma49mvaeI3MfSSW4335/zLPRZPbP4E3gqaCmGEeqsDwgwIKB0xuAvOlT2mK3bCdCVez0qTcz0M+37E=
+	t=1734089597; cv=none; b=FM55DAEwq2gUPTY9kHEnjflXs1pE6BxcfgkkcPWbj7aGI6SaqC7bHcO5km1H8Qvv8ufMr5gY+we0pAyxc5TEtBim6HTzQWcztAEBIRfd56TAcQTZ3EfeDxdRAlICElgvMpid3vzJUVLYGQrs7TI/JOt9INfKmt3XQ2sZjE7gjY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734089604; c=relaxed/simple;
-	bh=MLMEOAeqD8IEUkGSEWY7TkOiucHmzMnYso5eUsbRofA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Ys/uxJQHPS4n3LH0zMdBuSe4glcPl3CfOpeY+6Kl+yxZB0RZ83LBkRbkKcmxWV/kNjAa6yZ2NybBpo/q1LYckdUE/WAlKnZbvTYukRx3DdveMhmszG612sYtvksYp+wqwO/RS0tyfVr4v88bkxUkLBv+0Knur6lNeYVFwFCWcUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=khzazzgB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BDBThRr001370;
-	Fri, 13 Dec 2024 11:33:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BIgbwr4YWRO5BTx9mcS9BRDtQqI3IxHVQ2bwLnBizJU=; b=khzazzgBeT6/lgTn
-	ZivKMMSC6/GGRf0PhcxMAQUXiw8jApy/VWBZtXQx97/RsRRgqDZi5ygcH7OL0NS5
-	Jc8QrM2W3FvDK5c7kof9Sav80QMMvO6u/E5Ia1t4jo27XHgYA5xD6rmVKfvrMdGu
-	e3EvYkpUyhl+6IYbDLrY/peLenzREXvWujwVROK2XEd/6SEUNkTL5cNmwbaYg5LZ
-	DxGzLNMaaGmA2f8HdwijKyhdHQVIvUVz1rzvF9EYaovQiV7UIcJ5505Ec6S3Aic1
-	fpyFKiOEutDb4U/WbnTP+2E6YdbSwc95vMe/mMXJT47Hpw75LEQZYivv4Zyitzdj
-	21y3FQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43gm3s00d0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 11:33:07 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BDBX6W8018120
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 11:33:06 GMT
-Received: from [10.204.101.130] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 13 Dec
- 2024 03:33:00 -0800
-Message-ID: <db8f433c-1a2e-4a46-8b46-3a8e09c080bd@quicinc.com>
-Date: Fri, 13 Dec 2024 17:02:56 +0530
+	s=arc-20240116; t=1734089597; c=relaxed/simple;
+	bh=tbP+jC6o0WUbBs5wzvPexsjiCSh2sPVpbTXynXjrfGk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CFns60WdUSZSrN2+2N8WEiuxkrAbL0r+QTM4yPVWVTianigJDdP/al0NgoG1DYtR3Ay+QkVNYmPImgzqtYRqSJqxkdUY2nvuW1KcCLkQcvszsuvNGANzn0jXy59XYrN7sdMwPVWgYLUsfXRfhlGqEC4/dBxNQzeFf92RvKbTvac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=ZSt1HQDo; arc=none smtp.client-ip=209.85.214.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pl1-f193.google.com with SMTP id d9443c01a7336-21683192bf9so15898375ad.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 03:33:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1734089595; x=1734694395; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=26MbCcxBXRObwdyBKZjlPQXxYB9MTH5C48d0Ryy4x64=;
+        b=ZSt1HQDoJSRx7q43X8bBcy0emGKMjRnLv7yf4uUnJa2vL+ZoQcI3wlPhquGpsp6ND9
+         e/vntTexPmo+AWurBu2bPGvA3pwBdl3NhCLsZa65kWLFvV0tG3bB1nPjMvDWkUv/hHtJ
+         5ZZ3T0WiLkpYM8fpV0CMa34FwIXrXiBiEtQKExKFjJREoVmka0FY1YV4dG3gbzQqgAsu
+         mIhPaY6Wl5qNE/B9fKzkQL72Yp4KGzRnuj2zyMSsmsLptYk9/6x4XJCIQCuPKMQZQ2t7
+         PTz0NF+xNSTxvlnkQOqRvnToyZATqzaDvYZNPogv9QAMR5d4WGq0x58fXsmxxl1HPSa6
+         lvsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734089595; x=1734694395;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=26MbCcxBXRObwdyBKZjlPQXxYB9MTH5C48d0Ryy4x64=;
+        b=DaW28PkJcv6pgPn2CZYsyq4ByICRcvW2/74h49iiwE6cSRH1f4PVR5gaO05sGU4Ytb
+         8Hoe0pf1XUxgq12njeTlWC6iaaAHazxxDqLG0lcSngtqXtHczEZkdhzJCFRtSR0yRnwX
+         wg0FD/Ux+8lTYS03GnLwtmYpj1kucRk0TJsKwrScbuvkLUsZ+u48lQAdi0Wwi9cPTA9/
+         NOqWE/zr3bvfds1FhIDu24oaTwbRLnySnQm00XBtfmslBVKOL0Wvkn21tOPKylaEMyc0
+         aiBaTD2bmQgyVyI/hW4f5ishwNUP2lu1iLkoVEKZMDUNbxbm5rIuBRT5Myu2z/ernLjC
+         ++JA==
+X-Forwarded-Encrypted: i=1; AJvYcCW3iTHwFyugWQLYkxAowRLQXbpEdM5KZVO55rgd2FyCTY61imYeUBBmSRsRYC6hOgR4ocloZ+JGW1s8@vger.kernel.org
+X-Gm-Message-State: AOJu0YxB882eqAYNh0ZD7IiyUeCAnFzFj+mNg/K27zsUC9L3PItGkgok
+	NIzBwIqrpDHr+eA25bqKbfsagL5QzH705ICmI39Ll3IsS4LuD5hX9Y585g20gI0=
+X-Gm-Gg: ASbGnctmV83F2oLvBLkNRwU3vZkZlLr6ghQuPMCZFYBGmrGsSa0/3W4achaNoQE2zn+
+	lfUI3ONC1l6z3gklRdFjqTkqg7a4NW4j5BWCUjc2fXJbJz0VL/qtEZ7yVCZhmmylwWR/liPwd66
+	RBQ08KojXXtrvQpjD+MjEJvCswCoTSQtByL0HwtkLZN2OT+evez/WkmHuRbMY0pJvvnllqPoTfH
+	JY4qZkX31ak7xHePIqMDEzIDpb3v0pJwneEWEA23/jy1O4ezzPFIe4=
+X-Google-Smtp-Source: AGHT+IE2aHmaFHTR9iBiCUjqMgt+u4ssTP/m0KwR0xBzwYlNhga7euk988OdWGvjpY5KeC8o/0oqRQ==
+X-Received: by 2002:a17:902:d50c:b0:215:bc30:c952 with SMTP id d9443c01a7336-2189298a144mr36097955ad.6.1734089595266;
+        Fri, 13 Dec 2024 03:33:15 -0800 (PST)
+Received: from [127.0.1.1] ([210.176.154.34])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21631bd2c2dsm103327125ad.263.2024.12.13.03.33.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Dec 2024 03:33:14 -0800 (PST)
+From: Max Hsu <max.hsu@sifive.com>
+Subject: [PATCH RFC v4 0/3] riscv: add Svukte extension
+Date: Fri, 13 Dec 2024 19:33:06 +0800
+Message-Id: <20241213-dev-maxh-svukte-v4-v4-0-92762c67f743@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v2 01/26] dt-bindings: qcom,pdc: document QCS615
- Power Domain Controller
-To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Lijuan Gao <quic_lijuang@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20241213-qcs615-gpu-dt-v2-0-64751d9c3748@quicinc.com>
- <20241213-qcs615-gpu-dt-v2-1-64751d9c3748@quicinc.com>
-Content-Language: en-US
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <20241213-qcs615-gpu-dt-v2-1-64751d9c3748@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: pWkbnSZTquiH9fP4kc8J36NSkjJOD3z0
-X-Proofpoint-GUID: pWkbnSZTquiH9fP4kc8J36NSkjJOD3z0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 impostorscore=0 phishscore=0 mlxscore=0 bulkscore=0
- spamscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 malwarescore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412130080
+X-B4-Tracking: v=1; b=H4sIAHIbXGcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyTHQUlJIzE
+ vPSU3UzU4B8JSMDIxNDI0Nj3ZTUMt3cxIoM3eKy0uySVN0yE11jE0MDw9RkSxPTVEsloMaCotS
+ 0zAqwodFKQW7OSrG1tQCcvFY+aQAAAA==
+X-Change-ID: 20241213-dev-maxh-svukte-v4-34101ec945e9
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Anup Patel <anup@brainfault.org>, Atish Patra <atishp@atishpatra.org>
+Cc: Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, kvm@vger.kernel.org, 
+ kvm-riscv@lists.infradead.org, Max Hsu <max.hsu@sifive.com>, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Deepak Gupta <debug@rivosinc.com>, Alexandre Ghiti <alexghiti@rivosinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3076; i=max.hsu@sifive.com;
+ h=from:subject:message-id; bh=tbP+jC6o0WUbBs5wzvPexsjiCSh2sPVpbTXynXjrfGk=;
+ b=owEB7QES/pANAwAKAdID/Z0HeUC9AcsmYgBnXBt3nDotuBhQJRSQUC7kSPKHLLlxqASJuOrQK
+ U5Px7fhMk6JAbMEAAEKAB0WIQTqXmcbOhS2KZE9X2jSA/2dB3lAvQUCZ1wbdwAKCRDSA/2dB3lA
+ vcR4C/4irx2RT/e5bqfqAIm563+xO9z5R4UvXSir/eIK9aVaHYeMVqEdWbPauFsH5lGk+WLVpEh
+ B9p8z3ebch6wZM/EHolPkw5wCN6bU7kouNEK4mTX9ciVvsgk2viGkFg2kuwQvxkDyPPTI0lG8py
+ 1O3tqm3kG9nv6YuBgJE/jFYHQK7AWqyGq+Z97fxy1+je3mdJ360SkwAJwLJruDet2/B39bd0wud
+ Ye+9EUv44RY8nUGvq1E2teWhCcDGwysMSPwo1euaAG98AGzu82QpJMNE6CVjTcjryau0iu9eXBi
+ XYoOpu/POI0s/hE8t+RQpofxtx7Zxn0jbtV98fsNKJGCkHm2jPIwTetFCcRnxQ6+qY1Rv0FSUr3
+ rFMddvmyn+KHaBt0yccQpl8GOFWWUtn2G75N80wP5IUUW0H/6i/bCh45IGKSEVIMM/elBip6kNJ
+ 6sczUcrwCMH7g+b/5nuLrefqZXCg3p8Fk8/PBw0e9gXgz5aFBEX3c4jf/BR6ynSkuAHds=
+X-Developer-Key: i=max.hsu@sifive.com; a=openpgp;
+ fpr=EA5E671B3A14B629913D5F68D203FD9D077940BD
 
-On 12/13/2024 4:54 PM, Akhil P Oommen wrote:
-> From: Lijuan Gao <quic_lijuang@quicinc.com>
-> 
-> Add a compatible for the Power Domain Controller on QCS615 platform.
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-> index b1ea08a41bb0c369985c5f2d5b4c4644367a88dd..ac7ccd98944157d2b914b04753ed7e4ab08c5187 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
-> @@ -26,6 +26,7 @@ properties:
->    compatible:
->      items:
->        - enum:
-> +          - qcom,qcs615-pdc
->            - qcom,qdu1000-pdc
->            - qcom,sa8255p-pdc
->            - qcom,sa8775p-pdc
-> 
+RISC-V privileged spec will be added with Svukte extension [1] 
 
-Please ignore this mail.
+Svukte introduce senvcfg.UKTE and hstatus.HUKTE bitfield.
+which makes user-mode access to supervisor memory raise page faults
+in constant time, mitigating attacks that attempt to discover the 
+supervisor software's address-space layout.
 
--Akhil.
+In the Linux kernel, since the hstatus.HU bit is not enabled,
+the following patches only enable the use of senvcfg.UKTE.
+
+For Guest environments, because a Guest OS (not limited to Linux)
+may hold mappings from GVA to GPA, the Guest OS should decide
+whether to enable the protection provided by the Svukte extension.
+
+Since the Guest OS may utilize the Svukte extension simply by setting
+the senvcfg.UKTE without any trap to host. In the view of VMM, the
+Svukte extension should be always presented. Therefore adding an
+extra entry in kvm_riscv_vcpu_isa_disable_allowed().
+
+If the Guest environment wants to change senvcfg.UKTE, KVM already
+provides the senvcfg CSR swap support via 
+kvm_riscv_vcpu_swap_in_(host|guest)_state.
+Thus, there is no concern about the Guest OS affecting the Host OS. 
+
+The following patches add 
+- dt-binding of Svukte ISA string
+- CSR bit definition, ISA detection, senvcfg.UKTE enablement in kernel
+- KVM ISA support for Svukte extension
+
+Changes in v4:
+- rebase on riscv/for-next
+- add kvm_riscv_vcpu_isa_disable_allowed() entry addressed by Anup
+  and Andrew from v2/v3 patches.
+  - update the cover letter for the detailed reason
+- update the commit message on dt-binding for the Svukte ISA string
+- Link to v3: https://lore.kernel.org/all/20241120-dev-maxh-svukte-v3-v3-0-1e533d41ae15@sifive.com/
+
+Changes in v3: 
+- rebase on riscv/for-next
+- fixed typo in the dt-binding for the Svukte ISA string
+- updated the commit message for KVM support for the Svukte extension
+- Link to v2: https://lore.kernel.org/all/20240927-dev-maxh-svukte-rebase-2-v2-0-9afe57c33aee@sifive.com/
+
+Changes in v2: 
+- rebase on riscv/for-next (riscv-for-linus-6.12-mw1)
+- modify the description of dt-binding on Svukte ISA string
+- Link to v1: https://lore.kernel.org/all/20240920-dev-maxh-svukte-rebase-v1-0-7864a88a62bd@sifive.com/
+
+Link: https://github.com/riscv/riscv-isa-manual/pull/1564 [1] 
+
+Signed-off-by: Max Hsu <max.hsu@sifive.com>
+
+---
+Max Hsu (3):
+      dt-bindings: riscv: Add Svukte entry
+      riscv: Add Svukte extension support
+      riscv: KVM: Add Svukte extension support for Guest/VM
+
+ Documentation/devicetree/bindings/riscv/extensions.yaml | 9 +++++++++
+ arch/riscv/include/asm/csr.h                            | 2 ++
+ arch/riscv/include/asm/hwcap.h                          | 1 +
+ arch/riscv/include/uapi/asm/kvm.h                       | 1 +
+ arch/riscv/kernel/cpufeature.c                          | 5 +++++
+ arch/riscv/kvm/vcpu_onereg.c                            | 2 ++
+ 6 files changed, 20 insertions(+)
+---
+base-commit: fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
+change-id: 20241213-dev-maxh-svukte-v4-34101ec945e9
+
+Best regards,
+-- 
+Max Hsu <max.hsu@sifive.com>
 
 
