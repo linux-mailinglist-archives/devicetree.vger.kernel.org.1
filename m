@@ -1,140 +1,147 @@
-Return-Path: <devicetree+bounces-130751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C98649F0D4F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 14:31:45 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC9329F0D67
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 14:37:43 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62185161131
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 13:31:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D052283AFE
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 13:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1861E00AC;
-	Fri, 13 Dec 2024 13:31:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1651E009E;
+	Fri, 13 Dec 2024 13:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u4C0YhT8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WR9W7c00"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA5631DF273
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 13:31:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA95338DE1;
+	Fri, 13 Dec 2024 13:37:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734096699; cv=none; b=hU9fMGiStyniuRu/nm5QEGhtFnCea4KtxtqN0LEWfD4x4Z5CvDKuWu4C6FII3xbYc3l2Dnp0PxWyL8AE/xZxwcGamiC9s+SUNWnbf8K5ukAPCk54yNUMjQGrnEWPd8FeOV/e3i+9xRI0ufWxvjOJZNu64nFKyGsouBLHQdrnWmE=
+	t=1734097060; cv=none; b=Q4KQPoUI1bP9/x8W/wkTnuy+d3KdelLiIZU32GSSv8E1AgiegPb94IdTtupwBU8Yxd9ebIpZbGxFZKgImLRNMDsP1VbWh8/BwM22nD+bYDf2GQNfFIzdLoP19DyekyTTuXKYAW+XnbQjWz2DHQCpNzu//iqm6oB0SCQ9c9aCmr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734096699; c=relaxed/simple;
-	bh=wu7UMBtCHOFAPZSsmL3zymqjUc8WPgPrgGKUYGXgx1k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZrNtT0grKwz5hi8mF0clgPWwnjWMIqjz/lBIO0NBwKemCk2YSYsjQPjp3hsvR/A6ieo0Yxsb0oYHBpH2bM0JncDC7sqeQLkK9w5OZCSI6E+RGBHeWjknRIz/0VMKPnTerdKpHZaX83q6sTFgd034nqfHl9GiD3uGSrdDi1CjjaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u4C0YhT8; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6f00b10bc1dso15976587b3.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 05:31:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734096697; x=1734701497; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sfJqbpO8fzR7hotkw8WChASKcoelnmQh7lFNBgHegyc=;
-        b=u4C0YhT8Og44DZ92w8Vut+7Ps+aDvtLjOgT0uTn8uBX3WxUxS6b3wZPkq+FX3LlFEG
-         /sSJr1TNqGLyEiwTxoPAVjlsdFptbR28m/hUr6yPR5ljwhr9/LYOdxrmZHnpZJv349uP
-         +8so/gp3ltclBBRMVHsxU9HNA+6+NfkRXUPKR46TLd46ye2at+o27+sVsg4m6kzIhnU1
-         WBmaqVsZQbD/eEYB/8GiSVRObZuJP0eDjSYJS+zEn+YfSGmq8cAMCGoIzyhkmxgOG7Xm
-         XdOXJqhe/we68N8IcPsg/UAKt0CpaE8OaXdgxJlQNID4t8Qje1m5wnWd41gxrFPax4in
-         DWXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734096697; x=1734701497;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sfJqbpO8fzR7hotkw8WChASKcoelnmQh7lFNBgHegyc=;
-        b=jRZ4wmIkvvc18y84IhpdQPFYVSJgxi2iQ9RMVfgh3LA7KhQ3wg4foZQGwipghyLW3y
-         YtDFC/ZfleSoXkIeqt1gNCvhn8zf9Fp3H+i+l1uN2i9A9OctJYzHj9h+a1MI9RLaM5Lo
-         DFRQC4dF8gy7si5TbL9ZG5/Bo9BU46OZzLrxT1+P941jLXXN/8io+SOoijmKd+wm+u3k
-         Z1qAFV3mGM3RKHWDXArYHtL7lXR7tskIGPhXSEjXRyBmJAm0YGIJ1Vmk/fm8bOtwpSlA
-         5KNgUcxeozmqsTX8zu5wv+kuV0hrK6E7QegNEbsNm31M5EyoJqFypWF0w0bnhpa9ozqr
-         hZfA==
-X-Forwarded-Encrypted: i=1; AJvYcCVP1mbNFT6KZOtPo8jW4iKiW48yBFrRfES9Bw+kAyZalVHZJu/tz08bQOTOXKgeK2K/Cku6XJ+Q3qUl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLA3yGZjSNSZdfTiOTHDflS9f/GN9X2VAxArdelJj5Qh3n2GXK
-	sEjft8fCNDz3Rib8IRtDDBazTlo2D8tU0gDmNHifO7qFT5D5sWjlqjckieb43wSFHWUvMSuJkyq
-	IHJYF36EzTE+uT7RbD9OVZHsXtclqP3UX6UqB4Q==
-X-Gm-Gg: ASbGnctz0et0Ee2jrSX4LWHbQOVQG1XGEC3jzOKIc4qRDrpguNCI+hANWbnxtp4QHfP
-	6kZWPYHIJheDDaARppm1gehpKGWS4x0k+SL2K
-X-Google-Smtp-Source: AGHT+IG2oQo9/pJojNxPge9b6BLy5vw+9wYfAvJ7mQMiGJU6v/4xK8PvgaXtkMMl3WrEhcVUtJlFxa3Ns2fJC50KKas=
-X-Received: by 2002:a05:690c:6e13:b0:6ef:7fdb:7d41 with SMTP id
- 00721157ae682-6f2798e0c42mr25633727b3.0.1734096696819; Fri, 13 Dec 2024
- 05:31:36 -0800 (PST)
+	s=arc-20240116; t=1734097060; c=relaxed/simple;
+	bh=qoFk5BHIQXYDzLpPruQaqO0fOwCLOUhE6gz5VlyFQPI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=oTanHOY9/nlIURupLtfTTVmriaLZF7Nr11HJbkom/xvi7KuQbqz7hhS/VHM2eL9phw8a89vOE5boh0TvKs9joX4e4d0VF4skke27fRj1rLDojVIGDg61vNJdp9BUWoiSOoVPxylUDM6hLjWvBoLwEhribRLTz787L5LTWCxSsMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WR9W7c00; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BDBhkrg017764;
+	Fri, 13 Dec 2024 13:37:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6oSf14VYTD1Dy2OgN5EQWQcU/iRtkhJhW3V9nmUxeNA=; b=WR9W7c00T3eeYcq6
+	mlqzuu3xjHe8Pzrh8EjGXhoEFmXXPiefxmVSsUCQ6g2F1Ge7KavuyDpe8M33ZWQZ
+	9wZT0YSP+BffhqT/wMenfdfogsYKZ6ikHyCPR8CrwcTfSp64mfvotA55AxH4ytTb
+	lcamLdaBpvNjl2yJaiaRkFcNQjIVZtuVW5Pe2xjXPROmcLd42PFZO6wdoe+dhFa6
+	OO4MBb9u1n1ObmArd1DomysBl8GMzh4xtCWEfKOMo6NUfcUnBdh28p02LI9Eizd6
+	AStpW4FYSWZk7eocJJBQIshixd6sFg+LrvFeTLtkUeu0v29r62sDKvrhSMw1wrpc
+	Rq2c+A==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43gmac09hu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Dec 2024 13:37:26 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BDDbOnQ017995
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Dec 2024 13:37:24 GMT
+Received: from [10.204.101.130] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 13 Dec
+ 2024 05:37:17 -0800
+Message-ID: <e2ae139a-0285-455a-a2b1-520deeeacc0b@quicinc.com>
+Date: Fri, 13 Dec 2024 19:07:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241213-qcs615-gpu-dt-v2-0-47f3b312b178@quicinc.com> <20241213-qcs615-gpu-dt-v2-4-47f3b312b178@quicinc.com>
-In-Reply-To: <20241213-qcs615-gpu-dt-v2-4-47f3b312b178@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 13 Dec 2024 15:31:25 +0200
-Message-ID: <CAA8EJpom2amWzH5QpXrPSdMKS6bB_8O4CU67OVNuEjkjA-wseA@mail.gmail.com>
-Subject: Re: [PATCH RESEND v2 4/4] arm64: dts: qcom: qcs615-ride: Enable
- Adreno 612 GPU
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Jie Zhang <quic_jiezh@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] dt-bindings: display/msm/gmu: Document RGMU
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Rob Clark
+	<robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        "Dmitry
+ Baryshkov" <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <20241104-add_initial_support_for_qcs615-v5-4-9dde8d7b80b0@quicinc.com>,
+        <20241022-qcs615-clock-driver-v4-3-3d716ad0d987@quicinc.com>,
+        <20240924143958.25-2-quic_rlaggysh@quicinc.com>,
+        <20241108-qcs615-mm-clockcontroller-v3-7-7d3b2d235fdf@quicinc.com>,
+        <20241108-qcs615-mm-dt-nodes-v1-1-b2669cac0624@quicinc.com>,
+        <20241122074922.28153-1-quic_qqzhou@quicinc.com>
+References: <20241213-qcs615-gpu-dt-v2-0-6606c64f03b5@quicinc.com>
+ <20241213-qcs615-gpu-dt-v2-2-6606c64f03b5@quicinc.com>
+ <28bf46a5-dedb-4491-b9be-23fdfb99035f@oss.qualcomm.com>
+Content-Language: en-US
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+In-Reply-To: <28bf46a5-dedb-4491-b9be-23fdfb99035f@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: F2-cLpN7sj4SRHwnUinA5cU8tO6xNmBd
+X-Proofpoint-GUID: F2-cLpN7sj4SRHwnUinA5cU8tO6xNmBd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
+ suspectscore=0 spamscore=0 adultscore=0 mlxlogscore=999 lowpriorityscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412130096
 
-On Fri, 13 Dec 2024 at 13:32, Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
->
-> From: Jie Zhang <quic_jiezh@quicinc.com>
->
-> Enable GPU for qcs615-ride platform and provide path for zap
-> shader.
->
-> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> index ee6cab3924a6d71f29934a8debba3a832882abdd..860a0db1908cfe32a250b14aac14065923c5a575 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> @@ -202,6 +202,14 @@ &gcc {
->                  <&sleep_clk>;
->  };
->
-> +&gpu {
-> +       status = "okay";
-> +};
-> +
-> +&gpu_zap_shader {
-> +       firmware-name = "qcom/qcs615/a612_zap.mbn";
+On 12/13/2024 4:23 PM, Konrad Dybcio wrote:
+> On 13.12.2024 11:35 AM, Akhil P Oommen wrote:
+>> RGMU a.k.a Reduced Graphics Management Unit is a small state machine
+>> with the sole purpose of providing IFPC support. Compared to GMU, it
+>> doesn't manage GPU clock, voltage scaling, bw voting or any other
+>> functionalities. All it does is detect an idle GPU and toggle the
+>> GDSC switch. So it doesn't require iommu & opp table.
+>>
+>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+>> ---
+> 
+> The bindings file exists so that people that are not in the know, can
+> reference it and learn about the hardware. Please spell out IFPC, as
+> that's a non-obvious, hw-specific  acronym.
+> 
+> Otherwise looks ok
 
-This brings up my usual question: should it be qcom/qcs615 (fine with
-me) or qcom/sm6150 (maybe even better?)
+Ah right. Krzysztof schooled me that a while ago.
+Will update.
 
-> +};
-> +
->  &qupv3_id_0 {
->         status = "okay";
->  };
->
-> --
-> 2.45.2
->
+-Akhil.
 
+> 
+> Konrad
 
--- 
-With best wishes
-Dmitry
 
