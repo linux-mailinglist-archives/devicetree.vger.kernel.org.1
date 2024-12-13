@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-130748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECB1C9F0D14
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 14:13:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 177079F0D3E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 14:26:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F204188349D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 13:13:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 355DE16298C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 13:26:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFBE1DFE2A;
-	Fri, 13 Dec 2024 13:13:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1A71E009E;
+	Fri, 13 Dec 2024 13:26:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="c1jQTLS0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mT4sdh9f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5421D19AA58;
-	Fri, 13 Dec 2024 13:13:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAA471AB6D8;
+	Fri, 13 Dec 2024 13:26:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734095588; cv=none; b=AlpQqnEQ5DwjnErXsAFRCqo+FkM6KbsCD/d4TNP5FVojSGG1mvzD+NMXm+9Xw6RTavikT4Mm1ov7utqmlNAE3SPzM0OvMx1PfFBMoKB+hnzcc27we+8pXKwfDfBB4VK45DfF9RGrr0bAT0zI/0urLOEl3BN/ZE+gwlVF7AUu95o=
+	t=1734096386; cv=none; b=jc5XAmFXyXvTWaVee41Htee1vIQUttqbXSiBhHRXdAJmnwnGvVQnKxn/fSL2LWqH6T30DhhPLzXGRRHFFPG4MFq69GgSTk0EJ31ShvLv+ccNL/vdoF7l6JriNlAFpWhRoHvAJNWnDrGZh4MLKQPt1FA0/1Kzk8nvf1ykcRQB2JE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734095588; c=relaxed/simple;
-	bh=wd8622TRSx99rENwfazPPM4Xq43TuxBxNrSWDEQkoOE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=X7W8k931x8/nSOTrFSooo4u1K2u5bJSDpfZf5AZKCz0mZhLwtzdYgZaSxDGPJEYCAilPI/eoze49PzfHrO0rhmjpehDjFJEEEXyv/+dFcWZgu7VHUPdOprWSC43OpHeA6HbIRUwPNPDPmoSaV9+U2eZSIrWPvIrnLcO40BeDwkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=c1jQTLS0; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD8rlkB022838;
-	Fri, 13 Dec 2024 13:12:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Xl93Qz2eNY1D1QSVG/Nk69lF2GvJgYAIh32kdEjaYWo=; b=c1jQTLS09rxxxRgm
-	EcF3C+YkAyrra9gHbBLu2xvjoD5YHeZh+9hLTguKlSrOxL6nmeqCON2eYD/j9N/+
-	546y+BQdTxP9DlHd9GMfOS0Dy1RRgcnxherL6l1bSHOcKK0y4DtO0Kt2mwysEoO/
-	3r+mk3Hty7QBwGuElT6NK2p8dEvSFTWNxRDp7Q66405iqGd8cXWT2/N8Mb6mR55Z
-	vimaI0q4a30W4H/HDelLFpAL9TtQN50WHXVJbgQXak3F7C0MgfYhQkxfbaA86FWX
-	BhkbtsFXGdhBHgog4eD7esT3nvWSYLXLqtCTg5HBOtqPgz5XXvvVUBEFyo+Dfsou
-	l6smSA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43g4wnaj4d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 13:12:56 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BDDCtLS029686
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 13:12:55 GMT
-Received: from [10.204.101.130] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 13 Dec
- 2024 05:12:49 -0800
-Message-ID: <80bed70e-7802-4555-a15e-e06fe46214c6@quicinc.com>
-Date: Fri, 13 Dec 2024 18:42:47 +0530
+	s=arc-20240116; t=1734096386; c=relaxed/simple;
+	bh=VD81j51HG+BE6xyXSVSb6Xpq651l19O/sdKirh1miVw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=R56fmjJeVBl9RqmgcaNRkRthINqpAowhQxBwxAs/wlGiZc8gOAswjp/SzFNwQ5MiwUEUJckUUw9WCE3q1ZXzfKzDy1D+naprPH1Mx2kbo02z5gu8tH9dVMR3jwBb1dNdvpz/65LjkdJpkXzz8EZr4aQfTtUSmh3o9nOK+jdYY8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mT4sdh9f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7668CC4CED2;
+	Fri, 13 Dec 2024 13:26:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734096385;
+	bh=VD81j51HG+BE6xyXSVSb6Xpq651l19O/sdKirh1miVw=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=mT4sdh9f5cvXtzUMMmLow3F6wG6Dz47tbGTPWNfCNWdkQmd8PBnpvygxtmdIBRxAM
+	 OMWg2/0yj0qAm6hQ0XLHB9Eo4Vfw8dbnzKydDUDMml/UaFSriGwl7Sev1lVl5U2T5p
+	 Wz/IhQuQZB9H7ys4S1Pm5/XfE3TS3PrRYdsQopX6Epr0q+64+vIm8ZG25hwdACq/OZ
+	 UkkwSACiGruDHm6gSoceS3nW3aKvGyNEfl/KZm/MtCGDpdv24lALgVnOfR9Eq61UkR
+	 CYgUSLUgBTSCfsSsFOKU+b2XfsfucwJDQdr04enITZ62xVyFhdBeLv9GuwOvg40OXw
+	 l9wsU8bBYl+Cg==
+Message-ID: <ac09839a-b356-489c-9ab9-54a567fdcf95@kernel.org>
+Date: Fri, 13 Dec 2024 14:26:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,167 +50,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/7] drm/msm: adreno: find bandwidth index of OPP and
- set it along freq index
-To: <neil.armstrong@linaro.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul
-	<sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Bjorn Andersson
-	<andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20241211-topic-sm8x50-gpu-bw-vote-v5-0-6112f9f785ec@linaro.org>
- <20241211-topic-sm8x50-gpu-bw-vote-v5-4-6112f9f785ec@linaro.org>
- <ddf91ba2-cab2-4653-b842-65a8e82b5160@oss.qualcomm.com>
- <2f1c6deb-29f8-4144-b086-743fb0f8495c@linaro.org>
+Subject: Re: [PATCH] arm64: tegra: Fix Tegra234 PCIe interrupt-map
+To: Jon Hunter <jonathanh@nvidia.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Brad Griffis <bgriffis@nvidia.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+References: <20241212211114.330245-1-bgriffis@nvidia.com>
+ <942ae75e-51d1-4265-adec-e1446fe0ff48@linaro.org>
+ <7ab2cc1a-a461-495f-824d-9dd62973cf48@nvidia.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <2f1c6deb-29f8-4144-b086-743fb0f8495c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: raObrXIn0QEBLmTEQfp2DpvAMswJDngQ
-X-Proofpoint-GUID: raObrXIn0QEBLmTEQfp2DpvAMswJDngQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 priorityscore=1501 mlxlogscore=999 spamscore=0
- mlxscore=0 clxscore=1015 adultscore=0 phishscore=0 suspectscore=0
- bulkscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2412130093
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <7ab2cc1a-a461-495f-824d-9dd62973cf48@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 12/13/2024 3:07 AM, Neil Armstrong wrote:
-> On 12/12/2024 21:21, Konrad Dybcio wrote:
->> On 11.12.2024 9:29 AM, Neil Armstrong wrote:
->>> The Adreno GPU Management Unit (GMU) can also scale the DDR Bandwidth
->>> along the Frequency and Power Domain level, until now we left the OPP
->>> core scale the OPP bandwidth via the interconnect path.
+On 13/12/2024 12:37, Jon Hunter wrote:
+> Hi Krzysztof!
+> 
+> On 13/12/2024 11:11, Krzysztof Kozlowski wrote:
+>> On 12/12/2024 22:11, Brad Griffis wrote:
+>>> For interrupt-map entries, the DTS specification requires
+>>> that #address-cells is defined for both the child node and the
+>>> interrupt parent.  For the PCIe interrupt-map entries, the parent
+>>> node ("gic") has not specified #address-cells. The existing layout
+>>> of the PCIe interrupt-map entries indicates that it assumes
+>>> that #address-cells is zero for this node.
 >>>
->>> In order to enable bandwidth voting via the GPU Management
->>> Unit (GMU), when an opp is set by devfreq we also look for
->>> the corresponding bandwidth index in the previously generated
->>> bw_table and pass this value along the frequency index to the GMU.
+>>> Explicitly set #address-cells to zero for "gic" so that it complies
+>>> with the device tree specification.
 >>>
->>> The GMU also takes another vote called AB which is a 16bit quantized
->>> value of the floor bandwidth against the maximum supported bandwidth.
->>>
->>> The AB is calculated with a default 25% of the bandwidth like the
->>> downstream implementation too inform the GMU firmware the minimal
->>> quantity of bandwidth we require for this OPP.
->>>
->>> Since we now vote for all resources via the GMU, setting the OPP
->>> is no more needed, so we can completely skip calling
->>> dev_pm_opp_set_opp() in this situation.
->>>
->>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> Reviewed-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> Signed-off-by: Brad Griffis <bgriffis@nvidia.com>
 >>> ---
->>>   drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 39 ++++++++++++++++++++++++
->>> +++++++++--
->>>   drivers/gpu/drm/msm/adreno/a6xx_gmu.h |  2 +-
->>>   drivers/gpu/drm/msm/adreno/a6xx_hfi.c |  6 +++---
->>>   drivers/gpu/drm/msm/adreno/a6xx_hfi.h |  5 +++++
->>>   4 files changed, 46 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/
->>> msm/adreno/a6xx_gmu.c
->>> index
->>> 36696d372a42a27b26a018b19e73bc6d8a4a5235..46ae0ec7a16a41d55755ce04fb32404cdba087be 100644
->>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
->>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
->>> @@ -110,9 +110,11 @@ void a6xx_gmu_set_freq(struct msm_gpu *gpu,
->>> struct dev_pm_opp *opp,
->>>                  bool suspended)
->>>   {
->>>       struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
->>> +    const struct a6xx_info *info = adreno_gpu->info->a6xx;
->>>       struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
->>>       struct a6xx_gmu *gmu = &a6xx_gpu->gmu;
->>>       u32 perf_index;
->>> +    u32 bw_index = 0;
->>>       unsigned long gpu_freq;
->>>       int ret = 0;
->>>   @@ -125,6 +127,37 @@ void a6xx_gmu_set_freq(struct msm_gpu *gpu,
->>> struct dev_pm_opp *opp,
->>>           if (gpu_freq == gmu->gpu_freqs[perf_index])
->>>               break;
->>>   +    /* If enabled, find the corresponding DDR bandwidth index */
->>> +    if (info->bcms && gmu->nr_gpu_bws > 1) {
 >>
->> if (gmu->nr_gpu_bws)
+>> So entire nvidia works on old kernel and sends patches rebased on old
+>> kernel? Please start working on mainline.
 > 
-> gmu->nr_gpu_bws == 1 means there's not BW in the OPPs (index 0 is the
-> "off" state)
 > 
->>
->>> +        unsigned int bw = dev_pm_opp_get_bw(opp, true, 0);
->>> +
->>> +        for (bw_index = 0; bw_index < gmu->nr_gpu_bws - 1; bw_index+
->>> +) {
->>> +            if (bw == gmu->gpu_bw_table[bw_index])
->>> +                break;
->>> +        }
->>> +
->>> +        /* Vote AB as a fraction of the max bandwidth */
->>> +        if (bw) {
->>
->> This seems to only be introduced with certain a7xx too.. you should
->> ping the GMU with HFI_VALUE_GMU_AB_VOTE to check if it's supported
-> 
-> Good point
+> You know that is not the case! Yes there may be a few cases of people 
+> using your old email, but not all of us :-)
 
-No no. Doing this will trigger some assert in pre-A750 gmu firmwares. We
-learned it the hard way. No improvisation please. :)
+Yeah, that was just an assumption, but three independent people are
+Ccing address which does not exist in the kernel and it is impossible to
+get/deduce/invent. Three patchsets from three different people...
 
--Akhil.
-
-> 
->>
->>> +            u64 tmp;
->>> +
->>> +            /* For now, vote for 25% of the bandwidth */
->>> +            tmp = bw * 25;
->>> +            do_div(tmp, 100);
->>> +
->>> +            /*
->>> +             * The AB vote consists of a 16 bit wide quantized level
->>> +             * against the maximum supported bandwidth.
->>> +             * Quantization can be calculated as below:
->>> +             * vote = (bandwidth * 2^16) / max bandwidth
->>> +             */
->>> +            tmp *= MAX_AB_VOTE;
->>> +            do_div(tmp, gmu->gpu_bw_table[gmu->nr_gpu_bws - 1]);
->>> +
->>> +            bw_index |= AB_VOTE(clamp(tmp, 1, MAX_AB_VOTE));
->>> +            bw_index |= AB_VOTE_ENABLE;
->>> +        }
->>> +    }
->>
->> BTW, did you dump the values we send to the GMU here and in the RPMh
->> builder part & validate against downstream?
-> 
-> It matches how downstream builds the Ab vote yes
-> 
->>
->> Konrad
-> 
-
+Best regards,
+Krzysztof
 
