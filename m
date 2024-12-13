@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-130744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43D699F0CD8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 14:00:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCF139F0CEB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 14:05:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72165188A609
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 13:00:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22201188A7D9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 13:05:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E82271DF744;
-	Fri, 13 Dec 2024 13:00:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F20341DED5D;
+	Fri, 13 Dec 2024 13:05:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UoIAO7Fk"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PLBpEPVx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F7A1B3922
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 13:00:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74D181DFD87
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 13:05:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734094831; cv=none; b=SYui6y94OftWsiF1+d6biolaeZQvrVKwl2GkBFu1gYFCs/dwurHCodwrUtfnNlb9gpodf3Lf+1f7PXmCUmxUakb8GnhnpATcRmwn1N49U7H2wwFoKVYvRfG8m1yraHoI5frzmrIjSkI1FgO8OAmmffA9LG3J5QfqLX5Y3nJKU7g=
+	t=1734095135; cv=none; b=CA3HzjUdFxqni+mQPoStM/1cud2LpGf31IQuCp7/isUUsHJZuHhbvn6XoNhEVzh2MdfRZ2WkLojlxMoOhRqrAAeWHUPyy6ALUEiMmzvRjs4/DZuGRMB5XzNMYWU7BI9bvbLoXumhWHvMTUTmglu37GL0HuHvpX61TMniPypr3Hw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734094831; c=relaxed/simple;
-	bh=Rp869uM2wZxe0HaIZrypFYM5KLLKtGoqut7udBsBhuw=;
+	s=arc-20240116; t=1734095135; c=relaxed/simple;
+	bh=RLBEcygwx8JgsZtDlSuqT50mF2p74Zr/H61L3oZCkcQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ba10c172r+ph6elK6ukLyLqi4t+yTNhBqNACPNs8WiRjsvaidUcF5fdGyucv4Fc3j7SpnV+4ydyTKWC2vNw5BYkg18P2gMVTmADYbllU8Nxy5bLy23HwPA0BZc71aRFd2O+i8wT2C2UneuywzrmfA43hlODoUNF8At6HZRqhyko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UoIAO7Fk; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=QDOQ8KbHtqrgI9936tIY+ivqzBUVJpL/7N1/83f/11QkEn6K3sP99DVlH8J/5ME7e8qg1V9kJPwsBk/IRDGPgMaYL/eStdZKyssKbt1srK+7AYLpkFIEQccryD1w3WVZQAov99OuRLevnqlkz0N3Hjzf7paSDJtcZwJG65V0nEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PLBpEPVx; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD45ha6017168
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 13:00:29 GMT
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BDBTqu2001432
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 13:05:33 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	c70qU7EUPr6CxztC+tT3aMDxIFjQHDuqKZeXLpbD8RU=; b=UoIAO7FkD8+GE6Uk
-	BpQc8+BxpYopxFdhFehCFZ6Ige8V4uTYmav75jSu/mjUOWPURmh+rclc7EMC8pW2
-	EwI5N15Nd8Hnjd7DbeTet6jj4VJijrLpn13QFvjXL2fvq6T5d1kqLsDEgF2usvZa
-	fw1bY7tcSfKLtIPXKZtRnC2sleXIUnW1h46P9nri7DKtnndNg/6aDtbG7d7oFRb6
-	jQkYM2zPPmCagEW3lPJPMhy9i4OZwAZjzyWT8vt3nqM3t4N1cZQnJFQORlP/ehK+
-	uesTGOxbaUFaj7VU8FIWdpAh51Xy01pGPqDX+wCs+sY/wrJ3ujQpOEf+zABUz44h
-	ymxavQ==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43gdkn1c0v-1
+	MjBuIqv/S/JYySCI8v+pcSnmI0O/26pxDqdFxZnLNSY=; b=PLBpEPVx0nRlOr3n
+	TECw/PVk2RewaY7QVzDA9oM2xqNo7pGmyYZk5ZnuNcExMdxiv2mC/inN+fLKpGRM
+	qMwISUaBxg/N1AmdsABvUkOJifa1lOw09LusDZIc3wk8SuBCvCBBR4RzEqcfoev1
+	MWhc4rRDYSF0KwAmswAn/Qmpz51LEFM+IwmhU7/SCWm0bbgKTFo9t1AU53/7N2tC
+	B2Q0S6WnQZJJXxbPOKsnNd8f4a9NGALJKiXMumHjSeze+o0k3XWqDz1d8SuVyA96
+	fqUjpR76xZkbWU/ZO4102ARYzX7tVqC3cCivfyiF8XVzV9UQesnGHV7RICQDWFK8
+	1Zy7Qw==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43gm3s0861-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 13:00:28 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6d8824c96cdso4752856d6.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 05:00:28 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 13:05:33 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7b6faf8b78aso23357685a.0
+        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 05:05:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734094828; x=1734699628;
+        d=1e100.net; s=20230601; t=1734095132; x=1734699932;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c70qU7EUPr6CxztC+tT3aMDxIFjQHDuqKZeXLpbD8RU=;
-        b=YneXXLgrJVYSRYL/QYzmypM5L6/cWlTKyGtoWEf8f+owlKjq3Cu0yNKv7rSQfs5RNm
-         6PqXbrvpGeZEqlo46iNbsL+FDzIL/UesNj6jAasO7cnQG+r2gcwlnSbaopAfbu9IVd4u
-         LPCocxNu+R4yqWYwZgLsekqiM+7i5PhsML+C+Msrv4abEOoOhpFru75F/R+etZEKKwL4
-         IgH1Rt9hh5e0PJCvrx+z1sbcWXGkoOrXlhddtA3twPz2j3A9nhfbx5Yp1XHSOOTBOeQY
-         Lz6tOXX41IkHrn/1z/dvN0E9xiGYxQGRXdarczBGcpl67qChhNqQFttCHuEvJzNMyiCj
-         o96g==
-X-Forwarded-Encrypted: i=1; AJvYcCUanFCGIDCfddeKHwjv9HkWpTbwbp8hnEzoANsL8Rs9GgTnODu4O7rNIKbTvKV7PzKY3+CpHbSDbcjC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvZUAXGvFAEUOD4VrB31P6VXhWSHwsuA9fif1cia+88BCwBmn0
-	O20hdWYWPM931DfLnZlIdz0F3QUsCa9Gobkt8k1RbZzY5h6bI2/OPR4Y/quoCpgLL66E7L3Wg+C
-	HGjWvvaVApFBtLfhVKlKInhgP20zXK4U+SUqUmw95QOLIzQN+wnBQH5BgwS1U
-X-Gm-Gg: ASbGnctjbtRyzHFTfk147UlxFlxgUFDD9CjKSLlt+2QSscbWcqPx37qfZs7asJuwkHk
-	qWyq2DZOQWYjOopq3V0Kw6OHPkjiNZQeCEb3ybLGobMIvYzUpjWpvQ/WBEl0/oxyfF4wgTT6J/v
-	1aKgn/bAEakx64FgE5DLbI3XtZYJU++3sNVOicpj71X6lpkDvZS0w8HIrRrvQGsr3E+1fZipTOk
-	J1IYLsssoMXrKiKcj49f27cMJ9WD5ow2vtAv3QQL86sgThpVQqbNXl7YdzyMSMu5w6mENZp6ffz
-	+SO3sU8v8tFlr0A8G8N2ENDHQGWFSfD2ThAq
-X-Received: by 2002:a05:620a:4410:b0:7b6:dc4f:8874 with SMTP id af79cd13be357-7b6fbf3d252mr144631185a.12.1734094827991;
-        Fri, 13 Dec 2024 05:00:27 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHZUVTG6mWDzKnkSxU64HjjbSeNBnC0N5zoqV3vUFu36laHgptTxc2lr/u1XTriE9GzIfrFqw==
-X-Received: by 2002:a05:620a:4410:b0:7b6:dc4f:8874 with SMTP id af79cd13be357-7b6fbf3d252mr144626885a.12.1734094827487;
-        Fri, 13 Dec 2024 05:00:27 -0800 (PST)
+        bh=MjBuIqv/S/JYySCI8v+pcSnmI0O/26pxDqdFxZnLNSY=;
+        b=D+5jtU/pfGkVO3PRzptFoxmcQoviTWW27IQKZqCkcG9JW3l0ttHLtK0nR10w/T5xNg
+         IvNP2ioYNYSqLhX85gFhepXVKRvmN3V1OgVs6wAlKQ51TiB6Vw9npBFimHmQHIrQHIMS
+         S1r+bpKuASJypC7x1pRxyNXT2VDSSHMNOBBxExLR8A1959OKgi2qxNpzEgDYJoGdf2z9
+         I5M297pBJpQrXAtPd12mWLsycR3d+KD5V3yN2yJyZbmoRVl3kSPQqBfz3WRB3WqSw5pO
+         hTPGXKCvP/DcS2clUhq7Q5sikOk0Ua/zAFl40QQj1KTnBXU0V4K/pkm/aDvHQ9PsfGfy
+         RDDw==
+X-Forwarded-Encrypted: i=1; AJvYcCX9pWXzUbgYmGk99gtNOjLCE2mj7o27SA682DDJqHzAHGHqViZHRJz8Bs/yLBck2EnSrA5JqxQ3ARcM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHBxYZRExQw0Arm5AAvjxYRaigzMcvHO6Cf2i/Wr6QRvge/hX4
+	b/FXwxnzqS9SBlWf7S278ZIOOBIDXzE4DsHIgZ+FF33NUJq1fpnfxiaGhiCZ/FOo/7Wwh83p+Aq
+	7Gfqk08yE9IolxHpM0nvz6cojz5+mUQL1l87DDFKroT6gnbVM8+85ImG0tsy/cbgAsvI0
+X-Gm-Gg: ASbGncuRIhUJCFNTVcLNVaT0a3scFPyD9TOc9zYUuZ5SnKnIozExJTVdFKOSSb3snKJ
+	HuiXJYePrAox014RGjTLo4GBTl+W4WSocdMuKLIZEJ6tTStAi+9gRpsXhWWTMvVQyCgQ/HQIy9e
+	f/wLImCoiGr5/3A3bHj0SMwAIm8CvmnrGQMVPxFz0deLSkj10A5CoD8ORPZx7O4wcBQHh34DqN3
+	q5SOswygXLscosnGAEz7TtcI+X3JuVdTxmgUlfa1gn5CGE1JTnyzq8H6KBOJAL6dyoii4iVS7Kl
+	rj7Llp8eF//E45/UeNoTxSCseWoPfCJNx5jo
+X-Received: by 2002:a05:620a:4414:b0:7b6:cb66:ad6b with SMTP id af79cd13be357-7b6fbeca502mr118705485a.3.1734095132084;
+        Fri, 13 Dec 2024 05:05:32 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFTVnKCWEeCs3nLgOFiiCt1ZpXJxs//Y7QAyjoDZfCwG2kuKqx4eF4nAgoNSJuP192IVBQ1qg==
+X-Received: by 2002:a05:620a:4414:b0:7b6:cb66:ad6b with SMTP id af79cd13be357-7b6fbeca502mr118704385a.3.1734095131708;
+        Fri, 13 Dec 2024 05:05:31 -0800 (PST)
 Received: from [192.168.58.241] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa67af72f6esm789011566b.148.2024.12.13.05.00.25
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d3cedbb8fesm9948457a12.22.2024.12.13.05.05.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Dec 2024 05:00:26 -0800 (PST)
-Message-ID: <f3fd235d-7306-44bb-8b7f-7eeb63f34481@oss.qualcomm.com>
-Date: Fri, 13 Dec 2024 14:00:24 +0100
+        Fri, 13 Dec 2024 05:05:31 -0800 (PST)
+Message-ID: <ce9f1ab1-56a0-4c0a-aa5b-f044111288ec@oss.qualcomm.com>
+Date: Fri, 13 Dec 2024 14:05:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,77 +89,131 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 6/7] arm64: dts: qcom: ipq5424: Add tsens node
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
-        srinivas.kandagatla@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, amitk@kernel.org, thara.gopinath@gmail.com,
-        rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
-        lukasz.luba@arm.com, andersson@kernel.org, konradybcio@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
-References: <20241125050728.3699241-1-quic_mmanikan@quicinc.com>
- <20241125050728.3699241-7-quic_mmanikan@quicinc.com>
+Subject: Re: [PATCH v5 4/4] i2c: i2c-qcom-geni: Enable i2c controller sharing
+ between two subsystems
+To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
+        konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        conor+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
+        vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org,
+        Frank.Li@nxp.com, konradybcio@kernel.org, bryan.odonoghue@linaro.org,
+        krzk+dt@kernel.org, robh@kernel.org
+Cc: quic_vdadhani@quicinc.com
+References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
+ <20241129144357.2008465-5-quic_msavaliy@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241125050728.3699241-7-quic_mmanikan@quicinc.com>
+In-Reply-To: <20241129144357.2008465-5-quic_msavaliy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 6BQegYl5s_bhetwrHd51S0SCed4wBiPC
-X-Proofpoint-ORIG-GUID: 6BQegYl5s_bhetwrHd51S0SCed4wBiPC
+X-Proofpoint-ORIG-GUID: nfO01zEc9I9Rf40nYwuYDFRdC5KtOXM8
+X-Proofpoint-GUID: nfO01zEc9I9Rf40nYwuYDFRdC5KtOXM8
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=715
- impostorscore=0 lowpriorityscore=0 clxscore=1015 priorityscore=1501
- phishscore=0 bulkscore=0 suspectscore=0 mlxscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412130091
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 impostorscore=0 phishscore=0 mlxscore=0 bulkscore=0
+ spamscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 malwarescore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412130092
 
-On 25.11.2024 6:07 AM, Manikanta Mylavarapu wrote:
-> IPQ5424 has tsens v2.3.3 peripheral. This patch adds the tsens
-> node with nvmem cells for calibration data.
+On 29.11.2024 3:43 PM, Mukesh Kumar Savaliya wrote:
+> Add support to share I2C controller in multiprocessor system in a mutually
+> exclusive way. Use "qcom,shared-se" flag in a particular i2c instance node
+> if the usecase requires i2c controller to be shared.
 > 
-> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> Sharing of I2C SE(Serial engine) is possible only for GSI mode as client
+> from each processor can queue transfers over its own GPII Channel. For
+> non GSI mode, we should force disable this feature even if set by user
+> from DT by mistake.
+> 
+> I2C driver just need to mark first_msg and last_msg flag to help indicate
+> GPI driver to take lock and unlock TRE there by protecting from concurrent
+> access from other EE or Subsystem.
+> 
+> gpi_create_i2c_tre() function at gpi.c will take care of adding Lock and
+> Unlock TRE for the respective transfer operations.
+> 
+> Since the GPIOs are also shared between two SS, do not unconfigure them
+> during runtime suspend. This will allow other SS to continue to transfer
+> the data without any disturbance over the IO lines.
+> 
+> For example, Assume an I2C EEPROM device connected with an I2C controller.
+> Each client from ADSP and APPS processor can perform i2c transactions
+> without any disturbance from each other.
+> 
+> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
 > ---
+>  drivers/i2c/busses/i2c-qcom-geni.c | 22 +++++++++++++++++++---
+>  1 file changed, 19 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
+> index 7a22e1f46e60..ccf9933e2dad 100644
+> --- a/drivers/i2c/busses/i2c-qcom-geni.c
+> +++ b/drivers/i2c/busses/i2c-qcom-geni.c
+> @@ -1,5 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  // Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
+> +// Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>  
+>  #include <linux/acpi.h>
+>  #include <linux/clk.h>
+> @@ -617,6 +618,7 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev *gi2c, struct i2c_msg msgs[], i
+>  	peripheral.clk_div = itr->clk_div;
+>  	peripheral.set_config = 1;
+>  	peripheral.multi_msg = false;
+> +	peripheral.shared_se = gi2c->se.shared_geni_se;
+>  
+>  	for (i = 0; i < num; i++) {
+>  		gi2c->cur = &msgs[i];
+> @@ -627,6 +629,8 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev *gi2c, struct i2c_msg msgs[], i
+>  		if (i < num - 1)
+>  			peripheral.stretch = 1;
+>  
+> +		peripheral.first_msg = (i == 0);
+> +		peripheral.last_msg = (i == num - 1);
+>  		peripheral.addr = msgs[i].addr;
+>  
+>  		ret =  geni_i2c_gpi(gi2c, &msgs[i], &config,
+> @@ -815,6 +819,11 @@ static int geni_i2c_probe(struct platform_device *pdev)
+>  		gi2c->clk_freq_out = KHZ(100);
+>  	}
+>  
+> +	if (of_property_read_bool(pdev->dev.of_node, "qcom,shared-se")) {
+> +		gi2c->se.shared_geni_se = true;
+> +		dev_dbg(&pdev->dev, "I2C is shared between subsystems\n");
+> +	}
+> +
+>  	if (has_acpi_companion(dev))
+>  		ACPI_COMPANION_SET(&gi2c->adap.dev, ACPI_COMPANION(dev));
+>  
+> @@ -887,8 +896,10 @@ static int geni_i2c_probe(struct platform_device *pdev)
+>  	else
+>  		fifo_disable = readl_relaxed(gi2c->se.base + GENI_IF_DISABLE_RO) & FIFO_IF_DISABLE;
+>  
+> -	if (fifo_disable) {
+> -		/* FIFO is disabled, so we can only use GPI DMA */
+> +	if (fifo_disable || gi2c->se.shared_geni_se) {
+> +		/* FIFO is disabled, so we can only use GPI DMA.
+> +		 * SE can be shared in GSI mode between subsystems, each SS owns a GPII.
+> +		 **/
 
-[...]
+I don't think this change makes things clearer, I would drop it
 
-> +		tsens: thermal-sensor@4a9000 {
-> +			compatible = "qcom,ipq5424-tsens";
-> +			reg = <0 0x004a9000 0 0x1000>,
-> +			      <0 0x004a8000 0 0x1000>;
-> +			nvmem-cells = <&tsens_mode>,
-> +				      <&tsens_base0>,
-> +				      <&tsens_base1>,
-> +				      <&tsens_sens9_off>,
-> +				      <&tsens_sens10_off>,
-> +				      <&tsens_sens11_off>,
-> +				      <&tsens_sens12_off>,
-> +				      <&tsens_sens13_off>,
-> +				      <&tsens_sens14_off>,
-> +				      <&tsens_sens15_off>;
-> +			nvmem-cell-names = "mode",
-> +					   "base0",
-> +					   "base1",
-> +					   "tsens_sens9_off",
-> +					   "tsens_sens10_off",
-> +					   "tsens_sens11_off",
-> +					   "tsens_sens12_off",
-> +					   "tsens_sens13_off",
-> +					   "tsens_sens14_off",
-> +					   "tsens_sens15_off";
-> +			interrupts = <GIC_SPI 105 IRQ_TYPE_EDGE_RISING>;
-> +			interrupt-names = "combined";
-> +			#qcom,sensors = <7>;
-> +			#thermal-sensor-cells = <1>;
-> +		};
+>  		gi2c->gpi_mode = true;
+>  		ret = setup_gpi_dma(gi2c);
+>  		if (ret) {
+> @@ -900,6 +911,12 @@ static int geni_i2c_probe(struct platform_device *pdev)
+>  		dev_dbg(dev, "Using GPI DMA mode for I2C\n");
+>  	} else {
+>  		gi2c->gpi_mode = false;
+> +
+> +		if (gi2c->se.shared_geni_se) {
+> +			dev_err(dev, "I2C sharing is not supported in non GSI mode\n");
+> +			return -EINVAL;
 
-Please move interrupts properties above nvmem
-
-with that:
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+return dev_err_probe(dev, -EINVAL, "I2C...)
 
 Konrad
 
