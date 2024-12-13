@@ -1,166 +1,91 @@
-Return-Path: <devicetree+bounces-130574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 391E39F074A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:10:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFE419F0757
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:11:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64767188B460
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:10:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9636A188C042
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:11:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 347791AE005;
-	Fri, 13 Dec 2024 09:10:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCCEE1AE01E;
+	Fri, 13 Dec 2024 09:10:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="0TyhOYCO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GAbwKM7Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f202.google.com (mail-pl1-f202.google.com [209.85.214.202])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3851AD3E0
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 09:10:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.202
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 961171AD3F6;
+	Fri, 13 Dec 2024 09:10:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734081023; cv=none; b=UphPsuVKe1lkgOi574D6HD8UCYGgZ9zODeNB19M+sCwqaEdkBIWxhpDE0igOU98n0Henjaez/1npGlfmy5swKkSghe22Hur2hCV5Sb2TUpixO+jbGKOgV8wQBR6ajkucF+vDC7sP//deG1gtJfP8baYvQzA2smKMpFWeh4X7R/E=
+	t=1734081058; cv=none; b=ORSOXCX13p6VU52+PLP562Qcu6SH01K/+IoAZ1H+4W37jbqru+dGV7/mhGimButW6jBlDzUW3FTbV2a03DKYh99IRGozhsjlZaAJsTT8rT3rrY+JdbcN/cvHaljKWuPKKCDUce1HetAw1ytjAkSaRXD9pHunBzdFqXXc091qc9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734081023; c=relaxed/simple;
-	bh=4GoxPHziDL8jynynpc6II9XKQmKHxtY3WLim+EY8Rn8=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=FwcUvgO+kIWvyY+vhUCg3Us0m7XZNPtT+Qix2Fg8rD6qg+fp72xn8w+xWFHxDLzxBbUriA11LJYk+wutS+1u8eJB2o3vEcezWbBfqRyKiW5+XFBhklksTWZB44EwbkJsRoQtUs7LS7eY3Qxp7yoRuBffAAEqq/AOgYpYBtOxGLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--guanyulin.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=0TyhOYCO; arc=none smtp.client-ip=209.85.214.202
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--guanyulin.bounces.google.com
-Received: by mail-pl1-f202.google.com with SMTP id d9443c01a7336-21681a2c0d5so13846975ad.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 01:10:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1734081020; x=1734685820; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:from:subject:message-id:references
-         :mime-version:in-reply-to:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UZMjcDhc1h3P2X9Fu0YyDkAQOlnsU6jYEmSS6gnAML4=;
-        b=0TyhOYCOvIo5/MoX5rWM13KVpbScFj33pmm+/NclfFcYB1R+JX6bgF31Gh776qQvSO
-         w1LuHug2EETtMZvhUW7B0PIO5JRjErvYeheDxIJKXuwo52javjty8BFIVR5FTP47Z0su
-         dSfNz1/EMc3/HcEeAt4oIlvY1Uz8ghXLc2+5hdwkr6Fo7aMywbUQOVs51moVfZ8qhHFm
-         oQovRIwPCjrBFm2D4WIJv/V0di/Kcq+oklWF/1z7YDuob7UAiF3pjIsLMrAUwhR11kfH
-         C5llTkrnAkgmtvRRjlY9crPP1g8fsfGJYnz2YfCApBEYsnr6nQDPJPnZyA67Uac84rRG
-         1myQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734081020; x=1734685820;
-        h=content-transfer-encoding:cc:to:from:subject:message-id:references
-         :mime-version:in-reply-to:date:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=UZMjcDhc1h3P2X9Fu0YyDkAQOlnsU6jYEmSS6gnAML4=;
-        b=C0Tk+drOUMazHS0zkvodKyxu+DEA80zOnZo/4gh3/uHcPpnwj2iFCKq9/pyvs6f1s9
-         VjEk6Y4rc8NUc6rvA3Iy8DlL03aSR3RFOQYQB5sxgy7e637HU5ow1+funLax0F2c04AA
-         cZjLvFVevi4sLxPJST6iXgbWEl6kqVtnmaDCEH7v1dBS79hYemCLx0SRVuNXcRvoIM70
-         QiuMJ3Kt7h39cuUSMDJu/EYMx62hJM4up8Bz7mZZHbRMnTxR+jbGanRBRd+LmwESf0A/
-         zJ6QpzKY+T7Jp0wEPlGhKo4sEImSI2XVaStkb1D+pk2zJG4nMQ2OOh/YJ0EPnMtjA2NI
-         EJuw==
-X-Forwarded-Encrypted: i=1; AJvYcCXP2sB6P0by0TT1HSQXoPJniNvQr745tKlnzYektzsksp/7qBibxuedew3ElG1xYUtAuxpO6vJwnItX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWssuYUCtYjp2e0wJHlhDaqZoqeBqrRPkGfiBTVLZSeAR3bE5Z
-	ww2BBCphnDbH+8uo/Dr3LSWdbyPYY+rAh9LWRj/yUvnaQKSveGgWbf+R0q1BzQIQ8QHLRkEH1jv
-	obrQ5wdZ0/WoHlA==
-X-Google-Smtp-Source: AGHT+IEWGF+x01YrzH8Zqz6DDD7saIEVhbAUPTAJ8Q7hrcR+RUbndbMM9vtqiuEmG36O/LrpFgJSqohpUP+Lnmw=
-X-Received: from plti1.prod.google.com ([2002:a17:902:6ac1:b0:212:5134:8485])
- (user=guanyulin job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:902:d510:b0:215:7446:2151 with SMTP id d9443c01a7336-2189298205amr23588125ad.4.1734081020572;
- Fri, 13 Dec 2024 01:10:20 -0800 (PST)
-Date: Fri, 13 Dec 2024 09:10:08 +0000
-In-Reply-To: <03c79eca-f79b-4008-9037-ea96e18f093f@quicinc.com>
+	s=arc-20240116; t=1734081058; c=relaxed/simple;
+	bh=G+cTnuuCPd8OUrWtJFXbPhKcg/vWEnCq2zPfc22GuSo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Du6qkrFl7cMrAVtSnwGdj5LMrChLtn0o4Wt844YNi0UO2tuvvGuTaye7hXS9Epseq/0Qh32GgKGgNA5zxFCobmzSvo9yiwvOMJqBn9gcJ4W88OTU+yVwIdX98GKxOdqT1wvPVnCeYTzDZ/+aQUarKqYp435d3Z1uJ40/bSfCkn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GAbwKM7Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5358EC4CED6;
+	Fri, 13 Dec 2024 09:10:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734081058;
+	bh=G+cTnuuCPd8OUrWtJFXbPhKcg/vWEnCq2zPfc22GuSo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GAbwKM7Ql8JlHQtvaxCAEjlrWi6IlQRqnJA8CZ04DwQrSfcb10h5+6cjzhldotnRh
+	 L2XSBgnBNZJUfO8crBg8MZlN8CfTvAifyk+GlvHyJiBZTVjivci1Qq01nMnxglh31v
+	 zi2eIA2ZMTu2jG9TIvc1Ivn5fZM3DHGSFcpIq8o1+3NB7mQAtUoaY5nAKzecFcPCyO
+	 J9jow5Rd3wWUjudv+BGCRohLkufEOp6fwOe3r/hPcHfEjlJ+YXmMmxWIju6dHjvMhR
+	 Jw4Xke+387YftU3lGl/YoX2Xk+UUsw0Rkspn2qa5yOkvs2yO2Ogw/NNIThpLB0r9xj
+	 +Wc8vdUS31j+A==
+Date: Fri, 13 Dec 2024 10:10:54 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kevin Chen <kevin_chen@aspeedtech.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	joel@jms.id.au, andrew@codeconstruct.com.au, tglx@linutronix.de, 
+	catalin.marinas@arm.com, will@kernel.org, arnd@arndb.de, olof@lixom.net, 
+	quic_bjorande@quicinc.com, geert+renesas@glider.be, dmitry.baryshkov@linaro.org, 
+	konradybcio@kernel.org, neil.armstrong@linaro.org, johan+linaro@kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, soc@lists.linux.dev
+Subject: Re: [PATCH v3 1/6] dt-bindings: interrupt-controller: Refine
+ size/interrupt-cell usage.
+Message-ID: <k7jftzlih6ss4yaxrv7r4dudhcu43iyu2qvkl2thb5wiaszto7@evzmwfxxzzt6>
+References: <20241212155237.848336-1-kevin_chen@aspeedtech.com>
+ <20241212155237.848336-3-kevin_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <03c79eca-f79b-4008-9037-ea96e18f093f@quicinc.com>
-X-Mailer: git-send-email 2.47.1.613.gc27f4b7a9f-goog
-Message-ID: <20241213091016.2058740-1-guanyulin@google.com>
-Subject: Re: [PATCH v30 00/30] Introduce QC USB SND audio offloading support
-From: Guan-Yu Lin <guanyulin@google.com>
-To: quic_wcheng@quicinc.com
-Cc: Thinh.Nguyen@synopsys.com, broonie@kernel.org, cezary.rojewski@intel.com, 
-	conor+dt@kernel.org, corbet@lwn.net, devicetree@vger.kernel.org, 
-	dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org, krzk+dt@kernel.org, 
-	lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-sound@vger.kernel.org, linux-usb@vger.kernel.org, 
-	mathias.nyman@intel.com, perex@perex.cz, pierre-louis.bossart@linux.dev, 
-	robh@kernel.org, srinivas.kandagatla@linaro.org, tiwai@suse.com, 
-	tiwai@suse.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241212155237.848336-3-kevin_chen@aspeedtech.com>
 
-> On 12/10/2024 8:40 AM, Takashi Iwai wrote:
->> On Tue, 10 Dec 2024 01:59:10 +0100,
->> Wesley Cheng wrote:
->>> On 12/5/2024 4:53 PM, Wesley Cheng wrote:
->>> Hi Takashi,
->>>
->>> Could you possibly help share some direction on what you think of the c=
-urrent design, and if you think its detrimental that we make modifications =
-mentioned by Cezary?  I have the next revision ready for review, but I want=
-ed to get a better sense on the likeliness of this landing upstream w/o the=
- major modifications.
->>
->> Honestly speaking, I have no big preference about that design
->> question.  The most important thing is rather what's visible change to
->> users.  An advantage of the current design (sort of add-on to the
->> existing USB-audio driver) is that it's merely a few card controls
->> that are added and visible, and the rest is just as of now.  The
->> remaining design issue (two cards or single card) is rather
->> kernel-internal, and has nothing to do with users.  So I'm fine with
->> the current design.
->>
->> OTOH, if we follow the pattern of HD-audio, at least there will be
->> more preliminary changes in USB-audio driver side like we've done for
->> HD-audio.  That is, make most of USB-audio code to be usable as (a
->> kind of) library code.  It's more work, but certainly doable.  And if
->> that can be achieved and there other similar use cases of this stuff
->> not only from Qualcomm, it might make sense to go in that way, too.
->> That said, it's rather a question about what's extended in future.
->> If Intel will need / want to move on that direction, too, that's a
->> good reason to reconsider the basic design.
->>
->
-> So to clarify, what Cezary and I are proposing are actually two different=
- concepts to achieve some sort of offloading for audio data.  In my use cas=
-e, we're trying to leverage as much of the USB SND implementation as possib=
-le, and only offloading the handling of audio transfers.  Everything else i=
-s still handled by USB SND, hence the reason for it being an add-on since m=
-ost of it stays the same.  Unfortunately, I don't have any details about th=
-e full HW offload design, as public material on it is fairly minimal.  So i=
-t would be difficult for me to rework my series to something I don't have a=
- line of sight into.  Personally (and as you can probably tell :)), I would=
- prefer if we could do the refactoring in stages (if actually required), si=
-nce I've been pushing this method for awhile now, and I'm not sure if I can=
- take up that effort to do that on my next submission.  At least from the Q=
-C perspective if we did move to the HDaudio-type implementation, I think I'=
-d need to also
-> change up the ASoC design we have currently implemented as well, so it wo=
-uldn't be a trivial change.
->
->
-> Thanks
->
-> Wesley Cheng
->
+On Thu, Dec 12, 2024 at 11:52:31PM +0800, Kevin Chen wrote:
+> 1. Because size-cells is no need to use 2, modify to 1 for use.
+> 2. Add minItems to 1 for interrupts for intc1.
+> 3. Add 1 interrupt of intc1 example into yaml file.
+> 4. Add intc1 sub-module of uart12 as example using the intc0 and intc1.
+> ---
+>  .../aspeed,ast2700-intc.yaml                  | 60 +++++++++++++++----
+>  1 file changed, 47 insertions(+), 13 deletions(-)
+> 
 
-Given that the series has already undergone extensive review, I prefer Wesl=
-ey's
-design. We've begun leveraging the design in our local environment with
-positive results. Furthermore, we've proposed an additional feature to enab=
-le
-USB audio offload during system suspend [1]. In brief, by combining these t=
-wo
-points, we can identify use cases where other vendors could also benefit fr=
-om
-Wesley's design.
+As with all your patches, repeating since v1 the same comment, so one
+more last time:
 
-[1] https://patchwork.kernel.org/project/linux-usb/cover/20241106083501.408=
-074-1-guanyulin@google.com/=20
+Please run scripts/checkpatch.pl and fix reported warnings. Then please
+run 'scripts/checkpatch.pl --strict' and (probably) fix more warnings.
+Some warnings can be ignored, especially from --strict run, but the code
+here looks like it needs a fix. Feel free to get in touch if the warning
+is not clear.
 
-Regards,
-Guan-Yu
+Best regards,
+Krzysztof
+
 
