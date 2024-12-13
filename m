@@ -1,79 +1,87 @@
-Return-Path: <devicetree+bounces-130729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92D39F0BB5
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 12:55:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B03609F0BBF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 12:57:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1D47164C97
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:55:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8AB91888A48
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A271C1DF72E;
-	Fri, 13 Dec 2024 11:55:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F3E21DF26E;
+	Fri, 13 Dec 2024 11:57:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="trhYqVBU"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="U5Ych2/y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1EB1DF27B
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 11:55:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22C831DEFF1
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 11:57:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734090904; cv=none; b=LAXi1xDUCpfTu+Rv/ZZJh19c0/slGgTJwY9J4HBNrZzPkfv/bM3cBl0gL6AKU7YdcQX1QjkJmGNdGQ1D1O0Y8GYFImqS8KOfTE6emDHTLgN4oGp7TalaKHRWyHtKs5u+fUuChWlMo2NJ6PGgO8XiK58YuBwipXPi1MmL/0QRieI=
+	t=1734091070; cv=none; b=IvzjF7PTrhItZZ9nZGS3RU74/vq3qcUostijodgWZrm649xY0QjsgY5zePW0HxWjTZdMXhz4IWt4rZeeLcC6Le2PzcRMxcO9IG503bD4lXK4A9E6HU/+wnqBi/i4Fb1rQ6NVj9TwlXQDb+q16BS34vZV3ObFL0JI7wCwekiUXks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734090904; c=relaxed/simple;
-	bh=cm5icUi+sGrOEhIGQ1zzIb3GehhAkBun86ehhroxOkk=;
+	s=arc-20240116; t=1734091070; c=relaxed/simple;
+	bh=hWxxhi/Ocb9YuWh9rCtFliyfqv/yGxNZXEi4SC0mxU8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dBJ8VNJfhvE23lFu0MyEOm8pcqNKzLAa5Zfqwgpp6hI9moDhN0fjdSE/qKwW4h/gEwj+NLLKryq0VgTTdHMH/esVZ7PYBJdxn9WAUz9yX8UTsZUcwFDrpHIV7jYKnppzWNj2xhHowYUq60+Yd3FppS7dl0nYxS9+j3AsUvEWo0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=trhYqVBU; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-30224cee64dso737551fa.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 03:55:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734090901; x=1734695701; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2F3dU7OsF77ENdouZE5VjBEoGAwdDiEqe/G1nbxNLpk=;
-        b=trhYqVBUkmMfN2kG1osEhNbww1Gu7a3EV34B339p4IRX8ZlczOWUX0peFPbWNbX1ia
-         zLR32uEdDx099B852sbHC1XztZFJF3shiqZSXKexo5xEGmCDfbF0EuWTg5kibrpPrmw1
-         /EuVvxB2JmIhtBqY5fB4u0x6JdiK8o0umlnHGztn0qZMB1bLCaQ5BaaTw6xKoFXi/+p1
-         +2VR+Xy0m0IgVsWFNxdytgiLi44Bhuod1BY9V+PZ10WLEYPlWOjB1E5DKqbvf5YAVvdY
-         8+sw572STWXXcIACzgyO/uWPrrHLnU4B2M+W78Y8t0cngh7DWoxFnFDpHHfHJK8G/fC6
-         azOg==
+	 In-Reply-To:Content-Type; b=p0UWja+MSd6h1j/DGlfJ9bH2GN50mbBP85Ypg9iFw4mJDDGIMcbAc9uvus3fsWPGU3Js45rUZJ3ozY24Aao8/A8o2OKuN+DHrXHUvS/gii2MVflqwOCpSGN14972MwFiLfGvtnw/WUMiWFBeuQkCEgfd1LehoU4dmnT3DUbCDr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=U5Ych2/y; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD8rN3F022799
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 11:57:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	aV2tOvQFCHEHOQ3Ctr/HQDJboIVm3LzcOhrYk8KNUTw=; b=U5Ych2/yWxlumiaj
+	RDnF3haOepVeZGKt8Ek8P0eOYJx7I5eCYAGfbFB01S7m9KF6w3EOYNB9QVYzPXfa
+	1QM+Q//DIUJ7Vgkmmp6QkO9aDmTZBQMIKdtipd1EJPQq8g5ffFYd4eKJL0UQD/hc
+	PodHoed8HS8LbDYoaqld2rxtEPMOM+nwCkXoSmwVzzYpsjnw2taCEcqHTHZeZTza
+	jSbf/mDT+IAQ3wVSs5kycduiuFiekJQ66N53JQDi/y4V39Kki+NQ6z1ULlZ074BE
+	a1xjuclsombDccAiSa+a5ZB8LW63cfIXCm3GA5wP/gLej9LhsArk+Bn2ou3UmE8a
+	WxPrKw==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43g4wnabme-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 11:57:48 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7b6f134dac1so20546885a.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 03:57:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734090901; x=1734695701;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1734091067; x=1734695867;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2F3dU7OsF77ENdouZE5VjBEoGAwdDiEqe/G1nbxNLpk=;
-        b=d61MtrwhQyUzSUKsUFnp4/eHAu8fjvSfPjQB7lz8tMBTuVD6wx6VkQxWP6CCk/GsGm
-         AUWky/NEC9WJxgFXkrhVXcV+oR7XGhJ8Y7luZJJUKeIR4zJOduZyeBRscq8YYRiR9+gH
-         z5ufxR4CiZmEO4ul1sSw1sPE5zdBy/yEbIpV2KU4dcsqAfIMPiYTLcV72fQL4CRQctcd
-         uJsLfgQ5OsQZ2jEQWDNMmD07A3ao8+mYWX9/f/3zf0NpgG8ieng5daemMhYS0oafqhSk
-         NCfgkcH/rSskxDhEMQ7O6L6LnHkO/1ZKDE242osf1fw2kTg9o2Ga5YkYWDoQ7mpl7R8D
-         P2jQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVkL7TUxFOD1v5z9grgqqMMh3TLBzC7g/f8iOwIxhDYKFSodYgatZTkKRteYziTPR9P+PJJ2lpY6sGv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkYl9dcQGXe+01HHR69xN1aFdWCnsfb29KnE/we1AfNLZQONz1
-	g3JgikLo2aG7fypPiUwOu94SR+v7OXbrgzL220HS3e2OSo6cokz3WFKeBkUflBU=
-X-Gm-Gg: ASbGncs/NW+d0X/0fTkBbdzL3RHVzDCJTHO44dAr7YwqU9b1JAx+dXi5o3JG+kJtkV/
-	zdtYWusUjqG5xh+o1sV8XO9njXmonNQaKQXEFupoF06Ayqwk574XRMPhEY0DzGAULojP+HdtA/t
-	muMLxPVLuJoeiD/Tit9F/bOkHXk6p7ZGrDhmelU0ea2Bg+N6iMuWJeU2CRxu8r+ZkCw6EkEW5lr
-	lKcCAO0jvCCIenf57a5w53osylEmgRCLmEbsnz7vgbGYtl1ldPmR/A40FZFbl8adcrujHY++R+Y
-	n+j6Yt2naGbTZkCDgQJwDF3NzK7V/09S8wU=
-X-Google-Smtp-Source: AGHT+IEw9CbAiCn1zybvAh6eWtC/7CZTeXbl9zppPNXp3e2y976kH/LkaKh1sfGg5XjVH3qSYyz7kw==
-X-Received: by 2002:a2e:b954:0:b0:2ff:bdef:88b5 with SMTP id 38308e7fff4ca-302544ca4b6mr2241771fa.12.1734090900693;
-        Fri, 13 Dec 2024 03:55:00 -0800 (PST)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-302292959c0sm13482671fa.94.2024.12.13.03.54.59
+        bh=aV2tOvQFCHEHOQ3Ctr/HQDJboIVm3LzcOhrYk8KNUTw=;
+        b=e4CeCRbEUmdW+JKQyKo+K99GRzhyo3Asplzcb+8wnTKutjG9hv2WI7FYERJQ5r4u3n
+         nChfECikNgR1xYyiprl4WgGFGASvUqc5684CWdR+THmO9NOxUzMgOhwspykxQW1yLCw3
+         Ije3x8DATAhU3Ljop3ZpRD6YBxQyPGOOuGS6aCuSEBCOlwlDVELKD6sOLPKmoaDuyju5
+         VJ1Vimi9ffX+OW2WJC9kGK7GXp25W1vCoaVUZcEJz4vnpRzr3j56wPjsilajiox0Ryqx
+         DTRvZogdn+cXimqGyiksiPGEi6Qz8WCyLK/oPrjFt2JISFqy8OT3rt15PyhbPb3V+R0A
+         fHaA==
+X-Forwarded-Encrypted: i=1; AJvYcCW35YLmYMufS8WViolnl2m0VJuP0Oxt5c+hV442RlK0uNvSwVaXNXM9GiKRzxMuDGgEPFakYVGpRFDi@vger.kernel.org
+X-Gm-Message-State: AOJu0YymqhDtYxTJ1V5+88F2Knj31ZGdvPyCIZRiposYGOzVgKz4OHPB
+	si5JYA7q2CjpaLgAxrrInYUVW+BJNyFcEmxfFii4rr2noj0q+k6ZLYUAb1nh3HaeQAbnjzablH/
+	7N807jc+PgXOzCa2s5e/nGlzWZWyD1S71gHwJA1tA8s4TjoHywFbYwZ5F5kHc
+X-Gm-Gg: ASbGncuywxJP4UXThJlwvN8DX+vcaSAO/SDEV0tuxFi6MNpB1xdJH8QziPd1N7LxTO2
+	tindx2yzZgXVVsd5n1p2EH/OF/MNwO5ODQSabE1Fs5Cq9B9H21h+mvvH7vEvKcrmM7nP4YeUEsM
+	PmjRACdIkcPtAkFWYDrx3qtTBrHvM8ri+LbS6keMSx8DeLG57D3x1luTyvuXZbyhpCkR5aMqUUa
+	waME+9XlWGCeKsPDV9gM5+BkfbuuF9hjquhNZdwMtsfJq/9byjIBxnuGHLZHQFM+fUdI54/iuJQ
+	FxGh9/RPXpf5xQ0AYsbU0SNDCMSjaeG7/EBw
+X-Received: by 2002:a05:620a:191c:b0:7b6:c405:b586 with SMTP id af79cd13be357-7b6fbf19210mr116122885a.8.1734091067012;
+        Fri, 13 Dec 2024 03:57:47 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGQprqSgLBubKgdWWbYTqCPgecNMsXyZimyUAw2EWk/tIKfoQvRq4J7ARIOzuIal/zHJt59kA==
+X-Received: by 2002:a05:620a:191c:b0:7b6:c405:b586 with SMTP id af79cd13be357-7b6fbf19210mr116121885a.8.1734091066667;
+        Fri, 13 Dec 2024 03:57:46 -0800 (PST)
+Received: from [192.168.58.241] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6a59f7bf6sm471226166b.93.2024.12.13.03.57.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Dec 2024 03:55:00 -0800 (PST)
-Message-ID: <244ab38d-762f-4860-b38e-51b08389ee6a@linaro.org>
-Date: Fri, 13 Dec 2024 13:54:59 +0200
+        Fri, 13 Dec 2024 03:57:46 -0800 (PST)
+Message-ID: <58fefb90-a28b-4460-8837-14186d44ec1a@oss.qualcomm.com>
+Date: Fri, 13 Dec 2024 12:57:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,103 +89,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] media: dt-bindings: media: camss: Restrict bus-type
- property
-Content-Language: ru-RU
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Luca Weiss <luca.weiss@fairphone.com>, Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Barnabas Czeman <barnabas.czeman@mainlining.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
- Caleb Connolly <caleb.connolly@linaro.org>, David Heidelberg
- <david@ixit.cz>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241209-camss-dphy-v1-0-5f1b6f25ed92@fairphone.com>
- <20241209-camss-dphy-v1-1-5f1b6f25ed92@fairphone.com>
- <nqggstwkytqxpxy3iuhkl6tup5elf45lqi3qlgyv6eaizvnfdr@2uy57umdzqfa>
- <e4bd515a-eb98-4ea1-8d73-4ba5e7c9b66e@linaro.org>
- <D6AJ9U23ANWI.1DLHNPU5A6HQ4@fairphone.com>
- <d7e3076e-5b32-4ab8-afe8-f52458769f23@linaro.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <d7e3076e-5b32-4ab8-afe8-f52458769f23@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v2 14/14] ASoC: qcom: sm8250: force single channel via
+ RX_1 output for qrb4210
+To: Alexey Klimov <alexey.klimov@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, broonie@kernel.org,
+        konradybcio@kernel.org, andersson@kernel.org,
+        srinivas.kandagatla@linaro.org
+Cc: tiwai@suse.com, lgirdwood@gmail.com, perex@perex.cz, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, dmitry.baryshkov@linaro.org,
+        linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241212004727.2903846-1-alexey.klimov@linaro.org>
+ <20241212004727.2903846-15-alexey.klimov@linaro.org>
+ <ae57068c-5d73-459d-b319-46a582ed7f3e@oss.qualcomm.com>
+ <D6AJWNO2P6MR.1ZSDAC71W3SS2@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <D6AJWNO2P6MR.1ZSDAC71W3SS2@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: iI8y1caVrF-YhaFu6hCHVPXd-XfRKyUj
+X-Proofpoint-GUID: iI8y1caVrF-YhaFu6hCHVPXd-XfRKyUj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ lowpriorityscore=0 priorityscore=1501 mlxlogscore=625 spamscore=0
+ mlxscore=0 clxscore=1015 adultscore=0 phishscore=0 suspectscore=0
+ bulkscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2412130083
 
-On 12/13/24 13:34, Bryan O'Donoghue wrote:
-> On 13/12/2024 11:24, Luca Weiss wrote:
->> On Fri Dec 13, 2024 at 11:50 AM CET, Vladimir Zapolskiy wrote:
->>> On 12/13/24 11:34, Krzysztof Kozlowski wrote:
->>>> On Mon, Dec 09, 2024 at 01:01:05PM +0100, Luca Weiss wrote:
->>>>> The CSIPHY of Qualcomm SoCs support both D-PHY and C-PHY standards for
->>>>> CSI-2, but not any others so restrict the bus-type property describing
->>>>> this to the supported values.
->>>>>
->>>>> The only exception here is MSM8916 which only supports D-PHY. C-PHY was
->>>>> introduced with newer SoCs.
->>>>>
->>>>> Do note, that currently the Linux driver only supports D-PHY.
->>>>>
->>>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>>> ---
->>>>>     .../bindings/media/qcom,msm8916-camss.yaml         |  8 ++++++
->>>>>     .../bindings/media/qcom,msm8953-camss.yaml         | 15 +++++++++++
->>>>>     .../bindings/media/qcom,msm8996-camss.yaml         | 20 +++++++++++++++
->>>>>     .../bindings/media/qcom,sc8280xp-camss.yaml        | 20 +++++++++++++++
->>>>>     .../bindings/media/qcom,sdm660-camss.yaml          | 20 +++++++++++++++
->>>>>     .../bindings/media/qcom,sdm845-camss.yaml          | 20 +++++++++++++++
->>>>>     .../bindings/media/qcom,sm8250-camss.yaml          | 30 ++++++++++++++++++++++
->>>>>     7 files changed, 133 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
->>>>> index 9cc0a968a401836814560c1af3ee84d946500b4f..3de2a3d2b5b761106975aab65ff614b2ef579ef5 100644
->>>>> --- a/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
->>>>> +++ b/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
->>>>> @@ -94,6 +94,10 @@ properties:
->>>>>                     minItems: 1
->>>>>                     maxItems: 4
->>>>>     
->>>>> +              bus-type:
->>>>> +                enum:
->>>>> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
->>>>> +
->>>>>                 required:
->>>>>                   - data-lanes
->>>>>     
->>>>> @@ -113,6 +117,10 @@ properties:
->>>>>                     minItems: 1
->>>>>                     maxItems: 4
->>>>>     
->>>>> +              bus-type:
->>>>> +                enum:
->>>>> +                  - 4 # MEDIA_BUS_TYPE_CSI2_DPHY
->>>>> +
+On 13.12.2024 12:54 PM, Alexey Klimov wrote:
+> On Thu Dec 12, 2024 at 5:22 PM GMT, Konrad Dybcio wrote:
+>> On 12.12.2024 1:47 AM, Alexey Klimov wrote:
+>>> In case of mono configurations we need to enforce single channel
+>>> output. This is required for audio playback on QRB4210 RB2 board
+>>> since it has only one WSA8815 amplifier.
+>>> Implement data variant for qrb4210-rb2-sndcard with
+>>> sm8250_qrb4210_fixup_params() that does that.
 >>>
->>> But is it really needed to specify the single supported bus-type?
->>>
->>> I believe it is not, at least it's not ever done for other media devices
->>> like sensors.
+>>> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>>> ---
 >>
->> Through video-interfaces.yaml 'bus-type' is already allowed but not
->> restricted to the values that actually make any sense on such hardware,
->> so in my opinion this makes sense to have here.
-> This is additive not prescriptive.
+>> Would it not be enough to set channels->min = 1?
 > 
-> New additions should include this bus-type number as we will need it
-> when we add CPHY support and the subsequently move to the PHY API for
-> CAMSS PHYs.
+> Enough for what or to do what exactly?
 
-This particular reason is invalid IMO, since dtb changes are not relied on
-drivers and shall be kept agnostic.
+Enough to make the rest of this patch unnecessary
 
-The open question is if it is really needed to specify non-variable
-bus-type property. As I've said it's not done for other media devices,
-so that's at least the established policy on practice.
-
---
-Best wishes,
-Vladimir
+Konrad
 
