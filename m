@@ -1,177 +1,92 @@
-Return-Path: <devicetree+bounces-130895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 457BD9F12B1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 17:48:59 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDDED9F12F2
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 17:53:43 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05977280FFA
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 16:48:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3437216ABB7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 16:53:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262D61E3DE8;
-	Fri, 13 Dec 2024 16:46:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="mJnvKbi1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAA861E32CA;
+	Fri, 13 Dec 2024 16:52:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A69B61DFE01;
-	Fri, 13 Dec 2024 16:46:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8A51E285A;
+	Fri, 13 Dec 2024 16:52:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734108370; cv=none; b=t5zZ3WSUvztNZYi8RCsT7jVLCYmeL9EECQO2659IQutzIPWodf6463sOZs7bja2nvkhdIXav7KjNpieFNQ+IeVvsMllTFEUn4ohGHVlQeiNTIS2do5J/n67HdLDKuHCzAgsVbx9DAF2KTP22QzXcbAzo3lgutl2cJFm4A0kAPDg=
+	t=1734108767; cv=none; b=YDOhTUf0F3TwDNii0yH4u1wR3msu8fzC1GfyOzgKRkrdzlQJIPkk4P6108bkoyAHSFyFF8JrF4KOLp5rt8l31yBrU2lKCshWfhTuy/ditxN3jhpqPQjE7WxHig1iOfluaaRQpvLZDAoffNPV/HiKzKB+sNmNv/yHVBB88P+5IuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734108370; c=relaxed/simple;
-	bh=M8kcQm2A0ykm55axI3kDdeYhrMewZUX1CR/r0W7/ncU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BdxDmulnjKrucYA+azvX2/j/TItS05MeF99WL6AMgu3UJ7w75ynjzZkhbDpHdYn7P8X2lueukCKYmBdac/ZhEVkQRHIQi6KZBn96qlmsSwtV4yFJLxdCPKVY0tpghmlXkEQ56PVXkN7MFfJSTE0sOTmKWIBjuJn4fdSGACGlf/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=mJnvKbi1; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 07B21465;
-	Fri, 13 Dec 2024 17:45:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1734108324;
-	bh=M8kcQm2A0ykm55axI3kDdeYhrMewZUX1CR/r0W7/ncU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mJnvKbi1XTtUpAOhk1oNAuwTRxLq6PdodzjHwaWfSPT1zZ25ymT+Idk2kOPmxIlzX
-	 Fmv/2mL0Jr2fVFdq22MHWsA3t80mVE+kJQxRcSXq9+ekcpzdg4EQJRzOUhzOctEeDk
-	 Sw1MP6/DuoQuoqnj6cfGf7CE1COc70mNUrALakHk=
-Date: Fri, 13 Dec 2024 18:45:41 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
-	Jagan Teki <jagan@amarulasolutions.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Subject: Re: [PATCH v4 3/7] dt-bindings: display: renesas,du: Add missing
- maxItems
-Message-ID: <20241213164541.GA8294@pendragon.ideasonboard.com>
-References: <20241213-rcar-gh-dsi-v4-0-f8e41425207b@ideasonboard.com>
- <20241213-rcar-gh-dsi-v4-3-f8e41425207b@ideasonboard.com>
+	s=arc-20240116; t=1734108767; c=relaxed/simple;
+	bh=izOmx9naMQgLKUQlxIDY3OVs/OZsvir/XDOyFX5E1cg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qqsBcweqw5aCAMHijUhnV4A+PaErrfkgDTK59Gs7hsUJN9ij0HfF73TvHCXU6iBnMHl96blYMcqDbKkx1K5S6rS85T5nVg9Upy/tLBLflv4W5CBvx7mr6fHBv6Vbht9IuKaypG2VSwZYVaaayOziLY979sCWin1IO9J+hwj6+eI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 40ABF1480;
+	Fri, 13 Dec 2024 08:53:13 -0800 (PST)
+Received: from e119884-lin.cambridge.arm.com (e119884-lin.cambridge.arm.com [10.1.196.72])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2F00E3F5A1;
+	Fri, 13 Dec 2024 08:52:44 -0800 (PST)
+From: Vincenzo Frascino <vincenzo.frascino@arm.com>
+To: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	vincenzo.frascino@arm.com
+Cc: Maruthi Srinivas Bayyavarapu <maruthi.srinivas.bayyavarapu@xilinx.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Rob Herring <robh@kernel.org>
+Subject: [PATCH 0/3] xlnx: dt-bindings: Convert to json-schema
+Date: Fri, 13 Dec 2024 16:52:37 +0000
+Message-ID: <20241213165240.3652961-1-vincenzo.frascino@arm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241213-rcar-gh-dsi-v4-3-f8e41425207b@ideasonboard.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Tomi,
+This series converts the folling Xilinx device tree binding documentation:
+ - xlnx,i2s
+ - xlnx,audio-formatter
+ - xlnx,spdif
+to json-schema.
 
-Thank you for the patch.
+To simplify the testing a linux tree rebased on 6.13-rc1 is accessible
+at [1].
 
-On Fri, Dec 13, 2024 at 04:02:59PM +0200, Tomi Valkeinen wrote:
-> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> 
-> The binding is missing maxItems for all renesas,cmms and renesas,vsps
-> properties. As the amount of cmms or vsps is always a fixed amount, set
-> the maxItems to match the minItems.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+[1] https://codeberg.org/vincenzo/linux/src/branch/xlnx/dt-bindings/v1
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Cc: Maruthi Srinivas Bayyavarapu <maruthi.srinivas.bayyavarapu@xilinx.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Rob Herring <robh@kernel.org>
+Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
 
-> ---
->  Documentation/devicetree/bindings/display/renesas,du.yaml | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> index c5b9e6812bce..e5fbc4ffe29c 100644
-> --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
-> +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> @@ -489,9 +489,11 @@ allOf:
->  
->          renesas,cmms:
->            minItems: 4
-> +          maxItems: 4
->  
->          renesas,vsps:
->            minItems: 4
-> +          maxItems: 4
->  
->        required:
->          - clock-names
-> @@ -558,9 +560,11 @@ allOf:
->  
->          renesas,cmms:
->            minItems: 3
-> +          maxItems: 3
->  
->          renesas,vsps:
->            minItems: 3
-> +          maxItems: 3
->  
->        required:
->          - clock-names
-> @@ -627,9 +631,11 @@ allOf:
->  
->          renesas,cmms:
->            minItems: 3
-> +          maxItems: 3
->  
->          renesas,vsps:
->            minItems: 3
-> +          maxItems: 3
->  
->        required:
->          - clock-names
-> @@ -684,6 +690,7 @@ allOf:
->  
->          renesas,vsps:
->            minItems: 1
-> +          maxItems: 1
->  
->        required:
->          - clock-names
-> @@ -746,9 +753,11 @@ allOf:
->  
->          renesas,cmms:
->            minItems: 2
-> +          maxItems: 2
->  
->          renesas,vsps:
->            minItems: 2
-> +          maxItems: 2
->  
->        required:
->          - clock-names
-> @@ -799,6 +808,7 @@ allOf:
->  
->          renesas,vsps:
->            minItems: 2
-> +          maxItems: 2
->  
->        required:
->          - clock-names
+Vincenzo Frascino (3):
+  xlnx: dt-bindings: xlnx,i2s: Convert to json-schema
+  xlnx: dt-bindings: xlnx,audio-formatter: Convert to json-schema
+  xlnx: dt-bindings: xlnx,spdif: Convert to json-schema
+
+ .../bindings/sound/xlnx,audio-formatter.txt   |  29 -----
+ .../bindings/sound/xlnx,audio-formatter.yaml  |  84 +++++++++++++++
+ .../devicetree/bindings/sound/xlnx,i2s.txt    |  28 -----
+ .../devicetree/bindings/sound/xlnx,i2s.yaml   |  79 ++++++++++++++
+ .../devicetree/bindings/sound/xlnx,spdif.txt  |  28 -----
+ .../devicetree/bindings/sound/xlnx,spdif.yaml | 100 ++++++++++++++++++
+ 6 files changed, 263 insertions(+), 85 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/xlnx,audio-formatter.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/xlnx,audio-formatter.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/xlnx,i2s.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/xlnx,spdif.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/xlnx,spdif.yaml
 
 -- 
-Regards,
+2.43.0
 
-Laurent Pinchart
 
