@@ -1,111 +1,113 @@
-Return-Path: <devicetree+bounces-130853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74A1B9F110F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 16:34:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04D0B9F1112
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 16:35:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2536188255B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 15:34:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23BF1163513
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 15:35:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51F8F1E0E01;
-	Fri, 13 Dec 2024 15:34:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CDC91E25E1;
+	Fri, 13 Dec 2024 15:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FsSCUwSD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBEAC1DF988;
-	Fri, 13 Dec 2024 15:34:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0741DFDB8;
+	Fri, 13 Dec 2024 15:35:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734104072; cv=none; b=SnZNaAYqhXy3sHpIVBUI1e5UVZKMdH+6lQyK66eD2+EGPWpSN9v1wtQKuQqs2ljehv8uiHg6h9kXIN8zXpYgufgj37t9IgT8pk/BUrx9HcuPWM07wKeXieNP5Z2efT7kXw5LRXEpktufMZTKH76GN2TXxHvVT/u8whW6SmWodaM=
+	t=1734104140; cv=none; b=hBt2Gw1gQbZ0Kcyy/ZddOhLxgABzP4Y5rDAGevBtLheSw6tIlstDMl8IAnfDBNrenVgDh1AzlezoHt1CIi8yJbq783copm7WCyIIGagFz2flz5qDLRuI9arjmPhX94BRtf+sfkV65mvMsgQ+AAs8OmcgV2IqiJDS8CSBLGzFvaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734104072; c=relaxed/simple;
-	bh=ER3me+VZDhAOFJQ8ficWBzHanTi8qpFOdS3sPlmKVyM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EQ9CVIxOxKjzWTIKgtuXLgI382pirNhHgJ1Iy6WIG2J294X05+/XlkkwDkdBBZcWO1bUfUAijaktGwEAzhmUzMxkdridbi4Lf0bEG1hWwI49sUSbiuHnvriKDiYsExy7fszVFcgxdEoPxkQswmQpxRGsiWYt9f6wZqmytE9TgnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6dae1690c3cso14803836d6.2;
-        Fri, 13 Dec 2024 07:34:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734104069; x=1734708869;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=e4O3fLHyjMr/J2JBDlQ4jAGfxZWNEu3n+uKu4G6HEEQ=;
-        b=RloLKnSbATnlUnPLT7xRGpszABtJCo8WmWtlCfX6qAb4ccN4VDiee87J4e2bgeI6CN
-         ZSzA6BT9u06oaUqyCG7pX7EvIXIGhwoI7PE6j4n8KAfPlx5Srd/puoy6DDBIWlXTCX/v
-         NDZkTw61LU7Hf22T7IZ0jCjIZgVetWysMoO/VaISO0goHhvYL7fU+sFEMa/DW1Ir54D2
-         k6GoQ4Kwz6Yt/PEuAfZPC5359fojvl8a3q08U7gxxCBB7ViXmBi567DvV+aSVIlJOlRH
-         ltl1V+Mt9qFH1l8RZPHwKVt0vYVfDcdodEO5kGeu4KEvtGHsfC6Y9v0aj4qkQr/4S3gQ
-         6iig==
-X-Forwarded-Encrypted: i=1; AJvYcCUAWpJhNjro3Q8vEop78Mcf6DH5k9fO6WbRZzI8rWZf//Ymjd+jtfbR271s5tWOUPZl45YEbcASJnZNDFGcUA4gnlE=@vger.kernel.org, AJvYcCWBdGPprkvG7csl++dr2YEn5ysY3++rqcqD22+V3esKBuOoh1f7br1qtVADs/TsfrFqX04HXQ3V2GDn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3i3mqTByOQ8PXOFuIociuN+4A8gDroJuv/EWrANNuZrR8J55D
-	g0SSZy33nyxZR8lgRfAxmXmRH8AGSwGCVAJ9MT/CrY+NKx1B8PqSFkP/pUJ5
-X-Gm-Gg: ASbGncvP7j60OERHIcatydsUJ4rXRw3GQRWPcGfhNVuAN20PgvAMGCoEy/f4hDTl+8o
-	03ATs5kQvsIzSz0NUtfcFu87EPbDnzATpSELJLjyWd+ory+jeXFIV1xqZcWBc8sSbV7Vr2Cjp1E
-	nGcQOajmKJLKtphqibBGlW+RWCbIIDFwFW05z7mIdrPMQ0ZdrW59fggrO54YOrFYJCE4bmoMMUy
-	JnsQvnnd6ISLH8vo+MKi8z5tnepTFwnu7oPlQ/Ns6Iy86m9rGE0KQNsqRK64ay2iXGEicVb9GJw
-	eBnmmme9yYaZ+o0yqb5jzzs=
-X-Google-Smtp-Source: AGHT+IE5WT/P+QngRWuuuMNBcQY6QyQ5rsAVH2r2Nm5FDdluPl+tLT/lALuqbF8NexHyLQp18wvbvw==
-X-Received: by 2002:a05:6214:76b:b0:6d8:a9dc:5a65 with SMTP id 6a1803df08f44-6dc968489e4mr50324866d6.45.1734104069440;
-        Fri, 13 Dec 2024 07:34:29 -0800 (PST)
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com. [209.85.222.177])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6d8da9fd389sm93185206d6.79.2024.12.13.07.34.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Dec 2024 07:34:29 -0800 (PST)
-Received: by mail-qk1-f177.google.com with SMTP id af79cd13be357-7b6fc3e9e4aso73908985a.2;
-        Fri, 13 Dec 2024 07:34:29 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUDzLqtZ/H1sOddyNl811V5pKNPrb2Wa5IZWLXAC+QwMtc6uEVgMXmmAdq476f9C+h328gUxHvzQvvHWgmSJp8JQc4=@vger.kernel.org, AJvYcCV7yNbiaITHB30itpMd6/3oda+o3rPz1v06NqHZVNz040xoWwxVqrxuSmxAcisYo/3LT0G6oay+XxsV@vger.kernel.org
-X-Received: by 2002:a05:620a:c47:b0:7ac:c348:6a55 with SMTP id
- af79cd13be357-7b6fbf3c4bfmr335611485a.38.1734104069082; Fri, 13 Dec 2024
- 07:34:29 -0800 (PST)
+	s=arc-20240116; t=1734104140; c=relaxed/simple;
+	bh=DWNFxRB8y4F0Z1j4laSszVoKuggu9oSGiE3Xc+mGY1M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UEJU+aPw+OvJgYo/9bczD/9gwgysxmQPD0b8baHIAtoIVayTflIHHk/9URAYaDl+G3Bj7kZyzjSdje0I3vXutMM8ZL8bl2gSqykeK2qcEKy3KbfU1sgE9ZMKvGqf22270/gJkNI/Nv59ncTZwiNUDco3kZg2qET+NuRXd/lK2fk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FsSCUwSD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A6A8C4CED0;
+	Fri, 13 Dec 2024 15:35:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734104139;
+	bh=DWNFxRB8y4F0Z1j4laSszVoKuggu9oSGiE3Xc+mGY1M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FsSCUwSDh2xWgUtT0oQngEdpuPIhfKbqG5nzh4+KefdIjdP3sRE4oUastFGoMnjdS
+	 fy6BZFxQvyZLwGIBcAFd9aSrfveDkCem2WWYMieeZpjNogRJf69djRqXsBVEmy/KmO
+	 otPlF52ZB81IMKhpNX3WyebSmZ3tpld8ML/dy/5XNEVsGXQgyMyFpgaOo1hIwOmxFP
+	 UxOSXyvxfXHLU8rZ/nsg+HMhQji7LLwSdAAXPdHa/kOy5fNUuFtToMK9Vnaob1mI7N
+	 Jh1IbaXPI7T4H7A2GPEmRjdQImya9LJS93OZJIbsgdUq/bvPS22pUWk1om3ldgNlLj
+	 s8WAqcjvb6EyQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tM7hg-000000000k8-0ZvD;
+	Fri, 13 Dec 2024 16:35:44 +0100
+Date: Fri, 13 Dec 2024 16:35:44 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Sibi Sankar <quic_sibis@quicinc.com>,
+	Luca Weiss <luca.weiss@fairphone.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v3 13/23] arm64: dts: qcom: x1e80100: Fix ADSP memory
+ base and length
+Message-ID: <Z1xUUAnxsCY33umS@hovoldconsulting.com>
+References: <20241213-dts-qcom-cdsp-mpss-base-address-v3-0-2e0036fccd8d@linaro.org>
+ <20241213-dts-qcom-cdsp-mpss-base-address-v3-13-2e0036fccd8d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241206102327.8737-1-biju.das.jz@bp.renesas.com> <20241206102327.8737-5-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20241206102327.8737-5-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 13 Dec 2024 16:34:17 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWrzY5iE36iWFNczVz8LU8yD7QUnpG731ov0oDToE5Fgw@mail.gmail.com>
-Message-ID: <CAMuHMdWrzY5iE36iWFNczVz8LU8yD7QUnpG731ov0oDToE5Fgw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] arm64: dts: renesas: r9a09g047: Add scif pincontrol
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241213-dts-qcom-cdsp-mpss-base-address-v3-13-2e0036fccd8d@linaro.org>
 
-On Fri, Dec 6, 2024 at 11:24=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Add device node for scif pincontrol.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Fri, Dec 13, 2024 at 03:54:02PM +0100, Krzysztof Kozlowski wrote:
+> The address space in ADSP PAS (Peripheral Authentication Service)
+> remoteproc node should point to the QDSP PUB address space
+> (QDSP6...SS_PUB): 0x0680_0000 with length of 0x10000.
+> 
+> 0x3000_0000, value used so far, is the main region of CDSP and was
+> simply copied from other/older DTS.
+> 
+> Correct the base address and length, which also moves the node to
+> different place to keep things sorted by unit address.  The diff looks
+> big, but only the unit address and "reg" property were changed.  This
+> should have no functional impact on Linux users, because PAS loader does
+> not use this address space at all.
+> 
+> Fixes: 5f2a9cd4b104 ("arm64: dts: qcom: x1e80100: Add ADSP/CDSP remoteproc nodes")
+> Cc: stable@vger.kernel.org
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Why bother with backporting any of these when there is no functional
+impact?
 
-Gr{oetje,eeting}s,
+This does not seem to meet the stable kernel backport criteria and will
+just result in a lot of noise. (I'm sure autosel will try to pull them
+in, but that's a different discussion.)
 
-                        Geert
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> 
+> Changes in v2:
+> 1. Commit msg corrections, second paragraph (Johan)
 
+Looks good to me otherwise:
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
 
