@@ -1,178 +1,165 @@
-Return-Path: <devicetree+bounces-130658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 726B99F096F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:28:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AB8F9F0974
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:30:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E6862838F4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:28:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2EBD283901
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:30:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5E91B87D5;
-	Fri, 13 Dec 2024 10:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A9F1B21AB;
+	Fri, 13 Dec 2024 10:30:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FumeYSpL"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GuERsYeU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D861AF0BA;
-	Fri, 13 Dec 2024 10:28:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5C4199947;
+	Fri, 13 Dec 2024 10:30:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734085735; cv=none; b=VsPMG7uIQqdJoMCBWPAe/fflekFSSIRqk1c/n0YD6mDinUvc43fASMBkzGkhewN+PMdfSe58oumdg4wSFX8Lak3C4PSkPVkzDcrpNZHyFGypgpSMy4gEd45DDg5BtC39OC32ySiiYRjH3Xx0D1sSFYYI0LAxkQz2Ng/TwrXUpj8=
+	t=1734085844; cv=none; b=GZU7yFcTQIAnNwkSOQR3Kshh/pLcVxoysm8qsJAj3avSUmKHESDmzfqU6T9HQH8F8UL/VIYBJ6820SjKtaO0nByKWxb0y5Myoy+ICjKRWNLv6ccOoWviCrj/JbtdaKGUqJdA6Lrn8l7CJJzJuyscDM8kN6VNzP24G7+DsPANr3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734085735; c=relaxed/simple;
-	bh=BXnyrsgsdHGiV455w3HuHCeFEa/SFluCgKXvenSew+k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JNejusyJ3uHyDK2loGJ5NcE6pO8SUIGL3Eff+y407ROO1zSYkDY0nNU1VgEx8uJvPK9KznTWaRBXI2YmfAW+RzqwkH8Ias8dQJgITiY51ICdYSwkFozwfSIi3q+/GyGr5Ud08Msb+iv4S2ME7qFHReQyLT45NX4TF3TUA5XJ+1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FumeYSpL; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3863703258fso1619260f8f.1;
-        Fri, 13 Dec 2024 02:28:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734085732; x=1734690532; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xYHxqXx2EMQGflFWtIwoQJfTlQ0gooxKN8SBXQ9zX4E=;
-        b=FumeYSpLAdt9ciPuACVgka8SCR6vtvyYRaX6/3zJQV879+64Z6no1QskVFRGScSUcE
-         BkP30tzOn+fVq3UmVtBlAWUO7jeChvuOtrWlAubyGB3NnLSTjllFH5HwFu70QNOw13sI
-         bpq6ipqKA/Q74FFU96IBuqncI9cLlYXzbcq0bjIzoSbonKEk/oYk0zWP/GozQ9gvMZMx
-         ax4K2OHmvF0jnOqCkM7IXsBmAOf0/FksxJ7y9ccDJTY7asiI4IVazoPF6UlbU1kat44G
-         dTHHpjJeRwy/isnU1gfu002Gtc0qB3zkbMk2GynULHedKXMUSxRWYgDoOxeMevZycIPL
-         9bgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734085732; x=1734690532;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xYHxqXx2EMQGflFWtIwoQJfTlQ0gooxKN8SBXQ9zX4E=;
-        b=Ka0nSXCCgej5EiaVSosDySlna+EJoG7cPHSKqVdcmJrFghnYu6iww2tCz/MsJaOhQZ
-         fcpNS1Xmi8rHp9sMieQsEEsVKKwhPYcJezCBlYnKyJtbjBQNj9cGxMGZ9N8xdYMAwwo3
-         Ogi0MZIq6K42owq8NcAG1/c37SPA+ubsovFqGaCIHzTOBydFyrQHTU8NW0uRWTVsKa/R
-         GqVdmTBHICw04Cmiiks5b3Ejazn1+lG6VRDyJiM603ueMywnFnABUS4pA7DoxWNnwd2j
-         BDF57t13LkrRdrwlx0GTDH2KPH8yYVZujzhydUe4DNNm8W82oEYq6rRx+T0wPvYLQAoR
-         FqpA==
-X-Forwarded-Encrypted: i=1; AJvYcCVUoWUn/mL01WPEj2BcIyJNfCBCujC+1rKnild38izy1TuNzd5vjH0BRAvLOjEg8Duxa8ltZDblrVz7WP8=@vger.kernel.org, AJvYcCVgl8rRM/eVydzvi3SBiOMnxQgzps25WD5jMJxBbqIfMEcwVvMJG/R3PJDegwpV8w3NdBk9+9Lkv7ps@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPmSWteQJmfZcw7TRJ3nmKaQys3FV+jCfN5SBmxPiNnp8T6PU3
-	tn8gbEfrQt5bLT0Lax6j7t/uzPxy8lhTyv2eqwVXxuIf1DtngN3B
-X-Gm-Gg: ASbGncsDqVy+I3DkofXqVHQTPanatYjjR7COLD3jgdaPlZVHNrrK4nDWj/7apAIPobm
-	pHrcmcjoEvgoHo7tMnhkZU7Qp2TLRjNSpXwLZ6iInOTeTaUx7zYT8C6+il8j9JoTLUH0NFSpOep
-	bJz6usXwOPwxDDgVV1iFe6Yy0cPkH70mpqwrolJEnWAAly95LP6V6+I9OUp7WC77ZRSgVfmYmZt
-	4SDNkxcUb+IcAmoJSWB1TGIZuse/GSRKKHISVgQipaT3lRvY8yc2HyNi5a2fgPLh8p5BQGuv5Q1
-	fRZRpcHVgIdbEuYjIC1CQNdprT8L2wZ1Gn1D3vxzjrY=
-X-Google-Smtp-Source: AGHT+IGb7Z+gqsmkO0AJw8/NOqY0CM5WThp3oPPb1uqxhGCRWRoFZffU/dYLohNfLqYEYJAOBeU/9w==
-X-Received: by 2002:a05:6000:70e:b0:385:e8e7:d09a with SMTP id ffacd0b85a97d-388c3645ec2mr1356055f8f.2.1734085731798;
-        Fri, 13 Dec 2024 02:28:51 -0800 (PST)
-Received: from orome (p200300e41f281900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1900:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38782514f29sm6847351f8f.77.2024.12.13.02.28.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Dec 2024 02:28:51 -0800 (PST)
-Date: Fri, 13 Dec 2024 11:28:49 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Ivy Huang <yijuh@nvidia.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	Brad Griffis <bgriffis@nvidia.com>, Sumit Gupta <sumitg@nvidia.com>
-Subject: Re: [PATCH 2/2] arm64: tegra: disable Tegra234 sce-fabric node
-Message-ID: <l23rd5dt2it4tvh26225a5ortsl7wwhwl64tyncn33mpamdkxa@5mo7hiasunki>
-References: <20241213000305.3533971-1-yijuh@nvidia.com>
- <20241213000305.3533971-3-yijuh@nvidia.com>
+	s=arc-20240116; t=1734085844; c=relaxed/simple;
+	bh=Pr68w8HLRcyR4R3SXxUHNI/cz0OLkbvyA5cDO9axV8A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=n6QQzrXYHdclML2RpCtNr4q09scLyAQEGxEIH/ARJ08gTxMopErx2DVFXTkRA1MOEgL+QC3dY7RMLApMDwWuD+ManPeCq6+6LXp3kp2f0LkLxFQnWbHd+HBImhHu6CG/lVT3MefoKCZkHtXdW2r7fAMHAZojiZ3ZFpY0j9Oupe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GuERsYeU; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD2g9OZ000485;
+	Fri, 13 Dec 2024 10:30:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4VIRW8LodQHYJc1txja2sDsdcbnQij1n5PaWsrKr1eU=; b=GuERsYeUwzdQYiJn
+	aVBOvEN6uTErzoGB2/cAhTMICJNxThfAb2csGrlQUYh8bwrf27u2v3r1k3j6ZJPK
+	Yn6fvph0h9xoditgLBhldd2u54qz+nSrKBiXiTWmbOPXEqIfxpc8pA67Sat0MTZJ
+	MDF618+BEfbzC6AYbq1PtWMsu7yZ6UsVNkvXlhhvOBEonSy6y6f8Hy8QBEaqkHUJ
+	MT+9SKBRTkwOFm6uzXdYxqEhpFNNWJS8f+s+TQBE2I3g5Pw4maBfA2SrlvCq73Ea
+	EIToljQqRBLvCqa1On92RkgnLln4jAwYtB/b1qYaWfBH2wU654GNWax4c0/8ccUi
+	UM8T6g==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43fqes4gdr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Dec 2024 10:30:34 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BDAUXKA018370
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Dec 2024 10:30:33 GMT
+Received: from [10.235.8.17] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 13 Dec
+ 2024 02:30:28 -0800
+Message-ID: <8063460d-18ad-4e54-8232-716bad9d37c3@quicinc.com>
+Date: Fri, 13 Dec 2024 18:30:25 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="nswbtxszuhelgfc5"
-Content-Disposition: inline
-In-Reply-To: <20241213000305.3533971-3-yijuh@nvidia.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 5/5] arm64: dts: qcom: Update IPQ9574 xo_board_clk to
+ use fixed factor clock
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Konrad Dybcio
+	<konradybcio@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <quic_kkumarcs@quicinc.com>,
+        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_linchen@quicinc.com>, <quic_leiwei@quicinc.com>,
+        <bartosz.golaszewski@linaro.org>, <srinivas.kandagatla@linaro.org>
+References: <20241107-qcom_ipq_cmnpll-v6-0-a5cfe09de485@quicinc.com>
+ <20241107-qcom_ipq_cmnpll-v6-5-a5cfe09de485@quicinc.com>
+ <0776a26e-56cd-4838-9b52-210ae9a1f281@oss.qualcomm.com>
+Content-Language: en-US
+From: Jie Luo <quic_luoj@quicinc.com>
+In-Reply-To: <0776a26e-56cd-4838-9b52-210ae9a1f281@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9lpEAO-uMRk-C7HonLcevXvPHCozICKQ
+X-Proofpoint-ORIG-GUID: 9lpEAO-uMRk-C7HonLcevXvPHCozICKQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
+ lowpriorityscore=0 impostorscore=0 clxscore=1015 malwarescore=0
+ mlxlogscore=999 priorityscore=1501 bulkscore=0 phishscore=0 mlxscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412130071
 
 
---nswbtxszuhelgfc5
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 2/2] arm64: tegra: disable Tegra234 sce-fabric node
-MIME-Version: 1.0
 
-On Fri, Dec 13, 2024 at 12:03:05AM +0000, Ivy Huang wrote:
-> From: Sumit Gupta <sumitg@nvidia.com>
->=20
-> Access to safety cluster engine (SCE) fabric registers was blocked
-> by firewall after the introduction of Functional Safety Island in
-> Tegra234. After that, any access by software to SCE registers is
-> correctly resulting in the internal bus error. However, when CPUs
-> try accessing the SCE-fabric registers to print error info,
-> another firewall error occurs as the fabric registers are also
-> firewall protected. This results in a second error to be printed.
-> Disable the SCE fabric node to avoid printing the misleading error.
-> The first error info will be printed by the interrupt from the
-> fabric causing the actual access.
->=20
-> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> Signed-off-by: Ivy Huang <yijuh@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/d=
-ts/nvidia/tegra234.dtsi
-> index d08faf6bb505..05a771ab1ed5 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> @@ -3815,7 +3815,7 @@
->  			compatible =3D "nvidia,tegra234-sce-fabric";
->  			reg =3D <0x0 0xb600000 0x0 0x40000>;
->  			interrupts =3D <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>;
-> -			status =3D "okay";
-> +			status =3D "disabled";
->  		};
-> =20
->  		rce-fabric@be00000 {
+On 12/13/2024 2:33 AM, Konrad Dybcio wrote:
+> On 7.11.2024 10:50 AM, Luo Jie wrote:
+>> xo_board_clk is fixed to 24 MHZ, which is routed from WiFi output clock
+>> 48 MHZ (also being the reference clock of CMN PLL) divided 2 by analog
+>> block routing channel.
+>>
+>> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi | 7 ++++++-
+>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi            | 3 ++-
+>>   2 files changed, 8 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
+>> index 78f6a2e053d5..9a8692377176 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp-common.dtsi
+>> @@ -174,8 +174,13 @@ &ref_48mhz_clk {
+>>   	clock-mult = <1>;
+>>   };
+>>   
+>> +/*
+>> + * The frequency of xo_board_clk is fixed to 24 MHZ, which is routed
+>> + * from WiFi output clock 48 MHZ divided by 2.
+>> + */
+>>   &xo_board_clk {
+>> -	clock-frequency = <24000000>;
+>> +	clock-div = <2>;
+>> +	clock-mult = <1>;
+>>   };
+>>   
+>>   &xo_clk {
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> index 8246a00a3e3e..25aed33e9358 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> @@ -32,7 +32,8 @@ sleep_clk: sleep-clk {
+>>   		};
+>>   
+>>   		xo_board_clk: xo-board-clk {
+>> -			compatible = "fixed-clock";
+>> +			compatible = "fixed-factor-clock";
+>> +			clocks = <&ref_48mhz_clk>;
+> 
+> This must be squashed with the previous patch, you can't introduce
+> code and replace it immediately afterwards.
+> 
+> Konrad
 
-Hm... so what's the purpose of having this here if we can't use it? Are
-there cases where we might want to access this? For example, could some
-firmware *not* firewall this in some use-case, and would we want to use
-this for error reporting in such cases?
+Ok, I will update the patch series with this patch dislodged, and push
+this single patch in next update. Thanks.
 
-I don't have a strong opinion on keeping this while being disabled. It
-is a fairly small node, so it doesn't hurt much from that point of view,
-but overall this patch seems like it's taking the easy way out.
-
-For example if there's ever a case where we might want to use this, then
-there should be some other entity (UEFI?) setting status =3D "disabled" at
-runtime. Or perhaps it should be setting status =3D "okay" if it is not
-firewalled. Generally if there's no mechanism that would ever change
-status from "disabled" to "okay" at runtime, there's really no point in
-having the node in DT.
-
-Thierry
-
---nswbtxszuhelgfc5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmdcDGEACgkQ3SOs138+
-s6FKExAAvf/o9UE/b46eYB8uD01lyvI//x0eUxtOKRnqfgX+d9bjf3brs26G4hdO
-E/7R03LG8lRjMWx1fKt5eDh0w/tXrjBrswAHfgax8fuNsGuDPhES8cWMz+HWlKrT
-qO8G4TJyDZVXZDbdPnBmx4J0a97QThdY5QIboZpWzM/PFUbMpWoOkscsYluJUzLU
-+WQfkQyOzwNAdZxVugcWwfykC1EW1mXcp3QuzEjD/XnhI0E3j3w5H1Gsuc/9J2ve
-VU/8BlODeeTraUCR5ulx5gxVCGavteQQ7hBxWNA7SFgz9r9vjhSCjGlVBPtpWEf7
-kpQYkCEl9TvpRYkoKL9yIlij9obreueYfDQIfTI4aX/8SpzYiCRZSE8otnmOrSXf
-0oDO5b04iyQcVvR/4yZyoKCGOYAfry8gqDPzdU85OJ+IhyF02l9CiqbCXcXNIwAA
-o78OwNW2Q21S/hDen0ltdVT9xARBH7mz5BZoMDz/5Z52s+S6eOo2DGD6fxKoCnnT
-KoH3mrudnxkUyQClyrGrhfhyopZrrapslwFTEyiaudW6v1FSVjRWkk5F86ff2UUP
-jyAfVFBezuEn2vhYECGtTyH2C+416wqaJ5sDkn0R71RhvGx0Y92ZA75gXDVhlEfN
-WVcOmVz187yeRP263sC5mN2faCjYPUcSI8X4Vuu/k5iPgXhzilY=
-=I9dc
------END PGP SIGNATURE-----
-
---nswbtxszuhelgfc5--
 
