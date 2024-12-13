@@ -1,306 +1,138 @@
-Return-Path: <devicetree+bounces-130919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 466719F14A8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 19:03:27 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB599F14B7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 19:10:28 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F33DF280CDD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 18:03:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D90657A0431
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 18:10:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99C691DFE29;
-	Fri, 13 Dec 2024 18:03:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4EEE1E25F8;
+	Fri, 13 Dec 2024 18:10:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P3CWLe/u"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I0fNbn+X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C18DC18660F;
-	Fri, 13 Dec 2024 18:03:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263B02E62B;
+	Fri, 13 Dec 2024 18:10:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734113001; cv=none; b=cQZlmNaXDTp4kkgCM1eWRL7sfcENjmsXV4RHtLMlPjpAx8F8hcjdJHlHX342IpBdHrzSX9MpJM7B3TNsMuXTRsvWAHJ91uUfUPXYMP1UBsGMFiYmTdW/9wYZM/heZvsgx1naA5R7gYbt401brS2n3vU5GJ/zm+YTwmAIzNE6bUs=
+	t=1734113408; cv=none; b=qTppu5bFNPrx5X3PCip/htOjYSN7CLvgx1XW4BXJNqWCBopqaJN0gFYrFkoPKszHUCsPSFj2wWrVlTKQRDyRMvzzwsXr3ix06Nqj/Yh0wt4HvzKQNOd6Xzo/MKgRQa1hZoGXvSLdmripMn6qiR5563vTWztFBwxC4Yr1DKx9BMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734113001; c=relaxed/simple;
-	bh=g0f2r9DOolk30FSnQ+OAzCzM/b34pc0RljcoApfTC4A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qkf58EwAxzrILwFi/to/bSYK91xtQfXDN60tGcdFV6Vhr564bwhCURDWueN/EZ/+4jrp9sP0FXjqjLQMrJrMEvOkhiYevbRuspOQ0y+ctcCVAoAxg8A4U25J5XTeN+SO67XebaXJkHc+mz3zmyFzucht7f9FNPRJYqAAG3Rgvvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P3CWLe/u; arc=none smtp.client-ip=209.85.215.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1734113408; c=relaxed/simple;
+	bh=Sp15gpzV51tDfhfppbLq6aK8glX6u5u00Igfbyv4PB4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=g1VS+MvkkL4gpFZQJQ260cb7V+HQx+2JMW5i29jRoQocYg2CfR9/u7SbGpbBJdT+xR/U+vRw68zP5KKtVjzRDYERT/g0+F4Si7pqro+A/TD/EE91xZXINgfFQTM4B/sW9yzSmDZQzjZ2VAon4aHvnmbsfe8dTZIUfXScQs1Lapc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I0fNbn+X; arc=none smtp.client-ip=209.85.166.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-7fd49d85f82so1673246a12.3;
-        Fri, 13 Dec 2024 10:03:19 -0800 (PST)
+Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3a8c7b02d68so16299255ab.3;
+        Fri, 13 Dec 2024 10:10:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734112999; x=1734717799; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=F6jMM81flLKy4QRMajRgWR11Tzbfd+NW69qafUSop9c=;
-        b=P3CWLe/uhCVOFAkT5Z5ZHHhg6ky5HXoDvAP6GIKltSdIvy8IKWlUD8rfSy8pNBI9/P
-         aE4FnSZI9tb+GnpXkCUtfJkHXoYdKhYLxKwrPOjwPnsWtk3DPmfJi6bSor5hRlQf5YS0
-         AZIvRxHJWBR5Wj0RHgP2fCXcyWtGp7WLD93yklByd9KJtbFbxUq95L1fsY1lXzHcKD02
-         51SdZZ0WqkRcmk4thcY3p3s+WHqs/wmsDTD7kHadNoXprqrVRZRZK6JPK5XOLx6J/RKW
-         y2dXf80iM0c3wvz8+debV1qAj9bA/1W8UjYSnquWXase11GjoEykj71AD1t8SFLf4T/X
-         v0MA==
+        d=gmail.com; s=20230601; t=1734113406; x=1734718206; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZaUJxyWODTPt/EHA59a8Xm+chAdP/ldBcjz3rSODr3s=;
+        b=I0fNbn+XX9to1j2K5ohAGGqduT7bTkmk0Xlyruwa7o5cy75jurEZ/GEHIVs4ro3R8D
+         IEKgZ8zRembWliVJGEe3ROf7qU0FX/PlRvNiCOebk0Cw4+3VQUwL5SXxRU67Aq/QbFdZ
+         i8GsLsQnPa8saQYMUQbRy0NH5dYUdy+iKXJDogDz4rETmF5wsflqPDZNvA50wfmCueWP
+         yK1M28/HiPqfpxsPTNFDDu5PK9mHM6HQBmTORddSPGSlUDtSzEA/uyZOxzteuGZH3Osz
+         PiUvInEgMexrZq8GM7fHcgf5yyU/KtG48np4DqtioCZZm0vw07yNIbWrAomgAJN1R+qB
+         Rudg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734112999; x=1734717799;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F6jMM81flLKy4QRMajRgWR11Tzbfd+NW69qafUSop9c=;
-        b=OsBCHsUuJFEEzxrocPEp5qy7x6TRKua072VvNKXebPMr6Q0ki39xzIRu4W0uO/yZqC
-         bYMNaDBdu7d9g5+8TeH+f+mO6VsKQftXk0d7xMuAwGNDnoQ6JFVSqILbVDnNdsvetQrg
-         b8hE8DaivuEJOcGpY+ssxkDm33HntDtyBQNTb+fMIujkHBSaymet59vlTnHhPCA33bCf
-         rntrMTl2uZ5f835Vn1sm9a4JRwcfk+FB0Ss4COAnZRR7EYKaa1ws9OFb4xTS1zEklW9r
-         0SliunU11nVKLYyynWAnkw1kprRdqgJTJwX0UfPHdDk8ks/C08fkfIgo2Y21O6JqkLqd
-         KxpA==
-X-Forwarded-Encrypted: i=1; AJvYcCVRZyRcLqEZkMi5YtTxeVfzCMhnyKNc4llk7fIJv8pfulsh8seqnUEso4ftjTHIdoXDY3w03/1EDqwB23+6iog=@vger.kernel.org, AJvYcCWPz7pBhXFl/2WNaIP1rBIIsGn+5mtguYi/QxBFVTQ9L2N3XQWB5BiYNPSXX/utL5nVl+4yotoMGn7dSss=@vger.kernel.org, AJvYcCXIRP2Elh/Xb2HhqfJYfk9OC3mMUbsgE2zNUY8T6jqxy1F0JEsXp2mWHaSuhB3UADjtKxE6F7wkePd1rot+hX3WCvA=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPu1PV1yO3A7PRLqQpUrXJJ19b22+DJk8bQExMpcRl4lVvgdgn
-	Ww12Yd74dIXvdn+jh4/x6raV8DACeKA1vTo3XSzbHp41pr+txeMR
-X-Gm-Gg: ASbGnct+Y5dITwmbF6rS0zwolYuIU3rWLb2qv7ciZ+efPFQkjfJ/0tf2xazcYNeb/Rm
-	w67FV5XHAB+o/AI6ZXRrl2j91nE0KHyDvuPwt8gYQByvWEgqol37ELzaQIu2kREjjrNlbtz4tg0
-	Cv9wrbbsCJ2SlRjOFcCCRBLmt/puZT452y4U28NeU7QY45QqkFaZS0whPNKQzMYy9IgeP4fXGob
-	DF5azDFHHZ+L3vkfWxGPFayIy4Tx/fWoegOJrcB7UBaTjuEBUot/ZbebAt8tG1nfpkz/KeAhcQu
-	rsmndPyTUCwRx9vYwXxQS1jtgn6hFQ==
-X-Google-Smtp-Source: AGHT+IG7A7M3YjX6+06+tv2Zfdp1aGAJkbcwwTaLRtBDDGmepQ2IUkuXRqoHUrmq9sEkhz+1WcWPCA==
-X-Received: by 2002:a17:90b:5284:b0:2ee:8430:b847 with SMTP id 98e67ed59e1d1-2f28fa54f36mr5120363a91.6.1734112998960;
-        Fri, 13 Dec 2024 10:03:18 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e705f0sm442915ad.265.2024.12.13.10.03.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Dec 2024 10:03:16 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <4d3e6f12-7cea-45ce-b1e2-c1fda94b92cd@roeck-us.net>
-Date: Fri, 13 Dec 2024 10:03:14 -0800
+        d=1e100.net; s=20230601; t=1734113406; x=1734718206;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZaUJxyWODTPt/EHA59a8Xm+chAdP/ldBcjz3rSODr3s=;
+        b=fYsuQ8KUgrMZrwsfPH6ZYcUFiWtKPzRUlKp6+SSBov2130ivCBY2BKwkzxpqEpIJ/8
+         9vSA7qtIgxs5eiFz9c8J7/tJvzNziAP4zYFd94nK8ian5mfZZYLyxetWSUthE8P31QuF
+         DCFi2WoSt2/WSLIDftaUc2bL9xKLsfVWFZ8x9ypIA3o/ZfUIbojg4H7l7kdXTe10xYur
+         0GRULGnjUXBEeMdfxlyCiBuovdgPOkWsfjVEJg9ucAYJpEW+1AE0nXnt6ewicxSsMDuD
+         MDfmuSdz8EoHcu8deROem8UhkXTnnlyrtDQ4b3OKSkYyfDUMX0MqzF6ZaMSAc0sNP6qp
+         7ZxA==
+X-Forwarded-Encrypted: i=1; AJvYcCWkUgezQtNKzgHXgP0l8G2OdWSB6tpL+OMrSDe7Q+/1uOQc28e2Z2/yT4IX3CegvbKE0T11XDVevcQ=@vger.kernel.org, AJvYcCXo9x7JHRdrCfC9lbKfZH2NTFv9plDJESXCJpYh17vkHiPIFHmOX2loahQgzS4YFm8oxMbelkBQ8D9v@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHOwdxL+xrotGiSiLqcOWdcZnfVbeysZksC1fujwlCGsdJCf0Y
+	2h0dHw2DdvNaXxA1489s2WKKYiTnKOisns9HGjsnKkqXHvstlllK+XyauQ==
+X-Gm-Gg: ASbGncs3Dc4Gt3cwwzfvqCW39q0QDrBoSPPtn0vgeIF5/63uPqhwwRF6NSX/JtJcvh0
+	TjPiEUujmFrE2IfrU8ZcFnVk+REHhXx1zBYBpGS0w/+KHzK8/8h+2bHU9IwsA1DhglCcouRiRDf
+	c3Z50g9WwgqPl68HqJ73LNnrqy/q8M08xcYZoXkjO7httjr+QqWk28/GuAjOeDi5Xu7uXVFjatT
+	pkGf5hdujQ1/QfbAjIAAefTeHREziHlzC7X5pXa3vQySKt7KsXCWMg4JlZ3S2E9yZv3MV/eu2Ya
+	5YwdlLDj8mKumLxkgWxYIyO+wsI=
+X-Google-Smtp-Source: AGHT+IH/MEREg6rxAa0/RtNlAsBMr5UpSbMTYOPeTSadT3t2wf9euEA3XWXtBYuE66GNqav6oNdK0g==
+X-Received: by 2002:a05:6e02:1aa8:b0:3a7:d84c:f2b0 with SMTP id e9e14a558f8ab-3aff50b340emr43862345ab.8.1734113405813;
+        Fri, 13 Dec 2024 10:10:05 -0800 (PST)
+Received: from localhost.localdomain (65-128-205-244.mpls.qwest.net. [65.128.205.244])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4e2baf714cesm2922533173.101.2024.12.13.10.10.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Dec 2024 10:10:05 -0800 (PST)
+From: Shimrra Shai <shimrrashai@gmail.com>
+To: linux-kernel@vger.kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	Shimrra Shai <shimrrashai@gmail.com>
+Subject: [PATCH v2 0/2] arm64: dts: rockchip: Add Firefly ITX-3588J Board
+Date: Fri, 13 Dec 2024 12:08:53 -0600
+Message-ID: <20241213180855.16472-1-shimrrashai@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH] watchdog: rzv2h_wdt: Add support to retrieve the
- bootstatus information
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
- linux-watchdog@vger.kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20241213174419.908525-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20241213174419.908525-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 12/13/24 09:44, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> On the RZ/V2H(P) SoC we can determine if the current boot is due to
-> `Power-on-Reset` or due to the `Watchdog`. The information used to
-> determine this is present on the CPG block.
-> 
-> The CPG_ERROR_RSTm(m = 2 -8 ) registers are set in response to an error
-> interrupt causing an reset. CPG_ERROR_RST2[ERROR_RST1] is set if there
-> was an underflow/overflow on WDT1 causing an error interrupt.
-> 
-> To fetch this information from CPG block `syscon` is used and bootstatus
-> field in the watchdog device is updated based on the
-> CPG_ERROR_RST2[ERROR_RST1] bit. Upon consumig CPG_ERROR_RST2[ERROR_RST1]
-> bit we are also clearing it.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> @Geert, I intend to drop WDT0/2/3 nodes (and related clocks) as HW manual
-> says WDT1 is for CA55 (I'll first confirm this internally)
-> 
-> Hi Geert/Rob,
-> 
-> I havent included a binding changes as part of the RFC as I wanted to get
-> some initial feedback on the implementation. Currently CPG block doesnt
-> have the "syscon" this patch has been tested with below diff to SoC DTSI
-> 
-> Cheers,
-> Prabhakar
-> 
-> Changes to SoC DTSI:
-> @@ -243,7 +243,7 @@ pinctrl: pinctrl@10410000 {
->                  };
-> 
->                  cpg: clock-controller@10420000 {
-> -                       compatible = "renesas,r9a09g057-cpg";
-> +                       compatible = "renesas,r9a09g057-cpg", "syscon";
->                          reg = <0 0x10420000 0 0x10000>;
->                          clocks = <&audio_extal_clk>, <&rtxin_clk>, <&qextal_clk>;
->                          clock-names = "audio_extal", "rtxin", "qextal";
-> @@ -455,6 +456,7 @@ wdt1: watchdog@14400000 {
->                          clock-names = "pclk", "oscclk";
->                          resets = <&cpg 0x76>;
->                          power-domains = <&cpg>;
-> +                       syscon = <&cpg>;
->                          status = "disabled";
->                  };
-> 
-> ---
->   drivers/watchdog/rzv2h_wdt.c | 27 ++++++++++++++++++++++++++-
->   1 file changed, 26 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/watchdog/rzv2h_wdt.c b/drivers/watchdog/rzv2h_wdt.c
-> index 8defd0241213..8e0901bb7d2b 100644
-> --- a/drivers/watchdog/rzv2h_wdt.c
-> +++ b/drivers/watchdog/rzv2h_wdt.c
-> @@ -4,14 +4,17 @@
->    *
->    * Copyright (C) 2024 Renesas Electronics Corporation.
->    */
-> +#include <linux/bitfield.h>
->   #include <linux/clk.h>
->   #include <linux/delay.h>
->   #include <linux/io.h>
->   #include <linux/kernel.h>
-> +#include <linux/mfd/syscon.h>
->   #include <linux/module.h>
->   #include <linux/of.h>
->   #include <linux/platform_device.h>
->   #include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
->   #include <linux/reset.h>
->   #include <linux/units.h>
->   #include <linux/watchdog.h>
-> @@ -40,6 +43,10 @@
->   
->   #define WDT_DEFAULT_TIMEOUT	60U
->   
-> +#define CPG_ERROR_RST2			0xb40
-> +#define CPG_ERROR_RST2_ERR_RST1		BIT(1)
-> +#define CPG_ERROR_RST2_ERR_RST1_WEN	(BIT(1) << 16)
+NOTE: This is a resubmit of a previous submission with corrected
+recipients list and some small changes to make it more suited for the
+general kernel (e.g. eMMC is enabled now).
 
-I could understand BIT(17) or BIT(1 + 16) or
+---
 
-#define CPG_ERROR_RST2_ERR_RST1_BIT	1
-#define CPG_ERROR_RST2_ERR_RST1		BIT(CPG_ERROR_RST2_ERR_RST1_BIT)
-#define CPG_ERROR_RST2_ERR_RST1_WEN	BIT(CPG_ERROR_RST2_ERR_RST1_BIT + 16)
+I am proposing a Device Tree Blob for the Firefly ITX-3588J board.
+This is another Mini-ITX form-factor board for the Rockchip RK3588
+SoC, along with the ROCK 5 ITX. This version still has some outstanding
+issues, however, so I am unsure if it is ready for incorporation in this
+state and I have not yet found a fix for them as of now. I invite any
+comments.
 
-but "BIT(1) << 16" really does not add value.
+Issues outstanding:
+ * Suspend does not work.
+ * The USB-C port does not work.
+ * Unsure how to get control over the main LED; the commented part
+   seems to cause a failure.
+ * Audio output on the back green port does not seem to work; but I
+   found this may be due to slight inadequacy of the still-new ES8323
+   driver - can suggest a patch for that too separately.
+ * Not sure if there are other board features that could still be enabled
+   with the present kernel drivers.
 
-> +
->   static bool nowayout = WATCHDOG_NOWAYOUT;
->   module_param(nowayout, bool, 0);
->   MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
-> @@ -135,7 +142,7 @@ static int rzv2h_wdt_stop(struct watchdog_device *wdev)
->   }
->   
->   static const struct watchdog_info rzv2h_wdt_ident = {
-> -	.options = WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING | WDIOF_SETTIMEOUT,
-> +	.options = WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING | WDIOF_SETTIMEOUT | WDIOF_CARDRESET,
->   	.identity = "Renesas RZ/V2H WDT Watchdog",
->   };
->   
-> @@ -207,12 +214,29 @@ static int rzv2h_wdt_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
->   	struct rzv2h_wdt_priv *priv;
-> +	struct regmap *regmap;
-> +	unsigned int buf;
+Thanks,
+Shimrra
 
-That is a bad variable name since it suggests a buffer, not some
-register content.
+Shimrra Shai (2):
+  arm64: dts: rockchip: add DTs for Firefly ITX-3588J
+  dt-bindings: arm: rockchip: Add Firefly ITX-3588J board
 
->   	int ret;
->   
->   	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
->   	if (!priv)
->   		return -ENOMEM;
->   
-> +	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
-> +	if (IS_ERR(regmap))
-> +		return PTR_ERR(regmap);
-> +
+ .../devicetree/bindings/arm/rockchip.yaml     |    5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+ .../dts/rockchip/rk3588-firefly-itx-3588j.dts | 1133 +++++++++++++++++
+ .../boot/dts/rockchip/rockchip-pca9555.h      |   31 +
+ 4 files changed, 1170 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-firefly-itx-3588j.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rockchip-pca9555.h
 
-That is a change in behavior. Up to now the syscon phandle did not have to exist
-for the driver to work. Is it guaranteed to not result in regressions on systems
-where it doesn't ? Also, is this documented ? I don't seem to be able to find it.
-
-> +	ret = regmap_read(regmap, CPG_ERROR_RST2, &buf);
-> +	if (ret)
-> +		return -EINVAL;
-
-Pass error codes back to caller. This is most definitely not an
-"Invalid argument".
-
-"
-> +
-> +	if (buf & CPG_ERROR_RST2_ERR_RST1) {
-> +		ret = regmap_write(regmap, CPG_ERROR_RST2,
-> +				   CPG_ERROR_RST2_ERR_RST1_WEN | CPG_ERROR_RST2_ERR_RST1);
-> +		if (ret)
-> +			return -EINVAL;
-
-Same as above.
-
-> +	}
-> +
->   	priv->base = devm_platform_ioremap_resource(pdev, 0);
->   	if (IS_ERR(priv->base))
->   		return PTR_ERR(priv->base);
-> @@ -243,6 +267,7 @@ static int rzv2h_wdt_probe(struct platform_device *pdev)
->   	priv->wdev.info = &rzv2h_wdt_ident;
->   	priv->wdev.ops = &rzv2h_wdt_ops;
->   	priv->wdev.parent = dev;
-> +	priv->wdev.bootstatus = buf & CPG_ERROR_RST2_ERR_RST1 ? WDIOF_CARDRESET : 0;
->   	watchdog_set_drvdata(&priv->wdev, priv);
->   	watchdog_set_nowayout(&priv->wdev, nowayout);
->   	watchdog_stop_on_unregister(&priv->wdev);
+-- 
+2.45.2
 
 
