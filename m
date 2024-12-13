@@ -1,136 +1,186 @@
-Return-Path: <devicetree+bounces-130613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A017F9F0882
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:52:15 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD5D09F0889
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:53:01 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6169A2819FE
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:52:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F5B9188C209
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F17111B395B;
-	Fri, 13 Dec 2024 09:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A86D1B4130;
+	Fri, 13 Dec 2024 09:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XpU82KBf"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iZbsOfEz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C837A1AB52F;
-	Fri, 13 Dec 2024 09:52:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5D481B392D;
+	Fri, 13 Dec 2024 09:52:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734083530; cv=none; b=IiWBwRRa7UoRV+BIwGBqFYjgemosaREE8H3JzgHulFEaiAjS1QFD8oaBf2M0YN8q5eIQjsNgyLI5M8+p2bfoZC137XsqxpjwshPZc6fyxaPXTraZHzeyqfVAM1pQFuCV39T8ao34rdjrzGrgbQVTTFQUIC9uGpqCMNJTVwVGvKA=
+	t=1734083578; cv=none; b=kggWKC1fH8T0UUjgvE8bYSw2ZDlNpU/5m3utcW9HgJMwJ9yy88jyLYr2zHjQommwqf1yz7+qp/6EfZUpnqUgtaKmAaNoHvmoabqNzhv4lFRinM6sb/8UDxPf6Ho3Nr5lcfof8b/cxzwSIPHSL4IcTEISLoICMwOdXiKNCt7iW7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734083530; c=relaxed/simple;
-	bh=BU/J16Ct4CwkI88Ev0nVluHMhJ7hjnowLd7wIxggf4M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uMMArTZijUL45PW2yf/a12UNdzPEYgAS5w3Tvs+eM6UKaO9e8mjNbgoEy1UKWJm22M2cV17NHQqtXjPH6Y3mAt/2jRSfLsllQjD4uaFybD9vSY2iOY0cvedOyvw1Kfq7MDIRp8HZ25JSKv3Ear2nG/iavum5SBF2GVvbdI7xjdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XpU82KBf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D2FEC4CED0;
-	Fri, 13 Dec 2024 09:52:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734083530;
-	bh=BU/J16Ct4CwkI88Ev0nVluHMhJ7hjnowLd7wIxggf4M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XpU82KBfxjjRWfMsNAY4DdgnA0/pQPGsdZG4rPLMTh4hEb4kOXYKKqj3b+4MOg78/
-	 tRu+VhuRVOHuFerRLkA2FNKGrxRonw0Yt/+sJvxQ1PrgSE5efYjfU2mOlmszQ5sZ3M
-	 ehjWxCiJlhCx2H/ycld1AGF/50FBD3YWNYoe77GrnEjUKWudhI2UFKb7qBklwN817l
-	 d0CzhlbjGta7d67iylDTQ3qHs2UsAqJ4VElcZFCgFXKvjEe7uSXB6za3vclhDTIWq2
-	 qwAFMBTfXCjwLcExb5lDXuXKOFQAORlytg9s3z8c5nGQEICnxQlzcHA0KjBop0Stwd
-	 EvNWACQj9X6Ig==
-Date: Fri, 13 Dec 2024 10:52:06 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Andy Yan <andyshrk@163.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v1 1/2] dt-bindings: display: panel: Add Raydium RM67200
-Message-ID: <7uoc7higbx772dabs6k5zvrvgfmp2otai3bz2z62wnpv6pfa5s@jpe45f3qzyu2>
-References: <20241210164333.121253-1-sebastian.reichel@collabora.com>
- <20241210164333.121253-2-sebastian.reichel@collabora.com>
+	s=arc-20240116; t=1734083578; c=relaxed/simple;
+	bh=D5x1kjQyUtSBg2dv5lB3maUl34jpfbsFMh2+wuE7EW8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=W0PSFMdamLlLzNvUXcavUnGqSTys9xiDq1raHjvuQAY/X+VzvVmakZNafO+05QlPjNFR24toz2uUr+/f0Z/9c2H166TNkV5K0S849S/BSWgG3Do+9oJF6AeH70ztdx+Gd6u1JKAWyi5mL4aDLujLCnYCZSUVhE5pJivUfsxy3jA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iZbsOfEz; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD9p2Hk018175;
+	Fri, 13 Dec 2024 09:52:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=InPO1+WU5YDK73QFww1bpH
+	G1jn5Y75852Jo3G2q1r/Y=; b=iZbsOfEzX/sgc5qNjYIntJnvwAKzaTsmjr0+Gg
+	YDrxuQPSKf8G3uEaLBAS0nOb6TgaOQCST5PwjUvfP1r1uO/fFZ23HudDQPLRmfiC
+	77VXhuZ67JW3eExvdfJrsw4SlMFaAJpzoQ8rJ1HJ5/TTtYU5GqIVTCgnHLCl5Xq8
+	SJ8E3GoN5DfTcI3/34Hx3LzfJcyY30VvuFz7BN6v0ImMs9emL9BuSdm5iVxDGxh3
+	DGzUaU83dbqDAlG/JaikYA5n9dE6F68T76Of8KK0PK6f4VMRHvhv6bZd6PAwjQEv
+	TS69W69L82uEnq6M3VaWVoQO9UndWbabC1CiBKp9q6HfmElA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43gjnb003r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Dec 2024 09:52:52 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BD9qqCA008828
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 13 Dec 2024 09:52:52 GMT
+Received: from hu-prashk-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 13 Dec 2024 01:52:47 -0800
+From: Prashanth K <quic_prashk@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Kurapati
+	<krishna.kurapati@oss.qualcomm.com>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <cros-qcom-dts-watchers@chromium.org>,
+        Prashanth K <quic_prashk@quicinc.com>
+Subject: [PATCH v2 00/19] Disable USB U1/U2 entry for QC targets
+Date: Fri, 13 Dec 2024 15:22:18 +0530
+Message-ID: <20241213095237.1409174-1-quic_prashk@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241210164333.121253-2-sebastian.reichel@collabora.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: HUBxptbCLdjxbbemU0tGQhxtfXkqnfoc
+X-Proofpoint-GUID: HUBxptbCLdjxbbemU0tGQhxtfXkqnfoc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_spam policy=outbound score=52 spamscore=52 lowpriorityscore=0
+ bulkscore=0 clxscore=1011 phishscore=0 priorityscore=1501 impostorscore=0
+ adultscore=0 malwarescore=0 mlxscore=52 suspectscore=0 mlxlogscore=-2
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412130067
 
-On Tue, Dec 10, 2024 at 05:41:30PM +0100, Sebastian Reichel wrote:
-> The Rockchip W552793DBA-V10 display/touchscreen board contains a
-> Wanchanglong W552793BAA panel, which in turn is using a Raydium
-> RM67200 MIPI-DSI controller. Add a DT binding for the DSI panel.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  .../display/panel/raydium,rm67200.yaml        | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/raydium,rm67200.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/raydium,rm67200.yaml b/Documentation/devicetree/bindings/display/panel/raydium,rm67200.yaml
-> new file mode 100644
-> index 000000000000..d0a6d3207811
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/raydium,rm67200.yaml
-> @@ -0,0 +1,72 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/raydium,rm67200.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Raydium RM67200 based MIPI-DSI panels
-> +
-> +maintainers:
-> +  - Sebastian Reichel <sebastian.reichel@collabora.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - wanchanglong,w552793baa
-> +      - const: raydium,rm67200
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: 2.8V Logic voltage
-> +
-> +  iovcc-supply:
-> +    description: 1.8V IO voltage
-> +
-> +  vsp-supply:
-> +    description: positive 5.5V voltage
-> +
-> +  vsn-supply:
-> +    description: negative 5.5V voltage
-> +
-> +  backlight: true
-> +  port: true
-> +  reset-gpios: true
-> +
-> +additionalProperties: false
+Enabling U1 and U2 power-saving states can lead to stability and
+performance issues, particularly for latency-sensitive or high-
+throughput applications. These low-power link states are intended
+to reduce power consumption by allowing the device to enter partial
+low-power modes during idle periods. However, they can sometimes
+result in unexpected behavior. Over the years, some of the issues
+seen are as follows:
 
-This goes after required: field, as expressed in example-schema.
+1. In device mode of operation, when UVC is active, enabling U1/U2
+is sometimes causing packets drops due to delay in entry/exit of
+intermittent low power states. These packet drops are often reflected
+as Missed Isochronous transfers as the controller was not able to
+send the packet in that microframe interval and hence glitches are
+seen on the final transmitted video output.
 
-With this change:
+2. On QCS6490-Rb3Gen2 Vision kit, ADB connection is heavily unstable
+when U1/U2 is enabled. Often when link enters U2, there is a re-
+enumeration seen and device is unusable for many use cases.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+3. On QCS8300/QCS9100, it is observed that when Link enters U2, when
+the cable is disconnected and reconnected to host PC in HS, there
+is no link status change interrupt seen and the plug-in in HS doesn't
+show up a bus reset and enumeration failure happens.
 
-Best regards,
-Krzysztof
+4. On older targets like SM8150/SM8250/SM8350, there have been
+throughput issues seen during tethering use cases.
+
+5. On targets like SDX75, intermittent disconnects were observed
+with certain cables due to impedence variations.
+
+To avoid such issues, the USB team at Qualcomm added these quirks
+to all targets in the past 4-5 years and extensive testing was done.
+Although these are intermittent power states, disabling them didn't
+cause any major increase in power numbers.
+
+This series was earlier started by Krishna Kurapati where he disabled
+U1/U2 on some SM targets. I'm extending this to more devices including
+Auto, Compute and IOT platforms. On a side note, this quirk has been
+already included on some mobile targets like SM8550/8650.
+
+Link to v1:
+https://lore.kernel.org/all/20241107073650.13473-1-quic_kriskura@quicinc.com/#Z31arch:arm64:boot:dts:qcom:sm8250.dtsi
+
+Krishna Kurapati (8):
+  arm64: dts: qcom: Disable USB U1/U2 entry for SM8350
+  arm64: dts: qcom: Disable USB U1/U2 entry for SM8450
+  arm64: dts: qcom: Disable USB U1/U2 entry for SM8150
+  arm64: dts: qcom: Disable USB U1/U2 entry for SM6125
+  arm64: dts: qcom: Disable USB U1/U2 entry for SM8250
+  arm64: dts: qcom: Disable USB U1/U2 entry for SM6350
+  arm64: dts: qcom: Disable USB U1/U2 entry for SC7280
+  arm64: dts: qcom: Disable USB U1/U2 entry for SA8775P
+
+Prashanth K (11):
+  arm64: dts: qcom: Disable USB U1/U2 entry for SDM630
+  arm64: dts: qcom: Disable USB U1/U2 entry for SDM845
+  arm64: dts: qcom: Disable USB U1/U2 entry for SDX75
+  ARM: dts: qcom: Disable USB U1/U2 entry for SDX65
+  ARM: dts: qcom: Disable USB U1/U2 entry for SDX55
+  arm64: dts: qcom: Disable USB U1/U2 entry for QCS404
+  arm64: dts: qcom: Disable USB U1/U2 entry for SC7180
+  arm64: dts: qcom: Disable USB U1/U2 entry for X1E80100
+  arm64: dts: qcom: Disable USB U1/U2 entry for QDU1000
+  arm64: dts: qcom: Disable USB U1/U2 entry for SC8280XP
+  arm64: dts: qcom: Disable USB U1/U2 entry for SC8180X
+
+ arch/arm/boot/dts/qcom/qcom-sdx55.dtsi |  2 ++
+ arch/arm/boot/dts/qcom/qcom-sdx65.dtsi |  2 ++
+ arch/arm64/boot/dts/qcom/qcs404.dtsi   |  4 ++++
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi  |  2 ++
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi  |  8 ++++++++
+ arch/arm64/boot/dts/qcom/sc7180.dtsi   |  2 ++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi   |  4 ++++
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi  |  6 ++++++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi |  6 ++++++
+ arch/arm64/boot/dts/qcom/sdm630.dtsi   |  4 ++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi   |  4 ++++
+ arch/arm64/boot/dts/qcom/sdx75.dtsi    |  2 ++
+ arch/arm64/boot/dts/qcom/sm6125.dtsi   |  2 ++
+ arch/arm64/boot/dts/qcom/sm6350.dtsi   |  2 ++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi   |  4 ++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi   |  4 ++++
+ arch/arm64/boot/dts/qcom/sm8350.dtsi   |  4 ++++
+ arch/arm64/boot/dts/qcom/sm8450.dtsi   |  2 ++
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 10 ++++++++++
+ 19 files changed, 74 insertions(+)
+
+-- 
+2.25.1
 
 
