@@ -1,137 +1,231 @@
-Return-Path: <devicetree+bounces-130870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19D169F1228
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 17:30:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 297999F1235
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 17:31:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A08D1881205
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 16:30:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03FF418813D4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 16:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4CB11547F5;
-	Fri, 13 Dec 2024 16:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D175B1547F5;
+	Fri, 13 Dec 2024 16:31:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BIkpJ37w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0BE1474A9;
-	Fri, 13 Dec 2024 16:30:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3CD13C809
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 16:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734107422; cv=none; b=eAEoHrCQcO6ijRy22ubxTWZdljJ8kDVSTeVPK31y6BjntyyH5ltswEZ/WTwJEK/OPeoNqrJFAg9Lwjn9gcUCizBk6YgJmL5BrcGpkt1fuQTGb8ZXhvEbtws/IEAOuJp5AQp7cGHQgcQbgn8/UHNWk5koRTfRhTNm4ELi0+o1DQ0=
+	t=1734107500; cv=none; b=m2Ry/OmngMTRkFW3zFDMeVe3pFw9Zk3vYf1KiDmu7xXU9pLr0wrrjnnR5LftZw08LmdlXnvhVfg20CVdan6/525oILOG4kTMatyXElJgOkOm7/PFatc/h1q7eMhvhdZfW6ZA0nmpd6teGm1F3S1Ny475sCWLDzM7pNrQwq21fiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734107422; c=relaxed/simple;
-	bh=egMufDEMdZ4IXHCWD2K6q3bkG+TtJ1YPvF/7LzWKAcI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LfYYcc8Ar3mcdTDgSepDFMDReVmaSeoder2jX1CwsS63GyU8SQCwzABRXe5SXeNx/0R5ATBqydlkttqACit9uYcE8DH8RRDeuxgQwxLx2tz59b/lAWHDqPvvwb1FssOqSW2GNVZnWGMxAlyq22eqpi9mPHR/wRsilXNsDH/0aAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4b24d969db1so303330137.0;
-        Fri, 13 Dec 2024 08:30:20 -0800 (PST)
+	s=arc-20240116; t=1734107500; c=relaxed/simple;
+	bh=50EklN3H+8pm/zBroBvX0z1zQjU0ddpWvrDrKolGzdw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CW+Zt68P+YDBWzHbg95+bYNQ/9LiHmOeu7gfnGs7kaxgf6rvdqgdSTNZ1QBxYLDsyXb3pjNUFH7rUC5LM2o8xCbYLtRDOmTjTzSpqXAKf9xp2yrOCFTbxDhYIU7AHtXqebXC4woV6xVauhs3q8FOs9VL4Gz803Oa0FNLPewY6Qs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BIkpJ37w; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD9p3Kt018631
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 16:31:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	nOF/Pv8G40IeIzUV5T5zTR4LFB1jVSawnpEDizMFrIY=; b=BIkpJ37wIDcJNHYd
+	j1TViYWEO6bip95oZ1yb2wMIULs+quoiBx3nmdDjIqI8MiCRmu1mcpAwJYd9sHoi
+	AbN7rkhBtJjpDWkxpCame6VNPBMfab7efXXrTAg05QUva3LxoTU1dt9LsrLEz6fu
+	x038vnIchsTpiL8e6xGP40sJrpsZum6I2MPibxblZPk2cA6xHyo9flgKWBi6Enjh
+	ktuAuplcIOJsiPZsJTlWpwsWgUyrOkJldIwvh7TRr4iCYuLf7EWOD0n8MbDfhmWM
+	wpauYx6XUmtMEaEA7m3Nc4akW7vmoLEe4zwb/h4w2SYWMNQrrvhl5uayuNKjy6aN
+	XyA8jg==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43gjnb133h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 16:31:38 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6d8a3cb9dbfso4422506d6.1
+        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 08:31:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734107419; x=1734712219;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gKQTw5TL8ZYENpD/MvDIPDbuaPA5S+3yDu2O/3xPriY=;
-        b=VMlCDBt+AeVbl4y+BWzF1wFJlb2AHd/hC1ALZFA9lMBHnenG0W/gvQ9gep+Y3FUE+L
-         8tkl4r3H7KqZ20cKzC9DO8NgrlzaslYO6eU1X24Xk6FBp8fEJspLCTsBLCIJZKLXsQgl
-         oySYMgQa34b7g4LEn27/KuS6JgeOVFHo8Jd40hvXnc9HcGk5tTXHOzaO/kKdzI4tSwCR
-         UpqsjyuSnBBN2z36mvSOn/ba1Jjqrk9/XPECU3X0ffGcbFYNgcKC+Oh5gvIRkECYcyK2
-         jl7E0LbhEesm8jF0Sje3+Fn8RjcY/AGEEfDpNb13dUOaDlpv/cYuwnOUaEwSEW1hsqES
-         l0+w==
-X-Forwarded-Encrypted: i=1; AJvYcCWJUfUZ8Qzyz/1Dara8JANamxKfFC1qwI10eo6oBnqVquZrzEfU2PNbHxUG+zqsF4lVR4G9biOXb5mO0203@vger.kernel.org, AJvYcCXEJefNKcBgpKVwxNh9tyvakqIVuomJTIoaECXNSvz1dad/xJav1t1NQ2UUCzOkHO1MqXC3ctOS/PoA@vger.kernel.org, AJvYcCXTtau2/PvjF6Sc64du5c2mVPEUx3UZSIOjeFSLzJXD3AviA8Ptn1gKxEbi7kiJicsRxAs6uXHDWhYiKPvnpYC0upI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOJ2d9tPBNOxGL4Y93/5u13DUas/jobI2pLgZTiUgFZ/uj59yd
-	eCt9xEOjixuQ4M/paVJSaSFRsO5NFlpNe5te+tYAGNL2P0JFDv4QsEGnLHp6
-X-Gm-Gg: ASbGnct13w+lhKZ2YU8wb1AJtr97xPzArwRwyXMjyGpZN6DBHm4nU/0diF7p93fEdxZ
-	taiKQLfpOKw7Rcs/sn5tZQwxuNqazzIrLVp/uW9HQebaZFb8aGNcxGE3mB4KK+JNhVRgSrqvuZ4
-	2ZH7+EGH/FeHSvYuTbJb3ZL9bAMtMfPhIfzi8Ux/wmr7CkF1G990MlThSFwwVfq0nUzbdG8MVhh
-	KN3YVA4yjSgKffZnlfn+D9tfmJYsKFm/JP4xWUN6NSAnA3U35/n+eT+wvXUhmxGt+VpykC/Yp3G
-	GTKKtmb+u5FlBwGbmcg=
-X-Google-Smtp-Source: AGHT+IHX0nGI3BEwqYpYR7m1ymIy3PIIiwzJKXb/KH8w1Xska2x7LfnwLGXEZLnRR4jjgBnnFs9IAg==
-X-Received: by 2002:a05:6102:4b04:b0:4b1:1def:3d10 with SMTP id ada2fe7eead31-4b25ddb2c56mr3991533137.19.1734107419216;
-        Fri, 13 Dec 2024 08:30:19 -0800 (PST)
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85c56a6da7esm2046909241.34.2024.12.13.08.30.18
+        d=1e100.net; s=20230601; t=1734107497; x=1734712297;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nOF/Pv8G40IeIzUV5T5zTR4LFB1jVSawnpEDizMFrIY=;
+        b=mZc7+g6dyx+4EnJNt8SXkbvyS+96ACvvbY5sUqkC9VkFno99+StLSPoyyHnRKZWeH3
+         ufEN6U+nnA8qDQK0Lt49AIOTUpoFpaV8S/ly4EXX0v47rBbhzD7W6EkPnKfJHvh1WT/O
+         ev9ZK5NSza4bl/DzPA1XMe1JxNLohIddoyFjjezWbgGY9ftp7imcGOvt9hgVLv0lDlGC
+         tq4r78QOq8Sdp9gem1qhEENRq6d9gIrEMWZXQvmZl7XTCS96+W/W+vTZ45aY02mM8xgg
+         sdvle3k9mnNGo+gNL6RhjgqCmstqe9g4ATO6R6lHjqGbieDXY5Im4dARNFLSepGHqQzG
+         okkw==
+X-Forwarded-Encrypted: i=1; AJvYcCWHg4mIV2IEfdLJwqPpkqpRyaIZm8xs4Wlr749rJr29Uh4JY1jSTPMOulg5zCmcvObzmpCHmoektUMi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHWasnK3uXRXnrB0BDvGSKw21P8BauvlhMLgCSFUL2WVjGuzRg
+	ZAICAikPJ47HybvxnDAnylivgKvpfYuhw0ZiBdvVcc7EUflK5uUjHioVWKpJSQcH0ciJaFPsQ6A
+	vi6E0MWRC7Sic310TjzfJjQ6p/HIkWpXHhW3rYkZRttZW5tgF5kJ1zBm6/rCO
+X-Gm-Gg: ASbGnctJ7sZVVYNq7JWZEtiV6C8ZRkJnaKFZHFzm8DA3QqkEJkGFPizUaJbgPGqzgNf
+	WWc31KfI4AtMBTo3KTluOMLgXlS+cqYLTduAAwu/Ry7fkdCFazd8vXipEoJuNq2qTo+UM9+OtcC
+	+VQTCTXXFZrjDj6NzjxSpcB3ta76PZIvqyrsWsXmEiAPxvkwegaILX0MnnvgHU/vJcJfFUYgbWc
+	9i4hZ9an1Qn90XoHLOL4QVMaXaQ67RZhjubWpSbXigLvcXFX6442i0a36CNblE264TDtowUhsnP
+	DVpHdmaO7sVYX4yWAkorNXtgSV7FKzWQRyn6
+X-Received: by 2002:a05:620a:2994:b0:7b6:e126:3dee with SMTP id af79cd13be357-7b6fbec4726mr149250985a.3.1734107496814;
+        Fri, 13 Dec 2024 08:31:36 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGTbrWUDH1tEiGe9hJw3p0ll2n39imLNVxTdCBQwJ960b8VbLVSns1/390GlH7821voC/N4RA==
+X-Received: by 2002:a05:620a:2994:b0:7b6:e126:3dee with SMTP id af79cd13be357-7b6fbec4726mr149244385a.3.1734107495091;
+        Fri, 13 Dec 2024 08:31:35 -0800 (PST)
+Received: from [192.168.58.241] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa6590f5457sm927094266b.195.2024.12.13.08.31.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Dec 2024 08:30:19 -0800 (PST)
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-85c4b057596so446246241.3;
-        Fri, 13 Dec 2024 08:30:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUH6WizBs+klIssjC6l0whjJ3OLYPApU/99OLseakTwT2qPDlVvsFziqmx3EaHIezinBrx/2Zde/4L1Wjpo4OutUV0=@vger.kernel.org, AJvYcCV92zzp9SoUN477/JAR4y467koMKPWbVXZuFUWTZDiYs9Fq18A8OTPcrPwpHHHOoXwOtNL0bnqKurgz@vger.kernel.org, AJvYcCWUfq96pGibJ17dx0QPltssDM6Xk0WHm5mdluJ68kwzrkpDAj9Jyo0qrEqCv+FDqxOTaHeu/Qcpd0LHeWoH@vger.kernel.org
-X-Received: by 2002:a05:6102:1594:b0:4b2:49ec:1b77 with SMTP id
- ada2fe7eead31-4b25de2ede6mr4076076137.23.1734107418529; Fri, 13 Dec 2024
- 08:30:18 -0800 (PST)
+        Fri, 13 Dec 2024 08:31:34 -0800 (PST)
+Message-ID: <0d4d3ca3-ec8a-4e85-9838-a2bf1e07e872@oss.qualcomm.com>
+Date: Fri, 13 Dec 2024 17:31:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241206212559.192705-1-john.madieu.xa@bp.renesas.com> <20241206212559.192705-5-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20241206212559.192705-5-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 13 Dec 2024 17:30:06 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW2cddSFNRe9Q8AG7wE47HfEEc-A=cixCdnGcPg3J+9Fg@mail.gmail.com>
-Message-ID: <CAMuHMdW2cddSFNRe9Q8AG7wE47HfEEc-A=cixCdnGcPg3J+9Fg@mail.gmail.com>
-Subject: Re: [PATCH 4/5] arm64: dts: renesas: r9a09g047: add sys node
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	john.madieu@gmail.com, linux-renesas-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 4/7] drm/msm: adreno: find bandwidth index of OPP and
+ set it along freq index
+To: neil.armstrong@linaro.org, Konrad Dybcio
+ <konrad.dybcio@oss.qualcomm.com>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20241211-topic-sm8x50-gpu-bw-vote-v5-0-6112f9f785ec@linaro.org>
+ <20241211-topic-sm8x50-gpu-bw-vote-v5-4-6112f9f785ec@linaro.org>
+ <ddf91ba2-cab2-4653-b842-65a8e82b5160@oss.qualcomm.com>
+ <2f1c6deb-29f8-4144-b086-743fb0f8495c@linaro.org>
+ <80bed70e-7802-4555-a15e-e06fe46214c6@quicinc.com>
+ <c2d8f443-5876-4293-8d2b-ecd13eaf8285@oss.qualcomm.com>
+ <268d67c0-efdf-4ad4-b5fe-5b4f04e73131@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <268d67c0-efdf-4ad4-b5fe-5b4f04e73131@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: -ijcAC2U244gZVgBygHrq84swRT-DNgJ
+X-Proofpoint-GUID: -ijcAC2U244gZVgBygHrq84swRT-DNgJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 bulkscore=0 clxscore=1015 phishscore=0
+ priorityscore=1501 impostorscore=0 adultscore=0 malwarescore=0 mlxscore=0
+ suspectscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2412130116
 
-Hi John,
+On 13.12.2024 5:28 PM, neil.armstrong@linaro.org wrote:
+> On 13/12/2024 16:37, Konrad Dybcio wrote:
+>> On 13.12.2024 2:12 PM, Akhil P Oommen wrote:
+>>> On 12/13/2024 3:07 AM, Neil Armstrong wrote:
+>>>> On 12/12/2024 21:21, Konrad Dybcio wrote:
+>>>>> On 11.12.2024 9:29 AM, Neil Armstrong wrote:
+>>>>>> The Adreno GPU Management Unit (GMU) can also scale the DDR Bandwidth
+>>>>>> along the Frequency and Power Domain level, until now we left the OPP
+>>>>>> core scale the OPP bandwidth via the interconnect path.
+>>>>>>
+>>>>>> In order to enable bandwidth voting via the GPU Management
+>>>>>> Unit (GMU), when an opp is set by devfreq we also look for
+>>>>>> the corresponding bandwidth index in the previously generated
+>>>>>> bw_table and pass this value along the frequency index to the GMU.
+>>>>>>
+>>>>>> The GMU also takes another vote called AB which is a 16bit quantized
+>>>>>> value of the floor bandwidth against the maximum supported bandwidth.
+>>>>>>
+>>>>>> The AB is calculated with a default 25% of the bandwidth like the
+>>>>>> downstream implementation too inform the GMU firmware the minimal
+>>>>>> quantity of bandwidth we require for this OPP.
+>>>>>>
+>>>>>> Since we now vote for all resources via the GMU, setting the OPP
+>>>>>> is no more needed, so we can completely skip calling
+>>>>>> dev_pm_opp_set_opp() in this situation.
+>>>>>>
+>>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>>> Reviewed-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+>>>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>>>> ---
+>>>>>>    drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 39 ++++++++++++++++++++++++
+>>>>>> +++++++++--
+>>>>>>    drivers/gpu/drm/msm/adreno/a6xx_gmu.h |  2 +-
+>>>>>>    drivers/gpu/drm/msm/adreno/a6xx_hfi.c |  6 +++---
+>>>>>>    drivers/gpu/drm/msm/adreno/a6xx_hfi.h |  5 +++++
+>>>>>>    4 files changed, 46 insertions(+), 6 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/
+>>>>>> msm/adreno/a6xx_gmu.c
+>>>>>> index
+>>>>>> 36696d372a42a27b26a018b19e73bc6d8a4a5235..46ae0ec7a16a41d55755ce04fb32404cdba087be 100644
+>>>>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+>>>>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+>>>>>> @@ -110,9 +110,11 @@ void a6xx_gmu_set_freq(struct msm_gpu *gpu,
+>>>>>> struct dev_pm_opp *opp,
+>>>>>>                   bool suspended)
+>>>>>>    {
+>>>>>>        struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
+>>>>>> +    const struct a6xx_info *info = adreno_gpu->info->a6xx;
+>>>>>>        struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
+>>>>>>        struct a6xx_gmu *gmu = &a6xx_gpu->gmu;
+>>>>>>        u32 perf_index;
+>>>>>> +    u32 bw_index = 0;
+>>>>>>        unsigned long gpu_freq;
+>>>>>>        int ret = 0;
+>>>>>>    @@ -125,6 +127,37 @@ void a6xx_gmu_set_freq(struct msm_gpu *gpu,
+>>>>>> struct dev_pm_opp *opp,
+>>>>>>            if (gpu_freq == gmu->gpu_freqs[perf_index])
+>>>>>>                break;
+>>>>>>    +    /* If enabled, find the corresponding DDR bandwidth index */
+>>>>>> +    if (info->bcms && gmu->nr_gpu_bws > 1) {
+>>>>>
+>>>>> if (gmu->nr_gpu_bws)
+>>>>
+>>>> gmu->nr_gpu_bws == 1 means there's not BW in the OPPs (index 0 is the
+>>>> "off" state)
+>>>>
+>>>>>
+>>>>>> +        unsigned int bw = dev_pm_opp_get_bw(opp, true, 0);
+>>>>>> +
+>>>>>> +        for (bw_index = 0; bw_index < gmu->nr_gpu_bws - 1; bw_index+
+>>>>>> +) {
+>>>>>> +            if (bw == gmu->gpu_bw_table[bw_index])
+>>>>>> +                break;
+>>>>>> +        }
+>>>>>> +
+>>>>>> +        /* Vote AB as a fraction of the max bandwidth */
+>>>>>> +        if (bw) {
+>>>>>
+>>>>> This seems to only be introduced with certain a7xx too.. you should
+>>>>> ping the GMU with HFI_VALUE_GMU_AB_VOTE to check if it's supported
+>>>>
+>>>> Good point
+>>>
+>>> No no. Doing this will trigger some assert in pre-A750 gmu firmwares. We
+>>> learned it the hard way. No improvisation please. :)
+>>
+>> We shouldn't be sending that AB data to firmware that doesn't expect
+>> it either too, though..
+> 
+> Well we don't !
 
-On Fri, Dec 6, 2024 at 10:26=E2=80=AFPM John Madieu
-<john.madieu.xa@bp.renesas.com> wrote:
-> Add system controller node to RZ/G3E (R9A09G047) SoC DTSI.
->
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+The code in the scope that I quoted above does that
 
-Thanks for your patch!
+see the full explanation here
 
-> --- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> @@ -154,6 +154,13 @@ cpg: clock-controller@10420000 {
->                         #power-domain-cells =3D <0>;
->                 };
->
-> +               sys: system-controller@10430000 {
-> +                       compatible =3D "renesas,r9a09g047-sys", "syscon";
+https://git.codelinaro.org/clo/le/platform/vendor/qcom/opensource/graphics-kernel/-/commit/6026c31a54444b712f7ea36ac1aafaaeef07fa4e
 
-The "syscon" may be dropped again depending on the outcome of
-Rob's series, we'll see...
-
-> +                       reg =3D <0 0x10430000 0 0x10000>;
-> +                       clocks =3D <&cpg CPG_CORE R9A09G047_SYS_0_PCLK>;
-> +                       resets =3D <&cpg 0x30>;
-> +               };
-> +
->                 scif0: serial@11c01400 {
->                         compatible =3D "renesas,scif-r9a09g047", "renesas=
-,scif-r9a09g057";
->                         reg =3D <0 0x11c01400 0 0x400>;
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Konrad
 
