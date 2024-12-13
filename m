@@ -1,63 +1,87 @@
-Return-Path: <devicetree+bounces-130688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F37A9F0A59
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 12:03:36 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CD169F0A5E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 12:04:27 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57C80280A73
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:03:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54FEC18865CD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:04:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 880181C3BFD;
-	Fri, 13 Dec 2024 11:03:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9731C4A17;
+	Fri, 13 Dec 2024 11:04:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mXOqpihD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="T4PpMeEk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFDDD1C3BF7;
-	Fri, 13 Dec 2024 11:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 424A21C3BFA
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 11:04:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734087812; cv=none; b=H8FSJS1oBhyQY+J+NEcBZPUi/54WlKHNSCz59gzL791rnthq0cFSNEuy50wY7DAcFzYPQUutiP9UxGGk7jlBW+hzyRNUZyFvyryDApEkYxyI+tQwXYrHgWIMEsSOXrQ3mLfx3mxN4X0ezxt+cpceDe4Z6DFJxZKaGhgrUlXIP7I=
+	t=1734087860; cv=none; b=HACu5mhocO0MPV8KzYA3qSQkkAtCBfrosMi8WnJIQ9bjWuX1/klLM66xAXNgyFsWxBfwebPcrXjxovEBniCmFmQApCu81PLWoUurmMTxrhgmK+AKOiZKNGYgBXWP7m0sDZQ4dmaWpO8wuHLlsGkIyrlUcakvqvyf1f6f8toddp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734087812; c=relaxed/simple;
-	bh=Y78Mz78RAdNwHQ8ftX2m65E/Vh21ww/qnriYusuHvio=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SP84V/HGQc1YrbpVI6ymJ6RC+fUdZ81wLEdw53lNh2aOgPQ7ralWJXOfNFGqf0o/UZIA7bYrJQy5QOkOJSbXoD+azWs92OogvVhPWkKMw97oxTk8RzTg6Aou6sy2GZg0ebMrlngRLltnpM4c+pi9O+P7QrkINe75k0GFtO9zHpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mXOqpihD; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BDA3waB013188;
-	Fri, 13 Dec 2024 11:03:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	s=arc-20240116; t=1734087860; c=relaxed/simple;
+	bh=8feasqDMNRGSqXgnrXNVRMsBVCYovHpwXdrFnhXAPTQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ms881qB2XiCPNy73dM9J1g2/951syV7RExviYvfZu+pj/9Q8BcybPhvxJlyPjWamPMJEjeEciTb7HlqtFtONv89pUu7tj5HRiHL8lgYQD5jA/FupgiPGzW4cXrOFbGQuDQgpxU5mDQcpOgfB68sy51Q2bETAItJ1jsNCD0auJW0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=T4PpMeEk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD46MTO018813
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 11:04:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	n9tYyFO/FaDLbzKfGlWc+DC2EscPlqUCrQMQM+7bmiM=; b=mXOqpihDdWYJ+DW1
-	3oZ1apOUJ74XNUtggGedXrTncgxt5hy135PboTJLdLiFCn7hh/U28wqelK6jyg5d
-	y0fbN6tdCk3kWd748iaRogz5Rx2S5iCc3QDyr8pJ7p6bUyje4eIL0exGEa0gHidH
-	+5DKNdjvAFSjDozn8EOGnJFavf0YnplIcsCjgYMLHLYJUTkqMRSmoTzXTa0c/x1C
-	0dlrx8Oay8JF14z19x0wE6aJXUP3LEE/ZMtkn8GSUUP2as93hmhvffGIVT2e2ebr
-	2b8V84N466I9nP8my3sTNUR8kKCaop0nA4CCw3tDCkpOqf+SD7U4fNRxzuIQ1bag
-	45UrCg==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43gjudg6d0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 11:03:26 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BDB3Pb8029402
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 13 Dec 2024 11:03:25 GMT
-Received: from [10.239.133.118] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 13 Dec
- 2024 03:03:20 -0800
-Message-ID: <9104547a-9bb7-47ee-b360-07678a320844@quicinc.com>
-Date: Fri, 13 Dec 2024 19:03:17 +0800
+	Zf5tcpszL0I6CSUFS4CayyJ0mUkMjSZvXwP8wY2d3NI=; b=T4PpMeEkja7PnlT3
+	+PpeEFsTfsHV/LSfhm2TmHzVGk2uD+sCCourRojmAidHaOKTqfix2KPxdFlYEFBg
+	BGYjkFDMRXoNYxrYBfPbrBJTDZXhlSykITPKSG35qncG2PmOWb8yByzvtS6VXgJF
+	a7SBKri4J37oUvKL4zG+q86fusOdY3KPALdQ81Q/BD48wAX9NpoaTo0Cvs43tiJE
+	qW9W9yRN4t9hIYsVnCAhLU+P8AdlApbz7t2I2Nq7Hk1OLTTysGdn4rhIG8+Pjpeo
+	9f3EZJgSMNwDKQJn93x2bts4ap4KV95rV9XtLh5VXROM256Ut096IC9YMZ/1JggW
+	dJveUQ==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43gdkn12ee-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 11:04:18 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6d881a3e466so4071676d6.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 03:04:17 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734087857; x=1734692657;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zf5tcpszL0I6CSUFS4CayyJ0mUkMjSZvXwP8wY2d3NI=;
+        b=sNTl86kjf0JIb1oHdDSdpc2E5gb2kAccZcivwRIMEw7v5MDZVFW6CP9bNAJlZB+4Yf
+         DGgyMq5tTRaIZzvlPxzSBAsyC66Eg4xTs/DZFy+OOs19XGTDDOPZlF7gTZf71ySavrm7
+         +4/xFuY6ZPdtKMHcmpQLed1XbQzdG1KfxV+jGtPDWtcWONmK+Jy90NY2MHaKqcV3snto
+         3eSX19w1m4MPTfa2sYLMrVY+LTsnUMg2OOzHEY02mMgp2uqzFgaOJu2GvtNKZr0UW6aU
+         tne69LJ1RtQ073gZR71qQ2eSXhzCEB9vCisS63XQwQKYnvWfM04qfA1NHIdOJKvMNr9P
+         Mk/A==
+X-Forwarded-Encrypted: i=1; AJvYcCXTn1c1MjWzqlhaX7lJv9WMISNgrdEIiiMDhiWb52enjyPRkbnWQHT2BBqsnTh8Ks1HwMiHzMrtsYej@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1zSesLTvSqabg4Z4s940VcQ0yrtHtxG7s3470DgJIvFYv+GQ/
+	CCxNUjO9AGcru3uN4VJMozzl46kkeLyvOPGimDwaxVhN9Tz/dRjldGsTS+5iVHz3QlVXohqx2im
+	/mBjIW/iWMFO9ILWMFe1fvBmeBETqLKZ/boeihaNliTbBi4o5FP5CMnJNvNlC
+X-Gm-Gg: ASbGncv5MXhudQldyD5WIaYkASrgrWIVzAurUQcfSuZzOMBDJ5KRpQoHmPLHqlXeuFs
+	dOaZMIl60pj/i9ZxmaIv/bvQnCD/Fhd08qcwDaju+07pkCDnNUESNjWOY3t4d04J+R3Isb7m5Es
+	HLgtlWGxHUn4kvtW5iGDhDP5zSf/hq9w4/MPfk2/UXoUh24rNQUGXvdnw9upTEQEkh6BZ9mdOv0
+	PGJQNNvDxPMtEPYxvk7NKvbGQvzsQ4l5advsBjvvrFr3yLfmxoEvtTmSYH8rnBCfoe5fCgAwpK7
+	Rw/3q+xqJ+eGg7NhzdioG6zLiZIAG93ANiLt
+X-Received: by 2002:a05:6214:528d:b0:6d4:1bc2:386c with SMTP id 6a1803df08f44-6dc8ca88c66mr12119826d6.6.1734087857085;
+        Fri, 13 Dec 2024 03:04:17 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEwU07CFAexr1Cwdav3EaM4qqvfC+IfOGzgD65mUO8CZKe+Bc/O5r+o5/bbUyKkdi+zvUmNPA==
+X-Received: by 2002:a05:6214:528d:b0:6d4:1bc2:386c with SMTP id 6a1803df08f44-6dc8ca88c66mr12119636d6.6.1734087856602;
+        Fri, 13 Dec 2024 03:04:16 -0800 (PST)
+Received: from [192.168.58.241] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa66f90d5f8sm833016466b.202.2024.12.13.03.04.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Dec 2024 03:04:16 -0800 (PST)
+Message-ID: <5b5ad9f7-5071-4b4e-940d-aedecf179600@oss.qualcomm.com>
+Date: Fri, 13 Dec 2024 12:04:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,105 +89,231 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: Enable secondary USB controller
- on QCS615 Ride
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>,
-        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-References: <20241211-add_usb_host_mode_for_qcs615-v2-0-2c4abdf67635@quicinc.com>
- <20241211-add_usb_host_mode_for_qcs615-v2-2-2c4abdf67635@quicinc.com>
- <cc3edfc6-f53c-401b-b766-f8e560eb24b9@oss.qualcomm.com>
- <4476bfe9-41fb-4ec3-b352-624fba75cf3f@quicinc.com>
- <CAA8EJprMTtJnpeG0itjm157pzspJ50BVCv5SpYfqzkUYyKHZ+w@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sc8280xp: Add Huawei Matebook E Go
+ (sc8280xp)
+To: Pengyu Luo <mitltlatltl@gmail.com>, konrad.dybcio@oss.qualcomm.com,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: andersson@kernel.org, chenxuecong2009@outlook.com, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, gty0622@gmail.com, johan+linaro@kernel.org,
+        konradybcio@kernel.org, krzk+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org
+References: <d5813d64-0cb2-4a87-9d98-cebbfd45a8c0@oss.qualcomm.com>
+ <20241213085100.564547-1-mitltlatltl@gmail.com>
 Content-Language: en-US
-From: Song Xue <quic_songxue@quicinc.com>
-In-Reply-To: <CAA8EJprMTtJnpeG0itjm157pzspJ50BVCv5SpYfqzkUYyKHZ+w@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 3sitWRhNfEEM8-2kJ3A_h7Q7ZCdyybOp
-X-Proofpoint-ORIG-GUID: 3sitWRhNfEEM8-2kJ3A_h7Q7ZCdyybOp
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241213085100.564547-1-mitltlatltl@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: k7x2Ym0ihnaqlhtNWSwlDto-X1ggJ5AR
+X-Proofpoint-ORIG-GUID: k7x2Ym0ihnaqlhtNWSwlDto-X1ggJ5AR
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- impostorscore=0 bulkscore=0 phishscore=0 mlxlogscore=999 suspectscore=0
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 spamscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412130076
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=999
+ impostorscore=0 lowpriorityscore=0 clxscore=1015 priorityscore=1501
+ phishscore=0 bulkscore=0 suspectscore=0 mlxscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412130075
 
-
-
-On 12/13/2024 4:12 PM, Dmitry Baryshkov wrote:
-> On Fri, 13 Dec 2024 at 08:59, Song Xue <quic_songxue@quicinc.com> wrote:
->>
->>
->>
->> On 12/13/2024 2:14 AM, Konrad Dybcio wrote:
->>> On 11.12.2024 9:26 AM, Song Xue wrote:
->>>> From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
->>>>
->>>> Enable secondary USB controller on QCS615 Ride platform. The secondary
->>>> USB controller is made "host", as it is a Type-A port.
->>>>
->>>> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
->>>> Co-developed-by: Song Xue <quic_songxue@quicinc.com>
->>>> Signed-off-by: Song Xue <quic_songxue@quicinc.com>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/qcs615-ride.dts | 28 ++++++++++++++++++++++++++++
->>>>    1 file changed, 28 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->>>> index f41319ff47b983d771da52775fa78b4385c4e532..26ce0496d13ccbfea392c6d50d9edcab85fbc653 100644
->>>> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->>>> @@ -203,6 +203,15 @@ &gcc {
->>>>                <&sleep_clk>;
->>>>    };
->>>>
->>>> +&pm8150_gpios {
->>>> +    usb2_en_state: usb2-en-state {
->>>> +            pins = "gpio10";
->>>> +            function = "normal";
->>>> +            output-high;
->>>> +            power-source = <0>;
->>>> +    };
->>>
->>> Does this go to an enable pin of a vreg / switch?
->>
->> Thanks for comment.
->> We go to enable the pin of PMIC chip. The pin of PMIC is connecting to
->> host-enable pin of USB converter. Need pin of PMIC chip to be high
->> level, when USB is as host mode.
+On 13.12.2024 9:50 AM, Pengyu Luo wrote:
+> Oh, I sent it by gamil wrongly(forgot cc to), I resend it by git send-email again
 > 
-> What kind of USB converter are we talking about?
-
-It is like USB charging controller and Power Switch.
-
-Thanks
-Song
-> 
+> On Fri, Dec 13, 2024 at 1:13 AM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
+>> On 11.12.2024 4:37 PM, Pengyu Luo wrote:
+>>> Add an initial devicetree for the Huawei Matebook E Go, which is based on
+>>> sc8280xp.
 >>>
->>> I think we settled on describing such cases as fixed regulators
->>> (that are always-on for now) - would you remember, +Dmitry?
+>>> There are 3 variants, Huawei released first 2 at the same time.
+>>> Huawei Matebook E Go LTE(sc8180x), codename should be gaokun2.
+>>> Huawei Matebook E Go(sc8280xp@3.0GHz), codename is gaokun3.
+>>> Huawei Matebook E Go 2023(sc8280xp@2.69GHz).
 >>>
->>> The rest looks good.
+>>> We add support for the latter two variants.
 >>>
->>> Konrad
+>>> This work started by Tianyu Gao and Xuecong Chen, they made the
+>>> devicetree based on existing work(i.e. the Lenovo X13s and the
+>>> Qualcomm CRD), it can boot with framebuffer.
+>>>
+>>> Original work:
+>> https://github.com/matalama80td3l/matebook-e-go-boot-works/blob/main/dts/sc8280xp-huawei-matebook-e-go.dts
+>>>
+>>> Later, I got my device, I continue their work.
+>>>
+>>> Supported features:
+>>> - adsp
+>>> - bluetooth (connect issue)
+>>> - charge (with a lower power)
+>>> - framebuffer
+>>> - gpu
+>>> - keyboard (via internal USB)
+>>> - pcie devices (wifi and nvme, no modem)
+>>> - speakers and microphones
+>>> - tablet mode switch
+>>> - touchscreen
+>>> - usb
+>>> - volume key and power key
+>>>
+>>> Some key features not supported yet:
+>>> - battery and charger information report (EC driver required)
+>>> - built-in display (cannot enable backlight yet)
+>>> - charging thresholds control (EC driver required)
+>>> - camera
+>>> - LID switch detection (EC driver required)
+>>> - USB Type-C altmode (EC driver required)
+>>> - USB Type-C PD (EC driver required)
+>>
+>> Does qcom_battmgr / pmic_glink not work?
 >>
 > 
-> 
+> Unfortunately, different from many sc8280xp devices, device(PMGK) _STA is
+> Zero,
+> this device is quiet strange, also, it has no PM8008,
+> nor PMIC Battery Miniclass(PMBM), etc.
 
+So it's not used on windows.. but have you tried checking if it's
+still provided by the firwmare?
+
+[...]
+
+>>
+>>> +     chosen {
+>>> +             #address-cells =3D <2>;
+>>> +             #size-cells =3D <2>;
+>>> +             ranges;
+>>> +
+>>> +             framebuffer0: framebuffer@c6200000 {
+>>> +                     compatible =3D "simple-framebuffer";
+>>> +                     reg =3D <0x0 0xC6200000 0x0 0x02400000>;
+>>> +                     width =3D <1600>;
+>>> +                     height =3D <2560>;
+>>> +                     stride =3D <(1600 * 4)>;
+>>> +                     format =3D "a8r8g8b8";
+>>> +             };
+>>> +     };
+>>
+>> This should be redundant, as you should have efifb
+>>
+> 
+> I think no, it won't boot up without it(stuck at EFI stub: Booting Linux
+> Kernel)
+
+Do you have CONFIG_EFI and CONFIG_FB_EFI enabled?
+
+(also, your email client does something funny and posts 0x3d, which
+is ASCII for '=' after that symbol)
+
+
+> 
+> [...]
+> 
+>>
+>>> +
+>>> +     wcd938x: audio-codec {
+>>> +             compatible =3D "qcom,wcd9380-codec";
+>>> +
+>>> +             pinctrl-names =3D "default";
+>>> +             pinctrl-0 =3D <&wcd_default>;
+>>
+>> Please follow this order throughout the file:
+>>
+>> property-n
+>> property-names
+>>
+> 
+> Do you mean I should arragne as following? If so, I actually keep
+> reference devicetree untouched. x13s and crd are written like this.
+
+Yeah, we try to unify the style as we progress and we still haven't
+gotten around to cleaning up files that have been in the tree for
+years..
+
+> 
+> pinctrl-0 =3D <&wcd_default>>;
+> pinctrl-names =3D "default";
+
+Yes please
+
+[...]
+
+>>> +     gpio-keys {
+>>> +             compatible =3D "gpio-keys";
+>>> +
+>>> +             pinctrl-names =3D "default";
+>>> +             pinctrl-0 =3D <&mode_pin_active>, <&vol_up_n>;
+>>> +
+>>> +             switch-mode {
+>>> +                     gpios =3D <&tlmm 26 GPIO_ACTIVE_HIGH>;
+>>
+>> This could use a label too - "Tablet Mode Switch", perhaps?
+>>
+> 
+> This part I follow Lenovo Yoga C630 one (see [1]), it doesn't use it,
+> and this node is not referenced.
+
+So "label" could mean
+
+label: node-name@unit-address {
+	property = "value";
+};
+
+when talking about DT nodes, but here I'm speaking of the
+"label" property (which you set to "Volume Up" in the node below).
+That is read by Linux and provides a nice human-readable name to
+the userspace.
+
+>>
+>>> +
+>>> +             /* /lib/firmware/ath11k/WCN6855/hw2.1/board-2.bin
+>>> +              * there is no calibrate data for huawei,
+>>> +              * but they have the same subsystem-device id
+>>> +              */
+>>> +             qcom,ath11k-calibration-variant =3D "LE_X13S";
+>>
+>> Oh, this can be taken care of! See [2], [3].
+>>
+> 
+> I have a glance, now I know we should extract something or it won't be
+> there.
+> Question is how can I extract them? I have a quick search, got no luck.
+> As for windows drivers, in the folder
+> 
+> bdwlan.e02
+> bdwlan.e07
+> bdwlan.e1d
+> bdwlan.e1e
+> bdwlan.e23
+> bdwlan.e26
+> bdwlan.e32
+> bdwlan.e47
+> bdwlan.e81
+> bdwlan.e84
+> bdwlan.e85
+> bdwlan.e8c
+> bdwlan.e8e
+> bdwlan.e9f
+> bdwlan.ea3
+> bdwlan.eb8
+> bdwlan.elf
+> bdwlan.elf.g
+> bdwlang.e8b
+> bdwlang.e9f
+> bdwlang.ea3
+> bdwlang.eb8
+> bdwlang.elf
+> Data20.msc
+> Data.msc
+> m320.bin
+> m3.bin
+> qcwlan8280.cat
+> qcwlan8280.inf
+> qcwlan8280.sys
+> regdb.bin
+> wlanfw20.mbn
+> wlanfw.mbn
+
+Adding Dmitry who has gone through this multiple times and may be
+able to help
+
+Konrad
 
