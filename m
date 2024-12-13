@@ -1,219 +1,257 @@
-Return-Path: <devicetree+bounces-130679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 880B69F0A2B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:57:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05A089F0A34
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 11:58:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA47B188C8D2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:57:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1513D16A36A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 10:58:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEE221C3BF5;
-	Fri, 13 Dec 2024 10:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E20B1C3BF5;
+	Fri, 13 Dec 2024 10:58:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iUR+GAL+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uv+9IWN2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B9741AF0BD
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 10:57:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3433D79F5;
+	Fri, 13 Dec 2024 10:58:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734087444; cv=none; b=DT6ml4xEAeVxgd7o4YDUJeddO1LeGScdrHYN5JSTJnFiSimxajN+7vWQSgjEo6pCllyc3N2vzZNKwi971q+mtFg+w1qXmeisnkdvYAEFeSV7otu0h2YyegJKgw+6U/Opo/anlTr6pmW5hIYOAUbMaVmwsV2ilzAcqHl2oV7cO6g=
+	t=1734087492; cv=none; b=irFUMHI5sTOBo+pqdSA5XT7TbXTYHzzS/QKGQddKITpN6VPS8SyPzZlfK3cXy6VCG4AjhI2LE4Zr5WqXd/1iX20W9PUX6FUTN7oH3VocfAO8mfoyvzWlrA5z89OicYr+6Zt4vUGbkEcqqalj3OBtmfF7PL64lO8pu4qmv91pZYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734087444; c=relaxed/simple;
-	bh=zMf6rHS+AqdoONc4cayTqknHAIOrfVfxoxGVoT++gpk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nJ662+29gtG6tqUE2QkzFLjmJP10NWusWrSk98eVuqvAZtBF3s4eeMc3XR4OrRry8QfsyAOKzoknrW3Qs5U6r4jD/8Nj//Qjz4cW9QFJIJSfL02TLxqjhiNlJphkH0CbR6ogLu3yIbQqlMGoFw/gyF9Xd8U2S9UYnqVTumj4mok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iUR+GAL+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BD7VQj7032414
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 10:57:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JusCHnvBtzBIGRb/d57GWf9yYHTzp5QMdm9npfIyIzQ=; b=iUR+GAL+yhWTF29b
-	ctUXoIJ8p3GpDIML3QTXmY6aHLkYhld3ZJVcsgyj0KjyYFFQbEH23RTOHcl9Sqyl
-	m6DzHGEAGIkFOv/cSS1YMby/oDaaFvK+6Etk6zsA/sdih7z8ScIGU3i11mr/RRVh
-	NX1zM5HzILUgQ0mCJIqFNszgoI8wRuXDNiyX7aezlapCHh2f3vpHjJoHFLAMgZlv
-	CQ0bJy5fhzC3Ff7WritZmhMXWfRYtaxPH4walQ9Z+Am8BJpJj6AW0V9M+61o5IW2
-	Zx7HVaoxKN6LrYc+MrmjJLhTBOsppHGssQw6q4qmEJomGR4+rRH8eUM7wfkIttKy
-	Q6hWFA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43f6tffb37-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 10:57:22 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4675a6e05d7so3230131cf.1
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 02:57:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734087441; x=1734692241;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JusCHnvBtzBIGRb/d57GWf9yYHTzp5QMdm9npfIyIzQ=;
-        b=DhErz3rujdBV4LDemdPGfLv4Wyt3cbIqKhB4QXFvOy+ZNQOhSRx+mpxQwkC9Aa9CAe
-         Qo4/ZYKENw2QQN4CuL1v4wX77StlTwasgP/lKDDSbM++BF+CE22FXRON3WDZam32O8/L
-         JdWRh0Z95x5eU6uYWCkKDyi4NfxIL90PjsN8bSia45qA+I8ieXm5a47wlntsfLs9S9i6
-         OwrNI1eckgOXzhIAwEr2csKf8ur5jW1A44gXSIHaY8pRgKCgsHW7SKf3eKhURi+d3Xmz
-         8hjLmsacALkPg6udpbD0+HimQF8LhZjMHINAwfCn0CYhGeyW6gDl6YbcCa5uoYKUCheF
-         Xgrw==
-X-Forwarded-Encrypted: i=1; AJvYcCVFE98xJR9EJH7yFKgiIwiK9njMoByiNM0valP+QW6fB3Duu+zG2an2zou28wVqtQZ/37GMxBhpvqOg@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywsn0E/Oae6C5lxW1t17h21Xaylh+90wqGEoxf68Y1Nwn7XDqdI
-	h63aQqPFJN1/i2t7gD4oHswQocOCG5oPmDN+5WSnD60zbHg4SrmfcPf2XTgmCrBE7+P3NerAFkb
-	zQFbBXwJ67vhhvZ/sIqgQ6ZISdjZ5Fp5VQDhih7ZT5/LhOqyzUR6bNZcx3aHz
-X-Gm-Gg: ASbGncvls0JpMwCYkOMiBc0J0N/3H815u6kUheyenbp8icslB76pXAzIc6UpeS3/3BI
-	hOc6SbtuTrBuY/CWjMfSPbQUJaiTwac5edIO0aVVImYHtTbIrbWl52un3XBzvawSzGEFmxXrH4l
-	Pbyauf6zYykup7ghsU3rm7UFWeg8SrJm47B+XsrpLy3ORgJM7M03ODu2iH8xuIW6XL7pveGMFng
-	pVY3E9dcQ609ots1Odrs5CwDT5ETU2etZb1T1pjRrkGD6LX8HrvLcYKA2xMlXJbc15qlUs1ntrG
-	IHrlp+++yrtSw69wky9oVl1Gl4YA0UCeOynQ
-X-Received: by 2002:ac8:5790:0:b0:467:5931:f6a8 with SMTP id d75a77b69052e-467a586e7c4mr11384691cf.16.1734087441025;
-        Fri, 13 Dec 2024 02:57:21 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGSa8UhHBfw+RnGpfBYEd5suCh19lyMpMorCOQaWkpQtF7q4Vveq1D0+NrFe8GAuyzu8dsZ8w==
-X-Received: by 2002:ac8:5790:0:b0:467:5931:f6a8 with SMTP id d75a77b69052e-467a586e7c4mr11384521cf.16.1734087440615;
-        Fri, 13 Dec 2024 02:57:20 -0800 (PST)
-Received: from [192.168.58.241] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa686af6709sm701440666b.88.2024.12.13.02.57.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Dec 2024 02:57:20 -0800 (PST)
-Message-ID: <a44027ee-40d3-4552-8f61-bcab77476f68@oss.qualcomm.com>
-Date: Fri, 13 Dec 2024 11:57:17 +0100
+	s=arc-20240116; t=1734087492; c=relaxed/simple;
+	bh=VqWJe5Eh99rvaeapsfqh4V97X3xsoMHaftKpsVrx+Xw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WZnrheWSO9ct6RUzaDIdN2Z3TPXXIlnuN15rnu5r1De1chvCMk05eR1h0aP4oqZC04JJlgy6RFnitim45LZBkfkEqFgHnb9Q70Cj1SfhGpgHvZnxyFcSGRTkQxvfogwDP2Jf7tQ9Y1m4CZHjB6oNTX9eMEVMEVHJhGLRzIj20hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uv+9IWN2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2ABC1C4CED0;
+	Fri, 13 Dec 2024 10:58:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734087490;
+	bh=VqWJe5Eh99rvaeapsfqh4V97X3xsoMHaftKpsVrx+Xw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Uv+9IWN2DUvC8640Hw1SqeF4hg+INj3ksnKROHICsPlE9mSaPDNQYUjVPRpEeZdA0
+	 lm9nf0ZctwYJHyUmo0Bg1L8TyPzsG0y8BkbLKGTO5AS/xy1syE5ZAFmPYf/tIDMdBx
+	 mS0EOR4V2S3ODHf2MYdrtvBl3G/aQyokuVuPoA1v/mPV07anaAmjOYyAY5dF6eWREf
+	 dfsCmvuph4cvXvutbLP+RrG8HDyfemrm0fmYSA2yUlolYUjUoXz53wdqTAQMoBXmZk
+	 gLGOOZlgkSmUn3Dg0ZWxUyHzOSvmv4atf9tmFESJAOFheRDP98TM+34FHDF//TeTTK
+	 BllS7Q9KRMXRw==
+Date: Fri, 13 Dec 2024 11:58:07 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Paul Handrigan <paulha@opensource.cirrus.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, linux-clk@vger.kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] clk: cs2600: Add Fractional-N clock driver
+Message-ID: <gjkknwwxvzdkljonsfyl42vamr6kjngytf2mbbhbfxkmwmhnyt@rry6pqzxmnsi>
+References: <20241211003236.2523604-1-paulha@opensource.cirrus.com>
+ <20241211003236.2523604-3-paulha@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: qcs615: Add gpu and gmu nodes
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        Rob Clark
- <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        20241104-add_initial_support_for_qcs615-v5-4-9dde8d7b80b0@quicinc.com,
-        20241022-qcs615-clock-driver-v4-3-3d716ad0d987@quicinc.com,
-        20240924143958.25-2-quic_rlaggysh@quicinc.com,
-        20241108-qcs615-mm-clockcontroller-v3-7-7d3b2d235fdf@quicinc.com,
-        20241108-qcs615-mm-dt-nodes-v1-1-b2669cac0624@quicinc.com,
-        20241122074922.28153-1-quic_qqzhou@quicinc.com,
-        Jie Zhang <quic_jiezh@quicinc.com>
-References: <20241213-qcs615-gpu-dt-v2-0-6606c64f03b5@quicinc.com>
- <20241213-qcs615-gpu-dt-v2-3-6606c64f03b5@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241213-qcs615-gpu-dt-v2-3-6606c64f03b5@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: F3vqq_PK-ZVfOupksvt0jOLszokHChUR
-X-Proofpoint-ORIG-GUID: F3vqq_PK-ZVfOupksvt0jOLszokHChUR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- mlxlogscore=986 malwarescore=0 spamscore=0 lowpriorityscore=0
- impostorscore=0 adultscore=0 bulkscore=0 phishscore=0 priorityscore=1501
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412130075
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241211003236.2523604-3-paulha@opensource.cirrus.com>
 
-On 13.12.2024 11:35 AM, Akhil P Oommen wrote:
-> From: Jie Zhang <quic_jiezh@quicinc.com>
+On Tue, Dec 10, 2024 at 06:32:36PM -0600, Paul Handrigan wrote:
+> Add support for the CS2600 Fractional-N Clock Synthesizer
+> and Multiplier driver.
 > 
-> Add gpu and gmu nodes for qcs615 chipset.
-> 
-> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Paul Handrigan <paulha@opensource.cirrus.com>
 > ---
->  arch/arm64/boot/dts/qcom/qcs615.dtsi | 88 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 88 insertions(+)
+>  drivers/clk/Kconfig      |    9 +
+>  drivers/clk/Makefile     |    1 +
+>  drivers/clk/clk-cs2600.c | 1152 ++++++++++++++++++++++++++++++++++++++
+>  drivers/clk/clk-cs2600.h |  176 ++++++
+>  4 files changed, 1338 insertions(+)
+>  create mode 100644 drivers/clk/clk-cs2600.c
+>  create mode 100644 drivers/clk/clk-cs2600.h
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> index 8df26efde3fd..dee5d3be4aa3 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> @@ -387,6 +387,11 @@ smem_region: smem@86000000 {
->  			no-map;
->  			hwlocks = <&tcsr_mutex 3>;
->  		};
-> +
-> +		pil_gpu_mem: pil-gpu@97715000 {
-> +			reg = <0x0 0x97715000 0x0 0x2000>;
-> +			no-map;
-> +		};
->  	};
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index 713573b6c86c..6b279ebf9c80 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -209,6 +209,15 @@ config COMMON_CLK_CS2000_CP
+>  	help
+>  	  If you say yes here you get support for the CS2000 clock multiplier.
 >  
->  	soc: soc@0 {
-> @@ -508,6 +513,89 @@ qup_uart0_rx: qup-uart0-rx-state {
->  			};
->  		};
->  
-> +		gpu: gpu@5000000 {
-> +			compatible = "qcom,adreno-612.0", "qcom,adreno";
-> +			reg = <0x0 0x05000000 0x0 0x90000>;
-> +			reg-names = "kgsl_3d0_reg_memory";
+> +config COMMON_CLK_CS2600
+> +	tristate "Clock driver for CS2600 Fractional-N Clock Synthesizer & Clock Multiplier"
+> +	depends on I2C
+> +	depends on OF
+> +	select REGMAP_I2C
+> +	help
+> +	  If you say yes here you get support for the CS2600 clock synthesizer
+> +	  and multiplier.
 > +
-> +			clocks = <&gpucc GPU_CC_GX_GFX3D_CLK>,
-> +				 <&gcc GCC_DDRSS_GPU_AXI_CLK>,
-> +				 <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
-> +				 <&gpucc GPU_CC_CX_GMU_CLK>,
-> +				 <&gpucc GPU_CC_CXO_CLK>;
-> +			clock-names = "core",
-> +				      "mem_iface",
-> +				      "alt_mem_iface",
-> +				      "gmu",
-> +				      "xo";
+>  config COMMON_CLK_EN7523
+>  	bool "Clock driver for Airoha EN7523 SoC system clocks"
+>  	depends on OF
+> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+> index bf4bd45adc3a..5d5264432613 100644
+> --- a/drivers/clk/Makefile
+> +++ b/drivers/clk/Makefile
+> @@ -53,6 +53,7 @@ obj-$(CONFIG_COMMON_CLK_CDCE706)	+= clk-cdce706.o
+>  obj-$(CONFIG_COMMON_CLK_CDCE925)	+= clk-cdce925.o
+>  obj-$(CONFIG_ARCH_CLPS711X)		+= clk-clps711x.o
+>  obj-$(CONFIG_COMMON_CLK_CS2000_CP)	+= clk-cs2000-cp.o
+> +obj-$(CONFIG_COMMON_CLK_CS2600)		+= clk-cs2600.o
+>  obj-$(CONFIG_COMMON_CLK_EP93XX)		+= clk-ep93xx.o
+>  obj-$(CONFIG_ARCH_SPARX5)		+= clk-sparx5.o
+>  obj-$(CONFIG_COMMON_CLK_EN7523)		+= clk-en7523.o
+> diff --git a/drivers/clk/clk-cs2600.c b/drivers/clk/clk-cs2600.c
+> new file mode 100644
+> index 000000000000..694736bbbff0
+> --- /dev/null
+> +++ b/drivers/clk/clk-cs2600.c
+> @@ -0,0 +1,1152 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +// CS2600  --  CIRRUS LOGIC Fractional-N Clock Synthesizer & Clock Multiplier
+> +//
+> +// Copyright (C) 2024 Cirrus Logic, Inc. and
+> +//                    Cirrus Logic International Semiconductor Ltd.
 > +
-> +			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/container_of.h>
+> +#include <linux/delay.h>
+> +#include <linux/i2c.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/regmap.h>
 > +
-> +			interconnects = <&gem_noc MASTER_GFX3D QCOM_ICC_TAG_ALWAYS
-> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-> +			interconnect-names = "gfx-mem";
-> +
-> +			iommus = <&adreno_smmu 0x0 0x401>;
+> +#include "clk-cs2600.h"
 
-No LPAC context?
+You do not include here even the bindings, so clearly
+CS2600_AUX_OUTPUT_FREQ_UNLOCK and others are not bindings.
 
+...
 
-> +			operating-points-v2 = <&gpu_opp_table>;
-> +			power-domains = <&rpmhpd RPMHPD_CX>;
-> +			qcom,gmu = <&rgmu>;
+> +static int cs2600_check_device_id(struct cs2600 *cs2600)
+> +{
+> +	struct device *dev = cs2600->dev;
+> +	unsigned int dev_id, rev;
+> +	int ret;
 > +
-> +			#cooling-cells = <2>;
+> +	ret = regmap_read(cs2600->regmap, CS2600_DEVICE_ID1, &dev_id);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Can't read device ID\n");
 > +
-> +			status = "disabled";
+> +	if (dev_id != CS2600_DEVICE_ID_VALUE)
+> +		return dev_err_probe(dev, -ENODEV, "Invalid device id 0x%x\n",
+> +				     dev_id);
 > +
-> +			gpu_zap_shader: zap-shader {
-> +				memory-region = <&pil_gpu_mem>;
-> +			};
+> +	ret = regmap_read(cs2600->regmap, CS2600_DEVICE_ID2, &rev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Can't read device revision\n");
 > +
-> +			gpu_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
+> +	dev_dbg(dev, "Device ID %x Rev %x", dev_id, rev);
 > +
-> +				opp-435000000 {
-> +					opp-hz = /bits/ 64 <435000000>;
-> +					required-opps = <&rpmhpd_opp_svs>;
-> +					opp-peak-kBps = <3000000>;
-> +				};
+> +	return 0;
+> +}
+> +
+> +static int cs2600_i2c_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct cs2600 *cs2600;
+> +	int ret;
+> +
+> +	cs2600 = devm_kzalloc(dev, sizeof(*cs2600), GFP_KERNEL);
+> +	if (!cs2600)
+> +		return -ENOMEM;
+> +
+> +	ret = devm_regulator_get_enable(dev, "vdd");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Error with vdd supply\n");
+> +
+> +	cs2600->dev = dev;
+> +	i2c_set_clientdata(client, cs2600);
+> +
+> +	cs2600->regmap = devm_regmap_init_i2c(client, &cs2600_regmap_config);
+> +	if (IS_ERR(cs2600->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(cs2600->regmap),
+> +				     "Regmap not created\n");
+> +
+> +	/* Required to wait at least 20ms after vdd is enabled */
+> +	usleep_range(20000, 21000);
+> +	ret = cs2600_check_device_id(cs2600);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(cs2600->regmap, CS2600_SW_RESET, CS2600_SW_RST_VAL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Required to wait at least 5ms after software reset */
+> +	usleep_range(5000, 6000);
+> +	ret = cs2600_clk_get(cs2600);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Invalid parent clocks\n");
+> +
+> +	/* Set output clocks to HiZ */
+> +	cs2600_set_freeze(cs2600);
+> +	regmap_set_bits(cs2600->regmap, CS2600_PLL_CFG1, CS2600_CLK_OUT_DIS);
+> +	regmap_set_bits(cs2600->regmap, CS2600_OUTPUT_CFG1,
+> +			CS2600_BCLK_OUT_DIS | CS2600_FSYNC_OUT_DIS);
+> +	cs2600_clear_freeze(cs2600);
+> +
+> +	ret = cs2600_parse_dt_params(cs2600);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Cannot parse dt params\n");
+> +
+> +	ret = cs2600_clk_register(cs2600);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Cannot register clocks\n");
+> +
+> +	if (cs2600->ref_clk) {
+> +		cs2600->refclk_rate = clk_get_rate(cs2600->ref_clk);
+> +		regmap_update_bits(cs2600->regmap, CS2600_PLL_CFG3,
+> +				   CS2600_SYSCLK_SRC_MASK,
+> +				   CS2600_SYSCLK_SRC_REFCLK);
+> +	} else {
+> +		cs2600->refclk_rate = CS2600_INTERNAL_OSC_RATE;
+> +		regmap_update_bits(cs2600->regmap, CS2600_PLL_CFG3,
+> +				   CS2600_SYSCLK_SRC_MASK,
+> +				   CS2600_SYSCLK_SRC_OSC);
+> +	}
+> +
+> +	if (cs2600->refclk_rate < 8000000 || cs2600->refclk_rate > 75000000)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Invalid REFCLK Frequency %lu\n",
+> +				     cs2600->refclk_rate);
+> +
+> +	return 0;
+> +}
+> +
 
-I'm also seeing 290 MHz @ LOW_SVS
+ID table definition goes here or somewhere around the probe.
 
-Konrad
+> +static struct i2c_driver cs2600_driver = {
+> +	.driver = {
+> +		.name = "cs2600",
+> +		.of_match_table = cs2600_of_match,
+> +	},
+> +	.probe		= cs2600_i2c_probe,
+> +	.id_table	= cs2600_id,
+> +};
+> +
+> +module_i2c_driver(cs2600_driver);
+> +
+> +MODULE_DESCRIPTION("CS2600 clock driver");
+> +MODULE_AUTHOR("Paul Handrigan <paulha@opensource.cirrus.com>");
+> +MODULE_LICENSE("GPL");
+
+Best regards,
+Krzysztof
+
 
