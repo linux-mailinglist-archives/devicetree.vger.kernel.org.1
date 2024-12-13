@@ -1,136 +1,112 @@
-Return-Path: <devicetree+bounces-130864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1A339F11AC
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 17:01:02 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C00BD9F11C4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 17:06:44 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 729B02822B3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 16:01:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3AE241884ACD
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 16:06:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D3C21E379B;
-	Fri, 13 Dec 2024 16:00:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="drwqEi1K"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A8E01E378C;
+	Fri, 13 Dec 2024 16:06:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BEB91E00AC;
-	Fri, 13 Dec 2024 16:00:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C1EB15098F;
+	Fri, 13 Dec 2024 16:06:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734105658; cv=none; b=LAg4Pd49crfot/Tp0eySJO8F2K0FW0TEc2AEgL8csqNC7R3Pe0cQ3uKerBwaOBNSm0fyi2NtETLsL5XVVJEOVwPb81FgPEZzZN/Ggr333IiOzwuAQxCrxKGktt+dDNmoaru10BawBmRTCbBQdvvzceceUrshXO3BKvx+luSBAXw=
+	t=1734105977; cv=none; b=tgDJL9O9Z9OcT5jwOKI4DwDRYG/xAsGkFifOtUrgHTGRql/Lu5V1fxrsXIUGLxa5xhCT3h+WScFGLx1cyaGYXAiVjSiqpjoMxZ99Qadc4qEUNTQbdEfGMdo1IwCtkq9gdjZfknDNNuoocEoQUDJAjJBumj0EWl1m6rsUrQr8U3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734105658; c=relaxed/simple;
-	bh=5XQWrcX5GyYj8LFdIhYGQZjcjue5NcViLdKUXQX6Lxg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ri4zoShkDI1nppMHQtjI9QGtiNzf+8ie8XadT/265vqVl6RXc9ZNhx7p7c0f4YW3aQwEow65tNGqQ/bogqju/uWrqFCA5W7VKgN+8SaysPxhpHgksXrDbbhIFOC6sGuWm12lIXkIANM3/Y7otqa9SNHQpNWkYLh9SCX3k/g4urI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=drwqEi1K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94892C4CED0;
-	Fri, 13 Dec 2024 16:00:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734105657;
-	bh=5XQWrcX5GyYj8LFdIhYGQZjcjue5NcViLdKUXQX6Lxg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=drwqEi1KUb45YUFYPuSo7fSS3CvrrB4cd7pP6+asr3gUVR+0zWLlIoiwSC4Z/YJV0
-	 1vJfqDd7hWfU1BTM58kqEYDnQLK/4RAYzMlt2PH5APM1YOWFBIefrCkgnlTRxJQCEo
-	 IlxUytji6/3dL/IHjXaBUqq5mQvaI9RnTVJ7Vx3O1+0ax8P6QU8cymPxtS17j9Z+AP
-	 Mx2IeWA8LzXbgk3JpLdAJNIVKAykWrNS3STLVp+s4FK7UpTj5PYt5AgEwUOz9tUEUu
-	 2Ln+JafCNPnoQfaRkOm64U4iBQCB7N7x8CMcV0xkbe8WcB42ffxnR5DphgukxBMUkO
-	 ZPuoIXPVEYIDQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1tM86A-000000005sw-2DjX;
-	Fri, 13 Dec 2024 17:01:02 +0100
-Date: Fri, 13 Dec 2024 17:01:02 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Luca Weiss <luca.weiss@fairphone.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v3 13/23] arm64: dts: qcom: x1e80100: Fix ADSP memory
- base and length
-Message-ID: <Z1xaPvyBap5Q4vXC@hovoldconsulting.com>
-References: <20241213-dts-qcom-cdsp-mpss-base-address-v3-0-2e0036fccd8d@linaro.org>
- <20241213-dts-qcom-cdsp-mpss-base-address-v3-13-2e0036fccd8d@linaro.org>
- <Z1xUUAnxsCY33umS@hovoldconsulting.com>
- <7edc0cb7-d6fd-4395-b2ca-dfce243f066c@linaro.org>
+	s=arc-20240116; t=1734105977; c=relaxed/simple;
+	bh=umwQbquOmQpSyqT8CeD4qRvdyuRZF+hkF+vQy8sZSPg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BvbPaMXDoYYrFl2WK0qJoGR9nndMP8HSyRHIYwZMtPPLYmhceMxEv75oVFxcXcTbM5iHosb5j30KkahcaiUVIFthhzi8qWwbAPyGHpAOPtF0TzNpTbyvxWl7764/cf3TfipDKJR4YSdsN8eKemc11HWvZmSxrgnR/5hEJhm/gLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7b1b224f6c6so228002685a.3;
+        Fri, 13 Dec 2024 08:06:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734105974; x=1734710774;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4hxVTlCHR2PE8KoCjj0xfYDTwL0zPvBBh0MBs4/U+9k=;
+        b=Wn1i5w/Fb9W1VrtK37B46dL6zT8kUd2xO3oiZblhe8+xI4oVJ/Z7gn/1HK+4N1R3lt
+         fJNpdDoZNw5sGcFjaAyxG8BQ+/lFusYOA6EYWw6z/kt9zGWW49Xqynu+QF4i9zxdnJ7J
+         CqeCdguOl8y7tVnJq6Duc6B3urilibDvrH53n6KD8jKydJWlbXOXiDmqpBJO0qinTXNH
+         4upOZZyGkaxo+vPRjgET8cdnliix1vzUc5CLN+QqZ2EXyaqILgisbRhTTjSTSZ4P5loI
+         DN+DjyPGzK8IEFDjR7WXNSY8hXN4ZMZIeMrlJOjdprX8RqZRlwpBDTSoKa3PVQh+pSjX
+         dUpA==
+X-Forwarded-Encrypted: i=1; AJvYcCV+IfYyc/4czqEUHk33al0UsZv0YtOl3GC9zceK56PTvQsBy0xb646cjnk3b59a+5L0P4X2UTgpGOjXkPPA@vger.kernel.org, AJvYcCVUnA9h7iATBW+skEOXjO0xjAq28bxNaKQEoJL5B74dymGhAgix8shd5px8hIr+39FkM+EG2/F/IPI8@vger.kernel.org, AJvYcCVlKhJ/mo8laygBTkMn/q/Z1xVD8awAMsFV1V5bQDWH9/XwvAUH26uDcG+F9KKqxPlYRW1IzdIb7GhHF4Q2aBM9zo8=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywmhk522ZZkxkfsWx4SEOqWI4wQvzK1PSOhunxrLprpMql/F+Ys
+	ZqkWXCAE07B4yxeCgybzL2DgRV4z6qnOM4qYW22ZXI6pje//zr3EXFgCHdCL
+X-Gm-Gg: ASbGnctzP7iBpv2jrh9dQ+ZRl0M5AANGl6LAuaRpJd8bIhDm4QxoikxfSFce8OA8b+V
+	1sfsQW+GdwTkluBob3RA02fQQC8jxq1JCplt4dvajU6T+d7+btYoKlxyEI7Re6bT6zJ7i4QknRz
+	nBRTmtcJjQjErpCFhTsTT7gMNWDNVjmbhmguEE5mkBYWAhl+w4iUCTOAgIy6oN6YvVLBSxf6CNK
+	lEyi1Sr2vwpt5nqC422DaMDOjs/M4+416/64fCAEHMxCKbW5nEyfT76ZS/Y5O/xJmqUQaTuHiHA
+	P6EckhkKugVe/vzqRharcPU=
+X-Google-Smtp-Source: AGHT+IGvzOZYGllSP47lVqz1SCLhFs9EC02BOKziJOgX7Pts7ptKM8GfugYHZ76ro0NUqhQOx0+N4w==
+X-Received: by 2002:a05:620a:2412:b0:7b6:6756:eefc with SMTP id af79cd13be357-7b6fbf14f55mr565192285a.27.1734105973915;
+        Fri, 13 Dec 2024 08:06:13 -0800 (PST)
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com. [209.85.222.180])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b6ffdf1577sm34182385a.122.2024.12.13.08.06.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Dec 2024 08:06:13 -0800 (PST)
+Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7b68e73188cso220735385a.0;
+        Fri, 13 Dec 2024 08:06:13 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU6sOvWYD0g37WHYQvBdMA2SwRwVFFhXnLnpg++2Gebuw4ythFjQ3BLAdJ9HevtBoYPD3K2QfK450qRpU4j@vger.kernel.org, AJvYcCW+VyXlLKUxnkR0mGcvSWfQAnX9yI7ztp46Z/T+IfnLH25Gl26NaDq5zqzEbn5FwXEL8F4ABTJAsxoZ@vger.kernel.org, AJvYcCWqIIzw+kr8oFWl7wUPfQE6T9pqSUcGVyQ6VP8jBc+OIxOQUgBjHhHG/A4H1tQz9YNSpbsZOlbDgG/cKAwKlCYBCDM=@vger.kernel.org
+X-Received: by 2002:a05:620a:31a3:b0:7b6:d4a2:f11f with SMTP id
+ af79cd13be357-7b6fbcfdbc1mr463124085a.0.1734105973379; Fri, 13 Dec 2024
+ 08:06:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7edc0cb7-d6fd-4395-b2ca-dfce243f066c@linaro.org>
+References: <20241206212559.192705-1-john.madieu.xa@bp.renesas.com> <20241206212559.192705-3-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20241206212559.192705-3-john.madieu.xa@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 13 Dec 2024 17:06:01 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXAy=1bo2o1rbO-Z0EVD6LPNbR5N6zTH4+agA4Q=V6gXg@mail.gmail.com>
+Message-ID: <CAMuHMdXAy=1bo2o1rbO-Z0EVD6LPNbR5N6zTH4+agA4Q=V6gXg@mail.gmail.com>
+Subject: Re: [PATCH 2/5] dt-bindings: soc: renesas: Document Renesas RZ/G3E
+ SoC variants
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	john.madieu@gmail.com, linux-renesas-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 13, 2024 at 04:45:30PM +0100, Krzysztof Kozlowski wrote:
-> On 13/12/2024 16:35, Johan Hovold wrote:
-> > On Fri, Dec 13, 2024 at 03:54:02PM +0100, Krzysztof Kozlowski wrote:
-> >> The address space in ADSP PAS (Peripheral Authentication Service)
-> >> remoteproc node should point to the QDSP PUB address space
-> >> (QDSP6...SS_PUB): 0x0680_0000 with length of 0x10000.
-> >>
-> >> 0x3000_0000, value used so far, is the main region of CDSP and was
-> >> simply copied from other/older DTS.
-> >>
-> >> Correct the base address and length, which also moves the node to
-> >> different place to keep things sorted by unit address.  The diff looks
-> >> big, but only the unit address and "reg" property were changed.  This
-> >> should have no functional impact on Linux users, because PAS loader does
-> >> not use this address space at all.
-> >>
-> >> Fixes: 5f2a9cd4b104 ("arm64: dts: qcom: x1e80100: Add ADSP/CDSP remoteproc nodes")
-> >> Cc: stable@vger.kernel.org
-> > 
-> > Why bother with backporting any of these when there is no functional
-> > impact?
-> 
-> Not sure, I assumed someone might be using kernel DTS from stable
-> branches in other projects. Kernel is the source of DTS and stable
-> kernel has the DTS in both stable and fixed way. If 3rd party project
-> keeps pulling always latest DTS from latest kernel, they will see so
-> many ABI breaks and so many incompatibilities (we discussed it in
-> Vienna) that they will probably curse their approach and say "never
-> again". Using stable branch DTS could be a solution.
+On Fri, Dec 6, 2024 at 10:26=E2=80=AFPM John Madieu
+<john.madieu.xa@bp.renesas.com> wrote:
+> Document RZ/G3E (R9A09G047) SoC variants.
+>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 
-That makes some sense.
+With the subject and description fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> Such 3rd party project might actually use above device nodes in their
-> drivers. It's just some of Linux kernel drivers which do not use them
-> (other like PIL seems to use addresses).
+Gr{oetje,eeting}s,
 
-But this is more questionable given that the current addresses are
-completely off in this case.
+                        Geert
 
-> Plus DTS is used by 3rd party Linux kernels (out of tree), which while
-> we do not care in a way of driving our development, but we do consider
-> them possible users. They also might be relying on stable kernel branch
-> for this.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Same here.
-
-I realise this is a bit of a grey area, but given the size of the diffs
-and the no functional impact this could be an opportunity to try to
-uphold the stable kernel rules:
-
-	- It cannot be bigger than 100 lines, with context.
-	- It must either fix a real bug that bothers people or just add
-	  a device ID.
-
-Johan
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
