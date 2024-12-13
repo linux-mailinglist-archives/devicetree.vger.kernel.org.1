@@ -1,88 +1,144 @@
-Return-Path: <devicetree+bounces-130559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-130560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCCE59F068F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:40:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8372C9F069F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 09:43:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E33E284333
-	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 08:40:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FDBA2812D6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Dec 2024 08:43:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF14C1AB50C;
-	Fri, 13 Dec 2024 08:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850E11AB6FF;
+	Fri, 13 Dec 2024 08:43:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FJzxf3hN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BVllTk6X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A643019992D;
-	Fri, 13 Dec 2024 08:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D60A1AB6DD;
+	Fri, 13 Dec 2024 08:43:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734079245; cv=none; b=bUnAHZMRqrQq55TSDSWUojcIsZRjuG1qumGp4ycPJkms7YhwQGsWrFC8i8xL2GAhrB6gfA9pyocB0eo0aJqaC3uFJJYcoYo3zhJkOvZ1J3+On4ddNz400EIxifQ/76hIBDO0ZUFTed+C3WUr939b3sfJdJVj+4+ShziTiS8ecBM=
+	t=1734079384; cv=none; b=nNC8t30P/jcvNn4cN2HhDO1RvXb6U7vk4R/4wF5ZEFSYEn50XY6A58coydLJHDctz9C0vuoPeMaK5Y539usnxjrOadb6J0UgHKFInd7Y+VDFZOKi1Cwxdi8raXDrHJ3lov1FLiiG6HQvFn96Rvvo8JaSyuIq3fUVxSKjugbjTVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734079245; c=relaxed/simple;
-	bh=BSxOztl6ioFFWVKIwGhNgOe3RZfrGoXPDt2Zg6L5wZA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gxIafJ53K68dXDTEMqfapIcmz+G3gNitzKnrYKgMX5UQOfEuD8W5vprrWavAQZZtZkU5KsM4wp2pukgdazBhcCu62meOIAIKd15vIH8ic8Z/jxwFE8/Q1vfuSxImUb2Un9h0PZWidTl9aX/aY0SJIdSNLG5Pm6ONgYkuc97zIoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FJzxf3hN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DF8FC4CED0;
-	Fri, 13 Dec 2024 08:40:44 +0000 (UTC)
+	s=arc-20240116; t=1734079384; c=relaxed/simple;
+	bh=btbY9PhFto5p1zLEFxXVLi0NRidg2pKgZRAMyQsvD2A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IdX/purJmQKHAMPuXXENzMi8fMEG1KHexNlxCk5y+WoEehbNlRK9jAhC/1koQ8Q+KMM90fuwoqb3rN9s4rgD0p7a5KF/9INYta/AokOt1+SIomWboe+QwqYMFDxyKZXAzEFRoCWPxyT1Q8XD7xtgv8+UKPumRkWG3izltnb+GXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BVllTk6X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E400FC4CED0;
+	Fri, 13 Dec 2024 08:42:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734079245;
-	bh=BSxOztl6ioFFWVKIwGhNgOe3RZfrGoXPDt2Zg6L5wZA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FJzxf3hNAXIVG0N/2YZF7zl1rNZ5BShDF2MBV3UvBDBta4ZP5qJ8aO+suGgE4nD69
-	 lcf894XyeSmPkWQbtpxx5C3edWWElQDLBNP/GVK1hsZbRqdxH4vJHMolTIrVrVol3V
-	 rp+NoyToxyaUHXN96ud6LRUj1moDm1soTS46MGHxBdrL1FVn8+CBqQunApvxX2UmMn
-	 tqcRJ+/OdeHFkVSHKofqtq4enxq9cy+8NLwkZnU3aZj51w1MG8dhf8kgaN4qTMkX0T
-	 HUrbkJUckxy3d9qF33Kz2r07nWqL9hX/dncITsr+utWkghM9YdeeXQ7GTZuMvbcCR+
-	 6T/LHkmpgqz/Q==
-Date: Fri, 13 Dec 2024 09:40:41 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Amit Kucheria <amitk@kernel.org>, 
-	Thara Gopinath <thara.gopinath@gmail.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, quic_kamalw@quicinc.com, quic_jprakash@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH RFC v2 2/5] dt-bindings: mfd: qcom,spmi-pmic: Add MBG
- thermal monitor ref
-Message-ID: <gvothokc3brwmpujgbbu4d4w7nmkovyr36wx4aqn35di7ugiwx@gbjmgyngweak>
-References: <20241212-mbg-v2-support-v2-0-3249a4339b6e@quicinc.com>
- <20241212-mbg-v2-support-v2-2-3249a4339b6e@quicinc.com>
+	s=k20201202; t=1734079383;
+	bh=btbY9PhFto5p1zLEFxXVLi0NRidg2pKgZRAMyQsvD2A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BVllTk6Xky/PeD/lDt4aDaR2IxiYKjbb7gFoD+vG+KgspqvQ1dNYam62TO8l0qlHS
+	 z1JdgbTzgLurNFMP8xjv7uIJBkhzh5PWVqhHipMNHiA/3hYtZvr11tB2GmhXTbU+o3
+	 JfBfg9jVsENYXeKEda/gOmai9rst0o3lXiaLYXMWWVHh5CGaKn3kwY2e3tvBnT1w25
+	 P9g8PMyYxDTDybN5jI3DW0yyZjEY1a5THcrLu4jMOVAxCGvHm8VuvU+wR3fkOLRe2t
+	 fvhATwJmNsVvGVNdBhOiQV/JmUSYQ6Y78DKpZfHmr/4c8FQsrfXssfagsdvoJeLVEi
+	 HM3l3wLm+tk6A==
+Message-ID: <0ff6f05f-fe6f-4433-a489-0447a165c8d0@kernel.org>
+Date: Fri, 13 Dec 2024 09:42:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241212-mbg-v2-support-v2-2-3249a4339b6e@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] Add Samsung SPEEDY serial bus host controller driver
+To: Markuss Broks <markuss.broks@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Maksym Holovach <nergzd@nergzd723.xyz>
+References: <20241212-speedy-v1-0-544ad7bcfb6a@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241212-speedy-v1-0-544ad7bcfb6a@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 12, 2024 at 09:41:21PM +0530, Satya Priya Kakitapalli wrote:
-> Add reference to the newly added MBG thermal monitor bindings.
+On 12/12/2024 22:09, Markuss Broks wrote:
+> Hey,
 > 
-> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+> This series adds support for the Samsung SPEEDY serial bus host
+> controller. Samsung SPEEDY (actually an acronym) is a proprietary
+> Samsung 1 wire serial bus, which is used on various Samsung devices.
+> 
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
 
-You must explain the dependencies between in changelog or cover letter,
-because you trick now maintainers into applying something which will
-lead to broken tree.
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
-Just squash the patch, it is not a separate feature.
+Please run standard kernel tools for static analysis, like coccinelle,
+smatch and sparse, and fix reported warnings. Also please check for
+warnings when building with W=1. Most of these commands (checks or W=1
+build) can build specific targets, like some directory, to narrow the
+scope to only your code. The code here looks like it needs a fix. Feel
+free to get in touch if the warning is not clear.
+
+Please run scripts/checkpatch.pl and fix reported warnings. Then please
+run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
+Some warnings can be ignored, especially from --strict run, but the code
+here looks like it needs a fix. Feel free to get in touch if the warning
+is not clear.
 
 Best regards,
 Krzysztof
-
 
