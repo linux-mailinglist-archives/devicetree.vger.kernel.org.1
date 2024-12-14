@@ -1,192 +1,150 @@
-Return-Path: <devicetree+bounces-131027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A1619F1D26
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 08:32:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17BAC9F1D33
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 09:02:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A33F4188C491
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 07:32:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 325D71614FF
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 08:02:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E785313B29F;
-	Sat, 14 Dec 2024 07:32:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02DAA80038;
+	Sat, 14 Dec 2024 08:02:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DXuEST1r"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="UhcOTYti"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EF7C5C96;
-	Sat, 14 Dec 2024 07:32:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.46
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB25663C;
+	Sat, 14 Dec 2024 08:02:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734161526; cv=none; b=dwhSEpzs6ZP24hncNTfRuURPMSBu5sw8boU0NC2+KsPdbwF1U01V/W+pclvTBTBg/4nCR4V1/iJ2HDY9QtkNX1CgGRXcCmeg85WNjx4QXVVleg9xpuewmlI12vD3RVA8IkCdLvDjQm5KevtGjDQkPVjlXLFO7z/iPxfDTlMDoTE=
+	t=1734163336; cv=none; b=axkNSFEZ/AI7z/W+PHjG4UAa7ChRxOHcOUX+nrOq8X6CvkvnsLnYIhxMiY/7lACwjGUAbVa6MpPMmJ2OkLim3RdIYmz7cG9pt5E0t6c6CXoSvOT2HfNIxTLv9GJ6O7nER8AKbx1UrQIWggpJRjT99D5XuurtYK2Esfw8hExL9us=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734161526; c=relaxed/simple;
-	bh=Lg6wNxdsLLY5Lp8a+X6uEKzwizIMd2JY0ZlX0WhbW8E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Tb2qk3GfHJRREAPSD6EY9tLTJCgdg3EzImNXKEuRpBO4DFhqYWDvMxI8mLpyOnNFXAtifCdH3F+GSOQSAgRtuAV6DSDvW+TJYf7nR6X2xQDwmFBptZwqO005uy7FQ0Kxh0Egx4euWeIPf605jMbjch4Od0Y0FNpO54shqGh3sMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DXuEST1r; arc=none smtp.client-ip=209.85.161.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-5f2c34ae517so1023612eaf.1;
-        Fri, 13 Dec 2024 23:32:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734161524; x=1734766324; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wooyMz6V69rOWgXVqv8x+ga9QCy693idFla4iIf30yA=;
-        b=DXuEST1rvtcZjDbSFOw+Eno1bYp5iig65lMN+Jc7ZwtvNjEGFT6EyeVk3CyEWQw3t1
-         EY+peRGkJizgVtdKCnlwwBqzL3FjGDIQUIGQAXcZ+wM/bCZbEyzlnGCFQ+IDBTlqslqz
-         5hsOnPZvT7GyTrVSt49oKpmEF1Ts7P3HnTJgEJuX5jd5qN3ebXG+h+GZIpUKbSAe2p+1
-         ukO72RsbRDCO6kcrJDl+nmeAsqRN1qrfZJbjVGxTZexoohnXV04Xo62YlGE7ihguzPxY
-         WntQPDjduy1BBbvAdl9JlO/LtbPOUUGBYIlL0UZfONN5X1yNwWI2qlcb88L0cJ56A98z
-         YfeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734161524; x=1734766324;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wooyMz6V69rOWgXVqv8x+ga9QCy693idFla4iIf30yA=;
-        b=mSkyYXfWg1ktYiXidF2Lh1csWqqhSMNRENfkfxrLb87ftxNmkpnBD9tqWqst56fT1w
-         5MPzYnp+Yk3+K2BUfgp0tOVJFnQ0n8pRgrYs9KjbzM6mAncB2p1LWhamqOuD34ysnLEZ
-         jZy+9vuh9KUdmy4gtoa9Afo2lUbJ3iHUMApwbIyaGrVydu8954dUlOPG2Bn/4KAleDD3
-         Gmqz2IUfjyXCu63d/oqL85i3A1U5QFnVZxN8TwkbLZcivGU13tzZR3FDxCRPS7CImzyO
-         6p5R/910SYCdzKHbU77U4Ed9NNaRJa6rpiMw747HE31AT2o1LpDtTocGTiwSAn/Mo3dk
-         lHhg==
-X-Forwarded-Encrypted: i=1; AJvYcCUknhMwpd81csJJzP3ij/3V3nh/VWubCKjVaDNgKXuKE2BfK3VJ4BMxNQN5LqTzMXjTUp/CR1VC9ewz@vger.kernel.org, AJvYcCVBzjgnostdOrr8vpVvNhjBUWRbLXH2U44Kcx0keKveZ+Oc8YdUj5nScvBd0f2LiIuejt7CRC/hxtSN5eRv@vger.kernel.org, AJvYcCVtof9UpkLaClHCfJAr4vbwfdX+k4wOUaDZwvU4H+rAZqHGt3OUhOGhsiLcbaoxUjXsgOdrCM0+/Iqn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPn5BvCtcug/qIKFhuYMgtcqTaDk3U16I7Tc/hNXvBqtKAcYiH
-	HxzTn+R5K3EOIdffEPB/0QCwPxpbfk7VBRRj03fVa26n8fhWKsvTAopjNXoH8DEOUBU68V7Qb5T
-	YlLdQLzO2qyrJ7ElXkthMBDUzwJ8=
-X-Gm-Gg: ASbGncs/W1+chOYL+TWTdGJ8K8b8L6D40npzH18R9MmTTucrHTvxH4RHZv2hQENXxO5
-	V/Xs2jK3pUiOrFNTesZC6NHym5dekE/ii/Zdxc25opXs0v1W+uDyzVx4weHSq0G5aBJ49zJk5
-X-Google-Smtp-Source: AGHT+IGmFywcjc7izrlDXgnkzLIqMiL0MnGMAOEArWH0D15iqh0keA0TjPRq8hM4SyuuwLNun7DH3X+llzzdV2xoAhI=
-X-Received: by 2002:a05:6870:7011:b0:29e:3d0b:834 with SMTP id
- 586e51a60fabf-2a3ac614135mr3251697fac.5.1734161524360; Fri, 13 Dec 2024
- 23:32:04 -0800 (PST)
+	s=arc-20240116; t=1734163336; c=relaxed/simple;
+	bh=DBAdSv4vyH7sryCKLaYwlyuAXZMbbANVQAi9Asbtj30=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=G+Kz/iQwK4/d5zGyqRt26fRsDQsir6lUjidkCEe4lDLPbHR5wYnRwF5Wfk5O66WNP+tzvAQhBsYyWArXQ43dvnhH9QwYjCqirEYmrB6jHLXCNYC5sM9aIfXY7sJYRqCf9k/BnkrNupMrvHvVKxaFfVI0XhBDQjFe4VBcVG9ll+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=UhcOTYti reason="signature verification failed"; arc=none smtp.client-ip=117.135.210.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=0o+z+EkurJaMlImlt88yGIJCVWZD3/7Ecx82GOvn8sc=; b=U
+	hcOTYti//V3hiQTeBz4zLvGkRSf1y4kYLg7uIq2GCXuOcIBpzb2b5n0Fp3hmVD7C
+	V+dp1qA+5OakaGa7n3X512USS9NJEZTC3eoN8OnFPQQhRv+o4iuMJq7ODUTY+/vW
+	lp0/bgIt2pLkHUAeoKNY3500ARuPcU9KavuetrQBk4=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-133 (Coremail) ; Sat, 14 Dec 2024 16:01:11 +0800
+ (CST)
+Date: Sat, 14 Dec 2024 16:01:11 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Detlev Casanova" <detlev.casanova@collabora.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org, 
+	s.hauer@pengutronix.de, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, derek.foreman@collabora.com, 
+	"Andy Yan" <andy.yan@rock-chips.com>, kernel@collabora.com
+Subject: Re:Re: [PATCH v5 05/18] drm/rockchip: vop2: Set AXI id for rk3588
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2024 www.mailtech.cn 163com
+In-Reply-To: <13660005.uLZWGnKmhe@bootstrap>
+References: <20241209122943.2781431-1-andyshrk@163.com>
+ <5843712.DvuYhMxLoT@bootstrap>
+ <3f1eace4.75cf.193b9daf585.Coremail.andyshrk@163.com>
+ <13660005.uLZWGnKmhe@bootstrap>
+X-NTES-SC: AL_Qu2YBv2dvEos5yWfZ+lSwjJi9558MKvZ7qd+qcQSetEqqTHrwRInWV1kMlnE6vk6cbg7Df61gTPSD7ezjI7u
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230505052110.67514-1-me@crly.cz> <20230505052110.67514-2-me@crly.cz>
- <CA+E=qVcSV7H4=-fT2FUdNd5sneCO0GsA-qKrvQxy8PF89knckw@mail.gmail.com>
-In-Reply-To: <CA+E=qVcSV7H4=-fT2FUdNd5sneCO0GsA-qKrvQxy8PF89knckw@mail.gmail.com>
-From: Vasily Khoruzhick <anarsoul@gmail.com>
-Date: Fri, 13 Dec 2024 23:31:38 -0800
-Message-ID: <CA+E=qVeroOt_L-r--K7uYrS+039x-BtgciVqoez5CmOtmYyqVg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/4] clk: sunxi-ng: a64: force select PLL_MIPI in TCON0 mux
-To: Roman Beranek <me@crly.cz>
-Cc: Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Oltmanns <frank@oltmanns.dev>, 
-	Icenowy Zheng <icenowy@aosc.io>, Ondrej Jirman <megi@xff.cz>, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-clk@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Message-ID: <56a01c0e.20d5.193c42f8f9b.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:hSgvCgD3H9xHO11n7Sg_AA--.8272W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0gK1XmddMGxEvgACsl
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On Fri, Dec 13, 2024 at 10:29=E2=80=AFPM Vasily Khoruzhick <anarsoul@gmail.=
-com> wrote:
->
-> On Thu, May 4, 2023 at 10:34=E2=80=AFPM Roman Beranek <me@crly.cz> wrote:
-> >
-> > TCON0's source clock can be fed from either PLL_MIPI, or PLL_VIDEO0(2X)=
-,
-> > however MIPI DSI output only seems to work when PLL_MIPI is selected an=
-d
-> > thus the choice must be hardcoded in.
-> >
-> > Currently, this driver can't propagate rate change from N-K-M clocks
-> > (such as PLL_MIPI) upwards. This prevents PLL_VIDEO0 from participating
-> > in setting of the TCON0 data clock rate, limiting the precision with
-> > which a target pixel clock can be matched.
-> >
-> > For outputs with fixed TCON0 divider, that is DSI and LVDS, the dotcloc=
-k
-> > can deviate up to 8% off target.
->
-> Hi Roman,
->
-> I'm a bit late, but this patch breaks the LCD on Pine64 Pinebook. When
-> TCON0 parent is pll-mipi, the panel is blank and I get vblank timeouts.
->
-> With this patch reverted it works if I force pll-video-2x as a parent for=
- TCON0.
-
-And changing TCON0 parent in runtime by poking CCU registers also
-fixes the issue (even though pll-video-2x is *much* slower than
-pll-mipi), i.e. if I do "devmem2 0x01c20118 w 0x82000000" the picture
-appears on the screen.
-
-> So for me RGB output doesn't seem to work with PLL_MIPI, but works
-> only with PLL_VIDEO0_2X. Any ideas on how to fix it?
->
-> Regards,
-> Vasily
->
->
->
-> > Signed-off-by: Roman Beranek <me@crly.cz>
-> > ---
-> >  drivers/clk/sunxi-ng/ccu-sun50i-a64.c | 14 +++++++++++++-
-> >  1 file changed, 13 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/clk/sunxi-ng/ccu-sun50i-a64.c b/drivers/clk/sunxi-=
-ng/ccu-sun50i-a64.c
-> > index 41519185600a..eb36f8f77d55 100644
-> > --- a/drivers/clk/sunxi-ng/ccu-sun50i-a64.c
-> > +++ b/drivers/clk/sunxi-ng/ccu-sun50i-a64.c
-> > @@ -528,11 +528,18 @@ static SUNXI_CCU_M_WITH_MUX_GATE(de_clk, "de", de=
-_parents,
-> >                                  0x104, 0, 4, 24, 3, BIT(31),
-> >                                  CLK_SET_RATE_PARENT);
-> >
-> > +/*
-> > + * DSI output seems to work only when PLL_MIPI selected. Set it and pr=
-event
-> > + * the mux from reparenting.
-> > + */
-> > +#define SUN50I_A64_TCON0_CLK_REG       0x118
-> > +
-> >  static const char * const tcon0_parents[] =3D { "pll-mipi", "pll-video=
-0-2x" };
-> >  static const u8 tcon0_table[] =3D { 0, 2, };
-> >  static SUNXI_CCU_MUX_TABLE_WITH_GATE(tcon0_clk, "tcon0", tcon0_parents=
-,
-> >                                      tcon0_table, 0x118, 24, 3, BIT(31)=
-,
-> > -                                    CLK_SET_RATE_PARENT);
-> > +                                    CLK_SET_RATE_PARENT |
-> > +                                    CLK_SET_RATE_NO_REPARENT);
-> >
-> >  static const char * const tcon1_parents[] =3D { "pll-video0", "pll-vid=
-eo1" };
-> >  static const u8 tcon1_table[] =3D { 0, 2, };
-> > @@ -953,6 +960,11 @@ static int sun50i_a64_ccu_probe(struct platform_de=
-vice *pdev)
-> >
-> >         writel(0x515, reg + SUN50I_A64_PLL_MIPI_REG);
-> >
-> > +       /* Set PLL MIPI as parent for TCON0 */
-> > +       val =3D readl(reg + SUN50I_A64_TCON0_CLK_REG);
-> > +       val &=3D ~GENMASK(26, 24);
-> > +       writel(val | (0 << 24), reg + SUN50I_A64_TCON0_CLK_REG);
-> > +
-> >         ret =3D devm_sunxi_ccu_probe(&pdev->dev, reg, &sun50i_a64_ccu_d=
-esc);
-> >         if (ret)
-> >                 return ret;
-> > --
-> > 2.32.0 (Apple Git-132)
-> >
-> >
+SGkgRGV0bGV2LAoKQXQgMjAyNC0xMi0xNCAwMjozNDowMywgIkRldGxldiBDYXNhbm92YSIgPGRl
+dGxldi5jYXNhbm92YUBjb2xsYWJvcmEuY29tPiB3cm90ZToKPk9uIFRodXJzZGF5LCAxMiBEZWNl
+bWJlciAyMDI0IDAyOjUyOjM0IEVTVCBBbmR5IFlhbiB3cm90ZToKPj4gSGkgRGV0bGV2LAo+PiAK
+Pj4gQXQgMjAyNC0xMi0xMSAyMzo0NTowMSwgIkRldGxldiBDYXNhbm92YSIgPGRldGxldi5jYXNh
+bm92YUBjb2xsYWJvcmEuY29tPiAKPndyb3RlOgo+PiA+T24gV2VkbmVzZGF5LCAxMSBEZWNlbWJl
+ciAyMDI0IDAxOjM0OjM0IEVTVCBBbmR5IFlhbiB3cm90ZToKPj4gPj4gSGkgRGV0bGV2LAo+PiA+
+PiAKPj4gPj4gQXQgMjAyNC0xMi0xMSAwMjo0MDoxNCwgIkRldGxldiBDYXNhbm92YSIgPGRldGxl
+di5jYXNhbm92YUBjb2xsYWJvcmEuY29tPgo+PiA+Cj4+ID53cm90ZToKPj4gPj4gPkhpIEFuZHks
+Cj4+ID4+ID4KPj4gPj4gPk9uIE1vbmRheSwgOSBEZWNlbWJlciAyMDI0IDA3OjI5OjE4IEVTVCBB
+bmR5IFlhbiB3cm90ZToKPj4gPj4gPj4gRnJvbTogQW5keSBZYW4gPGFuZHkueWFuQHJvY2stY2hp
+cHMuY29tPgo+PiA+PiA+PiAKPj4gPj4gPj4gVGhlcmUgYXJlIHR3byBBWEkgYnVzIGluIHZvcDIs
+IHdpbmRvd3MgYXR0YWNoZWQgb24gdGhlIHNhbWUgYnVzIG11c3QKPj4gPj4gPj4gaGF2ZSBhIHVu
+aXF1ZSBjaGFubmVsIFlVViBhbmQgUkdCIGNoYW5uZWwgSUQuCj4+ID4+ID4+IAo+PiA+PiA+PiBU
+aGUgZGVmYXVsdCBJRHMgd2lsbCBjb25mbGljdCB3aXRoIGVhY2ggb3RoZXIgb24gdGhlIHJrMzU4
+OCwgc28gdGhleQo+PiA+PiA+PiBuZWVkIHRvIGJlIHJlYXNzaWduZWQuCj4+ID4+ID4+IAo+PiA+
+PiA+PiBGaXhlczogNWEwMjhlOGYwNjJmICgiZHJtL3JvY2tjaGlwOiB2b3AyOiBBZGQgc3VwcG9y
+dCBmb3IgcmszNTg4IikKPj4gPj4gPj4gU2lnbmVkLW9mZi1ieTogQW5keSBZYW4gPGFuZHkueWFu
+QHJvY2stY2hpcHMuY29tPgo+PiA+PiA+PiBUZXN0ZWQtYnk6IERlcmVrIEZvcmVtYW4gPGRlcmVr
+LmZvcmVtYW5AY29sbGFib3JhLmNvbT4KPj4gPj4gPj4gCj4+ID4+ID4+IC0tLQo+PiA+PiA+PiAK
+Pj4gPj4gPj4gQ2hhbmdlcyBpbiB2NToKPj4gPj4gPj4gLSBBZGRlZCBpbiBWNQo+PiA+PiA+PiAK
+Pj4gPj4gPj4gIGRyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9yb2NrY2hpcF9kcm1fdm9wMi5jIHwg
+MTQgKysrKysrKysrKysKPj4gPj4gPj4gIGRyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9yb2NrY2hp
+cF9kcm1fdm9wMi5oIHwgIDkgKysrKysrKwo+PiA+PiA+PiAgZHJpdmVycy9ncHUvZHJtL3JvY2tj
+aGlwL3JvY2tjaGlwX3ZvcDJfcmVnLmMgfCAyNgo+PiA+PiA+PiAgKysrKysrKysrKysrKysrKysr
+Ky0KPj4gPj4gPj4gIDMgZmlsZXMgY2hhbmdlZCwgNDggaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlv
+bigtKQo+PiA+PiA+PiAKPj4gPj4gPj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9yb2Nr
+Y2hpcC9yb2NrY2hpcF9kcm1fdm9wMi5jCj4+ID4+ID4+IGIvZHJpdmVycy9ncHUvZHJtL3JvY2tj
+aGlwL3JvY2tjaGlwX2RybV92b3AyLmMgaW5kZXgKPj4gPj4gPj4gZGM0ZWRkNjViYzllLi44Yjlj
+YTA0NmVlZWIgMTAwNjQ0Cj4+ID4+ID4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9y
+b2NrY2hpcF9kcm1fdm9wMi5jCj4+ID4+ID4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hp
+cC9yb2NrY2hpcF9kcm1fdm9wMi5jCj4+ID4+ID4+IEBAIC0xNDI2LDYgKzE0MjYsMTIgQEAgc3Rh
+dGljIHZvaWQgdm9wMl9wbGFuZV9hdG9taWNfdXBkYXRlKHN0cnVjdAo+PiA+PiA+PiBkcm1fcGxh
+bmUgKnBsYW5lLCAmZmItPmZvcm1hdC0+Zm9ybWF0LAo+PiA+PiA+PiAKPj4gPj4gPj4gIAkJYWZi
+Y19lbiA/ICJBRkJDIiA6ICIiLCAmeXJnYl9tc3QpOwo+PiA+PiA+PiAKPj4gPj4gPj4gKwlpZiAo
+dm9wMi0+ZGF0YS0+c29jX2lkID4gMzU2OCkgewo+PiA+PiA+Cj4+ID4+ID5TaG91bGRuJ3QgdGhp
+cyBiZSBkb25lIG9ubHkgZm9yIHJrMzU4OCwgYXMgc3BlY2lmaWVkIGluIHRoZSBjb21tZW50cwo+
+PiA+PiA+YmVsb3cKPj4gPj4gPj8gVGhlIHRlc3Qgd2UgZGlkIGJlZm9yZSBzaG93ZWQgdGhhdCBp
+dCBpcyBmYWlsaW5nIG9uIHJrMzU3NiBhbmQgMzU3NiBpcwo+PiA+PiA+Pgo+PiA+PiA+MzU4OC4K
+Pj4gPj4gCj4+ID4+IEkgdGhpbmsgdGhpcyBpcyBiZWNhdXNlIHlvdSB0ZXN0ZWQgYmVmb3JlIHdp
+dGggdGhlIHBhdGNoIEkgZ2F2ZSBEZXJlawo+PiA+PiB3aXRob3V0IGF4aSBpZCBhc3NpZ25lZCBm
+b3IgcmszNTc2Lgo+PiA+PiBJIGFzc2lnbmVkIGF4aSBpZCBmb3IgcmszNTc2IGluIHRoaXMgdmVy
+c2lvbiAxOC8xOO+8iFRoZSBuZXcgSUQgYXNzaWdubWVudAo+PiA+PiBjYW4gYWRhcHQgdG8gbW9y
+ZSBhcHBsaWNhdGlvbiBzY2VuYXJpb3Mu77yJLCBjYW4geW91IHRlc3QgaXQgd2l0aCB0aGUKPj4g
+Pj4gd2hvbGUgVjUgdmVyc2lvbiBhZ2Fpbj8KPj4gPgo+PiA+WWVzLCBJIHdpbGwgZG8gdGhhdC4g
+QnV0IHBhdGNoIDE4IG1lbnRpb25zOgo+PiA+KyAgICAgICAvKiBSZWFkIG9ubHkgYml0IG9uIHJr
+MzU3NiovCj4+ID4rICAgICAgIFtWT1AyX1dJTl9BWElfQlVTX0lEXSA9IFJFR19GSUVMRChSSzM1
+NjhfQ0xVU1RFUl9DVFJMLCAxMywgMTMpLAo+PiA+Cj4+ID5BbmQgdGhlIGJpdCBpcyBiZWluZyB3
+cml0dGVuIGhlcmUuIElmIGl0IGlzIGluZGVlZCB3cml0YWJsZSwgdGhlbiBJIHdvdWxkCj4+ID5k
+cm9wIHRoYXQgY29tbWVudC4KPj4gCj4+IFRoZSBBWElfQlVTX0lEIGZvciB0d28gQ2x1c3RlciB3
+aW5kb3dzIG9uIFJLMzU3NiBhcmUgZml4ZWQgYnkgaGFyZHdhcmUsIHRoYXQKPj4gbWVhbnMgd2hl
+dGhlciB3ZSB3cml0ZSBpdCBvciBub3QsIGl0IHdvbid0IGNoYW5nZSBhbnl0aGluZy4KPj4gQnV0
+IHRoZSBBWElfQlVTX0lEIGZvciBFc21hcnQgd2luZG93cyBvbiByazM1NzYgYW5kICBBWElfWVJH
+Qi9VVl9SX0lEIGZvcgo+PiBhbGwgY2x1c3Rlci9lc21hcnQgd2luZG93cyBvbiByazM1NzYgYXJl
+IHdyaXRlYWJsZS4KPj4gSSB0aGluayB3ZSBkaXJlY3RseSB3cml0ZSBpdCBoZXJlIGFzIHRoZSBj
+dXJyZW50IGNvZGUgY2FuIG1ha2UgdGhpbmdzIGVhc3kuCj4KPkkgc2VlLCBzYXlpbmcgaXQgaXMg
+cmVhZCBvbmx5IG1heSBiZSBhIGJpdCBjb25mdXNpbmcgdGhlbiwgYnV0IGl0IG1ha2VzIHNlbnNl
+LiAKPllvdSBjb3VsZCBiZSBtb3JlIHNwZWNpZmljIGFkZGluZyB0aGF0IHdyaXRpbmcgaGFzIG5v
+IGVmZmVjdC4KCk9rYXksICBJIHdpbGwgYWRkIG1vcmUgc3BlY2lmaWMgZXhwbGFuYXRpb24gaW4g
+djYKCj4KPkFueXdheSwgSSB0ZXN0ZWQgdGhpcyBhbmQgaXQgd29ya3MgYXMgZXhwZWN0ZWQ6Cj4K
+PlRlc3RlZC1ieTogRGV0bGV2IENhc2Fub3ZhIDxkZXRsZXYuY2FzYW5vdmFAY29sbGFib3JhLmNv
+bT4KPgo+UmVnYXJkcywKPkRldGxldi4KPgo+PiA+PiA+SSBzdWdnZXN0Cj4+ID4+ID4KPj4gPj4g
+PglpZiAodm9wMi0+ZGF0YS0+c29jX2lkID09IDM1ODgpIHsKPj4gPj4gPgo+PiA+PiA+UmVnYXJk
+cywKPj4gPj4gPkRldGxldgo+PiA+PiA+Cj4+ID4+ID4+ICsJCXZvcDJfd2luX3dyaXRlKHdpbiwg
+Vk9QMl9XSU5fQVhJX0JVU19JRCwgd2luLT5kYXRhLQo+PiA+PiA+Pgo+PiA+PiA+PmF4aV9idXNf
+aWQpOwo+PiA+PiA+Pgo+PiA+PiA+PiArCQl2b3AyX3dpbl93cml0ZSh3aW4sIFZPUDJfV0lOX0FY
+SV9ZUkdCX1JfSUQsIHdpbi0+ZGF0YS0KPj4gPj4gPj4KPj4gPj4gPj5heGlfeXJnYl9yX2lkKTsK
+Pj4gPj4gPj4KPj4gPj4gPj4gKwkJdm9wMl93aW5fd3JpdGUod2luLCBWT1AyX1dJTl9BWElfVVZf
+Ul9JRCwgd2luLT5kYXRhLQo+PiA+PiA+Pgo+PiA+PiA+PmF4aV91dl9yX2lkKTsKPj4gPj4gPj4K
+Pj4gPj4gPj4gKwl9Cj4+ID4+ID4+ICsKPj4gPj4gPj4gCj4+ID4+ID4+ICAJaWYgKHZvcDJfY2x1
+c3Rlcl93aW5kb3cod2luKSkKPj4gPj4gPj4gIAkKPj4gPj4gPj4gIAkJdm9wMl93aW5fd3JpdGUo
+d2luLCBWT1AyX1dJTl9BRkJDX0hBTEZfQkxPQ0tfRU4sCj4+ID4+ID4KPj4gPj4gPmhhbGZfYmxv
+Y2tfZW4pOwo+PiA+Cj4+ID5EZXRsZXYuCj4+ID4KPj4gPgo+PiA+Cj4+ID5fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwo+PiA+TGludXgtcm9ja2NoaXAgbWFp
+bGluZyBsaXN0Cj4+ID5MaW51eC1yb2NrY2hpcEBsaXN0cy5pbmZyYWRlYWQub3JnCj4+ID5odHRw
+Oi8vbGlzdHMuaW5mcmFkZWFkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2xpbnV4LXJvY2tjaGlwCj4K
+Pgo+Cj4K
 
