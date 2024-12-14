@@ -1,137 +1,201 @@
-Return-Path: <devicetree+bounces-131121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 644239F20F8
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 22:36:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B95F79F210C
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 22:52:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90B621667F4
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 21:36:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5754164B66
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 21:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 430A61AF0A7;
-	Sat, 14 Dec 2024 21:36:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B875E1AB525;
+	Sat, 14 Dec 2024 21:52:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HnXAm/cc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jc7+slfL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95FB51990A2;
-	Sat, 14 Dec 2024 21:36:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E78D1137E;
+	Sat, 14 Dec 2024 21:52:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734212200; cv=none; b=O6BBPBSSygMDmOTsQwihihlV1M4lkBqjKar2OYuO3WjlOidDDzOguSZ7Dt1ufRi2kfMeMniGF8mjHCFf0/skugDZCwXlCpz05mJoKJPWfcrk9PaATwjE5gIdEqCQ+eCYn+4ch8Hxs8aNFooGTQpAY9wRtAmrgnnA99oV7aYwNTw=
+	t=1734213134; cv=none; b=BSgtwLZXAEHx6Gt163eOoyPr7fAR4/9Uyt0w2uPiDAgV2AHFqM7HuliYOC5a78D6UlWb+LztWmwIkExNTRMdXQ41x23Jg4TgKc+okDKTGTJVquoq3qdtG08spsc9oPMadryEtshC/Oe0AXIh6/8goH/FNHdJgHqADOTyjKP9zlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734212200; c=relaxed/simple;
-	bh=JSmXnQzAC3lbJhuxkEAtytCsvBO1s7INTmO8xFi6WTs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jb6nV2SqiV4JcmnDH8dD0h+WtYD5u76IUiqeUQHv2Y8wORIQXSIz/ptlgkCyu5agqFAxCsrcYWLlKeyQGxJGhBVMEbRzXYQ+sLb9TvUkuBqCqnvXCyh5u2oulYwGXY8BVwqYWU2iTe8vci2pBkFCLpfjJi7i904cBIng4Y8012k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HnXAm/cc; arc=none smtp.client-ip=209.85.221.174
+	s=arc-20240116; t=1734213134; c=relaxed/simple;
+	bh=WEERpUugMIVF+RpGbGa3aJw6AHnRLtvfpjRFt8LA5fc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=nvGysrkBnudhaqd2+11Skr9APCtyhBbj0fx2XClbDp/lxpT/+N1Rmx7/FblXQoCmA2P14GlXjq1BKgvEiFmVpnY3K31Ixf2NCza69+BMsGxdOfKftSrxF8yvltRGnfbvgZGhFGgKkrPht910mt1Wsn1PlfqGH6Cx8bTHq0tBu+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jc7+slfL; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-518802a1e7eso1651136e0c.3;
-        Sat, 14 Dec 2024 13:36:38 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-aa6c0d1833eso489005666b.1;
+        Sat, 14 Dec 2024 13:52:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734212197; x=1734816997; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JSmXnQzAC3lbJhuxkEAtytCsvBO1s7INTmO8xFi6WTs=;
-        b=HnXAm/ccfF44rdEk3FFAdckpHzysEIUrS0tvxqJ13+WbNSw78vdXhw/nFuVWf61Rxd
-         54xKh0+Y611AEZVuqbmg5+gT18syj7QiEFx21niUmT/+30HkoCxPxe/SR3qdIucvyamn
-         6CAu5Q+VkpNuoPjHZsfpF+5Jjg9AXQjQ07Z6J08S0tWBkqS/slrZOtMiStDQJc02pFEL
-         sYk58FzCmX8T67Wq2Whse9D0JBNcEmCWoa4v2+m/jXI5EHEO7nZOCyjsUCN0T3FLRnZb
-         eVCUt4/gHBt3xyaDAsWZHsKJubG1GlnD3qAM5q31gM8eUZHkxIsZN20iktAsOX/3bhQK
-         ZOIQ==
+        d=gmail.com; s=20230601; t=1734213131; x=1734817931; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3/YC7qsZQDqPwi0DSerU+A2lmpctu8Ls9iP33kzH6HQ=;
+        b=Jc7+slfL9agMGNYhIf/pjQ2/X8pIU3Y2CTuDquqFmfOQe9vpVveJatcTXDFJoQgjRs
+         b72mHIngZpfachnjVM9xj1zkhTPi9ZmTW4+FLOBYYNhun3M4ifJdey/+CTyGdVXIw6FY
+         DV2ceakCk72c2BYWezx6BNoyukOEHnHoQjPC0K6QZfANYtkIVIu9XYs1x1QXcACersc8
+         uNrm8dE1ACFyKkh94i2xHSKVnws8hrDamnwmGnd7X/KCt9HMUhyKDvrlUpLlm8OoDYJj
+         cxZIid0qjN4U2GviHNLduxbUeS/Dlo+/oXh+ikW4vjejeVVS1MGkrp2NuWAbFQDHnfV7
+         Nq+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734212197; x=1734816997;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JSmXnQzAC3lbJhuxkEAtytCsvBO1s7INTmO8xFi6WTs=;
-        b=Lpt+m1zIyoDgP31VAf60tZiTLPEtQq1Uh2NZZmUYI1c3TX3fIv3Q5Gu6F1fQKMWJuJ
-         PIvul8lTDwnBqfhvgVYmvkoYK4Vr6cLwgv+dEEWjbY9WLrU5AkEm2ApwtAQzyvqNSVAx
-         OnuUJbgaECwpRZ88SvxsPfz38LaCB5faYfCdejT1pZIPYgwvRBz+9Gr4dfI7qLjFlBpq
-         4yE6M/upOO/DZzGlBXpwP5hX4JqVR4a8AuIBSCJlE2LwSt5nBMS3BvE/ZH+Fn0oEaaGq
-         Acz6RUJQAWLXEVDTE17iT+2WMyQrxYrwSto53FwYaUitzgsstda9a47I7G3PnpxCrAgn
-         4t/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVQVsKOqBLmPiekB/vTl/sQvIikNkvIaaNwGo5NXq0w4iAqNAx1kFXQjZyJAAOnP0vqQHOCkWQH48Yw@vger.kernel.org, AJvYcCVrx/7CyU/lf9Dt+XygbsKoY6deCxqVjgKnD4CyH9RJsxStI1SDJTRUVvVoBLaACZIWEcJ9INp7U3AK//c7@vger.kernel.org, AJvYcCWGwt0NmPbh7P6QQKi3SfpdB5R4GDsgbOTbMRA3yXPxs6YL0RZVIJ5UyjKv6T+UJpDeC5OlxYIOLKEEDn2UfsnV50g=@vger.kernel.org, AJvYcCXQKP7d0D5/7S05ljMre8SuRI9KYJmXwRsiNgq8BGh7X5dOMmQzG0kIbjGU0kKeX9h9LedtJuGWhHlCOs1aZm4=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHPh2b0XSxX4m/DJ529Zx2JHVj6zADTz8aCeGxFuG/shp/cFfb
-	Dvt5avTDg1kAOOEuK+HrOSdlKR00b5yF9cbKwTt7YG/QljLEEql7HfsV6l0DVEvscIGKC5GJ78i
-	KhqMRUxQuFthn/IvHrtcspK1lrYo=
-X-Gm-Gg: ASbGncsDZB7kcb6mQnz2vfMkjT+EJm/Hm7ADnyc0Ps0PWFRirnf44oQTJSJSoDG8sZ2
-	2gD6Qio/ZOL5C5GZdnfU4EOn6amHnU5SuxntExIZ+G7Ye2hIWJCEHh0k/vI0oYIltEqil0e0=
-X-Google-Smtp-Source: AGHT+IHdDBc/DTuaPG5v2NK8NoaPY3B90zut1+0sQGHapEIdTbD0nlg2qhZ4HFMLfv++ls0XPJ6DuU57a5ogmlSPavw=
-X-Received: by 2002:a05:6122:2a0e:b0:515:daa7:ed0b with SMTP id
- 71dfb90a1353d-518ca21d0cbmr7570939e0c.0.1734212197304; Sat, 14 Dec 2024
- 13:36:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1734213131; x=1734817931;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3/YC7qsZQDqPwi0DSerU+A2lmpctu8Ls9iP33kzH6HQ=;
+        b=Sg+2sr23JiHK+2cRoYAApd/vAWzQm7uSVhJhr93+C6XWrFkEXlsmGkiuGnY9a8RNwv
+         aEYRnr7gUBWKKSQ6HGPvh0Fx3t5669N013/zKRw4CFgEC9BpFTIq7JUhFrEQZdvMAnBh
+         TEL1ERs9kbvy3AcS0S+9jvzq/5BGsCynjL2JQ9sjNmyzXVwxF/nID+tlNK8oOVkSof8p
+         mhXbO0phN8QVdHPQ0qUGl+inWjqBMi2zx4Rd9opApXu1UfWQ7lu0N3XfEozs773DlxTY
+         nyKcKDnJAtIvVS+lauwnlDl4lJBKo+o3xsz4saA6rT1vDfE6h8bh01UTPIyiYA/JorOC
+         bXTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUNQU0IJhpi2U+/T9tS8zxPlgVRKemRzVeIJvjslt0WEyflJyQv/VvUoyi2q/Hlw6vwKHiW7W+fl83uqyE=@vger.kernel.org, AJvYcCWMxxRU71VtElyoEgKWG8G1UYrMoxIFSLOUe693zL5sy3T+jjmEE8e4sbt7PZs38z7RzfLVyGOFvl83Jw==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+3w2yxCHmQ8v9fsq+JdiGOSaGspXLEU75v0uFDCbWjSm66CeF
+	cU57WFdEtMWFXpYNJED3iTuM5n4GjpHUUXks068mFIobVB5PexIi
+X-Gm-Gg: ASbGnctZrMDnNdPZxZL5+WIuiUJMuYT4by9SFt0TEEiNtBBo8gbwmdrmVdC6LvBtA7n
+	uBFLFz9IvCPFzcG2pjpnwtoeuHV6boku3ovFYVnph+LWkQBrPI/3D/gGbYGosJAomYnuVlcdrBW
+	jUmTx+jKP1xuI9tLLUfgx8LFTDL3U+hcccTAc/JY3dXUd7nB07SeYmfHTqDB8O0VwC0J3Jw/vRQ
+	H7c2Lq3JxcNA3/BXgnGt9f9r/qEh33WJNDDK6oQVZKy76Lj56CGVSz1NKhWoaF57Vk=
+X-Google-Smtp-Source: AGHT+IHRglX6dcJH31gxHa/6wW1mMpn14tLgw9bFgX7WVXdACNj1C6kigUNQFnSR4vD5o8uj+wrjog==
+X-Received: by 2002:a17:907:c24:b0:aa6:7662:c56e with SMTP id a640c23a62f3a-aab77ec4181mr832539766b.55.1734213130370;
+        Sat, 14 Dec 2024 13:52:10 -0800 (PST)
+Received: from localhost.localdomain ([83.168.79.145])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aab9606839csm139090266b.61.2024.12.14.13.52.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Dec 2024 13:52:10 -0800 (PST)
+From: Karol Przybylski <karprzy7@gmail.com>
+To: andreas@kemnade.info,
+	rogerq@kernel.org,
+	karprzy7@gmail.com,
+	lee@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org,
+	linux-omap@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	skhan@linuxfoundation.org
+Subject: [PATCHv3] dt-bindings: mfd: omap-usb-tll: convert to YAML
+Date: Sat, 14 Dec 2024 22:52:07 +0100
+Message-Id: <20241214215207.842765-1-karprzy7@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241213174419.908525-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <4d3e6f12-7cea-45ce-b1e2-c1fda94b92cd@roeck-us.net> <CA+V-a8uasq+E+_7rk+o729hRp6PwYSgTcUQYbTe44CkXfSE71A@mail.gmail.com>
- <TY3PR01MB11346774419BA8D51043C762986392@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB11346774419BA8D51043C762986392@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Sat, 14 Dec 2024 21:36:11 +0000
-Message-ID: <CA+V-a8srdDkdAss2okuyfGYBwU5b9cF0aNw+KOSGR1wPquqNdQ@mail.gmail.com>
-Subject: Re: [RFC PATCH] watchdog: rzv2h_wdt: Add support to retrieve the
- bootstatus information
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Rob Herring <robh@kernel.org>, 
-	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Biju,
+Conversion of omap-usb-tll.txt into yaml format, inspired by discussion in
+lore.kernel.org/all/cd915c18-7230-4c38-a860-d2a777223147@kernel.org/
 
-On Sat, Dec 14, 2024 at 11:32=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.c=
-om> wrote:
->
-> Hi Lad, Prabhakar,
->
-<snip>
-> > > That is a change in behavior. Up to now the syscon phandle did not
-> > > have to exist for the driver to work. Is it guaranteed to not result
-> > > in regressions on systems where it doesn't ? Also, is this documented=
- ? I don't seem to be able to
-> > find it.
-> > >
-> > Agreed. I will add a fallback mechanism to handle cases where the sysco=
-n property is not present in
-> > the WDT node. This will ensure no regressions occur, and the bootstatus=
- will simply be set to 0 in
-> > such scenarios. As mentioned in the patch comments, I have not yet subm=
-itted the DT binding changes
-> > because I wanted feedback on the syscon approach. The new RZ SoCs have =
-registers scattered across
-> > various locations, and I was exploring if there might be a better way t=
-o handle this.
->
-> See, syscon compatible not needed with [1]
->
-> [1]
-> https://lore.kernel.org/all/20241211-syscon-fixes-v1-3-b5ac8c219e96@kerne=
-l.org/
->
-As per my understanding, `syscon` compatible is required in this case
-because the CPG driver does not register a regmap. With the patch [1]
-(linked above), this applies to drivers that register a syscon regmap,
-where the corresponding DT node does not necessarily need a `syscon`
-compatible.
+Changes made to the binding during conversion:
+- Added Roger Quadros as maintainer
+- Removed deprecated ti,hwmod
+- Renamed .yaml file to ti,usbhs-tll.yaml
 
-Cheers,
-Prabhakar
+Signed-off-by: Karol Przybylski <karprzy7@gmail.com>
+---
+ .../devicetree/bindings/mfd/omap-usb-tll.txt  | 27 -----------
+ .../devicetree/bindings/mfd/ti,usbhs-tll.yaml | 47 +++++++++++++++++++
+ 2 files changed, 47 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/omap-usb-tll.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,usbhs-tll.yaml
+
+diff --git a/Documentation/devicetree/bindings/mfd/omap-usb-tll.txt b/Documentation/devicetree/bindings/mfd/omap-usb-tll.txt
+deleted file mode 100644
+index c58d70437..000000000
+--- a/Documentation/devicetree/bindings/mfd/omap-usb-tll.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-OMAP HS USB Host TLL (Transceiver-Less Interface)
+-
+-Required properties:
+-
+-- compatible : should be "ti,usbhs-tll"
+-- reg : should contain one register range i.e. start and length
+-- interrupts : should contain the TLL module's interrupt
+-- ti,hwmod : must contain "usb_tll_hs"
+-
+-Optional properties:
+-
+-- clocks: a list of phandles and clock-specifier pairs, one for each entry in
+-  clock-names.
+-
+-- clock-names: should include:
+-  * "usb_tll_hs_usb_ch0_clk" - USB TLL channel 0 clock
+-  * "usb_tll_hs_usb_ch1_clk" - USB TLL channel 1 clock
+-  * "usb_tll_hs_usb_ch2_clk" - USB TLL channel 2 clock
+-
+-Example:
+-
+-	usbhstll: usbhstll@4a062000 {
+-		compatible = "ti,usbhs-tll";
+-		reg = <0x4a062000 0x1000>;
+-		interrupts = <78>;
+-		ti,hwmods = "usb_tll_hs";
+-	  };
+diff --git a/Documentation/devicetree/bindings/mfd/ti,usbhs-tll.yaml b/Documentation/devicetree/bindings/mfd/ti,usbhs-tll.yaml
+new file mode 100644
+index 000000000..aa4edc51d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/ti,usbhs-tll.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/ti,usbhs-tll.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OMAP HS USB Host TLL (Transceiver-Less Interface)
++
++maintainers:
++  - Roger Quadros <rogerq@kernel.org>
++
++properties:
++  compatible:
++    enum:
++      - ti,usbhs-tll
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 3
++
++  clock-names:
++    items:
++      - const: usb_tll_hs_usb_ch0_clk
++      - const: usb_tll_hs_usb_ch1_clk
++      - const: usb_tll_hs_usb_ch2_clk
++    minItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    usbhstll@4a062000 {
++      compatible = "ti,usbhs-tll";
++      reg = <0x4a062000 0x1000>;
++      interrupts = <78>;
++    };
+-- 
+2.34.1
+
 
