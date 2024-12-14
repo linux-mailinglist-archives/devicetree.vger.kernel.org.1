@@ -1,271 +1,125 @@
-Return-Path: <devicetree+bounces-131119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF65A9F204A
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 19:26:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3F3E9F20AB
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 21:24:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A8651888668
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 18:26:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1593166F33
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 20:24:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83C1819FA7C;
-	Sat, 14 Dec 2024 18:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE7131A8F79;
+	Sat, 14 Dec 2024 20:24:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pjijPWef"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tB6w25kT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54130EBE;
-	Sat, 14 Dec 2024 18:26:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3713714A617
+	for <devicetree@vger.kernel.org>; Sat, 14 Dec 2024 20:24:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734200810; cv=none; b=kIOnTMtag/R3KKk2HjqB1VDU8M1UaPBW2+a0jdf4K3k4U8LPKbjxokB4hSFEFktQiTz7FW+J26zrUEvxiG+oAmjU39zEcMz2k2qGTXkd3624xMnoakuK25h9hdy4nf4aiBBWSZDZ4W9ETuAm2iT5w0nVCg8znsDdLRjEDVmIsTw=
+	t=1734207851; cv=none; b=grC7S+jTX8vx52cyGY62KNm/zmY46ZMjdvcVzS6oHMRmMmjvtTpTwdNLSzf+nEb7+PCOIteHPA6QXUOfPNvpDpVrFzt4yVcA7iTSLdNIEvsZoIETnNxMkVYXVrzKWkDcTQDDUE83wa6nJMkWFO5vMtQo3WjNBDffV5T1Vxd3CzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734200810; c=relaxed/simple;
-	bh=yGbb+UmEpUS3I/z5uhSvfUZe9G4wyHQQcxxjKJgsLO4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NGscfnzw8QpSbKlpEE4LtV8MNZdHpDiSn4Ri8dqrvQkRZSq6vF4cTYdYM8sIQfVuuo3lIVKRTKgQWRWGrF+DVmoNz6MQ151+2iFS/+ozwlpQqqwblSqgO4h5elfqQWxBM1HTOGPczFth4BwTK9GQKmt6gM3y+jk4czP+yh4z0VY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pjijPWef; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0034C4CED1;
-	Sat, 14 Dec 2024 18:26:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734200809;
-	bh=yGbb+UmEpUS3I/z5uhSvfUZe9G4wyHQQcxxjKJgsLO4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=pjijPWeflDLjiUNdDC/1KGbMempHYH2RhorhnDVqoVm7SZXnA0BvzA5dxUumZuABn
-	 WOwlyPXarpRZgG9ND1vUjr4d+qU6TlcddfUNnNVV7+BnAMoF9KCYzQlYZT7WF/Q8wi
-	 w8cb8nZue33/77reiyr/aLwFndHUQtVpvFDnNlF/Pj1eCCqceiyuo2dz8ezFGDvECs
-	 FIVh0OdVbfISSyBSYdya67hTYxKngfbnCZoVi4WYYGBRQTHiqn0+jEeNts6hRcPFrX
-	 w8iITb5Q06NjEQJMXwR8Uh5Xjm7PMISxDCAvUHdIMx3K3/2t8OjVMVEtPxXkENx93J
-	 1Etc5xZZ6CsBg==
-Date: Sat, 14 Dec 2024 18:26:40 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Guillaume Stols <gstols@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, dlechner@baylibre.com, jstephan@baylibre.com,
- aardelean@baylibre.com, adureghello@baylibre.com
-Subject: Re: [PATCH v2 1/9] iio: adc: ad7606: Fix hardcoded offset in the
- ADC channels
-Message-ID: <20241214182640.6ee2c085@jic23-huawei>
-In-Reply-To: <20241210-ad7606_add_iio_backend_software_mode-v2-1-6619c3e50d81@baylibre.com>
-References: <20241210-ad7606_add_iio_backend_software_mode-v2-0-6619c3e50d81@baylibre.com>
-	<20241210-ad7606_add_iio_backend_software_mode-v2-1-6619c3e50d81@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1734207851; c=relaxed/simple;
+	bh=zofDod8j+ztP7THAIYRKQRjOLssFMAflJyxP2FRPQZQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nqCZbujaXdDlhMkZ+kBHBoWiCTxEUo1z893fRQqZow/Q3vL+lEUEat3m+TnK97UBmKuk1la/Gb3fTZSO1SEw9s8s02NjQfK6pi88nbmF0DtZJNzcR23WVJuQTCZahnkYQ63LC9SYjBbJZc/4AhQnEHPOAmE0GtN7xRq5363/7zo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=tB6w25kT; arc=none smtp.client-ip=209.85.160.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-2a3939a758dso575327fac.1
+        for <devicetree@vger.kernel.org>; Sat, 14 Dec 2024 12:24:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734207848; x=1734812648; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SrkjOPWzOWxIOLJtRQcSvC8VCKadtMcoPJW8JEroxUE=;
+        b=tB6w25kTXyEjVAJFv7LAnx5MscDaMuvhklAmSGFOW4xfo8yQZ9FINMBXbbvVDRaBOH
+         lwI/v4RadsGLa0mTjYJfh3k8KUH3zOeryJQRe0h3K27bjNByC6QnxhI5zpjP77q04vf9
+         bQaBg7v4ZfL80G0i0UnIlyNo/SIJ7QTsrnHa1mEnfDyyW0awlkV5qb5/7twwfdvIODs8
+         4iP7xpDQzsix29evUgtAOwglu/+6In149R8uohTR939rzBXduR+K+jXsOZ+yHWv4qQVH
+         SwIvTmBxiPMWbyqCRFRFBZ7K/1sisUgyb+g+/pEruuWxyX+Ka+wIPAf7084JujWwGoRD
+         T5vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734207848; x=1734812648;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SrkjOPWzOWxIOLJtRQcSvC8VCKadtMcoPJW8JEroxUE=;
+        b=IL6jFl2ZUv3gX8XfiB+DKgo2HsPPcnHot+ltar2WXZT5TGlm3VqSVRb4TrqBXBpIk3
+         kJMvw1OxX7kHPm/34yxZ+NDwfmuRhQHRyJQ5XshvPugHv66JnUpBhyO+o6bNVmYqT04P
+         Ry3B/xhPU4ohPVaNE4FmbjroEci7pqumxaKa1ar0AbClMu2XpuzHexwj3qu8rJN2h2tC
+         78OTUBhPrim/roQrhmwIOpFEjykxVypQsC2iO8vi3eZsQd6vpJJS9uvna7TWDm2r8kNO
+         L6MtLqKU/GH6iAb+7pXdkYVKu0xArraKoLru+DOVV2GzWLvIrD09eICURQrWLQ+XNCNo
+         gzWg==
+X-Forwarded-Encrypted: i=1; AJvYcCXBUVIi8jAW3TrjBjYA4Ni0hi/oinWNi1lFyWMZEccjJzA/ohT1L0M5anO5Prf2DQom5/rRIVTV3HRn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjEnvRnqgTGHyjrcWRp9vNYJiGtj8Zqh79D2seIUJGYiTZuy5k
+	k93dVmmLug6UilFxPPi8LszZB9dUmICjBvAg6B4YOTRAWm/LcY5KeqvSsqx0vCStIRw0FRvO3zD
+	h
+X-Gm-Gg: ASbGncu81+GfXkQ7PpA0QAqe9XrQyKUeJu61Q2bzvTt/PhsZ/+T0Hy4B0zTY1HIN8pL
+	rkGfA2yHuthqSgVIfZBPu7O0gjNDHCEyQg/oz3hb72QBnF6hlACx/uY1AXKRKM+8Oec/haN/M3B
+	WepYzrGgIhm1ecwoFxMX24EYQe8+Zqe2ko29m8vAIfz3myWs98xJmYNNn7ki4OQZtEVQckS0eqr
+	ZyejRKBA2f85HSGpCGH8agDNfwVZUOKMhY+HMezdtEJbN2ymB4OK18FIe4PlETZ1NTvaNdfKBye
+	D2MUYu+XMe3SlToCIw==
+X-Google-Smtp-Source: AGHT+IEzwHeZTPoi4etfNnGZeXD/roCPhCaM/ndaTdf2HRFNxeHbdaDaBvyiEJyZScfzW8J+9PK8yQ==
+X-Received: by 2002:a05:6870:15ca:b0:29e:43ce:a172 with SMTP id 586e51a60fabf-2a3ac867f5amr3376165fac.28.1734207848013;
+        Sat, 14 Dec 2024 12:24:08 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2a3d2541725sm724169fac.12.2024.12.14.12.24.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 Dec 2024 12:24:07 -0800 (PST)
+Message-ID: <ebd71e3d-1902-402b-a84e-819b0976ba4b@baylibre.com>
+Date: Sat, 14 Dec 2024 14:24:05 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: iio: dac: ad5791: ldac gpio is active low
+To: ahaslam@baylibre.com, jic23@kernel.org
+Cc: Michael.Hennerich@analog.com, robh@kernel.org, conor+dt@kernel.org,
+ krzk+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241106103824.579292-1-ahaslam@baylibre.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20241106103824.579292-1-ahaslam@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Tue, 10 Dec 2024 10:46:41 +0000
-Guillaume Stols <gstols@baylibre.com> wrote:
-
-> When introducing num_adc_channels, I overlooked some new functions
-> created in a meanwhile that had also the hardcoded offset. This commit
-> adds the new logic to these functions.
+On 11/6/24 4:38 AM, ahaslam@baylibre.com wrote:
+> From: Axel Haslam <ahaslam@baylibre.com>
 > 
-> Fixes: 7a671afeb592 ("iio: adc: ad7606: Introduce num_adc_channels")
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-Applied this patch to the fixes-togreg branch of iio.git.
-
-That may well stall the rest for a while though whilst that works its
-way around into the upstream for the togreg branch.
-
-Thanks,
-
-Jonathan
-
+> On the example, the ldac gpio is flagged as active high, when in reality
+> its an active low gpio. Fix the example by using the active low flag for
+> the ldac gpio.
+> 
+> Fixes: baaa92d284d5 ("dt-bindings: iio: dac: ad5791: Add optional reset, clr and ldac gpios")
+> Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
 > ---
->  drivers/iio/adc/ad7606.c | 48 ++++++++++++++++++++++++++++--------------------
->  drivers/iio/adc/ad7606.h |  2 +-
->  2 files changed, 29 insertions(+), 21 deletions(-)
+>  Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-> index e35d55d03d86..d8e3c7a43678 100644
-> --- a/drivers/iio/adc/ad7606.c
-> +++ b/drivers/iio/adc/ad7606.c
-> @@ -175,17 +175,17 @@ static const struct iio_chan_spec ad7616_channels[] = {
->  	AD7606_CHANNEL(15, 16),
->  };
->  
-> -static int ad7606c_18bit_chan_scale_setup(struct ad7606_state *st,
-> +static int ad7606c_18bit_chan_scale_setup(struct iio_dev *indio_dev,
->  					  struct iio_chan_spec *chan, int ch);
-> -static int ad7606c_16bit_chan_scale_setup(struct ad7606_state *st,
-> +static int ad7606c_16bit_chan_scale_setup(struct iio_dev *indio_dev,
->  					  struct iio_chan_spec *chan, int ch);
-> -static int ad7606_16bit_chan_scale_setup(struct ad7606_state *st,
-> +static int ad7606_16bit_chan_scale_setup(struct iio_dev *indio_dev,
->  					 struct iio_chan_spec *chan, int ch);
-> -static int ad7607_chan_scale_setup(struct ad7606_state *st,
-> +static int ad7607_chan_scale_setup(struct iio_dev *indio_dev,
->  				   struct iio_chan_spec *chan, int ch);
-> -static int ad7608_chan_scale_setup(struct ad7606_state *st,
-> +static int ad7608_chan_scale_setup(struct iio_dev *indio_dev,
->  				   struct iio_chan_spec *chan, int ch);
-> -static int ad7609_chan_scale_setup(struct ad7606_state *st,
-> +static int ad7609_chan_scale_setup(struct iio_dev *indio_dev,
->  				   struct iio_chan_spec *chan, int ch);
->  
->  const struct ad7606_chip_info ad7605_4_info = {
-> @@ -323,9 +323,10 @@ int ad7606_reset(struct ad7606_state *st)
->  }
->  EXPORT_SYMBOL_NS_GPL(ad7606_reset, "IIO_AD7606");
->  
-> -static int ad7606_16bit_chan_scale_setup(struct ad7606_state *st,
-> +static int ad7606_16bit_chan_scale_setup(struct iio_dev *indio_dev,
->  					 struct iio_chan_spec *chan, int ch)
->  {
-> +	struct ad7606_state *st = iio_priv(indio_dev);
->  	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
->  
->  	if (!st->sw_mode_en) {
-> @@ -345,10 +346,12 @@ static int ad7606_16bit_chan_scale_setup(struct ad7606_state *st,
->  	return 0;
->  }
->  
-> -static int ad7606_get_chan_config(struct ad7606_state *st, int ch,
-> +static int ad7606_get_chan_config(struct iio_dev *indio_dev, int ch,
->  				  bool *bipolar, bool *differential)
->  {
-> -	unsigned int num_channels = st->chip_info->num_channels - 1;
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +	unsigned int num_channels = st->chip_info->num_adc_channels;
-> +	unsigned int offset = indio_dev->num_channels - st->chip_info->num_adc_channels;
->  	struct device *dev = st->dev;
->  	int ret;
->  
-> @@ -364,7 +367,7 @@ static int ad7606_get_chan_config(struct ad7606_state *st, int ch,
->  			continue;
->  
->  		/* channel number (here) is from 1 to num_channels */
-> -		if (reg == 0 || reg > num_channels) {
-> +		if (reg < offset || reg > num_channels) {
->  			dev_warn(dev,
->  				 "Invalid channel number (ignoring): %d\n", reg);
->  			continue;
-> @@ -399,9 +402,10 @@ static int ad7606_get_chan_config(struct ad7606_state *st, int ch,
->  	return 0;
->  }
->  
-> -static int ad7606c_18bit_chan_scale_setup(struct ad7606_state *st,
-> +static int ad7606c_18bit_chan_scale_setup(struct iio_dev *indio_dev,
->  					  struct iio_chan_spec *chan, int ch)
->  {
-> +	struct ad7606_state *st = iio_priv(indio_dev);
->  	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
->  	bool bipolar, differential;
->  	int ret;
-> @@ -413,7 +417,7 @@ static int ad7606c_18bit_chan_scale_setup(struct ad7606_state *st,
->  		return 0;
->  	}
->  
-> -	ret = ad7606_get_chan_config(st, ch, &bipolar, &differential);
-> +	ret = ad7606_get_chan_config(indio_dev, ch, &bipolar, &differential);
->  	if (ret)
->  		return ret;
->  
-> @@ -455,9 +459,10 @@ static int ad7606c_18bit_chan_scale_setup(struct ad7606_state *st,
->  	return 0;
->  }
->  
-> -static int ad7606c_16bit_chan_scale_setup(struct ad7606_state *st,
-> +static int ad7606c_16bit_chan_scale_setup(struct iio_dev *indio_dev,
->  					  struct iio_chan_spec *chan, int ch)
->  {
-> +	struct ad7606_state *st = iio_priv(indio_dev);
->  	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
->  	bool bipolar, differential;
->  	int ret;
-> @@ -469,7 +474,7 @@ static int ad7606c_16bit_chan_scale_setup(struct ad7606_state *st,
->  		return 0;
->  	}
->  
-> -	ret = ad7606_get_chan_config(st, ch, &bipolar, &differential);
-> +	ret = ad7606_get_chan_config(indio_dev, ch, &bipolar, &differential);
->  	if (ret)
->  		return ret;
->  
-> @@ -512,9 +517,10 @@ static int ad7606c_16bit_chan_scale_setup(struct ad7606_state *st,
->  	return 0;
->  }
->  
-> -static int ad7607_chan_scale_setup(struct ad7606_state *st,
-> +static int ad7607_chan_scale_setup(struct iio_dev *indio_dev,
->  				   struct iio_chan_spec *chan, int ch)
->  {
-> +	struct ad7606_state *st = iio_priv(indio_dev);
->  	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
->  
->  	cs->range = 0;
-> @@ -523,9 +529,10 @@ static int ad7607_chan_scale_setup(struct ad7606_state *st,
->  	return 0;
->  }
->  
-> -static int ad7608_chan_scale_setup(struct ad7606_state *st,
-> +static int ad7608_chan_scale_setup(struct iio_dev *indio_dev,
->  				   struct iio_chan_spec *chan, int ch)
->  {
-> +	struct ad7606_state *st = iio_priv(indio_dev);
->  	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
->  
->  	cs->range = 0;
-> @@ -534,9 +541,10 @@ static int ad7608_chan_scale_setup(struct ad7606_state *st,
->  	return 0;
->  }
->  
-> -static int ad7609_chan_scale_setup(struct ad7606_state *st,
-> +static int ad7609_chan_scale_setup(struct iio_dev *indio_dev,
->  				   struct iio_chan_spec *chan, int ch)
->  {
-> +	struct ad7606_state *st = iio_priv(indio_dev);
->  	struct ad7606_chan_scale *cs = &st->chan_scales[ch];
->  
->  	cs->range = 0;
-> @@ -1146,8 +1154,8 @@ static int ad7606_sw_mode_setup(struct iio_dev *indio_dev)
->  
->  static int ad7606_chan_scales_setup(struct iio_dev *indio_dev)
->  {
-> -	unsigned int num_channels = indio_dev->num_channels - 1;
->  	struct ad7606_state *st = iio_priv(indio_dev);
-> +	unsigned int offset = indio_dev->num_channels - st->chip_info->num_adc_channels;
->  	struct iio_chan_spec *chans;
->  	size_t size;
->  	int ch, ret;
-> @@ -1161,8 +1169,8 @@ static int ad7606_chan_scales_setup(struct iio_dev *indio_dev)
->  	memcpy(chans, indio_dev->channels, size);
->  	indio_dev->channels = chans;
->  
-> -	for (ch = 0; ch < num_channels; ch++) {
-> -		ret = st->chip_info->scale_setup_cb(st, &chans[ch + 1], ch);
-> +	for (ch = 0; ch < st->chip_info->num_adc_channels; ch++) {
-> +		ret = st->chip_info->scale_setup_cb(indio_dev, &chans[ch + offset], ch);
->  		if (ret)
->  			return ret;
->  	}
-> diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-> index 998814a92b82..8778ffe515b3 100644
-> --- a/drivers/iio/adc/ad7606.h
-> +++ b/drivers/iio/adc/ad7606.h
-> @@ -69,7 +69,7 @@
->  
->  struct ad7606_state;
->  
-> -typedef int (*ad7606_scale_setup_cb_t)(struct ad7606_state *st,
-> +typedef int (*ad7606_scale_setup_cb_t)(struct iio_dev *indio_dev,
->  				       struct iio_chan_spec *chan, int ch);
->  
->  /**
-> 
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
+> index 79cb4b78a88a..2bd89e0aa46b 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5791.yaml
+> @@ -91,7 +91,7 @@ examples:
+>              vrefn-supply = <&dac_vrefn>;
+>              reset-gpios = <&gpio_bd 16 GPIO_ACTIVE_LOW>;
+>              clear-gpios = <&gpio_bd 17 GPIO_ACTIVE_LOW>;
+> -            ldac-gpios = <&gpio_bd 18 GPIO_ACTIVE_HIGH>;
+> +            ldac-gpios = <&gpio_bd 18 GPIO_ACTIVE_LOW>;
+>          };
+>      };
+>  ...
 
+Hi Jonathan, any reason this one didn't get picked up yet?
 
