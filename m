@@ -1,159 +1,292 @@
-Return-Path: <devicetree+bounces-131127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C4489F2125
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 23:08:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17A289F2134
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 23:21:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13768188648C
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 22:08:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47C907A1007
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 22:21:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617E71B2192;
-	Sat, 14 Dec 2024 22:07:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124011B2192;
+	Sat, 14 Dec 2024 22:21:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cfnvjqVd"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dVIqkSuo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D4AD101DE;
-	Sat, 14 Dec 2024 22:07:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4142D29CEF
+	for <devicetree@vger.kernel.org>; Sat, 14 Dec 2024 22:21:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734214078; cv=none; b=aAsXp2NrfpDeiUM+koBX7WVmkGA6n5NxpLlLzbOU7fX+MP19cTG5Ol3FgnoYfVyNBEFY5um+qRe0n3UtUq3nzXrsLFnro8QzbhAw9t/xZIr0bT2UlUYu/EIZdzhBAzwJD/DooOI1Sy8fDu4F1bO7cxfW39R3j7WtCpyz8uy4cO0=
+	t=1734214891; cv=none; b=amj6D3P5f03wVltXtn7qvKLB8/ijaOapVRot5VSzJIaUWAHuEtxak5ozmg70dim+9IN8EHNn/e7ntnVc/6ajYdAI9beOlXVLh0MU5VtpLObuPZPIz9FAA3lUafomWrPnz8UXZArQisBPKjUlfdd+czReCz8s9CJZ5fmw+HX/J7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734214078; c=relaxed/simple;
-	bh=znLEje4MeyzH8FXJBBFHAEoIafEYOYSMa0mrK5GnCYw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BBJ7xWuvXUKFV5U8PPeBwJV0NRSo8PSSVoHKuPcuT++vRzcbnbtUrjB+QodMq6CNasLgAUoZdmnX8Lor2+w1ooGa3dZSjcxJ3u9ecmXjozBIbONesQIu/U6Q5wNsqlVxADoJFqqZukriKFpBhi8dN2rzCrCmGvjpnDJPkGQ3n1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cfnvjqVd; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4361e89b6daso19924805e9.3;
-        Sat, 14 Dec 2024 14:07:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734214075; x=1734818875; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ACrh33/0VpPxeYXX8I2uo19L8kPY5JYfKU4wzm3RzKU=;
-        b=cfnvjqVd9JMzjaiIpfAWSBTvJIYwyTXdcxgIPSX56F9p2P8zDpamsJC/nlN5Fuew2Q
-         RD2vMxG4bt4k39MUpG1H22tcA1NZnXNIJu27KKFVIZFZfGcpkGFvS2CteoHRRamgX1sm
-         Fwp5Ye4IsYbKh31Gfd1+ZzhbXZI1jHJ/3/w9/nqcCqfe7jgsu2HvmQtxtiyhKjoDlHUO
-         vPADr9XrWy66hzG/abOYK8A7n8xFJNnA3T1WUX0Bn0+TQp1490ZkFo+amlvHHaqCXpnw
-         Az0zq+gIJyA0OyE6Iggddmr9oQFz0eprfgveZBhTLii4rLceHTH/eK73fs8OgXzt3L2I
-         3C/g==
+	s=arc-20240116; t=1734214891; c=relaxed/simple;
+	bh=zBR29A2+17C1XYhR/tvnJ2/oGkrDimwPMnWUGk3vCH8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mYANMzZbDGR/haPz0yZdX+JUzrz4PG5bSaRbnkehQ+pgsGQf1RIFui/pDj8AeSNvnANQgM7NHKzGm3RCwgs4phLmnVFwipfNPBw8pNaJu2aiivdlQOXxLoQnpkbNdgbYKk5uSzpAeFa70SQ9QUfliFghLCL3+lypoUqgc0wPTSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dVIqkSuo; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BELm3Kj027407
+	for <devicetree@vger.kernel.org>; Sat, 14 Dec 2024 22:21:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XFgyAxvNra4DPanTeeFOl2uaHZeaHsP5CLLrDFBo6ho=; b=dVIqkSuoN1p8Gj6V
+	Htso3DGgxvvZTckg+iGOn8Te8TmY8zi0Ul8RuMhXD5aayWi1InUIpBvgskv0+iU6
+	N7v6KmYXwUHVnUMepOG8u/jj+ZwbpQFm4JgAGp6uqdF5OhxD5doGg21U3qg6lcYF
+	eaw8M8kNAsnzGEJ6KinPnLkGgAJ+FyfwnGyNdWuOTlV8oTz6DOVMFpohEa2qbVP2
+	3HsrvY85BxRJBrgpSfAYD5DJ2qlMA4d9Ef4pdc9d10D3hDLzl7912ODkEXIthCAB
+	x3pU84P+05WHH4SjMujXU8E2u91BpIHNKGIc8vqN03LuxdfZYaDVEgH9X9YEilbL
+	PGNbTA==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43h30ks3ap-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 14 Dec 2024 22:21:27 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6d8a3cb9dbfso7162526d6.1
+        for <devicetree@vger.kernel.org>; Sat, 14 Dec 2024 14:21:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734214075; x=1734818875;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ACrh33/0VpPxeYXX8I2uo19L8kPY5JYfKU4wzm3RzKU=;
-        b=rLHWKYwnILIXQ5heKC8PFj2t/Q+8L2XiwwWOCMSOn79+00Gdt5ywNYHJyyas6h+3Ol
-         HP/1DTKmgO7vpQnyILEH5FMCet9ecEzy4uSKiEcjNW1dNxGTB3TYeZMjB2PrXnPuU/wV
-         QJSJilBnfW14QxR4BHjjF8IV4Tw7n5pZ6CQHe1+wOLHPJnboGFmDGYP4jZaT7Jlz4xFu
-         hkZGE83ebBFv1KnPFuloK2+wHbRK0+HAjI2GTNq1/FgUFcQaIQ6WBx6T80wHrP1RiTOq
-         VnewaV28vDQh4SD9ZiUJGflZwxQcODZMXMukoyLmCh1WH8zWD0bzRyNbM2ja5kWYBqKi
-         rbgg==
-X-Forwarded-Encrypted: i=1; AJvYcCWNCoxQyvHzPOV8PEUy/G3mnsoMS7FomSDI2nN5Hu5Mw3nSNojAZ16E9ZtFlScxyL5nm8LBvBEP6567@vger.kernel.org, AJvYcCXJHzjmy+FzDAmn2ZHEqpthIHq0moWJgirw0dtqjr/40DogMW3giNqsNIy5QjErK90xWLI6J9HvPQx5E33v@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNcG0B5VVYQJdk+kNgf6HqQykyDNFL+XBFXOCcdj9LnMaDUIGC
-	NHHlQkS+HLMi4Y1Cssb7Fg+Ydh6MLX3V7J7XhZlUoDBOBvH/FIEM
-X-Gm-Gg: ASbGncvgrups8IBpKQ5kBAs6wBAGpeugiapjfEDw+OC7erd5C9oQqsha0Rib/vriHsR
-	55UJPycI0SlZhjl288QcLpocKcQhO4XVtRFYw7Jhl5v38lQWg9ngddFEys/k2hzanwFwTVROERv
-	ciCd7JIucoUTgYe4mWG+pp1j2H6WqF4Blig4ChcI0Gq2/WeXnCn+PYkaayDAPQeCRJ78H+1dnt3
-	hgP4dfm430h1KvCZU0+7V6ihGCFv5CIXY98t6DlT/1jFjDUb+duKvIydJaChDF6I+FczsKBxIOq
-	qN/E8fgHsa2N/MqRLGRr5Mymcxy3e2C/
-X-Google-Smtp-Source: AGHT+IEfd+QSAC7E/LXZUUhBYjyLml2o2c1E1vNqypWjINCbXo/G4qVPa0wBP1p2fCV8u0Syz7iBSw==
-X-Received: by 2002:a05:6000:460c:b0:385:e961:6589 with SMTP id ffacd0b85a97d-3888dcd4789mr5336184f8f.20.1734214074709;
-        Sat, 14 Dec 2024 14:07:54 -0800 (PST)
-Received: from ivaylo-T580.. (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-388c8049facsm3696434f8f.79.2024.12.14.14.07.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Dec 2024 14:07:54 -0800 (PST)
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] arm64: dts: exynos8895: Add camera hsi2c nodes
-Date: Sun, 15 Dec 2024 00:07:50 +0200
-Message-ID: <20241214220750.723354-1-ivo.ivanov.ivanov1@gmail.com>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1734214879; x=1734819679;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XFgyAxvNra4DPanTeeFOl2uaHZeaHsP5CLLrDFBo6ho=;
+        b=R5tishj+FjXf/tO6cVuikH7PN1Kl9FiELsevelB3fomTg/9sFWiZMh8kliEhGVOAgT
+         1vYw90uKWib+A47bu1MZWd/5HIH/R4GpmCxglxrA7BZ3GhEujGuM/7VdBtzSNFpJyEBS
+         ZZS5f5UY99SYQSLbFF60GCu7cjIa+/EUTgE3iDAWfNNOpKdycuaqbp76zAqIJ1nDr9yZ
+         NH9A/VTKBy1DeBt/YYCOVKHOELB6uktktFcqOcAdpnyIlXZeDhMGjT4ZqD8ydazpcq1/
+         rGP3fDowRibbKielBwq74662+4yzmYOY8AoKVpMXMcpTGrvGm5RDiz0h9vp4IB3gx9Yj
+         fcWw==
+X-Forwarded-Encrypted: i=1; AJvYcCWSDs6fjOH16H76ucKKgXNs4zUl+8J6blo+iDKQPGUvMdUUZ9TK8CRRTNGL375hG23YKTVfBZQgibmy@vger.kernel.org
+X-Gm-Message-State: AOJu0YyH0364J1ZAQjHTDKwVaxslR/yEqfehmPU8yYboE3KSwBsa9ddE
+	xWCwpFL3qxgkEZJiGkiKya3t8VZG/7c4lYAWMP4u06S8GG3f1eWidlJGq8oc94BlgrzBFTQOMNS
+	SJ9nXBygXxEqoBjOJc5/WhO+hpB56v1d5YpFuzU/AgFFpQ0egTz/DipbRr2Ju
+X-Gm-Gg: ASbGncvOmPk3LNDNnWqLz9txwRbAsj+bl+zPrDDNmpT0VHxy02/LhvKT7OZHNbZYXgB
+	5VgH5FvkbdaRkEki1q7s35g+hMbzhL7PQoktXh8SOyp06a/0x4pN6Omi/rmxVabY3DRv9c98kBE
+	v7076hrClX9f7YMZvsfK3C6fThZVo26d3JnF2wy0kbnekpABd/WR9RJ4oYJTfDFdxI0+fmNDMXd
+	D+sFWQhuLzwrnjhDtChbPKrFBK90L3kK8LMDO35d3fzDMogEfGvSnmEZ9Ze2KI+EFacwuUpJJlA
+	PvAWEN2q8oksjPZbeNCnxHXvmvRALbYUs7g=
+X-Received: by 2002:a05:622a:190f:b0:467:5eaf:7d22 with SMTP id d75a77b69052e-467a57f6742mr48219381cf.10.1734214879194;
+        Sat, 14 Dec 2024 14:21:19 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGbbI0TFGIG9MLv/VjODWxI/PrwN18PfiNaH3L6SpMQngv2rPDHw6DYFqdLdXrWXvc+AGYizA==
+X-Received: by 2002:a05:622a:190f:b0:467:5eaf:7d22 with SMTP id d75a77b69052e-467a57f6742mr48219191cf.10.1734214878829;
+        Sat, 14 Dec 2024 14:21:18 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d652ae124asm1383487a12.40.2024.12.14.14.21.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 14 Dec 2024 14:21:17 -0800 (PST)
+Message-ID: <d09097da-a07a-4dfa-9c0d-567b329b64ac@oss.qualcomm.com>
+Date: Sat, 14 Dec 2024 23:21:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/5] Coresight: Add Coresight TMC Control Unit driver
+To: Jie Gan <quic_jiegan@quicinc.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+ <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        linux-arm-msm@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20241210031545.3468561-1-quic_jiegan@quicinc.com>
+ <20241210031545.3468561-5-quic_jiegan@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241210031545.3468561-5-quic_jiegan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: sNmx7Xj6aM_35NSGXIEtlVVP8ALizWJ8
+X-Proofpoint-ORIG-GUID: sNmx7Xj6aM_35NSGXIEtlVVP8ALizWJ8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ bulkscore=0 clxscore=1015 adultscore=0 spamscore=0 suspectscore=0
+ priorityscore=1501 phishscore=0 malwarescore=0 mlxlogscore=975
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412140185
 
-Add nodes for hsi2c1-4 (CAM0-3), which allows using them.
+On 10.12.2024 4:15 AM, Jie Gan wrote:
+> The Coresight TMC Control Unit hosts miscellaneous configuration registers
+> which control various features related to TMC ETR sink.
+> 
+> Based on the trace ID, which is programmed in the related CTCU ATID
+> register of a specific ETR, trace data with that trace ID gets into
+> the ETR buffer, while other trace data gets dropped.
+> 
+> Enabling source device sets one bit of the ATID register based on
+> source device's trace ID.
+> Disabling source device resets the bit according to the source
+> device's trace ID.
+> 
+> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+> ---
 
-Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
----
- arch/arm64/boot/dts/exynos/exynos8895.dtsi | 44 ++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+[...]
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos8895.dtsi b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-index 90b318b2f..36657abfc 100644
---- a/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-@@ -292,6 +292,50 @@ pinctrl_peric1: pinctrl@10980000 {
- 			interrupts = <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		hsi2c_1: i2c@10990000 {
-+			compatible = "samsung,exynos8895-hsi2c";
-+			reg = <0x10990000 0x1000>;
-+			clocks = <&cmu_peric1 CLK_GOUT_PERIC1_HSI2C_CAM0_IPCLK>;
-+			clock-names = "hsi2c";
-+			interrupts = <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>;
-+			pinctrl-0 = <&hsi2c1_bus>;
-+			pinctrl-names = "default";
-+			status = "disabled";
-+		};
-+
-+		hsi2c_2: i2c@109a0000 {
-+			compatible = "samsung,exynos8895-hsi2c";
-+			reg = <0x109a0000 0x1000>;
-+			clocks = <&cmu_peric1 CLK_GOUT_PERIC1_HSI2C_CAM1_IPCLK>;
-+			clock-names = "hsi2c";
-+			interrupts = <GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH>;
-+			pinctrl-0 = <&hsi2c2_bus>;
-+			pinctrl-names = "default";
-+			status = "disabled";
-+		};
-+
-+		hsi2c_3: i2c@109b0000 {
-+			compatible = "samsung,exynos8895-hsi2c";
-+			reg = <0x109b0000 0x1000>;
-+			clocks = <&cmu_peric1 CLK_GOUT_PERIC1_HSI2C_CAM2_IPCLK>;
-+			clock-names = "hsi2c";
-+			interrupts = <GIC_SPI 433 IRQ_TYPE_LEVEL_HIGH>;
-+			pinctrl-0 = <&hsi2c3_bus>;
-+			pinctrl-names = "default";
-+			status = "disabled";
-+		};
-+
-+		hsi2c_4: i2c@109c0000 {
-+			compatible = "samsung,exynos8895-hsi2c";
-+			reg = <0x109c0000 0x1000>;
-+			clocks = <&cmu_peric1 CLK_GOUT_PERIC1_HSI2C_CAM3_IPCLK>;
-+			clock-names = "hsi2c";
-+			interrupts = <GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>;
-+			pinctrl-0 = <&hsi2c4_bus>;
-+			pinctrl-names = "default";
-+			status = "disabled";
-+		};
-+
- 		spi_0: spi@109d0000 {
- 			compatible = "samsung,exynos8895-spi",
- 				     "samsung,exynos850-spi";
--- 
-2.43.0
+> +static int __ctcu_set_etr_traceid(struct coresight_device *csdev,
+> +				  u8 traceid,
+> +				  int port_num,
+> +				  bool enable)
+> +{
+> +	uint32_t atid_offset;
+> +	struct ctcu_drvdata *drvdata;
+> +	unsigned long flags;
+> +	uint32_t reg_offset;
+> +	int bit;
+> +	uint32_t val;
+> +
+> +	if (!IS_VALID_CS_TRACE_ID(traceid) || port_num < 0)
+> +		return -EINVAL;
+> +
+> +	drvdata = dev_get_drvdata(csdev->dev.parent);
+> +	if (IS_ERR_OR_NULL(drvdata))
+> +		return -EINVAL;
+> +
+> +	atid_offset = drvdata->atid_offset[port_num];
+> +	if (atid_offset == 0)
+> +		return -EINVAL;
+> +
+> +	spin_lock_irqsave(&drvdata->spin_lock, flags);
 
+guard(raw_spinlock_irqsave)(&drvdata->spin_lock);
+
+and drop the unlocks
+
+> +	CS_UNLOCK(drvdata->base);
+> +
+> +	reg_offset = CTCU_ATID_REG_OFFSET(traceid, atid_offset);
+> +	bit = CTCU_ATID_REG_BIT(traceid);
+> +	if (reg_offset - atid_offset >= CTCU_ATID_REG_SIZE ||
+> +	    bit >= CORESIGHT_TRACE_IDS_MAX) {
+> +		CS_LOCK(drvdata);
+> +		spin_unlock_irqrestore(&drvdata->spin_lock, flags);
+> +		return -EINVAL;
+> +	}
+> +
+> +	val = ctcu_readl(drvdata, reg_offset);
+> +	if (enable)
+> +		val = val | BIT(bit);
+> +	else
+> +		val = val & ~BIT(bit);
+> +	ctcu_writel(drvdata, val, reg_offset);
+> +
+> +	CS_LOCK(drvdata->base);
+> +	spin_unlock_irqrestore(&drvdata->spin_lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ctcu_get_active_port(struct coresight_device *sink, struct coresight_device *helper)
+> +{
+> +	int port, i;
+> +
+> +	for (i = 0; i < sink->pdata->nr_outconns; ++i) {
+> +		if (sink->pdata->out_conns[i]->dest_dev) {
+> +			port = sink->pdata->out_conns[i]->dest_port;
+> +			return port;
+
+Return sink->....
+
+> +		}
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +/*
+> + * ctcu_set_etr_traceid: Retrieve the ATID offset and trace ID.
+> + *
+> + * Returns 0 indicates success. None-zero result means failure.
+> + */
+> +static int ctcu_set_etr_traceid(struct coresight_device *csdev,
+> +				struct cs_sink_data *sink_data,
+> +				bool enable)
+> +{
+> +	int port_num;
+> +
+> +	if (!IS_VALID_CS_TRACE_ID(sink_data->traceid) ||
+> +	    (csdev == NULL) ||
+
+I'm not sure this can be null by the time it reaches this function
+
+> +	    (sink_data->sink == NULL)) {
+> +		dev_dbg(&csdev->dev, "Invalid parameters\n");
+
+dev_err?
+
+> +		return -EINVAL;
+> +	}
+> +
+> +	port_num = ctcu_get_active_port(sink_data->sink, csdev);
+> +	if (port_num < 0)
+> +		return -EINVAL;
+> +
+> +	dev_dbg(&csdev->dev, "traceid is %d\n", sink_data->traceid);
+> +
+> +	return __ctcu_set_etr_traceid(csdev, sink_data->traceid, port_num, enable);
+> +}
+> +
+> +static int ctcu_enable(struct coresight_device *csdev, enum cs_mode mode,
+> +		       void *data)
+> +{
+> +	int ret = 0;
+
+Unnecessary initialization (you instantly overwrite it), also below
+
+> +	struct cs_sink_data *sink_data = (struct cs_sink_data *)data;
+> +
+> +	ret = ctcu_set_etr_traceid(csdev, sink_data, true);
+> +	if (ret)
+> +		dev_dbg(&csdev->dev, "enable data filter failed\n");
+
+Since the this function returns an int, maybe return ctcu_set_etr_traceid()
+and let the upper layer throw an error (also for some other functions in this
+file)
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int ctcu_disable(struct coresight_device *csdev, void *data)
+> +{> +	int ret = 0;
+> +	struct cs_sink_data *sink_data = (struct cs_sink_data *)data;
+> +
+> +	ret = ctcu_set_etr_traceid(csdev, sink_data, false);
+> +	if (ret)
+> +		dev_dbg(&csdev->dev, "disable data filter failed\n");
+> +
+> +	return 0;
+> +}
+
+[...]
+
+>  enum coresight_dev_subtype_helper {
+>  	CORESIGHT_DEV_SUBTYPE_HELPER_CATU,
+> -	CORESIGHT_DEV_SUBTYPE_HELPER_ECT_CTI
+> +	CORESIGHT_DEV_SUBTYPE_HELPER_ECT_CTI,
+> +	CORESIGHT_DEV_SUBTYPE_HELPER_CTCU
+
+Please add a comma here too, so that future additions will be
+less noisy
 
