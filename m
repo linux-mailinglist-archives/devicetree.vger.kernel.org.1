@@ -1,229 +1,288 @@
-Return-Path: <devicetree+bounces-131109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5071E9F1FB0
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 16:24:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F8FF9F1FD0
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 16:52:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62C75162274
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 15:24:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 656DD1881243
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 15:52:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBA41194C85;
-	Sat, 14 Dec 2024 15:24:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D60191F8F;
+	Sat, 14 Dec 2024 15:52:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YjZ6BdjX"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="pbnN5hbt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from smtp.smtpout.orange.fr (smtp-27.smtpout.orange.fr [80.12.242.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA3DA19580F;
-	Sat, 14 Dec 2024 15:24:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EB65101DE;
+	Sat, 14 Dec 2024 15:52:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734189881; cv=none; b=NBKJS4yLJxiIvwGnPfBIE45yJ25H3AAXIFMwzCE9Ai65cVgCwc96Q9pUHp/juQieIUGZO0fKsjzeJ5daZj5CVuwPnlkNltEQ1QeyoCFgtuke9/ls1ysRm8t8nm9j9c3TDcLWwceXf1CA8VTUXwJAsTOPn+gljANkpGuIQ3GMX/w=
+	t=1734191566; cv=none; b=RgFNFPpl00G6e4/Vyadcj3iz4xrtiyhnV3pmGo8P3+0wUgnKLQrtivwNB4+MVh4mz41mzRi6off0WAOzwkq7iLbPPaIdnHNHfO3oMzIM+/HCbxkMzwxWgfkK/y6oz3s903EJyKRcJ6b//DECRJoF2MBdP4Ve7u5A7+OepTWwOSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734189881; c=relaxed/simple;
-	bh=49EDXTKQ1i+wLE7y5mDs8unPY13DXvpWV0ecuv5j8rk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=Y7WpLlnhW4wLMhtGgR/aKVJOygBbdBHBur6odZ/T8E6WYWeXf+k+3r9hADF3gRRCTGYUJLHJLpbQECEbDpxKxIUsPNmm9lx6EQOwk+YiZ9JMiObSCb+lrTne7+jjcTsMQmOqj4nngScIcxofICjZATLkvjY1Ujz9U9Viu0ILzSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YjZ6BdjX; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-436202dd730so19274115e9.2;
-        Sat, 14 Dec 2024 07:24:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734189878; x=1734794678; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HKfoAFcF04yRARGS3xwHONhGEXP+gEiLX5MieeflBec=;
-        b=YjZ6BdjXtmvLrSDSQWEiOmdWyBICCJlaGePUrJcqZALMjgQAqMsUjLCCPmxUerBmW0
-         OttAPL+j7zAaITUaZKfso6ep/FD/cn+3TPbBoikEoFn5SiBy2lgKTKeym9hF7lScUU+j
-         FR13AYKB24vyzpcTKZrvsYDDqQzte2VEl7d9e3LvI+jMPCoib0210U69kHF7Au7DWRxF
-         +jYyrHSXaQbwoLYaUsx02+Cqz9wrOhAKDErvtSp1c53jnGTOMVw3sLI0x8wFo2b5vZMB
-         ao7ZU86gltP59JTDa9hcrdLjpmzPseXLjSGVp7YkY3xOga1KMmtcBU2nFzmhWP2soo/u
-         7T2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734189878; x=1734794678;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=HKfoAFcF04yRARGS3xwHONhGEXP+gEiLX5MieeflBec=;
-        b=AGZp/so1nuvKQy1bMcskG4P0aFiFPbPleQHH7iI1Gjj3T5tH9rl+yY86HmSYf6P/3z
-         vIPLctaw3uQgQbVo1mD3n4IJa+6ffNnk0iwhsgnwKRhPr0geUsvDmBL4AzYAR1bwP0NR
-         VfSZDs/16Yq1R1egwsVHKxiqs/aU0YX7F/kFQtfVBaOjGQaWtcp6gv3A4xf3RipEC7Xc
-         ycBKr4Ya+fImfM0xZeIiLEaSqGXSGHkBcX3ZkTnSyCEWAae6fL7aBN/03nYvCq1xPN+R
-         01SZrTEApQsRC5nz4gfo+ZnaFRLl3wzytf0BsWSErICwu2qpIlPgvRxfRfnvwwmNc43m
-         jqfw==
-X-Forwarded-Encrypted: i=1; AJvYcCUoL8hbhi/JIKXH8qGJH0bkTLjScAvmtfniPVPQFVTVpX0WMKZvqp4G/f6mvzxD8yQQ2JG7eJKq4+KJ@vger.kernel.org, AJvYcCVR4R5bPg1VAN+As8rPWIs6hDf6LKJ2Nngb8nn6w/IlSaTOsMTsJSohZUxmlIInN5wZv1sGbbyaEHmsYXDw@vger.kernel.org, AJvYcCVYBOrBlJRYCDz8qwU7H7PSaSPmw1dnCToU3j/7fPVhxwh3j7Qnom5xyHHPpcGD2506RcxiTL0NONQF@vger.kernel.org
-X-Gm-Message-State: AOJu0YzChR4Fhsnb2SFJQUcKzBEKuBQPismAJRhgZfGIOj3eIwjiMjv5
-	ABtgtWPafNopnzkwKvRY+0J5H9MI9ax6jbj4bKxq9XfMD38JWKH0cn8HWw==
-X-Gm-Gg: ASbGncvrFKbSStc792bmeeR8tQsu73rkyRK1Qo9KO+z2D16TGvYDPSWDF96UYJojX/6
-	SHu60pV06dPAZsVj4qwFfy5aZrcB8pA730QqZNBM7QzRtiREweuOslRa6w6UVAV9TIPFwvA6+iI
-	dOkRRxvASoj4LBI/Te+eM/FGsD1+S0q5P/9l0ibI2FCXUYYYHrKAv3g0E3JkQgDjzvFe+kvbgMe
-	5DmN8UlXptodFFtcpeIKSinTXvQQn9o3p4KtPhvmVdn9MzXNAPnYLyu3G8OSPi8dHeUi6E4aVZb
-	2YxUUkwpze0N+t0Q+/X1W+AtdZLWciBnjuN0h1/kUf820QZjsZKeW3sID2uViLq31Lc8mwUILTw
-	a
-X-Google-Smtp-Source: AGHT+IHFNxgLDoMYeLM2B1ZNg3KggxOqQSZnUBH3MKiNjTYOlJ0/dcxnkeOdbdE173hsFInieHPdZQ==
-X-Received: by 2002:a05:600c:1c07:b0:434:9fac:b158 with SMTP id 5b1f17b1804b1-4362aa34e8amr52214565e9.1.1734189878019;
-        Sat, 14 Dec 2024 07:24:38 -0800 (PST)
-Received: from localhost (2a02-8389-41cf-e200-330f-5008-acc6-6cc2.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:330f:5008:acc6:6cc2])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4362559ef45sm82237365e9.26.2024.12.14.07.24.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 Dec 2024 07:24:37 -0800 (PST)
+	s=arc-20240116; t=1734191566; c=relaxed/simple;
+	bh=KPzoGkvzcbahsNrPZZ5TRDoa7zLT2SLuDOoN0FbaijM=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
+	 In-Reply-To:Content-Type; b=uNF4KV8V2ZM69kZontw89o9p+c5auV7bd1jpb6Q7bkX93fUru2ZzZjgTXrLMKPGnp4oqaTPvCOkR+lIs2wfVZviki+peTMg+3gzOez6nWIhG8fBAYBURTD0MKWNuhY2lH3xNxUsNtRjftjsdP8j+/x2nn4E42ncwLPQ4n8xrHU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=pbnN5hbt; arc=none smtp.client-ip=80.12.242.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id MURZtVKNtJaUfMURatNGQD; Sat, 14 Dec 2024 16:52:41 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1734191561;
+	bh=FFahc2HzyCvXQnoK6BCINAM58qqaizbdQbpLVvV+TfI=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=pbnN5hbtPGBiUlDVfQxFoZlGPM2Xm9VGhYHo0xpuItIfovPjV/Y4NFbQ/UledN0nv
+	 1621E1Knoz3U6X2kC9u5FaEDCbdQIjsq62uK4u5PWrDVtEXpsVPu+vXd1sAcEM8aix
+	 T+HUPr/wIK62pRB/LgN/sRNueIE1d1ZgMhfMci7EiPqJrbI2RLCsmZvBaswn2DxPwA
+	 nnwsjbntCdVHH+6XwloqzIBDsPIzQ7n6GEwATbWP52zxwrhoA8nMZoL4neL9pSTYkk
+	 sn7Ib9eSjPVxe+aVtwDh3Y6dXsf/LScFIzqANi4EuVrpHSTh7SqUbcze16lHUeINeq
+	 PEtRrKCXJcz9Q==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Sat, 14 Dec 2024 16:52:41 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <3c067b26-cfe8-4939-afce-5c8753767715@wanadoo.fr>
+Date: Sat, 14 Dec 2024 16:52:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sat, 14 Dec 2024 16:24:34 +0100
-Message-Id: <D6BJ0676105O.3LEEDK2CY9DHR@gmail.com>
-Cc: "Lars-Peter Clausen" <lars@metafoo.de>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Rishi Gupta" <gupt21@gmail.com>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] iio: light: add support for veml3235
-From: "Javier Carrasco" <javier.carrasco.cruz@gmail.com>
-To: "Javier Carrasco" <javier.carrasco.cruz@gmail.com>, "Jonathan Cameron"
- <jic23@kernel.org>
-X-Mailer: aerc 0.18.2
-References: <20241020-veml3235-v2-0-4bc7cfad7e0b@gmail.com>
- <20241020-veml3235-v2-2-4bc7cfad7e0b@gmail.com>
- <20241021193933.59c2d2b6@jic23-huawei>
- <7323ca4f-2f79-4478-b2b0-2cfc350af7f8@gmail.com>
- <20241022192807.2f83dfa1@jic23-huawei>
- <3af77b51-d254-4c97-8faf-1dea29a4f9b1@gmail.com>
-In-Reply-To: <3af77b51-d254-4c97-8faf-1dea29a4f9b1@gmail.com>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] soc: samsung: Add a driver for Samsung SPEEDY host
+ controller
+References: <20241212-speedy-v1-0-544ad7bcfb6a@gmail.com>
+ <20241212-speedy-v1-2-544ad7bcfb6a@gmail.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: Markuss Broks <markuss.broks@gmail.com>
+Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Markuss Broks <markuss.broks@gmail.com>,
+ Maksym Holovach <nergzd@nergzd723.xyz>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20241212-speedy-v1-2-544ad7bcfb6a@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu Nov 28, 2024 at 1:26 PM CET, Javier Carrasco wrote:
-> On 22/10/2024 20:28, Jonathan Cameron wrote:
-> > On Mon, 21 Oct 2024 22:21:22 +0200
-> > Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
-> >
-> >> On 21/10/2024 20:39, Jonathan Cameron wrote:
-> >>> On Sun, 20 Oct 2024 21:12:17 +0200
-> >>> Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
-> >>>
-> >>>> The Vishay veml3235 is a low-power ambient light sensor with I2C
-> >>>> interface. It provides a minimum detectable intensity of
-> >>>> 0.0021 lx/cnt, configurable integration time and gain, and an additi=
-onal
-> >>>> white channel to distinguish between different light sources.
-> >>>>
-> >>>> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> >>> Hi Javier,
-> >>>
-> >>> I missed one thing on previous review...
-> >>> There is no obvious reason this driver needs to provide raw and proce=
-ssed
-> >>> values.  Unless I'm missing something, just provide raw and let users=
-pace
-> >>> do the maths for us.
-> >>>
-> >>> Jonathan
-> >>>
-> >> Sure, I will drop that for v3. I added it because this driver took the
-> >> veml6030 as a reference, and that driver provides the processed value.=
- I
-> >> guess that the veml6030 should have not provided processed values
-> >> either, but it's late to remove them after the driver was released.
-> >>
-> >> Now that we are at it, what is the rule (of thumb?) to provide process=
-ed
-> >> values? Those that can't be obtained from the raw data and simple
-> >> operations with the scale/offset/integration time/whatever userspace c=
-an
-> >> see?
-> >
-> > Yes. If the conversion is linear, then leave it to userspace (with scal=
-e
-> > and offset provided). If it's not linear then in kernel because current=
-ly
-> > we have no other choice.
-> >
-> > There are some historical quirks where a processed only interface got i=
-n
-> > then we had to add raw later (typically when we added buffered output
-> > where scale and offset are important because processed values normally
-> > don't pack well).
-> >
-> > Jonathan
-> >
-> >
->
-> Hi Jonathan, I am bringing this back because I am not sure if dropping
-> the processed values was the right approach here. I would like to
-> clarify before propagating some approach that might not be accurate.
->
-> This sensor is linear, and the processed value can be obtained by simple
-> multiplications, but not just raw * scale as documented in the ABI.
->
-> This driver is based on the veml6030, whose processed value is obtained
-> as raw * resolution, where the resolution is completely linear and is
-> obtained as sensor_resolution * integration_time / scale.
->
-> That means that the scale is actually a gain, and the user needs to know
-> the sensor resolution provided in the datasheet (see cur_resolution in
-> veml6030.c) to get the processed value. There is a sensor resolution for
-> every pair { gain, integration_time } in the datasheet, so there is no
-> need to calculate anything, yet the resolution is not provided by the
-> driver.
->
-> Nevertheless, your comment on this matter was the following:
->
-> > Why both raw + scale and processed?
-> >
-> > We normally only provide raw and processed for light sensors if:
-> > 1) The conversion is non linear and hard to reverse.
-> > 2) There are events that are thresholds on the raw value.
-> >
-> > Here it is linear so just provide _RAW.
->
-> That is still true in this case, because it is a linear, easy to reverse
-> conversion. Nevertheless, the user needs to look for the sensor
-> resolution in the datasheet and then use the given integration_time and
-> scale.
->
-> Is that ok and desired for light sensors? I think that a more accurate
-> approach would have been treating the gain as a HARDWAREGAIN, which
-> would have been used to calculate the scale i.e. resolution to directly
-> apply to the raw value. In its current form, the processed value is not
-> what you get if you do raw * scale. But as you specifically mentioned
-> light sensors in your comment, that might not apply here. Moreover,
-> there are only two drivers (si1133.c and vl6180.c) that use HARDWAREGAIN
-> for IIO_LIGHT, which makes me think I am over-complicating thing here.
->
-> By the way, in_illuminance_hardwaregain is not documented in the ABI,
-> only out_voltageY and in_intensity. But that is another topic.
->
-> The veml6030 has been around for some time and there is no way around
-> without breaking ABI, and the veml3235 has been only applied to your
-> tree and maybe it could wait to be released.
->
-> If everything is ok as it is, then that's the end of the story, but if
-> the processed =3D raw * scale operation should apply, the veml3235 could
-> still be fixed. And when it is too late for that one too, then I could
-> follow a different approach for the veml6031x00 I recently sent to avoid
-> propagating the issue.
->
-> Thanks and best regards,
-> Javier Carrasco
+Le 12/12/2024 à 22:09, Markuss Broks a écrit :
+> Add a driver for Samsung SPEEDY serial bus host controller.
+> SPEEDY is a proprietary 1 wire serial bus used by Samsung
+> in various devices (usually mobile), like Samsung Galaxy
+> phones. It is usually used for connecting PMIC or various
+> other peripherals, like audio codecs or RF components.
+> 
+> This bus can address at most 1MiB (4 bit device address,
+> 8 bit registers per device, 8 bit wide registers:
+> 256*256*16 = 1MiB of address space.
 
-Hi Jonathan, this email might have gone unnoticed.
+...
 
-This issue is relevant for the veml6030 and veml3235, and also for the
-veml6031x00 under review, as it follows the same pattern. Do you think
-they are ok as they are? Probably not, as they don't follow the ABI
-documentation, and after reading some other reviews, HARDWAREGAIN is
-usually not the fix for something like this.
-Should the gts helpers be used instead?
+> +static int _speedy_read(struct speedy_controller *speedy, u32 reg, u32 addr, u32 *val)
+> +{
+> +	int ret;
+> +	u32 cmd, int_ctl, int_status;
+> +
+> +	mutex_lock(&speedy->io_lock);
 
-Thanks and best regards,
-Javier Carrasco
+All error handling paths fail to release the mutex.
+guard(mutex) would help here.
+
+> +
+> +	ret = speedy_fifo_reset(speedy);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_set_bits(speedy->map, SPEEDY_FIFO_CTRL,
+> +			      SPEEDY_RX_LENGTH(1) | SPEEDY_TX_LENGTH(1));
+> +	if (ret)
+> +		return ret;
+> +
+> +	cmd = SPEEDY_ACCESS_RANDOM | SPEEDY_DIRECTION_READ |
+> +	      SPEEDY_DEVICE(reg) | SPEEDY_ADDRESS(addr);
+> +
+> +	int_ctl = SPEEDY_TRANSFER_DONE_EN | SPEEDY_FIFO_RX_ALMOST_FULL_EN |
+> +		  SPEEDY_RX_FIFO_INT_TRAILER_EN | SPEEDY_RX_MODEBIT_ERR_EN |
+> +		  SPEEDY_RX_GLITCH_ERR_EN | SPEEDY_RX_ENDBIT_ERR_EN |
+> +		  SPEEDY_REMOTE_RESET_REQ_EN;
+> +
+> +	ret = speedy_int_clear(speedy);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(speedy->map, SPEEDY_INT_ENABLE, int_ctl);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(speedy->map, SPEEDY_CMD, cmd);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Wait for xfer done */
+> +	ret = regmap_read_poll_timeout(speedy->map, SPEEDY_INT_STATUS, int_status,
+> +				       int_status & SPEEDY_TRANSFER_DONE, 5000, 50000);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(speedy->map, SPEEDY_RX_DATA, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = speedy_int_clear(speedy);
+> +
+> +	mutex_unlock(&speedy->io_lock);
+> +
+> +	return ret;
+> +}
+
+...
+
+> +static int _speedy_write(struct speedy_controller *speedy, u32 reg, u32 addr, u32 val)
+> +{
+> +	int ret;
+> +	u32 cmd, int_ctl, int_status;
+> +
+> +	mutex_lock(&speedy->io_lock);
+> +
+> +	ret = speedy_fifo_reset(speedy);
+> +	if (ret)
+> +		return ret;
+
+All error handling paths fail to release the mutex.
+guard(mutex) would help here.
+
+> +
+> +	ret = regmap_set_bits(speedy->map, SPEEDY_FIFO_CTRL,
+> +			      SPEEDY_RX_LENGTH(1) | SPEEDY_TX_LENGTH(1));
+> +	if (ret)
+> +		return ret;
+> +
+> +	cmd = SPEEDY_ACCESS_RANDOM | SPEEDY_DIRECTION_WRITE |
+> +	      SPEEDY_DEVICE(reg) | SPEEDY_ADDRESS(addr);
+> +
+> +	int_ctl = (SPEEDY_TRANSFER_DONE_EN |
+> +		   SPEEDY_FIFO_TX_ALMOST_EMPTY_EN |
+> +		   SPEEDY_TX_LINE_BUSY_ERR_EN |
+> +		   SPEEDY_TX_STOPBIT_ERR_EN |
+> +		   SPEEDY_REMOTE_RESET_REQ_EN);
+> +
+> +	ret = speedy_int_clear(speedy);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(speedy->map, SPEEDY_INT_ENABLE, int_ctl);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(speedy->map, SPEEDY_CMD, cmd);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(speedy->map, SPEEDY_TX_DATA, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Wait for xfer done */
+> +	ret = regmap_read_poll_timeout(speedy->map, SPEEDY_INT_STATUS, int_status,
+> +				       int_status & SPEEDY_TRANSFER_DONE, 5000, 50000);
+> +	if (ret)
+> +		return ret;
+> +
+> +	speedy_int_clear(speedy);
+> +
+> +	mutex_unlock(&speedy->io_lock);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +/**
+> + * speedy_get_by_phandle() - internal get speedy device handle
+> + * @np:	pointer to OF device node of device
+> + *
+> + * Return: 0 on success, -errno otherwise
+
+On success, a handle is returned, not 0.
+
+> + */
+> +static const struct speedy_device *speedy_get_device(struct device_node *np)
+> +{
+...
+
+> +out:
+> +	of_node_put(speedy_np);
+> +	return handle;
+> +}
+
+...
+
+> +static int speedy_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct speedy_controller *speedy;
+> +	void __iomem *mem;
+> +	int ret;
+> +
+> +	speedy = devm_kzalloc(dev, sizeof(struct speedy_controller), GFP_KERNEL);
+> +	if (!speedy)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, speedy);
+> +	speedy->pdev = pdev;
+> +
+> +	mutex_init(&speedy->io_lock);
+> +
+> +	mem = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(mem))
+> +		return dev_err_probe(dev, PTR_ERR(mem), "Failed to ioremap memory\n");
+> +
+> +	speedy->map = devm_regmap_init_mmio(dev, mem, &speedy_map_cfg);
+> +	if (IS_ERR(speedy->map))
+> +		return dev_err_probe(dev, PTR_ERR(speedy->map), "Failed to init the regmap\n");
+> +
+> +	/* Clear any interrupt status remaining */
+> +	ret = speedy_int_clear(speedy);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Reset the controller */
+> +	ret = regmap_set_bits(speedy->map, SPEEDY_CTRL, SPEEDY_SW_RST);
+> +	if (ret)
+> +		return ret;
+> +
+> +	msleep(20);
+> +
+> +	/* Enable the hw */
+> +	ret = regmap_set_bits(speedy->map, SPEEDY_CTRL, SPEEDY_ENABLE);
+> +	if (ret)
+> +		return ret;
+> +
+> +	msleep(20);
+> +
+> +	/* Probe child devices */
+> +	ret = of_platform_populate(pdev->dev.of_node, NULL, NULL, dev);
+> +	if (ret)
+> +		dev_err(dev, "Failed to populate child devices: %d\n", ret);
+
+Could be dev_err_probe() as well, at least for consistency.
+
+> +
+> +	return ret;
+> +}
+
+...
+
+CJ
 
