@@ -1,135 +1,143 @@
-Return-Path: <devicetree+bounces-131092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872369F1EC2
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 14:32:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 186DD9F1F09
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 14:39:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11D0D18896D1
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 13:32:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22AAE16724F
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 13:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94D6C1885A5;
-	Sat, 14 Dec 2024 13:32:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 800DC193070;
+	Sat, 14 Dec 2024 13:39:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="di9SNgx6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iEfcoWpE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E25C663C;
-	Sat, 14 Dec 2024 13:32:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D31D3191F9E
+	for <devicetree@vger.kernel.org>; Sat, 14 Dec 2024 13:39:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734183157; cv=none; b=iERXMTRBTAlBmK9VF3ORf0c+A3QavHgNPWKDlF+fsCq6pfHPCUCJL1krVCPfqZbPxLtwRK//HTY6ZiXpg9Az9WyvEUsICbzmKmzKxu54ffzQ4cDcU7IDjyeFIEBUfoeS7fs4Df85tPSiVYfwVf9VMmGjwqkEHLZzd6YOVwDjbJI=
+	t=1734183575; cv=none; b=Bbir7mHf//YKVLqMOLeTerYAlCqCaTqO/fnT8PjX3Z6wLwKfo3t73eMh3yw0oZvc1ZZV8jIZNMZWrLd5/kKQkUmYO4jDTqa+PncWVJzQVlmAABSftwIJCiDLBqiV7Qy3hn6FArVhNxpd3nz8iX5e+MRptKOLPYnF+/4k0TKjgB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734183157; c=relaxed/simple;
-	bh=rj7r3lu0zdXSXQRfn+FqEwD9DtqSI15OA0S9yniDho4=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b5aN8HuU4I4pUiJq5XkHRnNutmnZvmehWnuF6pCwrasB4EOfKPVNwIeI6Fjhzit8r/mtuHmX4fEGAlotPejabXi5iKUbl9s+iyFSqe6G3JoVKbmR4wYiJcslu07NqjpDbnnvLxY3uszG7lhOZxxTSjeck0ShxOrbozGzoyKmVw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=di9SNgx6; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-435f8f29f8aso18858295e9.2;
-        Sat, 14 Dec 2024 05:32:35 -0800 (PST)
+	s=arc-20240116; t=1734183575; c=relaxed/simple;
+	bh=uCCTyowJytqPjeU0yepVW6ZTRMX3ONlee0DNAXnNUZo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zqn1jbLupSv7i2U72yN86zycnpqZ5z0rOOTNXEUAIbT0oCYvTangclEJ9exfNmQ9xzlNYBkpH2+u9gsMc4FnBlDhbw4bfwe8kZS9z9+aCFcUf40Js3m2fvxlismZ16gMP0enF0g8tKgfjHcvyiccoBAq8UuzbNXq57xo9LvvBlg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iEfcoWpE; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30229d5b229so24857231fa.0
+        for <devicetree@vger.kernel.org>; Sat, 14 Dec 2024 05:39:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734183154; x=1734787954; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=9g/vBJjPtbTlrMR1/eypOk5GU1ytqwbwGWCidwQB9RM=;
-        b=di9SNgx6PWZUDbZ5kHSHb8EIQzUI2Cych36JkP0cdL2CVKnLltgv4uPOW/SeuCPiJD
-         lk8mZXdCcvJB09J/1xDZIVKfVoxu5VrvItq7AVxdeodPqBaEe8qz2fsBuX5L0rdFncLP
-         o+3w7+syOUmk5XwLVDSC/G6ZsOaIMj0xlJs9byPfWp4Ic0efzq3dF7hSiGozTko05FbH
-         zeFoKIs5MoBy6Gqr0KSL5CzA2sb84GI/tEs+JBBzE0QqAPPRGErYAunAPQ+SRobm9oHi
-         NSpocIxV8/zvByGxF9thvspwigLmIaC6wODgFMBuWiDMvfE/MH5DmwkKAkN8CuQfmotU
-         SSag==
+        d=linaro.org; s=google; t=1734183571; x=1734788371; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=PyYLiYc+Kz4TS/e32iRPlnuJpX7Gz5eKbfwdorLaoU4=;
+        b=iEfcoWpEi74xTB9YuVx+oaXlc510z+LughYijBiQc41m8PHiJISfTuaJSPaugpVuiH
+         /MFfAkXV663Fr86vxeS9aEUiAavuAakOLIvek3kTF3sKCGnG3HQb45lh6wcEwEEgwDNW
+         Fw/EYfU0tOwfNuNKRZDPapEeQKx1UbpXHNU11GRnGQvxMxsaqApzxsDyw8l9aaBHpMeV
+         nVwLmS1aACTuoRBCoMIKG39N1Yv11Xp0Htnd2fndyBHy9zEKvPSA5fjXS4PbqkDnZb9b
+         XyrQjcQ5zJBbaDxYdCBMjDtx/R79Ze5gB0ib3H5qXHNGO0xVXmPSrfJlHzJZVxUUJC/B
+         x6kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734183154; x=1734787954;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9g/vBJjPtbTlrMR1/eypOk5GU1ytqwbwGWCidwQB9RM=;
-        b=XnqYvb420Ovwa3nMeVVWqWPSb0opLRqFDwKJCRCe/aIsUKJhPzYB9ivzUgZicKUlfg
-         X76qZT4E9I2RISJLHb8Bpc3dDct9jHgZLeS8Xvu/YWpzN6U3mC2LlwrMwl7bRBzBj1Yf
-         S1kXnKd0hgklZ91MkgeSRS91Q6fHk3VU21968MdMHQeqaSjuFC4l82aWTj2G4rw/+prP
-         7Q2iLNRM7d1eshiMcBxBtrj8I2fnlxpJeOAIBmGnqq3KTYjOwQe9fUydj3Wi4KluKCnJ
-         h2oqUrhRlCRrt1uEfpOMEzr9v029KGtIlXq9H3BoEJWxoe6EEtXvL8tCz5auC2c9F2Oi
-         +JUg==
-X-Forwarded-Encrypted: i=1; AJvYcCULNcWu1qggzdrdjzNvMq4YJIH3Ow03k/7O67nv5lDNJk9l4oGIBpBeDvudQw9ph7+31Mt/nXtIP7Fdl64j@vger.kernel.org, AJvYcCW9cnXOFlJ2q/oRx0PVtxjVCwofxobLQgmNyn+yz6bvKtrMt+Xc1uWkaQ7Hsb0Lxn1xjvqTj2EgjSvm@vger.kernel.org, AJvYcCXJCNVYO7s0abPrKCSM8Bo6xbgPr+/Q+1063haul5sd5vo/LMnsPbdcQWiC5jL9/cd7k26lWJj7MZosXq7i@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKjBitL4FJL+Bvr6Ecks/zxHPkETn7nAMp3RozSVHMVD/9PRsq
-	aQNmzX22vHwQOAQfHlJxIFcvLvvBJi2qczNzlLzAlfZRMgX+cFFb
-X-Gm-Gg: ASbGncti7zvLx/b873T1HHKGh/n3gwUt2wZ9A9L3sf6SWWAk5X7qg31543TbhETDELn
-	dPGpqDU21ANAXqe2uKwTWdrJyghNwAgnHwWdKCPbAHLcjAsPJRlj9Ht8W0qnNOfJADLA+E1fB5m
-	tGEK17VfLBu66hi3kMWWPKM4XxPyk/oCJ6cdl63wvc5th94fEWrg7OTTucNqU/jheGWnMcx4icH
-	xGufwulPKzEw5z+pFtVJ8yl6PM40UebS5BTUPwwxPNznbYWXZ/I6XeeSVgkOAjwHYm5cFC9dJC4
-	PE9UxwtyyMRh
-X-Google-Smtp-Source: AGHT+IG8g4EFy0ehsQjwuqYvjL5RmWXOXLQffYHq1JWYKvL48y3hP5A1jAeo0WRLGRPrGmDNGVoJCw==
-X-Received: by 2002:a05:600c:511c:b0:434:fbda:1f36 with SMTP id 5b1f17b1804b1-4362aaa9cb5mr46725015e9.20.1734183153978;
-        Sat, 14 Dec 2024 05:32:33 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4363602d76fsm24359015e9.18.2024.12.14.05.32.32
+        d=1e100.net; s=20230601; t=1734183571; x=1734788371;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PyYLiYc+Kz4TS/e32iRPlnuJpX7Gz5eKbfwdorLaoU4=;
+        b=FQcBT23BjoMZnVkl/+apA9HuW8sexOWQtQm5Vz/pnrR2h1VgwH9X4x6f0lsAtDgzPy
+         v9UYDiDeXAHBSzHCBIfV6cS7XJaye00vfHaUyJiW55kD2Yo0QHpDTsJy/VD+Dpk7WGDY
+         n0tHjoRvEjqMA/I9PNnQbGAH0IxUkrvGufuizrz2BA440giMTRctPUf7IuPNF07Mxv/N
+         SVOKKGptnzB1YHbFxWpKwTA89yKyzjMGt21chJT9fzFGbRaU1srnBYkOP+j4yqcoghOC
+         3Npf+1WOmIAvmq4DQpFJjIDCB3tP/sevzGMtAGoZyyi5x4AgLgXPPl5F66NCrND8woFU
+         xUiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVDqy9CPx1HRrty7+615uCNelg/sYqvGgtAtIiLaYDDC788oCXJ7s8KRJzLmLteziyg934e2LIHtHpm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3faT2svOFddP8GULbXHyRuSsZDUXY5SBf3JzKGZFCVvVXS4b3
+	j2fgY0vX/oInKG54s0vDOPmpCaGla8qWN5ikQ7j5m/P+/rWff5lkBkornZ8haa4=
+X-Gm-Gg: ASbGncslxdRB5qW5U4qOetB5V2yQFohrTD0ZP1MyrmZSnJ8GdVuY2cSOQKdzbr8BQoM
+	I/znduBdTI7gCtgU5Nc//3L009Ah2N1lJR5fa8S6pWDqxCiW9pLzjwd70Ds86xnYXX1jJq37tLR
+	4oVeyQQSVoxLhlLRmKUnx6od137R62tjd+Dp3JyKcyO7AKVhUk8K+32pRV0lwZzLZYpjH1sZLBM
+	LxhIecD6JK9HQ5rTHVHCJ9zBnuxV1DQc+CO8oJium1/DmvNQ2ArURufmySZwK8VHDRHR++S7Cvz
+	TAYejijN+wv5eorX+BeAAoUFdiaT/B6s1xPP
+X-Google-Smtp-Source: AGHT+IFiGcfkBdkpjQAPcZxAxvnDue49Lcam66Ov/sQHEPWgB+rp6vC1TwupJiCBCPo5zIatJCwGYw==
+X-Received: by 2002:a05:651c:1544:b0:2ff:d83d:9155 with SMTP id 38308e7fff4ca-302544f9757mr21690611fa.27.1734183571029;
+        Sat, 14 Dec 2024 05:39:31 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30344061e1bsm2427441fa.51.2024.12.14.05.39.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Dec 2024 05:32:33 -0800 (PST)
-Message-ID: <675d88f1.7b0a0220.325e04.7513@mx.google.com>
-X-Google-Original-Message-ID: <Z12I6nlTPOqnIoi2@Ansuel-XPS.>
-Date: Sat, 14 Dec 2024 14:32:26 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>
-Cc: "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Antoine Tenart <atenart@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-	Waiman Long <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	llvm@lists.linux.dev, upstream@airoha.com,
-	Richard van Schagen <vschagen@icloud.com>
-Subject: Re: [PATCH v8 3/3] crypto: Add Inside Secure SafeXcel EIP-93 crypto
- engine support
-References: <20241210204853.18765-1-ansuelsmth@gmail.com>
- <20241210204853.18765-4-ansuelsmth@gmail.com>
- <Z1lb0ImxhhFs4Kuz@gondor.apana.org.au>
- <675979e5.5d0a0220.207826.2bf1@mx.google.com>
- <Z10LgtZm4-qCB2aL@gondor.apana.org.au>
+        Sat, 14 Dec 2024 05:39:29 -0800 (PST)
+Date: Sat, 14 Dec 2024 15:39:27 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Pengyu Luo <mitltlatltl@gmail.com>
+Cc: andersson@kernel.org, chenxuecong2009@outlook.com, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, gty0622@gmail.com, johan+linaro@kernel.org, 
+	konrad.dybcio@oss.qualcomm.com, konradybcio@kernel.org, krzk+dt@kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sc8280xp: Add Huawei Matebook E Go
+ (sc8280xp)
+Message-ID: <lwhell4z72srw67gj6gpt2uyqzx4k5dzjw5xs7dab6lbya7soi@tsoh2bcn2gwc>
+References: <20241213085100.564547-1-mitltlatltl@gmail.com>
+ <20241214122303.653935-1-mitltlatltl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Z10LgtZm4-qCB2aL@gondor.apana.org.au>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241214122303.653935-1-mitltlatltl@gmail.com>
 
-On Sat, Dec 14, 2024 at 12:37:22PM +0800, Herbert Xu wrote:
-> On Wed, Dec 11, 2024 at 12:39:13PM +0100, Christian Marangi wrote:
-> >
-> > Do you have quick example for this?
+On Sat, Dec 14, 2024 at 08:23:00PM +0800, Pengyu Luo wrote:
+> On Fri, Dec 13, 2024 at 1:13 AM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
 > 
-> Just search for crypto_ahash_set_reqsize in drivers/crypto and see
-> how they use the reqctx to store temporary data.  For each request,
-> you're guaranteed to have exclusive ownership of the reqctx.
+> [...]
 > 
-> If you wish to DMA into the reqctx, search for ahash_request_ctx_dma
-> to see how you should set it up.
->
+> >> +
+> >> +		/* /lib/firmware/ath11k/WCN6855/hw2.1/board-2.bin
+> >> +		 * there is no calibrate data for huawei,
+> >> +		 * but they have the same subsystem-device id
+> >> +		 */
+> >> +		qcom,ath11k-calibration-variant = "LE_X13S";
+> > 
+> > Oh, this can be taken care of! See [2], [3].
+> 
+> [...]
+> 
+> Hi, Konrad
+> 
+> I want to distrub you again.
+> 
+> Finally, I found something, after I enabled ath11k boot dbg, I got my
+> id_string='bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=2,qmi-board-id=255`
+> 
+> With qca-swiss-army-knife (see [1])
+> 
+> $ ./ath11k-bdencoder -e board-2.bin | grep -i "$id_string"
+> bus=pci,vendor=17cb,device=1103,subsystem-vendor=17cb,subsystem-device=0108,qmi-chip-id=2,qmi-board-id=255.bin created size: 60048
+> 
+> It have already been here. So that means I don't need to extract from
+> Windows. I just extract it from linux-firmware then give it a variant
+> name and send patches to ath11k, right?
 
-Oh ok I didn't understood you were referring to the request_ctx API
-thanks.
+No. Usually 255 is an ID that is used by a variety of boards. So,
+basically, you have to extract board data from Windows, add a proper
+calibration variant that is specific to your board and then send the
+resulting data to the ath11k mailing list.
 
-I just pushed v9 with the requested changes done. Now we map DMA only
-when needed and use local struct instead of kmalloc. kmalloc is only
-used for blocks. For that GFP_ATOMIC is used. The ALLOCATES_MEMORY was
-already set in the algo flags.
-
-Hope I'm making good progress on this.
+> 
+> Pengyu
+> 
+> [1] https://github.com/qca/qca-swiss-army-knife
 
 -- 
-	Ansuel
+With best wishes
+Dmitry
 
