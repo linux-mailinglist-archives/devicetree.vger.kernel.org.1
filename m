@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-131063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B860F9F1E0A
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 11:19:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6217B9F1E0E
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 11:25:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EE4F188BA50
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 10:19:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A52DA188BDC8
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 10:25:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A66C71369B6;
-	Sat, 14 Dec 2024 10:19:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B858B183CCA;
+	Sat, 14 Dec 2024 10:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ghkhk5bo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h6UGnoy0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5E618AFC;
-	Sat, 14 Dec 2024 10:19:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A1B2262BE;
+	Sat, 14 Dec 2024 10:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734171568; cv=none; b=CR3CTIfqsNVJBVaBbj3Wq/SYtmE5/g+6If+pYspJZotloaOsBYKi2nCUWggRgLI7wNI4QaBzIiE2VrVbr6QQWGiFG9unFim3rN3JnEmiCU5p9aN6G8YFUbd/EHIr7r8OdMeJj2rTkJ407tF4IA8juapwpt7pVhBkoYh7zG5+XUw=
+	t=1734171895; cv=none; b=HKOGb9vZFsJB4apCVkHRaa06V3YgY+A5RMNDPl8dkwrKAPWqFglNoigdc0iA4XYjHiAcrzI4zuv2rPYzLit3i/1GhLeN8B9J3QQ92fnN7gAODPf8xtjlaW07BrFNS3pFgc5F40eHWPyEV9fdDYV5Nr8FeONqYEur0EnYmSxMYzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734171568; c=relaxed/simple;
-	bh=FiW+Ism0Q+dNGQGvhc4JOSDyJGCSEQG9pSvyBtps7Lc=;
+	s=arc-20240116; t=1734171895; c=relaxed/simple;
+	bh=HmGD+VD1QrGKFAV8q0OlZbFcKLkHq5d9XiU9d+c31Ws=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nQQYg34r4N8hvk11ymbxXr2JL/m3yMSpX4aCzczSSxEzePIXJCax4GzT45I8cVHx3ywqr9YXIpIPLuuJOGH36Tsz/n3sPXEbdndeAaa8fDkOw+B3SX9Zx5sxtNXfUXhKO06FYXIbyIzVE+vatUZTB4llnuC3vwnebIQPdQy/znE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ghkhk5bo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D89AC4CED1;
-	Sat, 14 Dec 2024 10:19:25 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PomrRMBA0fT7/0dfI29T1aJ1qAkNhNzU2cCA6I37zgSZhlN/pIHEmHO3D64QcgZwo5Btxw9UTS5gFfbv+ktHHosDMekrSc0GEMKiRi0y9UdTi339TqIaZL0m2OR4ryUvSvv3hXMFhejprWztHPH2Od3o72NID910VaX/q6LUZDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h6UGnoy0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D7BCC4CED1;
+	Sat, 14 Dec 2024 10:24:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734171567;
-	bh=FiW+Ism0Q+dNGQGvhc4JOSDyJGCSEQG9pSvyBtps7Lc=;
+	s=k20201202; t=1734171895;
+	bh=HmGD+VD1QrGKFAV8q0OlZbFcKLkHq5d9XiU9d+c31Ws=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ghkhk5boB3YVtJwsveR3mGRTX8EtUS/FoM6L9RWYId2OfMr5iro5HTtKubG/DALBu
-	 5VN1m7YwlOFNPbfxnybjYHPkppWSMEkLX6HbUsIF/c1yMwY89UNA4dL2lFD8GwIYdx
-	 4/cU5Qo1NlrYDlJ1crSZqRF9IV9ZM60sTaY33VazapxshP13hh+TDdtBJujxUHGRKR
-	 EnPBo+2odS8ORjObZz7+r5Ji/n0ZXNmTnVzGinv0g6Ta9cOPUhhAHgSed2ZPqzyRHn
-	 IECNW8PgP+O09RyLWgCqetBayyTDUD7HBbuaEZxnRPPbrAOBq3ybVOH40GlR4mAsoG
-	 ap25YWc/vZPzA==
-Message-ID: <392a0cc0-bcd9-48a2-83f2-e520a460d2b8@kernel.org>
-Date: Sat, 14 Dec 2024 11:19:23 +0100
+	b=h6UGnoy0cDV0cTN8hJDFotdrwON4u9zfwzskK/uw+Wa2uwbrARTQuPF30Xm/yv8Cn
+	 3rBA6z7YAlv3JYmMwGSAIa0QkbAmHkd8/Fg3n8hZKQgc7tmXEKsjXpxiEzyJze7KGa
+	 H9Y+SA3el0Z7I6gA75S3hs7bOwc40rsrRyLQ+1iPsIW35cn12QYwxc7PncIyygvsSl
+	 Am1QvDKRwCmziUdzAGqXbgsMyj7qdGwSA40sJl3i3SUJDymZLliBVCVNCzNwTXIWGB
+	 h/1+2+Lnq9EgVlFxweBIHChq6lBjWLK0QXUcINQk2NTeW55uLFHsXlcVe+FvGfEP9H
+	 cOahl8PUYg7Sg==
+Message-ID: <b3ba90ed-dbc1-413a-bef5-e49adb9153e0@kernel.org>
+Date: Sat, 14 Dec 2024 11:24:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/8] MAINTAINERS: Add Vincenzo Frascino as Arm Morello
- Maintainer
+Subject: Re: [PATCH 1/3] xlnx: dt-bindings: xlnx,i2s: Convert to json-schema
 To: Vincenzo Frascino <vincenzo.frascino@arm.com>,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>
-References: <20241213163221.3626261-1-vincenzo.frascino@arm.com>
- <20241213163221.3626261-9-vincenzo.frascino@arm.com>
+Cc: Maruthi Srinivas Bayyavarapu <maruthi.srinivas.bayyavarapu@xilinx.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>
+References: <20241213165240.3652961-1-vincenzo.frascino@arm.com>
+ <20241213165240.3652961-2-vincenzo.frascino@arm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,50 +102,204 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241213163221.3626261-9-vincenzo.frascino@arm.com>
+In-Reply-To: <20241213165240.3652961-2-vincenzo.frascino@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/12/2024 17:32, Vincenzo Frascino wrote:
-> Cc: Sudeep Holla <sudeep.holla@arm.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
-> ---
->  MAINTAINERS | 6 ++++++
->  1 file changed, 6 insertions(+)
+On 13/12/2024 17:52, Vincenzo Frascino wrote:
+> Convert the Xilinx I2S device tree binding documentation to json-schema.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e6e71b05710b..8199e5945fb2 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -3304,6 +3304,12 @@ F:	drivers/clocksource/timer-versatile.c
->  X:	drivers/cpufreq/vexpress-spc-cpufreq.c
->  X:	Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
->  
-> +ARM MORELLO PLATFORM SUPPORT
+> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
 
-Wrongly placed, M is not after V, I know people cannot keep order but
-let's try. No need for new Boogaloo.
+<form letter>
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument, so you will
+not CC people just because they made one commit years ago). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
 
-Plus look how all the titles are created and do not come with different
-style.
+Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+people, so fix your workflow. Tools might also fail if you work on some
+ancient tree (don't, instead use mainline) or work on fork of kernel
+(don't, instead use mainline). Just use b4 and everything should be
+fine, although remember about `b4 prep --auto-to-cc` if you added new
+patches to the patchset.
+</form letter>
 
-> +M:	Vincenzo Frascino <vincenzo.frascino@arm.com>
-> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-
-
-So why you did not bother to Cc this list? You are supposed to develop
-on mainline kernel and then run get_maintainers.pl or b4 prep, so how is
-possible that your Cc list is so empty?
-
-
-
-> +S:	Maintained
-> +F:	arch/arm64/boot/dts/arm/morello*
+> ---
+>  .../devicetree/bindings/sound/xlnx,i2s.txt    | 28 -------
+>  .../devicetree/bindings/sound/xlnx,i2s.yaml   | 79 +++++++++++++++++++
+>  2 files changed, 79 insertions(+), 28 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/xlnx,i2s.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
 
 
-Missing bindings.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/xlnx,i2s.txt b/Documentation/devicetree/bindings/sound/xlnx,i2s.txt
+> deleted file mode 100644
+> index 5e7c7d5bb60a..000000000000
+> --- a/Documentation/devicetree/bindings/sound/xlnx,i2s.txt
+> +++ /dev/null
+> @@ -1,28 +0,0 @@
+> -Device-Tree bindings for Xilinx I2S PL block
+> -
+> -The IP supports I2S based playback/capture audio
+> -
+> -Required property:
+> - - compatible: "xlnx,i2s-transmitter-1.0" for playback and
+> -	       "xlnx,i2s-receiver-1.0" for capture
+> -
+> -Required property common to both I2S playback and capture:
+> - - reg: Base address and size of the IP core instance.
+> - - xlnx,dwidth: sample data width. Can be any of 16, 24.
+> - - xlnx,num-channels: Number of I2S streams. Can be any of 1, 2, 3, 4.
+> -		      supported channels = 2 * xlnx,num-channels
+> -
+> -Example:
+> -
+> -	i2s_receiver@a0080000 {
+> -		compatible = "xlnx,i2s-receiver-1.0";
+> -		reg = <0x0 0xa0080000 0x0 0x10000>;
+> -		xlnx,dwidth = <0x18>;
+> -		xlnx,num-channels = <1>;
+> -	};
+> -	i2s_transmitter@a0090000 {
+> -		compatible = "xlnx,i2s-transmitter-1.0";
+> -		reg = <0x0 0xa0090000 0x0 0x10000>;
+> -		xlnx,dwidth = <0x18>;
+> -		xlnx,num-channels = <1>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml b/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
+> new file mode 100644
+> index 000000000000..b8bda7c28d37
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/xlnx,i2s.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/xlnx,i2s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Device-Tree bindings for Xilinx I2S PL block
+
+There is never "Device-tree bindings for" in the title. Please start
+bindings from some existing sources or example-schema.
+
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint. Don't rely on
+distro packages for dtschema and be sure you are using the latest
+released dtschema.
+
+
+> +
+> +description: |
+> +  The IP supports I2S based playback/capture audio.
+> +
+> +maintainers:
+> +  - Vincenzo Frascino <vincenzo.frascino@arm.com>
+> +  - Maruthi Srinivas Bayyavarapu <maruthi.srinivas.bayyavarapu@xilinx.com>
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: xlnx,i2s-receiver-1.0
+> +      - const: xlnx,i2s-transmitter-1.0
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: |
+> +      Base address and size of the IP core instance.
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  "#address-cells":
+> +    maxItems: 1
+
+no, drop or explain. There was nothing like that in old bindingg.
+
+> +
+> +  "#size-cells":
+> +    maxItems: 1
+
+Drop
+
+
+> +
+> +  xlnx,dwidth:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+
+Drop
+
+
+> +    oneOf:
+> +      - const: 16
+> +      - const: 24
+
+That's just enum.
+
+> +    description: |
+> +      Sample data width. Can be any of 16, 24.
+> +
+> +  xlnx,num-channels:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maxItems: 1
+
+Drop
+
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      Number of I2S streams.
+> +    minimum: 1
+> +    maximum: 4
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - xlnx,dwidth
+> +  - xlnx,num-channels
+> +
+> +additionalProperties: false
+
+unevaluatedProperties instead
+
+> +
+> +examples:
+> +  - |
+> +    i2s_receiver@a0080000 {
+
+i2s@
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +      compatible = "xlnx,i2s-receiver-1.0";
+> +      reg = <0x0 0xa0080000 0x0 0x10000>;
+> +      xlnx,dwidth = <0x18>;
+> +      xlnx,num-channels = <1>;
+> +    };
+> +    i2s_transmitter@a0090000 {
+> +      compatible = "xlnx,i2s-transmitter-1.0";
+
+Drop the node, one example is enough since they do not differ.
 
 
 Best regards,
