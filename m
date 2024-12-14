@@ -1,69 +1,64 @@
-Return-Path: <devicetree+bounces-131097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C02E29F1F36
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 15:17:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07A4B9F1F44
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 15:25:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E158A16508E
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 14:17:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EB4E165B21
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 14:25:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C98F9191F89;
-	Sat, 14 Dec 2024 14:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1CD191F89;
+	Sat, 14 Dec 2024 14:25:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WAsIehzk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YQMdx3QM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908D6653;
-	Sat, 14 Dec 2024 14:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0D27169397;
+	Sat, 14 Dec 2024 14:25:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734185871; cv=none; b=VFyvwfEWW+qQKdywgKt689FepAhpGUcqgMVqyK5Fwuew2aazIDvmAXUsWmU/4fuL8mQ6v6v8q91WDltQXAk+KKpwHgBAg97jGLGv14lOs40smOu5tSB3Y2TEH/MFnR7W8556yLkU/RIlqLZBOmTTr7RlW5K4Fff4QcwTHbWjc6Q=
+	t=1734186325; cv=none; b=SxGOdTvmAJvGSkIKKdSx8MHOfqHyDTlTbgt9i5FncT2SkTGLEbQ1JZ0HTLTolsdtD/RWr+o5JpI3NdMLBIFyqIiCZ9tNud2nE+c9xhEH3VGF8w/Cb/mfp9UDvwbEeckNKj6F1ipZibfMDhpWM2NcSQlcfEXNldkyShw5QW+G5ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734185871; c=relaxed/simple;
-	bh=QO3n4VP0ZVPU7aLYGFfEVVIxCLvXX1E3ymy4xvCKQ9E=;
+	s=arc-20240116; t=1734186325; c=relaxed/simple;
+	bh=uo7FIWAio2B7yGgy0lABEYgsS8AiZPqc79yXVquOkrw=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZX2RUT8H9zCKf4bMATPi2vvJ8oncJ4dEVQ5dhhpllvTIYAD+zhOG0oI6hs4s40zbPCEtZUgaBGVZtyVaVmAOaXzVUo5iNjyhTnzLqUW5EAQ+bYpKe8kCMk4aKTWTv6XEpBjLnCzgN5kSLYUytkRhfdHZngDIuX3ATdMaABKcp7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WAsIehzk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2385BC4CED1;
-	Sat, 14 Dec 2024 14:17:41 +0000 (UTC)
+	 MIME-Version:Content-Type; b=YuG4HM4HDXRJ2sG4c+RfBG+FSzWRYCm40L8N98naJXYbdA7PL1gzjkZlKGaqlxr7KoRsgLGCz4tEHn5fJcCbdH+HbMWCbJjeRD+KHXGbyUpBkrqG1b6xOx3Cd3aYz8HRrjdpJxWO/yChl6vCX8L42ZHxCBHwjguO9aNIhFSb2hA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YQMdx3QM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 535BCC4CED1;
+	Sat, 14 Dec 2024 14:25:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734185871;
-	bh=QO3n4VP0ZVPU7aLYGFfEVVIxCLvXX1E3ymy4xvCKQ9E=;
+	s=k20201202; t=1734186324;
+	bh=uo7FIWAio2B7yGgy0lABEYgsS8AiZPqc79yXVquOkrw=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=WAsIehzkr7Vrpt+MWeba4fCvbWVgiUhrTq80W/iIq4Y4NUYiU2WUwZ87VFMQRA0XX
-	 8kb4uYYM4v/CM4jvQteW8VEC945/P7NVUZ+y85SqkZ/elrxi3qx/L5aDFsAJPxndfU
-	 KmrqCk/hnsbe0GuiYcc7xfGO7YW0zu/lUiIez9Ig/vxBRV9CZGgEOALMI9ey1Ulkx2
-	 kX28OjeHFwmlNTk8Z7TI/lI78WR9W4BcfweyocmY97an5lkTIbYy5XKMspw42YjsbM
-	 TuAGLh2IUh5BjtM8FJ7+dxJcoMXAcazCUMRZaorhauFiuopsXm8oYyb3AUgCQhgE+n
-	 Eygv395A5BSIA==
-Date: Sat, 14 Dec 2024 14:17:37 +0000
+	b=YQMdx3QMi51nA0Rl1qxkPQMUUHSS697Pm3psyQXjjmxMKhxz2p5cUllCAOYjRo/uK
+	 hqOvL59M3JnBgEnw7JjFCnBwyKlvHcN74qaEG60ObQN52nHJF/xKWJfB1bLvvGCsRz
+	 q9C7FY921zBAhREk+mfcMbKR8+hLSDg8Hxkqm7gmc7+YjcJGqlU0NIZ6/xHOIAqfrW
+	 IDztn4HHHVnH9og37duLJghYDbgWNBQWYfw+vl39kKn2chQWAkiPyXfgxXgeApSSOG
+	 zl3wycQQVZy4fjvIDTcAeHPPHARDGYH4W7A/n6eH9q43iqh+42fGK1l96XRaOtiLU5
+	 I6kYreyn9XYcg==
+Date: Sat, 14 Dec 2024 14:25:11 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
- <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Lee Jones <lee@kernel.org>, Stephen Boyd
- <sboyd@kernel.org>, Amit Kucheria <amitk@kernel.org>, Thara Gopinath
- <thara.gopinath@gmail.com>, "Bjorn Andersson" <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Ajit Pandey
- <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, Taniya
- Das <quic_tdas@quicinc.com>, "Jagadeesh Kona" <quic_jkona@quicinc.com>,
- <quic_kamalw@quicinc.com>, <quic_jprakash@quicinc.com>,
- <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH RFC v2 3/5] thermal: qcom: Add support for MBG thermal
- monitoring
-Message-ID: <20241214141737.1c3a305e@jic23-huawei>
-In-Reply-To: <20241212-mbg-v2-support-v2-3-3249a4339b6e@quicinc.com>
-References: <20241212-mbg-v2-support-v2-0-3249a4339b6e@quicinc.com>
-	<20241212-mbg-v2-support-v2-3-3249a4339b6e@quicinc.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, David
+ Jander <david@protonic.nl>, Martin Sperl <kernel@martin.sperl.org>,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v6 03/17] dt-bindings: trigger-source: add generic PWM
+ trigger source
+Message-ID: <20241214142511.2dcdb5be@jic23-huawei>
+In-Reply-To: <20241211-dlech-mainline-spi-engine-offload-2-v6-3-88ee574d5d03@baylibre.com>
+References: <20241211-dlech-mainline-spi-engine-offload-2-v6-0-88ee574d5d03@baylibre.com>
+	<20241211-dlech-mainline-spi-engine-offload-2-v6-3-88ee574d5d03@baylibre.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -74,45 +69,95 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Thu, 12 Dec 2024 21:41:22 +0530
-Satya Priya Kakitapalli <quic_skakitap@quicinc.com> wrote:
+On Wed, 11 Dec 2024 14:54:40 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-> Add driver for the MBG thermal monitoring device. It monitors
-> the die temperature, and when there is a level 1 upper threshold
-> violation, it receives an interrupt over spmi. The driver reads
-> the fault status register and notifies thermal accordingly.
+> Add a new binding for using a PWM signal as a trigger source.
 > 
-> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Just a quick comment on consistency of formatting.
+> The idea here is similar to e.g. "pwm-clock" to allow a trigger source
+> consumer to use a PWM provider as a trigger source.
+> 
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+LGTM. But obviously this is really one for the dt-binding maintainers to look
+at. With that in mind.
+Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-> +static int mbg_tm_set_trip_temp(struct thermal_zone_device *tz, int low_temp,
-> +						int temp)
-> +{
-> +	struct mbg_tm_chip *chip = thermal_zone_device_priv(tz);
-> +	int ret = 0;
+> ---
+> 
+> v6 changes:
+> * Moved file from bindings/spi/ to bindings/trigger-source/
+> * Updated description to not mention SPI
+> * Dropped $ref: /schemas/spi/trigger-source.yaml#
+> * Swapped order in name to be consistent with "pwm-clock"
+> 
+> v5 changes:
+> * Add MAINTAINERS entry
+> 
+> v4 changes: new patch in v4
+> ---
+>  .../bindings/trigger-source/pwm-trigger.yaml       | 37 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 +++
+>  2 files changed, 42 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/trigger-source/pwm-trigger.yaml b/Documentation/devicetree/bindings/trigger-source/pwm-trigger.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..1eac20031dc3cf921aafb8aa37f4e4eca1075835
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/trigger-source/pwm-trigger.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/trigger-source/pwm-trigger.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	guard(mutex)(&chip->lock);
+> +title: Generic trigger source using PWM
 > +
-> +	/* The HW has a limitation that the trip set must be above 25C */
-> +	if (temp > MBG_MIN_TRIP_TEMP && temp < MBG_MAX_SUPPORTED_TEMP) {
-> +		regmap_set_bits(chip->map,
-> +			chip->base + MBG_TEMP_MON2_MISC_CFG, MON2_UP_THRESH_EN);
-> +		ret = regmap_write(chip->map, chip->base + MON2_LVL1_UP_THRESH,
-> +						temp_to_vtemp(temp));
-Alignment in this driver should be consistent / tidied up.
-
-I'm not sure on style preferred in thermal, but I'd always default to align
-after the opening bracket + wrap at 80 chars unless readability is hurt.
-
-
-> +		if (ret < 0)
-> +			return ret;
-> +	} else {
-> +		dev_dbg(chip->dev, "Set trip b/w 25C and 160C\n");
-> +		regmap_clear_bits(chip->map,
-> +			chip->base + MBG_TEMP_MON2_MISC_CFG, MON2_UP_THRESH_EN);
-> +	}
-
-
+> +description: Remaps a PWM channel as a trigger source.
+> +
+> +maintainers:
+> +  - David Lechner <dlechner@baylibre.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: pwm-trigger
+> +
+> +  '#trigger-source-cells':
+> +    const: 0
+> +
+> +  pwms:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - '#trigger-source-cells'
+> +  - pwms
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    trigger {
+> +        compatible = "pwm-trigger";
+> +        #trigger-source-cells = <0>;
+> +        pwms = <&pwm 0 1000000 0>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 9284a257607a740ab7f6fd960c2bcdc34ead7586..b2aa6f37743e48353c60e5973ea8126590c7f6d5 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -23879,6 +23879,11 @@ W:	https://github.com/srcres258/linux-doc
+>  T:	git git://github.com/srcres258/linux-doc.git doc-zh-tw
+>  F:	Documentation/translations/zh_TW/
+>  
+> +TRIGGER SOURCE - PWM
+> +M:	David Lechner <dlechner@baylibre.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/trigger-source/pwm-trigger.yaml
+> +
+>  TRUSTED SECURITY MODULE (TSM) ATTESTATION REPORTS
+>  M:	Dan Williams <dan.j.williams@intel.com>
+>  L:	linux-coco@lists.linux.dev
+> 
 
 
