@@ -1,127 +1,131 @@
-Return-Path: <devicetree+bounces-131016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A076F9F1B79
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 01:50:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D06F9F1BD7
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 02:17:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16FBF188C454
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 00:50:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09CA4188DF2E
+	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 01:17:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B04CACA6F;
-	Sat, 14 Dec 2024 00:49:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LRnV8jwO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1A6BD528;
+	Sat, 14 Dec 2024 01:16:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2B64C2ED
-	for <devicetree@vger.kernel.org>; Sat, 14 Dec 2024 00:49:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 600F7BE65;
+	Sat, 14 Dec 2024 01:16:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734137398; cv=none; b=tc4bwcLxaaNgtLZ5FcpwXSO86h7y+90qoL4nYLY1RZIDJhoe0wkfg/qOHxO4iAR9WcjdaHPV1/or2fPUR3ulsCwbbhdlEfN/l1Z7bqFh+ue8jqveE9ymfW5cDpFeOa+3i1ykxprRNX5/no3kkLPPOyh59qjacm1f5LYx1Mnxusk=
+	t=1734139018; cv=none; b=MjZ6WZCcFxh/zdegpMSTw/y9eWov07NoDy0Tvmq6wRSsnJiViH9MaG4OB53Q0xLllgQFb0v8ipCvWY/TNVuF8yo4y7HpkYLYUwE0uelAgBa1I3lQReLfXhiSkHYedvSPn6Er5R7i+vkdIRVGcujN5+gsZhGRcIA8zTLLNsis9qM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734137398; c=relaxed/simple;
-	bh=LF9f2q7wQ5vyQD4uKD7ZO6qHf8a3O2obFR51imVhytg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K9G8JKi03C97o9DhuID1+Un8MgCFo+X35YSF1Mgx1Fyg0FKJz4fKn5fZyRECA9oz8BvfzKZRfbFZrl+lZHEoweQ23Z+8ik/n8K9Epclr5QgLQZuYioUyskx6/l6/nkAXpDs8KPSkK96oxv6NSwMVznGvxeVjbMpIREVkrUrS7yU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LRnV8jwO; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-38633b5dbcfso2520880f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Dec 2024 16:49:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734137395; x=1734742195; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zZHQT3+1AXOHwySh7rmIQ56owPwbOS+jVtet/I/oewQ=;
-        b=LRnV8jwOV0SG5IWaihuzl1//P4nNulgNrK6O9E3pUa6+cJN/VVgaE2c9QgnFMe4+mC
-         /Fhk1SKuSyOX28ryvEPjT+bq1zM9YOWYznKUlObqG/fa9HC02KW/rnD49jQ7XR4rTPEI
-         o2TljLwj7MGTe5fCz4EgFG7PVU2OjNVqLfJJEZ8HaReM0dHFlUehhvdLtxl8CzW/qBdS
-         x4ANxNQZ6ipRfet0D8fGjMDsQ1jBabuaCbAj5rGjq6w3IzO7RoDfRrAiazHbKWq4KV2N
-         jnIpkkM+dwJz3GSB1KOhZ19RBk+OjprgptwoWngOBb3CbRJJKyzdiY6LH3X0MsEt0/7T
-         necg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734137395; x=1734742195;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zZHQT3+1AXOHwySh7rmIQ56owPwbOS+jVtet/I/oewQ=;
-        b=dbmH7317oI6aEW0Q2qdJxLwOIW9Ip4TOkzH2tjRGOzzzFn3AgrrfRdboCsui+pps2v
-         37wMhlYMJYrz0bK9zhm6zpxtoAKkJiittS+Xpg2WhVmSKqHqdc2Z+DyNluhuNJsxP4fa
-         87TC6O8gp7hVd8sA8+UUYZCE0TSuOXFrntqZmtxvlgE/0VyM2oxByWdndcIQqMuRx1iZ
-         l89FqUrT8qiZP3LGp05e7jkWogAG5/1ieOJiWuDrMBRoIbdkk4rg320xz2k0OyrTS2IJ
-         N3mpIDapAfse5UVA3imyv7bAzvXuCRNZPKDxN53A1vbfJV49jtOHLXzKhePZxfpu0rxl
-         18CQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXaFr8bPh5jn2ErGSPGGAgFosNST0KO7i5dKLpO94UftqjMJmdQXZxYE97qRyuJ15dnP2l0aIaWvkyU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyX1BxKvJUCh5I5aBUt2HMUqMKjci82SDYU6mW7QEdgo2UZC8U
-	s7i+KGwxlPba9qUVgqUy3tTFmNL/KQ8glDhzkXfUHKVtXSEwE3q01GxaNBZl03A=
-X-Gm-Gg: ASbGnctjyzpE6llhyZDlMla+0uM+BaUT4jdU5UmacSRmmfz9E8SX1l1XxM6EdN5GywU
-	EfOV/t+zEOCbWX1KHn5MWBjm15CPCqZFmhOJCEpjJHilIG7wSNl1fo8gi6xV6l26dDKJiMGMKt+
-	YjZv4ClLRt4LVW/uFmpL5q0V1++xSa9gJ4H9qaA4discICyhQkrWYedhz7SEryEWq/43o/fI+jn
-	aduO1+3ryktB6NjiZPd/Ny97/WUWzmckv1k2IoXTu86DRgk3CMk6WppEq0+ZZ4WupyS7g==
-X-Google-Smtp-Source: AGHT+IHGByL+SnFZLh6TJ7bPmNjCMhZaO4qaTKsbRPxcaxQjrB96T87kcly1ELijtAI4mJfcF9Gh8g==
-X-Received: by 2002:a5d:5985:0:b0:385:df73:2f42 with SMTP id ffacd0b85a97d-38880ae14c3mr3370858f8f.32.1734137395326;
-        Fri, 13 Dec 2024 16:49:55 -0800 (PST)
-Received: from [192.168.0.40] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-388c80165c5sm995925f8f.25.2024.12.13.16.49.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Dec 2024 16:49:54 -0800 (PST)
-Message-ID: <08241f60-a6a1-4b69-bdb9-c9b83ec504f3@linaro.org>
-Date: Sat, 14 Dec 2024 00:49:52 +0000
+	s=arc-20240116; t=1734139018; c=relaxed/simple;
+	bh=gRyC+xG/KQ4DuOiTjuRdGZ1O0rJSxm4vq7H0bY1j6jk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YAVkkSIwQi8BuIkr1tfsuHG0WFiYzhMppQqjW/Jzs+5ysKwXX/ItuMAe/uDl75cLOYnLhimsCvic/y1Gc7UIU7iw/hctAVR7JOMAit4IndnDBloBg7JPJ4g02NEQl1dLLSdDJ4EZcDwK4gx2yEBLVDaDbbG5WYTa5ht6jDyAiuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B7EDE11FB;
+	Fri, 13 Dec 2024 17:17:23 -0800 (PST)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 20AD63F5A1;
+	Fri, 13 Dec 2024 17:16:54 -0800 (PST)
+Date: Sat, 14 Dec 2024 01:16:12 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Hermann.Lauer@uni-heidelberg.de
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, Icenowy Zheng
+ <uwu@icenowy.me>
+Subject: Re: [PATCH v2] ARM: dts: sun8i-r40: remove unused GPIO regulator
+Message-ID: <20241214011612.4fd9e4bf@minigeek.lan>
+In-Reply-To: <20241213195433.GA1568@lemon.iwr.uni-heidelberg.de>
+References: <20241213195433.GA1568@lemon.iwr.uni-heidelberg.de>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 0/5] media: qcom: camss: Add sc7280 support
-To: Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, akapatra@quicinc.com,
- hariramp@quicinc.com, andersson@kernel.org, konradybcio@kernel.org,
- hverkuil-cisco@xs4all.nl, cros-qcom-dts-watchers@chromium.org,
- catalin.marinas@arm.com, will@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com,
- Luca Weiss <luca.weiss@fairphone.com>
-References: <20241206191900.2545069-1-quic_vikramsa@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20241206191900.2545069-1-quic_vikramsa@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 06/12/2024 19:18, Vikram Sharma wrote:
-> SC7280 is a Qualcomm SoC. This series adds support to bring up the CSIPHY,
-> CSID, VFE/RDI interfaces in SC7280.
-> 
-> SC7280 provides
-> 
-> - 3 x VFE, 3 RDI per VFE
-> - 2 x VFE Lite, 4 RDI per VFE
-> - 3 x CSID
-> - 2 x CSID Lite
-> - 5 x CSI PHY
-> 
-> We have tested this on qcs6490-rb3gen2-vision-mezzanine board having IMX577
-> sensor. Verified both TPG and IMX577 sensor.
-> 
-> Used following tools for the sanity check of these changes.
-You should state in your cover-letter that you depend on a prior series.
+On Fri, 13 Dec 2024 20:54:33 +0100
+Hermann.Lauer@uni-heidelberg.de wrote:
 
-Unfortunately I found a bug in your depends series:
+Hi,
 
-https://lore.kernel.org/linux-arm-msm/1a570c17-c501-4a29-a4f7-020f41563f3d@linaro.org
+CC:ing Icenowy, who added the regulator originally, with commit
+0ca12c1ee43c ("ARM: sun8i: r40: add 5V regulator for Banana Pi M2
+Ultra").
 
-v9 will have to be gated on that series being fixed.
+Icenowy: can you clarify what "newer" version this was referring to in
+that commit message? That commit in itself doesn't seem to do anything,
+as the regulator isn't referenced, and it's not always-on. It's only
+later when the USB nodes were added that it got used?
+So was PH23 really necessary? As Hermann reports, setting PH23 on a v1.1
+makes it reboot.
 
----
-bod
+> Subject: [PATCH v2] ARM: dts: sun8i-r40: remove unused GPIO regulator
+
+Hermann, this looks like an extra subject line here?
+
+> Banana Pi M2 Ultra V1.1 board resets immediately when the usb core tries
+> to setup PH23 GPIO. It turned out that the V1.0 board USB-A ports are
+> always power supplied and according to the board scheme PH23 is simply
+> not connected.
+> 
+> So remove the PH23 setup: Doesn't harm V1.0 (with R40) and let V1.1
+> (with A40i) start.
+> 
+> Signed-off-by: Hermann Lauer <Hermann.Lauer@uni-heidelberg.de>
+
+The patch itself looks good to me, but it would be good to clarify the
+situation with the "older newer" version.
+
+Just in case:
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+ 
+> ---
+> V2: shorten subject, rm dangerous PH23 regulator completely
+> 
+> diff --git a/arch/arm/boot/dts/allwinner/sun8i-r40-bananapi-m2-ultra.dts b/arch/arm/boot/dts/allwinner/sun8i-r40-bananapi-m2-ultra.dts
+> --- a/arch/arm/boot/dts/allwinner/sun8i-r40-bananapi-m2-ultra.dts
+> +++ b/arch/arm/boot/dts/allwinner/sun8i-r40-bananapi-m2-ultra.dts
+> @@ -91,15 +91,6 @@
+>  		};
+>  	};
+>  
+> -	reg_vcc5v0: vcc5v0 {
+> -		compatible = "regulator-fixed";
+> -		regulator-name = "vcc5v0";
+> -		regulator-min-microvolt = <5000000>;
+> -		regulator-max-microvolt = <5000000>;
+> -		gpio = <&pio 7 23 GPIO_ACTIVE_HIGH>; /* PH23 */
+> -		enable-active-high;
+> -	};
+> -
+>  	wifi_pwrseq: pwrseq {
+>  		compatible = "mmc-pwrseq-simple";
+>  		reset-gpios = <&pio 6 10 GPIO_ACTIVE_LOW>; /* PG10 WIFI_EN */
+> @@ -347,7 +338,5 @@
+>  };
+>  
+>  &usbphy {
+> -	usb1_vbus-supply = <&reg_vcc5v0>;
+> -	usb2_vbus-supply = <&reg_vcc5v0>;
+>  	status = "okay";
+>  };
+> 
+
 
