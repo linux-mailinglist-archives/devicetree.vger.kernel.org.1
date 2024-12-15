@@ -1,179 +1,127 @@
-Return-Path: <devicetree+bounces-131138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EDF19F21EB
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 03:38:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BB3A9F2212
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 04:27:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58322165EF0
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 02:38:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C23A016593D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 03:27:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFF34C80;
-	Sun, 15 Dec 2024 02:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC14A4C62;
+	Sun, 15 Dec 2024 03:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="PFRY8Kix"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pjm3QGAn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m83151.xmail.ntesmail.com (mail-m83151.xmail.ntesmail.com [156.224.83.151])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44815D299;
-	Sun, 15 Dec 2024 02:37:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.224.83.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A3C33FD;
+	Sun, 15 Dec 2024 03:27:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734230281; cv=none; b=COByC6FCbIQZRfHAHCYx7iu4mC95rPmWpgcu0ig/Xyc0WqAYsHfNVVvpM1JImTZveWURGP3VkaX7OmReYzTfjlq+WOTzyWlHt3NwwNG9L//ytwaSf+CE+0iKQLubcrXIKPk1R7GK0xu1vohmWBJhzUw7zA3gLgmiUWjGU+0viec=
+	t=1734233223; cv=none; b=XNuUk/COzqshRxaTjDIr2ZE0vVuErrkOBLSENYb+YMUNfYj34VBZNX230bk+MNyQJFMTd5yyqy37skPzD9ngxRY2uhJMJDHwA9I3XtZ+Fo6f3tTR8wIzlOIgK7G1LnCRzGLQ485aXd3BTWNFZiQACP8SpPR5jpj0YYFRUmaYky4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734230281; c=relaxed/simple;
-	bh=/YORe67aIUZMFJibeyP7hT83qtb3SI6+SCyY33l/79g=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=U0VkHxsTZZeG+d6U0Hr3fo0rNZZnQ8+cCZ1x91aHq46N32eQxu48c+UOxnGdqSZIz6smzopB00J7WzglRyon9tpW1T8kZmrg12GmV0vlxFAa+01BXHmkwLKCOuPK1jxCtchllPPAKvtPaj9V5sGmG6CjniK67uh1kJ81LsuxhaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=PFRY8Kix; arc=none smtp.client-ip=156.224.83.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.26] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 5bf41739;
-	Sun, 15 Dec 2024 10:32:38 +0800 (GMT+08:00)
-Message-ID: <e1f0610d-bb63-4b11-88a2-29432529b9f4@rock-chips.com>
-Date: Sun, 15 Dec 2024 10:32:38 +0800
+	s=arc-20240116; t=1734233223; c=relaxed/simple;
+	bh=830HsbL0q2xNoiQ5LgkvYv9oN8LAN7Z2evbpnxvOz/4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZGjXJSXZc0SOrhmAD3KAl4KinTLmQ+sXHLCbBFLA2hGrlQQ/kKMngtBmyvj3ziqmGH1H8+69aTxwdNUAyQlUZE1w/+iwrq96QfE+p0ZSt/zuqr2Jbq2a/aXnjpbu4VDgapAbkqSoSkjBcd7vm0WHO/UzbDPrlNaZ25gYVD10aZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pjm3QGAn; arc=none smtp.client-ip=209.85.166.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-3a8f1c97ef1so8859025ab.2;
+        Sat, 14 Dec 2024 19:27:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734233221; x=1734838021; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ii1hnMOWs8P6i05hyvRw7w3VSS/NET2YVPksEA1Jyw4=;
+        b=Pjm3QGAnReNl4iccPEB09QmB9UKQT0SgS04x8j/wDp+KNoFVT6BdnIsQOJURrKJoLi
+         Bav/m042mrhx4ANr4O6D92htuL+hQT2o6QAfO24GzCU2OdtDFeiycOaUBhO8lNqaJreZ
+         0EaRMQP9YnBvwUyedamydCtyin3X6QWh8x7sYqX5pU7afSSK+d8s9IST9Xep/jUpcozx
+         an2ItzuDjJzbPIzRFXWfbs6gIIIpJ6EXYoafcct3usUkNaRxNP/mvLpNAFn7YDmT3Q2b
+         0Vp3UzSU8LEAOhFnWKi5u2TvYFq1/FTcWTf3HodrWkuHBFt4tk8b41nL+KfBFuFIKP7O
+         3tsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734233221; x=1734838021;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ii1hnMOWs8P6i05hyvRw7w3VSS/NET2YVPksEA1Jyw4=;
+        b=HA9qNhcZ0bTI/wZASgXx6AM9OTb0g7cr0E+e9dm7V56VuBe+YPzCUbhMbhn10KQe/B
+         sheiZpw17p8lpgFJjuYjHMCpWC7wY+MCEgfzQ75Yd21TH0dvnTOPHGNBn/DWuf07mQlW
+         DiAvWUzhE4o4GLQeAfN+6oqHOtvtfSWYZ1MU89ocmI5Y6EFDjTeNpz2QomT2j0hE+oCz
+         WdPra6NfMOFAFcLujyKWtJiTQ2O9w4WMFWfP01fkusfhB7agmwj5xm+tQcUjvqVktSVm
+         d/N/ynARoejETGIRoDdV8XC7OaogkMov1NESiQgWY1SafP6tybh65Tn0xsFfykwhGJoU
+         oFOw==
+X-Forwarded-Encrypted: i=1; AJvYcCUO2lF0Co/L0Oe1VrDm+AAE/3FuHEUUpbQxoEalDryI4miBG52TeLZ6xPlgaN4xznbsSfcxmVaiczCB@vger.kernel.org, AJvYcCX0Dqe8QiN8aGWGq8F4f58rNT7iaJ+q3l6MSixtIDGPUMgNyFdPfT4bTMCb/PS9AGDJw1DTCcYXSz8=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy47leZ/Wg3+9spIDCs/RBC9XW8mzXgtaa2QZae8DgVm907ybia
+	77SIVWhiX5XUocTtGhep7FR6Y+viRNCelzCKpxpVWNnwnor3gX8hc7gBWw==
+X-Gm-Gg: ASbGnctng8cK7O1I7ZcAGSJdJJDUoPsJSGdEjHg+THyNv5vJaOUG6nNFMNXa/vq2PTC
+	I9KDJGxwlRxSeDdYaBRBs72APw+n32d+G76hgwyhiGf8hJwQttepk1A5RLRo6bZwJI3FogW0ucq
+	WktshRpWHyCCZuWsz/RFOx3L3UuQYiQolI/GjUIUEGIR8mMB10KTPV00RhDxvHVkIcP74OA/6mG
+	zhjN7CxwfDvl3wvDsJnWeTQAFkQ9B4n+506uMm8RGfZwKfDeFcsaSrCemL/I3wAmhlOexRBfNkj
+	5FH3uFrl70maMsLfndXvBHtsp6I=
+X-Google-Smtp-Source: AGHT+IGpwOE2wJxAOjLF0bAQQL6FoFKJ9XLm19p53xYBVuz+j8h2VFlGeMGJVVbDBavTQ6Ov2c1eDA==
+X-Received: by 2002:a05:6e02:164f:b0:3a7:8208:b847 with SMTP id e9e14a558f8ab-3aff8c91872mr79670485ab.22.1734233220827;
+        Sat, 14 Dec 2024 19:27:00 -0800 (PST)
+Received: from localhost.localdomain (65-128-205-244.mpls.qwest.net. [65.128.205.244])
+        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3b2482298c6sm7755575ab.31.2024.12.14.19.26.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Dec 2024 19:26:59 -0800 (PST)
+From: Shimrra Shai <shimrrashai@gmail.com>
+To: linux-kernel@vger.kernel.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	heiko@sntech.de,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pm@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	robh@kernel.org,
+	Shimrra Shai <shimrrashai@gmail.com>
+Subject: [PATCH v3 0/3] arm64: dts: rockchip: Add Firefly ITX-3588J Board
+Date: Sat, 14 Dec 2024 21:24:52 -0600
+Message-ID: <20241215032507.4739-1-shimrrashai@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Damon Ding <damon.ding@rock-chips.com>
-Subject: Re: [PATCH v1 00/10] Add eDP support for RK3588
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
- cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
- andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
- kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org
-References: <20241127075157.856029-1-damon.ding@rock-chips.com>
- <5939852.zQ0Gbyo6oJ@diego>
-Content-Language: en-US
-In-Reply-To: <5939852.zQ0Gbyo6oJ@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGR5JSlYZTUhLT0wfTENJTh5WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a93c8291fde03a3kunm5bf41739
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PD46CSo4TzIPUSM#ChdCKTgy
-	SjwKCghVSlVKTEhPSUlCQk1LSklDVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFPTEtCNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=PFRY8KixxPIQEViF7qwLqT/gkORCvKmT17vHXMLWltSgq+Blf9mwMLC2/jBR7T9ZCjXX+xz/TCfaztVTyz+EKWltg6diYHIKj+8z+Hon7+TJazNFF5qSoXvbM+iadgYafNwFWxKxjCPnyaki93zTVanXhcQMY6Csg+ZkKLeRDgU=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=g1p9y8WVTZB74L//6+ABz7CWQWr9pmRvHJbZBmlw+AM=;
-	h=date:mime-version:subject:message-id:from;
 
-Hi Heiko,
+This is the 3rd draft of the device tree proposal for the Firefly ITX-3588J
+board. The same functionality issues as before are still outstanding;
+however I have cleaned up the style and structure as per the comments by
+Heiko Stübner on version 2. Of particular note is the splitting of the
+device tree source into two files because this platform actually consists
+of two boards: the ITX-3588J baseboard and a single Core-3588J compute
+module stuck in a slot on it.
 
-On 2024/12/6 22:35, Heiko Stübner wrote:
-> Hi Daemon,
-> 
-> Am Mittwoch, 27. November 2024, 08:51:47 CET schrieb Damon Ding:
->> These patchs have been tested with a 1536x2048p60 eDP panel on
->> RK3588S EVB1 board, and HDMI 1080P/4K display also has been verified
->> on RK3588 EVB1 board.
->>
->> Patch 1~3 are the RK3588 eDP support of Rockchip analogix_dp driver.
->> Patch 4   is the eDP mode support of samsung hdptx phy driver.
->> Patch 5~6 are the Rk3588 eDP support of Aanalogix DP driver. Add phy
->>            interfaces is to configure the HDMI/eDP TX Combo PHY.
->> Patch 7~8 are the renaming of hdptxphy node. It is not only used by
->>            HDMI display but also for the eDP display.
->> Patch 9   is the addition of RK3588 eDP0 node.
->> Patch 10  is to enable the eDP0 display on RK3588S EVB1 board.
-> 
-> Could you maybe also bring over functionality for real bridge-handling?
-> That way we'd have support for things like the dp-connector bridge.
-> 
-> In the 6.1 vendor-tree I've found commits
-> 94e598190128 ("drm/rockchip: analogix_dp: Add support for external bridge")
-> 437e0a901b14 ("drm/bridge: analogix_dp: Support split mode for bridge chain")
-> 
-> needing a bit of cleanup of course, but that would get rid of the driver
-> not handling the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag too.
-> 
-> With a bit of streamlining, we could maybe even get rid of the panel-part
-> completely, similar to how the dw-dsi controllers do it [0]
-> 
-> 
+ - Shimrra Shai.
 
-Indeed, the patches related to the bridge support have not been included 
-in this series. My intention was to first implement the basic display 
-functionality, and then gradually add other features, including the 
-support for bridge-handling. Otherwise, this series of patches may be 
-too large. :-)
+Shimrra Shai (3):
+  arm64: dts: rockchip: add DTs for Firefly ITX-3588J and its Core-3588J
+    SoM
+  dt-bindings: pinctrl: add header for PCA9555 GPIO extender bindings on
+    some Rockchip-based devices
+  dt-bindings: arm: rockchip: Add Firefly ITX-3588J board
 
-What's more, RK3576 SoC also supports the eDP display, so the subsequent 
-patch series will come soon.
+ .../devicetree/bindings/arm/rockchip.yaml     |   7 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../rockchip/rk3588-firefly-core-3588j.dtsi   | 453 +++++++++++
+ .../dts/rockchip/rk3588-firefly-itx-3588j.dts | 712 ++++++++++++++++++
+ .../dt-bindings/pinctrl/rockchip-pca9555.h    |  31 +
+ 5 files changed, 1204 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-firefly-core-3588j.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-firefly-itx-3588j.dts
+ create mode 100644 include/dt-bindings/pinctrl/rockchip-pca9555.h
 
-> 
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c#n335
-> devm_drm_of_get_bridge() combines drm_of_find_panel_or_bridge()
-> with devm_drm_panel_bridge_add(), so indepent of it being either a
-> panel or other bridge, the driver below only needs to handle bridges.
-> 
->> Damon Ding (10):
->>    drm/rockchip: analogix_dp: Use formalized struct definition for grf
->>      field
->>    dt-bindings: display: rockchip: analogix-dp: Add support for RK3588
->>    drm/rockchip: analogix_dp: Add support for RK3588
->>    phy: phy-rockchip-samsung-hdptx: Add support for eDP mode
->>    drm/bridge: analogix_dp: add support for RK3588
->>    drm/bridge: analogix_dp: Add support for phy configuration.
->>    dt-bindings: display: rockchip: Fix label name of hdptxphy for RK3588
->>      HDMI TX Controller
->>    arm64: dts: rockchip: Fix label name of hdptxphy for RK3588
->>    arm64: dts: rockchip: Add eDP0 node for RK3588
->>    arch64: dts: rockchip: Enable eDP0 display on RK3588S EVB1 board
->>
->>   .../rockchip/rockchip,analogix-dp.yaml        |   1 +
->>   .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml  |   2 +-
->>   arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  33 +-
->>   .../dts/rockchip/rk3588-coolpi-cm5-evb.dts    |   2 +-
->>   .../rockchip/rk3588-coolpi-cm5-genbook.dts    |   2 +-
->>   .../boot/dts/rockchip/rk3588-evb1-v10.dts     |   2 +-
->>   .../rk3588-friendlyelec-cm3588-nas.dts        |   2 +-
->>   .../arm64/boot/dts/rockchip/rk3588-jaguar.dts |   2 +-
->>   .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   |   2 +-
->>   .../dts/rockchip/rk3588-orangepi-5-plus.dts   |   2 +-
->>   .../boot/dts/rockchip/rk3588-rock-5b.dts      |   2 +-
->>   .../boot/dts/rockchip/rk3588-tiger-haikou.dts |   2 +-
->>   .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   |   2 +-
->>   .../boot/dts/rockchip/rk3588s-evb1-v10.dts    |  84 ++
->>   .../dts/rockchip/rk3588s-indiedroid-nova.dts  |   2 +-
->>   .../boot/dts/rockchip/rk3588s-nanopi-r6.dtsi  |   2 +-
->>   .../boot/dts/rockchip/rk3588s-odroid-m2.dts   |   2 +-
->>   .../boot/dts/rockchip/rk3588s-orangepi-5.dtsi |   2 +-
->>   .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   2 +-
->>   .../boot/dts/rockchip/rk3588s-rock-5c.dts     |   2 +-
->>   .../drm/bridge/analogix/analogix_dp_core.c    |   8 +-
->>   .../drm/bridge/analogix/analogix_dp_core.h    |   2 +
->>   .../gpu/drm/bridge/analogix/analogix_dp_reg.c |  90 ++
->>   .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 112 ++-
->>   .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 936 +++++++++++++++++-
->>   include/drm/bridge/analogix_dp.h              |   3 +-
->>   26 files changed, 1206 insertions(+), 97 deletions(-)
->>
->>
-> 
-> 
-> 
-> 
-> 
-> 
-Best regards,
-Damon
-
+-- 
+2.45.2
 
 
