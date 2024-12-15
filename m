@@ -1,139 +1,340 @@
-Return-Path: <devicetree+bounces-131178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3299F23E2
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 13:47:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E8529F23F8
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 13:55:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C682164D8B
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 12:47:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6514E164ECA
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 12:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4117714E2C2;
-	Sun, 15 Dec 2024 12:46:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7DBA186E46;
+	Sun, 15 Dec 2024 12:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dtPCKDL9"
+	dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b="Z7OF1xrl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD901E871;
-	Sun, 15 Dec 2024 12:46:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734266817; cv=none; b=sVgAFclJBwMYwQRxbMK+lAZxnDRLBnRjrfvvC8Bi89FjWUgr3D7hxxK9+sPX12kMU9dRTNU7foDZQG2Q1YETz5VR/U+100hJdwZR5sxokEfeygbk2e2tyfdUs9fsg66dar2YkcK2oVUb6Wk/p12S+/g6Cf5Eddlfa+6ypxDcPzg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734266817; c=relaxed/simple;
-	bh=+I511b+b+vwNhO6JeznuVo4Xu6HcmHb9VvSDWCZP1KQ=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=sSd5zjPHgp0PCEQftTWgy3wdO0JBVQ/BrJvgapxYMIwaTM6PDHxkAHdKK7Q43nw2ziHLQWifaqJetemz/aw5WHkwvqLXpurFpDTzyA1qpMDalkUrMgr0rRGzDQoroVwJbbdvjAqUu40r7N5QAdR378gRnE/GnSXVDqK6CerIDKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dtPCKDL9; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-21683192bf9so29965195ad.3;
-        Sun, 15 Dec 2024 04:46:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734266815; x=1734871615; darn=vger.kernel.org;
-        h=message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wtiXrhlLULhmcmYD7/J70YHVMioWnzIVKEMBp1SpeEc=;
-        b=dtPCKDL9clVKcq0dIsg/WDPQMFZ+LNzlLaN2ULpJ/flr6dSgaBv/YHJqkovXx3F+dm
-         YNTFC+nsLa2/pDSE4ESEjLdeE22t65Zk26XcT2HPjdUJwlUQyu+QL6fCJS0hbYeTqKnk
-         +u74oXV6vj6veKdB+5GiDTj2IZPywS5cshgiRVFiv9wjHXIDNqow1z5fY7W0wXIl251o
-         s/z7tG2PIK1H/BdqzNtCVhz6JnLW2rsif+rBp+898Rv19FD0eVFsjfqr1C+EdX6x67Fh
-         Wxa8YdYBxc3KgKi0HxC/sqqHhlMsnsT5tJCji1NQf0NshsmNy2fjI7P8MKiJPv9+4OKI
-         gkzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734266815; x=1734871615;
-        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wtiXrhlLULhmcmYD7/J70YHVMioWnzIVKEMBp1SpeEc=;
-        b=EFDpsVHaw2MkGT2Hdor4gTNV1YGXfijqheI/9QA6Z9FBCoemWVxNODAuHDyX3C1bzT
-         cfcuti+hErBHtxncC8iPaghHq0t6MsXef5pnwq935oVR5OAo6btXlTE/Zl1K26u6FCwI
-         1JS23khvSMsf5rQl9IYgT5/kiPGpwnSkptMpht9ulzMGnDdcQ5JlF7ScVRjTTVPJ2g2h
-         /JBbQL4F8hePSY8KM944vxR6tKk7tHj56WC0+uM2iEJOw0lE7fyrP26vsYOgiN7KqsFU
-         ZxsNaF9ItnbOEh5d6ouWZbVAMQzBtMVbgQ/D8tKVorABGusPywNkQvRJn0M+VGnifSWa
-         4AEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWKs2RKb1U4Ma6CeFVJtB9/GxIAD4feGi278EF6AqIAsR+RTj6++95WSp/PK/5bjPrM1y+xaChpZjfVOInr@vger.kernel.org, AJvYcCWMnlt5CHVqUU83rGhxsYEf7FG1rOcYcHkRsGHXQIAmrctuvSdra55Je6YskVTOV6ZrGw51KZ7rkbZ/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0Nx522o+CZi4bPdnxnY/3NjhrP5lWCpZiRIE/olfdm26M+Sp6
-	H6/sLM7FS4Q93ah2l981UjU34a6lx2qqvFqvC0nMwyz+oy2heUst/+fPiZJT
-X-Gm-Gg: ASbGncsQyFGksUqA99WjLX1AksZqNWhFb4cSyctPSC/bQ8dO8wElZ8saZ2RgeQju9lQ
-	sI6/zJA/z36/LiIIlGx7K7WH7EQvUdU+h7Uw39yCnu6grVD2alvgpswocQuKfOicu1YrSb+Ks4Z
-	p1Bh1U9xCQKYjleBNEFyVKNHFkWxUfqqJZlE4gJprM2SSjRMBg76OO4usXoqG3qp+H7a1S/gBxW
-	YVTvk5DkpdKh0BrNn4zFxfyQ9Lyj7GY9O8AVf7z6hcOr7gr8rpgnRcK/wTwQaTrXw==
-X-Google-Smtp-Source: AGHT+IGBw3Ak9JZg78wP4qokuJz69rQ9vPtcZmHcQY7f0i4Ako2nJam/OWxJdVyjDdoako8K1O+wIQ==
-X-Received: by 2002:a17:903:22c7:b0:212:67a5:ab2d with SMTP id d9443c01a7336-21892a3fdf8mr136561135ad.44.1734266814930;
-        Sun, 15 Dec 2024 04:46:54 -0800 (PST)
-Received: from localhost ([36.45.249.146])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f142d90d07sm6214608a91.3.2024.12.15.04.46.53
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 15 Dec 2024 04:46:54 -0800 (PST)
-From: joswang <joswang1221@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: gregkh@linuxfoundation.org,
-	amitsd@google.com,
-	dmitry.baryshkov@linaro.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jos Wang <joswang@lenovo.com>
-Subject: [PATCH 1/2] dt-bindings: connector: Add time property for sender response
-Date: Sun, 15 Dec 2024 20:46:27 +0800
-Message-Id: <20241215124627.70525-1-joswang1221@gmail.com>
-X-Mailer: git-send-email 2.17.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 903E51E871;
+	Sun, 15 Dec 2024 12:55:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.185.170.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734267344; cv=pass; b=sF9Ycq1UKxOY3zj+7NxMxaSP0NF+UgQ3WD0z3idRDb5uuBbxRKKNuU6G3D9kd5veJf96CCEc8iKYy6YKpEy54QqzmAkL7vKU2penm6XCy3JsChqJmWMV1fxQMJ1TlXR4XtuRf+8f/cGZxncqFet2yc9x3Mm0p7QvBCmcTx+jw14=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734267344; c=relaxed/simple;
+	bh=rEZaEAFKnMrfg/tX14BFwsY8wnDKODljdvXXnlo1Xgk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A7m33q3s7e4/SsovFg0Ih3W8hP6My4ofL5OHCz0+XAhUn3FWMltJmi4deGI3/p3Y+4g6vcbiIYI+7MwronmP/swDCAxVUBe8KPypuFPORJPIa7YOcXE+LLmFcKIU1Q+i3FQgpvH57joBB0lYcKf8FRWflCHxVMt1Ea27qa7RzSM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (2048-bit key) header.d=iki.fi header.i=@iki.fi header.b=Z7OF1xrl; arc=pass smtp.client-ip=185.185.170.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 4YB32z3c7Jz49QBk;
+	Sun, 15 Dec 2024 14:55:39 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+	t=1734267339;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=rR6pZZS0ZDDFfUHhWMUaeQf9IKgj0ketQ2YGNGavCF0=;
+	b=Z7OF1xrl2/DLXFi+OxNlp8Tet3vO0Slf/sVBkH68AobQrHeUMXiwPG27brZmuTs056Vq9d
+	vfh+VTAiq9sLNGyQ4Di95J8EbwO9aZzpk3dWfcVlSQSwYqoniG6AmY7I/LjohAVrc4IO9q
+	BWGFmqG1VFNVny5jGTGqsur5km/hcuBtkMXvKHaZEjrLd0syf5dZnICpg/l44QvTfRgNwo
+	tfkeTDx+jzXQ57EbQlvTzIvjfJg2vmBaspfpTkfxHdMr0kFG3dSsdCESX2FtuRwmTZCfd3
+	IV2SSwijt9YG9K+RVhtsD0PRDxXOUS1+ZIEndNRnG0MXP95kLqOAeRnkCoIDnQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=lahtoruutu; t=1734267339;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=rR6pZZS0ZDDFfUHhWMUaeQf9IKgj0ketQ2YGNGavCF0=;
+	b=sZYEBqMLfaqjU/1vEASnZ2Mvfet5EWs1rKA5be1F2h3SkbAqcu9hA7PcVfuWpzMpZ4/nWI
+	kww6iyevduvcqNs8STT9uFnFtb0ne1Fv5Gp2WWynnbsxM9P/dWETS3lxJ1xfVT198MGy6n
+	4DaBAkwcZNvsQLJf48MovlOO+PRPQcg9Lz8VFQ3Ty3issCpZmUMLdU6hZ1NU+3kb0QBbE2
+	KIL26Dx8/afIMjDJz9NUM7Jq3FGMS49jjz9It1L3jpPlksuA7WWIYZRQBAW2xfYxE0dORq
+	x+HgPa8V1p+l/NtzFrd3dYJBQvmsByoOb7OnLLkm5DpkekJW3WPRBAbNlDdl5Q==
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1734267339; a=rsa-sha256;
+	cv=none;
+	b=hhcNrbF4GI3xil+8BGByigVJSpnagb9EFPiKU/pgIikybFf8QdlqYWGQlO9YeJosfi0irX
+	REHxFfhIZ//MACBCYedu/tmkXsxLyfdqu8VpYS/3Bo7mykC0Gmsg3eQFBxpSLMnjBMyec8
+	xZlLSwvi6hhve1iEp9rw9Ct1VI6AYJv6MBVpiBAPcxb/PUBBllcmKHcuuO4BpNBk2FWcWJ
+	/uqdTBv3EW+YYYj+AFHTxzSfpiGAa0h8oUPyQ3Uwxpx+/PSleE2f9/qt+62uv49djmONXD
+	k1gvTYFTY1pMon/fUuH4EXGrpz52PKccFn8fh2vb4xd6vaXY6EehRNrmfj9lOQ==
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 27CD3634C94;
+	Sun, 15 Dec 2024 14:55:39 +0200 (EET)
+Date: Sun, 15 Dec 2024 12:55:39 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Hugues Fruchet <hugues.fruchet@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 13/15] media: stm32: dcmipp: add core support for the
+ stm32mp25
+Message-ID: <Z17Ry6Z9OMqP1MV-@valkosipuli.retiisi.eu>
+References: <20241212-csi_dcmipp_mp25-v4-0-fbeb55a05ed7@foss.st.com>
+ <20241212-csi_dcmipp_mp25-v4-13-fbeb55a05ed7@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241212-csi_dcmipp_mp25-v4-13-fbeb55a05ed7@foss.st.com>
 
-From: Jos Wang <joswang@lenovo.com>
+Hi Alain,
 
-This commit adds the following properties:
-  * pd2-sender-response-time-ms
-  * pd3-sender-response-time-ms
+On Thu, Dec 12, 2024 at 10:17:37AM +0100, Alain Volmat wrote:
+> The stm32mp25 supports both parallel & csi inputs.
+> An additional clock control is necessary.
+> Skeleton of the subdev structures for the stm32mp25 is added,
+> identical for the time being to the stm32mp13 however more subdeves
+> will be added in further commits.
+> 
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+> ---
+> v4:
+>   - correct clock handling within dcmipp_runtime_resume
+> ---
+>  .../platform/st/stm32/stm32-dcmipp/dcmipp-core.c   | 104 +++++++++++++++++----
+>  1 file changed, 85 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c b/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c
+> index 62dd17e0488d..71acf539e1f3 100644
+> --- a/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c
+> +++ b/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c
+> @@ -40,6 +40,7 @@ struct dcmipp_device {
+>  
+>  	/* Hardware resources */
+>  	void __iomem			*regs;
+> +	struct clk			*mclk;
+>  	struct clk			*kclk;
+>  
+>  	/* The pipeline configuration */
+> @@ -132,6 +133,40 @@ static const struct dcmipp_pipeline_config stm32mp13_pipe_cfg = {
+>  	.hw_revision	= DCMIPP_STM32MP13_VERR
+>  };
+>  
+> +static const struct dcmipp_ent_config stm32mp25_ent_config[] = {
+> +	{
+> +		.name = "dcmipp_input",
+> +		.init = dcmipp_inp_ent_init,
+> +		.release = dcmipp_inp_ent_release,
+> +	},
+> +	{
+> +		.name = "dcmipp_dump_postproc",
+> +		.init = dcmipp_byteproc_ent_init,
+> +		.release = dcmipp_byteproc_ent_release,
+> +	},
+> +	{
+> +		.name = "dcmipp_dump_capture",
+> +		.init = dcmipp_bytecap_ent_init,
+> +		.release = dcmipp_bytecap_ent_release,
+> +	},
+> +};
+> +
+> +static const struct dcmipp_ent_link stm32mp25_ent_links[] = {
+> +	DCMIPP_ENT_LINK(ID_INPUT, 1, ID_DUMP_BYTEPROC, 0,
+> +			MEDIA_LNK_FL_ENABLED | MEDIA_LNK_FL_IMMUTABLE),
+> +	DCMIPP_ENT_LINK(ID_DUMP_BYTEPROC, 1, ID_DUMP_CAPTURE,  0,
+> +			MEDIA_LNK_FL_ENABLED | MEDIA_LNK_FL_IMMUTABLE),
+> +};
+> +
+> +#define DCMIPP_STM32MP25_VERR  0x30
+> +static const struct dcmipp_pipeline_config stm32mp25_pipe_cfg = {
+> +	.ents		= stm32mp25_ent_config,
+> +	.num_ents	= ARRAY_SIZE(stm32mp25_ent_config),
+> +	.links		= stm32mp25_ent_links,
+> +	.num_links	= ARRAY_SIZE(stm32mp25_ent_links),
+> +	.hw_revision    = DCMIPP_STM32MP25_VERR
+> +};
+> +
+>  #define LINK_FLAG_TO_STR(f) ((f) == 0 ? "" :\
+>  			     (f) == MEDIA_LNK_FL_ENABLED ? "ENABLED" :\
+>  			     (f) == MEDIA_LNK_FL_IMMUTABLE ? "IMMUTABLE" :\
+> @@ -212,6 +247,7 @@ static int dcmipp_create_subdevs(struct dcmipp_device *dcmipp)
+>  
+>  static const struct of_device_id dcmipp_of_match[] = {
+>  	{ .compatible = "st,stm32mp13-dcmipp", .data = &stm32mp13_pipe_cfg },
+> +	{ .compatible = "st,stm32mp25-dcmipp", .data = &stm32mp25_pipe_cfg },
+>  	{ /* end node */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, dcmipp_of_match);
+> @@ -261,13 +297,22 @@ static int dcmipp_graph_notify_bound(struct v4l2_async_notifier *notifier,
+>  {
+>  	struct dcmipp_device *dcmipp = notifier_to_dcmipp(notifier);
+>  	unsigned int ret;
+> -	int src_pad;
+> +	int src_pad, i;
 
-This is to enable setting of platform/board specific timer values as
-these timers have a range of acceptable values.
+unsigned int?
 
-Signed-off-by: Jos Wang <joswang@lenovo.com>
----
- .../bindings/connector/usb-connector.yaml     | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
+>  	struct dcmipp_ent_device *sink;
+> -	struct v4l2_fwnode_endpoint vep = { .bus_type = V4L2_MBUS_PARALLEL };
+> +	struct v4l2_fwnode_endpoint vep = { 0 };
+>  	struct fwnode_handle *ep;
+> +	enum v4l2_mbus_type supported_types[] = {
+> +		V4L2_MBUS_PARALLEL, V4L2_MBUS_BT656, V4L2_MBUS_CSI2_DPHY
+> +	};
+> +	int supported_types_nb = ARRAY_SIZE(supported_types);
+>  
+>  	dev_dbg(dcmipp->dev, "Subdev \"%s\" bound\n", subdev->name);
+>  
+> +	/* Only MP25 supports CSI input */
+> +	if (!of_device_is_compatible(dcmipp->dev->of_node,
+> +				     "st,stm32mp25-dcmipp"))
 
-diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-index 67700440e23b..83be66f6d406 100644
---- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-+++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-@@ -293,6 +293,26 @@ properties:
-       PD negotiation till BC1.2 detection completes.
-     default: 0
- 
-+  pd2-sender-response-time-ms:
-+    description: Represents the PD20 max time in ms that port started from
-+      the time the last bit of the GoodCRC Message EOP has been received by
-+      the Physical Layer, it shall be stopped when the last bit of the expected
-+      response Message EOP has been received by the Physical Layer. A timeout
-+      leads to a hard reset message by the port.
-+    minimum: 24
-+    maximum: 30
-+    default: 27
-+
-+  pd3-sender-response-time-ms:
-+    description: Represents the PD30 max time in ms that port started from
-+      the time the last bit of the GoodCRC Message EOP has been received by
-+      the Physical Layer, it shall be stopped when the last bit of the expected
-+      response Message EOP has been received by the Physical Layer. A timeout
-+      leads to a hard reset message by the port.
-+    minimum: 27
-+    maximum: 33
-+    default: 30
-+
- dependencies:
-   sink-vdos-v1: [ sink-vdos ]
-   sink-vdos: [ sink-vdos-v1 ]
+This would be much cleaner with match data. You seem to already be using it
+for other purposes. 
+
+> +		supported_types_nb--;
+> +
+>  	/*
+>  	 * Link this sub-device to DCMIPP, it could be
+>  	 * a parallel camera sensor or a CSI-2 to parallel bridge
+> @@ -284,21 +329,23 @@ static int dcmipp_graph_notify_bound(struct v4l2_async_notifier *notifier,
+>  		return -ENODEV;
+>  	}
+>  
+> -	/* Check for parallel bus-type first, then bt656 */
+> -	ret = v4l2_fwnode_endpoint_parse(ep, &vep);
+> -	if (ret) {
+> -		vep.bus_type = V4L2_MBUS_BT656;
+> +	/* Check for supported MBUS type */
+> +	for (i = 0; i < supported_types_nb; i++) {
+> +		vep.bus_type = supported_types[i];
+>  		ret = v4l2_fwnode_endpoint_parse(ep, &vep);
+> -		if (ret) {
+> -			dev_err(dcmipp->dev, "Could not parse the endpoint\n");
+> -			fwnode_handle_put(ep);
+> -			return ret;
+> -		}
+> +		if (!ret)
+> +			break;
+>  	}
+>  
+>  	fwnode_handle_put(ep);
+>  
+> -	if (vep.bus.parallel.bus_width == 0) {
+> +	if (ret) {
+> +		dev_err(dcmipp->dev, "Could not parse the endpoint\n");
+> +		return ret;
+> +	}
+> +
+> +	if (vep.bus_type != V4L2_MBUS_CSI2_DPHY &&
+> +	    vep.bus.parallel.bus_width == 0) {
+>  		dev_err(dcmipp->dev, "Invalid parallel interface bus-width\n");
+>  		return -ENODEV;
+>  	}
+> @@ -311,11 +358,13 @@ static int dcmipp_graph_notify_bound(struct v4l2_async_notifier *notifier,
+>  		return -ENODEV;
+>  	}
+>  
+> -	/* Parallel input device detected, connect it to parallel subdev */
+> +	/* Connect input device to the dcmipp_input subdev */
+>  	sink = dcmipp->entity[ID_INPUT];
+> -	sink->bus.flags = vep.bus.parallel.flags;
+> -	sink->bus.bus_width = vep.bus.parallel.bus_width;
+> -	sink->bus.data_shift = vep.bus.parallel.data_shift;
+> +	if (vep.bus_type != V4L2_MBUS_CSI2_DPHY) {
+> +		sink->bus.flags = vep.bus.parallel.flags;
+> +		sink->bus.bus_width = vep.bus.parallel.bus_width;
+> +		sink->bus.data_shift = vep.bus.parallel.data_shift;
+> +	}
+>  	sink->bus_type = vep.bus_type;
+>  	ret = media_create_pad_link(&subdev->entity, src_pad, sink->ent, 0,
+>  				    MEDIA_LNK_FL_IMMUTABLE |
+> @@ -414,7 +463,7 @@ static int dcmipp_graph_init(struct dcmipp_device *dcmipp)
+>  static int dcmipp_probe(struct platform_device *pdev)
+>  {
+>  	struct dcmipp_device *dcmipp;
+> -	struct clk *kclk;
+> +	struct clk *kclk, *mclk;
+>  	const struct dcmipp_pipeline_config *pipe_cfg;
+>  	struct reset_control *rstc;
+>  	int irq;
+> @@ -474,12 +523,20 @@ static int dcmipp_probe(struct platform_device *pdev)
+>  		return ret;
+>  	}
+>  
+> -	kclk = devm_clk_get(&pdev->dev, NULL);
+> +	kclk = devm_clk_get(&pdev->dev, "kclk");
+>  	if (IS_ERR(kclk))
+>  		return dev_err_probe(&pdev->dev, PTR_ERR(kclk),
+>  				     "Unable to get kclk\n");
+>  	dcmipp->kclk = kclk;
+>  
+> +	if (!of_device_is_compatible(pdev->dev.of_node, "st,stm32mp13-dcmipp")) {
+
+Same here.
+
+> +		mclk = devm_clk_get(&pdev->dev, "mclk");
+> +		if (IS_ERR(mclk))
+> +			return dev_err_probe(&pdev->dev, PTR_ERR(mclk),
+> +					     "Unable to get mclk\n");
+> +		dcmipp->mclk = mclk;
+> +	}
+> +
+>  	dcmipp->entity = devm_kcalloc(&pdev->dev, dcmipp->pipe_cfg->num_ents,
+>  				      sizeof(*dcmipp->entity), GFP_KERNEL);
+>  	if (!dcmipp->entity)
+> @@ -542,6 +599,7 @@ static int dcmipp_runtime_suspend(struct device *dev)
+>  	struct dcmipp_device *dcmipp = dev_get_drvdata(dev);
+>  
+>  	clk_disable_unprepare(dcmipp->kclk);
+> +	clk_disable_unprepare(dcmipp->mclk);
+>  
+>  	return 0;
+>  }
+> @@ -551,9 +609,17 @@ static int dcmipp_runtime_resume(struct device *dev)
+>  	struct dcmipp_device *dcmipp = dev_get_drvdata(dev);
+>  	int ret;
+>  
+> +	ret = clk_prepare_enable(dcmipp->mclk);
+> +	if (ret) {
+> +		dev_err(dev, "%s: Failed to prepare_enable mclk\n", __func__);
+> +		return ret;
+> +	}
+> +
+>  	ret = clk_prepare_enable(dcmipp->kclk);
+> -	if (ret)
+> +	if (ret) {
+> +		clk_disable_unprepare(dcmipp->mclk);
+>  		dev_err(dev, "%s: Failed to prepare_enable kclk\n", __func__);
+> +	}
+>  
+>  	return ret;
+>  }
+> 
+> 
+
 -- 
-2.17.1
+Kind regards,
 
+Sakari Ailus
 
