@@ -1,221 +1,132 @@
-Return-Path: <devicetree+bounces-131155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46DFB9F2304
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 10:41:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98A329F2341
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 12:06:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62A3816594B
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 09:41:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CEB8C7A0F54
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 11:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6167149DF0;
-	Sun, 15 Dec 2024 09:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0604148FE6;
+	Sun, 15 Dec 2024 11:06:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ejXzFaYb"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="Z6u1m/gC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE34EBE;
-	Sun, 15 Dec 2024 09:41:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D8A31171C;
+	Sun, 15 Dec 2024 11:06:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734255710; cv=none; b=O7Rjz1uCB8nwVSsBGIUvLxkzKs926awrdq7wu4bQl6oJpdc6epIpXSmg0J8vstTjQIPigKYfDwIPUEbK/fBh5P4H8yttFP5NtgRk8r2CGEuffb4jyXEY27MNKi9gn5O8d4j5RDtxAYY9KErgg+kIeXugbOd7IVmxCfEgj07FvoU=
+	t=1734260793; cv=none; b=JBekrnuDkg5yvUUMgGocyBz4IQ/15tvgb2rBss8dg22ZT/o2f5PT2mRD//qoaxFmSYtQCVJ1lkWWdpcO3n3PTXTwyDlpz/ZJ5N+UfMI2pHn80VjJzG7q+FrgTpxyDGuIg+eNeZKZ0haSpMUaheIoPBC3jdEcohFccVwB40uVk80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734255710; c=relaxed/simple;
-	bh=ePbSdZsRFiXqhNGHuSmR6Lslncho2ls6gSK5kjpaKPg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K7yZtOncGmsV4MHx5oZitqWW+MXzMGjUPd9qPUZC5DI7P1gaSdClG/aN+PS49FfC7WkDRxd7S2hum8I8RWCHo7fx9Nzo3b85eAtGA3/fxPE6+tUnP1U063d9Ig6R+vpLLl9sL7N7hUSobYb60qVqQi9QxVN+mC45LQ7b6RyEWK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ejXzFaYb; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6eed30536acso2381577b3.1;
-        Sun, 15 Dec 2024 01:41:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734255708; x=1734860508; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=G6/6+IunBBs1SWisZWZM0JmMebIt2yjPR7LbVi4W908=;
-        b=ejXzFaYb5prXUJIxSbr8wgD3/8GliCzvOy6oai/wtfwvDoavOV1fB58zFJK4HWRnNl
-         sQK3cyIHIGrgQepd+/XcDvm4Gx5UgcDdb9NOFwZ1Z7HPDfvfe/TV6vr5zLjgfPsD/2tW
-         Z2owu1mi7HqPoyPbX02AxrbFXWwA8kgCyHksfi0gciDbRCfn9qOJdknenM+woSbGUO9x
-         2V6Pt3njbPnzOctlk5dzXtJVkP48sIaRWmHY3WwjSPYFOKSx/1GAsX/Swy2vtk/FN1aa
-         ge71Zxv1z7sxwOkxcOmcYjIUn+yLCCkChhzzdarhme3oLDtYgd4ryzJJJkH2yG6El73n
-         g62Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734255708; x=1734860508;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=G6/6+IunBBs1SWisZWZM0JmMebIt2yjPR7LbVi4W908=;
-        b=XFrvPrae+es7ZbFAkRON4hG1wqhzCqs3J8qBHO7o5mLg49C/aoCJsizfR74FQXH2iu
-         EHgafP8oRimBwD3vkD8YzpAAl8asNXNm6yrMkyStkJu6/WG0hvBYgsPEt7W6VnQFpuZr
-         60tDrpzxwBwxRler2wA4gBrnPirpIML3qzCIqIJ3QLEvwr6S6Y8TzRzD+iDnP8sa3bTF
-         Q+lfqrJaWb2MsmWhAhuTALdB3KkNegIIZYvqEdDCQZcAzuvZes/334F6YX0yVS4rUFoK
-         BZgr0VSHitHQ7Qu29yospiSekARXw0/R8N3vpNc0fjDGE/sZoBH35fIgj1ODEHPugSOn
-         SOtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVSd5gPVojBlzvNpyMeb2R1VKJzJyuDMXVhtXWLcukSI1PhGoa8QgcuDxYF7Rc+TEAw8BIK6ywApnnV@vger.kernel.org, AJvYcCX1/LD3b3Gj3thWF8H9S2D7MEoi2GPUSfE5D6dEQNYPW6iej0+Mq1oFcuiJwOlCieF72tq7AMTOSnX2@vger.kernel.org, AJvYcCXyyQf20kAMI74G8NyM8YozvJTCGBuolkChN8zsbYmA1ZnISNyFI7KOrj8jbqHfP1G8GfvpLjcIohgBuo9j@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4LUJRMnQ7mA1JWvjicmSkh2bgatXFmLw7mm+eYGd2MZKagbvu
-	A9nVtLsnpULRPg/NKDZ3n9r2OrteIGP3ohVF/8PohPkFFmWkRxElkJq4iBV4MT6ONbj8/Y0fqYj
-	AmGp4I0UILyIo5wzcidZtS0gOGz0=
-X-Gm-Gg: ASbGnctMkFmCcX7U/viSuapYmlXovuRmcuGRMb7VGIOTI6rcXsXQs/i1QhJjA0fHITI
-	Wqw5AcKBJMVNgT0uITwm6z6S0aI0O+/Nzs2c/fQ==
-X-Google-Smtp-Source: AGHT+IFXZK0uLrnVPvZOazyEcoVczU6YFWv+84oNq4z+ofBIWMkP7pxXq5dEiQFaIEvZ+ujr+vpGotVtAUfJVOGqZQY=
-X-Received: by 2002:a05:690c:80a:b0:6f1:4f61:d0d1 with SMTP id
- 00721157ae682-6f279ad9fa0mr27223637b3.2.1734255708057; Sun, 15 Dec 2024
- 01:41:48 -0800 (PST)
+	s=arc-20240116; t=1734260793; c=relaxed/simple;
+	bh=FsSnXJ+yDk0Ahld3aH+y0j2Il9K5iNtDR7v10eoQTb4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rv8Qpv24xuo3Yj03EOlgpnW3gsmfG+IHN0F3OMUVucR/ZC4uj2GtSuI9sX9bOjnDrxBBPIOJiIe/OuZ8YJ7Ac73jyqvXI8OrzuPojn+hwlsJpoAcm5pt4GzdrRc6pzzSpWMFZMuqP2NBD0AlDXdpTjPv8oCDH/42MqGdiEvXek4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=Z6u1m/gC; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 8A7FD1F920;
+	Sun, 15 Dec 2024 12:06:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1734260783;
+	bh=pqmyyA9V+nWvG2IPtJHyJld9/5ghcdXXrxiPRuEcLP4=;
+	h=Received:Received:From:To:Subject;
+	b=Z6u1m/gCu7/Y4/nty/KowRsKY0JfM/YWRcK9HRgSxHkn1lzir9qs1B1/vVHjQjbHd
+	 3gPvpnMUaOZb1K+QhzvSHgqGfdFWZ3TbdPdDsTsLdKlkzi68XtrTlZElUNsSmS2X5w
+	 7htrwVBWblRsxcWurMJWuu1tyiDMuZFuuSv3Wxb1C3342s8wmUJuy6whejFpUXAnJT
+	 +z688M9HDurpTALx0ZJaTTQ9ore/FDTQUGrG6lesO9L0ZJLkKdfR00DhoSW3aYvROH
+	 7JI3K2GrsZXZixCXFo7eNfTNRpb8kSUqTGCQ6uNCi/AUeghkoYPiZIp7tLfJQQo9gN
+	 0gtTZwxecErTQ==
+Received: from livingston (unknown [192.168.42.11])
+	by gaggiata.pivistrello.it (Postfix) with ESMTP id 396ED7FACD;
+	Sun, 15 Dec 2024 12:06:23 +0100 (CET)
+Received: from pivi by livingston with local (Exim 4.96)
+	(envelope-from <francesco@dolcini.it>)
+	id 1tMmS7-0002m8-0H;
+	Sun, 15 Dec 2024 12:06:23 +0100
+Date: Sun, 15 Dec 2024 12:06:23 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Bryan Brattlof <bb@ti.com>
+Cc: Francesco Dolcini <francesco@dolcini.it>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62l: add initial infrastructure
+Message-ID: <Z164Lyg-AH8KBTYZ@livingston.pivistrello.it>
+References: <20241117-am62lx-v1-0-4e71e42d781d@ti.com>
+ <20241117-am62lx-v1-1-4e71e42d781d@ti.com>
+ <Z12rnZiCXQxtMWlf@livingston.pivistrello.it>
+ <20241214215624.e372oju6eserpf4f@bryanbrattlof.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241213211909.40896-1-l.rubusch@gmail.com> <20241213211909.40896-2-l.rubusch@gmail.com>
- <20241214120227.56b885fa@jic23-huawei>
-In-Reply-To: <20241214120227.56b885fa@jic23-huawei>
-From: Lothar Rubusch <l.rubusch@gmail.com>
-Date: Sun, 15 Dec 2024 10:41:12 +0100
-Message-ID: <CAFXKEHamiip3fVp1HNX4DZSzNnc7bMOQNg1RKsY45NbFymzr7g@mail.gmail.com>
-Subject: Re: [PATCH v7 1/7] iio: accel: adxl345: add function to switch
- measuring mode
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, eraretuya@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241214215624.e372oju6eserpf4f@bryanbrattlof.com>
 
-On Sat, Dec 14, 2024 at 1:02=E2=80=AFPM Jonathan Cameron <jic23@kernel.org>=
- wrote:
->
-> On Fri, 13 Dec 2024 21:19:03 +0000
-> Lothar Rubusch <l.rubusch@gmail.com> wrote:
->
-> > Replace the powerup / powerdown functions by a generic function to put
-> > the sensor in STANDBY, or MEASURE mode. When configuring the FIFO for
-> > several features of the accelerometer, it is recommended to put
-> > measuring in STANDBY mode.
-> >
-> > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
-> Mostly in the interests of trimming down the queue of patches in flight
-> and because this one has been fine for a few versions without significant
-> comment.
->
-> Applied this patch to the togreg branch of iio.git and pushed out initial=
-ly
-> as testing to let 0-day take a look.
->
+Hello Bryan,
 
-Question here: you applied this patch now to the iio branch. Now,
-Christophe Jaillet pointed still something out that could be improved,
-the function could be shortened to, e.g.
+On Sat, Dec 14, 2024 at 03:56:24PM -0600, Bryan Brattlof wrote:
+> On December 14, 2024 thus sayeth Francesco Dolcini:
+> > On Sun, Nov 17, 2024 at 11:34:07PM -0600, Bryan Brattlof wrote:
+> > > From: Vignesh Raghavendra <vigneshr@ti.com>
+> > > 
+> > > Add the initial infrastructure needed for the AM62L. All of which can be
+> > > found in the Technical Reference Manual (TRM) located here:
+> > > 
+> > >     https://www.ti.com/lit/ug/sprujb4/sprujb4.pdf
+> > > 
+> > > Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> > > Signed-off-by: Bryan Brattlof <bb@ti.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/arm/ti/k3.yaml |  6 ++
+> > >  arch/arm64/boot/dts/ti/Makefile                  |  3 +
+> > >  arch/arm64/boot/dts/ti/k3-am62l-main.dtsi        | 52 ++++++++++++++
+> > >  arch/arm64/boot/dts/ti/k3-am62l-wakeup.dtsi      | 33 +++++++++
+> > >  arch/arm64/boot/dts/ti/k3-am62l.dtsi             | 89 ++++++++++++++++++++++++
+> > >  arch/arm64/boot/dts/ti/k3-am62l3.dtsi            | 67 ++++++++++++++++++
+> > >  arch/arm64/boot/dts/ti/k3-pinctrl.h              |  2 +
+> > >  7 files changed, 252 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > > index 18f155cd06c84..b109e854879cb 100644
+> > > --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > > +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > > @@ -31,6 +31,12 @@ properties:
+> > >            - const: phytec,am62a-phycore-som
+> > >            - const: ti,am62a7
+> > >  
+> > > +      - description: K3 AM62L3 SoC and Boards
+> > > +        items:
+> > > +          - enum:
+> > > +              - ti,am62l3-evm
+> > > +          - const: ti,am62l3
+> > > +
+> > 
+> > can you clarify the differences between AM62L and AM62L3? you have a mix of names in this series. I assume that
+> > AM62L is the SOC family / product name, while AM62L3 is a specific 
+> > part number.
+> >
+> 
+> Absolutely! I found the naming a bit confusing myself. 
 
-+static int adxl345_set_measure_en(struct adxl345_state *st, bool en)
-+{
-+     unsigned int val =3D en ? ADXL345_POWER_CTL_MEASURE :
-ADXL345_POWER_CTL_STANDBY;
-+
-+     return regmap_write(st->regmap, ADXL345_REG_POWER_CTL, val);
-+}
+Thanks for the clarification, having ti,am62l3 is consistent with what
+you did with AM62, in which you have ti,am625.
 
-Should I present an improved patch? Or, in case this was urgent, would
-it require an additional patch/fix? What would be the way to deal with
-such fixes immediately after "applied"?
+Francesco
 
-Best,
-L
 
-> Thanks
->
-> Jonathan
->
-> > ---
-> >  drivers/iio/accel/adxl345_core.c | 42 +++++++++++++++++++++++---------
-> >  1 file changed, 30 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/drivers/iio/accel/adxl345_core.c b/drivers/iio/accel/adxl3=
-45_core.c
-> > index 88df9547b..b48bc838c 100644
-> > --- a/drivers/iio/accel/adxl345_core.c
-> > +++ b/drivers/iio/accel/adxl345_core.c
-> > @@ -138,6 +138,34 @@ static int adxl345_write_raw_get_fmt(struct iio_de=
-v *indio_dev,
-> >       }
-> >  }
-> >
-> > +/**
-> > + * adxl345_set_measure_en() - Enable and disable measuring.
-> > + *
-> > + * @st: The device data.
-> > + * @en: Enable measurements, else standby mode.
-> > + *
-> > + * For lowest power operation, standby mode can be used. In standby mo=
-de,
-> > + * current consumption is supposed to be reduced to 0.1uA (typical). I=
-n this
-> > + * mode no measurements are made. Placing the device into standby mode
-> > + * preserves the contents of FIFO.
-> > + *
-> > + * Return: Returns 0 if successful, or a negative error value.
-> > + */
-> > +static int adxl345_set_measure_en(struct adxl345_state *st, bool en)
-> > +{
-> > +     unsigned int val =3D 0;
-> > +
-> > +     val =3D (en) ? ADXL345_POWER_CTL_MEASURE : ADXL345_POWER_CTL_STAN=
-DBY;
-> > +     return regmap_write(st->regmap, ADXL345_REG_POWER_CTL, val);
-> > +}
-> > +
-> > +static void adxl345_powerdown(void *ptr)
-> > +{
-> > +     struct adxl345_state *st =3D ptr;
-> > +
-> > +     adxl345_set_measure_en(st, false);
-> > +}
-> > +
-> >  static IIO_CONST_ATTR_SAMP_FREQ_AVAIL(
-> >  "0.09765625 0.1953125 0.390625 0.78125 1.5625 3.125 6.25 12.5 25 50 10=
-0 200 400 800 1600 3200"
-> >  );
-> > @@ -158,16 +186,6 @@ static const struct iio_info adxl345_info =3D {
-> >       .write_raw_get_fmt      =3D adxl345_write_raw_get_fmt,
-> >  };
-> >
-> > -static int adxl345_powerup(void *regmap)
-> > -{
-> > -     return regmap_write(regmap, ADXL345_REG_POWER_CTL, ADXL345_POWER_=
-CTL_MEASURE);
-> > -}
-> > -
-> > -static void adxl345_powerdown(void *regmap)
-> > -{
-> > -     regmap_write(regmap, ADXL345_REG_POWER_CTL, ADXL345_POWER_CTL_STA=
-NDBY);
-> > -}
-> > -
-> >  /**
-> >   * adxl345_core_probe() - Probe and setup for the accelerometer.
-> >   * @dev:     Driver model representation of the device
-> > @@ -237,11 +255,11 @@ int adxl345_core_probe(struct device *dev, struct=
- regmap *regmap,
-> >                                    regval, ADXL345_DEVID);
-> >
-> >       /* Enable measurement mode */
-> > -     ret =3D adxl345_powerup(st->regmap);
-> > +     ret =3D adxl345_set_measure_en(st, true);
-> >       if (ret < 0)
-> >               return dev_err_probe(dev, ret, "Failed to enable measurem=
-ent mode\n");
-> >
-> > -     ret =3D devm_add_action_or_reset(dev, adxl345_powerdown, st->regm=
-ap);
-> > +     ret =3D devm_add_action_or_reset(dev, adxl345_powerdown, st);
-> >       if (ret < 0)
-> >               return ret;
-> >
->
 
