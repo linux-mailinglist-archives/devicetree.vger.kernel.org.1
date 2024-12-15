@@ -1,104 +1,116 @@
-Return-Path: <devicetree+bounces-131195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0123D9F2512
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 18:32:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A70C9F25EC
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 20:52:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 019F416485C
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 17:32:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6AF11885501
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 19:52:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 002A5190472;
-	Sun, 15 Dec 2024 17:32:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E03E1BBBD7;
+	Sun, 15 Dec 2024 19:52:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="IFRIP+tS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout3.hostsharing.net (bmailout3.hostsharing.net [176.9.242.62])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 814F21EB48;
-	Sun, 15 Dec 2024 17:32:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=176.9.242.62
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 284391922F2
+	for <devicetree@vger.kernel.org>; Sun, 15 Dec 2024 19:52:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734283926; cv=none; b=ehn4dtf7Krq/rR8CgtmFhOWuCWAVYfxNNCIIHmihNT6DTE3AMbJQXASESo2uPyZA5BJXzg2i+Vy068eRQW3j+UPMN3wXZ2LR4krVgOeDbQxeCHOHyqYG1JBy1TfbX4cZzSAa0zj4tWS45TO9jDZOelUgdUvjMY+RohiFCnTdqHQ=
+	t=1734292338; cv=none; b=EzDlC8gnh/Jcy4Fzu0ixAXJMrqyJrkhi2eWbAnxH64v2JZy8AzARsXqB9IZlku/Iq18lIs1ETUeQ8i2KI7LBFMjDwc+7OYrdKY/e5RrK+a2LYTAfYlTiedk9vz6YSVYST/Uyd4fb6RY+TM8sBJtWMitUzwqBSA0+tKW52ELU2Yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734283926; c=relaxed/simple;
-	bh=3nScF0VsYpNmrjY7vUKpNDzRjSzzr6uKxKptSD4MOhI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dnc5qh6XlOLrn8lOg0YjaozIWv8I0PX03Xi1khFAqeXMtGJRfK2SNrSqTRBrAL252XbvYX9C8sP7MHRVbAbNSrdlmGPiqTKbTrFm52bIsaAWPJJngT0tMslTQr233QuWNpwMdPJ6MMHKxNJfXzjQtXt/DaylMf/+qFjBQkOuX/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de; spf=none smtp.mailfrom=h08.hostsharing.net; arc=none smtp.client-ip=176.9.242.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
+	s=arc-20240116; t=1734292338; c=relaxed/simple;
+	bh=Doa3ZHZS5hYsKSUXxNuZpbWGFL6CdvgPH+9XS87d3f8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kLnEVZMQRCx++ZGZsia3qRAEXanwwIOLFNqfa9WDFu9ijFDI4e0cS5h0twUO0AmET2tO2eBwa8dsdUS3p5dASLwoZZfOmM+PAvVMmwDPVnM7MKFUdCN5xdC/ttHtZeAaNe7N+NbuKRW0OJrrzhscb7fkEsIzMGjY+0Ci+qYa3eE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=IFRIP+tS; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout3.hostsharing.net (Postfix) with ESMTPS id CA3AA100D9403;
-	Sun, 15 Dec 2024 18:32:02 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id A2134335398; Sun, 15 Dec 2024 18:32:02 +0100 (CET)
-Date: Sun, 15 Dec 2024 18:32:02 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Qiang Yu <quic_qianyu@quicinc.com>
-Cc: manivannan.sadhasivam@linaro.org, Bjorn Helgaas <bhelgaas@google.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH 0/4] PCI/pwrctrl: Rework pwrctrl driver integration and
- add driver for PCI slot
-Message-ID: <Z18SkkuPbVgTYD8k@wunner.de>
-References: <20241210-pci-pwrctrl-slot-v1-0-eae45e488040@linaro.org>
- <c5c9b7fc-a484-438a-aa97-35785f25d576@quicinc.com>
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 0CB282C03C9;
+	Mon, 16 Dec 2024 08:52:08 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1734292328;
+	bh=nTCYtZ13P9ljwBtY9eDXNqiMqpRZWqdl0hM7/GJtovE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IFRIP+tSWm8TTsQTe/ni6RAngMAzk7emag+QwixjBulV9AfAGAHO9Cz68pV8dKQSp
+	 JhtZ6L1oihzycfP/PbMbiFI8FIW5qFSN2Rr15tNQCn+mnB0K72pa951EP5k7S8+hn2
+	 +pCvHHJH0pdr4jUz7H7xHeoYtuIJjmxDTE9Mj93FRFZn96nAIBZ5RJ38IHrnEBhy5e
+	 4UU6pypOW7hFsdcATBC5jid6oxxn0lW5Rf/J0N+ieNRuWi1yxKBSeDyOf+cIHc/AY8
+	 +TjQSrQurjw3o6CD1eiedOlkPH6CRUhu26KWqui7NICg0kJbWhukRJLjCFVyc1NUC3
+	 Au+4vKPPtKENA==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B675f33670000>; Mon, 16 Dec 2024 08:52:07 +1300
+Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id CC88713ED7B;
+	Mon, 16 Dec 2024 08:52:07 +1300 (NZDT)
+Message-ID: <bd481a13-73a3-4325-8e16-ea2b2c6b0f6e@alliedtelesis.co.nz>
+Date: Mon, 16 Dec 2024 08:52:07 +1300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c5c9b7fc-a484-438a-aa97-35785f25d576@quicinc.com>
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH 1/4] dt-bindings: net: Add Realtek MDIO controller
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, tsbogend@alpha.franken.de,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, markus.stockhausen@gmx.de,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20241211235342.1573926-1-chris.packham@alliedtelesis.co.nz>
+ <20241211235342.1573926-2-chris.packham@alliedtelesis.co.nz>
+ <77817fd0-cf79-4c4f-b09f-8ee9b3b136f9@lunn.ch>
+ <4e59d81c-4af1-407b-a9c5-4b36eee35f96@alliedtelesis.co.nz>
+ <b1117d56-87d9-46b2-b6aa-e6ca20bac322@lunn.ch>
+Content-Language: en-US
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <b1117d56-87d9-46b2-b6aa-e6ca20bac322@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=675f3367 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=RZcAm9yDv7YA:10 a=cu2bxl0toQUhZbLstz8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-On Wed, Dec 11, 2024 at 05:55:48PM +0800, Qiang Yu wrote:
-> PCIe3 is able to link up after applying your patch. Slot power is turned on
-> correctly.
-> But see "NULL pointer dereference" when I try to remove device.
+Hi Andrew,
 
-There's a WARN splat occurring before the NULL pointer deref.
-Was this happening before or is it new?  Probably makes sense
-to debug that first before looking into the NULL pointer deref,
-which could be a result of it.
+On 14/12/2024 00:58, Andrew Lunn wrote:
+> On Fri, Dec 13, 2024 at 01:56:52PM +1300, Chris Packham wrote:
+>> Hi Andrew,
+>>
+>> On 13/12/2024 06:13, Andrew Lunn wrote:
+>>>> +      realtek,smi-address:
+>>>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>> +        description: SMI interface and address for the connected PHY
+>>>> +        items:
+>>>> +          - description: SMI interface number associated with the port.
+>>>> +          - description: SMI address of the PHY for the port.
+>>> Is the hardware really random here with its mapping of PHYs?
+>>> Generally, hardware is pretty predictable, logical. I'm just wondering
+>>> if this property is really required, or if it can be replaced with
+>>> some logic, avoiding typ0s.
+>> The hardware is pretty flexible in this respect. You can pretty arbitrarily
+>> arrange your PHYs. Not all ports support the same kind of SERDES interface
+>> but as far as the MDIO interface goes you can arrange things however you
+>> like.
+> Is there a reason to not just statically define it, maybe with a table
+> in the driver? Does a DT developer actually need this flexibility?
+
+It's a part of the board design so I think it's something that should go 
+into the device tree. For example I've got 3 different boards right now 
+that use different arrangements of MDIO connections to the PHYs mostly 
+for ease of board layout (and one because it has different PHYs).
 
 
-> [   38.757726] WARNING: CPU: 1 PID: 816 at drivers/regulator/core.c:5857
-> regulator_unregister+0x13c/0x160
-> [   38.767288] Modules linked in: phy_qcom_qmp_combo aux_bridge
-> drm_kms_helper drm nvme backlight pinctrl_sm8550_lpass_lpi pci_pwrctl_slot
-> pci_pwrctrl_core nvme_core phy_qcom_edp phy_qcom_eusb2_repeater
-> dispcc_x1e80100 pinctrl_lpass_lpi phy_qcom_snps_eusb2 lpasscc_sc8280xp typec
-> gpucc_x1e80100 phy_qcom_qmp_pcie
-> [   38.795279] CPU: 1 UID: 0 PID: 816 Comm: bash Not tainted
-> 6.12.0-next-20241128-00005-g6178bf6ce3c2-dirty #50
-> [   38.805359] Hardware name: Qualcomm IDP, BIOS
-> 6.0.240607.BOOT.MXF.2.4-00348.1-HAMOA-1.67705.7 06/ 7/2024
-> [   38.815088] pstate: 61400005 (nZCv daif +PAN -UAO -TCO +DIT -SSBS
-> BTYPE=--)
-> [   38.822239] pc : regulator_unregister+0x13c/0x160
-> [   38.827081] lr : regulator_unregister+0xc0/0x160
-
-The WARN splat seems to be caused by:
-
-	WARN_ON(rdev->open_count);
-
-So the regulator is unregistered although it's still in use.
-Is there maybe a multifunction PCIe device in your system
-so that multiple devices are using the same regulator?
-
-Thanks,
-
-Lukas
 
