@@ -1,222 +1,265 @@
-Return-Path: <devicetree+bounces-131171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 382F29F239F
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 13:12:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11EC89F23A8
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 13:19:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD9D7188640B
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 12:12:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CBA41886385
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 12:19:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2184417A58F;
-	Sun, 15 Dec 2024 12:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17069176AA9;
+	Sun, 15 Dec 2024 12:18:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kf270ICS"
+	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="q2uUHQiA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61151119A;
-	Sun, 15 Dec 2024 12:12:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734264769; cv=none; b=AmogKU2EjM1lrF3YsuRfMvQTVsKZu6ePPlrL3zVuY4j1gXwwm3l44B09j9J01udEJJLeg6EdEZ2Pypc2X2hEEZD4veNv6g6brFaw90Gx5qHcsC7qM9oywkh4EnEC6jTkrp3q25xGfkxGjmySWK5FzEfj78wLgNLBq12/mdd82Uk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734264769; c=relaxed/simple;
-	bh=y4YVhyoN2ufUxLJzDHKA4NzFIiBoIAH7gqZ1QytFXeY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oPoceMxIN+YKRREH0sdmuzr9n8P8nqFz+95IffBrwJrYczHFOpWdFR+xQQRtio16vDsohK5vEHY/90b4aX/nlJmSJNBTGJ0wotOC7nl0iFtYnt+Ptjf0S/lyLhSgj23SIapnAUJWGL1nFLEm0zy2CEVlgr0a1Wja5yVF0KEhl70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kf270ICS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33016C4CECE;
-	Sun, 15 Dec 2024 12:12:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734264768;
-	bh=y4YVhyoN2ufUxLJzDHKA4NzFIiBoIAH7gqZ1QytFXeY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Kf270ICS26nWHeMdTOBTZw3tw9so5/jfEv4z8Ygl3BPtp4ynXvFqvVes7enArqUbM
-	 CM23ETLuqcXqpkZoIfw1S9QTbooTM7UfUnmOPWFU89kRvj4Cg5G/9XOTl3c0zPL0z/
-	 eJ8w0/zkXKQvKpDl5ByRObPgeyaEEWnN5/hSXCL6YpIj1jU3i+nmor/lzNeOFm6ZKN
-	 DeONHIAe2wVsWCEFYfzIU9q1tfDxStYMc0TathjI71W1jIzV9HiOyuINK9GLTkrsKi
-	 MKRlb4gajZjyNy34oQRIFpcXEZutKW/ggIYCnJO7pQ1O1kQHswxp4u6wCAHYttHl2X
-	 wBRqXIEBjIjKw==
-Date: Sun, 15 Dec 2024 12:12:39 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Guillaume Stols <gstols@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, dlechner@baylibre.com, jstephan@baylibre.com,
- aardelean@baylibre.com, adureghello@baylibre.com
-Subject: Re: [PATCH v2 9/9] iio: adc: ad7606: Add support for writing
- registers when using backend
-Message-ID: <20241215121239.10a29743@jic23-huawei>
-In-Reply-To: <20241210-ad7606_add_iio_backend_software_mode-v2-9-6619c3e50d81@baylibre.com>
-References: <20241210-ad7606_add_iio_backend_software_mode-v2-0-6619c3e50d81@baylibre.com>
-	<20241210-ad7606_add_iio_backend_software_mode-v2-9-6619c3e50d81@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEF59145A18;
+	Sun, 15 Dec 2024 12:18:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734265138; cv=pass; b=E30jxptl5jqxNLmPXlf+D6jqqYHAKUVaCJ+BNJA3nmsuun7Lr5Aeeb8goOzqDJZ6szoTKW88mBB69lm83uWJDY9CJY8SN+5r4ZRmCesZokJ9ii9vAbGaAtYg5py9ZTkJ5cqoiD3JUUT7HjbCPnT22Mq7Wtaq6Gmxg+Io1YuyPz8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734265138; c=relaxed/simple;
+	bh=/L0OJLp/mBN6viX5c/npVe2gaNYnTN/UU/pILXkCo2I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ggLzVTnDvOZrNvX1D1Fk7GpoiZBZ9MrGwpUw7qjCTzb0Uv9quBDlzK1Pmualiz68ACLer6mYrh6bqo54XD4Jgy3GheDGjQOgiQxQ650Up729L89QCdY6jJiRhpItzmyzfkKrhkZH265kXirNYvMM+/4q5+3ZblwTK/sjCiYIPfk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=q2uUHQiA; arc=pass smtp.client-ip=195.140.195.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
+Received: from hillosipuli.retiisi.eu (2a00-1190-d1dd-0-c641-1eff-feae-163c.v6.cust.suomicom.net [IPv6:2a00:1190:d1dd:0:c641:1eff:feae:163c])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sailus)
+	by meesny.iki.fi (Postfix) with ESMTPSA id 4YB2DN11ZnzybN;
+	Sun, 15 Dec 2024 14:18:43 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+	t=1734265126;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QNkUVDCZhDaEmA6yIBIe4bMQKnUcOVR08f2igvbWkbk=;
+	b=q2uUHQiAoXW3hESINEMrWO1ktTOA1ljeykfiuIWAB6uaLVSHv9NWk6jkgFkJiL+vgpjAva
+	hecH1U2LgHA5duHJ/Vl/S3WdJzggwitK62FkR4HAzobWyxoaivq17OLhMzHYhltlpljmVZ
+	WZSlMLiLPOetPgEch88+myjDv6l/uBI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+	s=meesny; t=1734265126;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=QNkUVDCZhDaEmA6yIBIe4bMQKnUcOVR08f2igvbWkbk=;
+	b=sVtVx9r8BjV7s7SelVuMQyX0JbRI8W0We5vuO8mghd5K4m+Sok2OvIg5hLVfKvEFTyY8Y6
+	hiPHLNCOtBPYtbWSKkXBihWDatrs20pz9iuGEg8a/hayNnRgoFEssyg5xkvMSkKzX3yHf8
+	UQhKQat+qWAclCLg4dyi8mrUqT+gBRg=
+ARC-Authentication-Results: i=1;
+	ORIGINATING;
+	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1734265126; a=rsa-sha256; cv=none;
+	b=MfJKE/lQoqP6UcKfO1WDXMpt4oQU3e4iaIa91DSFZoLmR45/AdCS+hgBuOidI+MStglFM6
+	jZ7mr/Mz3rsU2cu4O4vrnKnKWEkqAuQEQbb4z8LKToWFNQhQhwJUMMV76fEoOvvd5PqmVt
+	2B+UHHpKSmO4vUrEv0R8D3Y6AgUkdAg=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id B67FC634C94;
+	Sun, 15 Dec 2024 14:18:42 +0200 (EET)
+Date: Sun, 15 Dec 2024 12:18:42 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Hugues Fruchet <hugues.fruchet@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Hans Verkuil <hverkuil@xs4all.nl>, linux-media@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 02/15] dt-bindings: media: add description of stm32 csi
+Message-ID: <Z17JItE-98IIrnMv@valkosipuli.retiisi.eu>
+References: <20241212-csi_dcmipp_mp25-v4-0-fbeb55a05ed7@foss.st.com>
+ <20241212-csi_dcmipp_mp25-v4-2-fbeb55a05ed7@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241212-csi_dcmipp_mp25-v4-2-fbeb55a05ed7@foss.st.com>
 
-On Tue, 10 Dec 2024 10:46:49 +0000
-Guillaume Stols <gstols@baylibre.com> wrote:
+Hi Alain,
 
-> Adds the logic for effectively enabling the software mode for the
-> iio-backend, i.e enabling the software mode channel configuration and
-> implementing the register writing functions.
+On Thu, Dec 12, 2024 at 10:17:26AM +0100, Alain Volmat wrote:
+> Add the stm32 csi controller description.
 > 
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-Hi Guillaume,
-
-Main thing in here is really about not adding more cases of
-iio_device_claim_direct_scoped() given the problems we are having with it
-and lack of a clean replacement.
-
-My current thinking is that it's just not worth the pain of weird
-compiler quirks etc and readability issues (even though I for one have
-gotten used to that bit!)
-
-Jonathan
-
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
 > ---
->  drivers/iio/adc/ad7606.h     | 15 ++++++++++++
->  drivers/iio/adc/ad7606_par.c | 56 ++++++++++++++++++++++++++++++++++++++++++++
->  2 files changed, 71 insertions(+)
+> v2:
+>   - rename into st,stm32mp25-csi.yaml to match compatible
+>   - correct port / data-lanes (remove useless lines &
+>     use data-lanes 1 and 2 instead of 0 and 1)
+>   - correct commit log
+> ---
+>  .../bindings/media/st,stm32mp25-csi.yaml           | 125 +++++++++++++++++++++
+>  1 file changed, 125 insertions(+)
 > 
-> diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-> index ada8065fba4e..9da39c2d5d53 100644
-> --- a/drivers/iio/adc/ad7606.h
-> +++ b/drivers/iio/adc/ad7606.h
-> @@ -96,6 +96,21 @@
->  		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),  \
->  		0, 0, 16)
->  
-> +#define AD7606_BI_SW_CHANNEL(num)			\
-> +	AD760X_CHANNEL(num,				\
-> +		/* mask separate */			\
-> +		BIT(IIO_CHAN_INFO_SCALE),		\
-> +		/* mask type */				\
-> +		0,					\
-> +		/* mask all */				\
-> +		BIT(IIO_CHAN_INFO_SAMP_FREQ) |		\
-> +		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
-> +		/* mask separate available */		\
-> +		BIT(IIO_CHAN_INFO_SCALE),		\
-> +		/* mask all available */		\
-> +		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),	\
-> +		16)
+> diff --git a/Documentation/devicetree/bindings/media/st,stm32mp25-csi.yaml b/Documentation/devicetree/bindings/media/st,stm32mp25-csi.yaml
+> new file mode 100644
+> index 000000000000..33bedfe41924
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/st,stm32mp25-csi.yaml
+> @@ -0,0 +1,125 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/st,stm32mp25-csi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  struct ad7606_state;
->  
->  typedef int (*ad7606_scale_setup_cb_t)(struct iio_dev *indio_dev,
-> diff --git a/drivers/iio/adc/ad7606_par.c b/drivers/iio/adc/ad7606_par.c
-> index 64733b607aa8..c159cd4f7802 100644
-> --- a/drivers/iio/adc/ad7606_par.c
-> +++ b/drivers/iio/adc/ad7606_par.c
-> @@ -13,12 +13,14 @@
->  #include <linux/module.h>
->  #include <linux/platform_device.h>
->  #include <linux/property.h>
-> +#include <linux/pwm.h>
-
-Why the addition of this?  If it was simply missing previously spin a
-separate patch.
-
->  #include <linux/types.h>
->  
->  #include <linux/iio/backend.h>
->  #include <linux/iio/iio.h>
->  
->  #include "ad7606.h"
-> +#include "ad7606_bi.h"
->  
->  static const struct iio_chan_spec ad7606b_bi_channels[] = {
->  	AD7606_BI_CHANNEL(0),
-> @@ -31,6 +33,17 @@ static const struct iio_chan_spec ad7606b_bi_channels[] = {
->  	AD7606_BI_CHANNEL(7),
->  };
->  
-> +static const struct iio_chan_spec ad7606b_bi_sw_channels[] = {
-> +	AD7606_BI_SW_CHANNEL(0),
-> +	AD7606_BI_SW_CHANNEL(1),
-> +	AD7606_BI_SW_CHANNEL(2),
-> +	AD7606_BI_SW_CHANNEL(3),
-> +	AD7606_BI_SW_CHANNEL(4),
-> +	AD7606_BI_SW_CHANNEL(5),
-> +	AD7606_BI_SW_CHANNEL(6),
-> +	AD7606_BI_SW_CHANNEL(7),
-> +};
+> +title: STMicroelectronics STM32 CSI controller
 > +
->  static int ad7606_bi_update_scan_mode(struct iio_dev *indio_dev, const unsigned long *scan_mask)
->  {
->  	struct ad7606_state *st = iio_priv(indio_dev);
-> @@ -86,9 +99,52 @@ static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_dev *indio
->  	return 0;
->  }
->  
-> +static int ad7606_bi_reg_read(struct iio_dev *indio_dev, unsigned int addr)
-> +{
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +	int val, ret;
-> +	struct ad7606_platform_data *pdata =  st->dev->platform_data;
+> +description:
+> +  The STM32 CSI controller allows connecting a CSI based
+> +  camera to the DCMIPP camera pipeline.
+
+CSI-2 I presume?
+
+You should also document it here it has D-PHY...
+
 > +
-> +	iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
-As below. Let's go back to
-	ret = iio_device_claim_direct_mode(indio-dev)
-	if (ret)
-		return ret;
-
-	ret = ....
-
-	iio_device_release_direct_mode()
-	if (ret < 0)
-		return ret;
-
-	return val;
-> +		ret = pdata->bus_reg_read(st->back,
-> +					addr,
-> +					&val);
-> +	}
-> +	if (ret < 0)
-> +		return ret;
+> +maintainers:
+> +  - Alain Volmat <alain.volmat@foss.st.com>
 > +
-> +	return val;
-> +}
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - st,stm32mp25-csi
 > +
-> +static int ad7606_bi_reg_write(struct iio_dev *indio_dev,
-> +			       unsigned int addr,
-> +			       unsigned int val)
-> +{
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +	struct ad7606_platform_data *pdata =  st->dev->platform_data;
-> +	int ret;
+> +  reg:
+> +    maxItems: 1
 > +
-> +	iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
-> +	ret = pdata->bus_reg_write(st->back,
-Quite a few things wrong with indentation here.
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pclk
+> +      - const: txesc
+> +      - const: csi2phy
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: Digital core power supply (0.91V)
+> +
+> +  vdda18-supply:
+> +    description: System analog power supply (1.8V)
+> +
+> +  access-controllers:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port node
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                items:
+> +                  - const: 1
+> +                  - const: 2
+> +
+> +            required:
+> +              - data-lanes
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Output port node
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/media/video-interfaces.h>
+> +    #include <dt-bindings/reset/st,stm32mp25-rcc.h>
+> +    csi@48020000 {
+> +        compatible = "st,stm32mp25-csi";
+> +        reg = <0x48020000 0x2000>;
+> +        interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
+> +        resets = <&rcc CSI_R>;
+> +        clocks = <&rcc CK_KER_CSI>, <&rcc CK_KER_CSITXESC>, <&rcc CK_KER_CSIPHY>;
+> +        clock-names = "pclk", "txesc", "csi2phy";
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            port@0 {
+> +                reg = <0>;
+> +                endpoint {
+> +                    remote-endpoint = <&imx335_ep>;
+> +                    data-lanes = <1 2>;
+> +                    bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
 
-Also a small request.   Don't use iio_device_claim_direct_scoped.
-It's proved a PITA for all sorts of reasons so one of my possible projects
-for when I get bored is to look at just how bad it would be to rip it out.
+...and drop bus-type property.
 
-One of those things that seems cool and useful but turns out it's not worth it.
+> +                };
+> +            };
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +                endpoint {
+> +                    remote-endpoint = <&dcmipp_0>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> 
 
-Jonathan
+-- 
+Kind regards,
 
-
-> +					addr,
-> +					val);
-> +	}
-> +	return ret;
-> +}
-
+Sakari Ailus
 
