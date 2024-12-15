@@ -1,139 +1,183 @@
-Return-Path: <devicetree+bounces-131166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C497D9F237B
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 12:39:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FA3E9F237F
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 12:51:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50C741885DB3
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 11:39:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF12016515E
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 11:51:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EC79149C4F;
-	Sun, 15 Dec 2024 11:39:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAE511547E8;
+	Sun, 15 Dec 2024 11:51:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T8TaRfk8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s45Ltqr8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA3C0145B03;
-	Sun, 15 Dec 2024 11:39:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3593149E13;
+	Sun, 15 Dec 2024 11:51:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734262756; cv=none; b=WDMvWjC6XRYmkkE3BD5YMJIckFxaQfVW+aub8LLKvmnR+vtQb4z0vlJlLGxC+8SYw8RyfyrZxygJxS0oV9w16UaNp1dZR2+XeRITqkw4C10oHXdojYg8+P2oJo+5jmfFmhD+Cjenhzi6UrPrRbR2TqinjEpwbVfh2tWa7EHpJkk=
+	t=1734263477; cv=none; b=rOH/KvLv1WE1CzaNwecxo21Ko3ck4Bo8Aa72+FRwbUKEXtuvmFDGDb+SAZPML+c2Uh2zGX2k6+VbpOmwTzFZMst7gowwjr4UfmodNLP2Qin54q0p/7D8AsjZkoAudL1zrXlbAQPpl92qL8PVO89yPpXODcAIpK1bqaf+AE5KzNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734262756; c=relaxed/simple;
-	bh=xALTCpd8jzW0oO9ZcLpdgxp5GqeJYahzrwm/Vk98pNY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=hfsZ5bh+QVFmQWcOL62fan1+ihfKpdL8Ya75jwNICDyqyhN/bCJndYWg4NES57cdtYoTY89fl/R0LGh3Ax06FFOhkyygzBh2tNXmedf+NwP4nVVhrzvNuhurWD0iLsSkFuxPUyOeRViMSZ/Fyq+i6mzgXm72U6LATpgufHjV7vA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T8TaRfk8; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-436341f575fso17434945e9.1;
-        Sun, 15 Dec 2024 03:39:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734262752; x=1734867552; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=xALTCpd8jzW0oO9ZcLpdgxp5GqeJYahzrwm/Vk98pNY=;
-        b=T8TaRfk8k+8fa3nnYa/VxK7KPHOhfi6gmASjWtVwSHzFBdaD+dIfXMuligLSamSAM5
-         juJ6DwJ/REycYpItSrWkC2XjFYkdC37BL0Ery+BVVcPgjEPP+t2lcz9JgFTP25o/78YX
-         jIValN2GGRGYYGOnDKnNNcvnPizsJW69SESm1WjAtdx5JLgsTHXFWCL3q8w1BRuIYa4D
-         593dmIJUo6Fi0ybrUCu2ZNWHfMRfOsG/sPK1XALDleoj60PDc97lAWOQW9tpG+0NCNjq
-         rOCPFHu4HP/dCjn/DBNwxp+0KoGEwUJBYEFtQ0BXPfyB1S6BIdxfi8TjRavw/YcX3R1m
-         ADhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734262752; x=1734867552;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xALTCpd8jzW0oO9ZcLpdgxp5GqeJYahzrwm/Vk98pNY=;
-        b=QQQlHMUFduRDo0DosAQG+VLZG2V+zOF28VbWvlqR/eVatO3QptEpO5jc9VIGAD14JH
-         qziOqOuieHSKD3IentlBl2+H+R8AvyoYozwRBcwV+l8GfXUscRDZY8UaAtZObJW6CyIS
-         T+9qhbsmGgjqJY2HsaJemCXN0Vh/1dc9LLlth64r6prW1j14kMCNrkn395KY1YvfBjIh
-         qZm/J1OazOCYVox2YDlgj3oYfxDJvPy9T7b3OMusIGXcYJ/ysaIJ5pSdZZzAPNzP4XHP
-         nR++BH+qjpZg+enm3oHqNbVUXWGgQB9muOtWHPgsFeAkSJbkwzlUh+XJv2W8eOd37JqC
-         eTcg==
-X-Forwarded-Encrypted: i=1; AJvYcCVbjXqGOVzLV3eu4muZTOzUReu1Ju41trntUbX9b01dBsc8F+H8Rc0sVD2JZbs0cGwFU/KyoRZzatfcDQ==@vger.kernel.org, AJvYcCWdIHGurGlNFaFRyBSY13PC/SR3y20fk2MojaYAekJ1A1ThI4B2auH9uR5TFBySa0rjCgeWhvIG6XQC@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGc+THTpyJg1Y0voyHAlUrhBeqIKEXho8Sdf35pPlhqvs868Lf
-	9bpL8nkbTqpYlMGMpPC25o7fPGWuP0/ngU4DewNIFNm6XZTCaK2P
-X-Gm-Gg: ASbGncszrKOSGy2BJsASzUDajyTGgc8XOnq9YCFTgNK6lMgfJbAa0EuFuu1XbJHOxnT
-	0FIbRXa75e42WTh2vp2Ndb+72zUOQMBCdQI3BV+5+PuMgu3bnXK4KRsRtV98sdUW1hwjAU6m2al
-	pBimr731fUdPZLxqe36vLcvnRPT056aJE5akIAbjtSvEAQa5ObDatnjI55SDLZ4IxG1U/xv3fTj
-	lS8O9eFze0MAbAheCUiNOG1tiZ9CadBDLP8XNcda819mb0ECgGyVpl7uUUSuUusC8vououzMr2u
-	bVenP6D+gzNH2MuI472+e4IVT0o=
-X-Google-Smtp-Source: AGHT+IHCjjb2sJAgzXNsxbFtbUESnU4r2HWdLhNkKVc3bDDAlQfI1jI2mfRiPp/kKqOHOaY9q3fGmA==
-X-Received: by 2002:a5d:47ac:0:b0:385:ef2f:9278 with SMTP id ffacd0b85a97d-38880ac5f92mr7767140f8f.2.1734262752015;
-        Sun, 15 Dec 2024 03:39:12 -0800 (PST)
-Received: from ?IPv6:2a02:168:6806:0:c726:52ac:a540:51aa? ([2a02:168:6806:0:c726:52ac:a540:51aa])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-388c8012081sm5027268f8f.19.2024.12.15.03.39.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Dec 2024 03:39:11 -0800 (PST)
-Message-ID: <ec61714eaa3d84498cd69dc673fb11996550a3ea.camel@gmail.com>
-Subject: Re: [PATCH leds v5 12/12] ARM: dts: turris-omnia: Add global LED
- brightness change interrupt
-From: Klaus Kudielka <klaus.kudielka@gmail.com>
-To: Marek =?ISO-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>, Lee Jones
- <lee@kernel.org>, 	regressions@lists.linux.dev, Pavel Machek
- <pavel@ucw.cz>, 	linux-leds@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
- soc@kernel.org, 	arm@kernel.org, Andy Shevchenko <andy@kernel.org>, Hans de
- Goede	 <hdegoede@redhat.com>, Ilpo =?ISO-8859-1?Q?J=E4rvinen?=	
- <ilpo.jarvinen@linux.intel.com>, Andrew Lunn <andrew@lunn.ch>, Sebastian
- Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, 	devicetree@vger.kernel.org
-Date: Sun, 15 Dec 2024 12:39:10 +0100
-In-Reply-To: <ofd5ru77wypfysflpblafbbdgrcmzztqwoewfjfuusrnbma4aw@y3oc3etutisi>
-References: <20241104141924.18816-1-kabel@kernel.org>
-	 <20241104141924.18816-13-kabel@kernel.org>
-	 <87bjyv9ecb.fsf@BLaptop.bootlin.com>
-	 <778f08f1774fcad5fcc39114dbb721793ebf95d6.camel@gmail.com>
-	 <2iocrd4a7l4avfhqmobbexo7k4u2poidkvvj7lpqh7vp7mprkm@pfgytqnmt2si>
-	 <ofd5ru77wypfysflpblafbbdgrcmzztqwoewfjfuusrnbma4aw@y3oc3etutisi>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.1-1 
+	s=arc-20240116; t=1734263477; c=relaxed/simple;
+	bh=0t0ZQKj/p7GAnvOKN0/2RvwC65Y0VMiw7Zr0Iborcn0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=b1B+7temJqSNjr4vOJ858gAJDDFOV8iTofG7xv05ZGOLmZo+eC9HpIzm+CUWh+HzCvvLsAu00SOohkglsrY/0X/kSk0e/3ZaCjYSk2NBGmg9rZn9oc57upiQwGYf3kR7GE9yxuqpb/jtu/IFOBS6MQr63Toi0TG6UN7E01M1PmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s45Ltqr8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CD21C4CECE;
+	Sun, 15 Dec 2024 11:51:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734263477;
+	bh=0t0ZQKj/p7GAnvOKN0/2RvwC65Y0VMiw7Zr0Iborcn0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=s45Ltqr8OqH9WmvIBOjSJZpSbVXSXpGmu0Nf9nZsXE362Ve36YSUDKrU1UmeNR9Ey
+	 8L8+W/HVxgE6dYAXBSFXV3JyGtiJqRFiL/KuhSag/iU7IvZR2kZ3QGgvhbOpMZr9Cn
+	 OyTxcFC8VAUJrMp4R/FhQxyetFWCDiMzOH/d/+AwahNp1b3SsICBB5y5i0gjbwKA/W
+	 WcxONX9W2hF3M8f/P184ynOC7fgXt0EFQNqcORUReZ/rtmAzAmkqCVGkeczpiQwx9X
+	 LUaqVZn255vbz6CzX12uY9AmOxNO7v8kxsYvrwOAF9mwAsrTnq+BOBdC/6CTkPwkrm
+	 UahhkkG43VaKA==
+Date: Sun, 15 Dec 2024 11:51:08 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Guillaume Stols <gstols@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, dlechner@baylibre.com, jstephan@baylibre.com,
+ aardelean@baylibre.com, adureghello@baylibre.com
+Subject: Re: [PATCH v2 4/9] iio: adc: ad7606: Move software functions into
+ common file
+Message-ID: <20241215115108.558bb5a9@jic23-huawei>
+In-Reply-To: <20241210-ad7606_add_iio_backend_software_mode-v2-4-6619c3e50d81@baylibre.com>
+References: <20241210-ad7606_add_iio_backend_software_mode-v2-0-6619c3e50d81@baylibre.com>
+	<20241210-ad7606_add_iio_backend_software_mode-v2-4-6619c3e50d81@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, 2024-12-05 at 13:42 +0100, Marek Beh=C3=BAn wrote:
-> On Thu, Dec 05, 2024 at 01:38:10PM +0100, Marek Beh=C3=BAn wrote:
-> >=20
-> > This is because the patch went into 6.13 but the rest of the patches
-> > did not, Lee wants to take them for 6.14 :-(
-> >=20
-> > Apply this series and it will work.
-> >=20
-> > https://lore.kernel.org/linux-leds/20241111100355.6978-1-kabel@kernel.o=
-rg/T/
->=20
-> Alternatively you can overcome this issue if you enable the
-> turris-omnia-mcu driver in 6.13:
->=20
-> =C2=A0 CONFIG_CZNIC_PLATFORMS=3Dy
-> =C2=A0 CONFIG_TURRIS_OMNIA_MCU=3Dy/m
-> (and also the subsequent options).
->=20
-> Marek
+On Tue, 10 Dec 2024 10:46:44 +0000
+Guillaume Stols <gstols@baylibre.com> wrote:
 
-Testing reveals:
-I have to enable CONFIG_TURRIS_OMNIA_MCU_GPIO as well, to make the LEDS wor=
-k again with v6.13-rc2.
+> Since the register are always the same, whatever bus is used, moving the
+> software functions into the main file avoids the code to be duplicated
+> in both SPI and parallel version of the driver.
+> 
+> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+Hi Guillaume,
 
-So far, so good.
+Patch content is fine, but I'd ideally like you to take the opportunity to
+tidy up some of the really inconsistent indentation in the code you are moving.
 
-But the upcoming dependency in 6.14 will be on CONFIG_TURRIS_OMNIA_MCU, not=
- on CONFIG_TURRIS_OMNIA_MCU_GPIO.
-Is this correct?
+> int ad7616_write_scale_sw(struct iio_dev *indio_dev, int ch, int val)
+>  {
+>  	struct ad7606_state *st = iio_priv(indio_dev);
+> +	unsigned int ch_addr, mode, ch_index;
+>  
+> -	st->sw_mode_en = st->bops->sw_mode_config &&
+> -			 device_property_present(st->dev, "adi,sw-mode");
+> -	if (!st->sw_mode_en)
+> -		return 0;
+> +	/*
+> +	 * Ad7616 has 16 channels divided in group A and group B.
+> +	 * The range of channels from A are stored in registers with address 4
+> +	 * while channels from B are stored in register with address 6.
+> +	 * The last bit from channels determines if it is from group A or B
+> +	 * because the order of channels in iio is 0A, 0B, 1A, 1B...
+> +	 */
+> +	ch_index = ch >> 1;
+> +
+> +	ch_addr = AD7616_RANGE_CH_ADDR(ch_index);
+> +
+> +	if ((ch & 0x1) == 0) /* channel A */
+> +		ch_addr += AD7616_RANGE_CH_A_ADDR_OFF;
+> +	else	/* channel B */
+> +		ch_addr += AD7616_RANGE_CH_B_ADDR_OFF;
+> +
+> +	/* 0b01 for 2.5v, 0b10 for 5v and 0b11 for 10v */
+> +	mode = AD7616_RANGE_CH_MODE(ch_index, ((val + 1) & 0b11));
+>  
+> -	indio_dev->info = &ad7606_info_sw_mode;
+> +	return ad7606_write_mask(st, ch_addr, AD7616_RANGE_CH_MSK(ch_index),
+> +				     mode);
 
-Best regards, Klaus
+Another odd indent to fix.
+
+> +}
+> +
+> +static int ad7616_write_os_sw(struct iio_dev *indio_dev, int val)
+> +{
+> +	struct ad7606_state *st = iio_priv(indio_dev);
+> +
+> +	return ad7606_write_mask(st, AD7616_CONFIGURATION_REGISTER,
+> +				     AD7616_OS_MASK, val << 2);
+
+Trivial: Odd indentation choice.
+
+> +}
+> +
+> +static int ad7606_write_scale_sw(struct iio_dev *indio_dev, int ch, int val)
+> +{
+> +	struct ad7606_state *st = iio_priv(indio_dev);
+> +
+> +	return ad7606_write_mask(st,
+> +				 AD7606_RANGE_CH_ADDR(ch),
+
+In general maybe aim for more consistent indentation choice. I'd pull this time up
+on the line above.
+
+> +				 AD7606_RANGE_CH_MSK(ch),
+> +				 AD7606_RANGE_CH_MODE(ch, val));
+> +}
+> +
+> +static int ad7606_write_os_sw(struct iio_dev *indio_dev, int val)
+> +{
+> +	struct ad7606_state *st = iio_priv(indio_dev);
+> +
+> +	return st->bops->reg_write(st, AD7606_OS_MODE, val);
+> +}
+> +
+> +static int ad7616_sw_mode_setup(struct iio_dev *indio_dev)
+> +{
+> +	struct ad7606_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	/*
+> +	 * Scale can be configured individually for each channel
+> +	 * in software mode.
+> +	 */
+> +
+> +	st->write_scale = ad7616_write_scale_sw;
+> +	st->write_os = &ad7616_write_os_sw;
+> +
+> +	ret = st->bops->sw_mode_config(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Activate Burst mode and SEQEN MODE */
+> +	return ad7606_write_mask(st,
+> +			      AD7616_CONFIGURATION_REGISTER,
+
+Whilst moving the code, feel free to tidy up the indent for inconsistent
+cases.  Align this lot just after the opening bracket etc.
+
+> +			      AD7616_BURST_MODE | AD7616_SEQEN_MODE,
+> +			      AD7616_BURST_MODE | AD7616_SEQEN_MODE);
+> +}
+
+Thanks,
+
+Jonathan
 
 
