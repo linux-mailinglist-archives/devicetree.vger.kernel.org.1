@@ -1,59 +1,56 @@
-Return-Path: <devicetree+bounces-131175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C49C19F23B5
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 13:28:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53A689F23BE
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 13:35:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F07F9161658
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 12:28:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E51F1188592F
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 12:35:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0858917E01B;
-	Sun, 15 Dec 2024 12:28:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E901714A1;
+	Sun, 15 Dec 2024 12:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aNLK/myI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PvGWwtJ4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFC93374FF;
-	Sun, 15 Dec 2024 12:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5842231A89;
+	Sun, 15 Dec 2024 12:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734265719; cv=none; b=MB2fhSkfSlODO7Ijyu48bprh0Vi4P5xTs8HKvgvwpIU29Qky3RQDbzj9NRdR5FT1FLEhsoFZ9hw4UuIaCOisEzMfZKT0tUikqzYR5oIIacsVFGVhEdzh7JzZgZ9ODZET8jkKGXmt27m+nmKBZx7L11wpRVZJRcpJp5TwLAfxkvE=
+	t=1734266120; cv=none; b=Dsz78NsTvED5lQctXspV8sTf7LEpKm/YGzlcUDuFwdxbBR3suLeX02C+nzgJKTFSgDCNAsBYQiSx9udDd3ZN3fQI5DPoLdiLevt0HsaZtn2F/d0Vmz4q4Bi1xTDFeAe6a/kfjqUgaYnY1799cixONUwfCRbkeDgMISvcWAd9F3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734265719; c=relaxed/simple;
-	bh=dwCH+0fYRE1FijYjTFxSBPY6i0A9PIbI2v9LnQxznMI=;
+	s=arc-20240116; t=1734266120; c=relaxed/simple;
+	bh=ZL1fWrUk+ebtdOJXrTQ1Mq3uWwySJzxwsNo84//nb5c=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=D4t3A7uf77iiSB+R+mf6NC0lLnJBgeE30upNrGrSa/Z6rjhdo5FEQ9nct7w/h5mf8x+cxdQM4hErLe74ADbYU4jK+MCwPP9M7ZFGLs+/6C3k9xSFMWXV0zLwcU8wJvq33ckytlo3r4hxOnw40F38viC2FvwDfJygF3VBjBzTp8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aNLK/myI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77AD6C4CECE;
-	Sun, 15 Dec 2024 12:28:36 +0000 (UTC)
+	 MIME-Version:Content-Type; b=ufLRuwp/wpQD9Ri6Djsa03Pr4ja1OPdc5DLQCYJQjZfXDxCaLg9pooYxg9VHEa90QJ6two8hnj64UsUVmGNOtJ8Ezb7C3o4n76I99Ji1xp4jsIv1HpgMn6bAePOJrw4Hbamxjr2+jzFXjC4BIOkJsfW36iv4Dx8iNKrrfP08AcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PvGWwtJ4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1135CC4CECE;
+	Sun, 15 Dec 2024 12:35:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734265719;
-	bh=dwCH+0fYRE1FijYjTFxSBPY6i0A9PIbI2v9LnQxznMI=;
+	s=k20201202; t=1734266119;
+	bh=ZL1fWrUk+ebtdOJXrTQ1Mq3uWwySJzxwsNo84//nb5c=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=aNLK/myInAQySGNNpnw+/m8vaUS8NUdoNC3v9OtwVcDMiRxXmd1F70a5DWepneYqK
-	 n/m14zXfCJJ14Y01QHD7otzfeI0QY8I7G8QK39zGgPFG0RUI0T0NjILV6o9Eu0FQJP
-	 Fr/LgTe6WD8bHfbwLlvLFPvHjm59o1b0zQ6J8VrxjHf6BI3njBXPagYTIqXofUPRV6
-	 0dhzKKBKLgNDF6bclKl8JAGQHBatQXLFm1ZODOCLuvySm/7KlBkxdEgExCGA/ncoTH
-	 phUBn/C+F7HXjq5WlbC+6HcOxVr/+5zaZJkl4t3QJwNkbZ4FNjoHK6QQ1ZcDiGmNmP
-	 wdN1ZDMZTsTbw==
-Date: Sun, 15 Dec 2024 12:28:30 +0000
+	b=PvGWwtJ4kTQH+rehSn7qRElhhAGDB/6y/xE8iqV+O3MCOR60IkQQ69ROjARd6ve1r
+	 rCvFmbOs7k8j7D/Krl96PTLIHyZ2tAWIVeBj60IemJqXqeGRCH3c/LisS1QPYssXLu
+	 rMQQDkzQur/1+1hqMCNtnsZ7zWbPrVhMdG+ee3yLdVErDU9WZRHGB0ann6uULdHdAQ
+	 6DeCpEG13RhOuXMKZDnSh5laWEz8IKaqLCUOrDGBaM1O05dPFHwdp6g1OgCBez4qa2
+	 zoBetC0Mx1e7aKtjKO00ms6bzG/ZPIEYAFgAhZTpw76wyM/dIP0ox31vkgFdjaaqDL
+	 5a9Qdib11amaw==
+Date: Sun, 15 Dec 2024 12:35:12 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, ak@it-klinger.de, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 1/1] dt-bindings: iio: pressure: bmp085: Add SPI
- interface
-Message-ID: <20241215122830.159555e1@jic23-huawei>
-In-Reply-To: <20241209233845.29539-2-vassilisamir@gmail.com>
-References: <20241209233845.29539-1-vassilisamir@gmail.com>
-	<20241209233845.29539-2-vassilisamir@gmail.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: adf4371: add differential ref
+Message-ID: <20241215123512.1d2bbb3d@jic23-huawei>
+In-Reply-To: <20241209104201.25205-1-antoniu.miclaus@analog.com>
+References: <20241209104201.25205-1-antoniu.miclaus@analog.com>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -64,81 +61,56 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Tue, 10 Dec 2024 00:38:45 +0100
-Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
+On Mon, 9 Dec 2024 12:41:31 +0200
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-> The BMP{2,3,5}80 and BME280 devices have an SPI interface, so include it
-> in the device-tree.
+> Add support for enabling differential input reference.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
-Stray blank line at end of file.  I fixed that up and applied,
+> By default the single-ended input is enabled.
+> 
+> Input frequency boundaries are change based on the mode selected
+> (single-ended/differential).
+
+
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> changes in v2:
+>  - improve commit body.
+
+It still has the same question I raised on v1.  Why is this not
+selecting between what I think is two different clocks given they
+are wired to either one pin or two.
+
+refin, refin-diff
+
+Please add a cover letter to all series of more than 1 patch as it
+gives a place for general explanations and discussion.
 
 Thanks,
 
 Jonathan
 
-> ---
->  .../bindings/iio/pressure/bmp085.yaml         | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
+
+
+>  Documentation/devicetree/bindings/iio/frequency/adf4371.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> index cb201cecfa1a..017abe8eb9c5 100644
-> --- a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> +++ b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-> @@ -55,12 +55,16 @@ properties:
->        If not set, defaults to push-pull configuration.
->      type: boolean
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> index 1cb2adaf66f9..dd9a592d0026 100644
+> --- a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> @@ -40,6 +40,11 @@ properties:
+>        output stage will shut down until the ADF4371/ADF4372 achieves lock as
+>        measured by the digital lock detect circuitry.
 >  
-> +  spi-max-frequency:
-> +    maximum: 10000000
+> +  adi,ref-differential-enable:
+> +    type: boolean
+> +    description:
+> +      If this property is present, differential input reference is enabled.
 > +
 >  required:
 >    - compatible
->    - vddd-supply
->    - vdda-supply
->  
->  allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->    - if:
->        properties:
->          compatible:
-> @@ -73,6 +77,16 @@ allOf:
->      then:
->        properties:
->          interrupts: false
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - bosch,bmp085
-> +              - bosch,bmp180
-> +    then:
-> +      properties:
-> +        spi-max-frequency: false
->  
->  additionalProperties: false
->  
-> @@ -93,3 +107,19 @@ examples:
->              vdda-supply = <&bar>;
->          };
->      };
-> +  - |
-> +    # include <dt-bindings/gpio/gpio.h>
-> +    # include <dt-bindings/interrupt-controller/irq.h>
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        pressure@0 {
-> +            compatible = "bosch,bmp280";
-> +            reg = <0>;
-> +            spi-max-frequency = <10000000>;
-> +            reset-gpios = <&gpio0 26 GPIO_ACTIVE_LOW>;
-> +            vddd-supply = <&foo>;
-> +            vdda-supply = <&bar>;
-> +        };
-> +    };
-> +
+>    - reg
 
 
