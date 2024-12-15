@@ -1,106 +1,99 @@
-Return-Path: <devicetree+bounces-131134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0133C9F2184
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 00:11:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 694609F2193
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 01:13:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25A8116604A
-	for <lists+devicetree@lfdr.de>; Sat, 14 Dec 2024 23:11:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 463A77A085A
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 00:13:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81BFB1AF0A1;
-	Sat, 14 Dec 2024 23:11:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2708A193;
+	Sun, 15 Dec 2024 00:13:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="RnqVn1Un"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NaAHXfUx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF26A189F56;
-	Sat, 14 Dec 2024 23:11:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF491634;
+	Sun, 15 Dec 2024 00:13:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734217880; cv=none; b=mZqPN7IQK5AMnkasmj6TmmnAvf8nd9C0y3q0s65QLQ407OKP+Pgogb9r6TqfXu5cc2hjac6lfbdVoW1YzDOazKDqakt2+f0Q7hQSp6tMPn74vUWOnSN+8bwPu6/qPxKW6MU1stQd+l68ThGwcKEBlB7O1PUatgASOzvCwNy0GxY=
+	t=1734221596; cv=none; b=jFQPRcSEb3cAslgi73Ws483H5eTZkLoDtExZmDzQV0KAofDGNnlcRivlXtamNXjNJQ8arjQ/fiWk9iquy46KEfT5CQepHjHL0JHmtUPBViriawP2lf7UUiVJGoNyvX45qV+MwHMQgWHFoBCgQdIINeQhnt0Cr30tejxJFEQQx1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734217880; c=relaxed/simple;
-	bh=jujhRYcPVTrUs0etkvfX0ryjQvD9n3p3jl6EHZ+CLxQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EPLuqGYEFth0rRznt2EMlfiEXS/SWoh7Vv5U1WrJX6cIGD+fnDk0qcARbdarJvirUljURlxwgaeyGzqkkfeHN+5RaUvMB14eksnxqcoWvkP9LGRvmAEbbVdQaxXRhbiJIEEsSthZ+g6Rshp97DsGdxM84sSiNm5tlgHxpar/BMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=RnqVn1Un; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=XnK2zDuvd06Q2CdiF2Jh3uNypUBp9FI0ZgGJeXwzVXE=; b=RnqVn1UnoQXWoLja4YR73nNs8V
-	f4ojahwjcd60HFpXz2b0Zd3coUK1ak/NqeB6Q3bXPTRVnWcJ3EaBwBvSGBAiqfyqCtfVlzweOYtV4
-	kxTXMtq/WxATh47oyPHXSKtBloW3pWaMupYtl8h23D/oAT6EXDslUk2oFIeMHGwKmQhj/2z0tbVxu
-	dEjtwCJowbzD+pez8qS9vOtXmOz553JZnoIGLXMfC6grpNyQ9M6SROoQGOy9fE9QVrQmDb0wNZ/vy
-	MpvIiEzBEbi+hBLufxhoLPKmkVM/kxtgOchxnS8J3x5/8UdQutVHqG1sS7KnIkmPqmFWBzVI7wBib
-	HP51q6JA==;
-Received: from i53875bc4.versanet.de ([83.135.91.196] helo=phil.fritz.box)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tMbHy-0000hg-VZ; Sun, 15 Dec 2024 00:11:11 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Andy Yan <andyshrk@163.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	hjc@rock-chips.com,
-	krzk+dt@kernel.org,
-	s.hauer@pengutronix.de,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1734221596; c=relaxed/simple;
+	bh=GOxtTBS0yKclfTbkzcgYLXgciMLHebdnxXnJIfg8xcs=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=lHlmEZlhACT4etaTdk/P3g5n8KW1KyM2LAkAHvURhtk52uJbIcYHBkceNqKgnb0lzxqJqMNP8XOirr+7BLGqYiHmNpGAXzo/q1TRrL1+DTytAfzL8nmClbKSr0KFWpZXzTb+6hcrJ/DJMfEUd1ctIcawgTytzNVoBG42TB3QoDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NaAHXfUx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 262B0C4CED1;
+	Sun, 15 Dec 2024 00:13:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734221595;
+	bh=GOxtTBS0yKclfTbkzcgYLXgciMLHebdnxXnJIfg8xcs=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=NaAHXfUxtGgsVp/1JftfM7ApkQteOqXoL2wa03UIRyoj/IR73gVRkAlwX7G9U3OJ5
+	 MMsifXAJYwgTDk0gsii651oZgcaCFC44EqspBdwzFAzb2QIrqOAI4WU0fSgGa5vn1Y
+	 WQLZ6tsgEjqDd6ozo464Mm0NJs6dSnkmUdzxbwfYPjK0NbiJ7v52ayDeVXDCHwVQ7n
+	 AyjftSVb9Od6MXYucJRp5Ieu66iQWoI5m7M+yvoK6xIa67T8xze8E5Yg6ZeTKWWGpQ
+	 yTPHLyOAdwj3KGo0VFcMwM7b5eKaBUhdljM6uP4/2yFiV+fzrauxya4aCYu3+0UXmx
+	 Ms4+0Tv3AGipg==
+Date: Sat, 14 Dec 2024 18:13:13 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
 	linux-rockchip@lists.infradead.org,
-	derek.foreman@collabora.com,
-	detlev.casanova@collabora.com,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: (subset) [PATCH v6 00/16] VOP Support for rk3576
-Date: Sun, 15 Dec 2024 00:11:07 +0100
-Message-ID: <173421785408.212079.5671999900653465901.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241214081719.3330518-1-andyshrk@163.com>
-References: <20241214081719.3330518-1-andyshrk@163.com>
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v5 13/14] PCI: rockchip-ep: Handle PERST# signal in
+ endpoint mode
+Message-ID: <20241215001313.GA3482864@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241017015849.190271-14-dlemoal@kernel.org>
 
+On Thu, Oct 17, 2024 at 10:58:48AM +0900, Damien Le Moal wrote:
+> Currently, the Rockchip PCIe endpoint controller driver does not handle
+> the PERST# signal, which prevents detecting when link training should
+> actually be started or if the host resets the device. This however can
+> be supported using the controller reset_gpios property set as an input
+> GPIO for endpoint mode.
 
-On Sat, 14 Dec 2024 16:16:59 +0800, Andy Yan wrote:
-> Thanks for the basic work from Collabora, I can bringup a HDMI
-> display out on rk3576.
-> 
-> PATCH 1 is a carryover from the working when add support for
->     rk3588[0], is very usefull when some people want me
->     help debug some issue online, so I really hope it can
->     be merged at this round.
-> PATCH 2~8 are bugfix of rk3588 alpha blending which report and
->     test by Derek
-> PATCH 9~13 are preparations for rk3576 support
-> PATCH 17~18 are real support for rk376
-> 
-> [...]
+> @@ -50,6 +51,9 @@ struct rockchip_pcie_ep {
+>  	u64			irq_pci_addr;
+>  	u8			irq_pci_fn;
+>  	u8			irq_pending;
+> +	int			perst_irq;
+> +	bool			perst_asserted;
+> +	bool			link_up;
+>  	struct delayed_work	link_training;
+>  };
 
-Applied, thanks!
+I should have caught this last cycle, but just noticed this:
 
-[01/16] drm/rockchip: vop2: Add debugfs support
-        commit: 779964556c64cd3d76ddfeb34738ef78020fae84
-[02/16] drm/rockchip: vop2: Fix the windows switch between different layers
-        commit: 0ca953ac226eaffbe1a795f5e517095a8d494921
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+  $ make W=1 -k drivers/pci/ drivers/misc/pci_*
+  ...
+    CC      drivers/pci/controller/pcie-rockchip-ep.o
+  drivers/pci/controller/pcie-rockchip-ep.c:59: warning: Function parameter or struct member 'perst_irq' not described in 'rockchip_pcie_ep'
+  drivers/pci/controller/pcie-rockchip-ep.c:59: warning: Function parameter or struct member 'perst_asserted' not described in 'rockchip_pcie_ep'
+  drivers/pci/controller/pcie-rockchip-ep.c:59: warning: Function parameter or struct member 'link_up' not described in 'rockchip_pcie_ep'
+  drivers/pci/controller/pcie-rockchip-ep.c:59: warning: Function parameter or struct member 'link_training' not described in 'rockchip_pcie_ep'
 
