@@ -1,130 +1,131 @@
-Return-Path: <devicetree+bounces-131142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0259F9F221B
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 04:28:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 946D29F224D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 06:37:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2932D165948
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 03:28:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C68137A05E9
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 05:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A19B1EAE7;
-	Sun, 15 Dec 2024 03:27:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6056B13AD0;
+	Sun, 15 Dec 2024 05:36:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SYOmxKWC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bUB50UrG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 170F92940D;
-	Sun, 15 Dec 2024 03:27:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE80217BA2;
+	Sun, 15 Dec 2024 05:36:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734233248; cv=none; b=mlBJlzdL/tJonXAZlHylx3HLNctvl8ae2gtN13koTStmG57LfMs9aLl6afoLU9AdlarplsjIudcAcJJgFIZurXRXSTtwZemYQvkWjVYpqKOhImfGVEVMehUpySvlnmH46rsjBHW5kAWzuKOaBdIh0vgDYXvNyesPtqV5EYH7zbk=
+	t=1734241019; cv=none; b=WWk8BT5Gfz6nEiz3MDPTeVfdACkIHeTaPw3FxP4hg8Kh8bri2kePv/UrXaM0BoelR7cFOBd2vglyZPlP3xLp0LxxoMrcgSma9d17nJ/1wstM38747MPFRzmb6Ri5b5fvK+9zxQp/cXPVdpDVhuCe2JgKl5oounBtSFWrQwUsLPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734233248; c=relaxed/simple;
-	bh=nWMqBh6v7cRgm+XJUOPQB1YJclxvbH+Y2uWnFBbVcJY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HDS8xGC24FftsqO4N6BvkcTZSJL75bjBvzlWdvErIA7oKs/I6MSOTecBncR8OVxqcrT7kUhZhwNd8uAS4USxms1d3R7v5Rtj1pk/OtxSi9Ow1ZY+CYe67PJd+y+8+SvX1Q9Vi8Utu/FU/0lBQ4faRsFPoEsywZiKTgGmYAxQk9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SYOmxKWC; arc=none smtp.client-ip=209.85.166.43
+	s=arc-20240116; t=1734241019; c=relaxed/simple;
+	bh=tm2ZBhzuEFEoW3o28d+5TOHGvceka3GHwCO5JinxcNM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=So/E+kZVuQFlhUxQjdy0x7hctnN57WP/nnIStyz10DN3Zqde7RDiFg/fb1O3Q7jyOc9Zfs7+Ngl2mXY+sr/+9FkhJbkT6ErV0UBqzx5fiSqSbzqpL9pWWTG/6bn9axEN4TucUjV7nNxCeu7RYI2yiHeTvuQVF14mWMRYU9/S+KQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bUB50UrG; arc=none smtp.client-ip=209.85.214.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-844bff5ba1dso225434039f.1;
-        Sat, 14 Dec 2024 19:27:26 -0800 (PST)
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-215770613dbso20274855ad.2;
+        Sat, 14 Dec 2024 21:36:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734233246; x=1734838046; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XMKOxO+QQQnpK/gqTmp5of8X6K9CuNI4LFknE1hYc2M=;
-        b=SYOmxKWCKf+30mCsZbL2phmry4pNdL2KNMjvIKd13gHFBlIhQusDt0I9zCUlZX2nLV
-         DaLjX40D9Ez18RRxFVO7EEY30HxJHauJ8OlcB8Yw3oyy9qFJpGCGI3vJqsSSBkFNjpdp
-         28kT9RrvPgRwR14BwBO7W2Vq0wjkuTlorgexQo4500i7A5F8fMzPzoTOjIL/NgwKXTCx
-         BiF+33ldPvGefPGU5jvkOOiDQ/LPLEBtoKQDJYpGlD1Y4HQccRrSrWV/tkD11RFlU368
-         6uca7PNUEUbPfJ4b3BSej6LT7I/c4MCtokwnyhd6H7iVKQA0JBkMFVO1A7VcTGtnHa9n
-         gbYw==
+        d=gmail.com; s=20230601; t=1734241017; x=1734845817; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5T7Xps2U+Xbtct6WpNh1Ms/jHQH/Zy0/yiacfJI6eY8=;
+        b=bUB50UrGv2NKbTPlNElauaAA6+CWNPtSkE+pjC8hoM77ttaldi1kTYyFdV1nEFmbYr
+         v/LStV28ymKc1+pbV12E13MpIdgSc5YNkqwxprFzDfw7GVh3DGYYWZGelbx4kPIgHgVR
+         zuRPxPYZXuEMIVA92P5EkMKD826jBX3J9i+P+58M/Go4sY2q3owJGVESs71ELF+8cuSz
+         BQPV5HTkHxelHKJfQnmAgYghT1tAmKhFwILcoYnOS9RFRoH6gWBXyxQw+fNSsdE6QoAA
+         160A4pT2nS/DK3A9P6tLuHSD4ZVPie/9o/5VkauBts5BjGPYZJL6+ee4yTmA0xPiRcQ8
+         uCfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734233246; x=1734838046;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XMKOxO+QQQnpK/gqTmp5of8X6K9CuNI4LFknE1hYc2M=;
-        b=IY5rodvXd8iGiDHBSz+bzTZ3RAaka7c6ujr91KmRbxA0EOYStAidXZKl874v2lLjnY
-         LRDMKxSZrx53gJgUX/AvL06nt+PCb0FopycUITdLs7FZbEV/1ix8LGlNR3Npud0JWCIW
-         URCBKU+X+00INtlkS5sZiZGEsUdD+p03tjjRBZK8P6A8I5fClfqd70NB3MAkEms7UIVs
-         d2QuL0rP2P/B7M21h86SbAxmCGWlQeg8QagpiiUEmHRs472ARKXpw5+RwqMGN6g2Yw5k
-         6dwfoY9RTJufVuK9BvbTF/w4GlbZd1mt7xoGPG+ikVjUsFatcf65xEEbd20kFPgAbW9a
-         5oxw==
-X-Forwarded-Encrypted: i=1; AJvYcCUyXa4FKsrjT/SQ6wevTXkIfM0GdvjfPUKNymHNzgyCStAeHA9xRgiSfYrouFdS5lj1pZGHNen2vMbc@vger.kernel.org, AJvYcCWK2rSvjsZmufhqUqoh8c/F4ZCQICIraWN0kq/sOlW7bK3MZ8U2t6l7+70EOWX5Sz3kQzIlhcmv5qk=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzC/ws/TPnkhdkYDoyuKbwhAlUhQ4injuc8s+zuxhqdrk6uAP1S
-	mmMm68e8s/OPopBZstPUHNgfY02DzlcfvrQQp8FfVtNlsGIKxPAd9oCanA==
-X-Gm-Gg: ASbGncv69FnybscfpOEk6ySGbFdcxW4SM7ojZVg0HKDQtBdpeKGASHUMP5gQx0EXYXR
-	GVfJq2+1mGyFeYAaYg825r07LsRzVYIvTQIJzh/dbAkmfhcluFaqS+sIZ4o7hoDCLEuRm9znrKI
-	qZrn6MFPHc3zvATV3VK/NtvEVETjlNgw0dIxBREOX5m0dxmltDfpQO+Ocuj+AxaEP/SI1xPRuU9
-	sUbHC2Q6LvqhHYQhU4qP9Ayu+4U4uxiddDh60IujFULXHsoTlDlDF3ZmyhA4/xtKiucQVlRiNPn
-	2oNiKh8VnDJbUg3mbmJb2D5FXCs=
-X-Google-Smtp-Source: AGHT+IH/Ga5WHa4WgsKsLSKgbEehuyqvn8KfLn7YekgXK2iiDYMjq8AZzP29aqVzMkcLbvuitLywqw==
-X-Received: by 2002:a05:6e02:3308:b0:3a7:fe8c:b012 with SMTP id e9e14a558f8ab-3aff8c92a85mr86513735ab.18.1734233245607;
-        Sat, 14 Dec 2024 19:27:25 -0800 (PST)
-Received: from localhost.localdomain (65-128-205-244.mpls.qwest.net. [65.128.205.244])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3b2482298c6sm7755575ab.31.2024.12.14.19.27.20
+        d=1e100.net; s=20230601; t=1734241017; x=1734845817;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5T7Xps2U+Xbtct6WpNh1Ms/jHQH/Zy0/yiacfJI6eY8=;
+        b=PBwVivwnzTSkLQzmlfSi2G23Suk8sO/FkIn/+v8TwLHILWDDZsFAIiV7/zKRNRXxON
+         8iKT1VipftcX0Mi0HYYtK2gN0zoDawyF5igCrZxDmfKAjnD/2ULoKsWhevZBVm3iS9K7
+         BSZlYhrsF4ea7WdB4IJJhWilFgQDeO/+Di+yI+4z4nRKsmL2eXwiso0iBOkZdtcdcFm6
+         iW4R2uGPft3kjYcKzIK5yRc4Ug52jqjP5L2ci/jenK8ZeoeSpayvFZ4/dv+lp/tHZIUO
+         2O6MQlkPgJMnvYL69cdEsJpwR16dDBcrYb7DfOHtU3u+9d+QLAgXSh0ZmsljXcDZBgCX
+         yrSg==
+X-Forwarded-Encrypted: i=1; AJvYcCW34Y7GutyuklAwsmf3aOuxX5g4pU63tUHrgCJN076I3VE2tKtfkPmLF+bDXYcTNISEvAZ54339A67s@vger.kernel.org, AJvYcCX6fRfb3dZypPygZHY8UpWYQxwt+mDDR0+RF9ixOV8I3NkQ57U3zm5iyCpMQ0oEo2oQVkuAJpcbD61E@vger.kernel.org, AJvYcCXAYlaaVWTh5jJytvKpqXSsmA2iLMi1xktmy+G6DN9DDnGs4nXg4OoxlgV1hjeSzuquWeSfIId0a1fupMfm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6o6U+/leHQ++lmLnh3w8yEKzJZEU+OETM1bUf6Nei+p1d6tNk
+	6JNt61VHRMQhUclticUaN6zRdewFY8Og2Iybl7Q4cCJ9EVAUEj80
+X-Gm-Gg: ASbGncu3m1pgoRNbCvUUBOVQyQp+21Cs3Muh3CVzWnm6IOFurXwXbNdje2KDLEIOb+h
+	cqa0ZLdfVNVquxiDPqWkNApOwPmBxgi5jtv/Q91ygZMe3jncOheZ4C+sWg/YU25uidvAJ4dCKVb
+	/2ZpeNvygdXNKkGQ+FihQzJBWnw9eD2wQtTFU71dfQhVt5EVemVAT3opyBHvr2XBmkSfLWMt1P8
+	ocFxCOiHFFD3Z5VkygU9sw/PP4zLhWhwPsJV8EYofr54d3PGw==
+X-Google-Smtp-Source: AGHT+IFi1PPQSUOrCioA0Ut+2J5jgMJCNCDNT6STQp0qD6xWCc08BjaoFiUHYwBhtNmNrzFypeNIzA==
+X-Received: by 2002:a17:902:e806:b0:20f:aee9:d8b8 with SMTP id d9443c01a7336-218929a248fmr95477575ad.20.1734241016960;
+        Sat, 14 Dec 2024 21:36:56 -0800 (PST)
+Received: from anarsoul-xps15.lan ([2604:3d08:7780:1ca9::398])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f142fa1cf8sm5729803a91.38.2024.12.14.21.36.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Dec 2024 19:27:24 -0800 (PST)
-From: Shimrra Shai <shimrrashai@gmail.com>
-To: linux-kernel@vger.kernel.org
-Cc: conor+dt@kernel.org,
+        Sat, 14 Dec 2024 21:36:56 -0800 (PST)
+From: Vasily Khoruzhick <anarsoul@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Roman Beranek <me@crly.cz>,
 	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-pm@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	robh@kernel.org,
-	Shimrra Shai <shimrrashai@gmail.com>
-Subject: [PATCH v3 3/3] dt-bindings: arm: rockchip: Add Firefly ITX-3588J board
-Date: Sat, 14 Dec 2024 21:24:55 -0600
-Message-ID: <20241215032507.4739-4-shimrrashai@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241215032507.4739-1-shimrrashai@gmail.com>
-References: <20241215032507.4739-1-shimrrashai@gmail.com>
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Cc: Vasily Khoruzhick <anarsoul@gmail.com>
+Subject: [PATCH 0/3] arm64: allwinner: a64: fix video output on Pinebook
+Date: Sat, 14 Dec 2024 21:34:56 -0800
+Message-ID: <20241215053639.738890-1-anarsoul@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Updated DT binding documentation per @Heiko Stübner's suggestion, to
-reflect the bipartite nature of the board.
+Since commit ca1170b69968 ("clk: sunxi-ng: a64: force select PLL_MIPI in TCON0 mux"),
+TCON0 clock parent is always set to PLL_MIPI, but unfortunately it breaks
+video output on Pinebook.
 
-Signed-off-by: Shimrra Shai <shimrrashai@gmail.com>
----
- Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+I did an experiment: I manually configured PLL_MIPI and PLL_VIDEO0_2X
+to the same clock rate and flipped the switch with devmem. Experiment clearly
+showed that whenever PLL_MIPI is selected as TCON0 clock parent, the video
+output stops working.
 
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 753199a12..fc7ee86e2 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -167,6 +167,13 @@ properties:
-           - const: engicam,px30-core
-           - const: rockchip,px30
- 
-+      - description: Firefly Core-3588J-based boards
-+        items:
-+          - enum:
-+              - firefly,itx-3588j
-+          - const: firefly,core-3588j
-+          - const: rockchip,rk3588
-+
-       - description: Firefly Core-PX30-JD4 on MB-JD4-PX30 baseboard
-         items:
-           - const: firefly,px30-jd4-core-mb
+To fix the issue, I partially reverted mentioned commit and added explicit
+TCON0 clock parent assignment to device tree. By default, it will be
+PLL_MIPI, and the only users with RGB output - Pinebook and Teres-I will
+override it in their dts.
+
+Vasily Khoruzhick (3):
+  dt-bindings: clock: sunxi: Export PLL_VIDEO_2X and PLL_MIPI
+  arm64: dts: allwinner: a64: explicitly assign clock parent for TCON0
+  clk: sunxi-ng: a64: stop force-selecting PLL-MIPI as TCON0 parent
+
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts |  2 ++
+ arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts  |  2 ++
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi         |  2 ++
+ drivers/clk/sunxi-ng/ccu-sun50i-a64.c                 | 11 -----------
+ drivers/clk/sunxi-ng/ccu-sun50i-a64.h                 |  2 --
+ include/dt-bindings/clock/sun50i-a64-ccu.h            |  2 ++
+ 6 files changed, 8 insertions(+), 13 deletions(-)
+
 -- 
-2.45.2
+2.47.1
 
 
