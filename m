@@ -1,145 +1,118 @@
-Return-Path: <devicetree+bounces-131182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C597C9F2420
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 14:11:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F0D79F2437
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 14:40:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5145165686
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 13:11:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A60941886663
+	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 13:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0561922F8;
-	Sun, 15 Dec 2024 13:10:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JGolfYKd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88864189912;
+	Sun, 15 Dec 2024 13:40:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9587C191F7C
-	for <devicetree@vger.kernel.org>; Sun, 15 Dec 2024 13:10:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6DF71714B7;
+	Sun, 15 Dec 2024 13:40:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734268256; cv=none; b=sz+zbV/SYKcZ5cZI/+CibZwDCNokaXlP+rqp1n6aYPIA9AKJ6N+Es5Vfb8fUsikM3qwczQEbY2Xgf2oYBk6OfhiPfOUjcsPNNuSDomtPUcvli038yvlHAwuuVHcU0CS/rIFq40MwPGx0suNwU8BfJsbR/ZJqkoLLlzsm0OFkTNA=
+	t=1734270047; cv=none; b=iSjDvnSKiOb9e5pwzSDVWAn+oZ74xS6T/Aa60tS9GCDkI7rlo6PgD0N3WDB7W0m7aabvMHpo627oKZ6ztOgnbs7D+LCdR0B2sSr2v/VsNhtWYFgUSEmyGtvCZjijSs6mPJqjdHqGtQuZv1aLCx+bHWJCAuX6XfRCWJxNR/07wc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734268256; c=relaxed/simple;
-	bh=U03dIrrAWHFMBB0BUbdkuumkA4W+flzASCUPJglUjTw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mXPJlIACz46AFMEdJmt9Y7weJt+mCuUq227y8d+eI42hZ3t8ZgAACgQ7ztNYUnKeQ/uKZ+FRwEDdekn763KFjDOYkJRZAHfVThO7SVYmjXMJ7eBgl1z1uDme09pI1SV7c1MhLzCq8wbiqwfbQetaIdRJ1HBMOEk4AK/tv50mFrU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JGolfYKd; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-540218726d5so3369815e87.2
-        for <devicetree@vger.kernel.org>; Sun, 15 Dec 2024 05:10:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734268253; x=1734873053; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i6RCpuSvue4hpoUhHcSyfcYpwTRHbw1RA0jucyvWPrY=;
-        b=JGolfYKdSo8hVENDsAQNlZ0ySr0kVBgVgIKezZ3wztArdoT8Q9Vpo3PWvUi0vfdfFQ
-         hDUffQCADARvxNkYft47d6gr7r4dETjE85TXC2Zn7zhGmXRqp4yr+vJI3cqjenvZtCwM
-         3TIndKMZpNhL5M6uTLah0If6OvfP3QhIhfHuDTOAyHZDcbx4Ew+3inUC5cto/H6b8vuc
-         CvcjfLHwEJWLabWPCVSNnLZMsQe3wOrSjgDotQ76XZj2AO7mLRIbfa1tk9LvWLb43Mtm
-         L89HTQZtw7oYemRB5v22ErV3PjWj6xcesl+P3SNmyjFQODvQ3no7RSSc+h6khA1RXTRp
-         Iz6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734268253; x=1734873053;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i6RCpuSvue4hpoUhHcSyfcYpwTRHbw1RA0jucyvWPrY=;
-        b=T5WuFCy0eXae7Th00TsV403HxU0BCgkd6JpIddR5mPo5gHZc3zFzW/xC2OQuWYHAYT
-         kugL2apEi+ztfdGR8LsEITreMDKaIQtAN608LhKrz+7x9SBVaNF2+gmv/FpD0rGK2j3e
-         s2mE/eJjDtKTtFqk10EF+vEZtc55TP77Za3DCbQMrjE7hGnj3FXOKVor9asQIktM5XOY
-         1Nw3D4fOtABBkXXSASzOWyODzTesRU19rHMtLJh7Xf/3QUeL3nJmZiwQjE7xDdeLKmP8
-         D7+c/UO48njXujjHBpa1tdUPJWjvVO4GARKJSu1f4kulep9mmJWYjOnlzDvcq3RQPsdV
-         5IcA==
-X-Forwarded-Encrypted: i=1; AJvYcCV2xpYgY/LKA4mK8B4aDB7VMu7jmdNWo7tYUzpF/+N8AU5NBH9sFbkKtma4e6cousMTnnw0bTiusxcQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDfCZJ0HGA/hPsUZDqI7bteywT/rb3wZ+BzkKO6PQPQHmsYNMC
-	SSRbYC1+ljnWWrExRcMkk5U1YUrt1v83UhQ44kwpv1qdL9jh4ePDEkqnR1zibr8=
-X-Gm-Gg: ASbGncvpj2JrcZdtUFkJoE+TlfCYfKwaGo3cm2UVzDVUga6SF60eMVakETj77A6fqhN
-	gGM46mM/wJd3iuHojKjdb6OeiIczU4w1WzHgtcIYVrK3CwiMlHM6pE8rjGAVUUiHBCzKgpapbFm
-	zDCFt5pY8uNln5CblWE2aBdshMy4nZHx/VFN2ce9k4Z/GLwiKpvCqi3PbgV+a1MP8vOGnH3T2n2
-	HtY8ucoKRO5380N3h4dlxY3hv6n57cbL54X4ieHyTQ33iXRfMmhrxAH9ofSvjbBQME8vASR
-X-Google-Smtp-Source: AGHT+IFU6V2+HMrRfVLaoWmqetk6W+EYxrP0DXnFOAt11x2SZ8DShJ5hEQO+8CJ4IDumWl61VcxjJw==
-X-Received: by 2002:a05:6512:308f:b0:540:1b2d:8ef3 with SMTP id 2adb3069b0e04-54099b6d7c4mr2590910e87.52.1734268252758;
-        Sun, 15 Dec 2024 05:10:52 -0800 (PST)
-Received: from umbar.unikie.fi ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54120c00262sm496316e87.138.2024.12.15.05.10.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Dec 2024 05:10:51 -0800 (PST)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krishna Manikandan <quic_mkrishn@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Liu Li <quic_lliu6@quicinc.com>,
-	Xiangxu Yin <quic_xiangxuy@quicinc.com>,
-	Fange Zhang <quic_fangez@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v4 0/9] Add display support for QCS615 platform
-Date: Sun, 15 Dec 2024 15:10:42 +0200
-Message-Id: <173426667308.2196979.11322859869026651489.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241210-add-display-support-for-qcs615-platform-v4-0-2d875a67602d@quicinc.com>
-References: <20241210-add-display-support-for-qcs615-platform-v4-0-2d875a67602d@quicinc.com>
+	s=arc-20240116; t=1734270047; c=relaxed/simple;
+	bh=Clhigu/Q4gCmERhzrswzfgXprFlUs+6+4e/00LAi3G0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Qc99dl6JhAc2hdX8t856RzJRKkda9GGTW6CDWQ9PkAQECh39t9JDeQsnuPPSxz9Tsxu2gH3C5yvPskQlI5LVtoa6pfhvIcfyNntQ8ZJItfd9g6uX2C+1uZaNV14ycixt8+3CmzVW1uBA/p3dEheY1wTmgALdwNp5oTd7huJgRyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8414611FB;
+	Sun, 15 Dec 2024 05:41:05 -0800 (PST)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 730863F720;
+	Sun, 15 Dec 2024 05:40:35 -0800 (PST)
+Date: Sun, 15 Dec 2024 13:39:50 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Vasily Khoruzhick <anarsoul@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Maxime Ripard <mripard@kernel.org>, Roman Beranek
+ <me@crly.cz>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 0/3] arm64: allwinner: a64: fix video output on Pinebook
+Message-ID: <20241215133950.27e5877a@minigeek.lan>
+In-Reply-To: <20241215053639.738890-1-anarsoul@gmail.com>
+References: <20241215053639.738890-1-anarsoul@gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Sat, 14 Dec 2024 21:34:56 -0800
+Vasily Khoruzhick <anarsoul@gmail.com> wrote:
 
-On Tue, 10 Dec 2024 14:53:51 +0800, Fange Zhang wrote:
-> This series aims to enable display on the QCS615 platform
+Hi Vasily,
+
+thanks for tracking this issue down and sending the fixes!
+
+> Since commit ca1170b69968 ("clk: sunxi-ng: a64: force select PLL_MIPI in TCON0 mux"),
+> TCON0 clock parent is always set to PLL_MIPI, but unfortunately it breaks
+> video output on Pinebook.
 > 
-> 1.Add MDSS & DPU support for QCS615
-> 2.Add DSI support for QCS615
+> I did an experiment: I manually configured PLL_MIPI and PLL_VIDEO0_2X
+> to the same clock rate and flipped the switch with devmem. Experiment clearly
+> showed that whenever PLL_MIPI is selected as TCON0 clock parent, the video
+> output stops working.
+
+That is good info, together with what Roman reported in that patch
+mentioned above it seems to confirm that the parent clock selection
+also determines the output path of TCON0.
+Since there does not seem to be another register or switch setting
+the path (ignoring the pinmux), I think a DT solution is appropriate
+here, and assigned-clock-parents is the right way to go.
+
+So the patch series looks good to me in general, but we thought that of
+Roman's series as well, so I would really like to see a Tested-by: from
+a Pinephone user and ideally a confirmation from Roman that this still
+works for him.
+
+Also I second Dragan's comments about copying the rationale into at
+least the commit messages (if not in comments). Having explanations
+in the cover letter is good, but having it in the git repo is much
+better - as the cover letter will only be in the email archives.
+
+Cheers,
+Andre
+ 
 > 
-> QCS615 platform supports DisplayPort, and this feature will be added in a future patch
+> To fix the issue, I partially reverted mentioned commit and added explicit
+> TCON0 clock parent assignment to device tree. By default, it will be
+> PLL_MIPI, and the only users with RGB output - Pinebook and Teres-I will
+> override it in their dts.
 > 
-> [...]
+> Vasily Khoruzhick (3):
+>   dt-bindings: clock: sunxi: Export PLL_VIDEO_2X and PLL_MIPI
+>   arm64: dts: allwinner: a64: explicitly assign clock parent for TCON0
+>   clk: sunxi-ng: a64: stop force-selecting PLL-MIPI as TCON0 parent
+> 
+>  arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts |  2 ++
+>  arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts  |  2 ++
+>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi         |  2 ++
+>  drivers/clk/sunxi-ng/ccu-sun50i-a64.c                 | 11 -----------
+>  drivers/clk/sunxi-ng/ccu-sun50i-a64.h                 |  2 --
+>  include/dt-bindings/clock/sun50i-a64-ccu.h            |  2 ++
+>  6 files changed, 8 insertions(+), 13 deletions(-)
+> 
 
-Applied, thanks!
-
-[1/9] dt-bindings: display/msm: Add SM6150 DSI phy
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/5902cd2212eb
-[2/9] dt-bindings: display/msm: dsi-controller-main: Document SM6150
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/e9280f124b3c
-[3/9] dt-bindings: display/msm: Add SM6150 MDSS & DPU
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/701da2861cbc
-[4/9] drm/msm: mdss: Add SM6150 support
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/b8871563eb96
-[5/9] drm/msm/dpu: Add SM6150 support
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/cb2f9144693b
-[6/9] drm/msm/dsi: Add dsi phy support for SM6150
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/fbf937a89ad2
-[7/9] drm/msm/dsi: Add support for SM6150
-      https://gitlab.freedesktop.org/lumag/msm/-/commit/8a570c93fb67
-
-Best regards,
--- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
