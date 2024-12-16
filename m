@@ -1,107 +1,123 @@
-Return-Path: <devicetree+bounces-131532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D31D19F3A5A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 20:57:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E8B19F3A5E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 20:57:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9BF227A29C0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:56:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E3EF188BF99
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7245420CCD1;
-	Mon, 16 Dec 2024 19:56:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8230920CCFF;
+	Mon, 16 Dec 2024 19:57:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lFO8e9lS"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="cUD11b9N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 468A9205AA8;
-	Mon, 16 Dec 2024 19:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E80C220CCCE
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 19:57:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734379013; cv=none; b=gI2eiwt+CJZkcicSFPAcrpLwdZhu74c+F5K8tYiK/y2T9c1zhXN0up9rF488U5DoLnAhqDCs9Ar930Kye8k22N1nOMQE7qMytRAQxl9QJREjqI25nmmwPzxF5xTu28F8EGb8jUP4/qXMynHihHbDLfMYkpWfilECFFtPtcbaZ5c=
+	t=1734379060; cv=none; b=CVwhSmOcD8C1jrwVSrQBH/dTEkW61kXM6/1PzhTWmX49ot9C+fABLjg9MTcRBF8aZLNsVHDILAQzfnUe/8ZaTyLRo+zt9BPkrrkcGfTuymlU9VAYO03OSCbRkdNnXXVZDwRcU80JUS+20AkJQO3BFyA7tpQinnXXgKKNQn9FkGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734379013; c=relaxed/simple;
-	bh=mfQ+UvS9zCNDDMgy2pSAaJ5A6FtaL/xqQkyF0asjCys=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CSE7j3K9mG4XlS+13N6q3fq6BTZ/A+Jus79qUDvwyt+sINvP8u5N1NWIGVaxEf/YNkthX2rkjqo+2O3qtRX1aSi/C0Xq+aSowEjkXDUSvLxYPiswkEm8vK+4TfelsjiT2zSfU9P9a5nXzpcVtVFTrny8q7Mifa51zZ6YilVadv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lFO8e9lS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F14CCC4CED0;
-	Mon, 16 Dec 2024 19:56:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734379013;
-	bh=mfQ+UvS9zCNDDMgy2pSAaJ5A6FtaL/xqQkyF0asjCys=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lFO8e9lS7ftXOKI+ufABMtvFzYaO48rUzAhicggP7Toly8vWQD+u0j0TTVIBW338P
-	 EBgSeyHWzW5KfeBpf1SQXrwqNKtbbQxkCd3tdM2x69ue5JP50DiDlox99vEIteHyjJ
-	 rSrjnt+1OfCaJYARZi1mnmG8Kosr65ovqzGkk5pZQCHfPJbV66kv2BmZxLQqIkqUoZ
-	 lLMuJ+4JV6nia/MP4/gaAwdiQqLU0xLmfeoddi8kS5QjsRcZpIT+AJ741qpfKV3Gg6
-	 6Ygror5DsnhIkuwgZVrgtPwO5wX+35nIe1pJfRGOIFHExja3I/dcY/cSPmOO0yFfkH
-	 dyLP1DOolb7xw==
-Date: Mon, 16 Dec 2024 19:56:49 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: ath12k@lists.infradead.org, Kalle Valo <kvalo@kernel.org>,
-	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/8] wifi: ath12k: MLO support part 7
-Message-ID: <20241216-moonlight-perpetual-d49029337c17@spud>
-References: <20241211153432.775335-1-kvalo@kernel.org>
- <173436785894.3413746.14923997859754791913.b4-ty@oss.qualcomm.com>
+	s=arc-20240116; t=1734379060; c=relaxed/simple;
+	bh=3EUxTz6N2CO54MtyJBQDvZ+FZVSDjNgSHibKEihsynI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jsWw399bWmYK7SPEW8ToyLDnUkCpPBvLzaxVniHMj8s6SwqwKPIykF6bvoLVNL5e/sYC7NafTuc8YwVOGkNJ4jFrUrhx+TDL24274i6vYQ4KkTa1JQn4RdedHxlH2x01yY+eKifWAlz5oWlYraxxmrAslaAi131uy4nurcfIDx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=cUD11b9N; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 2D34F2C07FD;
+	Tue, 17 Dec 2024 08:57:29 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1734379049;
+	bh=p1T4X+B77uk/xLqLY88anJOJiIa7QMOSTIyM0a4pqko=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cUD11b9NIu/vdxuzVNr2m8txlDwfGoQ5XL7e3YYtLfMTqJmmj7swhWleXYh9bjKIz
+	 gfidl6XoVUQEw+q1pqcjEojG65sQzOynOjwGhjb32Cgy3JehlWTYoSsIZ6YKvAFCHF
+	 miR+aukZdYJXUkgVeryR73SLimnknPT9tDOoxAb7i0tjy0PiPaO1NY3iOY2kyvMlDA
+	 3Ul13RTvGI8YDkxF23ag2VUVLrVF8Di+8LIRsPAjlyUFSQUOcfPUT9cbYTRfesiLhL
+	 6dZcdWPQfxcD+FfvF00wP0VZj946lHB1HXrPzUtFGaIVH11P2eA2Wb3fCfppEYNVHa
+	 +Dw+Z/y8QfufQ==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B676086290000>; Tue, 17 Dec 2024 08:57:29 +1300
+Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 046D413ED95;
+	Tue, 17 Dec 2024 08:57:29 +1300 (NZDT)
+Message-ID: <f916444e-3f79-4b08-8830-846aaba06d18@alliedtelesis.co.nz>
+Date: Tue, 17 Dec 2024 08:57:28 +1300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="4t8WLMfWCtEr09Pn"
-Content-Disposition: inline
-In-Reply-To: <173436785894.3413746.14923997859754791913.b4-ty@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v2 1/4] dt-bindings: net: Add Realtek MDIO controller
+To: Conor Dooley <conor@kernel.org>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, tsbogend@alpha.franken.de,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, markus.stockhausen@gmx.de,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20241216031346.2626805-1-chris.packham@alliedtelesis.co.nz>
+ <20241216031346.2626805-2-chris.packham@alliedtelesis.co.nz>
+ <20241216-native-velvet-1d2b765c8b48@spud>
+Content-Language: en-US
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20241216-native-velvet-1d2b765c8b48@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=67608629 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=RZcAm9yDv7YA:10 a=XYAwZIGsAAAA:8 a=aDH4CMtCcT_BCErJpHcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=E8ToXWR_bxluHZ7gmE-Z:22
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
 
---4t8WLMfWCtEr09Pn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 17/12/2024 07:52, Conor Dooley wrote:
+> On Mon, Dec 16, 2024 at 04:13:43PM +1300, Chris Packham wrote:
+>> Add dtschema for the MDIO controller found in the RTL9300 SoCs. The
+>> controller is slightly unusual in that direct MDIO communication is not
+>> possible. Instead, the SMI bus and PHY address are associated with a
+>> switch port and the port number is used when talking to the PHY.
+>>
+>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>> +      realtek,smi-address:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +        description: SMI interface and address for the connected PHY
+>> +        items:
+>> +          - description: SMI interface number associated with the port.
+>> +          - description: SMI address of the PHY for the port.
+>
+> I don't really understand this property, but I also don't understand the
+> MDIO bus, so with that caveat
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-On Mon, Dec 16, 2024 at 08:50:58AM -0800, Jeff Johnson wrote:
->=20
-> On Wed, 11 Dec 2024 17:34:24 +0200, Kalle Valo wrote:
-> > Implementing Multi-Link Operation (MLO) continues. Bindings document is=
- added
-> > to get WSI information from DT (patch 1) with the code parsing the info=
-rmation
-> > (patch 2). Rest of the patches are about configuring MLO in firmware.
-> >=20
-> > Device Tree bindings were reviewed as RFC earlier:
-> >=20
-> > [RFC PATCH v3 1/5] dt-bindings: net: wireless: Describe ath12k PCI modu=
-le with WSI
-> >=20
-> > [...]
->=20
-> Applied, thanks!
->=20
-> [1/8] dt-bindings: net: wireless: Describe ath12k PCI module with WSI
->       commit: 30e36fa89d8266d9221ee992d4f43553a59a3431
+I'll try to clarify here as it may be of relevance to other reviewers, 
+if any of this should go in the commit message or the binding let me know.
 
-Delayed through being unexpectedly afk last week, I left an r-b on v2 a
-few mins ago. I don't give a shit about getting credit for tags, but
-figured it was worth mentioning it on the applied version of the series.
+The MDIO bus is used to manage one or more network PHYs. Sometimes there 
+is an MDIO interface as part of a NIC controller but it's become 
+increasingly common to have a the MDIO controller separated from the 
+Ethernet controller, particularly when there are multiple Ethernet 
+controllers in a SoC. In the device trees there is a usually a node for 
+the MDIO controller and the attached PHYs are child nodes. The Ethernet 
+interface has phandle property which references the attached PHY.
 
---4t8WLMfWCtEr09Pn
-Content-Type: application/pgp-signature; name="signature.asc"
+The RTL9300 (and similar Realtek Ethernet switches) don't directly 
+expose the MDIO interface to us. There seems to be an internal PHY 
+polling mechanism and the user access to the PHYs works in conjunction 
+with that. So rather than being able to reference PHYs and MDIO 
+interfaces directly we need to work with switch port numbers instead. 
+The actual hardware MDIO bus and PHY address is captured in the 
+"realtek,smi-address" property.
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2CGAQAKCRB4tDGHoIJi
-0vsYAQDkoxDUoc1/fj7CS11vgTGaiWCoFhMoPF5TgURTVSzXsgEA0A9T++taG4dc
-SpaXgaEwIquY2rZrISfeuuUmHJ4RoQw=
-=wprf
------END PGP SIGNATURE-----
-
---4t8WLMfWCtEr09Pn--
 
