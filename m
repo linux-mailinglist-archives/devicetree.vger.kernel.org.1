@@ -1,111 +1,119 @@
-Return-Path: <devicetree+bounces-131528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A47AA9F3A49
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 20:54:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED5439F3A55
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 20:54:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 767BC163DC8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:54:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C05F16304C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:54:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59C5820CCED;
-	Mon, 16 Dec 2024 19:53:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A5C20CCC5;
+	Mon, 16 Dec 2024 19:54:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SnuoTe0B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29C7720CCDA;
-	Mon, 16 Dec 2024 19:53:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A859320C481;
+	Mon, 16 Dec 2024 19:54:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734378837; cv=none; b=SuhD8SwiWUh257MKtyCeM9mJ6qHlGKbzOlhp+tlyVXPRXQ9Zmh/Gjpuoh64tm0ADalrQRsNFg9bJ4w21SM9JArDcBpidELNf4Chl+FPPruEQeMELHuAwcKIXdjFVHEQE6Hli7U5VZwG4SqeB5ps4WkrXfBtrF49LON3nO2sKjB0=
+	t=1734378876; cv=none; b=piGEPXQGjyEnAQ2c+fl7pD2fzE3xGyD47lJBW5BbLtP5iqOoKm3WXyV6+fsOxMFXZNEDsSwxYVcIcc7y22dvpnCsfzaHKQZ7eRqYQP2Wqhd9OQ9a03W9CnExhADWge5syoZBwMi2cLBwm5RbDYIr2qMluH1S2Wi+n5Opem2KdUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734378837; c=relaxed/simple;
-	bh=pHeIEhZAHw7VKa55xxkHFt9tcdb7RAb0E4BBWmx2CPY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hZJAPgfZeD50myZC/cnUynr2qVZ+5w43J2DF7d/nuIFuhEsQVUrOtp/1TDH8re9/5ue+mkvxUcts8tLnX06hKMPZFZq9aRyPql8VSaKCNwyQC0FhOR342jwx+4FQWK3CwnE8r99QTWmXgh+fHO4Rm9OfVqwIKaSv/1rVrQZcZgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: HbUEFUjxRAuSpREfU8r66w==
-X-CSE-MsgGUID: tOFAO9RwTliMoeIRQTUpOQ==
-X-IronPort-AV: E=Sophos;i="6.12,239,1728918000"; 
-   d="scan'208";a="228014628"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 17 Dec 2024 04:53:54 +0900
-Received: from localhost.localdomain (unknown [10.226.93.40])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id EF80240638D0;
-	Tue, 17 Dec 2024 04:53:51 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v4 7/7] arm64: dts: renesas: r9a09g047: Add scif pincontrol
-Date: Mon, 16 Dec 2024 19:53:17 +0000
-Message-ID: <20241216195325.164212-8-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241216195325.164212-1-biju.das.jz@bp.renesas.com>
-References: <20241216195325.164212-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1734378876; c=relaxed/simple;
+	bh=0VFiKC4boAv/+7uBTzQJqCRPDrjkoWJN1WOJILavTrA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ps7nx98PX8qIKGck0i/IiJM2Z77z6alztxDKEkz6a6aztPC2UEzQ4lgxLHW2K5CsqtXRuayIQRO0BMqp7wTqw5t6/NBZz2LdC3/Vhhg8zJjZwBUtuPkZODBeTy8vIlttzSmG20bTpldTnTBWdmWerrsmhc2J8fgKcnxOB9MxF+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SnuoTe0B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 509C8C4CED0;
+	Mon, 16 Dec 2024 19:54:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734378876;
+	bh=0VFiKC4boAv/+7uBTzQJqCRPDrjkoWJN1WOJILavTrA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SnuoTe0Bx/1XdHewh5DSy+c7JLqOzvJYtcQwJVIdvG0VDWQz0HXA1G8NH+2GXNtrK
+	 SpgWkYblqLtUxSw5MmO3xBsSYGqNrBQgNMGEBWkdAI53VGyioAEVwLwvCMoCZIh8Dl
+	 qItmc59oNA63J9nynR5SO6qinuF8kbbvmKWA2Avyjz2PABnXz02HTgwdrzCXADzat5
+	 dPTjeXvvj/gGy7UWe4LdE2WvtXygSrqCagVpUmBOfALRSnmgUwi+dHmq9I2ppU8DP9
+	 JZJKpNQhyd6wLFA3KE0SDZVyFFLwEGDf52A1TCk2ds4k4Y0rIMq4jRwb3r2w9JJIXB
+	 xEr8JcrzHhzKQ==
+Date: Mon, 16 Dec 2024 19:54:32 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: ath12k@lists.infradead.org, linux-wireless@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/8] dt-bindings: net: wireless: Describe ath12k PCI
+ module with WSI
+Message-ID: <20241216-croak-outwit-207ea8d3025d@spud>
+References: <20241209153034.50558-1-kvalo@kernel.org>
+ <20241209153034.50558-2-kvalo@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="aXgPcGwIaTEPwO1U"
+Content-Disposition: inline
+In-Reply-To: <20241209153034.50558-2-kvalo@kernel.org>
 
-Add device node for scif pincontrol.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v3->v4:
- * Replaced rzg2l-pinctrl.h->renesas,r9a09g047-pinctrl.h header file.
- * Retained Rb tag.
-v2->v3:
- * Added Rb tag from Geert.
-v1->v2:
- * No change.
----
- arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+--aXgPcGwIaTEPwO1U
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index d4d61bd03969..c063d47e2952 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -7,6 +7,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/pinctrl/renesas,r9a09g047-pinctrl.h>
- #include "r9a09g047e57.dtsi"
- #include "rzg3e-smarc-som.dtsi"
- #include "renesas-smarc2.dtsi"
-@@ -16,3 +17,15 @@ / {
- 	compatible = "renesas,smarc2-evk", "renesas,rzg3e-smarcm",
- 		     "renesas,r9a09g047e57", "renesas,r9a09g047";
- };
-+
-+&pinctrl {
-+	scif_pins: scif {
-+		pins = "SCIF_TXD", "SCIF_RXD";
-+		renesas,output-impedance = <1>;
-+	};
-+};
-+
-+&scif0 {
-+	pinctrl-0 = <&scif_pins>;
-+	pinctrl-names = "default";
-+};
--- 
-2.43.0
+On Mon, Dec 09, 2024 at 05:30:27PM +0200, Kalle Valo wrote:
+> From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+>=20
+> The QCN9274 WiFi device supports WSI (WLAN Serial Interface). WSI is used
+> to exchange specific control information across radios using a doorbell
+> mechanism. This WSI connection is essential for exchanging control
+> information among these devices. The WSI interface in the QCN9274 includes
+> TX and RX ports, which are used to connect multiple WSI-supported devices
+> together, forming a WSI group.
+>=20
+> Describe QCN9274 PCI wifi device with WSI interface.
+>=20
+> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+> ---
+>  .../net/wireless/qcom,ath12k-wsi.yaml         | 205 ++++++++++++++++++
+>  1 file changed, 205 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,a=
+th12k-wsi.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-w=
+si.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-wsi.ya=
+ml
+> new file mode 100644
+> index 000000000000..7fec15e10a94
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath12k-wsi.yaml
 
+Usually I'd comment on the mismatch between this and the compatible, but
+naming the file after the pcie id would do noone any favours. This seems
+fine to me,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+--aXgPcGwIaTEPwO1U
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2CFeAAKCRB4tDGHoIJi
+0jdbAQCrxn0AOA9faLcR0u5ERNVSe3bZPX9blHiLEHsON0gQgAD/U+OuTurH5kBz
+mkIDbiIEEpc/WqcExwcWJPxcwfJuPAo=
+=hKTb
+-----END PGP SIGNATURE-----
+
+--aXgPcGwIaTEPwO1U--
 
