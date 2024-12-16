@@ -1,68 +1,65 @@
-Return-Path: <devicetree+bounces-131509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F30679F390D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:34:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA8EB9F391B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:37:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56083188CEAE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:34:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EFFB16C48D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:37:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C356A2066E0;
-	Mon, 16 Dec 2024 18:34:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AC152066E0;
+	Mon, 16 Dec 2024 18:36:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="odN/eE6L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ug/gCQku"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 971B4204F92;
-	Mon, 16 Dec 2024 18:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14BC843AA9;
+	Mon, 16 Dec 2024 18:36:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734374045; cv=none; b=ooFcHulODvSNoQFhsSrNCElroDtVKckydH9Rz0Q1XQYc/LDPdzxnl4S8Gc12rLLXsdtbACfXANIyct4qfeKxlKO0NVuUafK3mRcvbS/HYqQyjtDsDhM2sig2+IHz6t3qhGVQ2/XT7EFZowXZmqZHtCP7e4QvhMLyyFh5JIwPYng=
+	t=1734374215; cv=none; b=VurMTOcDsXsXrJSm/iHqy0bEQIav2WCNVWq1pelR/ixMsX2Pofq17/nPL1c0wf3zeT3QojBdVK9sMCHcvBpJa3FGwn4p/bSEls4Xltc71WJVfUsw3gEX2tdDpovnX8JnV7F7zr5FZ84GHYFstPGZIwZZ/iLTsV9GakSbdp0JH2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734374045; c=relaxed/simple;
-	bh=nw8UVxaMbWL48QkwsLr0oUgQdps5wyPksK5zCKSYkLk=;
+	s=arc-20240116; t=1734374215; c=relaxed/simple;
+	bh=68Z2hTebw69WnIGxyWqWMosjiVTaG3HsDLzhK+XpHhI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XKeCSBiFLgjgNb9Ir8p0dCfSmF5Wlakxbd7W/LJVSlemMIIvDV9IOIy3kmuVKV6UVMZ1xlS18A/nSUO0vybt7Xbzdr98lp085EFbIdO455w/ZK3fzwmO7BGXx3Di1ZYx4Tpw4ZkXlNu5CFsuWNa1nyE38XfCGielslRcsn36EnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=odN/eE6L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E155C4CED0;
-	Mon, 16 Dec 2024 18:34:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VNsyh7JYoTgeZlkKBmUJfcSVRJz/4yCUhTLFLrgJN/XaXDBJEp8IqHAe8BMIcothkYiNIb027LQ6j4nQjUaLsHD8LLsHMG7Onoo+Fw7L2sGXra07WtLiHBKQZOxrERGyjtSOAmVvoNplqtFzi+Qn4VrPlvbsQQOcsOSFBMSMNcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ug/gCQku; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04DC6C4CED0;
+	Mon, 16 Dec 2024 18:36:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734374044;
-	bh=nw8UVxaMbWL48QkwsLr0oUgQdps5wyPksK5zCKSYkLk=;
+	s=k20201202; t=1734374214;
+	bh=68Z2hTebw69WnIGxyWqWMosjiVTaG3HsDLzhK+XpHhI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=odN/eE6LX2KpPfc0YITRoNGsqnYJWctCV8Ur+IosRPS1CM/UqFacRE3qLooqwPCpP
-	 DIoL8S3WXwPuK9XzAdmo6EiqPjK3TwQ6MmIKdMD60lpYaSs/OdDqMKMLofoDeIDx+/
-	 uHIVAdOsxHBphHhFUmdxv2Sh8IC0V53OzS8UhpfUkJevqgRp4Yu6Y6ktPmwuoIsj/+
-	 cCzE1bAteLlSKtTvSGehVLRs3bILDPhTddZDIly0y7FrxJx+D+/U/eXb7CDAKIxjEW
-	 TmQktcsN8cuab51JIfFajVCL3hoETzyS8fnwG1lnEKEllP4P8uPbm+fSyi+xmO0X/2
-	 nVcNVzCVtTwkA==
-Date: Mon, 16 Dec 2024 18:33:58 +0000
+	b=ug/gCQkuPFovCO9IE+3WdoHZ0jensqwqrLb3cPUpMSxBVQVsvTgc0WEHuW9KPlf05
+	 jXB/IXUgfVll9IwmW9gbNDkSfrxVtLvERjSclq/m342SrHl9cYbBdqwvnqfpYd9k6Z
+	 zitlfHU/0LbiYQg9KS+E9W7CdZq6/o6RDI3ECbpLEBaMGZLMKMj6/UjZPItvGPdW+8
+	 vUX6cfYgA3q6Vm0cnNXYQ3I3liMZGwaE5FwnZfl0T0QT9LvqnTLb1etByjLl/lgioc
+	 /CCNHqacebs1Js/F5Qfw0VZKzl7XlfhtUsTU7nj1ovycwuMbfwaN2oGOfTw+nTufmq
+	 xy7CwtaTU9qvQ==
+Date: Mon, 16 Dec 2024 18:36:49 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: simple: Add Tianma
- TM070JDHG34-00 panel
-Message-ID: <20241216-keg-retaining-ea61c056a4d3@spud>
-References: <20241216-tianma_tm070jdhg34-v2-0-0b319a0bac39@bootlin.com>
- <20241216-tianma_tm070jdhg34-v2-1-0b319a0bac39@bootlin.com>
+	Chris Brandt <chris.brandt@renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: i2c: renesas,riic: Document the
+ R9A09G047 support
+Message-ID: <20241216-earthworm-visibly-dc75496705e5@spud>
+References: <20241216120029.143944-1-biju.das.jz@bp.renesas.com>
+ <20241216120029.143944-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,33 +67,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="GFVoHBN/mStFRhus"
+	protocol="application/pgp-signature"; boundary="L840yKvpjDanjEqJ"
 Content-Disposition: inline
-In-Reply-To: <20241216-tianma_tm070jdhg34-v2-1-0b319a0bac39@bootlin.com>
+In-Reply-To: <20241216120029.143944-2-biju.das.jz@bp.renesas.com>
 
 
---GFVoHBN/mStFRhus
+--L840yKvpjDanjEqJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 16, 2024 at 05:21:34PM +0100, Luca Ceresoli wrote:
-> Add the Tianma Micro-electronics TM070JDHG34-00 7.0" LVDS LCD TFT panel.
+On Mon, Dec 16, 2024 at 12:00:23PM +0000, Biju Das wrote:
+> Document support for the I2C Bus Interface (RIIC) found in the Renesas
+> RZ/G3E (R9A09G047) SoC. This IP is compatible with Renesas RZ/V2H
+> (R9A09G057) RIIC IP.
 >=20
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---GFVoHBN/mStFRhus
+--L840yKvpjDanjEqJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2BylgAKCRB4tDGHoIJi
-0ipbAQCBhb4DomJO24VJv8xhyhUlmVBc4kF+R7hA6Coun2tA2AEA1BzTLldvymsr
-18PFr2/GDimTXv2gy3Y0FukunfTPKws=
-=sJ9X
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2BzQQAKCRB4tDGHoIJi
+0qQWAP9NtFwRHJwPxfEcJbLVhtp+JhfGY1DJoHDVjfgynlgf9gD/VHuUOPhLSJGU
+Te7/BcepNB1xTBRzu6OOcGH0M+gqGw8=
+=Ga0q
 -----END PGP SIGNATURE-----
 
---GFVoHBN/mStFRhus--
+--L840yKvpjDanjEqJ--
 
