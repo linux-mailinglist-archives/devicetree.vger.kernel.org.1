@@ -1,144 +1,320 @@
-Return-Path: <devicetree+bounces-131263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C5479F2A9E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:05:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F02799F2AB3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:08:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C793D1888562
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 07:05:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A6B9160399
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 07:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6574E1D5151;
-	Mon, 16 Dec 2024 07:03:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VHilZFs2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6B961CEACD;
+	Mon, 16 Dec 2024 07:08:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazon11021102.outbound.protection.outlook.com [40.107.57.102])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DB31CEEA4;
-	Mon, 16 Dec 2024 07:03:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734332606; cv=none; b=GVh3rzfjOmIJlWGZokmgdw0ajqZMWvibWSSvhGc94SVMPPrFGYgdjkK18Sls1aUaRUHMDwn7tQK2o0gFRJbYVj7BqW8WJ/S8a/xnqk0MG3Ik648nGKgtPg63X64GckuiXIxTKhUw8viu/l129UHiKTs66jc4KOUNLYG1RAdJEtA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734332606; c=relaxed/simple;
-	bh=SN2T8cm+vNsx3Mi1EyxUptHpm38RPXYJL0BrnmFuZ+E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iYHxH5fsVG8dVeg3F/EDUfvOI3hg2MdGyiCmgFMgvNMNTSrOBKxQc1WH97addneOYQ1ZTzX/k4LZNdT5cLEF9lNbxuzLFGvcHbGCtxE3xau1sI/3jFFXt2bJT0+Z62oAwYiCtFg4vDRQtSQFmW8owR+sEfFJsLfr3Gitg8yyS14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VHilZFs2; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1734332605; x=1765868605;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SN2T8cm+vNsx3Mi1EyxUptHpm38RPXYJL0BrnmFuZ+E=;
-  b=VHilZFs2vEeQb1MbHKFhqc5ABKgByKE/Bxxoa21BSKSoEKoApD4zgzfZ
-   4QpLRgcUyjaAWsh+5L17isP+bR7DuKzp1paL2gxduczIXmFylu/sBcsll
-   5Ra26VdJyZhRHwCEc4GiDU6t+xviCDkmYwyCHab23jPV2m908XOrh/SLz
-   9IABP7bBc6aTwfxgsIQE0pGsNX0bF/MZn7tRPhuVXDirqQ1FDIz0fQYKV
-   0xagTzk1yob4c49MrcMjj4MCVfSXYhOVb7DLAG9hJ/ALPSn/GfBenKF+6
-   E3ccAzuDrrbNUVIEE3POW51N6bbPf1sGo1j57GQ4TarvzVOOlSLJBP6LW
-   A==;
-X-CSE-ConnectionGUID: U8FfrmIQRnGOZVOBr+QWRw==
-X-CSE-MsgGUID: WBIGUsKSQ/mMBmAxsbDicw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11287"; a="34584308"
-X-IronPort-AV: E=Sophos;i="6.12,237,1728975600"; 
-   d="scan'208";a="34584308"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2024 23:03:24 -0800
-X-CSE-ConnectionGUID: UULt+fnGSSydPD8Ic/XKYA==
-X-CSE-MsgGUID: yrIimS45TkCcS5J9bxBYgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,237,1728975600"; 
-   d="scan'208";a="96991232"
-Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 15 Dec 2024 23:03:21 -0800
-Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tN58R-000E4u-2K;
-	Mon, 16 Dec 2024 07:03:19 +0000
-Date: Mon, 16 Dec 2024 15:02:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Zijun Hu <zijun_hu@icloud.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Grant Likely <grant.likely@linaro.org>
-Cc: oe-kbuild-all@lists.linux.dev, Zijun Hu <zijun_hu@icloud.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/7] of: Fix potential wrong MODALIAS uevent value
-Message-ID: <202412161436.p6lF8p6C-lkp@intel.com>
-References: <20241216-of_core_fix-v2-6-e69b8f60da63@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4DE22E401;
+	Mon, 16 Dec 2024 07:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.57.102
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734332891; cv=fail; b=Qk3LCt5JzCX2EfSPHoMG/JDnGwNuplO1rktkDYYGmWoPorOwqfTnXUVEvJ7jCg70X53lmhrMQDzxLCuY9YxE5HBh+eWSQhtd83HW45T5DZTl2rGdes5637S1DtvyJ6Q6P5zeSE6ORKj1GLrV71UzAACdNHuxttxI8bv6HE+DXJM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734332891; c=relaxed/simple;
+	bh=qMQt1uri8UmhwOfZ7qd4UMIzS9Mr4DVSZb5Sngu/lHo=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=nccRhd58wEgsBGdlRa1xzNTDatY2800gp4gS2LJpfT4FDlKEeUGQhvUYEIzmr3BkqWdT9zR0Lb1gTqLcbzAaM1NwtP1Ozi11KnN85hgeMHm1ERtFUaW177cvbYQjDegOZJpUWLT1PmKvMW9D+oNg9GwuYEF+OQ//1ocphuNkukA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=40.107.57.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rIKxA4zjG5/adb00UdFDHitgRcm70v6rYd8bxoTLvL/d2pEXEWCQVMenEOjyMYYT2dMcSiMGaAzptdqAHIx2mUwpFcw5c782bqN+4dynSYRkKdu5tULDkteEkblyEZeoJvwk53DMBUCdITsTWUOqmHWzUuJI/f5tFGBOYP/6l6o64swxSAVZqnm6vSqs0ZsSc6p/BNd+L1tN3nsZ5cmP5e0CntP62QWC8AHG6J0EixtfSGhU8QokCu7LcHpd0ca2rwqMuxcN/ZnVy9dUy0F+ngt26V+aI4zTu110SA3NjK0+QHvwNe92U9oM+GVm/Pbt98whb5ptkJY347WvzPoZOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HoV/pt3LjTsXHW600pzkQFtozihrwte83MTFT3+KSwY=;
+ b=MN5iXhfjTMTtP76z0+aYJ1cXU/xpqhWD2/FRRalA3g6LtDyyp/dbjAghEeG59q9yrw+2wfxmsJqP0PEeUkq5jMCpp/ZrtOX0Thj9IM24gHJJFCmiTNLQD7OlPo/OHt4AzgYmVtd1jUWb8CCMuwt4U3jj5zJgctW5yvgHZOudj7X7K21sUcb4pFoQWNsV4/QTKOvxSDHIam6cRxDxCCbQAItPFhfAmj01O7l1Q4VxiciAarETOh41vxauDHF7aoi5wsKpQoR0BM/aPVEDPEmxoEpI9OWnJKiyWdn/0Ycur7e8uSy6J35VjsB/Bh74n7Q7WH8ZU1s6dabOvlCIxyqlsQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+Received: from PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM (2603:1096:c04:1::15d)
+ by PN2P287MB1855.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1ab::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.21; Mon, 16 Dec
+ 2024 07:08:06 +0000
+Received: from PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM
+ ([fe80::740f:ab98:2be1:538]) by PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM
+ ([fe80::740f:ab98:2be1:538%4]) with mapi id 15.20.8251.015; Mon, 16 Dec 2024
+ 07:08:06 +0000
+From: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
+To: sre@kernel.org
+Cc: Bhavin Sharma <bhavin.sharma@siliconsignals.io>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v11 0/2] power: supply: Add STC3117 Fuel Gauge
+Date: Mon, 16 Dec 2024 12:34:53 +0530
+Message-Id: <20241216070457.8083-1-bhavin.sharma@siliconsignals.io>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN3PR01CA0173.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:de::17) To PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c04:1::15d)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241216-of_core_fix-v2-6-e69b8f60da63@quicinc.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN2PPFF679F9759:EE_|PN2P287MB1855:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7f9f62f0-eff9-4e82-a61c-08dd1da0639a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|366016|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?cDVPZVpkdjBscUZUdkZRQi9jd1plaFhmYnFjbGZaWHU0Y2lCNms5TFJjaVdN?=
+ =?utf-8?B?Y1NxRHYzWDhuejFESVg4UVZNeXBtdGVWLzlERGFWL0NEODU1U3U5RlhMZHds?=
+ =?utf-8?B?V0ZsZDZrRWlNaU8xa3lKMlptQjhFNFl0Zm1rMVVlTTRzUjh5MUQrV0loZU9R?=
+ =?utf-8?B?RW1YTjM0c2ZDbk93clNxVWF4dkJ5UngrMzVzb0N5cVMrd1Q0YXNUZTlNdE9z?=
+ =?utf-8?B?LzlRWnhpRmJwUEZYN0dBRWdZbXREZTBTaXVWT2djWHh1bUc2VlZPK2c0Yk45?=
+ =?utf-8?B?K3dySXhXY3UxT0drUzhjQkFSOE9hNEhjSnBkaU9ocTVMMit5VGlYeXhlc0FF?=
+ =?utf-8?B?ZS8yTFhwaldGbTR1Sy84RXAwMWNPYThzY0d1dC82YU1qNWxmZGZKQWdpeENX?=
+ =?utf-8?B?blVLdXU3cWdIc3JZMVcvUGtuemYxSzRXd3NKNHFBZmtzZ3grUnhkMEx3N3gr?=
+ =?utf-8?B?dit4ek9wYmpueGxydTJVYlowK2RobFNMbVVFcEVocEtnS2Vmb21QMjF4Z0F3?=
+ =?utf-8?B?d3pnQlhYMG4rYVY1MUMxZHZNZGdxQlNsN1AvWENvUWRYTzRWNnM0Tmg3QXNG?=
+ =?utf-8?B?UWZ4S1BwOHNIeWwwdHdjZUdmQWpiL1JQQ0ZsakFsK3JXdzhXcHhXQWc3YUpG?=
+ =?utf-8?B?Z2Y0d0tpOVVMWUlkbXlxeGxjSnR2dllQZEF1UXBrcS9MbFJ5ajFNMklWd1BG?=
+ =?utf-8?B?WnFLeFBHWTZONSsvcDExWjNoeDFDZUN5ODlTWU1CTEhORU9INXM1NFlnQ09S?=
+ =?utf-8?B?b2YwMFh5eHBKb0l1eDBhWElhb0lyb0YxVDMwbGRBam00Wmw5N0hXYzhGeDNh?=
+ =?utf-8?B?MnEvZGVwQ1JrWmFiRjdsc2RHNGMwZ2U5RlRjdXNMMHBsMHBVcy9NVDRWbzhC?=
+ =?utf-8?B?K29nZ05kRmloMEV4MDhjeEFKcUhnZHNlQVhRdlJkbWY2a2xsbmh6MThRUHRj?=
+ =?utf-8?B?RUdHOXIzSnQwNnlkR1JJMEpKZzk0TkQxVFRhODQrc25LRjgyUDZVeVdwSHNu?=
+ =?utf-8?B?MU5kSk9BbXRzeTFRc3VKOUEwTlM2UnVGM21IZjJ1VjNPZ05aMzRQcVRwS2RM?=
+ =?utf-8?B?NXhIN0piSnhodTAxUVYzN2tLMlNGaVhrdlVZUXZIOXRrc25neUFTT2FDV0hv?=
+ =?utf-8?B?dmRKaVRnNWRNYlZvVW9KTHhDRHBxd1BYTEcxMlQ5Z1YwektXbmpvSFJnbjho?=
+ =?utf-8?B?aFN3SmRYaVBlVVBCd000VDduT1pQRnF2a2M4QTUrZDFKNm4rZFRsZktla1FG?=
+ =?utf-8?B?RGZ5Yjg5MWxLdGRwZ2JhMElUUnhaRnprQ0o0RDNydVcvMVJYWm5QM2tOTUJu?=
+ =?utf-8?B?SmZCZkltRkxtZjY0RXQwS3dRa01hc0JUYVZaVkJmRXRacFozU0M0TWIxbFF2?=
+ =?utf-8?B?eHhBUWo1aEZ0eG53YVlnMGo0b0hYWWJiTy9jVmVndVZFOTQvelA1VTIwWDVL?=
+ =?utf-8?B?QnNka3l5TklPS0YzUENFRDB0YUlvVXlEMWEydVRSQkV3ck1teThRT3VkeTgr?=
+ =?utf-8?B?UU9zTTZmb0IzT1JHSG50NzU3K29OMDQ2NUpnQ1d6UnJuREcycmg3V09xQUZ5?=
+ =?utf-8?B?T3RCSnNNVXdWWkRkaWFqam1KUnpPQjlPZzlESitXK3lFQXJ2VDVZNkgxVnF6?=
+ =?utf-8?B?cFU2K3Rrdy9Qc0tZU1V5L1phVGZKWjNvOUYyYXJDUzhnRU82a2dMWm15S0NY?=
+ =?utf-8?B?THdsSm1rc1h6S3M4d0k5REU0ZzRDaWhJNlVWaWNKS0UvS3dwMkdIUktlNTQ1?=
+ =?utf-8?B?Ylc2eUZIUlRBZXF2N2tFL2Nwb0tWYmlCWGovR2lXN0F5d29hUWYzUVdkaS9t?=
+ =?utf-8?B?WURjU3N0ZGh2SHNpS0VRbTA2RkoxaWp6akpqTHdveS9wWENBS0dNT1Z5cGhF?=
+ =?utf-8?Q?LANAeZv7N3IPR?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(52116014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?aXcxeFhBclZaak5mbGo2RG9kcnVFSFAvY25zd01sNzVIYUg3eStiVVVGRnJy?=
+ =?utf-8?B?aFhnaFYvNDNOcUtNaTFzejI0Qzk4ZWFpQnEzdVRIdWRYUERoSno5Sm5vMGpm?=
+ =?utf-8?B?cERlcWRYTU9acmJJcDUwU1dQa3hBdUlQRzZyc3I0UVdQUHFLTXAwalZuYjlj?=
+ =?utf-8?B?bVI0N2QwS3FlRGE1WUV2MU1WRHZURS8vZ2FUdjFUNjBseFhrcnViQXJhdTM1?=
+ =?utf-8?B?a0tyT1g3N0xYU253dTVJdW5zYm82WWVKZ1BDT1AwaDZxQWR5UnpyV1IrY3Zm?=
+ =?utf-8?B?cjdROStxRXFJRlVYclFZdmNDY3BFMnQxaGw2aGhSWEQxTUYyODRyUnJ0L2pE?=
+ =?utf-8?B?eS9qd0MxZUpYWFoxVGJtY0I5c0NHRTlQRmk0TGxFdEE1QitHWkVWNXNSSnFB?=
+ =?utf-8?B?bVAzY1pMdmRkSjMxZDdHWHoxMTNUSEcraHRBZENkSXJFVU9zcFZUamtuY0pl?=
+ =?utf-8?B?T3Fsb2UzV3h6c3V1ZFY3RWxQb01KbDZLZ1pMZklPYUdHTE9oRHZaWlZwanhR?=
+ =?utf-8?B?RDU2Wm9tY3p4SnBwODhMcTBJeFZrOXdrZFk1Y1hwb050WFpMMG80cTdXQlpv?=
+ =?utf-8?B?K0Z5cVpZKzdKWGpCVUk2eHg0cmdmaDdidExsdXd1SEVjT3dOM2FwT3pzUlJh?=
+ =?utf-8?B?MnkwM2hrVXNJOEF2OFJCdnVXTG5IWjJlZEVvMXM3ZFNxSSsvSHpsR3htbGNw?=
+ =?utf-8?B?MlMvR2hTQXBraEpUMUM0amdQZmhYMUcwM2pTNW1JL05nSmJ5bVA3Vy9oa28v?=
+ =?utf-8?B?OXF1bUU3VE9FYm9nU2tldTFZd3ZyMTN6LzBWaXJZeE9jQ1hlMGNvdUR4VGUw?=
+ =?utf-8?B?N1BrNUFFN3VvQ3RaRHBRZ2ZBaUZNSVk3REh2eXFyUGhjUDRDOFpGZThpRXp1?=
+ =?utf-8?B?a0xuZDVLNUpiVDhGdFpIWFJKOVU0OFd4RHlqeFVKM29oVnVLYmpPWTE4T2lU?=
+ =?utf-8?B?aUVQQ0JxRStRcGFHZjV1aUxnRlQzRHZMMko5cUluZnBMeVpoTTNLRDRyZXli?=
+ =?utf-8?B?RkN6N3RSVmdoM1pkVDRpRTc0MlJTZjRUZVMzaXZwdVIvMzI1SWxaTXZEbWFl?=
+ =?utf-8?B?cWZDcVpWd1JzYWREUDIreGRKM25JaHl0R3BqajFoRXlac2QrWDA5VFR4WHpt?=
+ =?utf-8?B?b013b0hXRm15dGtvU3AzT3U4cE5rclVIb3JZY1pLWjk4enU3a1pJRnpQSy9k?=
+ =?utf-8?B?UFd6MjBpdjhKaXlrU2Nzc2VzZUtQNFpSYXlIOVFua0FBUVNEdXpQWmZHWTBB?=
+ =?utf-8?B?M2NLVU1UWTR3TExiU3ZPSytFV0wrbXo3TktOQXFNNE5WRmUzZWVUbmRybWN0?=
+ =?utf-8?B?MWZaN0dCd01uelpmTFVMOG9XR3dQUjBJRXMycDIzN2dMOGJVVmlacU1aVHFm?=
+ =?utf-8?B?TlorU3dVa1NTK2hnTEFTWmVoSWpvZ0NBLzg3WlY4OVZkUDZpREFCaFoydE9F?=
+ =?utf-8?B?UlA1OXhycUZqeFFlMXRDdy9OeWUya3BvQngrZjRpTUt3VTIxVXNoMkJtNEg1?=
+ =?utf-8?B?WnhGZVdybGJMME1INVppeWtxQ2RDaklLWlA4WU5MSWwwM1VxQ25Gdittbkw1?=
+ =?utf-8?B?U3RpTlJ3cFRjaHdGT0xqU1plUnQ4VCtkeHA4dDFiTlBYN3dyNFl6M0hrUGRn?=
+ =?utf-8?B?QUVuek5sV3pyNzJ2TXlvYm81cXEySUJYQ3hRUml2NERYR3FOMEtKUE9MaWN4?=
+ =?utf-8?B?VURiVTFqc1FXUkxIWjhudjhpWGhBc0N5Y0lDYmxNdVFjMUs5MHZnb3B1bkJO?=
+ =?utf-8?B?VHZrVlo1K2pGLzlib29DQ2Rkc0JadnhvenVBVTBIejdKWmp6T016ekZOdW1v?=
+ =?utf-8?B?RjFORGVRSS90YnFkRFcxT3hpZVdRYUloOUpoZWp6T2VFRWZxQURsTjBEV2R5?=
+ =?utf-8?B?MkdqRkZlVTdIQ2ZJbjZwOC80dXh6RG4xdnQvVnpYZVlodUJuS1RiZExxbFhz?=
+ =?utf-8?B?TVlVelVtd1ZUdHhkaGN0YUo0ZWVJUUMxcnFrNVByMWhTSUZWK28yZk0rY3lL?=
+ =?utf-8?B?bkorZ09CeUhHN1ZtbFZqaWdKT2o5STd5d21KSks0czRXQkFnSTIvdkNaVU8y?=
+ =?utf-8?B?UTJqNjNsMWhqcEZ0VDZNZlY1dTdvUWpOSVNQTEN1KzBsVU5VcC9JeE51SEpG?=
+ =?utf-8?B?UGREL1pxY0s3YkJxZmtrMFpHWkNVUzdzVHRIaWhuU2pScjB3WFVTblk2L0VX?=
+ =?utf-8?Q?Ix2DBHyOL0BsR0ALv9jz8lc=3D?=
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f9f62f0-eff9-4e82-a61c-08dd1da0639a
+X-MS-Exchange-CrossTenant-AuthSource: PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2024 07:08:06.1206
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9waxoKzICF6gg/lv3RRbPMKdsvht/Gqk3waqAMOeupWjMKdZU5pV6d746uJVVEg2YNnCUDSd7B52mkFXT0FvwbgbMov1HjqZ3PX7tyL+u7k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB1855
 
-Hi Zijun,
+Adds initial support for the STC3117 fuel gauge.         
+                                                         
+Output of test_power_supply_properties.sh                
+                                                         
+TAP version 13                                           
+1..33                                                    
+# Testing device stc3117-battery                         
+ok 1 stc3117-battery.exists                              
+ok 2 stc3117-battery.uevent.NAME                         
+ok 3 stc3117-battery.sysfs.type                          
+ok 4 stc3117-battery.uevent.TYPE                         
+ok 5 stc3117-battery.sysfs.usb_type # SKIP               
+ok 6 stc3117-battery.sysfs.online # SKIP                 
+# Reported: '1' ()                                       
+ok 7 stc3117-battery.sysfs.present                       
+# Reported: 'Discharging'                                
+ok 8 stc3117-battery.sysfs.status                        
+# Reported: '38' % ()                                    
+ok 9 stc3117-battery.sysfs.capacity                      
+ok 10 stc3117-battery.sysfs.capacity_level # SKIP        
+ok 11 stc3117-battery.sysfs.model_name # SKIP            
+ok 12 stc3117-battery.sysfs.manufacturer # SKIP          
+ok 13 stc3117-battery.sysfs.serial_number # SKIP         
+ok 14 stc3117-battery.sysfs.technology # SKIP            
+ok 15 stc3117-battery.sysfs.cycle_count # SKIP           
+ok 16 stc3117-battery.sysfs.scope # SKIP                 
+ok 17 stc3117-battery.sysfs.input_current_limit # SKIP   
+ok 18 stc3117-battery.sysfs.input_voltage_limit # SKIP   
+# Reported: '3704000' uV (3.704 V)                       
+ok 19 stc3117-battery.sysfs.voltage_now                  
+ok 20 stc3117-battery.sysfs.voltage_min # SKIP           
+ok 21 stc3117-battery.sysfs.voltage_max # SKIP           
+# Reported: '3200000' uV (3.2 V)                         
+ok 22 stc3117-battery.sysfs.voltage_min_design           
+# Reported: '4200000' uV (4.2 V)                         
+ok 23 stc3117-battery.sysfs.voltage_max_design           
+# Reported: '325000' uA (325 mA)                         
+ok 24 stc3117-battery.sysfs.current_now                  
+ok 25 stc3117-battery.sysfs.current_max # SKIP           
+ok 26 stc3117-battery.sysfs.charge_now # SKIP            
+ok 27 stc3117-battery.sysfs.charge_full # SKIP           
+# Reported: '3000000' uAh (3 Ah)                         
+ok 28 stc3117-battery.sysfs.charge_full_design           
+ok 29 stc3117-battery.sysfs.power_now # SKIP             
+ok 30 stc3117-battery.sysfs.energy_now # SKIP            
+ok 31 stc3117-battery.sysfs.energy_full # SKIP           
+ok 32 stc3117-battery.sysfs.energy_full_design # SKIP    
+ok 33 stc3117-battery.sysfs.energy_full_design # SKIP    
+# Totals: pass:12 fail:0 xfail:0 xpass:0 skip:21 error:0 
 
-kernel test robot noticed the following build errors:
+v10 -> v11
 
-[auto build test ERROR on 0f7ca6f69354e0c3923bbc28c92d0ecab4d50a3e]
+- No changes
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Zijun-Hu/of-Fix-API-of_find_node_opts_by_path-finding-OF-device-node-failure/20241216-084408
-base:   0f7ca6f69354e0c3923bbc28c92d0ecab4d50a3e
-patch link:    https://lore.kernel.org/r/20241216-of_core_fix-v2-6-e69b8f60da63%40quicinc.com
-patch subject: [PATCH v2 6/7] of: Fix potential wrong MODALIAS uevent value
-config: parisc-randconfig-002-20241216 (https://download.01.org/0day-ci/archive/20241216/202412161436.p6lF8p6C-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241216/202412161436.p6lF8p6C-lkp@intel.com/reproduce)
+v9 -> v10                                                                       
+                                                                                
+- Use error code instead of arbitrary values                                    
+- Use Co-developed-by tag                                                       
+                                                                                
+Link for V9: https://lore.kernel.org/linux-pm/20241213063813.32371-1-bhavin.sharma@siliconsignals.io/T/#t
+                                                                                
+v8 -> v9                                                                        
+                                                                                
+- Corrected the error message                                                   
+                                                                                
+Link for V8: https://lore.kernel.org/linux-pm/20241210080954.5067-1-bhavin.sharma@siliconsignals.io/T/#t
+                                                                                
+v7 -> v8                                                                        
+                                                                                
+- Add output of test_power_supply_properties.sh script.                         
+- Change 0X to 0x in macros.                                                    
+- Fix typos and Specify units in property comments.                             
+- Remove stc3117_update_battery_status function.                                
+- Convert voltage and current from mV/mA to uV/uA.                              
+- Represent temperature in tenths of a degree Celsius (1/10 °C).                
+- Export average current and open-circuit voltage (OCV).                        
+- Use devm_delayed_work_autocancel.                                             
+                                                                                
+Link for V7: https://lore.kernel.org/linux-pm/20241202094328.14395-1-bhavin.sharma@siliconsignals.io/T/#t
+                                                                                
+v6 -> v7                                                                        
+                                                                                
+- Removes extra spaces.                                                         
+- Fixes error handling.                                                         
+- Fixes the logic for checking battery status.                                  
+- Fixes typos.                                                                  
+- Removes unnecessary commas.                                                   
+                                                                                
+Link for v6: https://lore.kernel.org/linux-pm/20241130094531.14885-2-bhavin.sharma@siliconsignals.io/T/#t
+                                                                                
+v5 -> v6                                                                        
+                                                                                
+- Use shunt-resistor-micro-ohms property instead of sense-resistor.             
+- Remove the battery node from the binding examples.                            
+- Add interrupt bindings to the example.                                        
+- Correct the Signed-off-by (SoB) order in the commit.                          
+                                                                                
+Link for v5: https://lore.kernel.org/linux-pm/20241129114200.13351-1-bhavin.sharma@siliconsignals.io/T/#t
+                                                                                
+v4 -> v5                                                                        
+                                                                                
+- Fix variable names                                                            
+- Limit code line length to 80 columns                                          
+- Add interrupt and monitor-battery properties to bindings                      
+- Correct error handling with return dev_err_probe()                            
+                                                                                
+Link for v4: https://lore.kernel.org/linux-pm/21c08a45-34f1-443c-97d4-6baf9fa01b67@kernel.org/T/#t
+                                                                                
+v3 -> v4                                                                        
+                                                                                
+- Added support for current, soc, temp, and status properties.                  
+- Addressed comments and feedback provided by Krzysztof and Sebastian.          
+                                                                                
+Link for v3: https://lore.kernel.org/linux-pm/20240205051321.4079933-1-bhavin.sharma@siliconsignals.io/T/#t
+                                                                                
+v2 -> v3                                                                        
+                                                                                
+- Resolved DTC warnings and errors                                              
+- Formatted the changelogs                                                      
+- Added monitored battery properties                                            
+- Replaced 'additionalProperties' with 'unevaluatedProperties'                  
+- Replaced '&i2c6' with 'i2c'                                                   
+                                                                                
+Link for v2: https://lore.kernel.org/linux-pm/202401080530.0hMWnrIg-lkp@intel.com/T/#t
+                                                                                
+v1 -> v2                                                                        
+                                                                                
+- String value is redundantly quoted with any quotes (quoted-strings)           
+- Found character '\t' that cannot start any token                              
+                                                                                
+Link for v1: https://lore.kernel.org/linux-pm/46bba29c-330d-417d-ad84-ceb5207fdb55@wanadoo.fr/T/#t
+                                                                                
+Hardevsinh Palaniya(1):                                                         
+  dt-bindings: power: supply: Add STC3117 Fuel Gauge                            
+                                                                                
+Bhavin Sharma (2):                                                              
+  power: supply: Add STC3117 fuel gauge unit driver                             
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412161436.p6lF8p6C-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/clk-provider.h:9,
-                    from lib/vsprintf.c:23:
-   include/linux/of.h: In function 'of_modalias':
->> include/linux/of.h:764:16: error: returning 'int' from a function with return type 'char *' makes pointer from integer without a cast [-Wint-conversion]
-     764 |         return -ENODEV;
-         |                ^
-   lib/vsprintf.c: In function 'va_format':
-   lib/vsprintf.c:1683:9: warning: function 'va_format' might be a candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
-    1683 |         buf += vsnprintf(buf, end > buf ? end - buf : 0, va_fmt->fmt, va);
-         |         ^~~
---
-   In file included from lib/logic_pio.c:11:
-   include/linux/of.h: In function 'of_modalias':
->> include/linux/of.h:764:16: error: returning 'int' from a function with return type 'char *' makes pointer from integer without a cast [-Wint-conversion]
-     764 |         return -ENODEV;
-         |                ^
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for GET_FREE_REGION
-   Depends on [n]: SPARSEMEM [=n]
-   Selected by [y]:
-   - RESOURCE_KUNIT_TEST [=y] && RUNTIME_TESTING_MENU [=y] && KUNIT [=y]
-
-
-vim +764 include/linux/of.h
-
-bd69f73f2c81ee Grant Likely  2013-02-10  761  
-f1f6eae8bdfdfc Zijun Hu      2024-12-16  762  static inline char *of_modalias(const struct device_node *np, ssize_t *lenp)
-bd7a7ed774afd1 Miquel Raynal 2023-04-04  763  {
-bd7a7ed774afd1 Miquel Raynal 2023-04-04 @764  	return -ENODEV;
-bd7a7ed774afd1 Miquel Raynal 2023-04-04  765  }
-bd7a7ed774afd1 Miquel Raynal 2023-04-04  766  
+ .../bindings/power/supply/st,stc3117.yaml     |  74 +++
+ MAINTAINERS                                   |   8 +
+ drivers/power/supply/Kconfig                  |   7 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/stc3117_fuel_gauge.c     | 607 ++++++++++++++++++
+ 5 files changed, 697 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/st,stc3117.yaml
+ create mode 100644 drivers/power/supply/stc3117_fuel_gauge.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
