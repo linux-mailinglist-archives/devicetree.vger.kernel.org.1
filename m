@@ -1,111 +1,116 @@
-Return-Path: <devicetree+bounces-131212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9B8A9F2880
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 03:27:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EC749F28A7
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 04:13:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAC08164CDD
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 02:27:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E319163CED
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 03:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA8712E859;
-	Mon, 16 Dec 2024 02:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5589C155C82;
+	Mon, 16 Dec 2024 03:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="p8kE34KS"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="z+OsNIwG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30A5225634;
-	Mon, 16 Dec 2024 02:27:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86C0F1531F9
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 03:13:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734316050; cv=none; b=D0Rr/oeSFtuaxoq6o/vq4WRZSzfWJLWHjaSbxEN2kdbBDwWKEZ1o3O0Hjc6RPL0Ey2MXEoEOt+yL5C3/uQfx5ncTpUUfVIoil0AXIGiHadlx1lBcZXFNzo3vVTxR3YFl8zeZflkQrHkJHQ1NJe9Mq4tv6lEZ1pdjZB4HRIub3NM=
+	t=1734318833; cv=none; b=ar8S3q1fXEPpfYwv1FuA/lu1voMjr+xTIG4zO6otW5EeSdAlrJwFO6hE6/jMKhuamawIRvDkupNKYi4XZ13skiOjmKQFMV1TF3dYIGoSS+naVGX/nzv8ufsCnVFIv6ZqmZP6/5o8ZzZEXhSccJoNZGzH1+DEauDF4aRU3rb8b+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734316050; c=relaxed/simple;
-	bh=MC4ZpvjCJBnzbJnBz/EU+WU3vFxHSCVryE0mPqM0FDA=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A2YksdzME4ofepUoyD6jG0YQ7cmsCr76qFwCuQrXm0v/czyWcJQsS6I7UaD9Ov1Z6THwG6V7DxKxdbQLN0sYVfkic4/3OmEPvqnUAmuBjFV/NJIUCizFIIao8y5uRzI7IeUv4mOs8riRCvlh0GcxQf6x7joTNcb9Ib6YevSjUf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=p8kE34KS; arc=none smtp.client-ip=67.231.152.168
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BG0X7tn005959;
-	Sun, 15 Dec 2024 20:27:13 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=PODMain02222019; bh=z7qov9yZpLTGhZcDNr
-	1LgPuzt3VXOtWROrjP8ErflU8=; b=p8kE34KSy7X4Sy60h7gRJV9WpX2DJkke5l
-	PT6wPXOv1vnCbhJjhiCnB8KyVu9I4wmajE6PSDep9q2zBePkxkWPqpED1ZAjMHPh
-	igNMHttiUjHLkxwaOnBps7QUCjEnPOWhmOVEmDH+Vk6UF8CIUDOGR+8LD+KciBam
-	ermj6UEr/srLTt8F/LqrHucARXVcJiHod//XCBdHuflYL0ZQecyUrCXuiIBh6lr/
-	ORF4V4k9mVW91iqqdzn6ZC0tIMnDGHu0LRTvRN2ZK9/HZdHbpzw/iVuwLDTTYdw1
-	oFEx9sMqGNyfe2ntjFBRXQT8Iv/SAqHs3RybJ1b7mh+QtdVmnpyQ==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 43h7ak9f8e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 15 Dec 2024 20:27:13 -0600 (CST)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.13; Mon, 16 Dec
- 2024 02:27:11 +0000
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
- 15.2.1544.13 via Frontend Transport; Mon, 16 Dec 2024 02:27:11 +0000
-Received: by ediswmail9.ad.cirrus.com (Postfix, from userid 15641)
-	id 75ECD820247; Mon, 16 Dec 2024 02:27:11 +0000 (UTC)
-Date: Mon, 16 Dec 2024 02:27:11 +0000
-From: Paul Handrigan <paulha@opensource.cirrus.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <mturquette@baylibre.com>, <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/2] clk: cs2600: Add Fractional-N clock driver
-Message-ID: <Z1+P/0sy1Xsbp8rV@ediswmail9.ad.cirrus.com>
-References: <20241211003236.2523604-1-paulha@opensource.cirrus.com>
- <20241211003236.2523604-3-paulha@opensource.cirrus.com>
- <gjkknwwxvzdkljonsfyl42vamr6kjngytf2mbbhbfxkmwmhnyt@rry6pqzxmnsi>
+	s=arc-20240116; t=1734318833; c=relaxed/simple;
+	bh=FCd107vWOy+zGlJRUr84iUnvQdQf7LF0R7f86jKDBN8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Couh/bVdD8TkGqSdXWtHuYu1ehnyC502epebEsXLLBbLMtJBFy3izo/enyDo9NWEWddRs14EVGbwu/9KaKeSnoRKNZ/5AwE/qrVlQ8Budny7l9CGn7/fqeE0PKQWD8S49o2EsMT0Xm5loQqgf8Qxue8yCBaO0uYvwezw8QRppJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=z+OsNIwG; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 6547F2C04F5;
+	Mon, 16 Dec 2024 16:13:49 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1734318829;
+	bh=SaoF13OYaWGdqlmCUJlIxQ1BMneVUQITdEw6PirLsCE=;
+	h=From:To:Cc:Subject:Date:From;
+	b=z+OsNIwGO5rUP/uROI9/OKvO/URyXPwX/+qYyhhGjYWjkLlHC3SBEe50Xzvjpcmwh
+	 YDhVJIKhmOdD2Pp4vHVK82bgQUjYGIGOGRXLqDUrSM4WlNqJ6z8/upOvCW+1hyelIZ
+	 dT+j7oDv3BpKjZpchupUGmCbOmsUzlZxD8Y7yGp0ij1F5Xb7nqgIuBXMsuEQkNEj4r
+	 VR709zoXWQMlIjJTKNShdMyDcfViXXoMc7BIuIEN4ioaNaQ+PyB3RsKnlHHiGm+WNS
+	 IOmjorIlZt0PFhUzRyZwat5/p6BT2FmTZYui0Me1ygM7o8fO6kamDOt0wpoq7xl6Ol
+	 7xuVuzJ9INSBA==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B675f9aec0000>; Mon, 16 Dec 2024 16:13:48 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id E36F513EE00;
+	Mon, 16 Dec 2024 16:13:48 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id DAEA1280A7B; Mon, 16 Dec 2024 16:13:48 +1300 (NZDT)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: lee@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	tsbogend@alpha.franken.de,
+	hkallweit1@gmail.com,
+	linux@armlinux.org.uk,
+	markus.stockhausen@gmx.de
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v2 0/4] RTL9300 MDIO driver
+Date: Mon, 16 Dec 2024 16:13:42 +1300
+Message-ID: <20241216031346.2626805-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <gjkknwwxvzdkljonsfyl42vamr6kjngytf2mbbhbfxkmwmhnyt@rry6pqzxmnsi>
-X-Proofpoint-GUID: rqX2_1H10KEyhjf1d9FpNDxX58Xt2CHZ
-X-Proofpoint-ORIG-GUID: rqX2_1H10KEyhjf1d9FpNDxX58Xt2CHZ
-X-Proofpoint-Spam-Reason: safe
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=675f9aec a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=RZcAm9yDv7YA:10 a=_n84Z-pW24laMXaj73kA:9 a=3ZKOabzyN94A:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-On Fri, Dec 13, 2024 at 11:58:07AM +0100, Krzysztof Kozlowski wrote:
-> > +
-> > +#include "clk-cs2600.h"
-> 
-> You do not include here even the bindings, so clearly
-> CS2600_AUX_OUTPUT_FREQ_UNLOCK and others are not bindings.
-> 
-Ack.  I will change this.
+This series adds a driver for the MDIO controller on the RTL9300 family
+of devices. The controller is a little unique in that we can't access
+the SMI interfaces directly. Instead we associate the SMI interface with
+a switch port and use the port number to address the SMI bus in
+software.
 
-> ID table definition goes here or somewhere around the probe.
-> 
-Ack.
+Chris Packham (4):
+  dt-bindings: net: Add Realtek MDIO controller
+  dt-bindings: mfd: Add MDIO interface to rtl9301-switch
+  mips: dts: realtek: Add MDIO controller
+  net: mdio: Add RTL9300 MDIO driver
 
-> > +static struct i2c_driver cs2600_driver = {
-> > +	.driver = {
-> > +		.name = "cs2600",
-> > +		.of_match_table = cs2600_of_match,
-> > +	},
-> > +	.probe		= cs2600_i2c_probe,
-> > +	.id_table	= cs2600_id,
-> > +};
-> > +
-> > +module_i2c_driver(cs2600_driver);
-> > +
+ .../bindings/mfd/realtek,rtl9301-switch.yaml  |  15 +
+ .../bindings/net/realtek,rtl9301-mdio.yaml    |  82 +++++
+ arch/mips/boot/dts/realtek/rtl930x.dtsi       |   8 +
+ drivers/net/mdio/Kconfig                      |   7 +
+ drivers/net/mdio/Makefile                     |   1 +
+ drivers/net/mdio/mdio-realtek-rtl.c           | 341 ++++++++++++++++++
+ 6 files changed, 454 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/realtek,rtl9301=
+-mdio.yaml
+ create mode 100644 drivers/net/mdio/mdio-realtek-rtl.c
 
-Regards,
-Paul
-> 
+--=20
+2.47.1
+
 
