@@ -1,62 +1,57 @@
-Return-Path: <devicetree+bounces-131333-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131334-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1D879F2DDA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 11:09:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8BA49F2DDE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 11:10:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B2281612A0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:09:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52B3A1882B1C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 890CA20126C;
-	Mon, 16 Dec 2024 10:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0B5F202C38;
+	Mon, 16 Dec 2024 10:10:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lUBnWPAF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZY/m9kjb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61CD3BA49;
-	Mon, 16 Dec 2024 10:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A42E2433B1;
+	Mon, 16 Dec 2024 10:10:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734343781; cv=none; b=Yw59uSE4r4VmgU0GpGP+MbtU++cQRRnjx/wNM/hHSkiH1rurlM0mK+Qv33uGFl8FceKw3UOyv41cLcsdT25BesgiA+lg1STRdVObTmLdepZW2O8Pe2gDHcF5abv3f2+7Tts2nBV4Jkygj6A+DjiYRpG9fFyo4y/oM+0GmBlGY8U=
+	t=1734343832; cv=none; b=qYNzF2CupAWsIUG5xC1dCK3pXgoL72Aih2yfiGtGQ7ObOjBcH2AzKFO6FaW2WxehKuMGfKV6DENCp3ay9B+ybhUJAdBa5epb6GDfoj4a4Uqom/2xNBbTDwde7b0tVciwtQ5MpryPub8+sBV2StAIDtovM4+m72lUIiT/QMldkjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734343781; c=relaxed/simple;
-	bh=Nay/Ysj46T8nFAC58Fcxr/oYYq+V5mUidfXinNesmug=;
+	s=arc-20240116; t=1734343832; c=relaxed/simple;
+	bh=DHo3US+barN/B1pApHW1hS3kgGBz3ApiROFTgW1kzu4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JXROyZPwwCGTqq+WeTvOb0rZKgHr08J1FTwJPzd2KEVDYZBAgw+JO/yT7hnjasIPFShA7Ib30jxmz/RV8kiGVI25cXwPo73Kez8BT/m8HCVGiF813Qz/SBv1NiavwsLE/wmVxTrOsuG+Ig6/2VTLxlOWrzSSk+vASPHTXzpfSFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lUBnWPAF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AD18C4CED0;
-	Mon, 16 Dec 2024 10:09:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hy3LG6FrWBhVkQHLxOTn74U+hCHyUTEbJ8STIOLwNsH2c6oR1w6i7jzibVVY93gj5V6VDLnIoh4vPv4SRRvkUXjyPemWc5ShR8doOEPMX2CeU8oTr6SltEyOZA0YNznGvDtcA2N7ZAUQJRfGraj06yE29x3cNCTvULAIspur4So=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZY/m9kjb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F89FC4CEE4;
+	Mon, 16 Dec 2024 10:10:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734343780;
-	bh=Nay/Ysj46T8nFAC58Fcxr/oYYq+V5mUidfXinNesmug=;
+	s=k20201202; t=1734343832;
+	bh=DHo3US+barN/B1pApHW1hS3kgGBz3ApiROFTgW1kzu4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lUBnWPAFmlPAhyJcJoHSApDI4vg2Wumq7oNXOalqY5m3EqfjPFvLLwEWF2n8Fj3jF
-	 ZVmnJaoBj5+H7x+IyiSbHd2FrnJQDCJXciqBKhPZ5G5d1+lFSESDAldYxfS6oLaFq8
-	 BHgy2W1fJQMWd1XoxZPIJRiTKi44/4gMIdMyhQYaaQ8Rgtfzjfbz5NMiB4tuy3GC4m
-	 ctiVg4XZV6TGI9R4siYyTu71qfYefpwDMPhdsz4odAJwCqBovV1425ddnFyrXL8sBg
-	 dEvlW0YgMADbCxUzhYk84LtGL5BDku+hNQ5Lq8zvidnm9YxHfPydId/MasgfIdkAFV
-	 o8XZH5JSvWluw==
-Date: Mon, 16 Dec 2024 11:09:37 +0100
+	b=ZY/m9kjbVdoQz2EgEBlIl65+yestsZYUnYPJui3XVZ5ERgQB/dwDKvKWpTKgqExQE
+	 qqPRGnYB0IsEXjD6uYydGWv3hato0cQA6I9u4JL/T8XO1mDRFXL5uIlh2efii2tm/R
+	 RjI3mRG9VViFjtrzjwot/kkp7SGLaN9htm7CvWzR++WElp+0GUT+mhua1mvObXuhjH
+	 5V17OADdjvz0S9fh44B0yeMnGP5vZZLAy+DZWJL/0I5AlePsWLf9CB4stg2c2+2N0M
+	 3ciXTvGTkd9iNeKu2SCJFKN+30EgFtuRPAi+Bo8D+hgvdeZRU4XWHuD3DjIgR3VtD5
+	 HhE/VGAUNSGqA==
+Date: Mon, 16 Dec 2024 11:10:28 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add Tianma
- TM070JDHG34-00 panel
-Message-ID: <egqtfrmretlglzhizdgq32bioxqtydcz7ftv7j6ftj2or6vhch@tre2xmuz3pry>
-References: <20241210-tianma_tm070jdhg34-v1-0-9fb7fe6b6cf0@bootlin.com>
- <20241210-tianma_tm070jdhg34-v1-1-9fb7fe6b6cf0@bootlin.com>
+	Animesh Agarwal <animeshagarwal28@gmail.com>, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: realtek,rt5645: Fix CPVDD voltage
+ comment
+Message-ID: <pqcxjnvbgdycckztccrzf7mgr2gslwt4kvumdpoovq4phdss53@z6r535fmbcxt>
+References: <20241211035403.4157760-1-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,27 +60,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241210-tianma_tm070jdhg34-v1-1-9fb7fe6b6cf0@bootlin.com>
+In-Reply-To: <20241211035403.4157760-1-wenst@chromium.org>
 
-On Tue, Dec 10, 2024 at 06:28:03PM +0100, Luca Ceresoli wrote:
-> Add the Tianma Micro-electronics TM070JDHG34-00 7.0" LVDS LCD TFT panel.
+On Wed, Dec 11, 2024 at 11:54:02AM +0800, Chen-Yu Tsai wrote:
+> Both the ALC5645 and ALC5650 datasheets specify a recommended voltage of
+> 1.8V for CPVDD, not 3.5V.
 > 
-> Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> ---
->  Documentation/devicetree/bindings/display/panel/panel-simple.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> index 18b63f356bb4bbf6d2c8e58b13ebb14c5f4004ad..30f655e82666bb1aa227edd26bd8d3621a39e74f 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> @@ -281,6 +281,8 @@ properties:
->          # Tianma Micro-electronics TM070JDHG30 7.0" WXGA TFT LCD panel
->        - tianma,tm070jdhg30
->          # Tianma Micro-electronics TM070JVHG33 7.0" WXGA TFT LCD panel
-> +      - tianma,tm070jdhg34-00
+> Fix the comment.
 
-So tm070jdhg34 or tm070jvhg33? Comment says one, implementation different.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
