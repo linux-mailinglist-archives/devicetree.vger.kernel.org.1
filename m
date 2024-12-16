@@ -1,137 +1,93 @@
-Return-Path: <devicetree+bounces-131432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 288E59F3335
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 15:27:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BAFF9F3336
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 15:27:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A94818848DE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:27:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B0981884031
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:27:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DA56206268;
-	Mon, 16 Dec 2024 14:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 841F5205AA5;
+	Mon, 16 Dec 2024 14:27:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P1i4f2Dx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fro3i912"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD1EF206263
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 14:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55B14203D42;
+	Mon, 16 Dec 2024 14:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734359236; cv=none; b=EQnYC8dSJC9IHe1doKxhzOcXLNhtkh8jfLayVgLY3irnI4why6WqKXHFIoWzphgkqzqMdoLmJm0SxI8FuxsV7XKRyyDCJfg7nuCQKCNrFnU4+hXApZkeNJaQFlxkMIWIVWZdWyk8G73LC3LAfOC/q01F5Z0DOfIHEhrpugJZ+AQ=
+	t=1734359247; cv=none; b=Ly9bTuYGvygoxXll7evnG173ncTiEO0q/g1okio0gLf10EQYJJrlJd03/Ezf65LRASd2VAXkTQar9e8lJxrhZsmRzeBkafRKW/ZflO4g8zjrvSD8twzZIVzh4Eo03UEo+s2bAgVZMm4KN/cnfAGI8R1Ez8hZD0JgryeswNkBrF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734359236; c=relaxed/simple;
-	bh=wNi9xGZaDlUCf6hrFGrFAxCzHjGNqkRnpLgJ/eCo50A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lherF6Ax62tfXHUHuAe5xhbfOMiuWZBv1FPV4Dewjs3LVc/GYt8k/6LxV+rGsu/s0lnB5YWnIF42dZ1dO2d65oVzKZqHo9BWTIyBOCd+ezgYPcyFgEfx0EDNWWfvpkwqLqHP8b5oqMPNnTWA/1zUpHw6IzF6Vlv2c4JfoATj3x8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P1i4f2Dx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE5C7C4CED7;
-	Mon, 16 Dec 2024 14:27:13 +0000 (UTC)
+	s=arc-20240116; t=1734359247; c=relaxed/simple;
+	bh=Mr35VqwgweA69AHCsQwnqUK4U36oZgsI7Vqv1GiCVuY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iJ8rpfkP38GaGbnkwjKrud0eDFFD9lHS60eFZ7iygEeaZLZqL4cxU7s+GgMbyTVQaVgXEhQJ9IrNV4lr2VM/PeCNywcLhzjHK82iTA9vWrpaggcjHbBSjGoKTYbSxzUf/UyFbQ8CsmyQvQcvxszmaoZ9+Av9+bB2EDWn9hJ7rx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fro3i912; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0B13C4CEE0;
+	Mon, 16 Dec 2024 14:27:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734359236;
-	bh=wNi9xGZaDlUCf6hrFGrFAxCzHjGNqkRnpLgJ/eCo50A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=P1i4f2Dxta5yzRoIrscnMxet2PGVBw8YQZtVb8zagDVhq5eP8Msghuju+gx1fcLwY
-	 y8FIaBg6NAGF+eHRWS+pYEXfSNxq0mNGPBkWpT9FrrCriZFFzJQcky1mZj4N3HchMD
-	 v6JEgijZUj9HEkvaFJwPsTfUqTcNG7i2GXiPdmsTrUmXLAI3VHZxpowjgn+CItdksZ
-	 PImnFxn2zkvk+H5LXiY8dS3gJeqbWlJBPPVCkednfoBpKGykfIt6zYUoMlCELgUeWD
-	 JsqtlJbay0PqqvCyKCHHwN055BprNKaKHIzQTc92gSEeBUK/DpnqGHs8JNB4ogrENf
-	 rzBTX9AkstDpA==
-Message-ID: <feec46a1-76b9-4479-b364-b09cd79b3d69@kernel.org>
-Date: Mon, 16 Dec 2024 15:27:11 +0100
+	s=k20201202; t=1734359246;
+	bh=Mr35VqwgweA69AHCsQwnqUK4U36oZgsI7Vqv1GiCVuY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=fro3i912XCn1bOY2tqDZK1/F3kQ08RLKElLPkKR4AjpKHSvzjQNUBV9O5tO0vePg7
+	 etDP1F62WwqhGNXW6m5w0/wQRuyaAIRyTUKWR8lQiqGi5s15IQAH5/GN468+K/baS+
+	 Ym11OmhuaeXJk76uyVqFFeePTsyEsrv5ZZs86x3Z9nP6qSWkpQU6Bp7ok4Nqyzs50N
+	 WLzw3jddrXnlZA1cEYo0Bei6COMdjRGpJUFd8OeRayx+LzRjLIIL/wOBfJMI2veFMV
+	 EZJd+/wdLl1fEynZhgx0fCRFB8VVPuJ/5m6G3fCU64sTC9Uz3KQoLTk/k38U4mhQRL
+	 2/8eSjDm11WEA==
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e3983f8ff40so2443715276.1;
+        Mon, 16 Dec 2024 06:27:26 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUhG4fxqNdWYnJVjqzh9ALctqJVziizuoG+wFj3NozdqsdHiCuBE+Jd42QsTvu93xPIFnmXn5pHl8b3IQc9@vger.kernel.org, AJvYcCW8eNph5q+UVs88SqNAlOzU2Xg6wNryGzHfF6jiB297AvLiX1lHbRuofxE1067SfwViQqeo78BUTKtE@vger.kernel.org, AJvYcCWJbEHQSIp4Ae0gQYq+skzukTKwjS9ne4UexJcyUlcSiTeI4u9pM+OzjJItcKTbUdFP2qT/mgO7baqabzBe3/+gMzo=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzhb+iq/5TtT95gJ7Yc76q1oztqawHWBxvcBd7NGdlIYV7Nlz1N
+	hIIcolm1J4mQu/43t18k2Xl+9fe1IGZtrA7n5JXsiY+KHChE8c1KxBw/y0VO35az/P3aJnkISsp
+	jMFSA85MLi4OEZVij8hy5yBqvaw==
+X-Google-Smtp-Source: AGHT+IF+SzaoPtVSZAlJvWgwFl8E44ixi6sB1aULDbhwrV6Mys2MrEPY+9ulABzQBZn3pK8qf8Lpu1q+VL/7Cde5Jk4=
+X-Received: by 2002:a05:6902:72a:b0:e3c:7b6c:9d1c with SMTP id
+ 3f1490d57ef6-e433f94c771mr11142194276.0.1734359245885; Mon, 16 Dec 2024
+ 06:27:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 02/12] arm64: dts: rockchip: Change node name for
- pwm-fan for Radxa ROCK 5C
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dsimic@manjaro.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20241216113052.15696-1-naoki@radxa.com>
- <20241216113052.15696-3-naoki@radxa.com>
- <0b0efc1d-2340-4ec5-a46e-62a6cebbc2b6@kernel.org>
- <5707EE9715A7E332+f33721f1-8b50-4262-bdaa-468ad2c79ecc@radxa.com>
- <281bce4e-cec5-4ad8-940a-c9ef16202a43@kernel.org>
- <C6FD94DDF2E16CAE+22e3003e-0d66-4092-a9a2-def5daa6c202@radxa.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <C6FD94DDF2E16CAE+22e3003e-0d66-4092-a9a2-def5daa6c202@radxa.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241213-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v1-0-c72978f63713@linaro.org>
+ <20241213-contrib-pg-cpu-hotplug-suspend2ram-fixes-v1-v1-2-c72978f63713@linaro.org>
+ <20241216141846.GA71151-robh@kernel.org>
+In-Reply-To: <20241216141846.GA71151-robh@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 16 Dec 2024 08:27:14 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKNZGwgd17q4Em9-fdVLgTsjLYnVHEXjDcH+i60b1ssdA@mail.gmail.com>
+Message-ID: <CAL_JsqKNZGwgd17q4Em9-fdVLgTsjLYnVHEXjDcH+i60b1ssdA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: mfd: syscon: allow two reg regions for gs101-pmu
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	tudor.ambarus@linaro.org, andre.draszik@linaro.org, willmcvicker@google.com, 
+	kernel-team@android.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 16/12/2024 15:19, FUKAUMI Naoki wrote:
-> On 12/16/24 22:56, Krzysztof Kozlowski wrote:
->> On 16/12/2024 14:48, FUKAUMI Naoki wrote:
->>> On 12/16/24 22:37, Krzysztof Kozlowski wrote:
->>>> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
->>>>> Use more common name "pwm-fan" for pwm-fan node. No functinal change.
->>>>
->>>> No, generic name is fan.
->>>
->>>    https://lore.kernel.org/all/71aa84af7a030e66487076e0976c8cad@manjaro.org/
->>>
->> And? That's incorrect advice.  There is no such device as "pwm-fan".
->> There is a "fan" and whether it is pwm or gpio it does not matter.
->>
->> See DT spec and generic names recommendation.
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml#n67
-> 
-> Is it wrong?
-Yes.
+On Mon, Dec 16, 2024 at 8:19=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Fri, Dec 13, 2024 at 04:44:39PM +0000, Peter Griffin wrote:
+> > To avoid dtschema warnings allow google,gs101-pmu to have
+> > two reg regions.
+>
+> It's not a "simple" syscon if you have 2 regions, so put it in its own
+> schema doc.
 
-Best regards,
-Krzysztof
+NM, I see it already does. If you keep 'syscon', then 'maxItems: 1'
+will probably need to move to syscon.yaml.
+
+Rob
 
