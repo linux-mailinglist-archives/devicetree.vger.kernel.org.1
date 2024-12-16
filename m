@@ -1,125 +1,111 @@
-Return-Path: <devicetree+bounces-131465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20B649F359D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:17:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D61C79F35B1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:19:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3033D188732C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:15:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0DBCC1615CF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:18:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24C69205519;
-	Mon, 16 Dec 2024 16:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A587192B70;
+	Mon, 16 Dec 2024 16:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="BjroLvwM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k6OW7+Xf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-185.mta1.migadu.com (out-185.mta1.migadu.com [95.215.58.185])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8DBD205AA2
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 16:11:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.185
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA1E113CA8A;
+	Mon, 16 Dec 2024 16:17:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734365506; cv=none; b=UbczM4nLqKw+cfGNkvlDXMFaxK9AwXhwH8B0Q8pR+n2ffVQfXokSezUj2amzCluH6fFQwnKL2kmqE4hvL1pxzku8Qh4/PNS+f9DomAoh0oOlmeo9T2cs9ctzraub3qsCL6P/yyDtjXcxR+KDYswZPi36QAMVMvTPw5il1MgI/Uk=
+	t=1734365824; cv=none; b=g2enszvPRRsgUUSx116G4eVHB1Yh5IuVg8thk3CNPDYAcKEIQPa/KTV39U+vBhDO1rjtq+/Gg4Bi7xnQkm49BYoFIk/51w6cKmfmW7+5zeScRzCP4LT2peBinPK+z94mvW4fWl3ihvglBfeAlJ3ou9SeGQRnbgVw2nbcFiWw6VQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734365506; c=relaxed/simple;
-	bh=THc+C/kIuJZ7T3s1JJhxTf4jDd8Yzw5YyaqyuOu0G7I=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=C3kP9onUmLLvCRQAQt5oc9wywql3JKZRmRHEvoJlMUe+HCJxoGVs3Bz/d2cz7tTB64eTRYdEcG4zowfCbhxPEJL2oant6tnHeaTGZqU8w9Fd5+alDyd8zivrVcChhgCTOTJkLWYnMoLmDyif3lJlKOV1Z5mV7FfS7RI70opyB4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=BjroLvwM; arc=none smtp.client-ip=95.215.58.185
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1734365824; c=relaxed/simple;
+	bh=ZzSSIU1SFKodlKclhIS/dVP6XR4I/BvF1HqgLgp6GNQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oogCZlDBuBV6SMJP7zh0ErRzxCXToqG+sJU6ONo26J6dvOvYT3KBBXBy9oN6p2Hi0NH0f20QEXvunYyA5ZUahWI/YQwP33eOg5h+AEWVpvNOtBzG5ZLhTRER8S5usY6NsjY+5eOYCEYobe1kPKuNQOPBzaI63JcSBS759o6u8W8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k6OW7+Xf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18362C4CED0;
+	Mon, 16 Dec 2024 16:16:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734365823;
+	bh=ZzSSIU1SFKodlKclhIS/dVP6XR4I/BvF1HqgLgp6GNQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k6OW7+Xfx5piyTev7QeiXeyMDrhTohgOeIIdYZbge1RYssteXEJpFBbHEjTy9L7YJ
+	 dzFhwsSlcmwXqj/VsX+86ls2wN4pds31NJH2cb3f1fo1lObSySij5ESc6ERgRwRK6T
+	 OHtHJWU3jwTFaeP0w1CJahNlHOR2yo7twhq3CZWfnMtU/+ToSh0RaA3Y7p5EWEPfm+
+	 kN8oH3cs6EbLSAaEMS0sWJjPO0Bboobg7Vr2XRajW1BDvgOa7WwMC/M+GdSNLQ9F3x
+	 mAiWh+HcCMd2xZwXHhutgNccb6lc/B+I8Es9JdNpzoRwFsBNiyH2wWMb1ifS2cWruY
+	 RPkV2t27KY+sQ==
+Date: Mon, 16 Dec 2024 17:16:54 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Dirk Behme <dirk.behme@gmail.com>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	robh@kernel.org, daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, paulmck@kernel.org,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	rcu@vger.kernel.org
+Subject: Re: [PATCH v6 00/16] Device / Driver PCI / Platform Rust abstractions
+Message-ID: <Z2BSdhdmBlrJvxb8@pollux.localdomain>
+References: <20241212163357.35934-1-dakr@kernel.org>
+ <00dd07c9-21a6-4515-9b62-351c6aff2d1b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1734365501;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CkgrHu2ccpbodeitRs0XzfSSQE5c+RMWLmBF2B58xXw=;
-	b=BjroLvwMYCUatjha9BU9C0cmINvI03LnFwHxXpSMS+ikUbOiKDztMvo3gJY3iR9JlVoeFZ
-	nsmqVNucQVWPVliVI7u+8J33mZ233UllKFtE7RsP8gLDQqeW71RvCTQNmIOfTYyqjlhB9e
-	XYt34qA7Gov9M5xAh7uyE6GO6Qt1Jkdtbh515zBXtrViMHiHkIcILoJ03ML3ye4fuGQa4N
-	kVmHVXt1yYllytrY3I7JlFu2QuAh6BovyFNMa3naFgVkgj85YucCfF+34byD4+U8YBHrSv
-	8i2fTSmqEmLIzunasA1pYUVdEXTIoCQVa1gSVXYdFMJuViYpHBwHhiRKVCvEUQ==
-Content-Type: multipart/signed;
- boundary=0c7bf3ea387a8860aef29fc1f8c5f41f41a57cc9690a740184f2099cb024;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Mon, 16 Dec 2024 17:11:31 +0100
-Message-Id: <D6D997JACT2Y.294J06IIIVEY7@cknow.org>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "FUKAUMI Naoki" <naoki@radxa.com>, "Krzysztof Kozlowski"
- <krzk@kernel.org>, <heiko@sntech.de>
-Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <dsimic@manjaro.org>, <devicetree@vger.kernel.org>,
- <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH v5 02/12] arm64: dts: rockchip: Change node name for
- pwm-fan for Radxa ROCK 5C
-References: <20241216113052.15696-1-naoki@radxa.com>
- <20241216113052.15696-3-naoki@radxa.com>
- <0b0efc1d-2340-4ec5-a46e-62a6cebbc2b6@kernel.org>
- <5707EE9715A7E332+f33721f1-8b50-4262-bdaa-468ad2c79ecc@radxa.com>
- <281bce4e-cec5-4ad8-940a-c9ef16202a43@kernel.org>
- <C6FD94DDF2E16CAE+22e3003e-0d66-4092-a9a2-def5daa6c202@radxa.com>
- <feec46a1-76b9-4479-b364-b09cd79b3d69@kernel.org>
- <E3B9E510C4F8D95A+7a184f12-902b-47ea-894c-4552e189d19b@radxa.com>
-In-Reply-To: <E3B9E510C4F8D95A+7a184f12-902b-47ea-894c-4552e189d19b@radxa.com>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <00dd07c9-21a6-4515-9b62-351c6aff2d1b@gmail.com>
 
---0c7bf3ea387a8860aef29fc1f8c5f41f41a57cc9690a740184f2099cb024
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On Fri, Dec 13, 2024 at 08:06:13AM +0100, Dirk Behme wrote:
+> On 12.12.24 17:33, Danilo Krummrich wrote:
+> > This patch series implements the necessary Rust abstractions to implement
+> > device drivers in Rust.
+> > 
+> > This includes some basic generalizations for driver registration, handling of ID
+> > tables, MMIO operations and device resource handling.
+> > 
+> > Those generalizations are used to implement device driver support for two
+> > busses, the PCI and platform bus (with OF IDs) in order to provide some evidence
+> > that the generalizations work as intended.
+> > 
+> > The patch series also includes two patches adding two driver samples, one PCI
+> > driver and one platform driver.
+> > 
+> > The PCI bits are motivated by the Nova driver project [1], but are used by at
+> > least one more OOT driver (rnvme [2]).
+> > 
+> > The platform bits, besides adding some more evidence to the base abstractions,
+> > are required by a few more OOT drivers aiming at going upstream, i.e. rvkms [3],
+> > cpufreq-dt [4], asahi [5] and the i2c work from Fabien [6].
+> > 
+> > The patches of this series can also be [7], [8] and [9].
+> 
+> With v6.13-rc2 and Fabien's regmap/regulator/I2C on top I gave it a
+> try on x86 with qemu. Additionally cross compiled for arm64 and will
+> try it on real hardware once I have it available. But previous
+> versions of this series have been fine on that, already. No issues
+> observed for running the samples and for the examples/KUnit. So:
+> 
+> Tested-by: Dirk Behme <dirk.behme@de.bosch.com>
 
-On Mon Dec 16, 2024 at 3:38 PM CET, FUKAUMI Naoki wrote:
-> On 12/16/24 23:27, Krzysztof Kozlowski wrote:
-> > On 16/12/2024 15:19, FUKAUMI Naoki wrote:
-> >> On 12/16/24 22:56, Krzysztof Kozlowski wrote:
-> >>> On 16/12/2024 14:48, FUKAUMI Naoki wrote:
-> >>>> On 12/16/24 22:37, Krzysztof Kozlowski wrote:
-> >>>>> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
-> >>>>>> Use more common name "pwm-fan" for pwm-fan node. No functinal chan=
-ge.
-> >>>>>
-> >>>>> No, generic name is fan.
-> >>>>
-> >>>>     https://lore.kernel.org/all/71aa84af7a030e66487076e0976c8cad@man=
-jaro.org/
-> >>>>
-> >>> And? That's incorrect advice.  There is no such device as "pwm-fan".
-> >>> There is a "fan" and whether it is pwm or gpio it does not matter.
-> >>>
-> >>> See DT spec and generic names recommendation.
-> >>
-> >> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
-e/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml#n67
-> >>
-> >> Is it wrong?
-> > Yes.
+Thanks for testing all this, very much appreciated!
 
-There's an(other) issue with the binding:
-line 91 references `&fan0` while it isn't defined (in the binding
-example)
-
-Cheers,
-  Diederik
-
---0c7bf3ea387a8860aef29fc1f8c5f41f41a57cc9690a740184f2099cb024
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ2BRNwAKCRDXblvOeH7b
-bix1APsHHrEX9mQ9kqG/TGOmW/JFwnyos1wZc2LmqKFMCnCaZgD/eeK6TEmd835t
-mhgxBP26FdiNC9GUFZqB6BlTM4BItQg=
-=yfVy
------END PGP SIGNATURE-----
-
---0c7bf3ea387a8860aef29fc1f8c5f41f41a57cc9690a740184f2099cb024--
+> 
+> Many thanks!
+> 
+> Dirk
 
