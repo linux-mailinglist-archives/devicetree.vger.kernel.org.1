@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-131476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 864099F361A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:33:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBE079F361D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:33:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2974B188403A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:31:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7744D188C958
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FB3619ABCB;
-	Mon, 16 Dec 2024 16:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D75B92066E8;
+	Mon, 16 Dec 2024 16:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Roi7m7tT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rrtCSjKh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F11C1885A5;
-	Mon, 16 Dec 2024 16:29:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAB631885A5;
+	Mon, 16 Dec 2024 16:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734366559; cv=none; b=PP1eZe+oBAVT5hh7aVr9Gia3P7878GDMXNf40edjK6hVP/wpf4eDxJEU2xoIR/o16GhAc3861vQ3H35W9WoFXGEuyTL6JDs90tW4dvq0w41YrwIFIFHK9USlxPqGET1PBZTFXa2wwLvbClJVyC2pMzM7SiIVMayUNJn82FYxSmM=
+	t=1734366562; cv=none; b=hegxUClrqpvee8yYKOWi3R0EQXlMJ6crJ1EE6DqQC4RvR4WkBVLSNYSsb12vyh4JCBrSSUN10J7kFP8QIp9zudGLGGiyU8WPdkoN9SHZnVtGAMlR19T4kDIqsrctpzFE3kikOSeC1N/JP0VcvRwrkOv6WBm0vqj+WwDGwIuEC2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734366559; c=relaxed/simple;
-	bh=eTH5PAJYArUjyYFUhkavXr9IHbyJp0cHmZVtDEdnjTA=;
+	s=arc-20240116; t=1734366562; c=relaxed/simple;
+	bh=EH/ufdT5EDnouKnjjdGAMRabPTfJmALbDN0nfMT7ml4=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=G9vQ0uIVuMAa0Mex9dfbX87N0oIHitOwO61xb6Gzhv7hL3arywbi5zSbeBL2akj6NMjGoQXuMfKxR8MLEAY08vmvMBxFCkwcFhnABz1mGSMGqd/3FfV8IdGz66I/KUTNSwiUfSW7USMLL0LWug3elMsb3zrDpdmc0T6/m72vEys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Roi7m7tT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76040C4CED0;
-	Mon, 16 Dec 2024 16:29:18 +0000 (UTC)
+	 Message-Id:Subject; b=k3u0pi0hvBI9dbn/R7N8sjY3LpWWTlNVkF8YQmE+c7W07pLFRenkSKrAGqYWn+zvSuaNHatWdvxfTXro+N4aE261MOVp9y4Ai7ZIXU8p0S+tG8zSETMBWPMbTgtPJHAHgvACkJBNZYgRtBzx4/EqyS5bY+LaHp1PXUmPtbmIOxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rrtCSjKh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01627C4CED4;
+	Mon, 16 Dec 2024 16:29:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734366558;
-	bh=eTH5PAJYArUjyYFUhkavXr9IHbyJp0cHmZVtDEdnjTA=;
+	s=k20201202; t=1734366562;
+	bh=EH/ufdT5EDnouKnjjdGAMRabPTfJmALbDN0nfMT7ml4=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Roi7m7tTvG8r+dOMRufBtBzf5LMU1seuLVmkSmHbU3rEmITSOGpJPXpjrhRr6X/Hw
-	 HjJNiLkX/IW0bMxbpw8I7wXh2MYhrvMJhlBy9D5p7t7HDayiUqPKsRawGDGMovBNlS
-	 avFCa7hVK+M+YD265Uh72h9hwn8tGEtfrsQuVmO6n24edW5BlwsRWomv+RYm5062dz
-	 ITYKSdLGCLsY/0nuuRu3xeW+So58/l4eeCXi4FPGK0wtN10XmDGoDR4YfAIyqSobCa
-	 EKeJEo+JrYhxJiit9foSGLVBy/GqYkyGTePRQtBGUgGQvaGbbHcSryDpo13zLU/db7
-	 8vatbl3MVjO4w==
-Date: Mon, 16 Dec 2024 10:29:15 -0600
+	b=rrtCSjKhQyNdd9mpknLtAP4kBqJbnxw5r+4pSydUFfCnyaaeVrOIZLIwLkZvdxNgY
+	 NFTPjBZca0lbeQXdkmx+w5SPcmnXa21FW6x4Px+LP5NcKXwy6EnPBl38Lq1eNYLrIQ
+	 YJpg1rGy4b7X2O9sNp1hSsQ62Hxd1yftj/QvktYmyXwNN3V/MzAt9L24haWHuJ6RbY
+	 DpDSL8xg6Cg14s+3W9/xD3ClsY2s3FdU33XGcGYbgUPnb+uZ0r8r/5hrrNTD5XIbbb
+	 9Kj2ONWn4hfQwtLT0a7+dtM9o/7gnmCfTKZ3a81mzL/V3v4hagmIPqQMfpj3tldNlx
+	 K6kPADVCFuR4A==
+Date: Mon, 16 Dec 2024 10:29:19 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,41 +51,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: andrew@codeconstruct.com.au, linux-arm-kernel@lists.infradead.org, 
- krzk+dt@kernel.org, eajames@linux.ibm.com, joel@jms.id.au, 
- devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, conor+dt@kernel.org
-To: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <20241213145037.3784931-1-ninad@linux.ibm.com>
-References: <20241213145037.3784931-1-ninad@linux.ibm.com>
-Message-Id: <173436597537.264948.12611164276777551472.robh@kernel.org>
-Subject: Re: [PATCH v1 0/8] DTS updates for system1 BMC
+Cc: krzk+dt@kernel.org, linux-pm@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ conor+dt@kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, heiko@sntech.de
+To: Shimrra Shai <shimrrashai@gmail.com>
+In-Reply-To: <20241215032507.4739-1-shimrrashai@gmail.com>
+References: <20241215032507.4739-1-shimrrashai@gmail.com>
+Message-Id: <173436598341.265396.5585546641509709958.robh@kernel.org>
+Subject: Re: [PATCH v3 0/3] arm64: dts: rockchip: Add Firefly ITX-3588J
+ Board
 
 
-On Fri, 13 Dec 2024 08:50:26 -0600, Ninad Palsule wrote:
-> Hello
+On Sat, 14 Dec 2024 21:24:52 -0600, Shimrra Shai wrote:
+> This is the 3rd draft of the device tree proposal for the Firefly ITX-3588J
+> board. The same functionality issues as before are still outstanding;
+> however I have cleaned up the style and structure as per the comments by
+> Heiko Stübner on version 2. Of particular note is the splitting of the
+> device tree source into two files because this platform actually consists
+> of two boards: the ITX-3588J baseboard and a single Core-3588J compute
+> module stuck in a slot on it.
 > 
-> Please review the patch set. It has various device tree changes for
-> system1 BMC after hardware testing.
+>  - Shimrra Shai.
 > 
-> NINAD PALSULE (7):
->   ARM: dts: aspeed: system1: Add IPMB device
->   ARM: dts: aspeed: system1: Add GPIO line name
->   ARM: dts: aspeed: system1: Add RGMII support
->   ARM: dts: aspeed: system1: Reduce sgpio speed
->   ARM: dts: aspeed: system1: Update LED gpio name
->   ARM: dts: aspeed: system1: Remove VRs max8952
->   ARM: dts: aspeed: system1: Mark GPIO line high/low
+> Shimrra Shai (3):
+>   arm64: dts: rockchip: add DTs for Firefly ITX-3588J and its Core-3588J
+>     SoM
+>   dt-bindings: pinctrl: add header for PCA9555 GPIO extender bindings on
+>     some Rockchip-based devices
+>   dt-bindings: arm: rockchip: Add Firefly ITX-3588J board
 > 
-> Ninad Palsule (1):
->   ARM: dts: aspeed: system1: Disable gpio pull down
-> 
->  .../dts/aspeed/aspeed-bmc-ibm-system1.dts     | 178 ++++++++++++------
->  1 file changed, 119 insertions(+), 59 deletions(-)
+>  .../devicetree/bindings/arm/rockchip.yaml     |   7 +
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../rockchip/rk3588-firefly-core-3588j.dtsi   | 453 +++++++++++
+>  .../dts/rockchip/rk3588-firefly-itx-3588j.dts | 712 ++++++++++++++++++
+>  .../dt-bindings/pinctrl/rockchip-pca9555.h    |  31 +
+>  5 files changed, 1204 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-firefly-core-3588j.dtsi
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-firefly-itx-3588j.dts
+>  create mode 100644 include/dt-bindings/pinctrl/rockchip-pca9555.h
 > 
 > --
-> 2.43.0
-> 
+> 2.45.2
 > 
 > 
 
@@ -104,21 +111,16 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y aspeed/aspeed-bmc-ibm-system1.dtb' for 20241213145037.3784931-1-ninad@linux.ibm.com:
+New warnings running 'make CHECK_DTBS=y rockchip/rk3588-firefly-itx-3588j.dtb' for 20241215032507.4739-1-shimrrashai@gmail.com:
 
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: ethernet@1e660000: phy-mode:0: 'rgmii-rxid' is not one of ['rgmii', 'rmii']
-	from schema $id: http://devicetree.org/schemas/net/faraday,ftgmac100.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: gpio@1e780000: 'fan_controller_reset', 'isolate_errs_cpu1', 'rtc_reset', 'srtc_reset' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: rtc_reset: $nodename:0: 'rtc_reset' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-hog.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: srtc_reset: $nodename:0: 'srtc_reset' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-hog.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: fan_controller_reset: $nodename:0: 'fan_controller_reset' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-hog.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: isolate_errs_cpu1: $nodename:0: 'isolate_errs_cpu1' does not match '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$'
-	from schema $id: http://devicetree.org/schemas/gpio/gpio-hog.yaml#
-arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: /ahb/apb@1e780000/bus@1e78a000/i2c@280/bmc_slave@10: failed to match any schema with compatible: ['ipmb-dev']
+arch/arm64/boot/dts/rockchip/rk3588-base.dtsi:355.39-358.4: Warning (clocks_property): /display-subsystem: Missing property '#clock-cells' in node /phy@fed60000 or bad phandle (referred from clocks[0])
+  also defined at arch/arm64/boot/dts/rockchip/rk3588-firefly-itx-3588j.dts:292.20-295.3
+arch/arm64/boot/dts/rockchip/rk3588-firefly-itx-3588j.dtb: display-subsystem: 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip-drm.yaml#
+arch/arm64/boot/dts/rockchip/rk3588-firefly-itx-3588j.dtb: pmic@0: Unevaluated properties are not allowed ('rk806_dvs1_pwrdn' was unexpected)
+	from schema $id: http://devicetree.org/schemas/mfd/rockchip,rk806.yaml#
+arch/arm64/boot/dts/rockchip/rk3588-firefly-itx-3588j.dtb: pcie@fe170000: Unevaluated properties are not allowed ('rockchip,skip-scan-in-resume' was unexpected)
+	from schema $id: http://devicetree.org/schemas/pci/rockchip-dw-pcie.yaml#
 
 
 
