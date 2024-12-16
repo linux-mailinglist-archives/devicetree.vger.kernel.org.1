@@ -1,381 +1,275 @@
-Return-Path: <devicetree+bounces-131272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13E339F2AF9
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:35:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0EAB9F2B08
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:39:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92DB81883C79
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 07:35:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFFC9163CC5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 07:39:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD6531B87E0;
-	Mon, 16 Dec 2024 07:35:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 778131F7092;
+	Mon, 16 Dec 2024 07:39:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pegatron-corp-partner-google-com.20230601.gappssmtp.com header.i=@pegatron-corp-partner-google-com.20230601.gappssmtp.com header.b="aUo9Q1Y6"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="s30uDHqD";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="mXgS/lqC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0D3E339A8
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 07:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734334524; cv=none; b=U7dBnvpZIiFvaro/O98ivFqpmu8Iu0VqwF2+NCgkuWsqw8vGobSgL0+quf5nF65LK/op4hW8fGAZMlifH1chT9q+alMMUvaqCU0tP8iippsqjmUxoD1ep8jFvfHgpY1m2OtBLz6sGLSS/NjAawhzMdF8dEEdsT7BvjRPd0b/i2U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734334524; c=relaxed/simple;
-	bh=tzaOt2BnX2MCQK+1QpzW9jTGoy3s0LwZzuPUxYu++Go=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Yy02iip/fS+EP2t/g61/+Voyy+Z0ZtRUqgHk9Oi53wLd7k724WrR6g/T1GGYFXKkzvt7PQ3Vi4vab0kKJRiC8S+C4vLaNFGccZhXyKPhNtcoPQTnKhv37/7xdrhEiXdHcP0DYcKmsWijIzN8iaiaQfY5+iIgZjCOwDmT9/PTwU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pegatron.corp-partner.google.com; spf=pass smtp.mailfrom=pegatron.corp-partner.google.com; dkim=pass (2048-bit key) header.d=pegatron-corp-partner-google-com.20230601.gappssmtp.com header.i=@pegatron-corp-partner-google-com.20230601.gappssmtp.com header.b=aUo9Q1Y6; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pegatron.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pegatron.corp-partner.google.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2163bd70069so38073575ad.0
-        for <devicetree@vger.kernel.org>; Sun, 15 Dec 2024 23:35:22 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56DC21F708D;
+	Mon, 16 Dec 2024 07:39:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734334754; cv=fail; b=sdEYwnBOgDApF4FF25gqS8u83FL5bhuegiIZ+Q4j7aKNRxznhbIXOr+tt0jZlJ9BKdjEj9ABmKwgtyhA/WSmogG9pLY6Z+6rs8ThWwPv/yzWPnY9ZY2O3c/ROI6Va4pBtZzs68QInT03ar3WevPCvLwa8ngBz904ZiucCn+RqwM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734334754; c=relaxed/simple;
+	bh=pD6Tu55J4I7athSPRKqUxYOM42X3tfiU0fQEcGfsW2k=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=jyWR+xaQfdsFrfq+w2H1HproopLKKWZNR8h1TmNM0hmdGIDkSi4mKsL60vKuzUdLorlLEL9ePfk68sboHS/KbHXwg+M/lISd/z2Hdw9zUy0BIgoRzowO9kxcLzyF2azsPsJxHKcmNVLgtKBPrl8uERQJWmHEcLNWXCXNWirYxFA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=s30uDHqD; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=mXgS/lqC; arc=fail smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: d2b63f6ebb8011efbd192953cf12861f-20241216
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=pD6Tu55J4I7athSPRKqUxYOM42X3tfiU0fQEcGfsW2k=;
+	b=s30uDHqDyrPFca3DCzY+Y5kncAPEOXmYhHKQFsJdbWhp/dzalskEBM3eMhhYPeX9B3FqOqWofdFQd9cgosWb76Zqw4oBCFNQxdalrjXiJzQd6jZQflv0wo4QriRRKoallYXRMhzoHMjLiWZLvJGiMkJ+N7mItd81Vbyy6L1aXYU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.45,REQID:94950970-a364-4b6f-bd94-412a95b0c390,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6493067,CLOUDID:36b43213-8f5d-4ac6-9276-7b9691c7b8d6,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0,EDM
+	:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
+	,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: d2b63f6ebb8011efbd192953cf12861f-20241216
+Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw02.mediatek.com
+	(envelope-from <ck.hu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 2010646375; Mon, 16 Dec 2024 15:39:03 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 16 Dec 2024 15:39:02 +0800
+Received: from HK2PR02CU002.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 16 Dec 2024 15:39:02 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HGmM+d9j21RpX3vV2JMWJMdloCLxNSInEKW27Mee+HFbIVy1VZXpajPtUJBkEXrrJsKUS03R+YfNj82jKYENZ7+Tq7KdvainHvoSdFPICWR/xG8KK78xggDXKbcyJsLNbJ0d1CvQTXwjb+iJLKhodcHmRzjQuk6fhOXLlxvRbkN4EnRKqId622QCL/5dEx+TjLHjMZcz8CPnVzj84R/LEmViFdC9GdlfmJAK9FR6fDk2tceJs9lK0dNh/0qDjR2N79h5vbVAsIzDuib4We3ejxNX+pCiBg6I79gxBuLOw+c1vZZp2BxfFUO2cUlUsOfqzCcSACKzrYQIBKBYFrw0kA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pD6Tu55J4I7athSPRKqUxYOM42X3tfiU0fQEcGfsW2k=;
+ b=SdJeD9+K+fj+6axfEx9kingNNh9Sr3413bKk/6uJOD7m66DsKx5IiqPJ2eACb3Uaq0Wu1+cHSJKzsbUwUq3obO2dSckFI8lJe8uKu+6lHkff8TfMQz1ThrUhJiuNzIEzeHmQeoDHSRBJp8ah8Xpk5FHewtimS0w0uMhYZcCQhE39SXK3lS/zgPB88gR9U8ykSJc+GPRkfe60aYAcFqIcNGm/n+oXIQs0x79hQKoCjreQeWfP2I1jQ5ie5gbuIgsut75ulvdd56v0NK4PhrknMDFBzlnHBYyfB4+K2Blg6is48H4iIGjXYZYW039UYB5I09j3o7bYV05IGA14ZVneSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pegatron-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1734334522; x=1734939322; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ghfXEzNC0LKCgXVnuy0foatupNP0hXk60L3nylPjlwQ=;
-        b=aUo9Q1Y6l64R7xjLgPPrizBobnBV/XZ/YZ7a8eZVfGgAUia+DACyaCEyKgHkdwaH0A
-         azQ4FS0StjBku4f9NyxyMdppgiTZzwucsMfn7MdbAQmzptde3oV61N7yM/RxvfwG8M6i
-         j5T4F2V5z7ZylExvNbsVlLupea0vG4Dw1tV5BAwUSHyo8fTprm3TvjJe+lJkXzBSqRC7
-         r+eEEaz8V7haac0/GwfZS1woMU2DBGbNeO4+MB/nt6asPoqQHvq25bozWw5r00sWi6dd
-         kUZukj+CZZkqQ/m7u0M/p8otBTrh2bHIi2GTShED4vvPVbl3hdvesPKS9RzywQwFL+92
-         FfvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734334522; x=1734939322;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ghfXEzNC0LKCgXVnuy0foatupNP0hXk60L3nylPjlwQ=;
-        b=nmRgopJJ+og3m4BE+DT8kxRqOaaA0iR5crhC+XOaWjTK7De3LmTWXXPR/9JbRawff3
-         iW9DAAlJ+1tcMhGaWXH15El98p7Dkscs7iy8n/HHTGtbHZr2s8ucmMSDE6r7r+LSUczK
-         eURDJ0OsCPI64rJLi+Z2TunQ8HFFIb0yJoIhDx7O4rPHefs7NYG0rkhI+83O7hJDZrub
-         ZDqLXAwhrwo/J6q3MN9lmm/VMIniXAz+IN0X6NOwKm3hFicXpbBVOfezUCZnJ2/4GGI4
-         U/7tkqLlHdW2vJoYrJCAUFUh1b7sKmoloLbXQAjFCES6jDleXllCFwoxh+m0MVnqWYvj
-         +MiA==
-X-Gm-Message-State: AOJu0YyulsWN3HvoNwlh98V/KKyePMCbr3bSkzgzGApaEj025JwEuSZN
-	gLazn0W84xBcBdQLIu5E9nfbWwNjOBhoLzJ+aPMBfScNHTmY/6R7JJOpMIe1heU=
-X-Gm-Gg: ASbGncviloMRiOFDrdBr0k7mR3opnK0vFO4V/Z4v02e5zosBJb4XupfrPg3C5CGqYHi
-	aR2iA7oNZJU089rs6r3oKsUxngV97838rruTo7D8tTX5rjvkh4epmtxO2xm9CDhhOuUBpGzqSpn
-	NJBLd7rPLwsD/mYeTK7knGn8/lQQFDJLb5PRVLeykhfkJ17SaW9jUL96hWk8SwsCoo87pjGzssL
-	ZdWnexKTxkRDlTf8aBuiKuUnvee9aRdoCbB8Q4oABkaOJz94ZL/jUoiC/4sOZTSP7w3QZuShIQP
-	JEB8OITGIK1Gw34UWbMejlATUa0v/UA6KnywvMGq5H6xTU1EFICz+1kfK1g2UQ5tr3NKRBU8PQS
-	mLKg1Ng27jEPqqCU=
-X-Google-Smtp-Source: AGHT+IGOIU+hg5lbLXSrdiLWIfIj0Z6VBovKrVeJsa1AYwz5Jfx+BVUrmpZ/19GgPgtdamSh98AS4Q==
-X-Received: by 2002:a17:902:ea0e:b0:216:5e6e:68cb with SMTP id d9443c01a7336-218929a1ec5mr134535545ad.16.1734334522021;
-        Sun, 15 Dec 2024 23:35:22 -0800 (PST)
-Received: from [127.0.1.1] (2001-b400-e261-f376-b358-4574-ae63-0466.emome-ip6.hinet.net. [2001:b400:e261:f376:b358:4574:ae63:466])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e5ce3esm36716575ad.195.2024.12.15.23.35.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Dec 2024 23:35:21 -0800 (PST)
-From: Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
-Date: Mon, 16 Dec 2024 15:35:12 +0800
-Subject: [PATCH] arm64: dts: mt8186: Add mt8186-skitty
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pD6Tu55J4I7athSPRKqUxYOM42X3tfiU0fQEcGfsW2k=;
+ b=mXgS/lqCvRrw/rRGNHlUei3s6PwUCvQ9bvgN3BsZUJBFMGYBql5Id/qD17uc7q8YB5NtDYiqP+v2u9Q3/HVs0JOXw7L0Pa0BCbaWP7zJ98Nf5ICnEpxpO1Yn71hrx37A1RgjjLfB3vW+CAXNwl4One9GvMf8F5vWnAz2Drmqmsc=
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
+ by TYSPR03MB8806.apcprd03.prod.outlook.com (2603:1096:405:99::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.20; Mon, 16 Dec
+ 2024 07:38:59 +0000
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::9ce6:1e85:c4a7:2a54]) by TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::9ce6:1e85:c4a7:2a54%3]) with mapi id 15.20.8251.015; Mon, 16 Dec 2024
+ 07:38:59 +0000
+From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+CC: "robh@kernel.org" <robh@kernel.org>, "jie.qiu@mediatek.com"
+	<jie.qiu@mediatek.com>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+	"simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
+	<mripard@kernel.org>, =?utf-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
+	<jitao.shi@mediatek.com>, "linux-mediatek@lists.infradead.org"
+	<linux-mediatek@lists.infradead.org>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "maarten.lankhorst@linux.intel.com"
+	<maarten.lankhorst@linux.intel.com>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "kernel@collabora.com" <kernel@collabora.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"airlied@gmail.com" <airlied@gmail.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
+	<matthias.bgg@gmail.com>, "junzhi.zhao@mediatek.com"
+	<junzhi.zhao@mediatek.com>
+Subject: Re: [PATCH v2 12/15] drm/mediatek: mtk_hdmi: Split driver and add
+ common probe function
+Thread-Topic: [PATCH v2 12/15] drm/mediatek: mtk_hdmi: Split driver and add
+ common probe function
+Thread-Index: AQHbRwuDKzLMLP8gmEqSnf1CFqiN77LojQsA
+Date: Mon, 16 Dec 2024 07:38:59 +0000
+Message-ID: <ef02d09ce33ab249e877e779f75c3980f5a5939a.camel@mediatek.com>
+References: <20241205114518.53527-1-angelogioacchino.delregno@collabora.com>
+	 <20241205114518.53527-13-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20241205114518.53527-13-angelogioacchino.delregno@collabora.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Evolution 3.52.3-0ubuntu1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|TYSPR03MB8806:EE_
+x-ms-office365-filtering-correlation-id: cf31f0a8-0d7b-4ca0-de75-08dd1da4b446
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?b3A4bys2NnQ2TDMyd3JIalBYVFA2dHQxWlA2NFlITEFXUllpTVpOaEF5VDlt?=
+ =?utf-8?B?dzNJcElVMERHQVZFRFR0aTlSZWpKSFdINnJ5OTdiSUthYXIzYTRMNlBUa3J2?=
+ =?utf-8?B?dzRydmlBekQrd3BqSFBTNFN0VDZwT0svYnBFWEVuRWhsQ0I5Sm9Oc21LK2Nq?=
+ =?utf-8?B?ZFFGYjE4TWo5MnVCUExtakhYcjdkK1BqYWZKOGN2TFJEZE1FRWhXSkhUV0lI?=
+ =?utf-8?B?amRSL3Bpb0d1MWFvK0tUdFNHY0RXdDVlT3MwWlJZNFR3SVhzQlBOZFZZcVl4?=
+ =?utf-8?B?WjdNRGJ1bHdDQTFBM0FIOGhYSmQvN1pJdzdxbzBqcVMzRXV5OW5lbVN5TXZw?=
+ =?utf-8?B?UzV4a29GTzdKa0RyUVZYcXhTd0dyeXlkdjhTektNeHRjTEFwNDNPejI1RTNy?=
+ =?utf-8?B?WUdub0ZPRGdzWnVzYmhRQVZrd0lJTEhvQlhmQ1djMGM4OGZLYzE5YW9jNHZh?=
+ =?utf-8?B?dHp2bkh1OW1TR1FqY3RuNTdvWVBGUjlzQWZWcnpCSXRGRDZQTVZhdE1JWlg5?=
+ =?utf-8?B?aTk4aFRQZ202SDVReFZrdHZpT3ZDMmFmV0JHaWxzNFA5T1B2bHF2WXYxUjln?=
+ =?utf-8?B?Y1JZN0tIcFVmZFBsd1dkT3ZoNHduMVpUNGVWcEY3eEhIQjUzTWtLRVJKaXI5?=
+ =?utf-8?B?aFk0QzZNV0NHVVY2bTdZWTd3dUg5bjhVL2ZWcEpHUGdSdlNnOGpMLytBZnR2?=
+ =?utf-8?B?cVJHazhPMGhIcWpwZ1czVkhuNkYvU1BDVk9BZG9DR3FIcVlzYkxFaVA4MTNu?=
+ =?utf-8?B?Z1FST1o0QmIxMXZUdmRLWFhPMklaL0cwM2lPeFlRYUN1RHE4aXk1NU9XSEph?=
+ =?utf-8?B?SCsvbEQ1ZDBkb0M4SlV5d1Y2OXNGQWtGcGs0cEMzbzVxT2xCWEFieUdRUkhJ?=
+ =?utf-8?B?amE4TEJWWW5TdXkxbEp4cjg1b21CNis1cFVYQjErTEsyaFliZDlxeXZmY0Jh?=
+ =?utf-8?B?YzdXQTB2RmF5MjZ3NUwwNEY1WEI0Y09vYkNLdUVBTDRpSFVxcFRDZ1ZrbWIw?=
+ =?utf-8?B?eDRlRGFveXpBV2k3TkNEa0kwSnB1dTRtL3BwcTdrOG9ObTc0QjVIZ0lIOTIy?=
+ =?utf-8?B?V2ZDRVQ5WTlYYzl4OU1iVW5sbi9QclJQTFZvVlBZUjI2TlhrVDV0TG85QWd5?=
+ =?utf-8?B?bWdSVllUdGNKTm1zTy91T083MXZRbk8rOUVIU1pTLzJsTzBlKzhZTHljVEpE?=
+ =?utf-8?B?NUFWaHdheGM2UjUydlFQZUlrUUNLbmV3U1VsMHhkb2NEUmxIUGpNYVNRWDRO?=
+ =?utf-8?B?QXZ3elAzZU9jVXpYbnlkR0FYbWtJY0NPSUxSTUg3RHd1SlhHMi9QR3M0MEov?=
+ =?utf-8?B?c0lOTjk0ZjgweHBuSUQ5ZmpFcG5LUGxVMXhzKzY2S2NKT1pwbk4zbTVxbENH?=
+ =?utf-8?B?QXN3MnhsaTFhTmkwNWZjbjN5UVRWaml1WUc3cHJna3EreW02WmdYT05XdmR4?=
+ =?utf-8?B?aGF1NGgwUWlFV3JERWhPN0M3RUdqb2IvbWlyUUFvcTJqdFhVUXhYUk1ISnQv?=
+ =?utf-8?B?Z09VN0JIRmlNcEN2U2tObm9wQnAzVDJBSzkwdERrUXNMRFM2Z3lLVHJqTVJh?=
+ =?utf-8?B?SUxuSytyNVJEUDJYL0pqZjd1TEJ0ckJjcDFiaUlyTTR5L3RTVE1zRStzUmwv?=
+ =?utf-8?B?R0oyVmRTcUtMNDJycDEwdkdkYVc2a1Y3eXA1NnJWV0RkR05ZakZGS3o3bWhZ?=
+ =?utf-8?B?UkNXZW04eDE3NDBlRlFMdnVGbVRWVjFuajhRd1BtazBHcmhaQVNJQ2oxanQ5?=
+ =?utf-8?B?RTZzeklnYk02ZlhZa2c3QitvU01QSm45amMrMTR3dzVYbUhIQWN2VDVRc3Zz?=
+ =?utf-8?B?MUlnMS9oc0hMQlQrNk5Kbnd3Rk5IMUM5a1NzcGl6UkRrbUdLZmZRbUJhSjhi?=
+ =?utf-8?B?Z1NVWEVHQU9TQzNVeHYvTGY2OEw1U1RJdXA1TlZMMDZqT1hxVzVLdHkxLzJR?=
+ =?utf-8?Q?thXqGAAOHqP4NocThJnG95DXTGas1oRl?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UmxYVmRIQUhVL0JObUZ2eWhhbm1zcnpLME5YcVFrS0Z0em5PNk9nWjZiTTlo?=
+ =?utf-8?B?c2VrSDhIeWdDN2tqSFRxKzlHTWlBb3V2RWZtcXhTMzF5YXNHZDRqLzVkV24z?=
+ =?utf-8?B?QlhmbEw1UzhoR0N2RFl4a2MwSm8xNmRJblhjakV5RWFlbC9TYXNTOWFVcWJT?=
+ =?utf-8?B?TVUvTk9HTk40NmxWcjh5VUt0TEJmSEo0dFhXcU9yWGFja0hnV3JrKzlhQjk2?=
+ =?utf-8?B?Ly9RbFNXKzVVUEo2bG1VcitxYU5JZFk5SWNDK0dQeXdkbGxtTjB3ZVg5RHNY?=
+ =?utf-8?B?N21GbElYZk1venNmd3JzbEJXM091WkdWUWppOEFZUVdpRGpkT0hKZXNvTGNr?=
+ =?utf-8?B?TWRHazRFMlJjWTNqdzQycGJyakt0NFZBS3VBWTYvbEl3c1E1Tmk0UGQrR0FI?=
+ =?utf-8?B?TWZML0tzenE0QkVuKzFxVmVVYnA1SFhaczRaajZnNTNsTG9TYmVjR1A4ZDhW?=
+ =?utf-8?B?b2ppa2xUclc0QU9LeEF4NlVkTHh4NWY2WGlpTExWdGMxc254azM1QWJrVkhU?=
+ =?utf-8?B?M0ZPb09IWVhzUWtGQnNpR1k1ZjcyYXZJVzdXaHN4VzVnNGhVdnZHU2Q2eDR2?=
+ =?utf-8?B?VnFkUWQwUzArV1lPMnA0U0JDdXpubzgyWUNTNHpGSWFxM1p0S3g2ZkFHZE5O?=
+ =?utf-8?B?WHNrbkNFUEpwTWE3VEFaUzI0ZUVLTEc4UkRiQkdaRGc2dzdsMThzZ3BPaitG?=
+ =?utf-8?B?blZidUlOaTRqVTlSVUpQZFFNMVNOWVJtOVU4Tng1V25pRm5ETkZZYkxPZjhk?=
+ =?utf-8?B?QjBmRzhHQUt1czE2dkFoZEdvb3hlU3FUNm50Y2daYlJJZ0Z5SDhETndadDBR?=
+ =?utf-8?B?dUE3bTRmRDBabzFwekNsaFZCSGdlWkZ1aGpSMmViQjZjcGVtZnNvcUpXWHh5?=
+ =?utf-8?B?V2xnTDd5MlNMS2I4d2QvVkpsRkF4eUo5SmxHWXdEYTh3K294aXQyOHJMeFZR?=
+ =?utf-8?B?TjEwNUFCMTI3SnV2N0pobjJnZlZhZGVxVlhzV0Q3QTdhME5hSGVHSW9RUkFs?=
+ =?utf-8?B?TS9ISkROeEhOc3N4TmQ5RU9oMUFpWVZzWkVCRWZkbEYvc244cFdrbFI0S3B3?=
+ =?utf-8?B?VHc1U3k0eTFIcDZyTjhnanhRcHNjczBtbEgwaEk5VHJXSGFSUExIVkpqNkZn?=
+ =?utf-8?B?eGV4NndFcDJvazNlMnF0TnZlbHc2cXpZWmRtRTdZcTR0RGUvdWY4T29ZRWNq?=
+ =?utf-8?B?QVpXZVZyMUxGbzZ3MFdMMWNzQjdoK2FmMm4xd2Z3Z1JYWmhOdURKVEdNUzM3?=
+ =?utf-8?B?YmlUR1A1ZTl3Y3dQcDh4L0ZucmtuUEZVb0N0N3BselRyOGhyaUJoRVFkMmpF?=
+ =?utf-8?B?eGp1MmJwQnIrTnNCTlp0STZCcUw1cDNYM1hxQk01QWlqKzQvWjV6cXFFelBK?=
+ =?utf-8?B?VURqbHNMUTBrNkZaSUZEa2VEdzkxZXg2ajd0S3BLRU04QXhYckFCUGlZS21C?=
+ =?utf-8?B?aDBGcnA3dXBPREFxU1ZQVkI4b3NFckdwT0NITlBZQTNDcmt0ZndWZGhXQVZ2?=
+ =?utf-8?B?NVc4M1Z4cWxHT0dON3ByaHh6Z3ZUYnV0YlpZRTZKZHNmM1pLVzI0K0pzZC92?=
+ =?utf-8?B?ZVI5b1c3eGdCc2tyMk9LMlUxRVJCYVUrUzJJRXJPeG8zNmhCYzFMT0tKd0FQ?=
+ =?utf-8?B?UUZpd1hTMmdCM0ZKRkhnbUhjUDRyTlgxVlJWamM4eFljYWpLT1B6NHhkcWFS?=
+ =?utf-8?B?RVdCM0ZZZ1NHam9Sd21BK254VmViYVhuK3hJTjVKbmR2MURoK0RKV0hGMU9N?=
+ =?utf-8?B?LzBBOSswL1dwK01ma2V3aHZWeDEvaDhZNEVyTWt6ZjhaQTEwWEw2bXFhVjBE?=
+ =?utf-8?B?Ry93TDhleXdrU2lMSkdRTEdsZzg0ZzRrK2tvR01ZbnJZOUtVdHgyWE9zWGtQ?=
+ =?utf-8?B?SzQ0c29pcGRxRDYrOHdxMnI1THVwY1R5akdtalA2eitmRVJsaWZ6Vklad2Rw?=
+ =?utf-8?B?a0V2Z0JFNVc2QzRQL0V6Qmo3dStmcUNrcnIxSnRpckxEdktGYVVWSjk3aWpT?=
+ =?utf-8?B?a2QrM2laUWJFdU5tY2w5TkwwelFBbTJnVzBEOGh2dUgvdFpBL0cwN0FydTRB?=
+ =?utf-8?B?M25vMjFHUjdMOTF1VWVyNWpZaUpKTExOOEdzdTA4OGRGYlNMSGM1cWcyZEcr?=
+ =?utf-8?B?azdlRndJcndMUjhVaGtvTTJ4cUdncEl5a3NraWJrRTM4czZTVWZmdWFNbmI3?=
+ =?utf-8?B?M2c9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <53AA29DFACEF6E4EB55E5075930A12EC@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241216-skitty_kernel-v1-1-bc75dcdfeb57@pegatron.corp-partner.google.com>
-X-B4-Tracking: v=1; b=H4sIAC/YX2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxNDI0Mz3eLszJKSyvjs1KK81Bxds1RjY4NEE0vjFFNDJaCegqLUtMwKsHn
- RsbW1AIxqyDxfAAAA
-X-Change-ID: 20241216-skitty_kernel-6e330a493d51
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Sean Wang <sean.wang@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- herbert1_wu@pegatron.corp-partner.google.com, 
- Thomas_Hsieh@pegatron.corp-partner.google.com, 
- Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1734334517; l=9093;
- i=geoffrey_chien@pegatron.corp-partner.google.com; s=20241216;
- h=from:subject:message-id; bh=tzaOt2BnX2MCQK+1QpzW9jTGoy3s0LwZzuPUxYu++Go=;
- b=nvHpO/GngrjjlY6vJkhlBhJb03k5ZRSwMHlFOHjP3Us6maM9PL6CDpoS5wW//qXEvEaW2iYs7
- gqOnuwEfvsMCiYUf6HUGb1ROVXh9z+OH6AdlCLPSjPyhnzqJ2rM6YPp
-X-Developer-Key: i=geoffrey_chien@pegatron.corp-partner.google.com; a=ed25519;
- pk=P8X+ifKsuR9w8T8cIa35nudXKmZX6qk0iS+5EcuwtrU=
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cf31f0a8-0d7b-4ca0-de75-08dd1da4b446
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Dec 2024 07:38:59.2354
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 13vXFiJR0ekzJ4E6oUXL3whug3a0OPQeZMBm5/oRNykcxY7lVvoedu8B1Cgt++mxlE/uB15C4XAsWQosY0odjA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB8806
 
-Add Skitty initial device tree.
-Support second source Synaptics trackpad
-Support US2 keyboard.
-Enhance touch screen timing for ELAN
-Based on experiment, set drive-strength to 6mA (default = 8mA)
-Modify sbs battery reg to 0x0f
-
-Signed-off-by: Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
----
- .../devicetree/bindings/arm/mediatek.yaml          |  8 +++
- arch/arm64/boot/dts/mediatek/Makefile              |  4 ++
- .../dts/mediatek/mt8186-corsola-skitty-sku1.dts    | 23 +++++++
- .../dts/mediatek/mt8186-corsola-skitty-sku2.dts    | 13 ++++
- .../dts/mediatek/mt8186-corsola-skitty-sku3.dts    | 40 ++++++++++++
- .../dts/mediatek/mt8186-corsola-skitty-sku4.dts    | 30 +++++++++
- .../boot/dts/mediatek/mt8186-corsola-skitty.dtsi   | 76 ++++++++++++++++++++++
- 7 files changed, 194 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index 1d4bb50fcd8d9aadb7b77e144a474b79da005056..29e7555569a772ba042e29af01ea98fdd3be1525 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -224,6 +224,14 @@ properties:
-               - google,pico-sku2
-           - const: google,pico
-           - const: mediatek,mt8183
-+      - description: Google Skitty (HP Chromebook G1m 11 inch)
-+        items:
-+          - const: google,skitty-sku1
-+          - const: google,skitty-sku2
-+          - const: google,skitty-sku3
-+          - const: google,skitty-sku4
-+          - const: google,skitty
-+          - const: mediatek,mt8186
-       - description: Google Willow (Acer Chromebook 311 C722/C722T)
-         items:
-           - enum:
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 8fd7b2bb7a1590341e7bb4ea1ecf039ae3e8eb0d..328e1ee444bd81b5a2aa3d21acb7a5c5a3318a87 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -59,6 +59,10 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393216.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393217.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393218.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-rusty-sku196608.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-skitty-sku1.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-skitty-sku2.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-skitty-sku3.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-skitty-sku4.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131072.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131073.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacool-sku327681.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku1.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku1.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..a0e7b10445333d6f83fc4c461ce8f8d75ffaa697
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku1.dts
-@@ -0,0 +1,23 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2024 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-skitty.dtsi"
-+
-+/ {
-+	model = "Google Skitty sku1 board";
-+	compatible = "google,skitty-sku1",
-+		"google,skitty", "google,corsola", "mediatek,mt8186";
-+};
-+
-+&i2c1 {
-+	/delete-node/ touchscreen@10;
-+	touchscreen: touchscreen@10 {
-+		compatible = "elan,ekth3500";
-+		reg = <0x10>;
-+		interrupts-extended = <&pio 12 IRQ_TYPE_LEVEL_LOW>;
-+		status = "okay";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku2.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku2.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..c071c1b8952b50eacfc2d48dbb9450e9b358ef0e
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku2.dts
-@@ -0,0 +1,13 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2024 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-skitty.dtsi"
-+
-+/ {
-+	model = "Google Skitty sku2 board";
-+	compatible = "google,skitty-sku2",
-+		"google,skitty", "google,corsola", "mediatek,mt8186";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku3.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku3.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..09b4b26aba93c0e65b5fbef6eb81edbe414daa0b
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku3.dts
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2024 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-skitty.dtsi"
-+
-+/ {
-+	model = "Google Skitty sku3 board";
-+	compatible = "google,skitty-sku3",
-+		"google,skitty", "google,corsola", "mediatek,mt8186";
-+};
-+
-+&i2c1 {
-+	/delete-node/ touchscreen@10;
-+	touchscreen: touchscreen@10 {
-+		compatible = "elan,ekth3500";
-+		reg = <0x10>;
-+		interrupts-extended = <&pio 12 IRQ_TYPE_LEVEL_LOW>;
-+		status = "okay";
-+	};
-+};
-+
-+&keyboard_controller {
-+	linux,keymap = <
-+		MATRIX_KEY(0x00, 0x02, KEY_BACK)
-+		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
-+		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
-+		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
-+		MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
-+		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
-+		MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
-+		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
-+		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
-+		MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
-+		CROS_STD_MAIN_KEYMAP
-+		MATRIX_KEY(0x04, 0x00, KEY_102ND)
-+	>;
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku4.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku4.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..c3e2dbd0120f32062dba6a2f6f9e8ee31db02588
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku4.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2024 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-skitty.dtsi"
-+
-+/ {
-+	model = "Google Skitty sku4 board";
-+	compatible = "google,skitty-sku4",
-+		"google,skitty", "google,corsola", "mediatek,mt8186";
-+};
-+
-+&keyboard_controller {
-+	linux,keymap = <
-+		MATRIX_KEY(0x00, 0x02, KEY_BACK)
-+		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
-+		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
-+		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
-+		MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
-+		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
-+		MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
-+		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
-+		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
-+		MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
-+		CROS_STD_MAIN_KEYMAP
-+		MATRIX_KEY(0x04, 0x00, KEY_102ND)
-+	>;
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty.dtsi
-new file mode 100644
-index 0000000000000000000000000000000000000000..51a05f96191b4e40ad1f77e6a8ea23c99af3b279
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty.dtsi
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2024 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8186-corsola-krabby.dtsi"
-+
-+&keyboard_controller {
-+	function-row-physmap = <
-+		MATRIX_KEY(0x00, 0x02, 0)	/* T1 */
-+		MATRIX_KEY(0x03, 0x02, 0)	/* T2 */
-+		MATRIX_KEY(0x02, 0x02, 0)	/* T3 */
-+		MATRIX_KEY(0x01, 0x02, 0)	/* T4 */
-+		MATRIX_KEY(0x03, 0x04, 0)	/* T5 */
-+		MATRIX_KEY(0x02, 0x04, 0)	/* T6 */
-+		MATRIX_KEY(0x01, 0x04, 0)	/* T7 */
-+		MATRIX_KEY(0x02, 0x09, 0)	/* T8 */
-+		MATRIX_KEY(0x01, 0x09, 0)	/* T9 */
-+		MATRIX_KEY(0x00, 0x04, 0)	/* T10 */
-+	>;
-+
-+	linux,keymap = <
-+		MATRIX_KEY(0x00, 0x02, KEY_BACK)
-+		MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
-+		MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
-+		MATRIX_KEY(0x01, 0x02, KEY_SCALE)
-+		MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
-+		MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
-+		MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
-+		MATRIX_KEY(0x02, 0x09, KEY_MUTE)
-+		MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
-+		MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
-+		CROS_STD_MAIN_KEYMAP
-+	>;
-+};
-+
-+&usb_c1 {
-+	status = "disabled";
-+};
-+
-+&target {
-+	temperature = <76000>;
-+};
-+
-+&i2c2 {
-+	touchpad@2c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x2c>;
-+		hid-descr-addr = <0x20>;
-+		interrupts-extended = <&pio 11 IRQ_TYPE_LEVEL_LOW>;
-+		vcc-supply = <&pp3300_s3>;
-+		wakeup-source;
-+	};
-+};
-+
-+&mmc1_pins_uhs {
-+	pins-clk {
-+		drive-strength = <MTK_DRIVE_6mA>;
-+	};
-+
-+	pins-cmd-dat {
-+		drive-strength = <MTK_DRIVE_6mA>;
-+	};
-+};
-+
-+&i2c_tunnel {
-+	/delete-node/ sbs-battery@b;
-+
-+	battery: sbs-battery@f {
-+		compatible = "sbs,sbs-battery";
-+		reg = <0xf>;
-+		sbs,i2c-retry-count = <2>;
-+		sbs,poll-retry-count = <1>;
-+	};
-+};
-
----
-base-commit: 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
-change-id: 20241216-skitty_kernel-6e330a493d51
-
-Best regards,
--- 
-Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
-
+SGksIEFuZ2VsbzoNCg0KT24gVGh1LCAyMDI0LTEyLTA1IGF0IDEyOjQ1ICswMTAwLCBBbmdlbG9H
+aW9hY2NoaW5vIERlbCBSZWdubyB3cm90ZToNCj4gRXh0ZXJuYWwgZW1haWwgOiBQbGVhc2UgZG8g
+bm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW50aWwgeW91IGhhdmUgdmVyaWZp
+ZWQgdGhlIHNlbmRlciBvciB0aGUgY29udGVudC4NCj4gDQo+IA0KPiBJbiBwcmVwYXJhdGlvbiBm
+b3IgYWRkaW5nIGEgbmV3IGRyaXZlciBmb3IgdGhlIEhETUkgVFggdjIgSVAsDQo+IHNwbGl0IG91
+dCB0aGUgZnVuY3Rpb25zIHRoYXQgd2lsbCBiZSBjb21tb24gYmV0d2VlbiB0aGUgYWxyZWFkeQ0K
+PiBwcmVzZW50IG10a19oZG1pICh2MSkgZHJpdmVyIGFuZCB0aGUgbmV3IG9uZS4NCj4gDQo+IFNp
+bmNlIHRoZSBwcm9iZSBmbG93IGZvciBib3RoIGRyaXZlcnMgaXMgOTAlIHNpbWlsYXIsIGFkZCBh
+IGNvbW1vbg0KPiBwcm9iZSBmdW5jdGlvbiB0aGF0IHdpbGwgYmUgY2FsbGVkIGZyb20gZWFjaCBk
+cml2ZXIncyAucHJvYmUoKQ0KPiBjYWxsYmFjaywgYXZvaWRpbmcgbG90cyBvZiBjb2RlIGR1cGxp
+Y2F0aW9uLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogQW5nZWxvR2lvYWNjaGlubyBEZWwgUmVnbm8g
+PGFuZ2Vsb2dpb2FjY2hpbm8uZGVscmVnbm9AY29sbGFib3JhLmNvbT4NCj4gLS0tDQoNCltzbmlw
+XQ0KDQo+IC1zdHJ1Y3QgbXRrX2hkbWkgew0KPiAtICAgICAgIHN0cnVjdCBkcm1fYnJpZGdlIGJy
+aWRnZTsNCj4gLSAgICAgICBzdHJ1Y3QgZHJtX2JyaWRnZSAqbmV4dF9icmlkZ2U7DQo+IC0gICAg
+ICAgc3RydWN0IGRybV9jb25uZWN0b3IgKmN1cnJfY29ubjsvKiBjdXJyZW50IGNvbm5lY3RvciAo
+b25seSB2YWxpZCB3aGVuICdlbmFibGVkJykgKi8NCj4gLSAgICAgICBzdHJ1Y3QgZGV2aWNlICpk
+ZXY7DQo+IC0gICAgICAgY29uc3Qgc3RydWN0IG10a19oZG1pX2NvbmYgKmNvbmY7DQo+IC0gICAg
+ICAgc3RydWN0IHBoeSAqcGh5Ow0KPiAtICAgICAgIHN0cnVjdCBkZXZpY2UgKmNlY19kZXY7DQo+
+IC0gICAgICAgc3RydWN0IGkyY19hZGFwdGVyICpkZGNfYWRwdDsNCj4gLSAgICAgICBzdHJ1Y3Qg
+Y2xrICpjbGtbTVRLX0hETUlfQ0xLX0NPVU5UXTsNCj4gLSAgICAgICBzdHJ1Y3QgZHJtX2Rpc3Bs
+YXlfbW9kZSBtb2RlOw0KPiAtICAgICAgIGJvb2wgZHZpX21vZGU7DQo+IC0gICAgICAgdTMyIG1p
+bl9jbG9jazsNCj4gLSAgICAgICB1MzIgbWF4X2Nsb2NrOw0KPiAtICAgICAgIHUzMiBtYXhfaGRp
+c3BsYXk7DQo+IC0gICAgICAgdTMyIG1heF92ZGlzcGxheTsNCj4gLSAgICAgICB1MzIgaWJpYXM7
+DQo+IC0gICAgICAgdTMyIGliaWFzX3VwOw0KPiAtICAgICAgIHN0cnVjdCByZWdtYXAgKnN5c19y
+ZWdtYXA7DQo+IC0gICAgICAgdW5zaWduZWQgaW50IHN5c19vZmZzZXQ7DQo+IC0gICAgICAgc3Ry
+dWN0IHJlZ21hcCAqcmVnczsNCj4gLSAgICAgICBlbnVtIGhkbWlfY29sb3JzcGFjZSBjc3A7DQo+
+IC0gICAgICAgc3RydWN0IGhkbWlfYXVkaW9fcGFyYW0gYXVkX3BhcmFtOw0KPiAtICAgICAgIGJv
+b2wgYXVkaW9fZW5hYmxlOw0KPiAtICAgICAgIGJvb2wgcG93ZXJlZDsNCj4gLSAgICAgICBib29s
+IGVuYWJsZWQ7DQo+IC0gICAgICAgaGRtaV9jb2RlY19wbHVnZ2VkX2NiIHBsdWdnZWRfY2I7DQo+
+IC0gICAgICAgc3RydWN0IGRldmljZSAqY29kZWNfZGV2Ow0KPiAtICAgICAgIHN0cnVjdCBtdXRl
+eCB1cGRhdGVfcGx1Z2dlZF9zdGF0dXNfbG9jazsNCj4gfTsNCj4gDQo+ICtzdHJ1Y3QgbXRrX2hk
+bWkgew0KPiArICAgICAgIHN0cnVjdCBkcm1fYnJpZGdlIGJyaWRnZTsNCj4gKyAgICAgICBzdHJ1
+Y3QgZGV2aWNlICpkZXY7DQo+ICsgICAgICAgY29uc3Qgc3RydWN0IG10a19oZG1pX2NvbmYgKmNv
+bmY7DQo+ICsgICAgICAgc3RydWN0IHBoeSAqcGh5Ow0KPiArICAgICAgIHN0cnVjdCBpMmNfYWRh
+cHRlciAqZGRjX2FkcHQ7DQo+ICsgICAgICAgc3RydWN0IGNsayAqKmNsazsNCj4gKyAgICAgICBz
+dHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSBtb2RlOw0KPiArICAgICAgIGJvb2wgZHZpX21vZGU7DQo+
+ICsgICAgICAgc3RydWN0IHJlZ21hcCAqc3lzX3JlZ21hcDsNCj4gKyAgICAgICB1bnNpZ25lZCBp
+bnQgc3lzX29mZnNldDsNCj4gKyAgICAgICBzdHJ1Y3QgcmVnbWFwICpyZWdzOw0KPiArDQo+ICsg
+ICAgICAgYm9vbCBwb3dlcmVkOw0KPiArICAgICAgIGJvb2wgZW5hYmxlZDsNCj4gKyAgICAgICB1
+bnNpZ25lZCBpbnQgaXJxOw0KDQpZb3UgYWRkIHNvbWV0aGluZyB3aGljaCBpcyB1c2VkIGluIHYy
+IGJ1dCBub3QgaW4gdjEuDQpNb3ZlIHRoZXNlIHRvIHRoZSB2MiBwYXRjaCwgb3Igc2VwYXJhdGUg
+dGhlbSB0byBhIHByZWNvbmRpdGlvbiBwYXRjaCBvZiB2Mi4NCg0KPiArICAgICAgIGVudW0gaGRt
+aV9ocGRfc3RhdGUgaHBkOw0KPiArDQo+ICsgICAgICAgLyogQXVkaW8gKi8NCj4gKyAgICAgICBz
+dHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICphdWRpb19wZGV2Ow0KPiArICAgICAgIHN0cnVjdCBoZG1p
+X2F1ZGlvX3BhcmFtIGF1ZF9wYXJhbTsNCj4gKyAgICAgICBib29sIGF1ZGlvX2VuYWJsZTsNCj4g
+Kw0KPiArICAgICAgIHN0cnVjdCBkcm1fY29ubmVjdG9yICpjdXJyX2Nvbm47LyogY3VycmVudCBj
+b25uZWN0b3IgKG9ubHkgdmFsaWQgd2hlbiAnZW5hYmxlZCcpICovDQo+ICsgICAgICAgc3RydWN0
+IG11dGV4IHVwZGF0ZV9wbHVnZ2VkX3N0YXR1c19sb2NrOw0KPiArICAgICAgIHN0cnVjdCBkZXZp
+Y2UgKmNlY19kZXY7DQo+ICsgICAgICAgc3RydWN0IGRldmljZSAqY29kZWNfZGV2Ow0KPiArICAg
+ICAgIGhkbWlfY29kZWNfcGx1Z2dlZF9jYiBwbHVnZ2VkX2NiOw0KPiArICAgICAgIHN0cnVjdCBk
+cm1fYnJpZGdlICpuZXh0X2JyaWRnZTsNCg0KSSBkb24ndCBrbm93IHdoeSB5b3UgcmVvcmRlciB0
+aGVzZS4NCklmIGl0J3MgbmVjZXNzYXJ5LCBzZXBhcmF0ZSB0aGVzZSByZW9yZGVyIHRvIGEgcmVm
+aW5lbWVudCBwYXRjaC4NCg0KUmVnYXJkcywNCkNLDQoNCj4gK307DQo+ICsNCg0K
 
