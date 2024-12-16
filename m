@@ -1,79 +1,82 @@
-Return-Path: <devicetree+bounces-131560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D37489F3D26
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 23:00:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2C829F3D72
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 23:28:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A83E1888EEA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 22:00:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7B261692BB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 22:28:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E378F5588E;
-	Mon, 16 Dec 2024 22:00:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373C11D63D1;
+	Mon, 16 Dec 2024 22:28:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="id3WywLl"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="Nyb8/uIg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BA2A1D63CF
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 22:00:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996C21C3C04;
+	Mon, 16 Dec 2024 22:28:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734386406; cv=none; b=IN0iArtuZTmrVNsGK8ZqvrChydqvpCfUHiUSw4sVXyhaCw3VYY3ceXEI4dPVGRVdzSl0xpHPbAifF2GJz1Ui1Fq80U/sIdFb9qQveTMx3Ws5sQSKCw/X38zzjHhfph7egHsuXthOqNkQvMC4xZHoJvmH/GEkK2ejeYY+2k+UTm8=
+	t=1734388098; cv=none; b=rsCBaF1qDxAJf9unx08WECktGOkZIlrpiqEm4LpuGL3zSmSLrwro73DsoJ047tW6kJkYQh00Df1wRLw7dhj9pQD77j8yjwdXOX1Avc/ESZpofQEyDnGw77ZfcVYCvHR4JnV5cWQkl0PNJTndwuiTdJu8nrZPxX/HjkyhamuErI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734386406; c=relaxed/simple;
-	bh=WY1yk75xj3D29k5mczcyeteQJJJq8P3Ye1L3yD6YJMU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ekyRr+ZL/cGEDMUq7ZlvKOH12gd9f/DYW1u0G/ygi1FDBFySeR8VlYssTTFVjfi2kqmZOqpGRzTEl4SAuKnSKWVXunmR+yavpKx+2qSQWRSWVs00FJP1vRBJ5fAETZCn1MHALnODTtkwZ+mH9Y9NOnI6af+2e+YF2htBcQvC0vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=id3WywLl; arc=none smtp.client-ip=209.85.166.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-3a9caa3726fso15275915ab.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 14:00:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1734386403; x=1734991203; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=M9GAPUOnO/AZAUr8mlWdqcXEUNfkQg4dQQPEXS1LGaw=;
-        b=id3WywLlm5GdGdXLtHYpT9Q36oZ8Fld3Hrj9xJh6ZB7CZQDnkK5tiY8Fo3aQO/boJ8
-         FQclL1JAkbmLsAmwRfQ8srBrzYVG6QHRsvklyxg8SIIKtOiXtL1GD5qOUNlfjVB9F+Z4
-         RHwCdDhFhC/LNQpVFKesYTPc8ydxbwOL+JkisZJKN23nGKgOPlmCAFWsuUjhdPA13QJ5
-         pgBgP/mK60m4790PgnZ9E2/TSK0ovWTANSFuYjHaynj1G2C/Io8/Nu4S68ov5lRYgULV
-         BtsIcEuNzNooWMTYAcPatTsv7F3xlDrlHK7XkojUqwYJh3Kcqvbn9O/tTtFguVYlEw7J
-         9Vtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734386403; x=1734991203;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M9GAPUOnO/AZAUr8mlWdqcXEUNfkQg4dQQPEXS1LGaw=;
-        b=gz4WfVzu2wsVh9k/NykLPCJ963Jgb7CA3Y25a8xPHsuE4z69kt5krBmgrhq3IcClFP
-         O7lIv8lW1kwTwel+472DDScfBXi6vYUNp8jAT5PkbxPzdmFpFVSx8vJI78jq1DTLzIhG
-         6FA2BDIgpwWgFPZBK3iCYQpZZxcFCeJ2rSzlPOrh3vanN/2kBF4xw6SnnoMvIZOUorPa
-         D88Flle9xTS+opjcvzzjSN1qKWIHKoV48kaBRl3AJEEaBAZwjeowcs1eqK9wynBw1G5r
-         GtShKrfAz20CVyu4pj4mnmtJmnBbDRMU5pIJPX5h05OacmtiKzRRtaZMpMUQRHc33I5d
-         yqaw==
-X-Forwarded-Encrypted: i=1; AJvYcCUXhgXJ/fM5NY1FhH6KCSrnFD2oCARxIuITf5V58rUUUTA5MC40/wt6WVunB+rDV+WWMzRJANPHRfM9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwM+xdbx7/ZBzZK8+b6ddNFKY9MPFMC2p+lakWBScE9McPCKSKn
-	hRpzmQQuVpKbQtluYVkoXYVzvsMeKJmK/iiFJBSK/F8ZWCxTUd0vHGJhqQO5F+Y=
-X-Gm-Gg: ASbGncvgLQVTuRdDQlqe4OG7SZGXjhbXvnh0pYm3rQ9gfsSf7auPVuB75FNEcYhyAMx
-	T4y0+ebsfVsJvHID/yQxI1mai3GmKErLdC1WfZJ0/ImD/mVdkS2RQ12pa5Y1pHt6OoVbQYZGcK1
-	4KC+Ll4HSeXJ2aFZCGrG1xvh1OWb2nHBvOk642Ru/PEQm8tMuECXme1F6+XCUTvLYGunel8YuiS
-	pXsiFDXe7ofzZcMAfRJahrdcTV9Dyosjmm+Lw95oTAk4gRiAZ1bf0BtypmzzQvOt05z8StRAQWQ
-	ZMiBiA==
-X-Google-Smtp-Source: AGHT+IHIM+DoAUO4uH+jY49Cft/09OtchiEcCTITNYy9jOukvV//rMl/YNzathv8XDZ/7POhKMPjZQ==
-X-Received: by 2002:a05:6e02:18ca:b0:3a9:d0e6:abf2 with SMTP id e9e14a558f8ab-3bb0ac12780mr11516415ab.10.1734386403225;
-        Mon, 16 Dec 2024 14:00:03 -0800 (PST)
-Received: from [100.64.0.1] ([165.188.116.15])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4e5e3c69e2asm1403241173.138.2024.12.16.14.00.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Dec 2024 14:00:02 -0800 (PST)
-Message-ID: <5e878b5b-b49d-4757-8f7e-4b323a4998b3@sifive.com>
-Date: Mon, 16 Dec 2024 16:00:00 -0600
+	s=arc-20240116; t=1734388098; c=relaxed/simple;
+	bh=BchgCZSTz5otN9tUx9euPmpFn6JLf22aQRkS2L0H2x0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=ZoU36MWLEju/QHyOe+5TfZXcc4z2ZuenE32/053iDTaFo4MInytKdjeFtrHhvAnbyyPaO/1us8w7oDfnca8pv/4ZlpIUgVMCN6KMgHJK3B74mE2GEkTw3bdlcN9NrNvDilfrjflqeh1SYWg6mgWpLD5nC/scfWlqPBQSSCm2gsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=Nyb8/uIg; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGEhWhn022843;
+	Mon, 16 Dec 2024 22:27:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=XexS5E
+	E03A2kFOO1RC4vOyWubIQY+mIHYfLpVdjzVl4=; b=Nyb8/uIg0lov8QWWAhi6ym
+	fJhH8v7Tr+FdNv8NbmGcSlBnn0wkGgelfj0TeTmav5XbgPNaw0PfQDBEj1Uk64Eu
+	TvbnaK+lzqiUtgAgvJ3w9kNhzhA+h3uMRWdQe23k4WjA5iOecK1QVgxCOvNGJIL8
+	OMjIc03td2D6JzzyLXg/ilRiw05VL4i1mLTyi3QpyUFdq4SNzyo99cAVQ4CzIDYs
+	5/dZgTPF2qQyc2vMDZre7UzzgOenAPNP0H2nhnEiG31kHwnXfUbMTehMBOHQcK9J
+	9R80g6sBlbt9ZXzec8P3PW7mtLuBNaWghNPBNf0tmL5XgJEJdGppbJqeNcCTmOOA
+	==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 43jcpgw1v1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 22:27:41 +0000 (GMT)
+Received: from m0356517.ppops.net (m0356517.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 4BGMBIIP021984;
+	Mon, 16 Dec 2024 22:27:40 GMT
+Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 43jcpgw1uy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 22:27:40 +0000 (GMT)
+Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGLDT7L014340;
+	Mon, 16 Dec 2024 22:27:39 GMT
+Received: from smtprelay04.dal12v.mail.ibm.com ([172.16.1.6])
+	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 43hmqy04sk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 22:27:39 +0000
+Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com [10.241.53.101])
+	by smtprelay04.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 4BGMRcYI18219554
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 16 Dec 2024 22:27:38 GMT
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 5A4A95805F;
+	Mon, 16 Dec 2024 22:27:38 +0000 (GMT)
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id DD8BA58051;
+	Mon, 16 Dec 2024 22:27:35 +0000 (GMT)
+Received: from [9.61.165.36] (unknown [9.61.165.36])
+	by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Mon, 16 Dec 2024 22:27:35 +0000 (GMT)
+Message-ID: <d75e72a8-6bd5-4929-a8bb-e1b13fd7d3b8@linux.ibm.com>
+Date: Mon, 16 Dec 2024 16:27:35 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,114 +84,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: riscv: add bfloat16 ISA extension
- description
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>,
- Conor Dooley <conor.dooley@microchip.com>,
- Chen Wang <unicorn_wang@outlook.com>, Jonathan Corbet <corbet@lwn.net>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?=
- <cleger@rivosinc.com>, Evan Green <evan@rivosinc.com>,
- Charlie Jenkins <charlie@rivosinc.com>,
- Andrew Jones <ajones@ventanamicro.com>, Jesse Taube <jesse@rivosinc.com>,
- Andy Chiu <andybnac@gmail.com>, Alexandre Ghiti <alexghiti@rivosinc.com>,
- Yong-Xuan Wang <yongxuan.wang@sifive.com>
-References: <20241206055829.1059293-1-inochiama@gmail.com>
- <20241206055829.1059293-2-inochiama@gmail.com>
-From: Samuel Holland <samuel.holland@sifive.com>
+Subject: Re: [PATCH v2 0/4] Add support for Intel CRPS PSU
+To: Guenter Roeck <linux@roeck-us.net>, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, eajames@linux.ibm.com, jdelvare@suse.com,
+        corbet@lwn.net, joel@jms.id.au, andrew@codeconstruct.com.au,
+        Delphine_CC_Chiu@Wiwynn.com, broonie@kernel.org,
+        peteryin.openbmc@gmail.com, noahwang.wang@outlook.com,
+        naresh.solanki@9elements.com, lukas@wunner.de, jbrunet@baylibre.com,
+        patrick.rudolph@9elements.com, gregkh@linuxfoundation.org,
+        peterz@infradead.org, pbiel7@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-i2c@vger.kernel.org
+References: <20241216175044.4144442-1-ninad@linux.ibm.com>
+ <c64bb634-46d4-486a-8743-699775326058@roeck-us.net>
 Content-Language: en-US
-In-Reply-To: <20241206055829.1059293-2-inochiama@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Ninad Palsule <ninad@linux.ibm.com>
+In-Reply-To: <c64bb634-46d4-486a-8743-699775326058@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: GST_I0viN8YQt3jOs4JP1EhREbfu_C3_
+X-Proofpoint-ORIG-GUID: Y5LYT8Ng54jd9v0EuHcH24-ljTCPN46c
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
+ mlxscore=0 phishscore=0 impostorscore=0 adultscore=0 lowpriorityscore=0
+ spamscore=0 mlxlogscore=999 malwarescore=0 priorityscore=1501 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412160181
 
-On 2024-12-05 11:58 PM, Inochi Amaoto wrote:
-> Add description for the BFloat16 precision Floating-Point ISA extension,
-> (Zfbfmin, Zvfbfmin, Zvfbfwma). which was ratified in commit 4dc23d62
-> ("Added Chapter title to BF16") of the riscv-isa-manual.
-> 
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../devicetree/bindings/riscv/extensions.yaml | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> index 9c7dd7e75e0c..0a1f1a76d129 100644
-> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -329,6 +329,12 @@ properties:
->              instructions, as ratified in commit 056b6ff ("Zfa is ratified") of
->              riscv-isa-manual.
->  
-> +        - const: zfbfmin
-> +          description:
-> +            The standard Zfbfmin extension which provides minimal support for
-> +            16-bit half-precision brain floating-point instructions, as ratified
+Hi Guenter,
 
-I think you mean "binary" here and in the entries below, not "brain".
+Thanks for the review.
 
-> +            in commit 4dc23d62 ("Added Chapter title to BF16") of riscv-isa-manual.
-> +
->          - const: zfh
->            description:
->              The standard Zfh extension for 16-bit half-precision binary
-> @@ -525,6 +531,18 @@ properties:
->              in commit 6f702a2 ("Vector extensions are now ratified") of
->              riscv-v-spec.
->  
-> +        - const: zvfbfmin
-> +          description:
-> +            The standard Zvfbfmin extension for minimal support for vectored
-> +            16-bit half-precision brain floating-point instructions, as ratified
-> +            in commit 4dc23d62 ("Added Chapter title to BF16") of riscv-isa-manual.
-> +
-> +        - const: zvfbfwma
-> +          description:
-> +            The standard Zvfbfwma extension for vectored half-precision brain
-> +            floating-point widening multiply-accumulate instructions, as ratified
-> +            in commit 4dc23d62 ("Added Chapter title to BF16") of riscv-isa-manual.
-> +
->          - const: zvfh
->            description:
->              The standard Zvfh extension for vectored half-precision
-> @@ -663,6 +681,33 @@ properties:
->          then:
->            contains:
->              const: zca
-> +      # Zfbfmin depends on F
-> +      - if:
-> +          contains:
-> +            const: zfbfmin
-> +        then:
-> +          contains:
-> +            const: f
-> +      # Zvfbfmin depends on V or Zve32f
-> +      - if:
-> +          contains:
-> +            const: zvfbfmin
-> +        then:
-> +          oneOf:
-> +            - contains:
-> +                const: v
-> +            - contains:
-> +                const: zve32f
-> +      # Zvfbfwma depends on Zfbfmin and Zvfbfmin
-> +      - if:
-> +          contains:
-> +            const: zvfbfwma
-> +        then:
-> +          allOf:
-> +            - contains:
-> +                const: zfbfmin
-> +            - contains:
-> +                const: zvfbfmin
->  
->  allOf:
->    # Zcf extension does not exist on rv64
+On 12/16/24 12:48, Guenter Roeck wrote:
+> On 12/16/24 09:50, Ninad Palsule wrote:
+>> Hello,
+>>
+>> Please review the patchset for Intel CRPS185 driver.
+>> V2:
+>> ---
+>>    - Incorporated review comments by Guenter Roeck
+>>    - Incorporated review comments by Krzysztof Kozlowski
+>>
+>
+> That is not a useful change log. Please describe what you changed, not 
+> who
+> asked for it.
+>
+> Guenter
+>
+ok, I will improve it in version 3.
 
+Regards,
+
+Ninad
+
+>> Ninad Palsule (4):
+>>    hwmon: (pmbus/core) Add PMBUS_REVISION in debugfs
+>>    hwmon: (pmbus/crps) Add Intel CRPS185 power supply
+>>    dt-bindings: hwmon: intel,crps185: Add to trivial
+>>    ARM: dts: aspeed: system1: Use crps PSU driver
+>>
+>>   .../devicetree/bindings/trivial-devices.yaml  |  2 +
+>>   Documentation/hwmon/crps.rst                  | 97 +++++++++++++++++++
+>>   Documentation/hwmon/index.rst                 |  1 +
+>>   MAINTAINERS                                   |  7 ++
+>>   .../dts/aspeed/aspeed-bmc-ibm-system1.dts     |  8 +-
+>>   drivers/hwmon/pmbus/Kconfig                   |  9 ++
+>>   drivers/hwmon/pmbus/Makefile                  |  1 +
+>>   drivers/hwmon/pmbus/crps.c                    | 79 +++++++++++++++
+>>   drivers/hwmon/pmbus/pmbus_core.c              | 13 ++-
+>>   9 files changed, 211 insertions(+), 6 deletions(-)
+>>   create mode 100644 Documentation/hwmon/crps.rst
+>>   create mode 100644 drivers/hwmon/pmbus/crps.c
+>>
+>
+>
 
