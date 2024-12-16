@@ -1,283 +1,436 @@
-Return-Path: <devicetree+bounces-131507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9B349F38CD
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:22:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F20F9F38E6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:27:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A82416B93A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:21:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECF301895868
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:26:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC56207676;
-	Mon, 16 Dec 2024 18:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E063205E3B;
+	Mon, 16 Dec 2024 18:26:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="c+Jv/IvU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eT+0I77z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94BA2207669
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 18:21:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41C69839F4;
+	Mon, 16 Dec 2024 18:26:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734373300; cv=none; b=r2uPN63FuH7BJvVJqzRXaeI3nkgSnfIxhxqkbROQ0+C6M/mmHEdpkDe9PEhnzSxMNgpbUGlqIqDHuZFNlQyLPZ03VF/hIDA7wQiK4KTMNP1NziGw4iiI3fUs1GEKevOY4itGpmZ1erAVZNqAjF4nK8jCmWFWmzUMIEJVC/gkhS4=
+	t=1734373573; cv=none; b=FSO2I3wDd6Jj7RIAbSQy9RKqEQH2Rv13tjrp6WLqzZaOFSwhIGwrMNDFYVuRbU9G/4nU4tPv2KDjn18v3QYOCqVyUrEBwF1XUTF6Ju1RUpLxxzKYUGj9oPxYKlwi3HagsiyM18oLkP2GL+zQdoUJ1tArGLxUxDGOSkaDSrccsp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734373300; c=relaxed/simple;
-	bh=7T1EKvuCUGRJ3imkGbz1wsMSf965yxalHyEp9/eORr0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fxg5YUPSBh8/5wnzHnBukuTSyNu0f7HyrLMO1pnT4aXidfFVTBrmUvxWJq1fynJnVKV9xhhohgpVzF5hQK7EOLAGy292xmcC8ZUAJ5yLk+h7N+tL2dHfr1/ofNB3rkm+Mmk1vIPW5x2RInb0Viwd9N9oU+YpDkOvM+4MC972psU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=c+Jv/IvU; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGG5lHI018907
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 18:21:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=2zAVQpUe77f3p8FH/Gp/4YPV
-	QcATbXm3KqaR4kfxxAU=; b=c+Jv/IvUPJQ1x2O6s6AX96AARv0tmgMRItD2Cze/
-	+mYPc+FklKXniZZQ7z/+EmeZWMIRzd+fRXnQCGLYzp5tYwvnrCBr9QWWS3+RI+nj
-	y0oxebLr85UjOcRmw9eaZC+A0kijLZeHo5dSsQsexx2sIQChQ6QdUd1+MaXVGXcS
-	r71Jsi0erWkKn+aL2isFH/BWdTEoHrp+sOITSwQnKIdJTAu03NeGbocaqbjQCaOJ
-	Wzl6Zb6Thk7JgqVJYjwMWSMmxn1NB70xHrJDXqbVdi+EIOhmFfmAOwvkikrn4HEB
-	3UfT/07EOS+OUCNOgBE+3GhMjbThnfff6RfA4StTjdpZeA==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43jqe3rcmj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 18:21:37 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-21655569152so37346215ad.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 10:21:37 -0800 (PST)
+	s=arc-20240116; t=1734373573; c=relaxed/simple;
+	bh=4+DSIxg99VFjtwHeGbxasr4sOZUiOuUB2Y3GI+SVwrw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=oonC2l8mAQmGpkn4mB3vYoX14kBIfJgOi6YayzQjVwtFIYn8+t50hqYtNtAXObqGHUdJWNai8okz0bex9Uhx5lM+JGnX2LfxgVdRedEjEF1br/VygkPqCeC4lVdihjBHb7gLMVEXj2/8LP6/OeySlDaS/pMQFYh5wOZLEoAiy1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eT+0I77z; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-21680814d42so37153345ad.2;
+        Mon, 16 Dec 2024 10:26:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734373569; x=1734978369; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=z5v6t5ZdFhmDa6zhk8r3XLWydriletRBT370Ih+VX4A=;
+        b=eT+0I77zYbNvLTTggOpSSzZSii5EBPRnKBTA2ieofpAx+s7OyFtyLmH5R7jEkjVeX7
+         MALAhD1FQZ4d6MfpAHIFbMbQnbWXZlN/LesrJx4XA1a/1dbrKscozKbGJnILNF7tqwog
+         cLR2wr4EuRJIh2Hsjxbu4yVxKSaJyRWEKcULCvJghRC4u0iGgQEIkYy3IR+YiVqZPn8j
+         dKLQCa1djZO4rKaq4wqUhnpXlL+Jp5noIjTedhJx7xATU5I1WVyMs3OBAN/sk5gulHiW
+         44Oygg7At4jH+ev227laxUThFryTsdacMK6+MJMAPhUaIuo2hwBnctK4SBvVF57XerfR
+         PG/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734373297; x=1734978097;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1734373569; x=1734978369;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:sender:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2zAVQpUe77f3p8FH/Gp/4YPVQcATbXm3KqaR4kfxxAU=;
-        b=SA2I7umAS5XzC3mIREZKHLFBnB50guXEnC+c7FpnwQrZ5Ggp8j8rknDXzlR42n++M7
-         HAzfchHmyHFw1PsNFuigpHtsPXDbLp9FKXeRHlXkMcsSyUZr8/FfW8c2Ut6HFEhNZQDS
-         UDogJtr+gbb1A0ZPjF5TteeGSATHewjXRey6vi6UFbrY2AZDU61b94zPfnbwP3beD9uX
-         qJ4KI0i8O0+N10HwSEqUvnAN5oQIsav+bXTZ7hcIzLrXW9NjiFNVuDkWaIRB24KgycV0
-         HD/9ztQe8OPwvbX8vp7OiVUyOizg+VgUcyBs9vdowDHFt6km4mfsmWIzimpqK0GIgPyK
-         bnpw==
-X-Forwarded-Encrypted: i=1; AJvYcCUXDvjZ9B/KKfU/7v+/PBsJ1NVi9mSydWClHJMvn3tQn2Z9DPaunl652u/+8D6qayLc2wY0IaLlmapQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFdxTrdyCfzKdUAGBZCTgNJd5HQeWcVtF3LaN5jmOh0+L6QORz
-	SqmVgzJyphyhSkQhx2wSuzGF/7xanaiFlAjSNCz6jFfEiy61vuIqzdZoLHMBjp4bTjTtFokEr7J
-	OVST6POJYtwJA8cdy6xWYdHYoUIrc46n8cNgmxTR0NJOyPDqeJFgwwk33K2fg
-X-Gm-Gg: ASbGncsDoAZDHLKZsDDQxO5ZJAJsMoVmz25Jbp7BIUvl2Dl4eospxwkNymLFlW02CSj
-	90TBKXh698IvpWbmz0kzhqTPEcz+rrChI2zkIIZsX7BGhrePNRz5+B0MXSDWqE8i9boW56pMLwx
-	mMFBmFzP9yYGI3EMqmq0BKJ0TnP397hy5PG7MAXYzEe9T8GAPY0qTZKeJGjpSop/9sxGjuXAMIO
-	S46zB5eELLU8iOH49x4pu1bxJAYs4EJbqcj7+h0sb8r9bAjFiSL+/qfIfdKK2kVkkSD7jxtmK83
-	xPmTBobiP2EZX27X6Iwfx1mTfmr9AsmyXwIuvSp3
-X-Received: by 2002:a17:902:ef49:b0:20c:9821:69af with SMTP id d9443c01a7336-21892a40599mr189000465ad.45.1734373296888;
-        Mon, 16 Dec 2024 10:21:36 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEK3n/qfuVZMWrwi2xip0f+pklE9I3FXny2TZ9ZG/on/4pahTLK9utkwVgntMiTD/QPnKJe6w==
-X-Received: by 2002:a17:902:ef49:b0:20c:9821:69af with SMTP id d9443c01a7336-21892a40599mr188999935ad.45.1734373296469;
-        Mon, 16 Dec 2024 10:21:36 -0800 (PST)
-Received: from hu-bjorande-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1db7976sm45851355ad.53.2024.12.16.10.21.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Dec 2024 10:21:36 -0800 (PST)
-Date: Mon, 16 Dec 2024 10:21:33 -0800
-From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-To: Renjiang Han <quic_renjiang@quicinc.com>
-Cc: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] media: venus: core: use opp-table for the
- frequency
-Message-ID: <Z2BvrfYEaIqFcjwg@hu-bjorande-lv.qualcomm.com>
-References: <20241213-add-venus-for-qcs615-v4-0-7e2c9a72d309@quicinc.com>
- <20241213-add-venus-for-qcs615-v4-2-7e2c9a72d309@quicinc.com>
+        bh=z5v6t5ZdFhmDa6zhk8r3XLWydriletRBT370Ih+VX4A=;
+        b=Om1k6IbIdKA+k1z8IxfzDQaIxYd5LJ/ofZkCxvigBTuhAfkNHNRtZUVe+lNOswrJZa
+         BpQ+5wyqpCOG3DspK/1D1YK2/KQhdoKGCHLnGNynk/5WrO88oDYDsGnenYWwdc9z74/D
+         9IeuRbHH92lizZRpZgO5LAhfaW3rfevmbG1aMp9RGvGQn5q1E7z3xuhFAPWcoRi9jFg7
+         OmDro1ukGPTmbVJimJreMhBGhqzEI3zAMzxF3TdVtdTqnucZE8BEGoO8O3WDmuLW2Ve2
+         KT/tMzMJfrdqrcnLzEVQ1hy3N38wbv62dunU2DM7QVtSspfhyYel+DCBscaVzcUecwmq
+         6jYg==
+X-Forwarded-Encrypted: i=1; AJvYcCUHUlyTpSDuec4TjF4rS3PpUMahfRWqE4Vv3IqY8LSXYFmrRz/jvXDlviHw9nscQxrva7rXSF4JtVju6hfl@vger.kernel.org, AJvYcCVgGkSWoDkmp0h850zlNjtP7M6W1k2IYp0V4RszrFJbPa9k+AXjsRVmr9AIkCcZZFJawWXSuA1u9B6c@vger.kernel.org, AJvYcCXcA4qTfaR4xWNUp3Qx6O1NxbNdEbKdF35vZGaZdCk3CVOnmDf2cjTkKnKOER7jQOvHwflWzdFsgGuY@vger.kernel.org, AJvYcCXrMh7qaafRsNKRlXG8+vlFDvRtlyU9YvcgGfUGYdOE6OXI+d9dEe0jdQGQTWWXaviNrWkM+K5k/Zx5@vger.kernel.org, AJvYcCXrm952d/tttmCdzlQBgKvduqz2IZFz6HQgpL86RMjNFeWXIXfiT0lpyabQtnThsoTlcmONH24RJezKPTw=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1Xt7FSY2wyIR4QZbhO1RDbbUhfhp7yalkFF/W6z9EiN+4x8xH
+	voDlmD1gjufwr/K7BFg5Zs9m3SIXGC5tUAknKHJLakBReWkOft46
+X-Gm-Gg: ASbGncs58wuhrKFZcRkZV72A9npyLxIhcfdWVqQ7Qpnu0XC2ff+B/ysLC2I3qIcC/6y
+	UPnKV2FAcrK/gniua1t0Gnw2A2Yg1o4P7rdcHukgKLiY5S1B//KIUJAh07GHXYN8qSMSVGGSFuU
+	8iKJEqhxmIPg1sIHsY49FJLK0rdXEYhKKCgkJr93xJYH5A9M2rvl62NiAYcLqsbljusqd6EiigE
+	XHDHXtB5+TH0Tec4QB/di6xqsrH3T3oO9QlN8TqpIw6Tw7aJQMH+kR6VSWqNJPX4wy2TezLSPLf
+	qz73ggINlfs/vzAT0NbTPqQvs+sU/Q==
+X-Google-Smtp-Source: AGHT+IFXMO5qxLvZjW18H2LzV2nIClKzOZD7sng6ZospOJmztB1yGV9lAuTs4U+9rB751t7NG8nvgQ==
+X-Received: by 2002:a17:902:ecc4:b0:216:69ca:7707 with SMTP id d9443c01a7336-21892a028d9mr169367855ad.30.1734373569238;
+        Mon, 16 Dec 2024 10:26:09 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e4ffd9sm46010555ad.142.2024.12.16.10.26.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Dec 2024 10:26:08 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <68f5d2e1-10e8-4441-9338-e2a385a9c2b1@roeck-us.net>
+Date: Mon, 16 Dec 2024 10:26:06 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241213-add-venus-for-qcs615-v4-2-7e2c9a72d309@quicinc.com>
-X-Proofpoint-GUID: Sc-lPy-t0bZGoCZolpyof5mqCwwyh1tu
-X-Proofpoint-ORIG-GUID: Sc-lPy-t0bZGoCZolpyof5mqCwwyh1tu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 phishscore=0
- bulkscore=0 lowpriorityscore=0 mlxscore=0 priorityscore=1501
- malwarescore=0 clxscore=1015 spamscore=0 impostorscore=0 adultscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412160153
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] hwmon: (pmbus/crps) Add Intel CRPS185 power supply
+To: Ninad Palsule <ninad@linux.ibm.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, eajames@linux.ibm.com, jdelvare@suse.com,
+ corbet@lwn.net, joel@jms.id.au, andrew@codeconstruct.com.au,
+ Delphine_CC_Chiu@Wiwynn.com, broonie@kernel.org, peteryin.openbmc@gmail.com,
+ noahwang.wang@outlook.com, naresh.solanki@9elements.com, lukas@wunner.de,
+ jbrunet@baylibre.com, patrick.rudolph@9elements.com,
+ gregkh@linuxfoundation.org, peterz@infradead.org, pbiel7@gmail.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-i2c@vger.kernel.org
+References: <20241216175044.4144442-1-ninad@linux.ibm.com>
+ <20241216175044.4144442-3-ninad@linux.ibm.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20241216175044.4144442-3-ninad@linux.ibm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Dec 13, 2024 at 03:26:47PM +0530, Renjiang Han wrote:
-> Get frequency value from the opp-table of devicetree for the v4 core.
-> For compatibility, if getting data from the opp table fails, the data
-> in the frequency table will be used.
+On 12/16/24 09:50, Ninad Palsule wrote:
+> Add the driver to monitor Intel common redundant power supply (crps185)
+> with hwmon over pmbus.
 > 
-> The order of variable definitions is adjusted only to keep the reverse
-> Christmas tree order coding style.
-> 
-
-1) Do the best you can to add your variables while trying to maintain
-the order, but if it's not possible better leave it than making it hard
-to parse logical change from shuffling of code.
-
-2) This comment is useful during review, but not necessarily so in the
-git history, so I'd suggest to keep it below the '---' line.
-
-> Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
+> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
 > ---
->  drivers/media/platform/qcom/venus/pm_helpers.c | 67 ++++++++++++++++++--------
->  1 file changed, 46 insertions(+), 21 deletions(-)
+>   Documentation/hwmon/crps.rst  | 97 +++++++++++++++++++++++++++++++++++
+>   Documentation/hwmon/index.rst |  1 +
+>   MAINTAINERS                   |  7 +++
+>   drivers/hwmon/pmbus/Kconfig   |  9 ++++
+>   drivers/hwmon/pmbus/Makefile  |  1 +
+>   drivers/hwmon/pmbus/crps.c    | 79 ++++++++++++++++++++++++++++
+>   6 files changed, 194 insertions(+)
+>   create mode 100644 Documentation/hwmon/crps.rst
+>   create mode 100644 drivers/hwmon/pmbus/crps.c
 > 
-> diff --git a/drivers/media/platform/qcom/venus/pm_helpers.c b/drivers/media/platform/qcom/venus/pm_helpers.c
-> index 33a5a659c0ada0ca97eebb5522c5f349f95c49c7..a5c3f9ad2088d8c80247b52d5c1b8e053f499bfe 100644
-> --- a/drivers/media/platform/qcom/venus/pm_helpers.c
-> +++ b/drivers/media/platform/qcom/venus/pm_helpers.c
-> @@ -40,17 +40,23 @@ static int core_clks_get(struct venus_core *core)
->  
->  static int core_clks_enable(struct venus_core *core)
->  {
-> -	const struct venus_resources *res = core->res;
->  	const struct freq_tbl *freq_tbl = core->res->freq_tbl;
->  	unsigned int freq_tbl_size = core->res->freq_tbl_size;
-> -	unsigned long freq;
-> +	const struct venus_resources *res = core->res;
-> +	struct device *dev = core->dev;
-> +	unsigned long freq = 0;
+> diff --git a/Documentation/hwmon/crps.rst b/Documentation/hwmon/crps.rst
+> new file mode 100644
+> index 000000000000..74570ed1e978
+> --- /dev/null
+> +++ b/Documentation/hwmon/crps.rst
+> @@ -0,0 +1,97 @@
+> +.. SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +Kernel driver crps
+> +==================
+> +
+> +Supported chips:
+> +
+> +  * Intel CRPS185
+> +
+> +    Prefix: 'crps185'
+> +
+> +    Addresses scanned: -
+> +
+> +    Datasheet: Publicly not available.
 
-Is it really necessary to initialize this? I'd expect that
-dev_pm_opp_find_freq_ceil() would either initialize freq or return a
-failure, in which case you assign freq.
+Maybe "Only available under NDA". Or at least that is what I found.
 
-Perhaps the compiler isn't clever enough to see this?
+> +
+> +Authors:
+> +    Ninad Palsule <ninad@linux.ibm.com>
+> +
+> +
+> +Description
+> +-----------
+> +
+> +This driver implements support for Intel Common Redundant Power supply with
+> +PMBus support.
+> +
+> +The driver is a client driver to the core PMBus driver.
+> +Please see Documentation/hwmon/pmbus.rst for details on PMBus client drivers.
+> +
+> +
+> +Usage Notes
+> +-----------
+> +
+> +This driver does not auto-detect devices. You will have to instantiate the
+> +devices explicitly. Please see Documentation/i2c/instantiating-devices.rst for
+> +details.
+> +
+> +
+> +Sysfs entries
+> +-------------
+> +
+> +======================= ======================================================
+> +curr1_label		"iin"
+> +curr1_input		Measured input current
+> +curr1_max		Maximum input current
+> +curr1_max_alarm         Input maximum current high alarm
+> +curr1_crit              Critial high input current
+> +curr1_crit_alarm        Input critical current high alarm
+> +curr1_rated_max		Maximum rated input current
+> +
+> +curr2_label		"iout1"
+> +curr2_input		Measured output current
+> +curr2_max		Maximum output current
+> +curr2_max_alarm         Output maximum current high alarm
+> +curr2_crit	        Critial high output current
+> +curr2_crit_alarm        Output critical current high alarm
+> +curr2_rated_max		Maximum rated output current
+> +
+> +in1_label		"vin"
+> +in1_input		Measured input voltage
+> +in1_crit                Critical input over voltage
+> +in1_crit_alarm          Critical input over voltage alarm
+> +in1_max                 Maximum input over voltage
+> +in1_max_alarm           Maximum input over voltage alarm
+> +in1_rated_min		Minimum rated input voltage
+> +in1_rated_max		Maximum rated input voltage
+> +
+> +in2_label		"vout1"
+> +in2_input		Measured input voltage
+> +in2_crit                Critical input over voltage
+> +in2_crit_alarm          Critical input over voltage alarm
+> +in2_lcrit               Critical input under voltage fault
+> +in2_lcrit_alarm         Critical input under voltage fault alarm
+> +in2_max                 Maximum input over voltage
+> +in2_max_alarm           Maximum input over voltage alarm
+> +in2_min                 Minimum input under voltage warning
+> +in2_min_alarm           Minimum input under voltage warning alarm
+> +in2_rated_min		Minimum rated input voltage
+> +in2_rated_max		Maximum rated input voltage
+> +
+> +power1_label		"pin"
+> +power1_input		Measured input power
+> +power1_alarm		Input power high alarm
+> +power1_max  		Maximum input power
+> +power1_rated_max        Maximum rated input power
+> +
+> +temp[1-2]_input		Measured temperature
+> +temp[1-2]_crit 		Critical temperature
+> +temp[1-2]_crit_alarm    Critical temperature alarm
+> +temp[1-2]_max  		Maximum temperature
+> +temp[1-2]_max_alarm     Maximum temperature alarm
+> +temp[1-2]_rated_max     Maximum rated temperature
+> +
+> +fan1_alarm		Fan 1 warning.
+> +fan1_fault		Fan 1 fault.
+> +fan1_input		Fan 1 speed in RPM.
+> +fan1_target             Fan 1 target.
+> +======================= ======================================================
 
-> +	struct dev_pm_opp *opp;
->  	unsigned int i;
->  	int ret;
->  
-> -	if (!freq_tbl)
-> -		return -EINVAL;
-> -
-> -	freq = freq_tbl[freq_tbl_size - 1].freq;
-> +	opp = dev_pm_opp_find_freq_ceil(dev, &freq);
-> +	if (IS_ERR(opp)) {
-> +		if (!freq_tbl)
-> +			return -EINVAL;
-> +		freq = freq_tbl[freq_tbl_size - 1].freq;
-> +	} else {
-> +		dev_pm_opp_put(opp);
+Does this pass "make htmldocs" ?
+
+
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index 1a3cb0a59f72..b1ea445479b0 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -58,6 +58,7 @@ Hardware Monitoring Kernel Drivers
+>      corsair-cpro
+>      corsair-psu
+>      cros_ec_hwmon
+> +   crps
+>      da9052
+>      da9055
+>      dell-smm-hwmon
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 637ddd44245f..e99f26f75733 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6100,6 +6100,13 @@ L:	linux-input@vger.kernel.org
+>   S:	Maintained
+>   F:	drivers/hid/hid-creative-sb0540.c
+>   
+> +INTEL CRPS COMMON REDUNDANT PSU DRIVER
+> +M:	Ninad Palsule <ninad@linux.ibm.com>
+> +L:	linux-hwmon@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/hwmon/crps.rst
+> +F:	drivers/hwmon/pmbus/crps.c
+> +
+>   CRYPTO API
+>   M:	Herbert Xu <herbert@gondor.apana.org.au>
+>   M:	"David S. Miller" <davem@davemloft.net>
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index 22418a05ced0..43b6df04e0f9 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -85,6 +85,15 @@ config SENSORS_BPA_RS600
+>   	  This driver can also be built as a module. If so, the module will
+>   	  be called bpa-rs600.
+>   
+> +config SENSORS_CRPS
+> +	tristate "Intel Common Redundant Power Supply"
+> +	help
+> +	  If you say yes here you get hardware monitoring support for the Intel
+> +	  Common Redundant Power Supply.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called crps.
+> +
+>   config SENSORS_DELTA_AHE50DC_FAN
+>   	tristate "Delta AHE-50DC fan control module"
+>   	help
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 3d3183f8d2a7..c7eb7739b7f8 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -62,3 +62,4 @@ obj-$(CONFIG_SENSORS_XDPE122)	+= xdpe12284.o
+>   obj-$(CONFIG_SENSORS_XDPE152)	+= xdpe152c4.o
+>   obj-$(CONFIG_SENSORS_ZL6100)	+= zl6100.o
+>   obj-$(CONFIG_SENSORS_PIM4328)	+= pim4328.o
+> +obj-$(CONFIG_SENSORS_CRPS)	+= crps.o
+> diff --git a/drivers/hwmon/pmbus/crps.c b/drivers/hwmon/pmbus/crps.c
+> new file mode 100644
+> index 000000000000..09425c404fc8
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/crps.c
+> @@ -0,0 +1,79 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright 2024 IBM Corp.
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/of.h>
+> +#include <linux/pmbus.h>
+> +
+> +#include "pmbus.h"
+> +
+> +static const struct i2c_device_id crps_id[] = {
+> +	{ "intel_crps185" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(i2c, crps_id);
+> +
+> +static struct pmbus_driver_info crps_info = {
+> +	.pages = 1,
+> +	/* PSU uses default linear data format. */
+> +	.func[0] = PMBUS_HAVE_PIN | PMBUS_HAVE_IOUT |
+> +		PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_IIN |
+> +		PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT |
+> +		PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
+> +		PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 |
+> +		PMBUS_HAVE_STATUS_TEMP |
+> +		PMBUS_HAVE_FAN12 | PMBUS_HAVE_STATUS_FAN12,
+> +};
+> +
+> +static int crps_probe(struct i2c_client *client)
+> +{
+> +	int rc;
+> +	struct device *dev = &client->dev;
+> +	char buf[I2C_SMBUS_BLOCK_MAX + 2] = { 0 };
+> +
+> +	rc = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, buf);
+> +	if (rc < 0) {
+> +		dev_err_probe(dev, rc, "Failed to read PMBUS_MFR_MODEL\n");
+> +		return rc;
+
+		return dev_err_probe(...);
+
 > +	}
->  
->  	for (i = 0; i < res->clks_num; i++) {
->  		if (IS_V6(core)) {
-> @@ -627,12 +633,15 @@ min_loaded_core(struct venus_inst *inst, u32 *min_coreid, u32 *min_load, bool lo
->  
->  static int decide_core(struct venus_inst *inst)
->  {
-> +	const struct freq_tbl *freq_tbl = inst->core->res->freq_tbl;
->  	const u32 ptype = HFI_PROPERTY_CONFIG_VIDEOCORES_USAGE;
-> -	struct venus_core *core = inst->core;
-> -	u32 min_coreid, min_load, cur_inst_load;
->  	u32 min_lp_coreid, min_lp_load, cur_inst_lp_load;
-> +	u32 min_coreid, min_load, cur_inst_load;
-> +	struct venus_core *core = inst->core;
->  	struct hfi_videocores_usage_type cu;
-> -	unsigned long max_freq;
-> +	unsigned long max_freq = ULONG_MAX;
-> +	struct device *dev = core->dev;
-> +	struct dev_pm_opp *opp;
+> +
+> +	if (strncmp(buf, "03NK260", 7) == 7) {
 
-Here the line shuffling makes it hard to determine what is part of the
-logical change and what is just style changes...
+strncmp() never returns 7. You probably want something like
 
-Regards,
-Bjorn
+	if (rc != 7 || strncmp(buf, "03NK260", 7)) {
 
->  	int ret = 0;
->  
->  	if (legacy_binding) {
-> @@ -655,7 +664,11 @@ static int decide_core(struct venus_inst *inst)
->  	cur_inst_lp_load *= inst->clk_data.low_power_freq;
->  	/*TODO : divide this inst->load by work_route */
->  
-> -	max_freq = core->res->freq_tbl[0].freq;
-> +	opp = dev_pm_opp_find_freq_floor(dev, &max_freq);
-> +	if (IS_ERR(opp))
-> +		max_freq = freq_tbl[0].freq;
-> +	else
-> +		dev_pm_opp_put(opp);
->  
->  	min_loaded_core(inst, &min_coreid, &min_load, false);
->  	min_loaded_core(inst, &min_lp_coreid, &min_lp_load, true);
-> @@ -1073,12 +1086,14 @@ static unsigned long calculate_inst_freq(struct venus_inst *inst,
->  
->  static int load_scale_v4(struct venus_inst *inst)
->  {
-> +	const struct freq_tbl *table = inst->core->res->freq_tbl;
-> +	unsigned int num_rows = inst->core->res->freq_tbl_size;
-> +	unsigned long freq = 0, freq_core1 = 0, freq_core2 = 0;
->  	struct venus_core *core = inst->core;
-> -	const struct freq_tbl *table = core->res->freq_tbl;
-> -	unsigned int num_rows = core->res->freq_tbl_size;
-> +	unsigned long max_freq = ULONG_MAX;
->  	struct device *dev = core->dev;
-> -	unsigned long freq = 0, freq_core1 = 0, freq_core2 = 0;
->  	unsigned long filled_len = 0;
-> +	struct dev_pm_opp *opp;
->  	int i, ret = 0;
->  
->  	for (i = 0; i < inst->num_input_bufs; i++)
-> @@ -1104,19 +1119,29 @@ static int load_scale_v4(struct venus_inst *inst)
->  
->  	freq = max(freq_core1, freq_core2);
->  
-> -	if (freq > table[0].freq) {
-> -		dev_dbg(dev, VDBGL "requested clock rate: %lu scaling clock rate : %lu\n",
-> -			freq, table[0].freq);
-> +	opp = dev_pm_opp_find_freq_floor(dev, &max_freq);
-> +	if (IS_ERR(opp))
-> +		max_freq = table[0].freq;
-> +	else
-> +		dev_pm_opp_put(opp);
->  
-> -		freq = table[0].freq;
-> +	if (freq > max_freq) {
-> +		dev_dbg(dev, VDBGL "requested clock rate: %lu scaling clock rate : %lu\n",
-> +			freq, max_freq);
-> +		freq = max_freq;
->  		goto set_freq;
->  	}
->  
-> -	for (i = num_rows - 1 ; i >= 0; i--) {
-> -		if (freq <= table[i].freq) {
-> -			freq = table[i].freq;
-> -			break;
-> +	opp = dev_pm_opp_find_freq_ceil(dev, &freq);
-> +	if (IS_ERR(opp)) {
-> +		for (i = num_rows - 1 ; i >= 0; i--) {
-> +			if (freq <= table[i].freq) {
-> +				freq = table[i].freq;
-> +				break;
-> +			}
->  		}
-> +	} else {
-> +		dev_pm_opp_put(opp);
->  	}
->  
->  set_freq:
-> 
-> -- 
-> 2.34.1
-> 
+> +		buf[rc] = '\0';
+> +		dev_err_probe(dev, -ENODEV, "Model '%s' not supported\n", buf);
+
+		return dev_err_probe(...);
+
+> +		return -ENODEV;
+> +	}
+> +
+> +	rc = pmbus_do_probe(client, &crps_info);
+> +	if (rc) {
+> +		dev_err_probe(dev, rc, "Failed to probe %d\n", rc);
+
+dev_err_probe() already handles the error, and a message such as
+"failed to probe -22" isn't very useful anyway. Also,
+		return dev_err_probe(...);
+
+> +		return rc;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id crps_of_match[] = {
+> +	{
+> +		.compatible = "intel,crps185",
+> +	},
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, crps_of_match);
+> +
+> +static struct i2c_driver crps_driver = {
+> +	.driver = {
+> +		.name = "crps",
+> +		.of_match_table = crps_of_match,
+> +	},
+> +	.probe = crps_probe,
+> +	.id_table = crps_id,
+> +};
+> +
+> +module_i2c_driver(crps_driver);
+> +
+> +MODULE_AUTHOR("Ninad Palsule");
+> +MODULE_DESCRIPTION("PMBus driver for Intel Common Redundant power supplies");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("PMBUS");
+
 
