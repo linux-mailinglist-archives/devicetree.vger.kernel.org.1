@@ -1,143 +1,138 @@
-Return-Path: <devicetree+bounces-131545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAE129F3C1C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 22:04:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A3A89F3C22
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 22:05:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21C5F16C02F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 21:04:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF4901687C9
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 21:05:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 713231D514A;
-	Mon, 16 Dec 2024 20:49:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B10101D8DE4;
+	Mon, 16 Dec 2024 20:51:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ofVYo+j0"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="IIPdAtkO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E7221D5143
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 20:49:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FACC1D5150
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 20:51:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734382161; cv=none; b=B84Gn4sDRZ5AhS2MSatAU9Fa7FCYuDhNOgVXwT2kCRcs/NYS8xUDMLTvBZhdd+cl7XLdYe5/do4ACbXLXHZZoPnY19sPubY23EjWEjWvLqF/EUw44buYiscWlZD/pxMxWtwPhP+B6M58lvGeip40pRZawnEiEZlHUd2+IUrwmTg=
+	t=1734382278; cv=none; b=uqbE2WMCidOAuAcRMmkl2Pu4P7NgifTJM8nAu+mLj5ZgMfZv5bP2/eSQH6uLoyZZfjAvS64oXCZzrR2/tySVmL9rY2WG6rVWxfzrag4+lzgo1GSQGffFCmejXhokDvOOz9rouhu4NskguZPjaPX83g7Gu2njWt+uA5KUMR11SgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734382161; c=relaxed/simple;
-	bh=kcycNG+bwN6f5dXL5wyCtF4e0Kmb4YfvpjfhYnRSqcM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fjnwFa1kw2ZGR8zS8QTD9cDw2OJfE3bnNr7F/p/2yeLd/7Aovd76EgzP0S7oJjRVTw8ukUUueuLwxbSxrkNyplYGR0rC5l2BJyFp2GRUJZRt0FFTaJoyepc9Wvwcl+UcDm3ldf8QLMgYyoX0okVdlj5+wknet9/R9+gFTsZZngE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ofVYo+j0; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGD0ZEM023667
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 20:49:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	anA2jlQouZqs/KtQZgTzzrTT65T1vIzf5Zeno12iots=; b=ofVYo+j0Rac0BlV3
-	zRdXpHfkHrbGIXERCTYL8E8apPqPLIrDztDaBeEWypmE5hT/J5vJIiNJUijAriuh
-	VdVGOvhIW+nm4zC4xmgEj/bOMCzPSstmt54a34t2NpScTAKH/WCyDA3/mxs3j6bC
-	Jk07xDIZ2EiMcZT+RJIrJ4xqRwOYtdYZ4EpN5+4jN+7YNOGoTTMzf9UimWuAbgGo
-	KEHhjqU00FrHk6VoKHYTgCb3Fuzclq0y2iCKzQo/56je0CfX8CMBACJOOUmF5sY9
-	nZFl6JjELjRmPTeBTeCVdzyLej1aTib6Y7h7X3hB4A0n14cQ2hldTBWH5T9hRDCi
-	0eyu6g==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43jmqch5f6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 20:49:17 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2162f80040aso39616945ad.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 12:49:16 -0800 (PST)
+	s=arc-20240116; t=1734382278; c=relaxed/simple;
+	bh=vNP9A4C18JfdqCO8C4qyuw1JeEu32Q85qs6oleMDKCY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VtEC5jxU7R3zdkdV/aabyx8tfdLxroH4FqpYh0lCrpX/DE1WtdFjMa89NonpR6LJmyIT7kAby/xUDXXeeciGYes3KAb+o0qyOQXUlz3pX24GW9i/ZH9SgDjh9QkZjlO0k67F8/1o+uwt2g3ry7VNz0alyAfez9wN9n0tAwSpzzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=IIPdAtkO; arc=none smtp.client-ip=209.85.210.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-71e3cbd0583so652780a34.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 12:51:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734382274; x=1734987074; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=URnb8c85jwthSeIOjmWdLO1dJRmKyq17s+Or2MsbRA4=;
+        b=IIPdAtkO2B2LU+1Ckv2905zDjbiMTKqgWvgFpdSgnN+ebUeOcWydpiZIsll4vgfNqP
+         uqt5GJSv14eeNjsdkdmExHW4q31aT5rqrwPCY2QcRRohDc95ksrvfCvEZ9AIOrLGIh+D
+         TgjoI+7mPkjuR2dvXAZnr/YYi7Oe5hsOanmxGQrq5NWu44Fzw5HPg3MPziGPtKBiqAr8
+         yBOHTOZ1krBq6sEzCVb+hmmH7sqLipkgP0L//THteI0SPMvXV/0H6pANq5mIoI9dShRG
+         jMS//xvW/Dsqs7U/VQoUlCU1/P2VNrOa4W9HlEyG7FwzDs7fJNUsOfENUEm/3hNQXYYL
+         +21g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734382156; x=1734986956;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=anA2jlQouZqs/KtQZgTzzrTT65T1vIzf5Zeno12iots=;
-        b=Jlz4XWiK2uG0ZbYRwjXbsu6+yzXCIM5rfTU3r2YGEbgvWF3CQ0b9Z9ZAmF6KYzHsak
-         sS+7aS7dj8SgS79SLE8iM5RaNsVqye339aMXdUl3PzaMHeEwWqTlI6fb+fYJ2Y2/j7R9
-         iRonMZQFSk2PLc6fW4I9NMdIuwD7/MgeK9vYoTsZGRthZiIAvCKHksRQl2qJ7HCAY03T
-         7E3gvVRJTURZI2EhLlmlXcqSLW7tAtucm+DJqaI0GE5oaM+0yc1VRbY6EOG5bQp2rj5R
-         alNjpMVK+nAFtAg20f5T4bBOBOMYS3QSixXHZKpaVpY+tcSSLt9hiNooHGkFaXs0cG2P
-         mayQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWBKbUqnrUfA8ZUuJ2qQ3AkY7aT6oGeq6TFL3cpG88wrfJgyJQD/tYIp5ldbdgLzT+vJDaBrbxQjUO+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQQ6B2wqlzMgVjyxLW+x9wVr8mY8EVVAOB5FYbPxnd5UYJkFqV
-	UN5RhqISz0vzNnbIvcGZ0baCGJQ2M4+c03fecC3x1P/2ec5wjKY3dzaE/8V6iBsN4Lz6190Hiaj
-	wL5NvLeHZsfGriezSfFFU2VA9VODgQ52Q9cdAOrSb8r3QCvk0voOQzI8HLoGe
-X-Gm-Gg: ASbGncveS7JdwSxe2VXKIrlhDqqsik7whWnGL0NyBbg4b92YiGrkvS4C0gMIib2+BQH
-	lzErc/FP8f1jANMRTRYTnwg4ZPNFhSkTklRxzAZNb7YTNeNU2qOkz3StRc0ikeptpHlWD9RVWFH
-	xK1rc7nNNjvHeGcJNQ6oREhOr1dpNRwHLvM2UyZxhgH320DIUmsf02vK4KnBhsiSoyI9yCsd7yq
-	Kbi5QHTPYNymF9uAcGX/n57HeFXkvwX4NCbJW6nWepY7m1EikRsIZn7gEu/IdZRdkheT2sP9gHv
-	b54Rxjeh0v/suGAE6FGmoC4PI0nHi+BmZdm4GjQ50mLvQI7Qxg==
-X-Received: by 2002:a17:902:f545:b0:216:5b8b:9062 with SMTP id d9443c01a7336-21892a706c4mr203037405ad.54.1734382155841;
-        Mon, 16 Dec 2024 12:49:15 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFWk9BZqboU3KwoVaqiVx3b8FL9B1OgxFHeyI/TAlRb715kIMdwZ9CqdRLUEBmLRsARD7gw0Q==
-X-Received: by 2002:a17:902:f545:b0:216:5b8b:9062 with SMTP id d9443c01a7336-21892a706c4mr203037115ad.54.1734382155473;
-        Mon, 16 Dec 2024 12:49:15 -0800 (PST)
-Received: from [192.168.1.111] (c-73-202-227-126.hsd1.ca.comcast.net. [73.202.227.126])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e6634fsm47133905ad.246.2024.12.16.12.49.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Dec 2024 12:49:15 -0800 (PST)
-Message-ID: <feaad284-9dd4-40c2-b6c2-a2a8411598ef@oss.qualcomm.com>
-Date: Mon, 16 Dec 2024 12:49:13 -0800
+        d=1e100.net; s=20230601; t=1734382274; x=1734987074;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=URnb8c85jwthSeIOjmWdLO1dJRmKyq17s+Or2MsbRA4=;
+        b=qMFkqoARNJFb4fq/rsLll3D9G7S+Cex6lgK6LdhiVASDHkafx672RLdr3q73y9DM65
+         P46rkUBFcqOrvPEKZm91AWE2g+GaRqTGNWxdHCUpFO+DcG1B7j05e+vQgc5ENgFKTx1i
+         KQBbkw7/8uWuBERUHg6xtQcwjdbEBi/r7SKDc+QOmrS1ToC5wZLKzhp4vxwdyOnUm2uq
+         jNnFhjMruUsBI05xu7mg1XOC3+xOU5eZLU66zavvy39S4fKVYQPbNwwCqw7XhG9YEdSl
+         GmYbLp149dqc/moRfJ1PFU97EEMKU8P0ON/NC1UzYQx3L9If2sHuk9HinhmuCBNKhQs1
+         IAGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW78OgPTpzoYd7Z5bwRGxHxzDUu1TFlvQ50WYYRr/pz0zJBdyEIVejFAaYcE7k8M2vnYfLLsqyYkzr0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwX7nyJDI+nGWf+8VAAtXJLqxf7IbZgmJUZRN3hKFkVrUrc98jV
+	9iB4jdWMzS1Cw4RYxg3I1s7SGquXYD+Brzc0RlCwo8m4J+iz0zVjNGFaB8p1et4=
+X-Gm-Gg: ASbGncsy3J+iLfE06h9LgdqdmMPJryvcRTLx3mYfuWwugNdNf5Hhdp1TUqZCr2bpQ00
+	vKHf/jqoYSXb2DPgx8s1ct1tqED/YsC5f/WLozgJO6smyPTktG42Dt2oJcOnqXpZbTYQfvsdRCk
+	TMVFKZ32r8tbociSPXIRJMAtmMp54Tavdqkuy6y+7Jo+DKtCmDtg09tPSembrUwSm69fdC7nJ3B
+	evUZF7TuHdTOJcnfZU7BeZJEUFQf/L1FWPzcrB5y+RyiY98izZBt71ShWi8UiOF9N29K/Swn6xn
+	zbPbOhgmbX+Y
+X-Google-Smtp-Source: AGHT+IH1J3XcLxwZtLTGQT1Z5igc3BumUE320qN/m0hlGwtTCk7lq302xmrBaQLKwY3jWYE1crR5hg==
+X-Received: by 2002:a05:6830:440a:b0:71d:415a:5d30 with SMTP id 46e09a7af769-71e3b5bdb50mr8590525a34.0.1734382274271;
+        Mon, 16 Dec 2024 12:51:14 -0800 (PST)
+Received: from [127.0.1.1] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71e48355dc0sm1649022a34.25.2024.12.16.12.51.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Dec 2024 12:51:13 -0800 (PST)
+From: David Lechner <dlechner@baylibre.com>
+Subject: [PATCH RESEND v3 0/2] dt-bindings: dma: adi,axi-dmac: convert to
+ yaml and update
+Date: Mon, 16 Dec 2024 14:51:00 -0600
+Message-Id: <20241216-axi-dma-dt-yaml-v3-0-7b994710c43f@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/8] wifi: ath12k: MLO support part 7
-To: Conor Dooley <conor@kernel.org>,
-        Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Cc: ath12k@lists.infradead.org, Kalle Valo <kvalo@kernel.org>,
-        linux-wireless@vger.kernel.org, devicetree@vger.kernel.org
-References: <20241211153432.775335-1-kvalo@kernel.org>
- <173436785894.3413746.14923997859754791913.b4-ty@oss.qualcomm.com>
- <20241216-moonlight-perpetual-d49029337c17@spud>
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <20241216-moonlight-perpetual-d49029337c17@spud>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: vFsn6pJUvHYvt-SnkBvx9NgNvFa5u4-w
-X-Proofpoint-ORIG-GUID: vFsn6pJUvHYvt-SnkBvx9NgNvFa5u4-w
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- bulkscore=0 mlxlogscore=999 spamscore=0 mlxscore=0 clxscore=1015
- malwarescore=0 lowpriorityscore=0 impostorscore=0 suspectscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412160171
+X-B4-Tracking: v=1; b=H4sIALSSYGcC/3XNOw+CMBQF4L9COlvT3kqlTg6yOuhoHC7tRZrwM
+ IUQieG/2zAZH+O5J/c7T9ZT8NSzXfJkgUbf+66NQa0SZitsb8S9i5mBgI0UABwfnrsGuRv4hE3
+ NrbZbiQ6oMMTi1z1Q6R+LeGGn/JwfD+wa75Xvhy5My9Aol/avOUouuM5KQNiYzKVqX+BU+yLQ2
+ nbNwo3wTphvAiKRAmqyW1dCKn8Q6o1Q4ptQkXAKTZEKXRptP4h5nl+sAxrPPwEAAA==
+X-Change-ID: 20241022-axi-dma-dt-yaml-c6c71ad2eb9e
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ David Lechner <dlechner@baylibre.com>
+X-Mailer: b4 0.14.2
 
-On 12/16/2024 11:56 AM, Conor Dooley wrote:
-> On Mon, Dec 16, 2024 at 08:50:58AM -0800, Jeff Johnson wrote:
->>
->> On Wed, 11 Dec 2024 17:34:24 +0200, Kalle Valo wrote:
->>> Implementing Multi-Link Operation (MLO) continues. Bindings document is added
->>> to get WSI information from DT (patch 1) with the code parsing the information
->>> (patch 2). Rest of the patches are about configuring MLO in firmware.
->>>
->>> Device Tree bindings were reviewed as RFC earlier:
->>>
->>> [RFC PATCH v3 1/5] dt-bindings: net: wireless: Describe ath12k PCI module with WSI
->>>
->>> [...]
->>
->> Applied, thanks!
->>
->> [1/8] dt-bindings: net: wireless: Describe ath12k PCI module with WSI
->>       commit: 30e36fa89d8266d9221ee992d4f43553a59a3431
-> 
-> Delayed through being unexpectedly afk last week, I left an r-b on v2 a
-> few mins ago. I don't give a shit about getting credit for tags, but
-> figured it was worth mentioning it on the applied version of the series.
+Convert the ADI AXI DMAC bindings to YAML and then update the bindings
+to reflect the current actual use of the bindings.
 
-Thanks for the review.
-I've force pushed an update which contains your Reviewed-by: tag.
+---
+- Resending since this didn't get picked up or commented on for 10 weeks.
+  Maybe it got overlooked due to the dt_binding_check failure? As mentioned
+  in the commit message, it is OK to make an exception in this case.
+- Link to v3: https://lore.kernel.org/r/20241030-axi-dma-dt-yaml-v3-0-d3a9b506f96c@baylibre.com
 
-/jeff
+Changes in v3:
+- Picked up review tags
+- Fixed rebase botch of patch 2/2
+- Link to v2: https://lore.kernel.org/r/20241029-axi-dma-dt-yaml-v2-0-52a6ec7df251@baylibre.com
+
+Changes in v2:
+- Picked up Nuno's Ack
+- Added more than link to main description
+- Moved source-type enum definition to description:
+- Moved additionalProperties before properties
+- Removed unused label
+- Fixed node name
+- Link to v1: https://lore.kernel.org/r/20241022-axi-dma-dt-yaml-v1-0-68f2a2498d53@baylibre.com
+
+---
+David Lechner (2):
+      dt-bindings: dma: adi,axi-dmac: convert to yaml schema
+      dt-bindings: dma: adi,axi-dmac: deprecate adi,channels node
+
+ .../devicetree/bindings/dma/adi,axi-dmac.txt       |  61 ----------
+ .../devicetree/bindings/dma/adi,axi-dmac.yaml      | 129 +++++++++++++++++++++
+ 2 files changed, 129 insertions(+), 61 deletions(-)
+---
+base-commit: 95282a5c5eae59227d58d3b63ec57f377a9093c7
+change-id: 20241022-axi-dma-dt-yaml-c6c71ad2eb9e
+
+Best regards,
+-- 
+David Lechner <dlechner@baylibre.com>
+
 
