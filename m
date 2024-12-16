@@ -1,157 +1,243 @@
-Return-Path: <devicetree+bounces-131237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92E4F9F297A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 06:21:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11F129F2985
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 06:31:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CC7618855CA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 05:21:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B1A21885E98
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 05:31:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 501D01BC064;
-	Mon, 16 Dec 2024 05:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80721BD9F6;
+	Mon, 16 Dec 2024 05:30:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cUG9tTOi"
+	dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b="G2saPMYb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0016f401.pphosted.com (mx0a-0016f401.pphosted.com [67.231.148.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E6C154BF0
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 05:21:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98FB14EC73;
+	Mon, 16 Dec 2024 05:30:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.148.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734326480; cv=none; b=MFYgKk6gOlYLTl9qEm0nscH4AZoEYovQV3PIciKb4ZvDrizM/+1Zyo6dt3ZOx7wmyuQyfocxlFCX7sv5u8EqJqT7jWd4zjEkAdV4008Ei0xxbKx7OciIr706xnXQLa27XME59zhJKa+WvhhlPizmlRxeU1Q2pCf4vNGSTGxRnRg=
+	t=1734327052; cv=none; b=Hz4hOCt1JMVhW/wOquqKYK8DHIHsw7mF49Z9+yIEO+Xq8Y87SVH4BcXVBe2wmTA2z2gFSsk4NfkJdNgrwchzPIz4yQ/JcO4lkAz+nhjEZkQWFMWyaL3qK2FpCyZLgXy0FVbgQ71TP4evUhJZP6JodGck6rYF2FvTmtKPzdh3u1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734326480; c=relaxed/simple;
-	bh=Y8BBnzSAQCrOq/vZCN+HTxvR9YBoCNxrtJ37hzJJipE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GThYkv1pe5RwhYjMhc0QCLteKKB7ZkEiupNL5DEqFbmxNNFsE8JoAUzr5JDGjG6rTnWuXbE1XVheFA1HzogWWQVdnZ/5b2rBQSDurPOat1QuLnNx3ALQb3FMyDf476JbL96W7qQhSJk0Tt1IB3FxJDRj85gwprZqsNCs2xLT0k0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cUG9tTOi; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-728eccf836bso3048310b3a.1
-        for <devicetree@vger.kernel.org>; Sun, 15 Dec 2024 21:21:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734326478; x=1734931278; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4dODE1oLOneIGU2zuf4IE3qsFOnpfwOB30wuyhRbPCE=;
-        b=cUG9tTOiww1RjLO67ZF7MZEBx2ZWhWnzPi/yxjBMmDuekjT8o3yKrvJMMLid22EiH8
-         4Fh6xrtWO5jAqEHa9z3/fP3PG1YKX7+sQM2ddvQWEMcezqf3rQVrpLMcTGndJWKL6zlc
-         5XhXN0etfUEgWGRHOwlsH6ig1kqVd1SidyMLiNyw5PuQivJb5HX1oYF/CRg3hT9FKA6A
-         ASaE1OFJZ9zTYD4+WEzhx7p7M4+ky72RFoR49kauCnLVkZoFmTOF8ceyOd262C6ldK7w
-         PihgrHJrSbgOMShVw2ERnk0B+3uxmE0hI3ED05KglhpHWPRY2miDrySLJdTsdtEEeT9o
-         Pfbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734326478; x=1734931278;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4dODE1oLOneIGU2zuf4IE3qsFOnpfwOB30wuyhRbPCE=;
-        b=lsUK8FTgrQOZaWJsB03us/C+1aSynr7UGX7OA3aD2lsLdasM4W9wp1FctrYdc0qvCJ
-         +XvkwjBL30ggfugM453W34P8n50j1WyMPQsUXbrzZcBJ0B7IwhmE8dZuY+OPK7qh1mgv
-         5pfP4rQw8Wm/iE3vz8AY5NNlJt5/Aad5Yuw/VkZVYmnK/1jmTYZuvsdP9+QeJcVDhb3V
-         GqGTwgG7slALMsBRiJ2tPcyu9bbrqQmCr6xi4H9m6XdOEnhv7d5VN/3C3a5W0Li7FsUC
-         GumrSQjV34QN2G5E8Be5bi/KuH5BFjtWHQ58GDj6/b3h6wlLw0C5mp3OaUe67yf84bZd
-         SllA==
-X-Forwarded-Encrypted: i=1; AJvYcCWe5sLGq4OEH6h4oPYt80fRbU9UcQCPcEXA9YxQ4AgSTKcwiqXACGkuMWVlVJHawAxAPsQwTIHraMQp@vger.kernel.org
-X-Gm-Message-State: AOJu0YwY6QLB0c9rNzFqiyAC/weqkwxBMN3x6UEXn+5QjGlyoA+LMJIy
-	+6OJDKYKz8+4WayZa5lyX5y6fwwl5IZP4vF5cQFBQAfiTWjfj3R7WxRtyu5fjw==
-X-Gm-Gg: ASbGncsa8qdZldMAG2JSi5SzXyQTjqPh6+7pDhpWYTwe2OuyW4IpOyYgjiqdNxDt7Im
-	XCbD5dxpKfyAnY8s8YCTlUL5WLpv5MI9B6HB45LzEzO1dVuvVKj976UpEWZCyOqHlgIh5Fl/Cw1
-	lvCVHWNbReYVEidCxjfsaXhwH8bgCNBWWgnp/tWtCHJbRhh03NOzoZvbM5onteFv2cWutn1guLs
-	zZftykXCiOBPgR4mPnXrIeW9noPOxEPtOrDkYFxOkNsPp+xz6mcihJX6Kp/YjIJKQ4=
-X-Google-Smtp-Source: AGHT+IH1mSVhE67FzmlPZUxDT5sePvi+vkzZfYMDKYk51As1yvOgwpFk9uK6IoSy8DGi01snoWjo4g==
-X-Received: by 2002:a17:902:d2c5:b0:215:97a3:5ec5 with SMTP id d9443c01a7336-218929c8eccmr158587875ad.22.1734326478043;
-        Sun, 15 Dec 2024 21:21:18 -0800 (PST)
-Received: from thinkpad ([120.60.56.176])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e6416csm34490965ad.230.2024.12.15.21.21.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Dec 2024 21:21:17 -0800 (PST)
-Date: Mon, 16 Dec 2024 10:51:07 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Qiang Yu <quic_qianyu@quicinc.com>, Bjorn Helgaas <bhelgaas@google.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH 0/4] PCI/pwrctrl: Rework pwrctrl driver integration and
- add driver for PCI slot
-Message-ID: <20241216052107.tyhwzh4g3tmnp5ll@thinkpad>
-References: <20241210-pci-pwrctrl-slot-v1-0-eae45e488040@linaro.org>
- <c5c9b7fc-a484-438a-aa97-35785f25d576@quicinc.com>
- <Z18SkkuPbVgTYD8k@wunner.de>
+	s=arc-20240116; t=1734327052; c=relaxed/simple;
+	bh=lWy1+dkpBGVTcrVzOBVNs3NpPrWJ5SiLWwLFpsczdos=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=m9IDPbUO9BxsCV8XPCRSSbQOuxVUuzJNrTjHkQg6C9K8xmB//r7jk5U8N4FtydiGTdA578H4+APLUymnE9gn0+Mh2+Ga5fyBznxq0KYjZ1Ai5Q1KFZJ4E3IDQlv2tXBrYN6NewqyvHDdpqTCTGyOP7uFzFVmAubK/J06SbbmFZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (2048-bit key) header.d=marvell.com header.i=@marvell.com header.b=G2saPMYb; arc=none smtp.client-ip=67.231.148.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
+Received: from pps.filterd (m0431384.ppops.net [127.0.0.1])
+	by mx0a-0016f401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BG4CqiQ014943;
+	Sun, 15 Dec 2024 21:30:27 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=pfpt0220; bh=j2BPQS7yKWObBZL8O4h+IvL
+	IVnDCVMIwOUzze6t+Z5g=; b=G2saPMYbT6OyEftPOrt9UsDEKwDbhY9QKRf1TsT
+	IRDRa1N9wG3j4qxKFJRCEaTxUsyTu/XxzFh/+fiInA96IIw3aLpR+n4WFLaPUVpg
+	tgonyRmqco5C94FxPX4TzzrrNGK9Uw7cloXKUTkTG8r22QnAQUI3gqhlppKqKVeP
+	xwf3mzBBB3POIKh9bY3zYVpPNWnQ/cUI/TAugSPpW2Ab5Z8PI5yt5nVFI5EZHlka
+	zYY2yfx8KiD1ScMZw9qU9+s9J+xwpqciY7yYrcQeh3ve9XvqJ1Wz75rLVrbNtMXJ
+	xVGMcWaDATxdDwDNgIcvAgBEiVSX76HTQ8e6COnAoG8Uqow==
+Received: from dc5-exch05.marvell.com ([199.233.59.128])
+	by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 43jcyv0712-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 15 Dec 2024 21:30:27 -0800 (PST)
+Received: from DC5-EXCH05.marvell.com (10.69.176.209) by
+ DC5-EXCH05.marvell.com (10.69.176.209) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Sun, 15 Dec 2024 21:30:26 -0800
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH05.marvell.com
+ (10.69.176.209) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Sun, 15 Dec 2024 21:30:26 -0800
+Received: from virtx40.. (unknown [10.28.34.196])
+	by maili.marvell.com (Postfix) with ESMTP id 944B03F7095;
+	Sun, 15 Dec 2024 21:30:20 -0800 (PST)
+From: Linu Cherian <lcherian@marvell.com>
+To: <suzuki.poulose@arm.com>, <mike.leach@linaro.org>, <james.clark@arm.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <coresight@lists.linaro.org>,
+        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <corbet@lwn.net>, <devicetree@vger.kernel.org>, <sgoutham@marvell.com>,
+        <gcherian@marvell.com>, Linu Cherian <lcherian@marvell.com>
+Subject: [PATCH v13 0/8] Coresight for Kernel panic and watchdog reset
+Date: Mon, 16 Dec 2024 11:00:06 +0530
+Message-ID: <20241216053014.3427909-1-lcherian@marvell.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z18SkkuPbVgTYD8k@wunner.de>
+Content-Type: text/plain
+X-Proofpoint-GUID: zX-eg8nlvKXTR0JGkFVcSGP8ZIFUWyqc
+X-Proofpoint-ORIG-GUID: zX-eg8nlvKXTR0JGkFVcSGP8ZIFUWyqc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.687,Hydra:6.0.235,FMLib:17.0.607.475
+ definitions=2020-10-13_15,2020-10-13_02,2020-04-07_01
 
-On Sun, Dec 15, 2024 at 06:32:02PM +0100, Lukas Wunner wrote:
-> On Wed, Dec 11, 2024 at 05:55:48PM +0800, Qiang Yu wrote:
-> > PCIe3 is able to link up after applying your patch. Slot power is turned on
-> > correctly.
-> > But see "NULL pointer dereference" when I try to remove device.
-> 
-> There's a WARN splat occurring before the NULL pointer deref.
-> Was this happening before or is it new?  Probably makes sense
-> to debug that first before looking into the NULL pointer deref,
-> which could be a result of it.
-> 
+This patch series is rebased on coresight-next-v6.12.rc4
 
-Precisely.
+* Patches 1 & 2 adds support for allocation of trace buffer pages from
+  reserved RAM
+* Patches 3 & 4 adds support for saving metadata at the time of kernel panic 
+* Patch 5 adds support for reading trace data captured at the time of panic
+* Patches 6 & 7 adds support for disabling coresight blocks at the time of panic
+* Patch 8: Gives the full description about this feature as part of documentation 
 
-> 
-> > [   38.757726] WARNING: CPU: 1 PID: 816 at drivers/regulator/core.c:5857
-> > regulator_unregister+0x13c/0x160
-> > [   38.767288] Modules linked in: phy_qcom_qmp_combo aux_bridge
-> > drm_kms_helper drm nvme backlight pinctrl_sm8550_lpass_lpi pci_pwrctl_slot
-> > pci_pwrctrl_core nvme_core phy_qcom_edp phy_qcom_eusb2_repeater
-> > dispcc_x1e80100 pinctrl_lpass_lpi phy_qcom_snps_eusb2 lpasscc_sc8280xp typec
-> > gpucc_x1e80100 phy_qcom_qmp_pcie
-> > [   38.795279] CPU: 1 UID: 0 PID: 816 Comm: bash Not tainted
-> > 6.12.0-next-20241128-00005-g6178bf6ce3c2-dirty #50
-> > [   38.805359] Hardware name: Qualcomm IDP, BIOS
-> > 6.0.240607.BOOT.MXF.2.4-00348.1-HAMOA-1.67705.7 06/ 7/2024
-> > [   38.815088] pstate: 61400005 (nZCv daif +PAN -UAO -TCO +DIT -SSBS
-> > BTYPE=--)
-> > [   38.822239] pc : regulator_unregister+0x13c/0x160
-> > [   38.827081] lr : regulator_unregister+0xc0/0x160
-> 
-> The WARN splat seems to be caused by:
-> 
-> 	WARN_ON(rdev->open_count);
-> 
-> So the regulator is unregistered although it's still in use.
-> Is there maybe a multifunction PCIe device in your system
-> so that multiple devices are using the same regulator?
-> 
+v12 is posted here,
+https://lore.kernel.org/linux-arm-kernel/20241129084714.3057080-1-lcherian@marvell.com/   
 
-Maybe the regulator is shared with other peripherals (not just PCIe) in the
-system.
+Changelog from v12:
+* Fixed wrong buffer pointer passed to coresigh_insert_barrier_packet  
+* tmc_read_prepare/unprepare_crashdata need to be called only once and
+  hence removed from read path and added to tmc_probe
+* tmc_read_prepare_crashdata renamed to tmc_prepare_crashdata and
+  avoid taking locks  as its moved to probe function.
+* Introduced read status flag, "reading" specific to reserved buffer to keep the
+  reserved buffer reading independent of the regular buffer.
+* open/release ops for reserved buffer has to take care only about the
+  set/unset the "reading" status flag as the reserved buffer is prepared
+  during the probe time itself.  
+* Few other trivial changes  
 
-@Qiang: I referred your patch [1] that added the slot regulators, but they were
-not used by any peripherals other than PCIe. Could you please post the list of
-consumers of the 3 slot regulators?
+Changelog from v11:
+Convert all commands to literal code blocks, that was missed out in v11.
+No other code changes.
 
-FYI, I did test root port remove on RB5 board (with dummy fixed regulators) and
-it worked fine.
+Changelog from v10:
+* Converted all csdev_access_* to readl functions in tmc_panic_sync_*
+* Added "tmc" prefix for register snapshots in struct tmc_crash_metadata
+* Converted dev_info to dev_dbg in panic handlers 
+* Converted dsb to dmb in panic handlers 
+* Fixed marking metadata as invalid when a user is trying to use the
+  reserved buffer. Earlier this was wrongly set at the time of reading
+  reserved trace buffer.
+* Moved common validation checks to is_tmc_crashdata_valid and minor
+  code rearrangements for efficiency
+* Got rid of sink specific prepare/unprepare invocations  
+* Got rid of full from struct tmc_resrv_buf
+* While reading crashdata, size is now calculated from metadata instead 
+  of relying on reserved buffer size populated by dtb 
+* Minor documenation fixes
 
-- Mani
+Changelog from v9:
+* Add common helper function of_tmc_get_reserved_resource_by_name
+  for better code reuse
+* Reserved buffer validity and crashdata validity has been separated to
+  avoid interdependence
+* New fields added to crash metadata: version, ffcr, ffsr, mode
+* Version checks added for metadata validation
+* Special file /dev/crash_tmc_xxx would be available only when
+  crash metadata is valid
+* Removed READ_CRASHDATA mode meant for special casing crashdata reads.
+  Instead, dedicated read function added for crashdata reads from reserved
+  buffer which is common for both ETR and ETF sinks as well.
+* Documentation added to Documentation/tracing/coresight/panic.rst
 
-[1] https://lore.kernel.org/linux-pci/20240827063631.3932971-8-quic_qianyu@quicinc.com/
+Changelog from v8:
+* Added missing exit path on error in __tmc_probe.
+* Few whitespace fixes, checkpatch fixes.
+* With perf sessions honouring stop_on_flush sysfs attribute, 
+  removed redundant variable stop_on_flush_en. 
+
+Changelog from v7:
+* Fixed breakage on perf test -vvvv  "arm coresight".
+  No issues seen with and without "resrv" buffer mode
+* Moved the crashdev registration into a separate function.
+* Removed redundant variable in tmc_etr_setup_crashdata_buf
+* Avoided a redundant memcpy in tmc_panic_sync_etf.
+* Tested kernel panic with trace session started uisng perf.   
+  Please see the title "Perf based testing" below for details.
+  For this, stop_on_flush sysfs attribute is taken into 
+  consideration while starting perf sessions as well. 
+
+Changelog from v6:
+* Added special device files for reading crashdata, so that
+  read_prevboot mode flag is removed. 
+* Added new sysfs TMC device attribute, stop_on_flush.
+  Stop on flush trigger event is disabled by default. 
+  User need to explicitly enable this from sysfs for panic stop
+  to work.
+* Address parameter for panicstop ETM configuration is   
+  chosen as kernel "panic" address by default.
+* Added missing tmc_wait_for_tmcready during panic handling
+* Few other misc code rearrangements. 
+
+Changelog from v5:
+* Fixed issues reported by CONFIG_DEBUG_ATOMIC_SLEEP
+* Fixed a memory leak while reading data from /dev/tmc_etrx in
+  READ_PREVBOOT mode
+* Tested reading trace data from crashdump kernel
+
+Changelog from v4:
+* Device tree binding
+  - Description is made more explicit on the usage of reserved memory
+    region
+  - Mismatch in memory region names in dts binding and driver fixed
+  - Removed "mem" suffix from the memory region names
+* Rename "struct tmc_register_snapshot" ->  "struct tmc_crash_metadata",
+  since it contains more than register snapshot.
+  Related variables are named accordingly.
+* Rename struct tmc_drvdata members
+   resrv_buf -> crash_tbuf
+   metadata  -> crash_mdata
+* Size field in metadata refers to RSZ register and hence indicates the
+  size in 32 bit words. ETR metadata follows this convention, the same
+  has been extended to ETF metadata as well.
+* Added crc32 for more robust metadata and tracedata validation.
+* Added/modified dev_dbg messages during metadata validation
+* Fixed a typo in patch 5 commit description
+
+Changelog from v3:
+* Converted the Coresight ETM driver change to a named configuration.
+  RFC tag has been removed with this change.
+* Fixed yaml issues reported by "make dt_binding_check"
+* Added names for reserved memory regions 0 and 1
+* Added prevalidation checks for metadata processing
+* Fixed a regression introduced in RFC v3
+  - TMC Status register was getting saved wrongly
+* Reverted memremap attribute changes from _WB to _WC to match
+  with the dma map attributes
+* Introduced reserved buffer mode specific .sync op.
+  This fixes a possible crash when reserved buffer mode was used in
+  normal trace capture, due to unwanted dma maintenance operations.
+
+
+
+
+Linu Cherian (8):
+  dt-bindings: arm: coresight-tmc: Add "memory-region" property
+  coresight: tmc-etr: Add support to use reserved trace memory
+  coresight: core: Add provision for panic callbacks
+  coresight: tmc: Enable panic sync handling
+  coresight: tmc: Add support for reading crash data
+  coresight: tmc: Stop trace capture on FlIn
+  coresight: config: Add preloaded configuration
+  Documentation: coresight: Panic support
+
+ .../bindings/arm/arm,coresight-tmc.yaml       |  26 ++
+ Documentation/trace/coresight/panic.rst       | 362 ++++++++++++++++++
+ drivers/hwtracing/coresight/Makefile          |   2 +-
+ .../coresight/coresight-cfg-preload.c         |   2 +
+ .../coresight/coresight-cfg-preload.h         |   2 +
+ .../hwtracing/coresight/coresight-cfg-pstop.c |  83 ++++
+ drivers/hwtracing/coresight/coresight-core.c  |  42 ++
+ .../hwtracing/coresight/coresight-tmc-core.c  | 308 ++++++++++++++-
+ .../hwtracing/coresight/coresight-tmc-etf.c   |  92 ++++-
+ .../hwtracing/coresight/coresight-tmc-etr.c   | 184 ++++++++-
+ drivers/hwtracing/coresight/coresight-tmc.h   | 105 +++++
+ include/linux/coresight.h                     |  12 +
+ 12 files changed, 1208 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/trace/coresight/panic.rst
+ create mode 100644 drivers/hwtracing/coresight/coresight-cfg-pstop.c
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.34.1
+
 
