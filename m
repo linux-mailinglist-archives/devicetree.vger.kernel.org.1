@@ -1,143 +1,163 @@
-Return-Path: <devicetree+bounces-131523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 768B09F39F5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 20:36:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 462099F3A35
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 20:51:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 72B8616409E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:36:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8853F162BEA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:51:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D380920897F;
-	Mon, 16 Dec 2024 19:36:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55FA520B1E4;
+	Mon, 16 Dec 2024 19:50:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="PWHDhwcC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EaJ7W90r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D72A208984
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 19:36:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BE09205AA8;
+	Mon, 16 Dec 2024 19:50:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734377792; cv=none; b=mZvZa3RnEAeJuY2HinAZ1uM8w8JstxaaDwnsIbul3+PFXGnFeDxNsScYxYTKM/BYJwDQ91QtHDmoH6TwM4NcvBEsk+5kiLpLj1KT1Jis59a8BwtFZ5uRYaOvGs3T5W80JfOOAg1aOqDDSeNb5Ci+RhiSqpYtzbAqQajHyAZmlBg=
+	t=1734378659; cv=none; b=UOkR5Yz2mSdi5GwfB5sWkux9ialkPQPdhoMPs7ZP8WAh8dyUXTJ+b23ZL8OAelvjeewFCMub6RuDuI8fqsisdr5zWtam0f5kepgts++Td1vDnXFBQkFoF8O3bwNgazJg+/9U+jq5YJ2hbcQWIM0ZSO9HuHLysEgPxNfgtWwVbmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734377792; c=relaxed/simple;
-	bh=YZLMeNgthh1VNnTReIeJy7kxf/ahYTPcT/OdYESyZqk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rmuGKQ0/Ypg4iuzrd3LCXL7vIdQrs1lkn/P4kvhH6G3nAW0yz3lRET9fVUDfNCxbT4hMY0Oy8h1T71WUgfyESacSc3z4HNmFx0x1TnzESoQKTli9MzeZ/fYqz7h9wf9kK8vFPj8n+utF1oWsfPdcRi2CIWTqYUBsnaYSqI0BPq4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=PWHDhwcC; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id B09D02C04F5;
-	Tue, 17 Dec 2024 08:36:26 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1734377786;
-	bh=oGHd2e5loy7aLsZGhGhSVFEKNjGf7W5e8Wj2P+Hklcw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PWHDhwcC9JRgpFtMicBDx1w8jJ5ZOyXKvSUG0MuGEWbFe0EfiLPjNOiQ6hjUS58Yz
-	 7ER4xNBfkBkHy5a0n43RBQ4sCsjP85ijGNHN/47EqC6xBpdi5kYOCsv/ApzI4dcJym
-	 mOPBbu8w+aK693OK8aM6cDUtQy4M5L2UUPPSM9/0tpi1JMvBd4kt8PL3yrTlFgLo8+
-	 4qBNoY+drkfTQsd/YQVJDkYp2i7ngNHdyQ2UkLAIWzJ9v2mmr7GUVw/px5KxGvWER/
-	 gJa76ddOrt0TPbjV98U3QkNB08G1jIJ0hkdT7ImLaZo3TZYh1kE8aTXKF3VZ0G4JFA
-	 ak216dxV1NaaQ==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B6760813a0000>; Tue, 17 Dec 2024 08:36:26 +1300
-Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 8F9FD13ED95;
-	Tue, 17 Dec 2024 08:36:26 +1300 (NZDT)
-Message-ID: <596c86d8-1cb3-434b-88d6-17ffe0fc9df2@alliedtelesis.co.nz>
-Date: Tue, 17 Dec 2024 08:36:26 +1300
+	s=arc-20240116; t=1734378659; c=relaxed/simple;
+	bh=DCENrOvzdQr/kVc1IkdcNpE1zRhi24sD9OPqr7cgrd0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RrKTwlFakOzYMkEcDeyW9wOepn5Ew9nsPJJ6teC+UQaxdhkGL1FgTAflysvjtyZNlodZ+NGW+Z/S859Yte6Pz967kUp7R8CVGaW9tjv1nvpoPKkuDwqdQ1ai3lPPJiBGXqPcj5KXt5yAbsh2h5C0EoOH/b/BHisSl5Cuoh3Bx1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EaJ7W90r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 193EFC4CED0;
+	Mon, 16 Dec 2024 19:50:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734378658;
+	bh=DCENrOvzdQr/kVc1IkdcNpE1zRhi24sD9OPqr7cgrd0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EaJ7W90r0NH1YcpXzq/MObcJhIwJpFskVv8yOHb4b50pzHCRZrcv2xGOXH8HMvn6o
+	 j6kqOzpUYKqIMXrWxQBCeiq7mEMCNwSm88t1vAQy0koidh9Nofph6gi6Z+1wR37j1G
+	 8XT7ByEO3m9UJZ0xu9JQLDKPHIvd91jcIup4AxSvncC/d7Q+H2S1hWLeUqdt3cElYQ
+	 9ZndKGBy1a214SUZ1ap1VEYOVQzFnvlRmFPYlAUn1GWunCDQNFoM7oxDzgp8x5AkM9
+	 64ybcID98YsAKdTNQa5Bzq5+z907uiNK1iE0CJhwLgkCh2yWoy7J3+zM4jw4QqTQvN
+	 xQpRmhBd00OQw==
+Date: Mon, 16 Dec 2024 19:50:53 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: Frieder Schrempf <frieder@fris.de>,
+	linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Robin Gong <yibin.gong@nxp.com>, Joy Zou <joy.zou@nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 03/11] dt-bindings: regulator: pca9450: Document
+ nxp,sd-vsel-fixed-low property for LDO5
+Message-ID: <20241216-reburial-turmoil-4825bbee6aa8@spud>
+References: <20241127164337.613915-1-frieder@fris.de>
+ <20241127164337.613915-4-frieder@fris.de>
+ <20241128-endanger-envy-d1b19f650b38@spud>
+ <9276fad1-0e3c-4935-a62a-1580af2e0a4b@kontron.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v2 2/4] dt-bindings: mfd: Add MDIO interface to
- rtl9301-switch
-To: Conor Dooley <conor@kernel.org>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, tsbogend@alpha.franken.de,
- hkallweit1@gmail.com, linux@armlinux.org.uk, markus.stockhausen@gmx.de,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20241216031346.2626805-1-chris.packham@alliedtelesis.co.nz>
- <20241216031346.2626805-3-chris.packham@alliedtelesis.co.nz>
- <20241216-neurosis-untagged-86622f8e2163@spud>
-Content-Language: en-US
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20241216-neurosis-untagged-86622f8e2163@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=6760813a a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=RZcAm9yDv7YA:10 a=XYAwZIGsAAAA:8 a=1OZ0I8y61a4uFxY9wqQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=GbR9vSjRXMx6H1Y7X1w4:22 a=E8ToXWR_bxluHZ7gmE-Z:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Mv3VqQIkN3EYFrXr"
+Content-Disposition: inline
+In-Reply-To: <9276fad1-0e3c-4935-a62a-1580af2e0a4b@kontron.de>
 
 
-On 17/12/2024 07:53, Conor Dooley wrote:
-> On Mon, Dec 16, 2024 at 04:13:44PM +1300, Chris Packham wrote:
->> The MDIO controller is part of the switch on the RTL9300 family of
->> devices. Add a $ref to the mfd binding for these devices.
->>
->> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->> ---
->>
->> Notes:
->>      Changes in v2:
->>      - None
->>
->>   .../bindings/mfd/realtek,rtl9301-switch.yaml      | 15 +++++++++++++++
->>   1 file changed, 15 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml b/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
->> index f053303ab1e6..eeb08e7435fa 100644
->> --- a/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
->> @@ -41,6 +41,9 @@ patternProperties:
->>     'i2c@[0-9a-f]+$':
->>       $ref: /schemas/i2c/realtek,rtl9301-i2c.yaml#
->>   
->> +  'mdio@[0-9a-f]+$':
->> +    $ref: /schemas/net/realtek,rtl9301-mdio.yaml#
->> +
->>   required:
->>     - compatible
->>     - reg
->> @@ -110,5 +113,17 @@ examples:
->>             };
->>           };
->>         };
->> +
->> +      mdio0: mdio@ca00 {
-> Label here is unused, but that alone isn't worth a respin.
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+--Mv3VqQIkN3EYFrXr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I'll be re-spinning the series for other reasons so I'll fix this up and 
-add your ack while I'm at it.
+On Tue, Dec 10, 2024 at 04:36:41PM +0100, Frieder Schrempf wrote:
+> On 28.11.24 6:33 PM, Conor Dooley wrote:
+> > On Wed, Nov 27, 2024 at 05:42:19PM +0100, Frieder Schrempf wrote:
+> >> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+> >>
+> >> This new property can be used for boards which have the SD_VSEL tied
+> >> to a fixed low level. The voltage of LDO5 is therefore only controlled
+> >> by writing to the LDO5CTRL_L register.
+> >>
+> >> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> >> ---
+> >> Changes for v2:
+> >> * new patch
+> >> ---
+> >>  .../bindings/regulator/nxp,pca9450-regulator.yaml           | 6 ++++++
+> >>  1 file changed, 6 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-r=
+egulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-reg=
+ulator.yaml
+> >> index 5d0d684186c96..0e19c54aa5f8a 100644
+> >> --- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulato=
+r.yaml
+> >> +++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulato=
+r.yaml
+> >> @@ -49,6 +49,12 @@ properties:
+> >>            Properties for single LDO5 regulator.
+> >> =20
+> >>          properties:
+> >> +          nxp,sd-vsel-fixed-low:
+> >> +            type: boolean
+> >> +            description:
+> >> +              Let the driver know that SD_VSEL is hardwired to low le=
+vel and
+> >> +              there is no GPIO to get the actual value from.
+> >=20
+> > Does this mean that if you don't provide the property or a GPIO it is t=
+ied
+> > high or High-Z? If so, please mention it here. More likely, given the
+> > context of this patch, no gpio and no tied low property means the driver
+> > should handle things as they used to be - but you should call that out
+> > in your commit message to be clear.
+>=20
+> Providing neither 'sd-vsel-gpios', nor 'nxp,sd-vsel-fixed-low' means the
+> driver has to assume that SD_VSEL is tied high and it has to use the
+> LDO5CTRL_H for voltage control.
+>=20
+> I will make this more clear in the commit message.
+>=20
+> This is the original/current behavior of the driver, though it doesn't
+> match the actual hardware as all known boards actually have the SD_VSEL
+> connected to the USDHC_VSELECT (which changes state whenever the USDHC
+> controller wants to switch IO voltage).
 
->
->> +        compatible = "realtek,rtl9301-mdio";
->> +        reg = <0xca00 0x200>;
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        ethernet-phy@0 {
->> +          reg = <0>;
->> +          realtek,smi-address = <0 1>;
->> +        };
->> +      };
->>       };
->>   
->> -- 
->> 2.47.1
->>
+That's fine, as long as it is a match for the old behaviour. Sorry for
+the delay responding, I was unexpectedly AFK last week.
+
+>=20
+> Getting rid of this mismatch is one of the main motivations for this seri=
+es.
+>=20
+> >=20
+> >> +
+> >>            sd-vsel-gpios:
+> >>              description:
+> >>                GPIO that can be used to read the current status of the=
+ SD_VSEL
+> >> --=20
+> >> 2.46.1
+> >>
+>=20
+
+--Mv3VqQIkN3EYFrXr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2CEnQAKCRB4tDGHoIJi
+0oetAP9Pu1rjpU+pdzrm+eH6iXyG806l63oOj31Uyy4uLHkwsQD2JBjIL+4gCPRG
+BRzqvKOglizkXPaKI5xuRY1P6rmvBA==
+=XLsF
+-----END PGP SIGNATURE-----
+
+--Mv3VqQIkN3EYFrXr--
 
