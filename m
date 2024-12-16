@@ -1,44 +1,48 @@
-Return-Path: <devicetree+bounces-131424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 788DE9F320B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:57:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 401529F320A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:56:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 257C91883EBE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:57:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDD021884277
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:56:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8747205AA4;
-	Mon, 16 Dec 2024 13:57:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ABF720551E;
+	Mon, 16 Dec 2024 13:56:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k9OIl/Dx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast3.qq.com (smtpbguseast3.qq.com [54.243.244.52])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C701229CA
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 13:56:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.243.244.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D995E29CA
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 13:56:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734357421; cv=none; b=Hqv8g1o8e/nBznxcrwUKsmxlu85Y+9REajnL4UlOFLZ+qnVXBDS6JXHrAuBzYpn4UoxiQEYou4H4lq9M3i/q2O7Ec8SnpVqlooIgdkbGZFCqDMAeIt13bLbJS/gNke5JO26h4D9YbaGSTlA0/xi6daXNIHL7yzc0ivpUuwT4Pgw=
+	t=1734357391; cv=none; b=YxjjG9wVL3VLNoUsVhJbQ6AwmJLCCtscDPCyLHK5v/Hf+gu+GKKc8bnNnDmkmL/x5joYoypuftYFesccnFNp3v9GfpP9Zo1FGh6w7EdTXoBhbmRz6BYxURXWZyKHtAAdB0GMkVBVpgta8CNSmdHuSAvbptM1TF8ptCtLPu2wpxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734357421; c=relaxed/simple;
-	bh=fRYPqGNOwTwnbRnA82TL4moEAfLcW1EL4AJYCmfa7R0=;
+	s=arc-20240116; t=1734357391; c=relaxed/simple;
+	bh=t1e1BlJYgx2OhuhbsRI3ItlUbnlOeeUNyw91VrpL2y0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pqJDrL9iChKtL/1Uqhoya26c1K2wyIycJQF5ba2J4mjVx+SKkEqFyKvBLeodr4gU0naiQrMXzkSLNB+qFXrr8+z/ig3PlB/qGdfAWvvAdfzTlsTDNV0015kFpoVIjqlx8lCSBlmOpOfBx73nPesBOM4f1IRxvxUNi5LmaZdE1Zs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.243.244.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip3t1734357341t2o746d
-X-QQ-Originating-IP: g3oBOueSh6CIhvzo6qz9bOcs9RHYOmIh2GsD0+FcEo4=
-Received: from [IPV6:240f:10b:7440:1:f7da:fd82 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 16 Dec 2024 21:55:35 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 6749853150628244265
-Message-ID: <CEBA09BE8EAD762E+d8c828fd-2da7-48ab-ac66-bf3d04d5dc5c@radxa.com>
-Date: Mon, 16 Dec 2024 22:55:35 +0900
+	 In-Reply-To:Content-Type; b=reI8cd854HLVa62GpLxM97Hwo6xRdr7lmOWNpleP8JsPvDrvCFiPdbBH9LmUj20b7Uf3xTcTGhLLi7lVpYHLOmBnqfAzaVGbJtBb3WMST0ExHib2G16wx2nRh5fbg/gOPqQwpXcVr3sb8LHQj8Y5r/RpmzviUfueTn36UxGVjEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k9OIl/Dx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D1CBC4CED0;
+	Mon, 16 Dec 2024 13:56:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734357391;
+	bh=t1e1BlJYgx2OhuhbsRI3ItlUbnlOeeUNyw91VrpL2y0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=k9OIl/DxG6z9QQ4WkhLA6jdnW5RZrR79WUAZ5XPiqv0HcXmnsMOtyROxr1+rk3iEX
+	 XRriHZ7Ca2ElJAUYEx2yW0wcge7sE6I6B3cLFcgGoF60PmwPnOtp21Wcts8RzoCU+P
+	 JeZZPTB8gMmJuZbZf994NsqNxa/DqZ/DDRKMGS7jr8UPt6novXrAdEYzztHOJ7T0CK
+	 cePX47A0zKvZB5vdb20omxOyc/YNAOQvMY3AVMcOBc4qhtp/xgp64Bs6Jzd6YgbEF9
+	 4+90+HTgdttnTn0Vn0XECqytj8mJGDzLGTnXwzUy4ia9CSiDD1UqmWv/JyDmf/3rgK
+	 ibJhkU8lOnHhA==
+Message-ID: <281bce4e-cec5-4ad8-940a-c9ef16202a43@kernel.org>
+Date: Mon, 16 Dec 2024 14:56:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,89 +50,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 04/12] arm64: dts: rockchip: Rename regulator for
- pcie2x1l2 for Radxa ROCK 5C
-To: Krzysztof Kozlowski <krzk@kernel.org>, heiko@sntech.de
+Subject: Re: [PATCH v5 02/12] arm64: dts: rockchip: Change node name for
+ pwm-fan for Radxa ROCK 5C
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  dsimic@manjaro.org, devicetree@vger.kernel.org,
  linux-rockchip@lists.infradead.org
 References: <20241216113052.15696-1-naoki@radxa.com>
- <20241216113052.15696-5-naoki@radxa.com>
- <f525d875-734b-4c41-95ba-be07b11f8e1c@kernel.org>
+ <20241216113052.15696-3-naoki@radxa.com>
+ <0b0efc1d-2340-4ec5-a46e-62a6cebbc2b6@kernel.org>
+ <5707EE9715A7E332+f33721f1-8b50-4262-bdaa-468ad2c79ecc@radxa.com>
 Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-Organization: Radxa Computer (Shenzhen) Co., Ltd.
-In-Reply-To: <f525d875-734b-4c41-95ba-be07b11f8e1c@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <5707EE9715A7E332+f33721f1-8b50-4262-bdaa-468ad2c79ecc@radxa.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: MX+1SEN3H+wAyRp1SkETiuDQQLEEpagL0NShkp4CDlYAVkVEOGRlZ0Ke
-	vHp8tsMr4cBM5RuuCGP0H5ZDj+Ya/aLq3ttj9SQNtbkFUWVAK2+kWcp5IREmIZOsmu9A5tB
-	CWb/HYyZjfy+jvFEz+MR8APk27B/VF5M7bfLxme7NIkYQb3vMMgxU4WKraZWfZbLZERntyE
-	oy6Bnrt5/dKLjETdfYmP6m4VRW4U3Vesr+XQ7dIS1A0ATazb99GFrq1VW4leM4v7Z5FulbJ
-	WkBwMaNeV+YLWfKN9OqjzZdwMprYb4du9DBwzs5m5y0TyVtO7NGzvOK1VFUsW6tnh06FHQM
-	csD/vCoaqHRh5UjSgLPVYcKL5duUyE7cExvNEnvlIol8p0vh5LP4wdzeQa1v4Rippwb8IKm
-	3tvNVBkDWWEvYHLNFh5e8ucQnMMm8HJAoHMxXbgjMSB7eVULhbYP/8g+edojzyVxwqvYCW1
-	gHN9hJp3AJMSyQiKfGOP9KDhQFb0hHy3ZoHapinqs8SnX21FSI0HWDLRgeQV6gz7jzim55K
-	l0V+hvrX2yIkQniwQmVFHqT1LDm1Dg+wor98hefKKAjs9nLn2VDTzeoXF08Ro5Zt+LUnlmq
-	fQk4/zgg5vMaUzVxYFGOxZQUJwzzrYzRiNsoUCMMtbCvbVeDbEsffXTX597KWbI5s6hrftX
-	AkvqjivppCPODrOuaaKdwrKocq5yiYNMMBNBAirK8Cwa0xo0L3Slsi+8F1CKfAc/6RpH0uZ
-	CJiysPtattA7f3cjioF33xszX/6yPaxv+wGsSNQDlMycTgqXdp21qLko2EjMPyBPlgEztld
-	Oiup5oLK7Mbsc5N49Uv4JP/LNufLREfr9fFHE2nCubAOJvdcNw3K9kTL/6feaXYxNks3gZi
-	yaJh9uWTLdvmVQHzOOUGRv6FPbrDYi7AQEiSMltxKhRzjurS7R/A3QMTBvEsTSvP2vRyiR7
-	siaQ=
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-X-QQ-RECHKSPAM: 0
 
-On 12/16/24 22:38, Krzysztof Kozlowski wrote:
-> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
->> Use consistent name with other regulators. No functional change.
+On 16/12/2024 14:48, FUKAUMI Naoki wrote:
+> On 12/16/24 22:37, Krzysztof Kozlowski wrote:
+>> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
+>>> Use more common name "pwm-fan" for pwm-fan node. No functinal change.
 >>
->> Fixes: 3ddf5cdb77e6 ("arm64: dts: rockchip: add Radxa ROCK 5C")
->> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->> ---
->> Changes in v5:
->> - Reword commit message
->> Changes in v4:
->> - reword commit message
->> Changes in v3:
->> - none
->> Changes in v2:
->> - new
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts | 6 +++---
->>   1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->> index 85589d1a6d3b..61d75ab503b2 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->> @@ -76,13 +76,13 @@ pwm-fan {
->>   		pwms = <&pwm3 0 60000 0>;
->>   	};
->>   
->> -	pcie2x1l2_3v3: regulator-pcie2x1l2-3v3 {
->> +	vcc3v3_pcie2x1l2: regulator-vcc3v3_pcie2x1l2 {
+>> No, generic name is fan.
 > 
-> No, neither explained, nor correct. See DTS coding style.
+>   https://lore.kernel.org/all/71aa84af7a030e66487076e0976c8cad@manjaro.org/
 > 
-> Please use name for all fixed regulators which matches current format
-> recommendation: 'regulator-[0-9]v[0-9]'
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml?h=v6.11-rc1#n46
+And? That's incorrect advice.  There is no such device as "pwm-fan".
+There is a "fan" and whether it is pwm or gpio it does not matter.
 
-Thanks for pointing.
-(Please blame other dts too)
+See DT spec and generic names recommendation.
 
 Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> Best regards,
-> Krzysztof
-> 
-
+Krzysztof
 
