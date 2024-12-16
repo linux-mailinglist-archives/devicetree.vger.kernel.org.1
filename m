@@ -1,110 +1,183 @@
-Return-Path: <devicetree+bounces-131486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EEA39F369E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:52:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 390079F36A8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:54:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4708188381F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:52:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 923157A714A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F72020A5E3;
-	Mon, 16 Dec 2024 16:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBBFA20B218;
+	Mon, 16 Dec 2024 16:48:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TbD9eVXJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7448220A5D9;
-	Mon, 16 Dec 2024 16:45:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9971A2063D7;
+	Mon, 16 Dec 2024 16:48:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734367548; cv=none; b=RUvcSaayfdeQ7WbbtHBe5hj30TRSiJgO8r8FAhhRmw/V5ACgUAf720h+lRS/NVocPmdsqklH2QisyPr4Mm/6wScN1B3a+Wtro/9NF1Nii4umMFkbbiSS3qPmjEUuBQ2d6NqrQqegPeqr04um7k/oOAURH9tgdFf/jMhraDRqbCs=
+	t=1734367701; cv=none; b=oUFDPXfMecEt1P28KHYMn34YtsnUpwuomF1s7TV0CUY5tlT/pO+wY+pr57yQygtUujdF8MYjY/mjpT2qfDUaCAOX2ksXn1rJD875U2OPJza1WBLQaQLW7BxD4OqA00QK1mRaLT7WlpvQdxTXOfcTI2fYc+vifyKB7UrYBgYKe20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734367548; c=relaxed/simple;
-	bh=wupn5RghvaCMM1AQJDqyyyEqxp6FlOV5WF2P12Ec3kU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mLACd55lbMfSL1fcrV85MrFXQgMAZVu3950M7D1il/3hv6TzAj/7JfeIgQ6yXpLcsAJ5B9TJP6Ea2JOI0FgJVAYhEYHQOd+STiWlbz0exgGPqPZ80c1FO+BW8QHcB2Hura5tLV1VBdumR2VVLWMg9Gxc0k+ghx/cDclHnYCDeWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4b11a11a4f0so1184556137.3;
-        Mon, 16 Dec 2024 08:45:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734367545; x=1734972345;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R8cR1uQKQYcj8k4ZAOfO1iFYHNTOWb9GeDkVHxNKWSI=;
-        b=vMpm37GVeiu+cumh3La+MfjxMhZ9UB8WE0JPyF3DxmbubmfkxuvrX6E04INC5NBRBo
-         o+ug8ATgUIde4bQoiFxjEQTwYIOmrL9Er8b3BqUIcUnngXxoz1vd7W2eeQnmCM+w+Y/+
-         /Zao/0HhuRiEcD7IHTcMIH146AHRJHNTOQ9fN5p40rGhstDK/mapP7406WpcDBqNQ7En
-         +CHCLI+gx78dNaGz6wG8G6Fzmxa1f8NI9bY0Y31TwAmgPC7nQ08qN56QWG/EeAHaxv+f
-         rmunFY9+N4OhFiY20YnX+4pQPGp6BvmGngHDnkia0PTegghbKXMu00N7WzKkN7mBMG5U
-         87Rg==
-X-Forwarded-Encrypted: i=1; AJvYcCVS22+vF1ns8nNmicaZ3oJ6BCUVfSSNNMN+ws3JHJZ9WsAx7LEIS5qoZ4U3sapLu07DbDz4we003jECOs3Bl6TO0Tg=@vger.kernel.org, AJvYcCXL2sTR/SpxcrdMF95kWGXBJFEmu3YmiFL7tqq29EAhWJylQ+nd7fj7XuT0L907ZhXjYbmGHvtCCJ3l@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx97kIJ5Ap6+QRVjAp4thx0SQ+4F6sq+9DpWMxMuAn6doFag3/R
-	MCNvuhpT6Tsgg8ewof7mjbpG2HI/hE+QX1jpujYWVOxPatOyZPmfLELTtFMW
-X-Gm-Gg: ASbGncs038+1O1EUiB9Wwh84u8K6H4yS6YUyfhZ93MjuB1PSo8r2uxrLdpwFmLegNRF
-	0n87+bKx0jp9tedLQWr4ML4FK+Ai7B7jwje5HJEMe5Go5k0HjpzET2Y5GQXAd2cPPM8QHhe6Hoj
-	5T9LOyk0JYdhIxyuDNMHNY+mKu6peM0vexKU/oLSem7Nxdg+AAIoS8V8Fw5tHfDT/lCxYhiOaZT
-	rRx5bEdphuFmGetQa5vzFPeS2dFcUhD1a/nP5kEhufoUZwyFwEfS3sZmVPdL7tyvnjW6Kit+ns9
-	KQvrv3JxlHqcs2JEwlM=
-X-Google-Smtp-Source: AGHT+IHgiPLzlydlXPzSecMzxW/uvwFHJfn+L0gRXk3KvQQdv4L9DfgLYvP4Rb2U4LgToszB2mes5g==
-X-Received: by 2002:a05:6102:4190:b0:4b1:ed1:56ac with SMTP id ada2fe7eead31-4b25d9a6ce3mr12856063137.12.1734367543665;
-        Mon, 16 Dec 2024 08:45:43 -0800 (PST)
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4b270233610sm850792137.10.2024.12.16.08.45.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Dec 2024 08:45:43 -0800 (PST)
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4afd56903b7so1070922137.1;
-        Mon, 16 Dec 2024 08:45:43 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU+dEySsH39ZUzWxbEGxk1GSjb8Xe/efqX25wf6KaITQuZv5WnizF//SYXZoo+XEHD86H0/u7u5rrww@vger.kernel.org, AJvYcCWfwldSyEjx0u+5Z1FOSD1YM5fRENwoq+8HHuAHj2oxPvx/46ffzE6G7a0IZEMFUKA4f2PI4nvI+bSvs2eln63xle8=@vger.kernel.org
-X-Received: by 2002:a05:6102:2b99:b0:4b0:ccec:c9de with SMTP id
- ada2fe7eead31-4b25db5fa81mr14302689137.24.1734367543057; Mon, 16 Dec 2024
- 08:45:43 -0800 (PST)
+	s=arc-20240116; t=1734367701; c=relaxed/simple;
+	bh=OdhncL6PuYJrF3V6NaNai3NQcwLE2g+qf2jb4TEKVqk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A8MbnuIKL0a9oI1P3s6eOTXjGyZXvbuazY9J9Y97NcP6o1j8B81eBmuIq1SvtjmafvwAlNUlYAg4iTUr0MVSGczroQ/rhatHnTabmSSbOiXWDkchb0lpGuUYiY2IFE3+9pYjn3ezaRbC4Mt5+GFO9eN3A2vSrB2DFbqRlAfutog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TbD9eVXJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2128CC4CED0;
+	Mon, 16 Dec 2024 16:48:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734367701;
+	bh=OdhncL6PuYJrF3V6NaNai3NQcwLE2g+qf2jb4TEKVqk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TbD9eVXJ+w4Oxe0Ltt/14FzDaq8ZAVhhTUd2qjD8ThpkRerC1T9s98lIbExFySZs2
+	 /jKqQxhz4U2vV3fDiyMq/cpNC0GtXOeu9zXac009QRFlsBz3PQuE9z+FhfXRZv0x9o
+	 3BCYRS3vzF3piaUGqN91oyO8CEtbk5GUvba/uXcC+9W3EDctMUSOWwZHdaefOPeFul
+	 YdYBddBzWrndG7bS+popwCO3s+c0GfmK3fQLGzc97phjNRWuIfSLqMlEQonn7zqWBs
+	 c3hDpz2iSxrXdbhUKVtgUfs60T1wSAAatKOlGJyf47jIv4eZgW8Pj1djMp5dYSB5Fb
+	 xekx59oR7azdw==
+Date: Mon, 16 Dec 2024 16:48:14 +0000
+From: Simon Horman <horms@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	tsbogend@alpha.franken.de, hkallweit1@gmail.com,
+	linux@armlinux.org.uk, markus.stockhausen@gmx.de,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] net: mdio: Add RTL9300 MDIO driver
+Message-ID: <20241216164814.GH780307@kernel.org>
+References: <20241216031346.2626805-1-chris.packham@alliedtelesis.co.nz>
+ <20241216031346.2626805-5-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241216120029.143944-1-biju.das.jz@bp.renesas.com> <20241216120029.143944-4-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20241216120029.143944-4-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 16 Dec 2024 17:45:30 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX_qSA7d4MuZNn8ku4i8qVzRWG2zLzqr4ESw98m6NUd+A@mail.gmail.com>
-Message-ID: <CAMuHMdX_qSA7d4MuZNn8ku4i8qVzRWG2zLzqr4ESw98m6NUd+A@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: r9a09g047: Add I2C nodes
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241216031346.2626805-5-chris.packham@alliedtelesis.co.nz>
 
-On Mon, Dec 16, 2024 at 1:00=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Add I2C{0..8} nodes to RZ/G3E (R9A09G047) SoC DTSI.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Mon, Dec 16, 2024 at 04:13:46PM +1300, Chris Packham wrote:
+> Add a driver for the MDIO controller on the RTL9300 family of Ethernet
+> switches with integrated SoC. There are 4 physical SMI interfaces on the
+> RTL9300 but access is done using the switch ports so a single MDIO bus
+> is presented to the rest of the system.
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.14.
+...
 
-Gr{oetje,eeting}s,
+> diff --git a/drivers/net/mdio/mdio-realtek-rtl.c b/drivers/net/mdio/mdio-realtek-rtl.c
 
-                        Geert
+...
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+> +#define MAX_SMI_BUSSES  4
+> +#define MAX_SMI_ADDR	0x1f
+> +
+> +struct realtek_mdio_priv {
+> +	struct regmap *regmap;
+> +	u8 smi_bus[MAX_PORTS];
+> +	u8 smi_addr[MAX_PORTS];
+> +	bool smi_bus_isc45[MAX_SMI_BUSSES];
+> +	u32 reg_base;
+> +};
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+...
+
+> +static int realtek_mdiobus_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct realtek_mdio_priv *priv;
+> +	struct fwnode_handle *child;
+> +	struct mii_bus *bus;
+> +	int err;
+> +
+> +	bus = devm_mdiobus_alloc_size(dev, sizeof(*priv));
+> +	if (!bus)
+> +		return -ENOMEM;
+> +
+> +	bus->name = "Reaktek Switch MDIO Bus";
+> +	bus->read = realtek_mdio_read_c22;
+> +	bus->write = realtek_mdio_write_c22;
+> +	bus->read_c45 = realtek_mdio_read_c45;
+> +	bus->write_c45 =  realtek_mdio_write_c45;
+> +	bus->parent = dev;
+> +	priv = bus->priv;
+> +
+> +	priv->regmap = syscon_node_to_regmap(dev->parent->of_node);
+> +	if (IS_ERR(priv->regmap))
+> +		return PTR_ERR(priv->regmap);
+> +
+> +	err = device_property_read_u32(dev, "reg", &priv->reg_base);
+> +	if (err)
+> +		return err;
+> +
+> +	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
+> +
+> +	device_for_each_child_node(dev, child) {
+> +		u32 pn, smi_addr[2];
+> +
+> +		err = fwnode_property_read_u32(child, "reg", &pn);
+> +		if (err)
+> +			return err;
+> +
+> +		if (pn >= MAX_PORTS)
+> +			return dev_err_probe(dev, -EINVAL, "illegal port number %d\n", pn);
+> +
+> +		err = fwnode_property_read_u32_array(child, "realtek,smi-address", smi_addr, 2);
+> +		if (err) {
+> +			smi_addr[0] = 0;
+> +			smi_addr[1] = pn;
+> +		}
+> +
+> +		if (smi_addr[0] > MAX_SMI_BUSSES)
+
+Hi Chris,
+
+Should this condition be
+
+		if (smi_addr[0] >= MAX_SMI_BUSSES)
+
+
+> +			return dev_err_probe(dev, -EINVAL, "illegal smi bus number %d\n",
+> +					     smi_addr[0]);
+> +
+> +		if (smi_addr[1] > MAX_SMI_ADDR)
+> +			return dev_err_probe(dev, -EINVAL, "illegal smi addr %d\n", smi_addr[1]);
+> +
+> +		if (fwnode_device_is_compatible(child, "ethernet-phy-ieee802.3-c45"))
+> +			priv->smi_bus_isc45[smi_addr[0]] = true;
+
+Otherwise it seems that smi_bus_isc45 may overflow here.
+
+Flagged by Smatch.
+
+> +
+> +		priv->smi_bus[pn] = smi_addr[0];
+> +		priv->smi_addr[pn] = smi_addr[1];
+> +	}
+> +
+> +	err = realtek_mdiobus_init(priv);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "failed to initialise MDIO bus controller\n");
+> +
+> +	err = devm_of_mdiobus_register(dev, bus, dev->of_node);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "cannot register MDIO bus\n");
+> +
+> +	return 0;
+> +}
+
+...
+
+-- 
+pw-bot: changes-requested
 
