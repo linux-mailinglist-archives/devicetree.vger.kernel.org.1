@@ -1,160 +1,177 @@
-Return-Path: <devicetree+bounces-131562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5747A9F3D79
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 23:29:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B779F3D81
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 23:30:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8212616939B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 22:29:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 776021884D0E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 22:30:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 468601D63EE;
-	Mon, 16 Dec 2024 22:29:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94A71D5AA0;
+	Mon, 16 Dec 2024 22:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="P1U0+WWf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RpOTDJ+D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B8B1D63D0;
-	Mon, 16 Dec 2024 22:28:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44FB15D8F0;
+	Mon, 16 Dec 2024 22:30:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734388141; cv=none; b=lVzvI00lOjQdbrJdPlNg1Q+xL2vC1zqeDBzid5uwM4fLF5HtM8xUktzt2cH9H1yYC0jUy8iAeeiOtNXqd1r3pOrhcyUuTBaWrFrgQxlm6W6kpTe0ZEfqcDLP/vIrgkkTzw3tmxLX3nLUVj6no6pSjqNadLXYb3FbArNLw5u3amg=
+	t=1734388236; cv=none; b=ln6sGlp5JJDURhkuLj3jSZmwKFg9qATyIsMNJMsLTU7vKzVp0nPn/CLXZY+sWkh/z1AYThetyCnMvf9ioflTeJqle/aPiL0BxcgsWjoE02vWvDEwPclbtM5YHb0Tx4TlsJLvbelHT+Ggb2m3SRyYDW4tiDYlfAkC+rgx26XqL+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734388141; c=relaxed/simple;
-	bh=eoGW4rYwbaZ/2M4LrMHKJQyWKn4iJ3is+QY0McqNHsk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=SI3Ul/dWsJCGmDuVi0CXr1F1cAFUmmCj8u+HeHehcTBNAfy/0MrkzpBS1ovWAJn08Zny+hGnlksPKC0GSTc/cnHCUK3G+DGBX+NlWT9vvj5QUNMNpwVNjaBzgfdvr3ZoiJ/XcU9sNzM6sZtIv9mU2PBF78IrRYbT4/GX22K6wlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=P1U0+WWf; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGKksXh020555;
-	Mon, 16 Dec 2024 22:28:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=jcj1Ps
-	OJ7ipuwbemWQTh7kw6w3cBtHTDi0TGzxH0yUQ=; b=P1U0+WWfiZWiZWG3tFCOmf
-	OGbLABgMlNl5MRg23nL+4vRrM8e0isnb3xYXjMv/zCcvgsH2819umwEYZSn0w2HS
-	v98q/rb02Zx+fgasjG166/kP7LZLBAin1sucQO06HI/imbHKTR1evSx4APEw3ytI
-	2VL1KlXCjvq9nB9kv2+B/uXBjfjiUegWNuHvZN8fZQ7hV+lzHYXUkYE57bDBZtF6
-	IFSG2Fyas1DpM5R0GERX0jyw1KpkRyPgG9yw0OQKXc6Af6rVvQeAGob1xB4qOOTc
-	ujQ5dGUP2/ok/obrczlYm+OJhQE6ZlycU8GjmccgRS7hxQR0CdxqwpDHXXLi1jag
-	==
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 43j8xanf4e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Dec 2024 22:28:23 +0000 (GMT)
-Received: from m0356516.ppops.net (m0356516.ppops.net [127.0.0.1])
-	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 4BGMPNMO017656;
-	Mon, 16 Dec 2024 22:28:22 GMT
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 43j8xanf4b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Dec 2024 22:28:22 +0000 (GMT)
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGI6B6R024022;
-	Mon, 16 Dec 2024 22:28:22 GMT
-Received: from smtprelay01.wdc07v.mail.ibm.com ([172.16.1.68])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 43hnuk7xdr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Dec 2024 22:28:22 +0000
-Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com [10.241.53.101])
-	by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 4BGMSLMl44368558
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 16 Dec 2024 22:28:21 GMT
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 516D85805E;
-	Mon, 16 Dec 2024 22:28:21 +0000 (GMT)
-Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 099265805A;
-	Mon, 16 Dec 2024 22:28:19 +0000 (GMT)
-Received: from [9.61.165.36] (unknown [9.61.165.36])
-	by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Mon, 16 Dec 2024 22:28:18 +0000 (GMT)
-Message-ID: <ff077ea7-80dd-4cdf-8c08-f2eb7104f213@linux.ibm.com>
-Date: Mon, 16 Dec 2024 16:28:18 -0600
+	s=arc-20240116; t=1734388236; c=relaxed/simple;
+	bh=4bO1EjdSvXJ62M8ayQUFJJHF+pCdEsE6nbS2VHUOgYA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NhNBMix5HuPQT244pDrMke6DWI6FvTjENJtCxwk2YJ2qh20CiMQh6LSFiL+HyfMBOmTAmOlDawflEHHemb9jggZedSW69EXvZg7wuGkx9g6W+QLgFiUp8QaDdO2247wfEStju8vVX4Dt+encon3Bx1OC9deXg8JOKa2I7H8A7l8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RpOTDJ+D; arc=none smtp.client-ip=209.85.166.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-844cd85f5ebso386748739f.3;
+        Mon, 16 Dec 2024 14:30:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734388234; x=1734993034; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vu/gd+Psmkd9LrXVKDf+sMo8Wju/Lil3/T06jKFEacA=;
+        b=RpOTDJ+D/WRPJu7ijO42fb02uNlTKiOKdfJtYOd18KjymYg4k7zCB/aQ5rCESzq/Up
+         4wUuXj65HSQNdu6ImVXI4J/xLd2yvUqtZ/JDaRuMnNxoaS04UTaXZZSDaI7BIt/3ywWS
+         1XCn63ZpbXr1bydgWZLO6a3RG4wXhhAVsN0RFRx2+AlqjOsleRIi6JuFtuwXbEfPDeBr
+         o7GIsRxGrCxCLqwdNQnepcSYxhtpPntq0urAh/lt2s0TN32YC2PrbtsEbYJDMZd5fSkB
+         9e4d2jJtGmk7JfdnELtX7pDcol1UIf6QLc03CPiUvKs+Q6fIXDceMBybLsxdEqUkFWMO
+         ocRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734388234; x=1734993034;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Vu/gd+Psmkd9LrXVKDf+sMo8Wju/Lil3/T06jKFEacA=;
+        b=FcdQ0n6/5BZnYDX8MgIGS5T70RhsKhbUR1oeJBLg5tgHJ+dElNDJ9k+GEMfC31fZNR
+         y66HPKsUYA9jkYUbzK14IigepKzmd60IlCpJeW4pkFmEsyx9t1tdk3mmT7NCupHQsbP2
+         Ofs3CPxM2SO4QwjDT1Jol4PVl+UHIdECPaSI7LKjKPwt28bx1pU0GegUuDxGBBGpyOiN
+         VX88Avx7lQWltqzRbqqRV+WWimzQ7JX8bPwSEdUUmjYm700fSYCqW6yTyWXGxN0y/BRS
+         wPdpqPBWx8M1IHAzW6mS9vIoc2CQiF+ucfkib83cHTKpNnKHghS7qD8o6uLpvKHCbH5i
+         d5Rg==
+X-Forwarded-Encrypted: i=1; AJvYcCUAcGPEKCFMfG6LV+oOF73w3LZ+3AIGKiZf3E5Qzo4WAP3WTeyo++LCaRI2vhRLhoBVoFEbp84pkM9L0Ss89g==@vger.kernel.org, AJvYcCVmTsn4cbrkreIzGJjNHGuTQ1qytPbfTp8UVnQ+w3l58Hgyp/RQ7o+MJCzUmw5Ox5d0YHbuNyJDq7r4@vger.kernel.org, AJvYcCWFBVx/KdNh3JyAZM+hnyqR8Gf2C0G4RmG8M85qZjMdxgSO9PwUrMnNmuqWyDE5W3aFXnQLm+buDaWpmvo=@vger.kernel.org, AJvYcCXK1mQIthkT3xD+eAh6nNT1HF/WcIpMaAjR9ZVEGeyYUgbey97m8iaA4hfqIHaBb9DQMmBVZN4S9nSJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyfx8REioceALkqWvvA2XbRWwe3cB4MjSFGJGFPqx1JdV5cYqVz
+	zS/JHNBehokDX3Mj9FOECSp7vEvZ5/oKRH3BDAlLXP4iFPA3XNk4
+X-Gm-Gg: ASbGncsnC3x34aghyxcV8usYR+79rG7zFSDqyp1pC72WkfJiiCe7DqSM/FQHVSMsXt4
+	OZWeOjmcO8LmDc4s0B7x7tcObxwAtKfl74pPFIGVB8whiadNb6US+BM2KVeTQliiwCw0PEBa+lm
+	1AjDr62icvOsN3imSrBQscaFEKdOHDnM37R9lti5JnEWKRcSmebDbwqq5Fxc+1oIswi22CHgjTc
+	cOZ9x6OvZQKrk/WYE8b0d3yKoV1I04SG1vFeSRjZGda
+X-Google-Smtp-Source: AGHT+IGnLLpyZCuEg0pqJ311+yDQplg1f+LNm4Cj153Us2EyDvB5emkRG3xn/iF0kl9t7QhMyMUsSg==
+X-Received: by 2002:a05:6e02:1a83:b0:3a7:7ec0:a3dc with SMTP id e9e14a558f8ab-3bad384bea9mr14518105ab.14.1734388234328;
+        Mon, 16 Dec 2024 14:30:34 -0800 (PST)
+Received: from localhost ([2607:fea8:52a3:d200::d916])
+        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3b248228cb3sm17990695ab.22.2024.12.16.14.30.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Dec 2024 14:30:32 -0800 (PST)
+From: Richard Acayan <mailingradian@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Todor Tomov <todor.too@gmail.com>,
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org
+Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Richard Acayan <mailingradian@gmail.com>
+Subject: [PATCH v8 0/5] Add SDM670 camera subsystem
+Date: Mon, 16 Dec 2024 17:30:21 -0500
+Message-ID: <20241216223019.70155-8-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/4] dt-bindings: hwmon: intel,crps185: Add to trivial
-To: Guenter Roeck <linux@roeck-us.net>, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, eajames@linux.ibm.com, jdelvare@suse.com,
-        corbet@lwn.net, joel@jms.id.au, andrew@codeconstruct.com.au,
-        Delphine_CC_Chiu@Wiwynn.com, broonie@kernel.org,
-        peteryin.openbmc@gmail.com, noahwang.wang@outlook.com,
-        naresh.solanki@9elements.com, lukas@wunner.de, jbrunet@baylibre.com,
-        patrick.rudolph@9elements.com, gregkh@linuxfoundation.org,
-        peterz@infradead.org, pbiel7@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-i2c@vger.kernel.org
-References: <20241216175044.4144442-1-ninad@linux.ibm.com>
- <20241216175044.4144442-4-ninad@linux.ibm.com>
- <a010366e-b911-43bd-8445-e893e11fa51a@roeck-us.net>
-Content-Language: en-US
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <a010366e-b911-43bd-8445-e893e11fa51a@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: Q_maQMCl2FphVcf93vPs1YdNBNN9Qq6s
-X-Proofpoint-ORIG-GUID: oelKxqLF5j-DBXP5kL4ownZBFq4ejKiN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
- definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
- priorityscore=1501 mlxlogscore=999 adultscore=0 malwarescore=0 spamscore=0
- lowpriorityscore=0 clxscore=1015 impostorscore=0 bulkscore=0
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412160181
 
-Hi Guenter,
+This adds support for the camera subsystem on the Snapdragon 670.
 
-Thanks for the review.
+Changes since v7 (20241210233534.614520-7-mailingradian@gmail.com):
+- move regulators to CSIPHY blocks (3/5)
+- move clocks before interrupts (2/5, 5/5)
+- sort clocks alphanumerically (2/5, 5/5)
+- rename example node to generic node name (2/5)
 
-On 12/16/24 12:47, Guenter Roeck wrote:
-> On 12/16/24 09:50, Ninad Palsule wrote:
->> Add INTEL Common Redundant Power Supply Versions crps185 bindings as
->> trivial. It is trivial because only compatibility string is required in
->> the device tree to load this driver.
->>
->> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
->
-> Krzysztof had Acked this patch. I don't immediately see why you 
-> dropped it.
-> Am I missing something ?
->
-> Guenter
->
-I think that was my mistake. Adding it in version 3.
+Changes since v6 (20241011023724.614584-7-mailingradian@gmail.com):
+- set unit address in node name to first address in regs (2/5, 5/5)
 
+Changes since v5 (20241001023520.547271-9-mailingradian@gmail.com):
+- sort reg and reg-names alphabetically (2/5, 5/5)
+- drop CCI I2C patches since they are applied (formerly 2/7, 3/7)
 
->> ---
->>   Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml 
->> b/Documentation/devicetree/bindings/trivial-devices.yaml
->> index 73a49d50c4ef..7d07b08b1459 100644
->> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
->> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->> @@ -151,6 +151,8 @@ properties:
->>             - injoinic,ip5306
->>               # Inspur Power System power supply unit version 1
->>             - inspur,ipsps1
->> +            # Intel common redudant power supply crps185
->> +          - intel,crps185
->>               # Intersil ISL29028 Ambient Light and Proximity Sensor
->>             - isil,isl29028
->>               # Intersil ISL29030 Ambient Light and Proximity Sensor
->
->
+Changes since v4 (20240904020448.52035-9-mailingradian@gmail.com):
+- change camss interrupts to rising edge in dts (7/7)
+- change IRQs to rising edge in camss dt-bindings example (4/7)
+- move gcc and ahb clocks in camss dt-bindings example (4/7)
+- add reviewed-by for camcc dt-bindings patch (1/7)
+
+Changes since v3 (20240819221051.31489-7-mailingradian@gmail.com):
+- add specific sdm670 compatible for camcc to dt schema and dts (1/7, 6/7)
+- pick up patch from Bryan for CCI driver (3/7)
+- stop assigning CCI frequency in dts (7/7)
+- add maxItems for sdm670 cci clocks (2/7)
+- remove empty line at top of camss dt schema (4/7)
+- move regs and reg-names up in camss dt schema (4/7)
+- move gcc and ahb clocks up in dts and dt schema (4/7, 7/7)
+- add reviewed-by from Vladimir for CCI dt-bindings patch (2/7)
+- add reviewed-by from Bryan for dts patch (7/7)
+- add reviewed-by from Krzysztof for camss dt-bindings patch (4/7)
+- add rewiew tags for camss driver patch (5/7)
+
+Changes since v2 (20240813230037.84004-8-mailingradian@gmail.com):
+- drop unnecessary assigned AXI clock frequency (5/5)
+- drop src clocks from cci (5/5)
+- add unit name, remove mmio properties from port in example dts (2/5)
+- correct the reg-names order (2/5)
+- add parent_dev_ops to csid (3/5)
+- remove CSID clocks from VFE (3/5)
+- remove AXI clock from CSIPHY (3/5)
+- change subsystem part of the commit message summary (3/5)
+- add reviewed-by (4/5)
+
+Changes since v1 (20240806224219.71623-7-mailingradian@gmail.com):
+- define dedicated resource structs/arrays for sdm670 (3/5)
+- separate camcc device tree node into its own patch (4/5)
+- specify correct dual license (2/5)
+- add include directives in dt-bindings camss example (2/5)
+- remove src clocks from dt-bindings (2/5)
+- remove src clocks from dtsi (5/5)
+- add power-domain-names to camss (5/5)
+- specify power domain names (3/5)
+- restrict cci-i2c clocks (1/5)
+- populate a commit message with hw info (2/5)
+- reword commit message (3/5)
+
+Richard Acayan (5):
+  dt-bindings: clock: qcom,sdm845-camcc: add sdm670 compatible
+  dt-bindings: media: camss: Add qcom,sdm670-camss
+  media: qcom: camss: add support for SDM670 camss
+  arm64: dts: qcom: sdm670: add camcc
+  arm64: dts: qcom: sdm670: add camss and cci
+
+ .../bindings/clock/qcom,sdm845-camcc.yaml     |   6 +-
+ .../bindings/media/qcom,sdm670-camss.yaml     | 318 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          | 195 +++++++++++
+ drivers/media/platform/qcom/camss/camss.c     | 191 +++++++++++
+ 4 files changed, 709 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
+
+-- 
+2.47.1
+
 
