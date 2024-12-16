@@ -1,127 +1,142 @@
-Return-Path: <devicetree+bounces-131434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC1A9F335C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 15:39:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67EE09F3389
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 15:49:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A3691884A7E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:39:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 195BC7A1A43
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:49:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D830205ABB;
-	Mon, 16 Dec 2024 14:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29F975B216;
+	Mon, 16 Dec 2024 14:49:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="tvFhrWLE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 899F817557
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 14:39:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 699A83CF73;
+	Mon, 16 Dec 2024 14:49:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734359976; cv=none; b=UoprQ9qo8ku/UnjgtEkA0UZgSCDidi0qE5OpUiGos9VyIO+YMMqVHbbGqMgV6dc7wFtX65mOUWhJlLQCJXIzukY6zfR2CWLGv0NImcxjZrDxIPnhi8kHX6MUfnvxaP0xlQbftRfJZpHXPJ7y3+/Ho2WHS8Nz4Gw7Eq9C3vkDM5c=
+	t=1734360555; cv=none; b=FMr8zwDLtKD4ytabh8dnh9UxpRPext9B3n/77qN5uyg9E3pG4+ZQD16/DtZg26jEGeygY1HEKVPRHmoQ6joyWG0HGJ0OXX0eq606Hf++XWFVhSk/k0LLgFjS/0ViFFGTEX+ZGTwwKDUZziWUSXdTG4Hm9p+8hbbY+dLazn92BzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734359976; c=relaxed/simple;
-	bh=DbXK/ILQlrVUPzQEw6zqTpvbJw/sg5bRGxagN5yngSU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NARX2tg1zWCSuWcNmTzN6EfweqbgxhWemWAMyhuwGKpAHI7XMqndD7UyIMwqQeLAQUQnNUQBO+fAbVVggwAgb00t5LvBsmnPhwFFyE8WXJXYBngHgjhaDqDBYu2gKyh0kIRuX45GKbggfU7W68gh3gN5UFXsmxAuBTf4KYUJCBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.254.200.128
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip3t1734359898tkzofy1
-X-QQ-Originating-IP: BzQh8AwljBxeAZzdp8E+hSshgItJvrBw9+dK6a04pUo=
-Received: from [IPV6:240f:10b:7440:1:f7da:fd82 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 16 Dec 2024 22:38:14 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 2013801449498387670
-Message-ID: <E3B9E510C4F8D95A+7a184f12-902b-47ea-894c-4552e189d19b@radxa.com>
-Date: Mon, 16 Dec 2024 23:38:13 +0900
+	s=arc-20240116; t=1734360555; c=relaxed/simple;
+	bh=M6x/dmJyujjiAqmDTB/v+Z+hKkmew9jaemnUaNujI6I=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pJyqMkXsGNsG22aNWTy+nX9CXYRrZXdC7iO4C8AFBy0pFB0d2p72B+PGrCkzw4Cjb8OFFKZqmPobh2Hi9kOfXSy8n6MX0FKiiQ+r55/ZjHUn0d7SEdbDFFFJ4/uv/Wqbfgm+wd+r39aMT8orsNkVLemrT6sxlizb4hascE0fQho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=tvFhrWLE; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BG9pqDu018599;
+	Mon, 16 Dec 2024 09:48:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=EM7eE0k/xTE5NWvn4wZRjyPhWac
+	wWivbf9LPtEUdvIk=; b=tvFhrWLEYLqdyn64yqRmcy4BUY7laA4P+Ng/lQZBag+
+	RIX1STF5zcaX0fZgcssVqZvnEQe89wqqNZEcyQfw4U8xzAlnZ3Vc/gKAGHpKDDBI
+	VHhhfXPjvi6u8jExjN3+l66iylnVc34pw/xayr4QDgVkLxPLiBn4zGxfAbD6rUud
+	zIYtcsA1BWBhvJn1/DV30iM2tyDq+78A0SDzMjzpZdcnr8k8yfhCgW6Y4J7VEO+g
+	+0OxjDnWKr66Kjrsgp32Pm1H0ZihL+FV3bk0F2wgLAzcioVSQr6YJVzrg/FlolwT
+	m/X0YsV2ewD1dc76hJH90KvRNqfa+Dh8ucZSuRJdJYA==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 43jhxvh1cj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 09:48:44 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 4BGEmha5035919
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 16 Dec 2024 09:48:43 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 16 Dec 2024 09:48:43 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 16 Dec 2024 09:48:43 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 16 Dec 2024 09:48:43 -0500
+Received: from dell-precision-robert.ad.analog.com ([10.48.65.204])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4BGEmKdh018405;
+	Mon, 16 Dec 2024 09:48:22 -0500
+From: Robert Budai <robert.budai@analog.com>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Nuno Sa <nuno.sa@analog.com>,
+        "Ramona
+ Gradinariu" <ramona.gradinariu@analog.com>,
+        Antoniu Miclaus
+	<antoniu.miclaus@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>, "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Alex Lanzano
+	<lanzano.alex@gmail.com>,
+        Shen Jianping <Jianping.Shen@de.bosch.com>,
+        "Robert
+ Budai" <robert.budai@analog.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+CC: <robi_budai@yahoo.com>
+Subject: [PATCH v3 0/7] Add support for ADIS16550 and ADIS16550W
+Date: Mon, 16 Dec 2024 16:48:06 +0200
+Message-ID: <20241216144818.25344-1-robert.budai@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 02/12] arm64: dts: rockchip: Change node name for
- pwm-fan for Radxa ROCK 5C
-To: Krzysztof Kozlowski <krzk@kernel.org>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dsimic@manjaro.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20241216113052.15696-1-naoki@radxa.com>
- <20241216113052.15696-3-naoki@radxa.com>
- <0b0efc1d-2340-4ec5-a46e-62a6cebbc2b6@kernel.org>
- <5707EE9715A7E332+f33721f1-8b50-4262-bdaa-468ad2c79ecc@radxa.com>
- <281bce4e-cec5-4ad8-940a-c9ef16202a43@kernel.org>
- <C6FD94DDF2E16CAE+22e3003e-0d66-4092-a9a2-def5daa6c202@radxa.com>
- <feec46a1-76b9-4479-b364-b09cd79b3d69@kernel.org>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-Organization: Radxa Computer (Shenzhen) Co., Ltd.
-In-Reply-To: <feec46a1-76b9-4479-b364-b09cd79b3d69@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: OWhN4QRntHSGlq7whYQmpOJhZYPEdZK4YhXYLycPTehwFwuz5Jt6fB06
-	eaEwq/9z+GTbFkov0N41QyPpPt05EMaqQPbvulxZF3tcCsImKM3d3HyfoD+zQZkt5darHHD
-	zzLyYq3AB4tbb7JCjNcs7aITdPt6bEQ0YI9w0OyzIKsa1ozEynbglkK3o6T7rC6MANjySWy
-	OhQYQLcFJL4iRRVgtyaRdam3CwR/7o65VoO8wVTe2TLztZb56yjfVDf1ZLClBg0nbaHpcvM
-	fehSS1T4IqqBq4BVpco7Y2mVljmfARqToUPde67iSRPRUSQrEs+1igvz1ayLYRVjRDKF26g
-	d7bBoX5TJGhLZijkY5PsYa7E6XKyNVcw40f85VNJsXjKZJlT6fmXiyFir8whWyM/RbL/rOf
-	hdJIF0OIN3e5b0F7oYduRvU2G0a8sUe36ZANDvAoE8ta/AJPJL0ysMDAc04uaDCrEcoaF1l
-	ae4Abjta/+HkftPmLwOlzIGzB9y+1pFc2z2qPq2K4n8ASR3IUoQiVssp3kUcUWXm8wHylIZ
-	ZYcKLAi5hedlWFWbJHGZtf+h+/PP6QJPt/aG1IlKwDE/Iw1f7sQFCG1Rjbz4qlBCxV9rqk5
-	dxZHZPRWxnKzHFe/9vPkmFgGnEa9FJ2MaiYCDO2isJQw+3kjVUldqB6LFb4OBpnBy+M1Gyi
-	213FAAonKGsyOdLjv+Xt7XV+ZXuykZZPcNc4z0jK+GneqkEjGaB4TzFGc+G0aS5gU55V2JM
-	DkgYAGLViYkVN7yKYLcKQSfzQvFhTGqIDZ0UzLPQt4puaxGp9TyPV2XgGZof5OU/AuztzdH
-	SIEJVjDQE9maL7uaBTJQKn75g6UVSxOmN9DX+uEH7QbypA+Y3h1ksdHPiyzeKjcYW/6sKRH
-	7RaNwhpEanKUxBXS4bW6G1cidDeYwm5Vi02Gq2gEIVbEc0gp+2GUHRoqbnrpoxHGQgVyIQC
-	k+EO+mp2wurhsZq4MxvOJ3+rNaMna1EHMSrai9FUuWYozNUHfxtgCWZZNhafVz69zS84=
-X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: fKANPEYgcOKg_NrGpaTClTsKQ8tafU0T
+X-Proofpoint-ORIG-GUID: fKANPEYgcOKg_NrGpaTClTsKQ8tafU0T
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1011
+ malwarescore=0 suspectscore=0 bulkscore=0 mlxlogscore=999
+ lowpriorityscore=0 phishscore=0 priorityscore=1501 spamscore=0
+ adultscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2412160124
 
-On 12/16/24 23:27, Krzysztof Kozlowski wrote:
-> On 16/12/2024 15:19, FUKAUMI Naoki wrote:
->> On 12/16/24 22:56, Krzysztof Kozlowski wrote:
->>> On 16/12/2024 14:48, FUKAUMI Naoki wrote:
->>>> On 12/16/24 22:37, Krzysztof Kozlowski wrote:
->>>>> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
->>>>>> Use more common name "pwm-fan" for pwm-fan node. No functinal change.
->>>>>
->>>>> No, generic name is fan.
->>>>
->>>>     https://lore.kernel.org/all/71aa84af7a030e66487076e0976c8cad@manjaro.org/
->>>>
->>> And? That's incorrect advice.  There is no such device as "pwm-fan".
->>> There is a "fan" and whether it is pwm or gpio it does not matter.
->>>
->>> See DT spec and generic names recommendation.
->>
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml#n67
->>
->> Is it wrong?
-> Yes.
+Add support for ADIS16550 and ADIS16550W
 
-Okay, please fix it.
+Robert Budai (7):
+  iio: imu: adis: Remove documented not used elements
+  iio: imu: adis: Add custom ops struct
+  iio: imu: adis: Add reset to custom ops
+  iio: imu: adis: Add DIAG_STAT register size
+  dt-bindings: iio: Add adis16550 bindings
+  iio: imu: adis16550: add adis16550 support
+  docs: iio: add documentation for adis16550 driver
 
-Feel free to use:
+ .../bindings/iio/imu/adi,adis16550.yaml       |   93 ++
+ Documentation/iio/adis16550.rst               |  389 ++++++
+ Documentation/iio/index.rst                   |    1 +
+ MAINTAINERS                                   |    9 +
+ drivers/iio/imu/Kconfig                       |   13 +
+ drivers/iio/imu/Makefile                      |    1 +
+ drivers/iio/imu/adis.c                        |   30 +-
+ drivers/iio/imu/adis16550.c                   | 1222 +++++++++++++++++
+ include/linux/iio/imu/adis.h                  |   34 +-
+ 9 files changed, 1777 insertions(+), 15 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+ create mode 100644 Documentation/iio/adis16550.rst
+ create mode 100644 drivers/iio/imu/adis16550.c
 
-Reported-by: FUKAUMI Naoki <naoki@radxa.com>
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> Best regards,
-> Krzysztof
-> 
-
+-- 
+2.34.1
 
 
