@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-131274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 980679F2B22
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:45:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91C159F2B2A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:52:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C505188332A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 07:45:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6DC2166092
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 07:52:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E30421F7558;
-	Mon, 16 Dec 2024 07:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F246F1FF60C;
+	Mon, 16 Dec 2024 07:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S2wpmJIm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p2kIXF88"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B65E11F7096;
-	Mon, 16 Dec 2024 07:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3C661AAA24;
+	Mon, 16 Dec 2024 07:52:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734335124; cv=none; b=l+cp8jCwuLmFxDV4JO0IkcKJ5Oc3A8pGmwFu1kT46eGtaD+zxBKTtte5nLVebtYdbXuyhdhlMGaWkR/d40jHavdBPGxOpQ08zDZnN6uc+09g8/Z977NwLkgWMxGvZW8/I24iyuFTedt5vnmtExDFWuk77lXQ3mLOdvKVHeTrKHU=
+	t=1734335524; cv=none; b=rZ7fl8r090YcYjvoQ5iVjOgSjt6SVLTZInQs/QaePG0xQS/U0AqpGnhhj7f9dGpDTvAklq0ofPamfqNR9/y9/K2S5w7EHzel176MKBy+zKBhv76be1rJYZ2vZZsIevjSPeyCs2xNA+qSHikZxvC+Ln33T9hf/y/z4pODY1PrmrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734335124; c=relaxed/simple;
-	bh=BRd9WrVWrPPypLQFGauJyVbeBzlr4i97fwMDcEAdrhQ=;
+	s=arc-20240116; t=1734335524; c=relaxed/simple;
+	bh=EomTQ1B519UFMgo6M3dwDNyIr7vgD2r6fL9iIIRzp7Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UpTfZmFnNOtCY9OIyxAlAWp3pFZBkzAMGD8rbkfRV379/NM0ZVvIzXtkheEDkgnbiy8BieX6vw/2Pnq5Ej4L1pmq1ll0yBkFIXdZ+/MQYRFS5eO/Ze8I+ezmqDA4Z9PNVTvT8Ani6avzDx0EkjNwdVD654GHup3j5QSkz+0tH08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S2wpmJIm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDD38C4CEDD;
-	Mon, 16 Dec 2024 07:45:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kojRLqarmVpnBJV2hlcakqEme8btdMtF1AxqOeRTrEqn4c06ak3G0OJQR43kORVjkXlXOlWK0CUyXWN8VxX2BZmQr0K+HuQahm8kv51GY6u1+I2WAGpk6gcrbdjPBITDYU7R3TBp1DyqLo0az/vZYwwPmucYXtkPnEY7nuRCYgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p2kIXF88; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69AACC4CED0;
+	Mon, 16 Dec 2024 07:52:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734335124;
-	bh=BRd9WrVWrPPypLQFGauJyVbeBzlr4i97fwMDcEAdrhQ=;
+	s=k20201202; t=1734335524;
+	bh=EomTQ1B519UFMgo6M3dwDNyIr7vgD2r6fL9iIIRzp7Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=S2wpmJImo2AtRz/LiQu6uhWv7vpdfO+wCKQR9bD4jFc/HcxWw51bqMrYFb6u/Q0Il
-	 gY0QrntkfbfYzKELJYq822JttXRd1/bqcFW8Mz6wCQa9wy9kMeoPfseHhe2zIoUt1p
-	 GwHV1kRshxqO3uZ2SDBn+kR500eAoEgNTjh3h2oYCooAHHrvaKyoZVZT01vtdqU0Gy
-	 2Sp8j120OgU3M4JO4myO7GkgpqtMNOgkhe/Vq+Ink+s/j3ctAhBHiUSlyb1qwJYh/I
-	 jo/IfWuXAHddpAt5sqtSfuU0UYCMdUnBgLF9BgBjiAdN+YTBYom+ha8FbQW1lfpHYn
-	 Az3XMjWsjXPpQ==
-Date: Mon, 16 Dec 2024 08:45:21 +0100
+	b=p2kIXF88XrDXLH8pk/aSpIm9BKfuQ36KSdBTDEgHHs7uj395RxLEV0CRoVPp0nSta
+	 /bgRi7xdxfxrfOQfdgG51E3wq8ikYS76N4Lbv+PqqxwLSPpicpJcTTK/uK74eJm34w
+	 xfU2i5mnd4xQyih55JAWzcTuT/P2C8K8lfx/pkZBfRqrmco2oPvWDuQQToouvsPR1v
+	 dOEUEgvLR1s4e1TaM726K+G8Xh7Sk+7g//gknWjif9vdvETC45XnAV30MHmhu+UgnQ
+	 PGsyAp6GziauQppMLVI/HAnng42wHQW8Xmjv29tVIv5lx+zRvlmuvfDvV7voFX9VS1
+	 doHRymDnK+cxA==
+Date: Mon, 16 Dec 2024 08:52:00 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lothar Rubusch <l.rubusch@gmail.com>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	eraretuya@gmail.com
-Subject: Re: [PATCH v7 2/7] dt-bindings: iio: accel: adxl345: make interrupts
- not a required property
-Message-ID: <opbjiktkrrqwd2gnvmyl7bn2ng2imc7c6vwzhr22yisdg4xns7@5gpr7ggkypw5>
-References: <20241213211909.40896-1-l.rubusch@gmail.com>
- <20241213211909.40896-3-l.rubusch@gmail.com>
+To: Renjiang Han <quic_renjiang@quicinc.com>
+Cc: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
+	Vikash Garodia <quic_vgarodia@quicinc.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Stanimir Varbanov <stanimir.varbanov@linaro.org>, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: media: add support for video hardware
+Message-ID: <avsiopdobpukz4ngqfakvghvswwrwopr4cn764mnuc76q4m3wh@axpup5fypxsu>
+References: <20241213-add-venus-for-qcs615-v4-0-7e2c9a72d309@quicinc.com>
+ <20241213-add-venus-for-qcs615-v4-1-7e2c9a72d309@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,20 +63,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241213211909.40896-3-l.rubusch@gmail.com>
+In-Reply-To: <20241213-add-venus-for-qcs615-v4-1-7e2c9a72d309@quicinc.com>
 
-On Fri, Dec 13, 2024 at 09:19:04PM +0000, Lothar Rubusch wrote:
-> Remove interrupts from the list of required properties. The ADXL345
-> does not need interrupts for basic accelerometer functionality. The
-> sensor offers optional events which can be indicated on one of two
-> interrupt lines.
+On Fri, Dec 13, 2024 at 03:26:46PM +0530, Renjiang Han wrote:
+> Add qcom,qcs615-venus compatible into qcom,sc7180-venus.yaml for the
+> video, and let qcom,qcs615-venus fallback to qcom,sc7180-venus on
+> QCS615 platform.
 > 
-> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
+> Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml | 1 -
->  1 file changed, 1 deletion(-)
+>  Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
+> index 5cec1d077cda77817f6d876109defcb0abbfeb2c..6dee45b7366578e51319b575e5dd2587dc84baeb 100644
+> --- a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
+> +++ b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
+> @@ -18,7 +18,13 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    const: qcom,sc7180-venus
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - qcom,qcs615-venus
+> +          - const: qcom,sc7180-venus
+> +
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Drop blank line.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
