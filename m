@@ -1,251 +1,169 @@
-Return-Path: <devicetree+bounces-131255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 936059F2A2D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 07:31:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 295659F2A3B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 07:39:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 625A61618DA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 06:31:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 121257A22C2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 06:39:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BE321CC89D;
-	Mon, 16 Dec 2024 06:31:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BmOjfsjV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B109D1C8FD6;
+	Mon, 16 Dec 2024 06:39:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from MA0PR01CU009.outbound.protection.outlook.com (mail-southindiaazon11020118.outbound.protection.outlook.com [52.101.227.118])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ED051C878E;
-	Mon, 16 Dec 2024 06:31:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734330683; cv=none; b=IezupvUXW/k08501a7fIYcWy1IghXK6Poj3F+qA6st1ev+kYaFnWx1WA9ZTWeoA4QU2sec1paU6lUQOk1p9+rVRWhOQfVch2Iqk5nxEy7+yle6M/vj+mlUx0kUma7+NpvDoOMIwo9FU8RQ5hTk1NEjVgb2H9HKfceP7bHqc4r18=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734330683; c=relaxed/simple;
-	bh=ZuLWWhM6BgTAVQR7VgGSwyys8SX1T5E1Hhc5P84eUzc=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gVoprW4D6HYPuvMXK3XetzgWorzox6ZjSz+6+/bCID/P+VoepMsaVOqyKOwL223AE+N3FVDAZsyZS+h4clBLmaFTslGQtjT04vWr+UWe7cBy6ZxA+Wy7xdh210sTeeCR9KYXdqgFnZD4WrL8Qoq69+UfmH8YXvDlOiB9HVzZkuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BmOjfsjV; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BG3HGhr021637;
-	Mon, 16 Dec 2024 06:31:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=/vSVfCXOF4iVZRrIFkv7hhmD
-	VMvNpOocSjbRo9mQITU=; b=BmOjfsjVHLp1M9R8BSW27K9xTZbzK3OjEAF0y8l2
-	YF5gLVqmzbwd2wsYe6a+6NWwcv8RAvsoDb3nmEjgJMz0lI6GajPUvxo5sRDHCqfD
-	QyqRi3b7pAD6KkXCZ7dnemjtXL1ktnHpCyEixbT3TKX35nv/stc5AkdUpIb29+3+
-	qDzQmzrAMDEp8Ruft1kRoe3pLv8n105OOv9zx0C0HkjhF6yFZLMCzBXQw/WEfj/k
-	AlarKoDKNyHRusI8olN2XIQN+g2VGnn00XzorqJpHYI3fG4n++CYC22Z6nuuJ+u5
-	UgVON49lnbTbxKNVZ3y/mKOeBbnlG6rKLoeyEE2RFPCkPg==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43jc5kgdjc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Dec 2024 06:31:05 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BG6V44g021652
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Dec 2024 06:31:04 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 15 Dec 2024 22:30:58 -0800
-Date: Mon, 16 Dec 2024 12:00:51 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-CC: <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <vkoul@kernel.org>, <kishon@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <p.zabel@pengutronix.de>,
-        <quic_nsekar@quicinc.com>, <dmitry.baryshkov@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-Subject: Re: [PATCH v2 2/6] phy: qcom: Introduce PCIe UNIPHY 28LP driver
-Message-ID: <Z1/JG+RkTBW9JuMO@hu-varada-blr.qualcomm.com>
-References: <20241204113329.3195627-1-quic_varada@quicinc.com>
- <20241204113329.3195627-3-quic_varada@quicinc.com>
- <710aa948-d27f-49f6-a4a8-73f6208502c3@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1283EF9D6;
+	Mon, 16 Dec 2024 06:39:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.227.118
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734331155; cv=fail; b=gp/thjSpDLXSTzOgTUrkdrpTdGoj2wHSgTVf/dt2m7tFUToPmMTjL9dri5xOyWf+b25z4ukIGR5nS+lhf2bqyd6PhfYMMXOtRaY8VXsB8hXo8FPaDNOdpNXFYhI7nOoNW9sFr/rYMLHbT/bh3hmIwDcvwBHRFkhQqcTlNPaNok4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734331155; c=relaxed/simple;
+	bh=P4bt627JBMM7ijrVmEd3EwsS6W5kWtfe8+Cv0VzCkoc=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=k00aPa4B+XW5tzZjphMvIf57YlDZvEqmRiVdaLJ0OFx4KyQ2iffTJVi74yjQa9hdoF8/cBVPh9bPPoOREPyGTMoPmwZy8XBt2p72f/9znoxBWck/PnoWbDQmMac/ShI3hcpgkUztJjWL5N3zFj2zBVtZrdMg9JyYdu0zvcU0Dtg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=52.101.227.118
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DCtSsKcTGLmN9XjYPn/TiB48IaDN7Qhw7GPIF50vYlqKhAZ8NT2kLObGh7WUaKonvxolFS1nJ7VVRd7QqZWWEeedDMip3sDQoBrff+QuYwk0L/t7PLU/Uc3cfL2g/Jx7nAXW9sE4QZY7ImEZWHu6uOyKJL2l9OgNalWBfODvHX/39C+vUhxqndgWFlimoU+wzeR5GlcgDFE6CSa0Vdg0If0lBS4RcxKoUtbF1/KC6WkFYQNfLK5XbdwXhOeTxkgnYf7xFnfq4nNevW5/FBi/dMeamSUytcMifHHr2tDcqbhsEBJe6eH7w5T6+L4daQ7xvVa8TpjBQe83cB24wneb3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=P4bt627JBMM7ijrVmEd3EwsS6W5kWtfe8+Cv0VzCkoc=;
+ b=nGEMy+pY5KpuryvWBeLvRk8emWNpX4SIuX7bzIxWF8YpFb4iCtPqEmdcUozHOva4YTWKu7q9qG89s56VbspIleSfhoRldWEEW4NtEx92ztRxj7zqUMarER19YJNm0ACnpsz0CQyxL40Ely0FW5XasHKiYi3TKTATNqqR1kC9gA3f5lDQdI9ExEK6tJA/u9N5p/FOVE9xP2yDg7BUcEOCjbMeNbmj1atOUePwxS9pT8zoyS4cfPjLrcXfWo3nuwNbpF/Iraay7SibcSJjNspTOS1NmEo4155vmpXQ2Eo7Kge/dUVy0CFnD0xhGh6NGLl6Pwoj8GwSPrA3ee9wPsq98g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Received: from PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM (2603:1096:c04:1::15d)
+ by MA0P287MB0090.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:aa::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.22; Mon, 16 Dec
+ 2024 06:39:08 +0000
+Received: from PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM
+ ([fe80::740f:ab98:2be1:538]) by PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM
+ ([fe80::740f:ab98:2be1:538%4]) with mapi id 15.20.8251.015; Mon, 16 Dec 2024
+ 06:39:08 +0000
+From: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
+To: "sre@kernel.org" <sre@kernel.org>
+CC: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v10 0/2] power: supply: Add STC3117 Fuel Gauge
+Thread-Topic: [PATCH v10 0/2] power: supply: Add STC3117 Fuel Gauge
+Thread-Index: AQHbT4QR2jycajrJzEamSgzjleUNwbLoaoGS
+Date: Mon, 16 Dec 2024 06:39:08 +0000
+Message-ID:
+ <PN2PPFF679F9759C05092AB7310AE0835C4F23B2@PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM>
+References: <20241216062920.7228-1-bhavin.sharma@siliconsignals.io>
+In-Reply-To: <20241216062920.7228-1-bhavin.sharma@siliconsignals.io>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PN2PPFF679F9759:EE_|MA0P287MB0090:EE_
+x-ms-office365-filtering-correlation-id: adaa2f7c-802a-4804-0529-08dd1d9c5838
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?O5MxlQJVhetFBG+Y/mR4KmgJ3/AorE7ccX+5oEXAPpMOZEyxNmt230oUh8?=
+ =?iso-8859-1?Q?LMC9TmIcKRI5PvBw4PkeE1VUGGoNPJIfvmvGBACa5kzlD11bY+hHeAASED?=
+ =?iso-8859-1?Q?iMis3OLyT/byvsVJo31A9iMNxVpKKaelFO6J7hyfb99ChkPz6AX4BmZ7oe?=
+ =?iso-8859-1?Q?hxZfShFBrOoe2+ZO9FAD1WDOVZR/+tzTBgA2Pdlbn6UCBFpqlziSM7BcLa?=
+ =?iso-8859-1?Q?tAIwZiN3Gnlif4tpVHIenBZ/M2B98y3IilEEch2UL5G/PwhWbqbyivkMPB?=
+ =?iso-8859-1?Q?qOFokWP0OVmb1lKUHkWAjDeuq3e+w4maKcWGs/aROZSV+LKOUWqWRRrmd1?=
+ =?iso-8859-1?Q?uGeWGCWb6cx/MQ57hQpTtnvrS3ERuHcfL0NmxB4gzLlTkyk39IfKxzzRY6?=
+ =?iso-8859-1?Q?VcKpQSGb/F9rYlLSCjZFzhylICFis/WUfULKwHN8n70Jw/ko5TMbh83OeA?=
+ =?iso-8859-1?Q?aOLsRtdBt0uiRbM2l2AZ8jFq/yAXlO9Nxlkxvmj/klqoaWil8jmA+dTrBL?=
+ =?iso-8859-1?Q?Cb/X4BYSI7c4WtcZzQg+Oyqs9hDHPAFkqAD60uTBwwURqN4madAZWVx9fc?=
+ =?iso-8859-1?Q?omwsAY4ehG+l81YflvG4dwItsDA8JwgQOLwcoHh8K+dEidZKN9/apryBhG?=
+ =?iso-8859-1?Q?IXQozCpQ/tArPjAUAe0w9lt14NgKTsOvBXyTDdtgmGC/DmWqzrFpVYWODa?=
+ =?iso-8859-1?Q?mKyPifrR8NOTf1ZRZzmOYvEmJD5cbL6aT/90gevOH4HU4TWWZrm+OacV+b?=
+ =?iso-8859-1?Q?GVH4+5C82jZq8grvek+5OQs0jpOMCD7brWeHAw7dQGQLrIE1PWnEgomndS?=
+ =?iso-8859-1?Q?MF+jnR2+koxC2pzp2lG5QmJd+kzTN5RneL+2+4SJJ66fOFVfMU7q6NjwXp?=
+ =?iso-8859-1?Q?QFt4Vot6dlvqCEbaVIMmc7zBcONkTCFcTLWdYt97c6NkrR/ecObMxJuxdF?=
+ =?iso-8859-1?Q?O71eD8TmYeyOZ0K3Sv3yAZ1F6o3XqxRFsDHu8ufDAur0XYEeppoKyVHK5h?=
+ =?iso-8859-1?Q?mw59fgOGE7ZNvDo1o/KV4/JvX2w1+B6vdNosVByz1nIpiAnhlffo6zwCV1?=
+ =?iso-8859-1?Q?Vgpfw2dxtfv42xmP/uhcPu60BfmDFmjB78Q79OUTeCk46LNO/PirUNCqhj?=
+ =?iso-8859-1?Q?/zyt2jQ/v1c2ecSO3XiwfjsntryEapvU/xwT9IK7+ecBawDQWhbfeocLdF?=
+ =?iso-8859-1?Q?64+Ox6WDs08ux5pWqN8GvoRYXTR4PQS29QBhsz9WH277A9ngKncteAXRP+?=
+ =?iso-8859-1?Q?vxQKh7DJiCXcAcPTQIMZR1muv+zWVdq9XhcyM44RHGEZd/YfqGK9hfp5tD?=
+ =?iso-8859-1?Q?aSagor9i6n2hxPHi510j18FJyyrhMbf3PaZLfQnOaxeRv9UH9yQwA3qX3m?=
+ =?iso-8859-1?Q?bRi8BJKG0/SCt+WWWEKF4DZxyqnJZRymTcal+5UY730PGJu2XUmjD/kGni?=
+ =?iso-8859-1?Q?iip0nR8mb7RY9I4pVD2w35egaocIw2TLraJUfwiiaqfy74idSv+DFZ7C9B?=
+ =?iso-8859-1?Q?viuLg+ux2A+Z2ofjsgGmSm?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?TfBmJ475vKnXbmcPMlz2qjTuN2DwYh6TvQ5aevV6oNZ+aAgKSoYr2PCiFk?=
+ =?iso-8859-1?Q?h9+ZFkpfrnpNrxPkk2RPZ4GpxgOaUUQqn4u5meMUkMLHkpmMWbAz5owvwb?=
+ =?iso-8859-1?Q?zZUZb20cHhvNM+lNaxuaFNL2yqV8pfgiQ1Duj7xs1oAAs5fZaiBGI00mVc?=
+ =?iso-8859-1?Q?SOPowqS41V7n5v5bm3ybNuTLlAB1U3k0ySGg/YOiaU79QZ1Lw9qqmDjCwS?=
+ =?iso-8859-1?Q?L1QB+ITBmuqdC6yllGsMstQ/CD9EuoAIsGlisAAYTNlAbBGgYG7tFCGHYE?=
+ =?iso-8859-1?Q?23D3dn6EaP0/JXadXA1cPLOKVgRMCqu7tp0C93/u67Hvw7s3WoItt9Rr3o?=
+ =?iso-8859-1?Q?9aZ+5T1g4cEYa6MQBK/T22mKYTgbxOgOgSYaT6z2/idO27hZ64xl3msxos?=
+ =?iso-8859-1?Q?8vSbcbQn37oHqkwHNbgdnxQRrbNYYobZsIbcBjbb8pCKG8PFYxkGyfaULW?=
+ =?iso-8859-1?Q?oh8Z3qtyVqLACcwcSggjkB4vtW4LAN4zHek7Tt2rVJq6aA6uVmWZGNbOaO?=
+ =?iso-8859-1?Q?KIKpFHtZfcq0YGUiznnNnRKmPXAWLQKWHi/JNmltmL3XUEvXDF9ngYZXk4?=
+ =?iso-8859-1?Q?zBLd+kuLHpObwoPIO1nf7Soh84eJnKOnUYxtYmeECnVgtRzkToRks1B8mx?=
+ =?iso-8859-1?Q?CIvVs5JkZPRk0Pfj2KeiLhexL0wIVNqqUZmO26jYpmRKZC1c1Xa47LKicK?=
+ =?iso-8859-1?Q?/633eHx3rIUzjk9x8YxDEd4MTWA2FMGfpYbvn98CLIti6wdKc2+NYbzzDS?=
+ =?iso-8859-1?Q?Jj+kHJvVBoBye41tdbKInoOg+oIiQVwr20CpsIocgn7k0a0Aqf5kLoATMn?=
+ =?iso-8859-1?Q?21sV59gFZohUB/Ek4k4/LZ4oEbxqCIRJ0YRTcSxKLAa8KtfptkbSFg9LMV?=
+ =?iso-8859-1?Q?Z3MY+sGQDHzZcq+1PvYoBuxeAo1s6yD/sR2zM/dxKpbTAVxE22IOtd3BIh?=
+ =?iso-8859-1?Q?UYgGLFdYdS6qHSVFU4jh+4Iqdk7STduCnreuS7F2Bves80WfgcowOymJmE?=
+ =?iso-8859-1?Q?DzFQU23BWgCz6G6FOCYMmYDpWz6+scX+L/3sSCcuO9Z3+ryPb+q9eK5eG4?=
+ =?iso-8859-1?Q?eKSkLSk8pmPjTVt1arF+nxVFzt01w9OlKDR3/7tCueFfPL6aqG7XjuJ8Pf?=
+ =?iso-8859-1?Q?XL+0gxV8BvG8XHpOjwb3XXbgK81+c4y2WkSTCSOMoLgbVN9pYjpyJFuoJJ?=
+ =?iso-8859-1?Q?Ob0QR3Z90OArxcwflt/t63KKmn70o82l5BUoU4fXAV0xkbhDf1qgzEDYP9?=
+ =?iso-8859-1?Q?9UvkKTjLSvt+Ez1rNxCchF5nNWl7LjeuZkC4rPSBH9JX3jhXSqIFXC0mHn?=
+ =?iso-8859-1?Q?ntCuM6bAk/ojSuaAO2kNjqnNquoXZUw/SthrGE/z0mQD3rgZjkfYKTN4Ft?=
+ =?iso-8859-1?Q?9q9BuYRhKY517cMAxerF2QQyvE/+PBz3Ss1ftpPRth1MLlWTP6zzo7BEZd?=
+ =?iso-8859-1?Q?2Yzr0oc3Uk5F2POt0/d7kO+9rd9bTL9Ujhg/OgYOhjobiVuIywQOuB32WM?=
+ =?iso-8859-1?Q?MXs3Dm77jkDWBGyKQTgGJCXKes8DIq4pEeqgjkfSiEgMqkcFXrurZ+lQs7?=
+ =?iso-8859-1?Q?cgXHqp67SOopABJS4qLNL09coQWkVcYVazXG3lRUEGHzpWsuCUgyjJzZ7S?=
+ =?iso-8859-1?Q?WiuCWrtbmSPZ0RtqCwo2yuAGF/ERIW/O8H3dNLJ2YCtaS9T/dmtohW3w?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <710aa948-d27f-49f6-a4a8-73f6208502c3@oss.qualcomm.com>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: j_eREXnaHXyx9uLLkPXB50WXUkT3bRAy
-X-Proofpoint-GUID: j_eREXnaHXyx9uLLkPXB50WXUkT3bRAy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
- impostorscore=0 clxscore=1015 mlxlogscore=924 priorityscore=1501
- mlxscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0 bulkscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412160051
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PN2PPFF679F9759.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: adaa2f7c-802a-4804-0529-08dd1d9c5838
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Dec 2024 06:39:08.8127
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: I30uzPguUfFJWD0NWpmJsoKNYhPiDz2xVwYvL48aGTPly19CJLdwjTKNBuSv9ed3R5O7uSJvJ3ATz/YkRqDAF8kTWmiBPOUakjaruPSv5Ks=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0P287MB0090
 
-On Thu, Dec 05, 2024 at 05:40:15PM +0100, Konrad Dybcio wrote:
-> On 4.12.2024 12:33 PM, Varadarajan Narayanan wrote:
-> > From: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> >
-> > Add Qualcomm PCIe UNIPHY 28LP driver support present
-> > in Qualcomm IPQ5332 SoC and the phy init sequence.
-> >
-> > Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
->
-> [...]
->
-> > +struct qcom_uniphy_pcie_regs {
-> > +	unsigned int offset;
-> > +	unsigned int val;
->
-> u32
-
-ok.
-
-> > +};
-> > +
-> > +struct qcom_uniphy_pcie_data {
-> > +	int lanes;
-> > +	/* 2nd lane offset */
-> > +	int lane_offset;
->
-> 'lanes', 'lane_offset' and '2nd lane' together imply one of:
->
-> - there can be more lines, all at an equal offset
-> - there can only ever be two lines
->
-> Please specify which one is the case
-
-There can be more lines all at an equal offset. However, it is
-just 2 lines in this SoC's case. Will remove the "2nd lane offset"
-comment.
-
-> > +	unsigned int phy_type;
-> > +	const struct qcom_uniphy_pcie_regs *init_seq;
-> > +	unsigned int init_seq_num;
-> > +	unsigned int pipe_clk_rate;
-> > +};
-> > +
-> > +struct qcom_uniphy_pcie {
-> > +	struct phy phy;
-> > +	struct device *dev;
-> > +	const struct qcom_uniphy_pcie_data *data;
-> > +	struct clk_bulk_data *clks;
-> > +	int num_clks;
-> > +	struct reset_control *resets;
-> > +	void __iomem *base;
-> > +};
-> > +
-> > +#define	phy_to_dw_phy(x)	container_of((x), struct qca_uni_pcie_phy, phy)
->
-> A space after #define, please
-
-ok
-
-> > +
-> > +static const struct qcom_uniphy_pcie_regs ipq5332_regs[] = {
-> > +	{
-> > +		.offset = PHY_CFG_PLLCFG,
-> > +		.val = 0x30,
-> > +	}, {
-> > +		.offset = PHY_CFG_EIOS_DTCT_REG,
-> > +		.val = 0x53ef,
-> > +	}, {
-> > +		.offset = PHY_CFG_GEN3_ALIGN_HOLDOFF_TIME,
-> > +		.val = 0xCf,
->
-> mixed case hex.. please make it lowercase
-
-ok
-
-> > +	},
-> > +};
-> > +
-> > +static const struct qcom_uniphy_pcie_data ipq5332_x1_data = {
-> > +	.lanes		= 1,
-> > +	.phy_type	= PHY_TYPE_PCIE_GEN3,
-> > +	.init_seq	= ipq5332_regs,
-> > +	.init_seq_num	= ARRAY_SIZE(ipq5332_regs),
-> > +	.pipe_clk_rate	= 250000000,
-> > +};
-> > +
-> > +static const struct qcom_uniphy_pcie_data ipq5332_x2_data = {
-> > +	.lanes		= 2,
-> > +	.lane_offset	= 0x800,
-> > +	.phy_type	= PHY_TYPE_PCIE_GEN3,
-> > +	.init_seq	= ipq5332_regs,
-> > +	.init_seq_num	= ARRAY_SIZE(ipq5332_regs),
-> > +	.pipe_clk_rate	= 250000000,
-> > +};
->
-> Are there going to be more UNIPHY-equipped SoCs?
-
-Not sure. Since this driver was initially posted for ipq5018 and
-ipq5332 suport was added later, there are two sets of data one
-for 5018 and one for 5332.
-
-> > +static void qcom_uniphy_pcie_init(struct qcom_uniphy_pcie *phy)
-> > +{
-> > +	const struct qcom_uniphy_pcie_data *data = phy->data;
-> > +	const struct qcom_uniphy_pcie_regs *init_seq;
-> > +	void __iomem *base = phy->base;
-> > +	int lane, i;
-> > +
-> > +	for (lane = 0; lane != data->lanes; lane++) {
->
-> while effectively the same, < would be less eyebrow-raising
-
-ok.
-
-> > +		init_seq = data->init_seq;
-> > +
-> > +		for (i = 0; i < data->init_seq_num; i++, init_seq++)
-> > +			writel(init_seq->val, base + init_seq->offset);
->
-> writel(init_seq[i].val, ...)
-
-ok.
-
-> > +
-> > +		base += data->lane_offset;
-> > +	}
-> > +}
-> > +
-> > +static int qcom_uniphy_pcie_power_off(struct phy *x)
-> > +{
-> > +	struct qcom_uniphy_pcie *phy = phy_get_drvdata(x);
-> > +
-> > +	clk_bulk_disable_unprepare(phy->num_clks, phy->clks);
-> > +
-> > +	reset_control_assert(phy->resets);
->
-> This can fail, return it instead of zero
-
-ok.
-
-> [...]
->
-> > +MODULE_LICENSE("Dual BSD/GPL");
->
-> I think this is too vague, there are many BSD variants
-
-Will change it to "GPL v2"
-
-Thanks
-Varada
+Hi Sebastian,=0A=
+=0A=
+By mistake I have sent the v9 patch as v10, so kindly ignore this series. =
+=0A=
+I will be sending the updated patch series as v11.=0A=
+=0A=
+I apologize for the inconvenience.=0A=
+=0A=
+Best regards,=0A=
+Bhavin=
 
