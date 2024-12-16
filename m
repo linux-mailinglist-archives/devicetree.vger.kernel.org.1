@@ -1,65 +1,61 @@
-Return-Path: <devicetree+bounces-131510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA8EB9F391B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:37:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F7D49F391E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:39:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EFFB16C48D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:37:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA4C31889406
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:39:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AC152066E0;
-	Mon, 16 Dec 2024 18:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 914CD206F13;
+	Mon, 16 Dec 2024 18:39:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ug/gCQku"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="noqQ2PZ3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14BC843AA9;
-	Mon, 16 Dec 2024 18:36:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6706843AA9;
+	Mon, 16 Dec 2024 18:39:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734374215; cv=none; b=VurMTOcDsXsXrJSm/iHqy0bEQIav2WCNVWq1pelR/ixMsX2Pofq17/nPL1c0wf3zeT3QojBdVK9sMCHcvBpJa3FGwn4p/bSEls4Xltc71WJVfUsw3gEX2tdDpovnX8JnV7F7zr5FZ84GHYFstPGZIwZZ/iLTsV9GakSbdp0JH2Y=
+	t=1734374354; cv=none; b=XIbG001U9RrkvI9bwtZOBzHfJNAzDPwAHgjGgoCxPWwphxj4vAoO5rZRER/wtW/EA/Xknr4SfkpH2Vi/oLGT4UXm6knpyQFSX77wg1TiAgCOzISdzvks8CzJSD3to0qXzstNXw+IXBJj1vTDG8BcJ9Pkvs01pw43Mkh//qcIk/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734374215; c=relaxed/simple;
-	bh=68Z2hTebw69WnIGxyWqWMosjiVTaG3HsDLzhK+XpHhI=;
+	s=arc-20240116; t=1734374354; c=relaxed/simple;
+	bh=wt7CBCKr35JUII+2VgDBmGe3AYQcBB0lstrcQq65w/E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VNsyh7JYoTgeZlkKBmUJfcSVRJz/4yCUhTLFLrgJN/XaXDBJEp8IqHAe8BMIcothkYiNIb027LQ6j4nQjUaLsHD8LLsHMG7Onoo+Fw7L2sGXra07WtLiHBKQZOxrERGyjtSOAmVvoNplqtFzi+Qn4VrPlvbsQQOcsOSFBMSMNcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ug/gCQku; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04DC6C4CED0;
-	Mon, 16 Dec 2024 18:36:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Woi7Z2EboizYrAUioGgEY2mJZ1KhK38hPKCfk2PQEfS943jwJltV2pXV/lU/fc4u3GhmFEqFN4FhMc+RtyRAPeNVpCvmcVfpH9D19vuvIwu8pgi2aAYCzmfSE0kLLJ1oWwe0pz4qorDAZvhKe+cQ9uWYFVABGoi1E+izckfSMbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=noqQ2PZ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0C45C4CED0;
+	Mon, 16 Dec 2024 18:39:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734374214;
-	bh=68Z2hTebw69WnIGxyWqWMosjiVTaG3HsDLzhK+XpHhI=;
+	s=k20201202; t=1734374353;
+	bh=wt7CBCKr35JUII+2VgDBmGe3AYQcBB0lstrcQq65w/E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ug/gCQkuPFovCO9IE+3WdoHZ0jensqwqrLb3cPUpMSxBVQVsvTgc0WEHuW9KPlf05
-	 jXB/IXUgfVll9IwmW9gbNDkSfrxVtLvERjSclq/m342SrHl9cYbBdqwvnqfpYd9k6Z
-	 zitlfHU/0LbiYQg9KS+E9W7CdZq6/o6RDI3ECbpLEBaMGZLMKMj6/UjZPItvGPdW+8
-	 vUX6cfYgA3q6Vm0cnNXYQ3I3liMZGwaE5FwnZfl0T0QT9LvqnTLb1etByjLl/lgioc
-	 /CCNHqacebs1Js/F5Qfw0VZKzl7XlfhtUsTU7nj1ovycwuMbfwaN2oGOfTw+nTufmq
-	 xy7CwtaTU9qvQ==
-Date: Mon, 16 Dec 2024 18:36:49 +0000
+	b=noqQ2PZ3n6Wq/92q3ApzYg6lJcyQqRmxWtay4160LkII/PuUtZ3qn8x3H3obYM3/c
+	 WVA8yyHyPgFWDtz8IpSfY1TAzxOJYltnWuRuZDIcq/qxxFQAHl+13KpPc1zN3pvplG
+	 g0iPBnbbf7B6/HKAKijREjUeOGyB7O1ntuX6ouCcqxC9QmxwQkf0RRwyYiKn87pYyM
+	 L7Zn/tlPNAQBkJo6+HJP5JEVYBXb5xyXxY2igZcgLxqVqm23HikZkNaZMmvugsaauM
+	 oOJ7oEHUa+S5OPE1OPprlWVcCFjd4644E5Wv/iwdUGSaxHPh/N+kqwqeZjldt1nMhL
+	 WoUoyfQjieKNg==
+Date: Mon, 16 Dec 2024 18:39:09 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Stanislav Jakubek <stano.jakubek@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chris Brandt <chris.brandt@renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: i2c: renesas,riic: Document the
- R9A09G047 support
-Message-ID: <20241216-earthworm-visibly-dc75496705e5@spud>
-References: <20241216120029.143944-1-biju.das.jz@bp.renesas.com>
- <20241216120029.143944-2-biju.das.jz@bp.renesas.com>
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: mfd: sprd,sc2731: reference
+ sprd,sc2731-efuse bindings
+Message-ID: <20241216-bobbed-lend-abf4b2b5323c@spud>
+References: <Z1_9ROiI2ZHKsbAD@standask-GA-A55M-S2HP>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,35 +63,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="L840yKvpjDanjEqJ"
+	protocol="application/pgp-signature"; boundary="9yJ2t1+TN4irjy8i"
 Content-Disposition: inline
-In-Reply-To: <20241216120029.143944-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <Z1_9ROiI2ZHKsbAD@standask-GA-A55M-S2HP>
 
 
---L840yKvpjDanjEqJ
+--9yJ2t1+TN4irjy8i
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 16, 2024 at 12:00:23PM +0000, Biju Das wrote:
-> Document support for the I2C Bus Interface (RIIC) found in the Renesas
-> RZ/G3E (R9A09G047) SoC. This IP is compatible with Renesas RZ/V2H
-> (R9A09G057) RIIC IP.
+On Mon, Dec 16, 2024 at 11:13:24AM +0100, Stanislav Jakubek wrote:
+> Directly reference the sc2731-efuse bindings to simplify the schema.
+> Remove the duplicate example from the efuse bindings.
+> While at it, add the "pmic_adc" label that was missed during the
+> initial YAML conversion.
 >=20
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> ---
+> Changes in V4:
+> - rebase on next-20241216
+> - drop patch 1 (already applied)
+> - add the pmic_adc label that was initially missed
+>=20
+> Changes in V3:
+> - new patch due to a missing dependency in the MFD tree=20
+>=20
+> Link to V3: https://lore.kernel.org/lkml/cd8cc95b59c31418b174bba521dd2599=
+a7929fda.1730709384.git.stano.jakubek@gmail.com/
+> Link to V2: https://lore.kernel.org/lkml/ZyExK01iprBHhGm6@standask-GA-A55=
+M-S2HP/
+> Link to V1: https://lore.kernel.org/lkml/Zr3X1RoQs7ElTnlJ@standask-GA-A55=
+M-S2HP/
+>=20
+>  .../devicetree/bindings/mfd/sprd,sc2731.yaml  | 12 ++------
+>  .../bindings/nvmem/sprd,sc2731-efuse.yaml     | 29 -------------------
+>  2 files changed, 2 insertions(+), 39 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml b/Doc=
+umentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+> index 8beec7e8e4c6..b023e1ef8d3c 100644
+> --- a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+> @@ -67,15 +67,7 @@ patternProperties:
+> =20
+>    "^efuse@[0-9a-f]+$":
+>      type: object
+> -    additionalProperties: true
+> -    properties:
+> -      compatible:
+> -        enum:
+> -          - sprd,sc2720-efuse
+> -          - sprd,sc2721-efuse
+> -          - sprd,sc2723-efuse
+> -          - sprd,sc2730-efuse
+> -          - sprd,sc2731-efuse
+> +    $ref: /schemas/nvmem/sprd,sc2731-efuse.yaml#
+> =20
+>    "^fuel-gauge@[0-9a-f]+$":
+>      type: object
+> @@ -199,7 +191,7 @@ examples:
+>            };
+>          };
+> =20
+> -        adc@480 {
+> +        pmic_adc: adc@480 {
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I don't understand the point of this hunk, nothing ever references it.
+Examples aren't supposed to contain unused labels.
 
---L840yKvpjDanjEqJ
+--9yJ2t1+TN4irjy8i
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2BzQQAKCRB4tDGHoIJi
-0qQWAP9NtFwRHJwPxfEcJbLVhtp+JhfGY1DJoHDVjfgynlgf9gD/VHuUOPhLSJGU
-Te7/BcepNB1xTBRzu6OOcGH0M+gqGw8=
-=Ga0q
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2BzzQAKCRB4tDGHoIJi
+0jXNAP4+YDR/wPjihZkxPHmgSN0U4kNpVRWuhHsICmKeHS1w5QD/a2UmcIXrya9p
+w+h4nEfPOnWgUx8CRjBysvnL+kB4OwE=
+=5vN5
 -----END PGP SIGNATURE-----
 
---L840yKvpjDanjEqJ--
+--9yJ2t1+TN4irjy8i--
 
