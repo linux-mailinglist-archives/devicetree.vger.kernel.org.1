@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-131413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 588939F31BE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:40:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AF3E9F31C0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:42:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 125B3188540D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:40:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFB45165194
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:42:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5786720550E;
-	Mon, 16 Dec 2024 13:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB75205511;
+	Mon, 16 Dec 2024 13:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bwH+JbSU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r+Fnvr9i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31CA73FD4
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 13:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565072054E1
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 13:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734356446; cv=none; b=lUc7E4WKfVlWHEVKTiYPu3VFhqwVO5IP3gQeDLg7MBhEjCdXKRns24RrYq9diYNIR5SIRfZN52NwiWsy+VwjGCNnqw5X+hZqV87xZctC8s4lCYLCp1DptU3yjcblTccTdYHawLH4LWHlHHWK0rIztkdSw4a4BaRpavSgoGFEHao=
+	t=1734356523; cv=none; b=QY/6aBfHW+y5N6oIh3SmXkoJTPBQgr3zEf2ZbiHOmLHZpeVF9uQAL2WDGm59WZfkKz0btWBl1Zdr8MLA2sat0plYVNC8GpNUqZrVTDWDBA5S3eLPROOz2nyer4EOfHoqd7za2zF8mtyQV1yGhl1QiFOrmGrUv+q+knzrOs8kuc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734356446; c=relaxed/simple;
-	bh=XOrG2kTTSiWGXEWWxX5oOq8e43jR2OPiWvgGkvmdKZg=;
+	s=arc-20240116; t=1734356523; c=relaxed/simple;
+	bh=AIjIVT8Z1JUCLnZL9shfAeCzdUi5cGGZzu9UZ1IzsLQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SASR08lzUI8KoD/j61+FZDWh6REpmL5vN6MktTuVrpBQuqAZdP9C4nOKiLKCKt5LtuG2QorLHfi9BtdpVgxPu7Pwoo6IgovN+N3HwFYftrZHyfIfkbmwWw+G5UjwZK8zZrZbqlLQWBVFATkaMO3dCUuHUxLs0kd8Xhgz85FD8Ys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bwH+JbSU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C87FC4CEDD;
-	Mon, 16 Dec 2024 13:40:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=We7nesfFyn6hCQfztAHyNMx6v0suff3ryS+q+3GWjjbiotw8YIrQC6AWC4/j3kVWNjrjsLzNY+esol2Z4HbMCm0cttzt8rF/J+UAHUu2UserId/D6ciYlUETuFS1fYxvNzd1abE2rn3ISrAtcGGhH9YU5GWO/ZDGIAFDlT3Yv0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r+Fnvr9i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CA10C4CED3;
+	Mon, 16 Dec 2024 13:41:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734356445;
-	bh=XOrG2kTTSiWGXEWWxX5oOq8e43jR2OPiWvgGkvmdKZg=;
+	s=k20201202; t=1734356523;
+	bh=AIjIVT8Z1JUCLnZL9shfAeCzdUi5cGGZzu9UZ1IzsLQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bwH+JbSUsJ8Kyl5PuJE7Qmy7WN82jL/Naanhmov9OMBPTAKc3148lKt3SutNVIYIS
-	 1U8C8OUXr9N3kyjh9BLIS3XuvYRoM39iAhnYzNT+YAaC5K0zubMMFecEU/1lmnXvea
-	 0HUq5heeMfZXIZfQs9WFHMkt0WL59wniO/EgiXahmu+eHdPUjqWAC3Psy49rgNoh/P
-	 AzHzWJv8F21L/TN889+e+KsNU57xJDvIIedDk8PxTmsdjU/q7XrlSC+GPTnqm2EgUl
-	 RaNw4hyh8k8VShhZH1BarJvwS9xKLYOeYARmgojF6zcbGffWT58deaw9cSkG3dgxEk
-	 PADRQpULeCsNA==
-Message-ID: <997d39ac-b78c-4584-ba86-d114120bad9c@kernel.org>
-Date: Mon, 16 Dec 2024 14:40:39 +0100
+	b=r+Fnvr9igltRevEMwnxIoCy5i/XBJu8tiS5Edev/imaOf5sIu+7bDfgW4Pc+NNsaF
+	 mGl1WfPVNwlXgk1kCykUb2LSnAvLQmeYNEkKWyraIpCXadt2SnLzfVHroEEUPqzEl6
+	 A+xMdawBXxfgfi+Szz7132THNckk+f2TV/MpIckVkd+sfPfafAjl+RMDc6MiVNTrCN
+	 eTFug6YoJ4s8qKzMTKgKt2ACNw1jZ7nFp0OkVqyI5KklePNZqg3pdjxJMwUUKf+Nuf
+	 +R/+wmLHC5zPTpbwKbmrME1hojQlHNafn280wL2m656zjAobVMcIWfRAffwTxZTeZg
+	 hKkFsL+zc/AJQ==
+Message-ID: <0b6a7a7a-ff5a-4897-a283-6bf582dd1d79@kernel.org>
+Date: Mon, 16 Dec 2024 14:41:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 10/12] arm64: dts: rockchip: Fix pmic dcdc-reg10 label
- for Radxa ROCK 5C
+Subject: Re: [PATCH v5 11/12] arm64: dts: rockchip: Fix proparties for pmic
+ regulators for Radxa ROCK 5C
 To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  dsimic@manjaro.org, devicetree@vger.kernel.org,
  linux-rockchip@lists.infradead.org
 References: <20241216113052.15696-1-naoki@radxa.com>
- <20241216113052.15696-11-naoki@radxa.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <20241216113052.15696-12-naoki@radxa.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -103,22 +103,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241216113052.15696-11-naoki@radxa.com>
+In-Reply-To: <20241216113052.15696-12-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 16/12/2024 12:30, FUKAUMI Naoki wrote:
-> Fix pmic dcdc-reg10 label to match with schematic[1]. No functional
-> change.
+> Fix proparties for dcdc-reg7 and nldo-reg3 regulators to match with
+
+
+
+You have so many typos in almost each commit msg. Here both in subject
+and commit msg.
+
+Run spell check before you send to the lists. Don't expect the reviewers
+to be your computer tools.
+
+Explain what is being fixed here. Why would you prefer to match with
+vendor kernel?
+
+> vendor kernel[1].
 > 
-> [1] https://dl.radxa.com/rock5/5c/docs/hw/v1100/radxa_rock_5c_schematic_v1100.pdf
+> [1] https://github.com/radxa/kernel/blob/linux-6.1-stan-rkr1/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
 > 
 > Fixes: 3ddf5cdb77e6 ("arm64: dts: rockchip: add Radxa ROCK 5C")
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> ---
 
-All your commits have the same flaw. You claim there is no functional
-change, yet there is a real bug to fix.
 
-All such trivial cleanups are not fixes and should be squashed together.
+
+
 Best regards,
 Krzysztof
 
