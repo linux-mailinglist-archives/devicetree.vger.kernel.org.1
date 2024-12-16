@@ -1,93 +1,79 @@
-Return-Path: <devicetree+bounces-131283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C552F9F2BBC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:26:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD9E69F2BFB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:33:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA5FB1666B6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:26:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 273861666BB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:33:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6B8F1FF7D4;
-	Mon, 16 Dec 2024 08:26:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F0BA200109;
+	Mon, 16 Dec 2024 08:33:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wJwivIBa"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="pT5HXt8Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1459B1FF7B3
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 08:26:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997791FF7B0;
+	Mon, 16 Dec 2024 08:33:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734337583; cv=none; b=Xh0aQEuVLq1DBGSyfxXJFLzNTvsGOnoG+yAn/gSqmSDJkp5w6qNRwMyt+jb3CwmYy0RzmNVLAIvjmjTmKyAm4YYh2tPMZljh0AjPP7/5Rya8zpyOJXlQxbcl3fEDNhy6eNKZNU/kkwK1+id2o6Pef93Esd/+Z/Pa5dHwp69EjMs=
+	t=1734337986; cv=none; b=BgOW6ImCLytCRGZMvD8MjteSw5DitDXn8b+h6/E34gEzEBhATPfpnuFOvFff7CkPnSYmUgSE34zSsy8f8c0pazdYevx4bbkuj26+mtY0ftPD5n4c9Z/x+2Kv5/xvEg9TjCqxJRVrnKI+NYfFCR44wB4oiGgvItux1qlXyVVbNZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734337583; c=relaxed/simple;
-	bh=jtn6Pm5T3kv4l9SAFuqVXKL9jZb3vLGRYnCPnSPFP8w=;
+	s=arc-20240116; t=1734337986; c=relaxed/simple;
+	bh=6jLd1uN34169vrHjBxynJiQD7DGybjgKDzBNRxxHp6U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EICNvS4rYDX0ezC1m3KS/I3d7tBG86u29ycjJqxorPu2x7xhNgBelzklu/a1LbgCZToY+5pGwD7+Heu1ESPukHSSxOBvzn83451URPVWQ0GQbjoZpoqRdDjieWb67F6nnRrUTjsikB3gpbeD+kySCLCdPzI9iOepYbbxXYv8cUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wJwivIBa; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-21644aca3a0so44030015ad.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 00:26:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734337581; x=1734942381; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=UMxPAd8z2FmVKP4SzaClGo5hrcMgeeddGCLGfliuqKc=;
-        b=wJwivIBaGuIsSmXVd4DY2UZjTuQTTdLuqXAXkwu4+95/cdAFZkqBoH8WZ7vLead/Sx
-         3iIYkLCFBJVY/MuOC718z3a1OoR3AagtddROR7xU/unCM5OPW+9biM44beFra7TQh5HF
-         Hg5Fm6fNa8EL5ULF7wNHCRQLav8/AO+oXrvW5KwhDDWEJNH/8HwEjvpn9e0hdqo2+mqQ
-         mC6FHUR3dMoL8GPWCwZvDUXNpswrv/qBfXvnrQT3kJ0p6enm3W/MpDZ683qvnSlYOJ4K
-         Y7ZMgY0FvVVMKpa9gQKYHh9N9zb8zT2i6m8eIqeX1qjugh81YZ+iUBePNIoEnbEXv+BG
-         Jprg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734337581; x=1734942381;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UMxPAd8z2FmVKP4SzaClGo5hrcMgeeddGCLGfliuqKc=;
-        b=vbGV3nUxnCXVsUhXKwYvm60G9JoZ9oRoZltQ++ksk7uf5LIzFAkvo+WSMsMQ9FU+Rp
-         0e31XDQjFZ93lEz2Z7KLzheUP6h0/tmOatjRl9bwkN7Cz4J1uXixaJ6tHe38o4FX0l85
-         75SWRlfb5nhGPxewYSMxox0YwrwdpXV2HbR+1fYOP816HcRPYy10ZTDdUuLUnorqJqK3
-         NYEpUkiSOIdli6a1lZoWsu6HyjhqeOcskPbHeGzGryaF+JrdN68Eny64RKE3mhD3ZY9m
-         SacHDgk/uJE9UzeShPxSdtEJcR17xElkrJiKmmSwDxTNZ0hCzd7uKb46nv8Szy4eS7Lf
-         X5mA==
-X-Forwarded-Encrypted: i=1; AJvYcCX/GuXUBFudzjM9OyH0K+7rZmpogzNVUZ43zSjGji5yXZdI/Hb0UQSSZ+Zxp6RDSzrDxHf9qRE2PGwy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxsc0JK+CDtqOM4sjYN2+bvbJgKacS0DoLQcdYdmnKsxMVS5ETC
-	lVAjsOT4X/TreOxgj0oX6S/wiKTHVekrxg3sUeF8gfVHh3wP4PiWUqsnmU/UzA==
-X-Gm-Gg: ASbGncsgFvGMZQsvOJeuFynu3RJL/K5IdokHf7xCUycCbjA/xD0XdPq3rf9kzuR6z+0
-	mmcsgffwJpX8Do0ARzIqccOD2nwLTLTRo7wbfrcQtr+8I/J97y7RqgE77KZSrhnXQtbNnW1GRuK
-	v++aCyiY8BPtXEhCil8TpJ8wm9rPQwqyBXj7oOQcFwqzjn6eDR6YQlC0p7wusn5Q4uzD4yNbddA
-	OMWzw+Q8NNr0ksjT664/WsqvmMdFR2l6lUa0AnEg8tdlxpHXFDuyD0hQ4PC09chvS4=
-X-Google-Smtp-Source: AGHT+IENA5UYsb1sfFGlrjJqHLC9gUwTByUIMXg+G63HTX6mypdVpLxeXK41K0rJQNY6hQLTWIpi6w==
-X-Received: by 2002:a17:902:ce01:b0:215:50fb:ae4a with SMTP id d9443c01a7336-218928bc06bmr188269365ad.0.1734337581219;
-        Mon, 16 Dec 2024 00:26:21 -0800 (PST)
-Received: from thinkpad ([120.60.56.176])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e5cae5sm37350505ad.191.2024.12.16.00.26.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Dec 2024 00:26:20 -0800 (PST)
-Date: Mon, 16 Dec 2024 13:56:06 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Qiang Yu <quic_qianyu@quicinc.com>
-Cc: Lukas Wunner <lukas@wunner.de>, Bjorn Helgaas <bhelgaas@google.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=eH9TrD4ZgK45H4rlJ8FWByWc73/ACt9IpaukcE6cLy+VF2AnrTYYGs9+JJc7itQj0/tUY2PPTY9dUhGNG+hpQxL08hRCnCtRLeJO7zOjRWbLfrTRD6XTQ5TUtgeEC4lsVpnwUm28vLxe3iivogBKOzFlVqrG/awOyPy7UtFqX7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=pT5HXt8Q; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 664BB13C;
+	Mon, 16 Dec 2024 09:32:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1734337939;
+	bh=6jLd1uN34169vrHjBxynJiQD7DGybjgKDzBNRxxHp6U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pT5HXt8Qdd6jf0+ZGRGtk1o4+1AH4aQzdWQwgML2CYEP/cuVeM56ZZ2d1YskSx/Xw
+	 HGsXaNRyzjIg5wQMdPKDmoAdOWBJK6RbEq+840ZJP3U6icjbw3MpwtPSwq9MEm78BE
+	 6U/DGkmH3oYCgNBpcax0QcI4j08ONGFQG/yIgwvo=
+Date: Mon, 16 Dec 2024 10:32:39 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH 0/4] PCI/pwrctrl: Rework pwrctrl driver integration and
- add driver for PCI slot
-Message-ID: <20241216082606.zuczo34ugysc2vdc@thinkpad>
-References: <20241210-pci-pwrctrl-slot-v1-0-eae45e488040@linaro.org>
- <c5c9b7fc-a484-438a-aa97-35785f25d576@quicinc.com>
- <Z18SkkuPbVgTYD8k@wunner.de>
- <20241216052107.tyhwzh4g3tmnp5ll@thinkpad>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Subject: Re: [PATCH v4 3/7] dt-bindings: display: renesas,du: Add missing
+ maxItems
+Message-ID: <20241216083239.GC32204@pendragon.ideasonboard.com>
+References: <20241213-rcar-gh-dsi-v4-0-f8e41425207b@ideasonboard.com>
+ <20241213-rcar-gh-dsi-v4-3-f8e41425207b@ideasonboard.com>
+ <l2r53ipif43k7kkjqc66z2mq6tyw6niiz4t4nnfge23hygx2pw@xrgk4mv5ljzx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,70 +82,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241216052107.tyhwzh4g3tmnp5ll@thinkpad>
+In-Reply-To: <l2r53ipif43k7kkjqc66z2mq6tyw6niiz4t4nnfge23hygx2pw@xrgk4mv5ljzx>
 
-On Mon, Dec 16, 2024 at 10:51:18AM +0530, Manivannan Sadhasivam wrote:
-> On Sun, Dec 15, 2024 at 06:32:02PM +0100, Lukas Wunner wrote:
-> > On Wed, Dec 11, 2024 at 05:55:48PM +0800, Qiang Yu wrote:
-> > > PCIe3 is able to link up after applying your patch. Slot power is turned on
-> > > correctly.
-> > > But see "NULL pointer dereference" when I try to remove device.
-> > 
-> > There's a WARN splat occurring before the NULL pointer deref.
-> > Was this happening before or is it new?  Probably makes sense
-> > to debug that first before looking into the NULL pointer deref,
-> > which could be a result of it.
-> > 
-> 
-> Precisely.
-> 
-> > 
-> > > [   38.757726] WARNING: CPU: 1 PID: 816 at drivers/regulator/core.c:5857
-> > > regulator_unregister+0x13c/0x160
-> > > [   38.767288] Modules linked in: phy_qcom_qmp_combo aux_bridge
-> > > drm_kms_helper drm nvme backlight pinctrl_sm8550_lpass_lpi pci_pwrctl_slot
-> > > pci_pwrctrl_core nvme_core phy_qcom_edp phy_qcom_eusb2_repeater
-> > > dispcc_x1e80100 pinctrl_lpass_lpi phy_qcom_snps_eusb2 lpasscc_sc8280xp typec
-> > > gpucc_x1e80100 phy_qcom_qmp_pcie
-> > > [   38.795279] CPU: 1 UID: 0 PID: 816 Comm: bash Not tainted
-> > > 6.12.0-next-20241128-00005-g6178bf6ce3c2-dirty #50
-> > > [   38.805359] Hardware name: Qualcomm IDP, BIOS
-> > > 6.0.240607.BOOT.MXF.2.4-00348.1-HAMOA-1.67705.7 06/ 7/2024
-> > > [   38.815088] pstate: 61400005 (nZCv daif +PAN -UAO -TCO +DIT -SSBS
-> > > BTYPE=--)
-> > > [   38.822239] pc : regulator_unregister+0x13c/0x160
-> > > [   38.827081] lr : regulator_unregister+0xc0/0x160
-> > 
-> > The WARN splat seems to be caused by:
-> > 
-> > 	WARN_ON(rdev->open_count);
-> > 
-> > So the regulator is unregistered although it's still in use.
-> > Is there maybe a multifunction PCIe device in your system
-> > so that multiple devices are using the same regulator?
-> > 
-> 
-> Maybe the regulator is shared with other peripherals (not just PCIe) in the
-> system.
-> 
-> @Qiang: I referred your patch [1] that added the slot regulators, but they were
-> not used by any peripherals other than PCIe. Could you please post the list of
-> consumers of the 3 slot regulators?
->
+Hi Krzysztof,
 
-Just looked briefly into regulator_unregister() and I can see that it will get
-called only when the regulator driver is unbound from the regulator device. Your
-previous DT reference suggests that you were probably using fixed regulator for
-all 3 slot regulators. In that case, this splat can occur when the regulator
-driver is unbound (module unload?) with still one of the consumers holding
-reference.
+On Mon, Dec 16, 2024 at 08:58:49AM +0100, Krzysztof Kozlowski wrote:
+> On Fri, Dec 13, 2024 at 04:02:59PM +0200, Tomi Valkeinen wrote:
+> > From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> > 
+> > The binding is missing maxItems for all renesas,cmms and renesas,vsps
+> > properties. As the amount of cmms or vsps is always a fixed amount, set
+> > the maxItems to match the minItems.
+> > 
+> > Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> > ---
+> >  Documentation/devicetree/bindings/display/renesas,du.yaml | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> 
+> The top level property should define widest constraints as well.
 
-So somehow regulator_put() is never called for that consumer but the regulator
-is removed. This looks like a bug somewhere.
-
-- Mani
+I'm curious, why is that ? I understand why a top-level default would
+make sense when it's optionally overridden by model-specific values, but
+in this case there's no such default. Every SoC has its own fixed value.
 
 -- 
-மணிவண்ணன் சதாசிவம்
+Regards,
+
+Laurent Pinchart
 
