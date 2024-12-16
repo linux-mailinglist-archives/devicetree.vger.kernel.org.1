@@ -1,154 +1,128 @@
-Return-Path: <devicetree+bounces-131473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0046E9F35D7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:24:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED2259F35E7
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:25:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66FFE16B4F0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:22:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D65C162825
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50355205AC3;
-	Mon, 16 Dec 2024 16:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77D15126C0D;
+	Mon, 16 Dec 2024 16:25:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JsVM0aIc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DrtMqtii"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7224C1494CF;
-	Mon, 16 Dec 2024 16:21:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44F491494CF;
+	Mon, 16 Dec 2024 16:25:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734366115; cv=none; b=k4A7Sv2sssRg33ggYqe9kMemEZhCOK9VKB/H+PXDUiP6gYFa2DUPraYfbbV0fBboSewY1Lg38qCDZzWPIEK8OTgUMOIaGEtC/ic1jOJPkCubqHL+Xn/zr6Rc64p7KYYpsRoO3urnYizlVa/YCgB+jPGo453/ozPFCrP37TvRP6w=
+	t=1734366307; cv=none; b=ij8nygzo85/Iz+aJ5lLsiakKNWnatMgyjI+ABovkiO+L/53UAwmQVHNXhR5o/sGa1ag1ua7ZH1KjP+kf0UQft7R46w+1+pf7G26Vk+Hg6xf+3zhg4j/dQaVfdITx8ekUMgRzxd6+baYHIxJsG98V6bUqIE7WMf4bALIhYklp1No=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734366115; c=relaxed/simple;
-	bh=3FlCXp4lxP2Gj55aIenXQLh+dtggLm/4wu14wcnGp9U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Jp+lIkVN5MAL41JO7m99RrsQtOKxyT88Q7DNx7V3Nv+8zcqY/hDBK46gkF0Iv9ZEcouoBnSsuGi6Wkl+SYqOzRQoSH3GIhNuO0D7xjmnuWBzmcIw0UB5N+zZUbGlOh5bzIJpLcdphrWAhPw1RkQRdycPTksaTFq0DB+u2YnXqhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JsVM0aIc; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 31C2C60004;
-	Mon, 16 Dec 2024 16:21:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1734366104;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HP3KIxC0BzAJe0M2V69r1CiMwNsA30W8P/3ypWBRsIE=;
-	b=JsVM0aIcvnx8adHzky5JwSnplWf0YxFoE71Y7kQniaqnRXh3cl6+dkeMtXQFpeWeZ1cQR3
-	MJI0Vxr22cB5CYs4LCOS50XF8W9hDKINfduJ2DoN+QwUsfqXlksRGuAU9y0JLecNZEszqL
-	JPoeWiAAZ7wniXP2Aq7jqNGD0mEbVysIuyCNpGDsol2ScfQj/N37X1Bkp5dUVtEN5JZ+r/
-	WA0n96vm+KF8dTv6nbfESVwTJPVHFlRrv3Iri0QCg8sXbpoJkbj19cMrnzdGwgohIqgFOG
-	I06jr+DUFITZetF1uEM2vIITdgDINhGDc3m6L+2yPzvRRE9+d10/olxajVWe8A==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Date: Mon, 16 Dec 2024 17:21:35 +0100
-Subject: [PATCH v2 2/2] drm/panel: simple: Add Tianma TM070JDHG34-00 panel
- support
+	s=arc-20240116; t=1734366307; c=relaxed/simple;
+	bh=AfpiH03Dwq5jbe1qk/9fAEbmREGRRVXzD/kHrF1vMS0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fs4drUqZbNiVtA35kq29OeWX0pvgaWj89W9f3F7sUCn0H3vqGLOV/eP0H210Iavtq9/JA+Oz5s51Q5fm6BZInUSkFhqUjwey03mCY1H/kMmcFHV3rjPNnAgl5ZSDcRj05r/9tnkRWbQi/LcDdSp+n339jootqMOg5vfVvKVFov0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DrtMqtii; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E95E0C4CED0;
+	Mon, 16 Dec 2024 16:24:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734366305;
+	bh=AfpiH03Dwq5jbe1qk/9fAEbmREGRRVXzD/kHrF1vMS0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DrtMqtii2r/jJfFjw5RU+XqWBH1jbTWtbRTOSAhsf2wwjv9vKCkxfE7+4UeQtkz2q
+	 hqhvU7BZtC4wFlt6hsR9ujR27r3N2bR4dBI11NzsSw0ufwdkBFY8iKDedMZiUYRqQc
+	 WdR09DkTjBs5B/ZPIXvuX8QhJjeIAFN16YRg7+PuyGtoDQuWuv7bhHJQqVIiNU1Vtr
+	 cJZEIEGN4eDD3KY3xGkEIJ+HHqd+GGMDW3nNHmfEfeHHp6C7zpEDVEC6i3B+BSSlBc
+	 qE32cDpBcfTX6VtsftjgBtDiaowmRzNeA7TEDWPuhGmYXQQxzapR+idgCy1iGHuPTY
+	 POgfoHLbBckqg==
+Date: Mon, 16 Dec 2024 17:24:57 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: rafael@kernel.org, bhelgaas@google.com, ojeda@kernel.org,
+	alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
+	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
+	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+	daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, paulmck@kernel.org,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	rcu@vger.kernel.org
+Subject: Re: [PATCH v6 09/16] rust: pci: add basic PCI device / driver
+ abstractions
+Message-ID: <Z2BUWSdxDU6S5mtr@pollux.localdomain>
+References: <20241212163357.35934-1-dakr@kernel.org>
+ <20241212163357.35934-10-dakr@kernel.org>
+ <2024121520-groove-outshine-f7f4@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241216-tianma_tm070jdhg34-v2-2-0b319a0bac39@bootlin.com>
-References: <20241216-tianma_tm070jdhg34-v2-0-0b319a0bac39@bootlin.com>
-In-Reply-To: <20241216-tianma_tm070jdhg34-v2-0-0b319a0bac39@bootlin.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>
-X-Mailer: b4 0.14.2
-X-GND-Sasl: luca.ceresoli@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2024121520-groove-outshine-f7f4@gregkh>
 
-Add Tianma TM070JDHG34-00 7.0" 1280x800 LVDS RGB TFT LCD panel.
+On Sun, Dec 15, 2024 at 01:23:22PM +0100, Greg KH wrote:
+> On Thu, Dec 12, 2024 at 05:33:40PM +0100, Danilo Krummrich wrote:
+> > +impl DeviceId {
+> > +    const PCI_ANY_ID: u32 = !0;
+> > +
+> > +    /// PCI_DEVICE macro.
+> > +    pub const fn new(vendor: u32, device: u32) -> Self {
+> > +        Self(bindings::pci_device_id {
+> > +            vendor,
+> > +            device,
+> > +            subvendor: DeviceId::PCI_ANY_ID,
+> > +            subdevice: DeviceId::PCI_ANY_ID,
+> > +            class: 0,
+> > +            class_mask: 0,
+> > +            driver_data: 0,
+> > +            override_only: 0,
+> > +        })
+> > +    }
+> > +
+> > +    /// PCI_DEVICE_CLASS macro.
+> > +    pub const fn with_class(class: u32, class_mask: u32) -> Self {
+> 
+> I know naming is hard, and I'm not going to object to this at all, but
+> using "new()" and "with_class()" feels a bit odd and mis-matched.  How
+> about spelling it out, pci_device(), and pci_device_class()?
 
-Panel info and datasheet: https://fortec.us/products/tm070jdhg34-00/
+This is likely being call with module prefix, i.e. `pci::DeviceId::new`, so I'd
+rather not encode "pci" again.
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
----
+Maybe `pci::DeviceId::from_id` and `pci::DeviceId::from_class`?
 
-Changes in v2: none
----
- drivers/gpu/drm/panel/panel-simple.c | 42 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+> 
+> Anyway, not a bit deal at all, let's see how this plays out with real
+> drivers and we can always change it later.
+> 
+> > +// Allow drivers R/O access to the fields of `pci_device_id`; should we prefer accessor functions
+> > +// to void exposing C structure fields?
+> 
+> Minor nit, do you mean "to avoid exposing..."?
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 1562f122724137dec37eb11443eafc896ef2f2e8..b3c931a4e46a2568b3678d664f11b189873fa1e2 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -4286,6 +4286,45 @@ static const struct panel_desc tianma_tm070jvhg33 = {
- 	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
- };
- 
-+/*
-+ * The datasheet computes total blanking as back porch + front porch, not
-+ * including sync pulse width. This is for both H and V. To make the total
-+ * blanking and period correct, subtract the pulse width from the front
-+ * porch.
-+ *
-+ * This works well for the Min and Typ values, but for Max values the sync
-+ * pulse width is higher than back porch + front porch, so work around that
-+ * by reducing the Max sync length value to 1 and then treating the Max
-+ * porches as in the Min and Typ cases.
-+ *
-+ * Exact datasheet values are added as a comment where they differ from the
-+ * ones implemented for the above reason.
-+ */
-+static const struct display_timing tianma_tm070jdhg34_00_timing = {
-+	.pixelclock = { 68400000, 71900000, 78100000 },
-+	.hactive = { 1280, 1280, 1280 },
-+	.hfront_porch = { 130, 138, 158 }, /* 131, 139, 159 */
-+	.hback_porch = { 5, 5, 5 },
-+	.hsync_len = { 1, 1, 1 }, /* 1, 1, 256 */
-+	.vactive = { 800, 800, 800 },
-+	.vfront_porch = { 2, 39, 98 }, /* 3, 40, 99 */
-+	.vback_porch = { 2, 2, 2 },
-+	.vsync_len = { 1, 1, 1 }, /* 1, 1, 128 */
-+	.flags = DISPLAY_FLAGS_DE_HIGH,
-+};
-+
-+static const struct panel_desc tianma_tm070jdhg34_00 = {
-+	.timings = &tianma_tm070jdhg34_00_timing,
-+	.num_timings = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 150, /* 149.76 */
-+		.height = 94, /* 93.60 */
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+};
-+
- static const struct display_timing tianma_tm070rvhg71_timing = {
- 	.pixelclock = { 27700000, 29200000, 39600000 },
- 	.hactive = { 800, 800, 800 },
-@@ -5028,6 +5067,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "tianma,tm070jdhg30",
- 		.data = &tianma_tm070jdhg30,
-+	}, {
-+		.compatible = "tianma,tm070jdhg34-00",
-+		.data = &tianma_tm070jdhg34_00,
- 	}, {
- 		.compatible = "tianma,tm070jvhg33",
- 		.data = &tianma_tm070jvhg33,
+Yes, but I don't think we need this comment any longer, now that we do not pass
+this to probe() any longer. I'll remove the `Deref` impl.
 
--- 
-2.34.1
+> 
+> Other than these, this looks good!  If I can get an ack from the PCI
+> maintainer, I'll be glad to queue these up in my driver core tree...
 
+Sounds good!
+
+> 
+> thanks,
+> 
+> greg k-h
 
