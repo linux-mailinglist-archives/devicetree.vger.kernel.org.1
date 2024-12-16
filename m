@@ -1,163 +1,122 @@
-Return-Path: <devicetree+bounces-131524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 462099F3A35
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 20:51:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 017049F3A3E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 20:53:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8853F162BEA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:51:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A78D91882B79
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55FA520B1E4;
-	Mon, 16 Dec 2024 19:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EaJ7W90r"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0EBE20C488;
+	Mon, 16 Dec 2024 19:53:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BE09205AA8;
-	Mon, 16 Dec 2024 19:50:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29B920765F;
+	Mon, 16 Dec 2024 19:53:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734378659; cv=none; b=UOkR5Yz2mSdi5GwfB5sWkux9ialkPQPdhoMPs7ZP8WAh8dyUXTJ+b23ZL8OAelvjeewFCMub6RuDuI8fqsisdr5zWtam0f5kepgts++Td1vDnXFBQkFoF8O3bwNgazJg+/9U+jq5YJ2hbcQWIM0ZSO9HuHLysEgPxNfgtWwVbmQ=
+	t=1734378815; cv=none; b=UFBma2ERcZ+9VkKc81Y/exLVBsOSsEu0+5Rvy0suc3+46MYmPGgCOq4IhcRxJdcmknq/7sn4jo1ZBiNAYc+tYWJ397PrTRY8fTJFrReEVL/GqUOGOj93cNlqXMMnT8eEIzQZQ2lzdpXxMHUJUPGLvUUStHULY48M6VZrpqeYV50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734378659; c=relaxed/simple;
-	bh=DCENrOvzdQr/kVc1IkdcNpE1zRhi24sD9OPqr7cgrd0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RrKTwlFakOzYMkEcDeyW9wOepn5Ew9nsPJJ6teC+UQaxdhkGL1FgTAflysvjtyZNlodZ+NGW+Z/S859Yte6Pz967kUp7R8CVGaW9tjv1nvpoPKkuDwqdQ1ai3lPPJiBGXqPcj5KXt5yAbsh2h5C0EoOH/b/BHisSl5Cuoh3Bx1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EaJ7W90r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 193EFC4CED0;
-	Mon, 16 Dec 2024 19:50:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734378658;
-	bh=DCENrOvzdQr/kVc1IkdcNpE1zRhi24sD9OPqr7cgrd0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EaJ7W90r0NH1YcpXzq/MObcJhIwJpFskVv8yOHb4b50pzHCRZrcv2xGOXH8HMvn6o
-	 j6kqOzpUYKqIMXrWxQBCeiq7mEMCNwSm88t1vAQy0koidh9Nofph6gi6Z+1wR37j1G
-	 8XT7ByEO3m9UJZ0xu9JQLDKPHIvd91jcIup4AxSvncC/d7Q+H2S1hWLeUqdt3cElYQ
-	 9ZndKGBy1a214SUZ1ap1VEYOVQzFnvlRmFPYlAUn1GWunCDQNFoM7oxDzgp8x5AkM9
-	 64ybcID98YsAKdTNQa5Bzq5+z907uiNK1iE0CJhwLgkCh2yWoy7J3+zM4jw4QqTQvN
-	 xQpRmhBd00OQw==
-Date: Mon, 16 Dec 2024 19:50:53 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc: Frieder Schrempf <frieder@fris.de>,
-	linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	s=arc-20240116; t=1734378815; c=relaxed/simple;
+	bh=bJCxwzCkOalmOB+fQ4vfqHwlhogOz8Zoy9CMaVXnzeE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=N+UTAbtwFAhQ0IIP8OWWWukPGUwvEKSCzOs/R4eMkcHjZghVQRcyTUfmFtiD2HS3IggMfK1u2JMzL//8e5yMESplfj61Y/G4QvFHGMcCr/5IBsI6qgTbSyKuGWuyICcIUwZMgpKFYOwWJgWk2mGaVIV6oEr4I6rUCNVPG+VaNZw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: OCuJ0kFxSRGPvfhRyOUh0g==
+X-CSE-MsgGUID: sF9OZIUOQ1ybjCj+GITxrQ==
+X-IronPort-AV: E=Sophos;i="6.12,239,1728918000"; 
+   d="scan'208";a="231992149"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 17 Dec 2024 04:53:31 +0900
+Received: from localhost.localdomain (unknown [10.226.93.40])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id B642E40638CD;
+	Tue, 17 Dec 2024 04:53:27 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Robin Gong <yibin.gong@nxp.com>, Joy Zou <joy.zou@nxp.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 03/11] dt-bindings: regulator: pca9450: Document
- nxp,sd-vsel-fixed-low property for LDO5
-Message-ID: <20241216-reburial-turmoil-4825bbee6aa8@spud>
-References: <20241127164337.613915-1-frieder@fris.de>
- <20241127164337.613915-4-frieder@fris.de>
- <20241128-endanger-envy-d1b19f650b38@spud>
- <9276fad1-0e3c-4935-a62a-1580af2e0a4b@kontron.de>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v4 0/7] Add RZ/G3E pinctrl support
+Date: Mon, 16 Dec 2024 19:53:10 +0000
+Message-ID: <20241216195325.164212-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Mv3VqQIkN3EYFrXr"
-Content-Disposition: inline
-In-Reply-To: <9276fad1-0e3c-4935-a62a-1580af2e0a4b@kontron.de>
+Content-Transfer-Encoding: 8bit
 
+Add pin controller support for the Renesas RZ/G3E(R9A09G047) SoC. The
+RZ/G3E PFC is similar to the RZ/V2H SoC but has more pins(P00-PS3).
+The port number on both RZ/V2H and RZ/G3E is alpha-numeric compared to
+the number on the other SoCs. So added support for defining alpha-numeric
+port names.
 
---Mv3VqQIkN3EYFrXr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v3->v4:
+ * Added new header file with separate RZV2H_P* and RZG3E_P* definitions.
+ * Dropped ack tag from Conor for patch#2 as there is separate file for
+   RZG3E_P* definitions.
+ * Included header file renesas,r9a09g057-pinctrl.h
+ * Updated r9a09g057_variable_pin_cfg table replacing PORT_PB->RZV2H_PB
+   macro.
+ * Included header file renesas,r9a09g047-pinctrl.h
+ * Replaced macros PORT_P*->RZG3E_P* 
+ * Updated rzg3e_gpio_names table with NULL port names for ports
+   corresponding to unsupported hardware indices.
+ * Updated r9a09g047_gpio_configs table with NULL value for ports
+   corresponding to unsupported hardware indices.
+ * Collected Rb tag from Geert for dts changes.
+v2->v3:
+ * Added alpha-numerical port name support to both RZ/V2H and RZ/G3E.
+ * Added PORT_P* macros based on PFC_P_mn offset and RZ{G3E,V2H}_*
+   macros for defining port names in DT.  
+ * Collected tags.
+ * Updated r9a09g057_variable_pin_cfg table replacing port 11 with PORT_PB.
+ * Replaced macros WDTUDF_CA->WDTUDFCA and WDTUDF_CM->WDTUDFCM.
+ * Replaced macro QSD0_*->SD0*.
+ * Updated gpio range from 176->232 to match the port number based
+   on hardware indices.
+v1->v2:
+ * Updated typo of the patch header RZ/G2L->RZ/G3E
+ * Fixed the binding warnings reported by bot.
 
-On Tue, Dec 10, 2024 at 04:36:41PM +0100, Frieder Schrempf wrote:
-> On 28.11.24 6:33 PM, Conor Dooley wrote:
-> > On Wed, Nov 27, 2024 at 05:42:19PM +0100, Frieder Schrempf wrote:
-> >> From: Frieder Schrempf <frieder.schrempf@kontron.de>
-> >>
-> >> This new property can be used for boards which have the SD_VSEL tied
-> >> to a fixed low level. The voltage of LDO5 is therefore only controlled
-> >> by writing to the LDO5CTRL_L register.
-> >>
-> >> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> >> ---
-> >> Changes for v2:
-> >> * new patch
-> >> ---
-> >>  .../bindings/regulator/nxp,pca9450-regulator.yaml           | 6 ++++++
-> >>  1 file changed, 6 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-r=
-egulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-reg=
-ulator.yaml
-> >> index 5d0d684186c96..0e19c54aa5f8a 100644
-> >> --- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulato=
-r.yaml
-> >> +++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulato=
-r.yaml
-> >> @@ -49,6 +49,12 @@ properties:
-> >>            Properties for single LDO5 regulator.
-> >> =20
-> >>          properties:
-> >> +          nxp,sd-vsel-fixed-low:
-> >> +            type: boolean
-> >> +            description:
-> >> +              Let the driver know that SD_VSEL is hardwired to low le=
-vel and
-> >> +              there is no GPIO to get the actual value from.
-> >=20
-> > Does this mean that if you don't provide the property or a GPIO it is t=
-ied
-> > high or High-Z? If so, please mention it here. More likely, given the
-> > context of this patch, no gpio and no tied low property means the driver
-> > should handle things as they used to be - but you should call that out
-> > in your commit message to be clear.
->=20
-> Providing neither 'sd-vsel-gpios', nor 'nxp,sd-vsel-fixed-low' means the
-> driver has to assume that SD_VSEL is tied high and it has to use the
-> LDO5CTRL_H for voltage control.
->=20
-> I will make this more clear in the commit message.
->=20
-> This is the original/current behavior of the driver, though it doesn't
-> match the actual hardware as all known boards actually have the SD_VSEL
-> connected to the USDHC_VSELECT (which changes state whenever the USDHC
-> controller wants to switch IO voltage).
+Biju Das (7):
+  dt-bindings: pinctrl: renesas: Add alpha-numerical port support for
+    RZ/V2H
+  dt-bindings: pinctrl: renesas: Document RZ/G3E SoC
+  pinctrl: renesas: rzg2l: Update r9a09g057_variable_pin_cfg table
+  pinctrl: renesas: rzg2l: Add support for RZ/G3E SoC
+  arm64: dts: renesas: r9a09g057h44-rzv2h-evk: Replace RZG2L macros
+  arm64: dts: renesas: r9a09g047: Add pincontrol node
+  arm64: dts: renesas: r9a09g047: Add scif pincontrol
 
-That's fine, as long as it is a match for the old behaviour. Sorry for
-the delay responding, I was unexpectedly AFK last week.
+ .../pinctrl/renesas,rzg2l-pinctrl.yaml        |   7 +-
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |  13 ++
+ .../boot/dts/renesas/r9a09g047e57-smarc.dts   |  13 ++
+ .../dts/renesas/r9a09g057h44-rzv2h-evk.dts    |  36 ++--
+ drivers/pinctrl/renesas/Kconfig               |   1 +
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 186 +++++++++++++++++-
+ .../pinctrl/renesas,r9a09g047-pinctrl.h       |  41 ++++
+ .../pinctrl/renesas,r9a09g057-pinctrl.h       |  31 +++
+ 8 files changed, 302 insertions(+), 26 deletions(-)
+ create mode 100644 include/dt-bindings/pinctrl/renesas,r9a09g047-pinctrl.h
+ create mode 100644 include/dt-bindings/pinctrl/renesas,r9a09g057-pinctrl.h
 
->=20
-> Getting rid of this mismatch is one of the main motivations for this seri=
-es.
->=20
-> >=20
-> >> +
-> >>            sd-vsel-gpios:
-> >>              description:
-> >>                GPIO that can be used to read the current status of the=
- SD_VSEL
-> >> --=20
-> >> 2.46.1
-> >>
->=20
+-- 
+2.43.0
 
---Mv3VqQIkN3EYFrXr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2CEnQAKCRB4tDGHoIJi
-0oetAP9Pu1rjpU+pdzrm+eH6iXyG806l63oOj31Uyy4uLHkwsQD2JBjIL+4gCPRG
-BRzqvKOglizkXPaKI5xuRY1P6rmvBA==
-=XLsF
------END PGP SIGNATURE-----
-
---Mv3VqQIkN3EYFrXr--
 
