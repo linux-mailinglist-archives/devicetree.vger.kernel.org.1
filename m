@@ -1,58 +1,57 @@
-Return-Path: <devicetree+bounces-131336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A3D69F2DF8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 11:14:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E16B39F2DFE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 11:15:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E01191888DC6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:14:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BAA1162764
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:15:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AE91202C47;
-	Mon, 16 Dec 2024 10:14:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D798F20010C;
+	Mon, 16 Dec 2024 10:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dsWn6z+k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i+OiWbJ7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42086202C3A;
-	Mon, 16 Dec 2024 10:14:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B052D1FF7D1;
+	Mon, 16 Dec 2024 10:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734344052; cv=none; b=V3CwHlYOhL3hEmv2uxTFkBWnbf7CXqJzpgZdUS7fBnBLE8dXKa/ZBrNJ9OLgTahw+LM+85pp8rtHpG2E9d0lAxzhvYZ5cvNjiHzBr2MjyTksXguCaXreyWuI9HNqi5zw/w0fesEINuHPXO7Mo5Jo8FYQ91uqnAVXy7E46s7DI24=
+	t=1734344124; cv=none; b=THb6juqH9Xdgr9WNQnr05tmfxSxZ5WGhrLr9ljgEyLe5si7hvJ9O9BfMO84Ibm1eC4Cq6b9wR0vvlHZnVO92boBNRGKyqwUkXHP/v5xK9bJ8U8CTjOsX6d16v+SqvK/aR2z1ipSAy73llHRitYNqtXoWvJlraMW1cSmMesxndVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734344052; c=relaxed/simple;
-	bh=neQjXpprVKKr7+IF1BUgJEHAPq3M8lzz9xydrcqWFo4=;
+	s=arc-20240116; t=1734344124; c=relaxed/simple;
+	bh=xBL/Ai+09SBq1LqnT0gwmOi4aMFDp3mfzJuqznKFiEQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=soWcDBKtinYsH8dvMOTr3dOkUqctoCgXoj4T3SYawXxRl1mluMrkrpsdipeJlWsLuU1Iz86umZPUjxYmGITEmPxk3zbvTNI2s2AyC5IlOOXO27dAvVOHhMqIKN400CkGHjGkKofLbPE9ipjI/4KaT16AZvvT18YnbPRYLy4ip0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dsWn6z+k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13BD8C4CED0;
-	Mon, 16 Dec 2024 10:14:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IAE/sA1CFeNFuIw+VEOuBk2GkvfuX+TxhLxuE6OanaypRzA+7mFHJrFgrJLLmJlMbGhpS1/JQ84vCn+LAvGcWCsU6bF3KJxy0bzjdbjsak3eiPdEZIKew8tJsheIYROUFaGjJw8QuAiPlmf4XtiAU/MQkk5b2Q3A0mYnwn4Ym8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i+OiWbJ7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5F2AC4CED0;
+	Mon, 16 Dec 2024 10:15:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734344051;
-	bh=neQjXpprVKKr7+IF1BUgJEHAPq3M8lzz9xydrcqWFo4=;
+	s=k20201202; t=1734344124;
+	bh=xBL/Ai+09SBq1LqnT0gwmOi4aMFDp3mfzJuqznKFiEQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dsWn6z+kYzVCL1d/ttsn3cAwhLsTJnrZKePws0DMQfCcdZfxqUGa1c+War27UfG/b
-	 EccRMYa4nAOQhmutyTjfkJaoZ5nCS2WY34x6FY3kLKB+/XRi5L9KGJyx1M8RkFQ9ge
-	 TIzi1EebQwjW7soX8CPxHJjUTYHCzpEWB5YVzsN3r0Gbaqj7NQMPUHIaTPxuWVo1H8
-	 WpS5l+LFSQAOVxngrZiOu5Nz4rxePRs3grq767Af1lYipAbKKa3vFgRwNwEaWT+G2I
-	 276CiLDsXZy728PqRvP18pQKkVyFP9Iq7ipiHqsspb0DyYjkJkdqTDLX7mEWvA4ejH
-	 cUUX07hmt4mUQ==
-Date: Mon, 16 Dec 2024 11:14:08 +0100
+	b=i+OiWbJ7It/yYoXyptEOyUyAUxSofMveQJjItgtbGR+izni0//d+xHQpCWN6PApS6
+	 H/Qrdzm9k49R77Y8b3KHfCSVrA2ojc0Fjp6esBDsBQMb+1CZGlcEIzU9La7HkqoOIm
+	 8vf0wVoehQQRkh0sTzXDFwr84bp5atvo63+5txAgoMfFQ/sg5CvRjcEXaRRUxsjQdc
+	 7s5XqKlzAtRoQcth5y5/AOlHQwBUXtL9+QTEFpeOcqkD1ep3ESrzuG3MPYa9U9JXGS
+	 kA/GZaCPCYPuLoP2ntPbpa8OsYkXgO/BmOt0kQdpOo6iUA3QbERR9O/lT+pdtY231H
+	 ER57yclsr52SQ==
+Date: Mon, 16 Dec 2024 11:15:21 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@microchip.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: atmel,at91sam9260: Convert to json
- schema
-Message-ID: <dxgqkdo6ulmqfa5vyerwta3vubuy32gzzu2cxfwwtespydfc4b@5wjrno3lgjsp>
-References: <20241211-matrix-v1-1-5ef0104a3af4@microchip.com>
+To: Jacky Bai <ping.bai@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com, peng.fan@nxp.com, frank.li@nxp.com
+Subject: Re: [PATCH] arm64: dts: freescale: Add basic dtsi for imx943
+Message-ID: <z6udhrqfmbelspe3eiz2q6twqvn4nkgxnfsdyxdv7ow6llxiz6@qhbaobn63icb>
+References: <20241212093555.1376568-1-ping.bai@nxp.com>
+ <20241212093555.1376568-2-ping.bai@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,93 +60,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241211-matrix-v1-1-5ef0104a3af4@microchip.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241212093555.1376568-2-ping.bai@nxp.com>
 
-On Wed, Dec 11, 2024 at 04:59:22PM +0530, Charan Pedumuru wrote:
-> Convert old text based binding to json schema.
-> Changes during conversion:
-> Add a fallback for all compatibles as the IP core is compatible
-> with `syscon`.
-
-I don't understand. The syscon was already there. You added different
-fallback, so provide explanation why do you think they are compatible.
-
-> 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
+On Thu, Dec 12, 2024 at 05:35:55PM +0800, Jacky Bai wrote:
+> The i.MX 943 applications processors integrate up to four
+> Arm Cortex A55 cores and supports functional safety with
+> built-in 2x Arm Cortex M33 and M7 cores which can be
+> configured asa safety island. Optimizing performance and
+> power efficiency for Industrial, IoT and automotive devices,
+> i.MX 943 processors are built with NXP=E2=80=99s innovative Energy
+> Flex architecture.
+>=20
+> This patch adds the minimal dtsi support for i.MX943 with
+> peripherals like uart, edma, i2c, spi, mu, sai etc.
+>=20
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 > ---
->  .../bindings/mfd/atmel,at91sam9260-matrix.yaml     | 54 ++++++++++++++++++++++
->  .../devicetree/bindings/mfd/atmel-matrix.txt       | 26 -----------
->  2 files changed, 54 insertions(+), 26 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/atmel,at91sam9260-matrix.yaml b/Documentation/devicetree/bindings/mfd/atmel,at91sam9260-matrix.yaml
+>  arch/arm64/boot/dts/freescale/imx943-clock.h  |  196 +++
+>  .../arm64/boot/dts/freescale/imx943-pinfunc.h | 1542 +++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx943-power.h  |   41 +
+>  arch/arm64/boot/dts/freescale/imx943.dtsi     | 1284 ++++++++++++++
+>  4 files changed, 3063 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx943-clock.h
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx943-pinfunc.h
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx943-power.h
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx943.dtsi
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx943-clock.h b/arch/arm64/bo=
+ot/dts/freescale/imx943-clock.h
 > new file mode 100644
-> index 000000000000..0e827882823f
+> index 000000000000..64b9d5d4051e
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/atmel,at91sam9260-matrix.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/atmel,at91sam9260-matrix.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/arch/arm64/boot/dts/freescale/imx943-clock.h
+> @@ -0,0 +1,196 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
+> +/*
+> + * Copyright 2024 NXP
+> + */
 > +
-> +title: Microchip AT91 Bus Matrix
+> +#ifndef __CLOCK_IMX943_H
+> +#define __CLOCK_IMX943_H
 > +
-> +maintainers:
-> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
-> +
-> +description:
-> +  The Bus Matrix (MATRIX) implements a multi-layer AHB, based on the
-> +  AHB-Lite protocol, that enables parallel access paths between multiple
-> +  masters and slaves in a system, thus increasing the overall bandwidth.
-> +
-> +properties:
-> +  compatible:
-> +    anyOf:
-
-oneOf
-See other bindings for preferred syntax. There is never anyOf.
-
-> +      - items:
-> +          - enum:
-> +              - atmel,at91sam9260-matrix
-> +              - atmel,at91sam9261-matrix
-> +              - atmel,at91sam9263-matrix
-> +              - atmel,at91sam9rl-matrix
-> +              - atmel,at91sam9g45-matrix
-> +              - atmel,at91sam9n12-matrix
-> +              - atmel,at91sam9x5-matrix
-> +              - atmel,sama5d3-matrix
-> +          - const: syscon
-> +      - items:
-> +          - const: microchip,sam9x60-matrix
-> +          - const: atmel,at91sam9x5-matrix
-> +          - const: syscon
-> +      - items:
-> +          - const: microchip,sam9x7-matrix
-
-So that's just enum with previous group.
+> +#define IMX943_CLK_EXT				0
+> +#define IMX943_CLK_OSC32K			1
+> +#define IMX943_CLK_OSC24M			2
 
 
-> +          - const: atmel,at91sam9x5-matrix
-> +          - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    matrix@ffffec00 {
-
-syscon@
-or system-controller@
-
+Why exactly are you adding clock indices to header files? Nothing in
+commit msg explains that.
 
 Best regards,
 Krzysztof
