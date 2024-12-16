@@ -1,328 +1,403 @@
-Return-Path: <devicetree+bounces-131568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D38F69F3D97
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 23:31:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 381E79F3D98
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 23:31:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68C06188A339
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 22:31:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB6D4188AA53
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 22:31:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FA121DA313;
-	Mon, 16 Dec 2024 22:30:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 577BB1D88DB;
+	Mon, 16 Dec 2024 22:31:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="loWqqdWd"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="PGT8DDz/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98081D9595;
-	Mon, 16 Dec 2024 22:30:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C6151D63D0;
+	Mon, 16 Dec 2024 22:31:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734388252; cv=none; b=DKf4BGdKluCmFxDDVnWZerIFjCag0uL/hkKfKOzhbqAu8ru0agf9mSpFCQNqFQ3eRn2i/jDQtZk6ElCcX3+ep4V2ZPPh0w41Cx4N0jKf9Pa3aRU1JQt87uGyKL+2a/9zu7CQvFb2ORJbGSxx5hCMHeGwQjEIxubwSs++Y95lZ54=
+	t=1734388271; cv=none; b=dWy5KlW96TlujnLXGmzQnzgNAQXKiac2jx8ADGK/kSKAQPfPI0J3/wP+v3vjCmczaJnrdgqrddIQnSh5CCun3xLk0cpjPy94WBnLwi0nuR/Ak8+n/RJH+8t3xSDi1WKgMjZjEwnYa0Lm2aOxpIrOnKeJoauBEmUzsqE6Xer0dYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734388252; c=relaxed/simple;
-	bh=D6HafcycUX/EFtUqIaMfl7jdirUZ3qGVXb+NW3pysr0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SmHM3dJDgrpFub07ngHg0X/4QVde8EbpdKmmTsMktfG0xyVQ8PIukyxlxI7A5eNQ1kNMqn9lGeBNIzchZGFCaWqDu1SiieaeWgXr84Prw7XX5rrdTy0Z7oSUmtzzEz437VRnMv1sDOuaRv1lQti3f0ezA3V1vAb39V3FFqoDsSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=loWqqdWd; arc=none smtp.client-ip=209.85.166.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f172.google.com with SMTP id e9e14a558f8ab-3a9cee9d741so39842965ab.3;
-        Mon, 16 Dec 2024 14:30:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734388250; x=1734993050; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=taKwwUF4bAATYZj9kNFDvG2mHEOjX+/eBWr1rC1nBhQ=;
-        b=loWqqdWdn61nTgE8Lojmvwzp2QVrK6hEPW8uRaiWPrt+/ca4BbsqTdIcuu/kSzayfF
-         6S2AO/l9e0VwkuTcW+8sW1wJBaeXAohLODSFSR2MK8plt4dyqNXM9yawcmfxVPTRvEzf
-         NNwfnEbxtK5taYf7UgvNOJhspAWlm5qoQoVtKy+7lRHLp09T06weJVWzgENt2YCUdjJ8
-         bP4HE/nzP0TqO6BQ0DlVqR+L/sNmbvccxyPN+i7QZpv9irIu7f6FSeRoUEMDnBRWvuP3
-         BwjhZsSNJyBDyJRuh2q1nTuUm+UeuDC4YptDpFaks4bSlTNXqM18lytXmlxltgXVrZVP
-         piGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734388250; x=1734993050;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=taKwwUF4bAATYZj9kNFDvG2mHEOjX+/eBWr1rC1nBhQ=;
-        b=HZpTWaajfMh04j9/sJCGgUAwOPukqBN0yZ9moPwzoKrhH+il8LTX9DF4OUQOFuQQi0
-         96Ar209T5oMDXw+j/mSJ1hHdplxrYvLkpNRWvyVYMi2nol1zi4E3QmDSoQXr2bsRyNJ/
-         qlLgIo1Yw2T+MgWKE6LCnNU9URABmp9PLkyRUmNNWmHqS9SLACw19tuOTgMuYPms+FlB
-         uDY2hXTJJ9Fo6aHItg9EzE2Vvf3FcnfOYKCAI4wsK4N+NVl2G0Ar2EPnnCmXxLCGKCWv
-         dpdbPpPKlrSKkn2V2vgbbkrJr4ffp0dUo4pl4P9guom+kgJDi67iuwXLaNVIzuKEkxIC
-         sZmg==
-X-Forwarded-Encrypted: i=1; AJvYcCUTHgM1Yznlk6oVprfo3Rr/5JieRQNrBsopYJPUPxisVTyBBxKQRO+lTcadM4+1dkEfOIlsQ6SugLk6@vger.kernel.org, AJvYcCVRSAKtXheTK+xe/jXeM9+NYcsyU1WFnAjbM/IgS0heUg5tXT3+ExZJ2S6fO9av9ig36sk+wdfdpuqO@vger.kernel.org, AJvYcCW5ullapkicX3ig1xVZhVW7xGjU5yF7EqoDLFSt2p61Fb2d8Bpnru2bNRbN89qT/ZUbTqHPsnSIFHEG7J6fSQ==@vger.kernel.org, AJvYcCXjO+ESgiV9faOlaTjyvrf/7IC0ndvgNnqa7nYcm2bLyNaDXJDhEB/pvxxfilCN8Exvim52pv3AbWkgm3Q=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwqOEqv2z/bh68jyLK15CZJEOC5XLFxXr6x/fIQvUl2Ecio8RP
-	vD2qrCccLtLO5kwuwGhJtEf/c/0Y3EMJuWXxff9a80h31C2mYGQl
-X-Gm-Gg: ASbGncv/0Vk+cefK/5VkTzz+TFynp8n+cqJ3iWqsTKtVJmozpUQWNkBJOYt0vVFK1zb
-	UJngYm3ez2vvT9MBF138p7eaSe6Zc5tbFWvGdL7p3T/mQt/buPzKdyIK/OvUeYM1XWJq5oJ3ejd
-	YHdOdSa5HYyS09HZsx7ihKBKapE4CmwR+6QF3cEIF9WyY8Xf4jrlfbrQCeQ0QFxTfuuuG8ZHyLM
-	6o4KIHKD6rd7iCddh9SSwCA3t8FSPSEtuVQsU6de7A/
-X-Google-Smtp-Source: AGHT+IGE2PuithjN1n9QJC4e/W2MNQa3/EM2bNkUGgfItRp8e//YlVpzo5wnDQBYAmrJFVPpszEgrQ==
-X-Received: by 2002:a05:6e02:3308:b0:3a7:70a4:6877 with SMTP id e9e14a558f8ab-3bad2ea6ee0mr16670445ab.7.1734388250088;
-        Mon, 16 Dec 2024 14:30:50 -0800 (PST)
-Received: from localhost ([2607:fea8:52a3:d200::d916])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3b2475afae7sm17987335ab.13.2024.12.16.14.30.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Dec 2024 14:30:49 -0800 (PST)
-From: Richard Acayan <mailingradian@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH v8 5/5] arm64: dts: qcom: sdm670: add camss and cci
-Date: Mon, 16 Dec 2024 17:30:26 -0500
-Message-ID: <20241216223019.70155-13-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241216223019.70155-8-mailingradian@gmail.com>
-References: <20241216223019.70155-8-mailingradian@gmail.com>
+	s=arc-20240116; t=1734388271; c=relaxed/simple;
+	bh=ctl3bxN3cjXMThTaJ3ImiAvIElLfjJ6pjcgCuHiYIqE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=fJbKLWjiaikgVRhDQLeQDVHxf13lWEzwOmMfhsFpKlA8YANRUQa/vgPoF6oAV4ECGM5WwniSivLVDBng92MRE5gZybki6w7uASxxt4c07PXVnsNdRKrTAz546ln2JleXDtLGthqVs6fBCLhzCOHnNRGKWzLI0912li9Ud+PsE1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=PGT8DDz/; arc=none smtp.client-ip=148.163.158.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGHESCP027410;
+	Mon, 16 Dec 2024 22:30:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=pp1; bh=p1hi4F
+	JUjid+yFe8Qes6T4zCL3BTQWsebHAP9J2qHis=; b=PGT8DDz/TypR0RQRiaFDWs
+	IFN3Vj3/1SWmknVhU355M5cyRw3JRiSUitSeqDrZEEwGN2VJUSq1H25pm7Jgj+VL
+	kyFFDHTnka13P3AYIvG5XnDCTBk96JoMoxaRUgRiIFeQWv9KyrXo4X9U+X3+CPta
+	czG0i1DoSemed4gY4BeV0cGmTlWvH6FBFdWCN947v9KMP03ZnLg9JmYaSSwdXTzj
+	VO4yyunWg3k+7nCHKHK5t4Qfr3BK0xMM7zkV3870xVvaBGcPoZUv2v6wWxBTjrDm
+	Lei6TagkuIXmw7fuYZlHa0R6GKU7Jslqyc2pQ1CHJQN2w+N/Od63ootl82D+u9cg
+	==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 43jgd2bvff-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 22:30:34 +0000 (GMT)
+Received: from m0360072.ppops.net (m0360072.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 4BGMSigS012356;
+	Mon, 16 Dec 2024 22:30:33 GMT
+Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 43jgd2bvfa-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 22:30:33 +0000 (GMT)
+Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGLIwGP014961;
+	Mon, 16 Dec 2024 22:30:32 GMT
+Received: from smtprelay02.wdc07v.mail.ibm.com ([172.16.1.69])
+	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 43hmqy0529-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 22:30:32 +0000
+Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com [10.241.53.101])
+	by smtprelay02.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 4BGMUWjX39256376
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 16 Dec 2024 22:30:32 GMT
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 137D35808B;
+	Mon, 16 Dec 2024 22:30:32 +0000 (GMT)
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 6A6FB5807E;
+	Mon, 16 Dec 2024 22:30:29 +0000 (GMT)
+Received: from [9.61.165.36] (unknown [9.61.165.36])
+	by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Mon, 16 Dec 2024 22:30:29 +0000 (GMT)
+Message-ID: <25235d06-6f2a-427a-aead-437a8a7deb0d@linux.ibm.com>
+Date: Mon, 16 Dec 2024 16:30:28 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] hwmon: (pmbus/crps) Add Intel CRPS185 power supply
+To: Guenter Roeck <linux@roeck-us.net>, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, eajames@linux.ibm.com, jdelvare@suse.com,
+        corbet@lwn.net, joel@jms.id.au, andrew@codeconstruct.com.au,
+        Delphine_CC_Chiu@Wiwynn.com, broonie@kernel.org,
+        peteryin.openbmc@gmail.com, noahwang.wang@outlook.com,
+        naresh.solanki@9elements.com, lukas@wunner.de, jbrunet@baylibre.com,
+        patrick.rudolph@9elements.com, gregkh@linuxfoundation.org,
+        peterz@infradead.org, pbiel7@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-i2c@vger.kernel.org
+References: <20241216175044.4144442-1-ninad@linux.ibm.com>
+ <20241216175044.4144442-3-ninad@linux.ibm.com>
+ <68f5d2e1-10e8-4441-9338-e2a385a9c2b1@roeck-us.net>
+Content-Language: en-US
+From: Ninad Palsule <ninad@linux.ibm.com>
+In-Reply-To: <68f5d2e1-10e8-4441-9338-e2a385a9c2b1@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: EuI_GqVtvakoH0HtW9RUxAPe1-QfolCZ
+X-Proofpoint-GUID: GJBYu2uHLfqxzDIAGDQ0O5ZMray0nIfP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ suspectscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015
+ mlxlogscore=999 priorityscore=1501 malwarescore=0 impostorscore=0
+ mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412160184
 
-Add the camera subsystem and CCI used to interface with cameras on the
-Snapdragon 670.
+Hi Guenter,
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm670.dtsi | 185 +++++++++++++++++++++++++++
- 1 file changed, 185 insertions(+)
+Thanks for the review.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-index 328096b91126..d4e1251ada04 100644
---- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-@@ -6,6 +6,7 @@
-  * Copyright (c) 2022, Richard Acayan. All rights reserved.
-  */
- 
-+#include <dt-bindings/clock/qcom,camcc-sdm845.h>
- #include <dt-bindings/clock/qcom,dispcc-sdm845.h>
- #include <dt-bindings/clock/qcom,gcc-sdm845.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
-@@ -1168,6 +1169,34 @@ tlmm: pinctrl@3400000 {
- 			gpio-ranges = <&tlmm 0 0 151>;
- 			wakeup-parent = <&pdc>;
- 
-+			cci0_default: cci0-default-state {
-+				pins = "gpio17", "gpio18";
-+				function = "cci_i2c";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			cci0_sleep: cci0-sleep-state {
-+				pins = "gpio17", "gpio18";
-+				function = "cci_i2c";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+
-+			cci1_default: cci1-default-state {
-+				pins = "gpio19", "gpio20";
-+				function = "cci_i2c";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			cci1_sleep: cci1-sleep-state {
-+				pins = "gpio19", "gpio20";
-+				function = "cci_i2c";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+
- 			qup_i2c0_default: qup-i2c0-default-state {
- 				pins = "gpio0", "gpio1";
- 				function = "qup0";
-@@ -1400,6 +1429,162 @@ spmi_bus: spmi@c440000 {
- 			#interrupt-cells = <4>;
- 		};
- 
-+		cci: cci@ac4a000 {
-+			compatible = "qcom,sdm670-cci", "qcom,msm8996-cci";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			reg = <0 0x0ac4a000 0 0x4000>;
-+			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
-+			power-domains = <&camcc TITAN_TOP_GDSC>;
-+
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAM_CC_SOC_AHB_CLK>,
-+				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-+				 <&camcc CAM_CC_CCI_CLK>;
-+			clock-names = "camnoc_axi",
-+				      "soc_ahb",
-+				      "cpas_ahb",
-+				      "cci";
-+
-+			pinctrl-names = "default", "sleep";
-+			pinctrl-0 = <&cci0_default &cci1_default>;
-+			pinctrl-1 = <&cci0_sleep &cci1_sleep>;
-+
-+			status = "disabled";
-+
-+			cci_i2c0: i2c-bus@0 {
-+				reg = <0>;
-+				clock-frequency = <1000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+
-+			cci_i2c1: i2c-bus@1 {
-+				reg = <1>;
-+				clock-frequency = <1000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
-+
-+		camss: camera-controller@acb3000 {
-+			compatible = "qcom,sdm670-camss";
-+			reg = <0 0x0acb3000 0 0x1000>,
-+			      <0 0x0acba000 0 0x1000>,
-+			      <0 0x0acc8000 0 0x1000>,
-+			      <0 0x0ac65000 0 0x1000>,
-+			      <0 0x0ac66000 0 0x1000>,
-+			      <0 0x0ac67000 0 0x1000>,
-+			      <0 0x0acaf000 0 0x4000>,
-+			      <0 0x0acb6000 0 0x4000>,
-+			      <0 0x0acc4000 0 0x4000>;
-+			reg-names = "csid0",
-+				    "csid1",
-+				    "csid2",
-+				    "csiphy0",
-+				    "csiphy1",
-+				    "csiphy2",
-+				    "vfe0",
-+				    "vfe1",
-+				    "vfe_lite";
-+
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CSID_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CSID_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>,
-+				 <&camcc CAM_CC_CSIPHY0_CLK>,
-+				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY1_CLK>,
-+				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY2_CLK>,
-+				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-+				 <&gcc GCC_CAMERA_AHB_CLK>,
-+				 <&gcc GCC_CAMERA_AXI_CLK>,
-+				 <&camcc CAM_CC_SOC_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CLK>,
-+				 <&camcc CAM_CC_IFE_0_AXI_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CLK>,
-+				 <&camcc CAM_CC_IFE_1_AXI_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>;
-+			clock-names = "camnoc_axi",
-+				      "cpas_ahb",
-+				      "csi0",
-+				      "csi1",
-+				      "csi2",
-+				      "csiphy0",
-+				      "csiphy0_timer",
-+				      "csiphy1",
-+				      "csiphy1_timer",
-+				      "csiphy2",
-+				      "csiphy2_timer",
-+				      "gcc_camera_ahb",
-+				      "gcc_camera_axi",
-+				      "soc_ahb",
-+				      "vfe0",
-+				      "vfe0_axi",
-+				      "vfe0_cphy_rx",
-+				      "vfe1",
-+				      "vfe1_axi",
-+				      "vfe1_cphy_rx",
-+				      "vfe_lite",
-+				      "vfe_lite_cphy_rx";
-+
-+			interrupts = <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "csid0",
-+					  "csid1",
-+					  "csid2",
-+					  "csiphy0",
-+					  "csiphy1",
-+					  "csiphy2",
-+					  "vfe0",
-+					  "vfe1",
-+					  "vfe_lite";
-+
-+			iommus = <&apps_smmu 0x808 0x0>,
-+				 <&apps_smmu 0x810 0x8>,
-+				 <&apps_smmu 0xc08 0x0>,
-+				 <&apps_smmu 0xc10 0x8>;
-+
-+			power-domains = <&camcc IFE_0_GDSC>,
-+					<&camcc IFE_1_GDSC>,
-+					<&camcc TITAN_TOP_GDSC>;
-+			power-domain-names = "ife0",
-+					     "ife1",
-+					     "top";
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				camss_port0: port@0 {
-+					reg = <0>;
-+				};
-+
-+				camss_port1: port@1 {
-+					reg = <1>;
-+				};
-+
-+				camss_port2: port@2 {
-+					reg = <2>;
-+				};
-+			};
-+		};
-+
- 		camcc: clock-controller@ad00000 {
- 			compatible = "qcom,sdm670-camcc", "qcom,sdm845-camcc";
- 			reg = <0 0x0ad00000 0 0x10000>;
--- 
-2.47.1
+On 12/16/24 12:26, Guenter Roeck wrote:
+> On 12/16/24 09:50, Ninad Palsule wrote:
+>> Add the driver to monitor Intel common redundant power supply (crps185)
+>> with hwmon over pmbus.
+>>
+>> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
+>> ---
+>>   Documentation/hwmon/crps.rst  | 97 +++++++++++++++++++++++++++++++++++
+>>   Documentation/hwmon/index.rst |  1 +
+>>   MAINTAINERS                   |  7 +++
+>>   drivers/hwmon/pmbus/Kconfig   |  9 ++++
+>>   drivers/hwmon/pmbus/Makefile  |  1 +
+>>   drivers/hwmon/pmbus/crps.c    | 79 ++++++++++++++++++++++++++++
+>>   6 files changed, 194 insertions(+)
+>>   create mode 100644 Documentation/hwmon/crps.rst
+>>   create mode 100644 drivers/hwmon/pmbus/crps.c
+>>
+>> diff --git a/Documentation/hwmon/crps.rst b/Documentation/hwmon/crps.rst
+>> new file mode 100644
+>> index 000000000000..74570ed1e978
+>> --- /dev/null
+>> +++ b/Documentation/hwmon/crps.rst
+>> @@ -0,0 +1,97 @@
+>> +.. SPDX-License-Identifier: GPL-2.0-or-later
+>> +
+>> +Kernel driver crps
+>> +==================
+>> +
+>> +Supported chips:
+>> +
+>> +  * Intel CRPS185
+>> +
+>> +    Prefix: 'crps185'
+>> +
+>> +    Addresses scanned: -
+>> +
+>> +    Datasheet: Publicly not available.
+>
+> Maybe "Only available under NDA". Or at least that is what I found.
+Updated as per your suggestion.
+>
+>> +
+>> +Authors:
+>> +    Ninad Palsule <ninad@linux.ibm.com>
+>> +
+>> +
+>> +Description
+>> +-----------
+>> +
+>> +This driver implements support for Intel Common Redundant Power 
+>> supply with
+>> +PMBus support.
+>> +
+>> +The driver is a client driver to the core PMBus driver.
+>> +Please see Documentation/hwmon/pmbus.rst for details on PMBus client 
+>> drivers.
+>> +
+>> +
+>> +Usage Notes
+>> +-----------
+>> +
+>> +This driver does not auto-detect devices. You will have to 
+>> instantiate the
+>> +devices explicitly. Please see 
+>> Documentation/i2c/instantiating-devices.rst for
+>> +details.
+>> +
+>> +
+>> +Sysfs entries
+>> +-------------
+>> +
+>> +======================= 
+>> ======================================================
+>> +curr1_label        "iin"
+>> +curr1_input        Measured input current
+>> +curr1_max        Maximum input current
+>> +curr1_max_alarm         Input maximum current high alarm
+>> +curr1_crit              Critial high input current
+>> +curr1_crit_alarm        Input critical current high alarm
+>> +curr1_rated_max        Maximum rated input current
+>> +
+>> +curr2_label        "iout1"
+>> +curr2_input        Measured output current
+>> +curr2_max        Maximum output current
+>> +curr2_max_alarm         Output maximum current high alarm
+>> +curr2_crit            Critial high output current
+>> +curr2_crit_alarm        Output critical current high alarm
+>> +curr2_rated_max        Maximum rated output current
+>> +
+>> +in1_label        "vin"
+>> +in1_input        Measured input voltage
+>> +in1_crit                Critical input over voltage
+>> +in1_crit_alarm          Critical input over voltage alarm
+>> +in1_max                 Maximum input over voltage
+>> +in1_max_alarm           Maximum input over voltage alarm
+>> +in1_rated_min        Minimum rated input voltage
+>> +in1_rated_max        Maximum rated input voltage
+>> +
+>> +in2_label        "vout1"
+>> +in2_input        Measured input voltage
+>> +in2_crit                Critical input over voltage
+>> +in2_crit_alarm          Critical input over voltage alarm
+>> +in2_lcrit               Critical input under voltage fault
+>> +in2_lcrit_alarm         Critical input under voltage fault alarm
+>> +in2_max                 Maximum input over voltage
+>> +in2_max_alarm           Maximum input over voltage alarm
+>> +in2_min                 Minimum input under voltage warning
+>> +in2_min_alarm           Minimum input under voltage warning alarm
+>> +in2_rated_min        Minimum rated input voltage
+>> +in2_rated_max        Maximum rated input voltage
+>> +
+>> +power1_label        "pin"
+>> +power1_input        Measured input power
+>> +power1_alarm        Input power high alarm
+>> +power1_max          Maximum input power
+>> +power1_rated_max        Maximum rated input power
+>> +
+>> +temp[1-2]_input        Measured temperature
+>> +temp[1-2]_crit         Critical temperature
+>> +temp[1-2]_crit_alarm    Critical temperature alarm
+>> +temp[1-2]_max          Maximum temperature
+>> +temp[1-2]_max_alarm     Maximum temperature alarm
+>> +temp[1-2]_rated_max     Maximum rated temperature
+>> +
+>> +fan1_alarm        Fan 1 warning.
+>> +fan1_fault        Fan 1 fault.
+>> +fan1_input        Fan 1 speed in RPM.
+>> +fan1_target             Fan 1 target.
+>> +======================= 
+>> ======================================================
+>
+> Does this pass "make htmldocs" ?
+
+Yes, I don't get any error. I run following command on the top level 
+directory.
+
+export ARCH=arm;export CROSS_COMPILE="arm-linux-gnueabi-";make htmldocs
+
+>
+>
+>> diff --git a/Documentation/hwmon/index.rst 
+>> b/Documentation/hwmon/index.rst
+>> index 1a3cb0a59f72..b1ea445479b0 100644
+>> --- a/Documentation/hwmon/index.rst
+>> +++ b/Documentation/hwmon/index.rst
+>> @@ -58,6 +58,7 @@ Hardware Monitoring Kernel Drivers
+>>      corsair-cpro
+>>      corsair-psu
+>>      cros_ec_hwmon
+>> +   crps
+>>      da9052
+>>      da9055
+>>      dell-smm-hwmon
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 637ddd44245f..e99f26f75733 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -6100,6 +6100,13 @@ L:    linux-input@vger.kernel.org
+>>   S:    Maintained
+>>   F:    drivers/hid/hid-creative-sb0540.c
+>>   +INTEL CRPS COMMON REDUNDANT PSU DRIVER
+>> +M:    Ninad Palsule <ninad@linux.ibm.com>
+>> +L:    linux-hwmon@vger.kernel.org
+>> +S:    Maintained
+>> +F:    Documentation/hwmon/crps.rst
+>> +F:    drivers/hwmon/pmbus/crps.c
+>> +
+>>   CRYPTO API
+>>   M:    Herbert Xu <herbert@gondor.apana.org.au>
+>>   M:    "David S. Miller" <davem@davemloft.net>
+>> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+>> index 22418a05ced0..43b6df04e0f9 100644
+>> --- a/drivers/hwmon/pmbus/Kconfig
+>> +++ b/drivers/hwmon/pmbus/Kconfig
+>> @@ -85,6 +85,15 @@ config SENSORS_BPA_RS600
+>>         This driver can also be built as a module. If so, the module 
+>> will
+>>         be called bpa-rs600.
+>>   +config SENSORS_CRPS
+>> +    tristate "Intel Common Redundant Power Supply"
+>> +    help
+>> +      If you say yes here you get hardware monitoring support for 
+>> the Intel
+>> +      Common Redundant Power Supply.
+>> +
+>> +      This driver can also be built as a module. If so, the module will
+>> +      be called crps.
+>> +
+>>   config SENSORS_DELTA_AHE50DC_FAN
+>>       tristate "Delta AHE-50DC fan control module"
+>>       help
+>> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+>> index 3d3183f8d2a7..c7eb7739b7f8 100644
+>> --- a/drivers/hwmon/pmbus/Makefile
+>> +++ b/drivers/hwmon/pmbus/Makefile
+>> @@ -62,3 +62,4 @@ obj-$(CONFIG_SENSORS_XDPE122)    += xdpe12284.o
+>>   obj-$(CONFIG_SENSORS_XDPE152)    += xdpe152c4.o
+>>   obj-$(CONFIG_SENSORS_ZL6100)    += zl6100.o
+>>   obj-$(CONFIG_SENSORS_PIM4328)    += pim4328.o
+>> +obj-$(CONFIG_SENSORS_CRPS)    += crps.o
+>> diff --git a/drivers/hwmon/pmbus/crps.c b/drivers/hwmon/pmbus/crps.c
+>> new file mode 100644
+>> index 000000000000..09425c404fc8
+>> --- /dev/null
+>> +++ b/drivers/hwmon/pmbus/crps.c
+>> @@ -0,0 +1,79 @@
+>> +// SPDX-License-Identifier: GPL-2.0-or-later
+>> +/*
+>> + * Copyright 2024 IBM Corp.
+>> + */
+>> +
+>> +#include <linux/i2c.h>
+>> +#include <linux/of.h>
+>> +#include <linux/pmbus.h>
+>> +
+>> +#include "pmbus.h"
+>> +
+>> +static const struct i2c_device_id crps_id[] = {
+>> +    { "intel_crps185" },
+>> +    {}
+>> +};
+>> +MODULE_DEVICE_TABLE(i2c, crps_id);
+>> +
+>> +static struct pmbus_driver_info crps_info = {
+>> +    .pages = 1,
+>> +    /* PSU uses default linear data format. */
+>> +    .func[0] = PMBUS_HAVE_PIN | PMBUS_HAVE_IOUT |
+>> +        PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_IIN |
+>> +        PMBUS_HAVE_VIN | PMBUS_HAVE_STATUS_INPUT |
+>> +        PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
+>> +        PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 |
+>> +        PMBUS_HAVE_STATUS_TEMP |
+>> +        PMBUS_HAVE_FAN12 | PMBUS_HAVE_STATUS_FAN12,
+>> +};
+>> +
+>> +static int crps_probe(struct i2c_client *client)
+>> +{
+>> +    int rc;
+>> +    struct device *dev = &client->dev;
+>> +    char buf[I2C_SMBUS_BLOCK_MAX + 2] = { 0 };
+>> +
+>> +    rc = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, buf);
+>> +    if (rc < 0) {
+>> +        dev_err_probe(dev, rc, "Failed to read PMBUS_MFR_MODEL\n");
+>> +        return rc;
+>
+>         return dev_err_probe(...);
+>
+>> +    }
+>> +
+>> +    if (strncmp(buf, "03NK260", 7) == 7) {
+>
+> strncmp() never returns 7. You probably want something like
+>
+>     if (rc != 7 || strncmp(buf, "03NK260", 7)) {
+My bad. Fixed it.
+>
+>> +        buf[rc] = '\0';
+>> +        dev_err_probe(dev, -ENODEV, "Model '%s' not supported\n", buf);
+>
+>         return dev_err_probe(...);
+Fixed.
+>
+>> +        return -ENODEV;
+>> +    }
+>> +
+>> +    rc = pmbus_do_probe(client, &crps_info);
+>> +    if (rc) {
+>> +        dev_err_probe(dev, rc, "Failed to probe %d\n", rc);
+>
+> dev_err_probe() already handles the error, and a message such as
+> "failed to probe -22" isn't very useful anyway. Also,
+>         return dev_err_probe(...);
+Fixed.
+
+
+Thanks and regards,
+
+Ninad Palsule
 
 
