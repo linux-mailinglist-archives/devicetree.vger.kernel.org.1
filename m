@@ -1,69 +1,60 @@
-Return-Path: <devicetree+bounces-131515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9318C9F3943
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:49:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E095E9F3950
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:53:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C583716A3CF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:49:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0751C7A2085
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCE1207657;
-	Mon, 16 Dec 2024 18:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C222207669;
+	Mon, 16 Dec 2024 18:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V1ZPNrm7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j/g99SEG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F828204F8B;
-	Mon, 16 Dec 2024 18:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A4AD26AD0;
+	Mon, 16 Dec 2024 18:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734374963; cv=none; b=IoOVWt5Ub/BBu3YheP+lGX4RI15SRWSY+PihnHyTENjZzKjRab7UyQHqFq2V/DzNHxNVj72L0KZD6wn+XClJVaFqQVcBZbGPj3nzTkXv1YP+aiNGj/5qQvLClV5GYSqR1a38lg1WC9Wkwmr9Nt0Z6TbTynC5HhCB4/VQ4BO5X50=
+	t=1734375178; cv=none; b=p0RpCNnItn2wsRkw9z/RukSWmhsKwwhE/wN9liUyKAJfkyC9E8f73gHZi4XnCjqwFf62Ci/ADranp8lHZX79BgZm7B5wQztUT5zz6UZhWsB6vLedp8phbBX1NSdpDinhq6tOR68KN+Q5jgoJGFIoGKU1/SGxIOv/KuDJML8IE/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734374963; c=relaxed/simple;
-	bh=ZeQQScruNqW/bJ/x/lj6Dul84Yp6/f/jX5d+nsFQXP0=;
+	s=arc-20240116; t=1734375178; c=relaxed/simple;
+	bh=bZj65SuWGaVz4U/Mw2gmR6WaYQy9k6lXJ41s44xx/RE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m97OQSLiCYArpUd/hEgpaWKNAIQ1hFk16ivlt25LvKhlZx4bzA7Z6lBf4DLeoDEnP+pmyRi+T9ncda5YdsUwiznQjKYFC8gcCOQg3Q6jftjlfnKVy9xx3Lxi1BHuEA6oQp5n8vvofoFrt8NpSMhYIeOSv6uj15xuiG6KyNopOoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V1ZPNrm7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C25A3C4CED0;
-	Mon, 16 Dec 2024 18:49:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ur9fPGaoLAthiDToovDz1WpaNKo4Zd7BzLZNrCbg2HT20YHPJaVLRjnfozy4xrmywgd8YFLH2gl3ymTq2CI2avr8isL9rg9q7oq1hT3FqP+b+gNFysMmhVY6zwd9mhX515r1JQvtZU/KMkWaBrJ7aMgVjWhWV+4uwjWAUPD9Q9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j/g99SEG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3BA0C4CED0;
+	Mon, 16 Dec 2024 18:52:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734374963;
-	bh=ZeQQScruNqW/bJ/x/lj6Dul84Yp6/f/jX5d+nsFQXP0=;
+	s=k20201202; t=1734375177;
+	bh=bZj65SuWGaVz4U/Mw2gmR6WaYQy9k6lXJ41s44xx/RE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V1ZPNrm77Hzb3Yr+VIztPlS4AaSqQZsY4L4YZA9QyjHnf9y9BKoeORsmL5zqgKM5z
-	 zLaNqRq6UgjB77sZjplhEZvkYOwLVcGoCG3dowN1eWsh6i5FORV033E1421uFMGfFD
-	 ikzKblefGpcRe5va/r0VTspaftVOegoMzFiPLys3IV/zW/amTD8r56rT9kmc+udtBt
-	 4QRQxrK5zAnkPf+4VqrMovYSuSx4UGoHBY6wxRrubhkokRlvQdN8/aFhXyhQv60rcM
-	 a4ZHBnq1aW8/33AXSZy4Tfg96sbT4oMedVo3YzFjVgm0J++jU5Ff5gptjzJi3iK5wo
-	 UEUM1dM3cddig==
-Date: Mon, 16 Dec 2024 18:49:17 +0000
+	b=j/g99SEGN/NQKwNiJwJAGb1LcyKRicMc34/+BN1AcNMh3Og82pxHQwT7F5RmhWFNb
+	 HxSpMe1mT2c/Pty6hrjZVoPbA23i7RlxCorFz1sIFtbqrhiBcYPnDVaZFmRPQ/SYhx
+	 LuqIQTZ9Zr2aMURY2T/ae3sPic8u4bQt3Q5C4rtjI/XYqe9RhiN4CHvV80bA5HivAK
+	 qViLjyxF1b67Vpgz0oiNkhHCBF/q6L3obll5t/DBI/JVf1YCNTY7IVQMYoRZeOwzV/
+	 LIMiDZ8U/zSvHIiNChGj+EdXMs/eZOxJYnZSU6F0fOxnnBSa2G/TaO3e7pKuMGOUh0
+	 heGeGOiH5JHXg==
+Date: Mon, 16 Dec 2024 18:52:52 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jassi Brar <jassisinghbrar@gmail.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Rahul Pathak <rpathak@ventanamicro.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Atish Patra <atishp@atishpatra.org>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 2/8] dt-bindings: mailbox: Add bindings for RPMI
- shared memory transport
-Message-ID: <20241216-untrained-scarce-211d99984416@spud>
-References: <20241216084817.373131-1-apatel@ventanamicro.com>
- <20241216084817.373131-3-apatel@ventanamicro.com>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	tsbogend@alpha.franken.de, hkallweit1@gmail.com,
+	linux@armlinux.org.uk, markus.stockhausen@gmx.de,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-mips@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: net: Add Realtek MDIO controller
+Message-ID: <20241216-native-velvet-1d2b765c8b48@spud>
+References: <20241216031346.2626805-1-chris.packham@alliedtelesis.co.nz>
+ <20241216031346.2626805-2-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,151 +62,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DW1/Ea3gbyAW1RUZ"
+	protocol="application/pgp-signature"; boundary="RjFy7T1TUF+hKGbL"
 Content-Disposition: inline
-In-Reply-To: <20241216084817.373131-3-apatel@ventanamicro.com>
+In-Reply-To: <20241216031346.2626805-2-chris.packham@alliedtelesis.co.nz>
 
 
---DW1/Ea3gbyAW1RUZ
+--RjFy7T1TUF+hKGbL
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 16, 2024 at 02:18:11PM +0530, Anup Patel wrote:
-> Add device tree bindings for the common RISC-V Platform Management
-> Interface (RPMI) shared memory transport as a mailbox controller.
+On Mon, Dec 16, 2024 at 04:13:43PM +1300, Chris Packham wrote:
+> Add dtschema for the MDIO controller found in the RTL9300 SoCs. The
+> controller is slightly unusual in that direct MDIO communication is not
+> possible. Instead, the SMI bus and PHY address are associated with a
+> switch port and the port number is used when talking to the PHY.
 >=20
-> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> ---
->  .../mailbox/riscv,rpmi-shmem-mbox.yaml        | 135 ++++++++++++++++++
->  1 file changed, 135 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,rpmi-=
-shmem-mbox.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-m=
-box.yaml b/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.=
-yaml
-> new file mode 100644
-> index 000000000000..8d713ba7ffc7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.yaml
-> @@ -0,0 +1,135 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/riscv,sbi-mpxy-mbox.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RISC-V Platform Management Interface (RPMI) shared memory mailbox
-> +
-> +maintainers:
-> +  - Anup Patel <anup@brainfault.org>
-> +
-> +description: |
-> +  The RISC-V Platform Management Interface (RPMI) [1] defines a common s=
-hared
-> +  memory based RPMI transport. This RPMI shared memory transport integra=
-tes as
-> +  mailbox controller in the SBI implementation or supervisor software wh=
-ereas
-> +  each RPMI service group is mailbox client in the SBI implementation and
-> +  supervisor software.
-> +
-> +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +  References
-> +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +
-> +  [1] RISC-V Platform Management Interface (RPMI)
-> +      https://github.com/riscv-non-isa/riscv-rpmi/releases
-> +
-> +properties:
-> +  compatible:
-> +    const: riscv,rpmi-shmem-mbox
-> +
-> +  reg:
-> +    oneOf:
-> +      - items:
-> +        - description: A2P request queue base address
-> +        - description: P2A acknowledgment queue base address
-> +        - description: P2A request queue base address
-> +        - description: A2P acknowledgment queue base address
-> +        - description: A2P doorbell address
-> +      - items:
-> +        - description: A2P request queue base address
-> +        - description: P2A acknowledgment queue base address
-> +        - description: A2P doorbell address
-> +
-> +  reg-names:
-> +    oneOf:
-> +      - items:
-> +        - const: a2p-req
-> +        - const: p2a-ack
-> +        - const: p2a-req
-> +        - const: a2p-ack
-> +        - const: db-reg
-> +      - items:
-> +        - const: a2p-req
-> +        - const: p2a-ack
-> +        - const: db-reg
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 1
-> +    description:
-> +      The RPMI shared memory transport supports wired interrupt specifie=
-d by
-> +      this property as the P2A doorbell.
-> +
-> +  msi-parent:
-> +    description:
-> +      The RPMI shared memory transport supports MSI as P2A doorbell and =
-this
-> +      property specifies the target MSI controller.
-> +
-> +  riscv,slot-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 64
-> +    description:
-> +      Power-of-2 RPMI slot size of the RPMI shared memory transport.
-> +
-> +  riscv,db-mask:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Update only the register bits of doorbell defined by the mask (32 =
-bit).
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> +      realtek,smi-address:
+> +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> +        description: SMI interface and address for the connected PHY
+> +        items:
+> +          - description: SMI interface number associated with the port.
+> +          - description: SMI address of the PHY for the port.
 
-For an untested RFC, the bindings here look mostly fine. I'd suggest
-renaming "db" to "doorbell" in properties etc, since we can easily
-afford the extra characters. Please make sure to actually test the
-bindings next time around, looks like all 3 bindings produced warnings.
 
-General comments like not needing to provide minItems: 1 when maxItems
-is also 1, and not needing a | unless you have formatting to preserve.
-
-> +      If this property is not present then mask is assumed to be 0xfffff=
-fff.
-
-Also, things like this should be handled with a `default: 0xffffffff`,
-rather than describing it in text.
-
-I'll give the !rfc bindings a proper review when they appear, but before
-that I'll give the code here a go too - thanks for sending the patches.
+I don't really understand this property, but I also don't understand the
+MDIO bus, so with that caveat
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
---DW1/Ea3gbyAW1RUZ
+--RjFy7T1TUF+hKGbL
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2B2LQAKCRB4tDGHoIJi
-0oJNAP9JzetQCsrZEN1o9LOtrG9uzZmopAxjlXBU4Ev0ivS0wgD9GrrhOQX2dGfa
-MzxcsO3uL5ROuSy48vQfWsf+RA9CnAA=
-=lG3u
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2B3BAAKCRB4tDGHoIJi
+0hDmAQDGIM6QOqVJnvrAzEY9PWAcwC4iB4JguSLH5WGfRQSL1QEAg9RZGvhlvVQA
+Hc3ogkUW1agU0/LN13T7EEjzcYlm2wQ=
+=aj3T
 -----END PGP SIGNATURE-----
 
---DW1/Ea3gbyAW1RUZ--
+--RjFy7T1TUF+hKGbL--
 
