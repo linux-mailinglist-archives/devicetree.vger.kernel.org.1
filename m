@@ -1,103 +1,120 @@
-Return-Path: <devicetree+bounces-131493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 419B79F370C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:10:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD95F9F3794
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:30:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A54E161462
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:10:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09E9A162DBC
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6C2E205AA3;
-	Mon, 16 Dec 2024 17:10:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39F03205E3B;
+	Mon, 16 Dec 2024 17:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pD+qOXsh"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dDAxNWif"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A77681C54A6;
-	Mon, 16 Dec 2024 17:10:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97BD313B792;
+	Mon, 16 Dec 2024 17:30:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734369029; cv=none; b=Bosj8tEa6r8f1OmnePrMJnd3Z3EMLRN5iq+0tr70sa8J+6LzzYlVx0yK4d0G9zh2TiaxsqWfyz4UdkV13Mj0u5c5wGSnYHQ0bPXhwJjdydzoRtYtAZfdxQkgTpEldO5O9d8/BAfkVSsmyMs1EuARs8D7Wi7sz3QtkbnALmblAmQ=
+	t=1734370240; cv=none; b=VPvW26aJQ0HC6oQJ/M40oaYHzMo/8rd7VkZNHcnvU/X8SrNIbrWOP+V0S85hrfdt2zjiw9ssXLryt4hqxQwzg5oanv/Hgw99QOPhz5MPENnQms7o7Kcq7zF3INhLHB0h2D8L0ushz/Ua4WSHnkM4LmCy23sslwBtLRbO/KwS/ys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734369029; c=relaxed/simple;
-	bh=hk/orhlZtPRCVTAY/48OB6VRHvzYZsvOKapCSPu1XBo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Yf1QC5agi6UdFozb9X4TfzVGDCX2LNjoRJ0J+J4eyeSJEMstRhwUkzOO75PqlRlup7V6tJSIswzIsEgcUUQSOUoONUjpU4nQWeuV4A2Vqa9lZx2i5UeHFKc2MTBARn4N8MqeL7cueL3JbRUnNktb4+vAj2bRwXvXQS/dFHAS4I0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pD+qOXsh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61051C4CED0;
-	Mon, 16 Dec 2024 17:10:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734369029;
-	bh=hk/orhlZtPRCVTAY/48OB6VRHvzYZsvOKapCSPu1XBo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=pD+qOXshhom9N5KPqwWseuhwVJJRBEeqDucT81yLYjinPiby6+TbL9sPC0RjEvXrG
-	 aUO2Cy1PN0vvt4mjftd59SwHz/BYgwSn22eQ9B+gmvwbzKjrGtoo4o3GO3a2vX2C1u
-	 QMF9jYCcApBJ1220Zo0jM9OxauBj3jFyR9NwUlSubLfPTF5Ai0u1Bp+KVRcQMyMAAZ
-	 3/6s+s+Dkh6hHtq64TCxZvw01RM5vFWbnT7TsGj6qBlsPFefcLjbJB32KGRzLPRjwl
-	 jfzxOWZtG4hatBsbxGYYFwWZLPV2FwjuH8PUBLfiR3hllmdVpFD0OItM5p5zD5yAkv
-	 eTTHbqZIl21kw==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Animesh Agarwal <animeshagarwal28@gmail.com>, 
- Chen-Yu Tsai <wenst@chromium.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20241211035403.4157760-1-wenst@chromium.org>
-References: <20241211035403.4157760-1-wenst@chromium.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: realtek,rt5645: Fix CPVDD voltage
- comment
-Message-Id: <173436902708.158279.3911359979093567109.b4-ty@kernel.org>
-Date: Mon, 16 Dec 2024 17:10:27 +0000
+	s=arc-20240116; t=1734370240; c=relaxed/simple;
+	bh=0GHTmDW24yDL/L87YNar8k/bzXJLqW1qzxXU3jUJqm8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jXUfqfRS+lNyHfroYYUtO8RwZp+NYIQSBRj5RFYfZvzoi5WIzyN34/IGtrBgYIXLV13GuXhfbG1IFTetvKBJ0x+ZfaiSvV/sUmuX8Wp69kP+rL/XJiKH4vF6Y4Ph4dI3X9JgYOlsFHRgXl7lG2DEGa/xdJnWIFeDvZFT924trLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dDAxNWif; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1734370238; x=1765906238;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0GHTmDW24yDL/L87YNar8k/bzXJLqW1qzxXU3jUJqm8=;
+  b=dDAxNWifmh/Xkvnj1CJuS8PQ48VIcdD+TUj1IGL4yVBUWt9tGmTvoBta
+   8sYnR+HNhSbuZxhrxl4kDLGOvGwIiSh8M+23HVJgDtBnniMQood5SjM8p
+   mC6MsbHlPszScJUMYEU9kT/vhV2zRocxrQ5WZIVwI8HT38iHK6vfjOabM
+   Yp94VrgjVV7HEXj6uSUisv3vDXYapZHTPyen1d63hcFyB/RE0irbsPu4q
+   +GDqVqdUjSebNDIRqXofPfTVgy19lw6T6gCc+W8syzNZ9B98YvetRiPWR
+   0elNnNZrm5xDBpOcUH3mdhM6xxKdMKQRQQEqWsyVHP29Uwfv6ie9Oh5EF
+   Q==;
+X-CSE-ConnectionGUID: qOGLaWdXQbyqZRy4YA9qnQ==
+X-CSE-MsgGUID: d4N+wPzHTNOSBo9pNTfQVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="38445520"
+X-IronPort-AV: E=Sophos;i="6.12,239,1728975600"; 
+   d="scan'208";a="38445520"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2024 09:30:37 -0800
+X-CSE-ConnectionGUID: svyeDUJLS5e0ZfTRRRv9iw==
+X-CSE-MsgGUID: EWI4KAF3S7CLXQ763EqQ/A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="134602748"
+Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 16 Dec 2024 09:30:34 -0800
+Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tNEvP-000EMq-2r;
+	Mon, 16 Dec 2024 17:30:31 +0000
+Date: Tue, 17 Dec 2024 01:30:03 +0800
+From: kernel test robot <lkp@intel.com>
+To: Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sean Wang <sean.wang@mediatek.com>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	herbert1_wu@pegatron.corp-partner.google.com,
+	Thomas_Hsieh@pegatron.corp-partner.google.com,
+	Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
+Subject: Re: [PATCH] arm64: dts: mt8186: Add mt8186-skitty
+Message-ID: <202412170154.QsBtjHdl-lkp@intel.com>
+References: <20241216-skitty_kernel-v1-1-bc75dcdfeb57@pegatron.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-9b746
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241216-skitty_kernel-v1-1-bc75dcdfeb57@pegatron.corp-partner.google.com>
 
-On Wed, 11 Dec 2024 11:54:02 +0800, Chen-Yu Tsai wrote:
-> Both the ALC5645 and ALC5650 datasheets specify a recommended voltage of
-> 1.8V for CPVDD, not 3.5V.
-> 
-> Fix the comment.
-> 
-> 
+Hi Geoffrey,
 
-Applied to
+kernel test robot noticed the following build errors:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+[auto build test ERROR on 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8]
 
-Thanks!
+url:    https://github.com/intel-lab-lkp/linux/commits/Geoffrey-Chien/arm64-dts-mt8186-Add-mt8186-skitty/20241216-153651
+base:   78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+patch link:    https://lore.kernel.org/r/20241216-skitty_kernel-v1-1-bc75dcdfeb57%40pegatron.corp-partner.google.com
+patch subject: [PATCH] arm64: dts: mt8186: Add mt8186-skitty
+config: arm64-randconfig-003-20241216 (https://download.01.org/0day-ci/archive/20241217/202412170154.QsBtjHdl-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241217/202412170154.QsBtjHdl-lkp@intel.com/reproduce)
 
-[1/1] ASoC: dt-bindings: realtek,rt5645: Fix CPVDD voltage comment
-      commit: 6f4a0fd03ce856c6d9811429b9969b4f27e2eaee
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412170154.QsBtjHdl-lkp@intel.com/
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+All errors (new ones prefixed by >>):
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+>> Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty.dtsi:42.1-8 Label or path target not found
+   FATAL ERROR: Syntax error parsing input tree
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
