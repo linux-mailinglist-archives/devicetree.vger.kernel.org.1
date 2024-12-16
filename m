@@ -1,58 +1,45 @@
-Return-Path: <devicetree+bounces-131390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CFB99F2FF4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:01:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFAD89F2FEF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:01:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1266E16517A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 12:01:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8D3B1883072
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 12:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 326FE204587;
-	Mon, 16 Dec 2024 12:01:01 +0000 (UTC)
-X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28FC8204582;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6915A20459A;
 	Mon, 16 Dec 2024 12:00:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 428A9145A11
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 12:00:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734350461; cv=none; b=CkbXmOWpmamc+hNbOJWc6KwzsuiTa1MHA6erjMeZ4InlDGs/cHAM5xn4NUuKlNoGIPFqcINdCwHWDG+x8693xxlOGZSU8uFujy0EuCfpyrFjnKA1hn8R+eL4S1fqL+0qUsJWpD5ZNfCsygvFTdAQb8VEpx3pibKnkhUksHQnhIQ=
+	t=1734350457; cv=none; b=eek4MkIBU+lYHpObiyqmNBpqxeUzR32LsTZdwswW+T0QsaxrQY5euDKlObnkh9RwPaDVaLSw/4iETz6xZpWm4ZE26ntsd/j8ftQ8RxKC+IOIGYVTuYrVse8jhmRJvGunYenbeteizSqbDulq2Jma0jCYlL3BiHtM/QOMzgjHdko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734350461; c=relaxed/simple;
-	bh=F+1pdi594psO9rs+H+ZahRG1G0ZrK60axzIhWvqAB9Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Od6B7Yg5XAb4z9kxPjroUhFunysPzBmeDy6FtsuHZa+IbAlDK5Aiijle2YjHP5c8lJuAaaPG3EqSuTgjvN9CcqrPG+zmLMgvK0s4kHHjszkBsUhSBSIWxNoRgDXvni+phkVav/jCvuYIcw9EJM+Go9U9unGa0af3VYY2V9KdPQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: rYPRtJHxTo+WD1bOIh3oug==
-X-CSE-MsgGUID: s24PbocCRuWDZAkwN/ixuw==
-X-IronPort-AV: E=Sophos;i="6.12,238,1728918000"; 
-   d="scan'208";a="227994674"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 16 Dec 2024 21:00:56 +0900
-Received: from localhost.localdomain (unknown [10.226.93.40])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id EF2A3427161B;
-	Mon, 16 Dec 2024 21:00:43 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: renesas: r9a09g047: Add I2C nodes
-Date: Mon, 16 Dec 2024 12:00:25 +0000
-Message-ID: <20241216120029.143944-4-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1734350457; c=relaxed/simple;
+	bh=RuBqMkN1DO9/6fSMkj8N0No0qa6+PQKoepq9ngv5UbQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=vByzNT42T2H4+TpDw+CJ8aURzk2XbmvcH+s5HaSIkYP5IFlzFa5RnUJn1IbCj8uPnTuGg80Gcpq98vTQ4UEOhyfTG1n6rQ9h12F1BjqkZs0OTIpKYrt2OXAgspPTdNxrm44uzdd4guHCbtFynP4BKorDWoAhtxbbAl+mExHwDFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 4BGC0bTj028820;
+	Mon, 16 Dec 2024 21:00:37 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        dsimic@manjaro.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH v3] arm64: dts: rockchip: Use PWM to drive blue LED on ROCK 5A/5C
+Date: Mon, 16 Dec 2024 12:00:30 +0000
+Message-ID: <20241216120030.16173-1-naoki@radxa.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241216120029.143944-1-biju.das.jz@bp.renesas.com>
-References: <20241216120029.143944-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,213 +48,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add I2C{0..8} nodes to RZ/G3E (R9A09G047) SoC DTSI.
+The pin connected to the blue LED, GPIO3_D5, is not only a GPIO but
+also has a PWM function. Using PWM, the user can change the brightness
+of the LED.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Convert blue LED from "gpio-leds" to "pwm-leds" and enable related PWM.
+
+Acked-by: Dragan Simic <dsimic@manjaro.org>
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 ---
- arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 189 +++++++++++++++++++++
- 1 file changed, 189 insertions(+)
+this patch depends on [1] which depends on [2].
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-index 15711f9b6038..200e9ea89193 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-@@ -175,6 +175,195 @@ scif0: serial@11c01400 {
- 			status = "disabled";
- 		};
+[1] https://patchwork.kernel.org/project/linux-rockchip/cover/20241216113052.15696-1-naoki@radxa.com/
+[2] https://patchwork.kernel.org/project/linux-rockchip/cover/20241216114547.15892-1-naoki@radxa.com/
+---
+Changes in v3:
+- Reword subject
+Changes in v2:
+- Reword commit message
+---
+ .../boot/dts/rockchip/rk3588s-rock-5.dtsi     | 34 ++++++++++++-------
+ 1 file changed, 22 insertions(+), 12 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
+index d0b9513d56a7..d72314d917da 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
+@@ -46,7 +46,7 @@ hdmi0_con_in: endpoint {
+ 	leds {
+ 		compatible = "gpio-leds";
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&led_pins>;
++		pinctrl-0 = <&led_pin>;
  
-+		i2c0: i2c@14400400 {
-+			compatible = "renesas,riic-r9a09g047", "renesas,riic-r9a09g057";
-+			reg = <0 0x14400400 0 0x400>;
-+			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 507 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 506 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 175 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 179 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "tei", "ri", "ti", "spi", "sti",
-+					  "naki", "ali", "tmoi";
-+			clocks = <&cpg CPG_MOD 0x94>;
-+			resets = <&cpg 0x98>;
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
+ 		led-0 {
+ 			color = <LED_COLOR_ID_GREEN>;
+@@ -54,14 +54,6 @@ led-0 {
+ 			function = LED_FUNCTION_POWER;
+ 			gpios = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
+ 		};
+-
+-		led-1 {
+-			color = <LED_COLOR_ID_BLUE>;
+-			default-state = "on";
+-			function = LED_FUNCTION_STATUS;
+-			gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_HIGH>;
+-			linux,default-trigger = "heartbeat";
+-		};
+ 	};
+ 
+ 	fan: pwm-fan {
+@@ -72,6 +64,19 @@ fan: pwm-fan {
+ 		pwms = <&pwm3 0 60000 0>;
+ 	};
+ 
++	pwm-leds {
++		compatible = "pwm-leds";
 +
-+		i2c1: i2c@14400800 {
-+			compatible = "renesas,riic-r9a09g047", "renesas,riic-r9a09g057";
-+			reg = <0 0x14400800 0 0x400>;
-+			interrupts = <GIC_SPI 180 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 509 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 508 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 182 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 185 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "tei", "ri", "ti", "spi", "sti",
-+					  "naki", "ali", "tmoi";
-+			clocks = <&cpg CPG_MOD 0x95>;
-+			resets = <&cpg 0x99>;
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
++		led-1 {
++			color = <LED_COLOR_ID_BLUE>;
++			default-state = "on";
++			function = LED_FUNCTION_STATUS;
++			linux,default-trigger = "heartbeat";
++			pwms = <&pwm11 0 1000000 0>;
++			max-brightness = <255>;
 +		};
++	};
 +
-+		i2c2: i2c@14400c00 {
-+			compatible = "renesas,riic-r9a09g047", "renesas,riic-r9a09g057";
-+			reg = <0 0x14400c00 0 0x400>;
-+			interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 511 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 510 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 188 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 189 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 187 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 190 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "tei", "ri", "ti", "spi", "sti",
-+					  "naki", "ali", "tmoi";
-+			clocks = <&cpg CPG_MOD 0x96>;
-+			resets = <&cpg 0x9a>;
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
+ 	vbus_typec: regulator-vbus-typec {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vbus_typec";
+@@ -422,9 +427,8 @@ &pcie2x1l2 {
+ 
+ &pinctrl {
+ 	leds {
+-		led_pins: led-pins {
+-			rockchip,pins = <3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>,
+-					<3 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
++		led_pin: led-pin {
++			rockchip,pins = <3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
+ 
+@@ -467,6 +471,12 @@ &pwm3 {
+ 	status = "okay";
+ };
+ 
++&pwm11 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pwm11m3_pins>;
++	status = "okay";
++};
 +
-+		i2c3: i2c@14401000 {
-+			compatible = "renesas,riic-r9a09g047", "renesas,riic-r9a09g057";
-+			reg = <0 0x14401000 0 0x400>;
-+			interrupts = <GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 513 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 512 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 195 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 193 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 196 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 197 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "tei", "ri", "ti", "spi", "sti",
-+					  "naki", "ali", "tmoi";
-+			clocks = <&cpg CPG_MOD 0x97>;
-+			resets = <&cpg 0x9b>;
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		i2c4: i2c@14401400 {
-+			compatible = "renesas,riic-r9a09g047", "renesas,riic-r9a09g057";
-+			reg = <0 0x14401400 0 0x400>;
-+			interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 515 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 514 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 200 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 201 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 199 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 203 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "tei", "ri", "ti", "spi", "sti",
-+					  "naki", "ali", "tmoi";
-+			clocks = <&cpg CPG_MOD 0x98>;
-+			resets = <&cpg 0x9c>;
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		i2c5: i2c@14401800 {
-+			compatible = "renesas,riic-r9a09g047", "renesas,riic-r9a09g057";
-+			reg = <0 0x14401800 0 0x400>;
-+			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 517 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 516 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 209 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "tei", "ri", "ti", "spi", "sti",
-+					  "naki", "ali", "tmoi";
-+			clocks = <&cpg CPG_MOD 0x99>;
-+			resets = <&cpg 0x9d>;
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		i2c6: i2c@14401c00 {
-+			compatible = "renesas,riic-r9a09g047", "renesas,riic-r9a09g057";
-+			reg = <0 0x14401c00 0 0x400>;
-+			interrupts = <GIC_SPI 210 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 519 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 518 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 213 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 214 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 215 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "tei", "ri", "ti", "spi", "sti",
-+					  "naki", "ali", "tmoi";
-+			clocks = <&cpg CPG_MOD 0x9a>;
-+			resets = <&cpg 0x9e>;
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		i2c7: i2c@14402000 {
-+			compatible = "renesas,riic-r9a09g047", "renesas,riic-r9a09g057";
-+			reg = <0 0x14402000 0 0x400>;
-+			interrupts = <GIC_SPI 216 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 521 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 520 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 220 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 221 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "tei", "ri", "ti", "spi", "sti",
-+					  "naki", "ali", "tmoi";
-+			clocks = <&cpg CPG_MOD 0x9b>;
-+			resets = <&cpg 0x9f>;
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		i2c8: i2c@11c01000 {
-+			compatible = "renesas,riic-r9a09g047", "renesas,riic-r9a09g057";
-+			reg = <0 0x11c01000 0 0x400>;
-+			interrupts = <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 523 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 522 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "tei", "ri", "ti", "spi", "sti",
-+					  "naki", "ali", "tmoi";
-+			clocks = <&cpg CPG_MOD 0x93>;
-+			resets = <&cpg 0xa0>;
-+			power-domains = <&cpg>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		gic: interrupt-controller@14900000 {
- 			compatible = "arm,gic-v3";
- 			reg = <0x0 0x14900000 0 0x20000>,
+ &saradc {
+ 	vref-supply = <&vcca_1v8_s0>;
+ 	status = "okay";
 -- 
 2.43.0
 
