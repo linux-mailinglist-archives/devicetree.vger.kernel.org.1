@@ -1,149 +1,124 @@
-Return-Path: <devicetree+bounces-131421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB24D9F31D8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:44:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 588939F31BE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:40:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A9E6F165326
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:44:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 125B3188540D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 279BE2066DC;
-	Mon, 16 Dec 2024 13:42:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5786720550E;
+	Mon, 16 Dec 2024 13:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pj8luyPK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bwH+JbSU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 871A62063F3;
-	Mon, 16 Dec 2024 13:42:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31CA73FD4
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 13:40:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734356571; cv=none; b=iDSsRe1J/rLzD2x/xdZGzf5Nm221UBjh/GGZSe91ZdbLKJu2U4jQPucJ1uRtgqnSr7wk4qxnaksHlVlYC7VTc8kxw9xjZkdJ3/C1ioFqSp66YMlc+qCT8VkuURUzvYI4rOwl5Czoifp/tZkfliLe/z2+hdgskJlAhzElc9JrOls=
+	t=1734356446; cv=none; b=lUc7E4WKfVlWHEVKTiYPu3VFhqwVO5IP3gQeDLg7MBhEjCdXKRns24RrYq9diYNIR5SIRfZN52NwiWsy+VwjGCNnqw5X+hZqV87xZctC8s4lCYLCp1DptU3yjcblTccTdYHawLH4LWHlHHWK0rIztkdSw4a4BaRpavSgoGFEHao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734356571; c=relaxed/simple;
-	bh=63arimq/oo2IlPmsEYAg8gJf+87rPBhCjMDw7DnSNGU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=PaRPsazpT29t9o3l5c6DPJiXy1F+aQnQiN+5RvIipAfQLrkHBM12DwnRrxF5Q1vD5bzFZ+meLG9mIaeh3ziSooMVBo+HEgjKi3tJb3BBtThiNHN1jFC+tnbtHP64iN9+EI2Pi9vNMM++MkUiq+mKXavgi3CfJo0xjRb+0MKP9TA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pj8luyPK; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BG86dH9008575;
-	Mon, 16 Dec 2024 13:42:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0nZpHmpRyudFmzgYM94xkg6Kt/g8rgGoz/uBAW153tI=; b=pj8luyPK40OaaKo/
-	ewOQkbjWu65i2r8owjGv125sidvZEmds6M6+Si6RzHFIyqo2Tz6uJvfldjZiiZYe
-	wp9GCecK1Au4WkU6495AEz9TSka5ZLMQLUIR+xskjUOG5hDSRE6gP3u25YXuODD6
-	eAnZOxgRWKtVnHblgs+mIXDzUtdRBb1ldF8XZ0YS53lTdJAdnwEJbkssyNUc52WP
-	xiLULk2gFgJkr9i9AsOMfNc0gdb8HCgBrnpevRZXI8hm89CTKld197V2VvfBSJP6
-	WPgO0nZ/2Dn+oXy6I9HyLaLWBbTTQzvhMPpsM4AW+cPz+TZNhDb7gh28C4d3+uzB
-	0lQ5mw==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43jgdj0xf6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Dec 2024 13:42:37 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BGDgakL010688
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Dec 2024 13:42:36 GMT
-Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 16 Dec 2024 05:42:31 -0800
-From: Lei Wei <quic_leiwei@quicinc.com>
-Date: Mon, 16 Dec 2024 21:40:27 +0800
-Subject: [PATCH net-next v3 5/5] MAINTAINERS: Add maintainer for Qualcomm
- IPQ9574 PCS driver
+	s=arc-20240116; t=1734356446; c=relaxed/simple;
+	bh=XOrG2kTTSiWGXEWWxX5oOq8e43jR2OPiWvgGkvmdKZg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SASR08lzUI8KoD/j61+FZDWh6REpmL5vN6MktTuVrpBQuqAZdP9C4nOKiLKCKt5LtuG2QorLHfi9BtdpVgxPu7Pwoo6IgovN+N3HwFYftrZHyfIfkbmwWw+G5UjwZK8zZrZbqlLQWBVFATkaMO3dCUuHUxLs0kd8Xhgz85FD8Ys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bwH+JbSU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C87FC4CEDD;
+	Mon, 16 Dec 2024 13:40:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734356445;
+	bh=XOrG2kTTSiWGXEWWxX5oOq8e43jR2OPiWvgGkvmdKZg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bwH+JbSUsJ8Kyl5PuJE7Qmy7WN82jL/Naanhmov9OMBPTAKc3148lKt3SutNVIYIS
+	 1U8C8OUXr9N3kyjh9BLIS3XuvYRoM39iAhnYzNT+YAaC5K0zubMMFecEU/1lmnXvea
+	 0HUq5heeMfZXIZfQs9WFHMkt0WL59wniO/EgiXahmu+eHdPUjqWAC3Psy49rgNoh/P
+	 AzHzWJv8F21L/TN889+e+KsNU57xJDvIIedDk8PxTmsdjU/q7XrlSC+GPTnqm2EgUl
+	 RaNw4hyh8k8VShhZH1BarJvwS9xKLYOeYARmgojF6zcbGffWT58deaw9cSkG3dgxEk
+	 PADRQpULeCsNA==
+Message-ID: <997d39ac-b78c-4584-ba86-d114120bad9c@kernel.org>
+Date: Mon, 16 Dec 2024 14:40:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 10/12] arm64: dts: rockchip: Fix pmic dcdc-reg10 label
+ for Radxa ROCK 5C
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dsimic@manjaro.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20241216113052.15696-1-naoki@radxa.com>
+ <20241216113052.15696-11-naoki@radxa.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241216113052.15696-11-naoki@radxa.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20241216-ipq_pcs_6-13_rc1-v3-5-3abefda0fc48@quicinc.com>
-References: <20241216-ipq_pcs_6-13_rc1-v3-0-3abefda0fc48@quicinc.com>
-In-Reply-To: <20241216-ipq_pcs_6-13_rc1-v3-0-3abefda0fc48@quicinc.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit
-	<hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
-        <quic_pavir@quicinc.com>, <quic_linchen@quicinc.com>,
-        <quic_luoj@quicinc.com>, <quic_leiwei@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
-        <vsmuthu@qti.qualcomm.com>, <john@phrozen.org>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1734356525; l=960;
- i=quic_leiwei@quicinc.com; s=20240829; h=from:subject:message-id;
- bh=63arimq/oo2IlPmsEYAg8gJf+87rPBhCjMDw7DnSNGU=;
- b=4cRd1KvooQmo2b2gTAWKi38ghifwy4O8ZwxXKm2esQAScWN2pwzeaZfqlm8E9lLFHIBBxZart
- 8bIKb1S0nJiCIOzBfF3t8sNie9PCPV61HkxZLIp5A18JgRpYAz0Q+h1
-X-Developer-Key: i=quic_leiwei@quicinc.com; a=ed25519;
- pk=uFXBHtxtDjtIrTKpDEZlMLSn1i/sonZepYO8yioKACM=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 6AWeZMzUbYKYMxfHZnDH-DsCNDNnTHvT
-X-Proofpoint-ORIG-GUID: 6AWeZMzUbYKYMxfHZnDH-DsCNDNnTHvT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=824
- mlxscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0 impostorscore=0
- bulkscore=0 malwarescore=0 priorityscore=1501 adultscore=0 clxscore=1011
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412160116
 
-Add maintainer for the Ethernet PCS driver supported for Qualcomm
-IPQ9574 SoC.
+On 16/12/2024 12:30, FUKAUMI Naoki wrote:
+> Fix pmic dcdc-reg10 label to match with schematic[1]. No functional
+> change.
+> 
+> [1] https://dl.radxa.com/rock5/5c/docs/hw/v1100/radxa_rock_5c_schematic_v1100.pdf
+> 
+> Fixes: 3ddf5cdb77e6 ("arm64: dts: rockchip: add Radxa ROCK 5C")
 
-Signed-off-by: Lei Wei <quic_leiwei@quicinc.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+All your commits have the same flaw. You claim there is no functional
+change, yet there is a real bug to fix.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1e930c7a58b1..81e9277fb0c3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19351,6 +19351,15 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/regulator/vqmmc-ipq4019-regulator.yaml
- F:	drivers/regulator/vqmmc-ipq4019-regulator.c
- 
-+QUALCOMM IPQ9574 Ethernet PCS DRIVER
-+M:	Lei Wei <quic_leiwei@quicinc.com>
-+L:	netdev@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/net/pcs/qcom,ipq9574-pcs.yaml
-+F:	drivers/net/pcs/pcs-qcom-ipq9574.c
-+F:	include/dt-bindings/net/qcom,ipq9574-pcs.h
-+F:	include/linux/pcs/pcs-qcom-ipq9574.h
-+
- QUALCOMM NAND CONTROLLER DRIVER
- M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
- L:	linux-mtd@lists.infradead.org
-
--- 
-2.34.1
-
+All such trivial cleanups are not fixes and should be squashed together.
+Best regards,
+Krzysztof
 
