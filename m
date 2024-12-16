@@ -1,93 +1,92 @@
-Return-Path: <devicetree+bounces-131236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BA6F9F2973
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 06:15:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92E4F9F297A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 06:21:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F25F163BD0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 05:15:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CC7618855CA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 05:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 609D7158870;
-	Mon, 16 Dec 2024 05:15:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 501D01BC064;
+	Mon, 16 Dec 2024 05:21:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ABAZYtdR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cUG9tTOi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC1522AE74
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 05:15:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E6C154BF0
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 05:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734326130; cv=none; b=gf3HMZe6Wbg6WQQBBkGVEiBiIOlnNU3K+4eUnmDC1od3tHbp7sLT/JxYYND0CSFA5RpGYn7DqJuHM+gPQiFs16zIwSyyrDnbeZVPSPSL/08OVRDk/PPIy2Hd6MJ2g5G/EIBxUA6W/UgoBBsEVSZfF8gxoQt1Lq9rUefm2ah2nXg=
+	t=1734326480; cv=none; b=MFYgKk6gOlYLTl9qEm0nscH4AZoEYovQV3PIciKb4ZvDrizM/+1Zyo6dt3ZOx7wmyuQyfocxlFCX7sv5u8EqJqT7jWd4zjEkAdV4008Ei0xxbKx7OciIr706xnXQLa27XME59zhJKa+WvhhlPizmlRxeU1Q2pCf4vNGSTGxRnRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734326130; c=relaxed/simple;
-	bh=PwhcJa/TmnY399+VVjeEk9qTIf31eA07uj1mutyX3/A=;
+	s=arc-20240116; t=1734326480; c=relaxed/simple;
+	bh=Y8BBnzSAQCrOq/vZCN+HTxvR9YBoCNxrtJ37hzJJipE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F133SEFqwjTkUAqVdW1NW972KBkcldHCWo85ybVbkmBwl+YVwxpZYJCDhBehtMCe6eHvxCmru/hx1hoRul5NFbVGnExJ/jBs5YwknLJzAoGo4lNPOgPkf4OeZIKa4uwRg0pGtB0/5E4d6idzgn+L0CHYlh/UmU/HjUrg0YOdOwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ABAZYtdR; arc=none smtp.client-ip=209.85.214.180
+	 Content-Type:Content-Disposition:In-Reply-To; b=GThYkv1pe5RwhYjMhc0QCLteKKB7ZkEiupNL5DEqFbmxNNFsE8JoAUzr5JDGjG6rTnWuXbE1XVheFA1HzogWWQVdnZ/5b2rBQSDurPOat1QuLnNx3ALQb3FMyDf476JbL96W7qQhSJk0Tt1IB3FxJDRj85gwprZqsNCs2xLT0k0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cUG9tTOi; arc=none smtp.client-ip=209.85.210.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2164b662090so27887995ad.1
-        for <devicetree@vger.kernel.org>; Sun, 15 Dec 2024 21:15:28 -0800 (PST)
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-728eccf836bso3048310b3a.1
+        for <devicetree@vger.kernel.org>; Sun, 15 Dec 2024 21:21:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734326128; x=1734930928; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1734326478; x=1734931278; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=2EN8z4yfQzDg2ZyL+ahpPhOPA947/EvCJNjKFK6oUQo=;
-        b=ABAZYtdRrEbLvBiqlbUXhiFwLTVSn2hDelefZCXF2W8hRQM42WUcFAUXWHkxYibx5c
-         X6Qa0vStdIiKE9HKGS4INCQrXCIQkYwcHOmbEJ7RNrtjdP6OxzlZojcKIhhk9LwpSCFf
-         yM0kRLqE2xRn3lPh4UJXXgUQg77BcnPAOVQ5Ol0Bpvc3rRqQFEKXb2a/PzTrKFapojOj
-         aDp6zO/doXqDtVG5LYPBkfNjdIHL4LAMXuFlE6NmD/AYg7SPb5bKeJOH3WBAanm95SMu
-         HEK2Xu/CwofqPMLsGwIyS6QJXa0Jk2I2K0PWk6A3s3PAq5muM7E9dCXm/AVbe/eNp0Yo
-         pn5w==
+        bh=4dODE1oLOneIGU2zuf4IE3qsFOnpfwOB30wuyhRbPCE=;
+        b=cUG9tTOiww1RjLO67ZF7MZEBx2ZWhWnzPi/yxjBMmDuekjT8o3yKrvJMMLid22EiH8
+         4Fh6xrtWO5jAqEHa9z3/fP3PG1YKX7+sQM2ddvQWEMcezqf3rQVrpLMcTGndJWKL6zlc
+         5XhXN0etfUEgWGRHOwlsH6ig1kqVd1SidyMLiNyw5PuQivJb5HX1oYF/CRg3hT9FKA6A
+         ASaE1OFJZ9zTYD4+WEzhx7p7M4+ky72RFoR49kauCnLVkZoFmTOF8ceyOd262C6ldK7w
+         PihgrHJrSbgOMShVw2ERnk0B+3uxmE0hI3ED05KglhpHWPRY2miDrySLJdTsdtEEeT9o
+         Pfbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734326128; x=1734930928;
+        d=1e100.net; s=20230601; t=1734326478; x=1734931278;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2EN8z4yfQzDg2ZyL+ahpPhOPA947/EvCJNjKFK6oUQo=;
-        b=pLSu60RF93q6inrCXdwxxxbPWvC6f8uUfdAuFeohnmEIfJtcXfsvgawU5AIbzKbHYH
-         38QiCELpbt95Q+XkzYJiWtI3H7i+QzjXh7AeN3kmfUmARfwKQrs5qA48qLkW6kYic9ar
-         ImIy3SCboX6CbxCJ8Vaq/MZs81KBPtClkS0D2Mfs6VHDlckNJ5FnY3U7Wp5vQRKDe1hV
-         r9kEY1L8EsmZxMKuGt0riwuxK/6axic8QTNylUmzNnOkuqja2VuYQOmMfQfIC4Txo5uk
-         RMuvGGKpP2UlJjU+Mt7XLTCvZtmlqQTz0oez6RZ6qJLs/ZNqU26PEw9Ax3Puxoe15qvI
-         U+eA==
-X-Forwarded-Encrypted: i=1; AJvYcCWfo/gAN3OXOFNJ3l2O+u8dUm3OpvMC1lpUi+vXFH0X6SBOrvKJ0jiI+6LapS1ZSk6PjB1Zcabtnu37@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxt0OkXpcDrFcfbof20BUchoW7unZwaJEnN2GjUdmXHh6e2wCxo
-	CjTa4X7sl2vMMfwSEQFJKdkMXv7MSoOgrseYlrtkkydVNe7h0yOlBzdjfzj1lA==
-X-Gm-Gg: ASbGncsPsuO3d/+vBCpFYQS1J6p+kT8CTnRHHX3nlbU8S1HuBiRcasDdeQ08NU7ZLm+
-	JWUvxd3MM8A8AwmktsuhNWH8XUS0rEUhK2/zxUPWRS3AF1ZiJNWgMaDIG1FLJifdDyW+jGd1Sb1
-	kcoTKgPz2yBcA7d+XvaR39Vi5wNAXjVGPZkQh92+v8X6y8vN4OS/59rz3pSqZOwy//dHTvHo5D3
-	I9jEWgV+foPhXLN6Arwi89SiNcLXZ6RUXUu+2JBwGHB43KnkqfsC0C6ff7C0taCudg=
-X-Google-Smtp-Source: AGHT+IEMP8YM6TuL6qVyh58qxEkJbFtc4o/lf1lSrWgzvSZJy9EuiwBZNZVTksyPMD0w6gMN1nKY3g==
-X-Received: by 2002:a17:902:e804:b0:211:efa9:a4e6 with SMTP id d9443c01a7336-218929cae30mr161611955ad.23.1734326128114;
-        Sun, 15 Dec 2024 21:15:28 -0800 (PST)
+        bh=4dODE1oLOneIGU2zuf4IE3qsFOnpfwOB30wuyhRbPCE=;
+        b=lsUK8FTgrQOZaWJsB03us/C+1aSynr7UGX7OA3aD2lsLdasM4W9wp1FctrYdc0qvCJ
+         +XvkwjBL30ggfugM453W34P8n50j1WyMPQsUXbrzZcBJ0B7IwhmE8dZuY+OPK7qh1mgv
+         5pfP4rQw8Wm/iE3vz8AY5NNlJt5/Aad5Yuw/VkZVYmnK/1jmTYZuvsdP9+QeJcVDhb3V
+         GqGTwgG7slALMsBRiJ2tPcyu9bbrqQmCr6xi4H9m6XdOEnhv7d5VN/3C3a5W0Li7FsUC
+         GumrSQjV34QN2G5E8Be5bi/KuH5BFjtWHQ58GDj6/b3h6wlLw0C5mp3OaUe67yf84bZd
+         SllA==
+X-Forwarded-Encrypted: i=1; AJvYcCWe5sLGq4OEH6h4oPYt80fRbU9UcQCPcEXA9YxQ4AgSTKcwiqXACGkuMWVlVJHawAxAPsQwTIHraMQp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwY6QLB0c9rNzFqiyAC/weqkwxBMN3x6UEXn+5QjGlyoA+LMJIy
+	+6OJDKYKz8+4WayZa5lyX5y6fwwl5IZP4vF5cQFBQAfiTWjfj3R7WxRtyu5fjw==
+X-Gm-Gg: ASbGncsa8qdZldMAG2JSi5SzXyQTjqPh6+7pDhpWYTwe2OuyW4IpOyYgjiqdNxDt7Im
+	XCbD5dxpKfyAnY8s8YCTlUL5WLpv5MI9B6HB45LzEzO1dVuvVKj976UpEWZCyOqHlgIh5Fl/Cw1
+	lvCVHWNbReYVEidCxjfsaXhwH8bgCNBWWgnp/tWtCHJbRhh03NOzoZvbM5onteFv2cWutn1guLs
+	zZftykXCiOBPgR4mPnXrIeW9noPOxEPtOrDkYFxOkNsPp+xz6mcihJX6Kp/YjIJKQ4=
+X-Google-Smtp-Source: AGHT+IH1mSVhE67FzmlPZUxDT5sePvi+vkzZfYMDKYk51As1yvOgwpFk9uK6IoSy8DGi01snoWjo4g==
+X-Received: by 2002:a17:902:d2c5:b0:215:97a3:5ec5 with SMTP id d9443c01a7336-218929c8eccmr158587875ad.22.1734326478043;
+        Sun, 15 Dec 2024 21:21:18 -0800 (PST)
 Received: from thinkpad ([120.60.56.176])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e50a97sm34234645ad.149.2024.12.15.21.15.24
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e6416csm34490965ad.230.2024.12.15.21.21.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Dec 2024 21:15:27 -0800 (PST)
-Date: Mon, 16 Dec 2024 10:45:21 +0530
+        Sun, 15 Dec 2024 21:21:17 -0800 (PST)
+Date: Mon, 16 Dec 2024 10:51:07 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Lukas Wunner <lukas@wunner.de>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
+Cc: Qiang Yu <quic_qianyu@quicinc.com>, Bjorn Helgaas <bhelgaas@google.com>,
 	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
 	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
 	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Qiang Yu <quic_qianyu@quicinc.com>
-Subject: Re: [PATCH 1/4] PCI/pwrctrl: Move creation of pwrctrl devices to
- pci_scan_device()
-Message-ID: <20241216051521.riyy5radru6rxqhg@thinkpad>
+	Konrad Dybcio <konradybcio@kernel.org>
+Subject: Re: [PATCH 0/4] PCI/pwrctrl: Rework pwrctrl driver integration and
+ add driver for PCI slot
+Message-ID: <20241216052107.tyhwzh4g3tmnp5ll@thinkpad>
 References: <20241210-pci-pwrctrl-slot-v1-0-eae45e488040@linaro.org>
- <20241210-pci-pwrctrl-slot-v1-1-eae45e488040@linaro.org>
- <Z18Pmq7_rK3pvuT4@wunner.de>
+ <c5c9b7fc-a484-438a-aa97-35785f25d576@quicinc.com>
+ <Z18SkkuPbVgTYD8k@wunner.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,61 +96,61 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z18Pmq7_rK3pvuT4@wunner.de>
+In-Reply-To: <Z18SkkuPbVgTYD8k@wunner.de>
 
-On Sun, Dec 15, 2024 at 06:19:22PM +0100, Lukas Wunner wrote:
-> On Tue, Dec 10, 2024 at 03:25:24PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
-> > --- a/drivers/pci/probe.c
-> > +++ b/drivers/pci/probe.c
-> > @@ -2446,6 +2448,36 @@ bool pci_bus_read_dev_vendor_id(struct pci_bus *bus, int devfn, u32 *l,
-> >  }
-> >  EXPORT_SYMBOL(pci_bus_read_dev_vendor_id);
-> >  
-> > +/*
-> > + * Create pwrctrl devices (if required) for the PCI devices to handle the power
-> > + * state.
-> > + */
-> > +static void pci_pwrctrl_create_devices(struct pci_bus *bus, int devfn)
+On Sun, Dec 15, 2024 at 06:32:02PM +0100, Lukas Wunner wrote:
+> On Wed, Dec 11, 2024 at 05:55:48PM +0800, Qiang Yu wrote:
+> > PCIe3 is able to link up after applying your patch. Slot power is turned on
+> > correctly.
+> > But see "NULL pointer dereference" when I try to remove device.
 > 
-> Nit:  AFAICS this only creates a *single* platform device, so the
-> "devices" (plural) in the function name and in the code comment
-> doesn't seem to be accurate anymore.
+> There's a WARN splat occurring before the NULL pointer deref.
+> Was this happening before or is it new?  Probably makes sense
+> to debug that first before looking into the NULL pointer deref,
+> which could be a result of it.
 > 
 
-I missed it, thanks for pointing out.
+Precisely.
 
 > 
-> > diff --git a/drivers/pci/pwrctrl/core.c b/drivers/pci/pwrctrl/core.c
-> > index 2fb174db91e5..9cc7e2b7f2b5 100644
-> > --- a/drivers/pci/pwrctrl/core.c
-> > +++ b/drivers/pci/pwrctrl/core.c
-> > @@ -44,7 +44,7 @@ static void rescan_work_func(struct work_struct *work)
-> >  						   struct pci_pwrctrl, work);
-> >  
-> >  	pci_lock_rescan_remove();
-> > -	pci_rescan_bus(to_pci_dev(pwrctrl->dev->parent)->bus);
-> > +	pci_rescan_bus(to_pci_host_bridge(pwrctrl->dev->parent)->bus);
-> >  	pci_unlock_rescan_remove();
-> >  }
+> > [   38.757726] WARNING: CPU: 1 PID: 816 at drivers/regulator/core.c:5857
+> > regulator_unregister+0x13c/0x160
+> > [   38.767288] Modules linked in: phy_qcom_qmp_combo aux_bridge
+> > drm_kms_helper drm nvme backlight pinctrl_sm8550_lpass_lpi pci_pwrctl_slot
+> > pci_pwrctrl_core nvme_core phy_qcom_edp phy_qcom_eusb2_repeater
+> > dispcc_x1e80100 pinctrl_lpass_lpi phy_qcom_snps_eusb2 lpasscc_sc8280xp typec
+> > gpucc_x1e80100 phy_qcom_qmp_pcie
+> > [   38.795279] CPU: 1 UID: 0 PID: 816 Comm: bash Not tainted
+> > 6.12.0-next-20241128-00005-g6178bf6ce3c2-dirty #50
+> > [   38.805359] Hardware name: Qualcomm IDP, BIOS
+> > 6.0.240607.BOOT.MXF.2.4-00348.1-HAMOA-1.67705.7 06/ 7/2024
+> > [   38.815088] pstate: 61400005 (nZCv daif +PAN -UAO -TCO +DIT -SSBS
+> > BTYPE=--)
+> > [   38.822239] pc : regulator_unregister+0x13c/0x160
+> > [   38.827081] lr : regulator_unregister+0xc0/0x160
 > 
-> Remind me, what's the purpose of this?  I'm guessing that it
-> recursively creates the platform devices below the newly
-> powered up device, is that correct?  If so, is it still
-> necessary?  Doesn't the new approach automatically create
-> those devices upon their enumeration?
+> The WARN splat seems to be caused by:
 > 
-
-If the pwrctrl driver is available at the time of platform device creation, this
-is not needed. But if the driver is not available at that time and probed
-later, then we need to rescan the bus to enumerate the devices. This is pretty
-much needed for platforms lacking hotplug support (most of the DT ones).
-
-> Overall it looks like a significant improvement, thanks for doing this!
+> 	WARN_ON(rdev->open_count);
+> 
+> So the regulator is unregistered although it's still in use.
+> Is there maybe a multifunction PCIe device in your system
+> so that multiple devices are using the same regulator?
 > 
 
-Thanks a lot for your inputs too!
+Maybe the regulator is shared with other peripherals (not just PCIe) in the
+system.
+
+@Qiang: I referred your patch [1] that added the slot regulators, but they were
+not used by any peripherals other than PCIe. Could you please post the list of
+consumers of the 3 slot regulators?
+
+FYI, I did test root port remove on RB5 board (with dummy fixed regulators) and
+it worked fine.
 
 - Mani
+
+[1] https://lore.kernel.org/linux-pci/20240827063631.3932971-8-quic_qianyu@quicinc.com/
 
 -- 
 மணிவண்ணன் சதாசிவம்
