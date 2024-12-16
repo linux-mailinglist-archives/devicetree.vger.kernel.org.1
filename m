@@ -1,135 +1,159 @@
-Return-Path: <devicetree+bounces-131286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A97B49F2C28
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:46:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D189F2C34
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:48:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52C061888E71
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:46:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D73D18845BF
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:48:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D99C51FFC46;
-	Mon, 16 Dec 2024 08:46:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 274E8200105;
+	Mon, 16 Dec 2024 08:48:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fwU/dH4b"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="ZJNGpFmu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A85B922619;
-	Mon, 16 Dec 2024 08:46:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E4241FFC46
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 08:48:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734338767; cv=none; b=oWt1BibSdEmairztegtlogmkYpkLGthPSIjMJw84xv1042oa50cpDd3Z/37zCWSYJHbYP1iDVhNhNituwBj7OBWab4rYHOvIY0FG5Phfk1KGbwrkc9LqLBDOcANBiq59w3tLp2YBcZEGPF/BcXg3IRIM1qTIph+0ngJY7Tuq/ZQ=
+	t=1734338918; cv=none; b=m2783uDmBnJ1+FNWZXXOkX9rEOl5ZyptUiEv91+urcKeRmTCJYPwqaWRAcNiHBmpH2AqzvJQg8D/a0gLpyVaQkD53Nxi6bmHuOVymmIgtp2OQuWs8+gf0ObPOQV9idtnxKdt+w+Aqu8LP3jYT+q/V/uTfyl3jUm3/Tv39XSCQzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734338767; c=relaxed/simple;
-	bh=8bu0smSKNAuMe2IhZmGO29L41V06FksNCHa69ah7d0w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BLyxAhcu7238FTp1CQB4cCYnej+lOLdxqtYz/CN4IcZdLNaOe9F04XgPBHbjuCJJv2x/0plQA4tLSvXVQ1o+ZVaNtsS8F/qyLh+ru3tnPtxRSU7fttKysgOZ8HTJSLkLpoDxe8OiCu13mscYw+Jkf9ua7N2qRpRIqEokmK4J09U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fwU/dH4b; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E97FC4CED0;
-	Mon, 16 Dec 2024 08:46:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734338767;
-	bh=8bu0smSKNAuMe2IhZmGO29L41V06FksNCHa69ah7d0w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fwU/dH4b9Jp9yqpVxS+tE5hFoJuvl1RAxUy+EYmU6nYDvIkX4dt6/WjBRG8+OtLM9
-	 /Y3HowUZ9l3X/hKXqjWMxpedWbihExa58SrO2XEZMjofUEArkH6Y9j/di2eutHqrZ+
-	 seNVl1sWW48E1IIz7fAX7ep4Sr4C2qXiuS7ej0hUvw/PPtvreCLb7ctilPVDkseF6Y
-	 J8OyHOoqmpOR7jhP4XHV7yh6ZZ+GHCL2MewW0u/s+pjp3m8Ob231wbX+/TmWLm4lA+
-	 bIc5VNXF+eGR/1RUjRgd2MfNox7VsUSe5j00a7o5CafxdjebRNysquB7Q+ejsY/kA+
-	 oRp05eyHmFxww==
-Message-ID: <d75a63c9-5bfe-48b7-bb8f-bae415897f3b@kernel.org>
-Date: Mon, 16 Dec 2024 09:46:02 +0100
+	s=arc-20240116; t=1734338918; c=relaxed/simple;
+	bh=6OMK+HsK+VbnZzby8IXvMCez2+AxPVQkeAi81ytIO6Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bMzn6FyqambwTLozxuPuoG1xy9/a5PJYWiq+e6qng/UftGCQr1gtP6Opdl8Bm6xe8GZRcA07RqSJUbOqrNuRM88YHbI0uDKLL36xJQjt0+U/qfWHLb53i1Jrr2zErmy47WG/c3gG7OoAF5KHTCWygXGsYAc2+HL75Q5npg1bOZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=ZJNGpFmu; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2156e078563so28458495ad.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 00:48:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1734338914; x=1734943714; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/ZPlunLBlln7QYb6AUUO3djXlFosdjLIQj/QlK3o4jU=;
+        b=ZJNGpFmuSuPQ+lV2BcWW3IYmQRj3MV8+hB0yIM4wLf8NHHEL+cYi0NUpOCX7R+qyrl
+         XjgyfWi0CXQ+aZiYGUdioqp/Q3AVNYwduw/l5IJUzmJOyCQDFFT3G6GBjwDrV5QBZ/oG
+         EsgYR3Y4dgjQ9bbnwjhZanFGOOgqvwwmolxlj02EqyPcUFuCZaXdTG+VJHkRfnrrWuFo
+         ctcL7NKyjiplRaaKQiYOQ1dbzAXmZgCiIHsbJT+b8socoA+T7w6T47Vk2x+vOxeBBWec
+         7/g7zfI8Hwd5V6uT7cWgTJq5OjLy2u9xRjvkTiU/T4vwoK8ut6wGFCKgR7ksNsv+CqRq
+         v31g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734338914; x=1734943714;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/ZPlunLBlln7QYb6AUUO3djXlFosdjLIQj/QlK3o4jU=;
+        b=PrMX3IQtqH06pKXdH0FP6C2I9TMXC8qSBAYbYqzuUDpNgtkQiGXCOdLFVywtXID8Vt
+         8a/god2ESCi2bn2Dpa6IL2VEZtXINToE3vRKgpbT/T1hvkGrTAFb2QYHWmQo6HrDHehW
+         WKGbxoK+LieqZ+NX6pjl3Hu5WI0UdTKBI04JLsrTjJqwCSaRvf/kYMPUTB7zhJweWxCQ
+         hiKS47XhGe9hqzC4fPNOdwT08P5shu+Yv2XEHZW6qs6uIKlqsWnFnkpkOW8rKXkKcuM5
+         NrlxYTfaWlsRxUVIGA2dNE3dRG1s1XuHTxZXW27WSK7+MfrIxAcB2/cjplkS6xOVWP78
+         p9kA==
+X-Forwarded-Encrypted: i=1; AJvYcCWutbsTpaoJ9u0dVkr5ugqWu9QLaz4a0GNM4Wz+vuWp0oF3PIPAaoZr3PYTBdfo6bq2EO9Ah3bejGa7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmSjDHIdvqqwep8SAxXcpeI5VGXjDW0wMFgGahxvXmlb9flIbh
+	hzqNYS1v5QNIl4+pVdAdWnieehQWiZfbJse3Nw7vlsl3AIg2vYMSGgNVe+NssDc=
+X-Gm-Gg: ASbGnctQ1gv41ArKoDKAM33yDe7Oux4WgsmQHueKJYYs98sBdm6JQGtv7udOMfJG/Xa
+	kxQ40aYWYxdZpoS/ZycEcmzRPfKq2oeMCrrj35XF0H9Fk5kplQkGetCHQ1pSjikvWpeXZRjbDfb
+	cvPAiI+axj/6pKWn8txA2OEsEKVDlvU/XIZ+/qx9bZHK2ipTOXwqD9RQpmgua4FlK7El3tEUy8R
+	VJs3wM9ryXXMktgut2ZDzabVnh7fUJTOkh9mWiKEX+1f1xfI1Qd+7B1LYwVzk2hYUU0/PIZ6MDj
+	87pcPz87C/CN6wM=
+X-Google-Smtp-Source: AGHT+IFoNCn1xjwdvfD5tU8wcob3LmcqUZZYdSpRKH7XSPi+k1Q2z7DhQmm+kma0y1vvzp+aMNnp1w==
+X-Received: by 2002:a17:902:e84f:b0:212:514:b30a with SMTP id d9443c01a7336-218929808c8mr181238975ad.12.1734338914542;
+        Mon, 16 Dec 2024 00:48:34 -0800 (PST)
+Received: from localhost.localdomain ([223.185.130.105])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e501d0sm37711495ad.116.2024.12.16.00.48.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Dec 2024 00:48:33 -0800 (PST)
+From: Anup Patel <apatel@ventanamicro.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jassi Brar <jassisinghbrar@gmail.com>
+Cc: Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Rahul Pathak <rpathak@ventanamicro.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+	Atish Patra <atishp@atishpatra.org>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Anup Patel <anup@brainfault.org>,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Anup Patel <apatel@ventanamicro.com>
+Subject: [RFC PATCH 0/8] Linux SBI MPXY and RPMI drivers
+Date: Mon, 16 Dec 2024 14:18:09 +0530
+Message-ID: <20241216084817.373131-1-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] arm64: dts: exynos8895: Add camera hsi2c nodes
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241214220750.723354-1-ivo.ivanov.ivanov1@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241214220750.723354-1-ivo.ivanov.ivanov1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 14/12/2024 23:07, Ivaylo Ivanov wrote:
-> Add nodes for hsi2c1-4 (CAM0-3), which allows using them.
-> 
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> ---
->  arch/arm64/boot/dts/exynos/exynos8895.dtsi | 44 ++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/exynos/exynos8895.dtsi b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-> index 90b318b2f..36657abfc 100644
-> --- a/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
-> @@ -292,6 +292,50 @@ pinctrl_peric1: pinctrl@10980000 {
->  			interrupts = <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>;
->  		};
->  
-> +		hsi2c_1: i2c@10990000 {
-> +			compatible = "samsung,exynos8895-hsi2c";
+The SBI v3.0 MPXY extension [1] and RPMI v1.0 [2] specifications are
+in stable state and under ARC review at the RISC-V International so
+as part of the RVI process we would like to receive an early feedback
+on the device tree bindings and mailbox drivers hence this series.
 
+Currently, most of the RPMI and MPXY drivers are in OpenSBI whereas
+for Linux only has SBI MPXY mailbox controller driver and RPMI clock
+driver. This series will be expanded in the future to include some
+more RPMI drivers and ACPI support.
 
+These patches can be found in the riscv_sbi_mpxy_mailbox_v1 branch at:
+https://github.com/avpatel/linux.git
 
-There is no such compatible. Your changelog part or cover letter must
-always explain where the missing bindings are.
+To test these patches, boot Linux on "virt,rpmi=on" machine with
+latest OpenSBI and QEMU from the dev-upstream QEMU branch at:
+https://github.com/ventanamicro/qemu.git
 
-Best regards,
-Krzysztof
+[1] https://github.com/riscv-non-isa/riscv-sbi-doc/releases
+[2] https://github.com/riscv-non-isa/riscv-rpmi/releases
+
+Anup Patel (7):
+  riscv: Add new error codes defined by SBI v3.0
+  dt-bindings: mailbox: Add bindings for RPMI shared memory transport
+  dt-bindings: mailbox: Add bindings for RISC-V SBI MPXY extension
+  RISC-V: Add defines for the SBI message proxy extension
+  mailbox: Add common header for RPMI messages sent via mailbox
+  mailbox: Add RISC-V SBI message proxy (MPXY) based mailbox driver
+  dt-bindings: clock: Add bindings for RISC-V RPMI clock service group
+
+Rahul Pathak (1):
+  clk: Add clock driver for the RISC-V RPMI clock service group
+
+ .../bindings/clock/riscv,rpmi-clock.yaml      |  78 ++
+ .../mailbox/riscv,rpmi-shmem-mbox.yaml        | 135 +++
+ .../bindings/mailbox/riscv,sbi-mpxy-mbox.yaml |  54 +
+ arch/riscv/include/asm/sbi.h                  |  69 ++
+ drivers/clk/Kconfig                           |   8 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-rpmi.c                        | 588 +++++++++++
+ drivers/mailbox/Kconfig                       |  11 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/riscv-sbi-mpxy-mbox.c         | 979 ++++++++++++++++++
+ include/linux/mailbox/riscv-rpmi-message.h    | 218 ++++
+ 11 files changed, 2143 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/riscv,rpmi-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.yaml
+ create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,sbi-mpxy-mbox.yaml
+ create mode 100644 drivers/clk/clk-rpmi.c
+ create mode 100644 drivers/mailbox/riscv-sbi-mpxy-mbox.c
+ create mode 100644 include/linux/mailbox/riscv-rpmi-message.h
+
+-- 
+2.43.0
+
 
