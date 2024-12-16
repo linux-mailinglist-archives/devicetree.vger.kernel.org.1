@@ -1,111 +1,111 @@
-Return-Path: <devicetree+bounces-131455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D62A9F347C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:28:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E73CD9F34C5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:41:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 644B9168D8B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 15:28:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DF40169044
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 15:41:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C029C1465A1;
-	Mon, 16 Dec 2024 15:28:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4335F1C54A6;
+	Mon, 16 Dec 2024 15:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="wDnQ/1e9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA5E1428F1;
-	Mon, 16 Dec 2024 15:28:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 609DC148FF6;
+	Mon, 16 Dec 2024 15:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734362893; cv=none; b=uyDbkf8woWq0yCan/7qIGDLvUAjb7gN5Eu/mcp0t9h3y1764TKKBjezMkLNMkalsmzpF7U5/GWmfTivs8fGC69q9kTsGDv0pgNi82kuxoJCcbyh8himsnm7fVSEQBqFiHvhjfSIwjckP92pZJGZ+tKiFtVtPnemW1BOEb9GcvoY=
+	t=1734363658; cv=none; b=PGOeNhM1YfZwnpbZhUQulU7y0nApyMaCO4nSn0CVL0elCMe5Vt2VERqz106JYbPOtmP9k412jXykM76Ti+r8x9Y4++V5RYvZ0XhfoERwx3LAgZGWo8o64xvtp4yCkuZ2VU0LABKWpmQoY9vb6e5gHC1j8hzKoM2unaTQJfX7VEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734362893; c=relaxed/simple;
-	bh=sxIqmI3QC9Jyvc8wVP1eMFzduE+nzsnPUOkuAhfCdHY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XQDvK3XjyIS9dSi9yihHDHNsG6MTUSjx2gkmJHTiKsmqTNiJDIKaIvTVnJXXtAyHBCN0ejGmvsNuNl65tRMGX0DACj4mf5kFTikccZFTjl+ay2acHbvHYlB2Gav9w1TZDLgA7iL/cJOvHKoztBr5Bxfu89uos7ZbBbLc4nMRohc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-85c5316f15cso973540241.1;
-        Mon, 16 Dec 2024 07:28:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734362890; x=1734967690;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bqLTXavJUp9TPWAj6oFx3BCnwGmHXsE5vLQ4Z0mBcco=;
-        b=r3/4cdslV5VC1WoumWsCJ9RDjZkIhHKbwiIBCAD6Y5WOiOtdiqHyRZzBE3qF4l748V
-         seb2REKnJakkpu28TambTWzGNyvgX0tU49htReDSTuzBVTht5TiSeMf9QOC0FcPML+En
-         Dmc9IGhngdUzaJydEToFQtm5eIGxLsLA6GkXpKh1yMNIEfLrLQyiO2SyRJwJm/BIO0dQ
-         vArKS4ck1ljHgE8t+qj7iI00oWsabbUpRxS8Ntf120/Kr57kZweKMh+fRGCO5W+guC2G
-         guvzHsW+sgxBlIxBpOdS6Z6w7MpFx73PXHu9LhfJXfShqTQpSEEeJ+4lybtM2ZDK6/0X
-         xtcw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/AAHEzjY9pRFu/eFkp84Ri1en8tgttduzQi6DDR7h9SNfXTmAMhFc6bRRhnTkjRIc/OlYS3F3pMT6hBYrDIZGtFE=@vger.kernel.org, AJvYcCXebtr/LWpc5RZYzOFJ31fy97vdSyNTGTdFk9n3VgVRWmF+Nl97PTckwTW2tY0MsLsjYrjvoyMkPU5H@vger.kernel.org
-X-Gm-Message-State: AOJu0YydA/olZhm5VA3eC6Mks3+30np8PxL+Evz9LdgdV3ykbAhLCLm8
-	dRrY9K+0HrMV4tjOAjW28WEEjvzkkR/+QbqnH8d9jph7T61kSWIOi3ym7pt7
-X-Gm-Gg: ASbGncvHtUOiya2HumTbweNVBO8+cvP2XBNp9xXei1l+CqTfoCxfpEEloW2mMKcNReY
-	33xdaAi9ogVYoERscYKw/iJUoOcuqoM+pGKQPe4iUPwzl7zMrU11rMBGspmUKCcCMxfLVSzrmdX
-	Ov30e87D3O4Fu4/ae7icSQcGpzk223KEvTyp467r1kyEOd0DmtWVRSmkaYCuJw1LYR2SAeFTf5p
-	PDtq/Iqqa/aWf/lJDDL/dtFayDrv0Evu8LE8bJTC8H/wfPyexFJNVdTBFODGKWH3x8VZQVD1m3Z
-	45NzJ4xpWcLVFPEg2Ug=
-X-Google-Smtp-Source: AGHT+IF0o9gZrytu8koYAtvLvmeaxQXphhX7PchHoJ9j4u4V/660YINdAe2ZiFqzuw7Pvp2idG0glw==
-X-Received: by 2002:a05:6122:4f98:b0:518:a0ac:1f42 with SMTP id 71dfb90a1353d-51a2425f86dmr335017e0c.1.1734362890331;
-        Mon, 16 Dec 2024 07:28:10 -0800 (PST)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-519eb6faa0fsm633438e0c.34.2024.12.16.07.28.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Dec 2024 07:28:10 -0800 (PST)
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4afdd15db60so1062789137.1;
-        Mon, 16 Dec 2024 07:28:09 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV7i5P0VMUq/Zs8kIqZQs2yPoQOxbqaZvyiS3fT/0AxnUT2OqDC444GNJ2ou/2GDGf53+JFY88MhuUM@vger.kernel.org, AJvYcCVzbe9HwN2ePCtyyJ8VNeZBjIXtGuMsx0Imn43jTgbPwzDWBbRkZp2I+dKbQp2CXRTgOgoFjWxFaaU0YngmDEE17PE=@vger.kernel.org
-X-Received: by 2002:a05:6102:2c04:b0:4af:fc14:f138 with SMTP id
- ada2fe7eead31-4b29ca14539mr353074137.7.1734362889759; Mon, 16 Dec 2024
- 07:28:09 -0800 (PST)
+	s=arc-20240116; t=1734363658; c=relaxed/simple;
+	bh=g3zMj0gYkE0JeMJPamSBlKCB1YyYSBAnavDGG2D5vNI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=McqnY7QUpQo4uZ+bilPWlUoS1pz+r+w6Dqktfqt7smdlTfKBiUL6tXv1IWNs3hLHD6/qiQGUjp8vOYmlFUooIuQWVSXWW9AbZTiMrSodvoCip9aXJ8yynHsdywN7AnOo5yY5NdMdL9ikr9Pb9ellHEQut4Q3Vb4m6AC7eU1sSsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=wDnQ/1e9; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGEYBor024315;
+	Mon, 16 Dec 2024 16:40:42 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=u5wGE5wijHPgCUYNBXHSuk
+	VMCuhvYNDhcscMJnWi4EI=; b=wDnQ/1e9NzRlJAEmmolrW6ZfzCwN5bhKfft1Ma
+	HToVJAVUpNZSsw6/W3NtPZUSSdIBgeGQ1/S+t/Te6jQ7X3W0U23rJWJ6HR2RrGa1
+	2xJI1QYNVTAg8lPQbWhzr+z3uwfu8b4kJEJFKGHSW2hKEBopC2VMmHSA9vdh8Qn4
+	m5o1yNCDe+akkZc63m7wpZgZHyzT3WImJCVjoNtyJuPi8R1c4zfEIJwKrUvkkMWn
+	s7u6ucNOtzACQMkWpIuBFkWkkl98QVNSOkxEisil+qIUtQkJ1SWhHw4Ca05Br4dQ
+	g0riPTWuwuCyZvIjcf9RkVDQyG6oF+bY4jULKYmAd7sx1Saw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 43jp3887bw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 16:40:42 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8130440048;
+	Mon, 16 Dec 2024 16:39:47 +0100 (CET)
+Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6BECB277BE6;
+	Mon, 16 Dec 2024 16:39:19 +0100 (CET)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
+ (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 16 Dec
+ 2024 16:39:19 +0100
+Received: from localhost (10.252.30.129) by SAFDAG1NODE1.st.com (10.75.90.17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 16 Dec
+ 2024 16:39:18 +0100
+From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+To: <alexandre.torgue@foss.st.com>
+CC: <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <fabrice.gasnier@foss.st.com>, <olivier.moysan@foss.st.com>
+Subject: [PATCH 0/5] ARM: dts: stm32: add counter nodes on stm32mp13 and stm32mp15
+Date: Mon, 16 Dec 2024 16:39:03 +0100
+Message-ID: <20241216153908.3069548-1-fabrice.gasnier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241213173901.599226-1-biju.das.jz@bp.renesas.com> <20241213173901.599226-6-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20241213173901.599226-6-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 16 Dec 2024 16:27:57 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVxiRqOiq9osCWbtx8DisJjwLwk+X=+drDC_J+orGZf9w@mail.gmail.com>
-Message-ID: <CAMuHMdVxiRqOiq9osCWbtx8DisJjwLwk+X=+drDC_J+orGZf9w@mail.gmail.com>
-Subject: Re: [PATCH v3 5/7] arm64: dts: renesas: r9a09g057h44-rzv2h-evk:
- Replace RZG2L macros
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Fri, Dec 13, 2024 at 6:39=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> Replace RZG2L_* macros with RZV2H_* macros, so that we can define
-> port names in alpha-numeric.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Counter driver originally had support limited to quadrature interface
+and simple counter. It has been improved[1], so populate and enable
+stm32 timer counter nodes on stm32mp13 and stm32mp15.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+[1] https://lore.kernel.org/linux-arm-kernel/20240307133306.383045-1-fabrice.gasnier@foss.st.com/
 
-Gr{oetje,eeting}s,
+Fabrice Gasnier (5):
+  ARM: dts: stm32: populate all timer counter nodes on stm32mp13
+  ARM: dts: stm32: populate all timer counter nodes on stm32mp15
+  ARM: dts: stm32: add counter subnodes on stm32mp135f-dk
+  ARM: dts: stm32: add counter subnodes on stm32mp157c-ev1
+  ARM: dts: stm32: add counter subnodes on stm32mp157 dk boards
 
-                        Geert
+ arch/arm/boot/dts/st/stm32mp131.dtsi      | 40 ++++++++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp135f-dk.dts   | 12 +++++++
+ arch/arm/boot/dts/st/stm32mp151.dtsi      | 41 +++++++++++++++++++++++
+ arch/arm/boot/dts/st/stm32mp157c-ev1.dts  |  9 +++++
+ arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi | 18 ++++++++++
+ 5 files changed, 120 insertions(+)
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+-- 
+2.25.1
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
