@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-131314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B1389F2CF6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:28:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D53469F2D03
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:31:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 419E81882081
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:28:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84B7C1882F0A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:31:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69F9E201026;
-	Mon, 16 Dec 2024 09:28:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23640201260;
+	Mon, 16 Dec 2024 09:30:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pElc97kd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VEmTDgw7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F347200BB9;
-	Mon, 16 Dec 2024 09:28:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E377A1BCA11;
+	Mon, 16 Dec 2024 09:30:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734341292; cv=none; b=DmMDva+Sh/NOOSkfU1BQXqwacZVRzwbOI5WJ7KagCJdX3zPkxlE4wqnXXuk0xtA6WrfU21Qv9BofXVO+CJ/USkFFvgChs0Z5RZsSNIFLSjqMFJuo9131PXbdHhFPey1WIIVZn2Fy4TI31E1U6A6YGqh1Dc+kFUomAguXfi3igVc=
+	t=1734341457; cv=none; b=QrN4f0p0NmovrhaUZnzDYGHU74Nq+4cW1Mn//e4xePMfsQcSEGVXNUKqzGfrPDqHyEwIWyhGnA68nkzpf8TTYQadSb8BS96lqLbJjghLHMFE8UaEzZ8woP0lXAwl2+KDLRRuZ9iU5elPDZbxg4wZJ+/j79yMZPm5dhWev7UCwdw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734341292; c=relaxed/simple;
-	bh=zplvDS/JfEKmgoJ/gVJLJ7g8FjSFAlfcgjYGedG7zmw=;
+	s=arc-20240116; t=1734341457; c=relaxed/simple;
+	bh=n+Q9WKFcumC330vXhqPiRFjwN1teujk5gp9FOZUhxsc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OhNEpucsTl/igQgSavcokk2TFMuAHZElGL46DthD4zOkK8GnjI6k74DalxDsIndEOOOYDpM22csGLiuaufRDAJzRurn69ihXuBedauVS68KBsjpNpkIPZrODmKCgY6h7tfjxwW9NIn9HtYnN3LdT5i0MaZZ+BGZrsQdbuOnWY/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pElc97kd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F40C0C4CED0;
-	Mon, 16 Dec 2024 09:28:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AY1Y348z0Zk+t5EWFgjPHXJxT1ox6hX2wbpysTIIu3M1nb4l3HttoOvgLDqnelU90i9cIUZtBImEzgFzt8wJqGcNltcArSar7VAUCCnHX780sKDAClgr/Nt9J2LsdcJwj3V6/+QVElQSjRznxExSm9dFc9zwzz4VJjeAXFkHXuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VEmTDgw7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCFB4C4CED0;
+	Mon, 16 Dec 2024 09:30:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734341291;
-	bh=zplvDS/JfEKmgoJ/gVJLJ7g8FjSFAlfcgjYGedG7zmw=;
+	s=k20201202; t=1734341456;
+	bh=n+Q9WKFcumC330vXhqPiRFjwN1teujk5gp9FOZUhxsc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pElc97kdQ16eMIdJ0baZfJlFx+orrh97gDCgqBl4L0z4QnDHvBVE7JHL0IOAUT0g9
-	 +bGEXcfrbenR6AFVHKWu90CPoavRiA5G1BH6R8QjWUWOVZKZFcD9MD+HzlIRvnQWIb
-	 AK4pipDyVacG/UcT3D8QDTP8u9r6BJ0TYMcm3Ad5pDTEqOXlh+Lr8k/Kv3vgozNWiO
-	 dWkxH8QCMTZfsSn5D9PNT2IO3QOembvdsREuETSKOsaPBX5QxhSkrEYD7Isu3cBscX
-	 yFiP+ZBhPUktKnF87GMho/D6Dw4WuXgR039vaLugO27/n5PF0jt3xJljlhADiOAH9r
-	 JHnn29sWfMZUw==
-Date: Mon, 16 Dec 2024 10:28:08 +0100
+	b=VEmTDgw79wyxu8oF+iuFw+Yj4J7i0JnIC5B5BUKaZL32nWHPruWpDKeIZOxWzx2Wl
+	 4lhEEjAnhPiohnq1nRu6Hc/Tf/8EUcU/TVFoWUfLvUQOe0wrZvnNLmjTuWLGlsH/4F
+	 FrHDG8zGom/RHq2NxUVRncVRBMEd6ciEWBt6OrlHNSmmWiOBGswfy5EDbltDbWdgF/
+	 jQRDTgNnuBRHhx7QAOpzCiViWz86jZagkDkxdyIxM4b80/Zin6z0K1JlsKG70pFfQL
+	 zMO+GPvPkhBAv0PDrbyWwQaWZS7f5Nzbz9COiBPqArgrpbjjwKYiwksuH99nntNIqr
+	 YWn1Rm/Bh4GuA==
+Date: Mon, 16 Dec 2024 10:30:53 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Shimrra Shai <shimrrashai@gmail.com>
-Cc: linux-kernel@vger.kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, heiko@sntech.de, krzk+dt@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	robh@kernel.org
-Subject: Re: [PATCH v3 3/3] dt-bindings: arm: rockchip: Add Firefly ITX-3588J
- board
-Message-ID: <x7y24y3bkbj5fzx5pdprjr5umg6egxsy2xscfbj3xgzgzubvdk@ppncjiqoekk7>
-References: <20241215032507.4739-1-shimrrashai@gmail.com>
- <20241215032507.4739-4-shimrrashai@gmail.com>
+To: Mohan Kumar D <mkumard@nvidia.com>
+Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, thierry.reding@gmail.com, 
+	jonathanh@nvidia.com, spujar@nvidia.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: dma: Support channel page to
+ nvidia,tegra210-adma
+Message-ID: <x3cp6ho3ovwwarj3767ryoufvcqh5fe5fabtsjvrsg6ek6gjqz@iezeaqtav77o>
+References: <20241213103939.3851827-1-mkumard@nvidia.com>
+ <20241213103939.3851827-2-mkumard@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,25 +61,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241215032507.4739-4-shimrrashai@gmail.com>
+In-Reply-To: <20241213103939.3851827-2-mkumard@nvidia.com>
 
-On Sat, Dec 14, 2024 at 09:24:55PM -0600, Shimrra Shai wrote:
-> Updated DT binding documentation per @Heiko St=C3=BCbner's suggestion, to
-> reflect the bipartite nature of the board.
->=20
-> Signed-off-by: Shimrra Shai <shimrrashai@gmail.com>
+On Fri, Dec 13, 2024 at 04:09:38PM +0530, Mohan Kumar D wrote:
+> Multiple ADMA Channel page hardware support has been added from
+> TEGRA186 and onwards. Update the DT binding to use any of the
+> ADMA channel page address space region.
+> 
+> Signed-off-by: Mohan Kumar D <mkumard@nvidia.com>
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
->=20
 
-Order your patches correctly (bindings are always before users), so you
-won't receive feedback of undocumented compatibles. See submitting
-patches in bindings directory.
+This is v2 but no changelog, no explanation whatsoever... I assume
+feedback was not implemented, so please go back to previous version and
+address the feedback and then send proper new version with changelog.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+See submitting patches.
 
 Best regards,
 Krzysztof
