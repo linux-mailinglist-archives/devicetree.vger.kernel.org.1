@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-131281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BB739F2B8D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:10:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 598B99F2B9B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:13:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F399416426F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:10:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 463DA167E6D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 221281FF7D1;
-	Mon, 16 Dec 2024 08:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A871FF7C5;
+	Mon, 16 Dec 2024 08:11:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NWUsRAM5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HdHZ/aVa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBB681FF7CC;
-	Mon, 16 Dec 2024 08:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6771BBBE0;
+	Mon, 16 Dec 2024 08:11:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734336622; cv=none; b=sS/M3Z4OBbyIeJEbaWyRQhxktaWt1ZGVSJuv+rLwBNMA0d5HGCOvNmElsNudb0R5VdoDt8FNmXY14l32Vwo9blkeQKWxJB2q8bbdur+Fj3OJLs55d2Lk29Ne4raYzCylG4FZcfCSGtBd+g6K4yLTIlUWIRI9IRtDtGFTxJw93DU=
+	t=1734336684; cv=none; b=LHSvS0bgvxfb+7mqwgt6lqFeYwtPFqY70cBcAnFzJYgrNSiBdRgpaoIGJUgCFbL5M5J+sj9JRT0lmYmBZHj5wNdHqyXMwYrBbRiIygmyate0ru1mZp9AkOmWU6kk+vrJmrvQfhfR7YbVJGb0PqWrf/P0W3YcqCXkgjFLk/1y5Sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734336622; c=relaxed/simple;
-	bh=I8tqmc5IaiPoUplhIX6RsKbAo0QPo2Zt4joR5n0WYUk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hq3eHzynP3CaOd1UdhVFq5j+3QcXyxKe+h31Ko/+xSICIgfMRUDzv5cbAJJCHl4h9UWQzrKaTcuozxmn8Fh7wDOnr4r9pw7UP4rXs4DGcGBs47EH0RJulpK0mTqswpe+HRGyFvjtI13DHCn/jFD8TLsED4Wdxz5d25bX6EB8QEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NWUsRAM5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CA01C4CED0;
-	Mon, 16 Dec 2024 08:10:17 +0000 (UTC)
+	s=arc-20240116; t=1734336684; c=relaxed/simple;
+	bh=czYWF1BdoS+UaieC6uxMNzsS1RvE24N3CBEYCutzIKs=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=TuFckUgHtKHusGSG9seC1dG/wpDOo+TIPXd5qbhdQe/L/NRY/QebsMZNnQ3mUzbQzm5AJpxJL6aWyXFXJKKAyy+40WDdONiqBzcnlBfptHcbmrmehdPUhRMRIXflYRDUHaIv6yXgyWODCU+1r11dsZYEVo36ly5jj5MKO6mlaeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HdHZ/aVa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44BA0C4CED0;
+	Mon, 16 Dec 2024 08:11:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734336621;
-	bh=I8tqmc5IaiPoUplhIX6RsKbAo0QPo2Zt4joR5n0WYUk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NWUsRAM5Z9vieIYgTIUILLoq3Mhd/Yt4AGxfOtLzcfbBqlBLx8XgTeUIBxFAMZQps
-	 N1F9SrXQ0kC4lnyMVMoFfx3rKvJff4jjHqZ/IGYBRWePld0NkvpTHyr1/t2l8Wtwm4
-	 xt8fjtsNuRK2ew+zlT5XRwSD7qi4Q3QYnQaKHZd04o5HdndG7v8Lxpx9LfGaOumqFC
-	 nNVoO0Kdfc10SISV5GLedEoMvrgmDL8+SCFspc0yKCCd8Ssgl+H6QdzMmUFIX1taXh
-	 rHat1OMiPUN6KHCgrjgH+PHMz9A3fXugFQyGhFtnR62bTPRXnTHful+iIUtwpFTLMk
-	 GcJc3Tw49feqA==
-Message-ID: <d4b4d357-f1f5-4e75-938b-e6742d1d3674@kernel.org>
-Date: Mon, 16 Dec 2024 09:10:15 +0100
+	s=k20201202; t=1734336683;
+	bh=czYWF1BdoS+UaieC6uxMNzsS1RvE24N3CBEYCutzIKs=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=HdHZ/aVaBKg3TyR1TrxskaM+HEfTdSkfdzU0oINvax/VI1rbHk3az2cFkdJBWc8AW
+	 6jV0GY46MHniPzoh9mS3D7u6oCfbWmgILRQFDz034+BbCjdhywfCqEgHjJjIExTAku
+	 eCgx2us243zqlJ4ufEbB1g+c5qjrIKZJ+fhpxXMmXCm21t1FjpBFzNSmnqm0NfhiCu
+	 T0AzpOzjMn6GEal8hYIixOMv0NrcziHR+Z6Gnnfirj6YeHafFRranwAgsD1lgrobe1
+	 RAke9bhscZdgmcEl9bvQVO1waR3IZBXMm46Qm55pXzvElQfVNMHlPdhbybDKS1CR9t
+	 NmyO14cnCsNKg==
+Message-ID: <d0424774-b7af-456f-b76d-fe5e39d0d483@kernel.org>
+Date: Mon, 16 Dec 2024 09:11:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,6 +51,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62l: add initial infrastructure
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Bryan Brattlof <bb@ti.com>, Nishanth Menon <nm@ti.com>,
  Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -59,7 +60,7 @@ Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20241117-am62lx-v1-0-4e71e42d781d@ti.com>
  <20241117-am62lx-v1-1-4e71e42d781d@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <d4b4d357-f1f5-4e75-938b-e6742d1d3674@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -104,27 +105,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241117-am62lx-v1-1-4e71e42d781d@ti.com>
+In-Reply-To: <d4b4d357-f1f5-4e75-938b-e6742d1d3674@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/11/2024 06:34, Bryan Brattlof wrote:
-> From: Vignesh Raghavendra <vigneshr@ti.com>
-> 
-> Add the initial infrastructure needed for the AM62L. All of which can be
-> found in the Technical Reference Manual (TRM) located here:
-> 
->     https://www.ti.com/lit/ug/sprujb4/sprujb4.pdf
-> 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Bryan Brattlof <bb@ti.com>
-> ---
->  Documentation/devicetree/bindings/arm/ti/k3.yaml |  6 ++
-Please run scripts/checkpatch.pl and fix reported warnings. Then please
-run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
-Some warnings can be ignored, especially from --strict run, but the code
-here looks like it needs a fix. Feel free to get in touch if the warning
-is not clear.
+On 16/12/2024 09:10, Krzysztof Kozlowski wrote:
+> On 18/11/2024 06:34, Bryan Brattlof wrote:
+>> From: Vignesh Raghavendra <vigneshr@ti.com>
+>>
+>> Add the initial infrastructure needed for the AM62L. All of which can be
+>> found in the Technical Reference Manual (TRM) located here:
+>>
+>>     https://www.ti.com/lit/ug/sprujb4/sprujb4.pdf
+>>
+>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>> Signed-off-by: Bryan Brattlof <bb@ti.com>
+>> ---
+>>  Documentation/devicetree/bindings/arm/ti/k3.yaml |  6 ++
+> Please run scripts/checkpatch.pl and fix reported warnings. Then please
+> run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
+> Some warnings can be ignored, especially from --strict run, but the code
+> here looks like it needs a fix. Feel free to get in touch if the warning
+> is not clear.
+
+Apologies for digging this old thread, some other reply bumped it to top
+of my inbox.
 
 Best regards,
 Krzysztof
