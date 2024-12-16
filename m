@@ -1,166 +1,125 @@
-Return-Path: <devicetree+bounces-131464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73DCD9F352B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:02:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20B649F359D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:17:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 088821889FBF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:02:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3033D188732C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:15:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 223BB7E59A;
-	Mon, 16 Dec 2024 16:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24C69205519;
+	Mon, 16 Dec 2024 16:11:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="G72zPEjX"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="BjroLvwM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-87.mail.qq.com (out162-62-57-87.mail.qq.com [162.62.57.87])
+Received: from out-185.mta1.migadu.com (out-185.mta1.migadu.com [95.215.58.185])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EAED53E23;
-	Mon, 16 Dec 2024 16:01:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.87
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8DBD205AA2
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 16:11:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.185
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734364917; cv=none; b=CVr8z50VlDiCkN4kP343lPFRmBKmBnRhg40eItWD0/CzN5K9NSn5TbBBekheK27SxbZdrCDCkD4ysDOvTCxM9Mg5qFBo72YdQumAAQ2TxkJfQGeNmAB/8nO67cF4Fje+PGMMXQA5FM5GN+M4+LBxSVlnb24oF3hI/qIGJbytbis=
+	t=1734365506; cv=none; b=UbczM4nLqKw+cfGNkvlDXMFaxK9AwXhwH8B0Q8pR+n2ffVQfXokSezUj2amzCluH6fFQwnKL2kmqE4hvL1pxzku8Qh4/PNS+f9DomAoh0oOlmeo9T2cs9ctzraub3qsCL6P/yyDtjXcxR+KDYswZPi36QAMVMvTPw5il1MgI/Uk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734364917; c=relaxed/simple;
-	bh=YUZaXS6Vt4XLnH1O45Kl0gC/9P9dQbdNRSwa3HOflOY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kFGj7/V6lGT0JC3xqUOlyLxCQx3kMQxyRK40OtGWf5WVLw5EzTQFkCFDXVbuVkGHviL+vprQA0WMrFizndV6ZER6YbzfC4fU9yIcD2OrAtnqwFtidDG/gj8IKg7fc0uFTKAV4VBjVMG8D2HUw+/RLP1dvbl241i3dLOmxbIUkmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=pass smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=G72zPEjX; arc=none smtp.client-ip=162.62.57.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1734364907; bh=yqsCxIHbjWGKkcn2WT4vA7e1SHVnhVYbcDANJ3Bx5XM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=G72zPEjXP1VpHaQBAdr6oju7AqNtv8GEcnxfgRfRYbACn2sBnxfMHfLVtGwP1bbir
-	 uVpZcRIijtNCrF76QNbEUTWBDBXniBBPMSJoaHoRxwAVCGVGlZIX2vsjX98D868bON
-	 42+U9wF9SzyRgxyC2AJCnMZzIJ1R/ZBkSODTw1IU=
-Received: from [IPV6:2408:8207:18a1:fd20:b8c3:9ed2:6671:4e49] ([2408:8207:18a1:fd20:b8c3:9ed2:6671:4e49])
-	by newxmesmtplogicsvrszb21-0.qq.com (NewEsmtp) with SMTP
-	id 1806C3E; Tue, 17 Dec 2024 00:00:24 +0800
-X-QQ-mid: xmsmtpt1734364824txr9h1ljv
-Message-ID: <tencent_8F35B6F07D09566A873982E0E2C76085280A@qq.com>
-X-QQ-XMAILINFO: Nr4sKL92GIu+ail8wIV4AJS6zsf5ZE8QPqWHcOkkko+6R74TiLehhg8KsJC771
-	 mL1hZqM/nj0N69IfGvCEh8MuzFlLf7erlLtkrF4QP8qZkH9R46rJC3zvksFOo3obkRV0+aKu4SHn
-	 upyCVd26TXjBxuoB9jpavw9ICCES77vHfPzlK79FLfZuxy8JNgqtal0+9OTmJogTMRdPb5a9nNAi
-	 xm9z/bMHICi1CrOJIkjYihMJD8pEoW2z0hEgNSy4KdH03//bvlgspkYI2RdRI1igqxS3BPQYnoUm
-	 tR8F+1M96o5b/8cq+zmKcxcRc13+BXKZ7da4CApR4NJKEPTEhWWoc/gF4Tf5gA8FTxx9PX2tlQyW
-	 yJveZCleg1c03XKnG4nueB9UCCcgyk+cfy0bGfikU40oDIr2xeXP1+CSslYWCpf+1sE6mktkkNc8
-	 BLWDM1wEVmn2mbepHJousbgdqh08TaMEbkgz9kekID9R6OciOr5XnOIEk1+oQMn4SMNNiirXzbOZ
-	 Aoy9QhLRs5Dus79pfMf1Xn2IUBPqD7Jd+zrnrNIPzqLEGxXYnd+dpA94aWVy14sqyXhEhqzeeeP2
-	 KrL9/qjZgreO/GmAqfzClJMdAwVx7fD7MNVHJqt+1pv7Zlsqwq7LW6NIOxKRSQ1p0Y/2K6xuSvRX
-	 1ukgs86sREVWLwsuNqWBx9MfVt3S0/FNbwTM741VbUnOBy+s4v04V43ZfVjVs6GPJneE8jyk2rlm
-	 Fd6RHcRXIccFOIGJRaJuEtVznba00a7plXP1g5xtyYMuXEmw6ymXSdpEgfq/mLKN2wQI3R8i1d8s
-	 voy1HIED5xdEtvU68yVARCgsyb4Yurpb0Q5Y2lEeXZ7V8PZdXtEyOTq7HvbKJPKHNLqJ1m3WAICp
-	 l+XKCaAEVadEBuVLDImcoihRv21U/CuiEL/r1Y8vxiWL08fFGm6/RuEfb5x/R94G+hqevZgM9FYn
-	 zHzMNJbTlsEp6Ca7lFQw==
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
-X-OQ-MSGID: <3c33d4d7-b11e-4f54-9b6b-767bf0495afd@cyyself.name>
-Date: Tue, 17 Dec 2024 00:00:23 +0800
+	s=arc-20240116; t=1734365506; c=relaxed/simple;
+	bh=THc+C/kIuJZ7T3s1JJhxTf4jDd8Yzw5YyaqyuOu0G7I=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=C3kP9onUmLLvCRQAQt5oc9wywql3JKZRmRHEvoJlMUe+HCJxoGVs3Bz/d2cz7tTB64eTRYdEcG4zowfCbhxPEJL2oant6tnHeaTGZqU8w9Fd5+alDyd8zivrVcChhgCTOTJkLWYnMoLmDyif3lJlKOV1Z5mV7FfS7RI70opyB4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=BjroLvwM; arc=none smtp.client-ip=95.215.58.185
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] riscv: hwprobe: export bfloat16 ISA extension
-To: Inochi Amaoto <inochiama@gmail.com>, Chen Wang
- <unicorn_wang@outlook.com>, Jonathan Corbet <corbet@lwn.net>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?=
- <cleger@rivosinc.com>, Evan Green <evan@rivosinc.com>,
- Charlie Jenkins <charlie@rivosinc.com>,
- Andrew Jones <ajones@ventanamicro.com>, Jesse Taube <jesse@rivosinc.com>,
- Andy Chiu <andybnac@gmail.com>, Alexandre Ghiti <alexghiti@rivosinc.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Yong-Xuan Wang <yongxuan.wang@sifive.com>
-Cc: linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
-References: <20241206055829.1059293-1-inochiama@gmail.com>
- <20241206055829.1059293-4-inochiama@gmail.com>
-Content-Language: en-US
-From: Yangyu Chen <cyy@cyyself.name>
-In-Reply-To: <20241206055829.1059293-4-inochiama@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1734365501;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CkgrHu2ccpbodeitRs0XzfSSQE5c+RMWLmBF2B58xXw=;
+	b=BjroLvwMYCUatjha9BU9C0cmINvI03LnFwHxXpSMS+ikUbOiKDztMvo3gJY3iR9JlVoeFZ
+	nsmqVNucQVWPVliVI7u+8J33mZ233UllKFtE7RsP8gLDQqeW71RvCTQNmIOfTYyqjlhB9e
+	XYt34qA7Gov9M5xAh7uyE6GO6Qt1Jkdtbh515zBXtrViMHiHkIcILoJ03ML3ye4fuGQa4N
+	kVmHVXt1yYllytrY3I7JlFu2QuAh6BovyFNMa3naFgVkgj85YucCfF+34byD4+U8YBHrSv
+	8i2fTSmqEmLIzunasA1pYUVdEXTIoCQVa1gSVXYdFMJuViYpHBwHhiRKVCvEUQ==
+Content-Type: multipart/signed;
+ boundary=0c7bf3ea387a8860aef29fc1f8c5f41f41a57cc9690a740184f2099cb024;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Mon, 16 Dec 2024 17:11:31 +0100
+Message-Id: <D6D997JACT2Y.294J06IIIVEY7@cknow.org>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "FUKAUMI Naoki" <naoki@radxa.com>, "Krzysztof Kozlowski"
+ <krzk@kernel.org>, <heiko@sntech.de>
+Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <dsimic@manjaro.org>, <devicetree@vger.kernel.org>,
+ <linux-rockchip@lists.infradead.org>
+Subject: Re: [PATCH v5 02/12] arm64: dts: rockchip: Change node name for
+ pwm-fan for Radxa ROCK 5C
+References: <20241216113052.15696-1-naoki@radxa.com>
+ <20241216113052.15696-3-naoki@radxa.com>
+ <0b0efc1d-2340-4ec5-a46e-62a6cebbc2b6@kernel.org>
+ <5707EE9715A7E332+f33721f1-8b50-4262-bdaa-468ad2c79ecc@radxa.com>
+ <281bce4e-cec5-4ad8-940a-c9ef16202a43@kernel.org>
+ <C6FD94DDF2E16CAE+22e3003e-0d66-4092-a9a2-def5daa6c202@radxa.com>
+ <feec46a1-76b9-4479-b364-b09cd79b3d69@kernel.org>
+ <E3B9E510C4F8D95A+7a184f12-902b-47ea-894c-4552e189d19b@radxa.com>
+In-Reply-To: <E3B9E510C4F8D95A+7a184f12-902b-47ea-894c-4552e189d19b@radxa.com>
+X-Migadu-Flow: FLOW_OUT
 
-Possible conflict with: 
-https://lore.kernel.org/linux-riscv/20241111-v5_user_cfi_series-v8-22-dce14aa30207@rivosinc.com/
+--0c7bf3ea387a8860aef29fc1f8c5f41f41a57cc9690a740184f2099cb024
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-On 12/6/24 13:58, Inochi Amaoto wrote:
-> Export Zfbmin, Zvfbfmin, Zvfbfwma ISA extension through hwprobe.
-> 
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> Reviewed-by: Clément Léger <cleger@rivosinc.com>
-> ---
->   Documentation/arch/riscv/hwprobe.rst  | 12 ++++++++++++
->   arch/riscv/include/uapi/asm/hwprobe.h |  3 +++
->   arch/riscv/kernel/sys_hwprobe.c       |  3 +++
->   3 files changed, 18 insertions(+)
-> 
-> diff --git a/Documentation/arch/riscv/hwprobe.rst b/Documentation/arch/riscv/hwprobe.rst
-> index 955fbcd19ce9..a9cb40e407a4 100644
-> --- a/Documentation/arch/riscv/hwprobe.rst
-> +++ b/Documentation/arch/riscv/hwprobe.rst
-> @@ -242,6 +242,18 @@ The following keys are defined:
->     * :c:macro:`RISCV_HWPROBE_EXT_SUPM`: The Supm extension is supported as
->          defined in version 1.0 of the RISC-V Pointer Masking extensions.
->   
-> +  * :c:macro:`RISCV_HWPROBE_EXT_ZFBFMIN`: The Zfbfmin extension is supported as
-> +       defined in the RISC-V ISA manual starting from commit 4dc23d6229de
-> +       ("Added Chapter title to BF16").
-> +
-> +  * :c:macro:`RISCV_HWPROBE_EXT_ZVFBFMIN`: The Zvfbfmin extension is supported as
-> +       defined in the RISC-V ISA manual starting from commit 4dc23d6229de
-> +       ("Added Chapter title to BF16").
-> +
-> +  * :c:macro:`RISCV_HWPROBE_EXT_ZVFBFWMA`: The Zvfbfwma extension is supported as
-> +       defined in the RISC-V ISA manual starting from commit 4dc23d6229de
-> +       ("Added Chapter title to BF16").
-> +
->   * :c:macro:`RISCV_HWPROBE_KEY_CPUPERF_0`: Deprecated.  Returns similar values to
->        :c:macro:`RISCV_HWPROBE_KEY_MISALIGNED_SCALAR_PERF`, but the key was
->        mistakenly classified as a bitmask rather than a value.
-> diff --git a/arch/riscv/include/uapi/asm/hwprobe.h b/arch/riscv/include/uapi/asm/hwprobe.h
-> index 3af142b99f77..aecc1c800d54 100644
-> --- a/arch/riscv/include/uapi/asm/hwprobe.h
-> +++ b/arch/riscv/include/uapi/asm/hwprobe.h
-> @@ -73,6 +73,9 @@ struct riscv_hwprobe {
->   #define		RISCV_HWPROBE_EXT_ZCMOP		(1ULL << 47)
->   #define		RISCV_HWPROBE_EXT_ZAWRS		(1ULL << 48)
->   #define		RISCV_HWPROBE_EXT_SUPM		(1ULL << 49)
-> +#define		RISCV_HWPROBE_EXT_ZFBFMIN	(1ULL << 50)
-> +#define		RISCV_HWPROBE_EXT_ZVFBFMIN	(1ULL << 51)
-> +#define		RISCV_HWPROBE_EXT_ZVFBFWMA	(1ULL << 52)
->   #define RISCV_HWPROBE_KEY_CPUPERF_0	5
->   #define		RISCV_HWPROBE_MISALIGNED_UNKNOWN	(0 << 0)
->   #define		RISCV_HWPROBE_MISALIGNED_EMULATED	(1 << 0)
-> diff --git a/arch/riscv/kernel/sys_hwprobe.c b/arch/riscv/kernel/sys_hwprobe.c
-> index cb93adfffc48..bd215f58bd1b 100644
-> --- a/arch/riscv/kernel/sys_hwprobe.c
-> +++ b/arch/riscv/kernel/sys_hwprobe.c
-> @@ -131,6 +131,8 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
->   			EXT_KEY(ZVE64D);
->   			EXT_KEY(ZVE64F);
->   			EXT_KEY(ZVE64X);
-> +			EXT_KEY(ZVFBFMIN);
-> +			EXT_KEY(ZVFBFWMA);
->   			EXT_KEY(ZVFH);
->   			EXT_KEY(ZVFHMIN);
->   			EXT_KEY(ZVKB);
-> @@ -147,6 +149,7 @@ static void hwprobe_isa_ext0(struct riscv_hwprobe *pair,
->   			EXT_KEY(ZCD);
->   			EXT_KEY(ZCF);
->   			EXT_KEY(ZFA);
-> +			EXT_KEY(ZFBFMIN);
->   			EXT_KEY(ZFH);
->   			EXT_KEY(ZFHMIN);
->   		}
+On Mon Dec 16, 2024 at 3:38 PM CET, FUKAUMI Naoki wrote:
+> On 12/16/24 23:27, Krzysztof Kozlowski wrote:
+> > On 16/12/2024 15:19, FUKAUMI Naoki wrote:
+> >> On 12/16/24 22:56, Krzysztof Kozlowski wrote:
+> >>> On 16/12/2024 14:48, FUKAUMI Naoki wrote:
+> >>>> On 12/16/24 22:37, Krzysztof Kozlowski wrote:
+> >>>>> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
+> >>>>>> Use more common name "pwm-fan" for pwm-fan node. No functinal chan=
+ge.
+> >>>>>
+> >>>>> No, generic name is fan.
+> >>>>
+> >>>>     https://lore.kernel.org/all/71aa84af7a030e66487076e0976c8cad@man=
+jaro.org/
+> >>>>
+> >>> And? That's incorrect advice.  There is no such device as "pwm-fan".
+> >>> There is a "fan" and whether it is pwm or gpio it does not matter.
+> >>>
+> >>> See DT spec and generic names recommendation.
+> >>
+> >> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
+e/Documentation/devicetree/bindings/hwmon/pwm-fan.yaml#n67
+> >>
+> >> Is it wrong?
+> > Yes.
 
+There's an(other) issue with the binding:
+line 91 references `&fan0` while it isn't defined (in the binding
+example)
+
+Cheers,
+  Diederik
+
+--0c7bf3ea387a8860aef29fc1f8c5f41f41a57cc9690a740184f2099cb024
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ2BRNwAKCRDXblvOeH7b
+bix1APsHHrEX9mQ9kqG/TGOmW/JFwnyos1wZc2LmqKFMCnCaZgD/eeK6TEmd835t
+mhgxBP26FdiNC9GUFZqB6BlTM4BItQg=
+=yfVy
+-----END PGP SIGNATURE-----
+
+--0c7bf3ea387a8860aef29fc1f8c5f41f41a57cc9690a740184f2099cb024--
 
