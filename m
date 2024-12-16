@@ -1,164 +1,167 @@
-Return-Path: <devicetree+bounces-131407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD2E59F3130
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:07:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B65FE9F3152
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:14:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B5C2160F53
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:07:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A1171887E77
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:14:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA726206275;
-	Mon, 16 Dec 2024 13:06:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29336204C29;
+	Mon, 16 Dec 2024 13:14:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CSJcBO2a"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PHLtzsjc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEFD8205E05
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 13:06:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895971119A;
+	Mon, 16 Dec 2024 13:14:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734354393; cv=none; b=iwqyi0bodkX025k0IJ8RPF/tcURSGcspql/2zq9+DKa37Qt/q+AIVZzbp1RHEI04sk98Eav5QumtHyrRGnzmP1NJ8RgQzj+GlkMNleaBTyHXuO1LnPxkXoKWvgXPbnK1NEWtah+wI4xolBY47aMPHHZa1I6XTy3xDt1KBTFNaAU=
+	t=1734354890; cv=none; b=ZKmFHUGruF6rZiGtjsLBJDu5x+lmnX3rHZkc08iL9J5h4bP9UBagftc4QOEohkA3qcMikchArucNt2jmT/Ze3fzNEsf2RAfEeJ4LfyzwqZ/No3X+iEVG7O1XtxcsLWAE1s5xgRTJfGkpp+cyJ/9+FvsNqOhrGVz/LQ2D/3nFyFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734354393; c=relaxed/simple;
-	bh=njXkzI6vI1ZYRHwJzVfbeDQKZfu2R961r5TrXKbUMso=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=taZX9S1sX7fhHvBvhMwX7dHuJdL/6RtHGUBU0gX7eQ2V/bQFDX7GbVL5ocd9b/j0vuMX2dwCjK3gExIJItCxEXLQ5FiGzGJp6X3tgOeUuPvNqYDXEbRkwo/OcaE6hzStwC/bWd5WPFxYi6jE/ewtHWlyO66ZvzNC4g3m1wTJoVc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CSJcBO2a; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30229d5b22fso43306501fa.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 05:06:31 -0800 (PST)
+	s=arc-20240116; t=1734354890; c=relaxed/simple;
+	bh=6rnP6sxljKeOL3PkJ6leFI7sX5hX/jcT6RIt0e4lQPo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jIKluxSmEloIRjGsYYbxpY4niFW5HFgXPqj6CnKJSrzPc0bicJWm7FcRN9KRfPtKNt1hnQedk2UXwajRMVn/08vqeRa15WBLTmzr5a7IKW6uW1BbcUC9+qn6q+8zZGTPA4h2ffwguRRJXdfm4LgtO/q9DV4qsXh/sc2Iuau1yvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PHLtzsjc; arc=none smtp.client-ip=209.85.217.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4afe1009960so1004090137.0;
+        Mon, 16 Dec 2024 05:14:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734354390; x=1734959190; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4jHSn691OHBL23f0kkrBermuRwglSVSSGPFSIcJ/qrU=;
-        b=CSJcBO2aN13BbnuFiNhSOnc8qKNAw1+g8ug+cEa60lejkZ2sJCLKAMW7vzSpPaVUzc
-         /HeEeWh60nAeoNnuCMdXGa5F4+HhArO8j9B3JNT4ycKTFZudGJ5CqfEDPJcM5dyhC9Cu
-         NqB45PxnJnbdXu5qqmsXnZRjm/cnA/J4tiTD3k3siM2hZb7qgRWAgYAegq2ghk21o392
-         XFMAyFkFjSx/Ij8EMSbdHXfIKEUxsSFRhRxeV87nnxw52VXsd5KMgk4v3l8dFu1P6YJq
-         EelcOSww/bFYLb3feQOA0YHVcTB9CuTlzVTUA1f2b8IbOrfR0wT65JBDxaN1rKfZvZu5
-         h2cw==
+        d=gmail.com; s=20230601; t=1734354887; x=1734959687; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6rnP6sxljKeOL3PkJ6leFI7sX5hX/jcT6RIt0e4lQPo=;
+        b=PHLtzsjcfA+xVzV6DLH/bVuLtRXXsusX/c0UKBMOUHPmzXicZf/+yMA61jT1oJdrTf
+         A6omabzoZjgCESXq0J+CCEIPydRLAD9pSf3sm6r1aoDU3pUrntjqyc1MwSykzU1JRvkl
+         W1ncMAG1pTHH8Pg5zFkAlneeHmgSplw4XCkPyDg3nLDJ6Zr+nbFImtOkZQx6NPbH6LeX
+         Jjy0pkgPSNtYwX3gRFWZ1mWKloRgawrbUR1kd/tftqmKdMvq7fCu4kLFyvuZOsSwzCym
+         kFeY+mEFtMEMjx6CePbRtRYMpEoQ58CS691WroUivfkHV8H1IPsVBj5UkbyaNO1eBFYO
+         z+2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734354390; x=1734959190;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1734354887; x=1734959687;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4jHSn691OHBL23f0kkrBermuRwglSVSSGPFSIcJ/qrU=;
-        b=fxn0Rn51AX2SnUjouP4/xqPATIHQcCC45ACSruEeutMgPdGH7em6AgD259hK7MQRvH
-         ughh6msnEHgVFBt0Zixu0SQIt8e2a++zkAs8nBsTGw9Hmq2ATKYHmBI7YW+UqZ+6S6Hi
-         +o3qDUBmL7+a7FhZZ9jR3yAqtFvR4SqjDlIeGZSYYwV6gyuNPMhs8bSHyJfmJn0w0I4Y
-         sq37YTJvrv2Jh6MHV0rb+c7PW+8zlMui6jWglpi2VaJEGmpXco2grtfytxZx0xTPvo4v
-         vyy3BgzpmrCtLW5AkBJq2MDsmE8utUBa+Z4YWQXXIgagAKkEA0C65yO7PFMPm44vxAgQ
-         QB1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUjyQ/QE95R9+WguTbmXMU3aNdUr6BOce4FZrWKzeTxpKuFi+8KxXEfXNKForGLQ+T/v71e+kzdF8oL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz48QplasJox9QMxpreLoMwt4Q+XkD1V8dS/9E6/tLyF4m9diM2
-	0l2bv2gtxSlwi/bRV1bAF9xm0P8iC74SSN5RXxc9AxUQCsI2vg2EsHddXreQ7yr1iedsgNMD1nN
-	wr5k=
-X-Gm-Gg: ASbGncv67sbSaJDEBtMAiSE9Yv9YEcIZJpznnMBxHlbognsEcfcZzYQ5zZKVn9HJzQQ
-	K9OA3caxXVBpTNXBmF1jft/x4f0Q0Vpr/0S5SoMwckML6K/O0FQlLxJXxUOgW2k9y2lbpjUE9qO
-	FI1nxyNBxAIzI5Z8pSWVOsC2IYIVh4fPm06HLTd+JnizNS5qHTuYWr9iGUhMy4ASWuqVftdGxkv
-	Ln2Mr+lKo4HU92lOnWG5HoUQH1DSwqQbCj1mbktL/qz4PG5ci0rh2e5l03c68/CF1rbPQWW1ZpI
-	HfvI/d5Io+Ju+AP7oaSPPSfBxOPDPGWD3Kmbu1bR
-X-Google-Smtp-Source: AGHT+IHNVHPL9gCv6JsuwH0i+Iexhp279Myp4zBY3rnTq/iQAV9yBxFHBzZcKLky1N6tgEJkpPmDvg==
-X-Received: by 2002:a2e:a58e:0:b0:300:ef4b:d820 with SMTP id 38308e7fff4ca-302544e3930mr46051511fa.38.1734354388504;
-        Mon, 16 Dec 2024 05:06:28 -0800 (PST)
-Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aab960681dbsm326648666b.52.2024.12.16.05.06.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Dec 2024 05:06:28 -0800 (PST)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Mon, 16 Dec 2024 13:06:29 +0000
-Subject: [PATCH 4/4] arm64: dts: exynos: gs101-raven: add new board file
+        bh=6rnP6sxljKeOL3PkJ6leFI7sX5hX/jcT6RIt0e4lQPo=;
+        b=sjIR9oFA8cMHEVf8Aq17/rYl5LTkhbTkWUFbdygYs4mGr+2cdatT8ff+cSDivbrN/r
+         n7/1lLNO/t4+zKRZ35ul5rtQmdNlmNhSDl8G5SSwNdOkkA87J4wwfy9aqB3jb76MJxC3
+         MD+lRO3IZcIl9P/QdKD7xG3WihAUuMHz7hSMXoNlQvzhpt6fGkjwTXHBiEkQtoTeSUDM
+         JR56Cu4FntGj/ZBrN5hjHLYhgI+yKUbQxRgrJrKxEoFYyfIEDGoSgK83HHvAYgipUbJk
+         XccjktOc24sa9RVi/4+opLFy8fX9bps+ZxQh7e+jSnhbu+k3jZxdyl/wc2xdAu3GbLsV
+         V+Og==
+X-Forwarded-Encrypted: i=1; AJvYcCWtla9xVmgvL0sOYHFhfJ/CQDp/xzdF5DUJMSvx9aSDBxx6/wpLttM6t4QlRzoWtQl21bqxBpFSBWx0@vger.kernel.org, AJvYcCX478gqC2IGA9Vpc/6/rQv6pctn3cKqQG3MZEBZlOHOr2y93/LdSg4H4D1yY5tkVFnMjiqpGUIKCnqvl873JjA=@vger.kernel.org, AJvYcCX5yVPRuER1BhFyBUv9wej87eVH5srWmopRngx3ECGKzoh34JuucBnM/oZHcc8u18FGj8LM5sFjib7wR2TJ8nWHne0=@vger.kernel.org, AJvYcCXlW06au+mLHS1I01PihHY0kP/TZVsTSwFRf6QRGDyxk3iX7j/Z9hJQKU4Xv2DYd3NowN8hO6oFzufqrtiI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2lEyqNW6UVqfndXCOSKuLur12jdF4VhHqFHIASHXuQ0Kh/VIx
+	oPgbSmUAeoP50uyri+TrjGPeEyg7qySEdNc3LVE/vygKIUEQh2p4lwh3QjgwCLwMRPEpTOR6YAf
+	2mOYOaA/9hzd+voa/pok2JgnfANI=
+X-Gm-Gg: ASbGnctXq64Ir3K14lvLAFkGZhMtnGuUBzHKMBRB4zvpHGbjJumVzW45EyJ5A5diYcE
+	2QKH3U0TSXfGfHrnADCXWkyfpAgQQe5w+n5a92g==
+X-Google-Smtp-Source: AGHT+IGHvoEWiHQEktpq8LAmICokSHUhsk33kpCMQhArgLW3vcvRbs3+IKesK9ztiuLOP0diDrNVoqwRp/EZdDgRI1k=
+X-Received: by 2002:a05:6122:178f:b0:50a:b604:2bb2 with SMTP id
+ 71dfb90a1353d-518ca2e301fmr10014053e0c.11.1734354887242; Mon, 16 Dec 2024
+ 05:14:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241216-gs101-simplefb-v1-4-8ccad1830281@linaro.org>
-References: <20241216-gs101-simplefb-v1-0-8ccad1830281@linaro.org>
-In-Reply-To: <20241216-gs101-simplefb-v1-0-8ccad1830281@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.13.0
+References: <20241213174419.908525-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <4d3e6f12-7cea-45ce-b1e2-c1fda94b92cd@roeck-us.net> <CA+V-a8uasq+E+_7rk+o729hRp6PwYSgTcUQYbTe44CkXfSE71A@mail.gmail.com>
+ <TY3PR01MB11346774419BA8D51043C762986392@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CA+V-a8srdDkdAss2okuyfGYBwU5b9cF0aNw+KOSGR1wPquqNdQ@mail.gmail.com> <TY3PR01MB1134664B737514AEAECA960D9863A2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY3PR01MB1134664B737514AEAECA960D9863A2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 16 Dec 2024 13:14:21 +0000
+Message-ID: <CA+V-a8tWFSwajUSObZstvuBfL__j4EFdtOzSYs4U-aMBacwnLg@mail.gmail.com>
+Subject: Re: [RFC PATCH] watchdog: rzv2h_wdt: Add support to retrieve the
+ bootstatus information
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Rob Herring <robh@kernel.org>, 
+	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Raven is Google's code name for Pixel 6 Pro. Similar to Pixel 6
-(Oriole), this is also based around its Tensor gs101 SoC.
+Hi Biju,
 
-For now, the relevant difference here is the display resolution:
-1440 x 3120 instead of 1080 x 2400.
+On Sun, Dec 15, 2024 at 9:15=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+>
+> Hi Prabhakar,
+>
+> > -----Original Message-----
+> > From: Lad, Prabhakar <prabhakar.csengg@gmail.com>
+> > Sent: 14 December 2024 21:36
+> > Subject: Re: [RFC PATCH] watchdog: rzv2h_wdt: Add support to retrieve t=
+he bootstatus information
+> >
+> > Hi Biju,
+> >
+> > On Sat, Dec 14, 2024 at 11:32=E2=80=AFAM Biju Das <biju.das.jz@bp.renes=
+as.com> wrote:
+> > >
+> > > Hi Lad, Prabhakar,
+> > >
+> > <snip>
+> > > > > That is a change in behavior. Up to now the syscon phandle did no=
+t
+> > > > > have to exist for the driver to work. Is it guaranteed to not
+> > > > > result in regressions on systems where it doesn't ? Also, is this
+> > > > > documented ? I don't seem to be able to
+> > > > find it.
+> > > > >
+> > > > Agreed. I will add a fallback mechanism to handle cases where the
+> > > > syscon property is not present in the WDT node. This will ensure no
+> > > > regressions occur, and the bootstatus will simply be set to 0 in
+> > > > such scenarios. As mentioned in the patch comments, I have not yet
+> > > > submitted the DT binding changes because I wanted feedback on the s=
+yscon approach. The new RZ SoCs
+> > have registers scattered across various locations, and I was exploring =
+if there might be a better way
+> > to handle this.
+> > >
+> > > See, syscon compatible not needed with [1]
+> > >
+> > > [1]
+> > > https://lore.kernel.org/all/20241211-syscon-fixes-v1-3-b5ac8c219e96@k=
+e
+> > > rnel.org/
+> > >
+> > As per my understanding, `syscon` compatible is required in this case b=
+ecause the CPG driver does not
+> > register a regmap. With the patch [1] (linked above), this applies to d=
+rivers that register a syscon
+> > regmap, where the corresponding DT node does not necessarily need a `sy=
+scon` compatible.
+>
+> I guess you can use "syscon_node_to_regmap" for that as of_syscon_registe=
+r_regmap() is for externally
+> created regmaps??
+>
+No, it doesn't work either; the CPG node block needs to have `syscon`
+compatible when you are using
+syscon_node_to_regmap/syscon_regmap_lookup_by_phandle. See patch [0]
+in `device_node_get_regmap()` the `of_syscon_register()` is only
+called when it has a `syscon` compatible or else `-EINVAL` is
+returned.
 
-Create a new board file to reflect this difference.
+[0] https://lore.kernel.org/all/20241211-syscon-fixes-v1-3-b5ac8c219e96@ker=
+nel.org/
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
-
----
-Note: MAINTAINERS doesn't need updating, it covers this whole directory
----
- arch/arm64/boot/dts/exynos/google/Makefile        |  1 +
- arch/arm64/boot/dts/exynos/google/gs101-raven.dts | 27 +++++++++++++++++++++++
- 2 files changed, 28 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/exynos/google/Makefile b/arch/arm64/boot/dts/exynos/google/Makefile
-index 0a6d5e1fe4ee..7385f82b03c9 100644
---- a/arch/arm64/boot/dts/exynos/google/Makefile
-+++ b/arch/arm64/boot/dts/exynos/google/Makefile
-@@ -2,3 +2,4 @@
- 
- dtb-$(CONFIG_ARCH_EXYNOS) += \
- 	gs101-oriole.dtb \
-+	gs101-raven.dtb
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101-raven.dts b/arch/arm64/boot/dts/exynos/google/gs101-raven.dts
-new file mode 100644
-index 000000000000..75fd34797fa9
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/google/gs101-raven.dts
-@@ -0,0 +1,27 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Raven Device Tree
-+ *
-+ * Copyright 2021-2023 Google LLC
-+ * Copyright 2023-2024 Linaro Ltd
-+ */
-+
-+/dts-v1/;
-+
-+#include "gs101-raviole.dtsi"
-+
-+/ {
-+	model = "Raven";
-+	compatible = "google,gs101-raven", "google,gs101";
-+};
-+
-+&framebuffer0 {
-+	reg = <0x0 0xfac00000 (1440 * 3120 * 4)>;
-+	width = <1440>;
-+	height = <3120>;
-+	stride = <(1440 * 4)>;
-+};
-+
-+&cont_splash_mem {
-+	reg = <0x0 0xfac00000 (1440 * 3120 * 4)>;
-+};
-
--- 
-2.47.1.613.gc27f4b7a9f-goog
-
+Cheers,
+Prabhakar
 
