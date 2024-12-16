@@ -1,140 +1,118 @@
-Return-Path: <devicetree+bounces-131343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DBB49F2E1C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 11:23:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CA719F2E33
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 11:34:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8058F1888634
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:23:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78577163170
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:34:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A0962036E8;
-	Mon, 16 Dec 2024 10:23:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80867203D4F;
+	Mon, 16 Dec 2024 10:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="oEktoE4a"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dpHF1bso"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 923ED2010EF;
-	Mon, 16 Dec 2024 10:23:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 500F02036F3
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 10:33:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734344619; cv=none; b=Sney2KFyT6ZWRSba9vlHIX6sdvTb4AMCuCwkgZInD17DKDyKIVcvL24wXvLDIvu0qx/3Eo45dBvWKIH/4ACgJyRZXE/Vu0Ogpg8jiZoCXyRC8WsBudozFSGzAAN/Jc8qtI+HPLZ4dH4jC5vNpi/uXo5NSL5RJbvSbfqceJ6F8WI=
+	t=1734345226; cv=none; b=NoNUctKyCgqTlqqjmndrvfPA732mWxvzpayq/lN6/2p0DtiCKaAYwg0PgLLtRJHP0fK6vtvbOr8p4z5znk3ZZ3TbdzkMOw0ZG5GNY8Y4DhgxumbbDhIBXM7L7K73oBc4xjdC80JbN8Zhec4jqd6TlCui2pLK5MoGjj97T/pBdbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734344619; c=relaxed/simple;
-	bh=UR6BT10WJBMcan81i1y8w0R9qUZV+RZW9V8xUt1G82U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=CEWwkaikUce224HjzuhZS2HBsKD4Z7bw9wNepUMLJqWMCXLv8TgeR0pTlN6KBULPwo0qwuaD0eW5MF1wJQXew0kOdFfePTmhB0S/ZtN52x0HQHks9QEhKiSlVi1rJQ+DnQg1GisedrEtPyq+wdDaBywPV9AJ4l294r4rQGcZ3v0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=oEktoE4a; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4BGANJAT3534883
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 16 Dec 2024 04:23:19 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1734344599;
-	bh=uX3GRQY8ZjoFkYOsoectf+6ARiXV3tO9qdpKTI0l3jI=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=oEktoE4aCS2xjadU5ED3jaR2J1oHjDhRc+M2DRBX0FEEt+UUpvfqqEtimb9B9oqfg
-	 xuC+yrxMhZIUMHRH+9Vg2zgjD+O2yJ61c0eHU9yulLUwKNMb/qqUwtWGjJRmhT8yto
-	 9kNIQvs8x3v6ss341kNl2I7FSXUdEwS8sGbH3ROQ=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4BGANJqK077479
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 16 Dec 2024 04:23:19 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 16
- Dec 2024 04:23:18 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 16 Dec 2024 04:23:18 -0600
-Received: from [10.24.69.25] (danish-tpc.dhcp.ti.com [10.24.69.25])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4BGANE26104700;
-	Mon, 16 Dec 2024 04:23:15 -0600
-Message-ID: <7c48ccdc-41b3-4205-854d-9b7a60f70da2@ti.com>
-Date: Mon, 16 Dec 2024 15:53:13 +0530
+	s=arc-20240116; t=1734345226; c=relaxed/simple;
+	bh=PYwh9Ejzktqnk/4b3X6HTET4UjWYpwtQYwse3ElACjE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aPFDxoi4bjim9AxE8SpnTba2lxvnayBPCgWkQCpa9xjiVF2/4J4zmzd1WXnmTQEFMsqjI6+5kgPkdVC3ua2+CHFEEY6FGFfglQdDJE4mYEkjj22D/XxObPOIKkGI8ILXZ/s+6a0A/72R5nJoOBGTIsfpl1TEjxJkAY9DPoiobRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dpHF1bso; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-54024aa9febso3939784e87.1
+        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 02:33:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734345221; x=1734950021; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=81rR1eTM9HElymQ2hIkXvkfh84mtbQHR8oN+z/vprns=;
+        b=dpHF1bsoXY5M3b7MlnEpOGGHghGom+pSsXU1kbrqQrbtRIs8cx1uhnSzks/KNBTRHJ
+         DDh91QvjfyewUjLrjskEBJ1MnZb4EWytNTwFvF4ODS+gBeWYtv5f6ftxVKezxH8bfUxr
+         YwSSlNMwi+ALqQRPr5fvgsaZqy/faIRKD0R7AXaJrYOii8bd2oIPpIsA57IDTmvJjAV6
+         X2Edqs0XGJwYI9T137tVGg+7dXjgn0dccJ+iscBzpZHBVLieHIvhQ1uxRb7jEvLX4xQ9
+         bXpsY8++GJ/vOCrO8STHTESfFnmuiZYksPnnwJz6E0lyh9iKp6Lh2y3MC2ArjmDHftQ2
+         oZSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734345221; x=1734950021;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=81rR1eTM9HElymQ2hIkXvkfh84mtbQHR8oN+z/vprns=;
+        b=IOjsVaE/qCrtTq6yjnT1wR5YnqrisCnlU1KFT21K/VxVez3X9XLuxLkEZvfb6+aXuc
+         NVJKMIylq1aN+HKcpORa8KZn5Bg4YspuYJn/Awd6Cu1o/E3epy7h+NDWxpjV9igomfwZ
+         nHPG+8dogY/fgVRP4Pbzxew0QOwMFU/wT5TbqsFHBXSU6hNtx57jJ/BaRSTESFnN0H3N
+         UYWTVJ2LE5/a2oGjgVjOKn/wW+8CeCZpnvBeuKuDgPxVQ2Kut7LN0dyqGRPdts84CtpD
+         yXwysxba7GTwCEANWZ2JnL8aV16iZs/J2D51j1WtpWR9/B1+6Ylee++GneJOWzeEnGMy
+         hrJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVvYcJDqtOVf+R9jqqZfGK7QUGmH+/U/1RWNcPyq5r0k7YujpWwN7Dl8ctFCBjSC0lDSe2E8NYnGM72@vger.kernel.org
+X-Gm-Message-State: AOJu0YyV6QR51qtKzjMoM5fctjEjIVo8z2bdeI9xgw5gYZ+OkP8eylE7
+	owa9Vw3lQfo6f6kDn6Rh3zakWDN7aedCMNaAtIngyN4Lz9nYfmRiS/S86aZHbDixkT3bQVixL9W
+	FloCnOos4QZjmznbsemyGDHTAp97r+0X9TYwkSA==
+X-Gm-Gg: ASbGncu2pm/hkMhS49wYOjNxdyqZQajbxig2/c5VXXV4ntxCD8QCELkN/AUfAZE9v7Y
+	p5BSD+0+bUe3xOo9joE1HOV5SZT1QPjct8ui7
+X-Google-Smtp-Source: AGHT+IEUf3iLQlaHwj+huKVEu7Rf6ZfMRHEmd0RkbAiajFtXRNVDdgnZzJS2Enw8KLsa6+/B9ivQKuoEjmBWCEUg1Qo=
+X-Received: by 2002:a05:6512:230b:b0:540:3561:969d with SMTP id
+ 2adb3069b0e04-54099b7188fmr3706580e87.49.1734345221514; Mon, 16 Dec 2024
+ 02:33:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] Add Clocks for ICSSG
-To: <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-        <ssantosh@kernel.org>, <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>, <kristo@kernel.org>,
-        <srk@ti.com>, Roger Quadros <rogerq@kernel.org>
-References: <20241113110955.3876045-1-danishanwar@ti.com>
-Content-Language: en-US
-From: MD Danish Anwar <danishanwar@ti.com>
-In-Reply-To: <20241113110955.3876045-1-danishanwar@ti.com>
+References: <20241215-msm8917-v9-0-bacaa26f3eef@mainlining.org>
+In-Reply-To: <20241215-msm8917-v9-0-bacaa26f3eef@mainlining.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 16 Dec 2024 11:33:30 +0100
+Message-ID: <CACRpkdZ-ZEiGMUPObHU=kw=OUADrRGtxgMc-QC3EaBevp-Shng@mail.gmail.com>
+Subject: Re: [PATCH v9 0/8] Add MSM8917/PM8937/Redmi 5A
+To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Amit Kucheria <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
+	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org, iommu@lists.linux.dev, 
+	Dang Huynh <danct12@riseup.net>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
 
-Hi Vignesh / Nishant
+On Sun, Dec 15, 2024 at 12:15=E2=80=AFPM Barnab=C3=A1s Cz=C3=A9m=C3=A1n
+<barnabas.czeman@mainlining.org> wrote:
 
-On 13/11/24 4:39 pm, MD Danish Anwar wrote:
-> This series adds clocks for ICSSG for AM64x.
-> 
-> PATCH 1/2 Adds the dt binding necessary to add clocks to the device tree.
-> It adds the `clocks` in the dt binding of ICSSG node. Each ICSSG instance
-> has 7 clocks available to them as per AM64x TRM [1] Section 6.4.3 Table 
-> 6-398. They are not added in the dt bindings yet. This patch adds all
-> available clocks to ICSSG bindings. 
-> 
-> PATCH 2/2 Adds the required clock to the ICSSG nodes. It also changes the
-> clock used from clock 20 (ICSSG_ICLK) to clock 0 (ICSSG_CORE). This patch
-> adds the clock-names, assigned-clocks and assigned-clock-parents to icssg
-> nodes.
-> 
-> More details on clocks can be found at [2]
-> There is no additional driver changes needed for this binding change.
-> 
-> Changes from v2 to v3:
-> *) Modified commit message of PATCH 1/2 to state why clocks are being added
-> to the binding.
-> *) Added all available clocks to ICSSG bindings. Earlier only two clocks
-> were added.
-> *) Added all available clocks to AM64x DTS. Earlier only two clocks were
-> added.
-> 
-> Changes from v1 to v2:
-> *) Dropped assigned-clocks and assigned-clock-parents from DT binding as
-> suggested by Krzysztof Kozlowski
-> 
-> [1] https://www.ti.com/lit/pdf/spruim2
-> [2] https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am64x/clocks.html#clocks-for-pru-icssg0-device
-> v1 https://lore.kernel.org/all/20241107104557.1442800-1-danishanwar@ti.com/
-> v2 https://lore.kernel.org/all/20241108142946.2286098-1-danishanwar@ti.com/
-> 
-> MD Danish Anwar (2):
->   dt-bindings: soc: ti: pruss: Add clocks for ICSSG
->   arm64: dts: ti: k3-am64-main: Switch ICSSG clock to core clock
-> 
->  .../devicetree/bindings/soc/ti/ti,pruss.yaml  | 10 +++++++++
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 22 +++++++++++++++++--
->  2 files changed, 30 insertions(+), 2 deletions(-)
-> 
-> 
-> base-commit: bd05b9a700c10473c2f52bf12c5c5938c30e80b0
+> This patch series add support for MSM8917 soc with PM8937 and
+> Xiaomi Redmi 5A (riva).
+>
+> Signed-off-by: Barnab=C3=A1s Cz=C3=A9m=C3=A1n <barnabas.czeman@mainlining=
+.org>
+(...)
+>       dt-bindings: pinctrl: qcom: Add MSM8917 pinctrl
+(...)
+>       pinctrl: qcom: Add MSM8917 tlmm pinctrl driver
 
-This series still applies cleanly on latest linux-next (next-20241216)
-and doesn't need a re-base.
+Is it possible for me to apply these two patches in isolation?
 
-Can you please pick this.
+I want to make sure the patches get moving.
 
-
--- 
-Thanks and Regards,
-Danish
+Yours,
+Linus Walleij
 
