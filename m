@@ -1,116 +1,142 @@
-Return-Path: <devicetree+bounces-131337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E16B39F2DFE
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 11:15:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 602809F2E01
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 11:16:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BAA1162764
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:15:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15DF618860B8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:16:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D798F20010C;
-	Mon, 16 Dec 2024 10:15:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE52202C40;
+	Mon, 16 Dec 2024 10:15:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i+OiWbJ7"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="TC9dxZs/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m15593.qiye.163.com (mail-m15593.qiye.163.com [101.71.155.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B052D1FF7D1;
-	Mon, 16 Dec 2024 10:15:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D2C3154C0F;
+	Mon, 16 Dec 2024 10:15:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734344124; cv=none; b=THb6juqH9Xdgr9WNQnr05tmfxSxZ5WGhrLr9ljgEyLe5si7hvJ9O9BfMO84Ibm1eC4Cq6b9wR0vvlHZnVO92boBNRGKyqwUkXHP/v5xK9bJ8U8CTjOsX6d16v+SqvK/aR2z1ipSAy73llHRitYNqtXoWvJlraMW1cSmMesxndVw=
+	t=1734344151; cv=none; b=Vmj7RP4OjJo0wgQWO5QegMiG7LWj6eRFZHIqIpOnI/Gf4MeutcqLeQWXPR+ZXYEDRreLw6VS7Exv1gzq+dN3NFJFMktJTy32HjlXMetcJ9EUSgqjliZ4H+lSaoGnYz1fLhfgs6OKj5ILwARkasAepT+Bul1hoR7xVnuy0cpMfJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734344124; c=relaxed/simple;
-	bh=xBL/Ai+09SBq1LqnT0gwmOi4aMFDp3mfzJuqznKFiEQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IAE/sA1CFeNFuIw+VEOuBk2GkvfuX+TxhLxuE6OanaypRzA+7mFHJrFgrJLLmJlMbGhpS1/JQ84vCn+LAvGcWCsU6bF3KJxy0bzjdbjsak3eiPdEZIKew8tJsheIYROUFaGjJw8QuAiPlmf4XtiAU/MQkk5b2Q3A0mYnwn4Ym8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i+OiWbJ7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5F2AC4CED0;
-	Mon, 16 Dec 2024 10:15:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734344124;
-	bh=xBL/Ai+09SBq1LqnT0gwmOi4aMFDp3mfzJuqznKFiEQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i+OiWbJ7It/yYoXyptEOyUyAUxSofMveQJjItgtbGR+izni0//d+xHQpCWN6PApS6
-	 H/Qrdzm9k49R77Y8b3KHfCSVrA2ojc0Fjp6esBDsBQMb+1CZGlcEIzU9La7HkqoOIm
-	 8vf0wVoehQQRkh0sTzXDFwr84bp5atvo63+5txAgoMfFQ/sg5CvRjcEXaRRUxsjQdc
-	 7s5XqKlzAtRoQcth5y5/AOlHQwBUXtL9+QTEFpeOcqkD1ep3ESrzuG3MPYa9U9JXGS
-	 kA/GZaCPCYPuLoP2ntPbpa8OsYkXgO/BmOt0kQdpOo6iUA3QbERR9O/lT+pdtY231H
-	 ER57yclsr52SQ==
-Date: Mon, 16 Dec 2024 11:15:21 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jacky Bai <ping.bai@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com, peng.fan@nxp.com, frank.li@nxp.com
-Subject: Re: [PATCH] arm64: dts: freescale: Add basic dtsi for imx943
-Message-ID: <z6udhrqfmbelspe3eiz2q6twqvn4nkgxnfsdyxdv7ow6llxiz6@qhbaobn63icb>
-References: <20241212093555.1376568-1-ping.bai@nxp.com>
- <20241212093555.1376568-2-ping.bai@nxp.com>
+	s=arc-20240116; t=1734344151; c=relaxed/simple;
+	bh=5ggMXUrSNeavJL9/QlVA/KsDfdnXPINB1sEk37E28V4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OX63s6KUKWAL23FY3Vvw1IYMiPTsjk/H2JsCKDtg40IDE6OD5IauPFXSDzln0ciX85/cZ/fjCoCTcdPdFp4x21lx8zA9b53co7Nass2d8LADV40ifPDE2fKYiAn7VIwnfXZNhibTkM5nrfDv46mb8rxz6IvWmG/rS3n0IWhGM0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=TC9dxZs/; arc=none smtp.client-ip=101.71.155.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.26] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 5dd55b80;
+	Mon, 16 Dec 2024 18:15:38 +0800 (GMT+08:00)
+Message-ID: <d0f89644-77b9-4bcd-9fab-42a10185c72f@rock-chips.com>
+Date: Mon, 16 Dec 2024 18:15:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241212093555.1376568-2-ping.bai@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 10/11] arm64: dts: rockchip: Enable eDP0 display on
+ RK3588S EVB1 board
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org,
+ sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com,
+ l.stach@pengutronix.de, andy.yan@rock-chips.com, hjc@rock-chips.com,
+ algea.cao@rock-chips.com, kever.yang@rock-chips.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20241216031225.3746-1-damon.ding@rock-chips.com>
+ <20241216031225.3746-11-damon.ding@rock-chips.com>
+ <ay2im4itrj3k4p2ksobgsk77b7m4laaxctkfcpffqxj5ttxenm@mzdizmf3mlcb>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <ay2im4itrj3k4p2ksobgsk77b7m4laaxctkfcpffqxj5ttxenm@mzdizmf3mlcb>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh0fHVYYQxlMQh9DS0lMGEhWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a93cef75dd303a3kunm5dd55b80
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Pxw6TCo6LjIREBkNNwNINi8T
+	VjAwCw1VSlVKTEhPSE9PSkhCQkhCVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJS09KNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=TC9dxZs/icAtO8OBygxS0RnpXEPu9qYtxe8eogDOgm3/nfYNDxZL7DAwNK72v5fA1kE1RnEuSUkU6dFhcd5nbWBqLdG0NiliydADY/owu7A8t1jtyNkaGpqpmRY3ifAaE2oMxgKBvn2obvJIaxk6h2pfI+KeVfL0pujMSR5MSyY=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=bIZOhBSbBlumClO+5WBpvKWp8vXqGKwf+GCHshUCQ6I=;
+	h=date:mime-version:subject:message-id:from;
 
-On Thu, Dec 12, 2024 at 05:35:55PM +0800, Jacky Bai wrote:
-> The i.MX 943 applications processors integrate up to four
-> Arm Cortex A55 cores and supports functional safety with
-> built-in 2x Arm Cortex M33 and M7 cores which can be
-> configured asa safety island. Optimizing performance and
-> power efficiency for Industrial, IoT and automotive devices,
-> i.MX 943 processors are built with NXP=E2=80=99s innovative Energy
-> Flex architecture.
->=20
-> This patch adds the minimal dtsi support for i.MX943 with
-> peripherals like uart, edma, i2c, spi, mu, sai etc.
->=20
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx943-clock.h  |  196 +++
->  .../arm64/boot/dts/freescale/imx943-pinfunc.h | 1542 +++++++++++++++++
->  arch/arm64/boot/dts/freescale/imx943-power.h  |   41 +
->  arch/arm64/boot/dts/freescale/imx943.dtsi     | 1284 ++++++++++++++
->  4 files changed, 3063 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx943-clock.h
->  create mode 100644 arch/arm64/boot/dts/freescale/imx943-pinfunc.h
->  create mode 100644 arch/arm64/boot/dts/freescale/imx943-power.h
->  create mode 100644 arch/arm64/boot/dts/freescale/imx943.dtsi
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx943-clock.h b/arch/arm64/bo=
-ot/dts/freescale/imx943-clock.h
-> new file mode 100644
-> index 000000000000..64b9d5d4051e
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx943-clock.h
-> @@ -0,0 +1,196 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
-> +/*
-> + * Copyright 2024 NXP
-> + */
-> +
-> +#ifndef __CLOCK_IMX943_H
-> +#define __CLOCK_IMX943_H
-> +
-> +#define IMX943_CLK_EXT				0
-> +#define IMX943_CLK_OSC32K			1
-> +#define IMX943_CLK_OSC24M			2
+Hi Dmitry,
 
+On 2024/12/16 17:06, Dmitry Baryshkov wrote:
+> On Mon, Dec 16, 2024 at 11:12:24AM +0800, Damon Ding wrote:
+>> Add the necessary DT changes to enable eDP0 on RK3588S EVB1 board:
+>> - Add edp-panel node
+>> - Set pinctrl of pwm12 for backlight
+>> - Enable edp0/hdptxphy0/vp2
+>>
+>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>>
+>> ---
+>>
+>> Changes in v2:
+>> - Remove brightness-levels and default-brightness-level properties in
+>>    backlight node.
+>> - Add the detail DT changes to commit message.
+>> ---
+>>   .../boot/dts/rockchip/rk3588s-evb1-v10.dts    | 50 +++++++++++++++++++
+>>   1 file changed, 50 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts
+>> index bc4077575beb..5c1ea25b6524 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dts
+>> @@ -9,6 +9,7 @@
+>>   #include <dt-bindings/gpio/gpio.h>
+>>   #include <dt-bindings/input/input.h>
+>>   #include <dt-bindings/pinctrl/rockchip.h>
+>> +#include <dt-bindings/soc/rockchip,vop2.h>
+>>   #include <dt-bindings/usb/pd.h>
+>>   #include "rk3588s.dtsi"
+>>   
+>> @@ -120,6 +121,18 @@ backlight: backlight {
+>>   		pwms = <&pwm12 0 25000 0>;
+>>   	};
+>>   
+>> +	edp_panel: edp-panel {
+>> +		compatible = "lg,lp079qx1-sp0v";
+> 
+> Please use aux-bus and a generic "edp-panel" entry for newer platforms
+> instead of declaring the panel on the platform bus. Placing eDP panels
+> on the platform bus has been deprecated for quite a while.
 
-Why exactly are you adding clock indices to header files? Nothing in
-commit msg explains that.
+I will apply the aux-bus in the next version. :-)
 
+> 
+>> +		backlight = <&backlight>;
+>> +		power-supply = <&vcc3v3_lcd_edp>;
+>> +
+>> +		port {
+>> +			panel_in_edp: endpoint {
+>> +				remote-endpoint = <&edp_out_panel>;
+>> +			};
+>> +		};
+>> +	};
+>> +
+>>   	combophy_avdd0v85: regulator-combophy-avdd0v85 {
+>>   		compatible = "regulator-fixed";
+>>   		regulator-name = "combophy_avdd0v85";
+> 
 Best regards,
-Krzysztof
-
+Damon
 
