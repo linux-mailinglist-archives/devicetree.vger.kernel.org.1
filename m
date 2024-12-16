@@ -1,81 +1,117 @@
-Return-Path: <devicetree+bounces-131201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC5F9F264D
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 22:38:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C40979F2789
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 01:41:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD28B165326
-	for <lists+devicetree@lfdr.de>; Sun, 15 Dec 2024 21:38:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB8B8164DE1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 00:41:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DB61B6D1A;
-	Sun, 15 Dec 2024 21:38:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFEE8611E;
+	Mon, 16 Dec 2024 00:41:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="UdCshgYi"
+	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="hR+Jg7ae"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from pv50p00im-ztdg10021101.me.com (pv50p00im-ztdg10021101.me.com [17.58.6.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64030653;
-	Sun, 15 Dec 2024 21:38:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D3C933F7
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 00:41:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734298705; cv=none; b=FhQ19/54Z8nySbs6ZYm1EPZNwaW1kKl47j0A3DIbGT2QmULRcqchPn7ZCjSLaiN64dRYGNvk3zuqGCGuL3oqDIAtViNqcnS20fP5SXSYn82l8wJGujmImPBgI2G6CfVpxeH0D9CVv9NIAhEd4A0UxQZpRNaivJ53jUbyOo30r5g=
+	t=1734309668; cv=none; b=Ej/f+02SxdfZ5i4v/DJsjf8cGjXXHpkQlZwB9IcH4ZjKH2lauHEmCNw4c4HZgtsXzcIrx+XR7JoVoyIvLme2zVofEHZ3aWYr7BvhNJi8aMgnG1/MLDMJbh1tNSHnJZu48AtV6oCFRE739YhQMaG0ryrGhbM7PK2pvZ2gTCYs1AI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734298705; c=relaxed/simple;
-	bh=9f4JwzMdqEK/9bVfXFnngJwBxR8hsm49QC4hfimtp3M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DbwaFtnsopBWeBogUpPm6b20mvGfG2TR6fWtSxCZjYynPc9thU6nB9hDDu/xGP7dxHvDD7oSGVgilzpEZcTVok+L4B74pJvg0W1Pj3Dn+ZnXy+iLg2Bcg3BObamoxhZUgbHesM340AsPZ/zD1097d9LvgA8WhZlrK5dGCTlzx6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=UdCshgYi; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Oas2kXCSYIfG9qNfGS++PzQ3nfW6IDkiGNr6OHMRulA=; b=UdCshgYiui3/wTvrC9YZi8ImZT
-	Tg93GRUDY1mS9/Vppr+Pny7J1U8AKiBoHLNaj8yam9E/9789mWadtMfOY0D/GMxuDeLoaPIjy6Qah
-	DjhoDdDOJUxC183xHi0z6Mvr4u0njZbtXVl/FnyfZ3HYS+QKA/ygmkYz0skwIYi2UYRE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tMwJN-000WsW-7E; Sun, 15 Dec 2024 22:38:01 +0100
-Date: Sun, 15 Dec 2024 22:38:01 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	tsbogend@alpha.franken.de, hkallweit1@gmail.com,
-	linux@armlinux.org.uk, markus.stockhausen@gmx.de,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: net: Add Realtek MDIO controller
-Message-ID: <825cf2a3-dea8-4bd6-9c60-bf9c431766b3@lunn.ch>
-References: <20241211235342.1573926-1-chris.packham@alliedtelesis.co.nz>
- <20241211235342.1573926-2-chris.packham@alliedtelesis.co.nz>
- <77817fd0-cf79-4c4f-b09f-8ee9b3b136f9@lunn.ch>
- <4e59d81c-4af1-407b-a9c5-4b36eee35f96@alliedtelesis.co.nz>
- <b1117d56-87d9-46b2-b6aa-e6ca20bac322@lunn.ch>
- <bd481a13-73a3-4325-8e16-ea2b2c6b0f6e@alliedtelesis.co.nz>
+	s=arc-20240116; t=1734309668; c=relaxed/simple;
+	bh=Q2WEVmJjtO06NQXKQ/QF+LbKD/YAKir7x2lSe4k9LAw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=K8TBOxX/uRvS3UkiflfyAS0GW/mu378nD1V/M7ayl8KCAQVwzoSmFeRPZmHrC8WiwhiLFYho3EgLOjqKJ7OiY4uWEdiDTzvSlEncbPaxh0FYt4vjzxVc+UWxz8OjHMwo3G8Qmh37F6nBzKJS+IDl+9i564lexlHG6G8Du9pchQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=hR+Jg7ae; arc=none smtp.client-ip=17.58.6.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
+	s=1a1hai; t=1734309667;
+	bh=mnKl4Jo94xI28vK15IjabapoAkpAPwGHr4v96pxxogo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:
+	 x-icloud-hme;
+	b=hR+Jg7aeLxP+1/qOtZ7OpZBtWfeV+SK2B7wa+TPV4oQm5qbgNZKZITfuqilrQ4lqL
+	 ermYSL2COJMu+l3nyvc2R12Bo7OB2/2SDF378m6OWyDFA69O0aLMWX7X6oObnWh98h
+	 GXNcOEUzwJb85VxywUh6MQRCBliSer6Df5Slpt+LeMVmPAZZS6PBM2K6Wf8O7JmRim
+	 C5p+KGpafndIQbyRljj/063Eq56XdQERpRLAIT10f4j4VfM2nnyLJQ0fUDSWJwW4bF
+	 IQhrjYSnf1ke3KBW/jjP7gm/oBL9Ce85aCWZj67ktG8n7OP4rgrUfEnNjKXVbLBp6w
+	 82t8iVRsr3EZw==
+Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
+	by pv50p00im-ztdg10021101.me.com (Postfix) with ESMTPSA id BABCDD00165;
+	Mon, 16 Dec 2024 00:41:02 +0000 (UTC)
+From: Zijun Hu <zijun_hu@icloud.com>
+Subject: [PATCH v2 0/7] of: fix bugs and improve codes
+Date: Mon, 16 Dec 2024 08:40:39 +0800
+Message-Id: <20241216-of_core_fix-v2-0-e69b8f60da63@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bd481a13-73a3-4325-8e16-ea2b2c6b0f6e@alliedtelesis.co.nz>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAd3X2cC/23MwQ7CIAzG8VdZOIspsKHz5HsYY6B02oNDYS4a4
+ 7tb9erx+zf9PVWlwlTVpnmqQjNXzqMMu2gUnsJ4JM1JtrJgW2PB6zwcMBc6DHzXCR1YE8C3Zq3
+ k41JI8lfb7WWfuE65PL74bD71vzMbDYLZNaXOR0K3vd4YecQl5rPav350IamVp5+vYqik5X7ma
+ dPAsMLgB9+7riVA11sXo4DY2wSEIbapg+BIsNcbGqW8D/QAAAA=
+X-Change-ID: 20241206-of_core_fix-dc3021a06418
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+ Maxime Ripard <mripard@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+ Grant Likely <grant.likely@secretlab.ca>
+Cc: Zijun Hu <zijun_hu@icloud.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Proofpoint-GUID: fq2x0xFawmaHHMiAzjSzuTeegTNTecS3
+X-Proofpoint-ORIG-GUID: fq2x0xFawmaHHMiAzjSzuTeegTNTecS3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2024-12-15_10,2024-12-13_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 suspectscore=0
+ malwarescore=0 clxscore=1015 mlxlogscore=615 adultscore=0 bulkscore=0
+ spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2412160002
+X-Apple-Remote-Links: v=1;h=KCk=;charset=UTF-8
 
-> It's a part of the board design so I think it's something that should go
-> into the device tree. For example I've got 3 different boards right now that
-> use different arrangements of MDIO connections to the PHYs mostly for ease
-> of board layout (and one because it has different PHYs).
+This patch series is to fix bugs and improve codes for drivers/of/*.
 
-O.K. Lets keep this property then.
+Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+---
+Changes in v2:
+- Drop applied/conflict/TBD patches.
+- Correct based on Rob's comments.
+- Link to v1: https://lore.kernel.org/r/20241206-of_core_fix-v1-0-dc28ed56bec3@quicinc.com
 
-	Andrew
+---
+Zijun Hu (7):
+      of: Fix API of_find_node_opts_by_path() finding OF device node failure
+      of: unittest: Add a test case for API of_find_node_opts_by_path()
+      of: Correct child specifier used as input of the 2nd nexus node
+      of: Exchange implementation between of_property_present() and of_property_read_bool()
+      of: Fix available buffer size calculating error in API of_device_uevent_modalias()
+      of: Fix potential wrong MODALIAS uevent value
+      of: Do not expose of_alias_scan() and correct its comments
+
+ drivers/of/base.c       |  13 +++---
+ drivers/of/device.c     |  33 +++++++---------
+ drivers/of/module.c     | 103 +++++++++++++++++++++++++++++-------------------
+ drivers/of/of_private.h |   2 +
+ drivers/of/pdt.c        |   2 +
+ drivers/of/unittest.c   |   9 +++++
+ include/linux/of.h      |  29 +++++++-------
+ 7 files changed, 109 insertions(+), 82 deletions(-)
+---
+base-commit: 0f7ca6f69354e0c3923bbc28c92d0ecab4d50a3e
+change-id: 20241206-of_core_fix-dc3021a06418
+
+Best regards,
+-- 
+Zijun Hu <quic_zijuhu@quicinc.com>
+
 
