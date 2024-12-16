@@ -1,150 +1,186 @@
-Return-Path: <devicetree+bounces-131412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B74799F31AF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:38:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03FBA9F31C1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 14:42:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4986A1885398
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:38:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35870165165
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B67EE2054E1;
-	Mon, 16 Dec 2024 13:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC4D20551E;
+	Mon, 16 Dec 2024 13:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CwObR6UE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SYHNeGjQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 910923FD4
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 13:38:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29C913FD4;
+	Mon, 16 Dec 2024 13:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734356330; cv=none; b=BXFy8vheFccrwZ+ytQQYMqmz0ho7U+iqyfWRe7EMqdCwQz8wSlPI3Z8TZaNo/EbZImNI8A8DdwiSHhbOa6MdacBbrWEcMjjDiv7nUVMgjOAs72JQ3I6lYDrXQ9hQYTZEO19AkH7Mrg4RbeQN1k4/ZKf9SmGk7VRotYUN0UtitJ0=
+	t=1734356553; cv=none; b=I9J5WvmilvwQLWaPE4BZGVCUu9Ydcs4iRNMD6fRxibOWGqNogJhb3nxsC9IhUFy0d5PiU2JJLgtI1mltXgxgdWxykKtcwfIyh8DtvhUiG+2qeKd1hvlvWln2FTk84CPh3N8NA6hMpLEEhO51b1HrbS1M4kudBwq5P2s4l5EWLGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734356330; c=relaxed/simple;
-	bh=xKdTuvDsARS7GIQE5TIyEYv7eWDWhMRR3Zr+MQ1WGGA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KPljtWNGQfnsaurKBeBvyy10uSrInZkIpLSeAsGPUh2//uuRIodJ9MtGSQkyedf9kHUUePlDylnGmL4U0GH73YS94EEhiKWfMeSaxDGfXJFua7sW+utmUEjIN7wC2uVY0vXe2Yxxkq7e+kCKvIB5B5Yh9Z/9gXuwdxx5X866UyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CwObR6UE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B8C2C4CED0;
-	Mon, 16 Dec 2024 13:38:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734356330;
-	bh=xKdTuvDsARS7GIQE5TIyEYv7eWDWhMRR3Zr+MQ1WGGA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CwObR6UEjKfHiowDM5Nrv9G1luj8sAw6DeKy2YGmcBseWskbTIElXtSDKh5+t1ZxB
-	 85zCYC+J4kzcEYlbnyGUWYb6N8hPosMLEAwM/SMfB3xAAMShaaW+di2Tdad2PhulYb
-	 OOVrKE3URo4c1Q58s1neATBJb0EcaR2PAWGQ5S9EKcwa6P6oXYrpPlukpwgYdwnf6/
-	 RJ/SddOQUmDzbtyNdU2Nsa8ADL1AavALHFyzVDcbDHDQJW8nhNg2U0hEoWfadOuuUn
-	 IIhP6f5ueN3bByblLCQ7du8R/othvM66NuumnfxvFG84iXjkfxWm5hX/ss5W1/rOyZ
-	 6GTQDX3e6hjkg==
-Message-ID: <f525d875-734b-4c41-95ba-be07b11f8e1c@kernel.org>
-Date: Mon, 16 Dec 2024 14:38:44 +0100
+	s=arc-20240116; t=1734356553; c=relaxed/simple;
+	bh=ZmAVH/AQmUOO7YTSM4ZqrwxapcKH0Q5bnJz8FnBijac=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=VUdyIGURGEx0JPvMKf56rXjQ8ZodT5vrH7Xysm40w1csCsDskAVTqm30+opjyoQZXuYXDkqN7Kk8ePK0ymWL0GyJoa8wiUG6zYS9HjGF9c6nZLS7+hw18EOVAvYPoaWj3K2CTI72Quv7b9Z0guBGKqk+H9EBZ1b6GCi+h4lifTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SYHNeGjQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BG6PsFZ006045;
+	Mon, 16 Dec 2024 13:42:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=MRrFKf4oONbBWiwXeeEZkV
+	FVpaBYlLqkqk/gl6ve1BU=; b=SYHNeGjQPF3ISHiKBaCvCsDNEoE80AlaQM1IHP
+	Df8KDcw+UO9dXhuoK0kOSktvHjliVheXJKqa1q0lSKjdthmu9aLMFJzdBHrNGxrW
+	YfOtnKP5ywGaUEaLMS6defwG9ax6ApkJbLyqQpWzkCstgrc5ovPg90KhsMNQrydG
+	VTEW2OgxolV8LPN4YWosOo0+OZPDzY0rB/a6ZcGPG38NTpQyU2K2ou3jHsc6zNw6
+	9X7dYyvJsmiWcf0BHrXKm+4qYXx+VSQus4UN980b5MbPiYjqnZYB1/Wnh9DV/jBR
+	Dj/u3OldiGPQnVL60Yh/mW6axrjsph+hh6VeQ0CKe1z9AmsA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43jexbh99d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 13:42:12 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BGDgBtn012714
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 13:42:11 GMT
+Received: from nsssdc-sh01-lnx.ap.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 16 Dec 2024 05:42:05 -0800
+From: Lei Wei <quic_leiwei@quicinc.com>
+Subject: [PATCH net-next v3 0/5] Add PCS support for Qualcomm IPQ9574 SoC
+Date: Mon, 16 Dec 2024 21:40:22 +0800
+Message-ID: <20241216-ipq_pcs_6-13_rc1-v3-0-3abefda0fc48@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 04/12] arm64: dts: rockchip: Rename regulator for
- pcie2x1l2 for Radxa ROCK 5C
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dsimic@manjaro.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20241216113052.15696-1-naoki@radxa.com>
- <20241216113052.15696-5-naoki@radxa.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241216113052.15696-5-naoki@radxa.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMctYGcC/x3MQQqEMAxA0atI1gZMIwpzFZEyxFSzqZ1WRBDvP
+ sXlW/x/Q9FsWuDT3JD1tGJ7rOC2Adm+cVW0pRpc53pyxGjp55MUPyCxz0LIFFjYCYd+hJqlrMG
+ udzlB1AOjXgfMz/MH3/9cxmwAAAA=
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit
+	<hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_suruchia@quicinc.com>,
+        <quic_pavir@quicinc.com>, <quic_linchen@quicinc.com>,
+        <quic_luoj@quicinc.com>, <quic_leiwei@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
+        <vsmuthu@qti.qualcomm.com>, <john@phrozen.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1734356525; l=3091;
+ i=quic_leiwei@quicinc.com; s=20240829; h=from:subject:message-id;
+ bh=ZmAVH/AQmUOO7YTSM4ZqrwxapcKH0Q5bnJz8FnBijac=;
+ b=dQE4oOt3/UptL+eTiXU/fTGP9mHkhKuoGHJ5cBnhhCyK8ODBnU9Dh8h1oh1vvrnT1ydqsBEnA
+ 2Lbu9vdMEPGDpFd//4E7VcwYKhewGxHyvASlZHkCpBP7yz2IHnaXDXF
+X-Developer-Key: i=quic_leiwei@quicinc.com; a=ed25519;
+ pk=uFXBHtxtDjtIrTKpDEZlMLSn1i/sonZepYO8yioKACM=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: YhpETqjI3GyTnw8dSg2E5-HOFjbDQ7lq
+X-Proofpoint-GUID: YhpETqjI3GyTnw8dSg2E5-HOFjbDQ7lq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1011
+ priorityscore=1501 bulkscore=0 lowpriorityscore=0 malwarescore=0
+ mlxlogscore=999 mlxscore=0 impostorscore=0 adultscore=0 spamscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412160116
 
-On 16/12/2024 12:30, FUKAUMI Naoki wrote:
-> Use consistent name with other regulators. No functional change.
-> 
-> Fixes: 3ddf5cdb77e6 ("arm64: dts: rockchip: add Radxa ROCK 5C")
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
-> Changes in v5:
-> - Reword commit message
-> Changes in v4:
-> - reword commit message
-> Changes in v3:
-> - none
-> Changes in v2:
-> - new
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-> index 85589d1a6d3b..61d75ab503b2 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-> @@ -76,13 +76,13 @@ pwm-fan {
->  		pwms = <&pwm3 0 60000 0>;
->  	};
->  
-> -	pcie2x1l2_3v3: regulator-pcie2x1l2-3v3 {
-> +	vcc3v3_pcie2x1l2: regulator-vcc3v3_pcie2x1l2 {
+The 'UNIPHY' PCS block in the Qualcomm IPQ9574 SoC provides Ethernet
+PCS and SerDes functions. It supports 1Gbps mode PCS and 10-Gigabit
+mode PCS (XPCS) functions, and supports various interface modes for
+the connectivity between the Ethernet MAC and the external PHYs/Switch.
+There are three UNIPHY (PCS) instances in IPQ9574, supporting the six
+Ethernet ports.
 
-No, neither explained, nor correct. See DTS coding style.
+This patch series adds base driver support for initializing the PCS,
+and PCS phylink ops for managing the PCS modes/states. Support for
+SGMII/QSGMII (PCS) and USXGMII (XPCS) modes is being added initially.
 
-Please use name for all fixed regulators which matches current format
-recommendation: 'regulator-[0-9]v[0-9]'
+The Ethernet driver which handles the MAC operations will create the
+PCS instances and phylink for the MAC, by utilizing the API exported
+by this driver.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml?h=v6.11-rc1#n46
+While support is being added initially for IPQ9574, the driver is
+expected to be easily extendable later for other SoCs in the IPQ
+family such as IPQ5332.
 
+Signed-off-by: Lei Wei <quic_leiwei@quicinc.com>
+---
+Changes in v3:
+- Remove the clk enabled check in "pcs_disable" method.
+- Add "pcs_validate" method to validate supported interface mode and
+  duplex mode.
+- Use regmap_set_bits()/regmap_clear_bits() API where appropriate.
+- Collect Reviewed-by tag for dtbindings.
+- Link to v2: https://lore.kernel.org/r/20241204-ipq_pcs_rc1-v2-0-26155f5364a1@quicinc.com
 
+Changes in v2:
+- dtbindings updates
+  a.) Rename dt-binding header file to match binding file name.
+  b.) Drop unused labels and the redundant examples.
+  c.) Rename "mii_rx"/"mii_tx" clock names to "rx"/"tx".
+- Rename "PCS_QCOM_IPQ" with specific name "PCS_QCOM_IPQ9574" in
+  Kconfig.
+- Remove interface mode check for the PCS lock.
+- Use Cisco SGMII AN mode as default SGMII/QSGMII AN mode.
+- Instantiate MII PCS instances in probe and export "ipq_pcs_get" and
+  "ipq_pcs_put" APIs.
+- Move MII RX and TX clock enable and disable to "pcs_enable" and
+  "pcs_disable" methods.
+- Change "dev_dbg" to "dev_dbg_ratelimited" in "pcs_get_state" method.
+- Link to v1: https://lore.kernel.org/r/20241101-ipq_pcs_rc1-v1-0-fdef575620cf@quicinc.com
+
+---
+Lei Wei (5):
+      dt-bindings: net: pcs: Add Ethernet PCS for Qualcomm IPQ9574 SoC
+      net: pcs: Add PCS driver for Qualcomm IPQ9574 SoC
+      net: pcs: qcom-ipq9574: Add PCS instantiation and phylink operations
+      net: pcs: qcom-ipq9574: Add USXGMII interface mode support
+      MAINTAINERS: Add maintainer for Qualcomm IPQ9574 PCS driver
+
+ .../bindings/net/pcs/qcom,ipq9574-pcs.yaml         | 190 +++++
+ MAINTAINERS                                        |   9 +
+ drivers/net/pcs/Kconfig                            |   9 +
+ drivers/net/pcs/Makefile                           |   1 +
+ drivers/net/pcs/pcs-qcom-ipq9574.c                 | 883 +++++++++++++++++++++
+ include/dt-bindings/net/qcom,ipq9574-pcs.h         |  15 +
+ include/linux/pcs/pcs-qcom-ipq9574.h               |  16 +
+ 7 files changed, 1123 insertions(+)
+---
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+change-id: 20241213-ipq_pcs_6-13_rc1-31f3c32c3f47
 
 Best regards,
-Krzysztof
+-- 
+Lei Wei <quic_leiwei@quicinc.com>
+
 
