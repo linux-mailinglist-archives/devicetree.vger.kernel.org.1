@@ -1,140 +1,260 @@
-Return-Path: <devicetree+bounces-131307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813CD9F2C99
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:09:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 881EB9F2CA1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:12:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B51B31611F4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:09:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA2291889A98
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:12:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D59F1200138;
-	Mon, 16 Dec 2024 09:09:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0711200B9B;
+	Mon, 16 Dec 2024 09:12:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Gv6KZ5Iq"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="HZq04+ev"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D06B2E628
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 09:09:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BDA02E628;
+	Mon, 16 Dec 2024 09:12:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734340146; cv=none; b=U3h8mTFyAELX8NcjlxAxTOgIjW7pD3AFyZJdssxz1ThjwgGuk77ouTQpKiY5irKG3RjeOdeR5ocWNZzmlUBpUB+y4Cd4RKR8/SEppKAfjSZH7sMP6SU6JTc5ijd7jwL40dsV+hn/7dwhHrINl4tvQR1VbdFsq1avVjlZ9g7GvQA=
+	t=1734340329; cv=none; b=N4vVvfeY8Zip5RZHWwxEyl9gEfkRbF3R1ehmdNqFW8an4/d852idxc6m5Mok6g+DUulHBGfzdMMz5QURq79QsrsPGKsFu7qWlgGYs++ZYM26z7hirf9lXeCfGXmUi66y/B/ydDjM0HEqk0lwoUQ1zdlK60rojMuBY6ygtyd4aQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734340146; c=relaxed/simple;
-	bh=M19509IjZMcFyL8kbGcmsLxqS7khHdG+4BTdiY+Cn3c=;
+	s=arc-20240116; t=1734340329; c=relaxed/simple;
+	bh=F66O6QI07G3P9zfk+q2VTR6RDkCcT/tkT1r1LscN1ow=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eIX2FTdPUZiaS3naOsrWj+qStTuq4+z/p4MTFPjvZBXUu3rG1UBM0EDJLtXk8lGPGpN8D3uSnByJ1oKHcTrNkP4zRGGUrN+hwKSUWUDD4H0Wh26oej4lYD/Iqn2InZBf7upP0Y0IseefdDLGHVz2IVJbJug4W4YWVNn/n4gXsJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Gv6KZ5Iq; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-434b3e32e9dso42283445e9.2
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 01:09:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1734340143; x=1734944943; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cGBHS4QHf1CsUcSFjaZXRI9YWCCVYzt2h/iHstQ0laA=;
-        b=Gv6KZ5Iqx6fzNhZAU09D/gQSVlFTqh9G8v4OVdBKVEPO4vcVXbBYkJBRG1PecZ3DAg
-         R9cbNo+FTpS6IJvrIjPyPf27QfuykBmjyQX4X17Ra4FzSHrf+6gPQJUSwvtia91rf+Fi
-         4wnGPAmPVX6SMLGhwjBG4GsfuMfTN9FDbQdalQO115lzwl+IUZujiU8+UsJ5B04MXzKX
-         /nw4keWIdfH7xVURQf83yx+eQl6I127uRb7iGTAqX45V6kmtjxEJ7489mD8+c8DSZa12
-         m0JunSnVSkD+A9BsH2k31VqBSIIO0QibCvPscO3IQkbe8DDwuHaxie6pePXC2Vbf6BWM
-         r28A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734340143; x=1734944943;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cGBHS4QHf1CsUcSFjaZXRI9YWCCVYzt2h/iHstQ0laA=;
-        b=f7S6ZfR8ScZ+drHy9eWCYcnYEqB1KpzvrSrzgt3OFyZVXFpBBFn0vLvHeNq4+e5L64
-         gcN5KmuT4KgVlXIB/3yf/Jx6tiA8UQZzuLSn6w1s9kbpSLH43Aw9Oewgst558TroNZHI
-         McI3uAmbXjJgh0ULkAznPR/DJ7fr2AdXQCMcaqJ/EUMz2B9Bttt6M8azlOyG7cCcEd9m
-         70Fz1DZ0+JvY7+OC+t0t5DdWxidxHHXVOT0xJGQEQue/RwdaFkyIt9fZAaq8CIjgCO06
-         CFGc2s1iwTq8rYJwVK20z84mpRyhh/6YIPMFESsxvmBwqZK1HkqdUSt5febJZ2o6PHkV
-         34HQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU+wXQrzBYs7VkJ/ND1OD8crxw6Y8x21PaNJIOcs947aI+etT3YhFCB7u8c+zdGwm9xjhz9KhxiMFXZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjM23wsQaTwFZvkdeuDLzh1hqoQjBqXvfqlMFDgDct0l1KYWvy
-	rWD9wwEBnxnaPIi30uqpQ/13kiJb1HqCjHU67qpDtRaYfG/8k75PaY7hliwrehQ=
-X-Gm-Gg: ASbGncudtxnNW02YWFc4aGqbkcuIrgdjdW6wrKq30qZygyFEICbiYtv3qDfmsTroEsI
-	e5aJf+R5G94PdoX6dTyc3LDnHX3GqDIz5JP7CRvnvoYg0/q8s4iDUBb3JKCaYYt6hqoZhDsfzmv
-	Racsmfo6fTB14s7xQAQx/gc+VbS5Cf751eWhChN3NTxurl1YxTO4GMw3g7FYxv7ayNWXIj9v/Rn
-	CRAD8UWgo9m4Ov2Raa3YvG+3qFKEyDA5IdFVm1yrD/I88Y8C0FzPChi
-X-Google-Smtp-Source: AGHT+IH72Dfr5eQ52hfcPTD2JDNeTzGbEvM+MfJLbWyJGQJuX1wyKsEB2Yp2W1KGB/T0MXX4Wu47cg==
-X-Received: by 2002:a05:600c:871b:b0:434:e9ee:c3d with SMTP id 5b1f17b1804b1-4362aa93cb0mr85374005e9.20.1734340143532;
-        Mon, 16 Dec 2024 01:09:03 -0800 (PST)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:ddd7:943f:c7de:9971])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4362559ef45sm133677185e9.26.2024.12.16.01.09.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Dec 2024 01:09:03 -0800 (PST)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Eric Anholt <eric@anholt.net>,
-	=?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Doug Berger <opendmb@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	linux-gpio@vger.kernel.org
-Subject: Re: (subset) [PATCH v3 0/7] drm/vc4: Fixup DT and DT binding issues from recent patchset
-Date: Mon, 16 Dec 2024 10:09:01 +0100
-Message-ID: <173434013318.38429.808413721248542013.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241212-dt-bcm2712-fixes-v3-0-44a7f3390331@raspberrypi.com>
-References: <20241212-dt-bcm2712-fixes-v3-0-44a7f3390331@raspberrypi.com>
+	 MIME-Version:Content-Type; b=X562BnWfbroM8IEBcv2iSp0P5n9iCknO81BiN+skQjO3oP3JclVYH1demkR1mGqxmES6FPwi/aN0oUur2cNXJQI7ynOkNAGzpmN/mb2bUMlzpz67HlHivLgiJC8k3sla5x7fPRlrTArbasASOWX7sK0jyqYMuhHr2eqSyGCxpRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=HZq04+ev; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=bUiHe4Qn1i6vcEIv1EhyIUEpJIZINJxDWotkRPJwW4A=; b=HZq04+ev4NMsn0ngmTDuAcTY2i
+	P+3kLn4K3obHdW4QelHxx5kkNXgaHUveDJ8HQuzIyYrmz0kzsKngknfX8sG5jgOuG6V4bE30xhrnB
+	kX7XshIWUBSObLsiYxyOezA0YIOwYzaSfBOzIEjV9eWicwlUNbboKGAZZ/ZK2O8n8/P3+WXi/fE9c
+	tiaM6Ctwk0SMStcfMaUL1KRkpvqLtvroX7ILA+5encAR45NEZySnCPq+Qd6AYJJIYwhTx7+VYoXJB
+	OflPvto6piPMC+OokZKDnHNL6M+41MqI4/o1FB1xFVD5FlE2y10+jQKQYGkfUZpzL04HJwIvmgvGh
+	XKpk3t6Q==;
+Received: from i5e86190a.versanet.de ([94.134.25.10] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tN78t-0003mo-Uy; Mon, 16 Dec 2024 10:11:55 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Damon Ding <damon.ding@rock-chips.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
+ cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
+ andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
+ kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org
+Subject:
+ Re: [PATCH v2 03/11] drm/rockchip: analogix_dp: Add support for RK3588
+Date: Mon, 16 Dec 2024 10:11:54 +0100
+Message-ID: <4395748.ejJDZkT8p0@diego>
+In-Reply-To: <gwogudb5vae7wu452zwuqmdlyaibenoso4f5pjmu3uttckhy2w@shndol4mz5n4>
+References:
+ <20241216031225.3746-1-damon.ding@rock-chips.com>
+ <20241216031225.3746-4-damon.ding@rock-chips.com>
+ <gwogudb5vae7wu452zwuqmdlyaibenoso4f5pjmu3uttckhy2w@shndol4mz5n4>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-
-
-On Thu, 12 Dec 2024 18:36:27 +0000, Dave Stevenson wrote:
-> I missed the DT errors from the recent patchset[1] (DT patches
-> in linux-next via Florian, DRM bindings patches on dri-misc-next)
-> as Rob's bot report got spam filtered, so this is a fixup set.
+Am Montag, 16. Dezember 2024, 09:57:41 CET schrieb Dmitry Baryshkov:
+> On Mon, Dec 16, 2024 at 11:12:17AM +0800, Damon Ding wrote:
+> > RK3588 integrates the analogix eDP 1.3 TX controller IP and the HDMI/eDP
+> > TX Combo PHY based on a Samsung IP block, and there are also two
+> > independent eDP display interface on RK3588 Soc.
+> > 
+> > Add just the basic support for now, i.e. RGB output up to 4K@60Hz, without
+> > the tests of audio, PSR and other eDP 1.3 specific features.
+> > 
+> > Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+> > 
+> > ---
+> > 
+> > Changes in v2:
+> > - Add support for the other eDP output edp1
+> > ---
+> >  .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 82 ++++++++++++++++---
+> >  include/drm/bridge/analogix_dp.h              |  3 +-
+> >  2 files changed, 74 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> > index 871606a31ef1..4c9a55776ada 100644
+> > --- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> > +++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+> > @@ -51,10 +51,12 @@ struct rockchip_grf_reg_field {
+> >  /**
+> >   * struct rockchip_dp_chip_data - splite the grf setting of kind of chips
+> >   * @lcdc_sel: grf register field of lcdc_sel
+> > + * @edp_mode: grf register field of edp_mode
+> >   * @chip_type: specific chip type
+> >   */
+> >  struct rockchip_dp_chip_data {
+> >  	const struct rockchip_grf_reg_field lcdc_sel;
+> > +	const struct rockchip_grf_reg_field edp_mode;
+> >  	u32	chip_type;
+> >  };
+> >  
+> > @@ -134,12 +136,21 @@ static int rockchip_dp_poweron(struct analogix_dp_plat_data *plat_data)
+> >  		return ret;
+> >  	}
+> >  
+> > +	ret = rockchip_grf_field_write(dp->grf, &dp->data->edp_mode, 1);
+> > +	if (ret != 0)
+> > +		DRM_DEV_ERROR(dp->dev, "failed to set edp mode %d\n", ret);
 > 
-> Largely it was changes to number of interrupts or clocks in the
-> bindings, so those are now covered.
+> Is it to be called for non-eDP hosts too? Or for older hosts?
+
+The implementation of rockchip_grf_field_write (in patch1) seems to
+take care of checking if that field actually exists and doing nothing if
+not.
+
+I think eDP/DP is more a naming thing, the Analogix controller is called
+an eDP controller in all documentation things.
+
+Even back on rk3288, the Analogix-DP, still is called an eDP controller in
+documentation, with the only difference being that it does not contain
+another additional "dedicated" DP controller
+
+> > @@ -396,6 +425,7 @@ static int rockchip_dp_probe(struct platform_device *pdev)
+> >  	const struct rockchip_dp_chip_data *dp_data;
+> >  	struct drm_panel *panel = NULL;
+> >  	struct rockchip_dp_device *dp;
+> > +	int id, i;
+> >  	int ret;
+> >  
+> >  	dp_data = of_device_get_match_data(dev);
+> > @@ -410,9 +440,22 @@ static int rockchip_dp_probe(struct platform_device *pdev)
+> >  	if (!dp)
+> >  		return -ENOMEM;
+> >  
+> > +	id = of_alias_get_id(dev->of_node, "edp");
+> > +	if (id < 0)
+> > +		id = 0;
 > 
-> [...]
+> Alias is not documented.
 
-Applied, thanks!
+additionally, aliases should never be used to determine actual device
+functionionality - e.g. the hw-device-number
 
-[3/7] dt-bindings: gpio: brcmstb: permit gpio-line-names property
-      commit: 83a9752729c455a6bd9b7cf62198506180691931
+> Please check how other platforms handle device -> ID conversion and
+> consider following it (yes, the best option currently known is to
+> hardcode bus addresses into the driver data).
 
-Best regards,
--- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+see for example the dw-dsi + dw-dsi2 for existing implementations.
+
+
+
+> > +	i = 0;
+> > +	while (is_rockchip(dp_data[i].chip_type))
+> > +		i++;
+> > +
+> > +	if (id >= i) {
+> > +		DRM_DEV_ERROR(dev, "invalid edp id: %d\n", id);
+> > +		return -ENODEV;
+> > +	}
+> 
+> Is it applicable to non-eDP case?
+
+same as above, it's always called eDP in all pieces of documentation,
+(Compliant with DP 1.2 and eDP 1.3)
+
+Heiko
+
+> > +
+> >  	dp->dev = dev;
+> >  	dp->adp = ERR_PTR(-ENODEV);
+> > -	dp->data = dp_data;
+> > +	dp->data = &dp_data[id];
+> >  	dp->plat_data.panel = panel;
+> >  	dp->plat_data.dev_type = dp->data->chip_type;
+> >  	dp->plat_data.power_on = rockchip_dp_poweron;
+> > @@ -464,19 +507,38 @@ static int rockchip_dp_resume(struct device *dev)
+> >  static DEFINE_RUNTIME_DEV_PM_OPS(rockchip_dp_pm_ops, rockchip_dp_suspend,
+> >  		rockchip_dp_resume, NULL);
+> >  
+> > -static const struct rockchip_dp_chip_data rk3399_edp = {
+> > -	.lcdc_sel = GRF_REG_FIELD(0x6250, 5, 5),
+> > -	.chip_type = RK3399_EDP,
+> > +static const struct rockchip_dp_chip_data rk3399_edp[] = {
+> > +	{
+> > +		.lcdc_sel = GRF_REG_FIELD(0x6250, 5, 5),
+> > +		.chip_type = RK3399_EDP,
+> > +	},
+> > +	{ /* sentinel */ }
+> > +};
+> > +
+> > +static const struct rockchip_dp_chip_data rk3288_dp[] = {
+> > +	{
+> > +		.lcdc_sel = GRF_REG_FIELD(0x025c, 5, 5),
+> > +		.chip_type = RK3288_DP,
+> > +	},
+> > +	{ /* sentinel */ }
+> >  };
+> >  
+> > -static const struct rockchip_dp_chip_data rk3288_dp = {
+> > -	.lcdc_sel = GRF_REG_FIELD(0x025c, 5, 5),
+> > -	.chip_type = RK3288_DP,
+> > +static const struct rockchip_dp_chip_data rk3588_edp[] = {
+> > +	{
+> > +		.edp_mode = GRF_REG_FIELD(0x0000, 0, 0),
+> > +		.chip_type = RK3588_EDP,
+> > +	},
+> > +	{
+> > +		.edp_mode = GRF_REG_FIELD(0x0004, 0, 0),
+> > +		.chip_type = RK3588_EDP,
+> > +	},
+> > +	{ /* sentinel */ }
+> >  };
+> >  
+> >  static const struct of_device_id rockchip_dp_dt_ids[] = {
+> >  	{.compatible = "rockchip,rk3288-dp", .data = &rk3288_dp },
+> >  	{.compatible = "rockchip,rk3399-edp", .data = &rk3399_edp },
+> > +	{.compatible = "rockchip,rk3588-edp", .data = &rk3588_edp },
+> >  	{}
+> >  };
+> >  MODULE_DEVICE_TABLE(of, rockchip_dp_dt_ids);
+> > diff --git a/include/drm/bridge/analogix_dp.h b/include/drm/bridge/analogix_dp.h
+> > index 6002c5666031..54086cb2d97d 100644
+> > --- a/include/drm/bridge/analogix_dp.h
+> > +++ b/include/drm/bridge/analogix_dp.h
+> > @@ -15,11 +15,12 @@ enum analogix_dp_devtype {
+> >  	EXYNOS_DP,
+> >  	RK3288_DP,
+> >  	RK3399_EDP,
+> > +	RK3588_EDP,
+> >  };
+> >  
+> >  static inline bool is_rockchip(enum analogix_dp_devtype type)
+> >  {
+> > -	return type == RK3288_DP || type == RK3399_EDP;
+> > +	return type == RK3288_DP || type == RK3399_EDP || type == RK3588_EDP;
+> >  }
+> >  
+> >  struct analogix_dp_plat_data {
+> 
+> 
+
+
+
+
 
