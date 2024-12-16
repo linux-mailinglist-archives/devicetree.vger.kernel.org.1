@@ -1,148 +1,131 @@
-Return-Path: <devicetree+bounces-131280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B8ED9F2B80
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:07:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB739F2B8D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:10:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49B831881D52
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:07:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F399416426F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:10:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDD2D1FF7A1;
-	Mon, 16 Dec 2024 08:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 221281FF7D1;
+	Mon, 16 Dec 2024 08:10:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="he03HcTC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NWUsRAM5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C7601FF615;
-	Mon, 16 Dec 2024 08:07:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBB681FF7CC;
+	Mon, 16 Dec 2024 08:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734336465; cv=none; b=cQzjvwS5O4IoOngCHjD9kVidDFMIrIqQP65HC73voUn+0h4d71cyYAepXv87VUdoJH6yfrGe4zqRuIvxHvijFFr1VpaxGFcDokuB4PPg0whxzbxcnRpq6wZ+KFfgTg7s5Eh0lhVPSPFWiBFt5NMnRN7ujyCXjhVLhsvG3X+pCms=
+	t=1734336622; cv=none; b=sS/M3Z4OBbyIeJEbaWyRQhxktaWt1ZGVSJuv+rLwBNMA0d5HGCOvNmElsNudb0R5VdoDt8FNmXY14l32Vwo9blkeQKWxJB2q8bbdur+Fj3OJLs55d2Lk29Ne4raYzCylG4FZcfCSGtBd+g6K4yLTIlUWIRI9IRtDtGFTxJw93DU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734336465; c=relaxed/simple;
-	bh=Nrrpzv5D0ignzOdsBwdtNDJpwja7u1irJgZFRTZyeOo=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=u2x7Nll6NOnYJoFp/2xvlqEEAGY18a7LT8dAiz2TU9SpncXrbjqfSxnK7yHgKi+VvrzYlnUB2BgWt/9QktHBxfKHg19IiRm4yKRz3ru6iqrQLMQwoXulZVZstYlo7sXwPjvUz2vbKW5DvQgcnbRTgZmC8pwwByCURGu3YAIZ4XA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=he03HcTC; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BG6XTs6022877;
-	Mon, 16 Dec 2024 08:07:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=sL1yIlUQQ65cZAokLj4GXd
-	aY0BfotyRSs/hH7bf98SE=; b=he03HcTCHA4Zsq/6ZIAuGWBWqEeGj6CkGkUzqD
-	qmk4Gi7Pybs9Q9UZ4uSgqXJhUIG3TrP0YfpMH26duQv3cweF8Y2HgzyCA3yVh/AK
-	IJHASo6964krPkFXXEFir87YUl/VX2O442fKYmYIBa6MterrOHHVJXu7rasMOeqq
-	8TyILixb1pxihgjBJCaKIhQluxT47OBqF+G9jVGSz5LSBrjiTH9wU5GtKPvlY/cf
-	s8THgvREZlhEXmzs2H81D6z/bcF4kDTk1Mt741EV7HEzBT4PB7PDfp8JOnBfvZDn
-	2/OQJMekev6VQ4m2HTJYDBEp3D06Mw1R8/gEE1Frp5sTZ8Kg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43jf1w8aq9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Dec 2024 08:07:28 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BG87RK9003350
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Dec 2024 08:07:27 GMT
-Received: from liuxin-gv.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 16 Dec 2024 00:07:20 -0800
-From: Xin Liu <quic_liuxin@quicinc.com>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck
-	<linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: Rajendra Nayak <quic_rjendra@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_jiegan@quicinc.com>, <quic_aiquny@quicinc.com>,
-        <quic_tingweiz@quicinc.com>
-Subject: [PATCH v4] arm64: dts: qcom: qcs8300: Add watchdog node
-Date: Mon, 16 Dec 2024 16:06:40 +0800
-Message-ID: <20241216080640.509182-1-quic_liuxin@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1734336622; c=relaxed/simple;
+	bh=I8tqmc5IaiPoUplhIX6RsKbAo0QPo2Zt4joR5n0WYUk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hq3eHzynP3CaOd1UdhVFq5j+3QcXyxKe+h31Ko/+xSICIgfMRUDzv5cbAJJCHl4h9UWQzrKaTcuozxmn8Fh7wDOnr4r9pw7UP4rXs4DGcGBs47EH0RJulpK0mTqswpe+HRGyFvjtI13DHCn/jFD8TLsED4Wdxz5d25bX6EB8QEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NWUsRAM5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CA01C4CED0;
+	Mon, 16 Dec 2024 08:10:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734336621;
+	bh=I8tqmc5IaiPoUplhIX6RsKbAo0QPo2Zt4joR5n0WYUk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NWUsRAM5Z9vieIYgTIUILLoq3Mhd/Yt4AGxfOtLzcfbBqlBLx8XgTeUIBxFAMZQps
+	 N1F9SrXQ0kC4lnyMVMoFfx3rKvJff4jjHqZ/IGYBRWePld0NkvpTHyr1/t2l8Wtwm4
+	 xt8fjtsNuRK2ew+zlT5XRwSD7qi4Q3QYnQaKHZd04o5HdndG7v8Lxpx9LfGaOumqFC
+	 nNVoO0Kdfc10SISV5GLedEoMvrgmDL8+SCFspc0yKCCd8Ssgl+H6QdzMmUFIX1taXh
+	 rHat1OMiPUN6KHCgrjgH+PHMz9A3fXugFQyGhFtnR62bTPRXnTHful+iIUtwpFTLMk
+	 GcJc3Tw49feqA==
+Message-ID: <d4b4d357-f1f5-4e75-938b-e6742d1d3674@kernel.org>
+Date: Mon, 16 Dec 2024 09:10:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: kcjt2lqlbi10m7qH_b3iFukB3ZYoiYf3
-X-Proofpoint-ORIG-GUID: kcjt2lqlbi10m7qH_b3iFukB3ZYoiYf3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- impostorscore=0 suspectscore=0 phishscore=0 adultscore=0 bulkscore=0
- lowpriorityscore=0 spamscore=0 mlxlogscore=841 priorityscore=1501
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412160066
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62l: add initial infrastructure
+To: Bryan Brattlof <bb@ti.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241117-am62lx-v1-0-4e71e42d781d@ti.com>
+ <20241117-am62lx-v1-1-4e71e42d781d@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241117-am62lx-v1-1-4e71e42d781d@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add the watchdog node for QCS8300 SoC.
+On 18/11/2024 06:34, Bryan Brattlof wrote:
+> From: Vignesh Raghavendra <vigneshr@ti.com>
+> 
+> Add the initial infrastructure needed for the AM62L. All of which can be
+> found in the Technical Reference Manual (TRM) located here:
+> 
+>     https://www.ti.com/lit/ug/sprujb4/sprujb4.pdf
+> 
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> Signed-off-by: Bryan Brattlof <bb@ti.com>
+> ---
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml |  6 ++
+Please run scripts/checkpatch.pl and fix reported warnings. Then please
+run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
+Some warnings can be ignored, especially from --strict run, but the code
+here looks like it needs a fix. Feel free to get in touch if the warning
+is not clear.
 
-This patch depends on below patch series:
-https://lore.kernel.org/linux-arm-msm/20241203-qcs8300_initial_dtsi-v4-0-d7c953484024@quicinc.com/
-
-Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
---- 
-Changes in v4:
-- Patch dt-bindings is already applied.
-- Move sleep_clk to SoC DT.
-- Link to v3: https://lore.kernel.org/linux-arm-msm/20241125093503.1162412-1-quic_liuxin@quicinc.com/
-Changes in v3:
-- PATCH 3/3：Add \n at the last line of the file.
-- Link to v2: https://lore.kernel.org/linux-arm-msm/20241119102315.3167607-1-quic_liuxin@quicinc.com/
-Changes in v2:
-- PATCH 1/3：Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-- PATCH 2/3：Drop the Reviewed-by tag that received by v1. Assign a label to
-  the wachdog node.
-- Link to v1: https://lore.kernel.org/all/20241029031222.1653123-1-quic_liuxin@quicinc.com/
-
-
-Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
----
-base-commit: f486c8aa16b8172f63bddc70116a0c897a7f3f02
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index 73abf2ef9c9f..c0efcd98ec65 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -1148,6 +1148,13 @@ intc: interrupt-controller@17a00000 {
- 			redistributor-stride = <0x0 0x20000>;
- 		};
- 
-+		watchdog@17c10000 {
-+			compatible = "qcom,apss-wdt-qcs8300", "qcom,kpss-wdt";
-+			reg = <0x0 0x17c10000 0x0 0x1000>;
-+			clocks = <&sleep_clk>;
-+			interrupts = <GIC_SPI 0 IRQ_TYPE_EDGE_RISING>;
-+		};
-+
- 		timer@17c20000 {
- 			compatible = "arm,armv7-timer-mem";
- 			reg = <0x0 0x17c20000 0x0 0x1000>;
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
