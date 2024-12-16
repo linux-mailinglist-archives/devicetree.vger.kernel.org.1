@@ -1,156 +1,114 @@
-Return-Path: <devicetree+bounces-131467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C1F9F35BC
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:21:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C0899F35CD
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:22:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17B7D18891E3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:19:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06DB3188BF5C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 324E92063D8;
-	Mon, 16 Dec 2024 16:17:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EMRoHY4a"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05BF4136E3B;
+	Mon, 16 Dec 2024 16:18:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98F662063D6
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 16:17:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5234A126C0D;
+	Mon, 16 Dec 2024 16:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734365830; cv=none; b=R0XxnxderwZin9xtuvJ3OI9TXA8zEptqFm1XbIXiEa2sHy3VhZ5782kVcMbt/Xjq6T23lBQU+w6wcPyBmBa24gPGEZ8dAhQBEHNZc5MuhNeJ2QuwirPufsBdAGG4eHZJghhhRecfVKHUN7VTh4DhwR1MNw7A4bK0uxiGzIe9m1M=
+	t=1734365932; cv=none; b=KQz3iJESwqnihfVGCpyUmYrjnkvgnXY/pflIIXEbDnGZ7TDVcwjNXJKq2k5+qxZ/KTl7v95c79Jidc+yt2qUCwZFc8aQDSj8HEQtV1Khb9hakVcryxYknGYowuJulDuZj3Lz148osfoQt5AnMS/lCSPrHY6hALnWpmZCA5DPa20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734365830; c=relaxed/simple;
-	bh=t8wf47QY9cmdBo63Gv0CCceIk9iBBth3UuB3w+B9zfU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=McvHSpg1oUkUgygT1+JdlaJmNblXKUFSjCQt3tP6s21iBMh0eZvUtcThnizuUSG9Z/tJHD34JJ20mTx/JImgBfPDeXGE8owIn1OLmHGvqNCEk9ivNFPnR1yvyIrsTcxacJ7/TqrULvXEJmCCYTZW9dbbzBeb8FEnbvYNSl0szcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EMRoHY4a; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7242f559a9fso5492589b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 08:17:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734365828; x=1734970628; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=82gDKALWw0Ekg/l8MKhauenkjup0NAxqqSYjA8q5Flo=;
-        b=EMRoHY4aeTjOHOR29cyv4zuei/iVpMLuYrSfQzyZclfe0NEXW6Jl504WqSbsqUx8Xy
-         b5hpCSFig3u2axLHJnu20jv19Ba5IsKrNiFelE2gfHsvqnWFMCIfKTjHoeUL1sDoXVBf
-         afShywFdFiEev+CQuTxTSPxzR4yQ7FYAj8XhplNN8NxqrN/qmwwHWsRAcADSZBGfOqIS
-         aInMNWjkvwZy3nUUQE3lUsHkbKGjS/h8qFYE9uZuevWcof8ebNbhNCid6gc/sfq11E3I
-         jnXBpewD3YJE9QsDWJ4VTiqibXrUPWCzAU6IgOpqEZjL0YX96WQgVW9u1nGUWJk3ewqz
-         VUpg==
+	s=arc-20240116; t=1734365932; c=relaxed/simple;
+	bh=DFVom/mUUn4cKfuOjBv5QRt9gL1H9BVCAFezOHy5L9E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TSvePdKJU+IObBq3lsch6IsxuA8xAp247uFdpjBUoGWtPaJTxcpBA03Nob1We3xDxqyjcD9flLwOAmXLwwjxSLGmb8JEPLgmVSY/pzhJJvHqDmPgN7vuS9WLzpOXM3jQM0oUVoI4TRxy9HSv0kbEWrPljg6kHlkatQYyO5IvIiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-7b6fc5bf609so218911585a.1;
+        Mon, 16 Dec 2024 08:18:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734365828; x=1734970628;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=82gDKALWw0Ekg/l8MKhauenkjup0NAxqqSYjA8q5Flo=;
-        b=mTTw4AU9b+K3F8Nowvewn1QxehX9wQomwodp+7znLWSRRVabTcMqdMkG3eh8OySQPL
-         5Xpz9wUqjvST9r/uPQMyy9KYoAGRaBuP7XFxOhUdTJ3fSR5gwsODlZDDNI9xevHJX0x2
-         CpdEi5q7b+/YVyyp1DjpknUOKiWK0RN/+VBvszzBOyZyCCOAK3fvF6UL09+Rzc3EZG92
-         WCP5LiPLFlCZVl5HZ1tfhTNMKk6UakArFLipYZ1ynFKKwgSPnb8QqcUVhFwz5RmfqVnm
-         GUTsHkA+NeCWdx4WKyb1MYKGfa59m+iI8wa0UtxjJuuxTeYHfnPpaW8EIb5VRqJIL2q5
-         UzbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXjgA3oycToNiwMl94wL6PwHpV6eOD9S0AHbwdRo53xOPtQC9KCcG6PPUuFmm5ShdCEhTwApsDwwWy6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXbGYToH4JkQyrVSNaTrWWUWkOBL5C29uzb6GIGn+W4rhPAHpZ
-	4ED1dTpo0k6hHvb7YQU2qxp3f8lUXKjgJPQnamf9RAvip87SC8aVvNGP3NqRaw==
-X-Gm-Gg: ASbGncvGp6T3oDzpHbXB1AoCew0pix+urWRU+qAA2jPu7n/2J6H+L06jYaqfAq1QM3r
-	YCu/5iZayAiUIhTSPPdgVozbZn8mMRpOgLMR1Wp/TubaNq2I7KLpHyIHEwctp4Gs19ONh19Uk3a
-	sJIp6xUl3jmkeKdyESoks8X61dZqf2cEzWP5tASLK3JgR5bQXGFjk3D4nifxwUF84oRXIgOu9D+
-	JVpm6EyZeq+MuGGHea4hw/9gtZdMaoOzmK+rNI/d/IkuMf1YkTA0l+llNefJW4VvdAc
-X-Google-Smtp-Source: AGHT+IGvG6qXEoCqCkROvX+b6dhtMyqPUbkI3UVWtmJgHt1xZMsm2fyfByqDiqxFQpxzhlW12Qg/Wg==
-X-Received: by 2002:a05:6a00:3688:b0:729:35b:542e with SMTP id d2e1a72fcca58-7290c25a4bcmr16844563b3a.16.1734365827870;
-        Mon, 16 Dec 2024 08:17:07 -0800 (PST)
-Received: from thinkpad ([120.56.200.168])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72918bb3a6dsm4925657b3a.136.2024.12.16.08.17.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Dec 2024 08:17:07 -0800 (PST)
-Date: Mon, 16 Dec 2024 21:47:00 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	p.zabel@pengutronix.de, cassel@kernel.org,
-	quic_schintav@quicinc.com, fabrice.gasnier@foss.st.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] PCI: stm32: Add PCIe endpoint support for
- STM32MP25
-Message-ID: <20241216161700.dtldi7fari6kafrr@thinkpad>
-References: <20241126155119.1574564-1-christian.bruel@foss.st.com>
- <20241126155119.1574564-5-christian.bruel@foss.st.com>
- <20241203152230.5mdrt27u5u5ecwcz@thinkpad>
- <4e257489-4d90-4e47-a4d9-a2444627c356@foss.st.com>
+        d=1e100.net; s=20230601; t=1734365929; x=1734970729;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7jVOv/RJFmZr++8LAtPXlGOR5u7HaFI3nOW5oYBGeEM=;
+        b=sN8MjUacz+Mq79Z9kfHsR2Lykymjv66awmMGvJMP2EnIKaK3LafYtrAF48yuSA1jFQ
+         L667OCdFJhfa7k5CJYbTMp/GUpkuX/IRZFvNkNcDIKmwPIS7ZxsSXBMR7i2An83bfIOG
+         6KdeJ28YeP703ujCcshxIEkGRtlXnTM7XqBGuqyI80wpAcdCvtpRrC/VL+u2RlXKAS7N
+         GtCvsuzyOtvFdAUcyTvf95t30ndreMCmMmEQGLswIL4Gt+JtI9dmULUakWYPSKGPvAu/
+         6mNCd9GpNpP0OWYaMgI+mQc3PdnZyxvA9xo5M7b1HTtFPvzK+pG+WyVqfIiort0gLJaX
+         Y8rQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV5RQgOE18a+vqUU2063uJ8fOjPCSAILkkSB7MRgwOBRfnJB7u7Tnsy7qfA/F3Yp3SoZt5zVUZeOBA2@vger.kernel.org, AJvYcCVDP97d4Ro5hjyCsx9XPvrDz27wpaIr8ltiQGx5xofjp48cAay91iKkAYRm70hJGiUuEfCVCsd3BA7wRvEygnc1bVc=@vger.kernel.org, AJvYcCXOx9stccObw5RS+AIMBQe9RFWnA6o+081J4PzBY8TYgOj8+9JZuv5rw2jWbpIXkuLbNC0rci9v3eQW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUzPnGyDs02zczZuxOsA5T+C7uQXpfukZ/tt1w41YQUcnqcs7L
+	K1YpBiFmmnGBi5brG4bGmUHKRIkhM7Yi9YF4b9SZgda5oRDndDdpiPIXe/ee
+X-Gm-Gg: ASbGncuzrI8OF4wsoesEpRdyrgKwfrarhu+ILqarbGaVNY0bTKp0iupPrEuWTqb92az
+	b6ozytr/LpZtM3mE00Cr6qkfhpOPwesxKeIXftgmIlYn6jnn88qF+En3TJimrtqusfQVfiUE9UW
+	Qk23wKgKgcLKAVcW/43bzb89eg03aQRyIeHqOaN/EYhx4PqbHyen1LZcylrV5dbdA+alqmD1KJX
+	vvZqe+YU9wuK7h9rNXuiB8Xktd3BFdfnjN+hNlns3zBcwhhDZt5/VjnBFnbdUHrxMBDBBe8b1cf
+	VyfUB11iCCpws5EEZGbNUdI=
+X-Google-Smtp-Source: AGHT+IG8tYK65fWaJS18OBo6nVjcDbJBTv0fxwbTry3u33iMRtPPbhrIoO7idpj0y5leCCMbY/ZqDg==
+X-Received: by 2002:a05:620a:2b44:b0:7b6:d870:ca2d with SMTP id af79cd13be357-7b6fbecb849mr2439504085a.13.1734365929436;
+        Mon, 16 Dec 2024 08:18:49 -0800 (PST)
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com. [209.85.222.170])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b7047aa3bfsm237704585a.11.2024.12.16.08.18.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Dec 2024 08:18:48 -0800 (PST)
+Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-7b15467f383so400166085a.3;
+        Mon, 16 Dec 2024 08:18:48 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV6LtVfUj79LUruR8/kxugCmD9lCsS3DsZL/Gzpku+nPpmmGPAmcs1yWn1IrFbgOtuU+YJIU6r/mrE7@vger.kernel.org, AJvYcCVoWxUeyYKXzNHsArtDraLnAjn1MiralJMNQPnL4HDJGAMzp+AY2w2RrtgOMJvbRbdVC+qknp2GKXDr@vger.kernel.org, AJvYcCWWAle4HMnsWttxX2chakIRP6gwPBy2sLvuZzTYT4IAkFSrSGPNzpmnTL8qkj7fWoipCeGU+uLJfsVHrnEDD93IeSQ=@vger.kernel.org
+X-Received: by 2002:ad4:5f8a:0:b0:6d8:8a60:ef24 with SMTP id
+ 6a1803df08f44-6dc8ca41df3mr255302746d6.9.1734365928433; Mon, 16 Dec 2024
+ 08:18:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4e257489-4d90-4e47-a4d9-a2444627c356@foss.st.com>
+References: <20241216120029.143944-1-biju.das.jz@bp.renesas.com> <20241216120029.143944-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20241216120029.143944-2-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 16 Dec 2024 17:18:36 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV4O=-9nM82=bTMo1TKzkB3TXw8Vk9Zra7ivWsvPfygTw@mail.gmail.com>
+Message-ID: <CAMuHMdV4O=-9nM82=bTMo1TKzkB3TXw8Vk9Zra7ivWsvPfygTw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: i2c: renesas,riic: Document the
+ R9A09G047 support
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chris Brandt <chris.brandt@renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 16, 2024 at 11:02:07AM +0100, Christian Bruel wrote:
-> Hi Manivanna,
-> 
-> On 12/3/24 16:22, Manivannan Sadhasivam wrote:
-> > On Tue, Nov 26, 2024 at 04:51:18PM +0100, Christian Bruel wrote:
-> > 
-> > [...]
-> > 
-> > > +static int stm32_pcie_start_link(struct dw_pcie *pci)
-> > > +{
-> > > +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-> > > +	int ret;
-> > > +
-> > > +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
-> > > +		dev_dbg(pci->dev, "Link is already enabled\n");
-> > > +		return 0;
-> > > +	}
-> > > +
-> > > +	ret = stm32_pcie_enable_link(pci);
-> > > +	if (ret) {
-> > > +		dev_err(pci->dev, "PCIe cannot establish link: %d\n", ret);
-> > > +		return ret;
-> > > +	}
-> > 
-> > How the REFCLK is supplied to the endpoint? From host or generated locally?
-> 
-> From Host only, we don't support the separated clock model.
-> 
+On Mon, Dec 16, 2024 at 1:01=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+> Document support for the I2C Bus Interface (RIIC) found in the Renesas
+> RZ/G3E (R9A09G047) SoC. This IP is compatible with Renesas RZ/V2H
+> (R9A09G057) RIIC IP.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-OK. So even without refclk you are still able to access the controller
-registers? So the controller CSRs should be accessible by separate local clock I
-believe.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Anyhow, please add this limitation (refclk dependency from host) in commit
-message.
+Gr{oetje,eeting}s,
 
-[...]
+                        Geert
 
-> > > +	ret = phy_set_mode(stm32_pcie->phy, PHY_MODE_PCIE);
-> > 
-> > Hmm, so PHY mode is common for both endpoint and host?
-> 
-> Yes it is. We need to init the phy here because it is a clock source for the
-> PCIe core clk
-> 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Clock source? Is it coming directly to PCIe or through RCC? There is no direct
-clock representation from PHY to PCIe in DT binding.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
