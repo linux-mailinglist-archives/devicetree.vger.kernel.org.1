@@ -1,132 +1,142 @@
-Return-Path: <devicetree+bounces-131495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131496-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 267619F37C1
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:46:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1067F9F37E7
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:51:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD544188ECB5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:46:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9914B16AF48
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:51:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47F162063D1;
-	Mon, 16 Dec 2024 17:46:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C10206F2B;
+	Mon, 16 Dec 2024 17:51:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HJmzF1X7"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="IW2X7Qih"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93AC44EB38;
-	Mon, 16 Dec 2024 17:46:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFFAF206F0A;
+	Mon, 16 Dec 2024 17:51:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734371169; cv=none; b=QbWmi1nZbi2dvJJgm8ohvCWz4CFECZ1dE6qqHzmKnXK9n4UtmcrYpUq81gDKEGr3M5/tPknrZOiNBs4HJ8eFpfl+LLXo2dmxu8O93buaI5L69YB9YPfVVlGSOswHogqJ1/wz68XnXnitu45YleAglNLYomfWPGTrIYO/0L7SOqk=
+	t=1734371489; cv=none; b=s3XVV8rFapUQ5vV93qM6BKZ0w2sWHGTc0lunZAXWe8WRfk7al/3rbOwJ/K/32dJXC/h8XDprmISxLFNHMEBGq2GPC4xJQGGcOOq7nl8WK0c6ZT8eH57oH5bEvhTGU3fny+e2+AZ3wOqlr0vRPaRLWD/6s3UEAp2fqBjOs8ARjMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734371169; c=relaxed/simple;
-	bh=LDxIv1E3Cfi6mUhdbKPkPLS8LWB9TYypt4l83RYATcY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=q/G6Flm2J6MMgf738N+BWGbMjcPZa2Sxcy4QapHa1sR/NLCYj+api6ihr8xJ8jj3HW7d6FM/cSzPqV7Hb2sm54Too3u0usG4JGIvGW/9JD06W4n4tXu0bryutcgVt3cqafBpO6mU3P8+/EnGuIqTRXoqjJPt/LmOR8bYpWp77FA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HJmzF1X7; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-385ddcfc97bso3697853f8f.1;
-        Mon, 16 Dec 2024 09:46:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734371166; x=1734975966; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=LDxIv1E3Cfi6mUhdbKPkPLS8LWB9TYypt4l83RYATcY=;
-        b=HJmzF1X7BH8a7JAB2Z2CP0c2FyLNl5VWYC5hDkaqasd3bxWllrhTcLVyP/eAChUVEm
-         qu10ZI1SFUMeDKMT5ZF9RvBu0V8Mn2mKFi2BL8flwI7Sk4T93j6wRVPxpxFUXPghF5jq
-         opzXJjWIbJDMAlFX9kZlMbhumAwntHKPwq/35c4uMd79nM/3FXzzQx7s49uhREsST9Zg
-         F2rSBTuUA4GmNNOcozj4ni5/Z/W3NgOCrgL03/q9/P6n7Lrwfhu9IVTQdHhs0f+814SN
-         RDRw9Rf01Q7p1/qAbwWdE1UQ1lhBX+rN4iGt9Q+1utCHAJZ01WJPp2ivfcAV/T7qZ1xn
-         uw9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734371166; x=1734975966;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LDxIv1E3Cfi6mUhdbKPkPLS8LWB9TYypt4l83RYATcY=;
-        b=ZrTNssPcdBj8iCoEmH7IzlP6IhQ/q+QxHM15X3Wio+Q4fK52ha7g2GockPOaxcMWZM
-         N3koEVUJO/bAn2IW9BesBiAqikGxc/90ARqtbJAzI2V61EHlQ+CcY8WLX1sbeOYKAHCa
-         QpI/X4T4C9+43JvNUIXwbp1+cFo1ie9AJe6hRNyWWktKxiPc72/lb9W3Vv98z1HTbQre
-         zZtKvXi0CoGtEHITx9ZXRnKnhHjFReKZIbjySxNUHf8ym9ma0LUiiCnccUHQlWyU3Ar9
-         OVGBMMCW6fOVVd3xyUScSYeA/jZxasMk7DaC+HOcYoVsnKiDuUHt36LuKaFpG7/PdmZ8
-         yVHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW2lEYSpef6dXq0CBTagE5U55rBB9UY2B6MzIE9PpBvB/HiohEhMFLaTiGXXsT35CFo2vGY2L0PzWi5TQ==@vger.kernel.org, AJvYcCWmvmpbcJvZGDAHc+JhFJEmFvwSp7XnBZKE1XZACB5oaljPidKHHvIvAvMqMyMaB1DuuKR2tRyG7Sip@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqMABnjgLaK2phoXbZcm0CQtExj3+RlYdnipqCHzVFUNoF+Ezn
-	/Ap5SezqzCAQB0jevRu8JL689yl1ozIOr0t0GRIAp6dcVlU3VPjo
-X-Gm-Gg: ASbGnctbuSyz1mcZuaLsBqvFSUjTt7KHz2u0l52kZvXyoJGiH3RTC6YRI0MJ1Z2Cv4J
-	oN6L3eu5XaIO4udY0Empxb1taKs5DFr+O6j8q6HRXk1513Hp2kz2+onfUkJ/1CcD7XjtGPYANIU
-	PLKftBnlhDdxodISdOeZ7CkdLSfDQfZpImmxDcnjwWumUEUKiv1qPglpg9cAzmDg4Hb98cuIHhy
-	zIqJ21rITGZwVe4kS6kNJVXH7LooRs/+D5ZSvfYXEsk0pxlO82+hmcpIlPtfFRkVbXk2S1VGWBF
-	Yt7OWR1jLl6mp+ycp0bK7HoYEyc=
-X-Google-Smtp-Source: AGHT+IGBJ/riXVZwoF0GRkipPWTNb3OBIdWhOHkRurhkAMxRMKmBaoGRuVMikgREKTp4489NMTgdUA==
-X-Received: by 2002:a5d:6d87:0:b0:385:e94d:b152 with SMTP id ffacd0b85a97d-3889ad37d1fmr11079777f8f.54.1734371165558;
-        Mon, 16 Dec 2024 09:46:05 -0800 (PST)
-Received: from ?IPv6:2a02:168:6806:0:fc42:464d:ef2d:52a3? ([2a02:168:6806:0:fc42:464d:ef2d:52a3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-388c80608e3sm8635591f8f.103.2024.12.16.09.46.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Dec 2024 09:46:04 -0800 (PST)
-Message-ID: <2f870913fcbf89043b6cfe26d32f9ae6d45cddd2.camel@gmail.com>
-Subject: Re: [PATCH leds v5 12/12] ARM: dts: turris-omnia: Add global LED
- brightness change interrupt
-From: Klaus Kudielka <klaus.kudielka@gmail.com>
-To: Marek =?ISO-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>, Lee Jones
- <lee@kernel.org>, 	regressions@lists.linux.dev, Pavel Machek
- <pavel@ucw.cz>, 	linux-leds@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
- soc@kernel.org, 	arm@kernel.org, Andy Shevchenko <andy@kernel.org>, Hans de
- Goede	 <hdegoede@redhat.com>, Ilpo =?ISO-8859-1?Q?J=E4rvinen?=	
- <ilpo.jarvinen@linux.intel.com>, Andrew Lunn <andrew@lunn.ch>, Sebastian
- Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, 	devicetree@vger.kernel.org
-Date: Mon, 16 Dec 2024 18:46:04 +0100
-In-Reply-To: <6gxg466bl7tbyfq5yoenpw5t3vcfcyywv3jydwwwiqik2pzqsv@3g4gk6m62mdk>
-References: <20241104141924.18816-1-kabel@kernel.org>
-	 <20241104141924.18816-13-kabel@kernel.org>
-	 <87bjyv9ecb.fsf@BLaptop.bootlin.com>
-	 <778f08f1774fcad5fcc39114dbb721793ebf95d6.camel@gmail.com>
-	 <2iocrd4a7l4avfhqmobbexo7k4u2poidkvvj7lpqh7vp7mprkm@pfgytqnmt2si>
-	 <ofd5ru77wypfysflpblafbbdgrcmzztqwoewfjfuusrnbma4aw@y3oc3etutisi>
-	 <ec61714eaa3d84498cd69dc673fb11996550a3ea.camel@gmail.com>
-	 <6gxg466bl7tbyfq5yoenpw5t3vcfcyywv3jydwwwiqik2pzqsv@3g4gk6m62mdk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2-1 
+	s=arc-20240116; t=1734371489; c=relaxed/simple;
+	bh=aPDJpKppg/TOsKM8+c3Xq9otEds3XPt9t0Tvx8IubsY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FUxY+b5jmarA7C4e3hkRK4v4pNmK0c72/h9g+LZA5CIuafcmDJzj0dhGyaEE7v0hQoImIrfQzatdEbrERvrPxYEJZbTQcOLEEf11RoU140/FIYwUb5dDW2LJzb10Ean+n4ybTCrxB16OH1NwqRZNGshnMeU/52bwMtVIO5EvrAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=IW2X7Qih; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGEd0eY011550;
+	Mon, 16 Dec 2024 17:50:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=pp1; bh=SoHHWYCgMlJtpvwBGw5VKuQDGx9iSnHvH5n5hxC5d
+	jQ=; b=IW2X7QihwgP5HFI96O1SNX38WIYQAxDJ57UzY1Hn/tXMPj6Iqts8d/k8d
+	XaY+xKOXRRVolo5ey8yncaNr0UnAfQqpjDSGJco/uIXB4bul36PcvX/IJGGQQrW3
+	P4uH2XtcZiA767vcdf0PBSYFWEzuIrgsOXVw4mrB49iqCCAyj7Le9/OEoR/TC/ro
+	KgSQtmbHre2YaU3tkcOt+GzFD4MjSxy9hs2cYKUvXdFNFan2TwAa2FZj9f+zq/VW
+	RBPwQHUCI/TwifklCzpBrjTNVfWACtJjxgx4PMKhUEnLvB1vaj+uNf9PH9ffrLWm
+	xbzKKuNkt6J7bYKMw9M4RKb+JZysQ==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 43jcpb3wac-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 17:50:50 +0000 (GMT)
+Received: from m0360083.ppops.net (m0360083.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 4BGHoniD029763;
+	Mon, 16 Dec 2024 17:50:49 GMT
+Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 43jcpb3wa6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 17:50:49 +0000 (GMT)
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGEf9d1011256;
+	Mon, 16 Dec 2024 17:50:48 GMT
+Received: from smtprelay07.wdc07v.mail.ibm.com ([172.16.1.74])
+	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 43hpjjxtbx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 17:50:48 +0000
+Received: from smtpav03.dal12v.mail.ibm.com (smtpav03.dal12v.mail.ibm.com [10.241.53.102])
+	by smtprelay07.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 4BGHolpf13697636
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 16 Dec 2024 17:50:47 GMT
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id E9A4F58056;
+	Mon, 16 Dec 2024 17:50:46 +0000 (GMT)
+Received: from smtpav03.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 8D6285803F;
+	Mon, 16 Dec 2024 17:50:46 +0000 (GMT)
+Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
+	by smtpav03.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Mon, 16 Dec 2024 17:50:46 +0000 (GMT)
+From: Ninad Palsule <ninad@linux.ibm.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        eajames@linux.ibm.com, jdelvare@suse.com, linux@roeck-us.net,
+        corbet@lwn.net, joel@jms.id.au, andrew@codeconstruct.com.au,
+        Delphine_CC_Chiu@Wiwynn.com, broonie@kernel.org,
+        peteryin.openbmc@gmail.com, noahwang.wang@outlook.com,
+        naresh.solanki@9elements.com, lukas@wunner.de, jbrunet@baylibre.com,
+        patrick.rudolph@9elements.com, gregkh@linuxfoundation.org,
+        peterz@infradead.org, pbiel7@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-i2c@vger.kernel.org
+Cc: Ninad Palsule <ninad@linux.ibm.com>
+Subject: [PATCH v2 0/4] Add support for Intel CRPS PSU
+Date: Mon, 16 Dec 2024 11:50:38 -0600
+Message-ID: <20241216175044.4144442-1-ninad@linux.ibm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: 8pTZR6lA8KXlS59d5t7BhAEXPTGEs6Pu
+X-Proofpoint-GUID: CxfNOI2bf93ySdZJnPI3RJJk3E96nwrV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
+ lowpriorityscore=0 impostorscore=0 spamscore=0 mlxscore=0 adultscore=0
+ mlxlogscore=997 suspectscore=0 bulkscore=0 phishscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412160146
 
-On Sun, 2024-12-15 at 22:26 +0100, Marek Beh=C3=BAn wrote:
-> On Sun, Dec 15, 2024 at 12:39:10PM +0100, Klaus Kudielka wrote:
-> > Testing reveals:
-> > I have to enable CONFIG_TURRIS_OMNIA_MCU_GPIO as well, to make the LEDS=
- work again with v6.13-rc2.
-> >=20
-> > So far, so good.
-> >=20
-> > But the upcoming dependency in 6.14 will be on CONFIG_TURRIS_OMNIA_MCU,=
- not on CONFIG_TURRIS_OMNIA_MCU_GPIO.
-> > Is this correct?
->=20
-> On both, see the first added line at
-> =C2=A0 https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git/commi=
-t/?h=3Dfor-leds-next&id=3Dd82e09d62b3bdbfa9dac2daf3c3c071b6a79d2aa
+Hello,
 
-Indeed, sorry for missing that. So, I'd say:
+Please review the patchset for Intel CRPS185 driver.
+V2:
+---
+  - Incorporated review comments by Guenter Roeck
+  - Incorporated review comments by Krzysztof Kozlowski
 
-#regzbot fix: d82e09d62b3bdbfa9dac2daf3c3c071b6a79d2aa
+Ninad Palsule (4):
+  hwmon: (pmbus/core) Add PMBUS_REVISION in debugfs
+  hwmon: (pmbus/crps) Add Intel CRPS185 power supply
+  dt-bindings: hwmon: intel,crps185: Add to trivial
+  ARM: dts: aspeed: system1: Use crps PSU driver
 
-and we leave 6.13 as it is.
+ .../devicetree/bindings/trivial-devices.yaml  |  2 +
+ Documentation/hwmon/crps.rst                  | 97 +++++++++++++++++++
+ Documentation/hwmon/index.rst                 |  1 +
+ MAINTAINERS                                   |  7 ++
+ .../dts/aspeed/aspeed-bmc-ibm-system1.dts     |  8 +-
+ drivers/hwmon/pmbus/Kconfig                   |  9 ++
+ drivers/hwmon/pmbus/Makefile                  |  1 +
+ drivers/hwmon/pmbus/crps.c                    | 79 +++++++++++++++
+ drivers/hwmon/pmbus/pmbus_core.c              | 13 ++-
+ 9 files changed, 211 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/hwmon/crps.rst
+ create mode 100644 drivers/hwmon/pmbus/crps.c
 
-Klaus
+-- 
+2.43.0
+
 
