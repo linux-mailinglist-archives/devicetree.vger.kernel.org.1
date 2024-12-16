@@ -1,146 +1,203 @@
-Return-Path: <devicetree+bounces-131489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B96E9F36C5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:57:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A1529F36FA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:06:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44B48188B27E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 16:56:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7AEC01892B9B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 17:03:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E732207DF4;
-	Mon, 16 Dec 2024 16:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6041531C2;
+	Mon, 16 Dec 2024 17:02:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kcWYU8iJ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="CRjqajU7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D67F207A35
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 16:51:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35C15126C0D;
+	Mon, 16 Dec 2024 17:02:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734367865; cv=none; b=Vg0EvcU/hsVXWQ+SsyklEYEwZqWdF409AtwvQa81f90dCGnsYmIgai3H1YMaJ2F5oG3BtrrpkTT9GRUHS7slWElQJI72i8ggJCBdJybE+RhYkb3KSRab6QassjdtpYTbsR02er9vyFDlQOUK03MsgsEKZdgNdLDlbI5oZGMCvUs=
+	t=1734368538; cv=none; b=KBJN4nvzakqmUw425evJpmHWvsfhohveWpa3Nww/repKf6Cnz7pX34UXyPai+hHa4hK0UtkNEuGW25YSCFhg+ooN6geV710oj4UO7okvcIP7gAMiaOmlatg15mh8fCGK9gmxQPnTkeLHW7OKc91Cy/fWTWdcoHYp6kqAl2P3FqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734367865; c=relaxed/simple;
-	bh=2ucF+AEQvcgtC2INo8ga1WiOc1sBgnMjFIYO0/5Sg9Q=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=E8Hasj6wzXpV6glc8KfbPLqZwV+MBIutrg72+uJ2JxAkfgc7Zb2E/k0Xc+hxwL6oCMSbFNjnhYm5XFle4i1BKt6ixjGz7YoOJyhsWC41KAl0uYrUWlDsl8rG+b9yLsQQXCQHNx33QB+A+4NYuU/8xO/lcoUUvlGf0V5b4pDptk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kcWYU8iJ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGBKpVO024593
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 16:51:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mpXHKXHw98BsiTXyomIpWXczQz8SYOfxnAMHA1bryRU=; b=kcWYU8iJMfU56ScF
-	3R0RCmLZMntWj2tPiUBWzy1+/cRZSDA4g1+Ytl7BJnQQxMQnp4njA71LbwyVVqtU
-	XJ2upeHPChBbO2LLpbjJlB/Arb32mKOVCvO6q3eAmKlUigy8M239HNoJwtaHTltr
-	LGHJRSJvATcAU5c6NdVZvSWKdXgutawjVaT/9ainqlHoRnIFH6yQWKEQmCe837cb
-	sPtlqKoRAYlf3XmbjwrsQk6GoQJKWFY8fUE4dU3qlKWJxdQnpP2JbqOdieIl8OTq
-	HomKjaNb6cCtrjLOZpFoFRTrza4wT24/So5YdVBjZb/4l/jl5Ad+jVDrelV7AB1r
-	CDMoTg==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43jk8grvv9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 16:51:01 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-725cf06e7bcso3424960b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 08:51:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734367860; x=1734972660;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mpXHKXHw98BsiTXyomIpWXczQz8SYOfxnAMHA1bryRU=;
-        b=GQIwuUxWXauEQbDIixTwp56rhZ9B5eOjZBkG0pyhiZV3C3N1/xBVhxaDXfWcGHUSA+
-         pGW/oEE5sLG2iGmg+GGVZ9joyfw2c5nO3j1mbTVaR7uturyJR9rFTbLOuiCaWOPzdC7c
-         LFahF3pizBOIqMHm1WiGnBtwf93zBp9sqF2WA5V2Ita5QJrttQWTQir+DAUGNOKV7iUJ
-         Hk5ECnhIaODR1qwKl3wmOZUcqtGWId4pJPjiRU9GJ+i7T7hP7zvUPSnOMEchEXc032+l
-         IX7M6ZCMOaQJ+9B6/GFFB9xPt0JAF0EHBQIrQA6EglPy0tualxFlHHTf+VvP4LouaUTl
-         8xhg==
-X-Forwarded-Encrypted: i=1; AJvYcCVVOXbld6+GHLZbWGAoXxjjfdG+FEdE9lrNS/kWZcRElBFIZHqnIVjKt3bEFjb8zsUFk0qnOtAhgaVC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpV9r/5QmMnRlI+8TJ57ro6nsmnVpY+7mMSRPZzDF0ICjdAUV+
-	RoS7k+ypqN+PKHM0Yg6JYVd68l6wW/pkxleByntTnaZXThi7hWq3Viqs67mbowIauInvs1NzEA9
-	23IfEkpWKDCrDkp2mzBBmMzJ5jApsQJ6g5eC+TTZguOjZTF+5/BBL/a4OpgPR
-X-Gm-Gg: ASbGncs0vgXMP3J2eeOcR2kzPZ6/yD+fgovHT9uUanFuTubJxDF+c0+fsEyE02gEeuQ
-	Zwt0cSWUSB0uSkAWmzpey1p196KCtBVv7ON6eVcYEzGHDN3DKeONUwbSsvf7czPF/6aRZDf1I92
-	QoAMXgj5eD+mutUXVNz7ckbGw6GwDzvZbBIzjm5qvmKulM7h3ROy0a6PmNZ0e0hurRV3blHeOQX
-	+S7v2nxxVLZYl/QUWwQHVfsR8J2McfaKhZn/wq3klkPsQxX5u/dlbrLrdaIgMzP5O0xb0A9KpYy
-	6wlR/46a88VwcqQ3+Q==
-X-Received: by 2002:a05:6a20:a11a:b0:1dc:bdbd:9017 with SMTP id adf61e73a8af0-1e1dfe43afbmr23646934637.40.1734367859979;
-        Mon, 16 Dec 2024 08:50:59 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEV8A6FtU8/weso+KmitSxASicvji+fw+OyGjA3CopQT8obo7DLsthuhpEbsRgydCESlYvdPg==
-X-Received: by 2002:a05:6a20:a11a:b0:1dc:bdbd:9017 with SMTP id adf61e73a8af0-1e1dfe43afbmr23646896637.40.1734367859552;
-        Mon, 16 Dec 2024 08:50:59 -0800 (PST)
-Received: from [169.254.0.1] (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72918bcde43sm4937486b3a.194.2024.12.16.08.50.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Dec 2024 08:50:59 -0800 (PST)
-From: Jeff Johnson <jeff.johnson@oss.qualcomm.com>
-To: ath12k@lists.infradead.org, Kalle Valo <kvalo@kernel.org>
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20241211153432.775335-1-kvalo@kernel.org>
-References: <20241211153432.775335-1-kvalo@kernel.org>
-Subject: Re: [PATCH v3 0/8] wifi: ath12k: MLO support part 7
-Message-Id: <173436785894.3413746.14923997859754791913.b4-ty@oss.qualcomm.com>
-Date: Mon, 16 Dec 2024 08:50:58 -0800
+	s=arc-20240116; t=1734368538; c=relaxed/simple;
+	bh=UW20wMLDtKYD7znq/RZ0x6LreKeB60g+rC/Djw6rzy4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TYjemUhf9erkwbmUTm1xVWEbZ/e3IY9frpoqvuRfe/MzeHJuQEOGKwsXqZLzNO+d1nISpe4C8KeMUCWIJFkSubAgDf3Zgcpo73kTA6/quWorZcIfRjSntOn4vBGVq46yFP3sXHREHQ/GFpGC2rYXtKFKTBXjB3m1OzV8lIXGdKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=CRjqajU7; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-157-155-49.elisa-laajakaista.fi [91.157.155.49])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BBA7D675;
+	Mon, 16 Dec 2024 18:01:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1734368496;
+	bh=UW20wMLDtKYD7znq/RZ0x6LreKeB60g+rC/Djw6rzy4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CRjqajU7oG0BW/CNsL3f7NFdx3qdPOIUnafFbqqzJgEd0LVP+pnFK3QEynOzbcapO
+	 pBh7u856lbFdXCd/9Tuw4705/M8NeD/XYjvBA+qxlE+gzlSmvXkg57f8cBvCZM431F
+	 SRQ5ERS1j5puFFcipxwo8ltq0B1wTZDOO5XOOBtA=
+Message-ID: <a9e21786-af00-4464-b144-5be13e120287@ideasonboard.com>
+Date: Mon, 16 Dec 2024 19:02:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.0
-X-Proofpoint-GUID: u-u_owdHWd74_7HQPvmHVJqwRhZYPsQD
-X-Proofpoint-ORIG-GUID: u-u_owdHWd74_7HQPvmHVJqwRhZYPsQD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=939 adultscore=0
- spamscore=0 priorityscore=1501 mlxscore=0 phishscore=0 malwarescore=0
- lowpriorityscore=0 suspectscore=0 impostorscore=0 bulkscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412160140
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 10/10] arm64: dts: renesas: gray-hawk-single: Add
+ DisplayPort support
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
+ Jagan Teki <jagan@amarulasolutions.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Biju Das <biju.das.jz@bp.renesas.com>, dri-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ linux-clk@vger.kernel.org
+References: <20241206-rcar-gh-dsi-v3-0-d74c2166fa15@ideasonboard.com>
+ <20241206-rcar-gh-dsi-v3-10-d74c2166fa15@ideasonboard.com>
+ <CAMuHMdXkXx6+0nJn+uLCAWOXvEYWLJXzLu9J7ksinn_z3bEfHQ@mail.gmail.com>
+ <631bda4c-2226-4693-bcb8-a64872533c6c@ideasonboard.com>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <631bda4c-2226-4693-bcb8-a64872533c6c@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+Hi,
 
-On Wed, 11 Dec 2024 17:34:24 +0200, Kalle Valo wrote:
-> Implementing Multi-Link Operation (MLO) continues. Bindings document is added
-> to get WSI information from DT (patch 1) with the code parsing the information
-> (patch 2). Rest of the patches are about configuring MLO in firmware.
+On 16/12/2024 17:15, Tomi Valkeinen wrote:
+> Hi,
 > 
-> Device Tree bindings were reviewed as RFC earlier:
+> On 16/12/2024 15:33, Geert Uytterhoeven wrote:
+>> Hi Tomi,
+>>
+>> On Fri, Dec 6, 2024 at 10:33 AM Tomi Valkeinen
+>> <tomi.valkeinen@ideasonboard.com> wrote:
+>>> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>>>
+>>> Add support for the mini DP output on the Gray Hawk board.
+>>>
+>>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>>> Reviewed-by: Laurent Pinchart 
+>>> <laurent.pinchart+renesas@ideasonboard.com>
+>>> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>>
+>> Thanks for your patch, which is now commit b1000645dc29701f
+>> ("arm64: dts: renesas: gray-hawk-single: Add DisplayPort support")
+>> in renesas-devel/renesas-dts-for-v6.14.
+>>
+>> Apparently this patch breaks s2idle on Gray Hawk Single when "[PATCH
+>> v3 06/10] drm/rcar-du: dsi: Add r8a779h0 support" is not present, or
+>> when CONFIG_DRM_RCAR_USE_MIPI_DSI is not enabled. If the DSI driver
+>> is not available, the ti_sn65dsi86.bridge part fails to probe with
+>> -EPROBE_DEFER and "failed to attach dsi host".  Still, the sn65dsi86
+>> driver must do something critical, as resuming from s2idle now hangs.
+>> I haven't identified yet where exactly it hangs.
+>> > As a result, s2idle is broken in current renesas-devel, which only
+>> has the DTS changes.  Perhaps I should drop the DTS until the issue
+>> is resolved?
 > 
-> [RFC PATCH v3 1/5] dt-bindings: net: wireless: Describe ath12k PCI module with WSI
+> I'm fine with that. The DT bindings are still under work anyway.
 > 
-> [...]
+>> However, I suspect White Hawk has the same issue (if
+>> CONFIG_DRM_RCAR_USE_MIPI_DSI=n), but I cannot verify as my local White
+>> Hawk is currently not available for kernel testing.
+> 
+> I can reproduce on White Hawk. And I agree that it's probably related to 
+> sn65dsi86.
+> 
+> I use modules, so I tried dropping modules to see when the issue goes 
+> away. And it's always sn65dsi86. So without the rcar DRM & DSI modules 
+> loaded, if I load or don't load sn65dsi86, I see or don't see the hang, 
+> respectively.
+> 
+> Even if I drop the ti_sn65dsi86_pm_ops, it doesn't help. And looks like 
+> just doing the i2c_add_driver() part in ti_sn65dsi86_init() will cause 
+> the issue, so it's something that happens there.
+> 
+> I'll continue the debug later.
 
-Applied, thanks!
+I wrote a minimal kernel module that has an i2c driver that does 
+nothing, using ti,sn65dsi86 as the compatible string. I can still see 
+the hang with that driver (i.e. no DRM drivers loaded at all). So it's 
+not an issue in the driver.
 
-[1/8] dt-bindings: net: wireless: Describe ath12k PCI module with WSI
-      commit: 30e36fa89d8266d9221ee992d4f43553a59a3431
-[2/8] wifi: ath12k: parse multiple device information from Device Tree
-      commit: de61173d59082575d985c89a58db0e4055605b48
-[3/8] wifi: ath12k: send partner device details in QMI MLO capability
-      commit: 59d789c212eb9c11b02f2fd06c06cabb314913d2
-[4/8] wifi: ath12k: refactor ath12k_qmi_alloc_target_mem_chunk()
-      commit: c445894b9a0504727fabac0ddf3aab27d48b9fcc
-[5/8] wifi: ath12k: add support to allocate MLO global memory region
-      commit: 157fb81feda5c646b77d8135de6e29214fcd74af
-[6/8] wifi: ath12k: Add MLO WMI setup and teardown functions
-      commit: a085667ab1751a3b821ff926a08934d42dcb99d1
-[7/8] wifi: ath12k: enable MLO setup and teardown from core
-      commit: b6529891f04659c5279f4b58db230fdb589dc2ac
-[8/8] wifi: ath12k: avoid redundant code in DP Rx error process
-      commit: bdbb676320a22eddacf3188726b359e179b9bc07
+I didn't really figure anything out, but I did notice that if I comment 
+the following lines from the dts, the problem goes away:
 
-Best regards,
--- 
-Jeff Johnson <jeff.johnson@oss.qualcomm.com>
+		interrupt-parent = <&intc_ex>;
+		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+
+		enable-gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
+
+		vccio-supply = <&reg_1p8v>;
+		vpll-supply = <&reg_1p8v>;
+		vcca-supply = <&reg_1p2v>;
+		vcc-supply = <&reg_1p2v>;
+
+  Tomi
 
 
