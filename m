@@ -1,46 +1,58 @@
-Return-Path: <devicetree+bounces-131386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A5389F2FE5
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 12:58:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DC129F2FED
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 13:00:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 053111883019
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 11:58:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B1EF188305C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 12:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77D9D204579;
-	Mon, 16 Dec 2024 11:58:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D43681FFC72;
+	Mon, 16 Dec 2024 12:00:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F212040BC
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 11:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10179145A11;
+	Mon, 16 Dec 2024 12:00:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734350323; cv=none; b=g3OaqFTzY8wcAnPREHN665DCHTBMWS5EFbvWyJ+BXZpci5UAyUzLTcm+HfukHiZDvWSDxf571y8yLsbU5jd0vyswVeFu2pL5WKgeHM8Rud+z2RLjulvibu65tV8l/wJaLHw5syC4VLaKjcKrDwiKHHVwkqnKF0joFg8PllT2OfY=
+	t=1734350452; cv=none; b=X/K7EPeySaC8F+T+u7CJnfutuyWDg4FuUYbuNPQzzgWShQAKfnT8LIGF3ZIQZ8Lo20tMG+nW4VQny6EAjtT9UEDo3y8hY6quPERuWOnxsMH5FahNuEDhalJVVXzu+Ffs5xcUm1kuJowQLVHXTK1KuHWk0kMmbnhsxXDe4CC7+UE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734350323; c=relaxed/simple;
-	bh=WnD9gCmREit/jAR9A4+uAGh6aSCixvl23/juieVm/8E=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hEO+jIMVEKSxILukRBUKDdvXK83G/duJXoleXXSoB5dFio/dcN/mNie4AkuiI4JGKK++gCCbRqpCdphYDsLGpHN5lx0U6zk1TGK8t91n1dUQKbOpOoMrGFkASQ7G+OpGcRtrgV4KiSc5XKbYka1xoAheNYFquHOX1MqLpB3NmEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 4BGBw5Pi028795;
-	Mon, 16 Dec 2024 20:58:05 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        dsimic@manjaro.org, alchark@gmail.com, sebastian.reichel@collabora.com,
-        cfsworks@gmail.com, jbx6244@gmail.com, kever.yang@rock-chips.com,
-        cristian.ciocaltea@collabora.com, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH v3] arm64: dts: rockchip: Add rfkill for wireless modules for Radxa ROCK 5A
-Date: Mon, 16 Dec 2024 11:57:59 +0000
-Message-ID: <20241216115759.16127-1-naoki@radxa.com>
+	s=arc-20240116; t=1734350452; c=relaxed/simple;
+	bh=e2ux6iDG2bxleQugJ9VXT+2yKT0Jf8M1XDcLpdJn4qM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=f8GkI8KzFt9hNA1yB5kjhc9SIWKmvc29hb+62ZpTv1mz544u5KKgbWtz2mRqs59XRRGWGl83C/XmnoxjbbYos0Cv0wT9zi9UIyYP1RR7/VrhxGJcKkhLJUWtb5F3pw0Wy7u/graUNnEg6sl+OcAukf0fYyZph4JyR11SPdcdOkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: FSvM8t14SUKI6/uxtO1WqA==
+X-CSE-MsgGUID: SZZJnxgUQZehofuBubjMFA==
+X-IronPort-AV: E=Sophos;i="6.12,238,1728918000"; 
+   d="scan'208";a="227994658"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 16 Dec 2024 21:00:47 +0900
+Received: from localhost.localdomain (unknown [10.226.93.40])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 1D7F0427160F;
+	Mon, 16 Dec 2024 21:00:31 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Chris Brandt <chris.brandt@renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-renesas-soc@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH 0/3] Add RZ/G3E RIIC support
+Date: Mon, 16 Dec 2024 12:00:22 +0000
+Message-ID: <20241216120029.143944-1-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -50,50 +62,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Radxa ROCK 5A has a M.2 E key slot which can be used for wireless
-modules. There are two enable/disable switch pins, one for Wi-Fi,
-another for Bluetooth. These pins are connected to GPIO.
+Add support for the I2C Bus Interface (RIIC) found in the Renesas
+RZ/G3E (R9A09G047) SoC. This IP is compatible with Renesas RZ/V2H
+(R9A09G057) RIIC IP.
 
-Add rfkill and rfkill-bt to control these pins via GPIO.
+Note:
+This patch series depend on [1] for clk and [2] for soc dtsi
 
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
----
-this patch depends on [1] which depends on [2].
+[1] https://lore.kernel.org/all/20241213123550.289193-1-biju.das.jz@bp.renesas.com/
+[2] https://lore.kernel.org/all/20241213173901.599226-7-biju.das.jz@bp.renesas.com/#t
 
-[1] https://patchwork.kernel.org/project/linux-rockchip/cover/20241216113052.15696-1-naoki@radxa.com/
-[2] https://patchwork.kernel.org/project/linux-rockchip/cover/20241216114547.15892-1-naoki@radxa.com/
----
-Changes in v3
-- Reword commit message
-Changes in v2
-- put rfkill nodes correct place
----
- arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Biju Das (3):
+  dt-bindings: i2c: renesas,riic: Document the R9A09G047 support
+  clk: renesas: r9a09g047: Add I2C clocks/resets
+  arm64: dts: renesas: r9a09g047: Add I2C nodes
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-index 095e1f5f7786..278d372e9b16 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts
-@@ -19,4 +19,18 @@ regulator-vbus-typec {
- 		regulator-min-microvolt = <12000000>;
- 		regulator-max-microvolt = <12000000>;
- 	};
-+
-+	rfkill {
-+		compatible = "rfkill-gpio";
-+		label = "rfkill-m2-wlan";
-+		radio-type = "wlan";
-+		shutdown-gpios = <&gpio0 RK_PD3 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	rfkill-bt {
-+		compatible = "rfkill-gpio";
-+		label = "rfkill-m2-bt";
-+		radio-type = "bluetooth";
-+		shutdown-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-+	};
- };
+ .../devicetree/bindings/i2c/renesas,riic.yaml |   4 +-
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    | 189 ++++++++++++++++++
+ drivers/clk/renesas/r9a09g047-cpg.c           |  32 +++
+ 3 files changed, 224 insertions(+), 1 deletion(-)
+
 -- 
 2.43.0
 
