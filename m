@@ -1,166 +1,144 @@
-Return-Path: <devicetree+bounces-131262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 353AB9F2A83
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 07:56:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C5479F2A9E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 08:05:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 641281612DD
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 06:56:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C793D1888562
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 07:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65B331CCB4A;
-	Mon, 16 Dec 2024 06:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6574E1D5151;
+	Mon, 16 Dec 2024 07:03:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ENDV3yax"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VHilZFs2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC8AA48;
-	Mon, 16 Dec 2024 06:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0DB31CEEA4;
+	Mon, 16 Dec 2024 07:03:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734332195; cv=none; b=jow46FZsY5liJVjWFnWLL8NL1Vwo8BtdlqUnxqHLxPhBOL5YM18w1s17iB7UT3J6ZN4h+Z6Dkn3d5TgrmfPzpouXuBukT7hkhYNKWy8ouge+yBvv3eRQo4CE33HBXw1a8pUhLqsraJadXeLgn5Bahxw4idsQcJwrn0ZsR/Xhbec=
+	t=1734332606; cv=none; b=GVh3rzfjOmIJlWGZokmgdw0ajqZMWvibWSSvhGc94SVMPPrFGYgdjkK18Sls1aUaRUHMDwn7tQK2o0gFRJbYVj7BqW8WJ/S8a/xnqk0MG3Ik648nGKgtPg63X64GckuiXIxTKhUw8viu/l129UHiKTs66jc4KOUNLYG1RAdJEtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734332195; c=relaxed/simple;
-	bh=ftskE+QtxDhlmcORVXwP+OJcZHGw9a86/SPZCHQE+gw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NlNbeG2hIDZ9ab0X/GJitLQITuVYpiiVXNMuv4D3icIBa9+GLDyyGfpbWbwJ4plpCtm8bXBNGVa8ujm2KdSOZ6r//aDIKM/E8gdSZAsKSLOMGTt9EHz92HHdYcPi3I64zM1QXMJd/Xnt77uaFiVf6CQYjN1Y+JARQeMUrTKchSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ENDV3yax; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BFN9s6D029690;
-	Mon, 16 Dec 2024 06:56:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fzDziw1L8O2yPx8vToygw0npA8B/Iof32Zl5VGQUkO0=; b=ENDV3yaxnqMKGnHZ
-	ZnTVGpGERANwsFRu79rEgJU6CdCzhw6tfoNKx3koGX1Bdz21dWTax6HhgMynLWRm
-	w1dM/ocvfFBq+hcAgOGlvpWvGb+MEBUF7VZa7pmxi3IpNNGpEGj5YwD9lo0xtBWK
-	RyIjPfNUrp1GAsauyF4hXFnhB6ZjGUvxiRJoTZiy8Jvw5sKxEQKmdMu72d/fYmIX
-	nPQPLERF4BzKZ10lQkDGexD4XP1bYnc2ip/so5l7YloJDk8pwLOAJV7PSYIoe0UA
-	hYtSRjYehEzlcgYEgjoKIxAOhMyCT5In7QqAbVmx6NQnTj5mtYMinXyf5+qZO5wj
-	LNlooA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43hyy61j2u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Dec 2024 06:56:27 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BG6uP3R028322
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 16 Dec 2024 06:56:25 GMT
-Received: from [10.253.15.72] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 15 Dec
- 2024 22:56:21 -0800
-Message-ID: <581776bc-f3bc-44c1-b7c0-4c2e637fcd67@quicinc.com>
-Date: Mon, 16 Dec 2024 14:56:13 +0800
+	s=arc-20240116; t=1734332606; c=relaxed/simple;
+	bh=SN2T8cm+vNsx3Mi1EyxUptHpm38RPXYJL0BrnmFuZ+E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iYHxH5fsVG8dVeg3F/EDUfvOI3hg2MdGyiCmgFMgvNMNTSrOBKxQc1WH97addneOYQ1ZTzX/k4LZNdT5cLEF9lNbxuzLFGvcHbGCtxE3xau1sI/3jFFXt2bJT0+Z62oAwYiCtFg4vDRQtSQFmW8owR+sEfFJsLfr3Gitg8yyS14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VHilZFs2; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1734332605; x=1765868605;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SN2T8cm+vNsx3Mi1EyxUptHpm38RPXYJL0BrnmFuZ+E=;
+  b=VHilZFs2vEeQb1MbHKFhqc5ABKgByKE/Bxxoa21BSKSoEKoApD4zgzfZ
+   4QpLRgcUyjaAWsh+5L17isP+bR7DuKzp1paL2gxduczIXmFylu/sBcsll
+   5Ra26VdJyZhRHwCEc4GiDU6t+xviCDkmYwyCHab23jPV2m908XOrh/SLz
+   9IABP7bBc6aTwfxgsIQE0pGsNX0bF/MZn7tRPhuVXDirqQ1FDIz0fQYKV
+   0xagTzk1yob4c49MrcMjj4MCVfSXYhOVb7DLAG9hJ/ALPSn/GfBenKF+6
+   E3ccAzuDrrbNUVIEE3POW51N6bbPf1sGo1j57GQ4TarvzVOOlSLJBP6LW
+   A==;
+X-CSE-ConnectionGUID: U8FfrmIQRnGOZVOBr+QWRw==
+X-CSE-MsgGUID: WBIGUsKSQ/mMBmAxsbDicw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11287"; a="34584308"
+X-IronPort-AV: E=Sophos;i="6.12,237,1728975600"; 
+   d="scan'208";a="34584308"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2024 23:03:24 -0800
+X-CSE-ConnectionGUID: UULt+fnGSSydPD8Ic/XKYA==
+X-CSE-MsgGUID: yrIimS45TkCcS5J9bxBYgA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,237,1728975600"; 
+   d="scan'208";a="96991232"
+Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 15 Dec 2024 23:03:21 -0800
+Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tN58R-000E4u-2K;
+	Mon, 16 Dec 2024 07:03:19 +0000
+Date: Mon, 16 Dec 2024 15:02:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Zijun Hu <zijun_hu@icloud.com>, Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Grant Likely <grant.likely@linaro.org>
+Cc: oe-kbuild-all@lists.linux.dev, Zijun Hu <zijun_hu@icloud.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] of: Fix potential wrong MODALIAS uevent value
+Message-ID: <202412161436.p6lF8p6C-lkp@intel.com>
+References: <20241216-of_core_fix-v2-6-e69b8f60da63@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs615-ride: Enable ethernet
- node
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>
-References: <ececbbe1-07b3-4050-b3a4-3de9451ac7d7@lunn.ch>
- <89a4f120-6cfd-416d-ab55-f0bdf069d9ce@quicinc.com>
- <c2800557-225d-4fbd-83ee-d4b72eb587ce@oss.qualcomm.com>
- <3c69423e-ba80-487f-b585-1e4ffb4137b6@lunn.ch>
- <2556b02c-f884-40c2-a0d4-0c87da6e5332@quicinc.com>
- <75fb42cc-1cc5-4dd3-924c-e6fda4061f03@quicinc.com>
- <4a6a6697-a476-40f4-b700-09ef18e4ba22@lunn.ch>
- <441f37f5-3c33-4c62-b3fe-728b43669e29@quicinc.com>
- <4287c838-35b2-45bb-b4a2-e128b55ddbaf@lunn.ch>
- <2e518360-be24-45d8-914d-1045c6771620@quicinc.com>
- <31a87bd9-4ffb-4d5a-a77b-7411234f1a03@lunn.ch>
-Content-Language: en-US
-From: Yijie Yang <quic_yijiyang@quicinc.com>
-In-Reply-To: <31a87bd9-4ffb-4d5a-a77b-7411234f1a03@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: p7cRialJIJztNMiDYk7O9cRK4dw7Z5BK
-X-Proofpoint-ORIG-GUID: p7cRialJIJztNMiDYk7O9cRK4dw7Z5BK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- bulkscore=0 impostorscore=0 phishscore=0 spamscore=0 priorityscore=1501
- malwarescore=0 lowpriorityscore=0 mlxlogscore=999 adultscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412160056
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241216-of_core_fix-v2-6-e69b8f60da63@quicinc.com>
+
+Hi Zijun,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on 0f7ca6f69354e0c3923bbc28c92d0ecab4d50a3e]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Zijun-Hu/of-Fix-API-of_find_node_opts_by_path-finding-OF-device-node-failure/20241216-084408
+base:   0f7ca6f69354e0c3923bbc28c92d0ecab4d50a3e
+patch link:    https://lore.kernel.org/r/20241216-of_core_fix-v2-6-e69b8f60da63%40quicinc.com
+patch subject: [PATCH v2 6/7] of: Fix potential wrong MODALIAS uevent value
+config: parisc-randconfig-002-20241216 (https://download.01.org/0day-ci/archive/20241216/202412161436.p6lF8p6C-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241216/202412161436.p6lF8p6C-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412161436.p6lF8p6C-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/clk-provider.h:9,
+                    from lib/vsprintf.c:23:
+   include/linux/of.h: In function 'of_modalias':
+>> include/linux/of.h:764:16: error: returning 'int' from a function with return type 'char *' makes pointer from integer without a cast [-Wint-conversion]
+     764 |         return -ENODEV;
+         |                ^
+   lib/vsprintf.c: In function 'va_format':
+   lib/vsprintf.c:1683:9: warning: function 'va_format' might be a candidate for 'gnu_printf' format attribute [-Wsuggest-attribute=format]
+    1683 |         buf += vsnprintf(buf, end > buf ? end - buf : 0, va_fmt->fmt, va);
+         |         ^~~
+--
+   In file included from lib/logic_pio.c:11:
+   include/linux/of.h: In function 'of_modalias':
+>> include/linux/of.h:764:16: error: returning 'int' from a function with return type 'char *' makes pointer from integer without a cast [-Wint-conversion]
+     764 |         return -ENODEV;
+         |                ^
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [y]:
+   - RESOURCE_KUNIT_TEST [=y] && RUNTIME_TESTING_MENU [=y] && KUNIT [=y]
 
 
+vim +764 include/linux/of.h
 
-On 2024-12-10 12:09, Andrew Lunn wrote:
->> As previously mentioned, using 'rgmii' will enable EMAC to provide the delay
->> while disabling the delay for EPHY. So there's won't be double delay.
->>
->> Additionally, the current implementation of the QCOM driver code exclusively
->> supports this mode, with the entire initialization sequence of EMAC designed
->> and fixed for this specific mode.
-> 
-> OK. If it is impossible to disable these delays, you need to validate
-> phy-mode. Only rgmii-id is allowed. Anybody trying to build a board
-> using extra long clock lines is out of luck. It does not happen very
-> often, but there are a small number of boards which do this, and the
-> definitions of phy-mode are designed to support them.
-> 
->> I'm not sure if there's a disagreement about the definition or a
->> misunderstanding with other vendors. From my understanding, 'rgmii' should
->> not imply that the delay must be provided by the board, based on both the
->> definition in the dt-binding file and the implementations by other EMAC
->> vendors. Most EMAC drivers provide the delay in this mode.
-> 
-> Nope. You are wrong. I've been enforcing this meaning for maybe the
-> last 10 years. You can go search the email archive for netdev. Before
-> that, we had a bit of a mess, developers were getting it wrong, and
-> reviewing was not as good. And i don't review everything, so some bad
-> code does get passed me every so often, e.g. if found out today that
-> TI AM62 got this wrong, they hard code TX delays in the MAC, and DT
-> developers have been using rgmii-rxid, not rgmii-id, and the MAC
-> driver is missing the mask operation before calling phy_connect.
-> 
->> I confirmed that there is no delay on the qcs615-ride board., and the QCOM
->> EMAC driver will adds the delay by shifting the clock after receiving
->> PHY_INTERFACE_MODE_RGMII.
-> 
-> Which is wrong. Because you cannot disable the delay,
-> PHY_INTERFACE_MODE_RGMII should return in EINVAL, or maybe
-> EOPNOTSUPP. Your hardware only supports PHY_INTERFACE_MODE_RGMII_ID,
-> and you need to mask what you pass to phylib/phylink to make it clear
-> the MAC has added the delays.
-> 
-> 	Andrew
-I intend to follow these steps. Could you please check if they are correct?
-1. Add a new flag in DTS to inform the MAC driver to include the delay 
-when configured with 'rgmii-id'. Without this flag, the MAC driver will 
-not be aware of the need for the delay.
-2. In the driver, if this flag is set to true, change the phy_mode to 
-PHY_INTERFACE_MODE_RGMII to instruct the PHY not to add the delay.
+bd69f73f2c81ee Grant Likely  2013-02-10  761  
+f1f6eae8bdfdfc Zijun Hu      2024-12-16  762  static inline char *of_modalias(const struct device_node *np, ssize_t *lenp)
+bd7a7ed774afd1 Miquel Raynal 2023-04-04  763  {
+bd7a7ed774afd1 Miquel Raynal 2023-04-04 @764  	return -ENODEV;
+bd7a7ed774afd1 Miquel Raynal 2023-04-04  765  }
+bd7a7ed774afd1 Miquel Raynal 2023-04-04  766  
 
 -- 
-Best Regards,
-Yijie
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
