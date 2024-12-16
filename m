@@ -1,115 +1,101 @@
-Return-Path: <devicetree+bounces-131233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3F2E9F2911
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 05:04:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1DD69F2918
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 05:07:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E520B18848AA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 04:04:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE4B7164DB2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 04:07:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31CCD15359A;
-	Mon, 16 Dec 2024 04:04:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9C8156F4A;
+	Mon, 16 Dec 2024 04:07:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DaModl1/"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="oeOAJCuX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from smtp-relay-canonical-1.canonical.com (smtp-relay-canonical-1.canonical.com [185.125.188.121])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2222C17C7C;
-	Mon, 16 Dec 2024 04:04:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C4372E401
+	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 04:07:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.121
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734321865; cv=none; b=JLaf7pzmHGcMjTLw+CFDnmZ1poc42m4BF6V8Q/S27kaMlbGIdaQXH1QrUAweRYvNhwtYxeW1jR1RoGIRmlyvS0/ItdJq396OADK3Ui+o8/1hP6uGswjczQrFEaVN2rhTG3FxS9o2nkucQfqlAqJGNDUhl13xX2RWvBkOA7PXGTk=
+	t=1734322068; cv=none; b=tOLKOyKC2SUycRWlVA2hGA06Ovhslx1EPIirVM5FyPEMbUQqEuTZWojmPrNzp5yrKkaDlqQp8Cjl5pLr8kUBMn8kblbsPnQoh0qKwOox0BenRB3IWcIglPnM+8SshITHiLbDU8XAGII+/Ih9B5tZf1S6SUaCwisY/lKri78p5qw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734321865; c=relaxed/simple;
-	bh=L9O1CUhqES2iPppXt2s+dnCXTdYr//DdxI8fhsvVtJ0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ESUcT0KlnarMVoWpzbxCKW4Wtwie3DRrOebvYs/9Vy5P77drHVWIZY3YuzXGO0j+91uifw71ImJ1D9AA5g48fbyEp2DJunqgZR/ZSxYeKJLKg7uwcnxRipQ1VWyg1VHXsblGDZdWM2tkh1k8BjSCtNA9zqL+ntGxOBN43woUd+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DaModl1/; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1734321863; x=1765857863;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=L9O1CUhqES2iPppXt2s+dnCXTdYr//DdxI8fhsvVtJ0=;
-  b=DaModl1/En5WfhwBJnbZf0y++L+J3YxqIDeh08xXBCMIMwc0PzNtkXby
-   m282rk5zJJSXEC7LSkHbiTqDLOMPhYBFQHd7ji7SUNfd8T9OXqsYXwdrd
-   E0ISXYFKBjHH07XkcF3QMGSJLXMxLPlVLYT6wEXSTAwyAotJL8XrocvMF
-   eT9EiBeVIvNW30BbmsbaOCfp74L8D7auZK8oEMOdx72PKM4v0g2LF0qBD
-   S53P3H1RrbSIPl0s7XGih6eF7SsIEjwOdiklfsbYtK48yjnLCLDs3qCRJ
-   ljnNIo50kGRPAFkwuaEuHt582Xz5da83CwIRu0oheK6z31es4LfGJm22q
-   g==;
-X-CSE-ConnectionGUID: uIVH5DdCTriSMOlqi5xLcw==
-X-CSE-MsgGUID: xQvA6sJRToqSxB/aQrVW6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45179660"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="45179660"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2024 20:04:23 -0800
-X-CSE-ConnectionGUID: txI5LGo+S1eGhaMmUkW/aw==
-X-CSE-MsgGUID: ZL9/0NoDQzWNrXs/70EmXw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,237,1728975600"; 
-   d="scan'208";a="97130289"
-Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 15 Dec 2024 20:04:20 -0800
-Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tN2LC-000E0I-0Y;
-	Mon, 16 Dec 2024 04:04:18 +0000
-Date: Mon, 16 Dec 2024 12:03:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: Paul Handrigan <paulha@opensource.cirrus.com>, mturquette@baylibre.com,
-	sboyd@kernel.org, linux-clk@vger.kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Paul Handrigan <paulha@opensource.cirrus.com>
-Subject: Re: [PATCH 2/2] clk: cs2600: Add Fractional-N clock driver
-Message-ID: <202412161152.7xKtUJQr-lkp@intel.com>
-References: <20241211003236.2523604-3-paulha@opensource.cirrus.com>
+	s=arc-20240116; t=1734322068; c=relaxed/simple;
+	bh=sivIsfEUA1IAgBPBGdPH6gflJdVlAA79Y9+Z1XmUkY0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NZi3hum36sSprY9fqT6qet4tKrdDwL0rITFJVMxc6bRDkvAQTBxxl8MIDbzcpgFTi5/CvWbo8SfuAEsR4D2hnbQxofak/72WY+tnsW8pX7dyF6j7rpGZh9oJw0lPgFISfMHSow+4mePOeKAm2Knm9Cv0wJUN0B0Rmyf4j+vVpvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=oeOAJCuX; arc=none smtp.client-ip=185.125.188.121
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from hwang4-ThinkPad-T14s-Gen-2a.. (unknown [220.197.230.205])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 0F2B63F214;
+	Mon, 16 Dec 2024 04:07:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1734322061;
+	bh=KGWUyeOha+X1jJGqKNXSQpB1hVyHAmJEjzhsVzT9bUU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+	b=oeOAJCuXFmfYlkbRyGRJjMn9gigh91xMdP8fEgFaHt/AVunbtpFgUeXqSBnkSyldy
+	 MSrRjIdahH9aC7kvPSQUafpzXqMZ1nPhyIMzG0c+vdymxTO9cANjlfOUcy7yKxHgaO
+	 4zmG4TTmxRJBPw6AqX4ym1l6+b/nweAxaIT1aQiulASgI2nCzo8Qu54/SyoetujE7l
+	 02uzSA4mtVceFGM2MzH6b/W41VmZHLUm6hjipcOws11oni+s5h1TMDJxkTfZJiVP7c
+	 lrO3FG/W85jkjSKUUrwgCNyoNXp0zVD9A/GyhKqLqEcpWm2bqj4n8fSKJRKPb0bQ5K
+	 g0ED4doIqJbnw==
+From: Hui Wang <hui.wang@canonical.com>
+To: linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev,
+	devicetree@vger.kernel.org
+Cc: shawnguo@kernel.org,
+	xu.yang_2@nxp.com,
+	s.hauer@pengutronix.de,
+	festevam@gmail.com,
+	hui.wang@canonical.com
+Subject: [PATCH v2] ARM: dts: nxp: imx6qdl-sabresd: add dr_mode to usbotg
+Date: Mon, 16 Dec 2024 12:07:22 +0800
+Message-Id: <20241216040722.21738-1-hui.wang@canonical.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241211003236.2523604-3-paulha@opensource.cirrus.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Paul,
+Currently there are 3 type of boards (imx6q|imx6qp|imx6dl-sabresd)
+based on imx6qdl-sabresd.dtsi, they all do not set the dr_mode for
+usbotg device node. The chipidea usb driver will configure it to otg
+mode by default if the dr_mode is not set, but some testcases need to
+parse the dr_mode from DT and decide the follow-up test strategy, here
+set the dr_mode to otg explicitly for these 3 imx6qdl-sabresd based
+boards.
 
-kernel test robot noticed the following build errors:
+Signed-off-by: Hui Wang <hui.wang@canonical.com>
+---
+in the v2:
+ adding the dr_mode in imx6qdl-sabresd.dtsi rather than imx6qdl.dtsi
 
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on linus/master v6.13-rc3 next-20241213]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+ arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Paul-Handrigan/dt-binding-clock-cs2600-Add-support-for-the-CS2600/20241211-083439
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-patch link:    https://lore.kernel.org/r/20241211003236.2523604-3-paulha%40opensource.cirrus.com
-patch subject: [PATCH 2/2] clk: cs2600: Add Fractional-N clock driver
-config: i386-randconfig-016-20241215 (https://download.01.org/0day-ci/archive/20241216/202412161152.7xKtUJQr-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241216/202412161152.7xKtUJQr-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412161152.7xKtUJQr-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "__udivdi3" [drivers/clk/clk-cs2600.ko] undefined!
-
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
+index dc8298f6db34..914c129b09a5 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-sabresd.dtsi
+@@ -804,6 +804,7 @@ &usbotg {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usbotg>;
+ 	disable-over-current;
++	dr_mode = "otg";
+ 	status = "okay";
+ };
+ 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
