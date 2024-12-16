@@ -1,147 +1,113 @@
-Return-Path: <devicetree+bounces-131511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F7D49F391E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:39:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5533F9F3925
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 19:45:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA4C31889406
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:39:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0669E188AD9F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 18:45:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 914CD206F13;
-	Mon, 16 Dec 2024 18:39:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76075206F0A;
+	Mon, 16 Dec 2024 18:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="noqQ2PZ3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NhZBLujl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6706843AA9;
-	Mon, 16 Dec 2024 18:39:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F156243AA9;
+	Mon, 16 Dec 2024 18:44:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734374354; cv=none; b=XIbG001U9RrkvI9bwtZOBzHfJNAzDPwAHgjGgoCxPWwphxj4vAoO5rZRER/wtW/EA/Xknr4SfkpH2Vi/oLGT4UXm6knpyQFSX77wg1TiAgCOzISdzvks8CzJSD3to0qXzstNXw+IXBJj1vTDG8BcJ9Pkvs01pw43Mkh//qcIk/g=
+	t=1734374696; cv=none; b=Wphzx0vCDXqQ+78Tb4z0kMwgV0Vc0AZxNr19R+WsVTflcKmerTsFC+u1aK5rtYWafWdO70XZO62pT4i6MWsj/K4udb1W+AuQQDIPYFp8kPEjMDOYBj/YJFkGiHcVKDliwppBHp/Zth9wfX8mg8Xmeg/pFtqTnBjw4V476fMedt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734374354; c=relaxed/simple;
-	bh=wt7CBCKr35JUII+2VgDBmGe3AYQcBB0lstrcQq65w/E=;
+	s=arc-20240116; t=1734374696; c=relaxed/simple;
+	bh=8xGWfOWA8TJ/ndkiGeCLPYrR80FjyNYGa5KgQMzEx68=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Woi7Z2EboizYrAUioGgEY2mJZ1KhK38hPKCfk2PQEfS943jwJltV2pXV/lU/fc4u3GhmFEqFN4FhMc+RtyRAPeNVpCvmcVfpH9D19vuvIwu8pgi2aAYCzmfSE0kLLJ1oWwe0pz4qorDAZvhKe+cQ9uWYFVABGoi1E+izckfSMbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=noqQ2PZ3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0C45C4CED0;
-	Mon, 16 Dec 2024 18:39:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734374353;
-	bh=wt7CBCKr35JUII+2VgDBmGe3AYQcBB0lstrcQq65w/E=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=noqQ2PZ3n6Wq/92q3ApzYg6lJcyQqRmxWtay4160LkII/PuUtZ3qn8x3H3obYM3/c
-	 WVA8yyHyPgFWDtz8IpSfY1TAzxOJYltnWuRuZDIcq/qxxFQAHl+13KpPc1zN3pvplG
-	 g0iPBnbbf7B6/HKAKijREjUeOGyB7O1ntuX6ouCcqxC9QmxwQkf0RRwyYiKn87pYyM
-	 L7Zn/tlPNAQBkJo6+HJP5JEVYBXb5xyXxY2igZcgLxqVqm23HikZkNaZMmvugsaauM
-	 oOJ7oEHUa+S5OPE1OPprlWVcCFjd4644E5Wv/iwdUGSaxHPh/N+kqwqeZjldt1nMhL
-	 WoUoyfQjieKNg==
-Date: Mon, 16 Dec 2024 18:39:09 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: mfd: sprd,sc2731: reference
- sprd,sc2731-efuse bindings
-Message-ID: <20241216-bobbed-lend-abf4b2b5323c@spud>
-References: <Z1_9ROiI2ZHKsbAD@standask-GA-A55M-S2HP>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BoiLUna/dudRqlIjzQnu13iKcJl6pPQ1k8fdomzXOUeoWX/0bDB+HhvL9soIVAi22fiXOvKz7P2RkOlivW4wVM4o3rxH+EFzUjCvWw03a/5ar7L/BaE+kH5sO+If5NoQDi/LXKFc2zepeDXC0J0r0THkqJvjFQUC6qvpvBSB9Ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NhZBLujl; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-728f1525565so5255119b3a.1;
+        Mon, 16 Dec 2024 10:44:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734374694; x=1734979494; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Uy5TogmUO/LFZyCxZkXtCXKplw56kqYPZnvOjhju0LM=;
+        b=NhZBLujlSYZ8XovKn7AHIDflnqZy95ssAtkbvJ7IkyFddic5+Jhs3nR69awOm6WG0/
+         KxmXQwDhEkDk57hy9Co8sPPnSbN/gGyoy/kOHAz3NwaE96cQrZ8Tvn0yMJMRgw4BI4dT
+         t+Cn06uRNq5q7iom+DdH3TeG+j5ZJ9QSj6WZU66p96uyfhtQhjxEIPpAPz8H4Rs911PK
+         UwXXZKZjBBloep6Gs/dRbJ8Zs47u/djvmOvqVe8vMCUACoz/Vdn4MBC11yTzWdE682z3
+         9h2o6CCuStc9vchWifVS81zPbOcrmqkqQFpvRNZAv5N/L/49wIYLgiM3EJLm9Hfli1hP
+         en6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734374694; x=1734979494;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Uy5TogmUO/LFZyCxZkXtCXKplw56kqYPZnvOjhju0LM=;
+        b=ZVbkTNPsL0NRsibqywfKhZCnkkMwhPu0z/jCAlur06IFgEIjtDNJQwH1df+dgrMkUK
+         d4SrdtSn4V51pzcPGKnr129Zf4MAVNWLtoiICt/yhfaAOosC5sdTDVVv5q+lDQ64Hkuz
+         DsMpJfDN8gehLBAhB/I93745fJSwmXjXa2RbBD0mBEQi/TO7m9FMme1eC/txZ6M/AIO6
+         Q9+UjEAohCtY71fdOXyewVg51MREjHaFX0rXVcgf+JUCmxWdfq3nVbSAuBq9Oo9wJ1Kk
+         RfP+uGlr7aKBFPTFF3/EEJWU13pBh/qjjYDpDhvko/ADSvETfOqDJGZJSelaiOt0REG9
+         ZJMg==
+X-Forwarded-Encrypted: i=1; AJvYcCUr+K9ctsNfRu+1qtRY8XKD+4tequucCBYjhWFJ/3ep7SaWBpuWSjtezE1+hQOqiz/BWjYw/pDZ1ELYWIHW@vger.kernel.org, AJvYcCVQstoWh1BZZnxflnfQ7N0Lgrt/Lyf+nZxna1gvsDtTQRCpjdTBJ6l0buPSDR/pY9FzNHw9kLxbnKbm@vger.kernel.org, AJvYcCWUXfbdcaEdGvEvvQuRBicD7TKNogk1NSnIA1pvsb0tT02WgRvCtX3xA99AAc35nURo6dWvJnnAFM8/@vger.kernel.org, AJvYcCWlJBRyFVpzr5iQul6OI2LYGZVrIyoL/ys0HL/3LAwgX8FTJyduHJ56xCIEx+ZJzgVDpF4LYu+FQoNymqg=@vger.kernel.org, AJvYcCXuxtYh+dZrz9cCxLC0GL5UMp74MV1rFpd0B8ecClvVUT2dzYSjI9FS0cl+TrNboZpVWnC8PLEAtGCx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjyFRcRPrmtF+0cw4P5FPYkRyYw6F4RflnU7lJGDUgYhSuRWOr
+	uNxdd1qsdcb4yw89kcd1AkSetvj9YDA0MBSQ+r6ZP/EcM24b2LrLR+wDpQ==
+X-Gm-Gg: ASbGncuwSp0o16bKfJ2by2SIKpEl840bqFaMo/UobFJw5F8eg6D2wYvUlQKnzMOA/fX
+	PzP3h7xsB6UqHzcJfxZvnYtINqyvXQzT3X7r8Gck3AvkWODTdKKhy5vw4XEGsVF16PDI90UpTRr
+	ODOTk66JehTsiWJYaNhasbRRB776g+OxeJiphUbhYRSGer9gfx7rhY7GlrJfOBU6G/JecVQw4lt
+	0M9yU9juh+UWOhlBpsXcNheUdT3qam8AxBkmmOCBawOpbbaJndRHku+0occCSzzo2e38g==
+X-Google-Smtp-Source: AGHT+IG8e6Gmq7DkH/m0iRUYm3sVxn3mLoxGSYH+9VbhyIOnW1xJl8bcqkbPbHMff/wOuKaIzC7VKA==
+X-Received: by 2002:a05:6a00:419a:b0:725:b1df:2daa with SMTP id d2e1a72fcca58-7290c248bebmr22022737b3a.20.1734374694201;
+        Mon, 16 Dec 2024 10:44:54 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72918adbc76sm5082337b3a.80.2024.12.16.10.44.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Dec 2024 10:44:53 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 16 Dec 2024 10:44:51 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Ninad Palsule <ninad@linux.ibm.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	eajames@linux.ibm.com, jdelvare@suse.com, corbet@lwn.net,
+	joel@jms.id.au, andrew@codeconstruct.com.au,
+	Delphine_CC_Chiu@wiwynn.com, broonie@kernel.org,
+	peteryin.openbmc@gmail.com, noahwang.wang@outlook.com,
+	naresh.solanki@9elements.com, lukas@wunner.de, jbrunet@baylibre.com,
+	patrick.rudolph@9elements.com, gregkh@linuxfoundation.org,
+	peterz@infradead.org, pbiel7@gmail.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] hwmon: (pmbus/core) Add PMBUS_REVISION in debugfs
+Message-ID: <6604eea3-de0f-4d2e-bc12-7f75012b949e@roeck-us.net>
+References: <20241216175044.4144442-1-ninad@linux.ibm.com>
+ <20241216175044.4144442-2-ninad@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9yJ2t1+TN4irjy8i"
-Content-Disposition: inline
-In-Reply-To: <Z1_9ROiI2ZHKsbAD@standask-GA-A55M-S2HP>
-
-
---9yJ2t1+TN4irjy8i
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241216175044.4144442-2-ninad@linux.ibm.com>
 
-On Mon, Dec 16, 2024 at 11:13:24AM +0100, Stanislav Jakubek wrote:
-> Directly reference the sc2731-efuse bindings to simplify the schema.
-> Remove the duplicate example from the efuse bindings.
-> While at it, add the "pmic_adc" label that was missed during the
-> initial YAML conversion.
->=20
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-> ---
-> Changes in V4:
-> - rebase on next-20241216
-> - drop patch 1 (already applied)
-> - add the pmic_adc label that was initially missed
->=20
-> Changes in V3:
-> - new patch due to a missing dependency in the MFD tree=20
->=20
-> Link to V3: https://lore.kernel.org/lkml/cd8cc95b59c31418b174bba521dd2599=
-a7929fda.1730709384.git.stano.jakubek@gmail.com/
-> Link to V2: https://lore.kernel.org/lkml/ZyExK01iprBHhGm6@standask-GA-A55=
-M-S2HP/
-> Link to V1: https://lore.kernel.org/lkml/Zr3X1RoQs7ElTnlJ@standask-GA-A55=
-M-S2HP/
->=20
->  .../devicetree/bindings/mfd/sprd,sc2731.yaml  | 12 ++------
->  .../bindings/nvmem/sprd,sc2731-efuse.yaml     | 29 -------------------
->  2 files changed, 2 insertions(+), 39 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml b/Doc=
-umentation/devicetree/bindings/mfd/sprd,sc2731.yaml
-> index 8beec7e8e4c6..b023e1ef8d3c 100644
-> --- a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
-> @@ -67,15 +67,7 @@ patternProperties:
-> =20
->    "^efuse@[0-9a-f]+$":
->      type: object
-> -    additionalProperties: true
-> -    properties:
-> -      compatible:
-> -        enum:
-> -          - sprd,sc2720-efuse
-> -          - sprd,sc2721-efuse
-> -          - sprd,sc2723-efuse
-> -          - sprd,sc2730-efuse
-> -          - sprd,sc2731-efuse
-> +    $ref: /schemas/nvmem/sprd,sc2731-efuse.yaml#
-> =20
->    "^fuel-gauge@[0-9a-f]+$":
->      type: object
-> @@ -199,7 +191,7 @@ examples:
->            };
->          };
-> =20
-> -        adc@480 {
-> +        pmic_adc: adc@480 {
+On Mon, Dec 16, 2024 at 11:50:39AM -0600, Ninad Palsule wrote:
+> Add debugfs file for the PMBUS_REVISION command. This command provides
+> information about PMBus protocol revision number.
+> 
+> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
 
-I don't understand the point of this hunk, nothing ever references it.
-Examples aren't supposed to contain unused labels.
+Applied.
 
---9yJ2t1+TN4irjy8i
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2BzzQAKCRB4tDGHoIJi
-0jXNAP4+YDR/wPjihZkxPHmgSN0U4kNpVRWuhHsICmKeHS1w5QD/a2UmcIXrya9p
-w+h4nEfPOnWgUx8CRjBysvnL+kB4OwE=
-=5vN5
------END PGP SIGNATURE-----
-
---9yJ2t1+TN4irjy8i--
+Thanks,
+Guenter
 
