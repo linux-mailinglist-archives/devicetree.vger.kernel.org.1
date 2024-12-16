@@ -1,152 +1,305 @@
-Return-Path: <devicetree+bounces-131326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B58829F2D95
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:59:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76E579F2DCC
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 11:07:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3CCE161BED
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 09:59:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAAA616830D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 10:07:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C243202C3A;
-	Mon, 16 Dec 2024 09:59:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA926202C50;
+	Mon, 16 Dec 2024 10:06:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XTqu6RKY"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="fXP8kj+P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F112202C20
-	for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 09:59:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAE21202C4F;
+	Mon, 16 Dec 2024 10:06:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734343182; cv=none; b=Z7igVim0h9R5R6pB+5NAVWxQjyNTlgOuVvoVr5d4KD3Gj5bW6wCCsw+JsH7VpLL7F1x9+P488ezl0axrVLnOw+E4jDSfpun3atfBQgG7GpBswgE9wLyEVBU3Q1coyQYo5tJHVYZh7aG4B7sYUmrVreKYP8O5Ff7Y56lMk8cO734=
+	t=1734343585; cv=none; b=hvbOJuaOrCfiej+D5OhaO5MuVRgVcMypVq+HvhHcWWKNww4R0QUGqlayEZZe3EBSK3FcQ83bXEATy52TlieKzU6bLL4+vahaJUIQE9E3Ry1ReQ6KSXY9/HuptOgBmVdx1Xd/Dmd5Rpuith8yl9VIIKRv2qgkcKCS1VMABlQ+BPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734343182; c=relaxed/simple;
-	bh=z8jRuBMHsUzN+G5xqP4dbCkXuQmhUoW2hC8mSs+MrCw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=knRYDoPpFGT8VemHWEbu+/5ar/mpxHeqLiFEGQbTR9FYrrXWwaY+57qyPT8SbqkRGM9nLROPQeoRNnS/pUVt044sSbAKqOJTnqj7QDQWA/iFN7G/bCoSKv1ciRWACtNLHMi5xEFlxZzBOT2mv5wLdJ5IVTHmdPwfi6v0foX8YKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XTqu6RKY; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ffa49f623cso48945291fa.1
-        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 01:59:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734343178; x=1734947978; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FnJu3tNx6PFynXYk1/Woga2+QSGZXsPiestKM7hs3xI=;
-        b=XTqu6RKYVY2X1K6mlsS71InFt1Q8xmG/nsZeEhD1cFJmRPrVcFxD62lOIxVXzwz1wo
-         Hoatn68BLUBYjm2pALwsFU02OpqMl4REYdqJt/YbNUaZF512qJz88Y3LuYYF3gTjYQzM
-         WDjGLXtCJLMkreQCs2Lqhd1Om91X125sTz4tltlIuTpzpHARs77b3w0O6OULpEhPJCyP
-         2Ap/ipZxMGMh+xuazn1nx8tQkJTBWPb5viocTmxRk0DR/Apf3q3ATl9f0vUUhmI8pZ24
-         k8xKkq4IRfATYwi7csHp26IkbnRvR0cuNfdR/JDTb1O+b8P5ewM4PbKWsuWz0vr5mjSX
-         Eiog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734343178; x=1734947978;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FnJu3tNx6PFynXYk1/Woga2+QSGZXsPiestKM7hs3xI=;
-        b=v2F6XETzH0HYq27WgiKIB1yoGDZwI9Jh+ftaQh1Xech7x3vcbpeN5WoakHHVMD12bZ
-         gV/bK7bfxP19IDFEH0SZhHF05lr97JHh7HGJZ4FO8hVj03OBTiZoz7AQjne+1b71fncF
-         ndQXGCHIqvhd6DGmb8UuC87u1KLY9y60JhCMDnfB7hCAiZZ0V7NXjLmhF/AbG0tDcUdO
-         qzTLqbjU9kr4ScN/5jmogFo+PY/DD7ohu4iOsuIhfRvq9iugfwY7uxR6/SAO4LSSLe2h
-         Ha83JBHethO1DF39XvwcAnzZ1EYIRg5YEdPKRpoLItkjcNClMfUy6YmGPX/uBHR+8ZGm
-         cWJA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3Jh+PmocwmsvgXX6Mqvd3oD+BUBHtdukU384lJjWXugL1bKbKu3Ip+3Xicyp1EzsHr/uy7uR0XYLg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjnHWvB/dLdUdkqN1hTNiq2Ju1ITn8iyLmE6Fham7xlFZ9ImBO
-	+OkrsOTbsl/t4aALBOH8FgtUrUmP4GhyvaOoYJFQ6fWkECBkBX1rNp8KqTyeS5I=
-X-Gm-Gg: ASbGncue0Hi22eaIlBfbKjXmQaQaU2tVNTvfjl5qZO/NreyZf4SWUfSVZTLhKkUVHC/
-	sdENAxv5v0xZQmwWfT/UBxFYxJ0ZTUBt/ANBWecFE5HAocBMJQT9JhlscbhtYZ0YHNY0M+ENW3c
-	sINT1h8Lxq/RkKbLgarsEy0Mtp/5QAw9+AeJnfQZ9x6N3UuGnkvSqA7B2LkJ9fjGC0REWb4/AAS
-	R4ZdiaqeyWXvRvtl/XOpmzfgQx0cGfOHE5NUb2J1dv+cedtCazhQprFCTsk3FZDcAlGWAEvn7yZ
-	G98N9qQZWABECV/bMgJUaRoUGRyKMjXyePJY
-X-Google-Smtp-Source: AGHT+IGzuyIoz4RW4zE50l9A5GROziEsvDO7/q2gt1gPF1DlZnBaj2q1Sy1bt91ZKI974j+OroEhRg==
-X-Received: by 2002:a2e:a9a8:0:b0:2ff:8e69:77ef with SMTP id 38308e7fff4ca-302544230e1mr44031131fa.1.1734343177585;
-        Mon, 16 Dec 2024 01:59:37 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-303441a5a75sm8674571fa.99.2024.12.16.01.59.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Dec 2024 01:59:36 -0800 (PST)
-Date: Mon, 16 Dec 2024 11:59:33 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Andrej Picej <andrej.picej@norik.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, marex@denx.de, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de
-Subject: Re: [PATCH v7 2/3] drm/bridge: ti-sn65dsi83: Add ti,lvds-vod-swing
- optional properties
-Message-ID: <75aewnwpb6y73gqlrqmelzeia7bdar5ihm3ety5gfjaqalkuby@gwv4xjpomoit>
-References: <20241216085410.1968634-1-andrej.picej@norik.com>
- <20241216085410.1968634-3-andrej.picej@norik.com>
+	s=arc-20240116; t=1734343585; c=relaxed/simple;
+	bh=+UhIP1nfFyHeZ808tfIldBDwi0u0Oe9coKVU3RmIjCI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=H/oGACdiAPl3qC4kbIxkLi2PaOge6nXuaHUXuHXbY0to1Yrn6Xopz6bl3Dv6lB87pNHLFWGkd5gt5RFt27kEWFQTgMZmtT+jOXfuiu2sqjhZfDVrpX3VBcKARw0Mx4I+YZuydw2z6nedFQ9MBb7DYB+bj88UL0Gin751JBUjTXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=fXP8kj+P; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BG745SY008787;
+	Mon, 16 Dec 2024 11:05:23 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	OKGfjVGwMA/zsXl85TBgrTG1yFr1Bpuudax75G1PJyQ=; b=fXP8kj+PXuOe+q7g
+	HWsi8AXR6+2S/YJFvJyjo5B8/J8SZ/PgjJZO+Of52bB+dOlv0zVbDyo/ZwPfaUmy
+	T3dc7TaemCDJOGzhqR7vOZ5PZvsN8jzFTQXYkmjMRyAJMFKISkyNL2rlBbnuyv56
+	D7ZrKg1d7ky6Z4zHKE42/TKGZ1AzcQWvDm9hrj1RWI0y1ViwXfIJY7ej/8sxyDDE
+	yqwdaL/YXHxf9ARpkUqKqZYDN9gw8BSFqAvoUjAkj9kYdIpoNL+GOcw1YodPvNo8
+	C+0wmzDmwWEaFlvmiGNP3+u5tRGT9M3ZfaKok2qAUL4JUgdx6gdntFeybkG92w74
+	CNu3JA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 43jfg8ru40-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 16 Dec 2024 11:05:23 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 61FE540046;
+	Mon, 16 Dec 2024 11:03:58 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AF45826AD7C;
+	Mon, 16 Dec 2024 11:02:09 +0100 (CET)
+Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 16 Dec
+ 2024 11:02:08 +0100
+Message-ID: <4e257489-4d90-4e47-a4d9-a2444627c356@foss.st.com>
+Date: Mon, 16 Dec 2024 11:02:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241216085410.1968634-3-andrej.picej@norik.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/5] PCI: stm32: Add PCIe endpoint support for
+ STM32MP25
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
+        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20241126155119.1574564-1-christian.bruel@foss.st.com>
+ <20241126155119.1574564-5-christian.bruel@foss.st.com>
+ <20241203152230.5mdrt27u5u5ecwcz@thinkpad>
+Content-Language: en-US
+From: Christian Bruel <christian.bruel@foss.st.com>
+In-Reply-To: <20241203152230.5mdrt27u5u5ecwcz@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Mon, Dec 16, 2024 at 09:54:09AM +0100, Andrej Picej wrote:
-> Add a optional properties to change LVDS output voltage. This should not
-> be static as this depends mainly on the connected display voltage
-> requirement. We have three properties:
-> - "ti,lvds-termination-ohms", which sets near end termination,
-> - "ti,lvds-vod-swing-data-microvolt" and
-> - "ti,lvds-vod-swing-clock-microvolt" which both set LVDS differential
-> output voltage for data and clock lanes. They are defined as an array
-> with min and max values. The appropriate bitfield will be set if
-> selected constraints can be met.
+Hi Manivanna,
+
+On 12/3/24 16:22, Manivannan Sadhasivam wrote:
+> On Tue, Nov 26, 2024 at 04:51:18PM +0100, Christian Bruel wrote:
 > 
-> If "ti,lvds-termination-ohms" is not defined the default of 200 Ohm near
-> end termination will be used. Selecting only one:
-> "ti,lvds-vod-swing-data-microvolt" or
-> "ti,lvds-vod-swing-clock-microvolt" can be done, but the output voltage
-> constraint for only data/clock lanes will be met. Setting both is
-> recommended.
+> [...]
 > 
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> ---
-> Changes in v7:
-> - decrement refcount of the endpoint in all error cases,
-> - add spaces to improve the readability of the long if statement conditions in
-> sn65dsi83_select_lvds_vod_swing.
-> Changes in v6:
-> - rework termination resistor logic, default is now set by resistor value, not
-> reg value,
-> - move setting lvds_vod_swing_conf to default value of 0x1 inside if statement
-> which checks if both properties are not set
-> Changes in v5:
-> - specify default values in sn65dsi83_parse_lvds_endpoint,
-> - move sn65dsi83_parse_lvds_endpoint for channel B up, outside if,
-> Changes in v4:
-> - fix typo in commit message bitfiled -> bitfield
-> - use arrays (lvds_vod_swing_conf and lvds_term_conf) in private data, instead
-> of separate variables for channel A/B
-> - add more checks on return value of "of_property_read_u32_array"
-> Changes in v3:
-> - use microvolts for default array values 1000 mV -> 1000000 uV.
-> Changes in v2:
-> - use datasheet tables to get the proper configuration
-> - since major change was done change the authorship to myself
-> ---
->  drivers/gpu/drm/bridge/ti-sn65dsi83.c | 145 +++++++++++++++++++++++++-
->  1 file changed, 142 insertions(+), 3 deletions(-)
+>> +static int stm32_pcie_start_link(struct dw_pcie *pci)
+>> +{
+>> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+>> +	int ret;
+>> +
+>> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
+>> +		dev_dbg(pci->dev, "Link is already enabled\n");
+>> +		return 0;
+>> +	}
+>> +
+>> +	ret = stm32_pcie_enable_link(pci);
+>> +	if (ret) {
+>> +		dev_err(pci->dev, "PCIe cannot establish link: %d\n", ret);
+>> +		return ret;
+>> +	}
+> 
+> How the REFCLK is supplied to the endpoint? From host or generated locally?
+
+ From Host only, we don't support the separated clock model.
+
+> 
+>> +
+>> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_ENABLED;
+>> +
+>> +	enable_irq(stm32_pcie->perst_irq);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void stm32_pcie_stop_link(struct dw_pcie *pci)
+>> +{
+>> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+>> +
+>> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_DISABLED) {
+>> +		dev_dbg(pci->dev, "Link is already disabled\n");
+>> +		return;
+>> +	}
+>> +
+>> +	disable_irq(stm32_pcie->perst_irq);
+>> +
+>> +	stm32_pcie_disable_link(pci);
+>> +
+>> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_DISABLED;
+>> +}
+>> +
+>> +static int stm32_pcie_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+>> +				unsigned int type, u16 interrupt_num)
+>> +{
+>> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>> +
+>> +	switch (type) {
+>> +	case PCI_IRQ_INTX:
+>> +		return dw_pcie_ep_raise_intx_irq(ep, func_no);
+>> +	case PCI_IRQ_MSI:
+>> +		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
+>> +	default:
+>> +		dev_err(pci->dev, "UNKNOWN IRQ type\n");
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
+>> +static const struct pci_epc_features stm32_pcie_epc_features = {
+>> +	.msi_capable = true,
+>> +	.align = 1 << 16,
+> 
+> Use SZ_64K
 > 
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+OK
 
--- 
-With best wishes
-Dmitry
+>> +};
+>> +
+> 
+> [...]
+> 
+>> +static int stm32_add_pcie_ep(struct stm32_pcie *stm32_pcie,
+>> +			     struct platform_device *pdev)
+>> +{
+>> +	struct dw_pcie *pci = stm32_pcie->pci;
+>> +	struct dw_pcie_ep *ep = &pci->ep;
+>> +	struct device *dev = &pdev->dev;
+>> +	int ret;
+>> +
+>> +	ret = regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
+>> +				 STM32MP25_PCIECR_TYPE_MASK,
+>> +				 STM32MP25_PCIECR_EP);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = pm_runtime_resume_and_get(dev);
+>> +	if (ret < 0) {
+>> +		dev_err(dev, "pm runtime resume failed: %d\n", ret);
+>> +		return ret;
+>> +	}
+> 
+> You might want to do runtime resume before accessing regmap.
+
+OK
+
+>> +
+>> +	reset_control_assert(stm32_pcie->rst);
+>> +	reset_control_deassert(stm32_pcie->rst);
+>> +
+>> +	ep->ops = &stm32_pcie_ep_ops;
+>> +
+>> +	ret = dw_pcie_ep_init(ep);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to initialize ep: %d\n", ret);
+>> +		goto err_init;
+>> +	}
+>> +
+>> +	ret = stm32_pcie_enable_resources(stm32_pcie);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to enable resources: %d\n", ret);
+>> +		goto err_clk;
+>> +	}
+>> +
+>> +	ret = dw_pcie_ep_init_registers(ep);
+>> +	if (ret) {
+>> +		dev_err(dev, "Failed to initialize DWC endpoint registers\n");
+>> +		goto err_init_regs;
+>> +	}
+>> +
+>> +	pci_epc_init_notify(ep->epc);
+>> +
+>> +	return 0;
+>> +
+>> +err_init_regs:
+>> +	stm32_pcie_disable_resources(stm32_pcie);
+>> +
+>> +err_clk:
+>> +	dw_pcie_ep_deinit(ep);
+>> +
+>> +err_init:
+>> +	pm_runtime_put_sync(dev);
+>> +	return ret;
+>> +}
+>> +
+>> +static int stm32_pcie_probe(struct platform_device *pdev)
+>> +{
+>> +	struct stm32_pcie *stm32_pcie;
+>> +	struct dw_pcie *dw;
+>> +	struct device *dev = &pdev->dev;
+>> +	int ret;
+>> +
+>> +	stm32_pcie = devm_kzalloc(dev, sizeof(*stm32_pcie), GFP_KERNEL);
+>> +	if (!stm32_pcie)
+>> +		return -ENOMEM;
+>> +
+>> +	dw = devm_kzalloc(dev, sizeof(*dw), GFP_KERNEL);
+>> +	if (!dw)
+>> +		return -ENOMEM;
+> 
+> Why can't you allocate it statically inside 'struct stm32_pcie'?
+
+Will do
+
+> 
+>> +
+>> +	stm32_pcie->pci = dw;
+>> +
+>> +	dw->dev = dev;
+>> +	dw->ops = &dw_pcie_ops;
+>> +
+>> +	stm32_pcie->regmap = syscon_regmap_lookup_by_compatible("st,stm32mp25-syscfg");
+>> +	if (IS_ERR(stm32_pcie->regmap))
+>> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->regmap),
+>> +				     "No syscfg specified\n");
+>> +
+>> +	stm32_pcie->phy = devm_phy_get(dev, "pcie-phy");
+>> +	if (IS_ERR(stm32_pcie->phy))
+>> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->phy),
+>> +				     "failed to get pcie-phy\n");
+>> +
+>> +	stm32_pcie->clk = devm_clk_get(dev, NULL);
+>> +	if (IS_ERR(stm32_pcie->clk))
+>> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->clk),
+>> +				     "Failed to get PCIe clock source\n");
+>> +
+>> +	stm32_pcie->rst = devm_reset_control_get_exclusive(dev, NULL);
+>> +	if (IS_ERR(stm32_pcie->rst))
+>> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->rst),
+>> +				     "Failed to get PCIe reset\n");
+>> +
+>> +	stm32_pcie->perst_gpio = devm_gpiod_get(dev, "reset", GPIOD_IN);
+>> +	if (IS_ERR(stm32_pcie->perst_gpio))
+>> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->perst_gpio),
+>> +				     "Failed to get reset GPIO\n");
+>> +
+>> +	ret = phy_set_mode(stm32_pcie->phy, PHY_MODE_PCIE);
+> 
+> Hmm, so PHY mode is common for both endpoint and host?
+
+Yes it is. We need to init the phy here because it is a clock source for 
+the PCIe core clk
+
+Thanks
+
+Christian
+
+> 
+> - Mani
+> 
 
