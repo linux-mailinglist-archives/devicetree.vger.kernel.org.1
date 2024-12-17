@@ -1,91 +1,212 @@
-Return-Path: <devicetree+bounces-131585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C9C49F3FA3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 02:03:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DBCA9F3FB0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 02:08:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 905B6164A54
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 01:03:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE74B1883C3A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 01:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B32B179A7;
-	Tue, 17 Dec 2024 01:03:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DDBC1E4AE;
+	Tue, 17 Dec 2024 01:08:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PgcsgpcR"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="j0vBmWSa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2058.outbound.protection.outlook.com [40.107.92.58])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 317358F77;
-	Tue, 17 Dec 2024 01:03:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734397392; cv=none; b=qz6p6U9FXuCZ3TDMTT7CVjxXrzxIha4hm7ct52/T/oku/i/axmQFOvCTbtEy1IrIsri9OLeoAJYKxA0egLgAxfE3v2jDbfDKLj0afV3PWLsB9RRqBFEyx+gSew1VXaozHKWS+pY3Vw0U+n+cbr/jsd7FboapJTjBPaqjuMNNLDw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734397392; c=relaxed/simple;
-	bh=85qnm0twUdriEANua6M9zWIJ2EUDnJi8YYiwyF62+cw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=l4pwhtrqHUdiXOgmedGuTqNm7EEaKUwYQgW/bHv4mPS1D2O/bh8tHQDWXoaLL7l6FjNTnNvjTRQc1+ZnHympy4JwsOzBp5ar7aAdoW6/rIH92TvtCFpwmVlNyl1nywKfxT+ZegMXGWinomY36gnu565oiUQF5OwelraRZe6elsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PgcsgpcR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36901C4CED0;
-	Tue, 17 Dec 2024 01:03:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734397391;
-	bh=85qnm0twUdriEANua6M9zWIJ2EUDnJi8YYiwyF62+cw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PgcsgpcRnlAjQSnRs1RAdMVIdnZiF9YsZiqfYqS4jk3e/77rF/VA1SGqoI8fE3Qyh
-	 Dj4KWfVEGhSF9SgfCESj77ebyFjo51u+kxhKF7SB8dG42CnYfIKA9Pwhq7N3uPQJJD
-	 RDiWSbYKWhQGDEp0jsGeZmivlzJUORoYQK1amd2OnXzjIND6sL0BD74ao3/vtuR8PS
-	 rLOcoPz8/K8uq7FAsYnHyF0lPlCZo/0hYgaIRrldy7hFNUbByu2E6JUdj2rEzYuLBp
-	 cxZcRHNYAjstmHzu1vp++ZmeJyveHGXHjmmTqGCLT02YAFUx7QA9HQXSBZ2J/28RHw
-	 8mZ8j+NMGMERg==
-Message-ID: <f303ee53-7d74-45ad-9e4e-895177522759@kernel.org>
-Date: Mon, 16 Dec 2024 19:03:09 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54DC4134BD;
+	Tue, 17 Dec 2024 01:08:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.58
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734397703; cv=fail; b=AVy+8n0z5guW+MxuouUxSFtWfKQ5Hy4jwrk2W1QTZGK3lU5tUY/rMT2chSUVKqB/qQx4+D8QKtGEsnlylwtuE0A5FHLkLMLK9dvpK8uqqsmFTGXuFDza9Y0nmNN4JsVEBt3fx2LNZfBNhXNIMlDAUDx9SyfY4GOurzDIf4gw0Fw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734397703; c=relaxed/simple;
+	bh=mdVz23oZMhIcJehotNBAiFnzFR6dA2uDG1WeSCH/Tzg=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cOfbgBdsbnd74ZmzFdBdhFccMWXlymM3AYCcdNVr3Xivz52rjoe2DooahzWo/PuewN6qicZcwxvf9LlhaxLZrwGhijncarcI1oxMTXNS4l6Z+OdrWKuKqps5scnom90ckBYPZECrdv+xJanWimjmVa5Y1WuiycABxuRSX9aSdGY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=j0vBmWSa; arc=fail smtp.client-ip=40.107.92.58
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fY1uaqkIhmfHmaZmTK5XwXqi6tHRlaV41GAcurLyUK2XqjmCUPGtAcdvaULiIAVzhzceyqwTkk5qpE3RY74UsSwfLqb1oe6rcSFb8iBO0adWRPSXquV2b/11Dcb2PKgNST3e7wMyoPu6z+pGx47/eQjAvGtvFcrk2HhXTt8YhhhOPWIq6wE+WLohVDNyY72W+z87m4E3e5j0Bx6mCoBqc/e3NI0c2CX/rwpeJbnqO3CR1PRpItk/bdbR4+zfGYY9TFHvN2GX+E/NCGcebGY0AKtXh5T5RCmOtgLWPQuhTEXozz0SSrbwQFWQ8TqxWBgIeDD2zKNW0fFmDDczHNnsHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SvlLDM4xMPkoyYRrQOC3Cag/X0rAfiT4JIPDZSxGaqQ=;
+ b=VLqzTwC8VK5nn1qHIEsfHvwEfvhW/JZWJ1dNftI6MvqPJ3yQMlhaG+IlKLf+i1MI/o+JTY+149hVwbZ+6B6QaBB53EqjVOT33vpKLhCDGH37fCV5bqOQg8QJzYwNVGNGxL58h9HGzDD56PTnBxIZ83IdO3Bov6/H2Yg4pf4XJu3H33xjJgEjRJrfVGMVtIKeU36qb3kR/IrbPdr7FFCNI9q2lk5e2odzL2XQR7uYxo1A7htuPoxdQoMGrpiHXMLsxy8lU50DFwh48FBkwyXF9HeD9DJVocQCDP8IVECgBgrvt83R/u/3M+AvSIImRw3d7kj/kU+2TVIZxWz2HbsFZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SvlLDM4xMPkoyYRrQOC3Cag/X0rAfiT4JIPDZSxGaqQ=;
+ b=j0vBmWSa/fQVYPe1o1MvEPoGEyRWPmtGeRK9BMqjpBDNJ+M6sxTE1/BrP9kUl35Nyr+hPZYCI6M6Y79U+SB0HZKHjOPPJ21pYjcjPRvQ26DRfFWPrRzoAZ4kc0nPuO95MT4C+xcIvHAqYddWaT9/wUgLjjuPuYP1YFNKjGuQFVb4AR2lxYT0xfrJOuTCZ0DCmoL4rbqZfNpShMEn2a5uVsNI58ToMvbr35TUut9QcN6wZptyfBX07lRM5Zu5KnwbRa+QsNTe0Quy7hv6EowqP2whRAsfkhaaxuzgO/n0iABdxgtxvdpnLG4bhS7fSI1jx3wjU+cLOMAqoFwJ4I5Lbg==
+Received: from DS0PR17CA0003.namprd17.prod.outlook.com (2603:10b6:8:191::17)
+ by LV2PR12MB5968.namprd12.prod.outlook.com (2603:10b6:408:14f::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.20; Tue, 17 Dec
+ 2024 01:08:19 +0000
+Received: from DS2PEPF00003443.namprd04.prod.outlook.com
+ (2603:10b6:8:191:cafe::ae) by DS0PR17CA0003.outlook.office365.com
+ (2603:10b6:8:191::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8251.21 via Frontend Transport; Tue,
+ 17 Dec 2024 01:08:18 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DS2PEPF00003443.mail.protection.outlook.com (10.167.17.70) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8251.15 via Frontend Transport; Tue, 17 Dec 2024 01:08:18 +0000
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 16 Dec
+ 2024 17:08:07 -0800
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail205.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 16 Dec
+ 2024 17:08:07 -0800
+Received: from thinkpad-t480.nvidia.com (10.127.8.11) by mail.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
+ Transport; Mon, 16 Dec 2024 17:08:06 -0800
+From: Johnny Liu <johnliu@nvidia.com>
+To: <krzk@kernel.org>
+CC: <airlied@gmail.com>, <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <johnliu@nvidia.com>,
+	<jonathanh@nvidia.com>, <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-media@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+	<luca.ceresoli@bootlin.com>, <maarten.lankhorst@linux.intel.com>,
+	<mperttunen@nvidia.com>, <mripard@kernel.org>, <robh@kernel.org>,
+	<simona@ffwll.ch>, <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
+	<tzimmermann@suse.de>
+Subject: Re: [PATCH v1 1/5] dt-bindings: display: tegra: Add actmon information
+Date: Mon, 16 Dec 2024 17:08:05 -0800
+Message-ID: <20241217010806.15703-1-johnliu@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <262c8d8f-f53c-455b-9bca-3440afb7bcd6@kernel.org>
+References: <262c8d8f-f53c-455b-9bca-3440afb7bcd6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: altera: Remove unused and undocumented
- "snps,max-mtu" property
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241115193822.3623434-1-robh@kernel.org>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20241115193822.3623434-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: AnonymousSubmission
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003443:EE_|LV2PR12MB5968:EE_
+X-MS-Office365-Filtering-Correlation-Id: a36f05d2-1ec5-4c4a-eb10-08dd1e374b00
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ys6wPC8yKHnqpc1QDxwGoJ98tc35ZSpUJcR58cFC7RwvO4vTshTMtSFo4NRl?=
+ =?us-ascii?Q?sSHc2hfpFZ3DJv9pDczqXC4x9xZAiu59zGBiZCKEDlfaeZU2eHY54AUcsYVm?=
+ =?us-ascii?Q?eG82O8pmva/xaNb1EzzbE8NEihEoWmvy6fh8EoVOvnCRWHv56Sy3vemTCjxw?=
+ =?us-ascii?Q?Ps9lGUPMtQYHSr0jOW3p9agYmTjTJYugHhO8OS6yIxtDNWbd2I7I/xl1dsoy?=
+ =?us-ascii?Q?VLstyXb6/45Iw8A2zVuU5eQBJRmLdZ6TzYFPayj1jMKZu33IJZDmAh/LiWVc?=
+ =?us-ascii?Q?s0YRFpNJ9vgsmqXlYgQrFpRvo3LNRdE6dUW28xS8etfcg2uip28X/Na3GDPL?=
+ =?us-ascii?Q?Qk058SM4rXbQuMQN9z1jTOroy5TLxHs/yAZseCqA7AhlFuGqn/NIYK4NmxzM?=
+ =?us-ascii?Q?lDPcWJ76nVWdGe7jSq5qByWYCGk3dcVf7yf9Xr6oX9VmT8/rCXj+gRqYkq2s?=
+ =?us-ascii?Q?ln8A3qjzQaioYV1Wm92WMumGBmD1/3Kz4s+Yveq+OpoOSxr29a/xOsdNWqQG?=
+ =?us-ascii?Q?ATSd887liuKMjmG0aAHXFqOzAr1+hjcTyR8H+/HQoAPdW/vvZEUJHOKM5ATv?=
+ =?us-ascii?Q?bf4U9Qy7/RBwvCpghELXV1kmzLmlbWygmuck52Y96EXwIxMqzzwVvcjOM0PK?=
+ =?us-ascii?Q?tm6E1+RcQJ06pH59O+zchYns++KmlwyH67JUpsej+wIh5StLDokaQCZhSio/?=
+ =?us-ascii?Q?oiJBQKd/vKVumcJ8cX+0K+lUCHN3lhDdNq3ipHQ48I+c8hxvuO4GfPMkL++H?=
+ =?us-ascii?Q?rDkkPqJvHR+HZ16pdx5AxqZpv7/L5YPfe/AHSI/hkQ4GlnBtgUyAkWaUNkae?=
+ =?us-ascii?Q?r+68lF7Wh3emi9JVJ7YHISuU5i8GC3qB1TBsc4p0f8oIeZhsA//u6H38plUO?=
+ =?us-ascii?Q?iWbHbGQ+Yl9Y3zaoOaGtzWR/EmYJqxt65ZyPPseU8nX+6UF0cAs7mov5uLA/?=
+ =?us-ascii?Q?qIYV+X7qmMT0FiigB1Sp9E8e5cIQ4EIsv+YfoTt9VqmJLY1Ff08RnFHpNJ/l?=
+ =?us-ascii?Q?vNKts0UifsCbzjQHUd+za1e04Ei4x0RxtFkB1vNVb2FqIysg5dB7i3npq+ir?=
+ =?us-ascii?Q?YZwwRjXCED3XlDq/jjwaveD4TKwve86ofb+snLwSQQxAow41MF2gngyqf54S?=
+ =?us-ascii?Q?C66leNCcSD10sM6SEdUStR4ZY52h4asOUvd94eLYXA6flgQFxyOlZR3bZlrV?=
+ =?us-ascii?Q?82fknniKOiG7tvV9lwxBfDD9SEHTHJuN3o/H3J8Kth8d7tPjJNGTFU6vCAoX?=
+ =?us-ascii?Q?fVaHJGfqI9Sg4taidWp5DXJ9xkYw9C/HA8S60jcWVjU6z4fkxJJYy36TNyqT?=
+ =?us-ascii?Q?R3aqFHSM4LkEndddXEtDWNRyFqjxBcsXb2RfnLs/iHzlzXCmRu/skNqb/14Y?=
+ =?us-ascii?Q?zqMbzH3ZD8BLI66g7lq/rF5fWmQ6i4yS3a4mXf4I7WCRTjYwbDlON0dqQElw?=
+ =?us-ascii?Q?iQpN9T21D0tislixf5x2yoOUZepd+8zqL9jA58Rc4xsFZArFLOJDeAwvYvYf?=
+ =?us-ascii?Q?9k2SUOEbcv2OLAI=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2024 01:08:18.5301
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a36f05d2-1ec5-4c4a-eb10-08dd1e374b00
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS2PEPF00003443.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5968
 
-On 11/15/24 13:38, Rob Herring (Arm) wrote:
-> Remove "snps,max-mtu" property which is both unused in the kernel and
-> undocumented. Most likely they are leftovers from downstream.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->   arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts | 1 -
->   1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-> index 0d837d3e65a5..34ccf8138f7b 100644
-> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-> @@ -63,7 +63,6 @@ &gmac0 {
->   	status = "okay";
->   	phy-mode = "rgmii";
->   	phy-addr = <0xffffffff>;
-> -	snps,max-mtu = <0x0>;
->   };
->   
->   &gmac1 {
+> On 14/12/2024 00:29, Johnny Liu wrote:
+> >> On Tue, Dec 10, 2024 at 09:45:50AM -0800, Johnny Liu wrote:
+> >>> An activity monitor (actmon) is used to measure the device runtime
+> >>> utilization to help drive software power management policies.
+> >>>
+> >>> Extend the reg space to include actmon aperture for actmon configuration
+> >>> through host1x.
+> >>
+> >> We kind of see that from the diff. Say what we do not see, e.g. ABI
+> >> impact or why this is flexible/optional for existing devices.
+> >
+> > Since actmon is not well-supported for the previous chips (e.g. T210,
+> > T186, T194, and etc) in this patch series, it's essential to make the
+> > specification of regs property optional for the previous chips.
+>
+> Then your schema should express it.
 
-Applied!
+Could you explicitly point out which part doesn't express it well?
+
+Considering old variant T194, the schema in this patch already made the
+specification of actmon related properties optional.
+
+If users specify actmon clock handle in clocks/clock-names properties:
+
+ host1x@13e00000 {
+	 compatible = "nvidia,tegra194-host1x";
+	 // ...
+	 clocks = <&bpmp TEGRA194_CLK_HOST1X>,
+		  <&bpmp TEGRA194_CLK_ACTMON>;
+	 clock-names = "host1x", "actmon";
+	 // ...
+ }
+
+Running the dtbs_check will report error WITHOUT this patch will have
+the following error:
+
+$ make O=out ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
+
+/out/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0000.dtb: host1x@13e00000: clocks: [[5, 46], [5, 1]] is too long
+/out/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0000.dtb: host1x@13e00000: clock-names: ['host1x', 'actmon'] is too long
+
+
+> >
+> > Enablement/Disablement of actmon won't affect the host1x main functionality.
+> > Its main job is to monitor the engines behind the host1x and serve for
+> > telemetry purpose.
+> >
+> > I could update the commit message to include the above reason. Please
+> > let me know if more information is required.
+>
+> And fix the schema to make it optional only for older variants.
+
+To maintain backward compatibility, shouldn't we keep the newly added
+feature optional for all the variants?
+
 
 Thanks,
-Dinh
+Johnny
 
