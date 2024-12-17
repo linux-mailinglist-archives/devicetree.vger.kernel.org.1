@@ -1,63 +1,41 @@
-Return-Path: <devicetree+bounces-131596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B66A59F40B8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 03:26:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A4269F4113
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 03:48:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06D8A162C0D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 02:26:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA11F188E65F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 02:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D6413B2BB;
-	Tue, 17 Dec 2024 02:26:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 248531E871;
+	Tue, 17 Dec 2024 02:47:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="A0ilJfiT"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="SYk8NLDv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-m3287.qiye.163.com (mail-m3287.qiye.163.com [220.197.32.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79FD13B780;
-	Tue, 17 Dec 2024 02:26:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B9D8F49;
+	Tue, 17 Dec 2024 02:47:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734402393; cv=none; b=M6edFjaam46Q2bg0nzNXUUqoK07IdHW105RQx8w9EBvTTWpZ5DfkPXTQ4moBjZtoA9/qvjSr05qtvU39dgfo6viddlvqO43Qy1LjROqXi4VPHScgMwaixiguoeuDrG3j/P0DBvRlK9kWrAY4yhVfRFrwkEersZc7ezjHZ0gNc9o=
+	t=1734403678; cv=none; b=Lcf4vJWgmE2vtOb1b031oHeL4XfvUhqhCxkWT/MZJ3gBuF/qmbL5HxCw3suQwQ5Hau2bMDV/XweYL4FxSCy89LP2va15zhNwE4SUKaFikIaikoZrFk7CGSzF9mRJV+mNbVYG+TZuBhVRqIia1dD/zxqSaanW8vlQv6h9rxdmGOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734402393; c=relaxed/simple;
-	bh=WsO1Ab0bPry/Q/tm+W6VmMi5+e9M76xb1nu/be2o328=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ETa+DyKaD8CjnUfWKhIGGBx1opLnJ8rTWqkc/8+or2Ymuz8jRaXJcdfQhr3AXXktZzlcFyoJ8o+pUVw1kXOIOTKx2/Nu/nIleNqyzWjW8wo2hYPXdF9K6SmxgVv+dPaKBn1+piei1NJUJTM//D9CqvSTkSqnL9nmTYdE4xQty9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=A0ilJfiT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGMBMps019112;
-	Tue, 17 Dec 2024 02:26:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mjm0BMr93xPY9ihdx7n61VcB9WpjdCqhGsQXd/zI7Fk=; b=A0ilJfiTVfalnADf
-	OQsj5nHNJMRkDFjbx669KY27PmKbwWjIihji2+8xJOK0CO3ihcsW8qpJ2Wp5PqTQ
-	f+jX3DcDLhjrC9QuNydVbuIlb9Tq7B6t5Yg/cmR0HUrBMZpTVFZRUx+KEjhFOlus
-	wXEvC5Ur3M27hsC0ZgQrqI3Gxr3m8vjpnTGm3nJ1T1iDqUm23BNeDDYQA2Oa2RWT
-	8xcRWamCD0iV8zSoeWZ8l7C4434WbceR3GYm4umA8shmn7sct+M3eYywidcFZfDw
-	Lc8O4qziyY87FwIcAKdwhZvbC6z0PCxjmU8w/vX31xpwxSIbZHTxFcxOwxc/IA5O
-	FdN27g==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43jvs80es6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Dec 2024 02:26:24 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BH2QMsZ000588
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Dec 2024 02:26:22 GMT
-Received: from [10.253.15.72] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 16 Dec
- 2024 18:26:18 -0800
-Message-ID: <d711ee4b-b315-4d34-86a6-1f1e2d39fc8d@quicinc.com>
-Date: Tue, 17 Dec 2024 10:26:15 +0800
+	s=arc-20240116; t=1734403678; c=relaxed/simple;
+	bh=rVDRV/fb3xUK8Yd2wTtQmOvAPEZdbIlFjoAs4JaqokQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YcMx/b63w/vgVJtejCIsCNasIfOZzqTDBH2a1E3Gwo5ci/wqxgFbotsJruYkvGTYrsNepbOD9rDh2BAcMFWOnoT5Yp48+CVa3uEpIUacb0jcdtg6hw/xSxbwD8rKA6Mmw4r31VobkHqMOYjhEZAYrkPwxpesN5Uvu0LqMuYpGfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=SYk8NLDv; arc=none smtp.client-ip=220.197.32.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.26] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 5ebd5e15;
+	Tue, 17 Dec 2024 10:32:33 +0800 (GMT+08:00)
+Message-ID: <7c1b03e1-8e0e-4a17-8cbf-ed43459f61df@rock-chips.com>
+Date: Tue, 17 Dec 2024 10:32:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,83 +43,268 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs615-ride: Enable ethernet
- node
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>
-References: <c2800557-225d-4fbd-83ee-d4b72eb587ce@oss.qualcomm.com>
- <3c69423e-ba80-487f-b585-1e4ffb4137b6@lunn.ch>
- <2556b02c-f884-40c2-a0d4-0c87da6e5332@quicinc.com>
- <75fb42cc-1cc5-4dd3-924c-e6fda4061f03@quicinc.com>
- <4a6a6697-a476-40f4-b700-09ef18e4ba22@lunn.ch>
- <441f37f5-3c33-4c62-b3fe-728b43669e29@quicinc.com>
- <4287c838-35b2-45bb-b4a2-e128b55ddbaf@lunn.ch>
- <2e518360-be24-45d8-914d-1045c6771620@quicinc.com>
- <31a87bd9-4ffb-4d5a-a77b-7411234f1a03@lunn.ch>
- <581776bc-f3bc-44c1-b7c0-4c2e637fcd67@quicinc.com>
- <174bd1a3-9faf-4850-b341-4a4cce1811cb@lunn.ch>
+Subject: Re: [PATCH v2 00/11] Add eDP support for RK3588
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, vkoul@kernel.org,
+ sebastian.reichel@collabora.com, krzk+dt@kernel.org,
+ devicetree@vger.kernel.org, andy.yan@rock-chips.com,
+ kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
+ rfoss@kernel.org, linux-rockchip@lists.infradead.org,
+ linux-phy@lists.infradead.org, algea.cao@rock-chips.com,
+ conor+dt@kernel.org, heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
+ hjc@rock-chips.com, cristian.ciocaltea@collabora.com, l.stach@pengutronix.de
+References: <20241216031225.3746-1-damon.ding@rock-chips.com>
+ <173436598997.265439.13057492933592323468.robh@kernel.org>
 Content-Language: en-US
-From: Yijie Yang <quic_yijiyang@quicinc.com>
-In-Reply-To: <174bd1a3-9faf-4850-b341-4a4cce1811cb@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <173436598997.265439.13057492933592323468.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: gM7SuruBtCLdjLdlsC6_9vJ6hCJ7vYJM
-X-Proofpoint-ORIG-GUID: gM7SuruBtCLdjLdlsC6_9vJ6hCJ7vYJM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 lowpriorityscore=0 phishscore=0 bulkscore=0
- priorityscore=1501 mlxscore=0 mlxlogscore=908 adultscore=0 malwarescore=0
- clxscore=1015 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412170019
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh1NQ1ZPGh4YGh9IThoeHk9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a93d275c2dd03a3kunm5ebd5e15
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PQw6PTo*MzIUHB8aSjo4Dy0q
+	NQhPC0lVSlVKTEhPT0tJTE5OS0hNVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKQ09KSzcG
+DKIM-Signature:a=rsa-sha256;
+	b=SYk8NLDv+zPx+SuvEbhnPVkhCcuqRFZxlIVfqB4Mms5YQPO86PUJxSVa4+bd8DeZ/z/2/ayqZdk+I9AU7e3r70GX4/Ke2qS0j2riil7yj/i+YC0nM2V4xlwh4Q9HwgTbowIAQMskbbvJ1tiXMBrOCx0ULBePo2pffQ3Ss6mpN0o=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=U4v7ABRaJOXGS84Y9y+1eDAi0znaTUEJmQIpm3KcqOU=;
+	h=date:mime-version:subject:message-id:from;
 
+Hi Rob,
 
-
-On 2024-12-16 17:18, Andrew Lunn wrote:
->> I intend to follow these steps. Could you please check if they are correct?
->> 1. Add a new flag in DTS to inform the MAC driver to include the delay when
->> configured with 'rgmii-id'. Without this flag, the MAC driver will not be
->> aware of the need for the delay.
+On 2024/12/17 0:29, Rob Herring (Arm) wrote:
 > 
-> Why do you need this flag?
+> On Mon, 16 Dec 2024 11:12:14 +0800, Damon Ding wrote:
+>> These patchs have been tested with a 1536x2048p60 eDP panel on
+>> RK3588S EVB1 board, and HDMI 1080P/4K display also has been verified
+>> on RK3588 EVB1 board.
+>>
+>> Patch 1~3 are the RK3588 eDP support of Rockchip analogix_dp driver.
+>> Patch 4   is the eDP mode support of samsung hdptx phy driver.
+>> Patch 5~6 are the Rk3588 eDP support of Aanalogix DP driver. Add phy
+>>            interfaces is to configure the HDMI/eDP TX Combo PHY.
+>> Patch 7~8 are the renaming of hdptxphy node. It is not only used by
+>>            HDMI display but also for the eDP display.
+>> Patch 9   is the addition of RK3588 eDP0 node.
+>> Patch 10  is to enable the eDP0 display on RK3588S EVB1 board.
+>> Patch 11  is to add the eDP1 related nodes for RK3588 SoC.
+>>
+>> Damon Ding (11):
+>>    drm/rockchip: analogix_dp: Use formalized struct definition for grf
+>>      field
+>>    dt-bindings: display: rockchip: analogix-dp: Add support for RK3588
+>>    drm/rockchip: analogix_dp: Add support for RK3588
+>>    phy: phy-rockchip-samsung-hdptx: Add support for eDP mode
+>>    drm/bridge: analogix_dp: add support for RK3588
+>>    drm/bridge: analogix_dp: Add support for phy configuration.
+>>    dt-bindings: display: rockchip: Fix label name of hdptxphy for RK3588
+>>      HDMI TX Controller
+>>    arm64: dts: rockchip: Fix label name of hdptxphy for RK3588
+>>    arm64: dts: rockchip: Add eDP0 node for RK3588
+>>    arm64: dts: rockchip: Enable eDP0 display on RK3588S EVB1 board
+>>    arm64: dts: rockchip: Add nodes related to eDP1 for RK3588
+>>
+>>   .../rockchip/rockchip,analogix-dp.yaml        |   1 +
+>>   .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml  |   2 +-
+>>   arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |  33 +-
+>>   .../dts/rockchip/rk3588-coolpi-cm5-evb.dts    |   2 +-
+>>   .../rockchip/rk3588-coolpi-cm5-genbook.dts    |   2 +-
+>>   .../boot/dts/rockchip/rk3588-evb1-v10.dts     |   2 +-
+>>   .../arm64/boot/dts/rockchip/rk3588-extra.dtsi |  55 +
+>>   .../rk3588-friendlyelec-cm3588-nas.dts        |   2 +-
+>>   .../arm64/boot/dts/rockchip/rk3588-jaguar.dts |   2 +-
+>>   .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   |   2 +-
+>>   .../dts/rockchip/rk3588-orangepi-5-plus.dts   |   2 +-
+>>   .../boot/dts/rockchip/rk3588-rock-5b.dts      |   2 +-
+>>   .../boot/dts/rockchip/rk3588-tiger-haikou.dts |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-evb1-v10.dts    |  50 +
+>>   .../dts/rockchip/rk3588s-indiedroid-nova.dts  |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-nanopi-r6.dtsi  |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-odroid-m2.dts   |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-orangepi-5.dtsi |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-rock-5c.dts     |   2 +-
+>>   .../drm/bridge/analogix/analogix_dp_core.c    |   5 +
+>>   .../gpu/drm/bridge/analogix/analogix_dp_reg.c |  56 ++
+>>   .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 149 ++-
+>>   .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 937 +++++++++++++++++-
+>>   include/drm/bridge/analogix_dp.h              |   3 +-
+>>   26 files changed, 1223 insertions(+), 100 deletions(-)
+>>
+>> --
+>> 2.34.1
+>>
+>>
+>>
 > 
-> If the phy-mode is rgmii-id, either the MAC or the PHY needs to add
-> the delay.
 > 
-> The MAC driver gets to see phy-mode first. If it wants to add the
-> delay, it can, but it needs to mask out the delays before passing
-> phy-mode to the PHY. If the MAC driver does not want to add the
-> delays, pass phy-mode as is the PHY, and it will add the delays.
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+> 
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>    pip3 install dtschema --upgrade
+> 
+> 
+> New warnings running 'make CHECK_DTBS=y rockchip/rk3588-coolpi-cm5-evb.dtb rockchip/rk3588-coolpi-cm5-genbook.dtb rockchip/rk3588-evb1-v10.dtb rockchip/rk3588-friendlyelec-cm3588-nas.dtb rockchip/rk3588-jaguar.dtb rockchip/rk3588-orangepi-5-plus.dtb rockchip/rk3588-rock-5b.dtb rockchip/rk3588-tiger-haikou.dtb rockchip/rk3588s-coolpi-4b.dtb rockchip/rk3588s-evb1-v10.dtb rockchip/rk3588s-indiedroid-nova.dtb rockchip/rk3588s-odroid-m2.dtb rockchip/rk3588s-rock-5a.dtb rockchip/rk3588s-rock-5c.dtb' for 20241216031225.3746-1-damon.ding@rock-chips.com:
+> 
+> arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-coolpi-4b.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dtb: edp@fdec0000: resets: [[28, 469], [28, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-evb1-v10.dtb: edp@fdec0000: Unevaluated properties are not allowed ('#sound-dai-cells', 'reset-names', 'resets' were unexpected)
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-jaguar.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-jaguar.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-jaguar.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dtb: edp@fded0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dtb: edp@fded0000: resets: [[31, 471], [31, 470]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-evb.dtb: edp@fded0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-jaguar.dtb: edp@fded0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-jaguar.dtb: edp@fded0000: resets: [[31, 471], [31, 470]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-jaguar.dtb: edp@fded0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dtb: edp@fded0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dtb: edp@fded0000: resets: [[31, 471], [31, 470]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-friendlyelec-cm3588-nas.dtb: edp@fded0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dtb: edp@fded0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dtb: edp@fded0000: resets: [[31, 471], [31, 470]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou.dtb: edp@fded0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dtb: edp@fded0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dtb: edp@fded0000: resets: [[31, 471], [31, 470]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dtb: edp@fded0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb: edp@fded0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb: edp@fded0000: resets: [[31, 471], [31, 470]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb: edp@fded0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-genbook.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-genbook.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-genbook.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-odroid-m2.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-odroid-m2.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-odroid-m2.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dtb: edp@fdec0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dtb: edp@fdec0000: resets: [[31, 469], [31, 468]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dtb: edp@fdec0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb: edp@fded0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb: edp@fded0000: resets: [[31, 471], [31, 470]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dtb: edp@fded0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-genbook.dtb: edp@fded0000: clock-names:2: 'grf' was expected
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-genbook.dtb: edp@fded0000: resets: [[31, 471], [31, 470]] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-genbook.dtb: edp@fded0000: reset-names: ['dp', 'apb'] is too long
+> 	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+> 
+> 
+> 
+> 
+> 
+> 
+> 
+I found the same warnings when dt-schema was updated, and all of these 
+will be fixed in the next version.
 
-In this scenario, the delay in 'rgmii-id' mode is currently introduced 
-by the MAC as it is fixed in the driver code. How can we enable the PHY 
-to add the delay in this mode in the future (If we intend to revert to 
-the most common approach of the Linux kernel)? After all, the MAC driver 
-is unsure when to add the delay.
+Best regards,
+Damon
 
-> 
-> There is nothing special here, every MAC/PHY pair does this, without
-> needing additional properties.
-> 
-> 	Andrew
-
--- 
-Best Regards,
-Yijie
 
 
