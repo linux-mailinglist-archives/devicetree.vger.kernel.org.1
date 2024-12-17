@@ -1,185 +1,131 @@
-Return-Path: <devicetree+bounces-132031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F7D99F5595
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:07:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D420A9F559B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:08:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F6EF16F9CA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:03:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EC4C18902B8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:03:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E531F8AD2;
-	Tue, 17 Dec 2024 17:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056A61F9AAB;
+	Tue, 17 Dec 2024 18:01:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a183yPZS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2D01F890F;
-	Tue, 17 Dec 2024 17:59:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E681F8F03;
+	Tue, 17 Dec 2024 18:01:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734458398; cv=none; b=gjcXioMC+/9iHmuqjGJKcqxP5c6R/ePi3I7RaT9HGg1HwFsXTBeBKFm1P+2RKbPoMtRS9e/TwA++p7/jCgd6WkjdiD6rNdMGAxRy7AGQwOt1dD6W06nfdlQtoUZLOsDGYXRhzkn1vy6CiJJwi+5PW8ZENWAGnZYTO+D4pTYDr+Y=
+	t=1734458473; cv=none; b=Gmeyc79rC4b76pMw9ytlLtRqSQbq5BED9fC/8vRP7h6gPSm2urXu2rw7kcE8DHtIYAWC+vfHHoeqG0aaxaJDTft9+oQHstw5n1btWxilfynUvSDZ9cwsyrB9iR0fsNHPqI71bvPnOGPQAhldr/xTVwtBZHZQ6zVEFXaysFvZNQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734458398; c=relaxed/simple;
-	bh=q1wnIV+XUCsIOA06WG9udBt0E7fj0Mo8pgtgHjlTPKs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eGIA8AS1Paf+MVvsZH+Szrhw64ttoSxE2loCoaOSNuCUv9JjfgctT+los13pREgHokzFp0nDjnHBdunpmpXzBOR47TWAoNCux7ftzrEgdzulHY5hdXrodFOgFFKVzguq2F6WWWbiUSI646VjjZEm1X8t4Ewxb0uCOSBKxm1JKbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B0A4BFEC;
-	Tue, 17 Dec 2024 10:00:22 -0800 (PST)
-Received: from bogus (unknown [10.57.92.83])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1A6C13F7B4;
-	Tue, 17 Dec 2024 09:59:50 -0800 (PST)
-Date: Tue, 17 Dec 2024 17:59:34 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: Johan Hovold <johan@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>, andersson@kernel.org,
-	konrad.dybcio@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, quic_rgottimu@quicinc.com,
-	quic_kshivnan@quicinc.com, conor+dt@kernel.org,
-	arm-scmi@vger.kernel.org
-Subject: Re: [PATCH V4 0/5] arm_scmi: vendors: Qualcomm Generic Vendor
- Extensions
-Message-ID: <20241217175934.GC2016149@bogus>
-References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
- <ZytnRc94iKUfMYH0@hovoldconsulting.com>
- <ZyvLktLUZOGP-LH5@pluto>
- <Zy4qvedrmkRdPR3x@hovoldconsulting.com>
- <8d42682b-0fa7-3962-da12-728cfe64903b@quicinc.com>
- <Z0BC203BhGEmXcJi@hovoldconsulting.com>
- <Z1HceQegfMl07qj_@bogus>
- <d313e40b-fa8f-a534-5037-98536ee25044@quicinc.com>
+	s=arc-20240116; t=1734458473; c=relaxed/simple;
+	bh=QC/c1n5Jks7m2uW84qsP/rNoe34vEW18ChfBNCtXubc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=P5ov4lN7fSC5OJzZdWJKwbLkhujz8HAmf9efICQNtqyyrfc9eFf6HrK0q026XWitimrRitcLLzYY8q6pSr/sECpjmLJQrjTV5ksa5KMNSO4bkpUbsxOPRAF3TZE2C4e0+1yS+OLezzE2lBYQ1Ciet0viCWf/LBnWdQXHC4ZE4wA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a183yPZS; arc=none smtp.client-ip=209.85.161.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5f1dfb0b44dso1255501eaf.2;
+        Tue, 17 Dec 2024 10:01:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734458471; x=1735063271; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SiwHnId7iQeGUr8OsM8sKryugiv1jIm1WvtUfh1wJ+Y=;
+        b=a183yPZSNTFegk4wKgQ1DfY5H/zESXErRxmTJRZlnWa1z9xShD3/rMfeYm3QMFSZ/5
+         TO0aFM0Wykf8Bdv5LPDkzbkMLU/ATbgPgKtnuWPwJrVUxIxqal9QkaPIAr2s+8xG+AJK
+         asrELk7i7LC30H1Bpuqiamxpx7rTTR4ITjr7X/ZtETahfRoHp8F2XFdIYWJmjMQv0PV5
+         GUpPLXQ2z2UPvLIN2fN2mfacCYgU3fOijqPZ6wMtgBZ6KOQ/U88yui4pNUy/mZGR60/h
+         lqqbKcJttNAMCK5KSZyYCTncIHQpz4It14en/CQg9arlAURDZLvGx+MFDicW8ac6rWY1
+         ohuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734458471; x=1735063271;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SiwHnId7iQeGUr8OsM8sKryugiv1jIm1WvtUfh1wJ+Y=;
+        b=CMplvC78WzydNiXilNzuL06RlzKR9k9TqCiayMJdlsBhm7vdLLSUo9vapHGYWavo1d
+         K6+DgFigWO1c6mIYcBS6TcinhAttvES+CjaVllkTfZe9kgVKpg39Ne2Z/AKy7EFTxhgZ
+         UiFT/Th69/Ep8MhDCfj7q/mGS5/ZnEq0hMfuuwBRCX4nTZSQq24inSnwiRtFgbIKfFIs
+         mCOF8IaFYrEO2hMi4U515QSLGnnyy2AYKSR6Us4AV2oVXwaKJ6ntu2DmFL/0PAOuWH1M
+         Og7rH25DSULEihoZsP+8IAe+LEbgs4tdeVm+/ieaR7ZUCPhIFeMQpldmJR+tmPUYlUKg
+         S1AA==
+X-Forwarded-Encrypted: i=1; AJvYcCUI1ZggJbvZa0PhanvRyUkV68C/9PBM3Qw+Yp7FNbigeSuhfFIkg51JwMV3hhn1y0YKl36Wj8QKbjX71RL1@vger.kernel.org, AJvYcCUbwvbNyw3m/1JsqwX2tQ3FWizr2BkLPizzpei4R3iIg0tfdpDiOeocHyJaFBrj2Ht0GvSNfXATugSz@vger.kernel.org, AJvYcCWcnusQnL03kkMliPeCOOupRkurZBHGJg+pcXKL1lc3C+CMAVDPnrHc9dpdqGEbbMHRu0BsrwKGHLug@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqS1J/UhDLt/HEi0V7Fen+VxZPsttL7o/uWSJgwDGTvytb5V7l
+	uBx/s9gxxH9O7Op3kr8Qa0B3Bxr51YbxWX6cBI5Mgqdlkk6Zua5AlWWcCvhk62MBj3m7DZmW/8c
+	T2el51g3Skm7WcJgot8nKxhiD2XM=
+X-Gm-Gg: ASbGnctisSWtkJ+r+Sl1WkAVD2wm7/rDyN1q2oQdbHDBNoCHWTK9UMfJjsXCQIzQTyt
+	c8QVq+EjDlpRUPj0iV+2p23yey5rwuQtez7LRu7QeMQ9FetlZdoRwU0wqZpZdd3yTEu6xt93e
+X-Google-Smtp-Source: AGHT+IHd+3ZVfpm2NDJm9bWCoeeRHqvP9fk+8IUJThjwea2MK0kqPI6ZhSam/HTj+u/wwVy83PXt4Sd7guaeIDXPgdg=
+X-Received: by 2002:a05:6871:823:b0:29e:2422:49e2 with SMTP id
+ 586e51a60fabf-2a3ac8e1087mr10260963fac.31.1734458471419; Tue, 17 Dec 2024
+ 10:01:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d313e40b-fa8f-a534-5037-98536ee25044@quicinc.com>
+References: <20241215053639.738890-1-anarsoul@gmail.com> <20241215053639.738890-2-anarsoul@gmail.com>
+ <qbtp4jvkx3r5azufe4k3vtapqpfs54dyjiu4cy5v5wkkzumrzx@vy3xzkfplbue>
+In-Reply-To: <qbtp4jvkx3r5azufe4k3vtapqpfs54dyjiu4cy5v5wkkzumrzx@vy3xzkfplbue>
+From: Vasily Khoruzhick <anarsoul@gmail.com>
+Date: Tue, 17 Dec 2024 10:00:45 -0800
+Message-ID: <CA+E=qVeQ8uHBCeFtw6_2cY3252-YXc6eWrf5_YdeVgbp5LJo5g@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: clock: sunxi: Export PLL_VIDEO_2X and PLL_MIPI
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Maxime Ripard <mripard@kernel.org>, Roman Beranek <me@crly.cz>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 17, 2024 at 05:55:35PM +0530, Sibi Sankar wrote:
-> 
-> 
-> On 12/5/24 22:31, Sudeep Holla wrote:
-> > On Fri, Nov 22, 2024 at 09:37:47AM +0100, Johan Hovold wrote:
-> > > On Thu, Nov 14, 2024 at 09:52:12AM +0530, Sibi Sankar wrote:
-> > > > On 11/8/24 20:44, Johan Hovold wrote:
-> > > 
-> > > > > > On Wed, Nov 06, 2024 at 01:55:33PM +0100, Johan Hovold wrote:
-> > > 
-> > > > > > > Second, after loading the protocol and client drivers manually (in that
-> > > > > > > order, shouldn't the client driver pull in the protocol?), I got:
-> > > > > > > 
-> > > > > > > 	scmi_module: Loaded SCMI Vendor Protocol 0x80 - Qualcomm  20000
-> > > > > > > 	arm-scmi arm-scmi.0.auto: QCOM Generic Vendor Version 1.0
-> > > > > > > 	scmi-qcom-generic-ext-memlat scmi_dev.5: error -EOPNOTSUPP: failed to configure common events
-> > > > > > > 	scmi-qcom-generic-ext-memlat scmi_dev.5: probe with driver scmi-qcom-generic-ext-memlat failed with error -95
-> > > > > > > 
-> > > > > > > which seems to suggest that the firmware on my CRD does not support this
-> > > > > > > feature. Is that the way this should be interpreted? And does that mean
-> > > > > > > that non of the commercial laptops supports this either?
-> > > 
-> > > > > Yeah, hopefully Sibi can shed some light on this. I'm using the DT
-> > > > > patch (5/5) from this series, which according to the commit message is
-> > > > > supposed to enable bus scaling on the x1e80100 platform. So I guess
-> > > > > something is missing in my firmware.
-> > > > 
-> > > > Nah, it's probably just because of the algo string used.
-> > > > The past few series used caps MEMLAT string instead of
-> > > > memlat to pass the tuneables, looks like all the laptops
-> > > > havn't really switched to it yet. Will revert back to
-> > > > using to lower case memlat so that all devices are
-> > > > supported. Thanks for trying the series out!
-> > > 
-> > > I have a Lenovo ThinkPad T14s set up now so I gave this series a spin
-> > > there too, and there I do *not* see the above mentioned -EOPNOSUPP error
-> > > and the memlat driver probes successfully.
-> > > 
-> > > On the other hand, this series seems to have no effect on a kernel
-> > > compilation benchmark. Is that expected?
-> > > 
-> > 
-> > Hijacking this thread to rant about state of firmware implementation on
-> > this platform that gives me zero confidence in merging any of these without
-> > examining each of the interface details in depth and at lengths.
-> > 
-> 
-> Hey Sudeep,
-> 
-> Thanks for taking time to review the series.
-> 
-> > Also I see the standard protocol like PERF seem to have so many issues which
-> > adds to my no confidence. I can't comment on that thread for specific reasons.
-> 
-> ^^ is largely untrue, a lot of finger pointing and a gross
-> misrepresentation of reality :/
+On Mon, Dec 16, 2024 at 11:33=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
 >
+> On Sat, Dec 14, 2024 at 09:34:57PM -0800, Vasily Khoruzhick wrote:
+> > These will be used to explicitly select TCON0 clock parent in dts
+> >
+> > Fixes: ca1170b69968 ("clk: sunxi-ng: a64: force select PLL_MIPI in TCON=
+0 mux")
+> > Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
+> > ---
+> >  drivers/clk/sunxi-ng/ccu-sun50i-a64.h      | 2 --
+> >  include/dt-bindings/clock/sun50i-a64-ccu.h | 2 +
 
-Sorry if I was not clear, I just said I don't have confidence yet and if
-the firmware is stable, then it is just the impression I have arrived based
-on the discussions.
+Hi Krzysztof,
 
-> crash in the LEVEL_GET regular message implementation. This
-> pretty much went unnoticed because of messaging in perf implementation
-> in kernel.
+> You cannot combine these changes.
 
-OK, is there any scope to improve in your opinion ? Please suggest and
-discuss or post a patch to have separate discussion.
+The patch basically moves defines out from ccu-sun50i-a64.h to
+sun50i-a64-ccu.h. How do I split the change without introducing
+compilation failure?
 
-> Given the fastchannel implementation isn't mandatory
-> according to spec, the kernel clearly says it switches to
-> regular messaging when it clearly doesn't do that and uses
-> stale data structures instead.
+> Please run scripts/checkpatch.pl and fix reported warnings. Then please
+> run 'scripts/checkpatch.pl --strict' and (probably) fix more warnings.
+> Some warnings can be ignored, especially from --strict run, but the code
+> here looks like it needs a fix. Feel free to get in touch if the warning
+> is not clear.
 
-Interesting, it sounds like a bug. Please provide details or patch to
-fix the bug. That would probably fix it on whatever platform we are
-concerned here.
+Yeah, it is not clear what do you want me to do, assuming the previous
+similar change to sun50i-a64-ccu.h did essentially the same, see
+71b597ef5d46a326fb0d5cbfc1c6ff1d73cdc7f9
 
-> This ensured that level get regular messaging never got tested.
->
-
-You seem to point at this bug several time now, we need to get it fixed,
-but we need to understand it first if you want us to fix it or as mentioned
-before you can as well post the patch.
-
-> We pretty much have been good upstream citizens, finding bugs and
-> sending fixes wherever we can. We clearly don't deserve such a hostile
-> stance.
->
-
-Not sure what made you think we are hostile towards your contributions.
-We just need a maintainable solution merged upstream and we are working
-towards the same. The documents written as part of this series is not
-there yet to help me understand the protocol yet. I have asked questions
-and answer to those can be made part of the next version to improve it
-IMO.
-
-> > I will briefly mention my suspicion here. This Lenovo ThinkPad T14s being
-> > primarily targeting other OS using ACPI might have just implemented what is
-> > required for ACPI CPPC which conveniently doesn't have to discover lot of
-> > fastchannel details since they are supplied in the tables straight away.
-> > But that also would mean it could be not fully compliant to SCMI spec.
->
-> Not fully compliant to the spec? I am pretty sure this series would
-> have been shot down completely and NAKd on the list by you if that
-> was the case lol.
->
-
-Honestly I am still trying to make any sense out of this vendor protocols.
-The documents produced as part of this series doesn't help me understand
-the same and that is my main feedback so far on this thread. I haven't
-looked at the code yet so I can't comment on the same as I first need
-to understand the vendor protocol document/specification.
-
--- 
 Regards,
-Sudeep
+Vasily
+
+> Best regards,
+> Krzysztof
+>
 
