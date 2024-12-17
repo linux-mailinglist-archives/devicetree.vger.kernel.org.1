@@ -1,72 +1,87 @@
-Return-Path: <devicetree+bounces-132049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62E5D9F56D5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 20:23:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 845DD9F5713
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 20:44:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67B76161DB5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:23:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E85F1890C33
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0DF41F8F07;
-	Tue, 17 Dec 2024 19:23:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4A51F9A92;
+	Tue, 17 Dec 2024 19:42:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="bhMd8kkF"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="P0YlsuKz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (saphodev.broadcom.com [192.19.144.205])
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.209])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5983D1F8EE4;
-	Tue, 17 Dec 2024 19:23:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBDA91F942F;
+	Tue, 17 Dec 2024 19:42:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.209
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734463408; cv=none; b=KpGN5YPWa29dLFvNkyakyN1c0BibumeBj0aY67DuLcpihkHNndt+Y94GUDMxvSoLuT6+IPprBd/Zx40zZLxd7jxVCnQk5xWeYTtKxc8XrYYo/iuUboHU6pD6slFnLiom8lWFson3VU191HsXPGudBoSp91Rv5Qe44QnniWKB0Xw=
+	t=1734464576; cv=none; b=ZL1CdaCRYQ47ZCP2FIdRgdud7TwXM7HmZxtYIcIsGDwjyBFjzZ2xqxNbzjng03rn9f15gTlmyWHAxJfUETMY6kHWKz+D0R575cy3dV8jm/qyWEERw+N9GI+2OwfkfXv4tgmSL2pjtmpvwHioXM4+S5lrpebnprFrEHf/y4QabOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734463408; c=relaxed/simple;
-	bh=z3O9X4cCETRNLKQE42m6HIig5AJctABu+gJD9WkgDG4=;
+	s=arc-20240116; t=1734464576; c=relaxed/simple;
+	bh=+/S+LRrwM3J5EIBu52etndXpcG9G7qL3AVg28RtoSVk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Nm7FN/S3rqRrvZi6lJlnTQ6ztxXmpq/8Qb78F8+orDYfbcznY3XLO3dt+XCw4dloQI1Uf/aZwYibsYHvUA0OYii9x6BrBEIVLOtIxoMRmdBb9ks4EDYxejYMKEGPVfs4ob/hkzCctMm8SoQrnBS58PGiU4NmC+gfF+6lOO0BcG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=bhMd8kkF; arc=none smtp.client-ip=192.19.144.205
+	 MIME-Version; b=BXRZGdgA7Q1k+KR857MdCca9fjCGiaCrnIYlKs1MyI/ag8CMsbGb87NcX+SaLWw3wOSqDFNKNgSL4Q+t1//Dchja/ZgYXrka6btew8MrfY3wkya+izlbTGraXyWlE+ezyanmV13lrfHUKJDv5N52yIdla8EO3donHf4DFgl7Alc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=P0YlsuKz; arc=none smtp.client-ip=192.19.144.209
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
 Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id E2640C000C84;
-	Tue, 17 Dec 2024 11:14:13 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com E2640C000C84
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 7E89DC002821;
+	Tue, 17 Dec 2024 11:37:06 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 7E89DC002821
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1734462853;
-	bh=z3O9X4cCETRNLKQE42m6HIig5AJctABu+gJD9WkgDG4=;
+	s=dkimrelay; t=1734464226;
+	bh=+/S+LRrwM3J5EIBu52etndXpcG9G7qL3AVg28RtoSVk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=bhMd8kkFkRNFj2qmVJ4u8bXmDWWepJhvQ4Wookqg98ljKFkJXAZmN2vCM+7Oq/AVK
-	 yKIJeLl7JJVsClJGi266erG+t87u8lKVCDTkdBxjNA9AgiyT+z/2aiwK6oRCNyc4v7
-	 p/ddbLHB+SjXG+h9dcg9N570RjKrxqVp1BP37HuI=
+	b=P0YlsuKzBM8rNwZmTeYuUn4wdku1TQmDW/zLlnELZ4+fob8MX4DHm4zlzcuYGO/6I
+	 D3pDyqmHseqZRwDhEjVHV8yqpcTsdNWWHlIzqBF3+joaLGo7Oje6zj+ka9BgxyjNRm
+	 P1maX0ZWyrcno1PPpVkRfLS39rbM7xLL38/wtTSE=
 Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 786D718041CAC6;
-	Tue, 17 Dec 2024 11:14:13 -0800 (PST)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id E6AEE18041CAC6;
+	Tue, 17 Dec 2024 11:37:05 -0800 (PST)
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 To: bcm-kernel-feedback-list@broadcom.com,
-	Rosen Penev <rosenp@gmail.com>,
-	linux-arm-kernel@lists.infradead.org
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	William Zhang <william.zhang@broadcom.com>,
-	Anand Gore <anand.gore@broadcom.com>,
-	Kursad Oney <kursad.oney@broadcom.com>,
-	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: bcm4908: nvmem-layout conversion
-Date: Tue, 17 Dec 2024 11:14:12 -0800
-Message-ID: <20241217191412.872240-1-florian.fainelli@broadcom.com>
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Eric Anholt <eric@anholt.net>,
+	=?iso-8859-1?b?TWHtcmE=?= Canal <mcanal@igalia.com>,
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Doug Berger <opendmb@gmail.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Stefan Wahren <wahrenst@gmx.net>
+Cc: Florian Fainelli <f.fainelli@gmail.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v3 5/7] arm64: dts: broadcom: Rename bcm2712 interrupt controllers
+Date: Tue, 17 Dec 2024 11:37:05 -0800
+Message-ID: <20241217193705.897820-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241203233632.184861-1-rosenp@gmail.com>
-References: <20241203233632.184861-1-rosenp@gmail.com>
+In-Reply-To: <20241212-dt-bcm2712-fixes-v3-5-44a7f3390331@raspberrypi.com>
+References: <20241212-dt-bcm2712-fixes-v3-0-44a7f3390331@raspberrypi.com> <20241212-dt-bcm2712-fixes-v3-5-44a7f3390331@raspberrypi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,10 +92,18 @@ Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Tue,  3 Dec 2024 15:36:32 -0800, Rosen Penev <rosenp@gmail.com> wrote:
-> nvmem-layout is a more flexible replacement for nvmem-cells.
+On Thu, 12 Dec 2024 18:36:32 +0000, Dave Stevenson <dave.stevenson@raspberrypi.com> wrote:
+> CHECK_DTBS produces errors on bcm2712-rpi-5-b.dtb and bcm2712-d-rpi-5-b.dtb
+> of:
+> intc@7d508380: $nodename:0: 'intc@7d508380' does not match '^interrupt-controller(@[0-9a-f,]+)*$'
+>         from schema $id: http://devicetree.org/schemas/interrupt-controller/brcm,l2-intc.yaml#
+> intc@7d508400: $nodename:0: 'intc@7d508400' does not match '^interrupt-controller(@[0-9a-f,]+)*$'
+>         from schema $id: http://devicetree.org/schemas/interrupt-controller/brcm,l2-intc.yaml#
 > 
-> Signed-off-by: Rosen Penev <rosenp@gmail.com>
+> Rename the nodes from intc to interrupt-controller.
+> 
+> Fixes: f66b382affd8 ("arm64: dts: broadcom: Add display pipeline support to BCM2712")
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 > ---
 
 Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
