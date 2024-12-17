@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-131670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB94B9F4503
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 08:23:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6C8B9F4508
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 08:25:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1DB11669A9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 07:23:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94D95188FCA0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 07:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 785F61990CD;
-	Tue, 17 Dec 2024 07:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 103B6189BA4;
+	Tue, 17 Dec 2024 07:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aQTMtHIn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VckP0Aj+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A7A618DF62;
-	Tue, 17 Dec 2024 07:23:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE63E1E529;
+	Tue, 17 Dec 2024 07:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734420224; cv=none; b=S+nNvgS+TcXeW0+V30sJ/Ymqwl+g9NY1OiuXvAGqR3dxo0zQjY3fsbxAso/PK8s/EjQeDYT7mm8E6ccwjXf0P6FAQIRuaMGm9tdJOxiH/SyRbuhUsoZowa6NEqOkEHdz+9tMJOW3DTLw3v/xjBaOwajAMbaAXituF7UKSkdDSQk=
+	t=1734420316; cv=none; b=TdsNfwLwlFyFOvhFTMYCgh4CFisDWhw3bnfnoo+v7TOUaVswANIyFWT5I0HrQgeh931b9YEaR7CahRLGotSVnZuQGXp6cfehDO8/SVXveYtrgaRenJeJPielc4Mc7tqPA2+S3hNZhQVref1t648ZMQ0PEMkY9XNTKiey9AoPA6U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734420224; c=relaxed/simple;
-	bh=dzw0Qz/CRN0PqPZK4GaTrVRJ3D3wdhp/qpqu6zM8BjY=;
+	s=arc-20240116; t=1734420316; c=relaxed/simple;
+	bh=SIqktI3t0AAhjSeYSQWiux57263h5Nx+YwGr7UnQ6qM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=poGqXTC24r2Wjmhy4klC28PoxcxeyQdvmqMcfXMdX5/0bWgpjac6DrhGHuDUYIDmNg3tYIjm8ZV+crF3VS4ZqbUqYysLIzhA8riSWFIfBRkRA6YRK5RXTenzLRqXN7+bAmZDPUuNFxklCRkULLbz/qToDDFCHzHIPIlRy1Eb9Ic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aQTMtHIn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4C22C4CED3;
-	Tue, 17 Dec 2024 07:23:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=J2NFCgpPddWFazrXU5Oz/hzdWa/u4onljctuuyDGvSEjn9XAr+OwbkeKs6IkDKmH2KU9lb8X34bt5fx9MgD6Kj+oJ4bVVpoVAsVo07D52QbntvziY7kVFamqicz+681Hi8ox+4Pmka7ePEoUfHSLy8b/VrMtqsIpdtB0y6YmklA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VckP0Aj+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 765BCC4CED3;
+	Tue, 17 Dec 2024 07:25:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734420223;
-	bh=dzw0Qz/CRN0PqPZK4GaTrVRJ3D3wdhp/qpqu6zM8BjY=;
+	s=k20201202; t=1734420315;
+	bh=SIqktI3t0AAhjSeYSQWiux57263h5Nx+YwGr7UnQ6qM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aQTMtHInjjzJekW+YadyNvS4jQkGkqV7h2x+QkNNZEm4mGrVlPVf18N2MpQByzGUB
-	 i/HLusx0LlTfXD3Mv838GyP3MDACR2kC5tX4/N4+NhDQ771OtrZeoh1JDzuw1GneZF
-	 JBm16gGYH26tA677MV7ecMEXtZRLICeCxuIbhWL6s0Mq3jto6kSQoqu1Yjca8Cq9TL
-	 Isw4vFpV+jPgLgOL5VJ0NMJf4OmwHyYpxO1HyHPZ18UzyEU/YyI9X/MUAhtJBIHsGC
-	 SxQz5FITdd1Cb++qXTe5IapG3GlmSH43R3CcwhsB1Sf6Mubbm68FfzxToNen2xAMyN
-	 iyaKWCqgVenZA==
-Date: Tue, 17 Dec 2024 08:23:40 +0100
+	b=VckP0Aj+Dqk2g4fmpH3WQSfPdFr6hDVsvhKgGIlwewonZlOpgBsT87wvDdMNTTv6c
+	 USqLU7mwP43lb84GQpH3a1O/SnDvdAw0APRtLUthlIWPWXJAQPskMoxJsaAPGb2t6S
+	 W3reYwe4iQJy4S5TGjZtDAl7IH+vkSVFHFsHa5J+NIi+iqV6TmoA+t7wISR3WsQYBo
+	 q0iA3mJ6zbZAf7Ou/HLQPO5h95+xNv1tMKD+6F1NcHvbb5ghGp86sP8V/H9YgMv1Sn
+	 Iwy+ceb4m6WNklNv7yoIKjA33dLPLUoLhg8p/woX4QkUa61aD6eaQG+dho8K7SaXBv
+	 76m1xWDFWb76g==
+Date: Tue, 17 Dec 2024 08:25:11 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Darius Berghe <darius.berghe@analog.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, corbet@lwn.net, lars@metafoo.de, Michael.Hennerich@analog.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] dt-bindings: iio: adxl367: add support for adxl366
-Message-ID: <lcwhomnejblm44f7jqcy3slrzu4vmcgyx6weocziqge2swkfia@qhqwam2uhqxl>
-References: <20241213095201.1218145-1-darius.berghe@analog.com>
- <20241213095201.1218145-3-darius.berghe@analog.com>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	djakov@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: interconnect: Add Qualcomm IPQ5424
+ support
+Message-ID: <yloopcxo3elwkrhq5cncy3bnbxyyi4wvgtvoslc6v6mc4ecwqs@gknbpccuwqao>
+References: <20241213105808.674620-1-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,27 +60,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241213095201.1218145-3-darius.berghe@analog.com>
+In-Reply-To: <20241213105808.674620-1-quic_varada@quicinc.com>
 
-On Fri, Dec 13, 2024 at 11:52:01AM +0200, Darius Berghe wrote:
-> Add support for adxl366 Micropower, 3-Axis, +-/2g, +/-4g, +/-8g
-> Digital Output MEMS Accelerometer into the existing adxl367 iio
-> subsystem driver.
-
-
-Bindings are before users.
-
+On Fri, Dec 13, 2024 at 04:28:07PM +0530, Varadarajan Narayanan wrote:
+> Add master/slave ids for Qualcomm IPQ5424 Network-On-Chip
+> interfaces. This will be used by the gcc-ipq5424 driver
+> for providing interconnect services using the icc-clk framework.
 > 
-> adxl366 supports all the features of adxl367 but has a few
-> additional features for which support is added in this patch:
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
 
-Where do you add these features in the binding? I cannot find them, so
-maybe you reference something else.
-
->  - built-in step counting (pedometer)
->  - non-linearity compensation for Z axis
-
-Are the devices compatible?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
