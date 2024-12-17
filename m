@@ -1,92 +1,72 @@
-Return-Path: <devicetree+bounces-131576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0946A9F3DF7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 00:00:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 190689F3ED5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 01:36:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95A511884218
-	for <lists+devicetree@lfdr.de>; Mon, 16 Dec 2024 23:00:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D69D1887D9F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 00:36:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C9DA1D2B22;
-	Mon, 16 Dec 2024 23:00:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D2168BF8;
+	Tue, 17 Dec 2024 00:36:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=dimonoff.com header.i=@dimonoff.com header.b="lc5XjsOk"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="LBlNtHxh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from YT3PR01CU008.outbound.protection.outlook.com (mail-canadacentralazon11020084.outbound.protection.outlook.com [52.101.189.84])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010066.outbound.protection.outlook.com [52.101.228.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C3E61CD1E0;
-	Mon, 16 Dec 2024 23:00:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.189.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54F98467;
+	Tue, 17 Dec 2024 00:36:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.66
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734390027; cv=fail; b=lgIQJ1UWFpDVga4v1qBCcKBbIV3mDauNkAzT4Wabzr8Bpq6sNQjvghScpJAHYqTiTwzmGOx/XfGHdx+SfDhd4Fng9jap8e+/S3SCPZdkqXRAkEBGNa6li4zo0hLa0Yk/lb9nCamcUtH/FrYiqar4XU0M69ngKyTnqKp2RH7V4yQ=
+	t=1734395787; cv=fail; b=sh7W2ABri0TiW9/mpPFDbzz/d3U3pxJaWZWah5PcqcAylXwWOMusLjXHqFD+VGQOfKiB8jZMqPKb7JJdbIfkfl8QY61aP8aMkXxodSRtz/Tb8bO8RXkjIyhqpXqhLbfreCAO2OSsWv6rbghtBo1acBUwzVxv58hD4B+LMhD2ZYw=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734390027; c=relaxed/simple;
-	bh=BU61w3lZ+pHYRUmAPosUz/MSG0UXf6D8Da20k0Rrys8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=c7lQWVBiqTNJYsGfLuekRvtGoi2OAW/Crw3NQrwxEERv/HWxUzx/LzrKnkkEdtrTRQXJdK1TMkUlN9lGmkz19BAAxjPiSMWU4qruQlHUHSyqgyzKfmjgsCl3WMlSJ6AeCSsMzT1OATdjBIUc//Rgqad5yIULRNyEBU1sAKrn93I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=dimonoff.com; spf=pass smtp.mailfrom=dimonoff.com; dkim=pass (1024-bit key) header.d=dimonoff.com header.i=@dimonoff.com header.b=lc5XjsOk; arc=fail smtp.client-ip=52.101.189.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=dimonoff.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dimonoff.com
+	s=arc-20240116; t=1734395787; c=relaxed/simple;
+	bh=dz7tyHcj5QlLfeWSK4YB+1s60bNlPK8lZv8NLx1gl/U=;
+	h=Message-ID:From:To:Cc:Subject:Content-Type:Date:MIME-Version; b=aCmrJskwmefDUA5a9ST5swRuzOap/dbEu32KW76cKx7IIqk6XmF0eSxvr3NRsk9tKj54oNoLV2TzJ7BCdipT6kCWv+d/zZ1hLamD4hnGbZTAfR8LqohALNBED+K2x19p6uRA2Pf9l38SWgK8KD1pnoknWh8A0TeBE6zEvDAYe1E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=LBlNtHxh; arc=fail smtp.client-ip=52.101.228.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f30+tvHRJ700g468ppCJX3VtLkNl7rUFxQNs4A/3fURjiAmpNNMMKT8tM4vIO6qAyFNHXLTafhYRV4jXA9V/0H0F/baPUVQknnTKRX3xbiLJ8Xwzk/JQen53gAuMCME1wMxUtKaWPoj/PVQlkKEGKULHIK3bA0dMnQaygA3PMSQ30LoWf4m4GSi2bTLATX/VmArhksUpsaqGm2Lp23nCNdX4naF0DabqsFRETqjMFNW/EIQOi2WMMqdCzIOIoriTEA8d7dNfoiysF0sXfusxOfFOxiqke8ShPIdmnjPmeoSEPg8s/cClUokO9m4M544aeGm7b1PU5YeUuf5Zpue7RQ==
+ b=e7/NFhzHMVwlSZh2CapKI6uvxvgeLLXgx2lm4fkO3O6BmB7bZ6IeUM0GjlOmYmSq7cL+Fa5h7kGSYnPCWnZJXC3iViQrBaaB3+PCLLabKFei+avO7uIVRB4XUL/6lXuwU+TBbI2/0V95R7TjvHxtrdU21iEYEpFZ8Uyjy5yozWxECqadVSqK9w11Lo1BfpAnR3prswHCKuz3o04WrfdlJJOq+LjlKPMm8AWl03UkLHk5TtV53QrOiT8rdTx+XmA7iNARJGYhzLpGf49+5PhHAMuL5yKKiGnfw4OWMqkaSSq91exDfIsuEBnRyVCtUC2jCSfELOP4nZ8dpEdqXURbLw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4mZaWnkpYljBPjL98xX9+QUSIKfYwhn3fkSFf1kbqlc=;
- b=sTp3bpMl2L7gZVO7jxujZ6DFA3TZ93vX9ELHwVTTrCgDJnlT9kc7EiZu/9k2H/LAln4p3g4cm+8jz5om2Kiv6LrhTok9HQSa+N4KFIW5Emr2KmTFVKSywf8pRNJG47U30RTthhB7rt5RgML5veTnLn7LPZUr8IL+K//zlw6c+Lg1ZPjeiMzz5FeLuBm4HdMpf3YEmXLK4GbtDtnw/6qpv32dtPebbii7PCcBsLXxaxyzjuf8gwtZqYAt0PvXpnzS8fa2DFsDVxiVkv5v3439MZ3l1Cgew4USZeUnOT/eWvDvGbNZAiNxtOD4hPQxlzlvqv2tnlwlcX59hVGWhslQaQ==
+ bh=q0taM9h9+Q7YV2GxobDv4bMAkwXGKT8qJngCu6qw6X0=;
+ b=w8/vrIJSvkQpYjKe4QXHaUdc+WMptyQVOaU8J/2p2WSmf1t+vvKhQc9ptPFn/FUPkEQQAOVIN1oClmxUYHGquCxMTy1IlVEJthDxpBvTJWqj1UV1kGPW7dJIdMoWYIxD+cbSKlzPhycwE30cvvQKq9Vea7eE4hm0rs2FaX7Spc5L7USigxoNwS3mLHpMrAQsQMZHl9JH5s/Bc+2/QXPFWTtgjk2kjvACoA+eyl0kSCprpVSc/ReBYPtaRQc2K9iKPsMPXvU7Ys70GYgGccfZitT1cyPRY4nAXTlfVJd2zWOJ4H67+27s38FrtLo3EfL7qo1Q7MvTqm5civEF5tFZ/g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=dimonoff.com; dmarc=pass action=none header.from=dimonoff.com;
- dkim=pass header.d=dimonoff.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dimonoff.com;
- s=selector2;
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4mZaWnkpYljBPjL98xX9+QUSIKfYwhn3fkSFf1kbqlc=;
- b=lc5XjsOkStWMH1wafvmcIG5OLd3Ogt1VNEUM+dqariZyYFnODghbNhbu2ZbimM4aYr/t+TrHB7nF0otdgFTa3vlCaOpAFtvT77FM3oc1M0Qu2aXVScHPXKBd7zKDpQ8G204IYjVWzn2bTNiGry2mPm9PzOrBSWqUfi1lLUkUKVM=
+ bh=q0taM9h9+Q7YV2GxobDv4bMAkwXGKT8qJngCu6qw6X0=;
+ b=LBlNtHxhZpCp4meMMVhpuSWxy/lErpfw1pZjau5RfLzf0h08VjeRiFX16/jCpwNZ+aQ1zAYbF4/4f6WbGfR/aShz8y2pxQVUmWJdkRw6C1Jjjs99Yne/2xLqObXQapB2eJ6NCY2rldXRNTCQH39YJ0P7FFwL8MBEPVoGLzRuHWI=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=dimonoff.com;
-Received: from YQBPR0101MB9181.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:5c::20) by YT3PR01MB11013.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:12a::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.22; Mon, 16 Dec
- 2024 23:00:22 +0000
-Received: from YQBPR0101MB9181.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::9a4b:5f92:57f8:2a39]) by YQBPR0101MB9181.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::9a4b:5f92:57f8:2a39%4]) with mapi id 15.20.8251.015; Mon, 16 Dec 2024
- 23:00:22 +0000
-Date: Mon, 16 Dec 2024 18:00:18 -0500
-From: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Mikael Gonella-Bolduc via B4 Relay <devnull+mgonellabolduc.dimonoff.com@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Nick Desaulniers <ndesaulniers@google.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>,
-	Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: [PATCH v2 2/2] iio: light: Add APDS9160 ALS & Proximity sensor
- driver
-Message-ID: <Z2CxAjPyrlZLdMZi@uva.nl>
-References: <20241206-apds9160-driver-v2-0-be2cb72ef8f4@dimonoff.com>
- <20241206-apds9160-driver-v2-2-be2cb72ef8f4@dimonoff.com>
- <20241208122038.18cf7db8@jic23-huawei>
- <Z1dl2C9/BYoeyudu@uva.nl>
- <20241211205302.2ba32a4a@jic23-huawei>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241211205302.2ba32a4a@jic23-huawei>
-X-ClientProxiedBy: YT4PR01CA0402.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:108::14) To YQBPR0101MB9181.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:5c::20)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TY7PR01MB13683.jpnprd01.prod.outlook.com
+ (2603:1096:405:1ec::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.22; Tue, 17 Dec
+ 2024 00:36:21 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%4]) with mapi id 15.20.8251.015; Tue, 17 Dec 2024
+ 00:36:21 +0000
+Message-ID: <877c7zno1n.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2] ASoC: dt-bindings: renesas,rsnd: remove post-init-providers property
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Tue, 17 Dec 2024 00:36:21 +0000
+X-ClientProxiedBy: TYCP286CA0018.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:263::9) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,190 +74,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: YQBPR0101MB9181:EE_|YT3PR01MB11013:EE_
-X-MS-Office365-Filtering-Correlation-Id: bf7a03c3-5f6d-4bb9-46d1-08dd1e256ba2
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TY7PR01MB13683:EE_
+X-MS-Office365-Filtering-Correlation-Id: b74f42be-fa41-4050-e334-08dd1e32d407
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|52116014|376014|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?HTZow2IuRsROPWeXgKXByyZgcrOFp+0hD2vEw55BFTWFxKqu2xKzNBkUbKab?=
- =?us-ascii?Q?rCNVJZttelOdv30fKfK5Prpe+2aYiusyHCcj61neYhWy1tshNoAqMHuy65ZW?=
- =?us-ascii?Q?+GkkaLEhklKq/zGGGFRwaqjt6F5errM9Ety33f5HYKJ8Hibrd0QDGW5/agiP?=
- =?us-ascii?Q?WQzZbimamOmeC4UMAXjZmI07EV0czKjcbF2NRotAFx7BMpqQexHarDh7ChGp?=
- =?us-ascii?Q?fEGhgDm+RAUdRoHiOiSKtCfKVnVaMYbPfQahXUCb6SFxeQvN2FvEjHSDpveH?=
- =?us-ascii?Q?QoUZvtNBGEx1R6rArKBamAkR7Gu8qtG1ffGIv/uX5df02iH2fCCj1JVlF8/O?=
- =?us-ascii?Q?L+0eJzjp1/2ne/lvHWahs3hvrRqpdKHUmyCu7tDbNIKduWtWevUyIWpdonEm?=
- =?us-ascii?Q?WIDH2BxS4jHWDyYDdSs345ddC1/DznWnU1Y9yNWK+Pj+RculMwdZ7iBuDC99?=
- =?us-ascii?Q?68kBPx3WSWYyfCImN1Ts793NlzPvwIYVY43IR6lPJUEYyzsEZzKaCprvaGhN?=
- =?us-ascii?Q?73Ynmsj+VdAxEE9Mn/xHgNKkxzuHuKSC2RL5gjMg5IeFe3y2L/RQKp1PovZp?=
- =?us-ascii?Q?xiGQi3GC+W37ZRbQmMq4GTheQVY3M2nLalwnwfHpox1wasuURrAohM74Ey/V?=
- =?us-ascii?Q?90dZr+bLwo2jy6BlDSHaMkrF4Hqgu6lyfdu/lM5N2h/hJzM5chJJzR/lB6oN?=
- =?us-ascii?Q?0d8ufjce/qBz2NX08Nf4k610T4htZIyD8/7UxyxjZDfGorYibPyGf4FIp1IO?=
- =?us-ascii?Q?ql2QX4G3KE6Ndpe2MLWDJmndeznMuQ7diuhomxJDFvMCDdo67/0Ylf6fRl3s?=
- =?us-ascii?Q?qF9V4IFcgHfPbTw+LnE+ZoyfhPpvFM5uDF7hQe1qVL6BKmlY8nDH0vsDPSBl?=
- =?us-ascii?Q?zYh9j3/W+zMymm5iLFtqPyzoto3Yq9jz/5TjVFmd8JkijFASuZZLfcDFUYJ4?=
- =?us-ascii?Q?ShuUbW8M+OJASAgMDQ24Ym9mGjoawKvQGco6isC6AuDuZvvylW/IheY/eYne?=
- =?us-ascii?Q?KD2lKnMo/tlg/fyV0gVT6UKZZ7XKBuahcqcYikVfkm0GwlpPila3faMvr8E4?=
- =?us-ascii?Q?1zV9ie5vMWUB7WMUoM4MTzqYzzGb8w45C0kfosbBl4JR3hGev9b0p6LVvqqi?=
- =?us-ascii?Q?FTpodwRfb2HkogE+tVqItiOwuXovTkIv5D7KLAJO4pKWRnmjR1LICXmJhgpl?=
- =?us-ascii?Q?mPSzHhfEZmerK1HXAJy0nM1Hxv8vmiwCJjmbD384bi04BRSlpOrCGqsUnjLH?=
- =?us-ascii?Q?eaprXRIEXypkr16BjIXqZQAAnIvIX7ul0Qd7Ic6jJBnuFCyX0BMRA7VZbU0V?=
- =?us-ascii?Q?dVpLnPu/7q/kUORlskzBBTNCTmjp2xgvsCxVBSoCe+I2BkiZ+ac1RsWQ/MIN?=
- =?us-ascii?Q?dvnT/UZlEVK8XrPTcHe2Z27PlPrJ?=
+	=?us-ascii?Q?fX7unpfVLnHd/qGfE5MGgYMBj2Sj5PBSj09VK6pprBYh1+fHmM+rpbQ9hVMa?=
+ =?us-ascii?Q?BaGHxQFhy7DQciStvith6UXt2n7lIooZspA9yjBUgS7T3jPvAxxj49BwKPoL?=
+ =?us-ascii?Q?aLJz6AJ4v90boW0a+jM5fybE2wkVBQbNQbGVum9+slLqtsJSG90cjpMPv60+?=
+ =?us-ascii?Q?EVifdf5GTe5tUEBsEVRIr/5nq83Fix4yUMDNq/bG8ppsT13RIYw99cfZI8wf?=
+ =?us-ascii?Q?qSMO1MVV15Jc1NLZvEKZ1N+sN45R4yS+FvwZ3fR3Z/zebH+Y7mmYndpOG78w?=
+ =?us-ascii?Q?z5OKq4xK04iGrR7ia2Cins2SfxG6Nu4P/WmGmxgawmGFQEFVFjgau+08P8Hm?=
+ =?us-ascii?Q?wdghrZ72tHQu8HzfhqdWTBoGv7wiEjWjLIC+k3+slTt0wBXjtfWNgaXtL22Q?=
+ =?us-ascii?Q?aK6bmedtqO0QwhyceHgsSJwHFK8T2v9e7AVpBKRao0njKOFjfkleH7KlJXiK?=
+ =?us-ascii?Q?sabVNG4/XQLvkW+/i5cd/Qu2yPZBMviwuVuZHVkiZt1KLmqx/bvthxz8s30X?=
+ =?us-ascii?Q?yQh8Inz68RM2uiYLxd5LqauLRaXTbC3k5r9x3OsMnYYTmk+V7AVOhYqiSpRk?=
+ =?us-ascii?Q?YdZrlxc92PHaE5VwQgBqhbxjQ1EqmXTui5avu8lgLFBRhKO0APIwsLPp2lKO?=
+ =?us-ascii?Q?6XYCVKg7lHTxpfZrwTHZhDJw1ifhwB0MPW65BqNnUGfzXT0QD6WGgb4VZQ8y?=
+ =?us-ascii?Q?4Jr/03VpHv3wn7qocNMLOQ4yW4Qxae4oUp4LVoz2+d5Rv03WUXOVfMQGw/1i?=
+ =?us-ascii?Q?hopiOvPG3ua7ht4YdmzIuJX+KbBuX9Db3APW3RRTQgE1P49Nh2yf0yztZvd4?=
+ =?us-ascii?Q?CLOM4ZsZcBrj055ZQAsS+cGKTkpuJ1MD29GkkMRmINBp8mNBNTSQ15EjaEvd?=
+ =?us-ascii?Q?y4Vyn7DAHHvHIW8/m1z8igfLh/I1lo0M3oUmGXHkSRboV7L4K310jJ1Ob+4t?=
+ =?us-ascii?Q?sQMcEsk71Sv/gte/eEtHjJdQkAFwg/zXgOUYXgYVMM6kxkxzY23GMXwt6RPn?=
+ =?us-ascii?Q?LQAnFR0+t2R3t7vvFdGCMXF9UMEKoRJkkr2HhA8qWLd8wKcoWfSVSoWDoEfz?=
+ =?us-ascii?Q?b5glhAsBOdFG4iIB6mdCNz1m8Aktscm7xG3S0c15bToC4SDfHA0hlaU0AKDo?=
+ =?us-ascii?Q?aSbt+7JikIWcxUlePj4eowBVfbq/Ev0bfD4AyK5JWps7T4SZ4anMi1oOAZs0?=
+ =?us-ascii?Q?V0tb/VprTQgzg3rqj1ANW5pXzgVgrQOAhzRnZmsHahs4C2A0xNzEv+0b1cHQ?=
+ =?us-ascii?Q?XUn4KbIxcqP6UvGuim0IT5KlXo5WjWYJk1BNp7O5yC9A/Bp8qiwED/CyXYvU?=
+ =?us-ascii?Q?6xHXPZRciiU+xqhmG6EXlJRO9ZU7RS8w3rz69JFngwRGalyqf8mcFgYY9OXp?=
+ =?us-ascii?Q?wxd/5SOcqOlWkOkw1rL0lpaEeF0NF7SAc0PPJnXqsHG36fqP3EmPe0+U3xNY?=
+ =?us-ascii?Q?GgjnCC3S4M3xFFlm9XCA9hXbDlQ+6+l5?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YQBPR0101MB9181.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(376014)(38350700014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?6SCDnwwRXJCrdtkEHrgzXXW8zkmQRy5K74HsfGdMqz86nFaQ2ddtsZzRc6g9?=
- =?us-ascii?Q?prZBAaTcBPIwoj4jznAmwZ27WlWH89+bLiai11jiiy5EnpxTRXciY77GmHox?=
- =?us-ascii?Q?bTrSZ8+BRjsT8cb6b05xqmenQBtqb8aT79ImQsFhjlMNls9oawIE+upVLd7Z?=
- =?us-ascii?Q?DYzg/8P4VziWA1OYuAvFKsTEHqxtF20SpRXqhIR/dFTTMgNuu1uQp4m9HPgc?=
- =?us-ascii?Q?cjUBwUGKwX5TeybhMWYyVTEzPvEH9yWUU+o+xWUzPwbsans416wegkurw7wW?=
- =?us-ascii?Q?anY7dN0smrcX+rGisMiRKvQA+XpoZdUtLB3PiRwxRpqkXsPrOT5SEb5VMimY?=
- =?us-ascii?Q?Vkgdhm4UVvWGLaBCLhZDRqexzLHE+Cvip+c4rYU5wFyog0s43Zl8z1dh0SLR?=
- =?us-ascii?Q?/a5YTZr3MIPAaOAkDoP8q4280aG0rN7VW+E35ysg4EWcIXRGvjEZitCFTvIG?=
- =?us-ascii?Q?xC0JWGf10Ttd3CzJpJFlEztEDDX96u4PsiEchhDPGN5SOX0N2u9t837MOnjd?=
- =?us-ascii?Q?ZLz/DBLXxjg5AXYeaYGg9rn+2iIk3Y0QRLlkEQ2leF7ZBaQjWGF0PhtNiDGP?=
- =?us-ascii?Q?nHq3aGDtamr4tdeTWwY2YySrUBRWpqT09asmMoiUCFLjIaxKRUGOUrpyiNQ9?=
- =?us-ascii?Q?nCX8pTdTBBHrclZ72AMO/wDF+ld6obb6JgC/SGU+O2R2gTc96toeI8daE2bC?=
- =?us-ascii?Q?y7yHQRknuoGbIHlqrzSVzv0pH/cpAFr3AYqlirNjFyLCmolYIb3stIWWb0eN?=
- =?us-ascii?Q?D2tiiQOHi84Ro/qiu88g4iEl35itUO2/VFz3N/nKTPfPGbWJb0AC5r07rQvc?=
- =?us-ascii?Q?kyIBPSjbe/7mBx11BDR/x7tCpTdfC9ITgvJi3xaBNt3oeXBtTv5RKUVv0E8r?=
- =?us-ascii?Q?4PkWaEB8conr+0KbzCmEgyCyyelISbwP6YfhLuLAM+O5pYpf12Bcvmb7caFN?=
- =?us-ascii?Q?mE60aEFtbW4nciKd3iS9FxaKMUqxK5bjfEN1KDH6VRASmM0eVWszaRiefkH3?=
- =?us-ascii?Q?mxZHzg3YVBonEXtfsX7DLD8y1kZpn5og/upVq7ERV505xy2YMl5eNhEtvOmo?=
- =?us-ascii?Q?Zfnn5L9mkrfDd0HRwTlJfo2NRq/zaBsD5TrPJvSAH9rozOrYnrBVlOVNhW9t?=
- =?us-ascii?Q?z+HBX2sNAMIw0fC6INWxYMR5v16gKjvvD15+Pd0jFEBRvGhkuxjg8r51YJx9?=
- =?us-ascii?Q?3VXuGAu2oEu+2sbhgx7chKA13QpK6aNusT7tYDIhyNgquF8AM105y6g/JKHN?=
- =?us-ascii?Q?hDPXVPEmeZ31L+NOJBJD29UtnWy9bgAveAEHGz9cp+LIWfQPiVoRsp4Qg1Sw?=
- =?us-ascii?Q?nEPN7y2x1x3ug1oRj+cNF7Ige+PGNfDLd0/9xtinz3i4SeZjbSFBrOWSF15k?=
- =?us-ascii?Q?etMFxD8KJ8/RJ3uQb+2VUPIAhksNKU4ipj9867gIZPv6vQ7I/SRFYJvilCFG?=
- =?us-ascii?Q?eEz4C++FcJM/3RHwqBVruSSzHnMPHh98N/U/Ghy9MywULuAPJeaOjeOek60a?=
- =?us-ascii?Q?LDGclglaGXCNJFqzF5uqizMtvM40cMH8jsdZR9Z9c2X5A8OZ14Yz6WR2GCcz?=
- =?us-ascii?Q?WgNiRoBALazDR6z6xiaYR2twFQla8+bss6Qrkez+AR6zaNnvCYW4sAW9aC7T?=
- =?us-ascii?Q?2A=3D=3D?=
-X-OriginatorOrg: dimonoff.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf7a03c3-5f6d-4bb9-46d1-08dd1e256ba2
-X-MS-Exchange-CrossTenant-AuthSource: YQBPR0101MB9181.CANPRD01.PROD.OUTLOOK.COM
+	=?us-ascii?Q?kbLhq6movk1O5aN/olwYj8irRxC1fuwlt1cTOx0oAmClY/y9cST5DWc+SO1U?=
+ =?us-ascii?Q?4uFiz7kNNotlyA1n2DzOMmy/tyYtlxGNtO5NPk0NPVtFfNtJB1BM0e3xpwoi?=
+ =?us-ascii?Q?oT5FgA3tKCqEzI5Lrj2fFspA1LHedW8R1k1v9FXBCl+/vLZuowQebmQnUu24?=
+ =?us-ascii?Q?FuM1Y59spKW5zjFv+X6KPumNAWA7jdVQ30XKsofZmMfWSLjl5VrVYrn5rOzm?=
+ =?us-ascii?Q?drwRjv4pl55fsbQodHwGauWc0CYH1JKH6X28+qkpEXqsQBcHfaYk/KLfW2Or?=
+ =?us-ascii?Q?VCNNxzjQyM9vS61Go1GdwChNo3j4jaNxKph6RMjnjtaq4NJDe8szV9fjKCuH?=
+ =?us-ascii?Q?tHBsIJmrTGtZrhyKN39r+vV9ASf/obm42iawT4RP8zy8l2a5tMUGKEOWcsee?=
+ =?us-ascii?Q?g92jgH1KD++98he+bEAJlQQM+lw6VoQXfkErmGcZSOx8/6H7s9jL10jhjr1m?=
+ =?us-ascii?Q?f7ZUKEZITRYE1GJB90oRTtdzpCDhWMS6Z+JIdPcb68Mpy/eqEXgUsDBV0kyv?=
+ =?us-ascii?Q?aKk6gXgnC9wzfhHssbWneaf/bEmDDTZNNqHHS1G+vi0SiWaTZjP7XJqajXbX?=
+ =?us-ascii?Q?wQwgvCJ6n6vOvAsIGdn5rm6Jp/99Gen6tWCDgYwmQ3TaLF4TN33lZn/vZmyi?=
+ =?us-ascii?Q?rHfHLV+Cq/75F2eLf6XjZ6ZIFQFbtfmsYeJEISPKl2Es4k4CemiJszmOBOPb?=
+ =?us-ascii?Q?+33sck/6gaN5uYRW81OKKvvf3iNN9WQ2td5J7SBAdNivtqoRRG4qePlTt5NN?=
+ =?us-ascii?Q?11+I4WvXeobaOrxIMlx/C2KL/mG4X8Ho84F4xwdg0QyrR/TO3ES1++LORYsT?=
+ =?us-ascii?Q?nCwP4TrJKj6logz11OFcbAgpthME4FGRtTHi5sUvse1j8BufHKDRt1VXCASU?=
+ =?us-ascii?Q?6Y8S1WZwfOP71cMn88AMtuIFWMcW4TvtH/vXWKNPOC7PFuqpisKjRg/mvQkP?=
+ =?us-ascii?Q?VNKiWFR8x4H8ZaZyozeiW2hFmdDuRNxV5IgrMixo3h3nvtkvdK9dwbNhzgEa?=
+ =?us-ascii?Q?4YvYk+syHUzvyOhw9CJsb8OUGBqHfO0NcmZHgs4MLejoZlqCI9LjOSQjPu2b?=
+ =?us-ascii?Q?xDUCqxzpwHTjfQl0ltQI2z5Lu2/kHzt0jVSmJxrJQTbpdmXJY7VUap37wZkb?=
+ =?us-ascii?Q?ZEIfsLUQdklZ7ivu+AFRHYJEvWvpWTiLly/pqN/vp2NvGoIs4FuYh0V2Z7Fs?=
+ =?us-ascii?Q?i/MES3hq6BSRUmcrNrsNlk2sJ9OQdK6Y/vuNcxyx/WgOJDYakKGcrVL4Uzw8?=
+ =?us-ascii?Q?z586uKTKAWWG2YCN4btLPCMy3IY5jxd+NHmi4fCcWrhrVpCvORkw1pCCYzEf?=
+ =?us-ascii?Q?gv7rjWHSUXOv+DO5mMxyFX9N9RfOK3ZFcIxivChy2YHBrpX5j0+eP45wiw3g?=
+ =?us-ascii?Q?1uP6SUmebePXbuQCah5FghuszsOhpmKs5kD70VgSz48qol16eyM42ApDeWzM?=
+ =?us-ascii?Q?uTVy7JTU+WcE6vS7GQVanxZJR//6500iZC/PaGEIXLvLf41sR+hPhPD99imM?=
+ =?us-ascii?Q?3fX7Z/f98ff7PLFP1TZ+l0XrhLyKi4F9TpsYK5s2zncrpW4OPPhFa5P/KzC4?=
+ =?us-ascii?Q?XJ7bjaJ4he5yIoMEIuxuTAeNqxMYX9lzQE+jv0e0DkkubblsT6E+shUGoBp0?=
+ =?us-ascii?Q?cPhdPWj9pDN9DD1aDo3Wgxg=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b74f42be-fa41-4050-e334-08dd1e32d407
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2024 23:00:22.6862
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2024 00:36:21.2253
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: c4063547-e5e6-4866-a386-58c3965da102
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /SXombrzL+gNtS/HVtRcDHGSxhVUmfVHgzjfhtKwcyLbBB0/UcwCC+sldhuuksEO2DrRSGHHnSU3rQtSQ9Gf6xARpWOOdcFVdRsikM3uWzE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: YT3PR01MB11013
+X-MS-Exchange-CrossTenant-UserPrincipalName: U6W/37R95ambpynV/IqHD8z7NU8Nu6Y+fzt6m1vS4bcbGn8zuvxgZ07z8lan5CswBK2L/HqHFTxWSVQtbtIsQcC9yrSzQCozkfNMez2769cW+zt1YtLJjDsxH4YW37Zv
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY7PR01MB13683
 
-On Wed, Dec 11, 2024 at 08:53:02PM +0000, Jonathan Cameron wrote:
-> On Mon, 9 Dec 2024 16:49:12 -0500
-> Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com> wrote:
-> 
-> > On Sun, Dec 08, 2024 at 12:20:38PM +0000, Jonathan Cameron wrote:
-> > > On Fri, 06 Dec 2024 11:09:57 -0500
-> > > Mikael Gonella-Bolduc via B4 Relay <devnull+mgonellabolduc.dimonoff.com@kernel.org> wrote:
-> > >   
-> > > > From: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
-> > > > 
-> > > > APDS9160 is a combination of ALS and proximity sensors.
-> > > > 
-> > > > This patch add supports for:
-> > > >     - Intensity clear data and illuminance data
-> > > >     - Proximity data
-> > > >     - Gain control, rate control
-> > > >     - Event thresholds
-> > > > 
-> > > > Signed-off-by: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>  
-> > > 
-> > > Hi Mikael,
-> > > 
-> > > As the bots noted, the maintainers entry has the wrong vendor prefix,
-> > > or the binding does.
-> > > 
-> > > Also the issue with missing include of linux/bitfield.h
-> > > 
-> > > Unused gain table is less obvious. Not sure what intent was on that one.
-> > > 
-> > > Given the discussion with Matti about how to do the gain control, please add
-> > > some description here of the outcome.  The control scheme is not particularly
-> > > obvious and is the key bit we should be reviewing.  It feels like you've
-> > > applied the feedback on v1 to the light channel but it is equally applicable
-> > > to proximity channels when they are just measures of reflected light intensity.
-> > > 
-> > > Various other minor things inline.
-> > > 
-> > > Thanks,
-> > > 
-> > > 
-> > > Jonathan  
-> > 
-> > Hi Jonathan,
-> > 
-> > I will fix the warnings the bots noted and other inline comments for v3, sorry about that.
-> > Regarding gain control for ALS, I kept the non-linear table provided in the datasheet.
-> > The user can adjust the integration time and the available scales will update
-> > depending on the value.
-> > For example, at 100ms, you have possible scales of 0.819, 0.269, 0.131, etc. (lux/count).
-> > The hardware gain and other relevant registers gets adjusted by the driver depending on selected scale.
-> > The attribute is kept as read-only as Matti suggested.
-> > 
-> > Now, for proximity, again I'm confused. Please bear with me a little.
-> > The only "scale" I see in the datasheet is that the proximity sensor is for a short distance of under 70mm.
-> 
-> That sounds like a design point for sensitivity of sensor vs light source brightness.
-> 
-> > There's nothing provided in the datasheet to convert the proximity ADC count to a distance or to anything meaningful like standard units.
-> > I don't feel like this is really precise and the intended use case is probably like mine where you can use this to detect
-> > if there's something covering the sensor or not.
-> > 
-> > I took a look at other light/proximity sensors, again, it's not clear for me how to handle this.
-> > It seems that some drivers just directly control the hardware gain register with the scale even if it's not really a scale.
-> Typical case is that it is a scale, just not of distance.  But rather controls an amplifier on the light sensor,
-> so same as for the ambient light sensor.
-> 
-> The ABI docs are a little vague on this Documentation/ABI/testing/sysfs-bus-iio
-> has
-> What:		/sys/.../iio:deviceX/in_proximity_raw
-> What:		/sys/.../iio:deviceX/in_proximity_input
-> What:		/sys/.../iio:deviceX/in_proximityY_raw
-> KernelVersion:	3.4
-> Contact:	linux-iio@vger.kernel.org
-> Description:
-> 		Proximity measurement indicating that some
-> 		object is near the sensor, usually by observing
-> 		reflectivity of infrared or ultrasound emitted.
-> 
-> 		Often these sensors are unit less and as such conversion
-> 		to SI units is not possible. Higher proximity measurements
-> 		indicate closer objects, and vice versa. Units after
-> 		application of scale and offset are meters.
-> 
-> So it kind of says we can't relate them to real units, but then we provide
-> a unit. Hmm, not our finest and clearest documentation.
-> 
-> Probably best bet is to follow precedence as even if we haven't tightly defined
-> it that is what any userspace tuning these value will be using.
-> 
-> Given inverse square law and different characteristics of reflective surfaces
-> I think it is normally a case of crank the gain up until the signal is good.
-> 
-> In most cases these proximity sensors aren't much more than fancy switches
-> though can be used for approaching vs moving away detection.
-> 
-> Anyhow, I haven't checked all the precedence in existing drivers but from
-> memory scale is the standard choice.
-> 
-> Hardware gain as a writable control is just rarely used and only in devices where
-> it doesn't affect what we are measuring. In proximity that means time of flight
-> sensors, not ones based on reflected intensity.
-> 
-> Jonathan
-> 
+commit f8da001ae7a ("ASoC: audio-graph-card2: Purge absent supplies for
+device tree nodes") marks multi/dpcm/c2c nodes as no suppliers. We no
+longer need to use post-init-providers property to break fw_devlink cycle
+(And no one is using it yet). Let's remove it.
 
-Hi Jonathan,
+Fixes: a2187d0dadf ("ASoC: dt-bindings: renesas,rsnd: add post-init-providers property")
+Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+---
+v1 -> v2
+	- add missing DT maintainers
+	- Tidyup the git-log
 
-Thank you for the clarifications.
-Please see v3.
+ Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 6 ------
+ 1 file changed, 6 deletions(-)
 
-Best regards,
-Mikael 
+diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+index 6d0d1514cd421..e8a2acb926460 100644
+--- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
++++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+@@ -112,12 +112,6 @@ properties:
+     description: List of necessary clock names.
+     # details are defined below
+ 
+-  post-init-providers:
+-    description: At least if rsnd is using DPCM connection on Audio-Graph-Card2,
+-      fw_devlink might doesn't have enough information to break the cycle. rsnd
+-      driver will not be probed in such case. Same problem might occur with
+-      Multi-CPU/Codec or Codec2Codec.
+-
+   # ports is below
+   port:
+     $ref: audio-graph-port.yaml#/definitions/port-base
+-- 
+2.43.0
+
+
 
