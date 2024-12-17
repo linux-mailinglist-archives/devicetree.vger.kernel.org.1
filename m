@@ -1,58 +1,70 @@
-Return-Path: <devicetree+bounces-131602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56AF79F4106
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 03:46:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 157679F40EF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 03:42:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C21E169775
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 02:46:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 017041684F1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 02:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1DEB15B0E2;
-	Tue, 17 Dec 2024 02:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C69E413F42A;
+	Tue, 17 Dec 2024 02:42:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="WRSzkUcL"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="Ya3k+FNL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m11879.qiye.163.com (mail-m11879.qiye.163.com [115.236.118.79])
+Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D620A15A85A;
-	Tue, 17 Dec 2024 02:44:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.118.79
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7AA784E1C;
+	Tue, 17 Dec 2024 02:42:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734403482; cv=none; b=Og1wsaE3j3RrYoD0LKei37MWMBieedLLSRGeTO0l7ExQZJkrS2nAE2S9XZ/vgb5tDx2Lt6eMPGx3Z4BGkxi1tnQVUGpqO0pj4zDPK3B5zu0/PSoo5fUwYmJO9mvxZuSPItvsbULzmmDjc3AQ0evI3V+8iwCQ0XN+bldOO6simKc=
+	t=1734403350; cv=none; b=mhzmBnez9IveX20nE9tCx+uixTcw03GvzrHH/qqtcdHgBX7wWlwmlUlU8nWH8iQbu5r4cYrL9AhvfOcyC+3uPZtjoHys3B6d9Ff9rlICna7Zlm20evvbC4BMQYSgbG6gAnrVFMHbQZF7vXEeT8xUgDLGh7Wot/wEPOWuEnpOJ9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734403482; c=relaxed/simple;
-	bh=9n/zI/O7haEMeDpiOaVz2plrsy4gpJ2Kt2kHVN/A0qc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=tEXwy8k3/rIiSplxpIXLix1hvyl0i+c3AJBQJPVUGgCxk7BTM5bhmJUAmIx7PTj5t6kjIxHrOuaCd/0bfKprRvkU7E5/tUSnGCS9qh3OZ8zGOHjJBDfGXpmv6jhkPzoZBEV5X1AkNlwMW3piGyTC7MkW6biT3ePhNWAq4qZ5vGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=WRSzkUcL; arc=none smtp.client-ip=115.236.118.79
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from rockchip.. (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 5ec156bf;
-	Tue, 17 Dec 2024 10:39:22 +0800 (GMT+08:00)
-From: Elaine Zhang <zhangqing@rock-chips.com>
-To: zhangqing@rock-chips.com,
-	mkl@pengutronix.de,
-	kernel@pengutronix.de,
-	mailhol.vincent@wanadoo.fr,
-	heiko@sntech.de,
-	cl@rock-chips.com,
-	kever.yang@rock-chips.com
-Cc: linux-can@vger.kernel.org,
+	s=arc-20240116; t=1734403350; c=relaxed/simple;
+	bh=ZaW8jX56lhsA3mvxJABfmr0Sl4etpErYZC7vDB9jGkw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qifs9MTpAOj+VttHnLBqV+DJFLBvjubE6Y9P8anUJ/ZB2K8dujzcFTqNjmTE8tDu12nRGmPjw12q71Qt232sxmLzIdoXCqKCtV6E5jAdp4+iMrTgiG6OvUDMNJn8MpzrgKQgF5hJOPth2wGf+UT4hbWBGn/VGUv9bm0oLVLKS0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=Ya3k+FNL; arc=none smtp.client-ip=89.177.23.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from newone.lan (99-158-29-91.lightspeed.miamfl.sbcglobal.net [99.158.29.91])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 8316F160E15;
+	Tue, 17 Dec 2024 03:42:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1734403337;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=hiGqN27tDAV5FzljGhw0omCZAMqhmOG3k/Hy3TcNcVQ=;
+	b=Ya3k+FNLuQ/rfXYftJ0HcaO2J7yOnwSEdVqwRZYaxKfufAiTB4HqfXOV7rMlvd64vZkCQh
+	pY1DL4jgthkHbO1JXxsIMOvu/JJwXXvLQfgl/OtdCFrEDqEscGOFAvkFM+qzERolzOSOK2
+	UeXP5HXFl4xBS4OGdrvgn6vMJ73e5+I=
+From: David Heidelberg <david@ixit.cz>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	David Heidelberg <david@ixit.cz>
+Cc: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: rk3576: add can dts nodes
-Date: Tue, 17 Dec 2024 10:39:08 +0800
-Message-Id: <20241217023908.1292999-3-zhangqing@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241217023908.1292999-1-zhangqing@rock-chips.com>
-References: <20241217023908.1292999-1-zhangqing@rock-chips.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: media: imx219: Rename to include vendor prefix
+Date: Mon, 16 Dec 2024 21:41:50 -0500
+Message-ID: <20241217024206.1700170-1-david@ixit.cz>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,63 +72,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh9JTFYfSkJLTEsfGkpOTUtWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a93d27c02cf03a3kunm5ec156bf
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ny46Dio5LTILTR84IwoSUT0N
-	DDNPCwFVSlVKTEhPT0tISk1IQklIVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpPQko3Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=WRSzkUcLFHUQwjHZ9FgA80+ljrbvUmQfByWfj/cQfxVhXpURm/hQJeGmnGypOut36OH8y8qHTwwEjeLSvTU+CTNOKRmb0jl/cvYNDFZrNHQLgbLkj/dx8SY3bsndragufi3Nr1KyrcOxLCSuVKdBzM4vjLxNjGVwzaC0/WtgM8c=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=mbc4XvnMPoqYWmjqlM+MGD27w/PMpYBtQHdgk1ZuX98=;
-	h=date:mime-version:subject:message-id:from;
 
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+imx219.yaml doesn't include the vendor prefix of sony,
+so rename to add it.
+
+Update the id entry and MAINTAINERS to match.
+
+Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
- arch/arm64/boot/dts/rockchip/rk3576.dtsi | 26 ++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ .../bindings/media/i2c/{imx219.yaml => sony,imx219.yaml}        | 2 +-
+ MAINTAINERS                                                     | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+ rename Documentation/devicetree/bindings/media/i2c/{imx219.yaml => sony,imx219.yaml} (97%)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-index 436232ffe4d1..82fdfd4720ec 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
-@@ -1195,6 +1195,32 @@ dmac2: dma-controller@2abd0000 {
- 			#dma-cells = <1>;
- 		};
+diff --git ./Documentation/devicetree/bindings/media/i2c/imx219.yaml ./Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
+similarity index 97%
+rename from Documentation/devicetree/bindings/media/i2c/imx219.yaml
+rename to Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
+index 07d088cf66e0..8b23e5fc6a24 100644
+--- ./Documentation/devicetree/bindings/media/i2c/imx219.yaml
++++ ./Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
+@@ -1,7 +1,7 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/media/i2c/imx219.yaml#
++$id: http://devicetree.org/schemas/media/i2c/sony,imx219.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
  
-+		can0: can@2ac00000 {
-+			compatible = "rockchip,rk3576-canfd";
-+			reg = <0x0 0x2ac00000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cru CLK_CAN0>, <&cru HCLK_CAN0>;
-+			clock-names = "baudclk", "apb_pclk";
-+			resets = <&cru SRST_CAN0>, <&cru SRST_H_CAN0>;
-+			reset-names = "can", "can-apb";
-+			dmas = <&dmac0 20>;
-+			dma-names = "rx";
-+			status = "disabled";
-+		};
-+	
-+		can1: can@2ac10000 {
-+			compatible = "rockchip,rk3576-canfd";
-+			reg = <0x0 0x2ac10000 0x0 0x1000>;
-+			interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cru CLK_CAN1>, <&cru HCLK_CAN1>;
-+			clock-names = "baudclk", "apb_pclk";
-+			resets = <&cru SRST_CAN1>, <&cru SRST_H_CAN1>;
-+			reset-names = "can", "can-apb";
-+			dmas = <&dmac1 21>;
-+			dma-names = "rx";
-+			status = "disabled";
-+		};
-+
- 		i2c1: i2c@2ac40000 {
- 			compatible = "rockchip,rk3576-i2c", "rockchip,rk3399-i2c";
- 			reg = <0x0 0x2ac40000 0x0 0x1000>;
+ title: Sony 1/4.0-Inch 8Mpixel CMOS Digital Image Sensor
+diff --git ./MAINTAINERS ./MAINTAINERS
+index 453ba75fce3b..32a4d057a559 100644
+--- ./MAINTAINERS
++++ ./MAINTAINERS
+@@ -21796,7 +21796,7 @@ M:	Dave Stevenson <dave.stevenson@raspberrypi.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media.git
+-F:	Documentation/devicetree/bindings/media/i2c/imx219.yaml
++F:	Documentation/devicetree/bindings/media/i2c/sony,imx219.yaml
+ F:	drivers/media/i2c/imx219.c
+ 
+ SONY IMX258 SENSOR DRIVER
 -- 
-2.34.1
+2.45.2
 
 
