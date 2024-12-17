@@ -1,131 +1,101 @@
-Return-Path: <devicetree+bounces-132032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D420A9F559B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:08:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18CA39F55E8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:20:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EC4C18902B8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:03:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D31A3188563D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:18:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 056A61F9AAB;
-	Tue, 17 Dec 2024 18:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171138F5A;
+	Tue, 17 Dec 2024 18:17:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a183yPZS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l6PKfh+b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E681F8F03;
-	Tue, 17 Dec 2024 18:01:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E638C1F869E
+	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 18:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734458473; cv=none; b=Gmeyc79rC4b76pMw9ytlLtRqSQbq5BED9fC/8vRP7h6gPSm2urXu2rw7kcE8DHtIYAWC+vfHHoeqG0aaxaJDTft9+oQHstw5n1btWxilfynUvSDZ9cwsyrB9iR0fsNHPqI71bvPnOGPQAhldr/xTVwtBZHZQ6zVEFXaysFvZNQE=
+	t=1734459452; cv=none; b=lJUqIMbxIeRJ5oj8hRO4pFXzhkhMttOyywV6ZCZUtu6wZZjh+LYu790O+ItV/g4gC39RYGCw60mhLPBxLxjpBPbOwm1RQtOY4pyZdNEpsQIq9Z6JNMaNQsljOw6Bkt4CfCUnMG5C1nBJ6e5sfHa8M4IMsE0LL6p5c7wDG69ku2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734458473; c=relaxed/simple;
-	bh=QC/c1n5Jks7m2uW84qsP/rNoe34vEW18ChfBNCtXubc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=P5ov4lN7fSC5OJzZdWJKwbLkhujz8HAmf9efICQNtqyyrfc9eFf6HrK0q026XWitimrRitcLLzYY8q6pSr/sECpjmLJQrjTV5ksa5KMNSO4bkpUbsxOPRAF3TZE2C4e0+1yS+OLezzE2lBYQ1Ciet0viCWf/LBnWdQXHC4ZE4wA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a183yPZS; arc=none smtp.client-ip=209.85.161.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5f1dfb0b44dso1255501eaf.2;
-        Tue, 17 Dec 2024 10:01:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734458471; x=1735063271; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SiwHnId7iQeGUr8OsM8sKryugiv1jIm1WvtUfh1wJ+Y=;
-        b=a183yPZSNTFegk4wKgQ1DfY5H/zESXErRxmTJRZlnWa1z9xShD3/rMfeYm3QMFSZ/5
-         TO0aFM0Wykf8Bdv5LPDkzbkMLU/ATbgPgKtnuWPwJrVUxIxqal9QkaPIAr2s+8xG+AJK
-         asrELk7i7LC30H1Bpuqiamxpx7rTTR4ITjr7X/ZtETahfRoHp8F2XFdIYWJmjMQv0PV5
-         GUpPLXQ2z2UPvLIN2fN2mfacCYgU3fOijqPZ6wMtgBZ6KOQ/U88yui4pNUy/mZGR60/h
-         lqqbKcJttNAMCK5KSZyYCTncIHQpz4It14en/CQg9arlAURDZLvGx+MFDicW8ac6rWY1
-         ohuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734458471; x=1735063271;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SiwHnId7iQeGUr8OsM8sKryugiv1jIm1WvtUfh1wJ+Y=;
-        b=CMplvC78WzydNiXilNzuL06RlzKR9k9TqCiayMJdlsBhm7vdLLSUo9vapHGYWavo1d
-         K6+DgFigWO1c6mIYcBS6TcinhAttvES+CjaVllkTfZe9kgVKpg39Ne2Z/AKy7EFTxhgZ
-         UiFT/Th69/Ep8MhDCfj7q/mGS5/ZnEq0hMfuuwBRCX4nTZSQq24inSnwiRtFgbIKfFIs
-         mCOF8IaFYrEO2hMi4U515QSLGnnyy2AYKSR6Us4AV2oVXwaKJ6ntu2DmFL/0PAOuWH1M
-         Og7rH25DSULEihoZsP+8IAe+LEbgs4tdeVm+/ieaR7ZUCPhIFeMQpldmJR+tmPUYlUKg
-         S1AA==
-X-Forwarded-Encrypted: i=1; AJvYcCUI1ZggJbvZa0PhanvRyUkV68C/9PBM3Qw+Yp7FNbigeSuhfFIkg51JwMV3hhn1y0YKl36Wj8QKbjX71RL1@vger.kernel.org, AJvYcCUbwvbNyw3m/1JsqwX2tQ3FWizr2BkLPizzpei4R3iIg0tfdpDiOeocHyJaFBrj2Ht0GvSNfXATugSz@vger.kernel.org, AJvYcCWcnusQnL03kkMliPeCOOupRkurZBHGJg+pcXKL1lc3C+CMAVDPnrHc9dpdqGEbbMHRu0BsrwKGHLug@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqS1J/UhDLt/HEi0V7Fen+VxZPsttL7o/uWSJgwDGTvytb5V7l
-	uBx/s9gxxH9O7Op3kr8Qa0B3Bxr51YbxWX6cBI5Mgqdlkk6Zua5AlWWcCvhk62MBj3m7DZmW/8c
-	T2el51g3Skm7WcJgot8nKxhiD2XM=
-X-Gm-Gg: ASbGnctisSWtkJ+r+Sl1WkAVD2wm7/rDyN1q2oQdbHDBNoCHWTK9UMfJjsXCQIzQTyt
-	c8QVq+EjDlpRUPj0iV+2p23yey5rwuQtez7LRu7QeMQ9FetlZdoRwU0wqZpZdd3yTEu6xt93e
-X-Google-Smtp-Source: AGHT+IHd+3ZVfpm2NDJm9bWCoeeRHqvP9fk+8IUJThjwea2MK0kqPI6ZhSam/HTj+u/wwVy83PXt4Sd7guaeIDXPgdg=
-X-Received: by 2002:a05:6871:823:b0:29e:2422:49e2 with SMTP id
- 586e51a60fabf-2a3ac8e1087mr10260963fac.31.1734458471419; Tue, 17 Dec 2024
- 10:01:11 -0800 (PST)
+	s=arc-20240116; t=1734459452; c=relaxed/simple;
+	bh=Y29ea42Kp25MVyYUZK6G0WLpbBrAnSqVCNYtDQ7vaaI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P+5cUgZz7fJuirk/r53aRLIY3xXhyoNG9+0uhiytaVIpRwom6DQyyBBNly8NADKufMKueMA0/QeZAkddKN61wO8tO9q30iNHsF6ZI7yGXHriOWEmdgu3N20Bluy+qMWsLVC17O4nsJkCVeBOBkGstJZr72M7d4sfZvUyZxk0zek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l6PKfh+b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 985B6C4CED3;
+	Tue, 17 Dec 2024 18:17:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734459451;
+	bh=Y29ea42Kp25MVyYUZK6G0WLpbBrAnSqVCNYtDQ7vaaI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=l6PKfh+bM/d4y0SeF8oxPs6zR4k/+NKc52iaHoGFRb1PvHT/qfJuBFMwBVEQlb9OH
+	 NEU3NGLGwO3AXWaXmZUI3pX6Lkd/9K1fcKJEG+RbSEFrrg6ifsKDqlWt7k/5zG+aAE
+	 rvKCswAQwizznA3Iiwx8b4ZWEyjp0JEGN7KmT5igtCUs67MRiljYojUm8AXM9BbNmO
+	 h/pr3R+vkN8CcamC+4D7n39Q+9bccCTGnTvQzWLJmIZKuIbG492cwgDtO3n/n/zZpR
+	 0UVVdfxA7v3da3PP8UbwiuqBTm12tJfq/EQqF3bmIp487SWIvnOet50VQ3X53igpcf
+	 SEKuDdtjRivlA==
+Date: Tue, 17 Dec 2024 18:17:27 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] dt-bindings: samsung,mipi-dsim: Document
+ fsl,imx7d-mipi-dsim
+Message-ID: <20241217-uninstall-tingly-c1341dc4615b@spud>
+References: <20241217131431.1464983-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241215053639.738890-1-anarsoul@gmail.com> <20241215053639.738890-2-anarsoul@gmail.com>
- <qbtp4jvkx3r5azufe4k3vtapqpfs54dyjiu4cy5v5wkkzumrzx@vy3xzkfplbue>
-In-Reply-To: <qbtp4jvkx3r5azufe4k3vtapqpfs54dyjiu4cy5v5wkkzumrzx@vy3xzkfplbue>
-From: Vasily Khoruzhick <anarsoul@gmail.com>
-Date: Tue, 17 Dec 2024 10:00:45 -0800
-Message-ID: <CA+E=qVeQ8uHBCeFtw6_2cY3252-YXc6eWrf5_YdeVgbp5LJo5g@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: clock: sunxi: Export PLL_VIDEO_2X and PLL_MIPI
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Maxime Ripard <mripard@kernel.org>, Roman Beranek <me@crly.cz>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="j+gk1rq+qln5YYSY"
+Content-Disposition: inline
+In-Reply-To: <20241217131431.1464983-1-festevam@gmail.com>
+
+
+--j+gk1rq+qln5YYSY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 16, 2024 at 11:33=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On Sat, Dec 14, 2024 at 09:34:57PM -0800, Vasily Khoruzhick wrote:
-> > These will be used to explicitly select TCON0 clock parent in dts
-> >
-> > Fixes: ca1170b69968 ("clk: sunxi-ng: a64: force select PLL_MIPI in TCON=
-0 mux")
-> > Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
-> > ---
-> >  drivers/clk/sunxi-ng/ccu-sun50i-a64.h      | 2 --
-> >  include/dt-bindings/clock/sun50i-a64-ccu.h | 2 +
+On Tue, Dec 17, 2024 at 10:14:31AM -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+>=20
+> The i.MX7D MIPI DSIM block is compatible with i.MX8MM.
+>=20
+> imx7s.dtsi uses the following compatible string:
+>=20
+> compatible =3D "fsl,imx7d-mipi-dsim", "fsl,imx8mm-mipi-dsim";
+>=20
+> Document "fsl,imx7d-mipi-dsim" to fix the following dt-schema warning:
+>=20
+> ['fsl,imx7d-mipi-dsim', 'fsl,imx8mm-mipi-dsim'] is too long
+>=20
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-Hi Krzysztof,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> You cannot combine these changes.
+--j+gk1rq+qln5YYSY
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The patch basically moves defines out from ccu-sun50i-a64.h to
-sun50i-a64-ccu.h. How do I split the change without introducing
-compilation failure?
+-----BEGIN PGP SIGNATURE-----
 
-> Please run scripts/checkpatch.pl and fix reported warnings. Then please
-> run 'scripts/checkpatch.pl --strict' and (probably) fix more warnings.
-> Some warnings can be ignored, especially from --strict run, but the code
-> here looks like it needs a fix. Feel free to get in touch if the warning
-> is not clear.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2HAIQAKCRB4tDGHoIJi
+0k3MAQCt6jlstk4tiL4GQfRt0NMWT/uIMNSd5ArzTb3HL68aYQD/UK8vSZDHebjl
+l3xTUJ+5CWOxKfdRrHiMnMiZjTK3cwY=
+=/A6H
+-----END PGP SIGNATURE-----
 
-Yeah, it is not clear what do you want me to do, assuming the previous
-similar change to sun50i-a64-ccu.h did essentially the same, see
-71b597ef5d46a326fb0d5cbfc1c6ff1d73cdc7f9
-
-Regards,
-Vasily
-
-> Best regards,
-> Krzysztof
->
+--j+gk1rq+qln5YYSY--
 
