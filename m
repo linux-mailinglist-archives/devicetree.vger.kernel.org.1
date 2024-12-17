@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-131611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 266399F42B8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 06:29:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F409F42C8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 06:31:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C997818900ED
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 05:29:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 891541883CD6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 05:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C885B175D50;
-	Tue, 17 Dec 2024 05:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C45E1465AC;
+	Tue, 17 Dec 2024 05:31:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gy6EJ1c9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sAUYC4Kf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90DE314D70E;
-	Tue, 17 Dec 2024 05:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63CE21361;
+	Tue, 17 Dec 2024 05:31:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734413094; cv=none; b=GPgHCCimuhYKgHbBRRWhZGjYgTwLaQqmD7npG7CnyZMBX7Ck0fBqgpQtYJRAa77hRPFcFLTxpajPFkOQMTUTGa6XbnwmkxISfDTSvB/YAHCuCZ108AsFRYqUhthZXjGvxZ7FpxABxYIXCydqYaZKyBDGg8i626nLdIgt6vkffjQ=
+	t=1734413490; cv=none; b=XxMVcguLeycsprV/TO0chOtY3E7DnbWH2MBMQiyruMFJ8MDsAjLsu27eyYmjZJ43bMyOY3x/P5b+cSdy7Rvgo+/KyD3d8uz1e3sDSRw/QjjtZEoEslTvsgLcmXsS5ZQnrge+01sFo2G/Iwwf23Ev3vXPC7G94cleN7xK91kXGnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734413094; c=relaxed/simple;
-	bh=9RcEuBF5bowQAtfg1xxeDCSTyQtNu3L63uQXRiWuZGg=;
+	s=arc-20240116; t=1734413490; c=relaxed/simple;
+	bh=5phnzrZEee5oF6zAdBg+HG/4Gxe4+wwKY0XvxrzXtkQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SqD13fvbbHzFJTQ8c5/UkYIAilkh+KqzNLllEd65g4ekUM5rHcCFceHDuLkcuSCpT44zqCOsFhxzENzfrhuxZVf+pyeLIoHIsiABofYXQjcCHe5FXbF09We4nEMVDuSvun3no55haF4czp/Ho1DFKYT7dF06r6Hocgy+v3yTIEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gy6EJ1c9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 170B5C4CED3;
-	Tue, 17 Dec 2024 05:24:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=AF0Pqa/Ze7cyuS0j8S+adp3bcezyKorWkATwHzT5SkAG7Z9uz+mN+JDtiODqgCKL043zudm4Qhh2vDWUEReZ+HgD7xPiqr3APY1H2BPZ6C6VxxNTkCLXUnxwNKjLTlWS7b1PbrUIPtZY+NeKZxcIG3KlswbTSpX8YRx6iChoLPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sAUYC4Kf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18917C4CED3;
+	Tue, 17 Dec 2024 05:31:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734413094;
-	bh=9RcEuBF5bowQAtfg1xxeDCSTyQtNu3L63uQXRiWuZGg=;
+	s=k20201202; t=1734413489;
+	bh=5phnzrZEee5oF6zAdBg+HG/4Gxe4+wwKY0XvxrzXtkQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gy6EJ1c9Ufla1uqwXLhVNI+sp3OxX5axM8kD85nc2St+C1g9/KojFx7/dVTCFbQaY
-	 wuuUjm94hYmXTfiWj08eIA8AVLu6TYizzznreAFJTakBvBLWRQXHlbIvjIOqgyt+xl
-	 XKWSpX3Br2Ucm3QWu7yi8IPyGMWAtcEKCWQlV0BnpF2bxKWx1AMgbOeEBQCf0lZ6/A
-	 2aWj3DshcG3mhisUJecw6s1Sr3gTMWP0KL1pGxO2I2Sg2wLFg6jtyIRou3rPJqoOef
-	 DY0zII+eqzmOy714FHshiqEVtvoOMTxH67Uc3w3+YvJccJQSOYLJqml1XSzGU0mtmx
-	 AMaZaryMwjH8g==
-Message-ID: <cccca881-dd59-43c0-9072-dcd91d01671d@kernel.org>
-Date: Tue, 17 Dec 2024 06:24:49 +0100
+	b=sAUYC4KfrrKgRAxTSLZrN8wkSYNc5r/aEx1cRBMtAiYZLzVdSw2B7kchtJ7yqHTcl
+	 R2O6QGsM1CPV/1AIqokd9IxgoXeGLypeMbRl453+spJ7td59vKbfnG38VNvhHDgEKr
+	 qsADRuJDJ7hH4yCVv2UPXkkL8gUljPTpR7zAWmwlqbtYq0Ld/tymCDSijNRRmwxt9p
+	 u8uxjwDYAbwk9Kgl8l7ZxQ/RHkZTgdlgu26J1pypDMv1BDV0ZC93jKfQXngMhyLXxI
+	 feZOIJEqUdSRCQpSF92cEwV13RVBb0MCJzImhtXmVJaTk3mWShCFeJLoDPlW2eAmMS
+	 uVEVTzqVNKxGQ==
+Message-ID: <4e4e8a02-5fc1-4b90-ad9d-9f9ec5c8bc61@kernel.org>
+Date: Tue, 17 Dec 2024 06:31:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: i2c: exynos5: Add
- samsung,exynos8895-hsi2c compatible
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241214220419.723100-1-ivo.ivanov.ivanov1@gmail.com>
- <20241214220419.723100-2-ivo.ivanov.ivanov1@gmail.com>
- <0ebc12ed-fe91-4c8a-a626-b735b0eeecf1@kernel.org>
- <007559c5-f566-4625-99b7-e761a916fba3@gmail.com>
+Subject: Re: [PATCH] dt-bindings: mfd: atmel,at91sam9260: Convert to json
+ schema
+To: Charan.Pedumuru@microchip.com
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+ claudiu.beznea@tuxon.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241211-matrix-v1-1-5ef0104a3af4@microchip.com>
+ <dxgqkdo6ulmqfa5vyerwta3vubuy32gzzu2cxfwwtespydfc4b@5wjrno3lgjsp>
+ <92579055-5a46-4f20-b579-123188554a03@microchip.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,74 +105,36 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <007559c5-f566-4625-99b7-e761a916fba3@gmail.com>
+In-Reply-To: <92579055-5a46-4f20-b579-123188554a03@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/12/2024 21:59, Ivaylo Ivanov wrote:
-> On 12/16/24 10:44, Krzysztof Kozlowski wrote:
->> On 14/12/2024 23:04, Ivaylo Ivanov wrote:
->>> Add samsung,exynos8895-hsi2c dedicated compatible for representing
->>> I2C of Exynos8895 SoC. Since there are I2C buses that aren't implemented
->>> as a part of USIv1 blocks, they only require a single clock.
->>>
->>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
->>> ---
->>>  .../devicetree/bindings/i2c/i2c-exynos5.yaml  | 26 ++++++++++++++++---
->>>  1 file changed, 23 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml b/Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
->>> index cc8bba553..b029be88e 100644
->>> --- a/Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
->>> +++ b/Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
->>> @@ -25,6 +25,7 @@ properties:
->>>            - samsung,exynos5250-hsi2c    # Exynos5250 and Exynos5420
->>>            - samsung,exynos5260-hsi2c    # Exynos5260
->>>            - samsung,exynos7-hsi2c       # Exynos7
->>> +          - samsung,exynos8895-hsi2c
->>>            - samsung,exynosautov9-hsi2c
->>>        - items:
->>>            - enum:
->>> @@ -94,9 +95,28 @@ allOf:
->>>          - clock-names
->>>  
->>>      else:
->>> -      properties:
->>> -        clocks:
->>> -          maxItems: 1
->>> +      if:
->>> +        properties:
->>> +          compatible:
->>> +            contains:
->>> +              enum:
->>> +                - samsung,exynos8895-hsi2c
->>> +
->>> +      then:
->>> +        properties:
->>> +          clocks:
->> Missing minItems
+On 17/12/2024 06:00, Charan.Pedumuru@microchip.com wrote:
 >>
->>> +            maxItems: 2
->>> +
->>> +          clock-names:
->> Ditto
->>
->>> +            maxItems: 2
->>> +
->>> +        required:
->>> +          - clock-names
->> I don't understand why do you need second, same branch in if, basically
+>>> +      - items:
+>>> +          - enum:
+>>> +              - atmel,at91sam9260-matrix
+>>> +              - atmel,at91sam9261-matrix
+>>> +              - atmel,at91sam9263-matrix
+>>> +              - atmel,at91sam9rl-matrix
+>>> +              - atmel,at91sam9g45-matrix
+>>> +              - atmel,at91sam9n12-matrix
+>>> +              - atmel,at91sam9x5-matrix
+>>> +              - atmel,sama5d3-matrix
+>>> +          - const: syscon
+>>> +      - items:
+>>> +          - const: microchip,sam9x60-matrix
+>>> +          - const: atmel,at91sam9x5-matrix
+>>> +          - const: syscon
+>>> +      - items:
+>>> +          - const: microchip,sam9x7-matrix
+>> So that's just enum with previous group.
 > 
-> Because, as I stated in the commit message, we have HSI2C controllers
-> both implemented in USIv1 blocks and outside. These that are a part of
+> Yes, as both boards have 2 compatibles one after another, I defined them 
+> as two different groups to resolve dt_check warnings.
 
-On Exynos8895? Where? With the same compatible?
+My comment stands. I understand your "Yes" means you will fix it.
 
-> USIv1 need 2 clocks, and those that aren't have only one. So it's not
-> a duplicate for the previous - autov9 sets a minitems of 2 and the
-> others have a maxitems of 1.
-
-We talk here about branch that says 2 items. You duplicate that one.
 
 Best regards,
 Krzysztof
