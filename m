@@ -1,146 +1,122 @@
-Return-Path: <devicetree+bounces-132063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7412C9F5887
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 22:13:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 660BB9F58A3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 22:21:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4268416D6B0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 21:13:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFA1E1893AE8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 21:16:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2D681F9F4E;
-	Tue, 17 Dec 2024 21:13:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="G0cWBRzx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D5D21F9EA3;
+	Tue, 17 Dec 2024 21:16:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48718192D69;
-	Tue, 17 Dec 2024 21:13:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446881F471A;
+	Tue, 17 Dec 2024 21:16:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734469984; cv=none; b=NGENmPgzKwVd6jByc9PSgmx0ztCY1A13xgnkByzFmwxiV+yoqjxBYkybXWrHKx/pAQwqBs33HBj8IDH/zhV3WQ0CoEzG7V2/QLogWCcVllF2O3BVm3qwgVlum6YN5rqI+ybOU4enjmByXyvn9BkTryofMDbz9L9Pd2hT/0zQe4g=
+	t=1734470164; cv=none; b=QhC4HN88zUhKumSUIAOyMLUDM4KLdThe2KJ65cqovyEMfGmV6wLCrGJJGZ8WqZ2PLs4LE8T5S5xTO0e8NHpnFjYWG0eLNim136ikQIxWPGgvOdd70wYj0wH1swcAsxsuhf0RD0THgCrMuf8fEUXUXW583oAzU6jRzMAd+/D7JRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734469984; c=relaxed/simple;
-	bh=RSlut8jUC8sevFzKiIGq9DG8Ecu/yvybyXCy7aSosFQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C07XkivuHr7Wj8NNTKw6UhdqmAPzMYAJoXmsCxaUlkkMV0y9R0SFnoU5HktZEoVJbzIHeFrg7QHmgXbS5wApT3ug8k/m8Nx7URgrMFMBP6upGgb5YOXhHrf4EMwlp4pxX13Xg+ZPUp31FlJcZ9EbN1oA3yHN3/joNWtxXbI4ScY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=G0cWBRzx; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1734469984; x=1766005984;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=RSlut8jUC8sevFzKiIGq9DG8Ecu/yvybyXCy7aSosFQ=;
-  b=G0cWBRzxhRoG3y6S7W2N/kbuBC+7EjQQ/4KxA4Bds7UhCTOm/bd02/TR
-   HTkj7OxPZQ+qmmJ1Ab44moqzeVGoPSPqpoVlgNatmU1z+YCwXcwORlni4
-   QOm2ySXCYWJkJxC4dQKB4DDFTpwXh+YONLD0ZqLaRj504N2lblDUBjYmo
-   aSElppOzrPodGrOLpBa5ErZsA//n4KRGTiJ5EqY/ilFmiS4eu/thjibZL
-   EsPE0+3pYNIm6E4GDx2PXe38OW3Ct98/4vdbk1aTcesuJw72tgTm3wT+M
-   xUorb3uM08eM7RIjUBwyh82Gq3+v8Bzlq5dJmhQRnLr3IEx771ZaRsJ7w
-   Q==;
-X-CSE-ConnectionGUID: TNhKecAORh+Q8nCAe/NsdA==
-X-CSE-MsgGUID: NgpGJLd0T9OrgtfvjK8DUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="34640517"
-X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; 
-   d="scan'208";a="34640517"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Dec 2024 13:13:03 -0800
-X-CSE-ConnectionGUID: zNA3MaSrSiiBsrQK8IoBcA==
-X-CSE-MsgGUID: TS6rTs+rQfySfEs9bMD6Aw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="98457163"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Dec 2024 13:12:59 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id E9F8C11F89A;
-	Tue, 17 Dec 2024 23:12:55 +0200 (EET)
-Date: Tue, 17 Dec 2024 21:12:55 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Alain Volmat <alain.volmat@foss.st.com>,
-	Hugues Fruchet <hugues.fruchet@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Hans Verkuil <hverkuil@xs4all.nl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/9] dt-bindings: media: clarify stm32 csi & simplify
- example
-Message-ID: <Z2HpVyVEs7jn0VPd@kekkonen.localdomain>
-References: <20241217-csi_dcmipp_mp25_enhancements-v1-0-2b432805d17d@foss.st.com>
- <20241217-csi_dcmipp_mp25_enhancements-v1-2-2b432805d17d@foss.st.com>
- <20241217-crawfish-tiring-792c535301d0@spud>
+	s=arc-20240116; t=1734470164; c=relaxed/simple;
+	bh=UKaP4RT1362Jn3OfLDudS6vvatZTlO6Za7PX7nGwm7Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AwfBpHozeRV8rLzj8IK7zwHXcciK/Wo6Ef+q4dizK8ibMpbdGCxzcQtPTj1KhEOgTcTUxJzyRwUgsyJ4wTVvldsY6WiODi0yCUSiCM7TJvIJ4N3AcxgZBmELtTASm531/flzqai3x6YVMJUbCvCzzCTlD2aiNboj3EXCVbRWCBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A68DEFEC;
+	Tue, 17 Dec 2024 13:16:27 -0800 (PST)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 621913F7B4;
+	Tue, 17 Dec 2024 13:15:57 -0800 (PST)
+Date: Tue, 17 Dec 2024 21:15:05 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Vasily Khoruzhick <anarsoul@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Roman Beranek <me@crly.cz>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: clock: sunxi: Export PLL_VIDEO_2X and
+ PLL_MIPI
+Message-ID: <20241217211505.7f9c9e4e@minigeek.lan>
+In-Reply-To: <CA+E=qVeQ8uHBCeFtw6_2cY3252-YXc6eWrf5_YdeVgbp5LJo5g@mail.gmail.com>
+References: <20241215053639.738890-1-anarsoul@gmail.com>
+	<20241215053639.738890-2-anarsoul@gmail.com>
+	<qbtp4jvkx3r5azufe4k3vtapqpfs54dyjiu4cy5v5wkkzumrzx@vy3xzkfplbue>
+	<CA+E=qVeQ8uHBCeFtw6_2cY3252-YXc6eWrf5_YdeVgbp5LJo5g@mail.gmail.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241217-crawfish-tiring-792c535301d0@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Conor,
+On Tue, 17 Dec 2024 10:00:45 -0800
+Vasily Khoruzhick <anarsoul@gmail.com> wrote:
 
-On Tue, Dec 17, 2024 at 06:24:42PM +0000, Conor Dooley wrote:
-> On Tue, Dec 17, 2024 at 06:39:19PM +0100, Alain Volmat wrote:
-> > Clarify the description of the stm32 csi by mentioning CSI-2 and
-> > D-PHY.
-> 
-> > Remove the bus-type property from the example.
-> 
-> Why? What's there to gain from the example being (seemingly?) less
-> comprehensive?
+Hi,
 
-As the device has D-PHY, other options are excluded. I.e. that property is
-redundant for this device.
+> On Mon, Dec 16, 2024 at 11:33=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel=
+.org> wrote:
+> >
+> > On Sat, Dec 14, 2024 at 09:34:57PM -0800, Vasily Khoruzhick wrote: =20
+> > > These will be used to explicitly select TCON0 clock parent in dts
+> > >
+> > > Fixes: ca1170b69968 ("clk: sunxi-ng: a64: force select PLL_MIPI in TC=
+ON0 mux")
+> > > Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
+> > > ---
+> > >  drivers/clk/sunxi-ng/ccu-sun50i-a64.h      | 2 --
+> > >  include/dt-bindings/clock/sun50i-a64-ccu.h | 2 + =20
+>=20
+> Hi Krzysztof,
+>=20
+> > You cannot combine these changes. =20
+>=20
+> The patch basically moves defines out from ccu-sun50i-a64.h to
+> sun50i-a64-ccu.h. How do I split the change without introducing
+> compilation failure?
 
-> 
-> > 
-> > Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
-> > ---
-> >  Documentation/devicetree/bindings/media/st,stm32mp25-csi.yaml | 5 ++---
-> >  1 file changed, 2 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/st,stm32mp25-csi.yaml b/Documentation/devicetree/bindings/media/st,stm32mp25-csi.yaml
-> > index 33bedfe41924..e9fa3cfea5d2 100644
-> > --- a/Documentation/devicetree/bindings/media/st,stm32mp25-csi.yaml
-> > +++ b/Documentation/devicetree/bindings/media/st,stm32mp25-csi.yaml
-> > @@ -7,8 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  title: STMicroelectronics STM32 CSI controller
-> >  
-> >  description:
-> > -  The STM32 CSI controller allows connecting a CSI based
-> > -  camera to the DCMIPP camera pipeline.
-> > +  The STM32 CSI controller, coupled with a D-PHY allows connecting a CSI-2
-> > +  based camera to the DCMIPP camera pipeline.
-> >  
-> >  maintainers:
-> >    - Alain Volmat <alain.volmat@foss.st.com>
-> > @@ -109,7 +109,6 @@ examples:
-> >                  endpoint {
-> >                      remote-endpoint = <&imx335_ep>;
-> >                      data-lanes = <1 2>;
-> > -                    bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
-> >                  };
-> >              };
-> >  
-> > 
+You can just have the binding part first, adding the (same) definition
+to the binding headers. As long as the #define's are not conflicting,
+this is fine.
+Then remove the now redundant definitions in the kernel headers, with a
+subsequent patch.
 
--- 
-Kind regards,
+Cheers,
+Andre
 
-Sakari Ailus
+
+>=20
+> > Please run scripts/checkpatch.pl and fix reported warnings. Then please
+> > run 'scripts/checkpatch.pl --strict' and (probably) fix more warnings.
+> > Some warnings can be ignored, especially from --strict run, but the code
+> > here looks like it needs a fix. Feel free to get in touch if the warning
+> > is not clear. =20
+>=20
+> Yeah, it is not clear what do you want me to do, assuming the previous
+> similar change to sun50i-a64-ccu.h did essentially the same, see
+> 71b597ef5d46a326fb0d5cbfc1c6ff1d73cdc7f9
+>=20
+> Regards,
+> Vasily
+>=20
+> > Best regards,
+> > Krzysztof
+> > =20
+>=20
+
 
