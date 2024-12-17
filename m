@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-131979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD0049F5139
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 17:39:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27F629F513E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 17:39:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3C52164B52
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 16:39:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FDF9167E3F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 16:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B61011F758D;
-	Tue, 17 Dec 2024 16:39:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BFEB1F8686;
+	Tue, 17 Dec 2024 16:39:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rBDX3RB9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="orXOPVgT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 839691459FD;
-	Tue, 17 Dec 2024 16:39:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCF131F867E;
+	Tue, 17 Dec 2024 16:39:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734453540; cv=none; b=RDLR+LccTOlk+iVPeybsv2HfONRjzrorK00Jy+p5g6UrmoSOvPQsRN3x+zkcuzryl46I1uw8YnEY6rE8XYQ0BE+H0UUKKvMiVe+QuOVK5vgMZg9H8b3o9dKg+eMRn5yMBhnp802HUtuxrODqNAF70wHBlTHe3qJ1K9TnrGtL3p0=
+	t=1734453543; cv=none; b=nw3T/bgniN8YPK14qnyhs+4rsnG+MjjCobiiOESnqjkQSdjCYG2rq0LP+cTi8mT5suvWAD37d3rRfmjQHmk4BXDSzgqNRFC5y1gsIa5u3T4tsApogMm67EqEAR04lr8hiLk7SWHG/c7kZ7QFyIoDOPg1Lr4HSD5rEalV/N+Ow7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734453540; c=relaxed/simple;
-	bh=3EVg1+Zu1P76l+wUDuDNGuylZNMWDKzjADira60wV4g=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T/+7ZrEwqH2qNbYm8FgbEq/sRo/mKnc3LmaIgKWM6IOPsy3ub/REyy+2sOHTTA3ZXY4Vt+bCZ2uykNzsU86kXjtgS5Ws6dS6ylPEAaApaKM3n+Ie6MTcbGeTFGDuNOpDKtZ4Z5+xrVWSe+JSB07NM9z+KnWOMtuEHWcxQ2cWR6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rBDX3RB9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79556C4CEDF;
-	Tue, 17 Dec 2024 16:38:59 +0000 (UTC)
+	s=arc-20240116; t=1734453543; c=relaxed/simple;
+	bh=52iR4GpYbxShxZsTRbIHyyiYcmwDXoAKgVCMv70hf2E=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RPbpQ5pTO/xYBxePond8WnIYB44r6pEfzu8OfrGT8ziT1MrrSIfmnABxSxjZGA9uKQEFuu6262fgn0BjHmgu/Pk0k+HQgVZH7VzL/GWl8jqWE/RjvhoItD0DYJ5GIUHD61y5kBqGi/Hzoelj7YILmbYjRuRJQ6nl0Y9O8fpTCG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=orXOPVgT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62628C4CEDE;
+	Tue, 17 Dec 2024 16:39:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734453540;
-	bh=3EVg1+Zu1P76l+wUDuDNGuylZNMWDKzjADira60wV4g=;
-	h=From:To:Subject:Date:In-Reply-To:References:From;
-	b=rBDX3RB9bcYZgm2gRY8/8Cyf6c30ntilys8RuToiugulpIgF1lh6RkvyqJ/vqYuMd
-	 R/GpBplXzEdIYETLOYlzeCEG/OGu8j6GCaoa8NOf6/Q/gNbLfreUVTIyEMT+V4GCAR
-	 UbavcJI19K8agBxOjfoXGaXIgyGLTLfOixIMtPPi5woDma8vFGeHPMyz+SacIz5hLb
-	 Rf+GptszkFt2GSfJlcWK8VFPEwN8wo1u+/3KiOZBSjS2dItX1ctfso0i/sm2Za2DNE
-	 0nbHhJVoydbs7iJIEmgCcr3LTmUazivyLOJskPV8JWYBPNiULpb44YkjNVbbnks04D
-	 XBDuRsO+bAMFQ==
+	s=k20201202; t=1734453542;
+	bh=52iR4GpYbxShxZsTRbIHyyiYcmwDXoAKgVCMv70hf2E=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=orXOPVgTXSbofvDNBY+KdhmyHfHwBkWLUk7NxCt3KviQIvzgP+9kDLZxBzDQ11EzA
+	 uvr3GNGQRPAAhpKDNaLAKXYZ26K0f7dPOUS0K+nNymjfQd8l8/tD1+NZymcxrSfKF8
+	 nwgkd2iULMY1iphi6SpbGFkrfNanm9bgVq0mix8H4/Yr501sifAAojiqoU4ddQC8v9
+	 hxD8n5gCMH4yn4hmVNtnJM2Z1WjLxr+87TIra4UTCljUYTdASteU3yQGdQcnpHkmi5
+	 WIIkqFW2fWyiJAZCxnpjcvw6n34zcV5oCya6UIDgThc48oci3G3XQ6tfPuuHqW+Al2
+	 X6jvt/kTPAf7Q==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Taniya Das <quic_tdas@quicinc.com>,
+To: konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Qiang Yu <quic_qianyu@quicinc.com>
+Cc: johan@kernel.org,
 	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH 1/2] dt-bindings: clock: qcom,sc7280-lpasscorecc: order properties to match convention
-Date: Tue, 17 Dec 2024 10:38:52 -0600
-Message-ID: <173445353299.470882.2185588952896722099.b4-ty@kernel.org>
+	quic_cang@quicinc.com,
+	quic_mrana@quicinc.com,
+	stable@vger.kernel.org
+Subject: Re: (subset) [PATCH 1/1] arm64: dts: qcom: x1e80100: Fix up BAR space size for PCIe6a
+Date: Tue, 17 Dec 2024 10:38:54 -0600
+Message-ID: <173445353302.470882.8616229131234263005.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20240817094605.27185-1-krzysztof.kozlowski@linaro.org>
-References: <20240817094605.27185-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20241113080508.3458849-1-quic_qianyu@quicinc.com>
+References: <20241113080508.3458849-1-quic_qianyu@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,18 +70,18 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sat, 17 Aug 2024 11:46:04 +0200, Krzysztof Kozlowski wrote:
-> By convention we expect first "compatible", then "reg" and then rest.
-> Order properties to match convention and what is in "required:" block.
+On Wed, 13 Nov 2024 00:05:08 -0800, Qiang Yu wrote:
+> As per memory map table, the region for PCIe6a is 64MByte. Hence, set the
+> size of 32 bit non-prefetchable memory region beginning on address
+> 0x70300000 as 0x3d00000 so that BAR space assigned to BAR registers can be
+> allocated from 0x70300000 to 0x74000000.
 > 
 > 
 
 Applied, thanks!
 
-[1/2] dt-bindings: clock: qcom,sc7280-lpasscorecc: order properties to match convention
-      commit: 2a5711c7dc6f20e132f99b13731952bdb3530acf
-[2/2] dt-bindings: clock: qcom,sc7280-lpasscorecc: add top-level constraints
-      commit: 9d40c5a698de6ba629f2abc8dd43b8a2db469307
+[1/1] arm64: dts: qcom: x1e80100: Fix up BAR space size for PCIe6a
+      commit: fb8e7b33c2174e00dfa411361eeed21eeaf3634b
 
 Best regards,
 -- 
