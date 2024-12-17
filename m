@@ -1,702 +1,390 @@
-Return-Path: <devicetree+bounces-131802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3C0A9F49E8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 12:32:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF359F49F5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 12:34:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18152163B50
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 11:32:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55557188AAC8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 11:33:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E42341DFE05;
-	Tue, 17 Dec 2024 11:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 345861EF0BE;
+	Tue, 17 Dec 2024 11:32:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="o2nyiGte"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="asaOGZ8N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CFBE1DED4E;
-	Tue, 17 Dec 2024 11:31:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 147341F03C7;
+	Tue, 17 Dec 2024 11:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734435105; cv=none; b=jBuBh4uhDnl3KdGsl6WcsRXBjBxl8h+twe+UrcoM9J5tR6wYeEkl+667zKB/2tkLyCKOuJ/m+ovZXDr7FZqz8BWkrSvkiJNfM7RtZB5EQ4vJTOAjo0Ztseqnmh8wDFmpgQcYhtyTsi+HBTxZadybXjAO4SMWf4QaHZTopzXLSx8=
+	t=1734435121; cv=none; b=f7jih4IejA1pARUn4LxF4IefKWklV38BamXI8GMJGMIkHKcrmBsJk+79EQC34TMx7dWFyHNZgtTvI2WrMoyq1z+GJf81xyMLS8DH4SPlJc5MTQZR3NoX6A5qGZYAw0wjQwvCMpHzzi2UMPYhlSxsZ6F+vdu5l4wnDMY/RzFeFek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734435105; c=relaxed/simple;
-	bh=Zb6PaU+UdOvN8bLE0FfAqVSjlUzrJGv8BxD9NtoSWIA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lR64+EyLCVFYhie9ODE14rRyjsY3CnLJrYlP4pq+1qqnw5GV0KCt2EKS7zE12MtAsMiTjZ1dtR1iNrjGdoOHPqQVmEcb9lP/mlF4gV5RN4UaUdQcH0A5jwsZhrRvfQ3UtUMFUfKgleuR5bGSoOTFHhBj8otyqTJhsTyWJGXv8kA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=o2nyiGte; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1734435103; x=1765971103;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Zb6PaU+UdOvN8bLE0FfAqVSjlUzrJGv8BxD9NtoSWIA=;
-  b=o2nyiGteYJx+QE+fFyjo6MQbtrAO56NkUdo8Lk0AJDBASzS0qc/YdAwL
-   WVXFWgPVm1IgmNhrbxo0sAS+a3ZWh3GFOB0tSSDIcdUDWfFy2oPfqhVvP
-   vRgmk1e8YBVJ4bptpn8LfIx/OoNADP8LrxKzPxhmv+mEWW0/5F3Secdz7
-   JU6THpoT3sLJHKsEqkw8yZ902/yaBGaDTGL/TAYSu5RcMqlH5TrSjs9xw
-   dq+a/pzc142/SvcSm4IE7so7x0gzoP8l7eppLm9FC+WGdCMKLJGnQUuJp
-   W7K8nb084z1+qi1mwChD8T4xlFmj8c5e1EnvLwkricLP0AwauVZLnwF5S
-   g==;
-X-CSE-ConnectionGUID: aW351X+rT021XCI+784SKw==
-X-CSE-MsgGUID: g1/cY2FMTyK1BE3m2hswYQ==
-X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; 
-   d="scan'208";a="36093775"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Dec 2024 04:31:36 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 17 Dec 2024 04:31:16 -0700
-Received: from valentina.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Tue, 17 Dec 2024 04:31:14 -0700
-From: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-To: <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
-	<conor.dooley@microchip.com>, <conor+dt@kernel.org>,
-	<jassisinghbrar@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<valentina.fernandezalanis@microchip.com>
-CC: <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: [PATCH v6 4/4] mailbox: add Microchip IPC support
-Date: Tue, 17 Dec 2024 11:31:34 +0000
-Message-ID: <20241217113134.3508333-5-valentina.fernandezalanis@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241217113134.3508333-1-valentina.fernandezalanis@microchip.com>
-References: <20241217113134.3508333-1-valentina.fernandezalanis@microchip.com>
+	s=arc-20240116; t=1734435121; c=relaxed/simple;
+	bh=pFhHw9TiwsKQJTlbvS9U5XLcZZ5zByvjoUTCSVDUH/k=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=s4T6wcwwWOaDVRZ9ScZ0s4aJrY18T0YEu2blQ+a/7ly5D0pXlcKbv3oBOzkXaMPxLfdRb2k69c1EfxNbQnDsBvos2xEsFa1c1em49ifzAsbjtykc4aoxpbYtcPpBzAvliMcEOCgmM7on3yoLI7VAGD9ct0RhCTuWNw6T9mpRubo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=asaOGZ8N; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5d3dce16a3dso9662984a12.1;
+        Tue, 17 Dec 2024 03:31:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734435117; x=1735039917; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=fjIE9d1f0BtVKw2eM2yKIJI7JQ6q6MDNmTA49O7o8fQ=;
+        b=asaOGZ8NIDts6u9MKQlG6Uy5ZP3l6s/HYuEh5VHUdJxpFuPrpHJxdXFn/2tXhXRbLf
+         Dh5rbxUZN3vyeorQEyRYpFFnPm64xsWyZeh61mrHDhxJo5URcUg4Bx7eI8R/42iyPunE
+         HrekAxL+W5sI1z31hXwRpftFyVc4c6i3E8EhonLH1wsMTkO4sEmAcotEzIZuH4TsWCnd
+         zFgsGuvK+aHlNGXX8+v1LsRJaTYg0qGWSUQWIcuoM/BGsY6vsiENmrDtQiuObz2+moNU
+         GvEOyKoDX1xuBb4r01BHDqv9+wUPyjyCMjrhk5TG5j+F2oEc1yDCATxvbx2yyJdcKFvk
+         BPQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734435117; x=1735039917;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fjIE9d1f0BtVKw2eM2yKIJI7JQ6q6MDNmTA49O7o8fQ=;
+        b=iLDmDqGyCRz/ZCxGLFIpj3+i+go/C79OMf3EWye0/uxZp2wI77sR2kTvUBnPn6Mwr4
+         JI0h/BGw1z0D4npg+vTvt4DufVunuwiU1jTB6HUeRtqgiNmixkSQ4S4J7YY68AVTM8JL
+         QByllUpy/pALAk0irV1a+ZnizWrPEm5nmILXTZD92QX+yi2fSJSg+HeMgVThHkc7cWSQ
+         mUFlTJ+8h9BOUDYV7jWUngbd7in0vGZb5cXcm9SEQUMnN5HN9vZHWfxU/nwCSYPiOzm/
+         Bxu9/Zy3adN2CteXwabzH+Okjwu+he0jfzRiEilzshuBQg82l+x9gkhCoVOKeeEst1Ak
+         79oA==
+X-Forwarded-Encrypted: i=1; AJvYcCU8g+AXdW7on7g/EeNs5dyLH7WH2lSdJgOBXv1YLH/kPbt7EB4qmYW5vmd8JClhXvNNfHRmM5qGp451@vger.kernel.org, AJvYcCUGv7BIDUvmsppEvLHqXaTm2vtfB0gdLuq3AmNYJu/YNjuKL101ilgfXOLgFn8qCz+LM2vCi11O3qbC@vger.kernel.org, AJvYcCVBpYXd6Rm/VzvkWTJdaVprc/OhSBwg+6f5f2Hh9iwIa3uesRDBUEJex+0VBsPvPGbzvJAo70by8EUV@vger.kernel.org, AJvYcCVN2iJlSTXUEQ5OLVl5kkl8kqjIIKHmk/MXnI0RK/y1rwQ7q0fJ5Mbp0CLlI/Xr4b2IQujpH3Np8oEHK6CS@vger.kernel.org, AJvYcCXokTpUVJs580UaSbhR5QBYPktY4ECKEBW8RlOuN8yEm7RZVujJnqxhWNf6KjdDeCg/dRjoOCQtGyCv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4WNuQEwM3+boGaCJJwTvAmM7cgqvhDIioKudXmkpnIbt45yBK
+	wd8itGtM0yShv+o2IS81tf9dzfzaS55yoy5F0hNlNmrrwMOwYpupt+/H35VeLdo=
+X-Gm-Gg: ASbGncuzNKHP5gyk7U+bRksNRHspFRoAhp4hdLAvWUdi1zKGFz6hNuU9i3GBfp8AkiM
+	4v/8LCLcICLb1VnWDjMkfaDGpYN5a58Rx1UASNbM03pquSSGMuLxHn1PIFNugPjwg4gJ71qTv8D
+	0bvNmhOCYLbcoB1ZISKQeF6Sj6h1Fa7wnUtFeriZREWqqD+ZyogAb7wtYY9ThZ/tYeBTaklMgrJ
+	cKpKtdVoHM1i24FPOUIh91QS3YcFVomPIMcQ+txfDgwHkiBWYP5HDuhNJIadJhncGlCkcFqTLmn
+	qoUkC4dg7PksDbL7sDVn8P3S8LuC82m4rvZeBW0e/dADe40LHaRVeqX1pnXRr8k1LUmGSMjmIZY
+	iG0JFyukLDXwUfQ==
+X-Google-Smtp-Source: AGHT+IF15DfoymSo9ONl90SbVJppooe4TNTzkzNmP0y64abBk93He1PG7Ap5ZfuLJG7giGy1hTJhLQ==
+X-Received: by 2002:a05:6402:27d1:b0:5d0:d0c5:f259 with SMTP id 4fb4d7f45d1cf-5d7d556c7femr2664125a12.3.1734435117012;
+        Tue, 17 Dec 2024 03:31:57 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef10:f100:a045:a7a7:11d0:8676? (p200300f6ef10f100a045a7a711d08676.dip0.t-ipconnect.de. [2003:f6:ef10:f100:a045:a7a7:11d0:8676])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d652f351c8sm4371003a12.79.2024.12.17.03.31.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Dec 2024 03:31:56 -0800 (PST)
+Message-ID: <d329ec5e035ec89944a73457bf14111a7318b6e9.camel@gmail.com>
+Subject: Re: [PATCH v6 04/17] spi: offload-trigger: add PWM trigger driver
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>, 
+ Jonathan Cameron
+	 <jic23@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno
+ =?ISO-8859-1?Q?S=E1?=
+	 <nuno.sa@analog.com>
+Cc: Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, David Jander	 <david@protonic.nl>, Martin Sperl
+ <kernel@martin.sperl.org>, 	linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, 	linux-pwm@vger.kernel.org, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>
+Date: Tue, 17 Dec 2024 12:36:27 +0100
+In-Reply-To: <20241211-dlech-mainline-spi-engine-offload-2-v6-4-88ee574d5d03@baylibre.com>
+References: 
+	<20241211-dlech-mainline-spi-engine-offload-2-v6-0-88ee574d5d03@baylibre.com>
+	 <20241211-dlech-mainline-spi-engine-offload-2-v6-4-88ee574d5d03@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 
-Add a mailbox controller driver for the Microchip Inter-processor
-Communication (IPC), which is used to send and receive data between
-processors.
+On Wed, 2024-12-11 at 14:54 -0600, David Lechner wrote:
+> Add a new driver for a generic PWM trigger for SPI offloads.
+>=20
+> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
 
-The driver uses the RISC-V Supervisor Binary Interface (SBI) to
-communicate with software running in machine mode (M-mode) to access
-the IPC hardware block.
+Still don't really agree with always checking against
+SPI_OFFLOAD_TRIGGER_PERIODIC. But yeah...
 
-Additional details on the Microchip vendor extension and the IPC
-function IDs described in the driver can be found in the following
-documentation:
+Reviewed-by: Nuno Sa <nuno.sa@analog.com>
 
-https://github.com/linux4microchip/microchip-sbi-ecall-extension
-
-This SBI interface in this driver is compatible with the Mi-V Inter-hart
-Communication (IHC) IP.
-
-Transmitting and receiving data through the mailbox framework is done
-through struct mchp_ipc_msg.
-
-Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
----
- drivers/mailbox/Kconfig                |  13 +
- drivers/mailbox/Makefile               |   2 +
- drivers/mailbox/mailbox-mchp-ipc-sbi.c | 504 +++++++++++++++++++++++++
- include/linux/mailbox/mchp-ipc.h       |  33 ++
- 4 files changed, 552 insertions(+)
- create mode 100644 drivers/mailbox/mailbox-mchp-ipc-sbi.c
- create mode 100644 include/linux/mailbox/mchp-ipc.h
-
-diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-index 8ecba7fb999e..86d324c30cf8 100644
---- a/drivers/mailbox/Kconfig
-+++ b/drivers/mailbox/Kconfig
-@@ -178,6 +178,19 @@ config POLARFIRE_SOC_MAILBOX
- 
- 	  If unsure, say N.
- 
-+config MCHP_SBI_IPC_MBOX
-+	tristate "Microchip Inter-processor Communication (IPC) SBI driver"
-+	depends on RISCV_SBI || COMPILE_TEST
-+	depends on ARCH_MICROCHIP
-+	help
-+	  Mailbox implementation for Microchip devices with an
-+	  Inter-process communication (IPC) controller.
-+
-+	  To compile this driver as a module, choose M here. the
-+	  module will be called mailbox-mchp-ipc-sbi.
-+
-+	  If unsure, say N.
-+
- config QCOM_APCS_IPC
- 	tristate "Qualcomm APCS IPC driver"
- 	depends on ARCH_QCOM || COMPILE_TEST
-diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-index 5f4f5b0ce2cc..d52714a4ce3d 100644
---- a/drivers/mailbox/Makefile
-+++ b/drivers/mailbox/Makefile
-@@ -45,6 +45,8 @@ obj-$(CONFIG_BCM_FLEXRM_MBOX)	+= bcm-flexrm-mailbox.o
- 
- obj-$(CONFIG_POLARFIRE_SOC_MAILBOX)	+= mailbox-mpfs.o
- 
-+obj-$(CONFIG_MCHP_SBI_IPC_MBOX)		+= mailbox-mchp-ipc-sbi.o
-+
- obj-$(CONFIG_QCOM_APCS_IPC)	+= qcom-apcs-ipc-mailbox.o
- 
- obj-$(CONFIG_TEGRA_HSP_MBOX)	+= tegra-hsp.o
-diff --git a/drivers/mailbox/mailbox-mchp-ipc-sbi.c b/drivers/mailbox/mailbox-mchp-ipc-sbi.c
-new file mode 100644
-index 000000000000..a6e52009a424
---- /dev/null
-+++ b/drivers/mailbox/mailbox-mchp-ipc-sbi.c
-@@ -0,0 +1,504 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Microchip Inter-Processor communication (IPC) driver
-+ *
-+ * Copyright (c) 2021 - 2024 Microchip Technology Inc. All rights reserved.
-+ *
-+ * Author: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-+ *
-+ */
-+
-+#include <linux/io.h>
-+#include <linux/err.h>
-+#include <linux/smp.h>
-+#include <linux/init.h>
-+#include <linux/module.h>
-+#include <linux/kernel.h>
-+#include <linux/of_device.h>
-+#include <linux/interrupt.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/platform_device.h>
-+#include <linux/mailbox/mchp-ipc.h>
-+#include <asm/sbi.h>
-+#include <asm/vendorid_list.h>
-+
-+#define IRQ_STATUS_BITS			12
-+#define NUM_CHANS_PER_CLUSTER		5
-+#define IPC_DMA_BIT_MASK		32
-+#define SBI_EXT_MICROCHIP_TECHNOLOGY	(SBI_EXT_VENDOR_START | \
-+					 MICROCHIP_VENDOR_ID)
-+
-+enum {
-+	SBI_EXT_IPC_PROBE = 0x100,
-+	SBI_EXT_IPC_CH_INIT,
-+	SBI_EXT_IPC_SEND,
-+	SBI_EXT_IPC_RECEIVE,
-+	SBI_EXT_IPC_STATUS,
-+};
-+
-+enum ipc_hw {
-+	MIV_IHC,
-+};
-+
-+/**
-+ * struct mchp_ipc_mbox_info - IPC probe message format
-+ *
-+ * @hw_type:		IPC implementation available in the hardware
-+ * @num_channels:	number of IPC channels available in the hardware
-+ *
-+ * Used to retrieve information on the IPC implementation
-+ * using the SBI_EXT_IPC_PROBE SBI function id.
-+ */
-+struct mchp_ipc_mbox_info {
-+	enum ipc_hw hw_type;
-+	u8 num_channels;
-+};
-+
-+/**
-+ * struct mchp_ipc_init - IPC channel init message format
-+ *
-+ * @max_msg_size:	maxmimum message size in bytes of a given channel
-+ *
-+ * struct used by the SBI_EXT_IPC_CH_INIT SBI function id to get
-+ * the max message size in bytes of the initialized channel.
-+ */
-+struct mchp_ipc_init {
-+	u16 max_msg_size;
-+};
-+
-+/**
-+ * struct mchp_ipc_status - IPC status message format
-+ *
-+ * @status:	interrupt status for all channels associated to a cluster
-+ * @cluster:	specifies the cluster instance that originated an irq
-+ *
-+ * struct used by the SBI_EXT_IPC_STATUS SBI function id to get
-+ * the message present and message clear interrupt status for all the
-+ * channels associated to a cluster.
-+ */
-+struct mchp_ipc_status {
-+	u32 status;
-+	u8 cluster;
-+};
-+
-+/**
-+ * struct mchp_ipc_sbi_msg - IPC SBI payload message
-+ *
-+ * @buf_addr:	physical address where the received data should be copied to
-+ * @size:	maximum size(in bytes) that can be stored in the buffer pointed to by `buf`
-+ * @irq_type:	mask representing the irq types that triggered an irq
-+ *
-+ * struct used by the SBI_EXT_IPC_SEND/SBI_EXT_IPC_RECEIVE SBI function
-+ * ids to send/receive a message from an associated processor using
-+ * the IPC.
-+ */
-+struct mchp_ipc_sbi_msg {
-+	u64 buf_addr;
-+	u16 size;
-+	u8 irq_type;
-+};
-+
-+struct mchp_ipc_cluster_cfg {
-+	void *buf_base;
-+	phys_addr_t buf_base_addr;
-+	int irq;
-+};
-+
-+struct mchp_ipc_sbi_mbox {
-+	struct device *dev;
-+	struct mbox_chan *chans;
-+	struct mchp_ipc_cluster_cfg *cluster_cfg;
-+	void *buf_base;
-+	unsigned long buf_base_addr;
-+	struct mbox_controller controller;
-+	enum ipc_hw hw_type;
-+};
-+
-+static int mchp_ipc_sbi_chan_send(u32 command, u32 channel, unsigned long address)
-+{
-+	struct sbiret ret;
-+
-+	ret = sbi_ecall(SBI_EXT_MICROCHIP_TECHNOLOGY, command, channel,
-+			address, 0, 0, 0, 0);
-+
-+	if (ret.error)
-+		return sbi_err_map_linux_errno(ret.error);
-+	else
-+		return ret.value;
-+}
-+
-+static int mchp_ipc_sbi_send(u32 command, unsigned long address)
-+{
-+	struct sbiret ret;
-+
-+	ret = sbi_ecall(SBI_EXT_MICROCHIP_TECHNOLOGY, command, address,
-+			0, 0, 0, 0, 0);
-+
-+	if (ret.error)
-+		return sbi_err_map_linux_errno(ret.error);
-+	else
-+		return ret.value;
-+}
-+
-+static struct mchp_ipc_sbi_mbox *to_mchp_ipc_mbox(struct mbox_controller *mbox)
-+{
-+	return container_of(mbox, struct mchp_ipc_sbi_mbox, controller);
-+}
-+
-+static inline void mchp_ipc_prepare_receive_req(struct mbox_chan *chan)
-+{
-+	struct mchp_ipc_sbi_chan *chan_info = (struct mchp_ipc_sbi_chan *)chan->con_priv;
-+	struct mchp_ipc_sbi_msg request;
-+
-+	request.buf_addr = chan_info->msg_buf_rx_addr;
-+	request.size = chan_info->max_msg_size;
-+	memcpy(chan_info->buf_base_rx, &request, sizeof(struct mchp_ipc_sbi_msg));
-+}
-+
-+static inline void mchp_ipc_process_received_data(struct mbox_chan *chan,
-+						  struct mchp_ipc_msg *ipc_msg)
-+{
-+	struct mchp_ipc_sbi_chan *chan_info = (struct mchp_ipc_sbi_chan *)chan->con_priv;
-+	struct mchp_ipc_sbi_msg sbi_msg;
-+
-+	memcpy(&sbi_msg, chan_info->buf_base_rx, sizeof(struct mchp_ipc_sbi_msg));
-+	ipc_msg->buf = (u32 *)chan_info->msg_buf_rx;
-+	ipc_msg->size = sbi_msg.size;
-+}
-+
-+static irqreturn_t mchp_ipc_cluster_aggr_isr(int irq, void *data)
-+{
-+	struct mbox_chan *chan;
-+	struct mchp_ipc_sbi_chan *chan_info;
-+	struct mchp_ipc_sbi_mbox *ipc = (struct mchp_ipc_sbi_mbox *)data;
-+	struct mchp_ipc_msg ipc_msg;
-+	struct mchp_ipc_status status_msg;
-+	int ret;
-+	unsigned long hartid;
-+	u32 i, chan_index, chan_id;
-+
-+	/* Find out the hart that originated the irq */
-+	for_each_online_cpu(i) {
-+		hartid = cpuid_to_hartid_map(i);
-+		if (irq == ipc->cluster_cfg[hartid].irq)
-+			break;
-+	}
-+
-+	status_msg.cluster = hartid;
-+	memcpy(ipc->cluster_cfg[hartid].buf_base, &status_msg, sizeof(struct mchp_ipc_status));
-+
-+	ret = mchp_ipc_sbi_send(SBI_EXT_IPC_STATUS, ipc->cluster_cfg[hartid].buf_base_addr);
-+	if (ret < 0) {
-+		dev_err_ratelimited(ipc->dev, "could not get IHC irq status ret=%d\n", ret);
-+		return IRQ_HANDLED;
-+	}
-+
-+	memcpy(&status_msg, ipc->cluster_cfg[hartid].buf_base, sizeof(struct mchp_ipc_status));
-+
-+	/*
-+	 * Iterate over each bit set in the IHC interrupt status register (IRQ_STATUS) to identify
-+	 * the channel(s) that have a message to be processed/acknowledged.
-+	 * The bits are organized in alternating format, where each pair of bits represents
-+	 * the status of the message present and message clear interrupts for each cluster/hart
-+	 * (from hart 0 to hart 5). Each cluster can have up to 5 fixed channels associated.
-+	 */
-+
-+	for_each_set_bit(i, (unsigned long *)&status_msg.status, IRQ_STATUS_BITS) {
-+		/* Find out the destination hart that triggered the interrupt */
-+		chan_index = i / 2;
-+
-+		/*
-+		 * The IP has no loopback channels, so we need to decrement the index when
-+		 * the target hart has a greater index than our own
-+		 */
-+		if (chan_index >= status_msg.cluster)
-+			chan_index--;
-+
-+		/*
-+		 * Calculate the channel id given the hart and channel index. Channel IDs
-+		 * are unique across all clusters of an IPC, and iterate contiguously
-+		 * across all clusters.
-+		 */
-+		chan_id = status_msg.cluster * (NUM_CHANS_PER_CLUSTER + chan_index);
-+
-+		chan = &ipc->chans[chan_id];
-+		chan_info = (struct mchp_ipc_sbi_chan *)chan->con_priv;
-+
-+		if (i % 2 == 0) {
-+			mchp_ipc_prepare_receive_req(chan);
-+			ret = mchp_ipc_sbi_chan_send(SBI_EXT_IPC_RECEIVE, chan_id,
-+						     chan_info->buf_base_rx_addr);
-+			if (ret < 0)
-+				continue;
-+
-+			mchp_ipc_process_received_data(chan, &ipc_msg);
-+			mbox_chan_received_data(&ipc->chans[chan_id], (void *)&ipc_msg);
-+
-+		} else {
-+			ret = mchp_ipc_sbi_chan_send(SBI_EXT_IPC_RECEIVE, chan_id,
-+						     chan_info->buf_base_rx_addr);
-+			mbox_chan_txdone(&ipc->chans[chan_id], ret);
-+		}
-+	}
-+	return IRQ_HANDLED;
-+}
-+
-+static int mchp_ipc_send_data(struct mbox_chan *chan, void *data)
-+{
-+	struct mchp_ipc_sbi_chan *chan_info = (struct mchp_ipc_sbi_chan *)chan->con_priv;
-+	const struct mchp_ipc_msg *msg = data;
-+	struct mchp_ipc_sbi_msg sbi_payload;
-+
-+	memcpy(chan_info->msg_buf_tx, msg->buf, msg->size);
-+	sbi_payload.buf_addr = chan_info->msg_buf_tx_addr;
-+	sbi_payload.size = msg->size;
-+	memcpy(chan_info->buf_base_tx, &sbi_payload, sizeof(sbi_payload));
-+
-+	return mchp_ipc_sbi_chan_send(SBI_EXT_IPC_SEND, chan_info->id, chan_info->buf_base_tx_addr);
-+}
-+
-+static int mchp_ipc_startup(struct mbox_chan *chan)
-+{
-+	struct mchp_ipc_sbi_chan *chan_info = (struct mchp_ipc_sbi_chan *)chan->con_priv;
-+	struct mchp_ipc_sbi_mbox *ipc = to_mchp_ipc_mbox(chan->mbox);
-+	struct mchp_ipc_init ch_init_msg;
-+	int ret;
-+
-+	/*
-+	 * The TX base buffer is used to transmit two types of messages:
-+	 * - struct mchp_ipc_init to initialize the channel
-+	 * - struct mchp_ipc_sbi_msg to transmit user data/payload
-+	 * Ensure the TX buffer size is large enough to accommodate either message type.
-+	 */
-+	size_t max_size = max(sizeof(struct mchp_ipc_init), sizeof(struct mchp_ipc_sbi_msg));
-+
-+	chan_info->buf_base_tx = kmalloc(max_size, GFP_KERNEL);
-+	if (!chan_info->buf_base_tx) {
-+		ret = -ENOMEM;
-+		goto fail;
-+	}
-+
-+	chan_info->buf_base_tx_addr = __pa(chan_info->buf_base_tx);
-+
-+	chan_info->buf_base_rx = kmalloc(max_size, GFP_KERNEL);
-+	if (!chan_info->buf_base_rx) {
-+		ret = -ENOMEM;
-+		goto fail_free_buf_base_tx;
-+	}
-+
-+	chan_info->buf_base_rx_addr = __pa(chan_info->buf_base_rx);
-+
-+	ret = mchp_ipc_sbi_chan_send(SBI_EXT_IPC_CH_INIT, chan_info->id,
-+				     chan_info->buf_base_tx_addr);
-+	if (ret < 0) {
-+		dev_err(ipc->dev, "channel %u init failed\n", chan_info->id);
-+		goto fail_free_buf_base_rx;
-+	}
-+
-+	memcpy(&ch_init_msg, chan_info->buf_base_tx, sizeof(struct mchp_ipc_init));
-+	chan_info->max_msg_size = ch_init_msg.max_msg_size;
-+
-+	chan_info->msg_buf_tx = kmalloc(chan_info->max_msg_size, GFP_KERNEL);
-+	if (!chan_info->msg_buf_tx) {
-+		ret = -ENOMEM;
-+		goto fail_free_buf_base_rx;
-+	}
-+
-+	chan_info->msg_buf_tx_addr = __pa(chan_info->msg_buf_tx);
-+
-+	chan_info->msg_buf_rx = kmalloc(chan_info->max_msg_size, GFP_KERNEL);
-+	if (!chan_info->msg_buf_rx) {
-+		ret = -ENOMEM;
-+		goto fail_free_buf_msg_tx;
-+	}
-+
-+	chan_info->msg_buf_rx_addr = __pa(chan_info->msg_buf_rx);
-+
-+	switch (ipc->hw_type) {
-+	case MIV_IHC:
-+		return 0;
-+	default:
-+		goto fail_free_buf_msg_rx;
-+	}
-+
-+	if (ret) {
-+		dev_err(ipc->dev, "failed to register interrupt(s)\n");
-+		goto fail_free_buf_msg_rx;
-+	}
-+
-+	return ret;
-+
-+fail_free_buf_msg_rx:
-+	kfree(chan_info->msg_buf_rx);
-+fail_free_buf_msg_tx:
-+	kfree(chan_info->msg_buf_tx);
-+fail_free_buf_base_rx:
-+	kfree(chan_info->buf_base_rx);
-+fail_free_buf_base_tx:
-+	kfree(chan_info->buf_base_tx);
-+fail:
-+	return ret;
-+}
-+
-+static void mchp_ipc_shutdown(struct mbox_chan *chan)
-+{
-+	struct mchp_ipc_sbi_chan *chan_info = (struct mchp_ipc_sbi_chan *)chan->con_priv;
-+
-+	kfree(chan_info->buf_base_tx);
-+	kfree(chan_info->buf_base_rx);
-+	kfree(chan_info->msg_buf_tx);
-+	kfree(chan_info->msg_buf_rx);
-+}
-+
-+static const struct mbox_chan_ops mchp_ipc_ops = {
-+	.startup = mchp_ipc_startup,
-+	.send_data = mchp_ipc_send_data,
-+	.shutdown = mchp_ipc_shutdown,
-+};
-+
-+static struct mbox_chan *mchp_ipc_mbox_xlate(struct mbox_controller *controller,
-+					     const struct of_phandle_args *spec)
-+{
-+	struct mchp_ipc_sbi_mbox *ipc = to_mchp_ipc_mbox(controller);
-+	unsigned int chan_id = spec->args[0];
-+
-+	if (chan_id >= ipc->controller.num_chans) {
-+		dev_err(ipc->dev, "invalid channel id %d\n", chan_id);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	return &ipc->chans[chan_id];
-+}
-+
-+static int mchp_ipc_get_cluster_aggr_irq(struct mchp_ipc_sbi_mbox *ipc)
-+{
-+	struct platform_device *pdev = to_platform_device(ipc->dev);
-+	char *irq_name;
-+	int cpuid, ret;
-+	unsigned long hartid;
-+	bool irq_found = false;
-+
-+	for_each_online_cpu(cpuid) {
-+		hartid = cpuid_to_hartid_map(cpuid);
-+		irq_name = devm_kasprintf(ipc->dev, GFP_KERNEL, "hart-%lu", hartid);
-+		ret = platform_get_irq_byname_optional(pdev, irq_name);
-+		if (ret <= 0)
-+			continue;
-+
-+		ipc->cluster_cfg[hartid].irq = ret;
-+		ret = devm_request_irq(ipc->dev, ipc->cluster_cfg[hartid].irq,
-+				       mchp_ipc_cluster_aggr_isr, IRQF_SHARED,
-+				       "miv-ihc-irq", ipc);
-+		if (ret)
-+			return ret;
-+
-+		ipc->cluster_cfg[hartid].buf_base = devm_kmalloc(ipc->dev,
-+								 sizeof(struct mchp_ipc_status),
-+								 GFP_KERNEL);
-+
-+		if (!ipc->cluster_cfg[hartid].buf_base)
-+			return -ENOMEM;
-+
-+		ipc->cluster_cfg[hartid].buf_base_addr = __pa(ipc->cluster_cfg[hartid].buf_base);
-+
-+		irq_found = true;
-+	}
-+
-+	return irq_found;
-+}
-+
-+static int mchp_ipc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mchp_ipc_mbox_info ipc_info;
-+	struct mchp_ipc_sbi_mbox *ipc;
-+	struct mchp_ipc_sbi_chan *priv;
-+	bool irq_avail = false;
-+	int ret;
-+	u32 chan_id;
-+
-+	ret = sbi_probe_extension(SBI_EXT_MICROCHIP_TECHNOLOGY);
-+	if (ret <= 0)
-+		return dev_err_probe(dev, ret, "Microchip SBI extension not detected\n");
-+
-+	ipc = devm_kzalloc(dev, sizeof(*ipc), GFP_KERNEL);
-+	if (!ipc)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, ipc);
-+
-+	ipc->buf_base = devm_kmalloc(dev, sizeof(struct mchp_ipc_mbox_info), GFP_KERNEL);
-+	if (!ipc->buf_base)
-+		return -ENOMEM;
-+
-+	ipc->buf_base_addr = __pa(ipc->buf_base);
-+
-+	ret = mchp_ipc_sbi_send(SBI_EXT_IPC_PROBE, ipc->buf_base_addr);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "could not probe IPC SBI service\n");
-+
-+	memcpy(&ipc_info, ipc->buf_base, sizeof(struct mchp_ipc_mbox_info));
-+	ipc->controller.num_chans = ipc_info.num_channels;
-+	ipc->hw_type = ipc_info.hw_type;
-+
-+	ipc->chans = devm_kcalloc(dev, ipc->controller.num_chans, sizeof(*ipc->chans), GFP_KERNEL);
-+	if (!ipc->chans)
-+		return -ENOMEM;
-+
-+	ipc->dev = dev;
-+	ipc->controller.txdone_irq = true;
-+	ipc->controller.dev = ipc->dev;
-+	ipc->controller.ops = &mchp_ipc_ops;
-+	ipc->controller.chans = ipc->chans;
-+	ipc->controller.of_xlate = mchp_ipc_mbox_xlate;
-+
-+	for (chan_id = 0; chan_id < ipc->controller.num_chans; chan_id++) {
-+		priv = devm_kmalloc(dev, sizeof(*priv), GFP_KERNEL);
-+		if (!priv)
-+			return -ENOMEM;
-+
-+		ipc->chans[chan_id].con_priv = priv;
-+		priv->id = chan_id;
-+	}
-+
-+	if (ipc->hw_type == MIV_IHC) {
-+		ipc->cluster_cfg = devm_kcalloc(dev, num_online_cpus(),
-+						sizeof(struct mchp_ipc_cluster_cfg),
-+						GFP_KERNEL);
-+		if (!ipc->cluster_cfg)
-+			return -ENOMEM;
-+
-+		if (mchp_ipc_get_cluster_aggr_irq(ipc))
-+			irq_avail = true;
-+	}
-+
-+	if (!irq_avail)
-+		return dev_err_probe(dev, -ENODEV, "missing interrupt property\n");
-+
-+	ret = devm_mbox_controller_register(dev, &ipc->controller);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				    "Inter-Processor communication (IPC) registration failed\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id mchp_ipc_of_match[] = {
-+	{.compatible = "microchip,sbi-ipc", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mchp_ipc_of_match);
-+
-+static struct platform_driver mchp_ipc_driver = {
-+	.driver = {
-+		.name = "microchip_ipc",
-+		.of_match_table = mchp_ipc_of_match,
-+	},
-+	.probe = mchp_ipc_probe,
-+};
-+
-+module_platform_driver(mchp_ipc_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Valentina Fernandez <valentina.fernandezalanis@microchip.com>");
-+MODULE_DESCRIPTION("Microchip Inter-Processor Communication (IPC) driver");
-diff --git a/include/linux/mailbox/mchp-ipc.h b/include/linux/mailbox/mchp-ipc.h
-new file mode 100644
-index 000000000000..f084ac9e291b
---- /dev/null
-+++ b/include/linux/mailbox/mchp-ipc.h
-@@ -0,0 +1,33 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ *Copyright (c) 2024 Microchip Technology Inc. All rights reserved.
-+ */
-+
-+#ifndef _LINUX_MCHP_IPC_H_
-+#define _LINUX_MCHP_IPC_H_
-+
-+#include <linux/mailbox_controller.h>
-+#include <linux/types.h>
-+
-+struct mchp_ipc_msg {
-+	u32 *buf;
-+	u16 size;
-+};
-+
-+struct mchp_ipc_sbi_chan {
-+	void *buf_base_tx;
-+	void *buf_base_rx;
-+	void *msg_buf_tx;
-+	void *msg_buf_rx;
-+	phys_addr_t buf_base_tx_addr;
-+	phys_addr_t buf_base_rx_addr;
-+	phys_addr_t msg_buf_tx_addr;
-+	phys_addr_t msg_buf_rx_addr;
-+	int chan_aggregated_irq;
-+	int mp_irq;
-+	int mc_irq;
-+	u32 id;
-+	u32 max_msg_size;
-+};
-+
-+#endif /* _LINUX_MCHP_IPC_H_ */
--- 
-2.34.1
+>=20
+> v6 changes:
+> * Use dev instead of &pdev->dev
+> * Swap order of "pwm" and "trigger" in name to follow "pwm-clock"
+> =C2=A0 precedent.
+>=20
+> v5 changes:
+> * Updated to accommodate changes in other patches in this series.
+> * Add MAINTAINERS entry.
+>=20
+> v4 changes: new patch in v4
+> ---
+> =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> =C2=A0drivers/spi/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 12 +++
+> =C2=A0drivers/spi/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +
+> =C2=A0drivers/spi/spi-offload-trigger-pwm.c | 162
+> ++++++++++++++++++++++++++++++++++
+> =C2=A04 files changed, 178 insertions(+)
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index
+> b2aa6f37743e48353c60e5973ea8126590c7f6d5..d8d72da5ac4bcab817a515774eb8db3=
+7a7e9
+> 4f25 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -22131,6 +22131,7 @@ F:	include/linux/mtd/spi-nor.h
+> =C2=A0
+> =C2=A0SPI OFFLOAD
+> =C2=A0R:	David Lechner <dlechner@baylibre.com>
+> +F:	drivers/spi/spi-offload-trigger-pwm.c
+> =C2=A0F:	drivers/spi/spi-offload.c
+> =C2=A0F:	include/linux/spi/spi-offload.h
+> =C2=A0K:	spi_offload
+> diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
+> index
+> 02064a4e292815ec0213e2e446b4f90ed8855a52..2cfc14be869790f5226130428bb7cb4=
+0aadf
+> b031 100644
+> --- a/drivers/spi/Kconfig
+> +++ b/drivers/spi/Kconfig
+> @@ -1320,4 +1320,16 @@ endif # SPI_SLAVE
+> =C2=A0config SPI_DYNAMIC
+> =C2=A0	def_bool ACPI || OF_DYNAMIC || SPI_SLAVE
+> =C2=A0
+> +if SPI_OFFLOAD
+> +
+> +comment "SPI Offload triggers"
+> +
+> +config SPI_OFFLOAD_TRIGGER_PWM
+> +	tristate "SPI offload trigger using PWM"
+> +	depends on PWM
+> +	help
+> +	=C2=A0 Generic SPI offload trigger implemented using PWM output.
+> +
+> +endif # SPI_OFFLOAD
+> +
+> =C2=A0endif # SPI
+> diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
+> index
+> bb5fc20df21332232533c2e70c0cc230f6bcf27f..0068d170bc99c750c13376c4013991d=
+927bb
+> ac63 100644
+> --- a/drivers/spi/Makefile
+> +++ b/drivers/spi/Makefile
+> @@ -164,3 +164,6 @@ obj-$(CONFIG_SPI_AMD)			+=3D spi-amd.o
+> =C2=A0# SPI slave protocol handlers
+> =C2=A0obj-$(CONFIG_SPI_SLAVE_TIME)		+=3D spi-slave-time.o
+> =C2=A0obj-$(CONFIG_SPI_SLAVE_SYSTEM_CONTROL)	+=3D spi-slave-system-contro=
+l.o
+> +
+> +# SPI offload triggers
+> +obj-$(CONFIG_SPI_OFFLOAD_TRIGGER_PWM)	+=3D spi-offload-trigger-pwm.o
+> diff --git a/drivers/spi/spi-offload-trigger-pwm.c b/drivers/spi/spi-offl=
+oad-
+> trigger-pwm.c
+> new file mode 100644
+> index
+> 0000000000000000000000000000000000000000..b26d4437c589052709a8206f8314ffd=
+08355
+> 870e
+> --- /dev/null
+> +++ b/drivers/spi/spi-offload-trigger-pwm.c
+> @@ -0,0 +1,162 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2024 Analog Devices Inc.
+> + * Copyright (C) 2024 BayLibre, SAS
+> + *
+> + * Generic PWM trigger for SPI offload.
+> + */
+> +
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/spi/offload/provider.h>
+> +#include <linux/types.h>
+> +
+> +struct spi_offload_trigger_pwm_state {
+> +	struct device *dev;
+> +	struct pwm_device *pwm;
+> +};
+> +
+> +static bool spi_offload_trigger_pwm_match(struct spi_offload_trigger
+> *trigger,
+> +					=C2=A0 enum spi_offload_trigger_type type,
+> +					=C2=A0 u64 *args, u32 nargs)
+> +{
+> +	if (nargs)
+> +		return false;
+> +
+> +	return type =3D=3D SPI_OFFLOAD_TRIGGER_PERIODIC;
+> +}
+> +
+> +static int spi_offload_trigger_pwm_validate(struct spi_offload_trigger
+> *trigger,
+> +					=C2=A0=C2=A0=C2=A0 struct spi_offload_trigger_config
+> *config)
+> +{
+> +	struct spi_offload_trigger_pwm_state *st =3D
+> spi_offload_trigger_get_priv(trigger);
+> +	struct spi_offload_trigger_periodic *periodic =3D &config->periodic;
+> +	struct pwm_waveform wf =3D { };
+> +	int ret;
+> +
+> +	if (config->type !=3D SPI_OFFLOAD_TRIGGER_PERIODIC)
+> +		return -EINVAL;
+> +
+> +	if (!periodic->frequency_hz)
+> +		return -EINVAL;
+> +
+> +	wf.period_length_ns =3D DIV_ROUND_UP_ULL(NSEC_PER_SEC, periodic-
+> >frequency_hz);
+> +	/* REVISIT: 50% duty-cycle for now - may add config parameter later
+> */
+> +	wf.duty_length_ns =3D wf.period_length_ns / 2;
+> +
+> +	ret =3D pwm_round_waveform_might_sleep(st->pwm, &wf);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	periodic->frequency_hz =3D DIV_ROUND_UP_ULL(NSEC_PER_SEC,
+> wf.period_length_ns);
+> +
+> +	return 0;
+> +}
+> +
+> +static int spi_offload_trigger_pwm_enable(struct spi_offload_trigger
+> *trigger,
+> +					=C2=A0 struct spi_offload_trigger_config
+> *config)
+> +{
+> +	struct spi_offload_trigger_pwm_state *st =3D
+> spi_offload_trigger_get_priv(trigger);
+> +	struct spi_offload_trigger_periodic *periodic =3D &config->periodic;
+> +	struct pwm_waveform wf =3D { };
+> +
+> +	if (config->type !=3D SPI_OFFLOAD_TRIGGER_PERIODIC)
+> +		return -EINVAL;
+> +
+> +	if (!periodic->frequency_hz)
+> +		return -EINVAL;
+> +
+> +	wf.period_length_ns =3D DIV_ROUND_UP_ULL(NSEC_PER_SEC, periodic-
+> >frequency_hz);
+> +	/* REVISIT: 50% duty-cycle for now - may add config parameter later
+> */
+> +	wf.duty_length_ns =3D wf.period_length_ns / 2;
+> +
+> +	return pwm_set_waveform_might_sleep(st->pwm, &wf, false);
+> +}
+> +
+> +static void spi_offload_trigger_pwm_disable(struct spi_offload_trigger
+> *trigger)
+> +{
+> +	struct spi_offload_trigger_pwm_state *st =3D
+> spi_offload_trigger_get_priv(trigger);
+> +	struct pwm_waveform wf;
+> +	int ret;
+> +
+> +	ret =3D pwm_get_waveform_might_sleep(st->pwm, &wf);
+> +	if (ret < 0) {
+> +		dev_err(st->dev, "failed to get waveform: %d\n", ret);
+> +		return;
+> +	}
+> +
+> +	wf.duty_length_ns =3D 0;
+> +
+> +	ret =3D pwm_set_waveform_might_sleep(st->pwm, &wf, false);
+> +	if (ret < 0)
+> +		dev_err(st->dev, "failed to disable PWM: %d\n", ret);
+> +}
+> +
+> +static const struct spi_offload_trigger_ops spi_offload_trigger_pwm_ops =
+=3D {
+> +	.match =3D spi_offload_trigger_pwm_match,
+> +	.validate =3D spi_offload_trigger_pwm_validate,
+> +	.enable =3D spi_offload_trigger_pwm_enable,
+> +	.disable =3D spi_offload_trigger_pwm_disable,
+> +};
+> +
+> +static void spi_offload_trigger_pwm_release(void *data)
+> +{
+> +	pwm_disable(data);
+> +}
+> +
+> +static int spi_offload_trigger_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct spi_offload_trigger_info info =3D {
+> +		.fwnode =3D dev_fwnode(dev),
+> +		.ops =3D &spi_offload_trigger_pwm_ops,
+> +	};
+> +	struct spi_offload_trigger_pwm_state *st;
+> +	struct pwm_state state;
+> +	int ret;
+> +
+> +	st =3D devm_kzalloc(dev, sizeof(*st), GFP_KERNEL);
+> +	if (!st)
+> +		return -ENOMEM;
+> +
+> +	info.priv =3D st;
+> +	st->dev =3D dev;
+> +
+> +	st->pwm =3D devm_pwm_get(dev, NULL);
+> +	if (IS_ERR(st->pwm))
+> +		return dev_err_probe(dev, PTR_ERR(st->pwm), "failed to get
+> PWM\n");
+> +
+> +	/* init with duty_cycle =3D 0, output enabled to ensure trigger off */
+> +	pwm_init_state(st->pwm, &state);
+> +	state.enabled =3D true;
+> +
+> +	ret =3D pwm_apply_might_sleep(st->pwm, &state);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to apply PWM
+> state\n");
+> +
+> +	ret =3D devm_add_action_or_reset(dev, spi_offload_trigger_pwm_release,
+> st->pwm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_spi_offload_trigger_register(dev, &info);
+> +}
+> +
+> +static const struct of_device_id spi_offload_trigger_pwm_of_match_table[=
+] =3D {
+> +	{ .compatible =3D "pwm-trigger" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, spi_offload_trigger_pwm_of_match_table);
+> +
+> +static struct platform_driver spi_offload_trigger_pwm_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "pwm-trigger",
+> +		.of_match_table =3D spi_offload_trigger_pwm_of_match_table,
+> +	},
+> +	.probe =3D spi_offload_trigger_pwm_probe,
+> +};
+> +module_platform_driver(spi_offload_trigger_pwm_driver);
+> +
+> +MODULE_AUTHOR("David Lechner <dlechner@baylibre.com>");
+> +MODULE_DESCRIPTION("Generic PWM trigger");
+> +MODULE_LICENSE("GPL");
+>=20
 
 
