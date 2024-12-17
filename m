@@ -1,790 +1,362 @@
-Return-Path: <devicetree+bounces-132058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9354A9F5767
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 21:14:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD75A9F57A4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 21:26:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEE9A16EB7C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 20:14:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57DCA188F7B9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 20:26:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F3DE1F869C;
-	Tue, 17 Dec 2024 20:14:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0B791F9A99;
+	Tue, 17 Dec 2024 20:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kco14Pmf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eBhp4sS/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3AB51D89EC;
-	Tue, 17 Dec 2024 20:14:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD0A14885B;
+	Tue, 17 Dec 2024 20:25:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734466462; cv=none; b=a3O8R+eB8V8aWHdh68DZ0g/xcSHzOwEfA4jisq8laWnIfwX8hw1+IhY73s5DSVtZzNHZSW0K/yUMsL0VUCCljT1aGdOSwGV/DunLIFedw0OJnrX19tI5WMFkNzY0FvpNq0pn2pOyqXWcLQvMF6trbqIMPnTGhpCN3muF8rqUzg0=
+	t=1734467152; cv=none; b=uLprkcqPVHmW+/X8wjAwQz0KBO0tXVa1mTRNsBdoLCe92hehjM/kYAPfjKhAoaJv1IkB+/mD3TOE0tQPsHgVjMScHllfa5TCPCX5NJT9TFWeOAzjlKpE2cS/24KzNct9R6uytLDeOKZU0syT0y+pCNtsTWLw8+SVQKkFF/n1Wmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734466462; c=relaxed/simple;
-	bh=MweSusvmpSasGV/UseE/q3hX9fVZz7NnDIapwx8PGXc=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=uOt3VMdm9mxY/CWvwiv7+NWRyYakxbb1aegq3jY9zcVMpQjW02jrRvxKiqINTtRIji1+RyQ57DH5b1Z+QMh9HxkLhXXTYn41Iv8XSLvQOx296ufHGpE+VyHvyTBdtPwNRXTZU3xt7JVHdavq+HBMOsqzRevGTuqdPiOUfr4NCvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kco14Pmf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FDA8C4CED3;
-	Tue, 17 Dec 2024 20:14:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734466461;
-	bh=MweSusvmpSasGV/UseE/q3hX9fVZz7NnDIapwx8PGXc=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=kco14Pmfa6vWvgkxbZcbU1u3shLfYzA13pbAwu+cKxLQ24IY40pWZ9ZQRgFh/nnD9
-	 LFC919v8oh0bePLkVLz4PF55Q5DDOyS09wil4lsIbyvNphXLONToXtpdiiASQ5dy9R
-	 lxGiNnUps8Z7Or1YjJgu4aVAsR9OV+iTJBbHEUK9VEVMn6Nh6ZZ7mpxk03x4sdl8NL
-	 gTNkQkiC7F6OHT+Zbp5WSKOLjpkEAvDruI16tabuiq2OZNHt5BQhfBXLyhIlMSAaxf
-	 jROnQj0iGsA7FApxoZ7gBUfWGi0ebWETj8flVwy9mW6cYcsOQAxpOcxmfnyiH1MOyZ
-	 s/ar6zEFg7E/Q==
-Message-ID: <37d32701e01df3ee457627cf971566dd.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1734467152; c=relaxed/simple;
+	bh=gJu3mrSmNyAE419VQKa6EEmifFE5XEmum7/TLp1yvZQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DjpUsGHXHAnNUqDAtqhCfNtpbjBNICExuK2wfDcXoTG46WETnuCq9m7Ckngj//e9kv9PuOhICYPWPhm9Vc0ZWH//3oPH54RGEVWJwJfdtmJfY6NzwwnTbcl5Er5WQz5Fld2Fou/Qbd3EM4eypbArYWy7taPhndpK13E3dLZBP34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eBhp4sS/; arc=none smtp.client-ip=209.85.219.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6d932b5081eso52435836d6.1;
+        Tue, 17 Dec 2024 12:25:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734467149; x=1735071949; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=AsQRwomI1GANSmgpDa7sqCPSYfEVOLz/ljhi+bRhKKY=;
+        b=eBhp4sS/NG0UhdDi0p18KmZ8XCLIyGPhJOmnVxCVtgrGNLtuigx4ULBGTZ55diu1ri
+         gETRIndG/3AEB1B5qUWx6gpJ1hHt3xsPinfUVXmMFySAgd9ZdXe3X81BlHVZJ+5kxXPf
+         n62f73UBMTj+TPTdQzxp78ldlgolowFzo140S/HzkcI3+HvNrOsK/rGXGqeAO1hoST9E
+         Ii+I6gFSkWerLxzAk3IOyFveXA7QM+FO/uXstkFQKoXW75XK5pbHHarg4v8bcHrJ1L8u
+         Xp+3YCDQAWdVXaqvZo+TtnC/xtF8gn55JawEbACR2id5i2LrRNGrAFBlFUadZY6F7Yci
+         eU6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734467149; x=1735071949;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AsQRwomI1GANSmgpDa7sqCPSYfEVOLz/ljhi+bRhKKY=;
+        b=w2k55cCFs8WCsQ98iJQ0cJ6nGcPc5oGzgyq4EvlkVoTFP5i8gXhOZqN2ABVvquJLUB
+         W+hDnEMa5gXZmMZkmdqWVn7yEudMMeN44xhJHPhI5H0/pvSy/VmCDg8aEUB3VzKtxFjd
+         oheoQVCpbda96X5WxtAYg6nijVdVg6aMYFnsJHMAvrK8k8HoGVQaEBVQ8sF4wCvE+KFZ
+         ocwsqbutDzpMVhHE3fmEKZaNAP9HW2Qg7clWMss4N2yOanAZw/w9PlaEzAyR0pnnWF32
+         sA5+6TvP8lVI7LYtmim+CYO64MzV5LF7gNcShLVfYg19x84vqkQSTgPdpfidQYN7sBdR
+         XwUA==
+X-Forwarded-Encrypted: i=1; AJvYcCU4JzEJ7oXgRZmDLC7zLP7X9OaJF6ocDdoAOF/Id6erBXuRM/iu6039wzgmQcSyURYHmc5W6c7bBe/r@vger.kernel.org, AJvYcCVnjPqkr6ijmX4wla8wu0buh6+gF+ew9+4KGz0uyHLHypd8KMVdoJHKpI3fk2YLUuD2J/nKh9Je3H1OMdM=@vger.kernel.org, AJvYcCX1SkxVZoZ0dXC83OvP3Bqw8Fi6COCfeAAo0wvBvzz62vH2QnTL4+H8afzxxPiNrT/Gc6GQXId/wFIg@vger.kernel.org, AJvYcCX6jJH4D9bFVtG+5mIPPp0DQA+svYGv0VBQV9uu0eNyX+fQXaC8WgHfdUDa8eJLP8QBWmIJP45h+rD1OOLwKw==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWe2eqPZgNJubywn37IF0pENBuM8Y8DNQDOzSwcgPP6J4B3WBh
+	f+pWb8fR6e4AP09LiWlv77fzQUHDBNeOZOlnNG9DSXhfJjRwDV9r
+X-Gm-Gg: ASbGnct35tdA/LpVTyf9fkW1RcPqHIs4MYLoyR1P7+Fkd+M2O1QibV26RKPaQjXJ1O7
+	E8uchI0b+1cLJbio/9z2jmSIfo8rxoiUOZdci0mRioJF6HWYn1C+8RNDaWj+jcIQEWdrwWl+PeV
+	8nTtkWxpAmvSP4+yTdgLPLLUwTKX5Mj6ZEx+00rSZ4ql3xtftJYztiIAiicVTqCkQuS7ZrsCbpR
+	xpTGozlobSStBNtDbKOJ0sBhIdRuh8mCg5TwaQ2PKDA
+X-Google-Smtp-Source: AGHT+IEjSztKKuV1Xa08LXaxnXphJ01KGsvl/o5djHZsWw/+hPDMrEHJYTBKHRTLbzXy7wTcsd5NEw==
+X-Received: by 2002:a05:6214:240d:b0:6d8:88fc:c0f4 with SMTP id 6a1803df08f44-6dd0923d0dcmr6717596d6.33.1734467149618;
+        Tue, 17 Dec 2024 12:25:49 -0800 (PST)
+Received: from localhost ([2607:fea8:52a3:d200::b824])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6dccd3670a7sm42373476d6.86.2024.12.17.12.25.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Dec 2024 12:25:49 -0800 (PST)
+Date: Tue, 17 Dec 2024 15:25:47 -0500
+From: Richard Acayan <mailingradian@gmail.com>
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+	Todor Tomov <todor.too@gmail.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH v8 5/5] arm64: dts: qcom: sdm670: add camss and cci
+Message-ID: <Z2HeS7mZ976l_Mrw@radian>
+References: <20241216223019.70155-8-mailingradian@gmail.com>
+ <20241216223019.70155-13-mailingradian@gmail.com>
+ <565d14e1-1478-4a60-8f70-a76a732cde97@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241216084817.373131-9-apatel@ventanamicro.com>
-References: <20241216084817.373131-1-apatel@ventanamicro.com> <20241216084817.373131-9-apatel@ventanamicro.com>
-Subject: Re: [RFC PATCH 8/8] clk: Add clock driver for the RISC-V RPMI clock service group
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Sunil V L <sunilvl@ventanamicro.com>, Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, Anup Patel <apatel@ventanamicro.com>
-To: Anup Patel <apatel@ventanamicro.com>, Conor Dooley <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>
-Date: Tue, 17 Dec 2024 12:14:19 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <565d14e1-1478-4a60-8f70-a76a732cde97@linaro.org>
 
-Quoting Anup Patel (2024-12-16 00:48:17)
-> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-> index bf4bd45adc3a..95ef59e439bf 100644
-> --- a/drivers/clk/Makefile
-> +++ b/drivers/clk/Makefile
-> @@ -107,6 +107,7 @@ obj-$(CONFIG_COMMON_CLK_VC5)                +=3D clk-=
-versaclock5.o
->  obj-$(CONFIG_COMMON_CLK_VC7)           +=3D clk-versaclock7.o
->  obj-$(CONFIG_COMMON_CLK_WM831X)                +=3D clk-wm831x.o
->  obj-$(CONFIG_COMMON_CLK_XGENE)         +=3D clk-xgene.o
-> +obj-$(CONFIG_COMMON_CLK_RPMI)          +=3D clk-rpmi.o
+On Tue, Dec 17, 2024 at 09:31:50AM +0200, Vladimir Zapolskiy wrote:
+> Hi Richard.
+> 
+> On 12/17/24 00:30, Richard Acayan wrote:
+> > Add the camera subsystem and CCI used to interface with cameras on the
+> > Snapdragon 670.
+> > 
+> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> > Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > ---
+> >   arch/arm64/boot/dts/qcom/sdm670.dtsi | 185 +++++++++++++++++++++++++++
+> >   1 file changed, 185 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> > index 328096b91126..d4e1251ada04 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> > @@ -6,6 +6,7 @@
+> >    * Copyright (c) 2022, Richard Acayan. All rights reserved.
+> >    */
+> > +#include <dt-bindings/clock/qcom,camcc-sdm845.h>
+> >   #include <dt-bindings/clock/qcom,dispcc-sdm845.h>
+> >   #include <dt-bindings/clock/qcom,gcc-sdm845.h>
+> >   #include <dt-bindings/clock/qcom,rpmh.h>
+> > @@ -1168,6 +1169,34 @@ tlmm: pinctrl@3400000 {
+> >   			gpio-ranges = <&tlmm 0 0 151>;
+> >   			wakeup-parent = <&pdc>;
+> > +			cci0_default: cci0-default-state {
+> > +				pins = "gpio17", "gpio18";
+> > +				function = "cci_i2c";
+> > +				drive-strength = <2>;
+> > +				bias-pull-up;
+> > +			};
+> > +
+> > +			cci0_sleep: cci0-sleep-state {
+> > +				pins = "gpio17", "gpio18";
+> > +				function = "cci_i2c";
+> > +				drive-strength = <2>;
+> > +				bias-pull-down;
+> > +			};
+> > +
+> > +			cci1_default: cci1-default-state {
+> > +				pins = "gpio19", "gpio20";
+> > +				function = "cci_i2c";
+> > +				drive-strength = <2>;
+> > +				bias-pull-up;
+> > +			};
+> > +
+> > +			cci1_sleep: cci1-sleep-state {
+> > +				pins = "gpio19", "gpio20";
+> > +				function = "cci_i2c";
+> > +				drive-strength = <2>;
+> > +				bias-pull-down;
+> > +			};
+> > +
+> >   			qup_i2c0_default: qup-i2c0-default-state {
+> >   				pins = "gpio0", "gpio1";
+> >   				function = "qup0";
+> > @@ -1400,6 +1429,162 @@ spmi_bus: spmi@c440000 {
+> >   			#interrupt-cells = <4>;
+> >   		};
+> > +		cci: cci@ac4a000 {
+> > +			compatible = "qcom,sdm670-cci", "qcom,msm8996-cci";
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +
+> > +			reg = <0 0x0ac4a000 0 0x4000>;
+> > +			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
+> > +			power-domains = <&camcc TITAN_TOP_GDSC>;
+> > +
+> > +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
+> > +				 <&camcc CAM_CC_SOC_AHB_CLK>,
+> > +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
+> > +				 <&camcc CAM_CC_CCI_CLK>;
+> > +			clock-names = "camnoc_axi",
+> > +				      "soc_ahb",
+> > +				      "cpas_ahb",
+> > +				      "cci";
+> > +
+> > +			pinctrl-names = "default", "sleep";
+> > +			pinctrl-0 = <&cci0_default &cci1_default>;
+> > +			pinctrl-1 = <&cci0_sleep &cci1_sleep>;
+> > +
+> > +			status = "disabled";
+> > +
+> > +			cci_i2c0: i2c-bus@0 {
+> > +				reg = <0>;
+> > +				clock-frequency = <1000000>;
+> > +				#address-cells = <1>;
+> > +				#size-cells = <0>;
+> > +			};
+> > +
+> > +			cci_i2c1: i2c-bus@1 {
+> > +				reg = <1>;
+> > +				clock-frequency = <1000000>;
+> > +				#address-cells = <1>;
+> > +				#size-cells = <0>;
+> > +			};
+> > +		};
+> > +
+> > +		camss: camera-controller@acb3000 {
+> 
+> Wasn't it agreed recently to have 'isp' as a generic device name for CAMSS IP?
 
-Keep this sorted by filename.
+Yeah, will change.
 
-> =20
->  # please keep this section sorted lexicographically by directory path na=
-me
->  obj-y                                  +=3D actions/
-> diff --git a/drivers/clk/clk-rpmi.c b/drivers/clk/clk-rpmi.c
-> new file mode 100644
-> index 000000000000..ed8e32527d3d
-> --- /dev/null
-> +++ b/drivers/clk/clk-rpmi.c
-> @@ -0,0 +1,588 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * RISC-V MPXY Based Clock Driver
-> + *
-> + * Copyright (C) 2024 Ventana Micro Systems Ltd.
-> + */
-> +
-> +#include <linux/io.h>
+> 
+> > +			compatible = "qcom,sdm670-camss";
+> > +			reg = <0 0x0acb3000 0 0x1000>,
+> > +			      <0 0x0acba000 0 0x1000>,
+> > +			      <0 0x0acc8000 0 0x1000>,
+> > +			      <0 0x0ac65000 0 0x1000>,
+> > +			      <0 0x0ac66000 0 0x1000>,
+> > +			      <0 0x0ac67000 0 0x1000>,
+> > +			      <0 0x0acaf000 0 0x4000>,
+> > +			      <0 0x0acb6000 0 0x4000>,
+> > +			      <0 0x0acc4000 0 0x4000>;
+> > +			reg-names = "csid0",
+> > +				    "csid1",
+> > +				    "csid2",
+> > +				    "csiphy0",
+> > +				    "csiphy1",
+> > +				    "csiphy2",
+> > +				    "vfe0",
+> > +				    "vfe1",
+> > +				    "vfe_lite";
+> > +
+> > +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
+> > +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
+> > +				 <&camcc CAM_CC_IFE_0_CSID_CLK>,
+> > +				 <&camcc CAM_CC_IFE_1_CSID_CLK>,
+> > +				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>,
+> > +				 <&camcc CAM_CC_CSIPHY0_CLK>,
+> > +				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
+> > +				 <&camcc CAM_CC_CSIPHY1_CLK>,
+> > +				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
+> > +				 <&camcc CAM_CC_CSIPHY2_CLK>,
+> > +				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
+> > +				 <&gcc GCC_CAMERA_AHB_CLK>,
+> > +				 <&gcc GCC_CAMERA_AXI_CLK>,
+> > +				 <&camcc CAM_CC_SOC_AHB_CLK>,
+> > +				 <&camcc CAM_CC_IFE_0_CLK>,
+> > +				 <&camcc CAM_CC_IFE_0_AXI_CLK>,
+> > +				 <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
+> > +				 <&camcc CAM_CC_IFE_1_CLK>,
+> > +				 <&camcc CAM_CC_IFE_1_AXI_CLK>,
+> > +				 <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
+> > +				 <&camcc CAM_CC_IFE_LITE_CLK>,
+> > +				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>;
+> > +			clock-names = "camnoc_axi",
+> > +				      "cpas_ahb",
+> > +				      "csi0",
+> > +				      "csi1",
+> > +				      "csi2",
+> > +				      "csiphy0",
+> > +				      "csiphy0_timer",
+> > +				      "csiphy1",
+> > +				      "csiphy1_timer",
+> > +				      "csiphy2",
+> > +				      "csiphy2_timer",
+> > +				      "gcc_camera_ahb",
+> > +				      "gcc_camera_axi",
+> > +				      "soc_ahb",
+> > +				      "vfe0",
+> > +				      "vfe0_axi",
+> > +				      "vfe0_cphy_rx",
+> > +				      "vfe1",
+> > +				      "vfe1_axi",
+> > +				      "vfe1_cphy_rx",
+> > +				      "vfe_lite",
+> > +				      "vfe_lite_cphy_rx";
+> > +
+> > +			interrupts = <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
+> > +				     <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
+> > +				     <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
+> > +				     <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
+> > +				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
+> > +				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
+> > +				     <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
+> > +				     <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
+> > +				     <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>;
+> > +			interrupt-names = "csid0",
+> > +					  "csid1",
+> > +					  "csid2",
+> > +					  "csiphy0",
+> > +					  "csiphy1",
+> > +					  "csiphy2",
+> > +					  "vfe0",
+> > +					  "vfe1",
+> > +					  "vfe_lite";
+> > +
+> > +			iommus = <&apps_smmu 0x808 0x0>,
+> > +				 <&apps_smmu 0x810 0x8>,
+> > +				 <&apps_smmu 0xc08 0x0>,
+> > +				 <&apps_smmu 0xc10 0x8>;
+> > +
+> > +			power-domains = <&camcc IFE_0_GDSC>,
+> > +					<&camcc IFE_1_GDSC>,
+> > +					<&camcc TITAN_TOP_GDSC>;
+> > +			power-domain-names = "ife0",
+> > +					     "ife1",
+> > +					     "top";
+> > +
+> > +			status = "disabled";
+> > +
+> > +			ports {
+> > +				#address-cells = <1>;
+> > +				#size-cells = <0>;
+> > +
+> > +				camss_port0: port@0 {
+> > +					reg = <0>;
+> > +				};
+> > +
+> > +				camss_port1: port@1 {
+> > +					reg = <1>;
+> > +				};
+> > +
+> > +				camss_port2: port@2 {
+> 
+> Likely labels to ports are excessive here, please remove them.
 
-Is this include used?
+How would you imagine connecting a camera to the ports, then? For MDSS,
+there's a label for the endpoint (mdss_dsi0_out) which the device DTS
+can then reference:
 
-> +#include <linux/mm.h>
+	&mdss_dsi0_out {
+		remote-endpoint = <&panel_in>;
+		data-lanes = <0 1 2 3>;
+	};
 
-Is this include used?
+For CAMSS, the port labels would be used like so:
 
-> +#include <linux/of.h>
+	&camss_port1 {
+		camss_endpoint1: endpoint {
+			clock-lanes = <7>;
+			data-lanes = <0 1 2 3>;
+			remote-endpoint = <&cam_front_endpoint>;
+		};
+	};
 
-Is this include used?
+Without the labels, the connection might look something like:
 
-> +#include <linux/err.h>
-> +#include <linux/slab.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/mailbox/riscv-rpmi-message.h>
-> +#include <linux/mailbox_client.h>
-> +#include <linux/module.h>
-> +#include <linux/of_platform.h>
+	&camss {
+		status = "okay";
 
-Did you mean mod_devicetable.h?
+		// Modification of existing /soc/isp@acb3000/ports node
+		ports {
+			// Modification of existing /soc/isp@acb3000/ports/port@1 node
+			port@1 {
+				// New node
+				camss_endpoint1: endpoint {
+					clock-lanes = <7>;
+					data-lanes = <0 1 2 3>;
+					remote-endpoint = <&cam_front_endpoint>;
+				};
+			};
+		};
+	};
 
-> +#include <linux/clk-provider.h>
-
-Please sort includes alphabetically.
-
-> +
-> +#define RPMI_CLK_MAX_NUM_RATES         16
-> +#define RPMI_CLK_NAME_LEN              16
-> +
-> +#define GET_RATE_LO_U32(rate_u64)      ((u32)rate_u64)
-> +#define GET_RATE_HI_U32(rate_u64)      ((u32)((u64)(rate_u64) >> 32))
-
-Use upper_32_bits() and lower_32_bits() instead.
-
-> +#define GET_RATE_U64(hi_u32, lo_u32)   ((u64)(hi_u32) << 32 | (lo_u32))
-
-I couldn't find a macro for this one which is kinda surprising.
-
-> +
-> +enum rpmi_clk_config {
-> +       RPMI_CLK_DISABLE =3D 0,
-> +       RPMI_CLK_ENABLE =3D 1,
-> +};
-> +
-> +enum rpmi_clk_type {
-> +       RPMI_CLK_DISCRETE =3D 0,
-> +       RPMI_CLK_LINEAR =3D 1,
-> +       RPMI_CLK_TYPE_MAX_IDX,
-> +};
-> +
-> +struct rpmi_clk_context {
-> +       struct device *dev;
-> +       struct mbox_chan *chan;
-> +       struct mbox_client client;
-> +};
-> +
-> +union rpmi_clk_rate {
-> +       struct {
-> +               u32 lo;
-> +               u32 hi;
-> +       } discrete[RPMI_CLK_MAX_NUM_RATES];
-> +       struct {
-> +               u32 min_lo;
-> +               u32 min_hi;
-> +               u32 max_lo;
-> +               u32 max_hi;
-> +               u32 step_lo;
-> +               u32 step_hi;
-> +       } linear;
-> +};
-> +
-> +union rpmi_clk_rates {
-> +       u64 discrete[RPMI_CLK_MAX_NUM_RATES];
-> +       struct {
-> +               u64 min;
-> +               u64 max;
-> +               u64 step;
-> +       } linear;
-> +};
-> +
-> +struct rpmi_clk {
-> +       struct rpmi_clk_context *context;
-> +       u32 id;
-> +       u32 num_rates;
-> +       u32 transition_latency;
-> +       enum rpmi_clk_type type;
-> +       union rpmi_clk_rates *rates;
-> +       char name[RPMI_CLK_NAME_LEN];
-> +       struct clk_hw hw;
-> +};
-> +
-> +#define to_rpmi_clk(clk)       container_of(clk, struct rpmi_clk, hw)
-> +
-> +struct rpmi_get_num_clocks_rx {
-> +       s32 status;
-> +       u32 num_clocks;
-> +};
-> +
-> +struct rpmi_get_attrs_tx {
-> +       u32 clkid;
-
-Maybe just 'id', unless the spec calls this 'clkid'?
-
-> +};
-> +
-> +struct rpmi_get_attrs_rx {
-> +       s32 status;
-> +       u32 flags;
-> +       u32 num_rates;
-> +       u32 transition_latency;
-> +       char name[RPMI_CLK_NAME_LEN];
-> +};
-> +
-> +struct rpmi_get_supp_rates_tx {
-> +       u32 clkid;
-> +       u32 clk_rate_idx;
-> +};
-> +
-> +struct rpmi_get_supp_rates_rx {
-> +       u32 status;
-> +       u32 flags;
-> +       u32 remaining;
-> +       u32 returned;
-> +       union rpmi_clk_rate rates;
-> +};
-> +
-> +struct rpmi_get_rate_tx {
-> +       u32 clkid;
-> +};
-> +
-> +struct rpmi_get_rate_rx {
-> +       u32 status;
-> +       u32 lo;
-> +       u32 hi;
-> +};
-> +
-> +struct rpmi_set_rate_tx {
-> +       u32 clkid;
-> +       u32 flags;
-> +       u32 lo;
-> +       u32 hi;
-> +};
-> +
-> +struct rpmi_set_rate_rx {
-> +       u32 status;
-> +};
-> +
-> +struct rpmi_set_config_tx {
-> +       u32 clkid;
-> +       u32 config;
-> +};
-> +
-> +struct rpmi_set_config_rx {
-> +       u32 status;
-> +};
-> +
-> +static int rpmi_clk_get_num_clocks(struct rpmi_clk_context *context)
-> +{
-> +       struct rpmi_get_num_clocks_rx rx;
-> +       struct rpmi_mbox_message msg;
-> +       int ret;
-> +
-> +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_GET_NUM_CLOC=
-KS,
-> +                                         NULL, 0, &rx, sizeof(rx));
-> +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> +       if (ret)
-> +               return ret;
-> +       if (rx.status)
-> +               return rpmi_to_linux_error(rx.status);
-> +
-> +       return rx.num_clocks;
-> +}
-> +
-> +/**
-
-This isn't kernel-doc so either remove the extra '*' or write
-kernel-doc.
-
-> + * Get the RPMI Clock Attributes.
-> + * These attributes belong to a particular clock(clkid)
-> + * which are different from the MPXY channel attributes.
-> + */
-> +static int rpmi_clk_get_attrs(u32 clkid, struct rpmi_clk *rpmi_clk)
-> +{
-> +       struct rpmi_clk_context *context =3D rpmi_clk->context;
-> +       struct rpmi_mbox_message msg;
-> +       struct rpmi_get_attrs_tx tx;
-> +       struct rpmi_get_attrs_rx rx;
-> +       u8 format;
-> +       int ret;
-> +
-> +       tx.clkid =3D cpu_to_le32(clkid);
-
-Run sparse and fix errors please. I assume that the mailbox interactions
-need to have __le32 marked structs.
-
-> +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_GET_ATTRIBUT=
-ES,
-> +                                         &tx, sizeof(tx), &rx, sizeof(rx=
-));
-> +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> +       if (ret)
-> +               return ret;
-> +       if (rx.status)
-> +               return rpmi_to_linux_error(rx.status);
-> +
-> +       rpmi_clk->id =3D clkid;
-> +       rpmi_clk->num_rates =3D rx.num_rates;
-> +       rpmi_clk->transition_latency =3D rx.transition_latency;
-> +       strscpy(rpmi_clk->name, rx.name, RPMI_CLK_NAME_LEN);
-> +
-> +       format =3D rx.flags & 1U;
-> +       if (format >=3D RPMI_CLK_TYPE_MAX_IDX)
-
-How is this possible?
-
-> +               return -EINVAL;
-> +
-> +       rpmi_clk->type =3D format;
-> +
-> +       return 0;
-> +}
-> +
-> +static int rpmi_clk_get_supported_rates(u32 clkid, struct rpmi_clk *rpmi=
-_clk)
-> +{
-> +       struct rpmi_clk_context *context =3D rpmi_clk->context;
-> +       struct rpmi_get_supp_rates_tx tx;
-> +       struct rpmi_get_supp_rates_rx rx;
-> +       struct rpmi_mbox_message msg;
-> +       size_t clk_rate_idx =3D 0;
-> +       int ret, rateidx, j;
-> +
-> +       tx.clkid =3D cpu_to_le32(clkid);
-> +       tx.clk_rate_idx =3D 0;
-> +
-> +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_GET_SUPPORTE=
-D_RATES,
-> +                                         &tx, sizeof(tx), &rx, sizeof(rx=
-));
-> +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> +       if (ret)
-> +               return ret;
-> +       if (rx.status)
-> +               return rpmi_to_linux_error(rx.status);
-> +       if (!rx.returned)
-> +               return -EINVAL;
-> +
-> +       if (rpmi_clk->type =3D=3D RPMI_CLK_DISCRETE) {
-> +               for (rateidx =3D 0; rateidx < rx.returned; rateidx++) {
-> +                       rpmi_clk->rates->discrete[rateidx] =3D
-> +                                       GET_RATE_U64(rx.rates.discrete[ra=
-teidx].hi,
-> +                                                    rx.rates.discrete[ra=
-teidx].lo);
-> +               }
-> +
-> +               while (rx.remaining) {
-> +                       clk_rate_idx +=3D rx.returned;
-> +                       tx.clk_rate_idx =3D clk_rate_idx;
-> +
-> +                       rpmi_mbox_init_send_with_response(&msg,
-> +                                                         RPMI_CLK_SRV_GE=
-T_SUPPORTED_RATES,
-> +                                                         &tx, sizeof(tx)=
-, &rx, sizeof(rx));
-> +                       ret =3D rpmi_mbox_send_message(context->chan, &ms=
-g);
-> +                       if (ret)
-> +                               return ret;
-> +
-> +                       for (j =3D 0; j < rx.returned; j++) {
-> +                               if (rateidx >=3D (clk_rate_idx + rx.retur=
-ned))
-> +                                       break;
-> +                               rpmi_clk->rates->discrete[rateidx++] =3D
-> +                                       GET_RATE_U64(rx.rates.discrete[j]=
-.hi,
-> +                                                    rx.rates.discrete[j]=
-.lo);
-> +                       }
-> +               }
-> +       } else if (rpmi_clk->type =3D=3D RPMI_CLK_LINEAR) {
-> +               rpmi_clk->rates->linear.min =3D
-> +                               GET_RATE_U64(rx.rates.linear.min_hi,
-> +                                            rx.rates.linear.min_lo);
-> +               rpmi_clk->rates->linear.max =3D
-> +                               GET_RATE_U64(rx.rates.linear.max_hi,
-> +                                            rx.rates.linear.max_lo);
-> +               rpmi_clk->rates->linear.step =3D
-> +                               GET_RATE_U64(rx.rates.linear.step_hi,
-> +                                            rx.rates.linear.step_lo);
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static unsigned long rpmi_clk_recalc_rate(struct clk_hw *hw,
-> +                                         unsigned long parent_rate)
-> +{
-> +       struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
-> +       struct rpmi_clk_context *context =3D rpmi_clk->context;
-> +       struct rpmi_mbox_message msg;
-> +       struct rpmi_get_rate_tx tx;
-> +       struct rpmi_get_rate_rx rx;
-> +       int ret;
-> +
-> +       tx.clkid =3D cpu_to_le32(rpmi_clk->id);
-> +
-> +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_GET_RATE,
-> +                                         &tx, sizeof(tx), &rx, sizeof(rx=
-));
-> +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> +       if (ret)
-> +               return ret;
-> +       if (rx.status)
-> +               return rx.status;
-> +
-> +       return GET_RATE_U64(rx.hi, rx.lo);
-> +}
-> +
-> +static long rpmi_clk_round_rate(struct clk_hw *hw,
-> +                               unsigned long rate,
-> +                               unsigned long *parent_rate)
-> +{
-> +       struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
-> +       u64 fmin, fmax, ftmp;
-> +
-> +       if (rpmi_clk->type =3D=3D RPMI_CLK_DISCRETE)
-> +               return rate;
-> +
-> +       fmin =3D rpmi_clk->rates->linear.min;
-> +       fmax =3D rpmi_clk->rates->linear.max;
-> +
-> +       if (rate <=3D fmin)
-> +               return fmin;
-> +       else if (rate >=3D  fmax)
-> +               return fmax;
-> +
-> +       ftmp =3D rate - fmin;
-> +       ftmp +=3D rpmi_clk->rates->linear.step - 1;
-> +       do_div(ftmp, rpmi_clk->rates->linear.step);
-> +
-> +       return ftmp * rpmi_clk->rates->linear.step + fmin;
-> +}
-> +
-> +static int rpmi_clk_set_rate(struct clk_hw *hw, unsigned long rate,
-> +                            unsigned long parent_rate)
-> +{
-> +       struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
-> +       struct rpmi_clk_context *context =3D rpmi_clk->context;
-> +       struct rpmi_mbox_message msg;
-> +       struct rpmi_set_rate_tx tx;
-> +       struct rpmi_set_rate_rx rx;
-> +       int ret;
-> +
-> +       tx.clkid =3D cpu_to_le32(rpmi_clk->id);
-> +       tx.lo =3D cpu_to_le32(GET_RATE_LO_U32(rate));
-> +       tx.hi =3D cpu_to_le32(GET_RATE_HI_U32(rate));
-> +
-> +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_SET_RATE,
-> +                                         &tx, sizeof(tx), &rx, sizeof(rx=
-));
-> +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> +       if (ret)
-> +               return ret;
-> +       if (rx.status)
-> +               return rpmi_to_linux_error(rx.status);
-> +
-> +       return 0;
-> +}
-> +
-> +static int rpmi_clk_enable(struct clk_hw *hw)
-> +{
-> +       struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
-> +       struct rpmi_clk_context *context =3D rpmi_clk->context;
-> +       struct rpmi_mbox_message msg;
-> +       struct rpmi_set_config_tx tx;
-> +       struct rpmi_set_config_rx rx;
-> +       int ret;
-> +
-> +       tx.config =3D cpu_to_le32(RPMI_CLK_ENABLE);
-> +       tx.clkid =3D cpu_to_le32(rpmi_clk->id);
-> +
-> +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_SET_CONFIG,
-> +                                         &tx, sizeof(tx), &rx, sizeof(rx=
-));
-> +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> +       if (ret)
-> +               return ret;
-> +       if (rx.status)
-> +               return rpmi_to_linux_error(rx.status);
-> +
-> +       return 0;
-> +}
-> +
-> +static void rpmi_clk_disable(struct clk_hw *hw)
-> +{
-> +       struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
-> +       struct rpmi_clk_context *context =3D rpmi_clk->context;
-> +       struct rpmi_mbox_message msg;
-> +       struct rpmi_set_config_tx tx;
-> +       struct rpmi_set_config_rx rx;
-> +       int ret;
-> +
-> +       tx.config =3D cpu_to_le32(RPMI_CLK_DISABLE);
-> +       tx.clkid =3D cpu_to_le32(rpmi_clk->id);
-> +
-> +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_SET_CONFIG,
-> +                                         &tx, sizeof(tx), &rx, sizeof(rx=
-));
-> +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> +       if (ret || rx.status)
-> +               pr_err("Failed to disable clk-%u\n", rpmi_clk->id);
-> +}
-> +
-> +static const struct clk_ops rpmi_clk_ops =3D {
-> +       .recalc_rate =3D rpmi_clk_recalc_rate,
-> +       .round_rate =3D rpmi_clk_round_rate,
-
-Please implement determine_rate instead.
-
-> +       .set_rate =3D rpmi_clk_set_rate,
-> +       .prepare =3D rpmi_clk_enable,
-> +       .unprepare =3D rpmi_clk_disable,
-> +};
-> +
-> +static struct clk_hw *rpmi_clk_enumerate(struct rpmi_clk_context *contex=
-t, u32 clkid)
-> +{
-> +       struct device *dev =3D context->dev;
-> +       unsigned long min_rate, max_rate;
-> +       union rpmi_clk_rates *rates;
-> +       struct rpmi_clk *rpmi_clk;
-> +       struct clk_init_data init;
-
-Use init =3D { } to initialize everything to zero.
-
-> +       struct clk_hw *clk_hw;
-> +       int ret;
-> +
-> +       rates =3D devm_kzalloc(dev, sizeof(union rpmi_clk_rates), GFP_KER=
-NEL);
-> +       if (!rates)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       rpmi_clk =3D devm_kzalloc(dev, sizeof(struct rpmi_clk), GFP_KERNE=
-L);
-> +       if (!rpmi_clk)
-> +               return ERR_PTR(-ENOMEM);
-> +       rpmi_clk->context =3D context;
-> +       rpmi_clk->rates =3D rates;
-> +
-> +       ret =3D rpmi_clk_get_attrs(clkid, rpmi_clk);
-> +       if (ret) {
-> +               dev_err(dev, "Failed to get clk-%u attributes\n", clkid);
-
-Please use dev_err_probe() and helpers.
-
-> +               return ERR_PTR(ret);
-> +       }
-> +
-> +       ret =3D rpmi_clk_get_supported_rates(clkid, rpmi_clk);
-> +       if (ret) {
-> +               dev_err(dev, "Get supported rates failed for clk-%u, %d\n=
-",
-> +                       clkid, ret);
-> +               return ERR_PTR(ret);
-> +       }
-> +
-> +       init.flags =3D CLK_GET_RATE_NOCACHE;
-> +       init.num_parents =3D 0;
-> +       init.ops =3D &rpmi_clk_ops;
-> +       init.name =3D rpmi_clk->name;
-> +       clk_hw =3D &rpmi_clk->hw;
-> +       clk_hw->init =3D &init;
-> +
-> +       ret =3D devm_clk_hw_register(dev, clk_hw);
-> +       if (ret) {
-> +               dev_err(dev, "Unable to register clk-%u\n", clkid);
-> +               return ERR_PTR(ret);
-> +       }
-> +
-> +       if (rpmi_clk->type =3D=3D RPMI_CLK_DISCRETE) {
-> +               min_rate =3D rpmi_clk->rates->discrete[0];
-> +               max_rate =3D rpmi_clk->rates->discrete[rpmi_clk->num_rate=
-s -  1];
-> +       } else {
-> +               min_rate =3D rpmi_clk->rates->linear.min;
-> +               max_rate =3D rpmi_clk->rates->linear.max;
-> +       }
-> +
-> +       clk_hw_set_rate_range(clk_hw, min_rate, max_rate);
-> +
-> +       return NULL;
-
-Why does it return NULL?
-
-> +}
-> +
-> +static void rpmi_clk_receive_message(struct mbox_client *cl, void *msg)
-> +{
-> +       /* Nothing to do here. */
-> +}
-> +
-> +static int rpmi_clk_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev =3D &pdev->dev;
-> +       struct clk_hw_onecell_data *clk_data;
-> +       struct rpmi_clk_context *context;
-> +       struct rpmi_mbox_message msg;
-> +       int ret, num_clocks, i;
-> +       struct clk_hw *hw_ptr;
-> +
-> +       /* Allocate RPMI clock context */
-> +       context =3D devm_kzalloc(dev, sizeof(*context), GFP_KERNEL);
-> +       if (!context)
-> +               return -ENOMEM;
-> +       context->dev =3D dev;
-> +       platform_set_drvdata(pdev, context);
-> +
-> +       /* Setup mailbox client */
-> +       context->client.dev             =3D context->dev;
-> +       context->client.rx_callback     =3D rpmi_clk_receive_message;
-> +       context->client.tx_block        =3D false;
-> +       context->client.knows_txdone    =3D true;
-> +       context->client.tx_tout         =3D 0;
-> +
-> +       /* Request mailbox channel */
-> +       context->chan =3D mbox_request_channel(&context->client, 0);
-> +       if (IS_ERR(context->chan))
-> +               return PTR_ERR(context->chan);
-> +
-> +       /* Validate RPMI specification version */
-> +       rpmi_mbox_init_get_attribute(&msg, RPMI_MBOX_ATTR_SPEC_VERSION);
-> +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> +       if (ret) {
-> +               dev_err(dev, "Failed to get spec version\n");
-
-Use dev_err_probe()
-
-> +               goto fail_free_channel;
-> +       }
-> +       if (msg.attr.value < RPMI_MKVER(1, 0)) {
-> +               dev_err(dev,
-> +                       "msg protocol version mismatch, expected 0x%x, fo=
-und 0x%x\n",
-> +                       RPMI_MKVER(1, 0), msg.attr.value);
-> +               ret =3D -EINVAL;
-> +               goto fail_free_channel;
-> +       }
-> +
-> +       /* Validate clock service group ID */
-> +       rpmi_mbox_init_get_attribute(&msg, RPMI_MBOX_ATTR_SERVICEGROUP_ID=
-);
-> +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> +       if (ret) {
-> +               dev_err(dev, "Failed to get service group ID\n");
-> +               goto fail_free_channel;
-> +       }
-> +       if (msg.attr.value !=3D RPMI_SRVGRP_CLOCK) {
-> +               dev_err(dev,
-> +                       "service group match failed, expected 0x%x, found=
- 0x%x\n",
-> +                       RPMI_SRVGRP_CLOCK, msg.attr.value);
-> +               ret =3D -EINVAL;
-> +               goto fail_free_channel;
-> +       }
-> +
-> +       /* Validate clock service group version */
-> +       rpmi_mbox_init_get_attribute(&msg, RPMI_MBOX_ATTR_SERVICEGROUP_VE=
-RSION);
-> +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> +       if (ret) {
-> +               dev_err(dev, "Failed to get service group version\n");
-> +               goto fail_free_channel;
-> +       }
-> +       if (msg.attr.value < RPMI_MKVER(1, 0)) {
-> +               dev_err(dev,
-> +                       "service group version failed, expected 0x%x, fou=
-nd 0x%x\n",
-> +                       RPMI_MKVER(1, 0), msg.attr.value);
-> +               ret =3D -EINVAL;
-> +               goto fail_free_channel;
-> +       }
-> +
-> +       /* Find-out number of clocks */
-> +       num_clocks =3D rpmi_clk_get_num_clocks(context);
-> +       if (!num_clocks) {
-> +               dev_err(dev, "No clocks found\n");
-> +               ret =3D -ENODEV;
-> +               goto fail_free_channel;
-> +       }
-> +
-> +       /* Allocate clock data */
-> +       clk_data =3D devm_kzalloc(dev, struct_size(clk_data, hws, num_clo=
-cks),
-> +                               GFP_KERNEL);
-> +       if (!clk_data) {
-> +               ret =3D -ENOMEM;
-> +               goto fail_free_channel;
-> +       }
-> +       clk_data->num =3D num_clocks;
-> +
-> +       /* Setup clock data */
-> +       for (i =3D 0; i < clk_data->num; i++) {
-> +               hw_ptr =3D rpmi_clk_enumerate(context, i);
-> +               if (IS_ERR(hw_ptr)) {
-> +                       dev_err(dev, "failed to register clk-%d\n", i);
-> +                       ret =3D PTR_ERR(hw_ptr);
-> +                       goto fail_free_channel;
-> +               }
-> +               clk_data->hws[i] =3D hw_ptr;
-> +       }
-> +
-> +       /* Register clock HW provider */
-> +       ret =3D devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, c=
-lk_data);
-> +       if (ret) {
-> +               dev_err(dev, "failed to register clock HW provider\n");
-> +               goto fail_free_channel;
-> +       }
-> +
-> +       dev_info(dev, "clk HW provider registered with %d clocks\n",
-> +                num_clocks);
-
-Remove this info print please.
-
-> +       return 0;
-> +
-> +fail_free_channel:
-> +       mbox_free_channel(context->chan);
-> +       return ret;
-> +}
-> +
-> +static void rpmi_clk_remove(struct platform_device *pdev)
-> +{
-> +       struct rpmi_clk_context *context =3D platform_get_drvdata(pdev);
-> +
-> +       mbox_free_channel(context->chan);
-> +}
-> +
-> +static const struct of_device_id rpmi_clk_of_match[] =3D {
-> +       { .compatible =3D "riscv,rpmi-clock" },
-> +       { },
-
-Nitpick: Drop comma so nothing can come after.
-
-> +};
-> +
-
-Nitpick: Drop extra newline.
-
-> +MODULE_DEVICE_TABLE(of, rpmi_clk_of_match);
-> +
-> +static struct platform_driver rpmi_clk_driver =3D {
-> +       .driver =3D {
-> +               .name =3D "riscv-rpmi-clock",
-> +               .of_match_table =3D rpmi_clk_of_match,
-> +       },
-> +       .probe =3D rpmi_clk_probe,
-> +       .remove =3D rpmi_clk_remove,
-> +};
-> +module_platform_driver(rpmi_clk_driver);
-> +
-> +MODULE_AUTHOR("Rahul Pathak <rpathak@ventanamicro.com>");
-> +MODULE_DESCRIPTION("Clock Driver based on RPMI message protocol");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/mailbox/riscv-rpmi-message.h b/include/linux/m=
-ailbox/riscv-rpmi-message.h
-> index 8f4b3a0edbce..4e9478c4c0a3 100644
-> --- a/include/linux/mailbox/riscv-rpmi-message.h
-> +++ b/include/linux/mailbox/riscv-rpmi-message.h
-> @@ -89,6 +89,22 @@ static inline int rpmi_to_linux_error(int rpmi_error)
->         }
->  }
-> =20
-> +/** RPMI service group IDs */
-> +#define RPMI_SRVGRP_CLOCK              0x00007
-> +
-> +/** RPMI clock service IDs */
-> +enum rpmi_clock_service_id {
-> +       RPMI_CLK_SRV_ENABLE_NOTIFICATION =3D 0x01,
-> +       RPMI_CLK_SRV_GET_NUM_CLOCKS =3D 0x02,
-> +       RPMI_CLK_SRV_GET_ATTRIBUTES =3D 0x03,
-> +       RPMI_CLK_SRV_GET_SUPPORTED_RATES =3D 0x04,
-> +       RPMI_CLK_SRV_SET_CONFIG =3D 0x05,
-> +       RPMI_CLK_SRV_GET_CONFIG =3D 0x06,
-> +       RPMI_CLK_SRV_SET_RATE =3D 0x07,
-> +       RPMI_CLK_SRV_GET_RATE =3D 0x08,
-> +       RPMI_CLK_SRV_ID_MAX_COUNT,
-> +};
-> +
-
-What is the benefit of the enum vs. just having a #define?
+which I believe is not preferred.
 
