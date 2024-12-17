@@ -1,150 +1,147 @@
-Return-Path: <devicetree+bounces-131837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D5B49F4B21
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:41:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 501919F4B2B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:43:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 768CF16E942
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 12:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 972371669FF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 12:43:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C3E1F2C23;
-	Tue, 17 Dec 2024 12:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5D51F37A6;
+	Tue, 17 Dec 2024 12:43:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E8cuT/F6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="na08JaC7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92BBD1D47D9;
-	Tue, 17 Dec 2024 12:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 976AF1F2C23;
+	Tue, 17 Dec 2024 12:43:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734439254; cv=none; b=ukeuEYtRrPwBVeRAUEmiuUQJPMl3n9bExQvbA1YaMvLS+DNjMcKG/LnZQvMOwlRH3EeRRj4XNq68Fr6QTCZY85JXDMe1MybykO2WhfD3694hz8WCR7OwKSOAarm0BUiOhrzqhCV0SwSPhEQMgH4IvUZwbpU8sz7NLtBdNPD8v8Q=
+	t=1734439398; cv=none; b=YFt7KBDZswcybKCr9uKLBOZbmX9qb7g51EDlPpwv+/m7uOYGG2sROSOpvJynQzSTTy/mgRQ+UsTLrRpKwxaE0i3wNcJVJ5IGOhDm98wXAVQPWrgchd2a3J75v86fVPDphGxQY2hVEd92X67gHCPg8tM1+NtFzsZDRiNLgK37xUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734439254; c=relaxed/simple;
-	bh=C6DBk8Bx1ZkvBkjdBwFOR8MukUMLI9VfaOAdqdxA9VM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=bRfMc4ULgH4frQY03+5uQcggea2tprKc/imlURaS/BHJzag2inMtk6e0/YPJ1A7TDfRMh/6cJYpZgdjLPNqxHE0pJNsVDlBbBpPQi0KfWWRP+b4cvZcdRYUclMn+d0Otmic66Cx6lgTHYyz/znVtOtmARGX+t97JbpPwcwqJfqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E8cuT/F6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19C09C4CED3;
-	Tue, 17 Dec 2024 12:40:49 +0000 (UTC)
+	s=arc-20240116; t=1734439398; c=relaxed/simple;
+	bh=YJD5j6axAfcKPnmYpT9mtMCTx0yWBgcnrv0V5xHFMqk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bPV5v2Jrw9mHCY4HMjVtKQ7OwOBbuQbBWHC/oZsUWJFA4WxP4oy/HocXkqKFHGf9LzL8MnUGg/llJcVF0Xlo6ZHFhSc441oUe3jujy54oUt1MMNOXgqWouPeqwrFrjIP80GzcMfvmOdHg8fx+ShgSKfXqKjU4XO4+QsnC098GJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=na08JaC7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C050FC4CED3;
+	Tue, 17 Dec 2024 12:43:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734439254;
-	bh=C6DBk8Bx1ZkvBkjdBwFOR8MukUMLI9VfaOAdqdxA9VM=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=E8cuT/F6046bLgDwqS8JKRpdJBeLzPHrVzWk/rfp3VvB216v9TaWTCIIVCfX+Xrhd
-	 nWHJFaudkm84uFa+eNkEJaIaaFqpfLmhcmH9GwX04hllv9yRFVJfIzJv145gHmLPmb
-	 qrwtUcgPCuDBEO57h2UAuJF6BdP9OQvlQhJbkdx2VppuXnqT1P2+9y0xz/5dlO2k8q
-	 oKwrf7kBVuT3t7iixeOnEyV8vY5fPC6UjZbEq4LPOXUQRHifnYwfpG6HItlaswWmhy
-	 MTmnkPDSC4PPHT3H9z1O2GRXDDYF4LgsblhqBJfyL9XiNbeR216+NlsbydtsY5u2mi
-	 5KnyFzLGrnNAw==
-Message-ID: <f263bf9b-3227-46ef-b94b-25a7ddec68ca@kernel.org>
-Date: Tue, 17 Dec 2024 13:40:47 +0100
+	s=k20201202; t=1734439398;
+	bh=YJD5j6axAfcKPnmYpT9mtMCTx0yWBgcnrv0V5xHFMqk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=na08JaC7s/BwOgzsBqRm2F22zocI122O+xG8ZxTDuDT5FKgrTByKNw2z4fzDbXrm8
+	 tkoUxAYA1yuHxYivexqtwP/hMF9OH5ujj0OWej9qqjSR1X1D9Uie+IrHdJR51cpSUv
+	 tUAslkLgIcfr5ePMA5VrihVuhFWrSPWM1V/oeqYfC9jgMRoUsI/5iRWKm3uYu9a6No
+	 sDOj6f2uy2FczZDWYeRZGZabMHmcnO2XgKnjnWbN1CJ1QRwhlyXaej6o5Adw/9nUR4
+	 chvLT0TJvRxdZevDujgGvLhrT9aJ6ThmuF5Xj9uVGnLPw4TPWbxWoTD9jmRbDkBm+M
+	 sWTVhz0HQlonw==
+Date: Tue, 17 Dec 2024 06:43:16 -0600
+From: Rob Herring <robh@kernel.org>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Aubin Constans <aubin.constans@microchip.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: mmc: atmel,hsmci: Convert to json schema
+Message-ID: <20241217124316.GA1136537-robh@kernel.org>
+References: <20241209-hsmci-v2-1-b5a6d7c59b67@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/4] dt-bindings: media: add support for video hardware
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Renjiang Han <quic_renjiang@quicinc.com>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Stanimir Varbanov <stanimir.varbanov@linaro.org>
-References: <20241217-add-venus-for-qcs615-v5-0-747395d9e630@quicinc.com>
- <20241217-add-venus-for-qcs615-v5-1-747395d9e630@quicinc.com>
- <aa4400bd-b838-42d6-a58e-1eb1c99af218@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <aa4400bd-b838-42d6-a58e-1eb1c99af218@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241209-hsmci-v2-1-b5a6d7c59b67@microchip.com>
 
-On 17/12/2024 13:40, Krzysztof Kozlowski wrote:
-> On 17/12/2024 10:17, Renjiang Han wrote:
->> Add qcom,qcs615-venus compatible into qcom,sc7180-venus.yaml for the
->> video, and let qcom,qcs615-venus fallback to qcom,sc7180-venus on
->> QCS615 platform.
->>
->> Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
->> ---
-> Read that message fully.
+On Mon, Dec 09, 2024 at 10:02:30AM +0530, Dharma Balasubiramani wrote:
+> Convert atmel,hsmci documentation to yaml format. The new file will inherit
+> from mmc-controller.yaml.
+> 
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+> Changes in v2:
+> - Drop the duplicate properties in the slot node.
+> - Link to v1: https://lore.kernel.org/r/20241205-hsmci-v1-1-5a25e622dfed@microchip.com
+> ---
+>  .../devicetree/bindings/mmc/atmel,hsmci.yaml       | 110 +++++++++++++++++++++
+>  .../devicetree/bindings/mmc/atmel-hsmci.txt        |  73 --------------
+>  2 files changed, 110 insertions(+), 73 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
+> new file mode 100644
+> index 000000000000..26686ada6288
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/atmel,hsmci.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/atmel,hsmci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel High-Speed MultiMedia Card Interface (HSMCI)
+> +
+> +description:
+> +  The Atmel HSMCI controller provides an interface for MMC, SD, and SDIO memory
+> +  cards.
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +  - Aubin Constans <aubin.constans@microchip.com>
+> +
+> +allOf:
+> +  - $ref: mmc-controller.yaml
+> +
+> +properties:
+> +  compatible:
+> +    const: atmel,hsmci
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  dmas:
+> +    maxItems: 1
+> +
+> +  dma-names:
+> +    const: rxtx
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: mci_clk
+> +
+> +  "#address-cells":
+> +    const: 1
+> +    description: Used for slot IDs.
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^slot@[0-9]+$":
+> +    type: object
+> +    description: A slot node representing an MMC, SD, or SDIO slot.
 
-I meant, message in our previous discussion.
+There's a schema for slots now queued for 6.14[1]. You should use that. 
+One issue is 'compatible' is required. Either that would have to be 
+dropped as required or you could just add it in your .dts files.
 
-> 
-> <form letter>
-> This is a friendly reminder during the review process.
-> 
-> It looks like you received a tag and forgot to add it.
-> 
-> If you do not know the process, here is a short explanation:
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions, under or above your Signed-off-by tag. Tag is "received", when
-> provided in a message replied to you on the mailing list. Tools like b4
-> can help here. However, there's no need to repost patches *only* to add
-> the tags. The upstream maintainer will do that for tags received on the
-> version they apply.
-> 
-> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> </form letter>
-
-Best regards,
-Krzysztof
+Rob
 
