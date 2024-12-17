@@ -1,123 +1,114 @@
-Return-Path: <devicetree+bounces-131689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1510B9F45AD
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 09:06:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCADF9F45C2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 09:13:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D40D4188C9E3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 08:06:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D30716233F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 08:13:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09A721D61A7;
-	Tue, 17 Dec 2024 08:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE22C1D5AD1;
+	Tue, 17 Dec 2024 08:13:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X+vowBXn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PQAzpZnD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3318126BF7;
-	Tue, 17 Dec 2024 08:06:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3AF7335C0;
+	Tue, 17 Dec 2024 08:13:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734422800; cv=none; b=ef+G1RdbK1zshx/VbeF3TsmQLvS9ouzoJsDfxENembbWu2Jcf7zOsEDK/pDlff1K3NtZhN0bmH60z5ECeA39FdNa8yyCxfwIFvvWL/Gdh8A1l/VmsNYIybidD1YYRmK698hZhzEHcVLtho9JWAny/e8ctatql90O3/1VgPMJy4w=
+	t=1734423216; cv=none; b=os66MwvENvMDzI749xwKaJWsUKwAL/yXpQSf/74TDRVzBrJmWbg0lLJG1M1TQvMtq1f6EeduV+kjbfYrr6MW9lFp+Ki2xKebOMpq3sWJBmzCt9HgIfPc9Wrmn4qS59zRp8hkaBwQEVMmX5ReTJkhT8j/M2BBKujQ6Eb10g1ILSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734422800; c=relaxed/simple;
-	bh=lezp6EOr1sTrbOd8jVW8DSk++wf4bf36AnptRA4PyH8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d5yGG43Y8oxqeyhKpnQMGXEPzo9Lxjd/Ft70yjTvBDD2VwFusawyeI9wrgfv66JmHqKSUxD3Q2SReE6pUkeKoBBISf+rn9OHo13udSaGnx5Jod9jHNeWk552MoS1/t2EepEQ49xJzW5qdl2B4WdhWDE9gUsoZJRmLtdzzS1DjZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X+vowBXn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0607FC4CED3;
-	Tue, 17 Dec 2024 08:06:40 +0000 (UTC)
+	s=arc-20240116; t=1734423216; c=relaxed/simple;
+	bh=I3u5U4bheVTsM+/Z+bunDJWrhdwcBf08eBME6KDoixo=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Xoo6eXoKKdoLXizZjQm3qgjp5z39KoOu3Gh8lmWtEPX6Yypi5X3D4taMw4lV55+zcKR7yHzLIBQ6plyZSVpYaPGqqYqUA2HL6wvt9LkVWncbgxqDkPsnDRFf4muWR+/J+F3z7zWxoKU0cKnYldlc3ZXzdodD5uBxFAGmKc4si8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PQAzpZnD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 385C0C4CED6;
+	Tue, 17 Dec 2024 08:13:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734422800;
-	bh=lezp6EOr1sTrbOd8jVW8DSk++wf4bf36AnptRA4PyH8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X+vowBXnjBaLUcuH3ZNTlxuYXFlQoFs+HB+3snpwxM1GcMu32ovTLikNU/IGawtnc
-	 r3cwON5Peqm4GfLiMitiu+BtPNNxdYI8go7HgZO2CYqt9dw1OWu9tKL71pWVzzY++4
-	 vZB2IcRIxWiznIJeOfvJzgWru5L9OGuWaUBz711FfpLvLU7lx3S95Jfwz57W8GzpM+
-	 28k3ygSVqpUKOCM03xWFzm7svkTDrNjht5c0paP7Y5FDr0ng6aTkQiUpTA3uN2vL2a
-	 swxqAfXJIO6wbed7cknFYAUCK3x/CJxvG2mIu2B1jqCZ4tLzKzFUY2JSUaoWL/DohT
-	 OvNixEsVkwTJg==
-Date: Tue, 17 Dec 2024 09:06:37 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Sandor Yu <Sandor.yu@nxp.com>
-Cc: dmitry.baryshkov@linaro.org, andrzej.hajda@intel.com, 
-	neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
-	jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, 
-	vkoul@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
-	kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com, 
-	alexander.stein@ew.tq-group.com, sam@ravnborg.org
-Subject: Re: [PATCH v20 5/9] drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
-Message-ID: <20241217-judicious-stereotyped-centipede-5ddb27@houat>
-References: <cover.1734340233.git.Sandor.yu@nxp.com>
- <fbd12029fab1f60e2ba4fad75ef650298a59cb15.1734340233.git.Sandor.yu@nxp.com>
+	s=k20201202; t=1734423216;
+	bh=I3u5U4bheVTsM+/Z+bunDJWrhdwcBf08eBME6KDoixo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=PQAzpZnDYB/6DfYy7v15pNBrFGlqwcHsH2nENpMwg11yhdMEQuj43dlri7lgjW/ja
+	 rxD4jBuWNNJnhFzjvFoMcgEFmy2w4W6l7f1s0wRKShNd18hXsdZWctfzb9b7lj/Sgc
+	 ROy+Ei3prl1mT0RQ5/ONFfqJW1tB7FbfbNTokd7UQxtigEN6ddWdruwqBz7Fh9hxYe
+	 XTs6myxcoMSVCFCqwz6ldTLyXy3qjHDco2ZEQlnKgZcdbujBXZjqtlvdZfhRIs5APs
+	 w11TD5/7l4CcJbuyaZrLGwWyo6zWI20A59hzUCo1aeGO5jotNo89/JCxL7hN4cVhG8
+	 t1BXsFe/vhTLg==
+Received: from [82.132.185.145] (helo=wait-a-minute.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1tNShx-004TMe-8i;
+	Tue, 17 Dec 2024 08:13:33 +0000
+Date: Tue, 17 Dec 2024 08:13:31 +0000
+Message-ID: <878qsesp5g.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: arm,gic: Correct VGIC interrupt description
+In-Reply-To: <20241217061226.14139-1-krzysztof.kozlowski@linaro.org>
+References: <20241217061226.14139-1-krzysztof.kozlowski@linaro.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="f3jzfinrd3s3htcj"
-Content-Disposition: inline
-In-Reply-To: <fbd12029fab1f60e2ba4fad75ef650298a59cb15.1734340233.git.Sandor.yu@nxp.com>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 82.132.185.145
+X-SA-Exim-Rcpt-To: krzysztof.kozlowski@linaro.org, tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
+On Tue, 17 Dec 2024 06:12:26 +0000,
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> 
+> The description of VGIC interrupt referenced obsolete "see below" after
+> converting TXT to DT Schema in commit 66ed144f147a ("dt-bindings:
+> interrupt-controller: Convert ARM GIC to json-schema"), because there is
+> no dedicated "VGIC" chapter anymore below.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/interrupt-controller/arm,gic.yaml     | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml
+> index a2846e493497..7173c4b5a228 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml
+> @@ -110,8 +110,8 @@ properties:
+>  
+>    interrupts:
+>      description: Interrupt source of the parent interrupt controller on
+> -      secondary GICs, or VGIC maintenance interrupt on primary GIC (see
+> -      below).
+> +      secondary GICs, or VGIC maintenance interrupt on primary GIC (see "GICv2
+> +      with virtualization extensions" paragraph in the "reg" property).
+>      maxItems: 1
+>  
+>    cpu-offset:
 
---f3jzfinrd3s3htcj
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v20 5/9] drm: bridge: Cadence: Add MHDP8501 DP/HDMI driver
-MIME-Version: 1.0
+Acked-by: Marc Zyngier <maz@kernel.org>
 
-Hi,
+	M.
 
-On Tue, Dec 17, 2024 at 02:51:47PM +0800, Sandor Yu wrote:
-> +static ssize_t firmware_version_show(struct device *dev,
-> +				     struct device_attribute *attr, char *buf);
-> +static struct device_attribute firmware_version = __ATTR_RO(firmware_version);
-> +
-> +ssize_t firmware_version_show(struct device *dev,
-> +			      struct device_attribute *attr, char *buf)
-> +{
-> +	struct cdns_mhdp8501_device *mhdp = dev_get_drvdata(dev);
-> +
-> +	u32 version = readl(mhdp->base.regs + VER_L) | readl(mhdp->base.regs + VER_H) << 8;
-> +	u32 lib_version = readl(mhdp->base.regs + VER_LIB_L_ADDR) |
-> +			  readl(mhdp->base.regs + VER_LIB_H_ADDR) << 8;
-> +
-> +	return sprintf(buf, "FW version %d, Lib version %d\n", version, lib_version);
-> +}
-> +
-> +static void cdns_mhdp8501_create_device_files(struct cdns_mhdp8501_device *mhdp)
-> +{
-> +	if (device_create_file(mhdp->dev, &firmware_version)) {
-> +		DRM_ERROR("Unable to create firmware_version sysfs\n");
-> +		device_remove_file(mhdp->dev, &firmware_version);
-> +	}
-> +}
-
-sysfs files are part of the uABI, and need to be stable and documented.
-
-For these kind of things, you should use debugfs.
-
-Maxime
-
---f3jzfinrd3s3htcj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ2ExDQAKCRAnX84Zoj2+
-dnc4AYCqAZF9d60JM6qP2gOgYAn6lAKF42a7J9At1vpspnjLkxWeo82wwxsVUN3q
-dX1sPvsBf0FnUgCipeCjavvQGCADOKKD3bokWMMWhfpqBINEp3TxubYkPBBuPx7Q
-x5ViCYwzhw==
-=BgFt
------END PGP SIGNATURE-----
-
---f3jzfinrd3s3htcj--
+-- 
+Without deviation from the norm, progress is not possible.
 
