@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-131583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38DB99F3F8F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 01:54:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A25C9F3F96
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 01:57:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96B3A1883417
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 00:54:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5ED8D164273
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 00:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA74C13A258;
-	Tue, 17 Dec 2024 00:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF34717BCE;
+	Tue, 17 Dec 2024 00:56:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iIO5iMFp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aqLgNCHu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8131B5B1FB;
-	Tue, 17 Dec 2024 00:52:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A03D27E;
+	Tue, 17 Dec 2024 00:56:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734396754; cv=none; b=PELKz91BE3j3SMG5n4uEWUp/D4y+BpsrNG27oymblDxmGzikVo8y/koF0I423DzxQxzxEhLsff2X8c2BTaSR9/ggaJLNv3WPb2rYqjCsK1n4s8Z7qPZZjmlSdukzKzVWKgM4Lhzt0zh9wYlWlG/h3iGQ1Ws4swlrxOdrT37BqLo=
+	t=1734397019; cv=none; b=kN9o0cbo7ns4oao1ckHeJ9dzE66KHKLekNSzP7/5iwOmYbe0f91CMyC3mgg6zSfXsQx20zAnqf8l22O+adrKNPxzy4W2k8zI1EhL4kdO750W/sCwv4uoiJfsE/Xy06dRsm0aZc782YwkkPbRww3s6MDT88MUZp/kzxGR3fvtYgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734396754; c=relaxed/simple;
-	bh=ahJoUPijgcUGbeJiMKEim4VJ7XgJMHjQ91nAUfS9MJY=;
+	s=arc-20240116; t=1734397019; c=relaxed/simple;
+	bh=S/gdz94MTNfSLAdmz3G9UVEKum7fL0vOatHwgDkuyjU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=dfglYTh0YkIh3/7vUk1FsBYWjyWp+W3FsvZNx2U4B3ixGtxI5Or4LwrwRk8+SsxewsMHLUzP6Pnpo6oS01IMqmG3JeQejx9Hp+PaROc6qtzOilQ3kTlUXCwma+Gjz/AhltqCIIr1kmdAELiFmNcDkVSz9Mc1MWr9GTWh+2HBMeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iIO5iMFp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95083C4CED0;
-	Tue, 17 Dec 2024 00:52:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=m43l8du5HWSDRMbm1zTmPsLKsuD5uSYTdHSwspAnBVARhEKTHKD7BggeIlySWyqwkFPW8eYkTB39+ZE1nPgDX2wZu8En2WbaHNBf7DPLpxBqWAUJk1RnAoZiLE+CNZppbTwZhGjIJOId0R1+KvQC3X/xkkBDePC/z5ShIIxdP5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aqLgNCHu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87D80C4CED0;
+	Tue, 17 Dec 2024 00:56:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734396754;
-	bh=ahJoUPijgcUGbeJiMKEim4VJ7XgJMHjQ91nAUfS9MJY=;
+	s=k20201202; t=1734397019;
+	bh=S/gdz94MTNfSLAdmz3G9UVEKum7fL0vOatHwgDkuyjU=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=iIO5iMFpA5bZTofjIrZGXvpnBGQ3xKak6oW1STEpNFRR5uj96LdGgPozz/MYOH4Nj
-	 rC2uxj9ZFRxyAfyPo8KyUh2PCOp9yeqWVfwv5vZdirh/vZdlgrqmLE2DzgEPeBw1Gm
-	 qnevoMQ+brBy25W1qt0NZ3pKqZ6YcpoOiYKsBZu6h454KOxXG8yAdpmZwXks6N6Kza
-	 ZB2zyZe1VUaMBBVEWi5a77y+16Q3gEG6P+NUo1akYEJnY4FSnrjmIQnlt9NMwao59C
-	 dtyqcQ1J7BgfQLz4boKgOdXWW9grrnApgOS3d7/pKsKq9+/0EZffjX2y+oqLwv+1YP
-	 5ObWnAzKACOig==
-Message-ID: <9636aa09-ab89-4d7e-8677-ff5dc58788ae@kernel.org>
-Date: Mon, 16 Dec 2024 18:52:32 -0600
+	b=aqLgNCHuU2Mw3bS0mBXNbed3XQiyXODMTX+iOWxir1x/nRO3mWFfKJEcfl27OSAke
+	 VecsNPZNe3z7oTtFikNqKemavbwxOj3fKjA/5Hs9b+gFJDIvh1SWir7dZ+OZ+ExoPe
+	 2TiCoqN8eKu02+PFhe1l+khfBfBphTzfDfU82+YFixzhw69UoK4Zo3pl+jVixIRRAv
+	 4ae6eKbhcIyLK6GyJg/urwXxwHKSkZNmjHCv5AVuDZFPLceqRKlurHs0KgA2YXh7bE
+	 c3H/i2pbMN5USbyLrG/wQpCVlkrQlvaSfL7KgUzBYbOyFMyBWAMYdFRAO/2wY/rV9/
+	 u/L1vdBpbspiA==
+Message-ID: <9fac3079-73ad-48ff-bbc1-18494cf5439c@kernel.org>
+Date: Mon, 16 Dec 2024 18:56:56 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,52 +50,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: socfpga: agilex: Add VGIC maintenance
- interrupt
+Subject: Re: [PATCH] arm64: dts: socfpga: agilex5: Add gpio0 node and spi dma
+ handshake id
 To: niravkumar.l.rabara@intel.com, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20241209023611.1216499-1-niravkumar.l.rabara@intel.com>
+References: <20241204063254.296870-1-niravkumar.l.rabara@intel.com>
 Content-Language: en-US
 From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20241209023611.1216499-1-niravkumar.l.rabara@intel.com>
+In-Reply-To: <20241204063254.296870-1-niravkumar.l.rabara@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/8/24 20:36, niravkumar.l.rabara@intel.com wrote:
+On 12/4/24 00:32, niravkumar.l.rabara@intel.com wrote:
 > From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > 
-> Add VGIC maintenance interrupt and interrupt-parent property for
-> interrupt controller, required to run Linux in virtualized environment.
+> Add gpio0 controller node and correct DMA handshake ID for SPI
+> tx and rx channels.
 > 
 > Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > ---
->   arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 3 +++
->   1 file changed, 3 insertions(+)
+>   .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 24 ++++++++++++++++++-
+>   1 file changed, 23 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-> index 2a5eeb21da47..1235ba5a9865 100644
-> --- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-> @@ -101,10 +101,13 @@ intc: interrupt-controller@fffc1000 {
->   		compatible = "arm,gic-400", "arm,cortex-a15-gic";
->   		#interrupt-cells = <3>;
->   		interrupt-controller;
-> +		interrupt-parent = <&intc>;
->   		reg = <0x0 0xfffc1000 0x0 0x1000>,
->   		      <0x0 0xfffc2000 0x0 0x2000>,
->   		      <0x0 0xfffc4000 0x0 0x2000>,
->   		      <0x0 0xfffc6000 0x0 0x2000>;
-> +		/* VGIC maintenance interrupt */
-> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
->   	};
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> index 1162978329c1..51c6e19e40b8 100644
+> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> @@ -222,6 +222,26 @@ i3c1: i3c@10da1000 {
+>   			status = "disabled";
+>   		};
 >   
->   	clocks {
-
 
 Applied!
 
 Thanks,
 Dinh
+
 
