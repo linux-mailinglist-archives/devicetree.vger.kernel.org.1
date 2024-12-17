@@ -1,115 +1,106 @@
-Return-Path: <devicetree+bounces-131855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1689A9F4C1E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:27:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88C2B9F4C5A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:33:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE0047A268F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:22:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C79A0171612
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:27:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F33471F4730;
-	Tue, 17 Dec 2024 13:20:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84E01F4262;
+	Tue, 17 Dec 2024 13:27:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aum/Q2Ga"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bz1Jffin"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B6E01F4716
-	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 13:20:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 937431F37C6;
+	Tue, 17 Dec 2024 13:27:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734441622; cv=none; b=gNM31ybZqkkuotUrxLUT0rYv47dET38ZgIyd8PGAdVpesX4AlpOqdPPKM3T/2LuiPaNkeiT48bzeHZeYfkZTDz5ajZLn2uYu52deffUK/9ttJHk3V1AVxBTZJCRuK34dKBILhhr8CdRhbBvC5lq4Q+HXScduw7MHX0LxerN5lWo=
+	t=1734442047; cv=none; b=W/JRhWKs1NLqKOIvnCgVKFNfxTxFJEMUhZ7iPxs5ZHfPMTxrMZLaPJBq5Zctn1rDMazoQRL64XdDvUPTPXsN54+M5dl5fWdhBPMLkI9rll77xLeWK+M5fGYzIc2QMZZjQkqG64YVywhDQFAN4lveUDN5VmemmQEm0NHcYZfcRKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734441622; c=relaxed/simple;
-	bh=FstVX3CFTj+42MS9laftTg04okRbVpQOvmKeh9DZMHs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mtl3HsLthbd1OND52p53DXZ+R6SRtR+wnIHU2xoL+6nHnTl91tPWQBJhgFSEeTgg7DKv7vSOtSKI/P5geeEBkO5BIm9cca4fvTYCT7wxx+LzluES2+vLOSEvulaTt80BdnN45mIcjYegV1C/65a/QBelTtxwawICaoWFMnWisd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aum/Q2Ga; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-54026562221so5414599e87.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 05:20:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734441617; x=1735046417; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FstVX3CFTj+42MS9laftTg04okRbVpQOvmKeh9DZMHs=;
-        b=aum/Q2GabCEp8caD6+BZj7wsXbd9ogxvuqdfX5XRTYVEogWrgltPUWBlkPbgJZO7E+
-         kv+hO2zZ5DVdwC+wy6NqY8SAWgmzVxx82p/0kNQh7IKmSmb4GthrXalunC/dBQUy7Kpj
-         xtaN8gXEvHhsNlVbu28B5sSxsbCSViQTf1kif0xDBIVOFMzs+fQ5viFDk0GZi1nIFR5B
-         ez0ZVYdQEBIZ+w2vYjeilksmrj0M+M0iRuVvfTOBnSCnSwwhB/xk93JaB4I5oDzQ/rpK
-         bkZ6JW0YBLyG8IY7jtohI7JDGfdzcUi1cs/3HI1EVbu5pIwIDMuJNOv1eMAa+qZnGly1
-         Wzbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734441617; x=1735046417;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FstVX3CFTj+42MS9laftTg04okRbVpQOvmKeh9DZMHs=;
-        b=oNtt3osmz5iLLdmPPk8f/P7ZqB4hyWG/CgoggvvLqJQJoHkdvl9YRTt9weYJc9zvDh
-         3LhBbATnkkZR5bu5RHMSDyjxzjupodCFkx+g1rAhT1BbVAlO/wM73qZVaDUEu2JSSkoV
-         Abyr05pQoCJoMQMYUTcsjGjg1tsmOJA9W2QTKl5ymQJOOSoI/tZ2Jh95M8PZK+yx7LzO
-         A4T9SLhjQbQ7WtKLOr5YlJ+aty1wCYTSBLnPvMltwBeldRERtvKAg7yjmT+JqynWWDN8
-         mS9t6W08egJyCee0rWJt9i+cJRdxskost9K/I1Etj8EIeDU02PoI2v19BCvjZMUYQk/4
-         i4kA==
-X-Gm-Message-State: AOJu0YwJRE4T30jDCdBk+A2SFKWY1/tD0W79+nlBFYSZoVs/mr5pMybx
-	gn/Xj2JWdHQuTPrq++8kY8NtCYi3ta9FsYoP9va9D0/223mzGBE/l+71Fwl0HOliD4qrtUyQk18
-	ESN1b+1IiT/8nyNfBBw+A7xyuJWY=
-X-Gm-Gg: ASbGncvHUWulZNpt+nNcTnUgr4P6EdA9KmXK72PmE2begDAkBLEC24uFOdU7nxCcLBV
-	Ab5+F1MPTq9tY8swW/uIiQ/PF0Hsr1vIzBbyI7gNwsTAbMoO/WBkak9ymDMujCdoNnexX
-X-Google-Smtp-Source: AGHT+IFFx90kPbpMheYOE1177/QLK8nVCI4FlXeGlR99M7gIZTPd37rucl/NQo0g2oJIrbiMhA6SNFXFscAA/m2smM4=
-X-Received: by 2002:ac2:4e04:0:b0:540:21d6:d681 with SMTP id
- 2adb3069b0e04-54090555494mr4984098e87.19.1734441616935; Tue, 17 Dec 2024
- 05:20:16 -0800 (PST)
+	s=arc-20240116; t=1734442047; c=relaxed/simple;
+	bh=2GaD3sMPebMUphWDx5huB7scIRnQSIGcV+KEy7uN5qg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=KNsUUDxEIG3mY+d39zcyfRo64dRE4eWUULvwlF/vs+9ja1/3oGXGxCz9OaZD7gyPruV8HYDZuQUF6NxDjlLvTcmXxAmxydEvq7hlSGreKv1/6IVAnVqbMp2cSyZLNyIzfaUpiKsH6IF3XyCwdHxHJOWSjCmgJDruqyMOWW49P4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bz1Jffin; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EF8FC4CED3;
+	Tue, 17 Dec 2024 13:27:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734442047;
+	bh=2GaD3sMPebMUphWDx5huB7scIRnQSIGcV+KEy7uN5qg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=bz1Jffinq0ThMU8TkWhB67W4ebfuh2N4+xhVCEFd+zULQpoQGcLqlnjqPaWuNJAZ5
+	 6sqzz2JrL5qdjzOq2fqk73zMAwCC+AoZfHgz7YPvD8l64H3VN1ONQ7kVcEMvrf2EU3
+	 DbVaduFy5jd+3YyHNVoy68lA90uBsJh8+p9Yh1xhFigAxcDo5K3dYnEkBcpQlRDg/v
+	 ZfXeEL2hsnvF3XBwWKbD35ZWFgNI+cThuEsyAr5PTIeShXDtbQNH5jPjthsnSWyUvL
+	 MxKWQSHIv3lHCj97qHE0/v4KlUdMFL0Q132f8gjyYwM8c2yQSnk7++b4eUfwON5Jcc
+	 zu6MUuIN12Wug==
+From: Mark Brown <broonie@kernel.org>
+To: konradybcio@kernel.org, andersson@kernel.org, 
+ srinivas.kandagatla@linaro.org, Alexey Klimov <alexey.klimov@linaro.org>
+Cc: tiwai@suse.com, lgirdwood@gmail.com, perex@perex.cz, robh@kernel.org, 
+ krzk+dt@kernel.org, conor+dt@kernel.org, dmitry.baryshkov@linaro.org, 
+ linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20241205023344.2232529-1-alexey.klimov@linaro.org>
+References: <20241205023344.2232529-1-alexey.klimov@linaro.org>
+Subject: Re: (subset) [PATCH v1 0/3] db845c/rb3: add i2s playback support
+Message-Id: <173444204405.31585.10764828283359007380.b4-ty@kernel.org>
+Date: Tue, 17 Dec 2024 13:27:24 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241101135406.47836-1-festevam@gmail.com> <173073495749.210192.9138587910771237679.robh@kernel.org>
-In-Reply-To: <173073495749.210192.9138587910771237679.robh@kernel.org>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Tue, 17 Dec 2024 10:20:05 -0300
-Message-ID: <CAOMZO5BVLpQecZH4vvmRi=KfZ=MvCgUQ_tUKjvUzMGO=wTU-MA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: lcdif: Document a imx6sx-lcdif fallback
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, shawnguo@kernel.org, imx@lists.linux.dev, 
-	conor+dt@kernel.org, Fabio Estevam <festevam@denx.de>, 
-	linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de, 
-	krzk+dt@kernel.org, a.fatoum@pengutronix.de, dri-devel@lists.freedesktop.org, 
-	andreas@kemnade.info, marex@denx.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-9b746
 
-Rob,
+On Thu, 05 Dec 2024 02:33:41 +0000, Alexey Klimov wrote:
+> There are i2s signals provided in low-speed connector on such boards
+> as required by 96boards spec. Looks like it is possible to actually
+> playback something via these pins after adding missing parts here
+> and there.
+> 
+> I tested simple widely available cheap DACs like UDA1334 and PCM5102A
+> and they works just fine without need for mclk. I guess any DAC that
+> can handle 48 kHz and 16bit will do.
+> 
+> [...]
 
-On Mon, Nov 4, 2024 at 12:42=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
- wrote:
->
->
-> On Fri, 01 Nov 2024 10:54:04 -0300, Fabio Estevam wrote:
-> > From: Fabio Estevam <festevam@denx.de>
-> >
-> > imx6sx.dtsi has the following lcdif entries:
-> >
-> > compatible =3D "fsl,imx6sx-lcdif", "fsl,imx28-lcdif";
-> >
-> > This causes the following dt-schema warning:
-> >
-> > ['fsl,imx6sx-lcdif', 'fsl,imx28-lcdif'] is too long
-> >
-> > To keep DT compatibility, document 'fsl,imx28-lcdif' as a possible
-> > 'fsl,imx6sx-lcdif' fallback.
-> >
-> > Signed-off-by: Fabio Estevam <festevam@denx.de>
+Applied to
 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Can you apply 1/3 and 2/3?
+Thanks!
+
+[2/3] ASoC: qcom: sdm845: add handling of secondary MI2S clock
+      commit: 8bfb66c75cdace542dabe87841152614fd5b8d91
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
