@@ -1,166 +1,120 @@
-Return-Path: <devicetree+bounces-132081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E01D79F5AC6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 00:54:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03F5C9F5A59
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 00:31:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEC1B1886129
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 23:54:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 361E8166939
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 23:31:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912391FA177;
-	Tue, 17 Dec 2024 23:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BD31DFD91;
+	Tue, 17 Dec 2024 23:31:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Pza1AoRc"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="b2l+jcA+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-184.mta1.migadu.com (out-184.mta1.migadu.com [95.215.58.184])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F7381DF969;
-	Tue, 17 Dec 2024 23:54:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4418C38F9C;
+	Tue, 17 Dec 2024 23:30:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734479654; cv=none; b=YYwR0erCPthFmNzhLsHxwBdzRRyitX8lNuKzG2S2kk5HTxbefTFCXm2D2uMMbHyMFTg0Ir76q2XP0VRhv0vssV6xV9L4ZZZvU+v7OBn5TMOJMsdjqQX1+eWuKOs8wVQfDaj5nPnFvRJzNeDTAaGjwscqOKnxrue0GyB7Ka/ww3A=
+	t=1734478261; cv=none; b=bQBQD0PTcy4rxs1UhXkFzxwVO2ZvwMazKG4zGjtZ5ZDWEia/He8YdtXvwnmLtLI7oBT8Dj6OFndugAU+26M/+hTLx7kdwQwR5+FGD1bz6/Trb7DBH+Vg97dLbDeZdLHlD+Xz5q7YKXMLN/h0Ihj+1YuU4CKvptY3HZLDxWwjdds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734479654; c=relaxed/simple;
-	bh=HoP1fsRzZzqsyElQl9cEKdqmIR33GjcpZFNUL3iDwRk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BpgDCIK6z43QfdwzQy84TXzdqRPOYWUlum8uWbehgg03pLvBGtscXqx0dBdkhkc3luTeiFisEXnAcP3FH/PrC25o3mDTYwxuLV2VdurOubAL+aUDWrX3bJLFMo0CCj0cuwhs1mmiCLYi15yVHKhsaxbmagFHJ04Jdv+F1cg+cD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Pza1AoRc; arc=none smtp.client-ip=95.215.58.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <51d07520-a60b-43d0-b7f2-7584c629caa0@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1734479649;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/3irPPV2xZzk0hZTyS9bEZnS31ak7XYMG6B7SkGJ0gM=;
-	b=Pza1AoRciFPA9pyurLJ2KhpbmlRUAOOYTIvkbvQRo3SM16D8ntRINTZ//7ZCj6iKGEbmEh
-	fqen9C2y1tO5+UmkVRh6frpFENYQgjWpo8ALiD5/hcXewnzcIjxN8NWLXoNsyNeFD9crc4
-	rfc5Ke7Ju6nCpjRJE6EWyHVfSf88OQc=
-Date: Tue, 17 Dec 2024 17:20:13 -0600
+	s=arc-20240116; t=1734478261; c=relaxed/simple;
+	bh=pqFb0fRhDaGQe9FnLfQabvYYIWWhDb/yY9LO2iXNCfY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QGqzZEQc0LaabnaFcy5FS9aqiMR9s7qDDQNrjdLR7eAH3a1HmlgCbN8M5M35spInCQBKkLgXLy79xYnt+n+uQ7xW8s3HK2AD+DF+HFP6jt0cxgoJCWIokYabqVdcKUB+OrdVBFchTEgr+OIAXuWCt2PicgmiZiZSy7ZgZhqp/BI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=b2l+jcA+; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 91207415;
+	Wed, 18 Dec 2024 00:30:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1734478219;
+	bh=pqFb0fRhDaGQe9FnLfQabvYYIWWhDb/yY9LO2iXNCfY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b2l+jcA+Z/C41+Q1PFlZO2U1xLZzFGgcMRs48tBdLA6SgCtvl/Tye9djLG2Krf10P
+	 BEDf1jtuxkCSY/RpprBUzu5fVmZAjd90aV43JTiGHHbthw54lTGjrZMtI92kmarVQQ
+	 fToB7p/4x/lY5H2o4Wsz2SvoD15kMmrbXP7WEVUs=
+Date: Wed, 18 Dec 2024 01:30:54 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/4] arm64: dts: renesas: r8a779g0: Add FCPVX instances
+Message-ID: <20241217233054.GP23470@pendragon.ideasonboard.com>
+References: <20241217-rcar-v4h-vspx-v1-0-de04ea044ed4@ideasonboard.com>
+ <20241217-rcar-v4h-vspx-v1-2-de04ea044ed4@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v30 00/30] Introduce QC USB SND audio offloading support
-To: Cezary Rojewski <cezary.rojewski@intel.com>,
- Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: Takashi Iwai <tiwai@suse.de>, Greg KH <gregkh@linuxfoundation.org>,
- srinivas.kandagatla@linaro.org, mathias.nyman@intel.com, perex@perex.cz,
- conor+dt@kernel.org, dmitry.torokhov@gmail.com, corbet@lwn.net,
- broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
- Thinh.Nguyen@synopsys.com, tiwai@suse.com, robh@kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
- <edfeb642-297e-42bb-ad09-cbf74f995514@quicinc.com>
- <2024111655-approve-throwback-e7df@gregkh>
- <2f512d8d-e5f3-4bdd-8172-37114a382a69@quicinc.com>
- <875xoi3wqw.wl-tiwai@suse.de>
- <d0da6552-238a-41be-b596-58da6840efbb@quicinc.com>
- <CF49CA0A-4562-40BC-AA98-E550E39B366A@linux.dev>
- <65273bba-5ec1-44ea-865b-fb815afccc91@intel.com>
- <fbc04c06-c210-416b-9b77-a6bd8a71a637@quicinc.com>
- <9d95e6fa-afcb-4445-9fe3-e0eed95ec953@intel.com>
- <d7c52a11-bd2b-4cce-a0c2-6dc2dadfeaa3@quicinc.com>
- <3d9932fa-dbc3-4393-862f-92916e6e821c@intel.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>
-In-Reply-To: <3d9932fa-dbc3-4393-862f-92916e6e821c@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241217-rcar-v4h-vspx-v1-2-de04ea044ed4@ideasonboard.com>
 
-On 12/10/24 9:18 AM, Cezary Rojewski wrote:
-> On 2024-12-06 1:28 AM, Wesley Cheng wrote:
->>
->> On 12/4/2024 2:01 PM, Cezary Rojewski wrote:
->>> On 2024-12-03 9:38 PM, Wesley Cheng wrote:
->>>> Hi Cezary,
->>>>
->>>> On 12/3/2024 8:17 AM, Cezary Rojewski wrote:
-> 
-> ...
-> 
->>>>> UAOL is one of our priorities right now and some (e.g.: me) prefer to not pollute their mind with another approaches until what they have in mind is crystalized. In short, I'd vote for a approach where USB device has a ASoC representative in sound/soc/codecs/ just like it is the case for HDAudio. Either that or at least a ASoC-component representative, a dependency for UAOL-capable card to enumerate.
->>>>>
->>>>
->>>> Just to clarify, "struct snd_soc_usb" does have some correlation with our "codec" entity within the QCOM ASoC design.  This would be the q6usb driver.
->>>>
->>>>
->>>>> Currently struct snd_soc_usb does not represent any component at all. Lack of codec representative, component representative and, given my current understanding, mixed dependency of sound/usb on sound/soc/soc-usb does lead to hard-to-understand ASoC solution.
->>>>
->>>>
->>>> IMO the dependency on USB SND is necessary, so that we can leverage all the pre-existing sequences used to identify USB audio devices, and have some ability to utilize USB HCD APIs as well within the offload driver.
->>>
->>> So, while I do not have patches in shape good enough to be shared, what we have in mind is closer to existing HDAudio solution and how it is covered in both ALSA and ASoC.
->>>
->>> A ASoC sound card is effectively a combination of instances of struct snd_soc_component. Think of it as an MFD device. Typically at least two components are needed:
->>>
->>> - platform component, e.g.: for representing DSP-capable device
->>> - codec component, e.g.: for representing the codec device
->>>
->>> USB could be represented by such a component, listed as a dependency of a sound card. By component I literally mean it extending the base struct:
->>>
->>> stuct snd_soc_usb {
->>>      struct snd_soc_component base;
->>>      (...)
->>> };
->>>
->>> In my opinion HDAudio is a good example of how to mesh existing ALSA-based implementation with ASoC. Full, well implemented behaviour of HDAudio codec device drivers is present at sound/pci/hda/patch_*.c and friends. That part of devoid of any ASoC members. At the same time, an ASoC wrapper is present at sound/soc/codecs/hda.c. It will represent each and every HDAudio codec device on the HDAudio bus as a ASoC-component. This follows the ASoC design and thus is easy understand for any daily ASoC user, at least in my opinion.
->>>
->>> Next, the USB Audio Offload streams are a limited resource but I do not see a reason to not treat it as a pool. Again, HDAudio comes into picture. The HDAudio streams are assigned and released with help of HDAudio library, code found in sound/hda/hdac_stream.c. In essence, as long as UAOL-capable streaming is allowed, a pcm->open() could approach a UAOL-lib (? component perhaps?) and perform ->assign(). If no resources available, fallback to the non-offloaded case.
->>>
->>> While I have not commented on the kcontrol part, the above means that our current design does go into a different direction. We'd like to avoid stream-assignment hardcoding i.e.: predefining who owns a UAOL-capable stream if possible.
->>>
->>>
->>
->> Thanks for sharing the implementation for HDA.  I did take a look to the best of my ability on how the HDAudio library was built, and I see the differences that are there with the current proposal.  However, I think modifying the current design to something like that would also require the QCOM ASoC side to change a bit too.  As mentioned by Pierre, I think its worthwhile to see if we can get the initial changes in, which is the major part of the challenge.  For the most part, I think we could eventually refactor soc-usb to behave similarly to what hda_bind.c is doing.  Both entities are the ones that handle linking (or creation in case of HDA) of ASoC components.  The one major factor I can see is that within the HDA implementation vs USB SND is that, for USB, hot plugging is a common practice, and that's a scenario that will probably need more discussion if we do make that shift.
->>
->>
->> Anyway, I just wanted to acknowledge the technical details that are utilized by HDAudio, and that we could potentially get there with USB SoC as well.
-> 
-> Hello,
-> 
-> 
-> After analyzing the USB for some time to get an even better understanding of what's present in this series, I arrived at a conclusion that indeed, the approach present here clearly differs from what I would call _by the book_ approach for hardware-based USB Audio offloading.
-> 
-> All sections below refer to the public xHCI spec [1].
-> A high-level bullets for the probing procedure:
-> 
-> 1. xHCI root and resources probe() as they do today
-> 2. xHCI reads HCCPARAMS2 (section 5.3.9) and checks GSC bit
-> 2a. If GSC==0, the UAOL enumeration halts
-> 
-> 3. xHCI sends GET_EXTPROP_TRB with ECI=1 to retrieve capabilities supported (section 4.6.17 and Table 4-3)
-> 3a. If AUDIO_SIDEBAND bit is not set, the UAOL enumeration halts
-> 
-> 4. Create a platform_device instance. This instance will act as a bridge between USB and ASoC world. For simplicity, let's call it usb-component, a representative of USB in struct snd_soc_component.
-> 
-> 5. On the platform_device->probe() the device requests information about resources available from xHCI (section 7.9.1.1), ECI=1, SubType=001
-> 6. Allocate a list of streams per device or list per endpoint supported based on the data retrieved with the followup TRB of SubType=010.
-> 
-> (things get more complicated here, stopping)
-> 
-> Now, any time a sound card with bound usb-component would begin PCM operation, starting with substream->open(), the component would first check if the device and/or the endpoint has resources necessary to support offloading. If not, it would fallback to the non-offloaded case.
+Hi Jacopo,
 
-It's not really a fallback in the mutually exclusion sense. Even if the resources are present, the non-offloaded path shall always be usable.
+Thank you for the patch.
 
-> I do not see implementation for any TRBs I mentioned above here. The HCCPARAMS2 seem to be ignored too. At the same time, I'm unsure about the "interrupters" piece. I believe they make the approach present here somehow work, yet may not be required by the _by the book_ approach at all.
+On Tue, Dec 17, 2024 at 06:53:15PM +0100, Jacopo Mondi wrote:
+> Add device nodes for the FCPVX instances on R-Car V4H (R8A779G0) SoC.
+> 
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> ---
+>  arch/arm64/boot/dts/renesas/r8a779g0.dtsi | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> index 61c6b8022ffdc3b22444fb13e748b4aaebe454a4..e49748563e2f5706ed982d6c9cc1df59f27bd0dc 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> @@ -2171,6 +2171,24 @@ fcpvd1: fcp@fea11000 {
+>  			iommus = <&ipmmu_vi1 7>;
+>  		};
+>  
+> +		fcpvx0: fcp@fedb0000 {
 
-There are clearly platform-specific differences in the way the offloaded resources are exposed. The public xHCI spec may not be enough to describe all cases, and the interrupt mechanism is different as well. 
+Please sort the nodes by unit address.
 
-The xHCI spec also only tells whether offloaded is possible at a high-level, but there are additional dependencies on DSP firmware/topology to expose those streams. In other words, when those extended bits are not set then offload if not possible, but if they are there's still a number of dependencies that need to be checked.
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
+> +			compatible = "renesas,fcpv";
+> +			reg = <0 0xfedb0000 0 0x200>;
+> +			clocks = <&cpg CPG_MOD 1100>;
+> +			power-domains = <&sysc R8A779G0_PD_ALWAYS_ON>;
+> +			resets = <&cpg 1100>;
+> +			iommus = <&ipmmu_vi1 24>;
+> +		};
+> +
+> +		fcpvx1: fcp@fedb8000 {
+> +			compatible = "renesas,fcpv";
+> +			reg = <0 0xfedb8000 0 0x200>;
+> +			clocks = <&cpg CPG_MOD 1101>;
+> +			power-domains = <&sysc R8A779G0_PD_ALWAYS_ON>;
+> +			resets = <&cpg 1101>;
+> +			iommus = <&ipmmu_vi1 25>;
+> +		};
+> +
+>  		vspd0: vsp@fea20000 {
+>  			compatible = "renesas,vsp2";
+>  			reg = <0 0xfea20000 0 0x7000>;
 
+-- 
+Regards,
+
+Laurent Pinchart
 
