@@ -1,146 +1,238 @@
-Return-Path: <devicetree+bounces-131607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B981F9F4166
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 04:58:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ED639F41A9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 05:19:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A5331688D3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 03:57:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95AE016C99E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 04:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B282114659D;
-	Tue, 17 Dec 2024 03:57:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 173751459E0;
+	Tue, 17 Dec 2024 04:19:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Cjxth1a8"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="Zu8s1fNY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D50861459FD;
-	Tue, 17 Dec 2024 03:57:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CFF320EB
+	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 04:19:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734407871; cv=none; b=icWMK0RXKiPHwD/SSEepPUBhILIbKb/dcLfuKE9G28oOTBmdyVKaiwpn/YqtgiRWZYndIYqqhr4VrV668YIzOm9r4+7SWf15UCPCAGDTEnrSLdqu9uGnAGA/g+OKHs1VYEvy/zPu/KHPkGHpOX6cbiIhQUgKDIERXT2ND+5I8YQ=
+	t=1734409192; cv=none; b=tH/gmKAh+0jfg0PVT4s9hEvS/l0Bhliac7Shuj0mHqFgLPWJwd0Cz3BDjsUbJ+jMwGAc+eXh3p61cGvCl48L5EsEntbnZfb092zAHalZBQscbMGmb1/xl+hEVt95G5xjUQnC19hO5rffN0aDkPym0WjH5Z4nxSF+LNHznorc2Wk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734407871; c=relaxed/simple;
-	bh=kfS5d+YjRa+GpXwxvHuyz5VdYtDL6nCSWTPY+ZsU1Ak=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DxvjuGKTeej05VLZXcEXisWK4xcKwdiQ7M/QXhzOJnv54a4w9Irck/vHNev5eE2SBdCUJZ+H9xTqbpF0YDv3X16RjSLVOE3TXacMUhjj0eS5h1z00umxNYNkgvdj/nKkrTTFRNuF4NXV6V4pcEZAB0SIxPOd7XK9O5TFGr0MZzU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Cjxth1a8; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BGIx7kd010841;
-	Tue, 17 Dec 2024 03:57:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	23N5wbmg89kmLl5F+mm3ElpkBd5Fu2Q4ftAfKKMgiNs=; b=Cjxth1a8ByIp7DGL
-	0UmMlBVBU5XKSkzFErstphwcmoHcpRYNGGx5Ro9sJX5aFgnGsOefnFWMpm1tIX95
-	pdomW3iqm4zluQXOgeK8rSOP64oIi+MpRa3mWg0pyyo33lbC6mNgCLFX6X+zlv+s
-	Iplzw90x2i7BYCoDeCvKjf3qN5wU504wfFO+LqDZ5aIIANwQMfs1stRm9B27vSTT
-	Un/1AH0dDiETe2h7tYQA4xAQ/zEb1LUJ58Qvc9hQklIm6KpJW39zLnvmd29Jdben
-	dgG9s5NMxdDyYFFMGzjmqZghd0OZ8KDwXeNW4vNj+3cDYGusFRQnh4zymdgkAva2
-	/5oRWw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43jsy71196-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Dec 2024 03:57:33 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BH3vXLh007858
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Dec 2024 03:57:33 GMT
-Received: from [10.231.216.103] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 16 Dec
- 2024 19:57:29 -0800
-Message-ID: <488e3bfa-c66f-4523-a74f-e39ad67f5145@quicinc.com>
-Date: Tue, 17 Dec 2024 11:57:26 +0800
+	s=arc-20240116; t=1734409192; c=relaxed/simple;
+	bh=QZmqhdVsAT2arRv5BiYh8G4Ca8gJY8A99rpA9VIjAxg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Xbg8QlQRZfPXJTkgDXG+azX/FdXxBfr6cc2Beuhu5yVx3s8N8cDUlHnCvqDnFjLC8/hZm7SRa/lVcTa3xrVaWZTgtfGWTphrX0YSQX4moxJ29AkTBu4LjdpPh90OiDodLVcNpXHPLEvq5ksk+SVNZDUzDjj5XMoFHr0tefDB+aQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=Zu8s1fNY; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-54024ecc33dso5232455e87.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 20:19:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1734409188; x=1735013988; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tMW0UeIvJI+AhemOmgTlEsEldsGeJG60ZjFykMIumKo=;
+        b=Zu8s1fNYBZe+DfEScdR9ln5aEODn7OyiEoFr7iwdr33G+GWaMT501IMRrfENrpflCR
+         WzJ5KPEVQB559LNJ6G9tDFQl60ybRefKeB0/m+ZATaFo8q+xNHk8HuXzyPAlTHhGB+1e
+         eHJcyWJV9A1DeB8Pk8DyYPZGVmToLAYspbduqPJjSc6tDJcU/lDtIgvI+NGYikSJt1gn
+         zDh9PmQ31xKTnp1Qaw6U0BFnv+kTXylfH+6lXWKg0VvhtqfIBY+5UCscLKUP4xm6TMsh
+         26ZFEEjcE/iU4yIPywjFXYR85U1Zf8xt+vD9zW+SOLUiAmZcScHVFgtXX9ZdZYY2yT02
+         wMEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734409188; x=1735013988;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tMW0UeIvJI+AhemOmgTlEsEldsGeJG60ZjFykMIumKo=;
+        b=TbBfQlew5WsU9Xu6TMYSkoy0OENbmFTNB+P7fugrEJ9u8jytMde8GPrzSeQilQhIoD
+         77BW1mf0OohsJgyUwjMQM5QC09ub+1KX3F2hZ2HQT/bqPFNgUujAMix0oRJW5O5+lPRZ
+         HAxG7Eyoz5burIfqCZDPgzq7bheaqC4dgvitnU/eLIlN25HWShAy+i4AmYCi4rJ9iNmJ
+         ANpqK9gCpABQhdbtWBA8mPRo95JP6nUkJzPVR/cZkg9pJrORepym3i/bXNX0iCrgELWI
+         VYTZ/2Jb9y5BbqjP46rLhM7nn7XYq6IyKENID757Pru/stUGUrAX03A6ELkI1CNIaf4E
+         XiwA==
+X-Forwarded-Encrypted: i=1; AJvYcCXM898Uqg5D1wwQb+uGVammLKuK18iTK5YGbbRRQbocIBkynNKzBeUsMKlZ7NJdZJKsfNLXC8tYRrYf@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHnfy34PjjvJ20cfpNvMZ37ed1tHRpMyvoL/jVqg2h0GC/Szuq
+	jsIOf8OIQjqvYvXu8yXzr6wt7eBye+F0aod/bNwzQuAPL97bJSkfdO6khwBoUELxYEgZPRyPG8n
+	tSlcgBXXTPnMuqIo6fkVvOpzQo2H9AvNuXJN64A==
+X-Gm-Gg: ASbGncswwtReTWE5Wsqj3ANoNoUUnn9QsU7x5OLcWVodfXxdh/oCfrqZy+lYTo4woeu
+	hzjPk/h8Q2kpVgX56J51p3Y/ZbmUtjXLo2TxFP9+g
+X-Google-Smtp-Source: AGHT+IE4WGSqZi/gpxX7yhuAHe5iSqT/x1A4bVt45VkgotfxHWWf4b7WOZPPzXtry/pOUrXrcUS5yW49UEDWenDscJ8=
+X-Received: by 2002:a05:6512:b8a:b0:53e:3aaa:5c7c with SMTP id
+ 2adb3069b0e04-54099b72a81mr5673404e87.51.1734409188244; Mon, 16 Dec 2024
+ 20:19:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: media: add support for video hardware
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241213-add-venus-for-qcs615-v4-0-7e2c9a72d309@quicinc.com>
- <20241213-add-venus-for-qcs615-v4-1-7e2c9a72d309@quicinc.com>
- <avsiopdobpukz4ngqfakvghvswwrwopr4cn764mnuc76q4m3wh@axpup5fypxsu>
-Content-Language: en-US
-From: Renjiang Han <quic_renjiang@quicinc.com>
-In-Reply-To: <avsiopdobpukz4ngqfakvghvswwrwopr4cn764mnuc76q4m3wh@axpup5fypxsu>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: E6OSO1LYFE-_bbczgUMlsqubMCkW8sa3
-X-Proofpoint-GUID: E6OSO1LYFE-_bbczgUMlsqubMCkW8sa3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- phishscore=0 spamscore=0 suspectscore=0 mlxlogscore=999 clxscore=1015
- impostorscore=0 mlxscore=0 lowpriorityscore=0 priorityscore=1501
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412170030
+References: <20241216084817.373131-1-apatel@ventanamicro.com>
+ <20241216084817.373131-3-apatel@ventanamicro.com> <20241216-untrained-scarce-211d99984416@spud>
+In-Reply-To: <20241216-untrained-scarce-211d99984416@spud>
+From: Anup Patel <apatel@ventanamicro.com>
+Date: Tue, 17 Dec 2024 09:49:36 +0530
+Message-ID: <CAK9=C2UtxKm_38SVzUZoe_OSqcU5Q6k87cZvGyPTozkVR8YoFQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 2/8] dt-bindings: mailbox: Add bindings for RPMI
+ shared memory transport
+To: Conor Dooley <conor@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Sunil V L <sunilvl@ventanamicro.com>, 
+	Rahul Pathak <rpathak@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
+	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
+	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Dec 17, 2024 at 12:19=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> On Mon, Dec 16, 2024 at 02:18:11PM +0530, Anup Patel wrote:
+> > Add device tree bindings for the common RISC-V Platform Management
+> > Interface (RPMI) shared memory transport as a mailbox controller.
+> >
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > ---
+> >  .../mailbox/riscv,rpmi-shmem-mbox.yaml        | 135 ++++++++++++++++++
+> >  1 file changed, 135 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mailbox/riscv,rpm=
+i-shmem-mbox.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem=
+-mbox.yaml b/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbo=
+x.yaml
+> > new file mode 100644
+> > index 000000000000..8d713ba7ffc7
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mailbox/riscv,rpmi-shmem-mbox.y=
+aml
+> > @@ -0,0 +1,135 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mailbox/riscv,sbi-mpxy-mbox.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: RISC-V Platform Management Interface (RPMI) shared memory mailb=
+ox
+> > +
+> > +maintainers:
+> > +  - Anup Patel <anup@brainfault.org>
+> > +
+> > +description: |
+> > +  The RISC-V Platform Management Interface (RPMI) [1] defines a common=
+ shared
+> > +  memory based RPMI transport. This RPMI shared memory transport integ=
+rates as
+> > +  mailbox controller in the SBI implementation or supervisor software =
+whereas
+> > +  each RPMI service group is mailbox client in the SBI implementation =
+and
+> > +  supervisor software.
+> > +
+> > +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +  References
+> > +  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +
+> > +  [1] RISC-V Platform Management Interface (RPMI)
+> > +      https://github.com/riscv-non-isa/riscv-rpmi/releases
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: riscv,rpmi-shmem-mbox
+> > +
+> > +  reg:
+> > +    oneOf:
+> > +      - items:
+> > +        - description: A2P request queue base address
+> > +        - description: P2A acknowledgment queue base address
+> > +        - description: P2A request queue base address
+> > +        - description: A2P acknowledgment queue base address
+> > +        - description: A2P doorbell address
+> > +      - items:
+> > +        - description: A2P request queue base address
+> > +        - description: P2A acknowledgment queue base address
+> > +        - description: A2P doorbell address
+> > +
+> > +  reg-names:
+> > +    oneOf:
+> > +      - items:
+> > +        - const: a2p-req
+> > +        - const: p2a-ack
+> > +        - const: p2a-req
+> > +        - const: a2p-ack
+> > +        - const: db-reg
+> > +      - items:
+> > +        - const: a2p-req
+> > +        - const: p2a-ack
+> > +        - const: db-reg
+> > +
+> > +  interrupts:
+> > +    minItems: 1
+> > +    maxItems: 1
+> > +    description:
+> > +      The RPMI shared memory transport supports wired interrupt specif=
+ied by
+> > +      this property as the P2A doorbell.
+> > +
+> > +  msi-parent:
+> > +    description:
+> > +      The RPMI shared memory transport supports MSI as P2A doorbell an=
+d this
+> > +      property specifies the target MSI controller.
+> > +
+> > +  riscv,slot-size:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 64
+> > +    description:
+> > +      Power-of-2 RPMI slot size of the RPMI shared memory transport.
+> > +
+> > +  riscv,db-mask:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Update only the register bits of doorbell defined by the mask (3=
+2 bit).
+>
+> For an untested RFC, the bindings here look mostly fine. I'd suggest
+> renaming "db" to "doorbell" in properties etc, since we can easily
+> afford the extra characters. Please make sure to actually test the
+> bindings next time around, looks like all 3 bindings produced warnings.
 
-On 12/16/2024 3:52 PM, Krzysztof Kozlowski wrote:
-> On Fri, Dec 13, 2024 at 03:26:46PM +0530, Renjiang Han wrote:
->> Add qcom,qcs615-venus compatible into qcom,sc7180-venus.yaml for the
->> video, and let qcom,qcs615-venus fallback to qcom,sc7180-venus on
->> QCS615 platform.
->>
->> Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml | 8 +++++++-
->>   1 file changed, 7 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
->> index 5cec1d077cda77817f6d876109defcb0abbfeb2c..6dee45b7366578e51319b575e5dd2587dc84baeb 100644
->> --- a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
->> +++ b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
->> @@ -18,7 +18,13 @@ allOf:
->>   
->>   properties:
->>     compatible:
->> -    const: qcom,sc7180-venus
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - qcom,qcs615-venus
->> +          - const: qcom,sc7180-venus
->> +
-> Drop blank line.
-OK, thanks for pointing it out.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> Best regards,
-> Krzysztof
->
--- 
-Best Regards,
-Renjiang
+Okay, I will fix these issues in the next revision.
 
+>
+> General comments like not needing to provide minItems: 1 when maxItems
+> is also 1, and not needing a | unless you have formatting to preserve.
+
+Okay, I will update.
+
+>
+> > +      If this property is not present then mask is assumed to be 0xfff=
+fffff.
+>
+> Also, things like this should be handled with a `default: 0xffffffff`,
+> rather than describing it in text.
+
+Okay, I will update.
+
+>
+> I'll give the !rfc bindings a proper review when they appear, but before
+> that I'll give the code here a go too - thanks for sending the patches.
+>
+> Cheers,
+> Conor.
+
+Regards,
+Anup
 
