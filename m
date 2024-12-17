@@ -1,149 +1,154 @@
-Return-Path: <devicetree+bounces-132002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D75BA9F5444
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:39:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0341D9F5477
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:42:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2828218860E0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 17:36:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F01F7A41C2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 17:42:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BE711FBEAE;
-	Tue, 17 Dec 2024 17:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16551F8691;
+	Tue, 17 Dec 2024 17:36:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UFpIn5i6"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="RyhdRXmt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AB9B1FBCB8;
-	Tue, 17 Dec 2024 17:31:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A09142E77;
+	Tue, 17 Dec 2024 17:36:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734456671; cv=none; b=roGpR3izlfU9F+U9IXIwtQHUtoEKdzaelH9tphC4h3hPt8fbtexFASC87lE6sRB5suQ+DKKzxBDfjpxlkzM9upQ1OIrW5Q86a7f53iiOYRMrzIMOFonlzOqdbDkL+dnYVmLZUQwYEtWoSi0bwpDP7fitkoERZxTHmtltDs2XEMo=
+	t=1734456986; cv=none; b=QhRyG6oSsUgLgd8bFnE9b2xvBpuQcF7A7U5YQZSrREQ3WRC+uq3hU5ZD4b4Z7VvcPSANw0w/6x8mVB/5xRpt3GCfYzwxiUba1B6ZKm109jIYzmrH93/e+oauzDazVtRxn3AFxm8ZEPgbKrevPCao9RyurW8I9oKUxDJS4uPqKEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734456671; c=relaxed/simple;
-	bh=0u8GZTE/ATgnlJ77MnJjoFgTTZFTZia0rw7GhwEPga4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=diGoIKyQSAZDbEkBEldYbvLP1Dx8SwACQzmwiCQ8lWdo/g3uYOgNAz7ZRBIt39+SnCYZRkNlvb7b9z3joxk3/1A1B8h6kCAJey5wrYV3WL6Pg4SkwuLhZd/FDI5FFTciVxXVpyMLx/3pMx26jIW+7g2LacwfUuK6yjZjdWINwyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UFpIn5i6; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a9e44654ae3so859772566b.1;
-        Tue, 17 Dec 2024 09:31:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734456668; x=1735061468; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rBBCHmjJ8BfQE5A/y32+aeYDRhAmzBYfai/tB2V6O2c=;
-        b=UFpIn5i6PCFfGw9zSWKPLS+DueuAjZDDOt4ym8muRN07z3eLL9jTF3utNjn7okvl6G
-         myBrzNWn5T498OnLfYoSEYIzQWJa9814blAmR+FAtRFgsODYO9GJbrEaiZAgtAiSRe8R
-         uQsKpCHzBfH+blp/BaTOYuTxYyyPyeAll+bIxFFYDLLLaQWTpW+J0yy9J7Zo0YIgcCFo
-         BkbuwRfjpUwhORrxNd9cbpUC6icWgPda0LsvUed3/LjxeILF32EP9HeBSxRx7V/j9v7+
-         tchyZ4KH0ChXT0atpP0KnqtXI2GAHQIICYFkas8Z8HFLPVm9W9ofhVmDcN2MP4AzYgaU
-         C9KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734456668; x=1735061468;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rBBCHmjJ8BfQE5A/y32+aeYDRhAmzBYfai/tB2V6O2c=;
-        b=vcdHoLIt7uNRQE8iwKKHEMPz0466gyI6HzeUy5BgkahmS6YzvFtD2Ge1brJvyFphvC
-         o/kAF2+x/jHuSosc39HKc2VvoibqwOrGT2CQ0l9VQkreKQ05qn3mx/kSkeAia4p8tpgx
-         A+DL1/ivdGtDSEVgoA5naLiOZM6VWFuek4abYfUEFHNJgwFxS5SMDeQJANKb8KyYfx3r
-         8yRBRmLe0P8F96d4Dqkp3BORVMfE0gWcjqTkfW5TqInqYAcOzMPucNMEdUYk7fD9MQxA
-         ioEVPfFm7x/oJS9Sfv7o56T7GMGX9/XbkVYrcLuS0iFkzZ1NlmYNivvPftcG5yFBcMm/
-         EORg==
-X-Forwarded-Encrypted: i=1; AJvYcCU3Ha42f/EJ6qMGLrbVonZmZlAz2z6oXHti3XknLNnqCOHeGlWsgZXoILHDWOOvJFeGD7yuSPn5uXopahZ7k1WfzvI=@vger.kernel.org, AJvYcCV3y7Wkk57oRxz7ol4c1zTpWP0f3EOpBdtwmpymdkWpY2lqDT4JuqDRJa2YI6tK0mhloIuFuf0/2yX7@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSXd6I9PgdWLpl/6QvJv9aGn6hg2Gh8DCR2rYeTCI/W6r620KL
-	q22mrHONXQUjCozkMY1uONgrEhBn3LYXPbWBK65ERo2ju4M465+0
-X-Gm-Gg: ASbGnctChDUtvdLcPLYXj8AabrVh5Q2OM3B6QxWpIDeGR84rYDxkhysyEJTS6zHkAfZ
-	JaFzn+zgD3ZmFF/MmU85CS1gqzYznIqTAyjaJClHVHm8Rg89T2PINwzgoP47cPnLa0wyopkWQTh
-	Dw/gFLvvx4wVVv0Eh/no14C5EpVvKFVqfmOMuZj95uIICm2pNjnun2PP/6rOHv1rcMwD5gs1+Lh
-	Xxmmgw4PXcgq0PL9XG4SOxx9ywDsV2s3Y1b43RJjRdKnO7CHiyNuK21QzMTyvhsmFPU
-X-Google-Smtp-Source: AGHT+IET9mrZEHGyCN84q2P3UbSuc+Z8xHdme19p+Tq4s9g/cPQ1ee4Z1KgRDlQkyuj9FtD2I63F3g==
-X-Received: by 2002:a17:907:7811:b0:aa6:8b4a:46a4 with SMTP id a640c23a62f3a-aabf1c85370mr15686266b.44.1734456667314;
-        Tue, 17 Dec 2024 09:31:07 -0800 (PST)
-Received: from [192.168.31.111] ([194.39.226.133])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aab96067ef1sm461047266b.48.2024.12.17.09.31.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Dec 2024 09:31:07 -0800 (PST)
-Message-ID: <6b257549-b166-4772-a824-894b4b84e322@gmail.com>
-Date: Tue, 17 Dec 2024 19:31:05 +0200
+	s=arc-20240116; t=1734456986; c=relaxed/simple;
+	bh=NWpaq/Cdy/q4UInACNFF0HgHeiwmT+i5v9jil1FxoyE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sllm3AloRhA8JsYfNT3q38u0bOjl8L1MB5hb7SDjJZiW7GD2WlrGMQndUuxBdHgr7CC7e7Jh1UChhKjTcraN5pUWrQxfPZJQDoKFwzvnM8MV0jrhGQvatp8TE6JydzYQw0SEdSz9ycPmUKNDZilJGr6lL6znn3wzEN09/wiH1Kw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=RyhdRXmt; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BHD0UoA028122;
+	Tue, 17 Dec 2024 17:35:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=pp1; bh=3Cze64ZkJ4Cz2gsZweHybIIHWwAMYbRAejZdS1uXH
+	ZQ=; b=RyhdRXmtfU1PxDNu+dAtHsA4dikP/urhvZ1aDjrJ6M7CFpYB/RP/37Qqi
+	Uf9kf46bcPZ1EjYDGPVq8nx6BHqF51PF5RZl4hiQUKp4GO32W9zWn2fWppezczt1
+	A0rexEJSNsd7dSOZlrxIVfmrfXKKdmhSIPmus9MYFupa9UvFs4N7SFwqMH0ktLJf
+	jagbMLWsdZh6MTQa3/2t/3IAopKKCnRnkbyt4ESeQpbvF0Wd9cZVf4ljHF2CC2bE
+	jO27X7mj9hKO1WIIDKV8n+n4ZwkZIs5Hm4PB3Ebz8hPHCNWGCLk7sAg4w624DX/R
+	Uv3cho6gYF1TqkwaqjA/2vV28QQmA==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 43k9t6heeu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Dec 2024 17:35:44 +0000 (GMT)
+Received: from m0360083.ppops.net (m0360083.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 4BHHQ0jN028818;
+	Tue, 17 Dec 2024 17:35:43 GMT
+Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 43k9t6heeq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Dec 2024 17:35:43 +0000 (GMT)
+Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma12.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 4BHEs3sY029321;
+	Tue, 17 Dec 2024 17:35:42 GMT
+Received: from smtprelay04.wdc07v.mail.ibm.com ([172.16.1.71])
+	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 43hmbsm34m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Dec 2024 17:35:42 +0000
+Received: from smtpav02.wdc07v.mail.ibm.com (smtpav02.wdc07v.mail.ibm.com [10.39.53.229])
+	by smtprelay04.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 4BHHZfSZ25887300
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 17 Dec 2024 17:35:41 GMT
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 1747A5805D;
+	Tue, 17 Dec 2024 17:35:41 +0000 (GMT)
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id B09A45805C;
+	Tue, 17 Dec 2024 17:35:39 +0000 (GMT)
+Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
+	by smtpav02.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Tue, 17 Dec 2024 17:35:39 +0000 (GMT)
+From: Ninad Palsule <ninad@linux.ibm.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        eajames@linux.ibm.com, jdelvare@suse.com, linux@roeck-us.net,
+        corbet@lwn.net, joel@jms.id.au, andrew@codeconstruct.com.au,
+        Delphine_CC_Chiu@Wiwynn.com, broonie@kernel.org,
+        peteryin.openbmc@gmail.com, noahwang.wang@outlook.com,
+        naresh.solanki@9elements.com, lukas@wunner.de, jbrunet@baylibre.com,
+        patrick.rudolph@9elements.com, gregkh@linuxfoundation.org,
+        peterz@infradead.org, pbiel7@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-i2c@vger.kernel.org
+Cc: Ninad Palsule <ninad@linux.ibm.com>
+Subject: [PATCH v4 0/4] Add support for Intel CRPS PSU
+Date: Tue, 17 Dec 2024 11:35:31 -0600
+Message-ID: <20241217173537.192331-1-ninad@linux.ibm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] soc: samsung: Add a driver for Samsung SPEEDY host
- controller
-To: Markus Elfring <Markus.Elfring@web.de>,
- Maksym Holovach <nergzd@nergzd723.xyz>, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Alim Akhtar <alim.akhtar@samsung.com>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: LKML <linux-kernel@vger.kernel.org>,
- Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-References: <20241212-speedy-v1-2-544ad7bcfb6a@gmail.com>
- <44419be4-65b3-41eb-a696-cfefae84a423@web.de>
-Content-Language: en-US
-From: Markuss Broks <markuss.broks@gmail.com>
-In-Reply-To: <44419be4-65b3-41eb-a696-cfefae84a423@web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: QWx7H6vTap48emznpRAQAtERyGJSso6k
+X-Proofpoint-ORIG-GUID: AEW_zZyOLNc4vOhz9gVc1LmegMtQ296D
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ lowpriorityscore=0 malwarescore=0 bulkscore=0 clxscore=1015
+ priorityscore=1501 adultscore=0 impostorscore=0 suspectscore=0
+ mlxlogscore=999 spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2412170134
 
-Hi Markus,
+Hello,
 
-On 12/14/24 4:43 PM, Markus Elfring wrote:
-> …
->> SPEEDY is a proprietary 1 wire serial bus used by Samsung
->> in various devices …
-> You may occasionally put more than 57 characters into text lines
-> of such a change description.
+Please review the version 3 of patchset.
 
-But does it really matter where I break the line? For me, it just seems 
-ugly no matter where I do it...
+V4:
+---
+  - Improved commit message.
 
->
->
-> …
->> +++ b/drivers/soc/samsung/exynos-speedy.c
->> @@ -0,0 +1,457 @@
-> …
->> +static int _speedy_read(struct speedy_controller *speedy, u32 reg, u32 addr, u32 *val)
->> +{
->> +	int ret;
->> +	u32 cmd, int_ctl, int_status;
->> +
->> +	mutex_lock(&speedy->io_lock);
-> …
->> +	ret = speedy_int_clear(speedy);
->> +
->> +	mutex_unlock(&speedy->io_lock);
->> +
->> +	return ret;
->> +}
-> …
->
-> Under which circumstances would you become interested to apply a statement
-> like “guard(mutex)(&speedy->io_lock);”?
-> https://elixir.bootlin.com/linux/v6.13-rc2/source/include/linux/mutex.h#L201
+V3:
+---
+  - Improved documentation as per suggestion.
+  - Fixed issues in the probe function.
+  - Add ACKed string in the commit message
+V2:
+---
+  - Fixed documentation issues.
+  - Added pmbus revision debugfs file in the core
+  - Remove debugfs and read word from crps185
+  - Improved commit messages
 
+Ninad Palsule (4):
+  hwmon: (pmbus/core) Add PMBUS_REVISION in debugfs
+  hwmon: (pmbus/crps) Add Intel CRPS185 power supply
+  dt-bindings: hwmon: intel,crps185: Add to trivial
+  ARM: dts: aspeed: system1: Use crps PSU driver
 
-I did not know such statement existed, thanks for the tip, it definitely 
-helps and makes it simpler!
+ .../devicetree/bindings/trivial-devices.yaml  |  2 +
+ Documentation/hwmon/crps.rst                  | 97 +++++++++++++++++++
+ Documentation/hwmon/index.rst                 |  1 +
+ MAINTAINERS                                   |  7 ++
+ .../dts/aspeed/aspeed-bmc-ibm-system1.dts     |  8 +-
+ drivers/hwmon/pmbus/Kconfig                   |  9 ++
+ drivers/hwmon/pmbus/Makefile                  |  1 +
+ drivers/hwmon/pmbus/crps.c                    | 74 ++++++++++++++
+ drivers/hwmon/pmbus/pmbus_core.c              | 13 ++-
+ 9 files changed, 206 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/hwmon/crps.rst
+ create mode 100644 drivers/hwmon/pmbus/crps.c
 
-
->
-> Regards,
-> Markus
-
-
-- Markuss
+-- 
+2.43.0
 
 
