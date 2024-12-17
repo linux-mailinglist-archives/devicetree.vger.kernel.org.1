@@ -1,129 +1,147 @@
-Return-Path: <devicetree+bounces-131826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 163DC9F4AA0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:08:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12C729F4AA4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:09:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B934E1890E8C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 12:08:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06B417A36A7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 12:09:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A901EF0BD;
-	Tue, 17 Dec 2024 12:08:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C20F11F12E3;
+	Tue, 17 Dec 2024 12:09:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fooishbar.org header.i=@fooishbar.org header.b="RqFXMEWl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AZ/ACVu5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07D7C1D47A2
-	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 12:08:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E74621EF0BD
+	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 12:09:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734437289; cv=none; b=PUcrOwQ3NaJeNsbMOhd4qBHvXpb0RKQmZjbt1UU4au9dh1H8DjiKlw5jwP9+h70iMh43KQScHQjcydvb7oAIzPFYrs081m66Gysm0hp1bbPiYQbx0hG0l2J7vcXjTwpumcC/tjdhbOHdySj1FemOZegSqOUuSTof0MHUaH9W/uw=
+	t=1734437369; cv=none; b=eZdwErCtMeQC47rUl094WUYQpxF1QwisR/gglxYoR4rIFwHC8A+TVOj4Kn8Hb+uaeokvU+QlodreKyFiTr351J+dIIXTlm3zSmZuH/uvv7pQiTuc/biptIl4TD/C8urf/DM3h1ZVXV+MOzjgVNsZ/3xHIU8Wurr1Ts+VcI4ZwnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734437289; c=relaxed/simple;
-	bh=lYYtBVNiTzP3RgYx8Xv+r4vF7QVcr/k6+Wcfbpd/Ul8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EkemY7VsySXv7e4vJ1qjq1tTen2QZgbcViOzXzPxsoPizd6vO+VYYgcNcRueWRjdmAg3AdYImgnySJroYScMoGi9zEyL0vcwkH8ifJW/+3HPk9hOjEcXoOc2gTWp3ybDehTqSvRU2/obnZPSOa07yC/vpYTWB8cfW9z6Kdf/+gs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fooishbar.org; spf=pass smtp.mailfrom=fooishbar.org; dkim=pass (2048-bit key) header.d=fooishbar.org header.i=@fooishbar.org header.b=RqFXMEWl; arc=none smtp.client-ip=209.85.219.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fooishbar.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fooishbar.org
-Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6d900c27af7so59825446d6.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 04:08:06 -0800 (PST)
+	s=arc-20240116; t=1734437369; c=relaxed/simple;
+	bh=16XPmy2jH/zD27A72OtSAQ/rMDX0OJmNbRLWaTM298k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SKLioWhzIMfAEHplYg89JxuqPQNX9qWL8giwn3UB33DkwHvd7+IXPEru+01wPZwyZYlU2dNV2CRoqmbed2dw+5K1IXBP4+u7jreC4cJtRkxw6vHUOLcxHgW0XKG3saDIDjnuKeAJITH9QS5N9TTHtsW0Gh7WYISNDu37aGNQS7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AZ/ACVu5; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-53e384e3481so4762359e87.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 04:09:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar.org; s=google; t=1734437286; x=1735042086; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=j+dl3ly0rdbKwmGKotpv1oO2gk374L+s+XxGWg7hHC4=;
-        b=RqFXMEWlIF+UeNmO2or3eBTQV9nCl8Z8Y/i9UUVx2kHh4gnHhpuxxQ4A96zrN/S8kc
-         111adx4KJMEREGw+rPgCB9apMa92pTdh6p0Sf2DHJdsDToRZBjEKtj/xKbik0Y+hxiPu
-         MmjEapqxjAhtdAus2MFw8DG2zslBvZAjS972IXQNzZwPyxZhjYQJSHTwusj63jie1Uay
-         21sD4XJ3SpKSeONW4t03GsB5LVHiwiHAUKLFohZNgKOl+S4Df3UUrnMs3lEKEsxDcX1p
-         0F0Bt3Jg3eeDj34z21Kqn6UHBGnArrpO2i9NxQtnGYCCHER0yGku7mAsMF3sgb6WIiUO
-         60aA==
+        d=linaro.org; s=google; t=1734437364; x=1735042164; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=v2zlUatx24q8uGjuBR7tMIQ8jxT+mtpak1Ok6qCQguw=;
+        b=AZ/ACVu5PIcKCEJuyLrxVKh99Uzm4W0y/ASGt7tFbau/Ph2Bhdd4Ric3mCzeviMIrD
+         SGailBdErUEih2AuvFQgjAdlu/TB3yWnrtFH0e9y+sg2EJhCJ1a9XXZ4aWYxUYCBoQ9J
+         yn+u6soIQ5MLvQHZkPYmRCEH92kQpzEpVJ2PSqj+r1vLUy+LktqEgvgQ4oj+CuIMeQSd
+         HZxVg1EC2tDdERs9FMq1+qOCyR16gL+GRYsh6L2nFVomXL5DbtUqXaQiZcPWhhrPF5FX
+         evzkNV/WL3E0VZi0yaGsva1sD7V8y4RNnSrWG3FueKCjwTlbrxzBeztRx84QWStI6GIQ
+         bfHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734437286; x=1735042086;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j+dl3ly0rdbKwmGKotpv1oO2gk374L+s+XxGWg7hHC4=;
-        b=F8japxkZktqRgDpGaVorBLRx0d9RrYNymGnFtepYoO9N1e9z50dgHCgH0l+DXmv+mX
-         oT7t+630t3/KrktH9pRCKzvfKvpzsQsHt9j2LZNUlI68YHmrJpvHAGevlk9rzgM7YehU
-         Kctgejkmmo72UqGYftvdhosdlFTTaZF+83WbKMrWxOWyBCu62iW/m14KRy+aFo2Cgh3p
-         3I6Tv1yNVaVYmyvwT4EpIwNIe9bkLap3t8kQ/BPebrOKNtNebsjNVpFzlKEy6aCJm9DF
-         f2n0wjSenXOxUolgIkta6tuC3C11X4a6cl5cUw1tuZjSlaZWLGleynHngi5HaGVqECM4
-         +BGw==
-X-Forwarded-Encrypted: i=1; AJvYcCWz51uGfOstocv6kqyZEcmFPctir6/YSunERgBaVR0pmZZ6aFW3BkTuwBwt4JddHFbQSINHtCOeXJny@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHvhZ+Bk7ktoZn2+C6F5uIl/EXvacz4Jh8c9Mydiusg9tAOahV
-	YN52vVHkAvLSuaowPRkn/LUQ4Qh+zXmZJSIso4psmGu+JUvefO4ulCSDWOLuucqBErYlPvyGPD0
-	aqSyx3Zn8CzfEOqwabIXi6dzci7cNz34SLqE9CQ==
-X-Gm-Gg: ASbGncs4hJ0idCUu5ddtBvhwo+c2GN9A3mXFpHKv+Ccknkj9ELLbmMv93LeEK7J/UrN
-	qofCFXKZPqAvVrnhMFyHS4cAtXw4DSCYTCXGf
-X-Google-Smtp-Source: AGHT+IENXkFl1sf/3x7p8kafThXQqXSZZrmYVwhsRzFtxsCkGCBTgLsddU6Li0qrlY45bm/mZ6nEZU9yLbhu5otz4j4=
-X-Received: by 2002:a05:6214:d48:b0:6d8:a754:9647 with SMTP id
- 6a1803df08f44-6dc8ca57509mr252459736d6.17.1734437285918; Tue, 17 Dec 2024
- 04:08:05 -0800 (PST)
+        d=1e100.net; s=20230601; t=1734437364; x=1735042164;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=v2zlUatx24q8uGjuBR7tMIQ8jxT+mtpak1Ok6qCQguw=;
+        b=EiuHb2oRaUPztGETwhU0Ce5VMW+8cog5xOpqz7jBxXGQmlPlSkFCpqRcUcxNG4KYo1
+         iaACBeZcm5Tss5uL3MXdrgZAP3TE7tW9hiz/tOK3WOLsWWMXaaSZ5GmsQ7I5Dju63tbZ
+         GGgTUT3jV0E9wWsJLKiOnA1O8eASnL26xVCxkN/cOZrv6KnskQp/Ilaw2whHWtb/S8eG
+         OsNWzCaLh54VnNRNYRJjbJSg+cbCXdProFZM7Uhc/Ub9lovrRFzLqvJno4HaG5IzkSb+
+         dQb6lqs383/inGC66AXvwTqbSXitLygXklAx7NVbXjImduvSVMLxE7EXIShMqJiDivzJ
+         LMQw==
+X-Forwarded-Encrypted: i=1; AJvYcCVJedP2xI4gi4HNYRsdwg5bkoFM/Lrizl2taw45JPLJCJ093C2iM28j5KvNAIQTvWTPvou/Lm5U/mjG@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEwIM6tIItIKp2pk0czDxuu0FPi34Dk8ugI/PUgf+1vAyyZkiD
+	1jInxDOHl1W8InIQurU4zvZQS7To5V7y0ZMu2XfnTXJVQUyJz+8a2ReT9s0xm1k=
+X-Gm-Gg: ASbGncuW8YJUmjSw5B+tF/hgojQ531VktzYqHdPRO20SySKz8oNQWTLUZOO1Tk3lPtN
+	cmanMCQOt8oHd1BCaArrwWg19vWHh3yTSSnkUjGmLMVLUt292MTweWK3XMd1pbXwbaCb1VUPeQ3
+	6ygx5wuBH4Dn/dvTseomxpa6G/CK9tUoy/3VEB2YAK8mlmIBitSnWLyuquY7/8Nku2ubFCi0Kuu
+	rQ3O30CBOb1/7UdSl/L5FR5gNO1lhp0Zv8CFOyeqqRLsZr0Dc7p94tdjt4NpmWxTWk6hYRxBqLb
+	s8POBU8Ki7AXYt/6mJIkG6A20FaSEGxXQyki
+X-Google-Smtp-Source: AGHT+IH3yIaXKqPUlVfDov4PSCpBT+vDZFRyKj3waNb6em6MSG5hbhb05XacOHw8jeYisHOZJ9kJTg==
+X-Received: by 2002:a05:6512:6cf:b0:540:1f67:689f with SMTP id 2adb3069b0e04-54099b72cb6mr5558607e87.56.1734437363989;
+        Tue, 17 Dec 2024 04:09:23 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30344045d28sm12351511fa.49.2024.12.17.04.09.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Dec 2024 04:09:23 -0800 (PST)
+Date: Tue, 17 Dec 2024 14:09:22 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Renjiang Han <quic_renjiang@quicinc.com>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+	Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, Vikash Garodia <quic_vgarodia@quicinc.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Stanimir Varbanov <stanimir.varbanov@linaro.org>
+Subject: Re: [PATCH v5 3/4] arm64: dts: qcom: qcs615: add venus node
+Message-ID: <hu5nkn34gkx5x4wdtpvstf5atrgl533vynlgvjec4z3jdo4rac@yt6t5mmfcwtm>
+References: <20241217-add-venus-for-qcs615-v5-0-747395d9e630@quicinc.com>
+ <20241217-add-venus-for-qcs615-v5-3-747395d9e630@quicinc.com>
+ <83fcb683-d610-4e47-bcce-128453a0afef@linaro.org>
+ <3cb0d715-3756-4cef-bcc0-3bb550811c73@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241214081719.3330518-1-andyshrk@163.com> <20241214081719.3330518-9-andyshrk@163.com>
- <CAPj87rOjqZdyht2y8MK7gVyk_eqEzk1Sy0DcxFtQRuhrHQ_oxA@mail.gmail.com> <165af58a.697.193d2100239.Coremail.andyshrk@163.com>
-In-Reply-To: <165af58a.697.193d2100239.Coremail.andyshrk@163.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Tue, 17 Dec 2024 12:07:54 +0000
-Message-ID: <CAPj87rMfFXkbyh7UEJQw4JV1R18KLXC3GyF0CznrN1k3UdL0Lw@mail.gmail.com>
-Subject: Re: Re: [PATCH v6 08/16] drm/rockchip: vop2: Support 32x8 superblock afbc
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org, 
-	s.hauer@pengutronix.de, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	derek.foreman@collabora.com, detlev.casanova@collabora.com, 
-	Andy Yan <andy.yan@rock-chips.com>, Michael Riesch <michael.riesch@wolfvision.net>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3cb0d715-3756-4cef-bcc0-3bb550811c73@quicinc.com>
 
-Hi Andy,
+On Tue, Dec 17, 2024 at 05:54:57PM +0800, Renjiang Han wrote:
+> 
+> On 12/17/2024 5:38 PM, Bryan O'Donoghue wrote:
+> > On 17/12/2024 09:17, Renjiang Han wrote:
+> > > +
+> > > +            video-decoder {
+> > > +                compatible = "venus-decoder";
+> > > +            };
+> > > +
+> > > +            video-encoder {
+> > > +                compatible = "venus-encoder";
+> > > +            };
+> > 
+> > I gave you feedback on this in v4.
+> > 
+> > Could you please provide some commentary on why you're persisting with
+> > this ?
+> > 
+> > - Driver configuration should not live in dts
+> > - A patchset exists to mitigate this
+> > - If you don't want to use that series, what do you propose
+> >   to resolve this ?
+> > 
+> > Please don't just ignore feedback, either act on it or add to your
+> > commit log _why_ you didn't act on it.
+> > 
+> > ---
+> > bod
+> 
+>  Thanks for your review. You pointed it out correctly. As replied in v4,
+> 
+>  I also think your change is a good change, but your change involves many
+> 
+>  platforms.
 
-On Tue, 17 Dec 2024 at 00:41, Andy Yan <andyshrk@163.com> wrote:
-> At 2024-12-16 21:06:07, "Daniel Stone" <daniel@fooishbar.org> wrote:
-> >On Sat, 14 Dec 2024 at 08:18, Andy Yan <andyshrk@163.com> wrote:
-> >> This is the only afbc format supported by the upcoming
-> >> VOP for rk3576.
-> >>
-> >> Add support for it.
-> >
-> >Out of interest, how was this tested? There is no 32x8 modifier in the
-> >format list in format_modifiers_afbc[], so it seems like it shouldn't
-> >be possible to get a 32x8 buffer on a plane at all.
->
-> The 32x8 modifier  added in PATCH 16/16:
->
-> +/* used from rk3576, afbc 32*8 half mode */
-> +static const uint64_t format_modifiers_rk3576_afbc[] = {
-> +       DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_BLOCK_SIZE_32x8 |
-> +                               AFBC_FORMAT_MOD_SPLIT),
-> +
+You can help it by reviewing it and then providing a Tested-by tag for
+it.
 
-Hmmm, that's strange; I applied the whole series with b4 but wasn't
-seeing that block defined. Maybe a bad conflict resolution. Sorry for
-the confusion.
+P.S. Something is wrong with your emails, I see a lot of lines separated
+by empty lines. It makes it harder to read.
 
-> I write an ovltest[0] tool which can take linear/AFBC rgb/yuv data from a file, then
-> commit to drm driver, I use this tool for most basic format test.
->
-> But when tested on weston, I found that weston does not use the AFBC format for display,
-> don't know why.
 
-You'll need a Mesa tree with e0f48568c7f2 included; if you have this
-then it should just work out of the box.
-
-Cheers,
-Daniel
+-- 
+With best wishes
+Dmitry
 
