@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-132035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA3329F55F2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:20:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CFD79F55EA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:20:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0021188EAFF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:19:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 751BD16281D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6C71F76A9;
-	Tue, 17 Dec 2024 18:19:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F2011F893A;
+	Tue, 17 Dec 2024 18:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qiYNZob8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V4SAPZDe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B851448DC;
-	Tue, 17 Dec 2024 18:19:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246C11F868E;
+	Tue, 17 Dec 2024 18:19:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734459581; cv=none; b=X0X4mc6QOTbbWlbiiHYbcpbcRRBaA4rR4i9b4j6llx9t+DOVd459af0cgkVVWN+YjimeOlLyOWJEQDKJhaC8QkkPI43wO8Nx+P/lOZHWJor99EC5R7kNo5dyUZ1k2tv2dtSnrD7/KbXbmEFZIfJV3eOPYV8j8pz4X82y6B3EcwE=
+	t=1734459594; cv=none; b=k8YVEcJGNZ20kFw3TCuZZKogtM237g01ddP9m9wQNhjZousp5QNaoIDxOSG7AenLbnf0DYqXPQeDQ4UxR52alDtK5+XM6mU0pj41Hm2uKH4xKbgGZ0ubmMjBOo6znLhQq9VTZJt3IclKaJwflkrRjsjhXOt36RfOP1N9utjz8No=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734459581; c=relaxed/simple;
-	bh=zjTy9PBs8BSDM1TkG0RnyrT/0yguGM7/vr/qLKrQTkQ=;
+	s=arc-20240116; t=1734459594; c=relaxed/simple;
+	bh=3KXuVnD9D+xJr3IbkexI7hbjcfsyh7wWVwrrKoPjpeo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V9t2VzJB0hU33bpbSepKAofDC+LHIzLHLRdzZXPpNgVYKbJv4rOBNTg1MHrpmLttz4hYVmX6mZIjAvErajDxI1KTW+Uge41Ij4d2NwpqaNsa4X/m96BxucSWsixWqIeqDa1F5cKGx7IYeIUfIGCO2cS75OebHaQjuxwJvSV3CHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qiYNZob8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E703C4CED3;
-	Tue, 17 Dec 2024 18:19:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=I012L9+akaygoQDRas9NdoV8r9k0JrtWrdwU4xQ3Zy4uNakwgExOt0GZwcdsC4wFB3HHb4q88flxW+yOyPGWrjxayGC3cTqEsjf/4Nb9JLUu1afcnoVRg3EAbAh3JnfA4PYseh6leQhYxTQmqt3SL/jNd3oRb8EawY/2Qb932nE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V4SAPZDe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1F80C4CEDE;
+	Tue, 17 Dec 2024 18:19:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734459580;
-	bh=zjTy9PBs8BSDM1TkG0RnyrT/0yguGM7/vr/qLKrQTkQ=;
+	s=k20201202; t=1734459593;
+	bh=3KXuVnD9D+xJr3IbkexI7hbjcfsyh7wWVwrrKoPjpeo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qiYNZob8Ax8L07w3zPUx50m7fFlOxbbbRMUmalVLA5KBGu07rZWlzo8Oab2wphGl7
-	 xPDMkjDVFdxFcYTMmsvqxBFdTW/RTGgrLqa5WH2r+8KrEghEqSjt2uhQoCwQK3nVDC
-	 /+XR2GUNF4C+bQFAtdAbDaWyXMH9Sm2nffyRKHs/2MErB8+PwsgHgbtMjaqO/GJlE/
-	 Ao6y+2rOJuXRM3G3kkCjWHDPObsFeTgXC3FI+y6KluojcL3oJLaAFvdft7ERX8vEpL
-	 hSI6IIl/JiSbVIBLtt89SpXzjmDHwWM1MTusWCwnO2HGv+iUnfvzYIi8cOlJ79JbVi
-	 JAaRArGrBeawQ==
-Date: Tue, 17 Dec 2024 18:19:36 +0000
+	b=V4SAPZDedYs3kXXyLmJSO7yQxmKumVijVWPamYYOeh0Kpif9cqyzpymhMfLZ3oo1y
+	 9QREygSOnYVvrDDgvtnt5Sx/QZi3w5jispy1rhlyN/yf9pgJPwaBUTTrG69WDWLi+6
+	 8QrF7zvyZOg4ttrVPksHfvRFucpsiV2gQ2HJZAYnRwHJpOUGfNV10kC7S55pKheg6H
+	 Q1w7loIbHIfi4r+nqFtd/XhyyF05Q+x3JzYgnUGEMwa5lY7P9emcXufhgHvw7jRCJE
+	 7LMzyE9mrdtKdYe9yVt/ghr8oXCHrQHBEsM6GXdG0vc6GLcT4SJ3ZP/elgVDcPsSO7
+	 AQD3bp1QXXf7g==
+Date: Tue, 17 Dec 2024 18:19:49 +0000
 From: Conor Dooley <conor@kernel.org>
 To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
 Cc: paul.walmsley@sifive.com, palmer@dabbelt.com,
@@ -49,11 +49,10 @@ Cc: paul.walmsley@sifive.com, palmer@dabbelt.com,
 	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
 	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/4] riscv: sbi: vendorid_list: Add Microchip
- Technology to the vendor list
-Message-ID: <20241217-jokester-sift-b37121e01c90@spud>
+Subject: Re: [PATCH v6 2/4] riscv: export __cpuid_to_hartid_map
+Message-ID: <20241217-grape-disdain-26ee36738961@spud>
 References: <20241217113134.3508333-1-valentina.fernandezalanis@microchip.com>
- <20241217113134.3508333-2-valentina.fernandezalanis@microchip.com>
+ <20241217113134.3508333-3-valentina.fernandezalanis@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,55 +60,36 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="YZciibEyPyM8v9fA"
+	protocol="application/pgp-signature"; boundary="vlUeFHDDVuswpK1n"
 Content-Disposition: inline
-In-Reply-To: <20241217113134.3508333-2-valentina.fernandezalanis@microchip.com>
+In-Reply-To: <20241217113134.3508333-3-valentina.fernandezalanis@microchip.com>
 
 
---YZciibEyPyM8v9fA
+--vlUeFHDDVuswpK1n
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 17, 2024 at 11:31:31AM +0000, Valentina Fernandez wrote:
-> Add Microchip Technology to the RISC-V vendor list.
+On Tue, Dec 17, 2024 at 11:31:32AM +0000, Valentina Fernandez wrote:
+> EXPORT_SYMBOL_GPL() is missing for __cpuid_to_hartid_map array.
+> Export this symbol to allow drivers compiled as modules to use
+> cpuid_to_hartid_map().
 >=20
 > Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.c=
 om>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> ---
->  arch/riscv/include/asm/vendorid_list.h | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/arch/riscv/include/asm/vendorid_list.h b/arch/riscv/include/=
-asm/vendorid_list.h
-> index 2f2bb0c84f9a..a5150cdf34d8 100644
-> --- a/arch/riscv/include/asm/vendorid_list.h
-> +++ b/arch/riscv/include/asm/vendorid_list.h
-> @@ -6,6 +6,7 @@
->  #define ASM_VENDOR_LIST_H
-> =20
->  #define ANDES_VENDOR_ID		0x31e
-> +#define MICROCHIP_VENDOR_ID	0x029
->  #define SIFIVE_VENDOR_ID	0x489
->  #define THEAD_VENDOR_ID		0x5b7
-> =20
-> --=20
-> 2.34.1
->=20
-
---YZciibEyPyM8v9fA
+--vlUeFHDDVuswpK1n
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2HAuAAKCRB4tDGHoIJi
-0hBGAQCPyVG132M5iB3YlvelNPQPD5CsGWjpcHNrXltseqFkaQD/Vill4S/cEaIZ
-n4wyM5C0r8vQ3RvGkWdGEVSwACFEaQ8=
-=KcMb
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2HAxQAKCRB4tDGHoIJi
+0uPrAP4/CsqF4xQUklJpDfXANiZA1Z3vqLRdOQwomW1QCh6cwwD8C4TNhyPMruzt
+3n13BSc3PEpaygd3us95wNDVC00i+Qc=
+=ZwHv
 -----END PGP SIGNATURE-----
 
---YZciibEyPyM8v9fA--
+--vlUeFHDDVuswpK1n--
 
