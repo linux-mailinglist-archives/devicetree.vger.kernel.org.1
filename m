@@ -1,90 +1,128 @@
-Return-Path: <devicetree+bounces-131850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4F4E9F4C09
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:25:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A45609F4C1D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:26:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6B2F1899E34
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:18:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF132172DD5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:20:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89FCF1F03E8;
-	Tue, 17 Dec 2024 13:12:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 601F11F4E5B;
+	Tue, 17 Dec 2024 13:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vNlo9qLO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aH2mXAhk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62A6EA29;
-	Tue, 17 Dec 2024 13:12:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4DFF1F1917
+	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 13:14:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734441125; cv=none; b=QrjxqnvdVoWljechJx1p5uwn1DqHNWOVj0PFcn7JdDMMFwI6uZWKBQU6Hkgs6QZDIKKeVNxaz5gG9LcL8DtgfXb0qIy0MtmnEY6s0HrWrZyC9VyG+5DP9ddVPQFWodFXUzYh67jchcETHqDiMSL8yRXOIV5RoubF1eOLJSwCsnU=
+	t=1734441284; cv=none; b=Aga/ICvmGEedsA/9pck76K7QEKRNKxh7sirlnvPRrvh8Fc3muZqXEQnfR3a8kRzOG9A0sAM7aUvi5XvMVR6hDONPznP8ZLXld+GjBC7PaDQpbSorMbdu/w/nL2mWZcDUZaDWll22g7zSa10alYBA8lSYBXUtOd+Mv+TRDGRMTCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734441125; c=relaxed/simple;
-	bh=D/SJURUuzN5/fZOaZjKkoURarq2fLgSwyYakD0IggJ8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hNyTWRuilWLJVBID1stnYXdLKM8y+0W48V+BpOQIdlYEyB7OIqFZMBHJ30RyDrVMw0XgJvW8RYlmeTErTL6BItmeJbf9xyh0uQF+1Vx30kw5W/AUoaAeAgje/g18ewrr2eu0OUJRG65JaxGx63q3G0kTXTq0vMcCLipxhsSibIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vNlo9qLO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2D1AC4CED3;
-	Tue, 17 Dec 2024 13:12:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734441125;
-	bh=D/SJURUuzN5/fZOaZjKkoURarq2fLgSwyYakD0IggJ8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vNlo9qLORpH0vDQdyIaIIfK+qBScqcqEdglH/20lJBrIBjfATyJL0vKBgWcR1LPZI
-	 /PSuYzyFvcZVdyn/7dDUw0Yv+IkubGzxWPIeA0mJhrPO7bJQgwh7Km6RtIXumTr10b
-	 oi55thkRvdJZE+tIimhsXDKez+yBogZFnfbXt1jI97eoROf65z63bjP7+HI8+aTAOw
-	 eP/jTOn3m412AI7VpS0MaKJYuHbVG5+xCB0AZqiCmnqLnD1D0Ksp8kD8vqpHCuohyl
-	 qFKq6wxUOi3lQibB+lpVmNu+1T077LkPD15eVGWcXKDWPw7a951QUM43z3ZhbNZ7w7
-	 8SaJQ2hHh6xPA==
-Date: Tue, 17 Dec 2024 07:12:03 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "A. Sverdlin" <alexander.sverdlin@siemens.com>
-Cc: devicetree@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	linux-leds@vger.kernel.org, Daniel Thompson <danielt@kernel.org>,
-	Andrew Davis <afd@ti.com>, Jingoo Han <jingoohan1@gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: backlight: add TI LP8864/LP8866
- LED-backlight drivers
-Message-ID: <173444111812.1260250.17926048342741894289.robh@kernel.org>
-References: <20241209084602.1199936-1-alexander.sverdlin@siemens.com>
- <20241209084602.1199936-2-alexander.sverdlin@siemens.com>
+	s=arc-20240116; t=1734441284; c=relaxed/simple;
+	bh=WQeOysPIW6mnGOLf+qJBihTjlX+lwaKoHQq5efFuYGU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=r5XC43df6h48mih0YdhLWGbiHNelVTke1UjQWtjwl45nrIaOOTZsZkhP+AbqmBZ3Vf9UYtEUKv+txW5O29uzAif8XuUNGRQQNSBpupCjhz/ZCso0hrKky29HEbijGraJQDkWV7YR0eoQx78aPM6BKl6JOOrTS7eufoqWfl4z1Ek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aH2mXAhk; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-725dc290c00so4847492b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 05:14:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734441280; x=1735046080; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=axyAQhPj9nhVil4KAAnIiakdiidmvsJlf9IRfQkGvmI=;
+        b=aH2mXAhkVv/ZE3ZwbM+1raB8KmMn3bQ87pwaW8YI4zyTXyNnzmx57QkPc/HcNGG7H1
+         iXhSSTZukt5pElefDa84eqMYc73qo5n2IU2VtH8QvAoAdY3S/QSotJtWUKFuE8I8tFjj
+         Ogjnt34gE6XzZ8KyWKE2XYKda/b14nA1zXC44pX11M9TiFLQRl4EGCrqgN278zBaTc9y
+         XmYVXbdz4qjlw0FXThzFe7Vq2VJNgVAWjYH11wVnvVgq/e8uknMuYcPfk/11w5e1zjxu
+         zYZZFNDaUADM6dzBie7cvX2cQCK7yfYPm6MWXwxGBMXKO0YcRF8tuXEeFkPtV32P3wkq
+         9YvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734441280; x=1735046080;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=axyAQhPj9nhVil4KAAnIiakdiidmvsJlf9IRfQkGvmI=;
+        b=WaPGYb9J1+9QHCy/72UBhC2DhdbOzRsp5U1XQBBKWx6ScLWcqPrW1agFzITLXZdnut
+         EO7+zQeAVlxD1OS6jnMCkj1QBqWtWUld3xojhVo2fh5Ipw4dLMyPjRazOrEGIwuoNMA5
+         f348P2ol1J9NDP5hUMdJ8FeWTStvxd7vKS9cWjs9mpMTumhFRliD12EGptHAwp+wIzDr
+         cD4w+2aQE9QLIzFsevTh4pnJLKOjaH1WHb5W7Tus4nK/WZg3cyiO0R1qOin3Rq7IQglC
+         7I4YRoEBMBMX3QL1Dz/homku2GVDMgZyHT2jeFveV3ts6pex85rNHwlyfeYtBLPUdVqN
+         6OJA==
+X-Forwarded-Encrypted: i=1; AJvYcCU5WNjmaGpPm/isimMKG6IaBoj6/i7dhS6rsW1WQzDuS2D1KbkXXd4Kyqhch/7LlDzEiFEUwbxrSl4i@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5+zDszn6cgxPhL/KlKH9LDTL1qvHAzgg+r3zsSbmcO4gcv3y6
+	gTLrnRLRUf0cwLx8hunCarZogyG46IoA+lKPvJujbg7x8Oa6tZ2I
+X-Gm-Gg: ASbGnctVV0w5dfKhdymSbBaizFp6vq2XwgX1hP1leaPQsLa/IM07vZnlZ3jsRIbdLpn
+	cQV4I4iQMbiNeHoUBBTE4YR0yzFsGQnU0kd79GOwwoDzxQmFW9Xsl1a3hFs5TXG5XToRPqg0Wz0
+	fLltKP29asVqYmyZXRpNQnzReoClajHUU2tguLXdtgipDrRujcEwQvyrTp4Em9dHM/PBkainlXl
+	tzR13/Pj7rIumtpSwy6NAkdtHHxi5xNrmbxlCXJ1hH3FeCC/2UhzFNhTkASgtbP07o0pQ==
+X-Google-Smtp-Source: AGHT+IGHcV/NHnllfqv7fR/hLPWE8KERD+FbPGD/o3fwg+D3eyN5ic8pO6VhkBpEn8TBSM1LxM5IEg==
+X-Received: by 2002:a05:6a21:3398:b0:1e2:5c9:6831 with SMTP id adf61e73a8af0-1e4e779760amr5123201637.14.1734441279972;
+        Tue, 17 Dec 2024 05:14:39 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:2d08:94b1:8dd:a583])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-801d5acf064sm5821625a12.40.2024.12.17.05.14.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Dec 2024 05:14:39 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: neil.armstrong@linaro.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] dt-bindings: samsung,mipi-dsim: Document fsl,imx7d-mipi-dsim
+Date: Tue, 17 Dec 2024 10:14:31 -0300
+Message-Id: <20241217131431.1464983-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241209084602.1199936-2-alexander.sverdlin@siemens.com>
+Content-Transfer-Encoding: 8bit
 
+From: Fabio Estevam <festevam@denx.de>
 
-On Mon, 09 Dec 2024 09:45:53 +0100, A. Sverdlin wrote:
-> From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
-> 
-> Add bindings for Texas Instruments' LP8864/LP8866 LED-backlight drivers.
-> Note that multiple channels in these models are used for load-balancing and
-> brightness is controlled gobally, so from a user perspective it's only one
-> LED.
-> 
-> Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
-> ---
-> Changelog:
-> v3: no changes
-> v2: ti,8860 has been decoupled from this series and converted to YAML separately
-> 
->  .../bindings/leds/backlight/ti,lp8864.yaml    | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/backlight/ti,lp8864.yaml
-> 
+The i.MX7D MIPI DSIM block is compatible with i.MX8MM.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+imx7s.dtsi uses the following compatible string:
+
+compatible = "fsl,imx7d-mipi-dsim", "fsl,imx8mm-mipi-dsim";
+
+Document "fsl,imx7d-mipi-dsim" to fix the following dt-schema warning:
+
+['fsl,imx7d-mipi-dsim', 'fsl,imx8mm-mipi-dsim'] is too long
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ .../devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+index 4ed7a799ba26..a036c2dcfd86 100644
+--- a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+@@ -29,6 +29,10 @@ properties:
+       - items:
+           - const: fsl,imx8mn-mipi-dsim
+           - const: fsl,imx8mm-mipi-dsim
++      - items:
++          - enum:
++              - fsl,imx7d-mipi-dsim
++          - const: fsl,imx8mm-mipi-dsim
+ 
+   reg:
+     maxItems: 1
+-- 
+2.34.1
 
 
