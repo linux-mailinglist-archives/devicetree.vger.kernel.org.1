@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-131724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E99359F470D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 10:15:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDBDB9F46FF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 10:14:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 377A716E8F5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 09:15:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF5901890BE5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 09:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7451EBFFC;
-	Tue, 17 Dec 2024 09:13:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD551E25E9;
+	Tue, 17 Dec 2024 09:13:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="uq9eJZcK"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="AAoYX28F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
+Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C1321EB9E8;
-	Tue, 17 Dec 2024 09:13:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 718A71E0490;
+	Tue, 17 Dec 2024 09:12:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734426784; cv=none; b=BReLDiv6ceqbzs6n0BvfCmoxnliW1uKDDA461eh7e8lcoMbBhJhqy0SM3g+eVDbL6XEpPdC7SjB80vWAvIOBOQBV2g0XFa1xWDscGe12/5JOjYihZU2WsEIkcCtP9N6YC7rJW5YHNoaCEaPNexS5snApLlVzTk1EN6N7ckE0qKo=
+	t=1734426781; cv=none; b=mnRKcgNX5wTajKQURo0t31ud3m7rjLNTjP6R7iym09RQ8uLLvakpkJ7HebjVnvp8qno/BjqE+w0o5Xs3ZyuGb5P9zWvsrcOcKCWBruA7ga5nh738CnW8hq9nFmQ0+AGFOhh4dZGrAWLTD+esO4CGNMk9tZQgIyL10vF7BVpexBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734426784; c=relaxed/simple;
-	bh=+3LBOloCyLQuH0g1C4/7q4qJ/fMBT8nD2lVqJ7RP0J0=;
+	s=arc-20240116; t=1734426781; c=relaxed/simple;
+	bh=9T1XiRsPFOf+04PcA3UV9kCphnwgEzycixrUmgfsibU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DnwRhdgNVmHTpzLDS/ZK1Gyg+ql0MZQXwRhvNL05TOQMUlHWTGzGfDSeA9g4ngV18qG8bZDm9fYNPVIipGBXWrQWNaAenZojbHQDjKPd0TSWASWt+jTL3cRmOcUpxLi619oEQQ7reY5UWLqPnYhhqE+yJX7fpCBkMsb1p8Hl/Y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=uq9eJZcK; arc=none smtp.client-ip=134.0.28.12
+	 MIME-Version; b=HDbnfdRpECLv65k5KQqFH20OHDGCVuywL9nz6q3wusrTKSQJp1CEzRuCjAVyEHKX6cAu1kKMRy2eSZyib58GU1abxMr5cXLAZwny1qGAj+aCbuLsWxr5krIWnFqSt486W/AURLB1SF5+So+/hSGb6W3Yv2tW8BsHD84hC+fhnbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=AAoYX28F; arc=none smtp.client-ip=134.0.28.9
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
 Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
-	by mxout2.routing.net (Postfix) with ESMTP id 359DF60272;
+	by mxout4.routing.net (Postfix) with ESMTP id DF765100935;
 	Tue, 17 Dec 2024 09:12:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1734426777;
+	s=20200217; t=1734426778;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=WPoopGLWVLPi2SmZElx0MdVEWVF3HSJwWlBXrl2iFIA=;
-	b=uq9eJZcKO37SmiDYQTQSccmvAXpTXAXSJ8KVKS9BvNhr/c5Xfjbu7mC2vrxg3XBTEk+WR3
-	e6Y+i0eY7E+VIrEBZkzxdo2LHAD8hOEXiApnvMEzHvsQFjvqoTrt32jHV1IOdeWTr8BDVi
-	COi4PyRaz1+KWHV4Rp8tqFGcF84sbR0=
+	bh=1qpq2TeKtX83y0CQ6eBnXEfc924KW6SAf81KBp6Mvvw=;
+	b=AAoYX28FYmVngTAnmC3WEsgtfHvP43zk7Dye+lPLvLPcrTgD0Tb2sv6lWeNelJJvfG3FFm
+	lfSlRUqL4CGTsMwUwH21l3PWW85+79SSx0zvVj+CVd16BZwKWnylJyk6Q0NJvEET0FL14u
+	FTp03/Bp9/Pfmw7AvANQvjcN3Apa7i8=
 Received: from frank-u24.. (fttx-pool-217.61.150.187.bambit.de [217.61.150.187])
-	by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 7BED5100532;
-	Tue, 17 Dec 2024 09:12:56 +0000 (UTC)
+	by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 3311D1004DD;
+	Tue, 17 Dec 2024 09:12:57 +0000 (UTC)
 From: Frank Wunderlich <linux@fw-web.de>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -58,9 +58,9 @@ Cc: Frank Wunderlich <frank-w@public-files.de>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 08/22] arm64: dts: mediatek: mt7988: Disable usb controllers by default
-Date: Tue, 17 Dec 2024 10:12:22 +0100
-Message-ID: <20241217091238.16032-9-linux@fw-web.de>
+Subject: [PATCH v3 09/22] arm64: dts: mediatek: mt7988: Add t-phy for ssusb1
+Date: Tue, 17 Dec 2024 10:12:23 +0100
+Message-ID: <20241217091238.16032-10-linux@fw-web.de>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241217091238.16032-1-linux@fw-web.de>
 References: <20241217091238.16032-1-linux@fw-web.de>
@@ -71,37 +71,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mail-ID: 9199ffbc-98e2-41f5-b99d-21585855a86d
+X-Mail-ID: 4829692c-2fa9-453d-9b7f-c32d2c4d92c7
 
 From: Frank Wunderlich <frank-w@public-files.de>
 
-The controllers should be enabled at board level if used.
+USB controller needs phys for working properly.
+On mt7988 ssusb0 uses a xs-phy, ssusb uses t-phy.
+For now add the t-phy for ssusb1. We can reuse the mt7986 compatible
+here.
 
 Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 ---
- arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 25 +++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-index a7954bf5c81e..f8b01f3fff32 100644
+index f8b01f3fff32..209d170bce7f 100644
 --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-@@ -334,6 +334,7 @@ usb@11190000 {
- 				 <&infracfg CLK_INFRA_133M_USB_HCK>,
- 				 <&infracfg CLK_INFRA_USB_XHCI>;
- 			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
-+			status = "disabled";
- 		};
- 
- 		usb@11200000 {
-@@ -348,6 +349,7 @@ usb@11200000 {
+@@ -349,6 +349,8 @@ usb@11200000 {
  				 <&infracfg CLK_INFRA_133M_USB_HCK_CK_P1>,
  				 <&infracfg CLK_INFRA_USB_XHCI_CK_P1>;
  			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
-+			status = "disabled";
++			phys = <&tphyu2port0 PHY_TYPE_USB2>,
++			       <&tphyu3port0 PHY_TYPE_USB3>;
+ 			status = "disabled";
  		};
  
- 		mmc0: mmc@11230000 {
+@@ -371,6 +373,29 @@ mmc0: mmc@11230000 {
+ 			status = "disabled";
+ 		};
+ 
++		t-phy@11c50000 {
++			compatible = "mediatek,mt7986-tphy",
++				     "mediatek,generic-tphy-v2";
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++			status = "disabled";
++
++			tphyu2port0: usb-phy@11c50000 {
++				reg = <0 0x11c50000 0 0x700>;
++				clocks = <&infracfg CLK_INFRA_USB_UTMI_CK_P1>;
++				clock-names = "ref";
++				#phy-cells = <1>;
++			};
++
++			tphyu3port0: usb-phy@11c50700 {
++				reg = <0 0x11c50700 0 0x900>;
++				clocks = <&infracfg CLK_INFRA_USB_PIPE_CK_P1>;
++				clock-names = "ref";
++				#phy-cells = <1>;
++			};
++		};
++
+ 		clock-controller@11f40000 {
+ 			compatible = "mediatek,mt7988-xfi-pll";
+ 			reg = <0 0x11f40000 0 0x1000>;
 -- 
 2.43.0
 
