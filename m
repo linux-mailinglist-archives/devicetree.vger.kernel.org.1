@@ -1,131 +1,149 @@
-Return-Path: <devicetree+bounces-132077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 107759F5A95
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 00:42:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 260DB9F5A9C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 00:44:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A96A1697FE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 23:42:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E77F81890580
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 23:44:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E6C31FA16E;
-	Tue, 17 Dec 2024 23:42:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46951F8F10;
+	Tue, 17 Dec 2024 23:44:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="HcMUA7eY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nBDcfsCi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116AB1FA15E;
-	Tue, 17 Dec 2024 23:42:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3539C1E489
+	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 23:44:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734478942; cv=none; b=COI46YI3KjTjrOgdjnx9cUVwDi5AJiXJrVva9rFl+El6IN0DofHumRZq9Ar99TuEgd6SG6BxORI3h0TXR5WUbQUsQ9W8ipkjxe/w0833gevAdHLM3ltUN/hrsCbtKPotSO11XO5F9SrBLfsMrFmWeSsdlpDwht7778ic0zF6wOA=
+	t=1734479051; cv=none; b=tl4IUaiFJgJJAWMKOE7TZhTLIkhHwNG6VyBn+Qc1b3NZy8AuAfFe5cTbMokfeGPcvvhxTqVth3aF+C/P4RgfEVvARs0U6NsHrccxOwt5+GQf9sQdvkPOK8C7c08uytfTXQ2rjL9jfFYEbgeNVmvlAfx5dCh29dXOjxRHwe5i+N8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734478942; c=relaxed/simple;
-	bh=bPEX45w+AOSS0JiDFIAR28D1ZvLS8uGwXLhPHtcFTmQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=euGjnPLO1cKHkL2CjyegEX923zS6jffPP8Sa+WdlSvTANYdiWEHNo2JJpsooKCBcDHOjvIXbhZfZBAdcouznSGqZEMWcgfTQk7xtWlRKwFPoyksMw/ix5cV1QsSAIuKZCPo3wRL6eFiWrzolRDh01Nit/ydS6LGGUd9oQCKLpo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=HcMUA7eY; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B2A86415;
-	Wed, 18 Dec 2024 00:41:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1734478900;
-	bh=bPEX45w+AOSS0JiDFIAR28D1ZvLS8uGwXLhPHtcFTmQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HcMUA7eYN5q4DnSKKQsnObKmjMiJf6KtE77hQxl1HbzwKEmOUn9euMrDTglqbNVAr
-	 552IntsRNEijv2C35a929DVP4m+ZlclEjuO2tXMXAUzblZnzEgjXUZDu6O4uMvhg2L
-	 K2iLofnAaL5MD8nTd7R4VV24sSBPWN+AJQV25ISU=
-Date: Wed, 18 Dec 2024 01:42:15 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/4] arm64: dts: renesas: r8a779g0: Add VSPX instances
-Message-ID: <20241217234215.GQ23470@pendragon.ideasonboard.com>
-References: <20241217-rcar-v4h-vspx-v1-0-de04ea044ed4@ideasonboard.com>
- <20241217-rcar-v4h-vspx-v1-4-de04ea044ed4@ideasonboard.com>
+	s=arc-20240116; t=1734479051; c=relaxed/simple;
+	bh=dRLARNIVgHqkgzddzQc1N8nfsoXPdZ9tNKmHh7e8T6g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oZukfnRiEiOJ7sUqQIpRowx6BfNE6gxeoVsh449OFScqUIm8BI5mBDyKAhowTwUtPVCVTKzhf0TkjB0KdGLRKveJgmuQj/TqlUPw2dsTPqnC20I9DpkxWdPQqFt2qJKZdQC90NTyZs0Up/IUnCmcS+f9nVg/4v+bDxiTuAtu2i8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nBDcfsCi; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2162c0f6a39so1956815ad.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 15:44:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734479049; x=1735083849; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UVhjLtK52HqccD+5q+IAAIu0zKotPYRO7A4TSqMJjIE=;
+        b=nBDcfsCisbHP57dRoWcmK/Y9UYcerF0cLKGJSuldQfVokCTDnsw25/M+kksrm7HLjB
+         09k1vO8KsconpM+Yy+J284ZGDsTo4NdS07vJOy2QbNVD1TVNYHUtLbVAiSkEDwPLnoPZ
+         r09ndCsv33y6RCgH8YEUDjwJVKkVTA3K9RE/5m8Hy8UKFqGJeS20imdPh/PcdG9xeze8
+         InVtPl80NBkamM2Fm+WOrXVg21BD4Q+EUkjMiQNQaC1l0r5RodhizgxiPxxOIiWZwc/t
+         WrY4OkaRIezMVOqS76mAsa6Z0j6kHizZC2t+PuBarstySfRGyXm+yoDbailMDm8gtZ5B
+         qB2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734479049; x=1735083849;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UVhjLtK52HqccD+5q+IAAIu0zKotPYRO7A4TSqMJjIE=;
+        b=vgrqjBtYDNBpCLpxhrQ54W1gFU7NuculUsSwXDcMhOwM3OhMGg4U9K9ohCGC2FbWKE
+         sU1JlBjXJCoE+A+K2HmeBKoEjdYvrScDE9XxqnE6D7Y4pdMw1/9VHqQ2qjuSgD4nle0t
+         wjrVZutX//IB1r0ycCGNTCWMIYMrPq0L5ItEvPDaqdrxSDeMjrO2py+/Qtiv6QqoEwe6
+         TxN+cY+dd0NqyBPxRcRytEiba9cYx/YQWRkZJKKvswYy6Sul02cz3csNXa72B/AKuYEd
+         b7wAmAPiI0dFbGIRa0sx4mkNv0IyeHIKP/9zIRV4uYI+/+B3jq8b15OkBiriK3jEXtKN
+         +G8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXuy3wtUHgwvzrEDAg7dralBoLsk2MAMaWmFyZIees7GUouv0immO+AZeHFlCxVXJZdDzSKkOLlwkbu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+gnYTWt1uvSum6933sLq+YsX7ot8y1TU4xLT7wMRfZc2RIlHI
+	mdQU7e7kTY45Dcwoqt8vVyZTToRKDaa6gtqHEL2H0LpTa4fXc4V3
+X-Gm-Gg: ASbGncsMuGOQbwJwT99p6wEX5wC1eBMZlQuzLM1mbLGhJxtvyIs4avlj2Bu/4MfjOQo
+	GwxlKMkEzMBbsc2HeoVYSkSFdi/Ek/WK8Db8GtcylfUiPqoxw32PPBDrRkq0PEcUa1CwZLUaH9x
+	aXfxL5T60nF/Lo26PT8EfkX5u+nbiGOMh1rp6QsPoRj7mruIy7HGKvQmElTAPKf84DPH3IwaO6i
+	VcE+hZ9tiEl6BP2RihvUmH2rPP1DCqd/UxTbbTetCs/vtRjoev6BiZNjtsCiieLgzTuag==
+X-Google-Smtp-Source: AGHT+IEOORShiG8XXoYl2/Cqm8zfdvBzPJZnXZxkuNnjr6iPaes5DNRpLHtKXXX/KVEXVIFuLKigLw==
+X-Received: by 2002:a17:902:f646:b0:216:1079:82bb with SMTP id d9443c01a7336-218c9262ef5mr94735665ad.19.1734479049436;
+        Tue, 17 Dec 2024 15:44:09 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9c22:b0c6:8519:2b7])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e720fbsm64746865ad.269.2024.12.17.15.44.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Dec 2024 15:44:08 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] ARM: dts: imx: 
+Date: Tue, 17 Dec 2024 20:43:51 -0300
+Message-Id: <20241217234351.71130-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241217-rcar-v4h-vspx-v1-4-de04ea044ed4@ideasonboard.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Jacopo,
+From: Fabio Estevam <festevam@denx.de>
 
-Thank you for the patch.
+mdio-gpio is not a valid pattern according to mdio-gpio.yaml.
 
-On Tue, Dec 17, 2024 at 06:53:17PM +0100, Jacopo Mondi wrote:
-> Add device nodes for the VSPX instances on R-Car V4H (R8A779G0) SoC.
-> 
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> ---
->  arch/arm64/boot/dts/renesas/r8a779g0.dtsi | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-> index e49748563e2f5706ed982d6c9cc1df59f27bd0dc..bf4ec5fb7bbdba55e2994f332fcbd623839079c2 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-> @@ -2211,6 +2211,28 @@ vspd1: vsp@fea28000 {
->  			renesas,fcp = <&fcpvd1>;
->  		};
->  
-> +		vspx0: vsp@fedd0000 {
+Use the generic 'mdio' name to fix the following dt-schema warnings:
 
-Please keep those sorted by unit address too.
+'mdio-gpio' does not match '^mdio(-(bus|external))?(@.+|-([0-9]+))?$'
 
-> +			compatible = "renesas,vsp2";
-> +			reg = <0 0xfedd0000 0 0x8000>;
-> +			interrupts = <GIC_SPI 556 IRQ_TYPE_LEVEL_HIGH>;
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm/boot/dts/nxp/imx/imx51-zii-rdu1.dts      | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx51-zii-scu2-mezz.dts | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi       | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-The interrupts are listed as "negative level sensitive" in the
-documentation. Tomi encountered a similar situation with the V4M VSP,
-and setting the level to low in the DT didn't work. I assume this will
-be fine, but if you encounter interrupt issues, this is one possible
-area to investigate.
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-
-> +			clocks = <&cpg CPG_MOD 1028>;
-> +			power-domains = <&sysc R8A779G0_PD_ALWAYS_ON>;
-> +			resets = <&cpg 1028>;
-> +
-> +			renesas,fcp = <&fcpvx0>;
-> +		};
-> +
-> +		vspx1: vsp@fedd8000 {
-> +			compatible = "renesas,vsp2";
-> +			reg = <0 0xfedd8000 0 0x8000>;
-> +			interrupts = <GIC_SPI 557 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cpg CPG_MOD 1029>;
-> +			power-domains = <&sysc R8A779G0_PD_ALWAYS_ON>;
-> +			resets = <&cpg 1029>;
-> +
-> +			renesas,fcp = <&fcpvx1>;
-> +		};
-> +
->  		du: display@feb00000 {
->  			compatible = "renesas,du-r8a779g0";
->  			reg = <0 0xfeb00000 0 0x40000>;
-
+diff --git a/arch/arm/boot/dts/nxp/imx/imx51-zii-rdu1.dts b/arch/arm/boot/dts/nxp/imx/imx51-zii-rdu1.dts
+index 7cd17b43b4b2..06545a6052f7 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx51-zii-rdu1.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx51-zii-rdu1.dts
+@@ -160,7 +160,7 @@ eeprom@0 {
+ 		};
+ 	};
+ 
+-	mdio_gpio: mdio-gpio {
++	mdio_gpio: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_swmdio>;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx51-zii-scu2-mezz.dts b/arch/arm/boot/dts/nxp/imx/imx51-zii-scu2-mezz.dts
+index 625f9ac671ae..26eb7a9506e4 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx51-zii-scu2-mezz.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx51-zii-scu2-mezz.dts
+@@ -37,7 +37,7 @@ usb_vbus: regulator-usb-vbus {
+ 		regulator-max-microvolt = <5000000>;
+ 	};
+ 
+-	mdio_gpio: mdio-gpio {
++	mdio_gpio: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_swmdio>;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi b/arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi
+index c1ae7c47b442..aa1adcc74019 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi
+@@ -94,7 +94,7 @@ aliases {
+ 		mdio-gpio0 = &mdio0;
+ 	};
+ 
+-	mdio0: mdio-gpio {
++	mdio0: mdio {
+ 		compatible = "virtual,mdio-gpio";
+ 		gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>, /* mdc */
+ 			<&gpio2 7 GPIO_ACTIVE_HIGH>; /* mdio */
 -- 
-Regards,
+2.34.1
 
-Laurent Pinchart
 
