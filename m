@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-131758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17F019F47D9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 10:45:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49B269F47E3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 10:46:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABA121891FB8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 09:44:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57D4618891FC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 09:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 363C01DF996;
-	Tue, 17 Dec 2024 09:43:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3BDE1DFE10;
+	Tue, 17 Dec 2024 09:44:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lupp/tXP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gl3x60sC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 007658493;
-	Tue, 17 Dec 2024 09:43:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900411DE3D9;
+	Tue, 17 Dec 2024 09:44:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734428592; cv=none; b=N7LgbJpjKFkEaAlyIcXDNzwft1QY1IfKUGaRL6KQ5ZwvQPK9r5yqUKMUluKgfcb/c9mRygqeAIyQv9fgMbggSUiAJ4TMs2h/PiqDRW2CAN44vQZTjv9mTev5X8gRN4a5/4lzAotwYtJiNroA5GtLpH4+3lvdbtF2nbpIJ0e3Un4=
+	t=1734428694; cv=none; b=oiUWiqVrgjpebJL6HUD8B8HPPG0F52zS9Q8mzqX/THQZCxy4LcbkvNbn8aeOE2bRNNXyn/vOwM1yPAqunQnAWrP9m4x90DhEpu+1U/oiku36VZCjwDZ8OATlAI3AC3n+C8yG7ZnH+pFVRcBzo/t+NvJ/ocE/wuNYQZZ401Vd00k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734428592; c=relaxed/simple;
-	bh=CACHX5R/J6miRCn5G4uzmvEf0fWXrDe/7BHXzOLDGpQ=;
+	s=arc-20240116; t=1734428694; c=relaxed/simple;
+	bh=NoWnmFLDir9A0+cWQUhLQdt6CPXm1pA4INvLt2Jzj4U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DF3U9/7K3o18T/khPl8stLFz6FvSGlpnj/Ho9PCtzZMtCSUz9712L+CrCc8rtEHyjvdxklq2+hjFmpyEFS8DxUo314sQqxvDDP/68LNXoekeDEJ0wzfZb/uAFX7k34mRoBFqUCl539+WPL1O5erNKUgXuvVSe28B89mi90zz/64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lupp/tXP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 561D3C4CED3;
-	Tue, 17 Dec 2024 09:43:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JK6g0IxKiz5ZbWh2EkVyg0WS3fZ276ywv/uypVk7kHH8PGDw5SoPLtawN0dEHNDzK13+ZdllREoHTclXTV0FNSeww7YsJne1tR8CBL42pSE5uqQbE2ApDOXd+g0aQmnKEUtcU+QOTRxz+zqcgHaR/qV2yxMk8WoM/0kDEr8ddFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gl3x60sC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 159C2C4CED3;
+	Tue, 17 Dec 2024 09:44:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734428591;
-	bh=CACHX5R/J6miRCn5G4uzmvEf0fWXrDe/7BHXzOLDGpQ=;
+	s=k20201202; t=1734428694;
+	bh=NoWnmFLDir9A0+cWQUhLQdt6CPXm1pA4INvLt2Jzj4U=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Lupp/tXPLJdZQBM6BTXKujksjWAXt4/Hc30snE7y5dZDfxKq6wcyhaO9Ghy6BuQPC
-	 XJIOB1ELTzqyKABo4ZiVYof+gBTPNoH2VMggtXmgrncmgR5/eV0XeXqaDH6zvoy6kU
-	 0VoTtNWTDylLEtzcklg4YVSysct2XWMPpUi7SWwGHPuHft/nRmN7GBBmLdXGwUHLHS
-	 pMo07ALz6EkZ4epiI7BJZzpLrbAd9ZYGMaxmwagUIAIQFF1r5vx5Lx2K4P9s2pjCLp
-	 kzD+wOY84KOVCPli2FV8605XuiI8hvqaXB2iDB3Xjec4/E1px4UJOnel9U4g0w3NE6
-	 hS6FJucAD0/Jg==
-Message-ID: <56c5788a-2d49-4abb-af4b-65a11bdc4094@kernel.org>
-Date: Tue, 17 Dec 2024 10:43:05 +0100
+	b=Gl3x60sCNFwSQVMGxDVZQW4JRIPMGN4FsQIA76TKAf0V4fLSxJQUA5OlazwawY5Df
+	 5hYn+zS6z0n4ri+Il1ylR7e3HXQpHKa/AwjpT/c8128OgMOpxF6rUt79w7KOiXYnny
+	 xbUylfYffeJbDJs6JfiuArpD4gh6I9jIehZcIovENyXgaj5H6M3+peQl2UkMPgJ5+Z
+	 s7cxE9/4T172MIF935HpJtHqB65BWawk4hvaIYkZjF+9mele2fOI0EDZ0BAW9//RRO
+	 Y6Dlvpzi/5i2aUUQ9RECalRVJD6ob4WJRPysrwdMT5NHjw9ai59pCfpBYpyQSjuLLx
+	 oRmUiW21N53cw==
+Message-ID: <3a66447f-005c-4c64-a8de-6a7a535abe90@kernel.org>
+Date: Tue, 17 Dec 2024 10:44:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: i2c: exynos5: Add
- samsung,exynos8895-hsi2c compatible
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v4 1/7] dt-bindings: pinctrl: renesas: Add alpha-numerical
+ port support for RZ/V2H
+To: Biju Das <biju.das.jz@bp.renesas.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241214220419.723100-1-ivo.ivanov.ivanov1@gmail.com>
- <20241214220419.723100-2-ivo.ivanov.ivanov1@gmail.com>
- <0ebc12ed-fe91-4c8a-a626-b735b0eeecf1@kernel.org>
- <007559c5-f566-4625-99b7-e761a916fba3@gmail.com>
- <cccca881-dd59-43c0-9072-dcd91d01671d@kernel.org>
- <6e93d59d-71e5-4c09-862f-55b5504121aa@gmail.com>
- <69fd1dbc-a29f-488c-a30f-7e5ea8f01a23@kernel.org>
- <17fbfcdd-8b79-4907-a4c8-798da0ef0526@gmail.com>
+ <conor+dt@kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ "biju.das.au" <biju.das.au@gmail.com>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+References: <20241216195325.164212-1-biju.das.jz@bp.renesas.com>
+ <20241216195325.164212-2-biju.das.jz@bp.renesas.com>
+ <fq3q2tk3xfwd4p72b5wzo3gbfizrknxdt6zyc5ahm2cpnrtsbk@nlukbj3yy57c>
+ <TY3PR01MB11346902114D33FA66F4C3BF686042@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <c57d3568-68f4-4e5a-874f-4d9f0cc1f2f3@kernel.org>
+ <TY3PR01MB113469F4CE8DB86978C03E3D986042@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <78b28da5-db3f-493e-8159-8bdd565728bb@kernel.org>
+ <TY3PR01MB1134679D57AA7DDC185BCD3E286042@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,73 +115,44 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <17fbfcdd-8b79-4907-a4c8-798da0ef0526@gmail.com>
+In-Reply-To: <TY3PR01MB1134679D57AA7DDC185BCD3E286042@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/12/2024 10:31, Ivaylo Ivanov wrote:
-> On 12/17/24 11:26, Krzysztof Kozlowski wrote:
->> On 17/12/2024 10:08, Ivaylo Ivanov wrote:
->>>>>>>        - items:
->>>>>>>            - enum:
->>>>>>> @@ -94,9 +95,28 @@ allOf:
->>>>>>>          - clock-names
->>>>>>>  
->>>>>>>      else:
->>>>>>> -      properties:
->>>>>>> -        clocks:
->>>>>>> -          maxItems: 1
->>>>>>> +      if:
->>>>>>> +        properties:
->>>>>>> +          compatible:
->>>>>>> +            contains:
->>>>>>> +              enum:
->>>>>>> +                - samsung,exynos8895-hsi2c
->>>>>>> +
->>>>>>> +      then:
->>>>>>> +        properties:
->>>>>>> +          clocks:
->>>>>> Missing minItems
+On 17/12/2024 10:19, Biju Das wrote:
+>>>>>> Calling it a binding makes it immutable and gives us, DT
+>>>>>> maintainers, more work, so really no benefits at all.
+>>>>>
 >>>>>>
->>>>>>> +            maxItems: 2
->>>>>>> +
->>>>>>> +          clock-names:
->>>>>> Ditto
->>>>>>
->>>>>>> +            maxItems: 2
->>>>>>> +
->>>>>>> +        required:
->>>>>>> +          - clock-names
->>>>>> I don't understand why do you need second, same branch in if, basically
->>>>> Because, as I stated in the commit message, we have HSI2C controllers
->>>>> both implemented in USIv1 blocks and outside. These that are a part of
->>>> On Exynos8895? Where? With the same compatible?
->>> hsi2c_0 which has a clock from BUSC and hsi2c_1 to hsi2c_4 which use clocks
->>> from PERIC1 (CLK_GOUT_PERIC1_HSI2C_CAM{0,1,2,3}_IPCLK). Why would
->>> they need a different compatible though? It's functionally the same i2c design
->>> as the one implemented in USIv1 blocks.
->> If one block is part of USI and other not, they might not be the same
->> I2C blocks, even if interface is similar. If they were the same or even
->> functionally the same, they would have the same clock inputs. However
+>>>>>> I guess other DT maintainers will ack it, I prefer to reduce number of headers.
+>>>>>
+>>>>> DT describes hardware. The port names are alpha numeric on hardware manual.
+>>>>
+>>>> We talk about binding, not DT.
+>>>
+>>> Bu the definitions are part of bindings just like Commit "997daa8de64ccbb".
+>>
+>> You made them part of bindings, but this is invalid as argument. How is this anyhow related? How is
+>> "DT describes hardware" part of binding?
+>>
+>> You said "DT describes hardware", but we do not talk here about DT, do we? We talk about binding.
 > 
-> I see, so in such case I should make samsung,exynos8895-hsi2c-nonusi or
-> something like that?
+> OK.
 > 
->> user manual also suggests that there is only one clock, not two (for
->> both cases), so they could be functionally equivalent but then number of
->> clocks looks incorrect.
+>> I am not going to keep reading all the external references you keep bringing or discussing why someone
+>> else did something. This patch must be logical and correct on its own, not because someone else made
+>> something somewhere.
 > 
-> That'd be weird. Both according to downstream and upstream clk driver,
-> for the USI-implemented i2cs we have a pclk and an sclk_usi.
-Something is not precise here, as usually with Samsung clock topology.
+> OK. According to me this patch is correct. It is for DT user and it described clearly in commit message
 
-First, the non-USI instances have the IPCLK as well, e.g. things like
-PERIC1_UID_HSI2C_CAM1_IPCLKPORT_iPCLK
+So you repeat first point which I objected in the first place. If this
+is for DT, then this is not a binding and does not deserve header.
 
-USI have BLK_PERIC0_UID_USI03_IPCLKPORT_i_SCLK_USI, but that's USI
-clock, not HSI2C in USI. Datasheet mentions this is UART and SPI special
-clock, but not I2C. The PCLK is used for HSI2C iPCLK.
+> 
+> "RZ/V2H has ports P0-P9 and PA-PB. Add support for defining alpha-numerical
+> ports in DT using RZV2H_* macros."
 
+I read it, I objected to it.
 
 Best regards,
 Krzysztof
