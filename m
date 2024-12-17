@@ -1,148 +1,189 @@
-Return-Path: <devicetree+bounces-131587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE3129F3FD1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 02:12:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82B189F4004
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 02:29:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18ECE7A5B97
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 01:12:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 870117A1ABB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 01:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1199E14A85;
-	Tue, 17 Dec 2024 01:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E39876025;
+	Tue, 17 Dec 2024 01:29:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="QcQLKOJ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A8EAC125
-	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 01:12:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C3AA4644E
+	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 01:29:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734397950; cv=none; b=Ei0tLf5yXzEphuvlO976GOLNeTFO96+LC+H4aW6BnsVrraA47iT9SAQMnR/6r9iImfDNcKUpE2f7aMDz/iNktzu85bR5jy0d/2KifophhoeGnpAjSnvIfzAymtVewGWb0axBzG5x+3P1cxZRBxxEjy4+e3iYKfE0jPgU8RQ/EOw=
+	t=1734398981; cv=none; b=UJxbZbQnbdUl2d4gRaJYjBK1ZkZe3mXBVSi0Ej8adxYI120XCnujbihwpyaDnWFrc7C6YdK+Ifdbv019umKSFuUWoOBwJlJnkNU2OXBFsfsF4ibMRZ2VxBKjmkOmwFRuURrEvQ/HzUUfcdIn4viJtbqAbFNCxqo/2wcOWFdVibk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734397950; c=relaxed/simple;
-	bh=4jefY+1slTM/giLRhosIm76U3hs1EpCJ9xlnczqOBHA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pxloya1zsOlpyPQZmt1GymZhGs8grVHmzWmiQQc8FTMYgAgXLs+1xH78EErR4TXXnqEIzq9eQoQMXncXTD5fFL1OvvXPpKNjrfLNEUaIOCHjBN51wc4UdUu0vTZ8cJERdUM7H9A0AVRqEx9VLyPwRNIGZHTnICtUTZBsTg8R1ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip2t1734397880t7frbfl
-X-QQ-Originating-IP: nzE4y3/Pr5QG2slSJITReEI1AXS8a0jTP5zD1xzVETU=
-Received: from [IPV6:240f:10b:7440:1:1e5c:5a5f ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 17 Dec 2024 09:11:16 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 18083944749719747068
-Message-ID: <47B1D9F5B9EC2A94+55e35302-64c6-4651-8f27-416723b8218b@radxa.com>
-Date: Tue, 17 Dec 2024 10:11:16 +0900
+	s=arc-20240116; t=1734398981; c=relaxed/simple;
+	bh=wpcHoOcYIOaa6emnw+AWzNeqd7KX+IW2SvptWOYO+v8=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=AFV6OCTdLXd1I3x+dNcaflvUwOKy8RIuRX6RDJSK/rk6TM9wgJu8xGsCq90NfOSZjLj18/Jr/GkoA2ugElhyeO1IdedcXKTpRZY5k2bFRJRamixtAbefnNV2BbsjXRgLwPyN8HJ7R7OBouaouaSdNKQ7PrvuwFlcd4d1M9AI6YU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=QcQLKOJ3; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20241217012931epoutp04a2c10b47ad8e5ee5d80a0312257398e3~R0qzaA-ST2826228262epoutp04_
+	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 01:29:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20241217012931epoutp04a2c10b47ad8e5ee5d80a0312257398e3~R0qzaA-ST2826228262epoutp04_
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1734398971;
+	bh=UGmkPmQUidBIuYKKI9fgy8HdP95zF6NSlMy/pMEWJxU=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=QcQLKOJ3KmMnVisUpoWD9aB5sGSCohDrr8htjz6h+DQ/YOeW+hP+BVNXFoc2CnsFK
+	 BCFPZz9NfVNFEQK7JbYFrQZqe/mKo5UMxzMWIB51Eu3LDa5WJZ/NH88O12QjRCKVho
+	 dLn524oiAxLGlPBN4TNQWpPyPJUbsRYd8Orgt/S8=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20241217012930epcas2p13a739f31a8ae2d882076e1f40a1a1798~R0qzAauE03081530815epcas2p1U;
+	Tue, 17 Dec 2024 01:29:30 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.69]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4YBzkL0S7Wz4x9Q9; Tue, 17 Dec
+	2024 01:29:30 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+	69.49.22105.9F3D0676; Tue, 17 Dec 2024 10:29:29 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+	20241217012929epcas2p143c323e728c1e22144579b7b827d4580~R0qxo5Rjr3081530815epcas2p1G;
+	Tue, 17 Dec 2024 01:29:29 +0000 (GMT)
+Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20241217012929epsmtrp2047d7fd2a280f865e8912eb8b4016a55~R0qxoO4660834408344epsmtrp2H;
+	Tue, 17 Dec 2024 01:29:29 +0000 (GMT)
+X-AuditID: b6c32a47-fd1c970000005659-cd-6760d3f982ed
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	BD.4B.33707.9F3D0676; Tue, 17 Dec 2024 10:29:29 +0900 (KST)
+Received: from KORCO078619 (unknown [10.229.8.183]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20241217012929epsmtip11ecba00ce3f580c8a57ce4d22c32be3f~R0qxXO2LM0333703337epsmtip16;
+	Tue, 17 Dec 2024 01:29:29 +0000 (GMT)
+From: =?utf-8?B?64KY7IaM7JuQL1NPV09OIE5B?= <sowon.na@samsung.com>
+To: <robh@kernel.org>, <krzk@kernel.org>, <conor+dt@kernel.org>,
+	<vkoul@kernel.org>, <alim.akhtar@samsung.com>, <kishon@kernel.org>
+Cc: <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>
+In-Reply-To: <20241118021009.2858849-1-sowon.na@samsung.com>
+Subject: RE: [PATCH v3 0/3] Support ExynosAutov920 ufs phy driver
+Date: Tue, 17 Dec 2024 10:29:29 +0900
+Message-ID: <000001db5023$1ddaaf30$59900d90$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 04/12] arm64: dts: rockchip: Rename regulator for
- pcie2x1l2 for Radxa ROCK 5C
-To: Krzysztof Kozlowski <krzk@kernel.org>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dsimic@manjaro.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20241216113052.15696-1-naoki@radxa.com>
- <20241216113052.15696-5-naoki@radxa.com>
- <f525d875-734b-4c41-95ba-be07b11f8e1c@kernel.org>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-Organization: Radxa Computer (Shenzhen) Co., Ltd.
-In-Reply-To: <f525d875-734b-4c41-95ba-be07b11f8e1c@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: NRkWGnbnkwTmexKZhjCDgicqwzkNDSygwsjmxKTrRsDS+EsaswtYOfDQ
-	96NaqTlnw0AjfwocNvokYKPtxPp7Jr0mgQfyZdWgK103/lKV7PCfJnjlq29Ki/O+EyhwQcH
-	xrcCOBS7kVq3tQ7UAl6oQ+xKWfIwMTHqo4aKkrP54UDStEAlzAOiuFLeEFBYW7mm0Z46OiU
-	RoW77sCAIa762GuhLuZh4c7L14pKp5lwqw0jdhmrVaKG0fU2vf80zraRmAyuBrKebPkIUtk
-	McQdWKHWfNm+K7JR+DaB+hb0HxwybozpdssnBLYn4hJAUgk1ooW9SvIarHEaL+Z+qiX6Htu
-	PyCUgGxaEPLOs2JvFUg+W3bXGT1ElviSvxD9vCQZGRFpqp4hEWF2xvA8J4o5j3Vr1Yz91PS
-	C0qdJ7/gz+OZE/Qcs/gfKm004YTKAZMzB1um7slNEAh2JsB0T5BZ7Jw2C97RD5THJWQP/yc
-	KOVVGbR67HmRmSpMla9JgSmg4xAr6xokao8LZpYVMmIZRDya2hNE8krwan6vFjTu0gEzm5d
-	UBnOrKFl6grAFDUMG1wWirlHrzjxnHWYwPHTiWLgcKULt1OO3u1fHU7Wa9CbTDr83D92TGc
-	1A+jPAwB4vXFXLlO63W6QdW0+B2is2MvhQxI+aL+w0ftshrxgqVm2+nSA2CBDoFPe9kzjk3
-	RnN2EY+r2lBMgQ8htyA/LEOVfBsyxunX/H8CmNTedzVYp45j4LHEctGUUzd/ck2wVfk1X+n
-	1uflTGfGE0mvvQlSbb/SmS67yWVVpHUm9VSqEHb4KVZ2uzN7HVu9Ph1n1Yt7KfMYCYMUXk6
-	wEGNQ6iBGV9RVj0i1ajpSBVOHc6mngBY8++RmgXV4bFZzezTFWyt+JyZ45mYAZYIBNPOSPW
-	c8p+ofyScTbNdJNHEi8qMm/0GAOB+Mkzr7gaYL5FpkVdPOLbJ+nhXN7V2kGYKm+2
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
-X-QQ-RECHKSPAM: 0
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQEnffo+LGCDWdayZVn9ec1kNib2MAKN54LKtDzZ33A=
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprDJsWRmVeSWpSXmKPExsWy7bCmqe7PywnpBh339CwezNvGZrFm7zkm
+	i/lHzrFaHG39z2zxctY9Novz5zewW1zeNYfNYsb5fUwW//fsYLfYeecEswOXx6ZVnWwefVtW
+	MXp83iQXwByVbZORmpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+TiE6Dr
+	lpkDdIuSQlliTilQKCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8C8QK84Mbe4NC9dLy+1xMrQ
+	wMDIFKgwITvj/oOjrAVP+St6dl9ga2B8xtPFyMkhIWAi8ft4H0sXIxeHkMAORolJx5dBOZ8Y
+	JTYcvsMM59x70MQI0/J9egMTRGIno8SryxfZIZwXjBKnzh5gBaliE3CUaHuwCGyWiEArUOLR
+	LCCHg4NZoFZif6cJSA2ngI3E7M2r2EFsYaD6Oyc3s4HYLAKqEpsunwCbwytgKXH94WcWCFtQ
+	4uTMJ2A2s4C2xLKFr5khLlKQ+Pl0GVi9iICVxLsfT5ghakQkZne2gb0gIbCUQ2Ji4w0WiAYX
+	ida1vUwQtrDEq+Nb2CFsKYnP7/ayQdj5Eusf3oWyKyTuHvoP1WsvsejMT3aIXzQl1u/SBzEl
+	BJQljtyCOo1PouPwX3aIMK9ER5sQRKOSRMf5OVBLJSRWvZjMNoFRaRaSx2YheWwWkgdmIexa
+	wMiyilEstaA4Nz212KjAGB7Zyfm5mxjByVTLfQfjjLcf9A4xMnEwHmKU4GBWEuGtMYlNF+JN
+	SaysSi3Kjy8qzUktPsRoCgzqicxSosn5wHSeVxJvaGJpYGJmZmhuZGpgriTOe691boqQQHpi
+	SWp2ampBahFMHxMHp1QD0/Lkz0E6l7ON9R6Z+0s/kD1h/ijZNOBd16qnFRXcIm/WNk9b8PsN
+	B8u3s10PZBirlvNPEZM4sqT9xbl5eq4Lp2udE/x3Q/xS7o/Hn2rZfj3apDux8mnmvZ5XGi+3
+	W9YnLQ+/6n3mgNnxPS/Ee2Slb4uuZ7kjEK7GkscyxXR1V4ZTG3PoVP+sYMei53szTH2nR2dP
+	UA+fZH+oaXnr2r+/cs5vu2pT2SreuyPNlHcqr7ofp8LiqfecFoTVXJ0wl3nCH+H/EwU35D79
+	dOfD0pde54+YbEsMiq6bvqtw34V5WQuKT+eUm5zg3fbn9a4tEUdXbdGW1ohZk5yz8lTzc8NQ
+	udbuVQpn3P+9Yb9hqLbg/j8lluKMREMt5qLiRAAjBZlALwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprHIsWRmVeSWpSXmKPExsWy7bCSnO7PywnpBid3iVk8mLeNzWLN3nNM
+	FvOPnGO1ONr6n9ni5ax7bBbnz29gt7i8aw6bxYzz+5gs/u/ZwW6x884JZgcuj02rOtk8+ras
+	YvT4vEkugDmKyyYlNSezLLVI3y6BK2PrnQ7GgsP8Fcu2bmNuYDzA08XIySEhYCLxfXoDUxcj
+	F4eQwHZGiRVdS9khEhIS397sYYKwhSXutxxhhSh6xiixfP80ZpAEm4CjRNuDRSwgCRGBXkaJ
+	8xNWs4AkmAUaGSUudrBBdAAljl1/zQaS4BSwkZi9eRXYCmGg7jsnN4PFWQRUJTZdPsEKYvMK
+	WEpcf/iZBcIWlDg58wnUUG2JpzefwtnLFr5mhjhPQeLn02VgvSICVhLvfjxhhqgRkZjd2QZV
+	YyrxdPI3Nph37j54yT6BUXQWkhWzkKyYhWTFLCSjFjCyrGIUTS0ozk3PTS4w1CtOzC0uzUvX
+	S87P3cQIjkKtoB2My9b/1TvEyMTBeIhRgoNZSYS3xiQ2XYg3JbGyKrUoP76oNCe1+BCjNAeL
+	kjivck5nipBAemJJanZqakFqEUyWiYNTqoEpndl/7+OFmWeVYjLMD0U81tkZWbuLSe3d9UdO
+	jE8lOrVtmre+TNS2+y6upeGql6DBc+3h/Jf9IWKBzb/1OzsbV06Uttl3z1tiveFxV5vQ9f87
+	Mh/fPP5u15vPyfzHnyZ+36C0JWDFEbFtS+bzqAY+snrG+d01Z+aPFO8lkTZTLX5+sX12x/G6
+	+UNDfbPWo6lPAuVsXy83SHv7xUo5bep57eUKwVwlb3+4Ba6e+5B1OWvkQ1OX058PBB5I3Trr
+	kdPetrM/z/205/pvduhje//7i4mPgzd2bpnBsTgo/VDNp++x7+7sbF73WmwSU/djDbZ1AaZx
+	0jaZRYdXmRQZbZu9YN912a51Uy1EHvfNndCno8RSnJFoqMVcVJwIAOos6D4xAwAA
+X-CMS-MailID: 20241217012929epcas2p143c323e728c1e22144579b7b827d4580
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20241118021011epcas2p397736dd9e5c7d96d799716e09919c136
+References: <CGME20241118021011epcas2p397736dd9e5c7d96d799716e09919c136@epcas2p3.samsung.com>
+	<20241118021009.2858849-1-sowon.na@samsung.com>
 
-On 12/16/24 22:38, Krzysztof Kozlowski wrote:
-> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
->> Use consistent name with other regulators. No functional change.
->>
->> Fixes: 3ddf5cdb77e6 ("arm64: dts: rockchip: add Radxa ROCK 5C")
->> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->> ---
->> Changes in v5:
->> - Reword commit message
->> Changes in v4:
->> - reword commit message
->> Changes in v3:
->> - none
->> Changes in v2:
->> - new
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts | 6 +++---
->>   1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->> index 85589d1a6d3b..61d75ab503b2 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->> @@ -76,13 +76,13 @@ pwm-fan {
->>   		pwms = <&pwm3 0 60000 0>;
->>   	};
->>   
->> -	pcie2x1l2_3v3: regulator-pcie2x1l2-3v3 {
->> +	vcc3v3_pcie2x1l2: regulator-vcc3v3_pcie2x1l2 {
-> 
-> No, neither explained, nor correct. See DTS coding style.
-> 
-> Please use name for all fixed regulators which matches current format
-> recommendation: 'regulator-[0-9]v[0-9]'
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml?h=v6.11-rc1#n46
-
-'regulator-[0-9]v[0-9]' is preferred, but 'regulator-[0-9a-z-]+' is also 
-permitted, right?
-
-i.e. regulator-vcc3v3_pcie2x1l2 should be regulator-vcc3v3-pcie2x1l2
+Hi Krzysztof, Vinod,
 
 
-Or, should we revert below patch and use 'regulator-[0-9]v[0-9]'?
+> -----Original Message-----
+> From: Sowon Na <sowon.na=40samsung.com>
+> Sent: Monday, November 18, 2024 11:10 AM
+> To: robh=40kernel.org; krzk=40kernel.org; conor+dt=40kernel.org;
+> vkoul=40kernel.org; alim.akhtar=40samsung.com; kishon=40kernel.org
+> Cc: krzk+dt=40kernel.org; linux-kernel=40vger.kernel.org;
+> devicetree=40vger.kernel.org; linux-samsung-soc=40vger.kernel.org;
+> sowon.na=40samsung.com
+> Subject: =5BPATCH v3 0/3=5D Support ExynosAutov920 ufs phy driver
+>=20
+> This patchset introduces ExynosAuto v920 SoC ufs phy driver as Generic PH=
+Y
+> driver framework.
+>=20
+> Changes from v2:
+> - simplify function name from samsung_exynosautov920_ufs_phy_wait_cdr_loc=
+k
+>   to exynosautov920_ufs_phy_wait_cdr_lock
+> - return immediately after getting the CDR lock
+> - add comment for wait CDR lock
+>=20
+> Changes from v1:
+> - use exynosautov920 instead of exynosauto to specify
+> - remove obvious comment
+> - change soc name as ExynosAutov920 to keep consistent
+> - use macros instead of magic numbers
+> - specify function name
+> - add error handling for CDR lock failure
+>=20
+> Sowon Na (3):
+>   dt-bindings: phy: Add ExynosAutov920 UFS PHY bindings
+>   phy: samsung-ufs: support ExynosAutov920 ufs phy driver
+>   arm64: dts: exynosautov920: add ufs phy for ExynosAutov920 SoC
+>=20
+>  .../bindings/phy/samsung,ufs-phy.yaml         =7C   1 +
+>  .../arm64/boot/dts/exynos/exynosautov920.dtsi =7C  11 ++
+>  drivers/phy/samsung/Makefile                  =7C   1 +
+>  drivers/phy/samsung/phy-exynosautov920-ufs.c  =7C 167 ++++++++++++++++++
+>  drivers/phy/samsung/phy-samsung-ufs.c         =7C   9 +-
+>  drivers/phy/samsung/phy-samsung-ufs.h         =7C   4 +
+>  6 files changed, 190 insertions(+), 3 deletions(-)  create mode 100644
+> drivers/phy/samsung/phy-exynosautov920-ufs.c
+>=20
+> --
+> 2.45.2
+>=20
 
-  https://lore.kernel.org/all/0ae40493-93e9-40cd-9ca9-990ae064f21a@gmail.com/
-
-Is 'regulator-0v0' valid?
-Is 'regulator-12v0' invalid?
-
-How should we handle multiple 1v8/3v3/5v0 regulators?
-
-Are examples in fixed-regulator.yaml valid?
-'regulator-name' should be '[0-9]v[0-9]' even if there is same name?
+I can't see these patches in -next, do let me know if anything is missing t=
+o be addressed from myside.
 
 Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> Best regards,
-> Krzysztof
-> 
+Sowon Na.
 
 
