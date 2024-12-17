@@ -1,265 +1,176 @@
-Return-Path: <devicetree+bounces-131834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB2A39F4B01
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:33:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7302A9F4B04
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:34:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62419188B216
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 12:33:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA5EB16DF93
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 12:34:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36C3E1EB9E3;
-	Tue, 17 Dec 2024 12:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E6821F131A;
+	Tue, 17 Dec 2024 12:34:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="NJ9NbTd9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fVcqKKLT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011047.outbound.protection.outlook.com [52.101.125.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E3DE12C475;
-	Tue, 17 Dec 2024 12:33:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734438832; cv=fail; b=lSHH9U/5iOhO7lY5+0ZGFtB4R0URZ+1GXFs8m7KWu3l4Z7irzNeJ3X39mcyXq9JDw/nyCNulaKnC8+SJUbeyIgIHsC4LCKcGSDAEP65Js133oYP5ewI8MLgb6biNr+K6vM3q0kBI+B4z+Io5+E6jfN9lP55C0Hmn/oZXJpxPAJg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734438832; c=relaxed/simple;
-	bh=Z+hGX9i6axfOVxcRGD1aw72v6fVG3mxo+ILeUJcUAXQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=R+6DCH9aBPeZt7WC+mpF0qW8vF2/Fcar8UufNQGRmTN1nqT9/iCummojWoktwsm8ZlkNPub4/dWnoNXZO+OrdrVA9zH/HqoJ3tb/wocO0fSiDkHNmCtsAqpKP7nB+02zEOSFfwsoyRMVV2VfqCgggwcZhVjZmLRr0DcFa4RBI8M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=NJ9NbTd9; arc=fail smtp.client-ip=52.101.125.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AsWBv8pqvI/6iovy4TLUZE4PeaLNYYOcY5h56IVnDMdGX+8+aPY8tHCmZ5av94xFxjseCfj4ximNFRhu7L7w+6BCWmi33Iig3gz8uqDtOGHXahZnWqYajuMSj7maQAYMWPmBF//rVw+Tr+FX66EfIw6J1Pp7loFFzVAh3oExXC+TlvpUpUGx77T2oSQRo9NqLPeD9t4snv2CNmeBUnl+tSv44qXlV+2HZ3SizGGYG1FHK6XZWYwr8p2W7yLBBbURefFEMMS9jmPA8nJuz8YU7J7uEBJ2/rk3Wf9lwtA227lXRomPSS1utwPGNug1esUOacRXAruQL8Sb6WGHHXttIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0diShOmkd3HZ7/Lo6/RCQ6bYBJddNtoOiT6dHaVvxI8=;
- b=R8AK1eqO2HTxpAWlK42WZ/L45p3YSgH5o69btPSm3MVYB7jG3NUE+tnu5j62EsaARkRv/Mzmmz3ldCgqhnXZDFhsOljw8W9C28uR7bnNQASLSlQpVc/BUuQjha7Qrb8699/j6g/lgorIGPp3dFtOGPKH5QpPLL7qzrReX+QvpbHNDD7rbqSqii+v73w9gYC3qm9bE/46ubmlYE2wCgIgeTyj4aF1YHzPIOgOykIxXUWMOZcygplbBQ1RCQpQgkQ4LYIlQwo4M79CwP9fDyz9WE8Q+OOw46x+ES1JKUY242iTnUKhBZRDvid8YpZSIYTlaGVDWH4QstvHcZ5ngJSF3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0diShOmkd3HZ7/Lo6/RCQ6bYBJddNtoOiT6dHaVvxI8=;
- b=NJ9NbTd9Rb+p8OaYmFJ4nLlIMtlahcgldLQ/1Or3BXH6SFNd1tC+JPBlerQypNb3MidTYKIVLO+Ta1J/uPiAQ4cPCewXSSAzAFgEVd5YfEvtIP32ug7mmI+AnGY6RdvZIm7dH1xeH42I+TitXEaCBRLXNxQ11phzQziFXEyk3Go=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TYYPR01MB13432.jpnprd01.prod.outlook.com (2603:1096:405:1bf::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.22; Tue, 17 Dec
- 2024 12:33:45 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%5]) with mapi id 15.20.8251.015; Tue, 17 Dec 2024
- 12:33:45 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>
-CC: Linus Walleij <linus.walleij@linaro.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Geert Uytterhoeven
-	<geert+renesas@glider.be>, Prabhakar Mahadev Lad
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
-	<biju.das.au@gmail.com>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v4 1/7] dt-bindings: pinctrl: renesas: Add alpha-numerical
- port support for RZ/V2H
-Thread-Topic: [PATCH v4 1/7] dt-bindings: pinctrl: renesas: Add
- alpha-numerical port support for RZ/V2H
-Thread-Index: AQHbT/Q3WD6tdQXPjkGBdqOWiVuV17LqVg8AgAABJcA=
-Date: Tue, 17 Dec 2024 12:33:45 +0000
-Message-ID:
- <TY3PR01MB11346412D98C6644E51B253BB86042@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20241216195325.164212-1-biju.das.jz@bp.renesas.com>
- <20241216195325.164212-2-biju.das.jz@bp.renesas.com>
- <20241217115828.GA859895-robh@kernel.org>
-In-Reply-To: <20241217115828.GA859895-robh@kernel.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYYPR01MB13432:EE_
-x-ms-office365-filtering-correlation-id: 02e6294b-70da-4d6b-7578-08dd1e970cb5
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?tdbAuDpHwzuT2VNxJuKAj8UkFlNk+qk15LRicOJwDViNT/2mm2VRAgPVVfIo?=
- =?us-ascii?Q?4PVqCkNc0aMBrUrYhrmNz/GAOx/irF6UYpG3WpHcu0VY7yjjA9tZGtJZBMSJ?=
- =?us-ascii?Q?d9ZuSH4EZr84xRK0X2tSEbKR48juAU3TRHyOB3fimvS6vZlEsVZlju8jwdiE?=
- =?us-ascii?Q?TL0l8uHT0ThB1pv36i0Kkc1e1ipjXnsVF0uF2rRAzconRdb4w3Cp7Ul0cKr8?=
- =?us-ascii?Q?48lxylzUnva5gwFT4VrkCz0nGWyp/WZWHb1xElmM/tLuNtTfigZ+LUMJsiTr?=
- =?us-ascii?Q?im0SQocAF3pcnd7Z2jH9nChKSatMiiIBlGw4bUm0QMdS8uFN7iag1YJJ2XeG?=
- =?us-ascii?Q?PAnQDZjKpq9EzBOZxi6AbVXfUI9EXvXIwkCJdFFgcotW1kT+rSJ7G9Ufl9Fe?=
- =?us-ascii?Q?QY1cGbEuuL7oDUI08ub2mridXDwRUyIUuxPPuiNuCaUU4hQ4q+kt3fwpAaiz?=
- =?us-ascii?Q?3HFZtLVkRBicVO2DAs5HXUbpR0yv2GGDr4zDNXEloEtG09JH57E+rXytnRq1?=
- =?us-ascii?Q?nZkixZ/Kvtu4hkbsuxOSUedX/PmuIG492t/V87iq3mdrnwyOpZlwWf5JOkwa?=
- =?us-ascii?Q?IYWL7K72NVJyERYVbg/zq6L8GkjnPGaAA8dMdThtzGuqnBTAVN7FcsUYndEH?=
- =?us-ascii?Q?tEL0cAHOjTPz0rUBS74iEwTtedAnBb5ogYsDO7iNMvONkAGjk1uXKNnkfTkC?=
- =?us-ascii?Q?UOj0Ync4lzxu9XEnhIf50PtHlZcZV9QuzxiyebkyOnjRsReqUYxx93vBRLIO?=
- =?us-ascii?Q?fXgQ8pVK3qbGQyuQsGY8e0ZkoS7GYoF7IfaEvlr958JXekTcS6DWLiMVSTpx?=
- =?us-ascii?Q?z/U7W6qRD5cqz9fVVjnZMorCScEY48scE0IfqaTMKz6wZufdsY7Y8x0Yi920?=
- =?us-ascii?Q?VGpKD8j3pZNEXvHIiwthfHPMBnhNrH1zruOX103fTQn/geddzDdsEDYj+uy8?=
- =?us-ascii?Q?xIXi8IGUpqyafsGBQTzC4SrzRGLjtiZjfwOlzT1FW1uH9XSZSBHeMFZ1NRoO?=
- =?us-ascii?Q?mgEvL5X0ASyDiBf7UIz9k8wqCX7O6HseYbtFXYCKFMLTDn97cooFWj7Ydtt3?=
- =?us-ascii?Q?WCfE+7asvB+sjlJ+rAiDrWnWzIn5/DQ06bEoZJ8On8hjXQr0kqzOdC8zs0Hr?=
- =?us-ascii?Q?/oOQh3DMtT8+4viiq8QDtKMcx5rHjg1wo6zBmZ+7wVY2twLiCY/NaqU0mmM5?=
- =?us-ascii?Q?yjQlxhKdL9uBkmtk+VehbdToCDWDgN9Eivde8bamwGEdRiIr4q8gz/ze+b20?=
- =?us-ascii?Q?Kv9dMnQ3qJsI/Exm9n3bHbPFULAQxdT7YjJJadnKEU04nmEQk7STxNLW4C5j?=
- =?us-ascii?Q?i6BYrGyt2R2j6d054K7zOCj0VfdLuShAw2R0FKPwUDC6Giz6K3BOdBlFkG9Y?=
- =?us-ascii?Q?zu1tEDQwL8auPFzPUjMDF7HzQZ8bzDrnTxal704H3hrRJwafWyfUeborKYrj?=
- =?us-ascii?Q?CzpAIQ67zxmboIJDazItEfP+PF5kWd8D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?TsNIz0uJge7UaVcewolKBGV59ESvUQwNg6gRshHoRHEhIk5NgFbc5jFsdAEp?=
- =?us-ascii?Q?0hSx7cmzZUQZ3fNWIy25PHf0MTX55hG///UUjiMpe73tSs1Sgm4ip9BGBlSs?=
- =?us-ascii?Q?+12obcauwRf3k6+IYG7B+6NPzKxA0O6/HiwUYShRASZxKrsY+BdCKAAD52N5?=
- =?us-ascii?Q?d6aZe+hyGEbSuLQYFuqU6CBuPt3VhWmDYOTWQBa0HMcPo0gH2jg4IQaArcdb?=
- =?us-ascii?Q?b9G5ihgcibbfyOgYbyHlPEvkxiIXIrFukQ/7eAwex8JS4i52Q7RjVEthjXnH?=
- =?us-ascii?Q?KDTGfdEbQ5e+CjbkwC+ogb0pJXsSB299zfsb8itB9LikPy6hxurLAsk8ex4q?=
- =?us-ascii?Q?8mtr61DN06/KsXGEMBiie+ylX8QwlnRGE2fTY6HhxnL61YSlsWIe9ePxD0O/?=
- =?us-ascii?Q?aNlsdDC/D4iTgpm6aA5pFaQY8owCeLK9oMdCYa/Bif0D3Fji3LZK8ZFhLIQD?=
- =?us-ascii?Q?nb9NEGnshl3RQiV+u6MJbqY/pz1GTPzNwzMJKG1xNFeuQZez0RM7wXbp3RrE?=
- =?us-ascii?Q?7TvCQmvpJ57L9yg2dK20ngAxmzbfyvBHjpUs9tBqtpp0SsfaTe92guFE7kuE?=
- =?us-ascii?Q?WALQLgQPNqZodwoEgxBa5CTfPXNm9W9mosyW4cQQdpCldwr9SXzlESh18Zf+?=
- =?us-ascii?Q?bJGAk4Ath0dSYYstYKqpYwF8fJjmQkTU6XBv0syY2/FRCmEgfPX11hZbn102?=
- =?us-ascii?Q?4b/UG17VjWMQNeQSmo3OgcjLpUrkiXu8LBDRZNU/qTNfEFF/IOxhVHoqTF1c?=
- =?us-ascii?Q?xFqYG4992yAVAbCuEbRLVIMoPBOjfh9ICwM3f5AuWAuT2JAIoMOYep3jxysh?=
- =?us-ascii?Q?isX973aniyVwcCOePAYMP1upG0ZiYC4735BXqXek1rvw+XRbIP0HLaRJuiCl?=
- =?us-ascii?Q?CcRCAckIrU35+2XVrlrF1paAHmp85hmcKwZjOqwGDLNOWZ9M2ri696/4k2KC?=
- =?us-ascii?Q?AtHGJdNaRQmUQ/j2FPufTR1n8xmrJJjRbJ/77mg0PYYe1DQRnw2TvPt5qevv?=
- =?us-ascii?Q?xQWlA0MH5b1+nJnZA358HACdDrNG9WL+F48tHBXkQrJHCIYo/G0xZZl/amiA?=
- =?us-ascii?Q?K0+XstMg+iablfLSzhurGOa9maMqNyJHDB0NKYf6nnLIBlfsThhvvYyqjcN7?=
- =?us-ascii?Q?2glQIW1CpSE8kRrOjhmtUscHFdJ+nmVA8dBAgzJlpQa7tWHnt0tmRJf1G/kI?=
- =?us-ascii?Q?SMjUJDmXeEUeTiVWCCWZGBRcSzVbwyNktbKG68pgtCZP7vrN8t/+9TMt3bU2?=
- =?us-ascii?Q?sc+rv2lzgPg3AdlBxQ5kJdeDIQ5kayCiwSscgPJdWLe5SNM+coL0JkgJc4Va?=
- =?us-ascii?Q?EglGtkr2cSJnd6ADCdTqVjHXocyMJzY4rf0ephi2No5pQE5R4vInd1njOJDM?=
- =?us-ascii?Q?Knf8O2ymqom/jJ4zmOECvsxl8ptM4DIqp+YdAVlCF02W15JSmEumunLh90U3?=
- =?us-ascii?Q?Q1gVpA6v61W4EsspKxgLrj4PjedTiYr9NjOozyj+trttYuHDBY9KLQMRX4EG?=
- =?us-ascii?Q?YZUWbWGYNk9pu29ICfIYRNwr8nLK9DJORCmyjmbcwc6/8pwnqt7LlVzvxqhW?=
- =?us-ascii?Q?TMlle3lR63KCyWUYDaRvstGX4EbADC2DD8EX3VCOmS1e7JnnICifsygy0P85?=
- =?us-ascii?Q?ww=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 843501EB9E3
+	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 12:34:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734438860; cv=none; b=n39h9nBgdQ/fg7n8M+7nRD6YiNVymlr3X4SoC+L3RVBI6GoCy3VvI9hyvyWh+TAK65HVhde7IzpizinHVg4hv+Sb7UOezHnpj8jqG/NqEE1QqPWjNt2dlcFsNx/c79uW/t0UUqEZns9+ZH7sINwJNidF6ADlzJisZ6PmEE4Iv38=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734438860; c=relaxed/simple;
+	bh=CMlp17l4PkA1uATiuWDxdImH8buvcpFHedH+6uapBXQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F+R+VEJRyF+z3WnG2Uj23luK//1y6U5lniaUDzsajE14gT1v2+lTNRXUwMyTVb3yfeiw9uga+TBeiJVL/SoqweF+4BL4GvVLaHewuc1xKH0oG8WjtrmYJHIQmwfkltNe4jk1ugmJXCzxtsrjagpSupvwa3K/b3Sm1wdgf5J098M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fVcqKKLT; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5401d3ea5a1so5797832e87.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 04:34:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734438856; x=1735043656; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mN6TqIzQhCMb/TWw6EiGfX8Yr9HpJyuJZ+GjX/D3t3Q=;
+        b=fVcqKKLTys5d5UvUaRROnXU6+ZSTn+zlLkyok4xBFyI5r6jE4Q0vOuo2HfmQZrLHOT
+         XHvqgWFEoMf8+bUniqP5Mfuqq6fcL+T2ijjZ/A13IwiMXNzReS68a1qJ9ftL0ZQ2P6MH
+         Q30colqqQHBEnEwuGlW0+s/z3SWAfTOXlj5hTGoiu0EsnqPkOAhwaQIUsz/GxzlYhekA
+         OmNVPFVhBKiHQ4D/rDlaMKIyQLLoEDz7WLqQ8Rp+fAwGbQE5DLK8Zc6e/2Wq5NkvdlL0
+         vcCKTWXVrAoF9DUJmoc+BfCx+Rfr8uARU6UUgOwlgT5D8k+PIkolkJs0mU3X2XJ8/+2U
+         Kezw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734438856; x=1735043656;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mN6TqIzQhCMb/TWw6EiGfX8Yr9HpJyuJZ+GjX/D3t3Q=;
+        b=boHhVBbYSCD+jNnf0RtPmL/TEGAWph5yMcyzQIFSYPjA7tI/xfPMjewKCrjOc0HGMR
+         3y1Y+TdAcW064bhgFCvQ2EVLD1ZsXHHRUUJH5gxUp4iEpy21Y67SSOiRAMj5ccV5dZC3
+         0rmgfUn18Ihf3c2vHmcvAuW1UBmVLFGj1/YUOjMmuWNLTlrE/p0fPe0oPWdz1HT+ciJt
+         iFwQgHA+9I59tMyxt5nTwp138kkZtPJ1J2ePZhJt5MtCrlq0zVnQJp3PQUXIOFlGZciN
+         QQ/Kb4LJpGVJBdbRKH+wrWQuBhuqiHPsBSdU2GLWGQtAo8BN+frtZUPoHKwxuAa/6uyw
+         ztKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXPnF4VFzTaAp9FFT7tX9eEeQfgVrEIVeHIsxGBJv6pok+VZELtQ4lKPehE4q4c4m0uOaYjIKViIgkY@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZ3hpBPSWzvHScYNkL4XIxd8VwBQExmn2/0G1bUImzAVAQha0A
+	+CloWPr2UtgJ24y0Qakoi+EdMXexWmKULnCj8WnCffCg44fEhVpkDakw9+wn3To=
+X-Gm-Gg: ASbGncsWjqeFT2xfSK8sXtG6nt0VaBH3gGc6EWf+pBu7JWPQpopFKvsgLMAUjAF8eRj
+	FFEXJwkxhpfTt9vZ0c7rlOjZTfF2Xow4DiJeYYga2bXw22hv9JRA5AXgZ/Qs0/v8DO8wLRYdbnF
+	A5TkiL5H8yJ+gjLa71prEcyMArHPCRtV5OnCMhkjdFigiEJmSDXcdLvXcSri43/SgRktRcyHFmR
+	6D/F8vasbnDs/FCKot5kdah7L7sNNxO0LbmEwqmzCLuxCssZI3pHHaV43ZLzL639buButtBKUq/
+	OdEMUrI1A/339k6qh0Kplgkb8P9JFX7vvo6B
+X-Google-Smtp-Source: AGHT+IG64fF0VZRsJVb2QKgF7su3lKSHe/E+XJ0mDICTjJVwLxaJk7I7Yc82GJIWZQCARYb0bWVA7w==
+X-Received: by 2002:a05:6512:3c8f:b0:540:1a33:ded8 with SMTP id 2adb3069b0e04-54090555550mr4911457e87.17.1734438855594;
+        Tue, 17 Dec 2024 04:34:15 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54120c20e64sm1119838e87.277.2024.12.17.04.34.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Dec 2024 04:34:14 -0800 (PST)
+Date: Tue, 17 Dec 2024 14:34:11 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: CK Hu =?utf-8?B?KOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
+	"jie.qiu@mediatek.com" <jie.qiu@mediatek.com>, "kernel@collabora.com" <kernel@collabora.com>, 
+	"simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org" <mripard@kernel.org>, 
+	"tzimmermann@suse.de" <tzimmermann@suse.de>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
+	Jitao Shi =?utf-8?B?KOefs+iusOa2myk=?= <jitao.shi@mediatek.com>, "airlied@gmail.com" <airlied@gmail.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
+	"junzhi.zhao@mediatek.com" <junzhi.zhao@mediatek.com>
+Subject: Re: [PATCH v2 15/15] drm/mediatek: Introduce HDMI/DDC v2 for
+ MT8195/MT8188
+Message-ID: <fm5rbujzu5og25x3nnxnhabrf4mppyy4nakxrskqtug774llnm@j47ce2zz6xsx>
+References: <20241205114518.53527-1-angelogioacchino.delregno@collabora.com>
+ <20241205114518.53527-16-angelogioacchino.delregno@collabora.com>
+ <803bc2bd802506635dfa9ea9b26a6ca40a7f4912.camel@mediatek.com>
+ <e5788187-e894-4aab-a41e-a3d7a64762c6@collabora.com>
+ <d64ff9f1525fe3563502e470b2a31303de08a7c6.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02e6294b-70da-4d6b-7578-08dd1e970cb5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2024 12:33:45.8438
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wGgkdUifw5qPcI4Tx5lZxtE1RFT2JuGllPdT+mn0EWcKuqf1NiOeOkJsPg3tzjOGTcuKNk/bay8RBcBLk6uqBFvVK92/X2yd8xTNItWSECc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB13432
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d64ff9f1525fe3563502e470b2a31303de08a7c6.camel@mediatek.com>
 
-Hi Rob,
+On Tue, Dec 17, 2024 at 06:40:11AM +0000, CK Hu (胡俊光) wrote:
+> On Mon, 2024-12-16 at 12:04 +0100, AngeloGioacchino Del Regno wrote:
+> > External email : Please do not click links or open attachments until you have verified the sender or the content.
+> > 
+> > 
+> > Il 16/12/24 09:57, CK Hu (胡俊光) ha scritto:
+> > > Hi, Angelo:
+> > > 
+> > > On Thu, 2024-12-05 at 12:45 +0100, AngeloGioacchino Del Regno wrote:
+> > > > External email : Please do not click links or open attachments until you have verified the sender or the content.
+> > > > 
+> > > > 
+> > > > Add support for the newer HDMI-TX (Encoder) v2 and DDC v2 IPs
+> > > > found in MediaTek's MT8195, MT8188 SoC and their variants, and
+> > > > including support for display modes up to 4k60 and for HDMI
+> > > > Audio, as per the HDMI 2.0 spec.
+> > > > 
+> > > > HDCP and CEC functionalities are also supported by this hardware,
+> > > > but are not included in this commit and that also poses a slight
+> > > > difference between the V2 and V1 controllers in how they handle
+> > > > Hotplug Detection (HPD).
+> > > > 
+> > > > While the v1 controller was using the CEC controller to check
+> > > > HDMI cable connection and disconnection, in this driver the v2
+> > > > one does not.
+> > > > 
+> > > > This is due to the fact that on parts with v2 designs, like the
+> > > > MT8195 SoC, there is one CEC controller shared between the HDMI
+> > > > Transmitter (HDMI-TX) and Receiver (HDMI-RX): before eventually
+> > > > adding support to use the CEC HW to wake up the HDMI controllers
+> > > > it is necessary to have support for one TX, one RX *and* for both
+> > > > at the same time.
+> > > > 
+> > > > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > > > ---
+> > > 
+> > > [snip]
+> > > 
+> > > > +static int mtk_hdmi_v2_bridge_atomic_check(struct drm_bridge *bridge,
+> > > > +                                          struct drm_bridge_state *bridge_state,
+> > > > +                                          struct drm_crtc_state *crtc_state,
+> > > > +                                          struct drm_connector_state *conn_state)
+> > > > +{
+> > > 
+> > > I would like v1 and v2 has the same behavior.
+> > > Why v2 has atomic check but v1 has no?
+> > > If this is better to have, add atomic check to v1, and this function would be common function.
+> > > 
+> > 
+> > That's because v2 uses the new helpers, while v1 does not.
+> > The v1 must be converted to the new helpers in order to use atomic_check() like v2.
+> 
+> I just find the description here, and I don't know why new helper need atomic_check().
+> Would you provide more information how new helper need atomic_check()?
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: 17 December 2024 11:58
-> Subject: Re: [PATCH v4 1/7] dt-bindings: pinctrl: renesas: Add alpha-nume=
-rical port support for RZ/V2H
->=20
-> On Mon, Dec 16, 2024 at 07:53:11PM +0000, Biju Das wrote:
-> > RZ/V2H has ports P0-P9 and PA-PB. Add support for defining
-> > alpha-numerical ports in DT using RZV2H_* macros.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > ---
-> > v3->v4:
-> >  * Added new header file with separate RZV2H_P* definitions.
-> > v3:
-> >  * New patch.
-> > ---
-> >  .../pinctrl/renesas,r9a09g057-pinctrl.h       | 31 +++++++++++++++++++
-> >  1 file changed, 31 insertions(+)
-> >  create mode 100644
-> > include/dt-bindings/pinctrl/renesas,r9a09g057-pinctrl.h
-> >
-> > diff --git a/include/dt-bindings/pinctrl/renesas,r9a09g057-pinctrl.h
-> > b/include/dt-bindings/pinctrl/renesas,r9a09g057-pinctrl.h
-> > new file mode 100644
-> > index 000000000000..9008a7e71609
-> > --- /dev/null
-> > +++ b/include/dt-bindings/pinctrl/renesas,r9a09g057-pinctrl.h
-> > @@ -0,0 +1,31 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +/*
-> > + * This header provides constants for Renesas RZ/V2H family pinctrl bi=
-ndings.
-> > + *
-> > + * Copyright (C) 2024 Renesas Electronics Corp.
-> > + *
-> > + */
-> > +
-> > +#ifndef __DT_BINDINGS_RZV2H_PINCTRL_H #define
-> > +__DT_BINDINGS_RZV2H_PINCTRL_H
-> > +
-> > +#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-> > +
-> > +/* RZV2H_Px =3D Offset address of PFC_P_mn  - 0x20 */
-> > +#define RZV2H_P0	0
-> > +#define RZV2H_P1	1
-> > +#define RZV2H_P2	2
-> > +#define RZV2H_P3	3
-> > +#define RZV2H_P4	4
-> > +#define RZV2H_P5	5
-> > +#define RZV2H_P6	6
-> > +#define RZV2H_P7	7
-> > +#define RZV2H_P8	8
-> > +#define RZV2H_P9	9
-> > +#define RZV2H_PA	10
-> > +#define RZV2H_PB	11
->=20
-> I'm not a fan of defines which are just 'FOO_n n'. And these are if you s=
-peak hex.
+The HDMI helpers requires the driver to use
+drm_atomic_helper_connector_hdmi_check() in order to maintain
+HDMI-specific connector and CRTC state. Thus drivers using HDMI
+Connector framework have to provide .atomic_check() callback which calls
+the mentioned function.
 
-For RZ/V2H, ports are P{0..9} and P{A..B}, the port name are with in hexa d=
-ecimal range
+> For example, the call stack to atomic_check(). (You could use dump_stack() to show it)
 
-whereas for RZ/G3E SoC,
-
-Ports are P{0..8},P{A..H},P{J..M},PS
-
-RZ/V2H and RZ/G3E are similar SoCs.
-
->=20
-> > +
-> > +#define RZV2H_PORT_PINMUX(b, p, f)	RZG2L_PORT_PINMUX(RZV2H_P##b, p, f)
-> > +#define RZV2H_GPIO(port, pin)		RZG2L_GPIO(RZV2H_P##port, pin)
->=20
-> So the user does RZV2H_GPIO(A, 123) instead of RZV2H_GPIO(0xA, 123)? Not =
-sure the bounds checking the
-> port is worth it. pin or function can still be crap.
-
-Previously we were using plain number in DT for RZ/V2H, RZG2L_GPIO(10, pin)=
- =3D RZG2L_GPIO(0xA, pin)
-The port names for RZ/G2L are plane number, whereas for RZ/G3E and RZ/V2H i=
-t's alpha numeric.
-
-Since RZ/V2H ports are within the hexadecimal range, maybe this header file=
- can be dropped
-at least for RZ/V2H??
-
-Any way we are doing bounds check in driver.
-
-Cheers,
-Biju
-
+-- 
+With best wishes
+Dmitry
 
