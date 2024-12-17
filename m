@@ -1,354 +1,171 @@
-Return-Path: <devicetree+bounces-131884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0640A9F4D7A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 15:20:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AF1D9F4D9D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 15:25:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 894C6188D096
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:20:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B3F5188302D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:25:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D54AF1F471D;
-	Tue, 17 Dec 2024 14:20:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB6D01F63DA;
+	Tue, 17 Dec 2024 14:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WGKhjtld"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ExeALter"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A943D1F428B;
-	Tue, 17 Dec 2024 14:20:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34C9B1F37BF;
+	Tue, 17 Dec 2024 14:25:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734445230; cv=none; b=kPEFqdxUvI5JGk0ee6VqhtbtmjkGyJm09FClC1bMusgZOrokCE4wjuKKydGjM6ct/Sq2jNvIyjKsTwOG1e+cJ8mt71Q764N7SAI30Ye10SA28jUw6rvGawhVn7MEd3DljxqtYSNp1GWWkWVk+BygZSnxdX2T8aOzwNXdpH/vUU0=
+	t=1734445516; cv=none; b=neAodUhPLGtT9Sp/Sg6TVMCcZSwv1aUfZa2HB/bCfu7+WU/EOhdRNAsZylxWltuhBtKcyhVwljgQKHdWgWnWfy9j/BLEyayhQDC0GmGkAWgqU56QrJbXcPFbph3flSxZ6cPp0HItFrocTkjhq6EGsyQpkgAmK9/xas6WUG18o+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734445230; c=relaxed/simple;
-	bh=1xLYQcVFD6UDieUDBsRWEFAwh5cBNG7GFvrc7tOnR0g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sHf4SotuUsqHC5gALJmOb0HBSe9z1iIhtYcA+H7iQpF3QMaDBfZdpnYp5FAsXSoHBQHv1bqyNSCKoDsd0DTvkpq6MX+0P2HoGx0BRzPdDSq14ioWqe8eCoWgk2u+ym/gIqiwg7YXQQ2BaU5S4w3HT60e56cdeQhEEK2jfceiV6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WGKhjtld; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D5B0C4CEE2;
-	Tue, 17 Dec 2024 14:20:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734445230;
-	bh=1xLYQcVFD6UDieUDBsRWEFAwh5cBNG7GFvrc7tOnR0g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WGKhjtldNnWXqymtnR6R9dvmW+oRDpd4hLi40LZTAMvdT2q/x+LXqUE7LzzOQalIj
-	 ojFyuY7eC9WIRaY4F87BdR3wmP3i34TT3xDHrdhAQ+fJ0kFPjS40ynesx+Ze6iL3kE
-	 0YeR4/kdaCtXfdyoiJjSCDZeG0RmwPWwU2lLHdY8jDZgxD1iH3jZ9nT3peBhStO5rc
-	 +OlIfAIsKOAEehZchXzocDLQXnWR1irEs/3dD9iKGE7aXj5LYeGgyscT1Ag45kAtpg
-	 4FognD8V77G4YTQhAIBtuuH3AUnLHqEModOLBPUkBb2hGnhX6ZGJ4Hs6nXERiYaZRG
-	 hd6p11dGKGa1g==
-Date: Tue, 17 Dec 2024 08:20:28 -0600
-From: Rob Herring <robh@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH RFC 1/3] dt-bindings: pinctrl: Add support for Amlogic
- SoCs
-Message-ID: <20241217142028.GA1441221-robh@kernel.org>
-References: <20241211-amlogic-pinctrl-v1-0-410727335119@amlogic.com>
- <20241211-amlogic-pinctrl-v1-1-410727335119@amlogic.com>
+	s=arc-20240116; t=1734445516; c=relaxed/simple;
+	bh=mzqy8jSGA9jiMASN8KJPpPw53S/rBRrnUaRXOATicRg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TKZy4Q+PCUYWOwZ4Rp7zjZvlw++FrCDChxnV+1s5PYMHKTyh3YMFaGKivxthD5BYFd94juLSryivpISuyKzwyuQbhN6gZsX9+ZJRQzM7u5p+Og6O0BId+lbN9vEZUznWw87plVqeIaHsieFA1T+ffaN9T+arO1QS+XewzWd4ou4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ExeALter; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BHAldw4025596;
+	Tue, 17 Dec 2024 14:25:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=PjFvU3DAQKea7VV+uu437A
+	HW4cM6vqDCYwSVIfgnL5s=; b=ExeALterstVd24BxAoUTuH5U3V05ctqeXKhEmd
+	J3yL0Gfkn+HsPyOUxJ1N3BKSbtza37IsDw6JvP0kLfFEpZ64Z8jsiN97jKtDkCYn
+	LMBd63kFUFCmq4ggRGohtLMYAiYGuaORZKOQ9GS0m+FipHnWCZuglTmC3EHrcv/L
+	OTHFUKoGj91ODR5dikING0U3ljoV1VuOyRvBQp4HGEOUL3ZHFkXISmINq3199pP0
+	hCuuZrWwSn1Yj+0Xevn1AwnGseD/T7dgzqryCfa35AclRtYSYCSmWLz7N6FcQNno
+	aL+JYXXpf51uxYCTfEZFjv6XbI3An14G2zf7ZNjLyhy6cg2A==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43k7v08j3p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Dec 2024 14:25:09 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BHEP8wr010889
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Dec 2024 14:25:08 GMT
+Received: from chejiang-gv.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 17 Dec 2024 06:25:04 -0800
+From: Cheng Jiang <quic_chejiang@quicinc.com>
+To: Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz
+	<luiz.dentz@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Balakrishna
+ Godavarthi" <quic_bgodavar@quicinc.com>,
+        Rocky Liao <quic_rjliao@quicinc.com>
+CC: <linux-bluetooth@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_chejiang@quicinc.com>,
+        <quic_jiaymao@quicinc.com>, <quic_shuaz@quicinc.com>,
+        <quic_zijuhu@quicinc.com>, <quic_mohamull@quicinc.com>
+Subject: [PATCH v6 0/3] Expand firmware-name property to load specific
+Date: Tue, 17 Dec 2024 22:24:51 +0800
+Message-ID: <20241217142454.614551-1-quic_chejiang@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241211-amlogic-pinctrl-v1-1-410727335119@amlogic.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: icKd9PaZALVILNU1XrkCDkeQFkfyOmVg
+X-Proofpoint-ORIG-GUID: icKd9PaZALVILNU1XrkCDkeQFkfyOmVg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 mlxlogscore=999 clxscore=1015 mlxscore=0 bulkscore=0
+ impostorscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412170114
 
-On Wed, Dec 11, 2024 at 02:47:49PM +0800, Xianwei Zhao wrote:
-> Add the dt-bindings for Amlogic pin controller, and add a new
-> dt-binding header file which document the GPIO bank names and
-> alternative func value of all Amlogic subsequent SoCs.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  .../bindings/pinctrl/amlogic,pinctrl.yaml          | 150 +++++++++++++++++++++
->  include/dt-bindings/pinctrl/amlogic,pinctrl.h      |  68 ++++++++++
->  2 files changed, 218 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl.yaml
-> new file mode 100644
-> index 000000000000..b0c2ae585d7d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl.yaml
-> @@ -0,0 +1,150 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/amlogic,pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic pinmux controller
-> +
-> +maintainers:
-> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
-> +
-> +allOf:
-> +  - $ref: pinctrl.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,pinctrl
+Expand the firmware-name property to specify the names of NVM and
+rampatch firmware to load.
 
-Only one Amlogic pinctrl block? Pretty sure there's more than 1 SoC and 
-pinctrl is unlikely identical for all. This must be SoC specific.
+This update will support loading specific firmware (nvm and rampatch)
+for certain chips, like the QCA6698 Bluetooth chip, which shares the
+same IP core as the WCN6855 but has different RF components and RAM
+sizes, requiring new firmware files.
 
-> +
-> +  reg:
-> +    minItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: mux
-> +      - const: gpio
-> +
-> +  "#address-cells":
-> +    const: 2
-> +
-> +  "#size-cells":
-> +    const: 2
+Different connectivity boards may be attached to the same platform. For
+example, QCA6698-based boards can support either a two-antenna or
+three-antenna solution, both of which work on the sa8775p-ride platform.
+Due to differences in connectivity boards and variations in RF
+performance from different foundries, different NVM configurations are
+used based on the board ID.
 
-Why do you need these? You don't have any child nodes with addresses. 
-But maybe you should?
+So In firmware-name, if the NVM file has an extension, the NVM file will
+be used. Otherwise, the system will first try the .bNN (board ID) file,
+and if that fails, it will fall back to the .bin file.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +patternProperties:
-> +  "^gpio[a-z]":
+Possible configurations:
+firmware-name = "QCA6698/hpnv21.bin", "QCA6698/hpbtfw21.tlv";
+firmware-name = "QCA6698/hpnv21", "QCA6698/hpbtfw21.tlv";
+firmware-name = "QCA6698/hpnv21.bin";
 
-This allows "gpioanythingyouwant" for example. If there is no 
-unit-address, then it should be '^gpio-[0-9]+$'.
+---
+v6:
+  - Pick up Acked-by Krzysztof Kozlowski for dt-bindings
+  - Fix type error in btqca.c
+  - Optimize the have-suffix function
+  - Seperate the sa8775p-ride.dtsi change to another patch
+  - Link to v5: https://lore.kernel.org/all/20241212150232.3823088-1-quic_chejiang@quicinc.com/
 
-> +    type: object
-> +
-> +    properties:
-> +      gpio-controller: true
-> +
-> +      "#gpio-cells":
-> +        const: 2
-> +
-> +      bank-name:
-> +        $ref: /schemas/types.yaml#/definitions/string
+v5:
+  - Update the dt-bindings decription.
+  - Extract the have-suffix check code to a helper function.
+  - Merge three generate nvm name functions to a signle function.
+  - Link to v4: https://lore.kernel.org/all/20241210151636.2474809-1-quic_chejiang@quicinc.com/
 
-You must define values, but why do you need this? No other GPIO 
-controller needs something like this.
+v4:
+  - Split nvm and rampatch changes to 2 commits.
+  - Fix the dt_binding_check error.
+  - Change the qca_get_alt_nvm_path return type from int to bool.
+  - Fix the nvm name suffix check error when path has '.'.
+  - Optimize the nvm file name generation function.
+  - Link to v3: https://lore.kernel.org/all/20241205102213.1281865-1-quic_chejiang@quicinc.com/
 
-> +
-> +      npins:
-
-We have a standard property for this: ngpios
-
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 1
-> +        maximum: 32
-> +
-> +      bank-index:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 29
-
-Consider if 'bank' should be part of the gpio cells rather than 
-separate controller nodes. That works better if each bank is not its own 
-separate h/w block. If banks share a register, then that's not separate 
-blocks.
-
-> +
-> +      reg-mux-offset:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +      bit-mux-offset:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +      reg-gpio-offset:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-
-Put these into 'reg'. We even have a way to deal with bit offsets. See 
-leds/register-bit-led.yaml for example.
+v3:
+  - Expand firmware-name property to specify the nvm and rampatch to
+  load.
+  - Change the driver to support two items in firmware-name and choose
+  the NVM file according to board id if there is no extension in NVM
+  file.
+  - Update the dts file to idendify the firmware for QCA6698.
+---
 
 
-> +
-> +    required:
-> +      - gpio-controller
-> +      - "#gpio-cells"
-> +      - npins
-> +      - bank-index
-> +      - reg-mux-offset
-> +      - reg-gpio-offset
-> +      - bank-name
-> +
-> +    additionalProperties: false
-> +    unevaluatedProperties: false
+Cheng Jiang (3):
+  dt-bindings: net: bluetooth: qca: Expand firmware-name property
+  Bluetooth: qca: Update firmware-name to support board specific nvm
+  Bluetooth: qca: Expand firmware-name to load specific rampatch
 
-Don't need both. 'additionalProperties' is more restrictive, so drop 
-unevaluatedProperties.
+ .../net/bluetooth/qualcomm-bluetooth.yaml     |   5 +-
+ drivers/bluetooth/btqca.c                     | 195 ++++++++++++------
+ drivers/bluetooth/btqca.h                     |   5 +-
+ drivers/bluetooth/hci_qca.c                   |  22 +-
+ 4 files changed, 152 insertions(+), 75 deletions(-)
 
-> +
-> +  "^func-[0-9a-z]":
 
-"^func-[0-9a-z-]+$"
+base-commit: fdb298fa865b0136f7be842e6c2e6310dede421a
+-- 
+2.34.1
 
-> +    type: object
-> +    additionalProperties:
-> +      type: object
-> +      allOf:
-> +        - $ref: pincfg-node.yaml#
-> +        - $ref: pinmux-node.yaml#
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    apb {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +      periphs_pinctrl: pinctrl@8e700 {
-> +        compatible = "amlogic,pinctrl";
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +        reg = <0x0 0x8e700 0x0 0x04>,
-> +              <0x0 0x8e704 0x0 0x60>;
-> +        reg-names = "mux", "gpio";
-> +
-> +        gpiob {
-> +          gpio-controller;
-> +          #gpio-cells = <2>;
-> +          npins = <10>;
-> +          bank-index = <1>;
-> +          reg-mux-offset = <0x14>;
-> +          bit-mux-offset = <0x14>;
-> +          reg-gpio-offset = <0x30>;
-> +          bank-name = "GPIOB";
-> +        };
-> +
-> +        gpioe {
-> +          gpio-controller;
-> +          #gpio-cells = <2>;
-> +          npins = <10>;
-> +          bank-index = <5>;
-> +          reg-mux-offset = <0x14>;
-> +          reg-gpio-offset = <0x30>;
-> +          bank-name = "GPIOE";
-> +        };
-> +
-> +        func-uart-b {
-> +          uart-b-default{
-> +            pinmux = <3>;
-> +            bias-pull-up;
-> +            drive-strength-microamp = <4000>;
-> +          };
-> +
-> +          uart-c-default{
-> +            pinmux = <4>;
-> +            bias-pull-up;
-> +            drive-strength-microamp = <4000>;
-> +          };
-> +        };
-> +
-> +        func-uart-c {
-> +          uart-c-default{
-> +            pinmux = <3>;
-> +            bias-pull-up;
-> +            drive-strength-microamp = <4000>;
-> +          };
-> +        };
-> +      };
-> +    };
-> diff --git a/include/dt-bindings/pinctrl/amlogic,pinctrl.h b/include/dt-bindings/pinctrl/amlogic,pinctrl.h
-> new file mode 100644
-> index 000000000000..03db0a730e8b
-> --- /dev/null
-> +++ b/include/dt-bindings/pinctrl/amlogic,pinctrl.h
-> @@ -0,0 +1,68 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> +/*
-> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_AMLOGIC_PINCTRL_H
-> +#define _DT_BINDINGS_AMLOGIC_PINCTRL_H
-> +
-> +/* define PIN modes */
-> +#define AF0	0x0
-> +#define AF1	0x1
-> +#define AF2	0x2
-> +#define AF3	0x3
-> +#define AF4	0x4
-> +#define AF5	0x5
-> +#define AF6	0x6
-> +#define AF7	0x7
-> +#define AF8	0x8
-> +#define AF9	0x9
-> +#define AF10	0xa
-> +#define AF11	0xb
-> +#define AF12	0xc
-> +#define AF13	0xd
-> +#define AF14	0xe
-> +#define AF15	0xf
-> +
-> +#define AML_PIN_ALT_FUNC_MASK	0xf
-> +
-> +/* Normal PIN bank */
-> +#define AMLOGIC_GPIO_A		0
-> +#define AMLOGIC_GPIO_B		1
-> +#define AMLOGIC_GPIO_C		2
-> +#define AMLOGIC_GPIO_D		3
-> +#define AMLOGIC_GPIO_E		4
-> +#define AMLOGIC_GPIO_F		5
-> +#define AMLOGIC_GPIO_G		6
-> +#define AMLOGIC_GPIO_H		7
-> +#define AMLOGIC_GPIO_I		8
-> +#define AMLOGIC_GPIO_J		9
-> +#define AMLOGIC_GPIO_K		10
-> +#define AMLOGIC_GPIO_L		11
-> +#define AMLOGIC_GPIO_M		12
-> +#define AMLOGIC_GPIO_N		13
-> +#define AMLOGIC_GPIO_O		14
-> +#define AMLOGIC_GPIO_P		15
-> +#define AMLOGIC_GPIO_Q		16
-> +#define AMLOGIC_GPIO_R		17
-> +#define AMLOGIC_GPIO_S		18
-> +#define AMLOGIC_GPIO_T		19
-> +#define AMLOGIC_GPIO_U		20
-> +#define AMLOGIC_GPIO_V		21
-> +#define AMLOGIC_GPIO_W		22
-> +#define AMLOGIC_GPIO_X		23
-> +#define AMLOGIC_GPIO_Y		24
-> +#define AMLOGIC_GPIO_Z		25
-> +
-> +/* Special PIN bank */
-> +#define AMLOGIC_GPIO_DV		26
-> +#define AMLOGIC_GPIO_AO		27
-> +#define AMLOGIC_GPIO_CC		28
-> +#define AMLOGIC_GPIO_TEST_N	29
-> +
-> +#define AML_PINMUX(bank, offset, mode)	(((((bank) << 8) + (offset)) << 8) | (mode))
-> +#define AML_PINMUX_TO_BANK(pinmux)	(((pinmux) >> 16) & 0xff)
-> +#define AML_PINMUX_TO_OFFSET(pinmux)	(((pinmux) >> 8) & 0xff)
-> +
-> +#endif /* _DT_BINDINGS_AMLOGIC_PINCTRL_H */
-> 
-> -- 
-> 2.37.1
-> 
 
