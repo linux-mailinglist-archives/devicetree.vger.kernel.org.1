@@ -1,56 +1,67 @@
-Return-Path: <devicetree+bounces-132044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A839B9F5651
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:33:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00E0E9F5657
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:34:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8ECDA7A37A5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:33:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0371D17146F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:33:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9340B1FBEAA;
-	Tue, 17 Dec 2024 18:30:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 630DE1F8EF8;
+	Tue, 17 Dec 2024 18:31:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YKR/273n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d5w9r2zm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4C11FBE9E;
-	Tue, 17 Dec 2024 18:30:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 304871F8AF0;
+	Tue, 17 Dec 2024 18:31:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734460215; cv=none; b=j2KE5heZyeXxzs3gFpm3z69/Wd+MtDKUFHRH8crPggug7uq3XrO+fO0u2eaPm+oZNFwL2EYluoE6ZwIyhcIkx7cy3pbtiTGpHvOVZQPyZI+bHrlrZ+Wxt3Uit4VUOKTYP4jF498sjyWf50sbfcP6yo7Fjhnt5d0AUO3xNotrToY=
+	t=1734460276; cv=none; b=FqHBbcdDkS4teCXTAh/AluOYIO0BntQT/jIeLydh/W12k/hsthYxgRB/MF4y3B1xWrz5G1pZ+KRFjmZedSl4NgX2fyJDdFg5+Av4snM2jb+vDnNFdOb5YIKDJd+0UicjogR/0l2iUbLlMbNAvgBmQJk/RMAfYS+zbNFjk12CvT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734460215; c=relaxed/simple;
-	bh=d9FIQqibd8hQTaOoI6vJEWT2RhssOM0ePn9FFYhZKno=;
+	s=arc-20240116; t=1734460276; c=relaxed/simple;
+	bh=GAObJk0Yfgosp9KMX93U3UB5Xlzjykd+Mc2oGONgf+A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QFORgeExkLI6wmJnvK0pRLXoEqnaliXLCSMAiV/hGsQYs/dkV8DyRP0sW2Zzaq8C4v5tBYP0dIW2XflXu17/g8cp0d0taW3MqTZdJ9fQ6AJbAc+IiKVTvnkTOpWo2zN+26LqHulItaEaGo7jKMj0CSVKrdzo3/4GS/yED/gQUfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YKR/273n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07856C4CED3;
-	Tue, 17 Dec 2024 18:30:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VXdEPKDdV0cd0BRvgPvlxqKcUouf7GVZMmCtFyGqGT0o/hn9GUUKP5EAkX9JjYeVfxHX592USV3CCSZpVkadSPWM01MCjivrze/Fo57Y/PH9sBX3p28xdZi5+h1j+24WL50wO0pkbdStZ8dPcxDTIjb6B+QbWlWcBGRjfkDpjNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d5w9r2zm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90E75C4CED3;
+	Tue, 17 Dec 2024 18:31:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734460215;
-	bh=d9FIQqibd8hQTaOoI6vJEWT2RhssOM0ePn9FFYhZKno=;
+	s=k20201202; t=1734460274;
+	bh=GAObJk0Yfgosp9KMX93U3UB5Xlzjykd+Mc2oGONgf+A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YKR/273nO267majvSnOBUafH+uSiym8oBdkm+Z9Xx2Hx6xMYnDYY6lIDiNryqw1CS
-	 UJgLDlCCbC9FLKU/jxhT8/aVH0S6fopXVCY+p+FjUMoKrm9taX8qVfAt75bZ0YFhw/
-	 yDbdgx+y+uUXOcqSaKWTNTe7wrSGIIBNIGCWQCRjMP7MlR/EMlmMxDcm93RArKLcIF
-	 jo4PBX+SL2jZcR4XODxYGP72yVekDZ++GxPoMed0oLRpCMwZtFXJy1keez3T2gP1vx
-	 Pdb4zsbyZm7HO27lztJbYJLjf/Y5Xy/CCd6j1QcGPB9c9gnRl0K5x1LAbaF2qSUIng
-	 obecWszcUmUaA==
-Date: Tue, 17 Dec 2024 18:30:11 +0000
+	b=d5w9r2zmvH38bUiC7L1IG1hZEQKRiYiWgHXHjtZpDK8tueiGuNL9DHxuZP+WFdzpK
+	 qO7eredHd1CBi1srQC5xF+fDqUM4QMAQsM0h2a3utvPhxbhNdUFJa4o+OL3/VAFf/d
+	 9WLzv5Ler4SPOgxYAHpD3rmdRjIGtUgaFCTa02DdswgHOPYuFWk73G+b16/O+rSEDr
+	 i2YkGHX0ioKOxtFMlYo+ukKWtYw7DUEEWecQtslMaW4OGLTfX0C83iLFbwM0NTwjOL
+	 WlBJlze9cZCZovx9SMA8XmF3hfJWArvbTJVmltW0Przx3FSa7NDKowz0EFAZA14npi
+	 RyfPJXXoYPeOA==
+Date: Tue, 17 Dec 2024 18:31:09 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] ASoC: dt-bindings: renesas,rsnd: remove
- post-init-providers property
-Message-ID: <20241217-armless-unstable-7165d81cb35d@spud>
-References: <877c7zno1n.wl-kuninori.morimoto.gx@renesas.com>
+To: mgonellabolduc@dimonoff.com
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nick Desaulniers <ndesaulniers@google.com>,
+	Bill Wendling <morbo@google.com>,
+	Justin Stitt <justinstitt@google.com>,
+	Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH 2/9] dt-bindings: media: clarify stm32 csi & simplify
+ example
+Message-ID: <20241217-brilliant-jubilance-54641c6ba990@spud>
+References: <20241216-apds9160-driver-v3-0-c29f6c670bdb@dimonoff.com>
+ <20241216-apds9160-driver-v3-1-c29f6c670bdb@dimonoff.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,79 +69,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="UALhVic58E0izIhY"
+	protocol="application/pgp-signature"; boundary="CpCfpLzPvqQyQS/7"
 Content-Disposition: inline
-In-Reply-To: <877c7zno1n.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <20241216-apds9160-driver-v3-1-c29f6c670bdb@dimonoff.com>
 
 
---UALhVic58E0izIhY
+--CpCfpLzPvqQyQS/7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 17, 2024 at 12:36:21AM +0000, Kuninori Morimoto wrote:
-> commit f8da001ae7a ("ASoC: audio-graph-card2: Purge absent supplies for
-> device tree nodes") marks multi/dpcm/c2c nodes as no suppliers. We no
-> longer need to use post-init-providers property to break fw_devlink cycle
-> (And no one is using it yet). Let's remove it.
+On Mon, Dec 16, 2024 at 05:55:40PM -0500, Mikael Gonella-Bolduc via B4 Rela=
+y wrote:
+> From: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
 >=20
-> Fixes: a2187d0dadf ("ASoC: dt-bindings: renesas,rsnd: add post-init-provi=
-ders property")
+> Add device tree bindings for APDS9160
+> Note: Using alternate email for maintainer
+>=20
+> Signed-off-by: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
 
-I'm not sure that this fixes tag is appropriate. I don't think this is a
-fix for the cited commit, it is just now not required. If this were to
-get backported, wouldn't stable be broken since the supply purging
-commit doesn't appear to have a Fixes: tag or a CC: stable?
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks,
-Conor.
-
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> ---
-> v1 -> v2
-> 	- add missing DT maintainers
-> 	- Tidyup the git-log
->=20
->  Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 6 ------
->  1 file changed, 6 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/=
-Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> index 6d0d1514cd421..e8a2acb926460 100644
-> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
-> @@ -112,12 +112,6 @@ properties:
->      description: List of necessary clock names.
->      # details are defined below
-> =20
-> -  post-init-providers:
-> -    description: At least if rsnd is using DPCM connection on Audio-Grap=
-h-Card2,
-> -      fw_devlink might doesn't have enough information to break the cycl=
-e. rsnd
-> -      driver will not be probed in such case. Same problem might occur w=
-ith
-> -      Multi-CPU/Codec or Codec2Codec.
-> -
->    # ports is below
->    port:
->      $ref: audio-graph-port.yaml#/definitions/port-base
-> --=20
-> 2.43.0
->=20
->=20
->=20
-
---UALhVic58E0izIhY
+--CpCfpLzPvqQyQS/7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2HDMwAKCRB4tDGHoIJi
-0ij4AP9BIoNuonXfTxnbviXlHjhnRgVWS2hKH89gCTMbb2pmMgEA+aJJwD5wiUE8
-OApNDU/j1gfAE6FdSvgjPYXRS5khmAQ=
-=ki2B
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2HDbQAKCRB4tDGHoIJi
+0mzSAP4l0iYkVJ4K841MVb5zASg1PE5Xsu7UgDMqFS1oGZTfswEAum0NTyv0erzv
+MIXXCRJhOqlFKFMKxHlFYcJd0jzGfgw=
+=rX52
 -----END PGP SIGNATURE-----
 
---UALhVic58E0izIhY--
+--CpCfpLzPvqQyQS/7--
 
