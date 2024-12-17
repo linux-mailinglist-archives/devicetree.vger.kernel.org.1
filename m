@@ -1,387 +1,123 @@
-Return-Path: <devicetree+bounces-132066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93E7F9F58CE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 22:34:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53E289F5938
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 23:03:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92EED162955
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 21:34:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E068E7A0724
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 22:03:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503C81F9F4D;
-	Tue, 17 Dec 2024 21:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A71B21E0DED;
+	Tue, 17 Dec 2024 22:02:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pRZYdmPS"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="EDauNmcP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D879D1D318F
-	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 21:34:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 981031D45FC;
+	Tue, 17 Dec 2024 22:02:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734471275; cv=none; b=rD4pEB855c2ufX8PKRfkXS0UqZaWddysxzS6svEbZNAp+b3T6/SvDEyM1fMFPZf+IyzzFFz75yaV/mxZvsGXlZFxgnZMhFp1VzKPTWoJ0vqkR5d8ikZCiUPkb5ao149+QRZBdCFei/8pLFThPqJttztqhS9cc7BU6U67yPULl1I=
+	t=1734472975; cv=none; b=GroCjZQiIrAxP3aAcPQlm0/sKxHdAy9QrqTXTaqRuj8iFpcssEmzkhauQEjbnYrFAMQGPBCRpzWWHtGyKEfWJKqhZVDhVj8ogs7eN7QBHHkbASkl0Ktj9H4Wc+KC2xF1gmKdjUVOF57LJvA45P1WkH6YzctsdciH8eflW8iNbVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734471275; c=relaxed/simple;
-	bh=cHIO1XSngrpkmvX5f69LWaZ1c6D33Eq8i4jV4q9byt4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XLITSk7kxB7gOq2+XIzGCsFMw3Wy0cErlLiZJxDk0JIeyrkSd8QPksQ22EnVbv2x/Vu13aCE0y+SgKmKuLQIBTwqyJ3BXxcPl+hPDXzxZ4qTmG/2JIqyQi15peuVBnTGJcvJIG+IW68sq2WOdDlErT5sA3eynjlSQBzjkuo2Bmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pRZYdmPS; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53de3ba3d39so799762e87.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 13:34:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734471271; x=1735076071; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xzn2Zz7RYqNAiywY0xlzFtA0UHcUhTcOGHCY2jxNuME=;
-        b=pRZYdmPSqIkqDU/czxO3JwvC0/ri9TJsiNcd8f3mwbifH1Zax7OaA233OtB84n9MRf
-         ibA8bSQEaF7Eio+WUfWHIuL97/ceQSFRU7BecLITHTtDQ5sIX7N+kKOk3ldXsJQ1iA7k
-         gMZIv64MDjZf91PfSxJpaY4VfAxLVL0uWcGBqQzWY/21e2VGI7BwicXo0e3sV+e4LeLj
-         baC6K/roFIZBrtqEgW4mlwYwfeUYzVof6gU298D/B7QzMcuaGTQUw3R0z6fuvOKYX1g+
-         W9s3IBR40U03faYRwJ9DxQc1ViSiwAfku/tGQADQRjrtFoQggDB0+gqCJSXnJodD8a62
-         TK+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734471271; x=1735076071;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xzn2Zz7RYqNAiywY0xlzFtA0UHcUhTcOGHCY2jxNuME=;
-        b=r2bU5ekDaLeMcbG42G/c4mZDGpHqCgIAYh+KSsbYgMdemFAI1E0+amDPdZzs+dUIep
-         4oi+GDfDGc1siMAEbE91cJJm2YhZzsFXuCJt01dQwAPG7/YJ2KhrdVzFNHPDnNcJZ7Jt
-         vYJocAY4YmYlna15ExON3aBidsQ9B7UUPzVxfzZiQsKpy88nMrpqpalkHgwRm7/a6U25
-         20b6/gWfVlTLmIAVzDAZoMla0Zmq6B/dE5p5ZNpNm8VwVUsZ574wzy5IIww0aJArfmQm
-         jzGxLyMgHztXK9dM0/HKGlDBnfyJ06DKQfzMm/SMLPrY47Sjo1vOOXGa1Wx56nn1/ryX
-         CrXA==
-X-Forwarded-Encrypted: i=1; AJvYcCWBaIHY1AJZZP0s1qPjuRtMpSca23JBiYRMz9pXOipnEHWySNBUbRPgcq6D98ZORBaAa8LXKEkGKEHk@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgwmGliRn3diXo7xRIddn8M4f08JSTObrEXsZpVeVTD5ejs/qm
-	aLGLrw1fhroVIY0m54DXv2UW6nvLVXn1SFlEQS/pClrP0Y+7vCOgp3i2AVW31Es=
-X-Gm-Gg: ASbGncuiRPnY971fApxwefVlBveZE2qOiaCcBPrLSGr0k0OSUzmt4Ye3IXNkZvEkHSm
-	tRFoQg+L8aJm++gpRuOIWk3fkvnw0Uk+VwWAM1PccfJypZ1whwdOAbaQsbWGsZjwEDqo4oFSgpb
-	S0GXHpJNCl+uR9jtu1ZtBkiE56da6/a9b6faGDjQNpiH1VapoS6Po1bNWzrWZ+oxZV1KZmeFELV
-	8LxUq+2wmy22Ufkn2K+kbJPKYplB0qR3hgLRhpaMC5kxj59J9aqcJlVJrOZQbYDfS9hBcmS79fE
-	DLwDMQZltuLJl5rPKJI6cmqgL1eczgjopJE=
-X-Google-Smtp-Source: AGHT+IE+BEJ0W1/FV/6bBGoeko8VUNX1Wn6kzWtD1nsn+objj+3sZmT3W6zm5x0BZU0by8JZPF6s8Q==
-X-Received: by 2002:a05:651c:b0a:b0:300:29ed:b7c1 with SMTP id 38308e7fff4ca-3044db5b8e5mr622591fa.7.1734471270953;
-        Tue, 17 Dec 2024 13:34:30 -0800 (PST)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3034401d43dsm13850581fa.15.2024.12.17.13.34.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Dec 2024 13:34:29 -0800 (PST)
-Message-ID: <e9dc1a6f-156b-40aa-9209-2010464d54ed@linaro.org>
-Date: Tue, 17 Dec 2024 23:34:20 +0200
+	s=arc-20240116; t=1734472975; c=relaxed/simple;
+	bh=bG8GzNyU8OV2tRULvMNKD/TFcT+BhQkIg7OBoanqriw=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=EsQ/OcUxkw11PmuyJG0HcZWPfjBohf4wIMXcAycNaFfCSO3+3tXa2rNhGpeQuXyokMJkbENUudxxspx4AtX+vb+sOam1gJAxgAlfgbDVYNXhvRne4kzWJzRI3X6WomqcIqMVMSI9zwJv/o8JVurkfKXM9H/ImeZD9WzW23CgD1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=EDauNmcP; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 5/5] arm64: dts: qcom: sdm670: add camss and cci
-To: Richard Acayan <mailingradian@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org
-References: <20241216223019.70155-8-mailingradian@gmail.com>
- <20241216223019.70155-13-mailingradian@gmail.com>
- <565d14e1-1478-4a60-8f70-a76a732cde97@linaro.org> <Z2HeS7mZ976l_Mrw@radian>
-Content-Language: ru-RU
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <Z2HeS7mZ976l_Mrw@radian>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1734472965;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3T0I8Im+xs38OE09Iv+okJqntT08tdxR/DACobP2E3c=;
+	b=EDauNmcPkUwwP8lSPH+M30N+OnKv8Q1PSFsSnr+QaUKHSmPphOQzEhH3iTcqTw97igd+0M
+	yOThkqJBcPPHlNNOrXOguFiij6PHVVqEUSJ6lpyffeCWgwAOtMSXloLfJYn6NGZ2ewojs4
+	YQ9x/hzasx92SPbXhf/2+LvHWRq5GgIv9zh/HMSSlZtVvi6OMYXv5mZY98tdunT1I1TfDM
+	N+7IRG9LAUQtXFDdbHfjlOPGXOArB1P+uDOAczKm7qWXI+7Vw8yyg6/Zs6vz6eQtfnA0yG
+	wC28LJOoOZLiBpcJFz0fQ/d0YaLpg32/qv2hRv5R7A+eCCkBKNq6tC0lCvVSlw==
+Date: Tue, 17 Dec 2024 23:02:43 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Vasily Khoruzhick <anarsoul@gmail.com>, Krzysztof Kozlowski
+ <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai
+ <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+ <samuel@sholland.org>, Michael Turquette <mturquette@baylibre.com>, Stephen
+ Boyd <sboyd@kernel.org>, Maxime Ripard <mripard@kernel.org>, Roman Beranek
+ <me@crly.cz>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: clock: sunxi: Export PLL_VIDEO_2X and
+ PLL_MIPI
+In-Reply-To: <20241217211505.7f9c9e4e@minigeek.lan>
+References: <20241215053639.738890-1-anarsoul@gmail.com>
+ <20241215053639.738890-2-anarsoul@gmail.com>
+ <qbtp4jvkx3r5azufe4k3vtapqpfs54dyjiu4cy5v5wkkzumrzx@vy3xzkfplbue>
+ <CA+E=qVeQ8uHBCeFtw6_2cY3252-YXc6eWrf5_YdeVgbp5LJo5g@mail.gmail.com>
+ <20241217211505.7f9c9e4e@minigeek.lan>
+Message-ID: <d0bf0d9cd2df65dc2e17eb203d56eb13@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 12/17/24 22:25, Richard Acayan wrote:
-> On Tue, Dec 17, 2024 at 09:31:50AM +0200, Vladimir Zapolskiy wrote:
->> Hi Richard.
->>
->> On 12/17/24 00:30, Richard Acayan wrote:
->>> Add the camera subsystem and CCI used to interface with cameras on the
->>> Snapdragon 670.
->>>
->>> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
->>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>> ---
->>>    arch/arm64/boot/dts/qcom/sdm670.dtsi | 185 +++++++++++++++++++++++++++
->>>    1 file changed, 185 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
->>> index 328096b91126..d4e1251ada04 100644
->>> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
->>> @@ -6,6 +6,7 @@
->>>     * Copyright (c) 2022, Richard Acayan. All rights reserved.
->>>     */
->>> +#include <dt-bindings/clock/qcom,camcc-sdm845.h>
->>>    #include <dt-bindings/clock/qcom,dispcc-sdm845.h>
->>>    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
->>>    #include <dt-bindings/clock/qcom,rpmh.h>
->>> @@ -1168,6 +1169,34 @@ tlmm: pinctrl@3400000 {
->>>    			gpio-ranges = <&tlmm 0 0 151>;
->>>    			wakeup-parent = <&pdc>;
->>> +			cci0_default: cci0-default-state {
->>> +				pins = "gpio17", "gpio18";
->>> +				function = "cci_i2c";
->>> +				drive-strength = <2>;
->>> +				bias-pull-up;
->>> +			};
->>> +
->>> +			cci0_sleep: cci0-sleep-state {
->>> +				pins = "gpio17", "gpio18";
->>> +				function = "cci_i2c";
->>> +				drive-strength = <2>;
->>> +				bias-pull-down;
->>> +			};
->>> +
->>> +			cci1_default: cci1-default-state {
->>> +				pins = "gpio19", "gpio20";
->>> +				function = "cci_i2c";
->>> +				drive-strength = <2>;
->>> +				bias-pull-up;
->>> +			};
->>> +
->>> +			cci1_sleep: cci1-sleep-state {
->>> +				pins = "gpio19", "gpio20";
->>> +				function = "cci_i2c";
->>> +				drive-strength = <2>;
->>> +				bias-pull-down;
->>> +			};
->>> +
->>>    			qup_i2c0_default: qup-i2c0-default-state {
->>>    				pins = "gpio0", "gpio1";
->>>    				function = "qup0";
->>> @@ -1400,6 +1429,162 @@ spmi_bus: spmi@c440000 {
->>>    			#interrupt-cells = <4>;
->>>    		};
->>> +		cci: cci@ac4a000 {
->>> +			compatible = "qcom,sdm670-cci", "qcom,msm8996-cci";
->>> +			#address-cells = <1>;
->>> +			#size-cells = <0>;
->>> +
->>> +			reg = <0 0x0ac4a000 0 0x4000>;
->>> +			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
->>> +			power-domains = <&camcc TITAN_TOP_GDSC>;
->>> +
->>> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
->>> +				 <&camcc CAM_CC_SOC_AHB_CLK>,
->>> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
->>> +				 <&camcc CAM_CC_CCI_CLK>;
->>> +			clock-names = "camnoc_axi",
->>> +				      "soc_ahb",
->>> +				      "cpas_ahb",
->>> +				      "cci";
->>> +
->>> +			pinctrl-names = "default", "sleep";
->>> +			pinctrl-0 = <&cci0_default &cci1_default>;
->>> +			pinctrl-1 = <&cci0_sleep &cci1_sleep>;
->>> +
->>> +			status = "disabled";
->>> +
->>> +			cci_i2c0: i2c-bus@0 {
->>> +				reg = <0>;
->>> +				clock-frequency = <1000000>;
->>> +				#address-cells = <1>;
->>> +				#size-cells = <0>;
->>> +			};
->>> +
->>> +			cci_i2c1: i2c-bus@1 {
->>> +				reg = <1>;
->>> +				clock-frequency = <1000000>;
->>> +				#address-cells = <1>;
->>> +				#size-cells = <0>;
->>> +			};
->>> +		};
->>> +
->>> +		camss: camera-controller@acb3000 {
->>
->> Wasn't it agreed recently to have 'isp' as a generic device name for CAMSS IP?
-> 
-> Yeah, will change.
-> 
->>
->>> +			compatible = "qcom,sdm670-camss";
->>> +			reg = <0 0x0acb3000 0 0x1000>,
->>> +			      <0 0x0acba000 0 0x1000>,
->>> +			      <0 0x0acc8000 0 0x1000>,
->>> +			      <0 0x0ac65000 0 0x1000>,
->>> +			      <0 0x0ac66000 0 0x1000>,
->>> +			      <0 0x0ac67000 0 0x1000>,
->>> +			      <0 0x0acaf000 0 0x4000>,
->>> +			      <0 0x0acb6000 0 0x4000>,
->>> +			      <0 0x0acc4000 0 0x4000>;
->>> +			reg-names = "csid0",
->>> +				    "csid1",
->>> +				    "csid2",
->>> +				    "csiphy0",
->>> +				    "csiphy1",
->>> +				    "csiphy2",
->>> +				    "vfe0",
->>> +				    "vfe1",
->>> +				    "vfe_lite";
->>> +
->>> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
->>> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
->>> +				 <&camcc CAM_CC_IFE_0_CSID_CLK>,
->>> +				 <&camcc CAM_CC_IFE_1_CSID_CLK>,
->>> +				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>,
->>> +				 <&camcc CAM_CC_CSIPHY0_CLK>,
->>> +				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
->>> +				 <&camcc CAM_CC_CSIPHY1_CLK>,
->>> +				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
->>> +				 <&camcc CAM_CC_CSIPHY2_CLK>,
->>> +				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
->>> +				 <&gcc GCC_CAMERA_AHB_CLK>,
->>> +				 <&gcc GCC_CAMERA_AXI_CLK>,
->>> +				 <&camcc CAM_CC_SOC_AHB_CLK>,
->>> +				 <&camcc CAM_CC_IFE_0_CLK>,
->>> +				 <&camcc CAM_CC_IFE_0_AXI_CLK>,
->>> +				 <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
->>> +				 <&camcc CAM_CC_IFE_1_CLK>,
->>> +				 <&camcc CAM_CC_IFE_1_AXI_CLK>,
->>> +				 <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
->>> +				 <&camcc CAM_CC_IFE_LITE_CLK>,
->>> +				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>;
->>> +			clock-names = "camnoc_axi",
->>> +				      "cpas_ahb",
->>> +				      "csi0",
->>> +				      "csi1",
->>> +				      "csi2",
->>> +				      "csiphy0",
->>> +				      "csiphy0_timer",
->>> +				      "csiphy1",
->>> +				      "csiphy1_timer",
->>> +				      "csiphy2",
->>> +				      "csiphy2_timer",
->>> +				      "gcc_camera_ahb",
->>> +				      "gcc_camera_axi",
->>> +				      "soc_ahb",
->>> +				      "vfe0",
->>> +				      "vfe0_axi",
->>> +				      "vfe0_cphy_rx",
->>> +				      "vfe1",
->>> +				      "vfe1_axi",
->>> +				      "vfe1_cphy_rx",
->>> +				      "vfe_lite",
->>> +				      "vfe_lite_cphy_rx";
->>> +
->>> +			interrupts = <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
->>> +				     <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
->>> +				     <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
->>> +				     <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
->>> +				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
->>> +				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
->>> +				     <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
->>> +				     <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
->>> +				     <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>;
->>> +			interrupt-names = "csid0",
->>> +					  "csid1",
->>> +					  "csid2",
->>> +					  "csiphy0",
->>> +					  "csiphy1",
->>> +					  "csiphy2",
->>> +					  "vfe0",
->>> +					  "vfe1",
->>> +					  "vfe_lite";
->>> +
->>> +			iommus = <&apps_smmu 0x808 0x0>,
->>> +				 <&apps_smmu 0x810 0x8>,
->>> +				 <&apps_smmu 0xc08 0x0>,
->>> +				 <&apps_smmu 0xc10 0x8>;
->>> +
->>> +			power-domains = <&camcc IFE_0_GDSC>,
->>> +					<&camcc IFE_1_GDSC>,
->>> +					<&camcc TITAN_TOP_GDSC>;
->>> +			power-domain-names = "ife0",
->>> +					     "ife1",
->>> +					     "top";
->>> +
->>> +			status = "disabled";
->>> +
->>> +			ports {
->>> +				#address-cells = <1>;
->>> +				#size-cells = <0>;
->>> +
->>> +				camss_port0: port@0 {
->>> +					reg = <0>;
->>> +				};
->>> +
->>> +				camss_port1: port@1 {
->>> +					reg = <1>;
->>> +				};
->>> +
->>> +				camss_port2: port@2 {
->>
->> Likely labels to ports are excessive here, please remove them.
-> 
-> How would you imagine connecting a camera to the ports, then? For MDSS,
-> there's a label for the endpoint (mdss_dsi0_out) which the device DTS
-> can then reference:
-> 
-> 	&mdss_dsi0_out {
-> 		remote-endpoint = <&panel_in>;
-> 		data-lanes = <0 1 2 3>;
-> 	};
-> 
-> For CAMSS, the port labels would be used like so:
-> 
-> 	&camss_port1 {
-> 		camss_endpoint1: endpoint {
-> 			clock-lanes = <7>;
-> 			data-lanes = <0 1 2 3>;
-> 			remote-endpoint = <&cam_front_endpoint>;
-> 		};
-> 	};
-> 
-> Without the labels, the connection might look something like:
-> 
+Hello all,
 
-Even if you insist on moving endpoints out of &camss, then why do
-you add port labels? Unavoidably you do have endpoint labels, so
-it's non-obvious why the version above is better than the next one:
-
-	&camss_endpoint1 {
-		clock-lanes = <7>;
-		data-lanes = <0 1 2 3>;
-		remote-endpoint = <&cam_front_endpoint>;
-	};
-
-Minus two lines of code, minus one label. Port labels are not needed.
-
-> 	&camss {
-> 		status = "okay";
+On 2024-12-17 22:15, Andre Przywara wrote:
+> On Tue, 17 Dec 2024 10:00:45 -0800
+> Vasily Khoruzhick <anarsoul@gmail.com> wrote:
+>> On Mon, Dec 16, 2024 at 11:33 PM Krzysztof Kozlowski <krzk@kernel.org> 
+>> wrote:
+>> >
+>> > On Sat, Dec 14, 2024 at 09:34:57PM -0800, Vasily Khoruzhick wrote:
+>> > > These will be used to explicitly select TCON0 clock parent in dts
+>> > >
+>> > > Fixes: ca1170b69968 ("clk: sunxi-ng: a64: force select PLL_MIPI in TCON0 mux")
+>> > > Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
+>> > > ---
+>> > >  drivers/clk/sunxi-ng/ccu-sun50i-a64.h      | 2 --
+>> > >  include/dt-bindings/clock/sun50i-a64-ccu.h | 2 +
+>> 
+>> > You cannot combine these changes.
+>> 
+>> The patch basically moves defines out from ccu-sun50i-a64.h to
+>> sun50i-a64-ccu.h. How do I split the change without introducing
+>> compilation failure?
 > 
-> 		// Modification of existing /soc/isp@acb3000/ports node
-> 		ports {
-> 			// Modification of existing /soc/isp@acb3000/ports/port@1 node
-> 			port@1 {
-> 				// New node
-> 				camss_endpoint1: endpoint {
-> 					clock-lanes = <7>;
-> 					data-lanes = <0 1 2 3>;
-> 					remote-endpoint = <&cam_front_endpoint>;
-> 				};
-> 			};
-> 		};
-> 	};
-> 
-> which I believe is not preferred.
+> You can just have the binding part first, adding the (same) definition
+> to the binding headers. As long as the #define's are not conflicting,
+> this is fine.
+> Then remove the now redundant definitions in the kernel headers, with a
+> subsequent patch.
 
-Well, that's exactly how it's done right at the moment, in other words
-it was preferred every time in the past.
+Yes, that would be a way to make it formally correct, but also much
+less readable and understandable later, as part of the source code
+repository.  FWIW, I find this to be an example of the form being
+more important than the actual function.
 
---
-Best wishes,
-Vladimir
+>> > Please run scripts/checkpatch.pl and fix reported warnings. Then please
+>> > run 'scripts/checkpatch.pl --strict' and (probably) fix more warnings.
+>> > Some warnings can be ignored, especially from --strict run, but the code
+>> > here looks like it needs a fix. Feel free to get in touch if the warning
+>> > is not clear.
+>> 
+>> Yeah, it is not clear what do you want me to do, assuming the previous
+>> similar change to sun50i-a64-ccu.h did essentially the same, see
+>> 71b597ef5d46a326fb0d5cbfc1c6ff1d73cdc7f9
 
