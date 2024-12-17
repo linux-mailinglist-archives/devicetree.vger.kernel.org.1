@@ -1,106 +1,95 @@
-Return-Path: <devicetree+bounces-131856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C2B9F4C5A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:33:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D75B89F4C76
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:37:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C79A0171612
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:27:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 633D51893346
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:28:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C84E01F4262;
-	Tue, 17 Dec 2024 13:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4511F3D49;
+	Tue, 17 Dec 2024 13:28:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bz1Jffin"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eyi0Dl5b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 937431F37C6;
-	Tue, 17 Dec 2024 13:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 636DB16ABC6;
+	Tue, 17 Dec 2024 13:28:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734442047; cv=none; b=W/JRhWKs1NLqKOIvnCgVKFNfxTxFJEMUhZ7iPxs5ZHfPMTxrMZLaPJBq5Zctn1rDMazoQRL64XdDvUPTPXsN54+M5dl5fWdhBPMLkI9rll77xLeWK+M5fGYzIc2QMZZjQkqG64YVywhDQFAN4lveUDN5VmemmQEm0NHcYZfcRKs=
+	t=1734442114; cv=none; b=q+w/zpcr4suDnlgoBxvCF3Em8TTh0o7S4GNFSWjcHYW1JqaVOOiBh9cfN3pJxwPJNQRqHw5DKzGDFFsILWeXtg4J7qsmX1cG6EHHLYsva2gutqMVMmnleqmDUWpypx4kJgxz7iUWN7PhbFul1/FgHte1DwlBJNzrVbk0cMkUDjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734442047; c=relaxed/simple;
-	bh=2GaD3sMPebMUphWDx5huB7scIRnQSIGcV+KEy7uN5qg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=KNsUUDxEIG3mY+d39zcyfRo64dRE4eWUULvwlF/vs+9ja1/3oGXGxCz9OaZD7gyPruV8HYDZuQUF6NxDjlLvTcmXxAmxydEvq7hlSGreKv1/6IVAnVqbMp2cSyZLNyIzfaUpiKsH6IF3XyCwdHxHJOWSjCmgJDruqyMOWW49P4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bz1Jffin; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EF8FC4CED3;
-	Tue, 17 Dec 2024 13:27:24 +0000 (UTC)
+	s=arc-20240116; t=1734442114; c=relaxed/simple;
+	bh=soBEwUKp/TZ/473ZrdtHyQgtSVUCeX0FYO1MpzpREcE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kvimk0uVSqU4rH9U8PZjxe8KVUIiViAgIfCEJkZUHSI/nUqu7KUqy/Vg0jJQoOII/8mYa/tGQURC2GSuCkZtHLS/1QGSDFCVmA9mG9zRZzQIHzVADOaaKeW+KdQwWs7pl2DclzjX44Cmd8Owhej1AmZ8wsgkyEOYviZ5mO6aCVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eyi0Dl5b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E987C4CED4;
+	Tue, 17 Dec 2024 13:28:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734442047;
-	bh=2GaD3sMPebMUphWDx5huB7scIRnQSIGcV+KEy7uN5qg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=bz1Jffinq0ThMU8TkWhB67W4ebfuh2N4+xhVCEFd+zULQpoQGcLqlnjqPaWuNJAZ5
-	 6sqzz2JrL5qdjzOq2fqk73zMAwCC+AoZfHgz7YPvD8l64H3VN1ONQ7kVcEMvrf2EU3
-	 DbVaduFy5jd+3YyHNVoy68lA90uBsJh8+p9Yh1xhFigAxcDo5K3dYnEkBcpQlRDg/v
-	 ZfXeEL2hsnvF3XBwWKbD35ZWFgNI+cThuEsyAr5PTIeShXDtbQNH5jPjthsnSWyUvL
-	 MxKWQSHIv3lHCj97qHE0/v4KlUdMFL0Q132f8gjyYwM8c2yQSnk7++b4eUfwON5Jcc
-	 zu6MUuIN12Wug==
-From: Mark Brown <broonie@kernel.org>
-To: konradybcio@kernel.org, andersson@kernel.org, 
- srinivas.kandagatla@linaro.org, Alexey Klimov <alexey.klimov@linaro.org>
-Cc: tiwai@suse.com, lgirdwood@gmail.com, perex@perex.cz, robh@kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, dmitry.baryshkov@linaro.org, 
- linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20241205023344.2232529-1-alexey.klimov@linaro.org>
-References: <20241205023344.2232529-1-alexey.klimov@linaro.org>
-Subject: Re: (subset) [PATCH v1 0/3] db845c/rb3: add i2s playback support
-Message-Id: <173444204405.31585.10764828283359007380.b4-ty@kernel.org>
-Date: Tue, 17 Dec 2024 13:27:24 +0000
+	s=k20201202; t=1734442114;
+	bh=soBEwUKp/TZ/473ZrdtHyQgtSVUCeX0FYO1MpzpREcE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eyi0Dl5bg4YLGUgPvCnQwA1Obu/Zx5FvkT/OvNER7yr+lDynNdVytwWprQF8YWUVT
+	 t+f+OANp2f1mOniOhEmLvLeT9Z7PDmeSkdZutOTayk6wIM6HNTsCHi3LV/EUDsNsfM
+	 O6dbG/TONO/l5cdwcqVufr/GWPQWxQScnNX8sJubsWGjq41fhswFbtk0wt0XEme5eL
+	 2KFNZFgG17iq4ywH+hDfy9Cx1zVgFnnpV8YoXTjMAVdeEu4T/ICfvWIa08QMROajiK
+	 0vFVWkdINm8BkJO+DaVWgk5tD5RfyLBIuNOp1V+NsMhtc057qd0wwcjVfsw7xEYL4g
+	 acjfey0V6nz9w==
+Date: Tue, 17 Dec 2024 07:28:32 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Lee Jones <lee@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, netdev@vger.kernel.org,
+	Heiner Kallweit <hkallweit1@gmail.com>, upstream@airoha.com,
+	devicetree@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	linux-mediatek@lists.infradead.org,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [net-next PATCH v11 2/9] dt-bindings: net: Document support for
+ Airoha AN8855 Switch Virtual MDIO
+Message-ID: <173444211136.1418557.12469782801691992405.robh@kernel.org>
+References: <20241209134459.27110-1-ansuelsmth@gmail.com>
+ <20241209134459.27110-3-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-9b746
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241209134459.27110-3-ansuelsmth@gmail.com>
 
-On Thu, 05 Dec 2024 02:33:41 +0000, Alexey Klimov wrote:
-> There are i2s signals provided in low-speed connector on such boards
-> as required by 96boards spec. Looks like it is possible to actually
-> playback something via these pins after adding missing parts here
-> and there.
+
+On Mon, 09 Dec 2024 14:44:19 +0100, Christian Marangi wrote:
+> Document support for Airoha AN8855 Virtual MDIO Passtrough. This is needed
+> as AN8855 require special handling as the same address on the MDIO bus is
+> shared for both Switch and PHY and special handling for the page
+> configuration is needed to switch accessing to Switch address space
+> or PHY.
 > 
-> I tested simple widely available cheap DACs like UDA1334 and PCM5102A
-> and they works just fine without need for mclk. I guess any DAC that
-> can handle 48 kHz and 16bit will do.
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/net/airoha,an8855-mdio.yaml      | 56 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/airoha,an8855-mdio.yaml
 > 
-> [...]
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[2/3] ASoC: qcom: sdm845: add handling of secondary MI2S clock
-      commit: 8bfb66c75cdace542dabe87841152614fd5b8d91
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
