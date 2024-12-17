@@ -1,141 +1,96 @@
-Return-Path: <devicetree+bounces-131634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36B0E9F439C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 07:24:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09D5A9F439D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 07:25:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74F33168E11
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 06:24:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DCAD168DBE
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 06:25:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2AF14B08E;
-	Tue, 17 Dec 2024 06:24:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC083158535;
+	Tue, 17 Dec 2024 06:25:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HkTQ8Y0x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OcqMZEV7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964A88BF8
-	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 06:24:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B92C08BF8;
+	Tue, 17 Dec 2024 06:25:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734416660; cv=none; b=bz4tVW+olbCSvjCcpN7p/kASvD/nfMX9+Ed46tGCN9rfuzq9YnDwnwdSEUyYXbbDqikYP0aWgfVfmYOcqZKsEeXR7dzEmseDFyehnyTAEt/ElSjMCT4Cxf0F2YNPrR0pgyGUeHrvI+GCb1wg4HPOH+5qa0WBlGGl2E8JuujV+WU=
+	t=1734416731; cv=none; b=om7dGp3gR/GzQHXotsKEz6TIJ/4o4khIcd+re+k0ap5lDWipCCynAGHaPKwXvNqylVt7vFU1yXK4FxaiMpZDktQGMwuar7Uulgi0y6DfOCqXCLSVZZLgv9ygCHRozT6bEkYupsRfWqDmFoUzC7jeqdJTeAZ4V1HOdbsz/Kiwh4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734416660; c=relaxed/simple;
-	bh=HP7VYFTUeo1ynBOsvM44SGKPU3G5H8agOi7Q5+Vyjaw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bjfmKbZQbReTJog0Dfd5mdw6uIwP4/0Jn3fhkTI4g1iIexNZ+93jqP2sL6MEa5ulAjrjQtCsO+a9KmKAnq3wfMcIuvJRJVKzJcjoXnbpnyhDzrB0sS2TFA+rPJDn7G8bqsM8eHuc5aIoCyI8e8ZXRy0tvZ09usevbHeudT59coM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HkTQ8Y0x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1788C4CED3;
-	Tue, 17 Dec 2024 06:24:17 +0000 (UTC)
+	s=arc-20240116; t=1734416731; c=relaxed/simple;
+	bh=Y6LbvDJlmf+0mpaA5iDftTqoXnOt33TJ6zvRdZBfgtA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KGx9m3ufo0y3b8nUoXvnie3SgBI1wLNiR1j1aeNt1Gee47DpPAqPx+sk7IO/MY4puliWfbP3RlhIo/ObwiX7SFlG/76sDf2aNRaRt5LqMWS9X0ce5tosuKOmk+DcjWnv1thTFqd29tXCtyw727D2jGG6W1fnx0KtRUS+fz8xqn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OcqMZEV7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72C53C4CED3;
+	Tue, 17 Dec 2024 06:25:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734416660;
-	bh=HP7VYFTUeo1ynBOsvM44SGKPU3G5H8agOi7Q5+Vyjaw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HkTQ8Y0xwxFUJ1CWNrfNRVo8M3H5fZIfqjX/Kc+Rs7tyQG//BHkk61e5buGVyxATj
-	 bRBeymM52G1jRfQduVr60eOE27qcvS8OO2N5vALAxcjiFmu6p8uQI15EIEAM04e78W
-	 ILsVw2mpmkxBRWfLs3u7NcrPeBSq6yIqY2rdzrjASK7uTJ+UJimXEtDRPZwPtwGoWI
-	 B8+9A8PS46rbccJbOkx/EFxO3HjGByy7+AkLDaRDBzdALxz/s2jC0z/Q+pkupB4BFb
-	 rg4ZvnT2CBKQSbPCfYmj00fKTy+hQvoGtwJJ+RvbiIB2LDCKmgX7EUcovaM/6/m/49
-	 rLOM5sO0gKS5Q==
-Message-ID: <3313fc80-73b9-4063-8076-64e65c5d5921@kernel.org>
-Date: Tue, 17 Dec 2024 07:24:15 +0100
+	s=k20201202; t=1734416731;
+	bh=Y6LbvDJlmf+0mpaA5iDftTqoXnOt33TJ6zvRdZBfgtA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OcqMZEV7VpDyC1RWlXRgQf9VWReS1mdMJ0IxlMX7MK1IWNHceSz+C3pHedYXfTPDC
+	 qPxol14HF9NCUOtx5lhD2D+GGnNhyRYlBxX/Db7TCJtkIuqIAMyo7XJQiL7pK+J07W
+	 GDEoIfTF+eypW005FkSaapP28nYus3yxLmrxxDx8y0DuSV9T3GdPvIp8l6Fb5gSKJq
+	 6F7ujBjW3U+M6NhkTqtTYTf0WzAFeYF40Ab2Dw2HBPzMdKbCIiFaIBnVlEZehW3EP5
+	 iaoxRZwbllWjcc91SEEM+RRJZ29kEDjUD3QXIMr0WUfyHvc9WOrSCxIovjOx4gU3KA
+	 WgwBG+FNSE4CQ==
+Date: Tue, 17 Dec 2024 07:25:28 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>, 
+	Jagan Teki <jagan@amarulasolutions.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, dri-devel@lists.freedesktop.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-clk@vger.kernel.org, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Subject: Re: [PATCH v5 3/7] dt-bindings: display: renesas,du: Add missing
+ constraints
+Message-ID: <jn5fsjg5zufi2c3u3tvpzoafrshgrze67e5x4iyhbyzf7opwbp@6i5vqdgeor3l>
+References: <20241217-rcar-gh-dsi-v5-0-e77421093c05@ideasonboard.com>
+ <20241217-rcar-gh-dsi-v5-3-e77421093c05@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 11/12] arm64: dts: rockchip: Fix proparties for pmic
- regulators for Radxa ROCK 5C
-To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dsimic@manjaro.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20241216113052.15696-1-naoki@radxa.com>
- <20241216113052.15696-12-naoki@radxa.com>
- <0b6a7a7a-ff5a-4897-a283-6bf582dd1d79@kernel.org>
- <DC42478EC0DFB00A+6e374774-07d8-493c-9f2f-e7106d1f2d61@radxa.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <DC42478EC0DFB00A+6e374774-07d8-493c-9f2f-e7106d1f2d61@radxa.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241217-rcar-gh-dsi-v5-3-e77421093c05@ideasonboard.com>
 
-On 17/12/2024 01:43, FUKAUMI Naoki wrote:
-> On 12/16/24 22:41, Krzysztof Kozlowski wrote:
->> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
->>> Fix proparties for dcdc-reg7 and nldo-reg3 regulators to match with
->>
->>
->>
->> You have so many typos in almost each commit msg. Here both in subject
->> and commit msg.
->>
->> Run spell check before you send to the lists. Don't expect the reviewers
->> to be your computer tools.
+On Tue, Dec 17, 2024 at 07:31:37AM +0200, Tomi Valkeinen wrote:
+> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
 > 
-> Sorry for my poor English. I'll check it next time.
-
-I am not pointing out English. I am pointing out not using standard
-tool, spellcheck, to fix issues in effortless way.
-
+> The binding is missing maxItems for all renesas,cmms and renesas,vsps
+> properties. As the amount of cmms or vsps is always a fixed amount, set
+> the maxItems to match the minItems.
 > 
->> Explain what is being fixed here. Why would you prefer to match with
->> vendor kernel?
+> Also add the minItems and maxItems to the top level properties.
 > 
-> Not my preference, but the only reference.
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> ---
+>  Documentation/devicetree/bindings/display/renesas,du.yaml | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
 
-Then why the reference is correct? Provide some arguments why this
-should be changed to the "reference" and not the "reference" fixed.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
+
 
