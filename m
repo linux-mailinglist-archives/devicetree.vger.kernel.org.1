@@ -1,65 +1,56 @@
-Return-Path: <devicetree+bounces-132043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EAD09F5626
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:28:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A839B9F5651
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:33:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F32E77A3EED
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:27:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8ECDA7A37A5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B5741F8ACA;
-	Tue, 17 Dec 2024 18:27:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9340B1FBEAA;
+	Tue, 17 Dec 2024 18:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jMHOyiam"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YKR/273n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49621F893B;
-	Tue, 17 Dec 2024 18:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4C11FBE9E;
+	Tue, 17 Dec 2024 18:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734460044; cv=none; b=QPq74wOu4L8oLmpM7L5RgxQsYTVOqm1dP7R4Y+W42Ra6u/VwK3+Btn5KO/xx30vRrbprz8xcqaeyvZYb27bNmvvM19TgdAV6NrejaIzHc5e3jKz0a2j1VLKdiHbT7hm6nMTiD4Mi9ZUhhXCez5L3GfV/DIqKv9RMikOqHbhHVBk=
+	t=1734460215; cv=none; b=j2KE5heZyeXxzs3gFpm3z69/Wd+MtDKUFHRH8crPggug7uq3XrO+fO0u2eaPm+oZNFwL2EYluoE6ZwIyhcIkx7cy3pbtiTGpHvOVZQPyZI+bHrlrZ+Wxt3Uit4VUOKTYP4jF498sjyWf50sbfcP6yo7Fjhnt5d0AUO3xNotrToY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734460044; c=relaxed/simple;
-	bh=RB/vl1xZENeqYUPqxa8Gv9J0tIN+fUFldgQCXs2ENbk=;
+	s=arc-20240116; t=1734460215; c=relaxed/simple;
+	bh=d9FIQqibd8hQTaOoI6vJEWT2RhssOM0ePn9FFYhZKno=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PBvVQlsz+c1eyceqV6ZT3eIzT2Ay7+/bm9BUkAZghc63lrkgLx9KzD+52ryKn2W5ct6w53gCKTvzTfzsv9b3OuQSE8Ji6c694+qIrWWxAG3/QRLzHGXn1SUWo4a6ptoCRUnrqKlY6WXbc9Khi9BQSWyN440XlD2stSD23BYJl0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jMHOyiam; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D930C4CED7;
-	Tue, 17 Dec 2024 18:27:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QFORgeExkLI6wmJnvK0pRLXoEqnaliXLCSMAiV/hGsQYs/dkV8DyRP0sW2Zzaq8C4v5tBYP0dIW2XflXu17/g8cp0d0taW3MqTZdJ9fQ6AJbAc+IiKVTvnkTOpWo2zN+26LqHulItaEaGo7jKMj0CSVKrdzo3/4GS/yED/gQUfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YKR/273n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07856C4CED3;
+	Tue, 17 Dec 2024 18:30:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734460044;
-	bh=RB/vl1xZENeqYUPqxa8Gv9J0tIN+fUFldgQCXs2ENbk=;
+	s=k20201202; t=1734460215;
+	bh=d9FIQqibd8hQTaOoI6vJEWT2RhssOM0ePn9FFYhZKno=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jMHOyiam9cF06gX0sD/20gWYwACF7ZcYC4bAxANmYK5U8cBWBNnXUgKQqzk8W6fEM
-	 HOuzdxFXxsiUbOleKLBK64JAqGfL2OvWMnV1EYDYAH73TP09xFrixmB8hzmyJNQCkO
-	 /a24rjx9xtANDjlvuf6CfBqEpVD367G1tx9Rt+ZN7nhp61wp+QSJ8bQIQFhZ7S1Ueq
-	 szjnRe/cluvX8+2k26fvudnR2ltiUNlMrZD+ZOu9Yg4w5ueE3vGsOXDiaQs+PEbD4B
-	 LWMnhTHdlJyJmIlU9rvt6iidldoDVtPxwiS7/uac2BGtwHD9PAaPpld1lRN5XWfiZw
-	 4Y8cNp6Vdvk5Q==
-Date: Tue, 17 Dec 2024 18:27:19 +0000
+	b=YKR/273nO267majvSnOBUafH+uSiym8oBdkm+Z9Xx2Hx6xMYnDYY6lIDiNryqw1CS
+	 UJgLDlCCbC9FLKU/jxhT8/aVH0S6fopXVCY+p+FjUMoKrm9taX8qVfAt75bZ0YFhw/
+	 yDbdgx+y+uUXOcqSaKWTNTe7wrSGIIBNIGCWQCRjMP7MlR/EMlmMxDcm93RArKLcIF
+	 jo4PBX+SL2jZcR4XODxYGP72yVekDZ++GxPoMed0oLRpCMwZtFXJy1keez3T2gP1vx
+	 Pdb4zsbyZm7HO27lztJbYJLjf/Y5Xy/CCd6j1QcGPB9c9gnRl0K5x1LAbaF2qSUIng
+	 obecWszcUmUaA==
+Date: Tue, 17 Dec 2024 18:30:11 +0000
 From: Conor Dooley <conor@kernel.org>
-To: David Heidelberg <david@ixit.cz>
-Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Umang Jain <umang.jain@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: media: imx283: Describe sensor address
- using the reg property
-Message-ID: <20241217-strongly-twiddle-b9e1ade32570@spud>
-References: <20241217032821.1712916-1-david@ixit.cz>
- <20241217-moving-rubble-712bba91af4d@spud>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] ASoC: dt-bindings: renesas,rsnd: remove
+ post-init-providers property
+Message-ID: <20241217-armless-unstable-7165d81cb35d@spud>
+References: <877c7zno1n.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,37 +58,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tqzicyYakCoVLuvO"
+	protocol="application/pgp-signature"; boundary="UALhVic58E0izIhY"
 Content-Disposition: inline
-In-Reply-To: <20241217-moving-rubble-712bba91af4d@spud>
+In-Reply-To: <877c7zno1n.wl-kuninori.morimoto.gx@renesas.com>
 
 
---tqzicyYakCoVLuvO
+--UALhVic58E0izIhY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 17, 2024 at 06:25:47PM +0000, Conor Dooley wrote:
-> On Mon, Dec 16, 2024 at 10:28:17PM -0500, David Heidelberg wrote:
-> > Use the reg property instead of text in the description.
-> >=20
-> > Signed-off-by: David Heidelberg <david@ixit.cz>
+On Tue, Dec 17, 2024 at 12:36:21AM +0000, Kuninori Morimoto wrote:
+> commit f8da001ae7a ("ASoC: audio-graph-card2: Purge absent supplies for
+> device tree nodes") marks multi/dpcm/c2c nodes as no suppliers. We no
+> longer need to use post-init-providers property to break fw_devlink cycle
+> (And no one is using it yet). Let's remove it.
 >=20
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Fixes: a2187d0dadf ("ASoC: dt-bindings: renesas,rsnd: add post-init-provi=
+ders property")
 
-Heh, I was super confused as to why I couldn't find this in patchwork
-but then realised Krzk had already acked it, d'oh.=20
+I'm not sure that this fixes tag is appropriate. I don't think this is a
+fix for the cited commit, it is just now not required. If this were to
+get backported, wouldn't stable be broken since the supply purging
+commit doesn't appear to have a Fixes: tag or a CC: stable?
 
---tqzicyYakCoVLuvO
+Thanks,
+Conor.
+
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+> v1 -> v2
+> 	- add missing DT maintainers
+> 	- Tidyup the git-log
+>=20
+>  Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 6 ------
+>  1 file changed, 6 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/=
+Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> index 6d0d1514cd421..e8a2acb926460 100644
+> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> @@ -112,12 +112,6 @@ properties:
+>      description: List of necessary clock names.
+>      # details are defined below
+> =20
+> -  post-init-providers:
+> -    description: At least if rsnd is using DPCM connection on Audio-Grap=
+h-Card2,
+> -      fw_devlink might doesn't have enough information to break the cycl=
+e. rsnd
+> -      driver will not be probed in such case. Same problem might occur w=
+ith
+> -      Multi-CPU/Codec or Codec2Codec.
+> -
+>    # ports is below
+>    port:
+>      $ref: audio-graph-port.yaml#/definitions/port-base
+> --=20
+> 2.43.0
+>=20
+>=20
+>=20
+
+--UALhVic58E0izIhY
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2HChwAKCRB4tDGHoIJi
-0kFoAQCOhVUZvn6NqTMY+RR2X1uEyOAU6/iXeUyvpRjegTYoMgEA++gnaSbACMxl
-hhbNIVzB2UIPcvKgT+yVJURaMtryjA4=
-=MDSt
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2HDMwAKCRB4tDGHoIJi
+0ij4AP9BIoNuonXfTxnbviXlHjhnRgVWS2hKH89gCTMbb2pmMgEA+aJJwD5wiUE8
+OApNDU/j1gfAE6FdSvgjPYXRS5khmAQ=
+=ki2B
 -----END PGP SIGNATURE-----
 
---tqzicyYakCoVLuvO--
+--UALhVic58E0izIhY--
 
