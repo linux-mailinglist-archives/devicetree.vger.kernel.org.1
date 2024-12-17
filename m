@@ -1,166 +1,241 @@
-Return-Path: <devicetree+bounces-131906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81BC79F4E66
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 15:52:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 921849F4E6A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 15:53:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 829EB1668A3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:51:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F372189348E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:52:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2838A1F668D;
-	Tue, 17 Dec 2024 14:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E231F755A;
+	Tue, 17 Dec 2024 14:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pha0mVgD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WTAAufxL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 800451F6674
-	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 14:50:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EAB61F63C5
+	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 14:51:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734447045; cv=none; b=YApCWWSUkrS8FlAZBHdeV0/WX8gQcwAQT6z8EJ5DFEOIH6Iw6zjgGu2RFV9W9GoG/sfoApnAaHEGaIHOq0ueZ2sYOMgfml9YW/L11v+JcPDAscwuF2IdLXa00vTnJiPs1g5laU8PJX4Tkxf5gaxM9FxONBZGgQkNN5AmgxMMC1k=
+	t=1734447085; cv=none; b=QjV9tIH6mWxHmF5oCFJqZcOWkHOhj3821CFTbB5NzInLpZX2IMe0OMdEjvSLjnYel5dRjI5SiiDiDhTL8wysN4ebhE3Oe3MrTW94+ET67KQNPSnJwN9ao4BONDOAp+VBYVK/OEzNcvp6nZbZZiOkOeY/zAt1Mzt0jwvkjnmObYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734447045; c=relaxed/simple;
-	bh=ZbUaNb3EeOq38wPTGMjiF7auqJAwjbXnxnlKi2+F84E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lb0R6aIUZA6cf+PXsOIR9QBFTQZLD8NemHyJVGIWZumYu+vD6WqownkLJtOgUCmjZMS8JgemEwIyzWWYSfAlPKixZIrRKPXTWJr4rmI6WPoDGk/en3D6BZEb5RzxBeCjEj4FKhXLNwecqLK4D+GNpZ7++y10fHOpNj5BO1S5sy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pha0mVgD; arc=none smtp.client-ip=209.85.214.178
+	s=arc-20240116; t=1734447085; c=relaxed/simple;
+	bh=iHt3DEjYJD2zOnsRwBQshG58EadYS/b9sYswjmBDDMw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pQPiNUnvHHyEoUkgmrNqXkDra9DQimc+edxHVhqacuwlNhraQW8w8A2uA2+BzVgdJ3VKBnx/D6yx4cW12Z61kPCd5dZ4Vhd79Y0P24BDCSmBM3eST8pg+FmErzG5E7XLGbcOBParkqNKWingqUHD1dFjKjEBYL/OTAJBA/WgcyQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WTAAufxL; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2161eb95317so49766495ad.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 06:50:43 -0800 (PST)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-388cae9eb9fso1882515f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 06:51:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734447043; x=1735051843; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WWlyGLT1JwLt22qsbr4SWZ1DntkrQPILyyQ7U2P+kkY=;
-        b=Pha0mVgD4Rgj/Lyb6LKZ68WnJnpybLlzvYz/Q4ByIioxXTtVCkFcOM5j3NwARZCpsv
-         6OeDaGSaiDzMOqd3Ell1zO7EB7Okkr67AkpqbfSzHnsSHrvNx5DCKGsZZT/8QHC67DYs
-         hV3E+KX1y1gxNSJDDWvrUC7LxZebwHtsI4+LOOlcNjY0Ad3Dc4rwck3l7KZKcwPI8pjX
-         Ctls8em5dBUZ6kizBR3VyVKQMrn/FWOt10UUz7ax6a5VQo+txV5lRElPDJ6nFxqFcEaj
-         QJ7i6Ia9Of0fLUmTiYkIl9lBhW1UXPmqLTWN9+6i5tf60IfLEgOkD/7hnAvmw2f7qlAA
-         hh4Q==
+        d=linaro.org; s=google; t=1734447082; x=1735051882; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7GbXDl8LUFfVMAPVd1mF5EDk6hx6b9at0dYoXeRYVRY=;
+        b=WTAAufxLNm44SVKJlfqBlER4JCnVzzGCbbTTjIzpQSTKS+PRvXxDK4krIsS70HmId2
+         /wKHsmGZ0B8HOsMvmTJtnvMJfJMWHAXv+5qNVerBUCWjH1YyA7EcTZ+qK/9pM1u4HlwD
+         30PRHlL2j4m5f1EljFpSeQUQTpevpENDHMA1lf6eQjZ2zmC33Caj8Hccd2MQqVadmWoy
+         qXDmBgpxmNv5Xv2+ebLHlgI409MT4osZKoW3MwAma2C75HJh8cEeA077rCkOgNDWPDAl
+         iDT29V3L7mZElHZx7HKcauwv7sxwMZBsqv1JoKJJAESCHo8Xjttla3nw5aOTI1n4MSyM
+         M8DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734447043; x=1735051843;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WWlyGLT1JwLt22qsbr4SWZ1DntkrQPILyyQ7U2P+kkY=;
-        b=W8WSh7jJFTyDwu3ofBndmbBJHRZ2iafzfO/sAyr3jCnZ3QTNEnbp2YzKawgAOyCw12
-         nO1XqIJCUuuBaKVFJs7HqUgjvmx9UaVTjo9DzCiVsSh8b8q+I1ptX27SvgMsJgGSltLx
-         AfLeoIqkYns+/ex/YRvkkuzBFrmZVWatTcgGuwVFoy2V12xTHVV58wR5IKfREIn4LKJr
-         Teg6xO8KHcM+edO9MCVmGn7AosMrpSsoVyCUBXuTWjTCPVpGZXP2y+2HzFTHHRWIKkV8
-         kv5aCXmVI9oSMkurHmDG+UbXA4vXq29NcjYGJv9Ql4svuYNM6F0dVzEEimODAw/TWFrI
-         acQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW2efQZnOH3txzT5xlclSzbF2frPCQI0eOgMNduqJDCLQlv2n8CvvMg2tz5tELmgcoGpf9TKNkxc+bZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyncKNMY1R8DbCpA66006UlmdkH8fqcpf+TXi4p+DG/6ZJ44ikO
-	hd6q5TA/9pNH+aoiWqboqvNRxK+Q8wTfDBWCUbc/x2ZViYGj7lMvAyy7dcUCsA==
-X-Gm-Gg: ASbGncsa85s3QU7o6aURCl+N05SMyVSbai8txbYSCxxHAw8aEWGFHe18tcrDTFo1DP3
-	WG/F54U4ClvZxWSuHPaAZ/zD49chor9G/9FTpiqjxhw0xzA6Rjca6PGOYFunbXVhJvYMu7MoW2Z
-	j6NQjW3LdUpelRFiiWhZvGRMRkChNwqWNbGTU3WRFfuB2PUznnZCiUIKBVr0/vEId9NqlNIseOV
-	FaOSZO+lw93NF5rcH3aYGY5VitMuyUionXvwu2Y/z6Jv5bzOAptfL9UDDyttpbkjVUl
-X-Google-Smtp-Source: AGHT+IFDViMZlPC0m+oxxZvBpRPL70m/brWbrYzW/ZKuaCPt2qJLSqTvp50LiJFnWq39M8/NKSm20g==
-X-Received: by 2002:a17:903:234d:b0:215:5240:bb3d with SMTP id d9443c01a7336-21892a416f2mr237981565ad.42.1734447042791;
-        Tue, 17 Dec 2024 06:50:42 -0800 (PST)
-Received: from thinkpad ([117.193.214.60])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1dcc165sm60475035ad.88.2024.12.17.06.50.39
+        d=1e100.net; s=20230601; t=1734447082; x=1735051882;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7GbXDl8LUFfVMAPVd1mF5EDk6hx6b9at0dYoXeRYVRY=;
+        b=lt4dvi/Lc0oWrhwU9AQdYIBjZlt/s82dY4HFWKtwDaHneO9VOpr0fq0u0zpjgBQiIp
+         ODH9FqVN/kkCx5MKMXgIxOMynpzkP1m3Wi62l1hQZCbapfYayLHT9fs/MQrEkdNarkRy
+         QXUf+LsOq1+CyX0YQzSXZ8gp13qdTGfEQn+M05TLk0yGRJ7I1OWT5Rt9rxMO3FGgTeQq
+         LE5wE4pk2ZTyi6M7nMVkmlgL3LhoYHkIbUyVqcC66DqnImYK8PBPzOGSOJfocKRrHpt5
+         PkJupMxo+d9GNm3sLsRckhjr+8Gb032AxIYnrnEPf+So26anScFf+tA9KTy42bX/fFiu
+         Wzaw==
+X-Forwarded-Encrypted: i=1; AJvYcCUuaTWo41I7CogFsNQU66pXipAYZeYmmuq79NO/YprPlEGz+6AHhvY2uAdPPbKvMkOWlEOL7LWDpcts@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgwDiSEJ3Z8BfzlwDy8F5dtMwgWUk0FnTMOO9PGRv3iZGyCVjg
+	XrB87DeSSiBJrd0LebHwp6Evb5SNSavWHqWLUw9nNo33rD5xc1NwPFdkPpo16UY=
+X-Gm-Gg: ASbGncv0MNkhSCkD1QscFAxadnmCsD+Ahijy+uAgyGYZLvoyceDkPrN9oaDIftYVeXE
+	xEMHOS8Gfd87W+P5syBXvx1mLbmqutlBqcCTlEce6LXN0FjkGI8m9i95EDKA6zygS+340wn3NqX
+	/ncK6FjYAsNGgjOY2FHkE6M4iLIL5j2Iwued0ZsOTViYXeGL739iNsXe7/AdGs5z/X+4iKTa/dh
+	EjieV+sr5oeuv5xrlzQkPhL1FSqUCdLbP13SGOKho8q+CBBtwlWN6+KDEGi0jvqfs9rVACQmIQN
+	VA==
+X-Google-Smtp-Source: AGHT+IEyF5JqI6dc+Cr21DWt8VokNuhVRMBamyPiTK82TkRe5pggjl0Bdb/QStuHXSlZxBNPFJKn5w==
+X-Received: by 2002:a05:6000:4609:b0:386:39fd:5ec with SMTP id ffacd0b85a97d-3888e0c15c4mr15483460f8f.57.1734447081862;
+        Tue, 17 Dec 2024 06:51:21 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43636066f51sm118417375e9.22.2024.12.17.06.51.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Dec 2024 06:50:42 -0800 (PST)
-Date: Tue, 17 Dec 2024 20:20:35 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Lukas Wunner <lukas@wunner.de>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Qiang Yu <quic_qianyu@quicinc.com>
-Subject: Re: [PATCH 1/4] PCI/pwrctrl: Move creation of pwrctrl devices to
- pci_scan_device()
-Message-ID: <20241217145035.xqfl4yp3atpgqzth@thinkpad>
-References: <20241210-pci-pwrctrl-slot-v1-0-eae45e488040@linaro.org>
- <20241210-pci-pwrctrl-slot-v1-1-eae45e488040@linaro.org>
- <Z18Pmq7_rK3pvuT4@wunner.de>
- <20241216051521.riyy5radru6rxqhg@thinkpad>
- <Z2F5Oph2o8o_LiZc@wunner.de>
+        Tue, 17 Dec 2024 06:51:21 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v6 0/7] drm/msm: adreno: add support for DDR bandwidth
+ scaling via GMU
+Date: Tue, 17 Dec 2024 15:51:13 +0100
+Message-Id: <20241217-topic-sm8x50-gpu-bw-vote-v6-0-1adaf97e7310@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z2F5Oph2o8o_LiZc@wunner.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOGPYWcC/43OzU7EIBDA8VfZcBbD8FFgT76H8VDK0CXR0kDFN
+ Zu+u+xerGnSePxPMr+ZGymYIxZyPt1IxhpLTFOL7ulEhks/jUijb0044xIABF3SHAdaPsxVMTr
+ On9R90ZoWpEEh4zyg7qUmbX3OGOL1Qb++tb7EsqT8/bhU4T79B1qBMiqc8cJqoXvrXt7j1Of0n
+ PJI7mrlW8keSLxJ0qMz2iGX1uwksZG4OZBEkwz4jg3AgtNiJ8lfiTN1IMkm2U4xD8p7KdROUhs
+ J4EBSTera38EGbRQOf6R1XX8ALnjF2ukBAAA=
+X-Change-ID: 20241113-topic-sm8x50-gpu-bw-vote-f5e022fe7a47
+To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5493;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=iHt3DEjYJD2zOnsRwBQshG58EadYS/b9sYswjmBDDMw=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnYY/llNmmQRE9gWmT3Sf9PjuPLNbFu7nIZyMikhrn
+ tYoF82WJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ2GP5QAKCRB33NvayMhJ0YmuD/
+ 9aO6EoLCqbEdjiWk6zYW1kupo75uv6TYWpJqij3EMM2ArBBu9qawT5pOE12zccFx5dYkcVMrLL5SOA
+ aZd0nufQWdWa3+DwWj5KAnA2i0mxj0arqT8u4kv4bVzPq5R6OpSzbYrM3p6AUW2ZeEFAIy0F3/6DVw
+ Wr0jd/Z0flQfD8AL9uj3bWhc2mLj5LTKHIwILXO+zRjSf0CoCl5a2ivMwE17Syhs6unKbfpEGa7dHn
+ cAMruEIdMKAp/64GwW74gM0birB2Q6GwMQaZOGBBXM921HKrkwJa+RAZFr1VPhYmrRBrsLsIQ1a3bm
+ A7gKem3kZotb8/GK5MAUc2A5AJhb8LGpplnMi+Wh2u9P3MhefUy3TMY4barOxnpLIRNNY2vql5eIw/
+ EfBfK1IB1Ohi0JpJxALuqnqbtcFv76QAWJbfe7TAHzzgj7XJCnjNejkXBXC8O7oAYgE4cE/ap50PFK
+ GoyGYBD9yhzV50bnPVOK0MmE4AtysOPmSK8HoeFxeuaAKn2EtrcwpMaOHb37Dmc6OBomfjvL0nkvAT
+ hGHMv4mQMxfdl0NUM9tSEAS//ov9JtfzkU40clRLcXlAMyDQU5qb5z5/pXZg9QQB3fBYxPH4HL6yT8
+ Slt4QONpZAXEY6LMJHKJj1x7qTY3gkTRyZB/q0StQWOaj5+AZOx2CTvopAZg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Tue, Dec 17, 2024 at 02:14:34PM +0100, Lukas Wunner wrote:
-> On Mon, Dec 16, 2024 at 10:45:21AM +0530, Manivannan Sadhasivam wrote:
-> > On Sun, Dec 15, 2024 at 06:19:22PM +0100, Lukas Wunner wrote:
-> > > On Tue, Dec 10, 2024 at 03:25:24PM +0530, Manivannan Sadhasivam wrote:
-> > > > diff --git a/drivers/pci/pwrctrl/core.c b/drivers/pci/pwrctrl/core.c
-> > > > index 2fb174db91e5..9cc7e2b7f2b5 100644
-> > > > --- a/drivers/pci/pwrctrl/core.c
-> > > > +++ b/drivers/pci/pwrctrl/core.c
-> > > > @@ -44,7 +44,7 @@ static void rescan_work_func(struct work_struct *work)
-> > > >  						   struct pci_pwrctrl, work);
-> > > >  
-> > > >  	pci_lock_rescan_remove();
-> > > > -	pci_rescan_bus(to_pci_dev(pwrctrl->dev->parent)->bus);
-> > > > +	pci_rescan_bus(to_pci_host_bridge(pwrctrl->dev->parent)->bus);
-> > > >  	pci_unlock_rescan_remove();
-> > > >  }
-> > > 
-> > > Remind me, what's the purpose of this?  I'm guessing that it
-> > > recursively creates the platform devices below the newly
-> > > powered up device, is that correct?  If so, is it still
-> > > necessary?  Doesn't the new approach automatically create
-> > > those devices upon their enumeration?
-> > 
-> > If the pwrctrl driver is available at the time of platform device creation,
-> > this is not needed. But if the driver is not available at that time and
-> > probed later, then we need to rescan the bus to enumerate the devices.
-> 
-> I see.  Sounds like this can be made conditional on the caller
-> being a module.  I think you could achieve this with the following
-> in pci_pwrctl_device_set_ready():
-> 
-> -	schedule_work(&pwrctl->work);
-> +	if (is_module_address(_RET_IP_))
-> +		schedule_work(&pwrctl->work);
-> 
-> Though you'd also have to declare pci_pwrctl_device_set_ready()
-> "__attribute__((always_inline))" so that it gets inlined into
-> devm_pci_pwrctl_device_set_ready() and the condition works there
-> as well.
-> 
+The Adreno GPU Management Unit (GMU) can also vote for DDR Bandwidth
+along the Frequency and Power Domain level, but by default we leave the
+OPP core scale the interconnect ddr path.
 
-I'd prefer to skip the rescan if the pwrctrl device is created and let the
-pci_pwrctrl_device_set_ready() initiate rescan once the device is powered on.
-This way, we could avoid scanning for the device twice.
+While scaling the interconnect path was sufficient, newer GPUs
+like the A750 requires specific vote parameters and bandwidth to
+achieve full functionnality.
 
-> I'm wondering whether the bus notifier is still necessary with
-> the new scheme.  Since the power control device is instantiated
-> and destroyed in unison with the pci_dev, can't the device link
-> always be created on instantiation of the power control device?
-> 
+In order to get the vote values to be used by the GPU Management
+Unit (GMU), we need to parse all the possible OPP Bandwidths and
+create a vote value to be send to the appropriate Bus Control
+Modules (BCMs) declared in the GPU info struct.
+The added dev_pm_opp_get_bw() is used in this case.
 
-I did move the devlink handling out of bus notifier callback with commit,
-b458ff7e8176 ("PCI/pwrctl: Ensure that pwrctl drivers are probed before PCI
-client drivers").
+The vote array will then be used to dynamically generate the GMU
+bw_table sent during the GMU power-up.
 
-The bus notifier is only used to set 'of_node_reused' flag to indicate that the
-corresponding DT node is already used.
+Those entries will then be used by passing the appropriate
+bandwidth level when voting for a GPU frequency.
 
-- Mani
+This will make sure all resources are equally voted for a
+same OPP, whatever decision is done by the GMU, it will
+ensure all resources votes are synchronized.
 
+Depends on [1] to avoid crashing when getting OPP bandwidths.
+
+[1] https://lore.kernel.org/all/20241203-topic-opp-fix-assert-index-check-v3-0-1d4f6f763138@linaro.org/
+
+Ran full vulkan-cts-1.3.7.3-0-gd71a36db16d98313c431829432a136dbda692a08 with mesa 25.0.0+git3ecf2a0518 on:
+- QRD8550
+- QRD8650
+- HDK8650
+
+Any feedback is welcome.
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v6:
+- Account for A6xx in a6xx_gmu_rpmh_bw_votes_init():
+  - always vote the perfmode bit on a6xx
+  - only vote X & Y on A7xx
+- Only AB vote starting from A750
+- Cleanup a6xx_gmu_rpmh_bw_votes_init()
+  - drop useless tests
+  - add local const struct a6xx_bcm to avoid &info->bcms[bcm_index]
+  - remove useless ULL to 1000ULL
+  - add an error if cmd_db_read_aux_data() returns count==0
+- Link to v5: https://lore.kernel.org/r/20241211-topic-sm8x50-gpu-bw-vote-v5-0-6112f9f785ec@linaro.org
+
+Changes in v5:
+- Dropped bogus qcom,icc.h flags
+- Properly calculate _wait_bitmask from votes
+- Switch DT to qcom,bus-freq values from downstream
+- Added review tags
+- Link to v4: https://lore.kernel.org/r/20241205-topic-sm8x50-gpu-bw-vote-v4-0-9650d15dd435@linaro.org
+
+Changes in v4:
+- Collected review tags
+- Dropped bcm_div() and switched to clamp() instead
+- Dropped pre-calculation of AB votes
+- Instead calculate a 25% floor vote in a6xx_gmu_set_freq() as recommended
+- Use QCOM_ICC_TAG_ALWAYS in DT
+- Made a740_generate_bw_table() generic, using defines to fill the table
+- Link to v3: https://lore.kernel.org/r/20241128-topic-sm8x50-gpu-bw-vote-v3-0-81d60c10fb73@linaro.org
+
+Changes in v3:
+- I didn't take Dmitry's review tags since I significantly changed the patches
+- Dropped applied OPP change
+- Dropped QUIRK/FEATURE addition/rename in favor of checking the a6xx_info->bcms pointer
+- Switch a6xx_info->bcms to a pointer, so it can be easy to share the table
+- Generate AB votes in advance, the voting was wrong in v2 we need to quantitiwe each bandwidth value
+- Do not vote via GMU is there's only the OFF vote because DT doesn't have the right properties
+- Added defines for the a6xx_gmu freqs tables to not have magic 16 and 4 values
+- Renamed gpu_bw_votes to gpu_ib_votes to match the downstream naming
+- Changed the parameters of a6xx_hfi_set_freq() to u32 to match the data type we pass
+- Drop "request for maximum bus bandwidth usage" and merge it in previous changes
+- Link to v2: https://lore.kernel.org/r/20241119-topic-sm8x50-gpu-bw-vote-v2-0-4deb87be2498@linaro.org
+
+Changes in v2:
+- opp: rename to dev_pm_opp_get_bw, fix commit message and kerneldoc
+- remove quirks that are features and move them to a dedicated .features bitfield
+- get icc bcm kerneldoc, and simplify/cleanup a6xx_gmu_rpmh_bw_votes_init()
+  - no more copies of data
+  - take calculations from icc-rpmh/bcm-voter
+  - move into a single cleaner function
+- fix a6xx_gmu_set_freq() but not calling dev_pm_opp_set_opp() if !bw_index
+- also vote for maximum bus bandwidth usage (AB)
+- overall fix typos in commit messages
+- Link to v1: https://lore.kernel.org/r/20241113-topic-sm8x50-gpu-bw-vote-v1-0-3b8d39737a9b@linaro.org
+
+---
+Neil Armstrong (7):
+      drm/msm: adreno: add defines for gpu & gmu frequency table sizes
+      drm/msm: adreno: add plumbing to generate bandwidth vote table for GMU
+      drm/msm: adreno: dynamically generate GMU bw table
+      drm/msm: adreno: find bandwidth index of OPP and set it along freq index
+      drm/msm: adreno: enable GMU bandwidth for A740 and A750
+      arm64: qcom: dts: sm8550: add interconnect and opp-peak-kBps for GPU
+      arm64: qcom: dts: sm8650: add interconnect and opp-peak-kBps for GPU
+
+ arch/arm64/boot/dts/qcom/sm8550.dtsi      |  13 +++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi      |  15 +++
+ drivers/gpu/drm/msm/adreno/a6xx_catalog.c |  22 ++++
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c     | 186 +++++++++++++++++++++++++++++-
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.h     |  26 ++++-
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.h     |   1 +
+ drivers/gpu/drm/msm/adreno/a6xx_hfi.c     |  54 ++++++++-
+ drivers/gpu/drm/msm/adreno/a6xx_hfi.h     |   5 +
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h   |   5 +
+ 9 files changed, 316 insertions(+), 11 deletions(-)
+---
+base-commit: 4176cf5c5651c33769de83bb61b0287f4ec7719f
+change-id: 20241113-topic-sm8x50-gpu-bw-vote-f5e022fe7a47
+
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
