@@ -1,127 +1,93 @@
-Return-Path: <devicetree+bounces-131853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 641479F4C0C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:25:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2FAE9F4C43
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:30:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 744EE7A6256
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:20:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52A9C189B003
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:21:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 589521F6679;
-	Tue, 17 Dec 2024 13:16:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56E781F7087;
+	Tue, 17 Dec 2024 13:18:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t11yFRtD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IWEmcPew"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E0561D1730;
-	Tue, 17 Dec 2024 13:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 299761F7081;
+	Tue, 17 Dec 2024 13:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734441397; cv=none; b=qWutDRVxco83dtd1OOtM4DNn+wR3X3eTygW/WoCPODpFfLAyM5qG/V/iKjuWsSmeo9pr/yFhk226i4Upv+iZ0MfgbE1l79o22Ve8YkA22JELBQkXsZNNbZwFbZuwR1S5gT3tTdn+Gs3j1SMWne8Z2nsT+kR5W42jaE6fma7ppRA=
+	t=1734441496; cv=none; b=hH2fVmh8sZ11NZ0u6CELE7S6opT3LrDfL6SEWI3DLI+Js9GmMQInsYuJjjA07+bUtr9ZTiGEnPi9t2ST1PeTTGR2QzFV203v0ZTJj6FJkMWn3OtGvsskNUFhIugPuGWUwatrKvjd+G9X9kKWLfRwImJk6wsi8voxCOVOxLrM3Ys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734441397; c=relaxed/simple;
-	bh=2ZJ0ETzEGovT3C+Lhgx2MC2gLEcVqJCSkAbyfxj/Rj0=;
+	s=arc-20240116; t=1734441496; c=relaxed/simple;
+	bh=LgYSlCVhxva3zcs7YV247UvMnT+OkZcHDucG48hT898=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Aiqop3UQ6smH42BwQLeTAMi3840NUN+weEVPCZ2qN3P9rXFt1ifqal5Z+/+ox5oqiG+ZZmPk/K5gsZO24NuKe2SHgdowCYXTDJB0Gl7ZxVlxQarL0eJjyDkLs/1dMdUlJdmbqfazxL9vBPHnMwrgbVY0h91hEx6HrT7XQKsnchA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t11yFRtD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6638C4CED3;
-	Tue, 17 Dec 2024 13:16:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kFqIAL06VF+X2eHNb6Dul0SALJxd/BXRmmQtnQKNRVDWO6kOR87pw4R/RNFqTdbknKrUNfFmGHECSfVYk35ttDjVX9uG0RKTFTSKXeWgaNjI1846q7J7kyTP8ctQbk4qsmouBJUsKyDUJ5vTJ5gxPx/a/azE/bPsphA/Ta7aOCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IWEmcPew; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C2C0C4CED4;
+	Tue, 17 Dec 2024 13:18:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734441396;
-	bh=2ZJ0ETzEGovT3C+Lhgx2MC2gLEcVqJCSkAbyfxj/Rj0=;
+	s=k20201202; t=1734441495;
+	bh=LgYSlCVhxva3zcs7YV247UvMnT+OkZcHDucG48hT898=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t11yFRtDXZXYf7U/turp3S/eLXdXyGIa3s7eAy2myGUTN7Gzb+yZYbXAhGF12FSrf
-	 4zwItyNXBM6iVo1U73e8rgNsrnM0uJL9Plf3F1tJQ7ADUjAbp+TV0CTe1P1BnNen5g
-	 Pceba5qP/FIbztkrQ5ar85yQI9eKTNiS+zjipfpUK6iBwtEmex91RIMbFfg1HJB69X
-	 ejQgLxNUuzKIJlQYpgv5iTm7azYq1z2UpI2OHWPe3aXgp40LluKoUzZH1AkFS2ttNw
-	 W7CJ09HlujP08DuullW2BgsV72tW4rVuu+DzJ87KXvfDwkDS3RTRISYKZkM5UEF2x1
-	 ssrvm9mZ517sw==
-Date: Tue, 17 Dec 2024 13:16:29 +0000
-From: Lee Jones <lee@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: jikos@kernel.org, jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net,
-	srinivas.pandruvada@linux.intel.com, bentiss@kernel.org,
-	dmitry.torokhov@gmail.com, pavel@ucw.cz, ukleinek@debian.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-input@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: [GIT PULL] Immutable branch between MFD, HID, HWMON, Input and LEDs
- due for the v6.14 merge window
-Message-ID: <20241217131629.GJ2418536@google.com>
-References: <20241107114712.538976-1-heiko@sntech.de>
+	b=IWEmcPewXktwLgiuhox8ozlQsK/lIgxiVOtV807N931COsH5Lq9S3PcN28jLvTtVW
+	 RCNJfFqw+IiDt7NFzOM1ewhDwAwi+S6rD8g2mz1xw58FG4h/FCic+TSvlaZrxqZly6
+	 f1OniB/T5YSWbnaaJGaTNhV2TJArmrqN2pYE4mj+M5UPo20Ce45LH+s7KHoj68msog
+	 ZSK2g/ic+yoKlkMA6kQxPvtCuq/SLG8B4MT/KS0919fVbGx2W9hVHa4enD8dCeZtWn
+	 nK5G+EkJkQj3SgxKmvTmIMtzDyB2DNMIQ1n2iIOXOMdgA+AqRsADm9SjJw0Q3nrp/q
+	 L1pBQa4IlX7ng==
+Date: Tue, 17 Dec 2024 07:18:13 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Lee Jones <lee@kernel.org>,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	linux-mediatek@lists.infradead.org,
+	Eric Dumazet <edumazet@google.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	linux-arm-kernel@lists.infradead.org, upstream@airoha.com,
+	Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [net-next PATCH v11 1/9] dt-bindings: nvmem: Document support
+ for Airoha AN8855 Switch EFUSE
+Message-ID: <173444149293.1330948.15339441958855664724.robh@kernel.org>
+References: <20241209134459.27110-1-ansuelsmth@gmail.com>
+ <20241209134459.27110-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241107114712.538976-1-heiko@sntech.de>
+In-Reply-To: <20241209134459.27110-2-ansuelsmth@gmail.com>
 
-Enjoy!
 
-The following changes since commit 40384c840ea1944d7c5a392e8975ed088ecf0b37:
+On Mon, 09 Dec 2024 14:44:18 +0100, Christian Marangi wrote:
+> Document support for Airoha AN8855 Switch EFUSE used to calibrate
+> internal PHYs and store additional configuration info.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/nvmem/airoha,an8855-efuse.yaml   | 123 ++++++++++++++++++
+>  MAINTAINERS                                   |   8 ++
+>  2 files changed, 131 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/airoha,an8855-efuse.yaml
+> 
 
-  Linux 6.13-rc1 (2024-12-01 14:28:56 -0800)
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-are available in the Git repository at:
-
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-hid-hwmon-input-leds-v6.14
-
-for you to fetch changes up to 9855caf5d4eb1d8b8bba60be256186ea8e0f907c:
-
-  hwmon: add driver for the hwmon parts of qnap-mcu devices (2024-12-17 13:14:48 +0000)
-
-----------------------------------------------------------------
-Immutable branch between MFD, HID, HWMON, Input and LEDs due for the v6.14 merge window
-
-----------------------------------------------------------------
-Heiko Stuebner (7):
-      HID: hid-sensor-hub: don't use stale platform-data on remove
-      mfd: core: Make platform_data pointer const in struct mfd_cell
-      dt-bindings: mfd: Add binding for qnap,ts433-mcu devices
-      mfd: Add base driver for qnap-mcu devices
-      leds: Add driver for LEDs from qnap-mcu devices
-      Input: add driver for the input part of qnap-mcu devices
-      hwmon: add driver for the hwmon parts of qnap-mcu devices
-
- .../devicetree/bindings/mfd/qnap,ts433-mcu.yaml    |  42 +++
- Documentation/hwmon/index.rst                      |   1 +
- Documentation/hwmon/qnap-mcu-hwmon.rst             |  27 ++
- MAINTAINERS                                        |   9 +
- drivers/hid/hid-sensor-hub.c                       |  21 +-
- drivers/hwmon/Kconfig                              |  12 +
- drivers/hwmon/Makefile                             |   1 +
- drivers/hwmon/qnap-mcu-hwmon.c                     | 364 +++++++++++++++++++++
- drivers/input/misc/Kconfig                         |  12 +
- drivers/input/misc/Makefile                        |   1 +
- drivers/input/misc/qnap-mcu-input.c                | 153 +++++++++
- drivers/leds/Kconfig                               |  11 +
- drivers/leds/Makefile                              |   1 +
- drivers/leds/leds-qnap-mcu.c                       | 227 +++++++++++++
- drivers/mfd/Kconfig                                |  13 +
- drivers/mfd/Makefile                               |   2 +
- drivers/mfd/qnap-mcu.c                             | 338 +++++++++++++++++++
- include/linux/mfd/core.h                           |   2 +-
- include/linux/mfd/qnap-mcu.h                       |  26 ++
- 19 files changed, 1255 insertions(+), 8 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mfd/qnap,ts433-mcu.yaml
- create mode 100644 Documentation/hwmon/qnap-mcu-hwmon.rst
- create mode 100644 drivers/hwmon/qnap-mcu-hwmon.c
- create mode 100644 drivers/input/misc/qnap-mcu-input.c
- create mode 100644 drivers/leds/leds-qnap-mcu.c
- create mode 100644 drivers/mfd/qnap-mcu.c
- create mode 100644 include/linux/mfd/qnap-mcu.h
-
--- 
-Lee Jones [李琼斯]
 
