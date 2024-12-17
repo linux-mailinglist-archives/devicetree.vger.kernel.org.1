@@ -1,174 +1,643 @@
-Return-Path: <devicetree+bounces-131899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 529839F4E21
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 15:45:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84ECA9F4E2F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 15:48:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCE6D1888E31
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:45:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6E2716602C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:48:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E364A1F668D;
-	Tue, 17 Dec 2024 14:45:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ACFF1F472A;
+	Tue, 17 Dec 2024 14:47:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o0+jQpTd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B769B1F6666;
-	Tue, 17 Dec 2024 14:45:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58CA3762F7;
+	Tue, 17 Dec 2024 14:47:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734446736; cv=none; b=mwv68H2vkcy/sXwClqiaJNWMNfP9c+yPArEQ8JdeUj5qXBviG/i84REDpQCao378Pljlf8YCHXvQnKyNwvmXVfd+YIylypakEzQDZ9e8Yhym+By5+TzFTlaUQ6KtgrCckF0UkEYjO6vchGi8NFCrCPlXFem3GNka+cU3LcL4mq8=
+	t=1734446879; cv=none; b=XSecwMMRixP98b+ch4bh4qgYWL+DPKsrjxyfAuwOCdwbjVmQidkA8N7McgtL4+VktCyct6rs5tHBBTPdZZ39xLR0SxLH9q3w9ax1Q2cx3rtHJFzsD9nuPiaKHmS9/gFqO9nAHfRxVZuBqR2VNalmxqThA0oBf3ekz7BO8s4ro9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734446736; c=relaxed/simple;
-	bh=IAwqtMs7TqeoxBD46ND3JggXmA/k0dq0HPg7U+aaru4=;
+	s=arc-20240116; t=1734446879; c=relaxed/simple;
+	bh=8YRQT85o3MHtbHlGPvyry7vc0yOcV1rxr2g3AmsRtaw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PV7iIL9KBYOT/ZB0ZRYNb8jNTS/7D7PtcDQQEqsPMPRGKqc1YfmE29Tae1UzL/JfRDnj3gRz44fWS8l06467DNNWfEBNsBb3+7GBnYx4P6SfhmA5NciPFpY0BetCRgCF4BfeoGR8AT0WqhPP/SIeaQQN+JecKWVBSeXaWmL6vzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 360D21063;
-	Tue, 17 Dec 2024 06:46:02 -0800 (PST)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D59123F58B;
-	Tue, 17 Dec 2024 06:45:31 -0800 (PST)
-Date: Tue, 17 Dec 2024 14:45:24 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Johan Hovold <johan@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>, andersson@kernel.org,
-	konrad.dybcio@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, quic_rgottimu@quicinc.com,
-	quic_kshivnan@quicinc.com, conor+dt@kernel.org,
-	arm-scmi@vger.kernel.org
-Subject: Re: [PATCH V4 0/5] arm_scmi: vendors: Qualcomm Generic Vendor
- Extensions
-Message-ID: <Z2GOLFqnexEalBx_@pluto>
-References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
- <ZytnRc94iKUfMYH0@hovoldconsulting.com>
- <ZyvLktLUZOGP-LH5@pluto>
- <Zy4qvedrmkRdPR3x@hovoldconsulting.com>
- <8d42682b-0fa7-3962-da12-728cfe64903b@quicinc.com>
- <Z0BC203BhGEmXcJi@hovoldconsulting.com>
- <Z1HceQegfMl07qj_@bogus>
- <d313e40b-fa8f-a534-5037-98536ee25044@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RcySxxid1BveDIj84n78n9G74dBMrqhTyP8z5+hE7VTEq9eNsvJQTRPLXZSlNEd1emtWtyf6ZjlcN/Myru8sMlkPKP+BPJSBb7ut5e3XVZldTjyyyGFotjMIfrL3kngvmzkXqIuukOYunLFwLCA+B5iYJOT/Uwmf8fnWSn+0MXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o0+jQpTd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D593EC4CED3;
+	Tue, 17 Dec 2024 14:47:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734446878;
+	bh=8YRQT85o3MHtbHlGPvyry7vc0yOcV1rxr2g3AmsRtaw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=o0+jQpTd4ixF4nH9wdItacbYzxjMqnuNk2UHELA18J498TGU366+S8xTsl4oZvaox
+	 krHgfpCiH/VvY6TX4urFfmPK8vIZ7cAX/8fBavdGb5lpFDjQ8IvdJItsnT1a1x+UVY
+	 9ySj2TmPjE8mEnW6mMVuEW2dikADLpn/WvhPCW7ABTtKeC65ZwMnsTcA2zWgRINmRl
+	 09LQlST1A7Am7CD2uCMR5wO4jbeGChc3t1wolkVuWUTrSL18MU+IAyKjMWX5MC/S4/
+	 pQNfBISCBVHbn1rkKlTJipFz6bmVgd5XWjuEYD/euWU5MqjB624ay1jSdSjAZ3IWYO
+	 EZCi4SwwdQGeA==
+Date: Tue, 17 Dec 2024 14:47:54 +0000
+From: Lee Jones <lee@kernel.org>
+To: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
+Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v9] leds: Add LED1202 I2C driver
+Message-ID: <20241217144754.GK2418536@google.com>
+References: <20241121165829.8210-1-vicentiu.galanopulo@remote-tech.co.uk>
+ <20241121165829.8210-4-vicentiu.galanopulo@remote-tech.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <d313e40b-fa8f-a534-5037-98536ee25044@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241121165829.8210-4-vicentiu.galanopulo@remote-tech.co.uk>
 
-On Tue, Dec 17, 2024 at 05:55:35PM +0530, Sibi Sankar wrote:
+What's going on with the subject line format?  Are you editing those
+manually?  If so, please stop.  `git format-patch` should create those
+for you.
+
+> The output current can be adjusted separately for each channel by 8-bit
+> analog (current sink input) and 12-bit digital (PWM) dimming control. The
+> LED1202 implements 12 low-side current generators with independent dimming
+> control.
+> Internal volatile memory allows the user to store up to 8 different patterns,
+> each pattern is a particular output configuration in terms of PWM
+> duty-cycle (on 4096 steps). Analog dimming (on 256 steps) is per channel but
+> common to all patterns. Each device tree LED node will have a corresponding
+> entry in /sys/class/leds with the label name. The brightness property
+> corresponds to the per channel analog dimming, while the patterns[1-8] to the
+> PWM dimming control.
+> 
+> Signed-off-by: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
+> ---
+> Changes in v9:
+>   - log errors directly in st1202_write_reg and st1202_read_reg
+>   - use mutex guards instead of lock/unlock
+>   - remove i2c_set_clientdata
+> Changes in v7:
+>   - fix st1202_brightness_get() error: uninitialized symbol 'value'
+> Changes in v6:
+>   - fix build error
+> Changes in v5:
+>   - remove unused macros
+>   - switch to using devm_led_classdev_register_ext (struct st1202_led update)
+>   - add prescalar_to_milliseconds (convert [22..5660]ms to [0..255] reg value)
+>   - remove register range check in dt_init (range protected by yaml)
+>   - address all review comments in v4
+> Changes in v4:
+>   - Remove attributes/extended attributes implementation
+>   - Use /sys/class/leds/<led>/hw_pattern (Pavel suggestion)
+>   - Implement review findings of Christophe JAILLET
+> Changes in v3:
+>   - Rename all ll1202 to st1202, including driver file name
+>   - Convert all magic numbers to defines
+>   - Refactor the show/store callbacks as per Lee's and Thomas's review
+>   - Remove ll1202_get_channel and use dev_ext_attributes instead
+>   - Log all error values for all the functions
+>   - Use sysfs_emit for show callbacks
+> Changes in v2:
+>   - Fix build error for device_attribute modes
+>  drivers/leds/Kconfig       |  11 +
+>  drivers/leds/Makefile      |   1 +
+>  drivers/leds/leds-st1202.c | 431 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 443 insertions(+)
+>  create mode 100644 drivers/leds/leds-st1202.c
+> 
+> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> index b784bb74a837..c4fdacc00066 100644
+> --- a/drivers/leds/Kconfig
+> +++ b/drivers/leds/Kconfig
+> @@ -931,6 +931,17 @@ config LEDS_LM36274
+>  	  Say Y to enable the LM36274 LED driver for TI LMU devices.
+>  	  This supports the LED device LM36274.
+>  
+> +config LEDS_ST1202
+> +	tristate "LED Support for STMicroelectronics LED1202 I2C chips"
+> +	depends on LEDS_CLASS
+> +	depends on I2C
+> +	depends on OF
+> +	select LEDS_TRIGGERS
+> +	help
+> +	  Say Y to enable support for LEDs connected to LED1202
+> +	  LED driver chips accessed via the I2C bus.
+> +	  Supported devices include LED1202.
+
+This last line is unnecessary.
+
+>  config LEDS_TPS6105X
+>  	tristate "LED support for TI TPS6105X"
+>  	depends on LEDS_CLASS
+> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
+> index 18afbb5a23ee..e8b39ef760cc 100644
+> --- a/drivers/leds/Makefile
+> +++ b/drivers/leds/Makefile
+> @@ -81,6 +81,7 @@ obj-$(CONFIG_LEDS_POWERNV)		+= leds-powernv.o
+>  obj-$(CONFIG_LEDS_PWM)			+= leds-pwm.o
+>  obj-$(CONFIG_LEDS_REGULATOR)		+= leds-regulator.o
+>  obj-$(CONFIG_LEDS_SC27XX_BLTC)		+= leds-sc27xx-bltc.o
+> +obj-$(CONFIG_LEDS_ST1202)		+= leds-st1202.o
+>  obj-$(CONFIG_LEDS_SUN50I_A100)		+= leds-sun50i-a100.o
+>  obj-$(CONFIG_LEDS_SUNFIRE)		+= leds-sunfire.o
+>  obj-$(CONFIG_LEDS_SYSCON)		+= leds-syscon.o
+> diff --git a/drivers/leds/leds-st1202.c b/drivers/leds/leds-st1202.c
+> new file mode 100644
+> index 000000000000..963e2b11758f
+> --- /dev/null
+> +++ b/drivers/leds/leds-st1202.c
+> @@ -0,0 +1,431 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * LED driver for STMicroelectronics LED1202 chip
+> + *
+> + * Copyright (C) 2024 Remote-Tech Ltd. UK
+> + */
+> +
+> +#include <linux/cleanup.h>
+> +#include <linux/ctype.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/gpio.h>
+> +#include <linux/i2c.h>
+> +#include <linux/leds.h>
+> +#include <linux/module.h>
+> +#include <linux/slab.h>
+> +#include <linux/string.h>
+> +
+> +#define ST1202_CHAN_DISABLE_ALL            0x00
+> +#define ST1202_CHAN_ENABLE_HIGH            0x03
+> +#define ST1202_CHAN_ENABLE_LOW             0x02
+> +#define ST1202_CONFIG_REG                  0x04
+> +/* PATS: Pattern sequence feature enable */
+> +#define ST1202_CONFIG_REG_PATS             BIT(7)
+> +/* PATSR: Pattern sequence runs (self-clear when sequence is finished) */
+> +#define ST1202_CONFIG_REG_PATSR            BIT(6)
+> +#define ST1202_CONFIG_REG_SHFT             BIT(3)
+> +#define ST1202_DEV_ENABLE                  0x01
+> +#define ST1202_DEV_ENABLE_ON               BIT(0)
+> +#define ST1202_DEV_ENABLE_RESET            BIT(7)
+> +#define ST1202_DEVICE_ID                   0x00
+> +#define ST1202_ILED_REG0                   0x09
+> +#define ST1202_MAX_LEDS                    12
+> +#define ST1202_MAX_PATTERNS                8
+> +#define ST1202_MILLIS_PATTERN_DUR_MAX      5660
+> +#define ST1202_MILLIS_PATTERN_DUR_MIN      22
+> +#define ST1202_PATTERN_DUR                 0x16
+> +#define ST1202_PATTERN_PWM                 0x1E
+> +#define ST1202_PATTERN_REP                 0x15
+> +
+> +struct st1202_led {
+> +	struct fwnode_handle *fwnode;
+> +	struct led_classdev led_cdev;
+> +	struct st1202_chip *chip;
+> +	bool is_active;
+> +	int led_num;
+> +};
+> +
+> +struct st1202_chip {
+> +	struct i2c_client *client;
+> +	struct mutex lock;
+> +	struct st1202_led leds[ST1202_MAX_LEDS];
+> +};
+> +
+> +static struct st1202_led *cdev_to_st1202_led(struct led_classdev *cdev)
+> +{
+> +	return container_of(cdev, struct st1202_led, led_cdev);
+> +}
+> +
+> +static int st1202_read_reg(struct st1202_chip *chip, int reg, uint8_t *val)
+> +{
+> +	struct device *dev;
+> +	int ret;
+> +
+> +	dev = &chip->client->dev;
+
+This should go on the declaration line.
+
+> +	ret = i2c_smbus_read_byte_data(chip->client, reg);
+> +	if (ret < 0) {
+> +		dev_err(&chip->client->dev, "Reading register [0x%x] failed, error: %d\n",
+> +				reg, ret);
+
+This would save the line wrap:
+
+  "Failed to read register [0x%x]: %d\n"
+
+> +		return ret;
+> +	}
+> +
+> +	*val = (uint8_t)ret;
+> +	return 0;
+> +}
+> +
+> +static int st1202_write_reg(struct st1202_chip *chip, int reg, uint8_t val)
+> +{
+> +	struct device *dev;
+> +	int ret;
+> +
+> +	dev = &chip->client->dev;
+
+As above.
+
+> +	ret = i2c_smbus_write_byte_data(chip->client, reg, val);
+> +	if (ret != 0)
+> +		dev_err(dev, "Failed writing value %d to register [0x%x], error: %d\n",
+> +				val, reg, ret);
+
+As above.
+
+> +
+> +	return ret;
+> +}
+> +
+> +static uint8_t st1202_prescalar_to_miliseconds(unsigned int value)
+> +{
+> +	return value/ST1202_MILLIS_PATTERN_DUR_MIN - 1;
+
+Doesn't scripts/checkpatch.pl warn about this?
+
+Spaces around the '/'.
+
+> +}
+> +
+> +static int st1202_pwm_pattern_write(struct st1202_chip *chip, int led_num,
+> +				int pattern, unsigned int value)
+> +{
+> +	u8 value_l, value_h;
+> +	int ret;
+> +
+> +	value_l = (u8)value;
+> +	value_h = (u8)(value >> 8);
+> +
+> +	/*
+> +	 *  Datasheet: Register address low = 1Eh + 2*(xh) + 18h*(yh),
+> +	 *  where x is the channel number (led number) in hexadecimal (x = 00h .. 0Bh)
+> +	 *  and y is the pattern number in hexadecimal (y = 00h .. 07h)
+> +	 */
+> +	ret = st1202_write_reg(chip, (ST1202_PATTERN_PWM + (led_num * 2) + 0x18 * pattern),
+> +				value_l);
+> +	if (ret != 0)
+> +		return ret;
+> +
+> +	/*
+> +	 * Datasheet: Register address high = 1Eh + 01h + 2(xh) +18h*(yh),
+> +	 * where x is the channel number in hexadecimal (x = 00h .. 0Bh)
+> +	 * and y is the pattern number in hexadecimal (y = 00h .. 07h)
+> +	 */
+> +	ret = st1202_write_reg(chip, (ST1202_PATTERN_PWM + 0x1 + (led_num * 2) + 0x18 * pattern),
+> +				value_h);
+> +	if (ret != 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int st1202_duration_pattern_write(struct st1202_chip *chip, int pattern,
+> +					unsigned int value)
+> +{
+> +	return st1202_write_reg(chip, (ST1202_PATTERN_DUR + pattern),
+> +				st1202_prescalar_to_miliseconds(value));
+> +}
+> +
+> +static void st1202_brightness_set(struct led_classdev *led_cdev,
+> +				enum led_brightness value)
+> +{
+> +	struct st1202_led *led;
+> +	struct st1202_chip *chip;
+> +
+> +	led = cdev_to_st1202_led(led_cdev);
+> +	chip = led->chip;
+
+Move these to the lines above.
+
+> +	guard(mutex)(&chip->lock);
+
+'\n'
+
+> +	st1202_write_reg(chip, ST1202_ILED_REG0 + led->led_num, value);
+> +}
+> +
+> +static enum led_brightness st1202_brightness_get(struct led_classdev *led_cdev)
+> +{
+> +	struct st1202_led *led;
+> +	struct st1202_chip *chip;
+> +	u8 value = 0;
+> +
+> +	led = cdev_to_st1202_led(led_cdev);
+> +	chip = led->chip;
+
+As above.
+
+And everywhere else that this happens.
+
+> +	guard(mutex)(&chip->lock);
+
+'\n'
+
+> +	st1202_read_reg(chip, ST1202_ILED_REG0 + led->led_num, &value);
+
+'\n'
+
+> +	return value;
+> +}
+> +
+> +static int st1202_channel_set(struct st1202_chip *chip, int led_num, bool active)
+> +{
+> +	u8 chan_low, chan_high;
+> +	int ret;
+> +
+> +	guard(mutex)(&chip->lock);
+> +
+> +	if (led_num <= 7) {
+> +		ret = st1202_read_reg(chip, ST1202_CHAN_ENABLE_LOW, &chan_low);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		chan_low = active ? chan_low | BIT(led_num) : chan_low & ~BIT(led_num);
+> +
+> +		ret = st1202_write_reg(chip, ST1202_CHAN_ENABLE_LOW, chan_low);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +	} else {
+> +		ret = st1202_read_reg(chip, ST1202_CHAN_ENABLE_HIGH, &chan_high);
+> +		if (ret < 0)
+> +			return ret;
+> +
+> +		chan_high = active ? chan_high | (BIT(led_num) >> 8) :
+> +					chan_high & ~(BIT(led_num) >> 8);
+> +
+> +		ret = st1202_write_reg(chip, ST1202_CHAN_ENABLE_HIGH, chan_high);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int st1202_led_set(struct led_classdev *ldev, enum led_brightness value)
+> +{
+> +	struct st1202_led *led;
+> +	struct st1202_chip *chip;
+> +
+> +	led = cdev_to_st1202_led(ldev);
+> +	chip = led->chip;
+> +
+> +	return st1202_channel_set(chip, led->led_num, value == LED_OFF ? false : true);
+> +}
+> +
+> +static int st1202_led_pattern_clear(struct led_classdev *ldev)
+> +{
+> +	struct st1202_led *led;
+> +	struct st1202_chip *chip;
+> +	int ret;
+> +
+> +	led = cdev_to_st1202_led(ldev);
+> +	chip = led->chip;
+> +
+> +	guard(mutex)(&chip->lock);
+> +
+> +	for (int patt = 0; patt < ST1202_MAX_PATTERNS; patt++) {
+> +		ret = st1202_pwm_pattern_write(chip, led->led_num, patt, LED_OFF);
+> +		if (ret != 0)
+> +			return ret;
+> +
+> +		ret = st1202_duration_pattern_write(chip, patt, ST1202_MILLIS_PATTERN_DUR_MIN);
+> +		if (ret != 0)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int st1202_led_pattern_set(struct led_classdev *ldev,
+> +				struct led_pattern *pattern,
+> +				u32 len, int repeat)
+> +{
+> +	struct st1202_led *led;
+> +	struct st1202_chip *chip;
+> +	int ret;
+> +
+> +	led = cdev_to_st1202_led(ldev);
+> +	chip = led->chip;
+> +
+> +	if (len > ST1202_MAX_PATTERNS)
+> +		return -EINVAL;
+> +
+> +	guard(mutex)(&chip->lock);
+> +
+> +	for (int patt = 0; patt < len; patt++) {
+> +		if (pattern[patt].delta_t < ST1202_MILLIS_PATTERN_DUR_MIN ||
+> +				pattern[patt].delta_t > ST1202_MILLIS_PATTERN_DUR_MAX)
+> +			return -EINVAL;
+> +
+> +		ret = st1202_pwm_pattern_write(chip, led->led_num, patt, pattern[patt].brightness);
+> +		if (ret != 0)
+> +			return ret;
+> +
+> +		ret = st1202_duration_pattern_write(chip, patt, pattern[patt].delta_t);
+> +		if (ret != 0)
+> +			return ret;
+> +	}
+> +
+> +	ret = st1202_write_reg(chip, ST1202_PATTERN_REP, repeat);
+> +	if (ret != 0)
+> +		return ret;
+> +
+> +	ret = st1202_write_reg(chip, ST1202_CONFIG_REG, (ST1202_CONFIG_REG_PATSR |
+> +				ST1202_CONFIG_REG_PATS | ST1202_CONFIG_REG_SHFT));
+> +	if (ret != 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int st1202_dt_init(struct st1202_chip *chip)
+> +{
+> +	struct device *dev = &chip->client->dev;
+> +	struct st1202_led *led;
+> +	int err, reg;
+> +
+> +	for_each_available_child_of_node_scoped(dev_of_node(dev), child) {
+> +		struct led_init_data init_data = {};
+> +
+> +		err = of_property_read_u32(child, "reg", &reg);
+> +		if (err)
+> +			return dev_err_probe(dev, err, "Invalid register\n");
+> +
+> +		led = &chip->leds[reg];
+> +		led->is_active = true;
+> +		led->fwnode = of_fwnode_handle(child);
+> +
+> +		led->led_cdev.max_brightness = U8_MAX;
+> +		led->led_cdev.brightness_set_blocking = st1202_led_set;
+> +		led->led_cdev.pattern_set = st1202_led_pattern_set;
+> +		led->led_cdev.pattern_clear = st1202_led_pattern_clear;
+> +		led->led_cdev.default_trigger = "pattern";
+> +
+> +		init_data.fwnode = led->fwnode;
+> +		init_data.devicename = "st1202";
+> +		init_data.default_label = ":";
+
+'\n'
+
+> +		err = devm_led_classdev_register_ext(dev, &led->led_cdev, &init_data);
+> +		if (err < 0)
+> +			return dev_err_probe(dev, err, "Failed to register LED class device\n");
+> +
+> +		led->led_cdev.brightness_set = st1202_brightness_set;
+> +		led->led_cdev.brightness_get = st1202_brightness_get;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int st1202_setup(struct st1202_chip *chip)
+> +{
+> +	int ret;
+> +
+> +	guard(mutex)(&chip->lock);
+
+'\n'
+
+> +	/*
+> +	 * Once the supply voltage is applied, the LED1202 executes some internal checks,
+> +	 * afterwords it stops the oscillator and puts the internal LDO in quiescent mode.
+> +	 * To start the device, EN bit must be set inside the “Device Enable” register at
+> +	 * address 01h. As soon as EN is set, the LED1202 loads the adjustment parameters
+> +	 * from the internal non-volatile memory and performs an auto-calibration procedure
+> +	 * in order to increase the output current precision.
+> +	 * Such initialization lasts about 6.5 ms.
+> +	 */
+> +
+> +	/* Reset the chip during setup */
+> +	ret = st1202_write_reg(chip, ST1202_DEV_ENABLE, ST1202_DEV_ENABLE_RESET);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Enable phase-shift delay feature */
+> +	ret = st1202_write_reg(chip, ST1202_CONFIG_REG, ST1202_CONFIG_REG_SHFT);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Enable the device */
+> +	ret = st1202_write_reg(chip, ST1202_DEV_ENABLE, ST1202_DEV_ENABLE_ON);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Duration of initialization */
+> +	usleep_range(6500, 10000);
+> +
+> +	/* Deactivate all LEDS (channels) and activate only the ones found in Device Tree */
+> +	ret = st1202_write_reg(chip, ST1202_CHAN_ENABLE_LOW, ST1202_CHAN_DISABLE_ALL);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = st1202_write_reg(chip, ST1202_CHAN_ENABLE_HIGH, ST1202_CHAN_DISABLE_ALL);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = st1202_write_reg(chip, ST1202_CONFIG_REG,
+> +				ST1202_CONFIG_REG_PATS | ST1202_CONFIG_REG_PATSR);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int st1202_probe(struct i2c_client *client)
+> +{
+> +	struct st1202_chip *chip;
+> +	struct st1202_led *led;
+> +	int ret;
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE_DATA))
+> +		return dev_err_probe(&client->dev, -EIO, "SMBUS Byte Data not Supported\n");
+> +
+> +	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
+> +	if (!chip)
+> +		return -ENOMEM;
+> +
+> +	devm_mutex_init(&client->dev, &chip->lock);
+> +	chip->client = client;
+> +
+> +	ret = st1202_dt_init(chip);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = st1202_setup(chip);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	for (int i = 0; i < ST1202_MAX_LEDS; i++) {
+> +		led = &chip->leds[i];
+> +		led->chip = chip;
+> +		led->led_num = i;
+> +
+> +		if (led->is_active) {
+
+if (!led->is_active)
+	continue;
+
+Then you can pull these back:
+
+> +			ret = st1202_channel_set(led->chip, led->led_num, true);
+> +			if (ret < 0)
+> +				return dev_err_probe(&client->dev, ret,
+> +						"Failed to activate LED channel\n");
+> +
+> +			ret = st1202_led_pattern_clear(&led->led_cdev);
+> +			if (ret < 0)
+> +				return dev_err_probe(&client->dev, ret,
+> +						"Failed to clear LED pattern\n");
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct i2c_device_id st1202_id[] = {
+> +	{ "st1202-i2c" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, st1202_id);
+> +
+> +static const struct of_device_id st1202_dt_ids[] = {
+> +	{ .compatible = "st,led1202" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, st1202_dt_ids);
+> +
+> +static struct i2c_driver st1202_driver = {
+> +	.driver = {
+> +		.name = "leds-st1202",
+> +		.of_match_table = of_match_ptr(st1202_dt_ids),
+> +	},
+> +	.probe = st1202_probe,
+> +	.id_table = st1202_id,
+> +};
+> +module_i2c_driver(st1202_driver);
+> +
+> +MODULE_AUTHOR("Remote Tech LTD");
+> +MODULE_DESCRIPTION("STMicroelectronics LED1202 : 12-channel constant current LED driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.39.3 (Apple Git-145)
 > 
 > 
-> On 12/5/24 22:31, Sudeep Holla wrote:
-> > On Fri, Nov 22, 2024 at 09:37:47AM +0100, Johan Hovold wrote:
-> > > On Thu, Nov 14, 2024 at 09:52:12AM +0530, Sibi Sankar wrote:
-> > > > On 11/8/24 20:44, Johan Hovold wrote:
-> > > 
-> > > > > > On Wed, Nov 06, 2024 at 01:55:33PM +0100, Johan Hovold wrote:
-> > > 
-> > > > > > > Second, after loading the protocol and client drivers manually (in that
-> > > > > > > order, shouldn't the client driver pull in the protocol?), I got:
-> > > > > > > 
-> > > > > > > 	scmi_module: Loaded SCMI Vendor Protocol 0x80 - Qualcomm  20000
-> > > > > > > 	arm-scmi arm-scmi.0.auto: QCOM Generic Vendor Version 1.0
-> > > > > > > 	scmi-qcom-generic-ext-memlat scmi_dev.5: error -EOPNOTSUPP: failed to configure common events
-> > > > > > > 	scmi-qcom-generic-ext-memlat scmi_dev.5: probe with driver scmi-qcom-generic-ext-memlat failed with error -95
-> > > > > > > 
-> > > > > > > which seems to suggest that the firmware on my CRD does not support this
-> > > > > > > feature. Is that the way this should be interpreted? And does that mean
-> > > > > > > that non of the commercial laptops supports this either?
-> > > 
-> > > > > Yeah, hopefully Sibi can shed some light on this. I'm using the DT
-> > > > > patch (5/5) from this series, which according to the commit message is
-> > > > > supposed to enable bus scaling on the x1e80100 platform. So I guess
-> > > > > something is missing in my firmware.
-> > > > 
-> > > > Nah, it's probably just because of the algo string used.
-> > > > The past few series used caps MEMLAT string instead of
-> > > > memlat to pass the tuneables, looks like all the laptops
-> > > > havn't really switched to it yet. Will revert back to
-> > > > using to lower case memlat so that all devices are
-> > > > supported. Thanks for trying the series out!
-> > > 
-> > > I have a Lenovo ThinkPad T14s set up now so I gave this series a spin
-> > > there too, and there I do *not* see the above mentioned -EOPNOSUPP error
-> > > and the memlat driver probes successfully.
-> > > 
-> > > On the other hand, this series seems to have no effect on a kernel
-> > > compilation benchmark. Is that expected?
-> > > 
-> > 
-> > Hijacking this thread to rant about state of firmware implementation on
-> > this platform that gives me zero confidence in merging any of these without
-> > examining each of the interface details in depth and at lengths.
-> > 
-> 
 
-Hi Sibi,
-
-> Hey Sudeep,
-> 
-> Thanks for taking time to review the series.
-> 
-> > Also I see the standard protocol like PERF seem to have so many issues which
-> > adds to my no confidence. I can't comment on that thread for specific reasons.
-> 
-> ^^ is largely untrue, a lot of finger pointing and a gross
-> misrepresentation of reality :/
-> 
-> The only major problem that X1E perf protocol has is a firmware
-> crash in the LEVEL_GET regular message implementation. This
-> pretty much went unnoticed because of messaging in perf implementation
-> in kernel. Given the fastchannel implementation isn't mandatory
-> according to spec, the kernel clearly says it switches to
-> regular messaging when it clearly doesn't do that and uses
-> stale data structures instead. This ensured that level get regular
-> messaging never got tested.
-
-You claimed this a couple of times here and on IRC, but sincerely,
-looking at the fastchannel implementation in SCMI core and Perf, I could
-not track down where this could have happened in the recent code
-(i.e. with or without your recent, welcomed, patches...)
-
-When FC initialization fails and bailout it says:
-	
-	"Failed to get FC for protocol %X [MSG_ID:%u / RES_ID:%u] - ret:%d. Using regular messaging."
-
-... and it clears any gathered address for that FC, so that in __scmi_perf_level_get()
-you end up skipping the FC machinery and use messaging
-
-	if (dom->fc_info && dom->fc_info[PERF_FC_LEVEL].get_addr) {
-		...
-	}
-
-	return scmi_perf_msg_level_get(ph, dom->id, level, poll);
-
-Now this is done ONLY for the FC that specifically failed
-initialization, i.e. identified by the tuple PROTO_ID/MSG_ID/RES_ID
-(as stated in the noisy message above where MSG_ID is specified) NOT for
-all Fastchannel, so you can have an FC successfully initialized only on
-the GET but failing in the SET, so only the GET FC will be used.
-
-I dont really understand how the Kernel was misbehaving and using
-instead stale data, neither, if this was the case, I can see where this
-issue would have been fixed.
-
-To be clear, I am not really interested in throwing an argument here, but
-I sincerely dont see where the alleged problem was and how was fixed (kernel
-side), so I fear it could be still there, hidden maybe by a change in the
-platform fw.
-
-Apologies if I missed something along the history of this..
-
-Thanks,
-Cristian
+-- 
+Lee Jones [李琼斯]
 
