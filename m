@@ -1,59 +1,66 @@
-Return-Path: <devicetree+bounces-132040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 846029F5604
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:23:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69DF29F5609
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:24:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA3B416E270
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:23:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1B0B1633D4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:24:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0E601F8900;
-	Tue, 17 Dec 2024 18:23:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDFA1F8902;
+	Tue, 17 Dec 2024 18:24:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kBwVUpiV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TlQT8h2G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA7E01F76B1;
-	Tue, 17 Dec 2024 18:23:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4070E1F7562;
+	Tue, 17 Dec 2024 18:24:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734459820; cv=none; b=GrOeFs89FR6h8qvoNPUBpIgCyHT2U4t2DAHQVK3i07z1EqOZnNRFqj2BqstKwY3fvIWL2PhzQdx2EphKoTn4UDEoAUGRb+s8dYp9d9jgolGjjBQSGyBNdy3GeT0wjflBkKybzKcRe7pa3DBUee68Uyjm3eL61S7yXMjsm+w9MsU=
+	t=1734459888; cv=none; b=C+3qvYjgE1ZbYHiIsOPg7EcK9TYJLFgQ+kCnNWTnyCWStfBMWZXTx0bT2CT3rqKHewnhWbXare9LevITchbeOz5f/0mp4XKvviWC1MdjBIy5xgYfCuNoEFP3ArMC3p3J0UCRug+IwYR8QXP8GHvC1L7rWTwIP7bHue2PyBPsje0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734459820; c=relaxed/simple;
-	bh=qU4aI3iB2bKVYl8+6gmws2EPMCPT94DaUUUVjJQ/3F0=;
+	s=arc-20240116; t=1734459888; c=relaxed/simple;
+	bh=WmVhbvyITgDCUN/Q9QgBlJc5BHM0NXp2JvRUV7TbNx4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UV3acbsiTn+c8MO5ZtB6St7qh+OYL3gsedgh8sPuw5geEHI0yAkuBtGEnIS+G3bEqWV9c7Hp/fQy1YVv6+sz25s29vQ6t8Jq0hevrBh4/qIe7mefJA0+rcrdzjTrIe54nx+RnPvUka/Rt/gh8fFwIHKTY3o4Lj6pYOcbKi5eas0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kBwVUpiV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9611AC4CED3;
-	Tue, 17 Dec 2024 18:23:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fPmzvvfUkA6ublQk5ZmCSV0+vCAc+SGGCoSdyKzghtCy3dAyM/sx+kP4boXDui0c82F8Nq4Gm/bOmKXu+HoQTW+nZjPNzMPIO1sHhhlDZmKaoCxIfNH5ZwumFP8PeAVMTFHQyl+HeGUPA9uSYRWoeYM7wn7LK7LAEtLcnnqjdM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TlQT8h2G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04A90C4CED3;
+	Tue, 17 Dec 2024 18:24:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734459820;
-	bh=qU4aI3iB2bKVYl8+6gmws2EPMCPT94DaUUUVjJQ/3F0=;
+	s=k20201202; t=1734459887;
+	bh=WmVhbvyITgDCUN/Q9QgBlJc5BHM0NXp2JvRUV7TbNx4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kBwVUpiVXznsUiiNF2b2/xUSvktYGLaZZzUWlIlnOLy7UoULd/XSSGEBJoXjcnAPm
-	 xHMtRGd1viqaDL3J5VR8PwUpqiIgv7tBkUxjWwvRBBofZ0snDRG8FylfZ00HsAvbT8
-	 Ixx1JuobyqPwYiMllzBhqYh/QcrVuF6D3FYKjlZyCNx2IgVZc+Ez388+nQzOeQXCpQ
-	 YDYIOiMiaK0CPhfjTojUV8jdEIoeSiiKKN19+twKn5a+Ot5x9CozaESTHhGe5WkIZU
-	 lwe/imWuRYz9u5S1n9UMbZ4gaH3xr7m+uJzqG3TnazCxQEoiyUGa34oaIL9BFkLJpb
-	 iPpwqsaoFC+og==
-Date: Tue, 17 Dec 2024 18:23:36 +0000
+	b=TlQT8h2Gba0qDyGj0NxRkEsTbuCxVEUeTs9AR2Zg/fj4qjjAgZfxdNs8hk2E2P/5h
+	 TyjVTn5z+6DwPfYTjhhTiGOP3le/rTpuCeX4rIru5835orQ3MLq4cmsqiI6nXTRxMG
+	 QYbirz1BpNceUoIDBYa5GZonOsOD0DRbVPCyRA3qSukm6Cp7V53kEDBNDlal18jojY
+	 FJOc7loci9KKJPtMEFZVGMp7IJJjF4pAMp3ihHDdNAVr/HlICmvD8+TTssKvdy8E80
+	 RZqZBVZzR5spmQJE9wZcVbjF88m+5hcI6Ctq2lQSoX277tBS4mbef77dV/mIQDWZRN
+	 Qbgge9+ybbO/w==
+Date: Tue, 17 Dec 2024 18:24:42 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+To: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Hugues Fruchet <hugues.fruchet@foss.st.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Hans Verkuil <hverkuil@xs4all.nl>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: arm,gic: Correct VGIC
- interrupt description
-Message-ID: <20241217-refresh-decency-bf5b9e1ac493@spud>
-References: <20241217061226.14139-1-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 2/9] dt-bindings: media: clarify stm32 csi & simplify
+ example
+Message-ID: <20241217-crawfish-tiring-792c535301d0@spud>
+References: <20241217-csi_dcmipp_mp25_enhancements-v1-0-2b432805d17d@foss.st.com>
+ <20241217-csi_dcmipp_mp25_enhancements-v1-2-2b432805d17d@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,57 +68,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="q5T5qHJ4HblV4OaX"
+	protocol="application/pgp-signature"; boundary="xXE3zBG6hEnuSLIF"
 Content-Disposition: inline
-In-Reply-To: <20241217061226.14139-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20241217-csi_dcmipp_mp25_enhancements-v1-2-2b432805d17d@foss.st.com>
 
 
---q5T5qHJ4HblV4OaX
+--xXE3zBG6hEnuSLIF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 17, 2024 at 07:12:26AM +0100, Krzysztof Kozlowski wrote:
-> The description of VGIC interrupt referenced obsolete "see below" after
-> converting TXT to DT Schema in commit 66ed144f147a ("dt-bindings:
-> interrupt-controller: Convert ARM GIC to json-schema"), because there is
-> no dedicated "VGIC" chapter anymore below.
+On Tue, Dec 17, 2024 at 06:39:19PM +0100, Alain Volmat wrote:
+> Clarify the description of the stm32 csi by mentioning CSI-2 and
+> D-PHY.
+
+> Remove the bus-type property from the example.
+
+Why? What's there to gain from the example being (seemingly?) less
+comprehensive?
+
 >=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
 > ---
->  .../devicetree/bindings/interrupt-controller/arm,gic.yaml     | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/media/st,stm32mp25-csi.yaml | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,g=
-ic.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic.ya=
-ml
-> index a2846e493497..7173c4b5a228 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml
-> @@ -110,8 +110,8 @@ properties:
+> diff --git a/Documentation/devicetree/bindings/media/st,stm32mp25-csi.yam=
+l b/Documentation/devicetree/bindings/media/st,stm32mp25-csi.yaml
+> index 33bedfe41924..e9fa3cfea5d2 100644
+> --- a/Documentation/devicetree/bindings/media/st,stm32mp25-csi.yaml
+> +++ b/Documentation/devicetree/bindings/media/st,stm32mp25-csi.yaml
+> @@ -7,8 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: STMicroelectronics STM32 CSI controller
 > =20
->    interrupts:
->      description: Interrupt source of the parent interrupt controller on
-> -      secondary GICs, or VGIC maintenance interrupt on primary GIC (see
-> -      below).
-> +      secondary GICs, or VGIC maintenance interrupt on primary GIC (see =
-"GICv2
-> +      with virtualization extensions" paragraph in the "reg" property).
+>  description:
+> -  The STM32 CSI controller allows connecting a CSI based
+> -  camera to the DCMIPP camera pipeline.
+> +  The STM32 CSI controller, coupled with a D-PHY allows connecting a CSI=
+-2
+> +  based camera to the DCMIPP camera pipeline.
+> =20
+>  maintainers:
+>    - Alain Volmat <alain.volmat@foss.st.com>
+> @@ -109,7 +109,6 @@ examples:
+>                  endpoint {
+>                      remote-endpoint =3D <&imx335_ep>;
+>                      data-lanes =3D <1 2>;
+> -                    bus-type =3D <MEDIA_BUS_TYPE_CSI2_DPHY>;
+>                  };
+>              };
+> =20
+>=20
+> --=20
+> 2.34.1
+>=20
 
-I don't think things like this /should/ need a dt ack, even if they
-weren't from a dt maintainer - but in case one's expected
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---q5T5qHJ4HblV4OaX
+--xXE3zBG6hEnuSLIF
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2HBqAAKCRB4tDGHoIJi
-0tV/AP0Wwmto6bZFtxfL8lxrdlvXGIEoKK7Agp7kMyPlfFvS+wD/UYF3nOvIOJDP
-Stk2XSaKthz0Uw9kg+tRRO0ktYnG0wg=
-=p5g/
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2HB6gAKCRB4tDGHoIJi
+0igKAPoDrf1wD6vhulE5XAy6M4DSbGrhREGhL8rIC2ao7oWAHwD/TCNKL8PFi+YB
+35xu7mty1a7YqzisPAib+kIEA3XxSAw=
+=g7v+
 -----END PGP SIGNATURE-----
 
---q5T5qHJ4HblV4OaX--
+--xXE3zBG6hEnuSLIF--
 
