@@ -1,95 +1,141 @@
-Return-Path: <devicetree+bounces-131633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E7549F4372
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 07:21:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36B0E9F439C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 07:24:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBB4518881E7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 06:21:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74F33168E11
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 06:24:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02D4115624D;
-	Tue, 17 Dec 2024 06:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2AF14B08E;
+	Tue, 17 Dec 2024 06:24:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qSOewmBl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HkTQ8Y0x"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D148BF8;
-	Tue, 17 Dec 2024 06:21:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964A88BF8
+	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 06:24:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734416470; cv=none; b=gEnqAkkGW+Gd8nJMaXba7RVEJi6VIFdHDzPszIOdonxnzAeAqEeG/jiAsQygILUmUxIDmM+bqMvABTwFiWZbbrkL1c5w6TppihG3fF3CkVgON/5S3DxY5J7IoxGr8meBjFE/uQskU8pED2TuD51gG7iJTK6pAy/T8DjDnWAEkXI=
+	t=1734416660; cv=none; b=bz4tVW+olbCSvjCcpN7p/kASvD/nfMX9+Ed46tGCN9rfuzq9YnDwnwdSEUyYXbbDqikYP0aWgfVfmYOcqZKsEeXR7dzEmseDFyehnyTAEt/ElSjMCT4Cxf0F2YNPrR0pgyGUeHrvI+GCb1wg4HPOH+5qa0WBlGGl2E8JuujV+WU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734416470; c=relaxed/simple;
-	bh=/RJNh8rOvfKE1G2/kVcw2UaL4mMQRBTB4or30Sm+lb0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TYuvISZkOaoBppsAzW0xs7U0gz3mV5YHoD+IOrWTRjmEcqjrMsfhg0gZ8tKJkXAlhfI9+vWOX0M9rciWfYRaCgfo0zZFEqr1DbPCCGr8GR1mMQCIR6Tlpyl79Wli4IRFjYafr6Xo8n5Ga7+beCLAxGYB6Gfp7wio2V3pRBS2du0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qSOewmBl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC960C4CED3;
-	Tue, 17 Dec 2024 06:21:09 +0000 (UTC)
+	s=arc-20240116; t=1734416660; c=relaxed/simple;
+	bh=HP7VYFTUeo1ynBOsvM44SGKPU3G5H8agOi7Q5+Vyjaw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bjfmKbZQbReTJog0Dfd5mdw6uIwP4/0Jn3fhkTI4g1iIexNZ+93jqP2sL6MEa5ulAjrjQtCsO+a9KmKAnq3wfMcIuvJRJVKzJcjoXnbpnyhDzrB0sS2TFA+rPJDn7G8bqsM8eHuc5aIoCyI8e8ZXRy0tvZ09usevbHeudT59coM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HkTQ8Y0x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1788C4CED3;
+	Tue, 17 Dec 2024 06:24:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734416470;
-	bh=/RJNh8rOvfKE1G2/kVcw2UaL4mMQRBTB4or30Sm+lb0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qSOewmBlY7dmrGm/03ec6+9tn/G14ZAAj7JBOKdtRZGooNY3IYXmWm/ojEvF3Btmu
-	 Cv2j5mTjnIjK/BLNuEcjharW4vkYuWcL93OtiaqfLDhco0+6aRWY/pj1wjNOCT9Rik
-	 Nj032nF6axSD+Pe4wTwg9DsCXMwQNmDoUEPm+hsYfxUrSsL2nmSV/kbDXh666dXbXx
-	 e1MknmYaD09Ju5hGZo7bNBDCsA8INRX7kc9EyzMFrVMAE2hZTTE0CuN1G0BNEnL1sH
-	 uvsnpPTLn7Gna5ikSTm1wDbju7vv7WwvdSUFK7SMRVMpGfX34qMTqKhXNQVwRL81pA
-	 rSiuFR/7OA1dg==
-Date: Tue, 17 Dec 2024 07:21:07 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Richard Acayan <mailingradian@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org, 
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Subject: Re: [PATCH v8 3/5] media: qcom: camss: add support for SDM670 camss
-Message-ID: <srhejepgg6b43im4laxurflipygrd4dthgskrkygqd3dzyknmj@babtxu5hh6kh>
-References: <20241216223019.70155-8-mailingradian@gmail.com>
- <20241216223019.70155-11-mailingradian@gmail.com>
+	s=k20201202; t=1734416660;
+	bh=HP7VYFTUeo1ynBOsvM44SGKPU3G5H8agOi7Q5+Vyjaw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HkTQ8Y0xwxFUJ1CWNrfNRVo8M3H5fZIfqjX/Kc+Rs7tyQG//BHkk61e5buGVyxATj
+	 bRBeymM52G1jRfQduVr60eOE27qcvS8OO2N5vALAxcjiFmu6p8uQI15EIEAM04e78W
+	 ILsVw2mpmkxBRWfLs3u7NcrPeBSq6yIqY2rdzrjASK7uTJ+UJimXEtDRPZwPtwGoWI
+	 B8+9A8PS46rbccJbOkx/EFxO3HjGByy7+AkLDaRDBzdALxz/s2jC0z/Q+pkupB4BFb
+	 rg4ZvnT2CBKQSbPCfYmj00fKTy+hQvoGtwJJ+RvbiIB2LDCKmgX7EUcovaM/6/m/49
+	 rLOM5sO0gKS5Q==
+Message-ID: <3313fc80-73b9-4063-8076-64e65c5d5921@kernel.org>
+Date: Tue, 17 Dec 2024 07:24:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241216223019.70155-11-mailingradian@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 11/12] arm64: dts: rockchip: Fix proparties for pmic
+ regulators for Radxa ROCK 5C
+To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dsimic@manjaro.org, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20241216113052.15696-1-naoki@radxa.com>
+ <20241216113052.15696-12-naoki@radxa.com>
+ <0b6a7a7a-ff5a-4897-a283-6bf582dd1d79@kernel.org>
+ <DC42478EC0DFB00A+6e374774-07d8-493c-9f2f-e7106d1f2d61@radxa.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <DC42478EC0DFB00A+6e374774-07d8-493c-9f2f-e7106d1f2d61@radxa.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Dec 16, 2024 at 05:30:24PM -0500, Richard Acayan wrote:
-> The camera subsystem for the SDM670 the same as on SDM845 except with
-> 3 CSIPHY ports instead of 4. Add support for the SDM670 camera
-> subsystem.
+On 17/12/2024 01:43, FUKAUMI Naoki wrote:
+> On 12/16/24 22:41, Krzysztof Kozlowski wrote:
+>> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
+>>> Fix proparties for dcdc-reg7 and nldo-reg3 regulators to match with
+>>
+>>
+>>
+>> You have so many typos in almost each commit msg. Here both in subject
+>> and commit msg.
+>>
+>> Run spell check before you send to the lists. Don't expect the reviewers
+>> to be your computer tools.
 > 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Acked-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->  .../bindings/media/qcom,sdm670-camss.yaml     |  72 +++----
->  drivers/media/platform/qcom/camss/camss.c     | 191 ++++++++++++++++++
+> Sorry for my poor English. I'll check it next time.
 
-You cannot combine such changes. Bindings are always separate.
+I am not pointing out English. I am pointing out not using standard
+tool, spellcheck, to fix issues in effortless way.
 
-Please run scripts/checkpatch.pl and fix reported warnings. Then please
-run 'scripts/checkpatch.pl --strict' and (probably) fix more warnings.
-Some warnings can be ignored, especially from --strict run, but the code
-here looks like it needs a fix. Feel free to get in touch if the warning
-is not clear.
+> 
+>> Explain what is being fixed here. Why would you prefer to match with
+>> vendor kernel?
+> 
+> Not my preference, but the only reference.
 
-Please drop the review/ack tags and request re-review for this patch.
+Then why the reference is correct? Provide some arguments why this
+should be changed to the "reference" and not the "reference" fixed.
 
 Best regards,
 Krzysztof
-
 
