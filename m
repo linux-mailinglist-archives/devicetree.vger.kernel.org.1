@@ -1,65 +1,61 @@
-Return-Path: <devicetree+bounces-131862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E5639F4C87
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:38:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 771439F4C8B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:39:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 483411892552
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:34:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EFD01706DB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B32111F4266;
-	Tue, 17 Dec 2024 13:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621E51F3D55;
+	Tue, 17 Dec 2024 13:34:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BhyYMaiy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fRn2ED4s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 873881F3D57;
-	Tue, 17 Dec 2024 13:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33FA91E485;
+	Tue, 17 Dec 2024 13:34:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734442444; cv=none; b=A/mAN4tmkaYN3CanRwyyVmCYGlYvbEgMlR5E/jTxJ41bUBDWbORk2DW+54PQkIqxLcTUVCvEDrNU87O+c45Mo7xBTH5E/ISIwJ2A1OJRK6Jz28+wJeFo6kWg/2K77N5+1ZTRa14MRAhbjr5+3JlqvpcWUAK3krDsq6L2bw+mB/g=
+	t=1734442477; cv=none; b=noDy8dTKhZwiH4D1u7dW+Xu1XMjnvNh2qvtevWr7yKtk6pjAksLTQWqN2eekQyx7ehjM11epgeGuOLo3H1dxdiZGKkcSVlw2uQ5ayLsntYdITiVSUrNBfZjxPaqiFK3MfG0NB1p01ecx6jHxQUq6mRibcVmSKcYfPUbEf7Z8tnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734442444; c=relaxed/simple;
-	bh=FV7yQyFVJ8Ft59KQYAkWNEMbxJuXWysadQd4/zHTn00=;
+	s=arc-20240116; t=1734442477; c=relaxed/simple;
+	bh=ucFolLl1sZUgzrnDPVtLF6IhpbFiqCmqyONnkRrdE+8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NbPrfP/a4zzk97IGS+11XofUEm3Wa+Zlku4rh1tMQJNBmG1/p+UFHGHe2w5bI5pk81FWO19TJjqdAkCRK+sDEIhXjmlYb1uNKH6azbWzAUXgZ5FtRZBddxIuGU8v7CwbbcHPl3mHd3m6j3vveQDzsqfyc2XuIWOogpbM9KPKvbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BhyYMaiy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC339C4CED3;
-	Tue, 17 Dec 2024 13:34:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PngMbH6I/i9732OCjefHn5N2vll1IzoOnvUcXf6430ZtTdPFQVJlboa3pnaQmSQiiMLbufNH1fS4VTA/N11eLsPTD5euY2+Gx7l6QTu/cMZgL01V+RwGRwN8bALlz4G3l8rCxbzY+HDH1pR5CrCrxNUVGBfPe2WbhoVmYUoAbKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fRn2ED4s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61A71C4CED3;
+	Tue, 17 Dec 2024 13:34:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734442444;
-	bh=FV7yQyFVJ8Ft59KQYAkWNEMbxJuXWysadQd4/zHTn00=;
+	s=k20201202; t=1734442476;
+	bh=ucFolLl1sZUgzrnDPVtLF6IhpbFiqCmqyONnkRrdE+8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BhyYMaiy6aGNyGePj+6azwdsJCJBXqJMosk4meHT7M19ZUxxNbfzJ9H7T90QaWUSQ
-	 Qb1AfoEMow6wqOxQYjgewm7r2Aj0/YjQtY/Ccv99dqYWlLspdzKric/3xd6LsnCer1
-	 +2lHwtFDAWUm/6hQ3hUXD8hEVZeyzArkUhBb8CQCmhBGpHvTwuki5npxwkZcSSgnSw
-	 7Xjfd4NeepGzRhbSyeV/mXfLywHW2wnyvFH/LDNXUmkQAGQRp7M6YXJXv3izwYONN7
-	 S/mrFpM/xwiDuuiCBRlzRTa9bF9IguiQeAXRa7nfrI5T07mZXyFcrwuWRcVZ1NmbbJ
-	 Ju5UYkSc3H/LA==
-Date: Tue, 17 Dec 2024 07:34:02 -0600
-From: Rob Herring <robh@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: Andrew Lunn <andrew@lunn.ch>, Fedor Ross <fedor.ross@ifm.com>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	b=fRn2ED4sh4qILlVU7BHXgxEoozwA/RMbdoaVhGEcKkPN+vNYXDuJxy8qayUloqm/N
+	 RMfcexFMi+wNefOdjR3W8xQkAuCDrIhUlikXhJI+JhsM0X5WYc8IIdGKg35tb7/ZGd
+	 egSD6P8hhcZxGoajETKyIluEC0PfSyNvf2A2e3aL04Z3lA3EjyLTpw2Wk5Wp2uI5tI
+	 IWs8OZ2Vd8fCR7FSHg5TLIDQTa8GGxuOuiTtcOdd5DS2bjKqR90xHwr1mkflpOnBlj
+	 5Pxdcgkz5gmo8xSrIYoLwOVgsd7iphOXzkt3Oe9jqexrQ56kFlAM+bmlfeiYIn+thz
+	 X7az8uCL8R+gg==
+Date: Tue, 17 Dec 2024 07:34:35 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: linux-kernel@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Qiang Yu <quic_qianyu@quicinc.com>, linux-pci@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Tristram Ha <tristram.ha@microchip.com>
-Subject: Re: [PATCH net-next 0/2] net: dsa: microchip: Add of config for LED
- mode for ksz87xx and ksz88x3
-Message-ID: <20241217133402.GA1420212-robh@kernel.org>
-References: <20241209-netdev-net-next-ksz8_led-mode-v1-0-c7b52c2ebf1b@ifm.com>
- <c934f10d-1a75-4ca8-bd0b-f08544c7d333@lunn.ch>
- <c970bdbc-5831-470c-9040-b37c4f76baf2@denx.de>
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Subject: Re: [PATCH 3/4] dt-bindings: vendor-prefixes: Document the
+ 'pciclass' prefix
+Message-ID: <173444247437.1427449.10975392578508176366.robh@kernel.org>
+References: <20241210-pci-pwrctrl-slot-v1-0-eae45e488040@linaro.org>
+ <20241210-pci-pwrctrl-slot-v1-3-eae45e488040@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,33 +64,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c970bdbc-5831-470c-9040-b37c4f76baf2@denx.de>
+In-Reply-To: <20241210-pci-pwrctrl-slot-v1-3-eae45e488040@linaro.org>
 
-On Mon, Dec 09, 2024 at 09:26:33PM +0100, Marek Vasut wrote:
-> On 12/9/24 7:22 PM, Andrew Lunn wrote:
-> > On Mon, Dec 09, 2024 at 06:58:50PM +0100, Fedor Ross wrote:
-> > > Add support for the led-mode property for the following PHYs which have
-> > > a single LED mode configuration value.
-> > > 
-> > > KSZ8765, KSZ8794 and KSZ8795 use register 0x0b bits 5,4 to control the
-> > > LED configuration.
-> > > 
-> > > KSZ8863 and KSZ8873 use register 0xc3 bits 5,4 to control the LED
-> > > configuration.
-> > 
-> > PHY and MAC LEDs should be configured via /sys/class/leds. Please take
-> > a look at how the Marvell PHY and DSA driver, qca8k driver etc do
-> > LEDs.
-> According to KSZ8794 datasheet, this register 0xb is Global Control:
+
+On Tue, 10 Dec 2024 15:25:26 +0530, Manivannan Sadhasivam wrote:
+> 'pciclass' is an existing prefix used to identify the PCI bridge devices,
+> but it is not a vendor prefix. So document it in the non-vendor prefix
+> list.
 > 
-> Register 11 (0x0B): Global Control 9
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> So this does not seems like per-port LED control, but rather some global
-> control for all LEDs on all ports on the chip ?
 
-Still should be able to use the standard binding and sysfs controls. The 
-driver just has to reject invalid combinations.
-
-Rob
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
