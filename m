@@ -1,103 +1,84 @@
-Return-Path: <devicetree+bounces-131918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E3CD9F4EB1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 16:01:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7198A9F4ED6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 16:08:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2248C1659D1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 15:01:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 957E7164429
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 15:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12B951F4724;
-	Tue, 17 Dec 2024 15:01:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 918AA1F7070;
+	Tue, 17 Dec 2024 15:07:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LcnR5NNU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EexzruE2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE8B1EBFE3;
-	Tue, 17 Dec 2024 15:01:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 615581F63CB;
+	Tue, 17 Dec 2024 15:07:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734447661; cv=none; b=F7tibfsk3HiSSB5NPQrPuYsSDiOpKrxoaMxyhbgSQ9YcuG/tDX2I/4/j/pCpV/KA4v7j06bqpY2RDD4+Bz+Ghm8o9CUB4NV6zjSUDN6YdwCgfo94VKkH0XBIWJDJdrkPpPUklEdrl/lPFHsOMbm5KbTGEf4sX4ctu3QcN+hTNaY=
+	t=1734448040; cv=none; b=dZFnvJUCzfL9O7BYBSHfn982+acZftqLlMf5g5ZSoah+7tf5DJy/WhoW+loBN/RV8wHvw8ksWTjdSSKSp9jOXKX5kw6/+8H454a4XWqmZ2OpbLmXdPoZn29gJe3E2LKmjFspzXXaRhlY4+BpW/+84auViqXbkaov63uAZrLK9MY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734447661; c=relaxed/simple;
-	bh=oGESw4Z2Z6XFu8JPC4NPpdSSXjk/ztQXAzsuIWRsIP0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jPcbT19LaGtJkYHBU0yT+aODelzqyKdDUvb4iGoNIQyBCKgytxlM8Z7CioEuyIOqetLr1Rd2xsGg/y5twFWjBVM7UF+I5E4V6vvOH1KPavFBql67M2q2+9TmHTW0buWKNXBjuz/VBVce/vgzHBXypn6uo0jHKu9PVGHbEKV0ByE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LcnR5NNU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22A38C4CED3;
-	Tue, 17 Dec 2024 15:01:00 +0000 (UTC)
+	s=arc-20240116; t=1734448040; c=relaxed/simple;
+	bh=Hz3ye4coDqRTpB8Uu+VIt1fkEWgx9lC6LwJZrI9OE3o=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Ukmn/6Pa0s3SjBKq3WfFOplIcn/x2Zzfy3dLhi1+x1jnB95c+OPSCfC4ClwYev8AqP5z31UDdfoTCfxAvR3ITvIeafs4w1uffAZChezpiVmucmXuRJRbQTdqYorvuYVarlAPkZ4b/G7/SeZZg9m99+0zYRpyGSN5UoJTlenljBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EexzruE2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 942D8C4CED3;
+	Tue, 17 Dec 2024 15:07:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734447660;
-	bh=oGESw4Z2Z6XFu8JPC4NPpdSSXjk/ztQXAzsuIWRsIP0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LcnR5NNU+i+HZX99WpEpnYV9khJg16QL9JMcQGK7zoOesDXHAj67k7PppyxKFLFUl
-	 Dox0DqF3qFP0zQKl7BdHkZGq1nadUR+QL6oiYiRcmn6mPskE/V+Q2LK9YNe2wR6y41
-	 XnewgirSwaaaTHRJNWO+XmMTJ9/3KkR8/Smc3Wmsw2juatJTL2gYcWsjo6xZ7Busmg
-	 tceq1z8z6oqBtOCA3tkuGXx3VzP+bINyUZXQ+nESXPSVLQTDCOBeduiD1wIyztFFVx
-	 1JaG2EixZfBqtmy2rAliMSELplqRj0D3rBYZmaRnIoaM3MLDdjGJ7fp+JL0XJ9hlAm
-	 AQVZED4nlYD/g==
-Date: Tue, 17 Dec 2024 09:00:58 -0600
-From: Rob Herring <robh@kernel.org>
-To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	jingoohan1@gmail.com, michal.simek@amd.com,
-	bharat.kumar.gogada@amd.com
-Subject: Re: [RESEND PATCH v5 1/3] dt-bindings: PCI: dwc: Add AMD Versal2 mdb
- slcr support
-Message-ID: <20241217150058.GA1660852-robh@kernel.org>
-References: <20241213064035.1427811-1-thippeswamy.havalige@amd.com>
- <20241213064035.1427811-2-thippeswamy.havalige@amd.com>
+	s=k20201202; t=1734448039;
+	bh=Hz3ye4coDqRTpB8Uu+VIt1fkEWgx9lC6LwJZrI9OE3o=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=EexzruE2u7MJWe1l5AjXspLpC14r/qs0XTd5TPQ/H3wwVaVrRhI/zywN4/9gGU5rd
+	 S0U/IfQfkFh071o+itXsogOXLN1442xU4eTCSGOC+kPdlWQNXyQQxQ1VOFQNLIgPRl
+	 7l9xq5Bz1EOY8CUG2r/WTRL36j/w9yoTUMGjtg9UNGCrhjWJSeVYCNkGxZb9h4ybT1
+	 1e5soofNa80tNo0loLi9Uua6SAcTg+oV60mSl54AGIQhV1qNxGTAuliOi4Vc9D0dUI
+	 /2Pdyc9z8YwJliQPavAM58NiJwaEjQXme5lew3Lq2eqX9dXsEA/OqqD6SbBsCSHySR
+	 1GewIxSYqjx4g==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, 
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
+ tsbogend@alpha.franken.de, hkallweit1@gmail.com, linux@armlinux.org.uk, 
+ markus.stockhausen@gmx.de, 
+ Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ netdev@vger.kernel.org, linux-mips@vger.kernel.org
+In-Reply-To: <20241216031346.2626805-3-chris.packham@alliedtelesis.co.nz>
+References: <20241216031346.2626805-1-chris.packham@alliedtelesis.co.nz>
+ <20241216031346.2626805-3-chris.packham@alliedtelesis.co.nz>
+Subject: Re: (subset) [PATCH v2 2/4] dt-bindings: mfd: Add MDIO interface
+ to rtl9301-switch
+Message-Id: <173444803631.1901572.15614847167551978147.b4-ty@kernel.org>
+Date: Tue, 17 Dec 2024 15:07:16 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241213064035.1427811-2-thippeswamy.havalige@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.13.0
 
-On Fri, Dec 13, 2024 at 12:10:33PM +0530, Thippeswamy Havalige wrote:
-> Add support for mdb slcr aperture that is only supported for AMD Versal2
-> devices.
+On Mon, 16 Dec 2024 16:13:44 +1300, Chris Packham wrote:
+> The MDIO controller is part of the switch on the RTL9300 family of
+> devices. Add a $ref to the mfd binding for these devices.
 > 
-> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-> ---
-> Changes in v3:
-> -------------
-> - Introduced below changes in dwc yaml schema.
-> Changes in v5:
-> -------------
-> - Modify mdb_pcie_slcr as constant.
-> ---
->  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml | 2 ++
->  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> index 548f59d76ef2..696568e81cfc 100644
-> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> @@ -113,6 +113,8 @@ properties:
->                enum: [ smu, mpu ]
->              - description: Tegra234 aperture
->                enum: [ ecam ]
-> +            - description: AMD MDB PCIe slcr region
-> +              const: mdb_pcie_slcr
 
-Including the block name is redundant. Just 'slcr' is sufficient.
+Applied, thanks!
 
->      allOf:
->        - contains:
->            const: dbi
-> -- 
-> 2.34.1
-> 
+[2/4] dt-bindings: mfd: Add MDIO interface to rtl9301-switch
+      commit: 1061081cbe930f97ad54e820ad1996f55d93c57f
+
+--
+Lee Jones [李琼斯]
+
 
