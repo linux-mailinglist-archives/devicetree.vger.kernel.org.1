@@ -1,518 +1,155 @@
-Return-Path: <devicetree+bounces-132070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE0039F59C3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 23:45:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C09B9F59F0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 00:00:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CF5F18915CE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 22:45:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EAD01608C5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 22:59:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658E31F8EFD;
-	Tue, 17 Dec 2024 22:45:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ED2E1F8EFD;
+	Tue, 17 Dec 2024 22:59:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="NovLET1v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M1VZFx6i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898B81F9F77
-	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 22:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867DE1D9A63;
+	Tue, 17 Dec 2024 22:59:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734475509; cv=none; b=inRDgtmT6cnvErjZAI+CTgGoS5c14yQjJTQktFVOuVh/rsl2YNPFrrvyzyLIKtNMGQIdhPL9OICofhbOeaQcTpHBn71HDZTkwhA48wJs1imbCwNUHMzKfT7Nc8sx7rgpGas1BZP1HFFZcyTPAbFRQtUEIWVbioJlS3OSQmyAN6c=
+	t=1734476394; cv=none; b=Uy7uRupHgHUaPSzO5/vv5oWJF8B8U9LnnTveK6iZhfdp+8AqHY08CWTgI8HvwlKrjh1WFoWFiVV0j+3Vf2+nR7MBStlqZXJDep7HtjmglU1r2TIBQ7hpPwbM685ht9vZegTGmFhGda3CBkfgFY4OHHDLkHJz5biDWGsM6O7wqhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734475509; c=relaxed/simple;
-	bh=wpyafckqo22LEgmRFK5sFgm/oXxSyWyTD75JOh7g7E8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tbO7do/BqTz+Pz2q2sbstHfMWGvTh5vVAjmmepvSH7tsP0cSyCGoduD0id1DQMMqUdlDHL7lMSv4nnjmoi7OwnvRvILubOpHBmiQ08ad2Sas/MP/iq6QWoxmJEN6Mhq2sqZSDQ1fU42oCQEdEThsHKpY7RP6iiURi8ZbqOp9Iow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=NovLET1v; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 681082C0BE6;
-	Wed, 18 Dec 2024 11:45:03 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1734475503;
-	bh=tSL6RfI2t9n3wBGEs2DS4vNx+r8WnUJ+JVL9uhfC3MQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=NovLET1vsAnEwPt9ytAlesMDjSfFnD1SB5xGcMz9iqZ6G3qRSEue00XKDOaWFwP+z
-	 3USJ16whLpud9SkcsMsoXb3m3n0A2DN6rhc26AHjrkg3QIcecOCxQ+Q9Lt88kxMxAK
-	 A3om14PXOFBG92hFWTHoWmSmCIM7fzARL6UzsW+LyfC9tUSggXI2csyoj5f+qMZpjs
-	 /zY2V+fkgASM3UEC+cFJWk/D8xEMg0vAlzy205VNpKrC/B3RuLa2jXKONpSWGaA6Uw
-	 FcQWR9U6XLnGXpMe+D/ZIIGHs27HnJKcYSY3znRAKfqISq0dNgGVogDlh+8H8FmnjF
-	 w5HbNLpTDnxRQ==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B6761feef0003>; Wed, 18 Dec 2024 11:45:03 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 11C5513EE9B;
-	Wed, 18 Dec 2024 11:45:03 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 0E6102806F6; Wed, 18 Dec 2024 11:45:03 +1300 (NZDT)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: lee@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	tsbogend@alpha.franken.de,
-	hkallweit1@gmail.com,
-	linux@armlinux.org.uk,
-	markus.stockhausen@gmx.de
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v3 3/3] net: mdio: Add RTL9300 MDIO driver
-Date: Wed, 18 Dec 2024 11:45:01 +1300
-Message-ID: <20241217224501.398039-4-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241217224501.398039-1-chris.packham@alliedtelesis.co.nz>
-References: <20241217224501.398039-1-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1734476394; c=relaxed/simple;
+	bh=t78D7F/eWdsE/Maj8r8gf4TmgL1mU/T2PrN4z5z7CBo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BwIOmV5mkHECuiYmY4jbyjk8Fw462bnZrrV84VilvsVlEZXEjY1ldkr0qqFdIHXgvNrX/fzVTLIPzCjU+eDYAEk4Zngz2jgenedZ+CvWOiKyAQG7iBd1/dG0qV2wn1PKzhDqbMyhEfU/tzJYeV8JAZcjOVtyS7ToEukfChnqomw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M1VZFx6i; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-728e78c4d7bso150831b3a.0;
+        Tue, 17 Dec 2024 14:59:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734476392; x=1735081192; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=t78D7F/eWdsE/Maj8r8gf4TmgL1mU/T2PrN4z5z7CBo=;
+        b=M1VZFx6iufLC5/zQhWoR/rdy46I8EWzhNPDsomsTN41v0hrpH6vxKkOxvxNNwHi7xT
+         Nr5FjCH8qFgybiNCxF4aBMM9H0XWne93gYsWSKqPgr7JVEf2V60lsEEKhjn8V4OVplY2
+         sRdn4u17kzWlzUKUU1KEsPxjhB6wDHsmwPqUoMVwUt8bx6xGvgXp1ShWyQc3Ry2kA9Rk
+         GhrTiKVX3Za3vJK+gCmxSTO7TVF3HpfV4mrH+E4uVTn43G2FdhBpTaokpNJJJpQPMHUX
+         tcQBA2r/lWDMDWBIc6G6q/QHmyTiUUAyUng9r7e5gG/J6zK74Qw4HTfxvgdaEIS4iccu
+         2c5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734476392; x=1735081192;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t78D7F/eWdsE/Maj8r8gf4TmgL1mU/T2PrN4z5z7CBo=;
+        b=leN1qEv1ZfMMCc4ojvPMpzXhvPEm4NMkAiJtWHclxOC+aRwUEZxoeNLLrhsi+WcpwM
+         mQTvVJQe6n5HD7zr4RsswcqfjeYB3aRs5GnA0lh1V3NonZpKaQ1FZj7EkBcULqC1SG9t
+         sF003w44WvjKTmVJfH3gKT0Frw8qcIH+qBw4sh/pELsioiM+jELXDuaDmL6zFJ8y//2R
+         A1dxGmrLB3IPr9gXEKvfun+u5Bo0BvnMTQcod3UUIZZnoBnhZBygc83osZeRCcY/yxVd
+         rsgIV8EgstJzl3n90maBdsud3+IkRRcXYgJW+t5sDRVgGT9TV5rDv+aihih6HVX13ad2
+         3xOg==
+X-Forwarded-Encrypted: i=1; AJvYcCVYepvsbeKiad0gr/M2/O1jTDQvHG/g0KZsmLUsUpGbYUiXpm8BhzdFPzStqsgCghV9fjZDNcHk0Upu@vger.kernel.org, AJvYcCW99P7sJjJfNz5OFZ2IAj6PR37kf33UnLQDqkDlrKVb578WlNn+LKl5prspl1XvJkQX4Y7+FFI0qb6t7ac=@vger.kernel.org, AJvYcCWKZrfcBQxcnNKgKJdRJL5+TYB1epDyhvo50AOvmEwllUIg91Bm08LglgdXGCz9Ptzz6cu9ybRDJyUf@vger.kernel.org, AJvYcCWtOSFxJBjYg/Fgvy4S7lRkNeK8KNYywVaTB4HTMG2g6R8T/reny3ZLd05oW7VkBL05baLSI5Dz6osZKGxO7qpMkjo=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz94NpixHmBNn7p/gFjj2s9BI8AaOsRYGxTW5H3O397k/5CoHj/
+	aFedA33PkC1YmYxkfdyZ/p3wHROJ/NrmQMlxzwi2HL6MpV+G8Iir
+X-Gm-Gg: ASbGncsw+BFVzIGyLRbL9ZZKqCDbiDH3pcccHWw3oo1JUuEF+ID+7mXvczL5ya2tsGj
+	rnq3oZh8eng0tZ0pWm9x+JyjblelimtrnTyeBpqYat81p3ZbbMHC6R3OarhrmjoKTtI5CcwQdOM
+	w8fSTvbum2HzDd0ugBV4sKDgvKbhskHiYw3tjaWNDf3ScffrAdInAW6erv7eydW27yRXJyjiunm
+	OM/7IcAoi8OjTLcSlNnGi8QIDmkQO+XwwmIMfixEIBL71bp795wxCpfwkbm2aYV5CLITa64dcUU
+	92G0jGDGHsMNfGdXuL+VgPiwuBGeYg==
+X-Google-Smtp-Source: AGHT+IFkQ7rhpow00hjC5jhoNGdN4nxcPAMzRD8JzAKqjoD+wgVGjfHj339cneoZOE4aqyFypjlJvg==
+X-Received: by 2002:a05:6a00:b86:b0:725:e957:1de6 with SMTP id d2e1a72fcca58-72a8fde103emr778734b3a.13.1734476391696;
+        Tue, 17 Dec 2024 14:59:51 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72918bad81asm7213662b3a.151.2024.12.17.14.59.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Dec 2024 14:59:51 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <b30a1b76-cad4-4d53-837f-64a72993d267@roeck-us.net>
+Date: Tue, 17 Dec 2024 14:59:49 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=6761feef a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=RZcAm9yDv7YA:10 a=cbL8N3GahYQ3_TZRw_4A:9 a=3ZKOabzyN94A:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] hwmon: (lm75) Add NXP P3T1755 support
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-renesas-soc@vger.kernel.org
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-doc@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, Rob Herring <robh@kernel.org>
+References: <20241217120304.32950-4-wsa+renesas@sang-engineering.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20241217120304.32950-4-wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add a driver for the MDIO controller on the RTL9300 family of Ethernet
-switches with integrated SoC. There are 4 physical SMI interfaces on the
-RTL9300 but access is done using the switch ports so a single MDIO bus
-is presented to the rest of the system.
+On 12/17/24 04:03, Wolfram Sang wrote:
+> This small series adds support for the above temp sensor. Ultimately, I
+> want to support it via I3C. But for now, start simple and add I2C
+> support, so we have something to compare against.
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
+I just sent a RFC/RFT patch converting all chip access code to regmap
+to the hwmon list. This should help with adding I3C support. It would
+be great if you can have a look.
 
-Notes:
-    Changes in v3:
-    - Fix (another) off-by-one error
-    Changes in v2:
-    - Add clause 22 support
-    - Remove commented out code
-    - Formatting cleanup
-    - Set MAX_PORTS correctly for MDIO interface
-    - Fix off-by-one error in pn check
-
- drivers/net/mdio/Kconfig            |   7 +
- drivers/net/mdio/Makefile           |   1 +
- drivers/net/mdio/mdio-realtek-rtl.c | 341 ++++++++++++++++++++++++++++
- 3 files changed, 349 insertions(+)
- create mode 100644 drivers/net/mdio/mdio-realtek-rtl.c
-
-diff --git a/drivers/net/mdio/Kconfig b/drivers/net/mdio/Kconfig
-index 4a7a303be2f7..0c6240c4a7e9 100644
---- a/drivers/net/mdio/Kconfig
-+++ b/drivers/net/mdio/Kconfig
-@@ -185,6 +185,13 @@ config MDIO_IPQ8064
- 	  This driver supports the MDIO interface found in the network
- 	  interface units of the IPQ8064 SoC
-=20
-+config MDIO_REALTEK_RTL
-+	tristate "Realtek RTL9300 MDIO interface support"
-+	depends on MACH_REALTEK_RTL || COMPILE_TEST
-+	help
-+	  This driver supports the MDIO interface found in the Realtek
-+	  RTL9300 family of Ethernet switches with integrated SoC.
-+
- config MDIO_REGMAP
- 	tristate
- 	help
-diff --git a/drivers/net/mdio/Makefile b/drivers/net/mdio/Makefile
-index 1015f0db4531..2cd8b491f301 100644
---- a/drivers/net/mdio/Makefile
-+++ b/drivers/net/mdio/Makefile
-@@ -19,6 +19,7 @@ obj-$(CONFIG_MDIO_MOXART)		+=3D mdio-moxart.o
- obj-$(CONFIG_MDIO_MSCC_MIIM)		+=3D mdio-mscc-miim.o
- obj-$(CONFIG_MDIO_MVUSB)		+=3D mdio-mvusb.o
- obj-$(CONFIG_MDIO_OCTEON)		+=3D mdio-octeon.o
-+obj-$(CONFIG_MDIO_REALTEK_RTL)		+=3D mdio-realtek-rtl.o
- obj-$(CONFIG_MDIO_REGMAP)		+=3D mdio-regmap.o
- obj-$(CONFIG_MDIO_SUN4I)		+=3D mdio-sun4i.o
- obj-$(CONFIG_MDIO_THUNDER)		+=3D mdio-thunder.o
-diff --git a/drivers/net/mdio/mdio-realtek-rtl.c b/drivers/net/mdio/mdio-=
-realtek-rtl.c
-new file mode 100644
-index 000000000000..d61a9273e86f
---- /dev/null
-+++ b/drivers/net/mdio/mdio-realtek-rtl.c
-@@ -0,0 +1,341 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * MDIO controller for RTL9300 switches with integrated SoC.
-+ *
-+ * The MDIO communication is abstracted by the switch. At the software l=
-evel
-+ * communication uses the switch port to address the PHY with the actual=
- MDIO
-+ * bus and address having been setup via the realtek,smi-address propert=
-y.
-+ */
-+
-+#include <linux/mdio.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/of_mdio.h>
-+#include <linux/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+#define SMI_GLB_CTRL			0x000
-+#define   GLB_CTRL_INTF_SEL(intf)	BIT(16 + (intf))
-+#define SMI_PORT0_15_POLLING_SEL	0x008
-+#define SMI_ACCESS_PHY_CTRL_0		0x170
-+#define SMI_ACCESS_PHY_CTRL_1		0x174
-+#define   PHY_CTRL_RWOP			BIT(2)
-+#define   PHY_CTRL_TYPE			BIT(1)
-+#define   PHY_CTRL_CMD			BIT(0)
-+#define   PHY_CTRL_FAIL			BIT(25)
-+#define SMI_ACCESS_PHY_CTRL_2		0x178
-+#define SMI_ACCESS_PHY_CTRL_3		0x17c
-+#define SMI_PORT0_5_ADDR_CTRL		0x180
-+
-+#define MAX_PORTS       28
-+#define MAX_SMI_BUSSES  4
-+#define MAX_SMI_ADDR	0x1f
-+
-+struct realtek_mdio_priv {
-+	struct regmap *regmap;
-+	u8 smi_bus[MAX_PORTS];
-+	u8 smi_addr[MAX_PORTS];
-+	bool smi_bus_isc45[MAX_SMI_BUSSES];
-+	u32 reg_base;
-+};
-+
-+static int realtek_mdio_wait_ready(struct realtek_mdio_priv *priv)
-+{
-+	struct regmap *regmap =3D priv->regmap;
-+	u32 reg_base =3D priv->reg_base;
-+	u32 val;
-+
-+	return regmap_read_poll_timeout(regmap, reg_base + SMI_ACCESS_PHY_CTRL_=
-1,
-+					val, !(val & PHY_CTRL_CMD), 10, 500);
-+}
-+
-+static int realtek_mdio_read_c22(struct mii_bus *bus, int phy_id, int re=
-gnum)
-+{
-+	struct realtek_mdio_priv *priv =3D bus->priv;
-+	struct regmap *regmap =3D priv->regmap;
-+	u32 reg_base =3D priv->reg_base;
-+	u32 val;
-+	int err;
-+
-+	err =3D realtek_mdio_wait_ready(priv);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_2, phy_id <=
-< 16);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_1,
-+			   regnum << 20 |  0x1f << 15 | 0xfff << 3 | PHY_CTRL_CMD);
-+	if (err)
-+		return err;
-+
-+	err =3D realtek_mdio_wait_ready(priv);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_read(regmap, reg_base + SMI_ACCESS_PHY_CTRL_2, &val);
-+	if (err)
-+		return err;
-+
-+	return val & 0xffff;
-+}
-+
-+static int realtek_mdio_write_c22(struct mii_bus *bus, int phy_id, int r=
-egnum, u16 value)
-+{
-+	struct realtek_mdio_priv *priv =3D bus->priv;
-+	struct regmap *regmap =3D priv->regmap;
-+	u32 reg_base =3D priv->reg_base;
-+	u32 val;
-+	int err;
-+
-+	err =3D realtek_mdio_wait_ready(priv);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_0, BIT(phy_=
-id));
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_2, value <<=
- 16);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_1,
-+			   regnum << 20 |  0x1f << 15 | 0xfff << 3 | PHY_CTRL_RWOP | PHY_CTRL=
-_CMD);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_read_poll_timeout(regmap, reg_base + SMI_ACCESS_PHY_CTRL=
-_1,
-+				       val, !(val & PHY_CTRL_CMD), 10, 100);
-+	if (err)
-+		return err;
-+
-+	if (val & PHY_CTRL_FAIL)
-+		return -ENXIO;
-+
-+	return 0;
-+}
-+
-+static int realtek_mdio_read_c45(struct mii_bus *bus, int phy_id, int de=
-v_addr, int regnum)
-+{
-+	struct realtek_mdio_priv *priv =3D bus->priv;
-+	struct regmap *regmap =3D priv->regmap;
-+	u32 reg_base =3D priv->reg_base;
-+	u32 val;
-+	int err;
-+
-+	err =3D realtek_mdio_wait_ready(priv);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_2, phy_id <=
-< 16);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_3,
-+			   dev_addr << 16 | (regnum & 0xffff));
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_1,
-+			   PHY_CTRL_TYPE | PHY_CTRL_CMD);
-+	if (err)
-+		return err;
-+
-+	err =3D realtek_mdio_wait_ready(priv);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_read(regmap, reg_base + SMI_ACCESS_PHY_CTRL_2, &val);
-+	if (err)
-+		return err;
-+
-+	return val & 0xffff;
-+}
-+
-+static int realtek_mdio_write_c45(struct mii_bus *bus, int phy_id, int d=
-ev_addr,
-+				  int regnum, u16 value)
-+{
-+	struct realtek_mdio_priv *priv =3D bus->priv;
-+	struct regmap *regmap =3D priv->regmap;
-+	u32 reg_base =3D priv->reg_base;
-+	u32 val;
-+	int err;
-+
-+	err =3D realtek_mdio_wait_ready(priv);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_0, BIT(phy_=
-id));
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_2, value <<=
- 16);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_3,
-+			   dev_addr << 16 | (regnum & 0xffff));
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_1,
-+			   PHY_CTRL_RWOP | PHY_CTRL_TYPE | PHY_CTRL_CMD);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_read_poll_timeout(regmap, reg_base + SMI_ACCESS_PHY_CTRL=
-_1,
-+				       val, !(val & PHY_CTRL_CMD), 10, 100);
-+	if (err)
-+		return err;
-+
-+	if (val & PHY_CTRL_FAIL)
-+		return -ENXIO;
-+
-+	return 0;
-+}
-+
-+static int realtek_mdiobus_init(struct realtek_mdio_priv *priv)
-+{
-+	u32 glb_ctrl_mask =3D 0, glb_ctrl_val =3D 0;
-+	struct regmap *regmap =3D priv->regmap;
-+	u32 reg_base =3D priv->reg_base;
-+	u32 port_addr[5] =3D { 0 };
-+	u32 poll_sel[2] =3D { 0 };
-+	int i, err;
-+
-+	/* Associate the port with the SMI interface and PHY */
-+	for (i =3D 0; i < MAX_PORTS; i++) {
-+		int pos;
-+
-+		if (priv->smi_bus[i] > 3)
-+			continue;
-+
-+		pos =3D (i % 6) * 5;
-+		port_addr[i / 6] |=3D priv->smi_addr[i] << pos;
-+
-+		pos =3D (i % 16) * 2;
-+		poll_sel[i / 16] |=3D priv->smi_bus[i] << pos;
-+	}
-+
-+	/* Put the interfaces into C45 mode if required */
-+	for (i =3D 0; i < MAX_SMI_BUSSES; i++) {
-+		if (priv->smi_bus_isc45[i]) {
-+			glb_ctrl_mask |=3D GLB_CTRL_INTF_SEL(i);
-+			glb_ctrl_val |=3D GLB_CTRL_INTF_SEL(i);
-+		}
-+	}
-+
-+	err =3D regmap_bulk_write(regmap, reg_base + SMI_PORT0_5_ADDR_CTRL,
-+				port_addr, 5);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_bulk_write(regmap, reg_base + SMI_PORT0_15_POLLING_SEL,
-+				poll_sel, 2);
-+	if (err)
-+		return err;
-+
-+	err =3D regmap_update_bits(regmap, reg_base + SMI_GLB_CTRL,
-+				 glb_ctrl_mask, glb_ctrl_val);
-+	if (err)
-+		return err;
-+
-+	return 0;
-+}
-+
-+static int realtek_mdiobus_probe(struct platform_device *pdev)
-+{
-+	struct device *dev =3D &pdev->dev;
-+	struct realtek_mdio_priv *priv;
-+	struct fwnode_handle *child;
-+	struct mii_bus *bus;
-+	int err;
-+
-+	bus =3D devm_mdiobus_alloc_size(dev, sizeof(*priv));
-+	if (!bus)
-+		return -ENOMEM;
-+
-+	bus->name =3D "Reaktek Switch MDIO Bus";
-+	bus->read =3D realtek_mdio_read_c22;
-+	bus->write =3D realtek_mdio_write_c22;
-+	bus->read_c45 =3D realtek_mdio_read_c45;
-+	bus->write_c45 =3D  realtek_mdio_write_c45;
-+	bus->parent =3D dev;
-+	priv =3D bus->priv;
-+
-+	priv->regmap =3D syscon_node_to_regmap(dev->parent->of_node);
-+	if (IS_ERR(priv->regmap))
-+		return PTR_ERR(priv->regmap);
-+
-+	err =3D device_property_read_u32(dev, "reg", &priv->reg_base);
-+	if (err)
-+		return err;
-+
-+	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
-+
-+	device_for_each_child_node(dev, child) {
-+		u32 pn, smi_addr[2];
-+
-+		err =3D fwnode_property_read_u32(child, "reg", &pn);
-+		if (err)
-+			return err;
-+
-+		if (pn >=3D MAX_PORTS)
-+			return dev_err_probe(dev, -EINVAL, "illegal port number %d\n", pn);
-+
-+		err =3D fwnode_property_read_u32_array(child, "realtek,smi-address", s=
-mi_addr, 2);
-+		if (err) {
-+			smi_addr[0] =3D 0;
-+			smi_addr[1] =3D pn;
-+		}
-+
-+		if (smi_addr[0] >=3D MAX_SMI_BUSSES)
-+			return dev_err_probe(dev, -EINVAL, "illegal smi bus number %d\n",
-+					     smi_addr[0]);
-+
-+		if (smi_addr[1] > MAX_SMI_ADDR)
-+			return dev_err_probe(dev, -EINVAL, "illegal smi addr %d\n", smi_addr[=
-1]);
-+
-+		if (fwnode_device_is_compatible(child, "ethernet-phy-ieee802.3-c45"))
-+			priv->smi_bus_isc45[smi_addr[0]] =3D true;
-+
-+		priv->smi_bus[pn] =3D smi_addr[0];
-+		priv->smi_addr[pn] =3D smi_addr[1];
-+	}
-+
-+	err =3D realtek_mdiobus_init(priv);
-+	if (err)
-+		return dev_err_probe(dev, err, "failed to initialise MDIO bus controll=
-er\n");
-+
-+	err =3D devm_of_mdiobus_register(dev, bus, dev->of_node);
-+	if (err)
-+		return dev_err_probe(dev, err, "cannot register MDIO bus\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id realtek_mdio_ids[] =3D {
-+	{ .compatible =3D "realtek,rtl9301-mdio" },
-+	{ .compatible =3D "realtek,rtl9302b-mdio" },
-+	{ .compatible =3D "realtek,rtl9302c-mdio" },
-+	{ .compatible =3D "realtek,rtl9303-mdio" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, realtek_mdio_ids);
-+
-+static struct platform_driver rtl9300_mdio_driver =3D {
-+	.probe =3D realtek_mdiobus_probe,
-+	.driver =3D {
-+		.name =3D "mdio-rtl9300",
-+		.of_match_table =3D realtek_mdio_ids,
-+	},
-+};
-+
-+module_platform_driver(rtl9300_mdio_driver);
-+
-+MODULE_DESCRIPTION("RTL9300 MDIO driver");
-+MODULE_LICENSE("GPL");
---=20
-2.47.1
+Thanks,
+Guenter
 
 
