@@ -1,144 +1,219 @@
-Return-Path: <devicetree+bounces-131848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43CCD9F4C0D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:25:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D059F4C24
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:28:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 859C11895185
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:16:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF35E1899467
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:18:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076D51F76CE;
-	Tue, 17 Dec 2024 13:08:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B06AB1F8AE2;
+	Tue, 17 Dec 2024 13:10:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="Z1LtAnKN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eVdple0W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mr85p00im-ztdg06011201.me.com (mr85p00im-ztdg06011201.me.com [17.58.23.181])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 802F91F76B1
-	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 13:08:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.23.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FF481F4263;
+	Tue, 17 Dec 2024 13:10:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734440894; cv=none; b=LfoesPxjVtWI5seOAA0vZet0lvcX2pRkcsMzrRpT3SbYBXocWXQnLeJDAtWriX6LQX+GOHxjhZyg9kGf0XNAitoeoKKUIkjoyFOuvu4vh18yJxXb0U2Sg1Om6hEnPxdXkStP9ymLmk//Adx0KJANW9OMLJVDBThpT2MgrdbtxTs=
+	t=1734441004; cv=none; b=EpoFFbGYhsBondl89LMdu/v2HGZ9hvn26wnvMtrs8NikW73vMdtSueaZ0W06n5aF9Z5lpszHexKD34LV57PdJa197FmtZgGJGEM7vuQEmtYZ3zj8CDw5s7A5tEcGOTXF904GhZExbbcDDHOd5CSecmZwEKRvnhDqGaBADQtDxT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734440894; c=relaxed/simple;
-	bh=4/H70e0punnJ+RTZIpTcPhQowk99820k7GsZQcgr2+s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VgfrR5aVIjtgHxfT9q8u8ToozeM8owNJKDwL3OHo6sOqB1PicYF4pX0k4GWLC4YzgQrqxwzxsf4tl2El2EiQzA+jpMLkPvYn6O12ikEMYXoqzz4ZpsYBPGJxRaxHA9G+RT1ZW5bCr6wDjLT71J/3s2Gix2wZVovLn3Wm5Rb34NQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=Z1LtAnKN; arc=none smtp.client-ip=17.58.23.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1734440893;
-	bh=n/2ECFFvsy3oX54LANvs+QW1uDJIfzCg4fhckcEOoYA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:
-	 x-icloud-hme;
-	b=Z1LtAnKNwOC+QV0YGMlZBb04806CMisrTeKAyrcfTXei+5ba4InX6JY0dMcqHX7pC
-	 4c+ifodEy52ro11bEqH3ywp/drFfcmxLTzUu7F43otS+7Ryzt4ndqyGaKNtuEYc94Y
-	 RDmHn7aoYqQkjE2zxLBj4H1ZkyvD2DbDocZCbYaRUy4IZQQnbpZjWjr7vgnHxgVJxm
-	 GzUpIzwQxJ5Vm06Cs9dRWRrJjHezowjXwMqjZS/oWhFeVlUgRdVfUUVawc0YWdt4R5
-	 vN3mmOus58vX9eg1C1shPZTirr+anFAOzl/Pn8JBNSSzCsSqKLcRtwwXe/8/dCVy8g
-	 9+15DBLa7b0Ng==
-Received: from [192.168.1.26] (mr38p00im-dlb-asmtp-mailmevip.me.com [17.57.152.18])
-	by mr85p00im-ztdg06011201.me.com (Postfix) with ESMTPSA id 28BE09602BA;
-	Tue, 17 Dec 2024 13:08:09 +0000 (UTC)
-From: Zijun Hu <zijun_hu@icloud.com>
-Date: Tue, 17 Dec 2024 21:07:31 +0800
-Subject: [PATCH v3 7/7] of: Do not expose of_modalias()
+	s=arc-20240116; t=1734441004; c=relaxed/simple;
+	bh=kDlu4XK3lP82N0qIPv6jQEmDp0tDUCg6mKlUOzQMyOI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=le2ycBk03Zc0fLi/v0JY1DfEQkgJkziuROP6xkTNJ7g+JSs9aCvoIrBd9zqpeWQBzvhanVI5TFoldQGoozrSgqC1xGsKXWw2RR5wU09maXffvyavZDq/6n1AM/rETvfcU5g1orGCQKf2oCCtkB/60StaGFfdFWrkJzoYtyEaYAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eVdple0W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B07FDC4CED3;
+	Tue, 17 Dec 2024 13:10:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734441004;
+	bh=kDlu4XK3lP82N0qIPv6jQEmDp0tDUCg6mKlUOzQMyOI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eVdple0Wsw4aagxBZWjMhm/AcC6DgKyOa4cYXNQKMwHKbSwXMNwDedw00a0o7MNj6
+	 8gW94BorPBTcxgEcMgM+f1jVmqLaOleRmm9hL0awcuQxy8/opixQVdIvDcXYxkYNmt
+	 LTC4yEdiPWplj+yFAf4vlQ4rVJkh/hmI9SgGfGsQ/T+tDy94RGbGSC0aTjpxbvV4zl
+	 xDv7OUZ68T81BdLRU0HkK7Qq96VFqroe/3vuGHOa87zNQYdOBYMcIc61fTNMOIPg9A
+	 x8xW7vdH1MInsxeV79Cy7Ddbigy023dPKZWW2EgxA7xjq5ks27uuCSt1keUYfG2Z3a
+	 MdtN2XR7d+CXw==
+Date: Tue, 17 Dec 2024 07:10:02 -0600
+From: Rob Herring <robh@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Chen Wang <unicorn_wang@outlook.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicornxw@gmail.com>,
+	kw@linux.com, u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu,
+	arnd@arndb.de, bhelgaas@google.com, guoren@kernel.org,
+	inochiama@outlook.com, lee@kernel.org, lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org, palmer@dabbelt.com,
+	paul.walmsley@sifive.com, pbrobinson@gmail.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com,
+	fengchun.li@sophgo.com
+Subject: Re: [PATCH v2 1/5] dt-bindings: pci: Add Sophgo SG2042 PCIe host
+Message-ID: <20241217131002.GA1160167-robh@kernel.org>
+References: <BM1PR01MB4515ECD36D8FC6ECB7D161C5FE3E2@BM1PR01MB4515.INDPRD01.PROD.OUTLOOK.COM>
+ <20241211192014.GA3302752@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241217-of_core_fix-v3-7-3bc49a2e8bda@quicinc.com>
-References: <20241217-of_core_fix-v3-0-3bc49a2e8bda@quicinc.com>
-In-Reply-To: <20241217-of_core_fix-v3-0-3bc49a2e8bda@quicinc.com>
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
- Maxime Ripard <mripard@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
- Grant Likely <grant.likely@secretlab.ca>
-Cc: Zijun Hu <zijun_hu@icloud.com>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Proofpoint-GUID: 9vUZ2aJGuQLZzk4fqjghWZ0W9NDnSOfF
-X-Proofpoint-ORIG-GUID: 9vUZ2aJGuQLZzk4fqjghWZ0W9NDnSOfF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2024-12-17_07,2024-12-17_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 clxscore=1015
- malwarescore=0 suspectscore=0 mlxlogscore=664 phishscore=0 bulkscore=0
- spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2412170105
-X-Apple-Remote-Links: v=1;h=KCk=;charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241211192014.GA3302752@bhelgaas>
 
-From: Zijun Hu <quic_zijuhu@quicinc.com>
+On Wed, Dec 11, 2024 at 01:20:14PM -0600, Bjorn Helgaas wrote:
+> [cc->to: Rob, Krzysztof, Conor because I'm not a DT expert and I'd
+> like their thoughts on this idea of describing Root Ports as separate
+> children]
+> 
+> On Wed, Dec 11, 2024 at 05:00:44PM +0800, Chen Wang wrote:
+> > On 2024/12/11 1:33, Bjorn Helgaas wrote:
+> > > On Mon, Dec 09, 2024 at 03:19:38PM +0800, Chen Wang wrote:
+> 
+> > > > +      The Cadence IP has two modes of operation, selected by a strap pin.
+> > > > +
+> > > > +      In the single-link mode, the Cadence PCIe core instance associated
+> > > > +      with Link0 is connected to all the lanes and the Cadence PCIe core
+> > > > +      instance associated with Link1 is inactive.
+> > > > +
+> > > > +      In the dual-link mode, the Cadence PCIe core instance associated
+> > > > +      with Link0 is connected to the lower half of the lanes and the
+> > > > +      Cadence PCIe core instance associated with Link1 is connected to
+> > > > +      the upper half of the lanes.
+> 
+> > > > +      SG2042 contains 2 Cadence IPs and configures the Cores as below:
+> > > > +
+> > > > +                     +-- Core(Link0) <---> pcie_rc0   +-----------------+
+> > > > +                     |                                |                 |
+> > > > +      Cadence IP 1 --+                                | cdns_pcie0_ctrl |
+> > > > +                     |                                |                 |
+> > > > +                     +-- Core(Link1) <---> disabled   +-----------------+
+> > > > +
+> > > > +                     +-- Core(Link0) <---> pcie_rc1   +-----------------+
+> > > > +                     |                                |                 |
+> > > > +      Cadence IP 2 --+                                | cdns_pcie1_ctrl |
+> > > > +                     |                                |                 |
+> > > > +                     +-- Core(Link1) <---> pcie_rc2   +-----------------+
+> > > > +
+> > > > +      pcie_rcX is pcie node ("sophgo,sg2042-pcie-host") defined in DTS.
+> > > > +      cdns_pcie0_ctrl is syscon node ("sophgo,sg2042-pcie-ctrl") defined in DTS
+> > > > +
+> > > > +      cdns_pcieX_ctrl contains some registers shared by pcie_rcX, even two
+> > > > +      RC(Link)s may share different bits of the same register. For example,
+> > > > +      cdns_pcie1_ctrl contains registers shared by link0 & link1 for Cadence IP 2.
+> 
+> > > > +      "sophgo,pcie-port" is defined to flag which core(link) the rc maps to, with
+> > > > +      this we can know what registers(bits) we should use.
+> 
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - reg
+> > > > +  - reg-names
+> > > > +  - vendor-id
+> > > > +  - device-id
+> > > > +  - sophgo,syscon-pcie-ctrl
+> > > > +  - sophgo,pcie-port
+> > >
+> > > It looks like vendor-id and device-id apply to PCI devices, i.e.,
+> > > things that will show up in lspci, I assume Root Ports in this case.
+> > > Can we make this explicit in the DT, e.g., something like this?
+> > > 
+> > >    pcie@62000000 {
+> > >      compatible = "sophgo,sg2042-pcie-host";
+> > >      port0: pci@0,0 {
+> > >        vendor-id = <0x1f1c>;
+> > >        device-id = <0x2042>;
+> > >      };
+> > 
+> > Sorry, I don't understand your meaning very well.  Referring to the topology
+> > diagram I drew above, is it okay to write DTS as follows?
+> > 
+> > pcie@7060000000 {
+> >     compatible = "sophgo,sg2042-pcie-host";
+> >     ...... // other properties
+> >     pci@0,0 {
+> >       vendor-id = <0x1f1c>;
+> >       device-id = <0x2042>;
+> >     };
+> > }
+> > 
+> > pcie@7062000000 {
+> >     compatible = "sophgo,sg2042-pcie-host";
+> >     ...... // other properties
+> >     pci@0,0 {
+> >       vendor-id = <0x1f1c>;
+> >       device-id = <0x2042>;
+> >     };
+> > }
+> > 
+> > pcie@7062800000 {
+> >     compatible = "sophgo,sg2042-pcie-host";
+> >     ...... // other properties
+> >     pci@1,0 {
+> >       vendor-id = <0x1f1c>;
+> >       device-id = <0x2042>;
+> >     };
+> > 
+> > }
+> 
+> Generally makes sense to me.  I'm suggesting that we should start
+> describing Root Ports as children of the host bridge node instead of 
+> mixing their properties into the host bridge itself.
+> 
+> Some properties apply to the host bridge, e.g., "bus-range" describes
+> the bus number aperture, and "ranges" describes the address
+> translation between the upstream CPU address space and the PCI address
+> space.
+> 
+> Others apply specifically to a Root Port, e.g., "num-lanes",
+> "max-link-speed", "phys", "vendor-id", "device-id".  I think it will
+> help if we can describe these in separate children, especially when
+> there are multiple Root Ports.
 
-Do not expose of_modalias() since it has no external callers.
+Agreed.
 
-Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
----
- drivers/of/module.c     | 2 ++
- drivers/of/of_private.h | 2 ++
- include/linux/of.h      | 6 ------
- 3 files changed, 4 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/of/module.c b/drivers/of/module.c
-index 03a2b1b381e5b353b6699dac183c03186afb0486..6dd670f7e4fe68b6a8f4b30a81064a1b8e4a0644 100644
---- a/drivers/of/module.c
-+++ b/drivers/of/module.c
-@@ -8,6 +8,8 @@
- #include <linux/slab.h>
- #include <linux/string.h>
- 
-+#include "of_private.h"
-+
- /*
-  * of_modalias - get MODALIAS string value for a OF device node
-  * @np: the OF device node
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index 3433ccd330e84fd3a4b54638e0e922069757c8f0..5facb6ff63cce46205fbe3969ae2e9f7858ac9bd 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -150,6 +150,8 @@ extern void __of_detach_node(struct device_node *np);
- extern void __of_sysfs_remove_bin_file(struct device_node *np,
- 				       const struct property *prop);
- 
-+char *of_modalias(const struct device_node *np, ssize_t *lenp);
-+
- /* illegal phandle value (set when unresolved) */
- #define OF_PHANDLE_ILLEGAL	0xdeadbeef
- 
-diff --git a/include/linux/of.h b/include/linux/of.h
-index f36bab2caa8ccffbd43593d8b6720946e19503e0..d9062d4fbd143d42b6b217942aced66fa34f1c80 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -382,7 +382,6 @@ extern int of_count_phandle_with_args(const struct device_node *np,
- 	const char *list_name, const char *cells_name);
- 
- /* module functions */
--char *of_modalias(const struct device_node *np, ssize_t *lenp);
- extern int of_request_module(const struct device_node *np);
- 
- /* phandle iterator functions */
-@@ -761,11 +760,6 @@ static inline int of_count_phandle_with_args(const struct device_node *np,
- 	return -ENOSYS;
- }
- 
--static inline char *of_modalias(const struct device_node *np, ssize_t *lenp)
--{
--	return ERR_PTR(-ENODEV);
--}
--
- static inline int of_request_module(const struct device_node *np)
- {
- 	return -ENODEV;
+> Documentation/devicetree/bindings/pci/pci.txt says a Root Port
+> should include a reg property that contains the bus/device/function
+> number of the RP, e.g.,
+> Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt has
+> this:
+> 
+>   pcie-controller@3000 {
+>      compatible = "nvidia,tegra30-pcie";
+>      pci@1,0 {
+>        reg = <0x000800 0 0 0 0>;
+>      };
+> 
+> where the "0x000800 0 0 0 0" means the "pci@1,0" Root Port is at
+> 00:01.0 (bus 00, device 01, function 0).  I don't know what the "@1,0"
+> part means.
+> 
+> > And with this change, I can drop the “pcie-port”property and use the port
+> > name to figure out the port number, right?
+> 
+> Seems likely to me.
 
--- 
-2.34.1
+I don't think device 1 would be the correct address. The RP is almost 
+always device 0.
+
+I think instead the 'syscon-pcie-ctrl' should perhaps be modeled as a 
+phy with the phy binding. Then the host bridge node can have 1 or 2 phy 
+entries depending on if the host uses 1 or 2 links. And the 2nd host 
+should have 'status = "disabled";' when it is not used.
+
+Or perhaps just 'num-lanes' would be enough.
+
+Rob
 
 
