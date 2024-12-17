@@ -1,83 +1,82 @@
-Return-Path: <devicetree+bounces-131985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E3009F52FB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:24:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D525A9F5370
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:29:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D0C31894F65
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 17:21:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E7511890B9A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 17:26:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 909FD1F7574;
-	Tue, 17 Dec 2024 17:20:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B4AB1F8EE5;
+	Tue, 17 Dec 2024 17:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aAg37WfX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CmgT13Fq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE79A1F75A6
-	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 17:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 976241F63D5
+	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 17:25:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734456045; cv=none; b=rtgqOa5JLpo363IXQo1RSUzcjf+wyYU3HOrqwnDPjvFx5liVsEdfFEYdh4Oi4p1F35jl2qLCVkXZa23cvqkmi/J7U1YF6Jmbmw5riK7RjdUHz+o7pJHHOaeJbd3Sp4Sq2SNM+YYltTwmou3+mATXq3BjFgKUpVdLsDi9ZkZJ1VE=
+	t=1734456315; cv=none; b=c3ZMeFSZ/0ndv9/hYY3sN7An2x4OiDtpj0PS894cPDjIQTzOhSfN4Lj64/Kwd6MTo5vMrsshAQrapoqE0CBkPgshRXFXZ9IhoQaULGGpAOFZ2ACj/ZedS46xb81OAaVlABfBi461SLlqpKlziF2S/MI0VmBDJbl5dihmHkk8+a0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734456045; c=relaxed/simple;
-	bh=lU3v/h95t9yKq+oPE/QPiEX37Ydf45Rwlzuvm1RuHwU=;
+	s=arc-20240116; t=1734456315; c=relaxed/simple;
+	bh=qtebKg4/588ML/A2XNGyueKXuWay492/kzv5TfXOmiM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IyUBRAL+Zj+tHKCgbhcex/Z2o1DIEU0yOGC/z1tqAxV6Ye7vX50D+0vx93T2j6JvlkA0rVR34pZtT3BLfoiq9blb9GNU2PAx3cym5RUV4ISdJ3YO5XwJfCaTllo/m7ZsEvNVhdOEgeF8u8OO/LnThZIAjNK/Bk7Y7vg4KJlMtAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aAg37WfX; arc=none smtp.client-ip=209.85.214.172
+	 Content-Type:Content-Disposition:In-Reply-To; b=FSoO0YcdmwJ0ko6RRQw4EmixkEHU34cp+6049R1OUm6tjILIT9A6fkDySdx2B8AFrExL8v/tg9YTZUm+VIkTtOjf+rCZh9kQBCMyIZhZav148CAQkS8iY8saUrhlg1SLdhpJMNgYmgRH5jQE8WPYV7pQ1Zhk/zV7KQW7bhKByx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CmgT13Fq; arc=none smtp.client-ip=209.85.210.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2162c0f6a39so58669515ad.0
-        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 09:20:43 -0800 (PST)
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-7273967f2f0so5996255b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 09:25:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734456043; x=1735060843; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1734456313; x=1735061113; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=97u39/mB75Gyvq3MUoP9A6BWuOZp1jV8oYjBZnf5YHs=;
-        b=aAg37WfXAKzH8J0gBo8+CmgbMQfNxTmLmgza8p7mM/WtKG4Udas38fPEtaCtY+COQ8
-         WREMrEuUdRJIWM3Ymd0PILouuqEj3uWXJ2ZM+GVrRzxOp3nmuymm1rGPfnU7ZCmztpsK
-         meVDvwXNmC6zdP1JJmkWIBpZvYmnFZ4FllTZid26VQpo5MC9INOj2k2jy56KfJXGIVNW
-         vpvVOGsmL235elLgXzSlNW1tfiW0d+BDwkPqXiSBGjcC33iMaJ+FuaUJ73055VvY0dcL
-         jowC5Fux9CdlXCmwEoyte6FMWxN7hArG0OBMzqpv1YmTObDdrzJjn1d73Cp+tc4RvTwY
-         y0Ow==
+        bh=YOPV+rKrhFxhfr/BDT97d+AUMncXtvhCP8Kd1bZ9mu0=;
+        b=CmgT13FqGAlm0J8YffbIYRYnbw5SzOgHxAoO/gMCSxqEWbr8S8Iee7Ut+ll0CtFAib
+         3Yb57Tmm1tskyJ1AuznBZbu9QCzTweVq5PgJl6VU8JUy6VCsqD1tin+ilHTA5lscW8iZ
+         jmfbBJRqkq01G6RqUWhd0j0NS5qkc9NH4ZcG7bhuHp/jZmL7ZEHhaUNR6sFOBvxJBMjo
+         yjQUpK0NHqRB66RIXzGQ9M1iqyD8Gm7kbANf+e05dS7NgC4nfmYwg9CwaOy0MK0yYm/T
+         eRwKgJuGOC8d487wRjgDXYIGtk9qbT7taygJG+GaydpAFeELCBeX3la2vjhfutDH/gGN
+         TQQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734456043; x=1735060843;
+        d=1e100.net; s=20230601; t=1734456313; x=1735061113;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=97u39/mB75Gyvq3MUoP9A6BWuOZp1jV8oYjBZnf5YHs=;
-        b=OD4jBBgUOCpQEhvP/f7I3P30pnLLQkuxHb+NQrUJuJCSYDhXVGaZqdnNiEssdVNVlO
-         3ZOU5zplMC9Wq+OTSRaLR9v6HefTnIaGi/LOsXO1skJx2ji1Kro0qHh4CVGTybl05QYu
-         vBacVYP/9lVdDLimSgW7TZV7P77jE+u2BE17v49+ZHzSc55mF2EAaXUIcHPwgqrtPVem
-         FzcU69s5Cga69t7E+kcR5YzJ9xT8IkAdLtWAU99j0jCxCvnSeGFN4YR14PpONpV/LNuk
-         TryGgIELcl7IPKFjJGQWMXtp4Swbj8cjuzL++pGeU155KcojohlhXnmumpLnpaSj5cFr
-         hM7A==
-X-Forwarded-Encrypted: i=1; AJvYcCWonOVlQvVO6WA5TZQvAYHfWz8NRrCjVXvCipocFx9v64J5jATUDbrVE3REwph8GoN0BrR2O9NInUC5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhQfwpW7k+LK3S9707W53C1OihOsxUv+8kr/LI5gqyXokoiuLg
-	ELehZ2qxJucHSte98WgZ8QEHUbN6WunmuKMqhH7+6BvK05hrlFj9nW2Do9VUlg==
-X-Gm-Gg: ASbGnctIoVntli1i7dY/zALcZ96U/Q8dRgvMqULBVmgHvBeqqnE/aeKKKY3sFQibfDs
-	xrASPwhbsiMoa5+35Nwjd7Az1zteFpJ0TW8FXMx9D6S0p5yJX4yh3MoqPwor58ivuphn33ndI7/
-	YWWCfeiIlXgGMV5CWv+YT4LSXlV6c2wM+EqOg0NF6URGGhQoffFwk18Fw462e+YYLJZMoutyDJF
-	D0+SGGqbhggw6CgByO1Vm0HiWJx5hiPgeUL532yIycMCNotdi9xlo4iq2mEziJCY1a4
-X-Google-Smtp-Source: AGHT+IGjUccenohiYb+SDkdAmpf0k5ZpdC9204RkXFZyFmXwB9GNV/fs0d/6P1jKINhalSCuMQyisw==
-X-Received: by 2002:a17:90b:2750:b0:2ee:7504:bb3d with SMTP id 98e67ed59e1d1-2f2d867445amr6395058a91.0.1734456043265;
-        Tue, 17 Dec 2024 09:20:43 -0800 (PST)
+        bh=YOPV+rKrhFxhfr/BDT97d+AUMncXtvhCP8Kd1bZ9mu0=;
+        b=pla33BTH+gwqQ8Q5uxilBdiwtID+dDjDh5/HuckEG4nHqfTeBNvIP46iVCMwZWJx2p
+         buFxBmprU9bJW+31kFin4qyeT51kX5dLHHwgeC5Dpq0pU/N1tnaa5JLpO4QHbC07eFxL
+         RWd7DBJE5vodAZIfVQTdrMCC74bgvu7qELV7ecD0h0YJltyyHGeUJ6iyjTEwJTaB9CVk
+         TCOHapRoZRspATVlXW2jWqghTOX6+Gie5vfDT6HEgBPm3oQYlywB8Qedeafcg/mD4EgA
+         MQ074bkzLwmepsAthM/N8JghsUeHO7/gMaXmvu8BBHoyLphVv4oZZNeYdKM53oPU4Uc3
+         +8wQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXOiXGDrLYm+g/nKGRBRsgBpW6hcvA3+NNy9yXA1PcWPh89mh1+1N31KRBdAEqVZd7VEM2F6fIpVR6x@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0VmSuI4tk2kl+EmBVSTSAgZsLRJi+mUpfJ+q/0/c5IWTsrCPu
+	Kar8r3Ga8cu4vTOpmPzDChgmPHKwUPSvpASWjjE6W/QKTBMIP0UR1BeKF2zyrg==
+X-Gm-Gg: ASbGncuwHnLel8Njhs2I04eL0TF4MQxHftGe2JOrQfQNhIVZ5gASH/Uvvh+yXVzba2q
+	DNDHStsMqRvbVgu8hs2R8zFTIjQtcc6uh+jApcGkOqFTUUh4ybKMV+4c6WCi6T0wMlTXQMCvhqJ
+	m/fTRUn5BcALaBClRjrcyyOBeCs6Uc2VIgQ8J+eaRwVZMDNyGF8yAubqTOYwjuJlea4JK5D0n/w
+	1mCwzqkQmONe1siYMvYRCYkhvSwsCscExWZJEDuVrwtq7juNGwhBWeIGWgok9DA843l
+X-Google-Smtp-Source: AGHT+IEiyPtAWgyu8zoCPimND9mRn/6YCnmBDMVc1DmVYS+iQJlok+y8D22roOKEWjuOJV17xvafEw==
+X-Received: by 2002:a05:6a00:3d06:b0:725:cfd0:dffa with SMTP id d2e1a72fcca58-7290c0ee463mr28517272b3a.5.1734456312913;
+        Tue, 17 Dec 2024 09:25:12 -0800 (PST)
 Received: from thinkpad ([117.193.214.60])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f2a2434a7bsm6848964a91.36.2024.12.17.09.20.37
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72918bcfecbsm6907193b3a.195.2024.12.17.09.25.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Dec 2024 09:20:42 -0800 (PST)
-Date: Tue, 17 Dec 2024 22:50:33 +0530
+        Tue, 17 Dec 2024 09:25:12 -0800 (PST)
+Date: Tue, 17 Dec 2024 22:55:02 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Christian Bruel <christian.bruel@foss.st.com>,
-	Rob Herring <robh+dt@kernel.org>, lpieralisi@kernel.org,
-	kw@linux.com, bhelgaas@google.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+To: Christian Bruel <christian.bruel@foss.st.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
 	alexandre.torgue@foss.st.com, p.zabel@pengutronix.de,
 	cassel@kernel.org, quic_schintav@quicinc.com,
 	fabrice.gasnier@foss.st.com, linux-pci@vger.kernel.org,
@@ -86,9 +85,9 @@ Cc: Christian Bruel <christian.bruel@foss.st.com>,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v2 1/5] dt-bindings: PCI: Add STM32MP25 PCIe root complex
  bindings
-Message-ID: <20241217172033.zxl4bufakzx7eww5@thinkpad>
-References: <20241126155119.1574564-2-christian.bruel@foss.st.com>
- <20241203222515.GA2967814@bhelgaas>
+Message-ID: <20241217172502.borj2oy4rpxcteag@thinkpad>
+References: <20241205172022.GA3053765@bhelgaas>
+ <d976d74c-80c0-4446-bb9b-960a990c552b@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,53 +97,67 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241203222515.GA2967814@bhelgaas>
+In-Reply-To: <d976d74c-80c0-4446-bb9b-960a990c552b@foss.st.com>
 
-On Tue, Dec 03, 2024 at 04:25:15PM -0600, Bjorn Helgaas wrote:
-> On Tue, Nov 26, 2024 at 04:51:15PM +0100, Christian Bruel wrote:
-> > Document the bindings for STM32MP25 PCIe Controller configured in
-> > root complex mode.
+On Tue, Dec 17, 2024 at 04:53:48PM +0100, Christian Bruel wrote:
+> 
+> > Makes sense.  What about phys, resets, etc?  I'm pretty sure a PHY
+> > would be a per-Root Port thing, and some resets and wakeup signals
+> > also.
 > > 
-> > Supports 4 legacy interrupts and MSI interrupts from the ARM
-> > GICv2m controller.
-> 
-> s/legacy/INTx/
-> 
-> > STM32 PCIe may be in a power domain which is the case for the STM32MP25
-> > based boards.
+> > For new drivers, I think we should start adding Root Port stanzas to
+> > specifically associate those things with the Root Port, e.g.,
+> > something like this?
 > > 
-> > Supports wake# from wake-gpios
+> >    pcie@48400000 {
+> >      compatible = "st,stm32mp25-pcie-rc";
+> > 
+> >      pcie@0,0 {
+> >        reg = <0x0000 0 0 0 0>;
+> >        phys = <&combophy PHY_TYPE_PCIE>;
+> >        phy-names = "pcie-phy";
+> >      };
+> >    };
+> > 
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml?id=v6.12#n111
+> > is one binding that does this, others include apple,pcie.yaml,
+> > brcm,stb-pcie.yaml, hisilicon,kirin-pcie.yaml.
+> > 
 > 
-> s/wake#/WAKE#/
+> On a second thought, moving the PHY to the root-port part would introduce a
+> discrepancy with the pcie_ep binding, whereas the PHY is required on the
+> pcie_ep node.
 > 
-> > +  wake-gpios:
-> > +    description: GPIO controlled connection to WAKE# input signal
-> 
-> I'm not a hardware guy, but this sounds like a GPIO that *reads*
-> WAKE#, not controls it.
-> 
-> > +    pcie@48400000 {
-> > +        compatible = "st,stm32mp25-pcie-rc";
-> > +        device_type = "pci";
-> > +        num-lanes = <1>;
-> 
-> num-lanes applies to a Root Port, not to a Root Complex.  I know most
-> bindings conflate Root Ports with the Root Complex, maybe because many
-> of these controllers only support a single Root Port?
-> 
-> But are we ever going to separate these out?  I assume someday
-> controllers will support multiple Root Ports and/or additional devices
-> on the root bus, like RCiEPs, RCECs, etc., and we'll need per-RP phys,
-> max-link-speed, num-lanes, reset-gpios, etc.
-> 
-> Seems like it would be to our benefit to split out the Root Ports when
-> we can, even if the current hardware only supports one, so we can
-> start untangling the code and data structures.
+> Even for the pcie_rc, the PHY is needed to enable the core_clk to access
+> the PCIe core registers,
 > 
 
-+1 for moving the properties to RP node where they should belong to. The
-controller driver might have to do some extra work to parse the RP node and get
-these properties, but it is worth the effort.
+But why that matters? You can still parse the child nodes, enable PHY and
+configure PCIe registers.
+
+> So that would make 2 different required PHY locations for RC and EP:
+> 
+>     pcie_rc: pcie@48400000 {
+>       compatible = "st,stm32mp25-pcie-rc";
+> 
+>       pcie@0,0 {
+>         reg = <0x0000 0 0 0 0>;
+>         phys = <&combophy PHY_TYPE_PCIE>;
+>         phy-names = "pcie-phy";
+>       };
+>     };
+> 
+>     pcie_ep pcie@48400000 {
+>       compatible = "st,stm32mp25-pcie-ep";
+>       phys = <&combophy PHY_TYPE_PCIE>;
+>       phy-names = "pcie-phy";
+>     };
+> 
+> Simplest seems to keep the PHY required for the pcie core regardless of the
+> mode and keep the empty root port to split the design
+> 
+
+No please. Try to do the right thing from the start itself.
 
 - Mani
 
