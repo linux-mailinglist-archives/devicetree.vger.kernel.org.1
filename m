@@ -1,116 +1,127 @@
-Return-Path: <devicetree+bounces-131851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 209729F4C3C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:29:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 641479F4C0C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 14:25:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19DE0189A530
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:19:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 744EE7A6256
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 13:20:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F9B71F5401;
-	Tue, 17 Dec 2024 13:14:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 589521F6679;
+	Tue, 17 Dec 2024 13:16:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t11yFRtD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bmailout2.hostsharing.net (bmailout2.hostsharing.net [83.223.78.240])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E96881F1917;
-	Tue, 17 Dec 2024 13:14:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=83.223.78.240
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E0561D1730;
+	Tue, 17 Dec 2024 13:16:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734441279; cv=none; b=u7CNAGEIwXWY68Nkspel4E95flDDNJedlrdabI/E2FxP/Lo1jWYaCi9KrhNvXpelQdzML32/bGfdkIlocdpMLdurzRcW28MOhja7NSnEdQ+UeUO9GyHe5g7oxEfBB6V//Ur+EhKzmEj6SBSSFaaNbCRyiV66KY3o4oPiQ/x8SOo=
+	t=1734441397; cv=none; b=qWutDRVxco83dtd1OOtM4DNn+wR3X3eTygW/WoCPODpFfLAyM5qG/V/iKjuWsSmeo9pr/yFhk226i4Upv+iZ0MfgbE1l79o22Ve8YkA22JELBQkXsZNNbZwFbZuwR1S5gT3tTdn+Gs3j1SMWne8Z2nsT+kR5W42jaE6fma7ppRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734441279; c=relaxed/simple;
-	bh=Cjpr9CcVpVM25bPTQuttBnuv0tom7ghF6pk8/NpXFdw=;
+	s=arc-20240116; t=1734441397; c=relaxed/simple;
+	bh=2ZJ0ETzEGovT3C+Lhgx2MC2gLEcVqJCSkAbyfxj/Rj0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gLxys4Qadkdb1UVy4t+A+hJzc+1ZunG7oPtQeEEDtgtEz34zRtw6r06Z9tX3mfBWzLd7Pe0idJhab3UVdwJ9iuowZiEcIhYapQzV4OnbM0gVbluRjSD3O1JtQzRYgY49aEVsRFcb18cJNp5FiJ8+c8QSTvBBgnlSL8NqbQKLFDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de; spf=none smtp.mailfrom=h08.hostsharing.net; arc=none smtp.client-ip=83.223.78.240
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=wunner.de
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=h08.hostsharing.net
-Received: from h08.hostsharing.net (h08.hostsharing.net [83.223.95.28])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
-	 client-signature RSA-PSS (4096 bits) client-digest SHA256)
-	(Client CN "*.hostsharing.net", Issuer "RapidSSL TLS RSA CA G1" (verified OK))
-	by bmailout2.hostsharing.net (Postfix) with ESMTPS id 7D7A82800B4B5;
-	Tue, 17 Dec 2024 14:14:34 +0100 (CET)
-Received: by h08.hostsharing.net (Postfix, from userid 100393)
-	id 67A895FFC39; Tue, 17 Dec 2024 14:14:34 +0100 (CET)
-Date: Tue, 17 Dec 2024 14:14:34 +0100
-From: Lukas Wunner <lukas@wunner.de>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Qiang Yu <quic_qianyu@quicinc.com>
-Subject: Re: [PATCH 1/4] PCI/pwrctrl: Move creation of pwrctrl devices to
- pci_scan_device()
-Message-ID: <Z2F5Oph2o8o_LiZc@wunner.de>
-References: <20241210-pci-pwrctrl-slot-v1-0-eae45e488040@linaro.org>
- <20241210-pci-pwrctrl-slot-v1-1-eae45e488040@linaro.org>
- <Z18Pmq7_rK3pvuT4@wunner.de>
- <20241216051521.riyy5radru6rxqhg@thinkpad>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Aiqop3UQ6smH42BwQLeTAMi3840NUN+weEVPCZ2qN3P9rXFt1ifqal5Z+/+ox5oqiG+ZZmPk/K5gsZO24NuKe2SHgdowCYXTDJB0Gl7ZxVlxQarL0eJjyDkLs/1dMdUlJdmbqfazxL9vBPHnMwrgbVY0h91hEx6HrT7XQKsnchA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t11yFRtD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6638C4CED3;
+	Tue, 17 Dec 2024 13:16:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734441396;
+	bh=2ZJ0ETzEGovT3C+Lhgx2MC2gLEcVqJCSkAbyfxj/Rj0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=t11yFRtDXZXYf7U/turp3S/eLXdXyGIa3s7eAy2myGUTN7Gzb+yZYbXAhGF12FSrf
+	 4zwItyNXBM6iVo1U73e8rgNsrnM0uJL9Plf3F1tJQ7ADUjAbp+TV0CTe1P1BnNen5g
+	 Pceba5qP/FIbztkrQ5ar85yQI9eKTNiS+zjipfpUK6iBwtEmex91RIMbFfg1HJB69X
+	 ejQgLxNUuzKIJlQYpgv5iTm7azYq1z2UpI2OHWPe3aXgp40LluKoUzZH1AkFS2ttNw
+	 W7CJ09HlujP08DuullW2BgsV72tW4rVuu+DzJ87KXvfDwkDS3RTRISYKZkM5UEF2x1
+	 ssrvm9mZ517sw==
+Date: Tue, 17 Dec 2024 13:16:29 +0000
+From: Lee Jones <lee@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: jikos@kernel.org, jic23@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net,
+	srinivas.pandruvada@linux.intel.com, bentiss@kernel.org,
+	dmitry.torokhov@gmail.com, pavel@ucw.cz, ukleinek@debian.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-input@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: [GIT PULL] Immutable branch between MFD, HID, HWMON, Input and LEDs
+ due for the v6.14 merge window
+Message-ID: <20241217131629.GJ2418536@google.com>
+References: <20241107114712.538976-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241216051521.riyy5radru6rxqhg@thinkpad>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241107114712.538976-1-heiko@sntech.de>
 
-On Mon, Dec 16, 2024 at 10:45:21AM +0530, Manivannan Sadhasivam wrote:
-> On Sun, Dec 15, 2024 at 06:19:22PM +0100, Lukas Wunner wrote:
-> > On Tue, Dec 10, 2024 at 03:25:24PM +0530, Manivannan Sadhasivam wrote:
-> > > diff --git a/drivers/pci/pwrctrl/core.c b/drivers/pci/pwrctrl/core.c
-> > > index 2fb174db91e5..9cc7e2b7f2b5 100644
-> > > --- a/drivers/pci/pwrctrl/core.c
-> > > +++ b/drivers/pci/pwrctrl/core.c
-> > > @@ -44,7 +44,7 @@ static void rescan_work_func(struct work_struct *work)
-> > >  						   struct pci_pwrctrl, work);
-> > >  
-> > >  	pci_lock_rescan_remove();
-> > > -	pci_rescan_bus(to_pci_dev(pwrctrl->dev->parent)->bus);
-> > > +	pci_rescan_bus(to_pci_host_bridge(pwrctrl->dev->parent)->bus);
-> > >  	pci_unlock_rescan_remove();
-> > >  }
-> > 
-> > Remind me, what's the purpose of this?  I'm guessing that it
-> > recursively creates the platform devices below the newly
-> > powered up device, is that correct?  If so, is it still
-> > necessary?  Doesn't the new approach automatically create
-> > those devices upon their enumeration?
-> 
-> If the pwrctrl driver is available at the time of platform device creation,
-> this is not needed. But if the driver is not available at that time and
-> probed later, then we need to rescan the bus to enumerate the devices.
+Enjoy!
 
-I see.  Sounds like this can be made conditional on the caller
-being a module.  I think you could achieve this with the following
-in pci_pwrctl_device_set_ready():
+The following changes since commit 40384c840ea1944d7c5a392e8975ed088ecf0b37:
 
--	schedule_work(&pwrctl->work);
-+	if (is_module_address(_RET_IP_))
-+		schedule_work(&pwrctl->work);
+  Linux 6.13-rc1 (2024-12-01 14:28:56 -0800)
 
-Though you'd also have to declare pci_pwrctl_device_set_ready()
-"__attribute__((always_inline))" so that it gets inlined into
-devm_pci_pwrctl_device_set_ready() and the condition works there
-as well.
+are available in the Git repository at:
 
-I'm wondering whether the bus notifier is still necessary with
-the new scheme.  Since the power control device is instantiated
-and destroyed in unison with the pci_dev, can't the device link
-always be created on instantiation of the power control device?
+  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git tags/ib-mfd-hid-hwmon-input-leds-v6.14
 
-Thanks,
+for you to fetch changes up to 9855caf5d4eb1d8b8bba60be256186ea8e0f907c:
 
-Lukas
+  hwmon: add driver for the hwmon parts of qnap-mcu devices (2024-12-17 13:14:48 +0000)
+
+----------------------------------------------------------------
+Immutable branch between MFD, HID, HWMON, Input and LEDs due for the v6.14 merge window
+
+----------------------------------------------------------------
+Heiko Stuebner (7):
+      HID: hid-sensor-hub: don't use stale platform-data on remove
+      mfd: core: Make platform_data pointer const in struct mfd_cell
+      dt-bindings: mfd: Add binding for qnap,ts433-mcu devices
+      mfd: Add base driver for qnap-mcu devices
+      leds: Add driver for LEDs from qnap-mcu devices
+      Input: add driver for the input part of qnap-mcu devices
+      hwmon: add driver for the hwmon parts of qnap-mcu devices
+
+ .../devicetree/bindings/mfd/qnap,ts433-mcu.yaml    |  42 +++
+ Documentation/hwmon/index.rst                      |   1 +
+ Documentation/hwmon/qnap-mcu-hwmon.rst             |  27 ++
+ MAINTAINERS                                        |   9 +
+ drivers/hid/hid-sensor-hub.c                       |  21 +-
+ drivers/hwmon/Kconfig                              |  12 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/qnap-mcu-hwmon.c                     | 364 +++++++++++++++++++++
+ drivers/input/misc/Kconfig                         |  12 +
+ drivers/input/misc/Makefile                        |   1 +
+ drivers/input/misc/qnap-mcu-input.c                | 153 +++++++++
+ drivers/leds/Kconfig                               |  11 +
+ drivers/leds/Makefile                              |   1 +
+ drivers/leds/leds-qnap-mcu.c                       | 227 +++++++++++++
+ drivers/mfd/Kconfig                                |  13 +
+ drivers/mfd/Makefile                               |   2 +
+ drivers/mfd/qnap-mcu.c                             | 338 +++++++++++++++++++
+ include/linux/mfd/core.h                           |   2 +-
+ include/linux/mfd/qnap-mcu.h                       |  26 ++
+ 19 files changed, 1255 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/qnap,ts433-mcu.yaml
+ create mode 100644 Documentation/hwmon/qnap-mcu-hwmon.rst
+ create mode 100644 drivers/hwmon/qnap-mcu-hwmon.c
+ create mode 100644 drivers/input/misc/qnap-mcu-input.c
+ create mode 100644 drivers/leds/leds-qnap-mcu.c
+ create mode 100644 drivers/mfd/qnap-mcu.c
+ create mode 100644 include/linux/mfd/qnap-mcu.h
+
+-- 
+Lee Jones [李琼斯]
 
