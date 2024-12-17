@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-131584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A25C9F3F96
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 01:57:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C9C49F3FA3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 02:03:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5ED8D164273
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 00:57:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 905B6164A54
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 01:03:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF34717BCE;
-	Tue, 17 Dec 2024 00:56:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B32B179A7;
+	Tue, 17 Dec 2024 01:03:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aqLgNCHu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PgcsgpcR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A03D27E;
-	Tue, 17 Dec 2024 00:56:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 317358F77;
+	Tue, 17 Dec 2024 01:03:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734397019; cv=none; b=kN9o0cbo7ns4oao1ckHeJ9dzE66KHKLekNSzP7/5iwOmYbe0f91CMyC3mgg6zSfXsQx20zAnqf8l22O+adrKNPxzy4W2k8zI1EhL4kdO750W/sCwv4uoiJfsE/Xy06dRsm0aZc782YwkkPbRww3s6MDT88MUZp/kzxGR3fvtYgA=
+	t=1734397392; cv=none; b=qz6p6U9FXuCZ3TDMTT7CVjxXrzxIha4hm7ct52/T/oku/i/axmQFOvCTbtEy1IrIsri9OLeoAJYKxA0egLgAxfE3v2jDbfDKLj0afV3PWLsB9RRqBFEyx+gSew1VXaozHKWS+pY3Vw0U+n+cbr/jsd7FboapJTjBPaqjuMNNLDw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734397019; c=relaxed/simple;
-	bh=S/gdz94MTNfSLAdmz3G9UVEKum7fL0vOatHwgDkuyjU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=m43l8du5HWSDRMbm1zTmPsLKsuD5uSYTdHSwspAnBVARhEKTHKD7BggeIlySWyqwkFPW8eYkTB39+ZE1nPgDX2wZu8En2WbaHNBf7DPLpxBqWAUJk1RnAoZiLE+CNZppbTwZhGjIJOId0R1+KvQC3X/xkkBDePC/z5ShIIxdP5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aqLgNCHu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87D80C4CED0;
-	Tue, 17 Dec 2024 00:56:57 +0000 (UTC)
+	s=arc-20240116; t=1734397392; c=relaxed/simple;
+	bh=85qnm0twUdriEANua6M9zWIJ2EUDnJi8YYiwyF62+cw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l4pwhtrqHUdiXOgmedGuTqNm7EEaKUwYQgW/bHv4mPS1D2O/bh8tHQDWXoaLL7l6FjNTnNvjTRQc1+ZnHympy4JwsOzBp5ar7aAdoW6/rIH92TvtCFpwmVlNyl1nywKfxT+ZegMXGWinomY36gnu565oiUQF5OwelraRZe6elsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PgcsgpcR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36901C4CED0;
+	Tue, 17 Dec 2024 01:03:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734397019;
-	bh=S/gdz94MTNfSLAdmz3G9UVEKum7fL0vOatHwgDkuyjU=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=aqLgNCHuU2Mw3bS0mBXNbed3XQiyXODMTX+iOWxir1x/nRO3mWFfKJEcfl27OSAke
-	 VecsNPZNe3z7oTtFikNqKemavbwxOj3fKjA/5Hs9b+gFJDIvh1SWir7dZ+OZ+ExoPe
-	 2TiCoqN8eKu02+PFhe1l+khfBfBphTzfDfU82+YFixzhw69UoK4Zo3pl+jVixIRRAv
-	 4ae6eKbhcIyLK6GyJg/urwXxwHKSkZNmjHCv5AVuDZFPLceqRKlurHs0KgA2YXh7bE
-	 c3H/i2pbMN5USbyLrG/wQpCVlkrQlvaSfL7KgUzBYbOyFMyBWAMYdFRAO/2wY/rV9/
-	 u/L1vdBpbspiA==
-Message-ID: <9fac3079-73ad-48ff-bbc1-18494cf5439c@kernel.org>
-Date: Mon, 16 Dec 2024 18:56:56 -0600
+	s=k20201202; t=1734397391;
+	bh=85qnm0twUdriEANua6M9zWIJ2EUDnJi8YYiwyF62+cw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PgcsgpcRnlAjQSnRs1RAdMVIdnZiF9YsZiqfYqS4jk3e/77rF/VA1SGqoI8fE3Qyh
+	 Dj4KWfVEGhSF9SgfCESj77ebyFjo51u+kxhKF7SB8dG42CnYfIKA9Pwhq7N3uPQJJD
+	 RDiWSbYKWhQGDEp0jsGeZmivlzJUORoYQK1amd2OnXzjIND6sL0BD74ao3/vtuR8PS
+	 rLOcoPz8/K8uq7FAsYnHyF0lPlCZo/0hYgaIRrldy7hFNUbByu2E6JUdj2rEzYuLBp
+	 cxZcRHNYAjstmHzu1vp++ZmeJyveHGXHjmmTqGCLT02YAFUx7QA9HQXSBZ2J/28RHw
+	 8mZ8j+NMGMERg==
+Message-ID: <f303ee53-7d74-45ad-9e4e-895177522759@kernel.org>
+Date: Mon, 16 Dec 2024 19:03:09 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,42 +50,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: socfpga: agilex5: Add gpio0 node and spi dma
- handshake id
-To: niravkumar.l.rabara@intel.com, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241204063254.296870-1-niravkumar.l.rabara@intel.com>
+Subject: Re: [PATCH] arm64: dts: altera: Remove unused and undocumented
+ "snps,max-mtu" property
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241115193822.3623434-1-robh@kernel.org>
 Content-Language: en-US
 From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <20241204063254.296870-1-niravkumar.l.rabara@intel.com>
+In-Reply-To: <20241115193822.3623434-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/4/24 00:32, niravkumar.l.rabara@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+On 11/15/24 13:38, Rob Herring (Arm) wrote:
+> Remove "snps,max-mtu" property which is both unused in the kernel and
+> undocumented. Most likely they are leftovers from downstream.
 > 
-> Add gpio0 controller node and correct DMA handshake ID for SPI
-> tx and rx channels.
-> 
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->   .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 24 ++++++++++++++++++-
->   1 file changed, 23 insertions(+), 1 deletion(-)
+>   arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts | 1 -
+>   1 file changed, 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> index 1162978329c1..51c6e19e40b8 100644
-> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
-> @@ -222,6 +222,26 @@ i3c1: i3c@10da1000 {
->   			status = "disabled";
->   		};
+> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+> index 0d837d3e65a5..34ccf8138f7b 100644
+> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
+> @@ -63,7 +63,6 @@ &gmac0 {
+>   	status = "okay";
+>   	phy-mode = "rgmii";
+>   	phy-addr = <0xffffffff>;
+> -	snps,max-mtu = <0x0>;
+>   };
 >   
+>   &gmac1 {
 
 Applied!
 
 Thanks,
 Dinh
-
 
