@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-132034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1DD89F55F0
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:20:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA3329F55F2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 19:20:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E32EA188BAD7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:19:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0021188EAFF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 18:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26E961F76B1;
-	Tue, 17 Dec 2024 18:18:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6C71F76A9;
+	Tue, 17 Dec 2024 18:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jHAUrmyI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qiYNZob8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC57A14900B;
-	Tue, 17 Dec 2024 18:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B851448DC;
+	Tue, 17 Dec 2024 18:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734459521; cv=none; b=Rj2AnyqcpMq5m+tASHNydi2iKKZ2h1VLBeM93ACvvnyKz9Pq5EwdLYVetCkM17VQMfOEvIYWb2iE9vf1jN5RxlR1Eln/7ZjBLxx/CvLPsKOBkXM5X9BJxhrS9mHyntwAYxLtAQsazQ0oc4ONuPsia5Us9BZ5/HKvP92AbJTevII=
+	t=1734459581; cv=none; b=X0X4mc6QOTbbWlbiiHYbcpbcRRBaA4rR4i9b4j6llx9t+DOVd459af0cgkVVWN+YjimeOlLyOWJEQDKJhaC8QkkPI43wO8Nx+P/lOZHWJor99EC5R7kNo5dyUZ1k2tv2dtSnrD7/KbXbmEFZIfJV3eOPYV8j8pz4X82y6B3EcwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734459521; c=relaxed/simple;
-	bh=kSdAEiIXfeGQwQh1cMCwz9kB4jDFKEML4oez+S2XKh0=;
+	s=arc-20240116; t=1734459581; c=relaxed/simple;
+	bh=zjTy9PBs8BSDM1TkG0RnyrT/0yguGM7/vr/qLKrQTkQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QqXAuChgaH/4vC45xnQgl+65TFJ1EvJ64dHOa/QdfexrGeEo5GYkc7M94Xue3MShHGGMXDcvd3w3Cryit8coXdIqaC71leuSgV5PFdDShJ3ELYrXcRn8wbI1ZTleoL62yKRXcDXb+pWB9PzUhYF/OrZ+wTpWkmfcvhFnw6IChzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jHAUrmyI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1B9CC4CED3;
-	Tue, 17 Dec 2024 18:18:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=V9t2VzJB0hU33bpbSepKAofDC+LHIzLHLRdzZXPpNgVYKbJv4rOBNTg1MHrpmLttz4hYVmX6mZIjAvErajDxI1KTW+Uge41Ij4d2NwpqaNsa4X/m96BxucSWsixWqIeqDa1F5cKGx7IYeIUfIGCO2cS75OebHaQjuxwJvSV3CHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qiYNZob8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E703C4CED3;
+	Tue, 17 Dec 2024 18:19:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734459520;
-	bh=kSdAEiIXfeGQwQh1cMCwz9kB4jDFKEML4oez+S2XKh0=;
+	s=k20201202; t=1734459580;
+	bh=zjTy9PBs8BSDM1TkG0RnyrT/0yguGM7/vr/qLKrQTkQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jHAUrmyIgLqeO83jRyyaDqKQyIsUP8LKwLaIbecjl82l/i3ynmOKqRSDO2DmxDdL7
-	 qtGLPRBL4EnRY6OB+8XRi8AP1txBi46eJE4INuVDBtcnh24YRX/4FZcjFsKIIFOYt1
-	 KvKF8XCDrtS53nX/vG04LYwrfshvjY0FK+Qi2U30eZc3Ngss3oh8H1UWUdhWTRueTi
-	 dKn8kaBG4a94QW+4YMKFHc8zUun+WP9b/chh+HfWos1j1IeafGMH87/Fvfl1XVvGey
-	 Xv9CT6Di4FrMRCtUPPyEpLnMJLxMko5nWLKabBYvuF2LHGjCSAw+SK1GKW0pG4A8zK
-	 +q+AHY9YK1JtQ==
-Date: Tue, 17 Dec 2024 18:18:36 +0000
+	b=qiYNZob8Ax8L07w3zPUx50m7fFlOxbbbRMUmalVLA5KBGu07rZWlzo8Oab2wphGl7
+	 xPDMkjDVFdxFcYTMmsvqxBFdTW/RTGgrLqa5WH2r+8KrEghEqSjt2uhQoCwQK3nVDC
+	 /+XR2GUNF4C+bQFAtdAbDaWyXMH9Sm2nffyRKHs/2MErB8+PwsgHgbtMjaqO/GJlE/
+	 Ao6y+2rOJuXRM3G3kkCjWHDPObsFeTgXC3FI+y6KluojcL3oJLaAFvdft7ERX8vEpL
+	 hSI6IIl/JiSbVIBLtt89SpXzjmDHwWM1MTusWCwnO2HGv+iUnfvzYIi8cOlJ79JbVi
+	 JAaRArGrBeawQ==
+Date: Tue, 17 Dec 2024 18:19:36 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com,
+	conor.dooley@microchip.com, conor+dt@kernel.org,
+	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: lm75: Add NXP P3T1755 sensor
-Message-ID: <20241217-pursuable-trustable-23678e5e4a86@spud>
-References: <20241217120304.32950-4-wsa+renesas@sang-engineering.com>
- <20241217120304.32950-5-wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH v6 1/4] riscv: sbi: vendorid_list: Add Microchip
+ Technology to the vendor list
+Message-ID: <20241217-jokester-sift-b37121e01c90@spud>
+References: <20241217113134.3508333-1-valentina.fernandezalanis@microchip.com>
+ <20241217113134.3508333-2-valentina.fernandezalanis@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,53 +61,55 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="0lWHcTBbnSLlxIHx"
+	protocol="application/pgp-signature"; boundary="YZciibEyPyM8v9fA"
 Content-Disposition: inline
-In-Reply-To: <20241217120304.32950-5-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20241217113134.3508333-2-valentina.fernandezalanis@microchip.com>
 
 
---0lWHcTBbnSLlxIHx
+--YZciibEyPyM8v9fA
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 17, 2024 at 01:03:05PM +0100, Wolfram Sang wrote:
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On Tue, Dec 17, 2024 at 11:31:31AM +0000, Valentina Fernandez wrote:
+> Add Microchip Technology to the RISC-V vendor list.
+>=20
+> Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.c=
+om>
 
-Commit body is entirely missing? What differentiates this device from
-the others in the file?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 > ---
->  Documentation/devicetree/bindings/hwmon/lm75.yaml | 1 +
+>  arch/riscv/include/asm/vendorid_list.h | 1 +
 >  1 file changed, 1 insertion(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/hwmon/lm75.yaml b/Document=
-ation/devicetree/bindings/hwmon/lm75.yaml
-> index 29bd7460cc26..c38255243f57 100644
-> --- a/Documentation/devicetree/bindings/hwmon/lm75.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/lm75.yaml
-> @@ -28,6 +28,7 @@ properties:
->        - maxim,max31725
->        - maxim,max31726
->        - maxim,mcp980x
-> +      - nxp,p3t1755
->        - nxp,pct2075
->        - st,stds75
->        - st,stlm75
+> diff --git a/arch/riscv/include/asm/vendorid_list.h b/arch/riscv/include/=
+asm/vendorid_list.h
+> index 2f2bb0c84f9a..a5150cdf34d8 100644
+> --- a/arch/riscv/include/asm/vendorid_list.h
+> +++ b/arch/riscv/include/asm/vendorid_list.h
+> @@ -6,6 +6,7 @@
+>  #define ASM_VENDOR_LIST_H
+> =20
+>  #define ANDES_VENDOR_ID		0x31e
+> +#define MICROCHIP_VENDOR_ID	0x029
+>  #define SIFIVE_VENDOR_ID	0x489
+>  #define THEAD_VENDOR_ID		0x5b7
+> =20
 > --=20
-> 2.45.2
+> 2.34.1
 >=20
 
---0lWHcTBbnSLlxIHx
+--YZciibEyPyM8v9fA
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2HAfAAKCRB4tDGHoIJi
-0luEAP94uoPxdXzRxPsOUSneyMNQqO///W8yzkzaYo0i7MFTzQD/ZyZezMDdy1oh
-PVYwKFGkYdyaM6P1wNZlC1vQ4ifqoQM=
-=fBbv
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2HAuAAKCRB4tDGHoIJi
+0hBGAQCPyVG132M5iB3YlvelNPQPD5CsGWjpcHNrXltseqFkaQD/Vill4S/cEaIZ
+n4wyM5C0r8vQ3RvGkWdGEVSwACFEaQ8=
+=KcMb
 -----END PGP SIGNATURE-----
 
---0lWHcTBbnSLlxIHx--
+--YZciibEyPyM8v9fA--
 
