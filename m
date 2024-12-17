@@ -1,44 +1,78 @@
-Return-Path: <devicetree+bounces-131667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A469F44EB
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 08:17:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F3C9F44FC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 08:20:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5605164F1E
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 07:17:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 984A51881336
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 07:20:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9FFA15A843;
-	Tue, 17 Dec 2024 07:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3185B171092;
+	Tue, 17 Dec 2024 07:20:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lNHFApmS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A91FB15CD79
-	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 07:17:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32CB814600D
+	for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 07:20:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734419865; cv=none; b=OKJYQYpasZDwE/WI2iKaRmsJ+TMAyTfl8Q3loqkmJKd2UluSEVwub/0Y1v+sYJ3fBKOfqymxmod9l+jtZ/cRqy5Z+Z39zJYLN9cPooR319My6cuZHECV+cMF3C+D0fpxexyPR5ulCfxJ7FC9vExri/bkvb6pCYTecabwtlpfaKo=
+	t=1734420048; cv=none; b=aq6NKbAjfE/71yhmjOPmOIDJMNRGE0VadC+eSjU3M3RkCtqnu9nGvQotVeLto7kJIv3z21JBRteUxlI7T2/6dF5GNzSHgV0mEJ3etsFMDYxEORJuAMSZovlyMZ2N71yIjbDIEP0CshnQOybnhyF5kJRT4Z7aXFAhfKFHFcmecC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734419865; c=relaxed/simple;
-	bh=+bWa2mH9Ep6GYZ0lA1gBpNy9YwUtBJHyOCt9jwQ/n6c=;
+	s=arc-20240116; t=1734420048; c=relaxed/simple;
+	bh=cXwasypA7mo/HGt2OB/7lQNaok+kG+zU85E5bsHXHuA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z2hmCZHeFUOUQznXKhlXR8MWBkGOAenM0LoPWakk78++KWQQTllypSd/7g7tKmup3tZV1UdQYoyzrK/S3YB4a4O4hj0voAQTQS//SaFT1ZAKPOskriiovQz7IJeHqPORr4HDsHR+PePaQD4PlOPDeWihPfsjrCqUBMj9oZe0cXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.207.22.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip3t1734419815tfi4l8w
-X-QQ-Originating-IP: FATXyyRXnHdEfrhFtUmXKV4mt7pDLQPrUgQlNZEBCLc=
-Received: from [IPV6:240f:10b:7440:1:1e5c:5a5f ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Tue, 17 Dec 2024 15:16:50 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 4968437046563404095
-Message-ID: <98F610891BD5E021+55967d60-9a5b-4b19-8005-f10f51bfe417@radxa.com>
-Date: Tue, 17 Dec 2024 16:16:50 +0900
+	 In-Reply-To:Content-Type; b=LQ5poetJWAbx3kc1A5O3vhtSloN7b9G9ra38k/oVD4QUrThzwctYfC8Yp4X1+diFT0zFImXtbtB8MIUCxAS05wlnOHdo4x5GaNalhte6kHy/1UCyoc/pT9dCraUxqb5ymmqORf4blVSmev8VzuoNDxfjMQ/tfayXzKIqMaLBFE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lNHFApmS; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-43635796b48so18492305e9.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Dec 2024 23:20:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734420044; x=1735024844; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kwvB7uBpEMwnL4s+j9WaUS+8KTpcKQVS4QfB1gDHcEA=;
+        b=lNHFApmSTlIhRpHK96Ys5/O98LBcF0xd9PXDDWpEZ6vRWYRM1fNfhNaFz2ze1fQPvx
+         2nK8pFywb0v8XopzW719wZ65eU8hpIv24e4Uc3/1VmDFDvAqk7Ptfu+QcUaoyIAP1G7D
+         a9Mzv5sGp4g6LdLwIsBhD0SF8klgEecaR01EyVXAInLuTJQdHxT2b/lmluh54gvUmEgq
+         H6QUr5wKsz6LvlAg+S90hshgDiw8INnBe5z6L+vwVoW4k0/SmOvwduEAx+pYothBMK7H
+         kQkKVQUW35nSx7yHl6Ql5ySazUGgowwfRmyKLQv8pwpf8yGd5H1LmX2uWhja1J33m+Tt
+         eXsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734420044; x=1735024844;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kwvB7uBpEMwnL4s+j9WaUS+8KTpcKQVS4QfB1gDHcEA=;
+        b=DZKg7zslpsSzMhryMIov4ufvqjMMfsJbb2XEEcSmwTBZhN/zCd5Y8Qn8s6OvLQ+ndC
+         eQMpReTLf24sHf4YTiWurGnYn2y18Jp9tRgTbpKH6QAq8bi8XPR+xAmsXOyInPMz7/I/
+         QQrmKO0sEW2p7YtxNmDa0MWK7Tom801Xfm5kYa7qr/FiPR77JKJo8cwNX4NJis3zksqR
+         YCoFamvXQh+tBRGftqyc5NvtVA/o0jBDJYCYJi7zEzQ5wIVtIl7nFPlg9sI6KGS+2ALE
+         3nwob0eqEHYuRPzdaXGwhEcctCXvF2Fakf14o9ekbY4y3LaLp20J+gHp5KSYyoFGuJqF
+         vJUw==
+X-Forwarded-Encrypted: i=1; AJvYcCU4fHkZM7ZHdhecY5nfSV4HgYxLs8EPnFu3hoIKPGw1OWXJ5knsixyBDf281DfOk3jDuvsw0LJQ6jBl@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZTQRT7lAo6VQ1gTkzOKzG1gjPiTOTnYHQayANeHHQnX8OWITj
+	YaeBv/Wo+K8QuO4ZL+EGfPy+0U60K0NeDbZEfgxeUHB/eNNu9fkUjJUI4b0wEQo=
+X-Gm-Gg: ASbGncvaiP1mJuOVgGfSjGVyb3h4tr6DJsMMvQ8J6APNUgOsoWtpDJfBZlz7ku9XDLH
+	mqDjAhZFqhkDz8C9/Hx08dcfHcp4pIzuz4SUQLfyUBoYNovCKyFxHHTXWQqELlQYF9saVfl8xxm
+	UKkUfOmPn/r49ACZ5lkiN7a26nMF2c5uEDn7ew8aS3jfcDyC31JS9eh+0yvnIc51VgwrQZwTDcL
+	KDcshNbGwq5B4XgWvMQs86uShx16k1r0/a3iVpz91bDIFa2Mw0THhIr3/ibcG3s
+X-Google-Smtp-Source: AGHT+IF9HA/1SKKgvXJjtH52nkzbyQi6zojEXUgurj4MP9uhS4GfNABlmxHlIXgDW1wjDEC3z9sBhw==
+X-Received: by 2002:a05:600c:1583:b0:434:e892:1033 with SMTP id 5b1f17b1804b1-4364812a08cmr15865095e9.2.1734420044507;
+        Mon, 16 Dec 2024 23:20:44 -0800 (PST)
+Received: from [192.168.0.14] ([188.26.61.92])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-388c801637esm10236598f8f.28.2024.12.16.23.20.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Dec 2024 23:20:44 -0800 (PST)
+Message-ID: <45a54924-226e-4a94-b1ae-b0f1f703f854@linaro.org>
+Date: Tue, 17 Dec 2024 07:20:42 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,84 +80,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 11/12] arm64: dts: rockchip: Fix proparties for pmic
- regulators for Radxa ROCK 5C
-To: Krzysztof Kozlowski <krzk@kernel.org>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dsimic@manjaro.org, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20241216113052.15696-1-naoki@radxa.com>
- <20241216113052.15696-12-naoki@radxa.com>
- <0b6a7a7a-ff5a-4897-a283-6bf582dd1d79@kernel.org>
- <DC42478EC0DFB00A+6e374774-07d8-493c-9f2f-e7106d1f2d61@radxa.com>
- <3313fc80-73b9-4063-8076-64e65c5d5921@kernel.org>
+Subject: Re: [PATCH v2 3/4] arm64: dts: exynos: gs101: add ACPM protocol node
+To: William McVicker <willmcvicker@google.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ andre.draszik@linaro.org, kernel-team@android.com,
+ daniel.lezcano@linaro.org, vincent.guittot@linaro.org,
+ ulf.hansson@linaro.org, arnd@arndb.de
+References: <20241212-b4-acpm-v4-upstream-dts-v2-0-91b7a6f6d0b0@linaro.org>
+ <20241212-b4-acpm-v4-upstream-dts-v2-3-91b7a6f6d0b0@linaro.org>
+ <Z2B3V78k2ibIdLYh@google.com>
 Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-Organization: Radxa Computer (Shenzhen) Co., Ltd.
-In-Reply-To: <3313fc80-73b9-4063-8076-64e65c5d5921@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <Z2B3V78k2ibIdLYh@google.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: NQDSFSrlZSaiM2bjtiHdvzs93ID/yCWR2hCy8Tzzp1tsx7ecRc3+aVap
-	76F/9h06L0T1iDvgAQlzo7SX5sQTbkxL5H2lpsd5/Cc9ukXQgQxzhbiz+BL1pfNZQc/i6JB
-	v2Mecv+WJnneAtyHKxOLziFJJSV9hOAEFosIyIpatEqCxPGO/JoPRkrAZivPN8/1DteKQCE
-	+pg+zmKo4Duw2CXsY8jwnEzQ4ydRxVhv01s+mRhECqU7mKp4hL2Q4dA+YV3PtO8iZVB7x7Z
-	CU5OGM1gWZEezN4oa2DKyaeFf8XXpYHOJdYSN1ggib9nuP+A/MZS8q31pV9yjoB23hX0PiI
-	kfV7woqgrmv099iuk/H7m/flhOebBQ7PSTiGN14D/W0lwhKIIJqZfIE7oFZIFp51evbhaJl
-	mUDtOpmXjzt8IqD8pJDC01n2k8j5wq5fboSoMVwYJ6FU4qpElHtKmNjlqs5GcIjYnfInQNw
-	E4PF3edXEEK+6W1tipoiNChD3bz/cjPc2sJrs7uACa6zMmBk1yxamUZtUcP/dA9w6IhQ0Cj
-	XImRfc4aDb/wVU5SnSvTn0juNWVWq32p2dEkPZuSDccaOLUIdAJ1le6XhfFoovYT5t+q9Wx
-	lg6Swyz4cSRUtqZj/nOJWTIUA25pv+OoZIgqzKpHmwpmtAZ35SiXjA3k9CiHttawHYQHTQU
-	IiK002azv9+67GocBSQJaG57eWIm1w5lMJk2XswYfuh/SQ4nvncd/hIlpoWTcj7E4cxRPa2
-	JwXk0CM8p8oHmHO4f5VwG8REjpco5vput/KDg3sDuFza9cQQdl3RfFbsdxUzyTZZZPDxMMr
-	zPGMOne+VEdbSXBDnHe18FGRmANX9HOJ/wCjUEabsNGGci3UgPRXru3LK3Z5ks3qjkhjbzo
-	8t58GxksKxeIogBjU1hafJZmYdca/p8Co9nDxPChkiRNNxPNjpp3d6NG9HgCDvwZOcJX2RY
-	rZd0=
-X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
-X-QQ-RECHKSPAM: 0
 
-On 12/17/24 15:24, Krzysztof Kozlowski wrote:
-> On 17/12/2024 01:43, FUKAUMI Naoki wrote:
->> On 12/16/24 22:41, Krzysztof Kozlowski wrote:
->>> On 16/12/2024 12:30, FUKAUMI Naoki wrote:
->>>> Fix proparties for dcdc-reg7 and nldo-reg3 regulators to match with
->>>
->>>
->>>
->>> You have so many typos in almost each commit msg. Here both in subject
->>> and commit msg.
->>>
->>> Run spell check before you send to the lists. Don't expect the reviewers
->>> to be your computer tools.
+
+
+On 12/16/24 6:54 PM, William McVicker wrote:
+> Hi Tudor,
+
+Hi, William!
+
+> 
+> On 12/12/2024, Tudor Ambarus wrote:
+>> Add the ACPM protocol node. ACPM protocol provides interface for all
+>> the client drivers making use of the features offered by the
+>> Active Power Management (APM) module.
 >>
->> Sorry for my poor English. I'll check it next time.
-> 
-> I am not pointing out English. I am pointing out not using standard
-> tool, spellcheck, to fix issues in effortless way.
-> 
+>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 22 ++++++++++++++++++++++
+>>  1 file changed, 22 insertions(+)
 >>
->>> Explain what is being fixed here. Why would you prefer to match with
->>> vendor kernel?
->>
->> Not my preference, but the only reference.
+>> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+>> index 04561e15b96c..8c3f07371912 100644
+>> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+>> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+>> @@ -277,6 +277,28 @@ apm_sram: sram@2039000 {
+>>  		ranges = <0x0 0x0 0x2039000 0x40000>;
+>>  	};
+>>  
+>> +	firmware {
+>> +		acpm_ipc: power-management {
+>> +			compatible = "google,gs101-acpm-ipc";
+>> +			mboxes = <&ap2apm_mailbox 0 0
+>> +				  &ap2apm_mailbox 0 1
+>> +				  &ap2apm_mailbox 0 2
+>> +				  &ap2apm_mailbox 0 3
+>> +				  &ap2apm_mailbox 0 4
+>> +				  &ap2apm_mailbox 0 5
+>> +				  &ap2apm_mailbox 0 6
+>> +				  &ap2apm_mailbox 0 7
+>> +				  &ap2apm_mailbox 0 8
+>> +				  &ap2apm_mailbox 0 9
+>> +				  &ap2apm_mailbox 0 10
+>> +				  &ap2apm_mailbox 0 11
+>> +				  &ap2apm_mailbox 0 12
+>> +				  &ap2apm_mailbox 0 13
+>> +				  &ap2apm_mailbox 0 14>;
+>> +			shmem = <&apm_sram>;
+>> +		};
+>> +	};
 > 
-> Then why the reference is correct? Provide some arguments why this
-> should be changed to the "reference" and not the "reference" fixed.
+> You mentioned in the previous patch that "GS101 has 14 mailbox controllers",
 
-Are you serious?
+Right, I got the number from the GS101 memory map.
 
-Why do you think the current code is correct? It's written by me, typo 
-and copy-pasto generator. Need more argument?
+> but here you have 15 mailboxes. I looked at the downstream driver and see the
 
-Best regards,
+Here we have a single mailbox controller, ap2apm_mailbox, with 15 channels.
 
---
-FUKAUMI Naoki
-Typo and Copy-Pasto Generator
+> number of mailboxes is defined by the ACPM framework (firmware) which is read
 
-> Best regards,
-> Krzysztof
+s/mailboxes/mailbox channels that ACPM uses/
+
+> from SRAM initdata. Dumping that, I see there are 15 ACPM channels. Have you
+
+Correct.
+
+> looked into into extracting the data from the initdata SRAM address?
 > 
 
+Yes, that's the reason why I defined the 15 channels from above for the
+ap2apm_mailbox controller.
+
+
+Cheers,
+ta
 
