@@ -1,362 +1,125 @@
-Return-Path: <devicetree+bounces-132059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD75A9F57A4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 21:26:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D43D19F57D8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 21:36:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57DCA188F7B9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 20:26:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EC0518875DC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 20:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0B791F9A99;
-	Tue, 17 Dec 2024 20:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F1EF1F942E;
+	Tue, 17 Dec 2024 20:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eBhp4sS/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kirq7Q2L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD0A14885B;
-	Tue, 17 Dec 2024 20:25:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 547501F8EFF;
+	Tue, 17 Dec 2024 20:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734467152; cv=none; b=uLprkcqPVHmW+/X8wjAwQz0KBO0tXVa1mTRNsBdoLCe92hehjM/kYAPfjKhAoaJv1IkB+/mD3TOE0tQPsHgVjMScHllfa5TCPCX5NJT9TFWeOAzjlKpE2cS/24KzNct9R6uytLDeOKZU0syT0y+pCNtsTWLw8+SVQKkFF/n1Wmk=
+	t=1734467759; cv=none; b=b3x0T3G3EJ36sxoMtI23N7xyVy9VBTfPl8xBhmA/GitvcNVIFfAOCQS8ZT+i/NwNN9l8IvRG/Ncj9vlBDipy+ikvfiPOOrWWrdsKRgijemMKO53qvMDGV3Enlio8ZUCHjN+ZZN0kxz5gR3KsULMAqVhA+RTlj0BcZyvZZ+xEzMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734467152; c=relaxed/simple;
-	bh=gJu3mrSmNyAE419VQKa6EEmifFE5XEmum7/TLp1yvZQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DjpUsGHXHAnNUqDAtqhCfNtpbjBNICExuK2wfDcXoTG46WETnuCq9m7Ckngj//e9kv9PuOhICYPWPhm9Vc0ZWH//3oPH54RGEVWJwJfdtmJfY6NzwwnTbcl5Er5WQz5Fld2Fou/Qbd3EM4eypbArYWy7taPhndpK13E3dLZBP34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eBhp4sS/; arc=none smtp.client-ip=209.85.219.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6d932b5081eso52435836d6.1;
-        Tue, 17 Dec 2024 12:25:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734467149; x=1735071949; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AsQRwomI1GANSmgpDa7sqCPSYfEVOLz/ljhi+bRhKKY=;
-        b=eBhp4sS/NG0UhdDi0p18KmZ8XCLIyGPhJOmnVxCVtgrGNLtuigx4ULBGTZ55diu1ri
-         gETRIndG/3AEB1B5qUWx6gpJ1hHt3xsPinfUVXmMFySAgd9ZdXe3X81BlHVZJ+5kxXPf
-         n62f73UBMTj+TPTdQzxp78ldlgolowFzo140S/HzkcI3+HvNrOsK/rGXGqeAO1hoST9E
-         Ii+I6gFSkWerLxzAk3IOyFveXA7QM+FO/uXstkFQKoXW75XK5pbHHarg4v8bcHrJ1L8u
-         Xp+3YCDQAWdVXaqvZo+TtnC/xtF8gn55JawEbACR2id5i2LrRNGrAFBlFUadZY6F7Yci
-         eU6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734467149; x=1735071949;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AsQRwomI1GANSmgpDa7sqCPSYfEVOLz/ljhi+bRhKKY=;
-        b=w2k55cCFs8WCsQ98iJQ0cJ6nGcPc5oGzgyq4EvlkVoTFP5i8gXhOZqN2ABVvquJLUB
-         W+hDnEMa5gXZmMZkmdqWVn7yEudMMeN44xhJHPhI5H0/pvSy/VmCDg8aEUB3VzKtxFjd
-         oheoQVCpbda96X5WxtAYg6nijVdVg6aMYFnsJHMAvrK8k8HoGVQaEBVQ8sF4wCvE+KFZ
-         ocwsqbutDzpMVhHE3fmEKZaNAP9HW2Qg7clWMss4N2yOanAZw/w9PlaEzAyR0pnnWF32
-         sA5+6TvP8lVI7LYtmim+CYO64MzV5LF7gNcShLVfYg19x84vqkQSTgPdpfidQYN7sBdR
-         XwUA==
-X-Forwarded-Encrypted: i=1; AJvYcCU4JzEJ7oXgRZmDLC7zLP7X9OaJF6ocDdoAOF/Id6erBXuRM/iu6039wzgmQcSyURYHmc5W6c7bBe/r@vger.kernel.org, AJvYcCVnjPqkr6ijmX4wla8wu0buh6+gF+ew9+4KGz0uyHLHypd8KMVdoJHKpI3fk2YLUuD2J/nKh9Je3H1OMdM=@vger.kernel.org, AJvYcCX1SkxVZoZ0dXC83OvP3Bqw8Fi6COCfeAAo0wvBvzz62vH2QnTL4+H8afzxxPiNrT/Gc6GQXId/wFIg@vger.kernel.org, AJvYcCX6jJH4D9bFVtG+5mIPPp0DQA+svYGv0VBQV9uu0eNyX+fQXaC8WgHfdUDa8eJLP8QBWmIJP45h+rD1OOLwKw==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWe2eqPZgNJubywn37IF0pENBuM8Y8DNQDOzSwcgPP6J4B3WBh
-	f+pWb8fR6e4AP09LiWlv77fzQUHDBNeOZOlnNG9DSXhfJjRwDV9r
-X-Gm-Gg: ASbGnct35tdA/LpVTyf9fkW1RcPqHIs4MYLoyR1P7+Fkd+M2O1QibV26RKPaQjXJ1O7
-	E8uchI0b+1cLJbio/9z2jmSIfo8rxoiUOZdci0mRioJF6HWYn1C+8RNDaWj+jcIQEWdrwWl+PeV
-	8nTtkWxpAmvSP4+yTdgLPLLUwTKX5Mj6ZEx+00rSZ4ql3xtftJYztiIAiicVTqCkQuS7ZrsCbpR
-	xpTGozlobSStBNtDbKOJ0sBhIdRuh8mCg5TwaQ2PKDA
-X-Google-Smtp-Source: AGHT+IEjSztKKuV1Xa08LXaxnXphJ01KGsvl/o5djHZsWw/+hPDMrEHJYTBKHRTLbzXy7wTcsd5NEw==
-X-Received: by 2002:a05:6214:240d:b0:6d8:88fc:c0f4 with SMTP id 6a1803df08f44-6dd0923d0dcmr6717596d6.33.1734467149618;
-        Tue, 17 Dec 2024 12:25:49 -0800 (PST)
-Received: from localhost ([2607:fea8:52a3:d200::b824])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6dccd3670a7sm42373476d6.86.2024.12.17.12.25.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Dec 2024 12:25:49 -0800 (PST)
-Date: Tue, 17 Dec 2024 15:25:47 -0500
-From: Richard Acayan <mailingradian@gmail.com>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v8 5/5] arm64: dts: qcom: sdm670: add camss and cci
-Message-ID: <Z2HeS7mZ976l_Mrw@radian>
-References: <20241216223019.70155-8-mailingradian@gmail.com>
- <20241216223019.70155-13-mailingradian@gmail.com>
- <565d14e1-1478-4a60-8f70-a76a732cde97@linaro.org>
+	s=arc-20240116; t=1734467759; c=relaxed/simple;
+	bh=SZGp4CTjOcCd0WqvLX/C50ngjabrzlSD0TRHgdbC4BE=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=tvVyebE0j1z0L4Tno53XpMJW/1gedRM6n95N3PmKA1iiXdHmQ/H1EQ5zEp7Mcgufs+No9WenpmBhv7ZH1cToVAugicZwfGdF1gMArJzqwYnnYeOOOVBLg/NljEBoF5MF8+P7V1zExcCcyOBnR/apcG8+TGC6C50vf8tP2u0PZmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kirq7Q2L; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 871DEC4CED3;
+	Tue, 17 Dec 2024 20:35:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734467758;
+	bh=SZGp4CTjOcCd0WqvLX/C50ngjabrzlSD0TRHgdbC4BE=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=kirq7Q2LQQV5FEB/0mqwL3QNWxPg7bH1f2k3Ek3ba/2d/H3SX/cfJH2oAP2ou8IhT
+	 xO1LjRCc8CNQvlQMLtV/Vad2wYLQ4mskd+a8z+YrJ+SG7tJfs3vtyvnMJJ+RbhJQqU
+	 aI3JOiN7Y7as2Izf1VzA1xn/noqhxMTAQ1SK6A7dZzHKRDg8foTzsPv7meNZlEEXY4
+	 Hla0/QiSB+/dWJWBEW9eL2NYgcJvgypIQrrWJepWaME9j1v+VEw3Uc9Cfoyr72GIm1
+	 YHzs9lRzlfiqkk4/wZo0lhlJ5j+Nh1JDjctClGWKbiEk5bgZfy7x9LSvBor3fac9qL
+	 cdWJb/0fXU0fw==
+Date: Tue, 17 Dec 2024 14:35:57 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <565d14e1-1478-4a60-8f70-a76a732cde97@linaro.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org, 
+ tzimmermann@suse.de, mripard@kernel.org, junzhi.zhao@mediatek.com, 
+ simona@ffwll.ch, p.zabel@pengutronix.de, airlied@gmail.com, 
+ linux-mediatek@lists.infradead.org, maarten.lankhorst@linux.intel.com, 
+ matthias.bgg@gmail.com, kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, dmitry.baryshkov@linaro.org, 
+ jie.qiu@mediatek.com, ck.hu@mediatek.com, krzk+dt@kernel.org, 
+ chunkuang.hu@kernel.org, dri-devel@lists.freedesktop.org, 
+ jitao.shi@mediatek.com
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20241217154345.276919-8-angelogioacchino.delregno@collabora.com>
+References: <20241217154345.276919-1-angelogioacchino.delregno@collabora.com>
+ <20241217154345.276919-8-angelogioacchino.delregno@collabora.com>
+Message-Id: <173446775715.3082463.16696683643191966577.robh@kernel.org>
+Subject: Re: [PATCH v3 07/33] dt-bindings: display: mediatek: Add binding
+ for MT8195 HDMI-TX v2
 
-On Tue, Dec 17, 2024 at 09:31:50AM +0200, Vladimir Zapolskiy wrote:
-> Hi Richard.
+
+On Tue, 17 Dec 2024 16:43:19 +0100, AngeloGioacchino Del Regno wrote:
+> Add a binding for the HDMI TX v2 Encoder found in MediaTek MT8195
+> and MT8188 SoCs.
 > 
-> On 12/17/24 00:30, Richard Acayan wrote:
-> > Add the camera subsystem and CCI used to interface with cameras on the
-> > Snapdragon 670.
-> > 
-> > Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> > Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > ---
-> >   arch/arm64/boot/dts/qcom/sdm670.dtsi | 185 +++++++++++++++++++++++++++
-> >   1 file changed, 185 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> > index 328096b91126..d4e1251ada04 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-> > @@ -6,6 +6,7 @@
-> >    * Copyright (c) 2022, Richard Acayan. All rights reserved.
-> >    */
-> > +#include <dt-bindings/clock/qcom,camcc-sdm845.h>
-> >   #include <dt-bindings/clock/qcom,dispcc-sdm845.h>
-> >   #include <dt-bindings/clock/qcom,gcc-sdm845.h>
-> >   #include <dt-bindings/clock/qcom,rpmh.h>
-> > @@ -1168,6 +1169,34 @@ tlmm: pinctrl@3400000 {
-> >   			gpio-ranges = <&tlmm 0 0 151>;
-> >   			wakeup-parent = <&pdc>;
-> > +			cci0_default: cci0-default-state {
-> > +				pins = "gpio17", "gpio18";
-> > +				function = "cci_i2c";
-> > +				drive-strength = <2>;
-> > +				bias-pull-up;
-> > +			};
-> > +
-> > +			cci0_sleep: cci0-sleep-state {
-> > +				pins = "gpio17", "gpio18";
-> > +				function = "cci_i2c";
-> > +				drive-strength = <2>;
-> > +				bias-pull-down;
-> > +			};
-> > +
-> > +			cci1_default: cci1-default-state {
-> > +				pins = "gpio19", "gpio20";
-> > +				function = "cci_i2c";
-> > +				drive-strength = <2>;
-> > +				bias-pull-up;
-> > +			};
-> > +
-> > +			cci1_sleep: cci1-sleep-state {
-> > +				pins = "gpio19", "gpio20";
-> > +				function = "cci_i2c";
-> > +				drive-strength = <2>;
-> > +				bias-pull-down;
-> > +			};
-> > +
-> >   			qup_i2c0_default: qup-i2c0-default-state {
-> >   				pins = "gpio0", "gpio1";
-> >   				function = "qup0";
-> > @@ -1400,6 +1429,162 @@ spmi_bus: spmi@c440000 {
-> >   			#interrupt-cells = <4>;
-> >   		};
-> > +		cci: cci@ac4a000 {
-> > +			compatible = "qcom,sdm670-cci", "qcom,msm8996-cci";
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> > +			reg = <0 0x0ac4a000 0 0x4000>;
-> > +			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
-> > +			power-domains = <&camcc TITAN_TOP_GDSC>;
-> > +
-> > +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> > +				 <&camcc CAM_CC_SOC_AHB_CLK>,
-> > +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> > +				 <&camcc CAM_CC_CCI_CLK>;
-> > +			clock-names = "camnoc_axi",
-> > +				      "soc_ahb",
-> > +				      "cpas_ahb",
-> > +				      "cci";
-> > +
-> > +			pinctrl-names = "default", "sleep";
-> > +			pinctrl-0 = <&cci0_default &cci1_default>;
-> > +			pinctrl-1 = <&cci0_sleep &cci1_sleep>;
-> > +
-> > +			status = "disabled";
-> > +
-> > +			cci_i2c0: i2c-bus@0 {
-> > +				reg = <0>;
-> > +				clock-frequency = <1000000>;
-> > +				#address-cells = <1>;
-> > +				#size-cells = <0>;
-> > +			};
-> > +
-> > +			cci_i2c1: i2c-bus@1 {
-> > +				reg = <1>;
-> > +				clock-frequency = <1000000>;
-> > +				#address-cells = <1>;
-> > +				#size-cells = <0>;
-> > +			};
-> > +		};
-> > +
-> > +		camss: camera-controller@acb3000 {
+> This fully supports the HDMI Specification 2.0b, hence it provides
+> support for 3D-HDMI, Polarity inversion, up to 16 bits Deep Color,
+> color spaces including RGB444, YCBCR420/422/444 (ITU601/ITU709) and
+> xvYCC, with output resolutions up to 3840x2160p@60Hz.
 > 
-> Wasn't it agreed recently to have 'isp' as a generic device name for CAMSS IP?
-
-Yeah, will change.
-
+> Moreover, it also supports HDCP 1.4 and 2.3, Variable Refresh Rate
+> (VRR) and Consumer Electronics Control (CEC).
 > 
-> > +			compatible = "qcom,sdm670-camss";
-> > +			reg = <0 0x0acb3000 0 0x1000>,
-> > +			      <0 0x0acba000 0 0x1000>,
-> > +			      <0 0x0acc8000 0 0x1000>,
-> > +			      <0 0x0ac65000 0 0x1000>,
-> > +			      <0 0x0ac66000 0 0x1000>,
-> > +			      <0 0x0ac67000 0 0x1000>,
-> > +			      <0 0x0acaf000 0 0x4000>,
-> > +			      <0 0x0acb6000 0 0x4000>,
-> > +			      <0 0x0acc4000 0 0x4000>;
-> > +			reg-names = "csid0",
-> > +				    "csid1",
-> > +				    "csid2",
-> > +				    "csiphy0",
-> > +				    "csiphy1",
-> > +				    "csiphy2",
-> > +				    "vfe0",
-> > +				    "vfe1",
-> > +				    "vfe_lite";
-> > +
-> > +			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-> > +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-> > +				 <&camcc CAM_CC_IFE_0_CSID_CLK>,
-> > +				 <&camcc CAM_CC_IFE_1_CSID_CLK>,
-> > +				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>,
-> > +				 <&camcc CAM_CC_CSIPHY0_CLK>,
-> > +				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-> > +				 <&camcc CAM_CC_CSIPHY1_CLK>,
-> > +				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-> > +				 <&camcc CAM_CC_CSIPHY2_CLK>,
-> > +				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-> > +				 <&gcc GCC_CAMERA_AHB_CLK>,
-> > +				 <&gcc GCC_CAMERA_AXI_CLK>,
-> > +				 <&camcc CAM_CC_SOC_AHB_CLK>,
-> > +				 <&camcc CAM_CC_IFE_0_CLK>,
-> > +				 <&camcc CAM_CC_IFE_0_AXI_CLK>,
-> > +				 <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
-> > +				 <&camcc CAM_CC_IFE_1_CLK>,
-> > +				 <&camcc CAM_CC_IFE_1_AXI_CLK>,
-> > +				 <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
-> > +				 <&camcc CAM_CC_IFE_LITE_CLK>,
-> > +				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>;
-> > +			clock-names = "camnoc_axi",
-> > +				      "cpas_ahb",
-> > +				      "csi0",
-> > +				      "csi1",
-> > +				      "csi2",
-> > +				      "csiphy0",
-> > +				      "csiphy0_timer",
-> > +				      "csiphy1",
-> > +				      "csiphy1_timer",
-> > +				      "csiphy2",
-> > +				      "csiphy2_timer",
-> > +				      "gcc_camera_ahb",
-> > +				      "gcc_camera_axi",
-> > +				      "soc_ahb",
-> > +				      "vfe0",
-> > +				      "vfe0_axi",
-> > +				      "vfe0_cphy_rx",
-> > +				      "vfe1",
-> > +				      "vfe1_axi",
-> > +				      "vfe1_cphy_rx",
-> > +				      "vfe_lite",
-> > +				      "vfe_lite_cphy_rx";
-> > +
-> > +			interrupts = <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
-> > +				     <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
-> > +				     <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
-> > +				     <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
-> > +				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
-> > +				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
-> > +				     <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
-> > +				     <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
-> > +				     <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>;
-> > +			interrupt-names = "csid0",
-> > +					  "csid1",
-> > +					  "csid2",
-> > +					  "csiphy0",
-> > +					  "csiphy1",
-> > +					  "csiphy2",
-> > +					  "vfe0",
-> > +					  "vfe1",
-> > +					  "vfe_lite";
-> > +
-> > +			iommus = <&apps_smmu 0x808 0x0>,
-> > +				 <&apps_smmu 0x810 0x8>,
-> > +				 <&apps_smmu 0xc08 0x0>,
-> > +				 <&apps_smmu 0xc10 0x8>;
-> > +
-> > +			power-domains = <&camcc IFE_0_GDSC>,
-> > +					<&camcc IFE_1_GDSC>,
-> > +					<&camcc TITAN_TOP_GDSC>;
-> > +			power-domain-names = "ife0",
-> > +					     "ife1",
-> > +					     "top";
-> > +
-> > +			status = "disabled";
-> > +
-> > +			ports {
-> > +				#address-cells = <1>;
-> > +				#size-cells = <0>;
-> > +
-> > +				camss_port0: port@0 {
-> > +					reg = <0>;
-> > +				};
-> > +
-> > +				camss_port1: port@1 {
-> > +					reg = <1>;
-> > +				};
-> > +
-> > +				camss_port2: port@2 {
+> This IP also includes support for HDMI Audio, including IEC60958
+> and IEC61937 SPDIF, 8-channel PCM, DSD, and other lossless audio
+> according to HDMI 2.0.
 > 
-> Likely labels to ports are excessive here, please remove them.
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../mediatek/mediatek,mt8195-hdmi.yaml        | 154 ++++++++++++++++++
+>  1 file changed, 154 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml
+> 
 
-How would you imagine connecting a camera to the ports, then? For MDSS,
-there's a label for the endpoint (mdss_dsi0_out) which the device DTS
-can then reference:
+My bot found errors running 'make dt_binding_check' on your patch:
 
-	&mdss_dsi0_out {
-		remote-endpoint = <&panel_in>;
-		data-lanes = <0 1 2 3>;
-	};
+yamllint warnings/errors:
 
-For CAMSS, the port labels would be used like so:
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml:
+Error in referenced schema matching $id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.example.dtb: hdmi-tx@1c300000: i2c: False schema does not allow {'compatible': ['mediatek,mt8195-hdmi-ddc'], 'clocks': [[4294967295]]}
+	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.example.dtb: hdmi-tx@1c300000: i2c: Unevaluated properties are not allowed ('clocks', 'compatible' were unexpected)
+	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi.yaml#
+Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.example.dtb: /example-0/soc/hdmi-tx@1c300000/i2c: failed to match any schema with compatible: ['mediatek,mt8195-hdmi-ddc']
 
-	&camss_port1 {
-		camss_endpoint1: endpoint {
-			clock-lanes = <7>;
-			data-lanes = <0 1 2 3>;
-			remote-endpoint = <&cam_front_endpoint>;
-		};
-	};
+doc reference errors (make refcheckdocs):
 
-Without the labels, the connection might look something like:
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241217154345.276919-8-angelogioacchino.delregno@collabora.com
 
-	&camss {
-		status = "okay";
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-		// Modification of existing /soc/isp@acb3000/ports node
-		ports {
-			// Modification of existing /soc/isp@acb3000/ports/port@1 node
-			port@1 {
-				// New node
-				camss_endpoint1: endpoint {
-					clock-lanes = <7>;
-					data-lanes = <0 1 2 3>;
-					remote-endpoint = <&cam_front_endpoint>;
-				};
-			};
-		};
-	};
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-which I believe is not preferred.
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
