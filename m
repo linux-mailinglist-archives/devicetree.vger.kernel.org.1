@@ -1,159 +1,153 @@
-Return-Path: <devicetree+bounces-131759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-131760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B269F47E3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 10:46:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F41F9F47E5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 10:46:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57D4618891FC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 09:45:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD7321889F5D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Dec 2024 09:45:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3BDE1DFE10;
-	Tue, 17 Dec 2024 09:44:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADC691E102E;
+	Tue, 17 Dec 2024 09:45:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gl3x60sC"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="rY8dfRyy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900411DE3D9;
-	Tue, 17 Dec 2024 09:44:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4301DE4FF;
+	Tue, 17 Dec 2024 09:45:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734428694; cv=none; b=oiUWiqVrgjpebJL6HUD8B8HPPG0F52zS9Q8mzqX/THQZCxy4LcbkvNbn8aeOE2bRNNXyn/vOwM1yPAqunQnAWrP9m4x90DhEpu+1U/oiku36VZCjwDZ8OATlAI3AC3n+C8yG7ZnH+pFVRcBzo/t+NvJ/ocE/wuNYQZZ401Vd00k=
+	t=1734428719; cv=none; b=s3ImZHCS3kwdte+/i9qWCztUujRw7/Vr9dwQ90l9g0hHb3xLmBhwYZEC/hmzkYxU8QnYVTujVi1yjNbZJfUrSuYSTEt17eIsXOU5EYGYu3VBkL4JhnrKm5D2t/OjNAez33+ysj0mLYY5GZdCSlLsYg/Wod4N2BRqzC36CHLIPok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734428694; c=relaxed/simple;
-	bh=NoWnmFLDir9A0+cWQUhLQdt6CPXm1pA4INvLt2Jzj4U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JK6g0IxKiz5ZbWh2EkVyg0WS3fZ276ywv/uypVk7kHH8PGDw5SoPLtawN0dEHNDzK13+ZdllREoHTclXTV0FNSeww7YsJne1tR8CBL42pSE5uqQbE2ApDOXd+g0aQmnKEUtcU+QOTRxz+zqcgHaR/qV2yxMk8WoM/0kDEr8ddFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gl3x60sC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 159C2C4CED3;
-	Tue, 17 Dec 2024 09:44:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734428694;
-	bh=NoWnmFLDir9A0+cWQUhLQdt6CPXm1pA4INvLt2Jzj4U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Gl3x60sCNFwSQVMGxDVZQW4JRIPMGN4FsQIA76TKAf0V4fLSxJQUA5OlazwawY5Df
-	 5hYn+zS6z0n4ri+Il1ylR7e3HXQpHKa/AwjpT/c8128OgMOpxF6rUt79w7KOiXYnny
-	 xbUylfYffeJbDJs6JfiuArpD4gh6I9jIehZcIovENyXgaj5H6M3+peQl2UkMPgJ5+Z
-	 s7cxE9/4T172MIF935HpJtHqB65BWawk4hvaIYkZjF+9mele2fOI0EDZ0BAW9//RRO
-	 Y6Dlvpzi/5i2aUUQ9RECalRVJD6ob4WJRPysrwdMT5NHjw9ai59pCfpBYpyQSjuLLx
-	 oRmUiW21N53cw==
-Message-ID: <3a66447f-005c-4c64-a8de-6a7a535abe90@kernel.org>
-Date: Tue, 17 Dec 2024 10:44:48 +0100
+	s=arc-20240116; t=1734428719; c=relaxed/simple;
+	bh=2eGNr4it5La5zFwKqlI0alnEBzdjh2a45amMsSoLjTA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TtXCGOkeg/SEyTcxGQUKATf4XbeKFX+o1O+jAden06kjw9sg5k/pAOwHDirbNfTUFbBZ16NIrbtDClMBvu7DFxKH009SPbt9XCYoMsocr3JUGgd0nRycW+OtsL6lqdHE3xTM+fO/0EN/haW3aSRZgEt72R4gkEPksYyYQK9988Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=rY8dfRyy; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 04FE73E;
+	Tue, 17 Dec 2024 10:44:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1734428673;
+	bh=2eGNr4it5La5zFwKqlI0alnEBzdjh2a45amMsSoLjTA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rY8dfRyyCgdvx1c8RZkwkEeBnkbD2AdLaXHCCD/fdzKpnISry8Pg/KVfPCXlKlzj6
+	 7yCQzh7V5u9oivMMud8WJMJ11Ho49fMscu9aRKqscpryAFbyVQdcQiwHpzRIyAt1co
+	 hVBzlL6c3CxZJdlylFC4n/EXCZ7YjWkQZpXlvHPY=
+Date: Tue, 17 Dec 2024 11:45:08 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: yuji2.ishikawa@toshiba.co.jp, mchehab@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
+	nobuhiro1.iwamatsu@toshiba.co.jp, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v12 2/8] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti Video Input Interface
+Message-ID: <20241217094508.GD11445@pendragon.ideasonboard.com>
+References: <20241125092146.1561901-1-yuji2.ishikawa@toshiba.co.jp>
+ <20241125092146.1561901-3-yuji2.ishikawa@toshiba.co.jp>
+ <04a7ebf7-2924-4894-bc53-ba77e2f64fae@kernel.org>
+ <TY3PR01MB99822E6161ED319B4DE855B492042@TY3PR01MB9982.jpnprd01.prod.outlook.com>
+ <d5294015-4790-490e-8136-615039a5c733@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/7] dt-bindings: pinctrl: renesas: Add alpha-numerical
- port support for RZ/V2H
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- "biju.das.au" <biju.das.au@gmail.com>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-References: <20241216195325.164212-1-biju.das.jz@bp.renesas.com>
- <20241216195325.164212-2-biju.das.jz@bp.renesas.com>
- <fq3q2tk3xfwd4p72b5wzo3gbfizrknxdt6zyc5ahm2cpnrtsbk@nlukbj3yy57c>
- <TY3PR01MB11346902114D33FA66F4C3BF686042@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <c57d3568-68f4-4e5a-874f-4d9f0cc1f2f3@kernel.org>
- <TY3PR01MB113469F4CE8DB86978C03E3D986042@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <78b28da5-db3f-493e-8159-8bdd565728bb@kernel.org>
- <TY3PR01MB1134679D57AA7DDC185BCD3E286042@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <TY3PR01MB1134679D57AA7DDC185BCD3E286042@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d5294015-4790-490e-8136-615039a5c733@kernel.org>
 
-On 17/12/2024 10:19, Biju Das wrote:
->>>>>> Calling it a binding makes it immutable and gives us, DT
->>>>>> maintainers, more work, so really no benefits at all.
->>>>>
->>>>>>
->>>>>> I guess other DT maintainers will ack it, I prefer to reduce number of headers.
->>>>>
->>>>> DT describes hardware. The port names are alpha numeric on hardware manual.
->>>>
->>>> We talk about binding, not DT.
->>>
->>> Bu the definitions are part of bindings just like Commit "997daa8de64ccbb".
->>
->> You made them part of bindings, but this is invalid as argument. How is this anyhow related? How is
->> "DT describes hardware" part of binding?
->>
->> You said "DT describes hardware", but we do not talk here about DT, do we? We talk about binding.
+On Tue, Dec 17, 2024 at 06:43:22AM +0100, Krzysztof Kozlowski wrote:
+> On 17/12/2024 01:00, yuji2.ishikawa@toshiba.co.jp wrote:
+> > Hello Krzysztof
+> > 
+> > Thank you for your review
+> > 
+> >> -----Original Message-----
+> >> From: Krzysztof Kozlowski <krzk@kernel.org>
+> >> Sent: Monday, November 25, 2024 7:08 PM
+> >> To: ishikawa yuji(石川 悠司 ○ＲＤＣ□ＡＩＴＣ○ＥＡ開)
+> >> <yuji2.ishikawa@toshiba.co.jp>; Laurent Pinchart
+> >> <laurent.pinchart@ideasonboard.com>; Mauro Carvalho Chehab
+> >> <mchehab@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+> >> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Sakari Ailus
+> >> <sakari.ailus@linux.intel.com>; Hans Verkuil <hverkuil-cisco@xs4all.nl>;
+> >> iwamatsu nobuhiro(岩松 信洋 ○ＤＩＴＣ□ＤＩＴ○ＯＳＴ)
+> >> <nobuhiro1.iwamatsu@toshiba.co.jp>
+> >> Cc: linux-media@vger.kernel.org; linux-kernel@vger.kernel.org;
+> >> linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org
+> >> Subject: Re: [PATCH v12 2/8] dt-bindings: media: platform: visconti: Add
+> >> Toshiba Visconti Video Input Interface
+> >>
+> >> On 25/11/2024 10:21, Yuji Ishikawa wrote:
+> >>> Adds the Device Tree binding documentation that allows to describe the
+> >>> Video Input Interface found in Toshiba Visconti SoCs.
+> >>>
+> >>> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> >>> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> >>
+> >> Why this tag stayed and other was removed? What was the reason of tag
+> >> removal?
+> >>
+> > 
+> > The stayed tag is due to internal review.
 > 
-> OK.
+> Did the internal review really happened? How is it that immediately new
+> version has internal review without any traces?
 > 
->> I am not going to keep reading all the external references you keep bringing or discussing why someone
->> else did something. This patch must be logical and correct on its own, not because someone else made
->> something somewhere.
+> I have doubts this review happened in the context of reviewer's
+> statement of oversight.
 > 
-> OK. According to me this patch is correct. It is for DT user and it described clearly in commit message
-
-So you repeat first point which I objected in the first place. If this
-is for DT, then this is not a binding and does not deserve header.
-
+> > The removed tag is due to code's change (split of csi2rx part) after the last review.
+> > If the code is largely changed following the instruction of another reviewer
+> > after obtaining the tags, how should the tags be handled?
 > 
-> "RZ/V2H has ports P0-P9 and PA-PB. Add support for defining alpha-numerical
-> ports in DT using RZV2H_* macros."
+> Drop all reviews and perform reviews on the list.
+> 
+> Such internal review appearing afterwards is rather a proof it you are
+> adding just the tags to satisfy your process. I have no way to even
+> verify whether that person performed any reasonable review or maybe just
+> acked your patch.
 
-I read it, I objected to it.
+How do you verify that for public reviews ?
 
-Best regards,
-Krzysztof
+> I cannot even verify that that person understands the
+> reviewer's statement of oversight.
+> 
+> 
+> ...
+> 
+> >>>
+> >>> Changelog v11:
+> >>> - no change
+> >>>
+> >>> Changelog v12:
+> >>> - remove property "clock-noncontinuous" as VIIF switches both modes
+> >>> automatically
+> >>> - remove property "link-frequencies" as VIIF does not use the
+> >>> information
+> >>
+> >> Driver does not use or hardware supports only one frequency?
+> > 
+> > My comment was incorrect.
+> > It should be "Driver does not use the information"
+> 
+> Then this is not that helping. Maybe hardware supports only one frequency?
+
+-- 
+Regards,
+
+Laurent Pinchart
 
