@@ -1,341 +1,161 @@
-Return-Path: <devicetree+bounces-132422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B4DD9F70B5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 00:20:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6381C9F70B9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 00:24:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A822188A474
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 23:20:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B613116DD12
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 23:24:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ECDE1FDE0B;
-	Wed, 18 Dec 2024 23:19:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 890A31FCD0F;
+	Wed, 18 Dec 2024 23:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lmXb3QGP"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="U34MY7ib"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3181FCD15;
-	Wed, 18 Dec 2024 23:19:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.171
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734563964; cv=none; b=Fzg8Cb1QJziQnJGj4QgFTjLQBGZ++8Iygc2sUuYlBUUq9aCny+YEQ7hXrio+0RlaXktgokdritPhKLEQvAvcfp74l5MSd6XjAiixiWedbTOxe90CTRnCsT4Mjb5CaMO6TRDhxzSvxqZ56QBcGmzAoA8S2TborR3jn8H1dcBIWto=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734563964; c=relaxed/simple;
-	bh=f9cJ05WCR2wdPEl2OKl0KC8I4zZ0XSzhEbqHOiSZ4Yc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=axSCjZ0RTkG12u/IUjHCZ8IUps0fogivg609lbETa0z6rkGl+vMLjjhVFniLcOUBItO84vnhpqpq97qWADxIVThQJJnudHlEkBF5AmX2R6tcbFctqXhGTapmQ8mM0r9Kc75Vy3ZYdUVEX/CeNneAFGghWFfypjo57Aohq8ADrNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lmXb3QGP; arc=none smtp.client-ip=209.85.166.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f171.google.com with SMTP id e9e14a558f8ab-3a7e108b491so1218855ab.3;
-        Wed, 18 Dec 2024 15:19:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734563962; x=1735168762; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=24h5o9WmiPWWVl46Dr7LPcbWN6q2XU2AlMJNr+RBJSM=;
-        b=lmXb3QGPtmMA+uO9quDWfJe4os5egOVQXG2mH8uaCVeFy3WAiSga7Wy48G3I1ve4g8
-         44gAa4YAuf6XqvIcS5xa/7Qy8JADkhB6M1EpdNrZ0DAZo7AJDK07l5MLrk5VFhMebq2m
-         +9hA4fOs8fT/+B9VAff7fJBsELDgdX3cZTZat7qWEONlwSyFS6ElPKM2YVVti1W+4lH6
-         qZonJpg/PUs0UJc8leK/VlVbIUtSCCkEaEzOu1ny/zMCtK1GIMiihULdPCROO9cwkIzu
-         52erGYzy/2vpSqd2sDuj1tIn/38QzzOJWRPque8xAEiiVDiV0QG3Q0FLKGleCM69Sj2b
-         1jOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734563962; x=1735168762;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=24h5o9WmiPWWVl46Dr7LPcbWN6q2XU2AlMJNr+RBJSM=;
-        b=L2oFdBIOTK9kC6EQgbPvL5YiUkHmvf/6/Azv/NTfzf1grLuN41pwfJ8HI7O3tqKxrC
-         6bXCsooEBG79qDr8DV3OXTQlwnZ6fFGWIojWyB7w3iDa9fzezaNDpMoW49UkLdVT7+qr
-         0ddWIWtJzL7ihJYjpeyXn1vHePRaHM4e3WunAOFeiPZMxWQmE4QlJ+A9forf1tIPZiTO
-         g7x3K1cfa+9vgoxffxv2/nWbh4Y2MN349iAZ2OcGBN+SaRArDjrfZ+vmL0tJajm6OhPG
-         Pebgrvwvu6AifqmKx3nHbWT3CwYVqpfegOAHKIfiKj9fuuhXMcujozcMsdsrIe3myRVj
-         yeuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVVOc8YKr3yFVLi5mxnChlfwFdX01tgQsJ6D4BbKA3hji0XbQJH0heMZ/EbSvqoeY5cZgc5Dyt6Uoj7S0Y=@vger.kernel.org, AJvYcCWJjm157uyP9mDEiN9MrD6zy3/QCYSdXJlQ3slqa0hfjF94TA51gB3eor+nqrN/pXhERO6ZK+nBg7iTzrUQcA==@vger.kernel.org, AJvYcCXP0RgwNyMjJgyjRLPo5FIJdW71j0V8ijlDjY7iaU0WwAcG2v3pSiYYYTx7Uf5M1TOPZUsEBuT5NIfw@vger.kernel.org, AJvYcCXqXMr7ZmeAq/BS7r4ZnvBHZmd2bzYJkUh8rgW0KPcabgogsKrPortI0GBzJgV+16xUij8QvFBMgksx@vger.kernel.org
-X-Gm-Message-State: AOJu0YzY94GhYwC3Tz4wpXS82+uDxVdVHooiS++MXrssRvM0zpXuAk6L
-	z87wxNOId9j/fEtexTfK6XncBGrGSxCp54UpGJKveyLmzcSC2LNY
-X-Gm-Gg: ASbGncswk7o10YR6BPIptO4H9xgu0b0SPvxJbwTxZgaym9fkM+1YhSWvRZFNlivgysq
-	73Ncdm+BfoyAOAWn5uxGUN8BVqIwJxEdJ9eWzzVQMWOXYLH6mccvN+Lr0EzsjpOiJ5onjpi7dgY
-	jn6poz226ddxvJzdEHf/tJuZs94EXKZYoRGR7gLkJun4/n7l1qvX47DdlQQz74Z2uzoEAnQI2kr
-	KKojs0oMRdLf6Txzzbl4ltVUQnH+8YVWQN++eEYvj8=
-X-Google-Smtp-Source: AGHT+IGKkxlLb7J3Vm3DERq+L/8vB3lE3fDDHMAgqPxonqOOV7QCBFJdENzhhf1Oe3mszKJUiRNxZw==
-X-Received: by 2002:a05:6e02:1985:b0:3a7:9347:544c with SMTP id e9e14a558f8ab-3c01062a2d0mr15696445ab.5.1734563961816;
-        Wed, 18 Dec 2024 15:19:21 -0800 (PST)
-Received: from localhost ([2607:fea8:52a3:d200::eca])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4e5e32a2dfdsm2428402173.105.2024.12.18.15.19.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Dec 2024 15:19:21 -0800 (PST)
-From: Richard Acayan <mailingradian@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH v9 5/5] arm64: dts: qcom: sdm670: add camss and cci
-Date: Wed, 18 Dec 2024 18:17:35 -0500
-Message-ID: <20241218231729.270137-12-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241218231729.270137-7-mailingradian@gmail.com>
-References: <20241218231729.270137-7-mailingradian@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8241FCCE1;
+	Wed, 18 Dec 2024 23:24:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734564250; cv=pass; b=rHHtR/t0dTCNUKgb6P9RlxqJyw4/omTbe+e7laX5JC/Su+fM6zbQAKhk1DX9w4BbIqokn4rRTWeZ9Ttgck8MOkwlViCh7OHpUL6EDBj94UGTdfpcsSGgWb8aSjCZ3f4cvROMB/G87T+7HI6XUs25Z/qhclz0JK+qF6Xynxt69OM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734564250; c=relaxed/simple;
+	bh=wdr0t8qDJjtsLvnbcrCJEX0hlINzDrdXF2LxIVS46+I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lNvtAbpdP9CrowIaJGMtP/Umqfpgmcl/87jdFsedHnVOQ97qcp1WIRvEdaxDZvf8ByDn3LDabUS9vOTVWnP10mSEhzbPiPwuIabbA3UCC1kh4B2UWaFk8HfS2wzU0JP17t9fzrd9V3omTHHy2/DiXREq5WffB5ghwqOSNsqsFO0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=U34MY7ib; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1734564239; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=bIpeNH4QSE31Weq/VKVU8IX0EGDhXe0lXnYrTMZXMWVzrHaXaN1uDnJdJdq3WUfJmd3iJHIpR3x2jI80Gj3WjVirZAtWjU/eB1NZWHTxmRzVneZKXeznXOs/zHUmJRxmSss4dsFxi2VRACBWW/+hh/TNKgmNesfxutLs39yqBvg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1734564239; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=8ZT/x7HyuP2EkR1cFSQW2bcFZrEhyLrC0V50uwExDUE=; 
+	b=H8U8606AlsxvJye0GmxU2M9ZOpHdH84p9yb6W3s3SxO4dZ3GpkvRa/EFpq650eRTisgXMIkZYkKI7TTgLpfcR9mQoa5cvh6HSz+FaP000z8WDy/uXPBqG8N3n4npAJwaVqw8l5tGIfypJZdELIAAyT60UfhfruMr7lGX3QNecvI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1734564239;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=8ZT/x7HyuP2EkR1cFSQW2bcFZrEhyLrC0V50uwExDUE=;
+	b=U34MY7ibAv+k+On8UnQ4rXcG+DOWoU5sTMLJ/xfEQJk0PXWzYmcU7jNVNUqlVVqy
+	5lgk/uYOmP1a3Jw7po82xqQDNG+zHaknkuraFRFw7gGlWAYI7KDgNy1/yGkAak4ikdZ
+	EJYlLHLKoeYxWVmcka+7QvxXEYmQMOvDS6QcZ5aQ=
+Received: by mx.zohomail.com with SMTPS id 173456423696394.3412501413028;
+	Wed, 18 Dec 2024 15:23:56 -0800 (PST)
+Received: by mercury (Postfix, from userid 1000)
+	id 010801060345; Thu, 19 Dec 2024 00:23:51 +0100 (CET)
+Date: Thu, 19 Dec 2024 00:23:51 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
+Cc: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v11 2/2] power: supply: Add STC3117 fuel gauge unit driver
+Message-ID: <sbzgrm2zplaqaxr7ll4t2xbxzorgh5swuonqyqvwsnrfum7565@luiffklagamp>
+References: <20241216070457.8083-1-bhavin.sharma@siliconsignals.io>
+ <20241216070457.8083-3-bhavin.sharma@siliconsignals.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="5ma34qwrenrmxsht"
+Content-Disposition: inline
+In-Reply-To: <20241216070457.8083-3-bhavin.sharma@siliconsignals.io>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.3.1/234.439.92
+X-ZohoMailClient: External
 
-Add the camera subsystem and CCI used to interface with cameras on the
-Snapdragon 670.
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm670.dtsi | 197 +++++++++++++++++++++++++++
- 1 file changed, 197 insertions(+)
+--5ma34qwrenrmxsht
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v11 2/2] power: supply: Add STC3117 fuel gauge unit driver
+MIME-Version: 1.0
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-index 328096b91126..068b6be14be7 100644
---- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
-@@ -6,6 +6,7 @@
-  * Copyright (c) 2022, Richard Acayan. All rights reserved.
-  */
- 
-+#include <dt-bindings/clock/qcom,camcc-sdm845.h>
- #include <dt-bindings/clock/qcom,dispcc-sdm845.h>
- #include <dt-bindings/clock/qcom,gcc-sdm845.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
-@@ -1168,6 +1169,34 @@ tlmm: pinctrl@3400000 {
- 			gpio-ranges = <&tlmm 0 0 151>;
- 			wakeup-parent = <&pdc>;
- 
-+			cci0_default: cci0-default-state {
-+				pins = "gpio17", "gpio18";
-+				function = "cci_i2c";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			cci0_sleep: cci0-sleep-state {
-+				pins = "gpio17", "gpio18";
-+				function = "cci_i2c";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+
-+			cci1_default: cci1-default-state {
-+				pins = "gpio19", "gpio20";
-+				function = "cci_i2c";
-+				drive-strength = <2>;
-+				bias-pull-up;
-+			};
-+
-+			cci1_sleep: cci1-sleep-state {
-+				pins = "gpio19", "gpio20";
-+				function = "cci_i2c";
-+				drive-strength = <2>;
-+				bias-pull-down;
-+			};
-+
- 			qup_i2c0_default: qup-i2c0-default-state {
- 				pins = "gpio0", "gpio1";
- 				function = "qup0";
-@@ -1400,6 +1429,174 @@ spmi_bus: spmi@c440000 {
- 			#interrupt-cells = <4>;
- 		};
- 
-+		cci: cci@ac4a000 {
-+			compatible = "qcom,sdm670-cci", "qcom,msm8996-cci";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			reg = <0 0x0ac4a000 0 0x4000>;
-+			interrupts = <GIC_SPI 460 IRQ_TYPE_EDGE_RISING>;
-+			power-domains = <&camcc TITAN_TOP_GDSC>;
-+
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAM_CC_SOC_AHB_CLK>,
-+				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-+				 <&camcc CAM_CC_CCI_CLK>;
-+			clock-names = "camnoc_axi",
-+				      "soc_ahb",
-+				      "cpas_ahb",
-+				      "cci";
-+
-+			pinctrl-names = "default", "sleep";
-+			pinctrl-0 = <&cci0_default &cci1_default>;
-+			pinctrl-1 = <&cci0_sleep &cci1_sleep>;
-+
-+			status = "disabled";
-+
-+			cci_i2c0: i2c-bus@0 {
-+				reg = <0>;
-+				clock-frequency = <1000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+
-+			cci_i2c1: i2c-bus@1 {
-+				reg = <1>;
-+				clock-frequency = <1000000>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
-+
-+		camss: isp@acb3000 {
-+			compatible = "qcom,sdm670-camss";
-+			reg = <0 0x0acb3000 0 0x1000>,
-+			      <0 0x0acba000 0 0x1000>,
-+			      <0 0x0acc8000 0 0x1000>,
-+			      <0 0x0ac65000 0 0x1000>,
-+			      <0 0x0ac66000 0 0x1000>,
-+			      <0 0x0ac67000 0 0x1000>,
-+			      <0 0x0acaf000 0 0x4000>,
-+			      <0 0x0acb6000 0 0x4000>,
-+			      <0 0x0acc4000 0 0x4000>;
-+			reg-names = "csid0",
-+				    "csid1",
-+				    "csid2",
-+				    "csiphy0",
-+				    "csiphy1",
-+				    "csiphy2",
-+				    "vfe0",
-+				    "vfe1",
-+				    "vfe_lite";
-+
-+			interrupts = <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "csid0",
-+					  "csid1",
-+					  "csid2",
-+					  "csiphy0",
-+					  "csiphy1",
-+					  "csiphy2",
-+					  "vfe0",
-+					  "vfe1",
-+					  "vfe_lite";
-+
-+			clocks = <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+				 <&camcc CAM_CC_CPAS_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CSID_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CSID_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>,
-+				 <&camcc CAM_CC_CSIPHY0_CLK>,
-+				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY1_CLK>,
-+				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-+				 <&camcc CAM_CC_CSIPHY2_CLK>,
-+				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-+				 <&gcc GCC_CAMERA_AHB_CLK>,
-+				 <&gcc GCC_CAMERA_AXI_CLK>,
-+				 <&camcc CAM_CC_SOC_AHB_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CLK>,
-+				 <&camcc CAM_CC_IFE_0_AXI_CLK>,
-+				 <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CLK>,
-+				 <&camcc CAM_CC_IFE_1_AXI_CLK>,
-+				 <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CLK>,
-+				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>;
-+			clock-names = "camnoc_axi",
-+				      "cpas_ahb",
-+				      "csi0",
-+				      "csi1",
-+				      "csi2",
-+				      "csiphy0",
-+				      "csiphy0_timer",
-+				      "csiphy1",
-+				      "csiphy1_timer",
-+				      "csiphy2",
-+				      "csiphy2_timer",
-+				      "gcc_camera_ahb",
-+				      "gcc_camera_axi",
-+				      "soc_ahb",
-+				      "vfe0",
-+				      "vfe0_axi",
-+				      "vfe0_cphy_rx",
-+				      "vfe1",
-+				      "vfe1_axi",
-+				      "vfe1_cphy_rx",
-+				      "vfe_lite",
-+				      "vfe_lite_cphy_rx";
-+
-+			iommus = <&apps_smmu 0x808 0x0>,
-+				 <&apps_smmu 0x810 0x8>,
-+				 <&apps_smmu 0xc08 0x0>,
-+				 <&apps_smmu 0xc10 0x8>;
-+
-+			power-domains = <&camcc IFE_0_GDSC>,
-+					<&camcc IFE_1_GDSC>,
-+					<&camcc TITAN_TOP_GDSC>;
-+			power-domain-names = "ife0",
-+					     "ife1",
-+					     "top";
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					camss_endpoint0: endpoint {
-+						status = "disabled";
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					camss_endpoint1: endpoint {
-+						status = "disabled";
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					camss_endpoint2: endpoint {
-+						status = "disabled";
-+					};
-+				};
-+			};
-+		};
-+
- 		camcc: clock-controller@ad00000 {
- 			compatible = "qcom,sdm670-camcc", "qcom,sdm845-camcc";
- 			reg = <0 0x0ad00000 0 0x10000>;
--- 
-2.47.1
+Hi,
 
+On Mon, Dec 16, 2024 at 12:34:55PM +0530, Bhavin Sharma wrote:
+> Adds initial support for the STC3117 fuel gauge.
+>=20
+> The driver provides functionality to monitor key parameters including:
+> - Voltage
+> - Current
+> - State of Charge (SOC)
+> - Temperature
+> - Status
+>=20
+> Co-developed-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.=
+io>
+
+This is not what I wrote. Please check the process documentation, which
+I already referenced in my comment in your v9 submission. Apart from
+that my comment also applies to the other patch in this series.
+
+> Signed-off-by: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
+> ---
+>  MAINTAINERS                               |   8 +
+>  drivers/power/supply/Kconfig              |   7 +
+>  drivers/power/supply/Makefile             |   1 +
+>  drivers/power/supply/stc3117_fuel_gauge.c | 607 ++++++++++++++++++++++
+>  4 files changed, 623 insertions(+)
+>  create mode 100644 drivers/power/supply/stc3117_fuel_gauge.c
+
+[...]
+
+> +	if (ram_data.reg.state !=3D STC3117_RUNNING) {
+> +		data->batt_current =3D -ENODATA;
+> +		data->temp =3D -ENODATA;
+> +	} else {
+> +		if (data->voltage < APP_CUTOFF_VOLTAGE)
+> +			data->soc =3D -ENODATA;
+> +
+> +		if (mode & STC3117_VMODE) {
+> +			data->avg_current =3D -ENODATA;
+> +			data->batt_current =3D -ENODATA;
+> +		}
+> +	}
+
+You multiply these with 1000 (10 for temp) before returning them to
+userspace. So you return (-ENODATA * 1000), which is obviously
+wrong...
+
+Greetings,
+
+-- Sebastian
+
+--5ma34qwrenrmxsht
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmdjWYAACgkQ2O7X88g7
++pp+oQ//eIqzXfv+bCK+NUi25LM3gfES7RkhOqFu5ekxkqeXl8YfKycQ+UrHv6YH
+Qnkd3fbqTGshyDj6b8HOY8x2I/dlreMePbRcCZ+dxnzZBJl/Tz/2KnD/FL5yJZox
+XOx4h3cvsrZf6uNnxjKY2nGLckj1iOE/PmEXWrgu4qx0t8S0R1+aCyNOYxgHziXz
+XYv9EQX//5erF9MI86/StKwpYtOS8kHnfXagsBHF4Wr7xXuDsHuw0SH07TwfIMxm
+yd3sliEH6Yx5vaPS0J9CAJ1j0d4/yhJdwz1w4YQl87SKbWqpts3N+yF4ZsjPXh4H
+BLp7YqrMm0kiT5Y0ga6z+fqTpc2i/7Q2nc05BdWoREblXRTgGWl/MZL6ixsIoXZO
+Qp7zzLJCFNyssr/ViR30UpDV2ZWGiSmCiwzh6fOXtwIG3bKIXErkpdxuZhu9fF9W
+Mwj5dSm5GFfRqi2Kw+pULQ0oax21w2zy7HKKoS5G3FUK6u9DfAsLkGFyaFAhfLBW
+i3ZXOf8JsLjNUY2uGBydOeQYf+ccu1CWomhuon97oRy/PJ3j/EAzUlwoEIt7yLiK
+gKG6K0NZBTvKEBp3oYTIpyjdUbnHNQBBC05tECN3XKTTXj5x1yn1wFFQ+mskT+79
+LigHfo4PCSe+wOS3+QVCTIaaRAQOxORuMHDAL0YjSbSQCmZjBEM=
+=e52W
+-----END PGP SIGNATURE-----
+
+--5ma34qwrenrmxsht--
 
