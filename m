@@ -1,83 +1,120 @@
-Return-Path: <devicetree+bounces-132183-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09AFC9F612B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:15:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC00B9F6135
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:16:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53CF5161DE1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:15:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3AC71894B1E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58AE5198E63;
-	Wed, 18 Dec 2024 09:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034201917F1;
+	Wed, 18 Dec 2024 09:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SwfvaUxu"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iY1NRPZg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27BEE198A10;
-	Wed, 18 Dec 2024 09:15:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D883595C;
+	Wed, 18 Dec 2024 09:16:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734513319; cv=none; b=hXYmrZOYO7n9tPilTQcbkmiMWEy950lCR9iWROASnxYAqHILmGCsyU+QAo2OpUW4u/FLHsfCos15LSFEwGP4LlUFgN/as9B/wjSI32muo0ON1rV2Zoc+gwqQ8w1D9e5tZgsZ9cWQy1IUu2byaVh5X/Fjzzwf6IPPKhHLyYNGRoE=
+	t=1734513393; cv=none; b=efxJg0IyX2IlC5vMfh9S6+ss4E2sp4qfTcV7GxwI5k43ENktJhuUc1jf58AHT5N9JuU9O3eJ+H5r+JDTWcnR0tOH3nRi0wQ+NLLt2j6ARqSvYLui42eeQ5ermcTDO9hsh3iBP549B5GJug/tasPNl9BhLwJXMoiv3dfg5cajOSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734513319; c=relaxed/simple;
-	bh=fbWSISg3pqwIP3gp/FXBpL6JXIqp0/i4mzGvP6dEieY=;
+	s=arc-20240116; t=1734513393; c=relaxed/simple;
+	bh=VHjNUmkxb8NwWd2KTTpGrR1dRwH0Fd8j75zWptimRWQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xs+rBgzHPQdgMELuDNG2pGL2AYkOCLw3WOU5hOETX4BL1g88UqejaikJlvIuzbANTpLnObT7YYPzL8bna7roFD/HRfSnscxUGLqQZ200uHQJAzQm2WYjbDuPj1nSKzF9IvHZSRfjKbs3XQH5GUGB4fJRMGZ63vUJbtEhmfSOQiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SwfvaUxu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EAF9C4CECE;
-	Wed, 18 Dec 2024 09:15:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734513317;
-	bh=fbWSISg3pqwIP3gp/FXBpL6JXIqp0/i4mzGvP6dEieY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SwfvaUxuNabK48hCNq0fMTSo9p8Pbil63clvCW98USkYSOTvsHZpHiEa+EekRsX6K
-	 U25tvqI0dMKdIUVo2u4zuGoGRXZvxFrifNwoOuyhoeq6KYD99VOtde2lnh/osEwOUd
-	 r+7GXex44fQkvDMBfJRlEthMg7vWj99bjueJfG/hOhHI2U+zh1DvW5wrLn1qjBrLUt
-	 No5sHjxfHAIUWnECmHRFIkcgIVrn5PrBh6fDq3tyfNLF8ONCtIiy5PDz2jmnsoesUO
-	 GV+3VzPCJCTL3llr3oqIVemH3ilLbQtShBOeY5277hPLmM6KRS7iWaiyiPggA00h0c
-	 YbWrK2l9+RiSg==
-Date: Wed, 18 Dec 2024 10:15:14 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sandor Yu <Sandor.yu@nxp.com>
-Cc: dmitry.baryshkov@linaro.org, andrzej.hajda@intel.com, 
-	neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
-	jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, 
-	vkoul@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
-	mripard@kernel.org, kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com, 
-	alexander.stein@ew.tq-group.com, sam@ravnborg.org
-Subject: Re: [PATCH v20 4/9] dt-bindings: display: bridge: Add Cadence
- MHDP8501
-Message-ID: <euujxcd22nake5s4wioc7ew4rxhqwijh5vucozjorotn3nqdvc@q65uqqj2bjwj>
-References: <cover.1734340233.git.Sandor.yu@nxp.com>
- <f2b7beebeb99ca69021ca24744e29af3454f5620.1734340233.git.Sandor.yu@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WcBPXFRDyvWgOxtXOnuA1ipzBFjPgl8/05IT0jjyQfDICO+ZOBnPxeyEza56Y+exUSSJPz2hdbvYGqj92VEIoDDL/OXdgfZ+20qs09hsPNvhprs5i9ErTIAAOWRB4RMbnNHd6ATlCFiNGvnEr1wmEUTsnqcca4LRq/Zy5AhB7so=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iY1NRPZg; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1734513392; x=1766049392;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VHjNUmkxb8NwWd2KTTpGrR1dRwH0Fd8j75zWptimRWQ=;
+  b=iY1NRPZgfeBX9jDE3YywV54+R8NNS0Be//IWM1p65tqgtSwY0p8tnynk
+   n0uiWKmd/N9mt8l9n1kThQ13CaDbSx4R9YU5zqj/cCIRxU82uOa3scMTf
+   Ee59KmGivstS4jp8AE+MphLPzffD0q5AlkCt/aWhpJo753mBo4gsER3c3
+   uCiw/RgnRNgGOjYNPLtlgxxDnUZYK2WG066jaf+SflIM4A56hIq9i3oHK
+   luwD+yaXt64GXRHs2ReQ2++2LZqhRr+v/GBl97LG8nkClSKu8RxSNEWL9
+   gwVuhRE/NuUJ8H0Tu1x5sypZXAEgkRiihtBCpN027MAkRpcNZVXABESNs
+   A==;
+X-CSE-ConnectionGUID: hl8vLTD+Q367LUTquCxh4g==
+X-CSE-MsgGUID: 7bRBiRA6RQOUwcCZ0Sljgw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="38917076"
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; 
+   d="scan'208";a="38917076"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Dec 2024 01:16:31 -0800
+X-CSE-ConnectionGUID: j7DOQrnnRJqTrRjBITYeqQ==
+X-CSE-MsgGUID: eFn9hVPaRou6L4FRFzttOw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="98622420"
+Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 18 Dec 2024 01:16:28 -0800
+Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tNqAL-000GEQ-2X;
+	Wed, 18 Dec 2024 09:16:25 +0000
+Date: Wed, 18 Dec 2024 17:16:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.linaro.org@kernel.org>,
+	Bjorn Helgaas <helgaas@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-pci@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Qiang Yu <quic_qianyu@quicinc.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH 4/4] PCI/pwrctrl: Add pwrctrl driver for PCI Slots
+Message-ID: <202412181640.12Iufkvd-lkp@intel.com>
+References: <20241210-pci-pwrctrl-slot-v1-4-eae45e488040@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f2b7beebeb99ca69021ca24744e29af3454f5620.1734340233.git.Sandor.yu@nxp.com>
+In-Reply-To: <20241210-pci-pwrctrl-slot-v1-4-eae45e488040@linaro.org>
 
-On Tue, Dec 17, 2024 at 02:51:46PM +0800, Sandor Yu wrote:
-> Add bindings for Cadence MHDP8501 DisplayPort/HDMI bridge.
-> 
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> ---
-> v19->v20:
-> - remove data type link of data-lanes.
+Hi Manivannan,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+kernel test robot noticed the following build errors:
 
-Best regards,
-Krzysztof
+[auto build test ERROR on 40384c840ea1944d7c5a392e8975ed088ecf0b37]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Manivannan-Sadhasivam-via-B4-Relay/PCI-pwrctrl-Move-creation-of-pwrctrl-devices-to-pci_scan_device/20241210-180256
+base:   40384c840ea1944d7c5a392e8975ed088ecf0b37
+patch link:    https://lore.kernel.org/r/20241210-pci-pwrctrl-slot-v1-4-eae45e488040%40linaro.org
+patch subject: [PATCH 4/4] PCI/pwrctrl: Add pwrctrl driver for PCI Slots
+config: x86_64-randconfig-004-20241218 (https://download.01.org/0day-ci/archive/20241218/202412181640.12Iufkvd-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241218/202412181640.12Iufkvd-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412181640.12Iufkvd-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-mgr-test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-bridge-test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-region-test.o
+>> ERROR: modpost: "of_regulator_bulk_get_all" [drivers/pci/pwrctrl/pci-pwrctl-slot.ko] undefined!
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
