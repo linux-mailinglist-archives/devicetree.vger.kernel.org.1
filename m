@@ -1,124 +1,159 @@
-Return-Path: <devicetree+bounces-132412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B40D9F6FD6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 23:02:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 524669F6FD9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 23:04:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED15616D4AB
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 22:01:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 398287A1624
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 22:04:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6D661A2872;
-	Wed, 18 Dec 2024 22:01:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 042F819882F;
+	Wed, 18 Dec 2024 22:03:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Yinv4hCa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SyK+2aaB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47A61A9B4A;
-	Wed, 18 Dec 2024 22:01:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3D55156885;
+	Wed, 18 Dec 2024 22:03:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734559306; cv=none; b=hK5j1mA8eyk99EW1tRfEf2mP7aWeRcjgXm+yGQGxHFUwKhmIAhrGrrO/aiVLgWn+NU9zTBlqVtpEYSaunvDSXM4I3F9IW/ZATvvJCHh0sMJQw8xDhMHwD92QsmBWFsZ0QOdU2rhGulHyDI14wSvls4GS6nUoreTA3nunoNAWt3w=
+	t=1734559436; cv=none; b=la1+a7/zqof8OUSU5NwJ2seYZdZNRNMLpkjKKLyFra1FKSMGpTHT+JcGLDdUhZRiEE3udsDQYwpX1z4y+KTUJrIJwOXWFdZ1hcHe2hmD0BWk1ptiVJ13KmBzAQWWc2YI9ydhxqNMXMc735T+DT8ew2zcdKq0xs3nbfXA/Thgz5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734559306; c=relaxed/simple;
-	bh=b8/+EC1VflEBJwonWHv7sJ5l8U3pVLGQLl8mOMAAZtw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=jU74Xn77M95NCAYfxjgTgaXR2RvBH/+hW4zV7QBv0f0g5RqPMF5X2goIgM53vPszk198b6eoqCILTi0jcAyYS/FWh8ho9qhMb+8XQMiFoRhRi+ZTnoz2Jh9zwrqpO5E7+PxDNL3bUUtG3bmoASoUFK/KkrBrCQhdPc5ekFXdndA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Yinv4hCa; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1734559302;
-	bh=b8/+EC1VflEBJwonWHv7sJ5l8U3pVLGQLl8mOMAAZtw=;
-	h=From:Date:Subject:To:Cc:From;
-	b=Yinv4hCaS3DFAGjV3qEGKTaCWZyA40M8pTkq1kVoZnPlKkF4UZc+ublCLcfz9uk+g
-	 mLHMlYvznSfiJhCYRk18GwF1VwcM7jCwqPBgwux0TZrF6H1A+Tgkw4Go/GKkYb8tmn
-	 1QHpGQ7C6zT6xQK9i0ciDNWK+5+flxsJ5vaGJIZJGWYU0V+xYL0DAmjZbw7g82Oopj
-	 hHauSBVsxFyYNBJkRHWNfyZK+7ZSvpPb5DeJBhIc3f+0/s7EEStKHg6z4b+GbJdtKR
-	 yCzOE07aq57/5TyOUKUIaw0zmnXtm0NromkDbS0l+bPzEA/YWFFZgy9uNZYYTBvOKx
-	 p/3yNxe3zAEUw==
-Received: from [192.168.0.47] (unknown [IPv6:2804:14c:1a9:53ee::1000])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E3F7A17E3822;
-	Wed, 18 Dec 2024 23:01:39 +0100 (CET)
-From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Date: Wed, 18 Dec 2024 19:01:08 -0300
-Subject: [PATCH] arm64: dts: mediatek: mt8195: Remove suspend-breaking
- reset from pcie1
+	s=arc-20240116; t=1734559436; c=relaxed/simple;
+	bh=K4YOhn/ChJ4vCcI602YiuN00IxDm6SWkEmnEIKkGhIE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CvxpnBCesmUmtyapsCdnRgCAS5QlVKrm1D7IfrtctlvyPPm7hE6ssC7J/vN4IHdj/rS3XDDj8DTia2GkxhSEfHibTFnUW9GUwCCs7ZB19x+pzx+PYi5E5Rmn75rLT9sz+wklBe1Du6JovR6l5ZmrrTdswIhin4yfUL+vEti9GoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SyK+2aaB; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-30229d5b22fso1926251fa.2;
+        Wed, 18 Dec 2024 14:03:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734559433; x=1735164233; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FEoEJVitFb92Tvu3XfpVjcUrJl1abp1soj3soQ40D/g=;
+        b=SyK+2aaBeLXewBic0Rc/oZP0Enq//pft8wHfTgPW+D0QXGBeKxCiatJylu9b3QRYfq
+         2xJh6UP57xybMS+YRtx7EJN3u4v1VZcra/KFnwf02hvMTs6x/DFIot6m1+toWifiaKAW
+         V+h49G8plUj5eMNtWWKIVVgBX65Y1HJIAQe1WZ/gfdOfd5rFURDRkn7lw6HLXg9KfiXc
+         aIbjtRMr5h3xVdXd0A6LBlQgasSRhjGpNrifmVCIvgFgxUZalVQDf1O4nyZQEx3sfK1X
+         nlDq/DIzahmxAjRa5h86ehKGf4voBpj4BG/mFXSmtGi5GNZwWWLWbKxGqNd5xZvdToie
+         bo8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734559433; x=1735164233;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FEoEJVitFb92Tvu3XfpVjcUrJl1abp1soj3soQ40D/g=;
+        b=wN6E0TO5XCEKAbUR9vEwe5ZtPFSqs7pb8FqyCVVZabjP//+8k1AzNf2ZCKvXY7J3Bd
+         IoAcX0VBi6Gcs7faH00CJZiiRVlad/KfRde3Fx9vQTED/xsdb9UzN1tSnTw/C7x8cq26
+         qx4fmVYcjk67uksNDDHmKrlBqIz00ZctfRGZnDWQfXRkxqAj7vplBYfS6jvQcENMtE1M
+         SA+8W7mo4ZLyjcwwLHRHyre256Uz57tYACEDxbKnW3f2ROBaRwjVxigRlcoPW1UMWlKR
+         qfmFRYWSsnhe97S0GbcGb5K9UfUyHokgKQgys5RjilKvjLVSbPp8v+8GVjfVoFEemq0z
+         3s2A==
+X-Forwarded-Encrypted: i=1; AJvYcCXItUMhuR7QHkzvQBwZry4Hq81N0cVIWpfueFvjgkzabaORMzVqLYkeNKk28Of7OlGdMmqt5F4p8YPf@vger.kernel.org, AJvYcCXkbzq8rBj/aL8S6P71s0F2YnXueJnew1zJIq01weUDhA2QhNvdbsieHwnDl/NHTwdpMnL3fx0+EOGy@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlkQeuOdlGctbfM8XsBsaTpr6694ClpdagOnZmNqWKwT3xgbDi
+	0Zw1E0gEaUJ/jAe6umYP1YwZPr1+3yxAR8aw40L9lZ5/LqY5JK+dVZdlafoALf+pAw==
+X-Gm-Gg: ASbGnct7OsGZ37da5BsDFQelxxYRA0CUCFVtgLNockRK6sH9F2HYAjfP7PzWyguK3qR
+	yyoifPBV60tOiC+9K71tRNQMMRfp4B11rTkVwwgfHUudDx7fhC664OLQ6YDBqbldry4KRucS/tf
+	teMoM5cPyuubp6dsNGyoa08bovqvDdznrcdAEQXLj0QKhTZrkon+02IL75sQg9LPLkFxkTFTXVu
+	6hvb5z6E5JM+YVXfcf57OUOkY9QmSi8Z9fRDrKSELWgJuo+g1JrTvCIwAu6wqCWbSylZBvU9K/h
+	Tsl8VLbTDZC3dhy+NE9O3t6Tkw==
+X-Google-Smtp-Source: AGHT+IFaAsqs6JUJBRXlAesO5yue6oNlZZp02NwSZiRj//fTgx1Jn7mVgIo5VoqfRQwsNOicu/8wjw==
+X-Received: by 2002:a2e:a592:0:b0:302:40ec:9f92 with SMTP id 38308e7fff4ca-30457a42e4emr4457051fa.32.1734559432343;
+        Wed, 18 Dec 2024 14:03:52 -0800 (PST)
+Received: from [10.0.0.42] (host-85-29-124-88.kaisa-laajakaista.fi. [85.29.124.88])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3034401d930sm17131841fa.14.2024.12.18.14.03.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 18 Dec 2024 14:03:51 -0800 (PST)
+Message-ID: <913e1081-26c4-4991-a557-609aa4064e89@gmail.com>
+Date: Thu, 19 Dec 2024 00:09:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] dmaengine: ti: k3-udma: Add support for J722S CSI
+ BCDMA
+To: Vaishnav Achath <vaishnav.a@ti.com>, vkoul@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, u-kumar1@ti.com, j-choudhary@ti.com,
+ vigneshr@ti.com
+References: <20241127101627.617537-1-vaishnav.a@ti.com>
+ <20241127101627.617537-3-vaishnav.a@ti.com>
+Content-Language: en-US
+From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+In-Reply-To: <20241127101627.617537-3-vaishnav.a@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-Id: <20241218-mt8195-pcie1-reset-suspend-fix-v1-1-1c021dda42a6@collabora.com>
-X-B4-Tracking: v=1; b=H4sIACNGY2cC/x2NQQqDQAxFryJZN9BEC+pVpAsZf9ssOg4TLQXx7
- g1dvs/jv4Mc1eA0NgdVfMxtzQFyaSi95vwE2xJMetVOVHp+b70MNy7JIFzh2Nh3L8gLP+zLLSQ
- 8lW6AUpyUipj/gel+nj+UccN1cAAAAA==
-X-Change-ID: 20241218-mt8195-pcie1-reset-suspend-fix-3e14122149e2
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Jianjun Wang <jianjun.wang@mediatek.com>, 
- Tinghan Shen <tinghan.shen@mediatek.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-X-Mailer: b4 0.14.2
 
-The MAC reset for PCIe port 1 on MT8195 when asserted during suspend
-causes the system to hang during resume with the following error (with
-no_console_suspend enabled):
 
-  mtk-pcie-gen3 112f8000.pcie: PCIe link down, current LTSSM state: detect.quiet (0x0)
-  mtk-pcie-gen3 112f8000.pcie: PM: dpm_run_callback(): genpd_resume_noirq+0x0/0x24 returns -110
-  mtk-pcie-gen3 112f8000.pcie: PM: failed to resume noirq: error -110
 
-This issue is specific to MT8195. On MT8192 with the PCIe reset,
-MT8192_INFRA_RST4_PCIE_TOP_SWRST, added to the DT node, the issue is not
-observed.
+On 11/27/24 12:16 PM, Vaishnav Achath wrote:
+> J722S CSI BCDMA is similar to J721S2 CSI BCDMA but there are slight
+> integration differences like different PSIL thread base ID which is
+> currently handled in the driver based on udma_of_match data. Add an
+> entry to support J722S CSIRX.
 
-Since without the reset, the PCIe controller and WiFi card connected to
-it, work just as well, remove the reset to allow the system to suspend
-and resume properly.
+Acked-by: Peter Ujfalusi <peter.ujfalusi@gmail.com>
 
-Fixes: ecc0af6a3fe6 ("arm64: dts: mt8195: Add pcie and pcie phy nodes")
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 3 ---
- 1 file changed, 3 deletions(-)
+> 
+> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+> ---
+> 
+> V2->V3 : Minor edit in commit message.
+> 
+> V1->V2:
+> 	* Add new compatible for J722S instead of modifying AM62A
+> 
+>  drivers/dma/ti/k3-udma.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
+> index b3f27b3f9209..7ed1956b4642 100644
+> --- a/drivers/dma/ti/k3-udma.c
+> +++ b/drivers/dma/ti/k3-udma.c
+> @@ -4404,6 +4404,18 @@ static struct udma_match_data j721s2_bcdma_csi_data = {
+>  	.soc_data = &j721s2_bcdma_csi_soc_data,
+>  };
+>  
+> +static struct udma_match_data j722s_bcdma_csi_data = {
+> +	.type = DMA_TYPE_BCDMA,
+> +	.psil_base = 0x3100,
+> +	.enable_memcpy_support = false,
+> +	.burst_size = {
+> +		TI_SCI_RM_UDMAP_CHAN_BURST_SIZE_64_BYTES, /* Normal Channels */
+> +		0, /* No H Channels */
+> +		0, /* No UH Channels */
+> +	},
+> +	.soc_data = &j721s2_bcdma_csi_soc_data,
+> +};
+> +
+>  static const struct of_device_id udma_of_match[] = {
+>  	{
+>  		.compatible = "ti,am654-navss-main-udmap",
+> @@ -4435,6 +4447,10 @@ static const struct of_device_id udma_of_match[] = {
+>  		.compatible = "ti,j721s2-dmss-bcdma-csi",
+>  		.data = &j721s2_bcdma_csi_data,
+>  	},
+> +	{
+> +		.compatible = "ti,j722s-dmss-bcdma-csi",
+> +		.data = &j722s_bcdma_csi_data,
+> +	},
+>  	{ /* Sentinel */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, udma_of_match);
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index ade685ed2190b7339d5daad55ce81c092bd7b39e..04e41b557d44810c5be097dab40b5b94f63b1843 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -1611,9 +1611,6 @@ pcie1: pcie@112f8000 {
- 			phy-names = "pcie-phy";
- 			power-domains = <&spm MT8195_POWER_DOMAIN_PCIE_MAC_P1>;
- 
--			resets = <&infracfg_ao MT8195_INFRA_RST2_PCIE_P1_SWRST>;
--			reset-names = "mac";
--
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 7>;
- 			interrupt-map = <0 0 0 1 &pcie_intc1 0>,
-
----
-base-commit: e25c8d66f6786300b680866c0e0139981273feba
-change-id: 20241218-mt8195-pcie1-reset-suspend-fix-3e14122149e2
-
-Best regards,
 -- 
-Nícolas F. R. A. Prado <nfraprado@collabora.com>
+Péter
 
 
