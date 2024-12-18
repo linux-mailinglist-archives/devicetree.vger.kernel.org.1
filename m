@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-132138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73E779F5FB6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 08:56:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0D59F5FDB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:06:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3E6116748D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 07:56:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AB1716EA9F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 08:06:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D901A158D96;
-	Wed, 18 Dec 2024 07:56:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0193F19E994;
+	Wed, 18 Dec 2024 08:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TzgvZBos"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JyvSZOqK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4E7F42048;
-	Wed, 18 Dec 2024 07:56:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C745719CC36;
+	Wed, 18 Dec 2024 08:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734508572; cv=none; b=lwu7d1q33nilugvWg24jTv7GoOApltuQumfIfaVWWKp+/5+kZgrDVq/1Uu0jv0ALaVl3TwFRFps4sIkMJHNmo8zmeG/wKGvsepCpgZsfwfqMWp/LnAZuTwhEF247JS0ADwzDFG8bG8uetgldU8Y8Nuxa2FHuRV3c1P1u7Ym7obU=
+	t=1734508957; cv=none; b=sl5zsTtk0NgFlhCCCbRh0OJaejyRSLeCaIe/w1u0h/FOWZzlVEiMNlOMQfcXM4VlEdpEEcfukiQko+styu7Y0/dbYkWRVbmu3lBBe3xj4a854HyHoZG3bMLk4x1NuUEYhK23/Xv9fpEUrLBGmGQtXhaqpErUA0kCFY1i84SpPCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734508572; c=relaxed/simple;
-	bh=BrDCfYdQ1DBora0atTDfNnrZe61xzvZBXNC2QdIQ8bE=;
+	s=arc-20240116; t=1734508957; c=relaxed/simple;
+	bh=2W3UmG9afuhrvYCIxN5R9g9MtQ27HAgR55Mo1Kt10i8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JKZlC1EOabxASlzfTpbcvQNIENj/9MHFzJq5ZE5JMP4SO88dh8vuyGs5yL+nrfYw3dCrFd5KCmIMJlclPge7HcSZpYCgq/3pKjbl6PKFW9gRv0gm8an4l5vWA4J9esve0oBnHyPCSIGAhaNd/Uf21VMcYE2b5x4JJ4NgT6Jh5DI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TzgvZBos; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7CBFC4CECE;
-	Wed, 18 Dec 2024 07:56:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ZImnt09IMd/dK3jy7DFQVLKL79/xjDxOCkLJtVfahC/4z3KIWUBofpHCpNrMB6B7S0KwMwBz/BYocUY40YHe/ZIYEZWP2W1Pzjxccl8knsIFvC1MSdecENAkYZT2h85auKJY5zVmzBgKL514cv6EeZk6QhUusJIu6t8slMIVR6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JyvSZOqK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76453C4CECE;
+	Wed, 18 Dec 2024 08:02:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734508572;
-	bh=BrDCfYdQ1DBora0atTDfNnrZe61xzvZBXNC2QdIQ8bE=;
+	s=k20201202; t=1734508957;
+	bh=2W3UmG9afuhrvYCIxN5R9g9MtQ27HAgR55Mo1Kt10i8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TzgvZBosLoZFh5meuHHmD1x48hgInQYIOcmLlgncgpWywYTmAHlCy2ow4iGDfj5uO
-	 Q2eSjzA7czpy/2D1JHo0Zp/6ExGrMQieLHnLMv5qGMYHod3yaYpwsV4HeY7IWPi2Sj
-	 VtRG6NL9vEDpgM6pIflI2Fgyb+8WXcr3tiM4Tkr+764tlMHT684CMSAZVo/mVC6fd8
-	 OkWKIZ7JhOu8j2iYyi0XUFV+K6S2ZR6mJs8W7jjCP7mdfowiv+zyCvPxBhb3G2pH72
-	 sCnu/XClqkKe5N4VzXY+j3MyLri7YmhM6L0OH+gZZrGiB7RbSCy4H8UpaD116NC/dL
-	 33ivgXZ8Zlaog==
-Message-ID: <c3270109-406f-49bd-9c11-e323d1b6e84d@kernel.org>
-Date: Wed, 18 Dec 2024 08:56:06 +0100
+	b=JyvSZOqKDLzpdiQzyT2vhLosKTYANZf6zxZ93qi0PD66ABCGThTjvoco2i8ym05TR
+	 Qx3M1c7MFq2uZvpByaHsIUTIDvdTciBjQxrRanYA3YyQYYSx2DpjHANL4vHMq/dmrF
+	 KQ7Ps8xNWRMXzFji8SZpvCiZ3oZtXbZIb2cFTXhb/6fz8SNccYCjx94Me0hwzncKvm
+	 j3ifvwpUbIJz33F3mqmdHEh6EecpkWWHaki/utr+bZoditVcQpSBBxya/V6BJU/7tD
+	 Gl0uJmxNGfprJFD3l5IaDWt+JhnvKJLbdYYgC0oqSzv5PcgLUGM3ogo/I5yKrc1j7y
+	 bdnS0jDc1O5Tg==
+Message-ID: <59e96784-9efc-4958-baf0-a51e766e47e8@kernel.org>
+Date: Wed, 18 Dec 2024 09:02:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 3/9] dt-bindings: power: supply: max17042: split on 2
- files
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Hans de Goede <hdegoede@redhat.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
- Purism Kernel Team <kernel@puri.sm>, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-input@vger.kernel.org, linux-leds@vger.kernel.org
-References: <20241209-starqltechn_integration_upstream-v11-0-dc0598828e01@gmail.com>
- <20241209-starqltechn_integration_upstream-v11-3-dc0598828e01@gmail.com>
- <7qt7thbuh5mvoaknxaiteusbmcmiusc23k2oiyvq3bwn4l6wsw@p4qid73hmiry>
- <CABTCjFD4ipvapWX9gJF1KXWpzj_jhL9pYB0z+Q4sEi-cu6mx7Q@mail.gmail.com>
+Subject: Re: [PATCH v4 6/7] arm64: defconfig: enable cpu idle injection and
+ cpu idle cooling device
+To: Wasim Nazir <quic_wasimn@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kernel@quicinc.com,
+ Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
+References: <20241217064856.2772305-1-quic_wasimn@quicinc.com>
+ <20241217064856.2772305-7-quic_wasimn@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,35 +109,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CABTCjFD4ipvapWX9gJF1KXWpzj_jhL9pYB0z+Q4sEi-cu6mx7Q@mail.gmail.com>
+In-Reply-To: <20241217064856.2772305-7-quic_wasimn@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/12/2024 15:59, Dzmitry Sankouski wrote:
-> Ah, indeed, the device tree in this and previous patches doesn't
-> reflect hardware wiring.
+On 17/12/2024 07:48, Wasim Nazir wrote:
+> From: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
 > 
-> MAX77705 fuel gauge has a separate i2c address, i.e. I may move it out of the
-> MAX77705 MFD node. However, the device on that address has additional features,
-> like measuring system and input current, which is out of fuel gauge
-> responsibility.
-
-This is fuel gauge job.
-
-> 
-> So I guess I should create another MFD for fuel gauge, i. e. max77705 example
-> would look like:
-> 
-> ...
->   pmic@66 {
->     compatible = "maxim,max77705";
-> ...
->   };
-> 
->   meter@36 {
->     compatible = "maxim,max77705-meter";
-> 
-No resources here, so not a MFD. This is one device.
+> Enable cpu idle injection framework and thermal cpu idle cooling device
+> to throttle the cpu by injecting idle cycle during high thermal condition.
+I know what they do, but why do we need it in the defconfig? This is not
+a product defconfig, just in case you mirrored downstream patches.
 
 Best regards,
 Krzysztof
