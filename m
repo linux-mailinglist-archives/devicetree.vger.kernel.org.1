@@ -1,176 +1,121 @@
-Return-Path: <devicetree+bounces-132287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D629F65F9
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 13:34:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D3DA9F65FF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 13:35:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DAA01886FC8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:34:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 388B4188E4DD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D808319D07B;
-	Wed, 18 Dec 2024 12:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 385E319D07B;
+	Wed, 18 Dec 2024 12:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mSOvVslc"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="lIuwHm8C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E90A8199FC5;
-	Wed, 18 Dec 2024 12:34:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 494EE1534EC;
+	Wed, 18 Dec 2024 12:35:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734525267; cv=none; b=rkK2EStyM4Jw239EK/JGHkAtwduhts3e/8XosUwPS+clcXnu6BX8Jm9WFMZeNGpHYIDIusIYCmZcgJ9qmZq4P9e+0MRRS5Tyarotxz3Xi3doHqlMmvp7QmyCnHJLZwTSZHXn9gaYLqDbYgXIQtfySiZ44hSUkhvgAuJ5fueSTBQ=
+	t=1734525345; cv=none; b=aSS0X5Gkb+JhTcWVKZ/FvWgDdGGNFo3uXEq1/xJAYndJHunub/Lgc7L4YZN+AR9LMIY8kSs1ZTtCAOjMFJrTRpq7ZJCA3erPjtZCh4cpWFJxczuDIgSwbwO5He5l9nKRENjRPnxJi56O/3/vasM6zlSaKaD/XljJyDKV4nGOXKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734525267; c=relaxed/simple;
-	bh=QYc4xY8AeNSgge56dJ3MvqzLhT/3x0EYFavC+ntvJs4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SB2KYOYMmaUp/wjs0U0KlPSgQc/5kHiGnc/im3LaSLxk5jEobgEZXnSxrXPZb4j1MwlxlKsBdBl5mYeQzpNKLi4B6Gm+M0/Bx9KDht3qIBYZ3G4BfrsANDLCumzt0C+wSzaScltWZbuPOlLFaXtlqsTapgF3ipib4n7hTs8lUGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mSOvVslc; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BI7V5iF025318;
-	Wed, 18 Dec 2024 12:34:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0C94w/0C+OzA0oXh9i7IsC80vig3DOMsP0LguORAZO0=; b=mSOvVslcyvPQhTRD
-	gigAf8Q4B6nwZf/50MXI+c5hf/9FiRxsEekzgMpnWnktYh4e3QPSfbyY5v9O2obK
-	bjm0PuAdYsxsREvAIwlOwsC4ynrM5D12GxGlEpYeBQPoTiZQ2zPKHqxwzaJUhltF
-	ElZuC8FaEan4N+VIxXiiJGLR8Q8rw7m+XlKoSZNh/DWmDODuPnsFOB0GwTDhF1kb
-	tDsaLg5GZ1uEALRk4XlZWskr80PSt13WGPF+yQ66RDbXAfbv/4knblD/tJ5DVKLO
-	fzDVFIo/GhvSdhs6VXA8YxjR3rBpGMKNpMGBA5Vkccg8K8eAJ4LCFU/CXr/b0d4k
-	UzpZpg==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43kt2w8rm0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Dec 2024 12:34:16 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BICYEZQ011739
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Dec 2024 12:34:14 GMT
-Received: from [10.216.12.179] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 18 Dec
- 2024 04:34:08 -0800
-Message-ID: <5ef44277-6739-4e1e-af62-0f40ae081ec1@quicinc.com>
-Date: Wed, 18 Dec 2024 18:04:04 +0530
+	s=arc-20240116; t=1734525345; c=relaxed/simple;
+	bh=QOh97Epoa4x58Z6eFA7LZl+rGeug4Qbjv8h3G4Zt2nM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qMz/CseFjhusDOguT0e9L/SuPbsinqA3pzky1xcfY+z+muQcVetRGdFYnaYQ0XpfIqVvUdCWfh9xOwpnT4qkqkEnnJkfuIIkJmoBcRo6V7U2/QWyfLhf8e7jcsNzo1qMuScF3lzJhFPqEBHj4jbnev5F146y1o2uFlDWLGJCgTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=lIuwHm8C; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=phZjJ8Vd0a6a/KUNLyGQpPa9OxsPWwxJsNWkp8oFdNc=; b=lIuwHm8C3o0XdtMfisDH16HFrk
+	xW2eZCC0NsEyhgo1QgwipjBohy3XKMwfemabXrMubtE3JQsgBlBhjxNCxzvSPsOKftOgk+npqLDSf
+	eFcNtJT4PNdAkgiVD7bkntXI+XJwnWMmxMEd/3rdATt3pjh4CSCQ6Voajw1xEDtkoan5lyLsuJxdT
+	+kfKXb8SsDni0xHBr61qMlBNjF53ldb0qlaD0DSRhy3WP8adBNHKzmwdOUjPH131INjHuFoNaizkW
+	WpmFGXwgxswGU3P/RkGbheMpkqPUKzWDgYlhcdWCOvLG2Zf8GuPjgmWCmV3d+sbWwrRsJ5NDBhy6O
+	YOP8x3ug==;
+Received: from i53875bfb.versanet.de ([83.135.91.251] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tNtGw-0000Hd-65; Wed, 18 Dec 2024 13:35:26 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Damon Ding <damon.ding@rock-chips.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
+ cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
+ andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
+ kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, Damon Ding <damon.ding@rock-chips.com>
+Subject:
+ Re: [PATCH v2 04/11] phy: phy-rockchip-samsung-hdptx: Add support for eDP
+ mode
+Date: Wed, 18 Dec 2024 13:35:24 +0100
+Message-ID: <867267676.0ifERbkFSE@diego>
+In-Reply-To: <20241216031225.3746-5-damon.ding@rock-chips.com>
+References:
+ <20241216031225.3746-1-damon.ding@rock-chips.com>
+ <20241216031225.3746-5-damon.ding@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/4] dmaengine: gpi: Add Lock and Unlock TRE support to
- access I2C exclusively
-To: Vinod Koul <vkoul@kernel.org>
-CC: <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
-        <andi.shyti@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <devicetree@vger.kernel.org>, <linux@treblig.org>,
-        <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
-        <konradybcio@kernel.org>, <bryan.odonoghue@linaro.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <quic_vdadhani@quicinc.com>
-References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
- <20241129144357.2008465-3-quic_msavaliy@quicinc.com> <Z01YBLcxDXI2UwXR@vaman>
- <d49b16b2-95e5-42b4-9bc1-40cb0bfa15b1@quicinc.com> <Z1BJSbf+1G8ojTib@vaman>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <Z1BJSbf+1G8ojTib@vaman>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fLj0LppQqDwBIQBoNr_scSKpO1tWPoNJ
-X-Proofpoint-ORIG-GUID: fLj0LppQqDwBIQBoNr_scSKpO1tWPoNJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- mlxlogscore=999 priorityscore=1501 malwarescore=0 clxscore=1015
- suspectscore=0 adultscore=0 lowpriorityscore=0 bulkscore=0 mlxscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412180101
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Vinod, Thanks !  I just saw your comments now as somehow it was going 
-in some other folder and didn't realize.
+Hi Damon,
 
-On 12/4/2024 5:51 PM, Vinod Koul wrote:
-> On 02-12-24, 16:13, Mukesh Kumar Savaliya wrote:
->> Thanks for the review comments Vinod !
->>
->> On 12/2/2024 12:17 PM, Vinod Koul wrote:
->>> On 29-11-24, 20:13, Mukesh Kumar Savaliya wrote:
->>>> GSI DMA provides specific TREs(Transfer ring element) namely Lock and
->>>> Unlock TRE. It provides mutually exclusive access to I2C controller from
->>>> any of the processor(Apps,ADSP). Lock prevents other subsystems from
->>>> concurrently performing DMA transfers and avoids disturbance to data path.
->>>> Basically for shared I2C usecase, lock the SE(Serial Engine) for one of
->>>> the processor, complete the transfer, unlock the SE.
->>>>
->>>> Apply Lock TRE for the first transfer of shared SE and Apply Unlock
->>>> TRE for the last transfer.
->>>>
->>>> Also change MAX_TRE macro to 5 from 3 because of the two additional TREs.
->>>>
->>>
->>> ...
->>>
->>>> @@ -65,6 +65,9 @@ enum i2c_op {
->>>>     * @rx_len: receive length for buffer
->>>>     * @op: i2c cmd
->>>>     * @muli-msg: is part of multi i2c r-w msgs
->>>> + * @shared_se: bus is shared between subsystems
->>>> + * @bool first_msg: use it for tracking multimessage xfer
->>>> + * @bool last_msg: use it for tracking multimessage xfer
->>>>     */
->>>>    struct gpi_i2c_config {
->>>>    	u8 set_config;
->>>> @@ -78,6 +81,9 @@ struct gpi_i2c_config {
->>>>    	u32 rx_len;
->>>>    	enum i2c_op op;
->>>>    	bool multi_msg;
->>>> +	bool shared_se;
->>>
->>> Looking at this why do you need this field? It can be internal to your
->>> i2c driver... Why not just set an enum for lock and use the values as
->>> lock/unlock/dont care and make the interface simpler. I see no reason to
->>> use three variables to communicate the info which can be handled in
->>> simpler way..?
->>>
->> Below was earlier reply to [PATCH V3, 2/4], please let me know if you have
->> any additional comment and need further clarifications.
+Am Montag, 16. Dezember 2024, 04:12:18 CET schrieb Damon Ding:
+> Add basic support for RBR/HBR/HBR2 link rates, and the voltage swing and
+> pre-emphasis configurations of each link rate have been verified according
+> to the eDP 1.3 requirements.
 > 
-> Looks like you misunderstood, the question is why do you need three
-> variables to convey this info..? Use a single variable please
-Yes, I think so. Please let me clarify.
-First variable is a feature flag and it's required to be explicitly 
-mentioned by client (i2c/spi/etc) to GSI driver.
-
-Second and third, can be optimized to boolean so either first or last 
-can be passed.
-
-Please correct me or add simple change where you would like to make, i 
-can add that.
+> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
 > 
->> --
->>> Looking at the usage in following patches, why cant this be handled
->>> internally as part of prep call?
->>>
->> As per design, i2c driver iterates over each message and submits to GPI
->> where it creates TRE. Since it's per transfer, we need to create Lock and
->> Unlock TRE based on first or last message.
->> --
->>>> +	bool first_msg;
->>>> +	bool last_msg;
->>>
+> ---
 > 
+> Changes in v2:
+> - Add the module author
+> ---
+
+> @@ -255,6 +364,19 @@ struct ropll_config {
+>  	u8 cd_tx_ser_rate_sel;
+>  };
+>  
+> +struct tx_drv_ctrl {
+> +	u8 tx_drv_lvl_ctrl;
+> +	u8 tx_drv_post_lvl_ctrl;
+> +	u8 ana_tx_drv_idrv_idn_ctrl;
+> +	u8 ana_tx_drv_idrv_iup_ctrl;
+> +	u8 ana_tx_drv_accdrv_en;
+> +	u8 ana_tx_drv_accdrv_ctrl;
+> +	u8 tx_drv_pre_lvl_ctrl;
+> +	u8 ana_tx_jeq_en;
+> +	u8 tx_jeq_even_ctrl;
+> +	u8 tx_jeq_odd_ctrl;
+> +};
+> +
+>  enum rk_hdptx_reset {
+>  	RST_PHY = 0,
+>  	RST_APB,
+
+not a full review (yet), but this part conflicts with
+commit f2dbca169790 ("phy: phy-rockchip-samsung-hdptx: Don't request RST_PHY/RST_ROPLL/RST_LCPLL")
+
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=f2dbca169790ea1e436ffdd9ef37d7c3a4401c46
+
 
 
