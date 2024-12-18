@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-132140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132144-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E13F9F5FE0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:07:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C0C89F5FF2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:10:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE944168447
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 08:07:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4F0F188EF1D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 08:08:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 959D718D656;
-	Wed, 18 Dec 2024 08:04:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD80B16CD1D;
+	Wed, 18 Dec 2024 08:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SMhM9K1k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iC91Vydm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66BFA35949;
-	Wed, 18 Dec 2024 08:04:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1E9168488;
+	Wed, 18 Dec 2024 08:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734509050; cv=none; b=l71CZo/MvDLdtwpshD1PQeXZl+rjRxfs0bo9bmHur0gostaLXE3bIO6nwrM/tIjQ2wmoA/K90MYjyQAvLUOlheHznFIFGFB9KG2riq3uXQxH+m0qfGFweOblJci9slmGHikz5QDOXqJm1W7Ug6XTvNhFdykUfB/+i6j8e47BV2s=
+	t=1734509249; cv=none; b=cOB+gERFVKQo/osIBTptWC5aYBO1YpYsgvDktonvlbpTyMIdspYJOjjNTYIV9kPQ56xPbjauF75QdAiUlVnf6ndk9MDG2z+EhxQxL/lEQ++rqLyP+UoelX9Dg9FfGcZ/aEvXVu7yAuUCINi8qrvlIQ+SRe3EOY9PAr9UWexJ8hA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734509050; c=relaxed/simple;
-	bh=PUNqib2U0+do/Jf2BA0uZGKEidlsy9Q5b29C7z/bs+Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SO/ZTnfoUSjNnmOdw17Ph2nxqj3Lvx4RjsQPdv+S+FA6IyzJQ7gqbDCQ+iOM+jZsKga229ky+9UCvqfU3veKtMxp5O/9jW3LGoNa+Xfbs/qwr+KmFi7N+QaLWznmF15fkCvNijoBJRHuHQzclNT/wBZo5YFTGWmPGiAqp2Kii1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SMhM9K1k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3660C4CECE;
-	Wed, 18 Dec 2024 08:04:03 +0000 (UTC)
+	s=arc-20240116; t=1734509249; c=relaxed/simple;
+	bh=3YQQgFLzWqXSr+8cpiXWMiZeoDJOT88+J0fk3jLp0XI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=F6DIExmvg3t1O0H9yv5Gt4wFN8F4aur83a+3UxATUxOMdJk6uYUWzkahsNS5e5yWxDY+ttq4S2KnCKzoHN9gyA8TOWiIf0bGlkzVWSmm+ZKBoyFc7LM852L6pM9CVw0nBldqA4c0GABcZ+jjFDwM+2ka3glgOAIycyejCI6sLYg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iC91Vydm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 930CAC4CED0;
+	Wed, 18 Dec 2024 08:07:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734509049;
-	bh=PUNqib2U0+do/Jf2BA0uZGKEidlsy9Q5b29C7z/bs+Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SMhM9K1kXtydnpmu3Uatbw5eh4mFZ54Aohoo5xInubLpV8e8lCbacMIoM9Y/FzBei
-	 2VrgiHfpOw/sZj28RP7OaX8n+ctZ5uRUcKVWZNb7zEmIpCLl/kF12D2zN6so9EhxtQ
-	 B+dMEhfX7nMQOsdXGrSSnNLthLPOvQIz3kpeKVRBe9X3nhi/9SHI4sCuUQDMBYh05P
-	 yEp8RDDLasGu0cVs1JzMM06zkdRNezTC8dLxEUxyRqTAzO8FuYDkneWnMrHcFpN7Cm
-	 fLqctxv6meho8ID5zANnUksBsqK+ixW9eLDJnCEEN596c3HsJwXiASPMT3QHCfvx1O
-	 W8FFTBchmprmA==
-Message-ID: <fbad3631-1efe-4d9b-b163-e635452b0b73@kernel.org>
-Date: Wed, 18 Dec 2024 09:04:01 +0100
+	s=k20201202; t=1734509249;
+	bh=3YQQgFLzWqXSr+8cpiXWMiZeoDJOT88+J0fk3jLp0XI=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=iC91VydmXNXgoWb0ae+s8i4Yv/Uuaj+T9PnsEknpF3lE/F2GyaVzRXQvUMg0LH3jQ
+	 66yHkkV5ex3UMZ5IyFODmkSr4gAhV8BIaP98+MGZNIiDNCH5CRsxxHZj3RhKrXsRXe
+	 5rO9Wh4EHSxmPVDaxXbjut6LawLdAHceNlK6jcUz0SQF/+gax2ir+ZgTHa+cYMz7EN
+	 OuMeZ87ln3RDhwWQLDNULpsJsM92cGGur5lI/h5SQLqXijqaJHrrQB48Mqbg/Ijbjd
+	 D8XuMGzXNAAJQlOKYLuOF6kmxGtnNpUtwjgZ5vm/tqsMIS9uFYtmxfvY4QL3EKdn9U
+	 8QEFzrESLeC5Q==
+Message-ID: <4ce799f1-e8c6-4a0d-aca5-dfb3dcb0c1d8@kernel.org>
+Date: Wed, 18 Dec 2024 09:07:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,32 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] dt-bindings: usb: ptn5110: add TCPC properties
-To: "Miao.Zhu" <Miao.Zhu@synopsys.com>, robh@kernel.org
-Cc: James.Li1@synopsys.com, Jianheng.Zhang@synopsys.com,
- Martin.McKenny@synopsys.com, andre.draszik@linaro.org, conor+dt@kernel.org,
- dan.carpenter@linaro.org, devicetree@vger.kernel.org,
- emanuele.ghidoli@toradex.com, gregkh@linuxfoundation.org,
- heikki.krogerus@linux.intel.com, jun.li@nxp.com,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- m.felsch@pengutronix.de, rdbabiera@google.com, u.kleine-koenig@baylibre.com,
- xu.yang_2@nxp.com
-References: <173448855676.4113446.18228420092453259118.robh@kernel.org>
- <20241218052214.1808006-1-miao@synopsys.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: interrupt-controller: Refine
+ size/interrupt-cell usage.
+To: Kevin Chen <kevin_chen@aspeedtech.com>, "robh@kernel.org"
+ <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
+ <joel@jms.id.au>, "andrew@codeconstruct.com.au"
+ <andrew@codeconstruct.com.au>, "tglx@linutronix.de" <tglx@linutronix.de>,
+ "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+ "will@kernel.org" <will@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>,
+ "olof@lixom.net" <olof@lixom.net>,
+ "quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+ "konradybcio@kernel.org" <konradybcio@kernel.org>,
+ "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ "johan+linaro@kernel.org" <johan+linaro@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "soc@lists.linux.dev" <soc@lists.linux.dev>
+References: <20241212155237.848336-1-kevin_chen@aspeedtech.com>
+ <20241212155237.848336-3-kevin_chen@aspeedtech.com>
+ <11ad5a97-b066-4bea-8829-50e0416cea9d@kernel.org>
+ <PSAPR06MB4949CF57BD69B2F7C1D141CD89052@PSAPR06MB4949.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,66 +121,81 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241218052214.1808006-1-miao@synopsys.com>
+In-Reply-To: <PSAPR06MB4949CF57BD69B2F7C1D141CD89052@PSAPR06MB4949.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/12/2024 06:22, Miao.Zhu wrote:
-> From: Miao Zhu <miao@synopsys.com>
+On 18/12/2024 04:04, Kevin Chen wrote:
+> Hi Krzk,
 > 
-> The TCPCI driver has flags to configure its protperties but
-> no way to enable these flags yet. Add these flags into DT
-> so that the driver can be compatible with TCPCI  Spec R2 V1.0.
+>>> 1. Because size-cells is no need to use 2, modify to 1 for use.
+>>
+>> ???
+> So, is it OK that I change the size-cells back to 2 include the aspeed,ast2700-intc.yaml examples and aspeed-g7.dtsi?
 
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets.
-
-
-<form letter>
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument, so you will
-not CC people just because they made one commit years ago). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
-
-Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-people, so fix your workflow. Tools might also fail if you work on some
-ancient tree (don't, instead use mainline) or work on fork of kernel
-(don't, instead use mainline). Just use b4 and everything should be
-fine, although remember about `b4 prep --auto-to-cc` if you added new
-patches to the patchset.
-</form letter>
-
+No, my total surprise is that I did not understand what it maens. Is
+this changelog? Commit msg? Why such change is made?
 
 > 
-> Signed-off-by: Miao.Zhu <miao@synopsys.com>
-> ---
-> V2 -> V3: Add description and type for new properties:
-> ---
->  .../devicetree/bindings/usb/nxp,ptn5110.yaml       | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
+>>
+>>> 2. Add minItems to 1 for interrupts for intc1.
+>>
+>> ???
+> For variable interrupt numbers, I need to fix the below warnings by minItems.
+>   DTC [C] arch/arm64/boot/dts/aspeed/ast2700-evb.dtb
+> /home/kevin/linux-mainline/arch/arm64/boot/dts/aspeed/ast2700-evb.dtb: interrupt-controller@100: interrupts-extended: [[3, 0, 3844]] is too short
+>         from schema $id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc.yaml#
+> /home/kevin/linux-mainline/arch/arm64/boot/dts/aspeed/ast2700-evb.dtb: interrupt-controller@110: interrupts-extended: [[3, 1, 3844]] is too short
+>         from schema $id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc.yaml#
+> /home/kevin/linux-mainline/arch/arm64/boot/dts/aspeed/ast2700-evb.dtb: interrupt-controller@120: interrupts-extended: [[3, 2, 3844]] is too short
+>         from schema $id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc.yaml#
+> /home/kevin/linux-mainline/arch/arm64/boot/dts/aspeed/ast2700-evb.dtb: interrupt-controller@130: interrupts-extended: [[3, 3, 3844]] is too short
+>         from schema $id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc.yaml#
+> /home/kevin/linux-mainline/arch/arm64/boot/dts/aspeed/ast2700-evb.dtb: interrupt-controller@140: interrupts-extended: [[3, 4, 3844]] is too short
+>         from schema $id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc.yaml#
+> /home/kevin/linux-mainline/arch/arm64/boot/dts/aspeed/ast2700-evb.dtb: interrupt-controller@150: interrupts-extended: [[3, 5, 3844]] is too short
+>         from schema $id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-intc.yaml#
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
-> index 65a8632..29d6aed 100644
-> --- a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
-> +++ b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
-> @@ -21,6 +21,28 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  TX_BUF_BYTE_x_hidden:
+>>
+>>> 3. Add 1 interrupt of intc1 example into yaml file.
+>>
+>>> 4. Add intc1 sub-module of uart12 as example using the intc0 and intc1.
+>>
+>> What is all this?
+>>
+>> BTW, there was no such patch in previous version and your changelog is silent
+>> about it.
+> Agree, I will restore the previous version.
+> 
+>>
+>> Subject: drop all full stops. Subject never ends with full stop.
+>>
+>>> ---
+>>>  .../aspeed,ast2700-intc.yaml                  | 60
+>> +++++++++++++++----
+>>>  1 file changed, 47 insertions(+), 13 deletions(-)
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast270
+>>> 0-intc.yaml
+>>> b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast270
+>>> 0-intc.yaml index 55636d06a674..eadfbc45326b 100644
+>>> ---
+>>> a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast270
+>>> 0-intc.yaml
+>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/aspeed,as
+>>> +++ t2700-intc.yaml
+>>> @@ -31,6 +31,7 @@ properties:
+>>>        type as defined in interrupt.txt in this directory.
+>>>
+>>>    interrupts:
+>>> +    minItems: 1
+>>
+>> Nope, not explained, not constrained. Your schema is supposed to be
+>> constrained.
 
-Follow DTS coding style.
+I still do not understand this commit at all.
 
-> +    description:
-> +      When set, TX_BUF_BYTE_x can only be accessed through
-> +      I2C_WRITE_BYTE_COUNT.
-You described the desired Linux feature or behavior, not the actual
-hardware. The bindings are about the latter, so instead you need to
-rephrase the property and its description to match actual hardware
-capabilities/features/configuration etc.
 
 Best regards,
 Krzysztof
