@@ -1,71 +1,68 @@
-Return-Path: <devicetree+bounces-132336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351229F6A28
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 16:37:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEF969F6A26
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 16:36:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D79AD7A494D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 15:36:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5ABE16D078
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 15:36:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B991DDC2A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3B591E9B24;
 	Wed, 18 Dec 2024 15:36:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="BwINfTHU"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="QdE88gPg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3FB1A2C04;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4631B0422;
 	Wed, 18 Dec 2024 15:36:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734536211; cv=none; b=c48+01jygAwt/hK0z9pbuaKUb/bCE23Z/bdO6KIN+JxsaMWsXsn3/d/H/RP8T+dtrM2TmZ9i5U0QcQ9+X/eLf58TlfzMTotdZMrhVMvHpF6bOXRiqkzPQo1qiudPc+kbjy272vKbxw4fzlQiF476cRjmipwM/F9t2+f6NOT7YZU=
+	t=1734536211; cv=none; b=Sp4opOethmyWOCx/btY9OfMGokyTl/EXc4NBO5dHlK+9RaC8ApIytJmuVqmGOixHFfE7/WWL34foanlC41aqFxH7lJKo6ddtG8QCgOWHlmP3gGmf2xq6F0pBuITeT0KP7nLB/uJ/rrRrEqY+uc01q0xt+5DeAfIq6w7oLDYVAL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1734536211; c=relaxed/simple;
-	bh=5fMsmLg5KHUEUPrUf2Pto3GpDW2VQowzb6lukkGsX+4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=G/Cj8yFjGz/bxioAnHinac2Y7zsAIMYvfKVFfWMeQAOa2RGDSpcCzw2eAANOD7n4z5+p8L8xTZjljcloS1UxEcK9vkMFZIwwuO06hqLOVAjehlLchxP2rJDMIJTTG+wAIvk/tgZrYLWt1I0WisRmSdIsmVrOX416rAyuH4raUkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=BwINfTHU; arc=none smtp.client-ip=116.203.77.234
+	bh=BMH5rrhbC+u2jyldBzyRDrD54MB8quvHIna1qavTu10=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=gOWFys+BYTa5HIk3xxcWDKBUzcygoghEKCcFx354JW5zY5PzqJkNMe/XMp/BUwQFnBeYfD6BXAfvGKAgfQM3BlBZJhZGfDqgWfnr5Jq3SYgWM2AETvnKtuj2Y2z0UypWeXZTM0YjqYaJvfJ7DFeUIRpQ5EEBl0BfuYIj8QDA1BM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=QdE88gPg; arc=none smtp.client-ip=116.203.77.234
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fris.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B09E4BFB25;
-	Wed, 18 Dec 2024 16:29:34 +0100 (CET)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0B5DBBFB6E;
+	Wed, 18 Dec 2024 16:29:44 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-	t=1734535782; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding; bh=fZ799AujDvtHo1AcXdC1mifOZNGSfZzq30OtsIXAG1U=;
-	b=BwINfTHUHw0yknjCNyH11gosF6cTLF5S52H/bsiZPizbQ6lFiRAdVf5lOlTTGHW9LS9OqO
-	IB3FQCUE6tu5CVMH8S1BMvUnrhRXvQSLEfMU8wA86tpirVpEzNMrjNa5aFhbdzMgfu43PJ
-	aYQEAVwsIIuNC98oRlGvhBNOmNGFkCe0jyLanvzVC8rp8lzcEHbSzxryKkxzeFobTwUuUD
-	3k46oI967WYscyUjctXxXHVdIYqqXcsDfT2TH6ulJN88/vf9L3JK9RJP+5DzUw2tcSqlaz
-	G2i3ZKl/SdOlNMTM5rJW5MXt7DHyt0FzJt9SddoJxsPg0uhiG86vtWDunbMgOg==
+	t=1734535784; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=yh3ZExazNltGzZe8WVzy/cDKm78b5w2/yFmw+OUhd5Y=;
+	b=QdE88gPg/ef2/e/VnVc4Spr18mnsN5mupz+vMS2VuFDKS76pX+BqSbXuy5lH6K/UYFSuW9
+	dBlw9KKNuTmlwwsUa4TvszkEpzgx0e+Cg2TH3e1XjFiAsqQ4a4wsDKueCgvDBk+Mz5FN+x
+	J+fe1lOhM9FiJqfogri3y09S+GBznCEfXFM7iHOvWjzJxGq9iDC27tKmRNeSWvh5Gu3leZ
+	boT2UNULs1pDOcA1Dh8O3/vwPM6fHBDlmLJsDJGvjofOXRNV33YjCgRVNvG2vLwFaMLLxp
+	PYh45fuYMv+35Ujj7l7FpJPWt744lswcsmIdzsBTgncVJL4fxgTPrkNqXJyPvg==
 From: Frieder Schrempf <frieder@fris.de>
 To: linux-arm-kernel@lists.infradead.org,
 	Marek Vasut <marex@denx.de>,
 	Conor Dooley <conor@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	imx@lists.linux.dev,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Liam Girdwood <lgirdwood@gmail.com>,
 	linux-kernel@vger.kernel.org,
 	Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Robin Gong <yibin.gong@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Bo Liu <liubo03@inspur.com>,
+	Robin Gong <yibin.gong@nxp.com>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
 	Conor Dooley <conor.dooley@microchip.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Frank Li <Frank.Li@nxp.com>,
 	Joy Zou <joy.zou@nxp.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v3 0/9] Use correct LDO5 control registers for PCA9450
-Date: Wed, 18 Dec 2024 16:27:23 +0100
-Message-ID: <20241218152842.97483-1-frieder@fris.de>
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 1/9] dt-bindings: regulator: pca9450: Add properties for handling LDO5
+Date: Wed, 18 Dec 2024 16:27:24 +0100
+Message-ID: <20241218152842.97483-2-frieder@fris.de>
+In-Reply-To: <20241218152842.97483-1-frieder@fris.de>
+References: <20241218152842.97483-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,107 +74,118 @@ X-Last-TLS-Session-Version: TLSv1.3
 
 From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-This is a follow-up of [1].
+This reverts commit 27866e3e8a7e93494f8374f48061aa73ee46ceb2 and
+implements a new future-proof way of handling the mismatch between
+the PMIC driver and the hardware for LDO5.
 
-The main objective of this is to fix the PCA9450 driver to
-use the correct control register for the LDO5 regulator.
+It turned out that this feature was implemented based on the wrong
+assumption that the SD_VSEL signal needs to be controlled as GPIO
+in any case.
 
-Currently the control register to use for LDO5 is hardcoded to
-LDO5CTRL_H. This is wrong for two reasons:
+In fact the straight-forward approach is to mux the signal as
+USDHC_VSELECT and let the USDHC controller do the job.
 
-1. LDO5CTRL_H doesn't contain the bits for enabling/disabling
-   the regulator. Only LDO5CTRL_L does.
+Most users never even used this property and the few who did have
+been or are getting migrated to the alternative approach.
 
-2. The actual output voltage of the regulator is determined by
-   the LDO5CTRL_H only if the SD_VSEL input is HIGH. If it is
-   low, then LDO5CTRL_L is used. The driver does not take this
-   into account.
+In order to know the current status (which of the two control
+registers is used) for the LDO5 regulator, we need to route back the
+USDHC_VSELECT signal by setting the SION bit in the IOMUX.
 
-This can cause several problems:
+By adding the according GPIO as sd-vsel-gpios to the LDO5 node, we
+allow the regulator driver to sample the current status of the
+SD_VSEL signal that is used to select the correct control register.
 
-1. LDO5 can not be turned on/off and we rely on the bootloader
-   to leave it turned on. On the other hand we can't save
-   power if LDO5 is unused.
+The SD_VSEL on the PMIC is always an input. It's driven by the SoC's
+VSELECT signal (controlled by the USDHC controller) and we use the
+SION bit in the IOMUX to internally loop back the signal in order to
+sample it using the GPIO.
 
-2. There is a potential for corner-cases where switching
-   SD_VSEL via USDHC_VSELECT and writing to the (wrong)
-   control register can cause wrong output voltage and therfore
-   SD card failures (not observed yet).
+As the SD_VSEL pin is directly routed to the LDO5 regulator in the
+PMIC, make the sd-vsel-gpios property part of the LDO5 node.
 
-3. Reading the current voltage of the LDO5 regulator (e. g. via
-   sysfs can yield the wrong value as the voltage is read from
-   the wrong control register.
+SoC                                  PMIC
++-----------------------+           +-------------------+
+|                       |           |                   |
+|                       |           |                   |
+|  GPIO <----------+    |           |                   |
+|                  |    |    SD_VSEL|   +-------+       |
+|  USDHC_VSELECT ->+------------------->| LDO5  |       |
+|                       |           |   +-------+       |
+|                       |           |                   |
++-----------------------+           +-------------------+
 
-At the same time there is now hardware that hardwires SD_VSEL
-to a fixed LOW level and therefore relies on switching the
-voltage only via a single control register. We add support for
-this through an additional property "nxp,sd-vsel-fixed-low" in
-the LDO5 node.
+For boards which have the SD_VSEL tied to a fixed low level, we add
+'nxp,sd-vsel-fixed-low'. The voltage of LDO5 is therefore only controlled
+by writing to the LDO5CTRL_L register.
 
-Summary of binding changes (patch 1):
+If none of 'nxp,sd-vsel-fixed-low' or 'sd-vsel-gpios' is set, we keep
+the same behavior as before. The driver assumes that SD_VSEL is tied
+high and the LDO5CTRL_H register can be used, which is in fact not true
+for all known boards and works merely by chance.
 
-1. Adjust the bindings to remove the old and abandoned use of
-   sd-vsel-gpios property.
-
-2. Adjust the bindings to use sd-vsel-gpios in the LDO5 node to
-   retrieve an input that can be used to sample the SD_VSEL
-   status.
-
-3. Adjust bindings to allow "nxp,sd-vsel-fixed-low" to be used
-   for boards that have SD_VSEL hardwired to low level.
-
-Summary of driver changes (patch 2-6):
-
-1. Remove the old sd-vsel-gpios handling.
-
-2. Use the new sd-vsel-gpios property to determine the correct
-   control register for LDO5.
-
-3. Fix the enable register for LDO5.
-
-4. Support hardware with fixed low level of SD_VSEL.
-
-Summary of devicetree changes (patch 7-9):
-
-Implement the changes in the devicetrees for Kontron hardware
-(i.MX8MM, i.MX8MP and i.MX93).
-
-Changelog:
-
-v2 -> v3:
-
-* Merge binding patches into one and extend commit message
+Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+---
+Changes for v3:
+* Merge binding patches into single patch
 * Rebase to next-20241218
 
-v1 -> v2:
+Changes for v2:
+* split revert into separate patch
+* extend commit message
+* add 'nxp,sd-vsel-fixed-low'
+---
+ .../regulator/nxp,pca9450-regulator.yaml      | 29 +++++++++++++++----
+ 1 file changed, 23 insertions(+), 6 deletions(-)
 
-* Split binding patch
-* Add solution for hardwired SD_VSEL
-* Leave regulator core untouched as requested by Mark
-* Add devicetree changes for i.MX8MP and i.MX93
-
-[1] https://lore.kernel.org/lkml/20230213155833.1644366-1-frieder@fris.de/
-
-Frieder Schrempf (9):
-  dt-bindings: regulator: pca9450: Add properties for handling LDO5
-  arm64: dts: imx8mp-skov-reva: Use hardware signal for SD card VSELECT
-  Revert "regulator: pca9450: Add SD_VSEL GPIO for LDO5"
-  regulator: pca9450: Fix control register for LDO5
-  regulator: pca9450: Fix enable register for LDO5
-  regulator: pca9450: Handle hardware with fixed SD_VSEL for LDO5
-  arm64: dts: imx8mm-kontron: Add support for reading SD_VSEL signal
-  arm64: dts: imx93-kontron: Fix SD card IO voltage control
-  arm64: dts: imx8mp-kontron: Add support for reading SD_VSEL signal
-
- .../regulator/nxp,pca9450-regulator.yaml      |  29 ++++-
- .../boot/dts/freescale/imx8mm-kontron-bl.dts  |  10 +-
- .../dts/freescale/imx8mm-kontron-osm-s.dtsi   |   7 +-
- .../dts/freescale/imx8mp-kontron-osm-s.dtsi   |   7 +-
- .../boot/dts/freescale/imx8mp-skov-reva.dtsi  |   5 +-
- .../dts/freescale/imx93-kontron-osm-s.dtsi    |   5 +-
- drivers/regulator/pca9450-regulator.c         | 103 +++++++++++++++---
- 7 files changed, 133 insertions(+), 33 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+index 68709a7dc43f1..7605a05a9eedf 100644
+--- a/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/nxp,pca9450-regulator.yaml
+@@ -42,8 +42,30 @@ properties:
+     description: |
+       list of regulators provided by this controller
+ 
++    properties:
++      LDO5:
++        type: object
++        $ref: regulator.yaml#
++        description:
++          Properties for single LDO5 regulator.
++
++        properties:
++          nxp,sd-vsel-fixed-low:
++            type: boolean
++            description:
++              Let the driver know that SD_VSEL is hardwired to low level and
++              there is no GPIO to get the actual value from.
++
++          sd-vsel-gpios:
++            description:
++              GPIO that can be used to read the current status of the SD_VSEL
++              signal in order for the driver to know if LDO5CTRL_L or LDO5CTRL_H
++              is used by the hardware.
++
++        unevaluatedProperties: false
++
+     patternProperties:
+-      "^LDO[1-5]$":
++      "^LDO[1-4]$":
+         type: object
+         $ref: regulator.yaml#
+         description:
+@@ -78,11 +100,6 @@ properties:
+ 
+     additionalProperties: false
+ 
+-  sd-vsel-gpios:
+-    description: GPIO that is used to switch LDO5 between being configured by
+-      LDO5CTRL_L or LDO5CTRL_H register. Use this if the SD_VSEL signal is
+-      connected to a host GPIO.
+-
+   nxp,i2c-lt-enable:
+     type: boolean
+     description:
 -- 
 2.47.1
 
