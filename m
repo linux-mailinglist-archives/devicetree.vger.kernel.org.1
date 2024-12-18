@@ -1,430 +1,235 @@
-Return-Path: <devicetree+bounces-132318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 354349F68D2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 15:44:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DBE59F68FC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 15:49:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 27003189960D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 14:41:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D74616687D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 14:45:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7751F9F49;
-	Wed, 18 Dec 2024 14:39:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64D961B423A;
+	Wed, 18 Dec 2024 14:45:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="YH26dGSN"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="AqEKUuHD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011047.outbound.protection.outlook.com [52.101.70.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C26DE1F9EDD;
-	Wed, 18 Dec 2024 14:39:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734532750; cv=none; b=qQ1bJeUoCDG+Em+M/zS4/41Z/ps2E85IJsIIKj3AoLoHyJOWVdzo5zgo7THwU23ooUg8KzvyYOApZyLENVUt76njYI1S3+eF50pOq88tguJtNqX2h2DQ+YXcaW3JYLnhL8/USDcRWNQCzhKfTGX7SVnoPMJddxE2YWxBY8CnS2E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734532750; c=relaxed/simple;
-	bh=SX3UaaEZ2KucEE+V9oNURb6w7Jo+CoCrOWEPBj3m1Jo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JI9BNshd3JvAZYdePzAQA0FkAgKTVAkDWmBBs2LRX55vBcRscGFUcjRWK5haRijsRERR0SLVHxltcC9Py0rhXSol8JNF5Rb989UJKDGhdEvv0og4AwSctcue4zNpzqjsM3sEmoDDcW0Iz8CccZok8Uwr1rkxPJkAy0VrhdStwBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=YH26dGSN; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BIDHJKa017413;
-	Wed, 18 Dec 2024 09:38:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=wI/zm
-	2nGu+zlm+7MEaRFOZfX4iYZgSxz8CDxuP4qTl8=; b=YH26dGSNt+gxB8FA7Y+mc
-	HdzV88GWwRYBJQ8x9D4jEIDw+STmug+wQMt/22mjZhitjPfyCXuxqcnCDajQ+owN
-	1bBm2V1mcmtygj2WCZKvQcJWdLxu8sfHdpWyqlOjANYfnwT9EUrjA7ebHs6KwV9t
-	z3nJVbooEXfVk6IlrkkXQXjaLd+nl21hrTioSx+lrdqUBBVHBzB2cIVkcOHsw+Bv
-	UT7MkkJ5feVBGEDdH4iFudK1Hn2KFlxRIUbyR50kQADzpIQSmEOX0Wnl6v6v48pk
-	rMDvtMEIN+0/VfkYk0pPa0adiLSQIB4+AcxOeer018eXRK+aTPFiUIRlvLM1o+4t
-	Q==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 43knq9awb0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Dec 2024 09:38:54 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 4BIEcqNt022754
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 18 Dec 2024 09:38:52 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 18 Dec
- 2024 09:38:52 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Wed, 18 Dec 2024 09:38:52 -0500
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4BIEcfOZ030572;
-	Wed, 18 Dec 2024 09:38:44 -0500
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <jic23@kernel.org>, <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <ana-maria.cusco@analog.com>, <marcelo.schmitt1@gmail.com>
-Subject: [RFC PATCH 4/4] Documentation: iio: Add ADC documentation
-Date: Wed, 18 Dec 2024 11:38:41 -0300
-Message-ID: <48876e204590c47c532fc5f71e02ca3a00028cb7.1734530280.git.marcelo.schmitt@analog.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1734530280.git.marcelo.schmitt@analog.com>
-References: <cover.1734530280.git.marcelo.schmitt@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E3D9156238;
+	Wed, 18 Dec 2024 14:45:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734533155; cv=fail; b=jJ56hohJxcoSWqpxQRlaXMIC3i1526l2JOkZgvRk3ozLRIgzx/xWvdt2iGov0F0dfHWICB9K/kteWiF9ZXTHr5Ma74kGmK8LXD75UiI9UsezEfiRYOx8ye7wbW7ThqJ46GMr1nCmN+LcSDnNPHIc8pXqugbFZFQUfXJjjxk1k5k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734533155; c=relaxed/simple;
+	bh=R0gL+If/EiecOdVthaPELrkhDPGPXFgzqms33GtE3RQ=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=KyRjVupNDM1tU4RsGUQ7TOmseF6LmrEDuwsDmJZyclB4xqQRGckrUZceT9K/Cr46SVnP79Z7fpBnymKIJqt1iyjCApzMpW+4dLK+0OYG2C1eP1JdJz3VwMowdZhQlr05bZYqmHDA7GwmHW0/Lx4n5r8WfxPHGh54J0EZhybujYo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=AqEKUuHD; arc=fail smtp.client-ip=52.101.70.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cdMcD/qPi0dy3wXjVYt1fq4syW9VWhq4vOHg6gIn+cwci3Sm1/881aejivQppM0iQUPG+Ky7guqZS1cM/fZFzf2DCe49OV1/BJHVQGJmGyO0hooZK27r9ooJVkJDMqOApdUc8KsQBdRdreantGIvKf5U9R12KvBPTMYrcZq877oh57BB6mssuZ5lpEL17IYw8YjOiNkI+iIejDHimkX5337eztrnOZ3SKevM2vv6KGHvtoIHtP2m2r4uPkxi+exk4//mW5qdF3ln92kHoIyZay0Y0hBSNOSm7ATY7YhJKe/PID59eINZdY8gmGSKvlXOytPCr/dEBlF4OYcbeB1iIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=R0gL+If/EiecOdVthaPELrkhDPGPXFgzqms33GtE3RQ=;
+ b=VbqQe4gEVRNtR273BGs/XVegICzwz0wCIuunvCELND15Y0FM08wE7d83/37QdAFgb5A4wDm37lI2T9A0v8xmMIfY3F/4OnvZZ8MMl+0an5gxF26UmU23VsvOPy33D08YbmD1fhgqO1b2oPri+L12oVt+rXv9WhPIQU5XqB/Cm00QmIQjkXU93yBC7Gf3SnDDxymqwBwxNdLmpzZtWlvIJdNM7Vk6bJxeloLuBSJGxb6WBDPVLkvgOVMKqqy9oL8z9ZzHmb/r7Vu/T0Mw2Z8FsRXatSQhdBP48P1mc7pJXcSnKpkV65ew8Sxphfgw6xj6sm/jMkYk9S0UuHiWuV5GCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=R0gL+If/EiecOdVthaPELrkhDPGPXFgzqms33GtE3RQ=;
+ b=AqEKUuHDezweFcnQCL0UtgFqsGq5uQlv6UVSf6PygGN1VyFcAdwfeNBgYFkwohdV6ZlEc9uwwIzNb+3wlCBn9b2ssZpwxwxi+KYIUC4m7P6QlJMFSD3WVe3Ig49glGAFH4AgWoXYWD7H5KldomWKQWq4+50WeIHflMU0AOI+q0yeR29EaKiiAeW7851P8QSquTwuw2TYPIp7ag+xG5Q4G81nBQI/jpjMde1oAe8xEtXMqcITqk1EIO7y4nT6IMpna7pZgr0RkaYyrKrPiQoPt1Y8U6rn9JdPmqlQNj2xq/7jZ/MW30A1DxZsdgFtcLLiQJsCjHz0jCt+kUVCx/cbZA==
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
+ by DB9PR10MB8196.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:4c1::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.12; Wed, 18 Dec
+ 2024 14:45:50 +0000
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::baa6:3ada:fbe6:98f4]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::baa6:3ada:fbe6:98f4%7]) with mapi id 15.20.8272.005; Wed, 18 Dec 2024
+ 14:45:50 +0000
+From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
+To: "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>, "afd@ti.com"
+	<afd@ti.com>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC: "jingoohan1@gmail.com" <jingoohan1@gmail.com>, "lee@kernel.org"
+	<lee@kernel.org>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "pavel@ucw.cz" <pavel@ucw.cz>,
+	"danielt@kernel.org" <danielt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>
+Subject: Re: [PATCH v4 2/2] leds: lp8864: New driver
+Thread-Topic: [PATCH v4 2/2] leds: lp8864: New driver
+Thread-Index: AQHbUIjMUwx+j9IEfUCIwCFyj7ubGbLql36AgAF+ewA=
+Date: Wed, 18 Dec 2024 14:45:50 +0000
+Message-ID: <00caa5cf65fb4cf40cb94e3e715640ca0a7975f8.camel@siemens.com>
+References: <20241217133713.326853-1-alexander.sverdlin@siemens.com>
+	 <20241217133713.326853-3-alexander.sverdlin@siemens.com>
+	 <b0e2e061-0a1f-4cba-9f25-b26769e8ff27@ti.com>
+In-Reply-To: <b0e2e061-0a1f-4cba-9f25-b26769e8ff27@ti.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|DB9PR10MB8196:EE_
+x-ms-office365-filtering-correlation-id: 237d3ba6-ae36-4282-af29-08dd1f72aa88
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|1800799024|376014|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?TDVJT2x2NExzU1RLb0tHa3cweU1MT2NSd2pkMUZYSlJXZWpsVVZ6RTdVbXRr?=
+ =?utf-8?B?NWc1QzFhaEZEMHM0cVdwYWRHcFZ6aGpLcmRjQXpXY1V2d1cxSmFSUDRRL1V6?=
+ =?utf-8?B?a0dveGhnbWlOeG9tejhGb3Bwb2tzeXo4U0NISHd6aThOR1hyV3JIdWwzTlVO?=
+ =?utf-8?B?THdZM2JpZmJraGFONnlqOTNmV1JlYnpONkp4UXJOQzBNcWVQUzc0bjY3MDdW?=
+ =?utf-8?B?ZFFYOHppd1JnVHZ2cDJvbEwyOTdIdGhLVUxHNks5V0o4U2pMWTlncU1YSEJZ?=
+ =?utf-8?B?TnJUUzFDbXRyVndCM2huWWNsa1o5NTIwVk54L1ZtN3pZa25SMU5NUmRIdWpn?=
+ =?utf-8?B?RXIwVWFQQUVXYlFzclA4RW5GZS90KzF1S3p0WmtUaU1OcXdqZU8rbFdvUjJx?=
+ =?utf-8?B?djFrUW1LZWF2NEVaczU1ME41Rk1sWmN2RTF5dU9DTWZJVTFWMVBQSStmM0Fk?=
+ =?utf-8?B?NnBuNGZPSzBxOHBrMjNzS1RvM2dIc1dJbWdRNnJ3QTQyeDRrRHBoVWo3UEVK?=
+ =?utf-8?B?Q29yOXBqaUtkb1M3L1JNUzlDNC9BcXp6K1g2TjBqMmp1T3hXOFN0NWE2bFd1?=
+ =?utf-8?B?NzlhbjlNSFZWYUNMMXhsU0YzNWYxeHQxRkxZVUF2UmM4YnZkZjJlQWk3OU9T?=
+ =?utf-8?B?T1JJWU8vcjNkTVZ3dHdGTDNEWTZaeWNiTlhKNTB3RFRlOExZeWxZQ1NEcDBF?=
+ =?utf-8?B?djRlbE14U2hmNmk0SjZTZElwa0IvdEtwWVhLeWhOSG9XTHlzMFlvUDJpNG1j?=
+ =?utf-8?B?WEtBeUJBY1o0aHRHYkt4SmtpMjREVUpOUVVrZWxJMzhPMXBjcFdwNGc5YVdP?=
+ =?utf-8?B?eHFzbUUxNDBrVkxqVjhWa1RhWHVzbXEzVTk2QUpjSG5ncDJyMlpaSjA3ZXc0?=
+ =?utf-8?B?MEc0dkNOYVNiUGVYNHpreWlDK3NaVnZCelBLRFJlOFZZa2pTblBBM3A1a2Fm?=
+ =?utf-8?B?S3A0VTI3ZmtWYkFxbWJXeG9talFTcmlnbCtNcXg4NXpubytTbnNOWHFUNmVT?=
+ =?utf-8?B?SGlRU1V4WTJMZEpNbTRwZTFXMGRQZy9ENUY5dkkvWEZMNm9CU3VIcnN0RE9u?=
+ =?utf-8?B?KzhLOVNxMHZmck9uUjhZU3ZrcUl4SzFlcW9icjZzSEFQMFhkSWtmTlZNRUtY?=
+ =?utf-8?B?bzM4WE9ZTk4wdnMzT2tQRlJHUEcwd3JoSlF1Q3diY3FqcmpZRVhzYzNmRk51?=
+ =?utf-8?B?NklkTkZMcUNkby9uNmQ5dHl2YVJOUU1CMXpHbm1ZQjF2elY2K1hRRkFEbUdh?=
+ =?utf-8?B?d1RybWVTanpPT0JndEVtMU81UmhMV0tmdHljUjFlZGxHOEIwSGNrc0xNNTNp?=
+ =?utf-8?B?QzRFazloc0x3akJQaC9TLzU0ajc1R1JZb05WbjA4Ky9UMFo3bGxHRTc0cmRq?=
+ =?utf-8?B?UkVXRXd3a3FmVlhmZzhBTGxrQ3k4K1J2S1VmUDU0Mkw5bEhXNE5Tc0tMYzRD?=
+ =?utf-8?B?MyswNVdBMmtldmNGQmtKQXl3WHJuMXpkb2czRytsRjRiR2VPZDIyR1Q2ejFP?=
+ =?utf-8?B?Y2xZakU2d0JSMFg5a05GN1dXZi9oQ3ZnSnJLSS9YQXZqUHpPV2o5ZTNsZElo?=
+ =?utf-8?B?R1VCYk9CQjlOSGZFc245b2Vva3hOU25yZUFXT3QrSEdhQ1lBcTU2RnZZeEpI?=
+ =?utf-8?B?ZUlLZ3VSQTF1VnpUY2NFVk8yNmh6R1Rud0lJOVVtQ28zQ1BMc0hBT1RtdjdW?=
+ =?utf-8?B?SjdLaHNkelZ2cnVvL3FDNi9Gb1BVOUlwMndML0xGeHBQSnhReVlFZUovTFNR?=
+ =?utf-8?B?blBEN0sxUGdSMWl1cUtLZ1FYamVEQ3FGN3NlbnR4a0VmcWNmYklzSlduUk42?=
+ =?utf-8?B?WmJxR0pTUmdVN21PK3FWbERkanNRekhlRXdmbnF4U3lEWTNkakVvdGZCdkFO?=
+ =?utf-8?B?MWhDczd5anZoRjZCMkhDZGFGcWVocW5pVEJ4dFp2VG5rVEE9PQ==?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?N0k0Z1ZWZHZjQ0RPQXdPdUFXQWtMZmNrTUtLQVlIOElqV091dkhvUDJuUnRr?=
+ =?utf-8?B?TU5ybTkyWVpMcGh5REEzVVh0bENIc2R5YVZrWjBRVHFsZmthMWozajdrTGRI?=
+ =?utf-8?B?dWdCMTE0MVMrUlAyWW5hVTRDYVBZVHlZMmpsckMrT1Azb1EwQm9JM1d6RmUw?=
+ =?utf-8?B?ZENHZEFmVkFGVHYwV2hldnFLS2E4Vkk0ZTVDUXFwVDhENnVRMGJSV0RxN1g2?=
+ =?utf-8?B?K1h2VjU2K1hpbThUWit5LzU3U3ZKZDVBNVlBRHozWkthTUEyNmsxamliMXVJ?=
+ =?utf-8?B?WXlBZVBlZC9Md1BvWTRFcGZlWkpSV0NWMk9mQXlja1JQVGZka3BGRVhHVFNk?=
+ =?utf-8?B?YVFnenpMSkR6WTlyWUh3UnJjaS9tbTl6SzVtSFpUMVVZQ1Q3eGJ3VzV5TGh6?=
+ =?utf-8?B?WjlzYUkrSGtra20xYkFWL1licGVJMTRJN2dkZWplOTJoZWoxU2RaTjByTnpO?=
+ =?utf-8?B?cFZxRVk4bXNkbDBjb1dZTzZTQVFTQzBIeHdIZEpVcHdqbTRVN2lUbUMySk9i?=
+ =?utf-8?B?ekFHcXlZMDllK0JhRnVPT1oxbDdMODZndko3WGVHY2pDaFE1Uk9tQUtNYnha?=
+ =?utf-8?B?NndkOXdNMGV5ZUlNTlhDaVQ3a3o3MDBJQTRQbXY4VnJUQUZ3RFRMSFFXM3c4?=
+ =?utf-8?B?VHB3N1IrRGtvRTF1TDN0SmV0cnpNbjgvTDlUZENNT1RtS3MzeGdzdUJuTEF3?=
+ =?utf-8?B?cE5RMjR0V29EbzhDQzlJRjdyV1QxVFZ5VG1SSzVKQnl1QVNJSVpvSmw1bm14?=
+ =?utf-8?B?eGFadE5DOFZSYlorWTYxUWxDN0VneTRKelR6YWw4d0xjM3BPanpsRTREdi9K?=
+ =?utf-8?B?RXdSNTdXQSsrZlgxcHBzL3gzM0FDMWRsR3paa25WdEN6ZlJxVXljRnR3MnIr?=
+ =?utf-8?B?SWZyeG5Vbnp2RTdjVEYyR0ttUTRxWVJ4bkF0K2k4dVhmRm1sTXhxZWZrRXdU?=
+ =?utf-8?B?ZVJ3Yjd6ZWlaQWI5SE5MdTRrNlVlcU5Zb2lQaThkOHVjQWx4VWhrM0hsNU9G?=
+ =?utf-8?B?M2RLNDBaMFBzaWgzSjh2VXpXclRkd3JDTXZOdGhGNXNOcXo3WUhyd2wrWUZQ?=
+ =?utf-8?B?dG1BUThDN1BiT2NnMURsc051WUVJVnVEWFdUNUxEaUdlUHplYmllWUdzZzAx?=
+ =?utf-8?B?d2VCa294WE9zYys0bXFLa3pOSGNxdnZtTHptSlpsU3RFQmZLQ2E0Sm5ZU2F4?=
+ =?utf-8?B?MUxVM01pODFoU0dnUGZQS1lmTFlrcHM3S3JQZ0lFOFpNdE16YjEwa20wcjFZ?=
+ =?utf-8?B?SytuRElmNDBIL1FDU2tkQ296QjU2R2pHWU9INi9nanV0cTg4cFpJSldrOUM0?=
+ =?utf-8?B?VTZWUkRvQlJkdXZuTktYOXUybWV0b2V5SFlieU1yZzF0WnNQanR0bjA0NFo0?=
+ =?utf-8?B?eWJQbjBjQncxc25Kc3kwbW5NNklYeERDU1F3akxzMFJjc1doajBBOEhJSm1Q?=
+ =?utf-8?B?QlFIQUdkazVoTEFoSTlvOUJNc0VaWHV6emx6UTlHSTgrNndCL3Zzd0c5Nm5Z?=
+ =?utf-8?B?M2lTdWc3ODQzTzhQMUgxUjl3UUVnVXgrTm5uWmNqczFOL2dYM1NTK3BoeWdO?=
+ =?utf-8?B?N21EOUlmVkFVc2pDZXRNZFI3NUQ2UVlGaVRPck4xaGw2WXNrT0JqZVltbzRI?=
+ =?utf-8?B?cHdOamRXMkhIbjVDQW9BK3ZXY1hjMnEySHBIR2o5M1VzbnBtamtpcU1ncGkx?=
+ =?utf-8?B?VkNodGVJN25wRGwycTRWM0ZGUjFUWjllZ1lDN3FIQ0l3a1MyRGhtUnd5RTZE?=
+ =?utf-8?B?REV6MnUrenMrWUZYNVVBbU1SVTAzZkNlUzd1dDRoWFhvU1RPd3ZuRDR0WXdq?=
+ =?utf-8?B?NWoxRXFnT3V0b3YvT3JvcnhTNVc0NDBZRkh4cWFpaHFqYVJqVTdpUnE3ZjQz?=
+ =?utf-8?B?eExDNml1RWtHdy9qbEVMbmh2NXI1L2Zlb2orNW8rQXQyUTJFMTlJd3J4NW9Z?=
+ =?utf-8?B?K2lCdlhlQVlBVWlHNmRDR1hqMEZyaGxoVkVqWllzSWlyb1M5WXVhUDRTSWw0?=
+ =?utf-8?B?SnlnU0tCQW5CWXJacWlkZG9FU3l6UnI2Uk45b3lhSXU1VzBGRXZOOTgvZERq?=
+ =?utf-8?B?eHdIbE41QWdzZWRQNFhYQmlMZ0J0U201UHFPU3dxK3JaQVY0cUtXcm83aEtq?=
+ =?utf-8?B?d1U0dHYramxUWWVwbVBuSGVrVXpqZUJiekRpdWd5ZEJ4VHROd0xYZFo5V0N5?=
+ =?utf-8?Q?KwhbbYPYR/3DxkZtt9nUUts=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <70A732F70D63034A88E227FD8E7F5192@EURPRD10.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: E4_c6UCnNT7f6TPHxnVwhtIejVmoSDPA
-X-Proofpoint-GUID: E4_c6UCnNT7f6TPHxnVwhtIejVmoSDPA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- phishscore=0 adultscore=0 spamscore=0 impostorscore=0 suspectscore=0
- clxscore=1015 mlxlogscore=999 malwarescore=0 lowpriorityscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412180114
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 237d3ba6-ae36-4282-af29-08dd1f72aa88
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Dec 2024 14:45:50.3748
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lIbhI7btT4OkOO9cQ0oOGWhK02jVR2LATubnwng9POnkI6kmAgWMEdORREkZvLacJF1QA4AU00crAQg/vZAzRA3VqhZWiLLI2bZ/WDtnoQY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR10MB8196
 
-ADCs can have different input configurations such that developers can get
-confused when trying to model some of them into IIO channels.
-
-For example, some differential ADCs can have their channels configured as
-pseudo-differential channels. In that configuration, only one input
-connects to the signal of interest as opposed to using two inputs of a
-differential input configuration. Datasheets sometimes also refer to
-pseudo-differential inputs as single-ended inputs even though they have
-distinct physical configuration and measurement procedure. There has been
-some previous discussion in the mailing list about pseudo-differential and
-single-ended channels [1].
-
-Documenting the many possible ADC channel configurations should provide two
-benefits:
-A) Consolidate the knowledge from [2] and from [1], and hopefully reduce
-the reviewing time of forthcoming ADC drivers.
-B) Help Linux developers figure out quicker how to better support
-differential ADCs, specially those that can have channels configured as
-pseudo-differential inputs.
-
-Add documentation about common ADC characteristics and IIO support for them.
-
-[1]: https://lore.kernel.org/linux-iio/0fef36f8-a7db-40cc-86bd-9449cb4ab46e@gmail.com/
-[2]: https://www.analog.com/en/resources/technical-articles/sar-adc-input-types.html.
-
-Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
----
- Documentation/iio/iio_adc.rst | 280 ++++++++++++++++++++++++++++++++++
- Documentation/iio/index.rst   |   1 +
- 2 files changed, 281 insertions(+)
- create mode 100644 Documentation/iio/iio_adc.rst
-
-diff --git a/Documentation/iio/iio_adc.rst b/Documentation/iio/iio_adc.rst
-new file mode 100644
-index 000000000000..43b8cad547c9
---- /dev/null
-+++ b/Documentation/iio/iio_adc.rst
-@@ -0,0 +1,280 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+=========================
-+IIO Abstractions for ADCs
-+=========================
-+
-+1. Overview
-+===========
-+
-+The IIO subsystem supports many Analog to Digital Converters (ADCs). Some ADCs
-+have features and characteristics that are supported in specific ways by IIO
-+device drivers. This documentation describes common ADC features and explains
-+how they are (should be?) supported by the IIO subsystem.
-+
-+1. ADC Channel Types
-+====================
-+
-+ADCs can have distinct types of inputs, each of them measuring analog voltages
-+in a slightly different way. An ADC digitizes the analog input voltage over a
-+span given by the provided voltage reference, the input type, and the input
-+polarity. The input range allowed to an ADC channel is needed to determine the
-+scale factor and offset needed to obtain the measured value in real-world
-+units (millivolts for voltage measurement, milliamps for current measurement,
-+etc.).
-+
-+There are three types of ADC inputs (single-ended, differential,
-+pseudo-differential) and two possible polarities (unipolar, bipolar). The input
-+type (single-ended, differential, pseudo-differential) is one channel
-+characteristic, and is completely independent of the polarity (unipolar,
-+bipolar) aspect. A comprehensive article about ADC input types (on which this
-+doc is heavily based on) can be found at
-+https://www.analog.com/en/resources/technical-articles/sar-adc-input-types.html.
-+
-+1.1 Single-ended channels
-+-------------------------
-+
-+Single-ended channels digitize the analog input voltage relative to ground and
-+can be either unipolar or bipolar.
-+
-+1.1.1 Single-ended Unipolar Channels
-+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+
-+::
-+
-+  ---------- VREF -------------
-+      ´ `           ´ `                  _____________
-+    /     \       /     \               /             |
-+   /       \     /       \         --- <  IN    ADC   |
-+            \   /         \   /         \             |
-+             `-´           `-´           \       VREF |
-+  -------- GND (0V) -----------           +-----------+
-+                                                  ^
-+                                                  |
-+                                             External VREF
-+
-+The input voltage to a **single-ended unipolar** channel is allowed to swing
-+from GND to VREF (where VREF is a voltage reference with electrical potential
-+higher than system ground). The maximum input voltage is also called VFS
-+(full-scale input voltage), with VFS being determined by VREF. The voltage
-+reference may be provided from an external supply or derived from the chip power
-+source.
-+
-+A single-ended unipolar channel could be described in device tree like the
-+following example::
-+
-+    adc@0 {
-+        ...
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        channel@0 {
-+            reg = <0>;
-+        };
-+    };
-+
-+See ``Documentation/devicetree/bindings/iio/adc/adc.yaml`` for the complete
-+documentation of ADC specific device tree properties.
-+
-+
-+1.1.2 Single-ended Bipolar Channels
-+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+
-+::
-+
-+  ---------- +VREF ------------
-+      ´ `           ´ `                  _____________________
-+    /     \       /     \               /                     |
-+   /       \     /       \         --- <  IN          ADC     |
-+            \   /         \   /         \                     |
-+             `-´           `-´           \       +VREF  -VREF |
-+  ---------- -VREF ------------           +-------------------+
-+                                                  ^       ^
-+                                                  |       |
-+                             External +VREF ------+  External -VREF
-+
-+For a **single-ended bipolar** channel, the analog voltage input can go from
-+-VREF to +VREF (where -VREF is the voltage reference that has the lower
-+electrical potential while +VREF is the reference with the higher one). Some ADC
-+chips derive the lower reference from +VREF, others get it from a separate
-+input.  Often, +VREF and -VREF are symmetric but they don't need to be so. When
-+-VREF is lower than system ground, these inputs are also called single-ended
-+true bipolar.
-+
-+Here's an example device tree description of a single-ended bipolar channel.
-+::
-+
-+    adc@0 {
-+        ...
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        channel@0 {
-+            reg = <0>;
-+            bipolar;
-+        };
-+    };
-+
-+1.2 Differential channels
-+-------------------------
-+
-+A differential voltage measurement digitizes the voltage level at the positive
-+input (IN+) relative to the negative input (IN-) over the -VREF to +VREF span.
-+In other words, a differential channel measures how many volts IN+ is away from
-+IN- (IN+ - IN-).
-+
-+1.2.1 Differential Bipolar Channels
-+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+
-+::
-+
-+  -------- +VREF ------
-+    ´ `       ´ `               +-------------------+
-+  /     \   /     \   /        /                    |
-+         `-´       `-´    --- <  IN+                |
-+  -------- -VREF ------        |                    |
-+                               |            ADC     |
-+  -------- +VREF ------        |                    |
-+        ´ `       ´ `     --- <  IN-                |
-+  \   /     \   /     \        \       +VREF  -VREF |
-+   `-´       `-´                +-------------------+
-+  -------- -VREF ------                  ^       ^
-+                                         |       +---- External -VREF
-+                                  External +VREF
-+
-+The analog signals to **differential bipolar** inputs are also allowed to swing
-+from -VREF to +VREF. If -VREF is below system GND, these are also called
-+differential true bipolar inputs.
-+
-+Device tree example of a differential bipolar channel::
-+
-+    adc@0 {
-+        ...
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        channel@0 {
-+            reg = <0>;
-+            bipolar;
-+            diff-channels = <0 1>;
-+        };
-+    };
-+
-+In the ADC driver, `differential = 1` is set into `struct iio_chan_spec` for the
-+channel. See ``include/linux/iio/iio.h`` for more information.
-+
-+1.2.2 Differential Unipolar Channels
-+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+
-+For **differential unipolar** channels, the analog voltage at the positive input
-+must also be higher than the voltage at the negative input. Thus, the actual
-+input range allowed to a differential unipolar channel is IN- to +VREF. Because
-+IN+ is allowed to swing with the measured analog signal and the input setup must
-+guarantee IN+ will not go below IN- (nor IN- will raise above IN+), most
-+differential unipolar channel setups have IN- fixed to a known voltage that does
-+not fall within the voltage range expected for the measured signal. This leads
-+to a setup that is equivalent to a pseudo-differential channel. Thus,
-+differential unipolar channels are actually pseudo-differential unipolar
-+channels.
-+
-+1.3 Pseudo-differential Channels
-+--------------------------------
-+
-+There is a third ADC input type which is called pseudo-differential or
-+single-ended to differential configuration. A pseudo-differential channel is
-+similar to a differential channel in that it also measures IN+ relative to IN-.
-+However, unlike differential channels, the negative input is limited to a narrow
-+voltage range while only IN+ is allowed to swing. A pseudo-differential channel
-+can be made out from a differential pair of inputs by restricting the negative
-+input to a known voltage while allowing only the positive input to swing. Aside
-+from that, some parts have a COM pin that allows single-ended inputs to be
-+referenced to a common-mode voltage, making them pseudo-differential channels.
-+
-+1.3.1 Pseudo-differential Unipolar Channels
-+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+
-+::
-+
-+  -------- +VREF ------          +-------------------+
-+    ´ `       ´ `               /                    |
-+  /     \   /     \   /    --- <  IN+                |
-+         `-´       `-´          |                    |
-+  --------- IN- -------         |            ADC     |
-+                                |                    |
-+  Common-mode voltage -->  --- <  IN-                |
-+                                \       +VREF  -VREF |
-+                                 +-------------------+
-+                                          ^       ^
-+                                          |       +---- External -VREF
-+                                   External +VREF
-+
-+A **pseudo-differential unipolar** input has the limitations a differential
-+unipolar channel would have, meaning the analog voltage to the positive input
-+IN+ must stay within IN- to +VREF. The fixed voltage to IN- is sometimes called
-+common-mode voltage and it must be within -VREF to +VREF as would be expected
-+from the signal to any differential channel negative input.
-+
-+In pseudo-differential configuration, the voltage measured from IN+ is not
-+relative to GND (as it would be for a single-ended channel) but to IN-, which
-+causes the measurement to always be offset by IN- volts. To allow applications
-+to calculate IN+ voltage with respect to system ground, the IIO channel may
-+provide an `_offset` attribute to report the channel offset to user space.
-+
-+Device tree example for pseudo-differential unipolar channel::
-+
-+    adc@0 {
-+        ...
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        channel@0 {
-+            reg = <0>;
-+            single-channel = <0>;
-+            common-mode-channel = <1>;
-+        };
-+    };
-+
-+Do not set `differential` in the channel `iio_chan_spec` struct of
-+pseudo-differential channels.
-+
-+1.3.2 Pseudo-differential Bipolar Channels
-+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-+
-+::
-+
-+  -------- +VREF ------          +-------------------+
-+    ´ `       ´ `               /                    |
-+  /     \   /     \   /    --- <  IN+                |
-+         `-´       `-´          |                    |
-+  -------- -VREF ------         |            ADC     |
-+                                |                    |
-+  Common-mode voltage -->  --- <  IN-                |
-+                                \       +VREF  -VREF |
-+                                 +-------------------+
-+                                          ^       ^
-+                                          |       +---- External -VREF
-+                                   External +VREF
-+
-+A **pseudo-differential bipolar** input is not limited by the level at IN- but
-+it will be limited to -VREF or to GND on the lower end of the input range
-+depending on the particular ADC. Similar to their unipolar counter parts,
-+pseudo-differential bipolar channels may define an `_offset` attribute to
-+provide the read offset relative to GND.
-+
-+Device tree example for pseudo-differential bipolar channel::
-+
-+    adc@0 {
-+        ...
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        channel@0 {
-+            reg = <0>;
-+            bipolar;
-+            single-channel = <0>;
-+            common-mode-channel = <1>;
-+        };
-+    };
-+
-+Again, the `differential` field of `struct iio_chan_spec` is not set for
-+pseudo-differential channels.
-diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
-index 074dbbf7ba0a..15f62d304eaa 100644
---- a/Documentation/iio/index.rst
-+++ b/Documentation/iio/index.rst
-@@ -7,6 +7,7 @@ Industrial I/O
- .. toctree::
-    :maxdepth: 1
- 
-+   iio_adc
-    iio_configfs
-    iio_devbuf
-    iio_dmabuf_api
--- 
-2.45.2
-
+SGkgQW5kcmV3IQ0KDQpPbiBUdWUsIDIwMjQtMTItMTcgYXQgMDk6NTYgLTA2MDAsIEFuZHJldyBE
+YXZpcyB3cm90ZToNCj4gPiArc3RhdGljIGludCBscDg4NjRfZmF1bHRfY2hlY2soc3RydWN0IGxw
+ODg2NF9sZWQgKmxlZCkNCj4gPiArew0KPiA+ICsJaW50IHJldCwgaTsNCj4gPiArCXVuc2lnbmVk
+IGludCB2YWw7DQo+ID4gKw0KPiA+ICsJcmV0ID0gcmVnbWFwX3JlYWQobGVkLT5yZWdtYXAsIExQ
+ODg2NF9TVVBQTFlfU1RBVFVTLCAmdmFsKTsNCj4gPiArCWlmIChyZXQpDQo+ID4gKwkJZ290byBl
+cnI7DQo+IA0KPiBZb3UgY291bGQgcHJvYmFibHkga2VlcCB0aGlzIHNpbXBsZSBhbmQgcHJpbnQg
+dGhlIGV4YWN0IGVycm9yIGhlcmUNCj4gYW5kIHJldHVybiwgdnMgdGhlIGNvbW1vbiBlcnJvciBt
+ZXNzYWdlIGF0IHRoZSBlbmQNCg0KVGhpcyB3b3VsZCBtZWFuIDZ4IGRldl9lcnIoKSBpbnN0ZWFk
+IG9mIG9uZT8gV2hpbGUgSSBoYXZlIG5vIGlkZWENCndoYXQgd2UgY291bGQgZG8gd2l0aCBpbmRp
+dmlkdWFsIGVycm9yIG1lc3NhZ2VzIGhlcmUuDQoNCj4gPiArDQo+ID4gKwkvKiBPZGQgYml0cyBh
+cmUgc3RhdHVzIGJpdHMsIGV2ZW4gYml0cyBhcmUgY2xlYXIgYml0cyAqLw0KPiA+ICsJZm9yIChp
+ID0gMDsgaSA8IEFSUkFZX1NJWkUobHA4ODY0X3N1cHBseV9zdGF0dXNfbXNnKTsgaSsrKQ0KPiA+
+ICsJCWlmICh2YWwgJiBCSVQoaSAqIDIgKyAxKSkNCj4gPiArCQkJZGV2X3dhcm4oJmxlZC0+Y2xp
+ZW50LT5kZXYsICIlc1xuIiwgbHA4ODY0X3N1cHBseV9zdGF0dXNfbXNnW2ldKTsNCj4gPiArDQo+
+ID4gKwkvKg0KPiA+ICsJICogQ2xlYXIgYml0cyBoYXZlIGFuIGluZGV4IHByZWNlZGluZyB0aGUg
+Y29ycmVzcG9uZGluZyBTdGF0dXMgYml0czsNCj4gPiArCSAqIGJvdGggaGF2ZSB0byBiZSB3cml0
+dGVuICIxIiBzaW11bHRhbmVvdXNseSB0byBjbGVhciB0aGUgY29ycmVzcG9uZGluZw0KPiA+ICsJ
+ICogU3RhdHVzIGJpdC4NCj4gPiArCSAqLw0KPiA+ICsJaWYgKHZhbCkNCj4gPiArCQlyZXQgPSBy
+ZWdtYXBfd3JpdGUobGVkLT5yZWdtYXAsIExQODg2NF9TVVBQTFlfU1RBVFVTLCB2YWwgPj4gMSB8
+IHZhbCk7DQo+ID4gKwlpZiAocmV0KQ0KPiA+ICsJCWdvdG8gZXJyOw0KPiA+ICsNCj4gPiArCXJl
+dCA9IHJlZ21hcF9yZWFkKGxlZC0+cmVnbWFwLCBMUDg4NjRfQk9PU1RfU1RBVFVTLCAmdmFsKTsN
+Cj4gPiArCWlmIChyZXQpDQo+ID4gKwkJZ290byBlcnI7DQo+ID4gKw0KPiA+ICsJLyogT2RkIGJp
+dHMgYXJlIHN0YXR1cyBiaXRzLCBldmVuIGJpdHMgYXJlIGNsZWFyIGJpdHMgKi8NCj4gPiArCWZv
+ciAoaSA9IDA7IGkgPCBBUlJBWV9TSVpFKGxwODg2NF9ib29zdF9zdGF0dXNfbXNnKTsgaSsrKQ0K
+PiA+ICsJCWlmICh2YWwgJiBCSVQoaSAqIDIgKyAxKSkNCj4gPiArCQkJZGV2X3dhcm4oJmxlZC0+
+Y2xpZW50LT5kZXYsICIlc1xuIiwgbHA4ODY0X2Jvb3N0X3N0YXR1c19tc2dbaV0pOw0KPiA+ICsN
+Cj4gPiArCWlmICh2YWwpDQo+ID4gKwkJcmV0ID0gcmVnbWFwX3dyaXRlKGxlZC0+cmVnbWFwLCBM
+UDg4NjRfQk9PU1RfU1RBVFVTLCB2YWwgPj4gMSB8IHZhbCk7DQo+ID4gKwlpZiAocmV0KQ0KPiA+
+ICsJCWdvdG8gZXJyOw0KPiA+ICsNCj4gPiArCXJldCA9IHJlZ21hcF9yZWFkKGxlZC0+cmVnbWFw
+LCBMUDg4NjRfTEVEX1NUQVRVUywgJnZhbCk7DQo+ID4gKwlpZiAocmV0KQ0KPiA+ICsJCWdvdG8g
+ZXJyOw0KPiA+ICsNCj4gPiArCS8qDQo+ID4gKwkgKiBDbGVhciBhbHJlYWR5IHJlcG9ydGVkIGZh
+dWx0cyB0aGF0IG1haW50YWluIHRoZWlyIHZhbHVlIHVudGlsIGRldmljZQ0KPiA+ICsJICogcG93
+ZXItZG93bg0KPiA+ICsJICovDQo+ID4gKwl2YWwgJj0gfmxlZC0+bGVkX3N0YXR1c19tYXNrOw0K
+PiA+ICsNCj4gPiArCWZvciAoaSA9IDA7IGkgPCBBUlJBWV9TSVpFKGxwODg2NF9sZWRfc3RhdHVz
+X21zZyk7IGkrKykNCj4gPiArCQlpZiAobHA4ODY0X2xlZF9zdGF0dXNfbXNnW2ldICYmIHZhbCAm
+IEJJVChpKSkNCj4gPiArCQkJZGV2X3dhcm4oJmxlZC0+Y2xpZW50LT5kZXYsICIlc1xuIiwgbHA4
+ODY0X2xlZF9zdGF0dXNfbXNnW2ldKTsNCj4gPiArDQo+ID4gKwkvKg0KPiA+ICsJICogTWFyayB0
+aG9zZSB3aGljaCBtYWludGFpbiB0aGVpciB2YWx1ZSB1bnRpbCBkZXZpY2UgcG93ZXItZG93biBh
+cw0KPiA+ICsJICogImFscmVhZHkgcmVwb3J0ZWQiDQo+ID4gKwkgKi8NCj4gPiArCWxlZC0+bGVk
+X3N0YXR1c19tYXNrIHw9IHZhbCAmIH5MUDg4NjRfTEVEX1NUQVRVU19XUl9NQVNLOw0KPiA+ICsN
+Cj4gPiArCS8qDQo+ID4gKwkgKiBPbmx5IGJpdHMgMTQsIDEyLCAxMCBoYXZlIHRvIGJlIGNsZWFy
+ZWQgaGVyZSwgYnV0IG90aGVycyBhcmUgUk8sDQo+ID4gKwkgKiB3ZSBkb24ndCBjYXJlIHdoYXQg
+d2Ugd3JpdGUgdG8gdGhlbS4NCj4gPiArCSAqLw0KPiA+ICsJaWYgKHZhbCAmIExQODg2NF9MRURf
+U1RBVFVTX1dSX01BU0spDQo+ID4gKwkJcmV0ID0gcmVnbWFwX3dyaXRlKGxlZC0+cmVnbWFwLCBM
+UDg4NjRfTEVEX1NUQVRVUywgdmFsID4+IDEgfCB2YWwpOw0KPiA+ICsJaWYgKHJldCkNCj4gPiAr
+CQlnb3RvIGVycjsNCj4gPiArDQo+ID4gKwlyZXR1cm4gMDsNCj4gPiArDQo+ID4gK2VycjoNCj4g
+PiArCWRldl9lcnIoJmxlZC0+Y2xpZW50LT5kZXYsICJGYWlsZWQgdG8gcmVhZC9jbGVhciBmYXVs
+dHMgKCVwZSlcbiIsIEVSUl9QVFIocmV0KSk7DQo+ID4gKw0KPiA+ICsJcmV0dXJuIHJldDsNCj4g
+PiArfQ0KDQotLSANCkFsZXhhbmRlciBTdmVyZGxpbg0KU2llbWVucyBBRw0Kd3d3LnNpZW1lbnMu
+Y29tDQo=
 
