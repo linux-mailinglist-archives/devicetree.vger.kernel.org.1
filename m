@@ -1,138 +1,77 @@
-Return-Path: <devicetree+bounces-132097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A8869F5C11
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 02:08:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75CA19F5C2F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 02:20:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 056EF1891A10
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 01:08:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D29737A0264
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 01:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF3563595E;
-	Wed, 18 Dec 2024 01:08:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34F8A2E630;
+	Wed, 18 Dec 2024 01:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="lqIzR60r";
-	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="MwV86SjJ"
+	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="F+uvHjL5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00230701.pphosted.com (mx0a-00230701.pphosted.com [148.163.156.19])
+Received: from out30-113.freemail.mail.aliyun.com (out30-113.freemail.mail.aliyun.com [115.124.30.113])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD441442F;
-	Wed, 18 Dec 2024 01:08:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1D362F2A;
+	Wed, 18 Dec 2024 01:20:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.113
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734484094; cv=none; b=Alzrvd0Ps4bBxl1CdwrKNzn4OWQ3DRtdxDqJDcMWYTb4ezZqCYUG7d6Nb73cMFcSFGWzjueSKPCJUBrHeHH1b4dI+McNjBAMy9l4kScXEp2GK/zFOphulmH3t2umQ/Ge1mbW99kjHjMeNpJ0YVC0hRa29yxrVbmXEGiIUZ/yabs=
+	t=1734484812; cv=none; b=MV/U2v0Zkwc2msH5Ir+XUd4+FYqXrmGRkn+dafGgS4uHER6Iy1f8qnUTkzECNpnhB/jgD70SMnNrBOa6/eH8H9LUSpNc9JaehI0ALJReS0f7VAFvtwZ+O2YHG5c4zkSOHxLzLr8WhJAGeDOsj63Y7D2o0tARqexUzCdNyGYCcaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734484094; c=relaxed/simple;
-	bh=YV2GDi6HJB/xXpGXbNKMNNL+e4m9QAPcbZ/DUUOjOp8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=g1dlNhoVVuRWtB8I9xYSGNciWEnTqxbnfNqh7VF/nAboQVY8mcnERn7TYp+8NY9jsxDHvz0NeM2aCEabNx7pSYbnXlFY/1lcQ8zRR4lwwBfeN+MVs8xQ0S/QFnTwO2JCGqhDSvxpZrGJQyeAUDH13QvQ193bGqOql8mcqRfHz9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com; spf=pass smtp.mailfrom=synopsys.com; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=lqIzR60r; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=MwV86SjJ; arc=none smtp.client-ip=148.163.156.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=synopsys.com
-Received: from pps.filterd (m0098571.ppops.net [127.0.0.1])
-	by mx0a-00230701.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BHNKqaO029637;
-	Tue, 17 Dec 2024 17:07:56 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com; h=
-	cc:date:from:in-reply-to:message-id:references:subject:to; s=
-	pfptdkimsnps; bh=2OvxhAx6uTU0jpi85RJHOBV3hyVzEH7LFoXF3t1oIAs=; b=
-	lqIzR60rsBwd7Q4G2Nyq/LEtciUbNicG9eeL3/c/sBAEKkXO343D+aJ9oSAAVHoU
-	jPU9FbGUizwJDwzf5ZVhPftqd9tVSgcJWBIm/UsF0B9kC50FSBAb6iVfagpxJLEC
-	U8xG6Sx/rPkl2+r9CJeWjmlthzgPnK25S41GTWD+PMJ6MNZqtk+E9zetDgV6WEb1
-	V+lPolwhqhs+pXmIwhe2aDjVUFMEWzaPYtECQhBWcoJwfnnJDXq9HO4nuMAoMxDm
-	MSiTasYwtnF7Cz24iRaW37yxTYIJqFVegoQ/L/jCb1sBCNBMVixzZfLDbRzB5WdE
-	zY0qf9D2tGJ+nrEMIA2C3w==
-Received: from smtprelay-out1.synopsys.com (smtprelay-out1.synopsys.com [149.117.73.133])
-	by mx0a-00230701.pphosted.com (PPS) with ESMTPS id 43kjw20bwm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 17 Dec 2024 17:07:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-	t=1734484075; bh=YV2GDi6HJB/xXpGXbNKMNNL+e4m9QAPcbZ/DUUOjOp8=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MwV86SjJJoxlb05CGZYwbQYUG0xBByUhx28pvEBHcNo4G1UlpRKB5BXoPRbBkQHY/
-	 17JzL+GxTGD9yJxRiWXMz3hT7HMatviHL7KuthU2twY7UfwcoC+2I9uQOMr+KcyRiG
-	 DXRROjX5C9DPgaZb0qzGhKxtZ3W44oTsRAxuFQNUOqibKowZuQOk7KcjwhBSLrsLXm
-	 0O/me2rd3OEqvpmU3Q/13lcW83HZqFhDhryA8rknkPq5yv1wtxR4ughezlMlNr8URo
-	 fbqxZWGvbWjs3a++OlgF0E+/ge1eUHd8GYXKktQXoBxBg2HXoSlzJkkwFAz+38cyeB
-	 fY0QSJ/2DwS5w==
-Received: from mailhost.synopsys.com (eudc-mailhost2.synopsys.com [10.213.161.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits)
-	 client-signature RSA-PSS (2048 bits))
-	(Client CN "mailhost.synopsys.com", Issuer "SNPSica2" (verified OK))
-	by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 07F69401F2;
-	Wed, 18 Dec 2024 01:07:53 +0000 (UTC)
-Received: from stormcs515.internal.synopsys.com (stormcs515.eudc.maas.synopsys.com [10.212.40.42])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by mailhost.synopsys.com (Postfix) with ESMTPSA id 5C7FCC0F8E;
-	Wed, 18 Dec 2024 01:07:52 +0000 (UTC)
-X-SNPS-Relay: synopsys.com
-From: "Miao.Zhu" <Miao.Zhu@synopsys.com>
-To: gregkh@linuxfoundation.org, robh@kernel.org, xu.yang_2@nxp.com,
-        andre.draszik@linaro.org, dan.carpenter@linaro.org,
-        emanuele.ghidoli@toradex.com, heikki.krogerus@linux.intel.com,
-        m.felsch@pengutronix.de, rdbabiera@google.com,
-        u.kleine-koenig@baylibre.com, conor+dt@kernel.org, jun.li@nxp.com
-Cc: "Miao.Zhu" <Miao.Zhu@synopsys.com>, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        Jianheng.Zhang@synopsys.com, James.Li1@synopsys.com,
-        Martin.McKenny@synopsys.com
-Subject: [PATCH v2 2/2] dt-bindings: usb: ptn5110: add TCPC properties
-Date: Wed, 18 Dec 2024 02:07:18 +0100
-Message-Id: <20241218010718.224530-3-miao@synopsys.com>
-X-Mailer: git-send-email 2.9.3
-In-Reply-To: <20241218010718.224530-1-miao@synopsys.com>
-References: <20241202054314.k6dt7uhnv2kavea4@hippo>
- <20241218010718.224530-1-miao@synopsys.com>
-X-Proofpoint-GUID: 5z2rQroU2U8VVCPzUiqKbvjhj5k2h7BY
-X-Authority-Analysis: v=2.4 cv=HYHuTjE8 c=1 sm=1 tr=0 ts=6762206b cx=c_pps a=8EbXvwLXkpGsT4ql/pYRAw==:117 a=8EbXvwLXkpGsT4ql/pYRAw==:17 a=RZcAm9yDv7YA:10 a=qPHU084jO2kA:10 a=jIQo8A4GAAAA:8 a=Vg_MG39u6yjrUJLUqe0A:9 a=Lf5xNeLK5dgiOs8hzIjU:22
-X-Proofpoint-ORIG-GUID: 5z2rQroU2U8VVCPzUiqKbvjhj5k2h7BY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_active_cloned_notspam policy=outbound_active_cloned score=0
- mlxlogscore=989 malwarescore=0 spamscore=0 mlxscore=0 suspectscore=0
- bulkscore=0 adultscore=0 impostorscore=0 clxscore=1011 phishscore=0
- lowpriorityscore=0 priorityscore=1501 classifier=spam authscore=0 adjust=0
- reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412180005
+	s=arc-20240116; t=1734484812; c=relaxed/simple;
+	bh=03a+ngSjddlYskl9TTp0mxFcau6BiWSGfQhjzhuExUw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ubPgLIe7/6ooZuTs+p09b8GPkEHtNMsHRZhhsNFosD9xGpsB2oM3ij1SLnBFSZB/dhNRhbI4xkHDffcm0ZOLpQy+y2YaUJGRPJEPvaR41nlCKzZjJBxx1Fg6KnbjkHintAWihDEJfEq6MSrdKS1416J+LrWhcCp0K0HjPIJmllI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=F+uvHjL5; arc=none smtp.client-ip=115.124.30.113
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linux.alibaba.com; s=default;
+	t=1734484806; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	bh=151jFBE/O7sNLIikx5IuRi5QZ9s1vppGKY8kBzClQtw=;
+	b=F+uvHjL53L/c0cNckue8S1fxAb4HT2v6l+2ZKyztEX9RlP6LrLMX8CAIt5IRAvaHaJVyX0iwCX1P1lbge1a3bdy5E2nBhMT9GjIR+o1XaUfkfFBqma24veOLWYYGJK9pZsm1RamRzk6wLT2867KYkWywD2szpKciEZ1u1I0DAlA=
+Received: from 30.74.144.132(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0WLkVs1x_1734484804 cluster:ay36)
+          by smtp.aliyun-inc.com;
+          Wed, 18 Dec 2024 09:20:05 +0800
+Message-ID: <695bcc62-c7a4-4a06-aa88-6c12781cd67c@linux.alibaba.com>
+Date: Wed, 18 Dec 2024 09:20:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] dt-bindings: mfd: sprd,sc2731: reference
+ sprd,sc2731-efuse bindings
+To: Stanislav Jakubek <stano.jakubek@gmail.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <Z1_9ROiI2ZHKsbAD@standask-GA-A55M-S2HP>
+From: Baolin Wang <baolin.wang@linux.alibaba.com>
+In-Reply-To: <Z1_9ROiI2ZHKsbAD@standask-GA-A55M-S2HP>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The TCPCI driver has flags to configure its protperties but
-no way to enable these flags yet. Add these flags into DT
-so that the driver can be compatible with TCPCI  Spec R2 V1.0.
 
-Signed-off-by: Miao.Zhu <miao@synopsys.com>
----
-V1 -> V2: no changes
----
- Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
-index 65a8632..c31ec7e 100644
---- a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
-+++ b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
-@@ -21,6 +21,11 @@ properties:
-   interrupts:
-     maxItems: 1
- 
-+  TX_BUF_BYTE_x_hidden: true
-+  RX_BUF_BYTE_x_hidden: true
-+  auto_discharge_disconnect: true
-+  vbus_vsafe0v: true
-+
-   connector:
-     type: object
-     $ref: /schemas/connector/usb-connector.yaml#
--- 
-2.9.3
+On 2024/12/16 18:13, Stanislav Jakubek wrote:
+> Directly reference the sc2731-efuse bindings to simplify the schema.
+> Remove the duplicate example from the efuse bindings.
+> While at it, add the "pmic_adc" label that was missed during the
+> initial YAML conversion.
+> 
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 
+Thanks. LGTM.
+Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
 
