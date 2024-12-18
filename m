@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-132350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A52679F6B6E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 17:44:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB0349F6B8B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 17:54:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01446166FA3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 16:44:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B945D188AE11
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 16:54:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10A091F7096;
-	Wed, 18 Dec 2024 16:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229501F63FC;
+	Wed, 18 Dec 2024 16:54:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QRQ1EkPT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pv18xzyw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D81B41F541A;
-	Wed, 18 Dec 2024 16:44:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB9CF1C5CAA;
+	Wed, 18 Dec 2024 16:54:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734540252; cv=none; b=rYvF3ZNKr6qCGB+XeDydfSA8rt4hg7iD1Z6fdGAlPRmjD8dQB8MjJJS0+S1PmhDQWKo2L2fJck8FI6qk1MD92OphTiYJ4nUy6C9zikrv9aRiKYx6HN8xbqrkkBSIq59+DOS460V/Zxpz3dkeTDCyYzXKRWuR47aW9BLWmmhJn4s=
+	t=1734540891; cv=none; b=ijwUPutyLPnNTYpcJtWgL1sYr+VK9KapOJj2IYv/I7qwa/o+Q6tv5aw2IbLMYVDlL1c0JMKH6HBL8D2fBwEoWXdU6IVEW0X88a8ONSPCc7U83XoKvTU5wTTw35C+QGZdNDyCBabpMP9BKcvLJDxfEHSfB8V0J2VUCYNWSl8J5DI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734540252; c=relaxed/simple;
-	bh=pB0kgdn2bOfLkrxZ9uo+wGEPrm/eb16hrnNYiA6bbiY=;
+	s=arc-20240116; t=1734540891; c=relaxed/simple;
+	bh=s2SBxETvm52Px3OUzaEAAKhG+ijEolqfdP64sqQHZgM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KhQYxHZSamP5rNqD4oDAVoBlgrkWyEL0CN4pKJdfO5DrI27uRCj8rBM5mxlYSGzs10REZCtLl9jk1tptkhMDKyvv/miHtvGHa/KhoOWzNHcK9jzWemSfwEI5sEEPea0lJzv/llFole0X/MWDid9KOwaILxR3ctsXHkoht13aTgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QRQ1EkPT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8813EC4CECD;
-	Wed, 18 Dec 2024 16:44:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vwi9DX6y+EcyUyVvqZJvQqsz77O7VMsUUn0jxtStjAzYwne2o8a3+oWHINzfqv3rtGXpR0UeCSgwViDN2ZskPD5Lnz43x58FMG5qWDIpyTG6udhRvYSWrjaXYG7BkY9r/UPbeRb5e6+3xrqYOvdHnJvnd8r3YX/p0qp3MkJN8cs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pv18xzyw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A029C4CECD;
+	Wed, 18 Dec 2024 16:54:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734540251;
-	bh=pB0kgdn2bOfLkrxZ9uo+wGEPrm/eb16hrnNYiA6bbiY=;
+	s=k20201202; t=1734540890;
+	bh=s2SBxETvm52Px3OUzaEAAKhG+ijEolqfdP64sqQHZgM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QRQ1EkPT3omHuxktYvRSWPyTjMxF1HLVF0DMDwMO4sfWc25d1v0amUkufVVNME9rp
-	 ohWR6o97Bsye7LrwHlAHbiLbvlXrmeWX8fHvgX91MpyD3BI2OgeEJc8bPAHWaOUgXG
-	 m9W4yeW6Nm89519yX8Q16C6V5T3LxRe6WNyzbX7gqHt3ldY5II4z25bf2YO07dhL8a
-	 J/2OHP1B/eWUnzN7xfrQ2VeyC129sKxSoPUll6CAYOtC+U6jbx3CG3ZZjlJe21AWR5
-	 2v7kI/E0I8O2Kjd6feIWaHomxKZUEY6BjARFV5lbUQdSC8sIC2u5LGCHA0ylZyWcCO
-	 uW37sCv9s5pmA==
-Date: Wed, 18 Dec 2024 16:44:06 +0000
+	b=Pv18xzywipaGaOM6nq9UTilWK5sjSM1kEbxjo6Xpw6inXfOKAzFSfOIvKrq2aYGxv
+	 ZudnAiQMcr8FqgqxMKyW7V1YQcbrFARCSOslU8PYjNq6hrBis9sZMjbFCnDRcoaRx1
+	 smsgh2c6ieXd4V1gGP9WJv3t1s0/R8+O6yQSTzaXgB/5vxxLWFoiV9kwdfD6boPhbj
+	 7X9RosnFG5JafHWbSsywmbT0Rz+dY95UHjJNZ6E9cd79dDsX7G28l0xqujYahkGC9v
+	 XZpd71NE2vlVhstAi0ztSHn0qSQJdv21w1cIHaI7Emdk/4YEtF490hDc2GBl5hncXA
+	 9jhnLbyHwXwrg==
+Date: Wed, 18 Dec 2024 16:54:44 +0000
 From: Conor Dooley <conor@kernel.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: sboyd@kernel.org, mturquette@baylibre.com, matthias.bgg@gmail.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	geert+renesas@glider.be, u.kleine-koenig@baylibre.com,
-	amergnat@baylibre.com, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	kernel@collabora.com, macpaul.lin@mediatek.com
-Subject: Re: [PATCH v1 1/2] dt-bindings: clock: mediatek,mt8188: Add
- VDO1_DPI1_HDMI clock
-Message-ID: <20241218-twelve-requisite-c63827edfbad@spud>
-References: <20241218105415.39206-1-angelogioacchino.delregno@collabora.com>
- <20241218105415.39206-2-angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mchehab@kernel.org,
+	matthias.bgg@gmail.com, moudy.ho@mediatek.com,
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com, sebastian.fricke@collabora.com,
+	macpaul.lin@mediatek.com
+Subject: Re: [PATCH v1 1/3] dt-bindings: display: mediatek: Add compatibles
+ for MT8188 MDP3
+Message-ID: <20241218-skeleton-rockband-e25b7d60e7f3@spud>
+References: <20241218105320.38980-1-angelogioacchino.delregno@collabora.com>
+ <20241218105320.38980-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,52 +66,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Qo/gdjEA9Ojw6e4h"
+	protocol="application/pgp-signature"; boundary="HAI+tP8+x8Vxvsmq"
 Content-Disposition: inline
-In-Reply-To: <20241218105415.39206-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20241218105320.38980-2-angelogioacchino.delregno@collabora.com>
 
 
---Qo/gdjEA9Ojw6e4h
+--HAI+tP8+x8Vxvsmq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 18, 2024 at 11:54:14AM +0100, AngeloGioacchino Del Regno wrote:
-> Add binding for the HDMI TX clock found in the VDO1 controller
+On Wed, Dec 18, 2024 at 11:53:18AM +0100, AngeloGioacchino Del Regno wrote:
+> Add compatible strings for the AAL, COLOR, MERGE and PADDING
+> hardware components found in MediaTek's MT8188 SoC.
+>=20
+> This hardware is compatible with MT8195.
 >=20
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
 abora.com>
-> ---
->  include/dt-bindings/clock/mediatek,mt8188-clk.h | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/include/dt-bindings/clock/mediatek,mt8188-clk.h b/include/dt=
--bindings/clock/mediatek,mt8188-clk.h
-> index bd5cd100b796..8af44560a74c 100644
-> --- a/include/dt-bindings/clock/mediatek,mt8188-clk.h
-> +++ b/include/dt-bindings/clock/mediatek,mt8188-clk.h
-> @@ -721,6 +721,7 @@
->  #define CLK_VDO1_DPINTF				58
->  #define CLK_VDO1_DISP_MONITOR_DPINTF		59
->  #define CLK_VDO1_26M_SLOW			60
-> +#define CLK_VDO1_DPI1_HDMI			61
 
-> -#define CLK_VDO1_NR_CLK				61
-> +#define CLK_VDO1_NR_CLK				62
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-If you can change this, you can delete it ;)
-Please do.
-
---Qo/gdjEA9Ojw6e4h
+--HAI+tP8+x8Vxvsmq
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2L71gAKCRB4tDGHoIJi
-0j/KAQDmCSeccCtIXH3YnVuThBDWjOequnU2D37KNlgCO7NVwAEA+NUFAAulVwrn
-akvszzqa/q8wOU9JjKM7NDq0fHbFhAY=
-=5V+2
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2L+VAAKCRB4tDGHoIJi
+0u5SAP438pw1N/Szkws84SNvpbsLnX57vLfWAKvOv2y+wBPsVQEAwtZ4NMQzmlEn
+7IK6CjupfLWoWguKpgjnYhFNDzV9MAQ=
+=YaS1
 -----END PGP SIGNATURE-----
 
---Qo/gdjEA9Ojw6e4h--
+--HAI+tP8+x8Vxvsmq--
 
