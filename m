@@ -1,194 +1,168 @@
-Return-Path: <devicetree+bounces-132332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6364E9F6A00
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 16:28:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 241CD9F6A40
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 16:42:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 188DF7A05FF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 15:28:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D38416D433
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 15:42:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23EC11C2304;
-	Wed, 18 Dec 2024 15:28:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C8D01B425A;
+	Wed, 18 Dec 2024 15:42:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t5dIIcUe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s6otvW7a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1E31A2C04;
-	Wed, 18 Dec 2024 15:28:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D69B1B0422
+	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 15:42:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734535699; cv=none; b=XkPz3B3oFfv4lh6j25+Z4TABB9gJXIc5gD7cFc0OH7RukPU9s+IFiBXZp9X0UCBrznP2X+OooTOgAGjwNMMqD39cqY4w6CWrSSzLBx/R56JVPiEIVN5S9EbCghTSFNpaNC0ZzKBzhJOE/xUdzH6bIRI0tCp9jBrVsvjtO6ScKRo=
+	t=1734536524; cv=none; b=E3JQK6byCqHEuALu1XveSj/v6r0jit9QVLI0bASu6HzNodm1BcO3uSsndTbroOznAik0hm7pbvGgUqKoPv5CEoiTGWShOadJdEOy9dLEGftD9lmEFGm/a6BOA4Wi1CKvTf4xd15luhb/2aMXiZL73ChkS0x1TNT/it/qu0xM1QA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734535699; c=relaxed/simple;
-	bh=x/05UuFag3wEx8+8CiHO6xWLOjxSGreh2BrsOx7x1UU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WE17h5YWd3m5OA2lBSb98wo8aBED1CasbxhCkAXfSV2J6SsDKZ8Gi1XABhwxHFM6woVjWj5YG8nK+qLVTnWRf05x8wQ89pFhjWXa02x7Al6Q6PCoDo20oe0Wyeds4tVACYOoIDccczr9caJ68M1NbeSMum5mFRV7x+TpsLX1NRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t5dIIcUe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FD89C4CEDC;
-	Wed, 18 Dec 2024 15:28:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734535697;
-	bh=x/05UuFag3wEx8+8CiHO6xWLOjxSGreh2BrsOx7x1UU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=t5dIIcUejF791eo+8+HQf623zZS6dcZmBG75cemTJWgXZrMb4jewrpc9V7uUv6A/a
-	 EEDdXr5txn0aWRPHVe5+FQJD7ZJ1qk3qcbuR49UT4Ab+0TrZ7vT8zkMZ4jQE4ZvNgg
-	 S5qZcujVezvyTUh5AlsRkXcMd0SXlUnpVjfELFjbSC4yMeX3bGZD+/fRN/ccNZ4Hnj
-	 trg9qrV1k/V0k5yKBQHPZSzMjElWaZctQ5hQ7x5d3LsNT/c4StzSzO50ZaCW9uf5YL
-	 598ELMwP1aFjiD+5rG2qeA6YSWIz/njZKsaSWSs45dpdZm+VxunajgfTQhevwdf8f0
-	 gAEPeyvyXqX1w==
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e398484b60bso4444432276.1;
-        Wed, 18 Dec 2024 07:28:17 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV6BlKWYD9qfCZ1O4Dic/3aVLjAK5n8pUEsKJEQyOOyPYtoUoqy8XS1PzxwMLIBTbKcT5H314iMotpj@vger.kernel.org, AJvYcCWoqtHPdYqsHgL1eK50LI173qnCRKb9TLdwJaOqf6YqEP1Dm+jRpTgL5C+/KhiO/ig3QEhWmWQM7Mxpe99K@vger.kernel.org, AJvYcCXMgiEcyvZmX1ep4U7ObsTExQg2Nsad4/L5BIdh0Frq9hAE/hGPnu9Utkgz7EkY5Aku6NdlGBCehZPO@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRe9ILP0p/Mk4X+LnUEiIlLN0/M4MFtR/RjMz+frC0QHdIIfqQ
-	hcR0t7TVNVrL7A/Pl57yHmuHLxBfxLCYGPMLFi0ngLEQ5C3NR+VqWZu2lBLY2rw8JzhUlzKzXjG
-	VeEeRKYLTlVy6Cf8ISgKLgFm4qQ==
-X-Google-Smtp-Source: AGHT+IGWPh1VNlqeewV9ukHpBb+LSO8Q4pto4IW7h4KptN8IObpPP2ioWDJiia4bJ/qGEZEyjoLm6qqCEvG8gK+NTok=
-X-Received: by 2002:a05:6902:100e:b0:e47:f4e3:8803 with SMTP id
- 3f1490d57ef6-e53621b7390mr2488995276.20.1734535696526; Wed, 18 Dec 2024
- 07:28:16 -0800 (PST)
+	s=arc-20240116; t=1734536524; c=relaxed/simple;
+	bh=h+XeExBDgd5gL6dlbTSl87Rvr5eBKUV+3bhND4e9Wto=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LZmxryc66WLtAZ885zg7N5CN7SF8FRkb3Xl5R94VkBGEzGJ4hNsZcuD9iZXLoabG0SxdAqfNq88NX8QSofadSBdfckaSLN0ZjFr6uV7050H+E3HiyegYVqi5lfflEkvGAL0so9R66PcuhGywk/9LazLYegj0cBJcVzKEQjcePS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s6otvW7a; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aa670ffe302so1216613266b.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 07:42:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734536521; x=1735141321; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=wuPxDvTX7vw6Ikag7mefG62YIQDwW9qirQPmBJpybBg=;
+        b=s6otvW7ajEMZvqOm8Wbm1DtMfm1HmyPqWLKMLh6M6fcjMzB/N8VLp1JVPlwfh7Ku1h
+         /vZgvMC3m33EDT1TQ21KqJ3Q68qNcC9C6TNyWsvooGkoysqkCOUgbqBExVBdvuOiPs8y
+         bhEbYlsJdeb8iMn50dFUmrVSgf950aOGPQ+nK6mss+9ThhxzCawvonLyYxD/eHrZhh+o
+         hwSSoPtTrUSOPAn/5eXt2C6A6j4qHXd+WXKnjV7TMcCwFXi0yMvXRgrmIIdg+OuYWgQj
+         Btm3CMjzrUwwN6e35uz6zeLjoPhbkpbefBKydcLqxun7PcIyKrn73S4az2azTMG0SBj6
+         7S6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734536521; x=1735141321;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wuPxDvTX7vw6Ikag7mefG62YIQDwW9qirQPmBJpybBg=;
+        b=RcIB/XySTnuuhtSShyBpXba1Y8+dBEW+e+4/3jLxtqbPTLGbebie+8+wUdGTLpDEX2
+         iC1eYdCF57bSJfsZHpJ7J7WiASQfJWwMo46q5MMVwZKftk8H/Sa83Ucpe+as8mr5eoc2
+         71SsWuskYe2VmEf/HLRaxzWTRezy2lD2tdO7i7onp4ZdUXKFGxr5lp4uOCz2rt/Ln3AC
+         BhVlTX5CxiAr2We8O/MVgLD3WVj6/al2HWElh1nMFFMd4aySXVqbjztbJmb+J7alKW//
+         P/0tXKpqtdN3A6mYN++c5DYlwJOopsJr1DSDLcb2bxWiYcryghwBUwlbrTjBNUtTKfOY
+         ax2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXttYwR5ecdHDP/PVFVEmv6XnUAyy6b8/yaKWxbA9NuxPoy0iWHX977084ufnDKDCAoXZZtB5rkXHAR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxp6jJMJHBlboYvs5WbQd/dKnfWU9kHBMYinfSDiym/HrUAd3Jc
+	6hEMKCif6iVYZ4TfgLKASNgFv5VX9U276c06HNDmELzXSbLBgxtiivhCO/1wjpc=
+X-Gm-Gg: ASbGncvrZ8NVbQGu2VIuFA69BUlMRd0dhHE+2rG5yhLWuaaigj5LrtRqUwNvkDMtO9M
+	eO3YqexHHB8KVi35IqvBdWGb+Tkfxd7jVcB+4KSoBFfocxuN5n9Z35feyop7TETjukPyuGfDJ98
+	+cg6GGvF520jdyWhl4FBpO3/TXkTGXkN/csD5fjkpxdGiIQj+fLHS0UvqnW7pzFkkuHprLMGvDy
+	ubj2DQSG8zsF5XRUFwklg60E2xghk7Dr9oq/ViTncgcScNpAj5gg7D3WPJBCw==
+X-Google-Smtp-Source: AGHT+IGarXmwMkeMqU2NZRVbUAa61OHGnCxtHAVf/FFcAIMSBvhxQ1z7QNQ2Pk8ItpKNlg/4dPjA1Q==
+X-Received: by 2002:a17:907:6e93:b0:aa6:9599:a9af with SMTP id a640c23a62f3a-aabf4907633mr283425566b.53.1734536520682;
+        Wed, 18 Dec 2024 07:42:00 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aab9635998csm578833166b.108.2024.12.18.07.41.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Dec 2024 07:42:00 -0800 (PST)
+Date: Wed, 18 Dec 2024 18:41:56 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: "Miao.Zhu" <Miao.Zhu@synopsys.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, xu.yang_2@nxp.com,
+	andre.draszik@linaro.org, emanuele.ghidoli@toradex.com,
+	heikki.krogerus@linux.intel.com, m.felsch@pengutronix.de,
+	rdbabiera@google.com, u.kleine-koenig@baylibre.com,
+	conor+dt@kernel.org, jun.li@nxp.com, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	Jianheng.Zhang@synopsys.com, James.Li1@synopsys.com,
+	Martin.McKenny@synopsys.com
+Subject: Re: [PATCH v4 1/2] usb: typec: tcpm: tcpci: Make the driver be
+ compatible with the TCPCI spec [Rev 2.0 Ver 1.0, October 2017]
+Message-ID: <9d3ab6fe-f875-493e-935a-976ff1a9cdf1@stanley.mountain>
+References: <20241218085933.2790127-1-miao@synopsys.com>
+ <20241218085933.2790127-2-miao@synopsys.com>
+ <b5e5cd33-2b59-4e93-8acd-379290917e42@stanley.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241217183711.2525863-1-robh@kernel.org> <87wmfxfg8b.fsf@prevas.dk>
-In-Reply-To: <87wmfxfg8b.fsf@prevas.dk>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 18 Dec 2024 09:28:05 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKuzMMDthdhQgGfmsKQySMReNX2kL4CvMsbKCo96AH_JQ@mail.gmail.com>
-Message-ID: <CAL_JsqKuzMMDthdhQgGfmsKQySMReNX2kL4CvMsbKCo96AH_JQ@mail.gmail.com>
-Subject: Re: [PATCH] of: Add printf '%pOFm' for generating modalias
-To: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc: Petr Mladek <pmladek@suse.com>, Steven Rostedt <rostedt@goodmis.org>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Sergey Senozhatsky <senozhatsky@chromium.org>, Jonathan Corbet <corbet@lwn.net>, 
-	Saravana Kannan <saravanak@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	Zijun Hu <quic_zijuhu@quicinc.com>, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b5e5cd33-2b59-4e93-8acd-379290917e42@stanley.mountain>
 
-On Wed, Dec 18, 2024 at 4:16=E2=80=AFAM Rasmus Villemoes
-<linux@rasmusvillemoes.dk> wrote:
->
-> On Tue, Dec 17 2024, "Rob Herring (Arm)" <robh@kernel.org> wrote:
->
-> > The callers for of_modalias() generally need the module alias as part o=
-f
-> > some larger string. That results in some error prone manipulation of th=
-e
-> > buffer prepend/append the module alias string. In fact,
-> > of_device_uevent_modalias() has several issues. First, it's off by one
-> > too few characters in utilization of the full buffer. Second, the error
-> > paths leave OF_MODALIAS with a truncated value when in the end nothing
-> > should be added to the buffer. It is also fragile because it needs
-> > internal details of struct kobj_uevent_env. add_uevent_var() really
-> > wants to write the env variable and value in one shot which would need
-> > either a temporary buffer for value or a format specifier.
-> >
-> > Fix these issues by adding a new printf format specifier, "%pOFm". With
-> > the format specifier in place, simplify all the callers of
-> > of_modalias(). of_modalias() can also be simplified with vsprintf()
-> > being the only caller as it avoids the error conditions.
-> >
-> > Cc: Zijun Hu <quic_zijuhu@quicinc.com>
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
-> >  Documentation/core-api/printk-formats.rst |  1 +
-> >  drivers/of/device.c                       | 25 ++--------------
-> >  drivers/of/module.c                       | 35 +++++------------------
-> >  drivers/of/unittest.c                     |  2 ++
-> >  include/linux/of.h                        |  8 +++---
-> >  lib/vsprintf.c                            |  7 +++--
-> >  6 files changed, 22 insertions(+), 56 deletions(-)
->
-> This diffstat lacks a lib/test_printf.c line. Please do add test cases
-> when extending vsnprintf().
+On Wed, Dec 18, 2024 at 12:33:42PM +0300, Dan Carpenter wrote:
+> The subject is too long.  You've sent v2, v3, and v4 today.  Please, wait
+> for a day between resends.
+> 
+> On Wed, Dec 18, 2024 at 09:59:32AM +0100, Miao.Zhu wrote:
+> >  static int tcpci_set_pd_rx(struct tcpc_dev *tcpc, bool enable)
+> > @@ -741,33 +748,86 @@ irqreturn_t tcpci_irq(struct tcpci *tcpci)
+> >  		struct pd_message msg;
+> >  		unsigned int cnt, payload_cnt;
+> >  		u16 header;
+> > +		unsigned int frame_type;
+> > +		enum tcpm_transmit_type rx_type;
+> >  
+> >  		regmap_read(tcpci->regmap, TCPC_RX_BYTE_CNT, &cnt);
+> >  		/*
+> >  		 * 'cnt' corresponds to READABLE_BYTE_COUNT in section 4.4.14
+> >  		 * of the TCPCI spec [Rev 2.0 Ver 1.0 October 2017] and is
+> >  		 * defined in table 4-36 as one greater than the number of
+> > -		 * bytes received. And that number includes the header. So:
+> > +		 * bytes received. And that number includes the header.
+> > +		 * In Section 4.4.14 of the TCPCI spec [Rev 2.0 Ver 1.0 October, 2017],
+> > +		 * the RECEIVE_BUFFER comprises of three sets of registers:
+> > +		 * READABLE_BYTE_COUNT, RX_BUF_FRAME_TYPE and RX_BUF_BYTE_x.
+> > +		 * These registers can only be accessed by reading at a common
+> > +		 * register address 0x30h.
+> >  		 */
+> > -		if (cnt > 3)
+> > -			payload_cnt = cnt - (1 + sizeof(msg.header));
+> > -		else
+> > -			payload_cnt = 0;
+> > +		if (tcpci->data->RX_BUF_BYTE_x_hidden) {
+> > +			u8 buf[TCPC_RECEIVE_BUFFER_MAX_LEN] = {0,};
+> > +			u8 pos = 0;
+> > +
+> > +			/* Read the count and frame type in RECEIVE_BUFFER */
+> > +			regmap_raw_read(tcpci->regmap, TCPC_RX_BYTE_CNT, buf, 2);
+> > +			/* READABLE_BYTE_COUNT */
+> > +			cnt = buf[0];
+> > +			/* RX_BUF_FRAME_TYPE */
+> > +			frame_type = buf[1];
+> > +
+> > +			/* Read the content of the USB PD message in RECEIVE_BUFFER */
+> > +			regmap_raw_read(tcpci->regmap, TCPC_RX_BYTE_CNT, buf, cnt + 1);
+>                                                                          ^^^
+> buffer overflow?
+> 
+> > +
+> > +			pos += 2;
+> > +			memcpy(&msg.header, &buf[pos], sizeof(msg.header));
+> > +
+> > +			if (cnt > 3) {
+> > +				pos += sizeof(msg.header);
+> > +				payload_cnt = cnt - (1 + sizeof(msg.header));
+> > +				if (WARN_ON(payload_cnt > sizeof(msg.payload)))
+> > +					payload_cnt = sizeof(msg.payload);
+> > +				memcpy(&msg.payload, &buf[pos], payload_cnt);
+> 
+> There is existing code later which does bounds checking on payload_cnt,
+> but it's too late.  We would have already overflowed buf[] and
+> msg.payload here.
+> 
 
-Thanks for the review.
+This line is obviously fine.  It's only buf[] earlier from regmap_raw_read()
+I'm worried about.
 
-There's tests in the DT unittest already for all the pOF formats. I
-guess the exact conditions tested are different given the below issue.
-I would be happy to move those tests, but that doesn't look completely
-trivial. I suppose I can manually construct a struct device_node and
-list of struct property, but that goes against efforts to make both of
-those structs opaque outside of DT code. We could add helper
-functions, but they would only be for this test as this is not the
-normal way we handle DT nodes (i.e. created from a DTB and applied as
-a changeset to the base tree).
+regards,
+dan carpenter
 
-> >
-> > diff --git a/drivers/of/module.c b/drivers/of/module.c
-> > index 1e735fc130ad..80879d2abea8 100644
-> > --- a/drivers/of/module.c
-> > +++ b/drivers/of/module.c
-> > @@ -8,21 +8,14 @@
-> >  #include <linux/slab.h>
-> >  #include <linux/string.h>
-> >
-> > -ssize_t of_modalias(const struct device_node *np, char *str, ssize_t l=
-en)
-> > +/* Do not use directly, use %pOFm format specifier instead */
-> > +size_t of_modalias(const struct device_node *np, char *str, size_t len=
-)
-> >  {
-> >       const char *compat;
-> >       char *c;
-> >       struct property *p;
-> > -     ssize_t csize;
-> > -     ssize_t tsize;
-> > -
-> > -     /*
-> > -      * Prevent a kernel oops in vsnprintf() -- it only allows passing=
- a
-> > -      * NULL ptr when the length is also 0. Also filter out the negati=
-ve
-> > -      * lengths...
-> > -      */
-> > -     if ((len > 0 && !str) || len < 0)
-> > -             return -EINVAL;
-> > +     size_t csize;
-> > +     size_t tsize;
-> >
-> >       /* Name & Type */
-> >       /* %p eats all alphanum characters, so %c must be used here */
->
->
-> I took a look at of_modalias() with that change applied. While it does
-> seem to end up returning the required "total size had the buffer been
-> big enough", this part
->
->                 csize =3D snprintf(str, len, "C%s", compat);
->                 tsize +=3D csize;
->                 if (csize >=3D len)
->                         continue;
->
-> seems that it will overwrite/replace a longer compat string with a
-> shorter, later one, if we happen to be close to the end of the available
-> space. That's _probably_ not a problem for vsnprintf() itself, or
-> callers such as kasprintf() that do need the exact size but don't care
-> about what might have been produced on the first call to determine that
-> size, but the printf test suite does expect the result of a truncated
-> vsnprintf() to match the full string up to the truncation point. We can
-> probably allow certain test cases to opt out of certain sanity checks if
-> absolutely needed, but perhaps it's simpler to fix of_modalias().
-
-Yeah, for purposes of of_modalias, if things don't fit it's going to
-get thrown away and we don't care. But should be possible to fix.
-
->
-> Unrelated, I think the space replacement could be simplified to
->
->   if (len > 0)
->     strreplace(str, ' ', '_');
-
-Nice. That probably didn't exist at the time this was written.
-
-Rob
 
