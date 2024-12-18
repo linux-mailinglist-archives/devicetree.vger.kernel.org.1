@@ -1,152 +1,168 @@
-Return-Path: <devicetree+bounces-132083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B5579F5AF2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 01:04:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78EA39F5B28
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 01:09:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC8CB162674
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 00:04:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 170FB188F526
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 00:09:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82EED140E5F;
-	Wed, 18 Dec 2024 00:02:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0996963A9;
+	Wed, 18 Dec 2024 00:08:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LvUST9e4"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="Bvd3y9uv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2059.outbound.protection.outlook.com [40.107.102.59])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24BB14F9FB
-	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 00:02:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734480162; cv=none; b=p0XR5EqKBT2mIe2nfr8HQux/BLJRFL2Iv3tOCxL0j8uPbADL/UPZd2qOzp0oUg4RWzyDDQLkF57yZ2EZ+4QBFkU4c8O2frzycNKaz9OuA6758OSS+64Lq1tRWK4vHurkGxf2G5N250nEM2gJQvF6QE2vGEUtUSkliIYvgQfwNvM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734480162; c=relaxed/simple;
-	bh=/QwZG5NKGp6y1Ffp3J1rGnMNXyiFYyVMqC6USJJYIKk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=F8/BTqaB/J5c3zWJ8ej2oSolOOhLdY+sP9a55VhuynnEoUMXfCviHp+FQ2701UYKIzc1YwHggAT+7F4dojpaDLAq8rZLFYhHw+YJYcNpolnqvISP6bKIi1ClnPzW8rBJqvO9GMOfPXYduZFrFX6o0tOdfO4U+Ydw/D5RHc1p8XE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LvUST9e4; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2164b662090so47398725ad.1
-        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 16:02:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734480160; x=1735084960; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=t99gi7wKTizFuiwTq7PjwijgNkljtHLeLL3wkOetILI=;
-        b=LvUST9e44nbXCHBjf2nbZfnznBRry6cnZDui7IEbxlZ5LeICXMU2do6usbJiLhPwfc
-         F8YMX5+1PFSddZCCa1BvabXTVAjyS38rjqzxD+6oEoRDLLrh06RR2h/7kxEOaKQAVPfq
-         zsMxbbU71qTnnFL8Q4cO9sJuHwbPHNOu8bAEegukbzF3S+uw939SmBPQ8LwsWYPgwfOY
-         LNhkejGiqJo3DLEf5aqWn7iyhNgnCXK0JShccCGeghTCdu7AJ66ukoNzxFVKQu4urK8a
-         qh/dMM2iGiu/CLfMGNmqeDC1PI2/WmC4AOogzKwcS+ggY499+CJWnwSLiLLwc8VL4K91
-         l9gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734480160; x=1735084960;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t99gi7wKTizFuiwTq7PjwijgNkljtHLeLL3wkOetILI=;
-        b=AyOAFFsolMV/ZguTmn+fGijx6kUlc+r17O2HMmC2kMy+J4eQ6LVcgh5Ni37UcnyCY/
-         C9KsFHTHjifNhjp/IXmcSsbtvikzP3xM3mJF6qBN/wAPc7A8YC+gorw4NTOUIsQGGjBX
-         ET065qhU8n/+N1pFMpSbFWaqjBJ+YLeFrGpGxpOWUT7iWihPLAEJ42InjpFrszHQX5lI
-         IzpvAwbq0ppMXOcky6G7+BthgBSv7cUmLAdoEy3ssMyIdjWyNR4ZdYOKVfUDNZW+/Fk1
-         norEJnWAovpafkx8XZ3d4eMfsMHTbNPH/e/ECT8/Uy0OZaw/Z0xGrWNcE9EDS9Byi0vy
-         0OKg==
-X-Forwarded-Encrypted: i=1; AJvYcCWEQrS3QqRSPcP7rOkyJ9o6Im530wGSG1+vAklrI+Ak1nm0CTHTw6a00YHjjBAWG9upQL261FnBxeRp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxK7Hexe1zZkwF8sMU5Q1BUjZDVCR2qTsSmRrfOraafprXeyD0y
-	uqOa3F5tC8qzz5w+3JzTtPJe8Wj3MY40UTVyQaLWazlUu8IqiH+Gkv68GA==
-X-Gm-Gg: ASbGnct2YVbXADnr+mULOIgYcwyj4Su7Q0uETf+eKFqyJRQREVV/oQQVIl0X12ZolzC
-	ihTnWD/flnb81WhAC7uP3gLcOHnMgoOddFct86zKFKGNdY3q0zciYWZQntvdtEnFRCIdQD1+2/C
-	0s8hcIxxnUkHQdn2wuqavxT7qPBp6J80Eo5Ik9l4QGkEww7DKk6mvblNKgXC79WDT8/P8BLgBNP
-	tXf9k2D75fBzpsBAj7F5AL9J39eb0UtwfaaBSQ7Pn1AiuqG6GAFokWrY5Mz4NzhHBdWiA==
-X-Google-Smtp-Source: AGHT+IGeC6FgH3X6Be4rp6wQPskxuhh/LlFSfe4W1ii/eQE70jRdVxcaUGOa2QTgpUGoXlzRMIGdEA==
-X-Received: by 2002:a17:902:d488:b0:212:996:3536 with SMTP id d9443c01a7336-218d6fca29amr10645515ad.10.1734480160259;
-        Tue, 17 Dec 2024 16:02:40 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9c22:b0c6:8519:2b7])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e50300sm65217505ad.164.2024.12.17.16.02.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Dec 2024 16:02:39 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2] ARM: dts: imx: Use the correct mdio pattern
-Date: Tue, 17 Dec 2024 21:02:32 -0300
-Message-Id: <20241218000232.74643-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28FA31E487;
+	Wed, 18 Dec 2024 00:08:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.102.59
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734480511; cv=fail; b=cPMTyK5C4toeMc26JhwnnUncxhKYYGK8hx5J5ybPeMr8h0mDIdSlv1ouSAtRWfcVm2zv5FAmEwdeHUrm2UHTbhoTnX/3O4uoPH/DSbtXbNu/pmb9SuBpOGFUucXKkIr3/lUa2gpFC4k4tN8ZMb5M3dhQcXqr/X8zyw0ubJMoLXs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734480511; c=relaxed/simple;
+	bh=LgQmEWLXgt2dKWQDyk2aE6CbuYfFmeTtlwZpd2NC5lE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=h5tVA95TD7FPVwCHl7Ly1je3gXjnCtUTJC/DMxTpYuvrCHcd2SQgsUcnME9yKKbnWaTh+4ytdv72fFy+CaPYTVDN0tnyrfFJd2riN3wFFAvpihbxe93+/XF2G3IrGeXmwqqmKH3ZGkR1olfbiw7ZEA4ZOfdWsItZc1tNFJuqOWY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=Bvd3y9uv; arc=fail smtp.client-ip=40.107.102.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bticq0bUYHtcUMJbbiQ21kyRWqdz6mMPaOUzmBtrWi3SUGuixlP7uWv51HsF2JYVVCG+VG09hMRM5EK1pqq5K3je8rZbziF37SKuViw4g7ew7bwWOWMcUawIQWZM5PpfcrTcNdtqzs4IyejhfTBDBEghTLWw0mx9z3LnvGNHC/XGh9vNxPv6Sshneqyvk8NGFdX4gNnSGjUCotNPYUUmr7OxMomDHK2pJ5zK7QBRzUtFtRkaJpyY9g5o5IpRagMHSe3X0NvvGkiNwQdQ61YRkROwyiJvk7S+v2w/2bS+Vyl8CHqzd1d/1J7hH63msBETvDydD1TZzNh71HgTTKE7Kg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3d6sseI4WuFfiMWga7X0IjwvY3ZO2WSCBrlzhjPwTuU=;
+ b=YGo12T6MjP674COX3V6deZgQpsykSt42l3UjC9PvGdsTc3I57gKvzMaCBo4s5PepAbFF4O/F3qzEweqjSCOu7oL1CKImmbwHomhbAWrLlvZeb0RTjiPfVHzvphz4tsztKPgecgak2tx9YLZRbjnw/tlWModOuswFecsdTYiXcqBUZMc8NjHSHlktdd3rCz8rCWCyzsTEKPSRgHniDExhG4tgHvQ47qeBrUy5oo4anb/LnavU5JWtJoPOzTCNY4Q5lf6UCeciHVsS3FNuL6Yr9jrEOl95AGkFexMuCXJ2N5rZPQsYO4IY4UsrONErvSJ9jZEMgzzVlNkKBLTKwbl87Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3d6sseI4WuFfiMWga7X0IjwvY3ZO2WSCBrlzhjPwTuU=;
+ b=Bvd3y9uv400z5wzf4blMd0tisdySkM1pXNyKnP9ze23tnVujT5a1SU1GBcnj7OeroPC9E18qvkj9PkJ1nwyqQZ+KZ+bepVNuJ0sjvrdLMS3W89UGHZ3c+hDpaq+fXvRlUSTs3lsFvUDV8zFl229izIOQe5acbZ1h8BxjvJTlphlVbFc+5linONwrz52PnqqnYd40nFCq11+x5kDQjEElcWuKvY9GWK54PS0rgmXdnTbTrtfcmhXl4JyyANvARTVcLqXo3tE6u++fz3YsT7yV73lQe4bkg9RuHlrh+/BkF5dzEw7uiWInz+dacMs6LsbW0yn+iGBzzOVv2Sz6UZ6oAQ==
+Received: from DS7PR03CA0179.namprd03.prod.outlook.com (2603:10b6:5:3b2::34)
+ by DM6PR12MB4185.namprd12.prod.outlook.com (2603:10b6:5:216::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.22; Wed, 18 Dec
+ 2024 00:08:26 +0000
+Received: from DS1PEPF00017097.namprd05.prod.outlook.com
+ (2603:10b6:5:3b2:cafe::5b) by DS7PR03CA0179.outlook.office365.com
+ (2603:10b6:5:3b2::34) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8251.22 via Frontend Transport; Wed,
+ 18 Dec 2024 00:08:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ DS1PEPF00017097.mail.protection.outlook.com (10.167.18.101) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8251.15 via Frontend Transport; Wed, 18 Dec 2024 00:08:26 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 17 Dec
+ 2024 16:08:17 -0800
+Received: from drhqmail203.nvidia.com (10.126.190.182) by
+ drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Tue, 17 Dec 2024 16:08:17 -0800
+Received: from build-yijuh-20240916T020458116.internal (10.127.8.10) by
+ mail.nvidia.com (10.126.190.182) with Microsoft SMTP Server id 15.2.1544.4
+ via Frontend Transport; Tue, 17 Dec 2024 16:08:17 -0800
+From: Ivy Huang <yijuh@nvidia.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+	<thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
+	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>, Brad Griffis
+	<bgriffis@nvidia.com>
+CC: Yi Ju Huang <yijuh@nvidia.com>
+Subject: [PATCH v2 0/2] Tegra234 fabric fixes
+Date: Wed, 18 Dec 2024 00:07:35 +0000
+Message-ID: <20241218000737.1789569-1-yijuh@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: AnonymousSubmission
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017097:EE_|DM6PR12MB4185:EE_
+X-MS-Office365-Filtering-Correlation-Id: db52fe13-6045-43de-fcc6-08dd1ef8181c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?4zvmS4oKjV0CO+53zAx+WB3ZNGAqDz01kP+D4TCUAUJto4GGIFVwleEQFpLH?=
+ =?us-ascii?Q?90k6im5qt5K6UmU8BSW9LWMlfIx+g7X6NMFbeHMNJ8Ihp1lzxfbKy5lJRI+3?=
+ =?us-ascii?Q?wWY/gGchDF7BbY0H4K1QBZPCRMFEaQr//YSJIGR1jOxRQzoGVRoPifBVsnCW?=
+ =?us-ascii?Q?fcteW7rGXIAu/Hy8J6hR/qmabnZ+fAyuiUQ4Ey6Q6vz7jGtUZ2kVifi6z2UB?=
+ =?us-ascii?Q?Oaxdr3QCJQwANQLD+DuOzRPVLrwMsEpAr+WcoLc8NCRTC003CP4lnVAcbFhj?=
+ =?us-ascii?Q?Zpp+u7evvp5cs/Q29jwO2748mnRC2ifeQXmx6ZiDxM6LrhSW6KTDXf/OhaxO?=
+ =?us-ascii?Q?DxV3oyQDg/oQWttJADqf72TrtFEFB+ELrtCtzCKKSH8eyVr0hR1HxWlu/Bp6?=
+ =?us-ascii?Q?rg3wIwNownX9+4YzxoH2/8g9ogS8TZC1IDhkri/YtV2zvWkWfYUrIOtBumYG?=
+ =?us-ascii?Q?WTT9+F7INbe2aQ7ZMBG2n5MtOJ1WJhdO8Fgg6N58N24FR0sAnBFYPZwLaZO8?=
+ =?us-ascii?Q?VAQKplDrkLvCs0hPaDn2kQGYex+ANyb7pffFd2om3wOiWRxpmdlEgSwTMH7g?=
+ =?us-ascii?Q?fjzGufpN/FVSfq5VEUspTZXf3gTUq7DcXBKBy23gPEX2+o/cB6AdtUQO7mb7?=
+ =?us-ascii?Q?6mkY8tYCvNvjy/S8+F4RkcFDDY/yPxLiPqKWhiEOtACIDgNVcfJPIGa0L61F?=
+ =?us-ascii?Q?P5NukRTw7tOUc47S4tOVTZkxcaDDLBS9B8UioRJs447mkJp+4BDTyD0I0MzD?=
+ =?us-ascii?Q?iWWFR/u/ZysHLQotE7WW0NFt56WBaygs2cdjwkiG+9BCmQBNaq49XnBd9Iag?=
+ =?us-ascii?Q?hmhs83iiBu75jJW105ARtgQSKtHMJz5pwkkFFxUf/vKIyvi6AbvbjH7pLVhq?=
+ =?us-ascii?Q?TVwBj4ssGevsstDgUD/CV51xtG3IM9I7ThDsFGm2inS9KuxC5ISw2I9NL5/4?=
+ =?us-ascii?Q?n5T19m2p1n3PLJ+FfoZXg4m6iJ2QIAtglvR8tdHPYAvlo/SMVXeEOTeiEdmI?=
+ =?us-ascii?Q?TmAi/Y3Rhm3YnlvHqJlGP6bE5ApUuvgFy9CMhuaUW3LGa/33e2TdF+5Zur86?=
+ =?us-ascii?Q?C+/5j/kvhKuCpNaGmKh2xGPoXJycmoAqBKbeO9Co4DYv7bPZZJj0P4+d9QNh?=
+ =?us-ascii?Q?JL16tAG9UKuTUeb63L+dAdozu/nQx3fHdZ81t+1FZNTuf3AmbwuwfHzyfhTd?=
+ =?us-ascii?Q?p30YdfJzHq/CAcDxdDshFDcD9KFlmTr/ot9vuhkQLIszv5BCbk9KrJyGeZWU?=
+ =?us-ascii?Q?pTffswBnqFbQ1TIpl/zf0ALEmyObRj1ncfLsJZKOaxZr1VV70vl+NmT5/KnQ?=
+ =?us-ascii?Q?8ib2trkrxIrrz9UrsqzZcAEz0bvA2pgKQlMBTCYZdb/iAJy02+j75LUInubn?=
+ =?us-ascii?Q?0G2MXbPjUYb+/E83gXuxVhsXGsLvYe6q80X3A+5Gv4VEukGyQzc1GoXgBTvt?=
+ =?us-ascii?Q?MFOdbEPIFx75UWyslsFxQLLsjWponkkJTESG4G6Da/IQwTfCB3YauZYv521t?=
+ =?us-ascii?Q?IajkwWT94tXNLT4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.118.232;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2024 00:08:26.0347
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: db52fe13-6045-43de-fcc6-08dd1ef8181c
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS1PEPF00017097.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4185
 
-From: Fabio Estevam <festevam@denx.de>
+From: Yi Ju Huang <yijuh@nvidia.com>
 
-mdio-gpio is not a valid pattern according to mdio-gpio.yaml.
+These patches fix issues related to sce-fabric and dce-fabric nodes of Tegra234.
 
-Use the generic 'mdio' name to fix the following dt-schema warnings:
+v2:
+- Add explanation why typo fix is needed
+- Add fixes and CC stable
 
-'mdio-gpio' does not match '^mdio(-(bus|external))?(@.+|-([0-9]+))?$'
+Sumit Gupta (2):
+  arm64: tegra: fix typo in Tegra234 dce-fabric compatible
+  arm64: tegra: disable Tegra234 sce-fabric node
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v1:
-- Fix the Subject.
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
- arch/arm/boot/dts/nxp/imx/imx51-zii-rdu1.dts      | 2 +-
- arch/arm/boot/dts/nxp/imx/imx51-zii-scu2-mezz.dts | 2 +-
- arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi       | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx51-zii-rdu1.dts b/arch/arm/boot/dts/nxp/imx/imx51-zii-rdu1.dts
-index 7cd17b43b4b2..06545a6052f7 100644
---- a/arch/arm/boot/dts/nxp/imx/imx51-zii-rdu1.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx51-zii-rdu1.dts
-@@ -160,7 +160,7 @@ eeprom@0 {
- 		};
- 	};
- 
--	mdio_gpio: mdio-gpio {
-+	mdio_gpio: mdio {
- 		compatible = "virtual,mdio-gpio";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_swmdio>;
-diff --git a/arch/arm/boot/dts/nxp/imx/imx51-zii-scu2-mezz.dts b/arch/arm/boot/dts/nxp/imx/imx51-zii-scu2-mezz.dts
-index 625f9ac671ae..26eb7a9506e4 100644
---- a/arch/arm/boot/dts/nxp/imx/imx51-zii-scu2-mezz.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx51-zii-scu2-mezz.dts
-@@ -37,7 +37,7 @@ usb_vbus: regulator-usb-vbus {
- 		regulator-max-microvolt = <5000000>;
- 	};
- 
--	mdio_gpio: mdio-gpio {
-+	mdio_gpio: mdio {
- 		compatible = "virtual,mdio-gpio";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_swmdio>;
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi b/arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi
-index c1ae7c47b442..aa1adcc74019 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6q-bx50v3.dtsi
-@@ -94,7 +94,7 @@ aliases {
- 		mdio-gpio0 = &mdio0;
- 	};
- 
--	mdio0: mdio-gpio {
-+	mdio0: mdio {
- 		compatible = "virtual,mdio-gpio";
- 		gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>, /* mdc */
- 			<&gpio2 7 GPIO_ACTIVE_HIGH>; /* mdio */
 -- 
-2.34.1
+2.25.1
 
 
