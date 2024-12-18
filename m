@@ -1,131 +1,201 @@
-Return-Path: <devicetree+bounces-132123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 946579F5EB3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 07:37:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F3799F5EF9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 07:59:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42A93164D77
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 06:37:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5455F7A420A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 06:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AFD1156991;
-	Wed, 18 Dec 2024 06:36:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03293156F39;
+	Wed, 18 Dec 2024 06:58:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FTvdwih7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k0NVFwYo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00F0E19A;
-	Wed, 18 Dec 2024 06:36:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CB2D14D439
+	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 06:58:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734503781; cv=none; b=Kd+VGK0CbBwXDdR1lqPO/TnyJDaeK64Imbm/iQXwqCTPOFAY5pDkxUhlDu4BkKbFlmBM4UEatYGM8xzvpEVc52uqPJ0aTTDA/oz2OCL7gUsFhSZEQGybF6eYRwZCDp9gttQ0BoIVrl/qBoO39vntIPh7j6UuJKPP5AswWA8mkSo=
+	t=1734505138; cv=none; b=Yp6ihVzwcKCCesrPBrsb+JYFpOJFfvXB4N09RLD08t8v6rvXiPYCt0+e6hKVcYlu3lcqc826aQUkVQMMy3LP1UCY0RjrraZGFuBKGrZ/Gh4G8fmI+7pvLdcI1q5/QWM+HWfni9hrWPcne4qZO8L95AtEG3XdDUKthBvedocDLnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734503781; c=relaxed/simple;
-	bh=vwWXD8zvh9hmnZ6QxYEzB+FDN7i50BUIb92pyDHG0lo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L4VsBpYg7elga8kTnvSA/XBZFjHAWEdqBjAKSoT8beFeDs2ZA35Z/g0owA0QHlhRuJV4KIx6GVnrg0SkKK/HuaLCbWrnIauXUa811gLuSLADlxNkvhtIuqdJZT/s4+JJQzKxEjmmkkzup6SGdOg7kIhMTKJD0jGcLNWGcPuwQc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FTvdwih7; arc=none smtp.client-ip=209.85.161.51
+	s=arc-20240116; t=1734505138; c=relaxed/simple;
+	bh=ZgO9kQZ9eJKJcRR9wdb2Wcn0K+q4DwSZHDxy1sfWwCg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gbNDEODt8+wRr9+O0lUyxedyoPIceneDZRhHNmO2hZdFRe7ZHsfO5ETG7rcMXHlqOBK5dVaEbYbqGh39MeL+aNGhRhu8KFR2jfGKVtZEF7d5J40oc4VopxLgap/ShM8razicokU7D288heMtmJXJa3p01wooAicRkRmnfY2ok10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k0NVFwYo; arc=none smtp.client-ip=209.85.214.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5f32168ddd8so2114340eaf.3;
-        Tue, 17 Dec 2024 22:36:19 -0800 (PST)
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-21631789fcdso2807755ad.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Dec 2024 22:58:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734503779; x=1735108579; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tg+exyt2bEd/acPRMVaty3D/uVegz4OUg+5qQVFiOTE=;
-        b=FTvdwih75Qu8Hqf8S1EEnXOExCfJcuWiSdQD+iIz65HqOk2rkH+x9KXjxsQ8wBSz6L
-         nTzuAjUHwXMEgs99NEEgIxAHuVRnLWryRV3pw1KS8huaU0BiA51lX86cXwAQs2BRkNFh
-         yGN8nPUYMNbcnkkDtWLfeH9PYK3rxIXbpZAIXsxq/ZFCA37mxT/41sOAMAL/C4JCqnXQ
-         NTrbu80Fk1ixEA0Wu4IVnwHuAAcD2Szm/nRAHZ3syEl2WhTx0iH/yqX1Q/2iTfrjHvFS
-         LAGaRpRZNSOK78JgYU+6q2dWiPWlSfC2cVhfhfHYrWkBACPtie0IFziJbue00l7f2M2o
-         YzhQ==
+        d=gmail.com; s=20230601; t=1734505136; x=1735109936; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G7OyGeVhZnbClojdUY/8BygxbsEIReJurkJRAUyyzPs=;
+        b=k0NVFwYo7w/AbkBgIjMEhPktsSVTfywcR2ukQlRVbNZezvarnI7SG/IC6BtzHFjVIY
+         tu2W10GewW7eqECl5mRz5mUkdkw+DVvgWstSBuKB/1db9l218yyWltWxm5CYTnvUQh71
+         axPPEJ9E0w9jO0uw8c/9TmGxPuzaoISMLWfo2+ZQq/cOj0Ig5XipKP4GnDJliltNgUBo
+         zDuz0gP4P3Qg9DxeDwRbvqCmBftp0Efhvw5tXduvmYDenPaSu4C8TnPJyQTa4iCcdOaH
+         AFNkvIuqO8iZ5WI72wptlDwoKRMnSjaoC5zy/0xn13u5/7nMwLSJiSjiakGMyplHPSQ9
+         y+DQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734503779; x=1735108579;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tg+exyt2bEd/acPRMVaty3D/uVegz4OUg+5qQVFiOTE=;
-        b=geuajLAn45luIyu3a2gukPauObG0qCeg3Kxvm4znxRYYZ4NnPuEB6Y975SGKgNvsLY
-         MSUdjP3OJXF716+k9zxJfiALBrYHHGiAEHd71ikCeD2fKJmq6j6MKxESFVhrDbSRFUIP
-         IVCXwZKnjVT5jXcCob/rt+WF6MN17DV3JkHLYMeVJ24VFkJJ+GX5BAiU0XVdjJRb0z8d
-         6nHc6sMChToAVhYz1lJA/HcziMUdRNPdyohng4hZEvZ4i06xTq9hTGDnU++WEttqJe4q
-         JKj7kdmZHnlUEfMmFVpBatTx3jFRmSmVxqqea5gifv9q1HUeYRXYFJSUU4XPuyqZmYe8
-         YDXg==
-X-Forwarded-Encrypted: i=1; AJvYcCV5rJC5ra2TkEKwaP9UXc9bGqsqQmIQb8InU/iM1ouzVJo3I+4mEEP79TFnD2tfL1BVVrUUiZMNWKkM@vger.kernel.org, AJvYcCVPx3CB/bebeInMlPuWkNfNF/KFJ90qeDoibz0U6ypYTyM2SsmJE4CeyD/3RLp2ptEh0fvZKf4ioIEoaMaT@vger.kernel.org, AJvYcCW/6KfuuWiqwBxcGHlYmA67Cbj6DKzVUfXDDjiIdiBRIFNQCHReV3kZp63ctZKn8fzYGecg5ANAa9Y8@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0m0ksZIaaP9HGt7P1aADAu0TA7CinSJ0ll7oqYcPyfcrt8G1Q
-	P0waT/Y6iRAqWfkp92lGIRBDdA9xL9uxR7YDtF4E+t3JTzP9dfzqldNCyCDy86HiVVwOiOXSXZC
-	JoMtVZvL/0mgQqhJI2+alHa7bSLiRYhTD
-X-Gm-Gg: ASbGncsAEo3agTO9RuothCxd0py7cjo1+5yco7Xl05ZPanzl1YYmEVn4i6TgBGil0BX
-	QlGpXB1luBcgMHl2C8bFPbHD3uQwVzECxWmisVrShDsVHO73fOPyB4jIlJR8sG6IJj6skmEQM
-X-Google-Smtp-Source: AGHT+IGDZx1A4lzjevZaetM3q0p0F9NGqZ4KJyg/ET7Jin7l5ozux8ML2xLClyaZEmXGWB3tap3fvdMwxeQKOyK0U2E=
-X-Received: by 2002:a05:6870:340c:b0:29e:2345:c656 with SMTP id
- 586e51a60fabf-2a7b3435b4cmr635905fac.43.1734503778886; Tue, 17 Dec 2024
- 22:36:18 -0800 (PST)
+        d=1e100.net; s=20230601; t=1734505136; x=1735109936;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G7OyGeVhZnbClojdUY/8BygxbsEIReJurkJRAUyyzPs=;
+        b=XtoNtnSZMCMhRcpwELysXVDUfFUKdGBok+7BZseWaOiuhDGmn7stW2alCbgqN4wZd7
+         ZbD3h6vwzNeBks8zRMO0KD8hb46HPdKm4/PKbnP0m83zDZ0MdO3TxsOXM6hCqnBGN80K
+         M+P10V8c4A7w/Egs8rkZRfhSUDZbrMAQSTcQxLVYalmw121dw+LR+selvqEnjlWwTUah
+         T+UGuifVZsLBl5xRP0yIicKXS8aXeV8aIPFm7GtW2IdxksgwT/ob8KKwUB7R+4ctZj/r
+         o6mpGcAKR9Re9Yi1DJhk5kexrBWZ9tlOdMwzMAqj+CA/TB5TGzVJksArZW7MdCbrzX61
+         VaxQ==
+X-Gm-Message-State: AOJu0Yy4L0QKD/uBMrjhzhKIY+nvkQldgZjyseYoC0pXxcjSdflm3eZK
+	FoiM1MZ+PbL7OfHEennok2Mlxpc2TpnxPpf8Fib6OVI+XBcK0SBI
+X-Gm-Gg: ASbGncvBcaaF/BByxLnC1WRcCR2TvCocwQBqFRJljsdWdDPgJCuV/88BPfbX86SWykH
+	H/PxkGGDEQsWV5dR27hsRGBJD75SHh2NJJUlQgIVCFY5I/tzl/N6iaeeB0Vl5Of8/gn8C5xhHlA
+	t74bIqQgTCnyjmZBBnP9n6odKT0RAUqEIoehEn1GDH9YRD8qqs8fqG3tNs3twXpOCCB1bTyut9j
+	IpFsMGrNG6LlTsUoWqHH4b6lw+iXo2EE+EM1ixQCt+L2mY8ZzwD1JXacjn/b5ZrpjnmRuo+3cQ=
+X-Google-Smtp-Source: AGHT+IHunQCrzWf6//mYuxztn8NEiaAD9Ml9awTqJKWllifBwWP+aLkVLEmXDq4OtDZBfs8D/HK9sw==
+X-Received: by 2002:a17:902:c942:b0:215:758c:52ea with SMTP id d9443c01a7336-218d729200emr25585305ad.9.1734505136487;
+        Tue, 17 Dec 2024 22:58:56 -0800 (PST)
+Received: from localhost.localdomain ([103.158.43.22])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e652bfsm69192275ad.243.2024.12.17.22.58.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Dec 2024 22:58:56 -0800 (PST)
+From: Poojaa R <poojaamonica94@gmail.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: devicetree@vger.kernel.org,
+	Poojaa R <poojaamonica94@gmail.com>
+Subject: [PATCH] dtoverlays: Added DT overlay file for MAX98090 and the detailed steps for its usage is included in https://github.com/Poojaa-Rangaiah/DeviceTreeOverlay-for-MAX98090 .
+Date: Wed, 18 Dec 2024 12:28:48 +0530
+Message-Id: <20241218065848.12254-1-poojaamonica94@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241215053639.738890-1-anarsoul@gmail.com> <20241215053639.738890-2-anarsoul@gmail.com>
- <qbtp4jvkx3r5azufe4k3vtapqpfs54dyjiu4cy5v5wkkzumrzx@vy3xzkfplbue>
- <CA+E=qVeQ8uHBCeFtw6_2cY3252-YXc6eWrf5_YdeVgbp5LJo5g@mail.gmail.com> <20241217211505.7f9c9e4e@minigeek.lan>
-In-Reply-To: <20241217211505.7f9c9e4e@minigeek.lan>
-From: Vasily Khoruzhick <anarsoul@gmail.com>
-Date: Tue, 17 Dec 2024 22:35:53 -0800
-Message-ID: <CA+E=qVcU9V+8LZ0Xnh+oDROVf8H99t_kiku7iSdXTHP43d9E_A@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: clock: sunxi: Export PLL_VIDEO_2X and PLL_MIPI
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Maxime Ripard <mripard@kernel.org>, Roman Beranek <me@crly.cz>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 17, 2024 at 1:15=E2=80=AFPM Andre Przywara <andre.przywara@arm.=
-com> wrote:
->
-> On Tue, 17 Dec 2024 10:00:45 -0800
-> Vasily Khoruzhick <anarsoul@gmail.com> wrote:
->
-> Hi,
->
-> > On Mon, Dec 16, 2024 at 11:33=E2=80=AFPM Krzysztof Kozlowski <krzk@kern=
-el.org> wrote:
-> > >
-> > > On Sat, Dec 14, 2024 at 09:34:57PM -0800, Vasily Khoruzhick wrote:
-> > > > These will be used to explicitly select TCON0 clock parent in dts
-> > > >
-> > > > Fixes: ca1170b69968 ("clk: sunxi-ng: a64: force select PLL_MIPI in =
-TCON0 mux")
-> > > > Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
-> > > > ---
-> > > >  drivers/clk/sunxi-ng/ccu-sun50i-a64.h      | 2 --
-> > > >  include/dt-bindings/clock/sun50i-a64-ccu.h | 2 +
-> >
-> > Hi Krzysztof,
-> >
-> > > You cannot combine these changes.
-> >
-> > The patch basically moves defines out from ccu-sun50i-a64.h to
-> > sun50i-a64-ccu.h. How do I split the change without introducing
-> > compilation failure?
->
-> You can just have the binding part first, adding the (same) definition
-> to the binding headers. As long as the #define's are not conflicting,
-> this is fine.
-> Then remove the now redundant definitions in the kernel headers, with a
-> subsequent patch.
+Only the driver files were existing for max98090 audio codec (playback and capture) but now the max98090.dts file is also included in linux/arch/arm/boot/dts/overlays/.
+new file:   arch/arm/boot/dts/overlays/max98090.dts
 
-Thanks for the suggestion! I'll address it in v2.
+Signed-off-by: Poojaa R <poojaamonica94@gmail.com>
+---
+ arch/arm/boot/dts/overlays/max98090.dts | 96 +++++++++++++++++++++++++
+ 1 file changed, 96 insertions(+)
+ create mode 100644 arch/arm/boot/dts/overlays/max98090.dts
+
+diff --git a/arch/arm/boot/dts/overlays/max98090.dts b/arch/arm/boot/dts/overlays/max98090.dts
+new file mode 100644
+index 000000000000..eaf197384edb
+--- /dev/null
++++ b/arch/arm/boot/dts/overlays/max98090.dts
+@@ -0,0 +1,96 @@
++/*
++ * Device Tree Overlay for MAX98090, MAX98091 Audio Codec.
++ * https://github.com/Poojaa-Rangaiah/DeviceTreeOverlay-for-MAX98090 => for more details.
++ * MAX98090 audio codec as master and Raspberry Pi as slave.
++ */
++
++/dts-v1/;
++/plugin/;
++
++/ {
++    compatible = "brcm,bcm2835", "brcm,bcm2711";
++
++    fragment@0 {
++        target = <&i2s_clk_consumer>;
++        __overlay__ {
++            status = "okay";
++        };
++    };
++
++    fragment@1 {
++        target = <&i2c1>;
++        __overlay__ {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            status = "okay";
++            max98090_codec: max98090@10 {
++                #sound-dai-cells = <0>;
++                compatible = "maxim,max98090","maxim,max98091";
++                reg = <0x10>;
++                interrupt-parent = <&gpio>;
++                interrupts = <27 2>;	/* GPIO 27 as Edge_Falling_IRQ (2) */
++                maxim,micbias = <3>;
++                status = "okay";
++            };
++        };
++    };
++
++    fragment@2 {
++        target-path = "/";
++        __overlay__ {
++            clk_oscillator: oscillator {
++                compatible = "fixed-clock";
++                #clock-cells = <0>;
++                clock-frequency = <12288000>;  /* Frequency of the external oscillator (mclk = 12.288 MHz) but can also be 11.2896 MHz/12 MHz/13 MHz/26 MHz/19.2 MHz. */
++                clock-output-names = "mclk";
++            };
++        };
++    };
++
++    fragment@3 {
++        target = <&sound>;
++        sound_overlay: __overlay__ {
++            compatible = "simple-audio-card";
++            simple-audio-card,format = "i2s";
++            simple-audio-card,name = "MAX98090-Codec";
++            simple-audio-card,bitclock-master = <&dailink0_master>;
++            simple-audio-card,frame-master = <&dailink0_master>;
++
++            simple-audio-card,widgets =
++                "Microphone", "Mic Jack",
++                "Speaker", "Speaker",
++                "Line", "Line In",
++                "Line", "Line Out",
++                "Headphone", "Headphone Jack";
++
++            simple-audio-card,routing =
++                "Headphone Jack", "HPL",
++                "Headphone Jack", "HPR",
++                "Line Out", "RCVL",
++                "Line Out", "RCVR", 
++                /* Uncomment any of these below lines if the Line Input(s) is(are) used else leave it as such. */
++                //"IN5", "Line In",  /* IN1/IN2/IN3/IN4/IN6 (For single ended input) */
++                //"IN56", "Line In", /* IN34 (For differential inputs) */
++                "MIC1", "Mic Jack",
++                "MIC2", "Mic Jack",
++                "Speaker", "SPKL",
++                "Speaker", "SPKR";
++
++            status = "okay";
++
++            simple-audio-card,cpu {
++                sound-dai = <&i2s_clk_consumer>;
++            };
++
++            dailink0_master: simple-audio-card,codec {
++                sound-dai = <&max98090_codec>;
++                clocks = <&clk_oscillator>;
++            };
++        };
++    };
++    
++    __overrides__ {
++        card-name = <&sound_overlay>, "simple-audio-card,name";
++    };
++};
++
+-- 
+2.34.1
+
 
