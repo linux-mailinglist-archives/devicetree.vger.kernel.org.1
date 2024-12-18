@@ -1,192 +1,351 @@
-Return-Path: <devicetree+bounces-132291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDA2A9F660F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 13:38:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DFF09F6614
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 13:39:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50E011888CBA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:38:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CDF216A444
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:39:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 789B51ACEDC;
-	Wed, 18 Dec 2024 12:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F741ACEC5;
+	Wed, 18 Dec 2024 12:38:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ORVQckdG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LsecNBgL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D2651ACEB9
-	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 12:38:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043971ACEBB;
+	Wed, 18 Dec 2024 12:38:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734525516; cv=none; b=bDGrSjnptqBgthIhbXBhfUjOP75IGKQC+hNmYy3+hi4Z+UuloKiS/QQPjA35k4yMf/5qIt3y+LD56LK9RrQoE6ZomXB6PMxb9pBwRN3xw/UfM4TkgreGqLP03SL4JN1dYUK9Hog0g2xCZp/yXa35mYHatXdkoL5/rYXUqzE3sNQ=
+	t=1734525531; cv=none; b=qx/QZAH/ECL0EZr/a/SpZ/HzOL/gWz1kNZEtGrwIqALQtKsy9Gdr/BxptNnws/zKU7JK6vgnUgfISeJBLyxBeYaz7BQgom+cJFvVHVoC+QZ+/XynhZ+KMrjleY5gGVtVHYgo3gAr7efiTtDpUJ4H79eM73xB6wc6nrjUfLF8MbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734525516; c=relaxed/simple;
-	bh=ny8AZFxGArSK4lKyOaV5lQtUZhTpx9qpDZsMP3LtNtg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=piwxfUjUTgRyl3ywWbxWKZ36W0NVWyzVC9LE0Y6EwK6IyV8rgoJSl5VZGFTtwGHZDijh8eSegFJk+TSr5OqjiAH75yAKLBuncGDJrPvUD+gEef0lp1McdRqwmbah4FUpy62WLW3I4yE7MjLhPkyYCOGpWMHoOOkPUznR1QPQNNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ORVQckdG; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-38636875da4so501312f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 04:38:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734525513; x=1735130313; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=3DZgOSN0lNpblvMz9+E1HszL54oJNT4pvL2gUwIgVEE=;
-        b=ORVQckdGQnxoax6CTBl2wsTmSnNAxJ67f2Jig1bqFzOoaKmOnQf9qhp5wOA8Z4UbXC
-         /98FWnTzkQOiA4ftppDEK8VLd2KUNoBpm8wfluW6OqV9qqDHXQEscxVwfNSCxU5olarT
-         osGMYGAj6hbYiu2pW+KTQ3q4l3kQr5s6W9zR7Hvxx2LNxZQLIRCYrjdhlQIkhKzKDfWC
-         s7XfwZ6pXoMFFFHexLQVwTPBSZp8Y2zffj2cNqkIyj7/bBLujJsEpQr2W65NBDxboI5Z
-         CiX4DqwNmkiWmAzxSF7GZtA2tP2gRXvKVa3LfP8bf8hdhD/Uuifj9EIzTtzZBoA5GWI4
-         DhhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734525513; x=1735130313;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3DZgOSN0lNpblvMz9+E1HszL54oJNT4pvL2gUwIgVEE=;
-        b=JDVWLEN5io6lg96r5HXZ2wlruPgjAwFmFKHhs6EcV5tW7CDJeM1sFknVBSD0tB8BpU
-         WIYzXkBc0Z0b5WFNWe/uqTYE+A4ztcIpUeRSg/28mZmBc8W1l8tPlFGkSfeVY5/8D32Z
-         HEoA5u3I/vWGZctScPakrmCqVU0bn6rzt0MBWx2VUGZgwKB9M3oUJxQt/ZKx16eJq7fU
-         ZkEDHuTSa2UBj5i0rk1Q4udn8DYEnSznV/Bq2fYKI839pQ0jBNdRvD0Zs6lXnDCOIExW
-         SOtJPwETuvEodl25PnxAnIPgnpzoaiW5/24xliuBVhP3PPXvMesV1o0ozHCzkoZLpfIf
-         DpwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUINHc8Li3QCnT9R6TX8bzWs0sXSYFw2Syvbkh4vqrj37E2AaFwF967HARkQSbYD2PfcJb+MdnDS57a@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQtKL0+wYkgC3tvtu79LmUWWjROKQQm7f4LIvhawKpjDHAvL1q
-	Kfr44EmWmf59JyCMuFHiaas4+n6EpDOBPMuScmZxSmGOnmNjSTR1ha08ZLlQLTA=
-X-Gm-Gg: ASbGncu8oazBU4Azkdw8nUpexzxXYand2Xc8euEt3UbN1SQyURT0ue4ac/fpqZWVNxU
-	mSQksvTXG6vAwf/lTivxAYKTjoBPJmnrtgoqVUVylxnWYMelT1ynAdbL6rZiFl1L1M5oeJ8J1Zn
-	jOqWpdiIy6qsD3UovzWZtRZyk4drbVVCCmvLLpPUEAJ8u4AcarWxvBGkGMSWNFCrz+ow9qIwy/I
-	M5GZW2EzMo0OUcE5uzDJLTnOXQsU82ojtkDbkp1rQ801wDAl0eKDuoEOK+nQhaN0fnhrjpjWYk/
-X-Google-Smtp-Source: AGHT+IGZ2XfCQIns+N5v5d09KDbIQcXMqvYrvtPujRqrDjoUz23a369nVmkZdoEpblXux47osJXWjw==
-X-Received: by 2002:a05:600c:1396:b0:435:1243:c542 with SMTP id 5b1f17b1804b1-43655341cfbmr9293905e9.1.1734525512845;
-        Wed, 18 Dec 2024 04:38:32 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.165])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43656b3b2a4sm18841915e9.27.2024.12.18.04.38.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Dec 2024 04:38:32 -0800 (PST)
-Message-ID: <0a265953-0c6a-4b8b-a972-a59ec4755474@linaro.org>
-Date: Wed, 18 Dec 2024 13:38:30 +0100
+	s=arc-20240116; t=1734525531; c=relaxed/simple;
+	bh=2OTsU3J7r7LPomFBxDI1YLlstwgCJhxCK3/OJyvPlqc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JEdYikpaKhd0OAAQnktUmdYTuxtrvkBJjFBRyQyff4ecBBQMBljd0Bh9+pGZP0lyKxje2DNqjHdddQyRmbs449hNwzhCoiPJUH+Wd/MDvKsFDk9q7yDRIwVfwQTh9qoNmiNeidZyTAz/qU9NHjmQeF2TchTMQIxKRBl7mm1eyD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LsecNBgL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FDD8C4CECE;
+	Wed, 18 Dec 2024 12:38:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734525530;
+	bh=2OTsU3J7r7LPomFBxDI1YLlstwgCJhxCK3/OJyvPlqc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LsecNBgLDQ5LlWd5JhkivZx18dnOSf+IX1sKq+MD3kL7mXr6kuTGxDlwdVUito5eo
+	 7CnSomWbWw/c0Vd5AvMh//eNicJPycWSC4/oL0ZQYP0vxsL+QmdJDXxCQcJkmO7QZZ
+	 9fT1o6iAaIx1ryuXJJfhz0aN2HzxS2Cp1m5fnxsxMiJWHwqVMOyeZWoi+bLSS4s8Q8
+	 DIlfUOEcNNddaC4alrbWxLMMIdIvEDVnYxV9py7LhtGHMKQIkA7UrYfxANkR0NQs0o
+	 mDi84lBa797/pV7apnqbvfbQWLwAB/KxgtboC1rcs7AFzFOcYntzJ/khxF+6TJx/Bn
+	 7NyRrP5uX4/ag==
+Date: Wed, 18 Dec 2024 13:38:41 +0100
+From: Danilo Krummrich <dakr@kernel.org>
+To: =?iso-8859-1?Q?Beno=EEt?= du Garreau <benoit@dugarreau.fr>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
+	robh@kernel.org, daniel.almeida@collabora.com, saravanak@google.com,
+	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
+	chrisi.schrefl@gmail.com, paulmck@kernel.org,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	rcu@vger.kernel.org, Wedson Almeida Filho <wedsonaf@gmail.com>
+Subject: Re: [PATCH v6 06/16] rust: add `Revocable` type
+Message-ID: <Z2LCUWdEERRodZpx@pollux>
+References: <20241212163357.35934-7-dakr@kernel.org>
+ <20241218122020.282671-1-benoit@dugarreau.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] media: dt-bindings: qcom-venus: Deprecate
- video-decoder and video-encoder where applicable
-To: Renjiang Han <quic_renjiang@quicinc.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: quic_vnagar@quicinc.com, quic_dikshita@quicinc.com,
- konradybcio@kernel.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Stanimir Varbanov <stanimir.varbanov@linaro.org>
-References: <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-0-ef7e5f85f302@linaro.org>
- <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-3-ef7e5f85f302@linaro.org>
- <283a54b2-6e00-4d3a-95a3-df4a06bc1292@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <283a54b2-6e00-4d3a-95a3-df4a06bc1292@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241218122020.282671-1-benoit@dugarreau.fr>
 
-On 18/12/2024 11:46, Renjiang Han wrote:
+On Wed, Dec 18, 2024 at 01:20:20PM +0100, Benoît du Garreau wrote:
+> On Thu, 12 Dec 2024 17:33:37 +0100 Danilo Krummrich <dakr@kernel.org> wrote:
 > 
-> On 12/9/2024 7:52 PM, Bryan O'Donoghue wrote:
->> For the list of yaml files here the video-decoder and video-encoder nodes
->> provide nothing more than configuration input for the driver. These entries
->> do not in fact impart hardware specific data and should be deprecated.
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
+> > From: Wedson Almeida Filho <wedsonaf@gmail.com>
+> >
+> > Revocable allows access to objects to be safely revoked at run time.
+> >
+> > This is useful, for example, for resources allocated during device probe;
+> > when the device is removed, the driver should stop accessing the device
+> > resources even if another state is kept in memory due to existing
+> > references (i.e., device context data is ref-counted and has a non-zero
+> > refcount after removal of the device).
+> >
+> > Signed-off-by: Wedson Almeida Filho <wedsonaf@gmail.com>
+> > Co-developed-by: Danilo Krummrich <dakr@kernel.org>
+> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> > ---
+> >  rust/kernel/lib.rs       |   1 +
+> >  rust/kernel/revocable.rs | 223 +++++++++++++++++++++++++++++++++++++++
+> >  2 files changed, 224 insertions(+)
+> >  create mode 100644 rust/kernel/revocable.rs
+> >
+> > diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+> > index 66149ac5c0c9..5702ce32ec8e 100644
+> > --- a/rust/kernel/lib.rs
+> > +++ b/rust/kernel/lib.rs
+> > @@ -60,6 +60,7 @@
+> >  pub mod prelude;
+> >  pub mod print;
+> >  pub mod rbtree;
+> > +pub mod revocable;
+> >  pub mod security;
+> >  pub mod seq_file;
+> >  pub mod sizes;
+> > diff --git a/rust/kernel/revocable.rs b/rust/kernel/revocable.rs
+> > new file mode 100644
+> > index 000000000000..e464d59eb6b5
+> > --- /dev/null
+> > +++ b/rust/kernel/revocable.rs
+> > @@ -0,0 +1,223 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +//! Revocable objects.
+> > +//!
+> > +//! The [`Revocable`] type wraps other types and allows access to them to be revoked. The existence
+> > +//! of a [`RevocableGuard`] ensures that objects remain valid.
+> > +
+> > +use crate::{bindings, prelude::*, sync::rcu, types::Opaque};
+> > +use core::{
+> > +    marker::PhantomData,
+> > +    ops::Deref,
+> > +    ptr::drop_in_place,
+> > +    sync::atomic::{AtomicBool, Ordering},
+> > +};
+> > +
+> > +/// An object that can become inaccessible at runtime.
+> > +///
+> > +/// Once access is revoked and all concurrent users complete (i.e., all existing instances of
+> > +/// [`RevocableGuard`] are dropped), the wrapped object is also dropped.
+> > +///
+> > +/// # Examples
+> > +///
+> > +/// ```
+> > +/// # use kernel::revocable::Revocable;
+> > +///
+> > +/// struct Example {
+> > +///     a: u32,
+> > +///     b: u32,
+> > +/// }
+> > +///
+> > +/// fn add_two(v: &Revocable<Example>) -> Option<u32> {
+> > +///     let guard = v.try_access()?;
+> > +///     Some(guard.a + guard.b)
+> > +/// }
+> > +///
+> > +/// let v = KBox::pin_init(Revocable::new(Example { a: 10, b: 20 }), GFP_KERNEL).unwrap();
+> > +/// assert_eq!(add_two(&v), Some(30));
+> > +/// v.revoke();
+> > +/// assert_eq!(add_two(&v), None);
+> > +/// ```
+> > +///
+> > +/// Sample example as above, but explicitly using the rcu read side lock.
+> > +///
+> > +/// ```
+> > +/// # use kernel::revocable::Revocable;
+> > +/// use kernel::sync::rcu;
+> > +///
+> > +/// struct Example {
+> > +///     a: u32,
+> > +///     b: u32,
+> > +/// }
+> > +///
+> > +/// fn add_two(v: &Revocable<Example>) -> Option<u32> {
+> > +///     let guard = rcu::read_lock();
+> > +///     let e = v.try_access_with_guard(&guard)?;
+> > +///     Some(e.a + e.b)
+> > +/// }
+> > +///
+> > +/// let v = KBox::pin_init(Revocable::new(Example { a: 10, b: 20 }), GFP_KERNEL).unwrap();
+> > +/// assert_eq!(add_two(&v), Some(30));
+> > +/// v.revoke();
+> > +/// assert_eq!(add_two(&v), None);
+> > +/// ```
+> > +#[pin_data(PinnedDrop)]
+> > +pub struct Revocable<T> {
+> > +    is_available: AtomicBool,
+> > +    #[pin]
+> > +    data: Opaque<T>,
+> > +}
+> > +
+> > +// SAFETY: `Revocable` is `Send` if the wrapped object is also `Send`. This is because while the
+> > +// functionality exposed by `Revocable` can be accessed from any thread/CPU, it is possible that
+> > +// this isn't supported by the wrapped object.
+> > +unsafe impl<T: Send> Send for Revocable<T> {}
+> > +
+> > +// SAFETY: `Revocable` is `Sync` if the wrapped object is both `Send` and `Sync`. We require `Send`
+> > +// from the wrapped object as well because  of `Revocable::revoke`, which can trigger the `Drop`
+> > +// implementation of the wrapped object from an arbitrary thread.
+> > +unsafe impl<T: Sync + Send> Sync for Revocable<T> {}
+> > +
+> > +impl<T> Revocable<T> {
+> > +    /// Creates a new revocable instance of the given data.
+> > +    pub fn new(data: impl PinInit<T>) -> impl PinInit<Self> {
+> > +        pin_init!(Self {
+> > +            is_available: AtomicBool::new(true),
+> > +            data <- Opaque::pin_init(data),
+> > +        })
+> > +    }
+> > +
+> > +    /// Tries to access the revocable wrapped object.
+> > +    ///
+> > +    /// Returns `None` if the object has been revoked and is therefore no longer accessible.
+> > +    ///
+> > +    /// Returns a guard that gives access to the object otherwise; the object is guaranteed to
+> > +    /// remain accessible while the guard is alive. In such cases, callers are not allowed to sleep
+> > +    /// because another CPU may be waiting to complete the revocation of this object.
+> > +    pub fn try_access(&self) -> Option<RevocableGuard<'_, T>> {
+> > +        let guard = rcu::read_lock();
+> > +        if self.is_available.load(Ordering::Relaxed) {
+> > +            // Since `self.is_available` is true, data is initialised and has to remain valid
+> > +            // because the RCU read side lock prevents it from being dropped.
+> > +            Some(RevocableGuard::new(self.data.get(), guard))
+> > +        } else {
+> > +            None
+> > +        }
+> > +    }
+> > +
+> > +    /// Tries to access the revocable wrapped object.
+> > +    ///
+> > +    /// Returns `None` if the object has been revoked and is therefore no longer accessible.
+> > +    ///
+> > +    /// Returns a shared reference to the object otherwise; the object is guaranteed to
+> > +    /// remain accessible while the rcu read side guard is alive. In such cases, callers are not
+> > +    /// allowed to sleep because another CPU may be waiting to complete the revocation of this
+> > +    /// object.
+> > +    pub fn try_access_with_guard<'a>(&'a self, _guard: &'a rcu::Guard) -> Option<&'a T> {
+> > +        if self.is_available.load(Ordering::Relaxed) {
+> > +            // SAFETY: Since `self.is_available` is true, data is initialised and has to remain
+> > +            // valid because the RCU read side lock prevents it from being dropped.
+> > +            Some(unsafe { &*self.data.get() })
+> > +        } else {
+> > +            None
+> > +        }
+> > +    }
+> > +
+> > +    /// # Safety
+> > +    ///
+> > +    /// Callers must ensure that there are no more concurrent users of the revocable object.
+> > +    unsafe fn revoke_internal<const SYNC: bool>(&self) {
+> > +        if self
+> > +            .is_available
+> > +            .compare_exchange(true, false, Ordering::Relaxed, Ordering::Relaxed)
+> > +            .is_ok()
+> > +        {
+> 
+> The comment I made in a previous series was somehow lost, so I put it back here:
+> You can use `self.is_available.swap(false, Ordering::Relaxed)` instead of a CAS,
+> it is IMO clearer and optimizes better on some architectures.
 
+Thanks for bringing this up again!
 
-Please kindly trim the replies from unnecessary context. It makes it
-much easier to find new content.
-
->> @@ -132,12 +132,4 @@ examples:
->>           resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
->>                    <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
->>           reset-names = "bus", "core";
->> -
->> -        video-decoder {
->> -            compatible = "venus-decoder";
->> -        };
->> -
->> -        video-encoder {
->> -            compatible = "venus-encoder";
->> -        };
->>       };
-> It is working fine on QCS615.
-> Tested-by: Renjiang Han <quic_renjiang@quicinc.com>
-
-
-How? How is it possible to test a binding on real hardware? To my
-knowledge it is impossible, so I really would like to see explanation of
-this tag.
-
-I recently voiced my concerns that I really dislike tested-by tags on
-bindings, because they are fake or not accurate. Story continues...
-
-
-
-Best regards,
-Krzysztof
+> 
+> > +            if SYNC {
+> > +                // SAFETY: Just an FFI call, there are no further requirements.
+> > +                unsafe { bindings::synchronize_rcu() };
+> > +            }
+> > +
+> > +            // SAFETY: We know `self.data` is valid because only one CPU can succeed the
+> > +            // `compare_exchange` above that takes `is_available` from `true` to `false`.
+> > +            unsafe { drop_in_place(self.data.get()) };
+> > +        }
+> > +    }
+> > +
+> > +    /// Revokes access to and drops the wrapped object.
+> > +    ///
+> > +    /// Access to the object is revoked immediately to new callers of [`Revocable::try_access`],
+> > +    /// expecting that there are no concurrent users of the object.
+> > +    ///
+> > +    /// # Safety
+> > +    ///
+> > +    /// Callers must ensure that there are no more concurrent users of the revocable object.
+> > +    pub unsafe fn revoke_nosync(&self) {
+> > +        // SAFETY: By the safety requirement of this function, the caller ensures that nobody is
+> > +        // accessing the data anymore and hence we don't have to wait for the grace period to
+> > +        // finish.
+> > +        unsafe { self.revoke_internal::<false>() }
+> > +    }
+> > +
+> > +    /// Revokes access to and drops the wrapped object.
+> > +    ///
+> > +    /// Access to the object is revoked immediately to new callers of [`Revocable::try_access`].
+> > +    ///
+> > +    /// If there are concurrent users of the object (i.e., ones that called
+> > +    /// [`Revocable::try_access`] beforehand and still haven't dropped the returned guard), this
+> > +    /// function waits for the concurrent access to complete before dropping the wrapped object.
+> > +    pub fn revoke(&self) {
+> > +        // SAFETY: By passing `true` we ask `revoke_internal` to wait for the grace period to
+> > +        // finish.
+> > +        unsafe { self.revoke_internal::<true>() }
+> > +    }
+> > +}
+> > +
+> > +#[pinned_drop]
+> > +impl<T> PinnedDrop for Revocable<T> {
+> > +    fn drop(self: Pin<&mut Self>) {
+> > +        // Drop only if the data hasn't been revoked yet (in which case it has already been
+> > +        // dropped).
+> > +        // SAFETY: We are not moving out of `p`, only dropping in place
+> > +        let p = unsafe { self.get_unchecked_mut() };
+> > +        if *p.is_available.get_mut() {
+> > +            // SAFETY: We know `self.data` is valid because no other CPU has changed
+> > +            // `is_available` to `false` yet, and no other CPU can do it anymore because this CPU
+> > +            // holds the only reference (mutable) to `self` now.
+> > +            unsafe { drop_in_place(p.data.get()) };
+> > +        }
+> > +    }
+> > +}
+> > +
+> > +/// A guard that allows access to a revocable object and keeps it alive.
+> > +///
+> > +/// CPUs may not sleep while holding on to [`RevocableGuard`] because it's in atomic context
+> > +/// holding the RCU read-side lock.
+> > +///
+> > +/// # Invariants
+> > +///
+> > +/// The RCU read-side lock is held while the guard is alive.
+> > +pub struct RevocableGuard<'a, T> {
+> > +    data_ref: *const T,
+> > +    _rcu_guard: rcu::Guard,
+> > +    _p: PhantomData<&'a ()>,
+> > +}
+> > +
+> > +impl<T> RevocableGuard<'_, T> {
+> > +    fn new(data_ref: *const T, rcu_guard: rcu::Guard) -> Self {
+> > +        Self {
+> > +            data_ref,
+> > +            _rcu_guard: rcu_guard,
+> > +            _p: PhantomData,
+> > +        }
+> > +    }
+> > +}
+> > +
+> > +impl<T> Deref for RevocableGuard<'_, T> {
+> > +    type Target = T;
+> > +
+> > +    fn deref(&self) -> &Self::Target {
+> > +        // SAFETY: By the type invariants, we hold the rcu read-side lock, so the object is
+> > +        // guaranteed to remain valid.
+> > +        unsafe { &*self.data_ref }
+> > +    }
+> > +}
+> > --
+> > 2.47.1
+> >
+> >
+> 
+> Benoît du Garreau
 
