@@ -1,110 +1,126 @@
-Return-Path: <devicetree+bounces-132095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BCD59F5BED
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 01:57:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E20D9F5C0E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 02:08:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B67B0167828
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 00:57:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D31A16843B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 01:08:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 516D81E529;
-	Wed, 18 Dec 2024 00:57:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7CC1DFF7;
+	Wed, 18 Dec 2024 01:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="CCrFxfLs"
+	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="DOfJAVBb";
+	dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b="UyuIQntv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.5])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEE772572;
-	Wed, 18 Dec 2024 00:57:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.5
+Received: from mx0a-00230701.pphosted.com (mx0a-00230701.pphosted.com [148.163.156.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD480DDBB;
+	Wed, 18 Dec 2024 01:08:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734483463; cv=none; b=syr8G0RTGyYEZYdFNB36RcqgLPWwdT7TnDSHyzi2G7Dk6IBmx4o87epPvOfovN2VQOsIzWx+FF8U9PjcR7Az6tFuwOm24QPiyI1QGJGuFGOvzyjerc5cLo9wfK0aKK1+xDA6o8fHUms0ByrlVwbbMvPw614c4LdG58YkcZ7Z91k=
+	t=1734484093; cv=none; b=UR9k+7IBQ/K5h5Ixv+4Tp8IcgsZbpwBRek/NZKDCnviZyabSk/wdmjjUKp8doNtT56I/duEv5T2U94rff2G+GHHG1+LAZ3uwMSA5EB6yLmgiClM9PI5/3i+UZ8eKKO1WKKV08KLIXFFToqRpoRO2t/GEXZpMougslKsR6BV1o0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734483463; c=relaxed/simple;
-	bh=NuE+k4mRNS5zriJQH1szOEbh2OQG3C1KDJ6y0/T+qgo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=YYwbCwvtwbpcm+q2U9AO5j9CyIF5JeRBgjjJV5b4g9xk2qGWZMT+mcNL1t38aDMsDUwq/TdKBKwFKImkEYSAoQmPkuUh2/sUsUEQ0BR8N+gP6o6o7aoFTh5a0jLPSnvUgAQ6YYNF7UosZHSb89bra6coPKBz9wI4EnaCZ6Y8fGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=CCrFxfLs reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
-	Message-ID; bh=WVQ1t6XbXjKcPHRJLel/oXZDB4vT3usNT7E4mGCaWbo=; b=C
-	CrFxfLsQl7/ZdHFUhT+Oiv6NIXnXWNK/3ZReX1pGDma1FKL+C4NDYyy25XHI7BeI
-	LwQbALMaRD1emzMVR2Yp0G5yUSxlM0dMEnTDJE1rKt8uTRG8xsuo9UXgAgGdnJxu
-	cIz+GDTe85g5XLSUsYkjgQiyb9tz8f7EQKOVA1l5qU=
-Received: from andyshrk$163.com ( [58.22.7.114] ) by
- ajax-webmail-wmsvr-40-123 (Coremail) ; Wed, 18 Dec 2024 08:55:48 +0800
- (CST)
-Date: Wed, 18 Dec 2024 08:55:48 +0800 (CST)
-From: "Andy Yan" <andyshrk@163.com>
-To: "Daniel Stone" <daniel@fooishbar.org>
-Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org, 
-	s.hauer@pengutronix.de, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, derek.foreman@collabora.com, 
-	detlev.casanova@collabora.com, "Andy Yan" <andy.yan@rock-chips.com>, 
-	"Michael Riesch" <michael.riesch@wolfvision.net>, 
-	"Sebastian Reichel" <sebastian.reichel@collabora.com>
-Subject: Re:Re: Re: [PATCH v6 08/16] drm/rockchip: vop2: Support 32x8
- superblock afbc
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
- Copyright (c) 2002-2024 www.mailtech.cn 163com
-In-Reply-To: <CAPj87rMfFXkbyh7UEJQw4JV1R18KLXC3GyF0CznrN1k3UdL0Lw@mail.gmail.com>
-References: <20241214081719.3330518-1-andyshrk@163.com>
- <20241214081719.3330518-9-andyshrk@163.com>
- <CAPj87rOjqZdyht2y8MK7gVyk_eqEzk1Sy0DcxFtQRuhrHQ_oxA@mail.gmail.com>
- <165af58a.697.193d2100239.Coremail.andyshrk@163.com>
- <CAPj87rMfFXkbyh7UEJQw4JV1R18KLXC3GyF0CznrN1k3UdL0Lw@mail.gmail.com>
-X-NTES-SC: AL_Qu2YBviTvEsv7iOfZekZnEobh+Y5UcK2s/ki2YFXN5k0kSTd/Q0jbG5RIFzK/PmpCAemoQmKVD9t6cdjQpdIUb8uN2gn21BCSQHSCgwDyDUQ
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1734484093; c=relaxed/simple;
+	bh=MFhkfdCUAnhZiOz9fI8eJ/eCR8/PSMUmfyXp1i0ZRcg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=cqNnkip171OejBZWPMP++ZeeQ4d2VjkzPvR2c4XAVPsFqBpYc51NHdlwYpS2W3sQw7oey8xv8sgL1y+4V34zFU5R3i7WsDk3rqX/nlQtTVFQfQkpDUCAmUUucDWAIoWgdC26qRP3tbdvLJ8IfVJMDZ4B+rtBnKt4XNZscNoauE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com; spf=pass smtp.mailfrom=synopsys.com; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=DOfJAVBb; dkim=pass (2048-bit key) header.d=synopsys.com header.i=@synopsys.com header.b=UyuIQntv; arc=none smtp.client-ip=148.163.156.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=synopsys.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=synopsys.com
+Received: from pps.filterd (m0297266.ppops.net [127.0.0.1])
+	by mx0a-00230701.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BHIJpcq005630;
+	Tue, 17 Dec 2024 17:07:41 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com; h=
+	cc:date:from:in-reply-to:message-id:references:subject:to; s=
+	pfptdkimsnps; bh=ddACxBYX6LvJUJfWlNDmo/sGoi5P3JB+svtrxKk/MtU=; b=
+	DOfJAVBb01OTKm0+4T57L3q7u7YI/FZ9m7veDk/7nRUqLA1aY8kWNMepa7cQ3zBD
+	JSppoj/d8nbgCVbfivhDPKg61KO4U0w1f/tMS1fx/YL466R5jCPmAFwJ8TAjfY2K
+	qafqugn1Lumxbyj0G1S8r8V7of9Xt0iMiPKmRzrG5GzLBje8a5C7j9hEofPVk0Sc
+	A1yFpd5J4PdHAHOYuhn7EgrAakmp2CXAnt4So/OPXIxM1NV+PUhZlEXuft5Nnf5d
+	ZutCT83WmV7tl6ktSq5NhwLUk1n1L322cjb+KGFb9RwPP4wMY4B6nwvvizStHnPA
+	cjnLkNgyqyToGdpIwtgzdQ==
+Received: from smtprelay-out1.synopsys.com (smtprelay-out1.synopsys.com [149.117.87.133])
+	by mx0a-00230701.pphosted.com (PPS) with ESMTPS id 43kefyhk7j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 17 Dec 2024 17:07:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+	t=1734484060; bh=MFhkfdCUAnhZiOz9fI8eJ/eCR8/PSMUmfyXp1i0ZRcg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=UyuIQntvOeHr0YjxNi0fvsRZE50CYwh6gx6FuAp0S2I87FSj4I29HtJ7G7/MP4pU1
+	 ngnFL+d2bxuUBUoEk/Yxhai9hErZOKNed02dawnixpcF3YpU2As+wuU/Dtqxhim5UR
+	 kmhe/JN9kwhfLWF67v0dIET+l57Gi0CXhlUCmUTpSYJFhr2uGnJOmki6mhF2Ct0ZZk
+	 9JJk2CU7atnzBskl5Ov6XwyguizLBt1DUigPE7ChPZvQwvSL2Jqdp7Kqwkvj38gFdt
+	 4wHZqwLPNd1Tez5bHaxKVcZ2ydVenT+n9NTRUdaG+z1C6ZeXNqY7lpUkjEowFmWR1s
+	 IGP6FB3/itJSQ==
+Received: from mailhost.synopsys.com (eudc-mailhost2.synopsys.com [10.213.161.17])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+	 client-signature RSA-PSS (2048 bits) client-digest SHA256)
+	(Client CN "mailhost.synopsys.com", Issuer "SNPSica2" (verified OK))
+	by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 9573C40147;
+	Wed, 18 Dec 2024 01:07:38 +0000 (UTC)
+Received: from stormcs515.internal.synopsys.com (stormcs515.eudc.maas.synopsys.com [10.212.40.42])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mailhost.synopsys.com (Postfix) with ESMTPSA id 1AE71C0A9B;
+	Wed, 18 Dec 2024 01:07:36 +0000 (UTC)
+X-SNPS-Relay: synopsys.com
+From: "Miao.Zhu" <Miao.Zhu@synopsys.com>
+To: gregkh@linuxfoundation.org, robh@kernel.org, xu.yang_2@nxp.com,
+        andre.draszik@linaro.org, dan.carpenter@linaro.org,
+        emanuele.ghidoli@toradex.com, heikki.krogerus@linux.intel.com,
+        m.felsch@pengutronix.de, rdbabiera@google.com,
+        u.kleine-koenig@baylibre.com, conor+dt@kernel.org, jun.li@nxp.com
+Cc: "Miao.Zhu" <Miao.Zhu@synopsys.com>, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Jianheng.Zhang@synopsys.com, James.Li1@synopsys.com,
+        Martin.McKenny@synopsys.com
+Subject: [PATCH v2 0/2] usb: typec: tcpci: Make the driver be compatible with TCPCI Spec
+Date: Wed, 18 Dec 2024 02:07:16 +0100
+Message-Id: <20241218010718.224530-1-miao@synopsys.com>
+X-Mailer: git-send-email 2.9.3
+In-Reply-To: <20241202054314.k6dt7uhnv2kavea4@hippo>
+References: <20241202054314.k6dt7uhnv2kavea4@hippo>
+X-Proofpoint-GUID: cxTTWV_-oTDOK0RyorjrucWixDvGN0QN
+X-Authority-Analysis: v=2.4 cv=IqPkcK/g c=1 sm=1 tr=0 ts=6762205c cx=c_pps a=t4gDRyhI9k+KZ5gXRQysFQ==:117 a=t4gDRyhI9k+KZ5gXRQysFQ==:17 a=N6atwU2pGFX-QpmD:21 a=RZcAm9yDv7YA:10 a=qPHU084jO2kA:10 a=Yw8pcWr8A_zg7vjb-sMA:9
+X-Proofpoint-ORIG-GUID: cxTTWV_-oTDOK0RyorjrucWixDvGN0QN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_active_cloned_notspam policy=outbound_active_cloned score=0
+ adultscore=0 suspectscore=0 clxscore=1011 priorityscore=1501 mlxscore=0
+ phishscore=0 lowpriorityscore=0 bulkscore=0 spamscore=0 impostorscore=0
+ mlxlogscore=964 malwarescore=0 classifier=spam authscore=0 adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412180005
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Message-ID: <32246002.9ef.193d7438b96.Coremail.andyshrk@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:eygvCgDX_3aUHWJnKQRCAA--.2254W
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0g25XmdiE2lfZwAEs7
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-CkhpICBEYW5pZWwsCgpBdCAyMDI0LTEyLTE3IDIwOjA3OjU0LCAiRGFuaWVsIFN0b25lIiA8ZGFu
-aWVsQGZvb2lzaGJhci5vcmc+IHdyb3RlOgo+SGkgQW5keSwKPgo+T24gVHVlLCAxNyBEZWMgMjAy
-NCBhdCAwMDo0MSwgQW5keSBZYW4gPGFuZHlzaHJrQDE2My5jb20+IHdyb3RlOgo+PiBBdCAyMDI0
-LTEyLTE2IDIxOjA2OjA3LCAiRGFuaWVsIFN0b25lIiA8ZGFuaWVsQGZvb2lzaGJhci5vcmc+IHdy
-b3RlOgo+PiA+T24gU2F0LCAxNCBEZWMgMjAyNCBhdCAwODoxOCwgQW5keSBZYW4gPGFuZHlzaHJr
-QDE2My5jb20+IHdyb3RlOgo+PiA+PiBUaGlzIGlzIHRoZSBvbmx5IGFmYmMgZm9ybWF0IHN1cHBv
-cnRlZCBieSB0aGUgdXBjb21pbmcKPj4gPj4gVk9QIGZvciByazM1NzYuCj4+ID4+Cj4+ID4+IEFk
-ZCBzdXBwb3J0IGZvciBpdC4KPj4gPgo+PiA+T3V0IG9mIGludGVyZXN0LCBob3cgd2FzIHRoaXMg
-dGVzdGVkPyBUaGVyZSBpcyBubyAzMng4IG1vZGlmaWVyIGluIHRoZQo+PiA+Zm9ybWF0IGxpc3Qg
-aW4gZm9ybWF0X21vZGlmaWVyc19hZmJjW10sIHNvIGl0IHNlZW1zIGxpa2UgaXQgc2hvdWxkbid0
-Cj4+ID5iZSBwb3NzaWJsZSB0byBnZXQgYSAzMng4IGJ1ZmZlciBvbiBhIHBsYW5lIGF0IGFsbC4K
-Pj4KPj4gVGhlIDMyeDggbW9kaWZpZXIgIGFkZGVkIGluIFBBVENIIDE2LzE2Ogo+Pgo+PiArLyog
-dXNlZCBmcm9tIHJrMzU3NiwgYWZiYyAzMio4IGhhbGYgbW9kZSAqLwo+PiArc3RhdGljIGNvbnN0
-IHVpbnQ2NF90IGZvcm1hdF9tb2RpZmllcnNfcmszNTc2X2FmYmNbXSA9IHsKPj4gKyAgICAgICBE
-Uk1fRk9STUFUX01PRF9BUk1fQUZCQyhBRkJDX0ZPUk1BVF9NT0RfQkxPQ0tfU0laRV8zMng4IHwK
-Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBBRkJDX0ZPUk1BVF9NT0RfU1BMSVQp
-LAo+PiArCj4KPkhtbW0sIHRoYXQncyBzdHJhbmdlOyBJIGFwcGxpZWQgdGhlIHdob2xlIHNlcmll
-cyB3aXRoIGI0IGJ1dCB3YXNuJ3QKPnNlZWluZyB0aGF0IGJsb2NrIGRlZmluZWQuIE1heWJlIGEg
-YmFkIGNvbmZsaWN0IHJlc29sdXRpb24uIFNvcnJ5IGZvcgo+dGhlIGNvbmZ1c2lvbi4KCkkgdGhp
-bmsgdGhhdCBtaWdodCBoYXZlIGJlZW4gY2F1c2VkIGJ5IG15IG1pc3Rha2UuIEkgaW5pdGlhbGx5
-IHNlbnQgdGhlIFY2IHZlcnNpb24gYXMgYSAtaW4tcmVwbHkgdG8gdGhlIFY1IHZlcnNpb24uCldo
-ZW4gSSByZWFsaXplZCB0aGUgbWlzdGFrZSwgYSBwYXJ0IG9mIGl0IGhhZCBhbHJlYWR5IGJlZW4g
-c2VudCBvdXQuIFRoZW4gSSBzZW50IHRoZSBlbnRpcmUgVjYgc2VyaWVzIHNlcGFyYXRlbHkKYWdh
-aW4uIE1heWJlIHRoYXQgbWFrZSBiNCBhbmQgbG9yZSBjb25mdXNlZOOAggoKPgo+PiBJIHdyaXRl
-IGFuIG92bHRlc3RbMF0gdG9vbCB3aGljaCBjYW4gdGFrZSBsaW5lYXIvQUZCQyByZ2IveXV2IGRh
-dGEgZnJvbSBhIGZpbGUsIHRoZW4KPj4gY29tbWl0IHRvIGRybSBkcml2ZXIsIEkgdXNlIHRoaXMg
-dG9vbCBmb3IgbW9zdCBiYXNpYyBmb3JtYXQgdGVzdC4KPj4KPj4gQnV0IHdoZW4gdGVzdGVkIG9u
-IHdlc3RvbiwgSSBmb3VuZCB0aGF0IHdlc3RvbiBkb2VzIG5vdCB1c2UgdGhlIEFGQkMgZm9ybWF0
-IGZvciBkaXNwbGF5LAo+PiBkb24ndCBrbm93IHdoeS4KPgo+WW91J2xsIG5lZWQgYSBNZXNhIHRy
-ZWUgd2l0aCBlMGY0ODU2OGM3ZjIgaW5jbHVkZWQ7IGlmIHlvdSBoYXZlIHRoaXMKPnRoZW4gaXQg
-c2hvdWxkIGp1c3Qgd29yayBvdXQgb2YgdGhlIGJveC4KClRoYW5rcywgSSB3aWxsIGNoZWNrIGl0
-LgoKPgo+Q2hlZXJzLAo+RGFuaWVsCg==
+The tcpci driver doesn't fully follow the TCPCI Spec [R2.0 V1.0]
+even if it mentions this Spec in its comments.
+The changes make the driver be compatible with the TCPCI spec and
+won't impact existing HW.
+
+Miao Zhu (2):
+  usb: typec: tcpm: tcpci: Make the driver be compatible with the TCPCI
+    spec [Rev 2.0 Ver 1.0, October 2017]
+  dt-bindings: usb: ptn5110: add TCPC properties
+
+ .../devicetree/bindings/usb/nxp,ptn5110.yaml       |   5 +
+ drivers/usb/typec/tcpm/tcpci.c                     | 115 +++++++++++++++++----
+ include/linux/usb/tcpci.h                          |  11 ++
+ 3 files changed, 111 insertions(+), 20 deletions(-)
+
+-- 
+2.9.3
+
+base-commit: b86545e02e8c22fb89218f29d381fa8e8b91d815
 
