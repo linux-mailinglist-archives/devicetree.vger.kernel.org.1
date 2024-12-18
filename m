@@ -1,235 +1,197 @@
-Return-Path: <devicetree+bounces-132319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DBE59F68FC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 15:49:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCE859F690A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 15:50:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D74616687D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 14:45:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 275301881CE0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 14:48:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64D961B423A;
-	Wed, 18 Dec 2024 14:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B80AB1C5CDD;
+	Wed, 18 Dec 2024 14:48:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="AqEKUuHD"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="VKAuyiJe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011047.outbound.protection.outlook.com [52.101.70.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E3D9156238;
-	Wed, 18 Dec 2024 14:45:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734533155; cv=fail; b=jJ56hohJxcoSWqpxQRlaXMIC3i1526l2JOkZgvRk3ozLRIgzx/xWvdt2iGov0F0dfHWICB9K/kteWiF9ZXTHr5Ma74kGmK8LXD75UiI9UsezEfiRYOx8ye7wbW7ThqJ46GMr1nCmN+LcSDnNPHIc8pXqugbFZFQUfXJjjxk1k5k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734533155; c=relaxed/simple;
-	bh=R0gL+If/EiecOdVthaPELrkhDPGPXFgzqms33GtE3RQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=KyRjVupNDM1tU4RsGUQ7TOmseF6LmrEDuwsDmJZyclB4xqQRGckrUZceT9K/Cr46SVnP79Z7fpBnymKIJqt1iyjCApzMpW+4dLK+0OYG2C1eP1JdJz3VwMowdZhQlr05bZYqmHDA7GwmHW0/Lx4n5r8WfxPHGh54J0EZhybujYo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=AqEKUuHD; arc=fail smtp.client-ip=52.101.70.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cdMcD/qPi0dy3wXjVYt1fq4syW9VWhq4vOHg6gIn+cwci3Sm1/881aejivQppM0iQUPG+Ky7guqZS1cM/fZFzf2DCe49OV1/BJHVQGJmGyO0hooZK27r9ooJVkJDMqOApdUc8KsQBdRdreantGIvKf5U9R12KvBPTMYrcZq877oh57BB6mssuZ5lpEL17IYw8YjOiNkI+iIejDHimkX5337eztrnOZ3SKevM2vv6KGHvtoIHtP2m2r4uPkxi+exk4//mW5qdF3ln92kHoIyZay0Y0hBSNOSm7ATY7YhJKe/PID59eINZdY8gmGSKvlXOytPCr/dEBlF4OYcbeB1iIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=R0gL+If/EiecOdVthaPELrkhDPGPXFgzqms33GtE3RQ=;
- b=VbqQe4gEVRNtR273BGs/XVegICzwz0wCIuunvCELND15Y0FM08wE7d83/37QdAFgb5A4wDm37lI2T9A0v8xmMIfY3F/4OnvZZ8MMl+0an5gxF26UmU23VsvOPy33D08YbmD1fhgqO1b2oPri+L12oVt+rXv9WhPIQU5XqB/Cm00QmIQjkXU93yBC7Gf3SnDDxymqwBwxNdLmpzZtWlvIJdNM7Vk6bJxeloLuBSJGxb6WBDPVLkvgOVMKqqy9oL8z9ZzHmb/r7Vu/T0Mw2Z8FsRXatSQhdBP48P1mc7pJXcSnKpkV65ew8Sxphfgw6xj6sm/jMkYk9S0UuHiWuV5GCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=R0gL+If/EiecOdVthaPELrkhDPGPXFgzqms33GtE3RQ=;
- b=AqEKUuHDezweFcnQCL0UtgFqsGq5uQlv6UVSf6PygGN1VyFcAdwfeNBgYFkwohdV6ZlEc9uwwIzNb+3wlCBn9b2ssZpwxwxi+KYIUC4m7P6QlJMFSD3WVe3Ig49glGAFH4AgWoXYWD7H5KldomWKQWq4+50WeIHflMU0AOI+q0yeR29EaKiiAeW7851P8QSquTwuw2TYPIp7ag+xG5Q4G81nBQI/jpjMde1oAe8xEtXMqcITqk1EIO7y4nT6IMpna7pZgr0RkaYyrKrPiQoPt1Y8U6rn9JdPmqlQNj2xq/7jZ/MW30A1DxZsdgFtcLLiQJsCjHz0jCt+kUVCx/cbZA==
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
- by DB9PR10MB8196.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:4c1::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.12; Wed, 18 Dec
- 2024 14:45:50 +0000
-Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::baa6:3ada:fbe6:98f4]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::baa6:3ada:fbe6:98f4%7]) with mapi id 15.20.8272.005; Wed, 18 Dec 2024
- 14:45:50 +0000
-From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
-To: "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>, "afd@ti.com"
-	<afd@ti.com>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC: "jingoohan1@gmail.com" <jingoohan1@gmail.com>, "lee@kernel.org"
-	<lee@kernel.org>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "pavel@ucw.cz" <pavel@ucw.cz>,
-	"danielt@kernel.org" <danielt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>
-Subject: Re: [PATCH v4 2/2] leds: lp8864: New driver
-Thread-Topic: [PATCH v4 2/2] leds: lp8864: New driver
-Thread-Index: AQHbUIjMUwx+j9IEfUCIwCFyj7ubGbLql36AgAF+ewA=
-Date: Wed, 18 Dec 2024 14:45:50 +0000
-Message-ID: <00caa5cf65fb4cf40cb94e3e715640ca0a7975f8.camel@siemens.com>
-References: <20241217133713.326853-1-alexander.sverdlin@siemens.com>
-	 <20241217133713.326853-3-alexander.sverdlin@siemens.com>
-	 <b0e2e061-0a1f-4cba-9f25-b26769e8ff27@ti.com>
-In-Reply-To: <b0e2e061-0a1f-4cba-9f25-b26769e8ff27@ti.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|DB9PR10MB8196:EE_
-x-ms-office365-filtering-correlation-id: 237d3ba6-ae36-4282-af29-08dd1f72aa88
-x-ms-exchange-atpmessageproperties: SA
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|1800799024|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?TDVJT2x2NExzU1RLb0tHa3cweU1MT2NSd2pkMUZYSlJXZWpsVVZ6RTdVbXRr?=
- =?utf-8?B?NWc1QzFhaEZEMHM0cVdwYWRHcFZ6aGpLcmRjQXpXY1V2d1cxSmFSUDRRL1V6?=
- =?utf-8?B?a0dveGhnbWlOeG9tejhGb3Bwb2tzeXo4U0NISHd6aThOR1hyV3JIdWwzTlVO?=
- =?utf-8?B?THdZM2JpZmJraGFONnlqOTNmV1JlYnpONkp4UXJOQzBNcWVQUzc0bjY3MDdW?=
- =?utf-8?B?ZFFYOHppd1JnVHZ2cDJvbEwyOTdIdGhLVUxHNks5V0o4U2pMWTlncU1YSEJZ?=
- =?utf-8?B?TnJUUzFDbXRyVndCM2huWWNsa1o5NTIwVk54L1ZtN3pZa25SMU5NUmRIdWpn?=
- =?utf-8?B?RXIwVWFQQUVXYlFzclA4RW5GZS90KzF1S3p0WmtUaU1OcXdqZU8rbFdvUjJx?=
- =?utf-8?B?djFrUW1LZWF2NEVaczU1ME41Rk1sWmN2RTF5dU9DTWZJVTFWMVBQSStmM0Fk?=
- =?utf-8?B?NnBuNGZPSzBxOHBrMjNzS1RvM2dIc1dJbWdRNnJ3QTQyeDRrRHBoVWo3UEVK?=
- =?utf-8?B?Q29yOXBqaUtkb1M3L1JNUzlDNC9BcXp6K1g2TjBqMmp1T3hXOFN0NWE2bFd1?=
- =?utf-8?B?NzlhbjlNSFZWYUNMMXhsU0YzNWYxeHQxRkxZVUF2UmM4YnZkZjJlQWk3OU9T?=
- =?utf-8?B?T1JJWU8vcjNkTVZ3dHdGTDNEWTZaeWNiTlhKNTB3RFRlOExZeWxZQ1NEcDBF?=
- =?utf-8?B?djRlbE14U2hmNmk0SjZTZElwa0IvdEtwWVhLeWhOSG9XTHlzMFlvUDJpNG1j?=
- =?utf-8?B?WEtBeUJBY1o0aHRHYkt4SmtpMjREVUpOUVVrZWxJMzhPMXBjcFdwNGc5YVdP?=
- =?utf-8?B?eHFzbUUxNDBrVkxqVjhWa1RhWHVzbXEzVTk2QUpjSG5ncDJyMlpaSjA3ZXc0?=
- =?utf-8?B?MEc0dkNOYVNiUGVYNHpreWlDK3NaVnZCelBLRFJlOFZZa2pTblBBM3A1a2Fm?=
- =?utf-8?B?S3A0VTI3ZmtWYkFxbWJXeG9talFTcmlnbCtNcXg4NXpubytTbnNOWHFUNmVT?=
- =?utf-8?B?SGlRU1V4WTJMZEpNbTRwZTFXMGRQZy9ENUY5dkkvWEZMNm9CU3VIcnN0RE9u?=
- =?utf-8?B?KzhLOVNxMHZmck9uUjhZU3ZrcUl4SzFlcW9icjZzSEFQMFhkSWtmTlZNRUtY?=
- =?utf-8?B?bzM4WE9ZTk4wdnMzT2tQRlJHUEcwd3JoSlF1Q3diY3FqcmpZRVhzYzNmRk51?=
- =?utf-8?B?NklkTkZMcUNkby9uNmQ5dHl2YVJOUU1CMXpHbm1ZQjF2elY2K1hRRkFEbUdh?=
- =?utf-8?B?d1RybWVTanpPT0JndEVtMU81UmhMV0tmdHljUjFlZGxHOEIwSGNrc0xNNTNp?=
- =?utf-8?B?QzRFazloc0x3akJQaC9TLzU0ajc1R1JZb05WbjA4Ky9UMFo3bGxHRTc0cmRq?=
- =?utf-8?B?UkVXRXd3a3FmVlhmZzhBTGxrQ3k4K1J2S1VmUDU0Mkw5bEhXNE5Tc0tMYzRD?=
- =?utf-8?B?MyswNVdBMmtldmNGQmtKQXl3WHJuMXpkb2czRytsRjRiR2VPZDIyR1Q2ejFP?=
- =?utf-8?B?Y2xZakU2d0JSMFg5a05GN1dXZi9oQ3ZnSnJLSS9YQXZqUHpPV2o5ZTNsZElo?=
- =?utf-8?B?R1VCYk9CQjlOSGZFc245b2Vva3hOU25yZUFXT3QrSEdhQ1lBcTU2RnZZeEpI?=
- =?utf-8?B?ZUlLZ3VSQTF1VnpUY2NFVk8yNmh6R1Rud0lJOVVtQ28zQ1BMc0hBT1RtdjdW?=
- =?utf-8?B?SjdLaHNkelZ2cnVvL3FDNi9Gb1BVOUlwMndML0xGeHBQSnhReVlFZUovTFNR?=
- =?utf-8?B?blBEN0sxUGdSMWl1cUtLZ1FYamVEQ3FGN3NlbnR4a0VmcWNmYklzSlduUk42?=
- =?utf-8?B?WmJxR0pTUmdVN21PK3FWbERkanNRekhlRXdmbnF4U3lEWTNkakVvdGZCdkFO?=
- =?utf-8?B?MWhDczd5anZoRjZCMkhDZGFGcWVocW5pVEJ4dFp2VG5rVEE9PQ==?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?N0k0Z1ZWZHZjQ0RPQXdPdUFXQWtMZmNrTUtLQVlIOElqV091dkhvUDJuUnRr?=
- =?utf-8?B?TU5ybTkyWVpMcGh5REEzVVh0bENIc2R5YVZrWjBRVHFsZmthMWozajdrTGRI?=
- =?utf-8?B?dWdCMTE0MVMrUlAyWW5hVTRDYVBZVHlZMmpsckMrT1Azb1EwQm9JM1d6RmUw?=
- =?utf-8?B?ZENHZEFmVkFGVHYwV2hldnFLS2E4Vkk0ZTVDUXFwVDhENnVRMGJSV0RxN1g2?=
- =?utf-8?B?K1h2VjU2K1hpbThUWit5LzU3U3ZKZDVBNVlBRHozWkthTUEyNmsxamliMXVJ?=
- =?utf-8?B?WXlBZVBlZC9Md1BvWTRFcGZlWkpSV0NWMk9mQXlja1JQVGZka3BGRVhHVFNk?=
- =?utf-8?B?YVFnenpMSkR6WTlyWUh3UnJjaS9tbTl6SzVtSFpUMVVZQ1Q3eGJ3VzV5TGh6?=
- =?utf-8?B?WjlzYUkrSGtra20xYkFWL1licGVJMTRJN2dkZWplOTJoZWoxU2RaTjByTnpO?=
- =?utf-8?B?cFZxRVk4bXNkbDBjb1dZTzZTQVFTQzBIeHdIZEpVcHdqbTRVN2lUbUMySk9i?=
- =?utf-8?B?ekFHcXlZMDllK0JhRnVPT1oxbDdMODZndko3WGVHY2pDaFE1Uk9tQUtNYnha?=
- =?utf-8?B?NndkOXdNMGV5ZUlNTlhDaVQ3a3o3MDBJQTRQbXY4VnJUQUZ3RFRMSFFXM3c4?=
- =?utf-8?B?VHB3N1IrRGtvRTF1TDN0SmV0cnpNbjgvTDlUZENNT1RtS3MzeGdzdUJuTEF3?=
- =?utf-8?B?cE5RMjR0V29EbzhDQzlJRjdyV1QxVFZ5VG1SSzVKQnl1QVNJSVpvSmw1bm14?=
- =?utf-8?B?eGFadE5DOFZSYlorWTYxUWxDN0VneTRKelR6YWw4d0xjM3BPanpsRTREdi9K?=
- =?utf-8?B?RXdSNTdXQSsrZlgxcHBzL3gzM0FDMWRsR3paa25WdEN6ZlJxVXljRnR3MnIr?=
- =?utf-8?B?SWZyeG5Vbnp2RTdjVEYyR0ttUTRxWVJ4bkF0K2k4dVhmRm1sTXhxZWZrRXdU?=
- =?utf-8?B?ZVJ3Yjd6ZWlaQWI5SE5MdTRrNlVlcU5Zb2lQaThkOHVjQWx4VWhrM0hsNU9G?=
- =?utf-8?B?M2RLNDBaMFBzaWgzSjh2VXpXclRkd3JDTXZOdGhGNXNOcXo3WUhyd2wrWUZQ?=
- =?utf-8?B?dG1BUThDN1BiT2NnMURsc051WUVJVnVEWFdUNUxEaUdlUHplYmllWUdzZzAx?=
- =?utf-8?B?d2VCa294WE9zYys0bXFLa3pOSGNxdnZtTHptSlpsU3RFQmZLQ2E0Sm5ZU2F4?=
- =?utf-8?B?MUxVM01pODFoU0dnUGZQS1lmTFlrcHM3S3JQZ0lFOFpNdE16YjEwa20wcjFZ?=
- =?utf-8?B?SytuRElmNDBIL1FDU2tkQ296QjU2R2pHWU9INi9nanV0cTg4cFpJSldrOUM0?=
- =?utf-8?B?VTZWUkRvQlJkdXZuTktYOXUybWV0b2V5SFlieU1yZzF0WnNQanR0bjA0NFo0?=
- =?utf-8?B?eWJQbjBjQncxc25Kc3kwbW5NNklYeERDU1F3akxzMFJjc1doajBBOEhJSm1Q?=
- =?utf-8?B?QlFIQUdkazVoTEFoSTlvOUJNc0VaWHV6emx6UTlHSTgrNndCL3Zzd0c5Nm5Z?=
- =?utf-8?B?M2lTdWc3ODQzTzhQMUgxUjl3UUVnVXgrTm5uWmNqczFOL2dYM1NTK3BoeWdO?=
- =?utf-8?B?N21EOUlmVkFVc2pDZXRNZFI3NUQ2UVlGaVRPck4xaGw2WXNrT0JqZVltbzRI?=
- =?utf-8?B?cHdOamRXMkhIbjVDQW9BK3ZXY1hjMnEySHBIR2o5M1VzbnBtamtpcU1ncGkx?=
- =?utf-8?B?VkNodGVJN25wRGwycTRWM0ZGUjFUWjllZ1lDN3FIQ0l3a1MyRGhtUnd5RTZE?=
- =?utf-8?B?REV6MnUrenMrWUZYNVVBbU1SVTAzZkNlUzd1dDRoWFhvU1RPd3ZuRDR0WXdq?=
- =?utf-8?B?NWoxRXFnT3V0b3YvT3JvcnhTNVc0NDBZRkh4cWFpaHFqYVJqVTdpUnE3ZjQz?=
- =?utf-8?B?eExDNml1RWtHdy9qbEVMbmh2NXI1L2Zlb2orNW8rQXQyUTJFMTlJd3J4NW9Z?=
- =?utf-8?B?K2lCdlhlQVlBVWlHNmRDR1hqMEZyaGxoVkVqWllzSWlyb1M5WXVhUDRTSWw0?=
- =?utf-8?B?SnlnU0tCQW5CWXJacWlkZG9FU3l6UnI2Uk45b3lhSXU1VzBGRXZOOTgvZERq?=
- =?utf-8?B?eHdIbE41QWdzZWRQNFhYQmlMZ0J0U201UHFPU3dxK3JaQVY0cUtXcm83aEtq?=
- =?utf-8?B?d1U0dHYramxUWWVwbVBuSGVrVXpqZUJiekRpdWd5ZEJ4VHROd0xYZFo5V0N5?=
- =?utf-8?Q?KwhbbYPYR/3DxkZtt9nUUts=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <70A732F70D63034A88E227FD8E7F5192@EURPRD10.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A4521B0426
+	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 14:48:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734533329; cv=none; b=R8bOky3w76mzy1yJXdt/094Ih8AMqkhO5UKNvPcOvrM2houGGQnhDxLSzMtNF4Pzkul+6pIYqHP2BiTR7GWD6VVeKCLWz5NWwiri7eC1QbApZ0RIPdy4Fy1t3XlyFKXM6E6edx5O1KHUdbxKbtAkB9YR5Q1xPd8vyRU5rvdcR5Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734533329; c=relaxed/simple;
+	bh=BYkeQ6I1SppgA+w3nw0Cj/xI6Q/rY3ZxcnNW92aOxjk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mIXwIfNpXbhYaWs7vBa4U/VLgej6tbMBGFJLaQq71LHVhJq4AulYzioBrghLOy8SqdnYDPBmRi0wTMPNcKq1yp7RLjxOl/Fzr4vcGvvQA1B3+t50coq5sZM0Oam9L+otRI5A1OmRjYO7OdyF+Tu0opqtzkk1yh0CCJw/M6+fSxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=VKAuyiJe; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4364a37a1d7so20285635e9.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 06:48:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1734533326; x=1735138126; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZDXweG3kfjLb98/KJdEpbSiDTI7ao8N9Ii+NpOdwthU=;
+        b=VKAuyiJeCVN+bB7rOGIgA4zvz0bzcvr8xymdFGuAgljAWHk0NZcI3XIL0p/ISkXTJg
+         yvKSziW9YETzkV9WJGl2OQswsGuxOJC8gheQazwLfXU804muBeiqv6lckAVInjFYklwy
+         xfSP87tT9QCC0SCFY9rQ3GCGGKdEjGJC9ah9Q2HUGdBwy1Z+uB6srQdvuS03oXw9qUXD
+         J2SmW1dKvLaxU4dxRB7x2Hh7f13pL72CA+RsHaqCFB3T+l1PfuIr3QWwEJQ7rVKfBG/W
+         Qq+qK7ul4NQ67P79zLkdzYn3TPi8en4fwxC3S0PbEDOzioQHkn4XmoCRip3MVXEREegF
+         yS6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734533326; x=1735138126;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZDXweG3kfjLb98/KJdEpbSiDTI7ao8N9Ii+NpOdwthU=;
+        b=GfCOmYexIdhjuA+f+YJZsZT3DqCb+QYzrR5xuS5ZxOKpo3E9yYdCHCYNMP4RypauT/
+         Hf4v/le/v/z7gjl0K6+8KsH0THMvdDIU4pTOnhdoEPro184lLWxqkz3Fub5TZKnqex4M
+         was44FFuQI5X1pF490MGfsPtqNQ9OfSKUDy6W6Jn0zoDoFG0rvzQrmrP6o6dOEBNdFFI
+         AQD04UIM53tMteXPSPlbqEzjrcsdxUiz0wiXoTDuOIWf5GL99Q4opzUIbGo9QpM542hl
+         wt24tl/qbbW48XA9P4P/VhHpnkZbD10Tcucz6OLSkyukKEarC9/drNWDUjmvYAHJTiVt
+         8B2g==
+X-Forwarded-Encrypted: i=1; AJvYcCWZ+wcf/I9/w5Sl0hjBT96VEAhgs4HAH9cD07ONrPKK5Uuothghsu7MAje8QqQ6JLtnGvjmjnjGvyxw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsEcnYexfzAWbHxEx5st17QX4TG58XREeLEamA7Ndsm3Dh96X3
+	mpO182nv7vz0RDLT4CXcvY4WofvYkiUXtvjh2vUnVm0ZMU+WgohoXtWGHDlfd/U=
+X-Gm-Gg: ASbGnctE2TRyWMNBshl/EP3Ec4Jo1az7WZ0d6NP4NG18k3ZgtKw7DXxvKDbL/OiaktY
+	mQJ/WChnsdAQKwX8z9XGBRV0ab5d4wEFy0HLzZ4yTJYD9pqy8y3VJampHrChFrValxcoffsqMri
+	6/fRW4UyhJ9ZYvR43LY0msi0soatiujRsb6L4QHRS6n4rt3pCKiMOf6lz6qc5XLUnN1sngEJB6j
+	pPF1ND0Ay1BcvP+R+/bNvk9Zt1bD91+/oHqe/xeqkhWCvc6
+X-Google-Smtp-Source: AGHT+IFfdDvNqrmdKCha+Q3H8l6Dk2KAYhMhcpN6o1VocErcndhaGCI/5Ui3FTDsVOBZ1XMcpPOdcQ==
+X-Received: by 2002:a05:600c:1c1c:b0:434:edcf:7461 with SMTP id 5b1f17b1804b1-4365540c077mr31551435e9.30.1734533325609;
+        Wed, 18 Dec 2024 06:48:45 -0800 (PST)
+Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-388c80613a9sm14165163f8f.101.2024.12.18.06.48.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Dec 2024 06:48:45 -0800 (PST)
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: [PATCH v4 0/3] drm/vc4: Fixup DT and DT binding issues from recent
+ patchset
+Date: Wed, 18 Dec 2024 14:48:31 +0000
+Message-Id: <20241218-dt-bcm2712-fixes-v4-0-54cc88b6c229@raspberrypi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 237d3ba6-ae36-4282-af29-08dd1f72aa88
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Dec 2024 14:45:50.3748
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lIbhI7btT4OkOO9cQ0oOGWhK02jVR2LATubnwng9POnkI6kmAgWMEdORREkZvLacJF1QA4AU00crAQg/vZAzRA3VqhZWiLLI2bZ/WDtnoQY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR10MB8196
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMDgYmcC/4XNTQqDMBAF4KtI1k3JX03sqvcoXcQ4qVlYJZFQE
+ e/e0W4KCt0MvBneNzNJEAMkci1mEiGHFPoXBnUqiGvt6wk0NJiJYEJxLgxtRlq7TmguqA9vSNT
+ 6moGxzCpdEqwNEbYDtu4PzG1IYx+n7UPm6/aL4dhjmVNGvXWldk74ythbtGmoIcZpCGfXd2Qls
+ /hh+BEjkJGXypTAVMO8OmbkP0Yio5TVXsqKScn3zLIsH/vnawREAQAA
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Eric Anholt <eric@anholt.net>, 
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Doug Berger <opendmb@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Thomas Gleixner <tglx@linutronix.de>, 
+ Stefan Wahren <wahrenst@gmx.net>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>, 
+ linux-gpio@vger.kernel.org, Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.1
 
-SGkgQW5kcmV3IQ0KDQpPbiBUdWUsIDIwMjQtMTItMTcgYXQgMDk6NTYgLTA2MDAsIEFuZHJldyBE
-YXZpcyB3cm90ZToNCj4gPiArc3RhdGljIGludCBscDg4NjRfZmF1bHRfY2hlY2soc3RydWN0IGxw
-ODg2NF9sZWQgKmxlZCkNCj4gPiArew0KPiA+ICsJaW50IHJldCwgaTsNCj4gPiArCXVuc2lnbmVk
-IGludCB2YWw7DQo+ID4gKw0KPiA+ICsJcmV0ID0gcmVnbWFwX3JlYWQobGVkLT5yZWdtYXAsIExQ
-ODg2NF9TVVBQTFlfU1RBVFVTLCAmdmFsKTsNCj4gPiArCWlmIChyZXQpDQo+ID4gKwkJZ290byBl
-cnI7DQo+IA0KPiBZb3UgY291bGQgcHJvYmFibHkga2VlcCB0aGlzIHNpbXBsZSBhbmQgcHJpbnQg
-dGhlIGV4YWN0IGVycm9yIGhlcmUNCj4gYW5kIHJldHVybiwgdnMgdGhlIGNvbW1vbiBlcnJvciBt
-ZXNzYWdlIGF0IHRoZSBlbmQNCg0KVGhpcyB3b3VsZCBtZWFuIDZ4IGRldl9lcnIoKSBpbnN0ZWFk
-IG9mIG9uZT8gV2hpbGUgSSBoYXZlIG5vIGlkZWENCndoYXQgd2UgY291bGQgZG8gd2l0aCBpbmRp
-dmlkdWFsIGVycm9yIG1lc3NhZ2VzIGhlcmUuDQoNCj4gPiArDQo+ID4gKwkvKiBPZGQgYml0cyBh
-cmUgc3RhdHVzIGJpdHMsIGV2ZW4gYml0cyBhcmUgY2xlYXIgYml0cyAqLw0KPiA+ICsJZm9yIChp
-ID0gMDsgaSA8IEFSUkFZX1NJWkUobHA4ODY0X3N1cHBseV9zdGF0dXNfbXNnKTsgaSsrKQ0KPiA+
-ICsJCWlmICh2YWwgJiBCSVQoaSAqIDIgKyAxKSkNCj4gPiArCQkJZGV2X3dhcm4oJmxlZC0+Y2xp
-ZW50LT5kZXYsICIlc1xuIiwgbHA4ODY0X3N1cHBseV9zdGF0dXNfbXNnW2ldKTsNCj4gPiArDQo+
-ID4gKwkvKg0KPiA+ICsJICogQ2xlYXIgYml0cyBoYXZlIGFuIGluZGV4IHByZWNlZGluZyB0aGUg
-Y29ycmVzcG9uZGluZyBTdGF0dXMgYml0czsNCj4gPiArCSAqIGJvdGggaGF2ZSB0byBiZSB3cml0
-dGVuICIxIiBzaW11bHRhbmVvdXNseSB0byBjbGVhciB0aGUgY29ycmVzcG9uZGluZw0KPiA+ICsJ
-ICogU3RhdHVzIGJpdC4NCj4gPiArCSAqLw0KPiA+ICsJaWYgKHZhbCkNCj4gPiArCQlyZXQgPSBy
-ZWdtYXBfd3JpdGUobGVkLT5yZWdtYXAsIExQODg2NF9TVVBQTFlfU1RBVFVTLCB2YWwgPj4gMSB8
-IHZhbCk7DQo+ID4gKwlpZiAocmV0KQ0KPiA+ICsJCWdvdG8gZXJyOw0KPiA+ICsNCj4gPiArCXJl
-dCA9IHJlZ21hcF9yZWFkKGxlZC0+cmVnbWFwLCBMUDg4NjRfQk9PU1RfU1RBVFVTLCAmdmFsKTsN
-Cj4gPiArCWlmIChyZXQpDQo+ID4gKwkJZ290byBlcnI7DQo+ID4gKw0KPiA+ICsJLyogT2RkIGJp
-dHMgYXJlIHN0YXR1cyBiaXRzLCBldmVuIGJpdHMgYXJlIGNsZWFyIGJpdHMgKi8NCj4gPiArCWZv
-ciAoaSA9IDA7IGkgPCBBUlJBWV9TSVpFKGxwODg2NF9ib29zdF9zdGF0dXNfbXNnKTsgaSsrKQ0K
-PiA+ICsJCWlmICh2YWwgJiBCSVQoaSAqIDIgKyAxKSkNCj4gPiArCQkJZGV2X3dhcm4oJmxlZC0+
-Y2xpZW50LT5kZXYsICIlc1xuIiwgbHA4ODY0X2Jvb3N0X3N0YXR1c19tc2dbaV0pOw0KPiA+ICsN
-Cj4gPiArCWlmICh2YWwpDQo+ID4gKwkJcmV0ID0gcmVnbWFwX3dyaXRlKGxlZC0+cmVnbWFwLCBM
-UDg4NjRfQk9PU1RfU1RBVFVTLCB2YWwgPj4gMSB8IHZhbCk7DQo+ID4gKwlpZiAocmV0KQ0KPiA+
-ICsJCWdvdG8gZXJyOw0KPiA+ICsNCj4gPiArCXJldCA9IHJlZ21hcF9yZWFkKGxlZC0+cmVnbWFw
-LCBMUDg4NjRfTEVEX1NUQVRVUywgJnZhbCk7DQo+ID4gKwlpZiAocmV0KQ0KPiA+ICsJCWdvdG8g
-ZXJyOw0KPiA+ICsNCj4gPiArCS8qDQo+ID4gKwkgKiBDbGVhciBhbHJlYWR5IHJlcG9ydGVkIGZh
-dWx0cyB0aGF0IG1haW50YWluIHRoZWlyIHZhbHVlIHVudGlsIGRldmljZQ0KPiA+ICsJICogcG93
-ZXItZG93bg0KPiA+ICsJICovDQo+ID4gKwl2YWwgJj0gfmxlZC0+bGVkX3N0YXR1c19tYXNrOw0K
-PiA+ICsNCj4gPiArCWZvciAoaSA9IDA7IGkgPCBBUlJBWV9TSVpFKGxwODg2NF9sZWRfc3RhdHVz
-X21zZyk7IGkrKykNCj4gPiArCQlpZiAobHA4ODY0X2xlZF9zdGF0dXNfbXNnW2ldICYmIHZhbCAm
-IEJJVChpKSkNCj4gPiArCQkJZGV2X3dhcm4oJmxlZC0+Y2xpZW50LT5kZXYsICIlc1xuIiwgbHA4
-ODY0X2xlZF9zdGF0dXNfbXNnW2ldKTsNCj4gPiArDQo+ID4gKwkvKg0KPiA+ICsJICogTWFyayB0
-aG9zZSB3aGljaCBtYWludGFpbiB0aGVpciB2YWx1ZSB1bnRpbCBkZXZpY2UgcG93ZXItZG93biBh
-cw0KPiA+ICsJICogImFscmVhZHkgcmVwb3J0ZWQiDQo+ID4gKwkgKi8NCj4gPiArCWxlZC0+bGVk
-X3N0YXR1c19tYXNrIHw9IHZhbCAmIH5MUDg4NjRfTEVEX1NUQVRVU19XUl9NQVNLOw0KPiA+ICsN
-Cj4gPiArCS8qDQo+ID4gKwkgKiBPbmx5IGJpdHMgMTQsIDEyLCAxMCBoYXZlIHRvIGJlIGNsZWFy
-ZWQgaGVyZSwgYnV0IG90aGVycyBhcmUgUk8sDQo+ID4gKwkgKiB3ZSBkb24ndCBjYXJlIHdoYXQg
-d2Ugd3JpdGUgdG8gdGhlbS4NCj4gPiArCSAqLw0KPiA+ICsJaWYgKHZhbCAmIExQODg2NF9MRURf
-U1RBVFVTX1dSX01BU0spDQo+ID4gKwkJcmV0ID0gcmVnbWFwX3dyaXRlKGxlZC0+cmVnbWFwLCBM
-UDg4NjRfTEVEX1NUQVRVUywgdmFsID4+IDEgfCB2YWwpOw0KPiA+ICsJaWYgKHJldCkNCj4gPiAr
-CQlnb3RvIGVycjsNCj4gPiArDQo+ID4gKwlyZXR1cm4gMDsNCj4gPiArDQo+ID4gK2VycjoNCj4g
-PiArCWRldl9lcnIoJmxlZC0+Y2xpZW50LT5kZXYsICJGYWlsZWQgdG8gcmVhZC9jbGVhciBmYXVs
-dHMgKCVwZSlcbiIsIEVSUl9QVFIocmV0KSk7DQo+ID4gKw0KPiA+ICsJcmV0dXJuIHJldDsNCj4g
-PiArfQ0KDQotLSANCkFsZXhhbmRlciBTdmVyZGxpbg0KU2llbWVucyBBRw0Kd3d3LnNpZW1lbnMu
-Y29tDQo=
+I missed the DT errors from the recent patchset[1] (DT patches
+in linux-next via Florian, DRM bindings patches on dri-misc-next)
+as Rob's bot report got spam filtered, so this is a fixup set.
+
+Largely it was changes to number of interrupts or clocks in the
+bindings, so those are now covered.
+
+I've fixed up the missing "interrupt-controller" flags for 2711
+and 2712 whilst here.
+
+I can't get my head around what is meant to happen with ranges:
+"soc@107c000000: firmware: 'ranges' is a required property"
+The meaning seems obvious.
+
+However if I add it then I get:
+"firmware: '#address-cells', '#size-cells', 'dma-ranges', 'ranges' do
+not match any of the regexes: 'pinctrl-[0-9]+'
+from schema $id: http://devicetree.org/schemas/arm/bcm/raspberrypi,bcm2835-firmware.yaml#
+
+There's obviously some other flag I need to set in the bindings,
+but I can't work it out. We have similar errors for all the Pi
+platforms for one or more nodes.
+Please advise and I'll happily fix them all.
+
+Thanks
+  Dave
+
+[1] https://lore.kernel.org/linux-arm-kernel/20241025-drm-vc4-2712-support-v2-0-35efa83c8fc0@raspberrypi.com/
+
+Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+---
+Changes in v4:
+- 1/7 Removed the duplication
+- 2/7 Added "minItems: 2" and added to the commit text that the clock
+  and interrupt names are required for bcm2712
+- 3/7 Already applied by Bartosz, and 5-7/7 applied by Florian
+- 4/7 added Krzysztof Acked-by
+- Link to v3: https://lore.kernel.org/r/20241212-dt-bcm2712-fixes-v3-0-44a7f3390331@raspberrypi.com
+
+Thanks Krzysztof for your comments. Terms such as "widest constraints"
+may be obvious to those regularly doing dtschemas, but not to me who
+does them once in a blue-moon.
+
+Changes in v3:
+- Fixed up indentation on 1/7. (I fixed it once, but obviously reworked
+  things and lost it).
+- Link to v2: https://lore.kernel.org/r/20241212-dt-bcm2712-fixes-v2-0-35986e04d0f4@raspberrypi.com
+
+Thanks to Stefan and Krzysztof for their reviews.
+Hopefully I've addressed all points raised in the correct manner.
+
+Changes in v2:
+- Commits have now be merged from drm-misc-next to linux-next, so all
+  commit hashes are valid on linux-next.
+- 1/7 Removed references to "previous commit". Fixed up indentation.
+  Added maxItems
+- 2/7 Defined widest constraints
+- 3/7 Added maxItems and removed reference to Linux
+- 4/7 Described the errors. Split into two for fix of node name vs addr
+  being wrong.
+- Added new patch removing "required" for interrupt-controller and
+  interrupt-cells for bcm2836-l1-intc
+- 5/7 (now 7/7) Removed the intc node for 2712 - it's irrelevant on 64bit systems
+- 6/7 dropped as updating the binding is the correct answer
+- 7/7 dropped. simple-bus claims ranges is required, but adding it
+  creates other errors. I'm unclear as to the right solution.
+
+- Link to v1: https://lore.kernel.org/r/20241202-dt-bcm2712-fixes-v1-0-fac67cc2f98a@raspberrypi.com
+
+---
+Dave Stevenson (3):
+      dt-bindings: display: bcm2711-hdmi: Add interrupt details for BCM2712
+      dt-bindings: display: Fix BCM2835 HVS bindings for BCM2712
+      dt-bindings: interrupt-controller: brcm,bcm2836-l1-intc: Drop interrupt-controller requirement
+
+ .../bindings/display/brcm,bcm2711-hdmi.yaml        | 81 +++++++++++++++++----
+ .../bindings/display/brcm,bcm2835-hvs.yaml         | 84 ++++++++++++++++++----
+ .../interrupt-controller/brcm,bcm2836-l1-intc.yaml |  2 -
+ 3 files changed, 137 insertions(+), 30 deletions(-)
+---
+base-commit: 29978a81e62128d2cee56f066ec92de584f4ab5f
+change-id: 20241128-dt-bcm2712-fixes-afb0e8a0a476
+
+Best regards,
+-- 
+Dave Stevenson <dave.stevenson@raspberrypi.com>
+
 
