@@ -1,113 +1,135 @@
-Return-Path: <devicetree+bounces-132299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8829F6655
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 14:01:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF8E69F664E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 14:00:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DE03170622
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 13:00:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B881018938BD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 13:00:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E0F11ACEDD;
-	Wed, 18 Dec 2024 13:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED2141ACEBB;
+	Wed, 18 Dec 2024 12:59:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gjhGsTXF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 858811ACEC9;
-	Wed, 18 Dec 2024 13:00:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76EAA19CD01;
+	Wed, 18 Dec 2024 12:59:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734526833; cv=none; b=NAmWpbHBnslXHMFYKZn4I34Sto2/N53tGbMrQmKUcn35bL5ZCELdbUfOkwiN3dLqT8dNUiO554F+WSJ0xDJEdmSr/ciH7hW1UEbobZIAi4lOAUL7fp4QNCBA/pMNfMrTwPB7rr82zBpLxGT9sRWMDdUutw3c0Vty9PtPPvrxhPo=
+	t=1734526796; cv=none; b=SOU621tl5rXzmaUmmmb+lGpozZTIKtffpvIQLhAk/LnmZsJYxaCQooK+eqnvU9M409ZTeJ3D24dxcTPWaih92B2lHrgSd6mwLHWiDBGwFAPU+pKDDiPW2Gu8bi8m1wdEUqYekqD8/byTL2w9zJ18WUyIgOkBghPUpPi3GbDeXKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734526833; c=relaxed/simple;
-	bh=XscMD0R8+no5CLR8+bdgBVFN+1AJEBBMqkYfvWppGyA=;
+	s=arc-20240116; t=1734526796; c=relaxed/simple;
+	bh=/qWCv9pXBNXlSLTUOgXh7xlzBdgLrJ6tkCgRkmuCAqU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nRDouo5YYkjbNjIxG52uKKzihzN63cLg4Nx6eIBrPN6Z5WpbTi9jqT7w3KrNYvyA4hr/350tIV+rp4FOL/78U0uOuq7lYj5gfhB+yZ5K+KBJIIOyeF0decRW/iZBliExTX9MaAul/TJ2z956k+hHjvxgLGB7TquoMBNN2tYEKPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	 To:Cc:Content-Type; b=BCJ84Eqa2djSeUlyRwnY8o9ZsQ8AAbCY5+BiFUO4TBIp8EAItoX5N76Kx8uC3Ap8qOyTxn3kvaZma8Af8PC3v8VcGY8X1RbKHjM4wu5ISa07tdBRVU4tSwVGCY3qpRi49rx7m8U0Scih/mucR1OioUQ/wCzu50adu/SIbenXxJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gjhGsTXF; arc=none smtp.client-ip=209.85.215.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-85c4b4cf73aso1227721241.2;
-        Wed, 18 Dec 2024 05:00:31 -0800 (PST)
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-7fbbe0fb0b8so4297449a12.0;
+        Wed, 18 Dec 2024 04:59:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734526795; x=1735131595; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/qWCv9pXBNXlSLTUOgXh7xlzBdgLrJ6tkCgRkmuCAqU=;
+        b=gjhGsTXFiBuSB66b1MoFQMCQSQly+q90wEraNbnf1q98dDiUqObviFZtF7SjQo8jMq
+         nL7rQaxeUJJb1s3NDXn+Y2MT+b8HEw9YUK5w9Ii+HZ0/gz8vQQ6+oZVLgpwM0STeykyC
+         swRPQuLYsvz2J8NsrewX1/6vkZI379Bmaj9MqmAFFsoBs+0ZmYDG1f0NcZ9jb6aUapnz
+         gq8CRPKNp1CGRy8nYtchqd5XtEViRkvjtcn0GYH57BDns0v1lv+PIh1531OFKoNdr35B
+         F4lIIcetm/Hm3FLDij0JbKTVoj0eMUflIcEpf6o6WpWDm7pubqZEi4lKda1HNYe17n1F
+         bCWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734526829; x=1735131629;
+        d=1e100.net; s=20230601; t=1734526795; x=1735131595;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=eMCiguYSzlD8GeIibwL4MJrSGzVeSKSCO4Lqnv+ofeI=;
-        b=YVpCDu0c42a7FKlwgsuqGzo98HBtzXdQ6yzJwCfKSxQAyCQCLFgQCr7o4xvjl5QI2U
-         BPBU1mVW92ObjZHwDIaTcSS4bNTChWpuNaT+3pGdCOdgyWXNuJNFxxCuiHIMgAZATv9l
-         2GdULnLSJODj9j5aqkPGnqYwWwSB+LuQ0TnfV63E1c/kkSKy1VQV733s9L/SBtyFstqY
-         sg6IrwDdIePJEE0FdPRbdjkLOky8SINsHphoD8+5EvbcxJxPU9Oq5nn+7o6y1d0nrATk
-         DYdR2xIcc8Uz4mfnOOy2q9Uq6CjnfpCRO3wb6KqrEkHhTvgPbibuxUk1QbnPNNvUMPj6
-         bK9A==
-X-Forwarded-Encrypted: i=1; AJvYcCU3O5ssgN/aprvRR3lSYnIHWlqG9QuWkVuadvTIKIZEvpi6l/EmpoLcKY8STAGP4/a1fejhiV9HUns8@vger.kernel.org, AJvYcCVcehPbjPgYkL259N9IVoVAiWJKavVDtHzdD/ogo9xMzV7NNp2od/09mtZ+OEdK+JVN35HUSkSbAv1YudDb@vger.kernel.org, AJvYcCVgGGTKp8MBtsZ7f3IDdPa3f4BWrzJHv7KoDMkq+a/140xca2rugmZD9hmkWzGLepYIA0At6GA98xiq@vger.kernel.org, AJvYcCW2D3Lrb+u5qQrLVcazJkVf8ZpikdDkc9ZnvVNdxbIAcKwEP796jGodzPFkBDkAsYTX7n7anWR7MeThUJphrs6LuHU=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyw/e8luu7BNLUd9fQwzONLZTWafnBZA1WF3nBru880UT9UETmv
-	qRy56sNw8G65UqeJeg2N24Go2sjdlTmb3WVS3aiioE3HmsoIYOy3DeNK0HCY
-X-Gm-Gg: ASbGncutUgvSbDhC2ai7IYt7IlIP6CEpjB4lNLdUB7IYlTeR7p3k7iw5YAb9vo3V145
-	dilsnc2NJMHimtA2+JbdBpFog1vo6geLxas9IQVkYN5UbFb+mUbC6za3NSmFGXYhbWP+iQHMOFc
-	rPX70NfEzmu7995WqDQNTSetNbj2OcTT6ndROMrfONB1x5D3hkSxYQralHSEuq3OMNuy/+y5Dte
-	TZdEOs7Bahut7/RvHo9OxlPCQPVa9OOBFwrkRISUQFSdfgXB4MV54DyZeg/FFUAFo1P+y09kjSz
-	A/gxYB1deWckRKXwjr4=
-X-Google-Smtp-Source: AGHT+IEWMlTEmq0gRa78Fd550pZh1nr9+fLPyhHfjrLXC+OPkM85UqrenZy6iFOrt2OGXRwk2PU1Ew==
-X-Received: by 2002:a05:6102:8090:b0:4af:df15:7d6d with SMTP id ada2fe7eead31-4b2ae8250a7mr2183488137.21.1734526828711;
-        Wed, 18 Dec 2024 05:00:28 -0800 (PST)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4b27039071esm1467238137.21.2024.12.18.05.00.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Dec 2024 05:00:28 -0800 (PST)
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4aff78a39e1so1684812137.1;
-        Wed, 18 Dec 2024 05:00:28 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU1maJH5QNK8LXEpl8WktE+uV55y5TWehNNa4xxxvVvMQB58gbx+nLIL/ShsMNxTbR53Rho1GYwCrZR@vger.kernel.org, AJvYcCW8i1ElXcyhy0ey1KcUxh4Ek8mre6SG3zCCw5JmDPs2dHRlNW3O3Vh/OkwqB2LlDF/tqGKem0csIeBCgcNMYzXe1Fc=@vger.kernel.org, AJvYcCWP3WB4bgTcizIo8z67lvWLM9m9D43mu10hCgvQCrvlz6BwMYQvVUKuaRmHLdz95VhGJbWinyngLV593y5x@vger.kernel.org, AJvYcCWXDvj6r8X+q66t3r/qKxfMMO3/+CIa2uftN3nYtFZsFwdX7OmU0iqbf01wcL0Yzi/gXTJ8vbb4V90x@vger.kernel.org
-X-Received: by 2002:a05:6102:c90:b0:4b2:73f7:5adf with SMTP id
- ada2fe7eead31-4b2ae7314a6mr2182447137.9.1734526827914; Wed, 18 Dec 2024
- 05:00:27 -0800 (PST)
+        bh=/qWCv9pXBNXlSLTUOgXh7xlzBdgLrJ6tkCgRkmuCAqU=;
+        b=hfhpYR+80H8hAdUgDfxXQwkeZ5xnphkxbofkQI8emEEyhO1avxy6JGuvnNYuZUesmr
+         9sZ7vdqTWvUab+ZlfZNX69YfIW+sps/EG/H7jLawrP7QIBvrWYAs3o9+zz0WXcXk0wS8
+         ulB5ufaIKmYTv5UMdeeFzeBNsXjy0uHtsgeDIKO1ljV1wyjYbegArOSEAOQkAkBtT8H2
+         TzHBB5et/VsZFRBFb2x1Wo0Ag6rz1iWWP6369w6EbuRSiJE0iPJVZhG5ixUaniGMUt+h
+         RxhUDVoIvo+05R3DX4+huEVn5zxoGqfwyJthaNR8f9xJgELAgUUzfdc4kt7pFn20Kabv
+         fI7w==
+X-Forwarded-Encrypted: i=1; AJvYcCUQZ1Fv5si1TLx8JHXC4u8/X0eMTksX6gx6SlB/t01ZREghKoFwQHV1bxUaeqxosa5Po5wEwDYAsC6lA6+8@vger.kernel.org, AJvYcCVUUJdJZDe2wECdl0IcqIBSCJ10PBpFHmTAhP2ox+uJvdVDshZsaS3uOGpBvSOSyaMQ1SXQvfAaXrTo@vger.kernel.org, AJvYcCX9WSNnvISvYDXJOFEpesP65xU3kDUFqk3MXq7+seT95eFTM3jP9dIC7gSSocUIG/n2ZmJkKLM6Hp2PWDs=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxca+bAitVkVD6wHhrz2oJEEOrWSBbc0zALwGyXsAX/Iyg3+16d
+	chtQkdpEkUBeJWKSwi+1kruWKo+EHyyOMuoV8ZhMh66F5fNK8xZwpmEEejpfraaVkuU7Y8ZW6Pj
+	6ij00ZVqriqSKPkXceMmnkgPZ/Qc=
+X-Gm-Gg: ASbGncsyNpPNyOg8b6sujJxw5MgDEUibrXk/fral3PgdICmuBXqpKTcpnjj8/0Ox/WK
+	NzkZJTWuqwm2JKX4B9C+HijGIKvhflAUgPQ==
+X-Google-Smtp-Source: AGHT+IHrwBpS6CcQxAZmukcsGo476EQmoqWM2slhHPAXzThtNb2IK1NBH/tbUgYtw/82HwemO/owjrylht1ANbiMZYg=
+X-Received: by 2002:a17:90b:380e:b0:2ee:f22a:61dd with SMTP id
+ 98e67ed59e1d1-2f2e9374547mr3475436a91.32.1734526794842; Wed, 18 Dec 2024
+ 04:59:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241218-rcar-v4h-vspx-v2-0-c673647d96e1@ideasonboard.com> <20241218-rcar-v4h-vspx-v2-1-c673647d96e1@ideasonboard.com>
-In-Reply-To: <20241218-rcar-v4h-vspx-v2-1-c673647d96e1@ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 18 Dec 2024 14:00:16 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXN6qYvyM8JTAUm=UCR5SF5FQ4V93PESY9p9S+wxJZMTA@mail.gmail.com>
-Message-ID: <CAMuHMdXN6qYvyM8JTAUm=UCR5SF5FQ4V93PESY9p9S+wxJZMTA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] clk: renesas: r8a779g0: Add FCPVX clocks
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, 
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+References: <20241113195240.3699-1-laurentiumihalcea111@gmail.com>
+ <20241113195240.3699-5-laurentiumihalcea111@gmail.com> <ZzUJQCeWclsrr/lr@lizhi-Precision-Tower-5810>
+ <c47710a5-7e53-48b1-bd6b-c0123865aee5@gmail.com> <Z1r9hWH1ioR5vI5H@lizhi-Precision-Tower-5810>
+ <c3c9389f-5116-4a5f-99f6-1b37c1e8c457@gmail.com>
+In-Reply-To: <c3c9389f-5116-4a5f-99f6-1b37c1e8c457@gmail.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Wed, 18 Dec 2024 15:01:11 +0200
+Message-ID: <CAEnQRZArKSOtka46A_SOiV2=8bs9B36ubAJM3GqYJZkKyBt_4A@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] ASoC: SOF: imx: add driver for imx95
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Frank Li <Frank.li@nxp.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Daniel Baluta <daniel.baluta@nxp.com>, Mark Brown <broonie@kernel.org>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Takashi Iwai <tiwai@suse.com>, 
+	Bard Liao <yung-chuan.liao@linux.intel.com>, 
+	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>, Jaroslav Kysela <perex@perex.cz>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-sound@vger.kernel.org, imx@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 18, 2024 at 10:05=E2=80=AFAM Jacopo Mondi
-<jacopo.mondi@ideasonboard.com> wrote:
-> Add the FCPVX modules clock for Renesas R-Car V4H (R8A779G0) SoC.
+> >>> Frank
+> >> the SOF drivers do indeed have some similarities, but each of them has=
+ their own quirks which IMO makes it a bit harder to add the 95 support. We=
+ need to figure out the common parts and then move them to imx-common, but =
+I believe this can be solved incrementally.
+> > You should create common part firstly, then implement equal function wi=
+th
+> > existed part. Finially add imx95 part.
+> >
+> > Frank
 >
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Yes, I'm aware of how this _should_ be done, but, like I mentioned, the c=
+hange is not trivial and will
+> require tweaking the other drivers as well. As such, I'd like to get the =
+95 support in as-is firstly.
+>
+> Are there any other thoughts on this?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Laurentiu, Frank please trim the emails and keep only the relevant
+part for discussion.
 
-Gr{oetje,eeting}s,
+As for this matter I think we should go with the current version Laurentiu =
+sent.
 
-                        Geert
+It is inline with the implementation for imx8qxp, imx8qm, imx8mp and
+imx8ulp which we already have upstream.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+There is always space for refactorization and improvements. The
+current version of the code
+is simple enough to go in as it is.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+With this,
+
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+
+thanks,
+Daniel.
 
