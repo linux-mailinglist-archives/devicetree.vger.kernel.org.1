@@ -1,131 +1,147 @@
-Return-Path: <devicetree+bounces-132263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 752AB9F64DE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:27:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2769A9F64ED
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:35:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E510F16B4A1
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:27:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D81316C789
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:34:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4901A00FE;
-	Wed, 18 Dec 2024 11:27:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4681D19D090;
+	Wed, 18 Dec 2024 11:34:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UiPQkE0L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z9qlO5Ch"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C46991A00D6
-	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 11:27:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AAFB165F16;
+	Wed, 18 Dec 2024 11:34:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734521256; cv=none; b=DShgDWlRoQUtEgYR9qb431GmQFclv7RnYCHA80+3fQeA+UKMke+jeI09D+62Ix3AOnQFe+ytPJknaUVlva+maqpk7fEnVo6U6UPxkGQ1oNNa4OCQn4/tiY81ZCFgwm4kEVIbtJsd/R3FONkSkvTncfCm9IkQp4VgxM0G3PagD8k=
+	t=1734521693; cv=none; b=FssOsXO8fBBAAEHUFRCMcY6uNDl6YW43rqD/c3kNxOBOMdJwNGNdMlFBRwGaKvfUsMdY5T7D1WCg+SJxZT1ELSC9NrFNrk5IzrHZuqmmZDHNTKRyqZvS59YUEEt8M1JPlkZLXT9hn3852dtz57tqYuM/zhL4rcPVIRdOTKZwfJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734521256; c=relaxed/simple;
-	bh=uPI3YGl5Qu5f0BbLY4+s0FGi59w2aTO6gPsqp5rfKZ0=;
+	s=arc-20240116; t=1734521693; c=relaxed/simple;
+	bh=aZwG0QOV9ddmzu9MDnqKsxCiCb5gsfpVMd5wOowRdSY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qw1//pgJEc6qvY/sjHpyR8taW8jUxmVMpmQtO1depFOFS73vHHPuHzUSK4Z8d62/FEuDgqVhJYRGa2JpQLc4e2eeVMF4XNq7P4NpTkG0NkW8AosITCdqSHD/d0dR8tp2uTdVmmBG9/YfGLpRB7D8wwT1CYYD/Wf7vYCyNw0K7e0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UiPQkE0L; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-3011c7b39c7so69785641fa.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 03:27:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734521253; x=1735126053; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3B1U2oc9z7VH6AtDCT3Knsc6oVzFOjpEkThdlEjEbCA=;
-        b=UiPQkE0LYqWj2ONVbQlEILNPZ/MPNTwu3ZM3fcCcwGT36BHgLQ5e1PYBiWhXPpCU4H
-         G3y9+6a8HyBCprKk2zWrPFpon7Af+6mo2May+L6yX/u43IYt/6GzicCWPYt/Pj42SN9v
-         9/9xPIePFenBXPYbEz5FXbdJspnvY03SPzRdSS5SJ+rBu02i1LArJKP/7p8msL1f7hLB
-         ekSsmWRGSHIGmd6gEl6BCh3coVmP6dGHKgRlXnQgjG3d/RHeZthLuiGKPoA12XXOQ/PL
-         NiS+X6XkF47CvoaXHE7vtN7QT2ivXCDLzRMl9kzeq3yyInZs1V1vA5IANSPdkCAysvXU
-         h+qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734521253; x=1735126053;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3B1U2oc9z7VH6AtDCT3Knsc6oVzFOjpEkThdlEjEbCA=;
-        b=vV4iwqi3i7nSdXubsqASg68OicBOBQqufLcMx93VbJguOZZuL2TjytW288kO0l09S8
-         4yCUyUXIIyVVNUnrcRZeNc74CkGnND5tWTRXTSZD1PcOLe2uaRnqlU1/Yfeh0vu2sl8R
-         lebFlJkSowjN8rSKNjHW1LLyNmQ7ra0mxlw4vQ8uHsItHh00rU9u1nBByCleVJQW+zTu
-         3Sy3X+3h9qgwHrYHEglnlUGp1qSVW/WmrZpzURA4Dh380FYSAPUsC79HTyMKht+nkF5M
-         3wrF5wYhn1xRysyXCa1C5JHVi+RLPR/mI5PHR16nn2EqGwbDIu9Lg0ECp5/XIKFiOGTr
-         WgAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV4fGORoBinJwBsubJiMDUHdgZEYBFVdrh8QjeTg5ydZ/R/my5bjwUIbr9WbyuvSnBVI8TksO3brBEx@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuHmpO41t/sIVCe0B10n3lZLgwH7L52jjm4v4PFLrqd1XMcOaS
-	xje8ktpCZ06km1MQeO0uiQR6qXMJIIU+uOrRHUVWRE8ffZTBqxkCknEExaXrQ7o=
-X-Gm-Gg: ASbGnctaKJyQtW2+7EfyhBG+t65OPqejuCBy+Af411AGrFqSgnjq49fcb7EDhpF9eSV
-	dilIC1pqIaZk8HCsUs92gNE3MnSt6Zy81CGrh35O2kQqyJgIzodLjGHgTvPFgVrcL5GFHVKlXTL
-	7+x4FKY/CsYro20FzXJGiCa/gG6ol/SJ//QwH1SFb5G4OZNdP/fpDJnkKYRqdZlOLnf6nvfPAk2
-	ub/l7r423QX0LrwIMPCDi6TSmO39W3rE+H+IVI8vQMOHQefF0P1eVoEPEToKlhnqvWnAuirzsoT
-	9ILTJmVQQtCnN2vUJg2XHBaiJUYZ1EttWwxG
-X-Google-Smtp-Source: AGHT+IE2kXzgUUnrRFqPVuLPgXCfNtnW5AHT4UA0KixP5pMWb364WZV2Z0yYHi0Bl46lYtL55FynkA==
-X-Received: by 2002:a2e:7d0a:0:b0:300:26bc:4311 with SMTP id 38308e7fff4ca-3044dae0630mr7905231fa.18.1734521252916;
-        Wed, 18 Dec 2024 03:27:32 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3034406224fsm15365501fa.57.2024.12.18.03.27.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Dec 2024 03:27:32 -0800 (PST)
-Date: Wed, 18 Dec 2024 13:27:31 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Prashanth K <quic_prashk@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, cros-qcom-dts-watchers@chromium.org
-Subject: Re: [PATCH v3 00/19] Disable USB U1/U2 entry for QC targets
-Message-ID: <nvhrhnfls2i4sb6rrlax2dh3hf5thfttrq54bgug2jc7ol26rj@cnk5dtampfes>
-References: <20241218102707.76272-1-quic_prashk@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=CvWWwPc/YuwwHzIWGPPe8ulrFTMDfI72s24tP9BHzzXfZk6V2jmEgwrVeJXQMbH1+ch80shyiXTEDD2I0v8N4Xb20oFzfiM6cQ4fG5jWi6vtEnCISvkZHU1IkBgZfVz9l3Pxh0T4KrboQ5FV2+QNj3OBZ4cVTP9weWPoNRmYPMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z9qlO5Ch; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E98DC4CECE;
+	Wed, 18 Dec 2024 11:34:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734521692;
+	bh=aZwG0QOV9ddmzu9MDnqKsxCiCb5gsfpVMd5wOowRdSY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z9qlO5Ch83fk6BsOJNKDN0Qcz+sH6D7v/bFEHkRBlG4Jn4ctrbqxCHl9OBBOA+SxV
+	 qq4qTzo9BIr0J4Ce9c+dLuWclX9uXXotq0ux+g3/ibsLiJOEt0KeewyvHvwDWhQnx/
+	 zf/3tZThdqIaHwvDqt7N7pkonQZlgSjzct4NsrCnEeqYxkG6Eo/G8xzmrGgcOGsens
+	 ojua7xY9y0Tz5clNzRC49ULCBtZLt8ZoMO+e8KA5p2wBxoXiC7Sfeb4p9IfKZ4G0LK
+	 hu8tTNZUowX/n7A4iDl+CuxtgI6uIb9WUkUN/Nx8nk6fYXnKcmNtxjgsCoPePkBcst
+	 KillZr+3PglbQ==
+Date: Wed, 18 Dec 2024 12:34:48 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Pavel Machek <pavel@ucw.cz>, Hans de Goede <hdegoede@redhat.com>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, 
+	Purism Kernel Team <kernel@puri.sm>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH v12 02/11] dt-bindings: power: supply: max17042: split on
+ 2 files
+Message-ID: <igvefqqns4k2tbau56nvu6uorhvr4k4j4hiv5asgohviydvlbg@6c2zhgcgdkth>
+References: <20241217-starqltechn_integration_upstream-v12-0-ed840944f948@gmail.com>
+ <20241217-starqltechn_integration_upstream-v12-2-ed840944f948@gmail.com>
+ <vunx3s4wqw5fqtwuuuuofjtja7buh5zpxi3iznzgfl4iz7fm4d@wlxbzrnlu7fr>
+ <CABTCjFBO6RYwf5GiExPFEyBAfCF7vUnbYFRePdSVPdXNfwZwrA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241218102707.76272-1-quic_prashk@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CABTCjFBO6RYwf5GiExPFEyBAfCF7vUnbYFRePdSVPdXNfwZwrA@mail.gmail.com>
 
-On Wed, Dec 18, 2024 at 03:56:48PM +0530, Prashanth K wrote:
-> Enabling U1 and U2 power-saving states can lead to stability and
-> performance issues, particularly for latency-sensitive or high-
-> throughput applications. These low-power link states are intended
-> to reduce power consumption by allowing the device to enter partial
-> low-power modes during idle periods. However, they can sometimes
-> result in unexpected behavior. Over the years, some of the issues
-> seen are as follows:
-> 
+On Wed, Dec 18, 2024 at 02:25:31PM +0300, Dzmitry Sankouski wrote:
+> =D1=81=D1=80, 18 =D0=B4=D0=B5=D0=BA. 2024=E2=80=AF=D0=B3. =D0=B2 11:28, K=
+rzysztof Kozlowski <krzk@kernel.org>:
+> >
+> > On Tue, Dec 17, 2024 at 08:30:00PM +0300, Dzmitry Sankouski wrote:
+> > > Move max17042 common binding part to separate file, to
+> > > reuse it for MFDs with platform driver version.
+> > >
+> > > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> > >
+> > > Changes on v12:
+> >
+> > Malformed patch.
+> >
+> > > - add addtionalProperties: true on common file
+> > > - rename *-base file to *-common
+> > > - remove compatibles from shared shema
+> > > - move required properties to final schema
+> > > - remove max77705 compatible from binding - it will be used in
+> > >   mfd77705 binding
+> >
+> > Sorry, all this is somehow complicated effort of not calling the fuel
+> > gauge what it really is: separate device with its own I2C address, just
+> > like all previous designs in that family from Maxim.
+> >
+> > I keep repeating this and you keep going that way, maybe because it fits
+> > your drivers, but that's not the way.
+> >
+> > Best regards,
+> > Krzysztof
+>=20
+> Fuel gauge ICs designed to sit between battery and charger, or even in the
+> battery pack itself, with a goal to track and protect the battery.
+> Given powering diagram:
+>=20
+> ----------              ---------      ------------      --------------
+> |usb port|<--[input]--> |charger| <--> |fuel gauge| <--> |battery pack|
+> ----------              ---------      ------------      --------------
+>                             |
+>                             |
+>                             |---> [system bus]
+>=20
+> There's no fuel gauge ICs with input and system bus measurements on the m=
+arket.
 
-[..]
+OK, good point, assuming that this is the input not for example the
+charge on battery. But even if the diagram is correct, we represent here
+programming model exposed by device, not physical components of entire
+PMIC. Therefore you could have more components there yet still it is
+one device: fuel gauge with its I2C addres.
 
-> 
-> This series was earlier started by Krishna Kurapati where he disabled
-> U1/U2 on some SM targets. I'm extending this to more devices including
-> Auto, Compute and IOT platforms. On a side note, this quirk has been
-> already included on some mobile targets like SM8550/8650.
 
-Why are you resending previous patches rather than adding another series
-on top of it?
+>=20
+> This device indeed has its own I2C address, but that's not enough to
+> say it should be
+> a separate device, because we have MFD's with its goal to share
+> resources like a single
 
-> 
-> Changes in v2:
-> - Removed the wrongly added quirks from tcsr_mutex node.
-> - Link to v2: https://lore.kernel.org/all/20241213095237.1409174-1-quic_prashk@quicinc.com/
+There is no such thing as "MFD" device in terms of hardware. MFD is a
+Linux construct.
 
-What was changed in v3?
+> i2c address for devices with separate functions.
 
-> 
-> Link to RFC:
-> https://lore.kernel.org/all/20241107073650.13473-1-quic_kriskura@quicinc.com/#Z31arch:arm64:boot:dts:qcom:sm8250.dtsi
-> 
+>=20
+> To me it's more like Maxim put its fuel gauge together with some hwmon
+> solution on the
+> single i2c client logic.
 
--- 
-With best wishes
-Dmitry
+Which still makes it one device, unless you are capable of re-using this
+other sensor-part on its own or in other devices.
+
+Best regards,
+Krzysztof
+
 
