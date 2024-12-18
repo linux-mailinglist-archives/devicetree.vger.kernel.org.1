@@ -1,181 +1,466 @@
-Return-Path: <devicetree+bounces-132171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71BA79F60E0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:07:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59AD29F60A7
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:03:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 713807A15F3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:07:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13AC31884E27
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:03:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4E10198E6F;
-	Wed, 18 Dec 2024 09:05:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 517AE18872D;
+	Wed, 18 Dec 2024 09:03:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="LOPZkdii"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eswQ8N2h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D807198E69;
-	Wed, 18 Dec 2024 09:05:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46DAA1547FF;
+	Wed, 18 Dec 2024 09:03:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734512720; cv=none; b=tzgc+U1LHtvghjjX6+hBwcf2R7O3wzi+DW2XcxZhB3YS6tOFA89HJpA0/s2nZrQNCAu51SKVPn7TGAtsxN+LkYpkaiAcy3iB0gc9WfT0JRyNRwhb/n8RD9u6oa38WtPEwno8B0p+bcElitro8osrTd1m9hXKvmN/nJZYPx7y4gc=
+	t=1734512604; cv=none; b=FtJOh9kCwUDNeui1CTckeghHV+kK2mpWeuqDp39QXaOlSkaCQpGU9WbQI04yLIad58YT+VAzQahd5q9qQE/ShQ8FgzcjiMykpiY48DaMN94v4sU+56ivolpuYEzATA82lgFhJL79hwbmGmO87hnpxIjoPnWunUMUIfK3VWLTKYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734512720; c=relaxed/simple;
-	bh=fx4PfkUpPvqRRQU4K7YqmcOhuSi/rAkNRt4a3ovcj6k=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ItilcfD4Cu3MvuH8CN6u5ZSi1/nKAuZXDuanGWPJjjmXmtEAljzQV5cQcUIxXLmKSLVEulf87qIC7iIYHX9ZSqnKbxQn1FxjN60p0hC4wjpp8KFVVLq5Y+MJX2ZynF8hCuV8iTLHBb069//dALL/n9WsG4FnWMIyuMNVLLmJ7ZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=LOPZkdii; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BI6omIY001098;
-	Wed, 18 Dec 2024 10:05:10 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	yo5Xx8h3uCqqmk4Dv0r1R0rtmXCq2HKncRpeohdg7BQ=; b=LOPZkdii75E14h+E
-	zrn6PnYijBtLYRjmSDje+LMZmjkLsdXNF5vR077r+gD9C3xGcJx+1AHVWTNh8Tse
-	6PvCvNykrbDBT1yRb5PKoJApUs7D1RFgYxrwNmQAqSFESZb1YluVwf53El9SC4AE
-	vFFZTzDbXghsgDOCo/6WQi1boVL3mbGmq+gKPsYG9wL9L8+sQaTpUq2mD2gu1DFB
-	uObJexIx0TWW6ac7jySrvv5cDzTYCtoJmVQYHhklE0LCTFwKvudRWs7LaX6geFwi
-	skOrFL3ATTNOgO07yDPoPPH4efNhirSfu9g0pSK+394BHGiVFwO4WPOKuLAKp+6Y
-	9VYrnw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 43ksfrgh74-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Dec 2024 10:05:10 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id BF41940079;
-	Wed, 18 Dec 2024 10:04:01 +0100 (CET)
-Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5F6C925011E;
-	Wed, 18 Dec 2024 10:03:01 +0100 (CET)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
- (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 18 Dec
- 2024 10:03:01 +0100
-Received: from localhost (10.48.86.222) by SAFDAG1NODE1.st.com (10.75.90.17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 18 Dec
- 2024 10:03:00 +0100
-From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <alexandre.torgue@foss.st.com>,
-        <wbg@kernel.org>, <jic23@kernel.org>, <ukleinek@kernel.org>
-CC: <catalin.marinas@arm.com>, <will@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <olivier.moysan@foss.st.com>
-Subject: [PATCH 9/9] arm64: dts: st: add timer nodes on stm32mp257f-ev1
-Date: Wed, 18 Dec 2024 10:01:53 +0100
-Message-ID: <20241218090153.742869-10-fabrice.gasnier@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241218090153.742869-1-fabrice.gasnier@foss.st.com>
-References: <20241218090153.742869-1-fabrice.gasnier@foss.st.com>
+	s=arc-20240116; t=1734512604; c=relaxed/simple;
+	bh=8NoGq6kk78SSnYva/6rAdF5mld6OTdv2DieIppgMxw4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fibuaryRGNNNFDY6JTS+qqEEf3j19JLJv+aadlIZIXfiFa8yWh4goRj4H2X9SrtQk/L6plgJOhiK/Hef3Kr2dfcxHoI6fgqltUNPyIps7mYGJzx6gCLMoMY8tjZageqtyCgZJpYWlqbDm4BU/GK0V+efKKPyM05XsvC5G3toHv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eswQ8N2h; arc=none smtp.client-ip=209.85.222.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7b6fc5bf609so354260885a.1;
+        Wed, 18 Dec 2024 01:03:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734512601; x=1735117401; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=cRdLdfLHCtTxVWya9q7QwJ93naqGXr0sXIFf7mt5Vkg=;
+        b=eswQ8N2hK/QZk0rj+Ybahm258T96jsIt9EOIPlxsUOS9drwZOzlDbZLQkpqOjHgQ1j
+         KKC0pqunmO6aeGU6FxWJwY+5mpfRQ+Xm0CzFFgebkz/YWg5fZcUpRpZChk6CF4lu3pe/
+         48l0Zn0IL++CA0dVUDM/1y1UF3+9mYABADtAJaUhqtJWxZO/3Cg/McTlfUAqvann0JQX
+         T2/D8nC76e1DuwsM6WvfwGPWL4Z0ySgoiliF9sE7+QXdgtJpOKCoh1gwsqJDQ7UcXrUd
+         bv5xCLG+1xV8z9eAb2qDg5SYQ2Y5YEUGGyhqFeghkPt82Iy5Z/b40fTMmuVNVWyI6ed1
+         MTTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734512601; x=1735117401;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cRdLdfLHCtTxVWya9q7QwJ93naqGXr0sXIFf7mt5Vkg=;
+        b=HG3UR+xhUv5Wtiz4EAOPyClltGPPa/TKA38NLuaIptbsVJLYztDTLm6/IDCDJFAvej
+         OjFq3iF70LoR/Cp3yAUzf37vjzODz30NQhoZviNjQEdUEyKV6DQkahl+0Od8dFg8n0QJ
+         R2xSKxOSjT3YeTPPTqjb1VUkzKgWKDFUWmbI5k8j5AAKSu0gnDvV6B3o1R6fsT/Z9MqJ
+         AppOrqh7jmqsjaWf5Mr8yc7YEmJ2TfoHVgBekJaDyNz5PHd44xky4E8pWVXfXwAq1dzd
+         LDntdjVgzqhjMqA419mU/9Zw467iofReHayvhkTxeCkfB76PnhaFs14FUsj3qGamVSur
+         cBiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUVdgoTsX9qnp/gb0+nTVJPO5yohWLXBoq4atlsZMtf2F3xnK7ElTRoU+eFhnrBbQxICILulO1NQTwHukta@vger.kernel.org, AJvYcCW02G+7SIiz7ggt9t1wIO7wZidoV4fASu0JS3zxjt1nUkzxNGwbqTS6g+rufJq0cAVOvUfviAGIJ/dR@vger.kernel.org, AJvYcCWccAndkk4nOK5McvmPsWUkSzmoGLzHi0LsL4qDaSHTHD5WNfbX6GFLvVoDeuZo2IMk8eaNx3QxSJF5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFvwuMwYcUrCkulBlY1s5N8/v9CiliSCUjjZfDPW3HVAzXm/aN
+	M4Xq1VN+5xXEmcJGFJWvQD639pnFbBq9fUASpgwGQe0ERvqx64Zg
+X-Gm-Gg: ASbGncvAzThZK84LJHLVHQq3dqhIta7QqD4WT3Y5aNwxWxOvfBN9KUseEflJvqGhejn
+	SzNizBgKiXlrH5ghpNtjrJTOaClpWLpmDTYYBl/Ql1MxqXtg/HeAEf24is+hy7Bw+DVAIJ/iCPU
+	z+ty4+mhYpdVbIo7APX8W0ZDOgExa7M8tD/+HdIoHx/E32q45hwCzhsBTuNWLfF3R9ROgq22dsg
+	k6GY5Lpq1LW4iFCeEfCye41D/cUPFOE
+X-Google-Smtp-Source: AGHT+IHIh+isE6oKIPishyr/XKqQDlHJnnTXjbRPJxsMVMeZi6BTkAZUEnn6VdDa/2khagRhtmmCIQ==
+X-Received: by 2002:a05:620a:1915:b0:7b6:da92:fcd0 with SMTP id af79cd13be357-7b8636e88bdmr234217885a.8.1734512600956;
+        Wed, 18 Dec 2024 01:03:20 -0800 (PST)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b7048bd90dsm404115785a.87.2024.12.18.01.03.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Dec 2024 01:03:20 -0800 (PST)
+Date: Wed, 18 Dec 2024 17:03:01 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Yixun Lan <dlan@gentoo.org>, Haylen Chu <heylenay@4d2.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Haylen Chu <heylenay@outlook.com>, linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Inochi Amaoto <inochiama@outlook.com>, Chen Wang <unicornxdotw@foxmail.com>, 
+	Jisheng Zhang <jszhang@kernel.org>, Inochi Amaoto <inochiama@gmail.com>
+Subject: Re: [PATCH v3 3/3] clk: spacemit: Add clock support for Spacemit K1
+ SoC
+Message-ID: <3fhnjybnrrixse5h6epfp2aj7pk3uo6fk34gvsqkku6sofir6r@t3ofcy5xure6>
+References: <20241126143125.9980-2-heylenay@4d2.org>
+ <20241126143125.9980-7-heylenay@4d2.org>
+ <xswwcu4htkls4rdaoccrlyotup4rxjma332wewyqkmctezouxl@oplcxg5nglty>
+ <20241218072727-GYA3467167@gentoo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241218072727-GYA3467167@gentoo>
 
-Configure timer nodes on stm32mp257f-ev1:
-- Timer3 CH2 is available on mikroBUS connector for PWM
-- timer8 CH1, timer8 CH4, timer10 CH1 and timer12 CH2 are available
-  on EXPANSION connector.
-Timers are kept disabled by default, so the pins can be used for any
-other purpose (and the timers can be assigned to any of the processors).
-Arbitrary choice is to use all these timers as PWM (or counter on
-internal clock signal), except for timer10 that is configured with
-CH1 as an input (for capture).
+On Wed, Dec 18, 2024 at 03:27:27PM +0800, Yixun Lan wrote:
+> On 14:47 Sun 08 Dec     , Inochi Amaoto wrote:
+> > On Tue, Nov 26, 2024 at 02:31:28PM +0000, Haylen Chu wrote:
+> > > The clock tree of K1 SoC contains three main types of clock hardware
+> > > (PLL/DDN/MIX) and is managed by several independent controllers in
+> > > different SoC parts (APBC, APBS and etc.), thus different compatible
+> > > strings are added to distinguish them.
+> > > 
+> > > Some controllers may share IO region with reset controller and other low
+> > > speed peripherals like watchdog, so all register operations are done
+> > > through regmap to avoid competition.
+> > > 
+> > > Signed-off-by: Haylen Chu <heylenay@4d2.org>
+> > > ---
+> > >  drivers/clk/Kconfig               |    1 +
+> > >  drivers/clk/Makefile              |    1 +
+> > >  drivers/clk/spacemit/Kconfig      |   20 +
+> > >  drivers/clk/spacemit/Makefile     |    5 +
+> > >  drivers/clk/spacemit/ccu-k1.c     | 1747 +++++++++++++++++++++++++++++
+> > >  drivers/clk/spacemit/ccu_common.h |   62 +
+> > >  drivers/clk/spacemit/ccu_ddn.c    |  146 +++
+> > >  drivers/clk/spacemit/ccu_ddn.h    |   85 ++
+> > >  drivers/clk/spacemit/ccu_mix.c    |  296 +++++
+> > >  drivers/clk/spacemit/ccu_mix.h    |  336 ++++++
+> > >  drivers/clk/spacemit/ccu_pll.c    |  198 ++++
+> > >  drivers/clk/spacemit/ccu_pll.h    |   80 ++
+> ....snip
+> > > diff --git a/drivers/clk/spacemit/ccu_mix.c b/drivers/clk/spacemit/ccu_mix.c
+> > > new file mode 100644
+> > > index 000000000000..de343405fcc7
+> > > --- /dev/null
+> > > +++ b/drivers/clk/spacemit/ccu_mix.c
+> > > @@ -0,0 +1,296 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * Spacemit clock type mix(div/mux/gate/factor)
+> > > + *
+> > > + * Copyright (c) 2024 SpacemiT Technology Co. Ltd
+> > > + * Copyright (c) 2024 Haylen Chu <heylenay@outlook.com>
+> > > + */
+> > > +
+> > > +#include <linux/clk-provider.h>
+> > > +
+> > > +#include "ccu_mix.h"
+> > > +
+> > > +#define MIX_TIMEOUT	10000
+> > > +
+> > > +#define mix_hwparam_in_sel(c) \
+> > > +	((c)->reg_type == CLK_DIV_TYPE_2REG_NOFC_V3 || \
+> > > +	 (c)->reg_type == CLK_DIV_TYPE_2REG_FC_V4)
+> > > +
+> > 
+> > > +static void ccu_mix_disable(struct clk_hw *hw)
+> > > +{
+> > > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
+> > > +	struct ccu_common *common = &mix->common;
+> > > +	struct ccu_gate_config *gate = mix->gate;
+> > > +
+> > > +	if (!gate)
+> > > +		return;
+> > > +
+> > > +	if (mix_hwparam_in_sel(common))
+> > > +		ccu_update(sel, common, gate->gate_mask, gate->val_disable);
+> > > +	else
+> > > +		ccu_update(ctrl, common, gate->gate_mask, gate->val_disable);
+> > > +}
+> > > +
+> > > +static int ccu_mix_enable(struct clk_hw *hw)
+> > > +{
+> > > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
+> > > +	struct ccu_common *common = &mix->common;
+> > > +	struct ccu_gate_config *gate = mix->gate;
+> > > +	u32 val_enable, mask;
+> > > +	u32 tmp;
+> > > +
+> > > +	if (!gate)
+> > > +		return 0;
+> > > +
+> > > +	val_enable	= gate->val_enable;
+> > > +	mask		= gate->gate_mask;
+> > > +
+> > > +	if (mix_hwparam_in_sel(common))
+> > > +		ccu_update(sel, common, mask, val_enable);
+> > > +	else
+> > > +		ccu_update(ctrl, common, mask, val_enable);
+> > > +
+> > > +	if (common->reg_type == CLK_DIV_TYPE_2REG_NOFC_V3 ||
+> > > +	    common->reg_type == CLK_DIV_TYPE_2REG_FC_V4)
+> > > +		return ccu_poll(sel, common, tmp, (tmp & mask) == val_enable,
+> > > +				10, MIX_TIMEOUT);
+> > > +	else
+> > > +		return ccu_poll(ctrl, common, tmp, (tmp & mask) == val_enable,
+> > > +				10, MIX_TIMEOUT);
+> > > +}
+> > > +
+> > > +static int ccu_mix_is_enabled(struct clk_hw *hw)
+> > > +{
+> > > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
+> > > +	struct ccu_common *common = &mix->common;
+> > > +	struct ccu_gate_config *gate = mix->gate;
+> > > +	u32 tmp;
+> > > +
+> > > +	if (!gate)
+> > > +		return 1;
+> > > +
+> > > +	if (mix_hwparam_in_sel(common))
+> > > +		ccu_read(sel, common, &tmp);
+> > > +	else
+> > > +		ccu_read(ctrl, common, &tmp);
+> > > +
+> > > +	return (tmp & gate->gate_mask) == gate->val_enable;
+> > > +}
+> > > +
+> > > +static unsigned long ccu_mix_recalc_rate(struct clk_hw *hw,
+> > > +					unsigned long parent_rate)
+> > > +{
+> > > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
+> > > +	struct ccu_common *common = &mix->common;
+> > > +	struct ccu_div_config *div = mix->div;
+> > > +	unsigned long val;
+> > > +	u32 reg;
+> > > +
+> > > +	if (!div) {
+> > > +		if (mix->factor)
+> > > +			return parent_rate * mix->factor->mul / mix->factor->div;
+> > > +
+> > > +		return parent_rate;
+> > > +	}
+> > > +
+> > > +	if (mix_hwparam_in_sel(common))
+> > > +		ccu_read(sel, common, &reg);
+> > > +	else
+> > > +		ccu_read(ctrl, common, &reg);
+> > > +
+> > > +	val = reg >> div->shift;
+> > > +	val &= (1 << div->width) - 1;
+> > > +
+> > > +	val = divider_recalc_rate(hw, parent_rate, val, div->table,
+> > > +				  div->flags, div->width);
+> > > +
+> > > +	return val;
+> > > +}
+> > 
+> > I think you should distinguish these muxs, it is not good to
+> > use mix_hwparam_in_sel everywhere. There are two types of mux.
+> > 
+> > > +
+> > > +
+> > 
+> > Double empty line here, you should run checkpatch.
+> > 
+> > > +static int ccu_mix_trigger_fc(struct clk_hw *hw)
+> > > +{
+> > > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
+> > > +	struct ccu_common *common = &mix->common;
+> > > +	unsigned int val = 0;
+> > > +	int ret = 0;
+> > > +
+> > > +	if (common->reg_type == CLK_DIV_TYPE_1REG_FC_V2 ||
+> > > +	    common->reg_type == CLK_DIV_TYPE_2REG_FC_V4 ||
+> > > +	    common->reg_type == CLK_DIV_TYPE_1REG_FC_DIV_V5 ||
+> > > +	    common->reg_type == CLK_DIV_TYPE_1REG_FC_MUX_V6) {
+> > > +		ccu_update(ctrl, common, common->fc, common->fc);
+> > > +
+> > > +		ret = ccu_poll(ctrl, common, val, !(val & common->fc),
+> > > +			       5, MIX_TIMEOUT);
+> > > +	}
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static int ccu_mix_determine_rate(struct clk_hw *hw,
+> > > +				  struct clk_rate_request *req)
+> > > +{
+> > > +	return 0;
+> > > +}
+> > > +
+> > 
+> > Why a empty determine_rate function?
+> > 
+> > > +static unsigned long
+> > > +ccu_mix_calc_best_rate(struct clk_hw *hw, unsigned long rate, u32 *mux_val,
+> > > +		       u32 *div_val)
+> > > +{
+> > > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
+> > > +	struct ccu_common *common = &mix->common;
+> > > +	struct ccu_div_config *div = mix->div ? mix->div : NULL;
+> > > +	struct clk_hw *parent;
+> > > +	unsigned long parent_rate = 0, best_rate = 0;
+> > > +	u32 i, j, div_max;
+> > > +
+> > > +	for (i = 0; i < common->num_parents; i++) {
+> > > +		parent = clk_hw_get_parent_by_index(hw, i);
+> > > +		if (!parent)
+> > > +			continue;
+> > > +
+> > > +		parent_rate = clk_hw_get_rate(parent);
+> > > +
+> > > +		if (div)
+> > > +			div_max = 1 << div->width;
+> > > +		else
+> > > +			div_max = 1;
+> > > +
+> > > +		for (j = 1; j <= div_max; j++) {
+> > > +			if (abs(parent_rate/j - rate) < abs(best_rate - rate)) {
+> > > +				best_rate = DIV_ROUND_UP_ULL(parent_rate, j);
+> > > +				*mux_val = i;
+> > > +				*div_val = j - 1;
+> > > +			}
+> > > +		}
+> > > +	}
+> > > +
+> > > +	return best_rate;
+> > > +}
+> > > +
+> > > +static int ccu_mix_set_rate(struct clk_hw *hw, unsigned long rate,
+> > > +			   unsigned long parent_rate)
+> > > +{
+> > > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
+> > > +	struct ccu_common *common = &mix->common;
+> > > +	struct ccu_div_config *div = mix->div;
+> > > +	struct ccu_mux_config *mux = mix->mux;
+> > > +	u32 cur_mux, cur_div, mux_val = 0, div_val = 0;
+> > > +	unsigned long best_rate = 0;
+> > > +	int ret = 0, tmp = 0;
+> > > +
+> > > +	if (!div && !mux)
+> > > +		return 0;
+> > > +
+> > > +	best_rate = ccu_mix_calc_best_rate(hw, rate, &mux_val, &div_val);
+> > > +
+> > > +	if (mix_hwparam_in_sel(common))
+> > > +		ccu_read(sel, common, &tmp);
+> > > +	else
+> > > +		ccu_read(ctrl, common, &tmp);
+> > > +
+> > > +	if (mux) {
+> > > +		cur_mux = tmp >> mux->shift;
+> > > +		cur_mux &= (1 << mux->width) - 1;
+> > > +
+> > > +		if (cur_mux != mux_val)
+> > > +			clk_hw_set_parent(hw, clk_hw_get_parent_by_index(hw, mux_val));
+> > > +	}
+> > > +
+> > > +	if (div) {
+> > > +		cur_div = tmp >> div->shift;
+> > > +		cur_div &= (1 << div->width) - 1;
+> > > +
+> > > +		if (cur_div == div_val)
+> > > +			return 0;
+> > > +	} else {
+> > > +		return 0;
+> > > +	}
+> > > +
+> > > +	tmp = GENMASK(div->width + div->shift - 1, div->shift);
+> > > +
+> > > +	if (mix_hwparam_in_sel(common))
+> > > +		ccu_update(sel, common, tmp, div_val << div->shift);
+> > > +	else
+> > > +		ccu_update(ctrl, common, tmp, div_val << div->shift);
+> > > +
+> > > +	if (common->reg_type == CLK_DIV_TYPE_1REG_FC_V2 ||
+> > > +	    common->reg_type == CLK_DIV_TYPE_2REG_FC_V4 ||
+> > > +	    common->reg_type == CLK_DIV_TYPE_1REG_FC_DIV_V5)
+> > > +		ret = ccu_mix_trigger_fc(hw);
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static u8 ccu_mix_get_parent(struct clk_hw *hw)
+> > > +{
+> > > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
+> > > +	struct ccu_common *common = &mix->common;
+> > > +	struct ccu_mux_config *mux = mix->mux;
+> > > +	u32 reg;
+> > > +	u8 parent;
+> > > +
+> > > +	if (!mux)
+> > > +		return 0;
+> > > +
+> > > +	if (mix_hwparam_in_sel(common))
+> > > +		ccu_read(sel, common, &reg);
+> > > +	else
+> > > +		ccu_read(ctrl, common, &reg);
+> > > +
+> > > +	parent = reg >> mux->shift;
+> > > +	parent &= (1 << mux->width) - 1;
+> > > +
+> > > +	if (mux->table) {
+> > > +		int num_parents = clk_hw_get_num_parents(&common->hw);
+> > > +		int i;
+> > > +
+> > > +		for (i = 0; i < num_parents; i++)
+> > > +			if (mux->table[i] == parent)
+> > > +				return i;
+> > > +	}
+> > > +
+> > > +	return parent;
+> > > +}
+> > > +
+> > > +static int ccu_mix_set_parent(struct clk_hw *hw, u8 index)
+> > > +{
+> > > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
+> > > +	struct ccu_common *common = &mix->common;
+> > > +	struct ccu_mux_config *mux = mix->mux;
+> > > +	int ret = 0;
+> > > +	u32 mask;
+> > > +
+> > > +	if (!mux)
+> > > +		return 0;
+> > > +
+> > > +	if (mux->table)
+> > > +		index = mux->table[index];
+> > > +
+> > > +	mask = GENMASK(mux->width + mux->shift - 1, mux->shift);
+> > > +
+> > > +	if (mix_hwparam_in_sel(common))
+> > > +		ccu_update(sel, common, mask, index << mux->shift);
+> > > +	else
+> > > +		ccu_update(ctrl, common, mask, index << mux->shift);
+> > > +
+> > > +	if (common->reg_type == CLK_DIV_TYPE_1REG_FC_V2 ||
+> > > +	    common->reg_type == CLK_DIV_TYPE_2REG_FC_V4 ||
+> > > +	    common->reg_type == CLK_DIV_TYPE_1REG_FC_MUX_V6)
+> > > +		ret = ccu_mix_trigger_fc(hw);
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +const struct clk_ops spacemit_ccu_mix_ops = {
+> > > +	.disable	 = ccu_mix_disable,
+> > > +	.enable		 = ccu_mix_enable,
+> > > +	.is_enabled	 = ccu_mix_is_enabled,
+> > > +	.get_parent	 = ccu_mix_get_parent,
+> > > +	.set_parent	 = ccu_mix_set_parent,
+> > > +	.determine_rate  = ccu_mix_determine_rate,
+> > > +	.recalc_rate	 = ccu_mix_recalc_rate,
+> > > +	.set_rate	 = ccu_mix_set_rate,
+> > > +};
+> > 
+> > I think you should separate the clock into different type and
+> > use pre-defined function to simplify, but not use a unified,
+> > complex and hard to read structure to represent all kinds of
+> > clocks.
+> > 
+> agree
+> 
+> I'd not object to use composite clock, it simplify the implementation,
+> but, in this version, there is lots of "if" conditions which make it
+> hard to review and maintain..
+> 
+> would it possibile to use more basic clk prototype? or just the composite
+> model[1] or something similar as owl-composite.c [2] which has more fine
+> composite prototype (instead of bundling all in one)
+> 
+> drivers/clk/clk-composite.c [1]
+> drivers/clk/actions/owl-composite.c [2]
+> 
 
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 58 ++++++++++++++++++++++
- 1 file changed, 58 insertions(+)
+This depends on what you clock is. I guest this mix has a all in one
+register to perform mix/div/gate. If so, it is better to provide multiple
+clk_ops to adopt the real one. Otherwise, it will be better to use
+different clk type to represent the real clock.
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 6f393b082789..6601ca411006 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -156,6 +156,64 @@ &spi8 {
- 	status = "disabled";
- };
- 
-+&timers3 {
-+	status = "disabled";
-+	counter {
-+		status = "okay";
-+	};
-+	pwm {
-+		pinctrl-0 = <&pwm3_pins_a>;
-+		pinctrl-1 = <&pwm3_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+	timer@2 {
-+		status = "okay";
-+	};
-+};
-+
-+&timers8 {
-+	status = "disabled";
-+	counter {
-+		status = "okay";
-+	};
-+	pwm {
-+		pinctrl-0 = <&pwm8_pins_a>;
-+		pinctrl-1 = <&pwm8_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+	timer@7 {
-+		status = "okay";
-+	};
-+};
-+
-+&timers10 {
-+	status = "disabled";
-+	counter {
-+		pinctrl-0 = <&tim10_counter_pins_a>;
-+		pinctrl-1 = <&tim10_counter_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+};
-+
-+&timers12 {
-+	status = "disabled";
-+	counter {
-+		status = "okay";
-+	};
-+	pwm {
-+		pinctrl-0 = <&pwm12_pins_a>;
-+		pinctrl-1 = <&pwm12_sleep_pins_a>;
-+		pinctrl-names = "default", "sleep";
-+		status = "okay";
-+	};
-+	timer@11 {
-+		status = "okay";
-+	};
-+};
-+
- &usart2 {
- 	pinctrl-names = "default", "idle", "sleep";
- 	pinctrl-0 = <&usart2_pins_a>;
--- 
-2.25.1
-
+Regards,
+Inochi
 
