@@ -1,136 +1,179 @@
-Return-Path: <devicetree+bounces-132177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA1C9F60FE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:09:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C27F9F6103
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:09:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 606F67A280C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:08:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAA0D165D49
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 274A21A08B5;
-	Wed, 18 Dec 2024 09:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CB851946C7;
+	Wed, 18 Dec 2024 09:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="SONlG9Fs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h0CEJ30g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7736919F422;
-	Wed, 18 Dec 2024 09:06:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C41A41922F1
+	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 09:06:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734512771; cv=none; b=HRV5/rVJD3Hcn9kVFGeLxaGgFbe4jy4R5k01yOQ29byABcFo4IMJ04V6Bd+uYbTQTgDuLTCctMedJf9BBbYWJhGNzKOnb79d17RhUv36KNgooXgqhVkHqTLXLn3y5htBQavtmmzzk4zg9U778xPy+M8e/sdlYNSr3oTWa3Sd2lc=
+	t=1734512813; cv=none; b=pJAHgLclpnC4TASrPK1z7xPNOYHzbfQ37GWRivedB4FML8spfE84lWQgGIrtTFYCzOyqg41eQgSWn8dEhizN9lInqvTVzyT0tX06KicwT4aMwQnCxXeVsMQoUpX8BSuMYzYTEbDndpeu3AXjZGjRCsMV6RgH27VuLZFIfEacKkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734512771; c=relaxed/simple;
-	bh=uq8TgpIgbcMe1O9uiKHRrNcGZAdZvgl2WksQo0PqQHE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IQZP4OJIH6AsF9+JbUtaD0o/EZGd2SAuflk+3hCY9DEjqKbVDyrUI+SAurKkCKvevlQn8d7ZPMyHMGECbJaTcNRrZT+aHxWjmi6MC20l7O//plTW8wEndopxF89eo+w3CRgMFc5urQ0feako+VIPtS2pX7hSpfkpqRjOMNCfqcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=SONlG9Fs; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.1.104] (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6B3DEDEE;
-	Wed, 18 Dec 2024 10:05:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1734512723;
-	bh=uq8TgpIgbcMe1O9uiKHRrNcGZAdZvgl2WksQo0PqQHE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=SONlG9Fsz/HhqSfLvLDG+zXHY5phBTn98shqJEOd09Y6tWD2MxK9V8Q8I/qPbICkF
-	 EQyuTdvOya7BGDbCDlvsPJplJtZsj4qvccA8TEXieM0NkwmDfvIJw1ag0zaFsHSkLW
-	 8HpW2YAPBStL9XZdwSHKQQyBew6rvLwDQfXjz4+U=
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Wed, 18 Dec 2024 10:05:37 +0100
-Subject: [PATCH v2 4/4] arm64: dts: renesas: r8a779g0: Add VSPX instances
+	s=arc-20240116; t=1734512813; c=relaxed/simple;
+	bh=BtkrMpozf0jdTpY6iuVSH+yuW5J+4kqV/qyv7r3T4v0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PsVCQ7KYgsnJY/MTQz0Y9DPGorcH0/FTMWc9bkB6l4YD/lAN9rE1JwUtNtXGZq23buX/AbmZsrOMsEz0rbmddooiWvLnnlkSSOlM1XxNBFv1gzUSnmBvptA7O3cjt1sPRl3O65TP2Lid2Q0vlcAuEVpo/dy0N2FCjzzJUm3J7AY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h0CEJ30g; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7fbbe0fb0b8so4157546a12.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 01:06:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734512811; x=1735117611; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=GCGMCINTHycaSUk/d2i6Tkx5PMoxq8giUl7PZqrxQnU=;
+        b=h0CEJ30gzKn7V5uhK2Z9GNvbNQYbakP580jwt0AilHJjMyHDenvfLcloMvX4k6Idvo
+         AsZycDwDoOb4H5+3Hu7h1pB2RPubzgbiZ6wjh9jquvE4qmxZOfVcmHwBftKHm5jeuzFt
+         mVc3ulpoWxXNNdiw7rY70BrYmSz9j7DEOQNvqCCXOegjPDDayegQF2AWip8AG78+9/kd
+         h3qaGSetgFbTBEo+CBxH+vxjutO15MaE31XJfQO/JTF5u14vQOa44ock9AT9EBLJSp4d
+         rWqrPwNjFJFvR0rv0/urWRLSM+6sT1Wgb57v5WVG91kXKwH2hY03TJ+/1Xu2boZorJQV
+         XQfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734512811; x=1735117611;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GCGMCINTHycaSUk/d2i6Tkx5PMoxq8giUl7PZqrxQnU=;
+        b=b7MIarJdWy4SmOi+SQIaapLhs49j3mV/AcN+j/DYQAKnryNGCGpP4CngTXpJ9KPbt7
+         XsQiJmme1YsHbg8ce7F6BclE3jnlWAR9YEL+0y6wsZ/67vK8DLIHoK4zFpa4cFq4c2hN
+         wTI0FLip//gM6MXoJmTtTfySh9MQeH1UMzSt4mJ1DZw8Q/qaNjCE4n08+yU9GL34pras
+         d8UbPMoWJyR+Hn3vKPn/gTJR9jV7nPWnBiTu6eu2+x6zr8PXkEV8uQvHd+th7UAiFffG
+         C4x7Q1YWu2VCfHNJJMVDUpFp0DYUr7g0vW3R5D1YginqfERO8BwVkHRJ1Z079FSV3wKt
+         LIZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWau0N7MRP0ljLG09Es4xlFd45zVvRIPrKXq5ywJgzmb53gIZwZJXomhj/3wrw3FAwg79PZ10aHE51H@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzn9Y8r3PrzI/oby1fXbt4E9DUDtXI6xZFqcjoeXuJPWsdVyTfe
+	51kNdfRFAQgwE9RnhaiPOkUFhGSKYetWBh8kZ7mepVZcTdT+eCJBz2XGNqgScw==
+X-Gm-Gg: ASbGnct9py76UXK1kTy404dgWQfJccsAQau7WkspDzaz+DwvrByI1ltfqdw8hU//kjd
+	lh4CrnOzj/TDoWWdMUzr1omMzRZWo4iJcfsF+MNIUoClopufUM8DEAZ/h0KrZ59dz6Wezqjlj7K
+	aAV4TqRf43Qkk7LYPJVefxrzY0TMms+C8+B/JTkBXz4Tmt4JNilUjKlTqo36Bu+AcucEjNjxzEK
+	jP25AqpK6jO9HN0XPcNO7OULaPxMXJ/XPYRYSN0Ga4PB7THYu1cYvlcmDLpTJv3RDkn
+X-Google-Smtp-Source: AGHT+IHyd0rjMU5k67UAqjTzwzFPT1nFixbQFJlYVvsZ8oxYL1YYOQHvMxEIakRysvdaXHIwPi972g==
+X-Received: by 2002:a17:90b:2b8f:b0:2ee:df57:b194 with SMTP id 98e67ed59e1d1-2f2e91fef48mr2602950a91.21.1734512811162;
+        Wed, 18 Dec 2024 01:06:51 -0800 (PST)
+Received: from thinkpad ([117.193.214.60])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e6d87asm71760635ad.264.2024.12.18.01.06.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Dec 2024 01:06:50 -0800 (PST)
+Date: Wed, 18 Dec 2024 14:36:41 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Christian Bruel <christian.bruel@foss.st.com>
+Cc: Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, p.zabel@pengutronix.de,
+	cassel@kernel.org, quic_schintav@quicinc.com,
+	fabrice.gasnier@foss.st.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: PCI: Add STM32MP25 PCIe root complex
+ bindings
+Message-ID: <20241218090641.dtn4niamg6gcvxml@thinkpad>
+References: <20241205172022.GA3053765@bhelgaas>
+ <d976d74c-80c0-4446-bb9b-960a990c552b@foss.st.com>
+ <20241217172502.borj2oy4rpxcteag@thinkpad>
+ <5b835381-55bc-4fc8-b848-535f6e881420@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241218-rcar-v4h-vspx-v2-4-c673647d96e1@ideasonboard.com>
-References: <20241218-rcar-v4h-vspx-v2-0-c673647d96e1@ideasonboard.com>
-In-Reply-To: <20241218-rcar-v4h-vspx-v2-0-c673647d96e1@ideasonboard.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-X-Mailer: b4 0.15-dev-1b0d6
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1472;
- i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=uq8TgpIgbcMe1O9uiKHRrNcGZAdZvgl2WksQo0PqQHE=;
- b=owEBbQKS/ZANAwAIAXI0Bo8WoVY8AcsmYgBnYpB09OPRnO37Z5k1jBs4HlqXsD+YQdJ0MHio/
- vSUWlZhIFmJAjMEAAEIAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCZ2KQdAAKCRByNAaPFqFW
- PN/PEACw72ECzjMUpoyDKUQqyovUuyTIIzuStVghAJPpJ67JYQ6BNzEa0UGvdbZEzt1+ytEJtDp
- F4nOtzmRasnv+ssBIfa9JoaNuYOSlU1qUoJEPtO/tiW6rk73PlQJ2X+m9hxHNO6lctluv5CFVTZ
- fyNYSga+GfNV7UuCT+txUlC62GJr/QmzAka1P+3iB7o8AloPIbNYCtz1Peczylr5OJS6mZis+Vn
- UpzR+MTA63e5Hf9TGMjZVHGzGucYu8eQ4qPzr+MkJjBV8U6vNqBf8LF8BMnWIviFWA53dswoZDB
- FxWCohYytjEl0pJVSCFVtAkQfZxGVkcNB1NgYxSqu/tNXi+jfX7+ZNUZyoP7kVJQ0qn/jhjbMwr
- hjTRTjVdH4Pp9ciXUYHCUwfRxR7kp/Ouckp9F+gmDoYKn1aBpGvVZVj4tbtrwQaonWPNnt5DhVn
- kMSrtai4kN8owxFAPO960/sJq5VefxZaV31ymsCN8ZWdVvv4XctgVB7tG8dqnmvhe83hMyUSyim
- dlJGanZADzj1gwYetJjjeW1qoBiLm+oe09jJ6VssCEFhQnD9fpjHet7R0tbqiamR6JKBATwicP+
- 0SODoqxL7cd1BTSMMss5Xqh7BGxHfPaEqO2w19rzMIV9cBpm2TZ7ZR+YdiLq1lYJroT2iiwCWSA
- I0BJNVCNmWd0NKA==
-X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
- fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5b835381-55bc-4fc8-b848-535f6e881420@foss.st.com>
 
-Add device nodes for the VSPX instances on R-Car V4H (R8A779G0) SoC.
+On Wed, Dec 18, 2024 at 09:42:45AM +0100, Christian Bruel wrote:
+> 
+> 
+> On 12/17/24 18:25, Manivannan Sadhasivam wrote:
+> > On Tue, Dec 17, 2024 at 04:53:48PM +0100, Christian Bruel wrote:
+> > > 
+> > > > Makes sense.  What about phys, resets, etc?  I'm pretty sure a PHY
+> > > > would be a per-Root Port thing, and some resets and wakeup signals
+> > > > also.
+> > > > 
+> > > > For new drivers, I think we should start adding Root Port stanzas to
+> > > > specifically associate those things with the Root Port, e.g.,
+> > > > something like this?
+> > > > 
+> > > >     pcie@48400000 {
+> > > >       compatible = "st,stm32mp25-pcie-rc";
+> > > > 
+> > > >       pcie@0,0 {
+> > > >         reg = <0x0000 0 0 0 0>;
+> > > >         phys = <&combophy PHY_TYPE_PCIE>;
+> > > >         phy-names = "pcie-phy";
+> > > >       };
+> > > >     };
+> > > > 
+> > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml?id=v6.12#n111
+> > > > is one binding that does this, others include apple,pcie.yaml,
+> > > > brcm,stb-pcie.yaml, hisilicon,kirin-pcie.yaml.
+> > > > 
+> > > 
+> > > On a second thought, moving the PHY to the root-port part would introduce a
+> > > discrepancy with the pcie_ep binding, whereas the PHY is required on the
+> > > pcie_ep node.
+> > > 
+> > > Even for the pcie_rc, the PHY is needed to enable the core_clk to access
+> > > the PCIe core registers,
+> > > 
+> > 
+> > But why that matters? You can still parse the child nodes, enable PHY and
+> > configure PCIe registers. >
+> > > So that would make 2 different required PHY locations for RC and EP:
+> > > 
+> > >      pcie_rc: pcie@48400000 {
+> > >        compatible = "st,stm32mp25-pcie-rc";
+> > > 
+> > >        pcie@0,0 {
+> > >          reg = <0x0000 0 0 0 0>;
+> > >          phys = <&combophy PHY_TYPE_PCIE>;
+> > >          phy-names = "pcie-phy";
+> > >        };
+> > >      };
+> > > 
+> > >      pcie_ep pcie@48400000 {
+> > >        compatible = "st,stm32mp25-pcie-ep";
+> > >        phys = <&combophy PHY_TYPE_PCIE>;
+> > >        phy-names = "pcie-phy";
+> > >      };
+> > > 
+> > > Simplest seems to keep the PHY required for the pcie core regardless of the
+> > > mode and keep the empty root port to split the design
+> > > 
+> > 
+> > No please. Try to do the right thing from the start itself.
+> 
+> Parsing the child node to clock the IP seems weird. Note that
+> hisilicon,kirin-pcie.yaml also declares the PHY at the controller level.
+> 
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Nothing is weird here. Almost all multi port controller drivers does the same.
+Most of the single port controller instances define port properties in
+controller node only, but that's what we want to avoid now.
 
----
-v1->v2:
-- Re-sort nodes by unit address
----
- arch/arm64/boot/dts/renesas/r8a779g0.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-index 3eb53deecb63cf1aacf4a2ed663fe5402aa1199d..cf2550abc58620c453e312d6fd3f46fa1a58c1a1 100644
---- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-@@ -2471,6 +2471,28 @@ fcpvx1: fcp@fedb8000 {
- 			iommus = <&ipmmu_vi1 25>;
- 		};
- 
-+		vspx0: vsp@fedd0000 {
-+			compatible = "renesas,vsp2";
-+			reg = <0 0xfedd0000 0 0x8000>;
-+			interrupts = <GIC_SPI 556 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 1028>;
-+			power-domains = <&sysc R8A779G0_PD_ALWAYS_ON>;
-+			resets = <&cpg 1028>;
-+
-+			renesas,fcp = <&fcpvx0>;
-+		};
-+
-+		vspx1: vsp@fedd8000 {
-+			compatible = "renesas,vsp2";
-+			reg = <0 0xfedd8000 0 0x8000>;
-+			interrupts = <GIC_SPI 557 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 1029>;
-+			power-domains = <&sysc R8A779G0_PD_ALWAYS_ON>;
-+			resets = <&cpg 1029>;
-+
-+			renesas,fcp = <&fcpvx1>;
-+		};
-+
- 		prr: chipid@fff00044 {
- 			compatible = "renesas,prr";
- 			reg = <0 0xfff00044 0 4>;
+- Mani
 
 -- 
-2.47.1
-
+மணிவண்ணன் சதாசிவம்
 
