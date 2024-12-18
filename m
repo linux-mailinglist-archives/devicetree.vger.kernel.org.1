@@ -1,146 +1,272 @@
-Return-Path: <devicetree+bounces-132196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0C269F620C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:45:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A71649F6218
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:46:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 467641894EE4
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:44:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6466161BA3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:46:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2851B192598;
-	Wed, 18 Dec 2024 09:44:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BF4F192B95;
+	Wed, 18 Dec 2024 09:46:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bRXCD00x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WKZpv/dj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1531791F4;
-	Wed, 18 Dec 2024 09:44:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCE66155345
+	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 09:46:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734515058; cv=none; b=cF9FgEkQ4OqErL+fmOJtArhQuKJl8kTLqXQK1IOJBWGpMEYUB130SOfk54+zclv5l2bSzGcHec0HdxG3gdHuF2Zc/B/tqz1NIbKL3svai1u5LkWtAZvqGbLbhQcyxN1t586Rb9EdcDYTiyJ/hxllRXJehiy/G9KTcGFsM29kl1M=
+	t=1734515177; cv=none; b=a44MWGI0+3nJ6hJV2j9kkIw1QOblXVvOutD48kVYsRJ0pGFaKtZuihHwO9ge1JsR5sqfvxAV+rImhiiQHk4FcPjTP1H/IWUPbZ9OrnLfm5iQZrmHU+bW4Fwvy/pRZ1/za0xIqON9msD9wNP3vjfYgDv6bBvkAmcuX1NlFwJC9U8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734515058; c=relaxed/simple;
-	bh=A0Zj9+0LGObPkEo7xOVd01Y1b2SolCeVf5mJz/rMvU8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=jaguBpNnAYXZ+N23gi20YoY8Gld6PE92DOrKCBWbbPWaM/ciOJgdTQNum0oak45IQwZ6g6xsjoqSQfSznTMGkIGxrDTWgdkGRvtyfKKSPwmHuYYxj+Rkj/Oqz7PVCU80vAl4jk3EYJQX+D0A1n2HYe+00vdqHYOp5gMKGh3aCf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bRXCD00x; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BI8W6fQ015624;
-	Wed, 18 Dec 2024 09:44:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	eTfbfQ7i0+fCOjXR2GpGf7ZFv7MCLISP7zu5S/m4hrk=; b=bRXCD00xrjX3nb8y
-	ubRpKGu3QbYRuKJGE4wiN1ZsKoPbWZm0if/LATRe4U1m1++Pe0uzzPVhqAuUFbEt
-	wfK3ORdru8yFPlnSHe93Fvr8IemuECXVgGM6hIYrPpHEr9IeOLeAajYZUkoc4r6r
-	OuFWPTe7Jet8Y3/o8OvHgkJ25cpxzPuEjTi4tv9ZMxDNqTeBTp7bpG6rDR7pGH4P
-	v/25D1OA+Fcjig2XLHI3ucOTDPUlQXUVYXiR3JpgmDqaPd1y+4I0Pws66eFmYsO+
-	tvRhdgeau+YG8UvOczp+FsP+nesCwsMF+VJGBcD0C56Dy33ssbYJ5vxchx1uVhu/
-	G/j0uA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43kty6r5ys-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Dec 2024 09:44:07 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BI9i7V7018468
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Dec 2024 09:44:07 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 18 Dec
- 2024 01:44:04 -0800
-Message-ID: <4b17cb4a-d4da-4328-8370-c2e4f17b4fd0@quicinc.com>
-Date: Wed, 18 Dec 2024 17:44:02 +0800
+	s=arc-20240116; t=1734515177; c=relaxed/simple;
+	bh=eIF1iCXbYoUBtz1oWY9/PbVWZ4xErWglHEwvqZrxO3w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XV7nkpCAJQfE64M3e7OYXXFGhULxdQMZvLP5V1IPpdRQjVWAo2YdYdhPz3ydJ1cGqBza+MxWENBaT9pVuBc1nXZq3RQCp0KaR+ktaHQamdkjaTrQApxTbk1kRInnqmik3wbQAErVeMvPQCaYnyoyAnxouE4vOfpRLLygyl17gog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WKZpv/dj; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-21661be2c2dso46499225ad.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 01:46:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734515175; x=1735119975; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=pXXsnJWHazfaSUP/GHMRDCdHmTBTRf0ix5hsVwacD90=;
+        b=WKZpv/djOiut1GD6fpTmIsUzvEzcmdK7hnfTvJmLDbz0AtoToX1BQOQRA94om169EX
+         SLGck0KO3fTDr1jUkm8SHZGj0PITZ3r0ACYD3AdVlxYlG8Pu5SZFt+ZdISQBINyk7bf1
+         Z9RGqqtpjB9JtJNWr1GnziOQ9ghYtk3YXL1e5V4CxxYdX+4/rLjWLpGrJFg11tsubmzi
+         kJtP6fu7foOcMb+Kr3Hm8qDOuVWjrRkLkTQgLMAQpypNz10VWrt8iO1N6Vlwh0rxywcb
+         elPq1FXryMlIL/h4mnsSHcZytqRxFDbl4bnEsUpJDKvAoh0sh5cyT/9oFmxAe3IK6V9B
+         ZTXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734515175; x=1735119975;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pXXsnJWHazfaSUP/GHMRDCdHmTBTRf0ix5hsVwacD90=;
+        b=iJDibFGdk0Lp0dImlew2ixeHyd6Xh+R/znugJgqNjPW1xxeGfNPflxlPhyf384r5hl
+         ZSIsPJienPJ8N2DggSb3rOnsqwBTK+efupkUrVNSsNmaxInaeBn+bAZCmuD6F2Dq0zfM
+         deMivmXhYgF5YNn1fyvQ4hOgqc9JDT5r6CDXN4fzhAk3p622P6Dz5/nTDyWO2TSCVeWh
+         GxvUfs6WngRxB4rQSEpv0g0vmayiPsfk0MXMx6TW1o+quywrKXTxFmdWW6H4+04gUNxL
+         hsmQ92DwlUx1+O1vHbM1DNyW8WbNuxyfakMQQIHH6HwHVH1UqZV4DIJj+Z6YeI3IaLmq
+         dgOg==
+X-Forwarded-Encrypted: i=1; AJvYcCUC/VSv6b7CG7SXludjyZTIUkiNwUgSb3XdGAMcFjPH1h/D8QWP4Ir5EiBbz2Ds1zN84EIUqCl1Bakn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5jZSwZtLOf2vc+q9kSImwRDlhEh5k9MBm6cNsbI8YOnmD/61Q
+	Xfp1U/hLiG5dZlzm4+ThGHkyhelqhz80CkaRkqs9NSs0X7zQodMwUtx2qwx45w==
+X-Gm-Gg: ASbGncuuVPpAVYTvcw+0bDFHZ6Z942qrqLzL/pfQ9KCLdeJ16VE0UVWOH7Liy9BcbdR
+	atQ3ARBIYBPCgDm7jg3BykWltStF/tXr8o5ed0g2oBsVFwZN3ZbdVEn6JkPOc7Lm1a5SKkwyxwb
+	Ta2O/Wo/N8VKRqW11c5Hay2uqkOwXtFE+8W5vnGqFewCo5KEtaYNhgFo1oObTpVzI5lIIcxsFn5
+	EblXGfggNwc5C5qgeMGpo+2Y5jmVLyMdivaarzUoVWpH7AtHfakMZVZMC8vXd7UZmF3
+X-Google-Smtp-Source: AGHT+IFqUIwo1Ikpx9Q1p35hwXgeavzvbPAmGa2NY+JFf2suz00vESnUChpaxHz8BxW9HDpRMZJpNA==
+X-Received: by 2002:a17:902:c407:b0:216:2dc5:233c with SMTP id d9443c01a7336-218d724962dmr29793665ad.41.1734515175035;
+        Wed, 18 Dec 2024 01:46:15 -0800 (PST)
+Received: from thinkpad ([117.193.214.60])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1db5e05sm72437155ad.44.2024.12.18.01.46.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Dec 2024 01:46:14 -0800 (PST)
+Date: Wed, 18 Dec 2024 15:16:06 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Christian Bruel <christian.bruel@foss.st.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	p.zabel@pengutronix.de, cassel@kernel.org,
+	quic_schintav@quicinc.com, fabrice.gasnier@foss.st.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] PCI: stm32: Add PCIe host support for STM32MP25
+Message-ID: <20241218094606.sljdx2w27thc5ahj@thinkpad>
+References: <20241126155119.1574564-1-christian.bruel@foss.st.com>
+ <20241126155119.1574564-3-christian.bruel@foss.st.com>
+ <20241203145244.trgrobtfmumtiwuc@thinkpad>
+ <ced7a55a-d968-497f-abc2-663855882a3f@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: Remove unused and undocumented
- properties
-To: Rob Herring <robh@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241115193435.3618831-1-robh@kernel.org>
- <68c079b0-defe-4cb0-9f6f-ce9e3645e2ba@oss.qualcomm.com>
- <d3d9dd62-e0cb-4c12-91d1-17ae52688654@quicinc.com>
- <2b866563-1328-484a-bfee-f41190ce856c@oss.qualcomm.com>
- <CAL_JsqKZb6X+XVr+yWbzbi6FhgJkcd9k1ai=y6U4eujz4Tfqng@mail.gmail.com>
-From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <CAL_JsqKZb6X+XVr+yWbzbi6FhgJkcd9k1ai=y6U4eujz4Tfqng@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: fv0p72ktwOBQhqBtwL8A6IrSlIBuTMoH
-X-Proofpoint-GUID: fv0p72ktwOBQhqBtwL8A6IrSlIBuTMoH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 lowpriorityscore=0 clxscore=1015 adultscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 impostorscore=0 spamscore=0
- mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412180078
+In-Reply-To: <ced7a55a-d968-497f-abc2-663855882a3f@foss.st.com>
 
-On 12/16/2024 10:00 PM, Rob Herring wrote:
-> On Mon, Dec 16, 2024 at 6:42 AM Konrad Dybcio
-> <konrad.dybcio@oss.qualcomm.com> wrote:
->>
->> On 16.12.2024 4:42 AM, Aiqun Yu (Maria) wrote:
->>> On 11/16/2024 3:36 AM, Konrad Dybcio wrote:
->>>> On 15.11.2024 8:34 PM, Rob Herring (Arm) wrote:
->>>>> Remove properties which are both unused in the kernel and undocumented.
->>>>> Most likely they are leftovers from downstream.
->>>>>
->>>>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->>>>> ---
->>>>
->>>> Funny, the sideinteraction compatible is undocumented and the touchscreen
->>>> driver is not upstream
->>>
->>> Does the compatible also need to be fixed to "focaltech,ft8719"? Refer
->>> to the info from [1].
->>
->> +Alexander, Caleb - would you like to look into this on axolotl?
->>
->>> Confirmed, the compatible "focaltech,fts8719" is not even in any merged
->>> bindings or drivers. Instead, "focaltech,ft8719" is in the current
->>> driver and bindings.
->>>
->>> By the way, I am curious about how Rob finds the unused properties.
->>> Could you share some steps?
->>
->> make ARCH=arm64 LLVM=1 -j24 CHECK_DTBS=1 dtbs
->>
->> returns all kinds of errors, including "undocumented property"
+On Mon, Dec 16, 2024 at 10:00:27AM +0100, Christian Bruel wrote:
+
+[...]
+
+> > 
+> > > +		msleep(PCIE_T_RRS_READY_MS);
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static void stm32_pcie_stop_link(struct dw_pcie *pci)
+> > > +{
+> > > +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+> > > +
+> > > +	regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
+> > > +			   STM32MP25_PCIECR_LTSSM_EN, 0);
+> > > +
+> > > +	/* Assert PERST# */
+> > > +	if (stm32_pcie->perst_gpio)
+> > > +		gpiod_set_value(stm32_pcie->perst_gpio, 1);
+> > 
+> > I don't like tying PERST# handling with start/stop link. PERST# should be
+> > handled based on the power/clock state.
 > 
-> This case however was a dtschema change I have not yet committed.
-> Plenty of other things to fix still with the above command though. :(
+> I don't understand your point: We turn off the PHY in suspend_noirq(), so
+> that seems a logical place to de-assert in resume_noirq after the refclk is
+> ready. PERST# should be kept active until the PHY stablilizes the clock in
+> resume. From the PCIe electromechanical specs, PERST# goes active while the
+> refclk is not stable/
+> 
 
-Thanks, Rob and Konrad, for the clarification. That answers my question
-about the intention behind the current change.
+While your understanding about PERST# is correct, your implementation is not.
+You are toggling PERST# from start/stop link callbacks which are supposed to
+control the LTSSM state only. I don't have issues with toggling PERST# in
+stm32_pcie_{suspend/resume}_noirq().
+
+> 
+> > 
+> > > +}
+> > > +
+> > > +static int stm32_pcie_suspend(struct device *dev)
+> > > +{
+> > > +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
+> > > +
+> > > +	if (device_may_wakeup(dev) || device_wakeup_path(dev))
+> > > +		enable_irq_wake(stm32_pcie->wake_irq);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int stm32_pcie_resume(struct device *dev)
+> > > +{
+> > > +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
+> > > +
+> > > +	if (device_may_wakeup(dev) || device_wakeup_path(dev))
+> > > +		disable_irq_wake(stm32_pcie->wake_irq);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int stm32_pcie_suspend_noirq(struct device *dev)
+> > > +{
+> > > +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
+> > > +
+> > > +	stm32_pcie->link_is_up = dw_pcie_link_up(stm32_pcie->pci);
+> > > +
+> > > +	stm32_pcie_stop_link(stm32_pcie->pci);
+> > 
+> > I don't understand how endpoint can wakeup the host if PERST# gets asserted.
+> 
+> The stm32 PCIe doesn't support L2, we don't expect an in-band beacon for the
+> wakeup. We support wakeup only from sideband WAKE#, that will restart the
+> link from IRQ
+> 
+
+I don't understand how WAKE# is supported without L2. Only in L2 state, endpoint
+will make use of Vaux and it will wakeup the host using either beacon or WAKE#.
+If you don't support L2, then the endpoint will reach L3 (link off) state.
+
+> > 
+> > > +	clk_disable_unprepare(stm32_pcie->clk);
+> > > +
+> > > +	if (!device_may_wakeup(dev) && !device_wakeup_path(dev))
+> > > +		phy_exit(stm32_pcie->phy);
+> > > +
+> > > +	return pinctrl_pm_select_sleep_state(dev);
+> > > +}
+> > > +
+> > > +static int stm32_pcie_resume_noirq(struct device *dev)
+> > > +{
+> > > +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
+> > > +	struct dw_pcie *pci = stm32_pcie->pci;
+> > > +	struct dw_pcie_rp *pp = &pci->pp;
+> > > +	int ret;
+> > > +
+> > > +	/* init_state must be called first to force clk_req# gpio when no
+> > 
+> > CLKREQ#
+> > 
+> > Why RC should control CLKREQ#?
+> 
+> REFCLK is gated with CLKREQ#, So we cannot access the core
+> without CLKREQ# if no device is present. So force it with a init pinmux
+> the time to init the PHY and the core DBI registers
+> 
+
+Ok. You should add a comment to clarify it in the code as this is not a standard
+behavior.
+
+> > 
+> > Also please use preferred style for multi-line comments:
+> > 
+> > 	/*
+> > 	 * ...
+> > 	 */
+> > 
+> > > +	 * device is plugged.
+> > > +	 */
+> > > +	if (!IS_ERR(dev->pins->init_state))
+> > > +		ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
+> > > +	else
+> > > +		ret = pinctrl_pm_select_default_state(dev);
+> > > +
+> > > +	if (ret) {
+> > > +		dev_err(dev, "Failed to activate pinctrl pm state: %d\n", ret);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	if (!device_may_wakeup(dev) && !device_wakeup_path(dev)) {
+> > > +		ret = phy_init(stm32_pcie->phy);
+> > > +		if (ret) {
+> > > +			pinctrl_pm_select_default_state(dev);
+> > > +			return ret;
+> > > +		}
+> > > +	}
+> > > +
+> > > +	ret = clk_prepare_enable(stm32_pcie->clk);
+> > > +	if (ret)
+> > > +		goto clk_err;
+> > 
+> > Please name the goto labels of their purpose. Like err_phy_exit.
+> 
+> OK
+> 
+> > 
+> > > +
+> > > +	ret = dw_pcie_setup_rc(pp);
+> > > +	if (ret)
+> > > +		goto pcie_err;
+> > 
+> > This should be, 'err_disable_clk'.
+> > 
+> > > +
+> > > +	if (stm32_pcie->link_is_up) {
+> > 
+> > Why do you need this check? You cannot start the link in the absence of an
+> > endpoint?
+> > 
+> 
+> It is an optimization to avoid unnecessary "dw_pcie_wait_for_link" if no
+> device is present during suspend
+> 
+
+In that case you'll not trigger LTSSM if there was no endpoint connected before
+suspend. What if users connect an endpoint after resume?
+
+- Mani
 
 -- 
-Thx and BRs,
-Aiqun(Maria) Yu
+மணிவண்ணன் சதாசிவம்
 
