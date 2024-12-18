@@ -1,123 +1,155 @@
-Return-Path: <devicetree+bounces-132254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F8819F6456
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:09:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 643079F648D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:15:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 441CF1891B56
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:10:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3A8B189297B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:15:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A941B17C219;
-	Wed, 18 Dec 2024 11:09:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E4919E7ED;
+	Wed, 18 Dec 2024 11:15:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S9S3VUrD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iuN25KoO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F994192B94
-	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 11:09:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60EF919D07B;
+	Wed, 18 Dec 2024 11:15:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734520194; cv=none; b=BTXkC89VR5MVzvQB43nuljqSo8Ep3g/NCmTcNYPIUlMx4cq5u7SbPeuFcYgqm4iJ0jXZjiKKUDTte2WPurLhoe1vJ44wTaqqkSvCEIJqCX7wvDmoYsO9cqtIwzTCxiYq/CJepqyttN6dUfgL1tDgJgyQN/Bu7Spkdk0WBC80QGA=
+	t=1734520537; cv=none; b=Yn0Gw25Mk9N73+XUGb6PF8R0GzY6FjxPu8lxVqOBBt61GP0m4MTD6iB8860cHL1mCrTy5Y707EcjtSUs8u8/URRDS7NYdcF9tmPeDKebMHz8PbFIae+Sljsrw7qujrHWZxKjMfstUvxTxMjpkLJBGW1e/EhipKlpbNTD4WxS8HY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734520194; c=relaxed/simple;
-	bh=9kgCYAPxYpAMRx9QsazTQfcEmFpIR6tF9E+jVSWI+ys=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fQI7pbuY7xnbhpspwr1GxhUihZAAoPEDWN28mTVaMfUYolfucK6eJazZV/XIvNWNcyDbf25rt+B/XkT+m1qrUMZ9ItrOmabJgmjT7CyY0xzuqd8p7UueK3Rt8doPV99GoORgg+G5EYUHAgF/Mle17IjprgahEZAMvRnGSK5C+pE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S9S3VUrD; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-7fd4c0220bbso5950636a12.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 03:09:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734520192; x=1735124992; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cysivQMCAup5VX6VRdjk63p3UWGwFhZcVxFfx15JYQQ=;
-        b=S9S3VUrD67QypJQ2cTI1sO/9pV28sPhP4fE3pzbkuA7sOjV3w8rFpd0zWwRsmGrQMI
-         kzLLclyNw7iJn5JwxKBsXVRmxVuLWahgWimdOua4olAcc8b/eJUxaIzODVQhV8Q5vuZl
-         t4UncVCm0QQcsjbwXG7G/Y30ya7U0AX2ZoCzUtkwaYmXRIfyQbjLM9Rq+U57poQvotqs
-         2p1t4vmniyfjmCUGEg86sawWbZGN0i8x5ENzRYZyjnm1zTF1B7hcjG6w3cIPQw9cVVTd
-         LvAvUD1nAHpGZQnz05SjuA4kK9QMnIB38tmfzoF+08KfKEIovdonDa6sH1fzBe04Z5cr
-         j5eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734520192; x=1735124992;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cysivQMCAup5VX6VRdjk63p3UWGwFhZcVxFfx15JYQQ=;
-        b=jdSvKX0YtczmJp+s47j73/ZKAzI4ipZ6Qie+PgYUNQd6BSu2KQbLCn6JPdzfwKdLVX
-         RKBXFqVwmlBcOXOBnKaFfPTe8CGcALv3hnVyJ5c+XY5Yt1ii5ZeI4LevR58RWXx1a7rM
-         M4njp3gjnUPyOuRw8SYzCd4K5IDT9nDAG2KRgHx4vtI+9fqnuljn4ZiezL/IGnosVZ8L
-         f3qPRZJ1YRrb07L4GD0RzzXyAGoxqC+mgs14m0Jf1ZemtYOy23QFBFFb30L+zIpLDMrm
-         WfHyPSIzAilWEIC50Ha9GzmoYhi95OLmReHm6funlTJVz4coca5DTHG1TsWi55GYvs1x
-         ur4g==
-X-Forwarded-Encrypted: i=1; AJvYcCVr1tYvPAwfhIfa/5sri7AkSPIRnYCulYcjZSfs+MIAwKFru7f9QlaS+DvTgqpD6VNgbpmH+mgcbozj@vger.kernel.org
-X-Gm-Message-State: AOJu0YykxHf/lKTVVtmM7xr3Miv9ZjyOWhHmG7FicMiVOB2GrrljWy/6
-	5Tng1zJf2nFeJyZjpQmfFu8/Mg9z3oyA55EXBBxhFEDsxzsQBr9f48hgYmdwvQT2HiYUaEOtTV2
-	pxgXM9QU+SmNppXhmp7UZhjoHtZa+qrDVY6Ns1Q==
-X-Gm-Gg: ASbGnctjmpp57WwniFZknyagb+GpXa193URZWjRJxSOxTgltQTiW7U1lh2hbMG0Nvgi
-	MdgH5GlCQ2tjg0xy1LWfLjpVGkDE7Dlr9LL4UMak=
-X-Google-Smtp-Source: AGHT+IEz+SwthpfmpijWHlgsc9by0AenGHkniwWORMm8lFz8mYBsn+oM1BmwW233q1MPW5LUjOnDSoaOOI/dEW+oQtw=
-X-Received: by 2002:a17:90b:2642:b0:2ee:b26c:10a0 with SMTP id
- 98e67ed59e1d1-2f2e9339c2amr3609913a91.24.1734520192464; Wed, 18 Dec 2024
- 03:09:52 -0800 (PST)
+	s=arc-20240116; t=1734520537; c=relaxed/simple;
+	bh=inctAiqk9Y9aXPwPxEb2n0GmKc7SIVdc2U5HmGGED98=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=U4XT4rvtwXXsQTu6g1wQ/nnhuVaTpWfnrj/PbJD1Ub2itoxU4/1AOsWN8HSaXMzWDYmVQ5QS5vgIjFlZmXPgkIUbBKWcJVWZFfUXIWnouiE6VnZrcK5GhvabpPXoUimOHWKjimJIMNDDeJ0rKSkVh2NUGTJL8ifX8qandmTL5aM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iuN25KoO; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BI6VXL8024603;
+	Wed, 18 Dec 2024 11:15:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	DtDXbLrwZmGApG6b1RUBCdgE7duW8uEJPL4iYKXLNDw=; b=iuN25KoODTIomfsb
+	KCdQxdelnecN+Wyje3tTTztKQvFg1Ps6NofDm2SGWm6HTQ297W7kE7am4eh25a27
+	/Mc9NL12f7DpMNxgXJsI7wAUDTWYCo87df2lRE8KD0qD/vuAST+yixBCA2HX1A+6
+	Fky4cO3ABP85EXPOw3zWgQsG8+EvQ+q0khcJZStxtVAfcF9ar9L0HwqRh7e6tLI1
+	lrLD3M2f1KwUChDJdmKgUJd+djalZtLnKRKW3LJV8s6Tf9gilTAQMNnkvaEucmko
+	6nI1ve/rKlrrB7QkdjGLASk33VfxpyxAyULpODji/W4DHA12gvGLmGSBpyvupB4r
+	Y8Rsjg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43ks6ygpgk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Dec 2024 11:15:27 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BIBFQ4M019687
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Dec 2024 11:15:26 GMT
+Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 18 Dec
+ 2024 03:15:21 -0800
+Message-ID: <f6527df3-feb9-4d3b-93d7-84f4f255d23c@quicinc.com>
+Date: Wed, 18 Dec 2024 16:45:18 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241217063324.33781-1-quic_jinlmao@quicinc.com>
- <20241217063324.33781-2-quic_jinlmao@quicinc.com> <tida22chffj2znikeotmo52aqnzvmedn3aa7a2coarz2dwjc7w@duw5fby4hexk>
-In-Reply-To: <tida22chffj2znikeotmo52aqnzvmedn3aa7a2coarz2dwjc7w@duw5fby4hexk>
-From: Mike Leach <mike.leach@linaro.org>
-Date: Wed, 18 Dec 2024 11:09:41 +0000
-Message-ID: <CAJ9a7VhR5AX9QD3fHiT_aU5yHShcZFaHLEDDcBJbu2xcRbWGVA@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: Add label in the coresight components
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Mao Jinlong <quic_jinlmao@quicinc.com>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	James Clark <james.clark@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, coresight@lists.linaro.org, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 4/7] arm64: dts: qcom: ipq5332: Add tsens node
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        <srinivas.kandagatla@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <amitk@kernel.org>,
+        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
+        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+        <lukasz.luba@arm.com>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+References: <20241125050728.3699241-1-quic_mmanikan@quicinc.com>
+ <20241125050728.3699241-5-quic_mmanikan@quicinc.com>
+ <556ff23c-8b2c-4ea3-99dc-84196e3f0651@oss.qualcomm.com>
+Content-Language: en-US
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <556ff23c-8b2c-4ea3-99dc-84196e3f0651@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 60ueWvLQ1Wb5YcztH2AhwK-lExXkdW36
+X-Proofpoint-GUID: 60ueWvLQ1Wb5YcztH2AhwK-lExXkdW36
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=897 mlxscore=0
+ priorityscore=1501 spamscore=0 adultscore=0 clxscore=1015
+ lowpriorityscore=0 phishscore=0 suspectscore=0 impostorscore=0
+ malwarescore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412180090
 
-On Wed, 18 Dec 2024 at 09:21, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Tue, Dec 17, 2024 at 02:33:23PM +0800, Mao Jinlong wrote:
-> > Current name of coresight component's folder consists of prefix of
-> > the device and the id in the device list. When run 'ls' command,
-> > we can get the register address of the device. Take CTI for example,
-> > if we want to set the config for modem CTI, but we can't know which
-> > CTI is modem CTI from all current information.
-> >
-> > cti_sys0 -> ../../../devices/platform/soc@0/138f0000.cti/cti_sys0
-> > cti_sys1 -> ../../../devices/platform/soc@0/13900000.cti/cti_sys1
-> >
-> > Add label to show hardware context information of each coresight
-> > device. There will be a sysfs node label in each device folder.
-> >
-> > cat /sys/bus/coresight/devices/cti_sys0/label
-> >
-> > Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> Best regards,
-> Krzysztof
->
 
-Reviewed-by: Mike Leach <mike.leach@linaro.org>
 
--- 
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
+On 12/13/2024 6:29 PM, Konrad Dybcio wrote:
+> On 25.11.2024 6:07 AM, Manikanta Mylavarapu wrote:
+>> From: Praveenkumar I <quic_ipkumar@quicinc.com>
+>>
+>> IPQ5332 has tsens v2.3.3 peripheral. This patch adds the tsens
+>> node with nvmem cells for calibration data.
+>>
+>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>> ---
+> 
+> [...]
+> 
+>>  
+>> +		tsens: thermal-sensor@4a9000 {
+>> +			compatible = "qcom,ipq5332-tsens";
+>> +			reg = <0x004a9000 0x1000>,
+>> +			      <0x004a8000 0x1000>;
+>> +			nvmem-cells = <&tsens_mode>,
+>> +				      <&tsens_base0>,
+>> +				      <&tsens_base1>,
+>> +				      <&tsens_sens11_off>,
+>> +				      <&tsens_sens12_off>,
+>> +				      <&tsens_sens13_off>,
+>> +				      <&tsens_sens14_off>,
+>> +				      <&tsens_sens15_off>;
+>> +			nvmem-cell-names = "mode",
+>> +					   "base0",
+>> +					   "base1",
+>> +					   "tsens_sens11_off",
+>> +					   "tsens_sens12_off",
+>> +					   "tsens_sens13_off",
+>> +					   "tsens_sens14_off",
+>> +					   "tsens_sens15_off";
+>> +			interrupts = <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-names = "combined";
+> 
+> Please move interrupts properties above nvmem
+> 
+
+Sure, i will move in next version.
+
+Thanks & Regards,
+Manikanta.
+
+> with that:
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> Konrad
+
 
