@@ -1,186 +1,356 @@
-Return-Path: <devicetree+bounces-132103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF34F9F5C9B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 03:09:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2394E9F5CC3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 03:21:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D95A166711
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 02:08:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56AE4164285
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 02:21:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D32A5336D;
-	Wed, 18 Dec 2024 02:08:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A68643146;
+	Wed, 18 Dec 2024 02:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="S04fOC4Z"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CMTxi5KD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2042.outbound.protection.outlook.com [40.107.220.42])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89AC379C4;
-	Wed, 18 Dec 2024 02:08:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734487736; cv=fail; b=VW4Oq6uhRltQTxuLPS6DiCYugcVeE+PSGrmOwpjtLWIC6sVOymy3hAquqOOz5sRBglCd4LHHSzigeERs+VZzzJyt+Ox2/vsDV+i6TZTv92bX1hUJ7dY1JFZPH/h9cTdFeQ3BYJgZIeDNiMB3H013bFgPiYNwMf/s7xgHtgwi2fc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734487736; c=relaxed/simple;
-	bh=V8ZRg1fVwuBrka7CF5tNcGw3FlEAaBJF574/TTOBp74=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=QpPyG2Ulxf1CdUWlr00oMTuFubUJl/7hwZnG3sakQ0vHuA0RzeC6EqY1iRSV+lAzt6yCSf/bN4tM42ifqt8Vgb5tsv+v0D0enK8XvVEMLJcmTE6+Q8vlmvXGpgwF692/dyG7+/7m3P3GrA7tOh9ywIY8GE8dMt6x2A9HxZLyj2M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=S04fOC4Z; arc=fail smtp.client-ip=40.107.220.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=L+2pTs7xi/wHc29NW+47sMLBAldGBWOD4uYJ4nyTENSWJI12WOnng6zDWjqoXH8Yjenjg2kZ8+gJunoXb+48LbbkbbIhaRGGEiclL6qWC9iYhBaoOtNqZh6oxAVrcGitGTWTMcB+nY6wShTtdy/hH2JUJxXN7wFqm8vKg0Q9EXtSTBpgcY2dUZtd1ONV3l3+4oaU7sem79olPxMTFS4if7yd9j7QX6OcidUQa33nlaiV1nbwfj1qkIUZB4jOfyk23tjOx1UgRXXoDoAnxtMKgmTZdF4Rctn4BV14kIHwYsZBwkesl7y1rPY2Yj2H9j8WUBn3yyDPWuaetKyv47umXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Okz+rD0Gpctjqw+fWfFyQKMYlWLrcBzVX1I6juNWooA=;
- b=NB8/RtL7sr+rrg6M/t1ZpH5uxgBr4zsijL/8O1EPX5aeoyaiP/CCvL0ZXtF/TAtG0wu1S0EMUCfK7zlhMIMzcXTJEO2rdIicLH5RT0LkmtwKOpXCZKtVmsGXpf0ZRaV5GQ4q962J/YRc7wdFg8IDV9K/R8i7h7zdW6SszrhB5wwYI7/kL3SMqmXq169x5a+hXFGfk2vn6ZQeeC76rYqWq5dHhD4gHSkTj2U4+kGm9RnILjsV6kNo5+GxO8ixDGLbnSXzl5W+yF3LhNbZYAO94M8eAkmJGVKzOkY8b15pbazEZWQw0LazaYyfJsX2BDePQCbe9vIzUVcwRZLUPeaZhw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Okz+rD0Gpctjqw+fWfFyQKMYlWLrcBzVX1I6juNWooA=;
- b=S04fOC4ZjOpFsxT5rtEcVL1nLzqd+26BbI+6vGk/uSA2el1g9J8a49kWvHdpxegA+pQ4+yCex7gdFM+hjuQpRS9JID17WME0bcyljwV+BuyZGR7HYr9zG8MGe+0Mc7u/4JaGqPRSzORGh2TZjCXHj4kQWpj+YUPy6GqxFZzsjsCpI1XzmVgne3jR3/p54ZUCOZCh023Ly684I8cltZ3QoCKopZ8jNqIJwvUfxNLSg3iNtwPxdJX6fTKtV6JwI/9NM/rA74NWAmzatQ0c6VPNV0e8dvpZtcVVt3aGlpUowt6kTGe6NrE4LlbD2sImTUBm1kstfc5hQmNijw+pd4zjAA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS7PR12MB6237.namprd12.prod.outlook.com (2603:10b6:8:97::18) by
- DS0PR12MB8220.namprd12.prod.outlook.com (2603:10b6:8:f5::12) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8272.13; Wed, 18 Dec 2024 02:08:51 +0000
-Received: from DS7PR12MB6237.namprd12.prod.outlook.com
- ([fe80::64de:5b39:d2ef:8db6]) by DS7PR12MB6237.namprd12.prod.outlook.com
- ([fe80::64de:5b39:d2ef:8db6%6]) with mapi id 15.20.8251.015; Wed, 18 Dec 2024
- 02:08:51 +0000
-Message-ID: <ea7c155a-b3f9-4f19-929f-0d9474aa2e89@nvidia.com>
-Date: Tue, 17 Dec 2024 18:08:48 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: tegra: fix typo in Tegra234 dce-fabric
- compatible
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Ivy Huang <yijuh@nvidia.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Cc: Sumit Gupta <sumitg@nvidia.com>
-References: <20241213000305.3533971-1-yijuh@nvidia.com>
- <20241213000305.3533971-2-yijuh@nvidia.com>
- <ffd6ec4e-61a6-4713-8be2-20d06ae5b448@linaro.org>
-Content-Language: en-US
-From: Brad Griffis <bgriffis@nvidia.com>
-In-Reply-To: <ffd6ec4e-61a6-4713-8be2-20d06ae5b448@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: CH0P220CA0008.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:610:ef::6) To DS7PR12MB6237.namprd12.prod.outlook.com
- (2603:10b6:8:97::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BBDC2AEED;
+	Wed, 18 Dec 2024 02:21:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734488499; cv=none; b=IsDxc8ksqYK1rFePATysRSUTlN2P0u+T6lyUyZ9070FBfW+gJFgccl/ZiwIKVpE5hI6r9M5hGMl9pP/YhZfLC9zg/OBIg6dMXdNwkHXBwSP4BhxZnMWu3hesNKU39gLPntIYR2V6vL033JCfov0G31PTkD08i+1r9NjcDipZh8A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734488499; c=relaxed/simple;
+	bh=2dfktqLq+Vu6IQmTgM2MVcirLc/3oh6bOjnyMuNRk4E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mWhGRtCd2EABx/ANCFtmLWjyAp/yrtlbuN0FkUKvBAEvPD1X77ekbY74qrhqMbGNQdEzqt3xUwge2B3NIdxAADwf0WPAIcXMCxZGbWuUfhwQ2cmW/+NXJs0fcuAoBAqKbf1QXkQ5oV8izNp0hUE1zJTNDhlhXc7NT8dwAZPSu3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CMTxi5KD; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BHNVpq2023282;
+	Wed, 18 Dec 2024 02:21:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	BgkSjZ8EbFbfs6UyyZE4BVrTuBG3ePaglPB/zt5dDGs=; b=CMTxi5KDJGaz4tJ+
+	CxwRDGQSgIFxHmfk5EBd9poN1RXHRgyKW6NUmtiSEFx+qFGVtQ3p80+6XcEGsfCu
+	ozbchxyzgnVlh37IMfHgyDJPD6TpSmZJFrNnyuzP9G4DKGmyWha39GeBB+NJWr31
+	OXYGLByJbfkB6j2UCPxURTRLpQGOM1dhPszFUJ7kBrQdm8YueqVcPO9PkIDBB5TH
+	vygN9bNao3XfPSwTvlFB1zReANjzXrIIc75eO1JTsQ7UFv2dm+UdA/XnMGkDuS9I
+	yjemLG5d4XchWuDsA1naBCbnNR37VbfdtgIzNnqjA8X8/oHiFqHtNZDbpvopymH2
+	1Cc1vQ==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43kk2909d9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Dec 2024 02:21:26 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BI2LP51025196
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Dec 2024 02:21:25 GMT
+Received: from [10.253.12.24] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 17 Dec
+ 2024 18:21:22 -0800
+Message-ID: <e3a66cc7-a770-4d08-be66-13e13a2d5130@quicinc.com>
+Date: Wed, 18 Dec 2024 10:21:19 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR12MB6237:EE_|DS0PR12MB8220:EE_
-X-MS-Office365-Filtering-Correlation-Id: fe055a3c-c098-4962-f01c-08dd1f08ea80
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?WE1RU3M1aEdvQ0g0WkpIeGtYbGpHcHNweTF5dzR6Z1NkL3Y0Q1VzYmxFVDh1?=
- =?utf-8?B?Tm9JQ3BpWk9sQzFCK0IwTGVtSU9qMVVDSWc5TFFvZmdjMFFncFFSd25zUitv?=
- =?utf-8?B?bUJkR3p6Z1FqMnorWURhU2s2Qk9qV24yekpZdjN6ajhpbzAvL0pJUngzK0Qy?=
- =?utf-8?B?bTNsUE55d0IvMFZXdEZSRWZzaVA3SEFkdS9WbjlZeVI1eFhBSzg2V0tYOU9U?=
- =?utf-8?B?R1dzNDlveWd1RnJGV2tkM2pmMU9ZL29vSjR2Y2l2RmdIb1JnVEFlZFFFTDdo?=
- =?utf-8?B?cXNPUTExeVA2cW96YmRKMTJia2l6cXVYaitadHArdk5uSE52Z0tsenh6b1Nx?=
- =?utf-8?B?b2hkYlR2ZlFsU2ZYSzRkWU9ON3pmaS9PKzRKL0w0cUlIVTBJZ1RMKzY0QkhM?=
- =?utf-8?B?eW1lQ2VqNXBkR0pBV1E2SXZVUVc0QWNBdDV6VE9sbzVJcFJ6Y2U1Um55dks3?=
- =?utf-8?B?UkJmU0FUYy8wclN3UTZuclBUR1NvR1puOFhpSmtxWW03OUxkSktzNVJlc043?=
- =?utf-8?B?TEpsTFJsc3ZqZWh0eWs1N1VXc3F2bkdzRmhNcE41Z0VXOFJRRVoxTmxhWTlk?=
- =?utf-8?B?dU5QVzFKYWhCYUF2YjVpbWsxYU5FRUorcDUxa3hzb1FLdXJESzhEWjlEOTcr?=
- =?utf-8?B?NE52SnY1S25DZEZjTWZLMXVMd3dvQ0Vud0QzZ0xaYkNmOHFOeWkvcDk1MG1H?=
- =?utf-8?B?M3BIMWM0WXNkRWsrUEZsbkJDQW4zbExjWWtnV1dzcmpIc29RMnh6d25HTTh2?=
- =?utf-8?B?RHNOQUFrSkRYdElIMnVoZjRKTDdvc0lrTHBmWUlPUTN5eDZEU3VUTkdKdXdp?=
- =?utf-8?B?TS9kNit0aHlvSTdCemdJbjh0TmlsWGUvYXQ3blN1dmVMZG5UcmltRE5Dck5n?=
- =?utf-8?B?UDdmS3NwK3hGMGt3TjFadE9KMXdLclhmNG16OFhqdm1sVVBTeDVVcTAvaGpM?=
- =?utf-8?B?dTc3c216MGlXa25xMWllTGdpTCt4RXdGaklQRDZPTGlSeDJ0azNsbjc0Q29j?=
- =?utf-8?B?VFZPQzlOZUhsTHhyNEVSY2ZDMkZkSWs2L1ZiZkJ0SkV6WWtUeFl2d3hUWjh5?=
- =?utf-8?B?TXVzQ3BuejZUdlorcXlkOFZNS2hNY1g1OFdzenIydEhIQXR5dmRobk0vcEFl?=
- =?utf-8?B?dmoxeVVsaWNlS3E4bUlnR2U0azJnR0lKUit5cmdzdjFrVnlUOTZtekZibTd5?=
- =?utf-8?B?M0VXcDV2cGNZaVV0THRCVHJ1blUvaGpEMzVldDBPSTMxTFRVc1pCRTEvdk5Y?=
- =?utf-8?B?QnFFVXdIenpoR2x3VlRYRFpMRXVXaUMzMTNTVzRaOWZycENna096ZTdMVTJC?=
- =?utf-8?B?VFNucE45VXlNTm5rRHlyUC9GK3Ezdjc5dmUySUx3SXVRdlB5VG1Gc2lwNXdR?=
- =?utf-8?B?ZVEzN3dpU09GOG83eU1EY2Q5ckd6VWw0Zmp0dmx3RnY3QzcxQlE5MFcxZWFQ?=
- =?utf-8?B?a0ZnRUl4cnVPY2JUd0MxM252a2tvc0NhdFpKOWNoY0U1K29xaGtuQ0ovU2FG?=
- =?utf-8?B?WnE1Yll2d3pnY0dJcVdINmpmbjJROVVIRlFodHFUdDlVSjJaYytLZlhudEtQ?=
- =?utf-8?B?RysxT3lucjJDRVhtYW5yWlJDWEhyM2p3TkRXUDRTci9DcHBMdDEwT24xbkxv?=
- =?utf-8?B?SzA4MkNQU0k3Zy9wSjk5bWVaOGxIR00rVFVtM3NHcWdLa1I1RWJuVWxhRy9K?=
- =?utf-8?B?bSsxODBTNjhLdHJDYmtydDNuNTFJODkwb0ZhbWsraG56QjdyOGcwa284YmRS?=
- =?utf-8?B?ZkxtWi9SQzJHb1RPbXRDd1c3OEcxMkMrTVlWTW1aaVhKbnFRWUtRY1EzQ2V6?=
- =?utf-8?B?aytjLzhlSTd3TGh1VDJZaGsybTJJWDBIVGVoUHVBWWhTL21OaGlMUFc1SXpU?=
- =?utf-8?Q?NfWtF+yVr2bPo?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS7PR12MB6237.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?eDFCL2R3Y3NWZDYyM2p1RE1aT212MmRRUU1LMjhCaHVhdmZsVW81Zk1IRDRS?=
- =?utf-8?B?QkNkREpTQ1VkOCtoL1RHbm54ZE12RHBCL2hZc0o1d3RIN0dKSUJwcmFqYjBk?=
- =?utf-8?B?cGVkcHBSMVRoUzN6aW9xNk1mUVVac1NOdmVmS3A2Ky9Db3R4WlljelJlVEg0?=
- =?utf-8?B?SWc1bUtGcFExdDRCNU1XcWUrdW5Ob1FubWVuQ0dNWWg2SUtuTVp0M05saUFa?=
- =?utf-8?B?ZE1DQTZ2TkFxOW9oak5iTlMvemwwa0V4c2NGRlhjTDNObzljU0kzL0V6aS9y?=
- =?utf-8?B?d09RU1puR2ZUOWNKb0Z6SEZoL2E3aEJYbkpzZ3dhQnVvam5jS2pQa0YyQ08v?=
- =?utf-8?B?S3Bhem0xQWVpKzdOLzd0VVUxTlhQemdMdkhYUFdhT0JUZ0FSUGZQSmlWUjcx?=
- =?utf-8?B?b3hId3BNZkpVZ1U1WXEvWG80VFdVQWtjK1BqZ2ZDcWtxQ3NTS2tCTis0SG1p?=
- =?utf-8?B?YWo4TkdiczFBejFlb094RWt3MVUvM1ZnemZZNVJTK05HUHdVQ2s2MjR3cVNh?=
- =?utf-8?B?RkI5Nit0UHkweWdFZ01vQk5VUHByQkxJV21rc0N5NGVzekQxR2tHREdEemdV?=
- =?utf-8?B?cDUvb1NGdHUrTkhvWG15bmpFS0dUYTNwc1JGUm9kRGo1MzJaQmF5UzNPaHVy?=
- =?utf-8?B?TDIwSWVHY2RrVHNDYzZmeG9zeExuQVdubXVFcU9zYzdrNTJFOG9wb25XaU43?=
- =?utf-8?B?U0xYUzhZMFc4ZlZJWHJNd004NXFJdHArVDRyRHFaS0gwbWFzZXM2UG90MkZv?=
- =?utf-8?B?dE1CZytsbUh6NW84Y1R3bitRdk5EcVNRaFlBTit3SkJwNEd0dVpYQ3BTZlZj?=
- =?utf-8?B?eXUyU3hVb2ltNTJid29tMjlzZjdlbHlkY2x4T3hySUg0YWMxTFJ4WjJoWmVX?=
- =?utf-8?B?MGRybklIUWZpVzYzVjI2MldHNnhyR0FpYy9jL2M4ZmFmUEhpTWhHNEt1bVNk?=
- =?utf-8?B?OEh1QmFYZWpIWVh3bW5mTXliQVpTbzhkdVYvRjJKdVk4Z0hKNXRrajUxWStx?=
- =?utf-8?B?cEF4ek1DZVZUNENLRnNBTUY1S2NTOHNPRFl0TEYxcVJIL1BaNS9qTVFjYlo0?=
- =?utf-8?B?OVczMC9zNUFPNEdDb1B6eGQ0Q3JqbE1pdEFVRXhaZSthQjdxdUppamRyY3g2?=
- =?utf-8?B?SW91ZzJ5eWFTYllBQnpqeWtpbHZpREFlM3JBL3NiZDZwRktCOHZjN3Y5UmJl?=
- =?utf-8?B?dkZFOHVnd29pNEpYNmxEUDJKMmh3T3lJdUlkcnk5U2w3VStaVmZLMUNhZUds?=
- =?utf-8?B?OUNJZFpEUFV2WHp2MnFhNm1RSUdpWGZqRGlkUFVJUjkxNkovRUZsRDVkKzZL?=
- =?utf-8?B?MjU1ekQvZjRQUi9xck96YXdCLy9YVUcyeTJKWk9VOTU3cVFoYmlZNHNVYXNw?=
- =?utf-8?B?cnFNTzJPU1lRNG0xZ0ZmaCtNQ3FyMzdBMndaMUpyazVZK01LT3RzcVUrTzJQ?=
- =?utf-8?B?WnJiTXorWkswbERmQjlMaDZyUS8xTGNjZnJrTXVjVUpLR243UVMrdmVWYWxV?=
- =?utf-8?B?ZGkyYitPSEgrOVNzM1p5WlVtSUtGVm1DRWhoR0VRZkNFUUlZOUtkbitwcTln?=
- =?utf-8?B?WjNZUXlwaGNZRm80ekR2a2M3UnJBQldrMnlraUZtWDIvcWtIc3dmZTlkRkw2?=
- =?utf-8?B?M3VwSUNrUVJUZVFSbzFhd3dkR1F6M0VGZ1NkdjhyOU8rWGZWekJjUDdQOXRY?=
- =?utf-8?B?SFlnTDRWOXhlQklIcDBBTDZyZUtKWGJvbExuaHpsRHJRYlMveDJxc2FQaWJp?=
- =?utf-8?B?OVJaN2NIYkZoMEJONVR0bVMvSWUzUjFlOXZxNnl3ck1rTDJOUGFHUGNCQzVm?=
- =?utf-8?B?VzFoR0h6WW9jNktqQmlmUHd6Z1NsU0wwcEFHZU9HdU5uMHljMWJCSzNDdW5k?=
- =?utf-8?B?Qis3U0FsNi93cWJIU2FVeXNQUkh4d245aCtyRUJpczlXbll2Y2NVOWNuTDl5?=
- =?utf-8?B?RngrOU1pVGo0b0I1WEVmYlFGOFhQeTV5enMvZ0R4RlZyYk53WVkraDdaOW9R?=
- =?utf-8?B?Q21FVEZiOGdsNG93T0R4OGQ5YXdORXplZEhPT2VaMzFGWUFpWVZnaTVkbHA0?=
- =?utf-8?B?d1FXNEdkZHhnQVF2Q1BoRVI3NGpSbnBOa1duYzdQTHhoZk5OWnpHaUJZNjFo?=
- =?utf-8?Q?XNlsoru7yJesCKqCoNtPNiPnx?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe055a3c-c098-4962-f01c-08dd1f08ea80
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB6237.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2024 02:08:51.2968
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VtyUyBhWW4CaNgAZY82ADrtldnLCWOOWEQYQie7Yp9XmOcHqatnbMgWSqLZI6vkbMFfhx9YGINvHZQBCzrxHig==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8220
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] of: Add printf '%pOFm' for generating modalias
+To: "Rob Herring (Arm)" <robh@kernel.org>, Petr Mladek <pmladek@suse.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Andy Shevchenko
+	<andriy.shevchenko@linux.intel.com>,
+        Rasmus Villemoes
+	<linux@rasmusvillemoes.dk>,
+        Sergey Senozhatsky <senozhatsky@chromium.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Saravana Kannan <saravanak@google.com>,
+        Andrew Morton <akpm@linux-foundation.org>
+CC: <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20241217183711.2525863-1-robh@kernel.org>
+Content-Language: en-US
+From: quic_zijuhu <quic_zijuhu@quicinc.com>
+In-Reply-To: <20241217183711.2525863-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -hCPlTfEvDG_N_w4_IJdpRd3-WCbOXK8
+X-Proofpoint-ORIG-GUID: -hCPlTfEvDG_N_w4_IJdpRd3-WCbOXK8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ impostorscore=0 suspectscore=0 malwarescore=0 lowpriorityscore=0
+ priorityscore=1501 phishscore=0 mlxscore=0 spamscore=0 clxscore=1011
+ adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412180016
 
-On 12/13/24 03:10, Krzysztof Kozlowski wrote:
-> In what way fix? How does it affect users?
+On 12/18/2024 2:37 AM, Rob Herring (Arm) wrote:
+> The callers for of_modalias() generally need the module alias as part of
+> some larger string. That results in some error prone manipulation of the
+> buffer prepend/append the module alias string. In fact,
+> of_device_uevent_modalias() has several issues. First, it's off by one
+> too few characters in utilization of the full buffer. Second, the error
+> paths leave OF_MODALIAS with a truncated value when in the end nothing
+> should be added to the buffer. It is also fragile because it needs
+> internal details of struct kobj_uevent_env. add_uevent_var() really
+> wants to write the env variable and value in one shot which would need
+> either a temporary buffer for value or a format specifier.
 > 
-> Why no fixes tag?
+> Fix these issues by adding a new printf format specifier, "%pOFm". With
+> the format specifier in place, simplify all the callers of
+> of_modalias(). of_modalias() can also be simplified with vsprintf()
+> being the only caller as it avoids the error conditions.
+> 
 
-Thanks for the review. Ivy has addressed these in v2.
+good solution (^^).
+
+> Cc: Zijun Hu <quic_zijuhu@quicinc.com>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  Documentation/core-api/printk-formats.rst |  1 +
+>  drivers/of/device.c                       | 25 ++--------------
+>  drivers/of/module.c                       | 35 +++++------------------
+>  drivers/of/unittest.c                     |  2 ++
+>  include/linux/of.h                        |  8 +++---
+>  lib/vsprintf.c                            |  7 +++--
+>  6 files changed, 22 insertions(+), 56 deletions(-)
+> 
+> diff --git a/Documentation/core-api/printk-formats.rst b/Documentation/core-api/printk-formats.rst
+> index ecccc0473da9..d72fe3d8c427 100644
+> --- a/Documentation/core-api/printk-formats.rst
+> +++ b/Documentation/core-api/printk-formats.rst
+> @@ -496,6 +496,7 @@ equivalent to %pOFf.
+>  	- F - device node flags
+>  	- c - major compatible string
+>  	- C - full compatible string
+> +	- m - module alias string
+
+Ack.
+
+>  
+>  The separator when using multiple arguments is ':'
+>  
+> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> index edf3be197265..ae8c47d5db8e 100644
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -199,14 +199,9 @@ ssize_t of_device_modalias(struct device *dev, char *str, ssize_t len)
+>  	if (!dev || !dev->of_node || dev->of_node_reused)
+>  		return -ENODEV;
+>  
+> -	sl = of_modalias(dev->of_node, str, len - 2);
+> -	if (sl < 0)
+> -		return sl;
+> -	if (sl > len - 2)
+> +	sl = snprintf(str, len, "%pOFm\n", dev->of_node);
+> +	if (sl >= len)
+>  		return -ENOMEM;
+> -
+> -	str[sl++] = '\n';
+> -	str[sl] = 0;
+>  	return sl;
+>  }
+
+Ack.
+
+>  EXPORT_SYMBOL_GPL(of_device_modalias);
+> @@ -256,24 +251,10 @@ EXPORT_SYMBOL_GPL(of_device_uevent);
+>  
+>  int of_device_uevent_modalias(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	int sl;
+> -
+>  	if ((!dev) || (!dev->of_node) || dev->of_node_reused)
+>  		return -ENODEV;
+>  
+> -	/* Devicetree modalias is tricky, we add it in 2 steps */
+> -	if (add_uevent_var(env, "MODALIAS="))
+> -		return -ENOMEM;
+> -
+> -	sl = of_modalias(dev->of_node, &env->buf[env->buflen-1],
+> -			 sizeof(env->buf) - env->buflen);
+> -	if (sl < 0)
+> -		return sl;
+> -	if (sl >= (sizeof(env->buf) - env->buflen))
+> -		return -ENOMEM;
+> -	env->buflen += sl;
+> -
+> -	return 0;
+> +	return add_uevent_var(env, "MODALIAS=%pOFm", dev->of_node);
+>  }
+
+Ack.
+
+>  EXPORT_SYMBOL_GPL(of_device_uevent_modalias);
+>  
+> diff --git a/drivers/of/module.c b/drivers/of/module.c
+> index 1e735fc130ad..80879d2abea8 100644
+> --- a/drivers/of/module.c
+> +++ b/drivers/of/module.c
+> @@ -8,21 +8,14 @@
+>  #include <linux/slab.h>
+>  #include <linux/string.h>
+>  
+> -ssize_t of_modalias(const struct device_node *np, char *str, ssize_t len)
+> +/* Do not use directly, use %pOFm format specifier instead */
+> +size_t of_modalias(const struct device_node *np, char *str, size_t len)
+>  {
+>  	const char *compat;
+>  	char *c;
+>  	struct property *p;
+> -	ssize_t csize;
+> -	ssize_t tsize;
+> -
+> -	/*
+> -	 * Prevent a kernel oops in vsnprintf() -- it only allows passing a
+> -	 * NULL ptr when the length is also 0. Also filter out the negative
+> -	 * lengths...
+> -	 */
+> -	if ((len > 0 && !str) || len < 0)
+> -		return -EINVAL;
+> +	size_t csize;
+> +	size_t tsize;
+> 
+
+Ack.
+
+>  	/* Name & Type */
+>  	/* %p eats all alphanum characters, so %c must be used here */
+> @@ -53,29 +46,15 @@ ssize_t of_modalias(const struct device_node *np, char *str, ssize_t len)
+>  
+>  int of_request_module(const struct device_node *np)
+>  {
+> -	char *str;
+> -	ssize_t size;
+> -	int ret;
+> +	char *str __free(kfree);
+
+char *str __free(kfree) = NULL;
+
+otherwise, wild pointer dereference may happen when return below.
+
+>  
+>  	if (!np)
+>  		return -ENODEV;
+>  
+> -	size = of_modalias(np, NULL, 0);
+> -	if (size < 0)
+> -		return size;
+> -
+> -	/* Reserve an additional byte for the trailing '\0' */
+> -	size++;
+> -
+> -	str = kmalloc(size, GFP_KERNEL);
+> +	str = kasprintf(GFP_KERNEL, "%pOFm", np);
+>  	if (!str)
+>  		return -ENOMEM;
+>  
+> -	of_modalias(np, str, size);
+> -	str[size - 1] = '\0';
+> -	ret = request_module(str);
+> -	kfree(str);
+> -
+> -	return ret;
+> +	return request_module(str);
+
+Ack.
+
+>  }
+>  EXPORT_SYMBOL_GPL(of_request_module);
+> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+> index daf9a2dddd7e..93921399f02d 100644
+> --- a/drivers/of/unittest.c
+> +++ b/drivers/of/unittest.c
+> @@ -342,6 +342,8 @@ static void __init of_unittest_printf(void)
+>  	of_unittest_printf_one(np, "%pOFc", "test-sub-device");
+>  	of_unittest_printf_one(np, "%pOFC",
+>  			"\"test-sub-device\",\"test-compat2\",\"test-compat3\"");
+> +	of_unittest_printf_one(np, "%pOFm",
+> +			"of:NdevT(null)Ctest-sub-deviceCtest-compat2Ctest-compat3");
+>  }
+>  
+>  struct node_hash {
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index f921786cb8ac..9fe7d17ce7e2 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -382,7 +382,7 @@ extern int of_count_phandle_with_args(const struct device_node *np,
+>  	const char *list_name, const char *cells_name);
+>  
+>  /* module functions */
+> -extern ssize_t of_modalias(const struct device_node *np, char *str, ssize_t len);
+> +extern size_t of_modalias(const struct device_node *np, char *str, size_t len);
+
+extern  may be removed. it does not matter to keep it here as well.
+
+Ack.
+
+
+>  extern int of_request_module(const struct device_node *np);
+>  
+>  /* phandle iterator functions */
+> @@ -762,10 +762,10 @@ static inline int of_count_phandle_with_args(const struct device_node *np,
+>  	return -ENOSYS;
+>  }
+>  
+> -static inline ssize_t of_modalias(const struct device_node *np, char *str,
+> -				  ssize_t len)
+> +static inline size_t of_modalias(const struct device_node *np, char *str,
+> +				 size_t len)
+>  {
+> -	return -ENODEV;
+> +	return 0;
+>  }
+>  
+
+Ack.
+
+>  static inline int of_request_module(const struct device_node *np)
+> diff --git a/lib/vsprintf.c b/lib/vsprintf.c
+> index 9d3dac38a3f4..6a4f99b39de0 100644
+> --- a/lib/vsprintf.c
+> +++ b/lib/vsprintf.c
+> @@ -2169,10 +2169,10 @@ char *device_node_string(char *buf, char *end, struct device_node *dn,
+>  
+>  	/* simple case without anything any more format specifiers */
+>  	fmt++;
+> -	if (fmt[0] == '\0' || strcspn(fmt,"fnpPFcC") > 0)
+> +	if (fmt[0] == '\0' || strcspn(fmt,"fnpPFcCm") > 0)
+>  		fmt = "f";
+>  
+> -	for (pass = false; strspn(fmt,"fnpPFcC"); fmt++, pass = true) {
+> +	for (pass = false; strspn(fmt,"fnpPFcCm"); fmt++, pass = true) {
+>  		int precision;
+>  		if (pass) {
+>  			if (buf < end)
+> @@ -2226,6 +2226,9 @@ char *device_node_string(char *buf, char *end, struct device_node *dn,
+>  				has_mult = true;
+>  			}
+>  			break;
+> +		case 'm':
+> +			buf += of_modalias(dn, buf, end - buf);
+> +			break;
+>  		default:
+>  			break;
+>  		}
+
+may Add below tag if the only issue is solved.
+
+Reviewed-by: Zijun Hu <quic_zijuhu@quicinc.com>
 
 
