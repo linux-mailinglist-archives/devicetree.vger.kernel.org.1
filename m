@@ -1,286 +1,399 @@
-Return-Path: <devicetree+bounces-132285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A0F79F65D5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 13:23:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D9D99F65E6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 13:27:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DC0F7A34C0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:23:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AF781880681
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:27:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0ED1B040F;
-	Wed, 18 Dec 2024 12:22:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2DFE1A23B5;
+	Wed, 18 Dec 2024 12:27:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="hVTBb7kq"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="VBYmtQJQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B56C21ACED2;
-	Wed, 18 Dec 2024 12:22:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7918F19CC20
+	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 12:27:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734524538; cv=none; b=eJD69geWNiDpi+c8ZOo10aTaVt42ZMc9zWZ6ALdqHoXG/AL4lVdcJGrhgPyjxsSdb8VKtm9U3UA6twl2CwJ2/YQp03DLy8b2UE0VxtY2+768mNoxIAMb4KDld8P8e1BkUeU/ZxxoQelGU/CdmvBQWu3FE3zpVLjfCvhoa+7NGGI=
+	t=1734524866; cv=none; b=URFUkmxyWY2dPqFqA3vj4KGke6joGmqHtURfB68Xf/wULcLTKwv+b+fJH46nfyWuhhl/Be2JRJRI9ba5XudvZa16GB+aqo49fUVRqVvWTRlWBOOWtYtZV182SFzXSZZht5PzjWVxAuJos0bYvcu7/GyjmIrvZrDz45ic2q7her8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734524538; c=relaxed/simple;
-	bh=60PstPFFNJBCqvrtfQeHOXvow0yylju+xBOY73BTBzY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=U5CYDp2I+AcLFD9DcO19xAZfpMrPns5ik7F0kYQm2jO4aY4KKnGxHYNIdeopFj08GFLyWo45b2/0JVZ5cfvc7nIpXgnSwpOO/C7v/JP9RwjYCMdKC7vpnNrShcV+UwRuDUzcoLArKCrNJqKlGYWb+RYBC4lqMk6XXqQ8tyO9T7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=hVTBb7kq; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BC820C0006;
-	Wed, 18 Dec 2024 12:22:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1734524532;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NevTxe3agkfD4axaBSjg3++8teiIt9YaQyd0tcS/am0=;
-	b=hVTBb7kq+TngXTb3pthwEVu6LowPEn8Z2XzvJyKlLyobrEcODw48kYs/DMZxAYiRqYyjcv
-	i65jfahw2N8QackbcbHe0/jn0IaOgffgmvPSMVt936aCLHyxHDLa8lQ70BhMO9KbPBpwii
-	Lrd0/G72KTjXm6kjNx2FNGSzGYuXaQRYTl/xTJofyCOgdJBRlcHaCaY8ff3St2xhT5Nsn7
-	T0rWiZpKjSCCnw6Um0wRqpBzwArgK08zdECXRuWEhcVw+URlIIEDkFMDKAtluPli3bXFlX
-	vqhZUQOyZ+k3QdC8pvcSBuRz7naPgiO/9PkXXugJ/18NkKRIU2NwZ+TwFij+lA==
-Date: Wed, 18 Dec 2024 13:22:10 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: David Gibson <david@gibson.dropbear.id.au>, Andrew Davis <afd@ti.com>,
- Ayush Singh <ayush@beagleboard.org>, Geert Uytterhoeven
- <geert@linux-m68k.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan
- <saravanak@google.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Devicetree Compiler
- <devicetree-compiler@vger.kernel.org>
-Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node
- feature
-Message-ID: <20241218132210.0e9cd175@bootlin.com>
-In-Reply-To: <20241210155833.76357d50@bootlin.com>
-References: <20241209151830.95723-1-herve.codina@bootlin.com>
-	<CAL_JsqLT3prYBcxnsUwAShULCLJScYoU29ta29RJLGyiNkCrTg@mail.gmail.com>
-	<20241210091604.512496d3@bootlin.com>
-	<CAL_JsqJCbmMJWJnmr8FneKrW4pjvTcyEco94Ot32o2YtaVxRQQ@mail.gmail.com>
-	<20241210155833.76357d50@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1734524866; c=relaxed/simple;
+	bh=DckKqKKp0TF0ejfLprKprBfby84Z1lMdE0wYm2Z4hLM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OZnf9l0BtHWxBTeZ7rw/tfCDDg40ecz+EWClohBBxMWJmWGDV063ssiE+cbvkl3whfywVYGXzf9xhfKglRmNuDvsX4xWXJCGlQDMq1tPUyVbn1VZiy9IGitiqR8TuXGEqZHqnTfRhWGnYHGMoolcgtC6OLbLjXB8GSfBB2DLPSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=VBYmtQJQ; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-436281c8a38so43213285e9.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 04:27:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1734524863; x=1735129663; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=cIhOvlG3f0MrhGiGuks0+e7HWiAmYlFCv+0bC0cSdE0=;
+        b=VBYmtQJQzHKCkrbtxJsEPLellZAKg6Drni4vCTEYVFVSSTlqg2tqE6NlY76Bl9ACRv
+         0GgPLDk6EBJbNVGksGakZ+LTskBB4ivikjZ3bnxXzc4TuM3HaQnACO2H20+6I8mKy61l
+         4kfouAaOiSC80cwtGmI8dX99fwZ/Echb27lmv/SqomU0EORCCrz+nlNv6a9Isz5WpVTK
+         M3Eg1OWXfJGa7xX3vNYOGrZpmR6kUkHU98/Ugs9gbWSfZh2iQV/ds2rWMhhEUqn7e2qO
+         OAb6Ytqcf6/qH7ec2Aj2dg6jFLpnSsELic4F51DWCLINvJxpDobR7d4tGFXYpAJmmZ/b
+         BMXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734524863; x=1735129663;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cIhOvlG3f0MrhGiGuks0+e7HWiAmYlFCv+0bC0cSdE0=;
+        b=p1PkffuD9aYEBWWMmo6t/rSUqRykt2oF2s4afb5DsY5G0Z87+QtYMffLXNs/qESlIb
+         djgO2uwRYCLFRrlFzZgw7V4EcHJbMRIwxzdIghQCY1o6Lp/LuTVc/gUbPCVpseOxi5Bo
+         sxIAG+D/YljxPch7234SMqECGJFKzHZQRL5pi6/WY+RedXzDTCRLnIqaYfY477WmF7Ml
+         tYtZp5YFG0qgzYeF5Sw/G6oAdyyj0Em+4zxS7QfVl7CzJ2JBcj4HZfMuWhUFSoXkzmss
+         UQE4KaU8EeSOsjhxuG1J6NZMza4E15E7wNCVCZd6XYil0iK1RXp+iSh7sZjqYJZTL/b5
+         0Gcw==
+X-Forwarded-Encrypted: i=1; AJvYcCU/qehzl+Z4FvqU9xt0pCi0ZJCGkXdu3v9ZKx23rIoH+US001XHbLGwNTJkMyPkCxeRwQDgi5xoSty9@vger.kernel.org
+X-Gm-Message-State: AOJu0YywPjVNpJJuIJI8XFLi3lpBAtOtcHHd0C8GcBznAjf+fT3B8rdh
+	H4a55k9jpRKTlUyao4ehQdypx1BH0ez+TxICicDHdjsBsZEmSWLTDY/7qkOVITMZSiyYh3FmlaP
+	I
+X-Gm-Gg: ASbGncthkTo6j5AGYqxtI4CPEH5LPAwPtJWy65MmcOHc0IiSnnLKqqIellwvQGbnxoC
+	OT5OvLiVeJ8dy1kHaTWWMy2C4XWc7A2R98gkSBpQjhZQZDfUc1L3r+PO0AVexpH0QQcwy+DfXKw
+	P0CxV+VjzL/F/VYJ7SCX4fmWMM7HHjjOmfzSY7RVJaekL1qLc6NbiXgDOM98TtOjotHzL6Jx2Or
+	e38N1X3qfO/pirIxI+FEkA9ANN9ZjrhVErr3OQXjotV3i48RWAgQUYdug==
+X-Google-Smtp-Source: AGHT+IEocBHt79Oo3qypc8W6vC7SL80cW4NXBnickBoH2uXVqJXpbrOgbtRvkL5/00XQoPdTFLxskQ==
+X-Received: by 2002:a05:6000:1a8e:b0:385:f573:1f78 with SMTP id ffacd0b85a97d-388e4d6703cmr2276104f8f.24.1734524862655;
+        Wed, 18 Dec 2024 04:27:42 -0800 (PST)
+Received: from pathway.suse.cz ([176.114.240.50])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-388c806cc06sm13836594f8f.110.2024.12.18.04.27.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Dec 2024 04:27:41 -0800 (PST)
+Date: Wed, 18 Dec 2024 13:27:39 +0100
+From: Petr Mladek <pmladek@suse.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+	Linus Torvalds <torvalds@linux-foundation.org>
+Cc: Steven Rostedt <rostedt@goodmis.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+	Sergey Senozhatsky <senozhatsky@chromium.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Saravana Kannan <saravanak@google.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	John Ogness <john.ogness@linutronix.de>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Zijun Hu <quic_zijuhu@quicinc.com>, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: lock in vsprintf(): was: Re: [PATCH] of: Add printf '%pOFm' for
+ generating modalias
+Message-ID: <Z2K_u6jK5aLDqaam@pathway.suse.cz>
+References: <20241217183711.2525863-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241217183711.2525863-1-robh@kernel.org>
 
-Hi Rob, David,
+Adding Linus and some other guys into Cc.
 
-On Tue, 10 Dec 2024 15:58:33 +0100
-Herve Codina <herve.codina@bootlin.com> wrote:
+My concern is taking a lock when processing a printf format, see
+below for more details.
 
-> Hi Rob,
+On Tue 2024-12-17 12:37:09, Rob Herring (Arm) wrote:
+> The callers for of_modalias() generally need the module alias as part of
+> some larger string. That results in some error prone manipulation of the
+> buffer prepend/append the module alias string. In fact,
+> of_device_uevent_modalias() has several issues. First, it's off by one
+> too few characters in utilization of the full buffer. Second, the error
+> paths leave OF_MODALIAS with a truncated value when in the end nothing
+> should be added to the buffer. It is also fragile because it needs
+> internal details of struct kobj_uevent_env. add_uevent_var() really
+> wants to write the env variable and value in one shot which would need
+> either a temporary buffer for value or a format specifier.
 > 
-> On Tue, 10 Dec 2024 07:46:02 -0600
-> Rob Herring <robh@kernel.org> wrote:
+> Fix these issues by adding a new printf format specifier, "%pOFm". With
+> the format specifier in place, simplify all the callers of
+> of_modalias(). of_modalias() can also be simplified with vsprintf()
+> being the only caller as it avoids the error conditions.
 > 
-> > +dtc list and David G.
-> > 
-> > On Tue, Dec 10, 2024 at 2:16 AM Herve Codina <herve.codina@bootlin.com> wrote:  
-> > >
-> > > Hi Rob,
-> > >
-> > > On Mon, 9 Dec 2024 14:11:09 -0600
-> > > Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > ...    
-> > > > >
-> > > > > Our overlay using the nexus node can contains:
-> > > > >    node {
-> > > > >       foo-gpio = <&connector 0 GPIO_ACTIVE_HIGH>;
-> > > > >    };    
-> > > >
-> > > > Couldn't we make something like this work:
-> > > >
-> > > > connector: __overlay__ {
-> > > >
-> > > >    node {
-> > > >       foo-gpio = <&connector 0 GPIO_ACTIVE_HIGH>;
-> > > >    };
-> > > > };
-> > > >
-> > > > We already have to process all the phandles in the overlay. So this
-> > > > just changes handling of 'connector' from being a local phandle which
-> > > > we just renumber to an unresolved phandle which we have to lookup and
-> > > > replace the phandle uses with.
-> > > >    
-> > >
-> > > I have tried what you suggested but I've got some issues with dtc.
-> > >
-> > > If a label is not used as a phandle in a dts, dtc doesn't create the phandle
-> > > property in the pointed node (except if we use '-@' option but I don't want
-> > > to add all symbols in my dtb just for one or two connector symbols).    
-> > 
-> > Sorry, but that's the cost of using overlays, and that's pretty
-> > orthogonal to the issue of how the overlay references the connector
-> > node.
-> > 
-> > However, I agree '-@' is a pretty big switch and an issue that's been
-> > discussed before. I also don't like that all labels become part of the
-> > ABI nor the fact that overlays can make any random modification
-> > anywhere in the DT. I would rather see some sort of explicit opt-in
-> > mechanism of nodes we can apply overlays to. Perhaps we could do
-> > something like this:
-> > 
-> > /export/ label: node {
-> > };
-> > 
-> > And then __symbols__ can be only those exported labels (unless -@ is used).
-> >   
-> > > The way to make sure that the phandle property will be created in the base
-> > > DT node by dtc is to reference the label as a phandle in the base DT.
-> > > The export-symbols node references this label as a phandle in the base DT
-> > > and so, with that, dtc creates the phandle property.
-> > >
-> > > Also, using 'connector: __overlay__' allows to have only one label from
-> > > the base DT to be referenced by the overlay.
-> > >
-> > > I don't know if use cases exist where more than one label need to be
-> > > referenced but this 'one label' constraint is not present with the
-> > > export-symbols node.
-> > >
-> > > The use case where more than one label would be needed is the need for a
-> > > phandle from the overlay that couldn't be translated by the connector nexus
-> > > node. Maybe pinctrl because it uses of_find_node_by_phandle().    
-> > 
-> > Labels are an ABI. I can't see that we need to remap them when we can
-> > just say the name must be X. We can have multiple labels on a node as
-> > well. So I think the problem space is purely mapping 1 name to
-> > multiple possible names.  
+> Cc: Zijun Hu <quic_zijuhu@quicinc.com>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  Documentation/core-api/printk-formats.rst |  1 +
+>  drivers/of/device.c                       | 25 ++--------------
+>  drivers/of/module.c                       | 35 +++++------------------
+>  drivers/of/unittest.c                     |  2 ++
+>  include/linux/of.h                        |  8 +++---
+>  lib/vsprintf.c                            |  7 +++--
+>  6 files changed, 22 insertions(+), 56 deletions(-)
 > 
-> So, with a base DT having:
->   /export/ label0: node@0 {
->   }
-> 
->   /export/ label1: node@1 {
->   }
-> 
-> the __symbols__ node will contains:
->   __symbols__ {
-> 	label0 = ...;
-> 	label1 = ...;
->   }
-> 
-> without export-symbols, the overlay will look like this:
->   connector: __overlay__ {
-> 	...
-> 	ref = <&connector>;
->   }
-> 
-> The "connector" label is the only one we can use from the overlay to
-> reference the base DT (special label defined on the __overlay__ node).
-> As it is defined to point to __overlay__, it has to be resolved to the
-> exported symbol that point to the node where the overlay is applied.
-> 
-> If the overlay is applied on node@0, 'connector' is resolved to node@0.
-> 
-> This case cannot be handled:
->    connector: __overlay__ {
-> 	...
-> 	ref1 = <&connector>;
->         ref2 = <&other-label-from-base-dt>;
->    }
-> 
-> Indeed, only one 'connector' label can be resolved to node@0 or node@1.
-> other-label-from-base-dt cannot be resolved based on the node the overlay
-> is applied to.
-> 
-> Again, I am not sure on my side that we have to handle this case of multiple
-> labels in the overlay that point to the base DT dependent on node@0 or node@1.
-> 
-> On my use case, I considered the node@0 or node@1 as nexus nodes and so, all
-> GPIOs (soon PWM, I hope, and probably other ressources in the future) can be
-> referenced using nexus nodes.
-> 
-> > 
-> > The connector handling has to be addressed binding by binding at least
-> > for each pattern of binding. Pinctrl binding is pretty unique, so we
-> > should make sure we can handle it in this case.  
-> 
-> If pinctrl can be handled using nexus node, it should be ok. Otherwise
-> things are going to be complicated. Again, with your proposal, we can
-> reference only one label from the overlay, the node where the overlay
-> is applied to.
-> 
-> >   
-> > > Last point, having export-symbols node makes some nodes explicitly
-> > > candidates for an overlay and defines the label to be used on the base DT
-> > > node side. This specific label can be described in the node binding as well
-> > > as the nexus node properties.    
-> > 
-> > Both David (IIRC) and I feel that putting the overlay info
-> > (__symbols__, __fixups__, etc.) within the DT data rather than in the
-> > DTB format was a mistake. The export-symbols node expands on that, so
-> > I'm not sure that's the right direction.
-> > 
-> > (We should have rev'ed the DTB format to store type information for
-> > (at a minimum) phandles.)
-> >   
-> > > With 'connector: __overlay__', the overlay can be applied on any nodes, at
-> > > least from the needed label point of view without any restrictions.    
-> > 
-> > Certainly that is something I'd like to have some control over. An
-> > /export/ tag would accomplish that.
-> > 
-> > One idea I have there is that the overlay could have the compatible of
-> > the connector and we use that for matching. That would give us a way
-> > to know what base DTs overlays apply to. Then you could load an
-> > overlay and dispatch it to the correct driver to handle. It would have
-> > to be handled as a special case as the compatible may match, but
-> > wouldn't necessarily be equal values.  
-> 
-> compatible property will not be enough. We can have two exact same
-> connectors on the same base board:
->   /export/ label0: node@0 {
->      compatible = 'foo,addon-connector';
->   }
-> 
->   /export/ label1: node@1 {
->      compatible = 'foo,addon-connector';
->   }
-> 
-> To load the overlay, we can match compatible for sure but we need to node
-> the overlay is supposed to be applied to.
-> 
-> Also, it you want to check bindings for node@0 available in the base DT
-> and bindings in the overlay, having one compatible string with different
-> meaning will introduce some complexity.
-> A compatible string can now define the "provider" part (the base DT) and
-> the "consumer" part (the overlay).
-> 
-> > 
-> > 
-> > I'll throw out another idea. What if we make resolving phandle errors
-> > something that can be handled by the connector driver? The driver
-> > knows 'connector' resolves to the connector node it is applying the
-> > overlay to.  
-> 
-> Well, my proposal was to give enough information to the resolver instead of
-> handling errors.
-> 
-> I probably miss something but I don't see what could be the benefit to do
-> that in the other way. Can you give me more details about your idea?
-> 
+> diff --git a/Documentation/core-api/printk-formats.rst b/Documentation/core-api/printk-formats.rst
+> index ecccc0473da9..d72fe3d8c427 100644
+> --- a/Documentation/core-api/printk-formats.rst
+> +++ b/Documentation/core-api/printk-formats.rst
+> @@ -496,6 +496,7 @@ equivalent to %pOFf.
+>  	- F - device node flags
+>  	- c - major compatible string
+>  	- C - full compatible string
+> +	- m - module alias string
+>  
+>  The separator when using multiple arguments is ':'
+>  
+> diff --git a/drivers/of/device.c b/drivers/of/device.c
+> index edf3be197265..ae8c47d5db8e 100644
+> --- a/drivers/of/device.c
+> +++ b/drivers/of/device.c
+> @@ -256,24 +251,10 @@ EXPORT_SYMBOL_GPL(of_device_uevent);
+>  
+>  int of_device_uevent_modalias(const struct device *dev, struct kobj_uevent_env *env)
+>  {
+> -	int sl;
+> -
+>  	if ((!dev) || (!dev->of_node) || dev->of_node_reused)
+>  		return -ENODEV;
+>  
+> -	/* Devicetree modalias is tricky, we add it in 2 steps */
+> -	if (add_uevent_var(env, "MODALIAS="))
+> -		return -ENOMEM;
+> -
+> -	sl = of_modalias(dev->of_node, &env->buf[env->buflen-1],
+> -			 sizeof(env->buf) - env->buflen);
+> -	if (sl < 0)
+> -		return sl;
+> -	if (sl >= (sizeof(env->buf) - env->buflen))
+> -		return -ENOMEM;
+> -	env->buflen += sl;
+> -
+> -	return 0;
+> +	return add_uevent_var(env, "MODALIAS=%pOFm", dev->of_node);
 
-If I understand correctly, to move forward on the topic, we are waiting from
-feedback from David.
+The proposed %pOFm format takes a lock inside. It calls:
 
-Is that correct or do you have in mind an other plan I could explore?
+size_t of_modalias(const struct device_node *np, char *str, size_t len)
+{
+[...]
+	csize = snprintf(str, len, "of:N%pOFn%c%s", np, 'T',
+			 of_node_get_device_type(np));
+[...]
 
-Best regards,
-Hervé
+which calls:
+
+  + of_node_get_device_type()
+    + of_get_property()
+      + of_find_property()
+
+, where
+
+struct property *of_find_property(const struct device_node *np,
+				  const char *name,
+				  int *lenp)
+{
+[...]
+	raw_spin_lock_irqsave(&devtree_lock, flags);
+	pp = __of_find_property(np, name, lenp);
+	raw_spin_unlock_irqrestore(&devtree_lock, flags);
+[...]	return pp;
+
+I personally think that taking locks when formatting string is
+a way to hell.
+
+In this case, add_uevent_var() is lockless so that it should not
+cause any problem. But just imagine that it does:
+
+int add_uevent_var(struct kobj_uevent_env *env, const char *format, ...)
+{
+
+	some_lock();
+
+	va_start(args, format);
+	len = vsnprintf(&env->buf[env->buflen],
+			sizeof(env->buf) - env->buflen,
+			format, args);
+	va_end(args);
+
+	some_unlock();
+
+	return 0;
+}
+
+Would anyone consider that the vsprintf() here might need to take a lock?
+
+Also, the format might be used in printk(). We put a huge effort into
+creating a lockless ringbuffer and safe console locking. I would
+really appreciate to avoid any locking in the formatting part.
+
+
+That said, we already have a precedent. "%pOFf" might take a lock,
+for example, via:
+
+  + fwnode_full_name_string()
+    + fwnode_handle_put()
+      + of_fwnode_put()
+	+ of_node_put()
+	  + kobject_put()
+	    + kref_put()
+	      + schedule_delayed_work()
+		+ queue_delayed_work()
+		  + queue_delayed_work_on()
+		    + __queue_delayed_work()
+		      + add_timer_on()
+			+ add_timer_on()
+			  + lock_timer_base()
+			   + raw_spin_lock_irqsave(&base->lock, *flags);
+
+But this would happen only when the last reference is released
+when formatting the string which is kind of corner case.
+
+As I said, I think that taking lock in vsprintf() formats is highly
+unexpected and thus a way to hell.
+
+What do others think, please?
+
+Best Regards,
+Petr
+
+
+
+>  }
+>  EXPORT_SYMBOL_GPL(of_device_uevent_modalias);
+>  
+> diff --git a/drivers/of/module.c b/drivers/of/module.c
+> index 1e735fc130ad..80879d2abea8 100644
+> --- a/drivers/of/module.c
+> +++ b/drivers/of/module.c
+> @@ -8,21 +8,14 @@
+>  #include <linux/slab.h>
+>  #include <linux/string.h>
+>  
+> -ssize_t of_modalias(const struct device_node *np, char *str, ssize_t len)
+> +/* Do not use directly, use %pOFm format specifier instead */
+> +size_t of_modalias(const struct device_node *np, char *str, size_t len)
+>  {
+>  	const char *compat;
+>  	char *c;
+>  	struct property *p;
+> -	ssize_t csize;
+> -	ssize_t tsize;
+> -
+> -	/*
+> -	 * Prevent a kernel oops in vsnprintf() -- it only allows passing a
+> -	 * NULL ptr when the length is also 0. Also filter out the negative
+> -	 * lengths...
+> -	 */
+> -	if ((len > 0 && !str) || len < 0)
+> -		return -EINVAL;
+> +	size_t csize;
+> +	size_t tsize;
+>  
+>  	/* Name & Type */
+>  	/* %p eats all alphanum characters, so %c must be used here */
+> @@ -53,29 +46,15 @@ ssize_t of_modalias(const struct device_node *np, char *str, ssize_t len)
+>  
+>  int of_request_module(const struct device_node *np)
+>  {
+> -	char *str;
+> -	ssize_t size;
+> -	int ret;
+> +	char *str __free(kfree);
+>  
+>  	if (!np)
+>  		return -ENODEV;
+>  
+> -	size = of_modalias(np, NULL, 0);
+> -	if (size < 0)
+> -		return size;
+> -
+> -	/* Reserve an additional byte for the trailing '\0' */
+> -	size++;
+> -
+> -	str = kmalloc(size, GFP_KERNEL);
+> +	str = kasprintf(GFP_KERNEL, "%pOFm", np);
+>  	if (!str)
+>  		return -ENOMEM;
+>  
+> -	of_modalias(np, str, size);
+> -	str[size - 1] = '\0';
+> -	ret = request_module(str);
+> -	kfree(str);
+> -
+> -	return ret;
+> +	return request_module(str);
+>  }
+>  EXPORT_SYMBOL_GPL(of_request_module);
+> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+> index daf9a2dddd7e..93921399f02d 100644
+> --- a/drivers/of/unittest.c
+> +++ b/drivers/of/unittest.c
+> @@ -342,6 +342,8 @@ static void __init of_unittest_printf(void)
+>  	of_unittest_printf_one(np, "%pOFc", "test-sub-device");
+>  	of_unittest_printf_one(np, "%pOFC",
+>  			"\"test-sub-device\",\"test-compat2\",\"test-compat3\"");
+> +	of_unittest_printf_one(np, "%pOFm",
+> +			"of:NdevT(null)Ctest-sub-deviceCtest-compat2Ctest-compat3");
+>  }
+>  
+>  struct node_hash {
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index f921786cb8ac..9fe7d17ce7e2 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -382,7 +382,7 @@ extern int of_count_phandle_with_args(const struct device_node *np,
+>  	const char *list_name, const char *cells_name);
+>  
+>  /* module functions */
+> -extern ssize_t of_modalias(const struct device_node *np, char *str, ssize_t len);
+> +extern size_t of_modalias(const struct device_node *np, char *str, size_t len);
+>  extern int of_request_module(const struct device_node *np);
+>  
+>  /* phandle iterator functions */
+> @@ -762,10 +762,10 @@ static inline int of_count_phandle_with_args(const struct device_node *np,
+>  	return -ENOSYS;
+>  }
+>  
+> -static inline ssize_t of_modalias(const struct device_node *np, char *str,
+> -				  ssize_t len)
+> +static inline size_t of_modalias(const struct device_node *np, char *str,
+> +				 size_t len)
+>  {
+> -	return -ENODEV;
+> +	return 0;
+>  }
+>  
+>  static inline int of_request_module(const struct device_node *np)
+> diff --git a/lib/vsprintf.c b/lib/vsprintf.c
+> index 9d3dac38a3f4..6a4f99b39de0 100644
+> --- a/lib/vsprintf.c
+> +++ b/lib/vsprintf.c
+> @@ -2169,10 +2169,10 @@ char *device_node_string(char *buf, char *end, struct device_node *dn,
+>  
+>  	/* simple case without anything any more format specifiers */
+>  	fmt++;
+> -	if (fmt[0] == '\0' || strcspn(fmt,"fnpPFcC") > 0)
+> +	if (fmt[0] == '\0' || strcspn(fmt,"fnpPFcCm") > 0)
+>  		fmt = "f";
+>  
+> -	for (pass = false; strspn(fmt,"fnpPFcC"); fmt++, pass = true) {
+> +	for (pass = false; strspn(fmt,"fnpPFcCm"); fmt++, pass = true) {
+>  		int precision;
+>  		if (pass) {
+>  			if (buf < end)
+> @@ -2226,6 +2226,9 @@ char *device_node_string(char *buf, char *end, struct device_node *dn,
+>  				has_mult = true;
+>  			}
+>  			break;
+> +		case 'm':
+> +			buf += of_modalias(dn, buf, end - buf);
+> +			break;
+>  		default:
+>  			break;
+>  		}
+> -- 
+> 2.45.2
 
