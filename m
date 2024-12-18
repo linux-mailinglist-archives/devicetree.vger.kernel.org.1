@@ -1,475 +1,113 @@
-Return-Path: <devicetree+bounces-132404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD1B99F6F05
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 21:46:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D47FE9F6F37
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 22:07:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45CA01888D78
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 20:46:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B70791891A67
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 21:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33EA31F63E7;
-	Wed, 18 Dec 2024 20:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86D771FC7C3;
+	Wed, 18 Dec 2024 21:07:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="M4hOlcKN"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="BoguQtj8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FEA8224F6
-	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 20:46:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0020F14D283;
+	Wed, 18 Dec 2024 21:06:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734554781; cv=none; b=BtWHDKHk2AqIK+wvmpX8be2DQlDji0oZSwiU/8OJ/yJ/sjVPQpIefQb86axjdhxSohTJuPGsXpyZ4jKei3kJBDsWPxRsPBi+3aaKC4LUfvqPNE7Q9hnPHUsu7q5+B+8f69QIWPzlpx2iRgn060GsVdgYc+EcXTMkVpzqVMJ2PW8=
+	t=1734556022; cv=none; b=OSxkV+oVwnEUo6JVVmBo7NUhzQlyehw3LWNHmU/7fxa6DQIokoo7ZelRuOqHv5anRZhqyEHOvBkU9oCam1IZElenx8fm2TGANKQqNxTBzcX7VpXwe6kCy4xC5sfpcqlbNAI7slaNcGWgFXecrx7lxaX7Q9V8sygqaqAAC3S4euo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734554781; c=relaxed/simple;
-	bh=3GRuOQXhLX5wzyCu0HOlmCijKnb+i4WtZXoK7vxMpO4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=t8RvJWZK1l2U9OdrrqvOqEavCo3Fr18IpEA1D8qiS0f5DURCNTIFr+PTwRtd4ce3Y4hTGD/78l//GQLk1tzEj6v7Pey2hEXRmvUA6LEitlTHWwG0Zpf8XQHPnGODX9Ixvb236YAkYqhKujU4rrvvboayys515KZTOSdTf3Or9rc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=M4hOlcKN; arc=none smtp.client-ip=209.85.160.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-29e70c9dc72so16797fac.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 12:46:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734554777; x=1735159577; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WKAvhMFQ20/EBQvmaQoGUPn3HJy1rkTqe1t15xH4pDA=;
-        b=M4hOlcKN6xl4X/NnatPpozTOxElOm5uSO6+3pTQ98TrAZxzn85Jc4ZkBBDNq1tizm8
-         Fj2kUqKDSE/FV6e8zj6DYVzHJ6qrUQVOQ/6/IR6Vux3RCuQ7Dv8if1GAhV5jH98y//CS
-         AICUDqBQiJev3j0mpAdtQUueb/a1FZX66zk6Li6kWD1iV2UqpraMg8DxUXwCwlOjllKm
-         ZCgeFA3DeRaiocdh7mH0CYq6qQbMU26a3M8j/ciHme5uLj0r1rART/437uIZ4t+LK+p5
-         OyoUrnYOz7L9VxTRGprUafbabiOyyfnfGq9KtTHKgutKdmdrPY5fbRXA5IAbW3mQUGpb
-         9JEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734554777; x=1735159577;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WKAvhMFQ20/EBQvmaQoGUPn3HJy1rkTqe1t15xH4pDA=;
-        b=B4UY9dvqKITeQ4PoozFhNTfGWskY224zWvEiHv5ulqVf38Icpz36oK5OjLjrxYFVQ8
-         91AeBUXN+INoWh4FHN2807Ss0Fk77AKv/eijvkB8liPdKZ8kmALmTm6r9+CW3xNDbEnS
-         +DrSjp4xlMjXyuFLjo9IMBMwur0Cwyi2oE1Ud65UUy7Y0HMVFsSZEDkktKv51wTN6Bx2
-         L4DTYO3nNmG2PBPnnYKX13FjByzPgAFY1jQ9PsERoWaCfRVhGIagJCdg1iz32HVKZ0uJ
-         iVkgyhMgH4yMRObMxY4h2MRuz3n8CAjSWthhx+OnG7BUutXYGJthLhL0MBYeMu27JiKb
-         V7eA==
-X-Forwarded-Encrypted: i=1; AJvYcCX+gUwPOqLpFGwOY2qevJV8NgFtdpTwwpo6drVk9LqsptareEOZPB7BGqeIISMN0NYxpSl6hNnLBd9Z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/BJqcLyr3FrVYEcJGsCQfeoU01CxnIo8n1sPahqu01E5MFcSq
-	wL2WQduNtZ8cbsxYWjgLp+qSoQkRNyWmt8uXZvH+jM/SWv7zknLIdiXumnAjKaA=
-X-Gm-Gg: ASbGncvFaA9A5TAS32dU0rxJ8UCI27Px9JYZ5z33NXdbHCjNfPI7donzvHCCeMSSJmI
-	kq5igmlSHI/PcOoUiX8pN2IWQi/2OzKBXTa7TiYa64gwSifM2JKusIuRoqSORZCa3HFrcKuecM4
-	au7diXs2ZUjaoElf9iO8zx1PYO75GUpzj1RIo6vm6674JEeW9Wn9YIkgdAbSvPWwNZyqSn9GfvL
-	AytH91r0sl/Rr26ZB0eogiUOyNp0O02GYI+zJOLd58Hz90bEyMkmYg1XiKfkBFRyYtYrb9M7WDv
-	b5GX83ww1/kQ6E/mgw==
-X-Google-Smtp-Source: AGHT+IELjcbzDbytKYdhZ46b3/I+pNOvZsESIGOu25HQIeZSDtQpRPztNVLOGe9VAKSV7WHqKjC8BQ==
-X-Received: by 2002:a05:6871:7246:b0:29e:362b:2148 with SMTP id 586e51a60fabf-2a7d0841a78mr559204fac.19.1734554777195;
-        Wed, 18 Dec 2024 12:46:17 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2a3d2645500sm3691594fac.20.2024.12.18.12.46.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Dec 2024 12:46:15 -0800 (PST)
-Message-ID: <a2e76ca6-ec21-4ce5-91f7-4d3a0ed792ce@baylibre.com>
-Date: Wed, 18 Dec 2024 14:46:14 -0600
+	s=arc-20240116; t=1734556022; c=relaxed/simple;
+	bh=8M6pUSfgplBUQE7ZBf+ipMVV+x9QkXJD0zEyI5B/0qs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SlQz8MCBp6751XvIy1ga5mGSLPtfbMeChBornyTMeGVAwTcCqpC6QQ3aGhHjqpXwDZeQhF8DSL8r5xI/szvHCKToccEQCjLIBShmy+LnjEkXukK6vdCmUD2xVT+ZGqaGp/HpUKo5Em/vyiH55Fj6/U7KCC2+DFokFXtYS4xD1+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=BoguQtj8; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=q7FQw9uOElZgIZ5UDsdhuv1rYgmZlf0US1wMCQAwdrE=; b=BoguQtj8+rXLW6V6ooyLURyozJ
+	TWtNmopJSj5X/ps+yMRRJ+HfXCbrW6x7W7fv+W+QJOe3dTTtfHPgR4g3GBYvrlAFnkkTn1xwiqFXt
+	oBOYBIUamvHoqtRphdam47hJ6Uk1rFWHH5T3/u4P2orz33ggi8JDZBGxCa3ulryD4wTfSRYe2u7rc
+	YpfhOF0yjDSP6Q/1fwoMEyt6kshqKFJZr8eJL29dPB4FO+LB9GQuoLwJZEHN0S/6loFpEN4y+zSgl
+	yM4MjlhB8syG7kvS/xwIonQeJKxmWJhVn3y5BXQBv8janImfJ3HQtjWCj3ZKuTPvksRgRzKUcAOZX
+	M3s4axDQ==;
+Received: from i53875bfb.versanet.de ([83.135.91.251] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tO1FZ-000516-EB; Wed, 18 Dec 2024 22:06:33 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: lee@kernel.org,
+	jikos@kernel.org,
+	jic23@kernel.org,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	jdelvare@suse.com,
+	linux@roeck-us.net,
+	srinivas.pandruvada@linux.intel.com,
+	bentiss@kernel.org,
+	dmitry.torokhov@gmail.com,
+	pavel@ucw.cz,
+	ukleinek@debian.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-input@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: Re: (subset) [PATCH v9 0/9] Drivers to support the MCU on QNAP NAS devices
+Date: Wed, 18 Dec 2024 22:06:23 +0100
+Message-ID: <173455598053.629326.7463057625807840374.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241107114712.538976-1-heiko@sntech.de>
+References: <20241107114712.538976-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 4/4] Documentation: iio: Add ADC documentation
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- ana-maria.cusco@analog.com, marcelo.schmitt1@gmail.com
-References: <cover.1734530280.git.marcelo.schmitt@analog.com>
- <48876e204590c47c532fc5f71e02ca3a00028cb7.1734530280.git.marcelo.schmitt@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <48876e204590c47c532fc5f71e02ca3a00028cb7.1734530280.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-On 12/18/24 8:38 AM, Marcelo Schmitt wrote:
-> ADCs can have different input configurations such that developers can get
-> confused when trying to model some of them into IIO channels.
+
+On Thu, 07 Nov 2024 12:47:03 +0100, Heiko Stuebner wrote:
+> This implements a set of drivers for the MCU used on QNAP NAS devices.
 > 
-> For example, some differential ADCs can have their channels configured as
-> pseudo-differential channels. In that configuration, only one input
-> connects to the signal of interest as opposed to using two inputs of a
-> differential input configuration. Datasheets sometimes also refer to
-> pseudo-differential inputs as single-ended inputs even though they have
-> distinct physical configuration and measurement procedure. There has been
-> some previous discussion in the mailing list about pseudo-differential and
-> single-ended channels [1].
+> Of course no documentation for the serial protocol is available, so
+> thankfully QNAP has a tool on their rescue-inird to talk to the MCU and
+> I found interceptty [0] to listen to what goes over the serial connection.
 > 
-> Documenting the many possible ADC channel configurations should provide two
-> benefits:
-> A) Consolidate the knowledge from [2] and from [1], and hopefully reduce
-> the reviewing time of forthcoming ADC drivers.
-> B) Help Linux developers figure out quicker how to better support
-> differential ADCs, specially those that can have channels configured as
-> pseudo-differential inputs.
+> In general it looks like there are two different generations in general,
+> an "EC" device and now this "MCU" - referenced in the strings of the
+> userspace handlers for those devices.
 > 
-> Add documentation about common ADC characteristics and IIO support for them.
-> 
-> [1]: https://lore.kernel.org/linux-iio/0fef36f8-a7db-40cc-86bd-9449cb4ab46e@gmail.com/
-> [2]: https://www.analog.com/en/resources/technical-articles/sar-adc-input-types.html.
-> 
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
+> [...]
 
-This is really nice to have!
+Applied, thanks!
 
->  Documentation/iio/iio_adc.rst | 280 ++++++++++++++++++++++++++++++++++
->  Documentation/iio/index.rst   |   1 +
->  2 files changed, 281 insertions(+)
->  create mode 100644 Documentation/iio/iio_adc.rst
-> 
-> diff --git a/Documentation/iio/iio_adc.rst b/Documentation/iio/iio_adc.rst
-> new file mode 100644
-> index 000000000000..43b8cad547c9
-> --- /dev/null
-> +++ b/Documentation/iio/iio_adc.rst
-> @@ -0,0 +1,280 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +=========================
-> +IIO Abstractions for ADCs
-> +=========================
-> +
-> +1. Overview
-> +===========
-> +
-> +The IIO subsystem supports many Analog to Digital Converters (ADCs). Some ADCs
-> +have features and characteristics that are supported in specific ways by IIO
-> +device drivers. This documentation describes common ADC features and explains
-> +how they are (should be?) supported by the IIO subsystem.
-> +
-> +1. ADC Channel Types
-> +====================
-> +
-> +ADCs can have distinct types of inputs, each of them measuring analog voltages
-> +in a slightly different way. An ADC digitizes the analog input voltage over a
-> +span given by the provided voltage reference, the input type, and the input
-> +polarity. The input range allowed to an ADC channel is needed to determine the
-> +scale factor and offset needed to obtain the measured value in real-world
-> +units (millivolts for voltage measurement, milliamps for current measurement,
-> +etc.).
-> +
-> +There are three types of ADC inputs (single-ended, differential,
-                  ^
-                  | general
+[8/9] arm64: dts: rockchip: hook up the MCU on the QNAP TS433
+      commit: 989e3dd871349e76919911ac628e97ff6cb1ad51
+[9/9] arm64: dts: rockchip: set hdd led labels on qnap-ts433
+      commit: 47f34eab58294d7bb2583f9519b4022e74d56437
 
-> +pseudo-differential) and two possible polarities (unipolar, bipolar). The input
-> +type (single-ended, differential, pseudo-differential) is one channel
-> +characteristic, and is completely independent of the polarity (unipolar,
-> +bipolar) aspect. A comprehensive article about ADC input types (on which this
-> +doc is heavily based on) can be found at
-> +https://www.analog.com/en/resources/technical-articles/sar-adc-input-types.html.
-> +
-> +1.1 Single-ended channels
-> +-------------------------
-> +
-> +Single-ended channels digitize the analog input voltage relative to ground and
-> +can be either unipolar or bipolar.
-> +
-> +1.1.1 Single-ended Unipolar Channels
-> +^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> +
-> +::
-> +
-> +  ---------- VREF -------------
-> +      ´ `           ´ `                  _____________
-> +    /     \       /     \               /             |
-> +   /       \     /       \         --- <  IN    ADC   |
-> +            \   /         \   /         \             |
-> +             `-´           `-´           \       VREF |
-> +  -------- GND (0V) -----------           +-----------+
-> +                                                  ^
-> +                                                  |
-> +                                             External VREF
-> +
-> +The input voltage to a **single-ended unipolar** channel is allowed to swing
-> +from GND to VREF (where VREF is a voltage reference with electrical potential
-> +higher than system ground). The maximum input voltage is also called VFS
-> +(full-scale input voltage), with VFS being determined by VREF. The voltage
-> +reference may be provided from an external supply or derived from the chip power
-> +source.
-> +
-> +A single-ended unipolar channel could be described in device tree like the
-> +following example::
-> +
-> +    adc@0 {
-> +        ...
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        channel@0 {
-> +            reg = <0>;
-> +        };
-> +    };
-> +
-> +See ``Documentation/devicetree/bindings/iio/adc/adc.yaml`` for the complete
-> +documentation of ADC specific device tree properties.
-> +
-> +
-> +1.1.2 Single-ended Bipolar Channels
-> +^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> +
-> +::
-> +
-> +  ---------- +VREF ------------
-> +      ´ `           ´ `                  _____________________
-> +    /     \       /     \               /                     |
-> +   /       \     /       \         --- <  IN          ADC     |
-> +            \   /         \   /         \                     |
-> +             `-´           `-´           \       +VREF  -VREF |
-> +  ---------- -VREF ------------           +-------------------+
-> +                                                  ^       ^
-> +                                                  |       |
-> +                             External +VREF ------+  External -VREF
-> +
-> +For a **single-ended bipolar** channel, the analog voltage input can go from
-> +-VREF to +VREF (where -VREF is the voltage reference that has the lower
-> +electrical potential while +VREF is the reference with the higher one). Some ADC
-> +chips derive the lower reference from +VREF, others get it from a separate
-> +input.  Often, +VREF and -VREF are symmetric but they don't need to be so. When
-> +-VREF is lower than system ground, these inputs are also called single-ended
-> +true bipolar.
-> +
-> +Here's an example device tree description of a single-ended bipolar channel.
-> +::
-
-To be consistent with other sections, put :: at the end of the text.
-
-	Here's an example device tree description of a single-ended bipolar channel::
-
-> +
-> +    adc@0 {
-> +        ...
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        channel@0 {
-> +            reg = <0>;
-> +            bipolar;
-> +        };
-> +    };
-> +
-> +1.2 Differential channels
-> +-------------------------
-> +
-> +A differential voltage measurement digitizes the voltage level at the positive
-> +input (IN+) relative to the negative input (IN-) over the -VREF to +VREF span.
-> +In other words, a differential channel measures how many volts IN+ is away from
-> +IN- (IN+ - IN-).
-
-Suggest using the word "difference" or the "the potential difference between"
-instead of saying "is away from".
-
-> +
-> +1.2.1 Differential Bipolar Channels
-> +^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> +
-> +::
-> +
-> +  -------- +VREF ------
-> +    ´ `       ´ `               +-------------------+
-> +  /     \   /     \   /        /                    |
-> +         `-´       `-´    --- <  IN+                |
-> +  -------- -VREF ------        |                    |
-> +                               |            ADC     |
-> +  -------- +VREF ------        |                    |
-> +        ´ `       ´ `     --- <  IN-                |
-> +  \   /     \   /     \        \       +VREF  -VREF |
-> +   `-´       `-´                +-------------------+
-> +  -------- -VREF ------                  ^       ^
-> +                                         |       +---- External -VREF
-> +                                  External +VREF
-> +
-> +The analog signals to **differential bipolar** inputs are also allowed to swing
-> +from -VREF to +VREF. If -VREF is below system GND, these are also called
-> +differential true bipolar inputs.
-> +
-> +Device tree example of a differential bipolar channel::
-> +
-> +    adc@0 {
-> +        ...
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        channel@0 {
-> +            reg = <0>;
-> +            bipolar;
-> +            diff-channels = <0 1>;
-> +        };
-> +    };
-> +
-> +In the ADC driver, `differential = 1` is set into `struct iio_chan_spec` for the
-> +channel. See ``include/linux/iio/iio.h`` for more information.
-> +
-> +1.2.2 Differential Unipolar Channels
-> +^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To be consistent with the other sections, move unipolar before bipolar.
-
-> +
-> +For **differential unipolar** channels, the analog voltage at the positive input
-> +must also be higher than the voltage at the negative input. Thus, the actual
-> +input range allowed to a differential unipolar channel is IN- to +VREF. Because
-> +IN+ is allowed to swing with the measured analog signal and the input setup must
-> +guarantee IN+ will not go below IN- (nor IN- will raise above IN+), most
-> +differential unipolar channel setups have IN- fixed to a known voltage that does
-> +not fall within the voltage range expected for the measured signal. This leads
-> +to a setup that is equivalent to a pseudo-differential channel. Thus,
-> +differential unipolar channels are actually pseudo-differential unipolar
-> +channels.
-
-The diagrams are really helpful, so please add a diagram in this section as well.
-
-> +
-> +1.3 Pseudo-differential Channels
-> +--------------------------------
-> +
-> +There is a third ADC input type which is called pseudo-differential or
-> +single-ended to differential configuration. A pseudo-differential channel is
-> +similar to a differential channel in that it also measures IN+ relative to IN-.
-> +However, unlike differential channels, the negative input is limited to a narrow
-> +voltage range while only IN+ is allowed to swing. A pseudo-differential channel
-> +can be made out from a differential pair of inputs by restricting the negative
-> +input to a known voltage while allowing only the positive input to swing. Aside
-> +from that, some parts have a COM pin that allows single-ended inputs to be
-> +referenced to a common-mode voltage, making them pseudo-differential channels.
-
-I think it would be helpful to mention here that the common mode input voltage is
-usually described in the devicetree as a voltage regulator since it is basically
-a constant  voltage source, e.g. ``com-supply`` to correspond to the example COM
-pin.
-
-> +
-> +1.3.1 Pseudo-differential Unipolar Channels
-> +^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> +
-> +::
-> +
-> +  -------- +VREF ------          +-------------------+
-> +    ´ `       ´ `               /                    |
-> +  /     \   /     \   /    --- <  IN+                |
-> +         `-´       `-´          |                    |
-> +  --------- IN- -------         |            ADC     |
-
-The bottom rail should be GND, not IN-. Typically, the common mode voltage is
-VREF / 2. In other words it is halfway between the two rails.
-
-> +                                |                    |
-> +  Common-mode voltage -->  --- <  IN-                |
-> +                                \       +VREF  -VREF |
-> +                                 +-------------------+
-> +                                          ^       ^
-> +                                          |       +---- External -VREF
-
-This is unipolar, so would not expect -VREF here.
-
-> +                                   External +VREF
-> +
-> +A **pseudo-differential unipolar** input has the limitations a differential
-> +unipolar channel would have, meaning the analog voltage to the positive input
-> +IN+ must stay within IN- to +VREF. The fixed voltage to IN- is sometimes called
-> +common-mode voltage and it must be within -VREF to +VREF as would be expected
-> +from the signal to any differential channel negative input.
-> +
-> +In pseudo-differential configuration, the voltage measured from IN+ is not
-> +relative to GND (as it would be for a single-ended channel) but to IN-, which
-> +causes the measurement to always be offset by IN- volts. To allow applications
-> +to calculate IN+ voltage with respect to system ground, the IIO channel may
-> +provide an `_offset` attribute to report the channel offset to user space.
-
-In some chips though, the common mode voltage may be GND. (Example is AD7944
-that calls this "ground sense"). So in that case, there is no common mode
-supply or ``_offset`` attribute.
-
-> +
-> +Device tree example for pseudo-differential unipolar channel::
-> +
-> +    adc@0 {
-> +        ...
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        channel@0 {
-> +            reg = <0>;
-> +            single-channel = <0>;
-> +            common-mode-channel = <1>;
-> +        };
-> +    };
-> +
-> +Do not set `differential` in the channel `iio_chan_spec` struct of
-
-Needs `` for .rst formatting.
-
-> +pseudo-differential channels.
-> +
-> +1.3.2 Pseudo-differential Bipolar Channels
-> +^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-> +
-> +::
-> +
-> +  -------- +VREF ------          +-------------------+
-> +    ´ `       ´ `               /                    |
-> +  /     \   /     \   /    --- <  IN+                |
-> +         `-´       `-´          |                    |
-> +  -------- -VREF ------         |            ADC     |
-> +                                |                    |
-> +  Common-mode voltage -->  --- <  IN-                |
-> +                                \       +VREF  -VREF |
-> +                                 +-------------------+
-> +                                          ^       ^
-> +                                          |       +---- External -VREF
-> +                                   External +VREF
-> +
-> +A **pseudo-differential bipolar** input is not limited by the level at IN- but
-> +it will be limited to -VREF or to GND on the lower end of the input range
-> +depending on the particular ADC. Similar to their unipolar counter parts,
-> +pseudo-differential bipolar channels may define an `_offset` attribute to
-> +provide the read offset relative to GND.
-> +
-> +Device tree example for pseudo-differential bipolar channel::
-> +
-> +    adc@0 {
-> +        ...
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        channel@0 {
-> +            reg = <0>;
-> +            bipolar;
-> +            single-channel = <0>;
-> +            common-mode-channel = <1>;
-> +        };
-> +    };
-> +
-> +Again, the `differential` field of `struct iio_chan_spec` is not set for
-> +pseudo-differential channels.
-> diff --git a/Documentation/iio/index.rst b/Documentation/iio/index.rst
-> index 074dbbf7ba0a..15f62d304eaa 100644
-> --- a/Documentation/iio/index.rst
-> +++ b/Documentation/iio/index.rst
-> @@ -7,6 +7,7 @@ Industrial I/O
->  .. toctree::
->     :maxdepth: 1
->  
-> +   iio_adc
-
-Maybe make this iio_adc_inputs in case we make a general adc page in the future.
-
->     iio_configfs
->     iio_devbuf
->     iio_dmabuf_api
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
