@@ -1,280 +1,203 @@
-Return-Path: <devicetree+bounces-132111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0285D9F5D57
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 04:18:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A9E69F5DAD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 04:59:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F83C18880DD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 03:18:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A730916A929
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 03:59:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14E001369AA;
-	Wed, 18 Dec 2024 03:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4D9514A62B;
+	Wed, 18 Dec 2024 03:59:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HuQed8pp"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="DRuOHp4R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F5A91E487;
-	Wed, 18 Dec 2024 03:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE78135963;
+	Wed, 18 Dec 2024 03:59:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734491911; cv=none; b=KqXhFL7B47QFwD6ORwCDJNj2tbAgNC9nI6SthuLwIKEdym6m6mbioklS8apC8RGyNVkGmzBuqR9h5toDczztijl1YtDtk2myFMExuJCFtKiLw/ASRmtGfGBEFKc48ag7Fbm/pvNng6nz5qaef2MQq78dNIGmY0ob7+aa0+5hwcs=
+	t=1734494370; cv=none; b=opHeXWVfKhY2tFpZxz0BO72KESDTgNVpL79qfkHrvGuoRhRcC8L0khbpzJzD8OIA0If1wMD0xT0sgHM2sD27e7wGV/BfQZ7JFZ74ZCDIHyu1ADPzU6rK1UgrTzr3FtqXT29akqATks70M27ZBGx1VCFZGcg8PPaPXv9Dy0+Kcho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734491911; c=relaxed/simple;
-	bh=SHFOvW2BiD+eHefPaaxzl5uu3xWqhdkOljDJEVXVOX0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bDxa7m79x0dmdLZGEty2Bc9zYySq4xHnC95azKiqcso9OKIrMbZhiW9avze9ZNLBYHHQNWgQIteN0/dNsA0TX+xxLgZFXVSrhUBsoAOmupic8CG6bFjOMF9dZBJPiziOcYO6O3bS7MsF3wtVK9bXbuyLmldrUyQmmojxHZoBBE8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HuQed8pp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BHKdkXD001491;
-	Wed, 18 Dec 2024 03:18:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	MY4bThfd3nHovNrRAuLqu4dGpe6E0cynHU9jcVwEij4=; b=HuQed8pp07PEh9Dv
-	UUghu+uZvjhmU9aPQtf6Thx+UiLI1hgiGbURJV4wWUd2j7KjrkH57KK5mWRnzCD5
-	Ig4Pt/rKI/qa6nNNJzb+l1B+h9FObKumV36o1S4MYJwA7G2goE3ARRCwdJ2s9Z2s
-	KRs5vTx8E6PcRHb0kOOMbBMwztG14XtbMysm95uN9pSQNZxmK1oC2nq+pkFsrv6G
-	zr7o6R3wkYHqjOyOOvW5Xe2bWAfeGfkiyStvXANomrbi/ar7RvtTG6QtnahiUtdT
-	MCEjwEY+XtEiPafdzoaD7CBa1HTRNqmwMvEscOaK76BsR2tjMTrKf9g8znxqU5EE
-	jVTm9w==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43kghk0qmf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Dec 2024 03:18:11 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BI3IA19009355
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Dec 2024 03:18:10 GMT
-Received: from [10.64.16.151] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 17 Dec
- 2024 19:18:04 -0800
-Message-ID: <baab6fc5-755a-4675-a42d-ba7ba7facf0c@quicinc.com>
-Date: Wed, 18 Dec 2024 11:18:01 +0800
+	s=arc-20240116; t=1734494370; c=relaxed/simple;
+	bh=StsdnWYHV32T75XIBYHABEf0plWnrpE74s1rgUtfdfw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=cj4TyX9rWT8jfOZ/oK88sgEB3kM8gkUjIqPeb/UPpDCp7AI0NKlgjdGFdB65GmWLGeMWYLYhYIOjRWsd1g15Qt1c3cs36j/DUYBQCsH9oi/kE2gYWUzHXM2fsX5ZpyLJcKOR+J33dzw5D95r/z7eR0Aj99Wx2ro5090NmNOarzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=DRuOHp4R; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1734494368; x=1766030368;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:to:cc;
+  bh=StsdnWYHV32T75XIBYHABEf0plWnrpE74s1rgUtfdfw=;
+  b=DRuOHp4Rm4Wcsj2z/q+uj6109SzYK6IhUWXDajIewvXJK2tOl5B70PsB
+   eUJjbzef4bjMq3c2e1PZbSXJ7wRjA6YpZ/7ilOIKOjSx80PlLyWLsSQBp
+   ZeRwfYZ1L3dVMnw1qG/4RVuNTmvQzl8TyNhjvoXBkBQca5MJ9h5ehz1SF
+   k3zswpRqCnY4HENV+SnUa4PVchKYhIdfdRP0bY4QRNRcfsNM1vztA7inr
+   18plqEtNrZms7orCdhv++nkTa3EpJ0xAU6xoN6QxU82G+CU+vb4pLqEJT
+   xG5Tz/cSleczhccVHVLce/4gENYn19m2eJj/KpXPcyHaf50Xvnx1HNbyq
+   Q==;
+X-CSE-ConnectionGUID: 1K4hxExYRu+9DzMqcOCcBQ==
+X-CSE-MsgGUID: 5nSihg91QYWZhSWt6QclKA==
+X-IronPort-AV: E=Sophos;i="6.12,243,1728975600"; 
+   d="scan'208";a="39410548"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 17 Dec 2024 20:59:26 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Tue, 17 Dec 2024 20:58:54 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Tue, 17 Dec 2024 20:58:51 -0700
+From: Charan Pedumuru <charan.pedumuru@microchip.com>
+Date: Wed, 18 Dec 2024 09:24:54 +0530
+Subject: [PATCH v2] dt-bindings: mfd: atmel,at91sam9260: Convert to json
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 9/9] arm64: dts: qcom: Add display support for QCS615
- RIDE board
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Krishna
- Manikandan" <quic_mkrishn@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Liu Li
-	<quic_lliu6@quicinc.com>,
-        Xiangxu Yin <quic_xiangxuy@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241210-add-display-support-for-qcs615-platform-v4-0-2d875a67602d@quicinc.com>
- <20241210-add-display-support-for-qcs615-platform-v4-9-2d875a67602d@quicinc.com>
- <cfdyvcxdkmf4sv5f75koflayyx74wd3tuscdl7byp5peaag5ty@yhr3275jhftn>
- <92b6335e-a303-49d3-9b77-f951663fc10c@quicinc.com>
- <CAA8EJpqyM-r3jvY7sTpG-KKRHP9K7c3q0xfoLb_f0th7vunPYw@mail.gmail.com>
-Content-Language: en-US
-From: fange zhang <quic_fangez@quicinc.com>
-In-Reply-To: <CAA8EJpqyM-r3jvY7sTpG-KKRHP9K7c3q0xfoLb_f0th7vunPYw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: p98UkB7seudijRo0Vqo4k0l5gySZ6_zn
-X-Proofpoint-ORIG-GUID: p98UkB7seudijRo0Vqo4k0l5gySZ6_zn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 phishscore=0 malwarescore=0 bulkscore=0 mlxscore=0
- suspectscore=0 lowpriorityscore=0 impostorscore=0 mlxlogscore=999
- adultscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412180023
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20241218-matrix-v2-1-f3a8809ee5cd@microchip.com>
+X-B4-Tracking: v=1; b=H4sIAI1HYmcC/zXMQQrDIBCF4auEWdcyY1ILXfUeIQtrtc7CGDRIS
+ vDutYEs/8fj2yHbxDbDo9sh2cKZ49xCXjowXs8fK/jdGiTKgSShCHpNvIkeUZK6K/dSDtp5Sdb
+ xdkDj1NpzXmP6Hm6h/3oSdBKFBImbdUg46F674RnYpGg8L1cTA0y11h9JEeeioAAAAA==
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Nicolas
+ Ferre" <nicolas.ferre@microchip.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Charan Pedumuru
+	<charan.pedumuru@microchip.com>
+X-Mailer: b4 0.14.1
 
+Convert old text based binding to json schema.
+Changes during conversion:
+Add a missing fallback `atmel,at91sam9x5-matrix` for
+`microchip,sam9x60-matrix` which is not defined in the text binding.
 
+Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
+---
+Changes in v2:
+- Modified the commit messsage.
+- Replaced `anyOf` with `oneOf` in compatible under properties.
+- Removed additional items group and added both `microchip,sam9x60-matrix` and 
+  `microchip,sam9x7-matrix` as an enum under one items group
+- Replaced `matrix@` with `syscon@` in examples.
+- Link to v1: https://lore.kernel.org/r/20241211-matrix-v1-1-5ef0104a3af4@microchip.com
+---
+ .../bindings/mfd/atmel,at91sam9260-matrix.yaml     | 52 ++++++++++++++++++++++
+ .../devicetree/bindings/mfd/atmel-matrix.txt       | 26 -----------
+ 2 files changed, 52 insertions(+), 26 deletions(-)
 
-On 2024/12/13 18:19, Dmitry Baryshkov wrote:
-> On Fri, 13 Dec 2024 at 11:21, fange zhang <quic_fangez@quicinc.com> wrote:
->>
->>
->>
->> On 2024/12/10 19:02, Dmitry Baryshkov wrote:
->>> On Tue, Dec 10, 2024 at 02:54:00PM +0800, Fange Zhang wrote:
->>>> From: Li Liu <quic_lliu6@quicinc.com>
->>>>
->>>> Add display MDSS and DSI configuration for QCS615 RIDE board.
->>>> QCS615 has a DP port, and DP support will be added in a later patch.
->>>>
->>>> Signed-off-by: Li Liu <quic_lliu6@quicinc.com>
->>>> Signed-off-by: Fange Zhang <quic_fangez@quicinc.com>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/qcs615-ride.dts | 89 ++++++++++++++++++++++++++++++++
->>>>    1 file changed, 89 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->>>> index a25928933e2b66241258e418c6e5bc36c306101e..694719a09ac46bfa2fe34f1883c0970b9d0902be 100644
->>>> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->>>> @@ -32,6 +32,18 @@ xo_board_clk: xo-board-clk {
->>>>                       #clock-cells = <0>;
->>>>               };
->>>>       };
->>>> +
->>>> +    dp-connector {
->>>> +            compatible = "dp-connector";
->>>> +            label = "DP";
->>>> +            type = "mini";
->>>> +
->>>> +            port {
->>>> +                    dp_connector_out: endpoint {
->>>> +                            remote-endpoint = <&anx_7625_out>;
->>>> +                    };
->>>> +            };
->>>> +    };
->>>>    };
->>>>
->>>>    &apps_rsc {
->>>> @@ -202,6 +214,83 @@ &gcc {
->>>>                <&sleep_clk>;
->>>>    };
->>>>
->>>> +&i2c2 {
->>>> +    clock-frequency = <400000>;
->>>> +    status = "okay";
->>>> +
->>>> +    ioexp: gpio@3e {
->>>> +            compatible = "semtech,sx1509q";
->>>> +            reg = <0x3e>;
->>>> +            interrupt-parent = <&tlmm>;
->>>> +            interrupts = <58 0>;
->>>
->>> Use IRQ flags instead of just 0 (here and further on). Also it might be
->>> better to use interrupts-extended instead.
->> Got it, will use interrupts-extended instead
->> -               interrupt-parent = <&tlmm>;
->> -               interrupts = <58 0>;
->> +               interrupts-extended = <&tlmm 58 IRQ_TYPE_NONE>;
->>>
->>>> +            gpio-controller;
->>>> +            #gpio-cells = <2>;
->>>> +            interrupt-controller;
->>>> +            #interrupt-cells = <2>;
->>>> +            semtech,probe-reset;
->>>> +    };
->>>> +
->>>> +    i2c-mux@77 {
->>>> +            compatible = "nxp,pca9542";
->>>> +            reg = <0x77>;
->>>> +            #address-cells = <1>;
->>>> +            #size-cells = <0>;
->>>
->>> Add empty line before device nodes (here and furher on).
->> Sorry, will add it in next patch.
->>>
->>>> +            i2c@0 {
->>>> +                    reg = <0>;
->>>> +                    #address-cells = <1>;
->>>> +                    #size-cells = <0>;
->>>> +
->>>> +                    anx7625@58 {
->>>> +                            compatible = "analogix,anx7625";
->>>> +                            reg = <0x58>;
->>>> +                            interrupt-parent = <&ioexp>;
->>>> +                            interrupts = <0 0>;
->> will change it to interrupts-extended in next patch
->> -               interrupt-parent = <&ioexp>;
->> -               interrupts = <0 0>;
->> +               interrupts-extended = <&ioexp 0 IRQ_TYPE_NONE>;
-> 
-> Yes, much better. BTW: are you sure that it's really IRQ_TYPE_NONE?
-We extensively tested FALLING and BOTH type, and they all work. However, 
-I believe it’s better to use the default type, which is the same as the 
-downstream approach. This way, it will be more stable.
-> 
->>>> +                            enable-gpios = <&tlmm 4 GPIO_ACTIVE_HIGH>;
->>>> +                            reset-gpios = <&tlmm 5 GPIO_ACTIVE_HIGH>;
->>>> +                            wakeup-source;
->>>> +
->>>> +                            ports {
->>>> +                                    #address-cells = <1>;
->>>> +                                    #size-cells = <0>;
->>>> +
->>>> +                                    port@0 {
->>>> +                                            reg = <0>;
->>>> +                                            anx_7625_in: endpoint {
->>>> +                                                    remote-endpoint = <&mdss_dsi0_out>;
->>>> +                                            };
->>>> +                                    };
->>>> +
->>>> +                                    port@1 {
->>>> +                                            reg = <1>;
->>>> +                                            anx_7625_out: endpoint {
->>>> +                                                    remote-endpoint = <&dp_connector_out>;
->>>> +                                            };
->>>> +                                    };
->>>> +                            };
->>>> +                    };
->>>> +            };
->>>> +    };
->>>> +};
->>>> +
->>>> +&mdss {
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>> +&mdss_dsi0 {
->>>> +    vdda-supply = <&vreg_l11a>;
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>> +&mdss_dsi0_out {
->>>> +    remote-endpoint = <&anx_7625_in>;
->>>> +    data-lanes = <0 1 2 3>;
->>>> +};
->>>> +
->>>> +&mdss_dsi0_phy {
->>>> +    vdds-supply = <&vreg_l5a>;
->>>> +    status = "okay";
->>>> +};
->>>> +
->>>>    &qupv3_id_0 {
->>>>       status = "okay";
->>>>    };
->>>>
->>>> --
->>>> 2.34.1
->>>>
->>>
->>
-> 
-> 
+diff --git a/Documentation/devicetree/bindings/mfd/atmel,at91sam9260-matrix.yaml b/Documentation/devicetree/bindings/mfd/atmel,at91sam9260-matrix.yaml
+new file mode 100644
+index 000000000000..447b3a3edbfc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/atmel,at91sam9260-matrix.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/atmel,at91sam9260-matrix.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip AT91 Bus Matrix
++
++maintainers:
++  - Nicolas Ferre <nicolas.ferre@microchip.com>
++
++description:
++  The Bus Matrix (MATRIX) implements a multi-layer AHB, based on the
++  AHB-Lite protocol, that enables parallel access paths between multiple
++  masters and slaves in a system, thus increasing the overall bandwidth.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - atmel,at91sam9260-matrix
++              - atmel,at91sam9261-matrix
++              - atmel,at91sam9263-matrix
++              - atmel,at91sam9rl-matrix
++              - atmel,at91sam9g45-matrix
++              - atmel,at91sam9n12-matrix
++              - atmel,at91sam9x5-matrix
++              - atmel,sama5d3-matrix
++          - const: syscon
++      - items:
++          - enum:
++              - microchip,sam9x60-matrix
++              - microchip,sam9x7-matrix
++          - const: atmel,at91sam9x5-matrix
++          - const: syscon
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    syscon@ffffec00 {
++        compatible = "atmel,sama5d3-matrix", "syscon";
++        reg = <0xffffec00 0x200>;
++    };
+diff --git a/Documentation/devicetree/bindings/mfd/atmel-matrix.txt b/Documentation/devicetree/bindings/mfd/atmel-matrix.txt
+deleted file mode 100644
+index 6e5f83614e83..000000000000
+--- a/Documentation/devicetree/bindings/mfd/atmel-matrix.txt
++++ /dev/null
+@@ -1,26 +0,0 @@
+-* Device tree bindings for Atmel Bus Matrix
+-
+-The Bus Matrix registers are used to configure Atmel SoCs internal bus
+-behavior (master/slave priorities, undefined burst length type, ...)
+-
+-Required properties:
+-- compatible:		Should be one of the following
+-			"atmel,at91sam9260-matrix", "syscon"
+-			"atmel,at91sam9261-matrix", "syscon"
+-			"atmel,at91sam9263-matrix", "syscon"
+-			"atmel,at91sam9rl-matrix", "syscon"
+-			"atmel,at91sam9g45-matrix", "syscon"
+-			"atmel,at91sam9n12-matrix", "syscon"
+-			"atmel,at91sam9x5-matrix", "syscon"
+-			"atmel,sama5d3-matrix", "syscon"
+-			"microchip,sam9x60-matrix", "syscon"
+-			"microchip,sam9x7-matrix", "atmel,at91sam9x5-matrix", "syscon"
+-- reg:			Contains offset/length value of the Bus Matrix
+-			memory region.
+-
+-Example:
+-
+-matrix: matrix@ffffec00 {
+-	compatible = "atmel,sama5d3-matrix", "syscon";
+-	reg = <0xffffec00 0x200>;
+-};
+
+---
+base-commit: 1b2ab8149928c1cea2d7eca30cd35bb7fe014053
+change-id: 20241210-matrix-30021676fb6f
+
+Best regards,
+-- 
+Charan Pedumuru <charan.pedumuru@microchip.com>
 
 
