@@ -1,141 +1,171 @@
-Return-Path: <devicetree+bounces-132152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D21C9F6035
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:35:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4FE89F606A
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:47:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D5BF163B28
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 08:35:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0EB97A2C12
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 08:47:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8243719004B;
-	Wed, 18 Dec 2024 08:35:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AA2218A6A7;
+	Wed, 18 Dec 2024 08:46:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lV3Wpu+g"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Y24pdIId"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5312218D656;
-	Wed, 18 Dec 2024 08:35:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E55D158538;
+	Wed, 18 Dec 2024 08:46:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734510908; cv=none; b=mDIndNp773wQJZkBtN+eqlBcf+ijaH9AqjpArCJ2Jw/uhuzU//dp6f3Xk1YRhkp2lg2ETas1mwTFx9I9GejoW62c9LYzvBiUFcI899Zyx43XRK2VExKRxXLhemkHIiPxAB3cX7xa0f2Cav6mDd3tYtjLnEd6gGUb4yU8yPxCpV0=
+	t=1734511618; cv=none; b=DIWIKav4JyL4/lFvXlSlxWa5oLAQH4fvpeAWqXFqisOVu9ViaOMcqRcBHOetMD9mA/5/SV2OpyirOeC0wV6+4B5z8aUiwW8yv2QT7FykdHyvAZBtoNGvZ26W7ar5IS9bapWthNVK9ayeP5CPwvg9oXd+PXbnLPvlrwOhB4uM6CA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734510908; c=relaxed/simple;
-	bh=hR2OWxnI4AiLexpWZFfBMDeP0lHpudXLW6rkM6ur0TU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uAGlpYsSDSsx3Ad+eyTCqrwDWpRKAQ4nr+ZnBDimrzd6gK6AEQZLf7WtF5wcVGFv/RAaK9Ia6EfCW30MNS9zNQQiB4NelNBZnInCtRWnz/9Id3pH2VYcyZRt5G59g+tJCaHSmyZAbbzQOgoCfYntTXYXAP9QQcIE6Zqgk6NNMLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lV3Wpu+g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C920BC4CED0;
-	Wed, 18 Dec 2024 08:35:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734510906;
-	bh=hR2OWxnI4AiLexpWZFfBMDeP0lHpudXLW6rkM6ur0TU=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=lV3Wpu+gas7e5xsp3LkDJNm1AukvecbSnxKgFghuYQMJ9u6xU3x58IZh7DNhy+AtQ
-	 CtP9bn9OnGvQteOM/uIrF7A6LbmE7QdoIjox7qZYKM7lQysKc+SF4tLoNMuo3pgthx
-	 VI2MVtEy4RV9Q8jYScuwj8uUqByjc0Q61gdueP6hlFiSSeA2yYRN1sQ5HZvcrn9jCW
-	 5QSDuEqZqp6SWk2/6U/xzOhBQXABa90JSOyjxigQua5beevD9QTpY99L+G6P/dPcWV
-	 kmqxKyJO6oJeSDHmQv+AM52uVJDQg+ITTD/3YNfoeT/fGonP+TvkimmR0Yg4+jYtZz
-	 ouqDdoOuyhleA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B1FFFE7718A;
-	Wed, 18 Dec 2024 08:35:06 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Wed, 18 Dec 2024 09:35:01 +0100
-Subject: [PATCH v3 2/2] power: supply: gpio-charger: add support for
- default charge current limit
+	s=arc-20240116; t=1734511618; c=relaxed/simple;
+	bh=78oOYkHGsecexEGSXSbdCTFx/a05kTF/8qR+h5ce/7E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=BX+zfe0Z7BRgZAccdZvVqzb7mxQA+ff7JLum6eTpUEtd2PPvEn+Vto2v2hkb0JGP0jZrK4M3JA91fIEMyz+FNcQOowDqcD9c5F4ZdIQ2bcVBva8sGbTf1iDyJYUwdq8WZ9nS/BpfyPyt56z0kwhrVq/F5ibqTT8RJ7Rth8G3EcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Y24pdIId; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BI6mX56021743;
+	Wed, 18 Dec 2024 09:45:20 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	ALqiweMhEDRg7aBhjFXLJO/WC3zghsGkYaraS6orI60=; b=Y24pdIIdEI/lF5cd
+	Q8odLdIb6M9hjNfe4WI/qOKlTOwd/vGfa4DIzCsL6GqXaChv33VVESO8Kzccd+wJ
+	z9VZ4oMU5vtecnEWFCz6R0BLoxg08dzHFO/zJ7/MNraAb5wrkieZLa+yf4+lEv60
+	Y0sTYUIIdzdnJdI1CI/HPXDwacohBZ1GPyjbU2TY3gHs8DVi1qnGKoFMK/K2r6vC
+	A79W1tmZKm1t57SQ7zF2Q3inDgZjxaEVidYpCGZES8XERfUFh8iGNChU8P4tFBd0
+	3FrMmduSLt+dAcKcPmdmL2amtBpJgmzojAucoZt9eyFYit1UVz5Erz9Tpnxnv2UK
+	LOVkdQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 43kfu8a20e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Dec 2024 09:45:19 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id CAFD74004D;
+	Wed, 18 Dec 2024 09:43:57 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8EC1F25581E;
+	Wed, 18 Dec 2024 09:42:47 +0100 (CET)
+Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 18 Dec
+ 2024 09:42:46 +0100
+Message-ID: <5b835381-55bc-4fc8-b848-535f6e881420@foss.st.com>
+Date: Wed, 18 Dec 2024 09:42:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: PCI: Add STM32MP25 PCIe root complex
+ bindings
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <lpieralisi@kernel.org>, <kw@linux.com>, <bhelgaas@google.com>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
+        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20241205172022.GA3053765@bhelgaas>
+ <d976d74c-80c0-4446-bb9b-960a990c552b@foss.st.com>
+ <20241217172502.borj2oy4rpxcteag@thinkpad>
+Content-Language: en-US
+From: Christian Bruel <christian.bruel@foss.st.com>
+In-Reply-To: <20241217172502.borj2oy4rpxcteag@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241218-default-charge-current-limit-v3-2-b26118cf06b5@liebherr.com>
-References: <20241218-default-charge-current-limit-v3-0-b26118cf06b5@liebherr.com>
-In-Reply-To: <20241218-default-charge-current-limit-v3-0-b26118cf06b5@liebherr.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1734510905; l=2214;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=8kkaeG3Fu8A0mMHCllTq6XlCfvacmcvVln/ePhFAfLE=;
- b=BsFCVnrWbJa0Tq6woukkKhmEd6zHKDqChEwZAYq1d4oKSBXaRfVP4dP/WQgR2xOle8V6HHKcq
- NBAX9wHlSfpBOzHhNzqzQSd0aGKPoQpLn/b8UWQpV4xPUFcCTbZ0fV+
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
-
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-
-With DT properties charge-current-limit-gpios and
-charge-current-limit-mapping one can define charge current limits in uA
-using up to 32 GPIOs. At the moment the driver defaults to smallest charge
-current limitation for safety reasons. When disabling charging is
-supported, which should be common, the driver defaults to non charging on
-probe. By having a default, charging can be enabled on probe for such
-devices.
-
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
----
- drivers/power/supply/gpio-charger.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/drivers/power/supply/gpio-charger.c b/drivers/power/supply/gpio-charger.c
-index 68212b39785beabfe5536a18fa15bc249f7b1eea..56149545a1dc6004b474cec44984c6dfad3413b5 100644
---- a/drivers/power/supply/gpio-charger.c
-+++ b/drivers/power/supply/gpio-charger.c
-@@ -187,6 +187,8 @@ static int init_charge_current_limit(struct device *dev,
- {
- 	int i, len;
- 	u32 cur_limit = U32_MAX;
-+	bool set_def_limit;
-+	u32 def_limit;
- 
- 	gpio_charger->current_limit_gpios = devm_gpiod_get_array_optional(dev,
- 		"charge-current-limit", GPIOD_OUT_LOW);
-@@ -220,6 +222,9 @@ static int init_charge_current_limit(struct device *dev,
- 	if (len < 0)
- 		return len;
- 
-+	set_def_limit = !device_property_read_u32(dev,
-+						  "charge-current-limit-default-microamp",
-+						  &def_limit);
- 	for (i=0; i < gpio_charger->current_limit_map_size; i++) {
- 		if (gpio_charger->current_limit_map[i].limit_ua > cur_limit) {
- 			dev_err(dev, "charge-current-limit-mapping not sorted by current in descending order\n");
-@@ -227,8 +232,16 @@ static int init_charge_current_limit(struct device *dev,
- 		}
- 
- 		cur_limit = gpio_charger->current_limit_map[i].limit_ua;
-+		if (set_def_limit && def_limit == cur_limit) {
-+			set_charge_current_limit(gpio_charger, cur_limit);
-+			return 0;
-+		}
- 	}
- 
-+	if (set_def_limit)
-+		dev_warn(dev, "charge-current-limit-default-microamp %u not listed in charge-current-limit-mapping\n",
-+			 def_limit);
-+
- 	/* default to smallest current limitation for safety reasons */
- 	len = gpio_charger->current_limit_map_size - 1;
- 	set_charge_current_limit(gpio_charger,
-
--- 
-2.39.5
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
 
+
+On 12/17/24 18:25, Manivannan Sadhasivam wrote:
+> On Tue, Dec 17, 2024 at 04:53:48PM +0100, Christian Bruel wrote:
+>>
+>>> Makes sense.  What about phys, resets, etc?  I'm pretty sure a PHY
+>>> would be a per-Root Port thing, and some resets and wakeup signals
+>>> also.
+>>>
+>>> For new drivers, I think we should start adding Root Port stanzas to
+>>> specifically associate those things with the Root Port, e.g.,
+>>> something like this?
+>>>
+>>>     pcie@48400000 {
+>>>       compatible = "st,stm32mp25-pcie-rc";
+>>>
+>>>       pcie@0,0 {
+>>>         reg = <0x0000 0 0 0 0>;
+>>>         phys = <&combophy PHY_TYPE_PCIE>;
+>>>         phy-names = "pcie-phy";
+>>>       };
+>>>     };
+>>>
+>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml?id=v6.12#n111
+>>> is one binding that does this, others include apple,pcie.yaml,
+>>> brcm,stb-pcie.yaml, hisilicon,kirin-pcie.yaml.
+>>>
+>>
+>> On a second thought, moving the PHY to the root-port part would introduce a
+>> discrepancy with the pcie_ep binding, whereas the PHY is required on the
+>> pcie_ep node.
+>>
+>> Even for the pcie_rc, the PHY is needed to enable the core_clk to access
+>> the PCIe core registers,
+>>
+> 
+> But why that matters? You can still parse the child nodes, enable PHY and
+> configure PCIe registers. >
+>> So that would make 2 different required PHY locations for RC and EP:
+>>
+>>      pcie_rc: pcie@48400000 {
+>>        compatible = "st,stm32mp25-pcie-rc";
+>>
+>>        pcie@0,0 {
+>>          reg = <0x0000 0 0 0 0>;
+>>          phys = <&combophy PHY_TYPE_PCIE>;
+>>          phy-names = "pcie-phy";
+>>        };
+>>      };
+>>
+>>      pcie_ep pcie@48400000 {
+>>        compatible = "st,stm32mp25-pcie-ep";
+>>        phys = <&combophy PHY_TYPE_PCIE>;
+>>        phy-names = "pcie-phy";
+>>      };
+>>
+>> Simplest seems to keep the PHY required for the pcie core regardless of the
+>> mode and keep the empty root port to split the design
+>>
+> 
+> No please. Try to do the right thing from the start itself.
+
+Parsing the child node to clock the IP seems weird. Note that 
+hisilicon,kirin-pcie.yaml also declares the PHY at the controller level.
+
+thanks
+
+Christian
+
+
+
+
+> 
+> - Mani
+> 
 
