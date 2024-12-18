@@ -1,132 +1,183 @@
-Return-Path: <devicetree+bounces-132192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DA0F9F61DD
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:35:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E86F9F61DB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:35:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 304CF164618
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:34:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5EAFB188C999
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:35:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA361198A1A;
-	Wed, 18 Dec 2024 09:31:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8B5B1991AA;
+	Wed, 18 Dec 2024 09:33:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K33igeB8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M25KlC9U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A6521586C8;
-	Wed, 18 Dec 2024 09:31:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D677E194A64
+	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 09:33:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734514313; cv=none; b=MgTxObFmsB/+pv5l5yptzGRkDY36WycWZUHxHt4UgKIygC9A/Xe7FdOTYVXiZNAsYbvUSrndqAI1dQZvqD/Q0StyKROOJN/Un+7na5a/5ioNlrP4sqxkBK91yC+khvHPlyoZk9k07GN4i55TsFzl4ImQEwPf6IcKD1Z61YtD+yc=
+	t=1734514429; cv=none; b=fZWU3vpozNjFu1lpuKshCyMBnw3Nx9Bb4jHWcdIltJGgr99bLJrikGPoVe+5k6GqvYhtQygNoaWRwIHujV4dMs1lNUDA/yB6zOvUTdrndNzWl+DZ609QnE4JjZDa+zfUtGr05p0j5g5aES5fcyMSvzexyvhw7zzMGn3VTXD3WF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734514313; c=relaxed/simple;
-	bh=xe2AmEwFUOiVHTu5xyqxJhNtbQkqQ1XTqqjjp0c/c60=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=n2j7pJxSh9oP+7ANZv2hlROp3/U9lD/HCU1RRLPsStJ1J7hAxrgk1mV7/zetX11AMFqq7aQkfKFBkRqiNcaX8du2f4gkHw/RzkD3obW/WBBhIHtrqG9nvnuf7FBISe9MxxZqSuYKijc0j+tEojj6ox4jlgDZqkD9nMrY/BHNh2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K33igeB8; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5d414b8af7bso12760848a12.0;
-        Wed, 18 Dec 2024 01:31:51 -0800 (PST)
+	s=arc-20240116; t=1734514429; c=relaxed/simple;
+	bh=gB1iWqzpAN3tpTJysrExgp4hGOonkKS+rAnj6u4z84A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m6cOgpZY0bWfN9NZnIspMkZ3MLjLjySAVrQCQltGo+LQOTMWowdxy6pt021oBsDMWJqVm+/6VIpV2DySNi0F+BkoMW96HrSDn+B8vIUwYHLYNSvkQp/DJIRZuW45wjYJ6bXjaDfSYMX/v8nfbUp9y3hcG2VaVgNTZ2EsXItXz/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M25KlC9U; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aab6fa3e20eso911973166b.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 01:33:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734514310; x=1735119110; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lZ1YdJtb3rH3TiiKBjVM/1DqFETQgib8Q1Jqh/ZOeHQ=;
-        b=K33igeB8jDDnXV/F38J7ZYwhRCskR3YvYgdkttVSmcVOdLrRPc+W3g+XP70R5/Uo7M
-         gsj8lWTt/aFaQriJJgPDmjS/C+g6CQP5BcQZaUTQYH7bnZw3RVNKz/++veTGwBfWbKA6
-         BrIilvYNr+O+YAoKxl6WLHWGLN/RavFZhrKIZ/bNKF/2yjPBwBwltM+qjVIGvJCoDkIt
-         WHwWsY1YYd2Tb3FQaRE1Fp2xfNpNvJV64zZZUCpersrxJbNWo9PYN967KXctzV2x/OMQ
-         wA29om+UcpNojbl61AhwZR+zrBcnT99aIxtPuCvNOciyX3fpE/YJzrWtt2B1bM8pVJzs
-         hCdg==
+        d=linaro.org; s=google; t=1734514426; x=1735119226; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7KtEz77JWBQIkMVGJ2sLvEyiEnerzUN26MbJDqnAvd8=;
+        b=M25KlC9UwAqU3YVFhrEdYJVnY2vxxrd4kc8G7d9SXkcA9NCUd1WEP2WhSXVoiSDMQQ
+         dw9XRM8Jz9AkMTthOzd0LQZ02+2LSCCKynl9tZ0uRyesJPqWyyfttbKlPV8RhVUdDsWQ
+         +STVaTNSZPvDobJfBPLNyJM/OKFQ+NaEZv6iuKjyZqvKDljdiaOPJfrCjiHGG5/YqD3+
+         Py7qO//NPI4V9XY58br+YhqJugRKogtV5nh81R+ticrynn0b0Z7NQ66Y2lUYXs9kuRWM
+         QMBntSXEJ6dxOCmtHBYsl8DOFP2gk/K005WOMapRjhkDlh9p71bCGElo1SlFbQrd5GqW
+         nbSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734514310; x=1735119110;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lZ1YdJtb3rH3TiiKBjVM/1DqFETQgib8Q1Jqh/ZOeHQ=;
-        b=Fn6idlVX+uggIJimzfBFI+z+FIkj+F1KHGmugVcpKHbj3Eu62AmG+fK5ctI6eURzGJ
-         TzHgVRtoH69kn4PGgeaT/VaOUnSK0/JEHvswg8TdAShYvVK1vlDVaWF1R72JP2HGQTJj
-         xjhUFezojSHLeYNwq0dUmPbUGHwq3Gs0+/R6JSBiZWWxXNfNFMEVyV5OshceP2Cd76S0
-         M7wrJkfPbsWvwSzbQS27ogtloM7Mvgt0+SPWbwZwhWMbjv8ukkkZeKF/PxS3rgFts7ja
-         3GQ8TiJMfJzeigE2jQ9o9xj7+cjiPGkd/7YG6XY3oLfN2DJi/iELKiQ1kPIi2comLToR
-         9WOw==
-X-Forwarded-Encrypted: i=1; AJvYcCU28tAEHIgQXL3LdUG71sdI+sW8Oq7dXtkWPuOIac2m1D5HSlnqFeTeydeal6YKyqHDAbndMx0caN6/wqw=@vger.kernel.org, AJvYcCUTr2AkccvqcC5U5j2x9JeMoGqASad5zE8MpsXfLYTKvzZ9pL9EzpRFYLYg2+eux+68obBZBWb8qz9Ez0Zh@vger.kernel.org, AJvYcCVbo9SIpWqavaYHM46bV6XKmF35AmpaP2WBLGeLx4rdw41dpGEr684E0sbJmNQs5kmYXNRNmLVyU69Y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxb3PSJbu+vAyMUmD+7zCM60cTfdmNdRBUFtrrfJ2uKFMN6aXHA
-	73deikn9d++g4yM3sezfWKRbAkLd/gKZPSyVBqqkxj9Cn2ws2FXOENsHpQ937tLBesNhS9nMLvp
-	RI0MthF/0fgNzoYFo+GQK8Ucklxs=
-X-Gm-Gg: ASbGncspVj5Yq65NZV0eFtjRKzq/vuvzL6q8HL9SMbAdPNBOEObmwtBtVzgstH+pWtK
-	tTATPn50ZO+txi+mhQfVYVMRznW3UOuY6ZqSn9lc=
-X-Google-Smtp-Source: AGHT+IF/HJ3QAgvFxebOkkyGf3IJ/58S2RyS6Isz4e20ApGWFi/5XJPLoatg0C6IO+UJMagSFd9s235qMqMYJQbhRJU=
-X-Received: by 2002:a05:6402:430e:b0:5d0:e2c8:dc8d with SMTP id
- 4fb4d7f45d1cf-5d7ee3d5b5amr2063811a12.20.1734514310075; Wed, 18 Dec 2024
- 01:31:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1734514426; x=1735119226;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7KtEz77JWBQIkMVGJ2sLvEyiEnerzUN26MbJDqnAvd8=;
+        b=Wc0yqsifYfSxMAt/bfl5iRu0Mhk8PX4+1B9+d1zRC5wFnlmPy9A50ZrWXAkD/u/eG6
+         fmX6p95PotuNLJIkI8MnOecK4GUo2vMMixARIdnzolwbsrJE/f6WlE5qNuiDnaBZwERd
+         vfI6XBciB7KFv7r27VD3xW3zNnoLajSNk1qBohOFk3ps8BlE0awX/GQ3Hgkp/RX3HZ1A
+         WGFDOBlrNchx2b5rv4sh8TaWgf6HfFEm/agxU6szvErnpnmuw5hmzzVBfRV+NWvJ9ZY7
+         KL4Cucl0e/rhhXReR1L2AgddKLAGzE9ADQzlwOCuL2U+E3nemevqaNMl7u+pNI4UeLD6
+         EOew==
+X-Forwarded-Encrypted: i=1; AJvYcCUh2VhlZMC21IneK5yyelP6UnY4so2kJsjYZG6AABvXxhnrT+DNW3II8SYf5YJfCGKB1niIXtlQNU/E@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoTU7CmbUgfzwuzOsy9UkauDnhoJGO6FpZhXUSTwZ6IolZFdJi
+	pEVGjrpMtfnUEDlVuxqPAQxOvgDxvQj8TPUknzFiNH4XTChpicNQ9LtnDTcYNTU=
+X-Gm-Gg: ASbGncup/cl/S9813dpZysxy5HIvAZttH1+zyTTQnyxX1j7LEFxrSqrkHCTOCYtsXvY
+	mptb0GL38X7MLFzSuakJWqhZXo/Tn6L4wb4IXLu6sRyFXN2wwrHTnRe0yxf6gFG9cXUocrM35TR
+	yFOuxB2jTk/r8zzXS0BPOJRnaxj7JEukBd2PgPhp9lxILtfOzU6utyLALR6miRzqTN0y+kggF7A
+	z3+x11X2QeYHmptQyEeeUkmQVZCT1+n2y/srR+VDqAXsmQ6/bM1GaiKxWCvbA==
+X-Google-Smtp-Source: AGHT+IHi6uZQ9xDNRIhHpOS6IYYREihc8U3QZtXG5KWhwQ0Q4UtrjFkSEHt7MuPO1TUAsje7nAFxUg==
+X-Received: by 2002:a17:906:3bd3:b0:aab:f8e8:53ce with SMTP id a640c23a62f3a-aabf8e857d8mr114230466b.11.1734514426251;
+        Wed, 18 Dec 2024 01:33:46 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aab9c3eb5e0sm515344766b.44.2024.12.18.01.33.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Dec 2024 01:33:45 -0800 (PST)
+Date: Wed, 18 Dec 2024 12:33:42 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: "Miao.Zhu" <Miao.Zhu@synopsys.com>
+Cc: gregkh@linuxfoundation.org, robh@kernel.org, xu.yang_2@nxp.com,
+	andre.draszik@linaro.org, emanuele.ghidoli@toradex.com,
+	heikki.krogerus@linux.intel.com, m.felsch@pengutronix.de,
+	rdbabiera@google.com, u.kleine-koenig@baylibre.com,
+	conor+dt@kernel.org, jun.li@nxp.com, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	Jianheng.Zhang@synopsys.com, James.Li1@synopsys.com,
+	Martin.McKenny@synopsys.com
+Subject: Re: [PATCH v4 1/2] usb: typec: tcpm: tcpci: Make the driver be
+ compatible with the TCPCI spec [Rev 2.0 Ver 1.0, October 2017]
+Message-ID: <b5e5cd33-2b59-4e93-8acd-379290917e42@stanley.mountain>
+References: <20241218085933.2790127-1-miao@synopsys.com>
+ <20241218085933.2790127-2-miao@synopsys.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241217-loongson1-nand-v11-0-b692c58988bb@gmail.com>
- <20241217-loongson1-nand-v11-1-b692c58988bb@gmail.com> <x5hka7t2sxeac6nesr5r47s5bmbbiksyvky5hqoelkvaxcuhiy@7fsxv2y7deag>
-In-Reply-To: <x5hka7t2sxeac6nesr5r47s5bmbbiksyvky5hqoelkvaxcuhiy@7fsxv2y7deag>
-From: Keguang Zhang <keguang.zhang@gmail.com>
-Date: Wed, 18 Dec 2024 17:31:13 +0800
-Message-ID: <CAJhJPsWdbmOHTtqPxXDjr+hn1RhxpWobr6m+Vinc+xBT8QhctA@mail.gmail.com>
-Subject: Re: [PATCH v11 1/2] dt-bindings: mtd: Add Loongson-1 NAND Controller
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-media@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241218085933.2790127-2-miao@synopsys.com>
 
-On Wed, Dec 18, 2024 at 5:01=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Tue, Dec 17, 2024 at 06:16:49PM +0800, Keguang Zhang wrote:
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - enum:
-> > +          - loongson,ls1b-nand-controller
-> > +          - loongson,ls1c-nand-controller
-> > +      - items:
-> > +          - enum:
-> > +              - loongson,ls1a-nand-controller
-> > +          - const: loongson,ls1b-nand-controller
-> > +
-> > +  reg:
-> > +    maxItems: 2
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: nand
-> > +      - const: nand-dma
->
-> Are you sure these are separate address spaces?
-> <0x1fe78000 0x24>, <0x1fe78040 0x4>
-> spacing/distance of !4 words...
->
-Sure. That=E2=80=99s exactly what the user manual states.
+The subject is too long.  You've sent v2, v3, and v4 today.  Please, wait
+for a day between resends.
 
-> Best regards,
-> Krzysztof
->
+On Wed, Dec 18, 2024 at 09:59:32AM +0100, Miao.Zhu wrote:
+>  static int tcpci_set_pd_rx(struct tcpc_dev *tcpc, bool enable)
+> @@ -741,33 +748,86 @@ irqreturn_t tcpci_irq(struct tcpci *tcpci)
+>  		struct pd_message msg;
+>  		unsigned int cnt, payload_cnt;
+>  		u16 header;
+> +		unsigned int frame_type;
+> +		enum tcpm_transmit_type rx_type;
+>  
+>  		regmap_read(tcpci->regmap, TCPC_RX_BYTE_CNT, &cnt);
+>  		/*
+>  		 * 'cnt' corresponds to READABLE_BYTE_COUNT in section 4.4.14
+>  		 * of the TCPCI spec [Rev 2.0 Ver 1.0 October 2017] and is
+>  		 * defined in table 4-36 as one greater than the number of
+> -		 * bytes received. And that number includes the header. So:
+> +		 * bytes received. And that number includes the header.
+> +		 * In Section 4.4.14 of the TCPCI spec [Rev 2.0 Ver 1.0 October, 2017],
+> +		 * the RECEIVE_BUFFER comprises of three sets of registers:
+> +		 * READABLE_BYTE_COUNT, RX_BUF_FRAME_TYPE and RX_BUF_BYTE_x.
+> +		 * These registers can only be accessed by reading at a common
+> +		 * register address 0x30h.
+>  		 */
+> -		if (cnt > 3)
+> -			payload_cnt = cnt - (1 + sizeof(msg.header));
+> -		else
+> -			payload_cnt = 0;
+> +		if (tcpci->data->RX_BUF_BYTE_x_hidden) {
+> +			u8 buf[TCPC_RECEIVE_BUFFER_MAX_LEN] = {0,};
+> +			u8 pos = 0;
+> +
+> +			/* Read the count and frame type in RECEIVE_BUFFER */
+> +			regmap_raw_read(tcpci->regmap, TCPC_RX_BYTE_CNT, buf, 2);
+> +			/* READABLE_BYTE_COUNT */
+> +			cnt = buf[0];
+> +			/* RX_BUF_FRAME_TYPE */
+> +			frame_type = buf[1];
+> +
+> +			/* Read the content of the USB PD message in RECEIVE_BUFFER */
+> +			regmap_raw_read(tcpci->regmap, TCPC_RX_BYTE_CNT, buf, cnt + 1);
+                                                                         ^^^
+buffer overflow?
 
+> +
+> +			pos += 2;
+> +			memcpy(&msg.header, &buf[pos], sizeof(msg.header));
+> +
+> +			if (cnt > 3) {
+> +				pos += sizeof(msg.header);
+> +				payload_cnt = cnt - (1 + sizeof(msg.header));
+> +				if (WARN_ON(payload_cnt > sizeof(msg.payload)))
+> +					payload_cnt = sizeof(msg.payload);
+> +				memcpy(&msg.payload, &buf[pos], payload_cnt);
 
+There is existing code later which does bounds checking on payload_cnt,
+but it's too late.  We would have already overflowed buf[] and
+msg.payload here.
 
---
-Best regards,
+> +			}
+> +		} else {
+> +			regmap_read(tcpci->regmap, TCPC_RX_BYTE_CNT, &cnt);
+> +			/*
+> +			 * 'cnt' corresponds to READABLE_BYTE_COUNT in section 4.4.14
+> +			 * of the TCPCI spec [Rev 2.0 Ver 1.0 October 2017] and is
+> +			 * defined in table 4-36 as one greater than the number of
+> +			 * bytes received. And that number includes the header. So:
+> +			 */
+> +			if (cnt > 3)
+> +				payload_cnt = cnt - (1 + sizeof(msg.header));
+> +			else
+> +				payload_cnt = 0;
+>  
+> -		tcpci_read16(tcpci, TCPC_RX_HDR, &header);
+> -		msg.header = cpu_to_le16(header);
+> +			regmap_read(tcpci->regmap, TCPC_RX_BUF_FRAME_TYPE, &frame_type);
+>  
+> -		if (WARN_ON(payload_cnt > sizeof(msg.payload)))
+> -			payload_cnt = sizeof(msg.payload);
 
-Keguang Zhang
+regards,
+dan carpenter
+
 
