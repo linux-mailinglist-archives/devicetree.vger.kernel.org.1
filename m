@@ -1,1066 +1,169 @@
-Return-Path: <devicetree+bounces-132129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CB809F5F45
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 08:27:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D079F5F4D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 08:31:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4319216A91D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 07:27:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1244F7A1F38
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 07:30:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1147D15625A;
-	Wed, 18 Dec 2024 07:27:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1079A16190B;
+	Wed, 18 Dec 2024 07:30:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EkkOge7L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 841D21537B9;
-	Wed, 18 Dec 2024 07:27:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32F4B1537B9;
+	Wed, 18 Dec 2024 07:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734506861; cv=none; b=Z/CYvcOFhepRg8KiUJ9o545+mYDdVxq7tjG9UtEyKcWXWwuhBBs559nBc9tz0Wdelp2Y+Xyww3KG7EhjhF2eq/SVBRNA3n7tZxpWVMoC3a8YWYtSv12qeERO8rOZHzcDMOzFreAE8d4ooiqKjpfqooN5L/NxP6c3A143ObFAST4=
+	t=1734507046; cv=none; b=DDVQs8+ZHW+ZNpa55gvWeAACNPKk89td7jyC48cvJi5bA600xJXxgGq3sbAAwK8yj6y4pmGw7x9aQw9aM7Y7es9c9VaUbGbYYAWOZpy6ZtXEvdydMs6TOFfpEIlPISBOSKACdHrzWG38FvXWkeOIN2CDIcoYeDnpFNc3aLjv3vI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734506861; c=relaxed/simple;
-	bh=24yKxQP3AHYO1KDZFMvZjzah1HywRDY7jknQOwXhgEo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pvWYkMf3EKLqJtBwu/956evcLezP+FeNSB+y9jZ6k7wOfJtaUEflm3ngAKmEI3LtNGUFR1y6arRRiu2WZCavHry+So4RMc7AHcAXBcAmdSuulczg1KiSe1oYqkSmqBSV1kjpru0sSK4p4w9UTLMI7kWUUCh6uCD6mys2ml1j77w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Date: Wed, 18 Dec 2024 15:27:27 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Haylen Chu <heylenay@4d2.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1734507046; c=relaxed/simple;
+	bh=RSdMFumWyD7Mx4sKNxKfjNlsDJaTB6uemxsTmcKyHuo=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=Va54UlWRMPYtwqjENVB1iXP9tSmpmHr5BFBlTYwPtNREEOgmqES8wqNoxEjxRhf/QAt0AiWDyeezzBs764368opZ0HmhwZfqmnVtEQFSRuXJtiLftdA3zrRqrqIQcp1NL4EdJd2UZ0xfzkpnQWYdKWRHN8dyO9PDCt+Q+n2g0iY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EkkOge7L; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-aa6a92f863cso1233665766b.1;
+        Tue, 17 Dec 2024 23:30:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734507042; x=1735111842; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NRHQQGm7cGssgdoLEtNCNKA/IiRlPKI/cHGPt5rH+50=;
+        b=EkkOge7LWVfJvHDTSYyApTqYKt9n9DQ+73Oy+gDnkjsBwXJ0/KnompZfH8lI5rQ2gx
+         fTwUEVtu/fHSb+4lBw6bvdm0avbFO1gerIoxKJyWFyfznD6i51vLi+Earb0nL04AX7kx
+         Y0l4BzG3+euUUTPL72Bu7srOOcbogEkLkDtSwLYXpJYqWD6P45Gqq/wA0Ear/La55NqU
+         9jVILeK0omkhAEMAs3bDyj6iS9Ju9VhCmfs8JadJm29h7HGvqv7GS0dgS5Rm6bFqmbcz
+         5P3pE75AzgJzkXqLnz4cTWYyAA9XUhaEFoz2MaPwXQEtOuZf/HX9ZLBb0+wQzP0UiKde
+         PrSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734507042; x=1735111842;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NRHQQGm7cGssgdoLEtNCNKA/IiRlPKI/cHGPt5rH+50=;
+        b=w3NjORxHBdArxOQBpg0ssMO2bxHqKeaAwWspO6pgdn5HNa1itl1WEu/StmGs4g1bpW
+         m9O3Fploe4PVyQbLzQpt//x8wXgSq4MSdYhG+FLheKzNOtjCAO3QvfvnWLMPgLqxnn/J
+         qtJHBLkVpv6FqmaMEGeXVzET8NGZka7vXxLB8gw00oe+dNvdJ2x4nGuF69rL/VUriRkh
+         Jq8r46YdasVS3fbLWRiQhred0TggCybnyWwmppfr2yoLcLYxbV9WRIUAvQdeRWauHKQB
+         5iqbgs/M3FoRBdL4CGHqYwZETDEmLIGHOA678Dnhp8oO/lmFCAW809s4aWN4QxoZgwrP
+         tr2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU0Dnk8IVfmZLxLC5mCLy5vWnclRkIZjzelhtnxgKekSfMtIuW25qaWPZDfegJ5yckiQFGlDKmmj71rXJk4@vger.kernel.org, AJvYcCVBtzCeXctfXQ1alm2ui8mLegUWWv3zW0tnkRj8Nbp+DbzbU+aaOImRQzcmbJnMMUfLrpY19YQja7g=@vger.kernel.org, AJvYcCXR5YsnHM13/ZXI1wtvJw0XWTP/5kXD1y4d9ciy2UXZDETut7vUvl4+3SLUj+Iv4FZ8khbBHF/pjMzK@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKBplLzEVkoOTvsdmntS+ZNaW9teNv1jru51mP9HjQG7g5VwGz
+	OODcBjRwJRyrKbJAm+EGyH89lFSCMyQq16tzVAncnnN63U15m/EE
+X-Gm-Gg: ASbGnctO6fGJHXtawdHdWSQRE69UfFxor2/AEJ4NhsU8wO9xUjzoJkyYd3Q4cex5Obw
+	RZpwcsDs08g72/48u4pGy+Jn9dJmzIdUVC+7XjIpWGhnsfqmND+YV0kqpED6phEgoReUzaj0vSy
+	iqs/8+jKQ0SzsAfKHp7NB8e6gKPwm2tONsgQK2fdDq9Dquo5TQpZw00hvRQescm02+Flm8TjTJR
+	xU8QIXO1XId8+RvUeDpT2EZD6MTfHkPudKO9FfrcfNWXUDOUKrbkaD5kyBalhGUT2JcYO5zp4Dq
+	x5a45YOSZoaBcI7vLjoVgHPZx2U/OCBqHuRzJF/1dVY=
+X-Google-Smtp-Source: AGHT+IG4ns+Eg7oKR1Pc/Cp43bbqwarsbtkMQng+j8RWLT7msrs+OqYGJoo0M5isEr+oiutqKugTLQ==
+X-Received: by 2002:a17:907:720c:b0:aa6:25c6:d94f with SMTP id a640c23a62f3a-aabf47baa99mr116051366b.31.1734507042111;
+        Tue, 17 Dec 2024 23:30:42 -0800 (PST)
+Received: from localhost.localdomain (host-80-181-61-65.pool80181.interbusiness.it. [80.181.61.65])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-aab960062d3sm525607266b.16.2024.12.17.23.30.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Dec 2024 23:30:41 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>, linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Inochi Amaoto <inochiama@gmail.com>
-Subject: Re: [PATCH v3 3/3] clk: spacemit: Add clock support for Spacemit K1
- SoC
-Message-ID: <20241218072727-GYA3467167@gentoo>
-References: <20241126143125.9980-2-heylenay@4d2.org>
- <20241126143125.9980-7-heylenay@4d2.org>
- <xswwcu4htkls4rdaoccrlyotup4rxjma332wewyqkmctezouxl@oplcxg5nglty>
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: [RESEND PATCH v4 1/2] dt-bindings: thermal: Add support for Airoha EN7581 thermal sensor
+Date: Wed, 18 Dec 2024 08:29:56 +0100
+Message-ID: <20241218073016.2200-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <xswwcu4htkls4rdaoccrlyotup4rxjma332wewyqkmctezouxl@oplcxg5nglty>
+Content-Transfer-Encoding: 8bit
 
-On 14:47 Sun 08 Dec     , Inochi Amaoto wrote:
-> On Tue, Nov 26, 2024 at 02:31:28PM +0000, Haylen Chu wrote:
-> > The clock tree of K1 SoC contains three main types of clock hardware
-> > (PLL/DDN/MIX) and is managed by several independent controllers in
-> > different SoC parts (APBC, APBS and etc.), thus different compatible
-> > strings are added to distinguish them.
-> > 
-> > Some controllers may share IO region with reset controller and other low
-> > speed peripherals like watchdog, so all register operations are done
-> > through regmap to avoid competition.
-> > 
-> > Signed-off-by: Haylen Chu <heylenay@4d2.org>
-> > ---
-> >  drivers/clk/Kconfig               |    1 +
-> >  drivers/clk/Makefile              |    1 +
-> >  drivers/clk/spacemit/Kconfig      |   20 +
-> >  drivers/clk/spacemit/Makefile     |    5 +
-> >  drivers/clk/spacemit/ccu-k1.c     | 1747 +++++++++++++++++++++++++++++
-> >  drivers/clk/spacemit/ccu_common.h |   62 +
-> >  drivers/clk/spacemit/ccu_ddn.c    |  146 +++
-> >  drivers/clk/spacemit/ccu_ddn.h    |   85 ++
-> >  drivers/clk/spacemit/ccu_mix.c    |  296 +++++
-> >  drivers/clk/spacemit/ccu_mix.h    |  336 ++++++
-> >  drivers/clk/spacemit/ccu_pll.c    |  198 ++++
-> >  drivers/clk/spacemit/ccu_pll.h    |   80 ++
-....snip
-> > diff --git a/drivers/clk/spacemit/ccu_mix.c b/drivers/clk/spacemit/ccu_mix.c
-> > new file mode 100644
-> > index 000000000000..de343405fcc7
-> > --- /dev/null
-> > +++ b/drivers/clk/spacemit/ccu_mix.c
-> > @@ -0,0 +1,296 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Spacemit clock type mix(div/mux/gate/factor)
-> > + *
-> > + * Copyright (c) 2024 SpacemiT Technology Co. Ltd
-> > + * Copyright (c) 2024 Haylen Chu <heylenay@outlook.com>
-> > + */
-> > +
-> > +#include <linux/clk-provider.h>
-> > +
-> > +#include "ccu_mix.h"
-> > +
-> > +#define MIX_TIMEOUT	10000
-> > +
-> > +#define mix_hwparam_in_sel(c) \
-> > +	((c)->reg_type == CLK_DIV_TYPE_2REG_NOFC_V3 || \
-> > +	 (c)->reg_type == CLK_DIV_TYPE_2REG_FC_V4)
-> > +
-> 
-> > +static void ccu_mix_disable(struct clk_hw *hw)
-> > +{
-> > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
-> > +	struct ccu_common *common = &mix->common;
-> > +	struct ccu_gate_config *gate = mix->gate;
-> > +
-> > +	if (!gate)
-> > +		return;
-> > +
-> > +	if (mix_hwparam_in_sel(common))
-> > +		ccu_update(sel, common, gate->gate_mask, gate->val_disable);
-> > +	else
-> > +		ccu_update(ctrl, common, gate->gate_mask, gate->val_disable);
-> > +}
-> > +
-> > +static int ccu_mix_enable(struct clk_hw *hw)
-> > +{
-> > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
-> > +	struct ccu_common *common = &mix->common;
-> > +	struct ccu_gate_config *gate = mix->gate;
-> > +	u32 val_enable, mask;
-> > +	u32 tmp;
-> > +
-> > +	if (!gate)
-> > +		return 0;
-> > +
-> > +	val_enable	= gate->val_enable;
-> > +	mask		= gate->gate_mask;
-> > +
-> > +	if (mix_hwparam_in_sel(common))
-> > +		ccu_update(sel, common, mask, val_enable);
-> > +	else
-> > +		ccu_update(ctrl, common, mask, val_enable);
-> > +
-> > +	if (common->reg_type == CLK_DIV_TYPE_2REG_NOFC_V3 ||
-> > +	    common->reg_type == CLK_DIV_TYPE_2REG_FC_V4)
-> > +		return ccu_poll(sel, common, tmp, (tmp & mask) == val_enable,
-> > +				10, MIX_TIMEOUT);
-> > +	else
-> > +		return ccu_poll(ctrl, common, tmp, (tmp & mask) == val_enable,
-> > +				10, MIX_TIMEOUT);
-> > +}
-> > +
-> > +static int ccu_mix_is_enabled(struct clk_hw *hw)
-> > +{
-> > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
-> > +	struct ccu_common *common = &mix->common;
-> > +	struct ccu_gate_config *gate = mix->gate;
-> > +	u32 tmp;
-> > +
-> > +	if (!gate)
-> > +		return 1;
-> > +
-> > +	if (mix_hwparam_in_sel(common))
-> > +		ccu_read(sel, common, &tmp);
-> > +	else
-> > +		ccu_read(ctrl, common, &tmp);
-> > +
-> > +	return (tmp & gate->gate_mask) == gate->val_enable;
-> > +}
-> > +
-> > +static unsigned long ccu_mix_recalc_rate(struct clk_hw *hw,
-> > +					unsigned long parent_rate)
-> > +{
-> > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
-> > +	struct ccu_common *common = &mix->common;
-> > +	struct ccu_div_config *div = mix->div;
-> > +	unsigned long val;
-> > +	u32 reg;
-> > +
-> > +	if (!div) {
-> > +		if (mix->factor)
-> > +			return parent_rate * mix->factor->mul / mix->factor->div;
-> > +
-> > +		return parent_rate;
-> > +	}
-> > +
-> > +	if (mix_hwparam_in_sel(common))
-> > +		ccu_read(sel, common, &reg);
-> > +	else
-> > +		ccu_read(ctrl, common, &reg);
-> > +
-> > +	val = reg >> div->shift;
-> > +	val &= (1 << div->width) - 1;
-> > +
-> > +	val = divider_recalc_rate(hw, parent_rate, val, div->table,
-> > +				  div->flags, div->width);
-> > +
-> > +	return val;
-> > +}
-> 
-> I think you should distinguish these muxs, it is not good to
-> use mix_hwparam_in_sel everywhere. There are two types of mux.
-> 
-> > +
-> > +
-> 
-> Double empty line here, you should run checkpatch.
-> 
-> > +static int ccu_mix_trigger_fc(struct clk_hw *hw)
-> > +{
-> > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
-> > +	struct ccu_common *common = &mix->common;
-> > +	unsigned int val = 0;
-> > +	int ret = 0;
-> > +
-> > +	if (common->reg_type == CLK_DIV_TYPE_1REG_FC_V2 ||
-> > +	    common->reg_type == CLK_DIV_TYPE_2REG_FC_V4 ||
-> > +	    common->reg_type == CLK_DIV_TYPE_1REG_FC_DIV_V5 ||
-> > +	    common->reg_type == CLK_DIV_TYPE_1REG_FC_MUX_V6) {
-> > +		ccu_update(ctrl, common, common->fc, common->fc);
-> > +
-> > +		ret = ccu_poll(ctrl, common, val, !(val & common->fc),
-> > +			       5, MIX_TIMEOUT);
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int ccu_mix_determine_rate(struct clk_hw *hw,
-> > +				  struct clk_rate_request *req)
-> > +{
-> > +	return 0;
-> > +}
-> > +
-> 
-> Why a empty determine_rate function?
-> 
-> > +static unsigned long
-> > +ccu_mix_calc_best_rate(struct clk_hw *hw, unsigned long rate, u32 *mux_val,
-> > +		       u32 *div_val)
-> > +{
-> > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
-> > +	struct ccu_common *common = &mix->common;
-> > +	struct ccu_div_config *div = mix->div ? mix->div : NULL;
-> > +	struct clk_hw *parent;
-> > +	unsigned long parent_rate = 0, best_rate = 0;
-> > +	u32 i, j, div_max;
-> > +
-> > +	for (i = 0; i < common->num_parents; i++) {
-> > +		parent = clk_hw_get_parent_by_index(hw, i);
-> > +		if (!parent)
-> > +			continue;
-> > +
-> > +		parent_rate = clk_hw_get_rate(parent);
-> > +
-> > +		if (div)
-> > +			div_max = 1 << div->width;
-> > +		else
-> > +			div_max = 1;
-> > +
-> > +		for (j = 1; j <= div_max; j++) {
-> > +			if (abs(parent_rate/j - rate) < abs(best_rate - rate)) {
-> > +				best_rate = DIV_ROUND_UP_ULL(parent_rate, j);
-> > +				*mux_val = i;
-> > +				*div_val = j - 1;
-> > +			}
-> > +		}
-> > +	}
-> > +
-> > +	return best_rate;
-> > +}
-> > +
-> > +static int ccu_mix_set_rate(struct clk_hw *hw, unsigned long rate,
-> > +			   unsigned long parent_rate)
-> > +{
-> > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
-> > +	struct ccu_common *common = &mix->common;
-> > +	struct ccu_div_config *div = mix->div;
-> > +	struct ccu_mux_config *mux = mix->mux;
-> > +	u32 cur_mux, cur_div, mux_val = 0, div_val = 0;
-> > +	unsigned long best_rate = 0;
-> > +	int ret = 0, tmp = 0;
-> > +
-> > +	if (!div && !mux)
-> > +		return 0;
-> > +
-> > +	best_rate = ccu_mix_calc_best_rate(hw, rate, &mux_val, &div_val);
-> > +
-> > +	if (mix_hwparam_in_sel(common))
-> > +		ccu_read(sel, common, &tmp);
-> > +	else
-> > +		ccu_read(ctrl, common, &tmp);
-> > +
-> > +	if (mux) {
-> > +		cur_mux = tmp >> mux->shift;
-> > +		cur_mux &= (1 << mux->width) - 1;
-> > +
-> > +		if (cur_mux != mux_val)
-> > +			clk_hw_set_parent(hw, clk_hw_get_parent_by_index(hw, mux_val));
-> > +	}
-> > +
-> > +	if (div) {
-> > +		cur_div = tmp >> div->shift;
-> > +		cur_div &= (1 << div->width) - 1;
-> > +
-> > +		if (cur_div == div_val)
-> > +			return 0;
-> > +	} else {
-> > +		return 0;
-> > +	}
-> > +
-> > +	tmp = GENMASK(div->width + div->shift - 1, div->shift);
-> > +
-> > +	if (mix_hwparam_in_sel(common))
-> > +		ccu_update(sel, common, tmp, div_val << div->shift);
-> > +	else
-> > +		ccu_update(ctrl, common, tmp, div_val << div->shift);
-> > +
-> > +	if (common->reg_type == CLK_DIV_TYPE_1REG_FC_V2 ||
-> > +	    common->reg_type == CLK_DIV_TYPE_2REG_FC_V4 ||
-> > +	    common->reg_type == CLK_DIV_TYPE_1REG_FC_DIV_V5)
-> > +		ret = ccu_mix_trigger_fc(hw);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static u8 ccu_mix_get_parent(struct clk_hw *hw)
-> > +{
-> > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
-> > +	struct ccu_common *common = &mix->common;
-> > +	struct ccu_mux_config *mux = mix->mux;
-> > +	u32 reg;
-> > +	u8 parent;
-> > +
-> > +	if (!mux)
-> > +		return 0;
-> > +
-> > +	if (mix_hwparam_in_sel(common))
-> > +		ccu_read(sel, common, &reg);
-> > +	else
-> > +		ccu_read(ctrl, common, &reg);
-> > +
-> > +	parent = reg >> mux->shift;
-> > +	parent &= (1 << mux->width) - 1;
-> > +
-> > +	if (mux->table) {
-> > +		int num_parents = clk_hw_get_num_parents(&common->hw);
-> > +		int i;
-> > +
-> > +		for (i = 0; i < num_parents; i++)
-> > +			if (mux->table[i] == parent)
-> > +				return i;
-> > +	}
-> > +
-> > +	return parent;
-> > +}
-> > +
-> > +static int ccu_mix_set_parent(struct clk_hw *hw, u8 index)
-> > +{
-> > +	struct ccu_mix *mix = hw_to_ccu_mix(hw);
-> > +	struct ccu_common *common = &mix->common;
-> > +	struct ccu_mux_config *mux = mix->mux;
-> > +	int ret = 0;
-> > +	u32 mask;
-> > +
-> > +	if (!mux)
-> > +		return 0;
-> > +
-> > +	if (mux->table)
-> > +		index = mux->table[index];
-> > +
-> > +	mask = GENMASK(mux->width + mux->shift - 1, mux->shift);
-> > +
-> > +	if (mix_hwparam_in_sel(common))
-> > +		ccu_update(sel, common, mask, index << mux->shift);
-> > +	else
-> > +		ccu_update(ctrl, common, mask, index << mux->shift);
-> > +
-> > +	if (common->reg_type == CLK_DIV_TYPE_1REG_FC_V2 ||
-> > +	    common->reg_type == CLK_DIV_TYPE_2REG_FC_V4 ||
-> > +	    common->reg_type == CLK_DIV_TYPE_1REG_FC_MUX_V6)
-> > +		ret = ccu_mix_trigger_fc(hw);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +const struct clk_ops spacemit_ccu_mix_ops = {
-> > +	.disable	 = ccu_mix_disable,
-> > +	.enable		 = ccu_mix_enable,
-> > +	.is_enabled	 = ccu_mix_is_enabled,
-> > +	.get_parent	 = ccu_mix_get_parent,
-> > +	.set_parent	 = ccu_mix_set_parent,
-> > +	.determine_rate  = ccu_mix_determine_rate,
-> > +	.recalc_rate	 = ccu_mix_recalc_rate,
-> > +	.set_rate	 = ccu_mix_set_rate,
-> > +};
-> 
-> I think you should separate the clock into different type and
-> use pre-defined function to simplify, but not use a unified,
-> complex and hard to read structure to represent all kinds of
-> clocks.
-> 
-agree
+Add support for Airoha EN7581 thermal sensor and monitor. This is a
+simple sensor for the CPU or SoC Package that provide thermal sensor and
+trip point for hot low and critical condition to fire interrupt and
+react on the abnormal state.
 
-I'd not object to use composite clock, it simplify the implementation,
-but, in this version, there is lots of "if" conditions which make it
-hard to review and maintain..
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Changes v2:
+- Add Reviewed-by tag
 
-would it possibile to use more basic clk prototype? or just the composite
-model[1] or something similar as owl-composite.c [2] which has more fine
-composite prototype (instead of bundling all in one)
+ .../thermal/airoha,en7581-thermal.yaml        | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
 
-drivers/clk/clk-composite.c [1]
-drivers/clk/actions/owl-composite.c [2]
-
-> > +
-> > diff --git a/drivers/clk/spacemit/ccu_mix.h b/drivers/clk/spacemit/ccu_mix.h
-> > new file mode 100644
-> > index 000000000000..c7d91e1c03fd
-> > --- /dev/null
-> > +++ b/drivers/clk/spacemit/ccu_mix.h
-> > @@ -0,0 +1,336 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/*
-> > + * Copyright (c) 2024 SpacemiT Technology Co. Ltd
-> > + * Copyright (c) 2024 Haylen Chu <heylenay@outlook.com>
-> > + */
-> > +
-> > +#ifndef _CCU_MIX_H_
-> > +#define _CCU_MIX_H_
-> > +
-> > +#include <linux/clk-provider.h>
-> > +
-> > +#include "ccu_common.h"
-> > +
-> > +struct ccu_gate_config {
-> > +	u32 gate_mask;
-> > +	u32 val_enable;
-> > +	u32 val_disable;
-> > +	u32 flags;
-> > +};
-> > +
-> > +struct ccu_factor_config {
-> > +	u32 div;
-> > +	u32 mul;
-> > +};
-> > +
-> > +struct ccu_mux_config {
-> > +	const u8 *table;
-> > +	u32 flags;
-> > +	u8 shift;
-> > +	u8 width;
-> > +};
-> > +
-> > +struct ccu_div_config {
-> > +	struct clk_div_table *table;
-> > +	u32 max;
-> > +	u32 offset;
-> > +	u32 flags;
-> > +	u8 shift;
-> > +	u8 width;
-> > +};
-> > +
-> > +struct ccu_mix {
-> > +	struct ccu_factor_config *factor;
-> > +	struct ccu_gate_config *gate;
-> > +	struct ccu_div_config *div;
-> > +	struct ccu_mux_config *mux;
-> > +	struct ccu_common common;
-> > +};
-> > +
-> > +#define CCU_GATE_INIT(_gate_mask, _val_enable, _val_disable, _flags)		\
-> > +	(&(struct ccu_gate_config) {						\
-> > +		.gate_mask   = _gate_mask,					\
-> > +		.val_enable  = _val_enable,					\
-> > +		.val_disable = _val_disable,					\
-> > +		.flags	     = _flags,						\
-> > +	})
-> > +
-> > +#define CCU_FACTOR_INIT(_div, _mul)					\
-> > +	(&(struct ccu_factor_config) {					\
-> > +		.div = _div,						\
-> > +		.mul = _mul,						\
-> > +	})
-> > +
-> > +
-> > +#define CCU_MUX_INIT(_shift, _width, _table, _flags)			\
-> > +	(&(struct ccu_mux_config) {					\
-> > +		.shift	= _shift,					\
-> > +		.width	= _width,					\
-> > +		.table	= _table,					\
-> > +		.flags	= _flags,					\
-> > +	})
-> > +
-> > +#define CCU_DIV_INIT(_shift, _width, _table, _flags)			\
-> > +	(&(struct ccu_div_config) {					\
-> > +		.shift	= _shift,					\
-> > +		.width	= _width,					\
-> > +		.flags	= _flags,					\
-> > +		.table	= _table,					\
-> > +	})
-> > +
-> > +#define CCU_PARENT_HW(_parent)		{ .hw = &_parent.common.hw }
-> > +#define CCU_PARENT_NAME(_name)		{ .fw_name = #_name }
-> > +
-> > +#define CCU_MIX_INITHW(_name, _parent, _flags)				\
-> > +	(&(struct clk_init_data) {					\
-> > +		.flags		= _flags,				\
-> > +		.name		= _name,				\
-> > +		.parent_data	= (const struct clk_parent_data[])	\
-> > +					{ _parent },			\
-> > +		.num_parents	= 1,					\
-> > +		.ops		= &spacemit_ccu_mix_ops,		\
-> > +	})
-> > +
-> > +#define CCU_MIX_INITHW_PARENTS(_name, _parents, _flags)			\
-> > +	CLK_HW_INIT_PARENTS_DATA(_name, _parents,			\
-> > +				 &spacemit_ccu_mix_ops, _flags)
-> > +
-> > +#define CCU_GATE_DEFINE(_struct, _name, _parent, _reg, _gate_mask,	\
-> > +			 _val_enable, _val_disable, _flags)		\
-> > +struct ccu_mix _struct = {						\
-> > +	.gate	= CCU_GATE_INIT(_gate_mask, _val_enable,		\
-> > +				_val_disable, 0),			\
-> > +	.common	= {							\
-> > +		.reg_ctrl	= _reg,					\
-> > +		.name		= _name,				\
-> > +		.num_parents	= 1,					\
-> > +		.hw.init	= CCU_MIX_INITHW(_name, _parent,	\
-> > +						 _flags),		\
-> > +	}								\
-> > +}
-> > +
-> > +#define CCU_FACTOR_DEFINE(_struct, _name, _parent, _div, _mul)		\
-> > +struct ccu_mix _struct = {						\
-> > +	.factor	= CCU_FACTOR_INIT(_div, _mul),				\
-> > +	.common = {							\
-> > +		.name		= _name,				\
-> > +		.num_parents	= 1,					\
-> > +		.hw.init	= CCU_MIX_INITHW(_name, _parent, 0),	\
-> > +	}								\
-> > +}
-> > +
-> > +#define CCU_MUX_DEFINE(_struct, _name, _parents, _reg, _shift, _width,	\
-> > +		       _flags)						\
-> > +struct ccu_mix _struct = {						\
-> > +	.mux	= CCU_MUX_INIT(_shift, _width, NULL, 0),		\
-> > +	.common = {							\
-> > +		.reg_ctrl	= _reg,					\
-> > +		.name		= _name,				\
-> > +		.num_parents	= ARRAY_SIZE(_parents),			\
-> > +		.hw.init = CCU_MIX_INITHW_PARENTS(_name, _parents,	\
-> > +						  _flags),		\
-> > +	}								\
-> > +}
-> > +
-> > +#define CCU_DIV_DEFINE(_struct, _name, _parent, _reg, _shift, _width,	\
-> > +		       _flags)						\
-> > +struct ccu_mix _struct = {						\
-> > +	.div	= CCU_DIV_INIT(_shift, _width, NULL, 0),		\
-> > +	.common = {							\
-> > +		.reg_ctrl	= _reg,					\
-> > +		.name		= _name,				\
-> > +		.num_parents	= 1,					\
-> > +		.hw.init = CCU_MIX_INITHW(_name, _parent, _flags)	\
-> > +	}								\
-> > +}
-> > +
-> > +#define CCU_GATE_FACTOR_DEFINE(_struct, _name, _parent, _reg,		\
-> > +			       _gate_mask, _val_enable, _val_disable,	\
-> > +			       _div, _mul, _flags)			\
-> > +struct ccu_mix _struct = {						\
-> > +	.gate	= CCU_GATE_INIT(_gate_mask, _val_enable,		\
-> > +				_val_disable, 0),			\
-> > +	.factor	= CCU_FACTOR_INIT(_div, _mul),				\
-> > +	.common = {							\
-> > +		.reg_ctrl	= _reg,					\
-> > +		.name		= _name,				\
-> > +		.num_parents	= 1,					\
-> > +		.hw.init = CCU_MIX_INITHW(_name, _parent, _flags)	\
-> > +	}								\
-> > +}
-> > +
-> > +
-> > +#define CCU_MUX_GATE_DEFINE(_struct, _name, _parents, _reg, _shift,	\
-> > +			    _width, _gate_mask, _val_enable,		\
-> > +			    _val_disable, _flags)			\
-> > +struct ccu_mix _struct = {						\
-> > +	.gate	= CCU_GATE_INIT(_gate_mask, _val_enable,		\
-> > +				_val_disable, 0),			\
-> > +	.mux	= CCU_MUX_INIT(_shift, _width, NULL, 0),		\
-> > +	.common = {							\
-> > +		.reg_ctrl	= _reg,					\
-> > +		.name		= _name,				\
-> > +		.num_parents	= ARRAY_SIZE(_parents),			\
-> > +		.hw.init = CCU_MIX_INITHW_PARENTS(_name, _parents,	\
-> > +						  _flags),		\
-> > +	}								\
-> > +}
-> > +
-> > +#define CCU_DIV_GATE_DEFINE(_struct, _name, _parent, _reg, _shift,	\
-> > +			    _width, _gate_mask, _val_enable,		\
-> > +			    _val_disable, _flags)			\
-> > +struct ccu_mix _struct = {						\
-> > +	.gate	= CCU_GATE_INIT(_gate_mask, _val_enable,		\
-> > +				_val_disable, 0),			\
-> > +	.div	= CCU_DIV_INIT(_shift, _width, NULL, 0),		\
-> > +	.common = {							\
-> > +		.reg_ctrl	= _reg,					\
-> > +		.name		= _name,				\
-> > +		.num_parents	= 1,					\
-> > +		.hw.init	= CCU_MIX_INITHW(_name, _parent,	\
-> > +						 _flags),		\
-> > +	}								\
-> > +}
-> > +
-> > +
-> > +#define CCU_DIV_MUX_GATE_DEFINE(_struct, _name, _parents,  _reg_ctrl,	\
-> > +				_mshift, _mwidth, _muxshift, _muxwidth,	\
-> > +				_gate_mask, _val_enable, _val_disable,	\
-> > +				_flags)					\
-> > +struct ccu_mix _struct = {						\
-> > +	.gate	= CCU_GATE_INIT(_gate_mask, _val_enable,		\
-> > +				_val_disable, 0),			\
-> > +	.div	= CCU_DIV_INIT(_mshift, _mwidth, NULL, 0),		\
-> > +	.mux	= CCU_MUX_INIT(_muxshift, _muxwidth, NULL, 0),		\
-> > +	.common	= {							\
-> > +		.reg_ctrl	= _reg_ctrl,				\
-> > +		.name		= _name,				\
-> > +		.num_parents	= ARRAY_SIZE(_parents),			\
-> > +		.hw.init = CCU_MIX_INITHW_PARENTS(_name, _parents,	\
-> > +						  _flags),		\
-> > +	},								\
-> > +}
-> > +
-> > +#define CCU_DIV2_FC_MUX_GATE_DEFINE(_struct, _name, _parents,		\
-> > +				    _reg_ctrl, _reg_sel, _mshift,	\
-> > +				    _mwidth, _fc, _muxshift, _muxwidth,	\
-> > +				    _gate_mask, _val_enable,		\
-> > +				    _val_disable, _flags)		\
-> > +struct ccu_mix _struct = {						\
-> > +	.gate	= CCU_GATE_INIT(_gate_mask, _val_enable,		\
-> > +				_val_disable, 0),			\
-> > +	.div	= CCU_DIV_INIT(_mshift, _mwidth, NULL, 0),		\
-> > +	.mux	= CCU_MUX_INIT(_muxshift, _muxwidth, NULL, 0),		\
-> > +	.common = {							\
-> > +	    .reg_type = CLK_DIV_TYPE_2REG_FC_V4,			\
-> > +		.reg_ctrl	= _reg_ctrl,				\
-> > +		.reg_sel	= _reg_sel,				\
-> > +		.fc		= _fc,					\
-> > +		.name		= _name,				\
-> > +		.num_parents	= ARRAY_SIZE(_parents),			\
-> > +		.hw.init = CCU_MIX_INITHW_PARENTS(_name, _parents,	\
-> > +						  _flags),		\
-> > +	},								\
-> > +}
-> > +
-> > +
-> > +#define CCU_DIV_FC_MUX_GATE_DEFINE(_struct, _name, _parents, _reg_ctrl,	\
-> > +				   _mshift, _mwidth, _fc, _muxshift,	\
-> > +				   _muxwidth, _gate_mask, _val_enable,	\
-> > +				   _val_disable, _flags)		\
-> > +struct ccu_mix _struct = {						\
-> > +	.gate	= CCU_GATE_INIT(_gate_mask, _val_enable,		\
-> > +				_val_disable, 0),			\
-> > +	.div	= CCU_DIV_INIT(_mshift, _mwidth, NULL, 0),		\
-> > +	.mux	= CCU_MUX_INIT(_muxshift, _muxwidth, NULL, 0),		\
-> > +	.common = {							\
-> > +		.reg_type	= CLK_DIV_TYPE_1REG_FC_V2,		\
-> > +		.reg_ctrl	= _reg_ctrl,				\
-> > +		.fc		= _fc,					\
-> > +		.name		= _name,				\
-> > +		.num_parents	= ARRAY_SIZE(_parents),			\
-> > +		.hw.init = CCU_MIX_INITHW_PARENTS(_name, _parents,	\
-> > +						  _flags),		\
-> > +	},								\
-> > +}
-> > +
-> > +#define CCU_DIV_MFC_MUX_GATE_DEFINE(_struct, _name, _parents,		\
-> > +				    _reg_ctrl, _mshift, _mwidth, _fc,	\
-> > +				    _muxshift, _muxwidth, _gate_mask,	\
-> > +				    _val_enable, _val_disable, _flags)	\
-> > +struct ccu_mix _struct = {						\
-> > +	.gate	= CCU_GATE_INIT(_gate_mask, _val_enable,		\
-> > +				_val_disable, 0),			\
-> > +	.div	= CCU_DIV_INIT(_mshift, _mwidth, NULL, 0),		\
-> > +	.mux	= CCU_MUX_INIT(_muxshift, _muxwidth, NULL, 0),		\
-> > +	.common = {							\
-> > +		.reg_type = CLK_DIV_TYPE_1REG_FC_MUX_V6,		\
-> > +		.reg_ctrl	= _reg_ctrl,				\
-> > +		.fc		= _fc,					\
-> > +		.name		= _name,				\
-> > +		.num_parents	= ARRAY_SIZE(_parents),			\
-> > +		.hw.init = CCU_MIX_INITHW_PARENTS(_name, _parents,	\
-> > +						  _flags),		\
-> > +	},								\
-> > +}
-> > +
-> > +#define CCU_DIV_FC_WITH_GATE_DEFINE(_struct, _name, _parent, _reg_ctrl,	\
-> > +				    _mshift, _mwidth, _fc, _gate_mask,	\
-> > +				    _val_enable, _val_disable, _flags)	\
-> > +struct ccu_mix _struct = {						\
-> > +	.gate	= CCU_GATE_INIT(_gate_mask, _val_enable,		\
-> > +				_val_disable, 0),			\
-> > +	.div	= CCU_DIV_INIT(_mshift, _mwidth, NULL, 0),		\
-> > +	.common = {							\
-> > +		.reg_type = CLK_DIV_TYPE_1REG_FC_V2,			\
-> > +		.reg_ctrl	= _reg_ctrl,				\
-> > +		.fc		= _fc,					\
-> > +		.name		= _name,				\
-> > +		.num_parents	= 1,					\
-> > +		.hw.init	= CCU_MIXINITHW(_name, _parent,		\
-> > +						_flags),		\
-> > +	},								\
-> > +}
-> > +
-> > +#define CCU_DIV_FC_MUX_DEFINE(_struct, _name, _parents, _reg_ctrl,	\
-> > +			      _mshift, _mwidth, _fc, _muxshift,		\
-> > +			      _muxwidth, _flags)			\
-> > +struct ccu_mix _struct = {						\
-> > +	.div	= CCU_DIV_INIT(_mshift, _mwidth, NULL, 0),		\
-> > +	.mux	= CCU_MUX_INIT(_muxshift, _muxwidth, NULL, 0),		\
-> > +	.common = {							\
-> > +		.reg_type	= CLK_DIV_TYPE_1REG_FC_V2,		\
-> > +		.reg_ctrl	= _reg_ctrl,				\
-> > +		.fc		= _fc,					\
-> > +		.name		= _name,				\
-> > +		.num_parents	= ARRAY_SIZE(_parents),			\
-> > +		.hw.init = CCU_MIX_INITHW_PARENTS(_name, _parents,	\
-> > +						  _flags),		\
-> > +	},								\
-> > +}
-> > +
-> > +#define CCU_MUX_FC_DEFINE(_struct, _name, _parents, _reg_ctrl, _fc,	\
-> > +			  _muxshift, _muxwidth, _flags)			\
-> > +struct ccu_mix _struct = {						\
-> > +	.mux	= CCU_MUX_INIT(_muxshift, _muxwidth, NULL, 0),		\
-> > +	.common = {							\
-> > +		.reg_type	= CLK_DIV_TYPE_1REG_FC_V2,		\
-> > +		.reg_ctrl	= _reg_ctrl,				\
-> > +		.fc		= _fc,					\
-> > +		.name		= _name,				\
-> > +		.num_parents	= ARRAY_SIZE(_parents),			\
-> > +		.hw.init = CCU_MIX_INITHW_PARENTS(_name, _parents,	\
-> > +						  _flags)		\
-> > +	},								\
-> > +}
-> > +
-> > +static inline struct ccu_mix *hw_to_ccu_mix(struct clk_hw *hw)
-> > +{
-> > +	struct ccu_common *common = hw_to_ccu_common(hw);
-> > +
-> > +	return container_of(common, struct ccu_mix, common);
-> > +}
-> > +
-> > +extern const struct clk_ops spacemit_ccu_mix_ops;
-> > +
-> > +#endif /* _CCU_DIV_H_ */
-> > diff --git a/drivers/clk/spacemit/ccu_pll.c b/drivers/clk/spacemit/ccu_pll.c
-> > new file mode 100644
-> > index 000000000000..cf6e547f073b
-> > --- /dev/null
-> > +++ b/drivers/clk/spacemit/ccu_pll.c
-> > @@ -0,0 +1,198 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Spacemit clock type pll
-> > + *
-> > + * Copyright (c) 2024 SpacemiT Technology Co. Ltd
-> > + * Copyright (c) 2024 Haylen Chu <heylenay@outlook.com>
-> > + */
-> > +
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#include "ccu_common.h"
-> > +#include "ccu_pll.h"
-> > +
-> > +#define PLL_MIN_FREQ	600000000
-> > +#define PLL_MAX_FREQ	3400000000
-> > +#define PLL_DELAY_TIME	3000
-> > +
-> > +#define PLL_SWCR1_REG5_OFF	0
-> > +#define PLL_SWCR1_REG5_MASK	GENMASK(7, 0)
-> > +#define PLL_SWCR1_REG6_OFF	8
-> > +#define PLL_SWCR1_REG6_MASK	GENMASK(15, 8)
-> > +#define PLL_SWCR1_REG7_OFF	16
-> > +#define PLL_SWCR1_REG7_MASK	GENMASK(23, 16)
-> > +#define PLL_SWCR1_REG8_OFF	24
-> > +#define PLL_SWCR1_REG8_MASK	GENMASK(31, 24)
-> > +
-> > +#define PLL_SWCR2_DIVn_EN(n)	BIT(n + 1)
-> > +#define PLL_SWCR2_ATEST_EN	BIT(12)
-> > +#define PLL_SWCR2_CKTEST_EN	BIT(13)
-> > +#define PLL_SWCR2_DTEST_EN	BIT(14)
-> > +
-> > +#define PLL_SWCR3_DIV_FRC_OFF	0
-> > +#define PLL_SWCR3_DIV_FRC_MASK	GENMASK(23, 0)
-> > +#define PLL_SWCR3_DIV_INT_OFF	24
-> > +#define PLL_SWCR3_DIV_INT_MASK	GENMASK(30, 24)
-> > +#define PLL_SWCR3_EN		BIT(31)
-> > +
-> > +static int ccu_pll_is_enabled(struct clk_hw *hw)
-> > +{
-> > +	struct ccu_pll *p = hw_to_ccu_pll(hw);
-> > +	u32 tmp;
-> > +
-> > +	ccu_read(swcr3, &p->common, &tmp);
-> > +
-> > +	return tmp & PLL_SWCR3_EN;
-> > +}
-> > +
-> > +/* frequency unit Mhz, return pll vco freq */
-> > +static unsigned long __get_vco_freq(struct clk_hw *hw)
-> 
-> It is better to use ccu_pll_get_vco_freq.
-> 
-> > +{
-> > +	unsigned int reg5, reg6, reg7, reg8, size, i;
-> > +	unsigned int div_int, div_frc;
-> > +	struct ccu_pll_rate_tbl *freq_pll_regs_table;
-> > +	struct ccu_pll *p = hw_to_ccu_pll(hw);
-> > +	struct ccu_common *common = &p->common;
-> > +	u32 tmp;
-> > +
-> > +	ccu_read(swcr1, common, &tmp);
-> > +	reg5 = (tmp & PLL_SWCR1_REG5_MASK) >> PLL_SWCR1_REG5_OFF;
-> > +	reg6 = (tmp & PLL_SWCR1_REG6_MASK) >> PLL_SWCR1_REG6_OFF;
-> > +	reg7 = (tmp & PLL_SWCR1_REG7_MASK) >> PLL_SWCR1_REG7_OFF;
-> > +	reg8 = (tmp & PLL_SWCR1_REG8_MASK) >> PLL_SWCR1_REG8_OFF;
-> > +
-> > +	ccu_read(swcr3, common, &tmp);
-> > +	div_int = (tmp & PLL_SWCR3_DIV_INT_MASK) >> PLL_SWCR3_DIV_INT_OFF;
-> > +	div_frc = (tmp & PLL_SWCR3_DIV_FRC_MASK) >> PLL_SWCR3_DIV_FRC_OFF;
-> > +
-> > +	freq_pll_regs_table = p->pll.rate_tbl;
-> > +	size = p->pll.tbl_size;
-> > +
-> > +	for (i = 0; i < size; i++)
-> > +		if ((freq_pll_regs_table[i].reg5 == reg5) &&
-> > +		    (freq_pll_regs_table[i].reg6 == reg6) &&
-> > +		    (freq_pll_regs_table[i].reg7 == reg7) &&
-> > +		    (freq_pll_regs_table[i].reg8 == reg8) &&
-> > +		    (freq_pll_regs_table[i].div_int == div_int) &&
-> > +		    (freq_pll_regs_table[i].div_frac == div_frc))
-> > +			return freq_pll_regs_table[i].rate;
-> > +
-> > +	WARN_ON_ONCE(1);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int ccu_pll_enable(struct clk_hw *hw)
-> > +{
-> > +	struct ccu_pll *p = hw_to_ccu_pll(hw);
-> > +	struct ccu_common *common = &p->common;
-> > +	unsigned int tmp;
-> > +	int ret;
-> > +
-> > +	if (ccu_pll_is_enabled(hw))
-> > +		return 0;
-> > +
-> > +	ccu_update(swcr3, common, PLL_SWCR3_EN, PLL_SWCR3_EN);
-> > +
-> > +	/* check lock status */
-> > +	ret = regmap_read_poll_timeout_atomic(common->lock_base,
-> > +					      p->pll.reg_lock,
-> > +					      tmp,
-> > +					      tmp & p->pll.lock_enable_bit,
-> > +					      5, PLL_DELAY_TIME);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static void ccu_pll_disable(struct clk_hw *hw)
-> > +{
-> > +	struct ccu_pll *p = hw_to_ccu_pll(hw);
-> > +	struct ccu_common *common = &p->common;
-> > +
-> > +	ccu_update(swcr3, common, PLL_SWCR3_EN, 0);
-> > +}
-> > +
-> > +/*
-> > + * pll rate change requires sequence:
-> > + * clock off -> change rate setting -> clock on
-> > + * This function doesn't really change rate, but cache the config
-> > + */
-> > +static int ccu_pll_set_rate(struct clk_hw *hw, unsigned long rate,
-> > +			       unsigned long parent_rate)
-> > +{
-> > +	struct ccu_pll *p = hw_to_ccu_pll(hw);
-> > +	struct ccu_common *common = &p->common;
-> > +	struct ccu_pll_config *params = &p->pll;
-> > +	struct ccu_pll_rate_tbl *entry;
-> > +	unsigned long old_rate;
-> > +	bool found = false;
-> > +	u32 mask, val;
-> > +	int i;
-> > +
-> > +	if (ccu_pll_is_enabled(hw)) {
-> > +		pr_err("%s %s is enabled, ignore the setrate!\n",
-> > +		       __func__, __clk_get_name(hw->clk));
-> 
-> Just use clk_hw_get_name.
-> 
-> > +		return 0;
-> > +	}
-> > +
-> > +	old_rate = __get_vco_freq(hw);
-> > +
-> > +	for (i = 0; i < params->tbl_size; i++) {
-> > +		if (rate == params->rate_tbl[i].rate) {
-> > +			found = true;
-> > +			entry = &params->rate_tbl[i];
-> > +			break;
-> > +		}
-> > +	}
-> > +	WARN_ON_ONCE(!found);
-> > +
-> > +	mask = PLL_SWCR1_REG5_MASK | PLL_SWCR1_REG6_MASK;
-> > +	mask |= PLL_SWCR1_REG7_MASK | PLL_SWCR1_REG8_MASK;
-> > +	val |= entry->reg5 << PLL_SWCR1_REG5_OFF;
-> > +	val |= entry->reg6 << PLL_SWCR1_REG6_OFF;
-> > +	val |= entry->reg7 << PLL_SWCR1_REG7_OFF;
-> > +	val |= entry->reg8 << PLL_SWCR1_REG8_OFF;
-> > +	ccu_update(swcr1, common, mask, val);
-> > +
-> > +	mask = PLL_SWCR3_DIV_INT_MASK | PLL_SWCR3_DIV_FRC_MASK;
-> > +	val = entry->div_int << PLL_SWCR3_DIV_INT_OFF;
-> > +	val |= entry->div_frac << PLL_SWCR3_DIV_FRC_OFF;
-> > +	ccu_update(swcr3, common, mask, val);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static unsigned long ccu_pll_recalc_rate(struct clk_hw *hw,
-> > +					 unsigned long parent_rate)
-> > +{
-> > +	return __get_vco_freq(hw);
-> > +}
-> > +
-> > +static long ccu_pll_round_rate(struct clk_hw *hw, unsigned long rate,
-> > +			       unsigned long *prate)
-> > +{
-> > +	struct ccu_pll *p = hw_to_ccu_pll(hw);
-> > +	struct ccu_pll_config *params = &p->pll;
-> > +	unsigned long max_rate = 0;
-> > +	unsigned int i;
-> > +
-> > +	for (i = 0; i < params->tbl_size; i++) {
-> > +		if (params->rate_tbl[i].rate <= rate) {
-> > +			if (max_rate < params->rate_tbl[i].rate)
-> > +				max_rate = params->rate_tbl[i].rate;
-> > +		}
-> > +	}
-> > +
-> > +	return MAX(max_rate, PLL_MIN_FREQ);
-> > +}
-> > +
-> > +const struct clk_ops spacemit_ccu_pll_ops = {
-> > +	.enable		= ccu_pll_enable,
-> > +	.disable	= ccu_pll_disable,
-> > +	.set_rate	= ccu_pll_set_rate,
-> > +	.recalc_rate	= ccu_pll_recalc_rate,
-> > +	.round_rate	= ccu_pll_round_rate,
-> > +	.is_enabled	= ccu_pll_is_enabled,
-> > +};
-> > +
-> > diff --git a/drivers/clk/spacemit/ccu_pll.h b/drivers/clk/spacemit/ccu_pll.h
-> > new file mode 100644
-> > index 000000000000..a2252e79ff4a
-> > --- /dev/null
-> > +++ b/drivers/clk/spacemit/ccu_pll.h
-> > @@ -0,0 +1,80 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/*
-> > + * Copyright (c) 2024 SpacemiT Technology Co. Ltd
-> > + * Copyright (c) 2024 Haylen Chu <heylenay@outlook.com>
-> > + */
-> > +
-> > +#ifndef _CCU_PLL_H_
-> > +#define _CCU_PLL_H_
-> > +
-> > +#include <linux/clk-provider.h>
-> > +
-> > +#include "ccu_common.h"
-> > +
-> > +struct ccu_pll_rate_tbl {
-> > +	unsigned long long rate;
-> > +	u32 reg5;
-> > +	u32 reg6;
-> > +	u32 reg7;
-> > +	u32 reg8;
-> > +	unsigned int div_int;
-> > +	unsigned int div_frac;
-> > +};
-> > +
-> > +struct ccu_pll_config {
-> > +	struct ccu_pll_rate_tbl *rate_tbl;
-> > +	u32 tbl_size;
-> > +	u32 reg_lock;
-> > +	u32 lock_enable_bit;
-> > +};
-> > +
-> > +#define CCU_PLL_RATE(_rate, _reg5, _reg6, _reg7, _reg8, _div_int, _div_frac) \
-> > +	{									\
-> > +		.rate		= (_rate),					\
-> > +		.reg5		= (_reg5),					\
-> > +		.reg6		= (_reg6),					\
-> > +		.reg7		= (_reg7),					\
-> > +		.reg8		= (_reg8),					\
-> > +		.div_int	= (_div_int),				\
-> > +		.div_frac	= (_div_frac),				\
-> > +	}
-> > +
-> > +struct ccu_pll {
-> > +	struct ccu_pll_config	pll;
-> > +	struct ccu_common	common;
-> > +};
-> > +
-> > +#define CCU_PLL_CONFIG(_table, _reg_lock, _lock_enable_bit) \
-> > +	{									\
-> > +		.rate_tbl	 = (struct ccu_pll_rate_tbl *)&(_table),	\
-> > +		.tbl_size	 = ARRAY_SIZE(_table),				\
-> > +		.reg_lock	 = (_reg_lock),					\
-> > +		.lock_enable_bit = (_lock_enable_bit),				\
-> > +	}
-> > +
-> > +#define CCU_PLL_HWINIT(_name, _flags) \
-> > +	CLK_HW_INIT_NO_PARENT(_name, &spacemit_ccu_pll_ops, _flags)
-> > +
-> > +#define CCU_PLL_DEFINE(_struct, _name, _table, _reg_swcr1, _reg_swcr2,	\
-> > +		       _reg_swcr3, _reg_lock, _lock_enable_bit, _flags)		\
-> > +										\
-> > +	struct ccu_pll _struct = {						\
-> > +		.pll	= CCU_PLL_CONFIG(_table, _reg_lock, _lock_enable_bit),	\
-> > +		.common = {							\
-> > +			.reg_swcr1	= _reg_swcr1,				\
-> > +			.reg_swcr2	= _reg_swcr2,				\
-> > +			.reg_swcr3	= _reg_swcr3,				\
-> > +			.hw.init	= CCU_PLL_HWINIT(_name, _flags)		\
-> > +		}								\
-> > +	}
-> > +
-> > +static inline struct ccu_pll *hw_to_ccu_pll(struct clk_hw *hw)
-> > +{
-> > +	struct ccu_common *common = hw_to_ccu_common(hw);
-> > +
-> > +	return container_of(common, struct ccu_pll, common);
-> > +}
-> > +
-> > +extern const struct clk_ops spacemit_ccu_pll_ops;
-> > +
-> > +#endif
-> > -- 
-> > 2.47.0
-> > 
-> > 
-
+diff --git a/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml b/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+new file mode 100644
+index 000000000000..ca0242ef0378
+--- /dev/null
++++ b/Documentation/devicetree/bindings/thermal/airoha,en7581-thermal.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/thermal/airoha,en7581-thermal.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Airoha EN7581 Thermal Sensor and Monitor
++
++maintainers:
++  - Christian Marangi <ansuelsmth@gmail.com>
++
++properties:
++  compatible:
++    const: airoha,en7581-thermal
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  airoha,chip-scu:
++    description: phandle to the chip SCU syscon
++    $ref: /schemas/types.yaml#/definitions/phandle
++
++  '#thermal-sensor-cells':
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - airoha,chip-scu
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    thermal-sensor@1efbd800 {
++        compatible = "airoha,en7581-thermal";
++        reg = <0x1efbd000 0xd5c>;
++        interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
++        airoha,chip-scu = <&chip_scu>;
++
++        #thermal-sensor-cells = <0>;
++    };
 -- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+2.45.2
+
 
