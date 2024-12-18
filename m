@@ -1,136 +1,123 @@
-Return-Path: <devicetree+bounces-132163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C87F69F60C0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:05:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD1389F60F1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:08:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA5CA188982F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:05:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 670461895F6F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:07:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525E31946A0;
-	Wed, 18 Dec 2024 09:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C366195FEC;
+	Wed, 18 Dec 2024 09:06:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e7eTCiNJ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="fWcofTcU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 263F61922C0;
-	Wed, 18 Dec 2024 09:04:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD1F17625C;
+	Wed, 18 Dec 2024 09:05:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734512682; cv=none; b=QTDgBfvWommQcXZuxFe4KLGVSptmqWnevXRBITwH9MAAvPZqUP72IUYTQXHxARE3F5Fpx7DIZSixP/QTrnihmNofkxwlHrhcuerxuI2K+nVfOpDUdLoRHP1wAT+zsvZ8AE2BscjXCUkC1Bn1tcIUJ7Rv4e22v6COKLBpB2v0DQE=
+	t=1734512761; cv=none; b=hk/toU3Oy/iWvfEp7TvvXx7H1wpq+ceNspj73GxTDwt/LHh/i5mNhhLSzBL/O7wBJa5lD/tQVNHVKZoDu0HCQpy71zAVvCRqLxPvz7Manq0rLC+y6AuOvtLhv2rxw2E00sAyPZGAradvDmh9xWn1vY/qp9LfNNehQECJrecODa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734512682; c=relaxed/simple;
-	bh=gKG0fB3auB6IBRUp3/qQBiqIUkRQoBf77uEk/3OKbDE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=S7b8VFuj3kskuPXLuef9KHSt1jC7oVOr97durAidIpApT3ULcQzlMq6LAp5NCffq/Lf7gA2lo0pa3tDQVT6dV+PTGecYqeRaTq6LCEULjW2Itn0mbi00n34+hvRSyke/eL2DByHrta8teN9D6s8x8rMITm+nijOPxxAVKLavxaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e7eTCiNJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8711DC4CED4;
-	Wed, 18 Dec 2024 09:04:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734512682;
-	bh=gKG0fB3auB6IBRUp3/qQBiqIUkRQoBf77uEk/3OKbDE=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=e7eTCiNJJCWnFPsycCN3SQMbINkhHC912GFhSPcUckXb8iVVB8+dt+C8jVJi8TURp
-	 pskNyDKxnCKTIaE4Iz6ewWNdgTGNRol0hwumiSjmr0orq6fBFTfJF6xBX+YCrzJccT
-	 tCw323wfibVtDsGC0+fAcZe03BfGHWt3OT1+6+4y4OJkQdexja28+TsvzBOc9hzG5O
-	 sTHB2VH+xc87Ltgk+CagTMco85jab10Xcf0bvnGRI2LFbrKRmOsI1dJFGZn5uvo9Gg
-	 WNFgI3rJSM7p9lmwLRIWBq1x8aCeJqeQTjZTYYT1zUDSr+SDN1iqr44HON81A5H/7S
-	 I/6sSXQspM+TQ==
-Message-ID: <bdbff25d-fe9d-4602-add5-aa2f9d4806d1@kernel.org>
-Date: Wed, 18 Dec 2024 10:04:31 +0100
+	s=arc-20240116; t=1734512761; c=relaxed/simple;
+	bh=Ahhl6VWrWzSj9R4IM/NC8NU3E/qqKDUV0yr78Z+8qWA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dZ+9gvTAGz+n2f/Rhyy+n9tlAoopVvAGB5wuHkePb+F/4u89ZL73/fuB6Hax24RYscsEAnPITXs1aMqL9+ceSTRnWfHUDDLBmSGlEJHEaWFvoqbKJdEBMaMXurZH2p7ucY19vsfrDV3Q2MhVkiwE6faJWBMW285qbxttcm9DIZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=fWcofTcU; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.1.104] (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 12821735;
+	Wed, 18 Dec 2024 10:05:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1734512719;
+	bh=Ahhl6VWrWzSj9R4IM/NC8NU3E/qqKDUV0yr78Z+8qWA=;
+	h=From:Subject:Date:To:Cc:From;
+	b=fWcofTcUoRZnQDNyxm0ESTBDthMsI0mW2RbNNjzA3fIBBjfzd/BWbvVV+qzcUuUzI
+	 QOB6ZaNjBcku+6tkpP969qAsRAUZCbyE/NdDqrScx4LMty3+FNRgpoVua3fDb7t264
+	 XZyWeQYDNp+yO+CGJRqoGQiIvVAwK0qQSIweMMRA=
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Subject: [PATCH v2 0/4] renesas: r8a779g0: Enable VSPX on R-Car V4H
+Date: Wed, 18 Dec 2024 10:05:33 +0100
+Message-Id: <20241218-rcar-v4h-vspx-v2-0-c673647d96e1@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] dt-bindings: usb: ptn5110: add TCPC properties
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Miao.Zhu" <Miao.Zhu@synopsys.com>, robh@kernel.org
-Cc: James.Li1@synopsys.com, Jianheng.Zhang@synopsys.com,
- Martin.McKenny@synopsys.com, andre.draszik@linaro.org, conor+dt@kernel.org,
- dan.carpenter@linaro.org, devicetree@vger.kernel.org,
- emanuele.ghidoli@toradex.com, gregkh@linuxfoundation.org,
- heikki.krogerus@linux.intel.com, jun.li@nxp.com,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- m.felsch@pengutronix.de, rdbabiera@google.com, u.kleine-koenig@baylibre.com,
- xu.yang_2@nxp.com
-References: <173448855676.4113446.18228420092453259118.robh@kernel.org>
- <20241218052214.1808006-1-miao@synopsys.com>
- <fbad3631-1efe-4d9b-b163-e635452b0b73@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <fbad3631-1efe-4d9b-b163-e635452b0b73@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF2QYmcC/3XMQQ7CIBCF4as0s3YMEAzqynuYLiiMMgtLMxhS0
+ 3B3sXuX/0vet0EhYSpwHTYQqlw4zz3MYYCQ/Pwk5NgbjDJWG+1QghesNmEty4ountVlckoHd4L
+ +WYQevO7efeyduLyzfHa+6t/6T6oaFUZSlryylqK9cSRf8jxlL/EY8gvG1toXhzqgz7EAAAA=
+X-Change-ID: 20241217-rcar-v4h-vspx-7d809b701c75
+To: Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+X-Mailer: b4 0.15-dev-1b0d6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1227;
+ i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
+ bh=Ahhl6VWrWzSj9R4IM/NC8NU3E/qqKDUV0yr78Z+8qWA=;
+ b=owEBbQKS/ZANAwAIAXI0Bo8WoVY8AcsmYgBnYpBzPOMlPJMRhuKabTSu50e9NI5Erw7hJksAA
+ kfEj+7y5LuJAjMEAAEIAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCZ2KQcwAKCRByNAaPFqFW
+ POC5D/wODHrUfhN8UUpJ0pApxsWNjkZQ9Hj9ijAEFfotF9DzLnY9U/tFPsowzIg6q18+7VeXsfJ
+ qyqjpxOiUiKlpojJ6IKf3FIQ8yUk9LhB0jrGEGMnBhSLbXS7+mNN5lbDSMw7yVJghEaydzwORY8
+ NdoLu6N1TAFrq7ZvidY/6aPqFXHw5kBrz+McioNI+nqMeyfCNKgOzWnSIFB4R1Eew9l4NabjCmd
+ GIY+rgKqIfmCinJALqjkKjEFFoTpjS3NkISh9CNk93pVYD9k8WPwi7IA/ghPv6fXxWSXdanHV76
+ JlrOVpqRCBIdky8YPUIit77E4pp81BfUDw69DHpiX/KK8JoGRfv6QyBPz1QR3jkZVfrMiAYNIA5
+ K4H6X5PQkvPa1V7ZtjpRxoBlWadkckAfMHBT/NGXN/SN70VUA7mhY2DBF+a1ZkGaUd/zZyG4tWm
+ QGNOI1MAB7+mNZNpu7wu3zz92MJuuNG0lcPdLOjvIKN1HrV0ErbCtRgLpiRxjEqcx7V2H2DMqjP
+ rsoljZ6B0fkEs1cRns2anN47CvfRtm6E5QVvBdVETs9A9LlGhVvYlN/tGrn6HXQaorppcA00Bq8
+ J+ivm7AmC1bgZ4QLyfV/7VggZIUb2BIfNniJVvVTHh5PCL/looXUplS6XnCEpwu0hphSQV2MoeS
+ OU7f9izTpyE4R5w==
+X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
+ fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 
-On 18/12/2024 09:04, Krzysztof Kozlowski wrote:
->>    interrupts:
->>      maxItems: 1
->>  
->> +  TX_BUF_BYTE_x_hidden:
-> 
-> Follow DTS coding style.
-> 
->> +    description:
->> +      When set, TX_BUF_BYTE_x can only be accessed through
->> +      I2C_WRITE_BYTE_COUNT.
-> You described the desired Linux feature or behavior, not the actual
-> hardware. The bindings are about the latter, so instead you need to
-> rephrase the property and its description to match actual hardware
-> capabilities/features/configuration etc.
+The series enables the two VSPX instances connected to the R-Car ISP
+on Renesas R-Car V4H. Define clock identifiers based on the MSTPCR id
+for the VSPX instances and defined device nodes in the V4H .dts file.
 
-I forgot: missing vendor prefix, missing type. Please see how other
-bindings are written. example-schema is also good to start with.
+The VSPX modules interface with extenal memory through dedicated FCP
+instances named FCPVX. Before defining VSPDX, define and enable the
+FXPVX instances as well.
+
+Compile-tested only series.
+
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+---
+Changes in v2:
+- Collect tags
+- Re-sort nodes by unit address
+- Link to v1: https://lore.kernel.org/r/20241217-rcar-v4h-vspx-v1-0-de04ea044ed4@ideasonboard.com
+
+---
+Jacopo Mondi (4):
+      clk: renesas: r8a779g0: Add FCPVX clocks
+      arm64: dts: renesas: r8a779g0: Add FCPVX instances
+      clk: renesas: r8a779g0: Add VSPX clocks
+      arm64: dts: renesas: r8a779g0: Add VSPX instances
+
+ arch/arm64/boot/dts/renesas/r8a779g0.dtsi | 40 +++++++++++++++++++++++++++++++
+ drivers/clk/renesas/r8a779g0-cpg-mssr.c   |  4 ++++
+ 2 files changed, 44 insertions(+)
+---
+base-commit: 50d451b19cc58cf374160e30cbf72a5ed5b1b129
+change-id: 20241217-rcar-v4h-vspx-7d809b701c75
 
 Best regards,
-Krzysztof
+-- 
+Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+
 
