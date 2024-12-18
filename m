@@ -1,142 +1,83 @@
-Return-Path: <devicetree+bounces-132182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 981C89F6122
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:13:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09AFC9F612B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:15:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35648165B5C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:13:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53CF5161DE1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:15:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88AB2199236;
-	Wed, 18 Dec 2024 09:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58AE5198E63;
+	Wed, 18 Dec 2024 09:15:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BIllkGCd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SwfvaUxu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B434E198E75;
-	Wed, 18 Dec 2024 09:12:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27BEE198A10;
+	Wed, 18 Dec 2024 09:15:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734513146; cv=none; b=tCcpfxWecMQOSkpinlqX7UB1xAbkFgk9stc88jlOcpjojuJR9oz1RJhVc2sJ61YPKGJhobaw2ZxPVXAbuPFdokMMUkRFBe7jg14FxGrW4DcjJgm0/NGbdT275azkHCdLdMevolDTtlFWNDRJuwCIcY1KybZNEvlSlSxJCx2zDfo=
+	t=1734513319; cv=none; b=hXYmrZOYO7n9tPilTQcbkmiMWEy950lCR9iWROASnxYAqHILmGCsyU+QAo2OpUW4u/FLHsfCos15LSFEwGP4LlUFgN/as9B/wjSI32muo0ON1rV2Zoc+gwqQ8w1D9e5tZgsZ9cWQy1IUu2byaVh5X/Fjzzwf6IPPKhHLyYNGRoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734513146; c=relaxed/simple;
-	bh=kkV9s2YRibPuWsB1Wl2YLEAAa9DweLcmgt17nNJgzkI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=o3tCm3KXZxehtOUt2gtVeQgBXW9OTsd35b9gohEv0cK4SxM2ROgt07zs3rYCGbo8uS9r91Qs/mAD374dDKV6aDhYvKQIALAMDAx9JIZxMMD83axgOV8/ca3ySx3xZzelVgJgW02VNVZ3EsAAbLcdSSM8YEoqon6isKpp5buCw2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BIllkGCd; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43618283d48so44856225e9.1;
-        Wed, 18 Dec 2024 01:12:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734513143; x=1735117943; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JGnb+hOCU3ryzw/ZW/4qyQ2l7CeyOqwGV+4NeC4zFJw=;
-        b=BIllkGCd613a9B2gNMVV3pqQj+CsybMrtxu3h0MJB50rCwk3EjmfJLoCht7ipo1D2R
-         pTgMT1B7vJ4uNn1ut5Hzqw232uJbWt79hOHBsX+owMHNDLqd0YzHithahlNpLmxUi9DR
-         JddZLufTyzkZ3HE6AnBiyci5knqaR+HMf6U+xXFBKFg6RIMX5W131UL1G5qYTPJf3GKD
-         aq1vcm5O+9mEWHZ6vEFx7Ii0AvdKG63YCOCpqcyqbjgaplYoKnWGF6FUjnhoLlVipRoK
-         uW3ADWdyDGyd3h8LO2E94glM77NEq2cIgEWfEViVTGb9u0FIiRLVtIOlOqlcI0JNuO6V
-         xL8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734513143; x=1735117943;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JGnb+hOCU3ryzw/ZW/4qyQ2l7CeyOqwGV+4NeC4zFJw=;
-        b=inw73azzzTXoVJZWsYXwZ7Q6fGKXE5XeI7w3lfP2YyXVuenpAFjdtb5fJ0ER40yuJf
-         yZ62QgI3asKHmAqMFhYTAHi4pUqGzIdOh7Iz753dnbg9kQkHyNSbVfuGGlDf+tXqTMis
-         xTARpT4snZIkHv6ORrWXVpACdnqSdo6YNV9/xcfo2/uAg47z9jFd6HHJ0MCee18lAQNH
-         yqzzqcG0mjCH/1U6LtaHL6sBGcyJ2+yhqC0h/X6zCzYEmMRPmhAp4sU0B/zWUQV9MMY6
-         nMfLpJYBOISU5PDw/gg6gWA3lmgduMLUyd+nDiCoPUfb8QK0D4y+geFbOwWccDQoPQ5j
-         tyeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPBVojMxGgw2I3S6Se9Tcjb3q3Ffb5r0PXIZM8ZudV6JfCBlCAvejEuh5twfI6uBKrSYWZvKQfC5UW@vger.kernel.org, AJvYcCVqHQPZaG+Yx0dbVAsAxYVCbk6XQph8oI/Anoa2wPNNIamFLred9YlVd1ZdQh3SYYRRR6/AWjYD94uObrod@vger.kernel.org, AJvYcCX0p2n1b/DV/mhwpqmR/5jmZXeiF9t3+h1JpW/2xYlKQCCYEA4hNZMJgphu4XENuqE/DdHdGoIOyOBc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWRoqa4isZoxTnYfEfYInQF2VYxWL3xsNC4/4CgKKW8PRkOhHq
-	YV7BsPKkMbBtrJ20hVMkXm8ZtPa/KpWMZpeC1YdX0v+GREUYc1gtNjqe3Q==
-X-Gm-Gg: ASbGncttrHpujsw1HpLiSxoHgiOO/PG6TfqIpRdSIs3fVPxD5FgqsEhxQ/n/1V3luZz
-	3SMFMd0QlDPEBVnNRE6HDDY7DwEivfHV7ME/1R9MozPyoWxk8XluYLTRXdDXEgF1uZROTvhztUa
-	FWK8ffEb3QXP7pNCNvA+brDrprABLsZ0v7mkdzuE5rWQ9j0P5ouqD/ybXLLf8H2UmMCdt48lQlA
-	EHGExV85z6QWLME87aIoTyxTHOsCW/P+J/+DrYnzj5CwWtDGMuNvykQbEfqLQ+6233rFbSC1fU7
-	rk9fHZLiGbvfYWGzHdWaUt4gRaDoKKVA/oDoNfNaC6U=
-X-Google-Smtp-Source: AGHT+IHsSc9KkUB/XUx8f/kcWOcCXrw5mtfFEZm7IeHnq51b0jswuTU83+U8zLn5TpIrKKRkl48HUw==
-X-Received: by 2002:a05:6000:1faa:b0:385:f17b:de54 with SMTP id ffacd0b85a97d-388e4d2f458mr1864712f8f.5.1734513142673;
-        Wed, 18 Dec 2024 01:12:22 -0800 (PST)
-Received: from localhost.localdomain (host-80-181-61-65.pool80181.interbusiness.it. [80.181.61.65])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-388c8012034sm13325339f8f.22.2024.12.18.01.12.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Dec 2024 01:12:22 -0800 (PST)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	upstream@airoha.com
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH v2 3/3] clk: en7523: Add clock for eMMC for EN7581
-Date: Wed, 18 Dec 2024 10:11:35 +0100
-Message-ID: <20241218091153.30088-3-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241218091153.30088-1-ansuelsmth@gmail.com>
-References: <20241218091153.30088-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1734513319; c=relaxed/simple;
+	bh=fbWSISg3pqwIP3gp/FXBpL6JXIqp0/i4mzGvP6dEieY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xs+rBgzHPQdgMELuDNG2pGL2AYkOCLw3WOU5hOETX4BL1g88UqejaikJlvIuzbANTpLnObT7YYPzL8bna7roFD/HRfSnscxUGLqQZ200uHQJAzQm2WYjbDuPj1nSKzF9IvHZSRfjKbs3XQH5GUGB4fJRMGZ63vUJbtEhmfSOQiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SwfvaUxu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EAF9C4CECE;
+	Wed, 18 Dec 2024 09:15:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734513317;
+	bh=fbWSISg3pqwIP3gp/FXBpL6JXIqp0/i4mzGvP6dEieY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SwfvaUxuNabK48hCNq0fMTSo9p8Pbil63clvCW98USkYSOTvsHZpHiEa+EekRsX6K
+	 U25tvqI0dMKdIUVo2u4zuGoGRXZvxFrifNwoOuyhoeq6KYD99VOtde2lnh/osEwOUd
+	 r+7GXex44fQkvDMBfJRlEthMg7vWj99bjueJfG/hOhHI2U+zh1DvW5wrLn1qjBrLUt
+	 No5sHjxfHAIUWnECmHRFIkcgIVrn5PrBh6fDq3tyfNLF8ONCtIiy5PDz2jmnsoesUO
+	 GV+3VzPCJCTL3llr3oqIVemH3ilLbQtShBOeY5277hPLmM6KRS7iWaiyiPggA00h0c
+	 YbWrK2l9+RiSg==
+Date: Wed, 18 Dec 2024 10:15:14 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sandor Yu <Sandor.yu@nxp.com>
+Cc: dmitry.baryshkov@linaro.org, andrzej.hajda@intel.com, 
+	neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
+	jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, 
+	vkoul@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+	mripard@kernel.org, kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com, 
+	alexander.stein@ew.tq-group.com, sam@ravnborg.org
+Subject: Re: [PATCH v20 4/9] dt-bindings: display: bridge: Add Cadence
+ MHDP8501
+Message-ID: <euujxcd22nake5s4wioc7ew4rxhqwijh5vucozjorotn3nqdvc@q65uqqj2bjwj>
+References: <cover.1734340233.git.Sandor.yu@nxp.com>
+ <f2b7beebeb99ca69021ca24744e29af3454f5620.1734340233.git.Sandor.yu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <f2b7beebeb99ca69021ca24744e29af3454f5620.1734340233.git.Sandor.yu@nxp.com>
 
-Add clock for eMMC for EN7581. This is used to give info of the current
-eMMC source clock and to switch it from 200MHz or 150MHz.
+On Tue, Dec 17, 2024 at 02:51:46PM +0800, Sandor Yu wrote:
+> Add bindings for Cadence MHDP8501 DisplayPort/HDMI bridge.
+> 
+> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> ---
+> v19->v20:
+> - remove data type link of data-lanes.
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
-Changes v2:
-- Rename emmc_base to emmc7581_base to make it more clear
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
- drivers/clk/clk-en7523.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
-index d77d3d459b40..5bfba57a00f5 100644
---- a/drivers/clk/clk-en7523.c
-+++ b/drivers/clk/clk-en7523.c
-@@ -91,6 +91,7 @@ static const u32 emi7581_base[] = { 540000000, 480000000, 400000000, 300000000 }
- static const u32 bus7581_base[] = { 600000000, 540000000 };
- static const u32 npu7581_base[] = { 800000000, 750000000, 720000000, 600000000 };
- static const u32 crypto_base[] = { 540000000, 480000000 };
-+static const u32 emmc7581_base[] = { 200000000, 150000000 };
- 
- static const struct en_clk_desc en7523_base_clks[] = {
- 	{
-@@ -281,6 +282,15 @@ static const struct en_clk_desc en7581_base_clks[] = {
- 		.base_shift = 0,
- 		.base_values = crypto_base,
- 		.n_base_values = ARRAY_SIZE(crypto_base),
-+	}, {
-+		.id = EN7581_CLK_EMMC,
-+		.name = "emmc",
-+
-+		.base_reg = REG_CRYPTO_CLKSRC2,
-+		.base_bits = 1,
-+		.base_shift = 12,
-+		.base_values = emmc7581_base,
-+		.n_base_values = ARRAY_SIZE(emmc7581_base),
- 	}
- };
- 
--- 
-2.45.2
+Best regards,
+Krzysztof
 
 
