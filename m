@@ -1,120 +1,90 @@
-Return-Path: <devicetree+bounces-132184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC00B9F6135
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:16:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CACB79F614D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:21:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3AC71894B1E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:16:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA95F7A177F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034201917F1;
-	Wed, 18 Dec 2024 09:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2B6192B83;
+	Wed, 18 Dec 2024 09:21:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iY1NRPZg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B5hcSH8o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22D883595C;
-	Wed, 18 Dec 2024 09:16:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF771547FF;
+	Wed, 18 Dec 2024 09:21:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734513393; cv=none; b=efxJg0IyX2IlC5vMfh9S6+ss4E2sp4qfTcV7GxwI5k43ENktJhuUc1jf58AHT5N9JuU9O3eJ+H5r+JDTWcnR0tOH3nRi0wQ+NLLt2j6ARqSvYLui42eeQ5ermcTDO9hsh3iBP549B5GJug/tasPNl9BhLwJXMoiv3dfg5cajOSE=
+	t=1734513664; cv=none; b=XhXRG2XcLgLWQLp/nan5v/vhJVhofbf7csy/KrHHt9P2/irHH7YYE4JE71g70FAECjLPBL4SjEEe0XSVEwQKsXcYBsG/DJ8J7oHbGhvoRbliLWonF4adXH3NiRfXOoNj725ITfmLmrX9PT6+9IH/qSnX0N4+q2JgCneCupCm+zE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734513393; c=relaxed/simple;
-	bh=VHjNUmkxb8NwWd2KTTpGrR1dRwH0Fd8j75zWptimRWQ=;
+	s=arc-20240116; t=1734513664; c=relaxed/simple;
+	bh=Joxf91zRAXiTP8nr5vRtQiFgbbbWcdv7Yamp7pB847Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WcBPXFRDyvWgOxtXOnuA1ipzBFjPgl8/05IT0jjyQfDICO+ZOBnPxeyEza56Y+exUSSJPz2hdbvYGqj92VEIoDDL/OXdgfZ+20qs09hsPNvhprs5i9ErTIAAOWRB4RMbnNHd6ATlCFiNGvnEr1wmEUTsnqcca4LRq/Zy5AhB7so=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iY1NRPZg; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1734513392; x=1766049392;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VHjNUmkxb8NwWd2KTTpGrR1dRwH0Fd8j75zWptimRWQ=;
-  b=iY1NRPZgfeBX9jDE3YywV54+R8NNS0Be//IWM1p65tqgtSwY0p8tnynk
-   n0uiWKmd/N9mt8l9n1kThQ13CaDbSx4R9YU5zqj/cCIRxU82uOa3scMTf
-   Ee59KmGivstS4jp8AE+MphLPzffD0q5AlkCt/aWhpJo753mBo4gsER3c3
-   uCiw/RgnRNgGOjYNPLtlgxxDnUZYK2WG066jaf+SflIM4A56hIq9i3oHK
-   luwD+yaXt64GXRHs2ReQ2++2LZqhRr+v/GBl97LG8nkClSKu8RxSNEWL9
-   gwVuhRE/NuUJ8H0Tu1x5sypZXAEgkRiihtBCpN027MAkRpcNZVXABESNs
-   A==;
-X-CSE-ConnectionGUID: hl8vLTD+Q367LUTquCxh4g==
-X-CSE-MsgGUID: 7bRBiRA6RQOUwcCZ0Sljgw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="38917076"
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; 
-   d="scan'208";a="38917076"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Dec 2024 01:16:31 -0800
-X-CSE-ConnectionGUID: j7DOQrnnRJqTrRjBITYeqQ==
-X-CSE-MsgGUID: eFn9hVPaRou6L4FRFzttOw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="98622420"
-Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 18 Dec 2024 01:16:28 -0800
-Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tNqAL-000GEQ-2X;
-	Wed, 18 Dec 2024 09:16:25 +0000
-Date: Wed, 18 Dec 2024 17:16:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.linaro.org@kernel.org>,
-	Bjorn Helgaas <helgaas@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-pci@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Qiang Yu <quic_qianyu@quicinc.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH 4/4] PCI/pwrctrl: Add pwrctrl driver for PCI Slots
-Message-ID: <202412181640.12Iufkvd-lkp@intel.com>
-References: <20241210-pci-pwrctrl-slot-v1-4-eae45e488040@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z+NBrZHredsFZy/y0xujR7YEOdk3bVY2r54ozwLrKAS8xpim1v3rLONFys2QE3rTbtXcx+hWWOZLFMqL3adfv5EkNOoMekLw5OyFBdwibT76HR9HMqkQkAq7ZtAWTW/ojsgIAKh3lkiazNHWiUFbYYdl3HFNOUy9iCCSFU6QdO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B5hcSH8o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64B80C4CECE;
+	Wed, 18 Dec 2024 09:21:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734513664;
+	bh=Joxf91zRAXiTP8nr5vRtQiFgbbbWcdv7Yamp7pB847Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=B5hcSH8ooPBhGZqErclxci8uP7prhV1ZdwaqcTB+bwAa8GRfLCDVFVe4n+c32yMZg
+	 C1CzkV4AShBwXnis3lHCbJON9oPNXwYn2OxPwEgE8m3m5otfywd0VpmxTZbMiwOXqr
+	 iySj9gFsSen2kDRuIpPknWBwniotQc+sD0Stj1tRt+21kiqTcO3xGEUODEHsrpyuJt
+	 9LsjggR28XZBVM5CSAogRyADPtcTZ0tujnIVE7x5siHAz0IJljl8DwTFBU2TFeuXtk
+	 2BgMnJ6h09sq9rv015mVdI91oJHu12K0a7HyVq4luK2cA8jC65V7yFEN18kFYTe4N+
+	 oeOZ89RmKjenw==
+Date: Wed, 18 Dec 2024 10:21:00 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Mao Jinlong <quic_jinlmao@quicinc.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, 
+	Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: arm: Add label in the coresight
+ components
+Message-ID: <tida22chffj2znikeotmo52aqnzvmedn3aa7a2coarz2dwjc7w@duw5fby4hexk>
+References: <20241217063324.33781-1-quic_jinlmao@quicinc.com>
+ <20241217063324.33781-2-quic_jinlmao@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241210-pci-pwrctrl-slot-v1-4-eae45e488040@linaro.org>
+In-Reply-To: <20241217063324.33781-2-quic_jinlmao@quicinc.com>
 
-Hi Manivannan,
+On Tue, Dec 17, 2024 at 02:33:23PM +0800, Mao Jinlong wrote:
+> Current name of coresight component's folder consists of prefix of
+> the device and the id in the device list. When run 'ls' command,
+> we can get the register address of the device. Take CTI for example,
+> if we want to set the config for modem CTI, but we can't know which
+> CTI is modem CTI from all current information.
+> 
+> cti_sys0 -> ../../../devices/platform/soc@0/138f0000.cti/cti_sys0
+> cti_sys1 -> ../../../devices/platform/soc@0/13900000.cti/cti_sys1
+> 
+> Add label to show hardware context information of each coresight
+> device. There will be a sysfs node label in each device folder.
+> 
+> cat /sys/bus/coresight/devices/cti_sys0/label
+> 
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
 
-kernel test robot noticed the following build errors:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[auto build test ERROR on 40384c840ea1944d7c5a392e8975ed088ecf0b37]
+Best regards,
+Krzysztof
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Manivannan-Sadhasivam-via-B4-Relay/PCI-pwrctrl-Move-creation-of-pwrctrl-devices-to-pci_scan_device/20241210-180256
-base:   40384c840ea1944d7c5a392e8975ed088ecf0b37
-patch link:    https://lore.kernel.org/r/20241210-pci-pwrctrl-slot-v1-4-eae45e488040%40linaro.org
-patch subject: [PATCH 4/4] PCI/pwrctrl: Add pwrctrl driver for PCI Slots
-config: x86_64-randconfig-004-20241218 (https://download.01.org/0day-ci/archive/20241218/202412181640.12Iufkvd-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241218/202412181640.12Iufkvd-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412181640.12Iufkvd-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-mgr-test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-bridge-test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-region-test.o
->> ERROR: modpost: "of_regulator_bulk_get_all" [drivers/pci/pwrctrl/pci-pwrctl-slot.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
