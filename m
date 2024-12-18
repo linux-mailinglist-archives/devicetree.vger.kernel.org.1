@@ -1,91 +1,96 @@
-Return-Path: <devicetree+bounces-132265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 090829F64F8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:35:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FB8C9F6501
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:37:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12C097A3BFF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:35:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4FF81891128
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:37:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A7CA1A2396;
-	Wed, 18 Dec 2024 11:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE56E1A00E7;
+	Wed, 18 Dec 2024 11:37:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="ZpUpJ5/Q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KNOn79vb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39ED21A2388
-	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 11:35:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDAB619F422
+	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 11:36:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734521720; cv=none; b=MW62a2EdoeQF1xHQRzZ5KasEh8YxpmZXGR3DznaCE66+g8SKDHQy4yFIkTYdCOuWURGTqhQZBeNvbKloXrU8ILM/wTPWDy1XcwRQt/XpgkIh+RMSyQ/OyftCqJDH7urYDqD1Ypedi8uRiBGK/nwNE5GU8Jzm/0Q0vYJqLNY71hE=
+	t=1734521821; cv=none; b=nIF7PuGLZ6hqLQinzJglsj91RRAEXrofafKVVOQ6/poEVPupd5IKAnqfmxrEoy2R/pqyjfPuDhEhW6ITjBiLZV5vKpj+RBVwamnuRbNy8G/kHPyL+90/QNgSHeP/OHev+K3O7ul86/2TaENx1iXanOTjh0zTb6NI6NVQnTSQc4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734521720; c=relaxed/simple;
-	bh=gOiMAnrjvHN0iPlKNzqS7+6gHJppdNewW/4kpkijjMk=;
+	s=arc-20240116; t=1734521821; c=relaxed/simple;
+	bh=nV+pqhfWyXgRa9pON0VAn9kRTq5cl6suRFxwKoI9NjY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dyBJZ266868kwRe4s34mihdcsxPDeyfDZcnjmUjqFZE0mnUBd2Z5OsDWszAYJlVeGEwMT9i5mbK6nQoLXSXBhhohurBJpA2WzNEz48lY0G5NAo3aTeDjhLCW5s479zR619RNKJEjAY9O5ma3DK0HFFRuZhuVIliArQ9wXaPA6g4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=ZpUpJ5/Q; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-385e2880606so5732591f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 03:35:16 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=n4yOBc9n98y0iLmeOzd/9k5ZCkI5mdO/8CoQF+mZPrFL2HvS7ITTcqCl82CaNYPXqsYHtZMS+HCW9hlXTIqnhJD1oWwKdAb7vMOiOq+V8Waz73b2hI2vKuPBSXv03pTbv8EsrAibpjBEv5jLatZZEOSV9MjvY7QKfDRJ/DRwTG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KNOn79vb; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-53e3a5fa6aaso699626e87.0
+        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 03:36:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1734521715; x=1735126515; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1734521818; x=1735126618; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VlJJETf0GEG5l1fQK2RThJLw2n20sbAz6B1Azi0svlk=;
-        b=ZpUpJ5/QylowrV3JqsfgMS2hgTThrGYcD+Ro6FuLOjXOnzSb+Ex6xpm2JBBXd5PBFd
-         sdkg7ZVOstjiPvW7Lcf+nPLEEHdlVSVZNDpNsE72PusZtbzXFD8xTRO1IkOq+JTclBr3
-         yJAkS1SGmLqMcdZm7XjTc8kKTXgbdUg2MT2zIk0g90b+ls1WYc/cglquKsPb3fB2/gY0
-         Owb0e8+cJJ9C55kFffGEWX+BjNuqp7qJVf9rn4A+lQR81nwz9gapEwIOP8F8AbAvRzZ7
-         9ru4PyeJytdrXNDJhtycxOI8O/CtTqr7x9qNTNCkcrhrCXlcgcvUM2o9ytqmHgn3sjb1
-         Wiyw==
+        bh=mgC6FT2aLsRk0iznKN/lYkL6v9+y1HJaw8g4ZlWCUFU=;
+        b=KNOn79vbnRwxqhA20G/SChtyN3khs+XTu+rE6XSF/opDlBGRHHyw1+V3a/q3SEtdvf
+         tf6cfPxSqTKAwl5dm6su/YndKL9mz7uEmwpNP80azKvqrHbboSagDxurbBw69IzTHLfX
+         LU93Z+kSDsgskWJ2rriNRFFqIQm3iu05edxDJo2ccnlnVuagcoUN5TeRYZqeO7kEwloA
+         oSusUbxhUUwtu8DxS/nNLCygh8k5/6ZKInA32bbEbInE6ksJmQ3slc+KfpmO/gGRqc/h
+         cBA3zAaD4F3X5qUizW+OhWZp1H49OjK+PYOtiRi8rGECzehh50VP4aLamFuIuBB6oxI3
+         R6kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734521715; x=1735126515;
+        d=1e100.net; s=20230601; t=1734521818; x=1735126618;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VlJJETf0GEG5l1fQK2RThJLw2n20sbAz6B1Azi0svlk=;
-        b=ei0PG8ZKWldPkRWHZfVjYGzLOQuWlx5vSvGalR0S9MGzMLKqBJSjV1VRvOenNEk0n9
-         uDflJxmRoPAXRw6FR2OJvtaAxYnzmXkONtluBvunVGyQ7orzjvlTe6D/3R3amfcQaME4
-         nUsA6pmbPq8xgLKCAez502WY+Zfg4sAzTTKPFKiMfHYqcOWjMvXB30tPHdNgJcGzJooJ
-         TOTy17SsTid9QFptIOOkB4RhSCWE8I3B6d7ifsitr2fRLHCW/2+L7lixiAUaBQ/ZDyM/
-         xMDibpoE1Wax6C9eZnI+kEVfo+PfUwfGUZ4rCdboISDZWvOEEP5sS1hf9Tre8yCkulwz
-         4WAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV/Jtlmk/lk/qB1KqW0bwOjdRN4fod1Jt0/FzHTvPKaEexKHj3Tev+1d+HVWO03HwI0PonNJG5iydKm@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQtlzBZ53epeYAaFtrJasf2/HD3bKgNWKOHFLykCuOMr1BZ6jQ
-	KZUHEeYlcFdv58IJBjExQvrtQxSlJ6yki6URvJ3v3J0Ax9JEqffjkyp3zijHFnU=
-X-Gm-Gg: ASbGncsAUfsPIdaJPmfHV9364o/nkXorTRjN6r1WROgCq03R8iGf1M1pymeIaA/HXL9
-	U0m6PmEpT9AgI5LI/vJK28CZaYyok2ekLmcWrJYnOW4E3N9KGz2wjwc8J3JQ1XCMCLW+wB8MHku
-	64cm4uvsj0RUWfDdUoZ+gPhyKEtNiFtti3+n/KL7T6Rj8ByBH6Ogy6VboZNpBpNhvlIT7kLUdjI
-	G/hd4z6DPxY+ulPx6Q7D2kIO4/n6lcpnr7dBNMvedsHYsWmiEyBF6wb3g==
-X-Google-Smtp-Source: AGHT+IGnVN8Zbotu5KkOnXCz05raBpseI5GUh9bTzmh4+dTqb3vp6Jmq20mEcYqJv0Y4S8sbzjycFw==
-X-Received: by 2002:a05:6000:4a16:b0:385:fa26:f0ac with SMTP id ffacd0b85a97d-388e4d6a9aemr2531218f8f.7.1734521715441;
-        Wed, 18 Dec 2024 03:35:15 -0800 (PST)
-Received: from pathway.suse.cz ([176.114.240.50])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-388c801223dsm13978802f8f.3.2024.12.18.03.35.14
+        bh=mgC6FT2aLsRk0iznKN/lYkL6v9+y1HJaw8g4ZlWCUFU=;
+        b=K2e4GQls19th/Vl+FkY9KkkEWnoDPAnGp4igIRrjE94tdaBz4ibx8pz57E5LS59QKI
+         KWs+T65q47Lw+g2UtVVl/CVOfnbRbv73OU+9diVc8PirtZgXlAjJAaIV/QUMo8T+uZdF
+         XnaxZY0Wu1IKPYwNF7smAlBtfr1jbVBW/41x6IiPyVIS8YdhcCC46Znl+HkcFr1Jtpc4
+         SS+CBmvbMpxl0Er0SQcJuIvLuXOFVDg/yBcQToDiOaNULlBdI01WJzKg6ZcOAzeiZtch
+         yroz3p/xZqU5nV6r7SzgFt6hgxYKwcz2MQ1Qlx5xEgUmvVzrHxx+1fuWJqL7lCZAvQiE
+         k4HA==
+X-Forwarded-Encrypted: i=1; AJvYcCXp/xYYh3oaR130nF3j/hEZGCslSQWmsAFH9EPBHzGBVsd3cA6MKI/gpcDfjL5lrRHMqpMu8esyjv73@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtW7i4pwfGL6Azu9BeUj/6bWjQYR8DO3mtlY/6C245O/0Q7bOg
+	Nd259SLnaAULIjoyR9QJK8v+gJN9yCfBZS0vKRY9VpTxVt2Z+vUTU7uiKk357dA=
+X-Gm-Gg: ASbGncuw5WTE59Dzc3vxvncZAwRjGsXKg9A6qNwLgoWg799yX22ykWpiF0bxPk1jjsB
+	LHckUo4EmqbD9rzMPgR3XIDr8j96g2Lfq5iZq1GT8MNCbCSflklMcR/rFjeKMkgMgHJejXe6rdM
+	DTBqusW1qvOeI1hNdr+oUq9eoNPAjzMeLUDNC5EAaYhcle1IkPi4ibj3ctkbbxL4tLhRN5kDVuO
+	h8Q9DdAqHgvci0wPng1zIYz3fTn6/oF7WikHUo4BxULQiwUlduzlPSM8fj3MAeb8Wak5LCaGNuA
+	LGfc4PUMBpIn54F24FBxPcJKexsOxT9Z/o8C
+X-Google-Smtp-Source: AGHT+IEZ+sSU1SDLXJ8oJNi+0fhecW4BHBNr3eJX66/i9r+4ejfv6uryNvgWsgMb3aNXDMPAIOxqLg==
+X-Received: by 2002:a05:6512:ad5:b0:540:1fb3:e061 with SMTP id 2adb3069b0e04-541315b4f48mr2268645e87.28.1734521817999;
+        Wed, 18 Dec 2024 03:36:57 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54120ba9db5sm1426597e87.88.2024.12.18.03.36.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Dec 2024 03:35:14 -0800 (PST)
-Date: Wed, 18 Dec 2024 12:35:12 +0100
-From: Petr Mladek <pmladek@suse.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Steven Rostedt <rostedt@goodmis.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-	Sergey Senozhatsky <senozhatsky@chromium.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Saravana Kannan <saravanak@google.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Zijun Hu <quic_zijuhu@quicinc.com>, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: ssize_t: was: Re: [PATCH] of: Add printf '%pOFm' for generating
- modalias
-Message-ID: <Z2KzcORZocQAwAi9@pathway.suse.cz>
-References: <20241217183711.2525863-1-robh@kernel.org>
+        Wed, 18 Dec 2024 03:36:57 -0800 (PST)
+Date: Wed, 18 Dec 2024 13:36:56 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
+	Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org, todor.too@gmail.com, mchehab@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, akapatra@quicinc.com, 
+	hariramp@quicinc.com, andersson@kernel.org, konradybcio@kernel.org, 
+	hverkuil-cisco@xs4all.nl, cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, 
+	will@kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kernel@quicinc.com
+Subject: Re: [PATCH v10 1/4] media: dt-bindings: update clocks for
+ sc7280-camss
+Message-ID: <hevfx4sgsatohz4ndgrlidj5kqxaiizmakjqjghlkbmguluzi5@ezxa36uasb32>
+References: <20241217140656.965235-1-quic_vikramsa@quicinc.com>
+ <20241217140656.965235-2-quic_vikramsa@quicinc.com>
+ <02da691b-1f5d-41a6-847c-c7e9b8239919@kernel.org>
+ <c14493b0-c9d3-4e1c-9f86-991b4cb25c98@linaro.org>
+ <fe28a9bc-82ef-4fef-af50-9d9261ed9b39@kernel.org>
+ <a1032d53-6f3e-48f6-a2e9-1315bb1a3232@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,70 +99,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241217183711.2525863-1-robh@kernel.org>
+In-Reply-To: <a1032d53-6f3e-48f6-a2e9-1315bb1a3232@linaro.org>
 
-On Tue 2024-12-17 12:37:09, Rob Herring (Arm) wrote:
-> The callers for of_modalias() generally need the module alias as part of
-> some larger string. That results in some error prone manipulation of the
-> buffer prepend/append the module alias string. In fact,
-> of_device_uevent_modalias() has several issues. First, it's off by one
-> too few characters in utilization of the full buffer. Second, the error
-> paths leave OF_MODALIAS with a truncated value when in the end nothing
-> should be added to the buffer. It is also fragile because it needs
-> internal details of struct kobj_uevent_env. add_uevent_var() really
-> wants to write the env variable and value in one shot which would need
-> either a temporary buffer for value or a format specifier.
+On Tue, Dec 17, 2024 at 04:30:37PM +0000, Bryan O'Donoghue wrote:
+> On 17/12/2024 16:23, Krzysztof Kozlowski wrote:
+> > On 17/12/2024 17:12, Bryan O'Donoghue wrote:
+> > > On 17/12/2024 14:10, Krzysztof Kozlowski wrote:
+> > > > On 17/12/2024 15:06, Vikram Sharma wrote:
+> > > > > This patch change clock names to make it consistent with
+> > > > > existing platforms as gcc_cam_hf_axi -> gcc_axi_hf.
+> > > > > This also adds gcc_axi_sf and remove gcc_camera_ahb.
+> > > > 
+> > > > Don't combine ABI changes with some less important things.
+> > > > 
+> > > > You miss here explanation why doing the ABI change in the first place.
+> > > > Without that explanation I find it rather churn. But anyway, reason for
+> > > > ABI break and impact should be documented in commit msg.
+> > > > 
+> > > > > 
+> > > > > Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> > > > > ---
+> > > > 
+> > > > Best regards,
+> > > > Krzysztof
+> > > 
+> > > This change should be fine since we haven't committed and upstream dtsi,
+> > > so there's no ABI to break yet.
+> > > 
+> > > Agree the cover letter should have been explicit in explaining.
+> > 
+> > So these are recently added bindings (sc7280 is not particularly new)?
+> > If so mention in the commit msg that no users are affected because of this.
+> > 
+> > Best regards,
+> > Krzysztof
 > 
-> Fix these issues by adding a new printf format specifier, "%pOFm". With
-> the format specifier in place, simplify all the callers of
-> of_modalias(). of_modalias() can also be simplified with vsprintf()
-> being the only caller as it avoids the error conditions.
+> Agreed.
 > 
-> --- a/drivers/of/module.c
-> +++ b/drivers/of/module.c
-> @@ -8,21 +8,14 @@
->  #include <linux/slab.h>
->  #include <linux/string.h>
->  
-> -ssize_t of_modalias(const struct device_node *np, char *str, ssize_t len)
-> +/* Do not use directly, use %pOFm format specifier instead */
-> +size_t of_modalias(const struct device_node *np, char *str, size_t len)
+> The commit log should make clear that the ABI hasn't been cemented yet.
+> 
+> 20241217140656.965235-4-quic_vikramsa@quicinc.com <- is still pending
 
-We should keep ssize_t.
+If it hasn't been comitted yet, isn't it better to post a fixed version
+rather than committing a version which has known issues?
 
-"end - buf" passed from device_node_string() in vprintf.c might be
-negative. The "buf" pointer is used to count the number of characters
-which might be written when the buffer is big enough.
+> 
+> ---
+> bod
 
->  {
->  	const char *compat;
->  	char *c;
->  	struct property *p;
-> -	ssize_t csize;
-> -	ssize_t tsize;
-> -
-> -	/*
-> -	 * Prevent a kernel oops in vsnprintf() -- it only allows passing a
-> -	 * NULL ptr when the length is also 0. Also filter out the negative
-> -	 * lengths...
-> -	 */
-> -	if ((len > 0 && !str) || len < 0)
-> -		return -EINVAL;
-
-There is later called
-
-		csize = snprintf(str, len, "C%s", compat);
-
-and snprintf() uses size_t for the len attribute. It would go wild
-when we pass a negative len.
-
-
-> +	size_t csize;
-> +	size_t tsize;
->  
->  	/* Name & Type */
->  	/* %p eats all alphanum characters, so %c must be used here */
-
-Best Regards,
-Petr
+-- 
+With best wishes
+Dmitry
 
