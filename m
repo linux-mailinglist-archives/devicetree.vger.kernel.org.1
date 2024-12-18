@@ -1,259 +1,111 @@
-Return-Path: <devicetree+bounces-132389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D1809F6DC3
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 20:05:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2DB9F6DE6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 20:16:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51CF21885E2A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 19:05:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE9F9188D990
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 19:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56A501FBCAF;
-	Wed, 18 Dec 2024 19:05:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF5C155335;
+	Wed, 18 Dec 2024 19:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="acKc9oco"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EKkS0CwM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 213CD1FA828;
-	Wed, 18 Dec 2024 19:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 312369461;
+	Wed, 18 Dec 2024 19:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734548724; cv=none; b=US/sOyLrbBagFIEwmypzrqrL/lV7OyprVUEP6dWGNM0GLGPfrJH/tz/5U72ITYO2u9X9/xi1g31d0iUd7QUzz96fBi0QsPMZzFZCJ1QWYXEclp7aUY++AKDj/2mG5xp3hOJYvxqE8ViCS/VTLRCgww/PVf20nl4afIYKyIa5CpQ=
+	t=1734549394; cv=none; b=V+AcFwYcr2EjIlPG6HSsanUtah7pzMR6mLSucZKGWFkYn1AXenB6NxCpV0MzTErbzFM90lj2VW+0uh+ato4IQtPTSsAE/o8lPZhWakET2jdbSiqtrFlFOvBwog0GwkEoYAtiyfMImy9oqEGp1X2nOc48Mqj7ZvH/SskHbzTrCfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734548724; c=relaxed/simple;
-	bh=M+CL49EgE9Yah/DzNEo18PKR2SXlGp+eNDAr3EsAFik=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=OuPx0S3/gdk8yk6MA1oV2UdU3TbSv06bxDzP2FKkouquY/njTEFxW9Eoj5eEZlotxRbRxmonNy+ZhDQer+sQ3VGSgjpkn9Uj93ynDsThcB3n9lTXPUgn7gZ8L9C27/+0TW788OqusRqKz2pQn5IyavgSPknFTo+rGNhECwoeEa0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=acKc9oco; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D703C4CECD;
-	Wed, 18 Dec 2024 19:05:23 +0000 (UTC)
+	s=arc-20240116; t=1734549394; c=relaxed/simple;
+	bh=hMHHPgD+Q5TTWWhgNt+yZVrZ1As+Nx1lYcDU7z4dqus=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L4A1BQfM5ENM8Cl5OBgCi50rwDIzAmNoAjM+o+H8+Zsek+kHWQuPwCSroRSiRSnCYPGMIKYqldyDucV2XQ5qXeUtCGIbsmFHl0lLLgI8gXLnvm3m17T15/rrO5PklBv8rJ70eXGBwbr6Al1GwOMEUzOu6o7QZqLl9p+ioPP8+OQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EKkS0CwM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E1DFC4CECD;
+	Wed, 18 Dec 2024 19:16:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734548723;
-	bh=M+CL49EgE9Yah/DzNEo18PKR2SXlGp+eNDAr3EsAFik=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=acKc9ocoU33QzqEeQWNLzm5aWw4LICdrJWuslUIstDYxvPmj1cTn8CWVyy9hcqcoH
-	 3iJhAhZU/557qjFPrUM/wnAxrNMxoI5QDjxlZ3TlUFXDEtfsTb0d08GbELyCGfEMhJ
-	 16f1eQbG6SgYQWWx4yrOOOwKuzWgMjfxj/HWIbWXsbloz/hpRrqBk7PKyB7kQaisgH
-	 KEiJUJN9vHry01crcCsEyLQw1oQtbXxuU/RTJV7qzvVkcb8+19aHOuFw2VQfgDp3HS
-	 DSdQjthz3JQuGkVv1u1AWPSUv+joFFELHFAXE5E+FlYVGo47h4iAvs8dVJCzP4HU9m
-	 INH5A1qR7hmuQ==
-Date: Wed, 18 Dec 2024 13:05:17 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1734549393;
+	bh=hMHHPgD+Q5TTWWhgNt+yZVrZ1As+Nx1lYcDU7z4dqus=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EKkS0CwMwa3KIYYecmq4E5W+qExO80uJ+SLr0SM103IkZ4HXSz37aKmGlkigkv/nW
+	 Azr8Y9JxygnbptIt/gbrDY2MEJZFo4e9T7e2eQwHol2kYf1xq8OcI0Rs3SN2FXYFDE
+	 7Oy2oXLEbd0l7F1vDgmYHGNF5/FFBfG+r0fo9mCTHw2ZWHNbc8ekj2/US+qktTTpJD
+	 E7LsLZSvga7RS8wc0Ykdl2cLc1ri9O0mIPI0fAOFzUJBy6ZVGltJRuWNqHnm2ISBcV
+	 XcZKtgKCt5hoOg6mfTjtPeSnaRvY78hfYe1O/m5Bk/Nh30rD/DOKz9l/YGEA+1WLaB
+	 UR0vvKQ+hKusQ==
+Date: Wed, 18 Dec 2024 13:16:31 -0600
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 3/4] arm64: dts: exynos: gs101-oriole: move common Pixel6
+ & 6Pro parts into a .dtsi
+Message-ID: <20241218191631.GA1837559-robh@kernel.org>
+References: <20241216-gs101-simplefb-v1-0-8ccad1830281@linaro.org>
+ <20241216-gs101-simplefb-v1-3-8ccad1830281@linaro.org>
+ <fw2a6taf4kd3sggmyppeym2uxkuyotxy7ugj3bh73vetnra4m6@jllekadordju>
+ <6e22585f8d374f8e26a2a51153680041ad8b1bea.camel@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Catalin Marinas <catalin.marinas@arm.com>, kernel@quicinc.com, 
- Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-In-Reply-To: <20241217064856.2772305-1-quic_wasimn@quicinc.com>
-References: <20241217064856.2772305-1-quic_wasimn@quicinc.com>
-Message-Id: <173454864189.2147955.17810187271585604985.robh@kernel.org>
-Subject: Re: [PATCH v4 0/7] arm64: qcom: Add support for QCS9075 boards
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6e22585f8d374f8e26a2a51153680041ad8b1bea.camel@linaro.org>
 
+On Tue, Dec 17, 2024 at 08:34:50AM +0000, André Draszik wrote:
+> On Tue, 2024-12-17 at 08:38 +0100, Krzysztof Kozlowski wrote:
+> > On Mon, Dec 16, 2024 at 01:06:28PM +0000, André Draszik wrote:
+> > > In order to support Pixel 6 (Oriole) and Pixel 6 Pro (Raven) properly,
+> > > we have to be able to distinguish them properly as we add support for
+> > > more features.
+> > > 
+> > > For example, Raven has a larger display. There are other differences,
+> > > like battery design capacity, etc.
+> > > 
+> > > Move all the parts that are common for now into a gs101-raviole.dtsi,
+> > > and just leave the display related things in gs101-oriole.dts.
+> > > 
+> > > Raviole was chosen as the name because Google uses that when referring
+> > > to the combination of Oriole & Raven, keeping the familiar terminology.
+> > > 
+> > > Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> > > 
+> > > ---
+> > > Note: MAINTAINERS doesn't need updating, it covers this whole directory
+> > > ---
+> > >  arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 290 +-------------------
+> > >  .../boot/dts/exynos/google/gs101-raviole.dtsi      | 297 +++++++++++++++++++++
+> > >  2 files changed, 305 insertions(+), 282 deletions(-)
+> > > 
+> > 
+> > This looks like move of the code, so -M/-B/-C format patch arguments
+> > would create better diff.
+> 
+> Ah, yes, forgot about those when I switched to using b4 instead of
+> custom scripts...
 
-On Tue, 17 Dec 2024 12:18:49 +0530, Wasim Nazir wrote:
-> This series:
-> 
-> Add support for Qualcomm's rb8, ride/ride-r3 boards using QCS9075 SoC.
-> 
-> QCS9075 is compatible IoT-industrial grade variant of SA8775p SoC.
-> Unlike QCS9100, it doesn't have safety monitoring feature of
-> Safety-Island(SAIL) subsystem, which affects thermal management.
-> 
-> In QCS9100 SoC, the safety subsystem monitors all thermal sensors and
-> does corrective action for each subsystem based on sensor violation
-> to comply safety standards. But as QCS9075 is non-safe SoC it requires
-> conventional thermal mitigation for thermal management.
-> 
-> Difference between Ride & ride-r3 boards is ethernet phy,
-> ride uses 1G ethernet phy while ride-r3 uses 2.5G ethernet phy.
-> 
-> This series depends on [1] for thermal functionality to work.
-> 
-> [1]: https://lore.kernel.org/all/20241112-sa8775p_cpuidle-v1-1-66ff3ba72464@quicinc.com/
-> 
-> ---
-> Changelog:
-> 
-> v4:
->   - Replace dts to dtsi in Ride/Ride-r3 platform files
->   - Add thermal patch to differentiate between 9100 vs 9075
->   - Add proper abbreviation and update commit for 9100 vs 9075
->   - v3: https://lore.kernel.org/all/20241119174954.1219002-1-quic_wasimn@quicinc.com/
-> 
-> v3:
->   - Fix RB8 board compatible string
->   - v2: https://lore.kernel.org/all/20241115225152.3264396-1-quic_wasimn@quicinc.com/
-> 
-> v2:
->   - Remove unused dp nodes & update commit for ride vs ride-r3.
->   - v1: https://lore.kernel.org/all/20241110145339.3635437-1-quic_wasimn@quicinc.com/
-> 
-> Manaf Meethalavalappu Pallikunhi (2):
->   arm64: defconfig: enable cpu idle injection and cpu idle cooling
->     device
->   arm64: dts: qcom: Enable cpu cooling devices for QCS9075 platforms
-> 
-> Wasim Nazir (5):
->   dt-bindings: arm: qcom,ids: add SoC ID for QCS9075
->   soc: qcom: socinfo: add QCS9075 SoC ID
->   dt-bindings: arm: qcom: Document rb8/ride/ride-r3 on QCS9075
->   arm64: dts: qcom: Add support for QCS9075 RB8
->   arm64: dts: qcom: Add support for QCS9075 Ride & Ride-r3
-> 
->  .../devicetree/bindings/arm/qcom.yaml         |   9 +
->  arch/arm64/boot/dts/qcom/Makefile             |   3 +
->  arch/arm64/boot/dts/qcom/qcs9075-rb8.dts      | 282 +++++++++++++++++
->  arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts  |  47 +++
->  arch/arm64/boot/dts/qcom/qcs9075-ride.dts     |  47 +++
->  arch/arm64/boot/dts/qcom/qcs9075-thermal.dtsi | 287 ++++++++++++++++++
->  arch/arm64/configs/defconfig                  |   3 +
->  drivers/soc/qcom/socinfo.c                    |   1 +
->  include/dt-bindings/arm/qcom,ids.h            |   1 +
->  9 files changed, 680 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-rb8.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-ride.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-thermal.dtsi
-> 
-> 
-> base-commit: 4176cf5c5651c33769de83bb61b0287f4ec7719f
-> --
-> 2.47.0
-> 
-> 
-> 
+If b4 does not do that by default, then it should set the option. One 
+less thing to get right for users. I sent a patch for that.
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y qcom/qcs9075-rb8.dtb qcom/qcs9075-ride-r3.dtb qcom/qcs9075-ride.dtb' for 20241217064856.2772305-1-quic_wasimn@quicinc.com:
-
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: qcom,gpi-dma@800000: $nodename:0: 'qcom,gpi-dma@800000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-rb8.dtb: qcom,gpi-dma@800000: $nodename:0: 'qcom,gpi-dma@800000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: qcom,gpi-dma@800000: $nodename:0: 'qcom,gpi-dma@800000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: bluetooth: 'vddwlcx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: bluetooth: 'vddwlmx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: bluetooth: 'vddrfa1p8-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: bluetooth: 'vddwlcx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: bluetooth: 'vddwlmx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: bluetooth: 'vddrfa1p8-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-rb8.dtb: qcom,gpi-dma@900000: $nodename:0: 'qcom,gpi-dma@900000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: qcom,gpi-dma@900000: $nodename:0: 'qcom,gpi-dma@900000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: qcom,gpi-dma@900000: $nodename:0: 'qcom,gpi-dma@900000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: qcom,gpi-dma@a00000: $nodename:0: 'qcom,gpi-dma@a00000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-rb8.dtb: qcom,gpi-dma@a00000: $nodename:0: 'qcom,gpi-dma@a00000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: qcom,gpi-dma@a00000: $nodename:0: 'qcom,gpi-dma@a00000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-rb8.dtb: qcom,gpi-dma@b00000: $nodename:0: 'qcom,gpi-dma@b00000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: qcom,gpi-dma@b00000: $nodename:0: 'qcom,gpi-dma@b00000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: qcom,gpi-dma@b00000: $nodename:0: 'qcom,gpi-dma@b00000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-rb8.dtb: crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['qcom,sa8775p-qce', 'qcom,qce'] is too long
-	['qcom,sa8775p-qce', 'qcom,qce'] is too short
-	'qcom,crypto-v5.1' was expected
-	'qcom,crypto-v5.4' was expected
-	'qcom,sa8775p-qce' is not one of ['qcom,ipq4019-qce', 'qcom,sm8150-qce']
-	'qcom,sa8775p-qce' is not one of ['qcom,ipq6018-qce', 'qcom,ipq8074-qce', 'qcom,ipq9574-qce', 'qcom,msm8996-qce', 'qcom,qcm2290-qce', 'qcom,sdm845-qce', 'qcom,sm6115-qce']
-	'qcom,ipq4019-qce' was expected
-	'qcom,sm8150-qce' was expected
-	from schema $id: http://devicetree.org/schemas/crypto/qcom-qce.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['qcom,sa8775p-qce', 'qcom,qce'] is too long
-	['qcom,sa8775p-qce', 'qcom,qce'] is too short
-	'qcom,crypto-v5.1' was expected
-	'qcom,crypto-v5.4' was expected
-	'qcom,sa8775p-qce' is not one of ['qcom,ipq4019-qce', 'qcom,sm8150-qce']
-	'qcom,sa8775p-qce' is not one of ['qcom,ipq6018-qce', 'qcom,ipq8074-qce', 'qcom,ipq9574-qce', 'qcom,msm8996-qce', 'qcom,qcm2290-qce', 'qcom,sdm845-qce', 'qcom,sm6115-qce']
-	'qcom,ipq4019-qce' was expected
-	'qcom,sm8150-qce' was expected
-	from schema $id: http://devicetree.org/schemas/crypto/qcom-qce.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['qcom,sa8775p-qce', 'qcom,qce'] is too long
-	['qcom,sa8775p-qce', 'qcom,qce'] is too short
-	'qcom,crypto-v5.1' was expected
-	'qcom,crypto-v5.4' was expected
-	'qcom,sa8775p-qce' is not one of ['qcom,ipq4019-qce', 'qcom,sm8150-qce']
-	'qcom,sa8775p-qce' is not one of ['qcom,ipq6018-qce', 'qcom,ipq8074-qce', 'qcom,ipq9574-qce', 'qcom,msm8996-qce', 'qcom,qcm2290-qce', 'qcom,sdm845-qce', 'qcom,sm6115-qce']
-	'qcom,ipq4019-qce' was expected
-	'qcom,sm8150-qce' was expected
-	from schema $id: http://devicetree.org/schemas/crypto/qcom-qce.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-rb8.dtb: rsc@18200000: 'power-domains' is a required property
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: rsc@18200000: 'power-domains' is a required property
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: rsc@18200000: 'power-domains' is a required property
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: ethernet@23000000: tx-queues-config: 'snps,tx-sched-sp' does not match any of the regexes: '^queue[0-9]$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: ethernet@23000000: Unevaluated properties are not allowed ('interconnect-names', 'interconnects', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,ps-speed', 'snps,tso', 'tx-fifo-depth', 'tx-queues-config' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: ethernet@23000000: tx-queues-config: 'snps,tx-sched-sp' does not match any of the regexes: '^queue[0-9]$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: ethernet@23000000: Unevaluated properties are not allowed ('interconnect-names', 'interconnects', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,ps-speed', 'snps,tso', 'tx-fifo-depth', 'tx-queues-config' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: ethernet@23040000: tx-queues-config: 'snps,tx-sched-sp' does not match any of the regexes: '^queue[0-9]$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: ethernet@23040000: Unevaluated properties are not allowed ('interconnect-names', 'interconnects', 'mdio', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,ps-speed', 'snps,tso', 'tx-fifo-depth', 'tx-queues-config' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: ethernet@23040000: tx-queues-config: 'snps,tx-sched-sp' does not match any of the regexes: '^queue[0-9]$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: ethernet@23040000: Unevaluated properties are not allowed ('interconnect-names', 'interconnects', 'mdio', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,ps-speed', 'snps,tso', 'tx-fifo-depth', 'tx-queues-config' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: wcn6855-pmu: 'vddpmumx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dtb: wcn6855-pmu: 'vddpmucx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: wcn6855-pmu: 'vddpmumx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml#
-arch/arm64/boot/dts/qcom/qcs9075-ride.dtb: wcn6855-pmu: 'vddpmucx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml#
-
-
-
-
-
+Rob
 
