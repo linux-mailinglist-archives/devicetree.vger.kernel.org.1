@@ -1,102 +1,108 @@
-Return-Path: <devicetree+bounces-132352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58FD79F6B91
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 17:55:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51DA69F6BA1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 17:58:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5500D16CF04
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 16:55:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66107167CBC
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 16:58:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863791F75BF;
-	Wed, 18 Dec 2024 16:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 287CF1F869D;
+	Wed, 18 Dec 2024 16:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ETuj7uIu"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DjJl4g8W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5587C1F63FC;
-	Wed, 18 Dec 2024 16:55:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC4E1F76C4;
+	Wed, 18 Dec 2024 16:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734540908; cv=none; b=QWPlGdvsFJ30OZhkxJSC7NxFHVm3tzAd0mNxjvaJdU+F/CmwHod/VZApId7yazXBiS6Ogl7L6fNs3D1tVzZVQYRb/Cp+EkUbm3f/XIxZJf2y5hOmzkCriteWKjZbmIGqVU+7JiV0B6ytjuO4alnwRKH31/HyjfxNenvmKDjoolA=
+	t=1734541076; cv=none; b=Ug8K+XleqTHDehPji2rPuRhIx0zOJKINnwXZ4L3g5gENB1YMqQh4NoEsulGjL8h9AJ6dm9mUZnElNdM61X1TPBBGl6N/VWJvFZwto/xxRQZysy3T9Xz9RIzhlhJmdpiwS4n5N8oZOjLkxpjakUBJusSbSbTez71Z8FBAznT6z2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734540908; c=relaxed/simple;
-	bh=0o6YsCPhoR+Sa9h4tInrAJarF+q0Du6OnRImy1JmvmQ=;
+	s=arc-20240116; t=1734541076; c=relaxed/simple;
+	bh=KV8ou//Sa6v3jLTAYIJ9bJcbxMO3+EDoGYPwxAHxI/w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rS+/82Ca0W/Pwd4XYIZwQwXEsIb9K+/O7BpTkQxO8qiSDXBIvKUeDG0s0X+6SnZl64QM05dcFzf5IUCrMEkxUVmgU9TG4dHIzTVmq9C7ywCoPh2UmhqUJo1GnGW3YnkNwW8WzP2CBCHuJpMsLd2ptnpCDv0VAXZ++tU572fct5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ETuj7uIu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6F8FC4CECD;
-	Wed, 18 Dec 2024 16:55:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734540907;
-	bh=0o6YsCPhoR+Sa9h4tInrAJarF+q0Du6OnRImy1JmvmQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ETuj7uIuB6eGGCOGJuPf2ESKnfDQu/dRe9fQo0z4552Gg5u913QqHQyhGaFWw2h8+
-	 XQyOTzs9U157pAsvf6Z6zwoeOPckmNGbzr/gatH/rpgh0loc2KRboRECMPlsPdjxQs
-	 2C8NbCc7U2UVNUBG9AAFVVIL5H1uhN3XN5gOSuQw/7kTVp5VTJaTZrFlgfXh+MP2bF
-	 QhRcudzP57qlhGdQX4URy9g+upSVe3jxQA+DNU0A4iuhxMSqWff5VZPuobsn4O5+pt
-	 lO/rv4VllUbq71t9kIa2cWog5aAyrNqGpTIFBg40MfR0/iahOh7phDXJ3WL25ROoQS
-	 dbVw93/FoFkuQ==
-Date: Wed, 18 Dec 2024 16:55:01 +0000
-From: Conor Dooley <conor@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mchehab@kernel.org,
-	matthias.bgg@gmail.com, moudy.ho@mediatek.com,
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com, sebastian.fricke@collabora.com,
-	macpaul.lin@mediatek.com
-Subject: Re: [PATCH v1 2/3] dt-bindings: media: mediatek: mdp3: Add
- compatibles for MT8188 MDP3
-Message-ID: <20241218-easiness-appraiser-4bbd32caa2cd@spud>
-References: <20241218105320.38980-1-angelogioacchino.delregno@collabora.com>
- <20241218105320.38980-3-angelogioacchino.delregno@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=njqsi56Vw0uL3KX6+pqGC3kTg/1UpvwpPPuTrh8kbaY7jdn+csVtHmXNUWRMeceC96byLHT4IIRGICQgPHrukBXCk+0uHjiSL11VPOIc6b0IjJJQ6yeMpHKC9nYB/mtCEIOg0sCb7Z76Mv77ZtI0rAiT3tmG2nnJ25Py4yMysx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=DjJl4g8W; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=/4crNdIxVVaUUjGou9fiNxKR1h+u/fftUOeCRlzjhXo=; b=DjJl4g8WqzlEX8kt+gIn+DeK1o
+	k2ynJY9DxnnNia07FbZuXcsgYXTZfWDd/9RNJ45aZESIqeK2xmJsl4bsjRubIMBO0o6TEiGiTItTV
+	E3RTaHpW4uDWXbCsDjA3If2p2LcRGvH69nEnJaJrBf89fq9y+UlxC+NoLyrmZwsQU+Sg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tNxMo-001L2B-IE; Wed, 18 Dec 2024 17:57:46 +0100
+Date: Wed, 18 Dec 2024 17:57:46 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Yijie Yang <quic_yijiyang@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs615-ride: Enable ethernet
+ node
+Message-ID: <2b6cd2b8-1738-4131-abfe-4ab35de70c8d@lunn.ch>
+References: <4a6a6697-a476-40f4-b700-09ef18e4ba22@lunn.ch>
+ <441f37f5-3c33-4c62-b3fe-728b43669e29@quicinc.com>
+ <4287c838-35b2-45bb-b4a2-e128b55ddbaf@lunn.ch>
+ <2e518360-be24-45d8-914d-1045c6771620@quicinc.com>
+ <31a87bd9-4ffb-4d5a-a77b-7411234f1a03@lunn.ch>
+ <581776bc-f3bc-44c1-b7c0-4c2e637fcd67@quicinc.com>
+ <174bd1a3-9faf-4850-b341-4a4cce1811cb@lunn.ch>
+ <d711ee4b-b315-4d34-86a6-1f1e2d39fc8d@quicinc.com>
+ <8acf4557-ac10-43f1-b1ab-7ae63f64401f@lunn.ch>
+ <aa1dcdf6-94a0-4922-83f0-3cf49516ac4f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Askt30FtJgx6rtkn"
-Content-Disposition: inline
-In-Reply-To: <20241218105320.38980-3-angelogioacchino.delregno@collabora.com>
-
-
---Askt30FtJgx6rtkn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <aa1dcdf6-94a0-4922-83f0-3cf49516ac4f@quicinc.com>
 
-On Wed, Dec 18, 2024 at 11:53:19AM +0100, AngeloGioacchino Del Regno wrote:
-> Add compatible strings for the FG, HDR, RSZ, STITCH, TCC, TDSHP
-> and WROT hardware components found in MediaTek's MT8188 SoC.
->=20
-> This hardware is compatible with MT8195.
->=20
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
-abora.com>
+> Okay, I will follow your instructions:
+> 1. Change the phy-mode to 'rgmii-id'.
+> 2. Add the delay in the MAC driver.
+> 3. Mask the phy-mode before passing it to the PHY.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Good.
 
---Askt30FtJgx6rtkn
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> > 
+> > But i assume Qualcomm RDKs always make use of a Qualcomm PHY, there is
+> > special pricing if you use the combination, so there is probably
+> > little incentive to use somebody elses PHY. And i assume you can
+> > quickly check all Qualcomm PHYs support RGMII delays. PHYs which don't
+> > support RGMII delays are very rare, it just happened that one vendors
+> > RDK happened to use one, so they ended up with delays in the MAC being
+> > standard for their boards.
+> > 
+> 
+> Most Qualcomm MAC applications are actually paired with a third-party PHY.
 
------BEGIN PGP SIGNATURE-----
+I'm not sure the QCA8K, IPC and old Atheros people would agree with
+you.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2L+ZQAKCRB4tDGHoIJi
-0vwxAQDrAZFkEkmMQ5Z2MU2rY35fE61lDYWUebQGDUKcgUN1kQEA5mSrpxLH3nkg
-sit8kCz+rofS8aJwNcWgW3XNlnMmTAU=
-=ZFd/
------END PGP SIGNATURE-----
+But since you don't have any behaviour change, you are not asking the
+PHY to insert the delays, you should be safe in your part of the
+Qualcomm world.
 
---Askt30FtJgx6rtkn--
+	Andrew
 
