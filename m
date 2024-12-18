@@ -1,143 +1,194 @@
-Return-Path: <devicetree+bounces-132335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCEB29F6A09
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 16:31:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6364E9F6A00
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 16:28:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9996D18873DE
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 15:31:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 188DF7A05FF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 15:28:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6B71F8AFE;
-	Wed, 18 Dec 2024 15:30:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23EC11C2304;
+	Wed, 18 Dec 2024 15:28:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="L20Isi2D"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t5dIIcUe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.fris.de (mail.fris.de [116.203.77.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F661132C38;
-	Wed, 18 Dec 2024 15:30:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1E31A2C04;
+	Wed, 18 Dec 2024 15:28:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734535814; cv=none; b=f8moOzYHI5SbsbNtj1w5J1hEKj24ir50q4rEZjBpaoJkM/mEFyaQH4+m1us6SV1ziHEwS29vBAcQG2dNfdiG6SPG7zBkp7CIQpiQ1TREKMpdbw78Nh9oW7OAasGO9jEpf2eE3/VE4u7+3F+t87/tcANZ+OTFVWBABqRW49D4rtg=
+	t=1734535699; cv=none; b=XkPz3B3oFfv4lh6j25+Z4TABB9gJXIc5gD7cFc0OH7RukPU9s+IFiBXZp9X0UCBrznP2X+OooTOgAGjwNMMqD39cqY4w6CWrSSzLBx/R56JVPiEIVN5S9EbCghTSFNpaNC0ZzKBzhJOE/xUdzH6bIRI0tCp9jBrVsvjtO6ScKRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734535814; c=relaxed/simple;
-	bh=3VnTFpfsJ8szo4iwYlfnnuoA2BW18esOIBfsJ5r6nRw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=t6cVYMG4QwvHqlIDt9TZZUO/MFoaX30rFJBxgBjb35jJn2tYX5nF6mxFQUqjyHHT5c5uvj1+3qffdckYewzD7XVBmk9p9wC2VQBY239vKCi+lD1Uw/7XbBcgt9bM2Zmf/PgpiWkhEs+Kd72+p7CWwIrmHwOiLLAt1Uo/pgmduWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=L20Isi2D; arc=none smtp.client-ip=116.203.77.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fris.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 412FBBFB05;
-	Wed, 18 Dec 2024 16:30:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-	t=1734535810; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=JgASWdXNS3RqXVlA/ImzhuUR23AWDdoHokCYtEmwqDo=;
-	b=L20Isi2DAUo2qXpjkQIriyp7PxpAWdBObbWKlkfL2ZxkAYpaonmHa/wS1oVceOXLNgijSj
-	eunGPCDTQlNVAzlgfuQbUXxJNYH3jIpj5bNaMjogZ8FvUTWSrTaHcMbN+71Qa8LuBOk21j
-	ITYm+eh8UPy81F0ZtjcUW5ZyKLOwKSj9lzjzqCkIBDReC1iAfzWY9C0uUFdhucx7gdh13r
-	g0qXlQgI2OmwmL2kWGj3xYax6Po1ZgxvpAAp2GHOvFwe8Swgq7nTZ2VdcQrm2ycCkYiUk4
-	r+XLne08y0F4+uveZQO6XVjNWZ7yyVVC2iBTIVqkFH4h6KjmCeWUZg3iJBNJfg==
-From: Frieder Schrempf <frieder@fris.de>
-To: linux-arm-kernel@lists.infradead.org,
-	Marek Vasut <marex@denx.de>,
-	Conor Dooley <conor@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v3 9/9] arm64: dts: imx8mp-kontron: Add support for reading SD_VSEL signal
-Date: Wed, 18 Dec 2024 16:27:32 +0100
-Message-ID: <20241218152842.97483-10-frieder@fris.de>
-In-Reply-To: <20241218152842.97483-1-frieder@fris.de>
-References: <20241218152842.97483-1-frieder@fris.de>
+	s=arc-20240116; t=1734535699; c=relaxed/simple;
+	bh=x/05UuFag3wEx8+8CiHO6xWLOjxSGreh2BrsOx7x1UU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WE17h5YWd3m5OA2lBSb98wo8aBED1CasbxhCkAXfSV2J6SsDKZ8Gi1XABhwxHFM6woVjWj5YG8nK+qLVTnWRf05x8wQ89pFhjWXa02x7Al6Q6PCoDo20oe0Wyeds4tVACYOoIDccczr9caJ68M1NbeSMum5mFRV7x+TpsLX1NRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t5dIIcUe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FD89C4CEDC;
+	Wed, 18 Dec 2024 15:28:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734535697;
+	bh=x/05UuFag3wEx8+8CiHO6xWLOjxSGreh2BrsOx7x1UU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=t5dIIcUejF791eo+8+HQf623zZS6dcZmBG75cemTJWgXZrMb4jewrpc9V7uUv6A/a
+	 EEDdXr5txn0aWRPHVe5+FQJD7ZJ1qk3qcbuR49UT4Ab+0TrZ7vT8zkMZ4jQE4ZvNgg
+	 S5qZcujVezvyTUh5AlsRkXcMd0SXlUnpVjfELFjbSC4yMeX3bGZD+/fRN/ccNZ4Hnj
+	 trg9qrV1k/V0k5yKBQHPZSzMjElWaZctQ5hQ7x5d3LsNT/c4StzSzO50ZaCW9uf5YL
+	 598ELMwP1aFjiD+5rG2qeA6YSWIz/njZKsaSWSs45dpdZm+VxunajgfTQhevwdf8f0
+	 gAEPeyvyXqX1w==
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e398484b60bso4444432276.1;
+        Wed, 18 Dec 2024 07:28:17 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV6BlKWYD9qfCZ1O4Dic/3aVLjAK5n8pUEsKJEQyOOyPYtoUoqy8XS1PzxwMLIBTbKcT5H314iMotpj@vger.kernel.org, AJvYcCWoqtHPdYqsHgL1eK50LI173qnCRKb9TLdwJaOqf6YqEP1Dm+jRpTgL5C+/KhiO/ig3QEhWmWQM7Mxpe99K@vger.kernel.org, AJvYcCXMgiEcyvZmX1ep4U7ObsTExQg2Nsad4/L5BIdh0Frq9hAE/hGPnu9Utkgz7EkY5Aku6NdlGBCehZPO@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRe9ILP0p/Mk4X+LnUEiIlLN0/M4MFtR/RjMz+frC0QHdIIfqQ
+	hcR0t7TVNVrL7A/Pl57yHmuHLxBfxLCYGPMLFi0ngLEQ5C3NR+VqWZu2lBLY2rw8JzhUlzKzXjG
+	VeEeRKYLTlVy6Cf8ISgKLgFm4qQ==
+X-Google-Smtp-Source: AGHT+IGWPh1VNlqeewV9ukHpBb+LSO8Q4pto4IW7h4KptN8IObpPP2ioWDJiia4bJ/qGEZEyjoLm6qqCEvG8gK+NTok=
+X-Received: by 2002:a05:6902:100e:b0:e47:f4e3:8803 with SMTP id
+ 3f1490d57ef6-e53621b7390mr2488995276.20.1734535696526; Wed, 18 Dec 2024
+ 07:28:16 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20241217183711.2525863-1-robh@kernel.org> <87wmfxfg8b.fsf@prevas.dk>
+In-Reply-To: <87wmfxfg8b.fsf@prevas.dk>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 18 Dec 2024 09:28:05 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKuzMMDthdhQgGfmsKQySMReNX2kL4CvMsbKCo96AH_JQ@mail.gmail.com>
+Message-ID: <CAL_JsqKuzMMDthdhQgGfmsKQySMReNX2kL4CvMsbKCo96AH_JQ@mail.gmail.com>
+Subject: Re: [PATCH] of: Add printf '%pOFm' for generating modalias
+To: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc: Petr Mladek <pmladek@suse.com>, Steven Rostedt <rostedt@goodmis.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Sergey Senozhatsky <senozhatsky@chromium.org>, Jonathan Corbet <corbet@lwn.net>, 
+	Saravana Kannan <saravanak@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	Zijun Hu <quic_zijuhu@quicinc.com>, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On Wed, Dec 18, 2024 at 4:16=E2=80=AFAM Rasmus Villemoes
+<linux@rasmusvillemoes.dk> wrote:
+>
+> On Tue, Dec 17 2024, "Rob Herring (Arm)" <robh@kernel.org> wrote:
+>
+> > The callers for of_modalias() generally need the module alias as part o=
+f
+> > some larger string. That results in some error prone manipulation of th=
+e
+> > buffer prepend/append the module alias string. In fact,
+> > of_device_uevent_modalias() has several issues. First, it's off by one
+> > too few characters in utilization of the full buffer. Second, the error
+> > paths leave OF_MODALIAS with a truncated value when in the end nothing
+> > should be added to the buffer. It is also fragile because it needs
+> > internal details of struct kobj_uevent_env. add_uevent_var() really
+> > wants to write the env variable and value in one shot which would need
+> > either a temporary buffer for value or a format specifier.
+> >
+> > Fix these issues by adding a new printf format specifier, "%pOFm". With
+> > the format specifier in place, simplify all the callers of
+> > of_modalias(). of_modalias() can also be simplified with vsprintf()
+> > being the only caller as it avoids the error conditions.
+> >
+> > Cc: Zijun Hu <quic_zijuhu@quicinc.com>
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> >  Documentation/core-api/printk-formats.rst |  1 +
+> >  drivers/of/device.c                       | 25 ++--------------
+> >  drivers/of/module.c                       | 35 +++++------------------
+> >  drivers/of/unittest.c                     |  2 ++
+> >  include/linux/of.h                        |  8 +++---
+> >  lib/vsprintf.c                            |  7 +++--
+> >  6 files changed, 22 insertions(+), 56 deletions(-)
+>
+> This diffstat lacks a lib/test_printf.c line. Please do add test cases
+> when extending vsnprintf().
 
-This fixes the LDO5 regulator handling of the pca9450 driver by
-taking the status of the SD_VSEL into account to determine which
-configuration register is used for the voltage setting.
+Thanks for the review.
 
-Even without this change there is no functional issue, as the code
-for switching the voltage in sdhci.c currently switches both, the
-VSELECT/SD_VSEL signal and the regulator voltage at the same time
-and doesn't run into an invalid corner case.
+There's tests in the DT unittest already for all the pOF formats. I
+guess the exact conditions tested are different given the below issue.
+I would be happy to move those tests, but that doesn't look completely
+trivial. I suppose I can manually construct a struct device_node and
+list of struct property, but that goes against efforts to make both of
+those structs opaque outside of DT code. We could add helper
+functions, but they would only be for this test as this is not the
+normal way we handle DT nodes (i.e. created from a DTB and applied as
+a changeset to the base tree).
 
-We should still make sure, that we always use the correct register
-when controlling the regulator. At least in U-Boot this fixes an
-actual bug where the wrong IO voltage is used and it makes sure
-that the correct voltage can be read from sysfs.
+> >
+> > diff --git a/drivers/of/module.c b/drivers/of/module.c
+> > index 1e735fc130ad..80879d2abea8 100644
+> > --- a/drivers/of/module.c
+> > +++ b/drivers/of/module.c
+> > @@ -8,21 +8,14 @@
+> >  #include <linux/slab.h>
+> >  #include <linux/string.h>
+> >
+> > -ssize_t of_modalias(const struct device_node *np, char *str, ssize_t l=
+en)
+> > +/* Do not use directly, use %pOFm format specifier instead */
+> > +size_t of_modalias(const struct device_node *np, char *str, size_t len=
+)
+> >  {
+> >       const char *compat;
+> >       char *c;
+> >       struct property *p;
+> > -     ssize_t csize;
+> > -     ssize_t tsize;
+> > -
+> > -     /*
+> > -      * Prevent a kernel oops in vsnprintf() -- it only allows passing=
+ a
+> > -      * NULL ptr when the length is also 0. Also filter out the negati=
+ve
+> > -      * lengths...
+> > -      */
+> > -     if ((len > 0 && !str) || len < 0)
+> > -             return -EINVAL;
+> > +     size_t csize;
+> > +     size_t tsize;
+> >
+> >       /* Name & Type */
+> >       /* %p eats all alphanum characters, so %c must be used here */
+>
+>
+> I took a look at of_modalias() with that change applied. While it does
+> seem to end up returning the required "total size had the buffer been
+> big enough", this part
+>
+>                 csize =3D snprintf(str, len, "C%s", compat);
+>                 tsize +=3D csize;
+>                 if (csize >=3D len)
+>                         continue;
+>
+> seems that it will overwrite/replace a longer compat string with a
+> shorter, later one, if we happen to be close to the end of the available
+> space. That's _probably_ not a problem for vsnprintf() itself, or
+> callers such as kasprintf() that do need the exact size but don't care
+> about what might have been produced on the first call to determine that
+> size, but the printf test suite does expect the result of a truncated
+> vsnprintf() to match the full string up to the truncation point. We can
+> probably allow certain test cases to opt out of certain sanity checks if
+> absolutely needed, but perhaps it's simpler to fix of_modalias().
 
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
----
-Changes for v3:
-* Rebase to next-20241218
+Yeah, for purposes of of_modalias, if things don't fit it's going to
+get thrown away and we don't care. But should be possible to fix.
 
-Changes for v2:
-* new patch
----
- arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+>
+> Unrelated, I think the space replacement could be simplified to
+>
+>   if (len > 0)
+>     strreplace(str, ' ', '_');
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-index e0e9f6f7616d9..b97bfeb1c30f8 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-@@ -311,6 +311,7 @@ reg_nvcc_sd: LDO5 {
- 				regulator-name = "NVCC_SD (LDO5)";
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <3300000>;
-+				sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
- 			};
- 		};
- 	};
-@@ -808,7 +809,7 @@ MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d0 /* SDIO_A_D0 */
- 			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d0 /* SDIO_A_D1 */
- 			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d0 /* SDIO_A_D2 */
- 			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d0 /* SDIO_A_D3 */
--			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0x1d0
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0x400001d0
- 		>;
- 	};
- 
-@@ -820,7 +821,7 @@ MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d4 /* SDIO_A_D0 */
- 			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d4 /* SDIO_A_D1 */
- 			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d4 /* SDIO_A_D2 */
- 			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d4 /* SDIO_A_D3 */
--			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0x1d0
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0x400001d0
- 		>;
- 	};
- 
-@@ -832,7 +833,7 @@ MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d6 /* SDIO_A_D0 */
- 			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d6 /* SDIO_A_D1 */
- 			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d6 /* SDIO_A_D2 */
- 			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d6 /* SDIO_A_D3 */
--			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0x1d0
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0x400001d0
- 		>;
- 	};
- 
--- 
-2.47.1
+Nice. That probably didn't exist at the time this was written.
 
+Rob
 
