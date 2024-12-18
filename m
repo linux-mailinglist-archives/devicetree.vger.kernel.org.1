@@ -1,117 +1,101 @@
-Return-Path: <devicetree+bounces-132251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DBE79F6448
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:06:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19E5C9F6450
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:09:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E94B188304E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:06:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6562188AC49
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:09:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98849199249;
-	Wed, 18 Dec 2024 11:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5330A199FC9;
+	Wed, 18 Dec 2024 11:09:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="yXCprO+z";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="c3sb6tH8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zWtI40d/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [5.78.89.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2099227726;
-	Wed, 18 Dec 2024 11:06:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.78.89.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACF62192B94
+	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 11:09:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734519989; cv=none; b=lvoz0der4P6J+GGLg7otVxFZe3z1ui0I/HamXfHa74KS/aqc3xkjrYtP19nwVRbTdS/C9Hhm9PvgExcn9UJUNlqwrlLViPawSGDEBn6HYmqODAtvog68qS7ZTARViq+6TtB/KefBwQBfw437WoRLF+bjU811L/oo6XjnGxoWQ44=
+	t=1734520142; cv=none; b=u63IzAlP/yL4ewRCoNC4TIVezzMkpW2ZNnADm17/y5mP8G/0G+menDsEFY2w5UHJJndIY9gq2pqIJOoawURxK7zyEzZeLjsEVjnnv/KwSDQuEWLqgLFyNXnaOrBPZUGVhQ/JP5RjQvhOkpQz9FKPXooBBWwoXFARt5AFbYeFjBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734519989; c=relaxed/simple;
-	bh=oXfPnGRFbEkjozDA407hzOTccmVamTWj4CrAxuE5vOA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DvzD74qukeX+kj54WWvzOFCUuSd7MgoROo9zICUlfXshFjrYIpPnkyeSjClYxdUB6ERsf32Cxja3ZW2Lq83vx0bTI2YC426MuS0raYWJblqC2KkqzCu04Gie7PaHO12+U6SdtwMBG1m5Yvy2hbVXBmm9Xlki7FIPcKe8r2mnvj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=yXCprO+z; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=c3sb6tH8; arc=none smtp.client-ip=5.78.89.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id ADB3C122FE21;
-	Wed, 18 Dec 2024 02:47:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1734518833; bh=oXfPnGRFbEkjozDA407hzOTccmVamTWj4CrAxuE5vOA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=yXCprO+zF+z/QopJaV5ZmRrypeu/J2JBFbkHX0d4s9qR5bUe+HqGS27MBidilY+y0
-	 ujz59XgbjC7WiX9XhySIhnQ3nbQzlFGMln6AbsbadGuIZur1SWr5p0Krmed0+hySXD
-	 86cQjiLHB1vR78Mag1T7PYQSm8gHpwQG1GL43TLT7wo2yjYfAytVTrn6hmDvaMeCnh
-	 O7Qj+L0vp1UYxZPOpuztHhWe9gtTpYEniTUzbSg+jfz2E4jBWlpwFmWnIvLxYHKTJQ
-	 52yqgQp3OtSRAla595KKvVyjn97XTKUenAffRaqPbCLnT8CeSbA0DQEKENtSMclQpD
-	 9VmPtTHBEGTJQ==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id XXDRVW_v-VyQ; Wed, 18 Dec 2024 02:47:11 -0800 (PST)
-Received: from ketchup (unknown [183.217.82.26])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 0F10F122FE1A;
-	Wed, 18 Dec 2024 02:47:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1734518831; bh=oXfPnGRFbEkjozDA407hzOTccmVamTWj4CrAxuE5vOA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c3sb6tH8CA4AY8pOYptyxflBrvbIt3zADorq8En3ckxb5UlhLO7Hmg0hXveio0EWE
-	 Vhgy/5g6XPQ8qyxpb3o2Gt1AqXQisDelMx1ZMpzSP/y1NBPhHf5b+WeaqMqXaTcS+Y
-	 7FGgits8FJLJjBgbLxfqQarAxMiOyamz7PZes8oFOF4MnRXEM4llTqJbvdXHwzGVRR
-	 1yQTEazvXYpuVAbvk7CIatKJQBtaPBNaiVJ+YzDTYf4E3ideZqKLu4amHFi4AjF+ug
-	 2PicQIpfV3uUr0V6qMEJgeP1nXNx9hsNxfnNy3E0+F2SOkiaaZ9Q/Id221vM0TGXZQ
-	 z1P9iU/1JYY5Q==
-Date: Wed, 18 Dec 2024 10:46:59 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>
-Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>
-Subject: Re: [PATCH v3 0/3] Add clock controller support for Spacemit K1
-Message-ID: <Z2KoI9IXOKTcwJ-b@ketchup>
-References: <20241126143125.9980-2-heylenay@4d2.org>
- <CAJM55Z88=jq4brJeDuXF37yAHqQKCCs7L8gVOdHQhjVT7r-eZA@mail.gmail.com>
+	s=arc-20240116; t=1734520142; c=relaxed/simple;
+	bh=4/YYiE8DrfDSJmT0Dm8s6zXYaOz1sPe9FboUtUKQues=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cdQZFkYAKN60Jy+zaJ5tdw3sTe2QBbPRGKBtFMzQxxKdqgvOz+r7MT2VAmPXhajfaENu2HfqpuH4P57CLecYHNZd2eg7//x/sN+tDC7EQ5fPVHWCf7+t7G/LFUMJynBga+lD7DvRuyaTXyqtYOQzknIT07UQA3ny71NWeNSzObg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zWtI40d/; arc=none smtp.client-ip=209.85.167.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3ebadbb14dcso2142246b6e.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 03:09:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734520140; x=1735124940; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4/YYiE8DrfDSJmT0Dm8s6zXYaOz1sPe9FboUtUKQues=;
+        b=zWtI40d/znsrTkKctZQkBptvybgcJKhgOaglJ3kDQso/gUD1w3adq2fRcTVmL/pGV/
+         u+o/xwmkuytMemRC66QYkpu8OyVvjgN4beMpd9AieNvMgXC3LnbbG/2pnDrcgICss4A7
+         xDj3g1avPciKT88PzRsgkFiSn8HloCDqRv6/QTudzFLeUaQNwDMwIj8Fx8NQNiTp5yzU
+         FP8KKr8PaazgZ50PCujolEiP+tyibI4znXYaI93nQYt8nX7T4dvbSuRUpnwzgO/jmMrV
+         4b56/W48xG/I3sVrb9GrzcaKBNarrXNDW2Ikh36CetyKSkkNzAqcDSofe5V5zKA55B/A
+         PfSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734520140; x=1735124940;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4/YYiE8DrfDSJmT0Dm8s6zXYaOz1sPe9FboUtUKQues=;
+        b=FKEst8SSczxTxyrkerlfZGym9TTBUzXNNmq4/CCwkulkaqkY3+X+rLOlNlY4fwQLfH
+         45YiweJgjg7V06EghT0tFNlUh1hzAWi2rL3PRx52hw5VxogkQkgWc3ITxalz/cqUHGd4
+         XIUwJEbvW1r7AWRcoaxr69E9yXOvQUj5e9GLEEsW7+G6sfX+aWUU3tgzrkWvFYTwuywG
+         nbiz8z7rG++lNAhEeZcTFdO08SlwGG1SnoAEjMONMN+9qQi4jQ4m9Zmz4chZM2ASNRJA
+         /C6x60d7uERGIaRvoLMsfW9boVFuwpwdxYforCBVs7uPxAO8KVKauoVDtT5XfD2hQ+eQ
+         /EXg==
+X-Forwarded-Encrypted: i=1; AJvYcCU2psnh5TSYxXDP0vrX3Z/jowUXmfoAc6yOMmvl1rrsbriHSxyjXXi/pgF3MFICuNlfRnePVLh1voUm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzcx0KYsfIfjDiJ5AO9ZOmkreXyF+jJp22FG+i89uv59teP+upl
+	M+sNldO5p9viHRsS6H3Z2G78a//Pa6rnmAyL4BDZxTllwepVEz0IgzfCtTbEs71PlTTtXPgKh2c
+	jjsdK6y70Fdhlg6RD2wioRyvU7GvU2ygXQxCQbA==
+X-Gm-Gg: ASbGncuowltqWCEZirv6PaAKxmwrVcvt1HjOdSTr5qmWnwIU9Dx7lHQYOC6XWwmqiQG
+	kykN1lA42QfqLbeoHcLt93ugfAeO1At2dckkwQ5c=
+X-Google-Smtp-Source: AGHT+IEFgoxKdoJisFUM5ICD9pBhU+fG3s7zPXYhJrT/VXlT7HQqFQRQC9gMDg4S88yvTnHjNPAX6OW7RBGF95100H4=
+X-Received: by 2002:a05:6808:10d5:b0:3e6:580b:d7d0 with SMTP id
+ 5614622812f47-3eccbf9189dmr1697114b6e.19.1734520139785; Wed, 18 Dec 2024
+ 03:08:59 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJM55Z88=jq4brJeDuXF37yAHqQKCCs7L8gVOdHQhjVT7r-eZA@mail.gmail.com>
+References: <20241217-acpm-v4-upstream-mbox-v5-0-cd1d3951fe84@linaro.org> <20241217-acpm-v4-upstream-mbox-v5-3-cd1d3951fe84@linaro.org>
+In-Reply-To: <20241217-acpm-v4-upstream-mbox-v5-3-cd1d3951fe84@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Wed, 18 Dec 2024 11:08:48 +0000
+Message-ID: <CADrjBPr82hvSSyULxi0k08ts2d1vO41qXvmr08+9wP-MB9fhvQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] MAINTAINERS: add entry for Samsung Exynos mailbox driver
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, andre.draszik@linaro.org, 
+	kernel-team@android.com, willmcvicker@google.com, daniel.lezcano@linaro.org, 
+	vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Dec 04, 2024 at 03:54:25AM -0800, Emil Renner Berthing wrote:
-> Haylen Chu wrote:
-> > The clock tree of Spacemit K1 is managed by several independent
-> > controllers in different SoC parts. In this series, all clock hardwares
-> > in APBS, MPMU, APBC and APMU, are implemented. With some changes to UART
-> > driver, CPU cores and UARTs could be brought up (see below). More clocks
-> > will be implemented later soon.
-> >
-> > No device tree changes are included since Spacemit K1 UART needs two
-> > clocks to operate, but for now the driver gets only one. I would like to
-> > defer the changes until this is resolved.
-> 
-> Hi,
-> 
-> Do you have a git tree with these dt changes though? It's impossible to test
-> this patchset without them.
-> 
-> /Emil
+Hi Tudor,
 
-I'll send the dt changes together in v4, as suggested by Yixun.
+On Tue, 17 Dec 2024 at 09:40, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>
+> Add entry for the Samsung Exynos mailbox driver.
+>
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+> ---
 
-Thanks,
-Haylen
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
