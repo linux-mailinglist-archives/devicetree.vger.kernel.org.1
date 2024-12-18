@@ -1,111 +1,174 @@
-Return-Path: <devicetree+bounces-132126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E259F5F1E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 08:19:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36D609F5F3E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 08:25:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4C6C188260F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 07:19:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A2A11693F9
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 07:25:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E1F155C83;
-	Wed, 18 Dec 2024 07:19:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A32C158858;
+	Wed, 18 Dec 2024 07:25:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="MTiALRME"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VLzrkF6z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D5120ED
-	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 07:19:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855B014B077;
+	Wed, 18 Dec 2024 07:25:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734506357; cv=none; b=UaDn8odQjlmegVjZDeWN4UXaomVggn7F0n+LyXD/QBAocqJJ9Ni41AeYgVFhBpvIr61Na/Z6Q2e7+2Kp0hNr6TLpr7isKyU4gulTLe5rsxB16DRf7pDcXiUO2pBBBiUoEmhP6ppyyaSsLNmnLPi8fwfU7w9gJvnqLD1b3Aa30b4=
+	t=1734506738; cv=none; b=I4bI/cDwrPbSa9ZlXRYgzfS66fwNdeA9UnDFk3ZRGZl7OBTvSdWEpdvRahQo700QL9TLcHNB7mtXame8f5UM22U06hslwGL8W8yQYbwCjtkqOfF7l93k9yR9rotdh/i0SV7iR66CC/MuMjkkFovhybSPAQc6sj6eEAqdWOeY1Es=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734506357; c=relaxed/simple;
-	bh=xeiVg1VgdswMkCM5FP1I7NzFz+gdW4vVcM5e4xx9a7s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ePYmwPsQFHdfNQvyXA3W6n77k2t75LXW9s9Bmx6m6qbZZKB+euxcOCXAQav/H0b8HDTx8b1KQhEKOuEu232t6hqKcFGyK6FcQxLuFBXlRBDWZqtaPhyl19JeVUh6qpRwH3fuxABS3OLaR7RpMKlauRBljSJ6CF93r1EGocoGEAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=MTiALRME; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=xeiV
-	g1VgdswMkCM5FP1I7NzFz+gdW4vVcM5e4xx9a7s=; b=MTiALRMELXCSDMySwJEE
-	qUrw7Sbypufbwo6aiwAdzlSBcBmLSLmCUI6QDf33CAypoz65LtUB3tXR0kkdXuM8
-	h/SVsZSlpzCOj1UoG/PM0f5M+dogiusD26bPfdKKKmoYuJdk2gzAy3n4KMSSwQRS
-	BMlZjybefP+L7btHP5/jBgkkaRX9TrOAkEgHNbTNzhpYBvhuyGTE7Ru39X2htyxp
-	UvHAVhickt1cGvG/0Z7HrMwaAKpAHOsBaCxKxaU3+guRo7SkjRiqfzgaGkfscvej
-	XuEJrRPsBAbxMohBuqa56jUWmvcWhipucDL4FfvL+bO+CFlYyZssV27lKxUrQlkh
-	PA==
-Received: (qmail 196578 invoked from network); 18 Dec 2024 08:19:05 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 18 Dec 2024 08:19:05 +0100
-X-UD-Smtp-Session: l3s3148p1@W6KMOoYpVJMujnsY
-Date: Wed, 18 Dec 2024 08:19:04 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: lm75: Add NXP P3T1755 sensor
-Message-ID: <Z2J3aPGYpBs1awFf@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Conor Dooley <conor@kernel.org>, linux-renesas-soc@vger.kernel.org,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org
-References: <20241217120304.32950-4-wsa+renesas@sang-engineering.com>
- <20241217120304.32950-5-wsa+renesas@sang-engineering.com>
- <20241217-pursuable-trustable-23678e5e4a86@spud>
+	s=arc-20240116; t=1734506738; c=relaxed/simple;
+	bh=Nyn2llNRgrE3c0TiG/8Iy4jQeqUsMO97SgApNunDDOQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=P4gLDCzHoWZEYqYCL8XLB7hPCW6gcF10Qyng9rFl+hFyDlD7fX+jR9/2v3YeYflUxaAHLorHEFPZWV3glz6TYe20fFAxG/87nH2TLNHRb9wkcy3KfWOu0ttBc0Z+A47tMp1F8xm6wGHiy1h1GQrGaD/E1WJI9cLDSrEfWeLEZTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VLzrkF6z; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BI4sMAU001865;
+	Wed, 18 Dec 2024 07:25:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3Z4W6jFrpDDtKiC9NIbf8Go6/NgQkWsIptmOlqe3R6s=; b=VLzrkF6zlkeksGy4
+	zV35pxH+tT0Ie3ewi/nR1stQr93QaUFly656LkqD7Z16hz6Hb1skufUYo+JfGlF/
+	H6TC1wmTEl8sjJh7PFcrlczgXbxFsGYH1NvFsPx1M8A2ge46Y84qQtbeqaVY5Mu7
+	Mb/3srZ6Zs3FDhsrG9zV9nnj3YcVwJsZhDjtBBukfi7goAWGrVTQOyV2euwHdkQu
+	m5HMQR63Aof7q38WCuSJDdtoz+F3DPRQiSoI9HM0wV0aTVJw262kYYjImsQ9Mco/
+	56HtpopJK9uipITuLvFPRJbbFJx6pBnfLpvizGWkYa1rI2s2Dfjcn+zdJHT4ryP5
+	rlaj1A==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43kqs3ga7r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Dec 2024 07:25:29 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BI7PSAe002277
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Dec 2024 07:25:28 GMT
+Received: from [10.253.15.72] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 17 Dec
+ 2024 23:25:25 -0800
+Message-ID: <aa1dcdf6-94a0-4922-83f0-3cf49516ac4f@quicinc.com>
+Date: Wed, 18 Dec 2024 15:25:22 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="K2mrlFPF+aUvFWNp"
-Content-Disposition: inline
-In-Reply-To: <20241217-pursuable-trustable-23678e5e4a86@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs615-ride: Enable ethernet
+ node
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>
+References: <2556b02c-f884-40c2-a0d4-0c87da6e5332@quicinc.com>
+ <75fb42cc-1cc5-4dd3-924c-e6fda4061f03@quicinc.com>
+ <4a6a6697-a476-40f4-b700-09ef18e4ba22@lunn.ch>
+ <441f37f5-3c33-4c62-b3fe-728b43669e29@quicinc.com>
+ <4287c838-35b2-45bb-b4a2-e128b55ddbaf@lunn.ch>
+ <2e518360-be24-45d8-914d-1045c6771620@quicinc.com>
+ <31a87bd9-4ffb-4d5a-a77b-7411234f1a03@lunn.ch>
+ <581776bc-f3bc-44c1-b7c0-4c2e637fcd67@quicinc.com>
+ <174bd1a3-9faf-4850-b341-4a4cce1811cb@lunn.ch>
+ <d711ee4b-b315-4d34-86a6-1f1e2d39fc8d@quicinc.com>
+ <8acf4557-ac10-43f1-b1ab-7ae63f64401f@lunn.ch>
+Content-Language: en-US
+From: Yijie Yang <quic_yijiyang@quicinc.com>
+In-Reply-To: <8acf4557-ac10-43f1-b1ab-7ae63f64401f@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: A4ZjIu75VbPGB7_ca6tBmQcOQdnuVuo8
+X-Proofpoint-GUID: A4ZjIu75VbPGB7_ca6tBmQcOQdnuVuo8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=899 bulkscore=0 mlxscore=0 spamscore=0 lowpriorityscore=0
+ adultscore=0 impostorscore=0 malwarescore=0 priorityscore=1501
+ clxscore=1015 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412180058
 
 
---K2mrlFPF+aUvFWNp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
+On 2024-12-17 18:18, Andrew Lunn wrote:
+> On Tue, Dec 17, 2024 at 10:26:15AM +0800, Yijie Yang wrote:
+>>
+>>
+>> On 2024-12-16 17:18, Andrew Lunn wrote:
+>>>> I intend to follow these steps. Could you please check if they are correct?
+>>>> 1. Add a new flag in DTS to inform the MAC driver to include the delay when
+>>>> configured with 'rgmii-id'. Without this flag, the MAC driver will not be
+>>>> aware of the need for the delay.
+>>>
+>>> Why do you need this flag?
+>>>
+>>> If the phy-mode is rgmii-id, either the MAC or the PHY needs to add
+>>> the delay.
+>>>
+>>> The MAC driver gets to see phy-mode first. If it wants to add the
+>>> delay, it can, but it needs to mask out the delays before passing
+>>> phy-mode to the PHY. If the MAC driver does not want to add the
+>>> delays, pass phy-mode as is the PHY, and it will add the delays.
+>>
+>> In this scenario, the delay in 'rgmii-id' mode is currently introduced by
+>> the MAC as it is fixed in the driver code. How can we enable the PHY to add
+>> the delay in this mode in the future (If we intend to revert to the most
+>> common approach of the Linux kernel)? After all, the MAC driver is unsure
+>> when to add the delay.
+> 
+> You just take out the code in the MAC driver which adds the delay and
+> masks the phy-mode. 2ns should be 2ns delay, independent of who
+> inserts it. The only danger is, there might be some board uses a PHY
+> which is incapable of adding the 2ns delay, and such a change breaks
+> that board.
 
-> Commit body is entirely missing? What differentiates this device from
-> the others in the file?
+Okay, I will follow your instructions:
+1. Change the phy-mode to 'rgmii-id'.
+2. Add the delay in the MAC driver.
+3. Mask the phy-mode before passing it to the PHY.
 
-Okay, will add this info.
+> 
+> But i assume Qualcomm RDKs always make use of a Qualcomm PHY, there is
+> special pricing if you use the combination, so there is probably
+> little incentive to use somebody elses PHY. And i assume you can
+> quickly check all Qualcomm PHYs support RGMII delays. PHYs which don't
+> support RGMII delays are very rare, it just happened that one vendors
+> RDK happened to use one, so they ended up with delays in the MAC being
+> standard for their boards.
+> 
 
+Most Qualcomm MAC applications are actually paired with a third-party 
+PHY. I agree that the original author's PHY might not support adding the 
+delay. However, this assumption cannot be verified since the initial 
+code was uploaded from the internal code base.
 
---K2mrlFPF+aUvFWNp
-Content-Type: application/pgp-signature; name="signature.asc"
+> 	Andrew
+> 
 
------BEGIN PGP SIGNATURE-----
+-- 
+Best Regards,
+Yijie
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmdid2gACgkQFA3kzBSg
-KbZmTw//XbhcOg28nbZJiVqlemQMjtB08XQsIGxc6YjTTsEyobmz+OObjs9EwCAL
-Jcul7j2AgyLCLdFWlIIwe0o+z5veGaWotZYCwQpIdSaoXA2amvCDHOtdQXMa5tEQ
-wHigkyighChZz70gzoxBuVTsUQ7mKLpNzRaBe6pIsCbzfhrMdBA2dbqlSQDl+93m
-NJ8Anj0TfBz2S/Mpf4hK5htpOYHIwyBRc2FEjqRsxPq6aQssT9VhvbiNKuiE75tH
-22gi3IRItEz/hNMjc8hVn3oAcg/fCwST6AuHCLbGHkndoTfQ09vrNy+DCke5r/ly
-0ZzkcuoXfR5wiHb9xGSN2C3mlHnd1UWc9Moc7K6Huev+cfB9KU+Boj6vk5vYXiYL
-0zhc4FDlxPqpbUi6JKbF3Ifp3K6d7JRZ+b85HURdnW4ZkzvuCKV8yvv0ByV6syLA
-EfO46isKkLE6Nmh9is+PI+SMbgRJmFpjeld3WFYzVfhGsrIeGAGB12IGXypq1vg3
-g3I5UM98G+DWqjUJMjTEibigpYcDE0VLEXbQtPESwr8PzrggPthexjnMyJGIVnv6
-IAIjIsYxCl9KglqVFYJhZ6CdyKIrVTxECtHpcoFB2f5At4DDas0rqlYoiGhu9Dk+
-yJYtQDZBwCnP9syQireKFSYPEyKpCHTXcXh2UHGj26ExpdkrC9Y=
-=tr+g
------END PGP SIGNATURE-----
-
---K2mrlFPF+aUvFWNp--
 
