@@ -1,338 +1,290 @@
-Return-Path: <devicetree+bounces-132238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57AAA9F63BA
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:47:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 117809F63BE
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:48:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5ADBE7A6C52
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:46:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03D3B7A1AB1
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:48:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B61E19CC36;
-	Wed, 18 Dec 2024 10:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABFD7199EA1;
+	Wed, 18 Dec 2024 10:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LX4JUP/v"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="ogrt14yU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2059.outbound.protection.outlook.com [40.107.104.59])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C36D618CC0B;
-	Wed, 18 Dec 2024 10:46:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734518793; cv=none; b=C6ipfUcrhRIpduuos4+XNU9yC+Gwr93rBnYRSJfAta8bsRVayaG9+Nf/L8Z23Xik0+l+VgWoTaLiqJekLGcPnZyzNGuV9RFVWVNyqjzAPBHoa3qI62alDPBulew+dwxjSCJ00+tl6d/47UcG3/4T7EUmhFkeQor7XfI5pwYdd9o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734518793; c=relaxed/simple;
-	bh=LeiZxD2SS3cnNCc/TjgOhlqPqcTTP3BwDJy26ihMB+k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BvVmqF1vbXUvO2MLNueqouupOe3B74uk57qUXB2cedbSibPTGSYFGZ7zAitwW7ouqWMISv+FGDaB7q8dRsHgNviFKyuiWdrKPVSfPW9BhWQ91QEbeNn4Nd7fzAMjoBqqKDAqtoPCbU+OFlAzi8iD9f1DeUKXeun87SDWCcQvF9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LX4JUP/v; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BI8Z694014089;
-	Wed, 18 Dec 2024 10:46:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/eXvcoGmIBVKFH6y4YfisOJWEdByPj+xqRty+twjcn4=; b=LX4JUP/vRTgAbPZ3
-	iNLWB5+Qb2eeUXNp+oi/iLjbyGGmVatwoeUMP/HJO3XohuRjgWrIWR90qTeMTpIV
-	8Dln5qQejOBHPu+AsBG4cK0D9nPVTX0LWJW9zJ5OU/ENtaZj6vhaofAbCxpplc7A
-	OKfJ0W6x04cMwMtsLYzQ5aA3WMidQGxhowG3PU4Y/pvZWW3o6DsnrRLCe2T1EJII
-	6SVSsO/v+Ez1l5zAkOkwXlB4Js++N96SVr+HxQpwlftt4+z/cz9SuzYpY4I/DvTD
-	5Q3AfOFS8f8c4462eHSlQaknHuiQcDOy1tAeOXDJo/MFs3QPX4YMq+D5Q1FqkgxH
-	Vzj7RQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43ku0p0avj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Dec 2024 10:46:26 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BIAkQ1Q009568
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Dec 2024 10:46:26 GMT
-Received: from [10.231.216.103] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 18 Dec
- 2024 02:46:22 -0800
-Message-ID: <283a54b2-6e00-4d3a-95a3-df4a06bc1292@quicinc.com>
-Date: Wed, 18 Dec 2024 18:46:20 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DABBA136671;
+	Wed, 18 Dec 2024 10:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.59
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734518926; cv=fail; b=eIp3+Qu8NBFxmIsgJuCznaQkNr3Ukh23oVxsUdpBpcHZPdRQ7+QJrzwF1dIfAGkYSEu2zv3Sjs46vRfxddZBK35xuwDPKvF0FAbHPCBH4GtlF2mXzCOwwtESsIZs3nTBARGknv5E9ZDOZP7ywdJbVxAX1bcnptcAgqcjoGYH+Mc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734518926; c=relaxed/simple;
+	bh=ENoZETrr7mluiq+EKe6/vEtA0Vb7OyrsIDmIeZNd2LY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=n7BkfjoyBy/0hrrV3AduCW3TS0Eg5tu2CCHBtHp5pPcm+tE+EQczec+W5hPtobOpJcZMlklfFizeEMYTVej/yr8IbVt/lPE2cc6y/XGSjqN2ZLLEX7MkXpry3LuXdeyCu8H29YoWwEuCrRfr5cjk+RY/BN/IHtRb5pFjP6iz2vM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=ogrt14yU; arc=fail smtp.client-ip=40.107.104.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lvLCP5VEpBFRnINFxuh2isMsrXueMx4aG/DIqC+EArWaAHXJNz5QMZ0Vj/KYvGiah0JfZyOgTsrPU1yYrI+anfwlu2BfqSI5FUXvQr04Lc+j6YVy86b93Toy1DiQ1NfvGiI0yZdywoufonm4K8e4hxfcWNvWXmcYYEl7QJJcQObHTEW/+IDFy+uogMIcw/dYf8DJb0KerU5EjiRPXLHA/eIAdis6vty1pgfZn+tYkP+MKHAPdPEJ4wb1UupI78I9BW4RbOi3VXOvR4pJhi7OKCvnMMA0g02FpA2WvHagJBgkNLFv5Y72HCAsjqtadrRW6pKF0SrCJ0WcI0Ws3AsExQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jlX2iHZtcBHSSQlIGUQzq/mNMcF6lNPdcrmW2cY/3M0=;
+ b=TijvHIOoxhVKjrpLtmw0KJWCsD+rOZ3fMM0i036SDRoY6yJZ3NYoomuYePvNhEvRJFM/GNveJuQbmw6Zz6+4vSNB6VB1CnVDq12wNbv7YIuG9hq4UHT6P/yPaWB7kOmk47Lr4K3V3tmhbG2kRzR8x21G3z9fFswH0/nHEmNyiy6F++7z12JqOjumrrnadEFbTPxh4ks/ne4h+s2t30EBonrcMvxQNUHgS2R0NCK1aEtbdAeArIxh5C78+3w83+IsZnuuCfsh3x90iDBwx9b/Rt6fS6ldSvqoEQONhYK8ySsFd2A5I6YCJvywj+r/nJ4x5cgaNieSgtp6zcuPwmJWIg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=gmail.com smtp.mailfrom=axis.com; dmarc=pass
+ (p=none sp=none pct=100) action=none header.from=axis.com; dkim=none (message
+ not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jlX2iHZtcBHSSQlIGUQzq/mNMcF6lNPdcrmW2cY/3M0=;
+ b=ogrt14yUWB4XWM88rbA5RN/EegHnWLzqZrhwIPMDPqXcRC7eJ/q+/rW6dk1aduznsDzyoKCfDgwCqznO87RjjoqsU2Xp4p75VBJoslTzt+f22rZ0DBxekSiGQPeTIvrpYYfsdvU5H0bZjUE03q2PH/cfnWsb/X5Ye4Xb2xStT+8=
+Received: from PAZP264CA0077.FRAP264.PROD.OUTLOOK.COM (2603:10a6:102:1fa::15)
+ by AS8PR02MB8827.eurprd02.prod.outlook.com (2603:10a6:20b:53c::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.13; Wed, 18 Dec
+ 2024 10:48:41 +0000
+Received: from AM1PEPF000252DE.eurprd07.prod.outlook.com
+ (2603:10a6:102:1fa:cafe::ac) by PAZP264CA0077.outlook.office365.com
+ (2603:10a6:102:1fa::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8251.22 via Frontend Transport; Wed,
+ 18 Dec 2024 10:48:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=axis.com;
+Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
+ 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com; pr=C
+Received: from mail.axis.com (195.60.68.100) by
+ AM1PEPF000252DE.mail.protection.outlook.com (10.167.16.56) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8251.15 via Frontend Transport; Wed, 18 Dec 2024 10:48:41 +0000
+Received: from se-mail02w.axis.com (10.20.40.8) by se-mail01w.axis.com
+ (10.20.40.7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Wed, 18 Dec
+ 2024 11:48:40 +0100
+Received: from se-intmail01x.se.axis.com (10.4.0.28) by se-mail02w.axis.com
+ (10.20.40.8) with Microsoft SMTP Server id 15.1.2507.44 via Frontend
+ Transport; Wed, 18 Dec 2024 11:48:40 +0100
+Received: from pc48051-2208.se.axis.com (pc48051-2208.se.axis.com [10.96.59.31])
+	by se-intmail01x.se.axis.com (Postfix) with ESMTP id 7FFE0173;
+	Wed, 18 Dec 2024 11:48:40 +0100 (CET)
+Received: by pc48051-2208.se.axis.com (Postfix, from userid 21236)
+	id 7CF0818E1EC0; Wed, 18 Dec 2024 11:48:40 +0100 (CET)
+From: Per-Daniel Olsson <perdaniel.olsson@axis.com>
+To: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Javier Carrasco
+	<javier.carrasco.cruz@gmail.com>
+CC: <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <rickard.andersson@axis.com>,
+	<kernel@axis.com>, Per-Daniel Olsson <perdaniel.olsson@axis.com>
+Subject: [PATCH v10 0/2] Support for Texas Instruments OPT4060 RGBW Color sensor.
+Date: Wed, 18 Dec 2024 11:48:34 +0100
+Message-ID: <20241218104836.2784523-1-perdaniel.olsson@axis.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] media: dt-bindings: qcom-venus: Deprecate
- video-decoder and video-encoder where applicable
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Stanimir Varbanov
-	<stanimir.k.varbanov@gmail.com>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <quic_vnagar@quicinc.com>, <quic_dikshita@quicinc.com>,
-        <konradybcio@kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Stanimir Varbanov
-	<stanimir.varbanov@linaro.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-References: <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-0-ef7e5f85f302@linaro.org>
- <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-3-ef7e5f85f302@linaro.org>
-Content-Language: en-US
-From: Renjiang Han <quic_renjiang@quicinc.com>
-In-Reply-To: <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-3-ef7e5f85f302@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ksa4pbXwkKoXrJeGdx5DbJmuO3bfNXKa
-X-Proofpoint-GUID: ksa4pbXwkKoXrJeGdx5DbJmuO3bfNXKa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
- suspectscore=0 clxscore=1011 lowpriorityscore=0 adultscore=0 mlxscore=0
- priorityscore=1501 mlxlogscore=999 spamscore=0 bulkscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412180087
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM1PEPF000252DE:EE_|AS8PR02MB8827:EE_
+X-MS-Office365-Filtering-Correlation-Id: cde13488-c035-45f0-7bad-08dd1f518971
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?1nJlLFzayOC2DcOOW5AQg522bMhsa+Pb0Z/sVZARkBk+1B+oSfx45mXx+dzv?=
+ =?us-ascii?Q?o2erFeD8XYwoVhih2ljLPaWbeYqKeeDv9n/UP6OFezmQwD8yrN36MRM+hEhM?=
+ =?us-ascii?Q?yHSOafXjhVaQUQO9Qj+5rtK/be8iW/hKlORu696fyu//wHkopB9MRDzXK/0i?=
+ =?us-ascii?Q?43GU0ruXUQt1YWHb8ZX1c6ZtYEJgIT2RPUydud/VtAI56SZxr5P6XKsE9+V0?=
+ =?us-ascii?Q?Kxl37SFW/AMRzqcIcaPEs78kdjjro1ONedXKXJBVPdM6CFKhbpMX2R/nhKXk?=
+ =?us-ascii?Q?/cOysV2ljlllXUxzO73n2sfk68VTArUeG3SSb2c3tIJ9gFHyskzVR93+dXCV?=
+ =?us-ascii?Q?LmE3a+QQbl8kPyJl2g9tEH5LPZM0tKS3nWzLPuRWsXutlDNdzJ5Zts+HqKc8?=
+ =?us-ascii?Q?gnpvzDAvgf2+7qzX78+LZTeDFqS8c0d7nkrRxsq4vEQsB2iR/SIqtxYSR44J?=
+ =?us-ascii?Q?kV94KNuQNlKpmRQ+QHfa67e6rzuKTI4myjqXfkib8Dhz8jMDKr/36L/8kJC7?=
+ =?us-ascii?Q?NzEijRhoaTvOsADFQkGjNAYWnY6HCcTE+7Bj/td5OJCjFZnd6PgL1iGedoJm?=
+ =?us-ascii?Q?fsilLI2zqeYIjodhl9EKRMhfxq4g3T2WfHy1eWwCtHlG87Y6CRswAACnGP3b?=
+ =?us-ascii?Q?7HebREABr7b11vFhxVpYnQ1HGYgcwGxoYBo82DTAYibSHsPlh/T0LiUIAnmD?=
+ =?us-ascii?Q?Z48SLrCd7eoVLgAKZAuWtqUuDKIPgsHPFjBXAvQm/pF7KpfNGGqzDQGc671O?=
+ =?us-ascii?Q?KN0T/1Dz/rjG6L5h6Xc6wnxalS9Veg4gFqM5ZX/ZJ7HDWhuv6xEm7nsPdDsl?=
+ =?us-ascii?Q?pngbCutEhMyPtmeKHByjVqWBXrjsFgQ1ToEToKg9eib+4CW0LmD3OBqVSh/N?=
+ =?us-ascii?Q?zlq8h+vpj7y6Ab+vK6cbrZtUn4mEeiU6DucoDwLrpEvTuYMFyEdjf3ieTjUg?=
+ =?us-ascii?Q?fvMAc9tbmdrluf1ysdy5WAxDqzkTbODA5QzjvnojGk/1cQmQP0ZtwsqWs9tN?=
+ =?us-ascii?Q?d/PU9xVXpUNctn+zVSXv5zYmvAnJcKNQPyyNpQ+UdyrdEdhxl3+tQZeS1ZY0?=
+ =?us-ascii?Q?ILJfhb/eJmIbKtYb4ynROx6oYseJAjUyYy2dNeMuEFpovjJyZAAESGvxE1B1?=
+ =?us-ascii?Q?/K2O0H2no/+LN48EWx3dhOnrf9UfJnRCx40OBgGfnLJBohBzVhVr5lXztUBa?=
+ =?us-ascii?Q?CO7EBnBWugrdu7uabv7u5bswWKO+TTJrdQ6P+OTpGyL38rpBBd/+UI97JzWd?=
+ =?us-ascii?Q?Ez0IQUMUi+MIVjMBopk4ojbCRsVHI0RovCtK1FaNeQtFMY78v/iC4Oa/JxY/?=
+ =?us-ascii?Q?JA8BqbppvNNhSRFKEIv3rc16UiPROPmJm7/SmvVpD8UgJFxZKaGDpqW/OqmY?=
+ =?us-ascii?Q?LjVrhbbOMG+RsU4q9IfbvxyWWPCyBCBg1Ief+16zY3SoviyKvZ2Ow6ks7ioP?=
+ =?us-ascii?Q?CV+S5CUvjg0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2024 10:48:41.4737
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: cde13488-c035-45f0-7bad-08dd1f518971
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM1PEPF000252DE.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR02MB8827
 
+This patch series adds support for Texas Instruments OPT4060 RGBW Color sensor
+using the i2c interface.
 
-On 12/9/2024 7:52 PM, Bryan O'Donoghue wrote:
-> For the list of yaml files here the video-decoder and video-encoder nodes
-> provide nothing more than configuration input for the driver. These entries
-> do not in fact impart hardware specific data and should be deprecated.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->   .../devicetree/bindings/media/qcom,msm8916-venus.yaml        | 12 ++----------
->   .../devicetree/bindings/media/qcom,sc7180-venus.yaml         | 12 ++----------
->   .../devicetree/bindings/media/qcom,sc7280-venus.yaml         | 12 ++----------
->   .../devicetree/bindings/media/qcom,sdm845-venus-v2.yaml      | 12 ++----------
->   .../devicetree/bindings/media/qcom,sm8250-venus.yaml         | 12 ++----------
->   5 files changed, 10 insertions(+), 50 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml b/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-> index 9410f13ca97c181973c62fe62d0399fc9e82f05d..da140c2e3d3f3c3e886496e3e2303eda1df99bb4 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-> @@ -45,6 +45,7 @@ properties:
->       required:
->         - compatible
->   
-> +    deprecated: true
->       additionalProperties: false
->   
->     video-encoder:
-> @@ -57,13 +58,12 @@ properties:
->       required:
->         - compatible
->   
-> +    deprecated: true
->       additionalProperties: false
->   
->   required:
->     - compatible
->     - iommus
-> -  - video-decoder
-> -  - video-encoder
->   
->   unevaluatedProperties: false
->   
-> @@ -83,12 +83,4 @@ examples:
->           power-domains = <&gcc VENUS_GDSC>;
->           iommus = <&apps_iommu 5>;
->           memory-region = <&venus_mem>;
-> -
-> -        video-decoder {
-> -            compatible = "venus-decoder";
-> -        };
-> -
-> -        video-encoder {
-> -            compatible = "venus-encoder";
-> -        };
->       };
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-> index 5cec1d077cda77817f6d876109defcb0abbfeb2c..83c4a5d95f020437bd160d6456850bc84a2cf5ff 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-> @@ -70,6 +70,7 @@ properties:
->       required:
->         - compatible
->   
-> +    deprecated: true
->       additionalProperties: false
->   
->     video-encoder:
-> @@ -82,14 +83,13 @@ properties:
->       required:
->         - compatible
->   
-> +    deprecated: true
->       additionalProperties: false
->   
->   required:
->     - compatible
->     - power-domain-names
->     - iommus
-> -  - video-decoder
-> -  - video-encoder
->   
->   unevaluatedProperties: false
->   
-> @@ -114,12 +114,4 @@ examples:
->                         "vcodec0_core", "vcodec0_bus";
->           iommus = <&apps_smmu 0x0c00 0x60>;
->           memory-region = <&venus_mem>;
-> -
-> -        video-decoder {
-> -            compatible = "venus-decoder";
-> -        };
-> -
-> -        video-encoder {
-> -            compatible = "venus-encoder";
-> -        };
->       };
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-> index 10c334e6b3dcf25967fa438f8e6e5035448af1b9..413c5b4ee6504ba1d5fe9f74d5be04ad8c90c318 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-> @@ -68,6 +68,7 @@ properties:
->       required:
->         - compatible
->   
-> +    deprecated: true
->       additionalProperties: false
->   
->     video-encoder:
-> @@ -80,14 +81,13 @@ properties:
->       required:
->         - compatible
->   
-> +    deprecated: true
->       additionalProperties: false
->   
->   required:
->     - compatible
->     - power-domain-names
->     - iommus
-> -  - video-decoder
-> -  - video-encoder
->   
->   unevaluatedProperties: false
->   
-> @@ -125,14 +125,6 @@ examples:
->   
->           memory-region = <&video_mem>;
->   
-> -        video-decoder {
-> -            compatible = "venus-decoder";
-> -        };
-> -
-> -        video-encoder {
-> -            compatible = "venus-encoder";
-> -        };
-> -
->           video-firmware {
->               iommus = <&apps_smmu 0x21a2 0x0>;
->           };
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml
-> index 6228fd2b324631f3138e128c918266da58f6b544..c839cb1ebc0999e10b865f4bb43ea76ffa2bf46d 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml
-> @@ -70,6 +70,7 @@ properties:
->       required:
->         - compatible
->   
-> +    deprecated: true
->       additionalProperties: false
->   
->     video-core1:
-> @@ -82,14 +83,13 @@ properties:
->       required:
->         - compatible
->   
-> +    deprecated: true
->       additionalProperties: false
->   
->   required:
->     - compatible
->     - power-domain-names
->     - iommus
-> -  - video-core0
-> -  - video-core1
->   
->   unevaluatedProperties: false
->   
-> @@ -119,12 +119,4 @@ examples:
->           iommus = <&apps_smmu 0x10a0 0x8>,
->                    <&apps_smmu 0x10b0 0x0>;
->           memory-region = <&venus_mem>;
-> -
-> -        video-core0 {
-> -            compatible = "venus-decoder";
-> -        };
-> -
-> -        video-core1 {
-> -            compatible = "venus-encoder";
-> -        };
->       };
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
-> index f66033ae8b590e7b6f1e344c368994744411aca2..da54493220c9dc90e7d9f5fcfce7590acb241c85 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
-> @@ -73,6 +73,7 @@ properties:
->       required:
->         - compatible
->   
-> +    deprecated: true
->       additionalProperties: false
->   
->     video-encoder:
-> @@ -85,6 +86,7 @@ properties:
->       required:
->         - compatible
->   
-> +    deprecated: true
->       additionalProperties: false
->   
->   required:
-> @@ -95,8 +97,6 @@ required:
->     - iommus
->     - resets
->     - reset-names
-> -  - video-decoder
-> -  - video-encoder
->   
->   unevaluatedProperties: false
->   
-> @@ -132,12 +132,4 @@ examples:
->           resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
->                    <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
->           reset-names = "bus", "core";
-> -
-> -        video-decoder {
-> -            compatible = "venus-decoder";
-> -        };
-> -
-> -        video-encoder {
-> -            compatible = "venus-encoder";
-> -        };
->       };
-It is working fine on QCS615.
-Tested-by: Renjiang Han <quic_renjiang@quicinc.com>
+The driver exposes raw adc values for red, green, blue and clear. The
+illuminance is exposed as a calculated value in lux, the calculation uses the
+wide spectrum green channel as base. The driver supports scale values for red,
+green and blue. The raw values are scaled so that for a particular test light
+source, typically white, the measurement intensity is the same across the
+different color channels. Integration time can be configured through sysfs as
+well. The OPT4060 sensor supports both rising and falling threshold interrupts.
+These interrupts are exposed as IIO events. The driver also implements an IIO
+triggered buffer with a trigger for conversion ready interrupts.
 
--- 
-Best Regards,
-Renjiang
+Changes in v10:
+- Comments added for mutexes.
+- Mutex handling implemented using guard instead of mutex_lock/unlock in various places.
+- A guard has been added to opt4060_write_event_config() to prevent races.
+- opt4060_set_continuous_mode() renamed to opt4060_set_sampling_mode().
+- Better comments in opt4060_set_sampling_mode() to explain usage of regmap_write.
+- Procedure added to claim either buffer mode or direct mode in opt4060_set_driver_state().
+- Improved comments in various places.
+- Added a separate struct iio_info without events for the case without interrupts.
+- Removed the incorrect IRQF_TRIGGER_RISING from devm_request_threaded_irq().
+- Replaced mutex_init with devm_mutex_init.
+- Link to V9: https://lore.kernel.org/lkml/20241211140409.1619910-1-perdaniel.olsson@axis.com/
+
+Changes in v9:
+- Implemented mitigation for race conditions between buffers, sysfs read and events.
+This resulted in fairly big changes around opt4060_trigger_one_shot(...),
+opt4060_trigger_set_state(...) and opt4060_event_set_state(...). Some functions
+are renamed and moved within the file. The general concept is that direct mode
+has to be claimed for removing continuous sampling and irq.
+- Fixed some typos.
+- Changed in_intensity_xxx_scale to return factors instead of scaled raw values.
+- Documentation: Adapted opt4060.rst to scaled factors instead of scaled raw values.
+- Link to V8: https://lore.kernel.org/lkml/20241126155312.1660271-1-perdaniel.olsson@axis.com/
+
+Changes in v8:
+- Documentation: Fixed new line warning in opt4060.rst
+- dt-bindings: Re-added "Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>"
+- Link to V7: https://lore.kernel.org/lkml/20241126140002.1564564-1-perdaniel.olsson@axis.com/
+
+Changes in v7:
+- Calculation for scaled values changed to remove normalization.
+- Fixed alignment in opt4060_write_ev_period(...).
+- Fixed alignment in opt4060_read_ev_period(...).
+- Updates state to bool in opt4060_write_event_config(...).
+- dt-bindings: Define vdd-supply as required.
+- dt-bindings: Removed description of vdd-supply.
+- dt-bindings: Removed "Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>"
+due to changes.
+- Documentation: Added missing _scale parameters in Documentation/ABI/testing/sysfs-bus-iio
+- Documentation: Updated opt4060.rst with description of scaled values without normalization.
+- Cover letter: Description adapted to the new implementation of scaled values.
+- Link to V6: https://lore.kernel.org/lkml/20241120163247.2791600-1-perdaniel.olsson@axis.com/
+
+Changes in v6:
+- Modified the driver to work with any trigger. Verified using iio-trig-sysfs.
+- Fixed return in opt4060_trigger_set_state(...).
+- Break added in opt4060_read_ev_period(...).
+- Struct and variable declaration chnages in opt4060_trigger_handler(...).
+- Events changed to modified and not unmodified.
+- Moved variable declaration from case statement in opt4060_read_event(...), and
+  opt4060_write_event(...), found by test robot.
+- Init_completion() moved to a place related to IRQ.
+- Documentation: Added opt4060.rst with description of calculations.
+- Ducumentation: Added missing _raw parameters in Documentation/ABI/testing/sysfs-bus-iio
+- Link to V5: https://lore.kernel.org/lkml/20241106120036.986755-1-perdaniel.olsson@axis.com/
+
+Changes in v5:
+- Cover letter: Description adapted to new channel and trigger setup.
+- Trigger for threshold removed.
+- Channel setup modified according to email discussion.
+- Switched to aligned_s64 from linux-next.
+- Endianness in buffer changed to IIO_CPU.
+- opt4060_read_raw_value(...) changed to avoid endian issue plus early return.
+- opt4060_read_chan_value(...) split of in several for new channel setup.
+- Improved return values in multiple places.
+- The preenable callback removed, functionality moved to set_state.
+- Irq setup removed from opt4060_irq_thread(...).
+- Flipped logic with early return in opt4060_trigger_one_shot(...).
+- devm_add_action_or_reset(...) moved to after opt4060_load_defaults(...).
+- Documentation: Added sysfs-bus-iio-light-opt4060 with channel descriptions.
+- Added hard coded name indio_dev->name.
+- Modified opt4060_volatile_reg(...) to make test robot happy.
+- Link to V4: https://lore.kernel.org/lkml/20241016213409.3823162-1-perdaniel.olsson@axis.com/
+
+Changes in v4:
+- Fix for a warning found by test robot in opt4060_write_event(...).
+- Correction of early return in opt4060_write_event(...) and opt4060_read_event(...),
+  missed from review of version 2.
+- Correction of timeout for sample conversion.
+- Correction of bug when changing integration time with buffer enabled.
+- Link to V3: https://lore.kernel.org/lkml/20241015143713.2017626-1-perdaniel.olsson@axis.com/
+
+Changes in v3:
+- Cover letter: Removed lux from description.
+- OPT_4060_DRV_NAME define removed.
+- Corrected alignment for struct opt4060_buffer.
+- Added description of the CRC calculation.
+- Cleaned variable declaration in several places.
+- Added a path for the non-irq case in opt4060_read_chan_value(...).
+- Added a description of processed values.
+- Use of regmap_clear_bits in opt4060_power_down(...).
+- Switched to IIO_INTENSITY instead of IIO_LIGHT.
+- Correction of channel index in IIO_UNMOD_EVENT_CODE, found by test robot.
+- Added iio_chan_spec for the non-irq case without events.
+- Fixed braces in a few if-else statements.
+- Refactoring with early returns in a few places to reduce indentation.
+- Replaced for_each_set_bit with iio_for_each_active_channel.
+- Removed various too obvious comments.
+- Fixed various other code style problems.
+- Link to V2: https://lore.kernel.org/lkml/20241005165119.3549472-1-perdaniel.olsson@axis.com/
+
+Changes in v2:
+- dt-bindings: Removed incorrect allOf.
+- dt-bindings: Changed to generic node name.
+- Correction in opt4060_trigger_one_shot(...) for continuous mode.
+- Correction in opt4060_power_down(...), wrong register was read.
+- Corrected usage of active_scan_mask in opt4060_trigger_handler(...).
+- Clean-up of various comments.
+- Link to V1: https://lore.kernel.org/lkml/20241003164932.1162049-1-perdaniel.olsson@axis.com/
+
+Per-Daniel Olsson (2):
+  dt-bindings: iio: light: Document TI OPT4060 RGBW sensor
+  iio: light: Add support for TI OPT4060 color sensor
+
+ Documentation/ABI/testing/sysfs-bus-iio       |    7 +
+ .../bindings/iio/light/ti,opt4060.yaml        |   51 +
+ Documentation/iio/index.rst                   |    1 +
+ Documentation/iio/opt4060.rst                 |   61 +
+ drivers/iio/light/Kconfig                     |   13 +
+ drivers/iio/light/Makefile                    |    1 +
+ drivers/iio/light/opt4060.c                   | 1343 +++++++++++++++++
+ 7 files changed, 1477 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/ti,opt4060.yaml
+ create mode 100644 Documentation/iio/opt4060.rst
+ create mode 100644 drivers/iio/light/opt4060.c
+
+--
+2.39.5
 
 
