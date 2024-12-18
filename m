@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-132137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A4389F5FAF
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 08:54:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73E779F5FB6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 08:56:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10A171889170
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 07:54:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3E6116748D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 07:56:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5D08157487;
-	Wed, 18 Dec 2024 07:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D901A158D96;
+	Wed, 18 Dec 2024 07:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SvqrjNbu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TzgvZBos"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B503C42048;
-	Wed, 18 Dec 2024 07:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4E7F42048;
+	Wed, 18 Dec 2024 07:56:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734508420; cv=none; b=suvVF2flM5oDDAVmZbS0eN510h+tobyrlAMXj+3VhgWKSuTA6CMNQ9vqv6g1YBubsVQneSH20PpSb21DIjwAZNFr4RoNJfijar+IqEqB5P2Ons1PGPtvpOgOF+2+r26uho+1RmgyNylpQP8S+GtVWuFhb/Dno3L1aWxPLXiQulk=
+	t=1734508572; cv=none; b=lwu7d1q33nilugvWg24jTv7GoOApltuQumfIfaVWWKp+/5+kZgrDVq/1Uu0jv0ALaVl3TwFRFps4sIkMJHNmo8zmeG/wKGvsepCpgZsfwfqMWp/LnAZuTwhEF247JS0ADwzDFG8bG8uetgldU8Y8Nuxa2FHuRV3c1P1u7Ym7obU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734508420; c=relaxed/simple;
-	bh=S1MG6GjxrCyAhgpy4OiU6srUJQ7vRr6Wl8DoBKh2efM=;
+	s=arc-20240116; t=1734508572; c=relaxed/simple;
+	bh=BrDCfYdQ1DBora0atTDfNnrZe61xzvZBXNC2QdIQ8bE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iGioeVYJkIxBcn1hky41B+14Lm39xZHs30IAAcT6E/pwdDuEn8YaMdIZq8ZvGTjUC/haOV4DB6Y2UhYcIFH2NHezkXIPLT9/L/Z0I2CnxP4wYa7IVTYDt/uosDWjKD1qKazxBQ/Q0vELpTPGqAmaqOOBGG/pD1d3pd3N67N00D0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SvqrjNbu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7199CC4CECE;
-	Wed, 18 Dec 2024 07:53:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JKZlC1EOabxASlzfTpbcvQNIENj/9MHFzJq5ZE5JMP4SO88dh8vuyGs5yL+nrfYw3dCrFd5KCmIMJlclPge7HcSZpYCgq/3pKjbl6PKFW9gRv0gm8an4l5vWA4J9esve0oBnHyPCSIGAhaNd/Uf21VMcYE2b5x4JJ4NgT6Jh5DI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TzgvZBos; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7CBFC4CECE;
+	Wed, 18 Dec 2024 07:56:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734508420;
-	bh=S1MG6GjxrCyAhgpy4OiU6srUJQ7vRr6Wl8DoBKh2efM=;
+	s=k20201202; t=1734508572;
+	bh=BrDCfYdQ1DBora0atTDfNnrZe61xzvZBXNC2QdIQ8bE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SvqrjNbuTdIvKOBoT5lPmCbuyrUQ7fFh07VUdQRkhW2hFdT6yh9ih+ps76peLKLL6
-	 tDQWzGOwsD35kh8JQzbYVMJV0StJQwY07jIsYhmHvoZxKD6yMMssZ2AcWPru1QsvXi
-	 dhmCyRmoIWdjgBwErLHHsq6iuv3X8GsC54lGUPbEXUTCudCMgO3Blu0mvPKbx08RcF
-	 lOCgAslu0e6Niey59zjXw64bWxFQdISlbehN6dbEvssNk9mWVyATBgQX2G8EeKolPi
-	 PjZ7OS/utYq9pSBwo+nbf+vvWZ8at1rmInAgUMPcFNIzj46Yi/8kjCGUWocsldQHcy
-	 V75s3f+HwGJbQ==
-Message-ID: <748f90f0-be7e-43e0-88e7-477cd082793e@kernel.org>
-Date: Wed, 18 Dec 2024 08:53:35 +0100
+	b=TzgvZBosLoZFh5meuHHmD1x48hgInQYIOcmLlgncgpWywYTmAHlCy2ow4iGDfj5uO
+	 Q2eSjzA7czpy/2D1JHo0Zp/6ExGrMQieLHnLMv5qGMYHod3yaYpwsV4HeY7IWPi2Sj
+	 VtRG6NL9vEDpgM6pIflI2Fgyb+8WXcr3tiM4Tkr+764tlMHT684CMSAZVo/mVC6fd8
+	 OkWKIZ7JhOu8j2iYyi0XUFV+K6S2ZR6mJs8W7jjCP7mdfowiv+zyCvPxBhb3G2pH72
+	 sCnu/XClqkKe5N4VzXY+j3MyLri7YmhM6L0OH+gZZrGiB7RbSCy4H8UpaD116NC/dL
+	 33ivgXZ8Zlaog==
+Message-ID: <c3270109-406f-49bd-9c11-e323d1b6e84d@kernel.org>
+Date: Wed, 18 Dec 2024 08:56:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: phy: Add ExynosAutov920 UFS PHY
- bindings
-To: =?UTF-8?B?64KY7IaM7JuQL1NPV09OIE5B?= <sowon.na@samsung.com>
-Cc: robh@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
- kishon@kernel.org, krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- 'Krzysztof Kozlowski' <krzysztof.kozlowski@linaro.org>,
- 'Alim Akhtar' <alim.akhtar@samsung.com>
-References: <20241118021009.2858849-1-sowon.na@samsung.com>
- <CGME20241118021011epcas2p21593217ccf58afddad5ce36f510e7cb6@epcas2p2.samsung.com>
- <20241118021009.2858849-2-sowon.na@samsung.com>
- <000001db3a42$c5a79b70$50f6d250$@samsung.com>
- <001401db50ec$a31703a0$e9450ae0$@samsung.com>
+Subject: Re: [PATCH v11 3/9] dt-bindings: power: supply: max17042: split on 2
+ files
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+ Purism Kernel Team <kernel@puri.sm>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-leds@vger.kernel.org
+References: <20241209-starqltechn_integration_upstream-v11-0-dc0598828e01@gmail.com>
+ <20241209-starqltechn_integration_upstream-v11-3-dc0598828e01@gmail.com>
+ <7qt7thbuh5mvoaknxaiteusbmcmiusc23k2oiyvq3bwn4l6wsw@p4qid73hmiry>
+ <CABTCjFD4ipvapWX9gJF1KXWpzj_jhL9pYB0z+Q4sEi-cu6mx7Q@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,28 +112,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <001401db50ec$a31703a0$e9450ae0$@samsung.com>
+In-Reply-To: <CABTCjFD4ipvapWX9gJF1KXWpzj_jhL9pYB0z+Q4sEi-cu6mx7Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 18/12/2024 02:32, 나소원/SOWON NA wrote:
->>> I am not sure how we can help you, you are keep missing to collect all
->>> the tags
->>> https://lkml.org/lkml/2024/11/7/617
->>>
->> Really sorry for missing tags. I append it immediately, and will not miss
->> anymore.
->> Your review helps me a lot and makes my patch better. I applied all your
->> reviews to my patches.
->>
->> Thank you a lot once again for your help.
->>
+On 11/12/2024 15:59, Dzmitry Sankouski wrote:
+> Ah, indeed, the device tree in this and previous patches doesn't
+> reflect hardware wiring.
 > 
-> I missed including the "Reviewed-by" tag in the patch set I sent. Could you please let me know if you'd prefer me to send a v4 with the tag included, or if you're able to apply it with the missing tag?
-> 
-> Thank you for your understanding, and I apologize for the oversight.
+> MAX77705 fuel gauge has a separate i2c address, i.e. I may move it out of the
+> MAX77705 MFD node. However, the device on that address has additional features,
+> like measuring system and input current, which is out of fuel gauge
+> responsibility.
 
-Why are you asking me? This is not a patch for me.
+This is fuel gauge job.
+
+> 
+> So I guess I should create another MFD for fuel gauge, i. e. max77705 example
+> would look like:
+> 
+> ...
+>   pmic@66 {
+>     compatible = "maxim,max77705";
+> ...
+>   };
+> 
+>   meter@36 {
+>     compatible = "maxim,max77705-meter";
+> 
+No resources here, so not a MFD. This is one device.
 
 Best regards,
 Krzysztof
