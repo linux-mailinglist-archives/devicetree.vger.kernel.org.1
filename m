@@ -1,187 +1,124 @@
-Return-Path: <devicetree+bounces-132411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 098029F6F86
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 22:37:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B40D9F6FD6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 23:02:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1888B1687DC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 21:37:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ED15616D4AB
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 22:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D229C1FC105;
-	Wed, 18 Dec 2024 21:37:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6D661A2872;
+	Wed, 18 Dec 2024 22:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gf1H1YkQ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Yinv4hCa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27E171FBEB7;
-	Wed, 18 Dec 2024 21:37:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47A61A9B4A;
+	Wed, 18 Dec 2024 22:01:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734557842; cv=none; b=UxdNOvpVp/xLhNMTaYEw1kkwXjL0asbbT00Vt507hFjdRChuypOHZX7iszFGt5WHT3qqt/8yxYZjdl79t2RenHpttydMTQitz3lbLEZD5U/SNieV0gq8RUDga6HJkRENXBiv1d2M7FkWvwUgZUWtI5n3Afm2MdoKUGO+KTSui4Y=
+	t=1734559306; cv=none; b=hK5j1mA8eyk99EW1tRfEf2mP7aWeRcjgXm+yGQGxHFUwKhmIAhrGrrO/aiVLgWn+NU9zTBlqVtpEYSaunvDSXM4I3F9IW/ZATvvJCHh0sMJQw8xDhMHwD92QsmBWFsZ0QOdU2rhGulHyDI14wSvls4GS6nUoreTA3nunoNAWt3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734557842; c=relaxed/simple;
-	bh=3xeEvDDYWW2Yt6bv1YrE84suKZrHbM4J1t0iS9EDfbk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XNaDxrl/5ZjE1JULF4nGp+ftOTxdqc6Ai74TGHCEHIUiaN1cSbyUEnyiOlxo4tK1wX0e2kACwuRqIfX5WOFzl1z1wchYAR/kkh/9s+mL5c1X3v5q2LjzMe8bAoMkAzXKi8bcHSvaKuBjcwuK3MspP5FlgL6JWbkTVHhEZQesSHA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gf1H1YkQ; arc=none smtp.client-ip=209.85.160.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-29fbba47ca4so26045fac.3;
-        Wed, 18 Dec 2024 13:37:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734557840; x=1735162640; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TmXRKgmeI+8m19UP/6Z3O8N0tBLaZsNqRj9FTnQ81Og=;
-        b=gf1H1YkQy79rKJQURU6IcPnUCE2fEze37glI0VcOlNy9wz39LqL3EY9F/3e34OfSXw
-         mbMHbAosyRQrfh1YwPtvX/NRCrNBlQI/TfAmAh3V5/h5Zk0QBtOOZQNMDCd1lgsqRVpR
-         baA02E5I3qU3M/iGfEIDbO6rDi6ojpUoBAj8eaZty9JIRT8Wrm3+T2Sw1KUmf3/b7aHe
-         +tmtpdKvyLCOfOAq2BR3eTs20FCH+ACYe+qq1uLfG6+Bv5qaOXyVIT1VXOEmJXUdoqmo
-         3C8qpVzixdufMRgx9hxkqknBOL1pBmp+j7ZTHOxPeNnKNXQ3XjnYjKH2wYGopPjQ8w1q
-         6Tng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734557840; x=1735162640;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TmXRKgmeI+8m19UP/6Z3O8N0tBLaZsNqRj9FTnQ81Og=;
-        b=UfRjqc71aw2FmqDI5uz1w1GN7IXV7HDBx0gfc68U+7yW/XpB6NwU39a0bh8lgMNQp6
-         aUOgOZ+LAvRXeJuXgo4Lj4eUPj5Pifoeha6xFGP+p+Rw+JKQFxRQZPhBxsQ7mCPyJwis
-         uuMfajA1y6suaKUIUKDQif0A0i7WMKe8TRXLG2FPPwqNEmaHrKdOToM+inKYYvmacoBY
-         5VrSnjPd2wLiobyJzIrBsuOFuCSVI3sOVN8QTglnW9DM0qE4v1hXJ16Ng/dc9tCgZC8l
-         /WZuu6iHuQ+H5BtY1bQRbDv2SCQ1rEQUNg3uF5reJ+DW5R/CPqFs5ot7QDfyoZ4r97qZ
-         t87g==
-X-Forwarded-Encrypted: i=1; AJvYcCUuVdkJqV7WyLwDTqFkbFljO28uT9O7fVAj3fORwKSK6GwHGlJ10wVWR6TodLEnBWa1by+FtO/7ITusKU96@vger.kernel.org, AJvYcCWczYyRt18iuI/Z8LcftpLX1V8Do817TTFG2x6tFv03zK+6E6Sb4mcgtHi2BLxRNs5fK541Uiq68rWW@vger.kernel.org, AJvYcCXmwN8gb/febIjmmFOu/p25L9iwemc95kVfunwEF2O6r3EJDsFXM/Y6Onns1iuSx8Zi4BzGn2X9PZtBQgnd1A==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx6GClgOfUBjQCXWkdI3DEekdQVtDNOBYnYvRA1L/gl/z5CyQ0Y
-	DEITzGYBYHPXKryPICboaeHeu15CwAC5Rgc9SjLu9J2tM8KuzpLxOeb2X3sIBGYZMOSek4xrZJb
-	KZUkqiCqgU8czifo0dnb/m2I14jFsJCUV
-X-Gm-Gg: ASbGncu00kyZgZpfto/DcPZEdxjKLgdLjlmeINY6DEbXi79P57XdW1ZH1ZX5YcauMYY
-	DZ+JPoi84sFLvDOalTAjQrqWjSxHSZM1W6p35EGZEfQ42fIPynk/fSSnVsUIHY61tSUrkBp+V
-X-Google-Smtp-Source: AGHT+IEE10SjMkpkh0PyaLyICOUQ/ZVXyUOjdSJQfqAxLkAFi1snj0eh5n47YRPoToq7kVK75riXxx1hquFJDYKstKU=
-X-Received: by 2002:a05:6871:339a:b0:29e:5dfd:1e17 with SMTP id
- 586e51a60fabf-2a7b3145c32mr2648135fac.23.1734557840078; Wed, 18 Dec 2024
- 13:37:20 -0800 (PST)
+	s=arc-20240116; t=1734559306; c=relaxed/simple;
+	bh=b8/+EC1VflEBJwonWHv7sJ5l8U3pVLGQLl8mOMAAZtw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=jU74Xn77M95NCAYfxjgTgaXR2RvBH/+hW4zV7QBv0f0g5RqPMF5X2goIgM53vPszk198b6eoqCILTi0jcAyYS/FWh8ho9qhMb+8XQMiFoRhRi+ZTnoz2Jh9zwrqpO5E7+PxDNL3bUUtG3bmoASoUFK/KkrBrCQhdPc5ekFXdndA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Yinv4hCa; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1734559302;
+	bh=b8/+EC1VflEBJwonWHv7sJ5l8U3pVLGQLl8mOMAAZtw=;
+	h=From:Date:Subject:To:Cc:From;
+	b=Yinv4hCaS3DFAGjV3qEGKTaCWZyA40M8pTkq1kVoZnPlKkF4UZc+ublCLcfz9uk+g
+	 mLHMlYvznSfiJhCYRk18GwF1VwcM7jCwqPBgwux0TZrF6H1A+Tgkw4Go/GKkYb8tmn
+	 1QHpGQ7C6zT6xQK9i0ciDNWK+5+flxsJ5vaGJIZJGWYU0V+xYL0DAmjZbw7g82Oopj
+	 hHauSBVsxFyYNBJkRHWNfyZK+7ZSvpPb5DeJBhIc3f+0/s7EEStKHg6z4b+GbJdtKR
+	 yCzOE07aq57/5TyOUKUIaw0zmnXtm0NromkDbS0l+bPzEA/YWFFZgy9uNZYYTBvOKx
+	 p/3yNxe3zAEUw==
+Received: from [192.168.0.47] (unknown [IPv6:2804:14c:1a9:53ee::1000])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E3F7A17E3822;
+	Wed, 18 Dec 2024 23:01:39 +0100 (CET)
+From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Date: Wed, 18 Dec 2024 19:01:08 -0300
+Subject: [PATCH] arm64: dts: mediatek: mt8195: Remove suspend-breaking
+ reset from pcie1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cae52ea6-e86a-4b86-af06-01a8a93d2ca0@mailbox.org>
-In-Reply-To: <cae52ea6-e86a-4b86-af06-01a8a93d2ca0@mailbox.org>
-From: Maya Matuszczyk <maccraft123mc@gmail.com>
-Date: Wed, 18 Dec 2024 22:36:44 +0100
-Message-ID: <CAO_MupKCUk-w4=-0yDWo4m9XC1-iEuF6YHYnYw4T0oF2aKFxvQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Add lid switch
-To: Anthony Ruhier <aruhier@mailbox.org>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20241218-mt8195-pcie1-reset-suspend-fix-v1-1-1c021dda42a6@collabora.com>
+X-B4-Tracking: v=1; b=H4sIACNGY2cC/x2NQQqDQAxFryJZN9BEC+pVpAsZf9ssOg4TLQXx7
+ g1dvs/jv4Mc1eA0NgdVfMxtzQFyaSi95vwE2xJMetVOVHp+b70MNy7JIFzh2Nh3L8gLP+zLLSQ
+ 8lW6AUpyUipj/gel+nj+UccN1cAAAAA==
+X-Change-ID: 20241218-mt8195-pcie1-reset-suspend-fix-3e14122149e2
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Jianjun Wang <jianjun.wang@mediatek.com>, 
+ Tinghan Shen <tinghan.shen@mediatek.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+X-Mailer: b4 0.14.2
 
-Nice to see it finally working!
+The MAC reset for PCIe port 1 on MT8195 when asserted during suspend
+causes the system to hang during resume with the following error (with
+no_console_suspend enabled):
 
-Tested-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+  mtk-pcie-gen3 112f8000.pcie: PCIe link down, current LTSSM state: detect.quiet (0x0)
+  mtk-pcie-gen3 112f8000.pcie: PM: dpm_run_callback(): genpd_resume_noirq+0x0/0x24 returns -110
+  mtk-pcie-gen3 112f8000.pcie: PM: failed to resume noirq: error -110
 
-=C5=9Br., 18 gru 2024 o 20:02 Anthony Ruhier <aruhier@mailbox.org> napisa=
-=C5=82(a):
->
-> Add the lid switch for the Lenovo Yoga Slim 7x.
->
-> Other x1e80100 laptops use the GPIO pin 92 only, however on the Yoga
-> Slim 7x this pin seems to be bridged with the pin 71. By default, the
-> pin 71 is set as output-high, which blocks any event on pin 92.
->
-> This patch sets the pin 71 as output-disable and sets the LID switch on
-> pin 92. This is aligned with how they're configured on Windows:
->      GPIO  71 | 0xf147000 | in | func0 | hi | pull up   | 16 mA |
-> ctl=3D0x000001c3 io=3D0x00000003
->      GPIO  92 | 0xf15c000 | in | func0 | lo | no pull   |  2 mA |
-> ctl=3D0x00000000 io=3D0x00000001
->
-> Signed-off-by: Anthony Ruhier <aruhier@mailbox.org>
-> ---
->   .../dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 38 +++++++++++++++++++
->   1 file changed, 38 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> index ca5a808f2c7d..311202aa9015 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> @@ -6,6 +6,7 @@
->   /dts-v1/;
->
->   #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/gpio-keys.h>
->   #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->
->   #include "x1e80100.dtsi"
-> @@ -19,6 +20,21 @@ aliases {
->                 serial0 =3D &uart21;
->         };
->
-> +       gpio-keys {
-> +               compatible =3D "gpio-keys";
-> +
-> +               pinctrl-0 =3D <&hall_int_n_default>;
-> +               pinctrl-names =3D "default";
-> +
-> +               switch-lid {
-> +                       gpios =3D <&tlmm 92 GPIO_ACTIVE_LOW>;
-> +                       linux,input-type =3D <EV_SW>;
-> +                       linux,code =3D <SW_LID>;
-> +                       wakeup-source;
-> +                       wakeup-event-action =3D <EV_ACT_DEASSERTED>;
-> +               };
-> +       };
-> +
->         chosen {
->                 stdout-path =3D "serial0:115200n8";
->         };
-> @@ -811,6 +827,28 @@ edp_reg_en: edp-reg-en-state {
->                 bias-disable;
->         };
->
-> +       hall_int_n_default: hall-int-n-state {
-> +               lid-n-pins {
-> +                       pins =3D "gpio92";
-> +                       function =3D "gpio";
-> +                       bias-disable;
-> +               };
-> +
-> +               /*
-> +                * Pins 71 and 92 seem to be bridged together (pin 71 and=
- 92 show the
-> same
-> +                * events). By default, pin 71 is set as output-high, whi=
-ch blocks any
-> +                * event on pin 92. Output-disable on pin 71 is necessary=
- to get
-> events on
-> +                * pin 92.
-> +                * The purpose of pin 71 is not yet known; lid-pull is a =
-supposition.
-> +                */
-> +               lid-pull-n-pins {
-> +                       pins =3D "gpio71";
-> +                       function =3D "gpio";
-> +                       bias-pull-up;
-> +                       output-disable;
-> +               };
-> +       };
-> +
->         kybd_default: kybd-default-state {
->                 pins =3D "gpio67";
->                 function =3D "gpio";
-> --
-> 2.47.1
->
+This issue is specific to MT8195. On MT8192 with the PCIe reset,
+MT8192_INFRA_RST4_PCIE_TOP_SWRST, added to the DT node, the issue is not
+observed.
+
+Since without the reset, the PCIe controller and WiFi card connected to
+it, work just as well, remove the reset to allow the system to suspend
+and resume properly.
+
+Fixes: ecc0af6a3fe6 ("arm64: dts: mt8195: Add pcie and pcie phy nodes")
+Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index ade685ed2190b7339d5daad55ce81c092bd7b39e..04e41b557d44810c5be097dab40b5b94f63b1843 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -1611,9 +1611,6 @@ pcie1: pcie@112f8000 {
+ 			phy-names = "pcie-phy";
+ 			power-domains = <&spm MT8195_POWER_DOMAIN_PCIE_MAC_P1>;
+ 
+-			resets = <&infracfg_ao MT8195_INFRA_RST2_PCIE_P1_SWRST>;
+-			reset-names = "mac";
+-
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 7>;
+ 			interrupt-map = <0 0 0 1 &pcie_intc1 0>,
+
+---
+base-commit: e25c8d66f6786300b680866c0e0139981273feba
+change-id: 20241218-mt8195-pcie1-reset-suspend-fix-3e14122149e2
+
+Best regards,
+-- 
+Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
 
