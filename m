@@ -1,58 +1,62 @@
-Return-Path: <devicetree+bounces-132355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 956FD9F6BD5
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 18:04:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AF899F6BDE
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 18:06:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 853337A1A29
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 17:04:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C2231894362
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 17:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA1F1F12FE;
-	Wed, 18 Dec 2024 17:04:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D161F2396;
+	Wed, 18 Dec 2024 17:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t3LpxXZj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qwaxwWxb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F01F11DFE0C;
-	Wed, 18 Dec 2024 17:04:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95B61148850;
+	Wed, 18 Dec 2024 17:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734541448; cv=none; b=Mj+sGIXvGKreC07riFKRt7+0HUPfb7f8r63/zfNxwiL3QRX1hUQE1GkaXdjkgwYIotQLEyy/OZuwHJJUNdEI1cjoRZmnpVicpmL5z0fmKnhRolyU/Qdqr7p2PoucFha5N7gKtGi9sO6ujqCUFYov3JiSEDyAcGHdw3lrolr37O8=
+	t=1734541534; cv=none; b=jSV6Ns0l1JrG+dNAsLBgJEjBWoWVhjkLCxRu5Odwa5gY20tCHv0EO7NNSf6ujLUY6C6yn7nw4g6bTzT2MaSJ3jGcwnyq4rlvxZKrUtkD3m9qMIbhqWPVdcg/mTu89yXPb153Cxk6UkRP4GsM8D0hU3JwiQrC0/eKo028fo0Gm2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734541448; c=relaxed/simple;
-	bh=Lc1tAODvxq36WS8j+pXv/p9gobEgptYmL4r1Ojrww8U=;
+	s=arc-20240116; t=1734541534; c=relaxed/simple;
+	bh=vdCGcaMayzhDEz8c0LDs81VDSkOesnvIbxDPEyYGWXc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QCGNeaQctR856YQTh2z50wdy5Y7MfOBZ0PN9auT5vdY8pyBuoC0rYmUcyjq9OQz6Q0++CbqUaSLHOKxpMzi1NsHszpUVDMkep+Y0q1BL0015BKSsCPVksu0snaT0cBcRXiiQSY81V8BugiuGFJep/qUdhXz+p0J+1gmr+lLVrlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t3LpxXZj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DF51C4CECD;
-	Wed, 18 Dec 2024 17:04:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kU4No2CIsEWxG+3K1VQYOEguCUMyzG+GAfzd2x+BDY7MupwRcSf6Uz5MGDlkIVN5I6dJo2Suoo9DI0/RmnspuHOkOl9VrM4om4MLnkrG1pA7NlEFJj/ATdS4V0DEk2H67A5UbdtZvhpCvT768/LACWCaWCZ0X1TA4KYqZbS5Hio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qwaxwWxb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B563C4CECD;
+	Wed, 18 Dec 2024 17:05:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734541447;
-	bh=Lc1tAODvxq36WS8j+pXv/p9gobEgptYmL4r1Ojrww8U=;
+	s=k20201202; t=1734541534;
+	bh=vdCGcaMayzhDEz8c0LDs81VDSkOesnvIbxDPEyYGWXc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t3LpxXZjRSXJOs/zCjxoI5w7/cxTCc1BLBf5TyahMCcKFXNVYoImcf5qA7DVDGITZ
-	 o/xnHtwAElFplEv8xDyERhkxgwLA6WlbM0xNoay2YcTIozmcnvlPhm9YEdQD4PsVil
-	 yAJJbN6zPHb2RShQ7r6d0zZGWC/sC2Mdd+LgvAk8FeladX8VUNA/evmP8J3DpizVqb
-	 BI2eV6m0iiebEbWxZx0ar7Nto3cJ9j+oHxTjFcIevZVaIwAG74hzfIxvp9QJxzcqZj
-	 6NofAHs2QMskx5bov/ylQGvWc44aLjhVVWs7zsUoe7p7y3VqRQ1BtdItcHQsAS5bOF
-	 GOlwBf6HM5mgA==
-Date: Wed, 18 Dec 2024 17:04:03 +0000
+	b=qwaxwWxbAZQkrVs7P4XNx3LVJhXjA7NCYHNRzFdn+0OamVDIUQNm3wptViBHeVAp9
+	 vqeNlVy8ms4bU1UFGbYnqB3umTWeEOtqA/X3N8+EMyn24tylg087xQwKSrZ3JfwpHa
+	 DOkF+gtazUmJLJir111SbohFjqlA1k6nfO6Urqwa33LiZgemwdhuc8uigS8nLxWY2I
+	 DLeIKIsbERhGaqjHlMmDoFKcJnALw2YxuiCZgPk7liH+5wVB6Z6Cit3k1aAuHpO6Fw
+	 fDQZ73alDWiSiUQB/qX+wd8kfPUodNrTk8mVp4qq3O9B7feZGpoSL9JhGoZDMMIzHD
+	 5nA4/D3BgnX4A==
+Date: Wed, 18 Dec 2024 17:05:29 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: add ID for eMMC for EN7581
-Message-ID: <20241218-shimmer-defog-97f86d6ebe98@spud>
-References: <20241218091153.30088-1-ansuelsmth@gmail.com>
+To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, alexandre.torgue@foss.st.com, wbg@kernel.org,
+	jic23@kernel.org, ukleinek@kernel.org, catalin.marinas@arm.com,
+	will@kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org,
+	olivier.moysan@foss.st.com
+Subject: Re: [PATCH 1/9] dt-bindings: mfd: stm32-timers: add support for
+ stm32mp25
+Message-ID: <20241218-debating-campus-1d92c4fb5730@spud>
+References: <20241218090153.742869-1-fabrice.gasnier@foss.st.com>
+ <20241218090153.742869-2-fabrice.gasnier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,57 +64,43 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="cF88JIsNcI5m6I31"
+	protocol="application/pgp-signature"; boundary="EoOWfOi1n9QKUU+q"
 Content-Disposition: inline
-In-Reply-To: <20241218091153.30088-1-ansuelsmth@gmail.com>
+In-Reply-To: <20241218090153.742869-2-fabrice.gasnier@foss.st.com>
 
 
---cF88JIsNcI5m6I31
+--EoOWfOi1n9QKUU+q
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 18, 2024 at 10:11:33AM +0100, Christian Marangi wrote:
-> Add ID for eMMC for EN7581. This is to control clock selection of eMMC
-> between 200MHz and 150MHz.
+On Wed, Dec 18, 2024 at 10:01:45AM +0100, Fabrice Gasnier wrote:
+> Add a new stm32mp25 compatible to stm32-timer dt-bindings in order to
+> support the STM32MP25 SoC. Some features has been added or updated in
+> the stm32-timer timer such as:
+> - hardware configuration and identification registers to read the timer
+>   version and capabilities (counter width, number of channels...)
+> - dithering mode (can be used to extend PWM resolution)
+> - input triggers list
+> - new counter modes
+> - various bit-field updates
+> - power-domains property
+> Timer trigger identifier can be up to 19 (from timer 20)
 >=20
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
-> Changes v2:
-> - Drop additional define for EN7581_NUM_CLOCKS
->=20
->  include/dt-bindings/clock/en7523-clk.h | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/include/dt-bindings/clock/en7523-clk.h b/include/dt-bindings=
-/clock/en7523-clk.h
-> index 717d23a5e5ae..c4f8a161b981 100644
-> --- a/include/dt-bindings/clock/en7523-clk.h
-> +++ b/include/dt-bindings/clock/en7523-clk.h
-> @@ -12,6 +12,8 @@
->  #define EN7523_CLK_CRYPTO	6
->  #define EN7523_CLK_PCIE		7
-> =20
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
 
-Why the gap?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> +#define EN7581_CLK_EMMC		8
-> +
->  #define EN7523_NUM_CLOCKS	8
-
-Can you delete this please? Your changelog appears to suggest you did,
-but I see it still.
-
---cF88JIsNcI5m6I31
+--EoOWfOi1n9QKUU+q
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2MAggAKCRB4tDGHoIJi
-0hu1AQDuqlosSFY+xllHUvu0oi2pVOj+WRmQiUd1UqbLOPorlQEA9+UEqTiMOMxv
-5scWj05uDzOtgd0TshzJrzRbTaEpAQ0=
-=zSjG
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2MA2AAKCRB4tDGHoIJi
+0vUcAQDHt1a291qOikCk+YbFAxxytC/jHrnDcNjqTbJpnfpkxwEA/WPnp/cnmyv9
+ApGtO9lFz3BQAdvpCZ2662o9jnd3OAw=
+=h9U4
 -----END PGP SIGNATURE-----
 
---cF88JIsNcI5m6I31--
+--EoOWfOi1n9QKUU+q--
 
