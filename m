@@ -1,90 +1,169 @@
-Return-Path: <devicetree+bounces-132185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CACB79F614D
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:21:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B30879F61BD
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:32:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA95F7A177F
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:21:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B9A9188C54E
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:32:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2B6192B83;
-	Wed, 18 Dec 2024 09:21:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53C811F1905;
+	Wed, 18 Dec 2024 09:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B5hcSH8o"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="kklfGCuh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF771547FF;
-	Wed, 18 Dec 2024 09:21:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 751A61F03DA;
+	Wed, 18 Dec 2024 09:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734513664; cv=none; b=XhXRG2XcLgLWQLp/nan5v/vhJVhofbf7csy/KrHHt9P2/irHH7YYE4JE71g70FAECjLPBL4SjEEe0XSVEwQKsXcYBsG/DJ8J7oHbGhvoRbliLWonF4adXH3NiRfXOoNj725ITfmLmrX9PT6+9IH/qSnX0N4+q2JgCneCupCm+zE=
+	t=1734513936; cv=none; b=H8GBxnI2rUIwu5aU/2hApQ3/8uoIQTHwT+t9EZFRz4m8kcneViSsZ4f8qhHlXXR8oMHZTUt8Bh1nLRWhmOrRjVIKOc1cZk+Bmku60KjKwXvLNmln8fIpqcp90MuwEMmSZ8m0KGzsAJtKb2JtOyANyVzlwOA9ww8IgRGbygNFbXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734513664; c=relaxed/simple;
-	bh=Joxf91zRAXiTP8nr5vRtQiFgbbbWcdv7Yamp7pB847Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z+NBrZHredsFZy/y0xujR7YEOdk3bVY2r54ozwLrKAS8xpim1v3rLONFys2QE3rTbtXcx+hWWOZLFMqL3adfv5EkNOoMekLw5OyFBdwibT76HR9HMqkQkAq7ZtAWTW/ojsgIAKh3lkiazNHWiUFbYYdl3HFNOUy9iCCSFU6QdO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B5hcSH8o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64B80C4CECE;
-	Wed, 18 Dec 2024 09:21:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734513664;
-	bh=Joxf91zRAXiTP8nr5vRtQiFgbbbWcdv7Yamp7pB847Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B5hcSH8ooPBhGZqErclxci8uP7prhV1ZdwaqcTB+bwAa8GRfLCDVFVe4n+c32yMZg
-	 C1CzkV4AShBwXnis3lHCbJON9oPNXwYn2OxPwEgE8m3m5otfywd0VpmxTZbMiwOXqr
-	 iySj9gFsSen2kDRuIpPknWBwniotQc+sD0Stj1tRt+21kiqTcO3xGEUODEHsrpyuJt
-	 9LsjggR28XZBVM5CSAogRyADPtcTZ0tujnIVE7x5siHAz0IJljl8DwTFBU2TFeuXtk
-	 2BgMnJ6h09sq9rv015mVdI91oJHu12K0a7HyVq4luK2cA8jC65V7yFEN18kFYTe4N+
-	 oeOZ89RmKjenw==
-Date: Wed, 18 Dec 2024 10:21:00 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mao Jinlong <quic_jinlmao@quicinc.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, 
-	Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: Add label in the coresight
- components
-Message-ID: <tida22chffj2znikeotmo52aqnzvmedn3aa7a2coarz2dwjc7w@duw5fby4hexk>
-References: <20241217063324.33781-1-quic_jinlmao@quicinc.com>
- <20241217063324.33781-2-quic_jinlmao@quicinc.com>
+	s=arc-20240116; t=1734513936; c=relaxed/simple;
+	bh=TPMY2eIJ3WTM6XgXtMsQOlj4QFc+y6pJNwCGcj/uins=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=pnP/a/38MQYUCK2MlQ2HwgQUlUp7yCv5FXR2+w2yE/DWnDgvrj1hdC2/7AnytUaKb8PVyVuDmiwuaJtH7FmK7knwKayhozn8jaWiuM7lkVAGAOG8P2tv2ip3/IeXxpy17undn7ZHsXmiQWhWO5d9xSrU5zxTnclipFts+ocKGiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=kklfGCuh; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BI1mj20030214;
+	Wed, 18 Dec 2024 10:25:14 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	Kctec1IakLdkid85JJe7ka3StnnXKgrFJuc3CqkCVzw=; b=kklfGCuhaGpbh3pL
+	gaLxTjfQ32SpgqRa86jF56tm6TgXF6mhnwV/9v0wLe+tNisdKsjFYQ0QFYqmvEf8
+	Wj8NuaiaHOnow+x4JeWZ7so+Xv8WxqsGuMvRJidCR1OjqSmgPffkZT986X8I6FyE
+	LvMh8LTFCsuF81hH/67nJ/xaxZd/o5U/YzZdvSnFdLdhs6W76ptJjRzRRFwcPuTg
+	+bS0db4pK6tYoUhkmkTUDmCj7c63qFhXoUFw/rwlwivW3GtCJ3fag41iW38vG/MH
+	VtK2gJhwRNCfP/KPqZJJRuE+SK/8GORYQYvyIHnuEFyvoRFDqTRFNdJuxqMPlQSo
+	BxIdjw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 43kn2b9ecj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 18 Dec 2024 10:25:13 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 69BF740046;
+	Wed, 18 Dec 2024 10:23:49 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2827025D3E9;
+	Wed, 18 Dec 2024 10:21:51 +0100 (CET)
+Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 18 Dec
+ 2024 10:21:49 +0100
+Message-ID: <3f060b95-53c7-46b5-b65a-c594cd8d6050@foss.st.com>
+Date: Wed, 18 Dec 2024 10:21:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241217063324.33781-2-quic_jinlmao@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/5] PCI: stm32: Add PCIe endpoint support for
+ STM32MP25
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
+        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20241126155119.1574564-1-christian.bruel@foss.st.com>
+ <20241126155119.1574564-5-christian.bruel@foss.st.com>
+ <20241203152230.5mdrt27u5u5ecwcz@thinkpad>
+ <4e257489-4d90-4e47-a4d9-a2444627c356@foss.st.com>
+ <20241216161700.dtldi7fari6kafrr@thinkpad>
+ <fdc487c4-cbdc-45ac-a79f-aff2b8ccafcc@foss.st.com>
+ <20241218090834.bz5htywl3sjbzq6w@thinkpad>
+Content-Language: en-US
+From: Christian Bruel <christian.bruel@foss.st.com>
+In-Reply-To: <20241218090834.bz5htywl3sjbzq6w@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Tue, Dec 17, 2024 at 02:33:23PM +0800, Mao Jinlong wrote:
-> Current name of coresight component's folder consists of prefix of
-> the device and the id in the device list. When run 'ls' command,
-> we can get the register address of the device. Take CTI for example,
-> if we want to set the config for modem CTI, but we can't know which
-> CTI is modem CTI from all current information.
-> 
-> cti_sys0 -> ../../../devices/platform/soc@0/138f0000.cti/cti_sys0
-> cti_sys1 -> ../../../devices/platform/soc@0/13900000.cti/cti_sys1
-> 
-> Add label to show hardware context information of each coresight
-> device. There will be a sysfs node label in each device folder.
-> 
-> cat /sys/bus/coresight/devices/cti_sys0/label
-> 
-> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Best regards,
-Krzysztof
+On 12/18/24 10:08, Manivannan Sadhasivam wrote:
+> On Tue, Dec 17, 2024 at 10:48:43AM +0100, Christian Bruel wrote:
+>>
+>>
+>> On 12/16/24 17:17, Manivannan Sadhasivam wrote:
+>>> On Mon, Dec 16, 2024 at 11:02:07AM +0100, Christian Bruel wrote:
+>>>> Hi Manivanna,
+>>>>
+>>>> On 12/3/24 16:22, Manivannan Sadhasivam wrote:
+>>>>> On Tue, Nov 26, 2024 at 04:51:18PM +0100, Christian Bruel wrote:
+>>>>>
+>>>>> [...]
+>>>>>
+>>>>>> +static int stm32_pcie_start_link(struct dw_pcie *pci)
+>>>>>> +{
+>>>>>> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+>>>>>> +	int ret;
+>>>>>> +
+>>>>>> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
+>>>>>> +		dev_dbg(pci->dev, "Link is already enabled\n");
+>>>>>> +		return 0;
+>>>>>> +	}
+>>>>>> +
+>>>>>> +	ret = stm32_pcie_enable_link(pci);
+>>>>>> +	if (ret) {
+>>>>>> +		dev_err(pci->dev, "PCIe cannot establish link: %d\n", ret);
+>>>>>> +		return ret;
+>>>>>> +	}
+>>>>>
+>>>>> How the REFCLK is supplied to the endpoint? From host or generated locally?
+>>>>
+>>>>   From Host only, we don't support the separated clock model.
+>>>>
+>>>
+>>> OK. So even without refclk you are still able to access the controller
+>>> registers? So the controller CSRs should be accessible by separate local clock I
+>>> believe.
+>>>
+>>> Anyhow, please add this limitation (refclk dependency from host) in commit
+>>> message.
+>>>
+>>> [...]
+>>>
+>>>>>> +	ret = phy_set_mode(stm32_pcie->phy, PHY_MODE_PCIE);
+>>>>>
+>>>>> Hmm, so PHY mode is common for both endpoint and host?
+>>>>
+>>>> Yes it is. We need to init the phy here because it is a clock source for the
+>>>> PCIe core clk
+>>>>
+>>>
+>>> Clock source? Is it coming directly to PCIe or through RCC? There is no direct
+>>> clock representation from PHY to PCIe in DT binding.
+>>
+>> The core_clk is generated directly by the PLL in the COMBOPHY, gated by the
+>> RCC
+>>
+> 
+> In that case, phy should be the clock provider to RCC and PCIe should get the
+> gated clock it.
 
+ok, seems sensible.
+
+
+
+> 
+> - Mani
+> 
 
