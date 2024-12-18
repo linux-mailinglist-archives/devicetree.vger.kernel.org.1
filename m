@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-132394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 635619F6E2B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 20:24:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47A089F6E35
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 20:30:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF893169C30
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 19:24:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2880D188C504
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 19:30:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E59B41FC0EB;
-	Wed, 18 Dec 2024 19:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B70A1FC0F7;
+	Wed, 18 Dec 2024 19:29:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z5AQXqag"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MTLM1y9+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7A03142624;
-	Wed, 18 Dec 2024 19:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30CDF155359;
+	Wed, 18 Dec 2024 19:29:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734549848; cv=none; b=ti4VF2qCoXd5GbjR/1mxIkb60gEVZRNHFb4V3eVSOl5KaP2//Fpdy4LvlJvSCyhQVwDV1jHKp8V85DkeNLmAbNlYFjqjJAhzjJ3vFRmXiSpritJs6/wl9QJPgog+IvRbaG7K34mtmanqLzpz8GE/AjpTigtUAYcPFexvqH24/Yk=
+	t=1734550185; cv=none; b=VpN7SII7h5qHwthQiYCBxjEd1Qj01sDXjrwxTvMsTwEyJJUv+1XH0usntJDcUfRsNdyWelQgdTM2xE/an6II6Myj9RBTH4vkFczpuvxwDvBJ4Avn0muzCoKPMbMg+y8BgDAq0uB4koW5m3a9+zJA+5KxFoAmWVwptDBrWVndgWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734549848; c=relaxed/simple;
-	bh=QIxbYH7qS6wnsCiz7kNj97RHFp/EC3ifsaAjE00rY6k=;
+	s=arc-20240116; t=1734550185; c=relaxed/simple;
+	bh=hpHX0UvlDSyx5pI6TYm4aijPyLWk5pW7U6lcQ6Ug62M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pmGDXZ6n+2FVIDo+QF1D4lYCB3N5HE2cXuILEd55TS7QUoDJW3vntzF41y5VRuYEl4MnKpAkAgJlzBTPfhhBAAKG4xelvS4JxsWDtRckQGdPY31dEpqLd2OqAznKhOMt5U0pyTQoKqUhNMPL/mnB4w03G9/YWcWZwWS7JfgmbG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z5AQXqag; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDAC4C4CED0;
-	Wed, 18 Dec 2024 19:24:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jZdI2tPSiTCMM1TuBjaWE+GigdA0m3xDTaGjhfREa6ahROXG4mLsAl85z6nv6qd6OQ6ohFT7AsIqfXcdh3NixxkcRUCyp8S3SokQFM342hwK1LGJ8UqnkcsK9oAhTAC3SYjuDGV2f09g+JcA0Yfj8oZDhyPvlg1hN8xNfWr/UNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MTLM1y9+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CB43C4CECD;
+	Wed, 18 Dec 2024 19:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734549848;
-	bh=QIxbYH7qS6wnsCiz7kNj97RHFp/EC3ifsaAjE00rY6k=;
+	s=k20201202; t=1734550184;
+	bh=hpHX0UvlDSyx5pI6TYm4aijPyLWk5pW7U6lcQ6Ug62M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z5AQXqagOk8QujM98Pa86OOhYP8Y9ifsa1FZzC6c1+vkBjWg6/85L+Vup/gitchmX
-	 MKTDqZeJrI2lBb/bHhKgsGFuX+PLt6rJF97Iko+EccAP9bjG5ZpN3aWdpfEb7dlwt0
-	 CYm3HPXQ3hxMk8lfRDz1UD0PBjSYKtDgCdCW/4AS2zxElSrctN8EE5JDktUFCFOafl
-	 mXZKbiC6FUDb5+czfydLyfmhIXq9UNP3leiBr97J9/g6cupOpyHVHQFCZXtXeozZEt
-	 /A88pZYC9DpU57RgQzVTgKNEvCDmtYXnpo8gDt40Aqnv7U6t73+gHjQdpGST8xCZ2k
-	 4LdmIRyEX8gMg==
-Date: Wed, 18 Dec 2024 13:24:06 -0600
+	b=MTLM1y9+BaliZsAek+5vTR03HZ4lRIiGx3QMAcZopwX5TDjKj2wifgN+BF2zRiznq
+	 ofdT9C+vTHx++rtK6H24eRP222dWLDeBfN8R8qMgNoSatfP8wo733evdTQwOp+xMB/
+	 o9Sn99LrH/jy2Rb4xyPq41WU6PdTC8/Fta+POJjdrkPCyjTN9TH/wC39Haf4Siig2A
+	 KSA//35IZw/pvAGLe1qJuUz+xocCL3ttaSpbEjWkyWrkywaAdRzdn0pt2PuwqL+dEX
+	 TNFV8nyhVl+FV62uyPgtgQNTi/Jd1nEZUaDK0kRMHi15DviqjElrlEbfzdEv+mxNAN
+	 fTlKl8PD07R+A==
+Date: Wed, 18 Dec 2024 13:29:42 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>, devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Linus Walleij <linus.walleij@linaro.org>,
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, Marc Zyngier <maz@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v4 1/7] dt-bindings: pinctrl: renesas: Add
- alpha-numerical port support for RZ/V2H
-Message-ID: <173454984612.2190555.11491209654518960131.robh@kernel.org>
-References: <20241216195325.164212-1-biju.das.jz@bp.renesas.com>
- <20241216195325.164212-2-biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: arm,gic: Correct VGIC
+ interrupt description
+Message-ID: <173455018100.2198330.12077558801772545243.robh@kernel.org>
+References: <20241217061226.14139-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,25 +60,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241216195325.164212-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20241217061226.14139-1-krzysztof.kozlowski@linaro.org>
 
 
-On Mon, 16 Dec 2024 19:53:11 +0000, Biju Das wrote:
-> RZ/V2H has ports P0-P9 and PA-PB. Add support for defining alpha-numerical
-> ports in DT using RZV2H_* macros.
+On Tue, 17 Dec 2024 07:12:26 +0100, Krzysztof Kozlowski wrote:
+> The description of VGIC interrupt referenced obsolete "see below" after
+> converting TXT to DT Schema in commit 66ed144f147a ("dt-bindings:
+> interrupt-controller: Convert ARM GIC to json-schema"), because there is
+> no dedicated "VGIC" chapter anymore below.
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> v3->v4:
->  * Added new header file with separate RZV2H_P* definitions.
-> v3:
->  * New patch.
-> ---
->  .../pinctrl/renesas,r9a09g057-pinctrl.h       | 31 +++++++++++++++++++
->  1 file changed, 31 insertions(+)
->  create mode 100644 include/dt-bindings/pinctrl/renesas,r9a09g057-pinctrl.h
+>  .../devicetree/bindings/interrupt-controller/arm,gic.yaml     | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
