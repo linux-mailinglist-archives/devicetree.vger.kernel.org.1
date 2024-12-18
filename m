@@ -1,348 +1,238 @@
-Return-Path: <devicetree+bounces-132272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28E919F653B
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:46:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98CA29F6540
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 12:47:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 697D91699E2
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:46:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74E9A167538
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:46:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446AE1B0423;
-	Wed, 18 Dec 2024 11:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6665219F49F;
+	Wed, 18 Dec 2024 11:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VYBLF7pl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IR+x8HXT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B561ACEBE;
-	Wed, 18 Dec 2024 11:45:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B10119F422
+	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 11:46:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734522305; cv=none; b=UAiHJ+9yxVeuA7+1pSS2K0hpDxh2S7tYL3Vjkz4itkNMf+zSE8xN0bV479hBNqhzabqY4eWVmcyvHJWmV/jkjkc3p3vQDYzZvWL+KzUdYGai2wRcR3anLMv8+cG+vd4azbvEvvvehwcQfUYyPC+yuZz7KbVikDNBAqkASL0+Bi0=
+	t=1734522394; cv=none; b=oKmn3cAwBO7dVvvv988VG3DqX4ucKam0Cm7uWrxZyRfHFNXT/hM5id7qA88swk71eEwKB/XcqadHXtI/qIgd9JLc5UG764dpHDbPXka7kxmnONaaK5eCKYfzXNfgUIahkZ/zue6LnyLOGQad1YVDsCIlvzgfNyoc3lx5hzmUXpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734522305; c=relaxed/simple;
-	bh=Tcsg9YBMMbw+e9psh+5Rs6eqBJypw6W5zJ+foYW9aWg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=op0qQb8aT+8TUU0MfkRxAs6WdwJyMYsUh7Aju4uKvKLjj3TNMXJ0RbZsHHMNMgbJLBxZsTjM4VTgPgDNL+7/csj0newYWR3F33Fd+WgyTdcnZfi3OQy+/F4DyABEJIsm/sYZ4PZqt7CrxYHN75mc/yOh3lDYEEhFIPZNz/FnUfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VYBLF7pl; arc=none smtp.client-ip=209.85.215.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-801c8164ef9so510792a12.1;
-        Wed, 18 Dec 2024 03:45:03 -0800 (PST)
+	s=arc-20240116; t=1734522394; c=relaxed/simple;
+	bh=WV+a4z5duAoPF4CNoUdiZVVbM+He69iNU0WxLENhLfg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p0BCRenbP/srJW1iND64/yww1Ri1DGilTw3NGVDJRrjc68zDkMTmiESR7xZCN72G54zZd6Eo7MtaBU3inQdWMAJkVSvBNaJr+qeQ9/47nk4DuxNiexHj8dyz756g5w8b42tX2Nm+fTK9c+MJl2uJjJ5VkpRrupuU0XCY4jN8ZGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IR+x8HXT; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2ee86a1a92dso4471779a91.1
+        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 03:46:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734522303; x=1735127103; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NiozAIbAch5ehbFvYachJlRvMKlUEEfH30ZvBdsBbJM=;
-        b=VYBLF7plgO+MQx+EQGQmRudWecioG+Bz52P/0grpiGtY89/Ik/jVc/9XmoyGN//b+H
-         BGgp+wTo015WllMhcvEGgQ2IZHqfLCQEy10IdD/hBdAhf/DdXIpTHWJ1SRfHQWdRv4p+
-         PxWhRT/osPjrGGd0D06MmVFAcjK5WMGRh6EkZORVkrwONTjjZcnowMKkG1tc5SdnH3G7
-         9hIqO6oJARDzDYPQKyOaARKFMFbd/PxbijcS27m4THppqzQhst10EgdQxgMQ8Pw86uj3
-         7fdfDhbQERZDmmON/BfqrVXpggcZWKSKliPQH+HLI/I+jDPgTljH1vYlkBUQzWdYUmf5
-         wytw==
+        d=linaro.org; s=google; t=1734522392; x=1735127192; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TrVaSMgbTfMEJQGridzhaDtd8gpO8DG1MuI/x/WUz/s=;
+        b=IR+x8HXTrHN9akPzN1Pr0DvvDJ/5j892c9sLxYXXGmpenD/Gcw2wW46dHy1pVREPzL
+         zvDoKMJhC87DjGbKfM3uFgVrBKluWpAHQ50bPsFyfOf0H3T06O9+bGM9RaUg+EbsZj1e
+         8OKFwkWyThZMfeq8NlMCY/SVOU2qJye7yncbpwiJhTQwZnTbnchPQ8zdsxxT9gJ/3NwG
+         kJa1xsL4xmZ38VLBHy7Aks/VCLhJz5GCL8yVXdoWCLguH4LbjwMd1212o73qB0QwaNaX
+         nR6lwoajut+JN7yuIKrlW/aCCGk38rREQfRecsPH80MgmsMxO43PXCuo4/VeOdfcal7h
+         yyGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734522303; x=1735127103;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NiozAIbAch5ehbFvYachJlRvMKlUEEfH30ZvBdsBbJM=;
-        b=nKAYspH925Jfwga/jsuQ636mWg4tjt34ztHwKxuOFJa4qzJPAO7TzH3FzgHOAgqC59
-         P1NC+bAJdyuXgfSfdIrloQT0uAtEsFL+sqfUI3O3AAQw6yW6LRyImzcNSko6zofx9csq
-         fjcU83LA9ajsdSaHDUlnRpOdoxuu5vTFWxHTzhTxZMDTmst9QqZKndLk5lpN0or0b+0P
-         KtHQIw1L51GA1/YMTGO0t+LOIrFS7xbcmNUTkJhID1cUexlKgQdDGwX9u0xwq26P08un
-         WjaGg9JGs6OfB24YSvAU6wVdhD4X4F0AOEUQeEXNkoDohQ4ngb0mW51F0gFKTJTkdAHD
-         Owbw==
-X-Forwarded-Encrypted: i=1; AJvYcCUuOrIfTaHCjui0BDpmc8DCGGRuW/A5fW+6WPehHPiSy5U8nLwl9Eo7qMJl8ESaOuTlis8jcNxM@vger.kernel.org, AJvYcCUxksuPeZeVae5XS8MXFoX3Ou6exRX43yZwxOJERS21EUOUqO1XqrFnbkwphrTjb2gmV5tSqvf/6nhklqrq@vger.kernel.org, AJvYcCXOcMuT6fdna542i1YJJGEyf1j/cszrBr6sccVy6w8Hx0zV7TT/oiAMtknbuB1GF/3GvgcA8k9DCb7o@vger.kernel.org
-X-Gm-Message-State: AOJu0YwaaisJn/a0DUHGJ/7wnnMnyDFvar1Zz5eQDWFMXhchDKuS+wVq
-	D66SKy+IuZA4o1+n9SePDsJfenJd3HdSdNtdaEDcdWM1GP+5e/BR
-X-Gm-Gg: ASbGncvWOkGziz74we+7KeIdgFwqj4TIQncZcWunvorkIoSvqpDwM70t6DN+91FPFp8
-	fkYQLhWYr94P9HKi0ogqyK2BBaluXvudaG0NZeGO3bxCbEDs+c8n+04kjss/17tcMzzNGwUjyAo
-	plrHHLfYlx2Ohpu/a2hxN7M7yz8shzgaCAbWRjLZKX4wAVIX1IZqjasd0y4j99CRgou6gChkR+Z
-	2pso6Z/K0BMk7yDrVG2l21pptffIoOrfujkIvLPHriPyzFy7wSh8ilZvnI/6v126kz4R5F5G0K+
-	sCaRUgxKVLWAf4oFlWnB7A==
-X-Google-Smtp-Source: AGHT+IE6625a3zz+jwuwR+ZM2W8rdYS+MlxZLIdkTumi+AeaBxvzwCMuG/fLPvKuIAteZsDbVs/QmQ==
-X-Received: by 2002:a17:90b:1e4c:b0:2ee:e2f6:8abc with SMTP id 98e67ed59e1d1-2f2d87f672fmr9972766a91.10.1734522302783;
-        Wed, 18 Dec 2024 03:45:02 -0800 (PST)
-Received: from yclu-ubuntu.. (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f2ed62cddbsm1324362a91.15.2024.12.18.03.44.59
+        d=1e100.net; s=20230601; t=1734522392; x=1735127192;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TrVaSMgbTfMEJQGridzhaDtd8gpO8DG1MuI/x/WUz/s=;
+        b=tolUWSdqR/wAi2Z5ElqhU2YNai57uqie8LsqtuKvnnL/mIzUun7PCH4+OVK/+osntR
+         ESl5uhrH70r0uPH03N3O0WTjWugligEANRpjnnCjHdfM9BeJapO6C6sLYpB5xy8FpCkv
+         CKK5LORDf09vl+LCELATgdJdEcIAxVn1YbXY4kdnI2wSIY0ogU9sxd2JNm782BWzJG5T
+         w3JdMU8GF7tRBnYB4LeyDfJWJj4GkftUw0+y9RJb2cdSTekBOiBvZ0CV4oIVN0goPft7
+         YrzhqFcgWP0hTyiRCapg4UJ0wOpQLnQJcFGk9yJjk5cMMQJCkNfMK0F6UNgzZBsb1J6U
+         ts6w==
+X-Forwarded-Encrypted: i=1; AJvYcCWUkh4UDiaFic+yNy9oLU+pLBCXB6AtCLzWpkwxqPCJcorWfNxEUjdLbt6KhaekSbTxi7FHc47AB+U8@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywc7GRv/EOR8gieJEyu9fiGtzbgN4bXsamnG6qkmo2+B6h5GwqI
+	PffTqQwkFedN1K0tsXFTsnHfiHqsMvUev82DUD6vWJE6RoIYXvQfd9ylVuSOfQ==
+X-Gm-Gg: ASbGncvHCVZckY9wk0YePsghcz3tZ5LPnyGoRKHX8g3bdJirfQl39qEraDoLjkjlgZh
+	3tDF482tpwIdkt08vfkbpHDxE7UDOSVOLwTg5o9iElA1/o237Xm8TGcJv5HkbNe5n3nMaxKFtul
+	9PsgfwRMc3OhMOzhG87rffZsb5K+WIulKF8Rhmgs7DUl3o3hanweOBIFbX5yef1zSdXKLq90VxP
+	Z8y3HpXGCQ3mJ5pyId4H4WrRCGM2UGHzuxPNAv20wxo8u0dLbd+fp+JPWm6zvw89UiX
+X-Google-Smtp-Source: AGHT+IGQCgOq49R63ovvMukQoYUb7D03BYa7ObLjFwjqufc6miUeckdIMCl7aC+v7+RULldgNi6Ukw==
+X-Received: by 2002:a17:90b:548f:b0:2ee:8e75:4aeb with SMTP id 98e67ed59e1d1-2f2e91f6469mr4114590a91.17.1734522391875;
+        Wed, 18 Dec 2024 03:46:31 -0800 (PST)
+Received: from thinkpad ([117.213.97.217])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f2ee06dd84sm1313616a91.38.2024.12.18.03.46.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Dec 2024 03:45:02 -0800 (PST)
-From: Joey Lu <a0987203069@gmail.com>
-To: andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mcoquelin.stm32@gmail.com,
-	richardcochran@gmail.com
-Cc: alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com,
-	ychuang3@nuvoton.com,
-	schung@nuvoton.com,
-	yclu4@nuvoton.com,
-	peppe.cavallaro@st.com,
-	linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org,
+        Wed, 18 Dec 2024 03:46:31 -0800 (PST)
+Date: Wed, 18 Dec 2024 17:16:22 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Christian Bruel <christian.bruel@foss.st.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	p.zabel@pengutronix.de, cassel@kernel.org,
+	quic_schintav@quicinc.com, fabrice.gasnier@foss.st.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-stm32@st-md-mailman.stormreply.com,
-	Joey Lu <a0987203069@gmail.com>
-Subject: [PATCH v5 3/3] net: stmmac: dwmac-nuvoton: Add dwmac glue for Nuvoton MA35 family
-Date: Wed, 18 Dec 2024 19:44:42 +0800
-Message-Id: <20241218114442.137884-4-a0987203069@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241218114442.137884-1-a0987203069@gmail.com>
-References: <20241218114442.137884-1-a0987203069@gmail.com>
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] PCI: stm32: Add PCIe host support for STM32MP25
+Message-ID: <20241218114622.3fgdooag6hwlmipr@thinkpad>
+References: <20241126155119.1574564-1-christian.bruel@foss.st.com>
+ <20241126155119.1574564-3-christian.bruel@foss.st.com>
+ <20241203145244.trgrobtfmumtiwuc@thinkpad>
+ <ced7a55a-d968-497f-abc2-663855882a3f@foss.st.com>
+ <20241218094606.sljdx2w27thc5ahj@thinkpad>
+ <d15cec4e-e06a-47f7-aa8a-744c0829d244@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <d15cec4e-e06a-47f7-aa8a-744c0829d244@foss.st.com>
 
-Add support for Gigabit Ethernet on Nuvoton MA35 series using dwmac driver.
+On Wed, Dec 18, 2024 at 12:24:21PM +0100, Christian Bruel wrote:
 
-Signed-off-by: Joey Lu <a0987203069@gmail.com>
----
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
- drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
- .../ethernet/stmicro/stmmac/dwmac-nuvoton.c   | 182 ++++++++++++++++++
- 3 files changed, 194 insertions(+)
- create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
+[...]
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 6658536a4e17..c8cbc0ec1311 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -121,6 +121,17 @@ config DWMAC_MESON
- 	  the stmmac device driver. This driver is used for Meson6,
- 	  Meson8, Meson8b and GXBB SoCs.
- 
-+config DWMAC_NUVOTON
-+	tristate "Nuvoton MA35 dwmac support"
-+	default ARCH_MA35
-+	depends on OF && (ARCH_MA35 || COMPILE_TEST)
-+	select MFD_SYSCON
-+	help
-+	  Support for Ethernet controller on Nuvoton MA35 series SoC.
-+
-+	  This selects the Nuvoton MA35 series SoC glue layer support
-+	  for the stmmac device driver.
-+
- config DWMAC_QCOM_ETHQOS
- 	tristate "Qualcomm ETHQOS support"
- 	default ARCH_QCOM
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index 2389fd261344..9812b824459f 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-+++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-@@ -19,6 +19,7 @@ obj-$(CONFIG_DWMAC_IPQ806X)	+= dwmac-ipq806x.o
- obj-$(CONFIG_DWMAC_LPC18XX)	+= dwmac-lpc18xx.o
- obj-$(CONFIG_DWMAC_MEDIATEK)	+= dwmac-mediatek.o
- obj-$(CONFIG_DWMAC_MESON)	+= dwmac-meson.o dwmac-meson8b.o
-+obj-$(CONFIG_DWMAC_NUVOTON)	+= dwmac-nuvoton.o
- obj-$(CONFIG_DWMAC_QCOM_ETHQOS)	+= dwmac-qcom-ethqos.o
- obj-$(CONFIG_DWMAC_ROCKCHIP)	+= dwmac-rk.o
- obj-$(CONFIG_DWMAC_RZN1)	+= dwmac-rzn1.o
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-new file mode 100644
-index 000000000000..c5b8933c1f44
---- /dev/null
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-@@ -0,0 +1,182 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Nuvoton DWMAC specific glue layer
-+ *
-+ * Copyright (C) 2024 Nuvoton Technology Corp.
-+ *
-+ * Author: Joey Lu <yclu4@nuvoton.com>
-+ */
-+
-+#include <linux/mfd/syscon.h>
-+#include <linux/of_device.h>
-+#include <linux/of_net.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/stmmac.h>
-+
-+#include "stmmac.h"
-+#include "stmmac_platform.h"
-+
-+#define REG_SYS_GMAC0MISCR  0x108
-+#define REG_SYS_GMAC1MISCR  0x10C
-+
-+#define MISCR_RMII          BIT(0)
-+
-+/* 2000ps is mapped to 0 ~ 0xF */
-+#define PATH_DELAY_DEC      134
-+#define TX_DELAY_OFFSET     16
-+#define TX_DELAY_MASK       GENMASK(19, 16)
-+#define RX_DELAY_OFFSET     20
-+#define RX_DELAY_MASK       GENMASK(23, 20)
-+
-+struct nvt_priv_data {
-+	struct platform_device *pdev;
-+	struct regmap *regmap;
-+};
-+
-+static struct nvt_priv_data *
-+nuvoton_gmac_setup(struct platform_device *pdev, struct plat_stmmacenet_data *plat)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct nvt_priv_data *bsp_priv;
-+	phy_interface_t phy_mode;
-+	u32 tx_delay, rx_delay;
-+	u32 macid, arg, reg;
-+
-+	bsp_priv = devm_kzalloc(dev, sizeof(*bsp_priv), GFP_KERNEL);
-+	if (!bsp_priv)
-+		return ERR_PTR(-ENOMEM);
-+
-+	bsp_priv->regmap =
-+		syscon_regmap_lookup_by_phandle_args(dev->of_node, "nuvoton,sys", 1, &macid);
-+	if (IS_ERR(bsp_priv->regmap)) {
-+		dev_err_probe(dev, PTR_ERR(bsp_priv->regmap), "Failed to get sys register\n");
-+		return ERR_PTR(-ENODEV);
-+	}
-+	if (macid > 1) {
-+		dev_err_probe(dev, -EINVAL, "Invalid sys arguments\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (of_property_read_u32(dev->of_node, "tx-internal-delay-ps", &arg)) {
-+		tx_delay = 0; /* Default value is 0 */
-+	} else {
-+		if (arg <= 2000) {
-+			tx_delay = (arg == 2000) ? 0xF : (arg / PATH_DELAY_DEC);
-+			dev_dbg(dev, "Set Tx path delay to 0x%x\n", tx_delay);
-+		} else {
-+			dev_err(dev, "Invalid Tx path delay argument.\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+	}
-+	if (of_property_read_u32(dev->of_node, "rx-internal-delay-ps", &arg)) {
-+		rx_delay = 0; /* Default value is 0 */
-+	} else {
-+		if (arg <= 2000) {
-+			rx_delay = (arg == 2000) ? 0xF : (arg / PATH_DELAY_DEC);
-+			dev_dbg(dev, "Set Rx path delay to 0x%x\n", rx_delay);
-+		} else {
-+			dev_err(dev, "Invalid Rx path delay argument.\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+	}
-+
-+	regmap_read(bsp_priv->regmap,
-+		    macid == 0 ? REG_SYS_GMAC0MISCR : REG_SYS_GMAC1MISCR, &reg);
-+	reg &= ~(TX_DELAY_MASK | RX_DELAY_MASK);
-+
-+	if (of_get_phy_mode(pdev->dev.of_node, &phy_mode)) {
-+		dev_err(dev, "missing phy mode property\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	switch (phy_mode) {
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		reg &= ~MISCR_RMII;
-+		break;
-+	case PHY_INTERFACE_MODE_RMII:
-+		reg |= MISCR_RMII;
-+		break;
-+	default:
-+		dev_err(dev, "Unsupported phy-mode (%d)\n", phy_mode);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (!(reg & MISCR_RMII)) {
-+		reg |= tx_delay << TX_DELAY_OFFSET;
-+		reg |= rx_delay << RX_DELAY_OFFSET;
-+	}
-+
-+	regmap_write(bsp_priv->regmap,
-+		     macid == 0 ? REG_SYS_GMAC0MISCR : REG_SYS_GMAC1MISCR, reg);
-+
-+	bsp_priv->pdev = pdev;
-+
-+	return bsp_priv;
-+}
-+
-+static int nuvoton_gmac_probe(struct platform_device *pdev)
-+{
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct stmmac_resources stmmac_res;
-+	int ret;
-+
-+	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+	if (IS_ERR(plat_dat))
-+		return PTR_ERR(plat_dat);
-+
-+	/* Nuvoton DWMAC configs */
-+	plat_dat->has_gmac = 1;
-+	plat_dat->tx_fifo_size = 2048;
-+	plat_dat->rx_fifo_size = 4096;
-+	plat_dat->multicast_filter_bins = 0;
-+	plat_dat->unicast_filter_entries = 8;
-+	plat_dat->flags &= ~STMMAC_FLAG_USE_PHY_WOL;
-+
-+	plat_dat->bsp_priv = nuvoton_gmac_setup(pdev, plat_dat);
-+	if (IS_ERR(plat_dat->bsp_priv)) {
-+		ret = PTR_ERR(plat_dat->bsp_priv);
-+		return ret;
-+	}
-+
-+	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	/* The PMT flag is determined by the RWK property.
-+	 * However, our hardware is configured to support only MGK.
-+	 * This is an override on PMT to enable WoL capability.
-+	 */
-+	plat_dat->pmt = 1;
-+	device_set_wakeup_capable(&pdev->dev, 1);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id nuvoton_dwmac_match[] = {
-+	{ .compatible = "nuvoton,ma35d1-dwmac"},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, nuvoton_dwmac_match);
-+
-+static struct platform_driver nuvoton_dwmac_driver = {
-+	.probe  = nuvoton_gmac_probe,
-+	.remove = stmmac_pltfr_remove,
-+	.driver = {
-+		.name           = "nuvoton-dwmac",
-+		.pm		= &stmmac_pltfr_pm_ops,
-+		.of_match_table = nuvoton_dwmac_match,
-+	},
-+};
-+module_platform_driver(nuvoton_dwmac_driver);
-+
-+MODULE_AUTHOR("Joey Lu <yclu4@nuvoton.com>");
-+MODULE_DESCRIPTION("Nuvoton DWMAC specific glue layer");
-+MODULE_LICENSE("GPL v2");
+> > > > > +static int stm32_pcie_suspend_noirq(struct device *dev)
+> > > > > +{
+> > > > > +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
+> > > > > +
+> > > > > +	stm32_pcie->link_is_up = dw_pcie_link_up(stm32_pcie->pci);
+> > > > > +
+> > > > > +	stm32_pcie_stop_link(stm32_pcie->pci);
+> > > > 
+> > > > I don't understand how endpoint can wakeup the host if PERST# gets asserted.
+> > > 
+> > > The stm32 PCIe doesn't support L2, we don't expect an in-band beacon for the
+> > > wakeup. We support wakeup only from sideband WAKE#, that will restart the
+> > > link from IRQ
+> > > 
+> > 
+> > I don't understand how WAKE# is supported without L2. Only in L2 state, endpoint
+> > will make use of Vaux and it will wakeup the host using either beacon or WAKE#.
+> > If you don't support L2, then the endpoint will reach L3 (link off) state.
+> 
+> I think this is what happens, my understanding is that the device is still
+> powered to get the wakeup event (eg WoL magic packet), triggers the PCIe
+> wake_IRQ from the WAKE#.
+> 
+
+Honestly, I still cannot understand how this can happen.
+
+> > 
+> > > > 
+> > > > > +	clk_disable_unprepare(stm32_pcie->clk);
+> > > > > +
+> > > > > +	if (!device_may_wakeup(dev) && !device_wakeup_path(dev))
+> > > > > +		phy_exit(stm32_pcie->phy);
+> > > > > +
+> > > > > +	return pinctrl_pm_select_sleep_state(dev);
+> > > > > +}
+> > > > > +
+> > > > > +static int stm32_pcie_resume_noirq(struct device *dev)
+> > > > > +{
+> > > > > +	struct stm32_pcie *stm32_pcie = dev_get_drvdata(dev);
+> > > > > +	struct dw_pcie *pci = stm32_pcie->pci;
+> > > > > +	struct dw_pcie_rp *pp = &pci->pp;
+> > > > > +	int ret;
+> > > > > +
+> > > > > +	/* init_state must be called first to force clk_req# gpio when no
+> > > > 
+> > > > CLKREQ#
+> > > > 
+> > > > Why RC should control CLKREQ#?
+> > > 
+> > > REFCLK is gated with CLKREQ#, So we cannot access the core
+> > > without CLKREQ# if no device is present. So force it with a init pinmux
+> > > the time to init the PHY and the core DBI registers
+> > > 
+> > 
+> > Ok. You should add a comment to clarify it in the code as this is not a standard
+> > behavior.
+> > 
+> 
+> OK
+> 
+> > > > 
+> > > > Also please use preferred style for multi-line comments:
+> > > > 
+> > > > 	/*
+> > > > 	 * ...
+> > > > 	 */
+> > > > 
+> > > > > +	 * device is plugged.
+> > > > > +	 */
+> > > > > +	if (!IS_ERR(dev->pins->init_state))
+> > > > > +		ret = pinctrl_select_state(dev->pins->p, dev->pins->init_state);
+> > > > > +	else
+> > > > > +		ret = pinctrl_pm_select_default_state(dev);
+> > > > > +
+> > > > > +	if (ret) {
+> > > > > +		dev_err(dev, "Failed to activate pinctrl pm state: %d\n", ret);
+> > > > > +		return ret;
+> > > > > +	}
+> > > > > +
+> > > > > +	if (!device_may_wakeup(dev) && !device_wakeup_path(dev)) {
+> > > > > +		ret = phy_init(stm32_pcie->phy);
+> > > > > +		if (ret) {
+> > > > > +			pinctrl_pm_select_default_state(dev);
+> > > > > +			return ret;
+> > > > > +		}
+> > > > > +	}
+> > > > > +
+> > > > > +	ret = clk_prepare_enable(stm32_pcie->clk);
+> > > > > +	if (ret)
+> > > > > +		goto clk_err;
+> > > > 
+> > > > Please name the goto labels of their purpose. Like err_phy_exit.
+> > > 
+> > > OK
+> > > 
+> > > > 
+> > > > > +
+> > > > > +	ret = dw_pcie_setup_rc(pp);
+> > > > > +	if (ret)
+> > > > > +		goto pcie_err;
+> > > > 
+> > > > This should be, 'err_disable_clk'.
+> > > > 
+> > > > > +
+> > > > > +	if (stm32_pcie->link_is_up) {
+> > > > 
+> > > > Why do you need this check? You cannot start the link in the absence of an
+> > > > endpoint?
+> > > > 
+> > > 
+> > > It is an optimization to avoid unnecessary "dw_pcie_wait_for_link" if no
+> > > device is present during suspend
+> > > 
+> > 
+> > In that case you'll not trigger LTSSM if there was no endpoint connected before
+> > suspend. What if users connect an endpoint after resume?
+> 
+> Yes, exactly. We don't support hotplug, and plugging a device while the
+> system is in stand-by is something that we don't expect. The imx6 platform
+> does this also.
+> 
+
+You should reconsider this approach. You'll never know how the OEMs are going to
+use the PCIe slot. And lack of standard hotplug is not preventing users from
+doing hotplug (they could try to do rescan themselves etc...)
+
+- Mani
+
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
 
