@@ -1,265 +1,152 @@
-Return-Path: <devicetree+bounces-132199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B49D39F623A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:58:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 782979F6254
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 11:05:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00552170170
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:58:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63A247A301F
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:05:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0D1B198A10;
-	Wed, 18 Dec 2024 09:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C33198832;
+	Wed, 18 Dec 2024 10:05:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dfWDIOLf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GBoT5JfE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26108194A7C;
-	Wed, 18 Dec 2024 09:57:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B8BE175D2D;
+	Wed, 18 Dec 2024 10:05:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734515850; cv=none; b=bZYBYZQJTuUFE+JnnX7kbutKCg8XGeIkBJWA7wepe6K77fFotFrsKNRu0q55SaGMOIXL3Offc/R/oCQek5oEZUnwPKkQzXwojhsm61jvoTIJQAwzrWyHttcU0NWqt9D7+odF6aM7gWDjG/xdt2UeLwUk79348AeiC4d2uaLgWhE=
+	t=1734516306; cv=none; b=LSTIbi93lELDIrXARKFRScenNoJXy0KQ5dZgy/SsVdT3O3X4u691BVnsEt3Cj6cCrlnGnTiXAyz5V07iM8dGAD09Cro1VirGgI2tEJRFHHoUsA3tpiiIkXC9MxTJCyF4TpEkxVEStUBgb2ug11B5ce3+sL/xMq/E63uu7Yr6zM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734515850; c=relaxed/simple;
-	bh=SJB4XpYcwUvwhO+PDEQcxCg/PzrDVOWD0ZL1d6j04CM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qqg5Mu+Y7150vIbLHa3lQvGsykG8troN7S3FM6msmMdM+9ljIMQn5zmF9T7AtOZ7czYzeWY7KzsKI26QaxUOCCH5K91Jq4eaEtOF8wmpjg7xoUoZ0t7dNtZUYuNJfkWsXCIYJdhUM88v8Bx7R0u7tWxR87a+Yr3ayWcXFSF8DKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dfWDIOLf; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BI6VflX024955;
-	Wed, 18 Dec 2024 09:57:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	nC1HOIkdi6xwcaM/XJadvuO2A+PrutWeTyG/uorTH7M=; b=dfWDIOLf+LX41vj7
-	5MdXK/y9iMjTr5Ud4hWvhCjuXxo8xLnwxiyX7Xdhwyt5GULcUnrbTQU7fPE4IObO
-	bbnSWU87F+M96eC+L4UbJfBJ6aHhxuTlT78UF5P0R7DlPVCLFrg00DwOkXQTQDXa
-	w0MnRMI0QOzaPWlHWZyG9IL+xbfcrnthzLwpUY3oPcCcF6kzJv0ToAd4+pormFsS
-	PFz65V6iJWxmShB0L0b1MCZtH1QW38NHPFcpvmy/R/2InQyzHGl0HSvrty6XKVvG
-	24A9+YOSJyKkMJNwkimXaSLcvzWKQhr9Z/1wri0aMbcBNL7Ap8kRyiVMvFwkaIJh
-	d+bvrg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43ks6ygfqm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Dec 2024 09:57:17 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BI9vGK1023777
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 18 Dec 2024 09:57:16 GMT
-Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 18 Dec
- 2024 01:57:13 -0800
-Message-ID: <f1c6da16-fbfd-40aa-a158-36ab713ce541@quicinc.com>
-Date: Wed, 18 Dec 2024 17:57:10 +0800
+	s=arc-20240116; t=1734516306; c=relaxed/simple;
+	bh=AvgDaXHtwbjGpgaswDIE8L8Q79jWldOS8jXiymOqhVI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OwT81RMOb75siRTxeUGBcRIKhqIZ7ZVuN1MwXs/av8jYkyY967fRuXEVWojfWrHaGqEJDMlJf2a4dou/XbRoaLVsQILsM7/P0T1yh8uDhgMfvaejmxph3p/gbS3Hm/6rHWpgLMuoOSIhJ06ohFNMMugvZCzN6HYRCApjzXlVX/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GBoT5JfE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61230C4CECE;
+	Wed, 18 Dec 2024 10:05:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734516305;
+	bh=AvgDaXHtwbjGpgaswDIE8L8Q79jWldOS8jXiymOqhVI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GBoT5JfEG3pfz6gRlPYib7Y3mQXMytM4776pg7n11Ax/1FB1gGF4PuUGD0pu+/3M1
+	 fTdCR0peOq3XVYYzqgR8vTrocVlKfazgleENOepmy9l6Y+0M/G/HgcSs0NEXyhFhKi
+	 qCamv4C0sLyGxCYRNzV/XM2xd47k9vsx0M66oZduxJLuHnahexO0GL3uauj8eWoKsW
+	 ApyVzOM0NrEciAyArjzoJrM4Rd0mPQYYo46g3DWVWeAq/YEjyTsOGEfEDm6p66i/Da
+	 SpZEfRYPaO3SWX+ZRaCiTp3oy8IUamFvJX160Qyzu/CwVRUAlyaOtIeGzrbo40jRNW
+	 bk70WqLac5pQA==
+Date: Wed, 18 Dec 2024 11:05:03 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, alexandre.torgue@foss.st.com, wbg@kernel.org, jic23@kernel.org, 
+	catalin.marinas@arm.com, will@kernel.org, devicetree@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	olivier.moysan@foss.st.com
+Subject: Re: [PATCH 5/9] pwm: stm32: add support for stm32mp25
+Message-ID: <lptm6gh2lzjqxm26lbmdw4yr2fowo6ytxwzqwl65khrx5xpcox@u25yzz6ssdy5>
+References: <20241218090153.742869-1-fabrice.gasnier@foss.st.com>
+ <20241218090153.742869-6-fabrice.gasnier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] coresight: Add label sysfs node support
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Bjorn
- Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20241217063324.33781-1-quic_jinlmao@quicinc.com>
- <20241217063324.33781-3-quic_jinlmao@quicinc.com>
- <985d234c-e088-469d-b9dc-7904fcf5a91c@arm.com>
-Content-Language: en-US
-From: Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <985d234c-e088-469d-b9dc-7904fcf5a91c@arm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: xpv7LOkE_7PWvzuYgjB8-KXfyPojJO-C
-X-Proofpoint-GUID: xpv7LOkE_7PWvzuYgjB8-KXfyPojJO-C
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 mlxscore=0
- priorityscore=1501 spamscore=0 adultscore=0 clxscore=1015
- lowpriorityscore=0 phishscore=0 suspectscore=0 impostorscore=0
- malwarescore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412180080
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="o4ocvksavacg3j36"
+Content-Disposition: inline
+In-Reply-To: <20241218090153.742869-6-fabrice.gasnier@foss.st.com>
 
 
+--o4ocvksavacg3j36
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 5/9] pwm: stm32: add support for stm32mp25
+MIME-Version: 1.0
 
-On 2024/12/18 17:38, Suzuki K Poulose wrote:
-> On 17/12/2024 06:33, Mao Jinlong wrote:
->> For some coresight components like CTI and TPDM, there could be
->> numerous of them. From the node name, we can only get the type and
->> register address of the component. We can't identify the HW or the
->> system the component belongs to. Add label sysfs node support for
->> showing the intuitive name of the device.
->>
->> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
->> ---
->>   .../testing/sysfs-bus-coresight-devices-cti   |  6 ++++
->>   .../sysfs-bus-coresight-devices-funnel        |  6 ++++
->>   .../testing/sysfs-bus-coresight-devices-tpdm  |  6 ++++
->>   drivers/hwtracing/coresight/coresight-sysfs.c | 32 +++++++++++++++++++
->>   4 files changed, 50 insertions(+)
-> 
-> Do you think we need to name the devices using the label ? Or is this 
-> enough ?
-> 
-> Suzuki
-Hi Suzuki,
+On Wed, Dec 18, 2024 at 10:01:49AM +0100, Fabrice Gasnier wrote:
+> diff --git a/drivers/pwm/pwm-stm32.c b/drivers/pwm/pwm-stm32.c
+> index 17e591f61efb..99383e09920e 100644
+> --- a/drivers/pwm/pwm-stm32.c
+> +++ b/drivers/pwm/pwm-stm32.c
+> @@ -19,6 +19,7 @@
+>  #define CCMR_CHANNEL_SHIFT 8
+>  #define CCMR_CHANNEL_MASK  0xFF
+>  #define MAX_BREAKINPUT 2
+> +#define MAX_PWM_OUTPUT 4
 
-In my opinion, we should use label as the device name.
+I would prefer a less generic name. Something like STM32_PWM_MAX_OUTPUT.
+=20
+>  struct stm32_breakinput {
+>  	u32 index;
+> [...]
+> @@ -790,11 +800,31 @@ static void stm32_pwm_detect_complementary(struct s=
+tm32_pwm *priv)
+>  	priv->have_complementary_output =3D (ccer !=3D 0);
+>  }
+> =20
+> -static unsigned int stm32_pwm_detect_channels(struct regmap *regmap,
+> +static unsigned int stm32_pwm_detect_channels(struct stm32_timers *ddata,
+>  					      unsigned int *num_enabled)
+>  {
+> +	struct regmap *regmap =3D ddata->regmap;
+>  	u32 ccer, ccer_backup;
+> =20
+> +	if (ddata->ipidr) {
+> +		unsigned int npwm =3D 0;
 
-It will be easier to identify the component with the folder name in 
-/sys/bus/coresight/devices/
+No need to initialize npwm.
 
+> +		u32 val;
+> +
+> +		/* Simply deduce from HWCFGR the number of outputs (MP25). */
+> +		regmap_read(regmap, TIM_HWCFGR1, &val);
+> +
+> +		/*
+> +		 * Timers may have more capture/compare channels than the
+> +		 * actual number of PWM channel outputs (e.g. TIM_CH[1..4]).
+> +		 */
+> +		npwm =3D FIELD_GET(TIM_HWCFGR1_NB_OF_CC, val);
+> +
+> +		regmap_read(regmap, TIM_CCER, &ccer);
+> +		*num_enabled =3D hweight32(ccer & TIM_CCER_CCXE);
 
-Thanks
-Jinlong Mao
+So the part that determines *num_enabled is the same for both variants.
+Maybe it's possible to share the code for that?
 
-> 
-> 
->>
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti 
->> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
->> index bf2869c413e7..909670e0451a 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
->> @@ -239,3 +239,9 @@ Date:        March 2020
->>   KernelVersion    5.7
->>   Contact:    Mike Leach or Mathieu Poirier
->>   Description:    (Write) Clear all channel / trigger programming.
->> +
->> +What:           /sys/bus/coresight/devices/<cti-name>/label
->> +Date:           Dec 2024
->> +KernelVersion   6.14
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices- 
->> funnel b/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
->> index d75acda5e1b3..944aad879aeb 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
->> @@ -10,3 +10,9 @@ Date:        November 2014
->>   KernelVersion:    3.19
->>   Contact:    Mathieu Poirier <mathieu.poirier@linaro.org>
->>   Description:    (RW) Defines input port priority order.
->> +
->> +What:           /sys/bus/coresight/devices/<memory_map>.funnel/label
->> +Date:           Dec 2024
->> +KernelVersion   6.14
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices- 
->> tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> index bf710ea6e0ef..309802246398 100644
->> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->> @@ -257,3 +257,9 @@ Contact:    Jinlong Mao (QUIC) 
->> <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_t
->>   Description:
->>           (RW) Set/Get the MSR(mux select register) for the CMB subunit
->>           TPDM.
->> +
->> +What:           /sys/bus/coresight/devices/<tpdm-name>/label
->> +Date:           Dec 2024
->> +KernelVersion   6.14
->> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
->> +Description:    (Read) Show hardware context information of device.
->> diff --git a/drivers/hwtracing/coresight/coresight-sysfs.c b/drivers/ 
->> hwtracing/coresight/coresight-sysfs.c
->> index a01c9e54e2ed..4af40cd7d75a 100644
->> --- a/drivers/hwtracing/coresight/coresight-sysfs.c
->> +++ b/drivers/hwtracing/coresight/coresight-sysfs.c
->> @@ -7,6 +7,7 @@
->>   #include <linux/device.h>
->>   #include <linux/idr.h>
->>   #include <linux/kernel.h>
->> +#include <linux/property.h>
->>   #include "coresight-priv.h"
->>   #include "coresight-trace-id.h"
->> @@ -366,18 +367,47 @@ static ssize_t enable_source_store(struct device 
->> *dev,
->>   }
->>   static DEVICE_ATTR_RW(enable_source);
->> +static ssize_t label_show(struct device *dev,
->> +        struct device_attribute *attr, char *buf)
->> +{
->> +
->> +    const char *str;
->> +    int ret = 0;
->> +
->> +    ret = fwnode_property_read_string(dev_fwnode(dev), "label", &str);
->> +    if (ret == 0)
->> +        return scnprintf(buf, PAGE_SIZE, "%s\n", str);
->> +    else
->> +        return ret;
->> +}
->> +static DEVICE_ATTR_RO(label);
->> +
->>   static struct attribute *coresight_sink_attrs[] = {
->>       &dev_attr_enable_sink.attr,
->> +    &dev_attr_label.attr,
->>       NULL,
->>   };
->>   ATTRIBUTE_GROUPS(coresight_sink);
->>   static struct attribute *coresight_source_attrs[] = {
->>       &dev_attr_enable_source.attr,
->> +    &dev_attr_label.attr,
->>       NULL,
->>   };
->>   ATTRIBUTE_GROUPS(coresight_source);
->> +static struct attribute *coresight_link_attrs[] = {
->> +    &dev_attr_label.attr,
->> +    NULL,
->> +};
->> +ATTRIBUTE_GROUPS(coresight_link);
->> +
->> +static struct attribute *coresight_helper_attrs[] = {
->> +    &dev_attr_label.attr,
->> +    NULL,
->> +};
->> +ATTRIBUTE_GROUPS(coresight_helper);
->> +
->>   const struct device_type coresight_dev_type[] = {
->>       [CORESIGHT_DEV_TYPE_SINK] = {
->>           .name = "sink",
->> @@ -385,6 +415,7 @@ const struct device_type coresight_dev_type[] = {
->>       },
->>       [CORESIGHT_DEV_TYPE_LINK] = {
->>           .name = "link",
->> +        .groups = coresight_link_groups,
->>       },
->>       [CORESIGHT_DEV_TYPE_LINKSINK] = {
->>           .name = "linksink",
->> @@ -396,6 +427,7 @@ const struct device_type coresight_dev_type[] = {
->>       },
->>       [CORESIGHT_DEV_TYPE_HELPER] = {
->>           .name = "helper",
->> +        .groups = coresight_helper_groups,
->>       }
->>   };
->>   /* Ensure the enum matches the names and groups */
-> 
+> +		return npwm < MAX_PWM_OUTPUT ? npwm : MAX_PWM_OUTPUT;
+> +	}
+> +
+>  	/*
+>  	 * If channels enable bits don't exist writing 1 will have no
+>  	 * effect so we can detect and count them.
 
+Best regards
+Uwe
+
+--o4ocvksavacg3j36
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdinkwACgkQj4D7WH0S
+/k7nywf+JjLEk4Gaee/ADgMvYOiBEUH8OA9/D7Ae1isx7Ve33iUPYu57fZCQFdJ9
+7ah0kiX1U5gsFd96TlfydpA3EjhrHr/t8DKL5ZL9WWiKPi68Bb1HM/MZrnh641TZ
+xV6o0+OlYihaqYZpJkt93x0TXdg4+KR6PWk5aSVf47bWNC3jg3n1gLADY8GIKl/Y
+Sk/j12ktASXSCxNOscdwhwdyNIHCbmH/rU3FA8lEA1H9/5UZ5ljUoZRxBeqDqptz
+Qh4YiPPr1fs24A0/z4uh/W3CMkLkW8RXCCffGQprrejK0O1cb6JNhnAiMNZBLbcC
+Wc1T1qulU2XYmW7Of1S4WCcelNWE+A==
+=WbTY
+-----END PGP SIGNATURE-----
+
+--o4ocvksavacg3j36--
 
