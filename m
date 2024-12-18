@@ -1,95 +1,96 @@
-Return-Path: <devicetree+bounces-132178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C27F9F6103
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:09:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E49B9F610B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 10:10:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAA0D165D49
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:09:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EE5C16494D
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 09:10:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CB851946C7;
-	Wed, 18 Dec 2024 09:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C98819924D;
+	Wed, 18 Dec 2024 09:08:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h0CEJ30g"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PQsTrRWk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C41A41922F1
-	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 09:06:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 737251991A5
+	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 09:08:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734512813; cv=none; b=pJAHgLclpnC4TASrPK1z7xPNOYHzbfQ37GWRivedB4FML8spfE84lWQgGIrtTFYCzOyqg41eQgSWn8dEhizN9lInqvTVzyT0tX06KicwT4aMwQnCxXeVsMQoUpX8BSuMYzYTEbDndpeu3AXjZGjRCsMV6RgH27VuLZFIfEacKkY=
+	t=1734512925; cv=none; b=ZcQNYosucnRchr9M/kCvsNd9VXrYgnnxq69+nYsOoWizLAfpVYloGWL2Gcn0OZPPxU5BXIhL3q5qGkPM4eR7AtrVqbT5rA0GmidG8+S2ftGZXpEsBWSEQTYAJl9iMrLmskXUWCLFl0RNEhKvlAFw4FDViy1TwPfYdXVsZUckAc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734512813; c=relaxed/simple;
-	bh=BtkrMpozf0jdTpY6iuVSH+yuW5J+4kqV/qyv7r3T4v0=;
+	s=arc-20240116; t=1734512925; c=relaxed/simple;
+	bh=dL5LhzOkEe7J0fwl8B3f5+yCMyfH55CL1vPD5al0nE8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PsVCQ7KYgsnJY/MTQz0Y9DPGorcH0/FTMWc9bkB6l4YD/lAN9rE1JwUtNtXGZq23buX/AbmZsrOMsEz0rbmddooiWvLnnlkSSOlM1XxNBFv1gzUSnmBvptA7O3cjt1sPRl3O65TP2Lid2Q0vlcAuEVpo/dy0N2FCjzzJUm3J7AY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h0CEJ30g; arc=none smtp.client-ip=209.85.215.176
+	 Content-Type:Content-Disposition:In-Reply-To; b=KH48BXI/z4gSagD9zyd3ALnaepuS2s4Xx62vVDtzY65zojr92HYm78YZvnz1Xyh75Rg3k7gOJyWC2KhGd5eitTS2jZgI4W3+KiVXYcRBs7saWnlToTksm2F0cbuavZpLJkTA85ilmACPlczkwaaqlLnn6rLeouG6yb4pHqWqYvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PQsTrRWk; arc=none smtp.client-ip=209.85.210.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7fbbe0fb0b8so4157546a12.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 01:06:51 -0800 (PST)
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-725f3594965so4976497b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 01:08:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734512811; x=1735117611; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1734512923; x=1735117723; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=GCGMCINTHycaSUk/d2i6Tkx5PMoxq8giUl7PZqrxQnU=;
-        b=h0CEJ30gzKn7V5uhK2Z9GNvbNQYbakP580jwt0AilHJjMyHDenvfLcloMvX4k6Idvo
-         AsZycDwDoOb4H5+3Hu7h1pB2RPubzgbiZ6wjh9jquvE4qmxZOfVcmHwBftKHm5jeuzFt
-         mVc3ulpoWxXNNdiw7rY70BrYmSz9j7DEOQNvqCCXOegjPDDayegQF2AWip8AG78+9/kd
-         h3qaGSetgFbTBEo+CBxH+vxjutO15MaE31XJfQO/JTF5u14vQOa44ock9AT9EBLJSp4d
-         rWqrPwNjFJFvR0rv0/urWRLSM+6sT1Wgb57v5WVG91kXKwH2hY03TJ+/1Xu2boZorJQV
-         XQfA==
+        bh=Wy1Hv7f5NOQcxmlYyzPB31q6qHS+YkVM6o+GdftYtbY=;
+        b=PQsTrRWks/B3G/XztSARot5Z1reiV09TCI/HAinS+y9tWOxB+F5Vnfb+zyeB6/szOA
+         sdrmXJ7E8z1Htefm6y6w4XPS8G7JTLwY4+LL27RjiIiy0HygGhXyjztGboGr2HD+L/2W
+         HIEGWQv27ap5DP6sEKSyZOKCutTIvrPriKo2sOi1BwT3NZWndipVNdgqzskuycBLUSWf
+         kp7PQ/UocKdJdx2MuzlcppzR+T+S6W/N0RZ8OBQvmlUTXa2CITKJjkFXdUloomR91HsD
+         2rJ3W0a9dQHf1vqfAZAMmkxPALohe8rrog2NRe4nSj62z4RvQiwgBeL3IZ5p7fU6I9l3
+         fi8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734512811; x=1735117611;
+        d=1e100.net; s=20230601; t=1734512923; x=1735117723;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GCGMCINTHycaSUk/d2i6Tkx5PMoxq8giUl7PZqrxQnU=;
-        b=b7MIarJdWy4SmOi+SQIaapLhs49j3mV/AcN+j/DYQAKnryNGCGpP4CngTXpJ9KPbt7
-         XsQiJmme1YsHbg8ce7F6BclE3jnlWAR9YEL+0y6wsZ/67vK8DLIHoK4zFpa4cFq4c2hN
-         wTI0FLip//gM6MXoJmTtTfySh9MQeH1UMzSt4mJ1DZw8Q/qaNjCE4n08+yU9GL34pras
-         d8UbPMoWJyR+Hn3vKPn/gTJR9jV7nPWnBiTu6eu2+x6zr8PXkEV8uQvHd+th7UAiFffG
-         C4x7Q1YWu2VCfHNJJMVDUpFp0DYUr7g0vW3R5D1YginqfERO8BwVkHRJ1Z079FSV3wKt
-         LIZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWau0N7MRP0ljLG09Es4xlFd45zVvRIPrKXq5ywJgzmb53gIZwZJXomhj/3wrw3FAwg79PZ10aHE51H@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzn9Y8r3PrzI/oby1fXbt4E9DUDtXI6xZFqcjoeXuJPWsdVyTfe
-	51kNdfRFAQgwE9RnhaiPOkUFhGSKYetWBh8kZ7mepVZcTdT+eCJBz2XGNqgScw==
-X-Gm-Gg: ASbGnct9py76UXK1kTy404dgWQfJccsAQau7WkspDzaz+DwvrByI1ltfqdw8hU//kjd
-	lh4CrnOzj/TDoWWdMUzr1omMzRZWo4iJcfsF+MNIUoClopufUM8DEAZ/h0KrZ59dz6Wezqjlj7K
-	aAV4TqRf43Qkk7LYPJVefxrzY0TMms+C8+B/JTkBXz4Tmt4JNilUjKlTqo36Bu+AcucEjNjxzEK
-	jP25AqpK6jO9HN0XPcNO7OULaPxMXJ/XPYRYSN0Ga4PB7THYu1cYvlcmDLpTJv3RDkn
-X-Google-Smtp-Source: AGHT+IHyd0rjMU5k67UAqjTzwzFPT1nFixbQFJlYVvsZ8oxYL1YYOQHvMxEIakRysvdaXHIwPi972g==
-X-Received: by 2002:a17:90b:2b8f:b0:2ee:df57:b194 with SMTP id 98e67ed59e1d1-2f2e91fef48mr2602950a91.21.1734512811162;
-        Wed, 18 Dec 2024 01:06:51 -0800 (PST)
+        bh=Wy1Hv7f5NOQcxmlYyzPB31q6qHS+YkVM6o+GdftYtbY=;
+        b=K9RjdH6gA/B2CAUt/lLs6K3Uwn+j3OlsNfqY4BWYHX5eD6YyavOXeCQFO9MKufBquj
+         Q5M6qouOM4/qBYz1mrt3h2F/gEtjve7Jwk/K6b+kGq5FX61K6OAs9SvorJ7TwiTlV64A
+         vN7G5vqGwCum+MqV7sE+SwHnyvSq69bjqxz1pR+IO2s41evsu0BncfE0eNOU8ALEfxFC
+         hZQtwVO/KpGR6yFT/Nmp7GXtX9Eq/FFrpe8RzzkoXH8deoPbYGvbnhFpMDGGTlnkxUNH
+         7IPXchQrgJ3mzexQWR+UX66RAQ/dvTttZ9520CrzqREhckqPhzrbRp6fk4SnI07qhVuz
+         J5Og==
+X-Forwarded-Encrypted: i=1; AJvYcCUN9wdkqGv4sSa4EAofNOHFOlRAB/OggEIncrec71VMs/v8zRiNCQUFAA/2uMwNqH4fh6rw6FzKAbdv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxecxGW4Bv0ho/ApVr7fV6k20qDOsabftUhLFSw4W4BUwnmW6Gg
+	ruuW4zChBPCOq4y4CAkIT+4OwG6kp+gvRjkPrn0D+8UIwIrsHQaMNnunmvPt8A==
+X-Gm-Gg: ASbGncsZJFpdNnmafzsUsl6zO7+3JVq227s+fAe4zv4tlEDLvW2+eoHgtJ0U0iQ6gtM
+	34Oek6+xKI9rbA+pVMyjVbVKKbBZHf8IB6YPUyBKO5ZYZQEDDi5IhaHY8dwQpK8I7V9Nu2n7+oY
+	FYoRPGrUz4anZfSs6I6fCZnLhxoi9kn1CD57bOWCK3TDGoVLygzVhNPf/bJwNjjbCyyh1ufqV7a
+	mp7Fc+p6ybqHFJcEzPCc05/clax32BvHex5Vdvs9WlBBiKkTIOHKsgoPyDkHZJggWus
+X-Google-Smtp-Source: AGHT+IG37gQZUixcAS2wt6FAy35zDXkREGTgBmnLoB7E2HkZAUyQek0tK+EgYpBTTg5mZeTEdfkKVA==
+X-Received: by 2002:a05:6a21:9002:b0:1e1:b28e:a148 with SMTP id adf61e73a8af0-1e5b45ffc3dmr3602999637.5.1734512922868;
+        Wed, 18 Dec 2024 01:08:42 -0800 (PST)
 Received: from thinkpad ([117.193.214.60])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-218a1e6d87asm71760635ad.264.2024.12.18.01.06.45
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72918bad749sm7997622b3a.138.2024.12.18.01.08.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Dec 2024 01:06:50 -0800 (PST)
-Date: Wed, 18 Dec 2024 14:36:41 +0530
+        Wed, 18 Dec 2024 01:08:42 -0800 (PST)
+Date: Wed, 18 Dec 2024 14:38:34 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	lpieralisi@kernel.org, kw@linux.com, bhelgaas@google.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, p.zabel@pengutronix.de,
-	cassel@kernel.org, quic_schintav@quicinc.com,
-	fabrice.gasnier@foss.st.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	p.zabel@pengutronix.de, cassel@kernel.org,
+	quic_schintav@quicinc.com, fabrice.gasnier@foss.st.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-stm32@st-md-mailman.stormreply.com,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: PCI: Add STM32MP25 PCIe root complex
- bindings
-Message-ID: <20241218090641.dtn4niamg6gcvxml@thinkpad>
-References: <20241205172022.GA3053765@bhelgaas>
- <d976d74c-80c0-4446-bb9b-960a990c552b@foss.st.com>
- <20241217172502.borj2oy4rpxcteag@thinkpad>
- <5b835381-55bc-4fc8-b848-535f6e881420@foss.st.com>
+Subject: Re: [PATCH v2 4/5] PCI: stm32: Add PCIe endpoint support for
+ STM32MP25
+Message-ID: <20241218090834.bz5htywl3sjbzq6w@thinkpad>
+References: <20241126155119.1574564-1-christian.bruel@foss.st.com>
+ <20241126155119.1574564-5-christian.bruel@foss.st.com>
+ <20241203152230.5mdrt27u5u5ecwcz@thinkpad>
+ <4e257489-4d90-4e47-a4d9-a2444627c356@foss.st.com>
+ <20241216161700.dtldi7fari6kafrr@thinkpad>
+ <fdc487c4-cbdc-45ac-a79f-aff2b8ccafcc@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,78 +100,67 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <5b835381-55bc-4fc8-b848-535f6e881420@foss.st.com>
+In-Reply-To: <fdc487c4-cbdc-45ac-a79f-aff2b8ccafcc@foss.st.com>
 
-On Wed, Dec 18, 2024 at 09:42:45AM +0100, Christian Bruel wrote:
+On Tue, Dec 17, 2024 at 10:48:43AM +0100, Christian Bruel wrote:
 > 
 > 
-> On 12/17/24 18:25, Manivannan Sadhasivam wrote:
-> > On Tue, Dec 17, 2024 at 04:53:48PM +0100, Christian Bruel wrote:
+> On 12/16/24 17:17, Manivannan Sadhasivam wrote:
+> > On Mon, Dec 16, 2024 at 11:02:07AM +0100, Christian Bruel wrote:
+> > > Hi Manivanna,
 > > > 
-> > > > Makes sense.  What about phys, resets, etc?  I'm pretty sure a PHY
-> > > > would be a per-Root Port thing, and some resets and wakeup signals
-> > > > also.
+> > > On 12/3/24 16:22, Manivannan Sadhasivam wrote:
+> > > > On Tue, Nov 26, 2024 at 04:51:18PM +0100, Christian Bruel wrote:
 > > > > 
-> > > > For new drivers, I think we should start adding Root Port stanzas to
-> > > > specifically associate those things with the Root Port, e.g.,
-> > > > something like this?
+> > > > [...]
 > > > > 
-> > > >     pcie@48400000 {
-> > > >       compatible = "st,stm32mp25-pcie-rc";
+> > > > > +static int stm32_pcie_start_link(struct dw_pcie *pci)
+> > > > > +{
+> > > > > +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+> > > > > +	int ret;
+> > > > > +
+> > > > > +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
+> > > > > +		dev_dbg(pci->dev, "Link is already enabled\n");
+> > > > > +		return 0;
+> > > > > +	}
+> > > > > +
+> > > > > +	ret = stm32_pcie_enable_link(pci);
+> > > > > +	if (ret) {
+> > > > > +		dev_err(pci->dev, "PCIe cannot establish link: %d\n", ret);
+> > > > > +		return ret;
+> > > > > +	}
 > > > > 
-> > > >       pcie@0,0 {
-> > > >         reg = <0x0000 0 0 0 0>;
-> > > >         phys = <&combophy PHY_TYPE_PCIE>;
-> > > >         phy-names = "pcie-phy";
-> > > >       };
-> > > >     };
-> > > > 
-> > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml?id=v6.12#n111
-> > > > is one binding that does this, others include apple,pcie.yaml,
-> > > > brcm,stb-pcie.yaml, hisilicon,kirin-pcie.yaml.
-> > > > 
+> > > > How the REFCLK is supplied to the endpoint? From host or generated locally?
 > > > 
-> > > On a second thought, moving the PHY to the root-port part would introduce a
-> > > discrepancy with the pcie_ep binding, whereas the PHY is required on the
-> > > pcie_ep node.
-> > > 
-> > > Even for the pcie_rc, the PHY is needed to enable the core_clk to access
-> > > the PCIe core registers,
+> > >  From Host only, we don't support the separated clock model.
 > > > 
 > > 
-> > But why that matters? You can still parse the child nodes, enable PHY and
-> > configure PCIe registers. >
-> > > So that would make 2 different required PHY locations for RC and EP:
+> > OK. So even without refclk you are still able to access the controller
+> > registers? So the controller CSRs should be accessible by separate local clock I
+> > believe.
+> > 
+> > Anyhow, please add this limitation (refclk dependency from host) in commit
+> > message.
+> > 
+> > [...]
+> > 
+> > > > > +	ret = phy_set_mode(stm32_pcie->phy, PHY_MODE_PCIE);
+> > > > 
+> > > > Hmm, so PHY mode is common for both endpoint and host?
 > > > 
-> > >      pcie_rc: pcie@48400000 {
-> > >        compatible = "st,stm32mp25-pcie-rc";
-> > > 
-> > >        pcie@0,0 {
-> > >          reg = <0x0000 0 0 0 0>;
-> > >          phys = <&combophy PHY_TYPE_PCIE>;
-> > >          phy-names = "pcie-phy";
-> > >        };
-> > >      };
-> > > 
-> > >      pcie_ep pcie@48400000 {
-> > >        compatible = "st,stm32mp25-pcie-ep";
-> > >        phys = <&combophy PHY_TYPE_PCIE>;
-> > >        phy-names = "pcie-phy";
-> > >      };
-> > > 
-> > > Simplest seems to keep the PHY required for the pcie core regardless of the
-> > > mode and keep the empty root port to split the design
+> > > Yes it is. We need to init the phy here because it is a clock source for the
+> > > PCIe core clk
 > > > 
 > > 
-> > No please. Try to do the right thing from the start itself.
+> > Clock source? Is it coming directly to PCIe or through RCC? There is no direct
+> > clock representation from PHY to PCIe in DT binding.
 > 
-> Parsing the child node to clock the IP seems weird. Note that
-> hisilicon,kirin-pcie.yaml also declares the PHY at the controller level.
+> The core_clk is generated directly by the PLL in the COMBOPHY, gated by the
+> RCC
 > 
 
-Nothing is weird here. Almost all multi port controller drivers does the same.
-Most of the single port controller instances define port properties in
-controller node only, but that's what we want to avoid now.
+In that case, phy should be the clock provider to RCC and PCIe should get the
+gated clock it.
 
 - Mani
 
