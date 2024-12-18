@@ -1,171 +1,139 @@
-Return-Path: <devicetree+bounces-132360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2A609F6C1C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 18:15:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D3B39F6C3C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 18:20:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B98A18845EC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 17:15:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 776E4164223
+	for <lists+devicetree@lfdr.de>; Wed, 18 Dec 2024 17:20:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C411FA17F;
-	Wed, 18 Dec 2024 17:15:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 422D21FA82E;
+	Wed, 18 Dec 2024 17:20:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="V51ahKhJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bQfDvZOv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FBE81F130B
-	for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 17:15:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7319B1FA140;
+	Wed, 18 Dec 2024 17:20:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734542117; cv=none; b=dpnfHJDrRkaxdSnlMGcXKHqHAEztCIMIdZEFA/LN22XFPb7SAJsdbr3qbEtY5PyCXhv2PIl+VJtshqRDrlJSdNMxCqEFhsrSxsSvlcC5AA/qs7A+/OPzOJflUxqsLguwWbelCVRKZvSEg3tHIbvwJ4KFbNIGWkSwUbxsSBF0gnw=
+	t=1734542435; cv=none; b=ojWwApN9Nbmbm8xn8wyNHjOdt8v2dPtrBCEkWWu1zbJ+lym57ifcylHtJzSgsttpsy7HfIPlxbWaNoQtxsADmJY/ZcQaakiSZz5W/D+Oa6PIkCpqiuk8whaf6/jBsBz1t5YgjEo59PE/NfhYtRQwI1Nr8XRcz8+n+Fnzo0mJBug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734542117; c=relaxed/simple;
-	bh=LwMjKOCFKrEbHqXVci8ugRuf+pw41OQTrkbHpqo7eUQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mOdbOG/Z/O+B16NuUuh/fEQl8296nVwR1GpXXvr5XmGLA0dngkCgpSopx+ZDOgaUSJfJ6cAwMKxfK+4j1kQp9RkB2rlQB4eszhy1DbhrOPaQONRwKeGSNDgW50r0sO4ecxrCIaQCbpdq9cv8LixUfX9971rK6+Zs07GNG4FadHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=V51ahKhJ; arc=none smtp.client-ip=209.85.160.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-46792996074so75175941cf.0
-        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 09:15:14 -0800 (PST)
+	s=arc-20240116; t=1734542435; c=relaxed/simple;
+	bh=u64ri9BUtoAVKWgZ2O/l4jE81YYOleGfUXE9fDmZ+HY=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QI2RTYsaYc7U4fUeDO3ZiXWwIUBKrVNEPGS6YHeGEdzGo8CgfyS4o29bKlnt5v3NqiUAp5t3GFjW/ch/3t+o09/ftrxIYxTdCBGMaJeXBQ7wR0zhp6xeYa17eJjhqw+IO194GtzgfzHZa8mDleEuOIRrLrqpA8l6K2NsiczEDuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bQfDvZOv; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-385de9f789cso5227238f8f.2;
+        Wed, 18 Dec 2024 09:20:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1734542113; x=1735146913; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zA5BofhhRKiZZMU/Z8fX0UGVPQfIoya9QikQ0q7ZGcc=;
-        b=V51ahKhJHUmi4cpDEIy83mzW1GoOEyNyAj1R4O/uu1quLtAF0J+S4QinOxoOYJnN9T
-         sF+xZAA44SBa0Onwqrl+x5blcEWktanxTynL1gbDL2yoBBdx1llD90E/BVyaYiLNYGhI
-         Z3hNZCvgyc+nDxBiGaO/mQwdF31yjxVhiWWUk=
+        d=gmail.com; s=20230601; t=1734542432; x=1735147232; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=dNZjry+31dahnZzXUmoHA+3E2HLxqRTBFNkl2T4CcLc=;
+        b=bQfDvZOvS21GEqQg5qVIgkxICAldpU6XDDpbCsPrq5gpceZVnRdYufGllzRgtT3rhf
+         RSE3/dz1+GtJU2xXSZ4NOvmKXeJ6uH02P1GyMOeu707EJ3lHv9e5HXAvLIO72H9KYpX8
+         261CG8RSYRUDwJjzZ0mAk6Igva1dOSAGpSXmBl9K/Os3uxvKQZYrLOkKkf/7R7AXCzcH
+         3WjBOSOsyMiWtXTg/rgApvpjgYyrcht00WJyjyasmOQhueYdHs0QsEuoMG+I+0OjF8OX
+         LczyUx3HsO4R0ySHZ7W+pUut6kG9IAvcTXcureMuRVNcnpFh++pjhGGPBJxqNzmIcE9N
+         ICKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734542113; x=1735146913;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1734542432; x=1735147232;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zA5BofhhRKiZZMU/Z8fX0UGVPQfIoya9QikQ0q7ZGcc=;
-        b=FF/HxbrB6OJjqvYJfD1214nCZryXhho9WS+qXl0NM4CERBMEliyoGvamnxGkAyjLyf
-         Ghp7saDdvhZtd4fCSk83MPSHIcCfwkz2S07bFGCyO0m5fKUeKOPQRz7ZHC07QRvSp3Oi
-         o1bCOt16bKVCrGHM2jkcUPRGGihmN1rXifRge3QhmyCgaeIQ0I7auK20mlK7iKku3urz
-         d6/wl8Q6pCy1Zh2as3Cd4uYzBsoeN7X9s27khKhhoi4nWDxftfz4ihqa5ENLh3VOmbTm
-         fXFK/oFqGD7V6AzUuGpWD6rxcHQ7ccVdodMPjrb86MWPjeIC3tKirxMXksSuXXrGjCjh
-         MarQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWez0bGobpLjoxcfPmPPAgJagWNO6PMrlamqJOhyoDSH3/d8IbqYkgXDCIicxrBmVTUqwz1+nKBvcwV@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfF2f0QhETqQ4oUMiBGMeGUGigFV01+Mc+nofEywTCcq13Y3ld
-	c55HCNUc9cBHN7EAN5SUy3taKV/JTF4I7L2Fj3GFq7H8vI4isi1jyaoJf08CR6Ia1H4fkGmFgug
-	=
-X-Gm-Gg: ASbGncuf7z3OMLJKTdEJyOko1yfy8UGP/MGbuxQJ/TR5cR0eHPMZGVNWj9GNXSad5dK
-	VOQMiGU9NLAOxmOx3G7yUCuj3XLISr5G01tumANLwK6IgLXw9bA6cabR4I+Mt5zqgXNTLhmOb9H
-	kjYqwZCwGdkymgV5H4XShIFOaKhC4vdr63q40Mn9XcrlPGr82LtB3yITSk6oYe0c3FRDe5Mcgkl
-	E4a9W7fhnssOEBX2kq5BFaxtZb01wLonePUQoisdRZKAc58leodumM2G2ZUA6ixceK6TWJd9P0u
-	/9PkBLyihCbqRo6vi810
-X-Google-Smtp-Source: AGHT+IFqZplEyKFGjmYvKE9CeODhn/531JVf21AVcLOnv2HxLobs4qVuOupYcjNzN57b5zHMiJ82sw==
-X-Received: by 2002:ac8:5a95:0:b0:467:7b76:5957 with SMTP id d75a77b69052e-46908db11famr61173931cf.2.1734542113315;
-        Wed, 18 Dec 2024 09:15:13 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-467b2c69b10sm52913091cf.18.2024.12.18.09.15.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Dec 2024 09:15:11 -0800 (PST)
-Message-ID: <93a1333d-442f-4cec-b823-9b1a5ff6dc6b@broadcom.com>
-Date: Wed, 18 Dec 2024 09:15:08 -0800
+        bh=dNZjry+31dahnZzXUmoHA+3E2HLxqRTBFNkl2T4CcLc=;
+        b=GKgVAsFBx5/x83RdiVtNXMzWACVJ454ekEQo+FjsLMoCi5dg6eo/mtslsF+4yi4oPw
+         qJYsBqU5VXJazdUreVf/L3d/vvjp1nX5sNmgKcu2rU/nx+nL4MuDiPBgpID2KfGXmRy9
+         TQu3dPI8fc+Txcs8tMC4bI15qSjKk5sPkALU56UhBOlxEn5Xpm4jH4FKwq9R/i72NF1U
+         u6MWUR5ELyYnn4MyVuluG+/S6Tu/H2yXIjgLX9DsdJrA6csCZL17mLH0pUXyE5qMOPd1
+         UEFU++u3BBi3jb6X+eqwXoHOLAaKhBU86rhgCHu4N9rhfGY/tKhjUpShMHeV0y7mmLYy
+         xx6g==
+X-Forwarded-Encrypted: i=1; AJvYcCUoJKysWFVyF6UC5ApTEF+swVtUtwhJdEg9ogSPnGaWBuH8WVKFQF1suPeo0Cb6hoGEF2lBhdzgorvXCoda@vger.kernel.org, AJvYcCVBjcetOvecQycnVgbu8iqjf8vbiTtSRz3FL8NPvoQZ0y6w51r//5y7tuXDDX17Zybqm3/qTxr6w6B0@vger.kernel.org, AJvYcCXi2J3cnUzPiWHkVIiQryWRZpNdUhCWcJrwc0yJ6TkjAQ3M+Jx2a+TJIz0EVHDrDHtPnATv2no5vpNM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcUaPx4j7zcgHgYGF5OHWyisG90sf+A9wrBxx7tKEkMlWiToGx
+	o0SlG03uKQMICrLHAooMbYr7CvKVqtnzXcDaxnQm7UucSt/vGsX5yWBFfA==
+X-Gm-Gg: ASbGncvm8MUUhXYHZ2AhrQrV8OBppUUbD/LU+MpYwZ0Ue5rFWRk9HiAeRH4n180WdUv
+	y3bqJ9lNZHfZE4Hzzei+sTloUpPGCILrU6Lft8WOprDuxzVcyCJhz1R1IBkUzi5m74MZIomXY6T
+	nlv72skHd2y0G4ujSELcy4o4dBvBRLtE0ksHcLGZzYLmIQPWajmMhODH6z8uGEXbPSZeUfgZ+pz
+	qNC50FBfM/LPv9i9Ti+OvT37caMf2nzo7oe2n6P+APU+i9+HUaoA7NeOl64VkNqjxbbR7leufOv
+	D0wSLR//AI5ac9dKotars2X2No7cQg==
+X-Google-Smtp-Source: AGHT+IGhysTjlK20RkM1q7wx5cRtQSC6Q2lOfBlUQcyJvdaEtRc23lCcglEoeKNkFiVqnC2MMCY6MQ==
+X-Received: by 2002:a05:6000:186d:b0:385:fa26:f0d9 with SMTP id ffacd0b85a97d-388e4c94106mr4011559f8f.0.1734542431450;
+        Wed, 18 Dec 2024 09:20:31 -0800 (PST)
+Received: from Ansuel-XPS. (host-80-181-61-65.pool80181.interbusiness.it. [80.181.61.65])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-388c806086dsm14456796f8f.91.2024.12.18.09.20.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Dec 2024 09:20:31 -0800 (PST)
+Message-ID: <6763045f.df0a0220.10df6b.5428@mx.google.com>
+X-Google-Original-Message-ID: <Z2MEW2wvgiNA1rJw@Ansuel-XPS.>
+Date: Wed, 18 Dec 2024 18:20:27 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: add ID for eMMC for EN7581
+References: <20241218091153.30088-1-ansuelsmth@gmail.com>
+ <20241218-shimmer-defog-97f86d6ebe98@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: memory-controller: Document rev c.1.5
- compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- "open list:MEMORY CONTROLLER DRIVERS" <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>
-References: <20241217194439.929040-1-florian.fainelli@broadcom.com>
- <20241217194439.929040-2-florian.fainelli@broadcom.com>
- <2e33t7ft5ermsfr7c4ympxrn6l5sqdef3wml4hlbnhdupoouwj@gfjpbmowjadi>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <2e33t7ft5ermsfr7c4ympxrn6l5sqdef3wml4hlbnhdupoouwj@gfjpbmowjadi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241218-shimmer-defog-97f86d6ebe98@spud>
 
-On 12/18/24 03:37, Krzysztof Kozlowski wrote:
-> On Tue, Dec 17, 2024 at 11:44:38AM -0800, Florian Fainelli wrote:
->> Document the revision c.1.5 compatible string that is present on newer
->> Broadcom STB memory controllers (74165 and onwards).
->>
->> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
->> ---
->>   .../bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml       | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml b/Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml
->> index 4b072c879b02..99d79ccd1036 100644
->> --- a/Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml
->> +++ b/Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml
->> @@ -29,6 +29,7 @@ properties:
->>             - brcm,brcmstb-memc-ddr-rev-c.1.2
->>             - brcm,brcmstb-memc-ddr-rev-c.1.3
->>             - brcm,brcmstb-memc-ddr-rev-c.1.4
->> +          - brcm,brcmstb-memc-ddr-rev-c.1.5
+On Wed, Dec 18, 2024 at 05:04:03PM +0000, Conor Dooley wrote:
+> On Wed, Dec 18, 2024 at 10:11:33AM +0100, Christian Marangi wrote:
+> > Add ID for eMMC for EN7581. This is to control clock selection of eMMC
+> > between 200MHz and 150MHz.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> > Changes v2:
+> > - Drop additional define for EN7581_NUM_CLOCKS
+> > 
+> >  include/dt-bindings/clock/en7523-clk.h | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/include/dt-bindings/clock/en7523-clk.h b/include/dt-bindings/clock/en7523-clk.h
+> > index 717d23a5e5ae..c4f8a161b981 100644
+> > --- a/include/dt-bindings/clock/en7523-clk.h
+> > +++ b/include/dt-bindings/clock/en7523-clk.h
+> > @@ -12,6 +12,8 @@
+> >  #define EN7523_CLK_CRYPTO	6
+> >  #define EN7523_CLK_PCIE		7
+> >  
 > 
-> You should use v2.1 fallback and drop driver patch. Or explain in
-> commit briefly why different approach is suitable.
+> Why the gap?
+>
 
-Are you suggesting that we should have fallback compatible strings, such 
-that we have something like this:
+It's only present in en7523 so maybe it's a good idea to have the gap to
+make that more clear?
 
-compatible = "brcm,brcmstb-memc-ddr-rev-c.1.5", 
-"brcm,brcmstb-memc-ddr-rev-c", "brcm,brcmstb-memc-ddr"
+> > +#define EN7581_CLK_EMMC		8
+> > +
+> >  #define EN7523_NUM_CLOCKS	8
+> 
+> Can you delete this please? Your changelog appears to suggest you did,
+> but I see it still.
 
-and the driver only needs to match on "brcm,brcmstb-memc-ddr-rev-c" and 
-apply the adequate register offset table?
+Yes sure didn't want to change this too much to cause regression
+downstream if anyone was using it. Will drop in a dedicated patch when I
+will post v3 tomorrow.
 
-If so, that is not how the current binding, and therefore DTBs are being 
-deployed, so that will introduce a breakage until we update all DTBs in 
-the field...
 -- 
-Florian
+	Ansuel
 
