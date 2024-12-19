@@ -1,145 +1,337 @@
-Return-Path: <devicetree+bounces-132626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A7829F7A17
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:10:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 315649F7A36
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:18:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD9C61656C2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:10:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03F6318941B6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:18:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192B0222D6B;
-	Thu, 19 Dec 2024 11:09:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB9B223C6F;
+	Thu, 19 Dec 2024 11:18:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="buLi9nq+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zQS6yLRP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9806A221D8E;
-	Thu, 19 Dec 2024 11:09:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 661FC222563
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 11:18:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734606598; cv=none; b=AzaPz+nE94AQ4eHz0LxkJAiekXwwdmya/VtWrkOMJoZyCjI+ZqTnMe1vVDFTnhKVvzY81if4feMmZ4PxSex7wDoTjjuJnYBT7+Psn2Wt2sebwaQTN5/XuP3Hp60AzoH5Bxz+yKFF13NctVUtOXgGuk5KJs+VEjGELZvOeC8m5Gc=
+	t=1734607091; cv=none; b=ZBWhSJ7VMqGEJC2JOpWb+s9SyXZ7ltrw8YAn7eelpJu+hMp50zttnDKvrDAdfi+sdj7rhUuO/WNo8PKINLUue0yWfHovCQd3jAsMEVLP8mM3I4Zzt4jNKDlgK0asiKDmUNtgwzHb4xAl47Un6fePNiQb3Ex4rc/HvyeEDr5y7VA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734606598; c=relaxed/simple;
-	bh=0arSN+ejbNxnapjrbQiLEUStjChiAuTl6JrFXXXpcUU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=srl2pNdsBXVXU6js7DW4lkG7BeJuMWbVFIVryTSlySW9HoufOFd5emWQoXU4+XI/GtT7dI6mx6oeTwbSCIutvaEOLkid26A2z25aLRScCqfa60nlBjz24BoH0MT6HeqysMXibvfWPhUmLzdZXm3cyDk5zJXEQJmHsM5yrb//r4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=buLi9nq+; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1734606593;
-	bh=0arSN+ejbNxnapjrbQiLEUStjChiAuTl6JrFXXXpcUU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=buLi9nq+OCoBZJowmY4W6AkR4JdD7GxHQq9GckVJ1VY7AI8sqCxrep0EAQVb5Z8+v
-	 Qjm9TTQ9SKdSa+U+9sa0xGE2i6CZoUpmekIPB6enfigGV8lWInx4lGOFZOfpQ6nwLf
-	 lL+QPqXW9aEI4gFDcrBoSd4BPxMJVi9PGzp8ma3lA7ZKpMIvVwSVGCdPoHnkF2RSVV
-	 FuSEj0nYHniVGvJRmWcn0Zsu/zy86tlTbiRV+OS0kQwd0S+S5wjTkelv28O4U/MKoU
-	 gH6Wj3DjLwNhzjlI3PiNXXcfV4eN1qLcW4YXze3bWRcCEkK/5g2dY4/B0PTQeC6pBB
-	 TMZEB6aUzpH9g==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id CED7717E3615;
-	Thu, 19 Dec 2024 12:09:52 +0100 (CET)
-Message-ID: <6f92c81f-84d0-4306-96d2-1cfc2ddb72e0@collabora.com>
-Date: Thu, 19 Dec 2024 12:09:52 +0100
+	s=arc-20240116; t=1734607091; c=relaxed/simple;
+	bh=5p/bjpAbtFjkgekgKREdkY95f/TuOnixW4hAEk2EXJY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NFQy9HEnakfJg8fklyL9rJgBLprtZ4AI65wTmYXUVMEEnKeKZQiMQ3dEcMViJ6aCpmtfgkrcqkERRFGKLp7R1Rfh+m35hNb8O8KnDj+3vXp1OCUiHXJXSlw1/VOhaWhLnDD0Hk3kELnG1TU1ZmeCT8SQa7qLAc2E0vQOtXkHaDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zQS6yLRP; arc=none smtp.client-ip=209.85.216.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2f441791e40so504494a91.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 03:18:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734607088; x=1735211888; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=p9m80RBkLlIyVih+tGTy7G66Yn/eg+6sg6d3WyVh4JM=;
+        b=zQS6yLRPGplPkC9OCe4ZKACxdiPo7D1TAm1fH2he484H/d1lQJ6Ph8A2J5xKWL2MS9
+         X7anoYxwHc0T4K7v1FODmh0juPUxMbLQzqG8zXQBeEk3t9Xvj91N/E0xGjJVS6uscZfA
+         ZITOmfrLG/hFjhxs95x7Piw5+HJNu48qr1OhX2d9k0WeOX1FdwAdlwmSWhBRfJNOLNKE
+         HNlxhVZgob7MN/tSaB2Od7TcYWgFvld4FK3HuCaJXMsBsAmQFjSj4GZ0sXuZjHIOx/sy
+         ocCesyCE8Ic0VmSRXJqtFZHBgrDmGVyjg9AFI2soU/m39QlX2ThGeK4TPt5ChkK6kAm4
+         KpoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734607088; x=1735211888;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p9m80RBkLlIyVih+tGTy7G66Yn/eg+6sg6d3WyVh4JM=;
+        b=CEhpawrWCn4nYAzzhkvQzdv+WC4bfvA+qj/7EbPCppvofNNwzod4oFKERgxB6f8TiR
+         kxx8bivH0GckwTNri45imOXWm5tCUoorT0Ud8ndStvLbbHm3t6K8aJwhd0GKhih9iky1
+         O972X6S3AiBMvwLwnzpUnmSUjw4eZPUZ+ASt55aT7I7byy+Wg2O4Mi3kpg8tI5oToK7U
+         8FcP4dR7JZESRl0EVAu0H1mO4S//ta+p0X7fZq1RwXKFxdd70hX24oLheipzezOM2kkh
+         qivVakqJ+ExhPi9eLMTJYoX93lF9LHraE9mTLNA3yZ++HyUkX7CmjfPSAI+eI8dqAKZw
+         mvZw==
+X-Forwarded-Encrypted: i=1; AJvYcCXv6T/bYrTwCJEJuy1R+/oe4QyTwMLwr253V6G2/rR62l8E8ZWDlxW8+LPJtXyulqOzYcRurE3Xpzty@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrKnZKguHy0MhrqXlbcmAOKqhupCHgHgMFNccXWlvBFdYStzNA
+	ft1oZkcOoepSFjSyD6OM/zc5RSRoOPJu4ATCHVS1JBGrd7wXORLO1bRetySX4j/uLjdtPQbQWYw
+	fkMTn+KnHydP7W3YQoZM/t2kN7GVairbhq1A8HA==
+X-Gm-Gg: ASbGncuyc0RDByddVfk2tVyH6gKAaF6GtxH6qoYDISfi8enUBlHDYFVJkOpVO1PSaER
+	kcoiD8XbGYtZ22Lf7pAD4FjjL8MppSzDiE5YDPEw=
+X-Google-Smtp-Source: AGHT+IE2XfBAsxGuH9shdOU2Tv13L+bY+D6gYw0FRiJfoudzX1LkWtV41Ix0GCCr0IC+PxnNkPEmk5Ja2luVww300+o=
+X-Received: by 2002:a17:90b:2dcc:b0:2ee:a4f2:b311 with SMTP id
+ 98e67ed59e1d1-2f2e91a8c16mr9358009a91.8.1734607088488; Thu, 19 Dec 2024
+ 03:18:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: mediatek: ovl: Modify rules
- for MT8195/MT8188
-To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
- Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
- Shawn Sung <shawn.sung@mediatek.com>, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- Fei Shao <fshao@chromium.org>, Pin-yen Lin <treapking@chromium.org>
-References: <20241213095044.23757-1-jason-jh.lin@mediatek.com>
- <20241213095044.23757-2-jason-jh.lin@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20241213095044.23757-2-jason-jh.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20241217063324.33781-1-quic_jinlmao@quicinc.com>
+ <20241217063324.33781-3-quic_jinlmao@quicinc.com> <985d234c-e088-469d-b9dc-7904fcf5a91c@arm.com>
+ <PAVPR08MB967401DC65384CBA26B6829C8C052@PAVPR08MB9674.eurprd08.prod.outlook.com>
+ <53354e84-73c0-403b-bbc0-af619196596d@arm.com>
+In-Reply-To: <53354e84-73c0-403b-bbc0-af619196596d@arm.com>
+From: Mike Leach <mike.leach@linaro.org>
+Date: Thu, 19 Dec 2024 11:17:57 +0000
+Message-ID: <CAJ9a7VhWZkNcYWUfUkU8+OuQK-Cnu6kp6x23M4s5jHLa3_TpJQ@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] coresight: Add label sysfs node support
+To: Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc: Mike Leach <Mike.Leach@arm.com>, Mao Jinlong <quic_jinlmao@quicinc.com>, 
+	James Clark <James.Clark@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, 
+	"coresight@lists.linaro.org" <coresight@lists.linaro.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Il 13/12/24 10:50, Jason-JH.Lin ha scritto:
-> From: Hsiao Chien Sung <shawn.sung@mediatek.com>
-> 
-> Modify rules for both MT8195 and MT8188.
-> Hardware capabilities include color formats and AFBC are
-> changed since MT8195, stop using the settings of MT8183.
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
-> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> ---
->   .../bindings/display/mediatek/mediatek,ovl.yaml          | 9 ++++-----
->   1 file changed, 4 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml
-> index 9ea796a033b2..8ca8e5966b9a 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml
-> @@ -26,6 +26,7 @@ properties:
->             - mediatek,mt8173-disp-ovl
->             - mediatek,mt8183-disp-ovl
->             - mediatek,mt8192-disp-ovl
-> +          - mediatek,mt8195-disp-ovl
->             - mediatek,mt8195-mdp3-ovl
->         - items:
->             - enum:
-> @@ -36,16 +37,14 @@ properties:
->             - enum:
->                 - mediatek,mt6795-disp-ovl
->             - const: mediatek,mt8173-disp-ovl
-> -      - items:
-> -          - enum:
-> -              - mediatek,mt8188-disp-ovl
-> -              - mediatek,mt8195-disp-ovl
-> -          - const: mediatek,mt8183-disp-ovl
->         - items:
->             - enum:
->                 - mediatek,mt8186-disp-ovl
->                 - mediatek,mt8365-disp-ovl
->             - const: mediatek,mt8192-disp-ovl
-> +      - items:
-> +          - const: mediatek,mt8188-disp-ovl
-> +          - const: mediatek,mt8195-disp-ovl
->   
->     reg:
->       maxItems: 1
+Hi,
+
+On Wed, 18 Dec 2024 at 18:16, Suzuki K Poulose <suzuki.poulose@arm.com> wrote:
+>
+> Hi Mike
+>
+> On 18/12/2024 09:56, Mike Leach wrote:
+> > Hi
+> >
+> >> -----Original Message-----
+> >> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+> >> Sent: Wednesday, December 18, 2024 9:38 AM
+> >> To: Mao Jinlong <quic_jinlmao@quicinc.com>; Mike Leach
+> >> <mike.leach@linaro.org>; James Clark <James.Clark@arm.com>; Rob Herring
+> >> <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> >> <conor+dt@kernel.org>; Mathieu Poirier <mathieu.poirier@linaro.org>; Bjorn
+> >> Andersson <andersson@kernel.org>; Konrad Dybcio
+> >> <konradybcio@kernel.org>
+> >> Cc: coresight@lists.linaro.org; linux-arm-kernel@lists.infradead.org;
+> >> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
+> >> msm@vger.kernel.org
+> >> Subject: Re: [PATCH v6 2/2] coresight: Add label sysfs node support
+> >>
+> >> On 17/12/2024 06:33, Mao Jinlong wrote:
+> >>> For some coresight components like CTI and TPDM, there could be
+> >>> numerous of them. From the node name, we can only get the type and
+> >>> register address of the component. We can't identify the HW or the
+> >>> system the component belongs to. Add label sysfs node support for
+> >>> showing the intuitive name of the device.
+> >>>
+> >>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> >>> ---
+> >>>    .../testing/sysfs-bus-coresight-devices-cti   |  6 ++++
+> >>>    .../sysfs-bus-coresight-devices-funnel        |  6 ++++
+> >>>    .../testing/sysfs-bus-coresight-devices-tpdm  |  6 ++++
+> >>>    drivers/hwtracing/coresight/coresight-sysfs.c | 32
+> >> +++++++++++++++++++
+> >>>    4 files changed, 50 insertions(+)
+> >>
+> >> Do you think we need to name the devices using the label ?
+> >>
+> >
+> > No - absolutely not. If we use label to name devices then we have to validate that the string is a correctly formed device name and that it has not been previously used.
+>
+> Anything that doesn't contain '/' can be a device name ? And it is very
+> easy to find if the device name has been used in the coresight bus,
+> after all these devices only appear there.
+>
+> It is as good as :
+>
+> bus_find_device_by_name(coresight_bus_type, NULL, name) == NULL
+>
+> Of course with coresight_mutex() held.
+>
+> Suzuki
+>
+
+DTS label property (DT spec 4.1.2) is a freeform string, specified to
+be a human readable description of the device, e.g. :-
+
+cti0@0x1000 {
+reg = <0x1000>;
+label = "main system CTI";
+};
+
+Arguably the label is completely unnecessary - as the @0x1000 tells
+the knowledgeable user, with a hardware specification of the device
+precisely what this CTI does and is related to.
+
+The point of this patchset is to add context to the name@addr to make
+the identification of the devices easier.
+
+The DT compiler should ensure that the device tree is well formed.
+Using driver selected names (cti_cpu0 ... etc) guarantees  that every
+device found in the DT has a unique representation in sysfs.
+
+Once a freeform string is used, then not only are duplicates possible,
+illegal device names are possible, all of which can result in missing
+nodes or worse. This requires handling / complications that are
+unnecessary for the purpose.
+
+Yes of course it is easy to look for duplicate names, reject bad ones,
+emit errors - but that could end up with a partially working system
+with missing components.
+
+Why add potential for breakage when it is not necessary?
+
+Regards
+
+Mike
+
+>
+> >
+> > Using the canonical driver selected names works best as we are guaranteed a unique name and the information label can be used to provide flexible context information that best matches the users requirements.
+> >
+> > Mike
+> >
+> >> Or is this enough ?
+> >
+> >> Suzuki
+> >>
+> >>
+> >>>
+> >>> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
+> >>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
+> >>> index bf2869c413e7..909670e0451a 100644
+> >>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
+> >>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-cti
+> >>> @@ -239,3 +239,9 @@ Date:           March 2020
+> >>>    KernelVersion    5.7
+> >>>    Contact: Mike Leach or Mathieu Poirier
+> >>>    Description:     (Write) Clear all channel / trigger programming.
+> >>> +
+> >>> +What:           /sys/bus/coresight/devices/<cti-name>/label
+> >>> +Date:           Dec 2024
+> >>> +KernelVersion   6.14
+> >>> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> >>> +Description:    (Read) Show hardware context information of device.
+> >>> diff --git
+> >>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
+> >>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
+> >>> index d75acda5e1b3..944aad879aeb 100644
+> >>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
+> >>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
+> >>> @@ -10,3 +10,9 @@ Date:             November 2014
+> >>>    KernelVersion:   3.19
+> >>>    Contact: Mathieu Poirier <mathieu.poirier@linaro.org>
+> >>>    Description:     (RW) Defines input port priority order.
+> >>> +
+> >>> +What:           /sys/bus/coresight/devices/<memory_map>.funnel/label
+> >>> +Date:           Dec 2024
+> >>> +KernelVersion   6.14
+> >>> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> >>> +Description:    (Read) Show hardware context information of device.
+> >>> diff --git
+> >>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> >>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> >>> index bf710ea6e0ef..309802246398 100644
+> >>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> >>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> >>> @@ -257,3 +257,9 @@ Contact:        Jinlong Mao (QUIC)
+> >> <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_t
+> >>>    Description:
+> >>>             (RW) Set/Get the MSR(mux select register) for the CMB
+> >> subunit
+> >>>             TPDM.
+> >>> +
+> >>> +What:           /sys/bus/coresight/devices/<tpdm-name>/label
+> >>> +Date:           Dec 2024
+> >>> +KernelVersion   6.14
+> >>> +Contact:        Mao Jinlong <quic_jinlmao@quicinc.com>
+> >>> +Description:    (Read) Show hardware context information of device.
+> >>> diff --git a/drivers/hwtracing/coresight/coresight-sysfs.c
+> >>> b/drivers/hwtracing/coresight/coresight-sysfs.c
+> >>> index a01c9e54e2ed..4af40cd7d75a 100644
+> >>> --- a/drivers/hwtracing/coresight/coresight-sysfs.c
+> >>> +++ b/drivers/hwtracing/coresight/coresight-sysfs.c
+> >>> @@ -7,6 +7,7 @@
+> >>>    #include <linux/device.h>
+> >>>    #include <linux/idr.h>
+> >>>    #include <linux/kernel.h>
+> >>> +#include <linux/property.h>
+> >>>
+> >>>    #include "coresight-priv.h"
+> >>>    #include "coresight-trace-id.h"
+> >>> @@ -366,18 +367,47 @@ static ssize_t enable_source_store(struct device
+> >> *dev,
+> >>>    }
+> >>>    static DEVICE_ATTR_RW(enable_source);
+> >>>
+> >>> +static ssize_t label_show(struct device *dev,
+> >>> +           struct device_attribute *attr, char *buf) {
+> >>> +
+> >>> +   const char *str;
+> >>> +   int ret = 0;
+> >>> +
+> >>> +   ret = fwnode_property_read_string(dev_fwnode(dev), "label", &str);
+> >>> +   if (ret == 0)
+> >>> +           return scnprintf(buf, PAGE_SIZE, "%s\n", str);
+> >>> +   else
+> >>> +           return ret;
+> >>> +}
+> >>> +static DEVICE_ATTR_RO(label);
+> >>> +
+> >>>    static struct attribute *coresight_sink_attrs[] = {
+> >>>     &dev_attr_enable_sink.attr,
+> >>> +   &dev_attr_label.attr,
+> >>>     NULL,
+> >>>    };
+> >>>    ATTRIBUTE_GROUPS(coresight_sink);
+> >>>
+> >>>    static struct attribute *coresight_source_attrs[] = {
+> >>>     &dev_attr_enable_source.attr,
+> >>> +   &dev_attr_label.attr,
+> >>>     NULL,
+> >>>    };
+> >>>    ATTRIBUTE_GROUPS(coresight_source);
+> >>>
+> >>> +static struct attribute *coresight_link_attrs[] = {
+> >>> +   &dev_attr_label.attr,
+> >>> +   NULL,
+> >>> +};
+> >>> +ATTRIBUTE_GROUPS(coresight_link);
+> >>> +
+> >>> +static struct attribute *coresight_helper_attrs[] = {
+> >>> +   &dev_attr_label.attr,
+> >>> +   NULL,
+> >>> +};
+> >>> +ATTRIBUTE_GROUPS(coresight_helper);
+> >>> +
+> >>>    const struct device_type coresight_dev_type[] = {
+> >>>     [CORESIGHT_DEV_TYPE_SINK] = {
+> >>>             .name = "sink",
+> >>> @@ -385,6 +415,7 @@ const struct device_type coresight_dev_type[] = {
+> >>>     },
+> >>>     [CORESIGHT_DEV_TYPE_LINK] = {
+> >>>             .name = "link",
+> >>> +           .groups = coresight_link_groups,
+> >>>     },
+> >>>     [CORESIGHT_DEV_TYPE_LINKSINK] = {
+> >>>             .name = "linksink",
+> >>> @@ -396,6 +427,7 @@ const struct device_type coresight_dev_type[] = {
+> >>>     },
+> >>>     [CORESIGHT_DEV_TYPE_HELPER] = {
+> >>>             .name = "helper",
+> >>> +           .groups = coresight_helper_groups,
+> >>>     }
+> >>>    };
+> >>>    /* Ensure the enum matches the names and groups */
+> >>
+> >> _______________________________________________
+> >> CoreSight mailing list -- coresight@lists.linaro.org To unsubscribe send an
+> >> email to coresight-leave@lists.linaro.org
+>
 
 
-Jason, while doing MDP3 bindings for MT8188, I noticed that the binding for OVL is
-missing; can you please add a commit on top of this series adding the following
-snippet?
-
-       - items:
-           - const: mediatek,mt8188-mdp3-ovl
-           - const: mediatek,mt8195-mdp3-ovl
-
-...with a suggested-by tag it's going to be fine :-)
-
-P.S.: Please refer to 
-https://lore.kernel.org/r/20241218105320.38980-1-angelogioacchino.delregno@collabora.com
-
-Thanks,
-Angelo
+-- 
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
 
