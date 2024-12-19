@@ -1,138 +1,156 @@
-Return-Path: <devicetree+bounces-132538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 086009F7691
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:02:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2702B9F7698
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:02:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE40B188AB91
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:02:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AF0C164B35
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:02:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BD83218ACA;
-	Thu, 19 Dec 2024 08:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F2B921767F;
+	Thu, 19 Dec 2024 08:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AvJGv2mz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LUal+jo9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2354A218AB4;
-	Thu, 19 Dec 2024 08:00:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C8BF217672;
+	Thu, 19 Dec 2024 08:02:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734595232; cv=none; b=VlCHCK7wPQPg2PY3Jv1fgRkLo2XQS+fWzV2VclaMV1GLuN6jgt5fnpUtt9awBGrSJX7B1I+yX7opiu1DXxtTVfM2e0QC+oOd2Min96lhBpB8OduQilR1tpB1qeHvI9fGeNeBR9gsKxVhnJevvw0KTcBFh4fczzBXza+iI+6trgE=
+	t=1734595349; cv=none; b=K4vmnHTdYKULIfzkXW/doeOYHuX1fE0sQSzCOkcjUPtAy4w8giPiDv+QP4NAG6IqtqfgJ3KeByuP1gFMUIQVhxtNJdLAOutr6lN4TIN2BCXKHA1sU4a/WzKke+kyMfhhd/hGJYBddPT0SeKEdk4d5KVJeGg421g9TR+f0TKKtig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734595232; c=relaxed/simple;
-	bh=u+nIKYuqz1QU6Wn+hoI1usArWWaFErdzelkf+oEfW38=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=iTN92NXaJp+BYhGuTcjL3YjaMy63h/3JmFc6MfEUTOK+B5J0YHg4YoezYwMtvKBUz5bSRwN8DbbzQz7LmrVIl1fGqCsvoK1D5UNU80h6RO+PBfKcbJnI7aTJYwhVltKy0dGeDPTuzjw+PQwtArk4gSxT5bQDJfmR8KXZebKxnJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AvJGv2mz; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ3SY3g001370;
-	Thu, 19 Dec 2024 08:00:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FvohhyQ09v/B9uMyNUwzzkx7xs4YjzO0pt0MdQN0Q5o=; b=AvJGv2mzhzyKZL7j
-	uUQEYm9FkKQ589i9NgUbPAwee8u/OWj8w62Sw239VZ/TrzyMLPOlKLzwwXs5u5q0
-	3wq6zr7CgmIKXzdOB2Q6lpTPZEnuTH2H4b2KOpKK1Fek+/475Ab8qdBKsoTcO5KY
-	dYOGxiokMRzHrRewAgmWpBMjRiYsn6zEQdzMBbCs09ocvBGVNzfsxfALqa1AN/ZZ
-	Zo5CGs3KqY5AWB3rvVfLeKq1YFppGVNviORfiUB31if8CvAfpoAEDBCpWUb9HC5M
-	D83eo9df5Vf18Ux7EUCb7/L4loxBHgFEakoh5jRRf0HYeYXwDpbHAXn8FM11uRPV
-	LkIt/A==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43mbm60jgq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Dec 2024 08:00:26 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BJ80QF6023027
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Dec 2024 08:00:26 GMT
-Received: from lijuang2-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 19 Dec 2024 00:00:19 -0800
-From: Lijuan Gao <quic_lijuang@quicinc.com>
-Date: Thu, 19 Dec 2024 15:59:48 +0800
-Subject: [PATCH v2 6/6] arm64: dts: qcom: correct gpio-ranges for QCS8300
+	s=arc-20240116; t=1734595349; c=relaxed/simple;
+	bh=uEgC/zqiz6dJXoNxxqwv4+uTQypXEJGxE7gvCDdICUM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HMpKtgW7+6lZP13LqH6rcuebRey+8xXTfiaA4WcRGTmBLqnMXK/+9PR+Zw8MQ+2VgIFjep9GHnkZeqlNGXatrGwqe9P+O2VmTMg2fMFKyUAIYhGSm7QZ/DNTFk6AB/M9hpKumR3vVZKEVSmlrEvR/kXZ+HFQyAqQkI21GTf+6tE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LUal+jo9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2E8BC4CECE;
+	Thu, 19 Dec 2024 08:02:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734595347;
+	bh=uEgC/zqiz6dJXoNxxqwv4+uTQypXEJGxE7gvCDdICUM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LUal+jo9kQ64O2oXjehqJYBMTaY+FgGKSZJDAGLX0tXVR3Wait+023evszQCaXmej
+	 ppODO+mIF8JDb0o92pLpTYlG+dIPpX/pYLnMSTb+xNKXJcFJ9rCymHPiivmT3fZNGV
+	 WpexNDqBC5Xt08zvrfI3IoRzfoYzZbumE5kyqbdpxjFWH/pFVt/KuwOAdiHretcn30
+	 9B+i8RfMawW6DwL/TL9cFWE96H3bS7X7M6W+tt8CrsbIyu44xJHJenlLDVE5IHO1pp
+	 vh+Kt6sPKq8eB6DXXp3q3mwdHw6KCGJsB6Du3xZCkRJek/cVXjwKse5CcEPsraEsbQ
+	 Aslt73KKtpnBw==
+Message-ID: <aab43d50-343f-4fd5-b55e-e475b7171979@kernel.org>
+Date: Thu, 19 Dec 2024 09:02:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] dt-bindings: usb: ptn5110: add TCPC properties
+To: "Miao.Zhu" <Miao.Zhu@synopsys.com>, gregkh@linuxfoundation.org,
+ robh@kernel.org, xu.yang_2@nxp.com, andre.draszik@linaro.org,
+ dan.carpenter@linaro.org, emanuele.ghidoli@toradex.com,
+ heikki.krogerus@linux.intel.com, m.felsch@pengutronix.de,
+ rdbabiera@google.com, u.kleine-koenig@baylibre.com, conor+dt@kernel.org,
+ jun.li@nxp.com
+Cc: linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, Jianheng.Zhang@synopsys.com,
+ James.Li1@synopsys.com, Martin.McKenny@synopsys.com
+References: <20241218085933.2790127-1-miao@synopsys.com>
+ <20241218085933.2790127-3-miao@synopsys.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241218085933.2790127-3-miao@synopsys.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20241219-correct_gpio_ranges-v2-6-19af8588dbd0@quicinc.com>
-References: <20241219-correct_gpio_ranges-v2-0-19af8588dbd0@quicinc.com>
-In-Reply-To: <20241219-correct_gpio_ranges-v2-0-19af8588dbd0@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Jingyi
- Wang" <quic_jingyw@quicinc.com>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>,
-        Lijuan Gao <quic_lijuang@quicinc.com>
-X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1734595195; l=898;
- i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
- bh=u+nIKYuqz1QU6Wn+hoI1usArWWaFErdzelkf+oEfW38=;
- b=29PaMEtP1yURlVO8VxgTP2ns7rQBbBqpfXyL9VeVcThv/zA3lTXz8JHhF5F9Cgq7UwgRE2ajL
- ZRa+MK5JzwPBeW4yiggf0n2tVuRkkKGpZQv84vT0E3yFuPOf7M+FKvm
-X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
- pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 08Jqw09mk_nqxHL4oqD5lcxo529eKxVH
-X-Proofpoint-GUID: 08Jqw09mk_nqxHL4oqD5lcxo529eKxVH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=468
- suspectscore=0 phishscore=0 adultscore=0 impostorscore=0 clxscore=1015
- lowpriorityscore=0 mlxscore=0 priorityscore=1501 spamscore=0 bulkscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412190062
 
-Correct the gpio-ranges for the QCS8300 TLMM pin controller to include
-GPIOs 0-132 and the UFS_RESET pin for primary UFS memory reset.
+On 18/12/2024 09:59, Miao.Zhu wrote:
+> The TCPCI driver has flags to configure its protperties but
+> no way to enable these flags yet. Add these flags into DT
+> so that the driver can be compatible with TCPCI  Spec R2 V1.0.
+> 
+> Signed-off-by: Miao.Zhu <miao@synopsys.com>
+> ---
+> V3 -> V4: refine description to follow DTS coding style
 
-Fixes: 7be190e4bdd2 ("arm64: dts: qcom: add QCS8300 platform")
-Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Nothing improved.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index 73abf2ef9c9f..07d6d3ff4365 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -971,7 +971,7 @@ tlmm: pinctrl@f100000 {
- 			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
--			gpio-ranges = <&tlmm 0 0 133>;
-+			gpio-ranges = <&tlmm 0 0 134>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 			wakeup-parent = <&pdc>;
+> V2 -> V3: add description and type for new properties
+> V1 -> V2: new patch
+> ---
+>  .../devicetree/bindings/usb/nxp,ptn5110.yaml       | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+> index 65a8632..f5059dc7 100644
+> --- a/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+> +++ b/Documentation/devicetree/bindings/usb/nxp,ptn5110.yaml
+> @@ -21,6 +21,28 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  TX_BUF_BYTE_x_hidden:
 
--- 
-2.46.0
+You did not implement my comments.
 
+<form letter>
+This is a friendly reminder during the review process.
+
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+</form letter>
+
+Best regards,
+Krzysztof
 
