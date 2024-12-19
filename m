@@ -1,142 +1,97 @@
-Return-Path: <devicetree+bounces-132651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A24139F7B1B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:20:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24CD79F7B23
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:21:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9433A16A3A8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:20:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23A4F189051D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:20:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56766224B05;
-	Thu, 19 Dec 2024 12:19:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A10A2236F6;
+	Thu, 19 Dec 2024 12:20:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RuXNMMJi"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="exPgg5mq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8D12248AB;
-	Thu, 19 Dec 2024 12:19:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14AD41EA90;
+	Thu, 19 Dec 2024 12:20:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734610773; cv=none; b=bXf42jabZ549mrhhn0VzAuZzgxUZ/NTIuGT6CTj/ONramJPpOq7vWuxVhMRv8/8qshj3Yg/PdFag58R/PYyds9qXqiA3hXLMM4ZnYqGBR2zXkVxEqhep0c+4pBUGcgLmZH4zWL3wU7+Mst0/jYh0OAphMS0u5hSPRQ8tkKWw5dQ=
+	t=1734610839; cv=none; b=YT6Y2rhiv6QhdJhbqSDydmc2Ejd6g0Xv/tThIomsRegbV/sDc8KpF5sH4VzEyNwWTVums7nVUU17a4Y63jSMum/PT+uCqql3OdOKICkaENz1vBNuRwIkD6PReTwIulsvIWJ285rmye5Z+emFfrlhnbOx0E6/qz9nXFVWZgUwM2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734610773; c=relaxed/simple;
-	bh=cugUH0d+SlgkRyuP28N0msPKI703sIZVVOLV5vnDtT4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rj/eJK3rlTA5///Lcu3nxrZOCrZSMBhbmMhSl1Se5KSrJiZ1GQFZRMLlr/YOo1xHqrijEYAVFzA18NNdnCVmxHVOEWbkpVhLekJZbHDRc3AUTngB1J/SPCrJk3AkLH8//82h3ggaLGunFRmxETIFlz/r4LLWxBq5UNn8y2vLHF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RuXNMMJi; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-436637e8c8dso2647595e9.1;
-        Thu, 19 Dec 2024 04:19:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734610770; x=1735215570; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=59Aoy43dWzBwCaG2A8ucKh0QGC/BCGRrGg0QGt/ktA0=;
-        b=RuXNMMJi4XYbZ+lQ/qS2X0JKIeuGm32ezg4Ja0tTd6AjnRbyErqZTai3SIaE3NRTq2
-         T3TUq0aVV3Utcq9LBNegIEd7tvhbw2mxrBIotQFCFNsWzb3lH0/WY/GX4NmgyyfNsBYN
-         teai81pYnZpK8WLacOBUJgdBIaEeJVbMXIGPBNEdoWwtpTjOZwo4JyMc/9EgUsRbqI0z
-         n1TSw7KH0DHLR1Hl6F4KFbuA0D0o1hxT9vq6TUh8poGaGv048yXWyTLEGTT1uzLh/qoP
-         Kry26+1Ya6LGfQe13wxvCHnbcXpwzEZdoaSoLFpvQF/mx3HFg/z7+n+73RY4ucOdt3xs
-         s+tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734610770; x=1735215570;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=59Aoy43dWzBwCaG2A8ucKh0QGC/BCGRrGg0QGt/ktA0=;
-        b=FCCbm64VjvUQke7oexw1fPTeNuIvsv1Nek7xYriPA3ssU5NVDBZSf627Pq2t1LmG5y
-         Z/ZOzXM+SJHqfKnapS5cpCLmXx82FdLA9nDRTfYVCuuCw93cQXkorujQ33rTd+a7aYUO
-         XItT37/kmsK8iByCSlPf5t6g8Z9y3bgINXODepkWTtTH9x2HlOICzRVkhfKz5PqhUt94
-         XwRvrP7Ng6Lvv/75wfO61C0qlDYT/0vBPWZL/37l80Sa/cshvN49wD1NDPnN3H7bm5p0
-         /CU1SazFdYpWsZmLpT6xPYdJZByszInAzubNt1mRSyvP8zi2iHMZDl4Xu6P8lMsq30dh
-         n/mw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1Wm1ptDLdJQFEReyU0fWugKWlZ+I5vxA+yERwEBV/mvvUhTVHTUs+cBU+OLuDDFLiZTcdM18Epqhc@vger.kernel.org, AJvYcCX4sERrXMAVpTqjjEkKFoz6BuMEcI3gpqnWTnQTiPrsZDGgthN1B+O2/VueDWT/Kn2WJlkS4UpPBQRy@vger.kernel.org, AJvYcCXTy3iKMDDO50zcrzYk8T3kzPOUx0lutfpJAPKwxwh3xNLsJ2WEPgZ87osQnh9R9VwxTkSItMb0C9q6o/+A@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwhHR5X+48dA+c+8K963mxSUHKi3Yi7xM46vgxlGXEQlnKyFuE
-	a3iZuTljDr4OZTrSrfz+lqcAieJ9xkvWgVEgZ9YB7/GaTU24yqVIBc56YQ==
-X-Gm-Gg: ASbGnctNL3ojZdcvdoBWljJwOmVQ4UGvGoacjV2lzn0nTiqcpXgwux/wZt1+vqkmeDC
-	V4npGaK2fCkasK4/McVIG2/HJBOxdUGAv1g2R7uUnhMB74n/RCMSUS/Rtqg+nfVtbsMwKRE0df7
-	fpvQ49X/dpwU/Jf4GTu4bX+yG8JGiqFAWhFSKkwTmAZOsRN6z/F5DPumql0osZdQ1a6ALaujVcD
-	Blngpn6GA8eDkacu4tIIz/OZCewOsP3UQ8lyURSZ0ZvVQabNuZzfsZqRhhlyCrhYweXKoJ0+Dm9
-	fRSAfg405CtG4BxvyyOd0KOp3sJdvQyXZxEG4ouBjiI=
-X-Google-Smtp-Source: AGHT+IGlnD59bx6wdPWBteUTx3SXxB0HfDoL9TeSvQiDMj9nT1n7cW8ovuxdXdFbCCZQWxvBR5t9/w==
-X-Received: by 2002:a05:600c:450a:b0:434:f4f9:8104 with SMTP id 5b1f17b1804b1-43655428a0bmr53822195e9.33.1734610769724;
-        Thu, 19 Dec 2024 04:19:29 -0800 (PST)
-Received: from localhost.localdomain (host-80-181-61-65.pool80181.interbusiness.it. [80.181.61.65])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436611fc762sm16679975e9.11.2024.12.19.04.19.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2024 04:19:29 -0800 (PST)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	upstream@airoha.com
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH v3 4/4] clk: en7523: Add clock for eMMC for EN7581
-Date: Thu, 19 Dec 2024 13:18:53 +0100
-Message-ID: <20241219121902.16339-4-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241219121902.16339-1-ansuelsmth@gmail.com>
-References: <20241219121902.16339-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1734610839; c=relaxed/simple;
+	bh=6I5nC4pkzPQPTM76bNW5JcA9mDmtxzl0/S6e8Z9l9so=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Ry1AHJbZwoeAa4eEXGgYR1ASjlJjjaArmsNiRJZ//HCTDhgldG0dXDQsFp65ac76veb3/y+gfQXEMP/BGfGcWdiSGTBRirZy8Bvt9QFlmkGxJP9lcahrNR/DLvlvpFXLrreZ6GQtyWyl5TGdJqaAn12jQOGaqWn11htC49uRWDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=exPgg5mq; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1734610835;
+	bh=6I5nC4pkzPQPTM76bNW5JcA9mDmtxzl0/S6e8Z9l9so=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=exPgg5mqxnXefGuruwVmotBP2Pc1lYfflmOuK/oIfx+S2I6YDC9ACfpzXDit5wV7h
+	 TLpWmq+IgbM9d8+BeygQL6eSnol/qiAHFB7VoeuDvQIlpwHwkWn6Z0RALfP7IwYLxV
+	 9KZk1bAdq9Z7X2uQjKhrv7+gNpEw9a61x9KfGuH6jw6GCxUzClcke/5SJI8vUd3hsw
+	 nAo2lH/V10k9wSf3aembiTCOdBcp4Vo4Ov1fhZ9G+sXJM89XtanujtiNfJj3A6Z9yV
+	 aDdVvRcWq+W5bo3+pXDflvFmrS698L+kJNsABF2mx97tvi1rtC2LQqK58U4pgQ/5Pp
+	 8simtcZrDKBsQ==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7FA3317E3684;
+	Thu, 19 Dec 2024 13:20:34 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Jianjun Wang <jianjun.wang@mediatek.com>, 
+ Tinghan Shen <tinghan.shen@mediatek.com>, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+Cc: kernel@collabora.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org
+In-Reply-To: <20241218-mt8195-pcie1-reset-suspend-fix-v1-1-1c021dda42a6@collabora.com>
+References: <20241218-mt8195-pcie1-reset-suspend-fix-v1-1-1c021dda42a6@collabora.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Remove suspend-breaking
+ reset from pcie1
+Message-Id: <173461083442.58336.13259484924514720817.b4-ty@collabora.com>
+Date: Thu, 19 Dec 2024 13:20:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.14.2
 
-Add clock for eMMC for EN7581. This is used to give info of the current
-eMMC source clock and to switch it from 200MHz or 150MHz.
+On Wed, 18 Dec 2024 19:01:08 -0300, Nícolas F. R. A. Prado wrote:
+> The MAC reset for PCIe port 1 on MT8195 when asserted during suspend
+> causes the system to hang during resume with the following error (with
+> no_console_suspend enabled):
+> 
+>   mtk-pcie-gen3 112f8000.pcie: PCIe link down, current LTSSM state: detect.quiet (0x0)
+>   mtk-pcie-gen3 112f8000.pcie: PM: dpm_run_callback(): genpd_resume_noirq+0x0/0x24 returns -110
+>   mtk-pcie-gen3 112f8000.pcie: PM: failed to resume noirq: error -110
+> 
+> [...]
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
-Changes v2:
-- Rename emmc_base to emmc7581_base to make it more clear
+Applied to v6.13-next/dts64, thanks!
 
- drivers/clk/clk-en7523.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+[1/1] arm64: dts: mediatek: mt8195: Remove suspend-breaking reset from pcie1
+      commit: 3d7fdd8e38aafd4858935df2392762c1ab8fb40f
 
-diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
-index 596847446b14..b36445359b5a 100644
---- a/drivers/clk/clk-en7523.c
-+++ b/drivers/clk/clk-en7523.c
-@@ -91,6 +91,7 @@ static const u32 emi7581_base[] = { 540000000, 480000000, 400000000, 300000000 }
- static const u32 bus7581_base[] = { 600000000, 540000000 };
- static const u32 npu7581_base[] = { 800000000, 750000000, 720000000, 600000000 };
- static const u32 crypto_base[] = { 540000000, 480000000 };
-+static const u32 emmc7581_base[] = { 200000000, 150000000 };
- 
- static const struct en_clk_desc en7523_base_clks[] = {
- 	{
-@@ -281,6 +282,15 @@ static const struct en_clk_desc en7581_base_clks[] = {
- 		.base_shift = 0,
- 		.base_values = crypto_base,
- 		.n_base_values = ARRAY_SIZE(crypto_base),
-+	}, {
-+		.id = EN7581_CLK_EMMC,
-+		.name = "emmc",
-+
-+		.base_reg = REG_CRYPTO_CLKSRC2,
-+		.base_bits = 1,
-+		.base_shift = 12,
-+		.base_values = emmc7581_base,
-+		.n_base_values = ARRAY_SIZE(emmc7581_base),
- 	}
- };
- 
--- 
-2.45.2
+Cheers,
+Angelo
+
 
 
