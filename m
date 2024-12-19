@@ -1,140 +1,124 @@
-Return-Path: <devicetree+bounces-132619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42EFA9F79D6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:51:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C9969F79D8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:52:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 582627A44D6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:51:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A14207A4767
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:52:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9B4F2236F4;
-	Thu, 19 Dec 2024 10:51:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9353222566;
+	Thu, 19 Dec 2024 10:52:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LFEsRBhC"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="hUily0q5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E0192236ED
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 10:51:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14487208A7;
+	Thu, 19 Dec 2024 10:52:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734605466; cv=none; b=saqcdqG4o7pmX8qoKTtV0CdqzfH6qV36VCdEcc/1qIM+1nDQvXqp4kZ21jyO08ewB8Ctkwtr96BT3EJHg7s7UD4QGgfwXPP+eywyazKHnx1gXbBFvRRSGzPHpxadRbvI6eZT7K5cwSKQAE2VRZCu/FEsg+xlqMvQKWGwGfbE9yQ=
+	t=1734605527; cv=none; b=PKUFTBGF8G45uIO/7L9sPmcqRXgkd3tKVaGEzRNPv0DgSJGDZCi3Z4SLLuA7qmeblh/kzdETEMCERlZCtAE0vwXbt3sLRGZzyGI/D9pFecnMXj2CGb/5wNDuW4qJHHNZyN8nXNioRiwIjcUp+ieLQFYayYOLiM0Jyvg2vS2IVCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734605466; c=relaxed/simple;
-	bh=emwP4RqztVOrkW2c5/KEohCWdgWL/oxDpV22fyZpUE0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L/x3WEsZAIMiuM+VCgQijJYNwSrL3oroWMPuoLcN/xzw8/K3iYPH863UZeQtYlr09ad9gvol5IUydlniT1s3zFJtmKTHJ4jF6vJMghyorPdQkb6ihLQBnIo6pYQfKJwaOwWuIpsOZhtPIUamUUijNF+BNn/c36RFYo7sXmIVTY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LFEsRBhC; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aab6fa3e20eso106137066b.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 02:51:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734605461; x=1735210261; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aVaHqJdzzc6/RXsrUMqwYr4L9WjHePTtMi55G/q79tg=;
-        b=LFEsRBhCgkyWQ/96yNvWMf8r33A0ZZY3AJV5MuiqVatWniXmNy7MQlthDhNS0LPrA7
-         B4hbAW+s5+2xEv8NMwIcKESqSKWxwS/Aui0fqq9GZBQR1NXoQ+KbwvSm38ECfOlMNkht
-         HLucs9TlwdKyGVG4LqhKGQeQP5FUpievzqj0y8dMIq1n1aoTIQrHSdEe6ZnDLJCcRIYi
-         ausjBqud0ApizXDvwPbdChd8f6fs+MroIqylBSdugy3RevqdhrobqsS8KORbuHoZNP2K
-         n8NKQShxjaI7UbuQKY3thZ251KzCTTiAOXoCxx8JP2jdN6m2fB3yKCZZLO1Gn9pSTtkH
-         cWMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734605461; x=1735210261;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aVaHqJdzzc6/RXsrUMqwYr4L9WjHePTtMi55G/q79tg=;
-        b=bvXLJhXk+q9Itbw3GExPMiCI18hUotC6m4UxtVo6CLx0yj3PtCFGbmrv7rIG1sWZuD
-         a+vPoySC5oLoEFXEHbeZ1NKOdj/m14F470LwhG6uk01fb3kQcOWzZDP/LZrwjYTPTC7b
-         6yePgdu81cSvzcMiBpspUua8R60+JTc7pYRSBJH6BPIwsjeVwQinDZDPisW4u9/4CA7t
-         WdmeOGOfel5yVWLxYaQOjCk0YXMjsUDfWMinPg7c2nkQOoP2EMF/ZkJHdJyj90UkPLv+
-         h8qY2EkMRwWoUGsNeeMc0J9jOyX8MU9Ye9wN6Qq5j0kFlL8+ytW0RMp08KcJIME7hKPM
-         UeBw==
-X-Forwarded-Encrypted: i=1; AJvYcCUlGV16+gTojl26nBW8P/ChoCWE6i64yEflcdfxMcQgXPBFrn1hsDfTjQf/8uOiYqZrdfeEMidey1Af@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzit3Jffss853loNEcIKEX9UeZ/IyPODlOFo9f1Qht6bslJIGbS
-	3CNSoT4jULIpOqpdWN/reuSTkzJKFE3Mv+/iiIINuTcHx/vfvznM5sGlQRAPcSw=
-X-Gm-Gg: ASbGnctzrp4tdsoimwbuYXjVZBkO3NjWyqNhmZGDsibL5QYBjZMf4IzPKm/aayy8Sxw
-	AGomeobYA94aXmJV4lkENAOkJDOXAGNVCNPJpBU67c2+gaN9xJzFnu7iThXZ+j5MGP1wID2sxR5
-	Qd1sYqNtgPCu6VUsuIHWOab5/xFHcCnxUbKiwGOsP33Ms+IilGHdgwfv6vp+U33NKRrOv17cf6S
-	yaj4G8nh/6oXU1AZWx3cz7N4RovV4d9fPNzMDw66Ewp4WEl0ovLt7EfiqnIDA48
-X-Google-Smtp-Source: AGHT+IHBuRkyoQD1EHB9ZmOyTHsx9PCdtAK0b+CCDpTw9RoYQfSOBxBrLbZUs1ESOuaSGAfTefp1Fg==
-X-Received: by 2002:a17:906:3145:b0:aa6:b4b3:5923 with SMTP id a640c23a62f3a-aabf47baa14mr514507566b.33.1734605461426;
-        Thu, 19 Dec 2024 02:51:01 -0800 (PST)
-Received: from [192.168.0.14] ([188.26.61.92])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f06cf19sm51704366b.198.2024.12.19.02.50.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Dec 2024 02:51:00 -0800 (PST)
-Message-ID: <ec3cdfd1-df7a-466c-8581-c9546ca6b089@linaro.org>
-Date: Thu, 19 Dec 2024 10:50:58 +0000
+	s=arc-20240116; t=1734605527; c=relaxed/simple;
+	bh=wBUK7+rKLRuHZH2CMR3yei5t3BON8FwX1RUYysMH+Ho=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mJdJwp5jbxU7Rzmf+XyxCKB6aBfOGT+Rkv/FZB8VdXOcpWOh9yQrYIAbR2gfkosD7bYUfJDRaBlSCvLokn7nXeDqIr/xBBXHh12YJ6lPd57wmRkRRT+6QlCXIYuhm1ZcTZUdj7TVmg+mneUb7tPnyPH7lKsrxrd+W5YlNEE/C8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=hUily0q5; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ7FeGG023978;
+	Thu, 19 Dec 2024 04:51:50 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=PODMain02222019; bh=GI8wmABLWW6RdZjo36
+	kAMFPsgMqY6Mcbk6sSJ8H49oM=; b=hUily0q5GIuQUrypLAtPshRhwISuwAZN6Y
+	r1w23hh9IvnOhTUZgDpzQZpDtB2cOI+vw2pkHmiXzRGLZzLCKMkPjemvl2fGRByp
+	MDGIWZZYExSLUdMThWJKOQQN+PNqmR3wIpnUxtY5JY6e6Tg1q75G0yHuXP1Ljphg
+	mVJS8Qq8xvoMDNM3i3WJsFprPfrOqszrsdjpm0UkU+e8VgMPeaMroihJVXn00TLQ
+	qWAnqosPGZz1FnjTl3iKhQdFDOJOQCXINg03n8P7jqYr5MMAAL+eOb51S5SwUI7F
+	MwG1HYHL5/g+8S1ZpwkSoHnkQGH54Vavbspqc3dM0xcGwIAtx1lw==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 43h8a266g8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Dec 2024 04:51:49 -0600 (CST)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.13; Thu, 19 Dec
+ 2024 10:51:47 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
+ 15.2.1544.13 via Frontend Transport; Thu, 19 Dec 2024 10:51:47 +0000
+Received: from opensource.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 88E19820247;
+	Thu, 19 Dec 2024 10:51:47 +0000 (UTC)
+Date: Thu, 19 Dec 2024 10:51:46 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Paul Handrigan <paulha@opensource.cirrus.com>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>
+Subject: Re: [PATCH v2 2/2] clk: cs2600: Add Fractional-N clock driver
+Message-ID: <Z2P6wgUowoW3v7UX@opensource.cirrus.com>
+References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
+ <20241219024631.3145377-3-paulha@opensource.cirrus.com>
+ <wv5od7uzup275onlvq36w4gvyh2j5oxepqkxiptanm5udidq5u@mbr64dxodkwd>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: mailbox: add google,gs101-mbox
-To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- andre.draszik@linaro.org, peter.griffin@linaro.org, kernel-team@android.com,
- willmcvicker@google.com, daniel.lezcano@linaro.org,
- vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de
-References: <20241217-acpm-v4-upstream-mbox-v5-0-cd1d3951fe84@linaro.org>
- <20241217-acpm-v4-upstream-mbox-v5-1-cd1d3951fe84@linaro.org>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20241217-acpm-v4-upstream-mbox-v5-1-cd1d3951fe84@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <wv5od7uzup275onlvq36w4gvyh2j5oxepqkxiptanm5udidq5u@mbr64dxodkwd>
+X-Proofpoint-ORIG-GUID: X1s2aJ_6-1fY9fEMps7Yd01IZyuXaCAa
+X-Proofpoint-GUID: X1s2aJ_6-1fY9fEMps7Yd01IZyuXaCAa
+X-Proofpoint-Spam-Reason: safe
 
-Hi, Krzysztof, Jassi,
+On Thu, Dec 19, 2024 at 09:48:05AM +0100, Krzysztof Kozlowski wrote:
+> On Wed, Dec 18, 2024 at 08:46:31PM -0600, Paul Handrigan wrote:
+> > +/* DEVICE_ID2 */
+> > +#define CS2600_AREVID_MASK		GENMASK(7, 4)
+> > +#define CS2600_MTLRVID_MASK		GENMASK(3, 0)
+> > +
+> > +/* UNLOCK_INDICATORS */
+> > +#define CS2600_P_UNLOCK_STICKY		BIT(3)
+> > +#define CS2600_P_UNLOCK			BIT(2)
+> > +#define CS2600_F_UNLOCK_STICKY		BIT(1)
+> > +#define CS2600_F_UNLOCK			BIT(0)
+> > +
+> > +/* ERROR_STS */
+> > +#define CS2600_ERR_DEV_DEFECT		BIT(7) /* Device defective */
+> > +#define CS2600_ERR_OTP_CORRUPT		BIT(6)
+> > +#define CS2600_ERR_REG_CFG		BIT(5) /* Invalid register config */
+> > +#define CS2600_ERR_PLL_DISABLED		BIT(4)
+> > +#define CS2600_ERR_HW_CFG		BIT(3) /* Invalid HW Config */
+> > +#define CS2600_ERR_REFCLK_MISSING	BIT(2)
+> > +#define CS2600_ERR_CLKIN_UNSTABLE	BIT(1)
+> > +#define CS2600_ERR_CLKIN_MISSING	BIT(0)
+> > +
+> > +#define CS2600_PLL_OUT			0
+> > +#define CS2600_CLK_OUT			1
+> > +#define CS2600_BCLK_OUT			2
+> > +#define CS2600_FSYNC_OUT		3
+> 
+> No, the entire point of the binding header is to bind. Drop all four
+> above and use properly your header.
+> 
+> Otherwise I claim your binding header is not used or not really a
+> binding.
+> 
 
-On 12/17/24 9:40 AM, Tudor Ambarus wrote:
-
-> diff --git a/Documentation/devicetree/bindings/mailbox/google,gs101-mbox.yaml b/Documentation/devicetree/bindings/mailbox/google,gs101-mbox.yaml
-
-cut
-
-> +
-> +  '#mbox-cells':
-> +    description: |
-> +      <&phandle type channel>
-> +      phandle : label name of controller.
-> +      type    : channel type, doorbell or data-transfer.
-> +      channel : channel number.
-> +
-> +      Here is how a client can reference them:
-> +      mboxes = <&ap2apm_mailbox DOORBELL 2>;
-> +      mboxes = <&ap2apm_mailbox DATA 3>;
-> +    const: 2
-> +
-
-Revisiting this, I think that for the ACPM interface mailbox client use
-case, it would be better to introduce a mbox property where I reference
-just the phandle to the controller:
-	mbox = <&ap2apm_mailbox>;
-
-The ACPM interface discovers the mailbox channel IDs at runtime by
-parsing SRAM. And all ACPM's channels are of type DOORBELL, thus
-specifying the type and channel in DT is redundant.
-
-It would require to extend a bit the mailbox core to provide a
-mbox_request_channel_by_args() method. I already wrote a draft and
-tested it.
-
-Do you find the idea fine?
+This excert is from the drivers internal header not the binding
+header?
 
 Thanks,
-ta
+Charles
 
