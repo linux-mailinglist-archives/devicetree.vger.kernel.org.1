@@ -1,136 +1,155 @@
-Return-Path: <devicetree+bounces-132796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47BD89F822E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 18:43:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B096B9F8250
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 18:47:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9282E1628E0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:43:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 060B1167C08
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:46:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98E621A264A;
-	Thu, 19 Dec 2024 17:39:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F6ip2Jxg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BD561AA1DB;
+	Thu, 19 Dec 2024 17:40:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66EBB1A2554;
-	Thu, 19 Dec 2024 17:39:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4CB11AA1D8
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 17:40:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734629957; cv=none; b=RozRWQB46VPNnqumaP9S7MjKeybUdpzZaxUCXraGCzr+ITiR84ZAL5ig2jSyibVJ/2cVv4+KpfAmwVFvQ+95FxBT7NKAS7mDKQDAz546Fgphdvxe3Zsp1rpomkshptnjfwP77CPadZGfILZcZoU1skD1NicwouMfycUnCxYF2FA=
+	t=1734630046; cv=none; b=Y4w+8814j2pHFabplHDyXUWx4bc8Zq7uXaWHUp5EGaZvkKoWIloBpVsWpEI5G116r4gH+eRCsawFllNIG3Vw2Gppinf5ydtAbYwCcxNVEKBbdNL1RoMaHifY143ieSBXbvcdNdltqkHVlokTXSnGR4Tp0P3bl9y7HSRFMrb1YgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734629957; c=relaxed/simple;
-	bh=tQRnYbvi+pRc6DLDYVspkoo0DDlFqYHUnK2WBupV9tc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OQPXt38l3soppbZd2yXIXLyuXGe1gCDM1wVt6ZUddCQYh1bfj4Ttqxf1v2p74QnjVXOM4lT86hrnw7WXBu2qtRXt4rgSdElukhviIGTBox/H46dWadOhi/atylYNWoPOEBwY7qToloiYOb605C3YPugjyyX7E0pe2Vcrpo3FBr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F6ip2Jxg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7E6FC4CECE;
-	Thu, 19 Dec 2024 17:39:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734629957;
-	bh=tQRnYbvi+pRc6DLDYVspkoo0DDlFqYHUnK2WBupV9tc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=F6ip2JxgHffcatxOyH8ojZG3YeJ7VRp7u7JOQrmNFHzKwqt1TPUS5D4J/tSktEomM
-	 Q09iHz06CdCFVIQX3eWvBFJN9lLPfXcCYwsvrPCaFUTTCO0Yza+YOhUQkBI+0Nbr6f
-	 Djrygae+ICRMqudklG1ZRSIQeXShPIdAN1HnODjSi9jri/+512boSb+lQg2Vvcvgxc
-	 kk3cWAi2XbpySKA8nQPrV5nV+kfpbjwa+bGezQpu7zQ2md7uLcpoHoJKyikkQidNzI
-	 +umxekbHVlwXiJH3DQfQ0TJTNSaUOIHiM9LjS+i3Pr25nJEWT3WGa2HAuyx7RvW07b
-	 4vrv8Q6hnlk5w==
-Date: Thu, 19 Dec 2024 17:39:05 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Robert Budai <robert.budai@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Ramona
- Gradinariu <ramona.gradinariu@analog.com>, Antoniu Miclaus
- <antoniu.miclaus@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shen Jianping
- <Jianping.Shen@de.bosch.com>, Alex Lanzano <lanzano.alex@gmail.com>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
- <robi_budai@yahoo.com>
-Subject: Re: [PATCH v3 7/7] docs: iio: add documentation for adis16550
- driver
-Message-ID: <20241219173905.7bad1f71@jic23-huawei>
-In-Reply-To: <20241216144818.25344-8-robert.budai@analog.com>
-References: <20241216144818.25344-1-robert.budai@analog.com>
-	<20241216144818.25344-8-robert.budai@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1734630046; c=relaxed/simple;
+	bh=tXfPr364+aSgP7AgKDDupR64VgNpZBLMrVU6uNf8qBA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y4S62U04WLIzhIMgVrk720Wbi998/N6FEsYmLT/xwRMFToEQjzcYhmzvG7OZ9HcTLFQf9efQ9yFM7I8vNcWl7Mhj1FAO7qJ2R1tWC/3I3FwjGx78Z4YarVS6VtE5ecNgwctKwaP/SXcCj0EbNfmHo+7KaEGRT0uM5w/t56ZjXGA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tOKVh-0000ky-NV; Thu, 19 Dec 2024 18:40:29 +0100
+Message-ID: <f085aa33-f0b7-49e7-bbfc-d3728d3e3e8c@pengutronix.de>
+Date: Thu, 19 Dec 2024 18:40:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/10] arm64: dts: imx8mp-skov: describe HDMI display
+ pipeline
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Oleksij Rempel
+ <o.rempel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de>
+ <20241219-skov-dt-updates-v1-4-38bf80dc22df@pengutronix.de>
+ <Z2RZY/gvQ0qqDjqv@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <Z2RZY/gvQ0qqDjqv@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, 16 Dec 2024 16:48:13 +0200
-Robert Budai <robert.budai@analog.com> wrote:
+Hello Frank,
 
-> Add documentation for adis16550 driver which describes the driver
-> device files and shows how the user may use the ABI for various
-> scenarios (configuration, measurement, etc.).
+On 19.12.24 18:35, Frank Li wrote:
+> On Thu, Dec 19, 2024 at 08:25:28AM +0100, Ahmad Fatoum wrote:
+>> From: Oleksij Rempel <o.rempel@pengutronix.de>
+>>
+>> Back when this device tree was first added, there were no i.MX8MP
+>> HDMI bindings upstream yet. This has changed now, so let's use them
+>> to describe the HDMI on the imx8mp-skov-revb-hdmi board.
 > 
-> Co-developed-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
-> Signed-off-by: Robert Budai <robert.budai@analog.com>
-> ---
->  Documentation/iio/adis16550.rst | 389 ++++++++++++++++++++++++++++++++
->  Documentation/iio/index.rst     |   1 +
->  2 files changed, 390 insertions(+)
->  create mode 100644 Documentation/iio/adis16550.rst
+> Skip your story.
+
+I am sure you don't mean it this way, but the way you phrase it
+sounds a bit rude.
+
+> Just said
 > 
-> diff --git a/Documentation/iio/adis16550.rst b/Documentation/iio/adis16550.rst
-> new file mode 100644
-> index 000000000000..fde38060f8fe
-> --- /dev/null
-> +++ b/Documentation/iio/adis16550.rst
-> @@ -0,0 +1,389 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +================
-> +ADIS16550 driver
-> +================
-> +
-> +This driver supports Analog Device's IMUs on SPI bus.
-> +
-> +1. Supported devices
-> +====================
-> +
-> +* `ADIS16550 <https://www.analog.com/ADIS16550>`_
-> +
-> +The ADIS16550 is a complete inertial system that includes a triaxis gyroscope
-> +and a triaxis accelerometer. Each inertial sensor in the ADIS16550 combines
-> +industry leading MEMS only technology with signal conditioning that optimizes
+> Add HDMI display pipeline for imx8mp-skov-revb-hdmi board.
 
-Trim out the marketing bits.  So just loose this sentence.
+That's already what my commit message title says.
+I am not a fan of just repeating the commit message title
+in the commit message body.
 
-> +dynamic performance. The factory calibration characterizes each sensor for
-> +sensitivity, bias, and alignment. As a result, each sensor has its own dynamic
-> +compensation formulas that provide accurate sensor measurements.
-> +
-> +The ADIS16550 provides a simple, cost-effective method for integrating accurate,
-> +multiaxis inertial sensing into industrial systems, especially when compared
-> +with the complexity and investment associated with discrete designs. All
-> +necessary motion testing and calibration are part of the production process at
-> +the factory, greatly reducing system integration time. Tight orthogonal
-> +alignment simplifies inertial frame alignment in navigation systems. The serial
-> +peripheral interface (SPI) and register structure provide a simple interface for
-> +data collection and configuration control.
-Drop this whole paragraph for similar reasons.
-
-Otherwise LGTM
+Unless you have a concrete problem with my commit message,
+I'd prefer to keep it the way it is.
 
 Thanks,
+Ahmad
 
-Jonathan
+> 
+> Frank
+>>
+>> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+>> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+>> ---
+>>  .../boot/dts/freescale/imx8mp-skov-revb-hdmi.dts      | 19 +++++++++++++++++++
+>>  1 file changed, 19 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts b/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts
+>> index 206116be8166..32a429437cbd 100644
+>> --- a/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts
+>> +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts
+>> @@ -9,6 +9,21 @@ / {
+>>  	compatible = "skov,imx8mp-skov-revb-hdmi", "fsl,imx8mp";
+>>  };
+>>
+>> +&hdmi_pvi {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&hdmi_tx {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pinctrl_hdmi>;
+>> +	ddc-i2c-bus = <&i2c5>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&hdmi_tx_phy {
+>> +	status = "okay";
+>> +};
+>> +
+>>  &i2c5 {
+>>  	pinctrl-names = "default", "gpio";
+>>  	pinctrl-0 = <&pinctrl_i2c5>;
+>> @@ -19,6 +34,10 @@ &i2c5 {
+>>  	status = "okay";
+>>  };
+>>
+>> +&lcdif3 {
+>> +	status = "okay";
+>> +};
+>> +
+>>  &iomuxc {
+>>  	pinctrl_hdmi: hdmigrp {
+>>  		fsl,pins = <
+>>
+>> --
+>> 2.39.5
+>>
+> 
 
 
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
