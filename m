@@ -1,280 +1,166 @@
-Return-Path: <devicetree+bounces-132675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AF5C9F7BED
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:03:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 699949F7BF8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:08:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5882418825ED
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:03:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FC627A044E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:07:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB6017BD9;
-	Thu, 19 Dec 2024 13:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439AE223E6A;
+	Thu, 19 Dec 2024 13:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="giABaITE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TE3scQlS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 703E4801;
-	Thu, 19 Dec 2024 13:03:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 711FD38DFC
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 13:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734613405; cv=none; b=FGOQaAcqe4ddQMXe9ZmKtV/3CM8XagXTFHwxHc9neyphLHVPObnY4vB4QbQbaZj8a7eIe/n/olV1ggC95h+Mi9K1zXAGzU4r77cyggwU80413+rC9pehTyYc2ViZ+7kqNyhgpb7Z1jdPuky3QCZzu8jNhiHCHKKVzvMdJ3X0xTU=
+	t=1734613676; cv=none; b=fK6y9jzq7onOmLtGqR33J1oiMnOJ8YIgcJJz3lMMy5QeC0DdI6UUxWU2JikmtYDze7bf4gVtWXqkXOrj0yUpNEzxT+8gBUdsh/bkZnbiSck4DdeGl83nDw9wXe/+THkVDBXX0O6hk2wPthJP+aV77K7UPq6DEMY3YdOjBVCJAKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734613405; c=relaxed/simple;
-	bh=5+x3QZVCzTq1Hf1gpxeuJv6OeqlteL217qDNjwEWRlo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tkgQ9fVHTGnwR0CExm+0qjGgkZ4rH1L23NemYC6CZaIrQ7ycuNGr2uyAKa4B797aelhTBi3fZUnzuM+DgeyT8FixaPDH9s+TMT7qJF9Lvdovvd95/fhLVREN3loRp2Pe3shWHlgRIvmtib69esjgJOwdZi0A6/7je8ap1ZOFjRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=giABaITE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0B42C4CECE;
-	Thu, 19 Dec 2024 13:03:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734613405;
-	bh=5+x3QZVCzTq1Hf1gpxeuJv6OeqlteL217qDNjwEWRlo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=giABaITEctE/wbnCg/2MLICDl1W+b+PAc1GAZkOjAmMAJuCMa81xyg99GcWrf3p3b
-	 euH2NWPqYluq8TxZlN2C8M/Jn2DoK8Wv3LENzgIFj29Dq3TvpjLzU7XHlBUXxasGkK
-	 9IKFSrEZOawhPRZ/gsh7htS0dkMHKZ6/csDgbQ8s5aTY+Uuxjrq448w5ZuHvBxleA5
-	 VOXCfP7tKmb41Guc35Fw187V49JZymlT+kWxAYqoVrOEQOUot5zozYSbTuN+EQZEi3
-	 H8dPIXmgJL+REFqc+uO2o0w7XJZ75r3VsU2xmsen8i0XovdiHLasPCqS1GkK5I+E8l
-	 k6YgbeI8ImwRg==
-Date: Thu, 19 Dec 2024 07:03:23 -0600
-From: Rob Herring <robh@kernel.org>
-To: Fabien Parent <parent.f@gmail.com>
-Cc: Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>,
-	Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <benno.lossin@proton.me>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Mark Brown <broonie@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	vinod.koul@linaro.org, Fabien Parent <fabien.parent@linaro.org>,
-	Fiona Behrens <me@kloenk.dev>
-Subject: Re: [PATCH 1/9] rust: i2c: add basic I2C client abstraction
-Message-ID: <20241219130323.GA4049504-robh@kernel.org>
-References: <20241218-ncv6336-v1-0-b8d973747f7a@gmail.com>
- <20241218-ncv6336-v1-1-b8d973747f7a@gmail.com>
+	s=arc-20240116; t=1734613676; c=relaxed/simple;
+	bh=6hPBLgMmfnbU5fJmTeNIW7KbcBrCAcdnrr+wM2OaDRs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FTEq6bdWSS3IEAS22HZ7CociQDR/50lV6g0YTc9z5l/IoBUDX3xNsPbtCNUFVg5d0okPFO2PqVP9q2Q8lNs7LBALCeeuJaoMljIyFiLp6Sldba5Rw3H0FQL8gRoZ433jjlFB+Xe0lIhe9mGZBQPnOLXqDZ8rBhaMcQRaCkhvigI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TE3scQlS; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4361d5dcf5bso8557425e9.3
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 05:07:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1734613672; x=1735218472; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rpk/ffLMQdXc9r1ZsbGnQaD0+ch0U8AdCVw+w16xuCo=;
+        b=TE3scQlSlbOMSdcODbXuIOxVyVZ5Z6d/IDE8tW5SnP1z8vmN01a9NZ+aXpizyUYuyx
+         aWuDo/yo4J20OPiQoMGmMvmC+GT7KP7FtPFCxBoLS0pB9jlVeF/nJrQz+EV1gAWFsMH0
+         xeEDM7ilM0Q6Dsff8/d3ki7XgOgiO4EkjrJG0k+r4tsjCoEGVTGCaqOWCKfl7cHSuX2I
+         Cw6KEhdhV2sLfuP7dXMTjdqy6xmYKL1QDAaiEc46euLRwzpboCfFFW27dGAul0KTBh8v
+         Mh0ouVfF4TuFNIpE7Mci+D38HHUi+8EZunVONH3YJIIFKDUG96Qj1gpaulnBpHWV/PNB
+         7QbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734613672; x=1735218472;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Rpk/ffLMQdXc9r1ZsbGnQaD0+ch0U8AdCVw+w16xuCo=;
+        b=NdWtIb7z0nLE5Qb2KxBzogWCMK6egUT1fLPNL43BTzYQ/x6iTkIAe/dlhO4Qorb6Vw
+         crg9okNSeeoQ4nyYN0e5GxKBCop8nfwE4jaSsV+NEr81Pzs083hYPrJmNSsiyZPbX19Z
+         fG831WxrnMsXHMAFdBny925AG1mKVi7zA1OXhtkNd8KKPhy075VGbcag/CudkQ5uGCtn
+         c4wTG+pMSxT6J4TPvm00/LuoqEGnBIuPy12iWJnbZdmtOrEXzpXJEQ6vJL0/EYkq7RH0
+         +l6lZF3yC4SYaCKD+XvSSEijgcxzn0P0YtGrkgAgpdbBNtWXrpa51hkVSZiAoTV+cgU1
+         S6lg==
+X-Forwarded-Encrypted: i=1; AJvYcCU5eCmGuWmRxLvLHDojyxD006UlSULfEHwujpcrRN9rdiCYOxiNFoMOOAVW7QgPEt+CkxFZUfTppmba@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJmfY5fPRrBdeqv5FvoD8sn5jfQS5MwclijXQJ5zKGgwqr99eV
+	y0usr/3abp1qyDZ92I9OKMcHgL6LAGGHwvDqfqxDpXXjIHnRwZY2A3Q1aYN0LbH0ffVGKyoe3mt
+	tpsE=
+X-Gm-Gg: ASbGnctvtgmo9LhE7p3he2Y/khG7HSDnknXO+Wxt0IGhKoUl0ptV9Fj/LzcQSZ/iItI
+	6ZErrkwNrRH04lZ5xL1SDDEzhtyiubT6G8gUX1TVncm5dfEucPDphWfr3/ss9HUBX5hBG6Hp1m3
+	beUYKpNNpZvldz9KZyzLhvuge8MJ1bhityGBL7UToF8v+KHUCGEU+SeOefwi35jtegAOtNAnlyU
+	+vN/7+36r8TnSooI28KbwiR2fLs03duk7zpU7+dawstqjNoByxfzF3XKwuspsq6I2Hc/7uYjveG
+	HinMA3Ot7cucXmlv75VTRUQIUy4RpehIdPhR
+X-Google-Smtp-Source: AGHT+IEL8UXjs8X0S7UtKDlYHBSfpKUQ5jbhCUs1olN7+uCkgGDEWmfHiA7Ew8uzxHg+T6Icg5yzVA==
+X-Received: by 2002:a05:600c:5492:b0:434:f804:a992 with SMTP id 5b1f17b1804b1-436553f69demr60792685e9.32.1734613672439;
+        Thu, 19 Dec 2024 05:07:52 -0800 (PST)
+Received: from ta2.c.googlers.com (130.173.34.34.bc.googleusercontent.com. [34.34.173.130])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436611ea387sm17436705e9.6.2024.12.19.05.07.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Dec 2024 05:07:51 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH 0/2] mailbox: add support for clients to request channels
+ by arguments
+Date: Thu, 19 Dec 2024 13:07:45 +0000
+Message-Id: <20241219-mbox_request_channel_by_args-v1-0-617a6910f842@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241218-ncv6336-v1-1-b8d973747f7a@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKEaZGcC/x3M0QqCQBBG4VeRuW7BWYzcXiVi0fzVgVprxsIQ3
+ 73Nyw8OZyWDCozOxUqKj5hMKYMPBd3GJg1w0mWTL33FnoN7tNMSFa83bI7/JOEe229sdDB3Yj6
+ WdUBXBU958VT0suz7y3Xbfrz8eNNuAAAA
+To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ andre.draszik@linaro.org, peter.griffin@linaro.org, kernel-team@android.com, 
+ willmcvicker@google.com, daniel.lezcano@linaro.org, 
+ vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1734613671; l=2747;
+ i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
+ bh=6hPBLgMmfnbU5fJmTeNIW7KbcBrCAcdnrr+wM2OaDRs=;
+ b=k56rdsOke8IWmYym13tETHNkwywcDz1k2b/m8+2Albs/Hk+zaZrl+9E2xeXumoTTuDrdCRDz/
+ fUA8CKuObS/ClYgEF206bdv1LabJQh/QZtes9y7zmTEeGYJtBlKml9D
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
+ pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-On Wed, Dec 18, 2024 at 03:36:31PM -0800, Fabien Parent wrote:
-> From: Fiona Behrens <me@kloenk.dev>
-> 
-> Implement an abstraction to write I2C device drivers. The abstraction
-> is pretty basic and provides just the infrastructure to probe
-> a device from I2C/OF device_id and abstract `i2c_client`.
-> The client will be used by the Regmap abstraction to perform
-> I/O on the I2C bus.
-> 
-> Signed-off-by: Fiona Behrens <me@kloenk.dev>
-> Co-developed-by: Fabien Parent <fabien.parent@linaro.org>
-> Signed-off-by: Fabien Parent <fabien.parent@linaro.org>
-> ---
->  MAINTAINERS                     |   1 +
->  rust/bindings/bindings_helper.h |   1 +
->  rust/helpers/helpers.c          |   1 +
->  rust/helpers/i2c.c              |  13 ++
->  rust/kernel/i2c.rs              | 288 ++++++++++++++++++++++++++++++++++++++++
->  rust/kernel/lib.rs              |   2 +
->  6 files changed, 306 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 6b9e10551392c185b9314c9f94edeaf6e85af58f..961fe4ed39605bf489d1d9e473f47bccb692ff14 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -10796,6 +10796,7 @@ F:	include/linux/i2c-smbus.h
->  F:	include/linux/i2c.h
->  F:	include/uapi/linux/i2c-*.h
->  F:	include/uapi/linux/i2c.h
-> +F:	rust/kernel/i2c.rs
->  
->  I2C SUBSYSTEM HOST DRIVERS
->  M:	Andi Shyti <andi.shyti@kernel.org>
-> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
-> index e9fdceb568b8f94e602ee498323e5768a40a6cba..a882efb90bfc27960ef1fd5f2dc8cc40533a1c27 100644
-> --- a/rust/bindings/bindings_helper.h
-> +++ b/rust/bindings/bindings_helper.h
-> @@ -16,6 +16,7 @@
->  #include <linux/file.h>
->  #include <linux/firmware.h>
->  #include <linux/fs.h>
-> +#include <linux/i2c.h>
->  #include <linux/jiffies.h>
->  #include <linux/jump_label.h>
->  #include <linux/mdio.h>
-> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-> index 0640b7e115be1553549312dcfdf842bcae3bde1b..630e903f516ee14a51f46ff0bcc68e8f9a64021a 100644
-> --- a/rust/helpers/helpers.c
-> +++ b/rust/helpers/helpers.c
-> @@ -15,6 +15,7 @@
->  #include "device.c"
->  #include "err.c"
->  #include "fs.c"
-> +#include "i2c.c"
->  #include "io.c"
->  #include "jump_label.c"
->  #include "kunit.c"
-> diff --git a/rust/helpers/i2c.c b/rust/helpers/i2c.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..8ffdc454e7597cc61909da5b3597057aeb5f7299
-> --- /dev/null
-> +++ b/rust/helpers/i2c.c
-> @@ -0,0 +1,13 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <linux/i2c.h>
-> +
-> +void *rust_helper_i2c_get_clientdata(const struct i2c_client *client)
-> +{
-> +	return i2c_get_clientdata(client);
-> +}
-> +
-> +void rust_helper_i2c_set_clientdata(struct i2c_client *client, void *data)
-> +{
-> +	i2c_set_clientdata(client, data);
-> +}
-> diff --git a/rust/kernel/i2c.rs b/rust/kernel/i2c.rs
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..efa03335e5b59e72738380e94213976b2464c25b
-> --- /dev/null
-> +++ b/rust/kernel/i2c.rs
-> @@ -0,0 +1,288 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Abstractions for the I2C bus.
-> +//!
-> +//! C header: [`include/linux/i2c.h`](srctree/include/linux/i2c.h)
-> +
-> +use crate::{
-> +    bindings, container_of,
-> +    device::Device,
-> +    device_id::{self, RawDeviceId},
-> +    driver,
-> +    error::{to_result, Result},
-> +    of,
-> +    prelude::*,
-> +    str::CStr,
-> +    types::{ARef, ForeignOwnable, Opaque},
-> +    ThisModule,
-> +};
-> +
-> +/// Abstraction for `bindings::i2c_device_id`.
-> +#[repr(transparent)]
-> +#[derive(Clone, Copy)]
-> +pub struct DeviceId(bindings::i2c_device_id);
-> +
-> +impl DeviceId {
-> +    /// Create a new device id from an I2C name.
-> +    pub const fn new(name: &CStr) -> Self {
-> +        let src = name.as_bytes_with_nul();
-> +        // TODO: Replace with `bindings::i2c_device_id::default()` once stabilized for `const`.
-> +        // SAFETY: FFI type is valid to be zero-initialized.
-> +        let mut i2c: bindings::i2c_device_id = unsafe { core::mem::zeroed() };
-> +
-> +        let mut i = 0;
-> +        while i < src.len() {
-> +            i2c.name[i] = src[i] as _;
-> +            i += 1;
-> +        }
+There are clients that can discover channel identifiers at runtime by
+parsing a shared memory for example, as in the ACPM interface's case.
+For such cases passing the channel identifiers via DT is redundant.
 
-You can simplify this now that char maps to u8 (in rust next).
+Supply a new framework API: mbox_request_channel_by_args().
 
-> +
-> +        Self(i2c)
-> +    }
-> +}
-> +
-> +// SAFETY:
-> +// * `DeviceId` is a `#[repr(transparent)` wrapper of `i2c_device_id` and does not add
-> +//   additional invariants, so it's safe to transmute to `RawType`.
-> +// * `DRIVER_DATA_OFFSET` is the offset to the `data` field.
-> +unsafe impl RawDeviceId for DeviceId {
-> +    type RawType = bindings::i2c_device_id;
-> +
-> +    const DRIVER_DATA_OFFSET: usize = core::mem::offset_of!(bindings::i2c_device_id, driver_data);
-> +
-> +    fn index(&self) -> usize {
-> +        self.0.driver_data as _
-> +    }
-> +}
-> +
-> +/// I2C [`DeviceId`] table.
-> +pub type IdTable<T> = &'static dyn device_id::IdTable<DeviceId, T>;
-> +
-> +/// An adapter for the registration of I2C drivers.
-> +#[doc(hidden)]
-> +pub struct Adapter<T: Driver + 'static>(T);
-> +
-> +impl<T: Driver + 'static> driver::RegistrationOps for Adapter<T> {
-> +    type RegType = bindings::i2c_driver;
-> +
-> +    fn register(
-> +        i2cdrv: &Opaque<Self::RegType>,
-> +        name: &'static CStr,
-> +        module: &'static ThisModule,
-> +    ) -> Result {
-> +        // SAFETY: It's safe to set the fields of `struct i2c_driver` on initialization.
-> +        unsafe {
-> +            (*i2cdrv.get()).driver.name = name.as_char_ptr();
-> +            (*i2cdrv.get()).probe = Some(Self::probe_callback);
-> +            (*i2cdrv.get()).remove = Some(Self::remove_callback);
-> +            if let Some(t) = T::I2C_ID_TABLE {
-> +                (*i2cdrv.get()).id_table = t.as_ptr();
-> +            }
-> +            if let Some(t) = T::OF_ID_TABLE {
-> +                (*i2cdrv.get()).driver.of_match_table = t.as_ptr();
-> +            }
-> +        }
-> +
-> +        // SAFETY: `i2cdrv` is guaranteed to be a valid `RegType`.
-> +        to_result(unsafe { bindings::i2c_register_driver(module.0, i2cdrv.get()) })
-> +    }
-> +
-> +    fn unregister(i2cdrv: &Opaque<Self::RegType>) {
-> +        // SAFETY: `i2cdrv` is guaranteed to be a valid `RegType`.
-> +        unsafe { bindings::i2c_del_driver(i2cdrv.get()) };
-> +    }
-> +}
-> +
-> +impl<T: Driver> Adapter<T> {
-> +    /// Get the [`Self::IdInfo`] that matched during probe.
-> +    fn id_info(client: &mut Client) -> Option<&'static T::IdInfo> {
-> +        let id = <Self as driver::Adapter>::id_info(client.as_ref());
-> +        if id.is_some() {
-> +            return id;
-> +        }
-> +
-> +        // SAFETY: `client` and `client.as_raw()` are guaranteed to be valid.
-> +        let id = unsafe { bindings::i2c_client_get_device_id(client.as_raw()) };
-> +        if !id.is_null() {
-> +            // SAFETY: `DeviceId` is a `#[repr(transparent)` wrapper of `struct i2c_device_id` and
-> +            // does not add additional invariants, so it's safe to transmute.
-> +            let id = unsafe { &*id.cast::<DeviceId>() };
-> +            return Some(T::I2C_ID_TABLE?.info(id.index()));
-> +        }
+It works by supplying the usual client pointer as the first argument and
+a pointer to a ``const struct mbox_xlate_args`` as a second. The newly
+introduced struct is modeled after ``struct of_phandle_args``. The API
+will search the client's node for a ``mbox`` phandle, identify the
+controller's device node, and then call that controller's xlate() method
+that will return a pointer to a mbox_chan or a ERR_PTR. The binding
+between the channel and the client is done in the typical way.
 
-You aren't handling the DT based matching.
+This allows clients to reference the controller node as following:
+        firmware {
+                acpm_ipc: power-management {
+                        compatible = "google,gs101-acpm-ipc";
+-                       mboxes = <&ap2apm_mailbox 0 0
+-                                 &ap2apm_mailbox 0 1
+-                                 &ap2apm_mailbox 0 2
+-                                 &ap2apm_mailbox 0 3
+-                                 &ap2apm_mailbox 0 4
+-                                 &ap2apm_mailbox 0 5
+-                                 &ap2apm_mailbox 0 6
+-                                 &ap2apm_mailbox 0 7
+-                                 &ap2apm_mailbox 0 8
+-                                 &ap2apm_mailbox 0 9
+-                                 &ap2apm_mailbox 0 10
+-                                 &ap2apm_mailbox 0 11
+-                                 &ap2apm_mailbox 0 12
+-                                 &ap2apm_mailbox 0 13
+-                                 &ap2apm_mailbox 0 14>;
++                       mbox = <&ap2apm_mailbox>;
+                        shmem = <&apm_sram>;
+                };
+        };
 
-Rob
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+Tudor Ambarus (2):
+      dt-bindings: mailbox: add support for referencing controllers solely by node
+      mailbox: add support for clients to request channels by arguments
+
+ .../devicetree/bindings/mailbox/mailbox.txt        | 19 ++++++--
+ drivers/mailbox/mailbox.c                          | 57 ++++++++++++++++++++++
+ include/linux/mailbox.h                            | 17 +++++++
+ include/linux/mailbox_client.h                     |  3 ++
+ include/linux/mailbox_controller.h                 |  4 ++
+ 5 files changed, 96 insertions(+), 4 deletions(-)
+---
+base-commit: 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+change-id: 20241219-mbox_request_channel_by_args-7115089ed492
+
+Best regards,
+-- 
+Tudor Ambarus <tudor.ambarus@linaro.org>
+
 
