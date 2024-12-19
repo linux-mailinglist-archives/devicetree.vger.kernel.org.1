@@ -1,201 +1,231 @@
-Return-Path: <devicetree+bounces-132856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1679F856D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:09:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30A5C9F8562
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:08:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 479E9188AEAC
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:07:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 035157A113E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA07C1BC065;
-	Thu, 19 Dec 2024 20:02:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B841DC995;
+	Thu, 19 Dec 2024 20:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="vBiqfcfL"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="G4qKluv3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352191B85D4;
-	Thu, 19 Dec 2024 20:02:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D20A1D88BE
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 20:03:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734638546; cv=none; b=JvnkJ1RCg9eE6xbz1VRj9ISTQv0PEJqEdGzZd+rIeMFuZtJO5lK1GRi4VfT/9NwoekCgOICUCkMfhDFxvvJHnPF1VyiTERRfAR+Y0rq84TljeGKVkJyuH6Q74IpEM1dlFXTQrOuoAtFFvAavdmHsciw2E3ftl0no2cYA3EAPBZQ=
+	t=1734638628; cv=none; b=iSEWyTjRSTfEUUBt1rWSEJjvNCCF+zRF8rhsj8fYJeISlA8c0EkW72bw78KlRnPsZfqv1N6TClXD5eCF54fa0/0ijSWF+9a3CjBcq8NKLVUVWMcsmKUS4ITkaSmrioXguvpkq0r1fRD9y8qH2xLWzChdKmGJ3MSoLgc5XwEf3+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734638546; c=relaxed/simple;
-	bh=3E1Tb12F+l4dP3zB5NxFkn7UV3D8TCq4z0Ef116fyLo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=brHQmyjIYI2PXXVkDDQAul7hvyan58LH0QvBGmj5LZyPt20BQ5+vdw+NIs2WKmY10Bou382vaMwo2GYywXUrbh562VNap88DQgQGIw8MxUDYQ6I03duP4PKwjMPWGMqUJ7RbjeoBaI1woWkIu+CkNDlJfCw0akY0zA/TNEDG1q4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=vBiqfcfL; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Tp2pK6lzyD5U9SMCt2mZyhgNP17G7t7mTEM/wB/wlzQ=; b=vBiqfcfLrYdj2SfSKxFCxxLjK5
-	+BS3nhubWvI92g3iIT3ypQf/dHEO/g1f4zOpaKzpvZEkvmPLoEPep20OfdzOiF2SAWqbnhTytrPdA
-	uJVoWP87LdoKm3S+yL2kc94F48IauVLGVGpB/Q1Wy51CmGC0fh3qxpWm7VJUqeUNWE8WDVJl4MuKQ
-	q2eS+OKgcX7UDcMJrvQ4PlWw7PHEuZty29h2oTg7fH79wzGku+teodDzj3V5awl2mb7A3z1R5Uzd6
-	7EBx3lL/rpI4kEgylLcBNvjVY438SLRm13XuU67Eb/Y+fxgQElD/NL/09Xisvf18vDUwJPoJfNKJx
-	twovPmzA==;
-Received: from i53875bfb.versanet.de ([83.135.91.251] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tOMic-0002JL-NF; Thu, 19 Dec 2024 21:01:58 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: lee@kernel.org, jikos@kernel.org, jic23@kernel.org,
- Kees Bakker <kees@ijzerbout.nl>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- jdelvare@suse.com, linux@roeck-us.net, srinivas.pandruvada@linux.intel.com,
- bentiss@kernel.org, dmitry.torokhov@gmail.com, pavel@ucw.cz,
- ukleinek@debian.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-input@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-leds@vger.kernel.org
-Subject: Re: [PATCH v9 4/9] mfd: add base driver for qnap-mcu devices
-Date: Thu, 19 Dec 2024 21:01:57 +0100
-Message-ID: <5047567.0VBMTVartN@diego>
-In-Reply-To: <4cecc705-84ab-44d5-8725-eb973254f257@ijzerbout.nl>
-References:
- <20241107114712.538976-1-heiko@sntech.de> <3130486.CbtlEUcBR6@diego>
- <4cecc705-84ab-44d5-8725-eb973254f257@ijzerbout.nl>
+	s=arc-20240116; t=1734638628; c=relaxed/simple;
+	bh=hs73sMLvLoilyKT1Gf8Ph0pXYZa/0ATd3gxDe4Fc9Ro=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Cona//5FZpQHfSh2A8uKVTeKEGoh0Q4uHxuaYsx4OjYpxqn/9jIlWrrxNn+9wpFSXFXLWjhFejFZLAZjlJWNFVcpaP731r3ac9Hn9e2+wOXIHCcn81iVVgJnSn+nOj+mOfTswZaKqclv8u8mgvHrZF0/9rPT0U71iAtIBhNxvjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=G4qKluv3; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5d34030ebb2so1853120a12.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 12:03:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1734638624; x=1735243424; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G1sjRJK5Ayx/85behtxrr4o80clOLqkokZkxXbtN8qY=;
+        b=G4qKluv3ikRNkV1rmL+YOs/dCxr9OQAC7LJoyAPHhVjptWTfE81/c0oXrH4Emu7cU6
+         MJVpKPtgWwLAFlcoLy9rvDk0EvqPNb86RbBIsvHMGLNWaTuHeRa+D03uwxYwSEv+Y5cX
+         uAgLiN21hocpOmOM2LmFJvnx+7Awq3L9loaLBEuioqLQ1NtYmsuU+8i/2yC1pezKMgA6
+         yUbidj7YLtHbqGMXOqQcSZ47zto2LtoSZPrgcLl15IJ58Kdufx4NOH27MPTkhh3cKmaH
+         sDcwaKivsf9Wx7cma6N1pd3BKslZqqmQgQKtx7vSQyxU3YJQbsXBfn9zNkqSTTspSGdm
+         pfbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734638624; x=1735243424;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G1sjRJK5Ayx/85behtxrr4o80clOLqkokZkxXbtN8qY=;
+        b=iDvMSih0+YvZTvP/pAIqQT/rD0IAJzUAJWafDBYm/XTXDbah83mUVledYJdLhKqjwX
+         vL1g9IGRbZppY2mTxBgAT2zamYmc/TxiJHA91WB+b/zQJXzudGZiebri4r5nQicMWNbC
+         FcHzhaGeGilIlTAaHMNKTHHAP3UQZSlyGYq/vkVOEpHpjKCc22KE6LsoeWmVZb/Jb5yQ
+         mBeLB2nUMjn8hC06xewMpaDukNh++u8bT3lT6jOLOYVLdxHMLm9yiTZyGarZYpiLaPen
+         MJHl7oFK9jSoVfTs6ZOV+WQ/mWH/pkQjJgy7Ciq/qwi9LyBj7Yv+rVAyETdZ90IYikC5
+         k7HQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVMpsojXX7hY7UXoawM3diJGJXyUMx5CYOh+fQzodL4MiJ/H/KFyW3j7/rd66vPHywabnmD1TAVyaSU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyyw1JoN2bOzXDRbgoZ6wOTqMGXVVDAVNWZX4pNN00eI6r3zAI2
+	OS1EuWpZSCkOWZY2eYm4IGC/SuzDfUAanzrVfRYtt6asEmzxCRAoE7aiY3szpMo=
+X-Gm-Gg: ASbGncvPGOL5rQ6ubQxPkl1oTds8O9oc3Dv+pghbS6HyeWsb1+BZvwmOPOa0ZDmumTL
+	UIqPijAQmI3Y9UeDfM9xtbU6Gj56V5S9xAT2mbJ9/eSTaimv5+LIXbw5/SyV4SRbt37Zw8rZDa+
+	iu7sSjR3wCYPHI9wOKSD+LmWheb3Q8/EeYpXBmJXkFz+B8pgPpa9LTJJmGcnVh59CMbNDg25FD9
+	OAx2gRNS4hPU8V0J58q+RPsL72EgJFZZWVhEPz3HUIwnto7YQ==
+X-Google-Smtp-Source: AGHT+IGAvsK3XVcMr9kgAG1Mj7JSOsgRJhOBlTEpjnBuXG1glmCBkvGYiUfZlpLkR+ktWVwR3nSskQ==
+X-Received: by 2002:a05:6402:214f:b0:5d0:cfb9:4132 with SMTP id 4fb4d7f45d1cf-5d81dd9953amr159640a12.18.1734638623778;
+        Thu, 19 Dec 2024 12:03:43 -0800 (PST)
+Received: from localhost ([2001:4090:a244:82f5:6854:cb:184:5d19])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80678c8cfsm946417a12.39.2024.12.19.12.03.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Dec 2024 12:03:42 -0800 (PST)
+From: Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH v4 0/4] firmware: ti_sci: Partial-IO support
+Date: Thu, 19 Dec 2024 21:02:11 +0100
+Message-Id: <20241219-topic-am62-partialio-v6-12-b4-v4-0-1cb8eabd407e@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMN7ZGcC/32Py26DMBBFfwXNuhPhh8xjlf+osrCNaUYNmNqGJ
+ Ir49zrAoqsu72h0zr0viC6Qi9AWLwhuoUh+zEF+FGCvevxySF3OwEsuWVnWmPxEFvWgOE46JNI
+ 38rgoZByNRMsr0RttpZQVZMYUXE+Pjf952XNwP3PWpP0IRkeH1g8DpbZY1IkJDJbBX39bHPbms
+ A9Wj3jX326eMPo5WHc0qC3rVNMIZrq6VfA2XikmH57bwEVsyp2W3//fsggssa+seo9qVM3ORj9
+ vZII75b5wWdf1F2xzaAA/AQAA
+X-Change-ID: 20241008-topic-am62-partialio-v6-12-b4-c273fbac4447
+To: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ Santosh Shilimkar <ssantosh@kernel.org>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Anand Gadiyar <gadiyar@ti.com>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Vishal Mahaveer <vishalm@ti.com>, 
+ Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>, 
+ Markus Schneider-Pargmann <msp@baylibre.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4882; i=msp@baylibre.com;
+ h=from:subject:message-id; bh=hs73sMLvLoilyKT1Gf8Ph0pXYZa/0ATd3gxDe4Fc9Ro=;
+ b=owGbwMvMwCGm0rPl0RXRdfaMp9WSGNJTathNztueFNv0++oVS/V5lqxHEhh4Tix0e6ew/vvNq
+ kkJKk4nOkpZGMQ4GGTFFFnuflj4rk7u+oKIdY8cYeawMoEMYeDiFICJTGlhZDhQ6B+fJc5ov2Tz
+ ygtK5h/2+KwNjTqYdL3g2bX/rR2pcUGMDO9Yzwe/LdrqJCPtrpF5IPZdXtgSWUEPxkcZ3Q5dS80
+ 5+AE=
+X-Developer-Key: i=msp@baylibre.com; a=openpgp;
+ fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
 
-Am Donnerstag, 19. Dezember 2024, 20:51:41 CET schrieb Kees Bakker:
-> Op 19-12-2024 om 20:43 schreef Heiko St=FCbner:
-> > Hi Kees,
-> >
-> > Am Donnerstag, 19. Dezember 2024, 20:18:38 CET schrieb Kees Bakker:
-> >> Op 07-11-2024 om 12:47 schreef Heiko Stuebner:
-> >>> These microcontroller units are used in network-attached-storage devi=
-ces
-> >>> made by QNAP and provide additional functionality to the system.
-> >>>
-> >>> This adds the base driver that implements the serial protocol via
-> >>> serdev and additionally hooks into the poweroff handlers to turn
-> >>> off the parts of the system not supplied by the general PMIC.
-> >>>
-> >>> Turning off (at least the TSx33 devices using Rockchip SoCs) consists=
- of
-> >>> two separate actions. Turning off the MCU alone does not turn off the=
- main
-> >>> SoC and turning off only the SoC/PMIC does not turn off the hard-driv=
-es.
-> >>> Also if the MCU is not turned off, the system also won't start again =
-until
-> >>> it is unplugged from power.
-> >>>
-> >>> So on shutdown the MCU needs to be turned off separately before the
-> >>> main PMIC.
-> >>>
-> >>> The protocol spoken by the MCU is sadly not documented, but was
-> >>> obtained by listening to the chatter on the serial port, as thankfully
-> >>> the "hal_app" program from QNAPs firmware allows triggering all/most
-> >>> MCU actions from the command line.
-> >>>
-> >>> The implementation of how to talk to the serial device got some
-> >>> inspiration from the rave-sp servdev driver.
-> >>>
-> >>> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> >>> ---
-> >>>    MAINTAINERS                  |   6 +
-> >>>    drivers/mfd/Kconfig          |  13 ++
-> >>>    drivers/mfd/Makefile         |   2 +
-> >>>    drivers/mfd/qnap-mcu.c       | 338 +++++++++++++++++++++++++++++++=
-++++
-> >>>    include/linux/mfd/qnap-mcu.h |  26 +++
-> >>>    5 files changed, 385 insertions(+)
-> >>>    create mode 100644 drivers/mfd/qnap-mcu.c
-> >>>    create mode 100644 include/linux/mfd/qnap-mcu.h
-> >>>
-> >>> [...]
-> >>> diff --git a/drivers/mfd/qnap-mcu.c b/drivers/mfd/qnap-mcu.c
-> >>> new file mode 100644
-> >>> index 000000000000..4be39d8b2905
-> >>> --- /dev/null
-> >>> +++ b/drivers/mfd/qnap-mcu.c
-> >>> [...]
-> >>> +int qnap_mcu_exec(struct qnap_mcu *mcu,
-> >>> +		  const u8 *cmd_data, size_t cmd_data_size,
-> >>> +		  u8 *reply_data, size_t reply_data_size)
-> >>> +{
-> >>> +	unsigned char rx[QNAP_MCU_RX_BUFFER_SIZE];
-> >>> +	size_t length =3D reply_data_size + QNAP_MCU_CHECKSUM_SIZE;
-> >>> +	struct qnap_mcu_reply *reply =3D &mcu->reply;
-> >>> +	int ret =3D 0;
-> >>> +
-> >>> +	if (length > sizeof(rx)) {
-> >>> +		dev_err(&mcu->serdev->dev, "expected data too big for receive buff=
-er");
-> >>> +		return -EINVAL;
-> >>> +	}
-> >>> +
-> >>> +	mutex_lock(&mcu->bus_lock);
-> >>> +
-> >>> +	reply->data =3D rx,
-> >>> +	reply->length =3D length,
-> >>> +	reply->received =3D 0,
-> >>> +	reinit_completion(&reply->done);
-> >>> +
-> >>> +	qnap_mcu_write(mcu, cmd_data, cmd_data_size);
-> >>> +
-> >>> +	serdev_device_wait_until_sent(mcu->serdev, msecs_to_jiffies(QNAP_MC=
-U_TIMEOUT_MS));
-> >>> +
-> >>> +	if (!wait_for_completion_timeout(&reply->done, msecs_to_jiffies(QNA=
-P_MCU_TIMEOUT_MS))) {
-> >>> +		dev_err(&mcu->serdev->dev, "Command timeout\n");
-> >>> +		ret =3D -ETIMEDOUT;
-> >>> +	} else {
-> >>> +		u8 crc =3D qnap_mcu_csum(rx, reply_data_size);
-> >> Here `rx` is still not initialized.
-> > The MCU works in a way that a sent command always causes "reply_data_si=
-ze"
-> > bytes to be returned.
-> >
-> > So for each qnap_mcu_write() above we know that this amount of bytes has
-> > been returned (and thus written into rx) if the completion above finish=
-es
-> > sucessfully.
-> >
-> > "rx" is assigned to reply->data above (same as the expected received si=
-ze).
-> > When characters are received on the serial line, this will trigger
-> > qnap_mcu_receive_buf() from the serdev and thus fill those elements in =
-rx.
-> >
-> > So if we land at the qnap_mcu_csum() call, we do have received the expe=
-cted
-> > amount of bytes from the serdev and thus rx is filled accordingly.
-> >
-> > If we don't receive the needed amount of bytes, we end up in the timeout
-> > above that.
-> >
-> > What did I miss?
-> Sorry, my fault. I missed the essential part of the external event (exter=
-nal
-> for this function that is).
-> Thanks for explaining.
+Hi,
 
-no worries :-) .
+Series
+------
+Partial-IO is a poweroff SoC state with a few pingroups active for
+wakeup. This state can be entered by sending a TI_SCI PREPARE_SLEEP
+message.
 
-The more eyes, the better.
+The message is sent on poweroff if one of the potential wakeup sources
+for this power state are wakeup enabled. The potential wakeup sources
+are found by looking for devices that list "poweroff" in the
+wakeup-source property in the devicetree. The wakeup sources can be
+individually enabled/disabled by the user in the running system.
 
-Heiko
+The series is based on v6.13-rc1.
 
+Partial-IO
+----------
+This series is part of a bigger topic to support Partial-IO on am62,
+am62a and am62p. Partial-IO is a poweroff state in which some pins are
+able to wakeup the SoC. In detail MCU m_can and two serial port pins can
+trigger the wakeup.
+A documentation can also be found in section 6.2.4 in the TRM:
+  https://www.ti.com/lit/pdf/spruiv7
+
+This other series is relevant for the support of Partial-IO:
+
+ - can: m_can: Add am62 wakeup support
+   https://lore.kernel.org/r/20241219-topic-mcan-wakeup-source-v6-12-v6-0-1356c7f7cfda@baylibre.com
+   https://gitlab.baylibre.com/msp8/linux/-/tree/topic/mcan-wakeup-source/v6.13?ref_type=heads
+
+Testing
+-------
+
+A test branch is available here that includes all patches required to
+test Partial-IO:
+
+https://gitlab.baylibre.com/msp8/linux/-/tree/integration/am62-partialio/v6.13?ref_type=heads
+
+After enabling Wake-on-LAN the system can be powered off and will enter
+the Partial-IO state in which it can be woken up by activity on the
+specific pins:
+    ethtool -s can0 wol p
+    ethtool -s can1 wol p
+    poweroff
+
+I tested these patches on am62-lp-sk.
+
+Best,
+Markus
+
+Previous versions:
+ v1: https://lore.kernel.org/lkml/20240523080225.1288617-1-msp@baylibre.com/
+ v2: https://lore.kernel.org/lkml/20240729080101.3859701-1-msp@baylibre.com/
+ v3: https://lore.kernel.org/r/20241012-topic-am62-partialio-v6-13-b4-v3-0-f7c6c2739681@baylibre.com
+
+Changes in v4:
+ - Rebased to v6.13-rc1
+ - Removed all regulator related structures from patches and implemented
+   the wakeup-source property use instead.
+
+Changes in v3:
+ - Remove other modes declared for PREPARE_SLEEP as they probably won't
+   ever be used in upstream.
+ - Replace the wait loop after sending PREPARE_SLEEP with msleep and do
+   an emergency_restart if it exits
+ - Remove uarts from DT wakeup sources
+ - Split no response handling in ti_sci_do_xfer() into a separate patch
+   and use goto instead of if ()
+ - Remove DT binding parital-io-wakeup-sources. Instead I am modeling
+   the devices that are in the relevant group that are powered during
+   Partial-IO with the power supplies that are externally provided to
+   the SoC. In this case they are provided through 'vddshv_canuart'. All
+   devices using this regulator can be considered a potential wakeup
+   source if they are wakeup capable and wakeup enabled.
+ - Added devicetree patches adding vcc_3v3_sys regulator and
+   vddshv_canuart for am62-lp-sk
+ - Add pinctrl entries for am62-lp-sk to add WKUP_EN for mcu_mcan0 and
+   mcu_mcan1
+
+Changes in v2:
+ - Rebase to v6.11-rc1
+ - dt-binding:
+    - Update commit message
+    - Add more verbose description of the new binding for a better
+      explanation.
+ - ti_sci driver:
+    - Combine ti_sci_do_send() into ti_sci_do_xfer and only wait on a
+      response if a flag is set.
+    - On failure to enter Partial-IO, do emergency_restart()
+    - Add comments
+    - Fix small things
+
+Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+---
+Markus Schneider-Pargmann (4):
+      firmware: ti_sci: Support transfers without response
+      firmware: ti_sci: Partial-IO support
+      arm64: dts: ti: k3-pinctrl: Add WKUP_EN flag
+      arm64: dts: ti: am62-lp-sk: Add wakeup mcu_mcan0/1 pinctrl
+
+ arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts |  52 +++++++++++++
+ arch/arm64/boot/dts/ti/k3-pinctrl.h      |   3 +
+ drivers/firmware/ti_sci.c                | 122 ++++++++++++++++++++++++++++++-
+ drivers/firmware/ti_sci.h                |   5 ++
+ 4 files changed, 181 insertions(+), 1 deletion(-)
+---
+base-commit: cbc4912199deab59fdbd830b115d81941d0add46
+change-id: 20241008-topic-am62-partialio-v6-12-b4-c273fbac4447
+prerequisite-change-id: 20241009-topic-mcan-wakeup-source-v6-12-8c1d69931bd8:6
+prerequisite-patch-id: eba4f2096c69d9c734a4a4491e062bd8b01d26fd
+prerequisite-patch-id: 830b339ea452edd750b04f719da91e721be630cb
+prerequisite-patch-id: 56fd0aae20e82eb2dfb48f1b7088d62311a11f05
+prerequisite-patch-id: 41f55b96c0428240d74d488e3c788c09842a1753
+prerequisite-patch-id: 4ab7269193dbcfd449349ccd41b23914bbbdaa6b
+prerequisite-patch-id: 24a735db927cbe2b1e0c6c5f3985b6676ce5528c
+prerequisite-patch-id: 52dbbf390d3f7e4a3859e60e4f660bfe39b92cd9
+
+Best regards,
+-- 
+Markus Schneider-Pargmann <msp@baylibre.com>
 
 
