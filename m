@@ -1,275 +1,234 @@
-Return-Path: <devicetree+bounces-132678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A78D9F7BFE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:08:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C017F9F7C0E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:09:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A351166554
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:08:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01D9E18884E3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:09:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3703225403;
-	Thu, 19 Dec 2024 13:07:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB98224AFA;
+	Thu, 19 Dec 2024 13:08:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vM2w2UZf"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="HqY757ll"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2055.outbound.protection.outlook.com [40.107.21.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BA4238DFC
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 13:07:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734613678; cv=none; b=rLwZqq3+gmwWYBhsthjL4JZ2jsLqh256uNv28Z61jDoyK2pcsysoUzsU0DvHsbRJpHf+AG9Z4nvqbirf/E651hJNBitVigpJKhG8rDIWsrrRwiJTP+L+GvlTqRsv1/+OV2iwD2rIAj4cZPb8qg2f1nEykiaFbJRYLz4as6hB8pA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734613678; c=relaxed/simple;
-	bh=Q2/Ilfy56ojSZu1+fOIemD2xiXcbZHn9eQaGm8k0miI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=V8EIssTsadBrF9f89eEgMA8Ik38h5vVSCtAlWv//W0ibvGq8eCueE8gFxBr1+UNmUXTEO27YrPjoPR/KW/X7s14b4wRkhg6nTBL7yGa6XUk6X3kRy/vkEBRQcvhhZnKMfIFa2NO0/18178q7BTADmTT4Q1nmxLTCUyrwYv7/MSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vM2w2UZf; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-436326dcb1cso5454315e9.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 05:07:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734613674; x=1735218474; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AUOQPXTRe3lg7UV1cQpho3gjLjQwoiMIh3ZBdN3lBVY=;
-        b=vM2w2UZfTgGQ1TWvMZe5Z05/bs0aPR0XP6U/OW9xAihQrYRWBnJVHPZneHg0Siiu6E
-         EQuWZj1QOg3LAsTdTu/cwKF9a5Zv1ZrstBi/ONNegZnXFakAYNqcMDXQc3UnjbgUW31Y
-         rCEE6QVvpTd0yz5HOYSsEFHrOMtMv0tKkm242z6nwZHSDDpGzjS06xEJTTtCmCdPlEK6
-         N2b/sgnYlMVEUkxvXizukbp12MpBPmJ5DC8Pl17DyAAll3Py4WLhk+oPfzn58jexUSPV
-         yWgpjF8s0ynLbmhjSyZUVaaWOZwVDfon8YIoz0q6WvcxXzsigjrCRqkmLaVT1wTJdnQp
-         HDKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734613674; x=1735218474;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AUOQPXTRe3lg7UV1cQpho3gjLjQwoiMIh3ZBdN3lBVY=;
-        b=iho0OF5Yg/i4buSh6aykMcN89Fjq+qcFHssrohf2by5x7qcLgHhRT5Df5emV7tFM1M
-         xxiu2ddz3CY27W6eU7VEEJwG9xP8ox6C850Kc4uvBayIXaTZFNukfihNNeP9/WvCbI7x
-         1cepbivIDWbeKsmxhgGJMhmeyj+WO8UsI39zHTJjGsr380vnSwzATr5wUn1duKDYRIeQ
-         jOU5VxES4XlEWnaCGVw0QMFy6oVn3mXR5xXVT69O/jhRPxiMNOgS0EMp1SO19B+o08S4
-         PLv9gIprWALgCzwEg0tqloUpqN0YYvY3gIOsfCgwfOUUoSFgJSdXrHqVW4AS827iFEti
-         OYYA==
-X-Forwarded-Encrypted: i=1; AJvYcCUHCmEOjvGL48NWkUcPsjtX2ORMFPQslzUrn0O1/Xsue5EjfiV0gVUGqjLIwO6iTLiPkA+DLNisE87u@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqR9VadqjYuHlpnJR8pl6YkgVG/wJWhOjr9YcIOhn1f4ZmeQm9
-	7FBY0chButSo+BEubHYyfzuZo3yI3ITdNU2ZmE3r5mdN9iDMrnM7sP/4qbL3TQ/m3ZVgWRu4dxA
-	rcmc=
-X-Gm-Gg: ASbGncuac6kIUR1eciUqdx/GhSObxWxWRBnMkTfEEAVXuorQ/gJO5GKBgjhtXXDfp2F
-	IM52CbY1dwCAkFfOQ3aUTxtIol1wdjoXzNGB4oWnOioMykVtEoflgRWbYnQzJu2D0NSi+Nki/F5
-	GXGC+RcrnX06ehhuSZWR+DYLrXIdI9ccdzPtskYm6vnBWfczC4eJQGPeoX2t2Y6zSiA+YPwISAD
-	2pkerv5RKh28RfqxE2JjUDD1iBGtOqrVbToyi/zqLV7VMQaAlFJUsrPIt6SToBiM0b0i0gNBu1l
-	VQCA8WY7F/pL1vwYJl0ce3ArB6L0qLADtQku
-X-Google-Smtp-Source: AGHT+IH7QXzVbmArkNE6kY0mh8UxCymkYvZfRaYwodpZUWknXO1JZt6pMIJoZmzQeGk94zIBsb8bHw==
-X-Received: by 2002:a05:600c:350c:b0:436:1c04:aa8e with SMTP id 5b1f17b1804b1-4365c7942b6mr32991725e9.16.1734613674393;
-        Thu, 19 Dec 2024 05:07:54 -0800 (PST)
-Received: from ta2.c.googlers.com (130.173.34.34.bc.googleusercontent.com. [34.34.173.130])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436611ea387sm17436705e9.6.2024.12.19.05.07.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2024 05:07:53 -0800 (PST)
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Thu, 19 Dec 2024 13:07:47 +0000
-Subject: [PATCH 2/2] mailbox: add support for clients to request channels
- by arguments
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B45B82236E4;
+	Thu, 19 Dec 2024 13:08:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.55
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734613701; cv=fail; b=cF1fEp4wc0G7FvxpZqwnI1GsJOphNu/cOtT4bjqiD+z+qkt6u/hrwSp+bhdOCzs7G0h0MCoQ7tKNwensfZvjR8qL5GWiDPnH7KbekGEY0WhnwPW7z4U/DrgoobA9pnawr7YuCsOHei9gBbhJc4vNbIpb4n3yh1r40sKJrrXpSaA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734613701; c=relaxed/simple;
+	bh=ck9r729SRDV93ZDvF34YztgwA+2I4tt/niD1UPpoW/A=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=lg92nKpePag2T73pQ07NODJXtlTQF1hzm8CRb0J7gpO7Hy1523YjNvkdT2lzyQEaTvCfSnF/bggVU6Y8FiK5uT9jWTMPFcmE1/k1fIpmBGVsxg9Fzmw+HkrV0OIC1U5ZFen/17BmE7fgJxjVMIN7jpNyexbPbC4swLZBM2dvtyU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=HqY757ll; arc=fail smtp.client-ip=40.107.21.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tpfhq9BZa7miiBPCt0EM2wfmwiL+RoDX1bVid6lvZefPk+rIA8aZfsNQWCndouBrmyQP7e9OI5gdgOSryOcBHIF4NYQpS/meHv9TN0CyJvRu0QweL5dppn31DcJ38Z5PRgqvcWDbo96Z3762PNPzz6CeKoE1rjz1AVgK/GD4QHtfA4XxbbTePdB4TQGIOxuOJwbg7KzbJoDyLhPvnDKZC5ALYlguqGZISFfiGs4zinvkqDy1jOjVkz3Ho8H8iEtST4DeJY20NYE4VpFW7zc31IwygoZkoGJrqUvT3DFoiXXeiZ5hCo5I3Ygzy5tcu0wfWo9MdnSGasdhvGzHTLUHdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Tf9fIs4+tmWJqZ2Wj8+yoEf75XlkYQ71iygtPWJDzjc=;
+ b=nLC69XHf+TknZ6+NjkF9ivcLbqVaOfzq/bRDqb3AaqCfM77IkRthJKfoR5cA6tacJZOIHPKNxFxz/LfUCIEDiDVVYk6evqJBb1beRojPrcl0R9EQ6U6Fs+8+NcszOcxGMLr6GENFWuy5eX1EVJQ5lk2Jm6h6Anf1WkUJytzH2PU6xwfp57pS8ggQT/kSOOeZ0OQ2ZDanbVvste8hFPqMQ6wwC3TZY6c8B9JuID64gAB8bvB5bcp8OgMPQbG2H8w7ozBujYQjgThv52qe0JTTEV2YiilklWLmPH1uCQHxpiMPvVBKnHixkMWT8z2kYFTcuFr8qzmsOKLRwoqwSLHEdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Tf9fIs4+tmWJqZ2Wj8+yoEf75XlkYQ71iygtPWJDzjc=;
+ b=HqY757llyk2zcowY6BtymmqBcWdZ4ZjPCiqVcR62aOMM60MAKKR/pq0DgMRBckG2BGmqI2lmvVJy0/wrUtHTGmpINVbrvRJyDEaVJhGc68S1dRR+77/tYGbYCl6xtAJpxb2tmdBm5pdukk3WGc5Y/q0HCoSkXc/uHZFCYhNDnD+NM6flbU22t43SwQVQiu1krn9yDbWSdrWOK1wQudBFMm+2EG2b2saNJgCaPSc2lDyzIE61MdtSn+ie7WzG/JXf2hEz6eBsv8XXnH25wzMFTHmyWb24WiRZ7lt8NDLMpXyw48mOWq5aNf+H6lPk+XSiFTmWxbZESyR0DRaGagOMog==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PA4PR04MB9567.eurprd04.prod.outlook.com (2603:10a6:102:26d::9)
+ by AS1PR04MB9653.eurprd04.prod.outlook.com (2603:10a6:20b:475::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.13; Thu, 19 Dec
+ 2024 13:08:15 +0000
+Received: from PA4PR04MB9567.eurprd04.prod.outlook.com
+ ([fe80::83be:fff8:5a00:a515]) by PA4PR04MB9567.eurprd04.prod.outlook.com
+ ([fe80::83be:fff8:5a00:a515%5]) with mapi id 15.20.8272.005; Thu, 19 Dec 2024
+ 13:08:14 +0000
+Message-ID: <804ed6c5-0842-47e2-b13c-6f733be5ee19@oss.nxp.com>
+Date: Thu, 19 Dec 2024 15:08:01 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/6] Add eDMAv3 support for S32G2/S32G3 SoCs
+To: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>
+Cc: imx@lists.linux.dev, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, s32@nxp.com,
+ Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
+ Enric Balletbo <eballetb@redhat.com>
+References: <20241219092045.1161182-1-larisa.grigore@oss.nxp.com>
+Content-Language: en-US
+From: Larisa Ileana Grigore <larisa.grigore@oss.nxp.com>
+In-Reply-To: <20241219092045.1161182-1-larisa.grigore@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM0PR10CA0009.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:17c::19) To PA4PR04MB9567.eurprd04.prod.outlook.com
+ (2603:10a6:102:26d::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241219-mbox_request_channel_by_args-v1-2-617a6910f842@linaro.org>
-References: <20241219-mbox_request_channel_by_args-v1-0-617a6910f842@linaro.org>
-In-Reply-To: <20241219-mbox_request_channel_by_args-v1-0-617a6910f842@linaro.org>
-To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-samsung-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- andre.draszik@linaro.org, peter.griffin@linaro.org, kernel-team@android.com, 
- willmcvicker@google.com, daniel.lezcano@linaro.org, 
- vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de, 
- Tudor Ambarus <tudor.ambarus@linaro.org>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1734613671; l=5667;
- i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=Q2/Ilfy56ojSZu1+fOIemD2xiXcbZHn9eQaGm8k0miI=;
- b=DjvbKV9+OxuCn/g6zNLfMtnGo0ac9oiSZ61hg9UOxS8u84Deij/SZOVt8RZG/MWpoV+4CNVYI
- JGsGxeG3VrmBjbJEriNyu7OXAB4fQa5a+qF3YVvdcTl7LG3+UQDNJyw
-X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
- pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9567:EE_|AS1PR04MB9653:EE_
+X-MS-Office365-Filtering-Correlation-Id: 679c3d3a-928e-4b1a-6c22-08dd202e3197
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|7416014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?KzV5TTFUQTl2bDhKdGt0UitySWZjWk5nc1NMRndUUFVDT25iN2VteVdUUGc0?=
+ =?utf-8?B?WGdmYmlIQkRBQzlzVnhudmZLdjZpMHRZS2tKSjRibTA2ZWs5cmZPS2NzeDZn?=
+ =?utf-8?B?b2xzNnBSSklxU0Vab2tLWDc0cllocVJ6Y0lVUG55bjRlTU01V3pzQTJISFFQ?=
+ =?utf-8?B?UkhYWWoxS2lqc0p2R2o2MlBqNTlIUVB0VHk0dENHSW9KWnF6MWFFNSs1MHhj?=
+ =?utf-8?B?cXBTd1ZwZkdSdUttWVJrYVEybzZPWU9lZjdmN0lEZmIzQjhCNTQrTmNZdHlS?=
+ =?utf-8?B?Vmk1eGgrUUZIamxGTng2SWVHbHVJcHhWRWdoVzlaSEJnVWg5TXM1VEpWVE5C?=
+ =?utf-8?B?elpYM0t2aTl3bjJvZHhmdEo1dW1jWEtiRUR4bjlvSjZhU2o3bjNKUGhOUTli?=
+ =?utf-8?B?MmNHenB5RS8zK0ZnVEFkdjhQczRtNDJxYldJb1AvRnN4YllWNVJNYTlxTWNp?=
+ =?utf-8?B?bVBtY3JCQVUxM0ZpckpqZkxRVEwvdzZISW9mSXcxY3BCZms5VFlRWFFEUGkx?=
+ =?utf-8?B?aUx2YUM3N0dObkRLeGdoV01qRHI5WmhjcEhlTndBeHJ4S0xRcXJiS1BDOEMv?=
+ =?utf-8?B?SGVzN09MS0daL1crQlpHYk11dEFLaGxPU0htV3NyUmJOQUhaOGJYZWQ0VXcx?=
+ =?utf-8?B?SkZpWHJWU1d0VEV6VlFoOUl4SFR0UUFVT1ZKMXVsSzlyaGtVSlp2bnNsbS9Y?=
+ =?utf-8?B?ak5hUUZ2SFdpZjc2bWpzYzdQQm8rQlBNbkVsTUNjYWtNc1NWWTJXMXJ6WkNw?=
+ =?utf-8?B?ZmRHMURQOFFYM2hDcXRTYkYvOVNhdkpBYlduNkJhQVVHZUYzSnpkT25IN1U1?=
+ =?utf-8?B?Q0dLcVVnUGVRRXltRDRwZ0xQV2J0WHhXa2JXMnJNdzRRQjVrVk1URmxnbmxi?=
+ =?utf-8?B?QTJONzk5MEk1S2hVM1lKbHFpTGpMOVEwVjRkWUVNUFVVVStaY1EyR29FQUdl?=
+ =?utf-8?B?dU5xRG5kblJqcUlTU1g3dUlpNTJvTS9TWjQ0MUVUc3ZCT2psc1IzaTN6cmZh?=
+ =?utf-8?B?S2JzY0pCVEhDdzROSnJoSFZra25kNjdBbnR4KzdSQ2Y3a1N4bks4RW9NM1dW?=
+ =?utf-8?B?WGRuZFU2ZEdoeklnQkZkcThEQnZ1T2ZiWS9USU9ONVlMSWlqWFo5NS9aSWtK?=
+ =?utf-8?B?S2xJWk9ldW9sNDdhUlRHZjB3Tk04TmxPVUNVQTdJVitpSE9VOStmSHEvcFVU?=
+ =?utf-8?B?WTBncUYrb29JbHZZU0l2anlLMlBZOWdTVzF1Q3Y2Ujl3ell1dkJjN2hrR01E?=
+ =?utf-8?B?QUVUTHRwc1JKajJieUlKeTd2cHBKZjRFaUpyUzdUZFBCZWRXeWcycVdmM3dH?=
+ =?utf-8?B?NUtUYThjNDFtYTAvR3YxaWRyU2pQS3FCRWMrWmtMdVZBa2lmQjdmbGNHZzNK?=
+ =?utf-8?B?M0kxd0ErM3c0c0F3VXVmMmFVU3hOS2lwTld6aU5jRnNDY0tFQlhhRkFEQVJl?=
+ =?utf-8?B?M0hxRk5yQmtvMW85RjlranRTQTJUN04yQWJCK1JnM2ZVam4vN1hBem9WTlY0?=
+ =?utf-8?B?eG5IcmxDV0IxbmRFd0grZWVOZlRuUFNBT090UXgxNndSUDVHemNXakZMQStW?=
+ =?utf-8?B?R3NONnl5NGhRMlV6TUgzSmVyNXo0cVgvTy9VK0VDWTZ0a2ZSc3RMUGR0eC9i?=
+ =?utf-8?B?OTFoVGMyTlpLOXYyS1RzSGdyeEp6VGtqRmlnazQvc1dOU3JpV3hVOTBuL0RE?=
+ =?utf-8?B?elJFWFUrSi9XRUlHaTZWaTdTWFQ5MXQ1bWYyUVNVTnhLVktLRmxUOUZhaXdi?=
+ =?utf-8?B?YUpPZ0FZaXMvMHRGWGYxdTY4MnhDdm15c3RwZVNCQ1Q2VEFwMGozVitCZHVT?=
+ =?utf-8?Q?rsLs/4rlYJyU0z11TdCwXSWt6Gm8owDuSeLB8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9567.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?djdyWkptZWRNUTRrbmkzNzMvQS8xM1c1VllPbzhBdGhtYlRBRkZJRC9yWFg1?=
+ =?utf-8?B?MHQvVTlyZzN5R1ltYlRhOHhVclplc1Z0OFp2MW80REtqS0tqNU5BekwwMFEw?=
+ =?utf-8?B?NXQrK3B4aUZ1aERqZmJKSFhGQ05vdk1ybElyTkR1TmV0VDd5TXFPcUVhdm5m?=
+ =?utf-8?B?dDV0Q0VnWWU1cWtkMUdKUndYZ3VKMUNXTThBczJ5bG1TeDdjN0tCRXc1TXFZ?=
+ =?utf-8?B?a0Q2WDJuQ3d2czVDaCtRcmQvQmU5dkVtcXpDbURXSlM0bThtL3pVeHo3U2Fz?=
+ =?utf-8?B?THdmY2tlWGJqdGQwOHlaT3FlUFdxWDJJeVljSTlyVTlVVjVtTHovVXgrWDVv?=
+ =?utf-8?B?bHhBN2RlZFp5NkpDVXRadHhjV1h5emdYb3c5bXlYSWJNLzVqRDBHd0hMcTFX?=
+ =?utf-8?B?RUxXekM3aklSdHdlREhBeU1KQU1obWMvNGN2Y0djd3dpU2VNNVI1cHNFek1r?=
+ =?utf-8?B?bGxLNlRsWExYQTFwMTZNOStkMTZ5V1NSMFE1TDhaTHhLbTUyR3hDaEQvYVc2?=
+ =?utf-8?B?QmZxTTlqbDJrMkRsT0N4akVUam9HMGMrcmNKM1FvNEdoWkdPNlRJdm1xMUZW?=
+ =?utf-8?B?YjM0OVdIWVFkaXdzZSszRDF6dUd5UjVCdS8rMjh2RjJXUEVOOHpDaHc1UHhs?=
+ =?utf-8?B?SGFDQjN4TnR0b2JiaFNxN0M4OW1SSWtvejdpaW53dExJbVQvVURyQ3RQVzhw?=
+ =?utf-8?B?cy82eFpKUE9CT1NPbWF2VGpZRHFuT3JON2FSQ3R1Sm0xclh5WU5DNTVHOFhM?=
+ =?utf-8?B?eTArUzAxb3dLVHA0L2VUNnRoMERUSDdXYVZlZW82d1pQandlMDh3MWU2bjZW?=
+ =?utf-8?B?cnhxRGNnelBLWFRaVS9ZRmN6cDJiZE55KzMrNFVQalZpbktFZWlTNVoxRTZk?=
+ =?utf-8?B?NzR3aURDVWxDUUQzSVI5NGlPZXdqVFRJMXhVTHJrYmZjTEJHd29SMHk3TWVu?=
+ =?utf-8?B?UVI1YllNdTdTSkdaTlAxZXRta3p3SnNWME5kdHk4OXdwc2hSRXFTRVNmVHJW?=
+ =?utf-8?B?akhwZUE5QUpsbW5JeXhmVUJpRnc1bWJWcFd2Vms1TmlCeFVGOGVMRk9xUXd4?=
+ =?utf-8?B?UThtREhyd0VJMmVaK001alVWQXV5TnZWeVIxZVJQbjJVVE4vN0FKUmlkNHFh?=
+ =?utf-8?B?NW1GWExGWFE0bzBrbmNTaXk5TWdlM2hsYzRycm5Da09LSzRGSnFsSHF5R2Rw?=
+ =?utf-8?B?S3lhL0dzTXdsZzcrSHhEU0dHaXR3Q1dtN0RHWWFHMHV2dnBGNG1tdFNuU0ha?=
+ =?utf-8?B?SGxwbHgvL3pYTnFCMk85S0RyU2xlKzRxd3hpeXQ4NVdyZUJwYjVVTGxFbXB3?=
+ =?utf-8?B?bG5jY2VPcXRMRW9MNzFtbnRQN0RrM3pmNlNYV0s4SVRSU1A2RmRKQmRxU0hS?=
+ =?utf-8?B?dDM0d1hxaGI5NjhKSTNhM3ZJN09hSk1RZlkvM3VEKyttNDQ5ZE9sSjc0OGIz?=
+ =?utf-8?B?NUQvTE54V3FBS3lXaGlaUGZadm0ydW5hZGNUYkhmdmFsWXIzalZCV014TVNS?=
+ =?utf-8?B?R0VJTG02TDhkWDdOSEtzaWVCTWo3Rk5PRU0vVjJLc01ST0Fmby94Q3MvWklK?=
+ =?utf-8?B?bFM1NzJXRnpZZHo2b0x1SzJVQnNEMEM5cmFzVDZNdC9LR3JXN0ZNZ3RMSnVV?=
+ =?utf-8?B?ZWdFTGFvalM2M1gvc05rbXpVT29hZlduN1ZTRExvSVRERGNvWTRBSFJhUSs0?=
+ =?utf-8?B?ZndaNDk1NzU2amg1Z283U0xDa1MySEQyM3EraFBQUmkzNkl4UjVud1lRUnh6?=
+ =?utf-8?B?R3NPdzJCQU80encwdWcxYlhuTkNGY3llQ2F0aWlmTkNHbWdYNDFlTis1WTBt?=
+ =?utf-8?B?K2pnc2ZwMlEvWGlleXJXcXc3Q1cwNHdrYlMrOXluNkwrcUJqd2J3NlZlV28y?=
+ =?utf-8?B?OXRNVGpVOVVjVUU3c21TcWR5Q05xSEZpMFgzY2JaUlQyblJlRnZwSzhsTHFB?=
+ =?utf-8?B?c2ttTW9GMVNyOHViWVhXbzRPNnZJTHNUcm5qM214YmZ2U1h0b1F0TFlscE1Z?=
+ =?utf-8?B?dVA3RFY4S2tsOFhVRzlodk90bUQ0ajlrdFZYTmJXSkloL2JTR0pXdkRmODFW?=
+ =?utf-8?B?RTNYTGMvaGRxdUZaK0Q3SjFYU0xRUnBaQjRKY2tQeGZhbmozSEo2RHBvN3Fp?=
+ =?utf-8?B?dkE5MWhMMDRtelZKQjloWFVOQVRrcUwyV3FKOEQzdFN3U2x0R3pNNWRCQUU0?=
+ =?utf-8?B?Z0E9PQ==?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 679c3d3a-928e-4b1a-6c22-08dd202e3197
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9567.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2024 13:08:14.8185
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XO9fYH+EheNK1h3CMYvl8WN5GWRE76XsuqP508YO9cTtdXiJCj3dKzSotKnVkkVCGWyaRl3tvHiCkQ2y+9oJjg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9653
 
-There are clients that can discover channel identifiers at runtime by
-parsing a shared memory for example, as in the ACPM interface's case.
+On 12/19/2024 11:18 AM, Larisa Grigore wrote:
 
-Supply a new framework API: mbox_request_channel_by_args().
+Please disregard V2. V3 was sent with the changelog added for review.
 
-It works by supplying the usual client pointer as the first argument and
-a pointer to a ``const struct mbox_xlate_args`` as a second. The newly
-introduced struct is modeled after ``struct of_phandle_args``. The API
-will search the client's node for a ``mbox`` phandle, identify the
-controller's device node, and then call that controller's xlate() method
-that will return a pointer to a mbox_chan or a ERR_PTR. The binding
-between the channel and the client is done in the typical way.
+Best regards,
+Larisa
 
-Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
----
- drivers/mailbox/mailbox.c          | 57 ++++++++++++++++++++++++++++++++++++++
- include/linux/mailbox.h            | 17 ++++++++++++
- include/linux/mailbox_client.h     |  3 ++
- include/linux/mailbox_controller.h |  4 +++
- 4 files changed, 81 insertions(+)
-
-diff --git a/drivers/mailbox/mailbox.c b/drivers/mailbox/mailbox.c
-index d3d26a2c9895..07ea32ebab80 100644
---- a/drivers/mailbox/mailbox.c
-+++ b/drivers/mailbox/mailbox.c
-@@ -467,6 +467,63 @@ struct mbox_chan *mbox_request_channel_byname(struct mbox_client *cl,
- }
- EXPORT_SYMBOL_GPL(mbox_request_channel_byname);
- 
-+/**
-+ * mbox_request_channel_by_args - request a mailbox channel using client's
-+ * channel identifiers.
-+ * @cl: identity of the client requesting the channel.
-+ * @spec: arguments that describe the channel.
-+ *
-+ * Used by clients that can discover the channel identifiers at runtime (by
-+ * parsing a shared memory for example). The description of
-+ * mbox_request_channel() applies here as well.
-+ *
-+ * Return: Pointer to the channel assigned to the client if successful.
-+ *         ERR_PTR for request failure.
-+ */
-+struct mbox_chan *mbox_request_channel_by_args(struct mbox_client *cl,
-+					const struct mbox_xlate_args *spec)
-+{
-+	struct device *dev = cl->dev;
-+	struct mbox_controller *mbox;
-+	struct device_node *mbox_np;
-+	struct mbox_chan *chan;
-+	int ret;
-+
-+	if (!dev || !dev->of_node) {
-+		pr_debug("%s: No owner device node\n", __func__);
-+		return ERR_PTR(-ENODEV);
-+	}
-+
-+	mbox_np = of_parse_phandle(dev_of_node(dev), "mbox", 0);
-+	if (!mbox_np)
-+		return ERR_PTR(-ENODEV);
-+
-+	mutex_lock(&con_mutex);
-+
-+	chan = ERR_PTR(-EPROBE_DEFER);
-+	list_for_each_entry(mbox, &mbox_cons, node)
-+		if (mbox->dev->of_node == mbox_np && mbox->xlate) {
-+			chan = mbox->xlate(mbox, spec);
-+			if (!IS_ERR(chan))
-+				break;
-+		}
-+
-+	of_node_put(mbox_np);
-+
-+	if (IS_ERR(chan)) {
-+		mutex_unlock(&con_mutex);
-+		return chan;
-+	}
-+
-+	ret = __mbox_bind_client(chan, cl);
-+	if (ret)
-+		chan = ERR_PTR(ret);
-+
-+	mutex_unlock(&con_mutex);
-+	return chan;
-+}
-+EXPORT_SYMBOL_GPL(mbox_request_channel_by_args);
-+
- /**
-  * mbox_free_channel - The client relinquishes control of a mailbox
-  *			channel by this call.
-diff --git a/include/linux/mailbox.h b/include/linux/mailbox.h
-new file mode 100644
-index 000000000000..cef88c5ae49d
---- /dev/null
-+++ b/include/linux/mailbox.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright 2024 Linaro Ltd.
-+ */
-+
-+#ifndef __LINUX_MAILBOX_H
-+#define __LINUX_MAILBOX_H
-+
-+#include <linux/types.h>
-+
-+#define MBOX_XLATE_MAX_ARGS 16
-+struct mbox_xlate_args {
-+	int args_count;
-+	u32 args[MBOX_XLATE_MAX_ARGS];
-+};
-+
-+#endif /* __LINUX_MAILBOX_H */
-diff --git a/include/linux/mailbox_client.h b/include/linux/mailbox_client.h
-index 734694912ef7..a9f4d108c48c 100644
---- a/include/linux/mailbox_client.h
-+++ b/include/linux/mailbox_client.h
-@@ -9,6 +9,7 @@
- 
- #include <linux/of.h>
- #include <linux/device.h>
-+#include <linux/mailbox.h>
- 
- struct mbox_chan;
- 
-@@ -41,6 +42,8 @@ int mbox_bind_client(struct mbox_chan *chan, struct mbox_client *cl);
- struct mbox_chan *mbox_request_channel_byname(struct mbox_client *cl,
- 					      const char *name);
- struct mbox_chan *mbox_request_channel(struct mbox_client *cl, int index);
-+struct mbox_chan *mbox_request_channel_by_args(struct mbox_client *cl,
-+			     const struct mbox_xlate_args *spec);
- int mbox_send_message(struct mbox_chan *chan, void *mssg);
- int mbox_flush(struct mbox_chan *chan, unsigned long timeout);
- void mbox_client_txdone(struct mbox_chan *chan, int r); /* atomic */
-diff --git a/include/linux/mailbox_controller.h b/include/linux/mailbox_controller.h
-index 6fee33cb52f5..dfddcf966f9f 100644
---- a/include/linux/mailbox_controller.h
-+++ b/include/linux/mailbox_controller.h
-@@ -8,6 +8,7 @@
- #include <linux/hrtimer.h>
- #include <linux/device.h>
- #include <linux/completion.h>
-+#include <linux/mailbox.h>
- 
- struct mbox_chan;
- 
-@@ -67,6 +68,7 @@ struct mbox_chan_ops {
-  * @txpoll_period:	If 'txdone_poll' is in effect, the API polls for
-  *			last TX's status after these many millisecs
-  * @of_xlate:		Controller driver specific mapping of channel via DT
-+ * @xlate:		Controller driver specific mapping of channel
-  * @poll_hrt:		API private. hrtimer used to poll for TXDONE on all
-  *			channels.
-  * @node:		API private. To hook into list of controllers.
-@@ -81,6 +83,8 @@ struct mbox_controller {
- 	unsigned txpoll_period;
- 	struct mbox_chan *(*of_xlate)(struct mbox_controller *mbox,
- 				      const struct of_phandle_args *sp);
-+	struct mbox_chan *(*xlate)(struct mbox_controller *mbox,
-+				   const struct mbox_xlate_args *sp);
- 	/* Internal to API */
- 	struct hrtimer poll_hrt;
- 	spinlock_t poll_hrt_lock;
-
--- 
-2.47.1.613.gc27f4b7a9f-goog
+> S32G2 and S32G3 SoCs share the eDMAv3 module with i.MX SoCs, with some hardware
+> integration particularities.
+> 
+> S32G2/S32G3 includes two system eDMA instances based on v3 version, each of
+> them integrated with 2 DMAMUX blocks.
+> Another particularity of these SoCs is that the interrupts are shared between
+> channels as follows:
+> - DMA Channels 0-15 share the 'tx-0-15' interrupt
+> - DMA Channels 16-31 share the 'tx-16-31' interrupt
+> - all channels share the 'err' interrupt
+> 
+> Larisa Grigore (6):
+>    dmaengine: fsl-edma: select of_dma_xlate based on the dmamuxs presence
+>    dmaengine: fsl-edma: remove FSL_EDMA_DRV_SPLIT_REG check when parsing
+>      muxbase
+>    dt-bindings: dma: fsl-edma: add nxp,s32g2-edma compatible string
+>    dmaengine: fsl-edma: add support for S32G based platforms
+>    dmaengine: fsl-edma: read/write multiple registers in cyclic
+>      transactions
+>    upstream: add eDMAv3 support for S32G2/S32G3 SoCs
+> 
+>   .../devicetree/bindings/dma/fsl,edma.yaml     |  34 +++
+>   drivers/dma/fsl-edma-common.c                 |  36 +++-
+>   drivers/dma/fsl-edma-common.h                 |   3 +
+>   drivers/dma/fsl-edma-main.c                   | 115 +++++++++-
+>   outgoing/description                          |  12 ++
+>   outgoing/v2-0000-cover-letter.patch           |  42 ++++
+>   ...-edma-select-of_dma_xlate-based-on-t.patch |  39 ++++
+>   ...-edma-remove-FSL_EDMA_DRV_SPLIT_REG-.patch |  35 +++
+>   ...-edma-move-eDMAv2-related-registers-.patch | 199 +++++++++++++++++
+>   ...-edma-add-eDMAv3-registers-to-edma_r.patch | 104 +++++++++
+>   ...ma-fsl-edma-add-nxp-s32g2-edma-compa.patch |  83 ++++++++
+>   ...-edma-add-support-for-S32G-based-pla.patch | 200 ++++++++++++++++++
+>   ...-edma-wait-until-no-hardware-request.patch |  68 ++++++
+>   ...-edma-read-write-multiple-registers-.patch |  90 ++++++++
+>   14 files changed, 1045 insertions(+), 15 deletions(-)
+>   create mode 100644 outgoing/description
+>   create mode 100644 outgoing/v2-0000-cover-letter.patch
+>   create mode 100644 outgoing/v2-0001-dmaengine-fsl-edma-select-of_dma_xlate-based-on-t.patch
+>   create mode 100644 outgoing/v2-0002-dmaengine-fsl-edma-remove-FSL_EDMA_DRV_SPLIT_REG-.patch
+>   create mode 100644 outgoing/v2-0003-dmaengine-fsl-edma-move-eDMAv2-related-registers-.patch
+>   create mode 100644 outgoing/v2-0004-dmaengine-fsl-edma-add-eDMAv3-registers-to-edma_r.patch
+>   create mode 100644 outgoing/v2-0005-dt-bindings-dma-fsl-edma-add-nxp-s32g2-edma-compa.patch
+>   create mode 100644 outgoing/v2-0006-dmaengine-fsl-edma-add-support-for-S32G-based-pla.patch
+>   create mode 100644 outgoing/v2-0007-dmaengine-fsl-edma-wait-until-no-hardware-request.patch
+>   create mode 100644 outgoing/v2-0008-dmaengine-fsl-edma-read-write-multiple-registers-.patch
+> 
 
 
