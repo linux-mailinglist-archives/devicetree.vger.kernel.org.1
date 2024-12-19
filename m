@@ -1,441 +1,225 @@
-Return-Path: <devicetree+bounces-132605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB9989F796B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:20:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8704D9F797D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:24:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11D68169CD8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:20:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C629E16A9B4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:24:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629B422259E;
-	Thu, 19 Dec 2024 10:19:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4171422256E;
+	Thu, 19 Dec 2024 10:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mDors/XO"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="l9qpKFuF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2080.outbound.protection.outlook.com [40.107.20.80])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F42C222D5D;
-	Thu, 19 Dec 2024 10:19:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734603593; cv=none; b=fHGpdHOVkSgPZES6L5K73sLW9RMNkmBED1Me0GxP2uFQLmBk4p5iiagYEOTF84oZFAgYrH2oZyXxazNLvX+dCE60WjkVJhd63M5Wjs6MIFuK+DgnU3TAwEgGXhktgqhWa+5M3kAPaCU1/i5V+sC/BGiFD3EMOFTaZnLldJdPPFQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734603593; c=relaxed/simple;
-	bh=tTWUVtXEPE6/RpxRTcoWhGZA8a+a993JiEflnuzutFE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j50SQOgjIG5oTB4o1ytOewu2hxiAQV5tOoiW3bQPF4FlVURY74LTepeMdk2dKvkWw5tHZ4rbpJlhhtzcWwblwRrgFUzUn+5AY9aYZwUS7MA9+T0cDzxOl6AuMODKPvojn29Ro+zsuLJerqxlk7ivUVlWzLzLF2042dd8FSYe23Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mDors/XO; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aa68b513abcso118603966b.0;
-        Thu, 19 Dec 2024 02:19:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1734603589; x=1735208389; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2+xN/akLcGWoh80xccBoobmCy20PyxUxY64WwL6oZxQ=;
-        b=mDors/XOsx/FuoL8WvVkTb1ghKP5f13O2hyJCXmG6QYvPMDzOCh1SBsRC2EVbR9v3Z
-         t13VrkSwLuwnwRpy8mxDUOgR9G86TgzYdrgxriSLkpDC9apSFpmUqd+0W9z3HfwiGkSe
-         WJgkB6OmtSbZLgW/9c27DNO19InDEUl4X0X6eZQhjq1yG/ZqPdCXJQYTcRf0rHWPrarp
-         wTLUwlKAPhqJfyAnFO6CJXZuN34vnEou9YQCg13CI/md+Q3rdUqSBeWHOkHZZy3Bz2kT
-         bag76PQ3qedmd2aYcnHHYyXQlgVIsti40m/n+JlxyB52wm28KY73D9WH+gjcgi2e9mEW
-         oIvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734603589; x=1735208389;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2+xN/akLcGWoh80xccBoobmCy20PyxUxY64WwL6oZxQ=;
-        b=ShQjYyc/DgZVSwZkfN/Z9HkUGnrarg4nXxXR7seRrIRo6E0cDKCN7w7WXsWo76GkL/
-         NlNxofhZRcSTjxB8eq3TpPrtsXofM5NDfildT2LlIWcgF7/WY24TL263vHg1hUF9LV56
-         R/ir77towRuoc53EEpC6kQsl5nUclvUKydLkiSU6ECKI3N4kBb3Duvy7kq9xjkx8rG2R
-         GVqBzRT02DUaX2zwomYIXMF1e6rl4RL4/4pnESsnlJWlcUFGGFduCsqjqwIoO/UJfTuu
-         tw5Jv13AzmwN7Va22qT9r0omXF8Z+b1wXG035k3mQSgLs8cj+1kcI2zrNOfurbwY068O
-         tfLw==
-X-Forwarded-Encrypted: i=1; AJvYcCV7bxHNvhaQlC3KgyaklRvnkvPwfYhwuSpXtlNwbfYnVfFOOfBg4j5RZd8VsjxWBl1VwkL/dTaLGvGjY90o@vger.kernel.org, AJvYcCVeKNTAeet0JoBj5lVpNq7OGzgOZeI+wx3YBTmYHlv+TK0R9r7fQPG9SI3AKgJ3xPSZVTd3Gv23XTbwCFYu/bg=@vger.kernel.org, AJvYcCWfMVvcoK8hmrlp/dOcQSd4sydJHBRDrBZIebKdXsgp67NXbOJ6xpL8f/07yg5rx1GCjYnED96eDzXD@vger.kernel.org, AJvYcCWuIp0tFug0AdkuAvMkMb4SFnsyc6bFRK52ZpvOjsxiPSu962+v/lQmpBgnrzsq3c8cmrY9LoBzajQpAUQ0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+cnF8QaidXGUQRfFMxwJPEMIWN+pxjWiB6tbNWyLoljw0GTK2
-	RmqHcTmd+ADjyZYxOMSOPKGsvlA67nUi+EHZ4e4Jq0fYYjduDXlL
-X-Gm-Gg: ASbGncvaEzwVk5rjt01DabwX+/MnP4Q24iZIjDARkPPhvJkz4tJEbOwRropm85CnGEY
-	YB/eHTQwrxwlXPM1kizEFTf5XrQKAC5Z4C7mWRvwzqL0rx0VZ6XVM8HfT2md7zcQado6naqmZ7C
-	BO5Y7Mg6bcv9n2zFYXTeR5U8ZKO0H8mGznREoEpSznWO10ZWLaPK58OJYFbOOgaXYO5Y5s4gwyd
-	n1BxM020sjsjjZ6O70euJLCyQthP/PCK6ZyaOxVB+6wDzYyrw9WA6BcJ6TnEXkHkOLXKS0iq9JP
-	cy824hxM352SPDLGLzfbSOgXn/9v7mpXboIznmG+4o35UEf6F4xaROKUWNRHSHm1hTrgDptEsNZ
-	td36+lsI=
-X-Google-Smtp-Source: AGHT+IFx6H5RqyD+mw0we3BFNW7JJ1EFD9mC7UAMrP5EL99bTcuqMKsiN21Qp59zD2igpwFuY+o8Eg==
-X-Received: by 2002:a17:906:328d:b0:aa6:79fa:b483 with SMTP id a640c23a62f3a-aabf44af144mr537559866b.0.1734603588728;
-        Thu, 19 Dec 2024 02:19:48 -0800 (PST)
-Received: from ?IPV6:2003:df:bf0d:b400:27b9:49e:98d:c022? (p200300dfbf0db40027b9049e098dc022.dip0.t-ipconnect.de. [2003:df:bf0d:b400:27b9:49e:98d:c022])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f06dc7esm48543866b.193.2024.12.19.02.19.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Dec 2024 02:19:48 -0800 (PST)
-Message-ID: <907b470c-3b24-41ba-9b6d-c07caa30ee00@gmail.com>
-Date: Thu, 19 Dec 2024 11:19:46 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E713D4594D;
+	Thu, 19 Dec 2024 10:24:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.80
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734603884; cv=fail; b=fuxtmxZ7ZfcV2nlToBqXhs3jIS4SpZN4vIhLglewntU42r6ks9LH/qdm5k1mY5guOicsBUJu8TgG6TdwaEafgVWTBuM+PhkyhVkDFByZzXJjGRnMicisDKbTBXmEjUnHc+wWvNAUkg2Q1b025B/nCm9R1hVaAb+xqIHQFQpzisg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734603884; c=relaxed/simple;
+	bh=YTwPqi8UIlyS9lCjoDaQyipgC0uuabzr/F951EqJskk=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=UNrL0sHBB6Zi+EOy2Uo+n0FOQnwAFcInffZVtqrSJ1NlKzGT1btx54UmsewijlaGZcKLoBBkP72PnlGsYZQZbf//dQ8GKbK0yaj+01y1MCfo6W58CShSD9oAWvyg2KuLDxudTFOfrifsj/mIPXokx6PMnIh/h7lmSrWIQM4CDQw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=l9qpKFuF; arc=fail smtp.client-ip=40.107.20.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wo7XIY8wx24zzfyGFbzXpI3Z4muSphAQ0jwtfFeno+wlpMRlCVTRUBpFBwZgqZhfQY8cDoejA/IUOh90xovAGz4uU+yWYBvC+D85AEpBMDQsf4ewyGu657JDwwmE/NKq9T5fJ8Is60FUKJpMCf8iS/Dc7spfmcfLzSToPyjVg+kIZ0rX1kM4Vnoj1ch7iY2wIuFiCFPMpN3mKVQ6lyhlVXH8sU/vEnOan9lbkrje8lhdkgqZurP3vTLcHiGrZSUo4lj3laUZUGgtYHV4SElIiCC4AhnEmR+rCDyzlxKYY5z7ACkDfqyqJy517uRBkr2HrVwgFJg+ZvumIKEbqsbn7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=leg0tLM8PFWFftUHoR3c4m4WqJzq7eDIrrmoWHMWgLA=;
+ b=ly/deCtByLS7xCIRCzwanGCG1A2qvV5zEYuZqNR8Yh0i2nsd5SG5b+PUxY3DHBLadQ4mJHSBd3ke9GyVHx06i4jknKrlV+LMYLe0mt99KoNQkUdLQmt0hIAojq10bhemVgGFlQfxbA43QHy4ZatbaDhDNRZtHvSSzNTdFGfuLBZkJkDXhFQU97xfEjJzWyplMPXHVDOs888rpm3bmrKMChmECZz2Q0jXl8C0vNOuGYY18QTXaurQMajpkh24Vay27Pgwv4I5rhD1MugkwT8AMPMrD8G1lnG/nWnc3ALCpr/nB9EjmbPTnL0ZNdI1ZQIUmvLULzCzqy+MKnacNoIVKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=leg0tLM8PFWFftUHoR3c4m4WqJzq7eDIrrmoWHMWgLA=;
+ b=l9qpKFuFmmLKeL64K8Sg7DJAAslyWaWxCg05dT91RlxqV/WyPwrIffk0lx7s91mg7MzzisfkkhLa4hxojvwL6UCYBDdH3NMJ+8jpg3PG1qV8NV1drJ14qnswfSCdqQIsi3uUvjGhaLo8a27HUb/a6Adf5Z3ZHsiTqTldiegD+FpgvxstZrsYjnjUSRR3ObX1uxo/s0i/qLH+D3O+xx5w6Nj/bXcm+1AwxT2Hzi5Yb4vJ4QilLwan3MhtOzFxWgaW3IRuPT3PbDyr/RUo+Zt2MdwYCZqXt5XT/B1k5Mj4zb+zDgKbHqhduLHZjZZuimbg0K28+KYuZ1lrRXnlkmP4AA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AS4PR04MB9550.eurprd04.prod.outlook.com (2603:10a6:20b:4f9::17)
+ by PA2PR04MB10187.eurprd04.prod.outlook.com (2603:10a6:102:409::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.13; Thu, 19 Dec
+ 2024 10:24:38 +0000
+Received: from AS4PR04MB9550.eurprd04.prod.outlook.com
+ ([fe80::e28d:10f8:289:baf7]) by AS4PR04MB9550.eurprd04.prod.outlook.com
+ ([fe80::e28d:10f8:289:baf7%6]) with mapi id 15.20.8251.015; Thu, 19 Dec 2024
+ 10:24:38 +0000
+From: Larisa Grigore <larisa.grigore@oss.nxp.com>
+To: Frank Li <Frank.Li@nxp.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>
+Cc: imx@lists.linux.dev,
+	dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	s32@nxp.com,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>,
+	Larisa Grigore <larisa.grigore@oss.nxp.com>
+Subject: [PATCH v3 0/5] Add eDMAv3 support for S32G2/S32G3 SoCs
+Date: Thu, 19 Dec 2024 12:24:09 +0200
+Message-ID: <20241219102415.1208328-1-larisa.grigore@oss.nxp.com>
+X-Mailer: git-send-email 2.47.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: AM0PR04CA0135.eurprd04.prod.outlook.com
+ (2603:10a6:208:55::40) To AS4PR04MB9550.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4f9::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/9] regulator: add driver for ncv6336 regulator
-To: Fabien Parent <parent.f@gmail.com>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Mark Brown <broonie@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: devicetree@vger.kernel.org, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, vinod.koul@linaro.org,
- Fabien Parent <fabien.parent@linaro.org>
-References: <20241218-ncv6336-v1-0-b8d973747f7a@gmail.com>
- <20241218-ncv6336-v1-8-b8d973747f7a@gmail.com>
-Content-Language: de-AT-frami
-From: Dirk Behme <dirk.behme@gmail.com>
-In-Reply-To: <20241218-ncv6336-v1-8-b8d973747f7a@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9550:EE_|PA2PR04MB10187:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90ebd676-6e57-4130-fad7-08dd201757a6
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?akNmdlRGZEJFYSs3bnI3bUZkajdmajF0MHJFL3ZWRmF5cVo4YklqNnFYV0xp?=
+ =?utf-8?B?aVRlOHJFSDZHaEhTSXJXN0V2TDJscUQzbytvVlBIQUdmSGdwanBPN1Rpczd4?=
+ =?utf-8?B?K2xqaGxFYWMrTUhmdjZ2dnRhKzF4aVpWY21GUzZDZS92L08vc3k0ZVpDVzh1?=
+ =?utf-8?B?Wmt3T3c3Vm9ZWXhHaWUyRDRpQ1V6eHJCT0p1Qkw0Y2NvanYrNERxWHlLRmhO?=
+ =?utf-8?B?eUdXY2VCZnUzOE56dEgwVTF0Z3dDWkRsMjk4UWxvODZWL1A2T0JtM1pJc2Vw?=
+ =?utf-8?B?T3ZEVnRBbmJkRm4zUXE1RHRGYXZNbUw5VnFHcVhERk4xODc4WG9DS1dDbkl3?=
+ =?utf-8?B?bUFFaGNFMVl4b01NUVdRc2haSUN1RXdGM1FVbXZHSG9JU0lyQWJuaTcxMHg5?=
+ =?utf-8?B?UThMUm5FQUFpelpybWhkNTNoVEFHb3Q1MGdBTDVoeXZIRTJMcFFBc1ZSK0dl?=
+ =?utf-8?B?WVVuQmoyMjRPTDFIQW1WcXBiSnAvTTlML3BZMTc5KzVRbGk2U2psaVNZMUcx?=
+ =?utf-8?B?S0E4WTFjTlcxN1hGOG9hZ0Rqb0x5SXErNWhuSmp1aStCRUlhUTZCUlVkOTZs?=
+ =?utf-8?B?Q290dDM4anBIVzZ3cEY4ZDJRZE40aWNwdDExZzVjM2Y5TC9JV3dNK2ZUdlVS?=
+ =?utf-8?B?YTh5ak1sUFdnR3V5eisvNUU3ZGdUTEFmVE9vZElPTmoxeWpYdU13Q0dUcEo0?=
+ =?utf-8?B?ZVlwTVdteTEzNXVvTWc0Vm84U2h0TlMvZVBZZ3dYQzJEYStLKzdBWGdKMU1B?=
+ =?utf-8?B?VDVLRHB3ZjJxTTd0TEp3cklHcGJQckEzdUQyVGVLNjlQWkhxNXovZGpVS25O?=
+ =?utf-8?B?MkFEd3BJNmZMK0p6RTN3eUJEUzRsVTZ3dWh3dzZEbXZEd3JubWFuWENmbjBq?=
+ =?utf-8?B?M3YyT01kVW5qbHlIQ2lLWHlqVU5kK0JrdnNQSVNveWcxdW5OTmFIQ295Yy9N?=
+ =?utf-8?B?d0pvZ1lzV2pEaG1aRWlSREZSejk2ejVMREhmZER2bVhSYkQ4VFJLNFRFOFRE?=
+ =?utf-8?B?U1VrYTVGcTh1U1lIc1ZUNmpsMXp6eFd0N3g4S2JQV29EVDFBUlNvMVVjNVdp?=
+ =?utf-8?B?cXBQNU5nQ3BnRlFFNGxnVDBXaGxxa1VoSUV2UXlhUlJTQkFlZExaV2hYelJ1?=
+ =?utf-8?B?YkZFZUdEYU1Fb1l5N056NkN4QnJTUUV5Yit1NGt4L2NsOEd1ak5lakw5dlJ2?=
+ =?utf-8?B?RjBzSkhoWlFza0gwNDdzVGFyVUJNcjRSbk5SKzAwZjJ0bWkrVEpUb2VteVFL?=
+ =?utf-8?B?aVVJUjVFaEZYQnU1VEpnbmhBTmh2TDhWR2tTZ0Nac0gyVHI5OElyNWt1aUl1?=
+ =?utf-8?B?ZHRMT3BFaDhzZlRUT0ZSajlVd213MFQrNjJiaEl5VEJvQmFmRkJLZGxOZVFN?=
+ =?utf-8?B?T2ZYdmpCL3RPK09OVEJPNGtIbnE2OFJ1SmtMVlNRWnpZSnBnZk81bnJrZHJ2?=
+ =?utf-8?B?Z0RRR3FRekdIT2duWXFlY09KMVV1QUFnUHhuUHJvYkMrTm0ramJ1Y09SWXN1?=
+ =?utf-8?B?eGZha3VWYStMNnAvbnp6N1ZEQ0hxd3h0bHJ3YThuODFsdjhhZzNQRm5IbG55?=
+ =?utf-8?B?ZlFaeWorWnEydzY2TW03bzFhelVvdXlZOHVrTWVPcG45OTQyZGFjY3VwSGRk?=
+ =?utf-8?B?eTVRMlo5UjJkYWgyNTg0RHRLYS95MlB3UUJQSkVoODdtRTVRWDhMUGNQb242?=
+ =?utf-8?B?bnQrdTRHR2pKNUlkTGxQSzgxRVZkcXZFZFQyTW9ObVZjM29FbWRFZDVRcDJE?=
+ =?utf-8?B?eStpQnZ4TFd5dnhmTmVRY09DUzYraEd1dEFlVm9NWFZ5enBoaU92L0NXSlYw?=
+ =?utf-8?B?cDdZTHhWV08zdDNDa243MkNZNE90Y2J2Qys0MDd1WjJWNzlwRFM2OHVGZE1P?=
+ =?utf-8?Q?0h0zatuD7L0w9?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9550.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?TGdHaC9Jc3NLd2d6YVJ4bzA3UzZlSWViYjB1TGk5dUFDM0loa0xKRVhWQ1l5?=
+ =?utf-8?B?ci92ZVkzOUFwZXlLdTEwUDRBNTlVNE5icjN5RFhTTFY2K1l5RS8yMFVwRk00?=
+ =?utf-8?B?SkNFRmN0c0tSTEhaenByaS9oK0NFd0RoL29zaHY5WHhWWmdkUXdHV3NXT3lm?=
+ =?utf-8?B?QVJYOTIyWGZkM1NvTDRGMlY2L3I1QnRyZEdYMjZLVmtFYXZRWktVR2V2S3RX?=
+ =?utf-8?B?QUdKVlU4cTRsUlF3ZDVQU2c5TzcrWFJ3WkphVEhlSE4zYlc4Nkh6eE5JYlhD?=
+ =?utf-8?B?L1NMU1pLV2tvcmo3dWN6dERaMndDQlhwSnFZMWN0V004eG91OGdMWFd1MVNN?=
+ =?utf-8?B?ZXJUNHBvYkVSWGUzdlpSRk1ONkI5VE9LWDZuR3hGZmJjR1RscEF6SWVHQTJa?=
+ =?utf-8?B?R0FNQzNPNC9rdmJXbzM5T3JoM1NpVGhuY2FKcXhWbVUzMkdjcnRBR0dRRGtM?=
+ =?utf-8?B?WjZZQjRndnlLTVlFd0FZbXN1b2Zob3U2VURDdktydG1wVHNTWWp5dmwzbTNI?=
+ =?utf-8?B?NWdXQ2xielpOdldRUy8yTkExWTkyR1NmNm5nKzdqOEFmSlB1RUdPQTVybm93?=
+ =?utf-8?B?Mk45WlBRUDlBK053elVsdmpQbWFFS1FjUTdwdnpmSmlmalNhdWlwVE5uTngx?=
+ =?utf-8?B?QkNla3k1QzBZcEZSVEt2Mk5JT1F2Mi8rYTdEVVh1SWRuTElRMkFRQ3U2RUY4?=
+ =?utf-8?B?TmhWNXc3UkQyMjU1OWRNN3NUSGFSNzQ4d3pTeHlYT1lBQUUya1BTRnMrcGFZ?=
+ =?utf-8?B?Ylh5VmdicUtTNTlSUW1na0RVM213c3JySXJrdlhFdUJqbHZjam12bHRPYUV5?=
+ =?utf-8?B?ZHdLeDNndGlYQkhIWXQ5SUg5SUVYNDlSL2Y0ckc3SHVmazJ2dk5KVTVYMkhs?=
+ =?utf-8?B?ZjlPOGQ2Qk9pL1ZXVjRWTXVaMm5KUlBWc3BLTmVJcWNWU2hBbXNzNnp2cUk2?=
+ =?utf-8?B?R2VMS3lHNXFLTEk3NWx2Qy9RdDBqNUNldG5GZnY4U2h2bGFzdm1OaEE4cTZP?=
+ =?utf-8?B?Wk15bnExcU81Ym40Sjl0ZEJWMnQ5eU0xZ25iMFlGaVNTb05OZUhGOHp4WEht?=
+ =?utf-8?B?bW5TeVFOQzhValV3V3lkZWdrcllHbHF2aUtYVzN2TGR0dGNGV3NOTUY0dnVH?=
+ =?utf-8?B?Rlg1Zmx1dlZJK3JmOU5mMU9ZcURDRldEMHRkYzErNmE3VnoxYnRFSE5WbDBn?=
+ =?utf-8?B?aUkwT2huTkcvTE9hRjZUeXZURDZTRlE1QXRsQjZaYVJ6R0pxOWIrMEhTVFhu?=
+ =?utf-8?B?OE5OQ2lpNGdTYjFVWnArL3FBNXZvcFBMVUo0RDZJYTQ0amtza01KNytYREtY?=
+ =?utf-8?B?VFhZWU5ndEcvcDRKdkgvVVdlenk0UmdiNHROTG5QTm0zSEZMQTNjcS9wV1Nv?=
+ =?utf-8?B?VHpNTjlic2haNXVTQVpaQXNUaVR4S29lWXo2L1V4TjUyQmRqMDJLY0pReGUw?=
+ =?utf-8?B?a2RUaG9vSmJlK0F3OEYzeWNYSnloUms4R3BYYkhPMGV1cEdhTXVsS2tHdHZ6?=
+ =?utf-8?B?b2NSemNWQVlpcjJ4SVhid003Um9XUXIyeml6UW1FS1grcnBPcGJPdjl2N1Ju?=
+ =?utf-8?B?ODgweWVrc1VQWXJmODVXY1dRZFk1cGhpU09BTVN3TFJ6UGhLTmUwNlVmajdF?=
+ =?utf-8?B?dXIzK3BCMHBKV1Vsbm9JRVhRcmtiaFkwZGpNayt6YXdacHMwSUd4ZkFwekY3?=
+ =?utf-8?B?SURGV0szZkZjNk1wZGdpdjU3cW9rZGZnRkNLUXNLZXpBeUlFQ2dCU0JoMG5W?=
+ =?utf-8?B?ZXJLUkw4L2hpY25ldTNlZzJXZTBtZkdYL2ZudUQ5S2hVd0Vpd3dMaDN1ZWVG?=
+ =?utf-8?B?OE56UmQ2MTZnc3ZGbUU2VEtCb2pqaXVPYzAvelNjMjUxTEV2UHQrWVk1LzBX?=
+ =?utf-8?B?ZXBWWE1tY0x1RHdDQysvT1NNc1FwbE15UGtzRVloTHhTR1BndUZER2lxYWJw?=
+ =?utf-8?B?N1pmdC9aYkI4a2VxVTdWQkZrUGRudUFJWDZRajhtL2pYSGlubTVaak1TKzJP?=
+ =?utf-8?B?QnJHV0s0MFhmWVl3NFJnQkFzN0U5ek8yMnhXdkpWVEFyZEJPWENJeTJGTzNt?=
+ =?utf-8?B?SytySXh1ME1yOTNIc2tZeXBMMVM5V0VzWEFzVExjM0p2KzA2U2ZHTkthK1VY?=
+ =?utf-8?B?L3lhTWI4Sk42dTZpeXY1L3RVTTQwb3dVRTJ2eWdnTG5mV0VaNjVTbnAxcWFq?=
+ =?utf-8?B?TkE9PQ==?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90ebd676-6e57-4130-fad7-08dd201757a6
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9550.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2024 10:24:38.4884
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HI2a3p9ofEBqLbLVx3zm00UbhLfkh/HGQPPtQDw+PN2gCjlVyzkf/L3NOUrzThes+aBWAlWqWfMnexydxoW42g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10187
 
-Hi Fabien,
+S32G2 and S32G3 SoCs share the eDMAv3 module with i.MX SoCs, with some hardware
+integration particularities.
 
-you might have noticed that I'm using your development branches of
-this since some time. So sending these patches for review is a big
-step! Many thanks!
+S32G2/S32G3 includes two system eDMA instances based on v3 version, each of
+them integrated with 2 DMAMUX blocks.
+Another particularity of these SoCs is that the interrupts are shared between
+channels as follows:
+- DMA Channels 0-15 share the 'tx-0-15' interrupt
+- DMA Channels 16-31 share the 'tx-16-31' interrupt
+- all channels share the 'err' interrupt
 
-Just one topic to check below:
+Changes in V3:
+- Added changelog.
 
-On 19.12.24 00:36, Fabien Parent wrote:
-> From: Fabien Parent <fabien.parent@linaro.org>
-> 
-> This commit adds support for the Onsemi NCV6336 buck down converter.
-> 
-> Signed-off-by: Fabien Parent <fabien.parent@linaro.org>
-> ---
->  drivers/regulator/Kconfig              |   7 +
->  drivers/regulator/Makefile             |   1 +
->  drivers/regulator/ncv6336_regulator.rs | 241 +++++++++++++++++++++++++++++++++
->  3 files changed, 249 insertions(+)
-> 
-> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-> index 39297f7d8177193e51c99bc2b360c6d9936e62fe..7254a6e1d7539b147b7ba00ebcb6fd92eb6b2616 100644
-> --- a/drivers/regulator/Kconfig
-> +++ b/drivers/regulator/Kconfig
-> @@ -952,6 +952,13 @@ config REGULATOR_MTK_DVFSRC
->  	  of Mediatek. It allows for voting on regulator state
->  	  between multiple users.
->  
-> +config REGULATOR_NCV6336
-> +	tristate "Onsemi NCV6336 regulator driver"
-> +	depends on RUST && OF && I2C=y
-> +	select REGMAP_I2C
-> +	help
-> +	  Say y here to support the Onsemi NCV6336 buck converter.
-> +
->  config REGULATOR_PALMAS
->  	tristate "TI Palmas PMIC Regulators"
->  	depends on MFD_PALMAS
-> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-> index 3d5a803dce8a0556ba9557fa069c6e37593b3c69..0309a78b820cc85883c0c129801ab713e08e4391 100644
-> --- a/drivers/regulator/Makefile
-> +++ b/drivers/regulator/Makefile
-> @@ -113,6 +113,7 @@ obj-$(CONFIG_REGULATOR_MT6370) += mt6370-regulator.o
->  obj-$(CONFIG_REGULATOR_MT6380)	+= mt6380-regulator.o
->  obj-$(CONFIG_REGULATOR_MT6397)	+= mt6397-regulator.o
->  obj-$(CONFIG_REGULATOR_MTK_DVFSRC) += mtk-dvfsrc-regulator.o
-> +obj-$(CONFIG_REGULATOR_NCV6336) += ncv6336_regulator.o
->  obj-$(CONFIG_REGULATOR_QCOM_LABIBB) += qcom-labibb-regulator.o
->  obj-$(CONFIG_REGULATOR_QCOM_PM8008) += qcom-pm8008-regulator.o
->  obj-$(CONFIG_REGULATOR_QCOM_REFGEN) += qcom-refgen-regulator.o
-> diff --git a/drivers/regulator/ncv6336_regulator.rs b/drivers/regulator/ncv6336_regulator.rs
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..7efd7630792b68fb353ed1b1634980def9e326a1
-> --- /dev/null
-> +++ b/drivers/regulator/ncv6336_regulator.rs
-> @@ -0,0 +1,241 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Driver for the Onsemi Buck Converter NCV6336
-> +//!
-> +//! Datasheet: https://www.onsemi.com/pdf/datasheet/ncv6336bm-d.pdf
-> +
-> +use kernel::{
-> +    c_str, i2c, of,
-> +    prelude::*,
-> +    regmap::{self, BitFieldReadOps, BitFieldWriteOps, RawFieldWriteOps},
-> +    regulator::{
-> +        driver::{Config, Desc, Device, Driver, RegmapHelpers, Status, Type},
-> +        Mode,
-> +    },
-> +    sync::{new_mutex, Arc, Mutex},
-> +};
-> +use register::*;
-> +
-> +kernel::module_i2c_driver! {
-> +    type: Ncv6336,
-> +    name: "ncv6336",
-> +    author: "Fabien Parent <fabien.parent@linaro.org>",
-> +    license: "GPL",
-> +}
-> +
-> +kernel::i2c_device_table!(
-> +    I2C_ID_TABLE,
-> +    MODULE_I2C_ID_TABLE,
-> +    <Ncv6336 as i2c::Driver>::IdInfo,
-> +    [(i2c::DeviceId::new(c_str!("ncv6336")), ()),]
-> +);
-> +
-> +kernel::of_device_table!(
-> +    OF_ID_TABLE,
-> +    MODULE_OF_ID_TABLE,
-> +    <Ncv6336 as i2c::Driver>::IdInfo,
-> +    [(of::DeviceId::new(c_str!("onnn,ncv6336")), ()),]
-> +);
-> +
-> +regmap::define_regmap_field_descs!(FIELD_DESCS, {
-> +    (pid, 0x3, READ, { value => raw([7:0], ro) }),
-> +    (rid, 0x4, READ, { value => raw([7:0], ro) }),
-> +    (fid, 0x5, READ, { value => raw([7:0], ro) }),
-> +    (progvsel1, 0x10, RW, {
-> +        voutvsel1 => raw([6:0], rw),
-> +        envsel1   => bit(7, rw),
-> +    }),
-> +    (progvsel0, 0x11, RW, {
-> +        voutvsel0 => raw([6:0], rw),
-> +        envsel0   => bit(7, rw),
-> +    }),
-> +    (pgood, 0x12, RW, { dischg => bit(4, rw) }),
-> +    (command, 0x14, RW, {
-> +        vselgt   => bit(0, rw),
-> +        pwmvsel1 => bit(6, rw),
-> +        pwmvsel0 => bit(7, rw),
-> +    }),
-> +    (limconf, 0x16, RW, {
-> +        rearm     => bit(0, rw),
-> +        rststatus => bit(1, rw),
-> +        tpwth     => enum([5:4], rw, {
-> +            Temp83C  = 0x0,
-> +            Temp94C  = 0x1,
-> +            Temp105C = 0x2,
-> +            Temp116C = 0x3,
-> +        }),
-> +        ipeak     => enum([7:6], rw, {
-> +            Peak3p5A = 0x0,
-> +            Peak4p0A = 0x1,
-> +            Peak4p5A = 0x2,
-> +            Peak5p0A = 0x3,
+Changes in V2:
+- Added new lines in commit description.
+- Added "Reviewed-by" tag where received.
+- Removed the three commits:
+"dmaengine: fsl-edma: move eDMAv2 related registers to a new structure ’edma2_regs’"
+"dmaengine: fsl-edma: add eDMAv3 registers to edma_regs"
+"dmaengine: fsl-edma: wait until no hardware request is in progress".
+I will send a different patchset for them.
 
-Could you check to read from or write to the tpwth or ipeak (enum)
-above? I've been under the impression that for that Desc & enum need
-to Copy & Clone [1]?
+Larisa Grigore (5):
+  dmaengine: fsl-edma: select of_dma_xlate based on the dmamuxs presence
+  dmaengine: fsl-edma: remove FSL_EDMA_DRV_SPLIT_REG check when parsing
+    muxbase
+  dt-bindings: dma: fsl-edma: add nxp,s32g2-edma compatible string
+  dmaengine: fsl-edma: add support for S32G based platforms
+  dmaengine: fsl-edma: read/write multiple registers in cyclic
+    transactions
 
-[1]
+ .../devicetree/bindings/dma/fsl,edma.yaml     |  34 ++++++
+ drivers/dma/fsl-edma-common.c                 |  36 ++++--
+ drivers/dma/fsl-edma-common.h                 |   3 +
+ drivers/dma/fsl-edma-main.c                   | 115 +++++++++++++++++-
+ 4 files changed, 173 insertions(+), 15 deletions(-)
 
-diff --git a/rust/kernel/regmap.rs b/rust/kernel/regmap.rs
-index 232fe93df769..d1baf182f53c 100644
---- a/rust/kernel/regmap.rs
-+++ b/rust/kernel/regmap.rs
-@@ -623,6 +623,7 @@ macro_rules! regmap_field_enum {
-         kernel::macros::paste! {
-             #[repr(u32)]
-             #[allow(non_camel_case_types)]
-+            #[derive(Copy, Clone)]
-             pub(crate) enum [<$field_name _enum>] {
-                 $($k = $v,)+
-             }
-diff --git a/rust/kernel/regulator/driver.rs
-b/rust/kernel/regulator/driver.rs
-index e79e93122b09..0b6819e46686 100644
---- a/rust/kernel/regulator/driver.rs
-+++ b/rust/kernel/regulator/driver.rs
-@@ -256,6 +256,7 @@ fn set_suspend_mode(_rdev: &mut
-Device<Self::Data>, _mode: Mode) -> Result {
- /// # Invariants
- ///
- /// `self.0` has always valid data.
-+#[derive(Copy, Clone)]
- pub struct Desc(bindings::regulator_desc);
- impl Desc {
-     /// Create a new [`Device`] descriptor
-
-> +static NCV6336_DESC: Desc = Desc::new::<Ncv6336>(c_str!("ncv6336"), Type::Voltage)
-> +    .with_owner(&THIS_MODULE)
-> +    .with_of_match(c_str!("buck"))
-> +    .with_active_discharge(
-> +        pgood::addr(),
-> +        pgood::dischg::mask(),
-> +        pgood::dischg::mask(),
-> +        0,
-> +    )
-> +    .with_csel(
-> +        limconf::addr(),
-> +        limconf::ipeak::mask(),
-> +        &[3_500_000, 4_000_000, 4_500_000, 5_000_000],
-> +    )
-> +    .with_enable(
-> +        progvsel0::addr(),
-> +        progvsel0::envsel0::mask(),
-> +        progvsel0::envsel0::mask(),
-> +        0,
-> +    )
-> +    .with_linear_mapping(
-> +        progvsel0::addr(),
-> +        progvsel0::voutvsel0::mask(),
-> +        600_000,
-> +        6250,
-> +        128,
-> +        0,
-> +    );
-> +
-> +struct Ncv6336RegulatorData {
-> +    fields: regmap::Fields<{ FIELD_DESCS.len() }>,
-> +}
-> +
-> +struct Ncv6336(#[expect(dead_code)] Device<<Self as Driver>::Data>);
-> +
-> +impl i2c::Driver for Ncv6336 {
-> +    type IdInfo = ();
-> +
-> +    const I2C_ID_TABLE: Option<i2c::IdTable<Self::IdInfo>> = Some(&I2C_ID_TABLE);
-> +    const OF_ID_TABLE: Option<of::IdTable<Self::IdInfo>> = Some(&OF_ID_TABLE);
-> +
-> +    fn probe(client: &mut i2c::Client, _id_info: Option<&Self::IdInfo>) -> Result<Pin<KBox<Self>>> {
-> +        let config = regmap::Config::<AccessOps>::new(8, 8)
-> +            .with_max_register(0x16)
-> +            .with_cache_type(regmap::CacheType::RbTree);
-> +        let regmap = Arc::new(regmap::Regmap::init_i2c(client, &config)?, GFP_KERNEL)?;
-> +        let fields = regmap::Fields::new(&regmap, &FIELD_DESCS)?;
-> +
-> +        let data = Arc::pin_init(new_mutex!(Ncv6336RegulatorData { fields }), GFP_KERNEL)?;
-> +        let config = Config::new(client.as_ref(), data.clone()).with_regmap(regmap.clone());
-> +        let regulator = Device::register(client.as_ref(), &NCV6336_DESC, config)?;
-> +
-> +        let drvdata = KBox::new(Self(regulator), GFP_KERNEL)?;
-> +
-> +        Ok(drvdata.into())
-> +    }
-> +}
-> +
-> +#[vtable]
-> +impl Driver for Ncv6336 {
-> +    type Data = Arc<Mutex<Ncv6336RegulatorData>>;
-> +
-> +    fn list_voltage(reg: &mut Device<Self::Data>, selector: u32) -> Result<i32> {
-> +        reg.list_voltage_linear(selector)
-> +    }
-> +
-> +    fn enable(reg: &mut Device<Self::Data>) -> Result {
-> +        reg.enable_regmap()
-> +    }
-> +
-> +    fn disable(reg: &mut Device<Self::Data>) -> Result {
-> +        reg.disable_regmap()
-> +    }
-> +
-> +    fn is_enabled(reg: &mut Device<Self::Data>) -> Result<bool> {
-> +        reg.is_enabled_regmap()
-> +    }
-> +
-> +    fn set_active_discharge(reg: &mut Device<Self::Data>, enable: bool) -> Result {
-> +        reg.set_active_discharge_regmap(enable)
-> +    }
-> +
-> +    fn set_current_limit(reg: &mut Device<Self::Data>, min_ua: i32, max_ua: i32) -> Result {
-> +        reg.set_current_limit_regmap(min_ua, max_ua)
-> +    }
-> +
-> +    fn get_current_limit(reg: &mut Device<Self::Data>) -> Result<i32> {
-> +        reg.get_current_limit_regmap()
-> +    }
-> +
-> +    fn set_voltage_sel(reg: &mut Device<Self::Data>, selector: u32) -> Result {
-> +        reg.set_voltage_sel_regmap(selector)
-> +    }
-> +
-> +    fn get_voltage_sel(reg: &mut Device<Self::Data>) -> Result<i32> {
-> +        reg.get_voltage_sel_regmap()
-> +    }
-> +
-> +    fn set_mode(reg: &mut Device<Self::Data>, mode: Mode) -> Result {
-> +        let data = reg.data();
-> +        let fields = &mut data.lock().fields;
-> +
-> +        match mode {
-> +            Mode::Normal => command::pwmvsel0::clear(fields),
-> +            Mode::Fast => command::pwmvsel0::set(fields),
-> +            _ => Err(ENOTSUPP),
-> +        }
-> +    }
-> +
-> +    fn get_mode(reg: &mut Device<Self::Data>) -> Mode {
-> +        let data = reg.data();
-> +        let fields = &mut data.lock().fields;
-> +
-> +        match command::pwmvsel0::is_set(fields) {
-> +            Ok(true) => Mode::Fast,
-> +            Ok(false) => Mode::Normal,
-> +            Err(_) => Mode::Invalid,
-> +        }
-> +    }
-> +
-> +    fn get_status(reg: &mut Device<Self::Data>) -> Result<Status> {
-> +        if !Self::is_enabled(reg)? {
-> +            return Ok(Status::Off);
-> +        }
-> +
-> +        Ok(Self::get_mode(reg).into())
-> +    }
-> +
-> +    fn set_suspend_voltage(reg: &mut Device<Self::Data>, uv: i32) -> Result {
-> +        let data = reg.data();
-> +        let fields = &mut data.lock().fields;
-> +
-> +        let quot = (uv - 600000) / 6250;
-> +        let rem = (uv - 600000) % 6250;
-> +        let selector = if rem > 0 { quot + 1 } else { quot };
-> +
-> +        progvsel1::voutvsel1::write(fields, selector as _)
-> +    }
-> +
-> +    fn set_suspend_enable(reg: &mut Device<Self::Data>) -> Result {
-> +        let data = reg.data();
-> +        let fields = &mut data.lock().fields;
-> +
-> +        progvsel1::envsel1::set(fields)?;
-> +        command::vselgt::clear(fields)
-> +    }
-> +
-> +    fn set_suspend_disable(reg: &mut Device<Self::Data>) -> Result {
-> +        let data = reg.data();
-> +        let fields = &mut data.lock().fields;
-> +
-> +        progvsel1::envsel1::clear(fields)?;
-> +        command::vselgt::set(fields)
-> +    }
-> +
-> +    fn set_suspend_mode(reg: &mut Device<Self::Data>, mode: Mode) -> Result {
-> +        let data = reg.data();
-> +        let fields = &mut data.lock().fields;
-> +
-> +        match mode {
-> +            Mode::Normal => command::pwmvsel1::clear(fields),
-> +            Mode::Fast => command::pwmvsel1::set(fields),
-> +            _ => Err(ENOTSUPP),
-> +        }
-> +    }
-> +}
-> 
+-- 
+2.47.0
 
 
