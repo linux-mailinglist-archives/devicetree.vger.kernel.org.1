@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-132464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C666D9F7417
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 06:44:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0F8C9F741B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 06:44:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B902161D8C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 05:44:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89BFF7A3A9F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 05:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABB3B217729;
-	Thu, 19 Dec 2024 05:42:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C97C32165ED;
+	Thu, 19 Dec 2024 05:43:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Tvpytr4Y"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="DL6TDdZm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22A64217718;
-	Thu, 19 Dec 2024 05:42:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5E271FA16B;
+	Thu, 19 Dec 2024 05:43:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734586953; cv=none; b=kpy8krT2dwHblMXjpFA9tZFOrxgSnVoGCN+0+v18yKtKgQOLtxQpOIIi2aZqVcPSP8T34IkQP6xEHgl99r5GeFV7vV9EZqHfPlWHizF1qKWXfP09StcOg2JaIJp7ffiZumf7F6S6kG+v4tjRP5L4czsd56yE8nlRV5hUYJgD3Eo=
+	t=1734587014; cv=none; b=W6VKBcBx/tS3mgm1ooDsEB4wEGB0ZmAuOVcqeY+KWr6vdeCY870xnycZDeACIjFdSQP3/0QJ0vyxL6tINW4OwXbYCC+uOIzmCttZq0J3TECNByireCaMlPFHF3CQnUnd4W3zLxHjraocELh8In/1TmUwsou2itT67Gujq3/Br+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734586953; c=relaxed/simple;
-	bh=C0E2b4Hyps9Q/DWoHwWSfXox4cvkifP40WaddWc7jWE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=hu3yXYQem3KRp8P5xvDESpzzxRvsYSrblIRfcCNvFm9aU0yDO+bhSnGe4RdySLQpvP4Aiat/NYSc3wGEce0MJHsHV8cATYeFHZjljDUdXLxdOSqUHE/itSbWNGuzpnwkpTbSCZaHqoxVRfnLNVDChNVRKrNOG4/fXnnl/ICmESM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Tvpytr4Y; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BIKCRLW013236;
-	Thu, 19 Dec 2024 05:42:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Oy/Zsd2bM+jXGQzD1FrhI+LrB+yj3i1aS/C+f57OcCA=; b=Tvpytr4YywK/DNAl
-	Tdx/bNei9C9jHX8xowJMotdwwKktR1qNXdQ7QDQMpS0j5+yKlaayXRUWj9tk1+Ht
-	E0ctKBf4DN061Wp/KH7CUViurQEHcI/oQ9vmlYNnrtVJCtnsNfDg/uCR1IiG7qpd
-	3tWzoHLX+bW2KjCm+FMsW/2Gt4+FaxbchARtLXA2hh7isFkFzcJ44Zlu/ekYSznC
-	THWmJ1+jKLdXdfuDewXYXvK0qnz4xupPzDXLA5xo/CcZWgJGlNIQQ/PqCEi2SY4e
-	iEWay02+KnAlnkowZmkLDJT329MjeEQqMxi5xXhGmlhl7kCArpe9JZZzpW9Te2Jh
-	EVZUKw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43m57h11bp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Dec 2024 05:42:27 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BJ5gQGv016144
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Dec 2024 05:42:26 GMT
-Received: from hu-renjiang-sha.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 18 Dec 2024 21:42:23 -0800
-From: Renjiang Han <quic_renjiang@quicinc.com>
-Date: Thu, 19 Dec 2024 11:11:56 +0530
-Subject: [PATCH v6 4/4] arm64: dts: qcom: qcs615-ride: enable venus node to
- initialize video codec
+	s=arc-20240116; t=1734587014; c=relaxed/simple;
+	bh=HtvxuCvfR1+WAuH51wmAgJepZtVKamVQJfF0Nl56tY0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=s8uIcw3tHuoKBZwX6Ovk/tV2v90oAjeJVThTea07s7547cEY4Mm5Uk8cSSrMRSQrUv3BRlsMdMA7oBfsAaBviLIMQ/kv/RcwF7U9qvjD0bpGUG93xHz+IjppOfPdmknXd5xT4Bh4MgFf9U3Lzh8+vYXm0OWmVS66BCXWA1igOdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=DL6TDdZm; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1734587013; x=1766123013;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:to:cc;
+  bh=HtvxuCvfR1+WAuH51wmAgJepZtVKamVQJfF0Nl56tY0=;
+  b=DL6TDdZmzWp8w5R5xf6eu1kuLxegKQNlfmadEFdEwU8bIOCJzBzjTbDV
+   yyAQW8wE1RqlRFFacx7AsmDzycAVPE4okLNoq6G2B6w4XB0RXsSkoBuMM
+   +1Fbz7vL1iePHPnGtJ9jp+dABNfoceQz2jMcl5Sjta9bOt1bzykOX8FVk
+   oLIMAaPf/SmexNkoeiImd330WlgmRQuyb082C4b4Urv9Wz4SBK3pfPHq1
+   JpginTt7nbwic76T98nuZ74jYvZ2DO4miejvEA+LB8/VZ3xv2KOXZMIxb
+   XP9zAmnW6cjhSKY31uIyMWZDzk13wKVxteGIZPyghiLGAlbBqR0yOom+y
+   g==;
+X-CSE-ConnectionGUID: hU4v6kOuSsqVI5vwQceH6A==
+X-CSE-MsgGUID: bZlwIm3LQBKFdgmbK5AFLw==
+X-IronPort-AV: E=Sophos;i="6.12,246,1728975600"; 
+   d="scan'208";a="266956083"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Dec 2024 22:43:32 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 18 Dec 2024 22:43:31 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Wed, 18 Dec 2024 22:43:26 -0700
+From: Charan Pedumuru <charan.pedumuru@microchip.com>
+Date: Thu, 19 Dec 2024 11:12:50 +0530
+Subject: [PATCH] dt-bindings: mfd: atmel: Convert to json schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,72 +68,113 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20241219-add-venus-for-qcs615-v6-4-e9a74d3b003d@quicinc.com>
-References: <20241219-add-venus-for-qcs615-v6-0-e9a74d3b003d@quicinc.com>
-In-Reply-To: <20241219-add-venus-for-qcs615-v6-0-e9a74d3b003d@quicinc.com>
-To: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Vikash Garodia
-	<quic_vgarodia@quicinc.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Renjiang Han
-	<quic_renjiang@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1734586930; l=721;
- i=quic_renjiang@quicinc.com; s=20241001; h=from:subject:message-id;
- bh=C0E2b4Hyps9Q/DWoHwWSfXox4cvkifP40WaddWc7jWE=;
- b=T26Eff806fA9gfmDcf3V/J6oFK3XTeklO/H3zuXWiMIRJ7Lv4VwemrklSsjKKhhKL/Bil4LD7
- zdZ6Z9I0kDqAud8S7P43zuHY9078ssxZY52SdNg9Zlo3y5TAxCX3+oJ
-X-Developer-Key: i=quic_renjiang@quicinc.com; a=ed25519;
- pk=8N59kMJUiVH++5QxJzTyHB/wh/kG5LxQ44j9zhUvZmw=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: D4shSl5ElbF2GCeLUS60Ly_UJHnhh5DT
-X-Proofpoint-ORIG-GUID: D4shSl5ElbF2GCeLUS60Ly_UJHnhh5DT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
- phishscore=0 malwarescore=0 adultscore=0 priorityscore=1501 suspectscore=0
- lowpriorityscore=0 mlxlogscore=643 mlxscore=0 impostorscore=0 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412190043
+Message-ID: <20241219-gpbr-v1-1-e19a562ebf81@microchip.com>
+X-B4-Tracking: v=1; b=H4sIAFmyY2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDI0ND3fSCpCJdI5PEZAMLI+PklFRTJaDSgqLUtMwKsDHRsbW1AGrrreB
+ WAAAA
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Nicolas
+ Ferre" <nicolas.ferre@microchip.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>
+CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Charan Pedumuru
+	<charan.pedumuru@microchip.com>
+X-Mailer: b4 0.14.1
 
-Enable the venus node to allow the video codec to start working properly
-by setting its status to "okay".
+Convert old text based binding to json schema.
+Changes during conversion:
+The text binding is misleading, add a fallback `atmel,at91sam9260-gpbr`
+for both `microchip,sam9x60-gpbr` and `microchip,sam9x7-gpbr` which is
+missing in old binding and `microchip,sam9x60-gpbr` is not a fallback
+for `microchip,sam9x7-gpbr`.
 
-Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
+Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
 ---
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../bindings/mfd/atmel,at91sam9260-gpbr.yaml       | 44 ++++++++++++++++++++++
+ .../devicetree/bindings/mfd/atmel-gpbr.txt         | 18 ---------
+ 2 files changed, 44 insertions(+), 18 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index a25928933e2b66241258e418c6e5bc36c306101e..de954ede27f0942397d982f9aa725e59a8de9657 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -237,6 +237,10 @@ &usb_1_dwc3 {
- 	dr_mode = "peripheral";
- };
- 
-+&venus {
-+	status = "okay";
-+};
+diff --git a/Documentation/devicetree/bindings/mfd/atmel,at91sam9260-gpbr.yaml b/Documentation/devicetree/bindings/mfd/atmel,at91sam9260-gpbr.yaml
+new file mode 100644
+index 000000000000..f805545aa62a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/atmel,at91sam9260-gpbr.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/atmel,at91sam9260-gpbr.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- &watchdog {
- 	clocks = <&sleep_clk>;
- };
++title: Microchip AT91 General Purpose Backup Registers
++
++maintainers:
++  - Nicolas Ferre <nicolas.ferre@microchip.com>
++
++description:
++  The system controller embeds 256 bits of General Purpose Backup
++  registers organized as 8 32-bit registers.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - atmel,at91sam9260-gpbr
++          - const: syscon
++      - items:
++          - enum:
++              - microchip,sam9x60-gpbr
++              - microchip,sam9x7-gpbr
++          - const: atmel,at91sam9260-gpbr
++          - const: syscon
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    syscon@fffffd50 {
++        compatible = "atmel,at91sam9260-gpbr", "syscon";
++        reg = <0xfffffd50 0x10>;
++    };
+diff --git a/Documentation/devicetree/bindings/mfd/atmel-gpbr.txt b/Documentation/devicetree/bindings/mfd/atmel-gpbr.txt
+deleted file mode 100644
+index 3c989d1760a2..000000000000
+--- a/Documentation/devicetree/bindings/mfd/atmel-gpbr.txt
++++ /dev/null
+@@ -1,18 +0,0 @@
+-* Device tree bindings for Atmel GPBR (General Purpose Backup Registers)
+-
+-The GPBR are a set of battery-backed registers.
+-
+-Required properties:
+-- compatible:		Should be one of the following:
+-			"atmel,at91sam9260-gpbr", "syscon"
+-			"microchip,sam9x60-gpbr", "syscon"
+-			"microchip,sam9x7-gpbr", "microchip,sam9x60-gpbr", "syscon"
+-- reg:			contains offset/length value of the GPBR memory
+-			region.
+-
+-Example:
+-
+-gpbr: gpbr@fffffd50 {
+-	compatible = "atmel,at91sam9260-gpbr", "syscon";
+-	reg = <0xfffffd50 0x10>;
+-};
 
+---
+base-commit: 91e71d606356e50f238d7a87aacdee4abc427f07
+change-id: 20241211-gpbr-24ac0823cde5
+
+Best regards,
 -- 
-2.34.1
+Charan Pedumuru <charan.pedumuru@microchip.com>
 
 
