@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-132800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95E5D9F82AD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 18:57:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A2FF9F826B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 18:50:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6477F189B359
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:49:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08F2316886C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:49:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08F181A704C;
-	Thu, 19 Dec 2024 17:45:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D591A9B29;
+	Thu, 19 Dec 2024 17:45:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 236061B4122;
-	Thu, 19 Dec 2024 17:45:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 737521A726F
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 17:45:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734630313; cv=none; b=jLQ4Vy+RlYgpZMrX61LVxHulAOvmd4PiJu7pFZaUdjNX8AqGvbvAume3mp5nGAC2rck6YmLPeozatkdpt/WEfzwJV3Apt3hXRhMqP4qw6H8abhDBig5Hp485wC9B5MoF5LB7+dbzHtHlKMtJGTNvJI0CobDqslbVGWb9rEWswwE=
+	t=1734630335; cv=none; b=LW7LYJdi11LGS5lacB734FidU/iFkDvuW2Sg0vcSpeJgHYTeZhEpWiq+y3DYPcxMOGNXTYqgaT15d7GuUkYY8c5EzCP4rHm6j/Myd52jJfmGNaWxy9vP1IqRv57stLTPhTKNwKHuxBDFwDzvOOWeu08wjLzjecvcu/zyiIbTVDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734630313; c=relaxed/simple;
-	bh=xvL+ay3A3MV+cO+b9Sgdl+vtVyC3pEstpQzMEk3sxFQ=;
+	s=arc-20240116; t=1734630335; c=relaxed/simple;
+	bh=BTYuUxeHnc5/zT1OwAHq7KScM/mIS+XmXYnzCsgLUEQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qbPAUhpCdsxj/Tz2ig9dAb+92hcfhYoBsAiKCDlKHYqXkOUvse9zOfsieElFFUr3jTVuoIEzuc31lQcoxIMi9K4HjGPYZ0pLrQcIslx/Z5egYhESKbpyO3zwtG5OFuVfk4B/wQY4x4KFzUlxIO++SDZOv3I3eaQG9HXwH2NbdUM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 80CFD1480;
-	Thu, 19 Dec 2024 09:45:38 -0800 (PST)
-Received: from [10.1.196.72] (e119884-lin.cambridge.arm.com [10.1.196.72])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 828D23F528;
-	Thu, 19 Dec 2024 09:45:09 -0800 (PST)
-Message-ID: <2d1333bb-0c47-498c-98c5-a3a307dc6626@arm.com>
-Date: Thu, 19 Dec 2024 17:45:07 +0000
+	 In-Reply-To:Content-Type; b=bMAcAZPJ16mbHAZKcdcb7vhc/QHx7WRlrjcKcD/YW4j6BCRSlnzUAOakcMzGTPtavBbcuSVv1No0l5TC3rleQ+JCvgYePWIJhEv9q8wlK2wedk0Zf+ORxP6WvwWeKI0po3cRGMnn/PovqtOHgFD3xhOMku9UjCD806nbMCYaGYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tOKaT-00022K-LC; Thu, 19 Dec 2024 18:45:25 +0100
+Message-ID: <1b5236db-9a2c-475c-825c-3feae22ea32e@pengutronix.de>
+Date: Thu, 19 Dec 2024 18:45:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,80 +42,141 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/8] MAINTAINERS: Add Vincenzo Frascino as Arm Morello
- Maintainer
-To: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>
-References: <20241213163221.3626261-1-vincenzo.frascino@arm.com>
- <20241213163221.3626261-9-vincenzo.frascino@arm.com>
- <392a0cc0-bcd9-48a2-83f2-e520a460d2b8@kernel.org>
+Subject: Re: [PATCH 06/10] arm64: dts: imx8mp-skov: describe LVDS display
+ pipeline
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Oleksij Rempel
+ <o.rempel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de>
+ <20241219-skov-dt-updates-v1-6-38bf80dc22df@pengutronix.de>
+ <Z2RZ1o6AWGRe0ww9@lizhi-Precision-Tower-5810>
 Content-Language: en-US
-From: Vincenzo Frascino <vincenzo.frascino@arm.com>
-In-Reply-To: <392a0cc0-bcd9-48a2-83f2-e520a460d2b8@kernel.org>
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <Z2RZ1o6AWGRe0ww9@lizhi-Precision-Tower-5810>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-
-
-On 14/12/2024 10:19, Krzysztof Kozlowski wrote:
-> On 13/12/2024 17:32, Vincenzo Frascino wrote:
->> Cc: Sudeep Holla <sudeep.holla@arm.com>
->> Cc: Rob Herring <robh@kernel.org>
->> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
->> ---
->>  MAINTAINERS | 6 ++++++
->>  1 file changed, 6 insertions(+)
+On 19.12.24 18:37, Frank Li wrote:
+> On Thu, Dec 19, 2024 at 08:25:30AM +0100, Ahmad Fatoum wrote:
+>> From: Oleksij Rempel <o.rempel@pengutronix.de>
 >>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index e6e71b05710b..8199e5945fb2 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -3304,6 +3304,12 @@ F:	drivers/clocksource/timer-versatile.c
->>  X:	drivers/cpufreq/vexpress-spc-cpufreq.c
->>  X:	Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
->>  
->> +ARM MORELLO PLATFORM SUPPORT
+>> The Skov i.MX8MP LT6 device tree so far described the touch screen, but
+>> didn't describe the screen itself. Fill out these missing pieces.
 > 
-> Wrongly placed, M is not after V, I know people cannot keep order but
-> let's try. No need for new Boogaloo.
-> 
-> Plus look how all the titles are created and do not come with different
-> style.
-> 
+> Add "ti,sn65lvds822" touch screen description for i.MX8MP LT6 board.
 
-Not sure I understand what you mean here. Do you mean that I have to put Morello
-in alphabetical order in the file? Or just above VEXPRESS?
+This is not what this patch does. Touch screen was already described
+and now the remainder is being added, just like what my message said.
 
-For what concerns the title, the MAINTAINERS file contains several styles (...
-PLATFORM, PLATFORM SUPPORT, etc). What's your preference?
-
->> +M:	Vincenzo Frascino <vincenzo.frascino@arm.com>
->> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-> 
-> 
-> So why you did not bother to Cc this list? You are supposed to develop
-> on mainline kernel and then run get_maintainers.pl or b4 prep, so how is
-> possible that your Cc list is so empty?
-> 
-> 
-> 
->> +S:	Maintained
->> +F:	arch/arm64/boot/dts/arm/morello*
-> 
-> 
-> Missing bindings.
-> 
-> 
-
-There are no bindings specific to morello. What should I add here?
+Thanks,
+Ahmad
 
 > 
-> Best regards,
-> Krzysztof
+> Frank
+> 
+>> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+>> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+>> ---
+>>  .../boot/dts/freescale/imx8mp-skov-revb-lt6.dts    | 60 ++++++++++++++++++++++
+>>  1 file changed, 60 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-lt6.dts b/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-lt6.dts
+>> index ccbd3abedd69..baecf768a2ee 100644
+>> --- a/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-lt6.dts
+>> +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-lt6.dts
+>> @@ -8,6 +8,45 @@ / {
+>>  	model = "SKOV IMX8MP CPU revB - LT6";
+>>  	compatible = "skov,imx8mp-skov-revb-lt6", "fsl,imx8mp";
+>>
+>> +	lvds-decoder {
+>> +		compatible = "ti,sn65lvds822", "lvds-decoder";
+>> +		power-supply = <&reg_3v3>;
+>> +
+>> +		ports {
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +
+>> +			port@0 {
+>> +				reg = <0>;
+>> +
+>> +				in_lvds1: endpoint {
+>> +					data-mapping = "vesa-24";
+>> +					remote-endpoint = <&ldb_lvds_ch1>;
+>> +				};
+>> +			};
+>> +
+>> +			port@1 {
+>> +				reg = <1>;
+>> +
+>> +				lvds_decoder_out: endpoint {
+>> +					remote-endpoint = <&panel_in>;
+>> +				};
+>> +			};
+>> +		};
+>> +	};
+>> +
+>> +	panel {
+>> +		compatible = "logictechno,lttd800480070-l6wh-rt";
+>> +		backlight = <&backlight>;
+>> +		power-supply = <&reg_tft_vcom>;
+>> +
+>> +		port {
+>> +			panel_in: endpoint {
+>> +				remote-endpoint = <&lvds_decoder_out>;
+>> +			};
+>> +		};
+>> +	};
+>> +
+>>  	touchscreen {
+>>  		compatible = "resistive-adc-touch";
+>>  		io-channels = <&adc_ts 1>, <&adc_ts 3>, <&adc_ts 4>, <&adc_ts 5>;
+>> @@ -78,6 +117,27 @@ channel@5 {
+>>  	};
+>>  };
+>>
+>> +&lcdif2 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&lvds_bridge {
+>> +	assigned-clocks = <&clk IMX8MP_CLK_MEDIA_LDB>,
+>> +				 <&clk IMX8MP_VIDEO_PLL1>;
+>> +	assigned-clock-parents = <&clk IMX8MP_VIDEO_PLL1_OUT>;
+>> +	/* IMX8MP_VIDEO_PLL1 = IMX8MP_CLK_MEDIA_DISP2_PIX * 2 * 7 */
+>> +	assigned-clock-rates = <0>, <462000000>;
+>> +	status = "okay";
+>> +
+>> +	ports {
+>> +		port@2 {
+>> +			ldb_lvds_ch1: endpoint {
+>> +				remote-endpoint = <&in_lvds1>;
+>> +			};
+>> +		};
+>> +	};
+>> +};
+>> +
+>>  &pwm1 {
+>>  	status = "okay";
+>>  };
+>>
+>> --
+>> 2.39.5
+>>
+> 
+
 
 -- 
-Regards,
-Vincenzo
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
