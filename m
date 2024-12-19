@@ -1,139 +1,152 @@
-Return-Path: <devicetree+bounces-132719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C5009F7E03
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 16:27:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5549F7DF7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 16:26:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 35C821892F95
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 15:26:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1954D1692B4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 15:25:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2BB227B9F;
-	Thu, 19 Dec 2024 15:25:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7465E226876;
+	Thu, 19 Dec 2024 15:25:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="DsNY7IVg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UMZSqVsf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63302227594;
-	Thu, 19 Dec 2024 15:25:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44CAE226554;
+	Thu, 19 Dec 2024 15:25:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734621926; cv=none; b=Biboe+tUefAK4eNgvgUqdbwjgsbkoUWydUrRyS3tmV2Ua8ZipG8fFSRpXZi4OgdhJpwYccaGT+xtzClnPksurI7KRjorQWmbcrsDUmslF0j3Wd49/AARCchdbSFE/kje/q1LUghfPRRdMXXA4yVl1ftA1cgnFsPTfTOPJeOMZ+Y=
+	t=1734621922; cv=none; b=O75rikuIEQtRnFUUldDNwYVPjqLDxih+5zFmBqIg7e1kW9bqKPsjSnKuY8H40/zGn1DqrJpbaK0GksKpUgK8+d0r5v8KLicGazb4BAaAfB8P9mawKSfPvblu5P//vgflZsTmtRL1+G5kCNPeLdBcti7SPfiHFgcKNvOcGlBJXgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734621926; c=relaxed/simple;
-	bh=VTkLpaiH+VM6UokTmNQ9l0jXwGpqKfr0LWdoGEB/x24=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kyF2ts4VhxadR51nSEXYtn1BNPso4G+2VBoevGf/Yes/gDI9SXL0jfM4qZaCSW81DIo+HixjJWtdPvVARgCzu1kGf4pxa1II/eaJbboItnvBIiXGxxn6KcxA58pJBcJ18WLKvxVqJ6dzmYqHbxPL0aRcLwsdF7tWLJghdN6SbdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=DsNY7IVg; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.1.104] (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 90787BEB;
-	Thu, 19 Dec 2024 16:24:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1734621880;
-	bh=VTkLpaiH+VM6UokTmNQ9l0jXwGpqKfr0LWdoGEB/x24=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=DsNY7IVg7mL3HI8JOEuJw8FhoA8EbeTT6k6WLNMnGE6ISnaVuLq+a5No4NelXHWZC
-	 AfmF85OiMIpcfvswzPcPI6q9bPU3UAR8Ys4oEQZRlwYGFBO+HTVnroO6jPjxaI0egu
-	 tjtfxpHG8PQuebGAjEP5hv6rgYDO5OtBuI8QIWMI=
-From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Date: Thu, 19 Dec 2024 16:24:52 +0100
-Subject: [PATCH v3 4/4] arm64: dts: renesas: r8a779g0: Add VSPX instances
+	s=arc-20240116; t=1734621922; c=relaxed/simple;
+	bh=rb0Zo99tqC0dHSwcEHoASQKqdcPqBMyUrS5QqohAQzY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KqY7pq3iaO4kJbce6bFbD0v6f9xy76iHU39KYoqhwENUh+nNW9Fbpb8Bz/onvHeUK3GNmMW0++lQI1C9mKme+k2b4CQwzV9RpJNC8jybghiRFWFcPD1j4SRpDP9Cde0unaPNZDplP8Kt+NPzNRZwQW5P9tlJFQKdolrk2vj06Fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UMZSqVsf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06983C4CEE2;
+	Thu, 19 Dec 2024 15:25:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734621921;
+	bh=rb0Zo99tqC0dHSwcEHoASQKqdcPqBMyUrS5QqohAQzY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UMZSqVsfiV0omQAyjkhKihVox7Kne79CJKjowq6fVVyzioZ4jNqzFl3cBRyX60RSv
+	 IXcrgDet1pGdcBhiwWsUDjUhrp3V2rWJCAPcEis5tXfhosf5GKAWDqba0NawTvHQiV
+	 +2dLnqFhF5llq/RLxs2mhImNDJf+NivrtFZb4DIgTUy4Ya0kqUqA7zArIrAG8fiYUT
+	 XFYEM4YocJktVJX//O0uxAZT2sMj+WnzxWCuvn7GHB4j1v83BGJhp6j2QIGiyDP9+0
+	 ecxwFgbTvR2xX/Cl6cVU3kGrCAYNXT2QnybNoPdfSoMHtXW4uhK1ZtZQB4Cfix8IUK
+	 Z53M/m9TUKWAw==
+Message-ID: <0737d818-4dae-4474-b030-a4140e9390c1@kernel.org>
+Date: Thu, 19 Dec 2024 16:25:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/8] dt-bindings: arm: Add Morello compatibility
+To: Vincenzo Frascino <vincenzo.frascino@arm.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>
+References: <20241213163221.3626261-1-vincenzo.frascino@arm.com>
+ <20241213163221.3626261-2-vincenzo.frascino@arm.com>
+ <28b22474-1b50-47aa-ad89-87b2270189f2@kernel.org>
+ <5b045230-b45c-4451-a76c-61cd1dc51644@arm.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <5b045230-b45c-4451-a76c-61cd1dc51644@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241219-rcar-v4h-vspx-v3-4-8fe8d2afb268@ideasonboard.com>
-References: <20241219-rcar-v4h-vspx-v3-0-8fe8d2afb268@ideasonboard.com>
-In-Reply-To: <20241219-rcar-v4h-vspx-v3-0-8fe8d2afb268@ideasonboard.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-X-Mailer: b4 0.15-dev-1b0d6
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1572;
- i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
- bh=VTkLpaiH+VM6UokTmNQ9l0jXwGpqKfr0LWdoGEB/x24=;
- b=owEBbQKS/ZANAwAIAXI0Bo8WoVY8AcsmYgBnZDraGlgRmWoS4x1AbfwY1jM6qpwiIGA0yaAKm
- 684rh30hF+JAjMEAAEIAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCZ2Q62gAKCRByNAaPFqFW
- PNERD/94s/dpZpcG+EFAz403FgCP/bSTu89TjwR0cTm6YS7wblaEXUlWf6utZUL51I73w8rMir8
- knn58ci+SJ/HnkJD+Aod1pfcYGj731eGeQr8aYEnLYYchBh1ew9SyeL04a1hKcd+D4syWtqvaCF
- Ub4BMaLFfjHyu2EmwF9GBgFYRXETNJoeS+zEzJCvpDiOF4JXq4Fq9rAFZfiPsXv7ohAYFr/kgJJ
- zYyweNRSuvIH9BpcST2DeZdNP1bjqL071yv8ntG2XZ/mnRqmW11ljVYyAq30P/LnJx1Vrns18pM
- 2q2j8WijHQKwAEcbkqsFOS6wnP+pgoln79BHsseuCjmksd560BW/PMy+bsTH6neVRaELIh7uhGe
- jZmPcb3w9T2a+9waPw7h9CUQsGj/eJtT3pp5lkAhHGT4OifNbPV5mf6AQqRHO9Kx4bHPXBu4Gkr
- BjppmxfKbOL+B8A8zuuPyiVT+hWovU37HUafW1u204lXxIYUQWbbQyf2iQuiWqHbL1/3RA7uuxy
- hHawxhE+ek0iP0qdl8qIwkUMv6o2KMzFveo6C5NAaENNoMtRjWJ7gp5n63D23c601NGMqbaK7f2
- uZ/PVrrWzORiSt8Od99GaFCXGl6EOGa9ibYGCXdB8BsGy2/zDZyLjB8C/+qrOY5r/hHP2KMqMbN
- fwuiLtZZbrB1HIg==
-X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
- fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 
-Add device nodes for the VSPX instances on R-Car V4H (R8A779G0) SoC.
+On 19/12/2024 16:07, Vincenzo Frascino wrote:
+> Hi Krzysztof,
+> 
+> Thank you for your review.
+> 
+> On 14/12/2024 10:08, Krzysztof Kozlowski wrote:
+>> On 13/12/2024 17:32, Vincenzo Frascino wrote:
+>>> Add compatibility to Arm Morello System Development Platform.
+>>>
+>>> Cc: Sudeep Holla <sudeep.holla@arm.com>
+>>> Cc: Rob Herring <robh@kernel.org>
+>>> Signed-off-by: Vincenzo Frascino <vincenzo.frascino@arm.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml | 3 +++
+>>>  1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+>>> index 8dd6b6446394..ea5a5e179ed1 100644
+>>> --- a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
+>>> @@ -118,6 +118,9 @@ properties:
+>>>          items:
+>>>            - const: arm,foundation-aarch64
+>>>            - const: arm,vexpress
+>>> +      - description: Arm Morello System Development Platform
+>>> +        items:
+>>> +          - const: arm,morello
+>>
+>> Why is this only SoC? Your commit msg is supposed to explain any
+>> oddities, because on first look that's just clearly wrong.
+>>
+> 
+> Morello is at the same time the name of an Architecture and of an SoC.
+> I will add more information to the commit message in the next iteration.
+> 
+> Could you please provide more information of why you think it is clearly wrong?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Because there is no board. Usually it is not possible to use SoC alone,
+because pinout is too small to connect any wires...
 
----
-v2->v3:
-- Place VSPX in the ISP power domain
-v1->v2:
-- Re-sort nodes by unit address
----
- arch/arm64/boot/dts/renesas/r8a779g0.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-index 13bc49a535f8655db2af0493779f2756317ec806..104f740d20d315d43af9d0e63e418155f14a600c 100644
---- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
-@@ -2471,6 +2471,28 @@ fcpvx1: fcp@fedb8000 {
- 			iommus = <&ipmmu_vi1 25>;
- 		};
- 
-+		vspx0: vsp@fedd0000 {
-+			compatible = "renesas,vsp2";
-+			reg = <0 0xfedd0000 0 0x8000>;
-+			interrupts = <GIC_SPI 556 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 1028>;
-+			power-domains = <&sysc R8A779G0_PD_A3ISP0>;
-+			resets = <&cpg 1028>;
-+
-+			renesas,fcp = <&fcpvx0>;
-+		};
-+
-+		vspx1: vsp@fedd8000 {
-+			compatible = "renesas,vsp2";
-+			reg = <0 0xfedd8000 0 0x8000>;
-+			interrupts = <GIC_SPI 557 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 1029>;
-+			power-domains = <&sysc R8A779G0_PD_A3ISP1>;
-+			resets = <&cpg 1029>;
-+
-+			renesas,fcp = <&fcpvx1>;
-+		};
-+
- 		prr: chipid@fff00044 {
- 			compatible = "renesas,prr";
- 			reg = <0 0xfff00044 0 4>;
-
--- 
-2.47.1
-
+Best regards,
+Krzysztof
 
