@@ -1,129 +1,213 @@
-Return-Path: <devicetree+bounces-132740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 071879F7F16
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:14:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E3CC9F7F1E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:14:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4044F16424E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 16:14:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E65101642A2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 16:14:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3094227583;
-	Thu, 19 Dec 2024 16:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBECE226885;
+	Thu, 19 Dec 2024 16:13:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="FMWz5hao"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gRZ3a/Ct"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8333D226548
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 16:12:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF635226870;
+	Thu, 19 Dec 2024 16:13:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734624750; cv=none; b=d2VvFAsVuAKA/qD0sDz9njv1SsUCuSbGq/bimeXY5/A9ycHeUqN0rWdR/lJGZpQrlOaKYBBW3FN9d4nTMnI5PpCumC9dG6VQfXX6+FXACioHEeWugBxeRE3Yc5Za6KA+PpBNy8UGDkhhJZ1TPyNEZisFaOh1R+9mLT7ASReSoRc=
+	t=1734624825; cv=none; b=ShLviAI2MfbkxQtZLgIiAFJ7dBTuyNe5+rtpTkPrdT0ouTqLDP3rvjIr0rOAfo8QsdPRdkA42NMU21wVhJNHcUaA/zF9YtEGwUtSM9MNkXwOmGVCEyeemrrbSXtHQCUMKHKzxJJOWGZA53PtiOlvUAyX7sUscuzeSobceCa5fHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734624750; c=relaxed/simple;
-	bh=2cJabmnAEd6f/zzM/PRzyfzslB+4wnuaXwMHbAtDDAM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R7gMxaYUsOhnqu/PL//ncuSA8JitBtykEb7ggSDUUB5DIZ59QEC7fYpnRBZc4+AEX6C5303otPIfkz/pu1x6//fkm3L/58mR/IK5CplkzzBIl8134OjPq3qB5JU3MLz3/xZbaUvp42yYYH2poWOQM5EXWMrPzPmo79iwEBM74Q0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=FMWz5hao; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=gahU
-	DS4PCvlWJKB7RLdVBv+JdsVxH5akWHVSoGgGXSs=; b=FMWz5haoTl7FTkVgwRWS
-	BR7CzmQ0wjB0cYMOt5Q4Swm3qxZGKNnGdFqTBQ+UXVhLjzCxivTB03P/x3FBFK+i
-	lGF2Q9oruv4u6/5NaP54+syX4VcUIhLXlhEpXCp3ZdwoZt0d62tx67mNzPVj57km
-	nDTGFDQb2hqS9AiVUJyAlNibjPukldl+DuRogwowv5cG7pAGEajEtMrI8tEgCiP/
-	so5YoWy5+qKt71XrS6Bz4ZkQJer2Y47IvQFfbgbfjTi3JVJQbkCjGmnP5tZt6ION
-	/jnTWKA3Mnq47j3KdVW2TGSGq22RskgCaXrRfQCQ0JwSEbpW2+PuJeCGqGqGi6Nh
-	Hg==
-Received: (qmail 733243 invoked from network); 19 Dec 2024 17:12:24 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 Dec 2024 17:12:24 +0100
-X-UD-Smtp-Session: l3s3148p1@wga6y6EpXrEgAwDPXwAQAA/MfjDm1Sk8
-Date: Thu, 19 Dec 2024 17:12:18 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: [PATCH v3 0/4] renesas: r8a779g0: Enable VSPX on R-Car V4H
-Message-ID: <Z2RF4vGtTd1wDjJS@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-References: <20241219-rcar-v4h-vspx-v3-0-8fe8d2afb268@ideasonboard.com>
+	s=arc-20240116; t=1734624825; c=relaxed/simple;
+	bh=3ZslwSsDt0ZrevpyxJOwc9u5jivjryjPqkkjqbFu1x8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fwf+URgcfuBu+wg/hGJM9PyBN5E26jPvihz6LFtCprmrdfVA/9FvP8pI4OvZQFlucD8LbWSrxJ9reYK2xq3wfEuTwMqlzsXOgBxXuMnrhoiQgehfWZJu65EK6OQIMzuwH7phSQ8hwaPeIs3wzCZs1gwmgPu2F6ca9xAZaZ+vRxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gRZ3a/Ct; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-aa66e4d1d5aso149989066b.2;
+        Thu, 19 Dec 2024 08:13:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1734624822; x=1735229622; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3N+saF3O8ciaGMcz5UMikE+GnYspkuI5iWB6DK4vON0=;
+        b=gRZ3a/CtvPoVGjNSQBWAhBEcx2sr9/V1QICBiuawU4D9yo45NxxEusgsmRit5+huEZ
+         nRgmzjURNgEWHIEQ44l53X/r8NM5QClT6hZb57iUYvyW3k51Tcpt8gN+e07FhifJRA+v
+         uPVzGdn2m/LRGcLSi+prlt83hOsBnfIAOaG9jrPcrM237B9m5/t363dnECTVkjVEQRPL
+         4zvfjuuuDYxEjjvJsAXSpsgfWAFvisjgtiE136GgVc1HSVQmfAU2CtEzScUv45fG6w0s
+         IYo2P0E5doDB4obpuH7HGWinKiL9G9pRPvU1I21DRYADG6s65VhqXzzslRU1W4zD5YZG
+         tGSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734624822; x=1735229622;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3N+saF3O8ciaGMcz5UMikE+GnYspkuI5iWB6DK4vON0=;
+        b=vRzu1SiKgtp9ztUW4WQgUpFj1+ONnYxfKfBpeF2w2cT+RO5QoqDzvJ7i8U2YzcZh5V
+         TD/WoHA3OeLaZucBaTOFAMf9vJBohfp7uq8UeLxnqak7aYmAi2LXANEKHjGeeQ9RDVZc
+         qBZY+6U0xZ4AuSATKt33yHYTD4n1R8+3GoVqSNNQGcix/ETPbVYAG1MaRSjOQkMM9Bqb
+         D7x5BUkPsZsRPoiXJ8CyrvPOP2EvMSLc50P88GADLQzJcQizuxgYtojV0DvbYdxd/xQS
+         YyEYDg08pu/rNs0gyZc8eq+IgzBwGzd4e7CxX/cb/eFV1HJT3yeV95SayfYDcGIgGJVN
+         8Htw==
+X-Forwarded-Encrypted: i=1; AJvYcCU7RimTUme1EdiGV0gMWLkJdu4+Yieesww/z79JlphW8fwvPlg3WcR+TAMu3uQq0uHNyR6ZiDZpAj7AsHZK@vger.kernel.org, AJvYcCUBuAbCqw2wy9KcPTh4ZKLVDfw7A8+ECEKrb99s58/OgCulrBM3K/HNKpDWUJDQXzR0D8QZ1igW7NQQaU0/7w==@vger.kernel.org, AJvYcCXbsmSXwXOrM7ENkWIe2RrSepWnhXav2MHvAifH9JbqqjknQ+Fy9DLKTogS5ypB/vNPbjg3pti9GVguNif61Xc=@vger.kernel.org, AJvYcCXgfwdXL2KJWtnnSEPi+Uz36PtpueL11aMzwBgG6g/usF2x6l874nvf+b/Nx/RPXv+mV3ilzlqgaGhE@vger.kernel.org, AJvYcCXj1rkJnljwNvKJyzEQGvGJP30GKIPQT9m+dfMrtYYxOk5TxXEL16JVGcO3ayy3Gno/Rvap4QlCjGrq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyeZCMG050TwBDMTfBAtUnmh1eOhp80lB3jQVMBag8n7jRdYOyf
+	wnsWU4vw8iZkPCumtojom9F6JtrKiekcAQeZnvI2aAHb8+ZC7OtAqL12VHB2SrDz2/tudPeuwzc
+	EZf8eqCHgSp8JYxruNkPbT4bazOE=
+X-Gm-Gg: ASbGnct98byZstMyUQmk3xOAo+W25IL5gIlPGqV3RJ0k39QigcpqtpgbxOInE9MYGEV
+	7ui+ce/p6h5nBh63mAg9tGRoTxqWNIAPjx8RvRFRNfo2CLr7VHtYz9Eikwp/0l/BOb5k0fQ==
+X-Google-Smtp-Source: AGHT+IFMZheT4vIS61kxIEYkmlO7h7QA29FiOWtC6wSuYpKEtK5DwRwpulJDIUJetxuXjbdb9BCz6RurcxYEa1nfi5Q=
+X-Received: by 2002:a17:907:d1d:b0:aa6:74a9:ce6e with SMTP id
+ a640c23a62f3a-aac07901ef7mr418032566b.16.1734624821904; Thu, 19 Dec 2024
+ 08:13:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sBU+tB3qTAKRhvZG"
-Content-Disposition: inline
-In-Reply-To: <20241219-rcar-v4h-vspx-v3-0-8fe8d2afb268@ideasonboard.com>
+References: <20241218-ncv6336-v1-0-b8d973747f7a@gmail.com> <20241218-ncv6336-v1-7-b8d973747f7a@gmail.com>
+ <kb2ejk6c4uvazuumuezsd24qhjwh3k5bw76k2shywdugjqlf6e@lrghxcxxmnrm>
+In-Reply-To: <kb2ejk6c4uvazuumuezsd24qhjwh3k5bw76k2shywdugjqlf6e@lrghxcxxmnrm>
+From: Fabien Parent <parent.f@gmail.com>
+Date: Thu, 19 Dec 2024 08:13:30 -0800
+Message-ID: <CAL6vTrjD308v-Rzu1Sb7GCuLAb94Qt7BuZgrOgrnDCXm820P3Q@mail.gmail.com>
+Subject: Re: [PATCH 7/9] dt-bindings: regulator: add binding for ncv6336 regulator
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+	Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>, 
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Mark Brown <broonie@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	vinod.koul@linaro.org, Fabien Parent <fabien.parent@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Dec 19, 2024 at 1:28=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Wed, Dec 18, 2024 at 03:36:37PM -0800, Fabien Parent wrote:
+> > From: Fabien Parent <fabien.parent@linaro.org>
+> >
+> > Add binding documentation for the Onsemi NCV6336 regulator.
+> >
+> > Signed-off-by: Fabien Parent <fabien.parent@linaro.org>
+> > ---
+> >  .../bindings/regulator/onnn,ncv6336.yaml           | 54 ++++++++++++++=
+++++++++
+> >  1 file changed, 54 insertions(+)
+> >
+>
+> subject: regulator first, then dt-bindings.
+>
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
+> your patch is touching. For bindings, the preferred subjects are
+> explained here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-pat=
+ches.html#i-for-patch-submitters
+>
+>
+> > diff --git a/Documentation/devicetree/bindings/regulator/onnn,ncv6336.y=
+aml b/Documentation/devicetree/bindings/regulator/onnn,ncv6336.yaml
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..c69d126cab33668febe18e7=
+7bb34bd4bef52c993
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/regulator/onnn,ncv6336.yaml
+> > @@ -0,0 +1,54 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/regulator/onnn,ncv6336.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Onsemi NCV6336 Buck converter
+> > +
+> > +maintainers:
+> > +  - Fabien Parent <fabien.parent@linaro.org>
+> > +
+> > +description: |
+>
+> Do not need '|' unless you need to preserve formatting.
+>
+> > +  The NCV6336 is an I2C programmable BUCK (step-down) converter.
+> > +  It is designed for mobile power applications.
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "regulator@[0-9a-f]{2}"
+>
+> Drop nodename, not really needed in device schema.
+>
+> > +
+> > +  compatible:
+> > +    const: onnn,ncv6336
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  buck:
+> > +    description: buck regulator description
+>
+> Why do you need "buck" node? Just merge the properties into this device
+> node.
 
---sBU+tB3qTAKRhvZG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I decided to move the properties into a "buck" node to make the
+upstream process of the driver
+a little bit simpler. The driver is written in Rust, and if I want to
+move the properties to the device
+node I will need to provide a Rust abstraction for "struct
+device_node". I decided to avoid this
+to keep the patch series simpler by having one less abstraction to review.
+If you think that's a problem, let me know and I will implement it the
+way you are suggesting for v2.
 
-Hi Jacopo,
-
-> Compile-tested only series.
-
-Can't this go ...
-
-> Changes in v3:
-> - Test on an actual board and fix the VSPX and FCPVX power domains to
->   use the ISP power domains
-
-... because of this?
-
-Happy hacking,
-
-   Wolfram
-
-
---sBU+tB3qTAKRhvZG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmdkRd8ACgkQFA3kzBSg
-KbaSlA/6Alnuow4SentGcGAf1+wjpmnh3DKW++1hCHhyJGZMefKuSqcYxwU5X97V
-CGl8phNkL5t4JXC6gREVeQ3dhBwAUOID0aqP6L78VBERnaz4H94f3erV0HMPtt9R
-PU+L/HHB4fJyVQskL/5f1HYdkskYXXN1eFzZiJEeWEMlcH4ibt5qZhmUk/cRl6Ol
-QRl7+YaZHyNAAaZsPdVoFP074akAppfp0vGsUfIjPonJEyY3FU1rFdeHmX9n3Tk0
-p+zNHXYViV5OoEfwwUyLgx5K3482ICOaAkJC7SwWTNYXlMoC0CgtfGz22KLg7twz
-WzKJri/ppV54S7780oLkt4bJv5KxYCBpw6IfqaUQuLrx/wB+jGNEwQdo2LYNEMaJ
-P0J4lPFbuIAMw3RMFCPzummkpU68VgU4oGpGNah78GKYOJuuYfLbjYjPH6ftdyIX
-OTFxNY4BdQ+MyyXOoi3lh1ptsB0g0Oq399ODrWO8mzQCTO2qWEl8jruD4Vv5vO8N
-glyuWZ2WcZ7wXtWYKQfcGchseax9zQN8np30aFz7HQwIztDKze4llPbTKWLBNi7u
-MOZtlgbdUm2ApES8zjUpitK51v2MQ9ksmVbI+lxBJLjscs4lbAh9OG1FbdzvNY3h
-sAcMD4noYqWPlOe/scATOgCMT453qsuV/H67opZLL3R7OO2pYCQ=
-=9Vsd
------END PGP SIGNATURE-----
-
---sBU+tB3qTAKRhvZG--
+>
+> > +    type: object
+> > +    $ref: regulator.yaml#
+> > +    unevaluatedProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - buck
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        regulator@1c {
+> > +            compatible =3D "onnn,ncv6336";
+> > +            reg =3D <0x1c>;
+> > +
+> > +            buck {
+> > +                regulator-name =3D "ncv6336,buck";
+> > +            };
+> > +       };
+>
+> Messed indentation.
+>
+> Best regards,
+> Krzysztof
+>
 
