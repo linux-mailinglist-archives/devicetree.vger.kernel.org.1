@@ -1,107 +1,111 @@
-Return-Path: <devicetree+bounces-132663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42C979F7B83
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:37:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C78F9F7BB1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:43:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAC2A1895312
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:37:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 956CB16CB74
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:42:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C1C3226191;
-	Thu, 19 Dec 2024 12:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD33224AE0;
+	Thu, 19 Dec 2024 12:42:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="l25unRnP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7446D22618F
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 12:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0E7A224899;
+	Thu, 19 Dec 2024 12:41:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734611711; cv=none; b=tfBu5p+/Q0GLZlGfyA9O1RNgLVDsymTFzXowL3uehGYd50lhDOpcmdevNZGcRWoelWOVUCFkePQmvtkua2m82pooKcHKLfXGv3/XNAqvbOuNcilbpAy4NOTecMmmEHJaFZHaYa7Eu10bP9Y/tk1GkVUp7VMdlJ1ck7Lk63PM2Fo=
+	t=1734612121; cv=none; b=q9T8PZQ1FdAxKFUqSer+HbKKCM+PrFjnc2fLM6Fhmmo1OTOEPXo9EAPvpfzg/gMNy6MM5MXfwuY02I6kCDiUYeLbvkW5eqmBUyJXZZFxQKEYkrp0RkEEBXS8EjKzB9atAibirTrjmoJjF5ucULBWUjXcKmhIMDLbDOighQ8Y+cE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734611711; c=relaxed/simple;
-	bh=qAhPdZAVz66bKOe4FYK+ZANvPT8yIB0HR1SRLnLmHwE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YPAABp1xm0tv4V0Mx0vgnXS/MOg+I3ZScgD6w3l6xV4uMaxUFhM6YIKKYE8WVz4ZP1hJjIptKYnHfVgAAI50rfuzNruXAd8fD3iYkVEZvsev04YPT4W0+EhD7sFWBeCSS6s6C/YYYl5jn+x+lb6GiKq4AU3xwXr0jzaTuGKjrtI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <jre@pengutronix.de>)
-	id 1tOFk3-0007aQ-Um; Thu, 19 Dec 2024 13:34:59 +0100
-From: Jonas Rebmann <jre@pengutronix.de>
-Date: Thu, 19 Dec 2024 13:34:57 +0100
-Subject: [PATCH 2/2] arm64: dts: rockchip: MECSBC: Add FRAM MB85RS128TY
+	s=arc-20240116; t=1734612121; c=relaxed/simple;
+	bh=wDrACSxE67QlUQtertVzUZUXLm2imMYI+ZYK5RaLBLw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gNkg+VhwCCQpq0eFT7+sJARMTGTTuIi9wR2mQ+zOxyIocXALw+8IHSDQ27PyS9lMS1qcZ6NiWPmG+TRrad8H5PYVzBaj8yvld+2f6UU6Q3OELG60pzveCaV30aUBid2vSwqnC7/OmKfJcYpa+Rl6rF9AVkD2GSP0408ACzb2Sw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=l25unRnP; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1734612118;
+	bh=wDrACSxE67QlUQtertVzUZUXLm2imMYI+ZYK5RaLBLw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=l25unRnPqzQ9eRY7ufOjAlOAx6AwZm3jbmWEww1Eggzq9GhuwrNflP7v5zbC63r/l
+	 x1oulzEAEYjvcxAbr0pJdwD5LXTjVWyeiGMbkdn6ziC4EbCfOXf8sjLVUbmXFmJpzV
+	 INm68E014y8KxKsvdMfNMh6ZviK+A8x3USF7UGYTIe6twGOzXF8TLN6nMhf+ncnS0n
+	 k896Sc0cwIReJEUCLVSU+FvLH0+hV28r5OZ1OWXXsgAd5/nbgPMwNmgsf5+vE0mwh5
+	 qrkNvG+Zxg7BzaYn416dez0Vj5Zis+js3QB4dCxCdJXGSBMXjQ7TbfDSd2z09w4M0s
+	 t/0BiSyPuv0Ow==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6D54B17E36AF;
+	Thu, 19 Dec 2024 13:41:57 +0100 (CET)
+Message-ID: <e9fb2634-5b47-4f68-ad7c-26a4f52d0df8@collabora.com>
+Date: Thu, 19 Dec 2024 13:41:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 3/5] dt-bindings: pinctrl: add binding for MT7988 SoC
+To: Rob Herring <robh@kernel.org>
+Cc: Frank Wunderlich <linux@fw-web.de>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Sean Wang <sean.wang@kernel.org>, Frank Wunderlich
+ <frank-w@public-files.de>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20241217085435.9586-1-linux@fw-web.de>
+ <20241217085435.9586-4-linux@fw-web.de>
+ <4ecfcdd3-3c81-4625-90cd-1d45f6d71a2f@collabora.com>
+ <20241219123441.GA4016373-robh@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20241219123441.GA4016373-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241219-mb85rs128ty-mecsbc-v1-2-77a0e851ef19@pengutronix.de>
-References: <20241219-mb85rs128ty-mecsbc-v1-0-77a0e851ef19@pengutronix.de>
-In-Reply-To: <20241219-mb85rs128ty-mecsbc-v1-0-77a0e851ef19@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Jonas Rebmann <jre@pengutronix.de>, David Jander <david@protonic.nl>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1087; i=jre@pengutronix.de;
- h=from:subject:message-id; bh=E1s4a2ms1r/LLu9PQwkbyMglWJ/KeTIY1ewv3e06R4U=;
- b=owGbwMvMwCF2ZcYT3onnbjcwnlZLYkhPEfo8/b14sfHXt6rHT7Z98xL0WLJg6U2N8z63lpwN5
- 56enm64vqOUhUGMg0FWTJElVk1OQcjY/7pZpV0szBxWJpAhDFycAjCRZA5GhmVdWW+NJa//FzjG
- LOH/udVJzv0YT6u/0TaZukk6BotlDjMyHCz+xX3LStkq4djvbOej95b0GZYoaRuf6WXu1C2af+c
- yMwA=
-X-Developer-Key: i=jre@pengutronix.de; a=openpgp;
- fpr=0B7B750D5D3CD21B3B130DE8B61515E135CD49B5
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::ac
-X-SA-Exim-Mail-From: jre@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: David Jander <david@protonic.nl>
+Il 19/12/24 13:34, Rob Herring ha scritto:
+> On Thu, Dec 19, 2024 at 12:56:23PM +0100, AngeloGioacchino Del Regno wrote:
+>> Il 17/12/24 09:54, Frank Wunderlich ha scritto:
+>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>
+>>> This adds bindings for MT7988 pinctrl driver.
+>>>
+>>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>
+>> DT binding maintainers, can you please review this patch and eventually release
+>> an Ack so that I can take it through the MediaTek tree along with the devicetree
+>> changes?
+> 
+> It's been 2 days... If you want to know the status and where you are in
+> the queue, you can check patchwork[1]. But guess what, you're #1.
+> 
+> Rob
+> 
+> [1] https://patchwork.ozlabs.org/project/devicetree-bindings/list/
 
-The board features a Fujitsu MB85RS128TY FRAM chip connected to spi0 CS
-0. Add support for the MB85RS128TY to the device tree.
 
-Signed-off-by: David Jander <david@protonic.nl>
-Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
----
- arch/arm64/boot/dts/rockchip/rk3568-mecsbc.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Rob, I was checking the patches to apply to the MTK trees and while in the
+process I didn't notice that this one was sent that early.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-mecsbc.dts b/arch/arm64/boot/dts/rockchip/rk3568-mecsbc.dts
-index ca041b4d2d38a4e06cd0a54a806fed2ab723c94d..c70f6df537596a85528e4e0b499e59d71f05b4a3 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-mecsbc.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-mecsbc.dts
-@@ -240,6 +240,18 @@ rtc@51 {
- 	};
- };
- 
-+&spi0 {
-+	/* use hardware chipselect on cs0 (cs1 unconnected) */
-+	pinctrl-0 = <&spi0m0_pins>, <&spi0m0_cs0>;
-+	status = "okay";
-+
-+	fram@0 {
-+		compatible = "fujitsu,mb85rs128ty";
-+		reg = <0>;
-+		spi-max-frequency = <33000000>;
-+	};
-+};
-+
- &i2s1_8ch {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2s1m0_sclktx &i2s1m0_lrcktx &i2s1m0_sdi0 &i2s1m0_sdo0>;
+Sending a ping after a short time wasn't intentional. Sorry for that.
 
--- 
-2.39.5
+Cheers,
+Angelo
+
 
 
