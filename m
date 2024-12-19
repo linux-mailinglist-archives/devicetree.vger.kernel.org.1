@@ -1,164 +1,280 @@
-Return-Path: <devicetree+bounces-132674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D8D9F7BE9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:59:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AF5C9F7BED
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:03:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7302169249
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:59:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5882418825ED
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:03:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813BE2248A0;
-	Thu, 19 Dec 2024 12:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB6017BD9;
+	Thu, 19 Dec 2024 13:03:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="HelIsifH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="giABaITE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB50221DA0;
-	Thu, 19 Dec 2024 12:59:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 703E4801;
+	Thu, 19 Dec 2024 13:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734613163; cv=none; b=Qm/87OVgnnTTtPaKF04m5F71N+3DeGpX33tJZmmZVfzw9AV+4ujlbP5UYh1d2Lmvl3j8uxbnWnH4G4h3xL5A5WgGA9sh7fffgAyTIk3eERJ+6ZvxY7Sq1WvtQxzK4ATK35mvUCjB4iM3C5E2Xa6tHlwRdlB2nuwhm130v+kzo0A=
+	t=1734613405; cv=none; b=FGOQaAcqe4ddQMXe9ZmKtV/3CM8XagXTFHwxHc9neyphLHVPObnY4vB4QbQbaZj8a7eIe/n/olV1ggC95h+Mi9K1zXAGzU4r77cyggwU80413+rC9pehTyYc2ViZ+7kqNyhgpb7Z1jdPuky3QCZzu8jNhiHCHKKVzvMdJ3X0xTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734613163; c=relaxed/simple;
-	bh=+xzJVG+hM0KAiWsSsFCrmeQD4FEfre6Rs4Hp8/QQFRY=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UfoD5Ol+f/0inJvQn6lJTmCmtP3T10H9WEabawEgrzy33JNzeVnhpKuSwndSHoGcBeivSWnRs9XLBnKV/USJlRZS949NDswKHrNFtnBcO3FwYdti3PmgfM3iPIY8i1td52eAMFYC1NXP60zRq3r/hcpJ0MrPxrIYywiclfX2E4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=HelIsifH; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ6RKrD022531;
-	Thu, 19 Dec 2024 06:59:18 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=PODMain02222019; bh=BZZS0PhjBhxrRWfnWT
-	LnqvrbDywCGkojiIIZKI5i86k=; b=HelIsifHmydNLh62B9qn7Ke2FAE1pygIrW
-	PBu34vA1XGd/XASjCzkXA7uCT+4ChRGYO+r9ZljWj24jKr2Ia1EvJItpbN/RXmkx
-	YpKd6I8qMCEv5xXubRUtIMfcNqA4njejVbMhOM3wCZAyZtrBSDIwzu3qPINqWh13
-	MG/YLxqmgIy/fb0ERoRZM57OZlUA5ygkoJVDPPDK+rd3+ow1B4YM9rRCwJYlT8nL
-	HZaZq83QsHp1uQWvgOtfXMuv8+hycVk55OyvTc39Kh++umDRemLrEkyb9ShgroGM
-	EdnXPmZZIk3n2vO5cA6fJUFW/QMeJWJNiGEiDC4Jj+HrZbl9eBDQ==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 43h8a269n7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Dec 2024 06:59:17 -0600 (CST)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.13; Thu, 19 Dec
- 2024 12:59:15 +0000
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
- 15.2.1544.13 via Frontend Transport; Thu, 19 Dec 2024 12:59:15 +0000
-Received: from opensource.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 6790F820247;
-	Thu, 19 Dec 2024 12:59:15 +0000 (UTC)
-Date: Thu, 19 Dec 2024 12:59:14 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Paul Handrigan <paulha@opensource.cirrus.com>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>
-Subject: Re: [PATCH v2 1/2] dt-binding: clock: cs2600: Add support for the
- CS2600
-Message-ID: <Z2QYooZJ9kFeYzgc@opensource.cirrus.com>
-References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
- <20241219024631.3145377-2-paulha@opensource.cirrus.com>
- <3glyuu4yg7wbykdsfm33m5evnn7fwg4dbplrkgzcceld3cgu2s@t3xjlhryt2y6>
- <Z2P9X5b+oTo4Du/n@opensource.cirrus.com>
- <3c09367c-808b-4414-bf6a-99e0bdaa3a27@kernel.org>
+	s=arc-20240116; t=1734613405; c=relaxed/simple;
+	bh=5+x3QZVCzTq1Hf1gpxeuJv6OeqlteL217qDNjwEWRlo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tkgQ9fVHTGnwR0CExm+0qjGgkZ4rH1L23NemYC6CZaIrQ7ycuNGr2uyAKa4B797aelhTBi3fZUnzuM+DgeyT8FixaPDH9s+TMT7qJF9Lvdovvd95/fhLVREN3loRp2Pe3shWHlgRIvmtib69esjgJOwdZi0A6/7je8ap1ZOFjRQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=giABaITE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0B42C4CECE;
+	Thu, 19 Dec 2024 13:03:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734613405;
+	bh=5+x3QZVCzTq1Hf1gpxeuJv6OeqlteL217qDNjwEWRlo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=giABaITEctE/wbnCg/2MLICDl1W+b+PAc1GAZkOjAmMAJuCMa81xyg99GcWrf3p3b
+	 euH2NWPqYluq8TxZlN2C8M/Jn2DoK8Wv3LENzgIFj29Dq3TvpjLzU7XHlBUXxasGkK
+	 9IKFSrEZOawhPRZ/gsh7htS0dkMHKZ6/csDgbQ8s5aTY+Uuxjrq448w5ZuHvBxleA5
+	 VOXCfP7tKmb41Guc35Fw187V49JZymlT+kWxAYqoVrOEQOUot5zozYSbTuN+EQZEi3
+	 H8dPIXmgJL+REFqc+uO2o0w7XJZ75r3VsU2xmsen8i0XovdiHLasPCqS1GkK5I+E8l
+	 k6YgbeI8ImwRg==
+Date: Thu, 19 Dec 2024 07:03:23 -0600
+From: Rob Herring <robh@kernel.org>
+To: Fabien Parent <parent.f@gmail.com>
+Cc: Saravana Kannan <saravanak@google.com>, Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <benno.lossin@proton.me>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	vinod.koul@linaro.org, Fabien Parent <fabien.parent@linaro.org>,
+	Fiona Behrens <me@kloenk.dev>
+Subject: Re: [PATCH 1/9] rust: i2c: add basic I2C client abstraction
+Message-ID: <20241219130323.GA4049504-robh@kernel.org>
+References: <20241218-ncv6336-v1-0-b8d973747f7a@gmail.com>
+ <20241218-ncv6336-v1-1-b8d973747f7a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3c09367c-808b-4414-bf6a-99e0bdaa3a27@kernel.org>
-X-Proofpoint-ORIG-GUID: XKnnldY7xqcGH429qBlMjPYUA-DYS2Mi
-X-Proofpoint-GUID: XKnnldY7xqcGH429qBlMjPYUA-DYS2Mi
-X-Proofpoint-Spam-Reason: safe
+In-Reply-To: <20241218-ncv6336-v1-1-b8d973747f7a@gmail.com>
 
-On Thu, Dec 19, 2024 at 12:39:38PM +0100, Krzysztof Kozlowski wrote:
-> On 19/12/2024 12:02, Charles Keepax wrote:
-> > On Thu, Dec 19, 2024 at 09:51:00AM +0100, Krzysztof Kozlowski wrote:
-> >> On Wed, Dec 18, 2024 at 08:46:30PM -0600, Paul Handrigan wrote:
-> >>> +/* CS2600 Auxiliary Output */
-> >>> +#define CS2600_AUX_OUTPUT_FREQ_UNLOCK	0
-> >>> +#define CS2600_AUX_OUTPUT_PHASE_UNLOCK	1
-> >>> +#define CS2600_AUX_OUTPUT_NO_CLKIN	2
-> >>
-> >> I still don't see why these three are supposed to be bindings. Drop
-> >> them.
-> > 
-> > In a binding one would presumably do:
-> > 
-> > cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
-> > 
-> > Apologies but I don't quite understand what you mean by the values
-> > are not used in the binding? The driver reads the property and sets
+On Wed, Dec 18, 2024 at 03:36:31PM -0800, Fabien Parent wrote:
+> From: Fiona Behrens <me@kloenk.dev>
 > 
-> There is no user of these defines, so not a binding.
+> Implement an abstraction to write I2C device drivers. The abstraction
+> is pretty basic and provides just the infrastructure to probe
+> a device from I2C/OF device_id and abstract `i2c_client`.
+> The client will be used by the Regmap abstraction to perform
+> I/O on the I2C bus.
 > 
-> > the pin to have the appropriate function. Admittedly one could drop
+> Signed-off-by: Fiona Behrens <me@kloenk.dev>
+> Co-developed-by: Fabien Parent <fabien.parent@linaro.org>
+> Signed-off-by: Fabien Parent <fabien.parent@linaro.org>
+> ---
+>  MAINTAINERS                     |   1 +
+>  rust/bindings/bindings_helper.h |   1 +
+>  rust/helpers/helpers.c          |   1 +
+>  rust/helpers/i2c.c              |  13 ++
+>  rust/kernel/i2c.rs              | 288 ++++++++++++++++++++++++++++++++++++++++
+>  rust/kernel/lib.rs              |   2 +
+>  6 files changed, 306 insertions(+)
 > 
-> It's not a proof that this is a binding.
-> 
-> > the defines and then DTS would just have to do:
-> > 
-> > cirrus,aux-output-source = <0>;
-> > 
-> > But that feels a bit less helpful when reading the binding.
-> 
-> Binding and being helpful are two different things. This to be the
-> binding, it has to be used as a binding, so some translation layer
-> between driver and DTS. It must have an user in DTS. I keep repeating
-> this over and over...
-> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 6b9e10551392c185b9314c9f94edeaf6e85af58f..961fe4ed39605bf489d1d9e473f47bccb692ff14 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -10796,6 +10796,7 @@ F:	include/linux/i2c-smbus.h
+>  F:	include/linux/i2c.h
+>  F:	include/uapi/linux/i2c-*.h
+>  F:	include/uapi/linux/i2c.h
+> +F:	rust/kernel/i2c.rs
+>  
+>  I2C SUBSYSTEM HOST DRIVERS
+>  M:	Andi Shyti <andi.shyti@kernel.org>
+> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
+> index e9fdceb568b8f94e602ee498323e5768a40a6cba..a882efb90bfc27960ef1fd5f2dc8cc40533a1c27 100644
+> --- a/rust/bindings/bindings_helper.h
+> +++ b/rust/bindings/bindings_helper.h
+> @@ -16,6 +16,7 @@
+>  #include <linux/file.h>
+>  #include <linux/firmware.h>
+>  #include <linux/fs.h>
+> +#include <linux/i2c.h>
+>  #include <linux/jiffies.h>
+>  #include <linux/jump_label.h>
+>  #include <linux/mdio.h>
+> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
+> index 0640b7e115be1553549312dcfdf842bcae3bde1b..630e903f516ee14a51f46ff0bcc68e8f9a64021a 100644
+> --- a/rust/helpers/helpers.c
+> +++ b/rust/helpers/helpers.c
+> @@ -15,6 +15,7 @@
+>  #include "device.c"
+>  #include "err.c"
+>  #include "fs.c"
+> +#include "i2c.c"
+>  #include "io.c"
+>  #include "jump_label.c"
+>  #include "kunit.c"
+> diff --git a/rust/helpers/i2c.c b/rust/helpers/i2c.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..8ffdc454e7597cc61909da5b3597057aeb5f7299
+> --- /dev/null
+> +++ b/rust/helpers/i2c.c
+> @@ -0,0 +1,13 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/i2c.h>
+> +
+> +void *rust_helper_i2c_get_clientdata(const struct i2c_client *client)
+> +{
+> +	return i2c_get_clientdata(client);
+> +}
+> +
+> +void rust_helper_i2c_set_clientdata(struct i2c_client *client, void *data)
+> +{
+> +	i2c_set_clientdata(client, data);
+> +}
+> diff --git a/rust/kernel/i2c.rs b/rust/kernel/i2c.rs
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..efa03335e5b59e72738380e94213976b2464c25b
+> --- /dev/null
+> +++ b/rust/kernel/i2c.rs
+> @@ -0,0 +1,288 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! Abstractions for the I2C bus.
+> +//!
+> +//! C header: [`include/linux/i2c.h`](srctree/include/linux/i2c.h)
+> +
+> +use crate::{
+> +    bindings, container_of,
+> +    device::Device,
+> +    device_id::{self, RawDeviceId},
+> +    driver,
+> +    error::{to_result, Result},
+> +    of,
+> +    prelude::*,
+> +    str::CStr,
+> +    types::{ARef, ForeignOwnable, Opaque},
+> +    ThisModule,
+> +};
+> +
+> +/// Abstraction for `bindings::i2c_device_id`.
+> +#[repr(transparent)]
+> +#[derive(Clone, Copy)]
+> +pub struct DeviceId(bindings::i2c_device_id);
+> +
+> +impl DeviceId {
+> +    /// Create a new device id from an I2C name.
+> +    pub const fn new(name: &CStr) -> Self {
+> +        let src = name.as_bytes_with_nul();
+> +        // TODO: Replace with `bindings::i2c_device_id::default()` once stabilized for `const`.
+> +        // SAFETY: FFI type is valid to be zero-initialized.
+> +        let mut i2c: bindings::i2c_device_id = unsafe { core::mem::zeroed() };
+> +
+> +        let mut i = 0;
+> +        while i < src.len() {
+> +            i2c.name[i] = src[i] as _;
+> +            i += 1;
+> +        }
 
-Apologies, but I not sure I totally follow this, and apologies if
-you have already explained this are there some docs I can look
-at?
+You can simplify this now that char maps to u8 (in rust next).
 
-I think you are saying because these defines merely represent the
-valid values for a device tree property and are not translated
-into different values you can't put defines for them in the binding
-header?
+> +
+> +        Self(i2c)
+> +    }
+> +}
+> +
+> +// SAFETY:
+> +// * `DeviceId` is a `#[repr(transparent)` wrapper of `i2c_device_id` and does not add
+> +//   additional invariants, so it's safe to transmute to `RawType`.
+> +// * `DRIVER_DATA_OFFSET` is the offset to the `data` field.
+> +unsafe impl RawDeviceId for DeviceId {
+> +    type RawType = bindings::i2c_device_id;
+> +
+> +    const DRIVER_DATA_OFFSET: usize = core::mem::offset_of!(bindings::i2c_device_id, driver_data);
+> +
+> +    fn index(&self) -> usize {
+> +        self.0.driver_data as _
+> +    }
+> +}
+> +
+> +/// I2C [`DeviceId`] table.
+> +pub type IdTable<T> = &'static dyn device_id::IdTable<DeviceId, T>;
+> +
+> +/// An adapter for the registration of I2C drivers.
+> +#[doc(hidden)]
+> +pub struct Adapter<T: Driver + 'static>(T);
+> +
+> +impl<T: Driver + 'static> driver::RegistrationOps for Adapter<T> {
+> +    type RegType = bindings::i2c_driver;
+> +
+> +    fn register(
+> +        i2cdrv: &Opaque<Self::RegType>,
+> +        name: &'static CStr,
+> +        module: &'static ThisModule,
+> +    ) -> Result {
+> +        // SAFETY: It's safe to set the fields of `struct i2c_driver` on initialization.
+> +        unsafe {
+> +            (*i2cdrv.get()).driver.name = name.as_char_ptr();
+> +            (*i2cdrv.get()).probe = Some(Self::probe_callback);
+> +            (*i2cdrv.get()).remove = Some(Self::remove_callback);
+> +            if let Some(t) = T::I2C_ID_TABLE {
+> +                (*i2cdrv.get()).id_table = t.as_ptr();
+> +            }
+> +            if let Some(t) = T::OF_ID_TABLE {
+> +                (*i2cdrv.get()).driver.of_match_table = t.as_ptr();
+> +            }
+> +        }
+> +
+> +        // SAFETY: `i2cdrv` is guaranteed to be a valid `RegType`.
+> +        to_result(unsafe { bindings::i2c_register_driver(module.0, i2cdrv.get()) })
+> +    }
+> +
+> +    fn unregister(i2cdrv: &Opaque<Self::RegType>) {
+> +        // SAFETY: `i2cdrv` is guaranteed to be a valid `RegType`.
+> +        unsafe { bindings::i2c_del_driver(i2cdrv.get()) };
+> +    }
+> +}
+> +
+> +impl<T: Driver> Adapter<T> {
+> +    /// Get the [`Self::IdInfo`] that matched during probe.
+> +    fn id_info(client: &mut Client) -> Option<&'static T::IdInfo> {
+> +        let id = <Self as driver::Adapter>::id_info(client.as_ref());
+> +        if id.is_some() {
+> +            return id;
+> +        }
+> +
+> +        // SAFETY: `client` and `client.as_raw()` are guaranteed to be valid.
+> +        let id = unsafe { bindings::i2c_client_get_device_id(client.as_raw()) };
+> +        if !id.is_null() {
+> +            // SAFETY: `DeviceId` is a `#[repr(transparent)` wrapper of `struct i2c_device_id` and
+> +            // does not add additional invariants, so it's safe to transmute.
+> +            let id = unsafe { &*id.cast::<DeviceId>() };
+> +            return Some(T::I2C_ID_TABLE?.info(id.index()));
+> +        }
 
-So this would not be allowed:
+You aren't handling the DT based matching.
 
-  #define CS2600_AUX_OUTPUT_FREQ_UNLOCK 0
-
-  cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
-
-  device_property_read_u32(dev, "cirrus,aux-output-source", &val);
-  regmap_write(regmap, CS2600_OUTPUT_CFG2, val);
-
-But this would be fine:
-
-  #define CS2600_AUX_OUTPUT_FREQ_UNLOCK 1
-
-  cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
-
-  device_property_read_u32(dev, "cirrus,aux-output-source", &val);
-  switch (val) {
-  case CS2600_AUX_OUTPUT_FREQ_UNLOCK:
-    regmap_write(regmap, CS2600_OUTPUT_CFG2, 0);
-  }
-
-And this would also be fine?
-
-  cirrus,aux-output-source = <0>;
-
-  device_property_read_u32(dev, "cirrus,aux-output-source", &val);
-  regmap_write(regmap, CS2600_OUTPUT_CFG2, val);
-
-Thanks,
-Charles
+Rob
 
