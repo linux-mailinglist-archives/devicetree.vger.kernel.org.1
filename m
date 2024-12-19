@@ -1,201 +1,206 @@
-Return-Path: <devicetree+bounces-132844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 074369F84C3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:51:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 171BE9F84C8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:52:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD260188A7CE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:51:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F1CD188A793
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:52:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C666B1B4F04;
-	Thu, 19 Dec 2024 19:51:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2DD31B393F;
+	Thu, 19 Dec 2024 19:52:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="S2S4Fpfx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BxeeJ5cc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bout3.ijzerbout.nl (bout3.ijzerbout.nl [136.144.140.114])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80FDD155342;
-	Thu, 19 Dec 2024 19:51:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.144.140.114
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B0A155342;
+	Thu, 19 Dec 2024 19:52:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734637908; cv=none; b=nHMGPB2mCENN7APG3yg1XrAN9mNgXqdQ1lI+aa7aMTHGNMkjY9xKxJHIl0FA6p//mlnEoG2rPf23W1qd6O4TNDHBuzacD2qsJtxcRIz4MXB7ZVd8BGW6MSXFIdPFPmedhQC0yNm5id1v3f7iEJSUOuFxiEPPmZRFIkmBe9WcDwk=
+	t=1734637954; cv=none; b=fcU8Imd9xgz8RW3Q2W1ZYnqHtQhI+1DGLhzMpWpkmxqwFN1fjeuh649096BeBLBorV41+UOQQf7EmTM4veEfgYc7MHOMXeh35iCIBD5Do9+Gh3G/WY8Yn3Z26t2rjSzHhpb3s50D2l5unhFnM+92hdbmmkbK4D0WNq7EhrBHUk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734637908; c=relaxed/simple;
-	bh=CLTYGlkArbh9G44nbamSYDRsT+GxW9EOzuXjgf57kew=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B4TITC3sZa2/gY0dHSzsVqyTqlYZ68cUXiB1H1hbUXyE1j9by7/Nkx8haOCSzRWQmBj9LWfVNV/vp6vLKyJQWBEqK9zJqLz9TNVCffXXuqLnMqkfDFSloDDhr/N36XVLwYWePjmGrucXaPB1Samz+8NUP/YTv5EHCnzENEZLebM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ijzerbout.nl; spf=pass smtp.mailfrom=ijzerbout.nl; dkim=pass (4096-bit key) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b=S2S4Fpfx; arc=none smtp.client-ip=136.144.140.114
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ijzerbout.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ijzerbout.nl
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ijzerbout.nl; s=key;
-	t=1734637904; bh=CLTYGlkArbh9G44nbamSYDRsT+GxW9EOzuXjgf57kew=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S2S4Fpfx+y2RwzTH27vG7Pm6ixE0N+e0KsxNdKwNsdOcgb97FjTAIJIrvu/OM6DBR
-	 ERy16mpog/gaQJwHjFF/6+r7EPRYbbcl4QwR7jusUOIyoG61Iy/XUdXOTdawQ2DZhu
-	 nlcdcwJaYiMnhnIF/ND6buzeqSKdrOQj8RI2cQQNiHxLRnn3/CyzuEananaUOPIiyW
-	 lj9wtTWsMpH0THnYevKFhMdoZJRRfPi8Qzy50GzI0jTIHLQ5V8QlwpNY4NVT2SqfgF
-	 GPlbSPGLKkoSM2fecuswXSU1b/PomVoiQJeZr+Vz5AEW0Cp2Q4Iwac/jPDEI4BO8iN
-	 DPlnn7uVBrn2jEThiYgmvVOB80UDULTb2emYsVZFAuzReteGey4zvSSzvKVu/Mzcvz
-	 F8LHEf6wE5552abnvkhU/MdN/OPuG35qiwd19fK0yglFNCOccDDBke1YgkUuSicXMF
-	 PxdUdTiuiDtLjP2llVQv3U5DBDonIiYc3BxuFuH485QqvkXoiqDRUbyazCGpL6u4zL
-	 nvK2JSqFQoGXA/cLpfEZo5IvMEGXkEAnKTP/DqmSzJbPBGVkXRnnvYZXXTBUlr2AcC
-	 Jb0evGNO9isBVdjyhr6XKuPntK8SvMzBl7vw6VdhFLKUUcIYZlaomrY0XphpQSfwvX
-	 hYoP0YM6Lij67jU1554I7ki0=
-Received: from [IPV6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a] (racer.ijzerbout.nl [IPv6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a])
-	by bout3.ijzerbout.nl (Postfix) with ESMTPSA id 0DB7218010B;
-	Thu, 19 Dec 2024 20:51:44 +0100 (CET)
-Message-ID: <4cecc705-84ab-44d5-8725-eb973254f257@ijzerbout.nl>
-Date: Thu, 19 Dec 2024 20:51:41 +0100
+	s=arc-20240116; t=1734637954; c=relaxed/simple;
+	bh=jvsgdtWvGlEi67Ya4ZxgoWj4tFejX/Od5rTFurvvA7c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GS5QheGJ8Tz/4szITVc7qELTf3851ufWkC87cbq5dNMxGrkadtyYe+X+X7P7EknGcbip04YS6iXRHlSauyXbEUMmVBssJKRnRyRWkeVHe+1xW4g0vF8M/dkMQAdPIlsjno9VOTrToEsPPX2j66DO2nBDaQqS4cb45kGq3ffxDk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BxeeJ5cc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAF7CC4CECE;
+	Thu, 19 Dec 2024 19:52:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734637954;
+	bh=jvsgdtWvGlEi67Ya4ZxgoWj4tFejX/Od5rTFurvvA7c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BxeeJ5ccJXTbtf6BAHQZzhlNcIHAXUyizQ2zo2UzrSc0AhjJPF2vS8EvkFRs0KZnx
+	 akewWFnGo3MhgEIdFXD2AbvqO9yTHIi9/OHf0Ycsx6t8FgvpcH1jGR9cAsTAuZuZaf
+	 4oplg9471OojyE92YJAiJmiCN3CX1zSOLXYT5gvxofcTKy2S0UinDH9H+n89WtEPQr
+	 yEa+bnEmltQMVIKreeGpWBt4njVFFSJm7Z8ToKLb3iqh/Y/w6tsONYrzLFNP2s9rRn
+	 9vV7M4DNBCmLXPJiuXmzQQs2u/1d0Pm3XIJUfwVRNQzT2MNtHOZX90985WJLOahyoM
+	 819hCxoug0WpQ==
+Date: Thu, 19 Dec 2024 19:52:28 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Yixun Lan <dlan@gentoo.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Jesse Taube <mr.bossman075@gmail.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Meng Zhang <zhangmeng.kevin@spacemit.com>,
+	Meng Zhang <kevin.z.m@hotmail.com>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: gpio: spacemit: add support for K1
+ SoC
+Message-ID: <20241219-secret-passenger-350d9c54fdf9@spud>
+References: <20241219-03-k1-gpio-v2-0-28444fd221cd@gentoo.org>
+ <20241219-03-k1-gpio-v2-1-28444fd221cd@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 4/9] mfd: add base driver for qnap-mcu devices
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, lee@kernel.org,
- jikos@kernel.org, jic23@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- jdelvare@suse.com, linux@roeck-us.net, srinivas.pandruvada@linux.intel.com,
- bentiss@kernel.org, dmitry.torokhov@gmail.com, pavel@ucw.cz,
- ukleinek@debian.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-input@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-leds@vger.kernel.org
-References: <20241107114712.538976-1-heiko@sntech.de>
- <20241107114712.538976-5-heiko@sntech.de>
- <5d1ddf7e-2df5-4563-81e5-e0cfa7ef58da@ijzerbout.nl>
- <3130486.CbtlEUcBR6@diego>
-Content-Language: en-US
-From: Kees Bakker <kees@ijzerbout.nl>
-In-Reply-To: <3130486.CbtlEUcBR6@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TlnOqraZRabZf1Fo"
+Content-Disposition: inline
+In-Reply-To: <20241219-03-k1-gpio-v2-1-28444fd221cd@gentoo.org>
 
-Op 19-12-2024 om 20:43 schreef Heiko Stübner:
-> Hi Kees,
->
-> Am Donnerstag, 19. Dezember 2024, 20:18:38 CET schrieb Kees Bakker:
->> Op 07-11-2024 om 12:47 schreef Heiko Stuebner:
->>> These microcontroller units are used in network-attached-storage devices
->>> made by QNAP and provide additional functionality to the system.
->>>
->>> This adds the base driver that implements the serial protocol via
->>> serdev and additionally hooks into the poweroff handlers to turn
->>> off the parts of the system not supplied by the general PMIC.
->>>
->>> Turning off (at least the TSx33 devices using Rockchip SoCs) consists of
->>> two separate actions. Turning off the MCU alone does not turn off the main
->>> SoC and turning off only the SoC/PMIC does not turn off the hard-drives.
->>> Also if the MCU is not turned off, the system also won't start again until
->>> it is unplugged from power.
->>>
->>> So on shutdown the MCU needs to be turned off separately before the
->>> main PMIC.
->>>
->>> The protocol spoken by the MCU is sadly not documented, but was
->>> obtained by listening to the chatter on the serial port, as thankfully
->>> the "hal_app" program from QNAPs firmware allows triggering all/most
->>> MCU actions from the command line.
->>>
->>> The implementation of how to talk to the serial device got some
->>> inspiration from the rave-sp servdev driver.
->>>
->>> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
->>> ---
->>>    MAINTAINERS                  |   6 +
->>>    drivers/mfd/Kconfig          |  13 ++
->>>    drivers/mfd/Makefile         |   2 +
->>>    drivers/mfd/qnap-mcu.c       | 338 +++++++++++++++++++++++++++++++++++
->>>    include/linux/mfd/qnap-mcu.h |  26 +++
->>>    5 files changed, 385 insertions(+)
->>>    create mode 100644 drivers/mfd/qnap-mcu.c
->>>    create mode 100644 include/linux/mfd/qnap-mcu.h
->>>
->>> [...]
->>> diff --git a/drivers/mfd/qnap-mcu.c b/drivers/mfd/qnap-mcu.c
->>> new file mode 100644
->>> index 000000000000..4be39d8b2905
->>> --- /dev/null
->>> +++ b/drivers/mfd/qnap-mcu.c
->>> [...]
->>> +int qnap_mcu_exec(struct qnap_mcu *mcu,
->>> +		  const u8 *cmd_data, size_t cmd_data_size,
->>> +		  u8 *reply_data, size_t reply_data_size)
->>> +{
->>> +	unsigned char rx[QNAP_MCU_RX_BUFFER_SIZE];
->>> +	size_t length = reply_data_size + QNAP_MCU_CHECKSUM_SIZE;
->>> +	struct qnap_mcu_reply *reply = &mcu->reply;
->>> +	int ret = 0;
->>> +
->>> +	if (length > sizeof(rx)) {
->>> +		dev_err(&mcu->serdev->dev, "expected data too big for receive buffer");
->>> +		return -EINVAL;
->>> +	}
->>> +
->>> +	mutex_lock(&mcu->bus_lock);
->>> +
->>> +	reply->data = rx,
->>> +	reply->length = length,
->>> +	reply->received = 0,
->>> +	reinit_completion(&reply->done);
->>> +
->>> +	qnap_mcu_write(mcu, cmd_data, cmd_data_size);
->>> +
->>> +	serdev_device_wait_until_sent(mcu->serdev, msecs_to_jiffies(QNAP_MCU_TIMEOUT_MS));
->>> +
->>> +	if (!wait_for_completion_timeout(&reply->done, msecs_to_jiffies(QNAP_MCU_TIMEOUT_MS))) {
->>> +		dev_err(&mcu->serdev->dev, "Command timeout\n");
->>> +		ret = -ETIMEDOUT;
->>> +	} else {
->>> +		u8 crc = qnap_mcu_csum(rx, reply_data_size);
->> Here `rx` is still not initialized.
-> The MCU works in a way that a sent command always causes "reply_data_size"
-> bytes to be returned.
->
-> So for each qnap_mcu_write() above we know that this amount of bytes has
-> been returned (and thus written into rx) if the completion above finishes
-> sucessfully.
->
-> "rx" is assigned to reply->data above (same as the expected received size).
-> When characters are received on the serial line, this will trigger
-> qnap_mcu_receive_buf() from the serdev and thus fill those elements in rx.
->
-> So if we land at the qnap_mcu_csum() call, we do have received the expected
-> amount of bytes from the serdev and thus rx is filled accordingly.
->
-> If we don't receive the needed amount of bytes, we end up in the timeout
-> above that.
->
-> What did I miss?
-Sorry, my fault. I missed the essential part of the external event (external
-for this function that is).
-Thanks for explaining.
->
->
-> Heiko
->
->>> +
->>> +		if (crc != rx[reply_data_size]) {
->>> +			dev_err(&mcu->serdev->dev,
->>> +				"Invalid Checksum received\n");
->>> +			ret = -EIO;
->>> +		} else {
->>> +			memcpy(reply_data, rx, reply_data_size);
->>> +		}
->>> +	}
->>> +
->>> +	mutex_unlock(&mcu->bus_lock);
->>> +	return ret;
->>> +}
->>> +EXPORT_SYMBOL_GPL(qnap_mcu_exec);
->>>
->
->
->
 
+--TlnOqraZRabZf1Fo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Dec 19, 2024 at 03:17:43PM +0800, Yixun Lan wrote:
+> The GPIO controller of K1 support basic functions as input/output,
+> all pins can be used as interrupt which route to one IRQ line,
+> trigger type can be select between rising edge, failing edge, or both.
+> There are four GPIO banks, each consisting of 32 pins.
+>=20
+> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> ---
+>  .../devicetree/bindings/gpio/spacemit,k1-gpio.yaml | 75 ++++++++++++++++=
+++++++
+>  1 file changed, 75 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml=
+ b/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..3d3d0b3bf2c144ed57b717bee=
+50064949e26f087
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/spacemit,k1-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SpacemiT K1 GPIO controller
+> +
+> +maintainers:
+> +  - Yixun Lan <dlan@gentoo.org>
+> +
+> +description:
+> +  The controller's registers are organized as sets of eight 32-bit
+> +  registers with each set controlling a bank of up to 32 pins.  A single
+> +  interrupt is shared for all of the banks handled by the controller.
+> +
+> +properties:
+> +  compatible:
+> +    const: spacemit,k1-gpio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  ranges: true
+
+What do you need this for?
+
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +  gpio-ranges: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description:
+> +      The interrupt shared by all GPIO lines for this controller.
+> +
+> +  interrupt-names: true
+
+Not that a name is valuable when you only have one interrupt, but if you
+don't specify what the name is, you cannot interrupt-names!
+
+Cheers,
+Conor.
+
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +    description:
+> +      The first cell is the GPIO number, the second should specify inter=
+rupt
+> +      flag. The controller does not support level interrupts, flags of
+> +      IRQ_TYPE_LEVEL_HIGH, IRQ_TYPE_LEVEL_LOW should not be used.
+> +      Refer <dt-bindings/interrupt-controller/irq.h> for valid flags.
+> +
+> +  interrupt-controller: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - gpio-controller
+> +  - "#gpio-cells"
+> +  - interrupts
+> +  - interrupt-names
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gpio@d4019000 {
+> +        compatible =3D "spacemit,k1-gpio";
+> +        reg =3D <0xd4019000 0x800>;
+> +        gpio-controller;
+> +        #gpio-cells =3D <2>;
+> +        interrupts =3D <58>;
+> +        interrupt-names =3D "gpio_mux";
+> +        interrupt-parent =3D <&plic>;
+> +        interrupt-controller;
+> +        #interrupt-cells =3D <2>;
+> +        gpio-ranges =3D <&pinctrl 0 0 128>;
+> +    };
+>=20
+> --=20
+> 2.47.0
+>=20
+
+--TlnOqraZRabZf1Fo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2R5fAAKCRB4tDGHoIJi
+0onSAP4xxs/QVra4eTxc7N7zscD89ikPe+xy/u6E9H6QX4W7CQD/X+H99sdD6DWM
+rW2FKZz+v4xUkPFAI/AyGM5nouWeQgk=
+=cxwg
+-----END PGP SIGNATURE-----
+
+--TlnOqraZRabZf1Fo--
 
