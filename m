@@ -1,199 +1,181 @@
-Return-Path: <devicetree+bounces-132839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AF339F849C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:44:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CD0E9F8498
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:43:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A63B516B1E5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:44:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C822616B9F5
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:43:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B85A1B424D;
-	Thu, 19 Dec 2024 19:43:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7A0A1B424D;
+	Thu, 19 Dec 2024 19:43:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Y4ASiIA7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MctMW8Pu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D791AA1C9;
-	Thu, 19 Dec 2024 19:43:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80B4D1990BA
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 19:43:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734637436; cv=none; b=GJ6E9u1XJ2q8xM/lGZLxb0+8ZPA/UY9P5d+KvSg6MMDnS73Dw8jeafI5tJ/Cu34Xq2evj+bvKw9w5a6SCwjl4eU8kZZgAtzigYHFOctMipWfQ+gxWOH/Io94coBFukhFRMAN4i+NWDTQpkvP5rPYXLUlU5zqOuVy7mk9knPH2W0=
+	t=1734637414; cv=none; b=MIC8Ip6IEVXKbCgtGYm2Ool9reeDRWZ/Nqc1vqjCWLqQrKx7aGGFAOY5Lkwglt7EWt8tiKIxIQUPUhBQ26q+hrhgw+zC3tZbUg3lDJTgaggCx2L6qm/Cdtvopdp1itVJ4DEwrqiH80C36upgsXPnmRIec6fI8t2NmHqbfmefzXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734637436; c=relaxed/simple;
-	bh=i3cPteIfIVnhWjHZhPIlwE1zwndbKSSYnSQS6sFoWmA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lzaOFNvxGd8TJ/0IW5WM+y9Ex+XLsYKJJ7rhtVOjma53/dJghHFJtSV0zX+q9Fs1+ktuQXciRO783/mZBQQpmOT7uX9idqOJAVsOkb2FPJYEXtVAm1Wh02ZS3VamqO/epynyNZOKh8pIH7JYxitJWvHABBWxwZDd4TMDY/LHTX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Y4ASiIA7; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Trw19/+QiBbtHhclK1EUrKm5kQfG8IrKDSpHB+S9x+s=; b=Y4ASiIA7RKiZIUxh6Wkxf5FMz2
-	rmFwCsDftnxyt6CGxD5KPW2LNHr8SzvanArYNnYOPykiyu8lZxtFr3MmpSQEhB2qiSfw3gC6jAjwZ
-	VrI+879M/z3zrKTQV4UtRbKdva49oo7T1SQgaoeTu6ZzMpqGwfRWnbSCJej19tSJxN0pGgxBgJLUz
-	QcEnFLtnpBpa/hdJMKMRmgn2qqYGlf2gWXmsFEgX/XE/kwthI1rD1mQWqx4yHLHPsjL/l6pHFFljJ
-	1ePb61zC1vWf4XoADcpxwRv6BNUcHJn0AqAcvLYsVeaY5KN+he/3zSPok95HIXpdUPH7DAogou5ig
-	vTqbkzBg==;
-Received: from i53875bfb.versanet.de ([83.135.91.251] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tOMQQ-00028H-7j; Thu, 19 Dec 2024 20:43:10 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: lee@kernel.org, jikos@kernel.org, jic23@kernel.org,
- Kees Bakker <kees@ijzerbout.nl>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- jdelvare@suse.com, linux@roeck-us.net, srinivas.pandruvada@linux.intel.com,
- bentiss@kernel.org, dmitry.torokhov@gmail.com, pavel@ucw.cz,
- ukleinek@debian.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-input@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-leds@vger.kernel.org
-Subject: Re: [PATCH v9 4/9] mfd: add base driver for qnap-mcu devices
-Date: Thu, 19 Dec 2024 20:43:08 +0100
-Message-ID: <3130486.CbtlEUcBR6@diego>
-In-Reply-To: <5d1ddf7e-2df5-4563-81e5-e0cfa7ef58da@ijzerbout.nl>
-References:
- <20241107114712.538976-1-heiko@sntech.de>
- <20241107114712.538976-5-heiko@sntech.de>
- <5d1ddf7e-2df5-4563-81e5-e0cfa7ef58da@ijzerbout.nl>
+	s=arc-20240116; t=1734637414; c=relaxed/simple;
+	bh=njmpdj/WJomkc7eliil5Lmnys9pLe9x4CTI6BOUVpKI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lbgFGyC0f0GY2hvwkrarvcs30ePs6VVp2v8asTCfo6Fg+aOCWfUPr81hKx8a7z71Y+vFvf92YebniuxkSFhlzVU71MOoh5RcNdxOm4lW77Ttt+QgUGQ9QdyMdNbWyDszItQCN4G1fWc9T5pMO2q3YY/ZyNka7XigaeMqaWAzuks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MctMW8Pu; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJGId6N005312
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 19:43:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ElJue1zWoHt8nvSVMkVrxY1iYyqdjrXkc7YVyvs0eBk=; b=MctMW8Pu9DM5w+K2
+	lHE5rbJPnrfiksdV6jwOUdUVKT67Y/y2iHWO9hrhgAh+IwwVcGa2cigK6N3nkLc5
+	21yEvJO4MHGoBwNAIf1HHbgqRY9HCFAJxN0U25tnkG9SyBFs2vUBV5I64tck35OO
+	y5hVnpOPubVWh+Qxc9EYyMNSOz2H+7oEuLCk8faFZXM3PV+H2BKr0ZNoFQGz4LHm
+	DFuTQENuV+dGb6tb+AQlbvOIl5ip5lgAoCLr9uQdJbDCX0n0YpUYWnkHtUNN0ds4
+	Iwei5vOmLdVjgXNLkZRQIArg1W8/27pYDoJcsbycnl2Cu2OYfhY+8SrJ0zcdQsHi
+	AU+mxw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43mpw60ga0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 19:43:31 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4679af4d6b7so2893581cf.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 11:43:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734637410; x=1735242210;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ElJue1zWoHt8nvSVMkVrxY1iYyqdjrXkc7YVyvs0eBk=;
+        b=LMsXDfbHSndfEn1tb3ihapogWLGeNuBuanoeElOr9iM2Ra4HrZ9YlAjWu+vruc9ipV
+         MQgmLEyhOV2I1hfl4Y4RMofpL/ews9Vjje4G/9a0yBBD4cdpcVsSuJcoopJ/YCWmf5lc
+         a68FXTSm1q+n/deb2/C0ddxLuo0HfBejBSWb/0wk1FUHccd6WpBlVQbtwpwIqiT5f3ED
+         2H+Qg8HdxU5EFU5NjtY3O7zFEQtjYtnQgCPdYC0eFAH27XnpK3ZSf0i1rmRJ89c93eXp
+         MyfA1O4zNKiLtsRir9sYTOKIydWjwO/4eKri5w19r6oq/TnLJlS/V5okgXiqcFYV9fSF
+         s5YQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWVsgBVahyVd8OSAdFfGwuGqW+ISJj8DuV+KWk09klue/KH4nM2YBMosYCDt1TgvUFQw3nsWCnNLmeX@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMvGAFIpXi6NM+JEnftWc7khOQwVOoI2lxGRNHGsz8i1aiJj7i
+	x8qKALVyu0hBP93oKHwrWogoaRJYWdtGVDD13mtxGCaTmHp8JYYoZ6hO7eK+op+g6CVjCxDEbqj
+	x+PYKkmDyVCq2uHUvD2ajPtRZlawUS7loIUzpWGxQTH82Ek57Z8GPky+vZMnW
+X-Gm-Gg: ASbGnctx4SPB0OCfAnZboyFEf1vgJ3dFEml1hDLVZU1UOnOIhBJl3/iE/Wv41T3ubnh
+	eQfqBUp89ENFeEDgmYHirrF00TM/fGMZSytfinGyeRMbCwQuPpz3XbtbZ//gWZm6K8QlHj6c08g
+	PI4HgGV1rmqK8siA9tJeTf2kodhjIMBuI+0q8o/3QKzUzba0mB81bveuT2QxzhkAQAG0ESsz5Rp
+	wP33ZKipJpLU1zEkWeEMx5DnWbeKigdMnl9tiYRekuGcyvWxWqF1hfecTyOTUKwni1/k+yv2S36
+	XRPdmZF2lcu8gMjCHkvERjilgKewLz0RiAg=
+X-Received: by 2002:a05:622a:50c:b0:466:88ba:2026 with SMTP id d75a77b69052e-46a4a9a2935mr1263101cf.14.1734637410438;
+        Thu, 19 Dec 2024 11:43:30 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFYEQOUAGpGrD/DrXfHSKEFTHgWGm4MANMh46wcOGUyVfn8+5OpwPjGOLaylBbzOx+Atxj8bQ==
+X-Received: by 2002:a05:622a:50c:b0:466:88ba:2026 with SMTP id d75a77b69052e-46a4a9a2935mr1262891cf.14.1734637410004;
+        Thu, 19 Dec 2024 11:43:30 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e830af1sm96997466b.14.2024.12.19.11.43.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Dec 2024 11:43:29 -0800 (PST)
+Message-ID: <54cc4221-ba5f-4741-9033-20874265ca01@oss.qualcomm.com>
+Date: Thu, 19 Dec 2024 20:43:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: arm,psci: Allow S2RAM power_state
+ parameter description
+To: Sudeep Holla <sudeep.holla@arm.com>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Lorenzo Pieralisi
+ <lpieralisi@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
+ <20241028-topic-cpu_suspend_s2ram-v1-1-9fdd9a04b75c@oss.qualcomm.com>
+ <Z1LQOmEfFy640PjG@bogus>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <Z1LQOmEfFy640PjG@bogus>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: zbspB9TyXezBCk2C64n2CndHR6RncVm9
+X-Proofpoint-GUID: zbspB9TyXezBCk2C64n2CndHR6RncVm9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 phishscore=0
+ clxscore=1015 spamscore=0 bulkscore=0 impostorscore=0 mlxscore=0
+ adultscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2412190156
 
-Hi Kees,
+On 6.12.2024 11:21 AM, Sudeep Holla wrote:
+> On Mon, Oct 28, 2024 at 03:22:57PM +0100, Konrad Dybcio wrote:
+>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>
+>> Certain firmware implementations (such as the ones found on Qualcomm
+>> SoCs between roughly 2015 and 2023) expose an S3-like S2RAM state
+>> through the CPU_SUSPEND call, as opposed to exposing PSCIv1.0's
+>> optional PSCI_SYSTEM_SUSPEND.
+>>
+> 
+> If so, can you elaborate why s2idle doesn't work as an alternative to what
+> you are hacking up here.
 
-Am Donnerstag, 19. Dezember 2024, 20:18:38 CET schrieb Kees Bakker:
-> Op 07-11-2024 om 12:47 schreef Heiko Stuebner:
-> > These microcontroller units are used in network-attached-storage devices
-> > made by QNAP and provide additional functionality to the system.
-> >
-> > This adds the base driver that implements the serial protocol via
-> > serdev and additionally hooks into the poweroff handlers to turn
-> > off the parts of the system not supplied by the general PMIC.
-> >
-> > Turning off (at least the TSx33 devices using Rockchip SoCs) consists of
-> > two separate actions. Turning off the MCU alone does not turn off the main
-> > SoC and turning off only the SoC/PMIC does not turn off the hard-drives.
-> > Also if the MCU is not turned off, the system also won't start again until
-> > it is unplugged from power.
-> >
-> > So on shutdown the MCU needs to be turned off separately before the
-> > main PMIC.
-> >
-> > The protocol spoken by the MCU is sadly not documented, but was
-> > obtained by listening to the chatter on the serial port, as thankfully
-> > the "hal_app" program from QNAPs firmware allows triggering all/most
-> > MCU actions from the command line.
-> >
-> > The implementation of how to talk to the serial device got some
-> > inspiration from the rave-sp servdev driver.
-> >
-> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> > ---
-> >   MAINTAINERS                  |   6 +
-> >   drivers/mfd/Kconfig          |  13 ++
-> >   drivers/mfd/Makefile         |   2 +
-> >   drivers/mfd/qnap-mcu.c       | 338 +++++++++++++++++++++++++++++++++++
-> >   include/linux/mfd/qnap-mcu.h |  26 +++
-> >   5 files changed, 385 insertions(+)
-> >   create mode 100644 drivers/mfd/qnap-mcu.c
-> >   create mode 100644 include/linux/mfd/qnap-mcu.h
-> >
-> > [...]
-> > diff --git a/drivers/mfd/qnap-mcu.c b/drivers/mfd/qnap-mcu.c
-> > new file mode 100644
-> > index 000000000000..4be39d8b2905
-> > --- /dev/null
-> > +++ b/drivers/mfd/qnap-mcu.c
-> > [...]
-> > +int qnap_mcu_exec(struct qnap_mcu *mcu,
-> > +		  const u8 *cmd_data, size_t cmd_data_size,
-> > +		  u8 *reply_data, size_t reply_data_size)
-> > +{
-> > +	unsigned char rx[QNAP_MCU_RX_BUFFER_SIZE];
-> > +	size_t length = reply_data_size + QNAP_MCU_CHECKSUM_SIZE;
-> > +	struct qnap_mcu_reply *reply = &mcu->reply;
-> > +	int ret = 0;
-> > +
-> > +	if (length > sizeof(rx)) {
-> > +		dev_err(&mcu->serdev->dev, "expected data too big for receive buffer");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	mutex_lock(&mcu->bus_lock);
-> > +
-> > +	reply->data = rx,
-> > +	reply->length = length,
-> > +	reply->received = 0,
-> > +	reinit_completion(&reply->done);
-> > +
-> > +	qnap_mcu_write(mcu, cmd_data, cmd_data_size);
-> > +
-> > +	serdev_device_wait_until_sent(mcu->serdev, msecs_to_jiffies(QNAP_MCU_TIMEOUT_MS));
-> > +
-> > +	if (!wait_for_completion_timeout(&reply->done, msecs_to_jiffies(QNAP_MCU_TIMEOUT_MS))) {
-> > +		dev_err(&mcu->serdev->dev, "Command timeout\n");
-> > +		ret = -ETIMEDOUT;
-> > +	} else {
-> > +		u8 crc = qnap_mcu_csum(rx, reply_data_size);
-> Here `rx` is still not initialized.
+Please see other branches of this thread
 
-The MCU works in a way that a sent command always causes "reply_data_size"
-bytes to be returned.
-
-So for each qnap_mcu_write() above we know that this amount of bytes has
-been returned (and thus written into rx) if the completion above finishes
-sucessfully.
-
-"rx" is assigned to reply->data above (same as the expected received size).
-When characters are received on the serial line, this will trigger
-qnap_mcu_receive_buf() from the serdev and thus fill those elements in rx.
-
-So if we land at the qnap_mcu_csum() call, we do have received the expected
-amount of bytes from the serdev and thus rx is filled accordingly.
-
-If we don't receive the needed amount of bytes, we end up in the timeout
-above that.
-
-What did I miss?
-
-
-Heiko
-
-> > +
-> > +		if (crc != rx[reply_data_size]) {
-> > +			dev_err(&mcu->serdev->dev,
-> > +				"Invalid Checksum received\n");
-> > +			ret = -EIO;
-> > +		} else {
-> > +			memcpy(reply_data, rx, reply_data_size);
-> > +		}
-> > +	}
-> > +
-> > +	mutex_unlock(&mcu->bus_lock);
-> > +	return ret;
-> > +}
-> > +EXPORT_SYMBOL_GPL(qnap_mcu_exec);
-> >
+> 
+>> This really doesn't work well with the model where we associate all
+>> calls to CPU_SUSPEND with cpuidle. Allow specifying a single special
+>> CPU_SUSPEND suspend parameter value that is to be treated just like
+>> SYSTEM_SUSPEND from the OS's point of view.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> ---
+>>  Documentation/devicetree/bindings/arm/psci.yaml | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
+>> index cbb012e217ab80c1ca88e611e7acc06c6d56fad0..a6901878697c8e1ec1cbfed62298ae3bc58f2501 100644
+>> --- a/Documentation/devicetree/bindings/arm/psci.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/psci.yaml
+>> @@ -98,6 +98,12 @@ properties:
+>>        [1] Kernel documentation - ARM idle states bindings
+>>          Documentation/devicetree/bindings/cpu/idle-states.yaml
+>>  
+>> +  arm,psci-s2ram-param:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      power_state parameter denoting the S2RAM/S3-like system suspend state
+> 
+> Yet another NACK as this corresponds to PSCI SYSTEM_SUSPEND and as per
+> specification it takes no such parameter. This is just misleading.
 > 
 
+Yeah PSCI_SYSTEM_SUSPEND takes care of this on platforms that expose it.
 
+DEN0022F.b Section 6.5. recommends that CPU_SUSPEND StateID includes
+a field for system-level power down states. This binding change only
+adds a way for DT-based platforms to associate such state with S2RAM
+suspend.
 
+That may be a bit Linux-specific whereas bindings are supposed to be
+OS-agnostic, but since we effectively want one PSCI state for deep
+suspend regardless of the OS, I would think this kind of hint is fine.
+
+Konrad 
 
 
