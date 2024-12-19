@@ -1,145 +1,142 @@
-Return-Path: <devicetree+bounces-132869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A78599F85F8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:32:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E9E59F8601
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:36:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F5217A16B4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:32:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 968C31891AD2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB9371BDA8C;
-	Thu, 19 Dec 2024 20:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B131BD9E5;
+	Thu, 19 Dec 2024 20:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pzWe1wT7"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="jqEFdJVO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AF7B1B2198
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 20:32:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F068F1A0BDB
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 20:36:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734640331; cv=none; b=N5NJUQmtIfFDKJkiLJFC6O2GIkBo/yRlXaxrGhfao7iLXDnuqP1rcOHMd6NCAETwqlMI52gsbsUuml/pQwD99mGGzpz3O6snwj68n3vbI+G4xIyX+UjhIFeO5ieRSD5aGi8dfsJAMiNx0b7cdKfrnr0ryvEh83zPFl760+KVyTg=
+	t=1734640608; cv=none; b=tlK1K2lc2vsOhKvnsoU+X1PVK9VcYTIikREBcsrSzjGefLk2DOBPvpaLrrVB5k3M4Ud3xDygT/1ny7ngIcBg5eKmZ2xHJoPj8grOg2jHwcRgR29Ik+lBwotU5ep/15SilGpyPLzS2isivoYce2Cdyz6VfYSJG7vuwBwFJLVjPdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734640331; c=relaxed/simple;
-	bh=JnZNj5dN0tWdrd513ocZNlH6XAPltMOpkJb0WAxxZOo=;
+	s=arc-20240116; t=1734640608; c=relaxed/simple;
+	bh=wda/lOi/x8S8oGXon3Gu91m7K9vSKbCp+D1/y3DYncA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ULRG0y+0HVajDGXKbESTSNzifEp31YgYK/MxcegcF6aIz2Vfe87h52D1mvaf9gnqzs4ahBdAq2TZrMvCF52b9jA/kBObBG1EFHBE5hpJ4Ax16W+Nlix9mAz6mA5qvXcq/t6JPlkRyJ0Pu41EIkq53tbxTH4JE5pd82nXxKRTRGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pzWe1wT7; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJF4dCB028923
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 20:32:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2r7lqqykJ1mlR1GtRm0303qtSS1CFFJFT8nV8QAgwew=; b=pzWe1wT72a0scn0z
-	qrzglq04EHHLXi0JXkNuqbZTY/3Bf7aF59RwNTqxaPaLOFOAYScOLmdruyowGSlu
-	cJJ0NJ5qwOabr61dRO0hadTlKDYtlbgWV/BCKZqDvch6R+f3dAIE10c0Jq/hWp25
-	o7gbhWVHHvdiA0A16DmB8Ngj96TI8JxADKXMXIZVxpNeAAfL1DV/EhUYY2ZSHB1q
-	7K+kSPwbLwGkhe2uqQDWf3PdBQhgfkko6CxctJ4SaK4FGfdAb2NSWz1VM2Ob9qu6
-	OVFXSWCGJjk2K7rpRvbEW/DtSclvVDyeyeSwsGegmfvRJYhJvgugEHJlgCPioC+4
-	wb81cQ==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43mntf0syy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 20:32:09 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7b6f28dc247so18417185a.3
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 12:32:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734640328; x=1735245128;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2r7lqqykJ1mlR1GtRm0303qtSS1CFFJFT8nV8QAgwew=;
-        b=vxkNGPwpmhordsZmrTN+AOjgnoaPrhIdwooEhDYrWsYu/nSOo9FXw0a6+1/sXi7+Mg
-         YQNCsEUodUxmpjVNG8BkNK5PQ+mUf06apYrS2fGL/3NTYW4klUzfIDoqzFdb1Y15kBw3
-         nMQjJM0T/udSad9vlUcnqke/etkX1g8Njcp5OFbjzBHfXzmibxCviZd3Rilc6C5zeBcW
-         +svWw1nnamJLcHeuYfoK6TQkD1QGuB+sce2OR0NiX9+MgaFy2mewRhhjLfDuM+NdPz8C
-         DHlJCxmeP/xkiYMV8n0OqE3qbnxKD86fdGT4eUIE793kpxkh6CW4vfDqb+GgfN6twFj7
-         zQXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVCTqlmHFZ6I/vXWp5mYgPH6cjJAeh+Dd8dz6wbLqOZqixe9HCawXjwOfLXc+T6bS/o1IZ2TLgD3WCV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQ0VGrZd/RY/eGH/G7bD9EBc1ygAgzb2NssapG/ZHs1jPAYU15
-	Fd7O6w2ZA+Z5emHToXZ0lLdbR6fJwLjqn54HbdMP8uzhacp4h89xiaQDhoOlicXruNXXu4q0qnH
-	lyKODUda9esVEhfHpKKcnSSBuc7sVH6CMBVRW1w3eyyRusUA+0xd0v1wJQdU8
-X-Gm-Gg: ASbGncsrp1pYL1Kb6L05wHjgUhqgYGvwUrDrak9N1lQ6yqZDNzpMhPUdqqTzNOiGbsM
-	NfqdZb0k+/azfQ58ndPIMC2bxTGPnzNfc/qDquZU4WKgoj578RHsDcztP5LlZCH9O+1G37ryji3
-	w3qWe6UtKpcUpsL2hWCEMwMkkOb9yqvoZkvSYAFK5NY1KBK5dwqRHQjxNh9nac0plUTPDqfSBEK
-	PtEJYv+KQXNGJGUlLILc009BQKGGiKvPFXPtxzuUMS25IhbrVFt6qw+6e0YmXGTQAGa6+6enDsa
-	IEA0BFOaancMyVnzUCzlp3hNOnsSC0XlfNc=
-X-Received: by 2002:a05:620a:880a:b0:7b6:c3ad:6cc4 with SMTP id af79cd13be357-7b9ba735bb1mr16171485a.5.1734640327971;
-        Thu, 19 Dec 2024 12:32:07 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGr/BT/C0gq2A4C7Zfdib60XQyH836ye8DaMiERcbura2uCr7PYf7vwLn06b5xZzgBUocus+Q==
-X-Received: by 2002:a05:620a:880a:b0:7b6:c3ad:6cc4 with SMTP id af79cd13be357-7b9ba735bb1mr16170185a.5.1734640327679;
-        Thu, 19 Dec 2024 12:32:07 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0efe48d6sm101069466b.127.2024.12.19.12.32.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Dec 2024 12:32:06 -0800 (PST)
-Message-ID: <5c1d7aef-6148-4881-844a-23e859fa3d11@oss.qualcomm.com>
-Date: Thu, 19 Dec 2024 21:32:02 +0100
+	 In-Reply-To:Content-Type; b=dPfUnU0jyqLM/No9dMg4j4gGAY9PHEhga1CFLr7PKHQTP1Ffvw6oGEhLtM8lLdN7HfdpjwpIHkx4F7LJlGLS2um/WIFCZrtXhRGVu2oSOf3GjrXIVynqDlUUqc8+cJOMKWVZJMIxivTo2w0JOdYdVtd2BKfsSALcv8OryMn4//Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=jqEFdJVO; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id C375F2C07BD;
+	Fri, 20 Dec 2024 09:36:37 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1734640597;
+	bh=8beJoOU5Nrta/GXSMFPY+yvlk7KJmBRMZB0sO9Gd+Ro=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jqEFdJVOq6Df+bjKIhfgMOLjctChMcKvTbYs8PHUtnLpfZGHn7w/8zVcTIP7moPxB
+	 odBUo1Ekh2zZODP3gutiiEDziPjZRxEDphGwbaEkUW7xTVTnYX+6zbH+XIhHa2b0Hy
+	 ujZukwsR/X4uhOhJiPfrk8Of3IgryH0hNTXBd6efKMvPfq9eYddXKoSQNAF1dxq9lO
+	 RJLbkssXvY5Lv9qhJ1XOrQ52QMZ9mzN4p/vPQjB2ngYcLDYu7Y7IDGSo8V9lDw29qF
+	 qV3YYmTRy2S2+kDGiJrc2clnMq8CH2Ye9lLRDZ551tHv4IZxJH5L/4hi8r5C5gigOy
+	 oVZYPZZvsKTRw==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B676483d50000>; Fri, 20 Dec 2024 09:36:37 +1300
+Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id A90AE13EE00;
+	Fri, 20 Dec 2024 09:36:37 +1300 (NZDT)
+Message-ID: <fe34b6b0-01fd-4dc7-a1b4-6c27ad2c9e74@alliedtelesis.co.nz>
+Date: Fri, 20 Dec 2024 09:36:37 +1300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFT v3 19/23] arm64: dts: qcom: sm6375: Fix MPSS memory
- base and length
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Abel Vesa
- <abel.vesa@linaro.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Luca Weiss <luca.weiss@fairphone.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20241213-dts-qcom-cdsp-mpss-base-address-v3-0-2e0036fccd8d@linaro.org>
- <20241213-dts-qcom-cdsp-mpss-base-address-v3-19-2e0036fccd8d@linaro.org>
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v2 4/4] net: mdio: Add RTL9300 MDIO driver
+To: Andrew Lunn <andrew@lunn.ch>,
+ Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, tsbogend@alpha.franken.de,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, markus.stockhausen@gmx.de,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20241216031346.2626805-1-chris.packham@alliedtelesis.co.nz>
+ <20241216031346.2626805-5-chris.packham@alliedtelesis.co.nz>
+ <CAJq09z49uBPPZqDyc3O+4nVppKoKdrJunQnQKBUfQmwzdV+ZFQ@mail.gmail.com>
+ <07073382-df51-4064-9802-cdbfcf732523@lunn.ch>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241213-dts-qcom-cdsp-mpss-base-address-v3-19-2e0036fccd8d@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: k7J2eZRfXvzBSCPznswR3OOWrXvd1UqP
-X-Proofpoint-ORIG-GUID: k7J2eZRfXvzBSCPznswR3OOWrXvd1UqP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
- impostorscore=0 adultscore=0 priorityscore=1501 bulkscore=0
- lowpriorityscore=0 clxscore=1015 mlxscore=0 malwarescore=0 mlxlogscore=843
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412190163
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <07073382-df51-4064-9802-cdbfcf732523@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=676483d5 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=RZcAm9yDv7YA:10 a=TaXqMiGPp3LDd7P4VpYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-On 13.12.2024 3:54 PM, Krzysztof Kozlowski wrote:
-> The address space in MPSS/Modem PAS (Peripheral Authentication Service)
-> remoteproc node should point to the QDSP PUB address space
-> (QDSP6...SS_PUB): 0x0608_0000 with length of 0x10000.
-> 
-> 0x0600_0000, value used so far, is the main region of Modem.
-> 
-> Correct the base address and length, which should have no functional
-> impact on Linux users, because PAS loader does not use this address
-> space at all.
-> 
-> Fixes: 31cc61104f68 ("arm64: dts: qcom: sm6375: Add modem nodes")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On 19/12/2024 22:40, Andrew Lunn wrote:
+> On Thu, Dec 19, 2024 at 01:46:41AM -0300, Luiz Angelo Daros de Luca wro=
+te:
+>> Hello Chris,
+>>
+>>> +++ b/drivers/net/mdio/mdio-realtek-rtl.c
+>> I wonder if the name might be dubious in the future with other realtek
+>> products with MDIO. Realtek is quite a large company with many
+>> products. Would a version/model/family/usage in that name help a far
+>> future reader to identify what this file is about?
+> Isnt rtl the family name? Or would you prefer mdio-realtek-rtl9300.c?
 
-Konrad
+Yes my intention was that "rtl" was the family name. I'm happy to change=20
+to rtl9300.
+
+I suspect this probably will be compatible with the rtl9310. I've just=20
+received a RTL9313 based board so will probably start looking at that in=20
+the new year.
+
+>>> +static int realtek_mdio_wait_ready(struct realtek_mdio_priv *priv)
+>> All those realtek_mdio_* prefix might collide with realtek_mdio_* from
+>> drivers/net/dsa/realtek/realtek-mdio.c. This realtek_mdio_* is about a
+>> Realtek SoC MDIO interface with the switch. The other realtek_mdio_*
+>> is about the interface (MDIO or SMI) between (the other vendor) SoC
+>> and the switch. I don't know if the maintainers are OK with it but
+>> listing those symbols in alphabetic order from both sources might be
+>> confusing.
+> rtl9300_ as a prefix?
+
+I'd happily=C2=A0 change to rtl_ or rtl9300_
+
+>>> +static const struct of_device_id realtek_mdio_ids[] =3D {
+>>> +       { .compatible =3D "realtek,rtl9301-mdio" },
+>>> +       { .compatible =3D "realtek,rtl9302b-mdio" },
+>>> +       { .compatible =3D "realtek,rtl9302c-mdio" },
+>>> +       { .compatible =3D "realtek,rtl9303-mdio" },
+>> Do these different compatible strings really matter? AFAIK, compatible
+>> are not for listing all supported models/variants but to describe
+>> devices that have a different behavior and indicating that (with
+>> different strings) is needed to decide how the driver will work. If
+>> the driver does not use which compatible was set, it might indicate
+>> that we don't really need 4 compatible but 1.
+> It can be useful when we initially think they are compatible, but
+> later find out they are not, and we need different behaviour.
+
+The way I've written the dt-binding any board should include=20
+"realtek,rtl9301-mdio" and may also include one of=20
+"realtek,rtl9302b-mdio", "realtek,rtl9302c-mdio",=20
+"realtek,rtl9303-mdio". For the MDIO driver the specific chip could=20
+possibly tell us the maximum SMI bus number. Unfortunately I've only got=20
+a block diagram of the RTL9302C, I know that does have 4 SMI interfaces,=20
+the others may have fewer. Things would probably work fine for now with=20
+just "realtek,rtl9301-mdio" but is there any harm in including the others=
+?
+
 
