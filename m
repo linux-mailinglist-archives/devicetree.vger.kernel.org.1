@@ -1,122 +1,126 @@
-Return-Path: <devicetree+bounces-132808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8AB89F829D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 18:54:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 653A09F82DA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:03:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A024164F59
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:54:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98A7E188306E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:58:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D211AAE13;
-	Thu, 19 Dec 2024 17:51:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3092119995D;
+	Thu, 19 Dec 2024 17:58:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MULLzKP3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71BE1AAA39
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 17:51:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 020D9198845;
+	Thu, 19 Dec 2024 17:58:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734630705; cv=none; b=bIGTMK97HzIXvp8440/v9yLwFohoIL319xjmT4zO8d7hq8uIB9nx/d5vy6d+qMAd8jJHotzj/NoewZ2NI00GVjVyvNkRMvoWgzCkPyu4IZSeH+GUHDqXZDGu1e8tMX1B8RHAF7jVwB0TDo/7Ekfpb6gJDkIQg7UJPCS7MwH5sXs=
+	t=1734631105; cv=none; b=Zz4l5OdipBTIsRtle+taPA9oDvSarrn7uxwYm8ZL5zhofLJNxsdgg51pADArGjMIwLhXrxNL+V2Fd6ezoilYFqZKFPSu/HXjTYWoHVrXFpzDUkzOyBnFLq9vMiWuY0upMsXZKxDsVkLKDl43wAqa8hIgNZpaQdMlAcuhD5s1vQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734630705; c=relaxed/simple;
-	bh=RXmn4MciZ9YgwR78W7U17JKWJnMvgFTtpy1SeRCECns=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L5LbUR6qB/Y4JDICYe1WrmF03CmvTkBH5M2ekOvoYYKkbMIejjMWO+UZGfoLTJuFENzDN92byncFN7GOxgLqN9813CxiKMQahWh4tKb5eK8IuTE3dWpVuogxlCAI9fjZc7+0M5ioSSboegjKy2jJUHfcukHzaMBK1dDDJYoZjAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOKgS-0003qo-Eb; Thu, 19 Dec 2024 18:51:36 +0100
-Message-ID: <30dbe486-7e36-426d-8fa4-3ecd83193a10@pengutronix.de>
-Date: Thu, 19 Dec 2024 18:51:35 +0100
+	s=arc-20240116; t=1734631105; c=relaxed/simple;
+	bh=7wCwtFksg50cHD8A+kd1Anc6XSnGUsUgCpIadOy0csc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dqwYPHBYewW+I4kpGqTaG3Pf8Bzz/DoFyc6JFXqvUtKogrLPgRt65RsJS89P3wNQEFwKDT6rWhpxAt+VhS1GNBNkfDsl2G1Vn3UmUQCUlLn3ltLTReEB6hXZk+Xcmg0SXNNRjUAmsRwhmShG3Gw+3EeEHy3LvJ+Gqq53GGF76g8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MULLzKP3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFFE8C4CED4;
+	Thu, 19 Dec 2024 17:58:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734631104;
+	bh=7wCwtFksg50cHD8A+kd1Anc6XSnGUsUgCpIadOy0csc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=MULLzKP3rwLBahQWiKmfT/fjjBqUDLGVNnmy8YHd4yoMpP0J5vXReTeinaP0lyKJ9
+	 CGSqtj+pOxB1ahCA9OBbbFrsGk+Er6KN7Vqmwg4wInTLfgGFamxf/ahPaHsnnpuEML
+	 odfz5eFBb6/yz8hviGDadQyg3e+wHqi/iIO9m6Jz4IxmnKoB3R0avKWTWS9rA6sjh4
+	 Qc0Yp+4KNhtfZfvJi959o51JbrIlgeo0EjI7+MbqnNO7K88DbobxwzCCfJ9yJSUtqU
+	 MvwLrp0i3PzYHz+hrEncdBcyv1IZEFKlGa7N4OosiMubPpF7xKDIKSRDYeq4iP+qMV
+	 YcNGJiCTqjmow==
+Date: Thu, 19 Dec 2024 17:58:15 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Lothar Rubusch <l.rubusch@gmail.com>, lars@metafoo.de,
+ Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, eraretuya@gmail.com
+Subject: Re: [PATCH v7 3/7] dt-bindings: iio: accel: adxl345: add
+ interrupt-names
+Message-ID: <20241219175815.797b376a@jic23-huawei>
+In-Reply-To: <20241215-satisfied-expiring-9200ec935768@spud>
+References: <20241213211909.40896-1-l.rubusch@gmail.com>
+	<20241213211909.40896-4-l.rubusch@gmail.com>
+	<20241214121057.5b12a236@jic23-huawei>
+	<20241215-satisfied-expiring-9200ec935768@spud>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/10] arm64: dts: imx8mp-skov: increase I2C clock
- frequency for RTC
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Oleksij Rempel
- <o.rempel@pengutronix.de>, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de>
- <20241219-skov-dt-updates-v1-10-38bf80dc22df@pengutronix.de>
- <Z2RcJCaYC2FW3Ks6@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <Z2RcJCaYC2FW3Ks6@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 19.12.24 18:47, Frank Li wrote:
-> On Thu, Dec 19, 2024 at 08:25:34AM +0100, Ahmad Fatoum wrote:
->> From: Oleksij Rempel <o.rempel@pengutronix.de>
->>
->> The NXP PCF85063TP RTC we use is capable of up to 400 kHz of SCL clock
->> frequency, so let's make use of this instead of the 100 kHz bus frequency
->> we are currently using.
+On Sun, 15 Dec 2024 14:56:58 +0000
+Conor Dooley <conor@kernel.org> wrote:
+
+> On Sat, Dec 14, 2024 at 12:10:57PM +0000, Jonathan Cameron wrote:
+> > On Fri, 13 Dec 2024 21:19:05 +0000
+> > Lothar Rubusch <l.rubusch@gmail.com> wrote:
+> >   
+> > > Add interrupt-names INT1 and INT2 for the two interrupt lines of the
+> > > sensor.
+> > > 
+> > > When one of the two interrupt lines is connected, the interrupt as its
+> > > interrupt-name, need to be declared in the devicetree. The driver then
+> > > configures the sensor to indicate its events on either INT1 or INT2.
+> > > 
+> > > If no interrupt is configured, then no interrupt-name should be
+> > > configured, and vice versa. In this case the sensor runs in FIFO BYPASS
+> > > mode. This allows sensor measurements, but none of the sensor events.
+> > > 
+> > > Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>  
+> > 
+> > Just to repeat what I sent in reply to v6 (well after you'd posted this).
+> > Maybe we can maintain compatibility with the binding before this by adding
+> > a default of INT1.  
 > 
-> Increase I2C frequency to 400khz from 100kHz because NXP PCF85063TP RTC
-> support it.
+> But can you make that assumption? If we did, and it's not universally
+> true, we break systems that had INT2 connected that previously worked.
 
-Unlike your other suggestions, these is no information lost by rewriting
-the commit message as you suggest. I don't mind, but must admit it feels
-like bikeshedding. What is your concrete objection to my commit message?
+I guess there is a possibility of a driver in some other OS assuming INT2, but
+seems an odd 'default' choice.  Also odd for a writer of DT for a platform
+to assume it.
 
-Thanks,
-Ahmad
+There is a thing that comes up in spec orgs when discussing whether to
+rush out an errata.  "Is this bug something people would get wrong
+thinking the answer was clear, or something where the would ask a question?"
+Anyone who thinks INT2 is the obvious choice for me falls into the would
+ask category.
 
+However, in the linux driver we would would go from assuming no interrupts
+to assuming the wrong one.  That's indeed bad.  So I guess this doesn't work.
+Oh well no default it is.
+
+Jonathan
 
 > 
-> Frank
-> 
->>
->> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
->> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
->> ---
->>  arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
->> index a683f46fcbab..ec7857db7bf0 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
->> @@ -333,7 +333,7 @@ reg_nvcc_sd2: LDO5 {
->>  };
->>
->>  &i2c3 {
->> -	clock-frequency = <100000>;
->> +	clock-frequency = <400000>;
->>  	pinctrl-names = "default";
->>  	pinctrl-0 = <&pinctrl_i2c3>;
->>  	status = "okay";
->>
->> --
->> 2.39.5
->>
-> 
+> > Then you'd need to drop the dependency on interrupt-names.
+> > 
+> > I'm not sure though if the checking of number of entries will work against
+> > a default. Give it a go and see what happens :)
+> > 
+> > We are lucky that we can't have bindings in the wild assuming ordering
+> > of the two interrupts due to the maxItems being set for interrupts.
+> > 
+> > It's a messy corner, perhaps we should just not bother in the binding,
+> > but keep that default handling in the driver?
+> > 
+> > DT binding folk, what do you think the best way of handling this is?  
 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
