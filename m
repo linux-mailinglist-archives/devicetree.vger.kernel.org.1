@@ -1,135 +1,130 @@
-Return-Path: <devicetree+bounces-132713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 410DF9F7DE7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 16:25:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 620D89F7DF1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 16:26:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DD85167218
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 15:24:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F651188893F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 15:25:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2147F225765;
-	Thu, 19 Dec 2024 15:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4ACE225A25;
+	Thu, 19 Dec 2024 15:25:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hlCZ06li"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="kp2vhVH3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F244221440
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 15:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8837214AD2B;
+	Thu, 19 Dec 2024 15:25:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734621871; cv=none; b=Jj3/PDdl7xLvt5nW/MLQjHPrz7XIWdKnCYa9eebQ/pyHfIvJ9qKBR64GEWZAIIWZzxrJT5UdKOvYPhBVIIeA+tUHKwyjn6LVKyW090NbFlLeQUkIyPaXTWe6guAb9yAWfev87qFxEMe+8I/LNWlEe7+c40iprsDhB0bA4pBpVf4=
+	t=1734621919; cv=none; b=s+BDpVPKnZRT1+2e36KRseQanWijK97QwKC2MIUBg0fQWgXtGdaHPUr4Ngr3PLmzmFxLhxYjGlq+G4oJCYwrsTROgfrDjQ+oNqEaKIqINwU2AwScPWpHmOFbDDYdxtdMNgkQa0dFod3FmVfd8DyU6WA8iXkMjKzay5CzTatLjl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734621871; c=relaxed/simple;
-	bh=9u5TfMAkYnT9fMBY4d4ebSKzahEQ+4SZIveD0P/Qg3c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Y5p0dgDg+N6eyzV1H0Cglpr5Xb4fwiBqJqlCKpwTPkPXFXW+px+f1SRmV+koErOcUncyZJKkyevCUNfFrvxiiEfLoVXwoONmM0vo6fxhh+t5fPqhsL9wG7V8N9+B2ZUUeJ4Mew4MxshFpDzomZvaeMWMm7W1eFLxfc6DtulttUI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hlCZ06li; arc=none smtp.client-ip=209.85.219.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e0875f1e9edso656035276.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 07:24:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734621868; x=1735226668; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9u5TfMAkYnT9fMBY4d4ebSKzahEQ+4SZIveD0P/Qg3c=;
-        b=hlCZ06liBTba8ojsbNRkORo5fpvfKCWSe+mpfUDnkgftkb2JWPP7xgBWkYpe988bn4
-         aEt42bIdZ9sbaXEAdK4cygbGL5VtJyoESJGtVmRJz0cyPhOkmgzybbh/5a5uRCTTN9n1
-         AAtvR3UpnS+OTbW9Re6xngOg6hSAWx+n8TQwFwHNem4XpfepMvmtqYEKGC6WMraTKt2l
-         2afIId69lX7EzYHg/V/DoN1zEhgpYX+Cj434dPkmngNaGJ8GALfLPQSxiQCSCfw+vSaL
-         93i/cRi3eXJQSvs3GEHarOlr8QrU1TdtjnsFm6dAEurVaH3Gi6/iAeQFz5qGIZh7ahqg
-         FmFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734621868; x=1735226668;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9u5TfMAkYnT9fMBY4d4ebSKzahEQ+4SZIveD0P/Qg3c=;
-        b=IVIqPG/pqmWhaYTu/f0Nyd/9ndyOKqIdWOyJFbI7Oqjktuge+CvGaR4PlQsOzykTX9
-         y8KINvBKH5gFvNC+csoVtdWQXDNDvaEpKDsjEgavDiw5HX30fodzNJ0XEDk4bjpn9edB
-         01L20JKJGA+2nMZoE6LVf70xEypW/RWm7SrUDu1balntolOmP78J+m3gtppia+YlfW2F
-         PZ292NPsSqbTlgxM7Y/g0oae2GyDWcl8oX0hxHVAbzEhMccNftjd1pgmbU2bt9Ixr/XE
-         8J/it2sNKz3QbPRJ3HJnUDASzuGoZqj1hEwo/uQaqVm43ttomRLOETaAWTUZ05vskogh
-         Ks0g==
-X-Forwarded-Encrypted: i=1; AJvYcCW/0i1bJp14hPe5Gjx7rYN6DLDR+2uP2JgJwGkFtPhb3s7hcJwgNfB+yRS2nTToUgh+hmQ8ce1TZu1K@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz24530TxCXxwsngPksQOA+n36iZLGyIHMOV9ButpYrGpzCRHyd
-	hf8h1UU2aeHZp+ijft5pMnj5HfROrGFpK4Kx0CPxTQY8voep23N16jwE0mtk/VIX979OOdYFVsj
-	D2NbDGQjnaMzyVs9ZBndVuBJwD1Ccy8N1wAP6FA==
-X-Gm-Gg: ASbGnct811NdrDNq1NqRGdD2I6L7FLs9nXiEMyD4Npq+urbMy4KbVFnxeAExzR+NNwx
-	6+j9KheLcmZ7G3WHX3aUvKKPZzCAqdKkjfwewOKQ=
-X-Google-Smtp-Source: AGHT+IF2kQgFBOzyEEkAI4pJHRkCY0Jcr+zEiF6qdrlCsCYLryXyRM6QNm3EmHo8N9VP1hBxIgpZU0u0GDJzLhjYAzM=
-X-Received: by 2002:a05:690c:ed2:b0:6e9:e097:718c with SMTP id
- 00721157ae682-6f3ccc29cb9mr52105677b3.6.1734621868413; Thu, 19 Dec 2024
- 07:24:28 -0800 (PST)
+	s=arc-20240116; t=1734621919; c=relaxed/simple;
+	bh=8CenElWxsrQM+5q5jUKzqdqA9U9JpdH7i598RKM6JOY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Es+vXUw4Y/kVuW43j1MCaeIlqQbrGZ3wMy1lsDX2eT+z2CJmMyClatTe4LWcBkUEKGLDDqbCVxcme5UqW+VPyREkDgD3QbN+FT+ZWSQ6klujrphoCN2Oe1aaKIG5dhsQRr7w15koWsjCobT1kzKVxxm1n7xAvGLuhUADNdNre4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=kp2vhVH3; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.1.104] (93-61-96-190.ip145.fastwebnet.it [93.61.96.190])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5C291163;
+	Thu, 19 Dec 2024 16:24:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1734621877;
+	bh=8CenElWxsrQM+5q5jUKzqdqA9U9JpdH7i598RKM6JOY=;
+	h=From:Subject:Date:To:Cc:From;
+	b=kp2vhVH3egWy+0/jOA4/v8ovM6RY2VfkFUQuQ47tdSaWLEaCB6LQM+ZDqqKZuNPKD
+	 fz1E+kc+XsFzgdFwfWefXbVf3iWMxvip6lL25MDJNuZxfbINpzcFJ4swd6764sAtTj
+	 6fyh3jzers4NV4rd6lT/4OHlvpT22qAxSJumbgcU=
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Subject: [PATCH v3 0/4] renesas: r8a779g0: Enable VSPX on R-Car V4H
+Date: Thu, 19 Dec 2024 16:24:48 +0100
+Message-Id: <20241219-rcar-v4h-vspx-v3-0-8fe8d2afb268@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241206211145.2823-1-ansuelsmth@gmail.com> <20241206211145.2823-2-ansuelsmth@gmail.com>
- <CAPDyKFovtfR7BiXBfH-79Cyf1=rd-kmOoEnEdMArjGUxSks-Aw@mail.gmail.com>
- <20241213040001.jaqeuxyuhcc73ihg@vireshk-i7> <675cb6b2.050a0220.149877.5bab@mx.google.com>
-In-Reply-To: <675cb6b2.050a0220.149877.5bab@mx.google.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 19 Dec 2024 16:23:52 +0100
-Message-ID: <CAPDyKFq7c607_NtiEF=4HinL5HABv7+fW9EGi1xfwpOpUPO6Bg@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] cpufreq: airoha: Add EN7581 CPUFreq SMCCC driver
-To: Viresh Kumar <viresh.kumar@linaro.org>, Christian Marangi <ansuelsmth@gmail.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, upstream@airoha.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMA6ZGcC/3XMQQ7CIBCF4auYWYsBiqV15T2MCwqjnYWlGQypa
+ Xp3aVfG6PJ/yftmSMiECU67GRgzJYpDiWq/A9+74Y6CQmnQUhullRXsHYtsepHTOAkbGtl2Vip
+ vj1A+I+ONps27XEv3lJ6RXxuf1br+k7ISUgSUBp00BoM5U0CX4tBFx+Hg4wNWMOtPpPlGdEF8b
+ ava2NDWqH4gy7K8AcP9B1P2AAAA
+X-Change-ID: 20241217-rcar-v4h-vspx-7d809b701c75
+To: Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+X-Mailer: b4 0.15-dev-1b0d6
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1502;
+ i=jacopo.mondi@ideasonboard.com; h=from:subject:message-id;
+ bh=8CenElWxsrQM+5q5jUKzqdqA9U9JpdH7i598RKM6JOY=;
+ b=owEBbQKS/ZANAwAIAXI0Bo8WoVY8AcsmYgBnZDraU4K7ZtuQ49pFq5JwvQVmMpYKLOqzBkvxP
+ RmSoW3dzfKJAjMEAAEIAB0WIQS1xD1IgJogio9YOMByNAaPFqFWPAUCZ2Q62gAKCRByNAaPFqFW
+ PO93D/95gfskUIilPphp9pqSOtIhY6kTH6R5j7PpXAUyh7yzBT0MbtZT+xRSlqFuyTwPgbsGSh9
+ L4xtnL5ANfQLI+xLqLfMbE4/x6pfs7XS2x1dxFRIosqqleTTO696F6UDHYjTvYJiDsltiNmBtXE
+ QD+w6WKROe3PMDXUa292Koberdb/ngpEs0VosJIIGVC87CYO1nsMQvOcRpU/Kkdc+Oq7LNfiPEq
+ CQB0Rw1Ur0Ao5LdszLazK0DEgpWxuyA0KNSZJzgJyXI1W/H+9NfWoQg1C3lwcYrRApG+tr4SjOU
+ dB0vjZDLVE25eABHQxIcrnUfx4VgpNHrbDgsBByj6CYoA8Po8inR/BdatomgAF1pD0sFsXr+ISS
+ HmcuYE3OzcALp2z5p+E/0siOpQjA7KhAyBH1YJ8rrgleUFRwQHj/msBkJKXhMny0120wx0hnYZF
+ KdHaH3bj8bg4n887waRDQcGYHhRYa00X0WWwEmG39QQLtR+4VOywRu1UnGBfybJgSsXXF7OitU6
+ Yg5qMZTABXHx8bj62iepgMa0rBMbffo7SeukGkRrH2wg+YUST3hoZBW+vHAuuCpDStANX6I6V4c
+ jI6DR2FphWKVwoutRIfKAPCXcaxecBFEPa58uUsczfruA+saco9Ct4Bc2zy9R/8skfVSuGh0RwF
+ eN/TSEeVmoPIsHg==
+X-Developer-Key: i=jacopo.mondi@ideasonboard.com; a=openpgp;
+ fpr=72392EDC88144A65C701EA9BA5826A2587AD026B
 
-On Fri, 13 Dec 2024 at 23:35, Christian Marangi <ansuelsmth@gmail.com> wrote:
->
-> On Fri, Dec 13, 2024 at 09:30:01AM +0530, Viresh Kumar wrote:
-> > On 12-12-24, 13:01, Ulf Hansson wrote:
-> > > On Fri, 6 Dec 2024 at 22:16, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> > > Hmm, it looks like this needs to be moved and possibly split up.
-> > >
-> > > The provider part (for the clock and power-domain) belongs in
-> > > /drivers/pmdomain/*, along with the other power-domain providers.
-> > >
-> > > Other than that, I was really expecting the cpufreq-dt to take care of the rest.
-> > >
-> > > To me, the above code belongs in a power-domain provider driver. While
-> > > the below should be taken care of in cpufreq-dt, except for the device
-> > > registration of the cpufreq-dt device, I guess.
-> > >
-> > > Viresh, what's your view on this?
-> >
-> > Sure, no issues.. These are all cpufreq related, but don't necessarily belong in
-> > the cpufreq directory.
-> >
->
-> Problem is really DT schema... I wonder if it's acceptable to push a
-> name-only driver in pmdomain just do detach from cpufreq. The cpufreq
-> driver would manually probe the pmdomain. Is it acceptable?
->
-> Or do you have alternative solution for this?
+The series enables the two VSPX instances connected to the R-Car ISP
+on Renesas R-Car V4H. Define clock identifiers based on the MSTPCR id
+for the VSPX instances and defined device nodes in the V4H .dts file.
 
-The power-domain provider driver should use the compatible
-"airoha,en7581-cpufreq". This driver should be responsible for
-registering the genpd and the clock.
+The VSPX modules interface with extenal memory through dedicated FCP
+instances named FCPVX. Before defining VSPDX, define and enable the
+FXPVX instances as well.
 
-Potentially, the power-domain provider driver could also register the
-"cpufreq-dt" platform-device. To make this work, we also need to
-extend the cpufreq-dt driver (maybe extend its platform-data too?) to
-be capable of attaching the corresponding cpu-devices to their
-power(perf)-domains. For the moment, this isn't supported, but I think
-it would be nice if it could. Another option, would be to use an
-additional separate name-based cpufreq-driver, as in the
-qcom-cpufreq-nvmem.c, that then becomes responsible for registering
-the cpufreq-dt device.
+Compile-tested only series.
 
-Viresh, do you have a better approach in mind?
+Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+---
+Changes in v3:
+- Test on an actual board and fix the VSPX and FCPVX power domains to
+  use the ISP power domains
+- Re-parent the VSPX and FCPVX clocks to the 800MHz S0D1
+- Link to v2: https://lore.kernel.org/r/20241218-rcar-v4h-vspx-v2-0-c673647d96e1@ideasonboard.com
 
-Kind regards
-Uffe
+Changes in v2:
+- Collect tags
+- Re-sort nodes by unit address
+- Link to v1: https://lore.kernel.org/r/20241217-rcar-v4h-vspx-v1-0-de04ea044ed4@ideasonboard.com
+
+---
+Jacopo Mondi (4):
+      clk: renesas: r8a779g0: Add FCPVX clocks
+      arm64: dts: renesas: r8a779g0: Add FCPVX instances
+      clk: renesas: r8a779g0: Add VSPX clocks
+      arm64: dts: renesas: r8a779g0: Add VSPX instances
+
+ arch/arm64/boot/dts/renesas/r8a779g0.dtsi | 40 +++++++++++++++++++++++++++++++
+ drivers/clk/renesas/r8a779g0-cpg-mssr.c   |  4 ++++
+ 2 files changed, 44 insertions(+)
+---
+base-commit: 50d451b19cc58cf374160e30cbf72a5ed5b1b129
+change-id: 20241217-rcar-v4h-vspx-7d809b701c75
+
+Best regards,
+-- 
+Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+
 
