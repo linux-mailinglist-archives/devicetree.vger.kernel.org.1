@@ -1,87 +1,48 @@
-Return-Path: <devicetree+bounces-132728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EAB29F7EA2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 16:58:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39C8F9F7EAF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:00:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 442757A2EBF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 15:58:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 961E31697B4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 15:59:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A158228C81;
-	Thu, 19 Dec 2024 15:56:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A46227B96;
+	Thu, 19 Dec 2024 15:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="p2D4kreb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bBrAyI32"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B37F2288E3
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 15:56:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC51227B92;
+	Thu, 19 Dec 2024 15:57:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734623791; cv=none; b=emn0fVwBlrFnMSSleNfpK7vh4+ASIy6FmXvwKYQU0nBbB6BapYHWZjG2Dhu+MjbjJ2161Epp5Uu/D5dFsmstlnSW7HLCDs+QU5qqK4TS36KhT8iCT22yG4P+/H7icY4/X1Zg/G/tybj79D7VYLO5R8ck+UZ1GbzrCfCMQmvWh30=
+	t=1734623861; cv=none; b=B9leUJ4+Q6TyMvg54XU/EzQvOOED8bS4j/asX3+/gEWxXu8BNO/1Ei/d0GmFPNakMZDfOA14+UQaAdTylMrvkD7o988LVQpOmoBAerBi5BoMIiFN+Nvs410hfrNBZ68zeEAPYRbSjCc9KL/hYgJdsomaZXAU5d04R82myoMlfCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734623791; c=relaxed/simple;
-	bh=X+7eCtuuAFOT+5f71rAISxWG4VVudlHgu6ncmGs90f8=;
+	s=arc-20240116; t=1734623861; c=relaxed/simple;
+	bh=WHsaPH4vN65eQ3EHG00DyYwrh6aVIZf2EWqKlB/GkLk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UCkqx7xnCyqiu43QWNmkO3sji5qVuL1hPB3PBAUX3Yp/NHx9e0WQ/GFZR2s8EybUlh5leXOMWzJeXLtlZyyfgCKgwejGLvhn0UVTKQyk8sN5G2L1BP+5V39EVC+kv7zAKKGw9+Cte0hYCodQNPxf58TPwAHMw+v8guTUrfevm6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=p2D4kreb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ9gbG5008346
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 15:56:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KQVZ+St8cP/DMwgY6b7CIegBtD91hcvRSJsrCeCGi8E=; b=p2D4krebvJwnh1rn
-	sUTqDYhIiAO2IH54PyVIT0jOYLl6ZpDxfFl6/s5XvzWSJg/4HXA6b+jtmiD9xUc1
-	08JQvjEy9czKkYd3WOrfK0jLW1dR0tB0WXBDJnkF493XVoVNzmuUJL+jbt6lC94w
-	E8bsfcOUSnhnD1aaVlgPviCfFzKKMxmfixYDe+CQz+G8i0VHxxagaWo7sxy2vBw0
-	zrtPkYVknSCieSvFsl4ROgQrfqdVvkP57YPVlUv8M9EF7NlGFYtwITzUbjBj1tYw
-	VXAwjT7Iq7hZb1dT+lb0NsCYDufIH3dmByGFmLVRgtDCWkEKPKAU1BEVgZ/RsKKt
-	xC0jbg==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43mh3hh09d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 15:56:26 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-6d8f15481bbso2675396d6.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 07:56:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734623776; x=1735228576;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KQVZ+St8cP/DMwgY6b7CIegBtD91hcvRSJsrCeCGi8E=;
-        b=bv4F/Vo6SZ5M3VDu1bhnpiyC+iXEiL6feJK+ewBPD4hOKTlgBp/oiALRPWc8Ag6gB7
-         yAy/SDcLcBqkW88v5fLsRvGBE0F9GizXZV0RSja/4Brl4nvc2yXRBkVGSGPGJD5kRP2Q
-         7RnN6f5ZGmlBu29VcNwgPPl3WZpyfuUkZEPyABtYsiyJhUCysSsxRfice6NM4J4kV20s
-         MuTiQcmmFj+RDajmwxHKGr8qpettbzLkuX5iZA31RxKS/iCXSWDSmvCTSW4XrB+A/RJD
-         tYwACVaaX3cWapudj23uYprLSgD8kRNB4meWfWTZtUz649EoiSwS7lO1KEnxSiG97okl
-         /K0w==
-X-Forwarded-Encrypted: i=1; AJvYcCUFJkmJWzRUw2bNk6DraLzBGp+K6fXgeO7+QLZLBzXN9WvdX4uNe3XmIqqRnPg9ANYk66vNZ4c9efoo@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhXwU+5eGiplCRukSmZ691h3zYmw1c6l4r6EabyDyvuCTkwR7J
-	dKd0rVhvIaFdAbK4IWxDAu/nMr0XgbV8CurbQb/M1tZR5ajXSc8u3XTlE6RJf3reAZbGS1UNLhW
-	x2ywP6YUYaq5C1un681dzm04AN97W1LfEKgyrNnHQkibH2Qm0e3/dZ+FrUuUu
-X-Gm-Gg: ASbGnctgaSEkOmxbGy9kTWJofhOKn7NKuE3pXmhvda2MgCz/Z+BkudvjaeJfL9wIEeE
-	IgDgwaCY9T1m1wJldOj+dttxxgnSEJzZIaIx/8Ff0XOd5iOQuFEE2EtzelH9mrRnHvaFFsXyU3d
-	Tt43rSPbFKZFcLqH4V89Ci3/43rWoWfivxYHIYW11E7SUHcR22gnp7W0w1hzStnWRloIxH+yA6v
-	CEglRNpdIV6qMpwdkbuVvoq672Prr3LdIDkD4PkR/ZoQqcokEl/1yTuWbHhkxYvcrfzo5mNtSgx
-	9mnPBi2C2TVqDROrN5wUhohB/C7Z/ZQ+XhM=
-X-Received: by 2002:a05:6214:2387:b0:6d8:adb8:eb8c with SMTP id 6a1803df08f44-6dd092640e4mr49331496d6.10.1734623776533;
-        Thu, 19 Dec 2024 07:56:16 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IErWtDjFEcXFh240vEg6t5u8w+n+H+TIsZjcBAGfXirJYi8k3mR+zpREt2LW2BDL8Ct5Dmb9Q==
-X-Received: by 2002:a05:6214:2387:b0:6d8:adb8:eb8c with SMTP id 6a1803df08f44-6dd092640e4mr49331346d6.10.1734623776174;
-        Thu, 19 Dec 2024 07:56:16 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0efe4c1dsm79222966b.109.2024.12.19.07.56.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Dec 2024 07:56:15 -0800 (PST)
-Message-ID: <97277ffb-137b-4958-9c3c-e3d4973332d0@oss.qualcomm.com>
-Date: Thu, 19 Dec 2024 16:56:14 +0100
+	 In-Reply-To:Content-Type; b=Hm010B6bPLpwKuw9ygPIwWkfXEr9PHzOwMMgcQox9KsVLxnv4C8K1TKBBz3gByQqkZfNBDfeAEhFPs4OgG+JGAYTxJ50G0w5d61PzMfQP5AvmkXKz/BJIoHc+j+/9fHu15LVglueO58rfR0cHck+4Djb+BcHA1k2H1WbhxDPeQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bBrAyI32; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80D74C4CECE;
+	Thu, 19 Dec 2024 15:57:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734623861;
+	bh=WHsaPH4vN65eQ3EHG00DyYwrh6aVIZf2EWqKlB/GkLk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bBrAyI32CgnSEZBLY/CjF8WpoTPGd1WYjsCU99jzEyNBqnRkDQyFJ4B+82AyPfWjM
+	 ZHC98tCmbF7hqqAOHvIH2WLFSYHh4JNw22+afQNk0JWTfVcK6lQ6PorGmvBau6lSes
+	 oOlQi4LNY40DfQrZig4aYhJ9RVlJ/IvqmqlPtHqzXXNyha3DxFXPocb4yoQYh7N4F8
+	 yl1JmkL6uKuC5H4PTBlplmg1RliZV/cAF5yPsYtSWhy2SqmCNhSqsSyaachtNVSkyi
+	 wwFYV+7yZo07tsg6nn/n3oaClbU6CKjswfKc77C8nv+XobNF7tuxMtbhg8SJIBDB9C
+	 OA0M9vEOL0yHw==
+Message-ID: <c7278ed3-9361-4cd1-ad28-cdbcc3d84bcd@kernel.org>
+Date: Thu, 19 Dec 2024 16:57:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,83 +50,159 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100-lenovo-yoga-slim7x: Add lid
- switch
-To: aruhier@mailbox.org, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Maya Matuszczyk <maccraft123mc@gmail.com>
-References: <20241219-patch-lenovo-yoga-v2-1-4932aefcb9c8@mailbox.org>
+Subject: Re: [PATCH v2 1/2] dt-binding: clock: cs2600: Add support for the
+ CS2600
+To: Richard Fitzgerald <rf@opensource.cirrus.com>,
+ Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc: Paul Handrigan <paulha@opensource.cirrus.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, linux-clk@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ patches@opensource.cirrus.com
+References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
+ <20241219024631.3145377-2-paulha@opensource.cirrus.com>
+ <3glyuu4yg7wbykdsfm33m5evnn7fwg4dbplrkgzcceld3cgu2s@t3xjlhryt2y6>
+ <Z2P9X5b+oTo4Du/n@opensource.cirrus.com>
+ <3c09367c-808b-4414-bf6a-99e0bdaa3a27@kernel.org>
+ <Z2QYooZJ9kFeYzgc@opensource.cirrus.com>
+ <ebc6bc7d-d847-46fe-908c-c618d94e3345@kernel.org>
+ <a23a5e89-0a55-4b17-9911-a12cfa154ef2@opensource.cirrus.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241219-patch-lenovo-yoga-v2-1-4932aefcb9c8@mailbox.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <a23a5e89-0a55-4b17-9911-a12cfa154ef2@opensource.cirrus.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: myUg3QpmAxgZwgpJnFa_1EWXAiwFFV0d
-X-Proofpoint-GUID: myUg3QpmAxgZwgpJnFa_1EWXAiwFFV0d
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- lowpriorityscore=0 mlxscore=0 clxscore=1015 adultscore=0 suspectscore=0
- priorityscore=1501 bulkscore=0 mlxlogscore=999 malwarescore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412190128
 
-On 19.12.2024 4:49 PM, Anthony Ruhier via B4 Relay wrote:
-> From: Anthony Ruhier <aruhier@mailbox.org>
+On 19/12/2024 14:36, Richard Fitzgerald wrote:
+> On 19/12/24 13:16, Krzysztof Kozlowski wrote:
+>> On 19/12/2024 13:59, Charles Keepax wrote:
+>>> On Thu, Dec 19, 2024 at 12:39:38PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 19/12/2024 12:02, Charles Keepax wrote:
+>>>>> On Thu, Dec 19, 2024 at 09:51:00AM +0100, Krzysztof Kozlowski wrote:
+>>>>>> On Wed, Dec 18, 2024 at 08:46:30PM -0600, Paul Handrigan wrote:
+>>>>>>> +/* CS2600 Auxiliary Output */
+>>>>>>> +#define CS2600_AUX_OUTPUT_FREQ_UNLOCK	0
+>>>>>>> +#define CS2600_AUX_OUTPUT_PHASE_UNLOCK	1
+>>>>>>> +#define CS2600_AUX_OUTPUT_NO_CLKIN	2
+>>>>>>
+>>>>>> I still don't see why these three are supposed to be bindings. Drop
+>>>>>> them.
+>>>>>
+>>>>> In a binding one would presumably do:
+>>>>>
+>>>>> cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
+>>>>>
+>>>>> Apologies but I don't quite understand what you mean by the values
+>>>>> are not used in the binding? The driver reads the property and sets
+>>>>
+>>>> There is no user of these defines, so not a binding.
+>>>>
+>>>>> the pin to have the appropriate function. Admittedly one could drop
+>>>>
+>>>> It's not a proof that this is a binding.
+>>>>
+>>>>> the defines and then DTS would just have to do:
+>>>>>
+>>>>> cirrus,aux-output-source = <0>;
+>>>>>
+>>>>> But that feels a bit less helpful when reading the binding.
+>>>>
+>>>> Binding and being helpful are two different things. This to be the
+>>>> binding, it has to be used as a binding, so some translation layer
+>>>> between driver and DTS. It must have an user in DTS. I keep repeating
+>>>> this over and over...
+>>>>
+>>>
+>>> Apologies, but I not sure I totally follow this, and apologies if
+>>> you have already explained this are there some docs I can look
+>>> at?
+>>>
+>>> I think you are saying because these defines merely represent the
+>>> valid values for a device tree property and are not translated
+>>> into different values you can't put defines for them in the binding
+>>> header?
+>>>
+>>> So this would not be allowed:
+>>>
+>>>    #define CS2600_AUX_OUTPUT_FREQ_UNLOCK 0
+>>>
+>>>    cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
+>>>
+>>>    device_property_read_u32(dev, "cirrus,aux-output-source", &val);
+>>>    regmap_write(regmap, CS2600_OUTPUT_CFG2, val);
+>>>
+>>> But this would be fine:
+>>>
+>>>    #define CS2600_AUX_OUTPUT_FREQ_UNLOCK 1
+>>>
+>>>    cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
+>>>
+>>>    device_property_read_u32(dev, "cirrus,aux-output-source", &val);
+>>>    switch (val) {
+>>>    case CS2600_AUX_OUTPUT_FREQ_UNLOCK:
+>>>      regmap_write(regmap, CS2600_OUTPUT_CFG2, 0);
+>>>    }
+>>>
+>>> And this would also be fine?
+>>>
+>>>    cirrus,aux-output-source = <0>;
+>>>
+>>>    device_property_read_u32(dev, "cirrus,aux-output-source", &val);
+>>>    regmap_write(regmap, CS2600_OUTPUT_CFG2, val);
+>>>
+>> Yes. If you want to use in DTS user-readable values, then use string.
+>>
 > 
-> Add the lid switch for the Lenovo Yoga Slim 7x.
-> 
-> Other x1e80100 laptops use the GPIO pin 92 only, however on the Yoga
-> Slim 7x this pin seems to be bridged with the pin 71. By default, the
-> pin 71 is set as output-high, which blocks any event on pin 92.
-> 
-> This patch sets the pin 71 as output-disable and sets the LID switch on
-> pin 92. This is aligned with how they're configured on Windows:
->     GPIO  71 | 0xf147000 | in | func0 | hi | pull up   | 16 mA
->     GPIO  92 | 0xf15c000 | in | func0 | lo | no pull   |  2 mA
-> 
-> Signed-off-by: Anthony Ruhier <aruhier@mailbox.org>
-> ---
-> Changes in v2:
-> - Fixes patch format.
-> 
-> Tested-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> ---
->  .../boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts  | 38 ++++++++++++++++++++++
->  1 file changed, 38 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> index ca5a808f2c7df66a861a933df407fd4bdaea3fe1..311202aa9015a30f1d70108bb214d427f811dc3b 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dts
-> @@ -6,6 +6,7 @@
->  /dts-v1/;
->  
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/gpio-keys.h>
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->  
->  #include "x1e80100.dtsi"
-> @@ -19,6 +20,21 @@ aliases {
->  		serial0 = &uart21;
->  	};
->  
-> +	gpio-keys {
+> I don't understand this. Why should we have to use a string value for
+> something that only needs a simple integer value? Why can't we define
+> constants with meaningful names?
 
-If no better sorting key is present (such as base register), we tend
-to sort the nodes alphabetically, so this one would go between
-chosen and pmic-glink
+You can and you will find plenty examples of this, but as I explained
+earlier - this is not a binding. We avoid defining as a binding
+something which is not a binding.
 
-With that:
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-(you can use `b4 trailers -u` to pull tags automagically)
-
-Konrad
+Best regards,
+Krzysztof
 
