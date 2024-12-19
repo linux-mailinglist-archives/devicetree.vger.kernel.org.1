@@ -1,133 +1,140 @@
-Return-Path: <devicetree+bounces-132618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC2C9F79C8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:46:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42EFA9F79D6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:51:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A878188C37E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:46:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 582627A44D6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:51:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBB5E222566;
-	Thu, 19 Dec 2024 10:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9B4F2236F4;
+	Thu, 19 Dec 2024 10:51:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=remote-tech-co-uk.20230601.gappssmtp.com header.i=@remote-tech-co-uk.20230601.gappssmtp.com header.b="R/9fvMTZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LFEsRBhC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0037208A7
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 10:45:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E0192236ED
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 10:51:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734605161; cv=none; b=MBykEqtAwO/+VAqqmvEUhR4j04iKXRsX+3u0Qh2GNA3dTTy62bQ9cbAjFfILnEtNAmoNY8IiTy76+8jAKVn85G6SshmlyPZlPvdkw3u5fSAcHE7D//RtZ1QOOl7HXox3U0/uZo9LOpgOLqSsaZ+1CFt/FdGVLuBFJKwEHPZxwn4=
+	t=1734605466; cv=none; b=saqcdqG4o7pmX8qoKTtV0CdqzfH6qV36VCdEcc/1qIM+1nDQvXqp4kZ21jyO08ewB8Ctkwtr96BT3EJHg7s7UD4QGgfwXPP+eywyazKHnx1gXbBFvRRSGzPHpxadRbvI6eZT7K5cwSKQAE2VRZCu/FEsg+xlqMvQKWGwGfbE9yQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734605161; c=relaxed/simple;
-	bh=kfAWATXJKBJ8RGjGiVBA7vXcVCClGQxAViZsQ/ciTpM=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fu3Nx93haRfy6PGVt7H6nuF9QqX5rYlymP+YeT1/FysTkSEpyZo2mPVhxJJf2QeQcLXNEHNPEsvCJhg9zGwVppQUntX8Ls/Wuuh97obiqmNo7U4iWBeR9uNuGuWRsUHGAWdnFYZHqgzW7jbAQ03OdB4eOh4KekYS1527PkBj4sM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=remote-tech.co.uk; spf=pass smtp.mailfrom=remote-tech.co.uk; dkim=pass (2048-bit key) header.d=remote-tech-co-uk.20230601.gappssmtp.com header.i=@remote-tech-co-uk.20230601.gappssmtp.com header.b=R/9fvMTZ; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=remote-tech.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=remote-tech.co.uk
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5d437235769so994133a12.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 02:45:59 -0800 (PST)
+	s=arc-20240116; t=1734605466; c=relaxed/simple;
+	bh=emwP4RqztVOrkW2c5/KEohCWdgWL/oxDpV22fyZpUE0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=L/x3WEsZAIMiuM+VCgQijJYNwSrL3oroWMPuoLcN/xzw8/K3iYPH863UZeQtYlr09ad9gvol5IUydlniT1s3zFJtmKTHJ4jF6vJMghyorPdQkb6ihLQBnIo6pYQfKJwaOwWuIpsOZhtPIUamUUijNF+BNn/c36RFYo7sXmIVTY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LFEsRBhC; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aab6fa3e20eso106137066b.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 02:51:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=remote-tech-co-uk.20230601.gappssmtp.com; s=20230601; t=1734605158; x=1735209958; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dAHd+EbTV94znxZS0/H2KKVGTBswxUh/P1a9OtmVIVc=;
-        b=R/9fvMTZoKiSvxgqzcRm9apRJ7tG1fkJkZJ0IBeGU1olD1Z2wxcATns4ZzFBZbz3hO
-         9scSc6dMHElWT/RC81um7js2wLyHOSldfNcwTiq12i4WsRJMQ88xH7dhdcBs8971odCU
-         WChkMuIdefQaKL2fpvHw/0ZyC73soO28A72acGeT8Iyng4VbZNYn2SfY+XCuk2djR+JT
-         ZaxuGz/14MPNKFqBY4kd3knOVG/Kt4yjR5j3PLPFGrlzR8RhaNkGX//zApD9zKNkr/MF
-         KWp1qWE1zpervsa5KhDYHVsyLsNn7L2tvveCCGRbPusyXVEuM8gNOoSefxiRt1m1BCtb
-         sZkA==
+        d=linaro.org; s=google; t=1734605461; x=1735210261; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aVaHqJdzzc6/RXsrUMqwYr4L9WjHePTtMi55G/q79tg=;
+        b=LFEsRBhCgkyWQ/96yNvWMf8r33A0ZZY3AJV5MuiqVatWniXmNy7MQlthDhNS0LPrA7
+         B4hbAW+s5+2xEv8NMwIcKESqSKWxwS/Aui0fqq9GZBQR1NXoQ+KbwvSm38ECfOlMNkht
+         HLucs9TlwdKyGVG4LqhKGQeQP5FUpievzqj0y8dMIq1n1aoTIQrHSdEe6ZnDLJCcRIYi
+         ausjBqud0ApizXDvwPbdChd8f6fs+MroIqylBSdugy3RevqdhrobqsS8KORbuHoZNP2K
+         n8NKQShxjaI7UbuQKY3thZ251KzCTTiAOXoCxx8JP2jdN6m2fB3yKCZZLO1Gn9pSTtkH
+         cWMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734605158; x=1735209958;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dAHd+EbTV94znxZS0/H2KKVGTBswxUh/P1a9OtmVIVc=;
-        b=dfvAc9LAzBkSORdmJhHoEFvHPQ3HJVuCJkpi+M/r3rjwMQDv/Is8P72AnE4b31123Q
-         EYfPV8dzJGNTC/LMse8IlkeqI6sJqGTMmeRrMlSNzLTXHh9WlLbLaT6MXAZ8higIMxVS
-         C3DJyE1zhc2+R9GjoNFkK8y7wg3J/wpo0O2WM4X5H2kukiE3Z3bib0K5SZHsBVKm+rtF
-         adPUGd4ZEV0iVpY2zvwmTEmMSHCBEryU8Eha9Ed78t8H4vf6LVJm6nblGypDs5psXLpG
-         ap3ZxfkRPryoW92Y0PnkwV5otiyPGnaV5e65U95OqO+NiAw6c5B5dVv1xgcZdgARsuRv
-         BXNw==
-X-Forwarded-Encrypted: i=1; AJvYcCUBqWLfF+YcTsIfhj5mTbdro7VOnA3q8pkpJzk6KU6FaXaS7S9rOgGbyuQt6AW2D10A1+2jRRpNK1Wh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7/hC2qk7OcGON5bSKikafdDVfbeRnnTZJmaKdxZZ3sR7acUXd
-	kTH8WlNVCgv4cXkL6F+vwKs1O1PbM9wTctl3nbsR2p2vR2NTGQiDJXfympp6qYEXhLOq6eyzRzm
-	ISYb/QC+MGz3Npotuf0t5dJHnrOu92C16GZthCcC9Yr+pQyk13vyN+meVkP5neXA5Y/asvDT6Xx
-	crkQ3XcdYtRkkC/N0guY7GYV03
-X-Gm-Gg: ASbGncuAbMDDt9BHFReSn/gp18jR+JtGRV1ksYqr/ncOGfKIKfqq/4wFVwGgEOe5c4D
-	GgBMLtgQqd71Ov1H9hfmNBpuvIC8lUZUXfY/jQY354OaAG5OMZiFsTZrdU0bIStiKUSYCWNP+T9
-	DsoK/jExLbYjZkjvEyZlGGalqWovudpOozidtrcQqs7AEQKnk+bzkl0bo6pKHMCpGpZ1x4qQ8iK
-	2nh6+nnwN3/Ra7X/ISkksAjbNyvp0RkJrA2xO4XaTysnfnIbPu8hLVgg2tDpAfSFur+j6RTbZvA
-	fI3gaOsiNaIsO/K+aH6zPX8J
-X-Google-Smtp-Source: AGHT+IGGzXK6nUcQjtIbuDIGRxih07nRmy8iLhfk2fbAs5JzbyHv7qJEr2ajzXdsqNw5Q0QRupGTaA==
-X-Received: by 2002:a05:6402:4025:b0:5d0:aa2d:6eee with SMTP id 4fb4d7f45d1cf-5d80261d527mr2647404a12.26.1734605158033;
-        Thu, 19 Dec 2024 02:45:58 -0800 (PST)
-Received: from admins-Air ([2a02:810d:aec0:2a54:946f:b35a:e674:a0cd])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d80675a5a8sm514166a12.13.2024.12.19.02.45.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2024 02:45:57 -0800 (PST)
-Date: Thu, 19 Dec 2024 11:45:50 +0100
-From: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
-To: lee@kernel.org, pavel@ucw.cz, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, corbet@lwn.net, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v10 2/3] dt-bindings: leds: Add LED1202 LED Controller
-Message-ID: <Z2P5XvxCjAPmiFDI@admins-Air>
-References: <20241218182001.41476-1-vicentiu.galanopulo@remote-tech.co.uk>
- <20241218182001.41476-3-vicentiu.galanopulo@remote-tech.co.uk>
- <c93c89c2-7188-4b17-ab3f-a3d2f1972a21@linaro.org>
- <20241219082840.GN2418536@google.com>
- <e911eda1-fec3-4d2e-bb8b-655f6661825c@linaro.org>
- <20241219084227.GO2418536@google.com>
+        d=1e100.net; s=20230601; t=1734605461; x=1735210261;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aVaHqJdzzc6/RXsrUMqwYr4L9WjHePTtMi55G/q79tg=;
+        b=bvXLJhXk+q9Itbw3GExPMiCI18hUotC6m4UxtVo6CLx0yj3PtCFGbmrv7rIG1sWZuD
+         a+vPoySC5oLoEFXEHbeZ1NKOdj/m14F470LwhG6uk01fb3kQcOWzZDP/LZrwjYTPTC7b
+         6yePgdu81cSvzcMiBpspUua8R60+JTc7pYRSBJH6BPIwsjeVwQinDZDPisW4u9/4CA7t
+         WdmeOGOfel5yVWLxYaQOjCk0YXMjsUDfWMinPg7c2nkQOoP2EMF/ZkJHdJyj90UkPLv+
+         h8qY2EkMRwWoUGsNeeMc0J9jOyX8MU9Ye9wN6Qq5j0kFlL8+ytW0RMp08KcJIME7hKPM
+         UeBw==
+X-Forwarded-Encrypted: i=1; AJvYcCUlGV16+gTojl26nBW8P/ChoCWE6i64yEflcdfxMcQgXPBFrn1hsDfTjQf/8uOiYqZrdfeEMidey1Af@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzit3Jffss853loNEcIKEX9UeZ/IyPODlOFo9f1Qht6bslJIGbS
+	3CNSoT4jULIpOqpdWN/reuSTkzJKFE3Mv+/iiIINuTcHx/vfvznM5sGlQRAPcSw=
+X-Gm-Gg: ASbGnctzrp4tdsoimwbuYXjVZBkO3NjWyqNhmZGDsibL5QYBjZMf4IzPKm/aayy8Sxw
+	AGomeobYA94aXmJV4lkENAOkJDOXAGNVCNPJpBU67c2+gaN9xJzFnu7iThXZ+j5MGP1wID2sxR5
+	Qd1sYqNtgPCu6VUsuIHWOab5/xFHcCnxUbKiwGOsP33Ms+IilGHdgwfv6vp+U33NKRrOv17cf6S
+	yaj4G8nh/6oXU1AZWx3cz7N4RovV4d9fPNzMDw66Ewp4WEl0ovLt7EfiqnIDA48
+X-Google-Smtp-Source: AGHT+IHBuRkyoQD1EHB9ZmOyTHsx9PCdtAK0b+CCDpTw9RoYQfSOBxBrLbZUs1ESOuaSGAfTefp1Fg==
+X-Received: by 2002:a17:906:3145:b0:aa6:b4b3:5923 with SMTP id a640c23a62f3a-aabf47baa14mr514507566b.33.1734605461426;
+        Thu, 19 Dec 2024 02:51:01 -0800 (PST)
+Received: from [192.168.0.14] ([188.26.61.92])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0f06cf19sm51704366b.198.2024.12.19.02.50.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Dec 2024 02:51:00 -0800 (PST)
+Message-ID: <ec3cdfd1-df7a-466c-8581-c9546ca6b089@linaro.org>
+Date: Thu, 19 Dec 2024 10:50:58 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241219084227.GO2418536@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/3] dt-bindings: mailbox: add google,gs101-mbox
+To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ andre.draszik@linaro.org, peter.griffin@linaro.org, kernel-team@android.com,
+ willmcvicker@google.com, daniel.lezcano@linaro.org,
+ vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de
+References: <20241217-acpm-v4-upstream-mbox-v5-0-cd1d3951fe84@linaro.org>
+ <20241217-acpm-v4-upstream-mbox-v5-1-cd1d3951fe84@linaro.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20241217-acpm-v4-upstream-mbox-v5-1-cd1d3951fe84@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 19, 2024 at 08:42:27AM +0000, Lee Jones wrote:
-> On Thu, 19 Dec 2024, Krzysztof Kozlowski wrote:
-> 
-> > On 19/12/2024 09:28, Lee Jones wrote:
-> > > On Thu, 19 Dec 2024, Krzysztof Kozlowski wrote:
-> > > 
-> > >> On 18/12/2024 19:19, Vicentiu Galanopulo wrote:
-> > >>> The LED1202 is a 12-channel low quiescent current LED driver with:
-> > >>>   * Supply range from 2.6 V to 5 V
-> > >>>   * 20 mA current capability per channel
-> > >>>   * 1.8 V compatible I2C control interface
-> > >>>   * 8-bit analog dimming individual control
-> > >>>   * 12-bit local PWM resolution
-> > >>>   * 8 programmable patterns
-> > >>>
-> > >>> If the led node is present in the controller then the channel is
-> > >>> set to active.
-> > >>>
-> > >>> Signed-off-by: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
-> > >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > >>> ---
-> > >> Stop sending the same 5 times to people.
+Hi, Krzysztof, Jassi,
 
-This is the command I used:
-   $ git send-email --to-cmd='./scripts/get_maintainer.pl --norolestats v11/v11-000*' v11/v11-000*
+On 12/17/24 9:40 AM, Tudor Ambarus wrote:
 
-I received the submitting only once and I do not know why it sent you 5 times.
+> diff --git a/Documentation/devicetree/bindings/mailbox/google,gs101-mbox.yaml b/Documentation/devicetree/bindings/mailbox/google,gs101-mbox.yaml
 
+cut
 
+> +
+> +  '#mbox-cells':
+> +    description: |
+> +      <&phandle type channel>
+> +      phandle : label name of controller.
+> +      type    : channel type, doorbell or data-transfer.
+> +      channel : channel number.
+> +
+> +      Here is how a client can reference them:
+> +      mboxes = <&ap2apm_mailbox DOORBELL 2>;
+> +      mboxes = <&ap2apm_mailbox DATA 3>;
+> +    const: 2
+> +
 
+Revisiting this, I think that for the ACPM interface mailbox client use
+case, it would be better to introduce a mbox property where I reference
+just the phandle to the controller:
+	mbox = <&ap2apm_mailbox>;
 
+The ACPM interface discovers the mailbox channel IDs at runtime by
+parsing SRAM. And all ACPM's channels are of type DOORBELL, thus
+specifying the type and channel in DT is redundant.
 
+It would require to extend a bit the mailbox core to provide a
+mbox_request_channel_by_args() method. I already wrote a draft and
+tested it.
 
+Do you find the idea fine?
+
+Thanks,
+ta
 
