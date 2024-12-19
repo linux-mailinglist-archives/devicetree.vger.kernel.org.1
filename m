@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-132575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3D1E9F77D9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:59:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB6849F77E6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:02:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5904188F849
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:59:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BFDF87A1C35
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:02:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F15B222579;
-	Thu, 19 Dec 2024 08:58:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE437216E23;
+	Thu, 19 Dec 2024 09:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gs3SLyTt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZBH9V3Ec"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254601FA174;
-	Thu, 19 Dec 2024 08:58:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9842914AD2B;
+	Thu, 19 Dec 2024 09:02:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734598733; cv=none; b=nLX4+29TGGZwI9yS3YUxFafYscXn1bP/3FeXlYZMQelHOSyuecJkptnRpgNM94Wbkux1Nt7JOm7KnFehscRz5z4hjUdLWIV0MJrkqkPoekS3Xa4iQVirh9pFccrTNcqtxqGEY+hM1W4v01Kd6zzKtjRVyfJJ8xJ7ctFKxoH7rDU=
+	t=1734598935; cv=none; b=FfrWI0VfKzijA5Qr7abwcSkeaVU5K2BKz44Hq8IM4EE7fKZYRs3OdbBmwdGAKtuWZJNQ3TiTcKhdeuigACJ6tDu1JofzH5oB0XUxcZg7GIXWMNQ1rYB2htPpnd5tT1LoRzmjqq8MtfgosMKlQpbxW3b1VtkZIE77jdwDc1JbWe8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734598733; c=relaxed/simple;
-	bh=LOK0TE+8vPsHm4UXCYz9e9AntHd5VpNaIBCeHki8HvI=;
+	s=arc-20240116; t=1734598935; c=relaxed/simple;
+	bh=TbCe4RXQAeYeYJ/+ZSxGUf1agPRvKjC84JeBcIC3cj0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hq26wdR1CsPABPCGcZJ/N5Gz0SCq/WKa8n+joRd3aK9DCM9GCp0bVHeZpBTNH4E6XVO/0xhA8FokOsU59LHZ1eNgeO4lvYBHL16qr4A28zPPDV5nCl7PkmNkdlcqiDlfRDMlCAvlv5CZh2iPyFG06tZ23P8v4bNL5FwRebljhW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gs3SLyTt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D23FDC4CED0;
-	Thu, 19 Dec 2024 08:58:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q95Fojb0m9H3yT70GClCaJDMotvT6yV36XyOfB2Klpbpgpt6E/38G1pNFVO7lhS5NdUxT+ZZnbMS1gNEjqdCYCd9eNRHriYZhqJO8VUljCJirlD5aYJZvXT2c8GZl9hIaFhzrb0o4GOUyOZ9Atuxzxdjr4RL2Ztv0czhWoFFR20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZBH9V3Ec; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82EAAC4CECE;
+	Thu, 19 Dec 2024 09:02:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734598732;
-	bh=LOK0TE+8vPsHm4UXCYz9e9AntHd5VpNaIBCeHki8HvI=;
+	s=k20201202; t=1734598933;
+	bh=TbCe4RXQAeYeYJ/+ZSxGUf1agPRvKjC84JeBcIC3cj0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gs3SLyTtWo1ibINtCMTRJmvV7+mNaOqJmqKpp7i8wXxNG13erchRiZ6gB+FoDx/q3
-	 OSeXvRYOLVMA/GxOkorAQrwmwPyRaqlffBsmUP7b4jmVJGhrMsYtiuDPtskxYRrdV5
-	 aAViHJog/9POQyOB3zAoKRuVGH5718x9ALkGgGVKmdsSHdZFWRGSBe3ySYh0ErAn3f
-	 xF42AAWtMMn0PH2llw3tOrXiVh8GzwlLhOpXIhI2L+JID35GhXOPBSjYMYmBZxNyyv
-	 TeIVXjFF3kOaWJDt68tvDAwdYD125jw7x6pWH3mDxGwuC28yKRjD4ezLR0NqrG63Tf
-	 Kzs/HOzcDviBw==
-Date: Thu, 19 Dec 2024 09:58:48 +0100
+	b=ZBH9V3EchidZhqFdYOsA4XvAkIulaup+JSSJdnkantrno3evNT1MzIzFNELCY7sr8
+	 U2AxUsm/ALvUElqKReBdS9/it2fesf7dg7QOXxeOvaXVn9LYbalamIpwIzGCNjD6Te
+	 4fNdxLQi+8pTdVTkuMivVPYt3LxwTNDTJKgPbSpv7Tc61bY/ZWnxNKHRCmOALpCbR2
+	 y8C1Bhn9DaFShGsaAGmbPwOHO51H8zT8c/hwJHsvkP3SMar9+YJ0/Ytk5xlL+JsMJ1
+	 qu8cdwzhBCQYicPTTOUPJE6aH7pAJ058pr0dcABM4bNFW3gGGhgb844ayvNJ2eLsBB
+	 mxUGeRoq54aPA==
+Date: Thu, 19 Dec 2024 10:02:10 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	"open list:MEMORY CONTROLLER DRIVERS" <linux-kernel@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: memory-controller: Document rev c.1.5
- compatible
-Message-ID: <wxq5zzfh5jesucbbste2j6x2jtj45wjfc5xzjkqbqqta7cprda@oaf5arr3z6pt>
-References: <20241217194439.929040-1-florian.fainelli@broadcom.com>
- <20241217194439.929040-2-florian.fainelli@broadcom.com>
- <2e33t7ft5ermsfr7c4ympxrn6l5sqdef3wml4hlbnhdupoouwj@gfjpbmowjadi>
- <93a1333d-442f-4cec-b823-9b1a5ff6dc6b@broadcom.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 4/6] dt-bindings: watchdog: renesas: Document
+ `renesas,r9a09g057-syscon-wdt-errorrst` property
+Message-ID: <wouo4k7rd7y57jzez3qdrz27fscozofuksgs4ivft75y6cwvqa@zfq3wgerwaza>
+References: <20241218003414.490498-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20241218003414.490498-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,66 +66,95 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <93a1333d-442f-4cec-b823-9b1a5ff6dc6b@broadcom.com>
+In-Reply-To: <20241218003414.490498-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Wed, Dec 18, 2024 at 09:15:08AM -0800, Florian Fainelli wrote:
-> On 12/18/24 03:37, Krzysztof Kozlowski wrote:
-> > On Tue, Dec 17, 2024 at 11:44:38AM -0800, Florian Fainelli wrote:
-> > > Document the revision c.1.5 compatible string that is present on newer
-> > > Broadcom STB memory controllers (74165 and onwards).
-> > > 
-> > > Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> > > ---
-> > >   .../bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml       | 1 +
-> > >   1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml b/Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml
-> > > index 4b072c879b02..99d79ccd1036 100644
-> > > --- a/Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml
-> > > +++ b/Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml
-> > > @@ -29,6 +29,7 @@ properties:
-> > >             - brcm,brcmstb-memc-ddr-rev-c.1.2
-> > >             - brcm,brcmstb-memc-ddr-rev-c.1.3
-> > >             - brcm,brcmstb-memc-ddr-rev-c.1.4
-> > > +          - brcm,brcmstb-memc-ddr-rev-c.1.5
-> > 
-> > You should use v2.1 fallback and drop driver patch. Or explain in
-> > commit briefly why different approach is suitable.
+On Wed, Dec 18, 2024 at 12:34:12AM +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> Are you suggesting that we should have fallback compatible strings, such
-> that we have something like this:
+> The RZ/V2H(P) CPG block includes Error Reset Registers (CPG_ERROR_RSTm).
+> A system reset is triggered in response to error interrupt factors, and
+> the corresponding bit is set in the CPG_ERROR_RSTm register. These
+> registers can be utilized by various IP blocks as needed.
 > 
-> compatible = "brcm,brcmstb-memc-ddr-rev-c.1.5",
-> "brcm,brcmstb-memc-ddr-rev-c", "brcm,brcmstb-memc-ddr"
+> In the event of a watchdog overflow or underflow, a system reset is issued,
+> and the CPG_ERROR_RST2[0/1/2/3] bits are set depending on the watchdog in
+> use: CM33 = 0, CA55 = 1, CR8_0 = 2, CR8_1 = 3. For the watchdog driver to
+> determine and report the current boot status, it needs to read the
+> CPG_ERROR_RST2[0/1/2/3]bits and provide this information to the user upon
+> request.
 > 
-> and the driver only needs to match on "brcm,brcmstb-memc-ddr-rev-c" and
-> apply the adequate register offset table?
+> To facilitate this operation, add `renesas,r9a09g057-syscon-wdt-errorrst`
+> property to the WDT node, which maps to the `syscon` CPG node, enabling
+> retrieval of the necessary information. For example:
+> 
+>     wdt1: watchdog@14400000 {
+>         compatible = "renesas,r9a09g057-wdt";
+>         renesas,r9a09g057-syscon-wdt-errorrst = <&cpg 0xb40 1>;
+>         ...
 
-Almost, fallback should be brcm,brcmstb-memc-ddr-rev-b.2.1 or whatever
-was in the driver first or whatever is the oldest known common
-interface.
+Drop, obvious.
 
-brcm,brcmstb-memc-ddr-rev-c is not a specific compatible.
+>     };
+> 
+> The `renesas,r9a09g057-syscon-wdt-errorrst` property consists of three
+> cells:
+> 1. The first cell is a phandle to the CPG node.
+> 2. The second cell specifies the offset of the CPG_ERROR_RSTm register
+>    within the SYSCON.
+> 3. The third cell indicates the specific bit within the CPG_ERROR_RSTm
+>    register.
 
-> If so, that is not how the current binding, and therefore DTBs are being
-> deployed, so that will introduce a breakage until we update all DTBs in the
-> field...
+Don't describe the contents of patch.  Drop paragraph. There is no need
+to make commit msg unnecessary long. Focus on explaining unknown parts
+of commit: why? or who is affected by ABI break? why breaking ABI?
+instead of repeating diff.
 
-No. First, I thought about new comaptible so the one you add here. No
-breakage, it's new compatible. This saves you these pointless updates of
-driver everytime you add new compatible.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  .../bindings/watchdog/renesas,wdt.yaml          | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> index 29ada89fdcdc..8d29f5f1be7e 100644
+> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> @@ -112,6 +112,19 @@ properties:
+>  
+>    timeout-sec: true
+>  
+> +  renesas,r9a09g057-syscon-wdt-errorrst:
 
-Second, you can introduce fallbacks to older compatibles as well - there
-will be no breakage, because you add one more compatible. The old
-compatibles (covered by fallback) of course stays in the driver, so
-there is no breakage at all. We did it multiple times for several
-different bindings in Qualcomm. People were doing exactly the same:
-adding compatible for new device to binding and driver, without
-considering the compatibility at all.
+There are never, *never* SoC names in property names, because we want
+properties to be re-usable.
 
-Except being logically correct choice - using fallbacks - this really
-has huge benefits when later upstreaming complete, big SoCs, like we do
-for latest Qualcomm SoCs: several changes will be only bindings updates.
+Make the property generic for all your devices and be sure to disallow
+it everywhere the CPG_ERROR_RSTm *does not* exist (which is different
+from "where CPG_ERROR_RSTm is not used by watchdog driver").
+
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      The first cell is a phandle to the SYSCON entry required to obtain
+> +      the current boot status. The second cell specifies the CPG_ERROR_RSTm
+> +      register offset within the SYSCON, and the third cell indicates the
+> +      bit within the CPG_ERROR_RSTm register.
+> +    items:
+> +      - items:
+> +          - description: Phandle to the CPG node
+> +          - description: The CPG_ERROR_RSTm register offset
+> +          - description: The bit within CPG_ERROR_RSTm register of interest
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -182,7 +195,11 @@ allOf:
+>        properties:
+>          interrupts: false
+>          interrupt-names: false
+> +      required:
+> +        - renesas,r9a09g057-syscon-wdt-errorrst
+
+No, ABI break.
 
 Best regards,
 Krzysztof
