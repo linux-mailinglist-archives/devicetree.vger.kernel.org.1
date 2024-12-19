@@ -1,143 +1,111 @@
-Return-Path: <devicetree+bounces-132670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8E69F7BD3
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:52:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42BD29F7BD9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:53:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C8E2163F28
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:52:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F1937A2835
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAFA1223C7F;
-	Thu, 19 Dec 2024 12:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07D8C22489E;
+	Thu, 19 Dec 2024 12:53:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GXtQLy7J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tMS8FWqK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEBC62746D;
-	Thu, 19 Dec 2024 12:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFDA1223E69;
+	Thu, 19 Dec 2024 12:53:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734612742; cv=none; b=Spnp1Zi4nNoiHMHhLwDdPJdLeuXXyb8hb2z+kRf+rXq577Ljyoh10A+bQ7m0GDh6n8E/FApXuw/FCP4ZxmEwwl/bSBlkO2tfMZvwHEVNH3+PCbud2rZZPzl0GaQEPD2j5muRP7PWeqS4G9dKv8BkFCeq4jUdSmVRo6YnM65pMSI=
+	t=1734612791; cv=none; b=FhBTMJYOcgq2VjC+46rguhxk4SUEXa2simeFkkRxK5zHBnOw9IdSVXtIbU0wnbEclQqjGUgnDBbq+Qnj/KBk5OxQFZ7RybDjSDgJBiE8/CzD/FjXoNAQjV236jSFV99YxwFuaH9ImH6aUHfYzOkSnP2oA68xQflyt4P0+xipwtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734612742; c=relaxed/simple;
-	bh=WgYzxX1/tSGznVBQ/JXuippiPvLvtMkUyN2QB1SZf6s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qx9zt5S9eeLeYl6GZIdaub/GHeeNknIPzIGr/vV0cowQexiiPJCRfsFHSieOsxUr88WKGl4CmxG8ifuo0wDzLzkpXgRx1iEWnKOxx5WO20ePKLJEoJEKj0SwEzLm+6Sc56hbFiPLhrnR+6zrNmFyTOVyPdfUybpyI4pdNKUaiJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GXtQLy7J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49C7EC4CECE;
-	Thu, 19 Dec 2024 12:52:19 +0000 (UTC)
+	s=arc-20240116; t=1734612791; c=relaxed/simple;
+	bh=chkDZbIsspED3TbjbtffIlaqUyxh0yo/Es2WKYz1qUQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=itAYoGQ/S8N9BkA7jTku3X3TNpchlVwa3yfgK8NyL8eW5xoof5BMFVCfRCvz0lnkzSy3jz92yg5h/COxM0QuldAOW9BW0e3V6kdaNPnT9EJeX4tiCIcJddzo8Fpd9jRDC2l1T7AwGfNtbscODQBgzQrJP59HAVRAlA26KDwaqIU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tMS8FWqK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 103B0C4CECE;
+	Thu, 19 Dec 2024 12:53:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734612742;
-	bh=WgYzxX1/tSGznVBQ/JXuippiPvLvtMkUyN2QB1SZf6s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GXtQLy7JjX1hClgmP7o8aq7BlbUCizuXptzzjMN9NQoWw63RIj3ncOzYwM0t9dOe6
-	 tPSem4lx7ae2/kSZT30Be83QjbejiZsQrmr4B29c3AAfOY8whPyOaZMh3S1BpDLWHs
-	 8c7TSbK3zPFPKGaf/Fhulb0UElwoui2OjVLQ2EbNyyFKFvkp9jnk8VB1/Gjf4BcJhm
-	 2oxPe2V18+o9ssbvAZ4LA+fNqjUzdn9p9uUIRDM8b6yZF0vkKvTip/ri+p3k2DVKZn
-	 oQ8oq7PTZpDuIYr43IbbFyp0fcUIFmktb7bdchQmhUqH5YT+z32Ym5zSBXxvlnypVx
-	 8y1UQsWdhLhDA==
-Message-ID: <b38c58e8-3a2b-474f-9aa0-b145b752d40d@kernel.org>
-Date: Thu, 19 Dec 2024 13:52:16 +0100
+	s=k20201202; t=1734612791;
+	bh=chkDZbIsspED3TbjbtffIlaqUyxh0yo/Es2WKYz1qUQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tMS8FWqKyvMa6afamNOFkiOAg/3lQgy4nID7D1MD7TgC7HYHJLUBw1B1gnpUtKq+Q
+	 5le9KWvnL7WAlq8t0a+VLoryqMkVSHlA0A9NH7An53oNwJeW50ztWcU8mBxU//Pb7L
+	 PBUwKNR5wXLWq189DUc6xInmEVlnxMQYcRu24mmwtbHbMKgdUGEaq2bJk2yR+OF+wT
+	 rqH8VO3OVZoEHy5Sd6BFjHroi1BYItnP3T8bsWr7Md1itamHlIjLgkgfHJxYwW7U4V
+	 NI4xG9xUjTxzgsA5OHsVsluFDmnYoow+fPH1IseoF1rvAxC8osX2/T6g4j5aj1iA60
+	 XG8TfGFpCzSbw==
+Date: Thu, 19 Dec 2024 06:53:09 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Sean Wang <sean.wang@kernel.org>, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frank-w@public-files.de>,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v7 3/5] dt-bindings: pinctrl: add binding for MT7988 SoC
+Message-ID: <173461170218.4026495.15441109866406999660.robh@kernel.org>
+References: <20241217085435.9586-1-linux@fw-web.de>
+ <20241217085435.9586-4-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] clk: cs2600: Add Fractional-N clock driver
-To: Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc: Paul Handrigan <paulha@opensource.cirrus.com>, mturquette@baylibre.com,
- sboyd@kernel.org, linux-clk@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- patches@opensource.cirrus.com
-References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
- <20241219024631.3145377-3-paulha@opensource.cirrus.com>
- <wv5od7uzup275onlvq36w4gvyh2j5oxepqkxiptanm5udidq5u@mbr64dxodkwd>
- <Z2P6wgUowoW3v7UX@opensource.cirrus.com>
- <73077b74-10b0-4191-a024-8b9edb21f507@kernel.org>
- <Z2QVZjSfrptMtTv6@opensource.cirrus.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <Z2QVZjSfrptMtTv6@opensource.cirrus.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241217085435.9586-4-linux@fw-web.de>
 
-On 19/12/2024 13:45, Charles Keepax wrote:
-> On Thu, Dec 19, 2024 at 12:40:30PM +0100, Krzysztof Kozlowski wrote:
->> On 19/12/2024 11:51, Charles Keepax wrote:
->>> On Thu, Dec 19, 2024 at 09:48:05AM +0100, Krzysztof Kozlowski wrote:
->>>> On Wed, Dec 18, 2024 at 08:46:31PM -0600, Paul Handrigan wrote:
->>>>> +#define CS2600_PLL_OUT			0
->>>>> +#define CS2600_CLK_OUT			1
->>>>> +#define CS2600_BCLK_OUT			2
->>>>> +#define CS2600_FSYNC_OUT		3
->>>>
->>>> No, the entire point of the binding header is to bind. Drop all four
->>>> above and use properly your header.
->>>>
->>>> Otherwise I claim your binding header is not used or not really a
->>>> binding.
->>>
->>> This excert is from the drivers internal header not the binding
->>> header?
->> I replied in patch two, stripping unnecessary context. There is no
->> binding header here, so I do not understand your comment.
+
+On Tue, 17 Dec 2024 09:54:28 +0100, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Ah sorry yes my bad, you mean drop these defines and use the ones
-> from the binding header instead.
+> This adds bindings for MT7988 pinctrl driver.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+> changes in v6:
+> changes suggested by rob
+> - remove quotes around mux
+> - use const instead of enum if only one value is possible
+> 
+> changes in v5 (so not adding RB from Rob given in v4):
+> - do not use MTK_DRIVE_8mA in example
+> - add _0 functions for pwm
+> 
+> changes in v4:
+> - dt-binding: pinctrl: fix dt_binding_check fixed-string error
+> 
+> '^mux$' should not be valid under {'pattern': '^\\^[a-zA-Z0-9,\\-._#@]+\\$$'}
+> 	hint: Fixed strings belong in 'properties', not 'patternProperties'
+> 
+> changes in v3:
+> - limit conf subnode name with optional suffix like mmc on mt7986
+> - match mux subnode without wildcards
+> 
+> changes in v2:
+> - drop gpio-cells description
+> - move ref in mux subnode up
+> - order uart-functions alphanumeric and fix typo
+> ---
+>  .../pinctrl/mediatek,mt7988-pinctrl.yaml      | 575 ++++++++++++++++++
+>  1 file changed, 575 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt7988-pinctrl.yaml
+> 
 
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Yes, otherwise binding is basically useless...
-
-Best regards,
-Krzysztof
 
