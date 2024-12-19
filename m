@@ -1,63 +1,56 @@
-Return-Path: <devicetree+bounces-132570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF689F77A5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:42:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F6029F77B0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:48:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B687116759A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:42:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EB67168AF2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:48:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80FC122069A;
-	Thu, 19 Dec 2024 08:42:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1AC12165E4;
+	Thu, 19 Dec 2024 08:48:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gbtJRnnB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RXUh8GU/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D7D7219A76;
-	Thu, 19 Dec 2024 08:42:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 767E7C147;
+	Thu, 19 Dec 2024 08:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734597753; cv=none; b=VqdcYNdrtE2h4P0WZDSheujKBxY5KDXDgCfjJzO/IP2BLmDeO5Nm0hyx5Clk5ZoqM+FdqkwerHm+UzExCbm+2HwKg8HgBD33LKBCecVkPBJZPiQkjWE9gTnGMMm6zRhisSLuIpZerQipEXLKGWj+CWfR6ANRkb1PnM9Qs2FzVV8=
+	t=1734598090; cv=none; b=eH9rZwpYMAihldqUkfXVr1Z/2Upgc1R5TlKnYoNWtACgleWqG3OHYwpiedKgaFuucZiYkBYDwS9zHTOumrqKX1a33yl27/oHw2yHyrVa1FJ2GXxT+RsD8ZC6n7+HbAEsOtJ7gc5LiHjx2Sp8ZiCffpdzbSPDTG91nGh4a40N824=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734597753; c=relaxed/simple;
-	bh=Bvfub3Os8feZUY3FdzD/XMdpBI3OuM/ofBOb8POapSc=;
+	s=arc-20240116; t=1734598090; c=relaxed/simple;
+	bh=r1xppXFvQwdW0HOar5JXZ2e7E+t01nW1qHbBfbJKEOA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k/t0/qeoabX+MQAAu7tYz3yUbl+UYVYCdMadQqIxM+UjD88GVRYV2/Y//yTSfmdgGYcaggNU5emEZDvQrlfR1HuEgbSc+SlasgeVGJVfaEiKWbXz35EoTUZZqqJhIfQvG185lEpVxxXO7VqXDnicATvq4IlO8qeDpvFh5rHADec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gbtJRnnB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F422C4CECE;
-	Thu, 19 Dec 2024 08:42:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oN29RQsQMXQQfKBF2vFAydyp7c2KRnYUGXEHwfTzNarfuUbVxNtRnFsZbwrFGoM7EmXrOx1nLkDku/hTVz+Pdkhe078/PjHrlzJUizLXtfjEuG0ifNNOkMGBVogTKxZIUi0mQcsJ4BR+E6QDzxAhvR+Ob08CSEFNFGWRMm4Y3GM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RXUh8GU/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 548DCC4CECE;
+	Thu, 19 Dec 2024 08:48:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734597752;
-	bh=Bvfub3Os8feZUY3FdzD/XMdpBI3OuM/ofBOb8POapSc=;
+	s=k20201202; t=1734598089;
+	bh=r1xppXFvQwdW0HOar5JXZ2e7E+t01nW1qHbBfbJKEOA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gbtJRnnBl6shPBrcErojSGg4RkY9bLnp21NwjQ88yw5iVnVdQe5wlZJed4qdnObk5
-	 mg8nm2kv/DQINzVUKBvGRZwffOvK9lLjj0Od8/eR568L4+eu0q6QEkslrXGkA4x1y/
-	 gyFDx1IxkFgDU4ouDxxe4wp6gc4WU2dWDjw1ZcXA1ukozxc+8oP6KE9zht62deitux
-	 Ft/O7WFlj6YdyoblG6z3Rs325ONPK1u40VcM11AgmY5Nf9hUoI5RR7z3yKxAzYNNYe
-	 /wRQfnCb1I3bCsRVEEgvpaQvpxw3IjItkb7oEKi3GTbEeuvDkKz/oNWKZ89YgHydz1
-	 NjXdDXZ11bxQQ==
-Date: Thu, 19 Dec 2024 08:42:27 +0000
-From: Lee Jones <lee@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v10 2/3] dt-bindings: leds: Add LED1202 LED Controller
-Message-ID: <20241219084227.GO2418536@google.com>
-References: <20241218182001.41476-1-vicentiu.galanopulo@remote-tech.co.uk>
- <20241218182001.41476-3-vicentiu.galanopulo@remote-tech.co.uk>
- <c93c89c2-7188-4b17-ab3f-a3d2f1972a21@linaro.org>
- <20241219082840.GN2418536@google.com>
- <e911eda1-fec3-4d2e-bb8b-655f6661825c@linaro.org>
+	b=RXUh8GU/rrIAe0R9iIaDRkeuzfyvp/TGlzubvvSZ6F8tUOyC/nJ/Dlm0yF3aalgeH
+	 ppu8fWdH3D/TlGL10m8olUXNSM0rHLniitf480fllo4PaKJ8IYDbYNK+xmqxrNEaHQ
+	 Yb6SHirVRuGmHw2jUP6JbfM62e04BtD/chiAzB5DC7qDxTeLzEJkU+pR7Eg2O7/Uw6
+	 tfK9kQvLzcuZKsOJibxlS4m+4QerCHb9r3F2+qOi3oZuZ3IXhrHfbD0wYn1jWWnvKo
+	 7TEUPdQ5VSK2GxcCU1CbwT7cpMRT8aYzXQGXZPa7ZX1akT7777ynIvpxeZmSnGsJci
+	 CicK2MvCjAtuw==
+Date: Thu, 19 Dec 2024 09:48:05 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Paul Handrigan <paulha@opensource.cirrus.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, linux-clk@vger.kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, patches@opensource.cirrus.com
+Subject: Re: [PATCH v2 2/2] clk: cs2600: Add Fractional-N clock driver
+Message-ID: <wv5od7uzup275onlvq36w4gvyh2j5oxepqkxiptanm5udidq5u@mbr64dxodkwd>
+References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
+ <20241219024631.3145377-3-paulha@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,41 +59,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e911eda1-fec3-4d2e-bb8b-655f6661825c@linaro.org>
+In-Reply-To: <20241219024631.3145377-3-paulha@opensource.cirrus.com>
 
-On Thu, 19 Dec 2024, Krzysztof Kozlowski wrote:
+On Wed, Dec 18, 2024 at 08:46:31PM -0600, Paul Handrigan wrote:
+> +/* DEVICE_ID2 */
+> +#define CS2600_AREVID_MASK		GENMASK(7, 4)
+> +#define CS2600_MTLRVID_MASK		GENMASK(3, 0)
+> +
+> +/* UNLOCK_INDICATORS */
+> +#define CS2600_P_UNLOCK_STICKY		BIT(3)
+> +#define CS2600_P_UNLOCK			BIT(2)
+> +#define CS2600_F_UNLOCK_STICKY		BIT(1)
+> +#define CS2600_F_UNLOCK			BIT(0)
+> +
+> +/* ERROR_STS */
+> +#define CS2600_ERR_DEV_DEFECT		BIT(7) /* Device defective */
+> +#define CS2600_ERR_OTP_CORRUPT		BIT(6)
+> +#define CS2600_ERR_REG_CFG		BIT(5) /* Invalid register config */
+> +#define CS2600_ERR_PLL_DISABLED		BIT(4)
+> +#define CS2600_ERR_HW_CFG		BIT(3) /* Invalid HW Config */
+> +#define CS2600_ERR_REFCLK_MISSING	BIT(2)
+> +#define CS2600_ERR_CLKIN_UNSTABLE	BIT(1)
+> +#define CS2600_ERR_CLKIN_MISSING	BIT(0)
+> +
+> +#define CS2600_PLL_OUT			0
+> +#define CS2600_CLK_OUT			1
+> +#define CS2600_BCLK_OUT			2
+> +#define CS2600_FSYNC_OUT		3
 
-> On 19/12/2024 09:28, Lee Jones wrote:
-> > On Thu, 19 Dec 2024, Krzysztof Kozlowski wrote:
-> > 
-> >> On 18/12/2024 19:19, Vicentiu Galanopulo wrote:
-> >>> The LED1202 is a 12-channel low quiescent current LED driver with:
-> >>>   * Supply range from 2.6 V to 5 V
-> >>>   * 20 mA current capability per channel
-> >>>   * 1.8 V compatible I2C control interface
-> >>>   * 8-bit analog dimming individual control
-> >>>   * 12-bit local PWM resolution
-> >>>   * 8 programmable patterns
-> >>>
-> >>> If the led node is present in the controller then the channel is
-> >>> set to active.
-> >>>
-> >>> Signed-off-by: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
-> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>> ---
-> >> Stop sending the same 5 times to people.
-> > 
-> > Without additional context, I don't think this is a reasonable request.
-> > 
-> > If you're a maintainer of an affected subsystem and the set is at v10,
-> > you should expect to receive (and discard) the submission 10 times.
-> 
-> I received the same patch - v10 - like 5 or 6 times. I replied to the
-> last one, apparently all others were sent only to me.
+No, the entire point of the binding header is to bind. Drop all four
+above and use properly your header.
 
-Okay, so there is additional context.  Fair enough.
+Otherwise I claim your binding header is not used or not really a
+binding.
 
--- 
-Lee Jones [李琼斯]
+Best regards,
+Krzysztof
+
 
