@@ -1,171 +1,168 @@
-Return-Path: <devicetree+bounces-132864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 015B89F8584
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:12:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AB629F85BF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:21:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECB0F168B9C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:12:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A698E1898A04
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:18:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D731BD9F9;
-	Thu, 19 Dec 2024 20:11:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TwZjYF+3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95A11C0DCB;
+	Thu, 19 Dec 2024 20:14:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D38C1BD9E9;
-	Thu, 19 Dec 2024 20:11:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E2CD1B86DC
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 20:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734639070; cv=none; b=fM0O/On1uc6KUoKFalRGoFfMNyyQusyYkusSCNByrj0lzy7VaQIbJ51ON26tm9IH/xP3O2MSy+c0ZqDSi6JDTfnp0bInaNFXnHS82AX7buLIQlJCU8jgb9n8fx5bLHc6OHd4lCnA6VUxnu4Q4iGyq4f23DWuI5qwxE61iJ2rfY4=
+	t=1734639278; cv=none; b=aaDCKTpCG/JGV1ySAwIKKv0+QFDZNX+terBBsyOni/hjIYe2C6joArKWmEMMhxOHsz9vQ5v7kS4EcGFQwCnhkF4V20gJRUxXLL/MXr5urDO+0cb3LmJMHlpWpLIN4N/clJLm/R+iMEjQF0U/RuWWsk1N17tRFL001IUsgBgoXFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734639070; c=relaxed/simple;
-	bh=Oxv7gQG1cNXbG0Fp3Bpc5LzhotYBPEpA0l2FLf6oEvM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RCMZ4BPBRWgpzoeQlJfQYJElPDs/R0qBzhtcNxyo0ZjG/3UwCzF4ptCEitKvQoyqKmDarWE0keMUGpfDQRjQp4zmnUjy4TzAT8wJNWhIf596xy+yYYdzCT3fBTmQbhxhzzLUymDCXgl/G9f/KHdngSvUEmySmzkcmM9PoRKwlvU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TwZjYF+3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78F60C4CED4;
-	Thu, 19 Dec 2024 20:11:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734639070;
-	bh=Oxv7gQG1cNXbG0Fp3Bpc5LzhotYBPEpA0l2FLf6oEvM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TwZjYF+3NvizdHmvVN9RAsyQzBQkvEOjm5w/XOMpU39UcRQH0f1qop4Bax3JqGV7W
-	 bplpnRxoDMZyeuZ8WxbCqUUfbXQGYFW3vpNqvSdsw5VTADUl0kYL4ZCgMA0tIWZbjf
-	 /uDT4XaDk30CdDndhAgksSFqC969dtsuRNJQlV8ATaYZqf+H+Lq6rvI4OUAbR/mcsc
-	 8whZew4hdzVtIO7ZPuCvMshqSsTG22DCod0pAX+YoXzPBCvryOPaQ4nIyeR3X8FANJ
-	 oDgovQcR2EGA6aZ9T3gRRZFPnXjA8ccKV3Hl/r7NaE5d1OSW72M0ru/8lBiKukv6xS
-	 /TTXhi+l2t4gA==
-Date: Thu, 19 Dec 2024 20:11:05 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Dharma Balasubiramani <dharma.b@microchip.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mmc: move compatible property to its
- specific binding
-Message-ID: <20241219-scenic-revision-17da9231d61a@spud>
-References: <20241219-mmc-slot-v1-1-dfc747a3d3fb@microchip.com>
+	s=arc-20240116; t=1734639278; c=relaxed/simple;
+	bh=blkl4YVe4sfsiHha7qtMfOqZn0u/DBDQR38uDhwntwY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OHTDIiTufMtRkcBmu28BaTzMjPeVxPc7awavLECtzhBWiIfjH/6CcO5ygQuqyHyHozL/4MyTGe3c7SHfuxFGULx0/h8gLkBuZYNKs46nTPqL1hwaGQ+xnn4Hlf8NCWNIj1zd6k52tj5rrgP5UUzhzDsMRCkWFRZSQEJgrb+A3os=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tOMuR-0004TF-Sj; Thu, 19 Dec 2024 21:14:11 +0100
+Message-ID: <4e2250b3-5170-4e88-aa0a-dd796b81e78b@pengutronix.de>
+Date: Thu, 19 Dec 2024 21:14:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="E6C8VplMw1mOJcDT"
-Content-Disposition: inline
-In-Reply-To: <20241219-mmc-slot-v1-1-dfc747a3d3fb@microchip.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: clock: imx8m: document nominal/overdrive
+ properties
+To: Conor Dooley <conor@kernel.org>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Abel Vesa <abel.vesa@linaro.org>,
+ Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org, imx@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20241219-imx8m-clk-v1-0-cfaffa087da6@pengutronix.de>
+ <20241219-imx8m-clk-v1-1-cfaffa087da6@pengutronix.de>
+ <20241219-lash-lather-31443ced0e0c@spud>
+Content-Language: en-US
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20241219-lash-lather-31443ced0e0c@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hello Conor,
 
---E6C8VplMw1mOJcDT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 19.12.24 20:49, Conor Dooley wrote:
+> On Thu, Dec 19, 2024 at 08:27:32AM +0100, Ahmad Fatoum wrote:
+>> The imx8m-clock.yaml binding covers the clock controller inside all
+>> of the i.MX8M Q/M/N/P SoCs. All of them have in common that they
+>> support two operating modes: nominal and overdrive mode.
+> 
+> This implies that only the two modes you mention are possible, but you
+> leave the option open to a dts author to use either. How come?
+> 
+> Makes it seem like we only need one of these, for whatever the
+> non-default option is?
 
-On Thu, Dec 19, 2024 at 09:40:41AM +0530, Dharma Balasubiramani wrote:
-> Move the `compatible` property into its specific binding to make the MMC
-> slot more generic and modular.
+There is no real default. The mode is configured implicitly by the
+bootloader setting VDD_SOC and then kernel needs to adhere to the
+limits that imposes.
 
-This makes no sense, as presented. What's the real reason for this
-change? You want to ref mmc-slot.yaml but the compatible is causing a
-driver to probe?
-Otherwise, if this is just to avoid having to fix up some devicetree
-source files, I don't think we should do this.
+For i.MX8M Mini and Nano, the kernel SoC DTSIs has assigned-clock-rates
+that are all achievable in nominal mode. For i.MX8MP, there are some
+rates only validated for overdrive mode.
+
+But even for the i.MX8M Mini/Nano boards, we don't know what rates they
+may configure at runtime, so it's not possible to infer from just the
+device tree what the mode is, which is why I need to allow for absence
+of either property. I can make it a single property with two possible
+values though if that's preferable.
+
+Theoretically, we could infer mode at runtime from VDD_SOC voltage,
+but we need to set up clocks to read out the PMIC and I want to
+apply the constraints as early as possible as I don't want the SoC
+to run outside of spec even for a short while.
 
 Thanks,
-Conor.
+Ahmad
 
->=20
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
-> ---
->  Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml | 4 ++++
->  Documentation/devicetree/bindings/mmc/mmc-slot.yaml              | 7 +--=
-----
->  2 files changed, 5 insertions(+), 6 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.=
-yaml b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
-> index 022682a977c6..7600a4988eca 100644
-> --- a/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/amlogic,meson-mx-sdio.yaml
-> @@ -54,6 +54,10 @@ patternProperties:
->        A node for each slot provided by the MMC controller
-> =20
->      properties:
-> +      compatible:
-> +        items:
-> +          - const: mmc-slot
-> +
->        reg:
->          enum: [0, 1, 2]
-> =20
-> diff --git a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml b/Docume=
-ntation/devicetree/bindings/mmc/mmc-slot.yaml
-> index 1f0667828063..84c4605658e0 100644
-> --- a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
-> @@ -20,19 +20,15 @@ properties:
->    $nodename:
->      pattern: "^slot(@.*)?$"
-> =20
-> -  compatible:
-> -    const: mmc-slot
-> -
->    reg:
->      description:
->        the slot (or "port") ID
->      maxItems: 1
-> =20
->  required:
-> -  - compatible
->    - reg
-> =20
-> -unevaluatedProperties: false
-> +additionalProperties: true
-> =20
->  examples:
->    - |
-> @@ -40,7 +36,6 @@ examples:
->        #address-cells =3D <1>;
->        #size-cells =3D <0>;
->        slot@0 {
-> -        compatible =3D "mmc-slot";
->          reg =3D <0>;
->          bus-width =3D <4>;
->        };
->=20
-> ---
-> base-commit: 7fa366f1b6e376c38966faa42da7f0f2e013fdab
-> change-id: 20241219-mmc-slot-0574889daea3
->=20
-> Best regards,
-> --=20
-> Dharma Balasubiramani <dharma.b@microchip.com>
->=20
+> 
+>>
+>> While the overdrive mode allows for higher frequencies for many IPs,
+>> the nominal mode needs a lower SoC voltage, thereby reducing
+>> heat generation and power usage.
+>>
+>> In any case, software should respect the maximum clock rate limits
+>> described in the datasheet for each of the two operating modes.
+>>
+>> To allow device tree consumers to enforce these limits, document two new
+>> optional properties that can be used to sanity check the clock tree.
+>>
+>> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+>> ---
+>>  Documentation/devicetree/bindings/clock/imx8m-clock.yaml | 14 ++++++++++++++
+>>  1 file changed, 14 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+>> index c643d4a81478..a6ae5257ef53 100644
+>> --- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+>> @@ -43,6 +43,14 @@ properties:
+>>        ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8m-clock.h
+>>        for the full list of i.MX8M clock IDs.
+>>  
+>> +  fsl,nominal-mode:
+>> +    description: Set if SoC is operated in nominal mode
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +
+>> +  fsl,overdrive-mode:
+>> +    description: Set if SoC is operated in overdrive mode
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> @@ -95,6 +103,12 @@ allOf:
+>>              - const: clk_ext2
+>>              - const: clk_ext3
+>>              - const: clk_ext4
+>> +  - if:
+>> +      required:
+>> +        - fsl,overdrive-mode
+>> +    then:
+>> +      properties:
+>> +        fsl,nominal-mode: false
+>>  
+>>  additionalProperties: false
+>>  
+>>
+>> -- 
+>> 2.39.5
+>>
 
---E6C8VplMw1mOJcDT
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2R92QAKCRB4tDGHoIJi
-0uF0AQCCkZ/AGdPEHj/YRGeKMFGk8lttRZIYHRKX8V3//6ycbgD/T1LEsSfzTuzT
-XIO5WbdO0FiyWZ0dsPH7aR+mC0O2Jgg=
-=My4h
------END PGP SIGNATURE-----
-
---E6C8VplMw1mOJcDT--
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
