@@ -1,248 +1,154 @@
-Return-Path: <devicetree+bounces-132531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D6A69F7665
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:56:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC309F767C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:00:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 105CF1890CFD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:55:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A3F37A5180
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:00:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28073216E3C;
-	Thu, 19 Dec 2024 07:53:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BFEF21770F;
+	Thu, 19 Dec 2024 08:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="KqciGSJM";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="SF8Q8Vcr";
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="pT46SzxK";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="J13DRa3c"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="N3At1zcZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B698216E2D;
-	Thu, 19 Dec 2024 07:53:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAADB216E3E;
+	Thu, 19 Dec 2024 08:00:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734594832; cv=none; b=ZaIUtOj8Jxk70HnOj0ivycPzE/tUH0vZXVcfcBYBst9eraLrIVTobtqIV9VEPwuHNTfk9YHAOBit3Jx6G/Id97OfCLtdpvFo+/dsYZrRapLz7XboSl9JRHshszWvX4NndPxez+CQpdBTAIz/kKVabyD+L3Vuv9aYkY/LXr49Zig=
+	t=1734595211; cv=none; b=W52u5gFtVH+cF5Xf16JEPeMUA95itEsMUNDRIl3KburJhFbNNW60dgK/0LZFPFcCodZiiHlVp8xHBKb9xbx3U9Bn/OsvvPifmgYSvCFDTdYJt/99IqSakU2Sz5JBjuY0AndA4tI0WnStL3T26IBWJ23Qw9Q7SRLkFDkYDvJQNEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734594832; c=relaxed/simple;
-	bh=c5FnF0QAYuAfIcblRDvC0icQEmf0ZtXJkB6mtmXoqqM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r/w8+my12prGXy/pycG9W9hTb0wWaeAqaZ/UiU8j1YoF44+xGafDRMWmuVJPDhhftKD56i1ars8/htWUDQMBNTkjAazUyJ3/1GJxH842RX6t7OcdaChRUZhLveTpkCpmjoDH4je2oQFVTjZZg0PvT4Ej+tS57NJtAdM8vJ2mEEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=suse.cz; spf=pass smtp.mailfrom=suse.cz; dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b=KqciGSJM; dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b=SF8Q8Vcr; dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b=pT46SzxK; dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b=J13DRa3c; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=suse.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.cz
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id E8D462115A;
-	Thu, 19 Dec 2024 07:53:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
-	t=1734594828; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=mOH57Lo24ytvyssYkgtONoz/TnP0EselXR6uAYu+hoA=;
-	b=KqciGSJMp5o3Psc97/t9hLzsFotQQWdvhfVHKwY37TvnpN1FtH3+tR/av2daJaX0j3UJkN
-	SakXBfOrb8OXBEy4xQxfJ/lS1cl4murwt+ANYYoAp3LtnQQClsk0I1YRdUYgXYCECDC+8u
-	IQDs1jOrkll9M5N1U0sF6wD6asmcRkE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-	s=susede2_ed25519; t=1734594828;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=mOH57Lo24ytvyssYkgtONoz/TnP0EselXR6uAYu+hoA=;
-	b=SF8Q8VcrlszM5gussUWm4a8YfiLmBMlvdV/2LLlwjHYcmdYQzUGPbzT9UOIO4Z9jfeGbKg
-	fuUnSd5Aw/InHpCQ==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.cz header.s=susede2_rsa header.b=pT46SzxK;
-	dkim=pass header.d=suse.cz header.s=susede2_ed25519 header.b=J13DRa3c
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
-	t=1734594827; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=mOH57Lo24ytvyssYkgtONoz/TnP0EselXR6uAYu+hoA=;
-	b=pT46SzxKYpsJ6LxAXvquUhW73xGgRWRGnuOJU42BIBGXNgRrSKj93gMXjgk4S4ZQ0Any95
-	gDePZg7wjOy0C/yOx1rotsPJhcLs2B6qEaZiB+MN9MYeZ1iUASo7MN7gwVxy4tm1R335Bb
-	V4607DV99NX1rsHRiyFOAyJSqn/+U1Q=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-	s=susede2_ed25519; t=1734594827;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=mOH57Lo24ytvyssYkgtONoz/TnP0EselXR6uAYu+hoA=;
-	b=J13DRa3ctQenCe1tvPsrBTaDhk8clSFnf+k/n5VQMdzZr6UYo4EUDhYDw912kwv5aIrX5b
-	JHwZHkp0Ig0BwACw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AFE4113A77;
-	Thu, 19 Dec 2024 07:53:47 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id xv3mKQvRY2fDNAAAD6G6ig
-	(envelope-from <jslaby@suse.cz>); Thu, 19 Dec 2024 07:53:47 +0000
-Message-ID: <dcdc22f2-587e-4879-a987-71c92c0149e9@suse.cz>
-Date: Thu, 19 Dec 2024 08:53:47 +0100
+	s=arc-20240116; t=1734595211; c=relaxed/simple;
+	bh=9hMaY7zGJKWVO0FsdZlpwBnef8Ifg8aPHP5wKx9m1AQ=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=As+tuChuD82ntazy6QFGdWdSWvo+RQj0aGomr/ORzFX0ITQ8oZQdpE7vA5RX/H3x9p1pLzwgCzLkANs+e4AZhR4V842uHRf9Q322x+BT+DAVNPaKCtHToqPB2es1CJwiPg1RLYqty4W3aF3RvmwGzZRAZqGuH6FKUGSmWwV/UCc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=N3At1zcZ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ3rujM021183;
+	Thu, 19 Dec 2024 08:00:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=O+/klrTIid4fWHj04DPaNE
+	vcMscn5pW3JBpPCYV39mE=; b=N3At1zcZxRDtkarafreB46px61XMCa22jUrtDX
+	RShGvsQAslyE57WRJ5JOduu0BDLnWMJQ4QHlgyazfxUgFkdRW6t4fdL9VYxrFLtV
+	tpBf2eEE9FPwIDHD04MYx1/R2Myq8ivSFHmdyxlQphLwa1+UIJ6VHkwFKlFicqdl
+	sx8CMfHNwByyNibfV73ZpAGAejpmlxZBWywyfZkcVSLTOCA2MAXiPlA8vpmACfLP
+	UqOafHlHXYxM563+3N4OF3OkiW+AgarmSkaYniK2KzV4D3b5vKofUOGMYx//SMeD
+	yAmH7H3lwfQdCDgKaQlTrVjUsJFno86tQYmpQFBn5EsPYvVw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43mbyxrgph-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Dec 2024 08:00:04 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BJ803C8007347
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Dec 2024 08:00:03 GMT
+Received: from lijuang2-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 18 Dec 2024 23:59:55 -0800
+From: Lijuan Gao <quic_lijuang@quicinc.com>
+Subject: [PATCH v2 0/6] Correct the number of GPIOs in gpio-ranges for
+ QCS615 and QCS8300
+Date: Thu, 19 Dec 2024 15:59:42 +0800
+Message-ID: <20241219-correct_gpio_ranges-v2-0-19af8588dbd0@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] tty: n_gsm: Add support for serdev drivers
-To: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>, Pavel Machek
- <pavel@ucw.cz>, Johan Hovold <johan@kernel.org>
-Cc: Tony Lindgren <tony@atomide.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Alan Cox <gnomes@lxorguk.ukuu.org.uk>,
- Lee Jones <lee.jones@linaro.org>, Merlijn Wajer <merlijn@wizzup.org>,
- Peter Hurley <peter@hurleysoftware.com>, Sebastian Reichel <sre@kernel.org>,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
- phone-devel@vger.kernel.org
-References: <20200512214713.40501-1-tony@atomide.com>
- <20200512214713.40501-2-tony@atomide.com> <20200528093102.GC10358@localhost>
- <20201129205144.GA15038@duo.ucw.cz>
- <b9220ab2-0992-41d0-abef-f9ec6e306af1@gmail.com>
-Content-Language: en-US
-From: Jiri Slaby <jslaby@suse.cz>
-Autocrypt: addr=jslaby@suse.cz; keydata=
- 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
-In-Reply-To: <b9220ab2-0992-41d0-abef-f9ec6e306af1@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: E8D462115A
-X-Spam-Score: -3.01
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.01 / 50.00];
-	BAYES_HAM(-3.00)[99.99%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	FREEMAIL_TO(0.00)[gmail.com,ucw.cz,kernel.org];
-	DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	RCVD_TLS_ALL(0.00)[];
-	DKIM_TRACE(0.00)[suse.cz:+];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[];
-	ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spam-Flag: NO
-X-Spam-Level: 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAG7SY2cC/22NwQ6CMBBEf4Xs2Rq6ESWe/A9DCNluYQ9S3GKjI
+ fy7hcSbxzeZebNAZBWOcC0WUE4SJYwZ8FAADd3YsxGXGbDEk0VrDQVVprntJwmtbo1o2NUdVp1
+ D5Avk5aTs5b1b703mQeIc9LOfJLulPx/+9SVrSkOVx9KdbV2jvz1fQjLSkcIDmnVdv5c6pkm4A
+ AAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Jingyi
+ Wang" <quic_jingyw@quicinc.com>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Lijuan Gao <quic_lijuang@quicinc.com>
+X-Mailer: b4 0.15-dev-99b12
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1734595195; l=1842;
+ i=quic_lijuang@quicinc.com; s=20240827; h=from:subject:message-id;
+ bh=9hMaY7zGJKWVO0FsdZlpwBnef8Ifg8aPHP5wKx9m1AQ=;
+ b=7czlYe3kV8MlwL/C9MLNu01JpVkWPae4rTjaX43XuX0WQh/Z0OGFK6/eM6p/AA+R5NlqT1QQo
+ gWqfrhrAqEJDmV25w0wKN+W5aVdqcvBFJyHg3NUAjn/SgOwsGfQCLb3
+X-Developer-Key: i=quic_lijuang@quicinc.com; a=ed25519;
+ pk=1zeM8FpQK/J1jSFHn8iXHeb3xt7F/3GvHv7ET2RNJxE=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: vPy4d1m2SowILF2JBF01FX6BKMPyxFHM
+X-Proofpoint-ORIG-GUID: vPy4d1m2SowILF2JBF01FX6BKMPyxFHM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
+ adultscore=0 mlxscore=0 spamscore=0 priorityscore=1501 phishscore=0
+ impostorscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0
+ mlxlogscore=634 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412190062
 
-On 19. 12. 24, 8:45, Ivaylo Dimitrov wrote:
-> Hi,
-> 
-> ...
-> 
-> On 29.11.20 г. 22:51 ч., Pavel Machek wrote:
->>>
->>> It looks like you may also have a problem with tty hangups, which serdev
->>> does not support currently. There are multiple paths in n_gsm which can
->>> trigger a hangup (e.g. based on remote input) and would likely lead to a
->>> crash
->>
->> I don't believe we need to support hangups for the Droid 4, but
->> obviously it would be good not to crash. But I don't know where to
->> start looking, do you have any hints?
->>
-> 
-> I changed the patch so it calls tty_port_register_device_serdev, ported 
-> gnss driver to use serdev_device, got it working:
-> 
-> root@devuan-droid4:~# cat /dev/gnss0
-> $GPGGA,,,,,,0,,,,,,,,*66
-> $GNGNS,,,,,,NN,,,,,,*53
-> $GNGNS,,,,,,NN,,,,,,*53
-> $GNGNS,,,,,,NN,,,,,,*53
-> $GPVTG,,T,,M,,N,,K,N*2C
-> $GPRMC,,V,,,,,,,,,,N*53
-> $GPGSA,A,1,,,,,,,,,,,,,,,*1E
-> $GLGSV,1,1,01,255,,,37*52
-> $GPGGA,,,,,,0,,,,,,,,*66
-> $GNGNS,,,,,,NN,,,,,,*53
-> $GNGNS,,,,,,NN,,,,,,*53
-> $GNGNS,,,,,,NN,,,,,,*53
-> 
-> However, I get:
-> 
-> gsmtty gsmtty4: tty_hangup: tty->count(1) != (#fd's(0) + #kopen's(0))
-> 
-> when closing /dev/gnss0
-> 
-> Any hint what shall be implemented in serdev to properly handle hangups? 
+The UFS_RESET pin on Qualcomm SoCs are controlled by TLMM and exposed
+through the GPIO framework. It is expected to be wired to the reset pin
+of the primary UFS memory so that the UFS driver can toggle it.
 
-Without code, no.
+The UFS_RESET pin is exported as GPIOs in addtion to the real GPIOs. The
+QCS615 TLMM pin controller has GPIOs 0-122, so correct the gpio-rangs to
+124. The QCS8300 TLMM pin controller has GPIOs 0-132, so correct the
+gpio-rangs to 134.
 
-> Or, shall I ignore that warning?
+Signed-off-by: Lijuan Gao <quic_lijuang@quicinc.com>
+---
+Changes in v2:
+- Update the introductory information in the cover letter
+- Update the commit message
+- Update the title of the TLMM driver patch
+- Link to v1: https://lore.kernel.org/r/20241212-correct_gpio_ranges-v1-0-c5f20d61882f@quicinc.com
 
-Definitely not.
+---
+Lijuan Gao (6):
+      dt-bindings: pinctrl: qcom: correct gpio-ranges in examples for qcs615
+      dt-bindings: pinctrl: qcom: correct gpio-ranges in examples for qcs8300
+      pinctrl: qcom: correct the ngpios entry for QCS615
+      pinctrl: qcom: correct the ngpios entry for QCS8300
+      arm64: dts: qcom: correct gpio-ranges for QCS615
+      arm64: dts: qcom: correct gpio-ranges for QCS8300
 
-thanks,
+ Documentation/devicetree/bindings/pinctrl/qcom,qcs615-tlmm.yaml  | 2 +-
+ Documentation/devicetree/bindings/pinctrl/qcom,qcs8300-tlmm.yaml | 2 +-
+ arch/arm64/boot/dts/qcom/qcs615.dtsi                             | 2 +-
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi                            | 2 +-
+ drivers/pinctrl/qcom/pinctrl-qcs615.c                            | 2 +-
+ drivers/pinctrl/qcom/pinctrl-qcs8300.c                           | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
+---
+base-commit: 91e71d606356e50f238d7a87aacdee4abc427f07
+change-id: 20241211-correct_gpio_ranges-ed8a25ad22e7
+
+Best regards,
 -- 
-js
-suse labs
+Lijuan Gao <quic_lijuang@quicinc.com>
+
 
