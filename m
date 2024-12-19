@@ -1,122 +1,112 @@
-Return-Path: <devicetree+bounces-132668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E7149F7BB6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:45:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF0F9F7BC6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:46:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDD067A1E7F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:45:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90E38168F23
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADE81224AF9;
-	Thu, 19 Dec 2024 12:44:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4D7322540E;
+	Thu, 19 Dec 2024 12:45:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="SY3POsIj"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="NJzET0ha"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 947922253E3
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 12:44:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0443722577A;
+	Thu, 19 Dec 2024 12:45:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734612293; cv=none; b=UYGmVphspv5DkfBEfknQUTgiG7xygFR6JPBAM+Qedg340Q2RVqKNRo7Cd8CN9h6rqMkKNjwuKohzX9gyJG+hk3+klXoZGAO/RU50atb+To3RsMKytQhnV64mn9XMdrEtFwd6uJy3W822E/0ThniI95epPE68rFUB9IA+yoinf7o=
+	t=1734612335; cv=none; b=l5CqCeF6ZQ+4QvljEDugIqMV6UzzHNbmiUwPF7L/kRNlslQNCWbV/Acyaz+QWTHCU0OW/oTw7FmKRHlUdetczGlCXiyXsYWQ3A/yR9vgzhShb2ttdx12rdu6Xm5lNtozt+xOebFyHdrTE0AleLX2CgH6t3yGmv7+VRaUk263Cp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734612293; c=relaxed/simple;
-	bh=P89gRBrLr5JfkGMeHfX1YOoBe6Tlj69JV3TBj5G/KX4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nnuv30BmQiB9eYd2cYMhtcZwa1FZnehFPTBUpjLHnxO6wYcvUQShOnnIfPk1oz6l9+oqRNVZKDRxdbldFa5ACjuF0U/ZkCmbjpHajdTIfykbYbV1TEdw8GQ0i27RIJKvtFbzcQ127cAW98ucV9N1LLiJ763bR4qE5sn07e2tQkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=SY3POsIj; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id DCE56240103
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 13:44:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1734612283; bh=P89gRBrLr5JfkGMeHfX1YOoBe6Tlj69JV3TBj5G/KX4=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:Content-Transfer-Encoding:From;
-	b=SY3POsIjv+APZ0EsQnP6CHEaMB9YGz5qHgmWq+4bAgETTuEl465QJBwE0B4NOSCsT
-	 bPlSRf23vRANFUhFStnAYKA+hnSyoHGnR6bwZiM8F+Y6oE2H6GgGg4oKJBpRKsvoqK
-	 HNWJjMaNnlDk6PRu+cC53gjBB8+CNV6bge2iYCSTWsUEHe8TbRUIC9j4I9CyUviRzZ
-	 0jq4AoEBRw5JyfsYjVNRDjgMO/OSICWYEc2janMG8Xsm9ZZX8ZTySIGCdH43YPao2K
-	 syfxF6w/ty4wfwKm33EHi1/MsEgLV842RUJ/eZcTDWJ30f2pk/m1hIdQFWOufK5Ib8
-	 WRL0DDkXvQbOA==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4YDVcV5XV5z6v0G;
-	Thu, 19 Dec 2024 13:44:42 +0100 (CET)
-Date: Thu, 19 Dec 2024 12:44:42 +0000
-From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-To: Rob Herring <robh@kernel.org>
-Cc: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: gpio: fairchild,74hc595: Add
- latch-gpios property
-Message-ID: <Z2QVOk2YiIJPMhIl@probook>
-References: <20241213-gpio74-v1-0-fa2c089caf41@posteo.net>
- <20241213-gpio74-v1-2-fa2c089caf41@posteo.net>
- <20241217152522.GA1813602-robh@kernel.org>
+	s=arc-20240116; t=1734612335; c=relaxed/simple;
+	bh=pc930QbH1LZBmbJCg4uBRJG/q5/rCNRl9DqkL7RO2Yc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PG+Z2B0C5Uh0a7IlByzet0z1rAO3tJ8DXuKLTZ+2sau0bfR09AQ2As6VDsPAzUNiQC1LQJKHEYOfmuyVLtS6wyawAl3cLBkrNE1iNckUOef4TswshqjCBBHS9uX5nUBp4gIr4IfMBSqTGP+/zIpRwU7iUJF8Y3aMmmlU3jin/Zs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=NJzET0ha; arc=none smtp.client-ip=67.231.152.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ5GCXa018786;
+	Thu, 19 Dec 2024 06:45:29 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=PODMain02222019; bh=nwsi7sAFtY50lg6CwA
+	zpkvIfWbIqiiS4IZ8jXa332Co=; b=NJzET0haeT6hcR7iMHMBoM3psj26UL/C1z
+	zN4tBcnonNBiUWA+9xJfNwM7zupSL3m9qDcWU+Jb9Gv+jNDEpzp+iUdJH169/qbI
+	pqjARm6e9C3U5OX2sM9WLsFpqrM87ixui5YvRxGRLrboKHDrYhT9QIudKYPNdzBg
+	zLo2DPteuW42sCRCW9myRuG1LY+1BO52O++oCFIbvS9hZMuIE5QXisg8OG+8iPHy
+	pXKn5EFK/N6NGcxoIOUWjflOSa5mN043rRoUH6bhROCbcy+3qU4sPi/zP46Z8Lmw
+	tZvHf9zLgMyhG+f/o2EgfM/z7ECS+kKYlAUZ0e4gxw/0+jXi8zVw==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 43h7ake41u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Dec 2024 06:45:29 -0600 (CST)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.13; Thu, 19 Dec
+ 2024 12:45:27 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1544.13 via Frontend Transport; Thu, 19 Dec 2024 12:45:27 +0000
+Received: from opensource.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id B86C3820247;
+	Thu, 19 Dec 2024 12:45:27 +0000 (UTC)
+Date: Thu, 19 Dec 2024 12:45:26 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Paul Handrigan <paulha@opensource.cirrus.com>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>
+Subject: Re: [PATCH v2 2/2] clk: cs2600: Add Fractional-N clock driver
+Message-ID: <Z2QVZjSfrptMtTv6@opensource.cirrus.com>
+References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
+ <20241219024631.3145377-3-paulha@opensource.cirrus.com>
+ <wv5od7uzup275onlvq36w4gvyh2j5oxepqkxiptanm5udidq5u@mbr64dxodkwd>
+ <Z2P6wgUowoW3v7UX@opensource.cirrus.com>
+ <73077b74-10b0-4191-a024-8b9edb21f507@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241217152522.GA1813602-robh@kernel.org>
+In-Reply-To: <73077b74-10b0-4191-a024-8b9edb21f507@kernel.org>
+X-Proofpoint-GUID: bfIybjK8Xj_Gg0teJFWJVoFwRLAETI4v
+X-Proofpoint-ORIG-GUID: bfIybjK8Xj_Gg0teJFWJVoFwRLAETI4v
+X-Proofpoint-Spam-Reason: safe
 
-On Tue, Dec 17, 2024 at 09:25:22AM -0600, Rob Herring wrote:
-> On Fri, Dec 13, 2024 at 06:32:48PM +0100, J. Neuschäfer wrote:
-> > The Fairchild MM74HC595 and other compatible parts have a latch clock
-> > input (also known as storage register clock input), which must be
-> > clocked once in order to apply any value that was serially shifted in.
-> 
-> That sounds like all the existing parts have the signal and it is 
-> required to operate? Or just needed to write settings, but not read GPIO 
-> input state for example?
+On Thu, Dec 19, 2024 at 12:40:30PM +0100, Krzysztof Kozlowski wrote:
+> On 19/12/2024 11:51, Charles Keepax wrote:
+> > On Thu, Dec 19, 2024 at 09:48:05AM +0100, Krzysztof Kozlowski wrote:
+> >> On Wed, Dec 18, 2024 at 08:46:31PM -0600, Paul Handrigan wrote:
+> >>> +#define CS2600_PLL_OUT			0
+> >>> +#define CS2600_CLK_OUT			1
+> >>> +#define CS2600_BCLK_OUT			2
+> >>> +#define CS2600_FSYNC_OUT		3
+> >>
+> >> No, the entire point of the binding header is to bind. Drop all four
+> >> above and use properly your header.
+> >>
+> >> Otherwise I claim your binding header is not used or not really a
+> >> binding.
+> > 
+> > This excert is from the drivers internal header not the binding
+> > header?
+> I replied in patch two, stripping unnecessary context. There is no
+> binding header here, so I do not understand your comment.
 
-These parts are output-only (so, "GPO"s, arguably).
+Ah sorry yes my bad, you mean drop these defines and use the ones
+from the binding header instead.
 
-The situation with the latch signal is weirder, as I found out in the
-meantime: These parts don't have a chip-select built in, but the
-rising-edge triggered latch clock can be reinterpreted as an active-low
-chip-select, because that would also rise after the appropriate number
-of bits has been shifted through the SPI bus.
-
-                     _   _       _   _
- shift clock    ____| |_| |_..._| |_| |_________
-
- latch clock                           * trigger
-                ___                     ________
- chip select#      |___________________|
-
-
-
-So, I now think that no additional signal and no binding change is
-actually needed, just perhaps an explanatory comment.
-
-
-> 
-> If the new parts are usable without latch, then they should have a 
-> fallback compatible. If they aren't usable, then it should be 1 binding 
-> patch.
-
-AFAICT, the new part (onnn,74hc595a) behaves the same at the existing
-(fairchild,74hc595 and nxp,74lvc594), with regards to the latch signal,
-so my two binding patches are independent of other.
-In other words, this one can be dropped, but the other still stands.
-
-
-
-Best regards
- -- jn
+Thanks,
+Charles
 
