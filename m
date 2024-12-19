@@ -1,120 +1,180 @@
-Return-Path: <devicetree+bounces-132621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A542A9F79DE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:53:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61D659F79E1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:54:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F285C168F9F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:53:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEE14167B11
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DEC4222580;
-	Thu, 19 Dec 2024 10:53:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6D1222580;
+	Thu, 19 Dec 2024 10:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f+lmQdU2"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BKQJ395a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69706222566;
-	Thu, 19 Dec 2024 10:53:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352D1221D8E;
+	Thu, 19 Dec 2024 10:54:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734605601; cv=none; b=OI2zqnIsgVpmDq7FK891+pKb/99XXE20w5AjESium8PkEgWhnCEZ8D26zqOU4h3yP9+5NA9tLVlp+OKwtPIbi1T6R7aT2XyB4HXJ0aN9ORSIBkDRqJnvaB4iRBMjQIKPShg5qLJT3KBPGRS6fo7Sm1T3xhjP80xIKr6hEkFChV0=
+	t=1734605658; cv=none; b=gyro5oV75GBH2PUdZKpunpbuyJxY2kP/TCl0bW8UGLyPSKi8sScbk0Lo0bV7rcbVJeU78cGAeuEw2QJ5ryiCi1FAq40c7s9jtyLu0jbUOBqHmcMTajeHb9pP5zc2DmrKtaRtiRg8utcgIkSHh06CrrcsEfzSoqsmUIixM0b7Ug4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734605601; c=relaxed/simple;
-	bh=RpuYyr3iEI9pJoKS8TGxrFFOZ8RRcoKwdnKtdEJS7oo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=nX/h9FDetJmZyTl4RdZd0DPNfIHlJUIW2/p2ntYMbjZ6Yiql7eEb8aBEdCdGP8wTeU32yWC+nJQtalPGDeUWyyCrs08g5n6KVrLWM4p9ipx96VZg2sux7+vhDaMDQ/POoLvdp+5juKt6Ebe+l/FqRlWwMPaKGF5daaDSqCEX2lA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f+lmQdU2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 209F1C4CED0;
-	Thu, 19 Dec 2024 10:53:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734605601;
-	bh=RpuYyr3iEI9pJoKS8TGxrFFOZ8RRcoKwdnKtdEJS7oo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=f+lmQdU26+HCxPMf/l7I9BtP0ocP4GNnvWw5cF0TS9JeqY1fMK3mVW2D40SZTJMxl
-	 AVODtVJRkw0Slzi/7tmqMdmYortm+Us48c62APa8KinkZtv/tJ7Gi7FRCUvTovigPp
-	 2PA1pFaLCg4FenTAHiTVtaGRMwB9TOOhyzwfFoYE435hwimFA7oJjqAjHmrtc5SCPe
-	 29xPVCxBXVge9n3W3Jnq4BFDTUa1ms7rJGADEeO8NkLTFp/oisgkl0tMpCOIi+f3Mc
-	 cs6Vqmy8j+1fvBC74CTbmGJTd6Qo8JcCCTYpXeQ0H1KS5zOPi+czn9gWb09jkT2MYG
-	 17MF4MwySy55w==
-From: Andreas Hindborg <a.hindborg@kernel.org>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org,  rafael@kernel.org,  bhelgaas@google.com,
-  ojeda@kernel.org,  alex.gaynor@gmail.com,  boqun.feng@gmail.com,
-  gary@garyguo.net,  bjorn3_gh@protonmail.com,  benno.lossin@proton.me,
-  tmgross@umich.edu,  a.hindborg@samsung.com,  aliceryhl@google.com,
-  airlied@gmail.com,  fujita.tomonori@gmail.com,  lina@asahilina.net,
-  pstanner@redhat.com,  ajanulgu@redhat.com,  lyude@redhat.com,
-  robh@kernel.org,  daniel.almeida@collabora.com,  saravanak@google.com,
-  dirk.behme@de.bosch.com,  j@jannau.net,  fabien.parent@linaro.org,
-  chrisi.schrefl@gmail.com,  paulmck@kernel.org,
-  rust-for-linux@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-pci@vger.kernel.org,  devicetree@vger.kernel.org,
-  rcu@vger.kernel.org
-Subject: Re: [PATCH v6 13/16] rust: driver: implement `Adapter`
-In-Reply-To: <20241212163357.35934-14-dakr@kernel.org> (Danilo Krummrich's
-	message of "Thu, 12 Dec 2024 17:33:44 +0100")
-References: <20241212163357.35934-1-dakr@kernel.org>
-	<20241212163357.35934-14-dakr@kernel.org>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Thu, 19 Dec 2024 11:53:06 +0100
-Message-ID: <87r064kkq5.fsf@kernel.org>
+	s=arc-20240116; t=1734605658; c=relaxed/simple;
+	bh=6DnBAetO0n/Dt6GuKQiaQjG4sHkyUy/qLhkhpG6lREU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YRptBIl/w2efLwHEAGSo4cL7ghKEFSxokp8+5eRcbdKsln/jJ+bXHaYhsJ3P93Suo/UEDFRiVK/eSpEWojitr7bTVSGX95QmqUYy03iIb4VurCjlaBj7ptS5pb8On+Jy20QN6SVP9sWoSO5paqp4YvdXv95L4yo8vqGvqrsPjA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BKQJ395a; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1734605654;
+	bh=6DnBAetO0n/Dt6GuKQiaQjG4sHkyUy/qLhkhpG6lREU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BKQJ395aphVnmIKWFGKR7MYowS/uaeNkIdyc3+FbEH+RDwQ2n8YzBZKSniaLpT3td
+	 lBImymLI0EVILte+Nh3YXqhHNjbehfrVQ9JTAhQEsNufY2SS0CzqLMV6yHK9z59D0q
+	 pDmeqzq7MN3BZael32voW88hN8cWgX1e/IaHsPWBwEExo4T/puTKRwHEZEymzxvwqQ
+	 hO3pnzTH9U3pUInPhMHC2LcG8XfbVB/I0ibVKxUFDqKzYtoj4Y0ZZfaMO6LuKMiqPU
+	 /hTDVv3Ux3whEJ7iYvW4X+A2w4F05h8eUX3Q8va7rzzaeNUOblc+6wxMlzj5iRVdrc
+	 WRiGPms7XSrDw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 31D5617E3612;
+	Thu, 19 Dec 2024 11:54:13 +0100 (CET)
+Message-ID: <9a75e88c-d90d-4ea8-b5c3-6d056d4f0498@collabora.com>
+Date: Thu, 19 Dec 2024 11:54:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 07/33] dt-bindings: display: mediatek: Add binding for
+ MT8195 HDMI-TX v2
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
+ simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com, ck.hu@mediatek.com,
+ jitao.shi@mediatek.com, jie.qiu@mediatek.com, junzhi.zhao@mediatek.com,
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
+ dmitry.baryshkov@linaro.org
+References: <20241217154345.276919-1-angelogioacchino.delregno@collabora.com>
+ <20241217154345.276919-8-angelogioacchino.delregno@collabora.com>
+ <rsnyljmkdf7i74bkrlf5nesp2sa3n6xcnzsqao4znmczjpfyq2@dsakz56s4ypt>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <rsnyljmkdf7i74bkrlf5nesp2sa3n6xcnzsqao4znmczjpfyq2@dsakz56s4ypt>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-Hi Danilo,
-
-Danilo Krummrich <dakr@kernel.org> writes:
-
-> In order to not duplicate code in bus specific implementations (e.g.
-> platform), implement a generic `driver::Adapter` to represent the
-> connection of matched drivers and devices.
->
-> Bus specific `Adapter` implementations can simply implement this trait
-> to inherit generic functionality, such as matching OF or ACPI device IDs
-> and ID table entries.
->
-> Suggested-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> ---
-
-I get some warnings when applying this patch:
-
->   RUSTC L rust/kernel.o
-> warning: unused import: `device_id`
->   --> /home/aeh/src/linux-rust/rnvme-v6.13-rc3/rust/kernel/driver.rs:10:13
->    |
-> 10 |     device, device_id, init::PinInit, of, str::CStr, try_pin_init, types::Opaque, ThisModule,
->    |             ^^^^^^^^^
->    |
->    = note: `#[warn(unused_imports)]` on by default
+Il 18/12/24 09:20, Krzysztof Kozlowski ha scritto:
+> On Tue, Dec 17, 2024 at 04:43:19PM +0100, AngeloGioacchino Del Regno wrote:
+>> +  i2c:
+>> +    type: object
+>> +    $ref: /schemas/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
+>> +    unevaluatedProperties: false
+>> +    description: HDMI DDC I2C controller
+>> +
+>> +  phys:
+>> +    maxItems: 1
+>> +    description: PHY providing clocking TMDS and pixel to controller
+>> +
+>> +  phy-names:
+>> +    items:
+>> +      - const: hdmi
+>> +
+>> +  pinctrl-0: true
+>> +
+>> +  pinctrl-names:
+>> +    items:
+>> +      - const: default
 > 
-> warning: missing documentation for an associated function
->    --> /home/aeh/src/linux-rust/rnvme-v6.13-rc3/rust/kernel/driver.rs:158:5
->     |
-> 158 |     fn of_id_info(_dev: &device::Device) -> Option<&'static Self::IdInfo> {
->     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
->     |
->     = note: requested on the command line with `-W missing-docs`
+> Drop both pinctrl entries.
 > 
-> warning: 2 warnings emitted
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  '#sound-dai-cells':
+>> +    const: 1
+>> +
+>> +  ports:
+>> +    $ref: /schemas/graph.yaml#/properties/ports
+>> +
+>> +    properties:
+>> +      port@0:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        description:
+>> +          Input port, usually connected to the output port of a DPI
+>> +
+>> +      port@1:
+>> +        $ref: /schemas/graph.yaml#/properties/port
+>> +        description:
+>> +          Output port that must be connected either to the input port of
+>> +          a HDMI connector node containing a ddc-i2c-bus, or to the input
+>> +          port of an attached bridge chip, such as a SlimPort transmitter.
+>> +
+>> +    required:
+>> +      - port@0
+>> +      - port@1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+> 
+> Please keep the same order of things here and in main properties
+> section.
+> 
+>> +  - interrupts
+>> +  - power-domains
+>> +  - phys
+>> +  - phy-names
+>> +  - ports
+>> +
+> 
+> You need allOf: with ref to dai-common.yaml.
+> 
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/mt8195-clk.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/power/mt8195-power.h>
+>> +
+>> +    soc {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +        hdmi-tx@1c300000 {
+> 
+> hdmi@
+> 
+> Best regards,
+> Krzysztof
+> 
 
+Thanks for the great review krzk.
 
-Looks like the latter one is from patch 13.
+I was wondering if it'd be more straightforward to just send the bindings in a
+different series, instead of sending another batch of 33 (actually, 34, because
+I forgot one commit adding the DDC binding, ugh!) patches...
 
+CK, any objections?
 
-Best regards,
-Andreas Hindborg
-
-
+Cheers,
+Angelo
 
