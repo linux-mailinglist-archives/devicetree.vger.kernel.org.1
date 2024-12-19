@@ -1,139 +1,126 @@
-Return-Path: <devicetree+bounces-132445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7130D9F72EF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 03:48:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 216559F72F3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 03:49:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6CFA97A3105
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 02:48:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69620165CBB
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 02:49:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05FBF1990B7;
-	Thu, 19 Dec 2024 02:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B49878F46;
+	Thu, 19 Dec 2024 02:46:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EbaL2uBC"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="b93c5Zte"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB88185920;
-	Thu, 19 Dec 2024 02:45:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7190F35960;
+	Thu, 19 Dec 2024 02:46:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.152.168
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734576347; cv=none; b=RHqTbXmqLtQ496KnegB4jZlrdHApNsaxJTYJQ+hTLJHQK6DeYXkIWIsH53UcKkqN+PlqrxtjQIIywrKVRvyOUKElBgg7GgzJzYCRVReKDoPIQ/swN3NrEe39/17O66wZZBL3dym47b9tbOUIC/EOnNz8Yx27/GPQuOkURNkn8/U=
+	t=1734576419; cv=none; b=q4OQ7Qb5dS350R67YR083VpzhrZLc9+Jex0hL0RcU9rtIQRBS50UYC7O3Q9abbqOWDRHsdpWxrXBaQP0zB4UFJRpxy8XuAbZ0rOGzZFPDviL7kgJIWgJil8aP91rPd4voaEMEgMf5WkhSeRKWu6Xin4MkWeLq2rnjDCoXtFTKR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734576347; c=relaxed/simple;
-	bh=/g3m3PJnJ9ulnIe+WSa2ffKsD62/KhFXZ0yhtrun0uQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fvcPihZ4ygpFIDCuPdKF/jMJnS7ZK9Gxp9msU92BiX7lqUm8/Vqw3xRtEFgX+v69gYsXin8kJgkLsFmbWO5oRzym+HVRzrEsFGBAQZ1NeumtohjOrbdlk/tsmeaizTNVm2QAalA5YplvHHbE2V7GFYdpEQ3fXpKwHyAclCcR2+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EbaL2uBC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ2BZPO010357;
-	Thu, 19 Dec 2024 02:45:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	DILAhV+oF8Bzm6SD9mNZqFTIxMkoBtQOV9v7ijn+6OA=; b=EbaL2uBCh6crS/f8
-	U5o1qJnVC3mVudiuNJrAtLYmOdug+S17OwU22kssBfJaU59DfDuVVQ2JBJaQ/r60
-	0pxgp2VULZ247mYsRbffHgUQ0J2Y4H3ZldDEbWFbbNl8Hltbpr/6dNvxID0lZquC
-	Ne0hpWj+BMl53XloUDDeC94Vr3apXjrFzqzzrUqpWcmp+sg+VSwjiw2y4cP3RLuf
-	UVDxTq+Or4YmJ+rqvEF+Qh3YQk8jPqaUoVAroE9hO7VVsOMV+U0Pc3J/DX6t6Oq5
-	bX5Poe+wfsgdwzJGM2NFCb8RWFMUGFvKz1Cq8FiprFvL57Op6cMLGcoxOZAcHwD3
-	WrDCtw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43mag4g1yx-1
+	s=arc-20240116; t=1734576419; c=relaxed/simple;
+	bh=U4yAcZvgCp7q8iAYdflby20lQvDNdL+TdDO8hw3lC7Y=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ReVObOmKIlMtHZ+jKIP77b5JP0GMtCRNgV0mXhZgI6TB/wHx3+DIwrFt9k/rQ9F0i4UHd6+YECKH87DUfBFVq7eb3soKblIqVhp9TsZF51ewy1BdltQ7UCB7AWlWeAMzEnfb/TGEwysMvTXjC0nA3mdJmutahc2o5ASRKXrKKMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=b93c5Zte; arc=none smtp.client-ip=67.231.152.168
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+	by mx0b-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ0wYje001493;
+	Wed, 18 Dec 2024 20:46:41 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=PODMain02222019; bh=vfrpb3C1v2EhDR3g
+	Vye8huExqAcwhSUxaIjme0X0Lm4=; b=b93c5ZtepDYjfWcP824ZGdd5nVzEVIw2
+	h8GixQVx/b49Kl1WQxUJ3A09nEV9sj14KyZ9B9z4wrvcnu9LxQxvTxNNYY0Eq3sd
+	KeImGA+hn57ADT1rMV8iTaGMQS9TGbfg4g3Y5Z+hCcj51rOOU4zZsRbg+yhlm8CT
+	vmO67UQKqVcxMkWtTLh+2Ci62t5GK0fyr++edIQpdKE4B0XpriK7UG57mtx5V7GL
+	6hhPc6ejBBWz3cf/SY1yPmMMH2jjtPJJCkd0kenLjp5OCg6tM6NKqq5Qyjb2L7BO
+	3KPF+GlUTEgrQbqpchOk46JzjtTT5135GGKy8irKxqJQVsoxtZsETw==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 43h7akdnhb-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Dec 2024 02:45:41 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4BJ2jeSO002012
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 19 Dec 2024 02:45:40 GMT
-Received: from [10.231.216.103] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 18 Dec
- 2024 18:45:35 -0800
-Message-ID: <61c27010-c49f-48df-b6d3-029b15c71bd3@quicinc.com>
-Date: Thu, 19 Dec 2024 10:45:34 +0800
+	Wed, 18 Dec 2024 20:46:40 -0600 (CST)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.13; Thu, 19 Dec
+ 2024 02:46:39 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
+ 15.2.1544.13 via Frontend Transport; Thu, 19 Dec 2024 02:46:39 +0000
+Received: from paulha.crystal.cirrus.com (paulha.ad.cirrus.com [141.131.145.123])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id C9EFD820248;
+	Thu, 19 Dec 2024 02:46:37 +0000 (UTC)
+From: Paul Handrigan <paulha@opensource.cirrus.com>
+To: <mturquette@baylibre.com>, <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <patches@opensource.cirrus.com>,
+        Paul Handrigan
+	<paulha@opensource.cirrus.com>
+Subject: [PATCH v2 0/2] Cirrus Logic CS2600 clock device
+Date: Wed, 18 Dec 2024 20:46:29 -0600
+Message-ID: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] media: dt-bindings: qcom-venus: Deprecate
- video-decoder and video-encoder where applicable
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        Stanimir Varbanov
-	<stanimir.k.varbanov@gmail.com>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <quic_vnagar@quicinc.com>, <quic_dikshita@quicinc.com>,
-        <konradybcio@kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Stanimir Varbanov
-	<stanimir.varbanov@linaro.org>
-References: <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-0-ef7e5f85f302@linaro.org>
- <20241209-media-staging-24-11-25-rb3-hw-compat-string-v5-3-ef7e5f85f302@linaro.org>
- <283a54b2-6e00-4d3a-95a3-df4a06bc1292@quicinc.com>
- <0a265953-0c6a-4b8b-a972-a59ec4755474@linaro.org>
-Content-Language: en-US
-From: Renjiang Han <quic_renjiang@quicinc.com>
-In-Reply-To: <0a265953-0c6a-4b8b-a972-a59ec4755474@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: lG9z2WaV1XokRf398CERCG6GRY21N-WS
-X-Proofpoint-GUID: lG9z2WaV1XokRf398CERCG6GRY21N-WS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- impostorscore=0 malwarescore=0 mlxlogscore=973 phishscore=0 bulkscore=0
- suspectscore=0 priorityscore=1501 spamscore=0 adultscore=0 mlxscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412190017
+Content-Type: text/plain
+X-Proofpoint-GUID: QEjfjnd9woblstXXaESGe2ny_r5wvN95
+X-Proofpoint-ORIG-GUID: QEjfjnd9woblstXXaESGe2ny_r5wvN95
+X-Proofpoint-Spam-Reason: safe
+
+This patch set provides Common Clock Framework support for the latest
+Cirrus Logic clocking device, the CS2600.
+
+This device has two input clocks and three output clocks.  One of the
+input clocks, the REFCLK, can be a constant reference clock input, a
+crystal reference input, or not available and use the internal clock.
+The second input is the CLK_IN digital clock input.
+
+The three clock outputs are CLK_OUT, BCLK_OUT, and FSYNC_OUT.
+
+v2 changes:
+- Remove | from after "discription" in DT binding.
+- Remove discription from "clocks" in DT binding. 
+- Change ref_clk to xti
+- Clarify auxiliary clock pin
+- Change DT example to not have "reg" for the bus
+- Change DT example to change i2c@0 to i2c
+- Remove "OUTPUT" from the clock ouputs in the dt binding include file.
+- Remove AUX_OUT defines
+- Use do_div when dividing u64 by a u32
+- Include the dt bindings include file
+- Use the includes from the dt bindings include file aux output.
+- Move of_device_id and i2c_device_id tables next to i2c_driver struct.
 
 
-On 12/18/2024 8:38 PM, Krzysztof Kozlowski wrote:
->>> @@ -132,12 +132,4 @@ examples:
->>>            resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
->>>                     <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
->>>            reset-names = "bus", "core";
->>> -
->>> -        video-decoder {
->>> -            compatible = "venus-decoder";
->>> -        };
->>> -
->>> -        video-encoder {
->>> -            compatible = "venus-encoder";
->>> -        };
->>>        };
->> It is working fine on QCS615.
->> Tested-by: Renjiang Han<quic_renjiang@quicinc.com>
-> How? How is it possible to test a binding on real hardware? To my
-> knowledge it is impossible, so I really would like to see explanation of
-> this tag.
-  I used this binding and modified the driver to verify the video
-  function, and the result was fine. Also, I used this binding to
-  verify the dtb, and there was no related error, so I added
-  Tested-by.
+Paul Handrigan (2):
+  dt-binding: clock: cs2600: Add support for the CS2600
+  clk: cs2600: Add Fractional-N clock driver
+
+ .../bindings/clock/cirrus,cs2600.yaml         |   81 ++
+ drivers/clk/Kconfig                           |    9 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/clk-cs2600.c                      | 1158 +++++++++++++++++
+ drivers/clk/clk-cs2600.h                      |  173 +++
+ include/dt-bindings/clock/cirrus,cs2600.h     |   24 +
+ 6 files changed, 1446 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/cirrus,cs2600.yaml
+ create mode 100644 drivers/clk/clk-cs2600.c
+ create mode 100644 drivers/clk/clk-cs2600.h
+ create mode 100644 include/dt-bindings/clock/cirrus,cs2600.h
 
 -- 
-Best Regards,
-Renjiang
+2.34.1
 
 
