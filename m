@@ -1,114 +1,174 @@
-Return-Path: <devicetree+bounces-132597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132598-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D81C9F78A9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:40:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77DFC9F78B0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:42:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B429188CDA8
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:40:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF7B1165216
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 09:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9055221472;
-	Thu, 19 Dec 2024 09:40:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="jRveb21/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 819A4221473;
+	Thu, 19 Dec 2024 09:41:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F07B3149DF4;
-	Thu, 19 Dec 2024 09:40:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8080A221459;
+	Thu, 19 Dec 2024 09:41:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734601225; cv=none; b=Ak6J2Vg4O42g8t6TPwNc9xq5Wfsb8AiwiR/fYWN26YqLHGSFQADXstnLUEaLFoxSmjl5xgz1R5JiUZD/R8V1wW6wE7Lh80z1DR054KkeMm/rV2sUQQCh/7so3SwpJ9qn06zEgBbWl9GNnOrXsHDVmvwF2/rxjs8HonJt+STGXR4=
+	t=1734601314; cv=none; b=nBlDcAn/WDdi3y9zPNS2lc2Pm4Hnd8NsqzEYnBrc/Fexq9bSUpk8VNZEj0r2Z72HiVyzZ5mBETW/EKZXRFwP95vE5tRIcpqWwNKPp4PGJjS3uHYmEBGOyaQmUn+qfOfNhnFaEmFbhP9i0KrwP9U1TOEHF9FhEx8gboGmLetcvcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734601225; c=relaxed/simple;
-	bh=m5hL27D6WE5GBp9PEU637dnb9/EImMC7RA6s6p9I4ZE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aLTEh+1p83XmAVWNaeKhRaNKIXBWsju/q2IkmllI0GVAtejYAdQ4HTUgfpchEzFx9SMd7Uoi/r2V3glMR88fjET228ZrJuhoKbwGIED10U8R/oHolB5ORiVNy5z1/UpeZ2fvaKBV0mzsT5Vco909oS0bvzZE1B0oCFpog2RdyMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=jRveb21/; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=CNq964i+6ZlpK5/5QoY6V1piSpQj5e1yvMZZodLGDs8=; b=jRveb21/IpMSGHLr70sho+3ww5
-	c7hcND1BXR0be+Bn1yIqyCxViFMr6nxnz/JkV89yte2VaJ2rpX8iGihQz2ia8MXBF6PvDAl+LQpFl
-	xBkh+YTeiWZGtI78TenTYTdTzk3sWIWttGMKN9X+FkEgt8nP5zjPp6PZEY2MwMkSciKQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tOD0j-001Z5y-6I; Thu, 19 Dec 2024 10:40:01 +0100
-Date: Thu, 19 Dec 2024 10:40:01 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, lee@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, tsbogend@alpha.franken.de,
-	hkallweit1@gmail.com, linux@armlinux.org.uk,
-	markus.stockhausen@gmx.de, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	linux-mips@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] net: mdio: Add RTL9300 MDIO driver
-Message-ID: <07073382-df51-4064-9802-cdbfcf732523@lunn.ch>
-References: <20241216031346.2626805-1-chris.packham@alliedtelesis.co.nz>
- <20241216031346.2626805-5-chris.packham@alliedtelesis.co.nz>
- <CAJq09z49uBPPZqDyc3O+4nVppKoKdrJunQnQKBUfQmwzdV+ZFQ@mail.gmail.com>
+	s=arc-20240116; t=1734601314; c=relaxed/simple;
+	bh=fMKYSxROt3LrHu7//XrbAkdEvS91eTOrtOHKY9av6pU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rr6d8rqXoXnnGFnr8gy1pGJHgay2VN5PMWaml/8aqfveTj4hdX/tm60cPTBBa9kj6YhrUh0Ekuh5UFwKzynnjRc0I5Vsspz8w/Wi7ZM0CVnmi/2Ze2aIhGFgBKEjBT+K8cU6+PHr96IMvYZ1zL2YmKjdOMOyCxpkw2ig43g35dw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [IPV6:2605:59c8:31de:bf00:37c2:fe62:c21b:ab46] (unknown [IPv6:2605:59c8:31de:bf00:37c2:fe62:c21b:ab46])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id E20F8B221243;
+	Thu, 19 Dec 2024 10:41:38 +0100 (CET)
+Message-ID: <4ae45ee4-69ed-4fe8-9350-9f83c13a9c89@freeshell.de>
+Date: Thu, 19 Dec 2024 01:41:36 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJq09z49uBPPZqDyc3O+4nVppKoKdrJunQnQKBUfQmwzdV+ZFQ@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] riscv: dts: starfive: jh7110-common: Use named definition
+ for mmc1 card detect
+To: Conor Dooley <conor@kernel.org>
+Cc: Hal Feng <hal.feng@starfivetech.com>,
+ Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Jianlong Huang <jianlong.huang@starfivetech.com>,
+ Jisheng Zhang <jszhang@kernel.org>, Conor Dooley
+ <conor.dooley@microchip.com>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>
+References: <20241210040652.164030-1-e@freeshell.de>
+ <20241216-elixir-cupped-f7a83bce4e12@spud>
+ <ZQ2PR01MB1307F1FC7EEB8701525AC9DEE604A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+ <bd4df536-0a5d-4ba9-ad0c-51a7828acd9c@freeshell.de>
+ <20241217-strained-latch-52bf7d03716d@spud>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <20241217-strained-latch-52bf7d03716d@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 19, 2024 at 01:46:41AM -0300, Luiz Angelo Daros de Luca wrote:
-> Hello Chris,
+
+
+On 12/17/24 10:33, Conor Dooley wrote:
+> On Mon, Dec 16, 2024 at 07:25:59PM -0800, E Shattow wrote:
+>> Hi, Hal
+>>
+>> On 12/16/24 18:02, Hal Feng wrote:
+>>>> On 17.12.24 04:13, Conor Dooley wrote:
+>>>> On Mon, 09 Dec 2024 20:06:46 -0800, E Shattow wrote:
+>>>>> Use named definition for mmc1 card detect GPIO instead of numeric literal.
+>>>>>
+>>>>>
+>>>>
+>>>> Applied to riscv-dt-for-next, thanks!
+>>>>
+>>>> [1/1] riscv: dts: starfive: jh7110-common: Use named definition for mmc1
+>>>> card detect
+>>>>         https://git.kernel.org/conor/c/c96f15d79172
+>>>
+>>> No, here "41" means the GPIO number, but GPI_SYS_SDIO1_CD means the
+>>> multiplexed function and should be used by pinctrl pinmux not gpio subsystem.
+>>> Although GPI-SYS_SDIO1_CD is numerically the same as 41.
+>>>
+>>> Best regards,
+>>> Hal
+>>
+>> You're right, Hal. I'm confused trying to make sense of this.
+>>
+>>  From dts/upstream/src/riscv/starfive/jh7110-pinfunc.h:
+>>
+>> "gpio nr:  gpio number, 0 - 63"
+>>
+>> And yet in dts/upstream/src/riscv/starfive/jh7110-common.dtsi there's:
+>>
+>>>                         pinmux = <PINMUX(64, 0)>,
+>>>                                  <PINMUX(65, 0)>,
+>>>                                  <PINMUX(66, 0)>,
+>>>                                  <PINMUX(67, 0)>,
+>>>                                  <PINMUX(68, 0)>,
+>>>                                  <PINMUX(69, 0)>,
+>>>                                  <PINMUX(70, 0)>,
+>>>                                  <PINMUX(71, 0)>,
+>>>                                  <PINMUX(72, 0)>,
+>>>                                  <PINMUX(73, 0)>;
+>>
+>>
+>> Loosely on the subject of MMC interface and GPIO numbering, what is the
+>> above code doing? These are not GPIO numbers 0-63 so what is this?
+>>
+>> I'm trying to understand this so I can write the Mars CM (-Lite) dts.
+>>
 > 
-> > +++ b/drivers/net/mdio/mdio-realtek-rtl.c
 > 
-> I wonder if the name might be dubious in the future with other realtek
-> products with MDIO. Realtek is quite a large company with many
-> products. Would a version/model/family/usage in that name help a far
-> future reader to identify what this file is about?
-
-Isnt rtl the family name? Or would you prefer mdio-realtek-rtl9300.c?
-
-> > +static int realtek_mdio_wait_ready(struct realtek_mdio_priv *priv)
+>> Conor, and Hal: sorry for the mistake there.
 > 
-> All those realtek_mdio_* prefix might collide with realtek_mdio_* from
-> drivers/net/dsa/realtek/realtek-mdio.c. This realtek_mdio_* is about a
-> Realtek SoC MDIO interface with the switch. The other realtek_mdio_*
-> is about the interface (MDIO or SMI) between (the other vendor) SoC
-> and the switch. I don't know if the maintainers are OK with it but
-> listing those symbols in alphabetic order from both sources might be
-> confusing.
+> No worries, I've dropped the patch.
 
-rtl9300_ as a prefix?
+Okay. I was able to find pad definitions in the vendor Linux source: 
+https://github.com/starfive-tech/linux/blob/5dfc879916d946dcc2521ef1eccd1d8bfb06a75e/include/dt-bindings/pinctrl/starfive%2Cjh7110-pinfunc.h
 
-> > +static const struct of_device_id realtek_mdio_ids[] = {
-> > +       { .compatible = "realtek,rtl9301-mdio" },
-> > +       { .compatible = "realtek,rtl9302b-mdio" },
-> > +       { .compatible = "realtek,rtl9302c-mdio" },
-> > +       { .compatible = "realtek,rtl9303-mdio" },
-> 
-> Do these different compatible strings really matter? AFAIK, compatible
-> are not for listing all supported models/variants but to describe
-> devices that have a different behavior and indicating that (with
-> different strings) is needed to decide how the driver will work. If
-> the driver does not use which compatible was set, it might indicate
-> that we don't really need 4 compatible but 1.
+There are definitions for GPIO indexes beyond 0-63:
 
-It can be useful when we initially think they are compatible, but
-later find out they are not, and we need different behaviour.
+ > #define   PAD_SD0_CLK     64
+ > #define   PAD_SD0_CMD     65
+ > #define   PAD_SD0_DATA0   66
+ > #define   PAD_SD0_DATA1   67
+ > #define   PAD_SD0_DATA2   68
+ > #define   PAD_SD0_DATA3   69
+ > #define   PAD_SD0_DATA4   70
+ > #define   PAD_SD0_DATA5   71
+ > #define   PAD_SD0_DATA6   72
+ > #define   PAD_SD0_DATA7   73
+ > #define   PAD_SD0_STRB    74
+ > #define   PAD_GMAC1_MDC   75
+ > #define   PAD_GMAC1_MDIO  76
+ > #define   PAD_GMAC1_RXD0  77
+ > #define   PAD_GMAC1_RXD1  78
+ > #define   PAD_GMAC1_RXD2  79
+ > #define   PAD_GMAC1_RXD3  80
+ > #define   PAD_GMAC1_RXDV  81
+ > #define   PAD_GMAC1_RXC   82
+ > #define   PAD_GMAC1_TXD0  83
+ > #define   PAD_GMAC1_TXD1  84
+ > #define   PAD_GMAC1_TXD2  85
+ > #define   PAD_GMAC1_TXD3  86
+ > #define   PAD_GMAC1_TXEN  87
+ > #define   PAD_GMAC1_TXC   88
+ > #define   PAD_QSPI_SCLK   89
+ > #define   PAD_QSPI_CSn0   90
+ > #define   PAD_QSPI_DATA0  91
+ > #define   PAD_QSPI_DATA1  92
+ > #define   PAD_QSPI_DATA2  93
+ > #define   PAD_QSPI_DATA3  94
 
-FYI: Please trim the text when replying.
+Where I got lost is that these are in mainline with 
+include/dt-bindings/pinctrl/starfive,jh7110-pinctrl.h
 
-	Andrew
+I did not find these pad definitions above index 63 mentioned in the 
+JH7110 Technical Reference Manual.
+
+Is it worth sending a patch to use those definitions in jh7110-common.dtsi?
+
+-E
 
