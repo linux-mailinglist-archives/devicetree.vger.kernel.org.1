@@ -1,212 +1,743 @@
-Return-Path: <devicetree+bounces-132695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A5D79F7CBA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 15:01:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D65119F7CC8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 15:04:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 272F41883FA0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:01:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10E3416DC0F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:04:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2178C2236E4;
-	Thu, 19 Dec 2024 14:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C91FE2253E0;
+	Thu, 19 Dec 2024 14:03:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LCfcxvSc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uLHpXOxe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECE7922075;
-	Thu, 19 Dec 2024 14:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993E4224AEB;
+	Thu, 19 Dec 2024 14:03:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734616903; cv=none; b=PCoW5sSmuYS9XTyCJsBEzbQlKCQOhYH03dp+ZCMiNRZ60HfcAJjhqSup57aVCj44zh/xbc8JY18AJ0vUo0Jtx9j1wOzmofOcWyaIbfAsnvlFKkrjU7LNOPM9QcQ/Ge9T0PiinVjWfiRwljnFb73S3tEhz3kwyLV1DlCMvCnboEc=
+	t=1734617039; cv=none; b=LZ0fxj3xPUiq8Dvq3UZAURCdlzTNTi9jsu8P9VrCSRcVxcT/bkg7RDX33c0CUZUak281aG2mc7G/1RPLCRV2CwZ4FX3PF/dc34lu2TJZIXAmyEszir2G/MHGKokDs7aLNmeuPz1cwqP9RkcMu06d2nrZ/NNyCblqFIe876dt4bw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734616903; c=relaxed/simple;
-	bh=Nrq02CAbbdBsL8TUHwb86wYaSnEy6WOUWiSRoJhk7F4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rGAGh3qO9emoYLYOkcprQBbcEzycNUt60nS4wNxjZZy+WD1eAWHvtqfJgP5daG6n/Ft1bH/ayiEfhXlkxpH1MnvfFrquqPfC+K3Rn7h0rUYOukkhAz2/TEWzIxYj3xS2Xvb4wFvONrDQSi/IMhEmdvejF/zNrYO8NeFAQVnNY20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LCfcxvSc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06E8CC4CECE;
-	Thu, 19 Dec 2024 14:01:41 +0000 (UTC)
+	s=arc-20240116; t=1734617039; c=relaxed/simple;
+	bh=ZibmLPWJyJMHYifJwD7ZshqSmF9mPrw0110BNGzkPL8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ghFfyCICcSHld+CPVb9NTZVWWjsGqil+aHnsTuTFZMdXPlVu2pU2ftCJ73MuR64eZnyoY5Y3cQF1OWOVc8jVxWmuR+nLqchM5zsOHlHzlmlwqf5xK20szHZw9hgTVJwBn7bPIPICrSGzEG93tqmUIXMeQt6MsGfuD4qrgtfCHYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uLHpXOxe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D370C4CECE;
+	Thu, 19 Dec 2024 14:03:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734616902;
-	bh=Nrq02CAbbdBsL8TUHwb86wYaSnEy6WOUWiSRoJhk7F4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LCfcxvScirIwG1+LGAYH/edwedVjWvDw5ZI2R9rFbsClfvfAYAc5q/Cz4tvOMQeQj
-	 xZFHBWTFfcOt20mASaZbmDr4DiczpsX4FMw91TZhhPAmORgWVF2yrTeveziZKveYLR
-	 4YcobpYw1BAwlXgyX9Z58h10l2ByC0KsxY+XyVfExlXT8fRjif95otYQvIq4ueEmmH
-	 ZXHjHRdfqGUGyYOKEjSMN/+qtYNW9M5jpuFo2yCY9pR4aL9IzW5jHQvE8Oxwy4fRC1
-	 uoVb5Be7i8ZKQxj8Ng2MABucyvwk+tDysKXX72GE/1sVfamLgG4EMZ2Y5QpvNK9rta
-	 PO9H6vGOeBAcQ==
-Date: Thu, 19 Dec 2024 15:01:39 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Louis Chauvet <louis.chauvet@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 3/3] drm: bridge: ti-sn65dsi83: Add error recovery
- mechanism
-Message-ID: <20241219-unnatural-terrestrial-aardwark-d1da17@houat>
-References: <20241217143216.658461-1-herve.codina@bootlin.com>
- <20241217143216.658461-4-herve.codina@bootlin.com>
- <20241217-tangible-nostalgic-salamander-27edaa@houat>
- <20241218092407.559a204e@bootlin.com>
- <20241218-armored-fearless-dugong-ccd72d@houat>
- <20241218173728.5a7690fe@bootlin.com>
+	s=k20201202; t=1734617039;
+	bh=ZibmLPWJyJMHYifJwD7ZshqSmF9mPrw0110BNGzkPL8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=uLHpXOxe7gWkTh28Fn3K6pxYnS66ha1oah8n6srLLmSJzxxH9dqX5mH382RuVwzCn
+	 ttKlY8hYDfHTFLreObhXZghyLbYyHhNOJjWXOVIsp4TUdUTcIvwzYMzJfDS0y2Q1rQ
+	 fjOOBmSX5qKqcq5YKFMIzgrn5jjJ/LvXZMeRIilCVDRIGa6GXqPSWjU7y+W4BFHoVQ
+	 pTzsr6xsPaxNyCxI9eI58xMvRlYFt0jUfqH+2YQXwAbl0KIRF5cqyLkz2SwiXEnIWn
+	 HN6gKyT20wfn95jlnOsUifOk4dgnE9QoFT2CZdC2OoLDC63yg1uw8pRZW9TLaW1GRk
+	 swLpT1/sWeJAA==
+Date: Thu, 19 Dec 2024 14:03:53 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <lars@metafoo.de>,
+ <Michael.Hennerich@analog.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <ana-maria.cusco@analog.com>,
+ <marcelo.schmitt1@gmail.com>
+Subject: Re: [RFC PATCH 2/4] dt-bindings: iio: adc: Add AD4170
+Message-ID: <20241219140353.787ffccc@jic23-huawei>
+In-Reply-To: <caadb73da62e80877eab8b0287d996b52266d912.1734530280.git.marcelo.schmitt@analog.com>
+References: <cover.1734530280.git.marcelo.schmitt@analog.com>
+	<caadb73da62e80877eab8b0287d996b52266d912.1734530280.git.marcelo.schmitt@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="wqbfserzziogdngv"
-Content-Disposition: inline
-In-Reply-To: <20241218173728.5a7690fe@bootlin.com>
-
-
---wqbfserzziogdngv
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 3/3] drm: bridge: ti-sn65dsi83: Add error recovery
- mechanism
-MIME-Version: 1.0
 
-On Wed, Dec 18, 2024 at 05:37:28PM +0100, Herve Codina wrote:
-> Hi Maxime,
+On Wed, 18 Dec 2024 11:37:42 -0300
+Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+
+> Add device tree documentation for AD4170 sigma-delta ADCs.
 >=20
-> On Wed, 18 Dec 2024 16:54:02 +0100
-> Maxime Ripard <mripard@kernel.org> wrote:
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
+>  .../bindings/iio/adc/adi,ad4170.yaml          | 473 ++++++++++++++++++
+>  1 file changed, 473 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4170.=
+yaml
 >=20
-> > > > > +static int sn65dsi83_reset_drm_output(struct sn65dsi83 *sn65dsi8=
-3)
-> > > > > +{
-> > > > > +	struct drm_atomic_state *state =3D ERR_PTR(-EINVAL);
-> > > > > +	struct drm_device *dev =3D sn65dsi83->bridge.dev;
-> > > > > +	struct drm_modeset_acquire_ctx ctx;
-> > > > > +	struct drm_connector *connector;
-> > > > > +	int err;
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * Reset components available from the encoder to the connector.
-> > > > > +	 * To do that, we disable then re-enable the connector linked t=
-o the
-> > > > > +	 * encoder.
-> > > > > +	 *
-> > > > > +	 * This way, drm core will reconfigure each components. In our =
-case,
-> > > > > +	 * this will force the previous component to go back in LP11 mo=
-de and
-> > > > > +	 * so allow the reconfiguration of SN64DSI83 bridge.
-> > > > > +	 *
-> > > > > +	 * Keep the lock during the whole operation to be atomic.
-> > > > > +	 */
-> > > > > +
-> > > > > +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
-> > > > > +
-> > > > > +	state =3D drm_atomic_helper_duplicate_state(dev, &ctx);
-> > > > > +	if (IS_ERR(state)) {
-> > > > > +		err =3D PTR_ERR(state);
-> > > > > +		goto unlock;
-> > > > > +	}
-> > > > > +
-> > > > > +	connector =3D drm_atomic_get_old_connector_for_encoder(state,
-> > > > > +							     sn65dsi83->bridge.encoder);
-> > > > > +	if (!connector) {
-> > > > > +		err =3D -EINVAL;
-> > > > > +		goto unlock;
-> > > > > +	}
-> > > > > +
-> > > > > +	err =3D drm_atomic_helper_disable_connector(connector, &ctx);
-> > > > > +	if (err < 0)
-> > > > > +		goto unlock;
-> > > > > +
-> > > > > +	/* Restore original state to re-enable the connector */
-> > > > > +	err =3D drm_atomic_helper_commit_duplicated_state(state, &ctx);
-> > > > > +
-> > > > > +unlock:
-> > > > > +	DRM_MODESET_LOCK_ALL_END(dev, ctx, err);
-> > > > > +	if (!IS_ERR(state))
-> > > > > +		drm_atomic_state_put(state);
-> > > > > +	return err;
-> > > > > +}   =20
-> > > >=20
-> > > > In the previous version, we advised to create a generic helper simi=
-lar
-> > > > to vc4 and i915 reset_pipe() and and intel_modeset_commit_pipes().
-> > > >=20
-> > > > It looks like you chose a different path. Can you expand why?
-> > > >  =20
-> > >=20
-> > > I didn't choose a different path.
-> > > I created the drm_atomic_helper_disable_connector(). Maybe it is not =
-enough. =20
-> >=20
-> > It's not that it's not enough, it's that you're not doing the same
-> > thing, see below.
-> >=20
-> > > I can move (copy/paste) sn65dsi83_reset_drm_output() to a new helper:
-> > >   int drm_atomic_helper_disable_output(struct drm_encoder *encoder)
-> > >=20
-> > > Is it what you expect?
-> > >=20
-> > > Also, are operations done in current sn65dsi83_reset_drm_output() cor=
-rect
-> > > in order to reset the output? It works on my system but what is your
-> > > feedback on operations performed. =20
-> >=20
-> > You don't need any of that. Both the reset_pipe() and
-> > intel_modeset_commit_pipes() functions will flag the connectors as
-> > updated in the commit, and the core will consider that it needs to
-> > disable / enable the encoders and bridges below that CRTC.
-> >=20
-> > See
-> > https://elixir.bootlin.com/linux/v6.12.5/source/drivers/gpu/drm/drm_ato=
-mic_helper.c#L1155
-> > https://elixir.bootlin.com/linux/v6.12.5/source/drivers/gpu/drm/drm_ato=
-mic_helper.c#L1476
-> >=20
-> > So you really only need to convert any of these two functions into a
-> > helper, and it does exactly what you need.
-> >=20
->=20
-> I see but if I set crtc_state->connectors_changed =3D true; as it is done=
- in
-> reset_pipe(), in my understanding, all outputs will be reset.
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4170.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad4170.yaml
+> new file mode 100644
+> index 000000000000..8c5defc614ee
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4170.yaml
+> @@ -0,0 +1,473 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad4170.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD4170 Analog to Digital Converter
+> +
+> +maintainers:
+> +  - Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +
+> +description: |
+> +  Analog Devices AD4170 Analog to Digital Converter.
+> +  Specifications can be found at:
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+ad4170-4.pdf
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad4170
+> +
+> +  avss-supply:
+> +    description:
+> +      Referece voltage supply for AVDD. AVSS can be set below 0V to prov=
+ide a
+> +      bipolar power supply to AD4170-4. Must be =E2=88=922.625V at minim=
+um, 0V maximum.
+> +      If not specified, this is assumed to be analog ground.
+> +
+> +  avdd-supply:
+> +    description:
+> +      A supply of 4.75V to 5.25V relative to AVSS that powers the chip (=
+AVDD).
+> +
+> +  iovdd-supply:
+> +    description: 1.7V to 5.25V reference supply to the serial interface =
+(IOVDD).
+> +
+> +  refin1p-supply:
+> +    description: REFIN+ supply that can be used as reference for convers=
+ion.
+> +
+> +  refin1n-supply:
+> +    description: REFIN- supply that can be used as reference for convers=
+ion.
+> +
+> +  refin2p-supply:
+> +    description: REFIN2+ supply that can be used as reference for conver=
+sion.
+> +
+> +  refin2n-supply:
+> +    description: REFIN2- supply that can be used as reference for conver=
+sion.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: |
+> +      Optional external clock source. Can include one clock source: exte=
+rnal
+> +      clock or external crystal.
+> +
+> +  clock-names:
+> +    enum:
+> +      - ext-clk
+> +      - xtal
+> +
+> +  '#clock-cells':
+> +    const: 0
+> +
+> +  adi,gpio0-power-down-switch:
+> +    type: boolean
+> +    description:
+> +      Describes whether GPIO0 is used as a switch to disconnect bridge c=
+ircuits
+> +      from AVSS. Pin defaults to GPIO if this property is not present.
 
-Not all outputs, all active outputs connected to that CRTC. If you have
-only one encoder connected to that CRTC, which is pretty typical on ARM
-platforms, it's equivalent to what you're asking for.
+This is interesting because it's power control for external bridges.=20
+Maybe should be described as a regulator (output)?  Any bridge circuit will=
+ need to be
+an IIO consumer anyway so we can work out the channel scaling so that would=
+ then
+consume this regulator as it's power supply.
 
-And we should probably shut down the CRTC (and thus all active outputs)
-anyway. Some encoders and bridges have internal FIFOs/state machines
-that need to be enabled disabled at specific points during the
-initialization, and the CRTC is a part of that.
+> +
+> +  adi,gpio1-power-down-switch:
+> +    type: boolean
+> +    description:
+> +      Describes whether GPIO1 is used as a switch to disconnect bridge c=
+ircuits
+> +      from AVSS. Pin defaults to GPIO if this property is not present.
+> +
+> +  adi,vbias-pins:
+> +    description: Analog inputs to apply a voltage bias of (AVDD =E2=88=
+=92 AVSS) / 2 to.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
 
-Maxime
+This is described as being relevant if we have say a thermocouple wired up.
+For that I'd expect it to both be channel specific and us to need a bunch o=
+f other
+description.
 
---wqbfserzziogdngv
-Content-Type: application/pgp-signature; name="signature.asc"
+> +    minItems: 1
+> +    maxItems: 9
+> +    items:
+> +      minimum: 0
+> +      maximum: 8
+> +
+> +  adi,dig-aux1:
 
------BEGIN PGP SIGNATURE-----
+If it's a data ready signal, then interrupt/ interrupt-names probably
+appropriate.
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ2QnPwAKCRAnX84Zoj2+
-dhQRAX96rJE3Z+88ZnNThKCvbh7HriizVVkNpZUs4Jh3ybblvbtzP3mHXLUb3e5t
-ZGzoy34BgIcUCv0mef4ILYuKLpIJgWuzZplWCQ4b7ik6rZpLGWCUNqwyDP9CGTx7
-W162C2cedQ==
-=jBMP
------END PGP SIGNATURE-----
+Sync is messier as you need a binding to describe where that goes but we ha=
+ve
+provided a specific property for this in the past. Try to match up with an =
+existing
+one. Trickier as there are multiple of these here.
 
---wqbfserzziogdngv--
+
+The high impedance is what you do if not an interrupt and the sync out not =
+set.
+
+> +    description:
+> +      Describes whether DIG_AUX1 pin will operate as data ready output,
+> +      synchronization output signal (SYNC_OUT), or if it will be disable=
+d.
+> +      A value of 0 indicates DIG_AUX1 pin disabled. High impedance.
+> +      A value of 1 indicates DIG_AUX1 is configured as ADC data ready ou=
+tput.
+> +      A value of 1 indicates DIG_AUX1 is configured as SYNC_OUT output.
+> +      If this property is absent, DIG_AUX1 pin is disabled.
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    enum: [0, 1, 2]
+> +    default: 0
+> +
+> +  adi,dig-aux2:
+> +    description:
+> +      Describes whether DIG_AUX2 pin will function as DAC LDAC input,
+> +      synchronization start input (START), or if it will be disabled.
+> +      A value of 0 indicates DIG_AUX2 pin is disabled. High impedance.
+> +      A value of 1 indicates DIG_AUX2 pin is configured as active-low LD=
+AC input
+> +      for the DAC.
+> +      A value of 2 indicates DIG_AUX2 pin is configured as START input.
+
+Ah. the other side of sync.
+Also DAC toggle pin. If we are using it as a dac toggle, needs a gpio bindi=
+ng.
+Start will need a specific property.  High impedance is what we do if the o=
+thers
+not set.
+
+> +      If this property is absent, DIG_AUX2 pin is disabled.
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    enum: [0, 1, 2]
+> +    default: 0
+> +
+> +  adi,sync-option:
+> +    description:
+> +      Describes how ADC conversions are going to be synchronized. A valu=
+e of 1
+> +      indicates the SYNC_IN pin will function as a synchronization input=
+ that
+> +      allows the user to control the start of sampling by pulling SYNC_I=
+N high.
+> +      Use option number 2 to set the alternate synchronization functiona=
+lity
+> +      which allows per channel conversion start control when multiple ch=
+annels
+> +      are enabled. Option number 0 disables synchronization.
+> +      A value of 0 indicates no synchronization. SYNC_IN pin disabled.
+> +      A value of 1 indicates standard synchronization functionality.
+> +      A value of 2 indicates alternate synchronization functionality.
+
+This is a software choice.  I can't see why it belongs in DT unless
+the assumption is some external timing circuitry is driving this.
+To actually control mode 2 timing would be interesting as doesn't correspond
+to triggering etc in iio which is matching standard synchronization assuming
+I got right idea from quick read of the datasheet section on this).
+
+> +      If this property is absent, no synchronization is performed.
+
+Inconsistent with default.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    enum: [0, 1, 2]
+> +    default: 1
+> +
+
+All the bridge related excitation control etc makes me wonder if we need
+a way to describe the bridge rather than the modes of this device.
+I can't immediately see how to do it though as I'm not sure this stuff
+is that standard across devices.
+
+> +  adi,excitation-pin-0:
+> +    description: |
+> +      Specifies the pin to apply excitation current 0 (IOUT0). Besides t=
+he
+> +      analog pins 0 to 8, the excitation current can be applied to GPIO =
+pins.
+
+Add some flavour for this.  What is it for?  Basically make a clear argument
+it is all about the external circuitry.
+
+> +      17: Output excitation current IOUT0 to GPIO0.
+> +      18: Output excitation current IOUT0 to GPIO1.
+> +      19: Output excitation current IOUT0 to GPIO2.
+> +      20: Output excitation current IOUT0 to GPIO3.
+> +      If this property is absent, IOUT0 is not routed to any pin.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20]
+> +    default: 0
+> +
+> +  adi,excitation-pin-1:
+> +    description: |
+> +      Specifies the pin to apply excitation current 1 (IOUT1). Besides t=
+he
+> +      analog pins 0 to 8, the excitation current can be applied to GPIO =
+pins.
+> +      17: Output excitation current IOUT1 to GPIO0.
+> +      18: Output excitation current IOUT1 to GPIO1.
+> +      19: Output excitation current IOUT1 to GPIO2.
+> +      20: Output excitation current IOUT1 to GPIO3.
+> +      If this property is absent, IOUT1 is not routed to any pin.
+
+Default doesn't make much sense if that is intent. Just drop it.
+
+Maybe see if there is a sensible path to sharing the text for these
+given repitition.  If they were always there I'd suggest
+an array, but we need the 'not in use' value and magic
+numbers for that are nasty.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20]
+> +    default: 0
+> +
+> +  adi,excitation-pin-2:
+> +    description: |
+> +      Specifies the pin to apply excitation current 2 (IOUT2). Besides t=
+he
+> +      analog pins 0 to 8, the excitation current can be applied to GPIO =
+pins.
+> +      17: Output excitation current IOUT2 to GPIO0.
+> +      18: Output excitation current IOUT2 to GPIO1.
+> +      19: Output excitation current IOUT2 to GPIO2.
+> +      20: Output excitation current IOUT2 to GPIO3.
+> +      If this property is absent, IOUT2 is not routed to any pin.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20]
+> +    default: 0
+> +
+> +  adi,excitation-pin-3:
+> +    description: |
+> +      Specifies the pin to apply excitation current 3 (IOUT3). Besides t=
+he
+> +      analog pins 0 to 8, the excitation current can be applied to GPIO =
+pins.
+> +      17: Output excitation current IOUT3 to GPIO0.
+> +      18: Output excitation current IOUT3 to GPIO1.
+> +      19: Output excitation current IOUT3 to GPIO2.
+> +      20: Output excitation current IOUT3 to GPIO3.
+> +      If this property is absent, IOUT3 is not routed to any pin.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 17, 18, 19, 20]
+> +    default: 0
+> +
+> +  adi,excitation-current-0-microamp:
+> +    description: |
+> +      Excitation current in microamps to be applied to IOUT0 output pin
+> +      specified in adi,excitation-pin-0.
+
+As above, see if you can combine entries and add a bit of flavour on the wh=
+y.
+
+> +    enum: [0, 10, 50, 100, 250, 500, 1000, 1500]
+> +    default: 0
+> +
+> +  adi,excitation-current-1-microamp:
+> +    description: |
+> +      Excitation current in microamps to be applied to IOUT1 output pin
+> +      specified in adi,excitation-pin-1.
+> +    enum: [0, 10, 50, 100, 250, 500, 1000, 1500]
+> +    default: 0
+> +
+> +  adi,excitation-current-2-microamp:
+> +    description: |
+> +      Excitation current in microamps to be applied to IOUT2 output pin
+> +      specified in adi,excitation-pin-2.
+> +    enum: [0, 10, 50, 100, 250, 500, 1000, 1500]
+> +    default: 0
+> +
+> +  adi,excitation-current-3-microamp:
+> +    description: |
+> +      Excitation current in microamps to be applied to IOUT3 output pin
+> +      specified in adi,excitation-pin-3.
+> +    enum: [0, 10, 50, 100, 250, 500, 1000, 1500]
+> +    default: 0
+> +
+> +  adi,chop-iexc:
+> +    description: |
+> +      Specifies the chopping/swapping functionality for excitation curre=
+nts.
+> +      0: No Chopping of Excitation Currents.
+> +      1: Chop/swap IOUT0 and IOUT1 (pair AB) excitation currents.
+> +      2: Chop/swap IOUT2 and IOUT3 (pair CD) excitation currents.
+> +      3: Chop/swap both pairs (pair AB and pair CD) of excitation curren=
+ts.
+> +      If this property is absent, no chopping is performed.
+> +      There are macros for the above values in dt-bindings/iio/adi,ad417=
+0.h.
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    enum: [0, 1, 2, 3]
+> +    default: 0
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^channel@([0-9]|1[0-5])$":
+> +    $ref: adc.yaml
+> +    type: object
+> +    unevaluatedProperties: false
+> +    description: |
+> +      Represents the external channels which are connected to the ADC.
+> +
+> +    properties:
+> +      reg:
+> +        description: |
+> +          The channel number. The device can have up to 16 channels numb=
+ered
+> +          from 0 to 15.
+> +        items:
+> +          minimum: 0
+> +          maximum: 15
+> +
+> +      diff-channels:
+> +        description: |
+> +          This property is used for defining the inputs of a differential
+> +          voltage channel. The first value is the positive input and the=
+ second
+> +          value is the negative input of the channel.
+> +
+> +          Besides the analog input pins AIN0 to AIN8, there are special =
+inputs
+> +          that can be selected with the following values:
+> +            17: Temperature sensor input
+
+I guess we can't stop this being set to silly value (so one side of tempera=
+ture
+against anything else).
+
+> +            18: (AVDD-AVSS)/5
+> +            19: (IOVDD-DGND)/5
+> +            20: DAC output
+> +            21: ALDO
+> +            22: DLDO
+> +            23: AVSS
+> +            24: DGND
+> +            25: REFIN+
+> +            26: REFIN-
+> +            27: REFIN2+
+> +            28: REFIN2-
+> +            29: REFOUT
+
+Most of these are typically used for calibration. I'd be tempted to drop th=
+em
+from the channel configuration.  Or maybe keep them also provide a way to o=
+verride
+and set these up anyway as needed.
+
+> +
+> +          There are macros for those values in dt-bindings/iio/adi,ad417=
+0.h.
+> +
+> +        items:
+> +          minimum: 0
+> +          maximum: 31
+
+Use an enum.  We don't want the reserved values.
+
+> +
+> +      single-channel: true
+> +
+> +      common-mode-channel: true
+> +
+> +      bipolar: true
+> +
+> +      adi,config-setup-number:
+> +        description: |
+> +          Specifies which of the 8 setups are used to configure the chan=
+nel.
+> +          A setup comprises of: AFE, FILTER, FILTER_FS, MISC, OFFSET, an=
+d GAIN
+> +          registers. More than one channel can use the same configuratio=
+n setup
+> +          number in which case they will share the settings of the above
+> +          mentioned registers.
+
+We have always done this in the driver previously.  It can be complex due to
+need to match equivalent configs, but most of this is stuff we want
+to control.  It doesn't lead to simple code, but it does give a lot of flex=
+ibility
+as things like filters and gains etc are not characteristics of the externa=
+l wiring
+(though good choices are related to it).
+
+
+> +        items:
+> +          minimum: 0
+> +          maximum: 7
+> +
+> +      adi,chop-adc:
+> +        description: |
+> +          Specifies the chopping/swapping functionality for a channel se=
+tup.
+> +          Macros for adi,chop-adc values are available in
+> +          dt-bindings/iio/adi,ad4170.h. When enabled, the analog inputs =
+are
+> +          continuously swapped and a conversion is generated for each ti=
+me a
+> +          swap occurs. The analog input pins are connected in one direct=
+ion,
+> +          sampled, swapped, sampled again, and then the conversion resul=
+ts are
+> +          averaged. The input swap minimizes system offset and offset dr=
+ift.
+> +          This property also specifies whether AC excitation using 2 or =
+4 GPIOs
+> +          are going to be used.
+> +          0: No channel chop.
+> +          1: Chop/swap the channel inputs.
+> +          2: AC Excitation using 4 GPIOs.
+> +          3: AC Excitation using 2 GPIOs.
+> +          If this property is absent, no chopping is performed.
+> +        $ref: /schemas/types.yaml#/definitions/uint16
+> +        enum: [0, 1, 2, 3]
+> +        default: 0
+> +
+> +      adi,burnout-current-nanoamp:
+> +        description: |
+> +          Current in nanoamps to be applied for this channel. Burnout cu=
+rrents
+> +          are only active when the channel is selected for conversion.
+
+All about open wire detection.  So a runtime configuration thing. =20
+
+> +        enum: [0, 100, 2000, 10000]
+> +        default: 0
+> +
+> +      adi,buffered-negative:
+> +        description: Enable precharge buffer, full buffer, or skip refer=
+ence
+> +          buffering of the negative voltage reference. Because the output
+> +          impedance of the source driving the voltage reference inputs m=
+ay be
+> +          dynamic, RC combinations of those inputs can cause DC gain err=
+ors if
+> +          the reference inputs go unbuffered into the ADC. Enable refere=
+nce
+> +          buffering if the provided reference source has dynamic high im=
+pedance
+> +          output.
+
+Say why you would not enable it
+
+> +        enum: [0, 1, 2]
+
+Value meanings?
+
+> +        default: 0
+> +
+> +      adi,buffered-positive:
+Probably put positive first. Feels more natural!
+> +        description: Enable precharge buffer, full buffer, or skip refer=
+ence
+> +          buffering of the positive voltage reference. Because the output
+> +          impedance of the source driving the voltage reference inputs m=
+ay be
+> +          dynamic, RC combinations of those inputs can cause DC gain err=
+ors if
+> +          the reference inputs go unbuffered into the ADC. Enable refere=
+nce
+> +          buffering if the provided reference source has dynamic high im=
+pedance
+> +          output.
+> +        enum: [0, 1, 2]
+> +        default: 0
+> +
+> +      adi,reference-select:
+> +        description: |
+> +          Select the reference source to use when converting on the spec=
+ific
+> +          channel. Valid values are:
+> +          0: Differential reference voltage REFIN+ - REFIN=E2=88=92.
+> +          1: Differential reference voltage REFIN2+ - REFIN2=E2=88=92.
+> +          2: Internal 2.5V referece (REFOUT) relative to AVSS.
+> +          3: Analog supply voltage (AVDD) relative relative AVSS.
+> +          If this field is left empty, the internal reference is selecte=
+d.
+
+There is an argument that this might be something you want to change at run=
+time
+but it's pretty unlikely so I'm fine with this in DT.
+
+Hmm. I'm not a fan of trying to review these AFE + bridge supporting ADCs.
+So fiddly and with so many weird options that only make sense if I dig out
+my memory of analog circuits courses from years ago :(
+
+Jonathan
+
+
+> +        $ref: /schemas/types.yaml#/definitions/uint8
+> +        enum: [0, 1, 2, 3]
+> +        default: 2
+> +
+> +    required:
+> +      - reg
+> +      - adi,config-setup-number
+> +
+> +    allOf:
+> +      - oneOf:
+> +          - required: [single-channel]
+> +            properties:
+> +              diff-channels: false
+> +          - required: [diff-channels]
+> +            properties:
+> +              single-channel: false
+> +              common-mode-channel: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - avdd-supply
+> +  - iovdd-supply
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/iio/adc/adi,ad4170.h>
+> +    spi {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        adc@0 {
+> +            compatible =3D "adi,ad4170";
+> +            reg =3D <0>;
+> +            avdd-supply =3D <&avdd>;
+> +            iovdd-supply =3D <&iovdd>;
+> +            spi-max-frequency =3D <20000000>;
+> +            interrupt-parent =3D <&gpio_in>;
+> +            interrupts =3D <0 IRQ_TYPE_EDGE_FALLING>;
+> +            adi,dig-aux1 =3D /bits/ 8 <1>;
+> +            adi,dig-aux2 =3D /bits/ 8 <0>;
+> +            adi,sync-option =3D /bits/ 8 <0>;
+> +            adi,excitation-pin-0 =3D <19>;
+> +            adi,excitation-current-0-microamp =3D <10>;
+> +            adi,excitation-pin-1 =3D <20>;
+> +            adi,excitation-current-1-microamp =3D <10>;
+> +            adi,chop-iexc =3D /bits/ 8 <1>;
+> +            adi,vbias-pins =3D <5 6>;
+> +            #address-cells =3D <1>;
+> +            #size-cells =3D <0>;
+> +
+> +            // Sample AIN0 with respect to AIN1 throughout AVDD/AVSS inp=
+ut range
+> +            // Fully differential. If AVSS < 0V, Fully differential true=
+ bipolar
+> +            channel@0 {
+> +                reg =3D <0>;
+> +                bipolar;
+> +                diff-channels =3D <AD4170_MAP_AIN0 AD4170_MAP_AIN1>;
+> +                adi,config-setup-number =3D <0>;
+> +                adi,reference-select =3D /bits/ 8 <3>;
+> +                adi,burnout-current-nanoamp =3D <100>;
+> +            };
+> +            // Sample AIN2 with respect to DGND throughout AVDD/DGND inp=
+ut range
+> +            // Peseudo-differential unipolar (fig. 2a)
+> +            channel@1 {
+> +                reg =3D <1>;
+> +                single-channel =3D <AD4170_MAP_AIN2>;
+> +                common-mode-channel =3D <AD4170_MAP_DGND>;
+> +                adi,config-setup-number =3D <1>;
+> +                adi,reference-select =3D /bits/ 8 <3>;
+> +            };
+> +            // Sample AIN3 with respect to 2.5V throughout AVDD/AVSS inp=
+ut range
+> +            // Pseudo-differential bipolar (fig. 2b)
+> +            channel@2 {
+> +                reg =3D <2>;
+> +                bipolar;
+> +                single-channel =3D <AD4170_MAP_AIN3>;
+> +                common-mode-channel =3D <AD4170_MAP_REFOUT>;
+> +                adi,config-setup-number =3D <2>;
+> +                adi,reference-select =3D /bits/ 8 <3>;
+> +            };
+> +            // Sample AIN4 with respect to DGND throughout AVDD/AVSS inp=
+ut range
+> +            // Pseudo-differential true bipolar if AVSS < 0V (fig. 2c)
+> +            channel@3 {
+> +                reg =3D <3>;
+> +                bipolar;
+> +                single-channel =3D <AD4170_MAP_AIN4>;
+> +                common-mode-channel =3D <AD4170_MAP_DGND>;
+> +                adi,config-setup-number =3D <3>;
+> +                adi,reference-select =3D /bits/ 8 <3>;
+> +            };
+> +            // Sample AIN5 with respect to 2.5V throughout AVDD/REFOUT i=
+nput range
+> +            // Pseudo-differential unipolar (AD4170 datasheet page 46 ex=
+ample)
+> +            channel@4 {
+> +                reg =3D <4>;
+> +                single-channel =3D <AD4170_MAP_AIN5>;
+> +                common-mode-channel =3D <AD4170_MAP_REFOUT>;
+> +                adi,config-setup-number =3D <4>;
+> +                adi,reference-select =3D /bits/ 8 <2>;
+> +            };
+> +            // Sample AIN6 with respect to REFIN+ throughout AVDD/AVSS i=
+nput range
+> +            // Pseudo-differential unipolar
+> +            channel@5 {
+> +                reg =3D <5>;
+> +                single-channel =3D <AD4170_MAP_AIN6>;
+> +                common-mode-channel =3D <AD4170_MAP_REFIN1_P>;
+> +                adi,config-setup-number =3D <4>;
+> +                adi,reference-select =3D /bits/ 8 <2>;
+> +            };
+> +            // Sample AIN7 with respect to DGND throughout REFIN+/REFIN-=
+ input range
+> +            // Pseudo-differential bipolar
+> +            channel@6 {
+> +                reg =3D <6>;
+> +                bipolar;
+> +                diff-channels =3D <AD4170_MAP_AIN7 AD4170_MAP_DGND>;
+> +                adi,config-setup-number =3D <5>;
+> +                adi,reference-select =3D /bits/ 8 <0>;
+> +            };
+> +        };
+> +    };
+> +...
+> +
+
 
