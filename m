@@ -1,142 +1,147 @@
-Return-Path: <devicetree+bounces-132870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E9E59F8601
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:36:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBB7A9F8606
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 21:37:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 968C31891AD2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:36:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52A911893038
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:37:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70B131BD9E5;
-	Thu, 19 Dec 2024 20:36:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFB5F1C5CCE;
+	Thu, 19 Dec 2024 20:36:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="jqEFdJVO"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="e1yi4B9A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F068F1A0BDB
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 20:36:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7696C1C2304
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 20:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734640608; cv=none; b=tlK1K2lc2vsOhKvnsoU+X1PVK9VcYTIikREBcsrSzjGefLk2DOBPvpaLrrVB5k3M4Ud3xDygT/1ny7ngIcBg5eKmZ2xHJoPj8grOg2jHwcRgR29Ik+lBwotU5ep/15SilGpyPLzS2isivoYce2Cdyz6VfYSJG7vuwBwFJLVjPdI=
+	t=1734640617; cv=none; b=TtWZ+Igy4iicsqTvvh3lx4FDsyO9cmkqyMhpKvQSuTimng9twbhYURi0R9lK0PhJhAgL5zEvoGAppXyfzsLXGh1FZdJ0E8zWTRAkg7EQq0E70GIrnH40G/jUC0pACg3VKJu/Ijid5mbrrAU3G4Y5cw/vY4kesp7Z6suYMNlKnfk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734640608; c=relaxed/simple;
-	bh=wda/lOi/x8S8oGXon3Gu91m7K9vSKbCp+D1/y3DYncA=;
+	s=arc-20240116; t=1734640617; c=relaxed/simple;
+	bh=PKmV12KmIaIne4Yp9ni3s/DThfu+7FkzDjmXAOjYKa8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dPfUnU0jyqLM/No9dMg4j4gGAY9PHEhga1CFLr7PKHQTP1Ffvw6oGEhLtM8lLdN7HfdpjwpIHkx4F7LJlGLS2um/WIFCZrtXhRGVu2oSOf3GjrXIVynqDlUUqc8+cJOMKWVZJMIxivTo2w0JOdYdVtd2BKfsSALcv8OryMn4//Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=jqEFdJVO; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id C375F2C07BD;
-	Fri, 20 Dec 2024 09:36:37 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1734640597;
-	bh=8beJoOU5Nrta/GXSMFPY+yvlk7KJmBRMZB0sO9Gd+Ro=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jqEFdJVOq6Df+bjKIhfgMOLjctChMcKvTbYs8PHUtnLpfZGHn7w/8zVcTIP7moPxB
-	 odBUo1Ekh2zZODP3gutiiEDziPjZRxEDphGwbaEkUW7xTVTnYX+6zbH+XIhHa2b0Hy
-	 ujZukwsR/X4uhOhJiPfrk8Of3IgryH0hNTXBd6efKMvPfq9eYddXKoSQNAF1dxq9lO
-	 RJLbkssXvY5Lv9qhJ1XOrQ52QMZ9mzN4p/vPQjB2ngYcLDYu7Y7IDGSo8V9lDw29qF
-	 qV3YYmTRy2S2+kDGiJrc2clnMq8CH2Ye9lLRDZ551tHv4IZxJH5L/4hi8r5C5gigOy
-	 oVZYPZZvsKTRw==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B676483d50000>; Fri, 20 Dec 2024 09:36:37 +1300
-Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id A90AE13EE00;
-	Fri, 20 Dec 2024 09:36:37 +1300 (NZDT)
-Message-ID: <fe34b6b0-01fd-4dc7-a1b4-6c27ad2c9e74@alliedtelesis.co.nz>
-Date: Fri, 20 Dec 2024 09:36:37 +1300
+	 In-Reply-To:Content-Type; b=dV30FdM9FcnLQn7012T8asojNl688F1TyXcd9wl78cbQbSYV3e7Woxa5WRxuGPC/7HsFLUS4uu5sr5CBatA3sEHu0OmNW0yPbgRFy91JGA9zTCBWFs6wXvhXurByQRedM8xbi5Os2ncbGqsPLlM9P3587p4/njQgfmF22O8JB3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e1yi4B9A; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJBdotF027964
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 20:36:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	rbLPj5k+mWqJD2ZbJjIgJjHFkUEA4luzmueKH21YY8g=; b=e1yi4B9A1ccQ5oCI
+	JYIUwhbZvtoAmplJxCcCM/f92vZw1L0RHE7stPqhzaM4Kv3ffhaxMot+OZ+COp/o
+	F/fKdgKH2dVzOPIrIM9/ChrBtBsl85S0KpPhtJhwq06iQBzcZpq9GYPYObWtqFPO
+	J51hs5RpB2tueyr/tZwQA1De33iPWhtSoezayxlk8DsHzwNrMrFwrXMdKIFckeV5
+	dbqFgtoYr5Ee8Yc5TlPDjSSXL8ZXZTBmzv9iflQG6F3/LUFbNvnzZRaTXf3zLDBj
+	vafkLK13GZBomkrlXFncct97H/N3WDETo/n7CFvvqYh6pbSTYyS2B7DQ38s1CyAv
+	zCgA+Q==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43mjtesc3u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 20:36:54 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4679af4d6b7so3030781cf.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 12:36:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734640613; x=1735245413;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rbLPj5k+mWqJD2ZbJjIgJjHFkUEA4luzmueKH21YY8g=;
+        b=Fb8zgI+Mwm50o/H1ySWMb7ZN0Q623YrRh/jjE8IC/4Rhu2eXmRgP6qyUqAuc9ADshb
+         8cxYBcNqmdErzn1V77WXZPyeGpmRuUK4SoQjv96N1dDRvItId3DMTYzpoiRoJZjLVnbn
+         0KPXEzQ5nlnR4Rb91VY+AAM0qFgTXYu9z3+MmfVQx+fVVTkirizZS8HJ2pOItuWOtL7y
+         xl00RZBIyPW/Pvl/q+4znTei+NrEO448R6f+io2Bh+CiVRmFOp28PulA2Sto9BG48ZGe
+         jwBPy/yQea/KyckNnlbsfwAxYbhgr2jyvUhhfnUrRJxzJG9vumZonr8iibcA5UQPM3H3
+         ShSA==
+X-Forwarded-Encrypted: i=1; AJvYcCU6YEdvsWscLzNIYg8Do6dMV6yi5Wo0f59vf0I9cXmzWGeEqGsTE7Cow2DuRzuvfKHmDQ3kRNs5P6Db@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw33CUzPTmpXAcFjsIFRD4nnxFZEJvH+8Uu4ij5b9q+rze27ea0
+	PJw/aw5zi3Gw0sMhkjoLkzmXFLNTqXqlF0aHWdQsd9NxOTrOAtpEHyFbS6evjFUDjvb9ems8pt3
+	Q1vUs17guDB68o+ZiJO6dACZwvG9wqBRkNE0ULkD/Y/j7kc6MZVG2inHyN1Bi
+X-Gm-Gg: ASbGncth4Vlnao0pzoSDo1Dur1hdgklXTbyecDm4TDsVS9uqQ+VEr06prHwU5t10PGK
+	DbeGZFltPxcNfWSJ09EQIzQpG5OhsCwenw/RHbCUPBYsmqkHSsfiK6Lq6HJMrR4jlieFativxRj
+	olAYyzD+ED7gHdP614SUWc6wqvCFe2xLl8AMcAkb5/K8xc+vKkvXZWET5VAR0sWPQe9ZYrokcgc
+	cq+BTspFY4HXDWPL5hVgSy47om/Q/X4rGaBd94ei/9v2yTsLfMI8GaCu+K6HuDnod9C69rQZL7P
+	z//FqtqWeHtcFm+kbYGJpQtqFx6N0kDOLvE=
+X-Received: by 2002:a05:622a:7:b0:458:2619:457e with SMTP id d75a77b69052e-46a4a9709b8mr2535141cf.10.1734640613503;
+        Thu, 19 Dec 2024 12:36:53 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGDTEtCDQCMvHYR8I3DxMlrpc6duYjEQ6rOxFM+v836//HR/Xl5QsrRv0X4F0BqVXUKzXselw==
+X-Received: by 2002:a05:622a:7:b0:458:2619:457e with SMTP id d75a77b69052e-46a4a9709b8mr2535001cf.10.1734640613131;
+        Thu, 19 Dec 2024 12:36:53 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e830b00sm101119766b.16.2024.12.19.12.36.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Dec 2024 12:36:52 -0800 (PST)
+Message-ID: <ca0ecc07-fd45-4116-9927-8eb3e737505f@oss.qualcomm.com>
+Date: Thu, 19 Dec 2024 21:36:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v2 4/4] net: mdio: Add RTL9300 MDIO driver
-To: Andrew Lunn <andrew@lunn.ch>,
- Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, tsbogend@alpha.franken.de,
- hkallweit1@gmail.com, linux@armlinux.org.uk, markus.stockhausen@gmx.de,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20241216031346.2626805-1-chris.packham@alliedtelesis.co.nz>
- <20241216031346.2626805-5-chris.packham@alliedtelesis.co.nz>
- <CAJq09z49uBPPZqDyc3O+4nVppKoKdrJunQnQKBUfQmwzdV+ZFQ@mail.gmail.com>
- <07073382-df51-4064-9802-cdbfcf732523@lunn.ch>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: ipq5424: add spi0 node
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, andersson@kernel.org,
+        linus.walleij@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, konradybcio@kernel.org, quic_srichara@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: quic_varada@quicinc.com
+References: <20241217091308.3253897-1-quic_mmanikan@quicinc.com>
+ <20241217091308.3253897-4-quic_mmanikan@quicinc.com>
 Content-Language: en-US
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <07073382-df51-4064-9802-cdbfcf732523@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=676483d5 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=RZcAm9yDv7YA:10 a=TaXqMiGPp3LDd7P4VpYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241217091308.3253897-4-quic_mmanikan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: dV0OFi0fz6OZZK-Z1g12UI17hGxOc7pv
+X-Proofpoint-ORIG-GUID: dV0OFi0fz6OZZK-Z1g12UI17hGxOc7pv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 mlxscore=0 suspectscore=0 bulkscore=0 adultscore=0
+ impostorscore=0 spamscore=0 lowpriorityscore=0 clxscore=1015 phishscore=0
+ mlxlogscore=943 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412190163
 
+On 17.12.2024 10:13 AM, Manikanta Mylavarapu wrote:
+> Add SPI0 node for IPQ5424 SoC.
+> 
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> ---
+> Changes in V2:
+> 	- No change
+> 
+>  arch/arm64/boot/dts/qcom/ipq5424.dtsi | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+> index 5e219f900412..b4d736cd8610 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+> @@ -201,6 +201,17 @@ uart1: serial@1a84000 {
+>  				clock-names = "se";
+>  				interrupts = <GIC_SPI 340 IRQ_TYPE_LEVEL_HIGH>;
+>  			};
+> +
+> +			spi0: spi@1a90000 {
+> +				compatible = "qcom,geni-spi";
+> +				reg = <0 0x01a90000 0 0x4000>;
+> +				clocks = <&gcc GCC_QUPV3_SPI0_CLK>;
 
-On 19/12/2024 22:40, Andrew Lunn wrote:
-> On Thu, Dec 19, 2024 at 01:46:41AM -0300, Luiz Angelo Daros de Luca wro=
-te:
->> Hello Chris,
->>
->>> +++ b/drivers/net/mdio/mdio-realtek-rtl.c
->> I wonder if the name might be dubious in the future with other realtek
->> products with MDIO. Realtek is quite a large company with many
->> products. Would a version/model/family/usage in that name help a far
->> future reader to identify what this file is about?
-> Isnt rtl the family name? Or would you prefer mdio-realtek-rtl9300.c?
+This register base suggests SPI4 for both the name and clock
 
-Yes my intention was that "rtl" was the family name. I'm happy to change=20
-to rtl9300.
+The existing UART1 similarly should be UART0
 
-I suspect this probably will be compatible with the rtl9310. I've just=20
-received a RTL9313 based board so will probably start looking at that in=20
-the new year.
-
->>> +static int realtek_mdio_wait_ready(struct realtek_mdio_priv *priv)
->> All those realtek_mdio_* prefix might collide with realtek_mdio_* from
->> drivers/net/dsa/realtek/realtek-mdio.c. This realtek_mdio_* is about a
->> Realtek SoC MDIO interface with the switch. The other realtek_mdio_*
->> is about the interface (MDIO or SMI) between (the other vendor) SoC
->> and the switch. I don't know if the maintainers are OK with it but
->> listing those symbols in alphabetic order from both sources might be
->> confusing.
-> rtl9300_ as a prefix?
-
-I'd happily=C2=A0 change to rtl_ or rtl9300_
-
->>> +static const struct of_device_id realtek_mdio_ids[] =3D {
->>> +       { .compatible =3D "realtek,rtl9301-mdio" },
->>> +       { .compatible =3D "realtek,rtl9302b-mdio" },
->>> +       { .compatible =3D "realtek,rtl9302c-mdio" },
->>> +       { .compatible =3D "realtek,rtl9303-mdio" },
->> Do these different compatible strings really matter? AFAIK, compatible
->> are not for listing all supported models/variants but to describe
->> devices that have a different behavior and indicating that (with
->> different strings) is needed to decide how the driver will work. If
->> the driver does not use which compatible was set, it might indicate
->> that we don't really need 4 compatible but 1.
-> It can be useful when we initially think they are compatible, but
-> later find out they are not, and we need different behaviour.
-
-The way I've written the dt-binding any board should include=20
-"realtek,rtl9301-mdio" and may also include one of=20
-"realtek,rtl9302b-mdio", "realtek,rtl9302c-mdio",=20
-"realtek,rtl9303-mdio". For the MDIO driver the specific chip could=20
-possibly tell us the maximum SMI bus number. Unfortunately I've only got=20
-a block diagram of the RTL9302C, I know that does have 4 SMI interfaces,=20
-the others may have fewer. Things would probably work fine for now with=20
-just "realtek,rtl9301-mdio" but is there any harm in including the others=
-?
-
+Konrad
 
