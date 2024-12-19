@@ -1,167 +1,515 @@
-Return-Path: <devicetree+bounces-132835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D2E39F8455
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:32:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DEFA9F846F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:35:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C70B416AA29
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:32:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A2D5188737B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:35:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82E5D1B041E;
-	Thu, 19 Dec 2024 19:32:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349691A9B49;
+	Thu, 19 Dec 2024 19:35:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UVoS8Tnq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CHgWkWaB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 664341A4F09
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 19:32:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B66198A08;
+	Thu, 19 Dec 2024 19:35:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734636748; cv=none; b=iZSD9yJ7fRZxcHQQLGR7O+bIv8/h31dV//TO6EggmdoDWZGwBQkjvdsAgyOHW3XoJtORr4HV3dJofP08RTCiDtARljw2E3mS71SvMOWH5cgGinrGmfEWDlt9xS14LNsoX1ucYAuPncu4MzkVucoPXRFBB9k80V5lYRb3gwDBQMY=
+	t=1734636949; cv=none; b=B21mtjemLsbjgPEpDZPzfHc+luqF5fhSkc9Hp7UhiZJ3MMMJ0EfS+8+KUt8ae5gHBlmKWXvmWazRi5iiXlOQYffM2av2t0gh8WLHJoDBvlIIRQW3r67W+oYw/AiX9FXS6NTVIDoAzZAPGkUvITAxWpSCx+f3r64AN3sSGgzO3/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734636748; c=relaxed/simple;
-	bh=XisdETZGt1xGd/tAcysR1gf7SJZ+Q0OQ6PAQF/dE/QU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=md/3YmF6/CjUYoj55fEE34LcEHk0ehc79mnvyoO5b3gU7VmVTJkZfRXLm/D0NEVAbrNMUTKWHYSeKis6yrtWga4ML1Y13BU9U4VTq7cnVnTXLfK4PCQesMC4IFqqwwoRAg34ElZ/6MWrDfOsA28i+TgWDIWN+9SONvlB6iKIPzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UVoS8Tnq; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5401c2bb7ccso96538e87.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 11:32:26 -0800 (PST)
+	s=arc-20240116; t=1734636949; c=relaxed/simple;
+	bh=SA+1oC08uDFMTRoO6PwsNpUy2AKRs8ZKCbyPsQA+Uik=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M+2qOQj7iRNNZK2wfTuk09HQFCRmJQj5O/gVOb6+gCJKeQr1KRnF15o3H7OE8GZw90yYxKJ3IeBP9XhPqoITX3fiRX+F3slk+UxXv0DHu6fsrbaLwmnPYDQRiZdr9IDYQUFLkhWXa9/ug8TLD32TfeIYRDQr6kG0S+/IyMs5i98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CHgWkWaB; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-725f2f79ed9so1011066b3a.2;
+        Thu, 19 Dec 2024 11:35:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734636744; x=1735241544; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IW/1H+wBsYHEd+yu91SFC/VMNkW4y30uxY2FjxFoA0k=;
-        b=UVoS8Tnqvuihmed2kUERhKZeQvCpgyWsPVaDN7L9hyd6tUbSpenigE12GRuJFJZhvq
-         tFQy2fSgsZ+9iAStZ7rDB6gw9nzmd4fGCIgx5Z7OzWDQmKA6Z8mHTeBPb9cfmGJTQdc/
-         opaTLmKM8igS7ONiZ5wTj8RIip2RAZ1K8jva0b0Eck3fClr/mwl/PDIHUc0/H4EeP/6v
-         ZqRTPBSSaw/q06TFFOLTnXZmd3Sa7QblVGyZfVrE8sXO3XESwe/cPFJkTwnvKbyKnYuo
-         LSvkLxn7RRh4BWKIccHXv4+thDs7VxPa6OY5h1NJPG/Xirn1kZvfzrMG0ShIw5nGSe9Z
-         5j5w==
+        d=gmail.com; s=20230601; t=1734636946; x=1735241746; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=6l1l8xW+tGely/slpff3ASJPbegyBGo6X7WgDUE5Tbg=;
+        b=CHgWkWaB6i5u8FLePhhAoTrpOqYNi0Z2uE1qKwMV86y5LlvutJaBM6fuf7tjTBND4d
+         KwPNVJGCgpZf8NnG6N3mX3QH5uuCIABpY8vPB+hQIFhH0VHE/Ipi2jwJLihpCR/NQq6n
+         fG6wjFC4/n3hXZVTv0QKyvLVP/AcGteqmpAk/JeAqfroRiZeCGxnyEq2H/SNPhhrcgZX
+         ixJxsBVFAvqpSO62lZoZDnJqulRHHIeEZo0h63VzDc8T7niQo2uouB6vcL0LbGr5YoIZ
+         /8FrsyRcI/9ASKViXRCV7tqLF9rUO9NKRa8MNsoydUcd+ZPNG25dZOlkFHhY/r5CkXOS
+         BPMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734636744; x=1735241544;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IW/1H+wBsYHEd+yu91SFC/VMNkW4y30uxY2FjxFoA0k=;
-        b=io6bjRaLWzlG5qohbG7N7gGZV4Yn7Bb+IRwcnx3gD6TBu2qaODy1RIRsBm0EqmrGPj
-         iLO3ytV7xbB9rBaddq6hZ0Ro+h/Dz6noZ2wCPz52jepjjpkR9zoQnqTQBrw3Fh3itN5Y
-         bsGge734JepWQ5LFbRJUj5OcBq36ipHhBxPs40R3ovM2KJ/QCmAnqKfkWsq81Ojk1a7d
-         jFZISq7RZDltzoLJ5aSgGGdCxMH4i2yGMtUj8n3BMLde6Ve7qQA2DxE2tfkguJUMw48a
-         fryqm2Eqkn4PnczjnbcqufqDRGkaVAySzicrEFnZJ6GVqUA9rSmlAxGCszYKKjuj76Ks
-         zDKw==
-X-Forwarded-Encrypted: i=1; AJvYcCXx6S2UKBQjQ2pJu34DnrgEfnjbq+dOSeYcTENEqTynkR2IMEFXJOmjCMtLP43KFIek8NLmNUWhzF0z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw25ITSq/75R9k0tBHj675rvecnWAVPcamAECHgPnmxaJbvchgf
-	3e27Z3BnOYdh7iIjXCJ3AylGxyAgoyTfeWy0mzDNK0GuDPT7X2cuC+37UdmVLt8=
-X-Gm-Gg: ASbGnctuoWGGmHZRQP9Nu0lHECWtv8yATXgFOESzkRRutT3t8I8cCwZsztnnIU8In4M
-	MTgbosKuXolVuYDjH+NMoUxLH/iYIduIbOM2urkiO9jFi/0n23WWQxl1lXD4B8UsKkl0euNVcNL
-	Q7XziuvfM0tiFSE25uQSrUk3kg5GOSpUWwKYJaTh6YwBjkJf4vyWSLnehTBR2M2oM1WRGCauFIX
-	H8uuwL9LfIeIFccDaOPHqRyso049vZ6h8zDk13c8xRuK1IfRi353fnW/+JDI+fm6c2WN6D1q62A
-	alkWGqP+sz0r0c31nmoAAvbCK1zqQa2W0mQ=
-X-Google-Smtp-Source: AGHT+IHUvBst8RiUn9IST8/5AjNtAtHUWTb9tBGd8LLvhOk3TajPDIYTYMQtaGEJvz/fTfQPjsQaIg==
-X-Received: by 2002:a05:6512:398d:b0:540:2aeb:5d3c with SMTP id 2adb3069b0e04-541e673d7c7mr950150e87.2.1734636744478;
-        Thu, 19 Dec 2024 11:32:24 -0800 (PST)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-542235f5d88sm256403e87.15.2024.12.19.11.32.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Dec 2024 11:32:23 -0800 (PST)
-Message-ID: <c7253f5f-eb4a-4636-b0f9-7d284a2f5a8d@linaro.org>
-Date: Thu, 19 Dec 2024 21:32:21 +0200
+        d=1e100.net; s=20230601; t=1734636946; x=1735241746;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6l1l8xW+tGely/slpff3ASJPbegyBGo6X7WgDUE5Tbg=;
+        b=L04JSkHouE31L5rOxM5AyucQvnTW/ON5rMID/0hNu7otGjcHz72Voc6WZzNgDDxYM5
+         EjCs1WbWFdwqLbmpbv1NSUh127C7CI4ErVESbYFV9MNGPFNdd3rzn5qwwEWMC8pba/Li
+         g8cKQv1rCTawkHyORGHSBHxLiyBHn4YUAO/r5FoIHv1HCqzJxIZF9Fl14rGr/8JJxgXh
+         FvEs8t3KMOoW+IQR/haRYZ01ohvWZaKvxLUabyW7iyifSFV5r3WhUyg/BsGalwUkFg6e
+         QBwhfcTraN2eMFtkLNA4RFzOxf5MgNwzul8mnkvVPRmjDdYT2hliMeXm+7OFogGnRpGI
+         HHNw==
+X-Forwarded-Encrypted: i=1; AJvYcCUFL7RWR6vHemE8SAHqTltQOEYTafkLcSuYUCHHFLcQ76gMibcn5uLtME1SljHGP5XdsgfJ0EmqpjnCJdUh@vger.kernel.org, AJvYcCUrRx9xgz9/wuIhMoWZ53lA4pS/ivn7QbVh66pirnXSUGcJI/vhdnqkQyo/FVL6AXBwMP3vEnnzkMRP@vger.kernel.org, AJvYcCUwoMHJRQyVUnOZnr/eZeFfeXwQGpbBJ8fT6BOOajfYWel5rqTS/zTeAY6p39JWyQx72opvS2/abN1E@vger.kernel.org, AJvYcCXa3ZUv2rFLtDZnSWK5jhiY9ebQch7qlLbH+hsuvCoC1NOJlxk2AhhWNmlCbpj3DjFEF0+/kG/geO3ErBU=@vger.kernel.org, AJvYcCXiviDD+fdKWUYwBXdOB6PpYgMrq0WQLdECxmjhwdLeHcfa76m5Cb31ucOJ0ucuqvcMC2KNW1xWAOwV4Q==@vger.kernel.org
+X-Gm-Message-State: AOJu0YygGyQfyLB2rV3m+RwxmvqIXOSyX0PLeXp31Pe2BXLsFhZziX8Z
+	BVUU3T6NFVMb7EqVOvQrj47qZ0gz2yPLMAtqWPFRXzCUBxWjUWjQ
+X-Gm-Gg: ASbGnctVKJhRC7yNEfU4XP/0mIfJT0h8PglA0fLzCxH2kbxZIXd94tNw2O0exftGGyw
+	Ia0jgA/HFiSWNnxDtVg+/FOgYE+nsTiUipGJipKOpyZ5o4xAK1TiMFstG+BrDVPEqxCouckzUYs
+	KFSVipm6RnRkqc16q/2J9N477DokmnzxdloEZtzk7LUI5dGd+ZKAVYXhGb/sT87VO+IxoBo09i0
+	I/JA8Pq2TdWldU6WHq4y24Q9d0B/Ubo9mIzlfeMklN3wsrfPRhTh6Rd/w==
+X-Google-Smtp-Source: AGHT+IEthmscUgqJEOLOt2xMPjqaZIlxdzUR17rpPWL7yK7dU738VobiVtTylmL/q0CvGYza7553mg==
+X-Received: by 2002:a05:6a00:2407:b0:725:b201:2362 with SMTP id d2e1a72fcca58-72aa8d5164emr6253626b3a.11.1734636946446;
+        Thu, 19 Dec 2024 11:35:46 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:afa0:e44c:aa7e:5cd4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72aad90c1bcsm1730660b3a.187.2024.12.19.11.35.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Dec 2024 11:35:45 -0800 (PST)
+Date: Thu, 19 Dec 2024 11:35:42 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 6/8] input: keyboard: Add support for MAX7360 keypad
+Message-ID: <Z2R1ju7pNd-BBLJ4@google.com>
+References: <20241219-mdb-max7360-support-v1-0-8e8317584121@bootlin.com>
+ <20241219-mdb-max7360-support-v1-6-8e8317584121@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 4/4] arm64: dts: qcom:
- qcs6490-rb3gen2-vision-mezzanine: Add vision mezzanine
-Content-Language: ru-RU
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- akapatra@quicinc.com, hariramp@quicinc.com, andersson@kernel.org,
- konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
- cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20241217140656.965235-1-quic_vikramsa@quicinc.com>
- <20241217140656.965235-5-quic_vikramsa@quicinc.com>
- <22479c27-9265-4994-8974-9739ecbae5ee@linaro.org>
- <99cf5f7e-43f6-4ac4-a4a2-dc731b695572@oss.qualcomm.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <99cf5f7e-43f6-4ac4-a4a2-dc731b695572@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241219-mdb-max7360-support-v1-6-8e8317584121@bootlin.com>
 
-On 12/19/24 21:06, Konrad Dybcio wrote:
-> On 17.12.2024 3:40 PM, Vladimir Zapolskiy wrote:
->> On 12/17/24 16:06, Vikram Sharma wrote:
->>> The Vision Mezzanine for the RB3 ships with an imx577 camera sensor.
->>> Enable the IMX577 on the vision mezzanine.
->>>
->>> An example media-ctl pipeline for the imx577 is:
->>>
->>> media-ctl --reset
->>> media-ctl -v -V '"imx577 '19-001a'":0[fmt:SRGGB10/4056x3040 field:none]'
->>> media-ctl -V '"msm_csiphy3":0[fmt:SRGGB10/4056x3040]'
->>> media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
->>> media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
->>> media-ctl -l '"msm_csiphy3":1->"msm_csid0":0[1]'
->>> media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
->>>
->>> yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0
->>>
->>> Signed-off-by: Hariram Purushothaman <quic_hariramp@quicinc.com>
->>> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
->>> Signed-off-by: Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
->>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->>> ---
+Hi Mathieu,
+
+On Thu, Dec 19, 2024 at 05:21:23PM +0100, Mathieu Dubois-Briand wrote:
+> Add driver for Maxim Integrated MAX7360 keypad controller, providing
+> support for up to 64 keys, with a matrix of 8 columns and 8 rows.
 > 
-> [...]
+> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> ---
+>  drivers/input/keyboard/Kconfig          |  12 ++
+>  drivers/input/keyboard/Makefile         |   1 +
+>  drivers/input/keyboard/max7360-keypad.c | 297 ++++++++++++++++++++++++++++++++
+>  3 files changed, 310 insertions(+)
 > 
->>> +        rst-pins {
->>> +            pins = "gpio78";
->>> +            function = "gpio";
->>> +            drive-strength = <2>;
->>> +            bias-pull-down;
->>> +            output-low;
->>> +        };
->>
->> I have doubts that it's proper to embed a reset gpio into driver's
->> pinctrl suspend/resume power management.
->>
->> Konrad, can you please confirm that it's really accepted?
->>
->> I'd rather ask to remove this reset pin control.
+> diff --git a/drivers/input/keyboard/Kconfig b/drivers/input/keyboard/Kconfig
+> index 721ab69e84ac..bba029f65cfa 100644
+> --- a/drivers/input/keyboard/Kconfig
+> +++ b/drivers/input/keyboard/Kconfig
+> @@ -421,6 +421,18 @@ config KEYBOARD_MAX7359
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called max7359_keypad.
+>  
+> +config KEYBOARD_MAX7360
+> +	tristate "Maxim MAX7360 Key Switch Controller"
+> +	select INPUT_MATRIXKMAP
+> +	depends on I2C
+> +	depends on MFD_MAX7360
+> +	help
+> +	  If you say yes here you get support for the keypad controller on the
+> +	  Maxim MAX7360 I/O Expander.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called max7360_keypad.
+> +
+>  config KEYBOARD_MPR121
+>  	tristate "Freescale MPR121 Touchkey"
+>  	depends on I2C
+> diff --git a/drivers/input/keyboard/Makefile b/drivers/input/keyboard/Makefile
+> index 1e0721c30709..b49d32d4003d 100644
+> --- a/drivers/input/keyboard/Makefile
+> +++ b/drivers/input/keyboard/Makefile
+> @@ -42,6 +42,7 @@ obj-$(CONFIG_KEYBOARD_LPC32XX)		+= lpc32xx-keys.o
+>  obj-$(CONFIG_KEYBOARD_MAPLE)		+= maple_keyb.o
+>  obj-$(CONFIG_KEYBOARD_MATRIX)		+= matrix_keypad.o
+>  obj-$(CONFIG_KEYBOARD_MAX7359)		+= max7359_keypad.o
+> +obj-$(CONFIG_KEYBOARD_MAX7360)		+= max7360-keypad.o
+>  obj-$(CONFIG_KEYBOARD_MPR121)		+= mpr121_touchkey.o
+>  obj-$(CONFIG_KEYBOARD_MT6779)		+= mt6779-keypad.o
+>  obj-$(CONFIG_KEYBOARD_MTK_PMIC) 	+= mtk-pmic-keys.o
+> diff --git a/drivers/input/keyboard/max7360-keypad.c b/drivers/input/keyboard/max7360-keypad.c
+> new file mode 100644
+> index 000000000000..fbc51c89dba1
+> --- /dev/null
+> +++ b/drivers/input/keyboard/max7360-keypad.c
+> @@ -0,0 +1,297 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright 2024 Bootlin
+> + *
+> + * Author: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> + */
+> +
+> +#include <linux/init.h>
+> +#include <linux/input.h>
+> +#include <linux/input/matrix_keypad.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/mfd/max7360.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_wakeirq.h>
+> +#include <linux/regmap.h>
+> +#include <linux/slab.h>
+> +
+> +struct max7360_keypad {
+> +	struct input_dev *input;
+> +	unsigned int rows;
+> +	unsigned int cols;
+> +	unsigned int debounce_ms;
+> +	int irq;
+> +	bool no_autorepeat;
+> +	struct regmap *regmap;
+> +	unsigned short keycodes[MAX7360_MAX_KEY_ROWS * MAX7360_MAX_KEY_COLS];
+> +};
+> +
+> +static irqreturn_t max7360_keypad_irq(int irq, void *data)
+> +{
+> +	struct max7360_keypad *max7360_keypad = data;
+> +	unsigned int val;
+> +	unsigned int row, col;
+> +	unsigned int release;
+> +	unsigned int code;
+> +	int ret;
+> +
+> +	ret = regmap_read(max7360_keypad->regmap, MAX7360_REG_KEYFIFO, &val);
+> +	if (!ret && val == MAX7360_FIFO_OVERFLOW) {
+> +		/* FIFO overflow: ignore it and get next event. */
+> +		dev_err(&max7360_keypad->input->dev, "max7360 FIFO overflow");
+> +		ret = regmap_read(max7360_keypad->regmap, MAX7360_REG_KEYFIFO,
+> +				  &val);
+> +	}
+
+Maybe
+
+	do {
+		error = regmap_read(...);
+		if (error) {
+			dev_err(...);
+			return IRQ_HANDLED;
+		}
+	} while (val == MAX7360_FIFO_OVERFLOW);
+
+> +	if (ret) {
+> +		dev_err(&max7360_keypad->input->dev,
+> +			"Failed to read max7360 FIFO");
+> +		return ret;
+
+Wrong value for irqreturn_t.
+
+> +	}
+> +
+> +	if (val == MAX7360_FIFO_EMPTY) {
+> +		dev_dbg(&max7360_keypad->input->dev,
+> +			"Got a spurious interrupt");
+> +
+> +		return IRQ_NONE;
+> +	}
+> +
+> +	row = FIELD_GET(MAX7360_FIFO_ROW, val);
+> +	col = FIELD_GET(MAX7360_FIFO_COL, val);
+> +	release = val & MAX7360_FIFO_RELEASE;
+> +
+> +	code = MATRIX_SCAN_CODE(row, col, MAX7360_ROW_SHIFT);
+> +
+> +	dev_dbg(&max7360_keypad->input->dev,
+> +		"key[%d:%d] %s\n", row, col, release ? "release" : "press");
+> +
+> +	input_event(max7360_keypad->input, EV_MSC, MSC_SCAN, code);
+> +	input_report_key(max7360_keypad->input, max7360_keypad->keycodes[code],
+> +			 !release);
+> +	input_sync(max7360_keypad->input);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int max7360_keypad_open(struct input_dev *pdev)
+> +{
+> +	struct max7360_keypad *max7360_keypad = input_get_drvdata(pdev);
+> +	int ret;
+
+	int error;
+
+> +
+> +	/*
+> +	 * Somebody is using the device: get out of sleep.
+> +	 */
+> +	ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_CONFIG,
+> +				MAX7360_CFG_SLEEP, MAX7360_CFG_SLEEP);
+> +	if (ret) {
+> +		dev_err(&max7360_keypad->input->dev,
+> +			"Failed to write max7360 configuration");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void max7360_keypad_close(struct input_dev *pdev)
+> +{
+> +	struct max7360_keypad *max7360_keypad = input_get_drvdata(pdev);
+> +	int ret;
+
+	int error;
+
+> +
+> +	/*
+> +	 * Nobody is using the device anymore: go to sleep.
+> +	 */
+> +	ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_CONFIG,
+> +				MAX7360_CFG_SLEEP, ~MAX7360_CFG_SLEEP);
+> +	if (ret) {
+> +		dev_err(&max7360_keypad->input->dev,
+> +			"Failed to write max7360 configuration");
+> +	}
+
+No need for braces here.
+
+> +}
+> +
+> +static int max7360_keypad_hw_init(struct max7360_keypad *max7360_keypad)
+> +{
+> +	unsigned int val;
+> +	int ret;
+
+	int error;
+
+> +
+> +	val = max7360_keypad->debounce_ms - MAX7360_DEBOUNCE_MIN;
+> +	ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_DEBOUNCE,
+> +				MAX7360_DEBOUNCE,
+> +				FIELD_PREP(MAX7360_DEBOUNCE, val));
+> +	if (ret) {
+> +		dev_err(&max7360_keypad->input->dev,
+> +			"Failed to write max7360 debounce configuration");
+> +		return ret;
+> +	}
+> +
+> +	ret = regmap_write_bits(max7360_keypad->regmap, MAX7360_REG_INTERRUPT,
+> +				MAX7360_INTERRUPT_TIME_MASK,
+> +				FIELD_PREP(MAX7360_INTERRUPT_TIME_MASK, 1));
+> +	if (ret) {
+> +		dev_err(&max7360_keypad->input->dev,
+> +			"Failed to write max7360 keypad interrupt configuration");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int max7360_keypad_parse_dt(struct platform_device *pdev,
+> +				   struct max7360_keypad *max7360_keypad)
+> +{
+> +	bool no_autorepeat;
+> +	int ret;
+> +
+> +	ret = matrix_keypad_parse_properties(&pdev->dev, &max7360_keypad->rows,
+> +					     &max7360_keypad->cols);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!max7360_keypad->rows || !max7360_keypad->cols ||
+> +	    max7360_keypad->rows > MAX7360_MAX_KEY_ROWS ||
+> +	    max7360_keypad->cols > MAX7360_MAX_KEY_COLS) {
+> +		dev_err(&pdev->dev,
+> +			"Invalid number of columns or rows (%ux%u)\n",
+> +			max7360_keypad->cols, max7360_keypad->rows);
+> +		return -EINVAL;
+> +	}
+> +
+> +	max7360_keypad->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> +	if (!max7360_keypad->regmap) {
+> +		dev_err(&pdev->dev, "Could not get parent regmap\n");
+> +		return -ENODEV;
+> +	}
+
+What this has to do with parsing DT? 
+
+> +
+> +	no_autorepeat = of_property_read_bool(pdev->dev.of_node,
+> +					      "linux,input-no-autorepeat");
+
+This is not a standard property, please using positive "autorepeat".
+
+> +	max7360_keypad->no_autorepeat = no_autorepeat;
+
+I do not think you need to store this in driver data, just check and
+immediately set EV_REP bit.
+
+> +
+> +	max7360_keypad->debounce_ms = MAX7360_DEBOUNCE_MIN;
+> +	ret = of_property_read_u32(pdev->dev.of_node, "debounce-delay-ms",
+> +				   &max7360_keypad->debounce_ms);
+
+Please use generic device properties:
+
+	error = device_property_read_u32(...);
+
+> +	if (ret == -EINVAL) {
+> +		dev_info(&pdev->dev, "Using default debounce-delay-ms: %u\n",
+> +			 max7360_keypad->debounce_ms);
+> +	} else if (ret < 0) {
+> +		dev_err(&pdev->dev, "Failed to read debounce-delay-ms property\n");
+> +		return ret;
+> +	} else if (max7360_keypad->debounce_ms < MAX7360_DEBOUNCE_MIN ||
+> +		   max7360_keypad->debounce_ms > MAX7360_DEBOUNCE_MAX) {
+> +		dev_err(&pdev->dev,
+> +			"Invalid debounce-delay-ms: %u, should be between %u and %u.\n",
+> +			max7360_keypad->debounce_ms, MAX7360_DEBOUNCE_MIN,
+> +			MAX7360_DEBOUNCE_MAX);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int max7360_keypad_probe(struct platform_device *pdev)
+> +{
+> +	struct max7360_keypad *max7360_keypad;
+> +	struct input_dev *input;
+> +	unsigned long flags;
+> +	int irq;
+> +	int ret;
+
+	int error;
+
+> +
+> +	if (!pdev->dev.parent)
+> +		return dev_err_probe(&pdev->dev, -ENODEV, "No parent device\n");
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	max7360_keypad = devm_kzalloc(&pdev->dev, sizeof(*max7360_keypad),
+> +				      GFP_KERNEL);
+> +	if (!max7360_keypad)
+> +		return -ENOMEM;
+> +
+> +	ret = max7360_keypad_parse_dt(pdev, max7360_keypad);
+> +	if (ret)
+> +		return ret;
+> +
+> +	input = devm_input_allocate_device(&pdev->dev);
+> +	if (!input)
+> +		return dev_err_probe(&pdev->dev, -ENOMEM,
+> +				     "Failed to allocate input device\n");
+> +
+> +	max7360_keypad->input = input;
+> +
+> +	input->id.bustype = BUS_I2C;
+> +	input->name = pdev->name;
+> +	input->dev.parent = &pdev->dev;
+
+This is done by devm_input_allocate_device(), no need to repeat.
+
+> +
+> +	input->open = max7360_keypad_open;
+> +	input->close = max7360_keypad_close;
+> +
+> +	ret = matrix_keypad_build_keymap(NULL, NULL,
+> +					 MAX7360_MAX_KEY_ROWS,
+> +					 MAX7360_MAX_KEY_COLS,
+> +					 max7360_keypad->keycodes, input);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "Failed to build keymap\n");
+> +
+> +	input_set_capability(input, EV_MSC, MSC_SCAN);
+> +	if (!max7360_keypad->no_autorepeat)
+> +		__set_bit(EV_REP, input->evbit);
+> +
+> +	input_set_drvdata(input, max7360_keypad);
+> +
+> +	flags = IRQF_TRIGGER_LOW | IRQF_ONESHOT | IRQF_SHARED;
+
+Shared? Why? And why do you need a temp variable?
+
+> +	ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
+> +					max7360_keypad_irq, flags,
+> +					"max7360-keypad", max7360_keypad);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "Failed to register interrupt: %d\n", ret);
+> +
+> +	ret = input_register_device(input);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "Could not register input device: %d\n",
+> +				     ret);
+> +
+> +	platform_set_drvdata(pdev, max7360_keypad);
+> +
+> +	device_init_wakeup(&pdev->dev, true);
+> +	ret = dev_pm_set_wake_irq(&pdev->dev, irq);
+> +	if (ret)
+> +		dev_warn(&pdev->dev, "Failed to set up wakeup irq: %d\n", ret);
+> +
+> +	ret = max7360_keypad_hw_init(max7360_keypad);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "Failed to initialize max7360 keypad\n");
+
+You need to clear wake irq here. Or move setting it to after HW init.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static void max7360_keypad_remove(struct platform_device *pdev)
+> +{
+> +	dev_pm_clear_wake_irq(&pdev->dev);
+> +}
+> +
+> +#ifdef CONFIG_OF
+> +static const struct of_device_id max7360_keypad_of_match[] = {
+> +	{ .compatible = "maxim,max7360-keypad", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, max7360_keypad_of_match);
+> +#endif
+> +
+> +static struct platform_driver max7360_keypad_driver = {
+> +	.driver = {
+> +		.name	= "max7360-keypad",
+> +		.of_match_table = of_match_ptr(max7360_keypad_of_match),
+> +	},
+> +	.probe		= max7360_keypad_probe,
+> +	.remove		= max7360_keypad_remove,
+> +};
+> +module_platform_driver(max7360_keypad_driver);
+> +
+> +MODULE_DESCRIPTION("MAX7360 Keypad driver");
+> +MODULE_AUTHOR("Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>");
+> +MODULE_ALIAS("platform:max7360-keypad");
+> +MODULE_LICENSE("GPL");
 > 
-> There's certainly some appearances of this in the tree.
-> 
-> You could make the argument that it makes sense to prevent misconfiguration
-> (i.e. the bootloader may set the pin in input mode), but then the counter
-> argument is that the (Linux) gpiod APIs request OUT_LOW/HIGH, and we would
-> expect that the driver uses that if the GPIO is requested through
-> e.g. reset-gpios.
-> 
-> I'm not particularly sure what to recommend here. Krzysztof?
+> -- 
+> 2.39.5
 > 
 
-I'm worried by a possibility that a device reset/shutdown control GPIO could
-be turned off by entering the "sleep" pinctrl setup. If a particular GPIO/pin
-is off, is it still continuously functional as a control GPIO of some device?
-I believe it is not anymore in general, this is my concern here.
+Thanks.
 
---
-Best wishes,
-Vladimir
+-- 
+Dmitry
 
