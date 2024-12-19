@@ -1,126 +1,132 @@
-Return-Path: <devicetree+bounces-132624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 809079F79F4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:59:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 023E99F79FF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 12:03:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B61E18916DE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 10:59:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4774F16B964
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 11:03:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B11F22333E;
-	Thu, 19 Dec 2024 10:59:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0565C222591;
+	Thu, 19 Dec 2024 11:03:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kGZnjlu/"
+	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="cy4g7p+a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB17223332
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 10:59:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54AB013AA38;
+	Thu, 19 Dec 2024 11:03:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734605981; cv=none; b=PR5aJbUPHSHhfIEgGq9Ws34dnTYDBcedaYVE4QmzFYXBMbWjv1LsxDswIEMZ9Gi1eNMGci3mDVkv61xv1tvdS15RSUpw3+1esrnikk0GjO8xKAQ0suzm3+xuKtdPHQgY0EPY9y5GWDNiZBpCMpv0Bmzr9XT+M/+f9fnZFp9C+EM=
+	t=1734606184; cv=none; b=JlwIc5BHgoKXuQ+M2XeACbBWd9stOXteNs6Qjf1LDH6YPbnQcWJCMX9/S7/nQVudPdI1rp6rL0DvzGukjoJeuwYljVTKx7qriSDazopzHVCy+KEKJoonds5dI2lxsIUXIwm7i5euvoYLII0cdAaGokDwikvmDEv1WdhwG5b+/88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734605981; c=relaxed/simple;
-	bh=hTTzwFkMModi7DHDk8KLH+uFsTnqarhMYEFPjHVKC2M=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=krPCejXhimHINWSeDYRD0bYQIPRHQhGoLUixFzf1/qkDQus3KWywDeEerhGWg0796EX88zgAHkEHa5UHX8bvTY89Hq9J5DdMlrk7FN4giv5HkA42EdJiKXibhgtOv9vRh0Dtf9HoBLTWZctxbdW0z1zXGQ7NBV3UnfcXRKf+Vf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kGZnjlu/; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-38633b5dbcfso575221f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 02:59:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734605978; x=1735210778; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cS+nRbp5xUtPRCpEi25EwuCO4ItLuZHhxv5YcNc6e4M=;
-        b=kGZnjlu/JQm7EXUYzKd8E4um+nU02blGLkvhKSdPyIYw1AU1cR8dzxF55uiQ/r8I7Y
-         G7BtFXAYh/cAbWzqOMPIrN49nhKuzhC3Qn1wXvhsf9upGPvfejaSg80Sep4ONmPqUUUv
-         uhxTFnSvoeIUbQk33Zpi6hDpDZdiDPM4KJd46q+yVZjCdmrywO5/dIHOA5uV/hk951Cs
-         D1hGcO1uK7Ac/DevrdktiBL1a1Puq/s0SAomKfiJ8Zm8g77yDAUklNVo+GiyprrZSgm/
-         CQlJlH1PlCmlDRb4ZJUwp3VOLcLZRxzVfZvox0lblRYLe+YAHE6DcXGvfJuf2+Ka61Gp
-         9/tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734605978; x=1735210778;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cS+nRbp5xUtPRCpEi25EwuCO4ItLuZHhxv5YcNc6e4M=;
-        b=GEO14llY+bLGc91JE0ClNvKzwDwt2Yz/eYBw4RWZHuYstv7Nyl3rUyXT6HUxogmmG0
-         +ym33QMO/Vrwed2S+SkZNgxinTvqb/1VVejnMNdveHZ6EkdFPClNTwHRJz4/ANjPsQKE
-         kfPW70Wq8Y8N13TFtnpKGTg+wtHhaIDcyE3rvvCTjoYommmZ2wBJrmdU/nS8YWSE90Pj
-         GX88Fv4WHhMVv2cF+RilY3Y6VjO8OwuigyM83iVFdAdUh2idYHn3ipoRKZAZfsTHFWhU
-         wudE36PuNlJzXaMKVZIFZqzw61PM8dN87TG5JSOcuFe8lEJRA2/2aBPJ8Ez0C6Y8D8ii
-         6jPw==
-X-Forwarded-Encrypted: i=1; AJvYcCWGaUijpFK6nPjXRkicz11PswTH2d9Sx0Ju+Mn1ea80ZZpnAwp2ppjxFz/5ydS2YrgHr9kyJiJACMOf@vger.kernel.org
-X-Gm-Message-State: AOJu0YytOf2VY25SqzKW6YQHBhRIZ1ssMtgXnIjVOXoYW86yrP8M+Nmx
-	aJYbQmrDndRMekdZZN2jTh84fwUYzkHU/StyKHH9oL8WwJ+94jokTf2qiEj5ti8=
-X-Gm-Gg: ASbGnctPkUsfDOBWE8ju0wYI41mkmQRf6FC/cXAwOBSVgJK8cbqt9pP/l0KDbvSzgG/
-	HvVCeCzVfE6RiwUQOItMJHmx7/86VDLBud+zGxC31bk72S41dHc1FEpZAqg+hvpgKjurtXF8AWH
-	y4/DyHCe6blOXH/fgunk3SZ7DQRzMz4Ic18PWOZRV+MMPnAyAc0JV0tpJSNHrTqo+RMU8J28NQN
-	03O2vr9GdjTUnzYo71e82j5YenGx+DMaiNnkF3qfy2g4zebKyScyN/x1vju3fhTvSEEHSGW4W4f
-	lA==
-X-Google-Smtp-Source: AGHT+IENRpTZ1e7nnnS7IIxmPArBgJVUoa1AtaNNn0RO62JEfVFRRCR0Cb6o8qC4D0b/oXcnJqyscw==
-X-Received: by 2002:a5d:584e:0:b0:385:e9de:d521 with SMTP id ffacd0b85a97d-38a19af880cmr2997296f8f.8.1734605977659;
-        Thu, 19 Dec 2024 02:59:37 -0800 (PST)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a1c89e2d2sm1289920f8f.71.2024.12.19.02.59.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2024 02:59:37 -0800 (PST)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: andrzej.hajda@intel.com, rfoss@kernel.org, 
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
- jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
- festevam@gmail.com, marex@denx.de, Andrej Picej <andrej.picej@norik.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de
-In-Reply-To: <20241216085410.1968634-1-andrej.picej@norik.com>
-References: <20241216085410.1968634-1-andrej.picej@norik.com>
-Subject: Re: (subset) [PATCH v7 0/3] SN65DSI83/4 lvds_vod_swing properties
-Message-Id: <173460597657.883073.14115671156294694663.b4-ty@linaro.org>
-Date: Thu, 19 Dec 2024 11:59:36 +0100
+	s=arc-20240116; t=1734606184; c=relaxed/simple;
+	bh=fyUEfXPY6lKhmiZ1cchTmokYBC/rMnAsQzTQoK63ZDc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Je3oxAC7qbwG/pNVqyBySBBDvQ/Hf8l8Yrpe/wu5KG/l8zafGxJSeTNesd9+LWrYzvnG2O5GLc7B8n3Q/GAMjHJOLRzCODmZflkzVcrMTRY9Oq2bNQkez/0Xm7SAKnmpVshZRArj9zccEu7S2pafNIsXxUKP+MnHKILxOT8NCwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=cy4g7p+a; arc=none smtp.client-ip=67.231.149.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+	by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ5KRf7027660;
+	Thu, 19 Dec 2024 05:02:59 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
+	:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=PODMain02222019; bh=sQWyzpmCoM3LxXAslG
+	B9YrBesBsIhfjE9Yu44zwZ1Jo=; b=cy4g7p+aOonVPWTm/Df86aNVmO+yMENRr6
+	M37pVSx9yl+2FUfxXUPuoXther18/V0VIHpAQIs0wVlgzs0ilEB3wWUDj+skkZHp
+	dJ+5n8RGwhz2Kz9rnMEZzvvjFXNBDDHTW6c8PmFXbBGbbDvlIlZAgIO50CfVA9ME
+	d9VzVJugdLl9bleo7IEriNSe4+Vff7Ygk+Z3Mq41EcMR3ngAqG9qc/DIYgRUGJhu
+	zs0dGqgWhqr8PJhafD+591staMrzx6BDL1V/tJCqY55mTOF3PG1Sr12flwV5sK2U
+	6zBYLRtzfovkG9ymFy8sjDiB9KOblvpYVWeHe5g8B2LRotFykjHA==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 43h8a266ub-2
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 19 Dec 2024 05:02:59 -0600 (CST)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.13; Thu, 19 Dec
+ 2024 11:02:56 +0000
+Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
+ anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
+ 15.2.1544.13 via Frontend Transport; Thu, 19 Dec 2024 11:02:56 +0000
+Received: from opensource.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
+	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 65AD6820247;
+	Thu, 19 Dec 2024 11:02:56 +0000 (UTC)
+Date: Thu, 19 Dec 2024 11:02:55 +0000
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Paul Handrigan <paulha@opensource.cirrus.com>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <patches@opensource.cirrus.com>
+Subject: Re: [PATCH v2 1/2] dt-binding: clock: cs2600: Add support for the
+ CS2600
+Message-ID: <Z2P9X5b+oTo4Du/n@opensource.cirrus.com>
+References: <20241219024631.3145377-1-paulha@opensource.cirrus.com>
+ <20241219024631.3145377-2-paulha@opensource.cirrus.com>
+ <3glyuu4yg7wbykdsfm33m5evnn7fwg4dbplrkgzcceld3cgu2s@t3xjlhryt2y6>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <3glyuu4yg7wbykdsfm33m5evnn7fwg4dbplrkgzcceld3cgu2s@t3xjlhryt2y6>
+X-Proofpoint-ORIG-GUID: XiCh5Oco17bndUKHslANQbc8c4BSB_ha
+X-Proofpoint-GUID: XiCh5Oco17bndUKHslANQbc8c4BSB_ha
+X-Proofpoint-Spam-Reason: safe
 
-Hi,
-
-On Mon, 16 Dec 2024 09:54:07 +0100, Andrej Picej wrote:
-> The LVDS differential voltage swing can be specified as arrays of min, max
-> in microvolts. Two arrays, one for data-lanes and one for clock-lane can
-> be specified. Additionally, because LVDS voltage swing depends on near-end
-> termination this can now also be specified with separate property.
+On Thu, Dec 19, 2024 at 09:51:00AM +0100, Krzysztof Kozlowski wrote:
+> On Wed, Dec 18, 2024 at 08:46:30PM -0600, Paul Handrigan wrote:
+> > +  clock-output-names:
+> > +    maxItems: 3
+> > +    description: Names for CLK_OUT, BCLK_OUT and FSYNC_OUT clocks.
+> > +
+> > +  cirrus,aux-output-source:
+> > +    description:
+> > +      Specifies the function of the auxiliary output pin
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum:
+> > +      - 0 # CS2600_AUX_OUTPUT_FREQ_UNLOCK: Frequency unlock notification
+> > +      - 1 # CS2600_AUX_OUTPUT_PHASE_UNLOCK: Phase unlock notification
+> > +      - 2 # CS2600_AUX_OUTPUT_NO_CLKIN: CLK_IN is not available
 > 
-> Driver goes through the tables, taken from datasheet [1] and selects the
-> appropriate configuration. If appropriate configuration can not be found
-> the probe fails. If these properties are not defined default values are
-> used as before.
+> I still do not understand how "clk_in", which is required, could be not
+> available. To me it contradicts itself, but maybe just description is a
+> bit incomplete.
+
+I think yeah the description perhaps needs to make this more
+clear this is setting an error output pin, ie. the pin goes high
+for the linked error condition.
+
+> > +/* CS2600 Auxiliary Output */
+> > +#define CS2600_AUX_OUTPUT_FREQ_UNLOCK	0
+> > +#define CS2600_AUX_OUTPUT_PHASE_UNLOCK	1
+> > +#define CS2600_AUX_OUTPUT_NO_CLKIN	2
 > 
-> [...]
+> I still don't see why these three are supposed to be bindings. Drop
+> them.
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
+In a binding one would presumably do:
 
-[1/3] dt-bindings: drm/bridge: ti-sn65dsi83: Add properties for ti,lvds-vod-swing
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/63f4e7dfef8c1162e22cd25c9a23b125ba40dfc4
-[2/3] drm/bridge: ti-sn65dsi83: Add ti,lvds-vod-swing optional properties
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/d2b8c6d5495706eee2347483ea89b5c13f256ff2
+cirrus,aux-output-source = <CS2600_AUX_OUTPUT_FREQ_UNLOCK>;
 
--- 
-Neil
+Apologies but I don't quite understand what you mean by the values
+are not used in the binding? The driver reads the property and sets
+the pin to have the appropriate function. Admittedly one could drop
+the defines and then DTS would just have to do:
 
+cirrus,aux-output-source = <0>;
+
+But that feels a bit less helpful when reading the binding.
+
+Thanks,
+Charles
 
