@@ -1,264 +1,212 @@
-Return-Path: <devicetree+bounces-132694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FBF09F7CB5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:55:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A5D79F7CBA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 15:01:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 468DA1893795
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 13:55:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 272F41883FA0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 14:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D22842253EC;
-	Thu, 19 Dec 2024 13:55:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2178C2236E4;
+	Thu, 19 Dec 2024 14:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VriswTZz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LCfcxvSc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C89005FDA7
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 13:55:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECE7922075;
+	Thu, 19 Dec 2024 14:01:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734616516; cv=none; b=OPxLwP94rqMJaOPxkJgIF+FmEiGnQSeBXXMyQNE+S5FEBY/jCgSW5ypIodf9hbfmfwxXHZgR4bHEkiVC7WdshK1LbydjoO/zkwQwAWAOQlNwo1QSsmTUCmGt/2Qs5EKjRYGCa+INFpA3XzgbE8IvJof9Fr/sfzcH5UQ+nzQ1Tl8=
+	t=1734616903; cv=none; b=PCoW5sSmuYS9XTyCJsBEzbQlKCQOhYH03dp+ZCMiNRZ60HfcAJjhqSup57aVCj44zh/xbc8JY18AJ0vUo0Jtx9j1wOzmofOcWyaIbfAsnvlFKkrjU7LNOPM9QcQ/Ge9T0PiinVjWfiRwljnFb73S3tEhz3kwyLV1DlCMvCnboEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734616516; c=relaxed/simple;
-	bh=ANB1CObm+7QH/t4YKy5hJsXI3MV3D9QR+4gNAq+h//E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TKnc0BpEOpW7x5sudQlvZDHnOQidQvwvuFIgWVQyIcL4TlHgqtFr8sgZUHXPfcfEMM06uv57cLXgQaqb0flgPXiiVU2qYLLNtFjvkUrwmc/rxRY36C0E2G4pS9/4UIV9Un6K2JKDCTW7c3SW4YAJ0zmp+U98XKByO681/tfbEB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VriswTZz; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6ef7f8d4f30so6672487b3.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 05:55:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1734616513; x=1735221313; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dqjglsHNEzFU9vaMiL5RfRpC+S8PcoDfSHitlHm4rHY=;
-        b=VriswTZz6Oi8xLgfdqiWA5lF2pW1YeVgz72nFaenfAKhL2a4nwChnPdJr5t21mZ0OO
-         z6rupEXdxs2ymP8+qs6QiO60bEIxw9M1lrxLOUVdBZDikoOKQmmfoWb1FUQr6E1H2tA4
-         cAGDHhaDhCTByUrmpySpgZ64vDaXNPS8Ld6FG+YdyGVac9wyH+2WzA47htF03cgfORcL
-         4x2gDKlb3ZojzQ8YolpU/USWj2jOa1u/ggmuzudqtZm2+hqAIhPjGPkUMq27RFTO9ZnL
-         nc+lAxHYjleSnDFW5LMgUNnYSRDktyF3lPQ+CDHjkQZ2pD+zqkc3919KwrqnszrHT+NI
-         b8Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734616513; x=1735221313;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dqjglsHNEzFU9vaMiL5RfRpC+S8PcoDfSHitlHm4rHY=;
-        b=R5pxOh0BW22Sr/dC7N6rfo/iqhbG/zSbozBjH1QcgyRc1yfRA2Bidb0ueJjHT5/5b9
-         yRnJsy+T0OKdQeB45bWUOTKi6um2vjBsL5p7Ehbw0HaLX3qdavgvUHV/F3B4TZT7ucu6
-         q+u/tiZzNtkxxCWD2ru9UdT+juUuSPJ2FqbijS232CThM5IWyDd7zQBzQtLT0Ue/Z9Tb
-         WhEhvul/9RlJ9Os9s2XtQ0sBOMDuZ7uDXGy5QTEyjwxOKyxhshNPmtcxkzQprX6jkAQx
-         QKPmvj15pemWFTeD/QTdfJASjlszx4sD7zULG50NA/LXcGSZ9OBf3kEYax/fnUESBsx0
-         d1oA==
-X-Forwarded-Encrypted: i=1; AJvYcCUJ+7QqGGv8/fqu1gyHbSGcCbsvY2YiVSbuPpLDagTsJxnwcPyUj7VcLrTnBIggy9P5zW0zyZNAoEVh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yykgyk9wtP2YGamiUIdb7yu9FLWZeKPbdCSJg9lnr5CVqH7uUbw
-	RDy6QAxf4apzoUK4tFlo9B49hhbUpdnWGHmDLALxzgK1so3dGB0TEGNtNJ0ZsKfXCq7MCms6azC
-	kaMhqi8bOWdCmhlBM5kbjz6i+Y5ti25Z+lY0DhQ==
-X-Gm-Gg: ASbGnctmIX+g/NpkI60Hu4uSKxpFIEg11EdP6WRGgbGApiPKkN9G759Ps0Ry11OtG9E
-	hAPV4oKxuhil54YmLdviP60uv4nCpn66OiaaV9zs=
-X-Google-Smtp-Source: AGHT+IEXzGoehdhMl3Q9vXxU+XSlMdQxyfyUpu/ioGXoirnSYyBAN5iDxXWzj6qyDS6IkjSMMPWxu5Uknzpw4GSHDrQ=
-X-Received: by 2002:a05:690c:6990:b0:6ef:4fba:8158 with SMTP id
- 00721157ae682-6f3e19864e9mr35032897b3.0.1734616512781; Thu, 19 Dec 2024
- 05:55:12 -0800 (PST)
+	s=arc-20240116; t=1734616903; c=relaxed/simple;
+	bh=Nrq02CAbbdBsL8TUHwb86wYaSnEy6WOUWiSRoJhk7F4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rGAGh3qO9emoYLYOkcprQBbcEzycNUt60nS4wNxjZZy+WD1eAWHvtqfJgP5daG6n/Ft1bH/ayiEfhXlkxpH1MnvfFrquqPfC+K3Rn7h0rUYOukkhAz2/TEWzIxYj3xS2Xvb4wFvONrDQSi/IMhEmdvejF/zNrYO8NeFAQVnNY20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LCfcxvSc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06E8CC4CECE;
+	Thu, 19 Dec 2024 14:01:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734616902;
+	bh=Nrq02CAbbdBsL8TUHwb86wYaSnEy6WOUWiSRoJhk7F4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LCfcxvScirIwG1+LGAYH/edwedVjWvDw5ZI2R9rFbsClfvfAYAc5q/Cz4tvOMQeQj
+	 xZFHBWTFfcOt20mASaZbmDr4DiczpsX4FMw91TZhhPAmORgWVF2yrTeveziZKveYLR
+	 4YcobpYw1BAwlXgyX9Z58h10l2ByC0KsxY+XyVfExlXT8fRjif95otYQvIq4ueEmmH
+	 ZXHjHRdfqGUGyYOKEjSMN/+qtYNW9M5jpuFo2yCY9pR4aL9IzW5jHQvE8Oxwy4fRC1
+	 uoVb5Be7i8ZKQxj8Ng2MABucyvwk+tDysKXX72GE/1sVfamLgG4EMZ2Y5QpvNK9rta
+	 PO9H6vGOeBAcQ==
+Date: Thu, 19 Dec 2024 15:01:39 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Louis Chauvet <louis.chauvet@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 3/3] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+Message-ID: <20241219-unnatural-terrestrial-aardwark-d1da17@houat>
+References: <20241217143216.658461-1-herve.codina@bootlin.com>
+ <20241217143216.658461-4-herve.codina@bootlin.com>
+ <20241217-tangible-nostalgic-salamander-27edaa@houat>
+ <20241218092407.559a204e@bootlin.com>
+ <20241218-armored-fearless-dugong-ccd72d@houat>
+ <20241218173728.5a7690fe@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241211143044.9550-1-sebastian.reichel@collabora.com>
- <20241211143044.9550-4-sebastian.reichel@collabora.com> <CAMdYzYqLq=kSC8fiBapRS_8w0s8PaL9Yd46VgM56YbTEmUG1xA@mail.gmail.com>
- <xe2wqm4ktutycxj7x4rskz4pn4cfmoci6zcgfxecmvc5bu7cqi@mqxi3pnehqq3>
- <CAMdYzYpDXHtz_Fq5NJXqTdxVTcJcHkjcjU4-J=zwmE0BWmSsNw@mail.gmail.com>
- <CAPDyKFoW5-U8hLcU-sryuMSP5-E2_yudFZ2-wH8-s62jn4qJ8A@mail.gmail.com> <v4oh6r5lr6eg3rg2poucotbuoddjllfp63lvmf7vuaawe2spvy@f2gv4nvubiw3>
-In-Reply-To: <v4oh6r5lr6eg3rg2poucotbuoddjllfp63lvmf7vuaawe2spvy@f2gv4nvubiw3>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 19 Dec 2024 14:54:35 +0100
-Message-ID: <CAPDyKFooBYfmWWpy=vw38sw=ANuaadJO4eCRKnq=286vftRPAA@mail.gmail.com>
-Subject: Re: [PATCH v5 3/7] pmdomain: rockchip: forward rockchip_do_pmu_set_power_domain
- errors
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Mark Brown <broonie@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Elaine Zhang <zhangqing@rock-chips.com>, 
-	=?UTF-8?Q?Adri=C3=A1n_Mart=C3=ADnez_Larumbe?= <adrian.larumbe@collabora.com>, 
-	Boris Brezillon <boris.brezillon@collabora.com>, Chen-Yu Tsai <wens@csie.org>, 
-	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, kernel@collabora.com, 
-	Dragan Simic <dsimic@manjaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="wqbfserzziogdngv"
+Content-Disposition: inline
+In-Reply-To: <20241218173728.5a7690fe@bootlin.com>
+
+
+--wqbfserzziogdngv
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 3/3] drm: bridge: ti-sn65dsi83: Add error recovery
+ mechanism
+MIME-Version: 1.0
 
-On Thu, 12 Dec 2024 at 20:14, Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
->
-> Hi,
->
-> On Thu, Dec 12, 2024 at 12:26:42PM +0100, Ulf Hansson wrote:
-> > On Thu, 12 Dec 2024 at 00:11, Peter Geis <pgwipeout@gmail.com> wrote:
-> > > On Wed, Dec 11, 2024 at 3:46=E2=80=AFPM Sebastian Reichel
-> > > <sebastian.reichel@collabora.com> wrote:
-> > > > On Wed, Dec 11, 2024 at 02:53:34PM -0500, Peter Geis wrote:
-> > > > > On Wed, Dec 11, 2024 at 9:32=E2=80=AFAM Sebastian Reichel
-> > > > > <sebastian.reichel@collabora.com> wrote:
-> > > > > >
-> > > > > > Currently rockchip_do_pmu_set_power_domain prints a warning if =
-there
-> > > > > > have been errors turning on the power domain, but it does not r=
-eturn
-> > > > > > any errors and rockchip_pd_power() tries to continue setting up=
- the
-> > > > > > QOS registers. This usually results in accessing unpowered regi=
-sters,
-> > > > > > which triggers an SError and a full system hang.
-> > > > > >
-> > > > > > This improves the error handling by forwarding the error to avo=
-id
-> > > > > > kernel panics.
-> > > > >
-> > > > > I think we should merge your patch here with my patch for returni=
-ng
-> > > > > errors from rockchip_pmu_set_idle_request [1].
-> > > >
-> > > > I will have a look.
-> > > >
-> > > > > > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> > > > > > Tested-by: Heiko Stuebner <heiko@sntech.de>
-> > > > > > Tested-by: Adrian Larumbe <adrian.larumbe@collabora.com> # On R=
-ock 5B
-> > > > > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.c=
-om>
-> > > > > > ---
-> > > > > >  drivers/pmdomain/rockchip/pm-domains.c | 34 +++++++++++++++++-=
---------
-> > > > > >  1 file changed, 22 insertions(+), 12 deletions(-)
-> > > > > >
-> > > > > > diff --git a/drivers/pmdomain/rockchip/pm-domains.c b/drivers/p=
-mdomain/rockchip/pm-domains.c
-> > > > > > index a161ee13c633..8f440f2883db 100644
-> > > > > > --- a/drivers/pmdomain/rockchip/pm-domains.c
-> > > > > > +++ b/drivers/pmdomain/rockchip/pm-domains.c
-> > > > > > @@ -533,16 +533,17 @@ static int rockchip_pmu_domain_mem_reset(=
-struct rockchip_pm_domain *pd)
-> > > > > >         return ret;
-> > > > > >  }
-> > > > > >
-> > > > > > -static void rockchip_do_pmu_set_power_domain(struct rockchip_p=
-m_domain *pd,
-> > > > > > -                                            bool on)
-> > > > > > +static int rockchip_do_pmu_set_power_domain(struct rockchip_pm=
-_domain *pd,
-> > > > > > +                                           bool on)
-> > > > > >  {
-> > > > > >         struct rockchip_pmu *pmu =3D pd->pmu;
-> > > > > >         struct generic_pm_domain *genpd =3D &pd->genpd;
-> > > > > >         u32 pd_pwr_offset =3D pd->info->pwr_offset;
-> > > > > >         bool is_on, is_mem_on =3D false;
-> > > > > > +       int ret;
-> > > > > >
-> > > > > >         if (pd->info->pwr_mask =3D=3D 0)
-> > > > > > -               return;
-> > > > > > +               return 0;
-> > > > > >
-> > > > > >         if (on && pd->info->mem_status_mask)
-> > > > > >                 is_mem_on =3D rockchip_pmu_domain_is_mem_on(pd)=
-;
-> > > > > > @@ -557,16 +558,21 @@ static void rockchip_do_pmu_set_power_dom=
-ain(struct rockchip_pm_domain *pd,
-> > > > > >
-> > > > > >         wmb();
-> > > > > >
-> > > > > > -       if (is_mem_on && rockchip_pmu_domain_mem_reset(pd))
-> > > > > > -               return;
-> > > > > > +       if (is_mem_on) {
-> > > > > > +               ret =3D rockchip_pmu_domain_mem_reset(pd);
-> > > > > > +               if (ret)
-> > > > > > +                       return ret;
-> > > > > > +       }
-> > > > > >
-> > > > > > -       if (readx_poll_timeout_atomic(rockchip_pmu_domain_is_on=
-, pd, is_on,
-> > > > > > -                                     is_on =3D=3D on, 0, 10000=
-)) {
-> > > > > > -               dev_err(pmu->dev,
-> > > > > > -                       "failed to set domain '%s', val=3D%d\n"=
-,
-> > > > > > -                       genpd->name, is_on);
-> > > > > > -               return;
-> > > > > > +       ret =3D readx_poll_timeout_atomic(rockchip_pmu_domain_i=
-s_on, pd, is_on,
-> > > > > > +                                       is_on =3D=3D on, 0, 100=
-00);
-> > > > > > +       if (ret) {
-> > > > > > +               dev_err(pmu->dev, "failed to set domain '%s' %s=
-, val=3D%d\n",
-> > > > > > +                       genpd->name, on ? "on" : "off", is_on);
-> > > > > > +               return ret;
-> > > > > >         }
-> > > > > > +
-> > > > > > +       return 0;
-> > > > > >  }
-> > > > > >
-> > > > > >  static int rockchip_pd_power(struct rockchip_pm_domain *pd, bo=
-ol power_on)
-> > > > > > @@ -592,7 +598,11 @@ static int rockchip_pd_power(struct rockch=
-ip_pm_domain *pd, bool power_on)
-> > > > > >                         rockchip_pmu_set_idle_request(pd, true)=
-;
-> > > > > >                 }
-> > > > > >
-> > > > > > -               rockchip_do_pmu_set_power_domain(pd, power_on);
-> > > > > > +               ret =3D rockchip_do_pmu_set_power_domain(pd, po=
-wer_on);
-> > > > > > +               if (ret < 0) {
-> > > > > > +                       clk_bulk_disable(pd->num_clks, pd->clks=
-);
-> > > > > > +                       return ret;
-> > > > >
-> > > > > Looking at it, we shouldn't return directly from here because the
-> > > > > mutex never gets unlocked.
-> > > >
-> > > > Yes, we should do that after patch 2/7 from this series :)
-> > >
-> > > That's excellent!
-> > >
-> > > >
-> > > > > Instead of repeating clk_bulk_disable and return ret for each fai=
-lure,
-> > > > > we can initialize ret =3D 0, have a goto: out pointing to
-> > > > > clk_bulk_disable, and change return 0 to return ret at the end.
-> > > >
-> > > > Right now there is only a single clk_bulk_disable() in an error
-> > > > case, so I did not use the typical error goto chain. I suppose
-> > > > it makes a lot more sense with proper error handling for the calls
-> > > > to rockchip_pmu_set_idle_request().
-> > >
-> > > If you'd like, I can base my v2 on this patch series with the changes
-> > > I'm suggesting?
-> >
-> > I leave you guys to decide the best way forward, but please keep in
-> > mind that fixes/stable patches are easier managed if they are as
-> > simple as possible and without relying on cleanup patches. Better fix
-> > the problem first, then clean up the code.
->
-> I had this ordered the other way around initially and as Heiko
-> pointed out that makes things more complicated overall:
->
-> https://lore.kernel.org/linux-rockchip/4864529.A9s0UXYOmP@diego/
+On Wed, Dec 18, 2024 at 05:37:28PM +0100, Herve Codina wrote:
+> Hi Maxime,
+>=20
+> On Wed, 18 Dec 2024 16:54:02 +0100
+> Maxime Ripard <mripard@kernel.org> wrote:
+>=20
+> > > > > +static int sn65dsi83_reset_drm_output(struct sn65dsi83 *sn65dsi8=
+3)
+> > > > > +{
+> > > > > +	struct drm_atomic_state *state =3D ERR_PTR(-EINVAL);
+> > > > > +	struct drm_device *dev =3D sn65dsi83->bridge.dev;
+> > > > > +	struct drm_modeset_acquire_ctx ctx;
+> > > > > +	struct drm_connector *connector;
+> > > > > +	int err;
+> > > > > +
+> > > > > +	/*
+> > > > > +	 * Reset components available from the encoder to the connector.
+> > > > > +	 * To do that, we disable then re-enable the connector linked t=
+o the
+> > > > > +	 * encoder.
+> > > > > +	 *
+> > > > > +	 * This way, drm core will reconfigure each components. In our =
+case,
+> > > > > +	 * this will force the previous component to go back in LP11 mo=
+de and
+> > > > > +	 * so allow the reconfiguration of SN64DSI83 bridge.
+> > > > > +	 *
+> > > > > +	 * Keep the lock during the whole operation to be atomic.
+> > > > > +	 */
+> > > > > +
+> > > > > +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
+> > > > > +
+> > > > > +	state =3D drm_atomic_helper_duplicate_state(dev, &ctx);
+> > > > > +	if (IS_ERR(state)) {
+> > > > > +		err =3D PTR_ERR(state);
+> > > > > +		goto unlock;
+> > > > > +	}
+> > > > > +
+> > > > > +	connector =3D drm_atomic_get_old_connector_for_encoder(state,
+> > > > > +							     sn65dsi83->bridge.encoder);
+> > > > > +	if (!connector) {
+> > > > > +		err =3D -EINVAL;
+> > > > > +		goto unlock;
+> > > > > +	}
+> > > > > +
+> > > > > +	err =3D drm_atomic_helper_disable_connector(connector, &ctx);
+> > > > > +	if (err < 0)
+> > > > > +		goto unlock;
+> > > > > +
+> > > > > +	/* Restore original state to re-enable the connector */
+> > > > > +	err =3D drm_atomic_helper_commit_duplicated_state(state, &ctx);
+> > > > > +
+> > > > > +unlock:
+> > > > > +	DRM_MODESET_LOCK_ALL_END(dev, ctx, err);
+> > > > > +	if (!IS_ERR(state))
+> > > > > +		drm_atomic_state_put(state);
+> > > > > +	return err;
+> > > > > +}   =20
+> > > >=20
+> > > > In the previous version, we advised to create a generic helper simi=
+lar
+> > > > to vc4 and i915 reset_pipe() and and intel_modeset_commit_pipes().
+> > > >=20
+> > > > It looks like you chose a different path. Can you expand why?
+> > > >  =20
+> > >=20
+> > > I didn't choose a different path.
+> > > I created the drm_atomic_helper_disable_connector(). Maybe it is not =
+enough. =20
+> >=20
+> > It's not that it's not enough, it's that you're not doing the same
+> > thing, see below.
+> >=20
+> > > I can move (copy/paste) sn65dsi83_reset_drm_output() to a new helper:
+> > >   int drm_atomic_helper_disable_output(struct drm_encoder *encoder)
+> > >=20
+> > > Is it what you expect?
+> > >=20
+> > > Also, are operations done in current sn65dsi83_reset_drm_output() cor=
+rect
+> > > in order to reset the output? It works on my system but what is your
+> > > feedback on operations performed. =20
+> >=20
+> > You don't need any of that. Both the reset_pipe() and
+> > intel_modeset_commit_pipes() functions will flag the connectors as
+> > updated in the commit, and the core will consider that it needs to
+> > disable / enable the encoders and bridges below that CRTC.
+> >=20
+> > See
+> > https://elixir.bootlin.com/linux/v6.12.5/source/drivers/gpu/drm/drm_ato=
+mic_helper.c#L1155
+> > https://elixir.bootlin.com/linux/v6.12.5/source/drivers/gpu/drm/drm_ato=
+mic_helper.c#L1476
+> >=20
+> > So you really only need to convert any of these two functions into a
+> > helper, and it does exactly what you need.
+> >=20
+>=20
+> I see but if I set crtc_state->connectors_changed =3D true; as it is done=
+ in
+> reset_pipe(), in my understanding, all outputs will be reset.
 
-Right, I have no strong opinions, but leave the decision to you.
+Not all outputs, all active outputs connected to that CRTC. If you have
+only one encoder connected to that CRTC, which is pretty typical on ARM
+platforms, it's equivalent to what you're asking for.
 
-Still, we need confirmation on the regulator-patch (patch1) from Mark,
-before I can apply any of this.
+And we should probably shut down the CRTC (and thus all active outputs)
+anyway. Some encoders and bridges have internal FIFOs/state machines
+that need to be enabled disabled at specific points during the
+initialization, and the CRTC is a part of that.
 
-Kind regards
-Uffe
+Maxime
+
+--wqbfserzziogdngv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ2QnPwAKCRAnX84Zoj2+
+dhQRAX96rJE3Z+88ZnNThKCvbh7HriizVVkNpZUs4Jh3ybblvbtzP3mHXLUb3e5t
+ZGzoy34BgIcUCv0mef4ILYuKLpIJgWuzZplWCQ4b7ik6rZpLGWCUNqwyDP9CGTx7
+W162C2cedQ==
+=jBMP
+-----END PGP SIGNATURE-----
+
+--wqbfserzziogdngv--
 
