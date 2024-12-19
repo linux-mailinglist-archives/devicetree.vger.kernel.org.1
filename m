@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-132495-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45CCD9F757D
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:29:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6D449F7566
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:26:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A97C2188220F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:28:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4F127A2A26
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:26:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF296218ABD;
-	Thu, 19 Dec 2024 07:26:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA9B2217716;
+	Thu, 19 Dec 2024 07:25:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C03631FA8F2
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 07:26:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 402D4217671
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 07:25:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734593176; cv=none; b=F8zlRHAXzNIo8aRKCaobRYcMJCMf3qe9bg3RuvT9Z9qDa6M9A06phNEujAINPEHFxMsqL210StiVGohCXrIcX49MK8ZCpgd01pVLmZ/561VfWHDBnRWlmp7xD8jBKFG1EsB6jqJXw92YvDkSj+xzJ6T1W4skABaZZTa1hc+/120=
+	t=1734593148; cv=none; b=oNnvTGruteaSkL1L/FJQ5uRIjayfaTWysvGFvYDGZH+4EsmcMJqgMs/m5tI5Ef/1TOaxhlMyUOj5PbMPVHYQAxKjxQYoWtIYTrWz14A6cgZM7avHkt49qSGe/FF8WCh6Og8WXNyagAaifqotWJEf1wDPEt3BlHTNryPs6/zUR94=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734593176; c=relaxed/simple;
-	bh=CWhqZWc4bkHEo61f5tqB+hUUAvZr98Jc0lh0vJDw7hY=;
+	s=arc-20240116; t=1734593148; c=relaxed/simple;
+	bh=YX07+/n9XASjJgCpeP2uJbf77HswOZmpelyYpm2bwIo=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Mk1fYBOmauR0ZYne9Fll88GflmVmexZBGgeTsqbzXD70vAAxmaTWO8evYk1xMiD6HHEO7rhHyuN2mqndS+3OFFZIF63FHXbqyapORYsbzHpvnW9jwFM4pUOK0NCjO3rAsNRtEwUy/ee/eBfQL8sn3t6NNVCkPdvUEtCmFGmI3l4=
+	 In-Reply-To:To:Cc; b=kOJKG1vKDIjDBP2evjYk4qPhObxmAa3er+kgA4ladE2AN1aNqnJ4URCUBdvnmT18ovwtln8Mk4W+24l+Zr8TWRcG5wMrEr02Wq7ioRHphiVel7uodl7XaZ46UHFEEV21aW1k5ziWjBXmZCcdnI8aoY6gOedSh1tPXnS8QjuYXTc=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,22 +33,21 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOAuc-00064N-0e; Thu, 19 Dec 2024 08:25:34 +0100
+	id 1tOAuc-00064P-1L; Thu, 19 Dec 2024 08:25:34 +0100
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOAua-004AOH-2r;
+	id 1tOAua-004AOI-2t;
 	Thu, 19 Dec 2024 08:25:33 +0100
 Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
 	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.96)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOAub-00GenW-1l;
+	id 1tOAub-00GenW-1m;
 	Thu, 19 Dec 2024 08:25:33 +0100
 From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Date: Thu, 19 Dec 2024 08:25:32 +0100
-Subject: [PATCH 08/10] arm64: dts: imx8mp-skov: describe mains fail
- detection
+Date: Thu, 19 Dec 2024 08:25:33 +0100
+Subject: [PATCH 09/10] arm64: dts: imx8mp-skov: fix phy-mode
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +56,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241219-skov-dt-updates-v1-8-38bf80dc22df@pengutronix.de>
+Message-Id: <20241219-skov-dt-updates-v1-9-38bf80dc22df@pengutronix.de>
 References: <20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de>
 In-Reply-To: <20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -77,45 +76,28 @@ X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 From: Oleksij Rempel <o.rempel@pengutronix.de>
 
-The main 24V regulator will toggle GPIO4_IO23 to signal imminent voltage
-loss. Reflect this in the DT, so the OS can take appropriate action when
-this happens.
+Use rgmii-rxid instead of rgmii-txid. It should have no effect here,
+but rxid is the correct value in our case.
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 ---
- arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
-index bce23d62cd27..80d212acc0c3 100644
+index 80d212acc0c3..a683f46fcbab 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi
-@@ -116,6 +116,11 @@ reg_24v: regulator-24v {
- 		regulator-name = "24V";
- 		regulator-min-microvolt = <24000000>;
- 		regulator-max-microvolt = <24000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg24v>;
-+		interrupts-extended = <&gpio4 23 IRQ_TYPE_EDGE_FALLING>;
-+		system-critical-regulator;
-+		regulator-uv-less-critical-window-ms = <50>;
- 	};
+@@ -215,7 +215,7 @@ adc: adc@0 {
+ &eqos {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_eqos>;
+-	phy-mode = "rgmii-txid";
++	phy-mode = "rgmii-rxid";
+ 	status = "okay";
  
- 	reg_can2rs: regulator-can2rs {
-@@ -591,6 +596,12 @@ MX8MP_IOMUXC_SAI3_MCLK__PWM4_OUT			0x116
- 		>;
- 	};
- 
-+	pinctrl_reg24v: reg24vgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI2_RXD0__GPIO4_IO23			0x154
-+		>;
-+	};
-+
- 	pinctrl_reg_vsd_3v3: regvsd3v3grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19	0x40
+ 	fixed-link {
 
 -- 
 2.39.5
