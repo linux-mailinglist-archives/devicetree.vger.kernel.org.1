@@ -1,899 +1,477 @@
-Return-Path: <devicetree+bounces-132458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F31AA9F73C4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 05:43:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B6A9F73C8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 05:47:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B48887A03E7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 04:43:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 706737A22EC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 04:46:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1669C2163A4;
-	Thu, 19 Dec 2024 04:43:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172F18633B;
+	Thu, 19 Dec 2024 04:46:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="MrTKDTPx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gdb7rnlI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89E6145A03
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 04:43:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8F4033EA;
+	Thu, 19 Dec 2024 04:46:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734583387; cv=none; b=OhPPTjM2qLCCceBg0QhR1cPjuYpLyBwAUjmAKgyXY2PdtItHcb54jRHkx64YkMmxhqwWoAf05RIwtW0ly+6N0Ve8eXLaIN3+fS1Qj2ox2+01LBe/NRh1F5MxM2C4q8GHxy7ZFtsRl6sF3IhSH3c3ModWiY/X66BFyV7JctQLoGY=
+	t=1734583618; cv=none; b=thH2Zze4bjnJQ/rGKvBx88XCl6BI8Fia/oeLgRcj1dex1f/Doj+YPoZtSRjnUa7ynSTyChX7mhg7eNx5uFBzdUzCuCM8hUqAyJrH1G701ChBkiUulMFihIEUS4VkItgM8gWab0EUIdmO6bcg2o4oSp/9z87fuMmsrzScxqdHWe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734583387; c=relaxed/simple;
-	bh=s2UkWega3MdYoAb4pSM3982W3G7eJzNwF6LtnjPMCyw=;
+	s=arc-20240116; t=1734583618; c=relaxed/simple;
+	bh=G5AlNQ0h/E+WomnfIEtRFBHVZmDPnnLhqMqabnVxpjg=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YkEQ3rSLFZBVMsXUzAb4RIUoDGGERmi6H/oaTSwCBvcUZodpnthtjwNvXrUlXNcGA6uJ9V8ZS8mdhKl8IEEHz3TBydgwE3cbYZLH87xCQ1+qbwKzkMuVCldr4fTdNUFFUkb+HG2mMWInuoksOoDc6NfhgWwAoesC3wdhSV3AHKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=MrTKDTPx; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-825c6570a80so177259a12.2
-        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 20:43:04 -0800 (PST)
+	 To:Cc:Content-Type; b=CNi7dXXIigvpQqEFjfrrad2eg6vmFrM94oyQcWVIM1fyvCsMe53hFkuKQvfQJSn/0Uavs5CNLF6cX110OfuUcPk4gUwnVP3DsVPReK2WJZE/SZWowxwMeYOT2T3/pqvaULVoYGBv+eLW/YmAUhLNFbaXMkYc7tDsEKqp9D8CezA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gdb7rnlI; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-53e3a90336eso349438e87.3;
+        Wed, 18 Dec 2024 20:46:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1734583384; x=1735188184; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=25RA0Et++brrXAhbRpu+RxlLEbftDu9CpZlwhi4kQvw=;
-        b=MrTKDTPxHja6i1cnRE/DX/APLi1ALaEkaA6ioxU6kWaHcXomQov+PjRTyPPnRsM6KA
-         GBh9wjZDtv2JPbymeceqZgbRDchGVKJFbQTWcik8yJVnEQDRepbPynzfQHgjB2VXq2l3
-         /MtK0kGZFoPfWohg2rTHkBH86NPC/nkW6vZIHCAcWH5vQyAEOYTiBoK30xjeMNBWiaJr
-         qvNRMu5uFOE7WSKPbx+Dqi5aHuAtcZBkFSiWLEhA8KvT9w6eJPkC4yX+EPerJ9dF8Fnq
-         Xdf+GdgWOGC8+NnfUoUXTSBaWyaYfFZv7yFofm3zklO9GHuy/+3hjc3A5VDWFr7RwxmF
-         zcLA==
+        d=gmail.com; s=20230601; t=1734583614; x=1735188414; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=etSrtAc0WIJRuJfEqsZg50IUc+HmOCHr9CUfEcD59Jw=;
+        b=gdb7rnlI51MVPI6zspZq83DkLlSVOaptqJjx736nC5y1nxJuCK0B2mLH05wV8O2ynr
+         f+KXmC4sX6YG8u2thAfjz6W3Zlzv91iuRFh+ZYgqLW2/dP/QFKExRvOfJ4HaLjs79nZk
+         C4YjXk8FhIKmM7y9pMpnfytuk3S1gdRLPmlge7FDQV0c0FsJtJHeOZIqmNE9xUkAQ3St
+         I90wrRQkj/kLIB+Qo4QENCAxDu7qG+YmAjcYLEaC6/lHTjlmZRwP9OX1EJk9EqTpRUhy
+         B4BHmYfSSOxCyOgkBkb9cUk41drMwbVO9C4M0ZjXWMK/WUG8+HaQCdQg9bzpMn+gWvwE
+         2X4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1734583384; x=1735188184;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=25RA0Et++brrXAhbRpu+RxlLEbftDu9CpZlwhi4kQvw=;
-        b=PbriUamayrgjwcZICQuKwCGDaij+ATswBmEx9wmjBejO7oNNg5Kr+/QhHNQD4k9FOW
-         V/5VIEooWYTilmW+wUdlSWVO73Qe20Txv/6t1QyGaElqjR5h9R1briledw3sO/UMU5YY
-         D/r6+aywDQ1ry4Gp3i4fsLCR2KT1rTq9ye+GQSfkJTknchNT0oPjukJWma2tV3FMCwEC
-         7CzTcX7T041c819VswV6iWpqQveLqdC9zsETLoevjtJ888CY7Vv3BsaqpSTg50CueAuO
-         jW8DbeT/7xYExQYT5moHVepnov8fr59d8Qyri8B0Da9jXpmMBL1jRREe2NI4puuHewbJ
-         vH6A==
-X-Forwarded-Encrypted: i=1; AJvYcCU01J7C1Fw1cf3sVvRqLRSAOREQVi3JQiJNsjfBb8+I+jcWwQPXc6IM8OX3zhlnrWTIgHvnvY6TvDb3@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEQ0NJVK6zvuGx+jDy3dXnADs9RCExOoddVcSy7sgeKCisCYfC
-	Tr2QmJPZ0hh/MNebwzg7JXJalW/G0tb+RimOGvMFzacJKTFFhTAgwcd0N8rL9Db1hZvYNseJWg+
-	LMuCoVaG6K6AreRpGSfEdPaJkfK15WpntDLDqag==
-X-Gm-Gg: ASbGncvfr9u6th06rn3AfgrX4zHrZhHSH/+Nghk6EFnwus4pxoM8+ZOOfYENOnrz/BI
-	6muz7tfhgo+WZdeXlz037lzBFFs1Syas8PDDQi21kIihDkPZ4h/dG1eGf4qmu1XKE5oEhUvM=
-X-Google-Smtp-Source: AGHT+IG3jXiPHiR372CERb9vEJo38jWMDfelEKyfoF4GCaNwA278pWt7lvXkvMfMq5NV7dXsXBWiHxI7urnAmLz5VlA=
-X-Received: by 2002:a17:90b:6c6:b0:2ee:5691:774e with SMTP id
- 98e67ed59e1d1-2f2e91c13d3mr7477060a91.2.1734583383995; Wed, 18 Dec 2024
- 20:43:03 -0800 (PST)
+        d=1e100.net; s=20230601; t=1734583614; x=1735188414;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=etSrtAc0WIJRuJfEqsZg50IUc+HmOCHr9CUfEcD59Jw=;
+        b=ggxcT2fjWCZz6JlvWlnsgN16TdcbiZ3cY/OVAROnjgQ72539e+Mf06izWNH9Zu9CWM
+         PP1uMgHwjolGdeZIwm6eHqeTtOB77U3uqjbhh1+FGu3J3Uv6vFoVGhEZO4tnzHZ4KBE5
+         gdMftFF0+JHUnH0i+n5Q4aHO19idJD42BuMr+1qbBSrSIAehARzofO2RHNuKz0II5A0I
+         aY4hm3bb9UeHxhcq/13LfAxsTpfX5WbgH3znd9RMumxGu+Mt4Geh9sq1tmb6Optj19u3
+         wdDX+9yNx3jsVo8R73tFCNhMeD39x64bDmSGdBYTYgxmEKn/jdg1/lGoXHEcuVgF/6Vd
+         iPIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUi/1y2ijQeXuPiaNvVRRTW8q1XUKqDNQij1lUMuU3kYJt2lvOCoT6UT4BoAU07LnkotyhYIlmAGDwcmQ==@vger.kernel.org, AJvYcCUkc+XbaGUI1AErAoYhJ5M4qEj1T1V3smRONMF+1IaLXme/UJmMmifhgS0ONEAkELQYecHv1stQJwBV@vger.kernel.org, AJvYcCWybGNkJb9TNFHDcywC/128wwvAdF1poNGFNmSucq2rp0cn7HtSZBW8jz8BpzRAokM0z51VrR3g@vger.kernel.org, AJvYcCXdVupmVjpCOAashibj0T5c7Z0hnpEnjmoRr/MH99VftyUgN8JMJe5DjsmLMBZCeZK+l0YigcA4Qhy/JAl8@vger.kernel.org
+X-Gm-Message-State: AOJu0YyV8sWwfveZsgzggWlDYfLBwEbmLt5QLiW/xeJQcbkDOKD8MJoE
+	+dknhwUDVBhgznTXGm6bp4Sboxjb9r0PP5TIIYoDs55+LzaeItyak2lhpwhtW4J/u9GNXN0CH4U
+	HEvLWYdolTAbIRhh62Gp/oOh3904=
+X-Gm-Gg: ASbGncvNBaDDrEdB47v5SiYSqO354Pj3N34Qx2fCWrAWT6wSFCFVMUTZtQ+qBe6OC/n
+	sH1UdwKKQbBqFQ62S8GNPOf3e6Enf0Z+HPX8nUKV1jb4DwxC/WHCVB1CVaLjJwD7Ue3E5tGI=
+X-Google-Smtp-Source: AGHT+IH663yuEsfwmCuR7y6IfDbYYYRwI+rR2AqVj1XKFhGMv/1AFvKsVuIsojGYtMiBs7Ym0nJLC1YZ42ni/8mm2o8=
+X-Received: by 2002:a05:6512:10d4:b0:540:353a:df8f with SMTP id
+ 2adb3069b0e04-541f46c4422mr1496469e87.44.1734583613513; Wed, 18 Dec 2024
+ 20:46:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241216084817.373131-1-apatel@ventanamicro.com>
- <20241216084817.373131-9-apatel@ventanamicro.com> <37d32701e01df3ee457627cf971566dd.sboyd@kernel.org>
-In-Reply-To: <37d32701e01df3ee457627cf971566dd.sboyd@kernel.org>
-From: Rahul Pathak <rpathak@ventanamicro.com>
-Date: Thu, 19 Dec 2024 10:12:27 +0530
-Message-ID: <CA+Oz1=abKok-xOWeZj-5xuSZ4m14cjvRQVsxAxO6yOiOVDxPAA@mail.gmail.com>
-Subject: Re: [RFC PATCH 8/8] clk: Add clock driver for the RISC-V RPMI clock
- service group
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Anup Patel <apatel@ventanamicro.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Sunil V L <sunilvl@ventanamicro.com>, Leyfoon Tan <leyfoon.tan@starfivetech.com>, 
-	Atish Patra <atishp@atishpatra.org>, Andrew Jones <ajones@ventanamicro.com>, 
-	Anup Patel <anup@brainfault.org>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241216031346.2626805-1-chris.packham@alliedtelesis.co.nz> <20241216031346.2626805-5-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20241216031346.2626805-5-chris.packham@alliedtelesis.co.nz>
+From: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Date: Thu, 19 Dec 2024 01:46:41 -0300
+Message-ID: <CAJq09z49uBPPZqDyc3O+4nVppKoKdrJunQnQKBUfQmwzdV+ZFQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] net: mdio: Add RTL9300 MDIO driver
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
+	kuba@kernel.org, pabeni@redhat.com, tsbogend@alpha.franken.de, 
+	hkallweit1@gmail.com, linux@armlinux.org.uk, markus.stockhausen@gmx.de, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-mips@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Stephen,
+Hello Chris,
 
-On Wed, Dec 18, 2024 at 1:44=E2=80=AFAM Stephen Boyd <sboyd@kernel.org> wro=
-te:
->
-> Quoting Anup Patel (2024-12-16 00:48:17)
-> > diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-> > index bf4bd45adc3a..95ef59e439bf 100644
-> > --- a/drivers/clk/Makefile
-> > +++ b/drivers/clk/Makefile
-> > @@ -107,6 +107,7 @@ obj-$(CONFIG_COMMON_CLK_VC5)                +=3D cl=
-k-versaclock5.o
-> >  obj-$(CONFIG_COMMON_CLK_VC7)           +=3D clk-versaclock7.o
-> >  obj-$(CONFIG_COMMON_CLK_WM831X)                +=3D clk-wm831x.o
-> >  obj-$(CONFIG_COMMON_CLK_XGENE)         +=3D clk-xgene.o
-> > +obj-$(CONFIG_COMMON_CLK_RPMI)          +=3D clk-rpmi.o
->
-> Keep this sorted by filename.
+> +++ b/drivers/net/mdio/mdio-realtek-rtl.c
 
-Sure, I will update.
+I wonder if the name might be dubious in the future with other realtek
+products with MDIO. Realtek is quite a large company with many
+products. Would a version/model/family/usage in that name help a far
+future reader to identify what this file is about?
 
->
-> >
-> >  # please keep this section sorted lexicographically by directory path =
-name
-> >  obj-y                                  +=3D actions/
-> > diff --git a/drivers/clk/clk-rpmi.c b/drivers/clk/clk-rpmi.c
-> > new file mode 100644
-> > index 000000000000..ed8e32527d3d
-> > --- /dev/null
-> > +++ b/drivers/clk/clk-rpmi.c
-> > @@ -0,0 +1,588 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * RISC-V MPXY Based Clock Driver
-> > + *
-> > + * Copyright (C) 2024 Ventana Micro Systems Ltd.
-> > + */
-> > +
-> > +#include <linux/io.h>
->
-> Is this include used?
->
-> > +#include <linux/mm.h>
->
-> Is this include used?
->
-> > +#include <linux/of.h>
->
-> Is this include used?
->
-> > +#include <linux/err.h>
-> > +#include <linux/slab.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/mailbox/riscv-rpmi-message.h>
-> > +#include <linux/mailbox_client.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_platform.h>
->
-> Did you mean mod_devicetable.h?
->
-> > +#include <linux/clk-provider.h>
->
-> Please sort includes alphabetically.
+How would this realtek MDIO driver interact with the
+drivers/net/dsa/realtek drivers? I guess it might not be too much as
+this is the SoC MDIO bus and not the user MDIO bus (also something
+called "realtek MDIO driver"). Also, the code logic there just rhymes
+with some register access implemented there.
 
-I will correct all the headers and sort them.
+> @@ -0,0 +1,341 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * MDIO controller for RTL9300 switches with integrated SoC.
+> + *
+> + * The MDIO communication is abstracted by the switch. At the software level
+> + * communication uses the switch port to address the PHY with the actual MDIO
+> + * bus and address having been setup via the realtek,smi-address property.
+> + */
+> +
+> +#include <linux/mdio.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/of_mdio.h>
+> +#include <linux/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +
+> +#define SMI_GLB_CTRL                   0x000
+> +#define   GLB_CTRL_INTF_SEL(intf)      BIT(16 + (intf))
+> +#define SMI_PORT0_15_POLLING_SEL       0x008
+> +#define SMI_ACCESS_PHY_CTRL_0          0x170
+> +#define SMI_ACCESS_PHY_CTRL_1          0x174
+> +#define   PHY_CTRL_RWOP                        BIT(2)
+> +#define   PHY_CTRL_TYPE                        BIT(1)
+> +#define   PHY_CTRL_CMD                 BIT(0)
+> +#define   PHY_CTRL_FAIL                        BIT(25)
+> +#define SMI_ACCESS_PHY_CTRL_2          0x178
+> +#define SMI_ACCESS_PHY_CTRL_3          0x17c
+> +#define SMI_PORT0_5_ADDR_CTRL          0x180
+> +
+> +#define MAX_PORTS       28
+> +#define MAX_SMI_BUSSES  4
+> +#define MAX_SMI_ADDR   0x1f
+> +
+> +struct realtek_mdio_priv {
+> +       struct regmap *regmap;
+> +       u8 smi_bus[MAX_PORTS];
+> +       u8 smi_addr[MAX_PORTS];
+> +       bool smi_bus_isc45[MAX_SMI_BUSSES];
+> +       u32 reg_base;
+> +};
+> +
+> +static int realtek_mdio_wait_ready(struct realtek_mdio_priv *priv)
 
->
-> > +
-> > +#define RPMI_CLK_MAX_NUM_RATES         16
-> > +#define RPMI_CLK_NAME_LEN              16
-> > +
-> > +#define GET_RATE_LO_U32(rate_u64)      ((u32)rate_u64)
-> > +#define GET_RATE_HI_U32(rate_u64)      ((u32)((u64)(rate_u64) >> 32))
->
-> Use upper_32_bits() and lower_32_bits() instead.
+All those realtek_mdio_* prefix might collide with realtek_mdio_* from
+drivers/net/dsa/realtek/realtek-mdio.c. This realtek_mdio_* is about a
+Realtek SoC MDIO interface with the switch. The other realtek_mdio_*
+is about the interface (MDIO or SMI) between (the other vendor) SoC
+and the switch. I don't know if the maintainers are OK with it but
+listing those symbols in alphabetic order from both sources might be
+confusing.
 
-Sure, I will update.
+> +{
+> +       struct regmap *regmap = priv->regmap;
+> +       u32 reg_base = priv->reg_base;
+> +       u32 val;
+> +
+> +       return regmap_read_poll_timeout(regmap, reg_base + SMI_ACCESS_PHY_CTRL_1,
 
->
-> > +#define GET_RATE_U64(hi_u32, lo_u32)   ((u64)(hi_u32) << 32 | (lo_u32)=
-)
->
-> I couldn't find a macro for this one which is kinda surprising.
->
-> > +
-> > +enum rpmi_clk_config {
-> > +       RPMI_CLK_DISABLE =3D 0,
-> > +       RPMI_CLK_ENABLE =3D 1,
-> > +};
-> > +
-> > +enum rpmi_clk_type {
-> > +       RPMI_CLK_DISCRETE =3D 0,
-> > +       RPMI_CLK_LINEAR =3D 1,
-> > +       RPMI_CLK_TYPE_MAX_IDX,
-> > +};
-> > +
-> > +struct rpmi_clk_context {
-> > +       struct device *dev;
-> > +       struct mbox_chan *chan;
-> > +       struct mbox_client client;
-> > +};
-> > +
-> > +union rpmi_clk_rate {
-> > +       struct {
-> > +               u32 lo;
-> > +               u32 hi;
-> > +       } discrete[RPMI_CLK_MAX_NUM_RATES];
-> > +       struct {
-> > +               u32 min_lo;
-> > +               u32 min_hi;
-> > +               u32 max_lo;
-> > +               u32 max_hi;
-> > +               u32 step_lo;
-> > +               u32 step_hi;
-> > +       } linear;
-> > +};
-> > +
-> > +union rpmi_clk_rates {
-> > +       u64 discrete[RPMI_CLK_MAX_NUM_RATES];
-> > +       struct {
-> > +               u64 min;
-> > +               u64 max;
-> > +               u64 step;
-> > +       } linear;
-> > +};
-> > +
-> > +struct rpmi_clk {
-> > +       struct rpmi_clk_context *context;
-> > +       u32 id;
-> > +       u32 num_rates;
-> > +       u32 transition_latency;
-> > +       enum rpmi_clk_type type;
-> > +       union rpmi_clk_rates *rates;
-> > +       char name[RPMI_CLK_NAME_LEN];
-> > +       struct clk_hw hw;
-> > +};
-> > +
-> > +#define to_rpmi_clk(clk)       container_of(clk, struct rpmi_clk, hw)
-> > +
-> > +struct rpmi_get_num_clocks_rx {
-> > +       s32 status;
-> > +       u32 num_clocks;
-> > +};
-> > +
-> > +struct rpmi_get_attrs_tx {
-> > +       u32 clkid;
->
-> Maybe just 'id', unless the spec calls this 'clkid'?
+All regmap funcs are adding reg_base to the register address. Isn't a
+remap job to do that sum? It just looks odd but I never worked with
+MFD. It looks like it is missing a subregmap-like variant.
 
-Spec calls it Clock ID, and in short used as clkid.
-The word ID is used for other things as well so I think using clkid
-here is better.
+> +                                       val, !(val & PHY_CTRL_CMD), 10, 500);
+> +}
+> +
+> +static int realtek_mdio_read_c22(struct mii_bus *bus, int phy_id, int regnum)
+> +{
+> +       struct realtek_mdio_priv *priv = bus->priv;
+> +       struct regmap *regmap = priv->regmap;
+> +       u32 reg_base = priv->reg_base;
+> +       u32 val;
+> +       int err;
+> +
+> +       err = realtek_mdio_wait_ready(priv);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_2, phy_id << 16);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_1,
+> +                          regnum << 20 |  0x1f << 15 | 0xfff << 3 | PHY_CTRL_CMD);
+> +       if (err)
+> +               return err;
+> +
+> +       err = realtek_mdio_wait_ready(priv);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_read(regmap, reg_base + SMI_ACCESS_PHY_CTRL_2, &val);
+> +       if (err)
+> +               return err;
+> +
+> +       return val & 0xffff;
+> +}
+> +
+> +static int realtek_mdio_write_c22(struct mii_bus *bus, int phy_id, int regnum, u16 value)
+> +{
+> +       struct realtek_mdio_priv *priv = bus->priv;
+> +       struct regmap *regmap = priv->regmap;
+> +       u32 reg_base = priv->reg_base;
+> +       u32 val;
+> +       int err;
+> +
+> +       err = realtek_mdio_wait_ready(priv);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_0, BIT(phy_id));
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_2, value << 16);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_1,
+> +                          regnum << 20 |  0x1f << 15 | 0xfff << 3 | PHY_CTRL_RWOP | PHY_CTRL_CMD);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_read_poll_timeout(regmap, reg_base + SMI_ACCESS_PHY_CTRL_1,
+> +                                      val, !(val & PHY_CTRL_CMD), 10, 100);
+> +       if (err)
+> +               return err;
+> +
+> +       if (val & PHY_CTRL_FAIL)
+> +               return -ENXIO;
+> +
+> +       return 0;
+> +}
+> +
+> +static int realtek_mdio_read_c45(struct mii_bus *bus, int phy_id, int dev_addr, int regnum)
+> +{
+> +       struct realtek_mdio_priv *priv = bus->priv;
+> +       struct regmap *regmap = priv->regmap;
+> +       u32 reg_base = priv->reg_base;
+> +       u32 val;
+> +       int err;
+> +
+> +       err = realtek_mdio_wait_ready(priv);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_2, phy_id << 16);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_3,
+> +                          dev_addr << 16 | (regnum & 0xffff));
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_1,
+> +                          PHY_CTRL_TYPE | PHY_CTRL_CMD);
+> +       if (err)
+> +               return err;
+> +
+> +       err = realtek_mdio_wait_ready(priv);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_read(regmap, reg_base + SMI_ACCESS_PHY_CTRL_2, &val);
+> +       if (err)
+> +               return err;
+> +
+> +       return val & 0xffff;
+> +}
+> +
+> +static int realtek_mdio_write_c45(struct mii_bus *bus, int phy_id, int dev_addr,
+> +                                 int regnum, u16 value)
+> +{
+> +       struct realtek_mdio_priv *priv = bus->priv;
+> +       struct regmap *regmap = priv->regmap;
+> +       u32 reg_base = priv->reg_base;
+> +       u32 val;
+> +       int err;
+> +
+> +       err = realtek_mdio_wait_ready(priv);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_0, BIT(phy_id));
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_2, value << 16);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_3,
+> +                          dev_addr << 16 | (regnum & 0xffff));
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_write(regmap, reg_base + SMI_ACCESS_PHY_CTRL_1,
+> +                          PHY_CTRL_RWOP | PHY_CTRL_TYPE | PHY_CTRL_CMD);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_read_poll_timeout(regmap, reg_base + SMI_ACCESS_PHY_CTRL_1,
+> +                                      val, !(val & PHY_CTRL_CMD), 10, 100);
+> +       if (err)
+> +               return err;
+> +
+> +       if (val & PHY_CTRL_FAIL)
+> +               return -ENXIO;
+> +
+> +       return 0;
+> +}
+> +
+> +static int realtek_mdiobus_init(struct realtek_mdio_priv *priv)
+> +{
+> +       u32 glb_ctrl_mask = 0, glb_ctrl_val = 0;
+> +       struct regmap *regmap = priv->regmap;
+> +       u32 reg_base = priv->reg_base;
+> +       u32 port_addr[5] = { 0 };
+> +       u32 poll_sel[2] = { 0 };
+> +       int i, err;
+> +
+> +       /* Associate the port with the SMI interface and PHY */
+> +       for (i = 0; i < MAX_PORTS; i++) {
+> +               int pos;
+> +
+> +               if (priv->smi_bus[i] > 3)
+> +                       continue;
+> +
+> +               pos = (i % 6) * 5;
+> +               port_addr[i / 6] |= priv->smi_addr[i] << pos;
+> +
+> +               pos = (i % 16) * 2;
+> +               poll_sel[i / 16] |= priv->smi_bus[i] << pos;
+> +       }
+> +
+> +       /* Put the interfaces into C45 mode if required */
+> +       for (i = 0; i < MAX_SMI_BUSSES; i++) {
+> +               if (priv->smi_bus_isc45[i]) {
+> +                       glb_ctrl_mask |= GLB_CTRL_INTF_SEL(i);
+> +                       glb_ctrl_val |= GLB_CTRL_INTF_SEL(i);
+> +               }
+> +       }
+> +
+> +       err = regmap_bulk_write(regmap, reg_base + SMI_PORT0_5_ADDR_CTRL,
+> +                               port_addr, 5);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_bulk_write(regmap, reg_base + SMI_PORT0_15_POLLING_SEL,
+> +                               poll_sel, 2);
+> +       if (err)
+> +               return err;
+> +
+> +       err = regmap_update_bits(regmap, reg_base + SMI_GLB_CTRL,
+> +                                glb_ctrl_mask, glb_ctrl_val);
+> +       if (err)
+> +               return err;
+> +
+> +       return 0;
+> +}
+> +
+> +static int realtek_mdiobus_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct realtek_mdio_priv *priv;
+> +       struct fwnode_handle *child;
+> +       struct mii_bus *bus;
+> +       int err;
+> +
+> +       bus = devm_mdiobus_alloc_size(dev, sizeof(*priv));
+> +       if (!bus)
+> +               return -ENOMEM;
+> +
+> +       bus->name = "Reaktek Switch MDIO Bus";
+> +       bus->read = realtek_mdio_read_c22;
+> +       bus->write = realtek_mdio_write_c22;
+> +       bus->read_c45 = realtek_mdio_read_c45;
+> +       bus->write_c45 =  realtek_mdio_write_c45;
+> +       bus->parent = dev;
+> +       priv = bus->priv;
+> +
+> +       priv->regmap = syscon_node_to_regmap(dev->parent->of_node);
+> +       if (IS_ERR(priv->regmap))
+> +               return PTR_ERR(priv->regmap);
+> +
+> +       err = device_property_read_u32(dev, "reg", &priv->reg_base);
+> +       if (err)
+> +               return err;
+> +
+> +       snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
+> +
+> +       device_for_each_child_node(dev, child) {
+> +               u32 pn, smi_addr[2];
+> +
+> +               err = fwnode_property_read_u32(child, "reg", &pn);
+> +               if (err)
+> +                       return err;
+> +
+> +               if (pn >= MAX_PORTS)
+> +                       return dev_err_probe(dev, -EINVAL, "illegal port number %d\n", pn);
+> +
+> +               err = fwnode_property_read_u32_array(child, "realtek,smi-address", smi_addr, 2);
+> +               if (err) {
+> +                       smi_addr[0] = 0;
+> +                       smi_addr[1] = pn;
+> +               }
+> +
+> +               if (smi_addr[0] > MAX_SMI_BUSSES)
+> +                       return dev_err_probe(dev, -EINVAL, "illegal smi bus number %d\n",
+> +                                            smi_addr[0]);
+> +
+> +               if (smi_addr[1] > MAX_SMI_ADDR)
+> +                       return dev_err_probe(dev, -EINVAL, "illegal smi addr %d\n", smi_addr[1]);
+> +
+> +               if (fwnode_device_is_compatible(child, "ethernet-phy-ieee802.3-c45"))
+> +                       priv->smi_bus_isc45[smi_addr[0]] = true;
+> +
+> +               priv->smi_bus[pn] = smi_addr[0];
+> +               priv->smi_addr[pn] = smi_addr[1];
+> +       }
+> +
+> +       err = realtek_mdiobus_init(priv);
+> +       if (err)
+> +               return dev_err_probe(dev, err, "failed to initialise MDIO bus controller\n");
+> +
+> +       err = devm_of_mdiobus_register(dev, bus, dev->of_node);
+> +       if (err)
+> +               return dev_err_probe(dev, err, "cannot register MDIO bus\n");
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id realtek_mdio_ids[] = {
+> +       { .compatible = "realtek,rtl9301-mdio" },
+> +       { .compatible = "realtek,rtl9302b-mdio" },
+> +       { .compatible = "realtek,rtl9302c-mdio" },
+> +       { .compatible = "realtek,rtl9303-mdio" },
 
+Do these different compatible strings really matter? AFAIK, compatible
+are not for listing all supported models/variants but to describe
+devices that have a different behavior and indicating that (with
+different strings) is needed to decide how the driver will work. If
+the driver does not use which compatible was set, it might indicate
+that we don't really need 4 compatible but 1.
+
+> +       {}
+> +};
+> +MODULE_DEVICE_TABLE(of, realtek_mdio_ids);
+> +
+> +static struct platform_driver rtl9300_mdio_driver = {
+> +       .probe = realtek_mdiobus_probe,
+> +       .driver = {
+> +               .name = "mdio-rtl9300",
+> +               .of_match_table = realtek_mdio_ids,
+> +       },
+> +};
+> +
+> +module_platform_driver(rtl9300_mdio_driver);
+> +
+> +MODULE_DESCRIPTION("RTL9300 MDIO driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.47.1
 >
-> > +};
-> > +
-> > +struct rpmi_get_attrs_rx {
-> > +       s32 status;
-> > +       u32 flags;
-> > +       u32 num_rates;
-> > +       u32 transition_latency;
-> > +       char name[RPMI_CLK_NAME_LEN];
-> > +};
-> > +
-> > +struct rpmi_get_supp_rates_tx {
-> > +       u32 clkid;
-> > +       u32 clk_rate_idx;
-> > +};
-> > +
-> > +struct rpmi_get_supp_rates_rx {
-> > +       u32 status;
-> > +       u32 flags;
-> > +       u32 remaining;
-> > +       u32 returned;
-> > +       union rpmi_clk_rate rates;
-> > +};
-> > +
-> > +struct rpmi_get_rate_tx {
-> > +       u32 clkid;
-> > +};
-> > +
-> > +struct rpmi_get_rate_rx {
-> > +       u32 status;
-> > +       u32 lo;
-> > +       u32 hi;
-> > +};
-> > +
-> > +struct rpmi_set_rate_tx {
-> > +       u32 clkid;
-> > +       u32 flags;
-> > +       u32 lo;
-> > +       u32 hi;
-> > +};
-> > +
-> > +struct rpmi_set_rate_rx {
-> > +       u32 status;
-> > +};
-> > +
-> > +struct rpmi_set_config_tx {
-> > +       u32 clkid;
-> > +       u32 config;
-> > +};
-> > +
-> > +struct rpmi_set_config_rx {
-> > +       u32 status;
-> > +};
-> > +
-> > +static int rpmi_clk_get_num_clocks(struct rpmi_clk_context *context)
-> > +{
-> > +       struct rpmi_get_num_clocks_rx rx;
-> > +       struct rpmi_mbox_message msg;
-> > +       int ret;
-> > +
-> > +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_GET_NUM_CL=
-OCKS,
-> > +                                         NULL, 0, &rx, sizeof(rx));
-> > +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +       if (ret)
-> > +               return ret;
-> > +       if (rx.status)
-> > +               return rpmi_to_linux_error(rx.status);
-> > +
-> > +       return rx.num_clocks;
-> > +}
-> > +
-> > +/**
 >
-> This isn't kernel-doc so either remove the extra '*' or write
-> kernel-doc.
 
-Sure, I will remove that wherever necessary.
+Regards,
 
->
-> > + * Get the RPMI Clock Attributes.
-> > + * These attributes belong to a particular clock(clkid)
-> > + * which are different from the MPXY channel attributes.
-> > + */
-> > +static int rpmi_clk_get_attrs(u32 clkid, struct rpmi_clk *rpmi_clk)
-> > +{
-> > +       struct rpmi_clk_context *context =3D rpmi_clk->context;
-> > +       struct rpmi_mbox_message msg;
-> > +       struct rpmi_get_attrs_tx tx;
-> > +       struct rpmi_get_attrs_rx rx;
-> > +       u8 format;
-> > +       int ret;
-> > +
-> > +       tx.clkid =3D cpu_to_le32(clkid);
->
-> Run sparse and fix errors please. I assume that the mailbox interactions
-> need to have __le32 marked structs.
-
-Sure.
-
->
-> > +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_GET_ATTRIB=
-UTES,
-> > +                                         &tx, sizeof(tx), &rx, sizeof(=
-rx));
-> > +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +       if (ret)
-> > +               return ret;
-> > +       if (rx.status)
-> > +               return rpmi_to_linux_error(rx.status);
-> > +
-> > +       rpmi_clk->id =3D clkid;
-> > +       rpmi_clk->num_rates =3D rx.num_rates;
-> > +       rpmi_clk->transition_latency =3D rx.transition_latency;
-> > +       strscpy(rpmi_clk->name, rx.name, RPMI_CLK_NAME_LEN);
-> > +
-> > +       format =3D rx.flags & 1U;
-> > +       if (format >=3D RPMI_CLK_TYPE_MAX_IDX)
->
-> How is this possible?
-
-There is a mistake in getting the format from flags which makes the
-"if" condition useless.
-The format is supposed to be 2 bit wide in the flags.
-The spec currently only defines 0b00 and 0b01, rest are
-reserved and if condition will be necessary. i will correct this
-
-
->
-> > +               return -EINVAL;
-> > +
-> > +       rpmi_clk->type =3D format;
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int rpmi_clk_get_supported_rates(u32 clkid, struct rpmi_clk *rp=
-mi_clk)
-> > +{
-> > +       struct rpmi_clk_context *context =3D rpmi_clk->context;
-> > +       struct rpmi_get_supp_rates_tx tx;
-> > +       struct rpmi_get_supp_rates_rx rx;
-> > +       struct rpmi_mbox_message msg;
-> > +       size_t clk_rate_idx =3D 0;
-> > +       int ret, rateidx, j;
-> > +
-> > +       tx.clkid =3D cpu_to_le32(clkid);
-> > +       tx.clk_rate_idx =3D 0;
-> > +
-> > +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_GET_SUPPOR=
-TED_RATES,
-> > +                                         &tx, sizeof(tx), &rx, sizeof(=
-rx));
-> > +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +       if (ret)
-> > +               return ret;
-> > +       if (rx.status)
-> > +               return rpmi_to_linux_error(rx.status);
-> > +       if (!rx.returned)
-> > +               return -EINVAL;
-> > +
-> > +       if (rpmi_clk->type =3D=3D RPMI_CLK_DISCRETE) {
-> > +               for (rateidx =3D 0; rateidx < rx.returned; rateidx++) {
-> > +                       rpmi_clk->rates->discrete[rateidx] =3D
-> > +                                       GET_RATE_U64(rx.rates.discrete[=
-rateidx].hi,
-> > +                                                    rx.rates.discrete[=
-rateidx].lo);
-> > +               }
-> > +
-> > +               while (rx.remaining) {
-> > +                       clk_rate_idx +=3D rx.returned;
-> > +                       tx.clk_rate_idx =3D clk_rate_idx;
-> > +
-> > +                       rpmi_mbox_init_send_with_response(&msg,
-> > +                                                         RPMI_CLK_SRV_=
-GET_SUPPORTED_RATES,
-> > +                                                         &tx, sizeof(t=
-x), &rx, sizeof(rx));
-> > +                       ret =3D rpmi_mbox_send_message(context->chan, &=
-msg);
-> > +                       if (ret)
-> > +                               return ret;
-> > +
-> > +                       for (j =3D 0; j < rx.returned; j++) {
-> > +                               if (rateidx >=3D (clk_rate_idx + rx.ret=
-urned))
-> > +                                       break;
-> > +                               rpmi_clk->rates->discrete[rateidx++] =
-=3D
-> > +                                       GET_RATE_U64(rx.rates.discrete[=
-j].hi,
-> > +                                                    rx.rates.discrete[=
-j].lo);
-> > +                       }
-> > +               }
-> > +       } else if (rpmi_clk->type =3D=3D RPMI_CLK_LINEAR) {
-> > +               rpmi_clk->rates->linear.min =3D
-> > +                               GET_RATE_U64(rx.rates.linear.min_hi,
-> > +                                            rx.rates.linear.min_lo);
-> > +               rpmi_clk->rates->linear.max =3D
-> > +                               GET_RATE_U64(rx.rates.linear.max_hi,
-> > +                                            rx.rates.linear.max_lo);
-> > +               rpmi_clk->rates->linear.step =3D
-> > +                               GET_RATE_U64(rx.rates.linear.step_hi,
-> > +                                            rx.rates.linear.step_lo);
-> > +       }
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static unsigned long rpmi_clk_recalc_rate(struct clk_hw *hw,
-> > +                                         unsigned long parent_rate)
-> > +{
-> > +       struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
-> > +       struct rpmi_clk_context *context =3D rpmi_clk->context;
-> > +       struct rpmi_mbox_message msg;
-> > +       struct rpmi_get_rate_tx tx;
-> > +       struct rpmi_get_rate_rx rx;
-> > +       int ret;
-> > +
-> > +       tx.clkid =3D cpu_to_le32(rpmi_clk->id);
-> > +
-> > +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_GET_RATE,
-> > +                                         &tx, sizeof(tx), &rx, sizeof(=
-rx));
-> > +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +       if (ret)
-> > +               return ret;
-> > +       if (rx.status)
-> > +               return rx.status;
-> > +
-> > +       return GET_RATE_U64(rx.hi, rx.lo);
-> > +}
-> > +
-> > +static long rpmi_clk_round_rate(struct clk_hw *hw,
-> > +                               unsigned long rate,
-> > +                               unsigned long *parent_rate)
-> > +{
-> > +       struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
-> > +       u64 fmin, fmax, ftmp;
-> > +
-> > +       if (rpmi_clk->type =3D=3D RPMI_CLK_DISCRETE)
-> > +               return rate;
-> > +
-> > +       fmin =3D rpmi_clk->rates->linear.min;
-> > +       fmax =3D rpmi_clk->rates->linear.max;
-> > +
-> > +       if (rate <=3D fmin)
-> > +               return fmin;
-> > +       else if (rate >=3D  fmax)
-> > +               return fmax;
-> > +
-> > +       ftmp =3D rate - fmin;
-> > +       ftmp +=3D rpmi_clk->rates->linear.step - 1;
-> > +       do_div(ftmp, rpmi_clk->rates->linear.step);
-> > +
-> > +       return ftmp * rpmi_clk->rates->linear.step + fmin;
-> > +}
-> > +
-> > +static int rpmi_clk_set_rate(struct clk_hw *hw, unsigned long rate,
-> > +                            unsigned long parent_rate)
-> > +{
-> > +       struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
-> > +       struct rpmi_clk_context *context =3D rpmi_clk->context;
-> > +       struct rpmi_mbox_message msg;
-> > +       struct rpmi_set_rate_tx tx;
-> > +       struct rpmi_set_rate_rx rx;
-> > +       int ret;
-> > +
-> > +       tx.clkid =3D cpu_to_le32(rpmi_clk->id);
-> > +       tx.lo =3D cpu_to_le32(GET_RATE_LO_U32(rate));
-> > +       tx.hi =3D cpu_to_le32(GET_RATE_HI_U32(rate));
-> > +
-> > +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_SET_RATE,
-> > +                                         &tx, sizeof(tx), &rx, sizeof(=
-rx));
-> > +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +       if (ret)
-> > +               return ret;
-> > +       if (rx.status)
-> > +               return rpmi_to_linux_error(rx.status);
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int rpmi_clk_enable(struct clk_hw *hw)
-> > +{
-> > +       struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
-> > +       struct rpmi_clk_context *context =3D rpmi_clk->context;
-> > +       struct rpmi_mbox_message msg;
-> > +       struct rpmi_set_config_tx tx;
-> > +       struct rpmi_set_config_rx rx;
-> > +       int ret;
-> > +
-> > +       tx.config =3D cpu_to_le32(RPMI_CLK_ENABLE);
-> > +       tx.clkid =3D cpu_to_le32(rpmi_clk->id);
-> > +
-> > +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_SET_CONFIG=
-,
-> > +                                         &tx, sizeof(tx), &rx, sizeof(=
-rx));
-> > +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +       if (ret)
-> > +               return ret;
-> > +       if (rx.status)
-> > +               return rpmi_to_linux_error(rx.status);
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static void rpmi_clk_disable(struct clk_hw *hw)
-> > +{
-> > +       struct rpmi_clk *rpmi_clk =3D to_rpmi_clk(hw);
-> > +       struct rpmi_clk_context *context =3D rpmi_clk->context;
-> > +       struct rpmi_mbox_message msg;
-> > +       struct rpmi_set_config_tx tx;
-> > +       struct rpmi_set_config_rx rx;
-> > +       int ret;
-> > +
-> > +       tx.config =3D cpu_to_le32(RPMI_CLK_DISABLE);
-> > +       tx.clkid =3D cpu_to_le32(rpmi_clk->id);
-> > +
-> > +       rpmi_mbox_init_send_with_response(&msg, RPMI_CLK_SRV_SET_CONFIG=
-,
-> > +                                         &tx, sizeof(tx), &rx, sizeof(=
-rx));
-> > +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +       if (ret || rx.status)
-> > +               pr_err("Failed to disable clk-%u\n", rpmi_clk->id);
-> > +}
-> > +
-> > +static const struct clk_ops rpmi_clk_ops =3D {
-> > +       .recalc_rate =3D rpmi_clk_recalc_rate,
-> > +       .round_rate =3D rpmi_clk_round_rate,
->
-> Please implement determine_rate instead.
-
-Sure. I will update
-
->
-> > +       .set_rate =3D rpmi_clk_set_rate,
-> > +       .prepare =3D rpmi_clk_enable,
-> > +       .unprepare =3D rpmi_clk_disable,
-> > +};
-> > +
-> > +static struct clk_hw *rpmi_clk_enumerate(struct rpmi_clk_context *cont=
-ext, u32 clkid)
-> > +{
-> > +       struct device *dev =3D context->dev;
-> > +       unsigned long min_rate, max_rate;
-> > +       union rpmi_clk_rates *rates;
-> > +       struct rpmi_clk *rpmi_clk;
-> > +       struct clk_init_data init;
->
-> Use init =3D { } to initialize everything to zero.
-
-Sure, I will update
-
->
-> > +       struct clk_hw *clk_hw;
-> > +       int ret;
-> > +
-> > +       rates =3D devm_kzalloc(dev, sizeof(union rpmi_clk_rates), GFP_K=
-ERNEL);
-> > +       if (!rates)
-> > +               return ERR_PTR(-ENOMEM);
-> > +
-> > +       rpmi_clk =3D devm_kzalloc(dev, sizeof(struct rpmi_clk), GFP_KER=
-NEL);
-> > +       if (!rpmi_clk)
-> > +               return ERR_PTR(-ENOMEM);
-> > +       rpmi_clk->context =3D context;
-> > +       rpmi_clk->rates =3D rates;
-> > +
-> > +       ret =3D rpmi_clk_get_attrs(clkid, rpmi_clk);
-> > +       if (ret) {
-> > +               dev_err(dev, "Failed to get clk-%u attributes\n", clkid=
-);
->
-> Please use dev_err_probe() and helpers.
-
-Sure, I will update
-
->
-> > +               return ERR_PTR(ret);
-> > +       }
-> > +
-> > +       ret =3D rpmi_clk_get_supported_rates(clkid, rpmi_clk);
-> > +       if (ret) {
-> > +               dev_err(dev, "Get supported rates failed for clk-%u, %d=
-\n",
-> > +                       clkid, ret);
-> > +               return ERR_PTR(ret);
-> > +       }
-> > +
-> > +       init.flags =3D CLK_GET_RATE_NOCACHE;
-> > +       init.num_parents =3D 0;
-> > +       init.ops =3D &rpmi_clk_ops;
-> > +       init.name =3D rpmi_clk->name;
-> > +       clk_hw =3D &rpmi_clk->hw;
-> > +       clk_hw->init =3D &init;
-> > +
-> > +       ret =3D devm_clk_hw_register(dev, clk_hw);
-> > +       if (ret) {
-> > +               dev_err(dev, "Unable to register clk-%u\n", clkid);
-> > +               return ERR_PTR(ret);
-> > +       }
-> > +
-> > +       if (rpmi_clk->type =3D=3D RPMI_CLK_DISCRETE) {
-> > +               min_rate =3D rpmi_clk->rates->discrete[0];
-> > +               max_rate =3D rpmi_clk->rates->discrete[rpmi_clk->num_ra=
-tes -  1];
-> > +       } else {
-> > +               min_rate =3D rpmi_clk->rates->linear.min;
-> > +               max_rate =3D rpmi_clk->rates->linear.max;
-> > +       }
-> > +
-> > +       clk_hw_set_rate_range(clk_hw, min_rate, max_rate);
-> > +
-> > +       return NULL;
->
-> Why does it return NULL?
-
-Yes, it's a typo. I will correct this.
-
->
-> > +}
-> > +
-> > +static void rpmi_clk_receive_message(struct mbox_client *cl, void *msg=
-)
-> > +{
-> > +       /* Nothing to do here. */
-> > +}
-> > +
-> > +static int rpmi_clk_probe(struct platform_device *pdev)
-> > +{
-> > +       struct device *dev =3D &pdev->dev;
-> > +       struct clk_hw_onecell_data *clk_data;
-> > +       struct rpmi_clk_context *context;
-> > +       struct rpmi_mbox_message msg;
-> > +       int ret, num_clocks, i;
-> > +       struct clk_hw *hw_ptr;
-> > +
-> > +       /* Allocate RPMI clock context */
-> > +       context =3D devm_kzalloc(dev, sizeof(*context), GFP_KERNEL);
-> > +       if (!context)
-> > +               return -ENOMEM;
-> > +       context->dev =3D dev;
-> > +       platform_set_drvdata(pdev, context);
-> > +
-> > +       /* Setup mailbox client */
-> > +       context->client.dev             =3D context->dev;
-> > +       context->client.rx_callback     =3D rpmi_clk_receive_message;
-> > +       context->client.tx_block        =3D false;
-> > +       context->client.knows_txdone    =3D true;
-> > +       context->client.tx_tout         =3D 0;
-> > +
-> > +       /* Request mailbox channel */
-> > +       context->chan =3D mbox_request_channel(&context->client, 0);
-> > +       if (IS_ERR(context->chan))
-> > +               return PTR_ERR(context->chan);
-> > +
-> > +       /* Validate RPMI specification version */
-> > +       rpmi_mbox_init_get_attribute(&msg, RPMI_MBOX_ATTR_SPEC_VERSION)=
-;
-> > +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +       if (ret) {
-> > +               dev_err(dev, "Failed to get spec version\n");
->
-> Use dev_err_probe()
-
-Sure, I will update
-
->
-> > +               goto fail_free_channel;
-> > +       }
-> > +       if (msg.attr.value < RPMI_MKVER(1, 0)) {
-> > +               dev_err(dev,
-> > +                       "msg protocol version mismatch, expected 0x%x, =
-found 0x%x\n",
-> > +                       RPMI_MKVER(1, 0), msg.attr.value);
-> > +               ret =3D -EINVAL;
-> > +               goto fail_free_channel;
-> > +       }
-> > +
-> > +       /* Validate clock service group ID */
-> > +       rpmi_mbox_init_get_attribute(&msg, RPMI_MBOX_ATTR_SERVICEGROUP_=
-ID);
-> > +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +       if (ret) {
-> > +               dev_err(dev, "Failed to get service group ID\n");
-> > +               goto fail_free_channel;
-> > +       }
-> > +       if (msg.attr.value !=3D RPMI_SRVGRP_CLOCK) {
-> > +               dev_err(dev,
-> > +                       "service group match failed, expected 0x%x, fou=
-nd 0x%x\n",
-> > +                       RPMI_SRVGRP_CLOCK, msg.attr.value);
-> > +               ret =3D -EINVAL;
-> > +               goto fail_free_channel;
-> > +       }
-> > +
-> > +       /* Validate clock service group version */
-> > +       rpmi_mbox_init_get_attribute(&msg, RPMI_MBOX_ATTR_SERVICEGROUP_=
-VERSION);
-> > +       ret =3D rpmi_mbox_send_message(context->chan, &msg);
-> > +       if (ret) {
-> > +               dev_err(dev, "Failed to get service group version\n");
-> > +               goto fail_free_channel;
-> > +       }
-> > +       if (msg.attr.value < RPMI_MKVER(1, 0)) {
-> > +               dev_err(dev,
-> > +                       "service group version failed, expected 0x%x, f=
-ound 0x%x\n",
-> > +                       RPMI_MKVER(1, 0), msg.attr.value);
-> > +               ret =3D -EINVAL;
-> > +               goto fail_free_channel;
-> > +       }
-> > +
-> > +       /* Find-out number of clocks */
-> > +       num_clocks =3D rpmi_clk_get_num_clocks(context);
-> > +       if (!num_clocks) {
-> > +               dev_err(dev, "No clocks found\n");
-> > +               ret =3D -ENODEV;
-> > +               goto fail_free_channel;
-> > +       }
-> > +
-> > +       /* Allocate clock data */
-> > +       clk_data =3D devm_kzalloc(dev, struct_size(clk_data, hws, num_c=
-locks),
-> > +                               GFP_KERNEL);
-> > +       if (!clk_data) {
-> > +               ret =3D -ENOMEM;
-> > +               goto fail_free_channel;
-> > +       }
-> > +       clk_data->num =3D num_clocks;
-> > +
-> > +       /* Setup clock data */
-> > +       for (i =3D 0; i < clk_data->num; i++) {
-> > +               hw_ptr =3D rpmi_clk_enumerate(context, i);
-> > +               if (IS_ERR(hw_ptr)) {
-> > +                       dev_err(dev, "failed to register clk-%d\n", i);
-> > +                       ret =3D PTR_ERR(hw_ptr);
-> > +                       goto fail_free_channel;
-> > +               }
-> > +               clk_data->hws[i] =3D hw_ptr;
-> > +       }
-> > +
-> > +       /* Register clock HW provider */
-> > +       ret =3D devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,=
- clk_data);
-> > +       if (ret) {
-> > +               dev_err(dev, "failed to register clock HW provider\n");
-> > +               goto fail_free_channel;
-> > +       }
-> > +
-> > +       dev_info(dev, "clk HW provider registered with %d clocks\n",
-> > +                num_clocks);
->
-> Remove this info print please.
-
-Sure, I will update.
-
->
-> > +       return 0;
-> > +
-> > +fail_free_channel:
-> > +       mbox_free_channel(context->chan);
-> > +       return ret;
-> > +}
-> > +
-> > +static void rpmi_clk_remove(struct platform_device *pdev)
-> > +{
-> > +       struct rpmi_clk_context *context =3D platform_get_drvdata(pdev)=
-;
-> > +
-> > +       mbox_free_channel(context->chan);
-> > +}
-> > +
-> > +static const struct of_device_id rpmi_clk_of_match[] =3D {
-> > +       { .compatible =3D "riscv,rpmi-clock" },
-> > +       { },
->
-> Nitpick: Drop comma so nothing can come after.
-
-Sure, I will update.
-
->
-> > +};
-> > +
->
-> Nitpick: Drop extra newline.
-
-Sure, I will update.
-
->
-> > +MODULE_DEVICE_TABLE(of, rpmi_clk_of_match);
-> > +
-> > +static struct platform_driver rpmi_clk_driver =3D {
-> > +       .driver =3D {
-> > +               .name =3D "riscv-rpmi-clock",
-> > +               .of_match_table =3D rpmi_clk_of_match,
-> > +       },
-> > +       .probe =3D rpmi_clk_probe,
-> > +       .remove =3D rpmi_clk_remove,
-> > +};
-> > +module_platform_driver(rpmi_clk_driver);
-> > +
-> > +MODULE_AUTHOR("Rahul Pathak <rpathak@ventanamicro.com>");
-> > +MODULE_DESCRIPTION("Clock Driver based on RPMI message protocol");
-> > +MODULE_LICENSE("GPL");
-> > diff --git a/include/linux/mailbox/riscv-rpmi-message.h b/include/linux=
-/mailbox/riscv-rpmi-message.h
-> > index 8f4b3a0edbce..4e9478c4c0a3 100644
-> > --- a/include/linux/mailbox/riscv-rpmi-message.h
-> > +++ b/include/linux/mailbox/riscv-rpmi-message.h
-> > @@ -89,6 +89,22 @@ static inline int rpmi_to_linux_error(int rpmi_error=
-)
-> >         }
-> >  }
-> >
-> > +/** RPMI service group IDs */
-> > +#define RPMI_SRVGRP_CLOCK              0x00007
-> > +
-> > +/** RPMI clock service IDs */
-> > +enum rpmi_clock_service_id {
-> > +       RPMI_CLK_SRV_ENABLE_NOTIFICATION =3D 0x01,
-> > +       RPMI_CLK_SRV_GET_NUM_CLOCKS =3D 0x02,
-> > +       RPMI_CLK_SRV_GET_ATTRIBUTES =3D 0x03,
-> > +       RPMI_CLK_SRV_GET_SUPPORTED_RATES =3D 0x04,
-> > +       RPMI_CLK_SRV_SET_CONFIG =3D 0x05,
-> > +       RPMI_CLK_SRV_GET_CONFIG =3D 0x06,
-> > +       RPMI_CLK_SRV_SET_RATE =3D 0x07,
-> > +       RPMI_CLK_SRV_GET_RATE =3D 0x08,
-> > +       RPMI_CLK_SRV_ID_MAX_COUNT,
-> > +};
-> > +
->
-> What is the benefit of the enum vs. just having a #define?
-
-#define can achieve the same thing as enum does.
-We have kept the same format for such defines everywhere.
-For example a counterpart implementation of RPMI clock will
-be in Platform microcontroller firmware and also in Qemu for
-emulation which came first that's why I used the same.
-
-I will prefer to use the common format everywhere unless
-the driver requires use of #define instead of enum.
+Luiz
 
