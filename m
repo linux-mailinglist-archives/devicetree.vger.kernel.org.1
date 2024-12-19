@@ -1,224 +1,259 @@
-Return-Path: <devicetree+bounces-132793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 481039F8223
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 18:42:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43EFA9F822B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 18:43:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03CB81898920
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:37:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D9381899119
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:38:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2545319E826;
-	Thu, 19 Dec 2024 17:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F55F1A0BD7;
+	Thu, 19 Dec 2024 17:36:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="SeVBcOgj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h0Uc7HSF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2050.outbound.protection.outlook.com [40.107.20.50])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E4C1917E4;
-	Thu, 19 Dec 2024 17:35:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734629744; cv=fail; b=Zy4oz9QzEGpSwQOE6gwA9OF2KB4lsMOr6378Tl8JhMdlVhGkkIFybdB6Euk3N/P7uRFLCo8/Z43jMt2k/XQr3qRoODF/ZmLLNRq6CkfZbjOoecs4tIvLxZMvD8if+ZY8TbPYCXRngh8KO35XWnsKLhJmy4FIHVPXBb+1BLklW+Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734629744; c=relaxed/simple;
-	bh=wb1XFbGhZgY0YMPzD7Zmx9+uWZrKVIPnsYUM04cqb1g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=BsiLAcbPeMK36itS7O6RVEvwXkq8fNbPXej82kMZZqgsFCMCY6wcrBQKHLWWWgM25NUTSljSc9s4II9dj9kwyb1HYGr4RNSEBKV+oc79/jDik3XW/6uLw3d4NzIxiZGGIAb2eyC/6BD81gG/tCxuXh0GPgoOfXikPfg6/j+ijdw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=SeVBcOgj; arc=fail smtp.client-ip=40.107.20.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ReV75x9X2SrpsbuDJKHVbY9OldbGvobeYJTJtNAoFVFeEnaWEMnCD6Zhkaq6+zI+0pOoH1bjPEac42ZmqTjb5xj3doFhiuMHgcKfB50W5fHJr++yVNqOq6Flw/3zELDgaJVebaVXxKACCflKzkQZRmSuIZrD6pnuJf1pMUOD5a2pkJvD1u+3EVsfWC8LOV2+VfL1VuxySs9K8f1dwLs504sB3+feCQu5Xotu7LEoMhNyQ+qHWlh41lOqQidhnhNDzS3yqZUio0NcOAVnO+4WGVRRIMTnS7mCZ3tXlYGpxvFJ4GTRIQDh4lOfO70s9TEnK7GmKLCS1nyWkcTsnu41pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LGWDX0R84XuAGEi9n7N8xM6kGbIxCeVe3g8ZonOC0kE=;
- b=CREn+s479eQuBBmaLvXVjV/lGoJSINtBGSZlJNuyHVc2SkNCSr1DZuqD7ApI7RX+6/6NrM2NP+Aws7iLQQcPpKc+Rt/plIfNMQD848+peJMXmG1QWcyJA3x7hw22SYiCRTgdwOlIVjPJXVi/AVb04t9iv8dk8P6qpoMlXSRUzK1BNgpSrRBBJQeFz6EIgPeyWoeFAEQWkqOJOyupevzpbpclHYjM3WrV5cZX57gQhs2/E4Q+2ftcz7X1xFZwjvHYvkkYStkTxDmHRlGh+SC75jMoqYDAhRmxGxbJhXkSvDEAHbY3yypYR/a7rivPVwrrqcEqIOv0jGMVSaWtXd7AFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LGWDX0R84XuAGEi9n7N8xM6kGbIxCeVe3g8ZonOC0kE=;
- b=SeVBcOgjH5rMgGspZ25ehhS1JdrPNY2UItR4G4tNQsJauvr92uWZBY1+GLNgea6+2VChxDaeDxLKpCsmgtY/nQTBT+BeXLK/Fnmaym/ugkONYyNifabubhmd8dPzuht1thOnFrrtaQ0zqYjT1i/ZI9RPLV38uMbnmKcxTN05fffHVUSG4PacnEBV/YY2HUBXvIN1RwrnUvbln2jSC+Ss7yzhRn98ta7w6CJHmX/mI2NENO816AWhXdgbw1hOJ+lbNuPK+C+VClTJopqpYY66Bovd6WYPl09S74d0EkHXjJ46NI4gcplEtrVCoFNKZXPoFDdU62aBbsyVM497fOw3pw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DU2PR04MB9194.eurprd04.prod.outlook.com (2603:10a6:10:2f9::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.19; Thu, 19 Dec
- 2024 17:35:40 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8272.005; Thu, 19 Dec 2024
- 17:35:40 +0000
-Date: Thu, 19 Dec 2024 12:35:31 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 04/10] arm64: dts: imx8mp-skov: describe HDMI display
- pipeline
-Message-ID: <Z2RZY/gvQ0qqDjqv@lizhi-Precision-Tower-5810>
-References: <20241219-skov-dt-updates-v1-0-38bf80dc22df@pengutronix.de>
- <20241219-skov-dt-updates-v1-4-38bf80dc22df@pengutronix.de>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241219-skov-dt-updates-v1-4-38bf80dc22df@pengutronix.de>
-X-ClientProxiedBy: BYAPR21CA0019.namprd21.prod.outlook.com
- (2603:10b6:a03:114::29) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC251A08D1;
+	Thu, 19 Dec 2024 17:36:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1734629784; cv=none; b=nV+jp6p8EbyuH9wq7G/9aez/1Go5qIK+FbUq+vlS21l8PbKksXkJ9KirP7uahwemvcRFqTKsXZm7piEPBmFr1YjO/DRB4h4+6MDEbtg8YJRgzwVapO4GcN6Cldz0MZFzcdBC/Qnuw7GQOa+p84X0MrjUsArx6JvW6FGz0smoJyY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1734629784; c=relaxed/simple;
+	bh=Oh4M/Ix9SWL4XtOKV3HQnSZPRnBHPERnO8cKvi+CBeA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rXxUSK02A/57YO02x32aXuafIgHR/JArlWGvZfIKnbzq8zxg8AglVZBEviwZlobZvEsboXh6WCh6FWX3VMfgAf40fwWpGMoiJoNzS9RW33v8rERjh9Zumj/SpzTbzr7FqQ1p0P0Ul2fF+kHtXw0DuLgPzElP6luk3SMAfwOAFmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h0Uc7HSF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEBA7C4CED4;
+	Thu, 19 Dec 2024 17:36:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1734629783;
+	bh=Oh4M/Ix9SWL4XtOKV3HQnSZPRnBHPERnO8cKvi+CBeA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=h0Uc7HSFKt5apJ8LXR4QsHCEnlywB119CeZK79oq0fcu8vQGS46CLTAme5A8BPcCS
+	 2z3ybKXxL9mZ6kCtaQJoG7i6nyp0uOkvMsUxmmECiM8bw0wsZFlG01PQAZ1aJwGYOa
+	 j1OvzahWKQROZTsTp1+N4NN1PmLuvcYOHkEv990wICKtBxFcOAkecKUjJWMxKCfrSC
+	 cmZDoIwc1cQkTIQjtnlSp0+Y/nrBMEFFyg9W3fsdyk0PsSPq+xaKvp63xFmt0M54ug
+	 ViAYZ4W4rvaIRqIs6AqIe8dKmvn27YHtzSpuQAsZoiEypTV2zHNPYb7qVNpqlRnjv3
+	 VMMYhouGQOA6Q==
+Date: Thu, 19 Dec 2024 17:36:13 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Robert Budai <robert.budai@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, "Ramona
+ Gradinariu" <ramona.gradinariu@analog.com>, Antoniu Miclaus
+ <antoniu.miclaus@analog.com>, "Rob Herring" <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shen Jianping
+ <Jianping.Shen@de.bosch.com>, "Alex Lanzano" <lanzano.alex@gmail.com>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <robi_budai@yahoo.com>
+Subject: Re: [PATCH v3 6/7] iio: imu: adis16550: add adis16550 support
+Message-ID: <20241219173613.7f6572aa@jic23-huawei>
+In-Reply-To: <20241216144818.25344-7-robert.budai@analog.com>
+References: <20241216144818.25344-1-robert.budai@analog.com>
+	<20241216144818.25344-7-robert.budai@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB9194:EE_
-X-MS-Office365-Filtering-Correlation-Id: b63cefb1-3b01-456e-76d9-08dd20538e43
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|366016|52116014|1800799024|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Sf0WD/i4iLBF9Qn6h59ZkuwWxQV6BjPObNzHoLmLDXcvVvFPN+2f+roBpHeP?=
- =?us-ascii?Q?0EFhPNqN+Pmd/RIoNmwRVtM3B6t1shfLQgTHmHMv0wPXBUn8SZuIcxa2+bm9?=
- =?us-ascii?Q?gwKl1APDna36awpcwQt1IIaksA7fDb/7kWrsqiwxT3c/J6ndZ11zMVngqPIX?=
- =?us-ascii?Q?VtQTb8nDKqq4nix+RGmAi5z+KyWpIR0EnsGOzdKT9u36Mrqg6iycdZMjoo3U?=
- =?us-ascii?Q?xp47g9O6VUBzu74vAVrLfPYHj/n96YzLNSsJuS9qFcImK0/d0aL+ne9AqFaV?=
- =?us-ascii?Q?3BDwqop3CUMc5Gt77EFeL41c/zNog6Xg3rUdBO3q1FHgrMEhzWK3K1pHKRU9?=
- =?us-ascii?Q?e2Iq7kbc8NZxpVYBEYGn8fbmivuOCPuy3RIzlCb/9VfggoaxVlC4BTYiJnHK?=
- =?us-ascii?Q?DZCVPreMtQvwXhAn2Mc0r5yo9gIoQcryVGNve/2dQmtBLNMGpMAsBAAt67yE?=
- =?us-ascii?Q?0cAsqgvUIqoEuWOdFw3DBoXKTXU5+DqWLYimcgTFaFlCHls9v+lB0eFjQ8Ki?=
- =?us-ascii?Q?Z/KXBhxRIlEzuVBunsd+H4aRprP3CpvV65sa5/7qiSTTBHONlKzNTiuUFemM?=
- =?us-ascii?Q?y+xExJS/0N3NVOHzStZ9r1Un9xV5gGNtYScXyfbpBMs1aEwoG8Hn4fvCEZXg?=
- =?us-ascii?Q?zXO3zowb8fJ2dcIZ0zrIZ93MnAzloaeoOew95kqxflH9w1TbcupPOOLjlZNC?=
- =?us-ascii?Q?2leBQoEb4bJHJ32NRUt01+838KoTJBhm1a7HXBV7tWN2sedAL1gy297vvpeh?=
- =?us-ascii?Q?RapTHvon0a/w1QrzLayoPX0o2V0mUuLlTb/Iyvj0TZxy/ZYafg63+7QX377p?=
- =?us-ascii?Q?redhIIXXOM9Mi9RPgbHWjJqIkEMI4tcUQ5NrotZR7SIzYg5Etj7T92l/6PW3?=
- =?us-ascii?Q?Jxi7bL2oJUrOiTPNXnqJRCDG47HVIZMZA8vYEqCFX0ZSV0MlAl6i/6FHj/Q8?=
- =?us-ascii?Q?93v05pdF2SaBrBFhnwup2lAg2wpYBlwPqKqcX9CNXs3xnBH5L1yP+1YqQPQr?=
- =?us-ascii?Q?QZU+gBBevFdaEA4E/kEb2wGwQXwI8VgrCs+MafZVrioskkwt6OVjsjcXx73F?=
- =?us-ascii?Q?Jxflch+OXVHHalvuRekf/Ph8MfZDD6AQBXxjsMOmgcZKLb2ra/nuB3XO3AdX?=
- =?us-ascii?Q?cMUrScKw2989iWoVum7yrW2D/E7ta5tg8gwGkjRNU9Kou4u6LmH/Ain9E1bN?=
- =?us-ascii?Q?GM41HtHPB5iWqO/sszBbf0X8SfroEydwaOwPVg3lMMs+3/3MHZLedTzCajyz?=
- =?us-ascii?Q?mDNyk7PnSxLrrIaKslFpco1ohYMTAVzB6BgQMG2lH5V30iquYpAYmhEhlGbQ?=
- =?us-ascii?Q?ii4aZlK36rJE4mhSrByl4P4S+FjQvQE83CwyqfDIKnEG4RAMnGWvgHipyuCd?=
- =?us-ascii?Q?hI1F612A+oNkZx6Uq3nLOoJwlMwo6CE3dcLovTL8QX9gENKlIh8bWiv1nT1w?=
- =?us-ascii?Q?7lEVc4SPTerp7OCKacfOt4Dqd8uyR5p8?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(52116014)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?oXO+RJJ5dUZAqcOzFfoJyjaOiUIzI7m8452cIgK1j+zx/OdzmOVNpcy0eGFH?=
- =?us-ascii?Q?IhF4gExVwlqFuXKCj7gMI/X0BGm5Z+jznBtx0tcNP4MEPeGiWpptXh6qA8Jn?=
- =?us-ascii?Q?areqoJEMdSidNgx8zamLjnupH9mLhc76o1HtC+G/55QYj3lURIHZ1WPoCzNt?=
- =?us-ascii?Q?qPLGmkbyArAaAapvs+05f2Lr42YHd1vdpcwQ9VzWCJmX3zqzOP8TzLl6cgUS?=
- =?us-ascii?Q?cUHM6jayl/yb+uWVhsxfKfGCizAf8m5ULoCBzxJQ34kSD59TMKYAfLMkjgKo?=
- =?us-ascii?Q?3JlcyjKFgikpWvwRpylz5lShGdggU8n7mufFvfxIW+o9P+4CdhNhI6qIY2QX?=
- =?us-ascii?Q?lzxuKF3OrjVD/okEtXQPClbjmYmEBjFD5V5XP4o37BJtaW+4JLGC898+LXwj?=
- =?us-ascii?Q?WYWVopybzW0jRmJXluMkOgXdmUMvMkQpI+TJTaycFsX7YcRKbx9/X5hAxOqF?=
- =?us-ascii?Q?0ZXlkW2xsz3TFTT/Vy7Rrtbufbr/qCMMvVzqxOF1eLigy90anXn3taJGKrKy?=
- =?us-ascii?Q?qvu/SoGfcnPG7Y0OitJ6Z2pmReBET/ufdX63w/Moj64spVKeT8TaNRuq2i9k?=
- =?us-ascii?Q?AeoOvARFcBrTW3e8WNSUZNrc0VdQphtp9hJLsm7szdLQSZYZckUXfX6PvUd5?=
- =?us-ascii?Q?Q2U4Q3mJzwUUxBoZ3LfAp7SxC4u95zVtK5YAbTGfXcQxW/WGI+7HBe9//Pb/?=
- =?us-ascii?Q?ALcrz54xvDhxLO+GjUgPfFJRp0tgdzF7TPJ7RlcxgPTP8diIKCv6nUmitOX7?=
- =?us-ascii?Q?aHG9MOfyVmF2NPqYxZZyZAtK3spqGPm1GTYWq34AGpmGAyYWMQIAed9HIEb6?=
- =?us-ascii?Q?Y1AJ6xPin6Hvmn91hZ5Qh47kTzOYjGUk8ZGIzb41pHaR9TmLOf4HX/nbIqcU?=
- =?us-ascii?Q?kJrA5ItyrcdISB5BctqkgaHzq7TOKJ8cMMcyKQMEzbUpLgu+H5LMPyUMmnTG?=
- =?us-ascii?Q?8KlFsMgZdHvEx2FCpHW3sC4svcyRlnJW7e/o/MY3eJuQ5GNBplRPWcltn/Z+?=
- =?us-ascii?Q?j7T1+gFoOshyevnWB3rDHeMzlZGCoHR2plpgMPMYKD9kc46+0ngpTrJ85RQ4?=
- =?us-ascii?Q?60i8lJDycDz4ftH734JpxC+anjx1dIWsYFQLhopeSNZpRSTbwunbQ5VYE1jI?=
- =?us-ascii?Q?mG3OHmUpseC8uc/rn8oks4tNPmt5EJAwU1qSIm62Z23wRLrXzFnek++TsjiI?=
- =?us-ascii?Q?ts0WgwVn+frbFmAEMtOmftuMLv7z5u4PHA6Azln/jwFvyUY8Hk0JpPzinAsw?=
- =?us-ascii?Q?JRtEqI7SSQBNJeQbJzHenxLlbUA30OzkTMnPQWeLSiPJTW6kMyibNQHAVZvS?=
- =?us-ascii?Q?h8MYAHZlrReDmjFz1jlt68cnanuVTb12G8PSo7HsggnNpwwk2UNN4/AZaRxg?=
- =?us-ascii?Q?WUgcy6EIs7jEkbKoopXiRrEWhSngPGHTJBHA37utQu2z5NO1kwWYZKxiqejX?=
- =?us-ascii?Q?z4RzLps0f/SWoLkQvloSRjXFHhJDMN5oO1oyRbbzYxfTFQi8KcbL8kd+nuwQ?=
- =?us-ascii?Q?ukfpvZw6aivVMgrwZL4fZiivutMYxze9O92ztPrRemXHpdOsz3QwHEBrO0Ir?=
- =?us-ascii?Q?SMsNiIAtJxyykDNWeo3tpe1QtOTJCyOvLhO5iEUP?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b63cefb1-3b01-456e-76d9-08dd20538e43
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2024 17:35:40.0033
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iEAsK5KG2yfHQQ80RgkdKPZYBP+QtuCSCSfBePuwto1ogMLJGkZj8iE8y8ksl/BspIBBjx5DffXrnhG/Exsi9w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9194
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 19, 2024 at 08:25:28AM +0100, Ahmad Fatoum wrote:
-> From: Oleksij Rempel <o.rempel@pengutronix.de>
->
-> Back when this device tree was first added, there were no i.MX8MP
-> HDMI bindings upstream yet. This has changed now, so let's use them
-> to describe the HDMI on the imx8mp-skov-revb-hdmi board.
+On Mon, 16 Dec 2024 16:48:12 +0200
+Robert Budai <robert.budai@analog.com> wrote:
 
-Skip your story.
-Just said
-
-Add HDMI display pipeline for imx8mp-skov-revb-hdmi board.
-
-Frank
->
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> The ADIS16550 is a complete inertial system that includes a triaxis
+> gyroscope and a triaxis accelerometer. Each inertial sensor in
+> the ADIS16550 combines industry leading MEMS only technology
+> with signal conditioning that optimizes dynamic performance. The
+> factory calibration characterizes each sensor for sensitivity, bias,
+> and alignment. As a result, each sensor has its own dynamic com-
+> pensation formulas that provide accurate sensor measurements
+>=20
+> Co-developed-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+> Co-developed-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> Signed-off-by: Robert Budai <robert.budai@analog.com>
 > ---
->  .../boot/dts/freescale/imx8mp-skov-revb-hdmi.dts      | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts b/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts
-> index 206116be8166..32a429437cbd 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-hdmi.dts
-> @@ -9,6 +9,21 @@ / {
->  	compatible = "skov,imx8mp-skov-revb-hdmi", "fsl,imx8mp";
->  };
->
-> +&hdmi_pvi {
-> +	status = "okay";
-> +};
+>=20
+> v3:
+> - freed xbuf
+> - fixed code styling related issues
+> - removed the sensor type enum and used separate structures for providing=
+ chip info data
+
+Hi
+
+A few comments inline to add to what Nuno noted.
+
+Thanks
+
+Jonathan
+
+
+>  adis_lib-$(CONFIG_IIO_ADIS_LIB_BUFFER) +=3D adis_trigger.o
+> diff --git a/drivers/iio/imu/adis16550.c b/drivers/iio/imu/adis16550.c
+> new file mode 100644
+> index 000000000000..6e9d98dee0d8
+> --- /dev/null
+> +++ b/drivers/iio/imu/adis16550.c
+
+
+
+
+> +static int adis16550_update_scan_mode(struct iio_dev *indio_dev,
+> +				      const unsigned long *scan_mask)
+> +{
+> +	struct adis *adis =3D iio_device_get_drvdata(indio_dev);
+> +	u16 burst_length =3D ADIS16550_BURST_DATA_LEN;
+> +	u8 burst_cmd;
+> +	u8 *tx;
 > +
-> +&hdmi_tx {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_hdmi>;
-> +	ddc-i2c-bus = <&i2c5>;
-> +	status = "okay";
-> +};
+> +	if (*scan_mask & ADIS16550_BURST_DATA_GYRO_ACCEL_MASK)
+> +		burst_cmd =3D ADIS16550_REG_BURST_GYRO_ACCEL;
+> +	else
+> +		burst_cmd =3D ADIS16550_REG_BURST_DELTA_ANG_VEL;
 > +
-> +&hdmi_tx_phy {
-> +	status = "okay";
-> +};
+> +	if (adis->xfer)
+How would we be getting here if these weren't set?  Should be fine to
+assume they are.
+
+> +		memset(adis->xfer, 0, 2 * sizeof(*adis->xfer));
+> +	if (adis->buffer)
+> +		memset(adis->buffer, 0, burst_length + sizeof(u32));
 > +
->  &i2c5 {
->  	pinctrl-names = "default", "gpio";
->  	pinctrl-0 = <&pinctrl_i2c5>;
-> @@ -19,6 +34,10 @@ &i2c5 {
->  	status = "okay";
->  };
->
-> +&lcdif3 {
-> +	status = "okay";
-> +};
+> +	tx =3D adis->buffer + burst_length;
+> +	tx[0] =3D 0x00;
+> +	tx[1] =3D 0x00;
+> +	tx[2] =3D burst_cmd;
+> +	/* crc4 is 0 on burst command */
+> +	tx[3] =3D spi_crc4(get_unaligned_le32(tx));
 > +
->  &iomuxc {
->  	pinctrl_hdmi: hdmigrp {
->  		fsl,pins = <
->
-> --
-> 2.39.5
->
+> +	adis->xfer[0].tx_buf =3D tx;
+> +	adis->xfer[0].len =3D 4;
+> +	adis->xfer[0].cs_change =3D 1;
+> +	adis->xfer[0].delay.value =3D 8;
+> +	adis->xfer[0].delay.unit =3D SPI_DELAY_UNIT_USECS;
+> +	adis->xfer[1].rx_buf =3D adis->buffer;
+> +	adis->xfer[1].len =3D burst_length;
+> +
+> +	spi_message_init_with_transfers(&adis->msg, adis->xfer, 2);
+> +
+> +	return 0;
+> +}
+
+
+...
+
+> +static int adis16550_probe(struct spi_device *spi)
+> +{
+> +	struct device *dev =3D &spi->dev;
+> +	struct iio_dev *indio_dev;
+> +	struct adis16550 *st;
+> +	int ret;
+> +
+> +	indio_dev =3D devm_iio_device_alloc(dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st =3D iio_priv(indio_dev);
+> +	st->info =3D spi_get_device_match_data(spi);
+> +	if (!st->info)
+> +		return -EINVAL;
+> +
+> +	indio_dev->name =3D st->info->name;
+> +	indio_dev->channels =3D st->info->channels;
+> +	indio_dev->num_channels =3D st->info->num_channels;
+> +	indio_dev->available_scan_masks =3D adis16550_channel_masks;
+> +	indio_dev->info =3D &adis16550_info;
+> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
+> +
+> +	st->adis.ops =3D &adis16550_ops;
+> +
+> +	struct spi_transfer *xfer_tmp =3D kcalloc(2, sizeof(*st->adis.xfer), GF=
+P_KERNEL);
+> +
+> +	if (!xfer_tmp)
+> +		return -ENOMEM;
+> +
+> +	void *buffer_tmp =3D kzalloc(ADIS16550_BURST_DATA_LEN + sizeof(u32),
+> +				   GFP_KERNEL);
+> +	if (!buffer_tmp) {
+> +		kfree(st->adis.xfer);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	ret =3D devm_regulator_get_enable(dev, "vdd");
+> +	if (ret) {
+> +		dev_err_probe(dev, ret,
+> +			      "Failed to get vdd regulator\n");
+> +		goto free_on_error;
+> +	}
+> +
+> +	ret =3D adis_init(&st->adis, indio_dev, spi, &adis16550_data);
+> +	if (ret)
+> +		goto free_on_error;
+> +
+> +	ret =3D __adis_initial_startup(&st->adis);
+> +	if (ret)
+> +		goto free_on_error;
+> +
+> +	ret =3D adis16550_config_sync(st);
+> +	if (ret)
+> +		goto free_on_error;
+> +
+> +	ret =3D devm_adis_setup_buffer_and_trigger(&st->adis, indio_dev,
+> +						 adis16550_trigger_handler);
+> +	if (ret)
+> +		goto free_on_error;
+> +
+> +	ret =3D devm_iio_device_register(dev, indio_dev);
+> +	if (ret)
+> +		goto free_on_error;
+> +
+> +	adis16550_debugfs_init(indio_dev);
+> +
+> +	st->adis.xfer =3D no_free_ptr(xfer_tmp);
+> +	st->adis.buffer =3D no_free_ptr(buffer_tmp);
+I guess this was me explaining something badly.
+You need to look at all the infrastructure in cleanup.h.
+This only makes sense if you are using auto freeing of the variables
+That is
+	void *buffer_tmp __free(kfree) =3D
+		kzalloc(ADIS16550_BURST_DATA_LEN + sizeof(u32), GFP_KERNEL);
+etc
+Then get rid of the kfree below as they will be freed on exiting scope if
+no_free_ptr() hasn't been called on them (which sets the pointer to NULL).
+Then you can avoid the goto's.
+
+However as Nuno pointed out, devm_kzalloc() may well be a better choice.
+We need alignement for DMA, but dma_kzalloc does guarantee that so it is al=
+l fine.
+
+That would also fix actually freeing these on driver remove which is curren=
+tly
+missing.
+
+
+> +
+> +	return 0;
+> +
+> +free_on_error:
+> +	kfree(xfer_tmp);
+> +	kfree(buffer_tmp);
+> +
+> +	return ret;
+> +}
 
