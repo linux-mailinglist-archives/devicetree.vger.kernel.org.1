@@ -1,30 +1,31 @@
-Return-Path: <devicetree+bounces-132502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7519F7586
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:30:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1741B9F7581
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:30:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B6B816FDAF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:30:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A2F316F20C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 711C3218AD4;
-	Thu, 19 Dec 2024 07:28:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C8B521882D;
+	Thu, 19 Dec 2024 07:28:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDDF721771A
-	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 07:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92ADB218837
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 07:28:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734593300; cv=none; b=jsKT/q9HT1JQ1KgJ0ywDnqswQ2VASbadCBUbidL0GAfxJqRqVE6vExpWnZGyibq6Fj77oKjAxd/P8ZlVNEncveEcPIyhSP69kFnuzNlcAbrjSZUEIJGIGV9KabzP9NSXhuZtfB/5DYyTDbST5iUmrNLpfs/HFVNl/sqKVxX8OfI=
+	t=1734593284; cv=none; b=JsJaAE4KPWfI7dN9B9SQWdo6rBoRnq0STkcGag6/IJraM4yQpifyJEREXDH8urEKG6DzOR8s2Ue/vpI1fNHnnSWSgzMXE8VxK8j21SHTDpOf7ThMuvHZqCa7KgRlU6DOIHdCgU68UMjKADo4eZKmAGBkfHeombcF5a1L5Xgy/6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734593300; c=relaxed/simple;
-	bh=rfvpn1pfEekZZhLEHjOu6jZCZm59cxk6zu8y9TSiWyo=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MgozLZsHKCNp27+CKGSIn71u8h0iQ04tpqXsoB0zjpGylKSJv0oFLmTVHkh2pPQ3BruX7GTW1381rYA9xPgMq4iumLsJOeqmR8O8nnoWVrqJb6G63wSFbe/R7uXuDqPvcbqnIl5D1JMITFpQ6G7RlZDYr35xE8x1kvmflzfJ3Fg=
+	s=arc-20240116; t=1734593284; c=relaxed/simple;
+	bh=4wlXlrcvAoFBD5bO4p74HPRRLLelFGeOYkDT9zVIU6E=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=eZFQEFmo8CCOCtqlf6/J7Mhue5Lxsdfnbnnl8zDze7YV/4l/lI3F3m3zxv4OVRMemcPbl+oA5i6UkOeiYLM3FDtwb0tMYezwKqqJPjs2ohDhBnITD0lT31H9rU+TCDlXxn8luOGor/+41ukGv6te2z7I/uA+6RFKpnw4MjaFXgE=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -32,23 +33,22 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOAwX-000727-NA; Thu, 19 Dec 2024 08:27:33 +0100
+	id 1tOAwX-000728-N6; Thu, 19 Dec 2024 08:27:33 +0100
 Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOAwW-004AP5-1G;
+	id 1tOAwW-004AP6-1J;
 	Thu, 19 Dec 2024 08:27:33 +0100
 Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
 	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.96)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tOAwX-00Gewn-0I;
+	id 1tOAwX-00Gewn-0J;
 	Thu, 19 Dec 2024 08:27:33 +0100
 From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: [PATCH 0/6] arm64: dts: freescale: imx8mp-skov: switch to nominal
- drive mode
-Date: Thu, 19 Dec 2024 08:27:31 +0100
-Message-Id: <20241219-imx8m-clk-v1-0-cfaffa087da6@pengutronix.de>
+Date: Thu, 19 Dec 2024 08:27:32 +0100
+Subject: [PATCH 1/6] dt-bindings: clock: imx8m: document nominal/overdrive
+ properties
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,9 +57,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAOPKY2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxNDI0Nz3czcCotc3eScbF1LEzNzczPjlLTkFAsloPqCotS0zAqwWdGxtbU
- AOf4Rq1sAAAA=
+Message-Id: <20241219-imx8m-clk-v1-1-cfaffa087da6@pengutronix.de>
+References: <20241219-imx8m-clk-v1-0-cfaffa087da6@pengutronix.de>
+In-Reply-To: <20241219-imx8m-clk-v1-0-cfaffa087da6@pengutronix.de>
 To: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
  Michael Turquette <mturquette@baylibre.com>, 
  Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -78,49 +78,59 @@ X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Unlike the i.MX8MM and i.MX8MN SoCs added earlier, the imx8mp.dtsi
-configures some clocks at frequencies that are only validated for
-overdrive mode, i.e., when VDD_SOC is 950 mV.
+The imx8m-clock.yaml binding covers the clock controller inside all
+of the i.MX8M Q/M/N/P SoCs. All of them have in common that they
+support two operating modes: nominal and overdrive mode.
 
-For the Skov i.MX8MP board, we want to run the SoC at the lower voltage of
-850 mV though to reduce heat generation and power usage. For this to work,
-clock rates need to adhere to the limits of the nominal drive mode.
+While the overdrive mode allows for higher frequencies for many IPs,
+the nominal mode needs a lower SoC voltage, thereby reducing
+heat generation and power usage.
 
-This is done by this series: A new imx8mp-nominal.dtsi reconfigures
-the imx8mp.dtsi clock tree to be compatible with nominal mode, an adaptation
-to the Linux clock driver makes it sanity check the actual clock rates against
-the SoC operating mode's constraints and finally the Skov DT makes use
-of it.
+In any case, software should respect the maximum clock rate limits
+described in the datasheet for each of the two operating modes.
 
-Actual configuration of the VDD_SOC rail continues to happen prior to Linux
-as well as PLL configuration that needs to happen earlier than the kernel
-running. See the corresponding barebox patch series[1] for details.
-Note that the barebox series didn't yet include VDD_SOC reconfiguration
-to 850mV, that would follow once the kernel changes have been merged.
+To allow device tree consumers to enforce these limits, document two new
+optional properties that can be used to sanity check the clock tree.
 
-[1]: https://lore.kernel.org/barebox/20240503103717.1370636-1-a.fatoum@pengutronix.de/
-
+Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 ---
-Ahmad Fatoum (6):
-      dt-bindings: clock: imx8m: document nominal/overdrive properties
-      arm64: dts: imx8mp: Add optional nominal drive mode DTSI
-      arm64: dts: imx8mp: add fsl,nominal-mode property into nominal.dtsi
-      arm64: dts: freescale: imx8mp-skov: fix LDB clock rate configuration
-      arm64: dts: freescale: imx8mp-skov: operate SoC in nominal mode
-      clk: imx8mp: inform CCF of maximum frequency of clocks
+ Documentation/devicetree/bindings/clock/imx8m-clock.yaml | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
- .../devicetree/bindings/clock/imx8m-clock.yaml     |  14 ++
- arch/arm64/boot/dts/freescale/imx8mp-nominal.dtsi  |  64 +++++++++
- .../arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi |   5 +-
- .../freescale/imx8mp-skov-revb-mi1010ait-1cp1.dts  |  19 +--
- drivers/clk/imx/clk-imx8mp.c                       | 147 +++++++++++++++++++++
- 5 files changed, 233 insertions(+), 16 deletions(-)
----
-base-commit: 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
-change-id: 20241217-imx8m-clk-9467763dfcd8
+diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+index c643d4a81478..a6ae5257ef53 100644
+--- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
+@@ -43,6 +43,14 @@ properties:
+       ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8m-clock.h
+       for the full list of i.MX8M clock IDs.
+ 
++  fsl,nominal-mode:
++    description: Set if SoC is operated in nominal mode
++    $ref: /schemas/types.yaml#/definitions/flag
++
++  fsl,overdrive-mode:
++    description: Set if SoC is operated in overdrive mode
++    $ref: /schemas/types.yaml#/definitions/flag
++
+ required:
+   - compatible
+   - reg
+@@ -95,6 +103,12 @@ allOf:
+             - const: clk_ext2
+             - const: clk_ext3
+             - const: clk_ext4
++  - if:
++      required:
++        - fsl,overdrive-mode
++    then:
++      properties:
++        fsl,nominal-mode: false
+ 
+ additionalProperties: false
+ 
 
-Best regards,
 -- 
-Ahmad Fatoum <a.fatoum@pengutronix.de>
+2.39.5
 
 
