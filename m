@@ -1,177 +1,109 @@
-Return-Path: <devicetree+bounces-132840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F39E79F84A9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:46:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 911CB9F84B0
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:47:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4125D16B1AD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:46:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CE931889CC4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:47:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64A6A1A2554;
-	Thu, 19 Dec 2024 19:46:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16791B6CE1;
+	Thu, 19 Dec 2024 19:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hrgewuum"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pKbM/QTM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E0F0155342;
-	Thu, 19 Dec 2024 19:46:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5FCE1A2554;
+	Thu, 19 Dec 2024 19:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734637587; cv=none; b=I1/oO6mFbL+35IFWIQ/EOH3t8D5LgP1FEy1ZFKM8dUvwzEqYneW0Zf2dpCT5drlBopP7JTS/F+Ul2elc+Jht8YgSB7MNtIGGZ0HwFoCFZ6SZQF3dP6xaxxi4K95mhG2eQ9zmjXoopwLbw/Og6Ol8mo0ao0xQejjyMSsXwy938wk=
+	t=1734637651; cv=none; b=i+7dyGmPmj01hQq6O6KOSh9lg5hGG1CdiD6D7sDDzzDdBFSeJtknCf9y+ckfFGApacfaezhKP4HphRKrsWWVy49JCrm60WmBq4EiJm12kPD//QlzLI/KS7cXwxgTirLpjd1o3rmH3QNuDcKCfqb4ezFjjWRyzuI+tER8FSVRGZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734637587; c=relaxed/simple;
-	bh=/yKlAn4q9y+NKelA/FCmuub7mWVPyF1ED2mjrCwazvc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D+r7Ha2lSkjFoaYRYkl0978O82z0jbYavTZ51DmTFyYm3bJExYGIjvsrqT/qtGUJwRGYSKny7ChBWjHVAHBELHk9njl9H7djGVCG+Jl6tulPVpWjvyJPhWtlnhsl5sWfLzd8sPipfX6RgbncuDLvmEmUboJc5hQWp7uxhOSEO1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hrgewuum; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 009BBC4CECE;
-	Thu, 19 Dec 2024 19:46:23 +0000 (UTC)
+	s=arc-20240116; t=1734637651; c=relaxed/simple;
+	bh=rTs2IJmXMK8DKupmfPhHlLT82XzyZHK89QVwlzddCpI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=u2B9bzKckbWw8jxjO4Dgezze4NoT9nQxnwdZD1PaOjubJCkbDtikxfkdPVy/Sw58hcOX8fmatdnBUR7XPR4jNxT78Nc6T/EmbL9KB8dH7HqCEtaolPtarbbc4RJ5btJ2uV1huK4Su0VSn+/sIg3hZn81CCuea/EBgy+Br6bWtdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pKbM/QTM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 715AEC4CED0;
+	Thu, 19 Dec 2024 19:47:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734637586;
-	bh=/yKlAn4q9y+NKelA/FCmuub7mWVPyF1ED2mjrCwazvc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HrgewuumJXxYLkI/WyOw1o1FeQccEqymQxr6LRtaWurLQsPTKxv+e5AwcLe27UXSj
-	 YOiNzcaYRhTppbMVLC9mPJjjLw0dH7M6VHxyfrD7xSjkJYvk6IhAinShdQThVTVy68
-	 UVfMVkzG+8gU6bOE0P8VixxV8w433ItYZUJ5ljUAkGeGmiS2XFIuepvnL8SNAPf1Dq
-	 jd6L1WYKK/kx4AnNMDT3vg+OdMn5ReMk3E3HlrLRock+xQwZMLvXwgH/4qzqsdA2Dt
-	 zNxJp0hthnBQ5J73iB8mz0TilHggGZ1FlMp+Bu+9moKDjHb84sRCB+yN7EMvUbYFVy
-	 JosA4YeQ62KSw==
-Date: Thu, 19 Dec 2024 19:46:21 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Larisa Grigore <larisa.grigore@oss.nxp.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Vinod Koul <vkoul@kernel.org>,
+	s=k20201202; t=1734637651;
+	bh=rTs2IJmXMK8DKupmfPhHlLT82XzyZHK89QVwlzddCpI=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=pKbM/QTMytVKJZqb4rydKtEIJspNeexbzY6cFYh39lgNmhBmoqDTamowZWndktWXL
+	 j3Vri/j1VzPaTmzo4Gbn2GTSjnfDz24XKbDY3++FMzPN3TukWBIsFmUvOuo2y23JqE
+	 rakhFc8xMeTzmjJX6JLD47IOakcZhUUa4zTStbE/Lo422uFqRAxIpli+uXVPDT8Vzc
+	 +Ys0Kfrvm5x8g7F6fsSXyAyFPXJdNClytGS64krv1YPn7A3NxsFAH+SwnMTCgvB2sV
+	 pyuHn0G97jL8+gAZfeNwxF5bnnK2gDJtZzysjggBNjTuTHK3JlgdmjI/qsEIYKQcwG
+	 lRBWDlFRNzixA==
+From: Will Deacon <will@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	imx@lists.linux.dev, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	s32@nxp.com, Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>
-Subject: Re: [PATCH v3 3/5] dt-bindings: dma: fsl-edma: add nxp,s32g2-edma
- compatible string
-Message-ID: <20241219-flirt-gab-dbacc809cca4@spud>
-References: <20241219102415.1208328-1-larisa.grigore@oss.nxp.com>
- <20241219102415.1208328-4-larisa.grigore@oss.nxp.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Amit Kucheria <amitk@kernel.org>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>,
+	Lukasz Luba <lukasz.luba@arm.com>,
+	Joerg Roedel <joro@8bytes.org>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	=?UTF-8?q?Barnab=C3=A1s=20Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Cc: catalin.marinas@arm.com,
+	kernel-team@android.com,
+	Will Deacon <will@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	iommu@lists.linux.dev,
+	Dang Huynh <danct12@riseup.net>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	=?UTF-8?q?Otto=20Pfl=C3=BCger?= <otto.pflueger@abscue.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v9 0/8] Add MSM8917/PM8937/Redmi 5A
+Date: Thu, 19 Dec 2024 19:47:09 +0000
+Message-Id: <173462257281.3911097.5906559750922143439.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20241215-msm8917-v9-0-bacaa26f3eef@mainlining.org>
+References: <20241215-msm8917-v9-0-bacaa26f3eef@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="b4mx9kuD5NC/YPny"
-Content-Disposition: inline
-In-Reply-To: <20241219102415.1208328-4-larisa.grigore@oss.nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
+On Sun, 15 Dec 2024 12:14:55 +0100, Barnabás Czémán wrote:
+> This patch series add support for MSM8917 soc with PM8937 and
+> Xiaomi Redmi 5A (riva).
+> 
+> 
 
---b4mx9kuD5NC/YPny
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied SMMU bindings change to will (for-joerg/arm-smmu/bindings), thanks!
 
-On Thu, Dec 19, 2024 at 12:24:12PM +0200, Larisa Grigore wrote:
-> Introduce the compatible strings 'nxp,s32g2-edma' and 'nxp,s32g3-edma' to
-> enable the support for the eDMAv3 present on S32G2/S32G3 platforms.
->=20
-> The S32G2/S32G3 eDMA architecture features 32 DMA channels. Each of the
-> two eDMA instances is integrated with two DMAMUX blocks.
->=20
-> Another particularity of these SoCs is that the interrupts are shared
-> between channels in the following way:
-> - DMA Channels 0-15 share the 'tx-0-15' interrupt
-> - DMA Channels 16-31 share the 'tx-16-31' interrupt
-> - all channels share the 'err' interrupt
->=20
-> Signed-off-by: Larisa Grigore <larisa.grigore@oss.nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/dma/fsl,edma.yaml     | 34 +++++++++++++++++++
->  1 file changed, 34 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Docume=
-ntation/devicetree/bindings/dma/fsl,edma.yaml
-> index d54140f18d34..4f925469533e 100644
-> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> @@ -26,9 +26,13 @@ properties:
->            - fsl,imx93-edma3
->            - fsl,imx93-edma4
->            - fsl,imx95-edma5
-> +          - nxp,s32g2-edma
->        - items:
->            - const: fsl,ls1028a-edma
->            - const: fsl,vf610-edma
-> +      - items:
-> +          - const: nxp,s32g3-edma
-> +          - const: nxp,s32g2-edma
-> =20
->    reg:
->      minItems: 1
-> @@ -221,6 +225,36 @@ allOf:
->        properties:
->          power-domains: false
-> =20
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nxp,s32g2-edma
-
-Your property ordering below is a bit odd, but it matches what exists
-currently so
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+[4/8] dt-bindings: iommu: qcom,iommu: Add MSM8917 IOMMU to SMMUv1 compatibles
+      https://git.kernel.org/will/c/8735e47e3a29
 
 Cheers,
-Conor.
+-- 
+Will
 
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +          maxItems: 2
-> +        clock-names:
-> +          items:
-> +            - const: dmamux0
-> +            - const: dmamux1
-> +        interrupts:
-> +          minItems: 3
-> +          maxItems: 3
-> +        interrupt-names:
-> +          items:
-> +            - const: tx-0-15
-> +            - const: tx-16-31
-> +            - const: err
-> +        reg:
-> +          minItems: 3
-> +          maxItems: 3
-> +        "#dma-cells":
-> +          const: 2
-> +        dma-channels:
-> +          const: 32
-> +
->  unevaluatedProperties: false
-> =20
->  examples:
-> --=20
-> 2.47.0
->=20
-
---b4mx9kuD5NC/YPny
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2R4DQAKCRB4tDGHoIJi
-0hnoAP96Hinx+4A5/mpFd+0F0Z4+SQ+5s5nXXR8/PUeQRrFoCgEAzNky6HWb+Mp2
-FawjONnWoqiSjHEGEwKYMSRodQVNVgY=
-=qSZ7
------END PGP SIGNATURE-----
-
---b4mx9kuD5NC/YPny--
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
 
