@@ -1,114 +1,95 @@
-Return-Path: <devicetree+bounces-132770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13D739F815E
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 18:16:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3791D9F814D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 18:13:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DE8918968B2
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:12:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11A897A0465
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 17:13:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 782701C5CC9;
-	Thu, 19 Dec 2024 17:06:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uVz0Esoh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2231A262A;
+	Thu, 19 Dec 2024 17:06:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37E2419F117;
-	Thu, 19 Dec 2024 17:06:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A0BC19F424;
+	Thu, 19 Dec 2024 17:06:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734627983; cv=none; b=R9KslVDv0QpIXnEL3Vz3JH3iHPSupYCu610FMN3xcT6FCLR010LpLMTf/m03HMewp13gNj0rDiVdCfHBOlX5Ia7l8ez7foKAuR4UBtYCiE1YVO1TUpg3oVsgEGW5mmTpFUiF98FsV1X7bOaexlNLUaCD+3kLKJ8SmFes4EPHWGE=
+	t=1734628016; cv=none; b=tfwNyxZYanR/uBs/ackQIl8JijDL1dXjTXyTWpyICxKl5oS6IpNaRdPR6r+9CTWHhhQUKjDjPFrcsC+O2eTqVhLwJXh2q+wWM1FP5RRd5f0G3XMV6qcZSkAIVP7EZf2zjpYkSjxpwTxBNy0QN69lSmHcRYIo/Lwu91sBsn9W/fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734627983; c=relaxed/simple;
-	bh=GT+27vqY17YH/pjwzvOKAHmA0mrVjnDblNyfUajrdXc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tL8/FG0rywyH+JvJDzydwKC/88YPgKFsQmNIqexzsnAeidJEDnKWSfFSDpoMm37Dh00NWsDSbLHjYOfGUohdMN+7bWe7pqsLA8vzLn2xCr8u9FS/q5Y/64M2NGy1tqy0kqWP9qjo1f8TRcSFJwP/fqXgaZ3+QavYMGljG/k+JaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uVz0Esoh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86FD0C4CED6;
-	Thu, 19 Dec 2024 17:06:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734627982;
-	bh=GT+27vqY17YH/pjwzvOKAHmA0mrVjnDblNyfUajrdXc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=uVz0EsohsS4BjqEAgEIanGvx8N/fl1rnKmfaQzKDtZweDXB4RJer/1hoJb8VOObF4
-	 z6hN6MBwuwITjIoaNiwfUEOxqC69s7ebJhqvKeklu49plKOKx5pGSABXTcWp7UZtcp
-	 ry6fOhW4AdMnOWzNVO6JjWxzC7C/TsWg0yJz/GvmAY+aiN38XTAR4dIA1B+X/ISjAt
-	 ou/OQNO6r641ZLCRwZcBepHizaM0xkBqlZnv0/yaFpYAy0Nsx2fH1h3w+tnjLAcXry
-	 GJmZAmI1rDG0Pc/RKD5YeWimMptQCXJhuUuaC/EKxPmlkQ3s8TPX0x1NzEB5gN3JwA
-	 08qXAs2ShT/Qg==
-From: Danilo Krummrich <dakr@kernel.org>
-To: gregkh@linuxfoundation.org,
-	rafael@kernel.org,
-	bhelgaas@google.com,
-	ojeda@kernel.org,
-	alex.gaynor@gmail.com,
-	boqun.feng@gmail.com,
-	gary@garyguo.net,
-	bjorn3_gh@protonmail.com,
-	benno.lossin@proton.me,
-	tmgross@umich.edu,
-	a.hindborg@samsung.com,
-	aliceryhl@google.com,
-	airlied@gmail.com,
-	fujita.tomonori@gmail.com,
-	lina@asahilina.net,
-	pstanner@redhat.com,
-	ajanulgu@redhat.com,
-	lyude@redhat.com,
-	robh@kernel.org,
-	daniel.almeida@collabora.com,
-	saravanak@google.com,
-	dirk.behme@de.bosch.com,
-	j@jannau.net,
-	fabien.parent@linaro.org,
-	chrisi.schrefl@gmail.com,
-	paulmck@kernel.org
-Cc: rust-for-linux@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	rcu@vger.kernel.org,
-	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH v7 16/16] MAINTAINERS: add Danilo to DRIVER CORE
-Date: Thu, 19 Dec 2024 18:04:18 +0100
-Message-ID: <20241219170425.12036-17-dakr@kernel.org>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241219170425.12036-1-dakr@kernel.org>
-References: <20241219170425.12036-1-dakr@kernel.org>
+	s=arc-20240116; t=1734628016; c=relaxed/simple;
+	bh=ax62RxQ2v705JKZNMOdKynwwBs7g1CMJYM62PhqMBX0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=A44PRoxPQTJYYKH+ynbaO2LwhVKKWdU+OoOMGkvI1dLlSj5HxIkbk6w4pyTtugUAcmU0vo/9aqxvaBFL+jZ6dt8p7tidhMiVi6iKl4XJZK7XIUqkXABS56kNWQ2h3cEiR2VBcegqZnixTOZLsjZJ5kGlmrVVL30+XUBy9eW5CKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D18CA1480;
+	Thu, 19 Dec 2024 09:07:22 -0800 (PST)
+Received: from [10.1.196.72] (e119884-lin.cambridge.arm.com [10.1.196.72])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DAD803F528;
+	Thu, 19 Dec 2024 09:06:53 -0800 (PST)
+Message-ID: <4c5dd285-9d2a-4765-aefc-d6bf5379cbce@arm.com>
+Date: Thu, 19 Dec 2024 17:06:52 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/8] dt-bindings: mailbox: arm,mhu: Add missing properties
+To: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>
+References: <20241213163221.3626261-1-vincenzo.frascino@arm.com>
+ <20241213163221.3626261-3-vincenzo.frascino@arm.com>
+ <bad23b40-bbca-4ab4-b650-a75723c0bad0@kernel.org>
+ <c3c1f5cf-5000-43b5-bda1-502566c27806@arm.com>
+ <d54bac01-f083-47dd-a779-ee6b770ceed6@kernel.org>
+Content-Language: en-US
+From: Vincenzo Frascino <vincenzo.frascino@arm.com>
+In-Reply-To: <d54bac01-f083-47dd-a779-ee6b770ceed6@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Let's keep an eye on the Rust abstractions; add myself as reviewer to
-DRIVER CORE.
 
-Signed-off-by: Danilo Krummrich <dakr@kernel.org>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+On 19/12/2024 15:26, Krzysztof Kozlowski wrote:
+> On 19/12/2024 16:13, Vincenzo Frascino wrote:
+>>
+>>
+>> On 14/12/2024 10:10, Krzysztof Kozlowski wrote:
+>>> On 13/12/2024 17:32, Vincenzo Frascino wrote:
+>>>> Add support for "interrupt-names" and "mbox-name" optional properties.
+>>>
+>>> Why?
+>>>
+>>>
+>>> I wonder why you are not cc-ing other maintainers, like only Rob is
+>>> acceptable by you?
+>>>
+>>
+>> No it is not. And this is why it is not a good idea to post patches on Friday
+>> night. My intention was to copy linux-arm-kernel but I copied mistakenly
+>> linux-kernel instead. I do apologize. I will fix this in the next iteration.
+> 
+> It is not the problem here. Both lists should be. Just use tools instead
+> of selecting addresses.
+>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ed4b293b1baa..15c8df5b3590 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7021,6 +7021,7 @@ F:	include/linux/component.h
- DRIVER CORE, KOBJECTS, DEBUGFS AND SYSFS
- M:	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
- R:	"Rafael J. Wysocki" <rafael@kernel.org>
-+R:	Danilo Krummrich <dakr@kernel.org>
- S:	Supported
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-core.git
- F:	Documentation/core-api/kobject.rst
+Will do.
+
+> 
+> Best regards,
+> Krzysztof
+
 -- 
-2.47.1
+Regards,
+Vincenzo
 
 
