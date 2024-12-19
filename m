@@ -1,112 +1,177 @@
-Return-Path: <devicetree+bounces-132823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F2239F83B6
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:02:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32FAA9F83C2
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 20:06:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AFF31892A2B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:00:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B4F621889033
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 19:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61CE71A7044;
-	Thu, 19 Dec 2024 18:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC341A9B25;
+	Thu, 19 Dec 2024 19:06:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ap2SJQsQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TyfdPLYK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3644619C54A;
-	Thu, 19 Dec 2024 18:59:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7C661A704B
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 19:06:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734634798; cv=none; b=h86D0gMYWR1/GJc48nAmJXEXyZ5kFpduKxZwsSavodwNnF+2hzuzsWqxbyu9Dq5195gVmxKv+2SdqC+IVdzLfndxp+9OWYlAlDCQb+4b8lC1eacl2JgIqK5acYhoIyXV5KM8i2QVTe7Nt6xV+9BWMJvoiLMgdFgtgqEOcVNAawA=
+	t=1734635202; cv=none; b=PuOSCISPJ5yCywarjY3QiSl7SFw62elSrmQRFJeW+TT5tUC8k+v5/syKZA5fImDRs1kcOKw05dCFsk3PiY7OGkYFi2a86Q0O0rfKmvgI4WPbKGMnakZoItajNRL6XbHrHi+NNsLIxxuVLCEw8AB5KwCbsE9b9UHaqrRz8TnE3gc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734634798; c=relaxed/simple;
-	bh=+TdrP3/6V8zyQ+1lR+s4OOeOSOzX0c0bzyK+3XyjA/s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dVG6YH+QS/L9LMeRV1bQ9LmWJ/t/3FI9iW4TedTsaG+nmmq1AtYG/2YBF7xa9ogGi0HoMDsabBUnHKVjJvMzfF1nvK2y8s4AyLQ7TbIOAH1LTHxBDxpJi/dxnASUR7oX5wpDJ7FqGc7TjEfvjEzAJAgSY/3HSSyqVnA8IlFH+40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ap2SJQsQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5A7BC4CED0;
-	Thu, 19 Dec 2024 18:59:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1734634797;
-	bh=+TdrP3/6V8zyQ+1lR+s4OOeOSOzX0c0bzyK+3XyjA/s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ap2SJQsQPD01KPGCSz/lpbdwcqDNiF7EGo/P0vGfYtuGyepN0vt12y2+z4HyQVI60
-	 DT8Mz/7WdWf7GHSoMAP2P8OmLYAgDWpLZG1AzuiFbd/f6CAuuiVkGmo3b8FVvqUhqU
-	 Nf4Z+nUdhe+M0PedAj+fPZOwiymrdZUMl5r+jrRasfGERkMpM/SOZVgrLAiMev/zhK
-	 eg0iZWcQgxwcfmI9utqNghDaOKHMacx33/pY8F2nFC6zFr0ldHz8cYYyK9jE6WmT5p
-	 zNYmDRVP1J5UZMZeOEghaxTpk2+MMGs8v8AdbTtOo9gTosUSrLjnNy4KBsFW75XDXw
-	 HrmQGJ3WU8w5Q==
-Date: Thu, 19 Dec 2024 18:59:53 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: Add ROHM BD79703
-Message-ID: <20241219-acts-glare-2bc1e723ab20@spud>
-References: <cover.1734608215.git.mazziesaccount@gmail.com>
- <51ed31c494ea7385940b59500e8592d12558e291.1734608215.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1734635202; c=relaxed/simple;
+	bh=miKz4Lq8b27Bo3nvZE/oEwtbz8gqti8YbPGWfvTe/P8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cvNXE0e+ajSkMbmJ39vNU/reRhwXyiRoDNsRvRgg5f9b+N1PfWMW5uXbOEPeMOr1m+1o8gScP8NaPXfeP0t+TqbAjTIK0ZTBDrodZgys8nU8sRrvMfx1MEn16qfIYqrgPR3b5T4B3kdJ2WmZhl2ExGeZOGtGIEcZGQgZK3RoLDw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TyfdPLYK; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4BJ9i3SL000988
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 19:06:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UWZ6vfFZXZOnn8Rj5pWSW2pSt+O0bU6UJnoyNmvkHEI=; b=TyfdPLYK7xrCUmiv
+	YL0g9YeZeo92wDd7G3lM5IZPWHtdXeLQuPiVzQLsPNV+JXNSmlOp2HfvThIaiFpn
+	oCK7sqvjM/oPWbdXoKdjiGSvSXoDQJ/7H3ejcHnRFpQlCeNf9ljdOZ78912H44lm
+	Ae35tIaZCRwv+7ZgcDAA/uy6pUcuO5CrU7mlPFASmcoADbEyGeYD7/utC9oW6V2v
+	7HoK4GVCYjzgfrnLaROih1wxEAQuSuKJTQIdv8PkWIPi1e4B0k7U0unTHzNCCCo2
+	pRez/pTyxoakCtMVb0/oLAHLEcG4/HZUqRMY1SUXuHGgA9nLBJ8GyHQynIB6XFdL
+	2J0Q6Q==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43mh3y9eq2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 19:06:39 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-467bb3eea80so203281cf.2
+        for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 11:06:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734635198; x=1735239998;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UWZ6vfFZXZOnn8Rj5pWSW2pSt+O0bU6UJnoyNmvkHEI=;
+        b=QqzuINBTRvYINgA159nWcUoULhP4JgL9ma+tDoULPTSHThcCtXfQc32RzsiSf/6WD0
+         Osu1FglFQuh0TsuWSZ6ACE09wcDX9KUzzwkm28z+f5sV/65EceIjeakpQVRPBGZTlPMT
+         8ilIPCQZROX2Jfo6yUPxsiVEp3K6xRzd5rF8A8EZbLIEg/bhGSrhpcanTL7r1+WO/Hsp
+         5louAQsep446rK5fu4+E52ycqk01cUOVdZEhXYy7KpfJrIPwYGw48B25hQ2EZfMxpJEX
+         yhZJYZqu1mPdXQLlq/iaBFb6SkKJJ6nHawVOvByXye9UOwHr8vo7hFZPszux1Izypn3e
+         aEZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU/dYWMsWxSQF7Ttz/y8gjevZcm8lYXD7C1ZUi1Okv5FUUdw2J8FrGAjzpaSAd8TVAQYND+fy58PChW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6KNVrMK/w4V04RASJIYZ/YIsV/Wuh1UUiJwe/gXaaPHWYh2eC
+	Yu681zhAXR7aEzi5TTVk1GLSeuVyuJ3XYpxeSj4c7ytSUaTIy+P5joJt4l9EWn5KtKzgOR9If1P
+	dtC6DOVtKMXIsAj0QqLLfOvrAJx5QGMnNiS2rno3/D8bIeJL1ad8D4PRNc0Cg
+X-Gm-Gg: ASbGncvnj6ne7JhgtvC7nGSjPAxGcwahFsH6hNGEJrmc5KYyvodri/bxrwkygLRPcv0
+	j9h6LyyU5ccUghCyqKs6VQPBtudgySD98IVCHau/EVLpnyVQGzm+etLXnDm10MVoFea2PmqHYr/
+	4VyGykG7ymBXoJPCr7/ujZG3gdLUrIST/P8Etj25rvKDb3klm/4+oFNly+OnDkwmg74bgbQUxHV
+	85MWT/kGMOiCI1OaJKWfwEJ6GNZ9ZmmL6K0+u7tkHpwFn1yvDzAX7K/8CPdMXtqzQSjRF803irP
+	Fj4DgONPkQE2tdtoL2ciJEKwaLR52oo7lZI=
+X-Received: by 2002:a05:622a:586:b0:461:4467:14bb with SMTP id d75a77b69052e-46a4a8b7e47mr855011cf.2.1734635198145;
+        Thu, 19 Dec 2024 11:06:38 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG7a+DlVQKkqn/PJw0dZDP1rNN4h3Og1DclMhN5A+YbI0DOWhNTu1aJqt/TQmvgKz06Gf28kg==
+X-Received: by 2002:a05:622a:586:b0:461:4467:14bb with SMTP id d75a77b69052e-46a4a8b7e47mr854701cf.2.1734635197741;
+        Thu, 19 Dec 2024 11:06:37 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aac0e8954bfsm96578066b.60.2024.12.19.11.06.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Dec 2024 11:06:37 -0800 (PST)
+Message-ID: <99cf5f7e-43f6-4ac4-a4a2-dc731b695572@oss.qualcomm.com>
+Date: Thu, 19 Dec 2024 20:06:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="EETjA5D7Rh+of6WR"
-Content-Disposition: inline
-In-Reply-To: <51ed31c494ea7385940b59500e8592d12558e291.1734608215.git.mazziesaccount@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 4/4] arm64: dts: qcom:
+ qcs6490-rb3gen2-vision-mezzanine: Add vision mezzanine
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
+        todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        akapatra@quicinc.com, hariramp@quicinc.com, andersson@kernel.org,
+        konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
+        cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com,
+        will@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@quicinc.com,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20241217140656.965235-1-quic_vikramsa@quicinc.com>
+ <20241217140656.965235-5-quic_vikramsa@quicinc.com>
+ <22479c27-9265-4994-8974-9739ecbae5ee@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <22479c27-9265-4994-8974-9739ecbae5ee@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: OzivDlS0YBI1ZzT1_ZThcsjQGg-BZGaU
+X-Proofpoint-GUID: OzivDlS0YBI1ZzT1_ZThcsjQGg-BZGaU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 mlxscore=0 mlxlogscore=901 phishscore=0 lowpriorityscore=0
+ clxscore=1015 adultscore=0 malwarescore=0 bulkscore=0 spamscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412190151
 
+On 17.12.2024 3:40 PM, Vladimir Zapolskiy wrote:
+> On 12/17/24 16:06, Vikram Sharma wrote:
+>> The Vision Mezzanine for the RB3 ships with an imx577 camera sensor.
+>> Enable the IMX577 on the vision mezzanine.
+>>
+>> An example media-ctl pipeline for the imx577 is:
+>>
+>> media-ctl --reset
+>> media-ctl -v -V '"imx577 '19-001a'":0[fmt:SRGGB10/4056x3040 field:none]'
+>> media-ctl -V '"msm_csiphy3":0[fmt:SRGGB10/4056x3040]'
+>> media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
+>> media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
+>> media-ctl -l '"msm_csiphy3":1->"msm_csid0":0[1]'
+>> media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+>>
+>> yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0
+>>
+>> Signed-off-by: Hariram Purushothaman <quic_hariramp@quicinc.com>
+>> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+>> Signed-off-by: Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
+>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> ---
 
---EETjA5D7Rh+of6WR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[...]
 
-On Thu, Dec 19, 2024 at 01:39:11PM +0200, Matti Vaittinen wrote:
-> +    spi {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +        dac@0 {
+>> +        rst-pins {
+>> +            pins = "gpio78";
+>> +            function = "gpio";
+>> +            drive-strength = <2>;
+>> +            bias-pull-down;
+>> +            output-low;
+>> +        };
+> 
+> I have doubts that it's proper to embed a reset gpio into driver's
+> pinctrl suspend/resume power management.
+> 
+> Konrad, can you please confirm that it's really accepted?
+> 
+> I'd rather ask to remove this reset pin control.
 
-nit: should be a blank line before the child node.
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+There's certainly some appearances of this in the tree.
 
-Cheers,
-Conor.
+You could make the argument that it makes sense to prevent misconfiguration
+(i.e. the bootloader may set the pin in input mode), but then the counter
+argument is that the (Linux) gpiod APIs request OUT_LOW/HIGH, and we would
+expect that the driver uses that if the GPIO is requested through
+e.g. reset-gpios.
 
-> +            compatible =3D "rohm,bd79703";
-> +            reg =3D <0>;
-> +            spi-max-frequency =3D <30000000>;
-> +            vcc-supply =3D <&vcc>;
-> +            vfs-supply =3D <&vref>;
-> +        };
-> +    };
-> +...
-> --=20
-> 2.47.0
->=20
+I'm not particularly sure what to recommend here. Krzysztof?
 
-
-
---EETjA5D7Rh+of6WR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ2RtKQAKCRB4tDGHoIJi
-0swJAQCZDDc3m1K/PMjIv5pf5exwDIuARnLOQ74G+TzxQg8bNAD+OlIqF3c+9R09
-xXtsmJ3Te/vCXwJzP8X7ZKt7Wv3UMQ0=
-=kchy
------END PGP SIGNATURE-----
-
---EETjA5D7Rh+of6WR--
+Konrad
 
