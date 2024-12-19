@@ -1,203 +1,185 @@
-Return-Path: <devicetree+bounces-132479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-132480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9E399F7501
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:58:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE4489F7517
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 08:04:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0ED4164BD1
-	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 06:58:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9471188DB1A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Dec 2024 07:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D3E02163B7;
-	Thu, 19 Dec 2024 06:58:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FCC1217650;
+	Thu, 19 Dec 2024 07:03:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="oN1G0bGx"
+	dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b="PRo+qPHR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04D481FA8F2;
-	Thu, 19 Dec 2024 06:58:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C9221660A
+	for <devicetree@vger.kernel.org>; Thu, 19 Dec 2024 07:03:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1734591526; cv=none; b=AYL7+VRz7T8xaBrFoD2Z3B3DLTgca4sOvDjqbAF8UHXmSu210vgcIfF93ysApPLG6WK6IHZj7jMmLCW0hsYUtYs1p1sD5iJH6C5u/M6+Y70DS6Gq8SxvZHFQuxHWtTLJTdjwes/DU25w/Jz5o+sQ+p70NWPpboIq2i7cVwiuJ6g=
+	t=1734591834; cv=none; b=M5U8Sbf/sqb95HJ2Uud1V0G0Aocsk3t62ulqzSNKuYJHOKhkkpDvBe/VqzzRBQv6O4G1Bqn8g4cJyqpMqAFAzG08CKkaJWiQiNPsgJ7ujyfC5O2weZEo++eu+WSUZPlyjIn6m7rLZoe8yLYCtANDM4jtxttRHcx4JoeOkRwKX+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1734591526; c=relaxed/simple;
-	bh=oYvwkLPY3pl8psiCXyXFb2nAdZ/3rnwiHOtmrJ5udAg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a/0CYbdQqGzKL6+DEU2gG7lomIzZoTB8HFLfsBQzLI7rsh5kBZ+5gdzyc8j15p2JZr6nOLzqvfdi4e+wKdayNlZyFVPRHKwd9w4J8Aw93FnTFRvN6cAqJ8SV/Va46AqVqm48RtqCMKkkOSE7y4dzDU7ZUYoHvQ5V2zPVvWFDJVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=oN1G0bGx; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-157-155-49.elisa-laajakaista.fi [91.157.155.49])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 82F2C415;
-	Thu, 19 Dec 2024 07:58:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1734591482;
-	bh=oYvwkLPY3pl8psiCXyXFb2nAdZ/3rnwiHOtmrJ5udAg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oN1G0bGx8SM1Kt3zfKF6OnnKgpx2MaTXrWASohdnPd4x0Rtonl8jMX59yl8b7lRap
-	 jKZD2z95LFOTVOx79ikX7W/pNDN6Q7vE7GZOydBLMxb8LOzvSSWmZpyhuZcsQ+6Vvu
-	 jjmPGDxXNSbkcgLLiY24sRNereZK8FmNygu5gg74=
-Message-ID: <008c6590-eeee-4721-85f8-1ccd861abaac@ideasonboard.com>
-Date: Thu, 19 Dec 2024 08:58:36 +0200
+	s=arc-20240116; t=1734591834; c=relaxed/simple;
+	bh=o3wu1szBs7EtCgty0EAt12temOthTdgB9zA8Y56lQz4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Pfy6cVrOVzsUydsCV4JVKkc3LsUH7f9EYH+6hcw59jrqpz4OqkR4o41ry7Q/OBqNjwjua2Uw4S5SmkNuYSSBtyutbw6eKlkGEZsPRgxzkBNU/uqS6BgoecYT90EqEivhtDnvA467G2XiXYMMEXaA1xcwMjr926TyIrO0UjUpLDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org; spf=none smtp.mailfrom=brainfault.org; dkim=pass (2048-bit key) header.d=brainfault-org.20230601.gappssmtp.com header.i=@brainfault-org.20230601.gappssmtp.com header.b=PRo+qPHR; arc=none smtp.client-ip=209.85.166.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=brainfault.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=brainfault.org
+Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-844e55a981dso16385339f.3
+        for <devicetree@vger.kernel.org>; Wed, 18 Dec 2024 23:03:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20230601.gappssmtp.com; s=20230601; t=1734591831; x=1735196631; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4IyRYMrQ+U88prMKntBAgM3/KLNAlFs7l2A7rj6Z5wI=;
+        b=PRo+qPHRfwt70tJ3h4NA1sBOnsJJYK2XEJE1L+xjwqXGdiuqgrqrrGC+A7Zjmt+a7t
+         AiayedXzGPe8TPCdcD5xeEH5+LWopE2Mz/IFVzcE1nCM8RTq/vC0xjdhPVXQQeZT1/pp
+         fIh6Ee0N6ricH+M5aEeZ3xe/lDAAqYNpT7kYHyoCk8JLjXUee1Ep1Atv4XZEKxy/ERVm
+         QFsNNUA1Cnthyqpz3U7fBfG1A6LTv6ViXY9b/5noIJq/J83uzIxtY0j9KbUYInKYyU/u
+         lbK86CyA24fLbefKslv/FMr7rtcbwEnb0OsgafaGxTXOAfGel9PtVmdjUzL8kIUqfCWj
+         1JXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734591831; x=1735196631;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4IyRYMrQ+U88prMKntBAgM3/KLNAlFs7l2A7rj6Z5wI=;
+        b=YTUdKJZDjMk0CXbl+TnkRQvYp+GIu+rveSMqcj/K1H4XmN5fVMQgwIbUB6prY4sbdH
+         NJIRttPdJuNAa1e0WaTuDbfH7DRNwyDI11igfmHvFLq5SEY4f2vOl3017kPmeX2JscIe
+         vq06gvS+JEeCCucNS+aM7WSA8BM+rvsUJLthIjojXI60fXfll9ifuFt6sIxKTs+SAPk6
+         Q5+HQv6otTCyx3Se/Fc6HRKTDPKcF+Ff+Ktvp68+22lZZee7MU4rHChF+kUZKsKGaXuS
+         q2eSqZj4CyQp8zKseIzHdT8U5ula0MHcA0IKJbjun6l0G07YvwXQxY5bpv8r2jxgL9/T
+         DeLg==
+X-Forwarded-Encrypted: i=1; AJvYcCVX/qkg/ScNWSthXvz4XrzGj631TaJfKlclu387TdhY0z5E74Hst2fupxfqsERtxiyb/bVI7MNa+T1s@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGUDQ7JnmP3qoaM4LNI9l6t7hDyxYTusztiVXSHexyVsLYAajE
+	wNgRNoKwifjokY2KP/ZEZppJGv2MRONT0nNYSdzbhA6rGWwgt37+XWy/XCZIWQ9XcqtVt+i9fjB
+	09vl+v9btssWW/8D42S0G4/2504qZURwEIYAt+L18/NGY/qrW
+X-Gm-Gg: ASbGncukL2GebbdR0RTelqx1YMZkXvzUN9ckP/jg5oCtqpHMwkjeIUQhWIt53W4njHo
+	XgSg97x5iuo9HXPb//mQKjrjnRd9gH187xeqgtwQw
+X-Google-Smtp-Source: AGHT+IG7K8LVwmKDLwQagB5eeJHC8noPY3o49G9HivcQ4b1KpCh7GGt+VMTIDEX4ZGjSzWgbcXm6Uq3kn17dO0L7Z2c=
+X-Received: by 2002:a05:6e02:1c0a:b0:3a8:1195:f216 with SMTP id
+ e9e14a558f8ab-3bdc0bc8506mr46871165ab.10.1734591830886; Wed, 18 Dec 2024
+ 23:03:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/3] drm: xlnx: zynqmp: Add DP audio support
-To: Lars-Peter Clausen <lars@metafoo.de>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Simona Vetter <simona.vetter@ffwll.ch>
-Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Vishal Sagar <vishal.sagar@amd.com>,
- Anatoliy Klymenko <anatoliy.klymenko@amd.com>,
- =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
- Markus Elfring <Markus.Elfring@web.de>, "Rob Herring (Arm)" <robh@kernel.org>
-References: <20241023-xilinx-dp-audio-v4-0-5128881457be@ideasonboard.com>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20241023-xilinx-dp-audio-v4-0-5128881457be@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20241213-dev-maxh-svukte-v4-v4-0-92762c67f743@sifive.com>
+In-Reply-To: <20241213-dev-maxh-svukte-v4-v4-0-92762c67f743@sifive.com>
+From: Anup Patel <anup@brainfault.org>
+Date: Thu, 19 Dec 2024 12:33:39 +0530
+X-Gm-Features: AbW1kvaeKrmON3-aRkJn8oFVJnZKK1n-LGgp_tS3faKBQ12slThrlN-_Fqb1ysk
+Message-ID: <CAAhSdy3pHHJ7hqEvjnhFaTW7SQTmAU67b8KXgbtwi6-YHv_pwQ@mail.gmail.com>
+Subject: Re: [PATCH RFC v4 0/3] riscv: add Svukte extension
+To: Max Hsu <max.hsu@sifive.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Atish Patra <atishp@atishpatra.org>, Palmer Dabbelt <palmer@sifive.com>, 
+	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
+	Samuel Holland <samuel.holland@sifive.com>, Deepak Gupta <debug@rivosinc.com>, 
+	Alexandre Ghiti <alexghiti@rivosinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-On 23/10/2024 14:52, Tomi Valkeinen wrote:
-> Add DisplayPort audio support for Xilinx ZynqMP platforms.
-> 
-> The current DT is, for some reason, missing the DMA channels for the
-> audio. This series adds that to the bindings and the dts file, but to
-> support older dtb files without the audio DMA, the driver will not fail
-> if the audio DMA is missing, but will just mark the audio support as
-> disabled.
-> 
-> To: Lars-Peter Clausen <lars@metafoo.de>
-> To: Jaroslav Kysela <perex@perex.cz>
-> To: Takashi Iwai <tiwai@suse.com>
-> To: Liam Girdwood <lgirdwood@gmail.com>
-> To: Mark Brown <broonie@kernel.org>
-> To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> To: Maxime Ripard <mripard@kernel.org>
-> To: Thomas Zimmermann <tzimmermann@suse.de>
-> To: David Airlie <airlied@gmail.com>
-> To: Daniel Vetter <daniel@ffwll.ch>
-> To: Rob Herring <robh+dt@kernel.org>
-> To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> To: Michal Simek <michal.simek@amd.com>
-> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: linux-sound@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: Vishal Sagar <vishal.sagar@amd.com>
-> Cc: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
-> Cc: Péter Ujfalusi <peter.ujfalusi@gmail.com>
-> Cc: Markus Elfring <Markus.Elfring@web.de>
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> 
+On Fri, Dec 13, 2024 at 5:03=E2=80=AFPM Max Hsu <max.hsu@sifive.com> wrote:
+>
+> RISC-V privileged spec will be added with Svukte extension [1]
+>
+> Svukte introduce senvcfg.UKTE and hstatus.HUKTE bitfield.
+> which makes user-mode access to supervisor memory raise page faults
+> in constant time, mitigating attacks that attempt to discover the
+> supervisor software's address-space layout.
+>
+> In the Linux kernel, since the hstatus.HU bit is not enabled,
+> the following patches only enable the use of senvcfg.UKTE.
+>
+> For Guest environments, because a Guest OS (not limited to Linux)
+> may hold mappings from GVA to GPA, the Guest OS should decide
+> whether to enable the protection provided by the Svukte extension.
+>
+> Since the Guest OS may utilize the Svukte extension simply by setting
+> the senvcfg.UKTE without any trap to host. In the view of VMM, the
+> Svukte extension should be always presented. Therefore adding an
+> extra entry in kvm_riscv_vcpu_isa_disable_allowed().
+>
+> If the Guest environment wants to change senvcfg.UKTE, KVM already
+> provides the senvcfg CSR swap support via
+> kvm_riscv_vcpu_swap_in_(host|guest)_state.
+> Thus, there is no concern about the Guest OS affecting the Host OS.
+>
+> The following patches add
+> - dt-binding of Svukte ISA string
+> - CSR bit definition, ISA detection, senvcfg.UKTE enablement in kernel
+> - KVM ISA support for Svukte extension
+>
 > Changes in v4:
-> - Update copyright year
-> - Use guard(mutex) in the zynqmp_dp_audio.c
-> - Add Rb and Ab tags
-> - Link to v3: https://lore.kernel.org/r/20240910-xilinx-dp-audio-v3-0-75560793f4d0@ideasonboard.com
-> 
+> - rebase on riscv/for-next
+> - add kvm_riscv_vcpu_isa_disable_allowed() entry addressed by Anup
+>   and Andrew from v2/v3 patches.
+>   - update the cover letter for the detailed reason
+> - update the commit message on dt-binding for the Svukte ISA string
+> - Link to v3: https://lore.kernel.org/all/20241120-dev-maxh-svukte-v3-v3-=
+0-1e533d41ae15@sifive.com/
+>
 > Changes in v3:
-> - Expand the description in "dt-bindings: display/xlnx/zynqmp-dpsub: Add
->    audio DMAs" to be more clear about the DT binding change.
-> - Rebased on top of current upstream
-> - Link to v2: https://lore.kernel.org/r/20240319-xilinx-dp-audio-v2-0-92d6d3a7ca7e@ideasonboard.com
-> 
+> - rebase on riscv/for-next
+> - fixed typo in the dt-binding for the Svukte ISA string
+> - updated the commit message for KVM support for the Svukte extension
+> - Link to v2: https://lore.kernel.org/all/20240927-dev-maxh-svukte-rebase=
+-2-v2-0-9afe57c33aee@sifive.com/
+>
 > Changes in v2:
-> - Fix a missing double-quote in the DT binding
-> - Link to v1: https://lore.kernel.org/r/20240312-xilinx-dp-audio-v1-0-696c79facbb9@ideasonboard.com
-> 
+> - rebase on riscv/for-next (riscv-for-linus-6.12-mw1)
+> - modify the description of dt-binding on Svukte ISA string
+> - Link to v1: https://lore.kernel.org/all/20240920-dev-maxh-svukte-rebase=
+-v1-0-7864a88a62bd@sifive.com/
+>
+> Link: https://github.com/riscv/riscv-isa-manual/pull/1564 [1]
+>
+> Signed-off-by: Max Hsu <max.hsu@sifive.com>
+>
 > ---
-> Tomi Valkeinen (3):
->        dt-bindings: display/xlnx/zynqmp-dpsub: Add audio DMAs
->        arm64: dts: zynqmp: Add DMA for DP audio
->        drm: xlnx: zynqmp_dpsub: Add DP audio support
-> 
->   .../bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml   |  10 +-
->   arch/arm64/boot/dts/xilinx/zynqmp.dtsi             |   7 +-
->   drivers/gpu/drm/xlnx/Kconfig                       |   9 +
->   drivers/gpu/drm/xlnx/Makefile                      |   1 +
->   drivers/gpu/drm/xlnx/zynqmp_disp.c                 |  48 ---
->   drivers/gpu/drm/xlnx/zynqmp_disp_regs.h            |   7 +-
->   drivers/gpu/drm/xlnx/zynqmp_dp.c                   |  54 ++-
->   drivers/gpu/drm/xlnx/zynqmp_dp.h                   |   7 +
->   drivers/gpu/drm/xlnx/zynqmp_dp_audio.c             | 447 +++++++++++++++++++++
->   drivers/gpu/drm/xlnx/zynqmp_dpsub.c                |  39 +-
->   drivers/gpu/drm/xlnx/zynqmp_dpsub.h                |  15 +-
->   11 files changed, 539 insertions(+), 105 deletions(-)
+> Max Hsu (3):
+>       dt-bindings: riscv: Add Svukte entry
+>       riscv: Add Svukte extension support
+>       riscv: KVM: Add Svukte extension support for Guest/VM
+
+Overall, this series looks good to me.
+
+Reviewed-by: Anup Patel <anup@brainfault.org>
+
+As-per Linux RISC-V patch acceptance policy, we will have to
+wait until the spec is frozen.
+
+Regards,
+Anup
+
+>
+>  Documentation/devicetree/bindings/riscv/extensions.yaml | 9 +++++++++
+>  arch/riscv/include/asm/csr.h                            | 2 ++
+>  arch/riscv/include/asm/hwcap.h                          | 1 +
+>  arch/riscv/include/uapi/asm/kvm.h                       | 1 +
+>  arch/riscv/kernel/cpufeature.c                          | 5 +++++
+>  arch/riscv/kvm/vcpu_onereg.c                            | 2 ++
+>  6 files changed, 20 insertions(+)
 > ---
-> base-commit: 42f7652d3eb527d03665b09edac47f85fb600924
-> change-id: 20240312-xilinx-dp-audio-468ad12f9f64
-> 
+> base-commit: fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
+> change-id: 20241213-dev-maxh-svukte-v4-34101ec945e9
+>
 > Best regards,
-
-Pushed to drm-misc-next.
-
-  Tomi
-
+> --
+> Max Hsu <max.hsu@sifive.com>
+>
 
